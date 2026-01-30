@@ -1,0 +1,14 @@
+# Never commit secrets
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Per-agent / per-session notes (optional: remove if you want to share session notes)
+notes/*.md
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+*~

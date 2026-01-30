@@ -1,0 +1,62 @@
+# Workspace Context — Overview for AI Assistants
+
+This document describes the **entire workspace** under `/Users/garyjob/Applications`. Read it to understand what the workspace is about before editing any project.
+
+---
+
+## 1. What This Workspace Is
+
+The workspace is a **multi-root** set of applications and repositories. It centers on:
+
+1. **TrueSight DAO / Agroverse ecosystem** — DAO tools, tokenomics, DApp, static sites, e‑commerce, QR/inventory, market making.
+2. **Krake / GetData.io** — Data harvesting: Rails app, Sinatra services, local Node tools, Chrome extension.
+3. **Supporting projects** — Market research, video editor, sentiment/news import, FDA FSVP, POS integrations, personal blog, I Ching oracle, Jarvis LLM, read_page extension.
+
+Credentials and env vars are **not** stored in this context repo; they are documented in the sibling repo **agentic_ai_api_credentials** (env.template, API_CREDENTIALS_DOCUMENTATION.md).
+
+---
+
+## 2. High-Level Grouping
+
+| Group | Repos | Purpose |
+|-------|--------|---------|
+| **DAO / Agroverse** | dapp, truesight_me, tokenomics, agroverse_shop, qr_codes, proposals | DAO DApp, static site, tokenomics automation, e‑commerce, QR codes, proposals |
+| **Krake / Data** | krake_ror, krake_sinatra, krake_local, krake_chrome | Rails backend, Sinatra services, local commander/listener, Chrome extension for data harvesting |
+| **Content & Research** | market_research, video_editor, sentiment_importer, garyteh_blog | Content calendars, physical stores, video Shorts, news/sentiment import, blog |
+| **Infra & Tools** | jarvis, read_page, iching_oracle, point-of-sales-integrations, heierling-pos | Local LLM, browser extension, oracle app, POS integrations |
+| **Compliance / Biz** | fda_fsvp | FDA FSVP documentation and supplier verification |
+| **Context & Credentials** | agentic_ai_context, agentic_ai_api_credentials | AI context (this repo) and credential reference only |
+
+---
+
+## 3. Key Conventions
+
+- **Credentials**: Never commit secrets. Use `.env` per project; variable names and usage are in `agentic_ai_api_credentials`.
+- **Static sites**: truesight_me, agroverse_shop, dapp — often deployed to GitHub Pages or similar; design uses “Saffron Monk” / earthen palette where noted.
+- **Ruby**: krake_ror, sentiment_importer use Rails; krake_sinatra uses Sinatra. Check README for Ruby/RVM version (e.g. 2.6.x).
+- **Python**: market_research, video_editor, tokenomics scripts, jarvis — use venv and `requirements.txt` per project.
+- **Node/TS**: krake_local, tokenomics (Raydium), iching_oracle — check for Node 18+ or 20+ and npm/pnpm.
+- **APIs**: DApp and automation often talk to tokenomics backend/Google Apps Scripts; see tokenomics API.md and dapp UX_CONVENTIONS.md.
+
+---
+
+## 4. Cross-Repo Relationships
+
+- **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md.
+- **truesight_me** ↔ **tokenomics**: Static site data (e.g. shipments) can come from Google Sheets / tokenomics scripts.
+- **agroverse_shop** ↔ **market_research**: Content and physical store scripts in market_research feed or sync with agroverse.
+- **krake_local** ↔ **krake_ror** / **krake_chrome**: Local tools and extension interact with Krake backend/services.
+- **agentic_ai_api_credentials**: Reference only for env var names and which project uses them; no secrets.
+
+---
+
+## 5. Where to Look Next
+
+- **Per-project details**: `PROJECT_INDEX.md` in this repo (purpose, stack, entry points, credentials reference).
+- **Env vars and API keys**: `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` and `env.template`.
+- **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`.
+- **Supply chain, freighting & unit-cost economics**: this repo `SUPPLY_CHAIN_AND_FREIGHTING.md` (inventory by location, freight options Brazil→US, cacao processing/cost; references SCHEMA.md).
+- **DApp UX**: dapp `UX_CONVENTIONS.md`.
+- **Marketing / CMO consultation**: this repo `CMO_SETH_GODIN.md` — Agentic AI CMO (Seth Godin). Read when doing marketing activities to consult the CMO and operate based on his principles.
+
+Keep this file and PROJECT_INDEX.md updated when adding or retiring repos so all AI assistants stay in sync.
