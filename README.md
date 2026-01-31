@@ -25,6 +25,10 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **AI_SETUP.md** | How to check/install Claude Code, OpenAI Codex, and Gemini CLI on this machine. |
 | **GOOGLE_API_CREDENTIALS.md** | Google API credentials, service accounts, OAuth clients, and ledger spreadsheet IDs (workspace-wide). |
 | **CMO_SETH_GODIN.md** | **Agentic AI CMO** — Seth Godin persona and principles; read when doing marketing (copy, positioning, campaigns, growth). Consult this for CMO perspective. |
+| **DR_MANHATTAN.md** | **Agentic AI — Dr Manhattan** — Strategic advisor for Agroverse + TrueSight DAO growth; read when doing strategy, priorities, or onboarding. Future use: chatbot for newcomers. |
+| **GOVERNANCE_SOURCES.md** | **Governance** — Whitepaper (truesight.me/whitepaper → Google Doc), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms. |
+| **scripts/fetch_whitepaper.py** | **API to pull whitepaper** — Fetches whitepaper content (export URL or Google Docs API). Run from `scripts/` with `-o ../WHITEPAPER_SNAPSHOT.md` to write snapshot. |
+| **WHITEPAPER_SNAPSHOT.md** | **Whitepaper content** — Snapshot of truesight.me/whitepaper (Google Doc). Refresh with `scripts/fetch_whitepaper.py -o ../WHITEPAPER_SNAPSHOT.md` or paste from browser. |
 | **DAPP_PAGE_CONVENTIONS.md** | **DApp page structure** — Meta tags, Open Graph, Twitter Card, favicon, nav, body/container layout, and UX pointers. **Follow this when creating or editing pages in the dapp repo** so all pages match existing conventions. See also `dapp/UX_CONVENTIONS.md` for loading/error/combobox patterns. |
 
 ## How to use (for AIs)
@@ -33,8 +37,9 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 2. **Before editing any project:** Read `WORKSPACE_CONTEXT.md` to understand the workspace as a whole.
 3. **Before touching a specific repo:** Check `PROJECT_INDEX.md` for that project’s purpose, stack, and where credentials/docs live.
 4. **Marketing / CMO consultation:** When the task involves marketing (copy, positioning, campaigns, content, growth), read `CMO_SETH_GODIN.md` to consult the Agentic AI CMO (Seth Godin) and operate based on that context.
-5. **DApp pages (dapp repo):** When creating or editing HTML pages in the **dapp** repository, read **`DAPP_PAGE_CONVENTIONS.md`** and follow its structure (meta tags, Open Graph, favicon, nav, body/container, status/loading). For UX patterns (loading states, errors, comboboxes), also follow **`dapp/UX_CONVENTIONS.md`**.
-6. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
+5. **Strategy / onboarding (Dr Manhattan):** When the task involves strategy, growth, priorities, or onboarding for the DAO/Agroverse network, read `DR_MANHATTAN.md` to consult Dr Manhattan and operate based on that context.
+6. **DApp pages (dapp repo):** When creating or editing HTML pages in the **dapp** repository, read **`DAPP_PAGE_CONVENTIONS.md`** and follow its structure (meta tags, Open Graph, favicon, nav, body/container, status/loading). For UX patterns (loading states, errors, comboboxes), also follow **`dapp/UX_CONVENTIONS.md`**.
+7. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
 
 ## Location
 

@@ -19,6 +19,8 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | 3 | **PROJECT_INDEX.md** | Per-project summary: purpose, stack, entry points, credentials reference. |
 | 4 | **agentic_ai_api_credentials** (sibling folder) | Env var names and credential docs only; no secrets. Use when you need to know which env vars a project expects. |
 | — | **CMO_SETH_GODIN.md** | **Marketing / CMO consultation.** When the task involves marketing (copy, positioning, campaigns, content, growth, branding), read this file to consult the Agentic AI CMO (Seth Godin) and operate based on his principles and perspective. |
+| — | **DR_MANHATTAN.md** | **Strategy / onboarding.** When the task involves strategy, growth, priorities, or onboarding for the Agroverse and TrueSight DAO network, read this file to consult Dr Manhattan and operate based on his perspective. Future use: chatbot for newcomers. |
+| — | **GOVERNANCE_SOURCES.md** | **Governance.** Whitepaper (truesight.me/whitepaper → Google Doc), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms. |
 
 Other files in this folder (e.g. `AI_SETUP.md`, `GROK_CLI_410_FIX.md`, `CURSOR_AUTO_APPROVE_SETTINGS.md`) are reference docs for setup and fixes; read them when relevant to your task.
 
