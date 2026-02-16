@@ -2,7 +2,7 @@
 
 **Source:** [https://truesight.me/whitepaper](https://truesight.me/whitepaper) → Google Doc  
 **Doc ID:** `1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic`  
-**Direct link:** https://docs.google.com/document/d/1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic/edit
+**Resolves to:** [https://docs.google.com/document/d/1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic/edit?tab=t.0](https://docs.google.com/document/d/1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic/edit?tab=t.0) (TrueSight DAO white paper)
 
 ---
 
@@ -30,4 +30,4 @@ To **refresh this snapshot** with the full doc content:
 
 ---
 
-*See GOVERNANCE_SOURCES.md for whitepaper, proposals (GitHub, Realms), and how to access them.*
+*See GOVERNANCE_SOURCES.md for all truesight.me whitepapers (main, edgar, agroverse, sunmint) and proposals (GitHub, Realms). To fetch all four whitepapers at once: `python fetch_whitepaper.py --all -o ../`*

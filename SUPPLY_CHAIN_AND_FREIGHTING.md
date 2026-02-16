@@ -1,7 +1,8 @@
 # Supply Chain, Freighting & Unit Cost Economics
 
 > **Purpose:** Single reference for AI assistants (and future workspaces) to answer supply chain, production, and logistics questions—including inventory by location, freighting options, and unit-cost/cacao economics.  
-> **Schema detail:** See **tokenomics** repo `SCHEMA.md` for full sheet/column definitions. This doc summarizes logic, data sources, and how to replicate behavior for prompts like the use case below.
+> **Schema detail:** See **tokenomics** repo `SCHEMA.md` for full sheet/column definitions. This doc summarizes logic, data sources, and how to replicate behavior for prompts like the use case below.  
+> **Repos:** Logic lives in **tokenomics**. Clone if needed: `git clone https://github.com/TrueSightDAO/tokenomics`. See also **WORKSPACE_CONTEXT.md** §6 and **PROJECT_INDEX.md** (GitHub column).
 
 ---
 
@@ -185,6 +186,7 @@ Details: **tokenomics** repo `python_scripts/agroverse_cacao_processing/README.m
 - **Full schema (all sheets/columns):** `tokenomics/SCHEMA.md`  
 - **API endpoints (inventory, shipping, etc.):** `tokenomics/API.md`  
 - **Shipping Planner deployment and parameters:** `tokenomics/google_app_scripts/tdg_shipping_planner/README.md`  
-- **Workspace overview:** This repo `WORKSPACE_CONTEXT.md` and `PROJECT_INDEX.md`
+- **Workspace overview:** This repo `WORKSPACE_CONTEXT.md` and `PROJECT_INDEX.md`  
+- **GitHub (clone tokenomics):** https://github.com/TrueSightDAO/tokenomics — see WORKSPACE_CONTEXT.md §6 for all repo URLs.
 
 *When you add or change sheets or cost logic, update tokenomics SCHEMA.md and, if needed, this document.*

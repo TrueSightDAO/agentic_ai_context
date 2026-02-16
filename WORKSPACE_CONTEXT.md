@@ -61,4 +61,42 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Strategy / onboarding**: this repo `DR_MANHATTAN.md` — Dr Manhattan. Read when doing strategy, growth, priorities, or onboarding for the DAO/Agroverse network. Future use: chatbot for newcomers.
 - **Governance**: this repo `GOVERNANCE_SOURCES.md` — Whitepaper (truesight.me/whitepaper), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms.
 
+---
+
+## 6. Production domains and deployment sources
+
+**Important:** The following domains are deployed from specific GitHub repos. Do not confuse workspace paths with deployment sources.
+
+| Domain | Deployed from (production source) | Notes |
+|--------|-----------------------------------|-------|
+| **truesight.me** | [TrueSightDAO/truesight_me_prod](https://github.com/TrueSightDAO/truesight_me_prod) | Main DAO landing page — production |
+| **agroverse.shop** | [TrueSightDAO/agroverse_shop_prod](https://github.com/TrueSightDAO/agroverse_shop_prod) | E‑commerce — production |
+
+- `truesight_me/` in the workspace may be the beta repo (truesight_me or truesight_me_beta); changes for production go to **truesight_me_prod**.
+- `agroverse_shop/` in the workspace may be the beta repo (agroverse_shop_beta); changes for production go to **agroverse_shop_prod**.
+
+When editing for **truesight.me** or **agroverse.shop**, ensure changes are made in or synced to the **\*_prod** repo that deploys that domain.
+
+---
+
+## 7. Repository locations (GitHub)
+
+Future AIs can **clone** these repos when the workspace path is missing or a fresh copy is needed. Use `git clone <URL>` (HTTPS below; SSH also works if configured).
+
+| Workspace path | GitHub repo (HTTPS clone URL) | Production deploy |
+|----------------|-------------------------------|-------------------|
+| `tokenomics/` | https://github.com/TrueSightDAO/tokenomics | — |
+| `dapp/` | https://github.com/TrueSightDAO/dapp | — |
+| `truesight_me/` | https://github.com/TrueSightDAO/truesight_me | → **truesight_me_prod** → truesight.me |
+| `agroverse_shop/` | https://github.com/TrueSightDAO/agroverse_shop_beta | → **agroverse_shop_prod** → agroverse.shop |
+| `market_research/` | https://github.com/TrueSightDAO/content_schedule |
+| `agentic_ai_context/` | https://github.com/TrueSightDAO/agentic_ai_context |
+| `krake_ror/` | https://github.com/KrakeIO/krake_ror |
+| `krake_sinatra/` | https://github.com/KrakeIO/krake_sinatra |
+| `krake_chrome/` | https://github.com/KrakeIO/Chrome |
+
+Other projects (qr_codes, proposals, krake_local, sentiment_importer, fda_fsvp, jarvis, etc.) may be local-only or under different orgs; check `PROJECT_INDEX.md` GitHub column when added.
+
+---
+
 Keep this file and PROJECT_INDEX.md updated when adding or retiring repos so all AI assistants stay in sync.

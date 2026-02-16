@@ -28,7 +28,10 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **DR_MANHATTAN.md** | **Agentic AI — Dr Manhattan** — Strategic advisor for Agroverse + TrueSight DAO growth; read when doing strategy, priorities, or onboarding. Future use: chatbot for newcomers. |
 | **GOVERNANCE_SOURCES.md** | **Governance** — Whitepaper (truesight.me/whitepaper → Google Doc), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms. |
 | **scripts/fetch_whitepaper.py** | **API to pull whitepaper** — Fetches whitepaper content (export URL or Google Docs API). Run from `scripts/` with `-o ../WHITEPAPER_SNAPSHOT.md` to write snapshot. |
-| **WHITEPAPER_SNAPSHOT.md** | **Whitepaper content** — Snapshot of truesight.me/whitepaper (Google Doc). Refresh with `scripts/fetch_whitepaper.py -o ../WHITEPAPER_SNAPSHOT.md` or paste from browser. |
+| **WHITEPAPER_SNAPSHOT.md** | **Main whitepaper** — Snapshot of truesight.me/whitepaper. Refresh with `scripts/fetch_whitepaper.py -o ../WHITEPAPER_SNAPSHOT.md` or `--all -o ../` for all four. |
+| **EDGAR_WHITEPAPER_SNAPSHOT.md** | **Edgar whitepaper** — Snapshot of truesight.me/edgar/whitepaper. Refresh with `--which edgar -o ../EDGAR_WHITEPAPER_SNAPSHOT.md` or `--all -o ../`. |
+| **AGROVERSE_WHITEPAPER_SNAPSHOT.md** | **Agroverse whitepaper** — Snapshot of truesight.me/agroverse/whitepaper. Refresh with `--which agroverse -o ../` or `--all -o ../`. |
+| **SUNMINT_WHITEPAPER_SNAPSHOT.md** | **Sunmint whitepaper** — Snapshot of truesight.me/sunmint/whitepaper. Refresh with `--which sunmint -o ../` or `--all -o ../`. |
 | **DAPP_PAGE_CONVENTIONS.md** | **DApp page structure** — Meta tags, Open Graph, Twitter Card, favicon, nav, body/container layout, and UX pointers. **Follow this when creating or editing pages in the dapp repo** so all pages match existing conventions. See also `dapp/UX_CONVENTIONS.md` for loading/error/combobox patterns. |
 
 ## How to use (for AIs)

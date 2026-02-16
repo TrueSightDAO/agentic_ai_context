@@ -4,24 +4,30 @@ Single reference for where **governance** (whitepaper, proposals, voting) lives 
 
 ---
 
-## 1. Whitepaper (governance and project narrative)
+## 1. Whitepapers (truesight.me — all redirect to Google Docs)
 
-- **URL (public):** [https://truesight.me/whitepaper](https://truesight.me/whitepaper)
-- **Behavior:** JavaScript redirect (and meta refresh) to a Google Doc. Governance and project narrative are in that document.
-- **Canonical Google Doc:**  
-  `https://docs.google.com/document/d/1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic/edit`  
-  **Doc ID:** `1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic`
+All truesight.me whitepaper URLs use a JavaScript redirect (and meta refresh) to a Google Doc. The fetch script can pull any or all of them.
+
+| Name | URL | Doc ID | Snapshot file |
+|------|-----|--------|----------------|
+| **Main** (governance, project narrative) | [truesight.me/whitepaper](https://truesight.me/whitepaper) → [Google Doc](https://docs.google.com/document/d/1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic/edit?tab=t.0) | `1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic` | `WHITEPAPER_SNAPSHOT.md` |
+| **Edgar** | [truesight.me/edgar/whitepaper](https://truesight.me/edgar/whitepaper) → [Google Doc](https://docs.google.com/document/d/1Ud19BdIKrg_2SvVYEfS2fxCFCwFGwuccqOD9z53k-oc/edit?tab=t.0) | `1Ud19BdIKrg_2SvVYEfS2fxCFCwFGwuccqOD9z53k-oc` | `EDGAR_WHITEPAPER_SNAPSHOT.md` |
+| **Agroverse** | [truesight.me/agroverse/whitepaper](https://truesight.me/agroverse/whitepaper) → [Google Doc](https://docs.google.com/document/d/1b3JiawnqA1QNpA_XZMH6oNQ9ZVJnLRGtOWzM31YLvJs/edit?tab=t.0) | `1b3JiawnqA1QNpA_XZMH6oNQ9ZVJnLRGtOWzM31YLvJs` | `AGROVERSE_WHITEPAPER_SNAPSHOT.md` |
+| **Sunmint** | [truesight.me/sunmint/whitepaper](https://truesight.me/sunmint/whitepaper) → [Google Doc](https://docs.google.com/document/d/1BcrV4rtG5cNTdcycw2H94OI-pmT-dDal3x5jPcyvWC0/edit?tab=t.0) | `1BcrV4rtG5cNTdcycw2H94OI-pmT-dDal3x5jPcyvWC0` | `SUNMINT_WHITEPAPER_SNAPSHOT.md` |
 
 ### Pulling whitepaper content (API / script)
 
 - **Script:** `agentic_ai_context/scripts/fetch_whitepaper.py`  
-  Fetches whitepaper text and can write a snapshot (e.g. `WHITEPAPER_SNAPSHOT.md`) for use by LLMs or other tools.
-  - Tries **Google Docs export URL** first (no credentials; works if doc is “anyone with link can view”).
-  - Optionally uses **Google Docs API** with credentials (set `GOOGLE_APPLICATION_CREDENTIALS` or pass `--credentials path/to.json`) for docs that require auth.
-- **Run:**  
-  `cd agentic_ai_context/scripts && pip install -r requirements.txt && python fetch_whitepaper.py -o ../WHITEPAPER_SNAPSHOT.md`
-- **Snapshot file:** `agentic_ai_context/WHITEPAPER_SNAPSHOT.md` — When the script is run successfully (or content is pasted from the doc), LLMs can read this file for whitepaper content without running the script. It may start as a placeholder with instructions to refresh.
-- **Browser fallback:** If the script cannot access the doc (e.g. doc is private), use a browser (e.g. MCP cursor-ide-browser) to open [https://truesight.me/whitepaper](https://truesight.me/whitepaper), let it redirect, and extract the visible text; paste into `WHITEPAPER_SNAPSHOT.md` or use the content in context.
+  Fetches one or all whitepapers. Tries **Google Docs export URL** first (no credentials); optionally uses **Google Docs API** with `GOOGLE_APPLICATION_CREDENTIALS` or `--credentials path/to.json`.
+  (See table above for doc IDs and snapshot filenames.)
+- **Run (single):**  
+  `cd agentic_ai_context/scripts && pip install -r requirements.txt && python fetch_whitepaper.py -o ../WHITEPAPER_SNAPSHOT.md`  
+  Or: `python fetch_whitepaper.py --which edgar -o ../EDGAR_WHITEPAPER_SNAPSHOT.md` (same for `agroverse`, `sunmint`).
+- **Run (all four):**  
+  `python fetch_whitepaper.py --all -o ../`  
+  Writes all four snapshot files in the parent directory.
+- **Snapshot files:** When the script is run successfully (or content is pasted from each doc), LLMs can read these files. They may start as placeholders with instructions to refresh.
+- **Browser fallback:** If the script cannot access a doc, use a browser to open the URL above, let it redirect, and extract/paste the text into the corresponding snapshot file.
 
 ---
 
@@ -52,7 +58,8 @@ Single reference for where **governance** (whitepaper, proposals, voting) lives 
 
 | Source | Content | How to access |
 |--------|---------|----------------|
-| **Whitepaper** | Governance + project narrative | Script `scripts/fetch_whitepaper.py`; or browser to [truesight.me/whitepaper](https://truesight.me/whitepaper). Doc ID: `1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic`. |
+| **Whitepapers (main)** | Governance + project narrative | Script `scripts/fetch_whitepaper.py` or `--all -o ../`; snapshot: `WHITEPAPER_SNAPSHOT.md`. Or browser to [truesight.me/whitepaper](https://truesight.me/whitepaper). |
+| **Whitepapers (edgar, agroverse, sunmint)** | Edgar, Agroverse, Sunmint whitepapers | Same script: `--which edgar|agroverse|sunmint -o ../*_SNAPSHOT.md` or `--all -o ../`. Snapshots: `EDGAR_WHITEPAPER_SNAPSHOT.md`, `AGROVERSE_WHITEPAPER_SNAPSHOT.md`, `SUNMINT_WHITEPAPER_SNAPSHOT.md`. |
 | **Proposals (GitHub)** | Proposal text, PRs, votes | Clone [TrueSightDAO/proposals](https://github.com/TrueSightDAO/proposals) or GitHub API. DApp links above for create/vote/view. |
 | **Proposals (Realms)** | Proposals listed in Solana DAO UI | Browser: [app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7](https://app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7). |
 
