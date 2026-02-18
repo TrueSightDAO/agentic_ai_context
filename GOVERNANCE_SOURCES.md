@@ -43,6 +43,7 @@ All truesight.me whitepaper URLs use a JavaScript redirect (and meta refresh) to
   - **Create digital signature:** [https://truesightdao.github.io/dapp/create_signature.html](https://truesightdao.github.io/dapp/create_signature.html)
 - **Backend:** Google Apps Script in tokenomics repo: `tokenomics/google_app_scripts/tdg_proposal/proposal_manager.gs`
 - **Pulling proposal data:** Clone the repo or use GitHub API (e.g. list PRs, get PR body and comments for votes). No browser required for repo/API access.
+- **Proposal drafts (this repo):** `agentic_ai_context/proposal_drafts/` — ready-to-paste drafts for Create Proposal (e.g. AGL 20% fund management fee standard).
 
 ---
 
@@ -67,4 +68,21 @@ When answering governance questions, Dr Manhattan (and any agent) should use thi
 
 ---
 
-*This document is part of **agentic_ai_context**. See DR_MANHATTAN.md for strategy/onboarding and OPERATING_INSTRUCTIONS.md for reading order.*
+## 5. Syndicate agreements (Export Trade Financing)
+
+- **Template & drafts:** See `SYNDICATE_AGREEMENTS.md` for how to draft new Export Trade Financing Syndicate Agreements (AGL shipments, operational funds). Template and AGL14/AGL15 drafts live in `notarizations/`. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging).
+- **Source data:** Shipment Ledger Listing (Google Sheets): https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit?gid=483234653
+
+---
+
+## 6. Voting rights cash-out and USD provisions
+
+- **What it is:** Contributors can cash out their TDG voting rights for USD (or other assets). The **theoretical value** per voting right = total_assets / voting_rights_circulated. However, **actual cash-out is limited by USD reserves**.
+- **USD provisions for cash-out:** In the Contribution Ledger's "off chain asset balance" sheet, the row "USD - provisions for voting rights cash out" (Column A) indicates how much USD is set aside for payouts. This is the realistic limit for cash-out. Contributors receive a proportional share: (their_rights / total_rights) × provisions.
+- **Source:** Off-chain asset balance tab: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit?gid=2083442561
+- **API:** `web_app.gs` (tokenomics) returns `usd_provisions_for_cash_out`. DApp withdraw page uses this to cap the amount input and show the limit.
+- **Blog post:** [Understanding Assets Under Management (AUM)](https://truesight.me/blog/posts/understanding-assets-under-management-aum-truesight-dao-comprehensive-asset-tracking.html) explains asset tracking and the off-chain balance.
+
+---
+
+*This document is part of **agentic_ai_context**. See DR_MANHATTAN.md for strategy/onboarding, SYNDICATE_AGREEMENTS.md for syndicate drafting, and OPERATING_INSTRUCTIONS.md for reading order.*

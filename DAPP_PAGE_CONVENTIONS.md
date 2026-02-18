@@ -69,11 +69,14 @@ Include these so shared links show a proper title, description, and image:
 ## 6. Navigation (menu)
 
 - **Include menu.js** in every page: `<script src="./menu.js"></script>` (in `head`, before `</head>` or before `<style>`).
-- **Reserve the nav placeholder** in `body` so the dropdown renders:
+- **Include tdg_balance.js** in every page: `<script src="./tdg_balance.js"></script>` (after menu.js).
+- **Reserve the nav placeholder** in `body` so the dropdown renders.
+- **Reserve the TDG balance badge placeholder** after navDropdown so users see their TDG holdings once verified:
 
 ```html
 <body>
     <div id="navDropdown" style="margin:1rem 0; text-align:center;"></div>
+    <div id="tdgBalanceBadge"></div>
     <div class="container">
         ...
     </div>
@@ -146,7 +149,16 @@ body {
 
 ---
 
-## 11. UX patterns (see UX_CONVENTIONS.md)
+## 11. TDG Balance Badge
+
+- **Include on all pages:** After the user's digital signature is verified, their TDG voting rights and estimated value are shown in a compact badge below the nav and above the main content.
+- **Implementation:** Add `<div id="tdgBalanceBadge"></div>` after `navDropdown`, and include `<script src="./tdg_balance.js"></script>` in head.
+- **Behavior:** `tdg_balance.js` checks for `publicKey` in localStorage, fetches holdings from the API, and renders a clickable badge linking to `withdraw_voting_rights.html`.
+- **Rationale:** Users (especially during onboarding) see their TDG holdings immediately on any page, without visiting the cash-out page first.
+
+---
+
+## 12. UX patterns (see UX_CONVENTIONS.md)
 
 - **Remote data loading:** Show loading state immediately; dim/disable fields; restore after load or error.
 - **Errors:** Clear, actionable messages; red for errors; offer next steps.
@@ -155,16 +167,16 @@ body {
 
 ---
 
-## 12. Checklist for new or updated pages
+## 13. Checklist for new or updated pages
 
 - [ ] `<!DOCTYPE html>`, `<html lang="en">`
 - [ ] Meta: charset, description, viewport, title (`Page Name - TrueSight DAO`)
 - [ ] Open Graph: og:title, og:description, og:image, og:url, og:type, og:site_name
 - [ ] Twitter Card: twitter:card, twitter:title, twitter:description, twitter:image
 - [ ] Favicon link
-- [ ] `<script src="./menu.js"></script>`
+- [ ] `<script src="./menu.js"></script>` and `<script src="./tdg_balance.js"></script>`
 - [ ] Body: flex, column, align center, margin/padding 1rem, min-height 100vh, background #f5f5f5
-- [ ] `<div id="navDropdown">` before `.container`
+- [ ] `<div id="navDropdown">` and `<div id="tdgBalanceBadge"></div>` before `.container`
 - [ ] `.container`: max-width, width 100%, white background, padding, border-radius 8px, box-shadow
 - [ ] h1: 1.8rem, #333, centered
 - [ ] Status/loading: `id="status"`, `aria-live="polite"`, error class for errors
@@ -173,7 +185,7 @@ body {
 
 ---
 
-## 13. Where conventions live
+## 14. Where conventions live
 
 | Topic              | Location                          |
 |--------------------|-----------------------------------|

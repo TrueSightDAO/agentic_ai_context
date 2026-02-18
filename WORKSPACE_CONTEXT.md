@@ -31,7 +31,36 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 
 ## 3. Key Conventions
 
-- **Credentials**: Never commit secrets. Use `.env` per project; variable names and usage are in `agentic_ai_api_credentials`.
+- **Credentials**: Never commit secrets. Use `.env` per project; variable names and usage are in `agentic_ai_api_credentials`. **Credential files** (e.g. `google-service-account.json`) must be obtained from user during setup — see `SETUP_REQUIREMENTS.md`.
+
+---
+
+## 3a. Git check-in: do not commit to GitHub
+
+**Before committing or pushing any project, ensure the following are never included:**
+
+### Never commit
+
+1. **Security credentials and secrets**
+   - `.env`, `.env.local`, `.env.*.local`
+   - Credential files: `*credentials*.json`, `*token*.json`, `google-service-account.json`, `*.pem`, `*.key`, `*.p12`, `secrets/`, `credentials/`
+   - API keys, passwords, or tokens in source (use env vars or secret managers)
+
+2. **Unnecessary library and build artifacts**
+   - **Node:** `node_modules/`, `npm-debug.log*`, `yarn-error.log`, `.npm`, `.yarn`
+   - **Python:** `venv/`, `__pycache__/`, `*.py[cod]`, `.eggs/`, `dist/`, `build/`, `*.egg-info/`
+   - **Ruby:** `vendor/bundle/`, `.bundle/`, `tmp/`, `log/*.log`
+   - **General:** `dist/`, `build/`, `out/`, `.cache/`, `*.log`, `test-results/`, `playwright-report/`, `.coverage`, `htmlcov/`
+
+3. **Large or generated assets** (unless the repo is intended to host them)
+   - Binary blobs, DB dumps (e.g. `dump.rdb`), large media (e.g. raw video) — add to `.gitignore` and avoid staging
+
+### What to do
+
+- **Maintain `.gitignore`** per project with the above patterns (and project-specific ones).
+- **Verify before push:** `git status` and `git diff --cached`; run `git check-ignore -v <file>` if unsure.
+- **Credential files:** See `SETUP_REQUIREMENTS.md` for per-project credential file names; prompt user for these during setup, never commit them.
+- **If something was committed by mistake:** Remove from tracking, add to `.gitignore`, rotate any exposed secrets, and use history-rewriting only if necessary and with care.
 - **Static sites**: truesight_me, agroverse_shop, dapp — often deployed to GitHub Pages or similar; design uses “Saffron Monk” / earthen palette where noted.
 - **Ruby**: krake_ror, sentiment_importer use Rails; krake_sinatra uses Sinatra. Check README for Ruby/RVM version (e.g. 2.6.x).
 - **Python**: market_research, video_editor, tokenomics scripts, jarvis — use venv and `requirements.txt` per project.
@@ -43,6 +72,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 ## 4. Cross-Repo Relationships
 
 - **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md.
+- **Edgar** = **sentiment_importer** (edgar.truesight.me): DAO submission API; receives DApp contributions and triggers webhooks via Sidekiq (e.g. proposal → GitHub PR without waiting for cron).
 - **truesight_me** ↔ **tokenomics**: Static site data (e.g. shipments) can come from Google Sheets / tokenomics scripts.
 - **agroverse_shop** ↔ **market_research**: Content and physical store scripts in market_research feed or sync with agroverse.
 - **krake_local** ↔ **krake_ror** / **krake_chrome**: Local tools and extension interact with Krake backend/services.
@@ -53,13 +83,17 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 ## 5. Where to Look Next
 
 - **Per-project details**: `PROJECT_INDEX.md` in this repo (purpose, stack, entry points, credentials reference).
+- **Setup requirements**: `SETUP_REQUIREMENTS.md` in this repo — credential files needed per project (prompt user during setup).
+- **Git / GitHub check-in**: Section **3a** above — never commit credentials or unnecessary library/build files; keep `.gitignore` updated and verify before push.
 - **Env vars and API keys**: `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` and `env.template`.
 - **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`.
 - **Supply chain, freighting & unit-cost economics**: this repo `SUPPLY_CHAIN_AND_FREIGHTING.md` (inventory by location, freight options Brazil→US, cacao processing/cost; references SCHEMA.md).
 - **DApp UX**: dapp `UX_CONVENTIONS.md`.
+- **DApp CI/testing**: dapp has unit tests (Node) and Playwright integration tests. Run `npm test` in `dapp/`. See dapp `tests/README.md`. Pure logic lives in `expense-form-utils.js`; integration tests mock Google Apps Script and Edgar APIs (no real network calls). Add tests when changing expense form or utils to prevent regressions.
 - **Marketing / CMO consultation**: this repo `CMO_SETH_GODIN.md` — Agentic AI CMO (Seth Godin). Read when doing marketing activities to consult the CMO and operate based on his principles.
 - **Strategy / onboarding**: this repo `DR_MANHATTAN.md` — Dr Manhattan. Read when doing strategy, growth, priorities, or onboarding for the DAO/Agroverse network. Future use: chatbot for newcomers.
 - **Governance**: this repo `GOVERNANCE_SOURCES.md` — Whitepaper (truesight.me/whitepaper), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms.
+- **Syndicate agreements**: this repo `SYNDICATE_AGREEMENTS.md` — Template and drafts in `notarizations/`. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging). Shipment Ledger as source. **PDF generation:** Use `notarizations/scripts/generate_syndicate_pdf.mjs` with TrueSight DAO logo header (`.github/assets/20221219 - Gary logo white background squarish.jpeg`).
 
 ---
 
