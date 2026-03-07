@@ -34,6 +34,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **AGROVERSE_WHITEPAPER_SNAPSHOT.md** | **Agroverse whitepaper** — Snapshot of truesight.me/agroverse/whitepaper. Refresh with `--which agroverse -o ../` or `--all -o ../`. |
 | **SUNMINT_WHITEPAPER_SNAPSHOT.md** | **Sunmint whitepaper** — Snapshot of truesight.me/sunmint/whitepaper. Refresh with `--which sunmint -o ../` or `--all -o ../`. |
 | **DAPP_PAGE_CONVENTIONS.md** | **DApp page structure** — Meta tags, Open Graph, Twitter Card, favicon, nav, body/container layout, and UX pointers. **Follow this when creating or editing pages in the dapp repo** so all pages match existing conventions. See also `dapp/UX_CONVENTIONS.md` for loading/error/combobox patterns. |
+| **LEAD_LIST_EXTRACTION.md** | **Lead list / Hit List extraction** — How we discover retailer contacts (Playwright → Google Maps/Yelp), extract Instagram, and append to the Hit List Google Sheet. Read when extending or re-running the apothecary discovery workflow. |
 
 ## How to use (for AIs)
 
@@ -44,7 +45,8 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 5. **Strategy / onboarding (Dr Manhattan):** When the task involves strategy, growth, priorities, or onboarding for the DAO/Agroverse network, read `DR_MANHATTAN.md` to consult Dr Manhattan and operate based on that context.
 6. **DApp pages (dapp repo):** When creating or editing HTML pages in the **dapp** repository, read **`DAPP_PAGE_CONVENTIONS.md`** and follow its structure (meta tags, Open Graph, favicon, nav, body/container, status/loading). For UX patterns (loading states, errors, comboboxes), also follow **`dapp/UX_CONVENTIONS.md`**.
 7. **Syndicate agreements (AGL contracts):** When drafting Export Trade Financing Syndicate Agreements, read **`SYNDICATE_AGREEMENTS.md`** first. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging). Template in `notarizations/syndicate_agreement_template.md`.
-8. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
+8. **Lead list / Hit List extraction:** When discovering retailer contacts or updating the Hit List (apothecaries, metaphysical shops), read **`LEAD_LIST_EXTRACTION.md`** for the Playwright → CSV → append workflow, schema, and credentials.
+9. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
 
 ## Location
 
