@@ -33,7 +33,7 @@ Quick reference for each project in the workspace. For credential names and usag
 
 | Project | Path | Purpose | Stack | Entry / Key files | Credentials ref | GitHub |
 |---------|------|---------|--------|-------------------|------------------|--------|
-| **market_research** | `market_research/` | Content calendars, physical stores, blog/social sync for Agroverse & TrueSight | Python, venv | `physical_stores/`, `online_content/` | GOOGLE_CALENDAR_ID, DEFAULT_TIMEZONE | [TrueSightDAO/content_schedule](https://github.com/TrueSightDAO/content_schedule) |
+| **market_research** | `market_research/` | Content calendars, physical stores, blog/social sync for Agroverse & TrueSight. **Lead list extraction:** Playwright (Google Maps/Yelp) → `apothecary_discovery.csv` → `append_to_hit_list.py` → Hit List. See `LEAD_LIST_EXTRACTION.md`. | Python, venv | `physical_stores/`, `ceremonial_cacao_seo/playwright/`, `append_to_hit_list.py`, `HIT_LIST_CREDENTIALS.md` | GOOGLE_CALENDAR_ID, DEFAULT_TIMEZONE, google_credentials.json | [TrueSightDAO/content_schedule](https://github.com/TrueSightDAO/content_schedule) |
 | **video_editor** | `video_editor/` | AI video editor: Whisper, YOLO, Grok, YouTube Shorts upload | Python, Flask | `app.py`, `video_queue.py`, `grok_client.py` | GROK_API_KEY, PORT | — |
 | **sentiment_importer** (Edgar) | `sentiment_importer/` | **Edgar** (edgar.truesight.me): DAO API (submit_contribution, proposals, votes); news/stock import | Rails, PostgreSQL, Redis, Elasticsearch, Sidekiq | `rails s`, workers, `dao_controller.rb` | ALPHA_VANTAGE_*, FMP_*, POLYGON_*, IEX_*, WIX_*, HELLOCASH_* | — |
 | **garyteh_blog** | `garyteh_blog/` | Personal blog (static or generated) | HTML/JS | — | — | — |
