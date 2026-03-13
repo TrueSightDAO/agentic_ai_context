@@ -77,6 +77,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **agroverse_shop** ↔ **market_research**: Content and physical store scripts in market_research feed or sync with agroverse.
 - **krake_local** ↔ **krake_ror** / **krake_chrome**: Local tools and extension interact with Krake backend/services.
 - **agentic_ai_api_credentials**: Reference only for env var names and which project uses them; no secrets.
+- **TrueChain** ↔ **tokenomics** / **Edgar**: Private blockchain for DAO/Agroverse audit trail. Mirror Service copies new rows from Google Sheets to TrueChain. Block explorer via Google Apps Script (not Edgar). See `TRUECHAIN_README.md`, `TRUECHAIN_SETUP_AND_INTEGRATION.md`.
 
 ---
 
@@ -95,6 +96,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Strategy / onboarding**: this repo `DR_MANHATTAN.md` — Dr Manhattan. Read when doing strategy, growth, priorities, or onboarding for the DAO/Agroverse network. Future use: chatbot for newcomers.
 - **Governance**: this repo `GOVERNANCE_SOURCES.md` — Whitepaper (truesight.me/whitepaper), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms.
 - **Syndicate agreements**: this repo `SYNDICATE_AGREEMENTS.md` — Template and drafts in `notarizations/`. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging). Shipment Ledger as source. **PDF generation:** Use `notarizations/scripts/generate_syndicate_pdf.mjs` with TrueSight DAO logo header (`.github/assets/20221219 - Gary logo white background squarish.jpeg`).
+- **TrueChain integration**: this repo `TRUECHAIN.md` — Private blockchain setup, mirror service, block explorer (GAS), schema evolution, product/shipment/farm, technical proposal. Repo: https://github.com/TrueSightDAO/TrueChain.
 
 ---
 
@@ -126,6 +128,7 @@ Future AIs can **clone** these repos when the workspace path is missing or a fre
 | `agroverse_shop/` | https://github.com/TrueSightDAO/agroverse_shop_beta | → **agroverse_shop_prod** → agroverse.shop |
 | `market_research/` | https://github.com/TrueSightDAO/content_schedule |
 | `agentic_ai_context/` | https://github.com/TrueSightDAO/agentic_ai_context |
+| `TrueChain/` | https://github.com/TrueSightDAO/TrueChain |
 | `krake_ror/` | https://github.com/KrakeIO/krake_ror |
 | `krake_sinatra/` | https://github.com/KrakeIO/krake_sinatra |
 | `krake_chrome/` | https://github.com/KrakeIO/Chrome |

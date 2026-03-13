@@ -35,6 +35,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **SUNMINT_WHITEPAPER_SNAPSHOT.md** | **Sunmint whitepaper** — Snapshot of truesight.me/sunmint/whitepaper. Refresh with `--which sunmint -o ../` or `--all -o ../`. |
 | **DAPP_PAGE_CONVENTIONS.md** | **DApp page structure** — Meta tags, Open Graph, Twitter Card, favicon, nav, body/container layout, and UX pointers. **Follow this when creating or editing pages in the dapp repo** so all pages match existing conventions. See also `dapp/UX_CONVENTIONS.md` for loading/error/combobox patterns. |
 | **LEAD_LIST_EXTRACTION.md** | **Lead list / Hit List extraction** — How we discover retailer contacts (Playwright → Google Maps/Yelp), extract Instagram, and append to the Hit List Google Sheet. Read when extending or re-running the apothecary discovery workflow. |
+| **TRUECHAIN.md** | **TrueChain** — Private blockchain for contributions, transactions, invoices, QR codes, tree plantings, sales. Setup, integration, block explorer (GAS), technical proposal. Includes "For AI Assistants" section. Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain). |
 
 ## How to use (for AIs)
 
@@ -46,7 +47,8 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 6. **DApp pages (dapp repo):** When creating or editing HTML pages in the **dapp** repository, read **`DAPP_PAGE_CONVENTIONS.md`** and follow its structure (meta tags, Open Graph, favicon, nav, body/container, status/loading). For UX patterns (loading states, errors, comboboxes), also follow **`dapp/UX_CONVENTIONS.md`**.
 7. **Syndicate agreements (AGL contracts):** When drafting Export Trade Financing Syndicate Agreements, read **`SYNDICATE_AGREEMENTS.md`** first. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging). Template in `notarizations/syndicate_agreement_template.md`.
 8. **Lead list / Hit List extraction:** When discovering retailer contacts or updating the Hit List (apothecaries, metaphysical shops), read **`LEAD_LIST_EXTRACTION.md`** for the Playwright → CSV → append workflow, schema, and credentials.
-9. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
+9. **TrueChain integration:** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read **`TRUECHAIN.md`** (includes "For AI Assistants" section, setup, technical proposal). Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain).
+10. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
 
 ## Location
 

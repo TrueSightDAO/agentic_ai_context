@@ -23,6 +23,7 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | — | **GOVERNANCE_SOURCES.md** | **Governance.** Whitepaper (truesight.me/whitepaper → Google Doc), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms. |
 | — | **SYNDICATE_AGREEMENTS.md** | **Syndicate agreement drafting.** When drafting AGL Export Trade Financing Syndicate Agreements, read this first. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging). |
 | — | **LEAD_LIST_EXTRACTION.md** | **Lead list / Hit List extraction.** When discovering retailer contacts (apothecaries, metaphysical shops) or updating the Hit List, read for Playwright → CSV → append workflow, schema, credentials. |
+| — | **TRUECHAIN.md** | **TrueChain integration.** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read TRUECHAIN.md. Includes "For AI Assistants" section, setup, technical proposal. Repo: https://github.com/TrueSightDAO/TrueChain. |
 
 Other files in this folder (e.g. `AI_SETUP.md`, `GROK_CLI_410_FIX.md`, `CURSOR_AUTO_APPROVE_SETTINGS.md`) are reference docs for setup and fixes; read them when relevant to your task.
 
