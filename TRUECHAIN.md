@@ -36,6 +36,10 @@
 - `ContributionRegistry`, `OffchainTransactionRegistry`, `LedgerTransactionRegistry`, `InvoiceRegistry`, `QRCodeRegistry`, `TreePlantingRegistry`, `SalesReceiptRegistry`, `ShipmentRegistry`, `FarmRegistry`, `ProductRegistry`
 - **Schema evolution:** Use `payloadHash` (keccak256 of canonical JSON) + `schemaVersion` so contracts stay unchanged when Sheets add/remove columns.
 
+### Write Security (Must Adhere)
+
+- **Only authorized keys can write.** Private key held only by Mirror Service; contracts use allowlist (`addWriter` / `removeWriter`) for revocation; no IP restriction. See [§8 Write Security Protocol](#8-write-security-protocol).
+
 ### Existing Records
 
 - **Do not backfill** initially. Mirror **new records only** going forward.
@@ -57,13 +61,14 @@
 5. [What Data Gets Recorded on TrueChain?](#5-what-data-gets-recorded-on-truechain)
 6. [How Members Experience It](#6-how-members-experience-it)
 7. [Setup: Local → AWS → Production](#7-setup-local--aws--production)
-8. [Viewing Transactions (DApp + GAS)](#8-viewing-transactions-dapp--gas)
-9. [Handling Changes to Our Data (Schema Evolution)](#9-handling-changes-to-our-data-schema-evolution)
-10. [Products, Shipments, and Farms](#10-products-shipments-and-farms)
-11. [What About Our Existing Records?](#11-what-about-our-existing-records)
-12. [Technical Proposal: Scenario Mapping & Contracts](#12-technical-proposal-scenario-mapping--contracts)
-13. [Implementation Phases](#13-implementation-phases)
-14. [References](#14-references)
+8. [Write Security Protocol](#8-write-security-protocol)
+9. [Viewing Transactions (DApp + GAS)](#9-viewing-transactions-dapp--gas)
+10. [Handling Changes to Our Data (Schema Evolution)](#10-handling-changes-to-our-data-schema-evolution)
+11. [Products, Shipments, and Farms](#11-products-shipments-and-farms)
+12. [What About Our Existing Records?](#12-what-about-our-existing-records)
+13. [Technical Proposal: Scenario Mapping & Contracts](#13-technical-proposal-scenario-mapping--contracts)
+14. [Implementation Phases](#14-implementation-phases)
+15. [References](#15-references)
 
 ---
 
@@ -241,7 +246,82 @@ TRUECHAIN_RPC_URL=http://truechain.internal:8545 # Production
 
 ---
 
-## 8. Viewing Transactions (DApp + GAS)
+## 8. Write Security Protocol
+
+**Only authorized private keys can write to TrueChain.** This protocol must be adhered to in all deployments.
+
+### Requirements
+
+| Control | Requirement |
+|---------|-------------|
+| **Private key** | Only the Mirror Service (and any other authorized writers) hold the private key(s) that sign write transactions. Store keys in a secrets manager (e.g. AWS Secrets Manager), not in code or config. Never expose keys to unauthorized parties. |
+| **Contract access control** | All registry contracts must restrict write functions (e.g. `recordContribution`, `recordInvoice`) to authorized addresses via an allowlist with `addWriter` and `removeWriter`. The owner (e.g. multisig) manages the allowlist; writers are the Mirror Service key addresses. |
+
+We do **not** restrict RPC by IP address. Write authorization is enforced solely by the private key and contract access control. Anyone can reach the RPC; only transactions signed by an authorized key will succeed. This is the standard Ethereum model—the key is the credential.
+
+### Contract Pattern: Allowlist with Revocation
+
+Use an allowlist so we can add writers (e.g. new Mirror Service instances) and revoke them (e.g. exposed key):
+
+```solidity
+mapping(address => bool) public authorizedWriters;
+
+function addWriter(address writer) external onlyOwner {
+    authorizedWriters[writer] = true;
+}
+
+function removeWriter(address writer) external onlyOwner {
+    authorizedWriters[writer] = false;
+}
+
+modifier onlyAuthorizedWriter() {
+    require(authorizedWriters[msg.sender], "Not authorized");
+    _;
+}
+```
+
+- **Owner:** Separate from writers; used only for `addWriter` / `removeWriter`. Prefer multisig.
+- **Writers:** Mirror Service address(es). Each instance can have its own key; all are in the allowlist.
+
+### Key Revocation (Exposed Key)
+
+If a private key is accidentally exposed:
+
+1. **Revoke:** Call `removeWriter(compromisedAddress)` from the owner account.
+2. **Rotate:** Create a new key, call `addWriter(newAddress)`, update Mirror Service to use it.
+3. **Retire:** Remove the old key from secrets manager; stop using it.
+
+After revocation, transactions signed by the old key will revert—the contract rejects them because the address is no longer authorized.
+
+### Multiple Writers
+
+- **Multiple Mirror Service instances:** Each can have its own key; add all addresses via `addWriter`. Use idempotency (e.g. queue, partitioning) so instances don't duplicate writes.
+- **Shared key:** All instances use the same key. Simpler, but need coordination to avoid duplicate mirroring of the same row.
+
+### Read vs Write
+
+- **Read:** GAS reads from RPC to serve "View on TrueChain". The RPC URL is kept private (Script Properties); the DApp never sees it.
+- **Write:** Only transactions signed by an authorized key. The contract rejects writes from any other address.
+
+### Why No IP Restriction
+
+- The private key is the credential. If someone has the key, they can write from anywhere; if they don't, they can't. IP restriction doesn't change that.
+- No IP restriction simplifies operations: add/remove Mirror Service instances, run from different locations, avoid firewall management.
+- This matches standard Ethereum practice: authorization by signature, not by network origin.
+
+### Network Topology
+
+Network topology (enodes, node IPs) can be **public or private**. If public, anyone can run a node and sync the chain; reads become more verifiable. Write security is unchanged—it depends on the key and contract, not topology.
+
+### Checklist for New Deployments
+
+- [ ] Key: Mirror Service key(s) in secrets manager; no other copies
+- [ ] Contracts: Allowlist with `addWriter` / `removeWriter`; owner separate from writers
+- [ ] GAS: Uses Script Properties for RPC URL; URL not in public source
+
+---
+
+## 9. Viewing Transactions (DApp + GAS)
 
 When users click **"View on TrueChain"**, they see a **DApp page** (not a separate explorer). No wallet or key pair required.
 
@@ -282,7 +362,7 @@ GAS cannot reach localhost; use ngrok to expose local Geth for testing.
 
 ---
 
-## 9. Handling Changes to Our Data (Schema Evolution)
+## 10. Handling Changes to Our Data (Schema Evolution)
 
 Smart contracts are **immutable**. We design for evolution using:
 
@@ -294,7 +374,7 @@ When we add a new column: update Mirror Service encoding, bump schema version. T
 
 ---
 
-## 10. Products, Shipments, and Farms
+## 11. Products, Shipments, and Farms
 
 Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agroverse.shop/product-page/ceremonial-cacao-paulo-s-la-do-sitio-farm-2024-200g/index.html)) links to a **shipment batch** (e.g. AGL8) and a **farm** (e.g. La do Sitio).
 
@@ -311,7 +391,7 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 
 ---
 
-## 11. What About Our Existing Records?
+## 12. What About Our Existing Records?
 
 - **Recommendation:** Mirror **new records only**. Do not backfill historical data initially.
 - **Why?** Volume (10,000+ rows), risk of inconsistencies, value is in forward audit trail.
@@ -320,7 +400,7 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 
 ---
 
-## 12. Technical Proposal: Scenario Mapping & Contracts
+## 13. Technical Proposal: Scenario Mapping & Contracts
 
 ### Scenario-to-TrueChain Mapping
 
@@ -340,12 +420,13 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 - **Append-only:** No updates or deletes
 - **Hashes for PII:** `keccak256(name)` instead of raw names
 - **Events:** Emit rich events for indexing; minimal storage
+- **Access control:** Allowlist with `addWriter` / `removeWriter`; owner manages allowlist; writers are Mirror Service addresses. See [§8 Write Security Protocol](#8-write-security-protocol).
 
 ### Mirror Service Responsibilities
 
 1. Read from Google Sheets (API or webhook)
 2. Transform row data into contract parameters
-3. Submit via JSON-RPC using a service account
+3. Submit via JSON-RPC using an authorized key (stored in secrets manager)
 4. **Write transaction hash back** to the `TrueChain Tx` column on the sheet (bidirectional linkage)
 5. Retry with idempotency (contributorHash + date + rowIndex)
 
@@ -357,13 +438,13 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 ### Open Questions
 
 1. Contributor → Ethereum address mapping?
-2. Governance of signers (multi-sig, hardware wallets)?
+2. Owner for `addWriter` / `removeWriter`: multisig vs single key?
 3. Data retention / pruning?
 4. Cost: gas=0, main cost is EC2 and engineering.
 
 ---
 
-## 13. Implementation Phases
+## 14. Implementation Phases
 
 | Phase | Scope | Timeline |
 |-------|-------|----------|
@@ -377,7 +458,7 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 
 ---
 
-## 14. References
+## 15. References
 
 | Resource | Purpose |
 |----------|---------|
