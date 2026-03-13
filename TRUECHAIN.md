@@ -26,8 +26,9 @@
 | Component | Role |
 |-----------|------|
 | **TrueChain (Geth)** | Private blockchain; stores events via smart contracts |
-| **Mirror Service** | Reads from Sheets, submits transactions to TrueChain |
-| **Block Explorer** | Google Apps Script web app; reads from TrueChain; **not** in Edgar (to save Edgar bandwidth) |
+| **Mirror Service** | Reads from Sheets, submits transactions to TrueChain; writes **transaction hash** back to a `TrueChain Tx` column |
+| **GAS (read API)** | Returns transaction/block data as JSON; DApp calls GAS (not Edgar) for read-only viewing |
+| **DApp** | **"View on TrueChain"** — new page that fetches tx data from GAS and renders it; no wallet required |
 | **Edgar** | DAO API; does **not** serve block explorer traffic |
 
 ### Smart Contracts (Append-Only)
@@ -56,7 +57,7 @@
 5. [What Data Gets Recorded on TrueChain?](#5-what-data-gets-recorded-on-truechain)
 6. [How Members Experience It](#6-how-members-experience-it)
 7. [Setup: Local → AWS → Production](#7-setup-local--aws--production)
-8. [Block Explorer (Google Apps Script)](#8-block-explorer-google-apps-script)
+8. [Viewing Transactions (DApp + GAS)](#8-viewing-transactions-dapp--gas)
 9. [Handling Changes to Our Data (Schema Evolution)](#9-handling-changes-to-our-data-schema-evolution)
 10. [Products, Shipments, and Farms](#10-products-shipments-and-farms)
 11. [What About Our Existing Records?](#11-what-about-our-existing-records)
@@ -83,7 +84,7 @@ TrueChain is like a shared, tamper-proof ledger. When we record something (a con
 ### What might I see later?
 
 - A **"Verified on TrueChain"** badge on product or QR pages
-- A **"View on TrueChain"** link to see the record on our block explorer
+- A **"View on TrueChain"** link in the DApp — opens a transaction view (no wallet required)
 
 ### Repository
 
@@ -181,6 +182,14 @@ We mirror these types of data:
 
 Each record is **append-only**—we never update or delete. If we need to change something, we add a new record.
 
+### Transaction Hash Column
+
+Each mirrored sheet has a **`TrueChain Tx`** column (at the end of the sheet). When the Mirror Service successfully records a row on TrueChain, it writes the **transaction hash** back to that column. This provides:
+
+- **Bidirectional linkage** — Sheet row ↔ TrueChain transaction
+- **Idempotency** — If the column already has a hash, skip re-mirroring
+- **"View on TrueChain"** — DApp links use this hash to fetch and display the transaction
+
 ---
 
 ## 6. How Members Experience It
@@ -192,7 +201,7 @@ Members keep using: **DApp**, **Telegram**, **Edgar**. They do **not** need Meta
 ### What They Might See Later
 
 - **"Verified on TrueChain"** badge on product pages or QR code landing pages
-- **"View on TrueChain"** link — opens a block explorer showing the transaction
+- **"View on TrueChain"** link — opens a **DApp page** that shows the transaction (no wallet required; DApp fetches from GAS)
 - **Provenance timeline** — e.g. "Bag registered → Sold → Tree pledged" with links to each record
 
 ---
@@ -232,14 +241,44 @@ TRUECHAIN_RPC_URL=http://truechain.internal:8545 # Production
 
 ---
 
-## 8. Block Explorer (Google Apps Script)
+## 8. Viewing Transactions (DApp + GAS)
 
-The **block explorer** lets anyone view transaction and block details when they click "View on TrueChain."
+When users click **"View on TrueChain"**, they see a **DApp page** (not a separate explorer). No wallet or key pair required.
 
-- **Why GAS?** Saves Edgar bandwidth; caching reduces RPC calls; no new server
-- **Flow:** User → GAS web app → TrueChain RPC (GAS fetches via UrlFetchApp, caches, returns HTML)
-- **Links:** Point to `https://script.google.com/macros/s/<ID>/exec?tx=0x...` or `explorer.truesight.me/tx/0x...`
-- **Local testing:** GAS cannot reach localhost; use ngrok to expose local Geth
+### Flow
+
+```
+User clicks "View on TrueChain" in DApp
+        │
+        ▼
+┌─────────────────────┐
+│  DApp               │  fetch(GAS_URL + "?tx=0x...")
+│  (view_transaction  │
+│   .html)            │
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│  GAS Web App        │  doGet(e) → check cache → if miss, UrlFetchApp(TrueChain RPC)
+│  (returns JSON)     │  → return { tx, receipt, decodedEvents }
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│  TrueChain (EC2)    │
+│  Geth JSON-RPC      │
+└─────────────────────┘
+```
+
+### Why DApp + GAS?
+
+- **DApp:** Unified experience; no wallet needed; consistent branding
+- **GAS for reads:** Saves Edgar bandwidth; caching reduces RPC calls; no new server
+- **GAS returns JSON:** DApp renders the transaction view with its own layout
+
+### Local testing
+
+GAS cannot reach localhost; use ngrok to expose local Geth for testing.
 
 ---
 
@@ -307,7 +346,7 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 1. Read from Google Sheets (API or webhook)
 2. Transform row data into contract parameters
 3. Submit via JSON-RPC using a service account
-4. Write `txHash` back to Sheets
+4. **Write transaction hash back** to the `TrueChain Tx` column on the sheet (bidirectional linkage)
 5. Retry with idempotency (contributorHash + date + rowIndex)
 
 ### AWS Layout (Later Stage)
@@ -332,7 +371,7 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 | 2. Contract suite | All registries; unit tests | 4–6 weeks |
 | 3. Mirror Service | Node or Rails; webhook/cron; idempotency | 2–3 weeks |
 | 4. Single EC2 | Deploy TrueChain + Mirror; production Sheets | 2–3 weeks |
-| 5. Block Explorer (GAS) | Deploy GAS web app; "View on TrueChain" links | 1–2 weeks |
+| 5. Block Explorer (GAS + DApp) | GAS API (returns JSON); DApp view_transaction page; "View on TrueChain" links | 1–2 weeks |
 | 6. Full mirror | All data types; txHash columns | 2–4 weeks |
 | 7. Scale & polish | Multi-EC2; provenance badges; monitoring | Ongoing |
 
