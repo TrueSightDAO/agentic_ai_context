@@ -61,6 +61,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Verify before push:** `git status` and `git diff --cached`; run `git check-ignore -v <file>` if unsure.
 - **Credential files:** See `SETUP_REQUIREMENTS.md` for per-project credential file names; prompt user for these during setup, never commit them.
 - **If something was committed by mistake:** Remove from tracking, add to `.gitignore`, rotate any exposed secrets, and use history-rewriting only if necessary and with care.
+- **Agroverse product feeds / Merchant Center safety:** keep product category in feed as `g:google_product_category` only; avoid adding freeform `Product.category` in page JSON-LD when it causes Merchant warnings. Keep feed URLs canonical and non-redirecting (prefer `https://agroverse.shop/...` consistently), and ensure feed text/entities are valid XML (avoid double-escaped entities like `&amp;apos;`).
 - **Static sites**: truesight_me, agroverse_shop, dapp — often deployed to GitHub Pages or similar; design uses “Saffron Monk” / earthen palette where noted.
 - **Ruby**: krake_ror, sentiment_importer use Rails; krake_sinatra uses Sinatra. Check README for Ruby/RVM version (e.g. 2.6.x).
 - **Python**: market_research, video_editor, tokenomics scripts, jarvis — use venv and `requirements.txt` per project.

@@ -62,6 +62,7 @@ npx ts-node research_apothecaries.ts
 **Env vars:**
 - `HEADLESS=0` — Visible browser (debug)
 - `YELP_MAX_PAGES=1` or `2` — Limit Yelp pages (throttling)
+- `REGIONS=TX,NY` — Run only specified states (e.g. Austin TX + Rochester NY). Omit to run all (CA, AZ, OR, WA, TX, NY).
 
 **Output:** `../apothecary_discovery.json` and `../apothecary_discovery.csv`
 
@@ -125,7 +126,7 @@ Writes `data/hit_list.csv` for local backup or downstream scripts.
 
 ## Extending for New Sources or Regions
 
-- **New regions:** Edit `STATES` and `cities` in `research_apothecaries.ts`
+- **New regions:** Edit `STATES` and `cities` in `research_apothecaries.ts`. Current: CA, AZ, OR, WA, TX (Austin area), NY (Rochester area). Use `REGIONS=TX,NY` to run only specific states.
 - **New sources:** Add search function (e.g. another directory site), output `DiscoveredStore[]`, merge into `allStores` with `seenKeys` dedup
 - **New fields:** Add to `DiscoveredStore`, `toCsvRow()`, CSV header, and `append_to_hit_list.py` `cols` list
 - **Different store types:** Change search term (e.g. "wellness center", "herb shop") and `shopType`
