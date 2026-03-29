@@ -90,7 +90,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Setup requirements**: `SETUP_REQUIREMENTS.md` in this repo — credential files needed per project (prompt user during setup).
 - **Git / GitHub check-in**: Section **3a** above — never commit credentials or unnecessary library/build files; keep `.gitignore` updated and verify before push.
 - **Env vars and API keys**: `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` and `env.template`.
-- **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`. **Tokenomics GAS source of truth:** `tokenomics/clasp_mirrors/<scriptId>/` for clasp; `google_app_scripts/` for readable reference.
+- **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`. **Tokenomics GAS:** edit under local `tokenomics/clasp_mirrors/<scriptId>/` (`clasp pull` after clone); git tracks mirror `.clasp.json` + checklist only — not `*.js` / `appsscript.json`. `google_app_scripts/` = readable reference `.gs`.
 - **Supply chain, freighting & unit-cost economics**: this repo `SUPPLY_CHAIN_AND_FREIGHTING.md` (inventory by location, freight options Brazil→US, cacao processing/cost; references SCHEMA.md).
 - **Wholesale purchase agreement PDFs**: this repo **`PURCHASE_AGREEMENT_PDFS.md`** — `market_research/purchase_agreements/`, ReportLab conventions, farm profile URLs, payment schedule table pattern.
 - **Gmail user OAuth (local tokens for automations):** this repo **`GMAIL_OAUTH_WORKFLOW.md`** — `market_research/scripts/gmail_oauth_authorize.py`, `market_research/credentials/gmail/` (gitignored secrets + optional tracked `README.md`).
