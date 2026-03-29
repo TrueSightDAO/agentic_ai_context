@@ -44,6 +44,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 1. **Security credentials and secrets**
    - `.env`, `.env.local`, `.env.*.local`
    - Credential files: `*credentials*.json`, `*token*.json`, `google-service-account.json`, `*.pem`, `*.key`, `*.p12`, `secrets/`, `credentials/`
+   - **Gmail user OAuth (market_research):** `market_research/credentials/gmail/client_secret.json` and `token.json` — see **`GMAIL_OAUTH_WORKFLOW.md`**; run `python3 scripts/gmail_oauth_authorize.py` after placing the Desktop client JSON; never commit those files (folder uses `.gitignore`; only `README.md` there may be tracked).
    - API keys, passwords, or tokens in source (use env vars or secret managers)
 
 2. **Unnecessary library and build artifacts**
@@ -66,16 +67,17 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Ruby**: krake_ror, sentiment_importer use Rails; krake_sinatra uses Sinatra. Check README for Ruby/RVM version (e.g. 2.6.x).
 - **Python**: market_research, video_editor, tokenomics scripts, jarvis — use venv and `requirements.txt` per project.
 - **Node/TS**: krake_local, tokenomics (Raydium), iching_oracle — check for Node 18+ or 20+ and npm/pnpm.
-- **APIs**: DApp and automation often talk to tokenomics backend/Google Apps Scripts; see tokenomics API.md and dapp UX_CONVENTIONS.md.
+- **APIs**: DApp and automation often talk to tokenomics backend/Google Apps Scripts; see tokenomics API.md and dapp UX_CONVENTIONS.md. **Google Apps Script web apps** must allow the caller (**Who has access**); otherwise the browser reports **CORS** errors for `fetch()` even though the `.gs` uses standard `ContentService` JSON — see **DAPP_PAGE_CONVENTIONS.md §14**.
 
 ---
 
 ## 4. Cross-Repo Relationships
 
-- **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md.
+- **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md. **Apps Script edits:** implement and deploy from **`tokenomics/clasp_mirrors/<scriptId>/`** (clasp); **`tokenomics/google_app_scripts/`** is reference-only unless explicitly backported.
+- **dapp** ↔ **holistic wellness Hit List (Sheets)**: `store_interaction_history.html` calls the read-only web app documented under **`tokenomics/google_app_scripts/holistic_hit_list_store_history/`** (Deployment URL in `store_interaction_history_api.gs`; DApp **`API_BASE_URL`** should match after redeploys). **Deploy changes** from the matching **`tokenomics/clasp_mirrors/<scriptId>/`** project (`clasp push`), not from the thematic folder alone. Spreadsheet: `1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc`. Partner workflow: **`PARTNER_OUTREACH_PROTOCOL.md`**, **`HIT_LIST_CREDENTIALS.md`** (market_research).
 - **Edgar** = **sentiment_importer** (edgar.truesight.me): DAO submission API; receives DApp contributions and triggers webhooks via Sidekiq (e.g. proposal → GitHub PR without waiting for cron).
 - **truesight_me** ↔ **tokenomics**: Static site data (e.g. shipments) can come from Google Sheets / tokenomics scripts.
-- **agroverse_shop** ↔ **market_research**: Content and physical store scripts in market_research feed or sync with agroverse.
+- **agroverse_shop** ↔ **market_research**: Content and physical store scripts in market_research feed or sync with agroverse. **Product development specs** (packaging, new SKUs): checklists live in **Google Sheets** (tabs per section); `market_research/scripts/populate_chocolate_bar_spec_sheet.py` can populate + style cells; read **`PRODUCT_DEVELOPMENT_SPECS.md`** in agentic_ai_context for the workflow and future AI behavior. **Default Drive folder** for new generated Sheet artifacts: `1esYnlwChRmv9-M3ymWYhWMPHRowhOluw` (link in that doc and in **`GOOGLE_API_CREDENTIALS.md`**). **Wholesale / import purchase agreement PDFs:** `market_research/purchase_agreements/` (ReportLab); read **`PURCHASE_AGREEMENT_PDFS.md`** before generating or extending agreements—farm canonical URLs (e.g. Oscar: `https://agroverse.shop/farms/oscar-bahia/index.html`), table/markup rules, deposit layout, and copy-from-script workflow.
 - **krake_local** ↔ **krake_ror** / **krake_chrome**: Local tools and extension interact with Krake backend/services.
 - **agentic_ai_api_credentials**: Reference only for env var names and which project uses them; no secrets.
 - **TrueChain** ↔ **tokenomics** / **Edgar**: Private blockchain for DAO/Agroverse audit trail. Mirror Service copies new rows from Google Sheets to TrueChain. Block explorer via Google Apps Script (not Edgar). See `TRUECHAIN_README.md`, `TRUECHAIN_SETUP_AND_INTEGRATION.md`.
@@ -88,8 +90,10 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Setup requirements**: `SETUP_REQUIREMENTS.md` in this repo — credential files needed per project (prompt user during setup).
 - **Git / GitHub check-in**: Section **3a** above — never commit credentials or unnecessary library/build files; keep `.gitignore` updated and verify before push.
 - **Env vars and API keys**: `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` and `env.template`.
-- **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`.
+- **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`. **Tokenomics GAS source of truth:** `tokenomics/clasp_mirrors/<scriptId>/` for clasp; `google_app_scripts/` for readable reference.
 - **Supply chain, freighting & unit-cost economics**: this repo `SUPPLY_CHAIN_AND_FREIGHTING.md` (inventory by location, freight options Brazil→US, cacao processing/cost; references SCHEMA.md).
+- **Wholesale purchase agreement PDFs**: this repo **`PURCHASE_AGREEMENT_PDFS.md`** — `market_research/purchase_agreements/`, ReportLab conventions, farm profile URLs, payment schedule table pattern.
+- **Gmail user OAuth (local tokens for automations):** this repo **`GMAIL_OAUTH_WORKFLOW.md`** — `market_research/scripts/gmail_oauth_authorize.py`, `market_research/credentials/gmail/` (gitignored secrets + optional tracked `README.md`).
 - **DApp UX**: dapp `UX_CONVENTIONS.md`.
 - **DApp CI/testing**: dapp has unit tests (Node) and Playwright integration tests. Run `npm test` in `dapp/`. See dapp `tests/README.md`. CI: `.github/workflows/ci.yml` on push/PR to main. Pure logic in `expense-form-utils.js`; integration tests mock Google Apps Script and Edgar APIs (no real network calls).
 - **Agroverse Shop CI/testing**: agroverse_shop has Playwright visual consistency tests. Run `npm test` in `agroverse_shop/`. See agroverse_shop `tests/README.md`. **Local runs hit `localhost:8000`** — Playwright auto-starts Python `http.server` on port 8000; ensure nothing else uses that port. CI (GitHub Actions) runs against live site (beta or prod). Workflow: `.github/workflows/visual-consistency.yml`. Smart runner: `npm run test:resume` to resume from failures.

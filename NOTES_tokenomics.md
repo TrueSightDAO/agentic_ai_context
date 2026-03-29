@@ -14,7 +14,9 @@ Key docs
 - `SCHEDULE_TRIGGERS.md` — Time-driven automations and their roles.
 
 ## Main Areas
-- Google Apps Scripts (`google_app_scripts/`) grouped by domain:
+- **Google Apps Script — canonical for clasp:** `tokenomics/clasp_mirrors/<scriptId>/` (one folder per Apps Script project). Use `clasp push` / `clasp pull` from there. Regenerate or refresh mirrors: `node scripts/clone_clasp_mirrors.mjs` from repo root.
+- **Reference layout:** `google_app_scripts/` — same logic grouped by domain for reading and docs; **not** the primary clasp root after 2026-03. Backport from mirrors if thematic folders should reflect production.
+- Domains under `google_app_scripts/` (reference paths):
   - tdg_asset_management: expenses, capital injection, recurring tokenization, wallet checks, Stripe, Wix dashboard + web service
   - tdg_inventory_management: sales & movement parsing + web app
   - tdg_identity_management: member signature registration (email/telegram)
