@@ -18,6 +18,7 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | 2 | **WORKSPACE_CONTEXT.md** | Overview of the workspace: project groups, conventions, cross-repo relationships. |
 | 3 | **PROJECT_INDEX.md** | Per-project summary: purpose, stack, entry points, credentials reference. |
 | 4 | **agentic_ai_api_credentials** (sibling folder) | Env var names and credential docs only; no secrets. Use when you need to know which env vars a project expects. |
+| — | **LEDGER_CONVERSION_AND_REPACKAGING.md** | **Main Ledger conversion / repackaging.** When the task involves combining inventory into new SKUs, `Currency` naming, or cost per unit after conversion, read this file in full (see also **WORKSPACE_CONTEXT.md** §3b). |
 | — | **CMO_SETH_GODIN.md** | **Marketing / CMO consultation.** When the task involves marketing (copy, positioning, campaigns, content, growth, branding), read this file to consult the Agentic AI CMO (Seth Godin) and operate based on his principles and perspective. |
 | — | **DR_MANHATTAN.md** | **Strategy / onboarding.** When the task involves strategy, growth, priorities, or onboarding for the Agroverse and TrueSight DAO network, read this file to consult Dr Manhattan and operate based on his perspective. Future use: chatbot for newcomers. |
 | — | **GOVERNANCE_SOURCES.md** | **Governance.** Whitepaper (truesight.me/whitepaper → Google Doc), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms. |

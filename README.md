@@ -11,7 +11,7 @@ git clone git@github.com:TrueSightDAO/agentic_ai_context.git
 cd agentic_ai_context
 ```
 
-Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTIONS.md` → `WORKSPACE_CONTEXT.md` → `PROJECT_INDEX.md`). Your AI will have context on the TrueSight DAO, Agroverse (ceremonial cacao, agroverse.shop, reseller partners), Krake, and the rest of the workspace — conventions, credentials reference, and CMO playbook included.
+Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTIONS.md` → `WORKSPACE_CONTEXT.md` → `PROJECT_INDEX.md`). **Main Ledger repackaging / conversion questions:** read **`LEDGER_CONVERSION_AND_REPACKAGING.md`** when relevant (also linked from `WORKSPACE_CONTEXT.md` §3b). Your AI will have context on the TrueSight DAO, Agroverse (ceremonial cacao, agroverse.shop, reseller partners), Krake, and the rest of the workspace — conventions, credentials reference, and CMO playbook included.
 
 ## Contents
 
@@ -24,6 +24,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **notes/** | Per-agent / per-session notes; create files like `cursor_2025-01-29.md`, `claude_session.md`. |
 | **AI_SETUP.md** | How to check/install Claude Code, OpenAI Codex, and Gemini CLI on this machine. |
 | **GOOGLE_API_CREDENTIALS.md** | Google API credentials, service accounts, OAuth clients, and ledger spreadsheet IDs (workspace-wide). |
+| **LEDGER_CONVERSION_AND_REPACKAGING.md** | **Main Ledger** — repackaging / conversion: input & output `Currency`, cost per unit, standard naming template, SCHEMA/API workflow. **Read when the task involves ledger conversion** (see `WORKSPACE_CONTEXT.md` §3b). |
 | **CMO_SETH_GODIN.md** | **Agentic AI CMO** — Seth Godin persona and principles; read when doing marketing (copy, positioning, campaigns, growth). Consult this for CMO perspective. |
 | **DR_MANHATTAN.md** | **Agentic AI — Dr Manhattan** — Strategic advisor for Agroverse + TrueSight DAO growth; read when doing strategy, priorities, or onboarding. Future use: chatbot for newcomers. |
 | **GOVERNANCE_SOURCES.md** | **Governance** — Whitepaper (truesight.me/whitepaper → Google Doc), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms. |
@@ -36,6 +37,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **DAPP_PAGE_CONVENTIONS.md** | **DApp page structure** — Meta tags, Open Graph, Twitter Card, favicon, nav, body/container layout, and UX pointers. **Follow this when creating or editing pages in the dapp repo** so all pages match existing conventions. See also `dapp/UX_CONVENTIONS.md` for loading/error/combobox patterns. |
 | **LEAD_LIST_EXTRACTION.md** | **Lead list / Hit List extraction** — How we discover retailer contacts (Playwright → Google Maps/Yelp), extract Instagram, and append to the Hit List Google Sheet. Read when extending or re-running the apothecary discovery workflow. |
 | **LAB_REPORT_TRANSLATION.md** | **Lab report translation** — Portuguese lab reports (ANVISA) for Agroverse shipments. Extract PDF text, translate via Grok API, add English summary to shipment page, link to original Portuguese PDF. Read when translating lab reports or adding English summaries to AGL shipment pages. |
+| **PRODUCT_DEVELOPMENT_SPECS.md** | **Agroverse physical product specs** — Packaging / copacker / retail checklists in **Google Sheets** (tabs per section); script `market_research/scripts/populate_chocolate_bar_spec_sheet.py` populates rows and applies readable formatting. **Default Drive folder** for new generated Sheets: folder ID `1esYnlwChRmv9-M3ymWYhWMPHRowhOluw`. Read when starting a **new SKU, bar, pouch, or RDB** spec; align suggestions with agroverse.shop + repo. |
 | **TRUECHAIN.md** | **TrueChain** — Private blockchain for contributions, transactions, invoices, QR codes, tree plantings, sales. Setup, integration, block explorer (GAS), technical proposal. Includes "For AI Assistants" section. Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain). |
 
 ## How to use (for AIs)
@@ -43,14 +45,16 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 1. **First:** Read `OPERATING_INSTRUCTIONS.md` for rules on reading and contributing.
 2. **Before editing any project:** Read `WORKSPACE_CONTEXT.md` to understand the workspace as a whole.
 3. **Before touching a specific repo:** Check `PROJECT_INDEX.md` for that project’s purpose, stack, and where credentials/docs live.
-4. **Marketing / CMO consultation:** When the task involves marketing (copy, positioning, campaigns, content, growth), read `CMO_SETH_GODIN.md` to consult the Agentic AI CMO (Seth Godin) and operate based on that context.
-5. **Strategy / onboarding (Dr Manhattan):** When the task involves strategy, growth, priorities, or onboarding for the DAO/Agroverse network, read `DR_MANHATTAN.md` to consult Dr Manhattan and operate based on that context.
-6. **DApp pages (dapp repo):** When creating or editing HTML pages in the **dapp** repository, read **`DAPP_PAGE_CONVENTIONS.md`** and follow its structure (meta tags, Open Graph, favicon, nav, body/container, status/loading). For UX patterns (loading states, errors, comboboxes), also follow **`dapp/UX_CONVENTIONS.md`**.
-7. **Syndicate agreements (AGL contracts):** When drafting Export Trade Financing Syndicate Agreements, read **`SYNDICATE_AGREEMENTS.md`** first. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging). Template in `notarizations/syndicate_agreement_template.md`.
-8. **Lead list / Hit List extraction:** When discovering retailer contacts or updating the Hit List (apothecaries, metaphysical shops), read **`LEAD_LIST_EXTRACTION.md`** for the Playwright → CSV → append workflow, schema, and credentials.
-9. **Lab report translation (Agroverse shipments):** When translating Portuguese lab reports to English, adding English summaries to shipment pages (AGL4, AGL8, etc.), or extracting/translating PDF lab reports, read **`LAB_REPORT_TRANSLATION.md`** for the workflow (pdfplumber → Grok API → HTML summary), script location, and Grok key (video_editor/.env).
-10. **TrueChain integration:** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read **`TRUECHAIN.md`** (includes "For AI Assistants" section, setup, technical proposal). Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain).
-11. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
+4. **Main Ledger repackaging / conversion** (inputs, cost per output, new `Currency` names): Read **`LEDGER_CONVERSION_AND_REPACKAGING.md`** in full when the task involves it (`WORKSPACE_CONTEXT.md` §3b points here).
+5. **Marketing / CMO consultation:** When the task involves marketing (copy, positioning, campaigns, content, growth), read `CMO_SETH_GODIN.md` to consult the Agentic AI CMO (Seth Godin) and operate based on that context.
+6. **Strategy / onboarding (Dr Manhattan):** When the task involves strategy, growth, priorities, or onboarding for the DAO/Agroverse network, read `DR_MANHATTAN.md` to consult Dr Manhattan and operate based on that context.
+7. **DApp pages (dapp repo):** When creating or editing HTML pages in the **dapp** repository, read **`DAPP_PAGE_CONVENTIONS.md`** and follow its structure (meta tags, Open Graph, favicon, nav, body/container, status/loading). For UX patterns (loading states, errors, comboboxes), also follow **`dapp/UX_CONVENTIONS.md`**.
+8. **Syndicate agreements (AGL contracts):** When drafting Export Trade Financing Syndicate Agreements, read **`SYNDICATE_AGREEMENTS.md`** first. **Precedence:** Shipment financing = 20% DAO fee; operational fund (invests in other AGLs) = no fee (avoid double-charging). Template in `notarizations/syndicate_agreement_template.md`.
+9. **Lead list / Hit List extraction:** When discovering retailer contacts or updating the Hit List (apothecaries, metaphysical shops), read **`LEAD_LIST_EXTRACTION.md`** for the Playwright → CSV → append workflow, schema, and credentials.
+10. **Lab report translation (Agroverse shipments):** When translating Portuguese lab reports to English, adding English summaries to shipment pages (AGL4, AGL8, etc.), or extracting/translating PDF lab reports, read **`LAB_REPORT_TRANSLATION.md`** for the workflow (pdfplumber → Grok API → HTML summary), script location, and Grok key (video_editor/.env).
+11. **Product development specs (new packaging / SKUs):** When building **checklists for physical products** (chocolate bars, pouches, retail display boxes, labels, GTINs), read **`PRODUCT_DEVELOPMENT_SPECS.md`**. Prefer **Google Sheets** with one tab per section; use **`market_research/scripts/populate_chocolate_bar_spec_sheet.py`** as the template for populate + cell styling (or copy the pattern for a new spreadsheet ID).
+12. **TrueChain integration:** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read **`TRUECHAIN.md`** (includes "For AI Assistants" section, setup, technical proposal). Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain).
+13. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
 
 ## Location
 
