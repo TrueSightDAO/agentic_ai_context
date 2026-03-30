@@ -71,12 +71,21 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 
 ---
 
+## 3b. Main ledger: **Ledger conversion and repackaging**
+
+**Mandatory for those tasks:** If the user asks about **repackaging**, **Main Ledger conversion**, **input/output `Currency`**, **cost per unit after conversion**, or **naming new production lines**, read **`LEDGER_CONVERSION_AND_REPACKAGING.md`** in this repo **in full** before replying. That file is the **canonical playbook** (prompt pattern, standard `Currency` template, cost formula, SCHEMA/API pointers, legacy vs new naming, cross-ledger placeholder).
+
+**One-line summary:** Operators combine **input** inventory lines into **output** SKUs at a location; composite names use **`Alibaba:…`**, **`CP…BR`** (Correios — see §4 below), and **`| Operator YYYYMMDD`**; costs come from **`offchain asset location`** **Unit Cost** × quantities ÷ output count.
+
+---
+
 ## 4. Cross-Repo Relationships
 
 - **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md. **Apps Script edits:** implement and deploy from **`tokenomics/clasp_mirrors/<scriptId>/`** (clasp); **`tokenomics/google_app_scripts/`** is reference-only unless explicitly backported.
 - **dapp** ↔ **holistic wellness Hit List (Sheets)**: `store_interaction_history.html` calls the read-only web app documented under **`tokenomics/google_app_scripts/holistic_hit_list_store_history/`** (Deployment URL in `store_interaction_history_api.gs`; DApp **`API_BASE_URL`** should match after redeploys). **Deploy changes** from the matching **`tokenomics/clasp_mirrors/<scriptId>/`** project (`clasp push`), not from the thematic folder alone. Spreadsheet: `1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc`. Partner workflow: **`PARTNER_OUTREACH_PROTOCOL.md`**, **`HIT_LIST_CREDENTIALS.md`** (market_research).
 - **Edgar** = **sentiment_importer** (edgar.truesight.me): DAO submission API; receives DApp contributions and triggers webhooks via Sidekiq (e.g. proposal → GitHub PR without waiting for cron).
 - **truesight_me** ↔ **tokenomics**: Static site data (e.g. shipments) can come from Google Sheets / tokenomics scripts.
+- **Agroverse main ledger (`Currency` / product strings):** Codes like **`CP`…`BR`** embedded in pouch or ceremonial names are usually **Correios (Brazil Post) international package tracking numbers** for shipments from **Ilheus, Bahia** (often **Matheus’** / Oscar-adjacent origin) **to a destination in the United States**. They disambiguate a specific mailed batch when naming SKUs or composite ceremonial lines (e.g. `… + 8 Ounce Package Kraft Pouch CP340992735BR …`). See **`tokenomics/SCHEMA.md`** for sheet/column layout. For **repackaging and composite SKUs**, read **`LEDGER_CONVERSION_AND_REPACKAGING.md`** and **§3b** above (pointer).
 - **agroverse_shop** ↔ **market_research**: Content and physical store scripts in market_research feed or sync with agroverse. **Product development specs** (packaging, new SKUs): checklists live in **Google Sheets** (tabs per section); `market_research/scripts/populate_chocolate_bar_spec_sheet.py` can populate + style cells; read **`PRODUCT_DEVELOPMENT_SPECS.md`** in agentic_ai_context for the workflow and future AI behavior. **Default Drive folder** for new generated Sheet artifacts: `1esYnlwChRmv9-M3ymWYhWMPHRowhOluw` (link in that doc and in **`GOOGLE_API_CREDENTIALS.md`**). **Wholesale / import purchase agreement PDFs:** `market_research/purchase_agreements/` (ReportLab); read **`PURCHASE_AGREEMENT_PDFS.md`** before generating or extending agreements—farm canonical URLs (e.g. Oscar: `https://agroverse.shop/farms/oscar-bahia/index.html`), table/markup rules, deposit layout, and copy-from-script workflow.
 - **krake_local** ↔ **krake_ror** / **krake_chrome**: Local tools and extension interact with Krake backend/services.
 - **agentic_ai_api_credentials**: Reference only for env var names and which project uses them; no secrets.
@@ -91,6 +100,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Git / GitHub check-in**: Section **3a** above — never commit credentials or unnecessary library/build files; keep `.gitignore` updated and verify before push.
 - **Env vars and API keys**: `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` and `env.template`.
 - **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`. **Tokenomics GAS:** edit under local `tokenomics/clasp_mirrors/<scriptId>/` (`clasp pull` after clone); git tracks mirror `.clasp.json` + checklist only — not `*.js` / `appsscript.json`. `google_app_scripts/` = readable reference `.gs`.
+- **Ledger conversion / repackaging**: **`LEDGER_CONVERSION_AND_REPACKAGING.md`** (canonical). **§3b** above — mandatory pointer so new agents do not skip the playbook.
 - **Supply chain, freighting & unit-cost economics**: this repo `SUPPLY_CHAIN_AND_FREIGHTING.md` (inventory by location, freight options Brazil→US, cacao processing/cost; references SCHEMA.md).
 - **Wholesale purchase agreement PDFs**: this repo **`PURCHASE_AGREEMENT_PDFS.md`** — `market_research/purchase_agreements/`, ReportLab conventions, farm profile URLs, payment schedule table pattern.
 - **Gmail user OAuth (local tokens for automations):** this repo **`GMAIL_OAUTH_WORKFLOW.md`** — `market_research/scripts/gmail_oauth_authorize.py`, `market_research/credentials/gmail/` (gitignored secrets + optional tracked `README.md`).

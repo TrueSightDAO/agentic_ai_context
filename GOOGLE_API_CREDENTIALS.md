@@ -52,6 +52,16 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 
 ---
 
+## 📁 Google Drive folders (Agroverse artifacts)
+
+- **Generated Google Sheets / spec artifacts (default location)**  
+  - **Folder ID:** `1esYnlwChRmv9-M3ymWYhWMPHRowhOluw`  
+  - **URL:** [drive.google.com/.../folders/1esYnlwChRmv9-M3ymWYhWMPHRowhOluw](https://drive.google.com/drive/folders/1esYnlwChRmv9-M3ymWYhWMPHRowhOluw)  
+  - **Purpose:** New spreadsheets from scripts or AI workflows (e.g. product development checklists) should be created or moved here. See **`PRODUCT_DEVELOPMENT_SPECS.md`**.  
+  - **Access:** Grant **Editor** on the folder to service accounts that create files (e.g. `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com`).
+
+---
+
 ## 📊 Google Sheets/Docs IDs (Ledgers)
 
 ### Main Ledger (TSD DAO)
@@ -59,6 +69,8 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 - **URL**: `https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit#gid=0`
 - **Outstanding Airdrops Sheet GID**: `1569170936`
 - **Service Account**: Cypher Defense (`cypher-defense@get-data-io.iam.gserviceaccount.com`)
+- **Correios tracking in `Currency` strings:** Product names may include **`CP`…`BR`** — typically the **Correios** tracking reference for parcels shipped from **Ilheus, Brazil** (often **Matheus’** location) **to the U.S.**, used to tie ledger lines to a specific inbound package. See **`WORKSPACE_CONTEXT.md`** §4 (same repo).
+- **Ledger conversion / repackaging:** Composite product names (inputs combined into outputs at a location) — **`LEDGER_CONVERSION_AND_REPACKAGING.md`** (canonical); **`WORKSPACE_CONTEXT.md` §3b** points agents there.
 
 ### Cypher Defense Ledger
 - **Spreadsheet ID**: `1zRDDL9JRzfbQTMo6AmTdDxWTQaDv4aQakbZrm4T2BTU`
