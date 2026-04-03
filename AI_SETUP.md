@@ -50,3 +50,7 @@ gemini --version  # e.g. 0.25.x
    - `agentic_ai_context/WORKSPACE_CONTEXT.md` — workspace overview
    - `agentic_ai_context/PROJECT_INDEX.md` — per-project summary
 2. **Credentials:** Never put secrets in agentic_ai_context. Use **agentic_ai_api_credentials** for env var names and docs only; real values stay in each project’s `.env`.
+
+## GitHub SSH (agents / automation)
+
+Dedicated push key (this machine): **`GITHUB_AGENTIC_AI_SSH.md`** — private key **`~/.ssh/agentic_ai_github/id_ed25519`**; register the `.pub` in GitHub → SSH keys. **Workflow:** create a **new branch** for agent work, push, open a **PR** with goal / changes / testing / rollout for human review — not direct pushes to the default branch unless the user explicitly requests it (see that doc § Pull requests).

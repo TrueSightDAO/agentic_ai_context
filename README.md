@@ -23,6 +23,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **CONTEXT_UPDATES.md** | Append-only log for agent notes; do not remove or rewrite lines. |
 | **notes/** | Per-agent / per-session notes; create files like `cursor_2025-01-29.md`, `claude_session.md`. |
 | **AI_SETUP.md** | How to check/install Claude Code, OpenAI Codex, and Gemini CLI on this machine. |
+| **GITHUB_AGENTIC_AI_SSH.md** | **Dedicated SSH key** for agent `git push` to GitHub: `~/.ssh/agentic_ai_github/`, optional `Host github.com-agentic-ai`, `GIT_SSH_COMMAND`. **Convention:** new branch per change set, then open a **PR** with goal / changes / testing / rollout for human review—not direct push to default branch unless the user orders it. Private key never committed. |
 | **GOOGLE_API_CREDENTIALS.md** | Google API credentials, service accounts, OAuth clients, and ledger spreadsheet IDs (workspace-wide). |
 | **LEDGER_CONVERSION_AND_REPACKAGING.md** | **Main Ledger** — repackaging / conversion: input & output `Currency`, cost per unit, standard naming template, SCHEMA/API workflow. **Read when the task involves ledger conversion** (see `WORKSPACE_CONTEXT.md` §3b). |
 | **CMO_SETH_GODIN.md** | **Agentic AI CMO** — Seth Godin persona and principles; read when doing marketing (copy, positioning, campaigns, growth). Consult this for CMO perspective. |
@@ -55,6 +56,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 11. **Product development specs (new packaging / SKUs):** When building **checklists for physical products** (chocolate bars, pouches, retail display boxes, labels, GTINs), read **`PRODUCT_DEVELOPMENT_SPECS.md`**. Prefer **Google Sheets** with one tab per section; use **`market_research/scripts/populate_chocolate_bar_spec_sheet.py`** as the template for populate + cell styling (or copy the pattern for a new spreadsheet ID).
 12. **TrueChain integration:** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read **`TRUECHAIN.md`** (includes "For AI Assistants" section, setup, technical proposal). Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain).
 13. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
+14. **GitHub / Agentic AI SSH:** When pushing to GitHub on behalf of the user with automation, read **`GITHUB_AGENTIC_AI_SSH.md`** — key directory **`~/.ssh/agentic_ai_github/`**, host alias or `GIT_SSH_COMMAND`. **Always use a new branch and open a PR** (clear description for reviewers) unless the user explicitly requests a direct push to the default branch.
 
 ## Location
 

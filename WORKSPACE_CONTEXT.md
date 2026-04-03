@@ -32,6 +32,8 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 ## 3. Key Conventions
 
 - **Credentials**: Never commit secrets. Use `.env` per project; variable names and usage are in `agentic_ai_api_credentials`. **Credential files** (e.g. `google-service-account.json`) must be obtained from user during setup — see `SETUP_REQUIREMENTS.md`.
+- **GitHub SSH (Agentic AI pushes):** A dedicated Ed25519 key for agent/automation `git push` lives in **`~/.ssh/agentic_ai_github/`** (private: `id_ed25519`). Read **`GITHUB_AGENTIC_AI_SSH.md`** for GitHub registration, optional `~/.ssh/config` host alias `github.com-agentic-ai`, and **`GIT_SSH_COMMAND`**. **Never commit the private key.**
+- **Agent pushes — branch + PR:** For agent-authored changes, use a **new branch** per change set, push it, and open a **Pull Request** with a human-reviewable description (**goal**, **changes**, **testing**, **rollout / follow-ups**). Do **not** push directly to `main` or the repo default branch unless the user explicitly orders it. Merge is for humans unless the user says otherwise. Full steps: **`GITHUB_AGENTIC_AI_SSH.md`** (§ Pull requests).
 
 ---
 

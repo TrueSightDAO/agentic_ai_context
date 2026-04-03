@@ -65,7 +65,7 @@ Quick reference for each project in the workspace. For credential names and usag
 
 | Project | Path | Purpose | GitHub |
 |---------|------|---------|--------|
-| **agentic_ai_context** | `agentic_ai_context/` | This repo: workspace context for AIs (`WORKSPACE_CONTEXT.md`, `PROJECT_INDEX.md`, `SUPPLY_CHAIN_AND_FREIGHTING.md` for supply chain/freighting/unit-cost). **Main Ledger repackaging:** `LEDGER_CONVERSION_AND_REPACKAGING.md` (canonical); `WORKSPACE_CONTEXT.md` §3b is the mandatory pointer. **Retail partner playbook (interim):** `PARTNER_OUTREACH_PROTOCOL.md` — consignment “yes” stages, evidence links, human-in-the-loop follow-up workflow (phased). | [TrueSightDAO/agentic_ai_context](https://github.com/TrueSightDAO/agentic_ai_context) |
+| **agentic_ai_context** | `agentic_ai_context/` | This repo: workspace context for AIs (`WORKSPACE_CONTEXT.md`, `PROJECT_INDEX.md`, `SUPPLY_CHAIN_AND_FREIGHTING.md` for supply chain/freighting/unit-cost). **GitHub SSH for agents:** `GITHUB_AGENTIC_AI_SSH.md` — key dir **`~/.ssh/agentic_ai_github/`** (not in git); **push convention:** new branch + PR (see doc § Pull requests), not direct to default branch unless the user orders it. **Main Ledger repackaging:** `LEDGER_CONVERSION_AND_REPACKAGING.md` (canonical); `WORKSPACE_CONTEXT.md` §3b is the mandatory pointer. **Retail partner playbook (interim):** `PARTNER_OUTREACH_PROTOCOL.md` — consignment “yes” stages, evidence links, human-in-the-loop follow-up workflow (phased). | [TrueSightDAO/agentic_ai_context](https://github.com/TrueSightDAO/agentic_ai_context) |
 | **agentic_ai_api_credentials** | `agentic_ai_api_credentials/` | Credential **reference** only: `env.template`, `API_CREDENTIALS_DOCUMENTATION.md`. No secrets. | — |
 
 ---
