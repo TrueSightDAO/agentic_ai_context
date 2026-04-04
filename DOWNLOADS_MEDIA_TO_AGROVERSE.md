@@ -45,10 +45,15 @@ Turn local MP4s into: (1) optional **YouTube** uploads with sensible titles, (2)
    - **`scripts/video_poster_thumb.py`**: first-frame (or fall back to YouTube poster) → **`assets/images/blog/transcript-thumbs/{slug}.jpg`**.  
    - Used in post **og:image** / **twitter:image** and blog grid cards for those posts.
 
-6. **Push title updates to YouTube** (if `youtube_videos.json` titles changed)  
+6. **Social preview (WhatsApp / Facebook)**  
+   - After regenerating posts or editing **`blog/index.html`** card images, run **`python3 scripts/sync_post_open_graph_images.py`** so each post’s **`og:image`** and **`twitter:image`** match the same **relative** `src` as the listing card, and **`og:image:width` / `og:image:height`** are set from the local JPEG.  
+   - Set **`AGROVERSE_PUBLIC_ORIGIN`** when building for a host where assets are available (e.g. **`https://beta.agroverse.shop`** if production **`www`** has not yet deployed new **`transcript-thumbs/`** files—crawlers require HTTP **200** on the image URL).  
+   - **`generate_video_transcript_blog_posts.py`** also respects **`AGROVERSE_PUBLIC_ORIGIN`** for canonical / Open Graph URLs and always attaches image dimensions when the card path exists under **`assets/`**.
+
+7. **Push title updates to YouTube** (if `youtube_videos.json` titles changed)  
    - `python3 scripts/youtube_update_video_titles.py` (needs `youtube.force-ssl` token; see script).
 
-7. **Legacy intro cleanup** (optional one-off)  
+8. **Legacy intro cleanup** (optional one-off)  
    - `scripts/strip_transcript_boilerplate_intros.py` removes old disclaimer `<p>` blocks from `post/*/index.html`.
 
 ### What future agents should not do
