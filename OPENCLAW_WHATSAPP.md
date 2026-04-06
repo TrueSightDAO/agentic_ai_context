@@ -33,7 +33,7 @@ Use these for **`openclaw message send --channel whatsapp --target '<jid>'`**. J
 | Display name | JID | Notes |
 |----------------|-----|--------|
 | **The Beer Hall** | `120363041505997891@g.us` | **Verified:** OpenClaw test message delivered and observed in this chat (Apr 2026). |
-| **Prompt Haus: AI** (*@FounderHaus*) | `120363195508720633@g.us` | **Verified** (test send Apr 2026). **FounderHaus**-related group—handy to **share experiment / progress updates** when the operator wants that audience to see what you have tried (not assumed for routine DAO traffic unless asked). |
+| **Prompt Haus: AI** / **Founder Haus AI prompt** (*@FounderHaus*, Web3 partner) | `120363195508720633@g.us` | **Verified** (test send Apr 2026). Partner-run channel focused on **AI usage and tooling**. Use for **AI-filtered outbound digests** only (see **[Founder Haus AI digest](#founder-haus-ai-prompt-channel--ai-forward-subset)**). Not assumed for routine full-DAO traffic unless asked. |
 
 **Earlier note:** The same numeric id was once associated with *The Do Nothing Society* via **`model-storage` → `abpropGroupConfigs`**; delivery testing showed messages land in **The Beer Hall**. If *The Do Nothing Society* is a **separate** group, resolve its JID using the playbook below and add a new row after verification.
 
@@ -102,6 +102,61 @@ Standard **chat export ZIPs** do **not** include JIDs—use the client or a test
 
 4. **CLI pairing snag (loopback)**  
    If the CLI returns **`pairing required`**, approve the device **without** explicit **`--url`** so the local fallback runs, e.g. **`openclaw devices approve --latest`** (see OpenClaw device pairing / Control UI on [http://127.0.0.1:18789/](http://127.0.0.1:18789/)).
+
+---
+
+## Outbound digests: Beer Hall & Founder Haus AI
+
+Playbook for **session / daily summaries** sent with **`openclaw message send --channel whatsapp --target '<jid>'`**. Keep this aligned with operator expectations: **always label automation**, use **WhatsApp-native formatting**, and **link artifacts** (GitHub PRs/commits, sheets) when reporting shipped work.
+
+### Attribution (required for both channels)
+
+Every digest must open with a clear line that the post is **generated via OpenClaw and Cursor**, **not** manually written by the founder/operator. Examples:
+
+- **Beer Hall:** `*OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*`  
+  (Adjust the name if someone else is the named operator.)
+
+- **Founder Haus AI prompt:** `*OpenClaw × Cursor — AI / agent tooling update (automated summary; not a manual post from Gary)*`  
+  (Stress **tooling and how AIs are used**; see subset rules below.)
+
+### WhatsApp-safe formatting
+
+Use patterns WhatsApp actually renders:
+
+| Use | Avoid (GitHub / docs style) |
+|-----|-----------------------------|
+| `*bold*`, `_italic_`, `~strikethrough~`, `` `inline code` `` | `**bold**`, `# headings` |
+| `- ` or `* ` bullets, `> ` quote | Markdown tables, ` ``` ` fenced code blocks |
+| Plain `https://…` URLs (tap-to-open) | Assuming `[text](url)` renders as Markdown links |
+
+If the body is long, split into **two sequential messages**; the gateway may **timeout** if sends are parallel—wait **a few seconds** between calls.
+
+### Beer Hall — full DAO / ops digest
+
+**Target:** **The Beer Hall** — `120363041505997891@g.us`.
+
+When the operator asks for a **daily** or **session** summary:
+
+1. **TLDR** at the top (a few short lines).
+2. **Bullets** with **links** where applicable: **merged PR** URLs (preferred once merged), **`/commit/<sha>`** links, relevant **Google Sheets** (e.g. [Contribution Ledger](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit), [Telegram compilation](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit)).
+3. **Typical scope:** shipped **email workflow / email-agent** work (`TrueSightDAO/content_schedule`), **double-entry / Contribution Ledger** and context-doc updates (`TrueSightDAO/agentic_ai_context`), **OpenClaw** setup, Agroverse/DAO code when it was part of the session—**only what was actually done**, no filler.
+4. **Git before the post (when there are repo changes):** On **`feature/<topic>`** or **`fix/<topic>`**, **push**, open **PR**, **merge** to default branch when the operator wants it live—then cite **PR** and/or **commits** in the digest. If **`gh`** / **`GH_TOKEN`** is unavailable, cite the **commit** and **compare** URL and note that merge is pending.
+5. **Dedup log (recommended):** Add or use a tab on the [Telegram compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit) (e.g. **`Beer_Hall_Posts`**) with columns such as `date_utc`, `tldr`, `links`, `notes` so future runs **do not repeat** posts or **omit** items already reported. Requires **edit** access (operator, Apps Script, or a shared service account). **Do not** paste credentials into chat; see workspace credential docs.
+6. **Reliability:** If **`gateway timeout`** appears, **retry once** after a short sleep; avoid firing multiple sends in parallel against the same gateway.
+
+### Founder Haus AI prompt channel — AI-forward subset
+
+**Audience:** Web3 partner (*@FounderHaus*) — channel is about **AIs and how they are used**, not the full DAO operating report.
+
+**Target:** **Prompt Haus: AI** — `120363195508720633@g.us` (same row as in **Verified JIDs**).
+
+**Process:**
+
+1. Draft the **Beer Hall** digest first (complete picture).
+2. Derive a **second, shorter message**: keep only bullets that are **relevant to AI/agent/automation** (e.g. OpenClaw, Cursor workflows, email-agent + LLM context, Grok/draft pipelines, runbook or context-repo changes that teach agentic ops).
+3. **Omit or heavily compress:** pure community updates, long non-AI supply-chain narrative, governance detail **unless** it is explicitly about **agentic or AI tooling**.
+
+**Monitoring:** Treat as **outbound share** unless the operator adds this JID to **`channels.whatsapp.groups`** for inbound handling—see **Intended inbound monitor allowlist** above.
 
 ---
 

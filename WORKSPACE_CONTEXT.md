@@ -145,6 +145,8 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 
 **Canonical detail** (verified / excluded group JIDs, inbound monitor **intent** vs **`~/.openclaw/openclaw.json`**, JID discovery, CLI pairing): **`OPENCLAW_WHATSAPP.md`** in this repo.
 
+**Outbound digests:** That file also defines how to generate **Beer Hall** (full DAO / ops) and **Founder Haus AI prompt** (Web3 partner channel — **AI/agent subset**) WhatsApp summaries: required **OpenClaw × Cursor** attribution, **WhatsApp-safe** formatting, **TLDR + links** (PR/commit/Sheets), **git push → PR → merge** before posting when code changed, optional **Beer Hall log** tab on the Telegram compilation sheet, and **sequential** sends to avoid gateway timeouts.
+
 ---
 
 ## 4. Cross-Repo Relationships
