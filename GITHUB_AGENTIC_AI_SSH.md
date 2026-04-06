@@ -84,7 +84,7 @@ Remove the old public key from GitHub, add the new `.pub`, update any CI referen
 **Convention for any codebase the agent edits and pushes:** do **not** push directly to `main` (or the default production branch) unless the user explicitly orders it.
 
 1. **`git fetch`** the remote and branch from an up-to-date default branch (usually `main` / `master`).
-2. **Create a new branch** per change set, with a clear prefix, e.g. `feature/…`, `fix/…`, `docs/…`, `seo/…`.
+2. **Create a new branch** per change set, with a clear prefix, e.g. `feature/…`, `fix/…`, `docs/…`, `seo/…`. **Do not push whatever local branch you happen to be on** (e.g. stale names like `schema_update`, `conversion_planner`, `agentic_ai_followups`) unless that branch was created **for this task** from the current default branch with a name that describes the work (e.g. `feature/email-agent-followup-body-plain`). If the workspace checkout is on an unrelated branch, **`git checkout main`** (or the repo default), **`git pull`**, then **`git checkout -b feature/<short-topic>`** before committing.
 3. **Commit** with a clear subject and body: *what* changed, *why*, how to verify, risks, rollback hints.
 4. **`git push -u origin <branch>`** using **`GIT_SSH_COMMAND`** or the **`github.com-agentic-ai`** host (see above).
 5. **Open a Pull Request** on GitHub (web UI or `gh pr create` if available). The PR description must stand alone for human reviewers:
