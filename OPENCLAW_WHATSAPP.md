@@ -131,13 +131,43 @@ Use patterns WhatsApp actually renders:
 
 If the body is long, split into **two sequential messages**; the gateway may **timeout** if sends are parallel—wait **a few seconds** between calls.
 
+### TLDR — plain language, DAO-relevant (required)
+
+The **TLDR** is for **everyone**, including people who are not engineers. It must be easy to read on a phone and make clear **why the update matters for the DAO**.
+
+**Do**
+
+- Use **everyday words**: what happened, who benefits, what is safer/faster/clearer for the community or operations.
+- State **relevance to the DAO** explicitly when it helps: e.g. clearer money tracking, less manual work, better outreach to partners, fewer mistakes, more transparency, faster decisions.
+- Keep it to **a few short lines** (often 3–5). One idea per line.
+
+**Avoid**
+
+- Leading with jargon, ticket numbers, or repo shorthand **without** a plain-English hook (those belong in the bullet section with links).
+- Assuming the reader knows tools by name only (e.g. “merged PR #12” as the TLDR line)—instead: *We tightened how follow-up emails are drafted so volunteers spend less time on busywork* + link below.
+
+**Structure that works**
+
+1. **What we improved or shipped** (plain English).  
+2. **Why it matters for TrueSight / the DAO** (outcome, not implementation).  
+3. Optional: **who it helps** (governors, contributors, partners, ops).
+
+**Example (illustrative)**
+
+- Weak: *Pushed `body_plain` migration + CI on content_schedule.*  
+- Strong: *Follow-up emails now stay readable on all devices, and the pipeline is less likely to break when we scale—less manual fixing for ops.*
+
+Put **technical proof** (commits, PRs, sheet links) in the **bullets below** the TLDR. The **`tldr` column** on **`OpenClaw Beer Hall updates`** should use the same plain, DAO-focused wording so the log stays useful for non-technical readers.
+
+For **Founder Haus AI**, the TLDR can emphasize **how we use AI and automation**, but should still open with **outcomes in plain language** before naming tools.
+
 ### Beer Hall — full DAO / ops digest
 
 **Target:** **The Beer Hall** — `120363041505997891@g.us`.
 
 When the operator asks for a **daily** or **session** summary:
 
-1. **TLDR** at the top (a few short lines).
+1. **TLDR** at the top, following **§ TLDR — plain language, DAO-relevant** (above): outcomes in everyday language and explicit **why it matters for the DAO** before any technical bullets.
 2. **Bullets** with **links** where applicable: **merged PR** URLs (preferred once merged), **`/commit/<sha>`** links, relevant **Google Sheets** (e.g. [Contribution Ledger](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit), [Telegram compilation](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit)).
 3. **Typical scope:** shipped **email workflow / email-agent** work (`TrueSightDAO/content_schedule`), **double-entry / Contribution Ledger** and context-doc updates (`TrueSightDAO/agentic_ai_context`), **OpenClaw** setup, Agroverse/DAO code when it was part of the session—**only what was actually done**, no filler.
 4. **Git before the post (when there are repo changes):** On **`feature/<topic>`** or **`fix/<topic>`**, **push**, open **PR**, **merge** to default branch when the operator wants it live—then cite **PR** and/or **commits** in the digest. If **`gh`** / **`GH_TOKEN`** is unavailable, cite the **commit** and **compare** URL and note that merge is pending.
