@@ -71,6 +71,31 @@ git check-ignore google-service-account.json scripts/youtube_credentials.json sc
 
 ---
 
+## market_research
+
+**Location:** `/Users/garyjob/Applications/market_research/`
+
+### Local `.env` (fresh machine)
+
+Operators and AI agents use **`market_research/.env`** for secrets that must **not** be committed. Tracked template: **`.env.example`**.
+
+| Variable | Required for | Notes |
+|----------|----------------|-------|
+| **`GITHUB_PAT`** | Uploading invoice PDFs to **`TrueSightDAO/.github`** **`assets/`**, or using **`GH_TOKEN`** with **`gh`** for PRs | Grant **Contents** read/write on that repo. For **`gh pr create` / merge**, also **Pull requests** (fine-grained) or classic **`repo`**. See **`WORKSPACE_CONTEXT.md`** §**3c**. |
+| **`google_credentials.json`** (file) | Google Sheets scripts | Service account JSON in repo root; see **`market_research/README.md`**. |
+| Other keys (`DATAFORSEO_*`, `GROK_*`, `WIX_*`, …) | Specific scripts | As documented per script / **`README.md`**. |
+
+**Setup:** `cp .env.example .env` then fill in values. Confirm **`git check-ignore .env`**.
+
+### Setup Checklist
+
+- [ ] Copy **`.env.example`** → **`.env`**
+- [ ] Add **`GITHUB_PAT`** if automating Contribution Ledger asset uploads or PR tooling from this workspace
+- [ ] Add **`google_credentials.json`** and share Sheets with the service account
+- [ ] Verify **`.env`** is ignored: `git check-ignore -v .env`
+
+---
+
 ## Other Projects
 
 ### sentiment_importer (Edgar)
@@ -109,5 +134,8 @@ git check-ignore google-service-account.json scripts/youtube_credentials.json sc
 ## Related Documentation
 
 - `agroverse_shop/docs/SECURITY.md` — Security guidelines and credential management
-- `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` — Environment variable reference
-- `agentic_ai_api_credentials/env.template` — Template for environment variables
+- `market_research/README.md` — **`.env`**, **`.env.example`**, **`GITHUB_PAT`**, Google Sheets setup
+- `market_research/SECURITY.md` — Do not commit **`.env`** or **`GITHUB_PAT`**
+- `WORKSPACE_CONTEXT.md` §**3c** — Contribution Ledger invoice → GitHub pattern using **`GITHUB_PAT`**
+- `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` — Environment variable reference (sibling repo, if cloned)
+- `agentic_ai_api_credentials/env.template` — Template for environment variables (sibling repo, if cloned)

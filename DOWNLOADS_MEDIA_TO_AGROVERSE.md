@@ -50,11 +50,27 @@ Turn local MP4s into: (1) optional **YouTube** uploads with sensible titles, (2)
    - Set **`AGROVERSE_PUBLIC_ORIGIN`** when building for a host where assets are available (e.g. **`https://beta.agroverse.shop`** if production **`www`** has not yet deployed new **`transcript-thumbs/`** files—crawlers require HTTP **200** on the image URL).  
    - **`generate_video_transcript_blog_posts.py`** also respects **`AGROVERSE_PUBLIC_ORIGIN`** for canonical / Open Graph URLs and always attaches image dimensions when the card path exists under **`assets/`**.
 
-7. **Push title updates to YouTube** (if `youtube_videos.json` titles changed)  
-   - `python3 scripts/youtube_update_video_titles.py` (needs `youtube.force-ssl` token; see script).
+7. **Push title updates to YouTube** (mandatory whenever manifest titles drift)  
+   - **`scripts/youtube_videos.json`** is the checked-in source of truth for each uploaded video’s **canonical title** (including ` | Agroverse`, max 100 chars). It is updated when you run **`generate_video_transcript_blog_posts.py`** (`sync_youtube_mapping_titles`) and when you edit titles manually.  
+   - **YouTube Studio titles do not auto-sync.** After any change to that JSON—or after regenerating blog posts—run:  
+     `python3 scripts/youtube_update_video_titles.py --dry-run` then `python3 scripts/youtube_update_video_titles.py`  
+     so the **live YouTube title** matches the blog/H1 naming (iframe `title` in HTML is generated to match the post H1; the API updater pushes the snippet titles from the JSON).  
+   - **OAuth scope:** title updates need **`https://www.googleapis.com/auth/youtube.force-ssl`**. Upload-only tokens will fail with **`invalid_scope`** or **`RefreshError`** on refresh. **Fix:** remove the stale token and re-authorize:  
+     `rm scripts/youtube_token.json`  
+     `python3 scripts/youtube_oauth_reauthorize.py`  
+     Sign in as the channel owner (e.g. **`admin@truesight.me`**), then rerun **`youtube_update_video_titles.py`**.  
+   - **`youtube_oauth_reauthorize.py`** lives next to the other YouTube helpers under **`agroverse_shop/scripts/`** (same Desktop client as **`youtube_credentials.json`**). See also **`agroverse_shop/docs/SECURITY.md`**.
 
 8. **Legacy intro cleanup** (optional one-off)  
    - `scripts/strip_transcript_boilerplate_intros.py` removes old disclaimer `<p>` blocks from `post/*/index.html`.
+
+### End-to-end checklist (do not skip)
+
+Use this after **upload** and/or **blog regen** so you do not ship stale YouTube titles or broken OAuth:
+
+1. `generate_video_transcript_blog_posts.py` (updates posts, **`youtube_videos.json`**, blog cards; runs **`sync_post_open_graph_images.py`** at the end).  
+2. **`youtube_update_video_titles.py`** — dry-run, then apply — so **YouTube** matches the JSON.  
+3. If step 2 errors on token/scope: **`youtube_oauth_reauthorize.py`**, then repeat step 2.
 
 ### What future agents should not do
 
@@ -91,6 +107,7 @@ There is **no** dedicated automation that watches **`~/Downloads`** for images a
 
 - `agroverse_shop/docs/incoming_videos_2026-04/README.md` (generated after analyze)  
 - `agroverse_shop/docs/SHUAR_DESIGN_YOUTUBE_UPLOAD.md` (example manual upload from Downloads)  
+- `agroverse_shop/docs/SECURITY.md` (credential files; YouTube OAuth reauthorize)  
 - `video_editor/` — separate Flask/Grok tooling for Shorts; not the same as the manifest → blog pipeline above.
 
 ---
