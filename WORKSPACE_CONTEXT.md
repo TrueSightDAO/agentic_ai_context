@@ -141,6 +141,12 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 
 ---
 
+## 3d. OpenClaw + WhatsApp (pointer)
+
+**Canonical detail** (verified / excluded group JIDs, inbound monitor **intent** vs **`~/.openclaw/openclaw.json`**, JID discovery, CLI pairing): **`OPENCLAW_WHATSAPP.md`** in this repo.
+
+---
+
 ## 4. Cross-Repo Relationships
 
 - **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md. **Apps Script edits:** implement and deploy from **`tokenomics/clasp_mirrors/<scriptId>/`** (clasp); **`tokenomics/google_app_scripts/`** is reference-only unless explicitly backported.
@@ -157,6 +163,7 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 
 ## 5. Where to Look Next
 
+- **OpenClaw + WhatsApp:** **`OPENCLAW_WHATSAPP.md`** — JIDs, monitor intent, exclusions, playbook (see also **§3d** pointer).
 - **Per-project details**: `PROJECT_INDEX.md` in this repo (purpose, stack, entry points, credentials reference).
 - **Setup requirements**: `SETUP_REQUIREMENTS.md` in this repo — credential files needed per project (prompt user during setup).
 - **Git / GitHub check-in**: Section **3a** above — never commit credentials or unnecessary library/build files; keep `.gitignore` updated and verify before push.
