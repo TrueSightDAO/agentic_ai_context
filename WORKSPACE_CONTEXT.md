@@ -110,7 +110,7 @@ Treat **`offchain transactions`** as **double-entry** for purchases that consume
 Archive a **canonically named** PDF under **`main/assets/`** so **`offchain`** descriptions can point at a stable **`blob`** URL.
 
 1. **Name files** predictably, e.g. **`YYYYMMDD_vendor_order_<order-id>_<short-slug>_invoice.pdf`** (use real order id from the invoice).
-2. **Credentials:** Use **`GITHUB_PAT`** from **`market_research/.env`** (never commit; rotate if exposed). Do **not** change hardcoded tokens inside **`sentiment_importer`**.
+2. **Credentials:** Use **`GITHUB_PAT`** from **`market_research/.env`** (never commit; rotate if exposed). On a **fresh machine**, copy **`market_research/.env.example`** → **`.env`** and set **`GITHUB_PAT`**; see **`SETUP_REQUIREMENTS.md`** (**market_research**) and **`market_research/README.md`**. Do **not** change hardcoded tokens inside **`sentiment_importer`**.
 3. **API (same idea as Edgar’s `submit_contribution` after `file_uploaded`):** Reference **`sentiment_importer`** **`app/controllers/dao_controller.rb`** — **`GET`** `https://api.github.com/repos/{owner}/{repo}/contents/{path}` with **`Authorization: token <PAT>`** and **`Accept: application/vnd.github+json`**; if **404**, **`PUT`** the same URL with JSON **`message`**, **`content`** (base64 file bytes), **`branch`** (`main`); if **200**, file exists (update only if replacing, using **`sha`** from the GET body). **Do not** paste the PAT into chat or into source code.
 4. **Local copy:** Optionally keep a same-named copy under **`~/Downloads`** for the operator; source of truth for the ledger link is **GitHub**.
 
