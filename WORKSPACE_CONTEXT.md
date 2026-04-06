@@ -79,6 +79,68 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 
 ---
 
+## 3c. TrueSight DAO Contribution Ledger — **double-entry offchain**, **Currencies**, **invoice → GitHub**
+
+**Spreadsheet:** [TrueSight DAO Contribution Ledger](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit) (`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`). Tabs include **`Currencies`** and **`offchain transactions`**.
+
+### Double-entry on **`offchain transactions`**
+
+Treat **`offchain transactions`** as **double-entry** for purchases that consume cash and add physical (or countable) inventory:
+
+| Leg | **`Currency`** (col E) | **Amount** (col D) | Role |
+|-----|-------------------------|-------------------|------|
+| **Cash / funding** | **`USD`** | **Negative** (e.g. `-27.70`) | Money left the wallet / card for the order (grand total, tax-included). |
+| **Inventory** | **Custom line** matching **`Currencies`!A** | **Positive** (e.g. `50` for fifty units) | Units received; **no second USD outflow**. |
+
+- **If the user has not already recorded the negative `USD` row** for that purchase, **insert it**: parse the invoice/receipt for **grand total**, date, payer (`Fund Handler` per ship-to rule below), and links. **Do not** only add the positive inventory leg and assume the cash row exists.
+- **Pairing:** The **positive inventory** row’s **Description** should cite the **sheet row number** of the **`USD`** leg (e.g. “pairs offchain row N…”), plus **order id**, **ship-to**, and a **GitHub** link to the archived invoice PDF (see below). The **`Currency`** string on the inventory row must **exactly match** the new **`Currencies`** row’s column **A**.
+
+### **`Currencies` tab (unit “price” for the inventory leg)**
+
+- **`Price in USD`:** Use **tax-included “landed”** unit cost: **landed per unit = invoice grand total ÷ unit count** (not pre-tax unit price), unless policy is explicitly changed.
+- **New SKU / packaging:** Append a row (**A** = canonical name; **`Price in USD` = landed per unit**). Then **sort** the tab: **row 2 through last data row**, **all sheet columns in the grid** (e.g. **A through AC**), **A→Z by column A**, so **`VLOOKUP`** / **`ARRAYFORMULA`** on other tabs stay aligned and **no column is orphaned**.
+
+### **Fund Handler (manager) from ship-to**
+
+- **Ship-to** is **TrueTech Inc, 1423 Hayes St, San Francisco, CA 94117-1425, United States** (normalize minor formatting): **Fund Handler** = **`Kirsten Ritschel`** (exact **Name** in tab **Contributors contact information**).
+- **Any other ship-to:** **Fund Handler** = **`Gary Teh`** unless the user states otherwise. Apply consistently on **both** legs (cash and inventory) when the handler represents **custody / management** of the asset or spend context.
+
+### **Invoice PDF → `TrueSightDAO/.github` (automation pattern)**
+
+Archive a **canonically named** PDF under **`main/assets/`** so **`offchain`** descriptions can point at a stable **`blob`** URL.
+
+1. **Name files** predictably, e.g. **`YYYYMMDD_vendor_order_<order-id>_<short-slug>_invoice.pdf`** (use real order id from the invoice).
+2. **Credentials:** Use **`GITHUB_PAT`** from **`market_research/.env`** (never commit; rotate if exposed). Do **not** change hardcoded tokens inside **`sentiment_importer`**.
+3. **API (same idea as Edgar’s `submit_contribution` after `file_uploaded`):** Reference **`sentiment_importer`** **`app/controllers/dao_controller.rb`** — **`GET`** `https://api.github.com/repos/{owner}/{repo}/contents/{path}` with **`Authorization: token <PAT>`** and **`Accept: application/vnd.github+json`**; if **404**, **`PUT`** the same URL with JSON **`message`**, **`content`** (base64 file bytes), **`branch`** (`main`); if **200**, file exists (update only if replacing, using **`sha`** from the GET body). **Do not** paste the PAT into chat or into source code.
+4. **Local copy:** Optionally keep a same-named copy under **`~/Downloads`** for the operator; source of truth for the ledger link is **GitHub**.
+
+### **Non-Amazon / vendor PDFs; invoice already linked from `offchain`**
+
+Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layouts differ; do not assume Amazon’s “Order Summary” text.
+
+1. **Locate the PDF URL** in the existing **`USD`** row (column **B**): **`Destination Expense File Location:`** often points at **`https://github.com/TrueSightDAO/.github/tree/main/assets/…pdf`**. If the user gives a **sheet row** (e.g. “process line 2801”), read that row first.
+2. **Download for parsing:** Convert **`/tree/main/`** to **`/raw/main/`** (or use **Raw** on GitHub) so the agent can **`curl`** / HTTP GET the bytes to a temp path under **`~/Downloads`** (or workspace). **No OAuth** is required for public repo raw files.
+3. **Extract fields:** Use **`pypdf`** (or similar) **`PdfReader` → `extract_text()`** on the downloaded file. From the text, derive **grand total** (tax-included), **line quantities**, **vendor order / confirmation id**, **billing vs shipping** addresses, and dates. **Reconcile** the PDF total with column **D** on the **`USD`** row; if they disagree, stop and surface the mismatch.
+4. **GitHub upload:** If the PDF is **already** under **`TrueSightDAO/.github`** **`assets/`** at that URL, **do not re-upload** unless the user wants a renamed copy. Use the existing **`blob`** link in the inventory row’s **Description** (same path as Edgar’s upload convention: `https://github.com/TrueSightDAO/.github/blob/main/assets/<filename>.pdf`).
+5. **`Currencies` naming:** Build a clear **`Currency`** string (column **A**) that includes **vendor + unit meaning + order ref** (example pattern: *`Sticker Mule 4x2in custom rectangle label (per piece, order R384751187)`* so lookups stay unique). **Landed unit price** = **grand total ÷ countable units** chosen for the inventory leg (e.g. per label, per envelope).
+6. **Fund Handler:** Apply the **ship-to** rule (§3c above). Vendor PDFs often list **Shipping Address** separately from billing; **1423 Hayes St, San Francisco, CA 94117** (with **TrueTech Inc** / **Kirsten Ritschel**) → **`Kirsten Ritschel`** on the **inventory** leg.
+
+**User shortcut for agents:** Instructions like *“process **`offchain` row N; PDF is already attached”*** mean: **download from GitHub**, **parse**, **add `Currencies` + sort**, **add positive inventory row** pairing row **N** — **do not** assume Amazon format or re-upload the PDF if it already lives in **`assets/`**.
+
+### **Suggested order of operations (agents)**
+
+1. Obtain invoice text: from **`~/Downloads`**, or **`offchain`** row **B** URL → **raw** PDF download, then **`pypdf`** (vendor formats vary).
+2. **Ensure negative `USD` row exists** on **`offchain transactions`**; if not, **add it** (amount = **-grand total** as in existing ledger style). If the user points at an **existing** cash row, **skip** creating a second **`USD`** line.
+3. **GitHub `assets/`:** **Upload** only when there is **no** file yet (local invoice only, or missing link). If **`Destination Expense File Location`** already references **`TrueSightDAO/.github`**, use that **`blob`** URL in the inventory **Description**.
+4. **Add or update `Currencies`** row (landed unit **= grand total ÷ qty**); **full-width sort** by column **A**.
+5. **Add positive inventory row** on **`offchain transactions`**: **`Currency`** = **`Currencies`!A** exact string; **Description** links **cash row**, PDF **blob** URL, order id; **Fund Handler** per **ship-to**.
+
+### **Sheet protection**
+
+**`Currencies`** is often **range-protected**. Service accounts (e.g. **`agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com`**) may edit **`offchain transactions`** but still be blocked on **`Currencies`**. Remedies: editor **unprotect** / **exception** for that account, or human completes **`Currencies`** + **sort** in the UI.
+
+---
+
 ## 4. Cross-Repo Relationships
 
 - **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md. **Apps Script edits:** implement and deploy from **`tokenomics/clasp_mirrors/<scriptId>/`** (clasp); **`tokenomics/google_app_scripts/`** is reference-only unless explicitly backported.
@@ -101,13 +163,14 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Env vars and API keys**: `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` and `env.template`.
 - **DAO schema/API**: tokenomics `SCHEMA.md`, `API.md`. **Tokenomics GAS:** edit under local `tokenomics/clasp_mirrors/<scriptId>/` (`clasp pull` after clone); git tracks mirror `.clasp.json` + checklist only — not `*.js` / `appsscript.json`. `google_app_scripts/` = readable reference `.gs`.
 - **Ledger conversion / repackaging**: **`LEDGER_CONVERSION_AND_REPACKAGING.md`** (canonical). **§3b** above — mandatory pointer so new agents do not skip the playbook.
+- **Contribution Ledger (double-entry offchain, `Currencies`, Amazon vs vendor PDFs, GitHub upload or existing `assets/` link, ship-to → manager):** **§3c** above — includes **“process `offchain` row N, PDF already attached”** (download **`raw`**, **`pypdf`**, pair to row **N**).
 - **Supply chain, freighting & unit-cost economics**: this repo `SUPPLY_CHAIN_AND_FREIGHTING.md` (inventory by location, freight options Brazil→US, cacao processing/cost; references SCHEMA.md).
 - **Wholesale purchase agreement PDFs**: this repo **`PURCHASE_AGREEMENT_PDFS.md`** — `market_research/purchase_agreements/`, ReportLab conventions, farm profile URLs, payment schedule table pattern.
 - **Gmail user OAuth (local tokens for automations):** this repo **`GMAIL_OAUTH_WORKFLOW.md`** — `market_research/scripts/gmail_oauth_authorize.py`, `market_research/credentials/gmail/` (gitignored secrets + optional tracked `README.md`).
 - **DApp UX**: dapp `UX_CONVENTIONS.md`.
 - **DApp CI/testing**: dapp has unit tests (Node) and Playwright integration tests. Run `npm test` in `dapp/`. See dapp `tests/README.md`. CI: `.github/workflows/ci.yml` on push/PR to main. Pure logic in `expense-form-utils.js`; integration tests mock Google Apps Script and Edgar APIs (no real network calls).
 - **Agroverse Shop CI/testing**: agroverse_shop has Playwright visual consistency tests. Run `npm test` in `agroverse_shop/`. See agroverse_shop `tests/README.md`. **Local runs hit `localhost:8000`** — Playwright auto-starts Python `http.server` on port 8000; ensure nothing else uses that port. CI (GitHub Actions) runs against live site (beta or prod). Workflow: `.github/workflows/visual-consistency.yml`. Smart runner: `npm run test:resume` to resume from failures.
-- **Downloads → Agroverse (videos + images):** **`DOWNLOADS_MEDIA_TO_AGROVERSE.md`** — video pipeline: `analyze_incoming_videos.py` → optional `youtube_batch_incoming.py` → `generate_video_transcript_blog_posts.py` (optional Grok polish). **Images:** no dedicated Downloads automation; copy into `agroverse_shop/assets/images/…`, wire in HTML, run `sync_blog_listing_thumbnails.py`; blog card rules remain as in §4 (listing-640w, first in-body image, `bahia-photo-library` fallbacks).
+- **Downloads → Agroverse (videos + images):** **`DOWNLOADS_MEDIA_TO_AGROVERSE.md`** — video pipeline: `analyze_incoming_videos.py` → optional `youtube_batch_incoming.py` → `generate_video_transcript_blog_posts.py` (optional Grok polish). **After regen or any `youtube_videos.json` title change**, run **`youtube_update_video_titles.py`** so YouTube matches the manifest; if OAuth **`invalid_scope` / refresh fails**, use **`youtube_oauth_reauthorize.py`** then rerun the updater (details in that doc). **Images:** no dedicated Downloads automation; copy into `agroverse_shop/assets/images/…`, wire in HTML, run `sync_blog_listing_thumbnails.py`; blog card rules remain as in §4 (listing-640w, first in-body image, `bahia-photo-library` fallbacks).
 - **Marketing / CMO consultation**: this repo `CMO_SETH_GODIN.md` — Agentic AI CMO (Seth Godin). Read when doing marketing activities to consult the CMO and operate based on his principles.
 - **Strategy / onboarding**: this repo `DR_MANHATTAN.md` — Dr Manhattan. Read when doing strategy, growth, priorities, or onboarding for the DAO/Agroverse network. Future use: chatbot for newcomers.
 - **Governance**: this repo `GOVERNANCE_SOURCES.md` — Whitepaper (truesight.me/whitepaper), proposals (GitHub TrueSightDAO/proposals, Realms). Pull whitepaper via `scripts/fetch_whitepaper.py`; browser for Realms.
