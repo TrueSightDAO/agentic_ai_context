@@ -102,10 +102,16 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 **Location:** `/Users/garyjob/Applications/sentiment_importer/`
 
-- **Production deploy:** **`https://edgar.truesight.me`** (Rails app + Sidekiq).
+- **Production deploy:** **`https://edgar.truesight.me`** (Rails app + Sidekiq). **Not** **`getdata.io`** — that is **krake_ror** (see **WORKSPACE_CONTEXT.md** §6).
 - **Agroverse Shop** checkout calls **`GET https://edgar.truesight.me/agroverse_shop/shipping_rates`** for USPS quotes (see **`agroverse_shop/js/config.js`** `shippingRatesApiOrigin`); inventory snapshot worker uses **`AGROVERSE_INVENTORY_*`** env vars on the Edgar host.
 - Environment variables (see `agentic_ai_api_credentials` / **`API_CREDENTIALS_DOCUMENTATION.md`** for variable names)
 - No credential files required (uses `.env`)
+
+### krake_ror
+
+**Location:** `/Users/garyjob/Applications/krake_ror/`
+
+- **Production:** **`https://getdata.io`** — Krake data-harvesting Rails app. **Not** Edgar / **sentiment_importer** (**`edgar.truesight.me`**).
 
 ### truesight_me
 
