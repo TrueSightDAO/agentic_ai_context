@@ -6,6 +6,8 @@ This document describes every API credential (and credential-like config) found 
 
 ## 1. sentiment_importer
 
+**Deployment:** Production Rails app (“Edgar”) is **`https://edgar.truesight.me`**. **`https://getdata.io`** is a **different** codebase — **krake_ror** ([KrakeIO/krake_ror](https://github.com/KrakeIO/krake_ror)); do not conflate hosts or credentials.
+
 | Variable | What it is | Use case | Where / scenario | Code location |
 |----------|------------|----------|------------------|----------------|
 | **ALPHA_VANTAGE_API_KEY** | Alpha Vantage API key | Fetch company overview/fundamentals by stock symbol | Background worker refreshing company data; fallback when FMP/Polygon/IEX fail | `app/workers/company_fundamentals_refresher.rb` |
@@ -29,6 +31,8 @@ EasyPost for rate quotes uses **`EASYPOST_API_KEY`** (or `config.easypost_api` i
 ---
 
 ## 2. krake_ror
+
+**Deployment:** Production Rails app is **`https://getdata.io`**. **Not** **sentiment_importer** / Edgar (**`edgar.truesight.me`** — [TrueSightDAO/sentiment_importer](https://github.com/TrueSightDAO/sentiment_importer)).
 
 | Variable | What it is | Use case | Where / scenario | Code location |
 |----------|------------|----------|------------------|----------------|
