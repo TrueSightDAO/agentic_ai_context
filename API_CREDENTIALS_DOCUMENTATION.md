@@ -16,6 +16,16 @@ This document describes every API credential (and credential-like config) found 
 | **HELLOCASH_PROXY_ENABLED** | Boolean flag | Enable HelloCash API via proxy | Development; when calling HelloCash through an AWS proxy | `config/environments/development.rb` |
 | **HELLOCASH_PROXY_HOST** | Proxy host (e.g. AWS IP) | Host for HelloCash proxy | Development; optional override for proxy server | `config/environments/development.rb` |
 
+### sentiment_importer — production URL and Agroverse-facing HTTP (not secrets)
+
+| Item | Detail |
+|------|--------|
+| **Production base URL** | **`https://edgar.truesight.me`** — deployed **sentiment_importer** (“Edgar”). |
+| **Agroverse Shop checkout shipping** | **`GET /agroverse_shop/shipping_rates`** — query: **`weightOz`**, **`shippingAddress`** (JSON string), optional **`environment`**. Returns USPS options via EasyPost (mirrors GAS `calculateShippingRates`). Browser **`fetch`** from **agroverse.shop** / beta; **rack-cors** on Edgar allows cross-origin access. Shop sets origin in **`agroverse_shop/js/config.js`** → **`shippingRatesApiOrigin`**. |
+| **Agroverse inventory snapshot (Sidekiq → GAS → GitHub JSON)** | Env on Edgar: **`AGROVERSE_INVENTORY_GAS_WEBAPP_URL`**, **`AGROVERSE_INVENTORY_PUBLISH_SECRET`**, optional **`AGROVERSE_INVENTORY_GAS_ACTION`**. Worker: **`AgroverseInventorySnapshotPublishWorker`**. |
+
+EasyPost for rate quotes uses **`EASYPOST_API_KEY`** (or `config.easypost_api` in environment files); same code path as **`ShippingCalculatorService`**.
+
 ---
 
 ## 2. krake_ror
@@ -117,7 +127,7 @@ This document describes every API credential (and credential-like config) found 
 
 | Codebase | Credentials / config |
 |----------|----------------------|
-| **sentiment_importer** | ALPHA_VANTAGE_API_KEY, FMP_API_KEY, POLYGON_API_KEY, IEX_API_KEY, WIX_API_ACCESS_TOKEN, HELLOCASH_PROXY_* |
+| **sentiment_importer** | ALPHA_VANTAGE_API_KEY, FMP_API_KEY, POLYGON_API_KEY, IEX_API_KEY, WIX_API_ACCESS_TOKEN, HELLOCASH_PROXY_*, EASYPOST_API_KEY, **AGROVERSE_INVENTORY_*** (production on **`https://edgar.truesight.me`**) |
 | **krake_ror** | SENDGRID_API_KEY |
 | **video_editor** | GROK_API_KEY, MAX_CONCURRENT_ANALYSIS, PORT |
 | **market_research** | GOOGLE_CALENDAR_ID, DEFAULT_TIMEZONE (plus Google OAuth/service account if used) |

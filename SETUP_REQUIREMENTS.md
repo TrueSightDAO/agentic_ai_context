@@ -102,7 +102,9 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 **Location:** `/Users/garyjob/Applications/sentiment_importer/`
 
-- Environment variables (see `agentic_ai_api_credentials` for variable names)
+- **Production deploy:** **`https://edgar.truesight.me`** (Rails app + Sidekiq).
+- **Agroverse Shop** checkout calls **`GET https://edgar.truesight.me/agroverse_shop/shipping_rates`** for USPS quotes (see **`agroverse_shop/js/config.js`** `shippingRatesApiOrigin`); inventory snapshot worker uses **`AGROVERSE_INVENTORY_*`** env vars on the Edgar host.
+- Environment variables (see `agentic_ai_api_credentials` / **`API_CREDENTIALS_DOCUMENTATION.md`** for variable names)
 - No credential files required (uses `.env`)
 
 ### truesight_me
