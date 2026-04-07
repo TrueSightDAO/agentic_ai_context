@@ -102,7 +102,8 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 **Location:** `/Users/garyjob/Applications/sentiment_importer/`
 
-- Environment variables (see `agentic_ai_api_credentials` for variable names)
+- Environment variables (see **`API_CREDENTIALS_DOCUMENTATION.md`** §1 for variable names)
+- **Agroverse store inventory (optional):** **`AGROVERSE_INVENTORY_GAS_WEBAPP_URL`** ( **`update_store_inventory`** web app exec URL, no query string) and **`AGROVERSE_INVENTORY_PUBLISH_SECRET`** (must match the GAS Script property of the same name). **Sidekiq** calls the GAS **`doGet`** (default **`recalculateAndPublishInventory`**) after **Meta** checkout Wix sync **`:created`** and after **QR code + Stripe** success once **`QrCodeCheckController`** saves **Agroverse QR codes** / **QR Code Sales**. If unset, the worker no-ops. See **`app/workers/agroverse_inventory_snapshot_publish_worker.rb`**.
 - No credential files required (uses `.env`)
 
 ### truesight_me
@@ -118,6 +119,14 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 - Environment variables (see `agentic_ai_api_credentials`)
 - QR_CODE_REPOSITORY_TOKEN, GDRIVE_KEY, WIX_*, GITHUB_*
+- **Apps Script `update_store_inventory`** (clasp mirror **`clasp_mirrors/1P0Mg33i_dD9x9IeoHYvtKrf0xFcmUznpqAswyC_KXR3VJZu-0C-UOP0v/`**): in the **Google Cloud / Apps Script** project (not in `tokenomics/.env`), set **Script property** **`AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT`** to the fine-grained PAT that can write **`TrueSightDAO/agroverse-inventory`** via the Contents API. See **`API_CREDENTIALS_DOCUMENTATION.md`** §**6a**.
+
+### agroverse-inventory (public snapshot repo)
+
+**Location:** operator clone (e.g. `/Users/garyjob/Applications/agroverse-inventory/`)
+
+- **No** PAT or `.env` is required **in this repository** for normal use; automation commits via GAS using Script properties above.
+- Optional: keep a **`README.md`** describing that JSON is generated and that **`AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT`** is configured only in **`update_store_inventory`**.
 
 ---
 

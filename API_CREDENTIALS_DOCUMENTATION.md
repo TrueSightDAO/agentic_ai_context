@@ -15,6 +15,9 @@ This document describes every API credential (and credential-like config) found 
 | **WIX_API_ACCESS_TOKEN** | Wix API access token | Wix CMS / API access in tests | Test environment only; Wix integration tests | `config/environments/test.rb` |
 | **HELLOCASH_PROXY_ENABLED** | Boolean flag | Enable HelloCash API via proxy | Development; when calling HelloCash through an AWS proxy | `config/environments/development.rb` |
 | **HELLOCASH_PROXY_HOST** | Proxy host (e.g. AWS IP) | Host for HelloCash proxy | Development; optional override for proxy server | `config/environments/development.rb` |
+| **AGROVERSE_INVENTORY_GAS_WEBAPP_URL** | Google Apps Script **web app** URL (no query string) | **`GET`** after **`meta`** Wix order **`:created`** (`MetaCheckoutOrderSyncWorker` / success page), after **QR + Stripe** sale rows are saved (`QrCodeCheckController`), and after successful **ledger** `WebhookTriggerWorker` runs when **`enqueue_agroverse_inventory_snapshot`** is true (`dao_controller#trigger_immediate_processing`) | Production **Sidekiq** `AgroverseInventorySnapshotPublishWorker`; must match **`update_store_inventory`** deployment **exec** URL | `app/workers/agroverse_inventory_snapshot_publish_worker.rb`, `webhook_trigger_worker.rb`, `meta_checkout_order_sync_worker.rb`, `meta_checkout_controller.rb`, `qr_code_check_controller.rb`, `dao_controller.rb` |
+| **AGROVERSE_INVENTORY_PUBLISH_SECRET** | Same value as GAS Script property **`AGROVERSE_INVENTORY_PUBLISH_SECRET`** | Query param **`token`** for **`publishInventorySnapshot`** / **`recalculateAndPublishInventory`** | **Never** commit; set in Edgar/sentiment_importer `.env` / host env | Same worker |
+| **AGROVERSE_INVENTORY_GAS_ACTION** | Optional; default **`recalculateAndPublishInventory`** | **`publishInventorySnapshot`** = sheet → GitHub only (faster); **`recalculateAndPublishInventory`** = full ledger recalc + publish (slower, safer after sales) | When unset, worker uses **`recalculateAndPublishInventory`** | Same worker |
 
 ---
 
@@ -74,6 +77,23 @@ This document describes every API credential (and credential-like config) found 
 
 *Other tokenomics scripts may use AWS (e.g. `AWS_SECRET_ACCESS_KEY_GARYJOB`) for TDG/asset workflows; those are environment-specific and not duplicated here.*
 
+### 6a. Google Apps Script — Agroverse store inventory (`update_store_inventory`)
+
+These are **not** shell `.env` variables. Set them in the **Apps Script editor** for project **`update_store_inventory`**: **Project Settings → Script properties**. **Console:** [script `1P0Mg33i…` (edit)](https://script.google.com/home/projects/1P0Mg33i_dD9x9IeoHYvtKrf0xFcmUznpqAswyC_KXR3VJZu-0C-UOP0v/edit). After `clasp pull`, local mirror: **`tokenomics/clasp_mirrors/1P0Mg33i_dD9x9IeoHYvtKrf0xFcmUznpqAswyC_KXR3VJZu-0C-UOP0v/`**.
+
+| Script property key | What it is | Use case | Where / scenario | Code location |
+|---------------------|------------|----------|------------------|----------------|
+| **`AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT`** | Fine-grained GitHub PAT (**Contents: Read and write** on **`TrueSightDAO/agroverse-inventory`** only) | GitHub **Contents API** (`PUT …/contents/…`) to create or update the public inventory JSON snapshot, including **`sha`** when the file already exists (e.g. after recalculating store inventory or on a time-driven trigger) | Google Apps Script only; **never** commit the value; do not store in the **`agroverse-inventory`** git working tree | **`update_store_inventory`**: after each successful **`updateStoreInventory()`**, and when serving **`?action=publishInventorySnapshot`** |
+| **`AGROVERSE_INVENTORY_PUBLISH_SECRET`** | Long random secret (generate locally; not a GitHub token) | **`GET …/exec?action=publishInventorySnapshot&token=…`** and **`…action=recalculateAndPublishInventory&token=…`** so only **sentiment_importer** / trusted callers can trigger a publish or full recalc over the public web app | Set in the same Apps Script project; **never** commit or log | Required for HTTP-triggered publish/recalc; omitting it returns **401 JSON** for those actions |
+| **`AGROVERSE_INVENTORY_GITHUB_OWNER`** | Optional override | GitHub repo owner for the snapshot file | Default **`TrueSightDAO`** | — |
+| **`AGROVERSE_INVENTORY_GITHUB_REPO`** | Optional override | Repo name | Default **`agroverse-inventory`** | — |
+| **`AGROVERSE_INVENTORY_GITHUB_BRANCH`** | Optional override | Branch | Default **`main`** | — |
+| **`AGROVERSE_INVENTORY_GITHUB_PATH`** | Optional override | Path to JSON in repo | Default **`store-inventory.json`** | Raw read: `https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/store-inventory.json` |
+
+Snapshot JSON shape: **`{ "generatedAt", "source", "inventory": { "<product-id>": <number>, … } }`**. Consumers should use **`payload.inventory`** for the SKU map. **Publish behavior:** GAS **GET**s the existing file, compares **`inventory`** to the new map, and **skips GitHub PUT** when equal (fewer commits on hourly triggers); **`generatedAt`** is only refreshed when a **PUT** runs.
+
+**`TrueSightDAO/agroverse-inventory`** itself does not require a local `.env` for this PAT—operators configure the secret in Apps Script. If **sentiment_importer** or other Ruby code later pushes to that repo instead, document a separate env var in that codebase; the canonical name proposed for the GAS secret remains **`AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT`**.
+
 ---
 
 ## 7. agroverse_shop
@@ -117,12 +137,13 @@ This document describes every API credential (and credential-like config) found 
 
 | Codebase | Credentials / config |
 |----------|----------------------|
-| **sentiment_importer** | ALPHA_VANTAGE_API_KEY, FMP_API_KEY, POLYGON_API_KEY, IEX_API_KEY, WIX_API_ACCESS_TOKEN, HELLOCASH_PROXY_* |
+| **sentiment_importer** | ALPHA_VANTAGE_API_KEY, FMP_API_KEY, POLYGON_API_KEY, IEX_API_KEY, WIX_API_ACCESS_TOKEN, HELLOCASH_PROXY_*, **AGROVERSE_INVENTORY_GAS_WEBAPP_URL**, **AGROVERSE_INVENTORY_PUBLISH_SECRET**, **AGROVERSE_INVENTORY_GAS_ACTION** (optional) |
 | **krake_ror** | SENDGRID_API_KEY |
 | **video_editor** | GROK_API_KEY, MAX_CONCURRENT_ANALYSIS, PORT |
 | **market_research** | GOOGLE_CALENDAR_ID, DEFAULT_TIMEZONE (plus Google OAuth/service account if used) |
 | **truesight_me** | WIX_API_KEY, WIX_SITE_ID, WIX_ACCOUNT_ID, google-service-account.json |
-| **tokenomics** | QR_CODE_REPOSITORY_TOKEN, GDRIVE_KEY, WIX_ACCESS_TOKEN, GITHUB_TOKEN, GITHUB_ACTIONS |
+| **tokenomics** | QR_CODE_REPOSITORY_TOKEN, GDRIVE_KEY, WIX_ACCESS_TOKEN, GITHUB_TOKEN, GITHUB_ACTIONS; GAS **`update_store_inventory`**: Script property **`AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT`** (§6a) |
+| **agroverse-inventory** | No workspace `.env`; PAT only in GAS Script properties (**`AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT`**) |
 | **agroverse_shop** | NAMECHEAP_*, GOOGLE_API_KEY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION |
 | **jarvis** | SYSTEM_PROMPT, USE_4BIT, USE_8BIT_CPU, MODEL_NAME (config only) |
 
