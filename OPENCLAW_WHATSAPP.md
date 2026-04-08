@@ -109,6 +109,16 @@ Standard **chat export ZIPs** do **not** include JIDs—use the client or a test
 
 Playbook for **session / daily summaries** sent with **`openclaw message send --channel whatsapp --target '<jid>'`**. Keep this aligned with operator expectations: **always label automation**, use **WhatsApp-native formatting**, and **link artifacts** (GitHub PRs/commits, sheets) when reporting shipped work.
 
+### Closed loop (required — agents and operators)
+
+Sending the WhatsApp message **alone** is **not** the end of the workflow. **Every** Beer Hall or Founder Haus digest must **also** append one row to tab **`OpenClaw Beer Hall updates`** on the [Telegram compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit) (`gid` in the URL may vary; tab name is authoritative).
+
+1. **After** the OpenClaw send(s) (or **after** failed sends you are recording), run from **`market_research/`**:
+   - **`python3 scripts/append_openclaw_beer_hall_log.py`** with **`--channel`** (`Beer Hall` or `Founder Haus AI`), **`--tldr`** (**Beer Hall:** Message 1 body only — attribution + TLDR; **Founder Haus:** the single digest text), **`--links`**, **`--pr-commit-links`** (**Beer Hall:** from Message 2), **`--openclaw-message-id`** if the CLI printed one (or both IDs in **`--notes`** for Beer Hall), **`--notes`** if the gateway timed out or the post was manual.
+2. **Do not** mark the digest task complete until the sheet row exists (exceptions: no `google_credentials.json` / no sheet access — then **`--notes`** must say so and a human must log later).
+
+One-time setup: service account **Editor** on the spreadsheet; tab ensured via **`market_research/scripts/ensure_beer_hall_log_sheet.py`**. Details: **§ Beer Hall** step **Dedup log** below.
+
 ### GitHub links: TrueSightDAO only (Beer Hall & Founder Haus)
 
 **Beer Hall** and **Founder Haus AI prompt** readers care about **DAO / Agroverse / TrueSight** work—not personal or legacy data-harvesting org repos.
@@ -142,7 +152,26 @@ Use patterns WhatsApp actually renders:
 | `- ` or `* ` bullets, `> ` quote | Markdown tables, ` ``` ` fenced code blocks |
 | Plain `https://…` URLs (tap-to-open) | Assuming `[text](url)` renders as Markdown links |
 
-If the body is long, split into **two sequential messages**; the gateway may **timeout** if sends are parallel—wait **a few seconds** between calls.
+For **Beer Hall** specifically, always use **two sequential messages** (see **[Beer Hall — two WhatsApp messages](#beer-hall--two-whatsapp-messages-mandatory)**): **Message 1** = attribution + **TLDR** only; **Message 2** = **Shipped** (PR/commit/sheet bullets) plus optional **Community (Telegram log)**. Do **not** combine TLDR and Shipped in one bubble. For **Founder Haus AI**, a **single** shorter message remains the default unless the operator asks otherwise.
+
+For any channel, avoid **parallel** sends to the same gateway—the gateway may **timeout**; wait **a few seconds** between sequential calls.
+
+### Gateway timeout vs send failure (avoid duplicate WhatsApp posts)
+
+The **`openclaw message send`** CLI often reports **`Error: gateway timeout after 10000ms`** even when the **gateway already accepted the job** and WhatsApp **delivered** the message. **Automatically re-running the same send because it timed out frequently produces duplicate bubbles** in the group.
+
+**Mandatory behavior for agents and operators**
+
+1. **Do not** resend the **same** message body on timeout **without** checking whether the first send actually landed.
+2. **Verify first** (pick at least one):
+   - **Gateway log:** e.g. **`/tmp/openclaw/openclaw-*.log`** or **`~/.openclaw/logs/gateway.log`** — look for **`[whatsapp] Sent message`** / a successful **`ws`** send result **after** your attempt.
+   - **Control UI / logs:** **`openclaw logs`** if configured; or inspect the running gateway terminal output.
+   - **Human:** operator confirms the text appears **once** in the target chat.
+3. **If verification shows the message arrived:** treat the CLI error as **cosmetic**; proceed (e.g. send **Message 2** only if Message 1 is confirmed, then sheet row). **Do not** send Message 1 again.
+4. **If verification shows it did not arrive:** fix gateway health (restart supervised gateway, wait for **`Listening for personal WhatsApp`** / channel ready), then send **once**. Still avoid double-sends in the same minute.
+5. **Sheet `notes`:** when the CLI timed out but logs show delivery, record that (e.g. “CLI timeout; gateway log shows Sent message …”) so future readers do not “retry for safety.”
+
+**Playbook edits elsewhere in this file:** any older **“retry once on timeout”** habit is **replaced** by **verify-then-decide** — see **§ When the operator asks** → **Send** below.
 
 ### TLDR — plain language, DAO-relevant (required)
 
@@ -170,7 +199,7 @@ The **TLDR** is for **everyone**, including people who are not engineers. It mus
 - Weak: *Pushed `body_plain` migration + CI on content_schedule.*  
 - Strong: *Follow-up emails now stay readable on all devices, and the pipeline is less likely to break when we scale—less manual fixing for ops.*
 
-Put **technical proof** (commits, PRs, sheet links) in the **bullets below** the TLDR. The **`tldr` column** on **`OpenClaw Beer Hall updates`** should use the same plain, DAO-focused wording so the log stays useful for non-technical readers.
+Put **technical proof** (commits, PRs, sheet links) in **Beer Hall Message 2** (*Shipped* — see **[two-message rule](#beer-hall--two-whatsapp-messages-mandatory)**), not in the TLDR message. The **`tldr` column** on **`OpenClaw Beer Hall updates`** should use the same plain, DAO-focused wording as Message 1 so the log stays useful for non-technical readers.
 
 For **Founder Haus AI**, the TLDR can emphasize **how we use AI and automation**, but should still open with **outcomes in plain language** before naming tools.
 
@@ -178,14 +207,54 @@ For **Founder Haus AI**, the TLDR can emphasize **how we use AI and automation**
 
 **Target:** **The Beer Hall** — `120363041505997891@g.us`.
 
+### Beer Hall — two WhatsApp messages (mandatory)
+
+Every **Beer Hall** outbound digest uses **exactly two** `openclaw message send` calls to **`120363041505997891@g.us`**, in order, with a **few seconds** pause between them (no parallel sends).
+
+| Message | Contents |
+|--------|-----------|
+| **1 — TLDR** | **[§ Attribution](#attribution-required-for-both-channels)** line (Beer Hall variant) **only** as the opener, then **plain-language TLDR** per **[§ TLDR](#tldr--plain-language-dao-relevant-required)**. **No** GitHub URLs, **no** PR numbers, **no** *Shipped* headings in this bubble. Optional one line: “Details + links in next message,” if it helps readers on mute notifications. |
+| **2 — Shipped** | Start with a short label readers recognize, e.g. `*Shipped*` or `*Shipped (links)*`, then **bullets** with **TrueSightDAO-only** PR/commit/sheet links, grouped by area/repo if helpful. Append **Community (Telegram log)** per **[§ Gathering Telegram Chat Logs](#gathering-telegram-chat-logs-community--24h--supplement-to-git)** in the **same** message 2 unless the operator splits it (default: keep Shipped + Telegram together). |
+
+**Sheet row (`append_openclaw_beer_hall_log.py`):** Still **one** row per digest. Store the **full** TLDR text in **`tldr`**; put **all** link URLs for Message 2 in **`links`** / **`pr_commit_links`** as today. In **`notes`**, optionally record **two** OpenClaw message IDs if both sends return one (e.g. `msg1=…; msg2=…`).
+
+### Gathering what merged (multi-repo Git poll — default for digests)
+
+When compiling **what shipped and merged** for Beer Hall (or before drafting the TLDR), **poll the TrueSightDAO repos** in the workspace **instead of relying on memory**. This is the same approach as: fetch each clone, log the default branch for the **target calendar day**, and cross-check **`gh` merged PRs**.
+
+1. **Which repos:** Every local git repo whose **`origin`** URL is **`github.com/TrueSightDAO/...`** (case-insensitive) and that matters for DAO / Agroverse / ops. **At minimum**, when clones exist, include **`PROJECT_INDEX.md`** staples: **`agroverse_shop`** → [agroverse_shop_beta](https://github.com/TrueSightDAO/agroverse_shop_beta), **`market_research`** → [content_schedule](https://github.com/TrueSightDAO/content_schedule) / [go_to_market](https://github.com/TrueSightDAO/go_to_market) (GitHub may show the renamed repo on PR URLs), **`agentic_ai_context`**, **`tokenomics`**, **`dapp`**, **`truesight_me`**, **`TrueChain`**, **`qr_codes`**, **`proposals`** — **only if** `origin` is TrueSightDAO. **Exclude** non-DAO orgs (e.g. KrakeIO) from the **link list** and from “what merged” claims for this digest.
+2. **Fetch and default branch:** `git fetch origin`; resolve **`origin/HEAD`** (e.g. `main` or `master`) or try **`main`** then **`master`**.
+3. **Date window:** Use the **calendar day** the operator treats as “today” and state **timezone** when ambiguous (e.g. **`date`** on the operator machine; note **UTC vs America/Los_Angeles** — midnight boundaries differ). **Commits:** e.g. `git log origin/<default> --since='YYYY-MM-DD 00:00:00' --until='YYYY-MM-DD+1 00:00:00' --pretty=format:'%h | %ci | %s'` (adjust `--since`/`--until` if you use full ISO with offset).
+4. **Merged PRs (cross-check):** For each GitHub repo, when **`gh`** is available:  
+   `gh pr list -R TrueSightDAO/<repo> --state merged -L 25 --json number,title,mergedAt,url`  
+   Keep rows whose **`mergedAt`** starts with the **target date** (UTC date from API is fine; align with operator expectations). **Prefer PR URLs** in the digest bullets. If **`gh`** is missing, rely on `git log` merge commits and commit messages.
+5. **Fast-forwards / direct pushes:** If `main` moved with **no** merge commit, still cite **`/commit/<sha>`** for same-day commits after confirming they are on **`origin/<default>`**.
+6. **Synthesis (Git):** From the Git inventory, draft the **engineering / shipped** part of the TLDR and bullets (still **TrueSightDAO-only** GitHub links per **[§ GitHub links](#github-links-truesightdao-only-beer-hall--founder-haus)**).
+
+### Gathering Telegram Chat Logs (community / ~24h — supplement to Git)
+
+**Sheet / tab:** [**Telegram Chat Logs**](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit#gid=0) on the [Telegram compilation workbook](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit) (same file as **OpenClaw Beer Hall updates**; **tab name** is authoritative).
+
+**Why:** Surfaces **community contributions and Telegram-side activity** (synced from the DAO Telegram / Edgar pipeline) that **will not appear** in `git log` — use so Beer Hall is not “code-only.”
+
+1. **Tooling (preferred):** From **`market_research/`**, run  
+   **`python3 scripts/list_recent_telegram_chat_logs_for_digest.py`**  
+   (default **~24h**; `--hours 48` if the operator asks for a wider window). Needs **`google_credentials.json`** and the service account as **Editor** on the spreadsheet (same as **append_openclaw_beer_hall_log.py**).
+2. **Manual:** In the UI, filter or sort by **Status date** (or the column your sheet uses for completion date — often **`YYYYMMDD`**) for the **last 24–48 hours**; read **Contribution made** + **Contributor name** (and **Project name** if useful).
+3. **Dedup vs what you already have:** Do **not** repeat a story already covered in the **Git poll bullets** or in **yesterday’s Beer Hall TLDR**. Skip noise: **INVALID**/empty/**Unknown**-only rows, spam, or duplicate messages.
+4. **“Meaningful” bar:** Prefer substantive contribution text (moderation, documentation, partner outreach, shipping milestones described in-chat) over one-line chatter.
+5. **WhatsApp output:** In **Beer Hall Message 2**, after repo bullets, add a small block, e.g. *Community (Telegram log):* with **1–4 short lines** in plain language — no tables, no pasted JSON. Link the [compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit) once if you reference the log.
+
 When the operator asks for a **daily** or **session** summary:
 
-1. **TLDR** at the top, following **§ TLDR — plain language, DAO-relevant** (above): outcomes in everyday language and explicit **why it matters for the DAO** before any technical bullets.
-2. **Bullets** with **links** where applicable: **merged PR** URLs (preferred once merged), **`/commit/<sha>`** links, relevant **Google Sheets** (e.g. [Contribution Ledger](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit), [Telegram compilation](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit)). **GitHub:** only **`github.com/TrueSightDAO/...`** (see **[GitHub links: TrueSightDAO only](#github-links-truesightdao-only-beer-hall--founder-haus)**).
-3. **Typical scope:** shipped **email workflow / email-agent** work (`TrueSightDAO/content_schedule`), **double-entry / Contribution Ledger** and context-doc updates (`TrueSightDAO/agentic_ai_context`), **OpenClaw** setup, Agroverse/DAO code when it was part of the session—**only what was actually done**, no filler.
-4. **Git before the post (when there are repo changes):** On **`feature/<topic>`** or **`fix/<topic>`**, **push**, open **PR**, **merge** to default branch when the operator wants it live—then cite **PR** and/or **commits** in the digest (**`github.com/TrueSightDAO/...` only** in these WhatsApp channels). If **`gh`** / **`GH_TOKEN`** is unavailable, cite the **commit** and **compare** URL and note that merge is pending.
-5. **Dedup log:** Tab **`OpenClaw Beer Hall updates`** on the [Telegram compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit). **Create or migrate** (once): share the spreadsheet with the **`market_research/google_credentials.json`** service account as **Editor**, then run **`market_research/scripts/ensure_beer_hall_log_sheet.py`** (renames legacy **`Beer_Hall_Posts`** if present). **After each digest:** append a row with **`market_research/scripts/append_openclaw_beer_hall_log.py`**—pass the **`openclaw_message_id`** from the CLI when the send succeeds; if **`gateway timeout`**, leave the id blank and record a **`notes`** reminder to resend from the operator machine. **Columns:** `posted_at_utc`, `channel` (**Beer Hall** or **Founder Haus AI**), `tldr`, `links`, `pr_commit_links`, `openclaw_message_id`, `notes`. For rows tied to these digests, **`pr_commit_links`** should follow the same **TrueSightDAO-only GitHub** rule. See **`agentic_ai_context/SETUP_REQUIREMENTS.md`** (**market_research** / **`google_credentials.json`**).
-6. **Reliability:** If **`gateway timeout`** appears, **retry once** after a short sleep; avoid firing multiple sends in parallel against the same gateway.
+1. **Gather evidence:** **§ Gathering what merged** (Git poll; mandatory unless waived) **and** **§ Gathering Telegram Chat Logs** (community **~24h**; default supplement so Telegram is not missed).
+2. **Draft Message 1 (TLDR only):** **[§ Attribution](#attribution-required-for-both-channels)** (Beer Hall) **+** **§ TLDR — plain language, DAO-relevant** — outcomes in everyday language and explicit **why it matters for the DAO**. **No** link list in this draft.
+3. **Draft Message 2 (Shipped):** Bullets with **links** where applicable: **merged PR** URLs (preferred once merged), **`/commit/<sha>`** links, relevant **Google Sheets** (e.g. [Contribution Ledger](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit), [Telegram compilation](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit)). **GitHub:** only **`github.com/TrueSightDAO/...`** (see **[GitHub links: TrueSightDAO only](#github-links-truesightdao-only-beer-hall--founder-haus)**). Add **§ Gathering Telegram Chat Logs** lines here unless the operator splits them.
+4. **Typical scope:** shipped **email workflow / email-agent** work (`TrueSightDAO/content_schedule`), **double-entry / Contribution Ledger** and context-doc updates (`TrueSightDAO/agentic_ai_context`), **OpenClaw** setup, Agroverse/DAO code when it was part of the session—**only what the Git poll (and operator-confirmed non-Git work) shows**; plus **community / Telegram** highlights from **Telegram Chat Logs** when they add DAO-relevant signal and pass the dedup bar above — no filler.
+5. **Git before the post (when there are repo changes):** On **`feature/<topic>`** or **`fix/<topic>`**, **push**, open **PR**, **merge** to default branch when the operator wants it live—then cite **PR** and/or **commits** in **Message 2** (**`github.com/TrueSightDAO/...` only** in these WhatsApp channels). If **`gh`** / **`GH_TOKEN`** is unavailable, cite the **commit** and **compare** URL and note that merge is pending.
+6. **Send (Beer Hall — two messages):** `openclaw message send` **Message 1** (TLDR), wait **a few seconds**, then `openclaw message send` **Message 2** (Shipped + optional Telegram block). See **[Beer Hall — two WhatsApp messages](#beer-hall--two-whatsapp-messages-mandatory)**. If the CLI returns **`gateway timeout`**, follow **[Gateway timeout vs send failure](#gateway-timeout-vs-send-failure-avoid-duplicate-whatsapp-posts)** — **verify** in gateway logs or the chat **before** sending again; **never** assume timeout means the message was dropped. Avoid parallel sends to the same gateway.
+7. **Sheet log (mandatory — same session as step 6):** Append **one** row via **`market_research/scripts/append_openclaw_beer_hall_log.py`** with **`--channel "Beer Hall"`**, **`--tldr`** (Message 1 body only), **`--links`**, **`--pr-commit-links`** (everything link-heavy from Message 2), **`--openclaw-message-id`** when the CLI returns it (or document both IDs in **`--notes`**), **`--notes`** on timeout or manual paste. See **§ Closed loop** above. Skipping the sheet step is **not** acceptable unless access is impossible and **`notes`** documents follow-up.
+8. **Dedup log — one-time / credentials:** Tab **`OpenClaw Beer Hall updates`** on the [Telegram compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit). **Create or migrate** (once): share the spreadsheet with the **`market_research/google_credentials.json`** service account as **Editor**, then run **`market_research/scripts/ensure_beer_hall_log_sheet.py`** (renames legacy **`Beer_Hall_Posts`** if present). **Columns:** `posted_at_utc`, `channel` (**Beer Hall** or **Founder Haus AI**), `tldr`, `links`, `pr_commit_links`, `openclaw_message_id`, `notes`. For rows tied to these digests, **`pr_commit_links`** should follow the same **TrueSightDAO-only GitHub** rule. See **`agentic_ai_context/SETUP_REQUIREMENTS.md`** (**market_research** / **`google_credentials.json`**).
 
 ### Founder Haus AI prompt channel — AI-forward subset
 
@@ -195,9 +264,10 @@ When the operator asks for a **daily** or **session** summary:
 
 **Process:**
 
-1. Draft the **Beer Hall** digest first (complete picture).
+1. Draft the **Beer Hall** digest first (**Message 1** TLDR + **Message 2** Shipped — see **[Beer Hall — two WhatsApp messages](#beer-hall--two-whatsapp-messages-mandatory)**), including inventory from **§ Gathering what merged** and **§ Gathering Telegram Chat Logs** so the Founder Haus subset is grounded in the same evidence (Founder Haus: keep **Telegram** lines only if they are **AI/agent/tooling**-relevant).
 2. Derive a **second, shorter message**: keep only bullets that are **relevant to AI/agent/automation** (e.g. OpenClaw, Cursor workflows, email-agent + LLM context, Grok/draft pipelines, runbook or context-repo changes that teach agentic ops). **Same GitHub rule as Beer Hall:** link only **`https://github.com/TrueSightDAO/...`** repos; do not link personal or non-DAO org repos (e.g. `garyjob`, `KrakeIO`).
 3. **Omit or heavily compress:** pure community updates, long non-AI supply-chain narrative, governance detail **unless** it is explicitly about **agentic or AI tooling**.
+4. **Send** to **`120363195508720633@g.us`**, then **mandatory sheet row:** **`append_openclaw_beer_hall_log.py`** with **`--channel "Founder Haus AI"`** (same **§ Closed loop** rule as Beer Hall — one row per outbound digest).
 
 **Monitoring:** Treat as **outbound share** unless the operator adds this JID to **`channels.whatsapp.groups`** for inbound handling—see **Intended inbound monitor allowlist** above.
 
