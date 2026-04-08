@@ -145,7 +145,7 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 
 **Canonical detail** (verified / excluded group JIDs, inbound monitor **intent** vs **`~/.openclaw/openclaw.json`**, JID discovery, CLI pairing): **`OPENCLAW_WHATSAPP.md`** in this repo.
 
-**Outbound digests:** That file also defines how to generate **Beer Hall** (full DAO / ops) and **Founder Haus AI prompt** (Web3 partner channel — **AI/agent subset**) WhatsApp summaries: required **OpenClaw × Cursor** attribution, **WhatsApp-safe** formatting, a **TLDR in plain language** (non-technical readers; explicit **why it matters for the DAO**) before technical bullets, **links** (PR/commit/Sheets), **git push → PR → merge** before posting when code changed, tab **`OpenClaw Beer Hall updates`** on the Telegram compilation sheet for logging, and **sequential** sends to avoid gateway timeouts.
+**Outbound digests:** That file also defines how to generate **Beer Hall** (full DAO / ops) and **Founder Haus AI prompt** (Web3 partner channel — **AI/agent subset**) WhatsApp summaries: required **OpenClaw × Cursor** attribution, **WhatsApp-safe** formatting, a **TLDR in plain language** (non-technical readers; explicit **why it matters for the DAO**) before technical bullets, **links** (PR/commit/Sheets), **git push → PR → merge** before posting when code changed, tab **`OpenClaw Beer Hall updates`** on the Telegram compilation sheet for logging, and **sequential** sends to avoid gateway timeouts. **GitHub in those two channels:** only **`https://github.com/TrueSightDAO/`** — do not link personal or other org repos (e.g. `garyjob`, `KrakeIO`) in Beer Hall / Founder Haus digests.
 
 ---
 
