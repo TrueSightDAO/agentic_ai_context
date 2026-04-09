@@ -40,6 +40,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | **DOWNLOADS_MEDIA_TO_AGROVERSE.md** | **`~/Downloads` → agroverse.shop** — Videos: analyze/transcribe/dedupe, optional YouTube upload, blog posts + optional Grok transcript polish, thumbnails. Images: copy into `agroverse_shop/assets/images/…`, wire in HTML, **`sync_blog_listing_thumbnails.py`** (no dedicated Downloads watcher). Read when the user drops media in Downloads for the blog. |
 | **PRODUCT_DEVELOPMENT_SPECS.md** | **Agroverse physical product specs** — Packaging / copacker / retail checklists in **Google Sheets** (tabs per section); script `market_research/scripts/populate_chocolate_bar_spec_sheet.py` populates rows and applies readable formatting. **Default Drive folder** for new generated Sheets: folder ID `1esYnlwChRmv9-M3ymWYhWMPHRowhOluw`. Read when starting a **new SKU, bar, pouch, or RDB** spec; align suggestions with agroverse.shop + repo. |
 | **TRUECHAIN.md** | **TrueChain** — Private blockchain for contributions, transactions, invoices, QR codes, tree plantings, sales. Setup, integration, block explorer (GAS), technical proposal. Includes "For AI Assistants" section. Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain). |
+| **HIT_LIST_CONTACT_ENRICHMENT.md** | **Hit List — contact enrichment** — `AI: Enrich with contact` queue (`hit_list_enrich_contact.py`), **DApp Remarks** logging (not Hit List **Notes**), shared `hit_list_dapp_remarks_sheet.py`, hourly GitHub Action. Read when extending web/email/form discovery or Hit List automation; **`market_research/HIT_LIST_CREDENTIALS.md`** for CLI and secrets. |
 
 ## How to use (for AIs)
 
@@ -58,6 +59,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 13. **TrueChain integration:** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read **`TRUECHAIN.md`** (includes "For AI Assistants" section, setup, technical proposal). Repo: [TrueSightDAO/TrueChain](https://github.com/TrueSightDAO/TrueChain).
 14. **API keys and env vars:** See the sibling repo **agentic_ai_api_credentials** for `env.template` and `API_CREDENTIALS_DOCUMENTATION.md`; no secrets are stored there.
 15. **GitHub / Agentic AI SSH:** When pushing to GitHub on behalf of the user with automation, read **`GITHUB_AGENTIC_AI_SSH.md`** — key directory **`~/.ssh/agentic_ai_github/`**, host alias or `GIT_SSH_COMMAND`. **Branch + PR** by default; **`gh pr merge`** to default branch **only when the user explicitly asks** to complete the release (see that doc § “When the user requests the full release loop”).
+16. **Hit List contact enrichment (`AI: Enrich with contact`):** When changing website scrape / email / contact-form automation for the holistic wellness Hit List, read **`HIT_LIST_CONTACT_ENRICHMENT.md`** (design decisions, DApp Remarks parity, shared sheet module). Operational details: **`market_research/HIT_LIST_CREDENTIALS.md`**.
 
 ## Location
 
