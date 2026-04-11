@@ -68,6 +68,8 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 - **Python**: market_research, video_editor, tokenomics scripts, jarvis — use venv and `requirements.txt` per project.
 - **Node/TS**: krake_local, tokenomics (Raydium), iching_oracle — check for Node 18+ or 20+ and npm/pnpm.
 - **APIs**: DApp and automation often talk to tokenomics backend/Google Apps Scripts; see tokenomics API.md and dapp UX_CONVENTIONS.md. **Google Apps Script web apps** must allow the caller (**Who has access**); otherwise the browser reports **CORS** errors for `fetch()` even though the `.gs` uses standard `ContentService` JSON — see **DAPP_PAGE_CONVENTIONS.md §14**.
+- **Holistic wellness Hit List — field agent pipeline:** **`dapp/stores_nearby.html`** (signed user) may send **`save_location=true`** on the Stores Nearby **`doGet`** so GAS appends a **`pending`** row on tab **`Recent Field Agent Location`** (`1eiqZr3LW…`, `gid=881847228`). **`market_research/scripts/field_agent_location_places_pull.py`** + GitHub Action **`field_agent_location_places_pull.yml`** process **`pending`** → Google Places Nearby → append **Hit List** / **DApp Remarks** / status **`pulled`** or **`ignored because already pulled`**. **`tokenomics/SCHEMA.md`** §4; **`HIT_LIST_CREDENTIALS.md`**; **DAPP_PAGE_CONVENTIONS.md §14** (subsection *Field agent location*).
+- **Tokenomics `clasp push`:** After pushing Google Apps Script from `tokenomics/clasp_mirrors/<scriptId>/`, assistants should give the user the **Script editor link** and remind them that **Web Apps** may need **Deploy → Manage deployments → New version → Deploy** for `/exec` to pick up changes. Mirror IDs, copy/paste sync commands, and Stripe sheet **column P (Agroverse QR code)** workflow are documented in **`agentic_ai_context/NOTES_tokenomics.md`** and **`tokenomics/SCHEMA.md`**.
 
 ---
 
@@ -90,19 +92,22 @@ Treat **`offchain transactions`** as **double-entry** for purchases that consume
 | Leg | **`Currency`** (col E) | **Amount** (col D) | Role |
 |-----|-------------------------|-------------------|------|
 | **Cash / funding** | **`USD`** | **Negative** (e.g. `-27.70`) | Money left the wallet / card for the order (grand total, tax-included). |
-| **Inventory** | **Custom line** matching **`Currencies`!A** | **Positive** (e.g. `50` for fifty units) | Units received; **no second USD outflow**. |
+| **Cash / funding (Brazil)** | **`Brazilian Reis`** | **Negative** (e.g. `-180`) | Same as USD leg, but amount is **BRL**; **`Currency`** must **exactly match** the **`Currencies`!A** label for the real (**`Brazilian Reis`** in the ledger today). Inventory **`Price in USD`** still lands in USD using that row’s **`Price in USD`** as **USD per 1 BRL** (see §3c bullets below). |
+| **Inventory** | **Custom line** matching **`Currencies`!A** | **Positive** (e.g. `50` for fifty units) | Units received; **no second cash outflow** on a second row. |
 
-- **If the user has not already recorded the negative `USD` row** for that purchase, **insert it**: parse the invoice/receipt for **grand total**, date, payer (`Fund Handler` per ship-to rule below), and links. **Do not** only add the positive inventory leg and assume the cash row exists.
-- **Pairing:** The **positive inventory** row’s **Description** should cite the **sheet row number** of the **`USD`** leg (e.g. “pairs offchain row N…”), plus **order id**, **ship-to**, and a **GitHub** link to the archived invoice PDF (see below). The **`Currency`** string on the inventory row must **exactly match** the new **`Currencies`** row’s column **A**.
+- **Standing convention — Matheus (Brazil):** **`Matheus Reis`** (exact **Contributors contact information** **Name**) **periodically purchases inventory for the DAO in Brazilian reais**, under **his fund custody** in Brazil (Ilhéus area). For these events **do not** require a long operator brief: receipt (or amount + date + what was bought + unit count), evidence paths, and transaction date are enough. Apply **both** legs with **`Fund Handler` = `Matheus Reis`**. **Inventory `Price in USD`** = **(R$ landed per unit) × (`Brazilian Reis` row `Price in USD`)**, with **R$ landed per unit** = receipt grand total ÷ units (tax-included unless policy says otherwise). **Do not** invent FX; use the **established** **`Brazilian Reis`** row unless treasury is updating it.
+- **If the user has not already recorded the negative cash row** (**`USD`** or **`Brazilian Reis`**) for that purchase, **insert it**: parse the invoice/receipt for **grand total**, date, **`Fund Handler`** (ship-to rule **or** Matheus convention above), and links. **Do not** only add the positive inventory leg and assume the cash row exists.
+- **Pairing:** The **positive inventory** row’s **Description** should cite the **sheet row number** of the **cash** leg (e.g. “pairs offchain row N…”), plus **order id**, **location**, and a **GitHub** link to archived evidence (see below). The **`Currency`** string on the inventory row must **exactly match** the **inventory** **`Currencies`** row’s column **A**. **Google Sheets:** do **not** start **Description** with **`+`** or **`=`** (formula interpretation); lead with words (e.g. “Received 4 units…”).
 
 ### **`Currencies` tab (unit “price” for the inventory leg)**
 
-- **`Price in USD`:** Use **tax-included “landed”** unit cost: **landed per unit = invoice grand total ÷ unit count** (not pre-tax unit price), unless policy is explicitly changed.
-- **New SKU / packaging:** Append a row (**A** = canonical name; **`Price in USD` = landed per unit**). Then **sort** the tab: **row 2 through last data row**, **all sheet columns in the grid** (e.g. **A through AC**), **A→Z by column A**, so **`VLOOKUP`** / **`ARRAYFORMULA`** on other tabs stay aligned and **no column is orphaned**.
+- **`Price in USD`:** Use **tax-included “landed”** unit cost in **USD**: **landed USD per unit = (invoice grand total ÷ unit count in local currency) × FX to USD** when the receipt is **not** in USD. For **BRL** receipts, use **`Brazilian Reis`** **`Price in USD`** (**USD per 1 BRL**). Example: R$180 for 4 units → R$45/unit → if **`Brazilian Reis`** is `0.2323`, **landed USD per unit** = `45 × 0.2323`.
+- **New SKU / packaging:** Append a row (**A** = canonical name; **`Price in USD` = landed USD per unit**). Then **sort** the tab: **row 2 through last data row**, **all sheet columns in the grid** (e.g. **A through AC**), **A→Z by column A**, so **`VLOOKUP`** / **`ARRAYFORMULA`** on other tabs stay aligned and **no column is orphaned**.
 
 ### **Fund Handler (manager) from ship-to**
 
 - **Ship-to** is **TrueTech Inc, 1423 Hayes St, San Francisco, CA 94117-1425, United States** (normalize minor formatting): **Fund Handler** = **`Kirsten Ritschel`** (exact **Name** in tab **Contributors contact information**).
+- **Brazil — Matheus-managed BRL purchases (DAO inventory):** **Fund Handler** = **`Matheus Reis`** on **both** the **`Brazilian Reis`** cash leg and the **inventory** leg. This is **periodic** operational reality, not a one-off; see **standing convention** under **Double-entry** above. (Ilhéus / Brazil warehouse context: **`AGROVERSE_PRICE_LIST_AND_ASSETS.md`**, **`SUPPLY_CHAIN_AND_FREIGHTING.md`**.)
 - **Any other ship-to:** **Fund Handler** = **`Gary Teh`** unless the user states otherwise. Apply consistently on **both** legs (cash and inventory) when the handler represents **custody / management** of the asset or spend context.
 
 ### **Invoice PDF → `TrueSightDAO/.github` (automation pattern)**
@@ -130,7 +135,7 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 ### **Suggested order of operations (agents)**
 
 1. Obtain invoice text: from **`~/Downloads`**, or **`offchain`** row **B** URL → **raw** PDF download, then **`pypdf`** (vendor formats vary).
-2. **Ensure negative `USD` row exists** on **`offchain transactions`**; if not, **add it** (amount = **-grand total** as in existing ledger style). If the user points at an **existing** cash row, **skip** creating a second **`USD`** line.
+2. **Ensure negative cash row exists** on **`offchain transactions`** (**`USD`** or **`Brazilian Reis`**); if not, **add it** (amount = **-grand total** in that currency). If the user points at an **existing** cash row, **skip** creating a duplicate cash line.
 3. **GitHub `assets/`:** **Upload** only when there is **no** file yet (local invoice only, or missing link). If **`Destination Expense File Location`** already references **`TrueSightDAO/.github`**, use that **`blob`** URL in the inventory **Description**.
 4. **Add or update `Currencies`** row (landed unit **= grand total ÷ qty**); **full-width sort** by column **A**.
 5. **Add positive inventory row** on **`offchain transactions`**: **`Currency`** = **`Currencies`!A** exact string; **Description** links **cash row**, PDF **blob** URL, order id; **Fund Handler** per **ship-to**.

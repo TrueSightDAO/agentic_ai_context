@@ -205,6 +205,22 @@ DApp pages call deployed web apps with **`fetch()`** and query parameters — sa
 
 Do not assume a CORS error means the `.gs` response format is wrong; **verify deployment access first.**
 
+### Static host (GitHub Pages / `dapp.truesight.me`) and `doGet` vs `doPost`
+
+- The DApp is **static HTML** on **GitHub Pages** (or a custom domain such as **`https://dapp.truesight.me/`**). It is **not** required to serve pages from **HtmlService** inside Apps Script to talk to a backend.
+- A deployed **Web app** URL (`…/macros/s/…/exec`) can implement **`doGet`** and/or **`doPost`**. Either handler can be called from the static site with **`fetch()`** (GET with query string, or POST with a JSON body / `application/x-www-form-urlencoded`, depending on what the script expects).
+- **`doPost` is not “only available when the HTML is hosted by Google Apps Script.”** HtmlService is a separate pattern (serving UI from GAS). For data APIs, many projects use **only** `doGet` for simplicity; choosing POST is a **design** decision (e.g. avoids very long URLs, avoids accidental logging of query strings, clearer semantics for writes), not a platform lock-in.
+- **Writes (e.g. append a row to “Recent Field Agent Location”)** still need **rate limiting / dedupe** on the server and/or **debouncing** in the browser so map panning or repeated loads do not over-fill the sheet. Prefer **idempotent** or **“log at most once per window per key”** rules.
+- If POST ever fails with CORS in a given browser, treat it like GET: confirm **Web app deployment access**, response MIME type, and that the handler returns **`ContentService`** JSON (not an accidental HTML error page).
+
+### Field agent location (`stores_nearby` → sheet → Places → Hit List)
+
+- **Goal:** When a **signed** contributor uses **`stores_nearby.html`**, the first eligible **store search** `GET` to the **Stores Nearby** GAS web app can include **`save_location=true`** and **`digital_signature`**. GAS appends one row to spreadsheet **`1eiqZr3LW…`** tab **`Recent Field Agent Location`** (`gid=881847228`) with **`Status` = `pending`**.
+- **Throttle:** **`localStorage`** key `tsd_field_agent_loc_last_ms_v1:<publicKey prefix>` — at most one ping per **24 hours** per key unless the page URL includes **`save_location=true`** (test override). The client only attaches **`save_location` once per page load** after a successful response that includes `field_agent_location` (or after the fetch completes so retries work).
+- **GAS:** `tokenomics/clasp_mirrors/1NpHrKJW8Q4suu6-f5gXQcbjHqUZtGOG-KcIf81M1GG8lDShm5-fLphD2/Code.js` — `doGet` search branch; JSON echo **`field_agent_location`**: `{ saved, location_id?, reason? }`. **Redeploy** the web app after `clasp push`. Row 1 on the tab must match the six canonical headers (GAS overwrites row 1 when safe: **no data in row 2+**).
+- **Downstream:** **`market_research/scripts/field_agent_location_places_pull.py`** — reads **`pending`**, applies **20 mi / 24 h** dedupe against prior **`pulled`** rows before calling **Places Nearby** (tunable via **`--dedupe-miles`** / **`--dedupe-hours`**, or **`--no-recent-dedupe`**), appends deduped **Hit List** rows (**Research**), sets **`pulled`** / **`ignored because already pulled`**, and appends an automation summary to **DApp Remarks**. **CI:** `market_research/.github/workflows/field_agent_location_places_pull.yml`.
+- **Schema / credentials:** **`tokenomics/SCHEMA.md`** (§4 Holistic wellness Hit List), **`market_research/HIT_LIST_CREDENTIALS.md`** (field agent subsection).
+
 ---
 
 ## 15. Where conventions live
@@ -215,6 +231,6 @@ Do not assume a CORS error means the `.gs` response format is wrong; **verify de
 | Meta, nav, layout | This file                        |
 | Loading, errors, UX| **dapp/UX_CONVENTIONS.md**       |
 | Menu entries       | **dapp/menu.js**                 |
-| GAS + fetch + CORS | This file §14                     |
+| GAS + fetch + CORS + static host / POST + field agent ping | This file §14 |
 
 When in doubt, **copy structure and meta tags from an existing page** (e.g. `shipping_planner.html`, `report_sales.html`) and then adjust content and styles.
