@@ -20,6 +20,7 @@ All truesight.me whitepaper URLs use a JavaScript redirect (and meta refresh) to
 - **Script:** `agentic_ai_context/scripts/fetch_whitepaper.py`  
   Fetches one or all whitepapers. Tries **Google Docs export URL** first (no credentials); optionally uses **Google Docs API** with `GOOGLE_APPLICATION_CREDENTIALS` or `--credentials path/to.json`.
   (See table above for doc IDs and snapshot filenames.)
+- **Local key (truesight_me clone):** `truesight_me/credentials/whitepaper-google-sa.json` — gitignored; service account `truesightme-whitepapers@get-data-io.iam.gserviceaccount.com`. Documented in **`GOOGLE_API_CREDENTIALS.md`** §6.
 - **Run (single):**  
   `cd agentic_ai_context/scripts && pip install -r requirements.txt && python fetch_whitepaper.py -o ../WHITEPAPER_SNAPSHOT.md`  
   Or: `python fetch_whitepaper.py --which edgar -o ../EDGAR_WHITEPAPER_SNAPSHOT.md` (same for `agroverse`, `sunmint`).

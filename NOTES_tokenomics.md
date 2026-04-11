@@ -13,6 +13,31 @@ Key docs
 - `SCHEMA.md` — Authoritative Google Sheets schema (recent header changes, new sheets, naming conventions).
 - `SCHEDULE_TRIGGERS.md` — Time-driven automations and their roles.
 
+### Google Apps Script — `clasp push` and Web App deploy (assistant convention)
+
+After running **`clasp push`** from any `tokenomics/clasp_mirrors/<scriptId>/` folder, **always** tell the user:
+
+1. **Script editor URL** (open project, then **Deploy → Manage deployments** if the change must go live for a Web App or API):
+
+| Project | Script ID | Editor URL |
+|---------|-----------|------------|
+| **Agroverse QR web app** (DApp `AKfycbxigq4…/exec`, list/lookup/Stripe sessions) | `1y6JVYwqdrFD4zHT4zyIfU762RRsW7GgZKPVuzorpwUS61mDnFQZ65Qsz` | https://script.google.com/home/projects/1y6JVYwqdrFD4zHT4zyIfU762RRsW7GgZKPVuzorpwUS61mDnFQZ65Qsz/edit |
+| **Parse Telegram / QR sales** (`process_sales_telegram_logs`, webhook `parseTelegramChatLogs`) | `1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7` | https://script.google.com/home/projects/1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/edit |
+
+2. **`clasp push` updates project code only.** For **Web App** deployments, Google often requires **Manage deployments → Edit (pencil) → New version → Deploy** so the public `/exec` URL serves the latest code. (Same deployment entry keeps the same URL.)
+
+3. **Sync before push:** Canonical sources live under `google_app_scripts/`; mirrors are pushed with clasp. From repo root, copy then push, e.g.:
+
+```bash
+cp google_app_scripts/agroverse_qr_codes/web_app.gs "clasp_mirrors/1y6JVYwqdrFD4zHT4zyIfU762RRsW7GgZKPVuzorpwUS61mDnFQZ65Qsz/Code.js"
+cp google_app_scripts/tdg_inventory_management/process_sales_telegram_logs.gs "clasp_mirrors/1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/Parse Telegram ChatLogs.js"
+```
+
+### Stripe checkout ↔ Agroverse QR (column P)
+
+- Spreadsheet **`Stripe Social Media Checkout ID`** (main ledger workbook `1GE7PUq…`): **Column P = Agroverse QR code** links a Stripe session row to the serialized QR (`Agroverse QR codes` column A). **C** = Session ID, **N** = tracking.
+- Unassigned sessions (P blank) are listed for the Sales Reporter; successful `[SALES EVENT]` processing can set **N** and **P** via `updateStripeCheckoutMetadata` in `process_sales_telegram_logs.gs`. See **`SCHEMA.md`** (recent changes + Stripe sheet table).
+
 ## Main Areas
 - **Google Apps Script — canonical on disk for clasp:** `tokenomics/clasp_mirrors/<scriptId>/` (one folder per project). Use `clasp push` / `clasp pull` there after a fresh clone. **Git does not store** mirror `*.js` or `appsscript.json` (secrets / noise); the repo keeps `.clasp.json` + checklist + manifest. Regenerate: `node scripts/clone_clasp_mirrors.mjs` from tokenomics root.
 - **Reference layout:** `google_app_scripts/` — same logic grouped by domain for reading and docs; **not** the primary clasp root after 2026-03. Backport from mirrors if thematic folders should reflect production.

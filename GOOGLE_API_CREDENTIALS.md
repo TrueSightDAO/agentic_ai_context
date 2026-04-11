@@ -50,6 +50,14 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 - **Project ID**: `get-data-io`
 - **Used For**: Edgar DApp Telegram logs
 
+### 6. **TrueSight.me whitepaper (Google Docs read)**
+- **File (local, gitignored):** `truesight_me/credentials/whitepaper-google-sa.json` — key file lives only on developer machines; **never commit** (see `truesight_me/credentials/README.md` and `truesight_me/.gitignore`).
+- **Service Account Email**: `truesightme-whitepapers@get-data-io.iam.gserviceaccount.com`
+- **Client ID**: `111924219696923655238`
+- **Private Key ID**: `91745a4ba4c748eebae3f0b5b6901a81ec0239ec`
+- **Project ID**: `get-data-io`
+- **Used For**: Reading TrueSight whitepaper Google Docs via the Docs API (e.g. `agentic_ai_context/scripts/fetch_whitepaper.py` with `GOOGLE_APPLICATION_CREDENTIALS` or `--credentials`). Grant **Viewer** on each whitepaper doc to this service account.
+
 ---
 
 ## 📁 Google Drive folders (Agroverse artifacts)
