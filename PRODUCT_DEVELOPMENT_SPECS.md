@@ -39,6 +39,7 @@ Read this when creating or updating **packaging, copacker, or retail SKU specs**
 
 4. **Related repo docs**  
    - New **shop SKUs / PDPs / Merchant Center**: `agroverse_shop/docs/PRODUCT_CREATION_CHECKLIST.md`, `docs/MERCHANT_CENTER_FIX.md`.  
+   - **On-site cross-listings (farm + shipment grids):** **`AGROVERSE_SHOP_NEW_SKU_WEB_CHECKLIST.md`** in this repo — add **`item-card`** rows on **`farms/*/index.html`** and **`shipments/agl*/index.html`** so new SKUs are not PDP-only.  
    - **Feeds**: `scripts/generate_facebook_feed.py`, `productPageSlug` in `js/products.js`, apex `https://agroverse.shop` for feed URLs.
 
 ---
@@ -57,6 +58,7 @@ Read this when creating or updating **packaging, copacker, or retail SKU specs**
 
 - **Prefer the Sheet** for line-item tracking; extend with **new tabs** or rows, keep the five-column pattern.  
 - **Pull suggestions** from: homepage title/footer, `LocalBusiness` JSON-LD, `/farms/`, `/shipments/`, existing QR copy on product pages, CSS brand colors (`:root` in site CSS).  
+- **New shop SKU:** After a PDP ships, follow **`AGROVERSE_SHOP_NEW_SKU_WEB_CHECKLIST.md`** so **farm** and **shipment** “Products from …” grids include the new product (not only the PDP + feed).  
 - **Do not commit** `google-service-account.json` or other secrets; user places keys locally.  
 - **Put new spec spreadsheets** in the Drive folder in **§0** (or document here if an exception is agreed).  
 - After changing the workflow, folder ID, or spreadsheet ID for a **new** product line, update **this file** and a one-line entry in **`CONTEXT_UPDATES.md`**.
