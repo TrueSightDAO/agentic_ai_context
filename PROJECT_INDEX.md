@@ -50,7 +50,7 @@ Quick reference for each project in the workspace. For credential names and usag
 | **iching_oracle** | `iching_oracle/` | I Ching oracle app | Node/TypeScript | — | — | — |
 | **point-of-sales-integrations** | `point-of-sales-integrations/` | POS integrations | — | — | — | — |
 | **heierling-pos** | `heierling-pos/` | Heierling POS (small codebase) | HTML/JS | — | — | — |
-| **Cypher-Defense** | `Cypher-Defense/` | Web3 scam / impersonation / phishing awareness (extension + blacklist assets). **Also:** AWS incident-response helpers — `scripts/aws/` (e.g. delete rogue EC2 key pairs in all regions), `docs/incidents/` (dated analyses). **Credentials:** repo-root `.env` (**gitignored**); see `.env.example`. **`market_research/scripts/terminate_ec2_by_launch_keypair.py`** loads `Cypher-Defense/.env` before `market_research/.env`. | JS, Handlebars, AWS CLI | `README.md`, `scripts/aws/`, `docs/incidents/`, `blacklist/` | **`Cypher-Defense/.env`** (`AWS_KEY` / `AWS_SECRET` or standard `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`) | — |
+| **Cypher-Defense** | `Cypher-Defense/` | Web3 scam / impersonation / phishing awareness (extension + blacklist assets). **Also:** AWS incident-response helpers — `scripts/aws/` (e.g. `delete_ec2_keypair_all_regions.sh`, `terminate_ec2_by_launch_keypair.py`), `docs/incidents/` (dated analyses). **Credentials:** repo-root `.env` (**gitignored**); see `.env.example`. | JS, Handlebars, AWS CLI, Python | `README.md`, `scripts/aws/`, `docs/incidents/`, `blacklist/` | **`Cypher-Defense/.env`** (`AWS_KEY` / `AWS_SECRET` or standard `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`) | — |
 
 ---
 
