@@ -156,6 +156,20 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 
 ---
 
+## 3e. GitHub Actions and PR checks — **no long polling**
+
+Assistants should **not** tie up the session waiting for GitHub Actions to finish. Avoid long or repeated waits such as **`gh pr checks --watch`**, **`gh run watch`** for many minutes, or tight loops of **`sleep`** + **`gh api …/actions/jobs/…`** until **`conclusion`** is set.
+
+**Preferred workflow**
+
+- After **`git push`** or updating a PR, optionally take **one** non-blocking snapshot: **`gh pr checks`**, **`gh pr view --json statusCheckRollup`**, **`gh run view <id>`**, or paste the **Actions** URL from **`gh pr view --web`**.
+- When possible, **run the same checks locally** (for example in **`agroverse_shop/`**: **`npm run sitemap:check`**, **`npx playwright test …`**) so merge confidence does not depend on watching the remote runner.
+- Give the user the **PR** and **workflow run** links; they can watch CI or merge when green. If the user explicitly asked to **merge**, merge only when checks are **already green** from a snapshot (or after the user confirms)—**do not** poll GitHub for extended periods to “babysit” the run.
+
+**Related:** **`GITHUB_AGENTIC_AI_SSH.md` § Pull requests** (merge step: snapshot, not long watch).
+
+---
+
 ## 4. Cross-Repo Relationships
 
 - **dapp** ↔ **tokenomics**: DApp calls tokenomics APIs; see tokenomics API.md. **Apps Script edits:** implement and deploy from **`tokenomics/clasp_mirrors/<scriptId>/`** (clasp); **`tokenomics/google_app_scripts/`** is reference-only unless explicitly backported.
@@ -188,7 +202,7 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 - **Hit List contact enrichment** (`AI: Enrich with contact`, DApp Remarks parity): this repo **`HIT_LIST_CONTACT_ENRICHMENT.md`** — scripts, hourly CI, Notes vs DApp Remarks, shared `hit_list_dapp_remarks_sheet.py`. **`market_research/HIT_LIST_CREDENTIALS.md`** for CLI and secrets.
 - **DApp UX**: dapp `UX_CONVENTIONS.md`.
 - **DApp CI/testing**: dapp has unit tests (Node) and Playwright integration tests. Run `npm test` in `dapp/`. See dapp `tests/README.md`. CI: `.github/workflows/ci.yml` on push/PR to main. Pure logic in `expense-form-utils.js`; integration tests mock Google Apps Script and Edgar APIs (no real network calls).
-- **Agroverse Shop CI/testing**: agroverse_shop has Playwright visual consistency tests. Run `npm test` in `agroverse_shop/`. See agroverse_shop `tests/README.md`. **Local runs hit `localhost:8000`** — Playwright auto-starts Python `http.server` on port 8000; ensure nothing else uses that port. CI (GitHub Actions) runs against live site (beta or prod). Workflow: `.github/workflows/visual-consistency.yml`. Smart runner: `npm run test:resume` to resume from failures.
+- **Agroverse Shop CI/testing**: agroverse_shop has Playwright visual consistency tests. Run `npm test` in `agroverse_shop/`. See agroverse_shop `tests/README.md`. **Local runs hit `localhost:8000`** — Playwright auto-starts Python `http.server` on port 8000; ensure nothing else uses that port. CI (GitHub Actions) runs against live site (beta or prod). Workflow: `.github/workflows/visual-consistency.yml`. Smart runner: `npm run test:resume` to resume from failures. **Waiting on GitHub:** Section **§3e** — do not long-poll Actions; snapshot once or run tests locally; hand off URLs.
 - **Downloads → Agroverse (videos + images):** **`DOWNLOADS_MEDIA_TO_AGROVERSE.md`** — video pipeline: `analyze_incoming_videos.py` → optional `youtube_batch_incoming.py` → `generate_video_transcript_blog_posts.py` (optional Grok polish). **After regen or any `youtube_videos.json` title change**, run **`youtube_update_video_titles.py`** so YouTube matches the manifest; if OAuth **`invalid_scope` / refresh fails**, use **`youtube_oauth_reauthorize.py`** then rerun the updater (details in that doc). **Images:** no dedicated Downloads automation; copy into `agroverse_shop/assets/images/…`, wire in HTML, run `sync_blog_listing_thumbnails.py`; blog card rules remain as in §4 (listing-640w, first in-body image, `bahia-photo-library` fallbacks).
 - **Marketing / CMO consultation**: this repo `CMO_SETH_GODIN.md` — Agentic AI CMO (Seth Godin). Read when doing marketing activities to consult the CMO and operate based on his principles.
 - **Strategy / onboarding**: this repo `DR_MANHATTAN.md` — Dr Manhattan. Read when doing strategy, growth, priorities, or onboarding for the DAO/Agroverse network. Future use: chatbot for newcomers.

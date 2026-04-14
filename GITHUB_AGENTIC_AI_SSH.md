@@ -92,7 +92,7 @@ Remove the old public key from GitHub, add the new `.pub`, update any CI referen
    - **Changes** — bullet list of files/areas.
    - **Testing** — what was run (e.g. `npm test`, `npm run sitemap`, manual checks).
    - **Rollout / follow-ups** — Sheets, clasp, env, or anything not in git.
-6. **Merge** — leave to **human reviewers by default**. If the user **explicitly** asks to “merge into main / master” (or the default branch) after opening a PR, the agent may finish the loop: verify CI if applicable, then merge via **`gh pr merge`** (prefer **`--merge`** or **`--squash`** according to repo convention; use **`--delete-branch`** when the team prefers it) or the GitHub web UI. Document what shipped in the PR body before merging.
+6. **Merge** — leave to **human reviewers by default**. If the user **explicitly** asks to “merge into main / master” (or the default branch) after opening a PR, the agent may finish the loop: confirm CI with **at most one non-blocking snapshot** (e.g. **`gh pr checks`**, **`gh pr view --json statusCheckRollup`**, or the user says checks are green)—**do not** run long **`gh pr checks --watch`** / **`gh run watch`** loops—then merge via **`gh pr merge`** (prefer **`--merge`** or **`--squash`** according to repo convention; use **`--delete-branch`** when the team prefers it) or the GitHub web UI. Prefer running the same tests **locally** when feasible (`npm test`, Playwright, etc.). Document what shipped in the PR body before merging. See **`WORKSPACE_CONTEXT.md` §3e**.
 
 ### When the user requests the full release loop
 
@@ -103,7 +103,7 @@ If they ask to push recent work, open a PR, **and merge to default branch** in o
 3. **Stage only intentional paths** — exclude `__pycache__/`, local credentials, `.env`, and large binaries unless the repo is meant to host them.
 4. **Commit** with a clear message; **push** using **`GIT_SSH_COMMAND`** or **`github.com-agentic-ai`** (see above).
 5. **`gh pr create`** (or web) with **Goal**, **Changes**, **Testing**, **Rollout**.
-6. **`gh pr merge`** (or web) **only when the user explicitly asked to merge**; otherwise stop at step 5.
+6. **`gh pr merge`** (or web) **only when the user explicitly asked to merge** and checks are green (one **`gh pr checks`** snapshot or local tests)—**not** after long polling on GitHub; otherwise stop at step 5. See **`WORKSPACE_CONTEXT.md` §3e**.
 
 The compare URL is usually:
 
