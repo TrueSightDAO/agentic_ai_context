@@ -15,12 +15,17 @@ Key docs
 
 ### Google Apps Script — `clasp push` and Web App deploy (assistant convention)
 
+Canonical index of **all** clasp-backed projects (names, script IDs, editor links): `tokenomics/clasp_mirrors/PROJECT_INDEX.md`.
+
+**`google_app_scripts/**/*.gs` header convention:** each file should include an **`Apps Script editor:`** block with `https://script.google.com/home/projects/<scriptId>/edit` for the Apps Script project that actually runs that source (standalone clasp roots like `google_app_scripts/seacoast_freight_quotation_ingest/` keep their own `.clasp.json` scriptId). Deprecated reference-only `.gs` files should say **N/A** and point at `PROJECT_INDEX.md` instead.
+
 After running **`clasp push`** from any `tokenomics/clasp_mirrors/<scriptId>/` folder, **always** tell the user:
 
 1. **Script editor URL** (open project, then **Deploy → Manage deployments** if the change must go live for a Web App or API):
 
 | Project | Script ID | Editor URL |
 |---------|-----------|------------|
+| **SeaCoast freight quotation ingest** (Gmail → Grok → GitHub PR; canonical sources under `google_app_scripts/seacoast_freight_quotation_ingest/`) | `1gi4YKh2ikLWmp6qEL1A6N3dfF6gQP-jwRPf_hc0N0EvaVU0-1tWu0nxo` | https://script.google.com/home/projects/1gi4YKh2ikLWmp6qEL1A6N3dfF6gQP-jwRPf_hc0N0EvaVU0-1tWu0nxo/edit |
 | **Agroverse QR web app** (DApp `AKfycbxigq4…/exec`, list/lookup/Stripe sessions) | `1y6JVYwqdrFD4zHT4zyIfU762RRsW7GgZKPVuzorpwUS61mDnFQZ65Qsz` | https://script.google.com/home/projects/1y6JVYwqdrFD4zHT4zyIfU762RRsW7GgZKPVuzorpwUS61mDnFQZ65Qsz/edit |
 | **Parse Telegram / QR sales** (`process_sales_telegram_logs`, webhook `parseTelegramChatLogs`) | `1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7` | https://script.google.com/home/projects/1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/edit |
 | **QR Code Generation** (`processQRCodeGenerationTelegramLogs`, Telegram → Agroverse → GitHub sync) | `1N6o00N9VtRK_L3e0NQXEsmC6QME1KObZdmdbJgo0Tbgj_7P-ElNL5THn` | https://script.google.com/home/projects/1N6o00N9VtRK_L3e0NQXEsmC6QME1KObZdmdbJgo0Tbgj_7P-ElNL5THn/edit |
