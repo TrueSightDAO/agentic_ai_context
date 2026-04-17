@@ -6,7 +6,7 @@ Machine-oriented digest of **recent evidence** for LLM advisors. Git lines are *
 
 ## Meta
 
-- Generated (UTC): `2026-04-17T20:56:19Z`
+- Generated (UTC): `2026-04-17T23:28:54Z`
 - Look-back: **7** calendar days (`2026-04-10` → today UTC)
 - Curated clone set: **11** repos (same table as Beer Hall preview)
 
@@ -18,7 +18,7 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-04-10 | cursor | **Main Ledger — Matheus / BRL:** Standing convention in **WORKSPACE_CONTEXT.md** §3c: **Matheus Reis** periodically buys **DAO inventory** in **`Brazilian Reis`** (exact **`Currencies`!A**) under his management; double-entry **BRL** cash leg + **inventory** leg; **`Fund Handler`** = **Matheus Reis** both legs; **`Price in USD`** on SKU = R$ landed/unit × **`Brazilian Reis`** **`Price in USD`** (USD per BRL). Short operator prompts (receipt, counts, date, evidence) suffice. Note: **offchain** **Description** must not lead with **`+`** (Sheets formula). Cross-links **AGROVERSE_PRICE_LIST_AND_ASSETS.md**, **SUPPLY_CHAIN_AND_FREIGHTING.md**.
 
-_All dated lines on/after 2026-04-10_ (13):
+_All dated lines on/after 2026-04-10_ (14):
 
 - 2026-04-10 | cursor | **Main Ledger — Matheus / BRL:** Standing convention in **WORKSPACE_CONTEXT.md** §3c: **Matheus Reis** periodically buys **DAO inventory** in **`Brazilian Reis`** (exact **`Currencies`!A**) under his management; double-entry **BRL** cash leg + **inventory** leg; **`Fund Handler`** = **Matheus Reis** both legs; **`Price in USD`** on SKU = R$ landed/unit × **`Brazilian Reis`** **`Price in USD`** (USD per BRL). Short operator prompts (receipt, counts, date, evidence) suffice. Note: **offchain** **Description** must not lead with **`+`** (Sheets formula). Cross-links **AGROVERSE_PRICE_LIST_AND_ASSETS.md**, **SUPPLY_CHAIN_AND_FREIGHTING.md**.
 - 2026-04-10 | cursor | **Tokenomics GAS:** **`clasp push`** for QR web app script `1y6JVYwq…` and sales telegram parser `1dsWec…`; assistants always supply Script editor URLs + **Deploy → Manage deployments → New version** note for Web Apps. **`SCHEMA.md`**: **`Stripe Social Media Checkout ID`** column **P = Agroverse QR code**; **`QR Code Sales`** column **D** = cash proceeds collector for `[SALES EVENT]`. **`NOTES_tokenomics.md`** (clasp/deploy table + Stripe P workflow), **`WORKSPACE_CONTEXT.md`** §3 tokenomics bullet.
@@ -33,6 +33,7 @@ _All dated lines on/after 2026-04-10_ (13):
 - 2026-04-14 | cursor | **LA batch QR fix:** Sheet rows **`LA_*_20260414_*`** — **E–H** reset from reference (**CC** → Oscar Farm/Bahia/Brazil/2024; **CT** → La do Sitio/Para/Brazil/2024); removed **`compiled_Los_Angeles_*.png`**, regenerated **`compiled_Oscar_Farm_*.png`** / **`compiled_La_do_Sitio_*.png`**. **`AGROVERSE_QR_CODE_BATCH_GENERATION.md`** — **E–H** must follow template farm, not handout city unless operator asks.
 - 2026-04-14 | cursor | **agroverse.shop new SKU — farm/shipment grids:** Added **`AGROVERSE_SHOP_NEW_SKU_WEB_CHECKLIST.md`** ( **`item-card`** on **`farms/*/index.html`** + **`shipments/agl*/index.html`** after new **`product-page/`**). **`PRODUCT_DEVELOPMENT_SPECS.md` §1/§3**, **`README.md`**, **`OPERATING_INSTRUCTIONS.md`**, **`WORKSPACE_CONTEXT.md` §4/§5**, **`PROJECT_INDEX.md`** (agroverse_shop); **`agroverse_shop/docs/PRODUCT_CREATION_CHECKLIST.md`** new section + template bullets.
 - 2026-04-16 | cursor | **Tokenomics GAS headers:** Every **`tokenomics/google_app_scripts/**/*.gs`** now documents **`Apps Script editor:`** `https://script.google.com/home/projects/<scriptId>/edit` (or N/A for deprecated stubs) per **`clasp_mirrors/PROJECT_INDEX.md`**. **`NOTES_tokenomics.md`** — index link + SeaCoast ingest row (`1gi4YKh2…`). SeaCoast **`Code.gs`** header order normalized.
+- 2026-04-17 | claude | **iching_oracle GAS + reminders pipeline:** GAS source version-controlled in `iching_oracle/gas/oracle_advisory_bridge.gs` (.clasp.json + README). Removed duplicate `LATEST_ADVISORY_SNAPSHOT_FROM_INDEX` block (was identical to ADVISORY_SNAPSHOT_MD); freed tokens used for new `OPEN_REMINDERS` block (fetches `ecosystem_change_logs/reminders/current.json`). `generate_advisory_snapshot.py` extended: `--with-rem` / `--reminders-json` now also writes `ecosystem_change_logs/reminders/current.json` + dated archive; included in `--git-publish` and `--github-api-publish` paths. End-of-day local workflow: `python3 scripts/generate_advisory_snapshot.py --with-rem --git-publish`. Do NOT add `--with-rem` to GitHub Actions (macOS-only). `WORKSPACE_CONTEXT.md` and `PROJECT_INDEX.md` updated with full pipeline docs.
 
 ---
 
@@ -92,6 +93,8 @@ b9a38ce | 2026-04-11 15:01:40 -0700 | Docs: refresh DAO and Agroverse whitepaper
 ### `market_research` → `go_to_market`
 
 ```
+8b4e413 | 2026-04-17 16:16:10 -0700 | Merge pull request #51 from TrueSightDAO/fix/telegram-digest-edgar-parser
+b50b0f2 | 2026-04-17 16:15:50 -0700 | fix(digest): parse Edgar event fields in Telegram log helper
 c418f7b | 2026-04-16 22:53:35 -0700 | Merge pull request #50 from TrueSightDAO/feature/advisory-snapshot-optional-sheet-sales
 9ce3fb7 | 2026-04-16 22:53:29 -0700 | feat(advisory): optional --with-sheet-sales in generate_advisory_snapshot
 595e194 | 2026-04-16 22:17:46 -0700 | feat(advisory): index.json v2 with BASE, read_order, canonical_context URLs.
@@ -152,6 +155,7 @@ a3de6c9 | 2026-04-11 14:12:44 -0700 | docs: field agent Hit List pipeline + rela
 ### `tokenomics` → `tokenomics`
 
 ```
+4fc9491 | 2026-04-17 16:03:18 -0700 | feat(agroverse-qr): migrate qr_code_web_service to admin@truesight.me and consolidate owner emails (#225)
 32ba059 | 2026-04-16 16:01:35 -0700 | SeaCoast ingest: default xAI model grok-3 (grok-2-latest invalid on API).
 3645375 | 2026-04-16 15:57:16 -0700 | Document Apps Script editor URLs in google_app_scripts headers; index SeaCoast project.
 1893d1c | 2026-04-16 14:10:48 -0700 | docs: drop private Edgar repo links from signature demo + SCHEMA (#224)
@@ -185,6 +189,7 @@ af3f8d7 | 2026-04-10 12:41:27 -0700 | Merge pull request #215 from TrueSightDAO/
 ### `dapp` → `dapp`
 
 ```
+f89e75e | 2026-04-17 16:03:20 -0700 | feat(batch-qr): update GAS URL to new admin@truesight.me project (#156)
 a4b7565 | 2026-04-16 16:16:24 -0700 | feat(report_contribution): paste file in description switches proof to upload (#155)
 e148b58 | 2026-04-16 15:25:10 -0700 | feat(create_signature): auto-submit email verification when em+vk present (#154)
 4779157 | 2026-04-16 12:42:20 -0700 | Parse freight lane JSON even when served as text/plain.
@@ -281,50 +286,102 @@ _(no commits on origin/main in window)_
 
 ---
 
-## Sheet evidence (sales)
+## Open reminders (macOS `rem` — action items)
 
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+_Open (not done) items from Reminders.app (`rem list --incomplete -o json`). When the user asks for **oracle response options**, propose **1–3** concrete next steps that honestly connect the hexagram reading to these **actionable** items where it fits; do **not** invent due dates or claim items are done._
+_Showing **60** of **68** open reminders (cap `--rem-limit`)._
 
-### `Monthly Statistics` (last **14** non-empty rows)
+| Title | List | Due (date) | Flagged | Notes (trunc.) |
+|-------|------|------------|---------|------------------|
+| Follow up with USPS claims | Reminders | `2025-04-07` | — | — |
+| Send Matthew the Dizajn | Reminders | `2025-09-11` | — | — |
+| Get cursor to look into the AWS charges still coming to my account | Reminders | `2026-01-29` | — | — |
+| Look at the influencer platform that a surface and a beer hall | Reminders | `2026-01-29` | — | — |
+| Spinner an instance for the RAG architecture | Reminders | `2026-01-29` | — | — |
+| Look into AWS | Reminders | `2026-04-17` | — | — |
+| Also have a conversation with multiple items are combine together to be… | Reminders | `—` | — | — |
+| Also record a composition | Reminders | `—` | — | — |
+| Build up a dashboard for all the trees belong to the same email address | Reminders | `—` | — | — |
+| Buy the battery back up tomorrow on amazon.com | Reminders | `—` | — | — |
+| Call back ‪+1 (415) 300-0019‬ | Reminders | `—` | — | — |
+| Clean out the email sent from both the tax tax | Reminders | `—` | — | — |
+| Create a donation receipt | Reminders | `—` | — | — |
+| Create a mobile app that venue owners can use to set the price | Reminders | `—` | — | — |
+| Create a mod for registering new members | Reminders | `—` | — | — |
+| Create a profile for Sandy Ho G Fernando as well as Marcelo's farms | Reminders | `—` | — | — |
+| Create a route for the wine Kenosha | Reminders | `—` | — | — |
+| Create an expected physical pop-up expansion | Reminders | `—` | — | — |
+| Create an instance of the iOS native app using cursor AI | Reminders | `—` | — | — |
+| Create the volunteer estimator for the different places that are sellin… | Reminders | `—` | — | — |
+| Create tutorial for Deckers | Reminders | `—` | — | — |
+| Download Prince of tights | Reminders | `—` | — | — |
+| Easy post calculate Sweet spot for postal rate across all the different… | Reminders | `—` | — | — |
+| Extend debt with the transforming of inventory from one | Reminders | `—` | — | — |
+| Figure out how to be a reasonable schedule by another four weeks from $… | Reminders | `—` | — | — |
+| Figure out how to social proof like the Michelin star list | Reminders | `—` | — | — |
+| Follow up with all the Desert resell us on April 16 after our Cacao com… | Reminders | `—` | — | — |
+| Follow up with the dude that dust incense from Nathan's fire | Reminders | `—` | — | — |
+| Garfield Street and box Canyon Road | Reminders | `—` | — | — |
+| Generate the auto follower feature | Reminders | `—` | — | — |
+| Get Hwang to send over the USDANOP certification for the new part | Reminders | `—` | — | — |
+| Get Ken a shirt | Reminders | `—` | — | — |
+| Include the CEPOTX fund video | Reminders | `—` | — | — |
+| Include Western Union for withdrawal | Reminders | `—` | — | — |
+| Indicating where the venues the banks are available | Reminders | `—` | — | — |
+| Interesting reference | Reminders | `—` | — | Book: Let this radicalize you  Documentary: No fun city |
+| John Oliver carbon credit black hole | Reminders | `—` | — | — |
+| List on etsy amazon.com and google search | Reminders | `—` | — | — |
+| Look at cat.io website | Reminders | `—` | — | — |
+| Look at John's block and roasting and then summarize it using Grok | Reminders | `—` | — | — |
+| Look at the 508C one and FBO organization | Reminders | `—` | — | — |
+| Look at the Google shopping set up for Agravat shop | Reminders | `—` | — | — |
+| Look into the faith base organization | Reminders | `—` | — | — |
+| Look through emails and send them out | Reminders | `—` | — | — |
+| Look up sisters of the valley | Reminders | `—` | — | — |
+| Look up the influencers that was talking about planting trees in the Am… | Reminders | `—` | — | — |
+| Make a video recording of the Secret Garden Namaste | Reminders | `—` | — | — |
+| Make it a simple way for people to clean the QR code value and then see… | Reminders | `—` | — | — |
+| Move the database over to Nelan account | Reminders | `—` | — | — |
+| Perhaps build a page dedicated page for the token QR code | Reminders | `—` | — | — |
+| Post congratulations to the gratitude of Fatima | Reminders | `—` | — | — |
+| Post Instagram gratitude to Raven | Reminders | `—` | — | — |
+| Reach andreas documents | Reminders | `—` | — | — |
+| Replace energy battery | Reminders | `—` | — | — |
+| Run Facebook ad test on mail that fucked up your back | Reminders | `—` | — | — |
+| Set pricing for the wholesale items | Reminders | `—` | — | — |
+| Start creating the listing details for the Cacao gathering festival | Reminders | `—` | — | — |
+| The landing page doesn't really say anything about the product itself b… | Reminders | `—` | — | — |
+| Update the Quant tree | Reminders | `—` | — | — |
+| Update Wen expenses is done at the ledger level instead of the main led… | Reminders | `—` | — | — |
 
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-03 | 1010 | 3854.96 | 2025-12-07 19:14:46 |
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 163.68 | 13994.63386 | 4/17/2026 13:50:35 |
+### Suggestion seeds (titles only)
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-10`; scanned last **309** data rows)
+- Follow up with USPS claims
+- Send Matthew the Dizajn
+- Get cursor to look into the AWS charges still coming to my account
+- Look at the influencer platform that a surface and a beer hall
+- Spinner an instance for the RAG architecture
+- Look into AWS
+- Also have a conversation with multiple items are combine together to become a new item
+- Also record a composition
+- Build up a dashboard for all the trees belong to the same email address
+- Buy the battery back up tomorrow on amazon.com
+- Call back ‪+1 (415) 300-0019‬
+- Clean out the email sent from both the tax tax
+- Create a donation receipt
+- Create a mobile app that venue owners can use to set the price
+- Create a mod for registering new members
+- Create a profile for Sandy Ho G Fernando as well as Marcelo's farms
+- Create a route for the wine Kenosha
+- Create an expected physical pop-up expansion
+- Create an instance of the iOS native app using cursor AI
+- Create the volunteer estimator for the different places that are selling Cacao in network
+- Create tutorial for Deckers
+- Download Prince of tights
+- Easy post calculate Sweet spot for postal rate across all the different zones in the USA
+- Extend debt with the transforming of inventory from one
 
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-04-10 | 33.68 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_38 | — | — |
-| 2026-04-12 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_37 | — | — |
-| 2026-04-12 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_15 | — | — |
-| 2026-04-13 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | 20260413_FATIMA | — | — |
-| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_1 | — | — |
-| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_2 | — | — |
-| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_2 | — | — |
-| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_3 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
-
----
-
-## Open reminders (cached JSON — action items)
-
-_Open (not done) items loaded from `/Users/garyjob/Applications/market_research/automation/reminders_incomplete.json`; export with `rem list --incomplete -o json` or `scripts/export_advisory_reminders_json.sh` so **done** rows are never written. Refresh from a Mac when you want CI to mirror actionable tasks. When the user asks for **oracle response options**, propose **1–3** concrete next steps that honestly connect the hexagram reading to these open items where it fits; do **not** invent due dates or claim items are done._
-_No open (not done) reminders in this source._
+_… **8** more open reminders not shown (raise `--rem-limit`)._
 
 ---
 

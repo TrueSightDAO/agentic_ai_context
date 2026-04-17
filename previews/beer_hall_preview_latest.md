@@ -1,5 +1,5 @@
 # Beer Hall digest — **PREVIEW** (no OpenClaw send)
-- Generated: **2026-04-17 20:55 UTC**
+- Generated: **2026-04-17 23:17 UTC**
 - Git window: `2026-04-10 00:00:00` → `2026-04-18 00:00:00` (local clone `origin` default branch)
 - Telegram + DApp Remarks helper look-back: **48h** (same window for both; DApp default excludes script submitters unless `--dapp-include-automation`)
 
@@ -63,6 +63,8 @@ c70b578 | 2026-04-11 15:34:46 -0700 | Merge pull request #15 from TrueSightDAO/f
 ### `market_research` → `go_to_market`
 
 ```
+8b4e413 | 2026-04-17 16:16:10 -0700 | Merge pull request #51 from TrueSightDAO/fix/telegram-digest-edgar-parser
+b50b0f2 | 2026-04-17 16:15:50 -0700 | fix(digest): parse Edgar event fields in Telegram log helper
 c418f7b | 2026-04-16 22:53:35 -0700 | Merge pull request #50 from TrueSightDAO/feature/advisory-snapshot-optional-sheet-sales
 9ce3fb7 | 2026-04-16 22:53:29 -0700 | feat(advisory): optional --with-sheet-sales in generate_advisory_snapshot
 595e194 | 2026-04-16 22:17:46 -0700 | feat(advisory): index.json v2 with BASE, read_order, canonical_context URLs.
@@ -86,8 +88,6 @@ af9d095 | 2026-04-11 14:34:19 -0700 | feat: human Shortlisted → enrich + pipel
 c8796f8 | 2026-04-11 14:22:40 -0700 | Merge pull request #40 from TrueSightDAO/fix/hit-list-enrich-contact-workflow-yaml
 38ff600 | 2026-04-11 14:22:28 -0700 | fix(ci): quote workflow_dispatch description for YAML validity
 5818a10 | 2026-04-11 14:11:48 -0700 | Merge pull request #39 from TrueSightDAO/feature/field-agent-location-places-pull
-5702de2 | 2026-04-11 14:11:25 -0700 | feat(field-agent): Recent Field Agent Location → Places → Hit List
-19dba9f | 2026-04-10 15:48:32 -0700 | Merge pull request #38 from TrueSightDAO/feat/hit-list-exclude-audit
 … (truncated)
 ```
 
@@ -117,6 +117,7 @@ a3de6c9 | 2026-04-11 14:12:44 -0700 | docs: field agent Hit List pipeline + rela
 ### `tokenomics` → `tokenomics`
 
 ```
+4fc9491 | 2026-04-17 16:03:18 -0700 | feat(agroverse-qr): migrate qr_code_web_service to admin@truesight.me and consolidate owner emails (#225)
 32ba059 | 2026-04-16 16:01:35 -0700 | SeaCoast ingest: default xAI model grok-3 (grok-2-latest invalid on API).
 3645375 | 2026-04-16 15:57:16 -0700 | Document Apps Script editor URLs in google_app_scripts headers; index SeaCoast project.
 1893d1c | 2026-04-16 14:10:48 -0700 | docs: drop private Edgar repo links from signature demo + SCHEMA (#224)
@@ -141,13 +142,13 @@ ff43236 | 2026-04-12 12:45:59 -0700 | feat(qr sales): columns O/P for cash colle
 fc4da80 | 2026-04-11 14:12:19 -0700 | docs(schema): Holistic Hit List field agent Recent Location tab
 f82a298 | 2026-04-10 12:47:10 -0700 | Merge pull request #216 from TrueSightDAO/feature/qr-code-sales-l-through-o-extract
 2dc11e0 | 2026-04-10 12:46:58 -0700 | feat(gas): QR Code Sales columns L–O for DApp sale fields
-af3f8d7 | 2026-04-10 12:41:27 -0700 | Merge pull request #215 from TrueSightDAO/feature/qr-update-stripe-ledger-sales-shipping
 … (truncated)
 ```
 
 ### `dapp` → `dapp`
 
 ```
+f89e75e | 2026-04-17 16:03:20 -0700 | feat(batch-qr): update GAS URL to new admin@truesight.me project (#156)
 a4b7565 | 2026-04-16 16:16:24 -0700 | feat(report_contribution): paste file in description switches proof to upload (#155)
 e148b58 | 2026-04-16 15:25:10 -0700 | feat(create_signature): auto-submit email verification when em+vk present (#154)
 4779157 | 2026-04-16 12:42:20 -0700 | Parse freight lane JSON even when served as text/plain.
@@ -254,6 +255,7 @@ _If `gh` is missing or unauthorized, this section may be empty._
 
 ### TrueSightDAO/go_to_market
 
+- PR #51: fix(digest): parse Edgar event fields in Telegram log helper — https://github.com/TrueSightDAO/go_to_market/pull/51 _(merged 2026-04-17)_
 - PR #50: feat(advisory): optional Google Sheet sales in advisory snapshot — https://github.com/TrueSightDAO/go_to_market/pull/50 _(merged 2026-04-17)_
 - PR #49: fix(agroverse): partner venue inventory sync + publish workflow notes — https://github.com/TrueSightDAO/go_to_market/pull/49 _(merged 2026-04-15)_
 - PR #48: ci: publish Agroverse inventory snapshots to agroverse-inventory — https://github.com/TrueSightDAO/go_to_market/pull/48 _(merged 2026-04-15)_
@@ -282,6 +284,7 @@ _If `gh` is missing or unauthorized, this section may be empty._
 
 ### TrueSightDAO/tokenomics
 
+- PR #225: feat(agroverse-qr): migrate qr_code_web_service to admin@truesight.me, consolidate owner emails — https://github.com/TrueSightDAO/tokenomics/pull/225 _(merged 2026-04-17)_
 - PR #224: docs: align signature demo + SCHEMA with private Edgar — https://github.com/TrueSightDAO/tokenomics/pull/224 _(merged 2026-04-16)_
 - PR #223: Docs: sentiment_importer master links in digital signature demo README — https://github.com/TrueSightDAO/tokenomics/pull/223 _(merged 2026-04-16)_
 - PR #222: Add Python demo for DApp digital signature sheet onboarding — https://github.com/TrueSightDAO/tokenomics/pull/222 _(merged 2026-04-16)_
@@ -296,6 +299,7 @@ _If `gh` is missing or unauthorized, this section may be empty._
 
 ### TrueSightDAO/dapp
 
+- PR #156: feat(batch-qr): update GAS URL to new admin@truesight.me project — https://github.com/TrueSightDAO/dapp/pull/156 _(merged 2026-04-17)_
 - PR #155: feat(report_contribution): paste file in description switches proof to upload — https://github.com/TrueSightDAO/dapp/pull/155 _(merged 2026-04-16)_
 - PR #154: Auto-submit email verification when em+vk are in the URL — https://github.com/TrueSightDAO/dapp/pull/154 _(merged 2026-04-16)_
 - PR #153: Polish create_signature.html onboarding UX — https://github.com/TrueSightDAO/dapp/pull/153 _(merged 2026-04-16)_
@@ -325,158 +329,32 @@ _If `gh` is missing or unauthorized, this section may be empty._
 ## Evidence — Telegram Chat Logs helper output
 
 ```
-# Telegram Chat Logs — rows with parseable date on/after 2026-04-15T20:56:07.733922+00:00 UTC (~48.0h look-back)
+# Telegram Chat Logs — rows with parseable date on/after 2026-04-15T23:17:21.278370+00:00 UTC (~48.0h look-back)
 # Sheet: https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit#gid=0
 # Tab: 'Telegram Chat Logs'
 # Dedup: skip any line already covered by the Git poll or today's draft TLDR.
 
-- Edgar: [CONTRIBUTION EVENT]
- - Type: USD
- - Amount: 25
- - Description: Grok api
- - Contributor(s): Gary Teh
- - TDG Issued: 25.00
- - Attached Filename: IMG_0288.png
- - Destination Contribution File Location: https://github.co… [status: Pending]
-- Edgar: [CONTRIBUTION EVENT]
- - Type: Time (Minutes)
- - Amount: 180
- - Description: Discussions about distribution of the single estate chocolate into private schools and Salvation Army
- - Contributor(s): Gary Teh, Elizabeth … [status: Pending]
-- Edgar: [SALES EVENT]
- - Item: 2023SA_81PB_20260412_3
- - Sales price: $12.5
- - Sold by: Kirsten Ritschel
- - Cash proceeds collected by: Gary Teh
- - Owner email: (none)
- - Stripe Session ID: (none)
- - Shipping Provider: (none)… [status: Pending]
-- Edgar: [SALES EVENT]
- - Item: 2023SA_81PB_20260412_2
- - Sales price: $12.5
- - Sold by: Kirsten Ritschel
- - Cash proceeds collected by: Gary Teh
- - Owner email: (none)
- - Stripe Session ID: (none)
- - Shipping Provider: (none)… [status: Pending]
-- Edgar: [SALES EVENT]
- - Item: 2024OSR_81PB_20260412_2
- - Sales price: $12.5
- - Sold by: Kirsten Ritschel
- - Cash proceeds collected by: Gary Teh
- - Owner email: (none)
- - Stripe Session ID: (none)
- - Shipping Provider: (none… [status: Pending]
-- Edgar: [SALES EVENT]
- - Item: 2024OSR_81PB_20260412_1
- - Sales price: $12.5
- - Sold by: Kirsten Ritschel
- - Cash proceeds collected by: Gary Teh
- - Owner email: (none)
- - Stripe Session ID: (none)
- - Shipping Provider: (none… [status: Pending]
-- Edgar: [CONTRIBUTION EVENT]
- - Type: Time (Minutes)
- - Amount: 10
- - Description: Coordinating on the shipping
- - Contributor(s): Gary Teh, Matheus Reis
- - TDG Issued: 16.67
- - Attached Filename: IMG_0325.png
- - Destination … [status: Pending]
-- Edgar: [EMAIL REGISTERED EVENT]
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzxcTlwzjiiTKlaiAqnDTRgaCGcu0lHvft7vwMA7lTGmlu4GaLx6j/I5PiLf4gPPEPx/zQ0J4AlTpSofV+BQy9… [status: Pending]
-- Edgar: [EMAIL VERIFICATION EVENT]
- - Verification Key: 3yN8_l3tYCbPm9FzdU5dYhAN1SSjlkkqk8LZWdPyzgU
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzxcTlwzjiiTKlaiAqn… [status: Pending]
-- Edgar: [EMAIL REGISTERED EVENT]
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv+QA2eSfs1j8xLvAl/3af+lyJ4iLnGwwUanSOHwfjaxQeU4LzaK3vnwKUGGHY2F9/pqfJEB7CyIniwn9I9V1r… [status: Pending]
-- Edgar: [EMAIL VERIFICATION EVENT]
- - Verification Key: NvC09i5vAvou4FT55hD0BJH9u3j1BhiniJakR7WCLyc
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv+QA2eSfs1j8xLvAl/… [status: Pending]
-- Edgar: [EMAIL REGISTERED EVENT]
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr2+BGC75vnIPg7xEaVYOYCUr+NjFVMBxZXjLUyKsXBAxsVmjsP7qtO0DQ+AzfY1OA7By9TxhC9GarysBZxZYL… [status: Pending]
-- Edgar: [EMAIL VERIFICATION EVENT]
- - Verification Key: h8lDHLTcsZwzSCl2S2Cu5PQEzC7ZNUXMCsp8LINTs-8
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr2+BGC75vnIPg7xEaV… [status: Pending]
-- Edgar: [CONTRIBUTION EVENT]
- - Type: Time (Minutes)
- - Amount: 420
- - Description: *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
-   
-   Inventory we can trust: we wired daily published JSON for A… [status: Pending]
-- Edgar: [EMAIL REGISTERED EVENT]
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkun3h99k8p/EKgDiZR8irNnFXaSTwNHmoHAnC+35v/+52ocGyw+/IPJ07dT3OVUMDIKtYUYDZbfmN83A/Ay+M… [status: Pending]
-- Edgar: [EMAIL VERIFICATION EVENT]
- - Verification Key: gJzkB00jMnxriqmC6k8b0GPFXceGtC_lABjA0aLn6ww
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkun3h99k8p/EKgDiZR… [status: Pending]
-- Edgar: [EMAIL REGISTERED EVENT]
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvAPB5S11ORBm47JeoimSjK8xPxcEaTjEq8qLaWr7zNQ0DZoDnoBUEENtAI9/8QGeATiIxSI7yK8nPErTif0o+… [status: Pending]
-- Edgar: [EMAIL VERIFICATION EVENT]
- - Verification Key: e7AD_rp3L85oh27aHhHSkBhWAg5clKVLp7gFZhx91vU
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvAPB5S11ORBm47Jeoi… [status: Pending]
-- Edgar: [EMAIL REGISTERED EVENT]
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArrtzywqiJAevBvRzHqEGcjXW8VHoNMR8ZXNffosRmVQTYlL/mHpLg8jAZhmdAYMBF+x6y/dY7CLxb35yohZWI… [status: Pending]
-- Edgar: [EMAIL VERIFICATION EVENT]
- - Verification Key: JQBz43AEwzaATm4JEofIr1d_g3Qo68fxBuEOQQbgD8A
- - Email: garyjob@gmail.com
- --------
- 
- My Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArrtzywqiJAevBvRzHq… [status: Pending]
-- Edgar: [CONTRIBUTION EVENT]
- - Type: Time (Minutes)
- - Amount: 15
- - Description: Coordinating purchase of 100 kilogram from Coopercabruca
- - Contributor(s): Gary Teh
- - TDG Issued: 25.00
- - Attached Filename: image.png
- - D… [status: Pending]
-- Edgar: [CONTRIBUTION EVENT]
- - Type: Time (Minutes)
- - Amount: 15
- - Description: Facilitated the going ahead with the upcoming shipment from Brazil to USA
- - Contributor(s): Gary Teh
- - TDG Issued: 25.00
- - Attached Filenam… [status: Pending]
+- _Contribution:_ Grok api — $25 USD by Gary Teh [Pending]
+- _Contribution:_ Discussions about distribution of the single estate chocolate into private schools and Salvation Army — 3h 0m by Gary Teh, Elizabeth Wong [Pending]
+- _Sale:_ 2023SA_81PB_20260412_3 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Pending]
+- _Sale:_ 2023SA_81PB_20260412_2 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Pending]
+- _Sale:_ 2024OSR_81PB_20260412_2 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Pending]
+- _Sale:_ 2024OSR_81PB_20260412_1 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Pending]
+- _Contribution:_ Coordinating on the shipping — 10m by Gary Teh, Matheus Reis [Pending]
+- _Contribution:_ Migrated over to use Claude — 1h 0m by Gary Teh [Pending]
+- _Contribution:_ Subscription for Claude — $20 USD by Gary Teh [Pending]
+- _Contribution:_ *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
+  
+  Inventory we can trust: we wired daily published JSON for Agroverse store and partner inventory, fixed partner venue totals independent of store-manager flags, and shipped venue inventory snippets on partner PDPs—so… — 7h 0m by Gary Teh [Pending]
+- _Contribution:_ Coordinating purchase of 100 kilogram from Coopercabruca — 15m by Gary Teh [Pending]
+- _Contribution:_ Facilitated the going ahead with the upcoming shipment from Brazil to USA — 15m by Gary Teh [Pending]
 ```
 ---
 
 ## Evidence — DApp Remarks (Hit List) helper output
 
 ```
-# DApp Remarks — rows with Submitted At on/after 2026-04-15T20:56:11.094956+00:00 UTC (~48.0h look-back; human-oriented (automation Submitted By filtered out))
+# DApp Remarks — rows with Submitted At on/after 2026-04-15T23:17:25.693551+00:00 UTC (~48.0h look-back; human-oriented (automation Submitted By filtered out))
 # Sheet: https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=0
 # Tab: 'DApp Remarks'
 # Use under Community in Beer Hall Message 2 (offline / field narrative). Dedup vs Git bullets and Telegram log lines.
