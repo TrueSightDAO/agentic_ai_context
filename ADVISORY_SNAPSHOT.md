@@ -6,7 +6,7 @@ Machine-oriented digest of **recent evidence** for LLM advisors. Git lines are *
 
 ## Meta
 
-- Generated (UTC): `2026-04-17T05:12:18Z`
+- Generated (UTC): `2026-04-17T05:17:50Z`
 - Look-back: **7** calendar days (`2026-04-10` → today UTC)
 - Curated clone set: **11** repos (same table as Beer Hall preview)
 
@@ -126,6 +126,7 @@ b69afba | 2026-04-10 15:09:50 -0700 | Merge pull request #35 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+19df969 | 2026-04-16 22:12:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 f7fedd8 | 2026-04-16 15:57:16 -0700 | Document GAS editor URL header convention and SeaCoast ingest project.
 7a88000 | 2026-04-16 13:49:01 -0700 | docs(openclaw): run Beer Hall archiver from ecosystem_change_logs clone
 0206462 | 2026-04-16 13:15:59 -0700 | docs(openclaw): closed loop includes ecosystem_change_logs archive
@@ -279,5 +280,6 @@ _No `.md` / `.txt` under `notes/` modified in this window._
 
 ## Pointers
 
+- **Stable orientation:** `ecosystem_change_logs/advisory/BASE.md` (also linked from `advisory/index.json`).
 - Dated snapshots + manifest: [`TrueSightDAO/ecosystem_change_logs`](https://github.com/TrueSightDAO/ecosystem_change_logs) `advisory/`
 - Human / WhatsApp evidence pack: `market_research/scripts/generate_beer_hall_preview.py`
