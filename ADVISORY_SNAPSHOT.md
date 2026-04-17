@@ -6,7 +6,7 @@ Machine-oriented digest of **recent evidence** for LLM advisors. Git lines are *
 
 ## Meta
 
-- Generated (UTC): `2026-04-17T05:25:02Z`
+- Generated (UTC): `2026-04-17T05:49:55Z`
 - Look-back: **7** calendar days (`2026-04-10` → today UTC)
 - Curated clone set: **11** repos (same table as Beer Hall preview)
 
@@ -127,6 +127,7 @@ b69afba | 2026-04-10 15:09:50 -0700 | Merge pull request #35 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+67239b5 | 2026-04-16 22:26:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 128764f | 2026-04-16 22:18:22 -0700 | docs(advisory): mobile quick-start links to BASE, index, snapshots.
 4a43d08 | 2026-04-16 22:18:08 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 19df969 | 2026-04-16 22:12:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
@@ -275,6 +276,42 @@ _(no commits on origin/main in window)_
 
 ---
 
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-03 | 1010 | 3854.96 | 2025-12-07 19:14:46 |
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 113.68 | 13944.63386 | 4/16/2026 21:50:35 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-10`; scanned last **305** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-04-10 | 33.68 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_38 | — | — |
+| 2026-04-12 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_37 | — | — |
+| 2026-04-12 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_15 | — | — |
+| 2026-04-13 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | 20260413_FATIMA | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
+
+---
+
 ## Recent agent notes (`agentic_ai_context/notes/`)
 
 _No `.md` / `.txt` under `notes/` modified in this window._
@@ -286,3 +323,4 @@ _No `.md` / `.txt` under `notes/` modified in this window._
 - **Stable orientation:** `ecosystem_change_logs/advisory/BASE.md` (also linked from `advisory/index.json`).
 - Dated snapshots + manifest: [`TrueSightDAO/ecosystem_change_logs`](https://github.com/TrueSightDAO/ecosystem_change_logs) `advisory/`
 - Human / WhatsApp evidence pack: `market_research/scripts/generate_beer_hall_preview.py`
+- Sheet layouts / tabs: `tokenomics/SCHEMA.md`
