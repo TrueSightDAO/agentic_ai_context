@@ -6,7 +6,7 @@ Machine-oriented digest of **recent evidence** for LLM advisors. Git lines are *
 
 ## Meta
 
-- Generated (UTC): `2026-04-17T05:17:50Z`
+- Generated (UTC): `2026-04-17T05:25:02Z`
 - Look-back: **7** calendar days (`2026-04-10` → today UTC)
 - Curated clone set: **11** repos (same table as Beer Hall preview)
 
@@ -92,6 +92,7 @@ b9a38ce | 2026-04-11 15:01:40 -0700 | Docs: refresh DAO and Agroverse whitepaper
 ### `market_research` → `go_to_market`
 
 ```
+595e194 | 2026-04-16 22:17:46 -0700 | feat(advisory): index.json v2 with BASE, read_order, canonical_context URLs.
 75c285a | 2026-04-16 13:50:38 -0700 | chore: move Beer Hall archiver to ecosystem_change_logs repo
 4f0f0a4 | 2026-04-16 13:50:38 -0700 | feat(beer-hall): archive published digests to ecosystem_change_logs
 3aab055 | 2026-04-15 15:32:58 -0700 | Merge pull request #49 from TrueSightDAO/feature/agroverse-partner-venue-inventory-sync
@@ -126,6 +127,8 @@ b69afba | 2026-04-10 15:09:50 -0700 | Merge pull request #35 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+128764f | 2026-04-16 22:18:22 -0700 | docs(advisory): mobile quick-start links to BASE, index, snapshots.
+4a43d08 | 2026-04-16 22:18:08 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 19df969 | 2026-04-16 22:12:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 f7fedd8 | 2026-04-16 15:57:16 -0700 | Document GAS editor URL header convention and SeaCoast ingest project.
 7a88000 | 2026-04-16 13:49:01 -0700 | docs(openclaw): run Beer Hall archiver from ecosystem_change_logs clone
