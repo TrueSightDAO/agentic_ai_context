@@ -6,7 +6,7 @@ Machine-oriented digest of **recent evidence** for LLM advisors. Git lines are *
 
 ## Meta
 
-- Generated (UTC): `2026-04-17T05:49:55Z`
+- Generated (UTC): `2026-04-17T20:56:19Z`
 - Look-back: **7** calendar days (`2026-04-10` → today UTC)
 - Curated clone set: **11** repos (same table as Beer Hall preview)
 
@@ -92,6 +92,8 @@ b9a38ce | 2026-04-11 15:01:40 -0700 | Docs: refresh DAO and Agroverse whitepaper
 ### `market_research` → `go_to_market`
 
 ```
+c418f7b | 2026-04-16 22:53:35 -0700 | Merge pull request #50 from TrueSightDAO/feature/advisory-snapshot-optional-sheet-sales
+9ce3fb7 | 2026-04-16 22:53:29 -0700 | feat(advisory): optional --with-sheet-sales in generate_advisory_snapshot
 595e194 | 2026-04-16 22:17:46 -0700 | feat(advisory): index.json v2 with BASE, read_order, canonical_context URLs.
 75c285a | 2026-04-16 13:50:38 -0700 | chore: move Beer Hall archiver to ecosystem_change_logs repo
 4f0f0a4 | 2026-04-16 13:50:38 -0700 | feat(beer-hall): archive published digests to ecosystem_change_logs
@@ -127,6 +129,8 @@ b69afba | 2026-04-10 15:09:50 -0700 | Merge pull request #35 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e1ee31a | 2026-04-16 22:53:15 -0700 | Merge pull request #17 from TrueSightDAO/feature/beer-hall-review-advisory-snapshot-docs
+a96ebfb | 2026-04-16 22:53:10 -0700 | docs(advisory): pair Beer Hall review with advisory snapshot refresh
 67239b5 | 2026-04-16 22:26:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 128764f | 2026-04-16 22:18:22 -0700 | docs(advisory): mobile quick-start links to BASE, index, snapshots.
 4a43d08 | 2026-04-16 22:18:08 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
@@ -219,6 +223,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c30b32f | 2026-04-17 11:28:50 -0700 | chore: refresh Agroverse store inventory snapshot
 c5e2924 | 2026-04-15 15:33:16 -0700 | Merge pull request #1 from TrueSightDAO/chore/refresh-inventory-snapshots-2026-04-15
 176e451 | 2026-04-15 15:31:29 -0700 | chore: refresh store and partner inventory snapshots
 2872f1b | 2026-04-15 14:45:20 -0700 | Add partners-inventory.json snapshot alongside store inventory
@@ -297,9 +302,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 113.68 | 13944.63386 | 4/16/2026 21:50:35 |
+| 2026-04 | 163.68 | 13994.63386 | 4/17/2026 13:50:35 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-10`; scanned last **305** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-10`; scanned last **309** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
@@ -307,8 +312,19 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04-12 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_37 | — | — |
 | 2026-04-12 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_15 | — | — |
 | 2026-04-13 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | 20260413_FATIMA | — | — |
+| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_1 | — | — |
+| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_2 | — | — |
+| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_2 | — | — |
+| 2026-04-17 | 12.5 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_3 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
+
+---
+
+## Open reminders (cached JSON — action items)
+
+_Open (not done) items loaded from `/Users/garyjob/Applications/market_research/automation/reminders_incomplete.json`; export with `rem list --incomplete -o json` or `scripts/export_advisory_reminders_json.sh` so **done** rows are never written. Refresh from a Mac when you want CI to mirror actionable tasks. When the user asks for **oracle response options**, propose **1–3** concrete next steps that honestly connect the hexagram reading to these open items where it fits; do **not** invent due dates or claim items are done._
+_No open (not done) reminders in this source._
 
 ---
 
