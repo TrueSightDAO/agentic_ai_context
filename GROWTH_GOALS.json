@@ -1,16 +1,21 @@
 {
-  "_schema_note": "Read by market_research/scripts/generate_advisory_snapshot.py. Each goal renders one row of the Growth goals table in ADVISORY_SNAPSHOT.md with live-fetched actuals from Google Sheets. Supported aggregations: last_nonempty, count_nonempty, sum. Supported filter predicates: us_region. See script for details.",
+  "_schema_note": "Read by market_research/scripts/generate_advisory_snapshot.py. Each goal renders one row of the Growth goals table in ADVISORY_SNAPSHOT.md with live-fetched actuals from Google Sheets. Supported aggregations: last_nonempty, count_nonempty, sum. Supported filter predicates: us_region, starts_with (requires value). See script for details.",
   "goals": [
     {
-      "name": "Total QR Code Sales",
+      "name": "2026 QR Code Sales",
       "target": 40000,
       "unit": "USD",
       "deadline": "2026-12-31",
       "source": {
         "sheet_id": "1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU",
         "tab": "Monthly Statistics",
-        "column": "Cumulative Sales Volume (USD)",
-        "aggregation": "last_nonempty"
+        "column": "Monthly Sales Volume (USD)",
+        "aggregation": "sum",
+        "filter": {
+          "column": "Year-Month",
+          "predicate": "starts_with",
+          "value": "2026"
+        }
       }
     },
     {
