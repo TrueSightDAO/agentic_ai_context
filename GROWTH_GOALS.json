@@ -1,0 +1,33 @@
+{
+  "_schema_note": "Read by market_research/scripts/generate_advisory_snapshot.py. Each goal renders one row of the Growth goals table in ADVISORY_SNAPSHOT.md with live-fetched actuals from Google Sheets. Supported aggregations: last_nonempty, count_nonempty, sum. Supported filter predicates: us_region. See script for details.",
+  "goals": [
+    {
+      "name": "Total QR Code Sales",
+      "target": 40000,
+      "unit": "USD",
+      "deadline": "2026-12-31",
+      "source": {
+        "sheet_id": "1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU",
+        "tab": "Monthly Statistics",
+        "column": "Cumulative Sales Volume (USD)",
+        "aggregation": "last_nonempty"
+      }
+    },
+    {
+      "name": "USA Agroverse Partners",
+      "target": 100,
+      "unit": "count",
+      "deadline": "2026-12-31",
+      "source": {
+        "sheet_id": "1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU",
+        "tab": "Agroverse Partners",
+        "column": "partner_id",
+        "aggregation": "count_nonempty",
+        "filter": {
+          "column": "location",
+          "predicate": "us_region"
+        }
+      }
+    }
+  ]
+}
