@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-19T20:11:30Z`
+- Generated (UTC): `2026-04-19T21:40:15Z`
 - Look-back: **7** calendar days (`2026-04-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -122,6 +122,9 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `market_research` → `go_to_market`
 
 ```
+b9c368d | 2026-04-19 14:38:29 -0700 | Merge pull request #56 from TrueSightDAO/chore/beer-hall-retire-openclaw-send
+b5124bb | 2026-04-19 14:38:03 -0700 | Beer Hall: retire OpenClaw WhatsApp send; archive + advisory-snapshot only
+2ce3e97 | 2026-04-19 13:30:21 -0700 | feat(advisory): render Purpose & Mission north-star block at top of snapshot (#55)
 dabd348 | 2026-04-18 14:59:32 -0700 | fix(advisory): read filter from source, add starts_with predicate (#54)
 e607577 | 2026-04-18 14:18:25 -0700 | feat(advisory): add operator-curated strategic blocks to ADVISORY_SNAPSHOT (#53)
 5440b17 | 2026-04-18 11:53:45 -0700 | Merge pull request #52 from TrueSightDAO/add-oracle-cypher-defense-repos
@@ -149,6 +152,13 @@ edcc983 | 2026-04-13 12:49:41 -0700 | Hit List: Google listing column, Places ba
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b511a84 | 2026-04-19 14:17:35 -0700 | Merge pull request #23 from TrueSightDAO/chore/advisory-snapshot-beer-hall-preview-2026-04-19
+b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT and Beer Hall preview
+959035d | 2026-04-19 14:01:11 -0700 | Merge pull request #22 from TrueSightDAO/docs/offchain-column-d-numeric
+739e2a3 | 2026-04-19 14:00:41 -0700 | docs(ledger): require numeric amounts in offchain transactions column D
+9d24cbe | 2026-04-19 13:30:24 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall (#21)
+1d31eb3 | 2026-04-19 13:12:47 -0700 | Merge pull request #20 from TrueSightDAO/docs/repackaging-edgar-route
+33421ff | 2026-04-19 13:12:37 -0700 | docs(ledger): document Edgar-routed repackaging planner flow
 9f3e138 | 2026-04-18 15:08:56 -0700 | fix(advisory): goal is 2026 YTD sales, not cumulative since inception (#19)
 4450a6e | 2026-04-18 14:18:29 -0700 | feat(advisory): add operator-curated stubs for ADVISORY_SNAPSHOT strategic frame (#18)
 a299443 | 2026-04-17 16:30:35 -0700 | chore(advisory): refresh snapshot + Beer Hall preview (2026-04-17 UTC)
@@ -238,6 +248,10 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ac9568e | 2026-04-19 21:32:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
+89d4c64 | 2026-04-19 14:03:03 -0700 | feat(gas): add editor-runnable wrappers for repackaging-currency-ingest (#3)
+0f5ccf7 | 2026-04-19 13:37:30 -0700 | chore(inventory): repackaging composition 67c88267-b41c-4eab-8ef5-d5be48854d65
+9353975 | 2026-04-19 13:37:29 -0700 | chore(inventory): refresh currencies.json (repackaging ingest)
 1f830fc | 2026-04-18 21:40:40 -0700 | Merge pull request #2 from TrueSightDAO/feat/repackaging-currency-ingest-gas
 d6f5f90 | 2026-04-18 21:40:31 -0700 | feat(gas): add repackaging-currency-ingest Apps Script + doGet processor
 c30b32f | 2026-04-17 11:28:50 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -289,6 +303,15 @@ _(no commits on origin/main in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
+
+- **posted_at_utc:** `2026-04-19T21:39:56Z`  
+- **slug:** `retire-whatsapp-oracle-and-reminders-live`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor digest — retired from WhatsApp posting; archive-only for oracle / feed context (not a manual post from Gary)
+  - Cybernetic Oracle is live. oracle.truesight.me now draws a hexagram and passes DAO state (advisory snapshot, strategic blocks, open reminders) to Grok for a grounded reading. GAS backend version-controlled.
+
 ### `beer-hall_2026-04-18T223617Z_qr-email-migration-admin-truesight-advisory-goals.md`
 
 - **posted_at_utc:** `2026-04-18T22:36:17Z`  
@@ -306,15 +329,6 @@ _(no commits on origin/main in window)_
 
   *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
   - Partners selling our cacao in LA can now see their live stock levels directly on their agroverse.shop page — less back-and-forth on how much inventory they have left
-
-### `beer-hall_2026-04-16T224657Z_digest-2026-04-16.md`
-
-- **posted_at_utc:** `2026-04-16T22:46:57Z`  
-- **slug:** `digest-2026-04-16`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
-  We made the public site easier to follow: truesight.me now surfaces a live, paginated list of published Beer Hall digests from git so anyone can skim what changed without hunting repos.
 
 ---
 
