@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-19T21:40:15Z`
+- Generated (UTC): `2026-04-19T22:06:07Z`
 - Look-back: **7** calendar days (`2026-04-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -89,7 +89,7 @@ _All dated lines on/after 2026-04-12_ (8):
 | `go_to_market` | `market_research` | **yes** |
 | `openclaw` | `agentic_ai_context` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **no** |
+| `oracle` | `iching_oracle` | **yes** |
 
 ---
 
@@ -122,36 +122,14 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `market_research` → `go_to_market`
 
 ```
-b9c368d | 2026-04-19 14:38:29 -0700 | Merge pull request #56 from TrueSightDAO/chore/beer-hall-retire-openclaw-send
-b5124bb | 2026-04-19 14:38:03 -0700 | Beer Hall: retire OpenClaw WhatsApp send; archive + advisory-snapshot only
-2ce3e97 | 2026-04-19 13:30:21 -0700 | feat(advisory): render Purpose & Mission north-star block at top of snapshot (#55)
-dabd348 | 2026-04-18 14:59:32 -0700 | fix(advisory): read filter from source, add starts_with predicate (#54)
-e607577 | 2026-04-18 14:18:25 -0700 | feat(advisory): add operator-curated strategic blocks to ADVISORY_SNAPSHOT (#53)
-5440b17 | 2026-04-18 11:53:45 -0700 | Merge pull request #52 from TrueSightDAO/add-oracle-cypher-defense-repos
-bea9b7b | 2026-04-18 11:53:15 -0700 | Add oracle and Cypher-Defense repos to REPOS poll lists
-8b4e413 | 2026-04-17 16:16:10 -0700 | Merge pull request #51 from TrueSightDAO/fix/telegram-digest-edgar-parser
-b50b0f2 | 2026-04-17 16:15:50 -0700 | fix(digest): parse Edgar event fields in Telegram log helper
-c418f7b | 2026-04-16 22:53:35 -0700 | Merge pull request #50 from TrueSightDAO/feature/advisory-snapshot-optional-sheet-sales
-9ce3fb7 | 2026-04-16 22:53:29 -0700 | feat(advisory): optional --with-sheet-sales in generate_advisory_snapshot
-595e194 | 2026-04-16 22:17:46 -0700 | feat(advisory): index.json v2 with BASE, read_order, canonical_context URLs.
-75c285a | 2026-04-16 13:50:38 -0700 | chore: move Beer Hall archiver to ecosystem_change_logs repo
-4f0f0a4 | 2026-04-16 13:50:38 -0700 | feat(beer-hall): archive published digests to ecosystem_change_logs
-3aab055 | 2026-04-15 15:32:58 -0700 | Merge pull request #49 from TrueSightDAO/feature/agroverse-partner-venue-inventory-sync
-73ca10e | 2026-04-15 15:31:29 -0700 | fix(agroverse): partner venue totals independent of store-manager flag
-79032f9 | 2026-04-15 14:54:08 -0700 | Merge pull request #48 from TrueSightDAO/feature/publish-agroverse-inventory-snapshot
-0461be4 | 2026-04-15 14:53:55 -0700 | ci: publish Agroverse store and partner inventory JSON daily
-30c343b | 2026-04-14 16:40:44 -0700 | feat(beer-hall): DApp Remarks digest helper and preview wiring
-bcbac83 | 2026-04-14 12:03:03 -0700 | Remove EC2 terminate script (now in Cypher-Defense)
-e6a1de5 | 2026-04-14 11:58:24 -0700 | EC2 terminate helper and Cypher-Defense .env for AWS keys
-edcc983 | 2026-04-13 12:49:41 -0700 | Hit List: Google listing column, Places backfill, GAS sync (#45)
-5119301 | 2026-04-12 17:36:46 -0700 | chore(scripts): add Beer Hall digest preview generator (#44)
-03da181 | 2026-04-12 16:03:18 -0700 | Merge pull request #43 from TrueSightDAO/feat/warmup-email-grok-rainforest-flexibility
-8f75b4d | 2026-04-12 16:02:59 -0700 | feat(email-agent): warmup Grok prompt — rainforest, QR trees, flexible paths
+9c68b19 | 2026-04-19 15:00:16 -0700 | Merge pull request #57 from TrueSightDAO/feat/advisory-beer-hall-automation
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2769e45 | 2026-04-19 14:43:21 -0700 | Merge pull request #24 from TrueSightDAO/chore/advisory-snapshot-beer-hall-2026-04-19
+504af42 | 2026-04-19 14:42:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT + Beer Hall preview (2026-04-19)
 b511a84 | 2026-04-19 14:17:35 -0700 | Merge pull request #23 from TrueSightDAO/chore/advisory-snapshot-beer-hall-preview-2026-04-19
 b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT and Beer Hall preview
 959035d | 2026-04-19 14:01:11 -0700 | Merge pull request #22 from TrueSightDAO/docs/offchain-column-d-numeric
@@ -294,14 +272,46 @@ cb34076 | 2026-04-14 12:49:58 -0700 | chore: regenerate sitemap (blog URLs) for 
 ### `iching_oracle` → `oracle`
 
 ```
-_(no commits on origin/main in window)_
+67bd3bc | 2026-04-17 15:32:00 -0700 | Merge pull request #4 from TrueSightDAO/feature/oracle-gas-version-control
+6ed09fb | 2026-04-17 15:25:57 -0700 | feat(gas): version-control oracle advisory bridge GAS source
+70ee47d | 2026-04-16 23:40:56 -0700 | Merge pull request #3 from TrueSightDAO/fix/oracle-advisory-initial-visibility
+490fbbf | 2026-04-16 23:40:48 -0700 | fix(oracle): keep advisory controls hidden until response
+4a5635e | 2026-04-16 23:35:09 -0700 | Merge pull request #2 from TrueSightDAO/feature/oracle-advisory-loading-and-context-links
+78d71fe | 2026-04-16 23:35:00 -0700 | feat(oracle): refine advisory actions visibility and context links
+b2cf048 | 2026-04-16 23:28:02 -0700 | Merge pull request #1 from TrueSightDAO/feature/oracle-dao-advisory-ux
+8059c9e | 2026-04-16 23:27:31 -0700 | feat(oracle): add DAO advisory panel and contribution CTA
 ```
 
-### `Cypher-Defense` _(no clone)_
+### `Cypher-Defense` → `Cypher-Defense`
+
+```
+921648e | 2026-04-18 12:49:41 -0700 | Merge pull request #14 from TrueSightDAO/feature/apr18-reply-location
+a5134de | 2026-04-18 12:49:30 -0700 | Fill in operator location in AWS case reply draft
+22176d4 | 2026-04-18 12:45:12 -0700 | Merge pull request #13 from TrueSightDAO/feature/apr18-security-followup
+0fbbc08 | 2026-04-18 12:44:51 -0700 | Add Apr 18 draft reply for AWS case 177613748700177 follow-up
+f87fb87 | 2026-04-18 12:38:58 -0700 | Merge pull request #12 from TrueSightDAO/feature/apr18-security-followup
+bfc3933 | 2026-04-18 12:38:31 -0700 | Add Apr 18 follow-up sweep report and complete AWS security group remediation
+f79ab95 | 2026-04-17 16:16:12 -0700 | Merge pull request #11 from TrueSightDAO/feature/monthly-ebs-snapshot
+7c225b7 | 2026-04-17 16:15:53 -0700 | Add monthly EBS snapshot workflow for krake and seni_sql databases
+3771146 | 2026-04-15 14:15:12 -0700 | Add final AWS account sweep report for 767697632458 (#10)
+ebfe278 | 2026-04-14 12:12:38 -0700 | Member briefing + AWS notice PDF attachment
+a2df6e4 | 2026-04-14 12:08:04 -0700 | AWS case 177613748700177: shareable account security response report
+8476636 | 2026-04-14 12:02:50 -0700 | Add terminate_ec2_by_launch_keypair.py to scripts/aws
+f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .env.example
+```
 
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-04-19T220607Z_beer-hall-automation-oracle-seacoast-skus-live.md`
+
+- **posted_at_utc:** `2026-04-19T22:06:07Z`  
+- **slug:** `beer-hall-automation-oracle-seacoast-skus-live`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor digest — retired from WhatsApp posting; archive-only for oracle / feed context (not a manual post from Gary)
+  - Beer Hall digest is now automated end-to-end. The advisory snapshot auto-generates, archives to the static feed, and refreshes Grok context without manual steps — go_to_market PR #57 closes the loop.
 
 ### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
 
@@ -320,15 +330,6 @@ _(no commits on origin/main in window)_
 
   *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
   - Owners buying multiple QR-coded items in a single Stripe checkout now get ONE onboarding email listing all their tracking links, instead of one email per item
-
-### `beer-hall_2026-04-17T232946Z_partner-inventory-81pct-skus-kirsten-sales.md`
-
-- **posted_at_utc:** `2026-04-17T23:29:46Z`  
-- **slug:** `partner-inventory-81pct-skus-kirsten-sales`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
-  - Partners selling our cacao in LA can now see their live stock levels directly on their agroverse.shop page — less back-and-forth on how much inventory they have left
 
 ---
 
