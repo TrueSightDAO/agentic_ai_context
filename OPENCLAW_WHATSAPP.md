@@ -107,6 +107,8 @@ Standard **chat export ZIPs** do **not** include JIDs—use the client or a test
 
 ## Outbound digests: Beer Hall & Founder Haus AI
 
+> **⚠️ Beer Hall WhatsApp posting is RETIRED (2026-04-19).** Do **not** run `openclaw message send` for The Beer Hall JID, and do **not** append rows to the `OpenClaw Beer Hall updates` sheet tab for auto-generated digests. The Beer Hall digest is now produced **daily at 00:00 UTC** by `market_research/.github/workflows/beer-hall-digest-daily.yml` as an **archive-only** artifact (`ecosystem_change_logs/beer_hall/entries/` + `ADVISORY_SNAPSHOT.md`). See **`WORKSPACE_CONTEXT.md` § 3d**. The rest of this section is retained as **historical / legacy context only** — valuable for understanding past group JIDs, the two-message format, and the gateway timeout playbook, but **not** as an action checklist for Beer Hall. **Founder Haus AI prompt** remains a manual channel for now and its guidance below still applies.
+
 Playbook for **session / daily summaries** sent with **`openclaw message send --channel whatsapp --target '<jid>'`**. Keep this aligned with operator expectations: **always label automation**, use **WhatsApp-native formatting**, and **link artifacts** (GitHub PRs/commits, sheets) when reporting shipped work.
 
 ### Closed loop (required — agents and operators)
