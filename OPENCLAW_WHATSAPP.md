@@ -206,6 +206,27 @@ Put **technical proof** (commits, PRs, sheet links) in **Beer Hall Message 2** (
 
 For **Founder Haus AI**, the TLDR can emphasize **how we use AI and automation**, but should still open with **outcomes in plain language** before naming tools.
 
+### Beer Hall — audience-first content filter (milestones / logistics / partnerships)
+
+**Audience:** the Beer Hall WhatsApp group is a **community / partner** channel, not an engineering channel. Reader feedback (2026-04-19) is explicit: people care about **significant milestones**, **logistics movements**, and **partnership events** — not granular PR-level engineering changes.
+
+**Include in the TLDR and Shipped bullets (default):**
+
+- **Milestones:** first sale of a new SKU, first customer in a new region, treasury or 2026-YTD thresholds crossed, first batch of a new product, new certifications, regulatory approvals, mission-level numbers (e.g. hectares restored, partners onboarded).
+- **Logistics movements:** inbound shipments (Brazil → SF, farm → port, etc.), container departures/arrivals, customs clearance, cross-country fulfilment, inventory transfers between managed ledgers, major field trips.
+- **Partnership events:** new partner onboarded (store, farm, venue, distributor), existing partner escalation (larger order, co-marketing, pop-up), partner leaving or pausing, strategic outreach wins (e.g. school distribution, Salvation Army discussion).
+- **Community / outreach:** real-world gatherings, cacao circles, press pickups, notable volunteer / contributor milestones.
+
+**Demote / omit from Beer Hall (keep for `ADVISORY_SNAPSHOT.md`):**
+
+- Individual PR descriptions, refactors, bug fixes, clasp pushes, script renames, log-parser tweaks, minor dashboard polish.
+- Infrastructure migrations **unless** they unlock a milestone/logistics/partnership outcome — in which case lead with the outcome, not the infra ("Owners buying multiple items now get one email" ✅, "Migrated qr_code_web_service to admin@truesight.me" ✗ standalone).
+- Tool switches (Cursor → Claude, GAS hygiene, cron fix) unless the operator explicitly wants to highlight DAO-owned control of infra as a transparency win.
+
+**Contrast with the Advisory snapshot:** `agentic_ai_context/ADVISORY_SNAPSHOT.md` is for LLM advisors and retains full granularity — growth-goal progress, per-repo commits, context updates, reminders. **Do not dumb down the advisory snapshot.** The Beer Hall filter is specifically for the WhatsApp audience.
+
+**Drafting heuristic:** before each Beer Hall bullet, ask *"Would a partner, customer, or non-engineer volunteer find this interesting on their phone?"* If no, move it to the advisory snapshot and out of the Beer Hall draft.
+
 ### Beer Hall — full DAO / ops digest
 
 **Target:** **The Beer Hall** — `120363041505997891@g.us`.
