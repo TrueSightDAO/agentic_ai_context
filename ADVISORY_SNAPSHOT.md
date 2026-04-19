@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-19T22:06:07Z`
+- Generated (UTC): `2026-04-19T22:13:34Z`
 - Look-back: **7** calendar days (`2026-04-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -122,19 +122,25 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `market_research` → `go_to_market`
 
 ```
-9c68b19 | 2026-04-19 15:00:16 -0700 | Merge pull request #57 from TrueSightDAO/feat/advisory-beer-hall-automation
+dbee4af | 2026-04-19 15:10:29 -0700 | Merge pull request #58 from TrueSightDAO/chore/beer-hall-daily-cadence
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5ee7330 | 2026-04-19 15:09:51 -0700 | Merge pull request #25 from TrueSightDAO/auto/advisory-refresh-2026-04-19
+cb87804 | 2026-04-19 15:09:11 -0700 | Merge pull request #26 from TrueSightDAO/feat/purpose-mission-and-beer-hall-audience-filter
+80d0550 | 2026-04-19 22:06:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-19 UTC)
 2769e45 | 2026-04-19 14:43:21 -0700 | Merge pull request #24 from TrueSightDAO/chore/advisory-snapshot-beer-hall-2026-04-19
 504af42 | 2026-04-19 14:42:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT + Beer Hall preview (2026-04-19)
+e29461a | 2026-04-19 14:17:42 -0700 | Merge main (advisory snapshot + beer hall preview PR #23)
 b511a84 | 2026-04-19 14:17:35 -0700 | Merge pull request #23 from TrueSightDAO/chore/advisory-snapshot-beer-hall-preview-2026-04-19
 b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT and Beer Hall preview
+4c2e91b | 2026-04-19 14:01:29 -0700 | Merge main into feat branch (pick up WORKSPACE_CONTEXT §3c column D)
 959035d | 2026-04-19 14:01:11 -0700 | Merge pull request #22 from TrueSightDAO/docs/offchain-column-d-numeric
 739e2a3 | 2026-04-19 14:00:41 -0700 | docs(ledger): require numeric amounts in offchain transactions column D
 9d24cbe | 2026-04-19 13:30:24 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall (#21)
+5e6585e | 2026-04-19 13:27:14 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall
 1d31eb3 | 2026-04-19 13:12:47 -0700 | Merge pull request #20 from TrueSightDAO/docs/repackaging-edgar-route
 33421ff | 2026-04-19 13:12:37 -0700 | docs(ledger): document Edgar-routed repackaging planner flow
 9f3e138 | 2026-04-18 15:08:56 -0700 | fix(advisory): goal is 2026 YTD sales, not cumulative since inception (#19)
@@ -304,14 +310,14 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
 ## Recent Beer Hall archives (newest entries)
 
-### `beer-hall_2026-04-19T220607Z_beer-hall-automation-oracle-seacoast-skus-live.md`
+### `beer-hall_2026-04-19T221333Z_beer-hall-feed-oracle-repackaging-seacoast-live.md`
 
-- **posted_at_utc:** `2026-04-19T22:06:07Z`  
-- **slug:** `beer-hall-automation-oracle-seacoast-skus-live`  
+- **posted_at_utc:** `2026-04-19T22:13:33Z`  
+- **slug:** `beer-hall-feed-oracle-repackaging-seacoast-live`  
 - **Message 1 excerpt (first two non-empty lines):**
 
   OpenClaw × Cursor digest — retired from WhatsApp posting; archive-only for oracle / feed context (not a manual post from Gary)
-  - Beer Hall digest is now automated end-to-end. The advisory snapshot auto-generates, archives to the static feed, and refreshes Grok context without manual steps — go_to_market PR #57 closes the loop.
+  - Beer Hall digest feed is now live on truesight.me. The home page and beerhall/updates surface the archive so contributors and partners can browse weekly progress without WhatsApp.
 
 ### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
 
