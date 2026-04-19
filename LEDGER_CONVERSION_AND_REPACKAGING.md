@@ -63,8 +63,36 @@ Older rows may use a **short** composite such as `Ceremonial … Alibaba:… + 8
 |-------|-----|-------------|
 | **`offchain asset location`** | Who holds what; **unit cost** | A `Currency`, B Location (manager), C amount, D unit cost, E total value |
 | **`off chain asset balance`** | Network totals by `Currency` | — |
-| **`Currencies`** | Catalog names, weights, prices | — |
+| **`Currencies`** (Main Ledger) | Catalog names, weights, prices + repackaging audit trail | A Currency, B Price in USD, K–M weights/SKU, **N Raw request text** (repackaging), **O Composition JSON URL** (repackaging) |
+| **`Currency Creation`** (Ops sheet `1qbZZhf…`, gid `2120959876`) | Per-output processing log for the repackaging planner flow | A Created at (ISO), B `{request_id}#{index}`, C Suggested Currency, D Unit Cost (USD), E Holder, F Payload JSON |
+| **`Telegram Chat Logs`** (Ops sheet `1qbZZhf…`) | Intake log for all DApp submissions including `[REPACKAGING BATCH EVENT]` | Col G holds the full signed text; Edgar writes it on `submit_contribution` |
 | **`Agroverse QR codes`** | Per-unit QR view | `Currency`, Manager Name, status |
+
+---
+
+## Repackaging planner flow (`dapp/repackaging_planner.html`)
+
+**Single-sitting, Edgar-routed submit** — same shape as every other DApp page.
+
+1. **Compose** on the DApp: pick holder → add input rows (ledger + custom) → add output rows (units M + weight per output + label). Cost is allocated by weight: `cost_per_gram = total_input_cost / Σ(M × weight_per_unit_g)`, each output's `unit_cost = cost_per_gram × weight_per_unit_g`. A `| YYYYMMDD` suffix is auto-appended to output Currency names if no date token is present, to avoid collisions on the Main Ledger `Currencies` tab.
+2. **Sign + POST** `FormData { text, attachment? }` to `https://edgar.truesight.me/dao/submit_contribution`. The `text` is a `[REPACKAGING BATCH EVENT]` block with human-readable bullets for inputs/outputs/totals plus a trailing `Batch Payload (base64 JSON): <b64>` line carrying the structured composition + the standard signature block (`My Digital Signature: …`, `Request Transaction ID: …`, `--------`).
+3. **Edgar** writes the row to `Telegram Chat Logs` (col G) and enqueues `WebhookTriggerWorker` against the repackaging Apps Script with `?action=processRepackagingBatchesFromTelegramChatLogs`. Controller branch in `sentiment_importer/app/controllers/dao_controller.rb#trigger_immediate_processing`; webhook URL in `config.repackaging_processing_webhook_url`.
+4. **The Apps Script** (`agroverse-inventory/gas/repackaging-currency-ingest`, script `1StT6vogwlOYOqtpSiqwnF9PJmScivbBxIj2Hhplfd4YQbCfuWIerrUV0`) `doGet` scans col G for `[REPACKAGING BATCH EVENT]` rows, base64-decodes the inline JSON, dedups via `Currency Creation` col B (`{request_id}` exact or `{request_id}#` prefix), and calls `processBatchData_()`. Core writes:
+   - `Currency Creation`: **N rows**, one per output, keyed `{request_id}#{index}`.
+   - Main Ledger `Currencies`: **N rows** (col A name, col B USD, col N raw request text, col O composition JSON URL); body re-sorted by col A.
+   - `currencies.json` on GitHub (`TrueSightDAO/agroverse-inventory`, rewritten via contents API).
+   - `currency-compositions/{request_id}.json` on GitHub (full batch — inputs + outputs + totals + holder + optional proof attachment).
+5. **Legacy doPost** (token-authenticated via `AGROVERSE_INVENTORY_PUBLISH_SECRET`) still works for direct submits, but the canonical path is Edgar-driven.
+
+### Where each piece lives
+
+| Surface | Repo / path |
+|---------|-------------|
+| Planner UI | `dapp/repackaging_planner.html` |
+| Edgar route | `sentiment_importer/app/controllers/dao_controller.rb` (`[REPACKAGING BATCH EVENT]` branch) + `config/application.rb` (`repackaging_processing_webhook_url`) |
+| GAS processor | `agroverse-inventory/gas/repackaging-currency-ingest/{Code.gs,appsscript.json,.clasp.json}` — script `1StT6vogwlOYOqtpSiqwnF9PJmScivbBxIj2Hhplfd4YQbCfuWIerrUV0`; `webapp.access = ANYONE_ANONYMOUS` so the public `/exec` URL survives future `clasp deploy` rounds |
+| Inventory API (cross-ledger unit cost) | `tokenomics/google_app_scripts/tdg_inventory_management/web_app.gs` — `augmentWithLedgers` now looks up AGL `Balance` unit costs from the main `Currencies` tab via `resolveAglUnitCost_()` |
+| Schema | `tokenomics/SCHEMA.md` — `Currency Creation` and `Currencies` N/O columns documented there |
 
 ---
 
