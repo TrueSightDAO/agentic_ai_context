@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-20T14:19:23Z`
+- Generated (UTC): `2026-04-20T19:40:36Z`
 - Look-back: **7** calendar days (`2026-04-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -102,6 +102,23 @@ _All dated lines on/after 2026-04-13_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f9cfed7 | 2026-04-20 12:15:29 -0700 | Merge pull request #43 from TrueSightDAO/docs/add-markdown-mirror-alt-links
+5a99cf4 | 2026-04-20 12:15:11 -0700 | Add (md) alt link next to each agreement: point LLMs at Markdown mirror
+1182ede | 2026-04-20 11:54:03 -0700 | Merge pull request #42 from TrueSightDAO/docs/agreement-anchor-titles
+d96c0b8 | 2026-04-20 11:53:47 -0700 | Agreement anchor text: use formal doc titles for clarity
+f29f70e | 2026-04-20 11:51:09 -0700 | Merge pull request #41 from TrueSightDAO/docs/clarify-truetech-vs-brazilian-suppliers
+35ad693 | 2026-04-20 11:50:50 -0700 | Agroverse whitepaper: clarify TrueTech Inc (US importer) ≠ Brazilian suppliers
+1e0f787 | 2026-04-20 11:45:39 -0700 | Merge pull request #40 from TrueSightDAO/fix/broken-partnership-agreement-links
+c8a6394 | 2026-04-20 11:45:16 -0700 | Fix 31 partnership-agreement links: redirect → direct Google Doc URLs
+7a1f435 | 2026-04-20 11:29:07 -0700 | Merge pull request #39 from TrueSightDAO/feature/rename-start-script
+efb177d | 2026-04-20 11:28:56 -0700 | Rename start_server.sh to start_local.sh (standardize across repos)
+f507df8 | 2026-04-20 11:18:26 -0700 | Merge pull request #38 from TrueSightDAO/docs/drop-vault-standard-rate-add-review-proposal-nav
+6489dce | 2026-04-20 11:18:07 -0700 | Whitepaper: drop Vault + Standard Rate; nav "Proposals" → "Review & vote"
+b5b546f | 2026-04-20 11:11:54 -0700 | Merge pull request #37 from TrueSightDAO/docs/whitepaper-accuracy-and-drop-gas-fee
+dc0bbc2 | 2026-04-20 11:11:29 -0700 | Whitepapers: drop Gas Fee; define Edgar/TrueChain/Oracle; Beer Hall archive-only
+bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/feat/agroverse-partnership-economics
+7c376d0 | 2026-04-20 10:45:24 -0700 | docs: communications architecture; drop prisoner-dilemma framing (#35)
+544ce84 | 2026-04-20 10:43:36 -0700 | agroverse: add unit economics + partnership shapes; fix 2.65% fee
 c1f33e4 | 2026-04-16 16:27:45 -0700 | Point Agroverse and Sunmint pages to their program whitepapers. (#34)
 8a6cca6 | 2026-04-16 14:35:49 -0700 | Surface Beer Hall digest feed on home and beerhall/updates.
 eda8e5a | 2026-04-16 14:34:49 -0700 | blog: ACTIVE ledger schematic + DApp verified success mockup (#33)
@@ -126,12 +143,15 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `market_research` → `go_to_market`
 
 ```
-179d390 | 2026-04-19 15:27:38 -0700 | Merge pull request #59 from TrueSightDAO/chore/drop-whatsapp-retirement-header
+e4d046e | 2026-04-20 12:11:18 -0700 | Merge pull request #61 from TrueSightDAO/feat/export-google-docs-workflow
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6cc2d49 | 2026-04-20 11:29:36 -0700 | docs: add Agroverse newsletter workflow for AI assistants (#30)
+3151d62 | 2026-04-20 07:19:32 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
+335a465 | 2026-04-20 07:19:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 046269f | 2026-04-20 01:34:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
 6af2189 | 2026-04-20 01:34:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 fd23b73 | 2026-04-19 20:58:00 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
@@ -169,9 +189,6 @@ a96ebfb | 2026-04-16 22:53:10 -0700 | docs(advisory): pair Beer Hall review with
 19df969 | 2026-04-16 22:12:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 f7fedd8 | 2026-04-16 15:57:16 -0700 | Document GAS editor URL header convention and SeaCoast ingest project.
 7a88000 | 2026-04-16 13:49:01 -0700 | docs(openclaw): run Beer Hall archiver from ecosystem_change_logs clone
-0206462 | 2026-04-16 13:15:59 -0700 | docs(openclaw): closed loop includes ecosystem_change_logs archive
-903a2e4 | 2026-04-15 14:54:51 -0700 | docs: note go_to_market workflow for agroverse-inventory JSON publish
-13d9751 | 2026-04-14 16:40:45 -0700 | docs(openclaw): Beer Hall digests include DApp Remarks (Hit List)
 … (truncated)
 ```
 
@@ -199,6 +216,8 @@ bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GA
 ### `dapp` → `dapp`
 
 ```
+ec3cb4a | 2026-04-20 11:30:11 -0700 | Merge pull request #158 from TrueSightDAO/feature/rename-start-script
+ef8bb26 | 2026-04-20 11:30:00 -0700 | Rename serve_local.sh to start_local.sh, default port 8081
 e0f868c | 2026-04-18 21:39:36 -0700 | Merge pull request #157 from TrueSightDAO/feat/repackaging-planner-edgar-route
 ba2ccea | 2026-04-18 21:39:05 -0700 | feat(repackaging_planner): route through Edgar with signed payload + UX rewrite
 f89e75e | 2026-04-17 16:03:20 -0700 | feat(batch-qr): update GAS URL to new admin@truesight.me project (#156)
@@ -252,6 +271,8 @@ c5e2924 | 2026-04-15 15:33:16 -0700 | Merge pull request #1 from TrueSightDAO/ch
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+c5d8696 | 2026-04-20 11:28:06 -0700 | Merge pull request #75 from TrueSightDAO/feature/rename-start-script
+0ce62b7 | 2026-04-20 11:27:55 -0700 | Rename start-local-server.sh to start_local.sh (standardize across repos)
 6090cab | 2026-04-19 15:57:44 -0700 | chore(agl6): live YouTube embed for São Jorge hot chocolate (gw2vIxPCcyQ)
 567db30 | 2026-04-19 15:41:11 -0700 | publish sao jorge fazenda (#73)
 fe81a3b | 2026-04-16 13:08:13 -0700 | feat(taste-profile): add AGL2 chart and document implementation framework (#72)
