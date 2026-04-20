@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-20T03:57:52Z`
+- Generated (UTC): `2026-04-20T08:33:51Z`
 - Look-back: **7** calendar days (`2026-04-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -132,6 +132,8 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fd23b73 | 2026-04-19 20:58:00 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
+16bd6f7 | 2026-04-19 20:57:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 fead069 | 2026-04-19 19:27:52 -0700 | Merge pull request #29 from TrueSightDAO/auto/advisory-refresh-2026-04-20
 7bf1e1a | 2026-04-20 02:27:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 39f25f9 | 2026-04-19 15:14:18 -0700 | Merge pull request #28 from TrueSightDAO/docs/automate-beer-hall-and-reminders-pipeline
@@ -170,8 +172,6 @@ f7fedd8 | 2026-04-16 15:57:16 -0700 | Document GAS editor URL header convention 
 13d9751 | 2026-04-14 16:40:45 -0700 | docs(openclaw): Beer Hall digests include DApp Remarks (Hit List)
 fe794b7 | 2026-04-14 14:42:51 -0700 | Merge pull request #16 from TrueSightDAO/feature/2026-04-14-qr-batch-and-shop-sku-context
 6ed49f4 | 2026-04-14 14:42:18 -0700 | Document Agroverse QR batch compile and shop SKU farm/shipment grids
-3327dc6 | 2026-04-14 13:40:15 -0700 | docs: no long-polling GitHub Actions for PR/CI (§3e, merge guidance)
-f570a50 | 2026-04-14 12:03:06 -0700 | PROJECT_INDEX: EC2 terminate script under Cypher-Defense
 … (truncated)
 ```
 
@@ -233,6 +233,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+0da1893 | 2026-04-20 08:30:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac9568e | 2026-04-19 21:32:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 89d4c64 | 2026-04-19 14:03:03 -0700 | feat(gas): add editor-runnable wrappers for repackaging-currency-ingest (#3)
 0f5ccf7 | 2026-04-19 13:37:30 -0700 | chore(inventory): repackaging composition 67c88267-b41c-4eab-8ef5-d5be48854d65
@@ -278,6 +279,7 @@ cb34076 | 2026-04-14 12:49:58 -0700 | chore: regenerate sitemap (blog URLs) for 
 ### `iching_oracle` → `oracle`
 
 ```
+546dbd9 | 2026-04-19 20:59:22 -0700 | fix(oracle): wrap long tokens in advisory panel; prevent overflow (#7)
 9ca7ab8 | 2026-04-19 20:57:54 -0700 | feat(oracle): switch advisor to Claude with prompt caching; revised prompt (#6)
 3ae6cfa | 2026-04-19 20:44:13 -0700 | feat(oracle): surface iPhone reminder intents pending since last Mac sync (#5)
 67bd3bc | 2026-04-17 15:32:00 -0700 | Merge pull request #4 from TrueSightDAO/feature/oracle-gas-version-control
