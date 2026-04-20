@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-19T22:13:34Z`
-- Look-back: **7** calendar days (`2026-04-12` → today UTC)
+- Generated (UTC): `2026-04-20T02:27:34Z`
+- Look-back: **7** calendar days (`2026-04-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,646 | 4% | `2026-12-31` | 256 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 256 | on track |
+| 2026 QR Code Sales | $40,000 | $1,646 | 4% | `2026-12-31` | 255 | **behind** |
+| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 255 | on track |
 
 ---
 
@@ -67,18 +67,20 @@ Examples:
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_No lines matched name/keyword heuristics in this window._
+_Lines in window matching configured names or status keywords:_
 
-_All dated lines on/after 2026-04-12_ (8):
+- 2026-04-19 | claude | **iOS Reminders → oracle pipeline:** New Rails endpoint **`POST https://edgar.truesight.me/oracle/reminders_sync`** in **`sentiment_importer`** (`app/controllers/oracle/reminders_sync_controller.rb`). Bearer-auth'd, accepts any POST body (any content-type — iOS Shortcuts sends iCalendar VTODO despite JSON header) and archives verbatim to **`ecosystem_change_logs/reminders_raws/<UTC-timestamp>.json`** via GitHub Contents API. Credentials (`oracle_sync_token`, `github_pat`) in `config/application.rb` (not env). The oracle GAS at `oracle.truesight.me` still reads `ecosystem_change_logs/reminders/current.json` — downstream parser from raw archive to current.json is TODO.
 
-- 2026-04-12 | cursor | **Tokenomics QR Code Generation clasp:** **`google_app_scripts/agroverse_qr_codes/version.js`** (`getQRCodeGenerationScriptBuildId`) — bump before every **`clasp push`**; copy **`version.js`** next to **`Code.js`** in mirror **`1N6o00N9VtRK…`**. **`process_qr_code_generation_telegram_logs.gs`** logs build at run start. Docs: **`NOTES_tokenomics.md`**, **`WORKSPACE_CONTEXT.md`** §3a tokenomics bullet, **`PROJECT_INDEX.md`** tokenomics row, **`tokenomics/clasp_mirrors/README.md`** workflow.
-- 2026-04-12 | cursor | **Tokenomics clasp `Version.gs` (not version.js):** Removed **`version.js`**; QR Generation uses **`agroverse_qr_codes/Version.gs`**. Added **`google_app_scripts/_clasp_default/Version.gs`** + **`scripts/ensure_clasp_version_gs.mjs`** to seed **`Version.gs`** on all **`clasp_mirrors/*/`** with **`.clasp.json`**. Sales / Parse Telegram continues to use **`tdg_inventory_management/Version.gs`**. Docs: **`NOTES_tokenomics.md`**, **`WORKSPACE_CONTEXT.md`**, **`PROJECT_INDEX.md`**, **`clasp_mirrors/README.md`**.
+_All dated lines on/after 2026-04-13_ (8):
+
 - 2026-04-14 | cursor | **GitHub CI / PR merge:** Do **not** long-poll Actions (**`gh pr checks --watch`**, **`gh run watch`**, sleep loops). Prefer one **`gh pr checks`** snapshot, local tests (`npm test` / Playwright), then hand off PR + Actions URLs. **`WORKSPACE_CONTEXT.md` §3e**, **`GITHUB_AGENTIC_AI_SSH.md`** merge bullets, **`WORKSPACE_CONTEXT.md` §5** (Agroverse Shop CI bullet).
 - 2026-04-14 | cursor | **Agroverse QR codes** (main ledger `1GE7PUq…` tab *Agroverse QR codes*): **Column I (`Currency`)** values are tied to **`Currencies`!A** (same workbook; external reference / IMPORTRANGE pattern—exact string for ledger & sales validation). **Regional promo IDs (column A):** operator prefers **`LA`** (Los Angeles); **`CC`** = ceremonial cacao, **`CT`** = cacao tea (tokens in ids like `AUSTIN_CC_…`). Local label compile: **`tokenomics/python_scripts/agroverse_qr_code_generator/batch_compiler.py`** reads **A–H** only; keep **A** short. **`NOTES_tokenomics.md`**, **`WORKSPACE_CONTEXT.md` §3/§4**, **`tokenomics/SCHEMA.md`** (*Agroverse QR codes* column I).
 - 2026-04-14 | cursor | **Agroverse QR batch playbook:** Added **`AGROVERSE_QR_CODE_BATCH_GENERATION.md`** (sheet **A–V**, **K** GitHub `compiled_` formula, **`batch_compiler.py`** + venv + **`to_print/`**, automation notes). **`README.md`** Contents + how-to **§17**; **`WORKSPACE_CONTEXT.md` §5**; **`NOTES_tokenomics.md`** cross-link; **`PROJECT_INDEX.md`** tokenomics row.
 - 2026-04-14 | cursor | **LA batch QR fix:** Sheet rows **`LA_*_20260414_*`** — **E–H** reset from reference (**CC** → Oscar Farm/Bahia/Brazil/2024; **CT** → La do Sitio/Para/Brazil/2024); removed **`compiled_Los_Angeles_*.png`**, regenerated **`compiled_Oscar_Farm_*.png`** / **`compiled_La_do_Sitio_*.png`**. **`AGROVERSE_QR_CODE_BATCH_GENERATION.md`** — **E–H** must follow template farm, not handout city unless operator asks.
 - 2026-04-14 | cursor | **agroverse.shop new SKU — farm/shipment grids:** Added **`AGROVERSE_SHOP_NEW_SKU_WEB_CHECKLIST.md`** ( **`item-card`** on **`farms/*/index.html`** + **`shipments/agl*/index.html`** after new **`product-page/`**). **`PRODUCT_DEVELOPMENT_SPECS.md` §1/§3**, **`README.md`**, **`OPERATING_INSTRUCTIONS.md`**, **`WORKSPACE_CONTEXT.md` §4/§5**, **`PROJECT_INDEX.md`** (agroverse_shop); **`agroverse_shop/docs/PRODUCT_CREATION_CHECKLIST.md`** new section + template bullets.
 - 2026-04-16 | cursor | **Tokenomics GAS headers:** Every **`tokenomics/google_app_scripts/**/*.gs`** now documents **`Apps Script editor:`** `https://script.google.com/home/projects/<scriptId>/edit` (or N/A for deprecated stubs) per **`clasp_mirrors/PROJECT_INDEX.md`**. **`NOTES_tokenomics.md`** — index link + SeaCoast ingest row (`1gi4YKh2…`). SeaCoast **`Code.gs`** header order normalized.
+- 2026-04-19 | claude | **Beer Hall + advisory snapshot automation:** WhatsApp posting via OpenClaw **retired**; digest is now archive-only. Added **`market_research/.github/workflows/advisory-snapshot-refresh.yml`** (every 6 h) and **`beer-hall-digest-daily.yml`** (00:00 UTC daily, auto-merges PRs). New **`market_research/scripts/draft_beer_hall_digest.py`** calls Claude Sonnet 4.6 via the anthropic SDK to draft Message 1 + Message 2 from the preview + latest 2 archives as few-shot examples. New repo secret: **`ORACLE_ADVISORY_PUSH_TOKEN`** (fine-grained PAT, Contents+PR Read/Write on `ecosystem_change_logs` and `agentic_ai_context`). `ANTHROPIC_API_KEY` also added. **`WORKSPACE_CONTEXT.md` §3d** rewritten; **`OPENCLAW_WHATSAPP.md`** Beer Hall section marked legacy.
+- 2026-04-19 | claude | **iOS Reminders → oracle pipeline:** New Rails endpoint **`POST https://edgar.truesight.me/oracle/reminders_sync`** in **`sentiment_importer`** (`app/controllers/oracle/reminders_sync_controller.rb`). Bearer-auth'd, accepts any POST body (any content-type — iOS Shortcuts sends iCalendar VTODO despite JSON header) and archives verbatim to **`ecosystem_change_logs/reminders_raws/<UTC-timestamp>.json`** via GitHub Contents API. Credentials (`oracle_sync_token`, `github_pat`) in `config/application.rb` (not env). The oracle GAS at `oracle.truesight.me` still reads `ecosystem_change_logs/reminders/current.json` — downstream parser from raw archive to current.json is TODO.
 
 ---
 
@@ -122,12 +124,16 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `market_research` → `go_to_market`
 
 ```
-dbee4af | 2026-04-19 15:10:29 -0700 | Merge pull request #58 from TrueSightDAO/chore/beer-hall-daily-cadence
+179d390 | 2026-04-19 15:27:38 -0700 | Merge pull request #59 from TrueSightDAO/chore/drop-whatsapp-retirement-header
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+39f25f9 | 2026-04-19 15:14:18 -0700 | Merge pull request #28 from TrueSightDAO/docs/automate-beer-hall-and-reminders-pipeline
+3dec1d1 | 2026-04-19 15:13:56 -0700 | docs: Beer Hall WhatsApp retired; daily automation + Reminders pipeline
+5c5c21c | 2026-04-19 15:13:49 -0700 | Merge pull request #27 from TrueSightDAO/auto/advisory-refresh-2026-04-19
+c3e2490 | 2026-04-19 22:13:40 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-19 UTC)
 5ee7330 | 2026-04-19 15:09:51 -0700 | Merge pull request #25 from TrueSightDAO/auto/advisory-refresh-2026-04-19
 cb87804 | 2026-04-19 15:09:11 -0700 | Merge pull request #26 from TrueSightDAO/feat/purpose-mission-and-beer-hall-audience-filter
 80d0550 | 2026-04-19 22:06:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-19 UTC)
@@ -184,15 +190,6 @@ df20521 | 2026-04-15 17:39:51 -0700 | chore(clasp): canonical Version.gs + ensur
 8098c1a | 2026-04-15 17:39:48 -0700 | chore(agroverse-qr): refresh compiled QR PNGs for La do Sitio + Oscar Farm (#220)
 bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GAS project; document identity scripts (#219)
 94d6326 | 2026-04-12 17:29:58 -0700 | feat(agroverse-qr): Consolidate batch web Apps Script into qr_code_web_service.gs (#218)
-767b9b5 | 2026-04-12 14:11:50 -0700 | feat(qr-gen): gate Agroverse batch on Telegram col P signature success
-a85ab47 | 2026-04-12 13:37:54 -0700 | docs(schema): sync QR Code Sales L–R with code and Stripe append
-61d8645 | 2026-04-12 13:32:49 -0700 | fix(gas): align QR Code Sales L–R with sheet layout (O tracking, P/Q attribution)
-2a1f498 | 2026-04-12 13:28:56 -0700 | feat(gas): record IGNORED Telegram parses on QR Code Sales with Remarks
-fe04aae | 2026-04-12 13:10:13 -0700 | chore(gas): refresh Version.gs changelog after clasp mirror push
-dfc39c3 | 2026-04-12 13:09:32 -0700 | chore(gas): add Version.gs deploy log for tdg_inventory clasp mirrors
-df9dd4c | 2026-04-12 13:05:24 -0700 | fix(sales telegram): stronger pre-Grok duplicate detection and id normalization
-8bd3dda | 2026-04-12 12:54:22 -0700 | fix(sales telegram): skip Grok when heuristic QR already on QR Code Sales
-ff43236 | 2026-04-12 12:45:59 -0700 | feat(qr sales): columns O/P for cash collector and sold-by; ledgers use O/P
 ```
 
 ### `dapp` → `dapp`
@@ -245,14 +242,13 @@ c5e2924 | 2026-04-15 15:33:16 -0700 | Merge pull request #1 from TrueSightDAO/ch
 5277872 | 2026-04-14 12:47:47 -0700 | chore: resolve inventory merge; sync 81% bar counts from ledgers
 8ce3f08 | 2026-04-14 12:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
 0f53cfc | 2026-04-13 15:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
-01a7516 | 2026-04-12 14:28:44 -0700 | chore: refresh Agroverse store inventory snapshot
-16fa64d | 2026-04-12 13:28:49 -0700 | chore: refresh Agroverse store inventory snapshot
-4e111dc | 2026-04-12 11:28:39 -0700 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+6090cab | 2026-04-19 15:57:44 -0700 | chore(agl6): live YouTube embed for São Jorge hot chocolate (gw2vIxPCcyQ)
+567db30 | 2026-04-19 15:41:11 -0700 | publish sao jorge fazenda (#73)
 fe81a3b | 2026-04-16 13:08:13 -0700 | feat(taste-profile): add AGL2 chart and document implementation framework (#72)
 23f8070 | 2026-04-15 16:10:36 -0700 | Merge pull request #71 from TrueSightDAO/fix/partner-inventory-after-gallery-2026-04-15
 c4c47b2 | 2026-04-15 16:10:26 -0700 | fix(partners): place inventory block after venue gallery when present
@@ -310,14 +306,14 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
 ## Recent Beer Hall archives (newest entries)
 
-### `beer-hall_2026-04-19T221333Z_beer-hall-feed-oracle-repackaging-seacoast-live.md`
+### `beer-hall_2026-04-20T022734Z_beer-hall-feed-live-oracle-aws-secured.md`
 
-- **posted_at_utc:** `2026-04-19T22:13:33Z`  
-- **slug:** `beer-hall-feed-oracle-repackaging-seacoast-live`  
+- **posted_at_utc:** `2026-04-20T02:27:34Z`  
+- **slug:** `beer-hall-feed-live-oracle-aws-secured`  
 - **Message 1 excerpt (first two non-empty lines):**
 
-  OpenClaw × Cursor digest — retired from WhatsApp posting; archive-only for oracle / feed context (not a manual post from Gary)
-  - Beer Hall digest feed is now live on truesight.me. The home page and beerhall/updates surface the archive so contributors and partners can browse weekly progress without WhatsApp.
+  Beer Hall digest is live on truesight.me. Oracle advisory, AWS defense, and shop expansions all shipped this week.
+  - Beer Hall digest feed is now live at truesight.me/beerhall/updates.html — contributors and partners can read weekly DAO state without WhatsApp.
 
 ### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
 
