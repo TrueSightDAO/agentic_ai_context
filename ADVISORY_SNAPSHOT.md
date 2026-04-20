@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-20T08:33:51Z`
+- Generated (UTC): `2026-04-20T14:19:23Z`
 - Look-back: **7** calendar days (`2026-04-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -132,6 +132,8 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+046269f | 2026-04-20 01:34:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
+6af2189 | 2026-04-20 01:34:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 fd23b73 | 2026-04-19 20:58:00 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
 16bd6f7 | 2026-04-19 20:57:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 fead069 | 2026-04-19 19:27:52 -0700 | Merge pull request #29 from TrueSightDAO/auto/advisory-refresh-2026-04-20
@@ -170,8 +172,6 @@ f7fedd8 | 2026-04-16 15:57:16 -0700 | Document GAS editor URL header convention 
 0206462 | 2026-04-16 13:15:59 -0700 | docs(openclaw): closed loop includes ecosystem_change_logs archive
 903a2e4 | 2026-04-15 14:54:51 -0700 | docs: note go_to_market workflow for agroverse-inventory JSON publish
 13d9751 | 2026-04-14 16:40:45 -0700 | docs(openclaw): Beer Hall digests include DApp Remarks (Hit List)
-fe794b7 | 2026-04-14 14:42:51 -0700 | Merge pull request #16 from TrueSightDAO/feature/2026-04-14-qr-batch-and-shop-sku-context
-6ed49f4 | 2026-04-14 14:42:18 -0700 | Document Agroverse QR batch compile and shop SKU farm/shipment grids
 … (truncated)
 ```
 
