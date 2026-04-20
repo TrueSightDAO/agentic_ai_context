@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-20T02:27:34Z`
+- Generated (UTC): `2026-04-20T03:57:52Z`
 - Look-back: **7** calendar days (`2026-04-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,8 +30,10 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,646 | 4% | `2026-12-31` | 255 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 255 | on track |
+| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 255 | — |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 255 | — |
+
+_Notes: (live fetch skipped: missing `google_credentials.json`)_
 
 ---
 
@@ -130,6 +132,8 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fead069 | 2026-04-19 19:27:52 -0700 | Merge pull request #29 from TrueSightDAO/auto/advisory-refresh-2026-04-20
+7bf1e1a | 2026-04-20 02:27:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 39f25f9 | 2026-04-19 15:14:18 -0700 | Merge pull request #28 from TrueSightDAO/docs/automate-beer-hall-and-reminders-pipeline
 3dec1d1 | 2026-04-19 15:13:56 -0700 | docs: Beer Hall WhatsApp retired; daily automation + Reminders pipeline
 5c5c21c | 2026-04-19 15:13:49 -0700 | Merge pull request #27 from TrueSightDAO/auto/advisory-refresh-2026-04-19
@@ -168,7 +172,7 @@ fe794b7 | 2026-04-14 14:42:51 -0700 | Merge pull request #16 from TrueSightDAO/f
 6ed49f4 | 2026-04-14 14:42:18 -0700 | Document Agroverse QR batch compile and shop SKU farm/shipment grids
 3327dc6 | 2026-04-14 13:40:15 -0700 | docs: no long-polling GitHub Actions for PR/CI (§3e, merge guidance)
 f570a50 | 2026-04-14 12:03:06 -0700 | PROJECT_INDEX: EC2 terminate script under Cypher-Defense
-13d6a4f | 2026-04-14 11:57:45 -0700 | Document Cypher-Defense for AWS IR and incident notes
+… (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
@@ -274,6 +278,8 @@ cb34076 | 2026-04-14 12:49:58 -0700 | chore: regenerate sitemap (blog URLs) for 
 ### `iching_oracle` → `oracle`
 
 ```
+9ca7ab8 | 2026-04-19 20:57:54 -0700 | feat(oracle): switch advisor to Claude with prompt caching; revised prompt (#6)
+3ae6cfa | 2026-04-19 20:44:13 -0700 | feat(oracle): surface iPhone reminder intents pending since last Mac sync (#5)
 67bd3bc | 2026-04-17 15:32:00 -0700 | Merge pull request #4 from TrueSightDAO/feature/oracle-gas-version-control
 6ed09fb | 2026-04-17 15:25:57 -0700 | feat(gas): version-control oracle advisory bridge GAS source
 70ee47d | 2026-04-16 23:40:56 -0700 | Merge pull request #3 from TrueSightDAO/fix/oracle-advisory-initial-visibility
@@ -306,15 +312,6 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
 ## Recent Beer Hall archives (newest entries)
 
-### `beer-hall_2026-04-20T022734Z_beer-hall-feed-live-oracle-aws-secured.md`
-
-- **posted_at_utc:** `2026-04-20T02:27:34Z`  
-- **slug:** `beer-hall-feed-live-oracle-aws-secured`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Beer Hall digest is live on truesight.me. Oracle advisory, AWS defense, and shop expansions all shipped this week.
-  - Beer Hall digest feed is now live at truesight.me/beerhall/updates.html — contributors and partners can read weekly DAO state without WhatsApp.
-
 ### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
 
 - **posted_at_utc:** `2026-04-19T21:39:56Z`  
@@ -332,6 +329,15 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
   *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
   - Owners buying multiple QR-coded items in a single Stripe checkout now get ONE onboarding email listing all their tracking links, instead of one email per item
+
+### `beer-hall_2026-04-17T232946Z_partner-inventory-81pct-skus-kirsten-sales.md`
+
+- **posted_at_utc:** `2026-04-17T23:29:46Z`  
+- **slug:** `partner-inventory-81pct-skus-kirsten-sales`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
+  - Partners selling our cacao in LA can now see their live stock levels directly on their agroverse.shop page — less back-and-forth on how much inventory they have left
 
 ---
 
