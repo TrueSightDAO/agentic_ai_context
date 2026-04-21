@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-21T06:09:21Z`
+- Generated (UTC): `2026-04-21T08:17:01Z`
 - Look-back: **7** calendar days (`2026-04-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -149,6 +149,8 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+97aee49 | 2026-04-20 23:09:31 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
+dabdd20 | 2026-04-20 23:09:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 26d8542 | 2026-04-20 20:51:14 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 c9cff6a | 2026-04-20 20:51:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 82488a0 | 2026-04-20 19:14:55 -0700 | Merge pull request #31 from TrueSightDAO/auto/advisory-refresh-2026-04-21
@@ -187,8 +189,6 @@ b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 4450a6e | 2026-04-18 14:18:29 -0700 | feat(advisory): add operator-curated stubs for ADVISORY_SNAPSHOT strategic frame (#18)
 a299443 | 2026-04-17 16:30:35 -0700 | chore(advisory): refresh snapshot + Beer Hall preview (2026-04-17 UTC)
 91cb5bd | 2026-04-17 13:56:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
-e1ee31a | 2026-04-16 22:53:15 -0700 | Merge pull request #17 from TrueSightDAO/feature/beer-hall-review-advisory-snapshot-docs
-a96ebfb | 2026-04-16 22:53:10 -0700 | docs(advisory): pair Beer Hall review with advisory snapshot refresh
 … (truncated)
 ```
 
@@ -331,6 +331,15 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-04-21T061005Z_whitepaper-oracle-claude-email-marketing-live.md`
+
+- **posted_at_utc:** `2026-04-21T06:10:05Z`  
+- **slug:** `whitepaper-oracle-claude-email-marketing-live`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Busy week across the stack — whitepaper accuracy, Oracle upgrades, email marketing scaffolding, São Jorge farm page, and ongoing AWS security follow-through.
+  - Whitepapers updated to be agentic-AI-friendly: Gas Fee section dropped, Edgar/TrueChain/Oracle terms defined, TrueTech Inc correctly distinguished from Brazilian suppliers, Beer Hall described as archive-only, and 31 broken partnership-agreement links fixed with direct Google Doc URLs.
+
 ### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
 
 - **posted_at_utc:** `2026-04-19T21:39:56Z`  
@@ -348,15 +357,6 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
   *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
   - Owners buying multiple QR-coded items in a single Stripe checkout now get ONE onboarding email listing all their tracking links, instead of one email per item
-
-### `beer-hall_2026-04-17T232946Z_partner-inventory-81pct-skus-kirsten-sales.md`
-
-- **posted_at_utc:** `2026-04-17T23:29:46Z`  
-- **slug:** `partner-inventory-81pct-skus-kirsten-sales`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
-  - Partners selling our cacao in LA can now see their live stock levels directly on their agroverse.shop page — less back-and-forth on how much inventory they have left
 
 ---
 
