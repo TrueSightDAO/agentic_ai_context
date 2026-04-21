@@ -18,6 +18,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 | File | Purpose |
 |------|---------|
 | **OPERATING_INSTRUCTIONS.md** | **Read this first.** Rules for reading and contributing; canonical vs. append-only vs. per-agent. |
+| **DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md** | **AI → Edgar `[CONTRIBUTION EVENT]`** — convention: use **`dao_client`** CLI, include **TrueSightDAO GitHub PR URLs**, explicit “what changed” body; credentials in **`dao_client/.env`**. |
 | **WORKSPACE_CONTEXT.md** | High-level overview of the workspace: projects, tech stack, relationships, and conventions. |
 | **PROJECT_INDEX.md** | Per-project summary: purpose, stack, entry points, and links to credentials/docs. |
 | **CONTEXT_UPDATES.md** | Append-only log for agent notes; do not remove or rewrite lines. |
@@ -47,6 +48,7 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 ## How to use (for AIs)
 
 1. **First:** Read `OPERATING_INSTRUCTIONS.md` for rules on reading and contributing.
+1b. **AI agent ledger submissions (software/docs work):** Read **`DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`** — use **`dao_client/modules/report_ai_agent_contribution.py`** with mandatory **`https://github.com/TrueSightDAO/.../pull/...`** links and an explicit description.
 2. **Before editing any project:** Read `WORKSPACE_CONTEXT.md` to understand the workspace as a whole.
 3. **Before touching a specific repo:** Check `PROJECT_INDEX.md` for that project’s purpose, stack, and where credentials/docs live.
 4. **Main Ledger repackaging / conversion** (inputs, cost per output, new `Currency` names): Read **`LEDGER_CONVERSION_AND_REPACKAGING.md`** in full when the task involves it (`WORKSPACE_CONTEXT.md` §3b points here).
