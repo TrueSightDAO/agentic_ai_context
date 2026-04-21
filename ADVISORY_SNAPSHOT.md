@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-21T02:14:40Z`
+- Generated (UTC): `2026-04-21T03:51:05Z`
 - Look-back: **7** calendar days (`2026-04-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,8 +30,10 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,646 | 4% | `2026-12-31` | 254 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 254 | on track |
+| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 254 | — |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 254 | — |
+
+_Notes: (live fetch skipped: missing `google_credentials.json`)_
 
 ---
 
@@ -147,6 +149,8 @@ e4d046e | 2026-04-20 12:11:18 -0700 | Merge pull request #61 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+82488a0 | 2026-04-20 19:14:55 -0700 | Merge pull request #31 from TrueSightDAO/auto/advisory-refresh-2026-04-21
+8b5e128 | 2026-04-21 02:14:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 b53bf56 | 2026-04-20 12:40:52 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
 581cdbc | 2026-04-20 12:40:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 6cc2d49 | 2026-04-20 11:29:36 -0700 | docs: add Agroverse newsletter workflow for AI assistants (#30)
@@ -185,8 +189,6 @@ e1ee31a | 2026-04-16 22:53:15 -0700 | Merge pull request #17 from TrueSightDAO/f
 a96ebfb | 2026-04-16 22:53:10 -0700 | docs(advisory): pair Beer Hall review with advisory snapshot refresh
 67239b5 | 2026-04-16 22:26:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 128764f | 2026-04-16 22:18:22 -0700 | docs(advisory): mobile quick-start links to BASE, index, snapshots.
-4a43d08 | 2026-04-16 22:18:08 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
-19df969 | 2026-04-16 22:12:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 … (truncated)
 ```
 
@@ -329,15 +331,6 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
 ## Recent Beer Hall archives (newest entries)
 
-### `beer-hall_2026-04-21T021440Z_whitepaper-oracle-claude-email-marketing-live.md`
-
-- **posted_at_utc:** `2026-04-21T02:14:40Z`  
-- **slug:** `whitepaper-oracle-claude-email-marketing-live`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  A dense week: the public-facing whitepaper got a full accuracy pass, the Oracle switched from Grok to Claude, email marketing infrastructure landed, and Agroverse partnering is now readable by AI agents. Gary also did two store visits and confirmed small/independent owners respond much better to the farm-origin story than large chains do.
-  - Whitepaper accuracy pass. Gas fees dropped, Edgar/TrueChain/Oracle properly defined, Beer Hall correctly described as archive-only, and the Vault/Standard Rate concepts removed. 31 broken partnership-agreement links fixed; LLM-friendly Markdown mirrors added alongside each agreement.
-
 ### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
 
 - **posted_at_utc:** `2026-04-19T21:39:56Z`  
@@ -355,6 +348,15 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
   *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
   - Owners buying multiple QR-coded items in a single Stripe checkout now get ONE onboarding email listing all their tracking links, instead of one email per item
+
+### `beer-hall_2026-04-17T232946Z_partner-inventory-81pct-skus-kirsten-sales.md`
+
+- **posted_at_utc:** `2026-04-17T23:29:46Z`  
+- **slug:** `partner-inventory-81pct-skus-kirsten-sales`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
+  - Partners selling our cacao in LA can now see their live stock levels directly on their agroverse.shop page — less back-and-forth on how much inventory they have left
 
 ---
 
