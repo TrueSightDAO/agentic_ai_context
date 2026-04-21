@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-21T19:45:21Z`
+- Generated (UTC): `2026-04-21T21:24:30Z`
 - Look-back: **7** calendar days (`2026-04-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -37,33 +37,35 @@ _Notes: (live fetch skipped: missing `google_credentials.json`)_
 
 ---
 
-## Constraints / risks this week
+## Operator metrics (pipeline funnel, auto-synced)
 
-_Current bottlenecks for growth. 3–5 bullets, keep under 15 lines._
-_Examples of constraint types: capital, inventory, fulfilment, volunteer hours, distribution reach._
+_Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
+_Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-<!-- TODO: replace the examples below with real constraints and delete this comment.
-Examples:
-- Inventory: 2024SJ batch near-exhausted; next shipment ETA 2026-05-15
-- Volunteer capacity: only 2 operators available for weekend fulfilment
-- Distribution: no warehouse presence outside SF Bay Area
--->
+- Generated (UTC): `2026-04-21T21:15:55.298Z`
+- Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
+- Total stores tracked: **516**
+- Partnered (north-star): **13**
+- Meeting Scheduled: **1**
+- Shortlisted: **3**
 
----
+## Funnel by status (curated order)
 
-## Operator metrics (manual, 7-day)
-
-_Manually-maintained weekly snapshot of key numbers that can't be auto-derived._
-_Update once per week. For auto-pulled sheet data, see `--with-sheet-sales`._
-
-<!-- TODO: replace the examples below with real metrics and delete this comment.
-Examples:
-- Units sold (7-day): 42 (+12% WoW)
-- New customer emails: 18
-- Treasury: $3,450 USDC + 12M TDG
-- Active Telegram members: 187
-- Open Stripe checkout sessions without tracking: 4
--->
+- AI: Enrich — manual: 68  (#3)
+- AI: Contact Form found: 76  (#4)
+- AI: Photo rejected: 107  (#7)
+- AI: Photo needs review: 39  (#8)
+- AI: Warm up prospect: 65  (#9)
+- Not Appropriate: 71  (#11)
+- Contacted: 4  (#12)
+- Shortlisted: 3  (#13)
+- Manager Follow-up: 26  (#14)
+- Meeting Scheduled: 1  (#16)
+- Instagram Followed: 11  (#17)
+- On Hold: 17  (#18)
+- **Partnered: 13**  (#19)
+- Rejected: 14  (#20)
+- Followed Up: 1  (#21)
 
 ---
 
@@ -102,6 +104,7 @@ _All dated lines on/after 2026-04-14_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+986bcbc | 2026-04-21 13:55:51 -0700 | docs(blog): retarget signature-onboarding demo links to TrueSightDAO/dao_client (#44)
 f9cfed7 | 2026-04-20 12:15:29 -0700 | Merge pull request #43 from TrueSightDAO/docs/add-markdown-mirror-alt-links
 5a99cf4 | 2026-04-20 12:15:11 -0700 | Add (md) alt link next to each agreement: point LLMs at Markdown mirror
 1182ede | 2026-04-20 11:54:03 -0700 | Merge pull request #42 from TrueSightDAO/docs/agreement-anchor-titles
@@ -143,12 +146,16 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `market_research` → `go_to_market`
 
 ```
-5c7a127 | 2026-04-20 23:08:27 -0700 | Merge pull request #62 from TrueSightDAO/fix/beer-hall-workflow-commit-beer-hall-files
+c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/feat/advisory-metrics-from-eco
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+11d92a4 | 2026-04-21 14:09:00 -0700 | docs: index TrueSightDAO/dao_client (Python Edgar CLI + loopback auth) (#34)
+d87deac | 2026-04-21 13:45:50 -0700 | chore: drop CONSTRAINTS.md + METRICS_WEEKLY.md stubs (#33)
+980e24b | 2026-04-21 12:45:29 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
+e80aed1 | 2026-04-21 12:45:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 6546ad7 | 2026-04-21 12:33:29 -0700 | docs: add Retailer Onboarding Playbook v0.1 (#32)
 ecb0668 | 2026-04-21 07:15:43 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 0370c50 | 2026-04-21 07:15:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
@@ -185,16 +192,19 @@ b511a84 | 2026-04-19 14:17:35 -0700 | Merge pull request #23 from TrueSightDAO/c
 b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT and Beer Hall preview
 4c2e91b | 2026-04-19 14:01:29 -0700 | Merge main into feat branch (pick up WORKSPACE_CONTEXT §3c column D)
 959035d | 2026-04-19 14:01:11 -0700 | Merge pull request #22 from TrueSightDAO/docs/offchain-column-d-numeric
-739e2a3 | 2026-04-19 14:00:41 -0700 | docs(ledger): require numeric amounts in offchain transactions column D
-9d24cbe | 2026-04-19 13:30:24 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall (#21)
-5e6585e | 2026-04-19 13:27:14 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall
-1d31eb3 | 2026-04-19 13:12:47 -0700 | Merge pull request #20 from TrueSightDAO/docs/repackaging-edgar-route
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+af8fc00 | 2026-04-21 14:10:38 -0700 | Merge pull request #232 from TrueSightDAO/feat/pipeline-metrics-highlights
+f240a25 | 2026-04-21 14:10:03 -0700 | feat(metrics): highlight Meeting Scheduled + Shortlisted in summary
+be3e43a | 2026-04-21 13:50:12 -0700 | chore: relocate signature onboarding demo to TrueSightDAO/dao_client (#231)
+9b7aea5 | 2026-04-21 13:45:43 -0700 | Merge pull request #229 from TrueSightDAO/feat/pipeline-metrics-snapshot
+3683188 | 2026-04-21 13:37:16 -0700 | feat(tdg-inventory): notify treasury-cache-publisher after inventory movements (#230)
+9491b1d | 2026-04-21 13:36:39 -0700 | feat(metrics): reuse ORACLE_ADVISORY_PUSH_TOKEN; add clasp mirror
+8b9d2d7 | 2026-04-21 12:56:50 -0700 | feat(metrics): GAS to mirror Pipeline Dashboard → ecosystem_change_logs
 20bf43c | 2026-04-19 13:11:19 -0700 | Merge pull request #228 from TrueSightDAO/feat/inventory-api-agl-unit-cost-lookup
 b9103e5 | 2026-04-19 13:10:51 -0700 | feat(inventory-api): resolve AGL Balance unit_cost from main Currencies tab
 cfd760f | 2026-04-18 14:17:53 -0700 | perf(gas): fix 30-min trigger timeouts on telegram log processors (#227)
@@ -215,6 +225,9 @@ bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GA
 ### `dapp` → `dapp`
 
 ```
+56606dd | 2026-04-21 14:20:01 -0700 | feat(report-inventory-movement): read managers + items from treasury-cache JSON (#166)
+c8be32f | 2026-04-21 13:24:39 -0700 | feat(routes): probe-and-flip fallback to Edgar proxy for GFW-blocked users (#165)
+9208e61 | 2026-04-21 12:52:09 -0700 | feat(routes): migrate remaining pages + tdg_balance.js to Routes (#164)
 64dd953 | 2026-04-21 12:44:40 -0700 | feat(routes): migrate Sunmint module to Routes (#163)
 6b337ee | 2026-04-21 12:43:10 -0700 | feat(routes): migrate Inventory & Sales module to Routes (#162)
 c539745 | 2026-04-21 12:32:47 -0700 | feat(routes): migrate Identity & Governance module to Routes (#161)
