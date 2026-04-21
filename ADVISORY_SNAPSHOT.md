@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-21T14:15:34Z`
+- Generated (UTC): `2026-04-21T19:45:21Z`
 - Look-back: **7** calendar days (`2026-04-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -149,6 +149,9 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6546ad7 | 2026-04-21 12:33:29 -0700 | docs: add Retailer Onboarding Playbook v0.1 (#32)
+ecb0668 | 2026-04-21 07:15:43 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
+0370c50 | 2026-04-21 07:15:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 1a02479 | 2026-04-21 01:17:12 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 d155f33 | 2026-04-21 01:17:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 97aee49 | 2026-04-20 23:09:31 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
@@ -186,9 +189,6 @@ b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 9d24cbe | 2026-04-19 13:30:24 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall (#21)
 5e6585e | 2026-04-19 13:27:14 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall
 1d31eb3 | 2026-04-19 13:12:47 -0700 | Merge pull request #20 from TrueSightDAO/docs/repackaging-edgar-route
-33421ff | 2026-04-19 13:12:37 -0700 | docs(ledger): document Edgar-routed repackaging planner flow
-9f3e138 | 2026-04-18 15:08:56 -0700 | fix(advisory): goal is 2026 YTD sales, not cumulative since inception (#19)
-4450a6e | 2026-04-18 14:18:29 -0700 | feat(advisory): add operator-curated stubs for ADVISORY_SNAPSHOT strategic frame (#18)
 … (truncated)
 ```
 
@@ -215,6 +215,11 @@ bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GA
 ### `dapp` → `dapp`
 
 ```
+64dd953 | 2026-04-21 12:44:40 -0700 | feat(routes): migrate Sunmint module to Routes (#163)
+6b337ee | 2026-04-21 12:43:10 -0700 | feat(routes): migrate Inventory & Sales module to Routes (#162)
+c539745 | 2026-04-21 12:32:47 -0700 | feat(routes): migrate Identity & Governance module to Routes (#161)
+d6ca6a5 | 2026-04-21 12:26:18 -0700 | feat(routes): migrate report_contribution.html to Routes (Contributions module) (#160)
+1439821 | 2026-04-21 12:24:58 -0700 | feat(routes): centralize endpoints in routes.js + migrate submit_feedback POC (#159)
 ec3cb4a | 2026-04-20 11:30:11 -0700 | Merge pull request #158 from TrueSightDAO/feature/rename-start-script
 ef8bb26 | 2026-04-20 11:30:00 -0700 | Rename serve_local.sh to start_local.sh, default port 8081
 e0f868c | 2026-04-18 21:39:36 -0700 | Merge pull request #157 from TrueSightDAO/feat/repackaging-planner-edgar-route
@@ -249,6 +254,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+5909bc7 | 2026-04-21 12:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
 0da1893 | 2026-04-20 08:30:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac9568e | 2026-04-19 21:32:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 89d4c64 | 2026-04-19 14:03:03 -0700 | feat(gas): add editor-runnable wrappers for repackaging-currency-ingest (#3)
