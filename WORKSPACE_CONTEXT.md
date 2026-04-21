@@ -20,7 +20,7 @@ Credentials and env vars are **not** stored in this context repo; they are docum
 
 | Group | Repos | Purpose |
 |-------|--------|---------|
-| **DAO / Agroverse** | dapp, truesight_me, tokenomics, agroverse_shop, qr_codes, proposals | DAO DApp, static site, tokenomics automation, e‑commerce, QR codes, proposals |
+| **DAO / Agroverse** | dapp, **dao_client**, truesight_me, tokenomics, agroverse_shop, qr_codes, proposals | DAO DApp, **Python Edgar CLI** (signed contributions; AI agent submissions per **`DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`**), static site, tokenomics automation, e‑commerce, QR codes, proposals |
 | **Krake / Data** | krake_ror, krake_sinatra, krake_local, krake_chrome | Rails backend, Sinatra services, local commander/listener, Chrome extension for data harvesting |
 | **Content & Research** | market_research, video_editor, sentiment_importer, garyteh_blog | Content calendars, physical stores, video Shorts, news/sentiment import, blog |
 | **Infra & Tools** | jarvis, read_page, iching_oracle, point-of-sales-integrations, heierling-pos, **Cypher-Defense** | Local LLM, browser extension, oracle app, POS integrations; **Cypher-Defense** — Web3 scam/phishing extension **and** AWS incident-response scripts + `docs/incidents/` (local `.env` for AWS keys; never commit) |
@@ -212,6 +212,7 @@ Assistants should **not** tie up the session waiting for GitHub Actions to finis
 - **Gmail user OAuth (local tokens for automations):** this repo **`GMAIL_OAUTH_WORKFLOW.md`** — `market_research/scripts/gmail_oauth_authorize.py`, `market_research/credentials/gmail/` (gitignored secrets + optional tracked `README.md`).
 - **Hit List contact enrichment** (`AI: Enrich with contact`, DApp Remarks parity): this repo **`HIT_LIST_CONTACT_ENRICHMENT.md`** — scripts, hourly CI, Notes vs DApp Remarks, shared `hit_list_dapp_remarks_sheet.py`. **`market_research/HIT_LIST_CREDENTIALS.md`** for CLI and secrets.
 - **DApp UX**: dapp `UX_CONVENTIONS.md`.
+- **AI agent → contribution ledger (`[CONTRIBUTION EVENT]`):** **`dao_client/`** — `python3 modules/report_ai_agent_contribution.py` with mandatory **`https://github.com/TrueSightDAO/.../pull/N`** URLs and an explicit body; credentials in **`dao_client/.env`**. Convention: this repo **`DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`**.
 - **DApp CI/testing**: dapp has unit tests (Node) and Playwright integration tests. Run `npm test` in `dapp/`. See dapp `tests/README.md`. CI: `.github/workflows/ci.yml` on push/PR to main. Pure logic in `expense-form-utils.js`; integration tests mock Google Apps Script and Edgar APIs (no real network calls).
 - **Agroverse Shop CI/testing**: agroverse_shop has Playwright visual consistency tests. Run `npm test` in `agroverse_shop/`. See agroverse_shop `tests/README.md`. **Local runs hit `localhost:8000`** — Playwright auto-starts Python `http.server` on port 8000; ensure nothing else uses that port. CI (GitHub Actions) runs against live site (beta or prod). Workflow: `.github/workflows/visual-consistency.yml`. Smart runner: `npm run test:resume` to resume from failures. **Waiting on GitHub:** Section **§3e** — do not long-poll Actions; snapshot once or run tests locally; hand off URLs.
 - **Downloads → Agroverse (videos + images):** **`DOWNLOADS_MEDIA_TO_AGROVERSE.md`** — video pipeline: `analyze_incoming_videos.py` → optional `youtube_batch_incoming.py` → `generate_video_transcript_blog_posts.py` (optional Grok polish). **After regen or any `youtube_videos.json` title change**, run **`youtube_update_video_titles.py`** so YouTube matches the manifest; if OAuth **`invalid_scope` / refresh fails**, use **`youtube_oauth_reauthorize.py`** then rerun the updater (details in that doc). **Images:** no dedicated Downloads automation; copy into `agroverse_shop/assets/images/…`, wire in HTML, run `sync_blog_listing_thumbnails.py`; blog card rules remain as in §4 (listing-640w, first in-body image, `bahia-photo-library` fallbacks).
@@ -253,6 +254,7 @@ Future AIs can **clone** these repos when the workspace path is missing or a fre
 |----------------|-------------------------------|-------------------|
 | `tokenomics/` | https://github.com/TrueSightDAO/tokenomics | — |
 | `dapp/` | https://github.com/TrueSightDAO/dapp | — |
+| `dao_client/` | https://github.com/TrueSightDAO/dao_client | — |
 | `truesight_me/` | https://github.com/TrueSightDAO/truesight_me | → **truesight_me_prod** → truesight.me |
 | `agroverse_shop/` | https://github.com/TrueSightDAO/agroverse_shop_beta | → **agroverse_shop_prod** → agroverse.shop |
 | `market_research/` | https://github.com/TrueSightDAO/content_schedule |
