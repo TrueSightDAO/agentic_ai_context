@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-20T19:40:36Z`
-- Look-back: **7** calendar days (`2026-04-13` → today UTC)
+- Generated (UTC): `2026-04-21T02:14:40Z`
+- Look-back: **7** calendar days (`2026-04-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,10 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 255 | — |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 255 | — |
-
-_Notes: (live fetch skipped: missing `google_credentials.json`)_
+| 2026 QR Code Sales | $40,000 | $1,646 | 4% | `2026-12-31` | 254 | **behind** |
+| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 254 | on track |
 
 ---
 
@@ -73,7 +71,7 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-04-19 | claude | **iOS Reminders → oracle pipeline:** New Rails endpoint **`POST https://edgar.truesight.me/oracle/reminders_sync`** in **`sentiment_importer`** (`app/controllers/oracle/reminders_sync_controller.rb`). Bearer-auth'd, accepts any POST body (any content-type — iOS Shortcuts sends iCalendar VTODO despite JSON header) and archives verbatim to **`ecosystem_change_logs/reminders_raws/<UTC-timestamp>.json`** via GitHub Contents API. Credentials (`oracle_sync_token`, `github_pat`) in `config/application.rb` (not env). The oracle GAS at `oracle.truesight.me` still reads `ecosystem_change_logs/reminders/current.json` — downstream parser from raw archive to current.json is TODO.
 
-_All dated lines on/after 2026-04-13_ (8):
+_All dated lines on/after 2026-04-14_ (8):
 
 - 2026-04-14 | cursor | **GitHub CI / PR merge:** Do **not** long-poll Actions (**`gh pr checks --watch`**, **`gh run watch`**, sleep loops). Prefer one **`gh pr checks`** snapshot, local tests (`npm test` / Playwright), then hand off PR + Actions URLs. **`WORKSPACE_CONTEXT.md` §3e**, **`GITHUB_AGENTIC_AI_SSH.md`** merge bullets, **`WORKSPACE_CONTEXT.md` §5** (Agroverse Shop CI bullet).
 - 2026-04-14 | cursor | **Agroverse QR codes** (main ledger `1GE7PUq…` tab *Agroverse QR codes*): **Column I (`Currency`)** values are tied to **`Currencies`!A** (same workbook; external reference / IMPORTRANGE pattern—exact string for ledger & sales validation). **Regional promo IDs (column A):** operator prefers **`LA`** (Los Angeles); **`CC`** = ceremonial cacao, **`CT`** = cacao tea (tokens in ids like `AUSTIN_CC_…`). Local label compile: **`tokenomics/python_scripts/agroverse_qr_code_generator/batch_compiler.py`** reads **A–H** only; keep **A** short. **`NOTES_tokenomics.md`**, **`WORKSPACE_CONTEXT.md` §3/§4**, **`tokenomics/SCHEMA.md`** (*Agroverse QR codes* column I).
@@ -149,6 +147,8 @@ e4d046e | 2026-04-20 12:11:18 -0700 | Merge pull request #61 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b53bf56 | 2026-04-20 12:40:52 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
+581cdbc | 2026-04-20 12:40:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 6cc2d49 | 2026-04-20 11:29:36 -0700 | docs: add Agroverse newsletter workflow for AI assistants (#30)
 3151d62 | 2026-04-20 07:19:32 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
 335a465 | 2026-04-20 07:19:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
@@ -187,8 +187,6 @@ a96ebfb | 2026-04-16 22:53:10 -0700 | docs(advisory): pair Beer Hall review with
 128764f | 2026-04-16 22:18:22 -0700 | docs(advisory): mobile quick-start links to BASE, index, snapshots.
 4a43d08 | 2026-04-16 22:18:08 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 19df969 | 2026-04-16 22:12:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
-f7fedd8 | 2026-04-16 15:57:16 -0700 | Document GAS editor URL header convention and SeaCoast ingest project.
-7a88000 | 2026-04-16 13:49:01 -0700 | docs(openclaw): run Beer Hall archiver from ecosystem_change_logs clone
 … (truncated)
 ```
 
@@ -210,7 +208,6 @@ adaa924 | 2026-04-16 12:58:11 -0700 | Track seacoast ingest appsscript.json; uni
 df20521 | 2026-04-15 17:39:51 -0700 | chore(clasp): canonical Version.gs + ensure script; stop tracking mirror copies (#221)
 8098c1a | 2026-04-15 17:39:48 -0700 | chore(agroverse-qr): refresh compiled QR PNGs for La do Sitio + Oscar Farm (#220)
 bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GAS project; document identity scripts (#219)
-94d6326 | 2026-04-12 17:29:58 -0700 | feat(agroverse-qr): Consolidate batch web Apps Script into qr_code_web_service.gs (#218)
 ```
 
 ### `dapp` → `dapp`
@@ -227,8 +224,6 @@ e148b58 | 2026-04-16 15:25:10 -0700 | feat(create_signature): auto-submit email 
 4ffd47e | 2026-04-16 12:39:55 -0700 | Improve freight lane loading UX and error messages.
 a44fc61 | 2026-04-16 12:36:23 -0700 | Load freight lanes from audit JSON and estimate client-side.
 844959f | 2026-04-15 17:33:55 -0700 | Polish create_signature onboarding layout and status placement (#153)
-dda786d | 2026-04-13 12:50:11 -0700 | Stores nearby: hours in listings, expanded Open now, closed styling (#152)
-10cb1b6 | 2026-04-12 17:38:50 -0700 | feat(dapp): batch QR manager picker, signed message, and URL state (#151)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -265,7 +260,6 @@ c5e2924 | 2026-04-15 15:33:16 -0700 | Merge pull request #1 from TrueSightDAO/ch
 2872f1b | 2026-04-15 14:45:20 -0700 | Add partners-inventory.json snapshot alongside store inventory
 5277872 | 2026-04-14 12:47:47 -0700 | chore: resolve inventory merge; sync 81% bar counts from ledgers
 8ce3f08 | 2026-04-14 12:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
-0f53cfc | 2026-04-13 15:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -335,6 +329,15 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-04-21T021440Z_whitepaper-oracle-claude-email-marketing-live.md`
+
+- **posted_at_utc:** `2026-04-21T02:14:40Z`  
+- **slug:** `whitepaper-oracle-claude-email-marketing-live`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  A dense week: the public-facing whitepaper got a full accuracy pass, the Oracle switched from Grok to Claude, email marketing infrastructure landed, and Agroverse partnering is now readable by AI agents. Gary also did two store visits and confirmed small/independent owners respond much better to the farm-origin story than large chains do.
+  - Whitepaper accuracy pass. Gas fees dropped, Edgar/TrueChain/Oracle properly defined, Beer Hall correctly described as archive-only, and the Vault/Standard Rate concepts removed. 31 broken partnership-agreement links fixed; LLM-friendly Markdown mirrors added alongside each agreement.
+
 ### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
 
 - **posted_at_utc:** `2026-04-19T21:39:56Z`  
@@ -352,15 +355,6 @@ f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .
 
   *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
   - Owners buying multiple QR-coded items in a single Stripe checkout now get ONE onboarding email listing all their tracking links, instead of one email per item
-
-### `beer-hall_2026-04-17T232946Z_partner-inventory-81pct-skus-kirsten-sales.md`
-
-- **posted_at_utc:** `2026-04-17T23:29:46Z`  
-- **slug:** `partner-inventory-81pct-skus-kirsten-sales`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
-  - Partners selling our cacao in LA can now see their live stock levels directly on their agroverse.shop page — less back-and-forth on how much inventory they have left
 
 ---
 
