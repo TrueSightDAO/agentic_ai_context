@@ -82,7 +82,9 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 | Variable | Required for | Notes |
 |----------|----------------|-------|
 | **`GITHUB_PAT`** | Uploading invoice PDFs to **`TrueSightDAO/.github`** **`assets/`**, or using **`GH_TOKEN`** with **`gh`** for PRs | Grant **Contents** read/write on that repo. For **`gh pr create` / merge**, also **Pull requests** (fine-grained) or classic **`repo`**. See **`WORKSPACE_CONTEXT.md`** §**3c**. |
-| **`google_credentials.json`** (file) | Google Sheets scripts | Service account JSON in repo root; see **`market_research/README.md`**. For the [Telegram compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit), share with the service account **client_email** as **Editor**: tab **OpenClaw Beer Hall updates** (`ensure_beer_hall_log_sheet.py` if migrating legacy **Beer_Hall_Posts**), **append_openclaw_beer_hall_log.py** after each digest send, and **`list_recent_telegram_chat_logs_for_digest.py`** to pull **Telegram Chat Logs** ~24h for Beer Hall drafting. See **`OPENCLAW_WHATSAPP.md` § Closed loop** and **§ Gathering Telegram Chat Logs**. |
+| **`ANTHROPIC_API_KEY`** | `scripts/draft_beer_hall_digest.py` (Claude Sonnet 4.6 drafter) — also mirrored as a GH Actions secret on `TrueSightDAO/go_to_market` for the daily Beer Hall workflow. | No scope restrictions at the provider level; rotate if leaked. |
+| **`ORACLE_ADVISORY_PUSH_TOKEN`** | GH Actions workflows (`beer-hall-digest-daily.yml`, `advisory-snapshot-refresh.yml`) that push + auto-merge on `ecosystem_change_logs` and `agentic_ai_context`. Local runs of `generate_advisory_snapshot.py --github-api-publish` can also read it. | Fine-grained PAT with **Contents: Read + Write** and **Pull requests: Read + Write** on `TrueSightDAO/ecosystem_change_logs` and `TrueSightDAO/agentic_ai_context`. Add **Contents: Read** on `TrueSightDAO/Cypher-Defense` if that repo is private. |
+| **`google_credentials.json`** (file) | Google Sheets scripts | Service account JSON in repo root; see **`market_research/README.md`**. Shared with the service account **client_email** as **Editor** on the [Telegram compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit) so `list_recent_telegram_chat_logs_for_digest.py` can pull recent rows into the Beer Hall preview. Also mirrored as GH Actions secret `GOOGLE_CREDENTIALS_JSON` on `TrueSightDAO/go_to_market`. |
 | Other keys (`DATAFORSEO_*`, `GROK_*`, `WIX_*`, …) | Specific scripts | As documented per script / **`README.md`**. |
 
 **Setup:** `cp .env.example .env` then fill in values. Confirm **`git check-ignore .env`**.
@@ -91,6 +93,8 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 - [ ] Copy **`.env.example`** → **`.env`**
 - [ ] Add **`GITHUB_PAT`** if automating Contribution Ledger asset uploads or PR tooling from this workspace
+- [ ] Add **`ANTHROPIC_API_KEY`** if running `scripts/draft_beer_hall_digest.py` locally (otherwise only needed in repo secrets)
+- [ ] Add **`ORACLE_ADVISORY_PUSH_TOKEN`** if running `generate_advisory_snapshot.py --github-api-publish` locally
 - [ ] Add **`google_credentials.json`** and share Sheets with the service account
 - [ ] Verify **`.env`** is ignored: `git check-ignore -v .env`
 

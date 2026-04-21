@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-21T06:12:29Z`
+- Generated (UTC): `2026-04-21T21:24:30Z`
 - Look-back: **7** calendar days (`2026-04-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,46 +30,52 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,646 | 4% | `2026-12-31` | 254 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 254 | on track |
+| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 254 | — |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 254 | — |
+
+_Notes: (live fetch skipped: missing `google_credentials.json`)_
 
 ---
 
-## Constraints / risks this week
+## Operator metrics (pipeline funnel, auto-synced)
 
-_Current bottlenecks for growth. 3–5 bullets, keep under 15 lines._
-_Examples of constraint types: capital, inventory, fulfilment, volunteer hours, distribution reach._
+_Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
+_Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-<!-- TODO: replace the examples below with real constraints and delete this comment.
-Examples:
-- Inventory: 2024SJ batch near-exhausted; next shipment ETA 2026-05-15
-- Volunteer capacity: only 2 operators available for weekend fulfilment
-- Distribution: no warehouse presence outside SF Bay Area
--->
+- Generated (UTC): `2026-04-21T21:15:55.298Z`
+- Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
+- Total stores tracked: **516**
+- Partnered (north-star): **13**
+- Meeting Scheduled: **1**
+- Shortlisted: **3**
 
----
+## Funnel by status (curated order)
 
-## Operator metrics (manual, 7-day)
-
-_Manually-maintained weekly snapshot of key numbers that can't be auto-derived._
-_Update once per week. For auto-pulled sheet data, see `--with-sheet-sales`._
-
-<!-- TODO: replace the examples below with real metrics and delete this comment.
-Examples:
-- Units sold (7-day): 42 (+12% WoW)
-- New customer emails: 18
-- Treasury: $3,450 USDC + 12M TDG
-- Active Telegram members: 187
-- Open Stripe checkout sessions without tracking: 4
--->
+- AI: Enrich — manual: 68  (#3)
+- AI: Contact Form found: 76  (#4)
+- AI: Photo rejected: 107  (#7)
+- AI: Photo needs review: 39  (#8)
+- AI: Warm up prospect: 65  (#9)
+- Not Appropriate: 71  (#11)
+- Contacted: 4  (#12)
+- Shortlisted: 3  (#13)
+- Manager Follow-up: 26  (#14)
+- Meeting Scheduled: 1  (#16)
+- Instagram Followed: 11  (#17)
+- On Hold: 17  (#18)
+- **Partnered: 13**  (#19)
+- Rejected: 14  (#20)
+- Followed Up: 1  (#21)
 
 ---
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_No lines matched name/keyword heuristics in this window._
+_Lines in window matching configured names or status keywords:_
 
-_All dated lines on/after 2026-04-14_ (6):
+- 2026-04-19 | claude | **iOS Reminders → oracle pipeline:** New Rails endpoint **`POST https://edgar.truesight.me/oracle/reminders_sync`** in **`sentiment_importer`** (`app/controllers/oracle/reminders_sync_controller.rb`). Bearer-auth'd, accepts any POST body (any content-type — iOS Shortcuts sends iCalendar VTODO despite JSON header) and archives verbatim to **`ecosystem_change_logs/reminders_raws/<UTC-timestamp>.json`** via GitHub Contents API. Credentials (`oracle_sync_token`, `github_pat`) in `config/application.rb` (not env). The oracle GAS at `oracle.truesight.me` still reads `ecosystem_change_logs/reminders/current.json` — downstream parser from raw archive to current.json is TODO.
+
+_All dated lines on/after 2026-04-14_ (8):
 
 - 2026-04-14 | cursor | **GitHub CI / PR merge:** Do **not** long-poll Actions (**`gh pr checks --watch`**, **`gh run watch`**, sleep loops). Prefer one **`gh pr checks`** snapshot, local tests (`npm test` / Playwright), then hand off PR + Actions URLs. **`WORKSPACE_CONTEXT.md` §3e**, **`GITHUB_AGENTIC_AI_SSH.md`** merge bullets, **`WORKSPACE_CONTEXT.md` §5** (Agroverse Shop CI bullet).
 - 2026-04-14 | cursor | **Agroverse QR codes** (main ledger `1GE7PUq…` tab *Agroverse QR codes*): **Column I (`Currency`)** values are tied to **`Currencies`!A** (same workbook; external reference / IMPORTRANGE pattern—exact string for ledger & sales validation). **Regional promo IDs (column A):** operator prefers **`LA`** (Los Angeles); **`CC`** = ceremonial cacao, **`CT`** = cacao tea (tokens in ids like `AUSTIN_CC_…`). Local label compile: **`tokenomics/python_scripts/agroverse_qr_code_generator/batch_compiler.py`** reads **A–H** only; keep **A** short. **`NOTES_tokenomics.md`**, **`WORKSPACE_CONTEXT.md` §3/§4**, **`tokenomics/SCHEMA.md`** (*Agroverse QR codes* column I).
@@ -77,6 +83,8 @@ _All dated lines on/after 2026-04-14_ (6):
 - 2026-04-14 | cursor | **LA batch QR fix:** Sheet rows **`LA_*_20260414_*`** — **E–H** reset from reference (**CC** → Oscar Farm/Bahia/Brazil/2024; **CT** → La do Sitio/Para/Brazil/2024); removed **`compiled_Los_Angeles_*.png`**, regenerated **`compiled_Oscar_Farm_*.png`** / **`compiled_La_do_Sitio_*.png`**. **`AGROVERSE_QR_CODE_BATCH_GENERATION.md`** — **E–H** must follow template farm, not handout city unless operator asks.
 - 2026-04-14 | cursor | **agroverse.shop new SKU — farm/shipment grids:** Added **`AGROVERSE_SHOP_NEW_SKU_WEB_CHECKLIST.md`** ( **`item-card`** on **`farms/*/index.html`** + **`shipments/agl*/index.html`** after new **`product-page/`**). **`PRODUCT_DEVELOPMENT_SPECS.md` §1/§3**, **`README.md`**, **`OPERATING_INSTRUCTIONS.md`**, **`WORKSPACE_CONTEXT.md` §4/§5**, **`PROJECT_INDEX.md`** (agroverse_shop); **`agroverse_shop/docs/PRODUCT_CREATION_CHECKLIST.md`** new section + template bullets.
 - 2026-04-16 | cursor | **Tokenomics GAS headers:** Every **`tokenomics/google_app_scripts/**/*.gs`** now documents **`Apps Script editor:`** `https://script.google.com/home/projects/<scriptId>/edit` (or N/A for deprecated stubs) per **`clasp_mirrors/PROJECT_INDEX.md`**. **`NOTES_tokenomics.md`** — index link + SeaCoast ingest row (`1gi4YKh2…`). SeaCoast **`Code.gs`** header order normalized.
+- 2026-04-19 | claude | **Beer Hall + advisory snapshot automation:** WhatsApp posting via OpenClaw **retired**; digest is now archive-only. Added **`market_research/.github/workflows/advisory-snapshot-refresh.yml`** (every 6 h) and **`beer-hall-digest-daily.yml`** (00:00 UTC daily, auto-merges PRs). New **`market_research/scripts/draft_beer_hall_digest.py`** calls Claude Sonnet 4.6 via the anthropic SDK to draft Message 1 + Message 2 from the preview + latest 2 archives as few-shot examples. New repo secret: **`ORACLE_ADVISORY_PUSH_TOKEN`** (fine-grained PAT, Contents+PR Read/Write on `ecosystem_change_logs` and `agentic_ai_context`). `ANTHROPIC_API_KEY` also added. **`WORKSPACE_CONTEXT.md` §3d** rewritten; **`OPENCLAW_WHATSAPP.md`** Beer Hall section marked legacy.
+- 2026-04-19 | claude | **iOS Reminders → oracle pipeline:** New Rails endpoint **`POST https://edgar.truesight.me/oracle/reminders_sync`** in **`sentiment_importer`** (`app/controllers/oracle/reminders_sync_controller.rb`). Bearer-auth'd, accepts any POST body (any content-type — iOS Shortcuts sends iCalendar VTODO despite JSON header) and archives verbatim to **`ecosystem_change_logs/reminders_raws/<UTC-timestamp>.json`** via GitHub Contents API. Credentials (`oracle_sync_token`, `github_pat`) in `config/application.rb` (not env). The oracle GAS at `oracle.truesight.me` still reads `ecosystem_change_logs/reminders/current.json` — downstream parser from raw archive to current.json is TODO.
 
 ---
 
@@ -96,6 +104,7 @@ _All dated lines on/after 2026-04-14_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+986bcbc | 2026-04-21 13:55:51 -0700 | docs(blog): retarget signature-onboarding demo links to TrueSightDAO/dao_client (#44)
 f9cfed7 | 2026-04-20 12:15:29 -0700 | Merge pull request #43 from TrueSightDAO/docs/add-markdown-mirror-alt-links
 5a99cf4 | 2026-04-20 12:15:11 -0700 | Add (md) alt link next to each agreement: point LLMs at Markdown mirror
 1182ede | 2026-04-20 11:54:03 -0700 | Merge pull request #42 from TrueSightDAO/docs/agreement-anchor-titles
@@ -137,43 +146,21 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 ### `market_research` → `go_to_market`
 
 ```
-5c7a127 | 2026-04-20 23:08:27 -0700 | Merge pull request #62 from TrueSightDAO/fix/beer-hall-workflow-commit-beer-hall-files
-d163ffc | 2026-04-20 23:08:07 -0700 | beer-hall-digest-daily: commit beer_hall/ files before advisory step
-e4d046e | 2026-04-20 12:11:18 -0700 | Merge pull request #61 from TrueSightDAO/feat/export-google-docs-workflow
-95adadc | 2026-04-20 12:10:54 -0700 | Add export-google-docs workflow — daily Markdown mirror of partnership Docs
-4465255 | 2026-04-20 11:28:13 -0700 | feat(newsletter): reusable Gmail send/draft flow with sheet logging + opt-in open tracking (#60)
-179d390 | 2026-04-19 15:27:38 -0700 | Merge pull request #59 from TrueSightDAO/chore/drop-whatsapp-retirement-header
-9e6d351 | 2026-04-19 15:27:22 -0700 | draft_beer_hall_digest: drop redundant WhatsApp-retired header
-dbee4af | 2026-04-19 15:10:29 -0700 | Merge pull request #58 from TrueSightDAO/chore/beer-hall-daily-cadence
-1641850 | 2026-04-19 15:10:14 -0700 | Beer Hall digest: daily cadence + auto-merge PRs
-9c68b19 | 2026-04-19 15:00:16 -0700 | Merge pull request #57 from TrueSightDAO/feat/advisory-beer-hall-automation
-e2bce7d | 2026-04-19 14:59:31 -0700 | Automate advisory snapshot refresh + weekly Beer Hall digest
-b9c368d | 2026-04-19 14:38:29 -0700 | Merge pull request #56 from TrueSightDAO/chore/beer-hall-retire-openclaw-send
-b5124bb | 2026-04-19 14:38:03 -0700 | Beer Hall: retire OpenClaw WhatsApp send; archive + advisory-snapshot only
-2ce3e97 | 2026-04-19 13:30:21 -0700 | feat(advisory): render Purpose & Mission north-star block at top of snapshot (#55)
-dabd348 | 2026-04-18 14:59:32 -0700 | fix(advisory): read filter from source, add starts_with predicate (#54)
-e607577 | 2026-04-18 14:18:25 -0700 | feat(advisory): add operator-curated strategic blocks to ADVISORY_SNAPSHOT (#53)
-5440b17 | 2026-04-18 11:53:45 -0700 | Merge pull request #52 from TrueSightDAO/add-oracle-cypher-defense-repos
-bea9b7b | 2026-04-18 11:53:15 -0700 | Add oracle and Cypher-Defense repos to REPOS poll lists
-8b4e413 | 2026-04-17 16:16:10 -0700 | Merge pull request #51 from TrueSightDAO/fix/telegram-digest-edgar-parser
-b50b0f2 | 2026-04-17 16:15:50 -0700 | fix(digest): parse Edgar event fields in Telegram log helper
-c418f7b | 2026-04-16 22:53:35 -0700 | Merge pull request #50 from TrueSightDAO/feature/advisory-snapshot-optional-sheet-sales
-9ce3fb7 | 2026-04-16 22:53:29 -0700 | feat(advisory): optional --with-sheet-sales in generate_advisory_snapshot
-595e194 | 2026-04-16 22:17:46 -0700 | feat(advisory): index.json v2 with BASE, read_order, canonical_context URLs.
-75c285a | 2026-04-16 13:50:38 -0700 | chore: move Beer Hall archiver to ecosystem_change_logs repo
-4f0f0a4 | 2026-04-16 13:50:38 -0700 | feat(beer-hall): archive published digests to ecosystem_change_logs
-3aab055 | 2026-04-15 15:32:58 -0700 | Merge pull request #49 from TrueSightDAO/feature/agroverse-partner-venue-inventory-sync
-73ca10e | 2026-04-15 15:31:29 -0700 | fix(agroverse): partner venue totals independent of store-manager flag
-79032f9 | 2026-04-15 14:54:08 -0700 | Merge pull request #48 from TrueSightDAO/feature/publish-agroverse-inventory-snapshot
-0461be4 | 2026-04-15 14:53:55 -0700 | ci: publish Agroverse store and partner inventory JSON daily
-30c343b | 2026-04-14 16:40:44 -0700 | feat(beer-hall): DApp Remarks digest helper and preview wiring
-bcbac83 | 2026-04-14 12:03:03 -0700 | Remove EC2 terminate script (now in Cypher-Defense)
-e6a1de5 | 2026-04-14 11:58:24 -0700 | EC2 terminate helper and Cypher-Defense .env for AWS keys
+c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/feat/advisory-metrics-from-eco
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+11d92a4 | 2026-04-21 14:09:00 -0700 | docs: index TrueSightDAO/dao_client (Python Edgar CLI + loopback auth) (#34)
+d87deac | 2026-04-21 13:45:50 -0700 | chore: drop CONSTRAINTS.md + METRICS_WEEKLY.md stubs (#33)
+980e24b | 2026-04-21 12:45:29 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
+e80aed1 | 2026-04-21 12:45:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
+6546ad7 | 2026-04-21 12:33:29 -0700 | docs: add Retailer Onboarding Playbook v0.1 (#32)
+ecb0668 | 2026-04-21 07:15:43 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
+0370c50 | 2026-04-21 07:15:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
+1a02479 | 2026-04-21 01:17:12 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
+d155f33 | 2026-04-21 01:17:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 97aee49 | 2026-04-20 23:09:31 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 dabdd20 | 2026-04-20 23:09:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 26d8542 | 2026-04-20 20:51:14 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
@@ -205,21 +192,19 @@ b511a84 | 2026-04-19 14:17:35 -0700 | Merge pull request #23 from TrueSightDAO/c
 b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT and Beer Hall preview
 4c2e91b | 2026-04-19 14:01:29 -0700 | Merge main into feat branch (pick up WORKSPACE_CONTEXT §3c column D)
 959035d | 2026-04-19 14:01:11 -0700 | Merge pull request #22 from TrueSightDAO/docs/offchain-column-d-numeric
-739e2a3 | 2026-04-19 14:00:41 -0700 | docs(ledger): require numeric amounts in offchain transactions column D
-9d24cbe | 2026-04-19 13:30:24 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall (#21)
-5e6585e | 2026-04-19 13:27:14 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall
-1d31eb3 | 2026-04-19 13:12:47 -0700 | Merge pull request #20 from TrueSightDAO/docs/repackaging-edgar-route
-33421ff | 2026-04-19 13:12:37 -0700 | docs(ledger): document Edgar-routed repackaging planner flow
-9f3e138 | 2026-04-18 15:08:56 -0700 | fix(advisory): goal is 2026 YTD sales, not cumulative since inception (#19)
-4450a6e | 2026-04-18 14:18:29 -0700 | feat(advisory): add operator-curated stubs for ADVISORY_SNAPSHOT strategic frame (#18)
-a299443 | 2026-04-17 16:30:35 -0700 | chore(advisory): refresh snapshot + Beer Hall preview (2026-04-17 UTC)
-91cb5bd | 2026-04-17 13:56:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-17 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+af8fc00 | 2026-04-21 14:10:38 -0700 | Merge pull request #232 from TrueSightDAO/feat/pipeline-metrics-highlights
+f240a25 | 2026-04-21 14:10:03 -0700 | feat(metrics): highlight Meeting Scheduled + Shortlisted in summary
+be3e43a | 2026-04-21 13:50:12 -0700 | chore: relocate signature onboarding demo to TrueSightDAO/dao_client (#231)
+9b7aea5 | 2026-04-21 13:45:43 -0700 | Merge pull request #229 from TrueSightDAO/feat/pipeline-metrics-snapshot
+3683188 | 2026-04-21 13:37:16 -0700 | feat(tdg-inventory): notify treasury-cache-publisher after inventory movements (#230)
+9491b1d | 2026-04-21 13:36:39 -0700 | feat(metrics): reuse ORACLE_ADVISORY_PUSH_TOKEN; add clasp mirror
+8b9d2d7 | 2026-04-21 12:56:50 -0700 | feat(metrics): GAS to mirror Pipeline Dashboard → ecosystem_change_logs
 20bf43c | 2026-04-19 13:11:19 -0700 | Merge pull request #228 from TrueSightDAO/feat/inventory-api-agl-unit-cost-lookup
 b9103e5 | 2026-04-19 13:10:51 -0700 | feat(inventory-api): resolve AGL Balance unit_cost from main Currencies tab
 cfd760f | 2026-04-18 14:17:53 -0700 | perf(gas): fix 30-min trigger timeouts on telegram log processors (#227)
@@ -240,6 +225,14 @@ bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GA
 ### `dapp` → `dapp`
 
 ```
+56606dd | 2026-04-21 14:20:01 -0700 | feat(report-inventory-movement): read managers + items from treasury-cache JSON (#166)
+c8be32f | 2026-04-21 13:24:39 -0700 | feat(routes): probe-and-flip fallback to Edgar proxy for GFW-blocked users (#165)
+9208e61 | 2026-04-21 12:52:09 -0700 | feat(routes): migrate remaining pages + tdg_balance.js to Routes (#164)
+64dd953 | 2026-04-21 12:44:40 -0700 | feat(routes): migrate Sunmint module to Routes (#163)
+6b337ee | 2026-04-21 12:43:10 -0700 | feat(routes): migrate Inventory & Sales module to Routes (#162)
+c539745 | 2026-04-21 12:32:47 -0700 | feat(routes): migrate Identity & Governance module to Routes (#161)
+d6ca6a5 | 2026-04-21 12:26:18 -0700 | feat(routes): migrate report_contribution.html to Routes (Contributions module) (#160)
+1439821 | 2026-04-21 12:24:58 -0700 | feat(routes): centralize endpoints in routes.js + migrate submit_feedback POC (#159)
 ec3cb4a | 2026-04-20 11:30:11 -0700 | Merge pull request #158 from TrueSightDAO/feature/rename-start-script
 ef8bb26 | 2026-04-20 11:30:00 -0700 | Rename serve_local.sh to start_local.sh, default port 8081
 e0f868c | 2026-04-18 21:39:36 -0700 | Merge pull request #157 from TrueSightDAO/feat/repackaging-planner-edgar-route
@@ -274,6 +267,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+5909bc7 | 2026-04-21 12:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
 0da1893 | 2026-04-20 08:30:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac9568e | 2026-04-19 21:32:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 89d4c64 | 2026-04-19 14:03:03 -0700 | feat(gas): add editor-runnable wrappers for repackaging-currency-ingest (#3)
@@ -334,7 +328,23 @@ b2cf048 | 2026-04-16 23:28:02 -0700 | Merge pull request #1 from TrueSightDAO/fe
 8059c9e | 2026-04-16 23:27:31 -0700 | feat(oracle): add DAO advisory panel and contribution CTA
 ```
 
-### `Cypher-Defense` _(no clone)_
+### `Cypher-Defense` → `Cypher-Defense`
+
+```
+921648e | 2026-04-18 12:49:41 -0700 | Merge pull request #14 from TrueSightDAO/feature/apr18-reply-location
+a5134de | 2026-04-18 12:49:30 -0700 | Fill in operator location in AWS case reply draft
+22176d4 | 2026-04-18 12:45:12 -0700 | Merge pull request #13 from TrueSightDAO/feature/apr18-security-followup
+0fbbc08 | 2026-04-18 12:44:51 -0700 | Add Apr 18 draft reply for AWS case 177613748700177 follow-up
+f87fb87 | 2026-04-18 12:38:58 -0700 | Merge pull request #12 from TrueSightDAO/feature/apr18-security-followup
+bfc3933 | 2026-04-18 12:38:31 -0700 | Add Apr 18 follow-up sweep report and complete AWS security group remediation
+f79ab95 | 2026-04-17 16:16:12 -0700 | Merge pull request #11 from TrueSightDAO/feature/monthly-ebs-snapshot
+7c225b7 | 2026-04-17 16:15:53 -0700 | Add monthly EBS snapshot workflow for krake and seni_sql databases
+3771146 | 2026-04-15 14:15:12 -0700 | Add final AWS account sweep report for 767697632458 (#10)
+ebfe278 | 2026-04-14 12:12:38 -0700 | Member briefing + AWS notice PDF attachment
+a2df6e4 | 2026-04-14 12:08:04 -0700 | AWS case 177613748700177: shareable account security response report
+8476636 | 2026-04-14 12:02:50 -0700 | Add terminate_ec2_by_launch_keypair.py to scripts/aws
+f4dc413 | 2026-04-14 11:57:02 -0700 | AWS incident hygiene: scripts, docs, and .env.example
+```
 
 ---
 
@@ -366,105 +376,6 @@ b2cf048 | 2026-04-16 23:28:02 -0700 | Merge pull request #1 from TrueSightDAO/fe
 
   *OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*
   - Owners buying multiple QR-coded items in a single Stripe checkout now get ONE onboarding email listing all their tracking links, instead of one email per item
-
----
-
-## Open reminders (macOS `rem` — action items)
-
-_Open (not done) items from Reminders.app (`rem list --incomplete -o json`). When the user asks for **oracle response options**, propose **1–3** concrete next steps that honestly connect the hexagram reading to these **actionable** items where it fits; do **not** invent due dates or claim items are done._
-_Showing **60** of **108** open reminders (cap `--rem-limit`)._
-
-| Title | List | Due (date) | Flagged | Notes (trunc.) |
-|-------|------|------------|---------|------------------|
-| Follow up with USPS claims | Reminders | `2025-04-07` | — | — |
-| Send Matthew the Dizajn | Reminders | `2025-09-11` | — | — |
-| Get cursor to look into the AWS charges still coming to my account | Reminders | `2026-01-29` | — | — |
-| Look at the influencer platform that a surface and a beer hall | Reminders | `2026-01-29` | — | — |
-| Spinner an instance for the RAG architecture | Reminders | `2026-01-29` | — | — |
-| Look to order photos of the storage shop listed by AI | Reminders | `2026-04-21` | — | — |
-| Review my Clock subscription package | Reminders | `2026-05-09` | — | — |
-| [FEATURE] Allow the module where people can add their own photo for the… | Reminders | `—` | — | — |
-| [priority] Look through AI generated emails, edit and send them out | Reminders | `—` | — | — |
-| Additional consideration: one DAO member has flagged that having inform… | Reminders | `—` | — | — |
-| Allow remark to be expendable when retractable in mobile | Reminders | `—` | — | — |
-| Allow upload of MH for the store nearby status submission | Reminders | `—` | — | — |
-| Allow upload of MH to the stores nearby status submission | Reminders | `—` | — | — |
-| Also have a conversation with multiple items are combine together to be… | Reminders | `—` | — | — |
-| Also record a composition | Reminders | `—` | — | — |
-| Andrew is pretty impressed by the fact that it is a community project | Reminders | `—` | — | — |
-| Build up a dashboard for all the trees belong to the same email address | Reminders | `—` | — | — |
-| Buy the battery back up tomorrow on amazon.com | Reminders | `—` | — | — |
-| Check the time and Spam packaging to cut out as well as expenses | Reminders | `—` | — | — |
-| Choclate has an API block post | Reminders | `—` | — | — |
-| Communication architecture of TrueSight DAO | Reminders | `—` | — | — |
-| Create a donation receipt | Reminders | `—` | — | — |
-| Create a mobile app that venue owners can use to set the price | Reminders | `—` | — | — |
-| Create a mod for registering new members | Reminders | `—` | — | — |
-| Create a route for the wine Kenosha | Reminders | `—` | — | — |
-| Create an expected physical pop-up expansion | Reminders | `—` | — | — |
-| Create an instance of the iOS native app using cursor AI | Reminders | `—` | — | — |
-| Create the volunteer estimator for the different places that are sellin… | Reminders | `—` | — | — |
-| Create tutorial for Deckers | Reminders | `—` | — | — |
-| Download Prince of tights | Reminders | `—` | — | — |
-| Easy post calculate Sweet spot for postal rate across all the different… | Reminders | `—` | — | — |
-| Extend debt with the transforming of inventory from one | Reminders | `—` | — | — |
-| Figure out how to be a reasonable schedule by another four weeks from $… | Reminders | `—` | — | — |
-| Figure out how to social proof like the Michelin star list | Reminders | `—` | — | — |
-| Follow up with all the Desert resell us on April 16 after our Cacao com… | Reminders | `—` | — | — |
-| Follow up with Fatima on Wednesday regarding the quotation from Santa A… | Reminders | `—` | — | — |
-| Follow up with Liz Wong on Monday regarding the proposal that she menti… | Reminders | `—` | — | — |
-| Follow up with Matthews on Monday regarding the follow up with the Omeg… | Reminders | `—` | — | — |
-| Follow up with the dude that dust incense from Nathan's fire | Reminders | `—` | — | — |
-| Follow up with the people on our email list | Reminders | `—` | — | — |
-| Garfield Street and box Canyon Road | Reminders | `—` | — | — |
-| Generate the auto follower feature | Reminders | `—` | — | — |
-| Get Hwang to send over the USDANOP certification for the new part | Reminders | `—` | — | — |
-| Get Ken a shirt | Reminders | `—` | — | — |
-| Go visit the board stores to see and figure out why the seller rate is … | Reminders | `—` | — | — |
-| https://a.co/d/0jhwOqgO | Reminders | `—` | — | U Organic Dark Chocolate 10 Bars x 1.58 Ounce 85% Cacao - Kosher Gluten & Allergen Free Vegan -… |
-| I'm at Pov 169 | Reminders | `—` | — | — |
-| Include the CEPOTX fund video | Reminders | `—` | — | — |
-| Include the inventory level as well as Kirsten and Matheus special posi… | Reminders | `—` | — | — |
-| Include Western Union for withdrawal | Reminders | `—` | — | — |
-| Indicating where the venues the banks are available | Reminders | `—` | — | — |
-| Integrate the identity protocol to reverse.shop | Reminders | `—` | — | — |
-| Interesting reference | Reminders | `—` | — | Book: Let this radicalize you  Documentary: No fun city |
-| John Oliver carbon credit black hole | Reminders | `—` | — | — |
-| Just maybe follow up before the email addresses harvested | Reminders | `—` | — | — |
-| Larger more established retailers Symphony telling them that I am the d… | Reminders | `—` | — | — |
-| Let the Oracle know that Kirsten and Matheus are the main warehouses | Reminders | `—` | — | — |
-| List on etsy amazon.com and google search | Reminders | `—` | — | — |
-| Liz is having issues because she was never selling directly to consumers | Reminders | `—` | — | — |
-| Look at cat.io website | Reminders | `—` | — | — |
-
-### Suggestion seeds (titles only)
-
-- Follow up with USPS claims
-- Send Matthew the Dizajn
-- Get cursor to look into the AWS charges still coming to my account
-- Look at the influencer platform that a surface and a beer hall
-- Spinner an instance for the RAG architecture
-- Look to order photos of the storage shop listed by AI
-- Review my Clock subscription package
-- [FEATURE] Allow the module where people can add their own photo for the front page cover of the chocolate bar
-- [priority] Look through AI generated emails, edit and send them out
-- Additional consideration: one DAO member has flagged that having information split across the blog, landing page, potential chatbot, and WhatsApp creates UX fragmentation — she doesn’t want to click multiple links to piece together context. Consider whether the recommendation should include a consolidated hub page (possibly on the landing page itself) that surfaces the latest blog posts, the daily ops compilation, and the chatbot input field in one place, so the underlying infrastructure separation doesn’t burden the end user.
-- Allow remark to be expendable when retractable in mobile
-- Allow upload of MH for the store nearby status submission
-- Allow upload of MH to the stores nearby status submission
-- Also have a conversation with multiple items are combine together to become a new item
-- Also record a composition
-- Andrew is pretty impressed by the fact that it is a community project
-- Build up a dashboard for all the trees belong to the same email address
-- Buy the battery back up tomorrow on amazon.com
-- Check the time and Spam packaging to cut out as well as expenses
-- Choclate has an API block post
-- Communication architecture of TrueSight DAO
-- Create a donation receipt
-- Create a mobile app that venue owners can use to set the price
-- Create a mod for registering new members
-
-_… **48** more open reminders not shown (raise `--rem-limit`)._
 
 ---
 

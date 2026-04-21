@@ -1,6 +1,6 @@
 # Beer Hall digest — **PREVIEW** (no OpenClaw send)
-- Generated: **2026-04-18 22:23 UTC**
-- Git window: `2026-04-11 00:00:00` → `2026-04-19 00:00:00` (local clone `origin` default branch)
+- Generated: **2026-04-19 21:25 UTC**
+- Git window: `2026-04-12 00:00:00` → `2026-04-20 00:00:00` (local clone `origin` default branch)
 - Telegram + DApp Remarks helper look-back: **48h** (same window for both; DApp default excludes script submitters unless `--dapp-include-automation`)
 
 ---
@@ -51,18 +51,12 @@ d7aee1e | 2026-04-14 12:54:27 -0700 | Blog: sweat-equity hero uses PD knight-vs-
 61541f6 | 2026-04-14 12:46:11 -0700 | Blog: embed YouTube poster thumbnails on sweat-equity post (#19)
 9d58692 | 2026-04-14 12:44:29 -0700 | Replace truesight.me/vault with /dapp; Cypher Defense icon on AWS post (#18)
 0f0bf23 | 2026-04-14 12:35:47 -0700 | Blog: AWS / Cypher-Defense and sweat-equity DAO philosophy (Apr 14, 2026)
-677ef37 | 2026-04-11 15:38:46 -0700 | Merge pull request #16 from TrueSightDAO/copy/view-whitepaper-labels
-3ec152f | 2026-04-11 15:38:37 -0700 | UI: label whitepaper links and CTAs as View Whitepaper
-c70b578 | 2026-04-11 15:34:46 -0700 | Merge pull request #15 from TrueSightDAO/feat/sunmint-whitepaper-html
-271f058 | 2026-04-11 15:34:37 -0700 | Port SunMint whitepaper from stash to static HTML
-5775eb0 | 2026-04-11 15:32:31 -0700 | Merge pull request #14 from TrueSightDAO/fix/restore-whitepaper-diagram-assets
-3897782 | 2026-04-11 15:32:17 -0700 | Restore real whitepaper diagram PNGs (replace placeholders)
-… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
+2ce3e97 | 2026-04-19 13:30:21 -0700 | feat(advisory): render Purpose & Mission north-star block at top of snapshot (#55)
 dabd348 | 2026-04-18 14:59:32 -0700 | fix(advisory): read filter from source, add starts_with predicate (#54)
 e607577 | 2026-04-18 14:18:25 -0700 | feat(advisory): add operator-curated strategic blocks to ADVISORY_SNAPSHOT (#53)
 5440b17 | 2026-04-18 11:53:45 -0700 | Merge pull request #52 from TrueSightDAO/add-oracle-cypher-defense-repos
@@ -85,15 +79,18 @@ edcc983 | 2026-04-13 12:49:41 -0700 | Hit List: Google listing column, Places ba
 5119301 | 2026-04-12 17:36:46 -0700 | chore(scripts): add Beer Hall digest preview generator (#44)
 03da181 | 2026-04-12 16:03:18 -0700 | Merge pull request #43 from TrueSightDAO/feat/warmup-email-grok-rainforest-flexibility
 8f75b4d | 2026-04-12 16:02:59 -0700 | feat(email-agent): warmup Grok prompt — rainforest, QR trees, flexible paths
-98af9e3 | 2026-04-11 14:34:31 -0700 | Merge pull request #42 from TrueSightDAO/feat/hit-list-human-shortlisted-pipeline-chart-script
-af9d095 | 2026-04-11 14:34:19 -0700 | feat: human Shortlisted → enrich + pipeline dashboard chart colors
-6e93ed4 | 2026-04-11 14:33:24 -0700 | Merge pull request #41 from TrueSightDAO/chore/field-agent-places-hourly-cron
-… (truncated)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b511a84 | 2026-04-19 14:17:35 -0700 | Merge pull request #23 from TrueSightDAO/chore/advisory-snapshot-beer-hall-preview-2026-04-19
+b91cb0c | 2026-04-19 14:17:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT and Beer Hall preview
+959035d | 2026-04-19 14:01:11 -0700 | Merge pull request #22 from TrueSightDAO/docs/offchain-column-d-numeric
+739e2a3 | 2026-04-19 14:00:41 -0700 | docs(ledger): require numeric amounts in offchain transactions column D
+9d24cbe | 2026-04-19 13:30:24 -0700 | feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall (#21)
+1d31eb3 | 2026-04-19 13:12:47 -0700 | Merge pull request #20 from TrueSightDAO/docs/repackaging-edgar-route
+33421ff | 2026-04-19 13:12:37 -0700 | docs(ledger): document Edgar-routed repackaging planner flow
 9f3e138 | 2026-04-18 15:08:56 -0700 | fix(advisory): goal is 2026 YTD sales, not cumulative since inception (#19)
 4450a6e | 2026-04-18 14:18:29 -0700 | feat(advisory): add operator-curated stubs for ADVISORY_SNAPSHOT strategic frame (#18)
 a299443 | 2026-04-17 16:30:35 -0700 | chore(advisory): refresh snapshot + Beer Hall preview (2026-04-17 UTC)
@@ -112,15 +109,14 @@ f7fedd8 | 2026-04-16 15:57:16 -0700 | Document GAS editor URL header convention 
 fe794b7 | 2026-04-14 14:42:51 -0700 | Merge pull request #16 from TrueSightDAO/feature/2026-04-14-qr-batch-and-shop-sku-context
 6ed49f4 | 2026-04-14 14:42:18 -0700 | Document Agroverse QR batch compile and shop SKU farm/shipment grids
 3327dc6 | 2026-04-14 13:40:15 -0700 | docs: no long-polling GitHub Actions for PR/CI (§3e, merge guidance)
-f570a50 | 2026-04-14 12:03:06 -0700 | PROJECT_INDEX: EC2 terminate script under Cypher-Defense
-13d6a4f | 2026-04-14 11:57:45 -0700 | Document Cypher-Defense for AWS IR and incident notes
-2adddfd | 2026-04-11 14:12:55 -0700 | Merge pull request #13 from TrueSightDAO/docs/field-agent-hit-list-context
-a3de6c9 | 2026-04-11 14:12:44 -0700 | docs: field agent Hit List pipeline + related context
+… (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+20bf43c | 2026-04-19 13:11:19 -0700 | Merge pull request #228 from TrueSightDAO/feat/inventory-api-agl-unit-cost-lookup
+b9103e5 | 2026-04-19 13:10:51 -0700 | feat(inventory-api): resolve AGL Balance unit_cost from main Currencies tab
 cfd760f | 2026-04-18 14:17:53 -0700 | perf(gas): fix 30-min trigger timeouts on telegram log processors (#227)
 c421451 | 2026-04-18 13:21:19 -0700 | feat(agroverse-qr): multi-item Stripe session link via column Z on QR codes (#226)
 4fc9491 | 2026-04-17 16:03:18 -0700 | feat(agroverse-qr): migrate qr_code_web_service to admin@truesight.me and consolidate owner emails (#225)
@@ -144,13 +140,13 @@ dfc39c3 | 2026-04-12 13:09:32 -0700 | chore(gas): add Version.gs deploy log for 
 df9dd4c | 2026-04-12 13:05:24 -0700 | fix(sales telegram): stronger pre-Grok duplicate detection and id normalization
 8bd3dda | 2026-04-12 12:54:22 -0700 | fix(sales telegram): skip Grok when heuristic QR already on QR Code Sales
 ff43236 | 2026-04-12 12:45:59 -0700 | feat(qr sales): columns O/P for cash collector and sold-by; ledgers use O/P
-0a66fc2 | 2026-04-11 14:12:30 -0700 | Merge pull request #217 from TrueSightDAO/docs/hit-list-field-agent-schema
-fc4da80 | 2026-04-11 14:12:19 -0700 | docs(schema): Holistic Hit List field agent Recent Location tab
 ```
 
 ### `dapp` → `dapp`
 
 ```
+e0f868c | 2026-04-18 21:39:36 -0700 | Merge pull request #157 from TrueSightDAO/feat/repackaging-planner-edgar-route
+ba2ccea | 2026-04-18 21:39:05 -0700 | feat(repackaging_planner): route through Edgar with signed payload + UX rewrite
 f89e75e | 2026-04-17 16:03:20 -0700 | feat(batch-qr): update GAS URL to new admin@truesight.me project (#156)
 a4b7565 | 2026-04-16 16:16:24 -0700 | feat(report_contribution): paste file in description switches proof to upload (#155)
 e148b58 | 2026-04-16 15:25:10 -0700 | feat(create_signature): auto-submit email verification when em+vk present (#154)
@@ -160,9 +156,6 @@ a44fc61 | 2026-04-16 12:36:23 -0700 | Load freight lanes from audit JSON and est
 844959f | 2026-04-15 17:33:55 -0700 | Polish create_signature onboarding layout and status placement (#153)
 dda786d | 2026-04-13 12:50:11 -0700 | Stores nearby: hours in listings, expanded Open now, closed styling (#152)
 10cb1b6 | 2026-04-12 17:38:50 -0700 | feat(dapp): batch QR manager picker, signed message, and URL state (#151)
-ed3bedf | 2026-04-11 15:42:04 -0700 | Add stores_by_status.html for dapp.truesight.me deployment
-1d91bcc | 2026-04-11 14:12:12 -0700 | Merge pull request #150 from TrueSightDAO/feature/field-agent-stores-nearby-save-location
-fc77b7c | 2026-04-11 14:11:58 -0700 | feat(stores-nearby): field agent location save + tests
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -186,6 +179,11 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+89d4c64 | 2026-04-19 14:03:03 -0700 | feat(gas): add editor-runnable wrappers for repackaging-currency-ingest (#3)
+0f5ccf7 | 2026-04-19 13:37:30 -0700 | chore(inventory): repackaging composition 67c88267-b41c-4eab-8ef5-d5be48854d65
+9353975 | 2026-04-19 13:37:29 -0700 | chore(inventory): refresh currencies.json (repackaging ingest)
+1f830fc | 2026-04-18 21:40:40 -0700 | Merge pull request #2 from TrueSightDAO/feat/repackaging-currency-ingest-gas
+d6f5f90 | 2026-04-18 21:40:31 -0700 | feat(gas): add repackaging-currency-ingest Apps Script + doGet processor
 c30b32f | 2026-04-17 11:28:50 -0700 | chore: refresh Agroverse store inventory snapshot
 c5e2924 | 2026-04-15 15:33:16 -0700 | Merge pull request #1 from TrueSightDAO/chore/refresh-inventory-snapshots-2026-04-15
 176e451 | 2026-04-15 15:31:29 -0700 | chore: refresh store and partner inventory snapshots
@@ -257,11 +255,10 @@ _If `gh` is missing or unauthorized, this section may be empty._
 - PR #19: Sweat-equity post: YouTube poster thumbnails — https://github.com/TrueSightDAO/truesight_me_beta/pull/19 _(merged 2026-04-14)_
 - PR #18: Replace truesight.me/vault with /dapp; Cypher icon on AWS blog — https://github.com/TrueSightDAO/truesight_me_beta/pull/18 _(merged 2026-04-14)_
 - PR #17: Blog: AWS / Cypher-Defense and sweat-equity DAO philosophy (Apr 14, 2026) — https://github.com/TrueSightDAO/truesight_me_beta/pull/17 _(merged 2026-04-14)_
-- PR #16: Label whitepaper actions as View Whitepaper — https://github.com/TrueSightDAO/truesight_me_beta/pull/16 _(merged 2026-04-11)_
-- PR #15: SunMint whitepaper: static HTML handbook (replace Google redirect) — https://github.com/TrueSightDAO/truesight_me_beta/pull/15 _(merged 2026-04-11)_
 
 ### TrueSightDAO/go_to_market
 
+- PR #55: feat(advisory): render Purpose & Mission north-star block at top of snapshot — https://github.com/TrueSightDAO/go_to_market/pull/55 _(merged 2026-04-19)_
 - PR #54: fix(advisory): read goal filter from source; add starts_with predicate — https://github.com/TrueSightDAO/go_to_market/pull/54 _(merged 2026-04-18)_
 - PR #53: feat(advisory): add operator-curated strategic blocks to ADVISORY_SNAPSHOT — https://github.com/TrueSightDAO/go_to_market/pull/53 _(merged 2026-04-18)_
 - PR #52: Add oracle and Cypher-Defense to REPOS poll lists — https://github.com/TrueSightDAO/go_to_market/pull/52 _(merged 2026-04-18)_
@@ -274,23 +271,23 @@ _If `gh` is missing or unauthorized, this section may be empty._
 - PR #45: Hit List: Google listing, Places backfills, GAS mirror sync — https://github.com/TrueSightDAO/go_to_market/pull/45 _(merged 2026-04-13)_
 - PR #44: chore(scripts): add Beer Hall digest preview generator — https://github.com/TrueSightDAO/go_to_market/pull/44 _(merged 2026-04-13)_
 - PR #43: Warmup email: Grok prompt and template (rainforest, QR, flexible paths) — https://github.com/TrueSightDAO/go_to_market/pull/43 _(merged 2026-04-12)_
-- PR #42: feat: human Shortlisted → enrich + pipeline dashboard chart color script — https://github.com/TrueSightDAO/go_to_market/pull/42 _(merged 2026-04-11)_
-- PR #41: ci: field agent Places pull every hour — https://github.com/TrueSightDAO/go_to_market/pull/41 _(merged 2026-04-11)_
-- PR #40: fix(ci): quote hit_list_enrich_contact workflow_dispatch description — https://github.com/TrueSightDAO/go_to_market/pull/40 _(merged 2026-04-11)_
-- PR #39: feat(field-agent): Recent Field Agent Location → Places → Hit List — https://github.com/TrueSightDAO/go_to_market/pull/39 _(merged 2026-04-11)_
 
 ### TrueSightDAO/agentic_ai_context
 
+- PR #23: chore(advisory): refresh ADVISORY_SNAPSHOT and Beer Hall preview (2026-04-19) — https://github.com/TrueSightDAO/agentic_ai_context/pull/23 _(merged 2026-04-19)_
+- PR #22: docs(ledger): numeric amounts in offchain column D — https://github.com/TrueSightDAO/agentic_ai_context/pull/22 _(merged 2026-04-19)_
+- PR #21: feat(advisory/comms): add PURPOSE_AND_MISSION north star; filter Beer Hall — https://github.com/TrueSightDAO/agentic_ai_context/pull/21 _(merged 2026-04-19)_
+- PR #20: Document Edgar-routed repackaging planner flow — https://github.com/TrueSightDAO/agentic_ai_context/pull/20 _(merged 2026-04-19)_
 - PR #19: fix(advisory): goal is 2026 YTD sales, not cumulative since inception — https://github.com/TrueSightDAO/agentic_ai_context/pull/19 _(merged 2026-04-18)_
 - PR #18: feat(advisory): add operator-curated stubs for ADVISORY_SNAPSHOT strategic frame — https://github.com/TrueSightDAO/agentic_ai_context/pull/18 _(merged 2026-04-18)_
 - PR #17: docs(advisory): Beer Hall review + advisory snapshot workflow — https://github.com/TrueSightDAO/agentic_ai_context/pull/17 _(merged 2026-04-17)_
 - PR #16: Docs: QR batch generation + shop SKU farm/shipment checklist — https://github.com/TrueSightDAO/agentic_ai_context/pull/16 _(merged 2026-04-14)_
 - PR #15: PROJECT_INDEX: point EC2 terminate script at Cypher-Defense — https://github.com/TrueSightDAO/agentic_ai_context/pull/15 _(merged 2026-04-14)_
 - PR #14: Document Cypher-Defense for AWS IR and incident notes — https://github.com/TrueSightDAO/agentic_ai_context/pull/14 _(merged 2026-04-14)_
-- PR #13: docs: field agent Hit List pipeline + related context — https://github.com/TrueSightDAO/agentic_ai_context/pull/13 _(merged 2026-04-11)_
 
 ### TrueSightDAO/tokenomics
 
+- PR #228: Inventory API: resolve AGL unit_cost from Currencies tab + document Currency Creation — https://github.com/TrueSightDAO/tokenomics/pull/228 _(merged 2026-04-19)_
 - PR #227: perf(gas): fix 30-min trigger timeouts on telegram log processors — https://github.com/TrueSightDAO/tokenomics/pull/227 _(merged 2026-04-18)_
 - PR #226: feat(agroverse-qr): multi-item Stripe session link via column Z on QR codes — https://github.com/TrueSightDAO/tokenomics/pull/226 _(merged 2026-04-18)_
 - PR #225: feat(agroverse-qr): migrate qr_code_web_service to admin@truesight.me, consolidate owner emails — https://github.com/TrueSightDAO/tokenomics/pull/225 _(merged 2026-04-17)_
@@ -301,20 +298,21 @@ _If `gh` is missing or unauthorized, this section may be empty._
 - PR #220: chore(agroverse-qr): refresh compiled QR PNGs (La do Sitio, Oscar Farm) — https://github.com/TrueSightDAO/tokenomics/pull/220 _(merged 2026-04-16)_
 - PR #219: TDG identity: split Edgar verification email to admin Apps Script — https://github.com/TrueSightDAO/tokenomics/pull/219 _(merged 2026-04-16)_
 - PR #218: feat(agroverse-qr): Consolidate batch web Apps Script into qr_code_web_service.gs — https://github.com/TrueSightDAO/tokenomics/pull/218 _(merged 2026-04-13)_
-- PR #217: docs(schema): Holistic Hit List field agent Recent Location tab — https://github.com/TrueSightDAO/tokenomics/pull/217 _(merged 2026-04-11)_
 
 ### TrueSightDAO/dapp
 
+- PR #157: Repackaging planner: route through Edgar + UX rewrite — https://github.com/TrueSightDAO/dapp/pull/157 _(merged 2026-04-19)_
 - PR #156: feat(batch-qr): update GAS URL to new admin@truesight.me project — https://github.com/TrueSightDAO/dapp/pull/156 _(merged 2026-04-17)_
 - PR #155: feat(report_contribution): paste file in description switches proof to upload — https://github.com/TrueSightDAO/dapp/pull/155 _(merged 2026-04-16)_
 - PR #154: Auto-submit email verification when em+vk are in the URL — https://github.com/TrueSightDAO/dapp/pull/154 _(merged 2026-04-16)_
 - PR #153: Polish create_signature.html onboarding UX — https://github.com/TrueSightDAO/dapp/pull/153 _(merged 2026-04-16)_
 - PR #152: Stores nearby: opening hours UI, expanded Open now, permanently closed — https://github.com/TrueSightDAO/dapp/pull/152 _(merged 2026-04-13)_
 - PR #151: feat(dapp): batch QR manager picker and shareable URL params — https://github.com/TrueSightDAO/dapp/pull/151 _(merged 2026-04-13)_
-- PR #150: feat(stores-nearby): field agent location save + tests — https://github.com/TrueSightDAO/dapp/pull/150 _(merged 2026-04-11)_
 
 ### TrueSightDAO/agroverse-inventory
 
+- PR #3: Add editor-runnable wrappers for repackaging-currency-ingest — https://github.com/TrueSightDAO/agroverse-inventory/pull/3 _(merged 2026-04-19)_
+- PR #2: Add repackaging-currency-ingest Apps Script + doGet processor — https://github.com/TrueSightDAO/agroverse-inventory/pull/2 _(merged 2026-04-19)_
 - PR #1: chore: refresh store and partner inventory snapshots — https://github.com/TrueSightDAO/agroverse-inventory/pull/1 _(merged 2026-04-15)_
 
 ### TrueSightDAO/agroverse_shop_beta
@@ -340,11 +338,17 @@ _If `gh` is missing or unauthorized, this section may be empty._
 ## Evidence — Telegram Chat Logs helper output
 
 ```
-# Telegram Chat Logs — rows with parseable date on/after 2026-04-16T22:24:07.166444+00:00 UTC (~48.0h look-back)
+# Telegram Chat Logs — rows with parseable date on/after 2026-04-17T21:25:53.469642+00:00 UTC (~48.0h look-back)
 # Sheet: https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit#gid=0
 # Tab: 'Telegram Chat Logs'
 # Dedup: skip any line already covered by the Git poll or today's draft TLDR.
 
+- _Contribution:_ Roasting beans and making hot chocolate for Instagram 
+  https://www.instagram.com/reel/DXS4aEfjJQc/?igsh=NTc4MTIwNjQ2YQ== — 2h 0m by Gary Teh, Sonya Gorski, Mulan Teh [Full Provision Awarded]
+- _Contribution:_ Fine tuning of beer hall updates to reduce noise level. — 5m by Gary Teh, Iwona Fluda, Val Lapidus, Aga Marecka, Shena Davenport [Full Provision Awarded]
+- _Contribution:_ Level of fidelity in the beer hall updates. Fatima suggested a news letter instead — 5m by Kirsten Ritschel [Pending]
+- _Contribution:_ Level of fidelity in the beer hall updates. Fatima suggested a news letter instead — 5m by Fatima Toledo [Pending]
+- _Contribution:_ Level of fidelity in the Beer hall updates — 5m by Garis Pang [Pending]
 - _Contribution:_ AWS account 767697632458 — monthly DB backup automation + security group remediation
     (AWS support case 177613748700177 follow-up)                                                                                    
                                                                              … — 2h 0m by Gary Teh [Full Provision Awarded]
@@ -359,31 +363,14 @@ _If `gh` is missing or unauthorized, this section may be empty._
     GROWTH_GOALS.json in agentic_ai_context (targets: $40K total QR sales + 100 USA Agroverse Partners by 2026-12-31). — 30m by Gary Teh [Full Provision Awarded]
 - _Contribution:_ Followed up with Brasil kiss — 5m by Gary Teh [Full Provision Awarded]
 - _Contribution:_ Miss Anne’s Maypop – Thoughts on Ceremonial Cacao Samples_ follow up — 5m by Gary Teh [Full Provision Awarded]
-- _Contribution:_ Reached out to IChakras to check on the status of the 5 bags of ceremonial cacao — 5m by Gary Teh [Pending]
-- _Contribution:_ Grok api — $25 USD by Gary Teh [Full Provision Awarded]
-- _Contribution:_ Discussions about distribution of the single estate chocolate into private schools and Salvation Army — 3h 0m by Gary Teh, Elizabeth Wong [Full Provision Awarded]
-- _Sale:_ 2023SA_81PB_20260412_3 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Successfully Completed]
-- _Sale:_ 2023SA_81PB_20260412_2 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Successfully Completed]
-- _Sale:_ 2024OSR_81PB_20260412_2 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Successfully Completed]
-- _Sale:_ 2024OSR_81PB_20260412_1 — sold for $12.5 by Kirsten Ritschel (cash: Gary Teh) [Successfully Completed]
-- _Contribution:_ Coordinating on the shipping — 10m by Gary Teh, Matheus Reis [Full Provision Awarded]
-- _Contribution:_ Migrated over to use Claude — 1h 0m by Gary Teh [Full Provision Awarded]
-- _Contribution:_ Subscription for Claude — $20 USD by Gary Teh [Full Provision Awarded]
-- _Contribution:_ Responded to error from Cursor. Subscription button kept failing. So switched to claude — 15m by Gary Teh [Full Provision Awarded]
-- _Contribution:_ Updated Oracle to utilize Macbook reminders for to do list
-  Update swapped over to claude
-  Auto backup of edgar database via github actions
-  
-  *Shipped*
-  
-  _Shop & partners (agroverse.shop)_ — 3h 0m by Gary Teh [Full Provision Awarded]
+- _Contribution:_ Reached out to IChakras to check on the status of the 5 bags of ceremonial cacao — 5m by Gary Teh [Full Provision Awarded]
 ```
 ---
 
 ## Evidence — DApp Remarks (Hit List) helper output
 
 ```
-# DApp Remarks — rows with Submitted At on/after 2026-04-16T22:24:10.598118+00:00 UTC (~48.0h look-back; human-oriented (automation Submitted By filtered out))
+# DApp Remarks — rows with Submitted At on/after 2026-04-17T21:25:56.330304+00:00 UTC (~48.0h look-back; human-oriented (automation Submitted By filtered out))
 # Sheet: https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=0
 # Tab: 'DApp Remarks'
 # Use under Community in Beer Hall Message 2 (offline / field narrative). Dedup vs Git bullets and Telegram log lines.
