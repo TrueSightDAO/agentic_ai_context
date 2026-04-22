@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-22T03:47:24Z`
+- Generated (UTC): `2026-04-22T08:15:16Z`
 - Look-back: **7** calendar days (`2026-04-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -142,6 +142,12 @@ c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7523efd | 2026-04-22 00:46:44 -0700 | docs: correct TrueChain status — designed, NOT running (v0.3) (#41)
+cc8d63a | 2026-04-22 00:41:17 -0700 | docs(blockchain-anchoring): v0.2 — TrueChain's value is conditional, not assumed (#40)
+7313b77 | 2026-04-22 00:22:34 -0700 | docs(blockchain-anchoring): add two mermaid diagrams for non-technical readers (#39)
+cff1715 | 2026-04-22 00:12:54 -0700 | docs: internal proposal for blockchain-anchoring DAO caches + Telegram logs (#38)
+a9f220c | 2026-04-21 20:47:34 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
+76536c7 | 2026-04-21 20:47:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 03d730f | 2026-04-21 19:13:21 -0700 | Merge pull request #37 from TrueSightDAO/auto/advisory-refresh-2026-04-22
 8c141a6 | 2026-04-22 02:13:11 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 79ed534 | 2026-04-21 16:09:07 -0700 | docs: AI agent [CONTRIBUTION EVENT] convention (dao_client + context) (#36)
@@ -176,18 +182,14 @@ fead069 | 2026-04-19 19:27:52 -0700 | Merge pull request #29 from TrueSightDAO/a
 7bf1e1a | 2026-04-20 02:27:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 39f25f9 | 2026-04-19 15:14:18 -0700 | Merge pull request #28 from TrueSightDAO/docs/automate-beer-hall-and-reminders-pipeline
 3dec1d1 | 2026-04-19 15:13:56 -0700 | docs: Beer Hall WhatsApp retired; daily automation + Reminders pipeline
-5c5c21c | 2026-04-19 15:13:49 -0700 | Merge pull request #27 from TrueSightDAO/auto/advisory-refresh-2026-04-19
-c3e2490 | 2026-04-19 22:13:40 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-19 UTC)
-5ee7330 | 2026-04-19 15:09:51 -0700 | Merge pull request #25 from TrueSightDAO/auto/advisory-refresh-2026-04-19
-cb87804 | 2026-04-19 15:09:11 -0700 | Merge pull request #26 from TrueSightDAO/feat/purpose-mission-and-beer-hall-audience-filter
-80d0550 | 2026-04-19 22:06:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-19 UTC)
-2769e45 | 2026-04-19 14:43:21 -0700 | Merge pull request #24 from TrueSightDAO/chore/advisory-snapshot-beer-hall-2026-04-19
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+e6abd2d | 2026-04-21 23:42:19 -0700 | feat(dao_members_cache): emit dao_totals at snapshot root (schema_version 2) (#237)
+1de4b60 | 2026-04-21 23:25:53 -0700 | feat(tdg_identity_management): dao_members.json cache publisher + doGet action (#236)
 1b28994 | 2026-04-21 15:46:30 -0700 | Merge pull request #235 from TrueSightDAO/feature/gas-inventory-expense-authorization
 fef3c29 | 2026-04-21 15:46:08 -0700 | feat(gas): unauthorized movement + scored expense Processing Status
 539bf43 | 2026-04-21 15:25:03 -0700 | Merge pull request #234 from TrueSightDAO/docs/schema-telegram-chat-logs-governor-s
@@ -220,6 +222,8 @@ bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GA
 ### `dapp` → `dapp`
 
 ```
+752b74e | 2026-04-21 23:50:50 -0700 | perf(dapp): shared DaoMembersCache + cache-first signature check on create_signature (#171)
+039d937 | 2026-04-21 23:37:39 -0700 | perf(tdg_balance): cache-first fetch against dao_members.json, GAS fallback (#170)
 77bf22c | 2026-04-21 15:55:22 -0700 | Merge pull request #169 from TrueSightDAO/fix/stores-nearby-history-link-new-tab
 00900b5 | 2026-04-21 15:55:04 -0700 | fix(dapp): open interaction history link in new tab after store update.
 2bdae6d | 2026-04-21 15:46:38 -0700 | Store interaction history: simplify help text; no image uploads planned.
@@ -270,6 +274,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+08584bc | 2026-04-22 08:08:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9224db7 | 2026-04-21 14:52:31 -0700 | feat(repackaging-ingest): notify treasury-cache-publisher on successful currency commits (#4)
 5909bc7 | 2026-04-21 12:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
 0da1893 | 2026-04-20 08:30:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
