@@ -1,4 +1,4 @@
-# Blockchain anchoring — interim proposal (v0.1)
+# Blockchain anchoring — interim proposal (v0.2)
 
 **Status:** DRAFT · internal future-direction · **NOT** in any public whitepaper yet
 **Last reviewed:** 2026-04-22
@@ -31,16 +31,30 @@ flowchart TB
     class L4 proposed
 ```
 
-Each layer strengthens the guarantees of the one below — but only for audiences that don't already trust the lower layer. **Table view of the same:**
+Each layer strengthens the guarantees of the one below — but only for audiences that don't already trust the lower layer. **See §3 for an honest assessment of whether L3 (TrueChain) is worth running for audit anchoring alone, or whether a plain batched-timestamping path from L2 directly to L4 is strictly better.** Table view of the same:
 
 | Primitive | Gives us | Limit it has |
 |-----------|----------|--------------|
 | **RSA-signed events** on every `[CONTRIBUTION EVENT]`, `[INVENTORY MOVEMENT]`, etc. Verified by `sentiment_importer` (Edgar) via SPKI public key stored in `Contributors Digital Signatures` column E. | Per-submission non-repudiation: the contributor can't credibly deny signing. | Signatures alone don't prove **global ordering** ("was this submission T1 before or after T2?"). |
 | **Google Sheet ledger** on `1GE7PUq…`. Tabs include `Ledger history`, `Contributors Digital Signatures`, `Contributors voting weight`, `offchain asset location`, `Telegram Chat Logs`. | Single source of truth for DAO state; writable by operators + GAS triggers. | Operators with sheet write access can edit historical rows retroactively. Outsiders have no way to check. |
 | **GitHub JSON caches** — `TrueSightDAO/treasury-cache/dao_offchain_treasury.json`, `…/dao_members.json`, `TrueSightDAO/agroverse-freight-audit/pointers/freight_lanes.json`, `TrueSightDAO/agroverse-inventory/currency-compositions/*.json`. | Public read surface for downstream tools (`dao_client/cache/*.py`, `dapp/scripts/dao_members_cache.js`). Git history = implicit timeline. | Anyone with repo write access can force-push and rewrite the git history. Outsiders can't detect it without an independent hash anchor. |
-| **TrueChain** — private Ethereum network. Mirror Service copies sheet rows → TrueChain. Block explorer via GAS. | Existing DAO-controlled audit chain. | "Tamper-evident" only to the extent that a majority of TrueChain validators don't collude. No external oracle. |
+| **TrueChain** — private Ethereum network. Mirror Service copies sheet rows → TrueChain. Block explorer via GAS. | Existing DAO-controlled chain; current value for audit anchoring alone is marginal — see §3. | "Tamper-evident" only to the extent that a majority of TrueChain validators don't collude. No external oracle. |
 
-## 3. Audiences for this (be explicit before scoping)
+## 3. Is TrueChain worth running? — conditional framing
+
+An honest assessment: **the audit-anchoring value proposition in this proposal alone does not justify running a private Ethereum network.** A plain batched-timestamping service (Chainpoint-style: collect events → compute a Merkle root every N minutes → submit one public-chain tx) would be cheaper to operate and would give the same external-verifiability guarantees without the TrueChain consensus machinery. In that simpler model L2 anchors **directly** to L4 and L3 drops out entirely.
+
+TrueChain earns its keep **only if one of these conditions becomes true**:
+
+1. **TDG (or any crypto) becomes the on-chain settlement medium for DAO commerce.** Today most TrueSight commerce — Agroverse retail, consignment payouts, Sunmint pledges — settles in **USD via Stripe / bank transfer**. Signed sheet rows + the Python library (`dao_client/modules/*.py`) + GAS rules can model those agreements and drive settlement perfectly well; no chain tx is needed to move USD. If TDG ever becomes the actual settlement asset (buyer pays TDG → seller receives TDG atomically in the same tx), then smart contracts holding and transferring those tokens earn their place. Until then, on-chain commerce is a solution looking for a problem.
+
+2. **Governance outcomes need to be externally provable without trusting DAO operators.** Current voting is tallied by GAS from the `Contributors voting weight` tab — cheap, fast, and entirely sufficient if regulators / partners / challengers accept the DAO's own attestation. If an outside audience ever needs to prove "resolution Y passed on date Z" **without trusting the DAO's word**, smart-contract voting with on-chain event emission provides that. Until an actual external-verifiability requirement appears, quadratic voting in GAS is a valid implementation.
+
+Most of what the DAO might reach for a smart contract to do — counterparty agreements, voting, multi-sig approvals, conditional payouts — is already expressible as **signed sheet rows + GAS rules + Python CLI**. That stack has per-agreement non-repudiation via RSA, operator-verifiable execution via GAS, and (once this audit-anchoring proposal ships) tamper-evident history via periodic hash anchors. Roughly 80% of B2B commerce today runs on less.
+
+**Implication for this proposal:** do **not** justify TrueChain-the-infrastructure by audit anchoring alone. If the DAO decides it wants on-chain commerce or externally-provable governance, those are separate roadmap items that should be evaluated on their own merits — and if either lands, audit anchoring piggybacks on TrueChain's already-paid-for blockspace nearly for free. If neither lands, the simpler **L2-direct-to-L4** path (cache hash + Merkle batcher on an Edgar Sidekiq worker, submitting one periodic public-chain tx) is strictly better for the DAO's verifiability goals and should be the default. §5 onwards describes the full three-tier flow for completeness; the three-tier shape collapses to two tiers trivially by dropping the TrueChain step if that's where the DAO lands.
+
+## 4. Audiences for this (be explicit before scoping)
 
 | Audience | Currently served by | Gap this proposal closes |
 |----------|--------------------|---------------------------|
@@ -51,7 +65,7 @@ Each layer strengthens the guarantees of the one below — but only for audience
 
 **Headline:** the real value is for audiences **without** DAO-operator trust. Internal integrity is already strong.
 
-## 4. The proposal
+## 5. The proposal
 
 Extend the existing Mirror Service to also write two new kinds of records:
 
@@ -82,7 +96,7 @@ flowchart LR
 
 Everything in green is already shipped. Everything in yellow is this proposal.
 
-### 4.1 Cache snapshot anchors
+### 5.1 Cache snapshot anchors
 
 Every time a `cache.json` is written to a `TrueSightDAO/*` repo (treasury-cache, agroverse-freight-audit, agroverse-inventory, future dao_members.json), the Mirror Service computes:
 
@@ -96,7 +110,7 @@ sha256( canonical(json_body) )
 - Privacy: if any field ever needs to be scrubbed from the public URL (e.g. a contributor opts out of being named), the hash anchor is still meaningful for snapshots that did include them without revealing them.
 - Full integrity guarantee: any tampering — on GitHub **or** on-chain — shows up as a hash mismatch.
 
-### 4.2 Telegram Chat Logs batch anchors
+### 5.2 Telegram Chat Logs batch anchors
 
 `Telegram Chat Logs` grows at thousands of rows / week. One chain write per row is expensive; per-row latency is unnecessary. Pattern:
 
@@ -107,17 +121,17 @@ sha256( canonical(json_body) )
 
 **Privacy:** anchor **hashes only**, never raw row text. Some Telegram Chat Logs rows contain phone numbers, draft messages, operational notes not intended for public release. A Merkle root leaks nothing about content.
 
-### 4.3 Two-tier chain anchoring
+### 5.3 Two-tier chain anchoring
 
 TrueChain validators are DAO-controlled — so "tamper-evident" holds only under honest-majority assumptions. For audiences that trust nobody inside the DAO, add a periodic public-chain anchor:
 
-- Daily (or weekly): take `sha256(TrueChain_tip_block_hash + ts)` and post it as an `OP_RETURN` on Bitcoin (or an equivalent memo on Solana / Arweave — exact choice intentionally left open, see §6).
+- Daily (or weekly): take `sha256(TrueChain_tip_block_hash + ts)` and post it as an `OP_RETURN` on Bitcoin (or an equivalent memo on Solana / Arweave — exact choice intentionally left open, see §7).
 - One public-chain write per day / week covers **all** TrueChain commits in that window.
 - External auditors can follow the chain of hashes: public-chain memo → TrueChain tip → cache anchor → GitHub raw JSON → Google Sheet row.
 
 This gives continuous-stream speed on the private chain + externally-anchored finality. Standard "anchoring" pattern used by Chainpoint, OriginStamp, et al.
 
-## 5. Scope boundaries for the first prototype
+## 6. Scope boundaries for the first prototype
 
 **In:**
 - One cache (start with `dao_offchain_treasury.json` — already publishes on every inventory movement, high-signal).
@@ -129,7 +143,7 @@ This gives continuous-stream speed on the private chain + externally-anchored fi
 - Public-chain anchors. Prove the private-chain pipeline first; public anchors are a checklist item, not a research problem.
 - New on-chain contracts beyond append-only log. Don't invent governance-on-chain while you're solving verifiability-on-chain.
 
-## 6. Design calls worth deferring until prototype time
+## 7. Design calls worth deferring until prototype time
 
 | Call | Why we're deferring |
 |------|--------------------|
@@ -138,7 +152,7 @@ This gives continuous-stream speed on the private chain + externally-anchored fi
 | Merkle hash function (SHA-256 vs BLAKE3). | SHA-256 default; only revisit if batch sizes grow beyond ~10⁴ rows per batch where BLAKE3's speed wins matter. |
 | Who signs the anchor transactions. | TrueChain has existing validators; public-chain writes will need a dedicated signing key. Both are ops decisions, not architecture. |
 
-## 7. What NOT to do
+## 8. What NOT to do
 
 1. **Don't write JSON bodies on-chain.** Always a hash or a Merkle root.
 2. **Don't make TrueChain the primary store.** Google Sheet + GitHub raw stay primary; TrueChain is the verification layer on top.
@@ -147,7 +161,7 @@ This gives continuous-stream speed on the private chain + externally-anchored fi
 5. **Don't promise specific tools in the whitepaper before a prototype.** "Will anchor to Bitcoin" is a commitment; "may anchor TrueChain tips into a public chain" is a direction.
 6. **Don't ship without a verification script.** For every anchor path you add, ship a script that takes `(anchor_record, primary_source_url)` and returns `verified: true | false`. Without that, the anchor is theatre.
 
-## 8. Promotion criteria — when this moves into the whitepaper
+## 9. Promotion criteria — when this moves into the whitepaper
 
 Promote to the main [`truesight_me` whitepaper](https://github.com/TrueSightDAO/truesight_me/blob/main/whitepaper/index.html) as a **committed future direction** when:
 
@@ -158,7 +172,7 @@ Promote to the main [`truesight_me` whitepaper](https://github.com/TrueSightDAO/
 
 Until then, the whitepaper's audit-trail section should continue to describe only what's **already** true (RSA signatures, GitHub public caches, TrueChain mirror). Prose promises outlive memory; shipped artifacts don't.
 
-## 9. Related artifacts
+## 10. Related artifacts
 
 - [`reference_dao_client_cli.md`](reference_dao_client_cli.md) — Python CLI + cache consumers that would be anchored.
 - [`project_edgar_multiple_active_keys.md`](project_edgar_multiple_active_keys.md) — why `dao_members.json` is contributor-keyed (relevant to Merkle-over-rows design for the Contributors tab).
@@ -168,6 +182,7 @@ Until then, the whitepaper's audit-trail section should continue to describe onl
   - [`TrueSightDAO/sentiment_importer#1028`](https://github.com/TrueSightDAO/sentiment_importer/pull/1028) — Sidekiq `DaoMembersCacheRefreshWorker` (pattern the TrueChain writer should mirror).
   - [`TrueSightDAO/dao_client#3`](https://github.com/TrueSightDAO/dao_client/pull/3) / [`#6`](https://github.com/TrueSightDAO/dao_client/pull/6) — `cache/` Python reader package (reference canonicalisation target).
 
-## 10. Changelog
+## 11. Changelog
 
+- **2026-04-22** — v0.2: inserted §3 "Is TrueChain worth running?" reframing TrueChain's value as **conditional** on either TDG-as-on-chain-settlement-medium or externally-provable-governance becoming real requirements. Honest about the alternative: signed sheet rows + GAS rules + Python CLI (what the DAO already has) cover most counterparty agreements, votes, and conditional payouts without any chain. If neither condition becomes true, the simpler L2→L4 path (Edgar Sidekiq Merkle-batcher → one periodic public-chain tx) is strictly better. The three-tier flow in §5 stays described for completeness; drops to two tiers trivially by skipping the TrueChain step. Sections §3–§10 renumbered to §4–§11; §5.3 cross-ref to old §6 updated to §7. Mermaid diagrams in §2 / §5 retain existing LIVE vs PROPOSED colouring.
 - **2026-04-22** — v0.1 drafted from conversation with Gary. Captures the anchor-hashes-not-bodies pattern, Merkle-batch for Telegram Chat Logs, two-tier TrueChain-plus-public-chain proposal, explicit audience framing, and promotion criteria for moving into the public whitepaper.
