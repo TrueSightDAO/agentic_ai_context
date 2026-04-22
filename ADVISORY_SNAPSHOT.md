@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-22T02:13:04Z`
+- Generated (UTC): `2026-04-22T03:47:24Z`
 - Look-back: **7** calendar days (`2026-04-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,8 +30,10 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,666 | 4% | `2026-12-31` | 253 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 253 | on track |
+| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 253 | — |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 253 | — |
+
+_Notes: (live fetch skipped: missing `google_credentials.json`)_
 
 ---
 
@@ -140,6 +142,8 @@ c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+03d730f | 2026-04-21 19:13:21 -0700 | Merge pull request #37 from TrueSightDAO/auto/advisory-refresh-2026-04-22
+8c141a6 | 2026-04-22 02:13:11 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 79ed534 | 2026-04-21 16:09:07 -0700 | docs: AI agent [CONTRIBUTION EVENT] convention (dao_client + context) (#36)
 c492992 | 2026-04-21 14:39:30 -0700 | docs: dao_client — mark auth flow validated, document modules/ (#35)
 dc30dee | 2026-04-21 14:24:40 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
@@ -178,8 +182,6 @@ c3e2490 | 2026-04-19 22:13:40 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 cb87804 | 2026-04-19 15:09:11 -0700 | Merge pull request #26 from TrueSightDAO/feat/purpose-mission-and-beer-hall-audience-filter
 80d0550 | 2026-04-19 22:06:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-19 UTC)
 2769e45 | 2026-04-19 14:43:21 -0700 | Merge pull request #24 from TrueSightDAO/chore/advisory-snapshot-beer-hall-2026-04-19
-504af42 | 2026-04-19 14:42:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT + Beer Hall preview (2026-04-19)
-e29461a | 2026-04-19 14:17:42 -0700 | Merge main (advisory snapshot + beer hall preview PR #23)
 … (truncated)
 ```
 
