@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-22T08:15:16Z`
+- Generated (UTC): `2026-04-22T14:16:09Z`
 - Look-back: **7** calendar days (`2026-04-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -42,23 +42,23 @@ _Notes: (live fetch skipped: missing `google_credentials.json`)_
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-04-21T21:15:55.298Z`
+- Generated (UTC): `2026-04-22T10:59:14.546Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
-- Total stores tracked: **516**
+- Total stores tracked: **518**
 - Partnered (north-star): **13**
 - Meeting Scheduled: **1**
-- Shortlisted: **3**
+- Shortlisted: **4**
 
 ## Funnel by status (curated order)
 
 - AI: Enrich — manual: 68  (#3)
 - AI: Contact Form found: 76  (#4)
 - AI: Photo rejected: 107  (#7)
-- AI: Photo needs review: 39  (#8)
+- AI: Photo needs review: 40  (#8)
 - AI: Warm up prospect: 65  (#9)
 - Not Appropriate: 71  (#11)
 - Contacted: 4  (#12)
-- Shortlisted: 3  (#13)
+- Shortlisted: 4  (#13)
 - Manager Follow-up: 26  (#14)
 - Meeting Scheduled: 1  (#16)
 - Instagram Followed: 11  (#17)
@@ -142,6 +142,8 @@ c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0fcc9c1 | 2026-04-22 01:15:27 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
+2480a43 | 2026-04-22 01:15:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 7523efd | 2026-04-22 00:46:44 -0700 | docs: correct TrueChain status — designed, NOT running (v0.3) (#41)
 cc8d63a | 2026-04-22 00:41:17 -0700 | docs(blockchain-anchoring): v0.2 — TrueChain's value is conditional, not assumed (#40)
 7313b77 | 2026-04-22 00:22:34 -0700 | docs(blockchain-anchoring): add two mermaid diagrams for non-technical readers (#39)
@@ -180,8 +182,6 @@ fd23b73 | 2026-04-19 20:58:00 -0700 | chore(previews): refresh Beer Hall preview
 16bd6f7 | 2026-04-19 20:57:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 fead069 | 2026-04-19 19:27:52 -0700 | Merge pull request #29 from TrueSightDAO/auto/advisory-refresh-2026-04-20
 7bf1e1a | 2026-04-20 02:27:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
-39f25f9 | 2026-04-19 15:14:18 -0700 | Merge pull request #28 from TrueSightDAO/docs/automate-beer-hall-and-reminders-pipeline
-3dec1d1 | 2026-04-19 15:13:56 -0700 | docs: Beer Hall WhatsApp retired; daily automation + Reminders pipeline
 … (truncated)
 ```
 
