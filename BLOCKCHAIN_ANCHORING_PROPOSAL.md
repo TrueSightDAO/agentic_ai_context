@@ -16,6 +16,23 @@ Extend the DAO's existing audit trail (RSA-signed events + Google Sheet + GitHub
 
 The DAO already ships most of the primitives this proposal extends; blockchain anchoring is a **capstone**, not a foundation rewrite.
 
+```mermaid
+flowchart TB
+    L4["<b>L4 — Public-chain tip anchor</b> &nbsp; <i>(PROPOSED)</i><br/>Bitcoin OP_RETURN · Solana memo · Arweave bundle<br/><i>Audience: hostile challengers — no DAO trust required</i>"]
+    L3["<b>L3 — TrueChain append-log</b> &nbsp; <i>(LIVE)</i><br/>Private Ethereum, DAO-validated · Mirror Service<br/><i>Audience: regulators / auditors</i>"]
+    L2["<b>L2 — GitHub raw JSON + Google Sheet</b> &nbsp; <i>(LIVE)</i><br/>raw.githubusercontent.com · docs.google.com<br/><i>Audience: semi-trusted partners</i>"]
+    L1["<b>L1 — RSA-signed events</b> &nbsp; <i>(LIVE)</i><br/>edgar_client.py · edgar_payload_helper.js · Edgar verify<br/><i>Audience: DAO-internal bookkeeping</i>"]
+    L4 -->|anchors hash of| L3
+    L3 -->|records signed rows from| L2
+    L2 -->|stores signatures from| L1
+    classDef live fill:#d4edda,stroke:#28a745,color:#155724
+    classDef proposed fill:#fff3cd,stroke:#f0ad4e,color:#7c5a00
+    class L1,L2,L3 live
+    class L4 proposed
+```
+
+Each layer strengthens the guarantees of the one below — but only for audiences that don't already trust the lower layer. **Table view of the same:**
+
 | Primitive | Gives us | Limit it has |
 |-----------|----------|--------------|
 | **RSA-signed events** on every `[CONTRIBUTION EVENT]`, `[INVENTORY MOVEMENT]`, etc. Verified by `sentiment_importer` (Edgar) via SPKI public key stored in `Contributors Digital Signatures` column E. | Per-submission non-repudiation: the contributor can't credibly deny signing. | Signatures alone don't prove **global ordering** ("was this submission T1 before or after T2?"). |
@@ -37,6 +54,33 @@ The DAO already ships most of the primitives this proposal extends; blockchain a
 ## 4. The proposal
 
 Extend the existing Mirror Service to also write two new kinds of records:
+
+```mermaid
+flowchart LR
+    subgraph today["Already live"]
+        A["Signed event arrives<br/>at Edgar"] --> B["Sheet row written<br/>(Ledger / Contributors /<br/>Telegram Chat Logs)"]
+        B --> C["cache.json regenerated<br/>on TrueSightDAO/*"]
+    end
+    subgraph anchor["Proposed — per cache regen"]
+        C --> D["sha256<br/>canonical JSON"]
+        D --> E["TrueChain record<br/>{cache, url, hash, ts}"]
+    end
+    subgraph batch["Proposed — every 15 min / 200 rows"]
+        B --> F["Telegram Chat Logs<br/>batch collector"]
+        F --> G["Merkle root<br/>of row hashes"]
+        G --> E
+    end
+    subgraph public["Proposed — daily"]
+        E --> H["sha256<br/>TrueChain tip"]
+        H --> I["Public chain<br/>OP_RETURN / memo"]
+    end
+    classDef live fill:#d4edda,stroke:#28a745,color:#155724
+    classDef proposed fill:#fff3cd,stroke:#f0ad4e,color:#7c5a00
+    class A,B,C live
+    class D,E,F,G,H,I proposed
+```
+
+Everything in green is already shipped. Everything in yellow is this proposal.
 
 ### 4.1 Cache snapshot anchors
 
