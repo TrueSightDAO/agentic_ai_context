@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-23T08:19:26Z`
+- Generated (UTC): `2026-04-23T14:19:33Z`
 - Look-back: **7** calendar days (`2026-04-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -42,9 +42,9 @@ _Notes: (live fetch skipped: missing `google_credentials.json`)_
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-04-22T10:59:14.546Z`
+- Generated (UTC): `2026-04-23T10:59:15.591Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
-- Total stores tracked: **518**
+- Total stores tracked: **521**
 - Partnered (north-star): **13**
 - Meeting Scheduled: **1**
 - Shortlisted: **4**
@@ -52,10 +52,10 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 ## Funnel by status (curated order)
 
 - AI: Enrich — manual: 68  (#3)
-- AI: Contact Form found: 76  (#4)
+- AI: Contact Form found: 77  (#4)
 - AI: Photo rejected: 107  (#7)
-- AI: Photo needs review: 40  (#8)
-- AI: Warm up prospect: 65  (#9)
+- AI: Photo needs review: 41  (#8)
+- AI: Warm up prospect: 66  (#9)
 - Not Appropriate: 71  (#11)
 - Contacted: 4  (#12)
 - Shortlisted: 4  (#13)
@@ -142,6 +142,8 @@ c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a43e204 | 2026-04-23 01:19:38 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
+85d091e | 2026-04-23 01:19:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 5c301b9 | 2026-04-22 20:54:28 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
 4acfa00 | 2026-04-22 20:54:27 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 65e7610 | 2026-04-22 19:25:03 -0700 | Merge pull request #42 from TrueSightDAO/auto/advisory-refresh-2026-04-23
@@ -180,8 +182,6 @@ c9cff6a | 2026-04-20 20:51:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 82488a0 | 2026-04-20 19:14:55 -0700 | Merge pull request #31 from TrueSightDAO/auto/advisory-refresh-2026-04-21
 8b5e128 | 2026-04-21 02:14:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 b53bf56 | 2026-04-20 12:40:52 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
-581cdbc | 2026-04-20 12:40:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
-6cc2d49 | 2026-04-20 11:29:36 -0700 | docs: add Agroverse newsletter workflow for AI assistants (#30)
 … (truncated)
 ```
 
