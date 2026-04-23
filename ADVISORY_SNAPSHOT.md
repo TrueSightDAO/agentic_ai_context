@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-23T02:24:49Z`
+- Generated (UTC): `2026-04-23T03:54:17Z`
 - Look-back: **7** calendar days (`2026-04-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,8 +30,10 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,666 | 4% | `2026-12-31` | 252 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 252 | on track |
+| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 252 | — |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 252 | — |
+
+_Notes: (live fetch skipped: missing `google_credentials.json`)_
 
 ---
 
@@ -140,6 +142,8 @@ c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+65e7610 | 2026-04-22 19:25:03 -0700 | Merge pull request #42 from TrueSightDAO/auto/advisory-refresh-2026-04-23
+c572e23 | 2026-04-23 02:24:54 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 7be31ee | 2026-04-22 12:47:15 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
 6b06117 | 2026-04-22 12:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 48ece2f | 2026-04-22 07:16:26 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
@@ -178,14 +182,14 @@ b53bf56 | 2026-04-20 12:40:52 -0700 | chore(previews): refresh Beer Hall preview
 6cc2d49 | 2026-04-20 11:29:36 -0700 | docs: add Agroverse newsletter workflow for AI assistants (#30)
 3151d62 | 2026-04-20 07:19:32 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
 335a465 | 2026-04-20 07:19:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
-046269f | 2026-04-20 01:34:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
-6af2189 | 2026-04-20 01:34:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+7ae14f8 | 2026-04-22 19:33:51 -0700 | Merge pull request #239 from TrueSightDAO/qr-code-sales-webhook-script-lock
+1d6b110 | 2026-04-22 19:33:32 -0700 | Serialize QR Code Sales webhooks with LockService script locks
 874827a | 2026-04-22 19:14:57 -0700 | Merge pull request #238 from TrueSightDAO/inventory-webhook-script-lock
 6caa170 | 2026-04-22 19:14:40 -0700 | Serialize inventory webhook GETs with LockService script lock
 e6abd2d | 2026-04-21 23:42:19 -0700 | feat(dao_members_cache): emit dao_totals at snapshot root (schema_version 2) (#237)
@@ -222,6 +226,10 @@ bf36e30 | 2026-04-15 17:33:52 -0700 | Split Edgar verification email to admin GA
 ### `dapp` → `dapp`
 
 ```
+44c4008 | 2026-04-22 20:07:15 -0700 | Merge pull request #173 from TrueSightDAO/fix/store-history-popout-links
+9fa52d4 | 2026-04-22 20:06:47 -0700 | Open Store Interaction History in a new tab from nav and links
+854324e | 2026-04-22 20:04:08 -0700 | Merge pull request #172 from TrueSightDAO/fix/stores-gas-cache-footer-links
+9453d6b | 2026-04-22 20:03:46 -0700 | Stores: fresh GAS fetches, SW v4, interaction history footer links
 752b74e | 2026-04-21 23:50:50 -0700 | perf(dapp): shared DaoMembersCache + cache-first signature check on create_signature (#171)
 039d937 | 2026-04-21 23:37:39 -0700 | perf(tdg_balance): cache-first fetch against dao_members.json, GAS fallback (#170)
 77bf22c | 2026-04-21 15:55:22 -0700 | Merge pull request #169 from TrueSightDAO/fix/stores-nearby-history-link-new-tab
@@ -274,6 +282,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+0a3a25f | 2026-04-22 19:28:51 -0700 | chore: refresh Agroverse store inventory snapshot
 c318a22 | 2026-04-22 16:28:35 -0700 | chore: refresh Agroverse store inventory snapshot
 a24746d | 2026-04-22 14:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
 08584bc | 2026-04-22 08:08:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
