@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-23T14:19:33Z`
+- Generated (UTC): `2026-04-23T19:50:34Z`
 - Look-back: **7** calendar days (`2026-04-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -142,6 +142,8 @@ c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f2919bc | 2026-04-23 07:19:49 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
+5dbde21 | 2026-04-23 07:19:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 a43e204 | 2026-04-23 01:19:38 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
 85d091e | 2026-04-23 01:19:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 5c301b9 | 2026-04-22 20:54:28 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
@@ -180,8 +182,6 @@ dabdd20 | 2026-04-20 23:09:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 26d8542 | 2026-04-20 20:51:14 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 c9cff6a | 2026-04-20 20:51:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 82488a0 | 2026-04-20 19:14:55 -0700 | Merge pull request #31 from TrueSightDAO/auto/advisory-refresh-2026-04-21
-8b5e128 | 2026-04-21 02:14:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
-b53bf56 | 2026-04-20 12:40:52 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
 … (truncated)
 ```
 
