@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-22T19:47:01Z`
-- Look-back: **7** calendar days (`2026-04-15` → today UTC)
+- Generated (UTC): `2026-04-23T02:24:49Z`
+- Look-back: **7** calendar days (`2026-04-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,10 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 253 | — |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 253 | — |
-
-_Notes: (live fetch skipped: missing `google_credentials.json`)_
+| 2026 QR Code Sales | $40,000 | $1,666 | 4% | `2026-12-31` | 252 | **behind** |
+| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 252 | on track |
 
 ---
 
@@ -75,7 +73,7 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-04-19 | claude | **iOS Reminders → oracle pipeline:** New Rails endpoint **`POST https://edgar.truesight.me/oracle/reminders_sync`** in **`sentiment_importer`** (`app/controllers/oracle/reminders_sync_controller.rb`). Bearer-auth'd, accepts any POST body (any content-type — iOS Shortcuts sends iCalendar VTODO despite JSON header) and archives verbatim to **`ecosystem_change_logs/reminders_raws/<UTC-timestamp>.json`** via GitHub Contents API. Credentials (`oracle_sync_token`, `github_pat`) in `config/application.rb` (not env). The oracle GAS at `oracle.truesight.me` still reads `ecosystem_change_logs/reminders/current.json` — downstream parser from raw archive to current.json is TODO.
 
-_All dated lines on/after 2026-04-15_ (4):
+_All dated lines on/after 2026-04-16_ (4):
 
 - 2026-04-16 | cursor | **Tokenomics GAS headers:** Every **`tokenomics/google_app_scripts/**/*.gs`** now documents **`Apps Script editor:`** `https://script.google.com/home/projects/<scriptId>/edit` (or N/A for deprecated stubs) per **`clasp_mirrors/PROJECT_INDEX.md`**. **`NOTES_tokenomics.md`** — index link + SeaCoast ingest row (`1gi4YKh2…`). SeaCoast **`Code.gs`** header order normalized.
 - 2026-04-19 | claude | **Beer Hall + advisory snapshot automation:** WhatsApp posting via OpenClaw **retired**; digest is now archive-only. Added **`market_research/.github/workflows/advisory-snapshot-refresh.yml`** (every 6 h) and **`beer-hall-digest-daily.yml`** (00:00 UTC daily, auto-merges PRs). New **`market_research/scripts/draft_beer_hall_digest.py`** calls Claude Sonnet 4.6 via the anthropic SDK to draft Message 1 + Message 2 from the preview + latest 2 archives as few-shot examples. New repo secret: **`ORACLE_ADVISORY_PUSH_TOKEN`** (fine-grained PAT, Contents+PR Read/Write on `ecosystem_change_logs` and `agentic_ai_context`). `ANTHROPIC_API_KEY` also added. **`WORKSPACE_CONTEXT.md` §3d** rewritten; **`OPENCLAW_WHATSAPP.md`** Beer Hall section marked legacy.
@@ -142,6 +140,8 @@ c28d5ef | 2026-04-21 13:45:46 -0700 | Merge pull request #63 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7be31ee | 2026-04-22 12:47:15 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
+6b06117 | 2026-04-22 12:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 48ece2f | 2026-04-22 07:16:26 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
 685f1a4 | 2026-04-22 07:16:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 0fcc9c1 | 2026-04-22 01:15:27 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
@@ -180,14 +180,14 @@ b53bf56 | 2026-04-20 12:40:52 -0700 | chore(previews): refresh Beer Hall preview
 335a465 | 2026-04-20 07:19:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 046269f | 2026-04-20 01:34:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
 6af2189 | 2026-04-20 01:34:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
-fd23b73 | 2026-04-19 20:58:00 -0700 | chore(previews): refresh Beer Hall preview (2026-04-20 UTC)
-16bd6f7 | 2026-04-19 20:57:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-20 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+874827a | 2026-04-22 19:14:57 -0700 | Merge pull request #238 from TrueSightDAO/inventory-webhook-script-lock
+6caa170 | 2026-04-22 19:14:40 -0700 | Serialize inventory webhook GETs with LockService script lock
 e6abd2d | 2026-04-21 23:42:19 -0700 | feat(dao_members_cache): emit dao_totals at snapshot root (schema_version 2) (#237)
 1de4b60 | 2026-04-21 23:25:53 -0700 | feat(tdg_identity_management): dao_members.json cache publisher + doGet action (#236)
 1b28994 | 2026-04-21 15:46:30 -0700 | Merge pull request #235 from TrueSightDAO/feature/gas-inventory-expense-authorization
@@ -274,6 +274,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c318a22 | 2026-04-22 16:28:35 -0700 | chore: refresh Agroverse store inventory snapshot
+a24746d | 2026-04-22 14:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
 08584bc | 2026-04-22 08:08:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9224db7 | 2026-04-21 14:52:31 -0700 | feat(repackaging-ingest): notify treasury-cache-publisher on successful currency commits (#4)
 5909bc7 | 2026-04-21 12:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -285,9 +287,6 @@ ac9568e | 2026-04-19 21:32:47 +0000 | chore: refresh store and partner inventory
 1f830fc | 2026-04-18 21:40:40 -0700 | Merge pull request #2 from TrueSightDAO/feat/repackaging-currency-ingest-gas
 d6f5f90 | 2026-04-18 21:40:31 -0700 | feat(gas): add repackaging-currency-ingest Apps Script + doGet processor
 c30b32f | 2026-04-17 11:28:50 -0700 | chore: refresh Agroverse store inventory snapshot
-c5e2924 | 2026-04-15 15:33:16 -0700 | Merge pull request #1 from TrueSightDAO/chore/refresh-inventory-snapshots-2026-04-15
-176e451 | 2026-04-15 15:31:29 -0700 | chore: refresh store and partner inventory snapshots
-2872f1b | 2026-04-15 14:45:20 -0700 | Add partners-inventory.json snapshot alongside store inventory
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -298,12 +297,6 @@ c5d8696 | 2026-04-20 11:28:06 -0700 | Merge pull request #75 from TrueSightDAO/f
 6090cab | 2026-04-19 15:57:44 -0700 | chore(agl6): live YouTube embed for São Jorge hot chocolate (gw2vIxPCcyQ)
 567db30 | 2026-04-19 15:41:11 -0700 | publish sao jorge fazenda (#73)
 fe81a3b | 2026-04-16 13:08:13 -0700 | feat(taste-profile): add AGL2 chart and document implementation framework (#72)
-23f8070 | 2026-04-15 16:10:36 -0700 | Merge pull request #71 from TrueSightDAO/fix/partner-inventory-after-gallery-2026-04-15
-c4c47b2 | 2026-04-15 16:10:26 -0700 | fix(partners): place inventory block after venue gallery when present
-aa09586 | 2026-04-15 15:53:08 -0700 | Merge pull request #70 from TrueSightDAO/feature/partner-pdp-inventory-snippet-ux-2026-04-15
-40fd053 | 2026-04-15 15:52:52 -0700 | fix(partners): PDP inventory snippets — copy, images, layout, stock stack
-3d37d8c | 2026-04-15 14:54:29 -0700 | Merge pull request #69 from TrueSightDAO/feature/partner-venue-inventory-snippets
-3f332d1 | 2026-04-15 14:54:16 -0700 | feat(partners): show ledger venue inventory and optional online cart
 ```
 
 ### `iching_oracle` → `oracle`
@@ -333,12 +326,20 @@ f87fb87 | 2026-04-18 12:38:58 -0700 | Merge pull request #12 from TrueSightDAO/f
 bfc3933 | 2026-04-18 12:38:31 -0700 | Add Apr 18 follow-up sweep report and complete AWS security group remediation
 f79ab95 | 2026-04-17 16:16:12 -0700 | Merge pull request #11 from TrueSightDAO/feature/monthly-ebs-snapshot
 7c225b7 | 2026-04-17 16:15:53 -0700 | Add monthly EBS snapshot workflow for krake and seni_sql databases
-3771146 | 2026-04-15 14:15:12 -0700 | Add final AWS account sweep report for 767697632458 (#10)
 ```
 
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-04-23T022449Z_dao-client-read-layer-members-cache-store-restocks.md`
+
+- **posted_at_utc:** `2026-04-23T02:24:49Z`  
+- **slug:** `dao-client-read-layer-members-cache-store-restocks`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Big week for the read side of the stack: the dao_client got a full cache layer so Python scripts and the browser DApp can pull DAO data from GitHub without hitting GAS every time; a DAO members cache went live so signature checks are fast; and Lumin Earth Apothecary restocked with five Oscar 2024 kraft pouches via on-chain inventory movements.
+  - dao_client cache layer shipped: GitHub Raw and GitHub Contents backends mean Python consumers now read treasury data from cached snapshots rather than live GAS calls on every request.
 
 ### `beer-hall_2026-04-22T021304Z_dao-client-treasury-cache-retailer-playbook-live.md`
 
@@ -357,15 +358,6 @@ f79ab95 | 2026-04-17 16:16:12 -0700 | Merge pull request #11 from TrueSightDAO/f
 
   Busy week across the stack — whitepaper accuracy, Oracle upgrades, email marketing scaffolding, São Jorge farm page, and ongoing AWS security follow-through.
   - Whitepapers updated to be agentic-AI-friendly: Gas Fee section dropped, Edgar/TrueChain/Oracle terms defined, TrueTech Inc correctly distinguished from Brazilian suppliers, Beer Hall described as archive-only, and 31 broken partnership-agreement links fixed with direct Google Doc URLs.
-
-### `beer-hall_2026-04-19T213956Z_retire-whatsapp-oracle-and-reminders-live.md`
-
-- **posted_at_utc:** `2026-04-19T21:39:56Z`  
-- **slug:** `retire-whatsapp-oracle-and-reminders-live`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  OpenClaw × Cursor digest — retired from WhatsApp posting; archive-only for oracle / feed context (not a manual post from Gary)
-  - Cybernetic Oracle is live. oracle.truesight.me now draws a hexagram and passes DAO state (advisory snapshot, strategic blocks, open reminders) to Grok for a grounded reading. GAS backend version-controlled.
 
 ---
 
