@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-24T23:19:50Z`
+- Generated (UTC): `2026-04-24T23:27:36Z`
 - Look-back: **7** calendar days (`2026-04-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,7 +33,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 | 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 251 | — |
 | USA Agroverse Partners | 100 | — | — | `2026-12-31` | 251 | — |
 
-_Notes: (live fetch skipped: missing `google_credentials.json`)_
+_Notes: (live fetch skipped: `No module named 'gspread'`)_
 
 ---
 
@@ -152,12 +152,14 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `market_research` → `go_to_market`
 
 ```
-719e154 | 2026-04-24 16:18:42 -0700 | ci: inject google_credentials.json from GOOGLE_CREDENTIALS_JSON secret for live Sheets fetch
+0395a91 | 2026-04-24 16:25:04 -0700 | ci: fix secret name to GOOGLE_CREDENTIALS_JSON for live Sheets fetch
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a277910 | 2026-04-24 16:19:59 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
+c147647 | 2026-04-24 16:19:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 256630c | 2026-04-24 12:29:15 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
 d2c27f7 | 2026-04-24 12:29:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 c5507aa | 2026-04-24 10:58:00 -0700 | docs(sentiment_importer): add NOTES with deploy flow + systemd env gotcha (#49)
@@ -196,8 +198,6 @@ c572e23 | 2026-04-23 02:24:54 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 cc8d63a | 2026-04-22 00:41:17 -0700 | docs(blockchain-anchoring): v0.2 — TrueChain's value is conditional, not assumed (#40)
 7313b77 | 2026-04-22 00:22:34 -0700 | docs(blockchain-anchoring): add two mermaid diagrams for non-technical readers (#39)
 cff1715 | 2026-04-22 00:12:54 -0700 | docs: internal proposal for blockchain-anchoring DAO caches + Telegram logs (#38)
-a9f220c | 2026-04-21 20:47:34 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
-76536c7 | 2026-04-21 20:47:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 … (truncated)
 ```
 
@@ -410,7 +410,7 @@ f79ab95 | 2026-04-17 16:16:12 -0700 | Merge pull request #11 from TrueSightDAO/f
 
 ## Sheet evidence (sales)
 
-_(Skipped: missing service account file `google_credentials.json` under `market_research/`.)_
+_(Skipped: import error — install deps from `market_research/requirements.txt`: `No module named 'gspread'`.)_
 
 ---
 
