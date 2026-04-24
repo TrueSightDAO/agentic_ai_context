@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-24T08:31:16Z`
+- Generated (UTC): `2026-04-24T14:14:13Z`
 - Look-back: **7** calendar days (`2026-04-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -42,7 +42,7 @@ _Notes: (live fetch skipped: missing `google_credentials.json`)_
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-04-23T23:36:04.696Z`
+- Generated (UTC): `2026-04-24T10:59:14.427Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **521**
 - Partnered (north-star): **13**
@@ -150,6 +150,8 @@ d3fcf05 | 2026-04-23 18:28:22 -0700 | feat(newsletter): workbook mirrors, Email 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4a726fd | 2026-04-24 01:31:30 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
+a49b6e0 | 2026-04-24 01:31:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 518f860 | 2026-04-23 20:58:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
 a61c04e | 2026-04-23 20:58:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 34905e7 | 2026-04-23 19:25:50 -0700 | Merge pull request #47 from TrueSightDAO/auto/advisory-refresh-2026-04-24
@@ -188,8 +190,6 @@ a9f220c | 2026-04-21 20:47:34 -0700 | chore(previews): refresh Beer Hall preview
 c492992 | 2026-04-21 14:39:30 -0700 | docs: dao_client — mark auth flow validated, document modules/ (#35)
 dc30dee | 2026-04-21 14:24:40 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 971b86a | 2026-04-21 14:24:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
-11d92a4 | 2026-04-21 14:09:00 -0700 | docs: index TrueSightDAO/dao_client (Python Edgar CLI + loopback auth) (#34)
-d87deac | 2026-04-21 13:45:50 -0700 | chore: drop CONSTRAINTS.md + METRICS_WEEKLY.md stubs (#33)
 … (truncated)
 ```
 
