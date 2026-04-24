@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-24T03:57:50Z`
+- Generated (UTC): `2026-04-24T08:31:16Z`
 - Look-back: **7** calendar days (`2026-04-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -150,6 +150,8 @@ d3fcf05 | 2026-04-23 18:28:22 -0700 | feat(newsletter): workbook mirrors, Email 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+518f860 | 2026-04-23 20:58:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
+a61c04e | 2026-04-23 20:58:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 34905e7 | 2026-04-23 19:25:50 -0700 | Merge pull request #47 from TrueSightDAO/auto/advisory-refresh-2026-04-24
 4711fff | 2026-04-24 02:25:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 c8f8124 | 2026-04-23 18:33:59 -0700 | docs(newsletter): Email 360 purpose, limits, and regeneration (§1b). (#46)
@@ -188,8 +190,6 @@ dc30dee | 2026-04-21 14:24:40 -0700 | chore(previews): refresh Beer Hall preview
 971b86a | 2026-04-21 14:24:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 11d92a4 | 2026-04-21 14:09:00 -0700 | docs: index TrueSightDAO/dao_client (Python Edgar CLI + loopback auth) (#34)
 d87deac | 2026-04-21 13:45:50 -0700 | chore: drop CONSTRAINTS.md + METRICS_WEEKLY.md stubs (#33)
-980e24b | 2026-04-21 12:45:29 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
-e80aed1 | 2026-04-21 12:45:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 … (truncated)
 ```
 
@@ -287,6 +287,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b8d12d4 | 2026-04-24 08:25:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 87ffff1 | 2026-04-23 08:13:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0a3a25f | 2026-04-22 19:28:51 -0700 | chore: refresh Agroverse store inventory snapshot
 c318a22 | 2026-04-22 16:28:35 -0700 | chore: refresh Agroverse store inventory snapshot
