@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-24T19:29:06Z`
+- Generated (UTC): `2026-04-24T23:19:50Z`
 - Look-back: **7** calendar days (`2026-04-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -119,6 +119,12 @@ _All dated lines on/after 2026-04-17_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b4f96bd | 2026-04-24 13:38:16 -0700 | blog: link interactive artifacts and swap private Edgar repo for public dao_client (#52)
+f2473bd | 2026-04-24 13:20:33 -0700 | blog: add Stone Soup folklore analogy to Plug-and-Play architecture post (#51)
+ddea086 | 2026-04-24 13:12:53 -0700 | blog: expand Plug-and-Play post with concrete examples, repo links, and accessibility (#50)
+221d685 | 2026-04-24 13:04:45 -0700 | blog: unique header images for Do Nothing Society and Plug-and-Play posts (#49)
+82be0fc | 2026-04-24 13:00:07 -0700 | blog: Plug-and-play architecture — why every service reads from one sheet (#48)
+ee41942 | 2026-04-24 12:48:31 -0700 | blog: The Do Nothing Society — let machines run the chain, let humans hold the soul (#47)
 90f50c3 | 2026-04-24 11:52:26 -0700 | Merge pull request #46 from TrueSightDAO/fix/mobile-overflow-beerhall-detail
 dfb498c | 2026-04-24 11:52:03 -0700 | fix: prevent mobile overflow on beerhall detail view
 d8db274 | 2026-04-21 15:47:21 -0700 | Merge pull request #45 from TrueSightDAO/docs/blog-oracle-feedback-loop
@@ -146,12 +152,14 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `market_research` → `go_to_market`
 
 ```
-3e45723 | 2026-04-24 12:15:18 -0700 | feat(advisory): surface retail field reports in snapshot (#72)
+719e154 | 2026-04-24 16:18:42 -0700 | ci: inject google_credentials.json from GOOGLE_CREDENTIALS_JSON secret for live Sheets fetch
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+256630c | 2026-04-24 12:29:15 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
+d2c27f7 | 2026-04-24 12:29:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 c5507aa | 2026-04-24 10:58:00 -0700 | docs(sentiment_importer): add NOTES with deploy flow + systemd env gotcha (#49)
 69ed377 | 2026-04-24 10:42:42 -0700 | docs: note sentiment_importer deploy.sh flow (#48)
 6eaae20 | 2026-04-24 07:14:28 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
@@ -190,8 +198,6 @@ cc8d63a | 2026-04-22 00:41:17 -0700 | docs(blockchain-anchoring): v0.2 — TrueC
 cff1715 | 2026-04-22 00:12:54 -0700 | docs: internal proposal for blockchain-anchoring DAO caches + Telegram logs (#38)
 a9f220c | 2026-04-21 20:47:34 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
 76536c7 | 2026-04-21 20:47:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
-03d730f | 2026-04-21 19:13:21 -0700 | Merge pull request #37 from TrueSightDAO/auto/advisory-refresh-2026-04-22
-8c141a6 | 2026-04-22 02:13:11 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 … (truncated)
 ```
 
@@ -236,6 +242,16 @@ c421451 | 2026-04-18 13:21:19 -0700 | feat(agroverse-qr): multi-item Stripe sess
 ### `dapp` → `dapp`
 
 ```
+d2aa823 | 2026-04-24 15:41:23 -0700 | chat: reclaim mobile vertical space and fix media query cascade (#179)
+074828d | 2026-04-24 15:24:58 -0700 | fix: pin chat input to bottom, fix flex layout for mobile
+9649675 | 2026-04-24 14:49:36 -0700 | feat: move Governor Chat to top of nav menu
+452ebea | 2026-04-24 14:44:46 -0700 | fix(chat): mobile layout — responsive logo, dvh viewport, touch targets
+b2a577b | 2026-04-24 14:14:47 -0700 | deploy: point API_BASE_URL to production chatbot.truesight.me
+b4449e4 | 2026-04-24 14:08:26 -0700 | feat(chat): render full Markdown in conversation using marked.js
+d5c91d7 | 2026-04-24 14:06:50 -0700 | fix(chat): move nav dropdown and badge inside container, fix viewport sizing
+4dc0155 | 2026-04-24 14:04:38 -0700 | fix(chat): prevent conversation overflow from container
+dcae305 | 2026-04-24 13:38:14 -0700 | feat(chat): friendly access-denied UI for restricted Governor Chat
+b12dd27 | 2026-04-24 12:50:01 -0700 | feat: add Governor Chat page (chat.html) + nav link
 49e91bf | 2026-04-24 12:16:19 -0700 | feat(dapp): POST signed [RETAIL FIELD REPORT EVENT] to Edgar (#178)
 4b0d779 | 2026-04-23 16:57:40 -0700 | Stores by Status: eight-bucket WU/FU bars and segment drill-down (#177)
 4fbbf23 | 2026-04-23 16:48:01 -0700 | Nav dropdown: open Store Interaction History in same tab. (#176)
@@ -266,8 +282,7 @@ d6ca6a5 | 2026-04-21 12:26:18 -0700 | feat(routes): migrate report_contribution.
 ec3cb4a | 2026-04-20 11:30:11 -0700 | Merge pull request #158 from TrueSightDAO/feature/rename-start-script
 ef8bb26 | 2026-04-20 11:30:00 -0700 | Rename serve_local.sh to start_local.sh, default port 8081
 e0f868c | 2026-04-18 21:39:36 -0700 | Merge pull request #157 from TrueSightDAO/feat/repackaging-planner-edgar-route
-ba2ccea | 2026-04-18 21:39:05 -0700 | feat(repackaging_planner): route through Edgar with signed payload + UX rewrite
-f89e75e | 2026-04-17 16:03:20 -0700 | feat(batch-qr): update GAS URL to new admin@truesight.me project (#156)
+… (truncated)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -382,7 +397,20 @@ f79ab95 | 2026-04-17 16:16:12 -0700 | Merge pull request #11 from TrueSightDAO/f
 
 ## Recent retail field reports (DApp store status updates)
 
-_(No `retail_field_reports/*.json` found under ecosystem_change_logs clone.)_
+- **`20260424T201819Z.json`** — `2026-04-24T20:18:19Z`  
+  **** → `` (was `—`) | sig: success
+
+- **`20260424T201629Z.json`** — `2026-04-24T20:16:29Z`  
+  **** → `` (was `—`) | sig: success
+
+- **`20260424T200731Z.json`** — `2026-04-24T20:07:32Z`  
+  **** → `` (was `—`) | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_(Skipped: missing service account file `google_credentials.json` under `market_research/`.)_
 
 ---
 
