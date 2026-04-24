@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-24T02:25:34Z`
+- Generated (UTC): `2026-04-24T03:57:50Z`
 - Look-back: **7** calendar days (`2026-04-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,8 +30,10 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,904 | 5% | `2026-12-31` | 251 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 251 | **behind** |
+| 2026 QR Code Sales | $40,000 | — | — | `2026-12-31` | 251 | — |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 251 | — |
+
+_Notes: (live fetch skipped: missing `google_credentials.json`)_
 
 ---
 
@@ -148,6 +150,8 @@ d3fcf05 | 2026-04-23 18:28:22 -0700 | feat(newsletter): workbook mirrors, Email 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+34905e7 | 2026-04-23 19:25:50 -0700 | Merge pull request #47 from TrueSightDAO/auto/advisory-refresh-2026-04-24
+4711fff | 2026-04-24 02:25:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 c8f8124 | 2026-04-23 18:33:59 -0700 | docs(newsletter): Email 360 purpose, limits, and regeneration (§1b). (#46)
 ef734c6 | 2026-04-23 18:29:08 -0700 | docs(newsletter): dedicated workbook, Email 360, mirrors (#45)
 e5d3620 | 2026-04-23 18:17:46 -0700 | Merge pull request #44 from TrueSightDAO/feat/context-email-agent-reconcile-2026-04-24
@@ -186,8 +190,6 @@ dc30dee | 2026-04-21 14:24:40 -0700 | chore(previews): refresh Beer Hall preview
 d87deac | 2026-04-21 13:45:50 -0700 | chore: drop CONSTRAINTS.md + METRICS_WEEKLY.md stubs (#33)
 980e24b | 2026-04-21 12:45:29 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 e80aed1 | 2026-04-21 12:45:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
-6546ad7 | 2026-04-21 12:33:29 -0700 | docs: add Retailer Onboarding Playbook v0.1 (#32)
-ecb0668 | 2026-04-21 07:15:43 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
 … (truncated)
 ```
 
