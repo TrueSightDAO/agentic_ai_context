@@ -13,33 +13,45 @@ When an **AI coding assistant** completes work that should appear on the **DAO c
    ```bash
    cd ~/Applications/dao_client
    source .venv/bin/activate   # if using venv
-   python3 modules/report_ai_agent_contribution.py \
+   python3 -m truesight_dao_client.modules.report_ai_agent_contribution \
      --title "Short one-line title" \
      --body-file path/to/description.md \
+     --type Time --hours 1 --minutes 30 \
      --pr https://github.com/TrueSightDAO/some-repo/pull/123 \
      --pr https://github.com/TrueSightDAO/other-repo/pull/456
    ```
-   Or pass `--body` instead of `--body-file` for a short inline description (still include PR URLs inside the text if you use `--body`).
+   Or for monetary contributions:
+   ```bash
+   python3 -m truesight_dao_client.modules.report_ai_agent_contribution \
+     --title "Purchased domain for project" \
+     --body "Renewed truesight.me domain for 1 year." \
+     --type USD --usd 12.99 \
+     --pr https://github.com/TrueSightDAO/some-repo/pull/123
+   ```
 
-2. **At least one merged (or ready) GitHub PR URL** under **`https://github.com/TrueSightDAO/`** must be supplied with **`--pr`** (repeatable). The script rejects non–TrueSightDAO URLs so personal forks do not pollute the audit trail.
+2. **Contribution type and auto-computed Amount / TDG**
+   - `--type Time` — requires `--hours` and/or `--minutes`.  
+     Amount = total minutes. TDG = total hours × 100.
+   - `--type USD` — requires `--usd`.  
+     Amount = USD. TDG = USD.
+   - The CLI **rejects** `--type Time` with zero hours/minutes or `--type USD` with zero/negative USD.
+   - These formulas match the DApp (`report_contribution.html`) exactly.
 
-3. **Be explicit in the body** (bullet list is ideal):
+3. **At least one merged (or ready) GitHub PR URL** under **`https://github.com/TrueSightDAO/`** must be supplied with **`--pr`** (repeatable). The script rejects non–TrueSightDAO URLs so personal forks do not pollute the audit trail.
+
+4. **Be explicit in the body** (bullet list is ideal):
    - **What changed** (repos, files, behavior).
    - **Why** (safeguard, bugfix, operator workflow).
    - **Evidence:** every **`--pr`** link again inside the body under a **“GitHub”** or **“Pull requests”** heading so the Telegram / sheet line is self-contained when someone scrolls without the CLI args.
 
-4. **`Type` field** defaults to **`AI Agent (software & documentation)`** so ledger readers can filter automation vs human time-based contributions.
+5. **`Contributor(s)`** defaults from **`EMAIL`** in `.env` (local-part @ domain); override with **`--contributors "Display Name <email@example.com>"`** when the human sponsor should be credited instead.
 
-5. **`Amount` / `TDG Issued`** default to **`0`** unless the operator sets real economics for the session.
-
-6. **`Contributor(s)`** defaults from **`EMAIL`** in `.env` (local-part @ domain); override with **`--contributors "Display Name"`** when the human sponsor should be credited instead.
-
-7. **`--generation-source`** may point at this doc or the Cursor session URL so `This submission was generated using …` is traceable:
+6. **`--generation-source`** may point at this doc or the Cursor session URL so `This submission was generated using …` is traceable:
    ```text
    https://github.com/TrueSightDAO/agentic_ai_context/blob/main/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md
    ```
 
-8. **`--dry-run`** prints the signed payload only (no POST). Use before the real submission when debugging.
+7. **`--dry-run`** prints the signed payload only (no POST). Use before the real submission when debugging.
 
 ---
 
@@ -62,3 +74,4 @@ Human flow: [DAO Contribution Report](https://dapp.truesight.me/report_contribut
 - Submitting without **any** `github.com/TrueSightDAO/.../pull/` link when code or docs landed in GitHub.
 - Vague one-line descriptions with no file/PR reference.
 - Using a non–`dao_client` signing path that drifts from DApp canonical formatting.
+- Hard-coding `--amount` or `--tdg-issued` to `0` instead of using `--type Time` / `--type USD` with the correct inputs.
