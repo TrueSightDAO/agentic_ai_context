@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-24T23:31:57Z`
+- Generated (UTC): `2026-04-24T23:33:09Z`
 - Look-back: **7** calendar days (`2026-04-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -156,6 +156,8 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+de6aadf | 2026-04-24 16:32:10 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
+21b0f7c | 2026-04-24 16:32:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 aaa123d | 2026-04-24 16:27:46 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
 22a3d36 | 2026-04-24 16:27:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 a277910 | 2026-04-24 16:19:59 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
@@ -194,8 +196,6 @@ c572e23 | 2026-04-23 02:24:54 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 685f1a4 | 2026-04-22 07:16:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 0fcc9c1 | 2026-04-22 01:15:27 -0700 | chore(previews): refresh Beer Hall preview (2026-04-22 UTC)
 2480a43 | 2026-04-22 01:15:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
-7523efd | 2026-04-22 00:46:44 -0700 | docs: correct TrueChain status — designed, NOT running (v0.3) (#41)
-cc8d63a | 2026-04-22 00:41:17 -0700 | docs(blockchain-anchoring): v0.2 — TrueChain's value is conditional, not assumed (#40)
 … (truncated)
 ```
 
