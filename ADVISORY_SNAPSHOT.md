@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-24T14:14:13Z`
+- Generated (UTC): `2026-04-24T19:29:06Z`
 - Look-back: **7** calendar days (`2026-04-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -119,6 +119,8 @@ _All dated lines on/after 2026-04-17_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+90f50c3 | 2026-04-24 11:52:26 -0700 | Merge pull request #46 from TrueSightDAO/fix/mobile-overflow-beerhall-detail
+dfb498c | 2026-04-24 11:52:03 -0700 | fix: prevent mobile overflow on beerhall detail view
 d8db274 | 2026-04-21 15:47:21 -0700 | Merge pull request #45 from TrueSightDAO/docs/blog-oracle-feedback-loop
 d066d57 | 2026-04-21 15:46:39 -0700 | blog: oracle feedback loop — offline activity to daily advisory
 986bcbc | 2026-04-21 13:55:51 -0700 | docs(blog): retarget signature-onboarding demo links to TrueSightDAO/dao_client (#44)
@@ -144,12 +146,16 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `market_research` → `go_to_market`
 
 ```
-d3fcf05 | 2026-04-23 18:28:22 -0700 | feat(newsletter): workbook mirrors, Email 360, and Workbook context tab. (#70)
+3e45723 | 2026-04-24 12:15:18 -0700 | feat(advisory): surface retail field reports in snapshot (#72)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c5507aa | 2026-04-24 10:58:00 -0700 | docs(sentiment_importer): add NOTES with deploy flow + systemd env gotcha (#49)
+69ed377 | 2026-04-24 10:42:42 -0700 | docs: note sentiment_importer deploy.sh flow (#48)
+6eaae20 | 2026-04-24 07:14:28 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
+fe3780d | 2026-04-24 07:14:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 4a726fd | 2026-04-24 01:31:30 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
 a49b6e0 | 2026-04-24 01:31:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 518f860 | 2026-04-23 20:58:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
@@ -186,16 +192,13 @@ a9f220c | 2026-04-21 20:47:34 -0700 | chore(previews): refresh Beer Hall preview
 76536c7 | 2026-04-21 20:47:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
 03d730f | 2026-04-21 19:13:21 -0700 | Merge pull request #37 from TrueSightDAO/auto/advisory-refresh-2026-04-22
 8c141a6 | 2026-04-22 02:13:11 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-22 UTC)
-79ed534 | 2026-04-21 16:09:07 -0700 | docs: AI agent [CONTRIBUTION EVENT] convention (dao_client + context) (#36)
-c492992 | 2026-04-21 14:39:30 -0700 | docs: dao_client — mark auth flow validated, document modules/ (#35)
-dc30dee | 2026-04-21 14:24:40 -0700 | chore(previews): refresh Beer Hall preview (2026-04-21 UTC)
-971b86a | 2026-04-21 14:24:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-21 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+ae98ca1 | 2026-04-24 10:12:29 -0700 | feat(gas): include visible Agroverse logo tracker in draft HTML. (#245)
 a93030c | 2026-04-23 17:30:46 -0700 | Merge pull request #244 from TrueSightDAO/feat/email-agent-drafts-open-click
 b6dfe32 | 2026-04-23 17:30:09 -0700 | feat(apps-script): Email Agent Drafts Open and Click through columns
 2f71a03 | 2026-04-23 17:21:59 -0700 | Merge pull request #243 from TrueSightDAO/docs/clasp-mirrors-readme-deploy-note
@@ -233,6 +236,7 @@ c421451 | 2026-04-18 13:21:19 -0700 | feat(agroverse-qr): multi-item Stripe sess
 ### `dapp` → `dapp`
 
 ```
+49e91bf | 2026-04-24 12:16:19 -0700 | feat(dapp): POST signed [RETAIL FIELD REPORT EVENT] to Edgar (#178)
 4b0d779 | 2026-04-23 16:57:40 -0700 | Stores by Status: eight-bucket WU/FU bars and segment drill-down (#177)
 4fbbf23 | 2026-04-23 16:48:01 -0700 | Nav dropdown: open Store Interaction History in same tab. (#176)
 2f4137d | 2026-04-23 16:18:29 -0700 | feat(stores-by-status): pipeline overview with warmup/follow-up touch metrics (#175)
@@ -373,6 +377,12 @@ f79ab95 | 2026-04-17 16:16:12 -0700 | Merge pull request #11 from TrueSightDAO/f
 
   Heavy infrastructure week: the DApp got a treasury-cache speed layer, a China GFW workaround, and a full routes centralisation; the dao_client Python CLI shipped with 15 signed-event wrappers; and the Retailer Onboarding Playbook v0.1 landed from 332 real Hit List rows.
   - Treasury-cache framework live: DApp pages now pull a pre-computed JSON snapshot of all off-chain inventory (items, managers, unit cost, weight) from GitHub instead of making slow per-page GAS calls on load.
+
+---
+
+## Recent retail field reports (DApp store status updates)
+
+_(No `retail_field_reports/*.json` found under ecosystem_change_logs clone.)_
 
 ---
 
