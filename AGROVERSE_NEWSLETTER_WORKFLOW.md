@@ -21,6 +21,14 @@ How AI assistants should generate and send community emails to the Agroverse new
 | Click-tracking endpoint | **Edgar**: `GET https://edgar.truesight.me/newsletter/click?mid=…&r=…&to=…` | Redirects to the original URL and records click columns on the same row. |
 | Body drafts | **`market_research/newsletter_drafts/YYYY-MM-DD_<slug>.md`** | Markdown body with `**Subject:** …` in the preamble; everything after the first `---` is the email body. |
 
+### 1b. **Email 360** — purpose and how it works
+
+**Purpose:** One place to answer, for a single **email address**, what the operation already knows about that person **before** drafting or sending the next campaign: which **newsletters** they received (and which **campaigns**), which **QR / ledger** rows tie them to product/shipment reality, which **SKUs** that implies (today via **`ledger`** URL slug → **`Agroverse SKUs`** **`Shipment`**, case-insensitive), their **subscriber** row, and a live view of **`Currencies`** for price semantics. Use it for **de-noising** (avoid pitching what they already carry), **forensics** after a send (opens/clicks next to product graph), and **consistency checks** (subscriber email vs QR Owner Email vs send log).
+
+**What it is not:** The send log does **not** store SKU IDs or “products mentioned in copy.” **Campaign + subject** next to the spilled rows are still the human-readable bridge for “what we told them about.”
+
+**Implementation:** All logic lives in the **newsletter workbook** tab **`Email 360`**, built by **`market_research/scripts/setup_newsletter_workbook_mirrors.py --yes`**, which reads **row 1** on Main Ledger tabs to detect email / shipment columns and writes `FILTER` / `COUNTIF` / `IMPORTRANGE`-backed formulas. **B2** is the only required input. Re-run the script after **header renames** or **new join rules** so formulas stay aligned.
+
 ---
 
 ## 2. Gmail label convention
@@ -172,7 +180,7 @@ Share **both** spreadsheet IDs with the right service accounts as above.
 
 ## 8. Changelog
 
-- **2026-04-22** — Dedicated newsletter workbook **`1ed3q3…`**: send log + Edgar open/click; IMPORTRANGE mirrors (Subscribers, QR codes, SKUs, Currencies); **Email 360** + **Workbook context** via `setup_newsletter_workbook_mirrors.py`. `send_newsletter.py` logs to **`NEWSLETTER_LOG_SPREADSHEET_ID`**; subscribers still from Main Ledger.
+- **2026-04-22** — Dedicated newsletter workbook **`1ed3q3…`**: send log + Edgar open/click; IMPORTRANGE mirrors (Subscribers, QR codes, SKUs, Currencies); **Email 360** + **Workbook context** via `setup_newsletter_workbook_mirrors.py`. `send_newsletter.py` logs to **`NEWSLETTER_LOG_SPREADSHEET_ID`**; subscribers still from Main Ledger. Same day: **§1b** documents **Email 360** purpose (de-noise, forensics, limits) and regeneration contract.
 - **2026-04-20** — v0.1. Initial flow. `send_newsletter.py` + Edgar `GET /newsletter/open.gif` + `Agroverse News Letter Emails` tab on Main Ledger. First campaign: `two_bahia_bars` (Oscar's Farm 2024, Fazenda Santa Ana 2023, both 81% single-estate by Kirsten). Review drafts sent to Kirsten + Fatima on this date.
 
 ---
