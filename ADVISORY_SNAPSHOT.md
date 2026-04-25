@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-25T13:43:25Z`
+- Generated (UTC): `2026-04-25T19:26:01Z`
 - Look-back: **7** calendar days (`2026-04-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -156,6 +156,8 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9aad56b | 2026-04-25 06:43:42 -0700 | chore(previews): refresh Beer Hall preview (2026-04-25 UTC)
+0503c1e | 2026-04-25 06:43:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-25 UTC)
 62fec98 | 2026-04-25 00:52:35 -0700 | chore(previews): refresh Beer Hall preview (2026-04-25 UTC)
 7ce2b0a | 2026-04-25 00:52:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-25 UTC)
 0a3344f | 2026-04-24 20:40:21 -0700 | chore(previews): refresh Beer Hall preview (2026-04-25 UTC)
@@ -194,8 +196,6 @@ f2919bc | 2026-04-23 07:19:49 -0700 | chore(previews): refresh Beer Hall preview
 5dbde21 | 2026-04-23 07:19:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 a43e204 | 2026-04-23 01:19:38 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
 85d091e | 2026-04-23 01:19:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
-5c301b9 | 2026-04-22 20:54:28 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
-4acfa00 | 2026-04-22 20:54:27 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 … (truncated)
 ```
 
@@ -416,7 +416,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/25/2026 5:51:15 |
+| 2026-04 | 445.65 | 14276.60386 | 4/25/2026 11:50:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-18`; scanned last **327** data rows)
 
