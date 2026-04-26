@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-26T13:46:17Z`
+- Generated (UTC): `2026-04-26T19:28:19Z`
 - Look-back: **7** calendar days (`2026-04-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -157,6 +157,8 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+444fd9e | 2026-04-26 06:46:29 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
+edef04c | 2026-04-26 06:46:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-26 UTC)
 8c4d089 | 2026-04-26 01:01:39 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
 a64d824 | 2026-04-26 01:01:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-26 UTC)
 0e57a61 | 2026-04-25 21:02:49 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
@@ -195,8 +197,6 @@ a61c04e | 2026-04-23 20:58:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 4711fff | 2026-04-24 02:25:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 c8f8124 | 2026-04-23 18:33:59 -0700 | docs(newsletter): Email 360 purpose, limits, and regeneration (§1b). (#46)
 ef734c6 | 2026-04-23 18:29:08 -0700 | docs(newsletter): dedicated workbook, Email 360, mirrors (#45)
-e5d3620 | 2026-04-23 18:17:46 -0700 | Merge pull request #44 from TrueSightDAO/feat/context-email-agent-reconcile-2026-04-24
-786bcb2 | 2026-04-23 18:16:34 -0700 | docs: Hit List email-agent Edgar tracking and reconcile scripts
 … (truncated)
 ```
 
@@ -411,7 +411,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/26/2026 5:50:44 |
+| 2026-04 | 445.65 | 14276.60386 | 4/26/2026 11:50:31 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-19`; scanned last **327** data rows)
 
