@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-26T08:01:28Z`
+- Generated (UTC): `2026-04-26T13:46:17Z`
 - Look-back: **7** calendar days (`2026-04-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-04-25T10:59:14.365Z`
+- Generated (UTC): `2026-04-26T10:59:14.160Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **522**
 - Partnered (north-star): **13**
@@ -53,7 +53,8 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - AI: Contact Form found: 77  (#4)
 - AI: Photo rejected: 107  (#7)
 - AI: Photo needs review: 41  (#8)
-- AI: Warm up prospect: 66  (#9)
+- AI: Prospect replied: 2  (#9)
+- AI: Warm up prospect: 64  (#10)
 - Not Appropriate: 71  (#11)
 - Contacted: 4  (#12)
 - Shortlisted: 4  (#13)
@@ -72,11 +73,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **28**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **40** / **24** / **2**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
+- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **28**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **38** / **24** / **2**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
 - **Manager Follow-up**: **26** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **16**; warmup depth (none / once / ≥2): **26** / **0** / **0**; follow-up depth (none / once / ≥2): **20** / **1** / **5**
 - **Bulk Info Requested**: _(no rows in this status)_
-- **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **26** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **16**; warmup depth (none / once / ≥2): **26** / **0** / **0**; follow-up depth (none / once / ≥2): **20** / **1** / **5**
+- **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **0**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
+- **Follow-up pipeline (combined)**: **28** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **16**; warmup depth (none / once / ≥2): **28** / **0** / **0**; follow-up depth (none / once / ≥2): **22** / **1** / **5**
 
 ---
 
@@ -156,6 +157,8 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8c4d089 | 2026-04-26 01:01:39 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
+a64d824 | 2026-04-26 01:01:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-26 UTC)
 0e57a61 | 2026-04-25 21:02:49 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
 8b99690 | 2026-04-25 21:02:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-26 UTC)
 d95d2ed | 2026-04-25 19:30:25 -0700 | Merge pull request #53 from TrueSightDAO/auto/advisory-refresh-2026-04-26
@@ -194,8 +197,6 @@ c8f8124 | 2026-04-23 18:33:59 -0700 | docs(newsletter): Email 360 purpose, limit
 ef734c6 | 2026-04-23 18:29:08 -0700 | docs(newsletter): dedicated workbook, Email 360, mirrors (#45)
 e5d3620 | 2026-04-23 18:17:46 -0700 | Merge pull request #44 from TrueSightDAO/feat/context-email-agent-reconcile-2026-04-24
 786bcb2 | 2026-04-23 18:16:34 -0700 | docs: Hit List email-agent Edgar tracking and reconcile scripts
-432962d | 2026-04-23 17:21:17 -0700 | Merge pull request #43 from TrueSightDAO/docs/clasp-deploy-push-then-deploy-convention
-3dbc605 | 2026-04-23 17:20:56 -0700 | docs(tokenomics): treat 'clasp deploy' as push then deploy
 … (truncated)
 ```
 
@@ -410,7 +411,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/26/2026 0:50:20 |
+| 2026-04 | 445.65 | 14276.60386 | 4/26/2026 5:50:44 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-19`; scanned last **327** data rows)
 
