@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-25T19:26:01Z`
-- Look-back: **7** calendar days (`2026-04-18` → today UTC)
+- Generated (UTC): `2026-04-26T02:30:06Z`
+- Look-back: **7** calendar days (`2026-04-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $1,928 | 5% | `2026-12-31` | 250 | **behind** |
-| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 250 | **behind** |
+| 2026 QR Code Sales | $40,000 | $1,928 | 5% | `2026-12-31` | 249 | **behind** |
+| USA Agroverse Partners | 100 | 26 | 26% | `2026-12-31` | 249 | **behind** |
 
 ---
 
@@ -88,7 +88,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-04-22 | cursor | **Newsletter workbook `1ed3q3…`:** IMPORTRANGE mirrors (Subscribers, QR codes, SKUs, Currencies) + **Email 360** (lookup email → sends, QR, SKUs via ledger slug→Shipment, subscriber row, campaigns) + **Workbook context** tab. Script **`market_research/scripts/setup_newsletter_workbook_mirrors.py`**. **`AGROVERSE_NEWSLETTER_WORKFLOW.md`** + **`send_newsletter.py`** (`NEWSLETTER_LOG_SPREADSHEET_ID`) + **`sentiment_importer`** `Gdrive::NewsletterEmails` same ID; removed stray **`binding.pry`** in **`newsletter_controller#click`**.
 - 2026-04-24 | cursor | **Hit List retailer pipeline — email tracking + reconcile:** **sentiment_importer (Edgar)** — `GET /email_agent/open.gif` + `/email_agent/click` + `Gdrive::EmailAgentDrafts` (merged PR **#1031**). **go_to_market** — `--track-clicks` / **Open** & **Click through** on **Email Agent Drafts**; **`regenerate_pending_email_agent_draft_tracking.py`** for MIME refresh; **`reconcile_email_agent_drafts_stale_sent.py`** when Gmail is **SENT** but the sheet still says **`pending_review`**. **`HIT_LIST_CREDENTIALS.md`**; **`WORKSPACE_CONTEXT.md`** §4 Hit List bullet.
 
-_All dated lines on/after 2026-04-18_ (8):
+_All dated lines on/after 2026-04-19_ (8):
 
 - 2026-04-19 | claude | **Beer Hall + advisory snapshot automation:** WhatsApp posting via OpenClaw **retired**; digest is now archive-only. Added **`market_research/.github/workflows/advisory-snapshot-refresh.yml`** (every 6 h) and **`beer-hall-digest-daily.yml`** (00:00 UTC daily, auto-merges PRs). New **`market_research/scripts/draft_beer_hall_digest.py`** calls Claude Sonnet 4.6 via the anthropic SDK to draft Message 1 + Message 2 from the preview + latest 2 archives as few-shot examples. New repo secret: **`ORACLE_ADVISORY_PUSH_TOKEN`** (fine-grained PAT, Contents+PR Read/Write on `ecosystem_change_logs` and `agentic_ai_context`). `ANTHROPIC_API_KEY` also added. **`WORKSPACE_CONTEXT.md` §3d** rewritten; **`OPENCLAW_WHATSAPP.md`** Beer Hall section marked legacy.
 - 2026-04-19 | claude | **iOS Reminders → oracle pipeline:** New Rails endpoint **`POST https://edgar.truesight.me/oracle/reminders_sync`** in **`sentiment_importer`** (`app/controllers/oracle/reminders_sync_controller.rb`). Bearer-auth'd, accepts any POST body (any content-type — iOS Shortcuts sends iCalendar VTODO despite JSON header) and archives verbatim to **`ecosystem_change_logs/reminders_raws/<UTC-timestamp>.json`** via GitHub Contents API. Credentials (`oracle_sync_token`, `github_pat`) in `config/application.rb` (not env). The oracle GAS at `oracle.truesight.me` still reads `ecosystem_change_logs/reminders/current.json` — downstream parser from raw archive to current.json is TODO.
@@ -156,6 +156,8 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+17f7a49 | 2026-04-25 12:26:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-25 UTC)
+c702a12 | 2026-04-25 12:26:17 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-25 UTC)
 9aad56b | 2026-04-25 06:43:42 -0700 | chore(previews): refresh Beer Hall preview (2026-04-25 UTC)
 0503c1e | 2026-04-25 06:43:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-25 UTC)
 62fec98 | 2026-04-25 00:52:35 -0700 | chore(previews): refresh Beer Hall preview (2026-04-25 UTC)
@@ -194,8 +196,6 @@ e5d3620 | 2026-04-23 18:17:46 -0700 | Merge pull request #44 from TrueSightDAO/f
 70f4416 | 2026-04-23 12:50:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 f2919bc | 2026-04-23 07:19:49 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
 5dbde21 | 2026-04-23 07:19:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
-a43e204 | 2026-04-23 01:19:38 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
-85d091e | 2026-04-23 01:19:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 … (truncated)
 ```
 
@@ -232,8 +232,6 @@ be3e43a | 2026-04-21 13:50:12 -0700 | chore: relocate signature onboarding demo 
 8b9d2d7 | 2026-04-21 12:56:50 -0700 | feat(metrics): GAS to mirror Pipeline Dashboard → ecosystem_change_logs
 20bf43c | 2026-04-19 13:11:19 -0700 | Merge pull request #228 from TrueSightDAO/feat/inventory-api-agl-unit-cost-lookup
 b9103e5 | 2026-04-19 13:10:51 -0700 | feat(inventory-api): resolve AGL Balance unit_cost from main Currencies tab
-cfd760f | 2026-04-18 14:17:53 -0700 | perf(gas): fix 30-min trigger timeouts on telegram log processors (#227)
-c421451 | 2026-04-18 13:21:19 -0700 | feat(agroverse-qr): multi-item Stripe session link via column Z on QR codes (#226)
 ```
 
 ### `dapp` → `dapp`
@@ -341,17 +339,21 @@ c5d8696 | 2026-04-20 11:28:06 -0700 | Merge pull request #75 from TrueSightDAO/f
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
-921648e | 2026-04-18 12:49:41 -0700 | Merge pull request #14 from TrueSightDAO/feature/apr18-reply-location
-a5134de | 2026-04-18 12:49:30 -0700 | Fill in operator location in AWS case reply draft
-22176d4 | 2026-04-18 12:45:12 -0700 | Merge pull request #13 from TrueSightDAO/feature/apr18-security-followup
-0fbbc08 | 2026-04-18 12:44:51 -0700 | Add Apr 18 draft reply for AWS case 177613748700177 follow-up
-f87fb87 | 2026-04-18 12:38:58 -0700 | Merge pull request #12 from TrueSightDAO/feature/apr18-security-followup
-bfc3933 | 2026-04-18 12:38:31 -0700 | Add Apr 18 follow-up sweep report and complete AWS security group remediation
+_(no commits on origin/master in window)_
 ```
 
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-04-26T023006Z_governor-chat-live-retail-field-reports-member-cache.md`
+
+- **posted_at_utc:** `2026-04-26T02:30:06Z`  
+- **slug:** `governor-chat-live-retail-field-reports-member-cache`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  A busy week across the DApp, sales tooling, and contributor infrastructure: Governor Chat shipped to production, retail field reporting landed, and member identity caching cut load on the signature flow.
+  - Governor Chat is live on the DApp (chat.html) — token-gated with a friendly access-denied screen, full Markdown rendering, and pinned mobile input; promoted to the top of the nav menu.
 
 ### `beer-hall_2026-04-25T020706Z_governor-chat-blog-blitz-retail-field-reports.md`
 
@@ -371,15 +373,6 @@ bfc3933 | 2026-04-18 12:38:31 -0700 | Add Apr 18 follow-up sweep report and comp
   Strong sales week at the Santa Cruz retail partners, the oracle advisor switched to Claude with prompt caching, a full email-tracking pipeline landed for the Hit List, and the DApp's store pipeline view got a significant UX overhaul.
   - 13 Oscar 2024 bars sold at Secrets of the Garden at $17 each (cash to Gary); 2 Oscar bars sold at Lumin Earth Apothecary at $17 each — 15 bars total across both Santa Cruz partners this week.
 
-### `beer-hall_2026-04-23T022449Z_dao-client-read-layer-members-cache-store-restocks.md`
-
-- **posted_at_utc:** `2026-04-23T02:24:49Z`  
-- **slug:** `dao-client-read-layer-members-cache-store-restocks`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Big week for the read side of the stack: the dao_client got a full cache layer so Python scripts and the browser DApp can pull DAO data from GitHub without hitting GAS every time; a DAO members cache went live so signature checks are fast; and Lumin Earth Apothecary restocked with five Oscar 2024 kraft pouches via on-chain inventory movements.
-  - dao_client cache layer shipped: GitHub Raw and GitHub Contents backends mean Python consumers now read treasury data from cached snapshots rather than live GAS calls on every request.
-
 ---
 
 ## Recent retail field reports (DApp store status updates)
@@ -392,56 +385,6 @@ bfc3933 | 2026-04-18 12:38:31 -0700 | Add Apr 18 follow-up sweep report and comp
 
 - **`20260424T200731Z.json`** — `2026-04-24T20:07:32Z`  
   **** → `` (was `—`) | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-03 | 1010 | 3854.96 | 2025-12-07 19:14:46 |
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/25/2026 11:50:14 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-18`; scanned last **327** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-04-21 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_11 | — | — |
-| 2026-04-21 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_4 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_35 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_34 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_33 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_32 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_31 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_30 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_29 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_26 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_25 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_23 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_22 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_21 | — | — |
-| 2026-04-23 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251108_3 | — | — |
-| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_9 | — | — |
-| 2026-04-24 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_13 | zuLBUwzHvpjt | Stripe checkout (online) |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
