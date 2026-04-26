@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-26T04:02:37Z`
+- Generated (UTC): `2026-04-26T08:01:28Z`
 - Look-back: **7** calendar days (`2026-04-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -156,6 +156,8 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0e57a61 | 2026-04-25 21:02:49 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
+8b99690 | 2026-04-25 21:02:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-26 UTC)
 d95d2ed | 2026-04-25 19:30:25 -0700 | Merge pull request #53 from TrueSightDAO/auto/advisory-refresh-2026-04-26
 cef6366 | 2026-04-26 02:30:15 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-26 UTC)
 17f7a49 | 2026-04-25 12:26:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-25 UTC)
@@ -194,8 +196,6 @@ e5d3620 | 2026-04-23 18:17:46 -0700 | Merge pull request #44 from TrueSightDAO/f
 786bcb2 | 2026-04-23 18:16:34 -0700 | docs: Hit List email-agent Edgar tracking and reconcile scripts
 432962d | 2026-04-23 17:21:17 -0700 | Merge pull request #43 from TrueSightDAO/docs/clasp-deploy-push-then-deploy-convention
 3dbc605 | 2026-04-23 17:20:56 -0700 | docs(tokenomics): treat 'clasp deploy' as push then deploy
-5e8a79b | 2026-04-23 12:50:46 -0700 | chore(previews): refresh Beer Hall preview (2026-04-23 UTC)
-70f4416 | 2026-04-23 12:50:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-23 UTC)
 … (truncated)
 ```
 
@@ -301,6 +301,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b963a99 | 2026-04-26 07:56:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 20d337d | 2026-04-25 07:47:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b8d12d4 | 2026-04-24 08:25:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 87ffff1 | 2026-04-23 08:13:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -409,7 +410,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/25/2026 20:50:49 |
+| 2026-04 | 445.65 | 14276.60386 | 4/26/2026 0:50:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-19`; scanned last **327** data rows)
 
