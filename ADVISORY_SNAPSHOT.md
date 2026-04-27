@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-27T14:34:41Z`
+- Generated (UTC): `2026-04-27T19:54:35Z`
 - Look-back: **7** calendar days (`2026-04-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -148,12 +148,16 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `market_research` → `go_to_market`
 
 ```
-3904e3d | 2026-04-24 16:30:15 -0700 | ci: install gspread for live Sheets fetch in advisory snapshot
+886ed07 | 2026-04-27 12:00:42 -0700 | feat(email-agent): default --track-opens / --track-clicks to ON (#75)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+70ea359 | 2026-04-27 11:59:58 -0700 | docs(retail): add retailer-funnel proposal (post-Jupiter Row feedback) (#56)
+03629af | 2026-04-27 10:50:07 -0700 | docs(outreach): document AI/* Gmail label convention in §9.7 (#55)
+0ec50d1 | 2026-04-27 07:34:56 -0700 | chore(previews): refresh Beer Hall preview (2026-04-27 UTC)
+82b05e5 | 2026-04-27 07:34:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-27 UTC)
 3624876 | 2026-04-27 02:05:17 -0700 | chore(previews): refresh Beer Hall preview (2026-04-27 UTC)
 8379e46 | 2026-04-27 02:05:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-27 UTC)
 bdd7d1b | 2026-04-26 21:07:44 -0700 | chore(previews): refresh Beer Hall preview (2026-04-27 UTC)
@@ -190,16 +194,15 @@ a277910 | 2026-04-24 16:19:59 -0700 | chore(previews): refresh Beer Hall preview
 c147647 | 2026-04-24 16:19:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 256630c | 2026-04-24 12:29:15 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
 d2c27f7 | 2026-04-24 12:29:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
-c5507aa | 2026-04-24 10:58:00 -0700 | docs(sentiment_importer): add NOTES with deploy flow + systemd env gotcha (#49)
-69ed377 | 2026-04-24 10:42:42 -0700 | docs: note sentiment_importer deploy.sh flow (#48)
-6eaae20 | 2026-04-24 07:14:28 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
-fe3780d | 2026-04-24 07:14:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+39f37b1 | 2026-04-27 12:53:46 -0700 | feat(dao-members-cache): add roles + email per contributor (schema v3) (#247)
+e26f95a | 2026-04-27 11:34:40 -0700 | Merge pull request #246 from TrueSightDAO/feature/retail-field-report-async-scanner
+d68b88c | 2026-04-27 11:33:59 -0700 | feat(find_nearby_stores): async [RETAIL FIELD REPORT EVENT] scanner
 3065561 | 2026-04-26 15:55:58 -0700 | fix(gas): normalize Stores Visits Field Reports rows for GitHub URL keys
 ae98ca1 | 2026-04-24 10:12:29 -0700 | feat(gas): include visible Agroverse logo tracker in draft HTML. (#245)
 a93030c | 2026-04-23 17:30:46 -0700 | Merge pull request #244 from TrueSightDAO/feat/email-agent-drafts-open-click
@@ -234,6 +237,8 @@ be3e43a | 2026-04-21 13:50:12 -0700 | chore: relocate signature onboarding demo 
 ### `dapp` → `dapp`
 
 ```
+5a9e060 | 2026-04-27 11:42:29 -0700 | Merge pull request #182 from TrueSightDAO/feature/store-history-edgar-only
+d75195b | 2026-04-27 11:41:57 -0700 | feat(store history): drop cross-origin GAS POST; route everything through Edgar
 bd02efd | 2026-04-26 14:30:31 -0700 | feat(store history): field reports timeline and optional Edgar attachments (#181)
 4dd3169 | 2026-04-26 14:17:26 -0700 | Make inventory holdings page mobile-friendly.
 6ba3469 | 2026-04-26 14:16:04 -0700 | Add shared dapp footer links script for reload and GitHub source.
@@ -272,8 +277,6 @@ fa2d43b | 2026-04-21 14:58:32 -0700 | feat(dapp): extend treasury-cache reads to
 238c3cf | 2026-04-21 14:49:18 -0700 | test(routes): playwright smoke suite for routes.js direct + proxy modes (#167)
 56606dd | 2026-04-21 14:20:01 -0700 | feat(report-inventory-movement): read managers + items from treasury-cache JSON (#166)
 c8be32f | 2026-04-21 13:24:39 -0700 | feat(routes): probe-and-flip fallback to Edgar proxy for GFW-blocked users (#165)
-9208e61 | 2026-04-21 12:52:09 -0700 | feat(routes): migrate remaining pages + tdg_balance.js to Routes (#164)
-64dd953 | 2026-04-21 12:44:40 -0700 | feat(routes): migrate Sunmint module to Routes (#163)
 … (truncated)
 ```
 
@@ -315,6 +318,10 @@ a24746d | 2026-04-22 14:28:40 -0700 | chore: refresh Agroverse store inventory s
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+facb2a3 | 2026-04-27 12:48:47 -0700 | fix(wholesale): align lab-reports bullet list with section content edge (#79)
+3c6cf78 | 2026-04-27 12:41:27 -0700 | fix(wholesale): align alt-background sections + equalize hero CTA heights (#78)
+832d7f6 | 2026-04-27 12:21:35 -0700 | feat(wholesale): add /wholesale/ page + PDP banners + footer links (#77)
+52bec73 | 2026-04-27 11:57:01 -0700 | feat(retail): show packaging on PDPs + on-shelf photos on partner pages (#76)
 c5d8696 | 2026-04-20 11:28:06 -0700 | Merge pull request #75 from TrueSightDAO/feature/rename-start-script
 0ce62b7 | 2026-04-20 11:27:55 -0700 | Rename start-local-server.sh to start_local.sh (standardize across repos)
 ```
@@ -368,6 +375,17 @@ _(no commits on origin/master in window)_
 
 ## Recent retail field reports (DApp store status updates)
 
+- **`20260427T190450Z.json`** — `2026-04-27T19:04:51Z`  
+  **** → `` (was `—`) | sig: success
+
+- **`20260427T185837Z.json`** — `2026-04-27T18:58:37Z`  
+  **Jupiter Row** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+  _They said no for now and gave some feedback._
+
+- **`20260427T173325Z.json`** — `2026-04-27T17:33:25Z`  
+  **Berkeley Herbal Center** → `AI: Warm up prospect` (was `AI: Warm up prospect`) | type: Metaphysical/Spiritual | sig: success
+  _Aubrey Wallace from Dandelion Branding suggested that I direct the email to the proper channel instead_
+
 - **`20260426T224831Z.json`** — `2026-04-26T22:48:31Z`  
   **The Way Home Shop – Metaphysical Store in SE Portland** → `AI: Prospect replied` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
   _Final test_
@@ -375,15 +393,6 @@ _(no commits on origin/master in window)_
 - **`20260426T224042Z.json`** — `2026-04-26T22:40:43Z`  
   **The Way Home Shop – Metaphysical Store in SE Portland** → `AI: Prospect replied` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
   _teting_
-
-- **`20260424T201819Z.json`** — `2026-04-24T20:18:19Z`  
-  **** → `` (was `—`) | sig: success
-
-- **`20260424T201629Z.json`** — `2026-04-24T20:16:29Z`  
-  **** → `` (was `—`) | sig: success
-
-- **`20260424T200731Z.json`** — `2026-04-24T20:07:32Z`  
-  **** → `` (was `—`) | sig: success
 
 ---
 
@@ -408,9 +417,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/27/2026 6:51:07 |
+| 2026-04 | 445.65 | 14276.60386 | 4/27/2026 12:50:43 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-20`; scanned last **327** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-20`; scanned last **328** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
@@ -432,6 +441,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251108_3 | — | — |
 | 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_9 | — | — |
 | 2026-04-24 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_13 | zuLBUwzHvpjt | Stripe checkout (online) |
+| 2026-04-27 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
