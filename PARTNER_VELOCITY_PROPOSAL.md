@@ -1,6 +1,6 @@
 # Partner Velocity Proposal — `partners-velocity.json`
 
-**Status:** Draft for review (Gary). Created 2026-04-27 in response to "can we compute average expected monthly cacao demand per store from historical ledger data?"
+**Status:** Decisions captured 2026-04-27 (see §9). One question (partner-type column) still pending clarification before scaffolding `sync_partners_velocity.py`.
 
 **Sibling docs:**
 - **`RESTOCK_RECOMMENDER_ON_THE_FLY.md`** — the consumer of this JSON; describes a phone-friendly recommender that reads per-(partner, product) velocity to suggest "send N bags."
@@ -170,13 +170,21 @@ Run weekly via the same mechanism that updates `partners-inventory.json` (likely
 
 ---
 
-## 9. Open questions for Gary
+## 9. Decisions (Gary, 2026-04-27)
 
-1. **Partner-type field.** Does `Agroverse Partners` already have a column distinguishing consignment vs wholesale-bought? If not, OK to add one and backfill?
-2. **Refresh cadence.** Weekly OK, or do you want daily?
-3. **Where the aggregation runs.** Python script invoked from your machine on a schedule (same as inventory sync today), or move it to GAS so it runs server-side without local credentials?
-4. **Cold-start default.** What's a reasonable category-median fallback for ceremonial-cacao monthly velocity? (Suggest: pull from existing 12-month+ partners and use their median; recompute every refresh.)
-5. **Surface in the wholesale conversation?** Should the dormant-retailer / high-velocity retailer signal feed back into the warm-up draft generator now, or wait until velocity numbers settle in?
+| # | Question | Decision |
+|---|---|---|
+| 1 | **Partner-type field.** Does `Agroverse Partners` already have a column distinguishing consignment vs wholesale-bought? If not, OK to add one? | **PENDING** — need to verify the sheet's current columns. The wholesale-bought path is new (shipped via `agroverse_shop_beta#80`); zero current partners are on it, so a sensible default during initial rollout is `partner_type = "consignment"` for everyone with explicit overrides via a new column once the first wholesale-bought partner exists. |
+| 2 | **Refresh cadence.** Weekly or daily? | **Weekly.** |
+| 3 | **Aggregation runs where?** Python script (current pattern) or GAS server-side? | **Python script** — sibling to `sync_agroverse_store_inventory.py`. |
+| 4 | **Cold-start default.** Median of 12-month+ partners, or all partners? | **All partners** (median across the full set, not gated to long-tenured). Lower bar, simpler, easier to explain. |
+| 5 | **Wire dormant / high-velocity signals into warm-up generator now or wait?** | **Wait** until velocity numbers settle. Captured as TODO below. |
+
+### TODO (parked, revisit after velocity data has 4+ weeks of weekly refreshes)
+
+- Wire dormant-retailer signal (`last_sale_date > 90 days ago`) into `market_research/scripts/suggest_warmup_prospect_drafts.py` or a sibling check-in generator → trigger a "we miss you" outreach instead of generic warmup.
+- Wire high-velocity signal (`sales_90d / 3 > category_median × N`) into a flag for case-study / testimonial / shelf-photo capture for `/wholesale/`.
+- Acceptance criterion: don't surface either until at least 4 successful weekly refreshes and a manual sanity-check that the numbers track operator intuition for 3–5 known partners.
 
 ---
 
