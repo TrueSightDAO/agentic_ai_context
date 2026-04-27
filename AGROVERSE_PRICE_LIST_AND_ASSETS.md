@@ -43,13 +43,28 @@ Use these dimensions for consistent logo display across Agroverse PDFs (price li
 
 **Notes:** Prices exclude shipping. Ships from San Francisco warehouse or Brazil depending on order amount. Availability depends on current warehouse stock from the most recent harvesting season.
 
-### Consignment — Retail Packs
+### Retail Packs (200g ceremonial cacao) — two parallel paths
 
-- **Ceremonial cacao (200g):** Cost price $17.00 per bag (includes shipping)
-- **Recommended retail:** $25–35 per bag
-- **Initial order:** 5 bags; we ship more as sales volume increases
+Same product, same $17/bag, same $25–$35 recommended retail, US shipping included on both. Pick by how the shop carries new lines.
 
-**Retail packs:** https://agroverse.shop/category/retail-packs/
+**Consignment** (lowest barrier — supplier owns inventory until sale)
+
+- Cost price $17.00 per bag (includes shipping)
+- Recommended retail: $25–35 per bag
+- Opening order: **5 bags**; we ship more as sales velocity supports
+- Retailer pays as bags sell through
+
+**Wholesale (bought outright)** (best fit when retailer wants to own inventory)
+
+- Cost price $17.00 per bag (includes shipping)
+- Recommended retail: $25–35 per bag
+- Opening order: **10 bags**
+- Reorder: 10 bags
+- Retailer pays at order placement
+
+**Canonical published page:** https://agroverse.shop/wholesale (visual companion to this PDF — packaging photos, partner-shop shelf gallery, current U.S. stockist directory).
+
+**Retail packs catalog:** https://agroverse.shop/category/retail-packs/
 
 ---
 
