@@ -214,6 +214,38 @@ Skipping a day: if you do not approve, Job 2 does nothing; Job 1 can avoid stack
 
 Script(s) under `market_research/scripts/`, workflow `.github/workflows/followup_prompt.yml` with `schedule` + `workflow_dispatch`. Never commit tokens.
 
+### 9.7 Gmail label convention (review queue + sent log)
+
+The legacy single label **`Email Agent suggestions`** has been **superseded** by **four purpose-specific labels** (split 2026-04-17 to make the mobile-Gmail review queue actually usable — review-only labels show *unsent drafts only*, never historical sent mail):
+
+| Label | Stage | Applied by | Purpose |
+|-------|-------|------------|---------|
+| **`AI/Warm-up`** | Draft (review queue) | `suggest_warmup_prospect_drafts.py` (`DEFAULT_GMAIL_LABEL`) | Cold/warm intro drafts awaiting your review + send. |
+| **`AI/Follow-up`** | Draft (review queue) | `suggest_manager_followup_drafts.py` (`DEFAULT_GMAIL_LABEL`) | Manager-Follow-up drafts awaiting your review + send. |
+| **`AI/Sent Warm-up`** | Sent (history) | `sync_email_agent_followup.py` (auto-swap), `label_historical_sent.py` (backfill) | Warm-up message that has been sent. |
+| **`AI/Sent Follow-up`** | Sent (history) | `sync_email_agent_followup.py` (auto-swap), `label_historical_sent.py` (backfill) | Follow-up message that has been sent. |
+
+**Lifecycle.** Producer scripts apply the matching `AI/<X>` review label when they create the Gmail draft. Gmail carries draft labels onto the sent message automatically, so when **`sync_email_agent_followup.py`** ingests new `Sent`-mailbox rows it detects any message still wearing a review label and **swaps** it: removes `AI/<X>`, adds `AI/Sent <X>` (`sync_email_agent_followup.py:931–954`). Net result: the two review labels stay clean as a "needs your eyes" queue; the two sent labels become the searchable history.
+
+**Constants — single source of truth.** `market_research/scripts/sync_email_agent_followup.py:73–76`:
+
+```python
+REVIEW_LABEL_FOLLOWUP = "AI/Follow-up"
+REVIEW_LABEL_WARMUP   = "AI/Warm-up"
+SENT_LABEL_FOLLOWUP   = "AI/Sent Follow-up"
+SENT_LABEL_WARMUP     = "AI/Sent Warm-up"
+```
+
+If you rename a label, change it here and downstream scripts (`suggest_warmup_prospect_drafts.py`, `suggest_manager_followup_drafts.py`, `relabel_existing_drafts.py`, `label_historical_sent.py`) pick it up via import or string match.
+
+**Inferring `status` on the sent log.** `Email Agent Follow Up` column `status` is derived from these labels: `AI/Sent Warm-up` → `warmup`, `AI/Sent Follow-up` → `follow_up`, with `Email Agent Drafts.protocol_version` as the tiebreaker when bulk and manager-follow-up share the same sent label. See `market_research/HIT_LIST_CREDENTIALS.md` (`status` column) for the full mapping.
+
+**Migrating older drafts/sent mail.**
+- Drafts still on the legacy label: `relabel_existing_drafts.py` reclassifies by `protocol_version` (`warmup_intro` → `AI/Warm-up`, else → `AI/Follow-up`).
+- Sent mail predating the split: `label_historical_sent.py` backfills `AI/Sent Warm-up` / `AI/Sent Follow-up`.
+
+**Cross-references.** `AGROVERSE_NEWSLETTER_WORKFLOW.md` §2 uses the parallel `Newsletter/<campaign>` namespace and points back to this section for the AI/* convention.
+
 ---
 
 ## 10. Changelog (interim)
@@ -221,6 +253,7 @@ Script(s) under `market_research/scripts/`, workflow `.github/workflows/followup
 - **2026-03-27** — v0.1 created. Linked training tab + Hit List workflows. §9 outlines phased HIL follow-up; Phase B script not implemented yet.
 - **2026-03-27** — §9.6: GitHub Actions + Google Calendar as approval carrier; two-phase cron; secrets and idempotency; Gmail-draft simpler path.
 - **2026-03-27** — Primary HIL path: Gmail **draft** + Hit List tab **Email Agent Suggestions** + optional label **Email Agent suggestions**; §9.2–9.4 updated. Scripts: `ensure_email_agent_suggestions_sheet.py`, `format_email_agent_suggestions_sheet.py`.
+- **2026-04-27** — §9.7 added. Documents the 4-label split (`AI/Warm-up`, `AI/Follow-up`, `AI/Sent Warm-up`, `AI/Sent Follow-up`) that replaced the legacy single `Email Agent suggestions` label on 2026-04-17, including the review→sent auto-swap in `sync_email_agent_followup.py`. Closes the doc gap that `AGROVERSE_NEWSLETTER_WORKFLOW.md` §2 was already referencing.
 
 ---
 

@@ -38,7 +38,7 @@ All newsletter drafts/sent mail get a label of shape `Newsletter/<campaign-label
 - Review round (drafts to 2–3 trusted humans): same label as the eventual send, so both live under the same thread in Gmail.
 - Example current campaign: **`Newsletter/2 Chocolate Bars`**.
 
-The label auto-creates if it doesn't exist. Aligns with the broader AI/* label convention (`AI/Follow-up`, `AI/Warm-up`, `AI/Sent Follow-up`, `AI/Sent Warm-up`) documented in `PARTNER_OUTREACH_PROTOCOL.md`.
+The label auto-creates if it doesn't exist. Aligns with the broader AI/* label convention (`AI/Follow-up`, `AI/Warm-up`, `AI/Sent Follow-up`, `AI/Sent Warm-up`) documented in `PARTNER_OUTREACH_PROTOCOL.md` §9.7.
 
 ---
 
