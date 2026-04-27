@@ -1,7 +1,16 @@
 # Retailer Funnel Proposal — agroverse.shop
 
-**Status:** Draft for review (Gary). Created in response to retailer feedback from Davi (Jupiter Row), 2026-04-27.
+**Status:** **Implemented 2026-04-27** (see §9 below for shipped PRs). Originally drafted in response to retailer feedback from Davi (Jupiter Row), 2026-04-27.
 **Sibling docs:** `LEAD_LIST_EXTRACTION.md` (how we *find* retailers), `RETAILER_ONBOARDING_PLAYBOOK.md` (what happens after they say yes), `PARTNER_OUTREACH_PROTOCOL.md`. This document covers what happens **on the website** between "they heard of us" and "they're ready to talk".
+
+> **Decisions Gary made on §6 open questions** (encoded in shipped code):
+> 1. Container: **C** (full `/wholesale/` page + thin PDP banner).
+> 2. Audience: **retailer primary**, with a one-line corporate-gifting capture at the bottom of the page.
+> 3. Pricing: **published openly** — no form gate.
+> 4. Sample-pack SKU: **mailto only** for now (limited inventory makes a self-serve listing oversell-prone).
+> 5. Stockist list: **USA partners only** (27 shops linked).
+> 6. CTA email: **`community@agroverse.shop`** (no new alias).
+> 7. MOQ: **split by path** — consignment 5 bags, wholesale-bought 10 bags.
 
 ---
 
@@ -167,3 +176,27 @@ Total: ~1 working day after decisions are made on §6.
 - Not a separate B2B subdomain (`wholesale.agroverse.shop`) — same site, dedicated path.
 - Not a CRM / pipeline tool — out of scope here; current Hit List + DApp Remarks workflow is adequate.
 - Not a price-list overhaul — see `AGROVERSE_PRICE_LIST_AND_ASSETS.md`.
+
+---
+
+## 9. Implementation (shipped 2026-04-27)
+
+| Layer | What landed | PR |
+|---|---|---|
+| Packaging on PDPs + on-shelf photos on partner pages | Front/back of bag on 3 ceremonial-cacao PDPs; "Agroverse Cacao on the Shelves" gallery on Green Gulch, Go Ask Alice, Lumin Earth | [agroverse_shop_beta#76](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/76) |
+| `/wholesale/` page + PDP banners + footer | Full retailer page (packaging hero, why-it-sells, shelf-proof gallery, pricing, stockist list, lab links, CTAs); thin banner on all 11 PDPs; footer link on home + 33 partner pages | [agroverse_shop_beta#77](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/77) |
+| Section + CTA alignment fix | Alt-background section H2s and hero CTAs aligned across all viewports | [agroverse_shop_beta#78](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/78) |
+| Lab-reports bullet alignment | `<ul>` left edge aligned with section content | [agroverse_shop_beta#79](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/79) |
+| Pricing split: consignment (5) + wholesale-bought (10) | Two-card pricing block; same product/price, different opening-order MOQ + ownership semantics | [agroverse_shop_beta#80](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/80) |
+| Warm-up draft cites `/wholesale/` as visual companion | Static template + Grok system prompt + style guide updated | [go_to_market#76](https://github.com/TrueSightDAO/go_to_market/pull/76) |
+
+**Live page:** https://agroverse.shop/wholesale
+
+**Where the canonical pricing lives now:** `AGROVERSE_PRICE_LIST_AND_ASSETS.md` (post-rollout: documents both consignment and wholesale-bought paths and links to the page).
+
+**Follow-ups not done in this rollout:**
+
+- Sample-pack SKU as a real e-commerce listing (deferred — limited inventory makes oversell risk real; mailto stays the gate).
+- Footer Wholesale link on shipment pages, blog posts, cacao-journeys (deferred — wait on inbound traffic data before sweeping).
+- Founderhaus partner page footer (Brazil-based; outside USA stockist scope).
+- Corporate-gifting `/gifts/` sibling page (wait for signal — captured today as a one-line CTA).
