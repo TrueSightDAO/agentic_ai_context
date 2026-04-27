@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-27T02:32:04Z`
+- Generated (UTC): `2026-04-27T04:07:26Z`
 - Look-back: **7** calendar days (`2026-04-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -154,6 +154,8 @@ bcbf5e6 | 2026-04-20 10:50:25 -0700 | Merge pull request #36 from TrueSightDAO/f
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9ed4c34 | 2026-04-26 19:32:23 -0700 | Merge pull request #54 from TrueSightDAO/auto/advisory-refresh-2026-04-27
+3b1bcc9 | 2026-04-27 02:32:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-27 UTC)
 3a0ec03 | 2026-04-26 12:28:36 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
 599d622 | 2026-04-26 12:28:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-26 UTC)
 444fd9e | 2026-04-26 06:46:29 -0700 | chore(previews): refresh Beer Hall preview (2026-04-26 UTC)
@@ -192,8 +194,6 @@ fe3780d | 2026-04-24 07:14:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a49b6e0 | 2026-04-24 01:31:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 518f860 | 2026-04-23 20:58:05 -0700 | chore(previews): refresh Beer Hall preview (2026-04-24 UTC)
 a61c04e | 2026-04-23 20:58:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
-34905e7 | 2026-04-23 19:25:50 -0700 | Merge pull request #47 from TrueSightDAO/auto/advisory-refresh-2026-04-24
-4711fff | 2026-04-24 02:25:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-24 UTC)
 … (truncated)
 ```
 
@@ -383,6 +383,56 @@ _(no commits on origin/master in window)_
 
 - **`20260424T200731Z.json`** — `2026-04-24T20:07:32Z`  
   **** → `` (was `—`) | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-03 | 1010 | 3854.96 | 2025-12-07 19:14:46 |
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 445.65 | 14276.60386 | 4/26/2026 20:50:20 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-20`; scanned last **327** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-04-21 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_11 | — | — |
+| 2026-04-21 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_4 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_35 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_34 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_33 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_32 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_31 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_30 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_29 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_26 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_25 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_23 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_22 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_21 | — | — |
+| 2026-04-23 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251108_3 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_9 | — | — |
+| 2026-04-24 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_13 | zuLBUwzHvpjt | Stripe checkout (online) |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
