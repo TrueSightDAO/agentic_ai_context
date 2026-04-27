@@ -42,3 +42,64 @@ If those grids omit the new PDP, the SKU is **under-discovered** even though the
 - **`organic-81-dark-chocolate-bar-50g-fazenda-santa-ana-bahia-2023`** → cards added to **`shipments/agl2/index.html`** and **`farms/fazenda-santa-ana-bahia/index.html`**.
 
 Treat that pairing as the default pattern for **farm-origin SKUs** tied to a single AGL.
+
+---
+
+## PDP image layout — hero + `.gallery` underneath
+
+Every product page follows the same image structure: **one hero shot at full container width, optional supplementary shots in a `.gallery` grid directly below it inside the same `<div class="product-image-container">`**. Do not put any image gallery **above** the hero. Do not use `<figure>` + `<figcaption>` for product photos — the alt text is the caption.
+
+Reference implementation: **[`agroverse_shop/product-page/organic-81-dark-chocolate-bar-50g-oscar-bahia-2024/index.html`](https://github.com/TrueSightDAO/agroverse_shop_beta/blob/main/product-page/organic-81-dark-chocolate-bar-50g-oscar-bahia-2024/index.html)**.
+
+### Markup
+
+```html
+<div class="product-header">
+  <div class="product-image-container">
+    <img alt="<descriptive alt>" class="product-image" src="../../assets/images/products/<hero>.jpg"/>
+    <div class="gallery">
+      <img alt="<descriptive alt>" loading="lazy" src="../../assets/images/products/<close-up-or-back>.jpg"/>
+      <img alt="<descriptive alt>" loading="lazy" src="../../assets/images/products/<packaging-or-on-shelf>.jpg"/>
+      <!-- add more <img loading="lazy"> as needed; auto-fit handles layout -->
+    </div>
+  </div>
+  <div class="product-info">
+    …
+  </div>
+</div>
+```
+
+### CSS (paste into the page's existing `<style>` block, next to `.product-image`)
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+}
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+```
+
+### Why these rules
+
+- **Hero at top**: families and resellers want to see the **product** first. Packaging shots before the product confuses the visual hierarchy.
+- **`.gallery` inside `.product-image-container`**: PDP layouts use `position: sticky` on `.product-image-container` so the hero and supplementary shots scroll together with the description. Putting `.gallery` outside the container loses the sticky.
+- **Fixed 220px height + `object-fit: cover`**: keeps mixed-aspect-ratio shots (front-of-bag portrait, on-shelf landscape) visually consistent. Without this, mixed aspect ratios make the row look ragged.
+- **`loading="lazy"` on supplementary shots**: hero stays eager; below-the-fold images don't block paint.
+- **No `<figcaption>`**: the alt text already describes the image, screen readers pick it up, and visible captions clutter the visual line. Reserve captions for blog / cacao-journey content where the photo carries narrative.
+
+### When you have packaging photos to show on a ceremonial / cacao bag SKU
+
+Use these standard shots (placed at `agroverse_shop/assets/images/products/packaging/`):
+
+- `front.jpeg` — bag front
+- `back.jpeg` — bag back, showing the traceability QR
+
+Both go in the `.gallery` grid below the hero (which is the farm-portrait shot, not the bag). Do **not** put the bag shots above the hero with figcaptions like "Front of the bag" / "Back — scan the QR code…" — that's the legacy (pre-2026-04-27) pattern; cleanup PRs are migrating older PDPs to this convention.
