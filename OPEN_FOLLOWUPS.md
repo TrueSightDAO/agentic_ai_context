@@ -32,6 +32,73 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Eyeball-check `partners-velocity.json` numbers after 4 weekly refreshes
+
+**Context.** First version of `sync_partners_velocity.py` shipped via
+[go_to_market#80][velocity-pr] and the first JSON snapshot via
+[agroverse-inventory#5][velocity-snap]. Refresh cadence is weekly. Per
+Gary's §9 Q5 decision in `PARTNER_VELOCITY_PROPOSAL.md` ("wait till
+settle"), no downstream consumer should *trust* the numbers until at
+least **4 successful weekly refreshes** have run and a manual sanity
+check has confirmed the values track operator intuition for 3–5 known
+partners (Go Ask Alice, Lumin Earth, Edge & Node, Kiki's Cocoa).
+
+**Outcome.** Either flip the green-light (wire dormant / high-velocity
+signals into warm-up generator — see next entry), or file a defect on
+the script if the numbers feel wrong.
+
+**Files.**
+- `agroverse-inventory/partners-velocity.json` — read the latest committed snapshot.
+- `market_research/scripts/sync_partners_velocity.py` — re-run locally if needed.
+- `agentic_ai_context/PARTNER_VELOCITY_PROPOSAL.md` §9 Q5 (acceptance criterion).
+
+**Blocker / signal to revisit.** Wait for ≥4 entries on the GitHub
+Action commit history of `agroverse-inventory` showing
+`chore: refresh partners-velocity snapshot`. Earliest sensible
+acceptance check: **2026-05-25** (~4 weeks after first snapshot).
+
+**Owner.** Gary (manual sanity check), then any agent for downstream wiring.
+
+[velocity-pr]: https://github.com/TrueSightDAO/go_to_market/pull/80
+[velocity-snap]: https://github.com/TrueSightDAO/agroverse-inventory/pull/5
+
+---
+
+### Wire dormant / high-velocity signals into warm-up draft generator
+
+**Context.** Once `partners-velocity.json` numbers are trusted (see
+previous entry), the warm-up draft generator
+(`market_research/scripts/suggest_warmup_prospect_drafts.py`) and any
+sibling check-in flow can read per-partner activity to:
+
+- **Dormant retailer** (`last_sale_date > 90 days ago` and
+  `last_restock_date > 90 days ago`) → trigger a check-in email
+  instead of a generic warmup, or de-prioritize warmups for them.
+- **High-velocity retailer** (per-SKU `*_12m_monthly_avg >
+  category_medians[sku].monthly × N`) → flag as a candidate for
+  case-study / testimonial / shelf-photo capture for `/wholesale/`.
+- **Cold-start / newly-onboarded retailer**
+  (`max(sample_size_*) < 3`) → no recommendation; default to
+  category baseline.
+
+**Outcome.** Tighter outreach prioritization without manual triage; a
+small CSV-style "this week's flags" surface (sheet or Markdown) for
+operator review.
+
+**Files.**
+- `market_research/scripts/suggest_warmup_prospect_drafts.py` —
+  primary integration point.
+- `agentic_ai_context/PARTNER_VELOCITY_PROPOSAL.md` §6 — reference
+  consumer logic.
+- `agentic_ai_context/PARTNER_OUTREACH_PROTOCOL.md` — tighten the
+  status-transition rules once the signals exist.
+
+**Blocker.** Previous entry (eyeball-check) must complete green.
+
+**Owner.** Unclaimed.
+
+---
+
 ### Advisory ops-health v2: burn rate + days-of-cover at SF
 
 **Context.** Ops-health v1 ([TrueSightDAO/go_to_market#77][pr77] +
