@@ -112,7 +112,7 @@ Reviewers open Gmail drafts, read, reply with critique. Gary revises the `.md`.
 
 **Who reviews:** pick people whose role is critique, not random subscribers. Typical list: Kirsten (cacaomaker — catches product/farm errors), Fatima (Bahia relationships — catches farm-story errors), plus 1–2 taste-savvy friends when relevant. *Never* treat a 5-subscriber "test send" as market signal — n=5 doesn't produce real engagement data, and response rate is the wrong metric anyway (see `AGROVERSE_NEWSLETTER_WORKFLOW.md` §7 "Anti-patterns").
 
-### 4.3 Live send (full list, with tracking)
+### 4.3 Live send (full list, with tracking + buyer exclusion)
 
 Once the body is revised:
 
@@ -124,14 +124,41 @@ python3 scripts/send_newsletter.py \
   --body-md newsletter_drafts/<file>.md \
   --campaign <slug> \
   --label "Newsletter/<Campaign Label>" \
-  --track-opens --track-clicks
+  --exclude-buyers-of-substring "<SKU substring 1>" \
+  --exclude-buyers-of-substring "<SKU substring 2>"
 ```
 
 - `--recipients-from-sheet` loads all `CONFIRMED` rows from **`Agroverse News Letter Subscribers`** on the **Main Ledger** (still `1GE7PUq-…`).
-- `--track-opens` embeds `<img src="https://edgar.truesight.me/newsletter/open.gif?mid=…&r=…" …>` at the bottom of the HTML body.
-- `--track-clicks` rewrites each `https://…` markdown link through **`https://edgar.truesight.me/newsletter/click?mid=…&r=…&to=…`** so Edgar can log clicks.
+- **Tracking is ON by default** (since 2026-04-27). `--track-opens` embeds `<img src="https://edgar.truesight.me/newsletter/open.gif?mid=…&r=…" …>` at the bottom of the HTML body, and `--track-clicks` rewrites each `https://…` markdown link through **`https://edgar.truesight.me/newsletter/click?mid=…&r=…&to=…`**. Pass `--no-track-opens` / `--no-track-clicks` only for an explicit untracked test send. **A forgotten flag must not silently produce an untracked send** — same convention as the warm-up / follow-up draft pipelines.
+- **`--exclude-buyers-of-substring TEXT`** (repeatable) drops any recipient whose email appears in the **`Agroverse QR codes`** tab as **Owner Email** on a row whose **Currency** contains TEXT (case-insensitive substring match) AND whose **status** matches `--exclude-buyers-status` (default `SOLD`). **Use this on every campaign about a specific SKU** — see §4.3a for the rationale.
 - Each recipient gets their own `message_uuid` — the pixel URL is unique per (recipient × send), so opens disaggregate cleanly.
 - Use `--max-recipients N` as a safety cap; the script aborts if the resolved list exceeds `N`. Recommended: pass the current subscriber count + 5 as the cap.
+
+### 4.3a Buyer exclusion — don't pitch a SKU to someone who already owns it
+
+**Rule:** every newsletter campaign that promotes a specific SKU must subtract the people who already hold that SKU from the recipient list. They've already bought; pitching them the same product they own erodes trust faster than the marginal upside justifies. Use **`--exclude-buyers-of-substring`** for each SKU the campaign mentions.
+
+**Source of truth:** the `Agroverse QR codes` tab on the Main Ledger (`1GE7PUq-…`, gid **`472328231`**) is the canonical record of which contributor email holds which serialized SKU. Schema (column letters):
+
+| Col | Field | Purpose |
+|-----|-------|---------|
+| A | `qr_code` | Serial; primary key. |
+| D | `status` | `SOLD`, `MINTED`, `ON CONSIGNMENT`, `SAMPLE`. The default exclusion treats `SOLD` as "already bought." |
+| I | `Currency` | The SKU/product string. Substring-matched by `--exclude-buyers-of-substring`. |
+| L | `Owner Email` | The contributor email that holds the SKU. Lower-cased and subtracted from the recipient list. |
+
+**Picking the substring:** open the QR codes tab, filter by status = SOLD, find the rows for the SKU your campaign is about, and copy a stable substring of the **Currency** column that uniquely identifies that SKU across all of its QR rows. Don't paste the entire Currency string — it often contains shipment-id suffixes that vary across batches.
+
+**Worked example — "Two Bahia bars" newsletter (campaign `two_bahia_bars`):**
+
+```bash
+... --exclude-buyers-of-substring "Oscar Fazenda, Brazil 2024" \
+    --exclude-buyers-of-substring "Santa Anna Fazenda, Brazil 2023"
+```
+
+Each substring matches the chocolate-bar Currency string for that farm/year. The script's preflight prints `Excluded buyers: N recipient(s) dropped (M matching QR row(s); statuses=SOLD; substrings=…)` so the operator sees the scope before any send goes out.
+
+**Broader exclusions (rare):** add `--exclude-buyers-status SAMPLE` to also exclude people who received samples. Don't add `--exclude-buyers-status ON\ CONSIGNMENT` — those are retailer holdings (the email is the shop, not a consumer who bought it), and you usually do want retailers on the list.
 
 ### 4.4 Measuring response
 
@@ -180,6 +207,11 @@ Share **both** spreadsheet IDs with the right service accounts as above.
 
 ## 8. Changelog
 
+- **2026-04-27** — Three updates landed in `send_newsletter.py` (TrueSightDAO/go_to_market PR #79):
+  (1) `--track-opens` / `--track-clicks` now default ON (`BooleanOptionalAction`); a forgotten flag can no longer silently produce an untracked send. Pass `--no-track-opens` / `--no-track-clicks` only for an explicit one-off untracked test.
+  (2) New `--exclude-buyers-of-substring TEXT` (repeatable) + `--exclude-buyers-status STATUS` (default `SOLD`) — drops recipients who already hold the campaign's SKU per the **Agroverse QR codes** tab. **§4.3a** documents the rule and the canonical schema. Use on every SKU-specific campaign.
+  (3) Newsletter markdown now supports `![alt](src)` for inline images. HTML emits a 480px-wide responsive `<img>`; plain emits `[image: alt]`. Image substitution runs before the link regex so `![alt](src)` doesn't get misread as a link.
+  Same-day: `two_bahia_bars` draft v2 — Fatima's "Try" → "Check" CTA edit applied; Kiki's Cocoa header + farm hero shots embedded inline.
 - **2026-04-22** — Dedicated newsletter workbook **`1ed3q3…`**: send log + Edgar open/click; IMPORTRANGE mirrors (Subscribers, QR codes, SKUs, Currencies); **Email 360** + **Workbook context** via `setup_newsletter_workbook_mirrors.py`. `send_newsletter.py` logs to **`NEWSLETTER_LOG_SPREADSHEET_ID`**; subscribers still from Main Ledger. Same day: **§1b** documents **Email 360** purpose (de-noise, forensics, limits) and regeneration contract.
 - **2026-04-20** — v0.1. Initial flow. `send_newsletter.py` + Edgar `GET /newsletter/open.gif` + `Agroverse News Letter Emails` tab on Main Ledger. First campaign: `two_bahia_bars` (Oscar's Farm 2024, Fazenda Santa Ana 2023, both 81% single-estate by Kirsten). Review drafts sent to Kirsten + Fatima on this date.
 
