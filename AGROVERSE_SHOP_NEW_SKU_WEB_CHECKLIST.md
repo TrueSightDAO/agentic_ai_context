@@ -23,6 +23,7 @@ If those grids omit the new PDP, the SKU is **under-discovered** even though the
 3. **Images:** Prefer the same hero image as the PDP (or an existing product shot already on the farm/shipment page) so cards stay visually consistent.
 4. **Homepage / catalog:** If the product should appear in the main shop grid, update **`index.html`** (and **`js/products.js`** / feeds per **`PRODUCT_DEVELOPMENT_SPECS.md`** §1) — do not assume the homepage was updated when only the PDP was added.
 5. **Verify locally:** Open the farm page and shipment page; confirm the new card navigates to the PDP and does not 404.
+6. **Wholesale banner on the new PDP:** every PDP carries a thin "Selling Agroverse in your shop?" banner linking to **`/wholesale/`** (added in **agroverse_shop_beta#77**, post-rollout default). For ceremonial / per-bag SKUs the banner sits between the Add-to-Cart block and the product description; for per-kilogram bulk SKUs it sits between the price and the description. Match the existing pattern — copy from a sibling PDP rather than freehand. The banner href is **`../../wholesale/`** from any `product-page/<slug>/` location.
 
 ---
 
