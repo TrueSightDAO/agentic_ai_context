@@ -1,6 +1,6 @@
 # Partner Velocity Proposal — `partners-velocity.json`
 
-**Status:** Decisions captured 2026-04-27 (see §9). One question (partner-type column) still pending clarification before scaffolding `sync_partners_velocity.py`.
+**Status:** All §9 decisions captured 2026-04-27. Ready to scaffold `sync_partners_velocity.py`.
 
 **Sibling docs:**
 - **`RESTOCK_RECOMMENDER_ON_THE_FLY.md`** — the consumer of this JSON; describes a phone-friendly recommender that reads per-(partner, product) velocity to suggest "send N bags."
@@ -69,17 +69,18 @@ For any (partner, product), there are two distinct rates that mean different thi
       "last_restock_date": "2026-04-02",
       "sample_size_sales": 27,
       "sample_size_restocks": 6,
-      "partner_type": "consignment"
+      "partner_type": "Consignment"
     }
   }
 }
 ```
 
-The `partner_type` field comes from **`Agroverse Partners`** sheet (need to confirm a column exists for this; if not, add one). Consumer logic:
+The `partner_type` field is sourced from **`Agroverse Partners`** sheet **column I** (added 2026-04-27 by Gary), validated against the canonical enum on **`States`** sheet **column Z** (`Wholesale` / `Consignment` / `Operator` / `Supplier` / `Manufacturer`). See **`tokenomics/SCHEMA.md`** for the full column docs. Consumer logic:
 
-- `partner_type = consignment` → trust `sales_*` for velocity.
-- `partner_type = wholesale-bought` → use `restocks_*` (sales rows for them are sparse / non-canonical).
-- `sample_size < N` → flag low confidence; fall back to category default.
+- `partner_type = "Consignment"` → trust `sales_*` for velocity.
+- `partner_type = "Wholesale"` → use `restocks_*` only (sales rows for them are sparse / non-canonical).
+- `partner_type ∈ {"Operator", "Supplier", "Manufacturer"}` → upstream / production roles, not retail stockists; the velocity script may emit them but the Restock Recommender should skip them.
+- `sample_size < N` → flag low confidence; fall back to category default (median across all partners).
 
 ---
 
@@ -105,7 +106,7 @@ Per that proposal, the recommender wants **one number** per (partner, product) �
 
 ```
 let v = velocity[partner_key][product_id];
-let monthly_rate = v.partner_type === "consignment"
+let monthly_rate = v.partner_type === "Consignment"
   ? v.sales_12m_monthly_avg ?? v.sales_90d / 3
   : v.restocks_12m_monthly_avg_units ?? v.restocks_90d_units / 3;
 
@@ -134,7 +135,7 @@ Velocity data lets the warm-up draft generator (`market_research/scripts/suggest
 - **Seasonality breaks flat averages** for pop-up vendors (Raye Workz, Llama Bus, Okanogan Family Barter Faire) and Q4-heavy retailers. A 12-month average is more honest than a 30-day for those, *but* the JSON should expose both so the consumer can pick.
 - **Cold-start.** Partners with zero history → recommender falls back to a category default (e.g. "median monthly velocity for ceremonial cacao among 12-month+ partners").
 - **Restock ≠ sell-through.** Documented in §3 — caller must use the right field.
-- **Partner-type field may not exist yet.** If `Agroverse Partners` has no column distinguishing consignment vs wholesale-bought, the script either has to infer it (presence of sales rows = consignment) or we need to add it.
+- **Partner-type field exists** as `Agroverse Partners`!I (added 2026-04-27 — see `tokenomics/SCHEMA.md`). Default for retail partners onboarded before that date is `Consignment`; backfill on the sheet as needed.
 - **Timezone / date parsing.** Sales rows use Pacific time on the Main Ledger; per-AGL ledgers may differ. Normalize to UTC during aggregation.
 - **Refunds / returns.** If a sale row is a refund (negative quantity or reversal), it should net out, not double-count.
 - **Multiple managers per partner.** A few partners are run by two contributors (rare but exists); the script must `OR` across all `contributor_contact_id` values listed in the `Agroverse Partners` row.
@@ -174,7 +175,7 @@ Run weekly via the same mechanism that updates `partners-inventory.json` (likely
 
 | # | Question | Decision |
 |---|---|---|
-| 1 | **Partner-type field.** Does `Agroverse Partners` already have a column distinguishing consignment vs wholesale-bought? If not, OK to add one? | **PENDING** — need to verify the sheet's current columns. The wholesale-bought path is new (shipped via `agroverse_shop_beta#80`); zero current partners are on it, so a sensible default during initial rollout is `partner_type = "consignment"` for everyone with explicit overrides via a new column once the first wholesale-bought partner exists. |
+| 1 | **Partner-type field.** Does `Agroverse Partners` already have a column distinguishing consignment vs wholesale-bought? If not, OK to add one? | **Resolved 2026-04-27.** Gary added **`Agroverse Partners`!I** = `partner_type` (validated against new **`States`!Z** enum: `Wholesale` / `Consignment` / `Operator` / `Supplier` / `Manufacturer`). Documented in `tokenomics/SCHEMA.md` (PR #249). Default for retail partners onboarded before 2026-04-27: `Consignment`. |
 | 2 | **Refresh cadence.** Weekly or daily? | **Weekly.** |
 | 3 | **Aggregation runs where?** Python script (current pattern) or GAS server-side? | **Python script** — sibling to `sync_agroverse_store_inventory.py`. |
 | 4 | **Cold-start default.** Median of 12-month+ partners, or all partners? | **All partners** (median across the full set, not gated to long-tenured). Lower bar, simpler, easier to explain. |
