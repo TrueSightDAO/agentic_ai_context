@@ -160,6 +160,70 @@ shipped, gives the backfill room).
 
 ---
 
+### `two_bahia_bars` newsletter — post-send open / click / reply read-out
+
+**Context.** First Agroverse newsletter to ship with the full pipeline ([buyer
+exclusion][n-pr79], [JPG fallback + tighter image margins][n-pr84],
+[side-by-side comparison row][n-pr85]) sent 2026-04-27 to **38 recipients**
+(2 past-buyers excluded via `--exclude-buyers-of-substring` against
+`Agroverse QR codes`). Tracking on by default — opens land in cols H–K and
+clicks in L–P on the **`Agroverse News Letter Emails`** tab of the dedicated
+newsletter workbook (`1ed3q3SJ8ztGwfWit6Wxz_S72Cn5jKQFkNrHpeOVXP8s`),
+filtered by `campaign='two_bahia_bars'`.
+
+**Why a follow-up reads the data.** The v5 layout (compact 280px images,
+side-by-side comparison row at top) was a deliberate design call. Without a
+read-out, the data sits in the sheet and the comparison-row decision can't
+be validated for future sends. iOS Mail Privacy Protection inflates opens
+in the first hour — the read-out should land **after a 7–10 day soak** so
+real engagement (repeat opens, clicks, replies) dominates the noise.
+
+**Outcome.** A short summary covering:
+- Open rate (recipients with `open_count > 0`) and median `open_count`.
+- Click rate (recipients with `click_count > 0`) and which CTA each clicker
+  hit (`last_clicked_url` — Oscar's Farm, Fazenda Santa Ana, or both via the
+  comparison row's separate "Check this bar" links).
+- Reply rate (search Gmail `to:garyjob@agroverse.shop` against the
+  recipient list; count distinct addresses that replied).
+- **Did the comparison row's "Check this bar" CTA get clicked at a
+  meaningfully different rate than the in-section "Check Oscar's Farm
+  2024" / "Check Fazenda Santa Ana 2023" CTAs?** (Same destination URLs,
+  different anchor text + position. Real design signal for whether the
+  comparison row earns its keep on future two-SKU sends.)
+
+Post the summary as:
+1. A row on **`DApp Remarks`** (`store_key='campaign:two_bahia_bars'`,
+   description includes the headline numbers).
+2. A DAO contribution submission via **`dao_client`** with the analysis as
+   the body and a link to the DApp Remarks row.
+
+**Files / shape.**
+- Recipient list keyed off `campaign='two_bahia_bars'` from
+  `Agroverse News Letter Emails`.
+- Open / click columns already populated by Edgar's
+  `/newsletter/open.gif` and `/newsletter/click` endpoints.
+- Reply detection: Gmail OAuth at
+  `market_research/credentials/gmail/token.json`; query
+  `from:<recipient> after:2026-04-27`.
+- Sheet write: append to `DApp Remarks` on the Hit List spreadsheet
+  (`1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc`); see
+  `market_research/scripts/hit_list_dapp_remarks_sheet.py` for the helper.
+
+**Owner.** Unclaimed. Earliest sensible: **2026-05-07** (10 days after the
+send — opens / clicks have stabilized, replies have had a week to land).
+
+**Optional adjacent work.** While reading the data, also note whether
+either of the two excluded buyers (`pamelacotton7@msn.com`,
+`toffees_fibrils.0l@icloud.com`) ever asked "why didn't I get the
+newsletter about the bars I bought?" — would update the buyer-exclusion
+copy in `AGROVERSE_NEWSLETTER_WORKFLOW.md` §4.3a if so.
+
+[n-pr79]: https://github.com/TrueSightDAO/go_to_market/pull/79
+[n-pr84]: https://github.com/TrueSightDAO/go_to_market/pull/84
+[n-pr85]: https://github.com/TrueSightDAO/go_to_market/pull/85
+
+---
+
 ## Recently shipped
 
 _(empty — move entries here with their merged PR link when they ship)_
