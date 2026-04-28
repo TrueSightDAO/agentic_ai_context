@@ -222,6 +222,87 @@ copy in `AGROVERSE_NEWSLETTER_WORKFLOW.md` §4.3a if so.
 [n-pr84]: https://github.com/TrueSightDAO/go_to_market/pull/84
 [n-pr85]: https://github.com/TrueSightDAO/go_to_market/pull/85
 
+### Migrate Hit List "Add Store" onto the Edgar canonical pattern (`[STORE ADD EVENT]`)
+
+**Context.** Today there are two write paths into the Hit List:
+
+1. **`[RETAIL FIELD REPORT EVENT]`** — DApp signs → Edgar
+   `/dao/submit_contribution` → Telegram Chat Logs → `WebhookTriggerWorker`
+   fires `processRetailFieldReportsFromTelegramChatLogs` → Hit List Status,
+   DApp Remarks, **Stores Visits Field Reports** (cols A–N is the dedup
+   log). Shipped today: TrueSightDAO/tokenomics#246 +
+   TrueSightDAO/sentiment_importer#1040 + TrueSightDAO/dapp#182.
+2. **DApp `stores_nearby.html` Add Store form** → GAS `add_store` action
+   directly (cross-origin GET). Bypasses Edgar; no Telegram Chat Logs
+   audit; no signature verification by Edgar; only protection is GAS
+   `addNewStore()`'s case-insensitive `(shopName + address + city +
+   state)` dedup.
+
+The Add Store path works (small payload, GET fits within URL length
+limits), but the DAO has decided that **all signed Hit List writes go
+through the same canonical pattern**: DApp → Edgar → Telegram Chat Logs
+→ async GAS scanner. Single canonical write path beats two parallel ones
+(audit trail uniformity, signature verification in one place, idempotent
+GAS scanner with dedup-log, future-proof for attachments e.g. storefront
+photos).
+
+**Outcome.** AI agents (and humans via the DApp) can add Hit List rows
+through `dao_client` (or any signed-event submitter) and have the row
+land with the same audit shape as retail field reports. AI processing of
+referral emails ("Psychic Sister referred Clary Sage / Casa de Ritual /
+La Sirena Botanica") becomes a one-line CLI call.
+
+**Files / shape (additive — no migration of existing flows yet).**
+- `dao_client/truesight_dao_client/modules/add_hit_list_store.py` —
+  signs `[STORE ADD EVENT]` (shop_name + address + city + state +
+  optional shop_type / website / instagram / referred_by / notes), POSTs
+  to Edgar `/dao/submit_contribution`. Mirror `report_ai_agent_contribution.py`
+  arg shape (mandatory `--source-referral`-style flags so provenance is
+  always captured).
+- `sentiment_importer/app/controllers/dao_controller.rb` — new branch
+  in `submit_contribution` that recognises `[STORE ADD EVENT]` and adds
+  it to `trigger_immediate_processing`'s webhook fan-out (analogous to
+  the `[RETAIL FIELD REPORT EVENT]` block added today).
+- `tokenomics/google_app_scripts/find_nearby_stores/process_store_adds_telegram_logs.gs`
+  — new canonical scanner (file naming mirrors today's
+  `process_retail_field_reports_telegram_logs.gs`). Reads Telegram Chat
+  Logs col G for `[STORE ADD EVENT]`, parses the body, reuses the
+  existing `addNewStore()` (dedup already in place at GAS), appends a
+  row to a new dedup log tab `Hit List Add Submissions` (or reuses an
+  existing tab — see "Open question" below).
+- `clasp_mirrors/1NpHrKJW…/Code.js` — new branch in `doGet` for
+  `?action=processStoreAddsFromTelegramChatLogs` (mirror today's
+  `processRetailFieldReportsFromTelegramChatLogs` branch).
+
+**DApp page (separate follow-up; do NOT bundle).** Once the dao_client
+path lands and is exercised, then migrate `dapp/stores_nearby.html` Add
+Store form off the direct GAS `add_store` GET onto the Edgar path. This
+deserves its own PR because it's a behavioural change for the existing
+form and shouldn't gate the dao_client unblock.
+
+**Open questions for whoever picks this up:**
+- Where does the `[STORE ADD EVENT]` audit log land? Options: (a) reuse
+  `Stores Visits Field Reports` (probably wrong — that tab is per-visit
+  metadata, not per-store-creation); (b) new tab `Hit List Add
+  Submissions` on the Hit List workbook with cols matching the event
+  payload; (c) just rely on Telegram Chat Logs being the audit (no
+  second tab). My read: (b) is the cleanest mirror of today's pattern,
+  but verify with Gary before adding sheets.
+- `addNewStore()` already returns `{duplicate: true, existing_store: …}`
+  for soft-dedup. Should the GAS scanner update the existing row's
+  Notes field with referral provenance when a duplicate is detected, so
+  warm-lead breadcrumbs accumulate even when the same shop is referred
+  twice? My read: yes — append `[Referred by X on YYYY-MM-DD]` to the
+  Notes column on duplicate hits. Worth confirming.
+
+**Cost estimate:** ~45 min for the dao_client + Edgar + GAS scanner
+slice (no DApp migration). +30 min for the DApp form migration as a
+separate PR.
+
+**Owner.** Unclaimed. **Trigger to start:** the next time AI processes a
+referral email or the user explicitly asks for it. No backfill needed —
+existing rows stay where they are; this is purely additive.
+
 ---
 
 ## Recently shipped
