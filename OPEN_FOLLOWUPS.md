@@ -32,6 +32,46 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `dao_client onboard_retail_partner` CLI — collapse the manual onboarding sequence
+
+**Context.** Onboarding a new retail partner today is ~30–60 min of mostly
+mechanical work spread across 5+ repos and 2 Google Sheets. The full
+sequence is documented in `RETAILER_TECHNICAL_ONBOARDING.md` §3 with
+a per-step scriptability column in §7. ~80% is fully scriptable; the
+remainder (about-blurb extraction, hero-photo selection) needs either
+operator-supplied input or LLM extraction from the partner's website.
+
+**Outcome.** A `dao_client onboard_retail_partner` CLI that takes the
+inputs in `RETAILER_TECHNICAL_ONBOARDING.md` §2 and runs the full §3
+sequence — emits one PR per repo, prints summary URLs, and submits the
+opening-order `[INVENTORY MOVEMENT]` events. AI inference is reduced
+to optional copy extraction; the rest is deterministic.
+
+**Files / shape.**
+- `dao_client/truesight_dao_client/modules/onboard_retail_partner.py`
+  (new). Reuses `report_inventory_movement.py` for the loop and
+  `edgar_client.submit("CONTRIBUTOR ADD EVENT", …)` for §3.1.
+- gspread editor scope on Main Ledger for §3.2 + §3.3 (cols on
+  `Contributors contact information` and `Agroverse Partners`).
+- Geocoding via free Nominatim for §3.5 lat/lon.
+- `agroverse_shop` PR template + sed-style replacement loop for §3.4.
+- Optional Grok API integration for about-blurb extraction
+  (`market_research/.env` `GROK_API_KEY` already exists for
+  `lab_report_translation` and `transcript_grok_polish`).
+
+**Acceptance criterion.** A second retail-partner onboarding (probably
+the next Davi-class shop after The Way Home Shop) takes ≤ 5 minutes
+of operator time end-to-end, with verification per
+`RETAILER_TECHNICAL_ONBOARDING.md` §4.
+
+**Blocker.** None — every required piece exists. Sequence the build
+after the sister onboarding-doc PR (`RETAILER_TECHNICAL_ONBOARDING.md`)
+lands.
+
+**Owner.** Unclaimed.
+
+---
+
 ### Eyeball-check `partners-velocity.json` numbers after 4 weekly refreshes
 
 **Context.** First version of `sync_partners_velocity.py` shipped via
