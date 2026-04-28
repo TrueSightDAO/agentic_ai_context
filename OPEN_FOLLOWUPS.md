@@ -32,43 +32,44 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### `dao_client onboard_retail_partner` CLI — collapse the manual onboarding sequence
+### `dao_client onboard_retail_partner` CLI — v1: website + PR automation
 
-**Context.** Onboarding a new retail partner today is ~30–60 min of mostly
-mechanical work spread across 5+ repos and 2 Google Sheets. The full
-sequence is documented in `RETAILER_TECHNICAL_ONBOARDING.md` §3 with
-a per-step scriptability column in §7. ~80% is fully scriptable; the
-remainder (about-blurb extraction, hero-photo selection) needs either
-operator-supplied input or LLM extraction from the partner's website.
+**Context.** MVP shipped via [`dao_client#11`][onboard-mvp] on
+2026-04-28 — automates the deterministic ledger + inventory steps
+(§3.1 / §3.2 / §3.3 / §3.13 / §3.14 of
+`RETAILER_TECHNICAL_ONBOARDING.md`) idempotently, with a YAML manifest
+input. Dry-run by default. Operator still has to do the website surface
+work + photo upload + PR creation manually after running it.
 
-**Outcome.** A `dao_client onboard_retail_partner` CLI that takes the
-inputs in `RETAILER_TECHNICAL_ONBOARDING.md` §2 and runs the full §3
-sequence — emits one PR per repo, prints summary URLs, and submits the
-opening-order `[INVENTORY MOVEMENT]` events. AI inference is reduced
-to optional copy extraction; the rest is deterministic.
+v1 fills in the remaining steps:
 
-**Files / shape.**
-- `dao_client/truesight_dao_client/modules/onboard_retail_partner.py`
-  (new). Reuses `report_inventory_movement.py` for the loop and
-  `edgar_client.submit("CONTRIBUTOR ADD EVENT", …)` for §3.1.
-- gspread editor scope on Main Ledger for §3.2 + §3.3 (cols on
-  `Contributors contact information` and `Agroverse Partners`).
-- Geocoding via free Nominatim for §3.5 lat/lon.
-- `agroverse_shop` PR template + sed-style replacement loop for §3.4.
-- Optional Grok API integration for about-blurb extraction
-  (`market_research/.env` `GROK_API_KEY` already exists for
-  `lab_report_translation` and `transcript_grok_polish`).
+- §3.4 Partner page generation (clone `partners/lumin-earth-apothecary/`,
+  named-replacement on slug + name + address + lat/lon + about-blurb;
+  about-blurb either operator-supplied in manifest or Grok-extracted
+  from `website` URL).
+- §3.5 Discovery surface updates (`partners-data.js` append,
+  `partner_locations.json` append, `wholesale/index.html` and
+  `partners/index.html` alphabetical inserts,
+  `cacao-journeys/pacific-west-coast-path/index.html` jpeg-extension
+  conditional).
+- §3.6 Photo download + resize (operator URLs in manifest, or fall back
+  to scraping `og:image` / favicon).
+- §3.12 + §3.15 Branch + commit + `gh pr create` in `agroverse_shop_beta`
+  and `agroverse-inventory`. Push branch only — operator merges manually
+  for the first 5–10 onboardings before flipping to auto-merge.
+- §3.4 lat/lon geocoding via Nominatim (free, no key) when manifest
+  doesn't include them.
 
-**Acceptance criterion.** A second retail-partner onboarding (probably
-the next Davi-class shop after The Way Home Shop) takes ≤ 5 minutes
-of operator time end-to-end, with verification per
-`RETAILER_TECHNICAL_ONBOARDING.md` §4.
+**Acceptance criterion.** Next retail-partner onboarding takes ≤ 5
+minutes of operator time end-to-end, including PR review + merge.
 
-**Blocker.** None — every required piece exists. Sequence the build
-after the sister onboarding-doc PR (`RETAILER_TECHNICAL_ONBOARDING.md`)
-lands.
+**Blocker.** None — every required piece exists. MVP must run cleanly
+on a real onboarding before v1 layers on the more invasive automation
+(template clone, multi-repo PR creation).
 
 **Owner.** Unclaimed.
+
+[onboard-mvp]: https://github.com/TrueSightDAO/dao_client/pull/11
 
 ---
 
@@ -393,6 +394,34 @@ DApp form callers.
 ---
 
 ## Recently shipped
+
+### `dao_client onboard_retail_partner` MVP — 2026-04-28
+
+Manifest-driven CLI that automates the deterministic ledger + inventory
+steps from `RETAILER_TECHNICAL_ONBOARDING.md` §3:
+
+- Step 1 `[CONTRIBUTOR ADD EVENT]` (with name pre-formatted as
+  `<First> - <Store>` to dodge Edgar's auto-rename).
+- Step 2 `Contributors!U` (Mailing Address). Explicitly does **not**
+  toggle col T — that flag is reserved for online-fulfillment managers
+  (Gary + Kirsten only).
+- Step 3 `Agroverse Partners` row append.
+- Step 13 `[INVENTORY MOVEMENT]` loop for opening-order QR codes.
+- Step 14 subprocess `sync_agroverse_store_inventory.py` and
+  `sync_partners_velocity.py` so JSON snapshots refresh.
+
+Idempotent at every step. `--dry-run` is the default. Worked-example
+manifest in `examples/onboarding/the-way-home-shop.yaml` replays the
+2026-04-28 onboarding as a no-op.
+
+Steps still operator-manual in MVP: partner page, discovery surfaces,
+photo download, PR creation (steps 4 / 5–10 / 11 / 12 / 15). Script
+prints copy-paste instructions at the end. v1 covers those — see the
+remaining Pending entry above.
+
+PR: https://github.com/TrueSightDAO/dao_client/pull/11
+
+---
 
 ### `[STORE ADD EVENT]` canonical pattern (additive slice) — 2026-04-28
 
