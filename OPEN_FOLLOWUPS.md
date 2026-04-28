@@ -222,92 +222,122 @@ copy in `AGROVERSE_NEWSLETTER_WORKFLOW.md` §4.3a if so.
 [n-pr84]: https://github.com/TrueSightDAO/go_to_market/pull/84
 [n-pr85]: https://github.com/TrueSightDAO/go_to_market/pull/85
 
-### Migrate Hit List "Add Store" onto the Edgar canonical pattern (`[STORE ADD EVENT]`)
+### Migrate `dapp/stores_nearby.html` Add Store form onto the `[STORE ADD EVENT]` Edgar path
 
-**Context.** Today there are two write paths into the Hit List:
+**Context.** The dao_client / Edgar / GAS slice of `[STORE ADD EVENT]`
+shipped 2026-04-28 (see *Recently shipped* below). The DApp's
+`stores_nearby.html` Add Store form still talks directly to GAS
+`add_store` — small GET payload that doesn't have the cross-origin
+failure mode the retail field report flow had, so it works, but the
+DAO has decided that **all signed Hit List writes go through the same
+canonical pattern**: DApp → Edgar → Telegram Chat Logs → async GAS
+scanner. This entry is the remaining migration to that posture.
 
-1. **`[RETAIL FIELD REPORT EVENT]`** — DApp signs → Edgar
-   `/dao/submit_contribution` → Telegram Chat Logs → `WebhookTriggerWorker`
-   fires `processRetailFieldReportsFromTelegramChatLogs` → Hit List Status,
-   DApp Remarks, **Stores Visits Field Reports** (cols A–N is the dedup
-   log). Shipped today: TrueSightDAO/tokenomics#246 +
-   TrueSightDAO/sentiment_importer#1040 + TrueSightDAO/dapp#182.
-2. **DApp `stores_nearby.html` Add Store form** → GAS `add_store` action
-   directly (cross-origin GET). Bypasses Edgar; no Telegram Chat Logs
-   audit; no signature verification by Edgar; only protection is GAS
-   `addNewStore()`'s case-insensitive `(shopName + address + city +
-   state)` dedup.
+**What's needed.**
+- Replace the direct `fetch(GAS, {action: 'add_store', …})` call in
+  `dapp/stores_nearby.html` with a signed `[STORE ADD EVENT]` POST to
+  Edgar (mirror today's `submitRetailFieldReportToEdgar` shape in
+  `dapp/store_interaction_history.html`).
+- Drop or repurpose the `add_store` action in
+  `clasp_mirrors/1NpHrKJW…/Code.js` once no callers remain. The
+  `addNewStore()` helper stays — it's the GAS scanner's own
+  dependency.
+- Verify the DApp form's "duplicate detected" UX still works
+  (today the GAS direct call returned `{success: false, duplicate:
+  true, existing_store: …}` synchronously; with the async path the
+  duplicate detection lands on **Store Adds** col K
+  `existing_store_shop_name`, so the form needs a polling /
+  back-channel UX or a "submitted — check Hit List in a minute"
+  message).
 
-The Add Store path works (small payload, GET fits within URL length
-limits), but the DAO has decided that **all signed Hit List writes go
-through the same canonical pattern**: DApp → Edgar → Telegram Chat Logs
-→ async GAS scanner. Single canonical write path beats two parallel ones
-(audit trail uniformity, signature verification in one place, idempotent
-GAS scanner with dedup-log, future-proof for attachments e.g. storefront
-photos).
+**Cost estimate:** ~30 min including the form's status / duplicate UX.
 
-**Outcome.** AI agents (and humans via the DApp) can add Hit List rows
-through `dao_client` (or any signed-event submitter) and have the row
-land with the same audit shape as retail field reports. AI processing of
-referral emails ("Psychic Sister referred Clary Sage / Casa de Ritual /
-La Sirena Botanica") becomes a one-line CLI call.
+**Blocker.** None — purely additive once started. Don't bundle with
+unrelated `stores_nearby.html` work.
 
-**Files / shape (additive — no migration of existing flows yet).**
-- `dao_client/truesight_dao_client/modules/add_hit_list_store.py` —
-  signs `[STORE ADD EVENT]` (shop_name + address + city + state +
-  optional shop_type / website / instagram / referred_by / notes), POSTs
-  to Edgar `/dao/submit_contribution`. Mirror `report_ai_agent_contribution.py`
-  arg shape (mandatory `--source-referral`-style flags so provenance is
-  always captured).
-- `sentiment_importer/app/controllers/dao_controller.rb` — new branch
-  in `submit_contribution` that recognises `[STORE ADD EVENT]` and adds
-  it to `trigger_immediate_processing`'s webhook fan-out (analogous to
-  the `[RETAIL FIELD REPORT EVENT]` block added today).
-- `tokenomics/google_app_scripts/find_nearby_stores/process_store_adds_telegram_logs.gs`
-  — new canonical scanner (file naming mirrors today's
-  `process_retail_field_reports_telegram_logs.gs`). Reads Telegram Chat
-  Logs col G for `[STORE ADD EVENT]`, parses the body, reuses the
-  existing `addNewStore()` (dedup already in place at GAS), appends a
-  row to a new dedup log tab `Hit List Add Submissions` (or reuses an
-  existing tab — see "Open question" below).
-- `clasp_mirrors/1NpHrKJW…/Code.js` — new branch in `doGet` for
-  `?action=processStoreAddsFromTelegramChatLogs` (mirror today's
-  `processRetailFieldReportsFromTelegramChatLogs` branch).
+**Owner.** Unclaimed.
 
-**DApp page (separate follow-up; do NOT bundle).** Once the dao_client
-path lands and is exercised, then migrate `dapp/stores_nearby.html` Add
-Store form off the direct GAS `add_store` GET onto the Edgar path. This
-deserves its own PR because it's a behavioural change for the existing
-form and shouldn't gate the dao_client unblock.
+### Fix `addNewStore()` GAS — `setValues`-dimension mismatch on tail-end step
 
-**Open questions for whoever picks this up:**
-- Where does the `[STORE ADD EVENT]` audit log land? Options: (a) reuse
-  `Stores Visits Field Reports` (probably wrong — that tab is per-visit
-  metadata, not per-store-creation); (b) new tab `Hit List Add
-  Submissions` on the Hit List workbook with cols matching the event
-  payload; (c) just rely on Telegram Chat Logs being the audit (no
-  second tab). My read: (b) is the cleanest mirror of today's pattern,
-  but verify with Gary before adding sheets.
-- `addNewStore()` already returns `{duplicate: true, existing_store: …}`
-  for soft-dedup. Should the GAS scanner update the existing row's
-  Notes field with referral provenance when a duplicate is detected, so
-  warm-lead breadcrumbs accumulate even when the same shop is referred
-  twice? My read: yes — append `[Referred by X on YYYY-MM-DD]` to the
-  Notes column on duplicate hits. Worth confirming.
+**Context.** `[STORE ADD EVENT]` end-to-end test 2026-04-28 (see *Recently
+shipped*) added 3 referrals for Psychic Sister (Clary Sage / Casa de Ritual
+/ La Sirena Botanica) — all three landed on Hit List rows 526–528 with the
+correct shop name / status / city / state / shop type / Notes / Sales
+Process Notes / Status Updated By / Status Updated Date / Store Key.
 
-**Cost estimate:** ~45 min for the dao_client + Edgar + GAS scanner
-slice (no DApp migration). +30 min for the DApp form migration as a
-separate PR.
+But every single submission also recorded `status: error` on the **Store
+Adds** dedup log with this error message:
 
-**Owner.** Unclaimed. **Trigger to start:** the next time AI processes a
-referral email or the user explicitly asks for it. No backfill needed —
-existing rows stay where they are; this is purely additive.
+```
+The number of rows in the data does not match the number of rows in the
+range. The data has 1 but the range has 526.
+```
+
+That's an Apps Script `setValues(values)` dimensional error from inside
+`addNewStore()` (likely the trailing `logDappSubmission_(...)` call or a
+sales-notes write). It throws **after** the new Hit List row has been
+fully written (since the row is correct), so the data is fine — but the
+exception escapes addNewStore's try/catch boundary and lands in the new
+GAS scanner's error handler.
+
+**Symptoms.**
+- Hit List rows land correctly (operator-visible).
+- Store Adds dedup log says `error` with this message (audit-trail-misleading).
+- A re-fired Telegram Chat Logs row would NOT re-add (idempotent on
+  Telegram Update ID), so no double-row risk.
+
+**Fix targets.**
+1. **Root cause** in `clasp_mirrors/1NpHrKJW…/Code.js` `addNewStore()` /
+   `logDappSubmission_()`. The `526` figure is "all data rows on the Hit
+   List sheet"; somewhere a `range.setValues(arr)` is being called with
+   `arr.length === 1` against a range covering all data rows. Likely
+   pattern: `sheet.getDataRange().setValues([row])` instead of
+   `sheet.appendRow(row)` / `sheet.getRange(targetRow, 1, 1, n).setValues([row])`.
+2. **Defensive workaround** in
+   `google_app_scripts/find_nearby_stores/process_store_adds_telegram_logs.gs`:
+   when `addNewStore` throws, fall back to a Hit List lookup by
+   `store_key` (the same key `createStoreKey_` builds). If found,
+   record `status: added_with_warning` + the exception text in
+   `error_message` instead of `status: error`. That way the audit log
+   correctly reports the row was added even when addNewStore's tail
+   step fails.
+
+**Cost.** ~20 min for (1) once the offending line is found; ~10 min
+for (2). Both are independent — do (2) first if you want clean audit
+trails fast; do (1) if you want addNewStore stable for the existing
+DApp form callers.
+
+**Owner.** Unclaimed.
 
 ---
 
 ## Recently shipped
 
-_(empty — move entries here with their merged PR link when they ship)_
+### `[STORE ADD EVENT]` canonical pattern (additive slice) — 2026-04-28
+
+Signed Hit List adds now route through the same Edgar pattern as retail
+field reports: dao_client / DApp signs `[STORE ADD EVENT]` → Edgar
+`/dao/submit_contribution` → Telegram Chat Logs → `WebhookTriggerWorker`
+fires `processStoreAddsFromTelegramChatLogs` GAS scanner → `addNewStore`
+on Hit List + audit row on **Store Adds** dedup log
+(`1qbZZhf-…`, gid 1208101506; col B `telegram_update_id` is the dedup
+key). Verified end-to-end: 3 Psychic Sister referrals (Clary Sage,
+Casa de Ritual, La Sirena Botanica) added as Research rows on Hit List
+rows 526–528 with referral provenance in Notes + Sales Process Notes;
+scanner replay = 0/0/0/0 (perfectly idempotent).
+
+Two follow-ups split out into Pending above:
+1. Migrate `dapp/stores_nearby.html` Add Store form off the legacy
+   direct GAS GET onto the same Edgar path.
+2. Fix the pre-existing `addNewStore()` GAS `setValues` dimensional
+   bug so audit logs say `added` instead of `error` even though the
+   actual Hit List rows write correctly.
+
+PRs:
+- TrueSightDAO/dao_client#9 — `add_hit_list_store.py` module.
+- TrueSightDAO/sentiment_importer#1042 — Edgar `[STORE ADD EVENT]` branch.
+- TrueSightDAO/tokenomics#250 — `processStoreAddsFromTelegramChatLogs`
+  GAS scanner + Store Adds tab schema.
 
 ---
 
