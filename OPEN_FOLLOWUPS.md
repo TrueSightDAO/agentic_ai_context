@@ -297,6 +297,47 @@ unrelated `stores_nearby.html` work.
 
 **Owner.** Unclaimed.
 
+### Deprecate `backfill_hit_list_opening_hours.py` + `backfill_hit_list_google_listing.py` after 2 cron cycles
+
+**Context.** 2026-04-28 the two responsibilities — opening-hours grid (Mon
+Open … Sun Close) and `Google listing` column — were folded into the routine
+hourly cron at `.github/workflows/hit_list_enrich_contact.yml` (`35 * * * *`)
+via [TrueSightDAO/go_to_market#88][pr88]. The enriched
+`scripts/hit_list_enrich_contact.py` now also fills empty `Address / City /
+State / Latitude / Longitude` from the same Places Details call. The two
+standalone backfills still exist as manual one-shots but should no longer
+need to be invoked routinely.
+
+**Outcome.** Either delete the two standalone scripts, or shrink them to
+thin documented wrappers that call into `hit_list_enrich_contact.py`'s
+`apply_place_result_to_row_gaps()` helper for one-shot full-table sweeps.
+
+**Files.**
+- `market_research/scripts/backfill_hit_list_opening_hours.py`
+- `market_research/scripts/backfill_hit_list_google_listing.py`
+- `market_research/scripts/hit_list_enrich_contact.py` (already imports both
+  via `bl` / `dl` for `resolve_place_id` + `append_place_id_to_notes` —
+  if either backfill is deleted, inline the helpers it depends on or move
+  them into a shared module).
+
+**Verification before deleting.** On the Hit List, confirm:
+
+1. New rows landing in the past 2 weeks have non-empty `Address`, `City`,
+   `State`, `Latitude`, `Longitude`, `Monday Open`, `Google listing` (where
+   Places returns those fields) within ~24h of arrival.
+2. The `cron`-scheduled action's last 24 runs each show `filled>0` or a
+   clean `skipped` count (i.e. the cron is closing gaps, not silently
+   no-op'ing).
+
+**Blocker / signal to revisit.** Earliest sensible: **2026-05-12** (~2
+weeks of cron cycles after #88 lands).
+
+**Owner.** Unclaimed.
+
+[pr88]: https://github.com/TrueSightDAO/go_to_market/pull/88
+
+---
+
 ### Fix `addNewStore()` GAS — `setValues`-dimension mismatch on tail-end step
 
 **Context.** `[STORE ADD EVENT]` end-to-end test 2026-04-28 (see *Recently
