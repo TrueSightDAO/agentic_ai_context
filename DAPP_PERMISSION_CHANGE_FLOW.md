@@ -149,17 +149,31 @@ Why that project:
 
 ## 6. Shipping pieces (paired PRs)
 
-| Order | Repo | What |
-|------:|---|---|
-| 1 | `agentic_ai_context` | This doc + README index entry. |
-| 2 | `tokenomics` | New GAS file `dapp_permission_change_handler.gs` + clasp-mirror sync; deploys via `clasp push` to script id `1m8IZPs1vFN99cuu-39kbC-OGXggRVtJtXq5rfSB0M1sCQjMdolEUDuGU`. |
-| 3 | `sentiment_importer` | Edgar dispatch — new branch in `dao_controller.rb` for `[DAPP PERMISSION CHANGE EVENT]`, new `permission_change_webhook_url` config setting in `application.rb`. **Edgar deploys via `./deploy.sh` per `reference_edgar_deploy_model.md`.** |
-| 4 | `dapp` | Extend `governor_permissions.html` with edit mode (toggle UI per row), change-detection, "Submit change" button that signs + POSTs to Edgar, and result UI showing the resulting Telegram Chat Logs link. |
+| Order | Repo | What | Status |
+|------:|---|---|---|
+| 1 | `agentic_ai_context` | This doc + README index entry. | ✅ |
+| 2 | `tokenomics` | GAS file `dapp_permission_change_handler.gs` + clasp-mirror sync; deploys via `clasp push` to script id `1m8IZPs1vFN99cuu-39kbC-OGXggRVtJtXq5rfSB0M1sCQjMdolEUDuGU`. Plus secret-removal followup since Edgar's `WebhookTriggerWorker` only forwards `action`. | ✅ ([#253](https://github.com/TrueSightDAO/tokenomics/pull/253) + [#255](https://github.com/TrueSightDAO/tokenomics/pull/255)) |
+| 3 | `sentiment_importer` | Edgar dispatch — new branch in `dao_controller.rb` for `[DAPP PERMISSION CHANGE EVENT]`, new `dapp_permission_change_webhook_url` config in `application.rb`. **Edgar deploys via `./deploy.sh` per `reference_edgar_deploy_model.md`.** | ✅ merged ([#1043](https://github.com/TrueSightDAO/sentiment_importer/pull/1043)); awaiting `./deploy.sh` |
+| 4 | `dapp` | `governor_permissions.html` edit mode (per-row role toggle, change-detection, "Submit N changes" button, public-role friction prompt, post-apply auto-refresh). | ✅ ([#191](https://github.com/TrueSightDAO/dapp/pull/191)) |
+| 5 | `dao_client` | `report_dapp_permission_change.py` — terminal CLI parallel to the DApp UI. Same signed event format, same pipeline, same audit row. Useful for scripted bulk edits or governors without a browser handy. | ✅ ([#12](https://github.com/TrueSightDAO/dao_client/pull/12)) |
 
-A change submitted from the DApp is fully applied once **all four** are deployed. Until then:
-- After (2): GAS handler exists but never receives webhook calls (Edgar isn't dispatching yet).
-- After (3): Edgar dispatches, GAS processes, but no UI to author changes — operator can hand-craft an event via curl as a smoke test.
-- After (4): full loop closed.
+A change submitted from the DApp or CLI is fully applied once Edgar's deploy ships. Until then:
+- (2) deployed: GAS handler ready; smoke-testable via `applyDapPermissionChangeNow()` from the Apps Script editor.
+- (3) merged but not deployed: events would persist on Telegram Chat Logs but not auto-process. Operator can run `applyDapPermissionChangeNow()` manually.
+- (3) deployed: full loop closed end-to-end.
+
+### CLI alternative — `report_dapp_permission_change`
+
+For governors who want to make permission changes from the terminal (or in scripted bulk):
+
+```bash
+# Auto-resolve roles-before + schema-version from the live manifest:
+python -m truesight_dao_client.modules.report_dapp_permission_change \
+    --action contributor.add \
+    --roles-after "governor,operator"
+```
+
+Same signed event, same Edgar pipeline, same `Dapp Permission Changes` audit row. The `Submission Source` field on the audit row records `dao_client://…` so you can tell whether a given change came from the browser or the CLI. Full reference: `dao_client/README.md` table entry for `report_dapp_permission_change.py`.
 
 ---
 
