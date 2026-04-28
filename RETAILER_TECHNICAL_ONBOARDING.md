@@ -25,6 +25,15 @@ When done correctly:
 
 If any join key drifts (see §6 *Recurring failure modes*) the partner is silently dropped from the JSONs — fix immediately.
 
+> **As of 2026-04-28: most of §3 is now automated.** The MVP CLI
+> `dao_client onboard_retail_partner` ([dao_client#11][onboard-mvp])
+> handles steps 3.1, 3.2, 3.3, 3.7 (`[INVENTORY MOVEMENT]` loop), and
+> 3.8 (sync runs) idempotently from a YAML manifest. The website
+> surface work (3.4–3.6) and PR creation are still operator-manual in
+> MVP — see §10 *Running the script*.
+
+[onboard-mvp]: https://github.com/TrueSightDAO/dao_client/pull/11
+
 ---
 
 ## 2. Inputs you need before starting
@@ -238,25 +247,25 @@ The 2026-04-28 onboarding hit two failure modes that are worth memorizing:
 
 ## 7. What can be scripted vs what needs AI inference
 
-A `dao_client onboard_retail_partner` CLI could collapse most of §3 into a single command. Tracking this as `OPEN_FOLLOWUPS.md` work; for now, here's the breakdown:
+`dao_client onboard_retail_partner` (MVP shipped 2026-04-28 in [PR #11][onboard-mvp]) collapses the deterministic ledger + inventory steps into a single manifest-driven command. v1 (still pending) extends to the website surface work.
 
-| Step | Scriptable? | Notes |
+| Step | MVP shipped? | Notes |
 |---|---|---|
-| 3.1 `[CONTRIBUTOR ADD EVENT]` | Fully | New `dao_client` module wraps `EdgarClient.submit("CONTRIBUTOR ADD EVENT", …)`. |
-| 3.2 col U | Fully | gspread direct write — script needs editor scope. Col T should NOT be set for retail partners (online-fulfillment-only). |
-| 3.3 `Agroverse Partners` row | Fully | gspread append. |
-| 3.4 partner page from template | Partial | Template clone + sed-style replacements are fully scriptable. **About-blurb** (§2) requires either operator-supplied text or LLM extraction from the partner's website (Grok API works). |
-| 3.5 partners-data.js / partner_locations.json / wholesale / hub | Fully | All four are alphabetical-insert operations. **Lat/lon** geocoding via Nominatim (free, no key) given the address. |
-| 3.6 hero + logo photos | Mostly | `og:image` / favicon URLs are usually scrapable; `sips` resizes. **Choosing** a good hero (vs e.g. a flyer) is judgment — easier to have the operator pre-stage images. |
-| 3.7 `[INVENTORY MOVEMENT]` loop | Fully | Already covered by `report_inventory_movement.py` — script just loops. |
-| 3.8 wait + verify | Fully | Run both syncs with `--execute` immediately after §3.7 and validate the JSONs. |
+| 3.1 `[CONTRIBUTOR ADD EVENT]` | **Yes** | Module wraps `EdgarClient.submit("CONTRIBUTOR ADD EVENT", …)`; pre-formats name as `<First> - <Store>` to dodge Edgar's auto-rename trap. |
+| 3.2 col U (mailing address) | **Yes** | gspread direct write. Explicitly does **not** touch col T (online-fulfillment-only). |
+| 3.3 `Agroverse Partners` row | **Yes** | gspread append; col E matches Contributors col A exactly. |
+| 3.4 partner page from template | v1 (pending) | Template clone + sed-style replacements are fully scriptable. **About-blurb** (§2) requires either operator-supplied text or Grok extraction from the partner's website. |
+| 3.5 partners-data.js / partner_locations.json / wholesale / hub | v1 (pending) | All alphabetical-insert operations. **Lat/lon** via Nominatim (free, no key). |
+| 3.6 hero + logo photos | v1 (pending) | `og:image` / favicon URLs scrapable; `sips` resizes. Choosing a good hero is judgment — operator-staged URLs in the manifest is the simpler path. |
+| 3.7 `[INVENTORY MOVEMENT]` loop | **Yes** | MVP loops over `opening_order.qr_codes` calling `report_inventory_movement` per code. |
+| 3.8 verify (run inventory + velocity syncs) | **Yes** | MVP subprocesses `sync_agroverse_store_inventory.py` + `sync_partners_velocity.py`. |
 
-**AI inference needed (if the operator doesn't supply):**
-- About-blurb / mission paragraph (LLM extracts from the partner's website).
-- Hero photo selection (LLM looks at homepage `<img>` set, picks the most "shop interior / storefront / mission-aligned" one).
-- Partner-specific copy ("`carries Agroverse cacao at <location>`" — nice to have but mechanical).
+**AI inference still needed (if the operator doesn't supply):**
+- About-blurb / mission paragraph for the partner page (LLM extracts from the partner's website).
+- Hero photo selection (LLM looks at homepage `<img>` set, picks "storefront / interior / mission-aligned").
+- Partner-specific copy in `partners-data.js` description (1-2 sentence pitch — mechanical but tonal).
 
-If the operator provides about-blurb + hero URL + logo URL up front, the entire onboarding becomes a single CLI command with no AI inference required. See `OPEN_FOLLOWUPS.md` for the script-build follow-up.
+If the operator provides about-blurb + hero URL + logo URL up front, the entire onboarding (MVP today; v1 once website-side work is automated) becomes a single CLI command with no AI inference required. See `OPEN_FOLLOWUPS.md` `dao_client onboard_retail_partner CLI — v1` for the remaining scope.
 
 ---
 
@@ -286,21 +295,21 @@ If the operator provides about-blurb + hero URL + logo URL up front, the entire 
 | `agroverse-inventory` | #5 → #7 | partners-velocity.json + partners-inventory.json refreshes (#7 was the join-fix) |
 | Plus | dao_client | 1 `[CONTRIBUTOR ADD EVENT]` + 10 `[INVENTORY MOVEMENT]` events |
 
-**Time:** ~1 hour, including ~10 minutes recovering from the §6a Edgar auto-rename + col T clear.
+**Time:** ~1 hour, including ~10 minutes recovering from the §6a Edgar auto-rename + col T clear. **Subsequent onboardings using the §10 CLI should land in 10–15 minutes** end-to-end (most of that is the website-surface manual edits + PR review).
 
 ---
 
 ## 9. Index of files this playbook touches
 
 **Main Ledger sheet (`1GE7PUq-…`):**
-- `Contributors contact information` (cols A, D, T, U)
+- `Contributors contact information` (cols A, D, U — **not T** for retail partners)
 - `Agroverse Partners` (cols A–I)
 
 **Repos:**
 - `agroverse_shop_beta` — partner page (`partners/<slug>/`), `js/partners-data.js`, `partner_locations.json`, `wholesale/index.html`, `partners/index.html`, `cacao-journeys/pacific-west-coast-path/index.html`
 - `agroverse-inventory` — `partners-inventory.json`, `partners-velocity.json` (regenerated by the syncs)
 - `go_to_market` (market_research) — `scripts/sync_agroverse_store_inventory.py`, `scripts/sync_partners_velocity.py` (run if you don't want to wait for the cron)
-- `dao_client` — `report_inventory_movement.py`, `edgar_client.py` (for `[CONTRIBUTOR ADD EVENT]`)
+- `dao_client` — **`modules/onboard_retail_partner.py`** (MVP CLI for §3.1–§3.3, §3.7, §3.8) + `report_inventory_movement.py`, `edgar_client.py`
 - `dapp` — `restock_recommender.html` (auto-includes via JSON; no edit needed)
 
 **Sister docs:**
@@ -308,3 +317,71 @@ If the operator provides about-blurb + hero URL + logo URL up front, the entire 
 - `PARTNER_VELOCITY_PROPOSAL.md` — JSON design.
 - `AGROVERSE_PRICE_LIST_AND_ASSETS.md` — pricing terms.
 - `tokenomics/SCHEMA.md` — sheet column definitions.
+
+---
+
+## 10. Running the script (`dao_client onboard_retail_partner` MVP)
+
+**Repo:** [`dao_client`](https://github.com/TrueSightDAO/dao_client) — module `truesight_dao_client/modules/onboard_retail_partner.py` (shipped 2026-04-28 in [PR #11][onboard-mvp]).
+
+### What the MVP automates
+
+| Step (§3) | In MVP? |
+|---|---|
+| 3.1 `[CONTRIBUTOR ADD EVENT]` (with `<First> - <Store>` naming) | **Yes** |
+| 3.2 `Contributors!U` (Mailing Address) — explicitly NOT col T | **Yes** |
+| 3.3 `Agroverse Partners` row append | **Yes** |
+| 3.4 Partner page from template | No (operator manual) |
+| 3.5 Discovery surface updates (`partners-data.js`, etc.) | No (operator manual) |
+| 3.6 Hero + logo upload | No (operator manual) |
+| 3.7 `[INVENTORY MOVEMENT]` loop | **Yes** |
+| 3.8 Run inventory + velocity syncs | **Yes** |
+
+Operator-manual steps will fold into the script as v1 lands — see `OPEN_FOLLOWUPS.md` `dao_client onboard_retail_partner CLI — v1`. The script prints copy-paste instructions for the manual steps at the end so an AI can act on them without re-deriving from this doc.
+
+### How an AI agent invokes it
+
+1. **Draft the YAML manifest** from the conversation. All fields in §2 are deterministic — no inference required. Save under `examples/onboarding/<slug>.yaml`.
+2. **Dry-run** to preview every action (Edgar submits, sheet writes, sync runs):
+   ```bash
+   cd ~/Applications/dao_client
+   python3 -m truesight_dao_client.modules.onboard_retail_partner \
+     --manifest examples/onboarding/<slug>.yaml --dry-run
+   ```
+3. **Show the operator** the dry-run output, get approval.
+4. **Execute** with `--execute`. Idempotent — every step checks "already done?" before acting, so re-running is safe.
+5. **Read the trailing `Manual steps remaining`** block printed to stdout, hand off (or carry out) those website + PR steps.
+
+### Manifest schema (YAML)
+
+See the worked example: [`dao_client/examples/onboarding/the-way-home-shop.yaml`][twh-manifest]. Required fields:
+
+```yaml
+partner_id: <slug>
+partner_name: <display name>
+contact_first_name: <first name>      # script auto-suffixes " - <partner_name>"
+email: <email>
+address: <full street address>
+location: <"City, State">              # used for Agroverse Partners col F + cacao-journeys filter
+partner_type: Consignment              # Wholesale | Consignment | Operator | Supplier | Manufacturer
+notes: <optional free text>
+opening_order:                         # optional; omit to skip §3.7
+  source_manager: <e.g. "Kirsten Ritschel">
+  inventory_item: <full Currency string from Agroverse QR codes col I>
+  qr_codes:
+    - <code 1>
+    - <code 2>
+run_syncs: true                        # default true; set false for offline-only
+```
+
+### Prerequisites
+
+- `dao_client/.env` populated (run `python3 auth.py login --email <addr>` once if not).
+- `google_credentials.json` accessible. The script searches:
+  1. `$DAO_CLIENT_GOOGLE_CREDENTIALS`
+  2. `dao_client/google_credentials.json`
+  3. `../market_research/google_credentials.json` (sibling clone)
+- Optional: sibling `market_research/` checkout with `scripts/sync_*.py` scripts so step 14 can run locally.
+
+[onboard-mvp]: https://github.com/TrueSightDAO/dao_client/pull/11
+[twh-manifest]: https://github.com/TrueSightDAO/dao_client/blob/main/examples/onboarding/the-way-home-shop.yaml
