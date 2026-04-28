@@ -232,6 +232,10 @@ agreement). Log the switch clearly in the DApp Remark.
 - [ ] Price guidance shared ($17 cost, $25–$35 retail range).
 - [ ] Status moved to **Partnered**; restock cadence set per
       `RESTOCK_RECOMMENDER_ON_THE_FLY.md`.
+- [ ] **Technical onboarding** completed per **`RETAILER_TECHNICAL_ONBOARDING.md`**
+      (ledger rows, partner page, partners-data.js, partner_locations.json,
+      wholesale stockists list, hub card, opening-order `[INVENTORY MOVEMENT]`
+      events). The technical playbook picks up where this one ends.
 
 ## 16. Link index
 
