@@ -339,6 +339,58 @@ weeks of cron cycles after #88 lands).
 
 ---
 
+### Validate the circle-hosting → cacao-velocity hypothesis after 4 partners-velocity refreshes
+
+**Context.** 2026-04-28 observation: two recent / candidate retail partners
+mention **women's circles** prominently — [The Way Home Shop in SE
+Portland][way-home] (just onboarded) and Lumin Earth (existing partner).
+Ceremonial cacao genuinely lives in that ecosystem (women's circles, sound
+baths, breathwork, new-moon gatherings), so "hosts circles" is plausibly
+a leading indicator of cacao sell-through.
+
+The cheap detection step shipped immediately as
+`market_research/scripts/detect_circle_hosting_retailers.py`
+(see [go_to_market#XX][circle-pr] when filed) — it crawls each Hit List
+retailer's `Website` for high-precision keywords (women's circle, moon
+circle, cacao ceremony, sound bath, breathwork, sister/sacred circle,
+ecstatic dance) and writes **Yes / Not detected** to a new
+**Hosts Circles** Hit List column. *That* part is data-only; this entry
+covers the deferred *correlation* check.
+
+**Outcome.** Once `partners-velocity.json` has ≥4 weekly refreshes, cross-
+reference per-SKU velocity against the **Hosts Circles** flag for
+already-onboarded partners. Two questions:
+
+1. Do circle-hosting partners outsell non-circle peers per-SKU at
+   statistically meaningful margins? If yes, **green-light**:
+   - Add `Hosts Circles=Yes` as a positive signal on the warm-up draft
+     generator (next to the dormant / high-velocity logic in the existing
+     entry above).
+   - Open a separate research entry on whether to build a **circle
+     facilitator** outreach motion (different ICP than retailers — direct
+     to circle-leaders who buy in bulk for their gatherings).
+2. If the correlation is weak or negative, rule it out and close.
+
+**Files.**
+- `agroverse-inventory/partners-velocity.json` — read latest snapshot.
+- Hit List **Hosts Circles** column (col after `Google listing`) — read.
+- `agentic_ai_context/PARTNER_VELOCITY_PROPOSAL.md` §6 — reference
+  consumer logic + sample-size guards.
+
+**Blocker / signal to revisit.** Same as the **Eyeball-check
+`partners-velocity.json`** entry above — wait for ≥4 entries on the
+GitHub Action commit history of `agroverse-inventory` showing
+`chore: refresh partners-velocity snapshot`. Earliest sensible:
+**2026-05-25**. Combine with that entry's manual sanity check so
+both reads happen in one sitting.
+
+**Owner.** Unclaimed.
+
+[way-home]: https://thewayhomeshop.com/
+[circle-pr]: https://github.com/TrueSightDAO/go_to_market/pulls?q=is%3Apr+circle+hosting
+
+---
+
 ### Fix `addNewStore()` GAS — `setValues`-dimension mismatch on tail-end step
 
 **Context.** `[STORE ADD EVENT]` end-to-end test 2026-04-28 (see *Recently
