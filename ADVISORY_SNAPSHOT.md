@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-29T04:09:41Z`
+- Generated (UTC): `2026-04-29T08:38:07Z`
 - Look-back: **7** calendar days (`2026-04-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -219,6 +219,8 @@ a77d5f8 | 2026-04-28 17:30:26 -0700 | feat(circle-detect): hourly cron + status 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d660cf4 | 2026-04-28 21:10:01 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
+a4a1359 | 2026-04-28 21:09:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 2092a0b | 2026-04-28 19:39:35 -0700 | Merge pull request #79 from TrueSightDAO/auto/advisory-refresh-2026-04-29
 4dcddbe | 2026-04-29 02:39:25 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 9aa9bfc | 2026-04-28 16:54:38 -0700 | docs(open-followups): validate circle-hosting -> cacao-velocity hypothesis (#78)
@@ -257,8 +259,6 @@ e22ad6c | 2026-04-27 13:21:26 -0700 | docs: reflect /wholesale/ rollout (price l
 34a8471 | 2026-04-27 13:16:59 -0700 | Merge pull request #57 from TrueSightDAO/chore/context-updates-2026-04-27
 364a852 | 2026-04-27 13:16:31 -0700 | docs: reflect /wholesale/ rollout (price list, proposal status, SKU checklist)
 33b45f7 | 2026-04-27 13:15:13 -0700 | docs(context-updates): 2026-04-27 — retail field report async pipeline + shipping_planner streamline
-2cfbc28 | 2026-04-27 12:54:47 -0700 | chore(previews): refresh Beer Hall preview (2026-04-27 UTC)
-d39d507 | 2026-04-27 12:54:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-27 UTC)
 … (truncated)
 ```
 
@@ -365,6 +365,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+18b3711 | 2026-04-29 08:36:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5a32ad7 | 2026-04-28 14:21:06 -0700 | chore: restore online-fulfillable totals after fixing TWH col T (#8)
 e3dd634 | 2026-04-28 14:03:11 -0700 | chore: refresh inventory + velocity snapshots after TWH join fix (#7)
 2bac4cd | 2026-04-28 11:28:37 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -488,7 +489,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/28/2026 20:53:01 |
+| 2026-04 | 445.65 | 14276.60386 | 4/29/2026 0:50:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-22`; scanned last **328** data rows)
 
