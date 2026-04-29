@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-29T14:37:56Z`
+- Generated (UTC): `2026-04-29T19:59:56Z`
 - Look-back: **7** calendar days (`2026-04-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -221,6 +221,8 @@ a77d5f8 | 2026-04-28 17:30:26 -0700 | feat(circle-detect): hourly cron + status 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0112932 | 2026-04-29 07:38:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
+1add780 | 2026-04-29 07:38:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 4a778a8 | 2026-04-29 01:38:21 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
 3930dfb | 2026-04-29 01:38:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 d660cf4 | 2026-04-28 21:10:01 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
@@ -259,8 +261,6 @@ e01734d | 2026-04-27 14:36:15 -0700 | docs(newsletter): document buyer-exclusion
 44bbe75 | 2026-04-27 14:02:15 -0700 | docs(velocity): capture Gary's Q2–Q5 decisions; park Q5 as TODO (#61)
 3a28520 | 2026-04-27 13:56:13 -0700 | docs: draft Partner Velocity Proposal (partners-velocity.json) (#60)
 005661a | 2026-04-27 13:52:23 -0700 | docs(agroverse-shop): document PDP image layout convention (#59)
-e22ad6c | 2026-04-27 13:21:26 -0700 | docs: reflect /wholesale/ rollout (price list, proposal status, SKU checklist) (#58)
-34a8471 | 2026-04-27 13:16:59 -0700 | Merge pull request #57 from TrueSightDAO/chore/context-updates-2026-04-27
 … (truncated)
 ```
 
@@ -491,9 +491,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 445.65 | 14276.60386 | 4/29/2026 6:50:46 |
+| 2026-04 | 445.65 | 14276.60386 | 4/29/2026 12:50:34 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-22`; scanned last **328** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-22`; scanned last **330** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
@@ -514,6 +514,8 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_9 | — | — |
 | 2026-04-24 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_13 | zuLBUwzHvpjt | Stripe checkout (online) |
 | 2026-04-27 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-04-29 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | — | 2024OSCAR_20260121_12 | dwPTsrhwftw3 | Stripe checkout (online) |
+| 2026-04-29 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | — | 2024OSCAR_20251212_28 | kxAlUwwazhnG | Stripe checkout (online) |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
