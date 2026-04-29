@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-29T02:39:19Z`
+- Generated (UTC): `2026-04-29T04:09:41Z`
 - Look-back: **7** calendar days (`2026-04-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -112,11 +112,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 28 SKU lines · 11,527.07 total units · $11,134.61
+- Manager record: `Gary Teh` · 28 SKU lines · 11,527.07 total units · $11,134.50
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 11,443.89 | $11,025.17 |
+  | (uncategorized) | (unspecified) | 25 | 11,443.89 | $11,025.06 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Caca Mass | Retail Ready | 1 | 7 | $59.46 |
   | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -136,13 +136,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,426.60**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$33.16**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -215,6 +219,8 @@ a77d5f8 | 2026-04-28 17:30:26 -0700 | feat(circle-detect): hourly cron + status 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2092a0b | 2026-04-28 19:39:35 -0700 | Merge pull request #79 from TrueSightDAO/auto/advisory-refresh-2026-04-29
+4dcddbe | 2026-04-29 02:39:25 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 9aa9bfc | 2026-04-28 16:54:38 -0700 | docs(open-followups): validate circle-hosting -> cacao-velocity hypothesis (#78)
 a1fdb88 | 2026-04-28 15:32:19 -0700 | docs: mark Phase 2 complete + add CLI pointer to permission change flow (#77)
 c39359a | 2026-04-28 15:19:34 -0700 | docs: drop secret query param from apply_permission_change spec (#76)
@@ -253,8 +259,6 @@ e22ad6c | 2026-04-27 13:21:26 -0700 | docs: reflect /wholesale/ rollout (price l
 33b45f7 | 2026-04-27 13:15:13 -0700 | docs(context-updates): 2026-04-27 — retail field report async pipeline + shipping_planner streamline
 2cfbc28 | 2026-04-27 12:54:47 -0700 | chore(previews): refresh Beer Hall preview (2026-04-27 UTC)
 d39d507 | 2026-04-27 12:54:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-27 UTC)
-70ea359 | 2026-04-27 11:59:58 -0700 | docs(retail): add retailer-funnel proposal (post-Jupiter Row feedback) (#56)
-03629af | 2026-04-27 10:50:07 -0700 | docs(outreach): document AI/* Gmail label convention in §9.7 (#55)
 … (truncated)
 ```
 
@@ -460,6 +464,55 @@ _(no commits on origin/master in window)_
 - **`20260428T224050Z.json`** — `2026-04-28T22:40:50Z`  
   **The WholeBody Repair Clinic** → `Partnered` (was `Meeting Scheduled`) | type: Wellness Center | sig: success
   _https://agroverse.shop/partners/the-whole-body-repair-clinic/index.html_
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-03 | 1010 | 3854.96 | 2025-12-07 19:14:46 |
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 445.65 | 14276.60386 | 4/28/2026 20:53:01 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-22`; scanned last **328** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_35 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_34 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_33 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_32 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_31 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_30 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_29 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_26 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251124_25 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_23 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_22 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251124_21 | — | — |
+| 2026-04-23 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251108_3 | — | — |
+| 2026-04-23 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_9 | — | — |
+| 2026-04-24 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_13 | zuLBUwzHvpjt | Stripe checkout (online) |
+| 2026-04-27 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
