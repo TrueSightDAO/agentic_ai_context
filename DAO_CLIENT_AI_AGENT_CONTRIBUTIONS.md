@@ -49,6 +49,18 @@ Human flow: [DAO Contribution Report](https://dapp.truesight.me/report_contribut
 
 ---
 
+## Event selection: `[CONTRIBUTION EVENT]` vs `[CAPITAL INJECTION EVENT]`
+
+Future AIs and humans often confuse these two events. Here is the decision tree:
+
+| Scenario | Event | Module / DApp page |
+|----------|-------|-------------------|
+| You (or a contributor) spent personal money on DAO operations — software, tools, travel, supplies | `[CONTRIBUTION EVENT]` — Type: **USD** | `report_contribution.py` / `report_contribution.html` |
+| You (or a contributor) volunteered time | `[CONTRIBUTION EVENT]` — Type: **Time** | `report_contribution.py` / `report_contribution.html` |
+| An **external investor** wires funds directly into an AGL-managed contract or ledger | `[CAPITAL INJECTION EVENT]` | `report_capital_injection.py` / `report_capital_injection.html` |
+
+**Rule of thumb:** If the money came *out of your pocket* for day-to-day DAO work → **Contribution**. If the money is *new investment capital* entering an AGL contract from an outside party → **Capital Injection**.
+
 ## Related context
 
 - **`tokenomics/SCHEMA.md`** — `Telegram Chat Logs`, **Governor** column **S**, **Inventory Movement**, **Scored Expense Submissions**.
