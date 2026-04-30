@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-30T14:33:17Z`
+- Generated (UTC): `2026-04-30T19:56:52Z`
 - Look-back: **7** calendar days (`2026-04-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -215,6 +215,8 @@ a77d5f8 | 2026-04-28 17:30:26 -0700 | feat(circle-detect): hourly cron + status 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+13ccd5f | 2026-04-30 07:33:37 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
+528bfb5 | 2026-04-30 07:33:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
 14c1145 | 2026-04-30 01:49:40 -0700 | docs: donation mint pattern playbook (2026-04-30) (#84)
 4a83c28 | 2026-04-30 01:39:20 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
 acc6e0f | 2026-04-30 01:39:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
@@ -253,8 +255,6 @@ c6dc9ca | 2026-04-28 10:53:22 -0700 | docs(open-followups): canonical [STORE ADD
 e9ee759 | 2026-04-28 08:04:41 -0700 | chore(previews): refresh Beer Hall preview (2026-04-28 UTC)
 bcfbfb5 | 2026-04-28 08:04:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-28 UTC)
 bfa140e | 2026-04-28 01:43:49 -0700 | chore(previews): refresh Beer Hall preview (2026-04-28 UTC)
-1a1479f | 2026-04-28 01:43:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-28 UTC)
-2b62e63 | 2026-04-27 21:13:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-28 UTC)
 … (truncated)
 ```
 
@@ -304,6 +304,8 @@ b2c5c5f | 2026-04-23 16:18:25 -0700 | feat(metrics): outreach_visibility in week
 ### `dapp` → `dapp`
 
 ```
+bb9e65e | 2026-04-30 12:49:54 -0700 | feat(store-history): require Follow Up Date when Deferred + Gmail link from message id (#198)
+1b90939 | 2026-04-30 12:30:28 -0700 | fix(stores): show all known statuses + Deferred option + clickable filename_original for PDFs (#197)
 8832382 | 2026-04-30 02:00:53 -0700 | feat(donation): /mint_donation.html DApp page for governor-driven Pledge mints (#196)
 99db325 | 2026-04-29 23:37:04 -0700 | fix(routes): point qrCodes at admin@truesight.me deployment (post-migration) (#195)
 84cd9df | 2026-04-29 23:07:42 -0700 | feat(update-qr-code): prefill shipping + tracking when picking a Stripe session (#194)
@@ -342,8 +344,6 @@ b12dd27 | 2026-04-24 12:50:01 -0700 | feat: add Governor Chat page (chat.html) +
 4b0d779 | 2026-04-23 16:57:40 -0700 | Stores by Status: eight-bucket WU/FU bars and segment drill-down (#177)
 4fbbf23 | 2026-04-23 16:48:01 -0700 | Nav dropdown: open Store Interaction History in same tab. (#176)
 2f4137d | 2026-04-23 16:18:29 -0700 | feat(stores-by-status): pipeline overview with warmup/follow-up touch metrics (#175)
-63a084a | 2026-04-23 15:58:18 -0700 | Store interaction history: quick links above results; align drafts copy. (#174)
-44c4008 | 2026-04-22 20:07:15 -0700 | Merge pull request #173 from TrueSightDAO/fix/store-history-popout-links
 … (truncated)
 ```
 
@@ -390,6 +390,10 @@ b8d12d4 | 2026-04-24 08:25:24 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+370711e | 2026-04-30 12:54:34 -0700 | chore(ci): partner discovery lint — fail if a partner page lacks hub / partners-data / locations entries (#93)
+78577e3 | 2026-04-30 12:41:35 -0700 | fix(partners): list Shiok Kitchen on hub + partners-data + locations json (#92)
+0dddfb1 | 2026-04-30 12:22:11 -0700 | chore(partners): add Partner Type row to all 35 partner pages (#91)
+e40b2c2 | 2026-04-30 12:08:18 -0700 | feat(partners): add Shiok Singapore Kitchen — first processing partner (#90)
 b0aa21e | 2026-04-30 00:48:00 -0700 | feat(donations): /sunmint-pledge donor receipt page (#89)
 4908154 | 2026-04-28 17:11:26 -0700 | fix(generator): correct optimize_mobile_responsive.py upstream bugs + sweep residuals (#88)
 9259d5d | 2026-04-28 16:58:59 -0700 | fix(partners): hero sweep — kill grey letterbox + fix malformed @media (#87)
@@ -453,6 +457,17 @@ _(no commits on origin/master in window)_
 
 ## Recent retail field reports (DApp store status updates)
 
+- **`20260430T194129Z.json`** — `2026-04-30T19:41:29Z`  
+  **Seagrape Apothecary** → `Rejected` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+
+- **`20260430T193604Z.json`** — `2026-04-30T19:36:05Z`  
+  **Seagrape Apothecary** → `Rejected` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+  _They mentioned that they already have a ceremonial cacao supplier_
+
+- **`20260430T192313Z.json`** — `2026-04-30T19:23:14Z`  
+  **Miss Anne's Maypop Herb Shop** → `Manager Follow-up` (was `Manager Follow-up`) | type: Apothecary | method: Email | sig: success
+  _Justine the shop manager finally responded and suggested that we reach out again in September._
+
 - **`20260428T234630Z.json`** — `2026-04-28T23:46:30Z`  
   **Lumin Earth Apothecary** → `Partnered` (was `Partnered`) | type: Metaphysical/Spiritual | method: Email | sig: success
   _When I was chatting with Summers, she mentions that they usually organize circles in their space. This is the second time a store mentions about circles_
@@ -460,16 +475,6 @@ _(no commits on origin/master in window)_
 - **`20260428T234507Z.json`** — `2026-04-28T23:45:07Z`  
   **The Way Home Shop – Metaphysical Store in SE Portland** → `Partnered` (was `Partnered`) | type: Metaphysical/Spiritual | sig: success
   _Noticed that on their website they mentioned women's circle_
-
-- **`20260428T230914Z.json`** — `2026-04-28T23:09:14Z`  
-  **RAW Smoke Shop** → `Not Appropriate` (was `AI: Photo rejected`) | type: Metaphysical/Spiritual | sig: success
-
-- **`20260428T224630Z.json`** — `2026-04-28T22:46:31Z`  
-  **** → `` (was `—`) | sig: success
-
-- **`20260428T224050Z.json`** — `2026-04-28T22:40:50Z`  
-  **The WholeBody Repair Clinic** → `Partnered` (was `Meeting Scheduled`) | type: Wellness Center | sig: success
-  _https://agroverse.shop/partners/the-whole-body-repair-clinic/index.html_
 
 ---
 
@@ -494,7 +499,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 6:57:38 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 12:50:57 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-23`; scanned last **391** data rows)
 
