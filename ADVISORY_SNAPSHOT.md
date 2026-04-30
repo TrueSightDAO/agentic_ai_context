@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-30T08:39:08Z`
+- Generated (UTC): `2026-04-30T14:33:17Z`
 - Look-back: **7** calendar days (`2026-04-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,7 +30,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,545 | 6% | `2026-12-31` | 245 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 245 | **behind** |
 | USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 245 | **behind** |
 
 ---
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-04-29T10:59:14.376Z`
+- Generated (UTC): `2026-04-30T10:59:14.684Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **667**
 - Partnered (north-star): **15**
@@ -48,26 +48,22 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Funnel by status (curated order)
 
-- Not Appropriate: 73  (#1)
-- AI: Enrich — manual: 78  (#2)
-- AI: Email found: 5  (#3)
-- AI: Enrich with contact: 2  (#4)
-- AI: Photo rejected: 137  (#5)
-- AI: Shortlisted: 11  (#6)
-- Research: 41  (#7)
-- AI: Photo needs review: 58  (#8)
-- AI: Warm up prospect: 71  (#9)
-- AI: Contact Form found: 97  (#10)
+- AI: Enrich — manual: 91  (#3)
+- AI: Contact Form found: 108  (#4)
+- AI: Photo rejected: 154  (#7)
+- AI: Photo needs review: 65  (#8)
+- AI: Prospect replied: 2  (#9)
+- AI: Warm up prospect: 82  (#10)
 - Deferred / Revisit later: 1  (#11)
-- Contacted: 4  (#12)
-- AI: Prospect replied: 2  (#13)
-- Manager Follow-up: 26  (#14)
-- Instagram Followed: 11  (#17)
-- On Hold: 17  (#18)
-- **Partnered: 15**  (#19)
-- Rejected: 14  (#20)
-- Followed Up: 1  (#21)
-- Shortlisted: 3  (#9999)
+- Manager Follow-up: 26  (#12)
+- Shortlisted: 3  (#13)
+- Followed Up: 1  (#14)
+- Contacted: 4  (#17)
+- Rejected: 14  (#18)
+- On Hold: 17  (#19)
+- Not Appropriate: 73  (#20)
+- **Partnered: 15**  (#21)
+- Instagram Followed: 11  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
@@ -76,7 +72,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **71** stores — sum logged **warmup** sends (AU): **27**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **46** / **23** / **2**; follow-up depth (none / once / ≥2): **71** / **0** / **0**
+- **AI: Warm up prospect**: **82** stores — sum logged **warmup** sends (AU): **27**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **57** / **23** / **2**; follow-up depth (none / once / ≥2): **82** / **0** / **0**
 - **Manager Follow-up**: **26** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **18**; warmup depth (none / once / ≥2): **26** / **0** / **0**; follow-up depth (none / once / ≥2): **20** / **0** / **6**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **1**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **1** / **0**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -113,11 +109,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 12,111.01 total units · $11,711.67
+- Manager record: `Gary Teh` · 26 SKU lines · 12,136.01 total units · $11,736.67
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 12,034.83 | $11,661.69 |
+  | (uncategorized) | (unspecified) | 24 | 12,059.83 | $11,686.69 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -138,7 +134,7 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$3,018.30**
+- USD on hand: **$3,043.30**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$33.38**
 
@@ -219,6 +215,9 @@ a77d5f8 | 2026-04-28 17:30:26 -0700 | feat(circle-detect): hourly cron + status 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+14c1145 | 2026-04-30 01:49:40 -0700 | docs: donation mint pattern playbook (2026-04-30) (#84)
+4a83c28 | 2026-04-30 01:39:20 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
+acc6e0f | 2026-04-30 01:39:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
 bce41cd | 2026-04-29 23:05:42 -0700 | docs: cash sale pattern + ledger vs physical possession (#83)
 9cd17ec | 2026-04-29 21:58:40 -0700 | docs: clarify CONTRIBUTION EVENT vs CAPITAL INJECTION EVENT (#82)
 b5fc0fb | 2026-04-29 21:41:08 -0700 | docs: link serialized QR sales playbook from canonical context files (#81)
@@ -256,9 +255,6 @@ bcfbfb5 | 2026-04-28 08:04:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 bfa140e | 2026-04-28 01:43:49 -0700 | chore(previews): refresh Beer Hall preview (2026-04-28 UTC)
 1a1479f | 2026-04-28 01:43:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-28 UTC)
 2b62e63 | 2026-04-27 21:13:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-28 UTC)
-b13b40e | 2026-04-27 21:13:17 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-28 UTC)
-1ba842d | 2026-04-27 19:39:53 -0700 | Merge pull request #67 from TrueSightDAO/auto/advisory-refresh-2026-04-28
-e3df7b5 | 2026-04-28 02:39:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-28 UTC)
 … (truncated)
 ```
 
@@ -308,6 +304,7 @@ b2c5c5f | 2026-04-23 16:18:25 -0700 | feat(metrics): outreach_visibility in week
 ### `dapp` → `dapp`
 
 ```
+8832382 | 2026-04-30 02:00:53 -0700 | feat(donation): /mint_donation.html DApp page for governor-driven Pledge mints (#196)
 99db325 | 2026-04-29 23:37:04 -0700 | fix(routes): point qrCodes at admin@truesight.me deployment (post-migration) (#195)
 84cd9df | 2026-04-29 23:07:42 -0700 | feat(update-qr-code): prefill shipping + tracking when picking a Stripe session (#194)
 f46fc97 | 2026-04-29 21:58:39 -0700 | fix(ui): clarify Contribution vs Capital Injection, reorganize index (#193)
@@ -347,7 +344,6 @@ b12dd27 | 2026-04-24 12:50:01 -0700 | feat: add Governor Chat page (chat.html) +
 2f4137d | 2026-04-23 16:18:29 -0700 | feat(stores-by-status): pipeline overview with warmup/follow-up touch metrics (#175)
 63a084a | 2026-04-23 15:58:18 -0700 | Store interaction history: quick links above results; align drafts copy. (#174)
 44c4008 | 2026-04-22 20:07:15 -0700 | Merge pull request #173 from TrueSightDAO/fix/store-history-popout-links
-9fa52d4 | 2026-04-22 20:06:47 -0700 | Open Store Interaction History in a new tab from nav and links
 … (truncated)
 ```
 
@@ -498,12 +494,18 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1062.56 | 14893.51386 | 4/30/2026 0:51:33 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 6:57:38 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-23`; scanned last **385** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-23`; scanned last **391** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_1645f553 | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_d384b1ae | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_621c84ef | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_2510d807 | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_0abc72e8 | — | — |
 | 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 | 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
 | 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
@@ -523,12 +525,6 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 | 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_20 | O1LPIGauKei9 | — |
 | 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_19 | O1LPIGauKei9 | — |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_18 | O1LPIGauKei9 | — |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_17 | O1LPIGauKei9 | — |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_16 | O1LPIGauKei9 | — |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_15 | O1LPIGauKei9 | — |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_14 | O1LPIGauKei9 | — |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_13 | O1LPIGauKei9 | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
@@ -536,6 +532,7 @@ _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submiss
 
 ## Recent agent notes (`agentic_ai_context/notes/`)
 
+- `notes/claude_donation_mint_2026-04-30.md`
 - `notes/claude_serialized_qr_sales_2026-04-29.md`
 
 ---
