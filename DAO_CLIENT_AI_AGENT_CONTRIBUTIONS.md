@@ -61,6 +61,20 @@ Future AIs and humans often confuse these two events. Here is the decision tree:
 
 **Rule of thumb:** If the money came *out of your pocket* for day-to-day DAO work → **Contribution**. If the money is *new investment capital* entering an AGL contract from an outside party → **Capital Injection**.
 
+## Cash sales via `[SALES EVENT]` (no Stripe checkout)
+
+When selling serialized QR-coded products for cash (not through Stripe):
+
+| Field | Correct value | Incorrect value | Why |
+|-------|--------------|-----------------|-----|
+| Stripe Session ID | **`(none)`** | `N/A` | GAS normalizes `(none)` to empty and skips the Stripe checkout lookup. `N/A` passes through as a literal string and triggers log noise. |
+| Shipping Provider | `N/A` | — | Local pickup / hand delivery |
+| Tracking number | `N/A` | — | No shipping label |
+
+For serialized QR products, `[SALES EVENT]` per QR code IS sufficient — the downstream chain (QR Code Sales → offchain transactions → treasury cache) handles inventory depletion. A separate `[INVENTORY MOVEMENT]` is only needed for bulk/non-serialized inventory tracked by weight or count.
+
+**Ledger assignment ≠ physical possession:** A QR code tracked under AGL6 ledger can physically be in Gary Teh's car. The `manager_name` tracks who manages the record, not who holds the bag.
+
 ## Related context
 
 - **`tokenomics/SCHEMA.md`** — `Telegram Chat Logs`, **Governor** column **S**, **Inventory Movement**, **Scored Expense Submissions**.
