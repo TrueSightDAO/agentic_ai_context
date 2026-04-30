@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-04-30T02:40:23Z`
+- Generated (UTC): `2026-04-30T04:11:29Z`
 - Look-back: **7** calendar days (`2026-04-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,7 +30,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,210 | 6% | `2026-12-31` | 245 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,370 | 6% | `2026-12-31` | 245 | **behind** |
 | USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 245 | **behind** |
 
 ---
@@ -91,25 +91,36 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 17 SKU lines · 1,216 total units · $1,814.66
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,215 total units · $1,812.61
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 17 | 1,216 | $1,814.66 |
+  | Packaging Material | Bulk | 4 | 895 | $652.10 |
+  | (uncategorized) | (unspecified) | 7 | 221 | $813.04 |
+  | Caca Mass | Bulk | 1 | 50 | $1.55 |
+  | Caca Mass | Retail Ready | 4 | 49 | $345.92 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 22 | 2,012.72 | $8,345.85 |
+  | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
+  | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
+  | (uncategorized) | (unspecified) | 10 | 272.13 | $2,582.25 |
+  | Caca Tea | Bulk | 5 | 156.50 | $1,587.77 |
+  | Cacao Nib | Retail Ready | 1 | 137 | $909.68 |
+  | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 28 SKU lines · 11,933.01 total units · $11,553.68
+- Manager record: `Gary Teh` · 28 SKU lines · 11,943.01 total units · $11,596.84
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 11,933.01 | $11,553.68 |
+  | (uncategorized) | (unspecified) | 25 | 11,860.83 | $11,495.90 |
+  | Packaging Material | Bulk | 1 | 74 | $49.98 |
+  | Caca Mass | Retail Ready | 1 | 6 | $50.96 |
+  | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
 
@@ -126,13 +137,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,868.30**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$33.38**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -202,6 +217,8 @@ a77d5f8 | 2026-04-28 17:30:26 -0700 | feat(circle-detect): hourly cron + status 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5a265ad | 2026-04-29 19:40:41 -0700 | Merge pull request #80 from TrueSightDAO/auto/advisory-refresh-2026-04-30
+8592ed6 | 2026-04-30 02:40:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
 436b105 | 2026-04-29 13:00:13 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
 06f8598 | 2026-04-29 13:00:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 0112932 | 2026-04-29 07:38:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
@@ -240,8 +257,6 @@ bea0aea | 2026-04-27 14:49:18 -0700 | docs(followups): add velocity eyeball-chec
 2e4fad9 | 2026-04-27 14:36:42 -0700 | Merge pull request #64 from TrueSightDAO/chore/open-followups-doc-final
 e01734d | 2026-04-27 14:36:15 -0700 | docs(newsletter): document buyer-exclusion rule + tracking-on default (#63)
 0b3c74c | 2026-04-27 14:36:06 -0700 | docs: add OPEN_FOLLOWUPS.md (cross-session backlog index)
-12a0354 | 2026-04-27 14:31:38 -0700 | docs(velocity): mark Q1 resolved — Agroverse Partners!I = partner_type (#62)
-44bbe75 | 2026-04-27 14:02:15 -0700 | docs(velocity): capture Gary's Q2–Q5 decisions; park Q5 as TODO (#61)
 … (truncated)
 ```
 
@@ -443,6 +458,63 @@ _(no commits on origin/master in window)_
 - **`20260428T224050Z.json`** — `2026-04-28T22:40:50Z`  
   **The WholeBody Repair Clinic** → `Partnered` (was `Meeting Scheduled`) | type: Wellness Center | sig: success
   _https://agroverse.shop/partners/the-whole-body-repair-clinic/index.html_
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-03 | 1010 | 3854.96 | 2025-12-07 19:14:46 |
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 887.56 | 14718.51386 | 4/29/2026 20:50:54 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-23`; scanned last **369** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_20 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_19 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_18 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_17 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_16 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_15 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_14 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_13 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_12 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_11 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_10 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_9 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_8 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_7 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_6 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_5 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_1 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_23 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_22 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_21 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_20 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_19 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_18 | O1LPIGauKei9 | — |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Oscar … | TOKENIZED | 2024OSR_81PB_20260412_17 | O1LPIGauKei9 | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
