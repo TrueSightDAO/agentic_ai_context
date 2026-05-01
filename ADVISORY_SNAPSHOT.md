@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-01T14:00:10Z`
+- Generated (UTC): `2026-05-01T19:48:01Z`
 - Look-back: **7** calendar days (`2026-04-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -214,6 +214,8 @@ dfb498c | 2026-04-24 11:52:03 -0700 | fix: prevent mobile overflow on beerhall d
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+916132a | 2026-05-01 07:00:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
+71f6718 | 2026-05-01 07:00:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
 08e76f6 | 2026-05-01 01:30:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
 f5351b1 | 2026-05-01 01:30:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
 4abc3ce | 2026-04-30 21:36:31 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
@@ -252,8 +254,6 @@ ef1c161 | 2026-04-28 14:57:40 -0700 | docs(project-index): mention onboard_retai
 ce3c284 | 2026-04-28 14:56:08 -0700 | docs: cross-link RETAILER_TECHNICAL_ONBOARDING + dao_client onboard CLI (#73)
 53b67bf | 2026-04-28 14:46:49 -0700 | docs(open-followups): MVP shipped — onboard_retail_partner CLI; v1 entry stays Pending (#72)
 6430e87 | 2026-04-28 14:23:29 -0700 | docs(open-followups): deprecate the two Hit List backfills after 2 cron cycles (#71)
-6abd089 | 2026-04-28 14:20:15 -0700 | docs: retailer technical-onboarding playbook + col T semantics + script TODO (#70)
-501b526 | 2026-04-28 13:01:30 -0700 | chore(previews): refresh Beer Hall preview (2026-04-28 UTC)
 … (truncated)
 ```
 
@@ -491,7 +491,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/1/2026 6:50:43 |
+| 2026-05 | 0 | 14918.51386 | 5/1/2026 11:51:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-24`; scanned last **391** data rows)
 
