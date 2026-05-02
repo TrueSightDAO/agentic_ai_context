@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-02T04:00:08Z`
+- Generated (UTC): `2026-05-02T08:07:45Z`
 - Look-back: **7** calendar days (`2026-04-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -109,11 +109,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 12,136.01 total units · $11,736.67
+- Manager record: `Gary Teh` · 26 SKU lines · 11,683.57 total units · $11,284.23
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 12,059.83 | $11,686.69 |
+  | (uncategorized) | (unspecified) | 24 | 11,607.39 | $11,234.25 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -198,12 +198,15 @@ _All dated lines on/after 2026-04-25_ (11):
 ### `market_research` → `go_to_market`
 
 ```
-9410c2d | 2026-05-01 13:34:57 -0700 | Add one-off draft script for Buck's Spices reply (#96)
+fcff8a6 | 2026-05-01 22:59:04 -0700 | feat(places): cost optimizations 1–3 (photo gate + Nearby coverage cache + status refresh) (#98)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2a30b4d | 2026-05-01 22:54:04 -0700 | docs(workspace): cross-reference Email Agent Drafts engagement guidance (#84)
+f3e44b2 | 2026-05-01 21:00:21 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
+4a16782 | 2026-05-01 21:00:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-02 UTC)
 4caa9e9 | 2026-05-01 19:29:10 -0700 | Merge pull request #86 from TrueSightDAO/auto/advisory-refresh-2026-05-02
 ad23f6b | 2026-05-02 02:29:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-02 UTC)
 4328605 | 2026-05-01 12:48:16 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
@@ -241,9 +244,6 @@ a4a1359 | 2026-04-28 21:09:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 2092a0b | 2026-04-28 19:39:35 -0700 | Merge pull request #79 from TrueSightDAO/auto/advisory-refresh-2026-04-29
 4dcddbe | 2026-04-29 02:39:25 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 9aa9bfc | 2026-04-28 16:54:38 -0700 | docs(open-followups): validate circle-hosting -> cacao-velocity hypothesis (#78)
-a1fdb88 | 2026-04-28 15:32:19 -0700 | docs: mark Phase 2 complete + add CLI pointer to permission change flow (#77)
-c39359a | 2026-04-28 15:19:34 -0700 | docs: drop secret query param from apply_permission_change spec (#76)
-424174e | 2026-04-28 15:00:29 -0700 | docs: add DApp permission change flow spec (#75)
 … (truncated)
 ```
 
@@ -331,6 +331,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+3ddd2a0 | 2026-05-02 08:01:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cfa8f36 | 2026-05-01 08:26:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 75dbb5f | 2026-04-30 08:38:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 baa22ea | 2026-04-29 23:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -463,7 +464,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/1/2026 20:50:45 |
+| 2026-05 | 0 | 14918.51386 | 5/2/2026 0:50:28 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-25`; scanned last **392** data rows)
 
