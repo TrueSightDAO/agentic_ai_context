@@ -161,7 +161,9 @@ Live probe results for credentials used by automation. **Future AIs:** consult t
 
 **Verdict:** ✅ **Ready for autopilot email monitoring.** The refresh token is active and `gmail.modify` covers reading failure emails + sending replies.
 
-### 10.2 GitHub PAT (`market_research/.env` → `GITHUB_PAT`)
+### 10.2 GitHub PATs
+
+#### 10.2.1 Legacy PAT (`market_research/.env` → `GITHUB_PAT`)
 
 | Attribute | Value |
 |---|---|
@@ -170,14 +172,25 @@ Live probe results for credentials used by automation. **Future AIs:** consult t
 | **Rate limit** | 5,000/hour (personal tier) |
 | **Read access** | ✅ All 25+ `TrueSightDAO/*` repos visible |
 | **Write access — `TrueSightDAO/.github`** | ✅ Confirmed (PUT file + DELETE probe succeeded) |
-| **Write access — `TrueSightDAO/go_to_market`** | ❌ **DENIED** — "Resource not accessible by personal access token" |
-| **Write access — `TrueSightDAO/ecosystem_change_logs`** | ❌ **DENIED** — same error |
-| **Write access — branch create / PR open** | ❌ **DENIED** on `go_to_market` (and likely any repo not explicitly granted) |
+| **Write access — `TrueSightDAO/go_to_market`** | ❌ **DENIED** |
+| **Write access — `TrueSightDAO/ecosystem_change_logs`** | ❌ **DENIED** |
 
-**Verdict:** ⚠️ **Partially ready.** The PAT can write to `.github` but **cannot open PRs on `go_to_market`** (the repo with the most Actions/workflows). For `truesight_autopilot` to open code-fix PRs, you must either:
+**Status:** Legacy. Retained for `.github` asset uploads. Not suitable for autopilot.
 
-1. **Regenerate the fine-grained PAT** and add `Contents: Read + Write` + `Pull requests: Read + Write` on `TrueSightDAO/go_to_market` (and any other repo the autopilot should edit), or
-2. **Create a dedicated bot account** (`truesight-autopilot` or similar), invite it as a collaborator to the repos, and issue a PAT from that account.
+#### 10.2.2 Autopilot PAT (`market_research/.env` → `TRUESIGHT_DAO_AUTOPILOT`)
+
+| Attribute | Value |
+|---|---|
+| **Type** | Fine-grained personal access token |
+| **Owner** | `garyjob` (user account, not a bot) |
+| **Rate limit** | 5,000/hour (personal tier) |
+| **Read access** | ✅ All 25+ `TrueSightDAO/*` repos visible |
+| **Write access — `TrueSightDAO/.github`** | ✅ Confirmed |
+| **Write access — `TrueSightDAO/go_to_market`** | ✅ Confirmed (branch create + file write) |
+| **Write access — `TrueSightDAO/ecosystem_change_logs`** | ✅ Confirmed |
+| **Pull request creation** | ✅ Capable (probe blocked only because branch had no diff from `main`) |
+
+**Status:** ✅ **Ready for autopilot.**
 
 ### 10.3 AWS Credentials
 
