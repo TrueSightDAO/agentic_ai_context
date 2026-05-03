@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-03T08:19:14Z`
+- Generated (UTC): `2026-05-03T13:55:00Z`
 - Look-back: **7** calendar days (`2026-04-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,43 +40,43 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-02T10:59:14.249Z`
+- Generated (UTC): `2026-05-03T10:59:13.907Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
-- Total stores tracked: **667**
+- Total stores tracked: **669**
 - Partnered (north-star): **14**
 - Shortlisted: **3**
 
 ## Funnel by status (curated order)
 
-- AI: Enrich — manual: 91  (#3)
-- AI: Contact Form found: 108  (#4)
-- AI: Photo rejected: 154  (#7)
-- AI: Photo needs review: 65  (#8)
-- AI: Prospect replied: 3  (#9)
-- AI: Warm up prospect: 80  (#10)
-- Deferred / Revisit later: 3  (#11)
-- Manager Follow-up: 26  (#12)
-- Shortlisted: 3  (#13)
-- Followed Up: 1  (#14)
-- Contacted: 4  (#17)
-- Rejected: 14  (#18)
+- Not Appropriate: 73  (#1)
+- AI: Contact Form found: 109  (#3)
+- AI: No fit signal: 155  (#6)
+- Research: 62  (#8)
+- AI: Enrich with contact: 3  (#9)
+- AI: Warm up prospect: 84  (#10)
+- AI: Enrich — manual: 87  (#11)
+- Deferred / Revisit later: 3  (#12)
+- Instagram Followed: 11  (#13)
+- Manager Follow-up: 30  (#15)
+- Shortlisted: 3  (#18)
 - On Hold: 17  (#19)
-- Not Appropriate: 73  (#20)
-- **Partnered: 14**  (#21)
-- Instagram Followed: 11  (#9999)
+- **Partnered: 14**  (#20)
+- Rejected: 14  (#21)
+- Followed Up: 1  (#22)
+- AI: Prospect replied: 3  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **91**, follow_up **49**, bulk **0**, unknown **0** (data rows: **140**)
-- Distinct recipient addresses (`to_email`, by log `status`): warmup **79**, follow_up **18**, bulk **0**, unknown **0**
+- **Email Agent Follow Up** — logged sends: warmup **91**, follow_up **49**, bulk **0**, unknown **2** (data rows: **142**)
+- Distinct recipient addresses (`to_email`, by log `status`): warmup **79**, follow_up **18**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **80** stores — sum logged **warmup** sends (AU): **28**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **54** / **24** / **2**; follow-up depth (none / once / ≥2): **80** / **0** / **0**
-- **Manager Follow-up**: **26** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **18**; warmup depth (none / once / ≥2): **26** / **0** / **0**; follow-up depth (none / once / ≥2): **20** / **0** / **6**
+- **AI: Warm up prospect**: **84** stores — sum logged **warmup** sends (AU): **28**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **58** / **24** / **2**; follow-up depth (none / once / ≥2): **84** / **0** / **0**
+- **Manager Follow-up**: **30** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **18**; warmup depth (none / once / ≥2): **30** / **0** / **0**; follow-up depth (none / once / ≥2): **24** / **0** / **6**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **3** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **0** / **0**; follow-up depth (none / once / ≥2): **3** / **0** / **0**
-- **Follow-up pipeline (combined)**: **29** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **18**; warmup depth (none / once / ≥2): **29** / **0** / **0**; follow-up depth (none / once / ≥2): **23** / **0** / **6**
+- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **18**; warmup depth (none / once / ≥2): **33** / **0** / **0**; follow-up depth (none / once / ≥2): **27** / **0** / **6**
 
 ---
 
@@ -204,6 +204,8 @@ _All dated lines on/after 2026-04-26_ (11):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8cf04e9 | 2026-05-03 01:19:26 -0700 | chore(previews): refresh Beer Hall preview (2026-05-03 UTC)
+d8a3949 | 2026-05-03 01:19:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-03 UTC)
 c8f0bac | 2026-05-03 00:13:49 -0700 | docs: rename 'AI: Photo rejected' → 'AI: No fit signal' (#90)
 9ba254b | 2026-05-02 23:38:47 -0700 | docs: HIT_LIST_STATE_MACHINE.md — flowchart + transitions for all 13 Status values (#89)
 7106fb0 | 2026-05-02 23:12:31 -0700 | docs: PLACES_API_CACHING.md — caching architecture, history, gotchas (#88)
@@ -242,8 +244,6 @@ acc6e0f | 2026-04-30 01:39:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 bce41cd | 2026-04-29 23:05:42 -0700 | docs: cash sale pattern + ledger vs physical possession (#83)
 9cd17ec | 2026-04-29 21:58:40 -0700 | docs: clarify CONTRIBUTION EVENT vs CAPITAL INJECTION EVENT (#82)
 b5fc0fb | 2026-04-29 21:41:08 -0700 | docs: link serialized QR sales playbook from canonical context files (#81)
-2535546 | 2026-04-29 21:11:42 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
-171a785 | 2026-04-29 21:11:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
 … (truncated)
 ```
 
@@ -466,7 +466,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/3/2026 0:51:52 |
+| 2026-05 | 0 | 14918.51386 | 5/3/2026 6:50:39 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-26`; scanned last **392** data rows)
 
