@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-02T19:35:04Z`
-- Look-back: **7** calendar days (`2026-04-25` → today UTC)
+- Generated (UTC): `2026-05-03T02:38:06Z`
+- Look-back: **7** calendar days (`2026-04-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 243 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 243 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 242 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 242 | **behind** |
 
 ---
 
@@ -132,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,042.78**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$33.89**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -159,7 +155,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-04-27 | claude | **`OPEN_FOLLOWUPS.md` — cross-session backlog index.** New top-level file for **scoped follow-up tasks** that span sessions / agents (vs. `CONTEXT_UPDATES.md` which is the append-only event log, vs. project-specific TODOs in code comments / repo READMEs / the "Q5 parked" pattern inside `PARTNER_VELOCITY_PROPOSAL.md`). Workflow documented inline: claim by appending a line here, ship via PR, then move the entry to `## Recently shipped` with the PR link. First entry: **Advisory ops-health v2 — burn rate + days-of-cover at SF Kirsten** (deferred from go_to_market#77/#78; sparsity-gated on `inventory_type` backfill — re-check probe in the entry before starting).
 - 2026-04-28 | claude | **`[STORE ADD EVENT]` canonical pattern shipped (additive slice).** End-to-end signed Hit List adds via dao_client → Edgar → Telegram Chat Logs → `processStoreAddsFromTelegramChatLogs` GAS scanner → `addNewStore` on Hit List + audit row on **Store Adds** dedup log (`1qbZZhf-…`, gid 1208101506; col B `telegram_update_id` is the dedup key). Verified live with 3 Psychic Sister referrals (Clary Sage / Casa de Ritual / La Sirena Botanica) — Hit List rows 526–528 landed cleanly with referral provenance; scanner replay perfectly idempotent. PRs: TrueSightDAO/dao_client#9, sentiment_importer#1042, tokenomics#250. Two follow-ups parked in `OPEN_FOLLOWUPS.md`: (a) migrate `dapp/stores_nearby.html` Add Store form onto the same Edgar path; (b) fix pre-existing `addNewStore()` `setValues` dimensional bug so audit log says `added` not `error` (Hit List rows DO land correctly — bug is in tail-end logging step inside addNewStore, not in the new flow).
 
-_All dated lines on/after 2026-04-25_ (11):
+_All dated lines on/after 2026-04-26_ (11):
 
 - 2026-04-27 | claude | **Retail field report flow → async webhook (Plan B).** `[RETAIL FIELD REPORT EVENT]` now mirrors the sales/QR/repackaging pattern — Edgar logs to Telegram Chat Logs, fires `WebhookTriggerWorker` against `processRetailFieldReportsFromTelegramChatLogs` (new GAS in **`tokenomics/google_app_scripts/find_nearby_stores/`**, mirror `1NpHrKJW…`). Scanner dedups against **`Stores Visits Field Reports`** col G `update_id`, then updates Hit List Status + DApp Remarks + Stores Visits Field Reports A–N (L=blob URL, M=raw URL). Removed Edgar's sync **`apply_hit_list_gas_update_from_retail_report!`** + **`stores_gas_exec_base`**. DApp dropped its broken cross-origin GAS POST (`logFieldReportAttachmentRow`). PRs: TrueSightDAO/tokenomics#246, TrueSightDAO/sentiment_importer#1040, TrueSightDAO/dapp#182.
 - 2026-04-27 | claude | **Edgar `submit_contribution` GitHub PAT swap.** Switched the file-upload `Authorization` headers in `dao_controller.rb` (lines ~291, ~330) from a hardcoded fine-grained PAT to **`Rails.application.config.github_pat`** (the same one already used by `archive_retail_field_report` + `oracle/reminders_sync`). Old hardcoded PAT retained as commented backup. Probed read+write live (GET 200 / PUT 201 / DELETE 200) on **`TrueSightDAO/.github`**, **`…/store_interaction_attachments`**, **`…/ecosystem_change_logs`**. Required scope documented inline above `config.github_pat` in **`sentiment_importer/config/application.rb`** — future rotators must keep the PAT scoped to those three repos (and any new TrueSightDAO upload target). PR: TrueSightDAO/sentiment_importer#1041.
@@ -204,6 +200,8 @@ fcff8a6 | 2026-05-01 22:59:04 -0700 | feat(places): cost optimizations 1–3 (ph
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ba93a8e | 2026-05-02 12:35:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
+0559bd6 | 2026-05-02 12:35:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-02 UTC)
 3192808 | 2026-05-02 06:53:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
 7f36e16 | 2026-05-02 06:53:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-02 UTC)
 e88eaaa | 2026-05-02 01:08:00 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
@@ -242,8 +240,6 @@ b5fc0fb | 2026-04-29 21:41:08 -0700 | docs: link serialized QR sales playbook fr
 0112932 | 2026-04-29 07:38:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
 1add780 | 2026-04-29 07:38:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
 4a778a8 | 2026-04-29 01:38:21 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
-3930dfb | 2026-04-29 01:38:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
-d660cf4 | 2026-04-28 21:10:01 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
 … (truncated)
 ```
 
@@ -346,7 +342,6 @@ d833103 | 2026-04-28 08:41:57 +0000 | chore: refresh store and partner inventory
 bfc7a80 | 2026-04-27 14:43:50 -0700 | feat: add partners-velocity.json snapshot (#5)
 9330f1a | 2026-04-27 08:43:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b963a99 | 2026-04-26 07:56:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-20d337d | 2026-04-25 07:47:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -395,6 +390,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-03T023806Z_places-cache-reply-drafts-cost-optimizations.md`
+
+- **posted_at_utc:** `2026-05-03T02:38:06Z`  
+- **slug:** `places-cache-reply-drafts-cost-optimizations`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Auto-generated warm-up reply drafts are now live, Google Places data is permanently cached to cut API spend, and three more prospects have replied to outreach.
+  - **Auto-reply drafts wired up** — when a warm-up prospect replies, the system now auto-generates a personalised draft response via Grok and queues it in Gmail. `find_warmup_thread_and_messages()`, `grok_generate_reply()`, and `create_reply_drafts_for_replied_prospects()` all shipped.
+
 ### `beer-hall_2026-05-02T022854Z_bucks-spices-way-home-shop-reply-wholesale-live.md`
 
 - **posted_at_utc:** `2026-05-02T02:28:54Z`  
@@ -412,15 +416,6 @@ _(no commits on origin/master in window)_
 
   Two processing partners are live on the partner hub, a full SunMint Pledge donation pipeline shipped end-to-end, and the Hit List gained a dedicated Deferred Until column with an auto-flip cron.
   - **Santos Chocolate Factory is live** on the partner hub and the Brazilian path journey page — full hero, three field-process video clips embedded, images optimised (~6.4 MB → ~700 KB), and wide desktop composites added to preserve faces across 11 partner pages.
-
-### `beer-hall_2026-04-30T024023Z_kirsten-37-bars-sold-store-add-scanner.md`
-
-- **posted_at_utc:** `2026-04-30T02:40:23Z`  
-- **slug:** `kirsten-37-bars-sold-store-add-scanner`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Kirsten sold 37 bars at $10 each — 20 Oscar 2024 and 17 Santa Ana 2023 — processed via a batch Stripe script Gary wrote and submitted to Edgar. That's $370 in confirmed cash sales recorded on-chain.
-  - **37 bars sold, fully recorded** — Elizabeth Wong's bulk Stripe checkout decoded into 37 serialised QR codes (20 Oscar 2024 + 17 Santa Ana 2023); `submit_elizabeth_wong_sales.py` batch-submitted all 37 `[SALES EVENT]` entries to Edgar with amortised fees.
 
 ---
 
@@ -440,63 +435,6 @@ _(no commits on origin/master in window)_
 
 - **`20260430T203013Z.json`** — `2026-04-30T20:30:13Z`  
   **** → `` (was `—`) | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/2/2026 11:51:28 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-25`; scanned last **392** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_1645f553 | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_d384b1ae | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_621c84ef | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_2510d807 | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_0abc72e8 | — | — |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | 25 | 8 Ounce Package Kraft Pouch - AGL6 | ACCOUNTED | 2024SJ_20250515_NIBS_27 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_6 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_8 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_14 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_2 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_1 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_3 | Cash sale | — |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_20 | O1LPIGauKei9 | — |
-| 2026-05-01 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
