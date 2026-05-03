@@ -89,7 +89,7 @@ stateDiagram-v2
 | **AI: Email found** | Email harvested. Awaiting promotion to warm-up. | `hit_list_promote_status.py` (`email-to-warmup`). | `hit_list_enrich_contact.py` (when website crawl + Grok pick produced an email). |
 | **AI: Contact Form found** | Only a contact form URL surfaced; no email. **Terminal automation state** — manual follow-up only. Never auto-promoted to warm-up. | None (operator). | `hit_list_enrich_contact.py`. |
 | **AI: Enrich — manual** | Enrich couldn't find a website *or* a place_id (or both). Operator triage required. | None (operator). | `hit_list_enrich_contact.py`. |
-| **AI: Warm up prospect** | Ready for warm-up Gmail draft. Email present. | `suggest_warmup_prospect_drafts.py` cron (creates drafts; doesn't change status). | `detect_circle_hosting_retailers.py` (Hosts Circles=Yes + email already present, fast-track); `hit_list_promote_status.py` (`email-to-warmup`). |
+| **AI: Warm up prospect** | Ready for warm-up Gmail draft. Email present. Drafts staged in `Email Agent Drafts` tab with `status='pending_review'` until operator sends from Gmail; review-time triage uses `preview_warmup_drafts.py` (see [Operator review loop](#operator-review-loop-warm-up-drafts) below). | `suggest_warmup_prospect_drafts.py` cron (creates drafts; doesn't change Hit List status); `preview_warmup_drafts.py` (read-only triage view). | `detect_circle_hosting_retailers.py` (Hosts Circles=Yes + email already present, fast-track); `hit_list_promote_status.py` (`email-to-warmup`). |
 | **AI: Prospect replied** | Gmail detected an inbound reply to our warm-up. Operator should triage. | None directly (operator); `backfill_warmup_reply_remarks.py` for audit logging. | `backfill_warmup_reply_remarks.py` / `backfill_all_warmup_replies.py` when reply detected. |
 | **Manager Follow-up** | Operator-claimed row needing follow-up Gmail draft. | `suggest_manager_followup_drafts.py` cron (creates drafts). | Operator (manual) or downstream operator process. |
 | **Shortlisted** _(human)_ | Human-confirmed fit during manual triage. | `hit_list_promote_status.py` (`human-shortlisted-to-enrich`). | Operator (manual). |
@@ -136,7 +136,8 @@ stateDiagram-v2
 | → State | Trigger | Condition |
 |---|---|---|
 | `AI: Prospect replied` | `backfill_warmup_reply_remarks.py` / `backfill_all_warmup_replies.py` (manual / scheduled) | Gmail detected an inbound reply from the prospect's address to our warm-up thread. |
-| _(stays)_ | `suggest_warmup_prospect_drafts.py` (cron) | Creates Gmail draft, but **does not change status** until the prospect replies. Drafts are reviewed/sent manually. |
+| _(stays)_ | `suggest_warmup_prospect_drafts.py` (cron) | Creates Gmail draft + appends row to `Email Agent Drafts` (`status='pending_review'`, `gmail_label='AI/Warm-up'`). Hit List status **does not change** here — operator review + send happens out-of-band. |
+| _(stays — review loop)_ | `preview_warmup_drafts.py` (manual) | Generates a tiered HTML triage view of all `pending_review` warm-up drafts (linter flags risky ones, surfaces Hosts Circles=Yes prospects, clusters clean drafts for batch send). Read-only — operator still sends from Gmail. |
 
 ### From `AI: Prospect replied`
 | → State | Trigger | Condition |
@@ -156,14 +157,88 @@ stateDiagram-v2
 | `:35 * * * *` | `hit_list_enrich_contact.py` | Enrich queue + fill-gap sweep. | `AI: Enrich with contact` (queue) + any row with field gaps | `AI: Email found` / `AI: Contact Form found` / `AI: Enrich — manual` |
 | `:50 * * * *` | `detect_circle_hosting_retailers.py` | Site crawl, Hosts Circles writeback, Research promotion + rescue + reject. | `Research`, `AI: No fit signal`, legacy `AI: Photo rejected` | `AI: Warm up prospect` / `AI: Enrich with contact` / `AI: No fit signal` |
 | Manual | `discover_apothecaries_la_hit_list.py` | Nearby Search across centroids → appends new `Research` rows. | — | new rows with Status=`Research` |
-| Manual | `suggest_warmup_prospect_drafts.py` | Creates Gmail drafts for `AI: Warm up prospect` rows with Email. | `AI: Warm up prospect` | _none_ (drafts only) |
+| Manual | `suggest_warmup_prospect_drafts.py` | Creates Gmail drafts for `AI: Warm up prospect` rows with Email. | `AI: Warm up prospect` | _none_ (drafts only — appends rows to `Email Agent Drafts` for review) |
+| Manual | `preview_warmup_drafts.py` | Renders an HTML triage view of all `pending_review` warm-up drafts. Linter flags risky ones; clean cohort gets a glance + send, flagged cohort gets opened individually. Read-only — output to `scripts/output/warmup_batch_preview/<timestamp>.html` (gitignored). | `Email Agent Drafts` (`status='pending_review'`, `gmail_label='AI/Warm-up'`), Hit List (Hosts Circles, City/State, Notes), DApp Remarks (history count). | _none_ (read-only) |
 | Manual | `suggest_manager_followup_drafts.py` | Creates Gmail follow-up drafts. | `Manager Follow-up` | _none_ (drafts only) |
+
+## Operator review loop (warm-up drafts)
+
+When `suggest_warmup_prospect_drafts.py` runs (manual trigger), drafts pile
+up in two places that the operator interacts with:
+
+1. **Gmail** — every draft is created in the operator's mailbox and labeled
+   `AI/Warm-up`. The drafts are visible at
+   [`https://mail.google.com/mail/u/0/#label/AI%2FWarm-up`](https://mail.google.com/mail/u/0/#label/AI%2FWarm-up).
+2. **`Email Agent Drafts` tab** of the Hit List spreadsheet — one row per
+   draft, `status='pending_review'`, holding `gmail_draft_id`,
+   `body_preview` (~500 chars), and metadata.
+
+The loop **before 2026-05-03** was: open every draft in Gmail, skim,
+send. Uniform attention across a non-uniform population (some drafts
+are clean boilerplate, others have real failure modes — generic `info@`
+recipient, body falls back to `"your shop"`, foreign-script venue, etc).
+
+The loop **after 2026-05-03** (PR [`go_to_market#106`](https://github.com/TrueSightDAO/go_to_market/pull/106)):
+
+```
+$ cd market_research
+$ python3 scripts/preview_warmup_drafts.py
+```
+
+This:
+
+- Reads every `pending_review` warm-up draft from `Email Agent Drafts`.
+- Fetches the full subject + body of each from the Gmail API.
+- Cross-references the Hit List for **Hosts Circles=Yes** (high-leverage
+  prospect — gets a blue badge), City/State, Notes.
+- Looks up DApp Remarks count per shop name (cold first touch vs prior
+  history).
+- Runs a 12-rule linter:
+  - **Red** (review): `subject_empty`, `body_empty`, `body_too_short`,
+    `fallback_shop_name`, `generic_inbox` (`info@`/`sales@`/`hello@`/…),
+    `no_first_name` ("Hi there" salutation), `foreign_script` (Cyrillic /
+    CJK / Arabic), `unrendered_placeholder`.
+  - **Yellow** (glance worthwhile): `no_city_state`, `no_hit_list_notes`,
+    `no_dapp_history`.
+  - **Blue** (informational): `hosts_circles`.
+- Renders a single static HTML page sorted **red-first**, opens in
+  default browser, writes to
+  `market_research/scripts/output/warmup_batch_preview/<timestamp>.html`
+  (gitignored).
+
+**What to expect in the inbox after running this:**
+
+- The HTML shows each draft with: recipient + shop + city, subject (1
+  line bold), flag badges (color-coded), "Open in Gmail" deep-link, and
+  a collapsed body (`<details>` toggle) for inline read.
+- The summary at top breaks down: `N pending` / `R flagged red` /
+  `Y flagged yellow only` / `C clean` / `Z Hosts Circles=Yes`.
+- Scan top-to-bottom: the reds and AW=Yes float up. Open those in Gmail
+  (one click), edit if needed, send.
+- The clean cohort (no red, no yellow flags) at the bottom is the
+  glance-and-send batch — open the `AI/Warm-up` label in Gmail, scan
+  the row, hit Send.
+- **Send action stays manual** in Gmail — the script is read-only by
+  design. It catches known failure modes; net-new failure modes need a
+  human eye until a rule is added.
+
+After sending, run `sync_email_agent_followup.py` to log sent messages
+to the `Email Agent Follow Up` tab. Reply detection then flows through
+the existing `Warm up prospect → Prospect replied` transition above.
+
+A pairing follow-up is parked in `OPEN_FOLLOWUPS.md` (entry: "Warm-up
+email A/B read-out") for **2026-05-11** to validate whether the new
+default payload (PDF + 2 packaging photos, [`go_to_market#74`](https://github.com/TrueSightDAO/go_to_market/pull/74))
+moved reply rate vs the PDF-only baseline. If reply rate stays healthy
+AND no pattern of bad copy in the lint-reviewed sample, that's the
+signal to drop the unflagged tier to fully auto-send.
 
 ## Anti-patterns / common gotchas
 
 - **A row stuck in `Research` with no Website**: `detect_circle_hosting_retailers.py` skips rows without a Website, so they never get qualified. Operator should backfill Website manually (or run a discovery script that finds it).
 - **A row in `AI: Email found` with empty Email**: `email-to-warmup` skips it. Either the email got cleared by accident (recoverable: edit Email cell, next cron picks it up) or Enrich set the wrong status (rare).
-- **A row in `AI: Warm up prospect` for weeks with no draft**: `suggest_warmup_prospect_drafts.py` is manual-trigger-only. Operator should run it explicitly.
+- **A row in `AI: Warm up prospect` for weeks with no draft**: `suggest_warmup_prospect_drafts.py` is manual-trigger-only. Operator should run it explicitly. After running it, run `preview_warmup_drafts.py` to triage the batch before opening Gmail.
+- **A draft sitting at `pending_review` for days**: review with `preview_warmup_drafts.py`; the draft is in the operator's Gmail under label `AI/Warm-up`. If the linter flags it red and you don't trust the copy, edit in Gmail or delete the draft (next cron will re-suggest after the cadence window).
 - **A row in `AI: Photo needs review` from old data**: legacy state. No automation will move it. Manually re-set to `Research` to re-qualify under the new pipeline.
 - **The Hosts Circles column (col AW)** is the canonical "did we crawl this site for cacao-ceremony keywords yet" signal. Empty = not crawled. `Yes (...)` = positive. `Not detected` = crawled, no keywords. The state machine relies on this column being honest.
 
