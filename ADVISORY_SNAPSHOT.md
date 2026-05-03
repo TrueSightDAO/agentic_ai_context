@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-03T04:27:52Z`
+- Generated (UTC): `2026-05-03T08:19:14Z`
 - Look-back: **7** calendar days (`2026-04-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -198,12 +198,17 @@ _All dated lines on/after 2026-04-26_ (11):
 ### `market_research` → `go_to_market`
 
 ```
-fcff8a6 | 2026-05-01 22:59:04 -0700 | feat(places): cost optimizations 1–3 (photo gate + Nearby coverage cache + status refresh) (#98)
+86b4ad6 | 2026-05-03 00:39:07 -0700 | fix(hit-list): bulk-migrate legacy 'AI: Photo needs review' rows back to Research (#105)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c8f0bac | 2026-05-03 00:13:49 -0700 | docs: rename 'AI: Photo rejected' → 'AI: No fit signal' (#90)
+9ba254b | 2026-05-02 23:38:47 -0700 | docs: HIT_LIST_STATE_MACHINE.md — flowchart + transitions for all 13 Status values (#89)
+7106fb0 | 2026-05-02 23:12:31 -0700 | docs: PLACES_API_CACHING.md — caching architecture, history, gotchas (#88)
+7a12b00 | 2026-05-02 21:28:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-03 UTC)
+9d133ca | 2026-05-02 21:28:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-03 UTC)
 b9d6132 | 2026-05-02 19:38:26 -0700 | Merge pull request #87 from TrueSightDAO/auto/advisory-refresh-2026-05-03
 627db4c | 2026-05-03 02:38:15 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-03 UTC)
 ba93a8e | 2026-05-02 12:35:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
@@ -239,11 +244,6 @@ bce41cd | 2026-04-29 23:05:42 -0700 | docs: cash sale pattern + ledger vs physic
 b5fc0fb | 2026-04-29 21:41:08 -0700 | docs: link serialized QR sales playbook from canonical context files (#81)
 2535546 | 2026-04-29 21:11:42 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
 171a785 | 2026-04-29 21:11:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
-5a265ad | 2026-04-29 19:40:41 -0700 | Merge pull request #80 from TrueSightDAO/auto/advisory-refresh-2026-04-30
-8592ed6 | 2026-04-30 02:40:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
-436b105 | 2026-04-29 13:00:13 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
-06f8598 | 2026-04-29 13:00:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-29 UTC)
-0112932 | 2026-04-29 07:38:18 -0700 | chore(previews): refresh Beer Hall preview (2026-04-29 UTC)
 … (truncated)
 ```
 
@@ -281,6 +281,8 @@ d68b88c | 2026-04-27 11:33:59 -0700 | feat(find_nearby_stores): async [RETAIL FI
 ### `dapp` → `dapp`
 
 ```
+b5d9391 | 2026-05-03 00:26:24 -0700 | refactor(stores-by-status): order status filters top-of-pipeline → bottom (#201)
+585fb20 | 2026-05-03 00:09:49 -0700 | refactor(stores): add 'AI: No fit signal' to status dropdowns + filters (#200)
 3dc96db | 2026-04-30 13:28:57 -0700 | feat(store-history): dedicated Deferred Until field (was overloaded onto Follow Up Date) (#199)
 bb9e65e | 2026-04-30 12:49:54 -0700 | feat(store-history): require Follow Up Date when Deferred + Gmail link from message id (#198)
 1b90939 | 2026-04-30 12:30:28 -0700 | fix(stores): show all known statuses + Deferred option + clickable filename_original for PDFs (#197)
@@ -331,6 +333,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ddd2a0 | 2026-05-02 08:01:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cfa8f36 | 2026-05-01 08:26:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 75dbb5f | 2026-04-30 08:38:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -463,7 +466,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/2/2026 20:50:23 |
+| 2026-05 | 0 | 14918.51386 | 5/3/2026 0:51:52 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-26`; scanned last **392** data rows)
 
