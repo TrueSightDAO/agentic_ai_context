@@ -81,7 +81,7 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 | Variable | Required for | Notes |
 |----------|----------------|-------|
-| **`GITHUB_PAT`** | Uploading invoice PDFs to **`TrueSightDAO/.github`** **`assets/`**, or using **`GH_TOKEN`** with **`gh`** for PRs | Grant **Contents** read/write on that repo. For **`gh pr create` / merge**, also **Pull requests** (fine-grained) or classic **`repo`**. See **`WORKSPACE_CONTEXT.md`** §**3c**. |
+| **`GITHUB_PAT`** | Uploading invoice PDFs to **`TrueSightDAO/.github`** **`assets/`**, or using **`GH_TOKEN`** with **`gh`** for PRs | Grant **Contents** read/write on that repo. For **`gh pr create` / merge**, also **Pull requests** (fine-grained) or classic **`repo`**. See **`WORKSPACE_CONTEXT.md`** §**3c**. **⚠️ Current PAT (2026-05-03) can write `.github` but NOT `go_to_market` or `ecosystem_change_logs` — see `API_CREDENTIALS_DOCUMENTATION.md` §10.2.** |
 | **`ANTHROPIC_API_KEY`** | `scripts/draft_beer_hall_digest.py` (Claude Sonnet 4.6 drafter) — also mirrored as a GH Actions secret on `TrueSightDAO/go_to_market` for the daily Beer Hall workflow. | No scope restrictions at the provider level; rotate if leaked. |
 | **`ORACLE_ADVISORY_PUSH_TOKEN`** | GH Actions workflows (`beer-hall-digest-daily.yml`, `advisory-snapshot-refresh.yml`) that push + auto-merge on `ecosystem_change_logs` and `agentic_ai_context`. Local runs of `generate_advisory_snapshot.py --github-api-publish` can also read it. | Fine-grained PAT with **Contents: Read + Write** and **Pull requests: Read + Write** on `TrueSightDAO/ecosystem_change_logs` and `TrueSightDAO/agentic_ai_context`. Add **Contents: Read** on `TrueSightDAO/Cypher-Defense` if that repo is private. |
 | **`google_credentials.json`** (file) | Google Sheets scripts | Service account JSON in repo root; see **`market_research/README.md`**. Shared with the service account **client_email** as **Editor** on the [Telegram compilation sheet](https://docs.google.com/spreadsheets/d/1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ/edit) so `list_recent_telegram_chat_logs_for_digest.py` can pull recent rows into the Beer Hall preview. Also mirrored as GH Actions secret `GOOGLE_CREDENTIALS_JSON` on `TrueSightDAO/go_to_market`. |
@@ -140,6 +140,57 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 3. **Verify protection** — Use `git check-ignore` to confirm files are excluded
 4. **Document requirements** — Update this file when new credential requirements are discovered
 5. **Use environment variables** — Prefer `.env` files over credential JSON files when possible
+
+---
+
+## truesight_autopilot (proposed)
+
+If/when `TrueSightDAO/truesight_autopilot` is created, these are the **blockers and prerequisites** discovered during credential audit (2026-05-03):
+
+### Blockers
+
+| # | Blocker | Impact | Resolution |
+|---|---|---|---|
+| 1 | **GitHub PAT cannot write to `go_to_market`** | Autopilot cannot open PRs on the repo with the most Actions/workflows | Regenerate fine-grained PAT with `Contents: Read+Write` + `Pull requests: Read+Write` on `TrueSightDAO/go_to_market` (and any other target repo) |
+| 2 | **AWS credentials are invalid** | Autopilot cannot monitor EC2 health or AWS costs | Rotate AWS keys in `~/.aws/credentials` + env vars, OR attach IAM instance role to EC2 with `CloudWatchReadOnlyAccess` + `CostExplorerReadOnlyAccess` |
+| 3 | **No dedicated Edgar identity for automation** | Autopilot would have to use personal signing keys | Generate new RSA keypair via `truesight-dao-auth login`, register as `autopilot@agroverse.shop`, store in isolated `.env` |
+
+### Prerequisites (ready now)
+
+| Item | Status | Notes |
+|---|---|---|
+| Gmail OAuth token | ✅ Ready | `market_research/credentials/gmail/token.json` has `gmail.modify` + refresh token; paste into `GMAIL_TOKEN_JSON` env var for 24/7 service |
+| GCP service accounts | ✅ Ready | `agroverse-market-research@get-data-io.iam.gserviceaccount.com` and `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com` are active |
+| EC2 host | ✅ Ready | `governor_chatbot_service` runs on t3.small us-east-1; second systemd service is the cheapest path |
+| DeepSeek API | 🆕 New | Sign up at `platform.deepseek.com` for API key; ~30× cheaper than Claude for code-generation workloads |
+
+### Suggested `.env` for autopilot
+
+```bash
+# Gmail (monitor failure emails)
+GMAIL_TOKEN_JSON=<paste full token.json contents>
+
+# GitHub (open PRs, read workflow logs)
+GITHUB_PAT=<fine-grained PAT with Contents+PR write on target repos>
+
+# LLM (DeepSeek primary, Claude fallback)
+DEEPSEEK_API_KEY=<from platform.deepseek.com>
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+ANTHROPIC_API_KEY=<optional fallback>
+
+# AWS (if using long-lived keys; prefer IAM instance role)
+AWS_ACCESS_KEY_ID=<rotated key>
+AWS_SECRET_ACCESS_KEY=<rotated secret>
+AWS_REGION=us-east-1
+
+# Edgar (automation identity — NOT personal keys)
+EMAIL=autopilot@agroverse.shop
+PUBLIC_KEY=<SPKI base64>
+PRIVATE_KEY=<PKCS#8 base64>
+
+# Context sync
+AGENTIC_CONTEXT_REPO=https://github.com/TrueSightDAO/agentic_ai_context.git
+```
 
 ---
 

@@ -142,4 +142,99 @@ EasyPost for rate quotes uses **`EASYPOST_API_KEY`** (or `config.easypost_api` i
 
 ---
 
+## 10. Credential Permission Audit (2026-05-03)
+
+Live probe results for credentials used by automation. **Future AIs:** consult this before assuming a credential can read/write/create.
+
+### 10.1 Gmail OAuth (`market_research/credentials/gmail/token.json`)
+
+| Attribute | Value |
+|---|---|
+| **Account** | `garyjob@agroverse.shop` |
+| **Client ID** | `667737028020-2ihjpbnq119st9v9b9f4kh6vvkrc4hco.apps.googleusercontent.com` (GCP project `get-data-io`) |
+| **Scopes** | `https://www.googleapis.com/auth/gmail.modify` |
+| **Refresh token** | ✅ Present (len 103) |
+| **Access token expiry** | Short-lived; library auto-refreshes via `token_uri` |
+| **Capabilities** | Read/search mail, send mail, create drafts, manage labels |
+| **CI usage** | Paste full JSON into `GMAIL_TOKEN_JSON` secret; refresh token persists until revoked |
+| **Limitations** | Cannot access other Google Workspace accounts; app in Testing mode requires `garyjob@agroverse.shop` as test user |
+
+**Verdict:** ✅ **Ready for autopilot email monitoring.** The refresh token is active and `gmail.modify` covers reading failure emails + sending replies.
+
+### 10.2 GitHub PAT (`market_research/.env` → `GITHUB_PAT`)
+
+| Attribute | Value |
+|---|---|
+| **Type** | Fine-grained personal access token |
+| **Owner** | `garyjob` (user account, not a bot) |
+| **Rate limit** | 5,000/hour (personal tier) |
+| **Read access** | ✅ All 25+ `TrueSightDAO/*` repos visible |
+| **Write access — `TrueSightDAO/.github`** | ✅ Confirmed (PUT file + DELETE probe succeeded) |
+| **Write access — `TrueSightDAO/go_to_market`** | ❌ **DENIED** — "Resource not accessible by personal access token" |
+| **Write access — `TrueSightDAO/ecosystem_change_logs`** | ❌ **DENIED** — same error |
+| **Write access — branch create / PR open** | ❌ **DENIED** on `go_to_market` (and likely any repo not explicitly granted) |
+
+**Verdict:** ⚠️ **Partially ready.** The PAT can write to `.github` but **cannot open PRs on `go_to_market`** (the repo with the most Actions/workflows). For `truesight_autopilot` to open code-fix PRs, you must either:
+
+1. **Regenerate the fine-grained PAT** and add `Contents: Read + Write` + `Pull requests: Read + Write` on `TrueSightDAO/go_to_market` (and any other repo the autopilot should edit), or
+2. **Create a dedicated bot account** (`truesight-autopilot` or similar), invite it as a collaborator to the repos, and issue a PAT from that account.
+
+### 10.3 AWS Credentials
+
+| Source | Status | Details |
+|---|---|---|
+| `~/.aws/credentials` (default profile) | ❌ **INVALID** | `InvalidClientTokenId` — credentials rotated or belong to a deactivated user |
+| `~/.aws/credentials` (`[nelan]` profile) | Unknown | Not probed |
+| Environment vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`) | ❌ **INVALID** | Same error; may conflict with ~/.aws credentials |
+| `agroverse_shop` scripts | ❌ **INVALID** | Same keys, same error |
+
+**Verdict:** ❌ **Not ready for autopilot.** All AWS credentials in the workspace are invalid. To monitor EC2 health and costs, you must:
+
+1. **Rotate AWS credentials** in `~/.aws/credentials` and `.env` files, or
+2. **Attach an IAM role** to the EC2 instance running `governor_chatbot_service` so the autopilot can use instance-profile credentials (no long-lived keys needed).
+
+Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExplorerReadOnlyAccess` + `AWSHealthFullAccess`.
+
+### 10.4 dao_client Edgar Signing Keys (`dao_client/.env`)
+
+| Attribute | Value |
+|---|---|
+| **Identity** | Personal (`Gary Teh`) |
+| **Keys** | RSA-2048 SPKI/PKCS#8 in `.env` |
+| **Usage** | `truesight-dao-report-contribution`, all `truesight-dao-*` CLI tools |
+
+**Verdict:** ⚠️ **Do NOT use for autopilot.** These are personal DAO identity keys. The autopilot should have its own keypair:
+
+1. Generate new RSA keypair (`truesight-dao-auth login` with a new `.env` path)
+2. Register with Edgar as `autopilot@agroverse.shop` (or similar)
+3. Store only the autopilot `.env` on the EC2
+
+### 10.5 GCP Service Accounts
+
+| Service Account | File location(s) | Project | Verified access |
+|---|---|---|---|
+| `agroverse-market-research@get-data-io.iam.gserviceaccount.com` | `market_research/google_credentials.json`, `krake_local/google-service-account.json` | `get-data-io` | Assumed (used daily by scripts) |
+| `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com` | `agroverse_shop/google-service-account.json`, `truesight_me/google-service-account.json` | `get-data-io` | Assumed |
+| `cypher-defense@get-data-io.iam.gserviceaccount.com` | `sentiment_importer/config/cypher_defense_gdrive_key.json` | `get-data-io` | Assumed |
+| `edgar-dapp-listener@get-data-io.iam.gserviceaccount.com` | `sentiment_importer/config/edgar_dapp_listener_key.json` | `get-data-io` | ✅ Confirmed Editor on Hit List |
+| `tdg-scoring-peer-reviewer@get-data-io.iam.gserviceaccount.com` | `sentiment_importer/config/tdg_scoring_gdrive_key.json` | `get-data-io` | Assumed |
+| `upc-barcode@get-data-io.iam.gserviceaccount.com` | `sentiment_importer/config/upc_barcode_gdrive_key.json` | `get-data-io` | Assumed |
+| `truesightme-whitepapers@get-data-io.iam.gserviceaccount.com` | `truesight_me/credentials/whitepaper-google-sa.json` | `get-data-io` | Assumed (Viewer on whitepaper docs) |
+
+**Verdict:** ✅ **Ready for sheet access.** No live probe performed (would require API calls), but all are actively used. For GCP billing/monitoring, you need a separate service account with `monitoring.viewer` + `billing.accounts.getSpendingInformation` on the `get-data-io` billing account.
+
+### 10.6 Governor Chatbot Service EC2
+
+| Attribute | Value |
+|---|---|
+| **Region** | `us-east-1` |
+| **Instance type** | t3.small (recommended) or t3.micro |
+| **IAM role** | Unknown — IMDS not accessible from this machine |
+| **Current services** | `governor-chatbot.service` (systemd) |
+| **Proposed addition** | `truesight-autopilot.service` (same EC2, second systemd unit) |
+
+**Verdict:** ⚠️ **Needs IAM role check.** SSH into the EC2 and run `curl http://169.254.169.254/latest/meta-data/iam/info` to verify the instance profile. If none exists, attach one with `CloudWatchReadOnlyAccess` + `CostExplorerReadOnlyAccess`.
+
+---
+
 *Last updated from workspace scan. Credentials were not moved; only variable names and documentation were collected here.*
