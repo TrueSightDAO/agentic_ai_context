@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-03T13:55:00Z`
+- Generated (UTC): `2026-05-03T19:33:43Z`
 - Look-back: **7** calendar days (`2026-04-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -159,7 +159,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-04-27 | claude | **`OPEN_FOLLOWUPS.md` — cross-session backlog index.** New top-level file for **scoped follow-up tasks** that span sessions / agents (vs. `CONTEXT_UPDATES.md` which is the append-only event log, vs. project-specific TODOs in code comments / repo READMEs / the "Q5 parked" pattern inside `PARTNER_VELOCITY_PROPOSAL.md`). Workflow documented inline: claim by appending a line here, ship via PR, then move the entry to `## Recently shipped` with the PR link. First entry: **Advisory ops-health v2 — burn rate + days-of-cover at SF Kirsten** (deferred from go_to_market#77/#78; sparsity-gated on `inventory_type` backfill — re-check probe in the entry before starting).
 - 2026-04-28 | claude | **`[STORE ADD EVENT]` canonical pattern shipped (additive slice).** End-to-end signed Hit List adds via dao_client → Edgar → Telegram Chat Logs → `processStoreAddsFromTelegramChatLogs` GAS scanner → `addNewStore` on Hit List + audit row on **Store Adds** dedup log (`1qbZZhf-…`, gid 1208101506; col B `telegram_update_id` is the dedup key). Verified live with 3 Psychic Sister referrals (Clary Sage / Casa de Ritual / La Sirena Botanica) — Hit List rows 526–528 landed cleanly with referral provenance; scanner replay perfectly idempotent. PRs: TrueSightDAO/dao_client#9, sentiment_importer#1042, tokenomics#250. Two follow-ups parked in `OPEN_FOLLOWUPS.md`: (a) migrate `dapp/stores_nearby.html` Add Store form onto the same Edgar path; (b) fix pre-existing `addNewStore()` `setValues` dimensional bug so audit log says `added` not `error` (Hit List rows DO land correctly — bug is in tail-end logging step inside addNewStore, not in the new flow).
 
-_All dated lines on/after 2026-04-26_ (11):
+_All dated lines on/after 2026-04-26_ (13):
 
 - 2026-04-27 | claude | **Retail field report flow → async webhook (Plan B).** `[RETAIL FIELD REPORT EVENT]` now mirrors the sales/QR/repackaging pattern — Edgar logs to Telegram Chat Logs, fires `WebhookTriggerWorker` against `processRetailFieldReportsFromTelegramChatLogs` (new GAS in **`tokenomics/google_app_scripts/find_nearby_stores/`**, mirror `1NpHrKJW…`). Scanner dedups against **`Stores Visits Field Reports`** col G `update_id`, then updates Hit List Status + DApp Remarks + Stores Visits Field Reports A–N (L=blob URL, M=raw URL). Removed Edgar's sync **`apply_hit_list_gas_update_from_retail_report!`** + **`stores_gas_exec_base`**. DApp dropped its broken cross-origin GAS POST (`logFieldReportAttachmentRow`). PRs: TrueSightDAO/tokenomics#246, TrueSightDAO/sentiment_importer#1040, TrueSightDAO/dapp#182.
 - 2026-04-27 | claude | **Edgar `submit_contribution` GitHub PAT swap.** Switched the file-upload `Authorization` headers in `dao_controller.rb` (lines ~291, ~330) from a hardcoded fine-grained PAT to **`Rails.application.config.github_pat`** (the same one already used by `archive_retail_field_report` + `oracle/reminders_sync`). Old hardcoded PAT retained as commented backup. Probed read+write live (GET 200 / PUT 201 / DELETE 200) on **`TrueSightDAO/.github`**, **`…/store_interaction_attachments`**, **`…/ecosystem_change_logs`**. Required scope documented inline above `config.github_pat` in **`sentiment_importer/config/application.rb`** — future rotators must keep the PAT scoped to those three repos (and any new TrueSightDAO upload target). PR: TrueSightDAO/sentiment_importer#1041.
@@ -172,6 +172,8 @@ _All dated lines on/after 2026-04-26_ (11):
 - 2026-04-29 | claude | Serialized QR sales pattern — bulk purchase via Stripe checkout: one [SALES EVENT] per QR code (Item = QR code ID, e.g. 2024OSR_81PB_20260412_3). The DApp report_sales.html treats QR code as the Item field. For bulk orders, amortize Stripe fees across all units via --attr. Use GAS ?list_with_members=true to discover exact QR codes assigned to a contributor. Future AIs: see notes/claude_serialized_qr_sales_2026-04-29.md.
 - 2026-04-29 | claude | **Serialized QR sales — discoverability fix.** `OPERATING_INSTRUCTIONS.md` §2, `WORKSPACE_CONTEXT.md` §5, and `PROJECT_INDEX.md` (dao_client row) now explicitly point to the serialized QR bulk-sales playbook. New reusable template: `dao_client/examples/bulk_qr_sales_template.py` (discover → one [SALES EVENT] per QR → optional [INVENTORY MOVEMENT]). Note file `notes/claude_serialized_qr_sales_2026-04-29.md` updated with cross-references.
 - 2026-04-29 | claude | **DApp copy + context docs: `[CONTRIBUTION EVENT]` vs `[CAPITAL INJECTION EVENT]` distinction.** DApp `report_contribution.html` now clarifies it covers time AND out-of-pocket expenses. DApp `report_capital_injection.html` now states "For external investors only" with a cross-link to Contribution. DApp `index.html` reorganized: new "Investment & Financing" section (Capital Injection), "Community Contributions" renamed to "Community & Feedback" (Feedback only). `agentic_ai_context/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md` added event-selection decision table. `OPERATING_INSTRUCTIONS.md` and `WORKSPACE_CONTEXT.md` updated with pointers. `dao_client/README.md` CLI table annotated with semantic hints. PRs: TrueSightDAO/dapp#184, TrueSightDAO/agentic_ai_context#82, TrueSightDAO/dao_client#14.
+- 2026-05-03 | claude | **Credential permission audit for `truesight_autopilot`.** Live probes performed on all credentials the autopilot would need. Key findings: (1) Gmail OAuth token ✅ ready (`gmail.modify` + refresh token); (2) GitHub PAT ⚠️ partial — can write `TrueSightDAO/.github` but CANNOT write `go_to_market` or `ecosystem_change_logs` (needs regeneration with broader repo scope); (3) AWS keys ❌ invalid everywhere (`InvalidClientTokenId`); (4) dao_client Edgar keys are personal identity — autopilot needs its own RSA keypair. Full audit table added to `API_CREDENTIALS_DOCUMENTATION.md` §10. Setup prerequisites + suggested `.env` added to `SETUP_REQUIREMENTS.md` under "truesight_autopilot (proposed)". See also `notes/claude_autopilot_credential_audit_2026-05-03.md`.
+- 2026-05-03 | claude | **New repo: `TrueSightDAO/truesight_autopilot`.** Autonomous SRE + developer for TrueSight DAO. Scaffolding committed (FastAPI, Gmail poller, GitHub client, DeepSeek diagnosis, AWS monitor, Edgar logger, systemd service, deploy script). Vision: close the gap between "error email at 3 AM" and "human fixes it at 9 AM" — the service watches, thinks, acts, and opens PRs; humans review and merge. Added to `PROJECT_INDEX.md` and `WORKSPACE_CONTEXT.md`. Full vision in repo `README.md`. Blockers documented in `SETUP_REQUIREMENTS.md` and `API_CREDENTIALS_DOCUMENTATION.md` §10.
 
 ---
 
@@ -198,12 +200,19 @@ _All dated lines on/after 2026-04-26_ (11):
 ### `market_research` → `go_to_market`
 
 ```
-86b4ad6 | 2026-05-03 00:39:07 -0700 | fix(hit-list): bulk-migrate legacy 'AI: Photo needs review' rows back to Research (#105)
+1fd9fd1 | 2026-05-03 12:22:11 -0700 | feat(warmup-review): batch-preview HTML for AI/Warm-up Gmail drafts (#106)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+39307ae | 2026-05-03 12:26:49 -0700 | docs(state-machine): describe warm-up draft review loop in inbox (#92)
+af26128 | 2026-05-03 12:12:25 -0700 | Add truesight_autopilot to workspace context
+dcee8d5 | 2026-05-03 11:48:55 -0700 | Update credential audit: TRUESIGHT_DAO_AUTOPILOT PAT verified
+42c8739 | 2026-05-03 11:40:35 -0700 | Credential permission audit for truesight_autopilot
+2fdffb4 | 2026-05-03 11:30:07 -0700 | docs(open-followups): warm-up A/B read-out — PDF-only vs PDF+packaging photos (#91)
+2d449d8 | 2026-05-03 06:55:15 -0700 | chore(previews): refresh Beer Hall preview (2026-05-03 UTC)
+5a48f46 | 2026-05-03 06:55:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-03 UTC)
 8cf04e9 | 2026-05-03 01:19:26 -0700 | chore(previews): refresh Beer Hall preview (2026-05-03 UTC)
 d8a3949 | 2026-05-03 01:19:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-03 UTC)
 c8f0bac | 2026-05-03 00:13:49 -0700 | docs: rename 'AI: Photo rejected' → 'AI: No fit signal' (#90)
@@ -237,13 +246,6 @@ f078543 | 2026-04-30 19:46:59 -0700 | Merge pull request #85 from TrueSightDAO/a
 18432eb | 2026-04-30 12:57:11 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
 2a65dd3 | 2026-04-30 12:57:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
 13ccd5f | 2026-04-30 07:33:37 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
-528bfb5 | 2026-04-30 07:33:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
-14c1145 | 2026-04-30 01:49:40 -0700 | docs: donation mint pattern playbook (2026-04-30) (#84)
-4a83c28 | 2026-04-30 01:39:20 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
-acc6e0f | 2026-04-30 01:39:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
-bce41cd | 2026-04-29 23:05:42 -0700 | docs: cash sale pattern + ledger vs physical possession (#83)
-9cd17ec | 2026-04-29 21:58:40 -0700 | docs: clarify CONTRIBUTION EVENT vs CAPITAL INJECTION EVENT (#82)
-b5fc0fb | 2026-04-29 21:41:08 -0700 | docs: link serialized QR sales playbook from canonical context files (#81)
 … (truncated)
 ```
 
@@ -428,20 +430,20 @@ _(no commits on origin/master in window)_
 
 ## Recent retail field reports (DApp store status updates)
 
+- **`20260503T174009Z.json`** — `2026-05-03T17:40:09Z`  
+  **The Sword and Rose** → `Not Appropriate` (was `AI: Warm up prospect`) | type: Metaphysical/Spiritual | sig: success
+
+- **`20260503T172332Z.json`** — `2026-05-03T17:23:32Z`  
+  **Devine Wellness and Relaxation** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+
+- **`20260503T172230Z.json`** — `2026-05-03T17:22:30Z`  
+  **Seagrape Apothecary** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+
+- **`20260503T172125Z.json`** — `2026-05-03T17:21:25Z`  
+  **The Way Home Shop – Metaphysical Store in SE Portland** → `Partnered` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+
 - **`20260501T203140Z.json`** — `2026-05-01T20:31:40Z`  
   **Bucks Spices and Teas** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
-
-- **`20260501T203001Z.json`** — `2026-05-01T20:30:02Z`  
-  **Bucks Spices and Teas** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
-
-- **`20260430T203800Z.json`** — `2026-04-30T20:38:00Z`  
-  **Miss Anne's Maypop Herb Shop** → `Deferred / Revisit later` (was `Manager Follow-up`) | type: Apothecary | method: Email | sig: success
-
-- **`20260430T203638Z.json`** — `2026-04-30T20:36:38Z`  
-  **Seagrape Apothecary** → `Deferred / Revisit later` (was `Deferred / Revisit later`) | type: Metaphysical/Spiritual | sig: success
-
-- **`20260430T203013Z.json`** — `2026-04-30T20:30:13Z`  
-  **** → `` (was `—`) | sig: success
 
 ---
 
@@ -466,7 +468,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/3/2026 6:50:39 |
+| 2026-05 | 0 | 14918.51386 | 5/3/2026 11:50:47 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-26`; scanned last **392** data rows)
 
