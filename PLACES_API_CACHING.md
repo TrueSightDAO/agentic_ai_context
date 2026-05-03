@@ -121,16 +121,19 @@ The photo+Grok rubric in `hit_list_research_photo_review.py` was
 Research (with website)
    │
    ▼  (free site crawl — keyword set defined in detect_circle_hosting)
-   ├─ Hosts Circles=Yes + email present  →  AI: Warm-up needed     (skip Enrich)
+   ├─ Hosts Circles=Yes + email present  →  AI: Warm up prospect   (skip Enrich)
    ├─ Hosts Circles=Yes + email missing  →  AI: Enrich with contact (Enrich harvests email)
-   └─ site crawled OK + zero matches     →  AI: Photo rejected     (status name preserved
-                                              for back-compat; meaning is "site shows no
-                                              qualifying signals" not "photos didn't fit")
+   └─ site crawled OK + zero matches     →  AI: No fit signal       (renamed 2026-05-03 from
+                                              legacy "AI: Photo rejected"; new name reflects
+                                              evidence — site shows no qualifying signals)
 ```
 
-`AI: Photo rejected` rows from the OLD photo+Grok pipeline are
-re-evaluated by `detect_circle_hosting`'s default-on `--rescue-rejected`
-path — if a re-crawl finds keywords, they get promoted.
+Legacy `AI: Photo rejected` rows from the OLD photo+Grok pipeline are
+re-evaluated by `detect_circle_hosting`'s default-on rescue path (which
+reads BOTH the new and legacy names) — if a re-crawl finds keywords,
+they get promoted to Enrich. Otherwise they can be bulk-renamed via
+`scripts/rename_legacy_photo_rejected_status.py` to the new canonical
+name. See `HIT_LIST_STATE_MACHINE.md` for the full state machine.
 
 `hit_list_research_photo_review.yml` workflow keeps `workflow_dispatch`
 for manual debugging but the schedule cron is gone.
