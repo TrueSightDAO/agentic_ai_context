@@ -263,6 +263,70 @@ copy in `AGROVERSE_NEWSLETTER_WORKFLOW.md` §4.3a if so.
 [n-pr84]: https://github.com/TrueSightDAO/go_to_market/pull/84
 [n-pr85]: https://github.com/TrueSightDAO/go_to_market/pull/85
 
+### Warm-up email A/B read-out — PDF-only vs PDF+packaging-photos cohort comparison
+
+**Context.** [`go_to_market#74`][wp-pr74] (merged 2026-04-27) flipped the
+default warm-up email payload from "PDF wholesale catalog only" to "PDF +
+2 packaging photos" for every send via the partner-outreach pipeline. The
+hypothesis: visual product proof in the first touch lifts open / click /
+reply rates over a PDF-only ask. Without a read-out, the change sits as
+an untested intuition.
+
+**Why a follow-up reads the data.** The cleanest natural experiment we'll
+get — the cutover is sharp (one PR), the population is otherwise
+homogeneous (same Hit List rows, same template, same operator), and the
+volume on either side of 2026-04-27 should be enough for a directional
+signal even if not statistically rigorous. Earliest sensible read:
+**2026-05-11** (~2 weeks of post-cutover sends + replies have had time
+to land — Gmail reply soak window matches the newsletter read-out
+above).
+
+**Outcome.** A short comparison covering, for each cohort:
+- **Cohort split.** Read the `Email Agent Follow Up` tab of the Hit List
+  workbook (`1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc`); split
+  rows where status indicates a warm-up was sent into:
+  - **Pre-2026-04-27** (PDF only) — sent before the cutover.
+  - **On/after 2026-04-27** (PDF + 2 packaging photos) — the new default.
+- **Metrics per cohort.** Count, open rate (`Open` column > 0), click
+  rate (`Click through` column > 0), reply rate (cross-reference Gmail
+  for inbound replies to each `to_email` after `sent_at`).
+- **Time-controlled comparison.** Repeat the metrics restricted to the
+  **2 weeks immediately before** vs **2 weeks immediately after**
+  2026-04-27 to neuter time-of-year / list-quality drift.
+- **Verdict.** Did packaging-photo warm-ups beat PDF-only on any of
+  open / click / reply by a margin that would survive doubling the
+  sample size? If yes — keep the new default. If no — flag whether to
+  revert or keep as the cleaner UX call regardless of metrics.
+
+Post the summary as:
+1. A row on **`DApp Remarks`** (`store_key='campaign:warmup_packaging_photos_ab'`,
+   description includes headline numbers + PR URL).
+2. A DAO contribution submission via **`dao_client`** with the analysis
+   as the body and a link back to the DApp Remarks row + PR #74.
+
+**Files / shape.**
+- Sheet read: `Email Agent Follow Up` tab on
+  `1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc` via
+  `google_credentials.json` + gspread.
+- Status / cohort inference: `market_research/HIT_LIST_CREDENTIALS.md`
+  documents the Status column conventions.
+- Reply detection: Gmail OAuth at
+  `market_research/credentials/gmail/token.json`; query
+  `from:<to_email> after:<sent_at>` per recipient.
+- DApp Remarks append: `market_research/scripts/hit_list_dapp_remarks_sheet.py`.
+- Contribution log: dao_client CLI per
+  `agentic_ai_context/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`.
+- Label / status convention: `agentic_ai_context/PARTNER_OUTREACH_PROTOCOL.md` §9.7.
+
+**Owner.** Unclaimed. Earliest sensible: **2026-05-11** (~2 weeks post-cutover).
+
+**Why not `/schedule`.** Tried — remote agent can't access the private
+sheet, Gmail OAuth, or Edgar tokens (no MCP connectors connected, no
+`google_credentials.json` in cloud sandbox). Belongs on the local
+backlog.
+
+[wp-pr74]: https://github.com/TrueSightDAO/go_to_market/pull/74
+
 ### Migrate `dapp/stores_nearby.html` Add Store form onto the `[STORE ADD EVENT]` Edgar path
 
 **Context.** The dao_client / Edgar / GAS slice of `[STORE ADD EVENT]`
