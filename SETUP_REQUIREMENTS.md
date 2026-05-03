@@ -144,26 +144,34 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 ---
 
-## truesight_autopilot (proposed)
+## truesight_autopilot (deployed)
 
-If/when `TrueSightDAO/truesight_autopilot` is created, these are the **blockers and prerequisites** discovered during credential audit (2026-05-03):
+`TrueSightDAO/truesight_autopilot` is live on a **dedicated EC2 instance** (`us-east-1`, t3.small, IP `100.52.234.163`) — separate from `seni_ror` (Edgar) to protect critical infrastructure.
 
-### Blockers
+### Server Layout
 
-| # | Blocker | Impact | Resolution |
-|---|---|---|---|
-| 1 | **GitHub PAT cannot write to `go_to_market`** | Autopilot cannot open PRs on the repo with the most Actions/workflows | Regenerate fine-grained PAT with `Contents: Read+Write` + `Pull requests: Read+Write` on `TrueSightDAO/go_to_market` (and any other target repo) |
-| 2 | **AWS credentials are invalid** | Autopilot cannot monitor EC2 health or AWS costs | Rotate AWS keys in `~/.aws/credentials` + env vars, OR attach IAM instance role to EC2 with `CloudWatchReadOnlyAccess` + `CostExplorerReadOnlyAccess` |
-| 3 | **No dedicated Edgar identity for automation** | Autopilot would have to use personal signing keys | Generate new RSA keypair via `truesight-dao-auth login`, register as `autopilot@agroverse.shop`, store in isolated `.env` |
+| Path | Purpose |
+|---|---|
+| `/opt/truesight_autopilot` | Application code (rsync'd from local repo via `scripts/deploy.sh`) |
+| `/opt/truesight_autopilot/.env` | Live credentials (chmod 600) |
+| `/etc/systemd/system/truesight-autopilot.service` | Systemd service definition |
+| `~/.ssh/config` → `Host truesight-autopilot` | SSH alias (auto-updated by `launch_ec2.sh`) |
 
-### Prerequisites (ready now)
+### Prerequisites (all resolved)
 
 | Item | Status | Notes |
 |---|---|---|
-| Gmail OAuth token | ✅ Ready | `market_research/credentials/gmail/token.json` has `gmail.modify` + refresh token; paste into `GMAIL_TOKEN_JSON` env var for 24/7 service |
-| GCP service accounts | ✅ Ready | `agroverse-market-research@get-data-io.iam.gserviceaccount.com` and `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com` are active |
-| EC2 host | ✅ Ready | `governor_chatbot_service` runs on t3.small us-east-1; second systemd service is the cheapest path |
-| DeepSeek API | 🆕 New | Sign up at `platform.deepseek.com` for API key; ~30× cheaper than Claude for code-generation workloads |
+| Gmail OAuth token | ✅ Ready | `market_research/credentials/gmail/token.json` copied to EC2 `.env` as `GMAIL_TOKEN_JSON`; `gmail.modify` + refresh token active |
+| GitHub PAT | ✅ Ready | `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env`; fine-grained PAT with Contents+PR write on `TrueSightDAO/*` |
+| DeepSeek API | ✅ Ready | `DEEPSEEK_SDK` from local `.env`; ~30× cheaper than Claude |
+| AWS credentials | ✅ Ready | `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY` / `_SECRET` from `cypher_def/.env` copied to EC2 as `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` |
+| EC2 host | ✅ Ready | Dedicated t3.small in `us-east-1d`; launched via `scripts/launch_ec2.sh` |
+
+### Remaining blockers
+
+| # | Blocker | Impact | Resolution |
+|---|---|---|---|
+| 1 | **No dedicated Edgar identity for automation** | Autopilot currently uses no Edgar signing; contributions are not logged to Edgar | Generate new RSA keypair via `truesight-dao-auth login`, register as `autopilot@agroverse.shop`, store in isolated `.env` |
 
 ### Suggested `.env` for autopilot
 
@@ -174,14 +182,13 @@ GMAIL_TOKEN_JSON=<paste full token.json contents>
 # GitHub (open PRs, read workflow logs)
 TRUESIGHT_DAO_AUTOPILOT=<fine-grained PAT with Contents+PR write on target repos>
 
-# LLM (DeepSeek primary, Claude fallback)
-DEEPSEEK_API_KEY=<from platform.deepseek.com>
+# LLM (DeepSeek only — dropped Kimi + Claude)
+DEEPSEEK_API_KEY=<or DEEPSEEK_SDK>
 DEEPSEEK_BASE_URL=https://api.deepseek.com
-ANTHROPIC_API_KEY=<optional fallback>
 
-# AWS (if using long-lived keys; prefer IAM instance role)
-AWS_ACCESS_KEY_ID=<rotated key>
-AWS_SECRET_ACCESS_KEY=<rotated secret>
+# AWS (long-lived keys; IAM instance role also acceptable)
+AWS_ACCESS_KEY_ID=<from cypher_def/.env TRUESIGHT_DAO_AUTOPILOT_AWS_KEY>
+AWS_SECRET_ACCESS_KEY=<from cypher_def/.env TRUESIGHT_DAO_AUTOPILOT_AWS_SECRET>
 AWS_REGION=us-east-1
 
 # Edgar (automation identity — NOT personal keys)

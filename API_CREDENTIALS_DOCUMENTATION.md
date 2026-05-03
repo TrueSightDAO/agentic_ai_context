@@ -196,15 +196,11 @@ Live probe results for credentials used by automation. **Future AIs:** consult t
 
 | Source | Status | Details |
 |---|---|---|
-| `~/.aws/credentials` (default profile) | ❌ **INVALID** | `InvalidClientTokenId` — credentials rotated or belong to a deactivated user |
-| `~/.aws/credentials` (`[nelan]` profile) | Unknown | Not probed |
-| Environment vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`) | ❌ **INVALID** | Same error; may conflict with ~/.aws credentials |
-| `agroverse_shop` scripts | ❌ **INVALID** | Same keys, same error |
+| `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY` / `_SECRET`) | ✅ **Active** | Account `440626669078` (Explorya); deployed to EC2 `.env` as `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` |
+| `~/.aws/credentials` (default profile) | ❌ **INVALID** | Old account `767697632458` blocked by AWS |
+| `agroverse_shop` scripts | ❌ **INVALID** | Same old keys |
 
-**Verdict:** ❌ **Not ready for autopilot.** All AWS credentials in the workspace are invalid. To monitor EC2 health and costs, you must:
-
-1. **Rotate AWS credentials** in `~/.aws/credentials` and `.env` files, or
-2. **Attach an IAM role** to the EC2 instance running `governor_chatbot_service` so the autopilot can use instance-profile credentials (no long-lived keys needed).
+**Verdict:** ✅ **Ready for autopilot.** The new AWS account (`440626669078`) is active and has Route53 access for `truesight.me`.
 
 Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExplorerReadOnlyAccess` + `AWSHealthFullAccess`.
 
@@ -236,17 +232,22 @@ Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExp
 
 **Verdict:** ✅ **Ready for sheet access.** No live probe performed (would require API calls), but all are actively used. For GCP billing/monitoring, you need a separate service account with `monitoring.viewer` + `billing.accounts.getSpendingInformation` on the `get-data-io` billing account.
 
-### 10.6 Governor Chatbot Service EC2
+### 10.6 truesight_autopilot EC2 (Dedicated)
 
 | Attribute | Value |
 |---|---|
-| **Region** | `us-east-1` |
-| **Instance type** | t3.small (recommended) or t3.micro |
-| **IAM role** | Unknown — IMDS not accessible from this machine |
-| **Current services** | `governor-chatbot.service` (systemd) |
-| **Proposed addition** | `truesight-autopilot.service` (same EC2, second systemd unit) |
+| **Instance ID** | `i-02c699d3d7efbdc82` |
+| **Region** | `us-east-1d` |
+| **Instance type** | t3.small |
+| **Public IP** | `100.52.234.163` |
+| **SSH alias** | `truesight-autopilot` (in `~/.ssh/config`) |
+| **Code path** | `/opt/truesight_autopilot` |
+| **Env file** | `/opt/truesight_autopilot/.env` (chmod 600) |
+| **Systemd service** | `truesight-autopilot.service` |
+| **IAM role** | None — uses env var credentials |
+| **Background tasks** | Gmail poller (5 min), AWS monitor (5 min), cost check (daily) |
 
-**Verdict:** ⚠️ **Needs IAM role check.** SSH into the EC2 and run `curl http://169.254.169.254/latest/meta-data/iam/info` to verify the instance profile. If none exists, attach one with `CloudWatchReadOnlyAccess` + `CostExplorerReadOnlyAccess`.
+**Verdict:** ✅ **Deployed and running.** Health endpoint: `http://100.52.234.163:8001/health`.
 
 ---
 
