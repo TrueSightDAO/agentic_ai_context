@@ -17,14 +17,16 @@ A row's life cycle:
 (blank) → Research → AI: Enrich with contact → AI: Email found → AI: Warm up prospect → AI: Prospect replied → Manager Follow-up
 ```
 
-with branches off `Research` for rejection (`AI: Photo rejected`),
+with branches off `Research` for rejection (`AI: No fit signal`),
 fast-tracking to warm-up (`AI: Warm up prospect` directly when the
 Email column is already populated), and from Enrich for manual triage
 (`AI: Contact Form found` / `AI: Enrich — manual`).
 
-`AI: Photo needs review` and `AI: Shortlisted` are **legacy** — no
-automation writes them any more (post-PR #101). Rows in those states
-are operator-managed; they won't be touched by cron.
+**Three states are LEGACY** — no automation writes them any more:
+
+- **`AI: Photo rejected`** — renamed to `AI: No fit signal` on 2026-05-03 (PR #104) since the photo+Grok pipeline that originally produced it is retired. Existing rows in this state are still re-evaluated by the rescue path; once they cycle through, they end up either at `AI: Enrich with contact` (positive signal found) or migrated to `AI: No fit signal` (still no signal). The `scripts/rename_legacy_photo_rejected_status.py` one-off bulk-renames whatever's left.
+- **`AI: Photo needs review`** — photo+Grok rubric was ambiguous. No replacement; manual triage only.
+- **`AI: Shortlisted`** — photo+Grok said "looks like a fit." Operator-managed.
 
 ## Flow chart
 
@@ -35,9 +37,10 @@ stateDiagram-v2
 
     Research --> Warmup: Hosts Circles=Yes\nAND Email present
     Research --> Enrich: Hosts Circles=Yes\nAND no Email
-    Research --> PhotoRejected: site crawled OK\nAND zero keywords
+    Research --> NoFitSignal: site crawled OK\nAND zero keywords
 
-    PhotoRejected --> Enrich: rescue: Hosts Circles=Yes\non re-crawl
+    NoFitSignal --> Enrich: rescue: Hosts Circles=Yes\non re-crawl
+    PhotoRejected --> Enrich: legacy: rescue path\nstill accepts old name
 
     Shortlisted --> Enrich: human-shortlisted-to-enrich\n(operator)
     AIShortlisted --> Enrich: shortlisted-to-enrich\n(legacy)
@@ -58,6 +61,7 @@ stateDiagram-v2
     ManagerFollowup --> [*]: manual close
     Warmup --> [*]: no reply,\nstays as Warmup
 
+    PhotoRejected: AI: Photo rejected\n(LEGACY — renamed 2026-05-03)
     PhotoNeedsReview: AI: Photo needs review\n(LEGACY — no automation reaches this)
     AIShortlisted: AI: Shortlisted\n(LEGACY — photo+Grok pipeline retired)
 
@@ -69,7 +73,7 @@ stateDiagram-v2
     Warmup: AI: Warm up prospect
     Replied: AI: Prospect replied
     ManagerFollowup: Manager Follow-up
-    PhotoRejected: AI: Photo rejected
+    NoFitSignal: AI: No fit signal
     Shortlisted: Shortlisted (human)
 ```
 
@@ -79,7 +83,8 @@ stateDiagram-v2
 |---|---|---|---|
 | _(blank / new)_ | Just added; not yet evaluated. | `detect_circle_hosting_retailers.py` (only when Status==Research; blank rows ignored). | `discover_apothecaries_la_hit_list.py` (sets `Research` immediately, so blank is transient). |
 | **Research** | Awaiting site-crawl qualification. Has at least Shop Name + Address. | `detect_circle_hosting_retailers.py` cron at :50. | `discover_apothecaries_la_hit_list.py` (Nearby Search appends new rows). |
-| **AI: Photo rejected** | Site crawled successfully and found **no** qualifying keywords (cacao ceremony / women's circle / sound bath / etc.). Status name is preserved for back-compat with downstream filters; under the post-PR #101 model the meaning is "no site signal" rather than "photos didn't fit". Still recoverable: a re-crawl that later finds keywords promotes back to Enrich (rescue path, default-on). | `detect_circle_hosting_retailers.py` rescue path. | `detect_circle_hosting_retailers.py` (when crawl returns OK + zero matches). |
+| **AI: No fit signal** | Site crawled successfully and found **no** qualifying keywords (cacao ceremony / women's circle / sound bath / etc.). Recoverable: a re-crawl that later finds keywords promotes back to Enrich (rescue path, default-on). Renamed from legacy `AI: Photo rejected` on 2026-05-03 (PR #104) since the photo+Grok pipeline that originally produced the legacy name is retired. | `detect_circle_hosting_retailers.py` rescue path (reads both new + legacy names). | `detect_circle_hosting_retailers.py` (when crawl returns OK + zero matches). |
+| ~~AI: Photo rejected~~ _(LEGACY)_ | Old name for the same condition as `AI: No fit signal` — renamed 2026-05-03 (PR #104). Rescue path still reads this name for back-compat. Operator can run `scripts/rename_legacy_photo_rejected_status.py` to bulk-migrate any remaining rows. | `detect_circle_hosting_retailers.py` rescue path. | _(legacy_; nothing new produces this name). |
 | **AI: Enrich with contact** | Qualified. Needs Place Details lookup + email harvesting. | `hit_list_enrich_contact.py` cron at :35. | `detect_circle_hosting_retailers.py` (Hosts Circles=Yes + no email yet); `hit_list_promote_status.py` (`shortlisted-to-enrich`, `human-shortlisted-to-enrich`). |
 | **AI: Email found** | Email harvested. Awaiting promotion to warm-up. | `hit_list_promote_status.py` (`email-to-warmup`). | `hit_list_enrich_contact.py` (when website crawl + Grok pick produced an email). |
 | **AI: Contact Form found** | Only a contact form URL surfaced; no email. **Terminal automation state** — manual follow-up only. Never auto-promoted to warm-up. | None (operator). | `hit_list_enrich_contact.py`. |
@@ -103,12 +108,12 @@ stateDiagram-v2
 |---|---|---|
 | `AI: Warm up prospect` | `detect_circle_hosting_retailers.py` (cron `:50 * * * *`) | Hosts Circles=Yes (positive site signal) **AND** Email column already populated. Fast-tracks past Enrich since email is the only thing Enrich would have produced. |
 | `AI: Enrich with contact` | `detect_circle_hosting_retailers.py` (cron `:50`) | Hosts Circles=Yes **AND** Email column empty. |
-| `AI: Photo rejected` | `detect_circle_hosting_retailers.py` (cron `:50`) | Site crawled OK + zero keyword matches. Default ON; pass `--no-reject-no-signal` to opt out. |
+| `AI: No fit signal` | `detect_circle_hosting_retailers.py` (cron `:50`) | Site crawled OK + zero keyword matches. Default ON; pass `--no-reject-no-signal` to opt out. Renamed from legacy `AI: Photo rejected` on 2026-05-03. |
 
-### From `AI: Photo rejected`
+### From `AI: No fit signal` _(or legacy `AI: Photo rejected`)_
 | → State | Trigger | Condition |
 |---|---|---|
-| `AI: Enrich with contact` | `detect_circle_hosting_retailers.py` (cron `:50`, default-on rescue) | Re-crawl found qualifying keywords (signal appeared after the original rejection — e.g. site updated). |
+| `AI: Enrich with contact` | `detect_circle_hosting_retailers.py` (cron `:50`, default-on rescue) | Re-crawl found qualifying keywords (signal appeared after the original rejection — e.g. site updated). Rescue path reads BOTH the new name and the legacy `AI: Photo rejected` for back-compat. |
 
 ### From `Shortlisted` (human) / `AI: Shortlisted` (legacy)
 | → State | Trigger | Condition |
@@ -149,7 +154,7 @@ stateDiagram-v2
 | `:20 * * * *` | `hit_list_promote_status.py` | `shortlisted-to-enrich` + `email-to-warmup` promotions. | `AI: Shortlisted`, `Shortlisted`, `AI: Email found` | `AI: Enrich with contact`, `AI: Warm up prospect` |
 | `:20 * * * *` | `field_agent_location_places_pull.py` | Pulls Place Details for new field-agent-logged locations. | other sheet (Recent Field Agent Location) | appends new `Research` rows to Hit List |
 | `:35 * * * *` | `hit_list_enrich_contact.py` | Enrich queue + fill-gap sweep. | `AI: Enrich with contact` (queue) + any row with field gaps | `AI: Email found` / `AI: Contact Form found` / `AI: Enrich — manual` |
-| `:50 * * * *` | `detect_circle_hosting_retailers.py` | Site crawl, Hosts Circles writeback, Research promotion + rescue + reject. | `Research`, `AI: Photo rejected` | `AI: Warm up prospect` / `AI: Enrich with contact` / `AI: Photo rejected` |
+| `:50 * * * *` | `detect_circle_hosting_retailers.py` | Site crawl, Hosts Circles writeback, Research promotion + rescue + reject. | `Research`, `AI: No fit signal`, legacy `AI: Photo rejected` | `AI: Warm up prospect` / `AI: Enrich with contact` / `AI: No fit signal` |
 | Manual | `discover_apothecaries_la_hit_list.py` | Nearby Search across centroids → appends new `Research` rows. | — | new rows with Status=`Research` |
 | Manual | `suggest_warmup_prospect_drafts.py` | Creates Gmail drafts for `AI: Warm up prospect` rows with Email. | `AI: Warm up prospect` | _none_ (drafts only) |
 | Manual | `suggest_manager_followup_drafts.py` | Creates Gmail follow-up drafts. | `Manager Follow-up` | _none_ (drafts only) |
