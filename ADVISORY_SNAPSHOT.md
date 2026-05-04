@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-03T19:33:43Z`
-- Look-back: **7** calendar days (`2026-04-26` → today UTC)
+- Generated (UTC): `2026-05-04T02:36:29Z`
+- Look-back: **7** calendar days (`2026-04-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 242 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 242 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 241 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 241 | **behind** |
 
 ---
 
@@ -132,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,042.52**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$34.15**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -158,8 +154,9 @@ _Lines in window matching configured names or status keywords:_
 - 2026-04-27 | claude | **`OPEN_FOLLOWUPS.md` — cross-session backlog index.** New top-level file for **scoped follow-up tasks** that span sessions / agents (vs. `CONTEXT_UPDATES.md` which is the append-only event log, vs. project-specific TODOs in code comments / repo READMEs). Workflow documented inline: claim by appending a line to `CONTEXT_UPDATES.md`, ship via PR, then move the entry to `## Recently shipped` with the PR link. First entry: **Advisory ops-health v2 — burn rate + days-of-cover at SF Kirsten** (deferred from go_to_market#77/#78; sparsity-gated on `inventory_type` backfill — re-check probe in the entry before starting).
 - 2026-04-27 | claude | **`OPEN_FOLLOWUPS.md` — cross-session backlog index.** New top-level file for **scoped follow-up tasks** that span sessions / agents (vs. `CONTEXT_UPDATES.md` which is the append-only event log, vs. project-specific TODOs in code comments / repo READMEs / the "Q5 parked" pattern inside `PARTNER_VELOCITY_PROPOSAL.md`). Workflow documented inline: claim by appending a line here, ship via PR, then move the entry to `## Recently shipped` with the PR link. First entry: **Advisory ops-health v2 — burn rate + days-of-cover at SF Kirsten** (deferred from go_to_market#77/#78; sparsity-gated on `inventory_type` backfill — re-check probe in the entry before starting).
 - 2026-04-28 | claude | **`[STORE ADD EVENT]` canonical pattern shipped (additive slice).** End-to-end signed Hit List adds via dao_client → Edgar → Telegram Chat Logs → `processStoreAddsFromTelegramChatLogs` GAS scanner → `addNewStore` on Hit List + audit row on **Store Adds** dedup log (`1qbZZhf-…`, gid 1208101506; col B `telegram_update_id` is the dedup key). Verified live with 3 Psychic Sister referrals (Clary Sage / Casa de Ritual / La Sirena Botanica) — Hit List rows 526–528 landed cleanly with referral provenance; scanner replay perfectly idempotent. PRs: TrueSightDAO/dao_client#9, sentiment_importer#1042, tokenomics#250. Two follow-ups parked in `OPEN_FOLLOWUPS.md`: (a) migrate `dapp/stores_nearby.html` Add Store form onto the same Edgar path; (b) fix pre-existing `addNewStore()` `setValues` dimensional bug so audit log says `added` not `error` (Hit List rows DO land correctly — bug is in tail-end logging step inside addNewStore, not in the new flow).
+- 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code rsync'd to `/opt/truesight_autopilot` with systemd service `truesight-autopilot.service`. All credentials resolved: (1) GitHub PAT `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env` — authenticated as `garyjob`, can read/write `TrueSightDAO/*`; (2) Gmail token from `market_research/credentials/gmail/token.json` — copied to EC2 `.env` as `GMAIL_TOKEN_JSON`, polling active; (3) DeepSeek key `DEEPSEEK_SDK` — working; (4) AWS keys from `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET`, account `440626669078`) — CloudWatch connected, daily spend $0. Fixes applied during deploy: `config.py` uses `SettingsConfigDict(extra="ignore")` to avoid pydantic errors; `email_poller.py` gracefully handles missing `GMAIL_TOKEN_JSON`; `aws_monitor.py` removes invalid `MaxResults` from `list_metrics`; `main.py` makes background task init non-fatal. README updated with EC2 server layout for human operators. Route53 hosted zone `truesight.me` confirmed in new AWS account. Remaining blocker: dedicated Edgar identity for autopilot (`autopilot@agroverse.shop`) still needed for contribution logging.
 
-_All dated lines on/after 2026-04-26_ (13):
+_All dated lines on/after 2026-04-27_ (14):
 
 - 2026-04-27 | claude | **Retail field report flow → async webhook (Plan B).** `[RETAIL FIELD REPORT EVENT]` now mirrors the sales/QR/repackaging pattern — Edgar logs to Telegram Chat Logs, fires `WebhookTriggerWorker` against `processRetailFieldReportsFromTelegramChatLogs` (new GAS in **`tokenomics/google_app_scripts/find_nearby_stores/`**, mirror `1NpHrKJW…`). Scanner dedups against **`Stores Visits Field Reports`** col G `update_id`, then updates Hit List Status + DApp Remarks + Stores Visits Field Reports A–N (L=blob URL, M=raw URL). Removed Edgar's sync **`apply_hit_list_gas_update_from_retail_report!`** + **`stores_gas_exec_base`**. DApp dropped its broken cross-origin GAS POST (`logFieldReportAttachmentRow`). PRs: TrueSightDAO/tokenomics#246, TrueSightDAO/sentiment_importer#1040, TrueSightDAO/dapp#182.
 - 2026-04-27 | claude | **Edgar `submit_contribution` GitHub PAT swap.** Switched the file-upload `Authorization` headers in `dao_controller.rb` (lines ~291, ~330) from a hardcoded fine-grained PAT to **`Rails.application.config.github_pat`** (the same one already used by `archive_retail_field_report` + `oracle/reminders_sync`). Old hardcoded PAT retained as commented backup. Probed read+write live (GET 200 / PUT 201 / DELETE 200) on **`TrueSightDAO/.github`**, **`…/store_interaction_attachments`**, **`…/ecosystem_change_logs`**. Required scope documented inline above `config.github_pat` in **`sentiment_importer/config/application.rb`** — future rotators must keep the PAT scoped to those three repos (and any new TrueSightDAO upload target). PR: TrueSightDAO/sentiment_importer#1041.
@@ -173,8 +170,8 @@ _All dated lines on/after 2026-04-26_ (13):
 - 2026-04-29 | claude | **Serialized QR sales — discoverability fix.** `OPERATING_INSTRUCTIONS.md` §2, `WORKSPACE_CONTEXT.md` §5, and `PROJECT_INDEX.md` (dao_client row) now explicitly point to the serialized QR bulk-sales playbook. New reusable template: `dao_client/examples/bulk_qr_sales_template.py` (discover → one [SALES EVENT] per QR → optional [INVENTORY MOVEMENT]). Note file `notes/claude_serialized_qr_sales_2026-04-29.md` updated with cross-references.
 - 2026-04-29 | claude | **DApp copy + context docs: `[CONTRIBUTION EVENT]` vs `[CAPITAL INJECTION EVENT]` distinction.** DApp `report_contribution.html` now clarifies it covers time AND out-of-pocket expenses. DApp `report_capital_injection.html` now states "For external investors only" with a cross-link to Contribution. DApp `index.html` reorganized: new "Investment & Financing" section (Capital Injection), "Community Contributions" renamed to "Community & Feedback" (Feedback only). `agentic_ai_context/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md` added event-selection decision table. `OPERATING_INSTRUCTIONS.md` and `WORKSPACE_CONTEXT.md` updated with pointers. `dao_client/README.md` CLI table annotated with semantic hints. PRs: TrueSightDAO/dapp#184, TrueSightDAO/agentic_ai_context#82, TrueSightDAO/dao_client#14.
 - 2026-05-03 | claude | **Credential permission audit for `truesight_autopilot`.** Live probes performed on all credentials the autopilot would need. Key findings: (1) Gmail OAuth token ✅ ready (`gmail.modify` + refresh token); (2) GitHub PAT ⚠️ partial — can write `TrueSightDAO/.github` but CANNOT write `go_to_market` or `ecosystem_change_logs` (needs regeneration with broader repo scope); (3) AWS keys ❌ invalid everywhere (`InvalidClientTokenId`); (4) dao_client Edgar keys are personal identity — autopilot needs its own RSA keypair. Full audit table added to `API_CREDENTIALS_DOCUMENTATION.md` §10. Setup prerequisites + suggested `.env` added to `SETUP_REQUIREMENTS.md` under "truesight_autopilot (proposed)". See also `notes/claude_autopilot_credential_audit_2026-05-03.md`.
-- 2026-05-03 | claude | **New repo: `TrueSightDAO/truesight_autopilot`.** Autonomous SRE + developer for TrueSight DAO. Scaffolding committed (FastAPI, Gmail poller, GitHub client, DeepSeek diagnosis, AWS monitor, Edgar logger, systemd service, deploy script). Vision: close the gap between "error email at 3 AM" and "human fixes it at 9 AM" — the service watches, thinks, acts, and opens PRs; humans review and merge. Added to `PROJECT_INDEX.md` and `WORKSPACE_CONTEXT.md`. Full vision in repo `README.md`. Blockers documented in `SETUP_REQUIREMENTS.md` and `API_CREDENTIALS_DOCUMENTATION.md` §10.
-- 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code at `/opt/truesight_autopilot`, systemd service `truesight-autopilot.service`. All credentials resolved: GitHub PAT ✅ (`TRUESIGHT_DAO_AUTOPILOT` — writes to `TrueSightDAO/*`), Gmail token ✅ (from `market_research/credentials/gmail/token.json`), DeepSeek ✅ (`DEEPSEEK_SDK`), AWS ✅ (from `cypher_def/.env` — account `440626669078`, CloudWatch connected). Deploy fixes: `config.py` `extra="ignore"`, `email_poller.py` graceful missing-token handling, `aws_monitor.py` removes invalid `MaxResults`, `main.py` non-fatal background init. README documents EC2 server layout for human operators. Route53 `truesight.me` confirmed in new AWS account. Remaining: dedicated Edgar identity (`autopilot@agroverse.shop`).
+- 2026-05-03 | claude | **`TrueSightDAO/truesight_autopilot` — merged `governor_chatbot_service`.** Unified AI service with two modes: (1) reactive governor chat via DApp `chat.html` (`POST /chat`, RSA-signed or JWT auth, DeepSeek-V3 with tool_calls), and (2) proactive autopilot (Gmail polling, AWS monitoring, autonomous PR opening). Dropped Kimi + Claude — all LLM workloads use DeepSeek-V3 (30× cheaper). `governor_chatbot_service` repo deprecated; functionality merged here. Deploys to dedicated EC2 separate from `seni_ror` (Edgar) to protect critical infrastructure. See repo `README.md` for full vision. Added to `PROJECT_INDEX.md` and `WORKSPACE_CONTEXT.md`. Blockers in `SETUP_REQUIREMENTS.md` and `API_CREDENTIALS_DOCUMENTATION.md` §10.
+- 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code rsync'd to `/opt/truesight_autopilot` with systemd service `truesight-autopilot.service`. All credentials resolved: (1) GitHub PAT `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env` — authenticated as `garyjob`, can read/write `TrueSightDAO/*`; (2) Gmail token from `market_research/credentials/gmail/token.json` — copied to EC2 `.env` as `GMAIL_TOKEN_JSON`, polling active; (3) DeepSeek key `DEEPSEEK_SDK` — working; (4) AWS keys from `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET`, account `440626669078`) — CloudWatch connected, daily spend $0. Fixes applied during deploy: `config.py` uses `SettingsConfigDict(extra="ignore")` to avoid pydantic errors; `email_poller.py` gracefully handles missing `GMAIL_TOKEN_JSON`; `aws_monitor.py` removes invalid `MaxResults` from `list_metrics`; `main.py` makes background task init non-fatal. README updated with EC2 server layout for human operators. Route53 hosted zone `truesight.me` confirmed in new AWS account. Remaining blocker: dedicated Edgar identity for autopilot (`autopilot@agroverse.shop`) still needed for contribution logging.
 
 ---
 
@@ -201,12 +198,16 @@ _All dated lines on/after 2026-04-26_ (13):
 ### `market_research` → `go_to_market`
 
 ```
-1fd9fd1 | 2026-05-03 12:22:11 -0700 | feat(warmup-review): batch-preview HTML for AI/Warm-up Gmail drafts (#106)
+63920f0 | 2026-05-03 13:27:44 -0700 | feat(email-agent): persist gmail_message_id on draft creation (#107)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ad59b5e | 2026-05-03 13:57:39 -0700 | docs(autopilot): truesight_autopilot deployed to EC2
+d699820 | 2026-05-03 12:34:08 -0700 | Update context: truesight_autopilot merged governor_chatbot_service
+a2ad38e | 2026-05-03 12:33:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-03 UTC)
+fce4f44 | 2026-05-03 12:33:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-03 UTC)
 39307ae | 2026-05-03 12:26:49 -0700 | docs(state-machine): describe warm-up draft review loop in inbox (#92)
 af26128 | 2026-05-03 12:12:25 -0700 | Add truesight_autopilot to workspace context
 dcee8d5 | 2026-05-03 11:48:55 -0700 | Update credential audit: TRUESIGHT_DAO_AUTOPILOT PAT verified
@@ -243,16 +244,14 @@ f5351b1 | 2026-05-01 01:30:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 4abc3ce | 2026-04-30 21:36:31 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
 c8da15b | 2026-04-30 21:36:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
 f078543 | 2026-04-30 19:46:59 -0700 | Merge pull request #85 from TrueSightDAO/auto/advisory-refresh-2026-05-01
-5efce75 | 2026-05-01 02:46:49 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
-18432eb | 2026-04-30 12:57:11 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
-2a65dd3 | 2026-04-30 12:57:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-04-30 UTC)
-13ccd5f | 2026-04-30 07:33:37 -0700 | chore(previews): refresh Beer Hall preview (2026-04-30 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+daa7c5c | 2026-05-03 14:05:46 -0700 | feat(gas): warmup queue accepts ?label= for follow-up cohort + sent-draft filtering (#269)
+32514b7 | 2026-05-03 13:30:51 -0700 | feat(gas): warmup review queue API + signed send handler (#268)
 6e2ad62 | 2026-04-30 13:24:31 -0700 | feat(deferred-until): add dedicated Deferred Until column on Hit List (#267)
 e12f0d4 | 2026-04-30 12:59:55 -0700 | feat(find_nearby_stores): GAS auto-flip Deferred → Manager Follow-up (#266)
 71a5c8d | 2026-04-30 01:38:17 -0700 | feat(donation-mint): self-installing hourly cron safety net (#265)
@@ -278,12 +277,17 @@ d3a9a36 | 2026-04-27 14:24:55 -0700 | docs(schema): States col Z (Partner Type) 
 39f37b1 | 2026-04-27 12:53:46 -0700 | feat(dao-members-cache): add roles + email per contributor (schema v3) (#247)
 e26f95a | 2026-04-27 11:34:40 -0700 | Merge pull request #246 from TrueSightDAO/feature/retail-field-report-async-scanner
 d68b88c | 2026-04-27 11:33:59 -0700 | feat(find_nearby_stores): async [RETAIL FIELD REPORT EVENT] scanner
-3065561 | 2026-04-26 15:55:58 -0700 | fix(gas): normalize Stores Visits Field Reports rows for GitHub URL keys
 ```
 
 ### `dapp` → `dapp`
 
 ```
+1e667c6 | 2026-05-03 14:27:03 -0700 | feat(chat): log SSE events to console, fix empty bot message on no-response
+1155cce | 2026-05-03 14:20:42 -0700 | feat(chat): spacious desktop layout (90vw, no logo, wider messages)
+c7a156c | 2026-05-03 14:16:29 -0700 | chore(sw): bump cache version v7 → v8 to flush stale Outbound Review (#204)
+58fcbcc | 2026-05-03 14:12:34 -0700 | feat(chat): SSE streaming for real-time autopilot responses
+3ef6fec | 2026-05-03 14:07:00 -0700 | feat(outbound-review): tab toggle + clickable filter chips + chrome fixes (#203)
+6ba976f | 2026-05-03 13:45:33 -0700 | feat(warmup-review): mobile triage page + signed Send button (#202)
 b5d9391 | 2026-05-03 00:26:24 -0700 | refactor(stores-by-status): order status filters top-of-pipeline → bottom (#201)
 585fb20 | 2026-05-03 00:09:49 -0700 | refactor(stores): add 'AI: No fit signal' to status dropdowns + filters (#200)
 3dc96db | 2026-04-30 13:28:57 -0700 | feat(store-history): dedicated Deferred Until field (was overloaded onto Follow Up Date) (#199)
@@ -306,13 +310,6 @@ f779b6b | 2026-04-27 14:56:16 -0700 | feat(restock): show historical sales/resto
 3bfc352 | 2026-04-27 13:07:53 -0700 | feat(shipping_planner): "Ship from" quick-pick (Kirsten / Matheus / Other)
 5a9e060 | 2026-04-27 11:42:29 -0700 | Merge pull request #182 from TrueSightDAO/feature/store-history-edgar-only
 d75195b | 2026-04-27 11:41:57 -0700 | feat(store history): drop cross-origin GAS POST; route everything through Edgar
-bd02efd | 2026-04-26 14:30:31 -0700 | feat(store history): field reports timeline and optional Edgar attachments (#181)
-4dd3169 | 2026-04-26 14:17:26 -0700 | Make inventory holdings page mobile-friendly.
-6ba3469 | 2026-04-26 14:16:04 -0700 | Add shared dapp footer links script for reload and GitHub source.
-4ada550 | 2026-04-26 14:09:22 -0700 | Cache-bust menu.js (?v=20260426) and bump SW to v6.
-2d321df | 2026-04-26 14:07:21 -0700 | Add Inventory Holdings by Manager view and nav link.
-2feb9b0 | 2026-04-26 13:55:10 -0700 | Merge pull request #180 from TrueSightDAO/feature/deferred-revisit-later-status
-d00e2aa | 2026-04-26 13:45:00 -0700 | Add Hit List status Deferred / Revisit later across nearby, by-status, and history.
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -351,7 +348,6 @@ e3dd634 | 2026-04-28 14:03:11 -0700 | chore: refresh inventory + velocity snapsh
 d833103 | 2026-04-28 08:41:57 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bfc7a80 | 2026-04-27 14:43:50 -0700 | feat: add partners-velocity.json snapshot (#5)
 9330f1a | 2026-04-27 08:43:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b963a99 | 2026-04-26 07:56:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -400,6 +396,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-04T023629Z_autopilot-warmup-review-santos-onboarded.md`
+
+- **posted_at_utc:** `2026-05-04T02:36:29Z`  
+- **slug:** `autopilot-warmup-review-santos-onboarded`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  The TrueSight Autopilot is now deployed on EC2, a mobile warm-up review module lets contributors triage and send outreach drafts from their phones, and Santos Chocolate Factory joins the partner hub as TrueSight's first Brazil processing partner.
+  - **TrueSight Autopilot live on EC2** — the autopilot service (merged from the governor chatbot) is deployed and running; DApp chat now streams real-time responses via SSE.
+
 ### `beer-hall_2026-05-03T023806Z_places-cache-reply-drafts-cost-optimizations.md`
 
 - **posted_at_utc:** `2026-05-03T02:38:06Z`  
@@ -417,15 +422,6 @@ _(no commits on origin/master in window)_
 
   Three inbound prospect replies landed, a new wholesale page shipped, and The Way Home Shop (Portland) is now live on the partner hub.
   - **The Way Home Shop replied** — owner wrote back to the warm-up sample: "The packaging is beautiful! I'm entering it in our system…" First unsolicited inbound from a consignment prospect.
-
-### `beer-hall_2026-05-01T024644Z_santos-onboarded-sunmint-pledge-two-processing-partners.md`
-
-- **posted_at_utc:** `2026-05-01T02:46:44Z`  
-- **slug:** `santos-onboarded-sunmint-pledge-two-processing-partners`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Two processing partners are live on the partner hub, a full SunMint Pledge donation pipeline shipped end-to-end, and the Hit List gained a dedicated Deferred Until column with an auto-flip cron.
-  - **Santos Chocolate Factory is live** on the partner hub and the Brazilian path journey page — full hero, three field-process video clips embedded, images optimised (~6.4 MB → ~700 KB), and wide desktop composites added to preserve faces across 11 partner pages.
 
 ---
 
@@ -445,63 +441,6 @@ _(no commits on origin/master in window)_
 
 - **`20260501T203140Z.json`** — `2026-05-01T20:31:40Z`  
   **Bucks Spices and Teas** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/3/2026 11:50:47 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-26`; scanned last **392** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_1645f553 | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_d384b1ae | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_621c84ef | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_2510d807 | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_0abc72e8 | — | — |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | 25 | 8 Ounce Package Kraft Pouch - AGL6 | ACCOUNTED | 2024SJ_20250515_NIBS_27 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_6 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_8 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_14 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_2 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_1 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_3 | Cash sale | — |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_20 | O1LPIGauKei9 | — |
-| 2026-05-01 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
