@@ -38,6 +38,7 @@ the source of truth for their sub-steps:
 | Lead sourcing | [`LEAD_LIST_EXTRACTION.md`](LEAD_LIST_EXTRACTION.md) |
 | Technical onboarding (post-Partnered) | [`RETAILER_TECHNICAL_ONBOARDING.md`](RETAILER_TECHNICAL_ONBOARDING.md) |
 | Warm-up email tone reference | `market_research/templates/warmup_outreach_reference.md` |
+| Qualitative improvement loop | [`OUTREACH_QUALITATIVE_LOOP.md`](OUTREACH_QUALITATIVE_LOOP.md) |
 
 ## 2. Non-goals
 
