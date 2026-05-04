@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-04T09:03:10Z`
+- Generated (UTC): `2026-05-04T14:39:10Z`
 - Look-back: **7** calendar days (`2026-04-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,43 +40,43 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-03T10:59:13.907Z`
+- Generated (UTC): `2026-05-04T10:59:13.759Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **669**
-- Partnered (north-star): **14**
+- Partnered (north-star): **15**
 - Shortlisted: **3**
 
 ## Funnel by status (curated order)
 
-- Not Appropriate: 73  (#1)
+- Not Appropriate: 74  (#1)
 - AI: Contact Form found: 109  (#3)
 - AI: No fit signal: 155  (#6)
 - Research: 62  (#8)
 - AI: Enrich with contact: 3  (#9)
-- AI: Warm up prospect: 84  (#10)
+- AI: Warm up prospect: 79  (#10)
 - AI: Enrich — manual: 87  (#11)
 - Deferred / Revisit later: 3  (#12)
 - Instagram Followed: 11  (#13)
-- Manager Follow-up: 30  (#15)
+- Manager Follow-up: 31  (#15)
 - Shortlisted: 3  (#18)
 - On Hold: 17  (#19)
-- **Partnered: 14**  (#20)
+- **Partnered: 15**  (#20)
 - Rejected: 14  (#21)
 - Followed Up: 1  (#22)
-- AI: Prospect replied: 3  (#9999)
+- AI: Prospect replied: 5  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **91**, follow_up **49**, bulk **0**, unknown **2** (data rows: **142**)
-- Distinct recipient addresses (`to_email`, by log `status`): warmup **79**, follow_up **18**, bulk **0**, unknown **2**
+- **Email Agent Follow Up** — logged sends: warmup **167**, follow_up **66**, bulk **0**, unknown **2** (data rows: **235**)
+- Distinct recipient addresses (`to_email`, by log `status`): warmup **85**, follow_up **20**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **84** stores — sum logged **warmup** sends (AU): **28**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **58** / **24** / **2**; follow-up depth (none / once / ≥2): **84** / **0** / **0**
-- **Manager Follow-up**: **30** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **18**; warmup depth (none / once / ≥2): **30** / **0** / **0**; follow-up depth (none / once / ≥2): **24** / **0** / **6**
+- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **57**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **50** / **3** / **26**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
+- **Manager Follow-up**: **31** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **23**; warmup depth (none / once / ≥2): **31** / **0** / **0**; follow-up depth (none / once / ≥2): **25** / **0** / **6**
 - **Bulk Info Requested**: _(no rows in this status)_
-- **AI: Prospect replied**: **3** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **0** / **0**; follow-up depth (none / once / ≥2): **3** / **0** / **0**
-- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **18**; warmup depth (none / once / ≥2): **33** / **0** / **0**; follow-up depth (none / once / ≥2): **27** / **0** / **6**
+- **AI: Prospect replied**: **5** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **0** / **0**; follow-up depth (none / once / ≥2): **5** / **0** / **0**
+- **Follow-up pipeline (combined)**: **36** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **23**; warmup depth (none / once / ≥2): **36** / **0** / **0**; follow-up depth (none / once / ≥2): **30** / **0** / **6**
 
 ---
 
@@ -208,6 +208,8 @@ _All dated lines on/after 2026-04-27_ (14):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+52e99a6 | 2026-05-04 02:03:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
+8fd0b03 | 2026-05-04 02:03:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 4de81de | 2026-05-03 21:28:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
 0e731ea | 2026-05-03 21:28:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 1e8ceb0 | 2026-05-03 19:36:44 -0700 | Merge pull request #93 from TrueSightDAO/auto/advisory-refresh-2026-05-04
@@ -246,8 +248,6 @@ ad23f6b | 2026-05-02 02:29:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 4328605 | 2026-05-01 12:48:16 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
 337f2e5 | 2026-05-01 12:48:15 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
 916132a | 2026-05-01 07:00:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
-71f6718 | 2026-05-01 07:00:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
-08e76f6 | 2026-05-01 01:30:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
 … (truncated)
 ```
 
@@ -343,6 +343,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+7f1f20f | 2026-05-04 09:07:04 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ddd2a0 | 2026-05-02 08:01:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -476,7 +477,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/4/2026 1:50:43 |
+| 2026-05 | 0 | 14918.51386 | 5/4/2026 6:51:13 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-27`; scanned last **392** data rows)
 
