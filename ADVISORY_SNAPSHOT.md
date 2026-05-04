@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-04T14:39:10Z`
+- Generated (UTC): `2026-05-04T20:02:50Z`
 - Look-back: **7** calendar days (`2026-04-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -208,6 +208,8 @@ _All dated lines on/after 2026-04-27_ (14):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+da29e62 | 2026-05-04 07:39:36 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
+53f1f46 | 2026-05-04 07:39:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 52e99a6 | 2026-05-04 02:03:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
 8fd0b03 | 2026-05-04 02:03:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 4de81de | 2026-05-03 21:28:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
@@ -246,8 +248,6 @@ f3e44b2 | 2026-05-01 21:00:21 -0700 | chore(previews): refresh Beer Hall preview
 4caa9e9 | 2026-05-01 19:29:10 -0700 | Merge pull request #86 from TrueSightDAO/auto/advisory-refresh-2026-05-02
 ad23f6b | 2026-05-02 02:29:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-02 UTC)
 4328605 | 2026-05-01 12:48:16 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
-337f2e5 | 2026-05-01 12:48:15 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
-916132a | 2026-05-01 07:00:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
 … (truncated)
 ```
 
@@ -477,7 +477,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/4/2026 6:51:13 |
+| 2026-05 | 0 | 14918.51386 | 5/4/2026 12:52:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-27`; scanned last **392** data rows)
 
