@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-04T04:28:04Z`
+- Generated (UTC): `2026-05-04T09:03:10Z`
 - Look-back: **7** calendar days (`2026-04-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -202,12 +202,14 @@ _All dated lines on/after 2026-04-27_ (14):
 ### `market_research` → `go_to_market`
 
 ```
-63920f0 | 2026-05-03 13:27:44 -0700 | feat(email-agent): persist gmail_message_id on draft creation (#107)
+7c0a1fc | 2026-05-03 22:10:00 -0700 | feat(workflow): promote warm-up replies hourly
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4de81de | 2026-05-03 21:28:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
+0e731ea | 2026-05-03 21:28:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 1e8ceb0 | 2026-05-03 19:36:44 -0700 | Merge pull request #93 from TrueSightDAO/auto/advisory-refresh-2026-05-04
 11abd10 | 2026-05-04 02:36:35 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 ad59b5e | 2026-05-03 13:57:39 -0700 | docs(autopilot): truesight_autopilot deployed to EC2
@@ -246,8 +248,6 @@ ad23f6b | 2026-05-02 02:29:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 916132a | 2026-05-01 07:00:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
 71f6718 | 2026-05-01 07:00:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
 08e76f6 | 2026-05-01 01:30:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
-f5351b1 | 2026-05-01 01:30:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-01 UTC)
-4abc3ce | 2026-04-30 21:36:31 -0700 | chore(previews): refresh Beer Hall preview (2026-05-01 UTC)
 … (truncated)
 ```
 
@@ -286,6 +286,12 @@ d68b88c | 2026-04-27 11:33:59 -0700 | feat(find_nearby_stores): async [RETAIL FI
 ### `dapp` → `dapp`
 
 ```
+ceb6a7c | 2026-05-03 22:55:00 -0700 | Fix upload auth: send signed JSON payload as headers with multipart
+553c767 | 2026-05-03 22:51:13 -0700 | Add file attachment upload to Governor Chat (paperclip button, multipart POST /chat/upload)
+c47e9cd | 2026-05-03 22:28:45 -0700 | fix: force-refresh dao_members cache after email verification
+4031d15 | 2026-05-03 22:21:52 -0700 | fix(sw): skip caching POST requests
+1797dfa | 2026-05-03 22:19:10 -0700 | fix(chat): remove duplicate return statement breaking try block
+9babd9b | 2026-05-03 22:13:43 -0700 | feat(chat): thinking indicator + tool step visualization
 1e667c6 | 2026-05-03 14:27:03 -0700 | feat(chat): log SSE events to console, fix empty bot message on no-response
 1155cce | 2026-05-03 14:20:42 -0700 | feat(chat): spacious desktop layout (90vw, no logo, wider messages)
 c7a156c | 2026-05-03 14:16:29 -0700 | chore(sw): bump cache version v7 → v8 to flush stale Outbound Review (#204)
@@ -337,6 +343,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ddd2a0 | 2026-05-02 08:01:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cfa8f36 | 2026-05-01 08:26:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -469,7 +476,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/3/2026 20:50:39 |
+| 2026-05 | 0 | 14918.51386 | 5/4/2026 1:50:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-27`; scanned last **392** data rows)
 
