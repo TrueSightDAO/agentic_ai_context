@@ -258,6 +258,8 @@ Recurring moments that appear in Partnered remarks and correlate with the
 | "How do I drink ceremonial cacao vs cacao tea?" | Have a prepared short answer for both preparations (one sip / one brew). |
 | "Allergies?" | Lab-tested; offer to share lab reports. |
 | "What's the retail price?" | $17 cost, $25–$35 retail range. Walk through the split math. |
+| "We already have a cacao supplier / we carry cacao already." | "Different farms have different taste profiles. Oscar's Farm (Bahia) is deep European chocolate, buttery; Paulo's Farm (Pará) is smoky, earthy, unfolding into floral. They're complementary, not competing. Multiple farms = more variety for your customers." |
+| "We import our own cacao directly from a farm." | Acknowledge their direct-trade model first — it's impressive. Then frame: "We work with different farms in different regions of the Amazon — if you ever want to offer your customers a taste comparison across origins, Oscar's Bahia or Paulo's Pará would give them a distinct experience alongside yours." Don't push — this is a relationship play, not a transactional one. |
 
 ## 10. Recurring decision-maker dynamics
 
