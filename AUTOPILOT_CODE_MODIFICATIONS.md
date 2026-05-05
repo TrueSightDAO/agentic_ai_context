@@ -158,3 +158,78 @@ To add a repo to autopilot's scope:
 - **Large files** (>1MB) will be truncated by GitHub API.
 - **Multi-file renames** not supported — delete then create instead.
 - **Dependencies** (requirements.txt, package.json) can be edited but the agent won't `npm install` or `pip install` on the EC2.
+
+---
+
+## Two-Stage Vision Pipeline (QR Codes, Cacao Bags)
+
+When a governor uploads images via `/chat/upload`:
+
+```
+User uploads HEIC image
+        │
+        ├── 1. HEIC → JPEG conversion (macOS sips)
+        ├── 2. pyzbar: authoritative barcode scan (QR, EAN13, UPC, CODE128, etc.)
+        │         Returns exact decoded values. Multi-scale (full res + 50%).
+        │
+        ├── 3. Grok (xAI): vision analysis via grok-4-1-fast-non-reasoning
+        │         Provides visual context: product guess, farm name, label text,
+        │         photo quality, QR label location, QR/barcode GUESSES with
+        │         confidence scores (0.0-1.0). Gimped by "Grok GUESSED" prefix.
+        │
+        └── 4. DeepSeek: receives pyzbar authoritative codes + Grok visual context
+                  Uses lookup_qr_code tool to resolve against DAO ledger
+                  Suggests dao_client commands (INVENTORY MOVEMENT, etc.)
+```
+
+### Grok System Prompt
+
+`app/grok_client.py` contains the prompt that teaches Grok about Agroverse QR naming conventions (`2024OSCAR_20260330_33`, `LA_CC_20260414_1`, `CC` vs `CT` product tokens). Grok returns JSON with `qr_codes_guessed` (with confidence), `barcodes_guessed`, `image_description`, `label_text_visible`, `photo_quality`, `qr_label_location`, `qr_label_present`.
+
+### QR Scanner (pyzbar)
+
+`app/tools/qr_scanner.py` wraps libzbar via pyzbar for local, fast, reliable barcode reading. Supports: QRCODE, EAN13, EAN8, UPC-A, UPC-E, CODE128, CODE39, I25. Fallback to `zbarimg` CLI if pyzbar unavailable.
+
+### Agentic Chat Loop
+
+The chat pipeline (`_stream_chat` in `main.py`) now supports up to **5 rounds** of tool calls (was 2). After each round, if the LLM returns more tool calls, they're executed and the loop continues. Only exits when the LLM returns text without tool calls.
+
+### DeepSeek XML Tool-Call Fallback
+
+DeepSeek-chat sometimes emits tool calls as XML in the content field (`<function_calls><invoke name="...">`) instead of using the OpenAI `tool_calls` array. `LLMClient.extract_tool_calls()` in `llm_client.py` detects this XML syntax, parses it into proper tool calls, and strips the XML from visible content. Logged via `_log_raw_llm()` for debugging.
+
+### Governor Identity Injection
+
+On first message per session, the autopilot injects `[GOVERNOR_IDENTITY: You are speaking with Gary Teh. When they say 'I', 'me', or 'my', they mean Gary Teh.]`. Looked up from the governor registry (`dao_members.json`) by matching the RSA public key. This means the LLM knows who the user is without them having to say "I'm Gary."
+
+---
+
+## Session Management & Debugging
+
+### Session Persistence
+
+Sessions are keyed by `public_key + X-Session-Id` header. The frontend (`chat.html`) generates a UUID stored in `sessionStorage` — persists across page refreshes within the same tab, resets in a new tab. Sessions survive server restarts (loaded from `/tmp/autopilot_sessions/` on startup).
+
+### Debug Logs
+
+Three log types in `/tmp/autopilot_sessions/`:
+
+| File | Contents |
+|------|----------|
+| `{hash}.json` | Full conversation history — all messages, tool calls, and tool results |
+| `{hash}_debug.log` | Raw DeepSeek responses pre-parsing — catches XML leaks, QR misreads, malformed JSON |
+| `_latest.json` | Quick pointer to the most recently active session (hash + timestamp) |
+
+### Production Considerations
+
+For production (`chatbot.truesight.me`):
+
+1. **Persistent storage**: `/tmp/` is volatile on EC2 restarts. Use `/opt/truesight_autopilot/sessions/` (persistent EBS mount). Configure via `SESSION_LOG_DIR` env var.
+
+2. **Rotation**: Sessions and debug logs grow unbounded. Add a cron job or in-process cleanup: delete sessions older than 7 days, keep max 50 session files.
+
+3. **Privacy**: Session logs contain full conversation history including QR codes, product names, and governor identity. These should be treated as sensitive — restrict filesystem permissions (600 for log files) and omit from EC2 AMIs and snapshots.
+
+4. **Debug log toggle**: Raw LLM logging (`_debug.log`) can be noisy in production. Consider gating behind an env var: `LOG_RAW_LLM=true` or `DEBUG=true`.
+
+5. **Multi-governor**: Each governor gets their own session file (keyed by public_key + session ID). No cross-contamination. When onboarding new governors, ensure their names are in the governor registry (`GOVERNOR_NAMES` env var or `dao_members.json`).
