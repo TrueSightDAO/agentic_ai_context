@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-05T03:56:35Z`
+- Generated (UTC): `2026-05-05T08:32:31Z`
 - Look-back: **7** calendar days (`2026-04-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -199,6 +199,8 @@ _All dated lines on/after 2026-04-28_ (8):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d345c8e | 2026-05-04 20:56:52 -0700 | chore(previews): refresh Beer Hall preview (2026-05-05 UTC)
+0b1b720 | 2026-05-04 20:56:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
 7473c74 | 2026-05-04 19:34:22 -0700 | Merge pull request #97 from TrueSightDAO/auto/advisory-refresh-2026-05-05
 22cd0dd | 2026-05-05 02:34:11 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
 c381b2e | 2026-05-04 16:11:09 -0700 | docs(outreach): add OUTREACH_QUALITATIVE_LOOP.md — playbook for future agents to continuously improve the pipeline (#96)
@@ -237,8 +239,6 @@ b9d6132 | 2026-05-02 19:38:26 -0700 | Merge pull request #87 from TrueSightDAO/a
 ba93a8e | 2026-05-02 12:35:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
 0559bd6 | 2026-05-02 12:35:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-02 UTC)
 3192808 | 2026-05-02 06:53:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
-7f36e16 | 2026-05-02 06:53:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-02 UTC)
-e88eaaa | 2026-05-02 01:08:00 -0700 | chore(previews): refresh Beer Hall preview (2026-05-02 UTC)
 … (truncated)
 ```
 
@@ -327,6 +327,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 7f1f20f | 2026-05-04 09:07:04 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -455,7 +456,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/4/2026 20:50:29 |
+| 2026-05 | 0 | 14918.51386 | 5/5/2026 0:50:39 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-28`; scanned last **392** data rows)
 
