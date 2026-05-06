@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-06T09:12:55Z`
+- Generated (UTC): `2026-05-06T15:11:32Z`
 - Look-back: **7** calendar days (`2026-04-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-05T10:59:14.285Z`
+- Generated (UTC): `2026-05-06T10:59:13.683Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **669**
 - Partnered (north-star): **15**
@@ -202,6 +202,8 @@ _All dated lines on/after 2026-04-29_ (11):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a1dd813 | 2026-05-06 02:13:16 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
+fa84010 | 2026-05-06 02:13:15 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-06 UTC)
 6fa4180 | 2026-05-05 21:13:36 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
 520301c | 2026-05-05 21:13:35 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-06 UTC)
 5a26e7e | 2026-05-05 19:34:57 -0700 | Merge pull request #99 from TrueSightDAO/auto/advisory-refresh-2026-05-06
@@ -240,8 +242,6 @@ af26128 | 2026-05-03 12:12:25 -0700 | Add truesight_autopilot to workspace conte
 dcee8d5 | 2026-05-03 11:48:55 -0700 | Update credential audit: TRUESIGHT_DAO_AUTOPILOT PAT verified
 42c8739 | 2026-05-03 11:40:35 -0700 | Credential permission audit for truesight_autopilot
 2fdffb4 | 2026-05-03 11:30:07 -0700 | docs(open-followups): warm-up A/B read-out — PDF-only vs PDF+packaging photos (#91)
-2d449d8 | 2026-05-03 06:55:15 -0700 | chore(previews): refresh Beer Hall preview (2026-05-03 UTC)
-5a48f46 | 2026-05-03 06:55:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-03 UTC)
 … (truncated)
 ```
 
@@ -440,7 +440,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/6/2026 1:51:00 |
+| 2026-05 | 0 | 14918.51386 | 5/6/2026 7:50:42 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-29`; scanned last **392** data rows)
 
