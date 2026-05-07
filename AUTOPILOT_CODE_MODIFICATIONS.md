@@ -315,3 +315,87 @@ The fix agent is safe by design:
 | GitHub 403 on PR creation | PAT scope too narrow | `TRUESIGHT_DAO_AUTOPILOT` needs `Contents:Write` + `Pull requests:Write` on target repos |
 
 5. **Multi-governor**: Each governor gets their own session file (keyed by public_key + session ID). No cross-contamination. When onboarding new governors, ensure their names are in the governor registry (`GOVERNOR_NAMES` env var or `dao_members.json`).
+
+---
+
+## QA Testing Autopilot's Work
+
+When autopilot makes code changes (via `open_fix_pr`), **always verify the fix end-to-end before merging**. Do not trust autopilot's word alone — actually test the change in a browser.
+
+### 5.1 Workflow
+
+1. Autopilot diagnoses and opens a DRAFT PR
+2. Merge the PR locally (or just pull the branch) and restart the DApp HTTP server
+3. Write a Playwright script that reproduces the reported bug
+4. Run the script — verify the bug is gone AND no regressions
+5. If the fix passes QA, merge the PR
+6. If it fails, tell autopilot what's still broken and iterate
+
+### 5.2 Playwright Quick-Start
+
+```bash
+pip3 install playwright
+python3 -m playwright install chromium
+```
+
+### 5.3 Test Script Template
+
+```python
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
+
+    # Seed localStorage if needed (simulates a signed-in user)
+    page.goto("http://localhost:8080/chat.html", wait_until="domcontentloaded")
+    page.evaluate("""
+        localStorage.setItem('publicKey', '...');
+        localStorage.setItem('privateKey', '...');
+    """)
+
+    # Navigate to the page under test
+    page.goto("http://localhost:8080/TARGET_PAGE.html", wait_until="domcontentloaded")
+
+    # Assertions
+    body = page.text_content("body") or ""
+    assert "Error message" not in body, "Error message found on page"
+    assert "Expected text" in body, "Expected content missing"
+
+    # Screenshot for visual verification
+    page.screenshot(path="/tmp/qa_result.png")
+
+    browser.close()
+```
+
+### 5.4 Common QA Checks
+
+| Check | How |
+|-------|-----|
+| No reload loops | Count `framenavigated` events — should be 1 per page load |
+| No error messages | Search `body` text for known error strings (`Access restricted`, etc.) |
+| Correct UI state | Check element visibility, text content, button states |
+| No `routes.js` probe on localhost | Verify `localStorage.getItem('routesMode')` is `null`, not `'proxy'` |
+| Service worker not interfering | Test with a fresh browser context (no prior SW registration) |
+| Works with seeded localStorage | Pre-populate `publicKey`/`privateKey` to simulate a logged-in user |
+
+### 5.5 Example: QA for create_signature.html Fix
+
+Autopilot diagnosed that `routes.js`'s `no-cors` probe to `script.google.com` was causing `window.location.reload()` on localhost, creating a reload loop when pages had query params. The fix added a localhost guard.
+
+**Test script** (run after applying the fix):
+
+```python
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
+    page.goto("http://localhost:8080/create_signature.html?em=test%40test.com&vk=abc123",
+              wait_until="domcontentloaded")
+    time.sleep(2)
+    body = page.text_content("body")
+    routes_mode = page.evaluate("() => localStorage.getItem('routesMode')")
+    assert "Access restricted to authorized governors" not in body
+    assert routes_mode is None  # probe did NOT fire
+    page.screenshot(path="/tmp/qa_pass.png")
+    browser.close()
+```
