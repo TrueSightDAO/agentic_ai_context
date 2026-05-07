@@ -61,6 +61,40 @@ Future AIs and humans often confuse these two events. Here is the decision tree:
 
 **Rule of thumb:** If the money came *out of your pocket* for day-to-day DAO work → **Contribution**. If the money is *new investment capital* entering an AGL contract from an outside party → **Capital Injection**.
 
+## Double-entry purchase workflow (`[ASSET RECEIPT EVENT]`)
+
+When a contributor purchases a **physical item** for DAO inventory (non-serialized, non-QR-coded), the ledger requires **two events** to maintain double-entry accounting. Example: buying a Moka Express on Amazon for DAO operations.
+
+### Flow
+
+| Step | Event | Module | What it does |
+|------|-------|--------|--------------|
+| 1 | `[CONTRIBUTION EVENT]` — Type: **USD** | `report_contribution.py` | Records cash outflow (`--amount <total>`, `--contributors "Gary Teh"`). Attach the invoice PDF with `--attachment`. Set `--destination-contribution-file-location` to a GitHub blob URL — Edgar uploads the file there. |
+| 2 | `[ASSET RECEIPT EVENT]` | `report_asset_receipt.py` | Records positive inventory leg. `--currency` = exact Currencies!A name, `--amount` = unit count (1 for single items), `--fund-handler` = who holds it, `--description` must include the PDF blob URL and cash-leg row reference. |
+
+### Downstream (Edgar → GAS)
+
+After both events land in Telegram Chat Logs:
+1. **Edgar** `trigger_immediate_processing` matches `[ASSET RECEIPT EVENT]` → enqueues `WebhookTriggerWorker` → calls `asset-receipt-ingest` GAS
+2. **GAS** (`tokenomics/google_app_scripts/asset_receipt_ingest/`) processes the row:
+   - Creates **Currencies** row (col A = Currency name, col B = landed unit cost)
+   - Sorts Currencies A→Z
+   - Creates **offchain transactions** positive inventory leg (+1 unit, Fund Handler, description with PDF link)
+   - Appends audit row to **Asset Receipts** tab (dedup key = Telegram update_id)
+
+### Conventions
+
+- **`Currency` name**: `"<Product> (<vendor>, order <id>)"` — e.g. `"Bialetti Moka Express 18 Cup (ASIN B0000AN3QK, order 111-9241674-1033036)"`
+- **PDF upload**: Set `Destination Contribution File Location` to `https://github.com/TrueSightDAO/.github/blob/main/assets/<YYYYMMDD>_<vendor>_<id>_invoice.pdf` — Edgar uploads via `--attachment`
+- **Offchain description**: `"Received 1 unit of <Product>. Pairs offchain USD row N. Invoice: <GitHub blob URL>"`
+- **`--attachment` flag**: Available on all dao_client modules since `build_event_cli` supports it. Sends file as multipart alongside the signed event.
+
+### GAS webhook URL
+
+- **Exec URL**: `https://script.google.com/macros/s/AKfycbzcXBXYKmKiYg-tS2cqf60gWVm0ro17ndWVMnxNkc0dimaGUW3CYoi4b8nMZzVbENaw/exec`
+- **Clasp mirror**: `tokenomics/clasp_mirrors/1o2lzpdTZBYTTFdXzWJoATxznbqL959b_O7_no2Gd-OV4ryOPZOsqxtpU/`
+- **Edgar config**: `sentiment_importer/config/application.rb` → `config.asset_receipt_processing_webhook_url`
+
 ## Cash sales via `[SALES EVENT]` (no Stripe checkout)
 
 When selling serialized QR-coded products for cash (not through Stripe):

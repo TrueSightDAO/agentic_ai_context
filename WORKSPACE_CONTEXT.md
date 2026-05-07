@@ -145,6 +145,17 @@ Many expenses are **not** Amazon (e.g. **Sticker Mule**, other suppliers). Layou
 
 **`Currencies`** is often **range-protected**. Service accounts (e.g. **`agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com`**) may edit **`offchain transactions`** but still be blocked on **`Currencies`**. Remedies: editor **unprotect** / **exception** for that account, or human completes **`Currencies`** + **sort** in the UI.
 
+### **Asset receipt pipeline (non-serialized purchases)**
+
+When a contributor buys a physical item for DAO inventory (non-QR, non-serialized), use the double-entry purchase workflow. See **`DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`** §"Double-entry purchase workflow".
+
+**Quick reference:**
+1. `[CONTRIBUTION EVENT]` (Type: USD) → cash outflow leg, attach PDF via `--attachment`
+2. `[ASSET RECEIPT EVENT]` → inventory leg, `--currency` name, `--fund-handler`
+3. Edgar dispatches `WebhookTriggerWorker` → GAS (`asset-receipt-ingest`) → Currencies row + offchain inventory leg + **"Asset Receipts"** audit tab
+
+**GAS**: `tokenomics/google_app_scripts/asset_receipt_ingest/Code.gs` — deployed at `macros/s/AKfycbzcXBXYKmKiYg-tS2cqf60gWVm0ro17ndWVMnxNkc0dimaGUW3CYoi4b8nMZzVbENaw/exec`. Clasp mirror: `clasp_mirrors/1o2lzpdTZBYTTFdXzWJoATxznbqL959b_O7_no2Gd-OV4ryOPZOsqxtpU/`.
+
 ---
 
 ## 3d. Beer Hall digest + oracle advisory snapshot
