@@ -92,6 +92,14 @@ Validate Python syntax of a file on the branch (downloads + checks locally).
 - `repo` (str): Repo name
 - `path` (str): File path
 
+## Git Worktree Isolation
+
+- When autopilot creates a fix PR, it must clone or worktree the target repo under /tmp/autopilot_worktrees/<repo>-<branch>
+- If the worktree already exists from another concurrent governor session, append a unique suffix (e.g. -<timestamp>)
+- All read_file, edit_file, create_file, delete_file operations must go through the worktree, not the GitHub Content API
+- After the PR is opened and pushed, clean up the worktree
+- This prevents two concurrent governor sessions from overwriting each other's changes
+
 ## Safety
 
 - **Never auto-merges.** All fixes open as PRs. The PR is created as **DRAFT** so it cannot be merged by accident.
