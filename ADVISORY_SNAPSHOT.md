@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-07T02:36:54Z`
+- Generated (UTC): `2026-05-07T04:12:34Z`
 - Look-back: **7** calendar days (`2026-04-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -91,21 +91,32 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 15 | 1,214 | $1,804.12 |
+  | Packaging Material | Bulk | 4 | 895 | $652.10 |
+  | (uncategorized) | (unspecified) | 7 | 221 | $813.04 |
+  | Caca Mass | Bulk | 1 | 50 | $1.55 |
+  | Caca Mass | Retail Ready | 3 | 48 | $337.42 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 22 | 2,012.72 | $8,345.85 |
+  | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
+  | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
+  | (uncategorized) | (unspecified) | 10 | 272.13 | $2,582.25 |
+  | Caca Tea | Bulk | 5 | 156.50 | $1,587.77 |
+  | Cacao Nib | Retail Ready | 1 | 137 | $909.68 |
+  | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 11,286.07 total units · $11,257.15
+- Manager record: `Gary Teh` · 28 SKU lines · 11,295.07 total units · $11,550.43
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 11,286.07 | $11,257.15 |
+  | (uncategorized) | (unspecified) | 25 | 11,203.89 | $11,373.04 |
+  | Packaging Material | Bulk | 1 | 74 | $49.98 |
+  | Caca Mass | Retail Ready | 1 | 15 | $127.41 |
+  | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
 
@@ -122,13 +133,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,041.49**
+- Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
+- USD provisioned for voting-rights cash-out: **$35.18**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -190,6 +205,8 @@ _All dated lines on/after 2026-04-30_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+236717d | 2026-05-06 19:37:11 -0700 | Merge pull request #101 from TrueSightDAO/auto/advisory-refresh-2026-05-07
+719ebb9 | 2026-05-07 02:37:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 17759ef | 2026-05-06 19:31:24 -0700 | docs: document asset receipt pipeline, double-entry workflow, and GAS deployment
 00c8890 | 2026-05-06 17:54:38 -0700 | [autopilot] Fix AUTOPILOT_CODE_MODIFICATIONS.md (#100)
 d543e5a | 2026-05-06 17:27:27 -0700 | docs: add QA testing workflow for autopilot's code changes — playwright template, common checks, example test
@@ -228,8 +245,6 @@ da29e62 | 2026-05-04 07:39:36 -0700 | chore(previews): refresh Beer Hall preview
 4de81de | 2026-05-03 21:28:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
 0e731ea | 2026-05-03 21:28:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 1e8ceb0 | 2026-05-03 19:36:44 -0700 | Merge pull request #93 from TrueSightDAO/auto/advisory-refresh-2026-05-04
-11abd10 | 2026-05-04 02:36:35 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
-ad59b5e | 2026-05-03 13:57:39 -0700 | docs(autopilot): truesight_autopilot deployed to EC2
 … (truncated)
 ```
 
@@ -257,6 +272,15 @@ afd98c0 | 2026-04-29 23:05:44 -0700 | fix(gas): validate Stripe session ID forma
 ### `dapp` → `dapp`
 
 ```
+fcafc68 | 2026-05-06 20:59:40 -0700 | [autopilot] Add async message queuing UI to chat.html so the governor ca (#220)
+05575cb | 2026-05-06 20:33:08 -0700 | [autopilot] Fix chat.html (#219)
+2ad97e3 | 2026-05-06 20:28:08 -0700 | [autopilot] Add session ID to URL hash so conversations can be shared/bo (#218)
+9795871 | 2026-05-06 20:24:20 -0700 | feat: add file upload support to Asset Receipt Report page
+c39282a | 2026-05-06 20:20:16 -0700 | [autopilot] Fix tight spacing between the "+ New" button and the session (#217)
+8c745db | 2026-05-06 20:15:22 -0700 | chore: bump menu.js cache buster to 20260507 for Asset Receipt Reporter
+5e97a05 | 2026-05-06 20:09:30 -0700 | [autopilot] Fix menu.js (#216)
+a921999 | 2026-05-06 19:56:23 -0700 | fix: correct Currency placeholder text for asset receipt page
+3ccbae6 | 2026-05-06 19:55:45 -0700 | [autopilot] Create report_asset_receipt.html (#215)
 ed5435d | 2026-05-06 17:35:34 -0700 | [autopilot] Fix "Loading your TDG holdings…" stuck state on chat.html
 8e20fc4 | 2026-05-06 17:23:17 -0700 | fix: skip routes.js probe on localhost to prevent reload loop
 6ae7ea7 | 2026-05-06 16:54:53 -0700 | fix: resolve non-QR proposals, capture all json blocks, mobile badge positioning
@@ -288,11 +312,7 @@ b5d9391 | 2026-05-03 00:26:24 -0700 | refactor(stores-by-status): order status f
 585fb20 | 2026-05-03 00:09:49 -0700 | refactor(stores): add 'AI: No fit signal' to status dropdowns + filters (#200)
 3dc96db | 2026-04-30 13:28:57 -0700 | feat(store-history): dedicated Deferred Until field (was overloaded onto Follow Up Date) (#199)
 bb9e65e | 2026-04-30 12:49:54 -0700 | feat(store-history): require Follow Up Date when Deferred + Gmail link from message id (#198)
-1b90939 | 2026-04-30 12:30:28 -0700 | fix(stores): show all known statuses + Deferred option + clickable filename_original for PDFs (#197)
-8832382 | 2026-04-30 02:00:53 -0700 | feat(donation): /mint_donation.html DApp page for governor-driven Pledge mints (#196)
-99db325 | 2026-04-29 23:37:04 -0700 | fix(routes): point qrCodes at admin@truesight.me deployment (post-migration) (#195)
-84cd9df | 2026-04-29 23:07:42 -0700 | feat(update-qr-code): prefill shipping + tracking when picking a Stripe session (#194)
-f46fc97 | 2026-04-29 21:58:39 -0700 | fix(ui): clarify Contribution vs Capital Injection, reorganize index (#193)
+… (truncated)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -408,6 +428,63 @@ _(no commits on origin/master in window)_
 
 - **`20260501T203140Z.json`** — `2026-05-01T20:31:40Z`  
   **Bucks Spices and Teas** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 0 | 14918.51386 | 5/6/2026 19:50:54 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-30`; scanned last **392** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_1645f553 | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_d384b1ae | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_621c84ef | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_2510d807 | — | — |
+| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_0abc72e8 | — | — |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-04-30 | 25 | 8 Ounce Package Kraft Pouch - AGL6 | ACCOUNTED | 2024SJ_20250515_NIBS_27 | Cash sale | — |
+| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_6 | Cash sale | — |
+| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_8 | Cash sale | — |
+| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_14 | Cash sale | — |
+| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_2 | Cash sale | — |
+| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_1 | Cash sale | — |
+| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_3 | Cash sale | — |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_20 | O1LPIGauKei9 | — |
+| 2026-05-01 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
