@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-07T04:12:34Z`
+- Generated (UTC): `2026-05-07T09:11:21Z`
 - Look-back: **7** calendar days (`2026-04-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -109,11 +109,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 28 SKU lines · 11,295.07 total units · $11,550.43
+- Manager record: `Gary Teh` · 27 SKU lines · 11,293.07 total units · $11,316.61
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 11,203.89 | $11,373.04 |
+  | (uncategorized) | (unspecified) | 24 | 11,201.89 | $11,139.22 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Caca Mass | Retail Ready | 1 | 15 | $127.41 |
   | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -124,7 +124,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 |---------|-------|-------|-------------|
 | TrueSight DAO | 1 | 9,036.35 | $9,036.35 |
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
-| Val Lapidus | 10 | 1,269 | $1,359.04 |
+| Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Nima Kaz | 2 | 1,713 | $423.01 |
@@ -205,6 +205,8 @@ _All dated lines on/after 2026-04-30_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a9d9cb4 | 2026-05-06 21:12:46 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
+76ffe7d | 2026-05-06 21:12:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 236717d | 2026-05-06 19:37:11 -0700 | Merge pull request #101 from TrueSightDAO/auto/advisory-refresh-2026-05-07
 719ebb9 | 2026-05-07 02:37:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 17759ef | 2026-05-06 19:31:24 -0700 | docs: document asset receipt pipeline, double-entry workflow, and GAS deployment
@@ -243,8 +245,6 @@ da29e62 | 2026-05-04 07:39:36 -0700 | chore(previews): refresh Beer Hall preview
 52e99a6 | 2026-05-04 02:03:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
 8fd0b03 | 2026-05-04 02:03:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
 4de81de | 2026-05-03 21:28:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
-0e731ea | 2026-05-03 21:28:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
-1e8ceb0 | 2026-05-03 19:36:44 -0700 | Merge pull request #93 from TrueSightDAO/auto/advisory-refresh-2026-05-04
 … (truncated)
 ```
 
@@ -272,6 +272,7 @@ afd98c0 | 2026-04-29 23:05:44 -0700 | fix(gas): validate Stripe session ID forma
 ### `dapp` → `dapp`
 
 ```
+97e3dc6 | 2026-05-06 21:35:54 -0700 | [autopilot] ## Problem When a user attaches an image file in chat.html,  (#221)
 fcafc68 | 2026-05-06 20:59:40 -0700 | [autopilot] Add async message queuing UI to chat.html so the governor ca (#220)
 05575cb | 2026-05-06 20:33:08 -0700 | [autopilot] Fix chat.html (#219)
 2ad97e3 | 2026-05-06 20:28:08 -0700 | [autopilot] Add session ID to URL hash so conversations can be shared/bo (#218)
@@ -311,7 +312,6 @@ c7a156c | 2026-05-03 14:16:29 -0700 | chore(sw): bump cache version v7 → v8 to
 b5d9391 | 2026-05-03 00:26:24 -0700 | refactor(stores-by-status): order status filters top-of-pipeline → bottom (#201)
 585fb20 | 2026-05-03 00:09:49 -0700 | refactor(stores): add 'AI: No fit signal' to status dropdowns + filters (#200)
 3dc96db | 2026-04-30 13:28:57 -0700 | feat(store-history): dedicated Deferred Until field (was overloaded onto Follow Up Date) (#199)
-bb9e65e | 2026-04-30 12:49:54 -0700 | feat(store-history): require Follow Up Date when Deferred + Gmail link from message id (#198)
 … (truncated)
 ```
 
@@ -336,6 +336,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c3a0b0f | 2026-05-07 08:50:11 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0a7a5ae | 2026-05-06 19:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
 c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 7f1f20f | 2026-05-04 09:07:04 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -452,7 +453,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/6/2026 19:50:54 |
+| 2026-05 | 0 | 14918.51386 | 5/7/2026 1:50:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-30`; scanned last **392** data rows)
 
