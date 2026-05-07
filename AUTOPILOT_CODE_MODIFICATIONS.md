@@ -232,4 +232,86 @@ For production (`chatbot.truesight.me`):
 
 4. **Debug log toggle**: Raw LLM logging (`_debug.log`) can be noisy in production. Consider gating behind an env var: `LOG_RAW_LLM=true` or `DEBUG=true`.
 
+---
+
+## Debugging Autopilot Locally
+
+When an AI agent needs to **test, extend, or debug** the autopilot itself, follow this workflow. **CRITICAL: Never modify code directly. Always route changes through autopilot.** Fix the autopilot infrastructure first, then let autopilot make the code changes.
+
+### 1. Starting Autopilot Locally
+
+```bash
+cd /Users/garyjob/Applications/truesight_autopilot
+.venv/bin/python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 > /dev/null 2>&1 &; disown
+```
+
+`DRY_RUN=true` is safe — it **only** gates background tasks (email poller, AWS monitor). The fix agent (`open_fix_pr`) **always runs** regardless of DRY_RUN (opens DRAFT PRs, never auto-merges).
+
+Verify: `curl http://localhost:8001/health`
+
+### 2. Authenticating to the Chat API
+
+The governor's RSA keys live in `dao_client/.env`:
+- `PUBLIC_KEY` — SPKI base64
+- `PRIVATE_KEY` — PKCS#8 base64
+
+**The signing payload must use compact JSON** matching the server-side serialization exactly:
+
+```python
+import json, uuid, time, base64
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import padding
+
+# Load private key from dao_client/.env
+private_key = serialization.load_pem_private_key(
+    b"-----BEGIN PRIVATE KEY-----\n" + PRIVATE_KEY.encode() + b"\n-----END PRIVATE KEY-----",
+    password=None
+)
+
+# Build payload — CRITICAL: separators=(",",":") matches server's json.dumps
+payload_obj = {
+    "message": "Your message here",
+    "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    "nonce": str(uuid.uuid4())
+}
+payload_str = json.dumps(payload_obj, separators=(",", ":"), ensure_ascii=False)
+signature = private_key.sign(payload_str.encode(), padding.PKCS1v15(), hashes.SHA256())
+sig_b64 = base64.b64encode(signature).decode()
+
+# Send to chat endpoint
+resp = requests.post(
+    "http://localhost:8001/chat",
+    headers={
+        "Content-Type": "application/json",
+        "X-Public-Key": PUBLIC_KEY,
+        "X-Session-Id": str(uuid.uuid4())
+    },
+    json={"payload": payload_obj, "signature": sig_b64},
+    stream=True, timeout=120
+)
+```
+
+The server expects `X-Public-Key` header plus `{"payload": {...}, "signature": "..."}` body.
+
+### 3. The Golden Rule: Autopilot Does the Work
+
+**Do NOT modify code directly.** If autopilot can't make a change:
+- Fix the autopilot infrastructure first (config, env vars, code in `truesight_autopilot/`)
+- Then tell autopilot to make the change via chat
+
+The fix agent is safe by design:
+- Opens **DRAFT** PRs (never auto-merges)
+- Safety hooks block dangerous operations (`rm -rf`, `sudo`, `eval`, etc.)
+- Only operates on repos in `ALLOWED_REPOS` (config.py)
+- Max 10 iterations with `py_compile` validation before PR
+
+### 4. Common Failure Modes
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| HTTP 401 from chat API | JSON serialization mismatch | Use `separators=(",", ":")` in `json.dumps()` |
+| `open_fix_pr` returns None / empty | Used to be DRY_RUN gate (fixed 2026-05-06) | Ensure `app/fix_agent.py` has no DRY_RUN guard in `run_simple()` |
+| Governor not recognized | Key not in `dao_members.json` | Check governor registry cache, verify key matches |
+| GitHub 403 on PR creation | PAT scope too narrow | `TRUESIGHT_DAO_AUTOPILOT` needs `Contents:Write` + `Pull requests:Write` on target repos |
+
 5. **Multi-governor**: Each governor gets their own session file (keyed by public_key + session ID). No cross-contamination. When onboarding new governors, ensure their names are in the governor registry (`GOVERNOR_NAMES` env var or `dao_members.json`).
