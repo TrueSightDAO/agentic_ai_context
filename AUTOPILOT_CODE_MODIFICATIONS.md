@@ -321,8 +321,41 @@ The fix agent is safe by design:
 | `open_fix_pr` returns None / empty | Used to be DRY_RUN gate (fixed 2026-05-06) | Ensure `app/fix_agent.py` has no DRY_RUN guard in `run_simple()` |
 | Governor not recognized | Key not in `dao_members.json` | Check governor registry cache, verify key matches |
 | GitHub 403 on PR creation | PAT scope too narrow | `TRUESIGHT_DAO_AUTOPILOT` needs `Contents:Write` + `Pull requests:Write` on target repos |
+| Production Grok key missing | `load_grok_key()` falls back to `market_research/.env` (local-only path) | Add `GROK_API_KEY` directly to `truesight_autopilot/.env` |
+| `.env` key drift between local and EC2 | Local `.env` accumulates new keys that never reach production | Run `scripts/deploy.sh` (it has a pre-sync key parity check) |
 
-5. **Multi-governor**: Each governor gets their own session file (keyed by public_key + session ID). No cross-contamination. When onboarding new governors, ensure their names are in the governor registry (`GOVERNOR_NAMES` env var or `dao_members.json`).
+### 5. Production Deployment
+
+**CRITICAL: Local `.env` must always be a superset of production `.env`.**  
+The deploy script syncs the local `.env` to EC2. If production has a key that local doesn't, that key will be lost on deploy.
+
+**Before deploying:**
+```bash
+# Show keys that exist in production but NOT locally (will be LOST on deploy):
+diff <(ssh truesight-autopilot "grep -v '^#' /opt/truesight_autopilot/.env | grep -v '^$' | cut -d= -f1 | sort") \
+     <(grep -v '^#' .env | grep -v '^$' | cut -d= -f1 | sort)
+```
+
+**To deploy:**
+```bash
+cd /Users/garyjob/Applications/truesight_autopilot
+bash scripts/deploy.sh
+```
+
+The script aborts if production-only keys would be lost (override with `SKIP_KEY_CHECK=1`).
+
+**To verify after deploy:**
+```bash
+curl -s https://chatbot.truesight.me/health | python3 -m json.tool | grep -E 'status|grok_key|governors'
+ssh truesight-autopilot "sudo journalctl -u truesight-autopilot --no-pager -n 5 | grep -i 'initialized'"
+```
+
+### 6. Provider Switching
+
+**To switch LLM provider:** Set `LLM_PROVIDER` in `.env` to `bigmodel` or `deepseek`.  
+The registry auto-falls-back to DeepSeek if the primary provider fails to initialize.
+
+### 7. Multi-governor
 
 ---
 
