@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-07T19:59:39Z`
-- Look-back: **7** calendar days (`2026-04-30` → today UTC)
+- Generated (UTC): `2026-05-08T02:42:49Z`
+- Look-back: **7** calendar days (`2026-05-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 238 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 238 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 237 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 237 | **behind** |
 
 ---
 
@@ -109,11 +109,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 11,274.49 total units · $11,298.03
+- Manager record: `Gary Teh` · 27 SKU lines · 11,241.95 total units · $11,265.49
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 11,183.31 | $11,120.64 |
+  | (uncategorized) | (unspecified) | 24 | 11,150.77 | $11,088.10 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Caca Mass | Retail Ready | 1 | 15 | $127.41 |
   | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -133,17 +133,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,041.49**
-- Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
-- USD provisioned for voting-rights cash-out: **$35.18**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -157,7 +153,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code rsync'd to `/opt/truesight_autopilot` with systemd service `truesight-autopilot.service`. All credentials resolved: (1) GitHub PAT `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env` — authenticated as `garyjob`, can read/write `TrueSightDAO/*`; (2) Gmail token from `market_research/credentials/gmail/token.json` — copied to EC2 `.env` as `GMAIL_TOKEN_JSON`, polling active; (3) DeepSeek key `DEEPSEEK_SDK` — working; (4) AWS keys from `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET`, account `440626669078`) — CloudWatch connected, daily spend $0. Fixes applied during deploy: `config.py` uses `SettingsConfigDict(extra="ignore")` to avoid pydantic errors; `email_poller.py` gracefully handles missing `GMAIL_TOKEN_JSON`; `aws_monitor.py` removes invalid `MaxResults` from `list_metrics`; `main.py` makes background task init non-fatal. README updated with EC2 server layout for human operators. Route53 hosted zone `truesight.me` confirmed in new AWS account. Remaining blocker: dedicated Edgar identity for autopilot (`autopilot@agroverse.shop`) still needed for contribution logging.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
 
-_All dated lines on/after 2026-04-30_ (12):
+_All dated lines on/after 2026-05-01_ (12):
 
 - 2026-05-05 | claude | Autopilot self-improvement loop: added SELF-IMPROVEMENT section to system prompt. LLM now proactively detects patterns (OCR errors, misreads, protocol violations) and proposes code-level fixes via `open_fix_pr`. NEVER auto-merges — PRs go through human review. Safety hooks block dangerous ops. This creates a cybernetic adversarial loop: governor (discriminator) corrects → autopilot (generator) improves → system sharpens itself. Production-safe: crashes are prevented by PR gate — no hot code changes while serving users.
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now enforces canonical dao_client labels via `_normalize_submission_labels()` — maps 30+ LLM-invented aliases to canonical field names, drops non-canonical descriptive keys, validates required fields per event type.
@@ -193,7 +189,6 @@ _All dated lines on/after 2026-04-30_ (12):
 939c0c2 | 2026-05-04 16:14:26 -0700 | Reframe Mycelial Economy post as Field Signals #1 (#57)
 13a882d | 2026-05-04 15:55:45 -0700 | Move The Mycelial Economy into blog/posts/ and wire the index (#56)
 916ed9d | 2026-05-04 15:48:25 -0700 | Add hand-written deep-link page: The Mycelial Economy (#55)
-810b316 | 2026-04-30 15:52:18 -0700 | Add post: Discovered protocols (methodology + 5-stage ladder + infographic) (#54)
 ```
 
 ### `market_research` → `go_to_market`
@@ -205,6 +200,8 @@ _All dated lines on/after 2026-04-30_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7feacc8 | 2026-05-07 12:59:52 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
+62de234 | 2026-05-07 12:59:51 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 6bf70f8 | 2026-05-07 08:13:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
 7398c7a | 2026-05-07 08:13:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 04cdbdf | 2026-05-07 02:11:38 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
@@ -243,8 +240,6 @@ c381b2e | 2026-05-04 16:11:09 -0700 | docs(outreach): add OUTREACH_QUALITATIVE_L
 d56b923 | 2026-05-04 16:00:56 -0700 | docs(playbook): add 'already have supplier' and 'import own cacao' objection handling (#95)
 2e7e1ee | 2026-05-04 15:06:09 -0700 | docs(playbook): v0.2 — add automated AI email outreach pipeline (Path A) (#94)
 02124a4 | 2026-05-04 13:03:08 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
-f58ae20 | 2026-05-04 13:03:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-04 UTC)
-da29e62 | 2026-05-04 07:39:36 -0700 | chore(previews): refresh Beer Hall preview (2026-05-04 UTC)
 … (truncated)
 ```
 
@@ -256,17 +251,6 @@ b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted
 46e1557 | 2026-05-05 13:06:11 -0700 | feat(gas): add body_full and prospect_reply_body to warmup review queue API (#270)
 daa7c5c | 2026-05-03 14:05:46 -0700 | feat(gas): warmup queue accepts ?label= for follow-up cohort + sent-draft filtering (#269)
 32514b7 | 2026-05-03 13:30:51 -0700 | feat(gas): warmup review queue API + signed send handler (#268)
-6e2ad62 | 2026-04-30 13:24:31 -0700 | feat(deferred-until): add dedicated Deferred Until column on Hit List (#267)
-e12f0d4 | 2026-04-30 12:59:55 -0700 | feat(find_nearby_stores): GAS auto-flip Deferred → Manager Follow-up (#266)
-71a5c8d | 2026-04-30 01:38:17 -0700 | feat(donation-mint): self-installing hourly cron safety net (#265)
-93b6140 | 2026-04-30 01:21:48 -0700 | fix(donation-mint): self-contained Currencies lookup + doGet route (#264)
-0df1317 | 2026-04-30 01:06:31 -0700 | fix(donation-mint): reject QR code collisions before minting (#263)
-bfdf701 | 2026-04-30 00:58:31 -0700 | chore(donation-mint): rename dedup tab Donation Mints -> Donation Pledge (#262)
-9859352 | 2026-04-30 00:54:50 -0700 | fix(donation-mint): server-lock Ledger Name + write +1 Pledge to offchain transactions (#261)
-abcab51 | 2026-04-30 00:42:06 -0700 | feat(donation-mint): add [DONATION MINT EVENT] GAS scanner (#260)
-d9bf940 | 2026-04-29 23:07:38 -0700 | feat(agroverse-qr): include shipping/tracking in unassigned-stripe-sessions list (#259)
-afd98c0 | 2026-04-29 23:05:44 -0700 | fix(gas): validate Stripe session ID format before checkout lookup (#258)
-50440e0 | 2026-04-29 21:51:57 -0700 | feat(agroverse-qr): processBatch error visibility + alert email (#257)
 ```
 
 ### `dapp` → `dapp`
@@ -311,8 +295,6 @@ c7a156c | 2026-05-03 14:16:29 -0700 | chore(sw): bump cache version v7 → v8 to
 6ba976f | 2026-05-03 13:45:33 -0700 | feat(warmup-review): mobile triage page + signed Send button (#202)
 b5d9391 | 2026-05-03 00:26:24 -0700 | refactor(stores-by-status): order status filters top-of-pipeline → bottom (#201)
 585fb20 | 2026-05-03 00:09:49 -0700 | refactor(stores): add 'AI: No fit signal' to status dropdowns + filters (#200)
-3dc96db | 2026-04-30 13:28:57 -0700 | feat(store-history): dedicated Deferred Until field (was overloaded onto Follow Up Date) (#199)
-… (truncated)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -344,9 +326,6 @@ bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory
 9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ddd2a0 | 2026-05-02 08:01:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cfa8f36 | 2026-05-01 08:26:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-75dbb5f | 2026-04-30 08:38:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-baa22ea | 2026-04-29 23:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
-9519594 | 2026-04-29 19:28:37 -0700 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -354,18 +333,6 @@ baa22ea | 2026-04-29 23:28:38 -0700 | chore: refresh Agroverse store inventory s
 ```
 cae8f03 | 2026-05-04 15:43:11 -0700 | Revert "Add blog post: The Mycelial Economy (#101)" (#102)
 61512ea | 2026-05-04 15:38:09 -0700 | Add blog post: The Mycelial Economy (#101)
-b0f1312 | 2026-04-30 15:25:21 -0700 | Wide hero composites for 11 partner pages — preserve faces on desktop (#100)
-5199076 | 2026-04-30 15:05:17 -0700 | Embed Santos interview as hero + 3 process clips on partner page; add 3 blog posts (#99)
-733bb69 | 2026-04-30 14:00:05 -0700 | Fix Santos hero — anchor background to center 25% so face isn't clipped (#98)
-2a520d1 | 2026-04-30 13:45:37 -0700 | Optimize Santos partner page images (~6.4MB → ~700KB total) (#97)
-d02559b | 2026-04-30 13:42:46 -0700 | Add Santos Chocolate Factory to Brazilian path journey (#96)
-7fbe8ca | 2026-04-30 13:31:21 -0700 | Onboard Santos Chocolate Factory as Brazil processing partner (#95)
-8101189 | 2026-04-30 12:59:38 -0700 | chore(partners): backfill 9 US partner_locations.json entries; graduate them out of EXEMPT_SLUGS (#94)
-370711e | 2026-04-30 12:54:34 -0700 | chore(ci): partner discovery lint — fail if a partner page lacks hub / partners-data / locations entries (#93)
-78577e3 | 2026-04-30 12:41:35 -0700 | fix(partners): list Shiok Kitchen on hub + partners-data + locations json (#92)
-0dddfb1 | 2026-04-30 12:22:11 -0700 | chore(partners): add Partner Type row to all 35 partner pages (#91)
-e40b2c2 | 2026-04-30 12:08:18 -0700 | feat(partners): add Shiok Singapore Kitchen — first processing partner (#90)
-b0aa21e | 2026-04-30 00:48:00 -0700 | feat(donations): /sunmint-pledge donor receipt page (#89)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -384,6 +351,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-08T024249Z_asset-receipt-page-autopilot-self-deploy-cacao-samples.md`
+
+- **posted_at_utc:** `2026-05-08T02:42:49Z`  
+- **slug:** `asset-receipt-page-autopilot-self-deploy-cacao-samples`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  The Autopilot gains a self-deploy capability and a new Asset Receipt Reporter page, tasting samples shipped to Good Vibrations Apothecary, and the Autopilot's chat UI gets async message queuing so governors can keep typing while it processes.
+  - **Asset Receipt Reporter page live in DApp** — a new `report_asset_receipt.html` page lets contributors log purchase receipts directly from the browser; wired into the nav menu and backed by the asset-receipt-ingest GAS landed yesterday.
+
 ### `beer-hall_2026-05-07T023654Z_agentic-auth-asset-receipt-cacao-transfer.md`
 
 - **posted_at_utc:** `2026-05-07T02:36:54Z`  
@@ -401,15 +377,6 @@ _(no commits on origin/master in window)_
 
   The Autopilot gains a vision pipeline and batch approval cards, the warm-up review module now shows full prospect reply bodies inline, and seven bags of ceremonial cacao moved from Kirsten to Gary via verified Edgar inventory transactions.
   - **Autopilot: vision pipeline, batch proposal cards, and pending approvals panel shipped** — governors can now review and approve batches of Autopilot actions from a dedicated panel in the DApp; ephemeral context guardrails and canonical label enforcement added alongside.
-
-### `beer-hall_2026-05-05T023402Z_mycelial-economy-objection-handling-prospects-tab.md`
-
-- **posted_at_utc:** `2026-05-05T02:34:02Z`  
-- **slug:** `mycelial-economy-objection-handling-prospects-tab`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  The Mycelial Economy is live as Field Signals #1 on the blog, objection-handling for "we already have a supplier" is wired into the outreach pipeline, and the warm-up review DApp gained a dedicated Prospects tab so replied leads don't get lost in the queue.
-  - **"Field Signals #1: The Mycelial Economy" published** — the post moved from a standalone deep-link page through the blog index and landed as Field Signals #1 on truesight.me; the agroverse_shop blog entry was also added then cleanly reverted to keep the canonical home on truesight_me.
 
 ---
 
@@ -431,63 +398,6 @@ _(no commits on origin/master in window)_
 
 - **`20260503T172230Z.json`** — `2026-05-03T17:22:30Z`  
   **Seagrape Apothecary** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/7/2026 12:52:59 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-04-30`; scanned last **392** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_1645f553 | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_d384b1ae | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_621c84ef | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_2510d807 | — | — |
-| 2026-04-30 | 5 | SunMint Tree Planting Pledge - QR Code | TOKENIZED | PLEDGE_20260430_0abc72e8 | — | — |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-04-30 | 25 | 8 Ounce Package Kraft Pouch - AGL6 | ACCOUNTED | 2024SJ_20250515_NIBS_27 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_6 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_8 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_14 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_2 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_1 | Cash sale | — |
-| 2026-04-30 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_3 | Cash sale | — |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-04-30 | 10 | 81% Dark Chocolate Bar 50grams - Santa … | TOKENIZED | 2023SA_81PB_20260412_20 | O1LPIGauKei9 | — |
-| 2026-05-01 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
