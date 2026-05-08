@@ -1,6 +1,6 @@
 # Hit List state machine — states, transitions, and what each one means
 
-_Last updated 2026-05-03 by Claude (Anthropic)._
+_Last updated 2026-05-08 — added warmup-aged-out promotion (go_to_market#116)._
 
 The "Hit List" tab in
 [spreadsheet 1eiqZr3LW-…](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit?gid=0#gid=0)
@@ -15,6 +15,7 @@ A row's life cycle:
 
 ```
 (blank) → Research → AI: Enrich with contact → AI: Email found → AI: Warm up prospect → AI: Prospect replied → Manager Follow-up
+                                                                                     ↳ Manager Follow-up (aged out, >14d no reply)
 ```
 
 with branches off `Research` for rejection (`AI: No fit signal`),
@@ -51,6 +52,7 @@ stateDiagram-v2
 
     EmailFound --> Warmup: email-to-warmup\n(promote)
 
+    Warmup --> ManagerFollowup: aged out\n(>14d, no reply,\nAU>=1, AV==0)
     Warmup --> Replied: Gmail reply detected\nfor sent warm-up
 
     Replied --> ManagerFollowup: operator routes\nfor follow-up
@@ -59,7 +61,7 @@ stateDiagram-v2
     EnrichManual --> ManagerFollowup: operator follow-up
 
     ManagerFollowup --> [*]: manual close
-    Warmup --> [*]: no reply,\nstays as Warmup
+    Warmup --> [*]: message bounced or\nprospect unsubscribed
 
     PhotoRejected: AI: Photo rejected\n(LEGACY — renamed 2026-05-03)
     PhotoNeedsReview: AI: Photo needs review\n(LEGACY — no automation reaches this)
@@ -89,7 +91,7 @@ stateDiagram-v2
 | **AI: Email found** | Email harvested. Awaiting promotion to warm-up. | `hit_list_promote_status.py` (`email-to-warmup`). | `hit_list_enrich_contact.py` (when website crawl + Grok pick produced an email). |
 | **AI: Contact Form found** | Only a contact form URL surfaced; no email. **Terminal automation state** — manual follow-up only. Never auto-promoted to warm-up. | None (operator). | `hit_list_enrich_contact.py`. |
 | **AI: Enrich — manual** | Enrich couldn't find a website *or* a place_id (or both). Operator triage required. | None (operator). | `hit_list_enrich_contact.py`. |
-| **AI: Warm up prospect** | Ready for warm-up Gmail draft. Email present. Drafts staged in `Email Agent Drafts` tab with `status='pending_review'` until operator sends from Gmail; review-time triage uses `preview_warmup_drafts.py` (see [Operator review loop](#operator-review-loop-warm-up-drafts) below). | `suggest_warmup_prospect_drafts.py` cron (creates drafts; doesn't change Hit List status); `preview_warmup_drafts.py` (read-only triage view). | `detect_circle_hosting_retailers.py` (Hosts Circles=Yes + email already present, fast-track); `hit_list_promote_status.py` (`email-to-warmup`). |
+| **AI: Warm up prospect** | Ready for warm-up Gmail draft. Email present. Drafts staged in `Email Agent Drafts` tab with `status='pending_review'` until operator sends from Gmail; review-time triage uses `preview_warmup_drafts.py` (see [Operator review loop](#operator-review-loop-warm-up-drafts) below). | `suggest_warmup_prospect_drafts.py` cron (creates drafts; doesn't change Hit List status); `preview_warmup_drafts.py` (read-only triage view); `hit_list_promote_status.py` (`warmup-aged-out`, cron `:40`) ages out stale rows. | `detect_circle_hosting_retailers.py` (Hosts Circles=Yes + email already present, fast-track); `hit_list_promote_status.py` (`email-to-warmup`). |
 | **AI: Prospect replied** | Gmail detected an inbound reply to our warm-up. Operator should triage. | None directly (operator); `backfill_warmup_reply_remarks.py` for audit logging. | `backfill_warmup_reply_remarks.py` / `backfill_all_warmup_replies.py` when reply detected. |
 | **Manager Follow-up** | Operator-claimed row needing follow-up Gmail draft. | `suggest_manager_followup_drafts.py` cron (creates drafts). | Operator (manual) or downstream operator process. |
 | **Shortlisted** _(human)_ | Human-confirmed fit during manual triage. | `hit_list_promote_status.py` (`human-shortlisted-to-enrich`). | Operator (manual). |
@@ -135,6 +137,7 @@ stateDiagram-v2
 ### From `AI: Warm up prospect`
 | → State | Trigger | Condition |
 |---|---|---|
+| `Manager Follow-up` | `hit_list_promote_status.py warmup-aged-out` (cron `:40 * * * *`, initially gated `if: false`) | AU (warmup sends) ≥ 1 AND AV (follow-up sends) = 0 AND most recent warmup send > `--age-days` old (default 14). Cross-references `Email Agent Follow Up` tab by email for timestamps. |
 | `AI: Prospect replied` | `backfill_warmup_reply_remarks.py` / `backfill_all_warmup_replies.py` (manual / scheduled) | Gmail detected an inbound reply from the prospect's address to our warm-up thread. |
 | _(stays)_ | `suggest_warmup_prospect_drafts.py` (cron) | Creates Gmail draft + appends row to `Email Agent Drafts` (`status='pending_review'`, `gmail_label='AI/Warm-up'`). Hit List status **does not change** here — operator review + send happens out-of-band. |
 | _(stays — review loop)_ | `preview_warmup_drafts.py` (manual) | Generates a tiered HTML triage view of all `pending_review` warm-up drafts (linter flags risky ones, surfaces Hosts Circles=Yes prospects, clusters clean drafts for batch send). Read-only — operator still sends from Gmail. |
@@ -153,6 +156,7 @@ stateDiagram-v2
 |---|---|---|---|---|
 | `:00 * * * *` | _(disabled — was photo review)_ | Retired in PR #101. Workflow kept as `workflow_dispatch` for manual debugging only. | — | — |
 | `:20 * * * *` | `hit_list_promote_status.py` | `shortlisted-to-enrich` + `email-to-warmup` promotions. | `AI: Shortlisted`, `Shortlisted`, `AI: Email found` | `AI: Enrich with contact`, `AI: Warm up prospect` |
+| `:40 * * * *` | `hit_list_promote_status.py warmup-aged-out` | Aged-out Warmup → Manager Follow-up promotion (initially gated `if: false`). | `AI: Warm up prospect` (AU≥1, AV=0, last warmup >14d) | `Manager Follow-up` |
 | `:20 * * * *` | `field_agent_location_places_pull.py` | Pulls Place Details for new field-agent-logged locations. | other sheet (Recent Field Agent Location) | appends new `Research` rows to Hit List |
 | `:35 * * * *` | `hit_list_enrich_contact.py` | Enrich queue + fill-gap sweep. | `AI: Enrich with contact` (queue) + any row with field gaps | `AI: Email found` / `AI: Contact Form found` / `AI: Enrich — manual` |
 | `:50 * * * *` | `detect_circle_hosting_retailers.py` | Site crawl, Hosts Circles writeback, Research promotion + rescue + reject. | `Research`, `AI: No fit signal`, legacy `AI: Photo rejected` | `AI: Warm up prospect` / `AI: Enrich with contact` / `AI: No fit signal` |
@@ -237,7 +241,7 @@ signal to drop the unflagged tier to fully auto-send.
 
 - **A row stuck in `Research` with no Website**: `detect_circle_hosting_retailers.py` skips rows without a Website, so they never get qualified. Operator should backfill Website manually (or run a discovery script that finds it).
 - **A row in `AI: Email found` with empty Email**: `email-to-warmup` skips it. Either the email got cleared by accident (recoverable: edit Email cell, next cron picks it up) or Enrich set the wrong status (rare).
-- **A row in `AI: Warm up prospect` for weeks with no draft**: `suggest_warmup_prospect_drafts.py` is manual-trigger-only. Operator should run it explicitly. After running it, run `preview_warmup_drafts.py` to triage the batch before opening Gmail.
+- **A row in `AI: Warm up prospect` for weeks with no draft**: `suggest_warmup_prospect_drafts.py` is manual-trigger-only. Operator should run it explicitly. After running it, run `preview_warmup_drafts.py` to triage the batch before opening Gmail. Rows that have been warmed up but received no reply for >14 days (AU≥1, AV=0) are auto-promoted to `Manager Follow-up` by `hit_list_promote_status.py warmup-aged-out`, where `suggest_manager_followup_drafts.py` picks them up. The previous "stays in Warmup forever" dead-end no longer exists.
 - **A draft sitting at `pending_review` for days**: review with `preview_warmup_drafts.py`; the draft is in the operator's Gmail under label `AI/Warm-up`. If the linter flags it red and you don't trust the copy, edit in Gmail or delete the draft (next cron will re-suggest after the cadence window).
 - **A row in `AI: Photo needs review` from old data**: legacy state. No automation will move it. Manually re-set to `Research` to re-qualify under the new pipeline.
 - **The Hosts Circles column (col AW)** is the canonical "did we crawl this site for cacao-ceremony keywords yet" signal. Empty = not crawled. `Yes (...)` = positive. `Not detected` = crawled, no keywords. The state machine relies on this column being honest.
