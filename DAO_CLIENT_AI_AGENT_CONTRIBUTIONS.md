@@ -28,11 +28,11 @@ When an **AI coding assistant** completes work that should appear on the **DAO c
    - **Why** (safeguard, bugfix, operator workflow).
    - **Evidence:** every **`--pr`** link again inside the body under a **“GitHub”** or **“Pull requests”** heading so the Telegram / sheet line is self-contained when someone scrolls without the CLI args.
 
-4. **`Type` field** defaults to **`AI Agent (software & documentation)`** so ledger readers can filter automation vs human time-based contributions.
+4. **`Type` field** must be one of the canonical rubric entries: `"Time (Minutes)"`, `"USD"`, `"USDT sent"`, `"USDT received"`, or `"AI Agent (software & documentation)"`. The module validates this against `VALID_CONTRIBUTION_TYPES` from `report_contribution.py` and rejects invalid values.
 
 5. **`Amount` / `TDG Issued`** default to **`0`** unless the operator sets real economics for the session.
 
-6. **`Contributor(s)`** defaults from **`EMAIL`** in `.env` (local-part @ domain); override with **`--contributors "Display Name"`** when the human sponsor should be credited instead.
+6. **`Contributor(s)`** defaults to `"Gary Teh"` (derived from `EMAIL` in `.env`). Override with `--contributors "Display Name"` when the human sponsor should be credited instead. Do NOT use "Garyjob" or "garyjob@gmail.com" — always "Gary Teh".
 
 7. **`--generation-source`** may point at this doc or the Cursor session URL so `This submission was generated using …` is traceable:
    ```text
