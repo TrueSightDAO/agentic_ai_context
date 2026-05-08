@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-08T14:23:46Z`
+- Generated (UTC): `2026-05-08T19:54:56Z`
 - Look-back: **7** calendar days (`2026-05-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -203,6 +203,8 @@ _All dated lines on/after 2026-05-01_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1e62ddf | 2026-05-08 07:24:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
+82e416a | 2026-05-08 07:24:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
 d4238c0 | 2026-05-08 01:08:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
 ae5d9de | 2026-05-08 01:08:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
 b26f7b7 | 2026-05-07 20:59:12 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
@@ -241,8 +243,6 @@ c95badb | 2026-05-05 15:53:37 -0700 | docs: autopilot enhancements — vision pi
 90cbf57 | 2026-05-05 07:36:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
 306739b | 2026-05-05 01:32:43 -0700 | chore(previews): refresh Beer Hall preview (2026-05-05 UTC)
 c8ba288 | 2026-05-05 01:32:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
-d345c8e | 2026-05-04 20:56:52 -0700 | chore(previews): refresh Beer Hall preview (2026-05-05 UTC)
-0b1b720 | 2026-05-04 20:56:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
 … (truncated)
 ```
 
@@ -426,7 +426,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/8/2026 6:53:14 |
+| 2026-05 | 0 | 14918.51386 | 5/8/2026 12:50:56 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-01`; scanned last **392** data rows)
 
