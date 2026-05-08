@@ -15,6 +15,7 @@ A row's life cycle:
 
 ```
 (blank) → Research → AI: Enrich with contact → AI: Email found → AI: Warm up prospect → AI: Prospect replied → Manager Follow-up
+AI: Warm up prospect → Manager Follow-up (aged-out, no reply, ≥1 warmup, >14d)
 ```
 
 with branches off `Research` for rejection (`AI: No fit signal`),
