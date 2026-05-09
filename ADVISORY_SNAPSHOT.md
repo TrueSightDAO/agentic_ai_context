@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-09T02:36:33Z`
+- Generated (UTC): `2026-05-09T04:03:18Z`
 - Look-back: **7** calendar days (`2026-05-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -86,25 +86,36 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 14 SKU lines · 1,200 total units · $1,758.25
+- Manager record: `Kirsten Ritschel` · 13 SKU lines · 1,192 total units · $1,690.17
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 14 | 1,200 | $1,758.25 |
+  | Packaging Material | Bulk | 4 | 895 | $652.10 |
+  | (uncategorized) | (unspecified) | 6 | 211 | $727.95 |
+  | Caca Mass | Bulk | 1 | 50 | $1.55 |
+  | Caca Mass | Retail Ready | 2 | 36 | $308.57 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 22 | 2,012.72 | $8,345.85 |
+  | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
+  | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
+  | (uncategorized) | (unspecified) | 10 | 272.13 | $2,582.25 |
+  | Caca Tea | Bulk | 5 | 156.50 | $1,587.77 |
+  | Cacao Nib | Retail Ready | 1 | 137 | $909.68 |
+  | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 11,254.95 total units · $11,377.36
+- Manager record: `Gary Teh` · 29 SKU lines · 11,264.95 total units · $11,462.46
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 29 | 11,254.95 | $11,377.36 |
+  | (uncategorized) | (unspecified) | 26 | 11,163.77 | $11,200.13 |
+  | Packaging Material | Bulk | 1 | 74 | $49.98 |
+  | Caca Mass | Retail Ready | 1 | 25 | $212.34 |
+  | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
 
@@ -121,13 +132,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,040.98**
+- Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
+- USD provisioned for voting-rights cash-out: **$35.69**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -189,6 +204,8 @@ _All dated lines on/after 2026-05-02_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+910d837 | 2026-05-08 19:36:46 -0700 | Merge pull request #105 from TrueSightDAO/auto/advisory-refresh-2026-05-09
+676b49d | 2026-05-09 02:36:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 87a5b06 | 2026-05-08 16:47:36 -0700 | docs: tighten contribution Type validation rules, enforce Gary Teh as default contributor
 1b1684c | 2026-05-08 16:25:39 -0700 | docs: add production deployment guide and .env key parity rule
 0b7df6b | 2026-05-08 15:26:11 -0700 | docs(hit_list): document Warm-up -> Manager Follow-up aged-out transition (#104)
@@ -227,8 +244,6 @@ fa84010 | 2026-05-06 02:13:15 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 5a26e7e | 2026-05-05 19:34:57 -0700 | Merge pull request #99 from TrueSightDAO/auto/advisory-refresh-2026-05-06
 df07723 | 2026-05-06 02:34:48 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-06 UTC)
 690b165 | 2026-05-05 15:54:52 -0700 | Merge pull request #98 from TrueSightDAO/chore/autopilot-enhancements-2026-05-05
-c95badb | 2026-05-05 15:53:37 -0700 | docs: autopilot enhancements — vision pipeline, batch approvals, canonical labels, test suite, production deployment guide
-9cf8c4e | 2026-05-05 12:58:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-05 UTC)
 … (truncated)
 ```
 
@@ -309,6 +324,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+4ce09f3 | 2026-05-08 20:28:34 -0700 | chore: refresh Agroverse store inventory snapshot
 067b089 | 2026-05-08 19:28:53 -0700 | chore: refresh Agroverse store inventory snapshot
 e2f837e | 2026-05-08 17:28:33 -0700 | chore: refresh Agroverse store inventory snapshot
 447a673 | 2026-05-08 08:00:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -389,6 +405,39 @@ _(no commits on origin/master in window)_
 
 - **`20260508T235719Z.json`** — `2026-05-08T23:57:19Z`  
   **Theastrologystore** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 0 | 14918.51386 | 5/8/2026 20:50:39 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-02`; scanned last **392** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
