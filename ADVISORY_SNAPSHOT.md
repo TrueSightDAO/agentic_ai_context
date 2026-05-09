@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-08T19:54:56Z`
-- Look-back: **7** calendar days (`2026-05-01` → today UTC)
+- Generated (UTC): `2026-05-09T02:36:33Z`
+- Look-back: **7** calendar days (`2026-05-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 237 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 237 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 236 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 236 | **behind** |
 
 ---
 
@@ -86,36 +86,25 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,214 total units · $1,804.12
+- Manager record: `Kirsten Ritschel` · 14 SKU lines · 1,200 total units · $1,758.25
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | Packaging Material | Bulk | 4 | 895 | $652.10 |
-  | (uncategorized) | (unspecified) | 7 | 221 | $813.04 |
-  | Caca Mass | Bulk | 1 | 50 | $1.55 |
-  | Caca Mass | Retail Ready | 3 | 48 | $337.42 |
+  | (uncategorized) | (unspecified) | 14 | 1,200 | $1,758.25 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
-  | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
-  | (uncategorized) | (unspecified) | 10 | 272.13 | $2,582.25 |
-  | Caca Tea | Bulk | 5 | 156.50 | $1,587.77 |
-  | Cacao Nib | Retail Ready | 1 | 137 | $909.68 |
-  | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
+  | (uncategorized) | (unspecified) | 22 | 2,012.72 | $8,345.85 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 11,241.95 total units · $11,265.49
+- Manager record: `Gary Teh` · 29 SKU lines · 11,254.95 total units · $11,377.36
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 11,150.77 | $11,088.10 |
-  | Packaging Material | Bulk | 1 | 74 | $49.98 |
-  | Caca Mass | Retail Ready | 1 | 15 | $127.41 |
-  | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
+  | (uncategorized) | (unspecified) | 29 | 11,254.95 | $11,377.36 |
 
 ### Other managers (top 8 by USD value)
 
@@ -132,17 +121,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,041.24**
-- Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
-- USD provisioned for voting-rights cash-out: **$35.44**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -156,7 +141,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code rsync'd to `/opt/truesight_autopilot` with systemd service `truesight-autopilot.service`. All credentials resolved: (1) GitHub PAT `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env` — authenticated as `garyjob`, can read/write `TrueSightDAO/*`; (2) Gmail token from `market_research/credentials/gmail/token.json` — copied to EC2 `.env` as `GMAIL_TOKEN_JSON`, polling active; (3) DeepSeek key `DEEPSEEK_SDK` — working; (4) AWS keys from `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET`, account `440626669078`) — CloudWatch connected, daily spend $0. Fixes applied during deploy: `config.py` uses `SettingsConfigDict(extra="ignore")` to avoid pydantic errors; `email_poller.py` gracefully handles missing `GMAIL_TOKEN_JSON`; `aws_monitor.py` removes invalid `MaxResults` from `list_metrics`; `main.py` makes background task init non-fatal. README updated with EC2 server layout for human operators. Route53 hosted zone `truesight.me` confirmed in new AWS account. Remaining blocker: dedicated Edgar identity for autopilot (`autopilot@agroverse.shop`) still needed for contribution logging.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
 
-_All dated lines on/after 2026-05-01_ (12):
+_All dated lines on/after 2026-05-02_ (12):
 
 - 2026-05-05 | claude | Autopilot self-improvement loop: added SELF-IMPROVEMENT section to system prompt. LLM now proactively detects patterns (OCR errors, misreads, protocol violations) and proposes code-level fixes via `open_fix_pr`. NEVER auto-merges — PRs go through human review. Safety hooks block dangerous ops. This creates a cybernetic adversarial loop: governor (discriminator) corrects → autopilot (generator) improves → system sharpens itself. Production-safe: crashes are prevented by PR gate — no hot code changes while serving users.
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now enforces canonical dao_client labels via `_normalize_submission_labels()` — maps 30+ LLM-invented aliases to canonical field names, drops non-canonical descriptive keys, validates required fields per event type.
@@ -180,7 +165,7 @@ _All dated lines on/after 2026-05-01_ (12):
 | `go_to_market` | `market_research` | **yes** |
 | `openclaw` | `agentic_ai_context` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **no** |
+| `oracle` | `iching_oracle` | **yes** |
 
 ---
 
@@ -189,6 +174,7 @@ _All dated lines on/after 2026-05-01_ (12):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7019377 | 2026-05-08 14:47:36 -0700 | Mycelial Economy: signals across the DAO + Signal Brief #1 (#58)
 939c0c2 | 2026-05-04 16:14:26 -0700 | Reframe Mycelial Economy post as Field Signals #1 (#57)
 13a882d | 2026-05-04 15:55:45 -0700 | Move The Mycelial Economy into blog/posts/ and wire the index (#56)
 916ed9d | 2026-05-04 15:48:25 -0700 | Add hand-written deep-link page: The Mycelial Economy (#55)
@@ -197,12 +183,17 @@ _All dated lines on/after 2026-05-01_ (12):
 ### `market_research` → `go_to_market`
 
 ```
-2d292bb | 2026-05-05 14:16:13 -0700 | fix(bulk): capture thread_id and body columns on bulk info drafts (#115)
+658ddd4 | 2026-05-08 16:29:57 -0700 | feat: auto-promote AI: Prospect replied → Manager Follow-up on reply send (#117)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+87a5b06 | 2026-05-08 16:47:36 -0700 | docs: tighten contribution Type validation rules, enforce Gary Teh as default contributor
+1b1684c | 2026-05-08 16:25:39 -0700 | docs: add production deployment guide and .env key parity rule
+0b7df6b | 2026-05-08 15:26:11 -0700 | docs(hit_list): document Warm-up -> Manager Follow-up aged-out transition (#104)
+1b3235b | 2026-05-08 12:55:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
+9702d8b | 2026-05-08 12:55:08 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
 1e62ddf | 2026-05-08 07:24:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
 82e416a | 2026-05-08 07:24:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
 d4238c0 | 2026-05-08 01:08:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
@@ -238,11 +229,6 @@ df07723 | 2026-05-06 02:34:48 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 690b165 | 2026-05-05 15:54:52 -0700 | Merge pull request #98 from TrueSightDAO/chore/autopilot-enhancements-2026-05-05
 c95badb | 2026-05-05 15:53:37 -0700 | docs: autopilot enhancements — vision pipeline, batch approvals, canonical labels, test suite, production deployment guide
 9cf8c4e | 2026-05-05 12:58:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-05 UTC)
-61d412c | 2026-05-05 12:58:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
-8cdceea | 2026-05-05 07:36:49 -0700 | chore(previews): refresh Beer Hall preview (2026-05-05 UTC)
-90cbf57 | 2026-05-05 07:36:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
-306739b | 2026-05-05 01:32:43 -0700 | chore(previews): refresh Beer Hall preview (2026-05-05 UTC)
-c8ba288 | 2026-05-05 01:32:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-05 UTC)
 … (truncated)
 ```
 
@@ -259,6 +245,9 @@ daa7c5c | 2026-05-03 14:05:46 -0700 | feat(gas): warmup queue accepts ?label= fo
 ### `dapp` → `dapp`
 
 ```
+b469e8b | 2026-05-08 18:40:08 -0700 | fix: batch mode supports all QR input methods (camera, upload, list) (#223)
+f060edf | 2026-05-08 17:30:50 -0700 | feat: batch mode for inventory movement with QR code accumulator (#222)
+101868e | 2026-05-08 17:03:35 -0700 | feat: add Gmail draft link support to store interaction history
 97e3dc6 | 2026-05-06 21:35:54 -0700 | [autopilot] ## Problem When a user attaches an image file in chat.html,  (#221)
 fcafc68 | 2026-05-06 20:59:40 -0700 | [autopilot] Add async message queuing UI to chat.html so the governor ca (#220)
 05575cb | 2026-05-06 20:33:08 -0700 | [autopilot] Fix chat.html (#219)
@@ -296,8 +285,7 @@ c7a156c | 2026-05-03 14:16:29 -0700 | chore(sw): bump cache version v7 → v8 to
 58fcbcc | 2026-05-03 14:12:34 -0700 | feat(chat): SSE streaming for real-time autopilot responses
 3ef6fec | 2026-05-03 14:07:00 -0700 | feat(outbound-review): tab toggle + clickable filter chips + chrome fixes (#203)
 6ba976f | 2026-05-03 13:45:33 -0700 | feat(warmup-review): mobile triage page + signed Send button (#202)
-b5d9391 | 2026-05-03 00:26:24 -0700 | refactor(stores-by-status): order status filters top-of-pipeline → bottom (#201)
-585fb20 | 2026-05-03 00:09:49 -0700 | refactor(stores): add 'AI: No fit signal' to status dropdowns + filters (#200)
+… (truncated)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -321,6 +309,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+067b089 | 2026-05-08 19:28:53 -0700 | chore: refresh Agroverse store inventory snapshot
+e2f837e | 2026-05-08 17:28:33 -0700 | chore: refresh Agroverse store inventory snapshot
 447a673 | 2026-05-08 08:00:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c3a0b0f | 2026-05-07 08:50:11 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0a7a5ae | 2026-05-06 19:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -329,7 +319,6 @@ c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory
 bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ddd2a0 | 2026-05-02 08:01:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-cfa8f36 | 2026-05-01 08:26:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -342,7 +331,7 @@ cae8f03 | 2026-05-04 15:43:11 -0700 | Revert "Add blog post: The Mycelial Econom
 ### `iching_oracle` → `oracle`
 
 ```
-_(no commits on origin/main in window)_
+3e42778 | 2026-05-08 15:21:32 -0700 | feat: persist oracle draws to oracle_logs repo via GitHub Contents API
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -354,6 +343,15 @@ _(no commits on origin/master in window)_
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-05-09T023633Z_batch-qr-inventory-oracle-persistence-prospect-auto-promote.md`
+
+- **posted_at_utc:** `2026-05-09T02:36:33Z`  
+- **slug:** `batch-qr-inventory-oracle-persistence-prospect-auto-promote`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Batch inventory movements land in the DApp, the I Ching oracle starts persisting draws to a permanent log, and the outbound sales pipeline gains an auto-promotion rule for replied prospects.
+  - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; all three input methods confirmed working in today's follow-up fix.
 
 ### `beer-hall_2026-05-08T024249Z_asset-receipt-page-autopilot-self-deploy-cacao-samples.md`
 
@@ -373,68 +371,24 @@ _(no commits on origin/master in window)_
   The Autopilot gains a trusted-agent authorization path and a new asset-receipt ingest pipeline, 15 more ceremonial cacao bags moved from Kirsten to Gary via Edgar-verified QR transfers, and a Bialetti Moka Express arrived for DAO operations.
   - **Agentic authorization path live** — the tokenomics layer now has a dedicated route for trusted-agent (Autopilot) submissions approved by governors, enabling the Autopilot to execute on-chain actions without manual relay.
 
-### `beer-hall_2026-05-06T023441Z_autopilot-batch-approvals-warmup-body-expand.md`
-
-- **posted_at_utc:** `2026-05-06T02:34:41Z`  
-- **slug:** `autopilot-batch-approvals-warmup-body-expand`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  The Autopilot gains a vision pipeline and batch approval cards, the warm-up review module now shows full prospect reply bodies inline, and seven bags of ceremonial cacao moved from Kirsten to Gary via verified Edgar inventory transactions.
-  - **Autopilot: vision pipeline, batch proposal cards, and pending approvals panel shipped** — governors can now review and approve batches of Autopilot actions from a dedicated panel in the DApp; ephemeral context guardrails and canonical label enforcement added alongside.
-
 ---
 
 ## Recent retail field reports (DApp store status updates)
 
-- **`20260507T195245Z.json`** — `2026-05-07T19:52:46Z`  
-  **Good Vibrations Apothecary** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | method: Email | sig: success
-  _I sent out two tasting samples via USPS_
+- **`20260509T001510Z.json`** — `2026-05-09T00:15:10Z`  
+  **Care Rituals, LLC** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
 
-- **`20260507T195240Z.json`** — `2026-05-07T19:52:41Z`  
-  **Good Vibrations Apothecary** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | method: Email | sig: success
-  _I sent out two tasting samples via USPS_
-
-- **`20260503T174009Z.json`** — `2026-05-03T17:40:09Z`  
-  **The Sword and Rose** → `Not Appropriate` (was `AI: Warm up prospect`) | type: Metaphysical/Spiritual | sig: success
-
-- **`20260503T172332Z.json`** — `2026-05-03T17:23:32Z`  
-  **Devine Wellness and Relaxation** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
-
-- **`20260503T172230Z.json`** — `2026-05-03T17:22:30Z`  
+- **`20260509T001234Z.json`** — `2026-05-09T00:12:34Z`  
   **Seagrape Apothecary** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
 
----
+- **`20260509T000800Z.json`** — `2026-05-09T00:08:00Z`  
+  **Elliott's Natural Foods** → `Manager Follow-up` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
 
-## Sheet evidence (sales)
+- **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
+  **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
 
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/8/2026 12:50:56 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-01`; scanned last **392** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-05-01 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
+- **`20260508T235719Z.json`** — `2026-05-08T23:57:19Z`  
+  **Theastrologystore** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
 
 ---
 
