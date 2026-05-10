@@ -628,6 +628,44 @@ PRs:
 
 ---
 
+## tribomirimbahia Phase 1B — music library tagging
+
+**Context:** Phase 1A done 2026-05-10 (TrueSightDAO/tribomirimbahia#2) — 39 Bico
+Duro per-move clips published. Phase 1B is the next sequential step before the
+Phase 2 site can do session generation.
+
+**Scope:** Build `tribomirimbahia/data/music_library.json` per spec §5 + §3:
+
+- 12 capoeira tracks (Gary curates the YouTube URLs).
+- Per track: `id`, `title`, `youtube_url`, `duration_seconds`, `bpm` (estimate
+  via `librosa` or DeepSeek tap), `tempo_category` (Slow/Medium/Fast),
+  `style_notes` (berimbau-heavy, drums-focused, etc.).
+- Suggested mix: 3–4 slow berimbau (Foundation/warm-up), 4–5 medium drum-heavy
+  (Defense/Attacks), 2–3 fast energetic (Aerials/Floreios).
+
+**Hand-off:** Per `AGENT_BRIEF.md` matrix — BPM detection + tagging is DeepSeek
+territory (numeric, no cultural nuance). Gary spot-checks the tempo arc since
+it affects practice feel.
+
+**Blocker:** Gary needs to curate the 12 YouTube URLs first.
+
+## tribomirimbahia Phase 2 — capoeira.agroverse.shop site build
+
+**Context:** Phase 1A produced `tribomirimbahia/data/moves.json` (39 moves with
+YouTube URLs); spec PDF + AGENT_BRIEF.md describe the static-site requirements.
+
+**Scope:** Greenfield build of `~/Applications/capoeira/` (currently empty)
+following the AGENT_BRIEF.md "Phase 2 — Core Site Build" section. Mirror
+agroverse_shop conventions (no frameworks, static HTML/CSS/vanilla JS).
+Mandatory: `agentic_ai_context/DAPP_PAGE_CONVENTIONS.md` for every page.
+
+**Hand-off:** Claude drafts pages; Gary reviews landing copy + Bahia tone before
+flipping DNS. The 4 open questions in AGENT_BRIEF.md "Open questions before
+Phase 2" need Gary's answers first (deploy target, Stripe account, Bico Duro
+consent, fundraising goal).
+
+**Blocker:** Open questions in AGENT_BRIEF.md not yet answered.
+
 ## Closed without shipping
 
 _(empty — move entries here with a one-line reason when they're no longer
