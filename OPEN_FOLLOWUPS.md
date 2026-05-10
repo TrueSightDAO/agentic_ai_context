@@ -509,6 +509,67 @@ DApp form callers.
 
 ---
 
+### Extend iching_oracle advisory with QiMenDunJia overlay
+
+**Context.** Today (2026-05-09) we agreed the I-Ching cast and a QMDJ chart
+are complementary lenses on the same moment T — I-Ching tells you the
+quality of the moment (via random selection from coin throws), QMDJ tells
+you the spatial / strategic structure of that same moment (deterministic
+from the timestamp). Pairing them on the same T gives the DAO advisor two
+classical frameworks reading the same instant: I-Ching as the narrative /
+transformational layer, QMDJ as the spatial / strategic overlay. Honest
+disclaimer: combining them is a *modern synthesis*, not a traditional
+practice; the UI and the GAS prompt should both flag this.
+
+**Spec.** Full design lives in [`ICHING_QMDJ_EXTENSION.md`][qmdj-spec].
+Summary:
+
+- **Library.** `lunar-javascript` (6tail family). Drops in cleanly to the
+  static-site / `gas/` stack. Don't reimplement.
+- **Client.** After coin throw at moment T: also compute the QMDJ chart
+  from T (Ju, Six Yi, Three Wonders, Heaven/Earth Plates, Doors, Stars,
+  Spirits) and POST alongside the hexagram + changing lines.
+- **GAS.** Extend `oracle_advisory_bridge.gs`:
+  - `extractDraw_` += `qmdj_chart` field.
+  - `staticContext` += new `QMDJ_FRAMEWORK_REFERENCE.md` (cached — what
+    the doors/stars/spirits/wonders mean, what counts as auspicious).
+  - `dynamicContext` += per-call QMDJ chart block for moment T.
+  - `ORACLE_PROMPT_HEADER` adds two new output sections (QMDJ
+    configuration of this moment, Combined frame) and extends section 7
+    (decisive action) to use QMDJ's directional / timing signal when one
+    is present, otherwise to honestly say the chart doesn't surface a
+    strong directional read.
+- **Caching.** The new framework reference is static across calls and
+  belongs in the cached system block — keeps marginal token cost
+  reasonable.
+- **UI.** Render QMDJ as a *collapsible* "Extended Reading: QiMenDunJia"
+  section below the I-Ching reading, not above it. I-Ching narrative
+  stays the primary surface.
+
+**Implementation order.** Three independently testable PRs (not one):
+
+1. **Smoke-test lunar-javascript locally**, then wire chart casting +
+   9-palace render into the client. No GAS changes yet.
+2. **Land `QMDJ_FRAMEWORK_REFERENCE.md`** in `agentic_ai_context` and
+   extend `oracle_advisory_bridge.gs` to fetch + include it.
+3. **Refine `ORACLE_PROMPT_HEADER`** sections after seeing live output;
+   tune the "no clear signal" fallback language so the LLM doesn't
+   fabricate directional advice.
+
+**Cost.** Probably 60-90 min per PR. Total ~3-4 hours of focused work
+across the three.
+
+**Risks worth re-reading from the spec before starting.** Information
+overload, two-oracles-stapled-together coherence, naive
+auto-interpretation, modern-synthesis disclaimer. All addressed in the
+spec; don't skip the "Risks / things to be careful about" section.
+
+**Owner.** Unclaimed.
+
+[qmdj-spec]: ./ICHING_QMDJ_EXTENSION.md
+
+---
+
 ## Recently shipped
 
 ### `dao_client onboard_retail_partner` MVP — 2026-04-28
