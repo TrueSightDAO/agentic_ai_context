@@ -17,7 +17,7 @@ Purpose: Fast reference for Grok/Claude/Codex to understand and extend the TrueS
 - Service worker: `service-worker.js` — cache-first/network-first mix with special handling for GAS endpoints and `?reload` param.
 - Module pages (selection):
   - Identity & Governance: `create_signature.html`, `withdraw_voting_rights.html`, `verify_request.html`, `notarize.html`, `view_open_proposals.html`, `create_proposal.html`, `review_proposal.html`.
-  - Inventory & Sales: `scanner.html`, `report_sales.html`, `report_dao_expenses.html`, `report_inventory_movement.html`, `update_qr_code.html`, `batch_qr_generator.html`, `stores_nearby.html`, `shipping_planner.html`.
+  - Inventory & Sales: `scanner.html`, `report_sales.html`, `report_dao_expenses.html`, `report_inventory_movement.html`, `update_qr_code.html`, `batch_qr_generator.html`, `stores_nearby.html`, `shipping_planner.html`, `currency_conversion.html` (USD↔BRL etc — emits `[CURRENCY CONVERSION EVENT]` against a managed AGL ledger).
   - Sunmint: `register_farm.html`, `report_tree_planting.html`.
   - Contributions: `report_contribution.html`, `submit_feedback.html`.
 
@@ -63,6 +63,7 @@ Purpose: Fast reference for Grok/Claude/Codex to understand and extend the TrueS
   - Build canonical payload from form values → sign → `edgar.truesight.me/dao/submit_contribution` (multipart) → show result + share text.
 - Inventory movement / QR update:
   - Load lists from GAS endpoints following UX loading pattern → capture photos/fields → build payload → submit to Edgar.
+- **Currency conversion (`currency_conversion.html`)**: pick managed AGL ledger → enter source/target currency + amount (implied FX rate displayed live) → attach Wise/Rendimento/bank receipt → sign + POST `[CURRENCY CONVERSION EVENT]` to Edgar. Mirrors `report_capital_injection.html`'s flow exactly. Receiving GAS (`tokenomics/google_app_scripts/tdg_asset_management/currency_conversion_processing.gs`) writes a double-entry pair (`-source_amount` source-ccy + `+target_amount` target-ccy, both Category="Assets") into the target ledger's `Transactions` tab so multi-currency `Balance` aggregates resolve correctly. See `tokenomics/google_app_scripts/tdg_asset_management/CURRENCY_CONVERSION_IMPLEMENTATION.md` for the playbook.
 
 ## Pitfalls & Notes
 - WebCrypto requires secure context: pages are served via HTTPS on GitHub Pages; local `file://` won’t work for crypto — use a local server.
