@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-10T04:31:46Z`
+- Generated (UTC): `2026-05-10T08:26:48Z`
 - Look-back: **7** calendar days (`2026-05-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -189,6 +189,8 @@ _All dated lines on/after 2026-05-03_ (12):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5fc28a4 | 2026-05-10 00:11:10 -0700 | blog: rename 真视道 → 真观道 in "Where 道 Integrates with DAO" (#60)
+5bcb59e | 2026-05-09 23:40:54 -0700 | blog: add "Where 道 Integrates with DAO" post (#59)
 7019377 | 2026-05-08 14:47:36 -0700 | Mycelial Economy: signals across the DAO + Signal Brief #1 (#58)
 939c0c2 | 2026-05-04 16:14:26 -0700 | Reframe Mycelial Economy post as Field Signals #1 (#57)
 13a882d | 2026-05-04 15:55:45 -0700 | Move The Mycelial Economy into blog/posts/ and wire the index (#56)
@@ -198,12 +200,15 @@ _All dated lines on/after 2026-05-03_ (12):
 ### `market_research` → `go_to_market`
 
 ```
-658ddd4 | 2026-05-08 16:29:57 -0700 | feat: auto-promote AI: Prospect replied → Manager Follow-up on reply send (#117)
+5340fa1 | 2026-05-09 23:15:06 -0700 | fix(hit-list): refuse to promote rows with placeholder filler@godaddy.com (#118)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+76925c2 | 2026-05-09 21:37:00 -0700 | docs: plan QiMenDunJia overlay for iching_oracle advisory (#107)
+0263997 | 2026-05-09 21:32:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
+c820a1b | 2026-05-09 21:32:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 70fc82d | 2026-05-09 19:41:18 -0700 | Merge pull request #106 from TrueSightDAO/auto/advisory-refresh-2026-05-10
 8efad12 | 2026-05-10 02:41:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 5a5f151 | 2026-05-09 12:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
@@ -241,15 +246,13 @@ a9d9cb4 | 2026-05-06 21:12:46 -0700 | chore(previews): refresh Beer Hall preview
 719ebb9 | 2026-05-07 02:37:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 17759ef | 2026-05-06 19:31:24 -0700 | docs: document asset receipt pipeline, double-entry workflow, and GAS deployment
 00c8890 | 2026-05-06 17:54:38 -0700 | [autopilot] Fix AUTOPILOT_CODE_MODIFICATIONS.md (#100)
-d543e5a | 2026-05-06 17:27:27 -0700 | docs: add QA testing workflow for autopilot's code changes — playwright template, common checks, example test
-bf1fd5a | 2026-05-06 17:01:30 -0700 | docs: add local debugging workflow for autopilot — auth, DRY_RUN, golden rule
-bbc06e2 | 2026-05-06 13:10:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+77cd437 | 2026-05-09 23:15:01 -0700 | fix(pipeline-metrics): coerce TIME-cast Date cells back to integer counts (#273)
 d842b8f | 2026-05-06 18:13:06 -0700 | feat(gas): add asset-receipt-ingest GAS for [ASSET RECEIPT EVENT] processing (#272)
 b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted agent (autopilot) submissions approved by governors (#271)
 46e1557 | 2026-05-05 13:06:11 -0700 | feat(gas): add body_full and prospect_reply_body to warmup review queue API (#270)
@@ -260,6 +263,7 @@ daa7c5c | 2026-05-03 14:05:46 -0700 | feat(gas): warmup queue accepts ?label= fo
 ### `dapp` → `dapp`
 
 ```
+d08bd1f | 2026-05-09 23:44:57 -0700 | feat(chat): visual feedback for autopilot working/done state + Stop button (#224)
 b469e8b | 2026-05-08 18:40:08 -0700 | fix: batch mode supports all QR input methods (camera, upload, list) (#223)
 f060edf | 2026-05-08 17:30:50 -0700 | feat: batch mode for inventory movement with QR code accumulator (#222)
 101868e | 2026-05-08 17:03:35 -0700 | feat: add Gmail draft link support to store interaction history
@@ -299,7 +303,6 @@ c47e9cd | 2026-05-03 22:28:45 -0700 | fix: force-refresh dao_members cache after
 c7a156c | 2026-05-03 14:16:29 -0700 | chore(sw): bump cache version v7 → v8 to flush stale Outbound Review (#204)
 58fcbcc | 2026-05-03 14:12:34 -0700 | feat(chat): SSE streaming for real-time autopilot responses
 3ef6fec | 2026-05-03 14:07:00 -0700 | feat(outbound-review): tab toggle + clickable filter chips + chrome fixes (#203)
-6ba976f | 2026-05-03 13:45:33 -0700 | feat(warmup-review): mobile triage page + signed Send button (#202)
 … (truncated)
 ```
 
@@ -324,6 +327,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6f442e8 | 2026-05-10 08:23:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e949102 | 2026-05-09 08:13:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4ce09f3 | 2026-05-08 20:28:34 -0700 | chore: refresh Agroverse store inventory snapshot
 067b089 | 2026-05-08 19:28:53 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -347,6 +351,11 @@ cae8f03 | 2026-05-04 15:43:11 -0700 | Revert "Add blog post: The Mycelial Econom
 ### `iching_oracle` → `oracle`
 
 ```
+fb8d833 | 2026-05-09 23:56:30 -0700 | fix(qmdj): glossary overflow + bold-outline legend (#12)
+9195934 | 2026-05-09 23:48:14 -0700 | feat(qmdj): move Explore-64 above QMDJ panel; clarify hour-based time basis (#11)
+01c42ca | 2026-05-09 23:34:05 -0700 | chore(gas): commit appsscript.json manifest pulled from the live web app (#10)
+46cc5e8 | 2026-05-09 23:10:00 -0700 | feat(qmdj): wire QMDJ chart into the DAO advisor prompt (#9)
+0009c9e | 2026-05-09 22:40:05 -0700 | feat(qmdj): add QiMen Dunjia structural overlay below the I-Ching reading (#8)
 3e42778 | 2026-05-08 15:21:32 -0700 | feat: persist oracle draws to oracle_logs repo via GitHub Contents API
 ```
 
@@ -429,7 +438,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/9/2026 20:51:53 |
+| 2026-05 | 0 | 14918.51386 | 5/10/2026 0:50:30 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-03`; scanned last **392** data rows)
 
