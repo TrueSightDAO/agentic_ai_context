@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-10T08:26:48Z`
+- Generated (UTC): `2026-05-10T14:00:01Z`
 - Look-back: **7** calendar days (`2026-05-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-09T10:59:13.941Z`
+- Generated (UTC): `2026-05-10T10:59:13.332Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **15**
@@ -58,11 +58,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - Instagram Followed: 11  (#13)
 - Manager Follow-up: 33  (#15)
 - Shortlisted: 3  (#18)
-- On Hold: 17  (#19)
+- On Hold: 18  (#19)
 - **Partnered: 15**  (#20)
 - Rejected: 14  (#21)
 - Followed Up: 1  (#22)
-- AI: Warm up prospect: 79  (#9999)
+- AI: Warm up prospect: 78  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
@@ -71,11 +71,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **57**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **50** / **3** / **26**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
-- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **23**; warmup depth (none / once / ≥2): **33** / **0** / **0**; follow-up depth (none / once / ≥2): **27** / **0** / **6**
+- **AI: Warm up prospect**: **78** stores — sum logged **warmup** sends (AU): **147**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **4** / **5** / **69**; follow-up depth (none / once / ≥2): **78** / **0** / **0**
+- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **63**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **3** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **0**, sum logged **follow-up** sends (AV): **23**; warmup depth (none / once / ≥2): **33** / **0** / **0**; follow-up depth (none / once / ≥2): **27** / **0** / **6**
+- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **63**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **3** / **17**
 
 ---
 
@@ -206,6 +206,8 @@ _All dated lines on/after 2026-05-03_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e3f0f8d | 2026-05-10 01:27:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
+5263072 | 2026-05-10 01:27:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 76925c2 | 2026-05-09 21:37:00 -0700 | docs: plan QiMenDunJia overlay for iching_oracle advisory (#107)
 0263997 | 2026-05-09 21:32:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
 c820a1b | 2026-05-09 21:32:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
@@ -244,8 +246,6 @@ a9d9cb4 | 2026-05-06 21:12:46 -0700 | chore(previews): refresh Beer Hall preview
 76ffe7d | 2026-05-06 21:12:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 236717d | 2026-05-06 19:37:11 -0700 | Merge pull request #101 from TrueSightDAO/auto/advisory-refresh-2026-05-07
 719ebb9 | 2026-05-07 02:37:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
-17759ef | 2026-05-06 19:31:24 -0700 | docs: document asset receipt pipeline, double-entry workflow, and GAS deployment
-00c8890 | 2026-05-06 17:54:38 -0700 | [autopilot] Fix AUTOPILOT_CODE_MODIFICATIONS.md (#100)
 … (truncated)
 ```
 
@@ -438,7 +438,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/10/2026 0:50:30 |
+| 2026-05 | 0 | 14918.51386 | 5/10/2026 6:50:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-03`; scanned last **392** data rows)
 
