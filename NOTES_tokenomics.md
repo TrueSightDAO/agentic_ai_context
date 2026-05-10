@@ -86,6 +86,8 @@ cp google_app_scripts/agroverse_qr_codes/Version.gs "clasp_mirrors/1N6o00N9VtRK_
   - Web app URL documented in file header; deploy as Web App with "Anyone" access for public reads.
 - tdg_inventory_management/process_*.gs
   - Parse sales and inventory movements from "Telegram Chat Logs" → update respective sheets and ledgers.
+- tdg_asset_management/capital_injection_processing.gs and tdg_asset_management/currency_conversion_processing.gs
+  - Twin-pattern double-entry processors for managed AGL ledgers. Capital Injection writes USD-only `Assets + Equity` rows; Currency Conversion writes multi-currency `-source_amount + +target_amount` (both Category="Assets") so `Balance` aggregates resolve per currency. Both intake to dedicated tabs on the Telegram & Submissions sheet (`Capital Injection`, `Currency Conversion`) with Status NEW→PROCESSED. Front-ends: `dapp/report_capital_injection.html`, `dapp/currency_conversion.html`. Playbooks: `CAPITAL_INJECTION_IMPLEMENTATION.md`, `CURRENCY_CONVERSION_IMPLEMENTATION.md` in the same directory.
 - agroverse_qr_codes/web_app.gs
   - List/lookup QR codes; update QR code email/status/member; used by DApp modules.
 - Webhook approach
