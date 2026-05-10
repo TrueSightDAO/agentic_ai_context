@@ -666,6 +666,43 @@ consent, fundraising goal).
 
 **Blocker:** Open questions in AGENT_BRIEF.md not yet answered.
 
+## capoeira: curriculum-based session structure
+
+**Context:** Practice tool at `capoeira.agroverse.shop/practice.html`. Phase 1A
+shipped (39 moves), data calibrated for 45-min single-theme sessions in
+TrueSightDAO/capoeira#7. But Bico Duro's actual teaching (per his spoken
+curriculum in cqKMvYbB1Kw — "primeira coisa: ginga; segunda coisa mais
+importante: defesa; terceira coisa: ataque") is NOT single-theme; it's
+Foundation → Defense → Attacks progression every session.
+
+**Scope:** Add an alternative session-generation mode that composes:
+1 Ginga warm-up (Foundation) + 2 Defense moves + 2-3 Attack moves +
+optional Flow cool-down (Giro). This un-skips the Foundation and Flow
+themes (currently filtered out because they have <4 moves each) and aligns
+the practice tool with how Bico Duro actually teaches.
+
+**Where to edit:** `assets/js/session-generator.js` — add a `pickCurriculumSession()`
+alongside the existing single-theme path. Add a UI toggle on `practice.html`
+("Single-theme drill" vs "Curriculum session"). Default to curriculum once
+implemented.
+
+**Blocker:** None — calibrated data + working single-theme algorithm both
+shipped TrueSightDAO/capoeira#7.
+
+## capoeira: session-generator algorithm variety
+
+**Context:** Same Phase 1A practice tool. Current `pickMoves()` is greedy on
+weighted score; with identical difficulty bias, sessions 1 and 4 in the headless
+simulation were byte-identical (same 6 Beginner Attack moves in the same order).
+
+**Scope:** Add randomized tie-breaking — group candidates by `_weight` bucket,
+shuffle within bucket, then pick. Or sample with weighted probability rather
+than sort+head. Keeps the difficulty bias intent but diversifies outputs.
+
+**Where to edit:** `assets/js/session-generator.js` `pickMoves()` greedy loop.
+
+**Blocker:** None.
+
 ## Closed without shipping
 
 _(empty — move entries here with a one-line reason when they're no longer
