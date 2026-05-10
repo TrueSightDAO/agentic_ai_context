@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-09T19:40:29Z`
-- Look-back: **7** calendar days (`2026-05-02` → today UTC)
+- Generated (UTC): `2026-05-10T02:40:57Z`
+- Look-back: **7** calendar days (`2026-05-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 236 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 236 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 235 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 235 | **behind** |
 
 ---
 
@@ -132,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,040.98**
-- Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
-- USD provisioned for voting-rights cash-out: **$35.69**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -156,7 +152,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code rsync'd to `/opt/truesight_autopilot` with systemd service `truesight-autopilot.service`. All credentials resolved: (1) GitHub PAT `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env` — authenticated as `garyjob`, can read/write `TrueSightDAO/*`; (2) Gmail token from `market_research/credentials/gmail/token.json` — copied to EC2 `.env` as `GMAIL_TOKEN_JSON`, polling active; (3) DeepSeek key `DEEPSEEK_SDK` — working; (4) AWS keys from `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET`, account `440626669078`) — CloudWatch connected, daily spend $0. Fixes applied during deploy: `config.py` uses `SettingsConfigDict(extra="ignore")` to avoid pydantic errors; `email_poller.py` gracefully handles missing `GMAIL_TOKEN_JSON`; `aws_monitor.py` removes invalid `MaxResults` from `list_metrics`; `main.py` makes background task init non-fatal. README updated with EC2 server layout for human operators. Route53 hosted zone `truesight.me` confirmed in new AWS account. Remaining blocker: dedicated Edgar identity for autopilot (`autopilot@agroverse.shop`) still needed for contribution logging.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
 
-_All dated lines on/after 2026-05-02_ (12):
+_All dated lines on/after 2026-05-03_ (12):
 
 - 2026-05-05 | claude | Autopilot self-improvement loop: added SELF-IMPROVEMENT section to system prompt. LLM now proactively detects patterns (OCR errors, misreads, protocol violations) and proposes code-level fixes via `open_fix_pr`. NEVER auto-merges — PRs go through human review. Safety hooks block dangerous ops. This creates a cybernetic adversarial loop: governor (discriminator) corrects → autopilot (generator) improves → system sharpens itself. Production-safe: crashes are prevented by PR gate — no hot code changes while serving users.
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now enforces canonical dao_client labels via `_normalize_submission_labels()` — maps 30+ LLM-invented aliases to canonical field names, drops non-canonical descriptive keys, validates required fields per event type.
@@ -204,6 +200,8 @@ _All dated lines on/after 2026-05-02_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5a5f151 | 2026-05-09 12:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
+93c3e2b | 2026-05-09 12:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 e78d6ad | 2026-05-09 06:59:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
 e6fb31a | 2026-05-09 06:59:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 44e0327 | 2026-05-09 01:16:46 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
@@ -242,8 +240,6 @@ bf1fd5a | 2026-05-06 17:01:30 -0700 | docs: add local debugging workflow for aut
 bbc06e2 | 2026-05-06 13:10:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
 5bd7313 | 2026-05-06 13:10:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-06 UTC)
 d6238d7 | 2026-05-06 08:11:47 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
-36911ae | 2026-05-06 08:11:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-06 UTC)
-a1dd813 | 2026-05-06 02:13:16 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
 … (truncated)
 ```
 
@@ -335,7 +331,6 @@ c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory
 7f1f20f | 2026-05-04 09:07:04 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-3ddd2a0 | 2026-05-02 08:01:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -361,6 +356,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-10T024057Z_batch-qr-oracle-persist-autopilot-auth.md`
+
+- **posted_at_utc:** `2026-05-10T02:40:57Z`  
+- **slug:** `batch-qr-oracle-persist-autopilot-auth`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Batch inventory movement, oracle persistence, and agentic authorization all landed since yesterday's digest — the biggest cluster of contributor-facing wiring in this cycle.
+  - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; a same-day fix confirmed all three input methods working.
+
 ### `beer-hall_2026-05-09T023633Z_batch-qr-inventory-oracle-persistence-prospect-auto-promote.md`
 
 - **posted_at_utc:** `2026-05-09T02:36:33Z`  
@@ -378,15 +382,6 @@ _(no commits on origin/master in window)_
 
   The Autopilot gains a self-deploy capability and a new Asset Receipt Reporter page, tasting samples shipped to Good Vibrations Apothecary, and the Autopilot's chat UI gets async message queuing so governors can keep typing while it processes.
   - **Asset Receipt Reporter page live in DApp** — a new `report_asset_receipt.html` page lets contributors log purchase receipts directly from the browser; wired into the nav menu and backed by the asset-receipt-ingest GAS landed yesterday.
-
-### `beer-hall_2026-05-07T023654Z_agentic-auth-asset-receipt-cacao-transfer.md`
-
-- **posted_at_utc:** `2026-05-07T02:36:54Z`  
-- **slug:** `agentic-auth-asset-receipt-cacao-transfer`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  The Autopilot gains a trusted-agent authorization path and a new asset-receipt ingest pipeline, 15 more ceremonial cacao bags moved from Kirsten to Gary via Edgar-verified QR transfers, and a Bialetti Moka Express arrived for DAO operations.
-  - **Agentic authorization path live** — the tokenomics layer now has a dedicated route for trusted-agent (Autopilot) submissions approved by governors, enabling the Autopilot to execute on-chain actions without manual relay.
 
 ---
 
@@ -406,39 +401,6 @@ _(no commits on origin/master in window)_
 
 - **`20260508T235719Z.json`** — `2026-05-08T23:57:19Z`  
   **Theastrologystore** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/9/2026 11:52:20 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-02`; scanned last **392** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
