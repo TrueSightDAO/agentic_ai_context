@@ -248,6 +248,8 @@ Assistants should **not** tie up the session waiting for GitHub Actions to finis
 |--------|-----------------------------------|-------|
 | **truesight.me** | [TrueSightDAO/truesight_me_prod](https://github.com/TrueSightDAO/truesight_me_prod) | Main DAO landing page — production |
 | **agroverse.shop** | [TrueSightDAO/agroverse_shop_prod](https://github.com/TrueSightDAO/agroverse_shop_prod) | E‑commerce — production |
+| **capoeira.agroverse.shop** | [TrueSightDAO/capoeira](https://github.com/TrueSightDAO/capoeira) | **Tribo Bahia Mirim capoeira practice platform.** GitHub Pages from `main` + CNAME. 39 Bico Duro move clips on **admin@truesight.me** YouTube; static session-generator site. |
+| **mirim-bahia.truesight.me** | [TrueSightDAO/tribomirimbahia](https://github.com/TrueSightDAO/tribomirimbahia) | **Tribo Bahia Mirim donation transparency explorer.** GitHub Pages from `main` + CNAME. Reads `treasury-cache/managed-ledgers/tribomirimbahia.json` and renders monthly donation/fee/net-to-program table. **Not** the practice platform — that's `capoeira.agroverse.shop`. |
 | **getdata.io** | [KrakeIO/krake_ror](https://github.com/KrakeIO/krake_ror) | Krake Rails backend — **not** Edgar / sentiment_importer |
 | **edgar.truesight.me** | [TrueSightDAO/sentiment_importer](https://github.com/TrueSightDAO/sentiment_importer) | **Edgar** — Rails **sentiment_importer** (DAO API, Sidekiq, Meta checkout helpers). Public: **`/agroverse_shop/shipping_rates`**, **`/meta_checkout`**, **`/ping`**, etc. **Not** krake_ror / getdata.io |
 
@@ -269,6 +271,9 @@ Future AIs can **clone** these repos when the workspace path is missing or a fre
 | `dao_client/` | https://github.com/TrueSightDAO/dao_client | — |
 | `truesight_me/` | https://github.com/TrueSightDAO/truesight_me | → **truesight_me_prod** → truesight.me |
 | `agroverse_shop/` | https://github.com/TrueSightDAO/agroverse_shop_beta | → **agroverse_shop_prod** → agroverse.shop |
+| `capoeira/` | https://github.com/TrueSightDAO/capoeira | → **capoeira.agroverse.shop** (Tribo Bahia Mirim practice platform; **not** ledger) |
+| `tribomirimbahia/` | https://github.com/TrueSightDAO/tribomirimbahia | → **mirim-bahia.truesight.me** (Tribo Bahia Mirim ledger & transparency; **not** practice platform) |
+| `treasury-cache/` | https://github.com/TrueSightDAO/treasury-cache | — (public JSON ledgers; consumed by transparency dashboards) |
 | `market_research/` | https://github.com/TrueSightDAO/content_schedule |
 | `agentic_ai_context/` | https://github.com/TrueSightDAO/agentic_ai_context |
 | `TrueChain/` | https://github.com/TrueSightDAO/TrueChain |
