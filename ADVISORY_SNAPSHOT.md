@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-10T02:40:57Z`
+- Generated (UTC): `2026-05-10T04:31:46Z`
 - Look-back: **7** calendar days (`2026-05-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -132,13 +132,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,040.72**
+- Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
+- USD provisioned for voting-rights cash-out: **$35.95**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -200,6 +204,8 @@ _All dated lines on/after 2026-05-03_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+70fc82d | 2026-05-09 19:41:18 -0700 | Merge pull request #106 from TrueSightDAO/auto/advisory-refresh-2026-05-10
+8efad12 | 2026-05-10 02:41:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 5a5f151 | 2026-05-09 12:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
 93c3e2b | 2026-05-09 12:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 e78d6ad | 2026-05-09 06:59:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
@@ -238,8 +244,6 @@ a9d9cb4 | 2026-05-06 21:12:46 -0700 | chore(previews): refresh Beer Hall preview
 d543e5a | 2026-05-06 17:27:27 -0700 | docs: add QA testing workflow for autopilot's code changes — playwright template, common checks, example test
 bf1fd5a | 2026-05-06 17:01:30 -0700 | docs: add local debugging workflow for autopilot — auth, DRY_RUN, golden rule
 bbc06e2 | 2026-05-06 13:10:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
-5bd7313 | 2026-05-06 13:10:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-06 UTC)
-d6238d7 | 2026-05-06 08:11:47 -0700 | chore(previews): refresh Beer Hall preview (2026-05-06 UTC)
 … (truncated)
 ```
 
@@ -401,6 +405,39 @@ _(no commits on origin/master in window)_
 
 - **`20260508T235719Z.json`** — `2026-05-08T23:57:19Z`  
   **Theastrologystore** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 0 | 14918.51386 | 5/9/2026 20:51:53 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-03`; scanned last **392** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
