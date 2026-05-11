@@ -193,33 +193,21 @@ This works for any future merchant — just create a Stripe product named `[LEDG
 
 ## Real-time GAS trigger
 
-`stripe_sales_sync.gs` (Flow 3) normally runs hourly. To trigger it immediately after a webhook, deploy the GAS as a web app with a `doGet` entry point, then have Edgar enqueue a Sidekiq worker that GETs the URL.
+`stripe_sales_sync.gs` (Flow 3) normally runs hourly. To trigger it immediately after a webhook, call its `doGet` web app endpoint.
 
-**GAS side** — add to `stripe_sales_sync.gs`:
+**GAS web app URL:** `https://script.google.com/macros/s/AKfycbwauCMu-3Es0s4rB7Cr-fsP2JuEnebyPS8W-ecXG6RUi_zhqpLfG71bramoEwtk54drfg/exec`
 
-```javascript
-function doGet(e) {
-  var result = fetchStripeTransactions();
-  return ContentService.createTextOutput(JSON.stringify({
-    status: 'ok',
-    processed: result
-  })).setMimeType(ContentService.MimeType.JSON);
-}
-```
-
-Deploy as web app (`Deploy → New deployment → Web app`, execute as "Me", access "Anyone"). Copy the exec URL.
-
-**Edgar side** — new Sidekiq worker:
+**Edgar side** — Sidekiq worker:
 
 ```ruby
 # app/workers/stripe_sales_sync_trigger_worker.rb
 class StripeSalesSyncTriggerWorker
   include Sidekiq::Worker
 
+  STRIPE_SYNC_URL = 'https://script.google.com/macros/s/AKfycbwauCMu-3Es0s4rB7Cr-fsP2JuEnebyPS8W-ecXG6RUi_zhqpLfG71bramoEwtk54drfg/exec'
+
   def perform
-    uri = URI(ENV['STRIPE_SALES_SYNC_GAS_URL'])
-    uri.query = URI.encode_www_form({})
-    HTTP.get(uri.to_s)
+    HTTP.get(STRIPE_SYNC_URL)
   end
 end
 ```
@@ -231,10 +219,8 @@ end
 when "checkout.session.completed"
   session_id = event_json.dig("data", "object", "id")
   MetaCheckoutOrderSyncWorker.perform_async(session_id) if session_id.present?
-  StripeSalesSyncTriggerWorker.perform_in(30.seconds)  # slight delay to let meta checkout finish
+  StripeSalesSyncTriggerWorker.perform_in(30.seconds)
 ```
-
-This mirrors the existing `doGet` pattern used by `dao_members_cache_publisher.gs`, `dapp_permission_change_handler.gs`, and the treasury-cache-publisher — all triggered via GET from Edgar's Sidekiq workers.
 
 ---
 
