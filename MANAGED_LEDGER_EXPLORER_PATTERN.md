@@ -149,14 +149,24 @@ Enable GitHub Pages on the explorer repo (Settings → Pages → main branch →
 
 | Ledger name | Program | JSON file | Explorer |
 |-------------|---------|-----------|----------|
-| `tribomirimbahia` | Tribo Bahia Mirim Capoeira | `managed-ledgers/tribomirimbahia.json` | `tribomirimbahia/index.html` → `mirim-bahia.truesight.me` |
+| `tribomirimbahia` | Tribo Bahia Mirim Capoeira | `managed-ledgers/TBM.json` | `tribomirimbahia/index.html` → `mirim-bahia.truesight.me` |
 
 ## Derivation rule
 
-From a `ledger_name`, derive all paths:
+From a `Ledger ID` (Column A in Shipment Ledger Listing), derive all paths:
 
 ```
-JSON:   treasury-cache/managed-ledgers/<ledger_name>.json
-URL:    https://raw.githubusercontent.com/TrueSightDAO/treasury-cache/main/managed-ledgers/<ledger_name>.json
-GitHub: https://github.com/TrueSightDAO/treasury-cache/blob/main/managed-ledgers/<ledger_name>.json
+JSON:   treasury-cache/managed-ledgers/<Ledger ID>.json
+URL:    https://raw.githubusercontent.com/TrueSightDAO/treasury-cache/main/managed-ledgers/<Ledger ID>.json
+GitHub: https://github.com/TrueSightDAO/treasury-cache/blob/main/managed-ledgers/<Ledger ID>.json
 ```
+
+All active ledgers are auto-exported by `tokenomics/python_scripts/tdg_asset_management/snapshot_managed_ledgers.py`. Run it after ledger changes:
+```bash
+cd ~/Applications/tokenomics
+python3 python_scripts/tdg_asset_management/snapshot_managed_ledgers.py
+# or for a single ledger:
+python3 python_scripts/tdg_asset_management/snapshot_managed_ledgers.py --ledger TBM
+```
+
+Ledgers with Status = COMPLETED or SUSPENDED are skipped.
