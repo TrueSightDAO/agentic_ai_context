@@ -83,60 +83,39 @@ The explorer normalizes flexibly, but producers **should** use these canonical f
 
 ### 4. Create the managed ledger in Google Sheets
 
-This creates the canonical spreadsheet that the DAO's GAS infrastructure discovers and writes to. Follow the AGL pattern exactly.
+**Template:** `1WoGS2_IPFmwM8VI0G-nU9mJ05wwwacDn7QypJKYnxq4` — "AGL MANAGED LEDGER TEMPLATE"
 
-**A. Create the spreadsheet:**
+1. Open the template → **File → Make a copy** → save to your account
+2. Rename: `"<LEDGER_NAME> — <Program Name>"`
+3. Update contract URLs on Balance (B1) and Transactions (B1) tabs
+4. Register in Shipment Ledger Listing (see below)
+5. Share with `cypher-defense@get-data-io.iam.gserviceaccount.com` (writer)
 
-```python
-import gspread
-gc = gspread.service_account('<path-to-cypher-defense-key.json>')
-sheet = gc.create('<LEDGER_NAME> — <program_name>')
-```
+The template has 7 tabs with all formulas, formatting, and AGL-standard structure:
+- `README` — setup instructions
+- `Unit Costing Economics` — per-unit cost breakdowns
+- `Balance` — Equity, Asset, Resource Location, Liabilities
+- `Transactions` — Date, Description, Entity, Amount, Currency, Type, Line #
+- `State` — Currencies catalog with Price in USD
+- `Entities` — Ledger Entities (TrueSight DAO, Smart Contract, Customer)
+- `Pricing Tiers` — cost/pricing models
 
-**B. Copy tab structure from reference:**
+**Register in Shipment Ledger Listing:**
 
-Use the Sheets API `sheets.copyTo` to duplicate tabs from an existing managed ledger (e.g. AGL15) into the new sheet. This preserves all formulas, formatting, and column widths:
-
-```python
-from googleapiclient.discovery import build
-service = build('sheets', 'v4', credentials=creds)
-
-for title, src_sheet_id in ref_tabs.items():
-    body = {'destinationSpreadsheetId': TARGET_SHEET_ID}
-    service.spreadsheets().sheets().copyTo(
-        spreadsheetId=REF_SHEET_ID, sheetId=src_sheet_id, body=body
-    ).execute()
-```
-
-**C. Clean up:**
-
-1. Update contract URLs on Balance and Transactions tabs to point to the new project
-2. Clear AGL15-specific data rows (keep formulas and headers)
-3. Keep the `Entities` tab (TrueSight DAO, Smart Contract, Customer — generic)
-
-**D. Register in Shipment Ledger Listing:**
-
-Add a row to `Shipment Ledger Listing` (Main Ledger sheet `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`):
+Add a row to `Shipment Ledger Listing` (Main Ledger sheet `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, gid `483234653`):
 
 | Col | Value |
 |-----|-------|
 | Shipment Date | Current date |
 | Status | Active |
 | Description | One-line description of the ledger's purpose |
-| Transaction Type | `Donation` (or `DAO financed` / `Defi Pre-Purchase` / `Merchant Green Pledge`) |
-| Ledger URL | Public-facing URL (e.g. `https://truesight.me/tribomirimbahia`) |
-| Resolved URL | Actual Google Sheets URL from step A |
+| Transaction Type | `Donation` or `DAO financed` or `Defi Pre-Purchase` or `Merchant Green Pledge` |
+| Ledger URL | Public-facing URL (e.g. `https://truesight.me/<program>`) |
+| Resolved URL | The Google Sheets URL from step 1 |
 
 Use the `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com` service account (has write access to Main Ledger) via `agroverse_shop/google-service-account.json`.
 
-**E. Grant access:**
-
-```python
-sheet.share('cypher-defense@get-data-io.iam.gserviceaccount.com', perm_type='user', role='writer')
-sheet.share('<user-email>', perm_type='user', role='writer')
-```
-
-**F. Result:** The GAS scripts (`capital_injection_processing.gs`, `currency_conversion_processing.gs`, `web_app.gs`) read Shipment Ledger Listing dynamically — the new ledger is immediately discoverable. The DApp `currency_conversion.html` dropdown is also dynamic; no DApp code changes needed.
+**Result:** The GAS scripts (`capital_injection_processing.gs`, `currency_conversion_processing.gs`, `web_app.gs`) read Shipment Ledger Listing dynamically — the new ledger is immediately discoverable. The DApp `currency_conversion.html` dropdown is also dynamic; no DApp code changes needed.
 
 ### 6. Build the explorer page
 
