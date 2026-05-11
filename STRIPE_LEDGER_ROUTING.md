@@ -5,7 +5,84 @@
 > Meta checkout: `sentiment_importer/app/services/meta_checkout_order_sync.rb`  
 > Stripe tab writer: `sentiment_importer/app/models/gdrive/stripe_checkout_log.rb`  
 > GAS poller: `tokenomics/google_app_scripts/tdg_asset_management/stripe_sales_sync.gs`  
+> Session creation GAS: `tokenomics/clasp_mirrors/1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn/Code.js`  
 > **Registry:** Shipment Ledger Listing (Main Ledger, Col A = Ledger ID, Col AB = Resolved URL)
+
+---
+
+## End-to-end overview (all flows on one canvas)
+
+```mermaid
+flowchart TD
+    %% --- ENTRY POINTS (5 origins) ---
+    AGR["agroverse.shop cart<br/>(checkout.js)"]:::entry
+    CAP["capoeira.agroverse.shop donate<br/>(capoeira-checkout.js)<br/>+ any future managed-ledger UI"]:::entry
+    META["Meta / Instagram Shop"]:::entry
+    SAAS["Edgar SaaS subscription<br/>(monthly Stripe charge)"]:::entry
+    DAPP["DApp scanner.html<br/>signs [SALES EVENT]"]:::entry
+
+    %% --- SESSION CREATION ---
+    GAS["Google Apps Script<br/>createCheckoutSession (cart)<br/>createLedgerCheckoutSession (ledger)"]:::create
+    EDGAR_MC["Edgar meta_checkout#create<br/>Wix product lookup → Stripe session"]:::create
+
+    AGR -- "GET ?action=createCheckoutSession" --> GAS
+    CAP -- "GET ?action=createLedgerCheckoutSession&ledger=…" --> GAS
+    META -- "/meta_checkout?products=PROD:QTY" --> EDGAR_MC
+
+    %% --- STRIPE ---
+    STRIPE["Stripe Checkout<br/>user pays"]:::stripe
+    GAS --> STRIPE
+    EDGAR_MC --> STRIPE
+    SAAS -.-> STRIPE
+
+    %% --- WEBHOOK PATH ---
+    HOOK["Stripe webhook<br/>checkout.session.completed"]:::stripe
+    STRIPE --> HOOK
+    HOOK --> EW["Edgar webhook#stripe"]:::edgar
+    EW --> MCS["MetaCheckoutOrderSync#sync!"]:::edgar
+    MCS --> SL["Stripe Social Media Checkout ID tab<br/>(audit trail; all checkouts land here)"]:::sheet
+
+    %% --- DAPP PATH (no Stripe) ---
+    DAPP --> EDAO["Edgar dao_controller"]:::edgar
+    EDAO --> TG["Telegram Chat Logs"]:::sheet
+    TG --> GCP["GAS campaign_codes_processor"]:::gasproc
+    GCP --> QR["QR Code Sales tab"]:::sheet
+
+    %% --- ROUTING ---
+    SL --> RT["stripe_sales_sync.gs<br/>(hourly, or Sidekiq-triggered)"]:::gasproc
+    QR --> PSL["GAS process_sales_telegram_logs"]:::gasproc
+
+    RT -- "[LEDGER_ID] prefix" --> ML["Managed-Ledger Transactions tab<br/>(TBM / AGL15 / SEF1 / PP1 / …)<br/>via Shipment Ledger Listing"]:::sheet
+    RT -- "target product IDs<br/>(Edgar SaaS)" --> MLG["Main Ledger:<br/>offchain transactions"]:::sheet
+    PSL --> ML
+
+    %% --- PUBLIC SURFACE ---
+    ML --> SNP["snapshot_managed_ledgers.py"]:::gasproc
+    SNP --> TC["treasury-cache/managed-ledgers/&lt;ledger&gt;.json"]:::publish
+    TC --> EXP["Transparency explorer<br/>(tribomirimbahia.truesight.me, etc.)"]:::publish
+
+    classDef entry fill:#fef3c7,stroke:#92400e,color:#000
+    classDef create fill:#dbeafe,stroke:#1e40af,color:#000
+    classDef stripe fill:#ede9fe,stroke:#5b21b6,color:#000
+    classDef edgar fill:#fce7f3,stroke:#9d174d,color:#000
+    classDef sheet fill:#dcfce7,stroke:#166534,color:#000
+    classDef gasproc fill:#fff7ed,stroke:#c2410c,color:#000
+    classDef publish fill:#e0e7ff,stroke:#3730a3,color:#000
+```
+
+**How to read it:**
+
+- **Yellow blocks** — entry points (where a Stripe transaction originates).
+- **Blue blocks** — session creation: either Google Apps Script (website + managed-ledger flows) or Edgar's `meta_checkout#create` (Meta/Instagram). **Edgar is not in the cart/donate session-creation path — that's GAS.**
+- **Purple blocks** — Stripe itself + the resulting webhook.
+- **Pink blocks** — Edgar Rails (receives the webhook, writes to the audit-trail sheet).
+- **Green blocks** — Google Sheets (audit log + per-ledger Transactions tab).
+- **Orange blocks** — Apps Script + Python routing / sync processes.
+- **Indigo blocks** — Public output: `treasury-cache` JSON + transparency explorer pages.
+
+The DApp path (bottom-left) doesn't pass through Stripe — `[SALES EVENT]` posts directly to Edgar and lands in a different audit tab (QR Code Sales), but converges to the same managed-ledger Transactions tab via `process_sales_telegram_logs`.
+
+For the deep-dive on each numbered flow, scroll to **Flow 1–4** below.
 
 ---
 
