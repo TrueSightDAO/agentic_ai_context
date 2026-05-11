@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-11T10:06:50Z`
+- Generated (UTC): `2026-05-11T15:45:00Z`
 - Look-back: **7** calendar days (`2026-05-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-10T10:59:13.332Z`
+- Generated (UTC): `2026-05-11T10:59:13.897Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **15**
@@ -50,10 +50,9 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 - Not Appropriate: 74  (#1)
 - AI: Contact Form found: 109  (#3)
-- AI: No fit signal: 155  (#6)
 - Research: 62  (#8)
-- AI: Enrich with contact: 3  (#9)
-- AI: Enrich — manual: 87  (#10)
+- AI: No fit signal: 155  (#9)
+- AI: Enrich — manual: 90  (#10)
 - Deferred / Revisit later: 5  (#12)
 - Instagram Followed: 11  (#13)
 - Manager Follow-up: 33  (#15)
@@ -208,6 +207,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3f4b0f4 | 2026-05-11 03:07:04 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
+e643d4b | 2026-05-11 03:07:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 94b47db | 2026-05-10 21:44:29 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
 186257b | 2026-05-10 21:44:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 da2d475 | 2026-05-10 21:26:16 -0700 | docs: flag Shipment Ledger Listing col AC `Program` as REQUIRED for new ledgers (#116)
@@ -246,8 +247,6 @@ e6fb31a | 2026-05-09 06:59:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 8fa07dc | 2026-05-09 01:16:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 ad154b9 | 2026-05-08 21:03:33 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
 935373c | 2026-05-08 21:03:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
-910d837 | 2026-05-08 19:36:46 -0700 | Merge pull request #105 from TrueSightDAO/auto/advisory-refresh-2026-05-09
-676b49d | 2026-05-09 02:36:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 … (truncated)
 ```
 
@@ -333,6 +332,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6243525 | 2026-05-11 10:25:41 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 d0df3b6 | 2026-05-11 10:01:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6f442e8 | 2026-05-10 08:23:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e949102 | 2026-05-09 08:13:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -446,7 +446,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 2:50:58 |
+| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 7:51:08 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-04`; scanned last **393** data rows)
 
