@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-10T19:40:35Z`
-- Look-back: **7** calendar days (`2026-05-03` → today UTC)
+- Generated (UTC): `2026-05-11T04:44:11Z`
+- Look-back: **7** calendar days (`2026-05-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 235 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 235 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 234 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 234 | **behind** |
 
 ---
 
@@ -108,11 +108,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 11,264.95 total units · $11,462.46
+- Manager record: `Gary Teh` · 30 SKU lines · 11,586.02 total units · $11,378.53
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 11,163.77 | $11,200.13 |
+  | (uncategorized) | (unspecified) | 27 | 11,484.84 | $11,116.20 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Caca Mass | Retail Ready | 1 | 25 | $212.34 |
   | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -134,9 +134,9 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$3,040.72**
+- USD on hand: **$2,956.53**
 - Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
-- USD provisioned for voting-rights cash-out: **$35.95**
+- USD provisioned for voting-rights cash-out: **$36.21**
 
 ### In-transit freight (1 row)
 
@@ -153,23 +153,23 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 _Lines in window matching configured names or status keywords:_
 
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now has two-layer duplicate guard + approval gate: (1) Session history check. (2) DAO ledger ground truth via `lookup_qr_code`. (3) Transaction approval gate — returns `pending_approval` JSON until user says "Approved", "go ahead", "execute", etc. Tested end-to-end: upload → lookup → propose → approve → submit → duplicate blocked.
-- 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code rsync'd to `/opt/truesight_autopilot` with systemd service `truesight-autopilot.service`. All credentials resolved: (1) GitHub PAT `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env` — authenticated as `garyjob`, can read/write `TrueSightDAO/*`; (2) Gmail token from `market_research/credentials/gmail/token.json` — copied to EC2 `.env` as `GMAIL_TOKEN_JSON`, polling active; (3) DeepSeek key `DEEPSEEK_SDK` — working; (4) AWS keys from `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET`, account `440626669078`) — CloudWatch connected, daily spend $0. Fixes applied during deploy: `config.py` uses `SettingsConfigDict(extra="ignore")` to avoid pydantic errors; `email_poller.py` gracefully handles missing `GMAIL_TOKEN_JSON`; `aws_monitor.py` removes invalid `MaxResults` from `list_metrics`; `main.py` makes background task init non-fatal. README updated with EC2 server layout for human operators. Route53 hosted zone `truesight.me` confirmed in new AWS account. Remaining blocker: dedicated Edgar identity for autopilot (`autopilot@agroverse.shop`) still needed for contribution logging.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
 
-_All dated lines on/after 2026-05-03_ (12):
+_All dated lines on/after 2026-05-04_ (13):
 
 - 2026-05-05 | claude | Autopilot self-improvement loop: added SELF-IMPROVEMENT section to system prompt. LLM now proactively detects patterns (OCR errors, misreads, protocol violations) and proposes code-level fixes via `open_fix_pr`. NEVER auto-merges — PRs go through human review. Safety hooks block dangerous ops. This creates a cybernetic adversarial loop: governor (discriminator) corrects → autopilot (generator) improves → system sharpens itself. Production-safe: crashes are prevented by PR gate — no hot code changes while serving users.
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now enforces canonical dao_client labels via `_normalize_submission_labels()` — maps 30+ LLM-invented aliases to canonical field names, drops non-canonical descriptive keys, validates required fields per event type.
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now has two-layer duplicate guard + approval gate: (1) Session history check. (2) DAO ledger ground truth via `lookup_qr_code`. (3) Transaction approval gate — returns `pending_approval` JSON until user says "Approved", "go ahead", "execute", etc. Tested end-to-end: upload → lookup → propose → approve → submit → duplicate blocked.
 - 2026-05-05 | claude (test-automation) | Created tests/e2e_governor_chat.py — AI-retrainable test suite: image upload + analysis, QR correction, approval gate, duplicate guard, XML leak check, session persistence. Run with: python tests/e2e_governor_chat.py. Future AIs: use this to verify autopilot behavior after changes.
 - 2026-05-05 | claude | truesight_autopilot: Major enhancements — (1) Two-stage vision pipeline: uploaded images → Grok (visual context) + pyzbar (authoritative barcode) → DeepSeek (DAO tools). (2) Agentic chat loop supports 5 rounds of tool calls (was 2). (3) DeepSeek XML tool-call fallback parser in llm_client.py (catches `<function_calls>` leaks). (4) Governor identity injection from RSA key lookup. (5) Session persistence across server restarts via /tmp/autopilot_sessions/. (6) GitHubClient auto-prepends `TrueSightDAO/` to repo names (was silently failing with 404). (7) Copy-to-clipboard button for code blocks in chat. (8) Print-friendly CSS. See AUTOPILOT_CODE_MODIFICATIONS.md for full architecture and production considerations.
-- 2026-05-03 | claude | **Credential permission audit for `truesight_autopilot`.** Live probes performed on all credentials the autopilot would need. Key findings: (1) Gmail OAuth token ✅ ready (`gmail.modify` + refresh token); (2) GitHub PAT ⚠️ partial — can write `TrueSightDAO/.github` but CANNOT write `go_to_market` or `ecosystem_change_logs` (needs regeneration with broader repo scope); (3) AWS keys ❌ invalid everywhere (`InvalidClientTokenId`); (4) dao_client Edgar keys are personal identity — autopilot needs its own RSA keypair. Full audit table added to `API_CREDENTIALS_DOCUMENTATION.md` §10. Setup prerequisites + suggested `.env` added to `SETUP_REQUIREMENTS.md` under "truesight_autopilot (proposed)". See also `notes/claude_autopilot_credential_audit_2026-05-03.md`.
-- 2026-05-03 | claude | **`TrueSightDAO/truesight_autopilot` — merged `governor_chatbot_service`.** Unified AI service with two modes: (1) reactive governor chat via DApp `chat.html` (`POST /chat`, RSA-signed or JWT auth, DeepSeek-V3 with tool_calls), and (2) proactive autopilot (Gmail polling, AWS monitoring, autonomous PR opening). Dropped Kimi + Claude — all LLM workloads use DeepSeek-V3 (30× cheaper). `governor_chatbot_service` repo deprecated; functionality merged here. Deploys to dedicated EC2 separate from `seni_ror` (Edgar) to protect critical infrastructure. See repo `README.md` for full vision. Added to `PROJECT_INDEX.md` and `WORKSPACE_CONTEXT.md`. Blockers in `SETUP_REQUIREMENTS.md` and `API_CREDENTIALS_DOCUMENTATION.md` §10.
-- 2026-05-03 | claude | **`truesight_autopilot` deployed to dedicated EC2.** Instance `i-02c699d3d7efbdc82` launched in `us-east-1d` (t3.small, IP `100.52.234.163`). Code rsync'd to `/opt/truesight_autopilot` with systemd service `truesight-autopilot.service`. All credentials resolved: (1) GitHub PAT `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env` — authenticated as `garyjob`, can read/write `TrueSightDAO/*`; (2) Gmail token from `market_research/credentials/gmail/token.json` — copied to EC2 `.env` as `GMAIL_TOKEN_JSON`, polling active; (3) DeepSeek key `DEEPSEEK_SDK` — working; (4) AWS keys from `cypher_def/.env` (`TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET`, account `440626669078`) — CloudWatch connected, daily spend $0. Fixes applied during deploy: `config.py` uses `SettingsConfigDict(extra="ignore")` to avoid pydantic errors; `email_poller.py` gracefully handles missing `GMAIL_TOKEN_JSON`; `aws_monitor.py` removes invalid `MaxResults` from `list_metrics`; `main.py` makes background task init non-fatal. README updated with EC2 server layout for human operators. Route53 hosted zone `truesight.me` confirmed in new AWS account. Remaining blocker: dedicated Edgar identity for autopilot (`autopilot@agroverse.shop`) still needed for contribution logging.
 - 2026-05-06 | claude | Implemented end-to-end asset receipt pipeline: new [ASSET RECEIPT EVENT] (dao_client/report_asset_receipt.py), Edgar handler in dao_controller.rb, GAS at asset-receipt-ingest (deployed), --attachment flag on all dao_client modules. Full double-entry purchase workflow documented in DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md.
 - 2026-05-06 | claude | Added Git Worktree Isolation rule to AUTOPILOT_CODE_MODIFICATIONS.md — autopilot must use /tmp/autopilot_worktrees/<repo>-<branch> per fix PR to prevent concurrent governor session conflicts.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
 - 2026-05-06 | claude | Processed first [ASSET RECEIPT EVENT] end-to-end: Bialetti Moka Express ($116.91, Amazon order 111-9241674-1033036). PDF uploaded to GitHub, CONTRIBUTION EVENT + ASSET RECEIPT EVENT submitted, GAS created offchain inventory leg and Currencies row. Pipeline verified working.
+- 2026-05-10 | claude | Managed ledger explorer pattern: Created reusable transparency dashboard infrastructure. treasury-cache/managed-ledgers/<ledger_name>.json → GitHub Pages explorer. First implementation: tribomirimbahia ledger (Tribo Bahia Mirim Capoeira donations). Documented in MANAGED_LEDGER_EXPLORER_PATTERN.md. New PROJect: tribomirimbahia (index.html blockchain-explorer UI).
+- 2026-05-10 | claude | Created TRIBO_MIRIM_BAHIA managed ledger: Google Sheet (1_MjYZBMoUZAmQvMi6KOml3A6shQg2sJdFEFt1QHHxtM) with AGL15-mirrored tab structure + formulas, registered in Shipment Ledger Listing (row 1001, Transaction Type=Donation), service accounts shared. Documented full creation process in MANAGED_LEDGER_EXPLORER_PATTERN.md §4.
+- 2026-05-11 | claude | Managed ledger snapshot pipeline: snapshot_managed_ledgers.py reads Shipment Ledger Listing, exports all active (non-COMPLETED/non-SUSPENDED) ledgers to treasury-cache/managed-ledgers/<LedgerID>.json. JSON naming now matches Column A Ledger ID (e.g. TBM.json, AGL4.json). Updated explorer, pattern doc, SCHEMA.md.
+- 2026-05-11 | claude | Stripe→Ledger routing flow chart: documented current 4 Stripe pipelines + proposed metadata.ledger routing for capoeira donations → TBM. Created STRIPE_LEDGER_ROUTING.md with ASCII flow diagrams and ledger routing rule table.
 
 ---
 
@@ -189,6 +189,8 @@ _All dated lines on/after 2026-05-03_ (12):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+229cc18 | 2026-05-10 21:42:59 -0700 | fix(fundraisers): match sunmint/agroverse table+cards listing convention (#62)
+c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html program page + nav link (#61)
 5fc28a4 | 2026-05-10 00:11:10 -0700 | blog: rename 真视道 → 真观道 in "Where 道 Integrates with DAO" (#60)
 5bcb59e | 2026-05-09 23:40:54 -0700 | blog: add "Where 道 Integrates with DAO" post (#59)
 7019377 | 2026-05-08 14:47:36 -0700 | Mycelial Economy: signals across the DAO + Signal Brief #1 (#58)
@@ -206,6 +208,25 @@ _All dated lines on/after 2026-05-03_ (12):
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+da2d475 | 2026-05-10 21:26:16 -0700 | docs: flag Shipment Ledger Listing col AC `Program` as REQUIRED for new ledgers (#116)
+b99be77 | 2026-05-10 20:07:10 -0700 | Add unified Mermaid overview diagram to STRIPE_LEDGER_ROUTING (#115)
+b2fa5bf | 2026-05-10 20:00:15 -0700 | Flow 4 (managed-ledger Stripe inflows) — match shipped implementation (#114)
+7815702 | 2026-05-10 19:41:16 -0700 | docs: mark stripe routing GAS deploy complete (#113)
+1c6ccd8 | 2026-05-10 19:15:49 -0700 | docs: add live stripe_sales_sync doGet deployment URL + Sidekiq worker
+5cd0dab | 2026-05-10 18:47:31 -0700 | docs: [LEDGER_ID] bracketed pattern for Items Purchased routing
+d5e0fe8 | 2026-05-10 18:42:14 -0700 | docs: all 4 Stripe flows documented + doGet/Sidekiq trigger pattern
+b3ff7ae | 2026-05-10 18:32:59 -0700 | docs: correct Stripe flow — webhook → MetaCheckoutOrderSync → StripeCheckoutLog (not built-in)
+30ac4f0 | 2026-05-10 18:29:43 -0700 | docs: Stripe→Ledger routing flow chart + metadata.ledger routing pattern
+194bd96 | 2026-05-10 17:51:15 -0700 | docs: Ledger ID naming convention + auto-snapshot script reference
+d7768fb | 2026-05-10 17:16:48 -0700 | docs: simplify ledger creation — use the AGL template (File → Make a copy)
+3189cb5 | 2026-05-10 17:03:04 -0700 | docs: add managed ledger Google Sheets creation process to pattern doc (#112)
+e22caa4 | 2026-05-10 16:51:59 -0700 | docs: queue capoeira follow-ups (curriculum sessions + algorithm variety) (#111)
+e47b483 | 2026-05-10 16:38:50 -0700 | docs: index capoeira + tribomirimbahia repos (Tribo Bahia Mirim split) (#110)
+d836e16 | 2026-05-10 15:50:44 -0700 | docs: queue tribomirimbahia Phase 1B (music tagging) + Phase 2 (site) follow-ups (#109)
+3fa8f13 | 2026-05-10 15:45:35 -0700 | docs: managed ledger explorer reusable pattern + pattern doc
+5d5f736 | 2026-05-10 15:27:32 -0700 | docs: surface currency conversion flow (dapp/currency_conversion.html + GAS) (#108)
+0dd6a71 | 2026-05-10 12:40:56 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
+f3a5560 | 2026-05-10 12:40:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 e9d89b0 | 2026-05-10 07:00:14 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
 51982ba | 2026-05-10 07:00:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 e3f0f8d | 2026-05-10 01:27:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
@@ -227,42 +248,33 @@ ad154b9 | 2026-05-08 21:03:33 -0700 | chore(previews): refresh Beer Hall preview
 676b49d | 2026-05-09 02:36:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 87a5b06 | 2026-05-08 16:47:36 -0700 | docs: tighten contribution Type validation rules, enforce Gary Teh as default contributor
 1b1684c | 2026-05-08 16:25:39 -0700 | docs: add production deployment guide and .env key parity rule
-0b7df6b | 2026-05-08 15:26:11 -0700 | docs(hit_list): document Warm-up -> Manager Follow-up aged-out transition (#104)
-1b3235b | 2026-05-08 12:55:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
-9702d8b | 2026-05-08 12:55:08 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
-1e62ddf | 2026-05-08 07:24:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
-82e416a | 2026-05-08 07:24:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
-d4238c0 | 2026-05-08 01:08:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
-ae5d9de | 2026-05-08 01:08:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
-b26f7b7 | 2026-05-07 20:59:12 -0700 | chore(previews): refresh Beer Hall preview (2026-05-08 UTC)
-22aa2e7 | 2026-05-07 20:59:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
-44592f1 | 2026-05-07 19:43:08 -0700 | Merge pull request #102 from TrueSightDAO/auto/advisory-refresh-2026-05-08
-8687d08 | 2026-05-08 02:42:56 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-08 UTC)
-7feacc8 | 2026-05-07 12:59:52 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
-62de234 | 2026-05-07 12:59:51 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
-6bf70f8 | 2026-05-07 08:13:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
-7398c7a | 2026-05-07 08:13:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
-04cdbdf | 2026-05-07 02:11:38 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
-f56594c | 2026-05-07 02:11:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
-a9d9cb4 | 2026-05-06 21:12:46 -0700 | chore(previews): refresh Beer Hall preview (2026-05-07 UTC)
-76ffe7d | 2026-05-06 21:12:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-07 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+49457ea | 2026-05-10 21:10:11 -0700 | feat(snapshot): read Program (col AC) + emit _index.json registry for truesight.me consumers (#277)
+8bb1a96 | 2026-05-10 19:15:00 -0700 | docs: add deployment URL for stripe_sales_sync web app
+ea9ed07 | 2026-05-10 19:12:19 -0700 | feat(currency-conversion): route offchain submissions to Main Ledger 'offchain transactions' tab
+a6eb31d | 2026-05-10 18:57:57 -0700 | feat: routeStripeCheckoutPurchasesToLedgers — detect [LEDGER_ID] pattern in Items Purchased, write to managed ledger Transactions tab
+9c18426 | 2026-05-10 18:28:14 -0700 | chore(currency-conversion): sync clasp-pushed trigger helpers + manifest scopes back to canonical source (#276)
+e80748c | 2026-05-10 17:50:25 -0700 | feat: snapshot_managed_ledgers.py — export all active ledgers to treasury-cache/managed-ledgers/<LedgerID>.json
+2fcfa8d | 2026-05-10 17:29:41 -0700 | docs: fix Shipment Ledger Listing col A = Ledger ID + empty-row convention
+7b73e95 | 2026-05-10 15:57:23 -0700 | feat(currency-conversion): Warehouse Manager + Edgar immediate-trigger doGet (#275)
+e5aec49 | 2026-05-10 15:23:03 -0700 | feat: currency_conversion_processing.gs (multi-currency double-entry on managed ledgers) (#274)
 77cd437 | 2026-05-09 23:15:01 -0700 | fix(pipeline-metrics): coerce TIME-cast Date cells back to integer counts (#273)
 d842b8f | 2026-05-06 18:13:06 -0700 | feat(gas): add asset-receipt-ingest GAS for [ASSET RECEIPT EVENT] processing (#272)
 b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted agent (autopilot) submissions approved by governors (#271)
 46e1557 | 2026-05-05 13:06:11 -0700 | feat(gas): add body_full and prospect_reply_body to warmup review queue API (#270)
-daa7c5c | 2026-05-03 14:05:46 -0700 | feat(gas): warmup queue accepts ?label= for follow-up cohort + sent-draft filtering (#269)
-32514b7 | 2026-05-03 13:30:51 -0700 | feat(gas): warmup review queue API + signed send handler (#268)
 ```
 
 ### `dapp` → `dapp`
 
 ```
+7f08126 | 2026-05-10 18:45:18 -0700 | fix(currency-conversion): add offchain (Main Ledger) option + dynamic currency datalist (#227)
+4e43b68 | 2026-05-10 15:57:18 -0700 | feat(currency-conversion): add Warehouse Manager picker (Entity for both Tx rows) (#226)
+1b3fa31 | 2026-05-10 15:18:08 -0700 | feat: currency conversion reporter (USD->BRL via Wise / multi-currency conversions) (#225)
 d08bd1f | 2026-05-09 23:44:57 -0700 | feat(chat): visual feedback for autopilot working/done state + Stop button (#224)
 b469e8b | 2026-05-08 18:40:08 -0700 | fix: batch mode supports all QR input methods (camera, upload, list) (#223)
 f060edf | 2026-05-08 17:30:50 -0700 | feat: batch mode for inventory movement with QR code accumulator (#222)
@@ -298,12 +310,6 @@ c47e9cd | 2026-05-03 22:28:45 -0700 | fix: force-refresh dao_members cache after
 4031d15 | 2026-05-03 22:21:52 -0700 | fix(sw): skip caching POST requests
 1797dfa | 2026-05-03 22:19:10 -0700 | fix(chat): remove duplicate return statement breaking try block
 9babd9b | 2026-05-03 22:13:43 -0700 | feat(chat): thinking indicator + tool step visualization
-1e667c6 | 2026-05-03 14:27:03 -0700 | feat(chat): log SSE events to console, fix empty bot message on no-response
-1155cce | 2026-05-03 14:20:42 -0700 | feat(chat): spacious desktop layout (90vw, no logo, wider messages)
-c7a156c | 2026-05-03 14:16:29 -0700 | chore(sw): bump cache version v7 → v8 to flush stale Outbound Review (#204)
-58fcbcc | 2026-05-03 14:12:34 -0700 | feat(chat): SSE streaming for real-time autopilot responses
-3ef6fec | 2026-05-03 14:07:00 -0700 | feat(outbound-review): tab toggle + clickable filter chips + chrome fixes (#203)
-… (truncated)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -338,12 +344,13 @@ c3a0b0f | 2026-05-07 08:50:11 +0000 | chore: refresh store and partner inventory
 c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 7f1f20f | 2026-05-04 09:07:04 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-9d36747 | 2026-05-03 08:18:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+2842843 | 2026-05-10 18:29:09 -0700 | Fix upside-down black-king-ilheus-header.jpg (rotate 180°) (#104)
+87e2843 | 2026-05-10 18:17:23 -0700 | Cross-link to capoeira.agroverse.shop from Bico Duro post + Itacaré experience (#103)
 cae8f03 | 2026-05-04 15:43:11 -0700 | Revert "Add blog post: The Mycelial Economy (#101)" (#102)
 61512ea | 2026-05-04 15:38:09 -0700 | Add blog post: The Mycelial Economy (#101)
 ```
@@ -438,9 +445,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/10/2026 11:50:39 |
+| 2026-05 | 0 | 14918.51386 | 5/10/2026 20:50:25 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-03`; scanned last **392** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-04`; scanned last **392** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
