@@ -103,26 +103,34 @@ stripe_sales_sync.gs (runs every hour)
 
 ## Flow 4: capoeira.agroverse.shop Donations → TBM (PROPOSED)
 
-**Trigger:** Stripe `checkout.session.completed` with `metadata.ledger` set  
-**Latency:** Real-time (webhook → Sidekiq, same path as Flow 1)
+**Trigger:** Any Stripe checkout whose "Items Purchased" starts with a known Ledger ID  
+**Latency:** Hourly poll (`stripe_sales_sync.gs` timer, or immediate via Sidekiq trigger)
 
-**Implementation:** Add to `MetaCheckoutOrderSync#sync!`, after `append_checkout_log`:
+**No Stripe metadata changes needed.** The capoeira checkout creates a Stripe product with a bracketed Ledger ID prefix: `[TBM] — Donation to Tribo Bahia Mirim`. When the checkout completes, the webhook writes to the Stripe tab as usual. `stripe_sales_sync.gs` detects the `[LEDGER_ID]` prefix and routes.
 
-```ruby
-metadata = @session.metadata || {}
-if (ledger_id = metadata['ledger']).present?
-  ManagedLedgerRouter.route!(
-    ledger_id: ledger_id,
-    session: @session,
-    items: summarize_items(order_items, wix_products),
-    log_entry: log_entry
-  )
-end
+**Implementation:** Add to `stripe_sales_sync.gs`, after the existing product-ID check (line ~407):
+
+```javascript
+// After existing product-ID routing...
+// NEW: Check Stripe Social Media Checkout ID for ledger-routed purchases
+routeStripeCheckoutPurchasesToLedgers();
 ```
+
+New function `routeStripeCheckoutPurchasesToLedgers()`:
+1. Read "Stripe Social Media Checkout ID" tab
+2. Read Shipment Ledger Listing for all Ledger IDs + Resolved URLs
+3. For each row in Stripe tab:
+   - Extract `Items Purchased` (col F)
+   - Match `/^\[([A-Z0-9]+)\]/` to extract Ledger ID (e.g. `[TBM]`)
+   - If matched and not already processed (check new col P "Ledger Routed"):
+     - Open the ledger's sheet via Resolved URL
+     - Write to Transactions tab: Date, Description=Items Purchased, Amount, Currency, Type="Sale"
+     - Mark col P = the Ledger ID (prevents re-processing)
+     - Also fire treasury-cache-publisher notification
 
 ```
 capoeira.agroverse.shop → Stripe Checkout
-  metadata: { ledger: "TBM", channel: "web" }
+  product name: "[TBM] — Donation to Tribo Bahia Mirim"
                     │
                     ▼
            Stripe webhook → Edgar
@@ -130,20 +138,25 @@ capoeira.agroverse.shop → Stripe Checkout
                     ▼
            MetaCheckoutOrderSync#sync!
            │
-           ├── eligible_session? → channel='web' ≠ 'meta' → skip Wix
+           ├── eligible_session? → no 'channel: meta' → skip Wix
            │
-           ├── metadata.ledger = 'TBM' → ManagedLedgerRouter
+           └── append_checkout_log
+               │
+               ▼
+           Stripe Social Media Checkout ID tab
+           Items Purchased: "[TBM] — Donation to Tribo Bahia Mirim"
+               │
+               ▼
+           stripe_sales_sync.gs (hourly, or Sidekiq-triggered)
+           │
+           ├── routeStripeCheckoutPurchasesToLedgers()
            │       │
-           │       ├── Shipment Ledger Listing lookup (Col A='TBM')
-           │       ├── Open TBM sheet via Resolved URL (Col AB)
-           │       ├── Write to Transactions tab: Date, Description,
-           │       │   Amount, Currency, Type="Sale"
-           │       └── Append to Stripe Checkout Log for audit trail
+           │       ├── regex /^\[([A-Z0-9]+)\]/ extracts "TBM"
+           │       ├── Shipment Ledger Listing lookup → TBM sheet URL
+           │       ├── Writes to TBM Transactions tab
+           │       └── Marks col P = "TBM"
            │
-           └── snapshot_managed_ledgers.py (next run) → TBM.json
-                    │
-                    ▼
-           tribomirimbahia.truesight.me (explorer)
+           └── snapshot_managed_ledgers.py → TBM.json → explorer
 ```
 
 **New files needed:**
@@ -159,7 +172,22 @@ capoeira.agroverse.shop → Stripe Checkout
 | 1. Meta Checkout | Webhook (channel:meta) | Real-time | Stripe tab + Wix order | None (ends at tab) |
 | 2. QR Code | DApp [SALES EVENT] | Near real-time | Telegram + AGL ledger | Shipment Ledger Listing |
 | 3. Edgar SaaS | Hourly GAS poll | Hourly | offchain transactions | Hardcoded product IDs |
-| 4. TBM Donations | Webhook (metadata.ledger) | Real-time | TBM Transactions + Stripe tab | Shipment Ledger Listing |
+| 4. TBM Donations | `[TBM]` prefix in Items Purchased | Hourly (or trigger) | TBM Transactions tab | Shipment Ledger Listing |
+
+---
+
+## `[LEDGER_ID]` routing pattern
+
+Any Stripe product whose name starts with `[LEDGER_ID] — ` is auto-routed. The GAS matches `/^\[([A-Z0-9]+)\]/` and looks up the Ledger ID in Shipment Ledger Listing.
+
+| Stripe product name | Extracts | Routes to |
+|---|---|---|
+| `[TBM] — Donation to Tribo Bahia Mirim` | TBM | TBM Transactions tab |
+| `[AGL15] — Operational fund contribution` | AGL15 | AGL15 Transactions tab |
+| `[SEF1] — Tree planting pledge` | SEF1 | SEF1 Transactions tab |
+| `Organic Cacao Beans — Bahia` | (no bracket) | No routing (legacy flow) |
+
+This works for any future merchant — just create a Stripe product named `[LEDGER_ID] — <description>`, and the GAS handles the rest. No metadata, no webhook changes, no Edgar code. The Shipment Ledger Listing is the single registry.
 
 ---
 
