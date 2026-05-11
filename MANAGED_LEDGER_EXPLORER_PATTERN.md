@@ -104,18 +104,27 @@ The template has 7 tabs with all formulas, formatting, and AGL-standard structur
 
 Add a row to `Shipment Ledger Listing` (Main Ledger sheet `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, gid `483234653`):
 
-| Col | Value |
-|-----|-------|
-| Shipment Date | Current date |
-| Status | Active |
-| Description | One-line description of the ledger's purpose |
-| Transaction Type | `Donation` or `DAO financed` or `Defi Pre-Purchase` or `Merchant Green Pledge` |
-| Ledger URL | Public-facing URL (e.g. `https://truesight.me/<program>`) |
-| Resolved URL | The Google Sheets URL from step 1 |
+| Col | Header | Value |
+|-----|--------|-------|
+| A | Ledger ID | Short alphanumeric ID (e.g. `TBM`, `AGL16`) |
+| B | Shipment Date | Current date |
+| C | Status | `ACTIVE` |
+| D | Description | One-line description of the ledger's purpose |
+| H | Transaction Type | `Donation` or `DAO financed` or `Defi Pre-Purchase` or `Merchant Green Pledge` |
+| L | Ledger URL | Public-facing URL (e.g. `https://truesight.me/<program>`) |
+| AB | Resolved URL | The Google Sheets URL from step 1 |
+| **AC** | **Program** ⚠️ **REQUIRED** | **Program family rollup — one of: `agroverse`, `sunmint`, `fundraiser`. Determines which truesight.me program page surfaces this ledger.** |
 
-Use the `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com` service account (has write access to Main Ledger) via `agroverse_shop/google-service-account.json`.
+> ⚠️ **Always set Program (col AC).** It's the program-family rollup that maps the ledger to one of the truesight.me program pages — `agroverse.html` (cacao supply chain: Defi Pre-Purchase + DAO financed), `sunmint.html` (Merchant Green Pledge), `fundraiser.html` (Donation). If left blank, the ledger gets `program: ""` in the published JSON and won't appear on any program-rollup page. AI sessions creating new ledgers MUST prompt the operator for this value when it's not obvious from the Transaction Type.
+>
+> Mapping suggestion (apply when Transaction Type is set):
+> - `Defi Pre-Purchase` or `DAO financed` → `agroverse`
+> - `Merchant Green Pledge` → `sunmint`
+> - `Donation` → `fundraiser`
 
-**Result:** The GAS scripts (`capital_injection_processing.gs`, `currency_conversion_processing.gs`, `web_app.gs`) read Shipment Ledger Listing dynamically — the new ledger is immediately discoverable. The DApp `currency_conversion.html` dropdown is also dynamic; no DApp code changes needed.
+Use the `tokenomics-schema@get-data-io.iam.gserviceaccount.com` service account (has write access to Main Ledger AND can bypass column-AC sheet protection — the `agroverse-qr-code-manager` SA also works) via `tokenomics/python_scripts/schema_validation/gdrive_schema_credentials.json`.
+
+**Result:** The GAS scripts (`capital_injection_processing.gs`, `currency_conversion_processing.gs`, `web_app.gs`) read Shipment Ledger Listing dynamically — the new ledger is immediately discoverable. The DApp `currency_conversion.html` dropdown is also dynamic; no DApp code changes needed. The `snapshot_managed_ledgers.py` publisher includes `program` in each per-ledger JSON AND emits `treasury-cache/managed-ledgers/_index.json` (one fetch lets a consumer like `truesight.me/fundraisers.html` filter `program=fundraiser` and render cards).
 
 ### 6. Build the explorer page
 
