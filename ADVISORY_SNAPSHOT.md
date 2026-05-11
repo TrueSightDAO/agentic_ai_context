@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-11T15:45:00Z`
+- Generated (UTC): `2026-05-11T20:16:56Z`
 - Look-back: **7** calendar days (`2026-05-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -201,12 +201,15 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `market_research` → `go_to_market`
 
 ```
-5340fa1 | 2026-05-09 23:15:06 -0700 | fix(hit-list): refuse to promote rows with placeholder filler@godaddy.com (#118)
+052468e | 2026-05-11 10:12:08 -0700 | docs: note BigModel migration (#119)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3325185 | 2026-05-11 10:12:08 -0700 | docs(beer-hall): name the LLM-draft script + add automated-pipeline diagram + troubleshooting (#117)
+5c7f1fe | 2026-05-11 08:45:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
+1de93ef | 2026-05-11 08:45:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 3f4b0f4 | 2026-05-11 03:07:04 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
 e643d4b | 2026-05-11 03:07:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 94b47db | 2026-05-10 21:44:29 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
@@ -244,9 +247,6 @@ c820a1b | 2026-05-09 21:32:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 e78d6ad | 2026-05-09 06:59:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
 e6fb31a | 2026-05-09 06:59:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 44e0327 | 2026-05-09 01:16:46 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
-8fa07dc | 2026-05-09 01:16:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
-ad154b9 | 2026-05-08 21:03:33 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
-935373c | 2026-05-08 21:03:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 … (truncated)
 ```
 
@@ -271,6 +271,7 @@ b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted
 ### `dapp` → `dapp`
 
 ```
+49ddb8d | 2026-05-11 13:04:02 -0700 | warmup_review: surface shop name at top of each expanded body (#228)
 7f08126 | 2026-05-10 18:45:18 -0700 | fix(currency-conversion): add offchain (Main Ledger) option + dynamic currency datalist (#227)
 4e43b68 | 2026-05-10 15:57:18 -0700 | feat(currency-conversion): add Warehouse Manager picker (Entity for both Tx rows) (#226)
 1b3fa31 | 2026-05-10 15:18:08 -0700 | feat: currency conversion reporter (USD->BRL via Wise / multi-currency conversions) (#225)
@@ -377,6 +378,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-11T170750Z_fundraisers-page-live-qmdj-advisor-currency-tools.md`
+
+- **posted_at_utc:** `2026-05-11T17:07:50Z`  
+- **slug:** `fundraisers-page-live-qmdj-advisor-currency-tools`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Fundraisers page is live on truesight.me, the DAO advisor now reads QiMen Dunjia charts, and a full currency-conversion pipeline for managed ledgers shipped today.
+  - Fundraisers program page and navigation link added to truesight.me to showcase DAO fundraising initiatives.
+
 ### `beer-hall_2026-05-10T024057Z_batch-qr-oracle-persist-autopilot-auth.md`
 
 - **posted_at_utc:** `2026-05-10T02:40:57Z`  
@@ -394,15 +404,6 @@ _(no commits on origin/master in window)_
 
   Batch inventory movements land in the DApp, the I Ching oracle starts persisting draws to a permanent log, and the outbound sales pipeline gains an auto-promotion rule for replied prospects.
   - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; all three input methods confirmed working in today's follow-up fix.
-
-### `beer-hall_2026-05-08T024249Z_asset-receipt-page-autopilot-self-deploy-cacao-samples.md`
-
-- **posted_at_utc:** `2026-05-08T02:42:49Z`  
-- **slug:** `asset-receipt-page-autopilot-self-deploy-cacao-samples`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  The Autopilot gains a self-deploy capability and a new Asset Receipt Reporter page, tasting samples shipped to Good Vibrations Apothecary, and the Autopilot's chat UI gets async message queuing so governors can keep typing while it processes.
-  - **Asset Receipt Reporter page live in DApp** — a new `report_asset_receipt.html` page lets contributors log purchase receipts directly from the browser; wired into the nav menu and backed by the asset-receipt-ingest GAS landed yesterday.
 
 ---
 
@@ -446,7 +447,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 7:51:08 |
+| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 12:50:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-04`; scanned last **393** data rows)
 
