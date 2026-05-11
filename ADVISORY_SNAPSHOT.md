@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-11T04:44:11Z`
+- Generated (UTC): `2026-05-11T10:06:50Z`
 - Look-back: **7** calendar days (`2026-05-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,7 +30,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,570 | 6% | `2026-12-31` | 234 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 234 | **behind** |
 | USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 234 | **behind** |
 
 ---
@@ -108,11 +108,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 11,586.02 total units · $11,378.53
+- Manager record: `Gary Teh` · 30 SKU lines · 11,586.02 total units · $11,342.32
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 11,484.84 | $11,116.20 |
+  | (uncategorized) | (unspecified) | 27 | 11,484.84 | $11,079.99 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Caca Mass | Retail Ready | 1 | 25 | $212.34 |
   | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -128,13 +128,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Aga Marecka | 1 | 20 | $537.46 |
 | Nima Kaz | 2 | 1,713 | $423.01 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
-| Shuar Design Boutique | 2 | 30 | $286.29 |
+| Shuar Design Boutique | 3 | 52.60 | $299.94 |
 
 _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,956.53**
+- USD on hand: **$2,980.13**
 - Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
 - USD provisioned for voting-rights cash-out: **$36.21**
 
@@ -208,6 +208,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+94b47db | 2026-05-10 21:44:29 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
+186257b | 2026-05-10 21:44:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 da2d475 | 2026-05-10 21:26:16 -0700 | docs: flag Shipment Ledger Listing col AC `Program` as REQUIRED for new ledgers (#116)
 b99be77 | 2026-05-10 20:07:10 -0700 | Add unified Mermaid overview diagram to STRIPE_LEDGER_ROUTING (#115)
 b2fa5bf | 2026-05-10 20:00:15 -0700 | Flow 4 (managed-ledger Stripe inflows) — match shipped implementation (#114)
@@ -246,8 +248,6 @@ ad154b9 | 2026-05-08 21:03:33 -0700 | chore(previews): refresh Beer Hall preview
 935373c | 2026-05-08 21:03:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
 910d837 | 2026-05-08 19:36:46 -0700 | Merge pull request #105 from TrueSightDAO/auto/advisory-refresh-2026-05-09
 676b49d | 2026-05-09 02:36:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
-87a5b06 | 2026-05-08 16:47:36 -0700 | docs: tighten contribution Type validation rules, enforce Gary Teh as default contributor
-1b1684c | 2026-05-08 16:25:39 -0700 | docs: add production deployment guide and .env key parity rule
 … (truncated)
 ```
 
@@ -333,6 +333,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d0df3b6 | 2026-05-11 10:01:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6f442e8 | 2026-05-10 08:23:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e949102 | 2026-05-09 08:13:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4ce09f3 | 2026-05-08 20:28:34 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -445,13 +446,13 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 0 | 14918.51386 | 5/10/2026 20:50:25 |
+| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 2:50:58 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-04`; scanned last **392** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-04`; scanned last **393** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
