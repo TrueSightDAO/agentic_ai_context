@@ -81,7 +81,64 @@ The explorer normalizes flexibly, but producers **should** use these canonical f
 - `reference` is the external payment ID (Stripe charge, TransferWise transfer, Pix end-to-end ID)
 - `recipient` is required for `pix_outbound` transactions
 
-### 4. Build the explorer page
+### 4. Create the managed ledger in Google Sheets
+
+This creates the canonical spreadsheet that the DAO's GAS infrastructure discovers and writes to. Follow the AGL pattern exactly.
+
+**A. Create the spreadsheet:**
+
+```python
+import gspread
+gc = gspread.service_account('<path-to-cypher-defense-key.json>')
+sheet = gc.create('<LEDGER_NAME> — <program_name>')
+```
+
+**B. Copy tab structure from reference:**
+
+Use the Sheets API `sheets.copyTo` to duplicate tabs from an existing managed ledger (e.g. AGL15) into the new sheet. This preserves all formulas, formatting, and column widths:
+
+```python
+from googleapiclient.discovery import build
+service = build('sheets', 'v4', credentials=creds)
+
+for title, src_sheet_id in ref_tabs.items():
+    body = {'destinationSpreadsheetId': TARGET_SHEET_ID}
+    service.spreadsheets().sheets().copyTo(
+        spreadsheetId=REF_SHEET_ID, sheetId=src_sheet_id, body=body
+    ).execute()
+```
+
+**C. Clean up:**
+
+1. Update contract URLs on Balance and Transactions tabs to point to the new project
+2. Clear AGL15-specific data rows (keep formulas and headers)
+3. Keep the `Entities` tab (TrueSight DAO, Smart Contract, Customer — generic)
+
+**D. Register in Shipment Ledger Listing:**
+
+Add a row to `Shipment Ledger Listing` (Main Ledger sheet `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`):
+
+| Col | Value |
+|-----|-------|
+| Shipment Date | Current date |
+| Status | Active |
+| Description | One-line description of the ledger's purpose |
+| Transaction Type | `Donation` (or `DAO financed` / `Defi Pre-Purchase` / `Merchant Green Pledge`) |
+| Ledger URL | Public-facing URL (e.g. `https://truesight.me/tribomirimbahia`) |
+| Resolved URL | Actual Google Sheets URL from step A |
+
+Use the `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com` service account (has write access to Main Ledger) via `agroverse_shop/google-service-account.json`.
+
+**E. Grant access:**
+
+```python
+sheet.share('cypher-defense@get-data-io.iam.gserviceaccount.com', perm_type='user', role='writer')
+sheet.share('<user-email>', perm_type='user', role='writer')
+```
+
+**F. Result:** The GAS scripts (`capital_injection_processing.gs`, `currency_conversion_processing.gs`, `web_app.gs`) read Shipment Ledger Listing dynamically — the new ledger is immediately discoverable. The DApp `currency_conversion.html` dropdown is also dynamic; no DApp code changes needed.
+
+### 6. Build the explorer page
 
 Copy `tribomirimbahia/index.html` as a template. Update three things:
 1. `LEDGER_NAME` constant → your ledger name
@@ -90,7 +147,7 @@ Copy `tribomirimbahia/index.html` as a template. Update three things:
 
 The explorer auto-adapts to whatever shape the JSON has — it normalizes field names, handles missing entries gracefully, and shows a friendly empty state when the ledger isn't initialized.
 
-### 5. Wire up the producer
+### 7. Wire up the producer
 
 The producer (App Script, Claude, or cron script) writes to `treasury-cache/managed-ledgers/<ledger_name>.json`. Two common patterns:
 
@@ -105,7 +162,7 @@ The producer (App Script, Claude, or cron script) writes to `treasury-cache/mana
 3. Update `generated_at` and `summary` fields
 4. Commit + push to main
 
-### 6. Deploy the explorer
+### 8. Deploy the explorer
 
 Enable GitHub Pages on the explorer repo (Settings → Pages → main branch → / (root)). Add CNAME for custom domain if desired.
 
