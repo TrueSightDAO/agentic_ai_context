@@ -109,6 +109,66 @@ Standard **chat export ZIPs** do **not** include JIDs—use the client or a test
 
 > **⚠️ Beer Hall WhatsApp posting is RETIRED (2026-04-19).** Do **not** run `openclaw message send` for The Beer Hall JID, and do **not** append rows to the `OpenClaw Beer Hall updates` sheet tab for auto-generated digests. The Beer Hall digest is now produced **daily at 00:00 UTC** by `market_research/.github/workflows/beer-hall-digest-daily.yml` as an **archive-only** artifact (`ecosystem_change_logs/beer_hall/entries/` + `ADVISORY_SNAPSHOT.md`). See **`WORKSPACE_CONTEXT.md` § 3d**. The rest of this section is retained as **historical / legacy context only** — valuable for understanding past group JIDs, the two-message format, and the gateway timeout playbook, but **not** as an action checklist for Beer Hall. **Founder Haus AI prompt** remains a manual channel for now and its guidance below still applies.
 
+### Daily Beer Hall pipeline — automated archive flow
+
+**Authoritative entry point:** [`market_research/.github/workflows/beer-hall-digest-daily.yml`](https://github.com/TrueSightDAO/go_to_market/blob/main/.github/workflows/beer-hall-digest-daily.yml) (cron `0 0 * * *` UTC; `workflow_dispatch` for manual runs).
+
+Three scripts run in sequence inside one GitHub Actions job. Each owns a single concern; if one fails, the downstream steps `skip` and the day's digest is missing.
+
+```mermaid
+flowchart TD
+  Cron["⏰ cron 00:00 UTC<br/>workflow: beer-hall-digest-daily.yml"]
+  Cron --> Checkout["Checkout market_research<br/>+ 11 sibling DAO repos<br/>(tokenomics, dapp, agroverse_shop,<br/>truesight_me_beta, oracle, etc.)"]
+  Checkout --> S1
+
+  subgraph Preview["go_to_market / market_research"]
+    direction TB
+    S1["📜 scripts/generate_beer_hall_preview.py<br/>walks git log + merged PRs + Telegram<br/>chat logs + DApp Remarks for the day<br/>→ /tmp/beer_hall_preview.md"]
+    S1 --> S2["📜 scripts/draft_beer_hall_digest.py<br/>Anthropic API (Claude Sonnet 4.6)<br/>preview → /tmp/msg1.txt + /tmp/msg2.txt<br/>⚠ most common failure point"]
+  end
+
+  S2 --> S3["📜 ecosystem_change_logs/<br/>scripts/archive_beer_hall_changelog.py<br/>writes beer_hall/entries/&lt;date&gt;_&lt;slug&gt;.md<br/>+ .json, rebuilds beer_hall/feed/manifest.json<br/>+ page-&lt;n&gt;.json"]
+  S3 --> S4["📜 market_research/<br/>scripts/generate_advisory_snapshot.py<br/>refreshes agentic_ai_context/ADVISORY_SNAPSHOT.md<br/>+ ecosystem_change_logs/advisory/snapshots/&lt;date&gt;.md"]
+  S4 --> PR1["git push + gh pr create + gh pr merge<br/>on ecosystem_change_logs (new entry + feed)"]
+  S4 --> PR2["git push + gh pr create + gh pr merge<br/>on agentic_ai_context (advisory snapshot)"]
+
+  PR1 --> Done["✅ daily digest live<br/>truesight.me Beer Hall feed updates<br/>oracle.truesight.me Grok context refreshes"]
+  PR2 --> Done
+
+  classDef fail fill:#ffe9e9,stroke:#c33,color:#900
+  class S2 fail
+```
+
+**Per-script summary:**
+
+| Step | Script | Repo (clone) | Purpose | Most likely failure |
+|---|---|---|---|---|
+| 1 | `scripts/generate_beer_hall_preview.py` | `go_to_market` (clone: `market_research`) | Walks every sibling DAO repo's `git log` + merged PRs + Telegram Chat Logs sheet + DApp Remarks → emits one Markdown evidence preview at `/tmp/beer_hall_preview.md` (also at `agentic_ai_context/previews/beer_hall_preview_latest.md` for local runs). | Missing `GOOGLE_CREDENTIALS_JSON` secret (Telegram block empty but doesn't fail the run); sibling repo not in the workflow's checkout list (silently skipped). |
+| 2 | `scripts/draft_beer_hall_digest.py` | `go_to_market` (clone: `market_research`) | Feeds the preview to Anthropic API (default model: **Claude Sonnet 4.6**) → produces `/tmp/msg1.txt` (TLDR + attribution) and `/tmp/msg2.txt` (Shipped links + community block). | **`anthropic.BadRequestError: 400 — credit balance is too low`** (account ran dry — most common failure). Also: `ANTHROPIC_API_KEY` secret rotated/expired; rate limits (429); model deprecated. |
+| 3a | `scripts/archive_beer_hall_changelog.py` | `ecosystem_change_logs` | Writes the day's entry into `beer_hall/entries/<date>_<slug>.md` + `.json`, rebuilds `beer_hall/feed/manifest.json` + `beer_hall/feed/page-<n>.json` so the static pagination stays consistent. | `ORACLE_ADVISORY_PUSH_TOKEN` PAT expired (loses write access to the target repos). |
+| 3b | `scripts/generate_advisory_snapshot.py` | `go_to_market` (clone: `market_research`) | Refreshes the oracle/Grok context corpus: `agentic_ai_context/ADVISORY_SNAPSHOT.md` + `ecosystem_change_logs/advisory/snapshots/<date>.md`. | Same PAT issue. |
+| 4 | (inline workflow steps) | both target repos | `git push` feature branches + `gh pr create` + `gh pr merge --auto` on both `ecosystem_change_logs` and `agentic_ai_context`. | Merge conflict if a human pushed to `main` in the same minute (rare); branch protection requiring reviewers; PAT lacking `Pull requests: Write`. |
+
+### Troubleshooting — "today's Beer Hall digest didn't appear"
+
+When the daily output is missing on https://github.com/TrueSightDAO/ecosystem_change_logs (`beer_hall/entries/<today>_*.md`), diagnose in this order:
+
+1. **Find today's workflow run** — `gh run list -R TrueSightDAO/go_to_market --workflow=beer-hall-digest-daily.yml --limit 5`. The most recent should be ~02:30–02:50 UTC.
+2. **Identify the failed step** — `gh run view <run-id> -R TrueSightDAO/go_to_market --json jobs | jq '.jobs[].steps[] | select(.conclusion=="failure") | .name'`.
+3. **Read the failure log** — `gh run view <run-id> -R TrueSightDAO/go_to_market --log | grep -iE "error|traceback|429|400|401|exception"`.
+
+**Top-line failure modes** (most common first):
+
+| Symptom in logs | Root cause | Fix |
+|---|---|---|
+| `anthropic.BadRequestError: 400 — credit balance is too low` | Anthropic account out of credits | Top up at https://console.anthropic.com/settings/billing — billing dashboard for the account that owns the `ANTHROPIC_API_KEY` secret on `TrueSightDAO/go_to_market`. Then `gh workflow run beer-hall-digest-daily.yml -R TrueSightDAO/go_to_market` to re-trigger today's run. |
+| `401 / invalid x-api-key` | Anthropic key rotated / expired | Update `ANTHROPIC_API_KEY` repo secret on `TrueSightDAO/go_to_market`. |
+| `429 / rate limit` | Burst quota hit (rare on this workflow) | Re-trigger; if persistent, lower retries or model tier. |
+| `gh pr create` returns 403 | `ORACLE_ADVISORY_PUSH_TOKEN` PAT expired or scope dropped | Mint a new fine-grained PAT with Contents: Read+Write AND Pull requests: Read+Write on both `TrueSightDAO/ecosystem_change_logs` and `TrueSightDAO/agentic_ai_context`. |
+| Step "Refresh advisory snapshot" succeeded but PR step skipped | Earlier step failed silently (returncode != 0 but Python wrapper swallowed) | Re-read `gh run view --log` end-to-end; check Python tracebacks. |
+
+If the cron itself never fired (no run for today at all), the workflow may have been auto-disabled — GitHub disables workflows after 60 days of repo inactivity. Re-enable on the Actions tab.
+
 Playbook for **session / daily summaries** sent with **`openclaw message send --channel whatsapp --target '<jid>'`**. Keep this aligned with operator expectations: **always label automation**, use **WhatsApp-native formatting**, and **link artifacts** (GitHub PRs/commits, sheets) when reporting shipped work.
 
 ### Closed loop (required — agents and operators)
