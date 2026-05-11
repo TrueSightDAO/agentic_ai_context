@@ -262,3 +262,94 @@ If you rename a label, change it here and downstream scripts (`suggest_warmup_pr
 - Dapp (stores): https://dapp.truesight.me/stores_nearby.html  
 - Hit List: see `market_research/HIT_LIST_CREDENTIALS.md`  
 - Gmail OAuth: `agentic_ai_context/GMAIL_OAUTH_WORKFLOW.md` (if present) or `market_research/credentials/gmail/README.md`
+
+---
+
+## 12. Outbound Review URL convention — handing a specific draft to an LLM
+
+When Gary is unhappy with a draft on the Outbound Review page, he doesn't copy
+text or paste screenshots — he just copies the **browser URL** and hands it to
+an LLM CLI (Claude Code, etc.) with a complaint. The URL alone identifies the
+draft; the LLM is expected to resolve everything else.
+
+**URL pattern:**
+
+```
+https://dapp.truesight.me/warmup_review.html#<tab>/d-<gmail_draft_id>
+```
+
+- `<tab>` is one of `warmup` | `followup` | `prospect` (cohort label).
+- `<gmail_draft_id>` is the Gmail draft id (case-sensitive; may start with `r-`
+  or `r` followed by digits — e.g. `r-4632645413000461277`, `r7225978499420560351`).
+
+The hash auto-updates when Gary expands any `<details>` panel on a card — so
+the URL in his browser bar always reflects the draft he's currently looking at.
+
+### What an LLM CLI session should do when handed such a URL
+
+Parse the fragment, then look up everything from the canonical sources — do
+**not** try to render the dapp page (it's a SPA; raw HTML is empty).
+
+1. **Extract the draft id** from the `d-...` segment of the fragment.
+
+2. **Pull the draft body and metadata** from the `Email Agent Drafts` tab of
+   the Hit List spreadsheet
+   (`1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc`). Match on
+   `gmail_draft_id`. Useful columns:
+   - `subject`, `body_full`, `body_preview` — what was generated.
+   - `to_email`, `shop_name`, `store_key` — recipient context.
+   - `status` — should be `pending_review`; `discarded` means the draft is no
+     longer current.
+   - `notes` — any reconcile/discard history.
+
+3. **Pull the live Gmail draft** (in case Gary edited it after generation)
+   using `market_research/scripts/gmail_user_credentials.py`
+   (mailbox `garyjob@agroverse.shop`, scope `gmail.modify`). The
+   `Email Agent Drafts.body_full` is the *generated* body — the Gmail draft is
+   the *current* body.
+
+4. **Pull prior thread context**:
+   - `Email Agent Follow Up` tab — every prior send to `to_email`
+     (`sent_at`, `subject`, `body_plain`).
+   - Gmail thread itself (via `thread_id` in either tab) for the recipient's
+     replies, if any.
+
+5. **Pull store context**:
+   - `Hit List` tab — find the row by `Store Key` or `Shop Name`. Notes,
+     `Contact Person`, `Owner Name`, `Status`, `Follow Up Date`, AW (`Hosts
+     Circles`), prior-send counters in cols AU/AV.
+   - `DApp Remarks` tab — any field-visit notes (rows match on `Shop Name` or
+     `Store Key`). These carry critical context (who routed you to whom,
+     in-person observations).
+
+6. **Apply the principles in this doc** (§6 Message principles, §5 cadence) to
+   diagnose what Gary's probably complaining about. Common patterns:
+   - Wrong addressee — generic "Hello there" when context says staff routed
+     you to a specific owner.
+   - Stale framing — references a past visit that wasn't acknowledged in the
+     thread.
+   - Cadence violation — drafted within 7 days of the previous send (the
+     `suggest_manager_followup_drafts.py` cadence gate has a known
+     off-by-one on the `--min-days-since-sent` boundary).
+   - Tone mismatch — too pushy, too long, missing the circle/ceremony angle
+     where `Hosts Circles = Yes`.
+   - In-person meeting invite when none should be offered.
+
+7. **To redo the draft**, regenerate via Grok with full context:
+   ```
+   cd market_research
+   python3 scripts/suggest_manager_followup_drafts.py --use-grok --max-drafts 1
+   ```
+   The script already loads full Gmail thread history + DApp Remarks + Hit
+   List Notes for each recipient. If only one recipient needs a redo, delete
+   the existing Gmail draft (so cadence reconcile picks it up as discarded)
+   then re-run; the cadence gate uses `Email Agent Follow Up.sent_at` as the
+   anchor — for redos within the cadence window, pass
+   `--min-days-since-sent 0`.
+
+### Mental model
+
+The URL is just a pointer. The dapp page is a viewer. The source of truth for
+every part of the draft lives in the Hit List workbook and Gmail. An LLM CLI
+holding the URL has everything it needs to investigate, diagnose, and
+regenerate — without Gary needing to re-explain the system each time.
