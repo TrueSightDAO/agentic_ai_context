@@ -1,101 +1,95 @@
 # Stripe Transaction Routing — Flow Map
 
-> **Where:** `tokenomics/google_app_scripts/tdg_asset_management/stripe_sales_sync.gs` (runs hourly)
+> **Insertion point:** `MetaCheckoutOrderSync#sync!` (Edgar, `app/services/meta_checkout_order_sync.rb`)
+> — after `append_checkout_log`, checks `metadata.ledger` and routes to managed ledger.
 > **Registry:** Shipment Ledger Listing (Main Ledger, Col A = Ledger ID, Col AB = Resolved URL)
 
-## Current flows
+## Current flow (what exists today)
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        STRIPE CHARGES                           │
-└─────────────────────────────────────────────────────────────────┘
+Stripe checkout.session.completed webhook
                     │
-        ┌───────────┼───────────┬──────────────────┐
-        ▼           ▼           ▼                  ▼
-   Agroverse QR  Meta/IG     Edgar SaaS       capoeira.agroverse
-   Code Checkout Checkout   Subscription        .shop donations
-        │           │           │                  │
-        ▼           ▼           ▼                  │
-   QR Code      Stripe      stripe_sales_         │ (NO ROUTE YET)
-   Sales tab    Social       sync.gs              │
-   (Telegram    Media        │                    │
-   sheet)       Checkout     │                    │
-   │            ID tab       ▼                    │
-   │            │        offchain                 │
-   ▼            │       transactions              │
-  Edgar ────────┘       (Main Ledger)             │
-   │                                              │
-   ▼                                              │
-process_sales_telegram_logs.gs                     │
-   │                                              │
-   ▼                                              │
-AGL Managed Ledgers (AGL4, AGL6, etc.)             │
-   │                                              │
-   ▼                                              │
-snapshot_managed_ledgers.py                        │
-   │                                              │
-   ▼                                              │
-treasury-cache/managed-ledgers/<LedgerID>.json     │
+                    ▼
+           webhook_controller.rb#stripe
+                    │
+                    ▼
+           MetaCheckoutOrderSyncWorker (Sidekiq)
+                    │
+                    ▼
+           MetaCheckoutOrderSync#sync!
+           │
+           ├── eligible_session? → metadata.channel == 'meta' ??
+           │
+           ├── Parse products, fetch Wix, create order
+           │
+           └── append_checkout_log → Gdrive::StripeCheckoutLog
+               │
+               ▼
+               Stripe Social Media Checkout ID tab
+               (Main Ledger, gid=1787371190)
+               │
+               ▼
+          [NO FURTHER ROUTING — ends here]
 ```
 
 ## Proposed: metadata.ledger routing
 
-Add to `stripe_sales_sync.gs`, after the existing product-ID check:
+Add to `MetaCheckoutOrderSync#sync!`, after `append_checkout_log`:
 
+```ruby
+# After: log_entry = append_checkout_log(...)
+if (ledger_id = metadata['ledger']).present?
+  ManagedLedgerRouter.route!(
+    ledger_id: ledger_id,
+    session: @session,
+    items: summarize_items(order_items, wix_products),
+    log_entry: log_entry
+  )
+end
 ```
-For each Stripe charge:
-  1. Existing: check QR Code Sales → skip if found
-  2. Existing: check Stripe Social Media Checkout ID → skip if found
-  3. Existing: check Stripe product ID (Edgar SaaS) → write to offchain transactions
-  4. NEW: check charge.metadata.ledger → if set, route to that ledger:
-     a. Look up Ledger ID in Shipment Ledger Listing
-     b. Open the ledger's spreadsheet via Resolved URL
-     c. Write to its Transactions tab:
-        Date, Description, Amount, Currency, Type="Sale"
-```
+
+New service `ManagedLedgerRouter`:
+1. Looks up `ledger_id` in Shipment Ledger Listing (Col A)
+2. Opens the ledger's spreadsheet via Resolved URL (Col AB)
+3. Writes to Transactions tab: Date, Description, Amount, Currency, Type="Sale"
+4. No-op if ledger not found or not Active
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  NEW: capoeira.agroverse.shop Stripe Checkout                   │
-│  metadata: { ledger: "TBM" }                                    │
+│  capoeira.agroverse.shop Stripe Checkout                        │
+│  metadata: { ledger: "TBM", channel: "web" }                    │
 └─────────────────────────────────────────────────────────────────┘
                     │
                     ▼
-           stripe_sales_sync.gs
-           (hourly run)
+           Stripe webhook → Edgar
                     │
                     ▼
-           detects metadata.ledger = "TBM"
+           MetaCheckoutOrderSync#sync!
                     │
-                    ▼
-           Shipment Ledger Listing lookup
-            TBM → 1rNwXIpARVb06Opn5gYuiNTG6ZSdA...
+                    ├── eligible_session? → channel='web' ≠ 'meta' → SKIP Wix
                     │
-                    ▼
-           TBM Transactions tab
-           (Date, Description="Stripe: Donation", Amount, Currency, Type="Sale")
+                    ├── metadata.ledger = 'TBM' → ManagedLedgerRouter
+                    │       │
+                    │       ├── Shipment Ledger Listing lookup
+                    │       ├── TBM Transactions tab (write row)
+                    │       └── Stripe Checkout Log (append for audit trail)
                     │
-                    ▼
-           snapshot_managed_ledgers.py
-                    │
-                    ▼
-           treasury-cache/managed-ledgers/TBM.json
-                    │
-                    ▼
-           tribomirimbahia.truesight.me (explorer)
+                    └── snapshot_managed_ledgers.py → TBM.json → explorer
 ```
 
 ## Ledger routing rule
 
-| Stripe metadata | Routes to |
-|---|---|
-| `ledger: TBM` | TBM (Tribo Bahia Mirim — Donation ledger) |
-| `ledger: AGL4` | AGL4 (Oscar Fazenda inventory) |
-| `ledger: SEF1` | SEF1 (Sunmint tree planting) |
-| (no metadata) | Existing flow (QR Code / Meta / Edgar SaaS) |
+| Stripe metadata | eligible_session? | Routes to |
+|---|---|---|
+| `channel: meta, wix_products: ...` | Yes → Wix order created | Existing flow: Stripe Checkout Log |
+| `ledger: TBM` | No (no `channel: meta`) | TBM Transactions tab + Stripe Checkout Log |
+| `ledger: AGL15` | No | AGL15 Transactions tab + Stripe Checkout Log |
+| (none) | No | Stripe Checkout Log only |
 
 Any Stripe Checkout can route to any managed ledger just by setting `metadata.ledger`.
 
 ## How the Stripe Social Media Checkout ID tab fits
 
-It's populated automatically by Stripe's Meta/Instagram integration — no GAS writes to it. It serves as a duplicate-detection source for `stripe_sales_sync.gs` and `process_sales_telegram_logs.gs`. It does NOT pipe into Telegram & Submissions. The tab is the source of truth for Meta/Instagram orders; the GAS scripts read from it, never write to it.
+Populated by `Gdrive::StripeCheckoutLog.append_record` (called from `MetaCheckoutOrderSync`). It's the source of truth for all Stripe checkout orders. It serves as:
+- Duplicate-detection source for `stripe_sales_sync.gs` and `process_sales_telegram_logs.gs`
+- Audit trail for all Stripe transactions, regardless of routing
