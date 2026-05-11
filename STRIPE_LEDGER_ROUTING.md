@@ -101,12 +101,42 @@ stripe_sales_sync.gs (runs every hour)
 
 ---
 
-## Flow 4: capoeira.agroverse.shop Donations → TBM (PROPOSED)
+## Flow 4: Managed-Ledger Stripe Inflows (capoeira.agroverse.shop → TBM, generic pattern)
 
-**Trigger:** Any Stripe checkout whose "Items Purchased" starts with a known Ledger ID  
+**Trigger:** Any Stripe checkout whose "Items Purchased" starts with a known Ledger ID
 **Latency:** Hourly poll (`stripe_sales_sync.gs` timer, or immediate via Sidekiq trigger)
 
-**No Stripe metadata changes needed.** The capoeira checkout creates a Stripe product with a bracketed Ledger ID prefix: `[TBM] — Donation to Tribo Bahia Mirim`. When the checkout completes, the webhook writes to the Stripe tab as usual. `stripe_sales_sync.gs` detects the `[LEDGER_ID]` prefix and routes.
+**Generic, not donation-specific.** Future managed ledgers doing Stripe inflows
+(sales, contributions, deposits, fees, etc.) all share this flow — capoeira →
+TBM is just the first concrete instance.
+
+**Session creation:** Frontend calls the same Google Apps Script that
+`agroverse_shop` uses for cart checkout, with a new action:
+
+```
+GET <GOOGLE_SCRIPT_URL>/exec?action=createLedgerCheckoutSession
+    &ledger=TBM
+    &amount=50
+    &currency=usd
+    &description=Donation+to+Tribo+Bahia+Mirim
+    &environment=development|production
+    &success_url=...
+    &cancel_url=...
+    &source=capoeira.agroverse.shop
+```
+
+Response: `{ status: 'success', checkoutUrl: 'https://checkout.stripe.com/...', sessionId: '...' }`.
+Frontend does `window.location.href = checkoutUrl`. **No Edgar code path** for
+session creation — Edgar only handles the webhook after payment.
+
+**The Stripe product name carries the routing signal:** `[TBM] — Donation to
+Tribo Bahia Mirim`. When the checkout completes, the webhook writes to the
+Stripe tab as usual. `stripe_sales_sync.gs` detects the `[LEDGER_ID]` prefix
+and routes.
+
+**Implementation references:**
+- GAS: `tokenomics/clasp_mirrors/1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn/Code.js#createLedgerCheckoutSession`
+- Frontend: `capoeira/assets/js/capoeira-checkout.js`
 
 **Implementation:** Add to `stripe_sales_sync.gs`, after the existing product-ID check (line ~407):
 
@@ -129,39 +159,46 @@ New function `routeStripeCheckoutPurchasesToLedgers()`:
      - Also fire treasury-cache-publisher notification
 
 ```
-capoeira.agroverse.shop → Stripe Checkout
-  product name: "[TBM] — Donation to Tribo Bahia Mirim"
-                    │
-                    ▼
-           Stripe webhook → Edgar
-                    │
-                    ▼
-           MetaCheckoutOrderSync#sync!
-           │
-           ├── eligible_session? → no 'channel: meta' → skip Wix
-           │
-           └── append_checkout_log
-               │
-               ▼
-           Stripe Social Media Checkout ID tab
-           Items Purchased: "[TBM] — Donation to Tribo Bahia Mirim"
-               │
-               ▼
-           stripe_sales_sync.gs (hourly, or Sidekiq-triggered)
-           │
-           ├── routeStripeCheckoutPurchasesToLedgers()
-           │       │
-           │       ├── regex /^\[([A-Z0-9]+)\]/ extracts "TBM"
-           │       ├── Shipment Ledger Listing lookup → TBM sheet URL
-           │       ├── Writes to TBM Transactions tab
-           │       └── Marks col P = "TBM"
-           │
-           └── snapshot_managed_ledgers.py → TBM.json → explorer
+capoeira.agroverse.shop  (capoeira-checkout.js)
+        │  GET /exec?action=createLedgerCheckoutSession&ledger=TBM&amount=N&...
+        ▼
+Google Apps Script   (Code.js#createLedgerCheckoutSession)
+        │  creates Stripe Checkout Session, line item:
+        │  product_data.name = "[TBM] — Donation to Tribo Bahia Mirim"
+        │  returns { checkoutUrl }
+        ▼
+window.location.href = checkoutUrl
+        │
+        ▼
+Stripe-hosted checkout → user pays (4242 4242 4242 4242 in test mode)
+        │
+        ▼
+Stripe webhook → Edgar /stripe_webhook
+        │
+        ▼
+MetaCheckoutOrderSync#sync!
+├── eligible_session? → no 'channel: meta' → skip Wix
+└── append_checkout_log
+        │
+        ▼
+Stripe Social Media Checkout ID tab
+Items Purchased: "[TBM] — Donation to Tribo Bahia Mirim"
+        │
+        ▼
+stripe_sales_sync.gs (hourly, or Sidekiq-triggered)
+├── routeStripeCheckoutPurchasesToLedgers()
+│       ├── regex /^\[([A-Z0-9]+)\]/ extracts "TBM"
+│       ├── Shipment Ledger Listing lookup → TBM sheet URL
+│       ├── Writes to TBM Transactions tab
+│       └── Marks col P = "TBM"
+└── snapshot_managed_ledgers.py → TBM.json → explorer
 ```
 
-**New files needed:**
-- `app/services/managed_ledger_router.rb` — looks up ledger via Google Sheets, writes transaction
-- `app/models/gdrive/managed_ledger_transaction.rb` — writes to managed ledger's Transactions tab
+**Implementation notes:**
+- The GAS `createLedgerCheckoutSession` action is intentionally generic — accepts `ledger`, `amount`, `currency`, `description`, `success_url`, `cancel_url`, `source`, `environment`. Future managed ledgers (e.g. AGL15 operational-fund contributions, SEF1 tree-planting pledges) reuse the same action with their own `ledger=` value.
+- Routing is by the bracketed product-name prefix only — **no Stripe metadata changes needed** on either Edgar or GAS sides. The session metadata also carries `ledger`/`source` defensively for ad-hoc lookups.
+- The frontend at `capoeira/assets/js/capoeira-checkout.js` does env-aware switching (`environment=development` on localhost, `production` otherwise) so Stripe test mode flows naturally for local integration testing.
+- The `routeStripeCheckoutPurchasesToLedgers()` function in `stripe_sales_sync.gs` is the missing piece that closes the loop — once it lands, the [LEDGER_ID] prefix routing is fully automatic.
 
 ---
 
@@ -172,7 +209,7 @@ capoeira.agroverse.shop → Stripe Checkout
 | 1. Meta Checkout | Webhook (channel:meta) | Real-time | Stripe tab + Wix order | None (ends at tab) |
 | 2. QR Code | DApp [SALES EVENT] | Near real-time | Telegram + AGL ledger | Shipment Ledger Listing |
 | 3. Edgar SaaS | Hourly GAS poll | Hourly | offchain transactions | Hardcoded product IDs |
-| 4. TBM Donations | `[TBM]` prefix in Items Purchased | Hourly (or trigger) | TBM Transactions tab | Shipment Ledger Listing |
+| 4. Managed-ledger inflows | `[LEDGER_ID]` prefix (via GAS `createLedgerCheckoutSession`) | Hourly (or trigger) | `<ledger>` Transactions tab | Shipment Ledger Listing |
 
 ---
 
