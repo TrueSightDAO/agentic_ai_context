@@ -157,6 +157,48 @@ recommend follow-ups. It echoes back the reminders the operator
 already set on themselves. That respects
 `feedback_check_tracking_before_recommending_action.md` exactly.
 
+### Partner Stock attention
+
+- **Source:** two static GitHub-hosted JSONs, both cached for the
+  lifetime of the page:
+  - [`partners-velocity.json`](https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/partners-velocity.json)
+    — last_sale_date per SKU per partner
+  - [`partners-inventory.json`](https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/partners-inventory.json)
+    — venueInventory per SKU per partner
+- **Scoring rules** (lifted verbatim from
+  `dapp/partner_check_in.html`'s `computeAttentionList()` so the bell
+  stays in sync with the page's 'Needs Attention' section):
+  - **critical**: `totalInv == 0` → 'out of stock'
+  - **warning**: `totalInv <= 3` → 'running low (N left)'
+  - **info**: any SKU `last_sale_date > 45d` → 'dormant'
+- **Filter:** retail-type partners only (`Consignment | Wholesale`).
+  Cooperative slugs (containing `/`) and supplier-type partners are
+  skipped.
+- **Count:** total partners flagged across all three severities.
+- **Sublabel:** `"N out of stock · M low stock · K dormant"`,
+  including only the non-zero buckets.
+- **Items:** top 4 partners, sorted critical → warning → info, then
+  alphabetical.
+- **Link:** `./partner_check_in.html` (the page already renders the
+  same list in its 'Needs Attention' section, with a 'Log check-in'
+  CTA per partner).
+
+Why this is a separate source from Partner Check-in follow-ups:
+the two answer different operator questions.
+
+| Source                          | Signal type                     | Data source                          | Returns null when                                  |
+|---------------------------------|---------------------------------|--------------------------------------|----------------------------------------------------|
+| `partner_followups`             | Operator-driven cadence         | GAS `list_partners_needing_attention`| No check-ins have matured a Next-Check-in Date     |
+| `partner_stock`                 | Business-driven urgency         | velocity + inventory static JSONs    | All retail partners have stock + recent sales      |
+
+Both can fire on the same partner. That's by design — they represent
+independent reasons to act. Keeping them separate means tuning one
+rule doesn't risk dragging the other.
+
+The single 'Partner Stock' label in the popup keeps the operator
+mental model simple even though the underlying severity is
+three-way. The sublabel surfaces the split.
+
 ---
 
 ## Refresh cadence
