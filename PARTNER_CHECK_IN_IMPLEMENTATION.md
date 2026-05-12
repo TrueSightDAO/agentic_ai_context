@@ -86,7 +86,7 @@ Update ID: PCI_20260512120000_a1b2c3
 | `Partner ID` | Yes | `Agroverse Partners`!A (slug). Must exist. |
 | `Contributor Name` | Yes | `Contributors contact information`!A. Must match the partner's col E. |
 | `Check-in Date` | Yes | ISO 8601 date (`YYYY-MM-DD`). Default: today. |
-| `Method` | Yes | `Text` / `Phone` / `In Person` / `Email` / `Other`. Dropdown on DApp. |
+| `Method` | Yes | `Text` / `WhatsApp` / `Instagram` / `Facebook Messenger` / `Phone` / `Email` / `In Person` / `Other`. Dropdown on DApp. |
 | `Stock Status` | Yes | `Low` / `Out` / `OK` / `Unknown`. Dropdown on DApp. |
 | `Restock Needed` | Yes | `Yes` / `No` / `Maybe`. Dropdown on DApp. |
 | `Restock SKU` | No | SKU slug drawn from `partners-velocity.json` items (e.g. `8-ounce-organic-cacao-nibs`), or `Other` if the partner asked for a SKU they don't currently carry. Only meaningful when `Restock Needed = Yes`. |
