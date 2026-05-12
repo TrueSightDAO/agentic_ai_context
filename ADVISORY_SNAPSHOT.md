@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-12T15:21:33Z`
+- Generated (UTC): `2026-05-12T20:15:23Z`
 - Look-back: **7** calendar days (`2026-05-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -190,6 +190,7 @@ _All dated lines on/after 2026-05-05_ (15):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ab1aaec | 2026-05-12 09:27:18 -0700 | blog: 'The shared memory is the moat' (Field Signals #2) (#74)
 6499565 | 2026-05-11 18:51:50 -0700 | truesight_me: fix redundant 'awaiting sale' on Pipeline card (#73)
 c7c0ac9 | 2026-05-11 18:50:42 -0700 | truesight_me: rewrite Monthly Revenue Funding Trees chart blurb (#72)
 5301697 | 2026-05-11 18:46:15 -0700 | truesight_me: align last two operator-language seams to impact framing (#71)
@@ -223,6 +224,18 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+250f9fc | 2026-05-12 12:04:59 -0700 | PARTNER_POKE_SCHEDULER v0.1: auto-file Partner Check-in on send (#130)
+033b0e8 | 2026-05-12 11:56:13 -0700 | PARTNER_POKE_SCHEDULER v0: mark verified after first production run (#129)
+7817f57 | 2026-05-12 11:31:00 -0700 | OPEN_FOLLOWUPS: broaden advisory-bell entry from partner check-ins to all 3 signal sources (#128)
+9084533 | 2026-05-12 11:23:42 -0700 | PARTNER_POKE_SCHEDULER v0: mark code shipped (awaiting operator clasp-push) (#127)
+868e21d | 2026-05-12 11:18:34 -0700 | Partner Check-in plan: extend Method options (#126)
+18b148b | 2026-05-12 11:12:43 -0700 | Plan: Partner Poke Scheduler v0 (Stage 1 of AI-first supply chain) (#125)
+a2edf63 | 2026-05-12 10:48:06 -0700 | DAPP_NOTIFICATION_BADGE: add Partner Stock module (v1.1) (#124)
+aceaa8f | 2026-05-12 10:38:53 -0700 | Document DApp notification badge — contract, modules, anti-pattern (#123)
+8b64dc0 | 2026-05-12 10:05:52 -0700 | Partner Check-in v0.2: plan + review notes + ADVISORY_SNAPSHOT follow-up (#122)
+2dbe102 | 2026-05-12 08:54:28 -0700 | Add editorial-tone guide + multi-LLM orchestration playbook (#121)
+c92abe7 | 2026-05-12 08:21:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
+8d31508 | 2026-05-12 08:21:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 a056cda | 2026-05-12 02:19:15 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
 1307c23 | 2026-05-12 02:19:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
@@ -251,24 +264,18 @@ b3ff7ae | 2026-05-10 18:32:59 -0700 | docs: correct Stripe flow — webhook → 
 194bd96 | 2026-05-10 17:51:15 -0700 | docs: Ledger ID naming convention + auto-snapshot script reference
 d7768fb | 2026-05-10 17:16:48 -0700 | docs: simplify ledger creation — use the AGL template (File → Make a copy)
 3189cb5 | 2026-05-10 17:03:04 -0700 | docs: add managed ledger Google Sheets creation process to pattern doc (#112)
-e22caa4 | 2026-05-10 16:51:59 -0700 | docs: queue capoeira follow-ups (curriculum sessions + algorithm variety) (#111)
-e47b483 | 2026-05-10 16:38:50 -0700 | docs: index capoeira + tribomirimbahia repos (Tribo Bahia Mirim split) (#110)
-d836e16 | 2026-05-10 15:50:44 -0700 | docs: queue tribomirimbahia Phase 1B (music tagging) + Phase 2 (site) follow-ups (#109)
-3fa8f13 | 2026-05-10 15:45:35 -0700 | docs: managed ledger explorer reusable pattern + pattern doc
-5d5f736 | 2026-05-10 15:27:32 -0700 | docs: surface currency conversion flow (dapp/currency_conversion.html + GAS) (#108)
-0dd6a71 | 2026-05-10 12:40:56 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
-f3a5560 | 2026-05-10 12:40:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
-e9d89b0 | 2026-05-10 07:00:14 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
-51982ba | 2026-05-10 07:00:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
-e3f0f8d | 2026-05-10 01:27:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
-5263072 | 2026-05-10 01:27:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
-76925c2 | 2026-05-09 21:37:00 -0700 | docs: plan QiMenDunJia overlay for iching_oracle advisory (#107)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+59bb275 | 2026-05-12 11:42:30 -0700 | shipping_planner: pick latest check-in by submitted_at + normalize Date cells (#288)
+851b8b2 | 2026-05-12 11:18:32 -0700 | SCHEMA: extend Partner Check-ins Method options (#287)
+a03dece | 2026-05-12 11:01:41 -0700 | list_partner_contributors: synthesize popup-<slug> for contributor-only rows (#285)
+5afdc83 | 2026-05-12 10:58:44 -0700 | Partner Check-in: parser hyphen normalization + pop-up filter (#284)
+e2b2899 | 2026-05-12 10:40:32 -0700 | shipping_planner: list_partner_contributors action (#283)
+7a0582f | 2026-05-12 10:05:55 -0700 | Partner Check-in backend: GAS scanner + Shipping Planner API + SCHEMA (#282)
 4c1560f | 2026-05-11 16:25:24 -0700 | currency_conversion: ensure col D amount lands as a number, not text (#281)
 77801b6 | 2026-05-11 15:47:52 -0700 | currency_conversion: fix Ledger URL parser + harden offchain write path (#280)
 c8c7123 | 2026-05-11 14:46:25 -0700 | SCHEMA: add Agroverse Partners column J 'address' (canonical ship-to) (#279)
@@ -290,6 +297,21 @@ b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted
 ### `dapp` → `dapp`
 
 ```
+6131e30 | 2026-05-12 11:33:28 -0700 | service-worker: bump CACHE_NAME v12 → v13 (#246)
+97fb379 | 2026-05-12 11:31:38 -0700 | partner_check_in: tabbed Needs Attention + logo + cache-bust v13 (#245)
+3d8bd03 | 2026-05-12 11:25:39 -0700 | partner_check_in: cache-bust + desktop two-column layout (#244)
+91d35ca | 2026-05-12 11:22:11 -0700 | notifications: include AI/Partner Poke in Outbound Review bell count (#243)
+96437fc | 2026-05-12 11:20:32 -0700 | warmup_review: add 4th cohort tab for AI/Partner Poke (#242)
+ce3438f | 2026-05-12 11:19:59 -0700 | partner_check_in: extend Method options (WhatsApp, Instagram, Facebook Messenger) (#241)
+cf7ece7 | 2026-05-12 11:14:49 -0700 | partner_check_in: Next Check-in Date auto-default + override (#240)
+bf3e518 | 2026-05-12 11:13:45 -0700 | partner_check_in: Submit Another flow after success (#239)
+52a294a | 2026-05-12 11:08:53 -0700 | partner_check_in: auto-schedule Next Check-in Date (#238)
+0b3451d | 2026-05-12 10:58:46 -0700 | partner_check_in: flip to contributor-leading UX (#237)
+d788fc6 | 2026-05-12 10:47:12 -0700 | DApp notifications: wire Partner Stock attention (v1.1 module 3) (#236)
+5fd9c58 | 2026-05-12 10:40:35 -0700 | partner_check_in: Contributor Name as select (no free-typing) (#235)
+76664c1 | 2026-05-12 10:37:00 -0700 | DApp notifications: wire Partner Check-in follow-ups (v1 module 2) (#234)
+dcf2d08 | 2026-05-12 10:28:17 -0700 | DApp: add Facebook-style red notification badge for action items (#233)
+a460725 | 2026-05-12 10:05:54 -0700 | Partner Check-in page (v0.2: Kimi v0.1 + Claude review-pass) (#232)
 c9bce5d | 2026-05-11 13:52:30 -0700 | warmup_review: also pin draft id in URL on Gmail-link clicks (#231)
 3fbc1b7 | 2026-05-11 13:48:10 -0700 | warmup_review: per-card All correspondence link to Gmail search (#230)
 ccfcf69 | 2026-05-11 13:39:12 -0700 | warmup_review: deep-link draft id in URL hash for LLM hand-off (#229)
@@ -315,11 +337,7 @@ ed5435d | 2026-05-06 17:35:34 -0700 | [autopilot] Fix "Loading your TDG holdings
 8e20fc4 | 2026-05-06 17:23:17 -0700 | fix: skip routes.js probe on localhost to prevent reload loop
 6ae7ea7 | 2026-05-06 16:54:53 -0700 | fix: resolve non-QR proposals, capture all json blocks, mobile badge positioning
 3e01202 | 2026-05-06 16:42:01 -0700 | fix: restore proposal cards on session reload, track all pending approvals, add visible pending badge
-abd9b37 | 2026-05-05 15:53:19 -0700 | Merge pull request #209 from TrueSightDAO/feat/chat-ux-enhancements
-00be2eb | 2026-05-05 15:52:47 -0700 | feat: multi-file upload, batch proposal cards, pending approvals panel, session manager, print layout, copy code button
-e1c6d27 | 2026-05-05 14:45:02 -0700 | fix(warmup_review): use message ID for Edit in Gmail link (#208)
-18e0384 | 2026-05-05 13:07:53 -0700 | fix(warmup_review): show em-dash instead of 0 before drafts load (#207)
-ec7174a | 2026-05-05 13:06:06 -0700 | feat(warmup_review): add full body expand and original reply display (#206)
+… (truncated)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -343,6 +361,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+591425a | 2026-05-12 10:14:12 -0700 | chore(inventory): refresh after Currencies row 82 Inventory Type fix (#15)
 58ee158 | 2026-05-12 09:14:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0bb1c4d | 2026-05-11 18:42:11 -0700 | chore(inventory): refresh after Cacao Mass typo fix in Currencies tab (#13)
 37275d9 | 2026-05-11 18:22:06 -0700 | chore(sell-through): refresh sell-through-report.json (#12)
@@ -371,6 +390,7 @@ c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+ca1d063 | 2026-05-12 09:21:09 -0700 | feat(mission): replace color photo on Mission stat-card with B&W SVG pictogram (#105)
 2842843 | 2026-05-10 18:29:09 -0700 | Fix upside-down black-king-ilheus-header.jpg (rotate 180°) (#104)
 87e2843 | 2026-05-10 18:17:23 -0700 | Cross-link to capoeira.agroverse.shop from Bico Duro post + Itacaré experience (#103)
 ```
@@ -466,7 +486,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 7:51:03 |
+| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 12:51:18 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-05`; scanned last **393** data rows)
 
