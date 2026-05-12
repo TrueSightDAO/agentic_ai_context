@@ -12,7 +12,8 @@ Purpose: Fast reference for Grok/Claude/Codex to understand and extend the TrueS
 
 ## Key Files
 - `index.html` — landing with module links and instructions.
-- `menu.js` — shared navigation dropdown for all pages.
+- `menu.js` — shared navigation dropdown for all pages; also async-loads `js/notifications.js` for the cross-module action-item badge (see `DAPP_NOTIFICATION_BADGE.md`).
+- `js/notifications.js` — Facebook-style red-counter notification widget. Self-mounts on every page that loads `menu.js`. See `DAPP_NOTIFICATION_BADGE.md` for the source contract and how to add a new module.
 - `scripts/edgar_payload_helper.js` — canonical payload builder, signer, verifier, and share-text generator.
 - Service worker: `service-worker.js` — cache-first/network-first mix with special handling for GAS endpoints and `?reload` param.
 - Module pages (selection):
