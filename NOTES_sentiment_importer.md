@@ -13,18 +13,22 @@ and the gotchas that bite first-time deployers.
 
 ## Production topology
 
-Two EC2 hosts. SSH aliases must exist in the operator's `~/.ssh/config`:
+Two EC2 hosts in the **TRUESIGHT_DAO_AUTOPILOT** AWS account (post-2026-05-11
+migration off the Cypher account). SSH aliases must exist in the operator's
+`~/.ssh/config`:
 
-| Alias      | IP              | Role                                | Systemd unit      | Monit                                          |
-|------------|-----------------|-------------------------------------|-------------------|------------------------------------------------|
-| `seni_ror` | `54.211.179.126`| Rails web server (port **3002**)    | `seni_ror.service`| http://54.211.179.126:2812/seni_ror            |
-| `seni_sk`  | `3.83.175.151`  | Sidekiq workers                     | `seni_sk.service` | http://3.83.175.151:2812/sidekiq               |
+| Alias          | IP              | Role                                | Systemd unit      | Monit                                          |
+|----------------|-----------------|-------------------------------------|-------------------|------------------------------------------------|
+| `seni_ror_new` | `3.90.179.151`  | Rails web server (port **3002**)    | `seni_ror.service`| http://3.90.179.151:2812/seni_ror              |
+| `seni_sk_new`  | `54.163.216.235`| Sidekiq workers                     | `seni_sk.service` | http://54.163.216.235:2812/sidekiq             |
 
 Repo lives at `/home/ubuntu/sentiment_importer` on both hosts. Both services
-run under the `ubuntu` user.
+run under the `ubuntu` user. Route53 (`edgar.truesight.me`) lives in the
+same TRUESIGHT_DAO_AUTOPILOT account and points at `seni_ror_new`.
 
-> Other aliases (`seni_ror_2`, `seni_sk_ce`, `seni_sk_con`) in `~/.ssh/config`
-> are **not** in the production path as of 2026-04-24.
+> The pre-migration aliases `seni_ror` (`54.211.179.126`) and `seni_sk`
+> (`3.83.175.151`) point at the Cypher-account hosts. Those instances are
+> kept around for rollback only; do **not** deploy to them.
 
 ---
 
@@ -140,6 +144,102 @@ later release).
 - **Bundler version drift** — the lockfile was generated on 1.17.3 but
   hosts run 1.17.2. Bundler emits a warning but proceeds; not blocking
   as of 2026-04-24.
+
+---
+
+## Nginx — `seni_ror_new` TLS termination
+
+`seni_ror_new` runs nginx on :80/:443 in front of the Rails app on
+`127.0.0.1:3002`. TLS comes from Let's Encrypt
+(`/etc/letsencrypt/live/edgar.truesight.me/`), auto-renewed by certbot.
+
+### Where the config lives
+
+- **Source of truth:** `/etc/nginx/sites-available/edgar.conf`
+- **Loaded by nginx:** `/etc/nginx/sites-enabled/edgar.conf` — must be a
+  **symlink** to `sites-available/edgar.conf`. Verify:
+  `ls -la /etc/nginx/sites-enabled/edgar.conf` should show
+  `… -> /etc/nginx/sites-available/edgar.conf`.
+
+If `sites-enabled/edgar.conf` is a regular file (no `l` flag), it is a
+stale separate copy and edits to `sites-available/` will not propagate.
+Re-link with:
+
+```bash
+sudo rm /etc/nginx/sites-enabled/edgar.conf
+sudo ln -s /etc/nginx/sites-available/edgar.conf /etc/nginx/sites-enabled/edgar.conf
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+### The `\$host` heredoc trap (cost us a 4-hour outage on 2026-05-11)
+
+When generating nginx configs over SSH via `bash -c "cat > … <<'EOF'"`,
+**use `$host` literally**, not `\$host`. A single-quoted heredoc
+(`<<'EOF'`) does **not** expand variables, so the backslash is preserved
+verbatim. nginx then parses `\$host` as the literal character `\`
+followed by the variable `$host`, and forwards `Host: \edgar.truesight.me`
+upstream. Rails reads that as the host, every `redirect_to` becomes
+`https://\edgar.truesight.me/…`, and webrick raises
+`URI::InvalidURIError: bad URI(is not URI?)` — surfaces to the operator
+as **502 Bad Gateway on every redirect-issuing endpoint** (sign-in,
+sign-out, post-OAuth callback, `/companies/:slug`, …) while the static
+landing page keeps working.
+
+**Correct heredoc form** (variables stay literal because of the single quotes):
+
+```bash
+ssh seni_ror_new "sudo bash -c 'cat > /etc/nginx/sites-available/edgar.conf' <<'NGINX'
+server {
+  listen 443 ssl http2;
+  server_name edgar.truesight.me;
+  location / {
+    proxy_pass http://127.0.0.1:3002;
+    proxy_set_header Host \$host;                # ← BUG: nginx sees literal backslash
+  }
+}
+NGINX"
+```
+
+vs.
+
+```bash
+ssh seni_ror_new "sudo bash -c 'cat > /etc/nginx/sites-available/edgar.conf' <<'NGINX'
+…
+    proxy_set_header Host $host;                # ← CORRECT inside <<'…' heredoc
+…
+NGINX"
+```
+
+Detection: `sudo nginx -T 2>/dev/null | grep -E '\\\\\$host|\\\\\$request_uri'`
+should return nothing. If it returns lines, the config is poisoned.
+
+End-to-end probe after any nginx edit:
+
+```bash
+curl -sI https://edgar.truesight.me/companies/KWR | grep -iE '^(HTTP|location)'
+# expect: HTTP/2 302  +  location: https://edgar.truesight.me/users/sign_in
+# bad:    location: https://\edgar.truesight.me/users/sign_in   ← \$host trap is back
+```
+
+---
+
+## Google OAuth — `OmniAuth.config.full_host` is mandatory
+
+Behind nginx, OmniAuth's auto-detection of the redirect URI can collapse
+to a path-only string (`/users/auth/google_oauth2/callback`), which Google
+rejects with **"Error 400: invalid_request — doesn't comply with Google's
+OAuth 2.0 policy"** because relative paths can never match the absolute
+URLs registered as Authorized Redirect URIs.
+
+`config/initializers/omniauth.rb` sets `OmniAuth.config.full_host` in
+production (default `https://edgar.truesight.me`, override with
+`EDGAR_FULL_HOST`). Do not remove it. The Authorized Redirect URI in the
+GCP OAuth client must include `https://edgar.truesight.me/users/auth/google_oauth2/callback`.
+
+> Pending hardening (not blocking): rotate the hardcoded
+> `client_secret` in `config/environments/production.rb` to a systemd
+> drop-in env var, and migrate the OAuth client off the legacy Krake
+> GCP project (667737028020) onto a TrueSight-DAO-owned project.
 
 ---
 
