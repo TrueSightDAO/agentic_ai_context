@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-12T04:13:56Z`
+- Generated (UTC): `2026-05-12T09:19:00Z`
 - Look-back: **7** calendar days (`2026-05-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -224,6 +224,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
+7b8751b | 2026-05-11 21:14:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 55b4257 | 2026-05-11 19:35:13 -0700 | Edgar nginx ops: document heredoc \$host trap + sites-enabled symlink check (#120)
 7227b35 | 2026-05-11 14:43:25 -0700 | Docs: Canonical partner addresses in Partners!J + population guide (#119)
 0abd75a | 2026-05-11 13:39:32 -0700 | PARTNER_OUTREACH_PROTOCOL §12: Outbound Review URL convention (#118)
@@ -262,8 +264,6 @@ e3f0f8d | 2026-05-10 01:27:09 -0700 | chore(previews): refresh Beer Hall preview
 76925c2 | 2026-05-09 21:37:00 -0700 | docs: plan QiMenDunJia overlay for iching_oracle advisory (#107)
 0263997 | 2026-05-09 21:32:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
 c820a1b | 2026-05-09 21:32:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
-70fc82d | 2026-05-09 19:41:18 -0700 | Merge pull request #106 from TrueSightDAO/auto/advisory-refresh-2026-05-10
-8efad12 | 2026-05-10 02:41:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 … (truncated)
 ```
 
@@ -344,6 +344,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+58ee158 | 2026-05-12 09:14:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0bb1c4d | 2026-05-11 18:42:11 -0700 | chore(inventory): refresh after Cacao Mass typo fix in Currencies tab (#13)
 37275d9 | 2026-05-11 18:22:06 -0700 | chore(sell-through): refresh sell-through-report.json (#12)
 54e119d | 2026-05-11 16:51:37 -0700 | chore(inventory): second refresh — partners-velocity + partners-inventory + store-inventory (#11)
@@ -466,7 +467,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 20:51:12 |
+| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 1:53:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-05`; scanned last **393** data rows)
 
