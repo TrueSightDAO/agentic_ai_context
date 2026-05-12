@@ -420,3 +420,43 @@ Items surfaced by the review-pass. Items 1–3 have been implemented in v0.2; it
 - **`contributor_contact_id` enrichment is the path to make auto-fill actually work.** Until `market_research/scripts/sync_partners_velocity.py` joins `Agroverse Partners`!E into the output JSON, every check-in submission requires manual typing of the canonical name. Worth queuing as its own follow-up.
 
 ---
+
+## 15. Dual-use — operational follow-ups beyond retail (2026-05-12)
+
+The v0 framing assumed Partner Check-in is purely a retail-partner surface. The underlying capability (operator-driven follow-up cadence with reminders that surface in the DApp bell) is **genuinely generic**; what was specialized was the form picker's retail-only filter.
+
+As of `dapp` PR #247 + #248 the picker's allow-list extends to:
+
+| `partner_type` value | Use case                                                              | Example                                    |
+|----------------------|-----------------------------------------------------------------------|--------------------------------------------|
+| `Consignment`        | Retail venue (original v0 use case)                                   | Edge and Node                              |
+| `Wholesale`          | Retail venue, wholesale pricing                                        | Go Ask Alice                               |
+| `Operator`           | Warehouse + online-fulfillment hybrid                                  | Matheus (Ilhéus, Brazil), Kiki's Cocoa (SF) |
+| `Freight Provider`   | Cargo forwarding service                                              | Isis Riberio @ Omega Services              |
+
+### Why this extension is safe
+
+- The cadence/follow-up logic (`list_partners_needing_attention` on the Shipping Planner GAS) doesn't filter by `partner_type` — it surfaces whatever the operator scheduled via `Next Check-in Date`. Non-retail entities show up in the bell's "Partner Check-in follow-ups due" card with no code change once they have a check-in row.
+- The bell's **Partner Stock attention** source (`js/notifications.js` `partner_stock` function) still filters by retail-type only (`Consignment | Wholesale`), so non-retail entities correctly DON'T surface there. Stock signals don't apply to warehouse operators or freight providers.
+- The auto-checkin-on-send (v0.1 — `runProcessSentPartnerPokes`) files rows for any partner_type with no special handling. Stock Status defaults to `Unknown` which is meaningless for non-retail but valid.
+
+### Field semantics for non-retail rows (operator guidance)
+
+| Field            | Retail row                          | Non-retail row (Operator / Freight Provider)        |
+|------------------|-------------------------------------|------------------------------------------------------|
+| Method           | Text / Phone / In Person / Email    | Same — whatever channel was used (WhatsApp via Text) |
+| Stock Status     | Low / Out / OK / Unknown            | `Unknown` (field is awkward but valid)               |
+| Restock Needed   | Yes / No / Maybe                    | Leave blank or `No`                                  |
+| Restock SKU      | The SKU                             | Leave blank                                          |
+| Next Check-in    | Operator's planned next date         | Same — when you want to follow up next               |
+| Notes            | Free-form, < 2000 chars              | **Load-bearing for non-retail rows** — capture freight status updates, container numbers, customs paperwork links, vendor responses here |
+
+The load-bearing fields for non-retail rows are **Method**, **Next Check-in Date**, and **Notes**. The stock/restock cluster is dead weight on those rows and can be ignored.
+
+### Downstream consequences operators should be aware of
+
+- **Trees Financed/mo on https://truesight.me/index.html** EXCLUDES `Freight Provider` and `Supplier` types (`market_research` PR #122 + `truesight_me` PR #76). `Operator` partners stay in because their `sales_monthly` is populated only from actual QR Code Sales events (online fulfillment counts). Known limitation: an Operator's bulk-warehouse stock may slightly over-count Trees in Pipeline if it shares a physical location with retail-ready stock. See `OPEN_FOLLOWUPS.md` for the finer-grained inventory-tag follow-up.
+- **Partner Stock attention card on the DApp bell** correctly filters non-retail types out — a freight provider running "low" doesn't surface a stock alert because freight providers don't have retail stock semantically.
+- **Partner Check-in follow-ups card on the DApp bell** surfaces every overdue/upcoming entry regardless of `partner_type` — the operator's `Next Check-in Date` is the only gate.
+
+---

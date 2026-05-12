@@ -32,6 +32,69 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Partner Check-in: paste-image-as-attachment (v0.2 attachment support)
+
+**Context.** Operator request 2026-05-12: when filing a Partner Check-in (e.g. for the Matheus / AGL7 freight in flight), be able to **paste an image directly into the Notes field** and have it automatically uploaded as an attachment that the check-in history later renders inline. Use cases: container photos, customs paperwork, retail stencil photos on cacao bags, screenshots of vendor replies. The pattern exists already in adjacent surfaces (`[ASSET RECEIPT EVENT]` uses `--attachment`, `Stores Visits Field Reports` carries `github_raw_url`/`github_blob_url`); this just hasn't been extended to Partner Check-in yet.
+
+**Scope.** Five-component build, each well-trodden:
+
+1. **`dapp/partner_check_in.html`** — add a `paste` event handler on the Notes textarea. When clipboard contains an image blob, POST it to Edgar's `upload_file_to_github` tool, get back the `https://raw.githubusercontent.com/...` URL, and either (a) append it to the Notes text as a markdown image link, or (b) store it as a separate hidden field that ships in the submission payload. Recommend (b) — keeps Notes clean and the attachment a first-class field.
+2. **Edgar payload** for `[PARTNER CHECK-IN EVENT]` — add an `Attachment URL: <raw_url>` line, same shape `[ASSET RECEIPT EVENT]` already uses.
+3. **`tokenomics/google_app_scripts/find_nearby_stores/process_partner_check_in_telegram_logs.gs`** — extract the URL from the Telegram payload, write it to a new column on the Partner Check-ins tab.
+4. **`Partner Check-ins` tab on Main Ledger** — add column O `Attachment URL` (one-time sheet edit + scanner update).
+5. **`Shipping Planner` `get_partner_check_ins` action** — include the new column in returned rows. **Partner Check-in history UI** on `partner_check_in.html` — render the URL as a clickable thumbnail (image) or link (PDF) inline with each history entry.
+
+**Acceptance.** Paste an image while filing a check-in for Matheus → submit → reopen the Partner Check-in form with `?partner_id=black-king-ilheus` → the just-filed entry shows the thumbnail in the Check-in History block.
+
+**Caveats.**
+- v0.2 limit: one attachment per check-in (matches every other Edgar event). Multi-attachment is a separate v0.3 ask.
+- The auto-checkin-on-send (`runProcessSentPartnerPokes`) won't have attachments — the new column will be blank for `Submitted By = "Partner Poke Scheduler v0.1"` rows. No special handling needed.
+- The DApp paste handler needs to be careful about clipboards that contain BOTH an image AND text (some screenshot tools do this). Prefer the image; ignore the text — let the operator type Notes themselves.
+
+**Blocker.** None. Edgar's `upload_file_to_github` exists. `Stores Visits Field Reports` already proves the end-to-end pattern. Build is ~2-3 focused hours across the 5 components.
+
+**Owner.** Unclaimed.
+
+---
+
+### Beer Hall daily digest: include Partner Check-ins section
+
+**Context.** Operator request 2026-05-12: the daily Beer Hall digest currently summarizes commits, PRs, and ecosystem activity. Partner Check-ins are core supply-chain operations — they should appear in the digest too. Without this, the WhatsApp Beer Hall community can't see Gary's offline outreach activity (the same observability gap that motivated the original Partner Check-in build, but now applied to the broader community surface, not just LLM advisors).
+
+**Scope.**
+
+- Identify the script that generates the Beer Hall daily digest (`agentic_ai_context/OPENCLAW_WHATSAPP.md` documents the pipeline; the actual generator is in `content_schedule` or a related repo per the doc).
+- Add a new data source: read the **Partner Check-ins** tab on Main Ledger via gspread (the credentials already exist for the advisory pipeline), filter to entries from the last 24 hours.
+- Render a new digest section: "Partner Check-ins (last 24h): N entries", with a per-entry line `<partner_name> · <method> · <stock_status if relevant> · <notes excerpt>`. Match the existing Beer Hall digest's voice and density.
+- Skip empty days — don't render the section if no check-ins happened in the window.
+
+**Acceptance.** Tomorrow's Beer Hall digest includes a `### Partner Check-ins (last 24h)` section listing any entries Gary filed today. If no entries, the section is omitted.
+
+**Blocker.** Beer Hall pipeline's LLM provider (Anthropic last week, possibly switched after the credit-zero incident on 2026-05-11) needs a working credit balance. Verify before building.
+
+**Owner.** Unclaimed.
+
+---
+
+### Trees in Pipeline: finer-grained inventory tag for hybrid Operator partners
+
+**Context.** Kiki's Cocoa is `partner_type=Operator` because she's a SF warehouse hub for some shipments AND handles online fulfillment to end consumers. Her **sales_monthly** is correct (only counts QR Code Sales, never restocks). But her **inventory_units** mixes bulk-warehouse stock (NOT yet financed → should NOT count toward Trees in Pipeline) with retail-ready stock (IS in pipeline → should count). The current filter (`market_research#122` deny-list of Freight Provider + Supplier) keeps Kiki's full inventory total, which slightly over-counts Trees in Pipeline.
+
+**Scope.** Two paths to evaluate:
+
+1. **Per-row inventory_type-based filter.** The Currencies sheet column distinguishes `Cacao Bean (Bulk)` vs `Cacao Mass (Retail Ready)` etc. Trees in Pipeline could sum only `Retail Ready`-format inventory. **Cleanest if the tagging is reliable.**
+2. **Per-partner role tagging.** Add a sub-flag on `Agroverse Partners` like `inventory_role: bulk | retail | mixed`. For `mixed` partners, derive proportion from sales velocity. **More complex but handles edge cases.**
+
+Pick path 1 if the inventory_type field on `partner_inventory` JSON is already reliable across all Operator-type partners; otherwise path 2.
+
+**Acceptance.** Open `https://truesight.me/index.html`, Trees in Pipeline drops by Kiki's bulk-warehouse stock total. Sanity-check: the new total roughly matches the sum of inventory at strict-retail partners (Consignment + Wholesale) + the retail-ready portion of Operator-partner inventory.
+
+**Blocker.** Need to verify the inventory_type tagging is consistent on the JSON before committing to path 1. Run `sync_sell_through_report.py` once and inspect Kiki's items[] block in the output JSON.
+
+**Owner.** Unclaimed.
+
+---
+
 ### Wire the DApp bell's action items into `ADVISORY_SNAPSHOT.md` generation
 
 *(Scope broadened 2026-05-12 from the original "Wire `Partner Check-ins`…" entry, which had just the operator-scheduled cadence in view. The bell now aggregates three signal sources; the advisory should surface all three.)*
