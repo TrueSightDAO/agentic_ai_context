@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-12T09:19:00Z`
+- Generated (UTC): `2026-05-12T15:21:33Z`
 - Look-back: **7** calendar days (`2026-05-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,27 +40,26 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-11T10:59:13.897Z`
+- Generated (UTC): `2026-05-12T10:59:14.453Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **15**
-- Shortlisted: **3**
 
 ## Funnel by status (curated order)
 
-- Not Appropriate: 74  (#1)
+- Deferred / Revisit later: 5  (#1)
 - AI: Contact Form found: 109  (#3)
+- AI: No fit signal: 155  (#6)
 - Research: 62  (#8)
-- AI: No fit signal: 155  (#9)
+- AI: Enrich with contact: 3  (#9)
 - AI: Enrich — manual: 90  (#10)
-- Deferred / Revisit later: 5  (#12)
-- Instagram Followed: 11  (#13)
-- Manager Follow-up: 33  (#15)
-- Shortlisted: 3  (#18)
-- On Hold: 18  (#19)
-- **Partnered: 15**  (#20)
-- Rejected: 14  (#21)
-- Followed Up: 1  (#22)
+- Manager Follow-up: 33  (#13)
+- Followed Up: 1  (#15)
+- Instagram Followed: 11  (#18)
+- Rejected: 14  (#19)
+- On Hold: 18  (#20)
+- Not Appropriate: 74  (#21)
+- **Partnered: 15**  (#22)
 - AI: Warm up prospect: 78  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
@@ -224,6 +223,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a056cda | 2026-05-12 02:19:15 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
+1307c23 | 2026-05-12 02:19:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
 7b8751b | 2026-05-11 21:14:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 55b4257 | 2026-05-11 19:35:13 -0700 | Edgar nginx ops: document heredoc \$host trap + sites-enabled symlink check (#120)
@@ -262,8 +263,6 @@ e9d89b0 | 2026-05-10 07:00:14 -0700 | chore(previews): refresh Beer Hall preview
 e3f0f8d | 2026-05-10 01:27:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
 5263072 | 2026-05-10 01:27:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 76925c2 | 2026-05-09 21:37:00 -0700 | docs: plan QiMenDunJia overlay for iching_oracle advisory (#107)
-0263997 | 2026-05-09 21:32:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-10 UTC)
-c820a1b | 2026-05-09 21:32:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 … (truncated)
 ```
 
@@ -467,7 +466,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 1:53:23 |
+| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 7:51:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-05`; scanned last **393** data rows)
 
