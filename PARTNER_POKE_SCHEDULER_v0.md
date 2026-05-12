@@ -279,8 +279,8 @@ Intentionally out of scope for v0 — don't build until v0 ships and
 runs cleanly:
 
 - **Daily cron trigger.** Manual runs only in v0.
-- **Auto Partner Check-in entry on send.** Operator still files
-  check-ins manually via `partner_check_in.html`.
+- ~~**Auto Partner Check-in entry on send.**~~ — **landed in
+  v0.1 (2026-05-12).** See below.
 - **Telegram / SMS channels.** Email only in v0. The
   `partner_check_in.html` form already captures `method` per
   contact, so v0.1+ can route drafts to different channels.
@@ -288,11 +288,8 @@ runs cleanly:
   Portuguese for Brazil-side partners (we have those).
 - **A/B testing different prompts.** v0 picks one prompt and
   measures qualitative operator feedback before iterating.
-- **Cohort-tab UI in warmup_review.html.** Drafts are visible via
-  Gmail inbox label + by extending `getWarmupReviewQueue` to include
-  the new label. A dedicated tab in `warmup_review.html` is nice to
-  have but not blocking — defer until v0.1 if the basic loop works
-  via Gmail alone.
+- ~~**Cohort-tab UI in warmup_review.html.**~~ — landed in
+  v0 (dapp PR #242 + #243).
 
 ---
 
@@ -503,15 +500,117 @@ the calibration week.
 
 **Next milestones (in order):**
 
-- Send at least one draft (or mark "skipped — already handled")
+- ✅ Send at least one draft (or mark "skipped — already handled")
   through the loop — confirms end-to-end including the
   Partner Check-in entry update.
+- ✅ Wire auto-file Partner Check-in on send (v0.1 — see below).
 - Let it run manually for ~1 week, 1–2 invocations per day, to
   build a feel for which drafts are useful vs noise.
 - After the calibration week, unblock the `OPEN_FOLLOWUPS.md` entry
   for wiring these signals into `ADVISORY_SNAPSHOT.md`.
-- Then v0.1: time-based daily cron trigger, the two quirks fixed,
-  auto Partner Check-in entry on send.
+- Remaining v0.1+ items: time-based daily cron trigger, the
+  `networkRate=0` fix, the Founder Haus join miss fix.
+
+---
+
+## v0.1 — Auto-file Partner Check-in on send (shipped 2026-05-12)
+
+Closes the previously-manual gap between *"draft sent in Gmail"* and
+*"Partner Check-ins tab reflects that we reached out."* Without this
+the LLM advisors and the bell would still recommend pokes for partners
+Gary had just emailed, because the operator hadn't yet manually filed
+the check-in entry.
+
+### Architecture
+
+A new public function `runProcessSentPartnerPokes()` on
+`PartnerPokeDrafts.gs` (added to the menu under "Process sent pokes
+(auto-checkin)"). Runs from menu, IDE Run button, or a time-based
+trigger.
+
+Flow per audit-log row where `status='draft_created'`:
+
+1. **Is the draft still in `GmailApp.getDraft(id)`?** → yes: skip, it
+   hasn't been sent yet. Try again next run.
+2. **Draft is gone. Find a matching Sent message** via
+   `GmailApp.search('in:sent label:"AI/Partner Poke" to:"<email>" newer_than:14d')`,
+   matched by exact `Subject`.
+3. **No sent message found** → operator discarded the draft. Mark log
+   row `discarded` + append a note. No Partner Check-in is filed.
+4. **Sent + `is_self_poke=true`** → mark log row `sent_self_poke`. **No
+   check-in filed** — the reminder reached Gary, but the partner
+   contact hasn't actually happened yet; that comes later when Gary
+   acts on the reminder via the offline channel, at which point Gary
+   files the check-in manually.
+5. **Sent + real-partner email** → append a row to the **Partner
+   Check-ins** tab with:
+   - `Method = Email`
+   - `Stock Status = Unknown`
+   - `Next Check-in Date = blank` (operator-driven cadence — auto-row
+     does *not* fake a future reminder date; Gary sets one after the
+     reply lands)
+   - `Update ID = poke-auto-<gmail_draft_id>` (col K dedup key, same
+     convention as the human-driven scanner in
+     `process_partner_check_in_telegram_logs.gs`)
+   - `Submitted By = "Partner Poke Scheduler v0.1"` (col M, so the
+     advisory can distinguish auto- vs human-filed rows if it wants
+     to)
+   - `Notes` = "Auto-filed from sent AI/Partner Poke draft. Subject:
+     <…>. Method=Email. Awaiting partner reply."
+
+   Mark log row `sent_and_filed`.
+
+### Idempotency
+
+The Partner Check-ins tab's `Update ID` column (K) is the canonical
+dedup key (same convention `process_partner_check_in_telegram_logs.gs`
+uses for human-filed entries). Auto-rows use the prefix `poke-auto-`
+followed by the truncated `gmail_draft_id`, which is stable across
+runs. Re-running the scanner over the same audit row is a no-op once
+the check-in has been filed.
+
+### How to run
+
+- **One-off / on-demand:** in the Apps Script editor function dropdown,
+  pick `runProcessSentPartnerPokes` → Run. Or from the Hit List
+  spreadsheet menu: "Partner Poke Drafts → Process sent pokes
+  (auto-checkin)".
+- **Scheduled (recommended once trust is calibrated):** Apps Script
+  IDE → Triggers (clock icon) → "Add Trigger" → Function:
+  `runProcessSentPartnerPokes`, Event source: Time-driven, Type: Minutes
+  timer, Interval: every 30 minutes (or every hour). Skip during the
+  v0 calibration week so the operator sees each filing in the
+  Executions tab.
+
+### Reading the log status field
+
+After v0.1 lands, the `status` column on the `Partner Poke Drafts` tab
+takes one of these values:
+
+| Status              | Meaning                                                         |
+|---------------------|-----------------------------------------------------------------|
+| `draft_created`     | Draft is in Gmail awaiting operator action (or auto-checkin run)|
+| `sent_and_filed`    | Operator sent the partner-addressed draft; check-in auto-filed  |
+| `sent_self_poke`    | Operator sent the self-poke; no check-in filed (correct — actual partner contact hasn't happened) |
+| `discarded`         | Operator deleted the draft without sending                      |
+| `dry_run`           | Dry-run mode, no Gmail draft created                            |
+| `skipped_no_email`  | Filter rejected: no recipient email + no OPERATOR_EMAIL         |
+| `error`             | Exception during draft creation; see notes                      |
+
+### What v0.1 still doesn't do (yet)
+
+- Doesn't detect partner *replies* — that's a separate scan against
+  `in:inbox label:"AI/Partner Poke" newer_than:30d from:<partner>`.
+  Closing that loop is the next obvious v0.2 piece, but requires a
+  decision about whether the reply triggers a fresh Partner Check-in
+  (with Method=Email, Stock Status inferred from the reply text by
+  Grok) or just a notification to the operator. Defer until we see
+  how the partner-side reply patterns actually look in the
+  calibration week.
+- Doesn't auto-set a `Next Check-in Date` — that's intentional. The
+  point of the operator-driven cadence is the operator's judgment;
+  the auto-row only records *what happened*, not *what the operator
+  intends to do next*.
 
 ---
 
