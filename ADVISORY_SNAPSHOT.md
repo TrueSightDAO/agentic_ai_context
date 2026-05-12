@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-11T20:16:56Z`
-- Look-back: **7** calendar days (`2026-05-04` → today UTC)
+- Generated (UTC): `2026-05-12T04:13:56Z`
+- Look-back: **7** calendar days (`2026-05-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 234 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 234 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 233 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 233 | **behind** |
 
 ---
 
@@ -85,14 +85,14 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 13 SKU lines · 1,192 total units · $1,690.17
+- Manager record: `Kirsten Ritschel` · 14 SKU lines · 1,404 total units · $1,431.71
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 895 | $652.10 |
-  | (uncategorized) | (unspecified) | 6 | 211 | $727.95 |
-  | Caca Mass | Bulk | 1 | 50 | $1.55 |
-  | Caca Mass | Retail Ready | 2 | 36 | $308.57 |
+  | (uncategorized) | (unspecified) | 8 | 458 | $769.54 |
+  | Cacao Mass | Bulk | 1 | 50 | $1.55 |
+  | Cacao Mass | Retail Ready | 1 | 1 | $8.52 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
@@ -101,20 +101,21 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
   | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
-  | (uncategorized) | (unspecified) | 10 | 272.13 | $2,582.25 |
-  | Caca Tea | Bulk | 5 | 156.50 | $1,587.77 |
+  | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
+  | Cacao Tea | Bulk | 5 | 156.50 | $1,587.77 |
   | Cacao Nib | Retail Ready | 1 | 137 | $909.68 |
+  | (uncategorized) | (unspecified) | 9 | 102.13 | $819.35 |
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 11,586.02 total units · $11,342.32
+- Manager record: `Gary Teh` · 30 SKU lines · 11,578.38 total units · $11,481.82
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 11,484.84 | $11,079.99 |
+  | (uncategorized) | (unspecified) | 26 | 11,465.20 | $11,190.64 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
-  | Caca Mass | Retail Ready | 1 | 25 | $212.34 |
-  | Caca Tea | Bulk | 1 | 2.18 | $0.00 |
+  | Cacao Mass | Retail Ready | 2 | 37 | $241.20 |
+  | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
 
@@ -133,9 +134,9 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,980.13**
-- Brazilian Reis: R$2,106.97 · rate `0.2323` USD/BRL → ≈ **$489.45**
-- USD provisioned for voting-rights cash-out: **$36.21**
+- USD on hand: **$2,960.24**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$36.46**
 
 ### In-transit freight (1 row)
 
@@ -154,7 +155,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now has two-layer duplicate guard + approval gate: (1) Session history check. (2) DAO ledger ground truth via `lookup_qr_code`. (3) Transaction approval gate — returns `pending_approval` JSON until user says "Approved", "go ahead", "execute", etc. Tested end-to-end: upload → lookup → propose → approve → submit → duplicate blocked.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
 
-_All dated lines on/after 2026-05-04_ (13):
+_All dated lines on/after 2026-05-05_ (15):
 
 - 2026-05-05 | claude | Autopilot self-improvement loop: added SELF-IMPROVEMENT section to system prompt. LLM now proactively detects patterns (OCR errors, misreads, protocol violations) and proposes code-level fixes via `open_fix_pr`. NEVER auto-merges — PRs go through human review. Safety hooks block dangerous ops. This creates a cybernetic adversarial loop: governor (discriminator) corrects → autopilot (generator) improves → system sharpens itself. Production-safe: crashes are prevented by PR gate — no hot code changes while serving users.
 - 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now enforces canonical dao_client labels via `_normalize_submission_labels()` — maps 30+ LLM-invented aliases to canonical field names, drops non-canonical descriptive keys, validates required fields per event type.
@@ -169,6 +170,8 @@ _All dated lines on/after 2026-05-04_ (13):
 - 2026-05-10 | claude | Created TRIBO_MIRIM_BAHIA managed ledger: Google Sheet (1_MjYZBMoUZAmQvMi6KOml3A6shQg2sJdFEFt1QHHxtM) with AGL15-mirrored tab structure + formulas, registered in Shipment Ledger Listing (row 1001, Transaction Type=Donation), service accounts shared. Documented full creation process in MANAGED_LEDGER_EXPLORER_PATTERN.md §4.
 - 2026-05-11 | claude | Managed ledger snapshot pipeline: snapshot_managed_ledgers.py reads Shipment Ledger Listing, exports all active (non-COMPLETED/non-SUSPENDED) ledgers to treasury-cache/managed-ledgers/<LedgerID>.json. JSON naming now matches Column A Ledger ID (e.g. TBM.json, AGL4.json). Updated explorer, pattern doc, SCHEMA.md.
 - 2026-05-11 | claude | Stripe→Ledger routing flow chart: documented current 4 Stripe pipelines + proposed metadata.ledger routing for capoeira donations → TBM. Created STRIPE_LEDGER_ROUTING.md with ASCII flow diagrams and ledger routing rule table.
+- 2026-05-11 | codex | Prioritized bottleneck: on‑the‑fly Restock Recommender (single‑tap sizing using USPS rates + recent velocity). Added BOTTLENECK_REVIEW_RESTOCK_RECOMMENDER.md summarizing impact, thin solution, and next steps; references RESTOCK_RECOMMENDER_ON_THE_FLY.md.
+- 2026-05-11 | codex | Partner addresses: Canonicalized `Agroverse Partners`!J (address). Added AGROVERSE_PARTNER_ADDRESSES.md (how to populate J from local repo with `extract_partner_addresses_from_repo.py`, verify via `get_partner_address`, and fallbacks). Shipping Planner GAS now reads J first, then legacy sheet.
 
 ---
 
@@ -188,25 +191,44 @@ _All dated lines on/after 2026-05-04_ (13):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6499565 | 2026-05-11 18:51:50 -0700 | truesight_me: fix redundant 'awaiting sale' on Pipeline card (#73)
+c7c0ac9 | 2026-05-11 18:50:42 -0700 | truesight_me: rewrite Monthly Revenue Funding Trees chart blurb (#72)
+5301697 | 2026-05-11 18:46:15 -0700 | truesight_me: align last two operator-language seams to impact framing (#71)
+af8684e | 2026-05-11 18:44:07 -0700 | truesight_me: reframe inventory as 'Pipeline' + denoise inner tables (#70)
+b1415c5 | 2026-05-11 18:41:31 -0700 | truesight_me: rename Monthly Sales Volume chart to Monthly Revenue Funding Trees (#69)
+be7d555 | 2026-05-11 18:33:55 -0700 | truesight_me: sort By Partner rows by trees/mo financed (desc) (#68)
+a61df6b | 2026-05-11 18:32:27 -0700 | truesight_me: reframe sales/inventory units as trees financed (#67)
+4278185 | 2026-05-11 18:27:50 -0700 | truesight_me: bust sell-through-report.json fetch cache (#66)
+01bfb18 | 2026-05-11 16:54:24 -0700 | truesight_me: By Inventory Type rows expandable + Type header left-aligned (#65)
+e95d5bb | 2026-05-11 16:44:46 -0700 | truesight_me: fix By Partner expand wiring + border + first-cell alignment (#64)
+4f7927b | 2026-05-11 15:05:43 -0700 | truesight_me: left-align "Partner" header in By Partner section (#63)
+db0628f | 2026-05-11 15:01:04 -0700 | Fix expand: use event delegation on table instead of inline onclick
+3d9f2d7 | 2026-05-11 14:58:56 -0700 | Fix partner row expand using global togglePartnerDetail function
+851fae6 | 2026-05-11 14:56:05 -0700 | Show sales as decimals (1dp) to surface fractional sell-through rates
+14b96a8 | 2026-05-11 14:51:46 -0700 | Fix expand arrow + remove dead pct function
+d822e37 | 2026-05-11 14:45:30 -0700 | Network Sell-Through: inventory units + weeks-of-stock with expandable partner detail rows
+3954956 | 2026-05-11 14:30:01 -0700 | Add Network Sell-Through section below Monthly Sales Chart
 229cc18 | 2026-05-10 21:42:59 -0700 | fix(fundraisers): match sunmint/agroverse table+cards listing convention (#62)
 c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html program page + nav link (#61)
 5fc28a4 | 2026-05-10 00:11:10 -0700 | blog: rename 真视道 → 真观道 in "Where 道 Integrates with DAO" (#60)
 5bcb59e | 2026-05-09 23:40:54 -0700 | blog: add "Where 道 Integrates with DAO" post (#59)
 7019377 | 2026-05-08 14:47:36 -0700 | Mycelial Economy: signals across the DAO + Signal Brief #1 (#58)
-939c0c2 | 2026-05-04 16:14:26 -0700 | Reframe Mycelial Economy post as Field Signals #1 (#57)
-13a882d | 2026-05-04 15:55:45 -0700 | Move The Mycelial Economy into blog/posts/ and wire the index (#56)
-916ed9d | 2026-05-04 15:48:25 -0700 | Add hand-written deep-link page: The Mycelial Economy (#55)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-052468e | 2026-05-11 10:12:08 -0700 | docs: note BigModel migration (#119)
+1b44452 | 2026-05-11 14:51:48 -0700 | Fix inventory read: use productId not sku
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+55b4257 | 2026-05-11 19:35:13 -0700 | Edgar nginx ops: document heredoc \$host trap + sites-enabled symlink check (#120)
+7227b35 | 2026-05-11 14:43:25 -0700 | Docs: Canonical partner addresses in Partners!J + population guide (#119)
+0abd75a | 2026-05-11 13:39:32 -0700 | PARTNER_OUTREACH_PROTOCOL §12: Outbound Review URL convention (#118)
+e9b14c7 | 2026-05-11 13:17:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
+55cf3e9 | 2026-05-11 13:17:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 3325185 | 2026-05-11 10:12:08 -0700 | docs(beer-hall): name the LLM-draft script + add automated-pipeline diagram + troubleshooting (#117)
 5c7f1fe | 2026-05-11 08:45:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
 1de93ef | 2026-05-11 08:45:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
@@ -242,17 +264,15 @@ e3f0f8d | 2026-05-10 01:27:09 -0700 | chore(previews): refresh Beer Hall preview
 c820a1b | 2026-05-09 21:32:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
 70fc82d | 2026-05-09 19:41:18 -0700 | Merge pull request #106 from TrueSightDAO/auto/advisory-refresh-2026-05-10
 8efad12 | 2026-05-10 02:41:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-10 UTC)
-5a5f151 | 2026-05-09 12:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
-93c3e2b | 2026-05-09 12:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
-e78d6ad | 2026-05-09 06:59:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
-e6fb31a | 2026-05-09 06:59:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-09 UTC)
-44e0327 | 2026-05-09 01:16:46 -0700 | chore(previews): refresh Beer Hall preview (2026-05-09 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+4c1560f | 2026-05-11 16:25:24 -0700 | currency_conversion: ensure col D amount lands as a number, not text (#281)
+77801b6 | 2026-05-11 15:47:52 -0700 | currency_conversion: fix Ledger URL parser + harden offchain write path (#280)
+c8c7123 | 2026-05-11 14:46:25 -0700 | SCHEMA: add Agroverse Partners column J 'address' (canonical ship-to) (#279)
 49457ea | 2026-05-10 21:10:11 -0700 | feat(snapshot): read Program (col AC) + emit _index.json registry for truesight.me consumers (#277)
 8bb1a96 | 2026-05-10 19:15:00 -0700 | docs: add deployment URL for stripe_sales_sync web app
 ea9ed07 | 2026-05-10 19:12:19 -0700 | feat(currency-conversion): route offchain submissions to Main Ledger 'offchain transactions' tab
@@ -271,6 +291,9 @@ b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted
 ### `dapp` → `dapp`
 
 ```
+c9bce5d | 2026-05-11 13:52:30 -0700 | warmup_review: also pin draft id in URL on Gmail-link clicks (#231)
+3fbc1b7 | 2026-05-11 13:48:10 -0700 | warmup_review: per-card All correspondence link to Gmail search (#230)
+ccfcf69 | 2026-05-11 13:39:12 -0700 | warmup_review: deep-link draft id in URL hash for LLM hand-off (#229)
 49ddb8d | 2026-05-11 13:04:02 -0700 | warmup_review: surface shop name at top of each expanded body (#228)
 7f08126 | 2026-05-10 18:45:18 -0700 | fix(currency-conversion): add offchain (Main Ledger) option + dynamic currency datalist (#227)
 4e43b68 | 2026-05-10 15:57:18 -0700 | feat(currency-conversion): add Warehouse Manager picker (Entity for both Tx rows) (#226)
@@ -298,18 +321,6 @@ abd9b37 | 2026-05-05 15:53:19 -0700 | Merge pull request #209 from TrueSightDAO/
 e1c6d27 | 2026-05-05 14:45:02 -0700 | fix(warmup_review): use message ID for Edit in Gmail link (#208)
 18e0384 | 2026-05-05 13:07:53 -0700 | fix(warmup_review): show em-dash instead of 0 before drafts load (#207)
 ec7174a | 2026-05-05 13:06:06 -0700 | feat(warmup_review): add full body expand and original reply display (#206)
-0e72f5d | 2026-05-04 14:04:16 -0700 | fix(outbound-review): repair 4 stale references after single-API refactor (#205)
-99d7fac | 2026-05-04 13:44:15 -0700 | feat(warmup-review): single API call for all tabs, client-side filtering, loading state
-22c1297 | 2026-05-04 13:33:17 -0700 | feat(warmup-review): clickable shop name opens store interaction history in new tab
-37b1b88 | 2026-05-04 13:30:56 -0700 | fix(warmup-review): use gmail_draft_id for compose URL, fall back to rfc822msgid search
-aada4f1 | 2026-05-04 13:26:59 -0700 | fix: revert routes.js to v25 deployment (has Gmail draft access)
-d394c9e | 2026-05-04 13:24:06 -0700 | feat(warmup-review): add Prospects tab for AI/Prospect Replied drafts
-ceb6a7c | 2026-05-03 22:55:00 -0700 | Fix upload auth: send signed JSON payload as headers with multipart
-553c767 | 2026-05-03 22:51:13 -0700 | Add file attachment upload to Governor Chat (paperclip button, multipart POST /chat/upload)
-c47e9cd | 2026-05-03 22:28:45 -0700 | fix: force-refresh dao_members cache after email verification
-4031d15 | 2026-05-03 22:21:52 -0700 | fix(sw): skip caching POST requests
-1797dfa | 2026-05-03 22:19:10 -0700 | fix(chat): remove duplicate return statement breaking try block
-9babd9b | 2026-05-03 22:13:43 -0700 | feat(chat): thinking indicator + tool step visualization
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -333,6 +344,17 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+0bb1c4d | 2026-05-11 18:42:11 -0700 | chore(inventory): refresh after Cacao Mass typo fix in Currencies tab (#13)
+37275d9 | 2026-05-11 18:22:06 -0700 | chore(sell-through): refresh sell-through-report.json (#12)
+54e119d | 2026-05-11 16:51:37 -0700 | chore(inventory): second refresh — partners-velocity + partners-inventory + store-inventory (#11)
+f76667d | 2026-05-11 16:43:14 -0700 | chore(inventory): refresh partners-inventory.json + store-inventory.json (#10)
+236769d | 2026-05-11 16:39:57 -0700 | chore(velocity): refresh partners-velocity.json — 20 partners, 7 categories (#9)
+79498cc | 2026-05-11 16:28:42 -0700 | chore: refresh Agroverse store inventory snapshot
+f964e30 | 2026-05-11 14:51:35 -0700 | Fix inventory read: use productId field
+287f0fa | 2026-05-11 14:45:16 -0700 | Update sell-through report: inventory units + weeks-of-stock
+aa439aa | 2026-05-11 14:28:42 -0700 | chore: refresh Agroverse store inventory snapshot
+3f095cd | 2026-05-11 14:26:48 -0700 | Add sell-through report JSON: per-inventory-type and per-partner rates
+96b8bef | 2026-05-11 14:07:52 -0700 | Regenerate partners-velocity.json with fixed sales attribution
 6243525 | 2026-05-11 10:25:41 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 d0df3b6 | 2026-05-11 10:01:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6f442e8 | 2026-05-10 08:23:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -344,8 +366,6 @@ e2f837e | 2026-05-08 17:28:33 -0700 | chore: refresh Agroverse store inventory s
 c3a0b0f | 2026-05-07 08:50:11 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0a7a5ae | 2026-05-06 19:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
 c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-7f1f20f | 2026-05-04 09:07:04 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -353,8 +373,6 @@ bf3a640 | 2026-05-04 08:44:04 +0000 | chore: refresh store and partner inventory
 ```
 2842843 | 2026-05-10 18:29:09 -0700 | Fix upside-down black-king-ilheus-header.jpg (rotate 180°) (#104)
 87e2843 | 2026-05-10 18:17:23 -0700 | Cross-link to capoeira.agroverse.shop from Bico Duro post + Itacaré experience (#103)
-cae8f03 | 2026-05-04 15:43:11 -0700 | Revert "Add blog post: The Mycelial Economy (#101)" (#102)
-61512ea | 2026-05-04 15:38:09 -0700 | Add blog post: The Mycelial Economy (#101)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -409,6 +427,10 @@ _(no commits on origin/master in window)_
 
 ## Recent retail field reports (DApp store status updates)
 
+- **`20260511T210201Z.json`** — `2026-05-11T21:02:02Z`  
+  **Apotheca** → `Rejected` (was `Rejected`) | type: Metaphysical/Spiritual | method: Social Media | sig: success
+  _Noticing this which we visited that was not carrying ceremonial cacao or mentioned they were carrying their own earlier in the year ended up stocking Ora’s ceremonial cacao… I wonder why… I wonder if there is something wrong with_
+
 - **`20260509T001510Z.json`** — `2026-05-09T00:15:10Z`  
   **Care Rituals, LLC** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
 
@@ -420,9 +442,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
-- **`20260508T235719Z.json`** — `2026-05-08T23:57:19Z`  
-  **Theastrologystore** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
 
 ---
 
@@ -447,9 +466,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 12:50:33 |
+| 2026-05 | 23.6 | 14942.11386 | 5/11/2026 20:51:12 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-04`; scanned last **393** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-05`; scanned last **393** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
