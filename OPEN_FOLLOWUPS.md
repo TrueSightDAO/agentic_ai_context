@@ -32,20 +32,58 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Wire `Partner Check-ins` into `ADVISORY_SNAPSHOT.md` generation
+### Wire the DApp bell's action items into `ADVISORY_SNAPSHOT.md` generation
 
-**Context.** Partner Check-in surface shipped 2026-05-12 (Kimi impl + Claude review-pass — see [`PARTNER_CHECK_IN_IMPLEMENTATION.md`](./PARTNER_CHECK_IN_IMPLEMENTATION.md)). Gary's original motivation for the build was that LLM advisors couldn't see his offline outreach to existing Partnered stores — so they kept recommending more outreach instead of recognizing he was already doing it. The build solved the *capture* side (DApp + CLI write to `Partner Check-ins` tab on Main Ledger; Shipping Planner `?action=get_partner_check_ins` reads back). But the *advisor reachability* side is still missing: `ADVISORY_SNAPSHOT.md` does not currently pull from this tab, so the next snapshot refresh won't surface partner-touch state to advisors. Until this lands, advisors still operate blind to Gary's offline activity and the observability gap (the *whole point* of the build) is only half-closed.
+*(Scope broadened 2026-05-12 from the original "Wire `Partner Check-ins`…" entry, which had just the operator-scheduled cadence in view. The bell now aggregates three signal sources; the advisory should surface all three.)*
+
+**Context.** The DApp notification bell (shipped 2026-05-12, see [`DAPP_NOTIFICATION_BADGE.md`](./DAPP_NOTIFICATION_BADGE.md)) aggregates three signal sources for the operator:
+
+1. **Outbound Review** — drafts in `AI/Warm-up`, `AI/Follow-up`, `AI/Prospect Replied`, `AI/Partner Poke` cohorts (from `getWarmupReviewQueue`)
+2. **Partner Check-in follow-ups** — operator-scheduled cadence (from `list_partners_needing_attention`)
+3. **Partner Stock attention** — out-of-stock / low-stock / dormant (from velocity + inventory JSONs)
+
+Today these surface only to Gary via the DApp. LLM advisors (Dr Manhattan, Seth Godin, I Ching oracle) reading `ADVISORY_SNAPSHOT.md` are blind to them — so they keep recommending action Gary's already on (e.g. "you should follow up with prospects" while 12 drafts sit in his queue waiting for review). The integration closes that loop: the advisory becomes a **client of the bell substrate**, surfacing the same operator-bottleneck signals to whoever's reading it.
+
+**Voice locked in (Gary picked 2026-05-12).** Contemplative narrative — data woven into prose with explicit advisor guidance, matching the existing north-star framing at the top of the advisory. The integration MUST produce output of this shape, not a tabular Jira-dashboard:
+
+```markdown
+## Action items (where operator review or attention is the bottleneck)
+
+_Same signals the DApp bell aggregates — surfaces what's actually
+waiting on Gary, not raw queue depth. Refreshed daily._
+
+**Outbound drafts awaiting send (22 total):** 12 warm-ups (avg 4d
+old), 3 follow-ups (all ≥7d — these are stalling), 2 prospect replies
+(time-sensitive — prospect already engaged), 5 partner pokes (3
+partner-addressed, 2 self-reminders for partners without email).
+
+**Partner check-in cadence (3 overdue or due):** Tech Spot (5d
+overdue, last via In Person), Beanery (2d overdue, last via Email),
+KiKi's Cocoa (due today, last via Phone). Cadence is operator-driven
+— Gary picked these dates when filing each check-in.
+
+**Partner stock signals (3 flagged):** Tech Spot is out of stock
+(0 days runway). KiKi's Cocoa is running low (2 units, ~3 days).
+Mountain Roastery has been dormant 67 days.
+
+When advising on outreach priority, weight inversely by runway:
+out-of-stock partners and prospect replies first; warm-ups can sit.
+Treat the dormant set as questions about positioning, not just
+restocks — they may need a different conversation.
+```
+
+The closing advisor-guidance paragraph should be **regenerated each day to fit that day's specific signals**, not stamped from a fixed template. A useful rule of thumb: when the signals concentrate in stock attention, lean on stockout urgency; when they concentrate in dormancy, lean on positioning/zeitgeist; when they concentrate in drafts, lean on prioritisation. Grok or whichever LLM the advisory generator already uses for its prose framing is the right tier for this.
 
 **Scope.**
 
-- Extend the snapshot generator (whichever script in `market_research/` or related repo writes `agentic_ai_context/ADVISORY_SNAPSHOT.md`) to read the `Partner Check-ins` tab on Main Ledger (`1GE7PUq-…`) — schema in `tokenomics/SCHEMA.md` §`Partner Check-ins`.
-- Add a new section to the snapshot: `## Partner Check-ins (last 14 days)` with per-partner rollup — most recent check-in date, stock_status, next_check_in_date, count of touches in window. Order by overdue-next-check-in first, then by ageing-since-last-touch.
-- Optionally surface a top-line operator metric: "Partners with no check-in in 30+ days: N" — analogous to the funnel-by-status counts.
-- The Shipping Planner `?action=list_partners_needing_attention` already returns overdue partners; consider hitting that endpoint from the generator instead of re-reading the sheet directly.
+- Extend the snapshot generator (Python under `market_research/` or wherever `ADVISORY_SNAPSHOT.md` is built today) to call the three bell sources above. The advisory becomes a *client* of the bell substrate — same calls, no reimplementation of severity scoring.
+- Add a new "Action items" section at the top of the operator metrics block (before "Operations health"), rendered exactly in the voice above. Use `list_partners_needing_attention` for cadence and `partners-velocity.json` + `partners-inventory.json` for stock — same data, same scoring rules, same naming as `partner_check_in.html`'s `computeAttentionList()` (so the advisory and the DApp page never disagree by drift).
+- Resolve partner_id slugs to human names via `Agroverse Partners!E → Contributors contact information!A` — same join pattern `partner_poke_drafts.gs` uses.
+- The advisor-guidance closer (last paragraph) should be regenerated daily by the same LLM the advisory already uses for prose framing.
 
-**Blocker.** Sheet tab + scanner not yet deployed (operator manual setup pending — Main Ledger tab creation, clasp pushes, trigger). Once the tab has rows, the snapshot integration can land.
+**Blocker.** Build only **after Partner Poke Scheduler v0 has run for a full week of operator-confirmed calibration** (see [`PARTNER_POKE_SCHEDULER_v0.md`](./PARTNER_POKE_SCHEDULER_v0.md)). The week of real runs surfaces which signals actually drive operator action vs which add noise — those calibrations should be reflected in the rendered advisory before it goes to the oracle. Don't build against synthetic data.
 
-**Acceptance.** Open the next refreshed `ADVISORY_SNAPSHOT.md` and confirm: (a) a new "Partner Check-ins" section is present, (b) per-partner rollup shows recent activity, (c) re-running the advisory in the I-Ching oracle and Grok now references the partner-touch state explicitly rather than recommending generic outreach.
+**Acceptance.** Open the next refreshed `ADVISORY_SNAPSHOT.md` and confirm: (a) the "Action items" section is present at the top of operator metrics, in the contemplative-narrative voice above; (b) all three signal sources are surfaced (outbound drafts, partner check-in cadence, partner stock); (c) the closing advisor-guidance paragraph reflects that day's actual signal distribution, not boilerplate; (d) re-running the advisory through the I Ching oracle, Dr Manhattan, and Seth Godin visibly references the specific action items instead of recommending generic outreach.
 
 ---
 
