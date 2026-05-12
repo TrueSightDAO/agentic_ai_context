@@ -424,6 +424,43 @@ follow-ups and iterate before moving to v0.1.
 
 ---
 
+## v0 implementation status (2026-05-12)
+
+**Shipped to repos (awaiting manual operator setup):**
+
+- **tokenomics PR #286** — `partner_poke_drafts.gs` (~530 lines) +
+  one-line addition to `warmup_review_api.gs`. Open, NOT auto-merged
+  because clasp-push to the live Apps Script project is a manual
+  operator step. See PR body for the 5-step setup checklist.
+- **dapp PR #242** (merged as commit on `main`) — 4th cohort tab
+  on `warmup_review.html` for `AI/Partner Poke` drafts. Auto-populates
+  from `data.counts` once the GAS surfaces the new label.
+- **dapp PR #243** (merged) — Bell's Outbound Review count includes
+  `AI/Partner Poke` in its sum + sublabel breakdown. Cache busted to
+  `?v=20260512d` across all 33 pages + service worker.
+
+**Gated on operator:**
+
+1. clasp-push `partner_poke_drafts.gs` and updated `warmup_review_api.gs`
+   to project `14gKJ0VW49RsSn4S03pgxKXy0sp4Z7Z3Wm1Wj8jQiWW5dj1sFuPnp95sh`.
+2. Add `GROK_API_KEY` to Script Properties (reuse the value already
+   used by `suggest_warmup_prospect_drafts.py`).
+3. First run = dry: `runPartnerPokeDraftsDryRun()` from the IDE Run
+   button. Read Stackdriver to confirm candidate filtering and the
+   dynamic re-poke gate look sane.
+4. Flip `DRY_RUN=false`, run again. Confirm Gmail drafts appear under
+   `AI/Partner Poke` and rows appear in the new `Partner Poke Drafts`
+   tab on Hit List spreadsheet.
+5. Hard-refresh any DApp page → bell's Outbound Review count picks
+   up the new drafts automatically; `warmup_review.html` shows the
+   new Partner Pokes tab with a count.
+
+When the operator confirms the loop works for one real draft (sent
+or skipped), mark this section "v0 verified" and pull the v0.1
+candidates above the deferred line.
+
+---
+
 *Plan written 2026-05-12. Refresh as implementation lands; mark
 "v0 shipped" when the success criteria all check. Move v0.1+ items
 above the deferred line when they get scheduled.*
