@@ -32,6 +32,23 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Wire `Partner Check-ins` into `ADVISORY_SNAPSHOT.md` generation
+
+**Context.** Partner Check-in surface shipped 2026-05-12 (Kimi impl + Claude review-pass — see [`PARTNER_CHECK_IN_IMPLEMENTATION.md`](./PARTNER_CHECK_IN_IMPLEMENTATION.md)). Gary's original motivation for the build was that LLM advisors couldn't see his offline outreach to existing Partnered stores — so they kept recommending more outreach instead of recognizing he was already doing it. The build solved the *capture* side (DApp + CLI write to `Partner Check-ins` tab on Main Ledger; Shipping Planner `?action=get_partner_check_ins` reads back). But the *advisor reachability* side is still missing: `ADVISORY_SNAPSHOT.md` does not currently pull from this tab, so the next snapshot refresh won't surface partner-touch state to advisors. Until this lands, advisors still operate blind to Gary's offline activity and the observability gap (the *whole point* of the build) is only half-closed.
+
+**Scope.**
+
+- Extend the snapshot generator (whichever script in `market_research/` or related repo writes `agentic_ai_context/ADVISORY_SNAPSHOT.md`) to read the `Partner Check-ins` tab on Main Ledger (`1GE7PUq-…`) — schema in `tokenomics/SCHEMA.md` §`Partner Check-ins`.
+- Add a new section to the snapshot: `## Partner Check-ins (last 14 days)` with per-partner rollup — most recent check-in date, stock_status, next_check_in_date, count of touches in window. Order by overdue-next-check-in first, then by ageing-since-last-touch.
+- Optionally surface a top-line operator metric: "Partners with no check-in in 30+ days: N" — analogous to the funnel-by-status counts.
+- The Shipping Planner `?action=list_partners_needing_attention` already returns overdue partners; consider hitting that endpoint from the generator instead of re-reading the sheet directly.
+
+**Blocker.** Sheet tab + scanner not yet deployed (operator manual setup pending — Main Ledger tab creation, clasp pushes, trigger). Once the tab has rows, the snapshot integration can land.
+
+**Acceptance.** Open the next refreshed `ADVISORY_SNAPSHOT.md` and confirm: (a) a new "Partner Check-ins" section is present, (b) per-partner rollup shows recent activity, (c) re-running the advisory in the I-Ching oracle and Grok now references the partner-touch state explicitly rather than recommending generic outreach.
+
+---
+
 ### `dao_client onboard_retail_partner` CLI — v1: website + PR automation
 
 **Context.** MVP shipped via [`dao_client#11`][onboard-mvp] on
