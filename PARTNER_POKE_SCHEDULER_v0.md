@@ -459,6 +459,60 @@ When the operator confirms the loop works for one real draft (sent
 or skipped), mark this section "v0 verified" and pull the v0.1
 candidates above the deferred line.
 
+### v0 verified — 2026-05-12 11:54 UTC
+
+First production run produced 5 drafts under `AI/Partner Poke`:
+
+- 2 partner-addressed: Edge and Node (`george@edgeandnode.com`),
+  Go Ask Alice (`info@goaskalice.org`) — restock check copy.
+- 3 self-poke reminders: Prism Percussions (Corvallis OR, dormant
+  4 months, no contact channel known); SOHA (Philomath OR, same
+  shape); Founder Haus (Florianópolis, low stock — 3 left, last
+  contact via Text May 12, suggested WhatsApp with Eric).
+
+Grok-3 wove the last-successful-channel context into the self-poke
+bodies correctly (the Founder Haus draft is the clearest example).
+Voice match: conversational, action-oriented, no auto-generated
+phrasing.
+
+**Live setup that landed:**
+
+- Apps Script project `14gKJ0VW49RsSn4S03pgxKXy0sp4Z7Z3Wm1Wj8jQiWW5dj1sFuPnp95sh`
+  now has `PartnerPokeDrafts.gs` + extended `warmup_review_api.gs`.
+- `GROK_API_KEY` and `DRY_RUN` (initially `true`, flipped) added as
+  Script Properties.
+- Manual run from IDE Run button confirmed working; no auto cron
+  yet (intentional).
+
+**Known v0 quirks worth flagging for v0.1:**
+
+1. `networkRate=0` in the logs — `partners-velocity.json` doesn't
+   carry `units_last_90_days` / `units_90d` in the shape the GAS
+   expects. The dynamic re-poke cadence degenerates to the 3-day
+   floor as a result. Doesn't break v0 (stock signals still surface
+   correctly), but the cadence won't actually scale to fast-sellers
+   until the velocity-JSON key name is verified and the GAS field
+   lookup corrected.
+2. Founder Haus surfaced as self-poke even though Eric has email
+   somewhere — the `contributor_contact_id` in
+   `Agroverse Partners!E` doesn't join cleanly to `Contributors
+   contact information!A` for that partner. Backfill candidate.
+
+Both quirks are tracked here for the v0.1 follow-up; neither blocks
+the calibration week.
+
+**Next milestones (in order):**
+
+- Send at least one draft (or mark "skipped — already handled")
+  through the loop — confirms end-to-end including the
+  Partner Check-in entry update.
+- Let it run manually for ~1 week, 1–2 invocations per day, to
+  build a feel for which drafts are useful vs noise.
+- After the calibration week, unblock the `OPEN_FOLLOWUPS.md` entry
+  for wiring these signals into `ADVISORY_SNAPSHOT.md`.
+- Then v0.1: time-based daily cron trigger, the two quirks fixed,
+  auto Partner Check-in entry on send.
+
 ---
 
 *Plan written 2026-05-12. Refresh as implementation lands; mark
