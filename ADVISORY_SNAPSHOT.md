@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-13T03:37:54Z`
+- Generated (UTC): `2026-05-13T04:29:38Z`
 - Look-back: **7** calendar days (`2026-05-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -131,13 +131,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,959.98**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$36.72**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -180,6 +184,7 @@ _All dated lines on/after 2026-05-06_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+01068cc | 2026-05-12 20:40:28 -0700 | ci: regen package-lock.json (add @playwright/test entry) (#79)
 4feb157 | 2026-05-12 16:20:52 -0700 | blog/far-end: fix Kirsten's location description (#78)
 95fd436 | 2026-05-12 16:19:02 -0700 | blog: The far end is the human end (Field Signals #3) (#77)
 c7cd571 | 2026-05-12 15:33:17 -0700 | index.html: pivot trees/mo filter to deny-list (Freight Provider, Supplier) (#76)
@@ -218,6 +223,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b169712 | 2026-05-12 20:38:10 -0700 | Merge pull request #132 from TrueSightDAO/auto/advisory-refresh-2026-05-13
+6492d04 | 2026-05-13 03:38:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 846f2de | 2026-05-12 15:36:14 -0700 | Partner Check-in dual-use + queued follow-ups for paste/beer-hall/inventory tag (#131)
 dc4c82b | 2026-05-12 13:15:37 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
 3b9d89d | 2026-05-12 13:15:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
@@ -256,8 +263,6 @@ b2fa5bf | 2026-05-10 20:00:15 -0700 | Flow 4 (managed-ledger Stripe inflows) —
 1c6ccd8 | 2026-05-10 19:15:49 -0700 | docs: add live stripe_sales_sync doGet deployment URL + Sidekiq worker
 5cd0dab | 2026-05-10 18:47:31 -0700 | docs: [LEDGER_ID] bracketed pattern for Items Purchased routing
 d5e0fe8 | 2026-05-10 18:42:14 -0700 | docs: all 4 Stripe flows documented + doGet/Sidekiq trigger pattern
-b3ff7ae | 2026-05-10 18:32:59 -0700 | docs: correct Stripe flow — webhook → MetaCheckoutOrderSync → StripeCheckoutLog (not built-in)
-30ac4f0 | 2026-05-10 18:29:43 -0700 | docs: Stripe→Ledger routing flow chart + metadata.ledger routing pattern
 … (truncated)
 ```
 
@@ -290,6 +295,7 @@ b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted
 ### `dapp` → `dapp`
 
 ```
+e701fd3 | 2026-05-12 20:43:06 -0700 | ci(tests): gracefully skip routes_smoke when local env absent (#251)
 99c181b | 2026-05-12 15:51:11 -0700 | partner_check_in: type-to-filter combobox on Partner dropdown (#250)
 710c16f | 2026-05-12 15:44:56 -0700 | partner_check_in: type-to-filter combobox on Contributor Name dropdown (#249)
 07a2b01 | 2026-05-12 15:23:05 -0700 | DApp: Freight Provider whitelist + bell per-item deep-links (#248)
@@ -329,7 +335,6 @@ c39282a | 2026-05-06 20:20:16 -0700 | [autopilot] Fix tight spacing between the 
 8c745db | 2026-05-06 20:15:22 -0700 | chore: bump menu.js cache buster to 20260507 for Asset Receipt Reporter
 5e97a05 | 2026-05-06 20:09:30 -0700 | [autopilot] Fix menu.js (#216)
 a921999 | 2026-05-06 19:56:23 -0700 | fix: correct Currency placeholder text for asset receipt page
-3ccbae6 | 2026-05-06 19:55:45 -0700 | [autopilot] Create report_asset_receipt.html (#215)
 … (truncated)
 ```
 
@@ -382,6 +387,7 @@ c3a0b0f | 2026-05-07 08:50:11 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+5cd283f | 2026-05-12 20:41:29 -0700 | ci: regen sitemap.xml (64 blog post URLs) (#106)
 ca1d063 | 2026-05-12 09:21:09 -0700 | feat(mission): replace color photo on Mission stat-card with B&W SVG pictogram (#105)
 2842843 | 2026-05-10 18:29:09 -0700 | Fix upside-down black-king-ilheus-header.jpg (rotate 180°) (#104)
 87e2843 | 2026-05-10 18:17:23 -0700 | Cross-link to capoeira.agroverse.shop from Bico Duro post + Itacaré experience (#103)
@@ -454,6 +460,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 20:54:35 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-06`; scanned last **393** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
