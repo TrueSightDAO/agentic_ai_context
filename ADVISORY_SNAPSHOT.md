@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-13T04:29:38Z`
+- Generated (UTC): `2026-05-13T09:25:36Z`
 - Look-back: **7** calendar days (`2026-05-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -223,6 +223,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+68d415f | 2026-05-12 21:29:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
+527a171 | 2026-05-12 21:29:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 b169712 | 2026-05-12 20:38:10 -0700 | Merge pull request #132 from TrueSightDAO/auto/advisory-refresh-2026-05-13
 6492d04 | 2026-05-13 03:38:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 846f2de | 2026-05-12 15:36:14 -0700 | Partner Check-in dual-use + queued follow-ups for paste/beer-hall/inventory tag (#131)
@@ -261,8 +263,6 @@ b99be77 | 2026-05-10 20:07:10 -0700 | Add unified Mermaid overview diagram to ST
 b2fa5bf | 2026-05-10 20:00:15 -0700 | Flow 4 (managed-ledger Stripe inflows) — match shipped implementation (#114)
 7815702 | 2026-05-10 19:41:16 -0700 | docs: mark stripe routing GAS deploy complete (#113)
 1c6ccd8 | 2026-05-10 19:15:49 -0700 | docs: add live stripe_sales_sync doGet deployment URL + Sidekiq worker
-5cd0dab | 2026-05-10 18:47:31 -0700 | docs: [LEDGER_ID] bracketed pattern for Items Purchased routing
-d5e0fe8 | 2026-05-10 18:42:14 -0700 | docs: all 4 Stripe flows documented + doGet/Sidekiq trigger pattern
 … (truncated)
 ```
 
@@ -359,6 +359,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+511c85d | 2026-05-13 09:21:57 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 591425a | 2026-05-12 10:14:12 -0700 | chore(inventory): refresh after Currencies row 82 Inventory Type fix (#15)
 58ee158 | 2026-05-12 09:14:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0bb1c4d | 2026-05-11 18:42:11 -0700 | chore(inventory): refresh after Cacao Mass typo fix in Currencies tab (#13)
@@ -484,7 +485,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 20:54:35 |
+| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 1:56:04 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-06`; scanned last **393** data rows)
 
