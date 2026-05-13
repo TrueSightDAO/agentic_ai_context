@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-13T15:23:30Z`
+- Generated (UTC): `2026-05-13T20:17:27Z`
 - Look-back: **7** calendar days (`2026-05-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -223,6 +223,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f6cf878 | 2026-05-13 08:23:47 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
+60c7dab | 2026-05-13 08:23:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 424913c | 2026-05-13 02:25:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
 fa9136c | 2026-05-13 02:25:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 68d415f | 2026-05-12 21:29:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
@@ -261,8 +263,6 @@ e643d4b | 2026-05-11 03:07:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 94b47db | 2026-05-10 21:44:29 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
 186257b | 2026-05-10 21:44:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 da2d475 | 2026-05-10 21:26:16 -0700 | docs: flag Shipment Ledger Listing col AC `Program` as REQUIRED for new ledgers (#116)
-b99be77 | 2026-05-10 20:07:10 -0700 | Add unified Mermaid overview diagram to STRIPE_LEDGER_ROUTING (#115)
-b2fa5bf | 2026-05-10 20:00:15 -0700 | Flow 4 (managed-ledger Stripe inflows) — match shipped implementation (#114)
 … (truncated)
 ```
 
@@ -485,7 +485,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 7:53:59 |
+| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 12:50:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-06`; scanned last **393** data rows)
 
