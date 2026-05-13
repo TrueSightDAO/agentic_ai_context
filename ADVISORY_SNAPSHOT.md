@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-12T20:15:23Z`
-- Look-back: **7** calendar days (`2026-05-05` → today UTC)
+- Generated (UTC): `2026-05-13T03:37:54Z`
+- Look-back: **7** calendar days (`2026-05-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 233 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 233 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 232 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 232 | **behind** |
 
 ---
 
@@ -131,17 +131,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,960.24**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$36.46**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -151,16 +147,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _Lines in window matching configured names or status keywords:_
 
-- 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now has two-layer duplicate guard + approval gate: (1) Session history check. (2) DAO ledger ground truth via `lookup_qr_code`. (3) Transaction approval gate — returns `pending_approval` JSON until user says "Approved", "go ahead", "execute", etc. Tested end-to-end: upload → lookup → propose → approve → submit → duplicate blocked.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
 
-_All dated lines on/after 2026-05-05_ (15):
+_All dated lines on/after 2026-05-06_ (10):
 
-- 2026-05-05 | claude | Autopilot self-improvement loop: added SELF-IMPROVEMENT section to system prompt. LLM now proactively detects patterns (OCR errors, misreads, protocol violations) and proposes code-level fixes via `open_fix_pr`. NEVER auto-merges — PRs go through human review. Safety hooks block dangerous ops. This creates a cybernetic adversarial loop: governor (discriminator) corrects → autopilot (generator) improves → system sharpens itself. Production-safe: crashes are prevented by PR gate — no hot code changes while serving users.
-- 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now enforces canonical dao_client labels via `_normalize_submission_labels()` — maps 30+ LLM-invented aliases to canonical field names, drops non-canonical descriptive keys, validates required fields per event type.
-- 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now has two-layer duplicate guard + approval gate: (1) Session history check. (2) DAO ledger ground truth via `lookup_qr_code`. (3) Transaction approval gate — returns `pending_approval` JSON until user says "Approved", "go ahead", "execute", etc. Tested end-to-end: upload → lookup → propose → approve → submit → duplicate blocked.
-- 2026-05-05 | claude (test-automation) | Created tests/e2e_governor_chat.py — AI-retrainable test suite: image upload + analysis, QR correction, approval gate, duplicate guard, XML leak check, session persistence. Run with: python tests/e2e_governor_chat.py. Future AIs: use this to verify autopilot behavior after changes.
-- 2026-05-05 | claude | truesight_autopilot: Major enhancements — (1) Two-stage vision pipeline: uploaded images → Grok (visual context) + pyzbar (authoritative barcode) → DeepSeek (DAO tools). (2) Agentic chat loop supports 5 rounds of tool calls (was 2). (3) DeepSeek XML tool-call fallback parser in llm_client.py (catches `<function_calls>` leaks). (4) Governor identity injection from RSA key lookup. (5) Session persistence across server restarts via /tmp/autopilot_sessions/. (6) GitHubClient auto-prepends `TrueSightDAO/` to repo names (was silently failing with 404). (7) Copy-to-clipboard button for code blocks in chat. (8) Print-friendly CSS. See AUTOPILOT_CODE_MODIFICATIONS.md for full architecture and production considerations.
 - 2026-05-06 | claude | Implemented end-to-end asset receipt pipeline: new [ASSET RECEIPT EVENT] (dao_client/report_asset_receipt.py), Edgar handler in dao_controller.rb, GAS at asset-receipt-ingest (deployed), --attachment flag on all dao_client modules. Full double-entry purchase workflow documented in DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md.
 - 2026-05-06 | claude | Added Git Worktree Isolation rule to AUTOPILOT_CODE_MODIFICATIONS.md — autopilot must use /tmp/autopilot_worktrees/<repo>-<branch> per fix PR to prevent concurrent governor session conflicts.
 - 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
@@ -190,6 +180,10 @@ _All dated lines on/after 2026-05-05_ (15):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4feb157 | 2026-05-12 16:20:52 -0700 | blog/far-end: fix Kirsten's location description (#78)
+95fd436 | 2026-05-12 16:19:02 -0700 | blog: The far end is the human end (Field Signals #3) (#77)
+c7cd571 | 2026-05-12 15:33:17 -0700 | index.html: pivot trees/mo filter to deny-list (Freight Provider, Supplier) (#76)
+f80f21c | 2026-05-12 15:29:32 -0700 | index.html: defensive filter — trees/mo excludes non-retail partner types (#75)
 ab1aaec | 2026-05-12 09:27:18 -0700 | blog: 'The shared memory is the moat' (Field Signals #2) (#74)
 6499565 | 2026-05-11 18:51:50 -0700 | truesight_me: fix redundant 'awaiting sale' on Pipeline card (#73)
 c7c0ac9 | 2026-05-11 18:50:42 -0700 | truesight_me: rewrite Monthly Revenue Funding Trees chart blurb (#72)
@@ -218,12 +212,15 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `market_research` → `go_to_market`
 
 ```
-1b44452 | 2026-05-11 14:51:48 -0700 | Fix inventory read: use productId not sku
+0488498 | 2026-05-12 20:29:37 -0700 | ci: fix beer-hall-digest-daily step indent (YAML parse fix) (#124)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+846f2de | 2026-05-12 15:36:14 -0700 | Partner Check-in dual-use + queued follow-ups for paste/beer-hall/inventory tag (#131)
+dc4c82b | 2026-05-12 13:15:37 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
+3b9d89d | 2026-05-12 13:15:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 250f9fc | 2026-05-12 12:04:59 -0700 | PARTNER_POKE_SCHEDULER v0.1: auto-file Partner Check-in on send (#130)
 033b0e8 | 2026-05-12 11:56:13 -0700 | PARTNER_POKE_SCHEDULER v0: mark verified after first production run (#129)
 7817f57 | 2026-05-12 11:31:00 -0700 | OPEN_FOLLOWUPS: broaden advisory-bell entry from partner check-ins to all 3 signal sources (#128)
@@ -261,9 +258,6 @@ b2fa5bf | 2026-05-10 20:00:15 -0700 | Flow 4 (managed-ledger Stripe inflows) —
 d5e0fe8 | 2026-05-10 18:42:14 -0700 | docs: all 4 Stripe flows documented + doGet/Sidekiq trigger pattern
 b3ff7ae | 2026-05-10 18:32:59 -0700 | docs: correct Stripe flow — webhook → MetaCheckoutOrderSync → StripeCheckoutLog (not built-in)
 30ac4f0 | 2026-05-10 18:29:43 -0700 | docs: Stripe→Ledger routing flow chart + metadata.ledger routing pattern
-194bd96 | 2026-05-10 17:51:15 -0700 | docs: Ledger ID naming convention + auto-snapshot script reference
-d7768fb | 2026-05-10 17:16:48 -0700 | docs: simplify ledger creation — use the AGL template (File → Make a copy)
-3189cb5 | 2026-05-10 17:03:04 -0700 | docs: add managed ledger Google Sheets creation process to pattern doc (#112)
 … (truncated)
 ```
 
@@ -291,12 +285,15 @@ e5aec49 | 2026-05-10 15:23:03 -0700 | feat: currency_conversion_processing.gs (m
 77cd437 | 2026-05-09 23:15:01 -0700 | fix(pipeline-metrics): coerce TIME-cast Date cells back to integer counts (#273)
 d842b8f | 2026-05-06 18:13:06 -0700 | feat(gas): add asset-receipt-ingest GAS for [ASSET RECEIPT EVENT] processing (#272)
 b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted agent (autopilot) submissions approved by governors (#271)
-46e1557 | 2026-05-05 13:06:11 -0700 | feat(gas): add body_full and prospect_reply_body to warmup review queue API (#270)
 ```
 
 ### `dapp` → `dapp`
 
 ```
+99c181b | 2026-05-12 15:51:11 -0700 | partner_check_in: type-to-filter combobox on Partner dropdown (#250)
+710c16f | 2026-05-12 15:44:56 -0700 | partner_check_in: type-to-filter combobox on Contributor Name dropdown (#249)
+07a2b01 | 2026-05-12 15:23:05 -0700 | DApp: Freight Provider whitelist + bell per-item deep-links (#248)
+5c44686 | 2026-05-12 15:19:48 -0700 | partner_check_in: extend picker whitelist to include Operator type (#247)
 6131e30 | 2026-05-12 11:33:28 -0700 | service-worker: bump CACHE_NAME v12 → v13 (#246)
 97fb379 | 2026-05-12 11:31:38 -0700 | partner_check_in: tabbed Needs Attention + logo + cache-bust v13 (#245)
 3d8bd03 | 2026-05-12 11:25:39 -0700 | partner_check_in: cache-bust + desktop two-column layout (#244)
@@ -333,10 +330,6 @@ c39282a | 2026-05-06 20:20:16 -0700 | [autopilot] Fix tight spacing between the 
 5e97a05 | 2026-05-06 20:09:30 -0700 | [autopilot] Fix menu.js (#216)
 a921999 | 2026-05-06 19:56:23 -0700 | fix: correct Currency placeholder text for asset receipt page
 3ccbae6 | 2026-05-06 19:55:45 -0700 | [autopilot] Create report_asset_receipt.html (#215)
-ed5435d | 2026-05-06 17:35:34 -0700 | [autopilot] Fix "Loading your TDG holdings…" stuck state on chat.html
-8e20fc4 | 2026-05-06 17:23:17 -0700 | fix: skip routes.js probe on localhost to prevent reload loop
-6ae7ea7 | 2026-05-06 16:54:53 -0700 | fix: resolve non-QR proposals, capture all json blocks, mobile badge positioning
-3e01202 | 2026-05-06 16:42:01 -0700 | fix: restore proposal cards on session reload, track all pending approvals, add visible pending badge
 … (truncated)
 ```
 
@@ -384,7 +377,6 @@ e2f837e | 2026-05-08 17:28:33 -0700 | chore: refresh Agroverse store inventory s
 447a673 | 2026-05-08 08:00:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c3a0b0f | 2026-05-07 08:50:11 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0a7a5ae | 2026-05-06 19:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
-c2b7e59 | 2026-05-05 08:29:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -416,6 +408,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-13T033754Z_partner-check-in-v03-field-signals-3-live.md`
+
+- **posted_at_utc:** `2026-05-13T03:37:54Z`  
+- **slug:** `partner-check-in-v03-field-signals-3-live`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Partner Check-in v0.3, the AI-first Partner Poke Scheduler, and Field Signals #3 shipped today — turning partner workflow into an automated, bell-driven loop.
+  - **Partner Check-in v0.3 live** — new contributor-leading UI, auto-scheduling of next check-ins, and a "Submit Another" flow to batch updates faster.
+
 ### `beer-hall_2026-05-11T170750Z_fundraisers-page-live-qmdj-advisor-currency-tools.md`
 
 - **posted_at_utc:** `2026-05-11T17:07:50Z`  
@@ -433,15 +434,6 @@ _(no commits on origin/master in window)_
 
   Batch inventory movement, oracle persistence, and agentic authorization all landed since yesterday's digest — the biggest cluster of contributor-facing wiring in this cycle.
   - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; a same-day fix confirmed all three input methods working.
-
-### `beer-hall_2026-05-09T023633Z_batch-qr-inventory-oracle-persistence-prospect-auto-promote.md`
-
-- **posted_at_utc:** `2026-05-09T02:36:33Z`  
-- **slug:** `batch-qr-inventory-oracle-persistence-prospect-auto-promote`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Batch inventory movements land in the DApp, the I Ching oracle starts persisting draws to a permanent log, and the outbound sales pipeline gains an auto-promotion rule for replied prospects.
-  - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; all three input methods confirmed working in today's follow-up fix.
 
 ---
 
@@ -462,39 +454,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/12/2026 12:51:18 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-05`; scanned last **393** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
