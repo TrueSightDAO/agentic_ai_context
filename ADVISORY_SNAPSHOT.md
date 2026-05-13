@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-13T09:25:36Z`
+- Generated (UTC): `2026-05-13T15:23:30Z`
 - Look-back: **7** calendar days (`2026-05-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-12T10:59:14.453Z`
+- Generated (UTC): `2026-05-13T10:59:15.272Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **15**
@@ -64,16 +64,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **174**, follow_up **67**, bulk **0**, unknown **2** (data rows: **243**)
-- Distinct recipient addresses (`to_email`, by log `status`): warmup **85**, follow_up **21**, bulk **0**, unknown **2**
+- **Email Agent Follow Up** — logged sends: warmup **174**, follow_up **69**, bulk **0**, unknown **2** (data rows: **245**)
+- Distinct recipient addresses (`to_email`, by log `status`): warmup **85**, follow_up **22**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
 - **AI: Warm up prospect**: **78** stores — sum logged **warmup** sends (AU): **147**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **4** / **5** / **69**; follow-up depth (none / once / ≥2): **78** / **0** / **0**
-- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **63**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **3** / **17**
+- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **63**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **3** / **17**
+- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
 
 ---
 
@@ -223,6 +223,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+424913c | 2026-05-13 02:25:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
+fa9136c | 2026-05-13 02:25:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 68d415f | 2026-05-12 21:29:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
 527a171 | 2026-05-12 21:29:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 b169712 | 2026-05-12 20:38:10 -0700 | Merge pull request #132 from TrueSightDAO/auto/advisory-refresh-2026-05-13
@@ -261,8 +263,6 @@ e643d4b | 2026-05-11 03:07:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 da2d475 | 2026-05-10 21:26:16 -0700 | docs: flag Shipment Ledger Listing col AC `Program` as REQUIRED for new ledgers (#116)
 b99be77 | 2026-05-10 20:07:10 -0700 | Add unified Mermaid overview diagram to STRIPE_LEDGER_ROUTING (#115)
 b2fa5bf | 2026-05-10 20:00:15 -0700 | Flow 4 (managed-ledger Stripe inflows) — match shipped implementation (#114)
-7815702 | 2026-05-10 19:41:16 -0700 | docs: mark stripe routing GAS deploy complete (#113)
-1c6ccd8 | 2026-05-10 19:15:49 -0700 | docs: add live stripe_sales_sync doGet deployment URL + Sidekiq worker
 … (truncated)
 ```
 
@@ -485,7 +485,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 1:56:04 |
+| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 7:53:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-06`; scanned last **393** data rows)
 
