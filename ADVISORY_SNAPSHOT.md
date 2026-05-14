@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-14T09:15:50Z`
+- Generated (UTC): `2026-05-14T15:05:57Z`
 - Look-back: **7** calendar days (`2026-05-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-13T10:59:15.272Z`
+- Generated (UTC): `2026-05-14T10:59:15.058Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **15**
@@ -49,7 +49,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 - Deferred / Revisit later: 5  (#1)
 - AI: Contact Form found: 109  (#3)
-- AI: No fit signal: 155  (#6)
+- AI: No fit signal: 154  (#6)
 - Research: 62  (#8)
 - AI: Enrich with contact: 3  (#9)
 - AI: Enrich — manual: 90  (#10)
@@ -60,7 +60,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - On Hold: 18  (#20)
 - Not Appropriate: 74  (#21)
 - **Partnered: 15**  (#22)
-- AI: Warm up prospect: 78  (#9999)
+- AI: Warm up prospect: 79  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
@@ -69,7 +69,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **78** stores — sum logged **warmup** sends (AU): **147**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **4** / **5** / **69**; follow-up depth (none / once / ≥2): **78** / **0** / **0**
+- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **147**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **5** / **69**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -219,6 +219,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3a5cde4 | 2026-05-14 02:16:06 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
+1554074 | 2026-05-14 02:16:05 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 76bf965 | 2026-05-13 21:28:52 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
 1ea5fb2 | 2026-05-13 21:28:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 c4ccc2b | 2026-05-13 19:53:48 -0700 | Two cross-cutting design patterns: Four-Wire Loop + Build/Document/Story (#135)
@@ -257,8 +259,6 @@ c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview
 7227b35 | 2026-05-11 14:43:25 -0700 | Docs: Canonical partner addresses in Partners!J + population guide (#119)
 0abd75a | 2026-05-11 13:39:32 -0700 | PARTNER_OUTREACH_PROTOCOL §12: Outbound Review URL convention (#118)
 e9b14c7 | 2026-05-11 13:17:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
-55cf3e9 | 2026-05-11 13:17:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
-3325185 | 2026-05-11 10:12:08 -0700 | docs(beer-hall): name the LLM-draft script + add automated-pipeline diagram + troubleshooting (#117)
 … (truncated)
 ```
 
@@ -482,7 +482,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 1:50:30 |
+| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 7:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-07`; scanned last **393** data rows)
 
