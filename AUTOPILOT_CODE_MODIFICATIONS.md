@@ -574,3 +574,68 @@ ships (likely as `BUGSNAG_PROJECT_REPOS` JSON env var or a config file),
 2. Call `FixAgent().run_simple(repo, issue_description=f"{error_class}: {first_stack_frame}")`.
 3. Return the PR URL so the dispatcher labels the source email.
 
+
+---
+
+## 11. Bugsnag self-improvement loop (May 2026)
+
+The outbound side of the Bugsnag loop is wired in `app/main.py`'s
+`_init_bugsnag()` and combines with the inbound `bugsnag_error` classifier
+(§10) to form a closed self-improvement loop:
+
+```
+autopilot crash / logger.error(...)
+  → BugsnagHandler attached to root logger at logging.ERROR
+  → bugsnag.notify() → Bugsnag dashboard
+  → Bugsnag emails 'New error in autopilot' to notifications@bugsnag.com
+  → autopilot's email_poller picks it up (via Gmail polling)
+  → bugsnag_error classifier (§10) triages
+  → AI/proposed fix PR opened against truesight_autopilot
+  → AI/proposed fix Gmail label applied to the source email
+  → operator reviews the PR, merges or rejects
+```
+
+### Configuration
+
+Two env vars in `/opt/truesight_autopilot/.env`:
+
+| Var                       | Required | Notes                                                           |
+|---------------------------|----------|-----------------------------------------------------------------|
+| `BUG_SNAG_API`            | Yes      | API key from Bugsnag project settings. Empty = self-reporting silently disabled. The env var name matches the existing autopilot/.env convention; `config.py` also accepts `BUGSNAG_API_KEY` as an alias. |
+| `BUGSNAG_RELEASE_STAGE`   | No       | Default `production`. Bugsnag's `notify_release_stages` is `["production", "staging"]` — anything else is logged but not sent. |
+
+### What gets reported
+
+- **Uncaught exceptions** in any module that uses Python's standard
+  logging (which is everything in autopilot).
+- **`logger.error(...)` calls** anywhere in the codebase — the
+  `BugsnagHandler` is attached to the root logger at level `logging.ERROR`.
+- **Not reported:** `logger.warning(...)` or `logger.info(...)`. Add
+  another handler tier if those need to surface.
+
+### Reaching beyond just autopilot
+
+`bugsnag_error` doesn't filter by project — it fires on any email from
+`@bugsnag.com` matching the subject regex. So autopilot now triages
+errors from **every Bugsnag project Gary has**, not just its own. First
+production run picked up a `HTTPError in S3CacheJsonPagesDiff@s3_cacher`
+from the `[Krake Publisher]` project automatically. Side effect: this
+broadens the bugsnag_error v0.1 follow-up from "map autopilot → autopilot"
+to a more general project-name → repo-name lookup table.
+
+### Verification on production
+
+```
+ssh truesight-autopilot 'sudo journalctl -u truesight-autopilot --since "2 minutes ago" --no-pager | grep -iE "bugsnag"'
+```
+
+Expected on a healthy startup:
+```
+INFO:autopilot:Bugsnag self-reporting enabled (release_stage=production, project_root=/opt/truesight_autopilot)
+```
+
+To test the inbound side end-to-end: trigger any `logger.error(...)` in
+autopilot (or wait for Bugsnag to email about a real upstream error),
+watch for the `bugsnag_error` classification line in the journal, then
+check Gmail for the `AI/proposed fix` label on the source email.
+
