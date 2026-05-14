@@ -440,3 +440,137 @@ with sync_playwright() as p:
     page.screenshot(path="/tmp/qa_pass.png")
     browser.close()
 ```
+
+---
+
+## 8. AWS Monitoring (multi-account, May 2026)
+
+### 8.1 Accounts and labels
+
+TrueSight DAO operates AWS workloads across two member-contributed accounts:
+
+| Label       | Account ID    | Provided by | Legacy alias in env / docs    |
+|-------------|---------------|-------------|-------------------------------|
+| `nelanco`   | `767697632458`| Nelanco     | `CYPHER_DEFENCE_*`            |
+| `explorya`  | `440626669078`| Explorya    | `TRUESIGHT_DAO_AUTOPILOT_*`   |
+
+The labels are the contributing-member's name (lowercased). Every log line
+from `app/aws_monitor.py` is prefixed with `[<label>]` so journal output
+stays disambiguated when monitoring multiple accounts.
+
+### 8.2 Env-var convention (`/opt/truesight_autopilot/.env` on production)
+
+```
+AWS_ACCOUNTS=nelanco,explorya
+AWS_ACCESS_KEY_ID_NELANCO=<value>
+AWS_SECRET_ACCESS_KEY_NELANCO=<value>
+AWS_REGION_NELANCO=us-east-1
+AWS_ACCESS_KEY_ID_EXPLORYA=<value>
+AWS_SECRET_ACCESS_KEY_EXPLORYA=<value>
+AWS_REGION_EXPLORYA=us-east-1
+```
+
+Source of truth for the keypair values is `cypher_def/.env` (vars
+`CYPHER_DEFENCE_AWS_KEY/SECRET` and `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY/SECRET`).
+The autopilot `.env` is a re-mapping of those values into the
+DAO-member-labeled namespace.
+
+Backwards-compat: if `AWS_ACCOUNTS` is unset, `AWSMonitor` falls back to
+the legacy single-account env (`AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`
+/ `AWS_REGION`) under the implicit label `default` — unchanged behavior
+for any single-account deployment.
+
+### 8.3 What gets monitored
+
+- **CloudWatch** (`AWS/EC2` namespace): per-instance `StatusCheckFailed`
+  metric, polled every 5 minutes. Active for both accounts.
+- **Cost Explorer** (`get_cost_and_usage`): daily blended cost by service,
+  polled once per 24h cycle. Active for both accounts.
+- **AWS Health** (`describe_events`): graceful-degrades on accounts without
+  Business/Enterprise support — `SubscriptionRequiredException` flips a
+  per-account flag at first call, logs INFO once, and the polling loop
+  silently skips the call thereafter. Currently disabled on both accounts
+  (neither has a paid support plan); can be re-enabled by upgrading the
+  account's support tier without code changes.
+
+### 8.4 Verifying production state
+
+```
+ssh truesight-autopilot 'sudo journalctl -u truesight-autopilot --since "2 minutes ago" --no-pager | grep autopilot.aws'
+```
+
+Expected lines on a healthy startup (both accounts):
+```
+[nelanco]  AWS CloudWatch connected (account 767697632458, region us-east-1)
+[explorya] AWS CloudWatch connected (account 440626669078, region us-east-1)
+[nelanco]  AWS Health API unavailable (account lacks Business support). ...
+[explorya] AWS Health API unavailable (account lacks Business support). ...
+[nelanco]  AWS daily spend (YYYY-MM-DD): $X
+[explorya] AWS daily spend (YYYY-MM-DD): $X
+```
+
+If only one account appears, check the env vars and look for a
+`AWS_ACCESS_KEY_ID_<LABEL> or AWS_SECRET_ACCESS_KEY_<LABEL> missing` warning.
+
+---
+
+## 9. AI/proposed fix labels (PR + Gmail, May 2026)
+
+When autopilot's email-triage loop opens a fix PR for an external error
+signal, **two `AI/proposed fix` labels** are applied so Gary can find both
+the PR and the source email with a single search string:
+
+1. **GitHub PR label** — `github_client.open_pr()` accepts a `labels=[...]`
+   parameter and idempotently creates+attaches them in the target repo
+   (warm yellow `#f4a300`, the operator-attention convention). Both
+   `FixAgent.run_simple()` and `FixAgent.run()` pass
+   `labels=["AI/proposed fix"]` when opening their PRs.
+2. **Gmail label on the source email** — `EmailPoller._handle()` captures
+   the PR URL returned by each handler. When non-None, it calls
+   `_apply_gmail_label(msg_id, "AI/proposed fix")`, which idempotently
+   get-or-creates the Gmail label and attaches it via
+   `users.messages.modify`. Failures log a warning but never roll back the
+   PR — the GitHub PR is the authoritative artifact, the Gmail label is
+   just an inbox-side index.
+
+Operator UX: search "label:AI/proposed fix" in Gmail to triage what's
+awaiting review; same string in the GitHub PR list filter shows the
+corresponding PRs.
+
+---
+
+## 10. Email classifiers (current coverage as of May 2026)
+
+`app/email_poller.py` Tier-1 rule-based classifier dispatches actionable
+emails to typed handlers:
+
+| Action key       | Trigger                                                        | Handler status                                            |
+|------------------|----------------------------------------------------------------|------------------------------------------------------------|
+| `github_failure` | Subject matches `workflow run failed / action required / scheduled workflow failed` | **Active.** Extracts repo + run_id, fetches log, diagnoses via LLM, runs FixAgent, opens PR with `AI/proposed fix` label, applies Gmail label to source email. |
+| `bugsnag_error`  | Sender matches `@bugsnag.com` AND subject matches `[bugsnag] / new error / error in / reopened / spike in errors` | **v0 stub.** Parses project + error_class, logs the triage, returns None. PR-creation deferred to v0.1 pending an operator-maintained Bugsnag-project → github-repo mapping. |
+| `gas_error`      | Subject matches `google apps script / script has failed / execution error` | TODO — classifier active, handler logs only. |
+| `security_alert` | Subject matches `security alert / dependabot / vulnerability`  | TODO — classifier active, handler logs only. |
+
+The Tier-2 path (LLM classification for ambiguous emails) is intentionally
+not wired — keeps cost predictable. New senders / subject patterns get
+added as Tier-1 regexes when worth typing.
+
+### 10.1 Adding a new classifier
+
+1. Define the regex(es) at module top (sender + subject when both are
+   useful gates).
+2. Add a branch in `_classify()` returning a new action key.
+3. Add a branch in `_handle()` calling a new `_handle_<action>()` method.
+4. The handler returns `pr_url | None`; the dispatcher applies the
+   `AI/proposed fix` Gmail label automatically when non-None is returned.
+
+### 10.2 Bugsnag handler v0.1 (queued)
+
+Once the operator-maintained Bugsnag-project → github-repo mapping
+ships (likely as `BUGSNAG_PROJECT_REPOS` JSON env var or a config file),
+`_handle_bugsnag_error()` should:
+
+1. Look up the repo for the parsed project name.
+2. Call `FixAgent().run_simple(repo, issue_description=f"{error_class}: {first_stack_frame}")`.
+3. Return the PR URL so the dispatcher labels the source email.
+
