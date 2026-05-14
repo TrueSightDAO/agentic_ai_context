@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-14T04:28:31Z`
+- Generated (UTC): `2026-05-14T09:15:50Z`
 - Look-back: **7** calendar days (`2026-05-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -219,6 +219,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+76bf965 | 2026-05-13 21:28:52 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
+1ea5fb2 | 2026-05-13 21:28:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 c4ccc2b | 2026-05-13 19:53:48 -0700 | Two cross-cutting design patterns: Four-Wire Loop + Build/Document/Story (#135)
 dcbd470 | 2026-05-13 19:12:52 -0700 | AUTOPILOT_CODE_MODIFICATIONS §11: Bugsnag self-improvement loop (#134)
 55d7d44 | 2026-05-13 19:04:19 -0700 | AUTOPILOT_CODE_MODIFICATIONS: doc multi-account AWS, AI/proposed-fix labels, Bugsnag classifier (#133)
@@ -257,8 +259,6 @@ c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview
 e9b14c7 | 2026-05-11 13:17:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
 55cf3e9 | 2026-05-11 13:17:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 3325185 | 2026-05-11 10:12:08 -0700 | docs(beer-hall): name the LLM-draft script + add automated-pipeline diagram + troubleshooting (#117)
-5c7f1fe | 2026-05-11 08:45:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
-1de93ef | 2026-05-11 08:45:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
 … (truncated)
 ```
 
@@ -355,6 +355,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+e68cfc3 | 2026-05-14 09:11:38 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 511c85d | 2026-05-13 09:21:57 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 591425a | 2026-05-12 10:14:12 -0700 | chore(inventory): refresh after Currencies row 82 Inventory Type fix (#15)
 58ee158 | 2026-05-12 09:14:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -481,7 +482,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 20:50:33 |
+| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 1:50:30 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-07`; scanned last **393** data rows)
 
