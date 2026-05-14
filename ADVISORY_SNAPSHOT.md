@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-14T15:05:57Z`
+- Generated (UTC): `2026-05-14T20:14:07Z`
 - Look-back: **7** calendar days (`2026-05-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -219,6 +219,8 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a1cc9bc | 2026-05-14 08:06:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
+7f90a0a | 2026-05-14 08:06:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 3a5cde4 | 2026-05-14 02:16:06 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
 1554074 | 2026-05-14 02:16:05 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 76bf965 | 2026-05-13 21:28:52 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
@@ -257,8 +259,6 @@ c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview
 7b8751b | 2026-05-11 21:14:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 55b4257 | 2026-05-11 19:35:13 -0700 | Edgar nginx ops: document heredoc \$host trap + sites-enabled symlink check (#120)
 7227b35 | 2026-05-11 14:43:25 -0700 | Docs: Canonical partner addresses in Partners!J + population guide (#119)
-0abd75a | 2026-05-11 13:39:32 -0700 | PARTNER_OUTREACH_PROTOCOL §12: Outbound Review URL convention (#118)
-e9b14c7 | 2026-05-11 13:17:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
 … (truncated)
 ```
 
@@ -482,7 +482,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 7:50:35 |
+| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 12:50:44 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-07`; scanned last **393** data rows)
 
