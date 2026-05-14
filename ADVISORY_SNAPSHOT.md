@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-13T20:17:27Z`
-- Look-back: **7** calendar days (`2026-05-06` → today UTC)
+- Generated (UTC): `2026-05-14T04:28:31Z`
+- Look-back: **7** calendar days (`2026-05-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 232 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 232 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 231 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 231 | **behind** |
 
 ---
 
@@ -133,9 +133,9 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,959.98**
+- USD on hand: **$2,959.75**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$36.72**
+- USD provisioned for voting-rights cash-out: **$36.96**
 
 ### In-transit freight (1 row)
 
@@ -149,16 +149,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_Lines in window matching configured names or status keywords:_
+_No lines matched name/keyword heuristics in this window._
 
-- 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
+_All dated lines on/after 2026-05-07_ (6):
 
-_All dated lines on/after 2026-05-06_ (10):
-
-- 2026-05-06 | claude | Implemented end-to-end asset receipt pipeline: new [ASSET RECEIPT EVENT] (dao_client/report_asset_receipt.py), Edgar handler in dao_controller.rb, GAS at asset-receipt-ingest (deployed), --attachment flag on all dao_client modules. Full double-entry purchase workflow documented in DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md.
-- 2026-05-06 | claude | Added Git Worktree Isolation rule to AUTOPILOT_CODE_MODIFICATIONS.md — autopilot must use /tmp/autopilot_worktrees/<repo>-<branch> per fix PR to prevent concurrent governor session conflicts.
-- 2026-05-06 | claude | PRs: truesight_autopilot #4 (upload_file_to_github tool), #5 (tool registration fix); dao_client #21 (report_asset_receipt module), #22 (CLI entry point fix), #23 (--attachment flag); sentiment_importer #1047 (ASSET RECEIPT handler); tokenomics #272 (GAS reference). Merged and deployed to Edgar production.
-- 2026-05-06 | claude | Processed first [ASSET RECEIPT EVENT] end-to-end: Bialetti Moka Express ($116.91, Amazon order 111-9241674-1033036). PDF uploaded to GitHub, CONTRIBUTION EVENT + ASSET RECEIPT EVENT submitted, GAS created offchain inventory leg and Currencies row. Pipeline verified working.
 - 2026-05-10 | claude | Managed ledger explorer pattern: Created reusable transparency dashboard infrastructure. treasury-cache/managed-ledgers/<ledger_name>.json → GitHub Pages explorer. First implementation: tribomirimbahia ledger (Tribo Bahia Mirim Capoeira donations). Documented in MANAGED_LEDGER_EXPLORER_PATTERN.md. New PROJect: tribomirimbahia (index.html blockchain-explorer UI).
 - 2026-05-10 | claude | Created TRIBO_MIRIM_BAHIA managed ledger: Google Sheet (1_MjYZBMoUZAmQvMi6KOml3A6shQg2sJdFEFt1QHHxtM) with AGL15-mirrored tab structure + formulas, registered in Shipment Ledger Listing (row 1001, Transaction Type=Donation), service accounts shared. Documented full creation process in MANAGED_LEDGER_EXPLORER_PATTERN.md §4.
 - 2026-05-11 | claude | Managed ledger snapshot pipeline: snapshot_managed_ledgers.py reads Shipment Ledger Listing, exports all active (non-COMPLETED/non-SUSPENDED) ledgers to treasury-cache/managed-ledgers/<LedgerID>.json. JSON naming now matches Column A Ledger ID (e.g. TBM.json, AGL4.json). Updated explorer, pattern doc, SCHEMA.md.
@@ -184,6 +178,8 @@ _All dated lines on/after 2026-05-06_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b05f58d | 2026-05-13 20:07:20 -0700 | blog: 'Three times is when you name it' (Field Signals #5) (#81)
+28b922a | 2026-05-13 19:46:11 -0700 | blog: 'The system that broke is the system that proposes the fix' (Field Signals #4) (#80)
 01068cc | 2026-05-12 20:40:28 -0700 | ci: regen package-lock.json (add @playwright/test entry) (#79)
 4feb157 | 2026-05-12 16:20:52 -0700 | blog/far-end: fix Kirsten's location description (#78)
 95fd436 | 2026-05-12 16:19:02 -0700 | blog: The far end is the human end (Field Signals #3) (#77)
@@ -223,6 +219,11 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c4ccc2b | 2026-05-13 19:53:48 -0700 | Two cross-cutting design patterns: Four-Wire Loop + Build/Document/Story (#135)
+dcbd470 | 2026-05-13 19:12:52 -0700 | AUTOPILOT_CODE_MODIFICATIONS §11: Bugsnag self-improvement loop (#134)
+55d7d44 | 2026-05-13 19:04:19 -0700 | AUTOPILOT_CODE_MODIFICATIONS: doc multi-account AWS, AI/proposed-fix labels, Bugsnag classifier (#133)
+0515e31 | 2026-05-13 13:17:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
+ab8cdbf | 2026-05-13 13:17:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 f6cf878 | 2026-05-13 08:23:47 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
 60c7dab | 2026-05-13 08:23:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 424913c | 2026-05-13 02:25:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
@@ -258,11 +259,6 @@ e9b14c7 | 2026-05-11 13:17:13 -0700 | chore(previews): refresh Beer Hall preview
 3325185 | 2026-05-11 10:12:08 -0700 | docs(beer-hall): name the LLM-draft script + add automated-pipeline diagram + troubleshooting (#117)
 5c7f1fe | 2026-05-11 08:45:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
 1de93ef | 2026-05-11 08:45:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
-3f4b0f4 | 2026-05-11 03:07:04 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
-e643d4b | 2026-05-11 03:07:03 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
-94b47db | 2026-05-10 21:44:29 -0700 | chore(previews): refresh Beer Hall preview (2026-05-11 UTC)
-186257b | 2026-05-10 21:44:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-11 UTC)
-da2d475 | 2026-05-10 21:26:16 -0700 | docs: flag Shipment Ledger Listing col AC `Program` as REQUIRED for new ledgers (#116)
 … (truncated)
 ```
 
@@ -485,9 +481,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 12:50:41 |
+| 2026-05 | 23.6 | 14942.11386 | 5/13/2026 20:50:33 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-06`; scanned last **393** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-07`; scanned last **393** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
