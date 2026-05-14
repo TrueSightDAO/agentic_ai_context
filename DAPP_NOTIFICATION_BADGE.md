@@ -249,6 +249,9 @@ new module needs a week of observation before scope expands.
 
 ## Related context
 
+- `FOUR_WIRE_LOOP_PATTERN.md` — the bell is the visibility layer for any
+  loop that wants to publish to it. Adding a new module here is equivalent
+  to adding a new loop's visibility-action wire.
 - `feedback_check_tracking_before_recommending_action.md` — the
   anti-pattern this widget is designed not to commit.
 - `project_partner_check_in_2026-05-12.md` — the Partner Check-in
