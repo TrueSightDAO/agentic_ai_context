@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-15T04:35:09Z`
+- Generated (UTC): `2026-05-15T09:29:09Z`
 - Look-back: **7** calendar days (`2026-05-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -178,6 +178,24 @@ _All dated lines on/after 2026-05-08_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cd39fa7 | 2026-05-15 00:00:26 -0700 | Drop 'three different decades of acquaintance' — overstated and not load-bearing (#101)
+d460ec3 | 2026-05-14 23:59:34 -0700 | Reframe legal-wrapper paragraph: DUNA + ICANN-thin-coordinator (#100)
+1f4d811 | 2026-05-14 23:56:06 -0700 | Reframe funding-cut context: government-level after-school cuts, not Liz-specific (#99)
+8889c7b | 2026-05-14 23:46:29 -0700 | Frame Aora as Liz's program in the roadmap bullet (#98)
+cd4632a | 2026-05-14 23:42:25 -0700 | Drop the LP/GP framing paragraph from the blog opening (#97)
+1d69d79 | 2026-05-14 23:40:52 -0700 | Correct Ken's context (SF workforce dev, not Aora) and Labinot spelling (#96)
+8d5110b | 2026-05-14 23:38:45 -0700 | Link Ken on Aora team to his /credentials/#ken-nim profile (#95)
+d089dc1 | 2026-05-14 23:35:32 -0700 | Blog rewrite: broaden the convergence story + roadmap link (#94)
+6d747e4 | 2026-05-14 23:16:03 -0700 | Blog: 'What the angels couldn't name' (Field Signals #6) (#93)
+c5e3b50 | 2026-05-14 23:05:26 -0700 | Render Grok narrative aside + linked program header (#92)
+a70c3da | 2026-05-14 22:56:30 -0700 | Rename "voting rights" → "voting power" on member cards (#91)
+b1b416b | 2026-05-14 22:44:40 -0700 | Add Governor pill + linkify URLs in contribution descriptions (#90)
+acf0fc6 | 2026-05-14 22:35:01 -0700 | CV viewer polish: prev/next nav, description cleanup, TDG label, member subtitles (#89)
+2ede4e4 | 2026-05-14 22:14:02 -0700 | Wrap long rubric / contribution text in CV viewer (#88)
+7455e48 | 2026-05-14 22:02:53 -0700 | Align /credentials + /members nav with rest of site; rename TDG label (#87)
+401c654 | 2026-05-14 21:59:49 -0700 | Render rubric breakdown + recent contributions; drop email from CV header (#86)
+bb2f1af | 2026-05-14 21:49:44 -0700 | Render identity.email and alias names on CV viewer (#85)
+19a81f9 | 2026-05-14 21:45:12 -0700 | Point Community > Members Directory dropdown at members.html (#84)
 bdf520b | 2026-05-14 21:21:08 -0700 | feat: /credentials/#<slug> CV viewer + /members.html directory (#83)
 6da214a | 2026-05-14 21:00:37 -0700 | fix(home): make Beer Hall feed resilient — jsDelivr primary, raw.github fallback (#82)
 b05f58d | 2026-05-13 20:07:20 -0700 | blog: 'Three times is when you name it' (Field Signals #5) (#81)
@@ -200,16 +218,7 @@ a61df6b | 2026-05-11 18:32:27 -0700 | truesight_me: reframe sales/inventory unit
 e95d5bb | 2026-05-11 16:44:46 -0700 | truesight_me: fix By Partner expand wiring + border + first-cell alignment (#64)
 4f7927b | 2026-05-11 15:05:43 -0700 | truesight_me: left-align "Partner" header in By Partner section (#63)
 db0628f | 2026-05-11 15:01:04 -0700 | Fix expand: use event delegation on table instead of inline onclick
-3d9f2d7 | 2026-05-11 14:58:56 -0700 | Fix partner row expand using global togglePartnerDetail function
-851fae6 | 2026-05-11 14:56:05 -0700 | Show sales as decimals (1dp) to surface fractional sell-through rates
-14b96a8 | 2026-05-11 14:51:46 -0700 | Fix expand arrow + remove dead pct function
-d822e37 | 2026-05-11 14:45:30 -0700 | Network Sell-Through: inventory units + weeks-of-stock with expandable partner detail rows
-3954956 | 2026-05-11 14:30:01 -0700 | Add Network Sell-Through section below Monthly Sales Chart
-229cc18 | 2026-05-10 21:42:59 -0700 | fix(fundraisers): match sunmint/agroverse table+cards listing convention (#62)
-c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html program page + nav link (#61)
-5fc28a4 | 2026-05-10 00:11:10 -0700 | blog: rename 真视道 → 真观道 in "Where 道 Integrates with DAO" (#60)
-5bcb59e | 2026-05-09 23:40:54 -0700 | blog: add "Where 道 Integrates with DAO" post (#59)
-7019377 | 2026-05-08 14:47:36 -0700 | Mycelial Economy: signals across the DAO + Signal Brief #1 (#58)
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -221,6 +230,9 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1cc7628 | 2026-05-14 22:12:32 -0700 | Document the DAO contributor warm-up sweep (local-only, not CI) (#139)
+bdbc9f3 | 2026-05-14 21:35:28 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
+7b5792a | 2026-05-14 21:35:27 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
 ca6dcf4 | 2026-05-14 21:27:50 -0700 | docs: explain why build workflow lives in lineage-credentials (data) not lineage-engine (code) (#138)
 3a54d7a | 2026-05-14 20:42:36 -0700 | Merge pull request #137 from TrueSightDAO/auto/advisory-refresh-2026-05-15
 39c1fd9 | 2026-05-15 03:42:27 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
@@ -258,15 +270,14 @@ dc4c82b | 2026-05-12 13:15:37 -0700 | chore(previews): refresh Beer Hall preview
 a2edf63 | 2026-05-12 10:48:06 -0700 | DAPP_NOTIFICATION_BADGE: add Partner Stock module (v1.1) (#124)
 aceaa8f | 2026-05-12 10:38:53 -0700 | Document DApp notification badge — contract, modules, anti-pattern (#123)
 8b64dc0 | 2026-05-12 10:05:52 -0700 | Partner Check-in v0.2: plan + review notes + ADVISORY_SNAPSHOT follow-up (#122)
-2dbe102 | 2026-05-12 08:54:28 -0700 | Add editorial-tone guide + multi-LLM orchestration playbook (#121)
-c92abe7 | 2026-05-12 08:21:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
-8d31508 | 2026-05-12 08:21:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+f210fed | 2026-05-14 22:57:07 -0700 | Fix Telegram Chat Logs column mapping in credentialing GAS (#293)
+c80f5fa | 2026-05-14 21:43:36 -0700 | Rename GAS property GITHUB_TOKEN -> TRUESIGHT_CREDENTIALING_PAT (#292)
 8e12928 | 2026-05-14 20:56:44 -0700 | feat(gas): add practice_event_processing.gs (PR #290 follow-up) (#291)
 18e89d8 | 2026-05-14 20:49:58 -0700 | feat(gas): credentialing_processing.gs for [PRACTICE EVENT] events (#290)
 8017dde | 2026-05-14 20:31:08 -0700 | docs: redirect reference_and_testimonials to lineage-credentials platform (#289)
@@ -348,6 +359,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+03d8d47 | 2026-05-15 09:26:15 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e68cfc3 | 2026-05-14 09:11:38 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 511c85d | 2026-05-13 09:21:57 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 591425a | 2026-05-12 10:14:12 -0700 | chore(inventory): refresh after Currencies row 82 Inventory Type fix (#15)
@@ -473,7 +485,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 20:52:33 |
+| 2026-05 | 23.6 | 14942.11386 | 5/15/2026 1:51:22 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-08`; scanned last **393** data rows)
 
