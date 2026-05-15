@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-15T09:29:09Z`
+- Generated (UTC): `2026-05-15T15:00:04Z`
 - Look-back: **7** calendar days (`2026-05-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,7 +40,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-14T10:59:15.058Z`
+- Generated (UTC): `2026-05-15T10:59:17.439Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **15**
@@ -49,8 +49,8 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 - Deferred / Revisit later: 5  (#1)
 - AI: Contact Form found: 109  (#3)
-- AI: No fit signal: 154  (#6)
-- Research: 62  (#8)
+- AI: No fit signal: 155  (#6)
+- Research: 61  (#8)
 - AI: Enrich with contact: 3  (#9)
 - AI: Enrich — manual: 90  (#10)
 - Manager Follow-up: 33  (#13)
@@ -230,6 +230,8 @@ db0628f | 2026-05-11 15:01:04 -0700 | Fix expand: use event delegation on table 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d8d9fd8 | 2026-05-15 02:29:32 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
+5f2e5a6 | 2026-05-15 02:29:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
 1cc7628 | 2026-05-14 22:12:32 -0700 | Document the DAO contributor warm-up sweep (local-only, not CI) (#139)
 bdbc9f3 | 2026-05-14 21:35:28 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
 7b5792a | 2026-05-14 21:35:27 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
@@ -268,8 +270,6 @@ dc4c82b | 2026-05-12 13:15:37 -0700 | chore(previews): refresh Beer Hall preview
 868e21d | 2026-05-12 11:18:34 -0700 | Partner Check-in plan: extend Method options (#126)
 18b148b | 2026-05-12 11:12:43 -0700 | Plan: Partner Poke Scheduler v0 (Stage 1 of AI-first supply chain) (#125)
 a2edf63 | 2026-05-12 10:48:06 -0700 | DAPP_NOTIFICATION_BADGE: add Partner Stock module (v1.1) (#124)
-aceaa8f | 2026-05-12 10:38:53 -0700 | Document DApp notification badge — contract, modules, anti-pattern (#123)
-8b64dc0 | 2026-05-12 10:05:52 -0700 | Partner Check-in v0.2: plan + review notes + ADVISORY_SNAPSHOT follow-up (#122)
 … (truncated)
 ```
 
@@ -485,7 +485,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/15/2026 1:51:22 |
+| 2026-05 | 23.6 | 14942.11386 | 5/15/2026 7:51:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-08`; scanned last **393** data rows)
 
