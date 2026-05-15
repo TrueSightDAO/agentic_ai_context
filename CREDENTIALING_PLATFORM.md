@@ -12,6 +12,17 @@ TrueSight DAO's governance layer is already the social trust anchor. The capoeir
 
 The angels-vs-Adam framing from the Koran captured it: angels operate by binary rules (LLMs); Adam was given the power of *naming* (lineage, meaning, story). The credentialing platform is the system that lets us record what a *human* did, witnessed by *another human in a known lineage*, distinct from anything an LLM could have produced.
 
+### 1a. Closing the self-actualization loop on truesight.me
+
+The truesight.me public site already gestures at a self-actualization arc — impact metrics, transparency, mission framing. Credentialing makes the arc tangible per visitor:
+
+1. **Passive** — visitor reads about the DAO, sees the trees-financed dashboard.
+2. **Contributor** — buys cacao at agroverse.shop, funds a cacao tree.
+3. **Practitioner** — picks up capoeira (or, later, yoga / Vipassana / SWE work), and their practice gets recorded with cryptographic anchoring.
+4. **Credentialed member of a lineage** — public CV at `truesight.me/credentials/<slug>/`, lineage-validated, AI-slop-resistant, downloadable as a job-application-grade PDF.
+
+Each step is rendered on the same site, with each forward step audit-traceable to the prior. The capoeira MVP completes the *practitioner → public CV* leap; v2 adds the *credentialed-by-lineage-authority* layer on top.
+
 ---
 
 ## 2. Conceptual model
@@ -327,11 +338,17 @@ Three implementation details that make this work:
 
 2. **Latency gap is real — handle the race with auto-polling.** Edgar → GAS → repo commit → GitHub Action → cache rebuild → CV file = ~30–90 seconds. During that window, `truesight.me/credentials/pk-<hash>/` will not yet have a `_cache/cv/<slug>.json` for that slug.
 
-   The CV page renders a friendly placeholder when the JSON is missing AND polls the file every 5 seconds until it appears, then auto-renders the CV. The user never has to manually refresh:
+   The CV page renders a friendly placeholder with a spinner when the JSON is missing, and polls the file every 5 seconds until it appears, then auto-renders the CV. The user never has to manually refresh:
 
-   > "Your training record was just submitted. Your CV is being generated — this usually takes 30 seconds to a couple of minutes.<br/><br/>*Auto-refreshing every 5 seconds…*"
+   > 🔄 *Your training record was just submitted. Your credential profile is being generated — this usually takes 30 seconds to a couple of minutes.*
 
-   Polling stops automatically after a generous cap (e.g. 5 minutes) and falls back to a manual-refresh prompt with a "still working — refresh to retry" message. On subsequent practice events, the cache exists already so this state is only ever shown for the *first* session per pk-hash, and only briefly.
+   Polling stops automatically after a generous cap (e.g. 5 minutes) and falls back to a manual-refresh prompt with a "still working — refresh to retry" message.
+
+   **Why poll the static JSON (not a GAS status endpoint) for MVP:** the URL itself is the status — if the JSON 404s, still indexing; if it 200s, render. No new GAS endpoint, no rate limits, no extra moving piece. The trade-off is that we can't tell the user *which step* of the pipeline their event is in (just "still building"). If MVP user testing shows people want finer-grained progress ("queued / committing to repo / building cache / rendering PDF"), promoting to a GAS status oracle is straightforward — but defer until that need is real.
+
+   On subsequent practice events, the cache exists already so this state is only ever shown for the *first* session per pk-hash, and only briefly.
+
+   **Slug stability when identity is added later.** The pk-hash URL **never breaks**, ever — even after the practitioner registers an email/name and acquires a friendly slug. `_cache/aliases.json` (already in the layout) maps pk-hash → canonical slug, and the truesight.me CV page treats either form as a valid input that resolves to the same content. The friendly slug becomes the canonical URL for new sharing; old pk-hash links stay live indefinitely.
 
 3. **Persistent link on practice.html.** Don't surface the CV link only at Finish Session — show it on the practice.html dashboard whenever localStorage records a public key. Returning users can grab their CV URL from anywhere on the page without having to finish another session. The dashboard already shows past-sessions history; the CV link sits next to it.
 
@@ -343,8 +360,21 @@ This affordance is MVP scope. Everything above already works once PR #9 (truesig
 **URL key** (on truesight.me) = friendly slug when a name is registered; otherwise the pk-hash.
 
 CV URL on truesight.me:
-- `truesight.me/credentials/<slug>/` — canonical per-person CV
-- `<slug>` = name-slug if the person has registered a name (via `identity.json` OR via the existing DAO contributor registry), else `pk-<hash>`
+- `truesight.me/credentials/#<slug>` — canonical per-person CV (hash fragment so GitHub Pages' static routing isn't an issue — single `index.html` reads `location.hash`, fetches the cache JSON, renders).
+- `<slug>` = name-slug if the person has registered a name (via `identity.json` OR via the existing DAO contributor registry), else `pk-<hash>`.
+
+The CV page is **a dumb state machine**:
+
+```
+fetch _cache/cv/<slug>.json from lineage-credentials raw URL
+  ├─ 200 → render the CV (header + DAO contributions + elective sections + citations + PDF download link)
+  └─ 404 → render "credential profile is being generated" placeholder + spinner
+            └─ poll every 5 seconds for up to 5 minutes
+                 ├─ JSON appears → render and stop polling
+                 └─ 5-min cap reached → show "still building, refresh to retry" fallback
+```
+
+It never tries to compute, derive, or know anything about the upstream pipeline. Status = file existence. No GAS oracle, no Edgar query, no Sheet read.
 
 A reader never has to know the pk-hash to view a CV — the directory page links by friendly slug. Scanning all `pk-*` folders at view-time is avoided entirely because:
 
