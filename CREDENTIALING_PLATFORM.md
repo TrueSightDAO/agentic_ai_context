@@ -284,6 +284,24 @@ DAO-only members are the "separate query chain" Gary called out: the cache build
 
 PDF generation is part of the cache build, NOT done in the browser — keeps the browser load light, ensures stable typography, and lets us version the PDF alongside the JSON.
 
+### 9a. Incremental builds (don't blow the GitHub Action timeout)
+
+GitHub Actions caps a job at 6 hours. v1 data is trivially small (one program, a handful of practitioners, dozens of events) so a full rebuild is sub-minute. **But the architecture should support incremental builds from day 1** so it scales without a rewrite later.
+
+Design points the builder MUST implement:
+
+1. **Diff-driven by default.** The workflow passes the changed-files list (`git diff HEAD~1 HEAD --name-only`) to the script as `--changed-files`. The script maps each changed file under `programs/<p>/pk-<hash>/...` back to its pk-hash → resolves to slug → only re-builds those CVs and refreshes their entries in `_cache/index.json`.
+
+2. **Full rebuild only on structural changes.** When `programs/*/manifest.json`, `scripts/`, or template files change, fall back to full rebuild. Triggered by a sentinel detected from the changed-files list.
+
+3. **Grok summary cache.** Grok narrative is the slowest per-person step. Cache the Grok response keyed on a SHA of the inputs (`events_hash + dao_contrib_hash + grok_prompt_version`). Skip the API call when the input hash matches — only re-run when content actually changed. Cache stored at `_cache/grok/<input-hash>.json` so it's deterministic + auditable.
+
+4. **PDF cache.** Same shape — keyed on `cv.md` content hash; skip pandoc/WeasyPrint when unchanged.
+
+5. **Cron sweep.** A weekly scheduled workflow runs a full rebuild regardless, so any silent drift (Grok prompt updates, template changes, upstream DAO data refresh) catches up. This is the safety net; the per-push incremental is the hot path.
+
+At v1 scale these caches are no-ops because everything changes on every push anyway. At 10,000 practitioners × 5 programs, the diff-driven path keeps build time bounded by changed-practitioners-this-push, not total-practitioners-ever. The Grok cache alone saves the bulk of the time and API quota.
+
 ---
 
 ## 10. Capoeira as the first instance
