@@ -414,10 +414,24 @@ DAO-only members are the "separate query chain" Gary called out: the cache build
 ## 8. Member directory page on truesight.me
 
 `truesight.me/members.html`:
-- All governors (top section)
-- All DAO members with at least one credential or one DAO contribution
-- Cards link to `/credentials/<primary-program>/<slug>/`
-- Reads from `lineage-credentials/_cache/index.json`
+
+Two ordered sections, both rendered as cards that link to `/credentials/#<slug>`:
+
+1. **Governors** — top, sub-sorted by voting rights desc.
+2. **DAO members** — non-governors, sorted by voting rights desc. Members with `voting_rights = 0` are still shown, at the bottom.
+
+Anonymous practitioners (pk-hash only, no registered name + no DAO identity) are **hidden** from this directory by default — they're not DAO members and showing them noisy-up the list. Their CVs are still accessible via direct link; they're just not surfaced here.
+
+The page reads from `lineage-credentials/_cache/index.json` only — no live Sheet reads. For this sort to work, the cache builder must annotate each entry with:
+
+- `is_governor: bool` — sourced from the **`Governors`** tab on the Main Ledger (gid 842148543).
+- `voting_rights: number` — sourced from the **`Contributors voting weight`** tab (gid 950541536).
+- `display_name: string` — from `identity.json.names[0]` if present, else "Anonymous practitioner".
+- `primary_program: string` — the program a member is most active in (highest event count). Used for the card subtitle.
+
+Both source tabs are joined by contributor name. Members whose name appears on the Governors tab get `is_governor=true`; their voting weight from the Contributors voting weight tab populates `voting_rights`.
+
+Updating these two tables in the upstream Sheet automatically re-flows the directory the next time the cache rebuilds — no separate workflow needed.
 
 ---
 
