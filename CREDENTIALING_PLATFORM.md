@@ -338,6 +338,20 @@ At v1 scale these caches are no-ops because everything changes on every push any
 
 ---
 
+## 10b. Single home for per-person credentialing data
+
+The existing `tokenomics/python_scripts/reference_and_testimonials/testimonials/` (Fatima Toledo + Emelin Frances Lisboa) is **derived per-person data** that conceptually belongs in lineage-credentials, not in the code repo. Consolidating it there means:
+
+- Single repo to query when building a person's CV.
+- No cross-repo writes from a GitHub Action.
+- tokenomics stays focused on schemas + GAS + Edgar pipelines (the *upstream* of credentialing), while lineage-credentials owns *everything* on the receiving end (events, summaries, CVs, PDFs).
+
+Migration:
+
+1. **Move outputs** — copy `fatima_toledo_*` and `emelin_*` files into `lineage-credentials/_cache/cv/<slug>.{md,json}` under their canonical slug. Existing JSON shape becomes the seed for the unified `cv.json` format.
+2. **Move generator script** — the Python code that produced those testimonials moves from `tokenomics/python_scripts/reference_and_testimonials/` to `lineage-credentials/scripts/build_cv_cache.py`. The GitHub Action defined in §9 runs it directly.
+3. **Redirect note in tokenomics** — leave a short README at the old path pointing at the new home so anything still linking to the old URL doesn't 404. Delete the JSON/md outputs there once the migration commit on lineage-credentials lands.
+
 ## 11. Implementation order (PRs)
 
 Done:
@@ -346,12 +360,13 @@ Done:
 Proposed sequence, smallest blast radius first:
 
 1. **agentic_ai_context PR** — this doc. Reviewed and merged before any code.
-2. **lineage-credentials repo** — create. Initial README + capoeira manifest + empty `programs/capoeira-tribo-mirim/` skeleton. No Action yet.
-3. **capoeira PR** — browser-side keypair (reuses dapp pattern), `[CREDENTIALING ATTESTATION EVENT]` builder, Finish-Session submit, anonymous keypair path, source URL = `practice.html#s=...`. Backfill scan on page load. Email-claim affordance behind a "Save your training record" CTA.
-4. **tokenomics PR** — `credentialing_processing.gs` + new "Credentialing Events" tab + GitHub-commit-on-PROCESSED + defensive write guards.
-5. **lineage-credentials PR** — `build_cv_cache.py` + GitHub Action workflow + PDF rendering. Trigger pattern proven against Gary's own first capoeira sessions.
-6. **truesight_me_beta PR** — `/credentials/<program>/<slug>/` rendering + `/members.html` directory.
-7. **truesight_me_beta PR** — PDF download button (reads pre-rendered `cv.pdf`).
+2. **lineage-credentials PR** — initial scaffolding: README + capoeira manifest at `programs/capoeira-tribo-mirim/manifest.json` + empty `_cache/` skeleton. **Migrate** the existing Fatima + Emelin testimonials from tokenomics into `_cache/cv/`. **Move** the existing testimonial generator script from tokenomics into `lineage-credentials/scripts/` (no Action yet — script verified to run locally first).
+3. **tokenomics PR** — redirect README at the old `python_scripts/reference_and_testimonials/` path pointing at the new home. Delete the migrated files.
+4. **capoeira PR** — browser-side keypair (reuses dapp pattern), `[PRACTICE EVENT]` builder, Finish-Session submit, anonymous keypair path, source URL = `practice.html#s=...`. Backfill scan on page load. Email-claim affordance behind a "Save your training record" CTA.
+5. **tokenomics PR** — `credentialing_processing.gs` + new "Credentialing Events" tab + GitHub-commit-on-PROCESSED into lineage-credentials + defensive write guards.
+6. **lineage-credentials PR** — flesh out `build_cv_cache.py` for the merged practice + DAO-contributions flow + GitHub Action workflow + incremental-build wiring + PDF rendering. Trigger pattern proven against Gary's own first capoeira sessions.
+7. **truesight_me_beta PR** — `/credentials/<slug>/` rendering + `/members.html` directory. Reads only from `_cache/cv/<slug>.json` + `_cache/index.json`.
+8. **truesight_me_beta PR** — PDF download button (reads pre-rendered `_cache/cv/<slug>.pdf`).
 
 Each PR is testable on its own. After PR #3 the practice site can submit events but they go nowhere useful (sit on the intake tab). After PR #4 they land in the repo. After PR #5 a CV can be built. After PR #6 it's publicly viewable. After PR #7 downloadable.
 
