@@ -317,6 +317,26 @@ Edgar already does signature verification + has the `[REGISTER KEY EVENT]` flow 
 
 ---
 
+## 6a. Closing the UX loop — Finish Session → "view your CV" link
+
+After a successful Edgar submission on Finish Session, the webapp surfaces a "Your training record is live → view your CV" affordance pointing at `truesight.me/credentials/pk-<hash>/`. This is the moment that makes the whole pipeline feel real to the practitioner: they finish practising → they see a public, signed, lineage-anchored record of it in less than two minutes.
+
+Three implementation details that make this work:
+
+1. **Slug derivable client-side.** The browser already has the public key in localStorage. It computes the `pk-<hash>` (same hash function the GAS uses) and constructs the URL immediately at Finish Session, with zero server roundtrip. The link is available the moment the Edgar 200 lands.
+
+2. **Latency gap is real — handle the race with auto-polling.** Edgar → GAS → repo commit → GitHub Action → cache rebuild → CV file = ~30–90 seconds. During that window, `truesight.me/credentials/pk-<hash>/` will not yet have a `_cache/cv/<slug>.json` for that slug.
+
+   The CV page renders a friendly placeholder when the JSON is missing AND polls the file every 5 seconds until it appears, then auto-renders the CV. The user never has to manually refresh:
+
+   > "Your training record was just submitted. Your CV is being generated — this usually takes 30 seconds to a couple of minutes.<br/><br/>*Auto-refreshing every 5 seconds…*"
+
+   Polling stops automatically after a generous cap (e.g. 5 minutes) and falls back to a manual-refresh prompt with a "still working — refresh to retry" message. On subsequent practice events, the cache exists already so this state is only ever shown for the *first* session per pk-hash, and only briefly.
+
+3. **Persistent link on practice.html.** Don't surface the CV link only at Finish Session — show it on the practice.html dashboard whenever localStorage records a public key. Returning users can grab their CV URL from anywhere on the page without having to finish another session. The dashboard already shows past-sessions history; the CV link sits next to it.
+
+This affordance is MVP scope. Everything above already works once PR #9 (truesight.me CV pages) lands — the placeholder behaviour is a small addition to that page.
+
 ## 7. Per-person CV page (with storage-key ≠ URL-key separation)
 
 **Storage key** (inside the repo) = `pk-<hash>` (canonical, never renamed, doesn't require a name).
