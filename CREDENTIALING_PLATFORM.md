@@ -437,7 +437,14 @@ Updating these two tables in the upstream Sheet automatically re-flows the direc
 
 ## 9. GitHub Action cache builder (Python)
 
-`lineage-credentials/.github/workflows/build-cv-cache.yml` → runs `scripts/build_cv_cache.py` on every push under `programs/*/*/practice/` or `programs/*/*/attestations/`:
+`lineage-credentials/.github/workflows/build-cv-cache.yml` → runs `scripts/build_cv_cache.py` (checked out from `lineage-engine`) on every push under `programs/*/*/practice/` or `programs/*/*/attestations/`.
+
+**Why the workflow lives in the DATA repo, not the engine repo.** Two practical reasons that outweigh the conceptual "engine code belongs with engine":
+
+1. **Trigger semantics.** GitHub Actions only trigger on events in their own repo. Hosting the workflow in lineage-credentials gives us a native push-trigger on the events that actually matter (a new practice JSON file landing). Hosting it in lineage-engine would require either a periodic cron (latency) or a `repository_dispatch` ceremony with a PAT (operator burden).
+2. **Permissions.** The workflow's job is to *write back* into lineage-credentials. From the data repo, the default `GITHUB_TOKEN` works for the push-back. From the engine repo, we'd need a long-lived PAT stored as a secret + rotated. Less operator surface = better MVP.
+
+The workflow checks out the engine repo as a step (`actions/checkout@v4 with: repository: TrueSightDAO/lineage-engine`) so the script source still lives with the rest of the engine code. Best of both worlds: trigger semantics + permissions stay in the data repo; script source stays in the engine repo.
 
 1. **Walk the repo** — collect every `pk-<hash>` folder across all programs. For each, read `identity.json` (if present), `practice/*.json`, and (v2) `attestations/*.json`.
 2. **Pull DAO contributions** — fetch the existing reference_and_testimonials data from `tokenomics/python_scripts/reference_and_testimonials/testimonials/` for every name found in any `identity.json`. Plus pick up any DAO-ledger-only members from that same source (members who have contributions but no pk).
