@@ -463,6 +463,27 @@ PDF generation is part of the cache build, NOT done in the browser — keeps the
 
 **PDF visual design:** target = a respectable CV that a practitioner could attach to a job application. Clean professional typography (a single serif headline face + a sans body), reasonable margins, sections for: header (name + primary affiliation + dates), summary paragraph, DAO contributions, elective sections (per program), source citations footnoted at the bottom. NOT a bare-bones Markdown dump. Rendering via WeasyPrint with a hand-tuned CSS template is the v1 target. The PDF and the Markdown share the same source data (`_cache/cv/<slug>.json`) but diverge in styling.
 
+### 9aa. Rebuild cadence — don't over-engineer the cron
+
+Different inputs change at very different rates. Right-sizing the cadence avoids both stale CVs and noisy git history.
+
+| Input | Rate of change | Trigger |
+|---|---|---|
+| **Practice events** (`programs/<p>/pk-<hash>/practice/*.json`) | Per Finish Session, a few/day at MVP scale | Native `push` trigger on `programs/**`. Rebuild happens in ~1 min. The CV viewer's "being generated" auto-poll absorbs the latency. |
+| **Program manifest changes** (`programs/<p>/manifest.json`) | Rare — new program admitted, lineage authority added | Same `push` trigger. Picks up automatically. |
+| **DAO contribution data** (Main Ledger → `_cache/cv/<slug>.json` for DAO-only members) | **Only at equinox / solstice approval cycles** (4×/year) | Manual `workflow_dispatch` after each cycle. Optionally pin a cron to the 4 dates, but manual is cleaner — the operator who just approved the cycle has full context. |
+
+**Explicitly NOT in scope for MVP:**
+
+- A daily / hourly cron over all DAO contribution data. The Main Ledger doesn't change that fast — daily polling would generate stale rebuilds 95% of the time.
+- Auto-refresh of preserved Fatima / Emelin CVs. They're snapshots; the builder doesn't yet call `fetch_contributions.py` to re-pull. **First material DAO-data change** (the next equinox/solstice approval that affects an indexed member) is the trigger to wire those two pieces together — both at once.
+
+**When the first equinox/solstice rebuild lands**, the work is:
+1. Extend `build_cv_cache.py` to call `fetch_contributions.py` for every name found across `_cache/cv/*.json` + every `identity.json`'s `names[]`. Re-pull from the Main Ledger.
+2. Operator runs `gh workflow run build-cv-cache.yml` to fire the workflow manually that one time.
+
+That keeps the build pipeline aligned with the DAO's own approval cadence rather than imposing an artificial schedule on top.
+
 ### 9a. Incremental builds (don't blow the GitHub Action timeout)
 
 GitHub Actions caps a job at 6 hours. v1 data is trivially small (one program, a handful of practitioners, dozens of events) so a full rebuild is sub-minute. **But the architecture should support incremental builds from day 1** so it scales without a rewrite later.
@@ -480,6 +501,35 @@ Design points the builder MUST implement:
 5. **Cron sweep.** A weekly scheduled workflow runs a full rebuild regardless, so any silent drift (Grok prompt updates, template changes, upstream DAO data refresh) catches up. This is the safety net; the per-push incremental is the hot path.
 
 At v1 scale these caches are no-ops because everything changes on every push anyway. At 10,000 practitioners × 5 programs, the diff-driven path keeps build time bounded by changed-practitioners-this-push, not total-practitioners-ever. The Grok cache alone saves the bulk of the time and API quota.
+
+### 9b. DAO contributor warm-up sweep — run LOCALLY, not in CI (2026-05-14)
+
+The first sweep of every DAO contributor on the Contribution Ledger happens via `lineage-engine/scripts/seed_dao_cvs.py`. **By design this runs from a contributor's laptop (Gary's), not from a GitHub Action.**
+
+How to run:
+
+```bash
+GOOGLE_APPLICATION_CREDENTIALS=~/Applications/tokenomics/python_scripts/schema_validation/gdrive_schema_credentials.json \
+  python3 ~/Applications/lineage-engine/scripts/seed_dao_cvs.py \
+    --data ~/Applications/lineage-credentials \
+    --rebuild
+```
+
+Total runtime for 377 contributors with `--rebuild` is ~7 seconds — the Ledger history sheet is fetched once, then grouping + per-slug JSON write is pure-Python in memory.
+
+**Why local and not a GitHub Action:**
+- The sweep needs read access to the Contribution Ledger Google Sheet via the service-account JSON at `tokenomics/python_scripts/schema_validation/gdrive_schema_credentials.json`. That file authorizes a robot account to read every spreadsheet it has been shared on.
+- Moving to a GH Action would require base64-encoding the JSON and storing it as a repo secret (`GCP_SHEETS_READONLY_JSON`) on `lineage-credentials`. That increases the blast radius: anyone with repo admin can exfiltrate it, and a malicious PR running on a fork could `echo $GCP_SHEETS_READONLY_JSON` to logs.
+- DAO contribution approvals happen at **equinox and solstice** (twice a year) — manageable by hand. The Action only earns its keep if we move to monthly or weekly rebuilds. Revisit then.
+
+**When does this need to re-run:**
+- After each equinox/solstice when fresh ledger entries are approved.
+- When `fetch_contributions.py` or `seed_dao_cvs.py` materially changes.
+- After running, push the resulting `_cache/cv/*.json` + `_cache/index.json` to `lineage-credentials` via a normal PR.
+
+**What it does NOT do:**
+- It does not annotate `is_governor` or `voting_rights`. Those are still hard-coded to `false` / `0` by `build_cv_cache.py` and are a deferred PR (see §11).
+- It does not render PDFs locally unless WeasyPrint is installed (`pip install weasyprint`). The MD + JSON are always produced; PDFs gracefully degrade to "missing" and the CV viewer keeps the download button greyed out.
 
 ---
 
