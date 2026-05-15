@@ -39,6 +39,26 @@ Deferred entirely from v1:
 - DUNA legal wrapper.
 - Multi-lineage hierarchies (e.g. lineage A admits sub-lineage B). Flat v1.
 
+### 2a. End-to-end data flow
+
+```mermaid
+flowchart TD
+  U[User on capoeira.agroverse.shop/practice.html<br/>Finish Session] --> B[Browser<br/>generate/reuse keypair in localStorage<br/>sign PRACTICE EVENT]
+  B -->|POST signed payload| EDG[Edgar /dao/submit_contribution]
+  EDG -->|append row| SH[Google Sheet — Telegram Chat Logs tab]
+  SH -->|on-edit trigger| GAS[GAS credentialing_processing.gs<br/>verify sig, parse fields]
+  GAS -->|status + audit row| CET[Sheet — Credentialing Events tab]
+  GAS -->|GitHub Contents API commit| LC[lineage-credentials repo<br/>programs/p/pk-hash/practice/ts.json]
+  LC -->|push triggers workflow| ACT[GitHub Action in lineage-credentials]
+  ACT -->|checks out| LE[lineage-engine repo<br/>build_cv_cache.py + templates]
+  ACT -->|runs cache builder| ENG[Read events + DAO contribs<br/>Grok narrative<br/>WeasyPrint PDF]
+  ENG -->|commit skip-ci| CACHE[lineage-credentials/_cache/cv/slug.*]
+  CACHE -->|fetched| TM[truesight.me /credentials/slug/]
+  TM --> CV[CV page<br/>+ Download PDF button]
+```
+
+The producer side (left of GAS) is the existing Edgar/Sheets pipeline. The consumer side (right of GAS) is the new lineage-credentials + lineage-engine pair. Everything between GAS and the truesight.me CV page is auditable on GitHub.
+
 ---
 
 ## 3. Repo + layout
@@ -57,8 +77,11 @@ lineage-credentials/
 │   │   │   ├── identity.json       # optional: names + emails if/when provided
 │   │   │   ├── practice/           # day-to-day self-signed practice events
 │   │   │   │   └── 20260514T080000Z.json
-│   │   │   ├── attestations/       # formal lineage-authority co-signed events (v2)
-│   │   │   │   └── 20260520T100000Z-corda-yellow.json
+│   │   │   ├── qualifications-pending/  # student-signed credential requests
+│   │   │   │   └── 20260519T220000Z-corda-yellow.json
+│   │   │   ├── attestations/       # paired qualification + master attestation (v2)
+│   │   │   │   ├── 20260520T143000Z-corda-yellow-qualification.json
+│   │   │   │   └── 20260520T143000Z-corda-yellow-attestation.json
 │   │   │   ├── cv.md               # human-readable CV (auto-generated)
 │   │   │   ├── cv.json             # structured CV cache (consumed by truesight.me)
 │   │   │   └── cv.pdf              # downloadable
@@ -89,17 +112,32 @@ A future "this device is the same person as this other device" multi-pubkey alia
 
 ---
 
-## 4. Two event types — `[PRACTICE EVENT]` and `[CREDENTIALING ATTESTATION EVENT]`
+## 4. Three event types — `[PRACTICE EVENT]`, `[CREDENTIALING QUALIFICATION EVENT]`, `[CREDENTIALING ATTESTATION EVENT]`
 
-A track record being built (the student practicing daily) and a formal recognition stamped onto that record (an instructor saying "you've earned the corda") are conceptually different and have different signature requirements. Splitting them keeps the high-volume, low-stakes self-attested side clean from the low-volume, lineage-authority-signed side.
+> **MVP scope reminder:** v1 ships ONLY `[PRACTICE EVENT]` end-to-end — submission, GAS processing, cache build, CV rendering, PDF download. The qualification + attestation pair (§4b–4c) and multi-step lineage chains (§4d) are designed here so the data model never has to break to add them, but they remain *unwired* until institutions (capoeira mestres, yoga lineages, certified Vipassana teachers, etc.) actually want to come onboard and issue formal credentials.
 
-| | `[PRACTICE EVENT]` | `[CREDENTIALING ATTESTATION EVENT]` |
-|---|---|---|
-| Who signs | The practitioner (self-signed) | The lineage authority (and optionally co-signed by the student) |
-| Volume | High — one per session | Low — one per milestone |
-| Repo target | `programs/<p>/pk-<hash>/practice/` | `programs/<p>/pk-<hash>/attestations/` |
-| v1 wired? | **Yes** | Schema exists; processing wired in v2 |
-| Examples | Capoeira training session; meditation sit; coding session | Capoeira corda promotion; yoga teacher certification; PR-review-signoff for a junior SWE |
+Day-to-day track record, a student's request for a milestone credential, and the master's signed approval are three different things with three different signers. Treating them as separate events keeps each crisp.
+
+The qualification + attestation pair is **bilateral**: the student initiates the claim by submitting a qualification event (signed by the student), and the master independently submits an attestation event whose payload carries the student's qualification `Request Transaction ID`. The signature on the attestation cryptographically links the master's approval to the exact student-signed request. Neither side can claim a corda alone; both have to sign for it to count.
+
+| | `[PRACTICE EVENT]` | `[CREDENTIALING QUALIFICATION EVENT]` | `[CREDENTIALING ATTESTATION EVENT]` |
+|---|---|---|---|
+| Who signs | The practitioner | The **student** | The **master** / lineage authority |
+| Volume | High — one per session | Low — one per milestone request | Low — one per master approval |
+| Repo target | `programs/<p>/pk-<hash>/practice/` | `programs/<p>/pk-<hash>/qualifications-pending/` | `programs/<p>/pk-<hash>/attestations/` (linked to the qualification) |
+| v1 wired? | **Yes** | Schema only | Schema only |
+| Examples | Capoeira training session; meditation sit; coding session | "I'm requesting corda-yellow at the 2026-05-20 ceremony, witnesses X+Y" | "Approved. Granted to <student pk> at the ceremony." |
+
+### GAS processor logic for the pair (v2)
+
+1. A `[CREDENTIALING QUALIFICATION EVENT]` lands → write to `qualifications-pending/<timestamp>.json` under the student's `pk-<hash>/`. Captures the student's claim + evidence.
+2. A `[CREDENTIALING ATTESTATION EVENT]` lands → look up the `Qualification Transaction ID` it references.
+   - If found and the attestor's pubkey is in `manifest.authorized_attestors`: move the qualification JSON from `qualifications-pending/` → `attestations/<timestamp>.json` and append the attestation JSON beside it. The pair travels together.
+   - If found but attestor isn't authorized: reject (FAILED status on the intake row).
+   - If not found: reject (orphan attestation — the chain must root in a student-initiated request).
+3. Orphan qualifications stay in `qualifications-pending/`. The CV renders them as "pending credentials" (visible, audited, but not formal credentials).
+
+This also extends naturally to multi-step lineage chains later (e.g., contramestre attests, then mestre counter-attests on the contramestre's attestation) — same primitive, attestations can reference other attestation IDs. Out of v1/v2 scope but the data model accommodates it.
 
 ### 4a. `[PRACTICE EVENT]` payload (v1 surface)
 
@@ -139,7 +177,37 @@ Fields:
 - **Source URL** — back-link to where the event was captured. Required so the CV can cite back.
 - **Payload JSON** — program-specific structure.
 
-### 4b. `[CREDENTIALING ATTESTATION EVENT]` payload (v2 — schema only for now)
+### 4b. `[CREDENTIALING QUALIFICATION EVENT]` payload (v2 — schema only)
+
+The student-initiated half of the bilateral chain. Captures the claim + the student's evidence, signed by the student. Without a matching attestation it stays as a *pending* claim.
+
+```
+[CREDENTIALING QUALIFICATION EVENT]
+- Program: capoeira-tribo-mirim
+- Qualification Type: corda-promotion
+- Student Public Key: <student's registered public key>
+- Student Name: Gary Teh                  (optional)
+- Captured At: 2026-05-19T22:00:00Z
+- Source URL: <e.g. capoeira.agroverse.shop/qualifications/new>
+- Payload JSON:
+{
+  "target_credential": "corda-yellow",
+  "intended_ceremony_at": "2026-05-20T14:30:00Z",
+  "intended_ceremony_location": "Praça Santos Dumont, Itacaré, Bahia",
+  "supporting_practice_event_ids": ["<practice tx id>", "<practice tx id>", ...],
+  "self_summary": "Practiced X sessions over Y months across themes Z; ready for evaluation."
+}
+
+My Digital Signature: <student public key>
+
+Request Transaction ID: <student's RSA signature of canonical payload>
+```
+
+The GAS writes this to `programs/<p>/pk-<student-hash>/qualifications-pending/<timestamp>.json` and emits the resulting `Request Transaction ID` into the intake-sheet row + the file content (so the matching attestation can reference it).
+
+### 4c. `[CREDENTIALING ATTESTATION EVENT]` payload (v2 — schema only)
+
+The master's signed approval. References the student's qualification by `Request Transaction ID` so the link is cryptographically auditable.
 
 ```
 [CREDENTIALING ATTESTATION EVENT]
@@ -147,27 +215,65 @@ Fields:
 - Attestation Type: corda-promotion
 - Attestor Public Key: <Bico Duro's registered public key>
 - Attestor Name: Bico Duro
-- Attestee Public Key: <student's public key>
-- Attestee Name: Gary Teh                (optional)
+- Qualification Transaction ID: <Request Transaction ID of the student's qualification event>
 - Captured At: 2026-05-20T14:30:00Z
 - Source URL: <ceremony record URL>
 - Payload JSON:
 {
-  "corda_level": "yellow",
+  "decision": "approved",
   "ceremony_location": "Praça Santos Dumont, Itacaré, Bahia",
-  "witnesses": ["Mestre X", "Contramestre Y"]
+  "witnesses": ["Mestre X", "Contramestre Y"],
+  "remarks": "Earned. Game showed consistent ginga, three clean esquivas, and respect to elders in the roda."
 }
 
 My Digital Signature: <Attestor public key>
 
 Request Transaction ID: <Attestor's RSA signature of canonical payload>
-
-[optional Attestee Co-Signature: <base64 RSA signature by attestee public key>]
 ```
 
-The GAS validates that **Attestor Public Key** matches one of the keys listed in `programs/<slug>/manifest.json.authorized_attestors` (set by governor proposal). Otherwise the event is rejected.
+The GAS:
+1. Looks up the referenced `Qualification Transaction ID` in the intake history.
+2. Verifies `Attestor Public Key` is in `programs/<p>/manifest.json.authorized_attestors`.
+3. If both pass: moves `qualifications-pending/<file>.json` → `attestations/<timestamp>-<type>.json` and stores the attestation JSON alongside (paired files).
+4. If qualification not found OR attestor not authorized: rejects with FAILED.
 
-v1 wires `[PRACTICE EVENT]` end-to-end. `[CREDENTIALING ATTESTATION EVENT]` schema is reserved in the manifest format but the processor path stays unwired until the v2 work begins.
+The `decision` field allows for `denied` outcomes too — denials are recorded the same way (qualification stays in pending OR moves to a `denials/` folder, TBD in v2 implementation).
+
+v1 wires `[PRACTICE EVENT]` end-to-end. The qualification+attestation pair has its schema and folder layout reserved but no processor wiring until v2.
+
+### 4d. Multi-step lineage chains (post-v2)
+
+The same primitive — "an attestation event signed by an authorized party that references the Transaction ID of an earlier event" — extends recursively to support multi-step lineage validation. Examples:
+
+- **Capoeira hierarchy:** student qualification → contramestre attestation → mestre counter-attestation. The mestre's attestation references the contramestre's Transaction ID instead of (or in addition to) the student's qualification ID. The chain proves that the credential was endorsed up the lineage tree.
+- **Vipassana lineage:** student qualification → assistant teacher attestation → senior teacher confirmation, each step recorded as an attestation referencing the prior.
+- **SWE credentialing:** junior submits work → tech lead attests → engineering manager co-signs for a higher-level credential.
+
+How it works mechanically:
+
+- Each `[CREDENTIALING ATTESTATION EVENT]` already references one Transaction ID in its `Qualification Transaction ID` field. For multi-step chains, that field is generalized to reference *any* prior event ID — qualification OR another attestation.
+- The GAS validates that the referenced ID exists AND that the attestor is authorized for the **specific lineage step** they're representing. `manifest.json.authorized_attestors` becomes a richer structure that captures lineage role (e.g., `contramestre`, `mestre`), and each program defines the valid chain (`student → contramestre → mestre` etc.) in the manifest.
+- The CV renderer walks the chain and visualises it: each credential shows the full lineage of signatures backing it. A reader can audit every link.
+
+A program manifest with multi-step support looks like:
+
+```json
+{
+  "attestation_chain": [
+    { "step": "qualification",   "signer_role": "student"     },
+    { "step": "endorsement",     "signer_role": "contramestre"},
+    { "step": "ratification",    "signer_role": "mestre"      }
+  ],
+  "authorized_attestors": {
+    "contramestre": ["<pubkey>", "<pubkey>"],
+    "mestre":       ["<pubkey>"]
+  }
+}
+```
+
+For v1 and v2 the chain is trivially short: `[ qualification → attestation ]`. The model accommodates the longer chain without a redesign — just a richer manifest and a chain-walker in the CV renderer.
+
+**Why this matters:** in the Bilal framing, the *whole point* of lineage validation is that the chain back to the lineage source is visible. Single-signature attestations only work for shallow programs (one master). Deep lineages (centuries-old yoga schools, Vipassana, Zen, capoeira's Mestre Pastinha lineage) need the multi-step chain to be expressible. We're not building it in v1 but the data model never has to break to add it.
 
 ---
 
@@ -365,6 +471,54 @@ Tokenomics involvement: minimal. Tokenomics keeps the GAS scripts that *write* e
 
 ## 11. Implementation order (PRs)
 
+### Milestone overview
+
+```mermaid
+flowchart LR
+  D0([✅ capoeira#27<br/>URL persistence])
+
+  subgraph MVP_v1 ["MVP — v1 (capoeira practice tracking + CV)"]
+    direction TB
+    P1[PR1<br/>Architecture doc]
+    P2[PR2<br/>lineage-engine seed<br/>migrated testimonial generator]
+    P3[PR3<br/>lineage-credentials scaffold<br/>migrate Fatima + Emelin CVs]
+    P4[PR4<br/>tokenomics redirect]
+    P5[PR5<br/>capoeira: sign + submit<br/>PRACTICE EVENT]
+    P6[PR6<br/>GAS credentialing_processing.gs<br/>writes to lineage-credentials]
+    P7[PR7<br/>GitHub Action workflow<br/>in lineage-credentials]
+    P8[PR8<br/>build_cv_cache.py<br/>+ WeasyPrint PDF]
+    P9[PR9<br/>truesight.me CV pages<br/>+ members directory]
+    P10[PR10<br/>PDF download button]
+  end
+
+  subgraph V2 ["v2 — Institutional credentials<br/>(when first institution onboards)"]
+    direction TB
+    V21[QUALIFICATION + ATTESTATION<br/>event pair wired]
+    V22[manifest.authorized_attestors<br/>registration flow]
+    V23[Pending claims surfaced<br/>on CV]
+  end
+
+  subgraph V3 ["v3+ — Multi-step lineage chains"]
+    direction TB
+    V31[Chain validation in GAS]
+    V32[Chain visualisation on CV]
+    V33[DUNA legal wrapper<br/>+ governor proposals for lineage admits]
+  end
+
+  D0 --> P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7 --> P8 --> P9 --> P10
+  P10 -.first institution wants to issue.-> V21
+  V21 --> V22 --> V23
+  V23 -.lineage gets deeper.-> V31
+  V31 --> V32 --> V33
+```
+
+**What a reader should expect from each milestone:**
+- **End of MVP:** any capoeira practitioner can finish a session and within minutes see their personal CV at `truesight.me/credentials/<slug>/` with a downloadable PDF that looks job-application-ready. Anonymous practitioners get `pk-<hash>` slugs; named ones get friendly slugs. DAO members with existing contribution history (Fatima, Emelin) already have CVs from day one of MVP.
+- **End of v2:** masters of admitted institutions can sign formal credentials (corda, certifications). Both halves (student qualification + master attestation) are cryptographically linked. Pending claims are visible but clearly marked as pre-credential.
+- **End of v3+:** deep lineages (Mestre Pastinha chain, Vipassana teacher tree, etc.) can be expressed and validated step-by-step. The DUNA wrapper gives the whole credentialing system a legal anchor.
+
+### PRs in order
+
 Done:
 - ✅ **capoeira#27** — URL hash persistence on practice.html.
 
@@ -388,13 +542,15 @@ Each PR is testable on its own. After PR #3 the practice site can submit events 
 ## 12. Open questions / things still to confirm with Gary
 
 Resolved this session:
-- ✅ **Repo name**: `lineage-credentials` (created by Gary 2026-05-14).
-- ✅ **Person folder name**: `pk-<short-hash-of-pubkey>/`. Name/email arrives later via `identity.json` and never forces a rename.
-- ✅ **Event split**: `[PRACTICE EVENT]` for daily track record (self-signed, v1) and `[CREDENTIALING ATTESTATION EVENT]` for formal recognition (authority-signed, v2 wiring).
+- ✅ **MVP scope**: `[PRACTICE EVENT]` only end-to-end — submission, caching, CV display, PDF download. `[CREDENTIALING QUALIFICATION EVENT]` + `[CREDENTIALING ATTESTATION EVENT]` schemas documented but unwired until institutions want to onboard.
+- ✅ **Repo split**: `lineage-credentials` = data (created), `lineage-engine` = code (created).
+- ✅ **Person folder name**: `pk-<short-hash-of-pubkey>/`. Name/email arrives later via `identity.json`; folder never gets renamed.
+- ✅ **Event split**: three event types with the bilateral qualification+attestation chain — designed in but only practice wired for MVP.
+- ✅ **Multi-step lineage chains**: documented as a natural extension (post-v2), data model already accommodates without redesign.
 - ✅ **Per-person data consolidation**: existing Fatima + Emelin testimonials migrate from tokenomics into lineage-credentials. Tokenomics keeps the upstream pipelines only.
 - ✅ **PDF visual design**: respectable CV style suitable for a job application, not a bare Markdown dump. Hand-tuned WeasyPrint CSS template.
 - ✅ **Email-binding payload format**: deferred — capoeira PR will keep the keypair anonymous on-device; email-claim flow comes later when needed.
-- ✅ **Lineage-root public key registration**: deferred — co-signed attestations are v2 anyway; when we get there, reuse the existing dapp register-key pattern.
+- ✅ **Lineage-root public key registration**: deferred — comes online when the first institution actually wants to issue formal credentials. When we get there, reuse the existing dapp register-key pattern.
 - ✅ **Bilal's other programs**: deferred. Ship capoeira-only as the prototype Gary will show Bilal.
 
-No open blockers. Ready to merge this doc and start PR #2 (lineage-credentials scaffolding + Fatima/Emelin migration).
+No open blockers. Ready to merge this doc and start PR #2 (seed `lineage-engine` with the existing testimonial generator from tokenomics).
