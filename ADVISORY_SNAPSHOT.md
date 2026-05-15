@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-15T03:42:20Z`
+- Generated (UTC): `2026-05-15T04:35:09Z`
 - Look-back: **7** calendar days (`2026-05-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -131,13 +131,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,959.51**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$37.19**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -174,6 +178,8 @@ _All dated lines on/after 2026-05-08_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+bdf520b | 2026-05-14 21:21:08 -0700 | feat: /credentials/#<slug> CV viewer + /members.html directory (#83)
+6da214a | 2026-05-14 21:00:37 -0700 | fix(home): make Beer Hall feed resilient — jsDelivr primary, raw.github fallback (#82)
 b05f58d | 2026-05-13 20:07:20 -0700 | blog: 'Three times is when you name it' (Field Signals #5) (#81)
 28b922a | 2026-05-13 19:46:11 -0700 | blog: 'The system that broke is the system that proposes the fix' (Field Signals #4) (#80)
 01068cc | 2026-05-12 20:40:28 -0700 | ci: regen package-lock.json (add @playwright/test entry) (#79)
@@ -215,6 +221,9 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ca6dcf4 | 2026-05-14 21:27:50 -0700 | docs: explain why build workflow lives in lineage-credentials (data) not lineage-engine (code) (#138)
+3a54d7a | 2026-05-14 20:42:36 -0700 | Merge pull request #137 from TrueSightDAO/auto/advisory-refresh-2026-05-15
+39c1fd9 | 2026-05-15 03:42:27 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
 52a3780 | 2026-05-14 20:03:53 -0700 | docs: CREDENTIALING_PLATFORM design — lineage-based attestations primitive (#136)
 f406f9d | 2026-05-14 13:14:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
 3c65dde | 2026-05-14 13:14:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
@@ -252,15 +261,14 @@ aceaa8f | 2026-05-12 10:38:53 -0700 | Document DApp notification badge — contr
 2dbe102 | 2026-05-12 08:54:28 -0700 | Add editorial-tone guide + multi-LLM orchestration playbook (#121)
 c92abe7 | 2026-05-12 08:21:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
 8d31508 | 2026-05-12 08:21:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
-a056cda | 2026-05-12 02:19:15 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
-1307c23 | 2026-05-12 02:19:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
-c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+8e12928 | 2026-05-14 20:56:44 -0700 | feat(gas): add practice_event_processing.gs (PR #290 follow-up) (#291)
+18e89d8 | 2026-05-14 20:49:58 -0700 | feat(gas): credentialing_processing.gs for [PRACTICE EVENT] events (#290)
 8017dde | 2026-05-14 20:31:08 -0700 | docs: redirect reference_and_testimonials to lineage-credentials platform (#289)
 59bb275 | 2026-05-12 11:42:30 -0700 | shipping_planner: pick latest check-in by submitted_at + normalize Date cells (#288)
 851b8b2 | 2026-05-12 11:18:32 -0700 | SCHEMA: extend Partner Check-ins Method options (#287)
@@ -441,6 +449,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 20:52:33 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-08`; scanned last **393** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
