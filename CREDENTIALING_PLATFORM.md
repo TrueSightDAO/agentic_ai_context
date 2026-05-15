@@ -284,6 +284,8 @@ DAO-only members are the "separate query chain" Gary called out: the cache build
 
 PDF generation is part of the cache build, NOT done in the browser — keeps the browser load light, ensures stable typography, and lets us version the PDF alongside the JSON.
 
+**PDF visual design:** target = a respectable CV that a practitioner could attach to a job application. Clean professional typography (a single serif headline face + a sans body), reasonable margins, sections for: header (name + primary affiliation + dates), summary paragraph, DAO contributions, elective sections (per program), source citations footnoted at the bottom. NOT a bare-bones Markdown dump. Rendering via WeasyPrint with a hand-tuned CSS template is the v1 target. The PDF and the Markdown share the same source data (`_cache/cv/<slug>.json`) but diverge in styling.
+
 ### 9a. Incremental builds (don't blow the GitHub Action timeout)
 
 GitHub Actions caps a job at 6 hours. v1 data is trivially small (one program, a handful of practitioners, dozens of events) so a full rebuild is sub-minute. **But the architecture should support incremental builds from day 1** so it scales without a rewrite later.
@@ -338,19 +340,28 @@ At v1 scale these caches are no-ops because everything changes on every push any
 
 ---
 
-## 10b. Single home for per-person credentialing data
+## 10b. Two-repo split: data vs engine
 
-The existing `tokenomics/python_scripts/reference_and_testimonials/testimonials/` (Fatima Toledo + Emelin Frances Lisboa) is **derived per-person data** that conceptually belongs in lineage-credentials, not in the code repo. Consolidating it there means:
+Per-person credentialing data grows fast (events, PDFs, regenerated caches). Build scripts grow slowly. Mixing them in one repo means clones get heavy, CI pulls bloat, and history pollution accelerates. Splitting them now while it's trivial to migrate:
 
-- Single repo to query when building a person's CV.
-- No cross-repo writes from a GitHub Action.
-- tokenomics stays focused on schemas + GAS + Edgar pipelines (the *upstream* of credentialing), while lineage-credentials owns *everything* on the receiving end (events, summaries, CVs, PDFs).
+- **`TrueSightDAO/lineage-credentials`** (already created by Gary 2026-05-14) → **DATA repo.** Holds: `programs/<p>/manifest.json`, every `programs/<p>/pk-<hash>/practice/*.json` + `attestations/*.json` + `identity.json`, the `_cache/cv/<slug>.{json,md,pdf}` outputs, the `_cache/index.json` + `_cache/aliases.json`, and the GitHub Action workflow YAML.
+- **`TrueSightDAO/lineage-engine`** (new, to create) → **CODE repo.** Holds: `scripts/build_cv_cache.py`, Grok prompts, PDF templates (HTML/CSS for WeasyPrint), DAO-contribution-fetch helpers, schema definitions.
 
-Migration:
+Workflow:
 
-1. **Move outputs** — copy `fatima_toledo_*` and `emelin_*` files into `lineage-credentials/_cache/cv/<slug>.{md,json}` under their canonical slug. Existing JSON shape becomes the seed for the unified `cv.json` format.
-2. **Move generator script** — the Python code that produced those testimonials moves from `tokenomics/python_scripts/reference_and_testimonials/` to `lineage-credentials/scripts/build_cv_cache.py`. The GitHub Action defined in §9 runs it directly.
-3. **Redirect note in tokenomics** — leave a short README at the old path pointing at the new home so anything still linking to the old URL doesn't 404. Delete the JSON/md outputs there once the migration commit on lineage-credentials lands.
+1. GAS `credentialing_processing.gs` commits each new practice event JSON directly into `lineage-credentials/programs/<p>/pk-<hash>/practice/<timestamp>.json` via the GitHub Contents API.
+2. The push triggers `lineage-credentials/.github/workflows/build-cv-cache.yml`.
+3. That workflow checks out `lineage-engine` as a step, then runs `python lineage-engine/scripts/build_cv_cache.py --data .` against the local data-repo checkout.
+4. The script writes regenerated `_cache/` files back into the data repo. The workflow commits them with `[skip ci]`.
+5. The engine repo is **read-only at runtime** — no cross-repo writes ever originate from credentials → only commits back into the data repo. Engine is upgraded by ordinary PRs to its repo; data repo workflow pins to a tagged version of the engine.
+
+Tokenomics involvement: minimal. Tokenomics keeps the GAS scripts that *write* events into lineage-credentials (the producer side) and the existing DAO-contribution sheets. It no longer accumulates per-person testimonials.
+
+### Migration of existing data
+
+1. **Copy outputs** — move `fatima_toledo_*` and `emelin_*` files from `tokenomics/python_scripts/reference_and_testimonials/testimonials/` into `lineage-credentials/_cache/cv/<slug>.{md,json}` under their canonical slug. Existing JSON shape becomes the seed for the unified `cv.json` format.
+2. **Move generator script** — the Python code that produced those testimonials moves from `tokenomics/python_scripts/reference_and_testimonials/` into `lineage-engine/scripts/`.
+3. **Redirect note in tokenomics** — leave a short README at the old path pointing at the new home so anything still linking to the old URL doesn't 404. Delete the JSON/md outputs there once the migration commits on lineage-credentials + lineage-engine land.
 
 ## 11. Implementation order (PRs)
 
@@ -359,14 +370,16 @@ Done:
 
 Proposed sequence, smallest blast radius first:
 
-1. **agentic_ai_context PR** — this doc. Reviewed and merged before any code.
-2. **lineage-credentials PR** — initial scaffolding: README + capoeira manifest at `programs/capoeira-tribo-mirim/manifest.json` + empty `_cache/` skeleton. **Migrate** the existing Fatima + Emelin testimonials from tokenomics into `_cache/cv/`. **Move** the existing testimonial generator script from tokenomics into `lineage-credentials/scripts/` (no Action yet — script verified to run locally first).
-3. **tokenomics PR** — redirect README at the old `python_scripts/reference_and_testimonials/` path pointing at the new home. Delete the migrated files.
-4. **capoeira PR** — browser-side keypair (reuses dapp pattern), `[PRACTICE EVENT]` builder, Finish-Session submit, anonymous keypair path, source URL = `practice.html#s=...`. Backfill scan on page load. Email-claim affordance behind a "Save your training record" CTA.
-5. **tokenomics PR** — `credentialing_processing.gs` + new "Credentialing Events" tab + GitHub-commit-on-PROCESSED into lineage-credentials + defensive write guards.
-6. **lineage-credentials PR** — flesh out `build_cv_cache.py` for the merged practice + DAO-contributions flow + GitHub Action workflow + incremental-build wiring + PDF rendering. Trigger pattern proven against Gary's own first capoeira sessions.
-7. **truesight_me_beta PR** — `/credentials/<slug>/` rendering + `/members.html` directory. Reads only from `_cache/cv/<slug>.json` + `_cache/index.json`.
-8. **truesight_me_beta PR** — PDF download button (reads pre-rendered `_cache/cv/<slug>.pdf`).
+1. **agentic_ai_context PR** — this doc. Reviewed and merged before any code. ← *current PR #136.*
+2. **Create `TrueSightDAO/lineage-engine` repo** — Python scripts (existing testimonial generator from tokenomics) + Grok prompts + PDF templates. No Action yet — verified to run locally first against the migrated Fatima/Emelin data.
+3. **lineage-credentials PR** — initial scaffolding (DATA repo): README + capoeira manifest at `programs/capoeira-tribo-mirim/manifest.json` + `_cache/` skeleton. **Migrate** the existing Fatima + Emelin testimonials from tokenomics into `_cache/cv/<slug>.{md,json}`. No Action yet.
+4. **tokenomics PR** — redirect README at the old `python_scripts/reference_and_testimonials/` path pointing at the new home. Delete the migrated files.
+5. **capoeira PR** — browser-side keypair (reuses dapp pattern), `[PRACTICE EVENT]` builder, Finish-Session submit, anonymous keypair path, source URL = `practice.html#s=...`. Backfill scan on page load.
+6. **tokenomics PR** — `credentialing_processing.gs` + new "Credentialing Events" tab + GitHub Contents API commit into lineage-credentials + defensive write guards.
+7. **lineage-credentials PR** — `.github/workflows/build-cv-cache.yml` workflow (checks out lineage-engine, runs the build, commits cache).
+8. **lineage-engine PR** — flesh out `build_cv_cache.py` for the merged practice + DAO-contributions flow + incremental-build wiring + WeasyPrint job-application-grade PDF rendering. Trigger pattern proven against Gary's own first capoeira sessions.
+9. **truesight_me_beta PR** — `/credentials/<slug>/` rendering + `/members.html` directory. Reads only from `_cache/cv/<slug>.json` + `_cache/index.json` in the data repo.
+10. **truesight_me_beta PR** — PDF download button (links to pre-rendered `_cache/cv/<slug>.pdf`).
 
 Each PR is testable on its own. After PR #3 the practice site can submit events but they go nowhere useful (sit on the intake tab). After PR #4 they land in the repo. After PR #5 a CV can be built. After PR #6 it's publicly viewable. After PR #7 downloadable.
 
@@ -378,9 +391,10 @@ Resolved this session:
 - ✅ **Repo name**: `lineage-credentials` (created by Gary 2026-05-14).
 - ✅ **Person folder name**: `pk-<short-hash-of-pubkey>/`. Name/email arrives later via `identity.json` and never forces a rename.
 - ✅ **Event split**: `[PRACTICE EVENT]` for daily track record (self-signed, v1) and `[CREDENTIALING ATTESTATION EVENT]` for formal recognition (authority-signed, v2 wiring).
+- ✅ **Per-person data consolidation**: existing Fatima + Emelin testimonials migrate from tokenomics into lineage-credentials. Tokenomics keeps the upstream pipelines only.
+- ✅ **PDF visual design**: respectable CV style suitable for a job application, not a bare Markdown dump. Hand-tuned WeasyPrint CSS template.
+- ✅ **Email-binding payload format**: deferred — capoeira PR will keep the keypair anonymous on-device; email-claim flow comes later when needed.
+- ✅ **Lineage-root public key registration**: deferred — co-signed attestations are v2 anyway; when we get there, reuse the existing dapp register-key pattern.
+- ✅ **Bilal's other programs**: deferred. Ship capoeira-only as the prototype Gary will show Bilal.
 
-Still open:
-- **Email-binding payload format**: confirm it's literally the same `[REGISTER KEY EVENT]` the dapp uses, so we can reuse the same Edgar endpoint without server changes.
-- **Lineage-root public key registration**: how does Bico Duro's key land in `manifest.authorized_attestors`? Manual one-off, or governor proposal flow?
-- **PDF visual design**: bare-bones for v1 (Markdown → A4 PDF), or designed letterhead?
-- **Bilal's other programs**: should the doc capture their lineage roots / placeholders now, or wait until each comes online?
+No open blockers. Ready to merge this doc and start PR #2 (lineage-credentials scaffolding + Fatima/Emelin migration).
