@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-14T20:14:07Z`
-- Look-back: **7** calendar days (`2026-05-07` → today UTC)
+- Generated (UTC): `2026-05-15T03:42:20Z`
+- Look-back: **7** calendar days (`2026-05-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -30,8 +30,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 231 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 231 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,593 | 6% | `2026-12-31` | 230 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 230 | **behind** |
 
 ---
 
@@ -131,17 +131,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,959.75**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$36.96**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -151,7 +147,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-05-07_ (6):
+_All dated lines on/after 2026-05-08_ (6):
 
 - 2026-05-10 | claude | Managed ledger explorer pattern: Created reusable transparency dashboard infrastructure. treasury-cache/managed-ledgers/<ledger_name>.json → GitHub Pages explorer. First implementation: tribomirimbahia ledger (Tribo Bahia Mirim Capoeira donations). Documented in MANAGED_LEDGER_EXPLORER_PATTERN.md. New PROJect: tribomirimbahia (index.html blockchain-explorer UI).
 - 2026-05-10 | claude | Created TRIBO_MIRIM_BAHIA managed ledger: Google Sheet (1_MjYZBMoUZAmQvMi6KOml3A6shQg2sJdFEFt1QHHxtM) with AGL15-mirrored tab structure + formulas, registered in Shipment Ledger Listing (row 1001, Transaction Type=Donation), service accounts shared. Documented full creation process in MANAGED_LEDGER_EXPLORER_PATTERN.md §4.
@@ -219,6 +215,9 @@ c822ec0 | 2026-05-10 21:33:56 -0700 | feat(truesight.me): new fundraisers.html p
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+52a3780 | 2026-05-14 20:03:53 -0700 | docs: CREDENTIALING_PLATFORM design — lineage-based attestations primitive (#136)
+f406f9d | 2026-05-14 13:14:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
+3c65dde | 2026-05-14 13:14:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 a1cc9bc | 2026-05-14 08:06:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
 7f90a0a | 2026-05-14 08:06:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 3a5cde4 | 2026-05-14 02:16:06 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
@@ -256,15 +255,13 @@ c92abe7 | 2026-05-12 08:21:57 -0700 | chore(previews): refresh Beer Hall preview
 a056cda | 2026-05-12 02:19:15 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
 1307c23 | 2026-05-12 02:19:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 c13ff77 | 2026-05-11 21:14:09 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
-7b8751b | 2026-05-11 21:14:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
-55b4257 | 2026-05-11 19:35:13 -0700 | Edgar nginx ops: document heredoc \$host trap + sites-enabled symlink check (#120)
-7227b35 | 2026-05-11 14:43:25 -0700 | Docs: Canonical partner addresses in Partners!J + population guide (#119)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+8017dde | 2026-05-14 20:31:08 -0700 | docs: redirect reference_and_testimonials to lineage-credentials platform (#289)
 59bb275 | 2026-05-12 11:42:30 -0700 | shipping_planner: pick latest check-in by submitted_at + normalize Date cells (#288)
 851b8b2 | 2026-05-12 11:18:32 -0700 | SCHEMA: extend Partner Check-ins Method options (#287)
 a03dece | 2026-05-12 11:01:41 -0700 | list_partner_contributors: synthesize popup-<slug> for contributor-only rows (#285)
@@ -284,8 +281,6 @@ e80748c | 2026-05-10 17:50:25 -0700 | feat: snapshot_managed_ledgers.py — expo
 7b73e95 | 2026-05-10 15:57:23 -0700 | feat(currency-conversion): Warehouse Manager + Edgar immediate-trigger doGet (#275)
 e5aec49 | 2026-05-10 15:23:03 -0700 | feat: currency_conversion_processing.gs (multi-currency double-entry on managed ledgers) (#274)
 77cd437 | 2026-05-09 23:15:01 -0700 | fix(pipeline-metrics): coerce TIME-cast Date cells back to integer counts (#273)
-d842b8f | 2026-05-06 18:13:06 -0700 | feat(gas): add asset-receipt-ingest GAS for [ASSET RECEIPT EVENT] processing (#272)
-b6e19cd | 2026-05-06 17:02:03 -0700 | Add agentic authorization path for trusted agent (autopilot) submissions approved by governors (#271)
 ```
 
 ### `dapp` → `dapp`
@@ -322,16 +317,6 @@ d08bd1f | 2026-05-09 23:44:57 -0700 | feat(chat): visual feedback for autopilot 
 b469e8b | 2026-05-08 18:40:08 -0700 | fix: batch mode supports all QR input methods (camera, upload, list) (#223)
 f060edf | 2026-05-08 17:30:50 -0700 | feat: batch mode for inventory movement with QR code accumulator (#222)
 101868e | 2026-05-08 17:03:35 -0700 | feat: add Gmail draft link support to store interaction history
-97e3dc6 | 2026-05-06 21:35:54 -0700 | [autopilot] ## Problem When a user attaches an image file in chat.html,  (#221)
-fcafc68 | 2026-05-06 20:59:40 -0700 | [autopilot] Add async message queuing UI to chat.html so the governor ca (#220)
-05575cb | 2026-05-06 20:33:08 -0700 | [autopilot] Fix chat.html (#219)
-2ad97e3 | 2026-05-06 20:28:08 -0700 | [autopilot] Add session ID to URL hash so conversations can be shared/bo (#218)
-9795871 | 2026-05-06 20:24:20 -0700 | feat: add file upload support to Asset Receipt Report page
-c39282a | 2026-05-06 20:20:16 -0700 | [autopilot] Fix tight spacing between the "+ New" button and the session (#217)
-8c745db | 2026-05-06 20:15:22 -0700 | chore: bump menu.js cache buster to 20260507 for Asset Receipt Reporter
-5e97a05 | 2026-05-06 20:09:30 -0700 | [autopilot] Fix menu.js (#216)
-a921999 | 2026-05-06 19:56:23 -0700 | fix: correct Currency placeholder text for asset receipt page
-… (truncated)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -378,8 +363,6 @@ e949102 | 2026-05-09 08:13:53 +0000 | chore: refresh store and partner inventory
 067b089 | 2026-05-08 19:28:53 -0700 | chore: refresh Agroverse store inventory snapshot
 e2f837e | 2026-05-08 17:28:33 -0700 | chore: refresh Agroverse store inventory snapshot
 447a673 | 2026-05-08 08:00:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-c3a0b0f | 2026-05-07 08:50:11 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-0a7a5ae | 2026-05-06 19:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -412,6 +395,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-15T034220Z_field-signals-4-5-autopilot-self-healing.md`
+
+- **posted_at_utc:** `2026-05-15T03:42:20Z`  
+- **slug:** `field-signals-4-5-autopilot-self-healing`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Field Signals #4 and #5 are live, the Autopilot infrastructure gained a self-healing loop, and the CREDENTIALING_PLATFORM design spec shipped today.
+  - **Field Signals #4 & #5 published** — "The system that broke is the system that proposes the fix" and "Three times is when you name it" are now on the blog.
+
 ### `beer-hall_2026-05-13T033754Z_partner-check-in-v03-field-signals-3-live.md`
 
 - **posted_at_utc:** `2026-05-13T03:37:54Z`  
@@ -429,15 +421,6 @@ _(no commits on origin/master in window)_
 
   Fundraisers page is live on truesight.me, the DAO advisor now reads QiMen Dunjia charts, and a full currency-conversion pipeline for managed ledgers shipped today.
   - Fundraisers program page and navigation link added to truesight.me to showcase DAO fundraising initiatives.
-
-### `beer-hall_2026-05-10T024057Z_batch-qr-oracle-persist-autopilot-auth.md`
-
-- **posted_at_utc:** `2026-05-10T02:40:57Z`  
-- **slug:** `batch-qr-oracle-persist-autopilot-auth`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Batch inventory movement, oracle persistence, and agentic authorization all landed since yesterday's digest — the biggest cluster of contributor-facing wiring in this cycle.
-  - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; a same-day fix confirmed all three input methods working.
 
 ---
 
@@ -458,39 +441,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 23.6 | 14942.11386 | 5/14/2026 12:50:44 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-07`; scanned last **393** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
