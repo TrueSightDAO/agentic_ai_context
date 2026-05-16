@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-16T03:27:12Z`
+- Generated (UTC): `2026-05-16T04:09:24Z`
 - Look-back: **7** calendar days (`2026-05-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 34
+- `[PRACTICE EVENT]` × 4
+- `[SALES EVENT]` × 2
+- `[INVENTORY MOVEMENT]` × 2
+- `[PARTNER CHECK-IN EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20260515054636_081` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260515070134_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Credentialing platform v1 shipped end-to-end
+- `Edgar_20260515071800_085` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260515201327_087` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_41 · Sales price: $17 · Sold by: Gary Teh
+- `Edgar_20260515201401_089` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_34 · Sales price: $18 · Sold by: Gary Teh
+- `Edgar_20260515201709_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Visiting Noot’s place to gather product feedback. She mentioned it was very …
+- `Edgar_20260515201813_093` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Visiting Karla’s cafe in dog patch
+- `Edgar_20260515220726_095` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5 · Description: Kimi API credits.
+- `Edgar_20260515221124_097` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Swap Shuar Design Boutique logo to new PNG variants
+- `Edgar_20260515221514_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Partner Check-in Module — full stack implementation
+- `Edgar_20260515222714_101` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Shuar Design Boutique · Recipient Name: Gary Teh · Inventory Item: USD
+- `Edgar_20260515222759_103` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Shuar Design Boutique · Inventory Item: USD
+- `Edgar_20260515222830_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Handled this transaction
+- `Edgar_20260515223856_109` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20 · Description: Claude API credits
+- `Edgar_20260515224124_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Remove Love of Ganesha partner page — reclassified as D2C customer only
+- `Edgar_20260515230440_113` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5 · Description: Kimi API
+- `Edgar_20260515231110_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Fix rpm-ninja-header.jpg — rotated 180° (was upside down on Pacific West Coa…
+- `Edgar_20260515233004_117` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Add The Alchemist (Sammi Whitchurch) partner page
+- `Edgar_20260515235527_119` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Add The Alchemist partner page, blog post, hero image, and video embed
+- `Edgar_20260515235800_121` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Oracle advisor refactor: lens-led zone selection, day-anchored QMDJ, Opus 4.7
 
 ---
 
@@ -131,13 +168,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,994.27**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$37.44**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -226,6 +267,8 @@ fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h adv
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4d6b2ce | 2026-05-15 20:27:31 -0700 | Merge pull request #142 from TrueSightDAO/auto/advisory-refresh-2026-05-16
+b2c61de | 2026-05-16 03:27:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 7b3043f | 2026-05-15 16:10:53 -0700 | Regenerate ADVISORY_SNAPSHOT.md on top of latest main; ecosystem-activity section now above the funnel (#141)
 9f67bb6 | 2026-05-15 13:00:19 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
 66ddc1e | 2026-05-15 13:00:18 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
@@ -264,8 +307,6 @@ b169712 | 2026-05-12 20:38:10 -0700 | Merge pull request #132 from TrueSightDAO/
 846f2de | 2026-05-12 15:36:14 -0700 | Partner Check-in dual-use + queued follow-ups for paste/beer-hall/inventory tag (#131)
 dc4c82b | 2026-05-12 13:15:37 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
 3b9d89d | 2026-05-12 13:15:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
-250f9fc | 2026-05-12 12:04:59 -0700 | PARTNER_POKE_SCHEDULER v0.1: auto-file Partner Check-in on send (#130)
-033b0e8 | 2026-05-12 11:56:13 -0700 | PARTNER_POKE_SCHEDULER v0: mark verified after first production run (#129)
 … (truncated)
 ```
 
@@ -471,6 +512,41 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/15/2026 20:51:28 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-09`; scanned last **395** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
+| 2026-05-15 | 18 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_34 | — | — |
+| 2026-05-15 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_41 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
