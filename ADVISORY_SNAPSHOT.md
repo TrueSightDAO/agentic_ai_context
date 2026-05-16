@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-15T23:10:29Z`
-- Look-back: **7** calendar days (`2026-05-08` → today UTC)
+- Generated (UTC): `2026-05-16T03:27:12Z`
+- Look-back: **7** calendar days (`2026-05-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 34
-- `[PRACTICE EVENT]` × 4
-- `[SALES EVENT]` × 2
-- `[INVENTORY MOVEMENT]` × 2
-- `[PARTNER CHECK-IN EVENT]` × 1
-
-### Latest entries
-
-- `Edgar_20260514211426_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: responding to Karla about me popping by at her café tomorrow to see what’s up
-- `Edgar_20260515041255_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: truesight.me Beer Hall feed — jsDelivr primary + raw.github fallback (GFW + …
-- `Edgar_20260515054626_077` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260515054627_079` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260515054636_081` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260515070134_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Credentialing platform v1 shipped end-to-end
-- `Edgar_20260515071800_085` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260515201327_087` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_41 · Sales price: $17 · Sold by: Gary Teh
-- `Edgar_20260515201401_089` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_34 · Sales price: $18 · Sold by: Gary Teh
-- `Edgar_20260515201709_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Visiting Noot’s place to gather product feedback. She mentioned it was very …
-- `Edgar_20260515201813_093` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Visiting Karla’s cafe in dog patch
-- `Edgar_20260515220726_095` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5 · Description: Kimi API credits.
-- `Edgar_20260515221124_097` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Swap Shuar Design Boutique logo to new PNG variants
-- `Edgar_20260515221514_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Partner Check-in Module — full stack implementation
-- `Edgar_20260515222714_101` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Shuar Design Boutique · Recipient Name: Gary Teh · Inventory Item: USD
-- `Edgar_20260515222759_103` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Shuar Design Boutique · Inventory Item: USD
-- `Edgar_20260515222830_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Handled this transaction
-- `Edgar_20260515223856_109` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20 · Description: Claude API credits
-- `Edgar_20260515224124_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Remove Love of Ganesha partner page — reclassified as D2C customer only
-- `Edgar_20260515230440_113` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5 · Description: Kimi API
 
 ---
 
@@ -67,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 230 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 230 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 229 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 229 | **behind** |
 
 ---
 
@@ -77,41 +40,40 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-11T10:59:13.897Z`
+- Generated (UTC): `2026-05-15T10:59:17.439Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **15**
-- Shortlisted: **3**
 
 ## Funnel by status (curated order)
 
-- Not Appropriate: 74  (#1)
+- Deferred / Revisit later: 5  (#1)
 - AI: Contact Form found: 109  (#3)
-- Research: 62  (#8)
-- AI: No fit signal: 155  (#9)
+- AI: No fit signal: 155  (#6)
+- Research: 61  (#8)
+- AI: Enrich with contact: 3  (#9)
 - AI: Enrich — manual: 90  (#10)
-- Deferred / Revisit later: 5  (#12)
-- Instagram Followed: 11  (#13)
-- Manager Follow-up: 33  (#15)
-- Shortlisted: 3  (#18)
-- On Hold: 18  (#19)
-- **Partnered: 15**  (#20)
-- Rejected: 14  (#21)
-- Followed Up: 1  (#22)
-- AI: Warm up prospect: 78  (#9999)
+- Manager Follow-up: 33  (#13)
+- Followed Up: 1  (#15)
+- Instagram Followed: 11  (#18)
+- Rejected: 14  (#19)
+- On Hold: 18  (#20)
+- Not Appropriate: 74  (#21)
+- **Partnered: 15**  (#22)
+- AI: Warm up prospect: 79  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **174**, follow_up **67**, bulk **0**, unknown **2** (data rows: **243**)
-- Distinct recipient addresses (`to_email`, by log `status`): warmup **85**, follow_up **21**, bulk **0**, unknown **2**
+- **Email Agent Follow Up** — logged sends: warmup **174**, follow_up **69**, bulk **0**, unknown **2** (data rows: **245**)
+- Distinct recipient addresses (`to_email`, by log `status`): warmup **85**, follow_up **22**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **78** stores — sum logged **warmup** sends (AU): **147**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **4** / **5** / **69**; follow-up depth (none / once / ≥2): **78** / **0** / **0**
-- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **63**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **3** / **17**
+- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **147**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **5** / **69**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
+- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **63**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **3** / **17**
+- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
 
 ---
 
@@ -169,17 +131,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,994.51**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$37.19**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -189,7 +147,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-05-08_ (6):
+_All dated lines on/after 2026-05-09_ (6):
 
 - 2026-05-10 | claude | Managed ledger explorer pattern: Created reusable transparency dashboard infrastructure. treasury-cache/managed-ledgers/<ledger_name>.json → GitHub Pages explorer. First implementation: tribomirimbahia ledger (Tribo Bahia Mirim Capoeira donations). Documented in MANAGED_LEDGER_EXPLORER_PATTERN.md. New PROJect: tribomirimbahia (index.html blockchain-explorer UI).
 - 2026-05-10 | claude | Created TRIBO_MIRIM_BAHIA managed ledger: Google Sheet (1_MjYZBMoUZAmQvMi6KOml3A6shQg2sJdFEFt1QHHxtM) with AGL15-mirrored tab structure + formulas, registered in Shipment Ledger Listing (row 1001, Transaction Type=Donation), service accounts shared. Documented full creation process in MANAGED_LEDGER_EXPLORER_PATTERN.md §4.
@@ -262,29 +220,13 @@ db0628f | 2026-05-11 15:01:04 -0700 | Fix expand: use event delegation on table 
 ### `market_research` → `go_to_market`
 
 ```
-346c13a | 2026-05-15 16:08:44 -0700 | Add --with-telegram-activity: real-time ecosystem signal from Chat Logs (#125)
-0488498 | 2026-05-12 20:29:37 -0700 | ci: fix beer-hall-digest-daily step indent (YAML parse fix) (#124)
-ff122ee | 2026-05-12 20:28:05 -0700 | ci: quote step name with embedded colons (YAML parse fix) (#123)
-6f2ebb1 | 2026-05-12 15:32:14 -0700 | sell_through: pivot to deny-list (Freight Provider, Supplier) — Operator stays in (#122)
-4bad4b0 | 2026-05-12 15:27:16 -0700 | sell_through: exclude non-retail partner types from trees/mo accounting (#121)
-1b44452 | 2026-05-11 14:51:48 -0700 | Fix inventory read: use productId not sku
-f23f731 | 2026-05-11 14:44:01 -0700 | Scripts: Populate Agroverse Partners!J from local repo; skip manual J (#120)
-a227bd4 | 2026-05-11 14:30:53 -0700 | Add sell-through report step to weekly velocity CI pipeline
-ee56c8c | 2026-05-11 14:26:35 -0700 | Add sell-through report generator script
-d027f11 | 2026-05-11 14:02:13 -0700 | Fix currency→SKU resolution for batch-specific suffixes
-05115a7 | 2026-05-11 13:37:23 -0700 | Prioritize Sold By over Reporter Name: Sold By first, fall back to Reporter Name
-a5f243d | 2026-05-11 13:35:49 -0700 | Use Reporter Name (col D) as primary source for QR sale attribution
-de2c7bd | 2026-05-11 13:29:56 -0700 | Fix: fall back to Reporter Name when Sold By is empty in QR sales
-052468e | 2026-05-11 10:12:08 -0700 | docs: note BigModel migration (#119)
-96dea27 | 2026-05-11 10:01:56 -0700 | migrate beer hall digest from Anthropic Claude → BigModel GLM-4.6
-5340fa1 | 2026-05-09 23:15:06 -0700 | fix(hit-list): refuse to promote rows with placeholder filler@godaddy.com (#118)
-658ddd4 | 2026-05-08 16:29:57 -0700 | feat: auto-promote AI: Prospect replied → Manager Follow-up on reply send (#117)
-d2710f3 | 2026-05-08 15:23:19 -0700 | feat(hit_list): warmup-aged-out promotion to Manager Follow-up (#116)
+fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h advisory-snapshot-refresh cron (#126)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7b3043f | 2026-05-15 16:10:53 -0700 | Regenerate ADVISORY_SNAPSHOT.md on top of latest main; ecosystem-activity section now above the funnel (#141)
 9f67bb6 | 2026-05-15 13:00:19 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
 66ddc1e | 2026-05-15 13:00:18 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
 a4ec871 | 2026-05-15 08:00:30 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
@@ -324,7 +266,6 @@ dc4c82b | 2026-05-12 13:15:37 -0700 | chore(previews): refresh Beer Hall preview
 3b9d89d | 2026-05-12 13:15:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 250f9fc | 2026-05-12 12:04:59 -0700 | PARTNER_POKE_SCHEDULER v0.1: auto-file Partner Check-in on send (#130)
 033b0e8 | 2026-05-12 11:56:13 -0700 | PARTNER_POKE_SCHEDULER v0: mark verified after first production run (#129)
-7817f57 | 2026-05-12 11:31:00 -0700 | OPEN_FOLLOWUPS: broaden advisory-bell entry from partner check-ins to all 3 signal sources (#128)
 … (truncated)
 ```
 
@@ -439,12 +380,16 @@ e949102 | 2026-05-09 08:13:53 +0000 | chore: refresh store and partner inventory
 4ce09f3 | 2026-05-08 20:28:34 -0700 | chore: refresh Agroverse store inventory snapshot
 067b089 | 2026-05-08 19:28:53 -0700 | chore: refresh Agroverse store inventory snapshot
 e2f837e | 2026-05-08 17:28:33 -0700 | chore: refresh Agroverse store inventory snapshot
-447a673 | 2026-05-08 08:00:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+309292d | 2026-05-15 17:30:56 -0700 | Anchor The Alchemist hero to top so the subject's head isn't clipped (#112)
+27abda3 | 2026-05-15 16:53:01 -0700 | update the-alchemist hero image with IMG_6414
+cb50d38 | 2026-05-15 16:41:15 -0700 | feat(blog+partner): add The Alchemist Skooliepalooza video embed and blog post
+f7067f4 | 2026-05-15 16:29:25 -0700 | seo(the-alchemist): add Schema.org LocalBusiness JSON-LD structured data (#110)
+b2b7304 | 2026-05-15 16:11:04 -0700 | fix: rotate rpm-ninja-header.jpg 180° — was upside down on Pacific West Coast Journey page (#109)
 d0370d0 | 2026-05-15 16:09:50 -0700 | feat(partner): add The Alchemist (Sammi Whitchurch) — pop-up vendor at Skooliepalooza
 a740898 | 2026-05-15 16:07:41 -0700 | fix: rotate rpm-ninja-header.jpg 180° — was upside down on Pacific West Coast Journey page
 a2e1aa2 | 2026-05-15 15:34:35 -0700 | remove Love of Ganesha partner page — reclassified as D2C customer only (#108) (#108)
@@ -459,50 +404,61 @@ ca1d063 | 2026-05-12 09:21:09 -0700 | feat(mission): replace color photo on Miss
 ### `iching_oracle` → `oracle`
 
 ```
+40c992e | 2026-05-15 16:51:15 -0700 | Today's move: name shape + scale, not script the content (#17)
+1873918 | 2026-05-15 16:44:07 -0700 | Tighten Context Gaps: decision-flipping only, skip when none (#16)
+4df5dab | 2026-05-15 16:37:56 -0700 | Default QMDJ to day-anchored mode; depersonalize advisor prompt (#15)
+fb12ff4 | 2026-05-15 16:22:11 -0700 | Daily-cast lens-led prompt + zone selection; default → claude-opus-4-7 (#14)
 fb8d833 | 2026-05-09 23:56:30 -0700 | fix(qmdj): glossary overflow + bold-outline legend (#12)
 9195934 | 2026-05-09 23:48:14 -0700 | feat(qmdj): move Explore-64 above QMDJ panel; clarify hour-based time basis (#11)
 01c42ca | 2026-05-09 23:34:05 -0700 | chore(gas): commit appsscript.json manifest pulled from the live web app (#10)
 46cc5e8 | 2026-05-09 23:10:00 -0700 | feat(qmdj): wire QMDJ chart into the DAO advisor prompt (#9)
 0009c9e | 2026-05-09 22:40:05 -0700 | feat(qmdj): add QiMen Dunjia structural overlay below the I-Ching reading (#8)
-3e42778 | 2026-05-08 15:21:32 -0700 | feat: persist oracle draws to oracle_logs repo via GitHub Contents API
 ```
 
-### `Cypher-Defense` _(no clone)_
+### `Cypher-Defense` → `Cypher-Defense`
+
+```
+_(no commits on origin/master in window)_
+```
 
 ---
 
 ## Recent Beer Hall archives (newest entries)
 
-### `beer-hall_2026-05-11T170750Z_fundraisers-page-live-qmdj-advisor-currency-tools.md`
+### `beer-hall_2026-05-16T032711Z_field-signals-6-the-alchemist-credentialing-v1.md`
 
-- **posted_at_utc:** `2026-05-11T17:07:50Z`  
-- **slug:** `fundraisers-page-live-qmdj-advisor-currency-tools`  
+- **posted_at_utc:** `2026-05-16T03:27:11Z`  
+- **slug:** `field-signals-6-the-alchemist-credentialing-v1`  
 - **Message 1 excerpt (first two non-empty lines):**
 
-  Fundraisers page is live on truesight.me, the DAO advisor now reads QiMen Dunjia charts, and a full currency-conversion pipeline for managed ledgers shipped today.
-  - Fundraisers program page and navigation link added to truesight.me to showcase DAO fundraising initiatives.
+  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
+  - **Field Signals #6 live** — "What the angels couldn't name" published, alongside a blog rewrite that broadens the convergence story.
 
-### `beer-hall_2026-05-10T024057Z_batch-qr-oracle-persist-autopilot-auth.md`
+### `beer-hall_2026-05-15T034220Z_field-signals-4-5-autopilot-self-healing.md`
 
-- **posted_at_utc:** `2026-05-10T02:40:57Z`  
-- **slug:** `batch-qr-oracle-persist-autopilot-auth`  
+- **posted_at_utc:** `2026-05-15T03:42:20Z`  
+- **slug:** `field-signals-4-5-autopilot-self-healing`  
 - **Message 1 excerpt (first two non-empty lines):**
 
-  Batch inventory movement, oracle persistence, and agentic authorization all landed since yesterday's digest — the biggest cluster of contributor-facing wiring in this cycle.
-  - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; a same-day fix confirmed all three input methods working.
+  Field Signals #4 and #5 are live, the Autopilot infrastructure gained a self-healing loop, and the CREDENTIALING_PLATFORM design spec shipped today.
+  - **Field Signals #4 & #5 published** — "The system that broke is the system that proposes the fix" and "Three times is when you name it" are now on the blog.
 
-### `beer-hall_2026-05-09T023633Z_batch-qr-inventory-oracle-persistence-prospect-auto-promote.md`
+### `beer-hall_2026-05-13T033754Z_partner-check-in-v03-field-signals-3-live.md`
 
-- **posted_at_utc:** `2026-05-09T02:36:33Z`  
-- **slug:** `batch-qr-inventory-oracle-persistence-prospect-auto-promote`  
+- **posted_at_utc:** `2026-05-13T03:37:54Z`  
+- **slug:** `partner-check-in-v03-field-signals-3-live`  
 - **Message 1 excerpt (first two non-empty lines):**
 
-  Batch inventory movements land in the DApp, the I Ching oracle starts persisting draws to a permanent log, and the outbound sales pipeline gains an auto-promotion rule for replied prospects.
-  - **Batch QR inventory movement live** — contributors can now scan, upload, or type a list of QR codes and submit them as a single inventory movement; all three input methods confirmed working in today's follow-up fix.
+  Partner Check-in v0.3, the AI-first Partner Poke Scheduler, and Field Signals #3 shipped today — turning partner workflow into an automated, bell-driven loop.
+  - **Partner Check-in v0.3 live** — new contributor-leading UI, auto-scheduling of next check-ins, and a "Submit Another" flow to batch updates faster.
 
 ---
 
 ## Recent retail field reports (DApp store status updates)
+
+- **`20260511T210201Z.json`** — `2026-05-11T21:02:02Z`  
+  **Apotheca** → `Rejected` (was `Rejected`) | type: Metaphysical/Spiritual | method: Social Media | sig: success
+  _Noticing this which we visited that was not carrying ceremonial cacao or mentioned they were carrying their own earlier in the year ended up stocking Ora’s ceremonial cacao… I wonder why… I wonder if there is something wrong with_
 
 - **`20260509T001510Z.json`** — `2026-05-09T00:15:10Z`  
   **Care Rituals, LLC** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
@@ -516,148 +472,12 @@ fb8d833 | 2026-05-09 23:56:30 -0700 | fix(qmdj): glossary overflow + bold-outlin
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
 
-- **`20260508T235719Z.json`** — `2026-05-08T23:57:19Z`  
-  **Theastrologystore** → `Deferred / Revisit later` (was `AI: Prospect replied`) | type: Metaphysical/Spiritual | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/15/2026 15:50:31 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-08`; scanned last **395** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
-| 2026-05-15 | 18 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_34 | — | — |
-| 2026-05-15 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_41 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
-
----
-
-## Open reminders (macOS `rem` — action items)
-
-_Open (not done) items from Reminders.app (`rem list --incomplete -o json`). When the user asks for **oracle response options**, propose **1–3** concrete next steps that honestly connect the hexagram reading to these **actionable** items where it fits; do **not** invent due dates or claim items are done._
-_Showing **60** of **149** open reminders (cap `--rem-limit`)._
-
-| Title | List | Due (date) | Flagged | Notes (trunc.) |
-|-------|------|------------|---------|------------------|
-| Follow up with USPS claims | Reminders | `2025-04-07` | — | — |
-| Send Matthew the Dizajn | Reminders | `2025-09-11` | — | — |
-| Get cursor to look into the AWS charges still coming to my account | Reminders | `2026-01-29` | — | — |
-| Look at the influencer platform that a surface and a beer hall | Reminders | `2026-01-29` | — | — |
-| Spinner an instance for the RAG architecture | Reminders | `2026-01-29` | — | — |
-| Look to order photos of the storage shop listed by AI | Reminders | `2026-04-21` | — | — |
-| Talk about having constraint | Reminders | `2026-04-25` | — | — |
-| Where it's not thank you or end it should be probably considered a fail… | Reminders | `2026-05-05` | — | — |
-| Review my Clock subscription package | Reminders | `2026-05-09` | — | — |
-| Call Wei | Reminders | `2026-05-11` | — | — |
-| Reach out to Bern | Reminders | `2026-05-12` | — | — |
-| [FEATURE] Allow the module where people can add their own photo for the… | Reminders | `—` | — | — |
-| [priority] Look through AI generated emails, edit and send them out | Reminders | `—` | — | — |
-| [priority] Post Instagram gratitude to Raven | Reminders | `—` | — | — |
-| [Priority] Research on Santa Fe Fazenda In International Airport | Reminders | `—` | — | — |
-| [priority] review Fatima suggestion and then revert to Fatima | Reminders | `—` | — | — |
-| [priority] The store interaction history is missing some status that's … | Reminders | `—` | — | — |
-| [priority] Write a blocked post about heavy metals | Reminders | `—` | — | — |
-| Add Kirk into our database | Reminders | `—` | — | — |
-| Allow remark to be expendable when retractable in mobile | Reminders | `—` | — | — |
-| Allow the ledger of contribution by name on site.me so that people can … | Reminders | `—` | — | — |
-| Allow to name the tree | Reminders | `—` | — | — |
-| Allow to save the sessions of the Capoeira onto the Edgar ledger and th… | Reminders | `—` | — | — |
-| Allow upload of MH for the store nearby status submission | Reminders | `—` | — | — |
-| Allow upload of MH to the stores nearby status submission | Reminders | `—` | — | — |
-| Andrew is pretty impressed by the fact that it is a community project | Reminders | `—` | — | — |
-| Announce the people that Kirsten made her Melania Available R&B | Reminders | `—` | — | — |
-| Ask Claude about what to do with the gate and points fall off | Reminders | `—` | — | — |
-| Ask Kok to help decipher it's a hard email | Reminders | `—` | — | — |
-| Ask Ru to take videos of photos of herself at the Cacau at her booth du… | Reminders | `—` | — | — |
-| Block post about infrastructure OPEC and AI | Reminders | `—` | — | — |
-| Build up a dashboard for all the trees belong to the same email address | Reminders | `—` | — | — |
-| Buy the battery back up tomorrow on amazon.com | Reminders | `—` | — | — |
-| Check the time and Spam packaging to cut out as well as expenses | Reminders | `—` | — | — |
-| Check when the last day they bought | Reminders | `—` | — | — |
-| Check when was the last time they bought and then sent a pull-up email … | Reminders | `—` | — | — |
-| Choclate has an API block post | Reminders | `—` | — | — |
-| Consult external source for SWOT analysis in advisory | Reminders | `—` | — | — |
-| Create a donation receipt | Reminders | `—` | — | — |
-| Create a mobile app that venue owners can use to set the price | Reminders | `—` | — | — |
-| Create a mod for registering new members | Reminders | `—` | — | — |
-| Create a route for the wine Kenosha | Reminders | `—` | — | — |
-| Create an expected physical pop-up expansion | Reminders | `—` | — | — |
-| Create an instance of the iOS native app using cursor AI | Reminders | `—` | — | — |
-| Create the volunteer estimator for the different places that are sellin… | Reminders | `—` | — | — |
-| Create tutorial for Deckers | Reminders | `—` | — | — |
-| Do engine rate to see what's up with the engine lights | Reminders | `—` | — | — |
-| Download Prince of tights | Reminders | `—` | — | — |
-| Drop darling's key from Igor's Network | Reminders | `—` | — | — |
-| Drop Jennifer as well as Founder Haus from the past | Reminders | `—` | — | — |
-| Easy post calculate Sweet spot for postal rate across all the different… | Reminders | `—` | — | — |
-| Explore this https://www.linkedin.com/posts/%7Efinn_today-were-proud-to… | Reminders | `—` | — | — |
-| Extend debt with the transforming of inventory from one | Reminders | `—` | — | — |
-| Figure out how to be a reasonable schedule by another four weeks from $… | Reminders | `—` | — | — |
-| Figure out how to social proof like the Michelin star list | Reminders | `—` | — | — |
-| Follow up with all the Desert resell us on April 16 after our Cacao com… | Reminders | `—` | — | — |
-| Follow up with andrea | Reminders | `—` | — | — |
-| Follow up with Fatima on Wednesday regarding the quotation from Santa A… | Reminders | `—` | — | — |
-| Follow up with Matthews on Monday regarding the follow up with the Omeg… | Reminders | `—` | — | — |
-| Follow up with the dude that dust incense from Nathan's fire | Reminders | `—` | — | — |
-
-### Suggestion seeds (titles only)
-
-- Follow up with USPS claims
-- Send Matthew the Dizajn
-- Get cursor to look into the AWS charges still coming to my account
-- Look at the influencer platform that a surface and a beer hall
-- Spinner an instance for the RAG architecture
-- Look to order photos of the storage shop listed by AI
-- Talk about having constraint
-- Where it's not thank you or end it should be probably considered a failure and recorded
-- Review my Clock subscription package
-- Call Wei
-- Reach out to Bern
-- [FEATURE] Allow the module where people can add their own photo for the front page cover of the chocolate bar
-- [priority] Look through AI generated emails, edit and send them out
-- [priority] Post Instagram gratitude to Raven
-- [Priority] Research on Santa Fe Fazenda In International Airport
-- [priority] review Fatima suggestion and then revert to Fatima
-- [priority] The store interaction history is missing some status that's why it's not getting populated
-- [priority] Write a blocked post about heavy metals
-- Add Kirk into our database
-- Allow remark to be expendable when retractable in mobile
-- Allow the ledger of contribution by name on site.me so that people can view and then if they want to they can just click to the CSV of their résumé
-- Allow to name the tree
-- Allow to save the sessions of the Capoeira onto the Edgar ledger and then Cash to get up, which allows you to just load it into the website what would moves that I’d proudly practice
-- Allow upload of MH for the store nearby status submission
-
-_… **89** more open reminders not shown (raise `--rem-limit`)._
-
 ---
 
 ## Recent agent notes (`agentic_ai_context/notes/`)
 
-_No `.md` / `.txt` under `notes/` modified in this window._
+- `notes/claude_donation_mint_2026-04-30.md`
+- `notes/claude_serialized_qr_sales_2026-04-29.md`
 
 ---
 
