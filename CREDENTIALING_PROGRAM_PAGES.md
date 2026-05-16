@@ -198,8 +198,161 @@ Phase 4 must not start before Phases 1 + 2 are live and verified — printed QR 
 - `https://raw.githubusercontent.com/TrueSightDAO/lineage-credentials/main/_cache/cv/<slug>.json` — per-member CV JSON.
 - `agentic_ai_context/AGROVERSE_QR_CODE_BATCH_GENERATION.md` — QR generation tooling reused for printed certs.
 - `tokenomics/google_app_scripts/agroverse_qr_codes/batch_compiler.py` — QR PNG batch compiler to clone for `cert_compiler.py`.
+- `lineage-engine/scripts/qr_code.py` — `generate_qr_with_logo(url, out_path, logo_path)` — already powers the canonical TrueSight-logo QR; reused for every per-program QR by swapping `logo_path`.
+- `lineage-engine/scripts/build_cv_cache.py` — engine that emits `_cache/cv/<slug>.{json,md,pdf,qr.png}`; extension point for the per-program artifacts in §15.
 - `truesight_me/js/ecosystem-change-log-feed.js` (PR `truesight_me_beta#82`) — jsDelivr-primary + raw.github-fallback fetch pattern to copy for GFW resilience.
 
 ## 14. Last reviewed
 
-2026-05-16 — initial implementation doc. Phase 0 PR.
+2026-05-16 — Phase 0 doc + Phase 1 implementation + Phase 1 nav/status follow-ups all shipped.
+**2026-05-17 — §15 Phase 3a added (per-credential QR + PDF, per surface).**
+
+---
+
+## 15. Phase 3a — per-credential QR + PDF, per surface
+
+> **Scope:** every credential page surface (canonical and each program-scoped one) carries its own QR with the appropriate logo in the centre, encoding the production URL of *that surface*. The matching PDF embeds the same QR so a printed copy resolves to the same place. PDFs regenerate on every new event that affects the CV.
+
+### 15.1 Surfaces and what each QR encodes
+
+The QR payload is always a fully-qualified production URL — never a relative path, never a local-dev host.
+
+| Page | QR centre logo | QR payload |
+|---|---|---|
+| `truesight.me/credentials/#<slug>` | TrueSight DAO mark (`lineage-engine/scripts/truesight_icon.png`, existing) | `https://truesight.me/credentials/#<slug>` |
+| `truesight.me/programs/<program-slug>/credentials/#<slug>` | Program partner logo (`lineage-engine/scripts/program_assets/<program-slug>/logo.png`, new — vendored) | `https://truesight.me/programs/<program-slug>/credentials/#<slug>` |
+
+The canonical surface continues to use the existing TrueSight-logo QR (no change). The per-program surface gets a sibling QR with the partner logo swapped in.
+
+### 15.2 Artifact naming (in `lineage-credentials/_cache/cv/`)
+
+```
+_cache/cv/
+├── <slug>.json                       canonical CV JSON (existing)
+├── <slug>.md                         canonical markdown (existing)
+├── <slug>.pdf                        canonical PDF (existing) — embeds <slug>.qr.png
+├── <slug>.qr.png                     canonical QR with TrueSight logo (existing)
+├── <slug>__<program-slug>.qr.png     per-program QR with partner logo (new)
+└── <slug>__<program-slug>.pdf        per-program PDF embeds the matching QR (new)
+```
+
+Rules:
+
+- `<slug>` is the canonical member slug from `_cache/index.json`. Unchanged.
+- `<program-slug>` matches the directory under `truesight_me/programs/`. Same value as `cv.programs[<program-slug>]`.
+- Double underscore (`__`) is the namespace separator. Reserved — never appears inside a `<slug>` or a `<program-slug>`. Allows simple suffix-strip parsing.
+- New files only emitted when the CV has a corresponding `cv.programs[<program-slug>]` record AND a logo asset for that program exists in `lineage-engine/scripts/program_assets/<program-slug>/`.
+- If a CV is in multiple programs, it gets multiple `__<program>` artifacts — one pair per program.
+- Files no longer "needed" (e.g., a program was deleted from the CV) are NOT cleaned up by the build; physical QR codes in the field already point at them. Stale program artifacts are tolerated forever, just like the URL paths themselves are never retired (see §10).
+
+### 15.3 Program logo vendoring (`lineage-engine/scripts/program_assets/`)
+
+```
+lineage-engine/scripts/
+├── truesight_icon.png            existing — canonical centre logo
+└── program_assets/
+    ├── tribomirim/
+    │   └── logo.png              square PNG, transparent background, ≥256px
+    ├── butterfly-effect/
+    │   └── logo.png
+    └── <future-program-slug>/
+        └── logo.png
+```
+
+Logos are vendored into `lineage-engine` (not fetched from `truesight_me/programs/<slug>/manifest.json::co_brand.partner_logo_url`) because:
+
+- Build determinism: the QR-render step shouldn't require network at build time.
+- Audit trail: a logo change becomes a git diff visible in PR review.
+- License clarity: the partner has to explicitly commit a logo for us to use — implicit consent moment.
+
+The truesight_me-side `manifest.json::co_brand.partner_logo_url` continues to drive the *web* co-brand strip (where network fetch is fine). The two references — the truesight_me manifest URL and the lineage-engine vendored PNG — are independent and may diverge. The vendored PNG is canonical for QR generation; the manifest URL is canonical for on-page chrome.
+
+**Adding a new program:**
+
+1. Partner sends the logo (or the operator extracts it from the partner site).
+2. Commit it to `lineage-engine/scripts/program_assets/<program-slug>/logo.png`. Same `<program-slug>` as the truesight_me directory.
+3. Next `build_cv_cache.py` run picks it up automatically and starts emitting per-program QR+PDF for every CV that has a record in that program.
+
+If a logo isn't yet vendored, the build logs a warning and skips that program's artifact — no error, no broken CV.
+
+### 15.4 build_cv_cache.py extension
+
+Augments the existing per-CV write loop in `lineage-engine/scripts/build_cv_cache.py`:
+
+```python
+# existing — unchanged
+qr_target = (cv.get('qr_code') or {}).get('target_url') or CREDENTIAL_PROFILE_URL.format(slug=slug)
+qr_path = cv_dir / f'{slug}.qr.png'
+render_qr(slug, qr_target, qr_path)
+# ... write json/md/pdf as today ...
+
+# new — per-program QR + PDF
+for program_slug, program_record in (cv.get('programs') or {}).items():
+    logo_path = SCRIPT_DIR / 'program_assets' / program_slug / 'logo.png'
+    if not logo_path.is_file():
+        continue  # warn-and-skip
+    program_url = PROGRAM_CREDENTIAL_URL.format(program=program_slug, slug=slug)
+    program_qr_path = cv_dir / f'{slug}__{program_slug}.qr.png'
+    render_qr_with_custom_logo(program_url, program_qr_path, logo_path)
+    if write_pdfs:
+        program_pdf_html = render_html(cv, md, program_qr_path, program_scope=program_slug)
+        render_pdf(program_pdf_html, cv_dir / f'{slug}__{program_slug}.pdf')
+```
+
+`PROGRAM_CREDENTIAL_URL = 'https://truesight.me/programs/{program}/credentials/#{slug}'`.
+
+`render_html` gets an optional `program_scope` parameter so the PDF can render a co-brand header instead of (or alongside) the TrueSight chrome — same visual model as the on-page credentials wrapper.
+
+### 15.5 Page placement (`truesight_me`)
+
+#### Canonical `credentials/index.html` (already shipped, no change in this phase)
+
+The existing "⬇ Download PDF" button already references `_cache/cv/<slug>.pdf`. The QR image is already displayed by the canonical renderer. No change.
+
+#### Program-scoped `programs/<p>/credentials/index.html` (this phase)
+
+Extend `js/program-shell.js` so the `renderCredential(manifest)` function:
+
+1. Adds a QR section to the rendered HTML. Image src: `https://cdn.jsdelivr.net/gh/TrueSightDAO/lineage-credentials@main/_cache/cv/<slug>__<program-slug>.qr.png` (with raw.githubusercontent fallback per §5).
+2. Adds a "⬇ Download credential PDF" button below the QR, pointing at `_cache/cv/<slug>__<program-slug>.pdf` (same dual-CDN pattern).
+3. If the per-program QR PNG 404s (e.g., logo not yet vendored, build hasn't run since the program was added), gracefully falls back to the canonical `<slug>.qr.png` so the page still shows *something* scannable. Note: the fallback QR encodes the canonical URL, not the program-scoped one — that's intentional. A scan still resolves to a working credential page; the centre logo just doesn't carry the partner mark.
+
+### 15.6 Regeneration trigger
+
+`lineage-credentials` already runs a GitHub Action on push that invokes `build_cv_cache.py` and commits the regenerated `_cache/` artifacts back to `main`. Phase 3a piggybacks on that same trigger — adding `__<program>` artifacts to the build's emitted file set means they regenerate on the same cadence as the canonical artifacts.
+
+**Implicit debounce:** events arriving in the same commit produce one rebuild. Events arriving across N commits within a CI run produce one rebuild per commit; if that becomes thrashy in practice (e.g., 5+ rebuilds per hour during active practice), add a `concurrency: group=build-cv-cache, cancel-in-progress=true` line to the workflow so only the latest queued run actually executes. Not needed at current event volume; revisit if it gets loud.
+
+**Explicit rebuild trigger:** operator can `gh workflow run build-cv-cache.yml` to force a rebuild without a new event commit. Used after vendoring a new program logo, after adding a new program directory, etc.
+
+### 15.7 Display on the page (HTML/CSS snippet)
+
+```html
+<section class="credential-qr">
+  <h3>Scan this credential</h3>
+  <img class="credential-qr-img" src="<jsdelivr-url>/_cache/cv/<slug>__<program>.qr.png" alt="QR code linking to this credential" />
+  <p class="credential-qr-hint">Or follow: <code><https://truesight.me/programs/<program>/credentials/#<slug>></code></p>
+  <a class="btn-link" href="<jsdelivr-url>/_cache/cv/<slug>__<program>.pdf" target="_blank" rel="noopener">⬇ Download credential PDF</a>
+</section>
+```
+
+Style: QR sits at ~180×180 on desktop, ~140×140 on mobile, padded white box, centred under the program-section content and above the credential footer. Distinct from the canonical credentials page's QR placement so users immediately see "this is the program-stamped version."
+
+### 15.8 Phased rollout for Phase 3a itself
+
+| Sub-phase | What ships | Repos |
+|---|---|---|
+| **3a.0** (this doc) | This §15 addendum | `agentic_ai_context` |
+| **3a.1** | Vendor `tribomirim/logo.png` + `butterfly-effect/logo.png` into `lineage-engine/scripts/program_assets/` | `lineage-engine` |
+| **3a.2** | `build_cv_cache.py` extended to emit per-program QR + PDF when logos are present | `lineage-engine` |
+| **3a.3** | Force a `lineage-credentials` rebuild — first cohort of per-program QR/PDF artifacts committed | `lineage-credentials` (auto from GH Action) |
+| **3a.4** | `js/program-shell.js` displays the QR + PDF download on `programs/<p>/credentials/#<slug>` | `truesight_me_beta` → `_prod` |
+| **3a.5** | Manual verification — scan the QR on a real phone, confirm it resolves to the production URL with the program co-brand chrome visible | (operator) |
+
+3a.1 + 3a.2 can ship in the same `lineage-engine` PR. 3a.3 is automatic — no PR. 3a.4 is its own truesight_me PR pair (beta + prod mirror).
+
+### 15.9 Open questions for Phase 3a
+
+1. **Logo aspect ratios.** The existing `qr_code.py::generate_qr_with_logo` thumbnails the logo to fit within `logo_ratio * qr_size` (default 20%). Square logos with transparent background work best. The vendoring step needs an operator-side normalize pass (crop to square, transparent BG, ≥256px). Document the operator checklist in `lineage-engine/scripts/program_assets/README.md` when 3a.1 ships.
+2. **Multiple programs per CV.** A CV with `cv.programs = {tribomirim: ..., butterfly-effect: ...}` will get two `__<program>` pairs. The canonical credentials page already shows all programs; the program-scoped pages each show one. No conflict — different surfaces for different audiences.
+3. **What if the logo URL in `truesight_me/programs/<p>/manifest.json::co_brand.partner_logo_url` and the vendored logo in `lineage-engine/program_assets/<p>/logo.png` diverge?** They're allowed to. The web UI uses the manifest URL (fetchable, can be a CDN-hosted hi-DPI asset); the QR uses the vendored PNG (must be local + reasonable resolution + correct aspect for QR-centre overlay). If a partner sends a re-branded logo, update both.
