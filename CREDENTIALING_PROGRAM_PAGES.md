@@ -206,6 +206,7 @@ Phase 4 must not start before Phases 1 + 2 are live and verified — printed QR 
 
 2026-05-16 — Phase 0 doc + Phase 1 implementation + Phase 1 nav/status follow-ups all shipped.
 **2026-05-17 — §15 Phase 3a added (per-credential QR + PDF, per surface).**
+**2026-05-17 — §16 Onboarding a new program — file-by-file playbook added.**
 
 ---
 
@@ -356,3 +357,138 @@ Style: QR sits at ~180×180 on desktop, ~140×140 on mobile, padded white box, c
 1. **Logo aspect ratios.** The existing `qr_code.py::generate_qr_with_logo` thumbnails the logo to fit within `logo_ratio * qr_size` (default 20%). Square logos with transparent background work best. The vendoring step needs an operator-side normalize pass (crop to square, transparent BG, ≥256px). Document the operator checklist in `lineage-engine/scripts/program_assets/README.md` when 3a.1 ships.
 2. **Multiple programs per CV.** A CV with `cv.programs = {tribomirim: ..., butterfly-effect: ...}` will get two `__<program>` pairs. The canonical credentials page already shows all programs; the program-scoped pages each show one. No conflict — different surfaces for different audiences.
 3. **What if the logo URL in `truesight_me/programs/<p>/manifest.json::co_brand.partner_logo_url` and the vendored logo in `lineage-engine/program_assets/<p>/logo.png` diverge?** They're allowed to. The web UI uses the manifest URL (fetchable, can be a CDN-hosted hi-DPI asset); the QR uses the vendored PNG (must be local + reasonable resolution + correct aspect for QR-centre overlay). If a partner sends a re-branded logo, update both.
+
+---
+
+## 16. Onboarding a new program — file-by-file playbook
+
+You have the spec above. This section is the operational sequence — what an AI or operator does start to finish to add **one** new program (e.g. a third partner after Tribo Bahia Mirim and Butterfly Effect). Steps assume `~/Applications/truesight_me/` is a clone of `truesight_me_beta` and that beta→prod promotion follows `NOTES_truesight_me.md` § "Beta vs. production split".
+
+### 16.1 Pick the two slugs
+
+Two slug fields exist and **they don't have to match** — read this before touching anything.
+
+| Field | Used by | Example (Tribo) |
+|---|---|---|
+| `manifest.program_slug` + directory name `programs/<slug>/` | The website URL: `truesight.me/programs/<program_slug>/...` | `tribomirim` |
+| `manifest.membership_filter.primary_program` | The `lineage-credentials` `_cache/index.json[].primary_program` value the cohort listing matches on | `capoeira-tribo-mirim` |
+
+`program_slug` is the URL slug you commit to forever (it's in printed cert QR codes — see §3). `primary_program` is whatever the lineage-credentials side already calls the program in `_cache/index.json` — usually set by the practice-platform integration upstream. If the program has no live practice integration yet, set `primary_program` to a value the future integration will use; the cohort just stays empty until then.
+
+### 16.2 Branch + scaffold
+
+```bash
+cd ~/Applications/truesight_me
+git checkout main && git pull --ff-only
+git checkout -b feat/program-<program_slug>
+
+# Copy an existing program as the template — Tribo is a good baseline
+cp -R programs/tribomirim programs/<program_slug>
+```
+
+Four files now exist under `programs/<program_slug>/`:
+
+- `manifest.json` — program metadata
+- `index.html` — co-branded landing page
+- `members.html` — cohort listing
+- `credentials/index.html` — per-member CV wrapper (QR target for printed certs)
+
+All three HTML files share `js/program-shell.js` for runtime rendering — you do NOT touch JS. Per-program differences are purely metadata in `manifest.json` + a handful of static strings in the HTML.
+
+### 16.3 Fill `manifest.json`
+
+Open `programs/<program_slug>/manifest.json` and edit (see §6 for full schema):
+
+- `program_slug` — must equal the directory name
+- `display_name` — what shows on the landing page H1 and program card
+- `partner_organization`, `partner_url`, `partner_contact_label`
+- `tagline` — one-sentence hook for the card on `programs.html`
+- `description_md` — one short paragraph for the landing page body
+- `co_brand.partner_logo_url` — prefer a stable URL (TrueSightDAO/.github/assets/ or the partner's CDN)
+- `co_brand.primary_color` / `secondary_color` — hex; used for badge accents
+- `source_pages[0]` — partner's own program page (also lifted onto each CV)
+- `membership_filter.primary_program` — see §16.1
+- `issuer_lineage_root` — for capoeira this is the master / mestre name; for institutional programs it's the partner org name
+- `status` — `"onboarding"` until the first cohort exists, then `"active"`
+- `last_reviewed` — today's date (YYYY-MM-DD)
+
+### 16.4 Hand-edit the three HTMLs
+
+Each HTML file has a small number of program-name strings. Find-and-replace the **template** program's name in each. Diffing `tribomirim/` against `butterfly-effect/` shows exactly which lines vary:
+
+| File | Strings to update |
+|---|---|
+| `index.html` | `<title>` · `<meta name="description">` · `<meta property="og:url">` (`https://www.truesight.me/programs/<slug>/`) · `<meta property="og:title">` · `<h1 id="program-name">` |
+| `members.html` | `<title>` · `<meta name="description">` · `<h1>` · the "no participants on file yet" copy block |
+| `credentials/index.html` | `<title>` · `<meta name="description">` |
+
+Everything else (nav, footer, layout, fetch logic) is shared and stays untouched.
+
+### 16.5 Add a card to `programs.html`
+
+Open `programs.html` and add another `<a class="program-card">` block inside `<div class="programs-grid">`, matching the existing pattern. Required:
+
+- `href="programs/<program_slug>/index.html"`
+- `data-program-slug="<program_slug>"` — wires the status pill (`onboarding`/`active`/`archived`) from manifest.json onto the card automatically
+- `<div class="name">` — display name
+- `<div class="partner">` — partner organization + short subtitle
+- `<div class="tagline">` — one-sentence hook (can mirror `manifest.tagline` or rephrase for card context)
+- `<span class="cta">View program →</span>` — the CTA text is **"View program →"** (the card navigates to the program landing, NOT the cohort; the cohort link is on the landing page itself — see 2026-05-16 fix in `truesight_me_beta#110`)
+
+### 16.6 Verify locally
+
+```bash
+cd ~/Applications/truesight_me
+python3 -m http.server 8765
+```
+
+Open `http://localhost:8765/programs.html` in a browser:
+
+1. New card appears in the grid (and shows an *Onboarding* pill if `manifest.status === "onboarding"`)
+2. Click "View program →" → lands on `/programs/<program_slug>/index.html` with partner logo + tagline + description rendered from manifest
+3. From there, click "View cohort →" → lands on `/programs/<program_slug>/members.html` (empty state if no members yet — that's correct)
+4. (Optional, once first member exists in `lineage-credentials`) visit `/programs/<program_slug>/credentials/#<member-slug>` and confirm the co-branded CV renders
+
+### 16.7 PR + merge + promote to prod
+
+```bash
+git add programs.html programs/<program_slug>/
+git commit -m "Add <Display Name> program scaffold (status: onboarding)"
+git push -u origin feat/program-<program_slug>
+gh pr create --title "Add <Display Name> program scaffold" --body "..."
+gh pr merge <PR#> --squash --delete-branch
+
+# Promote beta → prod (see NOTES_truesight_me.md):
+gh repo sync TrueSightDAO/truesight_me_prod \
+  --source TrueSightDAO/truesight_me_beta --branch main
+```
+
+Wait ~60–90 s for the prod `pages build and deployment` workflow, then cache-bust to verify:
+
+```bash
+curl -s "https://truesight.me/programs.html?$(date +%s%N)" | grep -c '<program_slug>'
+```
+
+**Ignore** the `Visual Consistency Tests` CI failure — broken since at least 2026-05-15 (`Process from config.webServer exited early.`), not introduced by your PR.
+
+### 16.8 After the first cohort member exists
+
+When `lineage-credentials/_cache/index.json` gets a member with the matching `primary_program`:
+
+1. The members listing populates automatically on next page load (no code change needed)
+2. Each member's CV page (`/credentials/#<member-slug>`) and the program-scoped wrapper (`/programs/<program_slug>/credentials/#<member-slug>`) both work; canonical QR at `_cache/cv/<member-slug>.qr.png` is generated by `lineage-engine/scripts/qr_code.py` (see `CREDENTIALING_PLATFORM.md` §9)
+3. Flip `manifest.status` from `"onboarding"` → `"active"` and bump `last_reviewed`, ship as a small follow-up PR through the same beta→prod promote path
+
+### 16.9 Per-program QR + PDF (Phase 3a)
+
+For the program-scoped credential wrapper to carry the partner-logo QR + matching PDF (instead of the generic TrueSight QR), follow Phase 3a (§15):
+
+1. Vendor the partner logo at `lineage-engine/scripts/program_assets/<program_slug>/logo.png` (square, transparent background, ≥256px)
+2. Trigger a `build-cv-cache.yml` workflow run on `lineage-credentials`
+3. The new `_cache/cv/<slug>__<program_slug>.qr.png` + `.pdf` artifacts emit on the next build (skipped silently if no vendored logo exists)
+
+Skip this step until the partner is ready to print physical certificates — the canonical TrueSight QR works as a default and a scan still resolves to the program-scoped credential URL when §15.5 fallback is in place.
+
+### 16.10 Printed-cert QR codes (defer until first cohort prints)
+
+See §8. Tooling: clone `tokenomics/google_app_scripts/agroverse_qr_codes/batch_compiler.py` into a `cert_compiler.py` variant. Not blocking program-page rollout.
