@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-16T08:23:30Z`
+- Generated (UTC): `2026-05-16T14:05:36Z`
 - Look-back: **7** calendar days (`2026-05-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -77,27 +77,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-15T10:59:17.439Z`
+- Generated (UTC): `2026-05-16T10:59:13.516Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
-- Total stores tracked: **668**
-- Partnered (north-star): **15**
+- Total stores tracked: **0**
 
 ## Funnel by status (curated order)
 
-- Deferred / Revisit later: 5  (#1)
-- AI: Contact Form found: 109  (#3)
-- AI: No fit signal: 155  (#6)
-- Research: 61  (#8)
-- AI: Enrich with contact: 3  (#9)
-- AI: Enrich — manual: 90  (#10)
-- Manager Follow-up: 33  (#13)
-- Followed Up: 1  (#15)
-- Instagram Followed: 11  (#18)
-- Rejected: 14  (#19)
-- On Hold: 18  (#20)
-- Not Appropriate: 74  (#21)
-- **Partnered: 15**  (#22)
-- AI: Warm up prospect: 79  (#9999)
+- Reclassified — D2C only: 0  (—)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
@@ -267,6 +253,8 @@ fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h adv
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9cb0ea3 | 2026-05-16 01:23:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
+856d7e2 | 2026-05-16 01:23:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 5d9715e | 2026-05-15 21:09:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
 b546ea6 | 2026-05-15 21:09:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 4d6b2ce | 2026-05-15 20:27:31 -0700 | Merge pull request #142 from TrueSightDAO/auto/advisory-refresh-2026-05-16
@@ -305,8 +293,6 @@ fa9136c | 2026-05-13 02:25:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 68d415f | 2026-05-12 21:29:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
 527a171 | 2026-05-12 21:29:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 b169712 | 2026-05-12 20:38:10 -0700 | Merge pull request #132 from TrueSightDAO/auto/advisory-refresh-2026-05-13
-6492d04 | 2026-05-13 03:38:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
-846f2de | 2026-05-12 15:36:14 -0700 | Partner Check-in dual-use + queued follow-ups for paste/beer-hall/inventory tag (#131)
 … (truncated)
 ```
 
@@ -537,7 +523,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/16/2026 0:50:59 |
+| 2026-05 | 58.6 | 14977.11386 | 5/16/2026 6:50:25 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-09`; scanned last **395** data rows)
 
