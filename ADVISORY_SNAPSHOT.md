@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-16T14:05:36Z`
+- Generated (UTC): `2026-05-16T19:39:27Z`
 - Look-back: **7** calendar days (`2026-05-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -253,6 +253,8 @@ fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h adv
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+520a160 | 2026-05-16 07:05:53 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
+4a21fcc | 2026-05-16 07:05:52 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 9cb0ea3 | 2026-05-16 01:23:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
 856d7e2 | 2026-05-16 01:23:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 5d9715e | 2026-05-15 21:09:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
@@ -291,8 +293,6 @@ f6cf878 | 2026-05-13 08:23:47 -0700 | chore(previews): refresh Beer Hall preview
 424913c | 2026-05-13 02:25:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
 fa9136c | 2026-05-13 02:25:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 68d415f | 2026-05-12 21:29:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-13 UTC)
-527a171 | 2026-05-12 21:29:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
-b169712 | 2026-05-12 20:38:10 -0700 | Merge pull request #132 from TrueSightDAO/auto/advisory-refresh-2026-05-13
 … (truncated)
 ```
 
@@ -523,7 +523,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/16/2026 6:50:25 |
+| 2026-05 | 58.6 | 14977.11386 | 5/16/2026 11:50:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-09`; scanned last **395** data rows)
 
