@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-16T04:09:24Z`
+- Generated (UTC): `2026-05-16T08:23:30Z`
 - Look-back: **7** calendar days (`2026-05-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -267,6 +267,8 @@ fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h adv
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5d9715e | 2026-05-15 21:09:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
+b546ea6 | 2026-05-15 21:09:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 4d6b2ce | 2026-05-15 20:27:31 -0700 | Merge pull request #142 from TrueSightDAO/auto/advisory-refresh-2026-05-16
 b2c61de | 2026-05-16 03:27:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 7b3043f | 2026-05-15 16:10:53 -0700 | Regenerate ADVISORY_SNAPSHOT.md on top of latest main; ecosystem-activity section now above the funnel (#141)
@@ -305,8 +307,6 @@ fa9136c | 2026-05-13 02:25:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b169712 | 2026-05-12 20:38:10 -0700 | Merge pull request #132 from TrueSightDAO/auto/advisory-refresh-2026-05-13
 6492d04 | 2026-05-13 03:38:01 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-13 UTC)
 846f2de | 2026-05-12 15:36:14 -0700 | Partner Check-in dual-use + queued follow-ups for paste/beer-hall/inventory tag (#131)
-dc4c82b | 2026-05-12 13:15:37 -0700 | chore(previews): refresh Beer Hall preview (2026-05-12 UTC)
-3b9d89d | 2026-05-12 13:15:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-12 UTC)
 … (truncated)
 ```
 
@@ -396,6 +396,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+90f7ae9 | 2026-05-16 08:21:44 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 59c2666 | 2026-05-15 14:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
 c413b04 | 2026-05-15 13:28:41 -0700 | chore: refresh Agroverse store inventory snapshot
 03d8d47 | 2026-05-15 09:26:15 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -536,7 +537,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/15/2026 20:51:28 |
+| 2026-05 | 58.6 | 14977.11386 | 5/16/2026 0:50:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-09`; scanned last **395** data rows)
 
