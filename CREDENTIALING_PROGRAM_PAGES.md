@@ -492,3 +492,162 @@ Skip this step until the partner is ready to print physical certificates — the
 ### 16.10 Printed-cert QR codes (defer until first cohort prints)
 
 See §8. Tooling: clone `tokenomics/google_app_scripts/agroverse_qr_codes/batch_compiler.py` into a `cert_compiler.py` variant. Not blocking program-page rollout.
+
+---
+
+## 17. Phase 3b — partner-branded PDF templates (certificate output)
+
+> **Scope:** the PDF that lives at `_cache/cv/<slug>__<program>.pdf` currently has the same body as the canonical CV PDF — only the embedded QR differs (§15). Phase 3b makes the per-program PDF a *real certificate* — partner-branded, suitable for printing on heavy paper, handed to the participant as proof of completion. The canonical PDF stays as it is (no change to `_cache/cv/<slug>.pdf`).
+
+> **Status (2026-05-17):** Phase 3b is **specified only**. No code yet. Ship when Bilal needs the first physical Butterfly Effect certificates, or when a Tribo Mirim student progresses from "practice log" to "lineage milestone" and wants a printable artifact.
+
+### 17.1 Why this is a separate phase from 3a
+
+Phase 3a's contract was minimal: same PDF body, QR points at the program-scoped URL. That's enough to fulfill "every credential page has its own QR + downloadable PDF". Phase 3b answers a different question: *"what does the PDF actually look like when you print it on cardstock and hand it to a kid?"*
+
+Splitting the phases means partner programs can onboard, accumulate practice records, and let participants self-serve a downloadable proof PDF *before* the operator has to commit to the visual design of a certificate. The Phase 3a PDF is "good enough to share digitally"; the Phase 3b PDF is "good enough to frame on a wall."
+
+### 17.2 What Phase 3b changes (in the rendering pipeline)
+
+The change point is `lineage-engine/scripts/build_cv_cache.py::render_html(cv, md, qr_path)`. Today it returns a single shared CSS + body for both canonical and per-program PDFs. Phase 3b adds an optional `program_scope` argument:
+
+```python
+def render_html(cv, md_body, qr_path=None, program_scope: str | None = None) -> str:
+    """When program_scope is set, render the partner-branded certificate
+    template instead of the canonical CV template. Both templates share
+    the same Markdown body but differ in chrome (header banner, footer
+    signature lines, paper size hint, ornamentation)."""
+```
+
+The per-CV write loop in `build()` passes `program_scope=<url-program-slug>` for each per-program PDF emit (§15.4 already iterates `cv.programs`; just plumb the argument through).
+
+### 17.3 Per-program PDF template files
+
+Phase 3b introduces a new asset class in `lineage-engine`:
+
+```
+lineage-engine/scripts/program_assets/
+├── <url-program-slug>/
+│   ├── logo.png                  (existing — drives QR centre and the certificate header banner)
+│   ├── cert_template.html        (new — partial HTML that wraps the CV body in a certificate frame)
+│   └── cert_styles.css           (new — partner-branded typography + colours)
+```
+
+`cert_template.html` is a small Jinja-like template (or just a Python `.format()` string — keep it dependency-free) with named slots:
+
+```html
+<!-- programs/tribomirim/cert_template.html -->
+<div class="cert-banner">
+  <img class="cert-logo" src="{partner_logo_uri}" alt="{partner_name}" />
+  <div class="cert-program">{program_display_name}</div>
+  <div class="cert-issuer">Lineage root: {issuer_lineage_root}</div>
+</div>
+<div class="cert-body">{cv_body_html}</div>
+<div class="cert-footer">
+  <div class="cert-signature-line">
+    <div class="cert-sig-blank"></div>
+    <div class="cert-sig-label">{lineage_root_signatory}</div>
+  </div>
+  <div class="cert-qr-block">
+    <img class="cert-qr" src="{qr_uri}" />
+    <div class="cert-qr-caption">scan to verify · {credential_url}</div>
+  </div>
+  <div class="cert-meta">Issued by TrueSight DAO · {issued_at}</div>
+</div>
+```
+
+`cert_styles.css` is partner-specific — Tribo Mirim leans warm earth tones, Butterfly Effect leans transformation-blue, etc. Inherits paper size + page margins from a shared `program_assets/_cert_base.css` to keep page geometry consistent across partners.
+
+### 17.4 Template variables
+
+The render path passes these into `cert_template.html.format(**ctx)`:
+
+| Variable | Source | Notes |
+|---|---|---|
+| `partner_logo_uri` | `program_assets/<slug>/logo.png` as `file:///…` | Same vendored PNG as the QR centre |
+| `partner_name` | `program_assets/<slug>/manifest_mirror.json::partner_organization` OR fetched from `truesight_me/programs/<slug>/manifest.json` at build time | One source-of-truth; pick the lazier one |
+| `program_display_name` | `manifest::display_name` | "Tribo Bahia Mirim — Capoeira lineage" |
+| `issuer_lineage_root` | `manifest::issuer_lineage_root` | "Bico Duro" |
+| `lineage_root_signatory` | `manifest::lineage_root_signatory` (new manifest field) | "Mestre Bico Duro" — printed name on the signature line |
+| `cv_body_html` | `render_markdown(cv) → md → html` | Same body that drives the canonical CV |
+| `qr_uri` | `_cache/cv/<slug>__<program>.qr.png` as `file:///…` | Per-program QR, embedded |
+| `credential_url` | `PROGRAM_CREDENTIAL_URL.format(...)` | Human-readable scan target |
+| `issued_at` | First non-zero `recent_events[].captured_at` OR most recent event for "in progress" certs; for "completion" certs, the explicit completion event timestamp | See §17.6 |
+
+### 17.5 Paper / page geometry
+
+Defaults that work for both home printers and a print shop:
+
+- Page size: A4 (Brazil + most international). Override via `cert_template.html::@page` block per partner if needed (US Letter for North-America-only programs).
+- Margins: 18mm top/bottom, 16mm left/right — leaves room for a frame ornament without crowding text.
+- Single page is the goal. If the CV body is long enough to push to page 2, the template should overflow the body — the banner + signature lines stay on page 1 so a single physical print still looks like a certificate.
+- Background colour: pure white (printable). Banner gradient or ornament is fine; never use a full-bleed photographic background (eats ink, looks bad on paper).
+
+### 17.6 Completion signal (the "are we ready to print" gate)
+
+Today's `_cache/cv/<slug>__<program>.pdf` regenerates on every practice event — fine for digital sharing, problematic for physical printing (you don't want to hand someone a certificate, then have a newer version supersede it days later).
+
+Two signals Phase 3b introduces:
+
+1. **`cv.programs[<program>].status`** — `in_progress` (default) or `completed`. Set explicitly by an attestor event (e.g., a `corda-promotion` event in capoeira-tribo-mirim, or a per-program completion event for Butterfly Effect). The template branches on this:
+   - `in_progress` → the PDF says "Practice log · as of {issued_at}" in the meta line
+   - `completed` → the PDF says "Certificate of completion · {completed_at}"
+2. **`cv.programs[<program>].locked_at`** — once set (by the attestor's completion event), the cert PDF stops regenerating on subsequent events for that program. The on-disk artifact freezes at the completion-time snapshot. Subsequent practice events still update the canonical `<slug>.pdf` and the *on-screen* program-scoped credential view (`programs/<p>/credentials/#<slug>`) — only the PRINTABLE PDF freezes, because that's the artifact that ends up in someone's hands as the final proof.
+
+Implementation: in `build_cv_cache.py` §15.4 loop, after resolving `url_program_slug`, check `cv.programs[<data_slug>].locked_at`. If present AND the per-program PDF already exists on disk AND its mtime ≥ `locked_at`, skip the PDF rewrite. The QR still regenerates (PNG is cheap, harmless). This keeps the regen pipeline simple — no separate "certificate freeze" workflow needed.
+
+### 17.7 On-screen vs printable distinction
+
+After Phase 3b, the program-scoped credential page shows **two** PDF download options instead of one:
+
+| Button | What it links to | When to use |
+|---|---|---|
+| "⬇ Practice log PDF" | `_cache/cv/<slug>__<program>.pdf` (current per-program PDF, renamed in label) | Quick share — current state, regenerated on every event |
+| "⬇ Certificate PDF" | `_cache/cv/<slug>__<program>__cert.pdf` (new — built only when `locked_at` is set) | Print on cardstock, hand to participant |
+
+The "Certificate PDF" button is hidden (or shown as "Pending completion attestation") until `locked_at` exists for that CV-program pair. This makes the completion moment a visible product event for the participant, not just a sysadmin operation.
+
+Both PDFs embed the same per-program QR. Both QR scans resolve to the same `programs/<p>/credentials/#<slug>` URL. The certificate just has more visual gravity and freezes at the completion state.
+
+### 17.8 Operator workflow to add a partner-branded cert template
+
+1. Partner sends visual direction (colours, typography preference, optional ornament SVG). If they don't have one, the operator drafts something simple-but-on-brand and the partner approves.
+2. Operator creates `lineage-engine/scripts/program_assets/<url-slug>/cert_template.html` + `cert_styles.css`. References the existing `logo.png` already vendored from Phase 3a.
+3. Adds optional `lineage_root_signatory` field to the partner's manifest (`truesight_me/programs/<slug>/manifest.json`).
+4. Local smoke test: pick a real CV in that program (or use `--slug <test-slug>` if `build_cv_cache.py` gets that flag), run a build, open the resulting `__cert.pdf` in Preview / Adobe to eyeball the layout. Iterate.
+5. PR the template files. CI re-runs `build_cv_cache.py`; if any CV in that program has `locked_at` set, the cert PDF gets emitted on the next push.
+6. To "lock" a CV (turn the printable cert switch on for one participant), an authorized attestor commits a completion event under `programs/<data-slug>/<pk-hash>/attestations/*.json`. Build picks it up, freezes the cert, surfaces the "⬇ Certificate PDF" button on the page.
+
+### 17.9 Why not just template the canonical PDF too?
+
+Two reasons to keep the canonical PDF on its existing simple template:
+
+1. **Single source of truth for "all programs / no program"**. The canonical page (`/credentials/#<slug>`) summarizes a contributor's entire DAO record, possibly across multiple programs. A certificate template is single-program by nature.
+2. **The operator's print-day workflow is partner-specific.** Certificates printed for Tribo Mirim look different from certificates printed for Butterfly Effect; the canonical PDF needs to remain "neutral" so it can be handed to job-application reviewers, governance committees, etc.
+
+### 17.10 Phased rollout for Phase 3b
+
+| Sub-phase | What ships | Repos |
+|---|---|---|
+| **3b.0** (this section) | This §17 addendum to the spec | `agentic_ai_context` |
+| **3b.1** | `render_html(program_scope=...)` signature + a fallback that returns the existing template when `program_scope` is `None` | `lineage-engine` |
+| **3b.2** | `program_assets/<slug>/cert_template.html` + `cert_styles.css` for the first partner that needs it. Tribo Mirim is the natural first target — Bico Duro can sign milestone certificates; Butterfly Effect waits until Bilal has a cohort | `lineage-engine` |
+| **3b.3** | `locked_at` / `status` fields in lineage-credentials event schema + read path in `build_cv_cache.py` | `lineage-engine` + `lineage-credentials` |
+| **3b.4** | Page change: "⬇ Practice log PDF" relabel + conditional "⬇ Certificate PDF" button | `truesight_me_beta` → `_prod` |
+| **3b.5** | First cohort member's locked certificate printed on real cardstock + visual sign-off | (operator) |
+
+3b.1 and 3b.2 can ship in the same `lineage-engine` PR if they target the same partner. 3b.3 is the heavier change — it touches the data schema, so it benefits from its own PR.
+
+### 17.11 Open questions for Phase 3b
+
+1. **Multi-program completion**: a CV could be `completed` for Tribo Mirim and `in_progress` for Butterfly Effect simultaneously. The per-program scoping naturally handles this (each `<slug>__<program>__cert.pdf` is independently locked) — no design change needed, but worth a sentence in the operator playbook.
+2. **Re-issuance**: what if a certificate needs to be re-issued (typo on the participant's name, completion record amended)? Treat it as a new event that overwrites `locked_at` to the new timestamp; the cert PDF rewrites; the old artifact is preserved in git history if anyone needs the prior snapshot.
+3. **Cohort batch-print**: when ERA needs to print 30 Butterfly Effect certificates at once, the operator probably wants a single multi-page PDF (each page is one cert). Phase 3b emits per-CV PDFs only; a batch wrapper is Phase 3c territory (or just an operator-side `pdfunite` command — defer until volume warrants tooling).
+4. **Frame ornament asset**: optional SVG corner-ornaments / dingbats per program (Tribo Mirim might use a stylized berimbau; Butterfly Effect literally a butterfly outline). Vendor in the same `program_assets/<slug>/` directory if used. No design change required for the engine — just another file the template references.
+
+### 17.12 What's intentionally NOT in Phase 3b
+
+- **Cohort dashboards for partners** ("show me everyone we've certified this quarter") — that's a separate `programs/<p>/cohort.html` surface, deferred indefinitely.
+- **Notification on certification** (email the participant or their guardian when `locked_at` flips) — operator's email workflow; not engine plumbing.
+- **NFT / on-chain attestation of the certificate** — if/when this matters, it's a layer on top of `locked_at`. Out of scope here.
+- **Verifiable Credentials (W3C VC) format export** — possibly a Phase 4 export pipeline. The on-chain proof of issuance lives in the existing DAO ledger already; VC export is just a presentation format.
