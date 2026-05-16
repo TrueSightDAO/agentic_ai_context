@@ -401,6 +401,7 @@ DAO-only members are the "separate query chain" Gary called out: the cache build
 ### What a CV renders
 
 - Header: display name, primary affiliation, date range
+- **QR code** (TrueSight logo overlaid) top-right of the header — encodes `https://truesight.me/credentials/#<slug>`, so a person showing their CV on a laptop can have someone scan it onto their phone in one move. Same image is also embedded top-right of page 1 of the PDF so a printed copy carries the shareable link.
 - **DAO contribution summary** when applicable (existing `contributions.json` shape)
 - **Elective sections** — one per program the person has activity in:
   - Aggregate stats (total practice minutes, total sessions, themes covered, …)
@@ -452,9 +453,10 @@ The workflow checks out the engine repo as a step (`actions/checkout@v4 with: re
 4. **Join** — for each canonical slug, merge: elective events from all `pk-<hash>` folders that map to this slug + DAO contributions when applicable.
 5. **Aggregate + summarize** — counts per practice_type, totals, themes covered, etc. Pass the merged record + DAO contributions to Grok for a `testimonial.md`-style narrative.
 6. **Write outputs** —
-   - `_cache/cv/<slug>.json` — pre-rendered unified CV JSON (consumed by truesight.me)
+   - `_cache/cv/<slug>.json` — pre-rendered unified CV JSON (consumed by truesight.me); carries a `qr_code: { path, target_url }` block so consumers don't have to derive the QR path.
    - `_cache/cv/<slug>.md` — human-readable
-   - `_cache/cv/<slug>.pdf` — rendered via WeasyPrint or pandoc
+   - `_cache/cv/<slug>.pdf` — rendered via WeasyPrint or pandoc; QR code embedded top-right of page 1
+   - `_cache/cv/<slug>.qr.png` — TrueSight-logo QR encoding `https://truesight.me/credentials/#<slug>`; generated via `lineage-engine/scripts/qr_code.py` (mirrors the Agroverse QR generator style with `qrcode[pil]` + `ERROR_CORRECT_H` + Pillow logo overlay). The TrueSight icon ships in `lineage-engine/scripts/truesight_icon.png` so the helper is self-contained.
    - `_cache/index.json` — directory index
    - `_cache/aliases.json` — pk-hash → slug
 7. **Commit** the regenerated files back with `[skip ci]` to avoid re-trigger loops.
@@ -462,6 +464,8 @@ The workflow checks out the engine repo as a step (`actions/checkout@v4 with: re
 PDF generation is part of the cache build, NOT done in the browser — keeps the browser load light, ensures stable typography, and lets us version the PDF alongside the JSON.
 
 **PDF visual design:** target = a respectable CV that a practitioner could attach to a job application. Clean professional typography (a single serif headline face + a sans body), reasonable margins, sections for: header (name + primary affiliation + dates), summary paragraph, DAO contributions, elective sections (per program), source citations footnoted at the bottom. NOT a bare-bones Markdown dump. Rendering via WeasyPrint with a hand-tuned CSS template is the v1 target. The PDF and the Markdown share the same source data (`_cache/cv/<slug>.json`) but diverge in styling.
+
+A 28mm TrueSight-logo QR code floats top-right of page 1 (business-card style, text wraps around it via CSS `float: right`); scanning it returns the reader to `https://truesight.me/credentials/#<slug>`. This makes a printed copy of the CV self-share — hand someone the page and they can pull up the live version.
 
 ### 9aa. Rebuild cadence — don't over-engineer the cron
 
@@ -670,6 +674,7 @@ Resolved this session:
 - ✅ **Multi-step lineage chains**: documented as a natural extension (post-v2), data model already accommodates without redesign.
 - ✅ **Per-person data consolidation**: existing Fatima + Emelin testimonials migrate from tokenomics into lineage-credentials. Tokenomics keeps the upstream pipelines only.
 - ✅ **PDF visual design**: respectable CV style suitable for a job application, not a bare Markdown dump. Hand-tuned WeasyPrint CSS template.
+- ✅ **Shareable QR per profile** (shipped 2026-05-16): `lineage-engine/scripts/qr_code.py` generates `_cache/cv/<slug>.qr.png` with the TrueSight icon centred, recorded under `qr_code` on the unified CV JSON. Embedded top-right of every CV PDF and rendered in the header of `truesight.me/credentials/#<slug>`. Style mirrors `tokenomics/python_scripts/agroverse_qr_code_generator/affiliate_link_qr_code.py`. Scan target = the profile URL itself.
 - ✅ **Email-binding payload format**: deferred — capoeira PR will keep the keypair anonymous on-device; email-claim flow comes later when needed.
 - ✅ **Lineage-root public key registration**: deferred — comes online when the first institution actually wants to issue formal credentials. When we get there, reuse the existing dapp register-key pattern.
 - ✅ **Bilal's other programs**: deferred. Ship capoeira-only as the prototype Gary will show Bilal.

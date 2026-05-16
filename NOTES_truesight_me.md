@@ -7,6 +7,29 @@ Purpose: Quick, actionable reference for Grok/Claude/Codex to understand, mainta
 - Primary goals: transparency, shipments/pledges pages, impact registry, educational modules, and blog.
 - Authoritative data sources: Google Sheets (master), Wix CMS (historical + stats), local assets.
 
+### Beta vs. production split
+There are **two GitHub Pages repos**, both serving from `main`:
+
+| Repo | Custom domain | Role |
+|---|---|---|
+| `TrueSightDAO/truesight_me_beta` | `beta.truesight.me` | development; PRs land here |
+| `TrueSightDAO/truesight_me_prod` | `truesight.me` / `www.truesight.me` | production; **fork** of beta |
+
+The local clone at `/Users/garyjob/Applications/truesight_me/` has its `origin` pointed at **`truesight_me_beta`** — every PR you open lands on beta and goes live at `beta.truesight.me`. The production site `truesight.me` does NOT auto-update.
+
+**Promote to prod** after a beta merge:
+
+```bash
+gh repo sync TrueSightDAO/truesight_me_prod \
+  --source TrueSightDAO/truesight_me_beta --branch main
+```
+
+That fast-forwards prod's `main` to match beta and triggers prod's own `pages build and deployment` workflow. Prod is live ~60–90 s later. The CDN holds `cache-control: max-age=600`, so verify with a cache-buster (`curl 'https://truesight.me/.../?_=$(date +%s%N)'`) if you need to confirm immediately.
+
+If you only land a change on beta, the user-visible `truesight.me` will keep serving the old version indefinitely — always sync prod when the user expects the change visible at `truesight.me/...`.
+
+**Pre-existing CI failure to ignore:** `Visual Consistency Tests` on beta has been broken since at least 2026-05-15 (`Process from config.webServer exited early.`). Not gating, not introduced by your PR unless you specifically touched that workflow.
+
 ## Core Structure
 - Main pages: `index.html` (landing + stats), `agroverse.html`, `sunmint.html`, `edgar.html`, `about-us.html`, `blog/`.
 - Generated detail pages:
