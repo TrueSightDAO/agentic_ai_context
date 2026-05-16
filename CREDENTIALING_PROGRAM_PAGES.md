@@ -115,6 +115,7 @@ Fetch path uses the **jsDelivr-primary, raw.githubusercontent-fallback** pattern
   },
   "credential_visibility_default": "public",
   "issuer_lineage_root": "Butterfly Effect",
+  "status": "onboarding",
   "last_reviewed": "2026-05-16"
 }
 ```
@@ -125,6 +126,10 @@ Fetch path uses the **jsDelivr-primary, raw.githubusercontent-fallback** pattern
 - `membership_filter.primary_program` is the value the `members.html` page matches against `lineage-credentials/_cache/index.json[].primary_program`.
 - `co_brand.partner_logo_url` is loaded into the landing + members + credentials wrapper. Hosting in `TrueSightDAO/.github/assets/` keeps the URL stable and CDN-friendly.
 - `credential_visibility_default` accepts `"public"` (default for adult cohorts and certificate recipients) or `"private"` (for programs serving minors without parental release). The members.html page filters on a future `public_listable` flag on the member record; until that flag exists in `lineage-credentials`, treat this as advisory.
+- `status` controls how the parent `programs.html` index renders the program card. Accepts:
+  - `"active"` (default if absent) — fully operational; cohort exists or will populate from `lineage-credentials` as members earn credentials.
+  - `"onboarding"` — partner is being onboarded; manifest + pages exist so the URL surface is reachable for partner review, but no participants have been credentialed yet. `programs.html` shows an *Onboarding* pill on the card so visitors know the cohort hasn't started.
+  - `"archived"` — program is no longer accepting new participants but historical cohort pages stay live (so previously printed QR codes keep resolving). `programs.html` may demote or hide archived cards depending on operator preference.
 - `last_reviewed` bumps every time partner copy or branding changes — keeps the manifest from going stale silently.
 
 ## 7. Co-branding pattern
