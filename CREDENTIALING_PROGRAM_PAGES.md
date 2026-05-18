@@ -777,3 +777,158 @@ Bilal supplied:
 - QR placement: not specified — operator-proposed bottom-right corner, ~70pt square, inside the ornamental border; iterate if Bilal asks for somewhere else
 
 The cert is school-cohort-specific. Future Butterfly Effect cohorts at other schools or in other years will likely want different templates — the engine handles this naturally because the template is per-program, not per-deployment; if needed, split into `butterfly-effect-narowal-2025` and `butterfly-effect-<next-school>-<year>` programs in the registry.
+
+---
+
+## 18. Phase 4 — contribution freshness (three sources, two surfaces)
+
+> **Scope:** today the credential page at `truesight.me/credentials/#<slug>` only reflects what's in the **Ledger history** tab of the Main Ledger spreadsheet, which is the canonical governor-reviewed record — but it only rolls over once per quarter. Contributors logging work today don't see it on their credential for up to ~3 months. Phase 4 closes the freshness gap by adding two more data sources alongside Ledger history, with a clear web-vs-PDF doctrine for what each surface includes.
+
+> **Status (2026-05-18):** Phase 4 is **specified only**. No code yet. Implementation follows the same Phase 0 → Phase N spec-then-code discipline.
+
+### 18.1 Why three sources
+
+A credential answers two slightly different questions:
+
+| Question | What it needs |
+|---|---|
+| "Has the DAO formally recognized this work?" | Settled records with a TDG amount attached |
+| "What has this contributor done lately?" | Submitted activity, even if pending review |
+
+Today the credential page only answers the first. Phase 4 makes it answer both, distinctly. The data divides cleanly into three sources:
+
+| Source | Spreadsheet · Tab | Freshness | Authority | What it covers |
+|---|---|---|---|---|
+| **Ledger history** | `1GE7PUq…` · `Ledger history` | Updated quarterly | Canonical · TDG-settled · governor-approved | All manual contributions + GAS-tokenized recurring contributions, after they've been promoted |
+| **Scored Chatlogs (pending)** | `1Tbj7H5…` · `Scored Chatlogs` (col L empty) | Daily — every new submission | Submitted, not yet reviewed | Manual contributions awaiting governor scoring since 2024-12-13 (start date of this sheet) |
+| **Recurring Transactions (derived pending)** | `1GE7PUq…` · `Recurring Transactions` | Spec-of-recurring (column F = last tokenization date) | Settled-on-cadence · expected-but-not-yet-tokenized | Derived: pending recurring charges since last tokenization, computed from `(today - F) × billing-period × amount` |
+
+### 18.2 Dedup — single primary key
+
+The dedup story is unusually clean because the existing GAS that promotes Scored Chatlogs → Ledger history already records the join on the source row:
+
+- **`Scored Chatlogs!L` ("Main Ledger Row Number")** is the foreign key. When a scoring is approved, the GAS writes the Ledger history row number into Scored Chatlogs column L.
+- **Rule for Phase 4**: a Scored Chatlogs row is "pending" iff column L is empty. Rows with column L populated are already covered by Ledger history; skip them.
+- No fuzzy matching, no timestamp-based join, no contributor-name normalization. The GAS owns the dedup; we just honor it.
+
+### 18.3 Two presentation surfaces, two doctrines
+
+| Surface | Includes | Rationale |
+|---|---|---|
+| **Web credential page** (`truesight.me/credentials/#<slug>` and per-program `programs/<p>/credentials/#<slug>`) | **All three sources, visually distinct** | The web is the live view. A contributor logging work today should see it the next day, even if unreviewed. A reader looking at the same page should be able to tell at a glance which entries are formally recognized vs claimed. |
+| **Printed PDF certificate** (`<slug>__<program>__cert.pdf`, `<slug>.pdf`) | **Ledger history only** | The PDF is the formal frozen artifact handed out — a printable cert with "pending review" entries would undercut its meaning. Same doctrine as §17.6 / Phase 3b: certificates print canonical state, never speculative state. |
+
+The on-screen `<slug>.pdf` (the existing canonical CV PDF) follows the same rule as the printed cert — canonical only — so the contributor's "Download PDF" never produces a snapshot that mixes pending claims with recognized work.
+
+### 18.4 Web page layout
+
+Section ordering on `credentials/#<slug>` (and the program-scoped equivalent):
+
+```
+1. [hero / identity / governance section — existing]
+
+2. == Recognized contributions ==
+     (sourced from Ledger history; this is the existing list)
+     - TDG amounts displayed
+     - Items grouped by Initiative / Project / etc. as today
+     - Status implied: "recognized"
+
+3. == Recent activity (pending governor review) ==
+     ⚠ Submitted since 2024-12-13. Not yet TDG-settled.
+        Recurring contributions auto-tokenized by GAS aren't shown here —
+        they appear in Recognized contributions after each quarterly settlement.
+     (sourced from Scored Chatlogs WHERE col L is empty)
+     - No TDG amounts (TDGs Provisioned shown as advisory, with "pending" label)
+     - Each item gets a "pending" pill
+     - Items chronologically descending
+
+4. == Expected recurring (since last tokenization) ==
+     ⚠ Derived from Recurring Transactions registry. Auto-tokenized periodically.
+     (computed: for each active recurring entry, list the period(s) since
+      column F's Most Recent Tokenization Date with implied amount)
+     - Shown with "auto · pending tokenization" pill
+     - Suppress entirely if last tokenization < 7 days ago (no actionable
+       freshness gap yet)
+
+5. [existing footer / links / etc.]
+```
+
+Visual treatment for the status pills:
+
+- **Recognized**: no pill (default; section header is enough)
+- **Pending review**: warm-amber pill, same palette as the `Onboarding` pill on `programs.html` — signals "in progress / not yet final"
+- **Auto · pending tokenization**: muted-grey pill — signals "the system will get to this on schedule, no action needed from anyone"
+
+Caveat banners must be at the top of each non-canonical section (not buried in a tooltip) so a casual reader who skims the page can't mistake pending entries for recognized ones.
+
+### 18.5 The 2024-12-13 floor
+
+Scored Chatlogs's first entry was 2024-12-13. Any contributor whose pending claims would fall before that date can't be surfaced through this source — the freshness gap for older claims is unaffected by Phase 4. The caveat banner in section 3 of the web layout must include "since 2024-12-13" verbatim so readers know what they're looking at.
+
+### 18.6 Recurring Transactions — derived pending
+
+The `Recurring Transactions` tab is a *registry* of recurring rewards/charges, not a per-event log. Schema (headers on row 4):
+
+| Col | Field |
+|---|---|
+| A | Description (e.g., "Wix - TrueSight.Me") |
+| B | Source |
+| C | Transaction Type (e.g., "Vault Draw down") |
+| D | Amount (USD) |
+| E | Billing Period (Monthly / Quarterly / …) |
+| F | Most Recent Tokenization Date (YYYYMMDD) |
+| G | Start Date |
+| H | Edgar AWS Billing Automation Security Key Identifier |
+| I | Automation Remarks |
+
+The lineage-engine build can compute "expected recurring activity since last tokenization" per recurring entry: number of billing-period units between F and today × D = pending recurring weight (USD). This isn't a contribution **claim** — it's a confidence-grade estimate of what the next quarterly tokenization will roll forward.
+
+Surface only when the gap is meaningful (≥ 7 days since column F) and only on records associated with the slug being viewed. The association may be by **B Source** + a name-match against the contributor list, or by a future explicit pk-hash column on the tab if it becomes worth adding.
+
+### 18.7 lineage-engine implementation outline
+
+New fetcher: `lineage-engine/scripts/fetch_pending_chatlogs.py` (mirrors `fetch_contributions.py`'s shape but reads `1Tbj7H5…` / `Scored Chatlogs` and filters where col L is empty).
+
+New fetcher: `lineage-engine/scripts/fetch_recurring_registry.py` (reads `1GE7PUq…` / `Recurring Transactions`, headers row 4; computes derived pending entries per contributor since column F).
+
+`build_cv_cache.py::build_unified_cv` then merges three streams into the CV record under separately-named keys:
+
+```python
+cv['dao_contributions']           # existing — Ledger history settled
+cv['pending_contributions']       # new — Scored Chatlogs col L empty
+cv['expected_recurring']          # new — derived from Recurring Transactions
+```
+
+The HTML renderer reads all three; the markdown renderer (used for the PDF) reads only `cv['dao_contributions']`. That's the entire doctrine split — one render path branches on `program_scope`, the markdown→PDF path is unchanged.
+
+### 18.8 Per-program credential pages
+
+The per-program page (`programs/<p>/credentials/#<slug>`) already shows ONLY records from that program (filtered in §15.4). Phase 4 surfaces the same three sources but filtered to that program — so "Recent activity (pending)" for Butterfly Effect on Bilal's page lists only Butterfly Effect-related Scored Chatlogs entries, not all his DAO submissions.
+
+Filter key for Scored Chatlogs → program: needs investigation. The Scored Chatlogs schema doesn't have a `program` column natively. Likely a fuzzy match against column B (Project Name) — e.g., entries whose Project Name contains the program's display name. Defer the filtering implementation until Phase 4 actually ships; document the open question here so it doesn't get re-derived.
+
+### 18.9 Phased rollout for Phase 4
+
+| Sub-phase | What ships | Repos |
+|---|---|---|
+| **4.0** (this section) | This §18 addendum | `agentic_ai_context` |
+| **4.1** | `fetch_pending_chatlogs.py` + `build_unified_cv` merges `pending_contributions` into the CV. Web page renders the new section with caveat banner. PDF unchanged. | `lineage-engine` + `truesight_me` |
+| **4.2** | `fetch_recurring_registry.py` + derived `expected_recurring`. Web page renders the third section. PDF still unchanged. | `lineage-engine` + `truesight_me` |
+| **4.3** | Per-program filter for Scored Chatlogs by project name fuzzy-match | `lineage-engine` |
+| **4.4** | (Optional) Operator dashboard surface showing aggregate pending → settled latency per quarter — useful for the governance team to monitor scoring throughput | separate, future |
+
+4.1 and 4.2 are independent and can ship in any order. 4.1 is the bigger user-visible win (Scored Chatlogs is daily-updated and covers manual contributions; Recurring Transactions is slower-moving).
+
+### 18.10 Open questions for Phase 4
+
+1. **Scored Chatlogs → per-program filter** (§18.8). Needs a join key from Scored Chatlogs row to a `programs/<p>` membership. Either via column B fuzzy match or by adding a new column on the sheet. Punt until 4.3.
+2. **Naming for "Expected recurring"** — is there a better label than "Expected"? "Accruing", "Pre-tokenization", "Auto-pending" all candidates. Decide when 4.2 lands.
+3. **Order of sections 3 and 4 on the web page** — recent activity first, or expected recurring first? Recent activity is human-driven and more interesting per-contributor; expected recurring is system-driven and rarely actionable. Lean recent first; revisit after operator review.
+4. **What happens if a Scored Chatlogs entry has col L populated but the referenced Ledger history row doesn't exist?** Treat as orphan; skip from both lists. Log a warning. Should be vanishingly rare given the GAS owns both writes.
+
+### 18.11 What's intentionally NOT in Phase 4
+
+- **Backfilling pre-2024-12-13 pending entries** — historical claims weren't tracked in this sheet; no source to surface from. The freshness gap there is a documentation/expectations issue, not a data integration one.
+- **Re-issuing PDF on every Scored Chatlogs append** — the PDF stays canonical-only, so it only regenerates when Ledger history changes (quarterly cadence). Avoids cert PDF churn for every minor submission.
+- **Web page caching strategy for the new sources** — same jsDelivr-primary + raw.github-fallback as the rest of the lineage feed. The cache-buster pattern shipped in `truesight_me_beta` `e36743e` already handles the freshness story for index.json; the new per-CV reads benefit from the same default.
+- **Verifiable Credentials (W3C VC) export including pending claims** — claims-vs-credentials distinction is hard there. Skip for now.
