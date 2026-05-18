@@ -651,3 +651,129 @@ Two reasons to keep the canonical PDF on its existing simple template:
 - **Notification on certification** (email the participant or their guardian when `locked_at` flips) — operator's email workflow; not engine plumbing.
 - **NFT / on-chain attestation of the certificate** — if/when this matters, it's a layer on top of `locked_at`. Out of scope here.
 - **Verifiable Credentials (W3C VC) format export** — possibly a Phase 4 export pipeline. The on-chain proof of issuance lives in the existing DAO ledger already; VC export is just a presentation format.
+
+### 17.13 Two strategies — partner-supplied PDF overlay vs HTML template
+
+Not every partner brings the same starting materials. Some (ERA's Butterfly Effect) hand us a finished PDF that already encodes their visual brand — borders, ornaments, signature blocks, school co-branding — and just need us to fill in name + date + QR. Others (a future small program with no design resources of their own) need us to *generate* the certificate from a clean HTML/CSS template. Phase 3b supports both, dispatched on a single manifest field.
+
+#### 17.13.1 Manifest declaration
+
+```json
+{
+  "...": "...",
+  "certificate": {
+    "strategy": "pdf_overlay",
+    "pdf_template": "cert_template.pdf",
+    "font_files": ["fonts/EBGaramond-Italic-VariableFont_wght.ttf"],
+    "overlay_fields": {
+      "recipient_name": {
+        "x_pt": 429.5, "y_pt": 268,
+        "font": "EBGaramond-Italic", "size_pt": 32,
+        "anchor": "center", "color": "#1a2a5a",
+        "max_width_pt": 600
+      },
+      "date": {
+        "x_pt": 178, "y_pt": 140,
+        "font": "EBGaramond-Italic", "size_pt": 14,
+        "anchor": "center", "color": "#1a2a5a",
+        "format": "%-d %B %Y"
+      },
+      "qr": {
+        "x_pt": 750, "y_pt": 80,
+        "size_pt": 70
+      }
+    }
+  }
+}
+```
+
+Two strategies supported:
+
+| Strategy | Manifest field | When to use |
+|---|---|---|
+| `"html_template"` (default if absent) | `certificate.html_template` (file ref, optional override) | Partner has no design materials; generate from `program_assets/<slug>/cert_template.html` + `cert_styles.css` as spec'd in §17.3 |
+| `"pdf_overlay"` | `certificate.pdf_template` + `font_files` + `overlay_fields` | Partner provides a finished PDF; engine overlays name + date + QR at supplied coordinates |
+
+Future strategies (e.g., `"svg_template"`, `"wallet_card"`) can be added with the same dispatch — they're new branches in `build_cv_cache.py::render_certificate(cv, manifest)`.
+
+#### 17.13.2 `overlay_fields` semantics (pdf_overlay strategy)
+
+Coordinates are in **PDF points** (1pt = 1/72 inch). Origin is the **bottom-left** of the page, matching PDF native convention (this is the opposite of HTML/CSS where origin is top-left — easy to forget when reading off a measuring tool).
+
+| Field | Required | Default | Notes |
+|---|---|---|---|
+| `x_pt`, `y_pt` | yes | — | Position; if `anchor=center`, this is the centre of the text/image; if `anchor=left`/`right`, it's the corresponding baseline-anchor |
+| `font` | for text fields | system default | Must reference a registered font name; load via `font_files` |
+| `size_pt` | for text fields | 12 | Glyph size in points |
+| `anchor` | no | `left` | `left` \| `center` \| `right` |
+| `color` | no | `#000` | Hex colour for text |
+| `format` | for `date` only | `%Y-%m-%d` | strftime pattern; applied to `locked_at` or the latest event timestamp depending on completion state |
+| `max_width_pt` | no | unlimited | If set, name auto-shrinks (-2pt steps) until it fits — prevents long names overflowing the cert |
+| `size_pt` | for `qr` | 64 | Square QR width |
+
+#### 17.13.3 PDF overlay implementation
+
+A new module `lineage-engine/scripts/cert_overlay.py` does the heavy lifting:
+
+```python
+def render_certificate_pdf_overlay(
+    template_pdf: Path,
+    out_path: Path,
+    fields: dict,
+    *,
+    recipient_name: str,
+    issued_at: datetime,
+    qr_path: Path,
+    font_files: list[Path],
+) -> None:
+    """Open the template PDF, overlay text + QR at the specified coordinates,
+    write the merged PDF to out_path. Single-page templates only; multi-page
+    handled by repeating the page-1 overlay (not expected use case)."""
+```
+
+Implementation libraries:
+- `pypdf` (already in lineage-engine via `qr_code.py` chain) to read the template page
+- `reportlab` to draw text + image on a fresh canvas
+- `pypdf.PdfWriter` to merge the canvas atop the template
+
+Single-page templates are the only supported variant for V1. Multi-page certs (handout packets, etc.) are deferred.
+
+#### 17.13.4 build_cv_cache.py dispatch
+
+The existing `cv.programs` loop already emits `<slug>__<program>.qr.png` + `<slug>__<program>.pdf` (Phase 3a). Phase 3b adds a third artifact: `<slug>__<program>__cert.pdf` — the actual partner-branded certificate.
+
+```python
+# After §15.4 per-program QR + practice-log PDF emit:
+cert_strategy = (manifest.get('certificate') or {}).get('strategy', 'html_template')
+if cert_strategy == 'pdf_overlay':
+    overlay_render(
+        template_pdf=PROGRAM_ASSETS_DIR / url_program_slug / manifest['certificate']['pdf_template'],
+        out_path=cv_dir / f'{slug}__{url_program_slug}__cert.pdf',
+        fields=manifest['certificate']['overlay_fields'],
+        recipient_name=cv.get('display_name') or slug,
+        issued_at=resolve_issued_at(cv, url_program_slug),
+        qr_path=cv_dir / f'{slug}__{url_program_slug}.qr.png',
+        font_files=[PROGRAM_ASSETS_DIR / url_program_slug / fp for fp in manifest['certificate'].get('font_files') or []],
+    )
+elif cert_strategy == 'html_template':
+    # Deferred — implement when a real partner needs it.
+    pass
+```
+
+The HTML strategy stays no-op until a real partner without their own PDF shows up; ships as a stub branch so the dispatch logic exists.
+
+#### 17.13.5 Where the manifest lives
+
+`certificate.strategy` is on the **truesight_me** program manifest (`truesight_me/programs/<slug>/manifest.json`), NOT the lineage-credentials data-side manifest. Reason: the certificate is a publication artifact, not a data event; the URL-side manifest is the source of truth for "how do we render this program's outputs."
+
+`build_cv_cache.py` must therefore fetch the truesight_me manifest at build time (or use a vendored mirror). Cheapest path: at the top of the build, for each `url_program_slug` known to the registry, fetch `https://raw.githubusercontent.com/TrueSightDAO/truesight_me_prod/main/programs/<slug>/manifest.json` once and cache the dict for the rest of the run. Network dependency added — keep it on a soft fail (warn + skip cert emit if the manifest can't be fetched), don't break the whole build over it.
+
+#### 17.13.6 The first partner to use this — Butterfly Effect (ERA + Narowal Public School)
+
+Bilal supplied:
+- `Final Certificate Without Name and Date.pdf` — the blank template (859×612pt, school-co-branded, signatory: Shereen Abdullah, "Butterfly Effect Club Program 2025-2026")
+- `Final Certificate With Name and Date.pdf` — a hand-filled scanned sample (showed where name + date land)
+- Requested font: `EBGaramond-Italic-VariableFont_wght`
+- QR placement: not specified — operator-proposed bottom-right corner, ~70pt square, inside the ornamental border; iterate if Bilal asks for somewhere else
+
+The cert is school-cohort-specific. Future Butterfly Effect cohorts at other schools or in other years will likely want different templates — the engine handles this naturally because the template is per-program, not per-deployment; if needed, split into `butterfly-effect-narowal-2025` and `butterfly-effect-<next-school>-<year>` programs in the registry.
