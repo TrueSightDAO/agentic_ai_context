@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-17T19:45:02Z`
-- Look-back: **7** calendar days (`2026-05-10` → today UTC)
+- Generated (UTC): `2026-05-18T03:56:53Z`
+- Look-back: **7** calendar days (`2026-05-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 31
-- `[PRACTICE EVENT]` × 7
-- `[SALES EVENT]` × 2
-- `[INVENTORY MOVEMENT]` × 2
-- _free-form (no bracket tag)_ × 1
-
-### Latest entries
-
-- `Edgar_20260516204907_133` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Replace 'CV' terminology with 'training record' / 'public record' on capoeir…
-- `Edgar_20260516204916_135` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApteuX0BSHSvFKWuR5PcC…
-- `Edgar_20260516205034_137` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Credential profile QR code + embed in PDF
-- `Edgar_20260516205701_139` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Per-program credentialing surfaces — Phase 1 live (Tribo Bahia Mirim + Butte…
-- `Edgar_20260516210658_141` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Document credential-profile QR + truesight_me beta/prod split
-- `Edgar_20260516210820_143` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Credentialing platform: three fixes for orphan-URL UX + payload extraction b…
-- `Edgar_20260516211545_145` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Programs nav link site-wide + Onboarding pill on Butterfly Effect card
-- `Edgar_20260516212412_147` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Governors explainer + whitepaper formula fix + Alchemist hero crop
-- `Edgar_20260516213816_149` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Credentialing platform: orphan-key UX + GAS payload-parse fix + sha-on-overw…
-- `Edgar_20260516214304_151` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix mislabeled 'View cohort' CTA on programs page
-- `Edgar_20260516215038_153` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Onboarding-playbook addendum to CREDENTIALING_PROGRAM_PAGES.md
-- `Edgar_20260516215346_155` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Members search filter + persistence + site-wide top-nav canonicalization
-- `Edgar_20260516215402_157` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Per-credential QR + PDF, per surface — Phase 3a complete
-- `Edgar_20260516215512_159` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: edgar.html plug-and-play modules grid refresh (8 -> 18 entries)
-- `Edgar_20260516221446_161` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Butterfly Effect real logo + Phase 3b spec + logos on program pages
-- `Edgar_20260516223739_163` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: programs landing page: render description_md as inline markdown
-- `Edgar_20260517012414_165` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 81.71 · Description: Gasoline  cost for driving around
-- `Edgar_20260517012509_167` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260517025132_169` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260517025150_171` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 
 ---
 
@@ -67,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 228 | **behind** |
-| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 228 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 227 | **behind** |
+| USA Agroverse Partners | 100 | 27 | 27% | `2026-12-31` | 227 | **behind** |
 
 ---
 
@@ -169,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,994.02**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$37.68**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -191,10 +150,8 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-05-16 | claude | Per-program credentialing surfaces: added CREDENTIALING_PROGRAM_PAGES.md (Phase 0 spec). Defines the `truesight.me/programs/<p>/credentials/#<slug>` URL pattern (permanent — etched into printed cert QR codes), file layout, manifest schema, jsDelivr-primary fetch pattern, co-branding rules, opt-in consent model for minors, and 6-phase rollout. First target partners: Tribo Bahia Mirim capoeira + ERA Professionals' Butterfly Effect (Bilal). Suggested README.md / PROJECT_INDEX.md update (human approval needed): add a row for CREDENTIALING_PROGRAM_PAGES.md as the canonical reference when extending per-program credentialing surfaces.
 
-_All dated lines on/after 2026-05-10_ (10):
+_All dated lines on/after 2026-05-11_ (8):
 
-- 2026-05-10 | claude | Managed ledger explorer pattern: Created reusable transparency dashboard infrastructure. treasury-cache/managed-ledgers/<ledger_name>.json → GitHub Pages explorer. First implementation: tribomirimbahia ledger (Tribo Bahia Mirim Capoeira donations). Documented in MANAGED_LEDGER_EXPLORER_PATTERN.md. New PROJect: tribomirimbahia (index.html blockchain-explorer UI).
-- 2026-05-10 | claude | Created TRIBO_MIRIM_BAHIA managed ledger: Google Sheet (1_MjYZBMoUZAmQvMi6KOml3A6shQg2sJdFEFt1QHHxtM) with AGL15-mirrored tab structure + formulas, registered in Shipment Ledger Listing (row 1001, Transaction Type=Donation), service accounts shared. Documented full creation process in MANAGED_LEDGER_EXPLORER_PATTERN.md §4.
 - 2026-05-11 | claude | Managed ledger snapshot pipeline: snapshot_managed_ledgers.py reads Shipment Ledger Listing, exports all active (non-COMPLETED/non-SUSPENDED) ledgers to treasury-cache/managed-ledgers/<LedgerID>.json. JSON naming now matches Column A Ledger ID (e.g. TBM.json, AGL4.json). Updated explorer, pattern doc, SCHEMA.md.
 - 2026-05-11 | claude | Stripe→Ledger routing flow chart: documented current 4 Stripe pipelines + proposed metadata.ledger routing for capoeira donations → TBM. Created STRIPE_LEDGER_ROUTING.md with ASCII flow diagrams and ledger routing rule table.
 - 2026-05-11 | codex | Prioritized bottleneck: on‑the‑fly Restock Recommender (single‑tap sizing using USPS rates + recent velocity). Added BOTTLENECK_REVIEW_RESTOCK_RECOMMENDER.md summarizing impact, thin solution, and next steps; references RESTOCK_RECOMMENDER_ON_THE_FLY.md.
@@ -274,6 +231,8 @@ fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h adv
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cd72f22 | 2026-05-17 12:45:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
+0d7d436 | 2026-05-17 12:45:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-17 UTC)
 f6cbd75 | 2026-05-17 07:04:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
 5874efd | 2026-05-17 07:04:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-17 UTC)
 1309ccd | 2026-05-17 01:37:30 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
@@ -312,8 +271,6 @@ ca6dcf4 | 2026-05-14 21:27:50 -0700 | docs: explain why build workflow lives in 
 3a54d7a | 2026-05-14 20:42:36 -0700 | Merge pull request #137 from TrueSightDAO/auto/advisory-refresh-2026-05-15
 39c1fd9 | 2026-05-15 03:42:27 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
 52a3780 | 2026-05-14 20:03:53 -0700 | docs: CREDENTIALING_PLATFORM design — lineage-based attestations primitive (#136)
-f406f9d | 2026-05-14 13:14:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-14 UTC)
-3c65dde | 2026-05-14 13:14:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-14 UTC)
 … (truncated)
 ```
 
@@ -345,9 +302,6 @@ a6eb31d | 2026-05-10 18:57:57 -0700 | feat: routeStripeCheckoutPurchasesToLedger
 9c18426 | 2026-05-10 18:28:14 -0700 | chore(currency-conversion): sync clasp-pushed trigger helpers + manifest scopes back to canonical source (#276)
 e80748c | 2026-05-10 17:50:25 -0700 | feat: snapshot_managed_ledgers.py — export all active ledgers to treasury-cache/managed-ledgers/<LedgerID>.json
 2fcfa8d | 2026-05-10 17:29:41 -0700 | docs: fix Shipment Ledger Listing col A = Ledger ID + empty-row convention
-7b73e95 | 2026-05-10 15:57:23 -0700 | feat(currency-conversion): Warehouse Manager + Edgar immediate-trigger doGet (#275)
-e5aec49 | 2026-05-10 15:23:03 -0700 | feat: currency_conversion_processing.gs (multi-currency double-entry on managed ledgers) (#274)
-77cd437 | 2026-05-09 23:15:01 -0700 | fix(pipeline-metrics): coerce TIME-cast Date cells back to integer counts (#273)
 ```
 
 ### `dapp` → `dapp`
@@ -378,9 +332,6 @@ c9bce5d | 2026-05-11 13:52:30 -0700 | warmup_review: also pin draft id in URL on
 ccfcf69 | 2026-05-11 13:39:12 -0700 | warmup_review: deep-link draft id in URL hash for LLM hand-off (#229)
 49ddb8d | 2026-05-11 13:04:02 -0700 | warmup_review: surface shop name at top of each expanded body (#228)
 7f08126 | 2026-05-10 18:45:18 -0700 | fix(currency-conversion): add offchain (Main Ledger) option + dynamic currency datalist (#227)
-4e43b68 | 2026-05-10 15:57:18 -0700 | feat(currency-conversion): add Warehouse Manager picker (Entity for both Tx rows) (#226)
-1b3fa31 | 2026-05-10 15:18:08 -0700 | feat: currency conversion reporter (USD->BRL via Wise / multi-currency conversions) (#225)
-d08bd1f | 2026-05-09 23:44:57 -0700 | feat(chat): visual feedback for autopilot working/done state + Stop button (#224)
 ```
 
 ### `TrueChain` → `TrueChain`
@@ -426,7 +377,6 @@ aa439aa | 2026-05-11 14:28:42 -0700 | chore: refresh Agroverse store inventory s
 96b8bef | 2026-05-11 14:07:52 -0700 | Regenerate partners-velocity.json with fixed sales attribution
 6243525 | 2026-05-11 10:25:41 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 d0df3b6 | 2026-05-11 10:01:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-6f442e8 | 2026-05-10 08:23:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -455,11 +405,6 @@ ca1d063 | 2026-05-12 09:21:09 -0700 | feat(mission): replace color photo on Miss
 1873918 | 2026-05-15 16:44:07 -0700 | Tighten Context Gaps: decision-flipping only, skip when none (#16)
 4df5dab | 2026-05-15 16:37:56 -0700 | Default QMDJ to day-anchored mode; depersonalize advisor prompt (#15)
 fb12ff4 | 2026-05-15 16:22:11 -0700 | Daily-cast lens-led prompt + zone selection; default → claude-opus-4-7 (#14)
-fb8d833 | 2026-05-09 23:56:30 -0700 | fix(qmdj): glossary overflow + bold-outline legend (#12)
-9195934 | 2026-05-09 23:48:14 -0700 | feat(qmdj): move Explore-64 above QMDJ panel; clarify hour-based time basis (#11)
-01c42ca | 2026-05-09 23:34:05 -0700 | chore(gas): commit appsscript.json manifest pulled from the live web app (#10)
-46cc5e8 | 2026-05-09 23:10:00 -0700 | feat(qmdj): wire QMDJ chart into the DAO advisor prompt (#9)
-0009c9e | 2026-05-09 22:40:05 -0700 | feat(qmdj): add QiMen Dunjia structural overlay below the I-Ching reading (#8)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -471,6 +416,15 @@ _(no commits on origin/master in window)_
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-05-18T035653Z_programs-markdown-inventory-sellthrough.md`
+
+- **posted_at_utc:** `2026-05-18T03:56:53Z`  
+- **slug:** `programs-markdown-inventory-sellthrough`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
+  - **Programs descriptions enriched** — markdown rendering enabled for links and code blocks on program landing pages.
 
 ### `beer-hall_2026-05-17T034043Z_programs-pages-live-partner-check-in-ux.md`
 
@@ -489,15 +443,6 @@ _(no commits on origin/master in window)_
 
   OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
   - **Field Signals #6 live** — "What the angels couldn't name" published, alongside a blog rewrite that broadens the convergence story.
-
-### `beer-hall_2026-05-15T034220Z_field-signals-4-5-autopilot-self-healing.md`
-
-- **posted_at_utc:** `2026-05-15T03:42:20Z`  
-- **slug:** `field-signals-4-5-autopilot-self-healing`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Field Signals #4 and #5 are live, the Autopilot infrastructure gained a self-healing loop, and the CREDENTIALING_PLATFORM design spec shipped today.
-  - **Field Signals #4 & #5 published** — "The system that broke is the system that proposes the fix" and "Three times is when you name it" are now on the blog.
 
 ---
 
@@ -518,41 +463,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/17/2026 11:50:16 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-10`; scanned last **395** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-05-10 | 23.6 | 8 Ounce Package Kraft Pouch CP340993268… | TOKENIZED | 2024OSCARD_20251218_30 | Rlee9Y9zp2vO | Stripe checkout (online) |
-| 2026-05-15 | 18 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_34 | — | — |
-| 2026-05-15 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_41 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
