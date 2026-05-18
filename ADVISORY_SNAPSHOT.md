@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-18T16:02:41Z`
+- Generated (UTC): `2026-05-18T20:12:40Z`
 - Look-back: **7** calendar days (`2026-05-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,24 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 31
+- `[CONTRIBUTION EVENT]` × 30
 - `[PRACTICE EVENT]` × 8
-- `[INVENTORY MOVEMENT]` × 2
-- `[SALES EVENT]` × 1
+- `[NOTARIZATION EVENT]` × 3
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[INVENTORY MOVEMENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260516205034_137` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Credential profile QR code + embed in PDF
-- `Edgar_20260516205701_139` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Per-program credentialing surfaces — Phase 1 live (Tribo Bahia Mirim + Butte…
-- `Edgar_20260516210658_141` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Document credential-profile QR + truesight_me beta/prod split
-- `Edgar_20260516210820_143` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Credentialing platform: three fixes for orphan-URL UX + payload extraction b…
-- `Edgar_20260516211545_145` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Programs nav link site-wide + Onboarding pill on Butterfly Effect card
-- `Edgar_20260516212412_147` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Governors explainer + whitepaper formula fix + Alchemist hero crop
-- `Edgar_20260516213816_149` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Credentialing platform: orphan-key UX + GAS payload-parse fix + sha-on-overw…
-- `Edgar_20260516214304_151` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix mislabeled 'View cohort' CTA on programs page
-- `Edgar_20260516215038_153` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Onboarding-playbook addendum to CREDENTIALING_PROGRAM_PAGES.md
-- `Edgar_20260516215346_155` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Members search filter + persistence + site-wide top-nav canonicalization
 - `Edgar_20260516215402_157` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Per-credential QR + PDF, per surface — Phase 3a complete
 - `Edgar_20260516215512_159` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: edgar.html plug-and-play modules grid refresh (8 -> 18 entries)
 - `Edgar_20260516221446_161` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Butterfly Effect real logo + Phase 3b spec + logos on program pages
@@ -60,6 +51,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260517025150_171` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 - `Edgar_20260517234929_173` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 - `Edgar_20260518030214_175` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260518161216_177` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Following up with Paulo regarding the tree planting status
+- `Edgar_20260518161319_179` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Following up with Melina regarding the outstanding check for Green Gulch Zen…
+- `Edgar_20260518161420_181` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Milena - green gulch · Contributor Email: ggfguest@sfzc.org · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260518161607_183` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1800 · Description: Discussion over lunch
+- `Edgar_20260518162201_185` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Actually I think you and me should probably have a strategic chat too when y…
+- `Edgar_20260518191107_187` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Nima Kaz · Recipient Name: Gary Teh · Inventory Item: Brazilian Reis
+- `Edgar_20260518192043_189` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Verifying the transaction is completed and also proposing the agenda for nex…
+- `Edgar_20260518194736_191` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
+- `Edgar_20260518195142_193` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
+- `Edgar_20260518195429_195` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
 
 ---
 
@@ -145,11 +146,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 11,545.27 total units · $11,445.90
+- Manager record: `Gary Teh` · 30 SKU lines · 13,255.27 total units · $11,843.14
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 11,434.09 | $11,159.53 |
+  | (uncategorized) | (unspecified) | 26 | 13,144.09 | $11,556.76 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Mass | Retail Ready | 2 | 35 | $236.39 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -163,9 +164,9 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
-| Nima Kaz | 2 | 1,713 | $423.01 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
+| Green Gulch Zen Monastery | 6 | 84 | $222.54 |
 
 _(+28 more in JSON snapshot.)_
 
@@ -272,6 +273,8 @@ fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h adv
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9535ba9 | 2026-05-18 09:03:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-18 UTC)
+6699106 | 2026-05-18 09:03:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-18 UTC)
 6abc4d5 | 2026-05-18 03:47:26 -0700 | chore(previews): refresh Beer Hall preview (2026-05-18 UTC)
 3f8a5e5 | 2026-05-18 03:47:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-18 UTC)
 375ea24 | 2026-05-17 21:50:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-18 UTC)
@@ -310,8 +313,6 @@ b2c61de | 2026-05-16 03:27:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a4ec871 | 2026-05-15 08:00:30 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
 c9c37d9 | 2026-05-15 08:00:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
 d8d9fd8 | 2026-05-15 02:29:32 -0700 | chore(previews): refresh Beer Hall preview (2026-05-15 UTC)
-5f2e5a6 | 2026-05-15 02:29:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
-1cc7628 | 2026-05-14 22:12:32 -0700 | Document the DAO contributor warm-up sweep (local-only, not CI) (#139)
 … (truncated)
 ```
 
@@ -530,7 +531,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/18/2026 8:51:01 |
+| 2026-05 | 58.6 | 14977.11386 | 5/18/2026 12:51:06 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-11`; scanned last **395** data rows)
 
