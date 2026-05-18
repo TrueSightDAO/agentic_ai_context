@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-18T03:56:53Z`
+- Generated (UTC): `2026-05-18T04:50:31Z`
 - Look-back: **7** calendar days (`2026-05-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 31
+- `[PRACTICE EVENT]` × 8
+- `[INVENTORY MOVEMENT]` × 2
+- `[SALES EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260516205034_137` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Credential profile QR code + embed in PDF
+- `Edgar_20260516205701_139` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Per-program credentialing surfaces — Phase 1 live (Tribo Bahia Mirim + Butte…
+- `Edgar_20260516210658_141` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Document credential-profile QR + truesight_me beta/prod split
+- `Edgar_20260516210820_143` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Credentialing platform: three fixes for orphan-URL UX + payload extraction b…
+- `Edgar_20260516211545_145` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Programs nav link site-wide + Onboarding pill on Butterfly Effect card
+- `Edgar_20260516212412_147` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Governors explainer + whitepaper formula fix + Alchemist hero crop
+- `Edgar_20260516213816_149` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Credentialing platform: orphan-key UX + GAS payload-parse fix + sha-on-overw…
+- `Edgar_20260516214304_151` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix mislabeled 'View cohort' CTA on programs page
+- `Edgar_20260516215038_153` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Onboarding-playbook addendum to CREDENTIALING_PROGRAM_PAGES.md
+- `Edgar_20260516215346_155` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Members search filter + persistence + site-wide top-nav canonicalization
+- `Edgar_20260516215402_157` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Per-credential QR + PDF, per surface — Phase 3a complete
+- `Edgar_20260516215512_159` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: edgar.html plug-and-play modules grid refresh (8 -> 18 entries)
+- `Edgar_20260516221446_161` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Butterfly Effect real logo + Phase 3b spec + logos on program pages
+- `Edgar_20260516223739_163` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: programs landing page: render description_md as inline markdown
+- `Edgar_20260517012414_165` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 81.71 · Description: Gasoline  cost for driving around
+- `Edgar_20260517012509_167` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260517025132_169` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260517025150_171` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260517234929_173` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260518030214_175` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 
 ---
 
@@ -132,13 +169,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,993.78**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$37.92**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -231,6 +272,8 @@ fcbccdf | 2026-05-15 16:32:51 -0700 | Add --with-telegram-activity to the 6h adv
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a115185 | 2026-05-17 20:57:08 -0700 | Merge pull request #150 from TrueSightDAO/auto/advisory-refresh-2026-05-18
+ab5c12d | 2026-05-18 03:56:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-18 UTC)
 cd72f22 | 2026-05-17 12:45:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
 0d7d436 | 2026-05-17 12:45:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-17 UTC)
 f6cbd75 | 2026-05-17 07:04:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
@@ -269,8 +312,6 @@ bdbc9f3 | 2026-05-14 21:35:28 -0700 | chore(previews): refresh Beer Hall preview
 7b5792a | 2026-05-14 21:35:27 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
 ca6dcf4 | 2026-05-14 21:27:50 -0700 | docs: explain why build workflow lives in lineage-credentials (data) not lineage-engine (code) (#138)
 3a54d7a | 2026-05-14 20:42:36 -0700 | Merge pull request #137 from TrueSightDAO/auto/advisory-refresh-2026-05-15
-39c1fd9 | 2026-05-15 03:42:27 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-15 UTC)
-52a3780 | 2026-05-14 20:03:53 -0700 | docs: CREDENTIALING_PLATFORM design — lineage-based attestations primitive (#136)
 … (truncated)
 ```
 
@@ -463,6 +504,40 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/17/2026 20:51:39 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-11`; scanned last **395** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-15 | 18 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_34 | — | — |
+| 2026-05-15 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_41 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
