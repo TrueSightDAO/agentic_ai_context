@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1080" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1180" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
@@ -7,13 +7,9 @@
     <marker id="arrow-light" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
       <path d="M0,0 L10,5 L0,10 Z" fill="#94A3B8"/>
     </marker>
-    <marker id="arrow-cycle" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="currentColor"/>
-    </marker>
   </defs>
 
-  <!-- Background -->
-  <rect x="0" y="0" width="1280" height="1080" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1280" height="1180" fill="#FFFFFF"/>
 
   <!-- ============== NORTH STAR BANNER ============== -->
   <rect x="20" y="20" width="1240" height="62" rx="8" fill="#0F172A"/>
@@ -99,155 +95,158 @@
     </g>
   </g>
 
-  <!-- ============== ACQUISITION LOOPS BAND ============== -->
+  <!-- ============== ACQUISITION LOOPS BAND (5 loops, 1 row, evenly spaced) ============== -->
+  <!-- Loop centers: 160, 400, 640, 880, 1120 (distance 240 between centers, ample space for cardinal labels capped ~10 chars) -->
   <g transform="translate(0, 340)">
-    <rect x="20" y="0" width="1240" height="320" rx="10" fill="#FEF3E2" stroke="#FCD9B6"/>
+    <rect x="20" y="0" width="1240" height="340" rx="10" fill="#FEF3E2" stroke="#FCD9B6"/>
     <text x="40" y="28" font-size="12" font-weight="700" fill="#92400E" letter-spacing="2">ACQUISITION LOOPS</text>
     <text x="40" y="46" font-size="13" fill="#7C2D12">How we get users to bring in more users</text>
 
     <!-- Loop 1: Retail Partner Referral -->
-    <g transform="translate(140, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Retail Partner</text>
-      <text x="0" y="-75" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Referral</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#F97316" stroke-width="8" opacity="0.85"/>
+    <g transform="translate(160, 210)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Retail Partner</text>
+      <text x="0" y="-100" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Referral</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
       <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">existing partner</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">mentions nearby</text>
-      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">new partner onboarded</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">Gary follows up</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">retail partners</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">refers venue</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">new partner</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">Gary follows up</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">retail partners</text>
     </g>
 
     <!-- Loop 2: QR Trace-Back -->
-    <g transform="translate(370, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">QR</text>
-      <text x="0" y="-75" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Trace-Back</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#F97316" stroke-width="8" opacity="0.85"/>
-      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">customer buys cacao</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">scans QR · sees tree</text>
+    <g transform="translate(400, 210)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">QR</text>
+      <text x="0" y="-100" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Trace-Back</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">customer buys</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">scans QR</text>
       <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">friend buys</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">shares with friend</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">cacao customers</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">shares</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">cacao customers</text>
     </g>
 
     <!-- Loop 3: Contributor → Contributor -->
-    <g transform="translate(620, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Contributor →</text>
-      <text x="0" y="-75" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Contributor</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#F97316" stroke-width="8" opacity="0.85"/>
-      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">existing contributor</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">attested work shown</text>
-      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">new contributor active</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">brings new contributor</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">DAO contributors</text>
+    <g transform="translate(640, 210)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Contributor →</text>
+      <text x="0" y="-100" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Contributor</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">attested work</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">brings new</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">new attests</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">onboarded</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">DAO contributors</text>
     </g>
 
     <!-- Loop 4: B2B Sales -->
-    <g transform="translate(870, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">B2B Sales</text>
-      <text x="0" y="-75" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">Email360 + krake_sinatra</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#F97316" stroke-width="8" opacity="0.85"/>
+    <g transform="translate(880, 210)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">B2B Sales</text>
+      <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">Email360 + bot</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
       <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">warm-up queue</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">prospect replies</text>
-      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">first restock · cycle</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">partner onboarded</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">retail partners</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">replies</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">restock cycle</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">onboarded</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">retail partners</text>
     </g>
 
     <!-- Loop 5: Compassionate Action Attestation -->
-    <g transform="translate(1110, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">Compassionate</text>
-      <text x="0" y="-75" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">Action Attestation</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#22C55E" stroke-width="8" opacity="0.85"/>
-      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">student performs act</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">attestor signs</text>
-      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">others discover DAO</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">credential shared</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">students · contributors</text>
+    <g transform="translate(1120, 210)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">Compassionate</text>
+      <text x="0" y="-100" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">Action Attestation</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#22C55E" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">student acts</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">attestor signs</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">others discover</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">shared</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">students · contributors</text>
     </g>
 
-    <!-- Inter-band arrow -->
-    <line x1="640" y1="318" x2="640" y2="338" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="640" y1="338" x2="640" y2="358" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
   </g>
 
-  <!-- ============== RETENTION LOOPS BAND ============== -->
-  <g transform="translate(0, 690)">
-    <rect x="20" y="0" width="1240" height="360" rx="10" fill="#ECFDF5" stroke="#A7F3D0"/>
+  <!-- ============== RETENTION LOOPS BAND (6 loops, 2 rows of 3) ============== -->
+  <!-- Loop centers row 1 + row 2: 213, 640, 1067 (distance 427 between centers, lots of room) -->
+  <g transform="translate(0, 710)">
+    <rect x="20" y="0" width="1240" height="460" rx="10" fill="#ECFDF5" stroke="#A7F3D0"/>
     <text x="40" y="28" font-size="12" font-weight="700" fill="#065F46" letter-spacing="2">RETENTION LOOPS</text>
     <text x="40" y="46" font-size="13" fill="#047857">How we keep them engaged</text>
 
-    <!-- Row 1: 3 loops -->
+    <!-- Row 1: Email360 / Partner Check-in / DApp Bell -->
     <!-- Loop 1: Email360 -->
-    <g transform="translate(220, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Email360</text>
-      <text x="0" y="-75" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">post-purchase</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#F97316" stroke-width="8" opacity="0.85"/>
-      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">customer leaves email</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">seasonal nurture</text>
-      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">customer re-engages</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">tree updates sent</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">cacao customers</text>
+    <g transform="translate(213, 200)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Email360</text>
+      <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">post-purchase nurture</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">leaves email</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">seasonal sends</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">re-engages</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">tree updates</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">cacao customers</text>
     </g>
 
     <!-- Loop 2: Partner Check-in -->
-    <g transform="translate(620, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Partner Check-in</text>
-      <text x="0" y="-75" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">concierge UX</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#F97316" stroke-width="8" opacity="0.85"/>
-      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">DApp bell surfaces overdue</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">operator narrates</text>
-      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">next date refreshed</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">LLM files signed event</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">retail partners</text>
+    <g transform="translate(640, 200)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Partner Check-in</text>
+      <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">concierge UX</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">bell flags overdue</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">narrate offline</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">next date set</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">LLM files</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">retail partners</text>
     </g>
 
     <!-- Loop 3: DApp Bell -->
-    <g transform="translate(1020, 180)">
-      <text x="0" y="-90" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">DApp Bell</text>
-      <text x="0" y="-75" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">operator action queue</text>
-      <circle cx="0" cy="0" r="48" fill="none" stroke="#F97316" stroke-width="8" opacity="0.85"/>
-      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">operator opens DApp</text>
-      <text x="58" y="3" font-size="10" fill="#475569" text-anchor="start">bell shows items</text>
-      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">queue clears, refreshes</text>
-      <text x="-58" y="3" font-size="10" fill="#475569" text-anchor="end">operator acts</text>
-      <text x="0" y="92" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">operators</text>
+    <g transform="translate(1067, 200)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">DApp Bell</text>
+      <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">operator action queue</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">opens DApp</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">sees items</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">queue refresh</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">acts on item</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">operators</text>
     </g>
 
-    <!-- Row 2: 3 loops -->
-    <!-- Loop 4: Beer Hall Digest (positioned in second row) -->
-    <g transform="translate(220, 320)">
-      <text x="0" y="-58" font-size="11" font-weight="700" fill="#9A3412" text-anchor="middle">Beer Hall Digest</text>
-      <circle cx="0" cy="0" r="28" fill="none" stroke="#F97316" stroke-width="6" opacity="0.85"/>
-      <text x="-32" y="-30" font-size="9" fill="#475569" text-anchor="middle">daily DAO state</text>
-      <text x="36" y="-30" font-size="9" fill="#475569" text-anchor="middle">→ contributor reads</text>
-      <text x="-32" y="42" font-size="9" fill="#475569" text-anchor="middle">→ work surfaces</text>
-      <text x="36" y="42" font-size="9" fill="#475569" text-anchor="middle">→ contributes</text>
-      <text x="0" y="62" font-size="9" fill="#94A3B8" text-anchor="middle" font-style="italic">contributors</text>
+    <!-- Row 2: Beer Hall / Credentialing Lineage / Trees Dashboard -->
+    <!-- Loop 4: Beer Hall Digest -->
+    <g transform="translate(213, 360)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Beer Hall Digest</text>
+      <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">daily DAO state</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">contributor reads</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">engages</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">surfaces again</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">contributes</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">contributors</text>
     </g>
 
     <!-- Loop 5: Credentialing Lineage -->
-    <g transform="translate(620, 320)">
-      <text x="0" y="-58" font-size="11" font-weight="700" fill="#166534" text-anchor="middle">Credentialing Lineage</text>
-      <circle cx="0" cy="0" r="28" fill="none" stroke="#22C55E" stroke-width="6" opacity="0.85"/>
-      <text x="-32" y="-30" font-size="9" fill="#475569" text-anchor="middle">initial credential</text>
-      <text x="36" y="-30" font-size="9" fill="#475569" text-anchor="middle">→ continues practice</text>
-      <text x="-32" y="42" font-size="9" fill="#475569" text-anchor="middle">→ identity ownership</text>
-      <text x="36" y="42" font-size="9" fill="#475569" text-anchor="middle">→ deeper attestations</text>
-      <text x="0" y="62" font-size="9" fill="#94A3B8" text-anchor="middle" font-style="italic">students · contributors</text>
+    <g transform="translate(640, 360)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">Credentialing Lineage</text>
+      <text x="0" y="-100" font-size="11" fill="#166534" text-anchor="middle" font-style="italic">ongoing attestations</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#22C55E" stroke-width="7" opacity="0.85"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">credential issued</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">keeps practising</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">identity deepens</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">new attestations</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">students · contributors</text>
     </g>
 
     <!-- Loop 6: Trees Dashboard -->
-    <g transform="translate(1020, 320)">
-      <text x="0" y="-58" font-size="11" font-weight="700" fill="#9A3412" text-anchor="middle">Trees Dashboard</text>
-      <circle cx="0" cy="0" r="28" fill="none" stroke="#F97316" stroke-width="6" opacity="0.85" stroke-dasharray="3,3"/>
-      <text x="-32" y="-30" font-size="9" fill="#475569" text-anchor="middle">customer revisits</text>
-      <text x="36" y="-30" font-size="9" fill="#475569" text-anchor="middle">→ tree at month N</text>
-      <text x="-32" y="42" font-size="9" fill="#475569" text-anchor="middle">→ engages</text>
-      <text x="36" y="42" font-size="9" fill="#475569" text-anchor="middle">→ re-purchases</text>
-      <text x="0" y="62" font-size="9" fill="#94A3B8" text-anchor="middle" font-style="italic">cacao customers (underexploited)</text>
+    <g transform="translate(1067, 360)">
+      <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Trees Dashboard</text>
+      <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">underexploited</text>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85" stroke-dasharray="4,3"/>
+      <text x="0" y="-58" font-size="10" fill="#475569" text-anchor="middle">customer revisits</text>
+      <text x="54" y="3" font-size="10" fill="#475569" text-anchor="start">tree at month N</text>
+      <text x="0" y="68" font-size="10" fill="#475569" text-anchor="middle">re-purchases</text>
+      <text x="-54" y="3" font-size="10" fill="#475569" text-anchor="end">engages</text>
+      <text x="0" y="100" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">cacao customers</text>
     </g>
 
-    <!-- Compounding feedback arrow -->
-    <path d="M 1100 60 Q 1240 100 1250 80 L 1260 30" fill="none" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
-    <text x="1100" y="75" font-size="11" fill="#A78BFA" opacity="0.85" font-style="italic">retention compounds back to acquisition</text>
+    <!-- Compounding feedback note -->
+    <text x="1240" y="80" font-size="11" fill="#A78BFA" opacity="0.85" font-style="italic" text-anchor="end">retention compounds back to acquisition →</text>
   </g>
 </svg>
