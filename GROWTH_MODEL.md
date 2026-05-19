@@ -1,14 +1,19 @@
 # TrueSight DAO — Growth Model
 
+![TrueSight DAO Growth Model](./growth-model.svg)
+
 This document is the canonical growth picture for TrueSight DAO. It uses
 the three-band Reforge-style shape (Linear Channels → Acquisition Loops →
 Retention Loops) Gary previously used at GetData.IO, applied to the
 TrueSight context.
 
-It is intentionally machine-readable: any LLM agent (Claude, ChatGPT,
-Grok, Gemini, autopilot, krake_sinatra, etc.) reading this file should be
-able to reason about which loops are load-bearing today and which are
-aspirational, without needing the operator to re-explain.
+It is intentionally machine-readable as well as visual: any LLM agent
+(Claude, ChatGPT, Grok, Gemini, autopilot, krake_sinatra, etc.) reading
+this file should be able to reason about which loops are load-bearing
+today and which are aspirational, without needing the operator to
+re-explain. Humans landing on the doc should be able to get the
+structural picture from the SVG above in ~10 seconds, then drill into
+the loops below.
 
 ---
 
