@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-19T10:14:08Z`
+- Generated (UTC): `2026-05-19T15:57:53Z`
 - Look-back: **7** calendar days (`2026-05-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-18T10:59:14.055Z`
+- Generated (UTC): `2026-05-19T10:59:15.463Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -224,6 +224,7 @@ _All dated lines on/after 2026-05-12_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+35fa68f | 2026-05-19 10:25:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6d3aed3 | 2026-05-19 04:44:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1fdd8d0 | 2026-05-18 15:21:34 -0700 | feat(credentials): Recent activity (pending review) section — Phase 4.1 (#126)
 a6d4547 | 2026-05-18 15:03:10 -0700 | Landing tile expanders: USD Treasury + AUM show per-ledger / per-currency (#125)
@@ -263,7 +264,6 @@ d089dc1 | 2026-05-14 23:35:32 -0700 | Blog rewrite: broaden the convergence stor
 6d747e4 | 2026-05-14 23:16:03 -0700 | Blog: 'What the angels couldn't name' (Field Signals #6) (#93)
 c5e3b50 | 2026-05-14 23:05:26 -0700 | Render Grok narrative aside + linked program header (#92)
 a70c3da | 2026-05-14 22:56:30 -0700 | Rename "voting rights" → "voting power" on member cards (#91)
-b1b416b | 2026-05-14 22:44:40 -0700 | Add Governor pill + linkify URLs in contribution descriptions (#90)
 … (truncated)
 ```
 
@@ -276,6 +276,8 @@ ea608b9 | 2026-05-18 15:23:09 -0700 | Fix sell-through report: every inventory_u
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cdb9721 | 2026-05-19 03:14:33 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
+8cdeaa5 | 2026-05-19 03:14:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 8b09303 | 2026-05-18 21:43:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 078be34 | 2026-05-18 21:43:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 1c46eb0 | 2026-05-18 20:47:33 -0700 | Merge pull request #155 from TrueSightDAO/auto/advisory-refresh-2026-05-19
@@ -314,8 +316,6 @@ c58ad14 | 2026-05-16 13:33:52 -0700 | docs: add CREDENTIALING_PROGRAM_PAGES.md �
 8759f26 | 2026-05-16 12:39:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 520a160 | 2026-05-16 07:05:53 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
 4a21fcc | 2026-05-16 07:05:52 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
-9cb0ea3 | 2026-05-16 01:23:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
-856d7e2 | 2026-05-16 01:23:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 … (truncated)
 ```
 
@@ -508,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/19/2026 2:52:14 |
+| 2026-05 | 58.6 | 14977.11386 | 5/19/2026 8:50:52 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-12`; scanned last **395** data rows)
 
