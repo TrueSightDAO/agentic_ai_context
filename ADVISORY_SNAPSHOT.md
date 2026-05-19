@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-19T04:42:41Z`
+- Generated (UTC): `2026-05-19T10:14:08Z`
 - Look-back: **7** calendar days (`2026-05-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -224,6 +224,7 @@ _All dated lines on/after 2026-05-12_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6d3aed3 | 2026-05-19 04:44:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1fdd8d0 | 2026-05-18 15:21:34 -0700 | feat(credentials): Recent activity (pending review) section — Phase 4.1 (#126)
 a6d4547 | 2026-05-18 15:03:10 -0700 | Landing tile expanders: USD Treasury + AUM show per-ledger / per-currency (#125)
 5efbd52 | 2026-05-18 14:54:33 -0700 | Expand LLM-readable stats: programs, partners, deploy targets, treasury breakdown (#124)
@@ -263,7 +264,6 @@ d089dc1 | 2026-05-14 23:35:32 -0700 | Blog rewrite: broaden the convergence stor
 c5e3b50 | 2026-05-14 23:05:26 -0700 | Render Grok narrative aside + linked program header (#92)
 a70c3da | 2026-05-14 22:56:30 -0700 | Rename "voting rights" → "voting power" on member cards (#91)
 b1b416b | 2026-05-14 22:44:40 -0700 | Add Governor pill + linkify URLs in contribution descriptions (#90)
-acf0fc6 | 2026-05-14 22:35:01 -0700 | CV viewer polish: prev/next nav, description cleanup, TDG label, member subtitles (#89)
 … (truncated)
 ```
 
@@ -276,6 +276,8 @@ ea608b9 | 2026-05-18 15:23:09 -0700 | Fix sell-through report: every inventory_u
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8b09303 | 2026-05-18 21:43:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
+078be34 | 2026-05-18 21:43:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 1c46eb0 | 2026-05-18 20:47:33 -0700 | Merge pull request #155 from TrueSightDAO/auto/advisory-refresh-2026-05-19
 6a09a33 | 2026-05-19 03:47:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 4cfcc6b | 2026-05-18 16:12:01 -0700 | docs: ERA Butterfly Effect cohort onboarding — plan of record (#154)
@@ -314,8 +316,6 @@ c58ad14 | 2026-05-16 13:33:52 -0700 | docs: add CREDENTIALING_PROGRAM_PAGES.md �
 4a21fcc | 2026-05-16 07:05:52 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 9cb0ea3 | 2026-05-16 01:23:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
 856d7e2 | 2026-05-16 01:23:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
-5d9715e | 2026-05-15 21:09:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
-b546ea6 | 2026-05-15 21:09:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 … (truncated)
 ```
 
@@ -385,6 +385,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+3ae1d60 | 2026-05-19 10:10:29 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2aceaab | 2026-05-18 22:23:50 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 a50b773 | 2026-05-18 10:50:02 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 231788d | 2026-05-18 10:42:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -507,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/18/2026 20:51:24 |
+| 2026-05 | 58.6 | 14977.11386 | 5/19/2026 2:52:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-12`; scanned last **395** data rows)
 
