@@ -59,6 +59,30 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ---
 
+### Capoeira practice-event encoding: Portuguese diacritics dropped at submission
+
+**Context.** Discovered 2026-05-19 while shipping the tap-to-expand session details on per-program credential pages ([truesight_me_beta#128][cred-expand]). Move names in Gary's Tribo Bahia Mirim sessions on `_cache/cv/gary-teh.json` render as `Cocorinha com rol?` instead of `Cocorinha com rolê` — the `ê` is being lost somewhere in the submission pipeline. Other Portuguese diacritics (`ã`, `á`, `ç`) on other move names are presumably similarly affected. The display layer (program-shell.js's renderEventListItem) surfaces whatever the cache has; the bug is upstream.
+
+**Scope.** Trace where the encoding hiccup happens:
+
+1. **Source.** `capoeira/data/moves.json` — confirm the canonical move list carries the correct UTF-8 (it should; this is the seed data).
+2. **Practice page.** `capoeira/assets/js/practice-event-submit.js::buildPracticeEventText()` and the signing path. Likely culprit if the payload is stringified through a code path that doesn't preserve UTF-8.
+3. **Edgar (`sentiment_importer`).** The `[PRACTICE EVENT]` handler in `dao_controller.rb` and whatever lands the event into Telegram Chat Logs. If Edgar logs through a system that downgrades to Latin-1 anywhere, the diacritic dies there.
+4. **GAS scanner.** The Apps Script that picks the event up from Telegram Chat Logs and persists it to lineage-credentials.
+5. **lineage-engine build.** `build_cv_cache.py` reads the persisted event and writes the cache JSON. If the input file has the encoding hiccup, the cache will too.
+
+**Acceptance.** A new practice session submitted today with `rolê` in a move name shows up on `truesight.me/programs/tribomirim/credentials/#pk-wR9zU8JMnEz1` (under the expanded session row) as `rolê`, not `rol?`. Confirm in at least one round-trip.
+
+**Cost.** ~1-2 hours including reproduction + fix at the right pipeline layer.
+
+**Blocker.** None. Cleanest path is to submit one fresh test session from the practice page with deliberately-diacritic-heavy move names, then inspect each pipeline stage's stored copy to find where the `ê` becomes `?`.
+
+**Owner.** Unclaimed.
+
+[cred-expand]: https://github.com/TrueSightDAO/truesight_me_beta/pull/128
+
+---
+
 ### Credentialing: WhatsApp self-claim flow (deferred — held for demand signal)
 
 **Context.** Surfaced 2026-05-19 in the ERA DAO WhatsApp thread with Bilal + Shahbaz. Butterfly Effect students (and capoeira-Tribomirimbahia students) identify primarily by WhatsApp number, not email. The existing `dapp.truesight.me/create_signature.html` email-based identity flow has no equivalent for these populations. A WhatsApp self-claim flow would let students assert "this pk-hash is me" against an issued credential at `truesight.me/credentials/#<slug>`.
