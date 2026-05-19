@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1180" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1310" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
@@ -9,7 +9,7 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1280" height="1180" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1280" height="1310" fill="#FFFFFF"/>
 
   <!-- ============== NORTH STAR BANNER ============== -->
   <rect x="20" y="20" width="1240" height="62" rx="8" fill="#0F172A"/>
@@ -166,9 +166,11 @@
   </g>
 
   <!-- ============== RETENTION LOOPS BAND (6 loops, 2 rows of 3) ============== -->
-  <!-- Loop centers row 1 + row 2: 213, 640, 1067 (distance 427 between centers, lots of room) -->
+  <!-- Loop centers row 1 at y=210, row 2 at y=460 — 250px vertical spacing -->
+  <!-- (each loop block needs ~225px vertical extent: title at y=-115 to italic population at y=+110) -->
+  <!-- X centers same: 213, 640, 1067 (427px apart) -->
   <g transform="translate(0, 710)">
-    <rect x="20" y="0" width="1240" height="460" rx="10" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <rect x="20" y="0" width="1240" height="590" rx="10" fill="#ECFDF5" stroke="#A7F3D0"/>
     <text x="40" y="28" font-size="12" font-weight="700" fill="#065F46" letter-spacing="2">RETENTION LOOPS</text>
     <text x="40" y="46" font-size="13" fill="#047857">How we keep them engaged</text>
 
@@ -211,7 +213,7 @@
 
     <!-- Row 2: Beer Hall / Credentialing Lineage / Trees Dashboard -->
     <!-- Loop 4: Beer Hall Digest -->
-    <g transform="translate(213, 360)">
+    <g transform="translate(213, 460)">
       <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Beer Hall Digest</text>
       <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">daily DAO state</text>
       <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85"/>
@@ -223,7 +225,7 @@
     </g>
 
     <!-- Loop 5: Credentialing Lineage -->
-    <g transform="translate(640, 360)">
+    <g transform="translate(640, 460)">
       <text x="0" y="-115" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">Credentialing Lineage</text>
       <text x="0" y="-100" font-size="11" fill="#166534" text-anchor="middle" font-style="italic">ongoing attestations</text>
       <circle cx="0" cy="0" r="46" fill="none" stroke="#22C55E" stroke-width="7" opacity="0.85"/>
@@ -235,7 +237,7 @@
     </g>
 
     <!-- Loop 6: Trees Dashboard -->
-    <g transform="translate(1067, 360)">
+    <g transform="translate(1067, 460)">
       <text x="0" y="-115" font-size="13" font-weight="700" fill="#9A3412" text-anchor="middle">Trees Dashboard</text>
       <text x="0" y="-100" font-size="11" fill="#9A3412" text-anchor="middle" font-style="italic">underexploited</text>
       <circle cx="0" cy="0" r="46" fill="none" stroke="#F97316" stroke-width="7" opacity="0.85" stroke-dasharray="4,3"/>
