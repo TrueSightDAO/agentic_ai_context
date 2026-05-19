@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-19T15:57:53Z`
+- Generated (UTC): `2026-05-19T20:13:51Z`
 - Look-back: **7** calendar days (`2026-05-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,8 +32,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 30
-- `[PRACTICE EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 28
+- `[PRACTICE EVENT]` × 10
 - `[NOTARIZATION EVENT]` × 3
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - `[INVENTORY MOVEMENT]` × 1
@@ -41,13 +41,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260518161420_181` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Milena - green gulch · Contributor Email: ggfguest@sfzc.org · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
-- `Edgar_20260518161607_183` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1800 · Description: Discussion over lunch
-- `Edgar_20260518162201_185` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Actually I think you and me should probably have a strategic chat too when y…
-- `Edgar_20260518191107_187` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Nima Kaz · Recipient Name: Gary Teh · Inventory Item: Brazilian Reis
-- `Edgar_20260518192043_189` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Verifying the transaction is completed and also proposing the agenda for nex…
-- `Edgar_20260518194736_191` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
-- `Edgar_20260518195142_193` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
 - `Edgar_20260518195429_195` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
 - `Edgar_20260518202725_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Redacted and notarized Procuração Omega (customs broker POA for Matheus Reis…
 - `Edgar_20260518203216_199` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk3F3H+5sAFC9BJKUsU8u…
@@ -61,6 +54,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260518222427_215` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Phase 4.1 — pending Scored Chatlogs cron + freshness layer live
 - `Edgar_20260518231447_217` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: ERA Butterfly Effect cohort onboarding — plan of record + WhatsApp PDF
 - `Edgar_20260519030119_219` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260519172006_221` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260519172017_223` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260519183624_225` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApteuX0BSHSvFKWuR5PcC…
+- `Edgar_20260519184936_227` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Capoeira practice fix — one music track per move, no repeats
+- `Edgar_20260519191210_229` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Sell-through inventory CI fix + truesight.me prod recovery + org domain veri…
+- `Edgar_20260519194622_231` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Captured the WhatsApp self-claim flow design as a deferred Phase 2 roadmap i…
+- `Edgar_20260519200237_233` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Oracle QMDJ chart — inline per-palace explanation panel
 
 ---
 
@@ -194,8 +194,9 @@ _Lines in window matching configured names or status keywords:_
 - 2026-05-18 | claude | CREDENTIALING_PROGRAM_PAGES.md §17.13 added: two-strategy dispatch for Phase 3b certificate generation. `certificate.strategy: "pdf_overlay"` lets partners (Bilal/ERA, future) supply a finished PDF that gets text + QR overlaid at manifest-declared coordinates; `certificate.strategy: "html_template"` (default if absent) keeps the spec'd HTML/CSS path for partners without their own design. Coordinates documented in PDF points (bottom-left origin). First partner: Butterfly Effect with Bilal's Narowal Public School cohort template, EB Garamond Italic font, QR proposed at bottom-right corner. Implementation lands next in lineage-engine.
 - 2026-05-18 | claude | CREDENTIALING_PROGRAM_PAGES.md §18 added: Phase 4 — contribution freshness. Three data sources (Ledger history quarterly canonical, Scored Chatlogs daily pending where col L is empty, Recurring Transactions derived expected since column F). Two surfaces (web shows all three with caveat banners + pills, PDF stays canonical-only — matches §17 doctrine). Dedup is owned by an existing GAS via Scored Chatlogs col L = Ledger history row number → no fuzzy matching needed. Scored Chatlogs floor is 2024-12-13 (first entry). Phased rollout 4.0-4.4; implementation deferred until ready.
 - 2026-05-18 | claude | BUTTERFLY_EFFECT_COHORT_ONBOARDING_PLAN.md added — plan-of-record for ERA Professionals onboarding (Bilal introduced rest of his team this afternoon; scope expanded from one demo participant to all existing ERA students, current + alumni). Three things to build this week (cohort batch-import CLI in dao_client, public_listable consent flag in lineage-credentials identity schema, cert template year-as-variable in lineage-engine cert_overlay). One doc to write (PROGRAM_OPERATOR_HANDOFF.md, generalized for future partners). Two things deferred with reason (autopilot ↔ credentialing read-access until first 10-20 students live; Phase 4.2/4.3 until real cohort use surfaces friction). PDF companion at BUTTERFLY_EFFECT_COHORT_ONBOARDING_PLAN.pdf for WhatsApp share.
+- 2026-05-19 | claude | **Credentialing WhatsApp self-claim — designed and deferred.** Surfaced from the 2026-05-19 ERA DAO WhatsApp thread where Bilal + Shahbaz observed that Butterfly Effect students identify by WhatsApp number, not email (parents' WhatsApp where applicable). Captured the full minimal-flow design (1 round-trip, user-initiated wa.me deeplink with a short nonce, bot reply inside free 24h service window, browser polls Edgar for binding confirmation, never store raw phone — only `sha256(cc + national)` hash) in `CREDENTIALING_PLATFORM.md` §13. Held from immediate build: no student has asked for self-claim yet, cert PDF + QR + public `/credentials/#<slug>` page already works as the "show don't tell" demo, and Meta business verification (2–10 days) + legal-entity decision on which WABA front to use are real costs against zero current need. Four explicit defer-flip criteria documented (student asks; second WhatsApp-native program lands; TDF acquisition closes with contractual attestation; receiving platform asks for holder-verified signal). Pointer entry added to `OPEN_FOLLOWUPS.md`. 2026 Meta cost model confirmed via WebSearch: pre-2025 "first 1k conversations/month free" allowance was retired; user-initiated service conversations are unlimited free, business-initiated marketing/utility/auth are billed from msg #1 — flow is designed to ride the free user-initiated path.
 
-_All dated lines on/after 2026-05-12_ (8):
+_All dated lines on/after 2026-05-12_ (10):
 
 - 2026-05-16 | claude | Per-program credentialing surfaces: added CREDENTIALING_PROGRAM_PAGES.md (Phase 0 spec). Defines the `truesight.me/programs/<p>/credentials/#<slug>` URL pattern (permanent — etched into printed cert QR codes), file layout, manifest schema, jsDelivr-primary fetch pattern, co-branding rules, opt-in consent model for minors, and 6-phase rollout. First target partners: Tribo Bahia Mirim capoeira + ERA Professionals' Butterfly Effect (Bilal). Suggested README.md / PROJECT_INDEX.md update (human approval needed): add a row for CREDENTIALING_PROGRAM_PAGES.md as the canonical reference when extending per-program credentialing surfaces.
 - 2026-05-16 | claude | CREDENTIALING_PROGRAM_PAGES.md §6 extended: added `status` field to manifest schema with values `active` / `onboarding` / `archived`. Drives the parent `programs.html` index pill — Butterfly Effect ships in `onboarding` state until ERA's first cohort lands. Live on truesight.me/programs.html.
@@ -205,6 +206,8 @@ _All dated lines on/after 2026-05-12_ (8):
 - 2026-05-18 | claude | CREDENTIALING_PROGRAM_PAGES.md §18 added: Phase 4 — contribution freshness. Three data sources (Ledger history quarterly canonical, Scored Chatlogs daily pending where col L is empty, Recurring Transactions derived expected since column F). Two surfaces (web shows all three with caveat banners + pills, PDF stays canonical-only — matches §17 doctrine). Dedup is owned by an existing GAS via Scored Chatlogs col L = Ledger history row number → no fuzzy matching needed. Scored Chatlogs floor is 2024-12-13 (first entry). Phased rollout 4.0-4.4; implementation deferred until ready.
 - 2026-05-18 | claude | **LLM discovery surface on truesight.me** — new doc `LLM_DISCOVERY_SURFACE.md` documents the convention. Shipped via truesight_me_beta PRs #119, #120, #122, #123, #124, #125. Live URLs: `truesight.me/llms.txt` (routing map), `truesight.me/stats/{current,beerhall_archive,repos_index,programs_index,partners_index}.json` (machine-readable digest stack, 6h refresh cron). Builder: `truesight_me_beta/scripts/build_stats_current.py`. Companion UX: landing-page tile expanders under USD Treasury + AUM lazy-fetch `treasury-cache` for per-ledger / per-currency breakdown. Solves: LLM agents fetching truesight.me with a plain HTTP GET previously saw an empty shell (stats hydrate client-side). Now agents reading `llms.txt` + the five `stats/*.json` files have full programmatic visibility into members, governors, treasury (with per-ledger breakdown), inventory, repos (with deploy targets), credentialing programs, partners, recent + historical Beer Hall digests — without browser execution. Extension protocol documented in `LLM_DISCOVERY_SURFACE.md` §"How to extend the surface". GAS webhook URLs deliberately excluded (private). `PROJECT_INDEX.md` truesight_me row updated to point at the new surface.
 - 2026-05-18 | claude | BUTTERFLY_EFFECT_COHORT_ONBOARDING_PLAN.md added — plan-of-record for ERA Professionals onboarding (Bilal introduced rest of his team this afternoon; scope expanded from one demo participant to all existing ERA students, current + alumni). Three things to build this week (cohort batch-import CLI in dao_client, public_listable consent flag in lineage-credentials identity schema, cert template year-as-variable in lineage-engine cert_overlay). One doc to write (PROGRAM_OPERATOR_HANDOFF.md, generalized for future partners). Two things deferred with reason (autopilot ↔ credentialing read-access until first 10-20 students live; Phase 4.2/4.3 until real cohort use surfaces friction). PDF companion at BUTTERFLY_EFFECT_COHORT_ONBOARDING_PLAN.pdf for WhatsApp share.
+- 2026-05-19 | claude | **Credentialing WhatsApp self-claim — designed and deferred.** Surfaced from the 2026-05-19 ERA DAO WhatsApp thread where Bilal + Shahbaz observed that Butterfly Effect students identify by WhatsApp number, not email (parents' WhatsApp where applicable). Captured the full minimal-flow design (1 round-trip, user-initiated wa.me deeplink with a short nonce, bot reply inside free 24h service window, browser polls Edgar for binding confirmation, never store raw phone — only `sha256(cc + national)` hash) in `CREDENTIALING_PLATFORM.md` §13. Held from immediate build: no student has asked for self-claim yet, cert PDF + QR + public `/credentials/#<slug>` page already works as the "show don't tell" demo, and Meta business verification (2–10 days) + legal-entity decision on which WABA front to use are real costs against zero current need. Four explicit defer-flip criteria documented (student asks; second WhatsApp-native program lands; TDF acquisition closes with contractual attestation; receiving platform asks for holder-verified signal). Pointer entry added to `OPEN_FOLLOWUPS.md`. 2026 Meta cost model confirmed via WebSearch: pre-2025 "first 1k conversations/month free" allowance was retired; user-initiated service conversations are unlimited free, business-initiated marketing/utility/auth are billed from msg #1 — flow is designed to ride the free user-initiated path.
+- 2026-05-19 | claude | **truesight.me went down briefly from a `gh repo sync --force` footgun.** `gh repo sync TrueSightDAO/truesight_me_prod --source TrueSightDAO/truesight_me_beta --force` (run after each truesight_me_beta merge to promote to prod) overwrote prod's `CNAME` file (`truesight.me`) with beta's (`beta.truesight.me`). GitHub Pages released the `truesight.me` claim and the site went down with "The custom domain `truesight.me` is already taken." Fixed by restoring CNAME via the GitHub Contents API. New self-healing guardrail in `truesight_me_prod/.github/workflows/protect-cname.yml` auto-restores `CNAME` to `truesight.me` on every push to main if it drifts. Lesson captured in `LLM_DISCOVERY_SURFACE.md` §"Footgun: DO NOT `gh repo sync --force` to truesight_me_prod": never pass `--force` when source/target carry intentionally divergent CNAME files (also applies to agroverse_shop_prod ← agroverse_shop_beta). If non-force sync refuses, don't force through — rebase the divergent file or use a sync that excludes it. The right structural fix is a custom sync script with an allow-list of excluded files; not yet built; the guardrail workflow is the backstop until then.
 
 ---
 
@@ -224,6 +227,7 @@ _All dated lines on/after 2026-05-12_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4cf8d28 | 2026-05-19 16:00:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35fa68f | 2026-05-19 10:25:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6d3aed3 | 2026-05-19 04:44:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1fdd8d0 | 2026-05-18 15:21:34 -0700 | feat(credentials): Recent activity (pending review) section — Phase 4.1 (#126)
@@ -263,7 +267,6 @@ cd4632a | 2026-05-14 23:42:25 -0700 | Drop the LP/GP framing paragraph from the 
 d089dc1 | 2026-05-14 23:35:32 -0700 | Blog rewrite: broaden the convergence story + roadmap link (#94)
 6d747e4 | 2026-05-14 23:16:03 -0700 | Blog: 'What the angels couldn't name' (Field Signals #6) (#93)
 c5e3b50 | 2026-05-14 23:05:26 -0700 | Render Grok narrative aside + linked program header (#92)
-a70c3da | 2026-05-14 22:56:30 -0700 | Rename "voting rights" → "voting power" on member cards (#91)
 … (truncated)
 ```
 
@@ -276,6 +279,10 @@ ea608b9 | 2026-05-18 15:23:09 -0700 | Fix sell-through report: every inventory_u
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2ed3eda | 2026-05-19 12:42:14 -0700 | Document WhatsApp self-claim flow as deferred Phase 2 roadmap (#157)
+4343076 | 2026-05-19 11:52:38 -0700 | Document gh repo sync --force footgun on truesight_me_prod (#156)
+1a42bd6 | 2026-05-19 08:58:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
+be01edc | 2026-05-19 08:58:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 cdb9721 | 2026-05-19 03:14:33 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 8cdeaa5 | 2026-05-19 03:14:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 8b09303 | 2026-05-18 21:43:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
@@ -312,10 +319,6 @@ a3f4229 | 2026-05-16 14:32:37 -0700 | docs: add §15 Phase 3a — per-credential
 1e80c60 | 2026-05-16 14:05:24 -0700 | Document credential-profile QR code + truesight_me beta/prod split (#145)
 043b47f | 2026-05-16 14:03:08 -0700 | docs: extend manifest schema with status (active|onboarding|archived) (#144)
 c58ad14 | 2026-05-16 13:33:52 -0700 | docs: add CREDENTIALING_PROGRAM_PAGES.md — Phase 0 spec for per-program credentialing surfaces (#143)
-5c44750 | 2026-05-16 12:39:43 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
-8759f26 | 2026-05-16 12:39:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
-520a160 | 2026-05-16 07:05:53 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
-4a21fcc | 2026-05-16 07:05:52 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 … (truncated)
 ```
 
@@ -422,6 +425,7 @@ ca1d063 | 2026-05-12 09:21:09 -0700 | feat(mission): replace color photo on Miss
 ### `iching_oracle` → `oracle`
 
 ```
+a63af87 | 2026-05-19 12:58:20 -0700 | QMDJ chart: per-cell explanation panel below the 3x3 grid (#18)
 40c992e | 2026-05-15 16:51:15 -0700 | Today's move: name shape + scale, not script the content (#17)
 1873918 | 2026-05-15 16:44:07 -0700 | Tighten Context Gaps: decision-flipping only, skip when none (#16)
 4df5dab | 2026-05-15 16:37:56 -0700 | Default QMDJ to day-anchored mode; depersonalize advisor prompt (#15)
@@ -508,7 +512,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/19/2026 8:50:52 |
+| 2026-05 | 58.6 | 14977.11386 | 5/19/2026 12:55:39 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-12`; scanned last **395** data rows)
 
