@@ -32,6 +32,65 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `truesight.me/stats/network_state.json` — daily-refreshed DAO network-state digest
+
+**Context.** Surfaced 2026-05-19 in a strategy conversation about what makes the DAO interesting *given* LLMs handle the plumbing. The thesis: with integration / data-entry / reconciliation cost approaching zero (per the 2026-05-19 Faire-bot onboarding session + Partner Check-in concierge UX), the scarce operator input is no longer ops work — it's **strategic design of loops + network orchestration + relationship hub-and-spoke choices**. This concentrates operator value into fewer, higher-stakes decisions, which means *visibility into network state* becomes the load-bearing input. The name `network_state.json` is a deliberate nod to Balaji's *Network State* thesis (kept in the implementation layer, not in the public-facing Growth Model SVG title — see strategy chat for the why).
+
+**Scope.** Add a new artefact to the existing `truesight_me_beta` stats stack, following the established `LLM_DISCOVERY_SURFACE.md` convention:
+
+1. **`truesight_me_beta/scripts/build_stats_current.py`** — new builder function `build_network_state()` that emits `_site/stats/network_state.json`. Same 6h cron, same pure-stdlib + unauthenticated public-data sources approach.
+2. **Output schema** (rough, iterate):
+   ```jsonc
+   {
+     "generated_at": "...",
+     "loops": [
+       { "name": "Retail Partner Referral", "status": "active",
+         "signal_30d": <count>, "signal_90d": <count>,
+         "velocity_change_pct": <float>,  // 30d vs prior 30d
+         "operator_surface": "<url>" },
+       // ... 11 loops from GROWTH_MODEL.md
+     ],
+     "populations": {
+       "cacao_customers": { "active_30d": ..., "growth_pct": ... },
+       "retail_partners": { ... },
+       "dao_contributors": { ... },
+       "credentialing_students": { ... },
+       "credentialing_programs": { ... }
+     },
+     "adjacency": {
+       // who introduced whom — hub-and-spoke map
+       "top_referrers": [ { "name": ..., "introductions_90d": ... } ],
+       "isolated_nodes": [ ... ]
+     },
+     "cross_population_flows_30d": [
+       { "from": "cacao_customers", "to": "dao_contributors", "count": <n> }
+     ]
+   }
+   ```
+3. **`truesight_me_beta/llms.txt`** — add a routing line: *"For DAO operating-state / loop-velocity questions → fetch /stats/network_state.json"*.
+4. **`agentic_ai_context/LLM_DISCOVERY_SURFACE.md`** — append a row to the live URLs table.
+5. **`agentic_ai_context/GROWTH_MODEL.md`** — add a "Loop telemetry" subsection linking to `stats/network_state.json` for live state vs the model's described state.
+
+**Data sources** (all already exist; the work is aggregation, not new instrumentation):
+- Edgar event ledger (Contributors Digital Signatures, offchain transactions, Inventory Movement)
+- `partners-velocity.json` + `partners-inventory.json` (already in `agroverse-inventory` repo)
+- Hit List GAS `getWarmupReviewQueue` action
+- `lineage-credentials/programs/*/manifest.json` (program count + cohort sizes)
+- `truesight_me_beta/_site/stats/repos_index.json` (committer activity ≈ contributor activity)
+- `Stripe Social Media Checkout ID` sheet (FB/Meta-Checkout sales for cross-population flow tracking)
+
+**Acceptance.** A future operator (or LLM session) asks "is the Retail Partner Referral Loop compounding?" — answer is one `curl truesight.me/stats/network_state.json | jq .loops[0]` away, no spreadsheet archaeology needed. krake_sinatra's morning briefing reads from this file.
+
+**Status:** Not built. Filing now so a future session (or krake_sinatra's own bootstrap) picks it up. **Half a day** of focused work — same shape as the other `build_stats_*.py` functions.
+
+**Caveat.** Loop-velocity signals will be noisy at low N. Beer Hall digest already showed how easy it is to misread small-N changes. Each loop's `velocity_change_pct` should carry a sample-size annotation so the operator doesn't over-interpret. "First-derivative as headline; second-derivative as advisory only" is the right discipline.
+
+**Blocker.** None — data sources all exist. Awaiting operator green-light to pick up.
+
+**Owner.** Unclaimed.
+
+---
+
 ### ERA WhatsApp thread: send unit-of-value reframe when Shahbaz reopens
 
 **Context.** 2026-05-19, mid-ERA-DAO WhatsApp conversation with Bilal + Shahbaz (the `ERA DAO` WA group). Gary planted a strong seed in his 2026-05-18 message: *"That right there is the nucleus of its own verticalized social network. The basic unit of verifiable compassion."* Shahbaz absorbed it but the thread then moved on to the immediate ask (Shereen → cohort sheet → `garyjob@agroverse.shop` with edit rights). Ball is currently in Shahbaz's court. A thesis-level follow-up is drafted but **deliberately held** — sending it into silence while Shahbaz is working on his action item would interrupt step 1 and over-talk a fresh partner relationship. The right moment is when *Shahbaz reopens the conversation* (cohort sheet share, any follow-up question, or any thematic re-engagement).
