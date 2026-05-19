@@ -117,6 +117,41 @@ headline number rolls up multiple underlying values, follow the same
 pattern — add a `<details>` block, give it `data-breakdown="<key>"`,
 add a render function in the `wireStatBreakdowns()` block.
 
+## Footgun: DO NOT `gh repo sync --force` to truesight_me_prod
+
+**2026-05-19 incident.** A previous session ran
+`gh repo sync TrueSightDAO/truesight_me_prod --source TrueSightDAO/truesight_me_beta --force`
+after every beta merge. The `--force` flag overwrote `truesight_me_prod`'s
+`CNAME` file (`truesight.me`) with beta's value (`beta.truesight.me`),
+because both repos carry a `CNAME` file at root but they are intentionally
+*different*. GitHub Pages then released the `truesight.me` claim. The
+production site went down with "The custom domain `truesight.me` is
+already taken" until a manual CNAME restore.
+
+Rules for promoting beta → prod:
+
+- **Never** pass `--force` to `gh repo sync` when the source and target
+  repos hold a divergent CNAME file (or any file that's allowed to
+  differ between repos). The default non-force sync is fast-forward
+  only and will refuse to clobber.
+- If `gh repo sync` (no force) refuses because of CNAME divergence,
+  do **not** force through it. The right move is: rebase the
+  divergent file in source to match target, or use a sync flow that
+  excludes the file.
+- **truesight_me_prod has a self-healing guardrail** (`/.github/workflows/protect-cname.yml`)
+  that runs on every push to main and auto-restores `CNAME` to
+  `truesight.me` if it drifts. The same pattern is worth replicating
+  on any prod fork whose CNAME differs from its beta source.
+- The right structural fix would be: a custom sync script that
+  excludes a configurable allow-list of files (CNAME, anything in
+  `_site/`, etc.) before pushing. Not yet built. Until then, the
+  guardrail workflow + this rule are the discipline.
+
+Same caveat applies to **agroverse_shop_prod** ← **agroverse_shop_beta**
+(`agroverse.shop` vs `beta.agroverse.shop`). When force-syncing that
+pair, the same risk exists. If it ever bites, copy the
+`protect-cname.yml` pattern with `agroverse.shop` as the target value.
+
 ## Verification checklist
 
 After any change touching this surface:
