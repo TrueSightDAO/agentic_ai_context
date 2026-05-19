@@ -680,3 +680,106 @@ Resolved this session:
 - ✅ **Bilal's other programs**: deferred. Ship capoeira-only as the prototype Gary will show Bilal.
 
 No open blockers. Ready to merge this doc and start PR #2 (seed `lineage-engine` with the existing testimonial generator from tokenomics).
+
+---
+
+## 13. Phase 2 (deferred): WhatsApp self-claim flow
+
+**Status:** DESIGN — held until demand signal. Surfaced 2026-05-19 in the ERA DAO WhatsApp thread with Bilal + Shahbaz, who observed that BE / butterfly-conservatory students' primary digital identity is their WhatsApp number (or a parent's), not email. Capoeira students at Tribomirimbahia are similarly WhatsApp-native. This section captures the design so it can be built when needed without rediscovering the shape.
+
+### 13.1 The use case
+
+After credentials are *issued* (the existing flow: cohort sheet → CV cache → public `/credentials/#<slug>` page + cert PDF + QR), a student should be able to *claim* their own credential — i.e. assert "this pk-hash is me" — without going through a school admin. Today's email-based flow at `dapp.truesight.me/create_signature.html` does the same for contributors with email. WhatsApp self-claim is the email-flow analogue for populations whose identity is a phone number.
+
+### 13.2 The minimal flow (1 round-trip, no per-message Meta cost, no template approval)
+
+```
+┌─────────────────────────┐    ┌────────────────┐    ┌─────────────────┐
+│  Claim page (browser)   │    │  Edgar (DAO)   │    │  WhatsApp Cloud │
+│  truesight.me/claim     │    │   webhook      │    │      API        │
+└────────────┬────────────┘    └────────┬───────┘    └────────┬────────┘
+             │                          │                     │
+   1. generate RSA keypair              │                     │
+      stash priv in localStorage        │                     │
+             │                          │                     │
+   2. POST { pubkey, nonce } ──────────►│ pending[nonce]=     │
+                                        │   pubkey            │
+             │◄──── 200 ok ─────────────│  (TTL ~10 min)      │
+             │                          │                     │
+   3. button: "Verify on WhatsApp"      │                     │
+      href = wa.me/<bot-number>         │                     │
+              ?text=CLAIM <nonce>       │                     │
+             │                          │                     │
+        user taps ─► opens WhatsApp w/ prefilled text         │
+                     user taps SEND ────────────────────────► │
+             │                          │                     │
+             │                          │◄── webhook POST ────│
+             │                          │    {                │
+             │                          │      from: <phone>, │
+             │                          │      text: "CLAIM   │
+             │                          │             <nonce>"│
+             │                          │    }                │
+             │                          │                     │
+             │                     parse nonce                │
+             │                     pending[xyz] → pubkey      │
+             │                     persist:                   │
+             │                       (sha256(phone), pubkey)  │
+             │                          │                     │
+             │                          │── reply ──────────► │ "✅ verified.
+             │                          │   (free, inside     │  your cert:
+             │                          │    24h service      │  truesight.me/.."
+             │                          │    window)          │
+             │                          │                     │
+   4. poll Edgar /claim_status?nonce=xyz ────────► bound? slug?
+             │◄────── { bound, slug } ──│                     │
+             │                          │                     │
+   5. show: "Linked to *****1234.       │                     │
+      View your credential →"           │                     │
+```
+
+### 13.3 Why this shape and not the alternatives
+
+- **Why not put the pubkey itself in the WhatsApp text?** RSA-2048 b64 is ~344 chars — chokes wa.me prefill UX. A short nonce keeps the deep-link tappable; the pubkey rides over HTTPS on the page-side POST.
+- **Why not have the bot DM the user a verify link first?** That's a business-initiated utility message — costs per-send, requires a pre-approved Meta template (hours to days), AND is abusable (anyone types your number, you get spammed). User → bot direction sidesteps all three.
+- **Why poll the browser instead of pushing to it?** Simpler. No WebSocket / SSE infra. 2s poll for ~60s is fine for these volumes.
+
+### 13.4 Cost model (2026 WhatsApp Cloud API)
+
+- **User-initiated "service conversations"** (bot reply inside the 24h window after the user's CLAIM message): **unlimited free.** The auth flow itself never bills.
+- **Business-initiated marketing / utility / authentication conversations**: billed from message #1 (the pre-2025 1k-free allowance was retired). Out of scope for the claim flow but relevant if we later push "your credential is ready" notifications — at scale that's still cents-per-message.
+
+### 13.5 What needs to exist before code
+
+1. **Meta Developer account** — free, ~5 min at developers.facebook.com.
+2. **Meta Business Portfolio** — at business.facebook.com. **Decision point**: which legal entity fronts the WABA? Cypher Def Inc, an Agroverse LLC, or a new TrueSightDAO entity. Same entity that owns the @truesight.me domain / Agroverse Shop Stripe is lowest-friction.
+3. **Business Verification** — Meta reviews uploaded corporate docs in 2–10 business days. Until cleared, sandbox-only.
+4. **WhatsApp-eligible phone number controlled by the DAO** — fresh number not currently registered in WhatsApp. Cheapest path is a Twilio / Telnyx WhatsApp-capable number, not a personal SIM.
+5. **App + WhatsApp product** — Meta Developer console: create Business app → add WhatsApp → Phone Number ID + WABA ID + permanent system-user token in Edgar env.
+6. **Edgar webhook URL** — publicly reachable HTTPS endpoint pointed at by the WhatsApp app, verifies Meta's `X-Hub-Signature-256`.
+
+### 13.6 Build scope when triggered
+
+- **`claim.html`** (client) — keygen + localStorage + nonce + wa.me deeplink + poll. Reuses existing dapp keypair pattern. ~half-day.
+- **Edgar additions** — three endpoints: `POST /whatsapp/init_claim`, `GET /whatsapp/claim_status`, `POST /whatsapp/webhook` (Meta callback receiver with HMAC verification). Pending-nonce map in Redis or SQLite with ~10-min TTL. ~1 day.
+- **Edgar event type** — `[CREDENTIAL CLAIM EVENT]` recording `(wa_phone_hash, pubkey, claimed_at)`. Additive to whatever bindings already exist on that phone hash, consistent with `memory/project_edgar_multiple_active_keys.md`. ~half-day.
+- **Credential page lookup** — `/credentials/#<slug>` reads bound pubkey hashes for the slug, renders a "claimed by WhatsApp ****1234" badge. ~half-day.
+- **Meta paperwork** — 2–10 business days for business verification, mostly waiting.
+
+Total focused engineering ~2–3 days, gated on ~1 week of Meta verification.
+
+### 13.7 Privacy invariants
+
+- Never store the raw phone number. `wa_phone_hash = sha256(country_code + national_number)` is what persists, matching the email-hash precedent in `memory/feedback_no_email_on_public_cv.md`.
+- The public credential page reveals a masked tail only (`****1234`) — same masking depth as the existing email-hash display.
+- Pending-nonce map TTL is short (~10 min) and never logged with the phone-number metadata together — even the in-flight binding state has minimal exposure.
+
+### 13.8 Defer-flip criteria — when to build this
+
+Holding off until *any one* of the following lands. Until then this is a roadmap item, not work.
+
+1. A student in **any** active program (BE, capoeira, future) asks how to prove the credential is theirs.
+2. A **second program beyond BE + capoeira** lands with WhatsApp-native participants — the pattern repeats and self-claim becomes infrastructure rather than feature.
+3. **BE / IVY acquisition by TDF closes** with a contractual requirement for student-side attestation.
+4. **A receiving platform** (employer, school, ceremony org, partner shop) starts checking credentials and asks for a "verified by holder" signal beyond the QR.
+
+Any one of those flips this from "documented" to "build." Until then the issued-credential surface (cert PDF + QR + public `/credentials/#<slug>` page) is the demo, and self-claim is correctly the *next* demo, not this one.
