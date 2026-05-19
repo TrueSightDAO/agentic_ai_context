@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-19T03:47:16Z`
+- Generated (UTC): `2026-05-19T04:42:41Z`
 - Look-back: **7** calendar days (`2026-05-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 30
+- `[PRACTICE EVENT]` × 8
+- `[NOTARIZATION EVENT]` × 3
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[INVENTORY MOVEMENT]` × 1
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260518161420_181` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Milena - green gulch · Contributor Email: ggfguest@sfzc.org · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260518161607_183` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1800 · Description: Discussion over lunch
+- `Edgar_20260518162201_185` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Actually I think you and me should probably have a strategic chat too when y…
+- `Edgar_20260518191107_187` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Nima Kaz · Recipient Name: Gary Teh · Inventory Item: Brazilian Reis
+- `Edgar_20260518192043_189` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Verifying the transaction is completed and also proposing the agenda for nex…
+- `Edgar_20260518194736_191` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
+- `Edgar_20260518195142_193` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
+- `Edgar_20260518195429_195` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Document Type: Power of Attorney (Procuração) · Description: Procuração Omega - Matheus Reis (customs broker power of attorney, redacted)…
+- `Edgar_20260518202725_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Redacted and notarized Procuração Omega (customs broker POA for Matheus Reis…
+- `Edgar_20260518203216_199` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk3F3H+5sAFC9BJKUsU8u…
+- `Edgar_20260518204124_201` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk3F3H+5sAFC9BJKUsU8u…
+- `Edgar_20260518210257_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Phase 3b — Butterfly Effect partner-branded certificate PDFs live
+- `Edgar_20260518212054_205` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5 · Description: Kimi api credit for USd5
+- `Edgar_20260518212504_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Capoeira credential URL fix: members.html → credentials/ for program-scoped …
+- `Edgar_20260518212828_209` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Multi-program members fix — Gary appears in both Tribo Mirim + Butterfly Eff…
+- `Edgar_20260518215706_211` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Phase 4 spec — credential freshness (3 sources, web-vs-PDF doctrine)
+- `Edgar_20260518221115_213` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: LLM discovery surface on truesight.me: llms.txt + 5 stats files + tile expan…
+- `Edgar_20260518222427_215` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Phase 4.1 — pending Scored Chatlogs cron + freshness layer live
+- `Edgar_20260518231447_217` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: ERA Butterfly Effect cohort onboarding — plan of record + WhatsApp PDF
+- `Edgar_20260519030119_219` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 
 ---
 
@@ -132,13 +170,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,993.55**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$38.16**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -234,6 +276,8 @@ ea608b9 | 2026-05-18 15:23:09 -0700 | Fix sell-through report: every inventory_u
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1c46eb0 | 2026-05-18 20:47:33 -0700 | Merge pull request #155 from TrueSightDAO/auto/advisory-refresh-2026-05-19
+6a09a33 | 2026-05-19 03:47:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 4cfcc6b | 2026-05-18 16:12:01 -0700 | docs: ERA Butterfly Effect cohort onboarding — plan of record (#154)
 387301c | 2026-05-18 15:07:46 -0700 | Document LLM discovery surface on truesight.me (#153)
 49d14dd | 2026-05-18 14:50:12 -0700 | docs: §18 Phase 4 — contribution freshness (three sources, two surfaces) (#152)
@@ -272,8 +316,6 @@ c58ad14 | 2026-05-16 13:33:52 -0700 | docs: add CREDENTIALING_PROGRAM_PAGES.md �
 856d7e2 | 2026-05-16 01:23:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 5d9715e | 2026-05-15 21:09:42 -0700 | chore(previews): refresh Beer Hall preview (2026-05-16 UTC)
 b546ea6 | 2026-05-15 21:09:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
-4d6b2ce | 2026-05-15 20:27:31 -0700 | Merge pull request #142 from TrueSightDAO/auto/advisory-refresh-2026-05-16
-b2c61de | 2026-05-16 03:27:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-16 UTC)
 … (truncated)
 ```
 
@@ -441,6 +483,40 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/18/2026 20:51:24 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-12`; scanned last **395** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-15 | 18 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_34 | — | — |
+| 2026-05-15 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_41 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
