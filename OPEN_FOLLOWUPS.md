@@ -32,6 +32,26 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Credentialing: WhatsApp self-claim flow (deferred — held for demand signal)
+
+**Context.** Surfaced 2026-05-19 in the ERA DAO WhatsApp thread with Bilal + Shahbaz. Butterfly Effect students (and capoeira-Tribomirimbahia students) identify primarily by WhatsApp number, not email. The existing `dapp.truesight.me/create_signature.html` email-based identity flow has no equivalent for these populations. A WhatsApp self-claim flow would let students assert "this pk-hash is me" against an issued credential at `truesight.me/credentials/#<slug>`.
+
+**Scope.** Full design lives at `CREDENTIALING_PLATFORM.md` §13 — flow diagram, alternatives considered, 2026 Meta cost model (user-initiated reply is free, business-initiated push is billed), six-item Meta paperwork prerequisite list (legal entity → business verification → DAO-owned WA-eligible phone number → app + token + webhook), four-piece engineering scope (~2–3 days focused work behind ~1 week of Meta business verification), privacy invariants (`wa_phone_hash = sha256(cc + national)`, never raw number).
+
+**Defer-flip criteria.** This is held — NOT a queue item — until *any one* of:
+1. A student in any active program asks how to prove the credential is theirs.
+2. A second program beyond BE + capoeira lands with WhatsApp-native participants (i.e. the pattern repeats and self-claim becomes infrastructure rather than feature).
+3. BE / IVY acquisition by TDF closes with a contractual requirement for student-side attestation.
+4. A receiving platform (employer, school, ceremony org, partner shop) starts checking credentials and asks for a "verified by holder" signal beyond the QR.
+
+Until then the issued-credential surface (cert PDF + QR + public `/credentials/#<slug>`) is the demo. Don't pre-build the auth on speculation.
+
+**Blocker.** No demand signal yet (2026-05-19). Building now would mean ~1 week of Meta business verification + a legal-entity decision on which WABA front to use — both real costs against zero current need.
+
+**Owner.** Unclaimed. Next session that sees a defer-flip criterion fire should pick this up.
+
+---
+
 ### Partner Check-in: paste-image-as-attachment (v0.2 attachment support)
 
 **Context.** Operator request 2026-05-12: when filing a Partner Check-in (e.g. for the Matheus / AGL7 freight in flight), be able to **paste an image directly into the Notes field** and have it automatically uploaded as an attachment that the check-in history later renders inline. Use cases: container photos, customs paperwork, retail stencil photos on cacao bags, screenshots of vendor replies. The pattern exists already in adjacent surfaces (`[ASSET RECEIPT EVENT]` uses `--attachment`, `Stores Visits Field Reports` carries `github_raw_url`/`github_blob_url`); this just hasn't been extended to Partner Check-in yet.
