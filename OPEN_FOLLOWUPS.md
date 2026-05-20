@@ -922,6 +922,16 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
     **Engine adds:** CDP event subscription gated by `recipe_recovery_mode_active` flag (off by default). Click events translate to stable selectors (prefer `aria-label`, then `data-testid`, then computed CSS path). Type events from `<input type=password>` / `<input autocomplete=current-password>` / fields inside `<form autocomplete=off>` are dropped from the log entirely. After Gary completes the recovery, the LLM diffs the failed guidepost against the observed sequence and opens a PR with the new selector(s) appended to `learned_selectors[]`.
 
+14. **LLM form comprehension + pre-fill — `llm_fill_form` action (v0.3).** New DSL action for forms where the human cost is *reading* the form, not typing the answers (FDA facility registration, partner onboarding paperwork, retail shipping intake forms — anything regulatory or compliance-heavy). Engine flow:
+    - LLM reads the entire form via the page's DOM or accessibility tree.
+    - Uses the recipe's `context` block + (optional) external lookups (web search, the user's other logged-in sessions inherited from the persistent profile, Google Sheets via service-account auth, etc.) to figure out each field's value.
+    - Fills every field, attaches `confidence_score` (0.0–1.0) and `reasoning` (one line citing where the value came from — recipe context, form text, external lookup URL) as metadata per field.
+    - `human_intervention` surfaces ONLY fields below a configurable confidence threshold (default `0.85`) for explicit review; high-confidence fields are pre-approved. UI shows `show all` toggle for high-stakes forms (regulatory submissions, anything that becomes a legal record).
+
+    **Critical design constraint:** the spot-check surface has to be reliable, because the whole pitch is the human *skips reading the form*. Per-field reasoning shown on hover/click; without this, rubber-stamping → Open Claw failure mode (see the 2026-05-20 blog post anecdote for the cautionary tale).
+
+    **Depends on:** v0.2's LLM-grounded DOM discovery primitive (item 11). Independent of v0.3's "watch me" recording (item 13(c)); both are v0.3 candidates, ship whichever a real form pain-point demands first.
+
 **Blockers.** None. PAT for KrakeIO push lives in `~/Applications/truesight_autopilot/.env` as `KRAKEIO_LLM_PLAYGROUND_PAT`. Use it via `GH_TOKEN=$(grep ^KRAKEIO_LLM_PLAYGROUND_PAT= ~/Applications/truesight_autopilot/.env | cut -d= -f2-)`.
 
 **Already done (no engine required).** (a) All 3 repos flipped to PUBLIC on 2026-05-20 (the original "wait until engine works" was overcautious; design docs + sample recipes are fine to expose). (b) Forward-spec blog post live at [garyteh.com/2026-05-20-from-solve-captcha-to-symbiosis-what-my-2014-dsl-was-trying-to-tell-me.html](https://garyteh.com/2026-05-20-from-solve-captcha-to-symbiosis-what-my-2014-dsl-was-trying-to-tell-me.html) — framed as design journal, links to the three repos.
