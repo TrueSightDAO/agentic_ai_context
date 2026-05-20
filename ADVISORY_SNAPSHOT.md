@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-20T04:46:36Z`
+- Generated (UTC): `2026-05-20T09:59:57Z`
 - Look-back: **7** calendar days (`2026-05-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,8 +32,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[PRACTICE EVENT]` × 9
+- `[CONTRIBUTION EVENT]` × 27
+- `[PRACTICE EVENT]` × 6
 - `[NOTARIZATION EVENT]` × 3
 - `[CONTRIBUTOR ADD EVENT]` × 2
 - `[PARTNER CHECK-IN EVENT]` × 2
@@ -44,9 +44,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260519030119_219` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260519172006_221` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260519172017_223` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 - `Edgar_20260519183624_225` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApteuX0BSHSvFKWuR5PcC…
 - `Edgar_20260519184936_227` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Capoeira practice fix — one music track per move, no repeats
 - `Edgar_20260519191210_229` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Sell-through inventory CI fix + truesight.me prod recovery + org domain veri…
@@ -64,6 +61,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260519224929_253` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 330 · Description: Multi-thread strategy + build session covering credentialing roadmap, growth…
 - `Edgar_20260520014333_255` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 6.85 · Description: Gasoline
 - `Edgar_20260520014431_257` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260520053853_259` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Talk about the
+- `Edgar_20260520061210_261` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Fortunato's 1.1lb bars (68%, 47%, 36% varieties) return for pre-order.
+- `Edgar_20260520061251_263` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Hyundai tree planting
 
 ---
 
@@ -234,6 +234,7 @@ _All dated lines on/after 2026-05-13_ (14):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+62844c3 | 2026-05-20 04:49:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5c3c082 | 2026-05-19 14:03:24 -0700 | credentials: tap-to-expand practice session details (#128)
 fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via _cache/index.json (#127)
 87a2168 | 2026-05-19 20:16:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -273,7 +274,6 @@ d460ec3 | 2026-05-14 23:59:34 -0700 | Reframe legal-wrapper paragraph: DUNA + IC
 8889c7b | 2026-05-14 23:46:29 -0700 | Frame Aora as Liz's program in the roadmap bullet (#98)
 cd4632a | 2026-05-14 23:42:25 -0700 | Drop the LP/GP framing paragraph from the blog opening (#97)
 1d69d79 | 2026-05-14 23:40:52 -0700 | Correct Ken's context (SF workforce dev, not Aora) and Labinot spelling (#96)
-8d5110b | 2026-05-14 23:38:45 -0700 | Link Ken on Aora team to his /credentials/#ken-nim profile (#95)
 … (truncated)
 ```
 
@@ -286,6 +286,8 @@ ea608b9 | 2026-05-18 15:23:09 -0700 | Fix sell-through report: every inventory_u
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5d47c45 | 2026-05-19 21:46:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
+28f81ba | 2026-05-19 21:46:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 53dec1e | 2026-05-19 20:47:41 -0700 | Merge pull request #166 from TrueSightDAO/auto/advisory-refresh-2026-05-20
 f1e5a27 | 2026-05-20 03:47:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 ba906d4 | 2026-05-19 15:55:15 -0700 | Fix retention-band vertical overlap between rows (#165)
@@ -324,8 +326,6 @@ a115185 | 2026-05-17 20:57:08 -0700 | Merge pull request #150 from TrueSightDAO/
 ab5c12d | 2026-05-18 03:56:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-18 UTC)
 cd72f22 | 2026-05-17 12:45:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
 0d7d436 | 2026-05-17 12:45:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-17 UTC)
-f6cbd75 | 2026-05-17 07:04:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
-5874efd | 2026-05-17 07:04:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-17 UTC)
 … (truncated)
 ```
 
@@ -370,6 +370,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f9f03de | 2026-05-20 09:56:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ae1d60 | 2026-05-19 10:10:29 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2aceaab | 2026-05-18 22:23:50 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 a50b773 | 2026-05-18 10:50:02 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -490,7 +491,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/19/2026 20:50:44 |
+| 2026-05 | 58.6 | 14977.11386 | 5/20/2026 2:50:32 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-13`; scanned last **395** data rows)
 
