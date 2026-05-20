@@ -51,15 +51,32 @@ pattern.
 ```
 lineage-assets/
 ├── README.md
-├── SCHEMA.md                      # per-QR JSON wrapper + asset-type extensions
-├── qrs/                           # one file per QR-coded asset
+├── SCHEMA.md                       # per-QR JSON wrapper + asset-type extensions
+├── qrs_index.json                  # aggregated single-fetch index (powers Product Verification)
+├── qrs/                            # one file per QR-coded asset (1457 manifests)
 │   ├── 2024PF_20250505_01.json
 │   ├── 2025_20250829_4027ff6b.json
-│   ├── …                          # 1457 files at initial seed
+│   └── …
+├── pngs/                           # raw QR PNG images (729 migrated from qr_codes/)
+│   ├── 2024OSCAR_20250826_NIBS_78.png
 │   └── …
 └── scripts/
-    └── seed_from_sheet.py         # idempotent sync from Agroverse QR codes sheet
+    ├── seed_from_sheet.py          # bulk import from Agroverse QR codes sheet
+    ├── build_index.py              # walks qrs/*.json → emits qrs_index.json
+    ├── lib/
+    │   └── manifest.py             # shared manifest builder (used by both seed + generator)
+    └── qr_generator/               # the QR generator (moved here from tokenomics 2026-05-20)
+        ├── batch_compiler.py
+        ├── affiliate_link_qr_code.py
+        ├── gdrive.py
+        ├── README.md
+        └── …assets (logos, fonts, templates)
 ```
+
+Single repo holds: per-asset manifests + per-asset PNG images + the
+generator that produces both + the schema doc + the index builder.
+Atomicity wins (manifest + image can never drift across repos because
+they're committed together).
 
 ---
 
@@ -185,6 +202,29 @@ rather than schema breaks.
 
 ---
 
+## Generator — `scripts/qr_generator/batch_compiler.py`
+
+The QR generator now lives inside lineage-assets (moved from
+`tokenomics/python_scripts/agroverse_qr_code_generator/` on
+2026-05-20; that location is now a `DEPRECATED.md` breadcrumb).
+
+Every mint produces **three artifacts in one run**:
+
+1. **Compiled print-ready image** at `--output-dir/` (operator-local
+   scratch; not committed, defaulted to `package_qr_codes/`)
+2. **Raw QR PNG** at `--pngs-dir` (defaults to `lineage-assets/pngs/`,
+   committed to the repo)
+3. **Per-QR JSON manifest** at `--qrs-dir` (defaults to
+   `lineage-assets/qrs/`, committed to the repo)
+
+The manifest is built via the shared `scripts/lib/manifest.py`
+module — the same one `seed_from_sheet.py` uses, guaranteeing
+identical schema regardless of entry point.
+
+CLI flags `--no-manifest` / `--no-raw-png` let the operator opt out of
+either lineage-assets side if needed (e.g. for ad-hoc print runs
+that shouldn't land in the canonical repo).
+
 ## Seed script — `seed_from_sheet.py`
 
 Reads the `Agroverse QR codes` tab on the Main Ledger spreadsheet
@@ -216,6 +256,28 @@ files have been the source of truth long enough that the cadence
 matters.
 
 ---
+
+## Product Verification listing — `truesight.me/physical-assets/serialized/`
+
+The DAO's public "Product Verification" link (`truesight.me/physical-assets/serialized/`)
+used to be a hard `<meta http-equiv="refresh">` redirect into the raw
+Agroverse QR codes Google Sheet — a 1457-row spreadsheet a visitor had
+to scroll through.
+
+As of 2026-05-20 it is a real searchable / filterable listing:
+
+- Fetches `qrs_index.json` (single file, ~1457 entries) from
+  `raw.githubusercontent.com/TrueSightDAO/lineage-assets`
+- Free-text search across qr_id + farm + country + holder
+- Filter by `asset_type` and `status`
+- Stat cards at top (total + per-status)
+- Per-row link → `truesight.me/qr/?id=<qr_id>` provenance page
+- Paginated (50 per page, "show more" button), mobile-responsive
+
+Source-of-truth is the per-QR JSON files; the index is the
+aggregated view. Regenerate via `lineage-assets/scripts/build_index.py`
+after major changes. (Future iteration: same `[skip ci]` auto-commit
+pattern the `truesight_me_beta/stats-refresh` cron uses.)
 
 ## What's deliberately NOT in v0
 
