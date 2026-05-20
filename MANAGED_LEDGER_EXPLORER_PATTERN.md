@@ -94,11 +94,36 @@ The explorer normalizes flexibly, but producers **should** use these canonical f
 The template has 7 tabs with all formulas, formatting, and AGL-standard structure:
 - `README` — setup instructions
 - `Unit Costing Economics` — per-unit cost breakdowns
-- `Balance` — Equity, Asset, Resource Location, Liabilities
+- `Balance` — Equity, Asset, Resource Location, Liabilities (see column map below)
 - `Transactions` — Date, Description, Entity, Amount, Currency, Type, Line #
 - `State` — Currencies catalog with Price in USD
 - `Entities` — Ledger Entities (TrueSight DAO, Smart Contract, Customer)
 - `Pricing Tiers` — cost/pricing models
+
+#### Balance tab — column map
+
+The Balance tab carries multiple side-by-side sections in a single sheet. Two layouts exist in production (header-driven detection is the only safe way to read it):
+
+**Layout A — current canonical (AGL5/6/7/8/10/13/14/15, SEF1, PP1, etc.)**
+
+| Cols | Section | Headers (row 5) | Purpose |
+|------|---------|-----------------|---------|
+| A-C | **Equity** | `Financier · Amount · Currency` | Stakeholder claims (investors, DAO, operator) |
+| _ (D) | spacer | (blank) | Visual separator |
+| E-F | **Asset** | `Asset Name · Amount` | What the ledger holds — name from `Currencies!A`, qty in native units |
+
+**Layout B — older template (AGL4 only as of 2026-05-20)**
+
+| Cols | Section | Headers (row 5) | Purpose |
+|------|---------|-----------------|---------|
+| A-B | **Asset** | `Asset · Amount` | What the ledger holds |
+| D-F | **Resource Location** | `Asset Manager · Amount · Currency` | Per-manager warehouse split |
+
+In both layouts the **header row is row 5**, **data starts at row 6**. The truesight.me `/aum` page (via tokenomics GAS `?type=aum_breakdown`) reads the Asset section via header-driven detection: scan row 5 for `"Asset"` / `"Asset Name"`, use that column + the next column as `(asset, amount)`, then convert each row to USD via `Currencies!A` → `Currencies!B`.
+
+`treasury-cache/gas/treasury-cache-publisher/Code.gs` defaults to reading the Resource Location section (`manager_names_column: 'H'`, `asset_quantity_column: 'I'`, `asset_name_column: 'J'`, `record_start_row: 6`) — that's a per-manager warehouse view, not the AUM rollup.
+
+The DAO's own equity stake in each AGL (used by `/treasury`) is the row where `Equity.Financier == "TrueSight DAO"` AND `Equity.Currency == "USD"` (Layout A) or via legacy A-C read on AGL4 (Layout B).
 
 **Register in Shipment Ledger Listing:**
 
