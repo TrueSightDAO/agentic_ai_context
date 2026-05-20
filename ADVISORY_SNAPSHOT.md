@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-20T09:59:57Z`
+- Generated (UTC): `2026-05-20T16:05:51Z`
 - Look-back: **7** calendar days (`2026-05-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -81,7 +81,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-19T10:59:15.463Z`
+- Generated (UTC): `2026-05-20T10:59:14.831Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -234,6 +234,7 @@ _All dated lines on/after 2026-05-13_ (14):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cc63411 | 2026-05-20 10:02:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 62844c3 | 2026-05-20 04:49:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5c3c082 | 2026-05-19 14:03:24 -0700 | credentials: tap-to-expand practice session details (#128)
 fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via _cache/index.json (#127)
@@ -273,7 +274,6 @@ d460ec3 | 2026-05-14 23:59:34 -0700 | Reframe legal-wrapper paragraph: DUNA + IC
 1f4d811 | 2026-05-14 23:56:06 -0700 | Reframe funding-cut context: government-level after-school cuts, not Liz-specific (#99)
 8889c7b | 2026-05-14 23:46:29 -0700 | Frame Aora as Liz's program in the roadmap bullet (#98)
 cd4632a | 2026-05-14 23:42:25 -0700 | Drop the LP/GP framing paragraph from the blog opening (#97)
-1d69d79 | 2026-05-14 23:40:52 -0700 | Correct Ken's context (SF workforce dev, not Aora) and Labinot spelling (#96)
 … (truncated)
 ```
 
@@ -286,6 +286,8 @@ ea608b9 | 2026-05-18 15:23:09 -0700 | Fix sell-through report: every inventory_u
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1d4cbdb | 2026-05-20 03:00:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
+b76ab8c | 2026-05-20 03:00:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 5d47c45 | 2026-05-19 21:46:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
 28f81ba | 2026-05-19 21:46:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 53dec1e | 2026-05-19 20:47:41 -0700 | Merge pull request #166 from TrueSightDAO/auto/advisory-refresh-2026-05-20
@@ -324,8 +326,6 @@ b873a5c | 2026-05-18 13:12:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 22ffea5 | 2026-05-17 21:50:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-18 UTC)
 a115185 | 2026-05-17 20:57:08 -0700 | Merge pull request #150 from TrueSightDAO/auto/advisory-refresh-2026-05-18
 ab5c12d | 2026-05-18 03:56:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-18 UTC)
-cd72f22 | 2026-05-17 12:45:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-17 UTC)
-0d7d436 | 2026-05-17 12:45:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-17 UTC)
 … (truncated)
 ```
 
@@ -491,7 +491,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/20/2026 2:50:32 |
+| 2026-05 | 58.6 | 14977.11386 | 5/20/2026 8:50:37 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-13`; scanned last **395** data rows)
 
