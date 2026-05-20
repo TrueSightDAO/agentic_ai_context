@@ -917,6 +917,16 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Validation criterion.** Run `whatsapp/send_message` against Gary's logged-in WhatsApp Web from any MCP client — recipe pauses for approval of the drafted message, human types Continue, message sends.
 
+**Scope addendum (Gary 2026-05-20):** Two follow-on items confirmed alongside the MVP:
+
+9. **Bundle krake_recipes with engine install.** The TDG engine instance should come with platform recipes (Instagram, LinkedIn, WhatsApp, Facebook, FDA) pre-available, not require a separate clone step. Implement as a postinstall clone + scheduled `git pull` of [KrakeIO/krake_recipes](https://github.com/KrakeIO/krake_recipes) into `~/.krake_browser/recipes/krake_recipes/`. Recipes for living sites drift on their own cadence; pull beats pin.
+10. **Wrapper-recipe DSL extension for tdg_recipes.** Add three new fields to the recipe schema so a TDG recipe can be a thin layer over a platform recipe:
+    - `uses` — path to the platform recipe (e.g. `instagram/dm_send`)
+    - `why` — one-paragraph DAO context the LLM reads before deciding to invoke (e.g. "partner check-ins for stores whose primary channel is IG, not WhatsApp — confirm last touch in Hit List first")
+    - `vars` — DAO-specific variable defaults that get merged into the platform recipe's variable substitution
+    
+    Primary use case Gary identified: **partner check-ins** (the load-bearing operational flow) across WA / IG / LinkedIn / FB depending on partner's primary channel. The `why` field becomes the LLM's decision input.
+
 **Blockers.** None. PAT for KrakeIO push lives in `~/Applications/truesight_autopilot/.env` as `KRAKEIO_LLM_PLAYGROUND_PAT`. Use it via `GH_TOKEN=$(grep ^KRAKEIO_LLM_PLAYGROUND_PAT= ~/Applications/truesight_autopilot/.env | cut -d= -f2-)`.
 
 **After engine works.** (a) Flip the 3 repos to PUBLIC, (b) record 30s screencap of the WhatsApp demo, (c) write blog post on `garyjob/blog` (HN explicitly skipped as launch venue — Gary called it "kinda lame"; risk of flop > upside, garyjob/blog has zero downside and can cross-post later if organic traction appears).
