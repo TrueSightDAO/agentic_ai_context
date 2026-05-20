@@ -142,35 +142,6 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ---
 
-### AUM card: dedicated /aum page mirroring the /treasury pattern
-
-**Context.** 2026-05-20 shipped \`/treasury\` ([truesight_me_beta#131][treasury-pr]) — dedicated page consuming a new GAS \`?type=treasury_breakdown\` endpoint, with formula-matched breakdown (off-chain + USDT vault + per-AGL DAO equity), and the landing card flipped from an inline \`<details>\` to a "View breakdown →" link. The AUM card on the landing page is structurally identical but still has the inline \`<details>\` rendering gross USD-equivalent per currency from \`treasury-cache\`. Same operator complaints apply (squished table, vertical alignment shift when expanded — though the \`.stats-grid { align-items: start }\` fix already mitigates the sibling-card drag).
-
-**Scope.** Mirror what /treasury did:
-
-1. **GAS side** (\`tokenomics/google_app_scripts/tdg_asset_management/tdg_wix_dashboard.gs\`):
-   - New \`computeAumBreakdown()\` returning structured payload with per-currency rollup AND per-ledger-per-currency split, matching the existing \`AUM\` headline computation.
-   - Extend \`doGet\` with \`type === 'aum_breakdown'\` branch. clasp push + clasp deploy --deploymentId \`AKfycbzlfOBo9UqKOh7jIqGcmbPAMM1RxCbsJHb-UV_vM6VbvK_HSdT44KyGbbXIeo-_Ovfy\` (existing live deployment).
-
-2. **truesight_me side**:
-   - New \`/aum/index.html\` consuming the endpoint. Sections: per-currency breakdown (with USD value + units), then collapsible per-ledger split inside each currency. Methodology footer explaining "AUM = Treasury + investor capital across all managed ledgers."
-   - Landing card: replace inline \`<details class="stat-breakdown" data-breakdown="aum">\` with \`<a class="stat-detail-link" href="/aum/">View breakdown →\`. Same chrome pattern as the Treasury card.
-   - Drop the now-dead \`renderAumBreakdown(body, treasury)\` function from \`index.html\` since no callers remain after the AUM card flips.
-
-3. **llms.txt**: add \`/aum\` and \`/treasury\` to the discovery surface so LLM agents can deep-link both.
-
-**Acceptance.** Open \`https://truesight.me/aum/\` → page renders headline AUM, per-currency rollup, per-ledger-per-currency split inside each. Open \`https://truesight.me/\` → AUM card shows a "View breakdown →" link (no inline expand), no sibling-card layout shift on click.
-
-**Cost.** ~1.5 hours including the GAS extension + clasp push/deploy + page build + landing card update + CNAME-safe prod promotion.
-
-**Blocker.** None. The pattern is fresh from \`/treasury\` (2026-05-20) — copy and adapt.
-
-**Owner.** Unclaimed.
-
-[treasury-pr]: https://github.com/TrueSightDAO/truesight_me_beta/pull/131
-
----
-
 ### Credentialing: WhatsApp self-claim flow (deferred — held for demand signal)
 
 **Context.** Surfaced 2026-05-19 in the ERA DAO WhatsApp thread with Bilal + Shahbaz. Butterfly Effect students (and capoeira-Tribomirimbahia students) identify primarily by WhatsApp number, not email. The existing `dapp.truesight.me/create_signature.html` email-based identity flow has no equivalent for these populations. A WhatsApp self-claim flow would let students assert "this pk-hash is me" against an issued credential at `truesight.me/credentials/#<slug>`.
@@ -917,7 +888,7 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Validation criterion.** Run `whatsapp/send_message` against Gary's logged-in WhatsApp Web from any MCP client — recipe pauses for approval of the drafted message, human types Continue, message sends.
 
-**Scope addendum (Gary 2026-05-20):** Two follow-on items confirmed alongside the MVP:
+**Scope addendum (Gary 2026-05-20).** Items 9–10 land alongside the MVP. **Items 11–13 are engine v0.2** — defer until items 1–10 validate end-to-end (run `whatsapp/send_message` against live WhatsApp Web with one human approval). v0.2 turns the engine from "runs strict recipes" into "self-healing browser concierge" and is where the project becomes meaningfully differentiated; trying to ship it in the MVP will stall the WhatsApp demo. The v0.2 items also compound — guideposts (item 11) need the teach-loop (item 12) to repair drift, and passive observation (item 13) is strictly better than narration so ship 13 as part of 12 if it's not much more work.
 
 9. **Bundle krake_recipes with engine install.** The TDG engine instance should come with platform recipes (Instagram, LinkedIn, WhatsApp, Facebook, FDA) pre-available, not require a separate clone step. Implement as a postinstall clone + scheduled `git pull` of [KrakeIO/krake_recipes](https://github.com/KrakeIO/krake_recipes) into `~/.krake_browser/recipes/krake_recipes/`. Recipes for living sites drift on their own cadence; pull beats pin.
 10. **Wrapper-recipe DSL extension for tdg_recipes.** Add three new fields to the recipe schema so a TDG recipe can be a thin layer over a platform recipe:
@@ -926,6 +897,20 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
     - `vars` — DAO-specific variable defaults that get merged into the platform recipe's variable substitution
     
     Primary use case Gary identified: **partner check-ins** (the load-bearing operational flow) across WA / IG / LinkedIn / FB depending on partner's primary channel. The `why` field becomes the LLM's decision input.
+
+11. **Guidepost model — intent + hint + expected_state alongside strict selectors.** Each action in the DSL gains three optional fields that turn it from a rigid click-here-then-click-there contract into a guidepost the LLM can re-ground at runtime:
+    - `intent` — what this step is trying to accomplish ("Open connect-with-note modal")
+    - `hint` — natural-language locator advice for the LLM if the strict selector fails ("Click 'Connect'; if hidden, it's under the 'More' button")
+    - `expected_state` — observable post-condition the executor checks before moving on ("Textarea for personal note is visible")
+    
+    Execution order: try `dom_query` / `xpath` first (fast, deterministic, no LLM call). If it returns nothing or `expected_state` doesn't match, escalate to LLM-grounded discovery using `intent` + `hint` (Browser Use / Stagehand semantics — feed the LLM a trimmed accessibility tree, ask for the right element). Strict and flexible coexist in the same recipe; you only pay the LLM cost when the cheap path breaks.
+
+12. **Teach-by-narration loop — continuous DOM repair via human-AI symbiosis.** The mechanism that makes selector drift self-healing instead of silently breaking recipes. Three new MCP tools beyond the MVP set:
+    - `read_page_state()` → current URL + serialized DOM (or trimmed accessibility tree) + screenshot. Gives the LLM eyes onto the current tab.
+    - `narrate_action(text)` → operator types what they just did manually ("I just clicked the new Connect button, it's now under the three-dot menu"). LLM keeps it as context.
+    - `propose_recipe_update(name, patch)` → LLM emits a JSON patch against the recipe and opens it as a PR to krake_recipes or tdg_recipes. Gary reviews + merges; the next scheduled `git pull` makes the fix canonical.
+
+    End-to-end loop: strict selector fails → engine fires `human_intervention` with "I lost the connect button" → Gary does the step manually → narrates → LLM reads page state → drafts a PR with the new selector → Gary merges → next run works. This is the differentiator vs. every other browser-automation tool (which break silently on DOM change). Without this loop, krake_browser is just another Stagehand clone; with it, it's a tool that gets *more reliable over time* through use.
 
 **Blockers.** None. PAT for KrakeIO push lives in `~/Applications/truesight_autopilot/.env` as `KRAKEIO_LLM_PLAYGROUND_PAT`. Use it via `GH_TOKEN=$(grep ^KRAKEIO_LLM_PLAYGROUND_PAT= ~/Applications/truesight_autopilot/.env | cut -d= -f2-)`.
 
@@ -936,6 +921,29 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### `/aum` dedicated page + per-ledger click-through on `/treasury` — 2026-05-20
+
+Mirrors the `/treasury` pattern shipped earlier same day. New `/aum`
+page reads `treasury-cache/dao_offchain_treasury.json` and renders
+two sections — **Assets by ledger** first (each managed ledger
+expanded to show currencies it holds), then **Per currency** (each
+currency expanded to its per-ledger split). Both `/aum` and
+`/treasury` per-ledger rows are now click-throughs to the source
+Google Sheet, via a new `ledger_urls` dict in the GAS
+`treasury_breakdown` payload. Landing-page AUM card flipped from
+inline `<details>` to `View breakdown →` link; the dead
+`wireStatBreakdowns` / `fetchTreasuryCacheOnce` / `renderUsdTreasuryBreakdown` /
+`renderAumBreakdown` machinery (~85 lines) was removed from
+`index.html`.
+
+GAS also picked up a small `&refresh=1` escape hatch on the
+`treasury_breakdown` endpoint for warming the cache after schema
+changes without waiting for the cron.
+
+PRs:
+- TrueSightDAO/tokenomics#304 (squash `2640d1e`, GAS deploy `@10`)
+- TrueSightDAO/truesight_me_beta#134 (squash `26947f7`, prod cherry-pick `25a6a9e`)
 
 ### `dao_client onboard_retail_partner` MVP — 2026-04-28
 
