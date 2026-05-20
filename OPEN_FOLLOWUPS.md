@@ -890,6 +890,41 @@ spec; don't skip the "Risks / things to be careful about" section.
 
 ---
 
+### krake_browser engine implementation (post-scaffold)
+
+**Context.** Three repos scaffolded 2026-05-20:
+
+- [KrakeIO/krake_browser](https://github.com/KrakeIO/krake_browser) — engine (Sinatra + Playwright/CDP), currently README + ARCHITECTURE + DSL only
+- [KrakeIO/krake_recipes](https://github.com/KrakeIO/krake_recipes) — generic public recipes (WhatsApp send_message, LinkedIn connect_request, Instagram login, FDA facility_search) + JSON Schema
+- [TrueSightDAO/tdg_recipes](https://github.com/TrueSightDAO/tdg_recipes) — DAO-specific recipes (partner_followups/check_in, edgar/submit_contribution)
+
+All three are **PRIVATE** — flip to PUBLIC only after the engine works end-to-end and we have a recorded demo.
+
+Vision: persistent local Chromium that human + LLM share. LLM drives recipes via CDP; pauses with `human_intervention` for 2FA, approvals, anti-bot, judgment calls. Direct evolution of the Krake.io DSL (2014) — `solve_captcha` generalized into `human_intervention` with a prompt + ack channel + screenshot.
+
+See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (or the same files on the public repo once it's flipped public).
+
+**Scope (engine MVP).** Implement against ARCHITECTURE.md:
+
+1. `bin/krake_browser_launch` — Chromium launcher with `--user-data-dir=$HOME/.krake_browser/profile --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1`.
+2. Sinatra app that attaches to running Chromium via CDP (`playwright-ruby-client` is the natural choice given krake_sinatra's stack).
+3. Recipe loader: reads JSON from a configurable `--recipes-dir` (default: local clones of both recipe repos).
+4. Recipe executor: walks `actions[]`, dispatches each action via Playwright, suspends on `human_intervention`.
+5. MCP server tools: `run_recipe(name, vars)`, `list_recipes()`, `ack_intervention(token, action, payload?)`.
+6. MCP events: `intervention_required` (prompt + screenshot + token), `recipe_progress`.
+7. Localhost-only binding + token auth on the MCP port. Engine refuses to start if `0.0.0.0` detected anywhere.
+8. Reference CLI client: minimal Ruby script connecting to MCP, invoking one recipe, printing intervention prompts to stdout and reading ack from stdin (for testing without a full chat UI).
+
+**Validation criterion.** Run `whatsapp/send_message` against Gary's logged-in WhatsApp Web from any MCP client — recipe pauses for approval of the drafted message, human types Continue, message sends.
+
+**Blockers.** None. PAT for KrakeIO push lives in `~/Applications/truesight_autopilot/.env` as `KRAKEIO_LLM_PLAYGROUND_PAT`. Use it via `GH_TOKEN=$(grep ^KRAKEIO_LLM_PLAYGROUND_PAT= ~/Applications/truesight_autopilot/.env | cut -d= -f2-)`.
+
+**After engine works.** (a) Flip the 3 repos to PUBLIC, (b) record 30s screencap of the WhatsApp demo, (c) write blog post on `garyjob/blog` (HN explicitly skipped as launch venue — Gary called it "kinda lame"; risk of flop > upside, garyjob/blog has zero downside and can cross-post later if organic traction appears).
+
+**Owner.** Unclaimed.
+
+---
+
 ## Recently shipped
 
 ### `dao_client onboard_retail_partner` MVP — 2026-04-28
