@@ -912,6 +912,16 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
     End-to-end loop: strict selector fails → engine fires `human_intervention` with "I lost the connect button" → Gary does the step manually → narrates → LLM reads page state → drafts a PR with the new selector → Gary merges → next run works. This is the differentiator vs. every other browser-automation tool (which break silently on DOM change). Without this loop, krake_browser is just another Stagehand clone; with it, it's a tool that gets *more reliable over time* through use.
 
+13. **Passive observation — recipe-execution-bounded learning.** Strictly better than narration: Gary just works, the LLM learns from the clickstream. Three modes worth distinguishing; ship only mode (b):
+
+    - (a) *Always-on passive observation across the whole browser* — records every interaction including bank logins, password manager, email. **Non-goal forever.**
+    - (b) *Recipe-execution-bounded observation* — when a recipe is running and a step fails, the engine flips on observation mode for the duration of Gary's manual recovery, then off. Bounded by definition (failure triggered it), self-correlating (the recovered selector maps to the failed step), almost zero privacy surface. **This is what ships in v0.2.**
+    - (c) *Operator-triggered "watch me"* — Gary says "watch me do this" → LLM begins recording → Gary completes a new flow → LLM drafts a brand-new recipe. Natural extension for greenfield recipe authoring; defer to v0.3.
+
+    **DSL impact:** each guidepost gains a `learned_selectors[]` history with timestamps. At execution time the engine tries selectors in reverse-chronological order so newest wins, but old ones stay as fallbacks (sites sometimes A/B-test old and new DOMs for weeks).
+
+    **Engine adds:** CDP event subscription gated by `recipe_recovery_mode_active` flag (off by default). Click events translate to stable selectors (prefer `aria-label`, then `data-testid`, then computed CSS path). Type events from `<input type=password>` / `<input autocomplete=current-password>` / fields inside `<form autocomplete=off>` are dropped from the log entirely. After Gary completes the recovery, the LLM diffs the failed guidepost against the observed sequence and opens a PR with the new selector(s) appended to `learned_selectors[]`.
+
 **Blockers.** None. PAT for KrakeIO push lives in `~/Applications/truesight_autopilot/.env` as `KRAKEIO_LLM_PLAYGROUND_PAT`. Use it via `GH_TOKEN=$(grep ^KRAKEIO_LLM_PLAYGROUND_PAT= ~/Applications/truesight_autopilot/.env | cut -d= -f2-)`.
 
 **After engine works.** (a) Flip the 3 repos to PUBLIC, (b) record 30s screencap of the WhatsApp demo, (c) write blog post on `garyjob/blog` (HN explicitly skipped as launch venue — Gary called it "kinda lame"; risk of flop > upside, garyjob/blog has zero downside and can cross-post later if organic traction appears).
