@@ -924,7 +924,9 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Blockers.** None. PAT for KrakeIO push lives in `~/Applications/truesight_autopilot/.env` as `KRAKEIO_LLM_PLAYGROUND_PAT`. Use it via `GH_TOKEN=$(grep ^KRAKEIO_LLM_PLAYGROUND_PAT= ~/Applications/truesight_autopilot/.env | cut -d= -f2-)`.
 
-**After engine works.** (a) Flip the 3 repos to PUBLIC, (b) record 30s screencap of the WhatsApp demo, (c) write blog post on `garyjob/blog` (HN explicitly skipped as launch venue — Gary called it "kinda lame"; risk of flop > upside, garyjob/blog has zero downside and can cross-post later if organic traction appears).
+**Already done (no engine required).** (a) All 3 repos flipped to PUBLIC on 2026-05-20 (the original "wait until engine works" was overcautious; design docs + sample recipes are fine to expose). (b) Forward-spec blog post live at [garyteh.com/2026-05-20-from-solve-captcha-to-symbiosis-what-my-2014-dsl-was-trying-to-tell-me.html](https://garyteh.com/2026-05-20-from-solve-captcha-to-symbiosis-what-my-2014-dsl-was-trying-to-tell-me.html) — framed as design journal, links to the three repos.
+
+**After engine works.** Record a 30s screencap of the WhatsApp demo and write a follow-up blog post with honest retro (what worked, what was thinkier-than-it-needed-to-be). HN explicitly skipped as launch venue — Gary called it "kinda lame"; risk of flop > upside, garyjob/blog has zero downside and can cross-post later if the follow-up gets organic traction.
 
 **Owner.** Unclaimed.
 
