@@ -142,6 +142,35 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ---
 
+### AUM card: dedicated /aum page mirroring the /treasury pattern
+
+**Context.** 2026-05-20 shipped \`/treasury\` ([truesight_me_beta#131][treasury-pr]) — dedicated page consuming a new GAS \`?type=treasury_breakdown\` endpoint, with formula-matched breakdown (off-chain + USDT vault + per-AGL DAO equity), and the landing card flipped from an inline \`<details>\` to a "View breakdown →" link. The AUM card on the landing page is structurally identical but still has the inline \`<details>\` rendering gross USD-equivalent per currency from \`treasury-cache\`. Same operator complaints apply (squished table, vertical alignment shift when expanded — though the \`.stats-grid { align-items: start }\` fix already mitigates the sibling-card drag).
+
+**Scope.** Mirror what /treasury did:
+
+1. **GAS side** (\`tokenomics/google_app_scripts/tdg_asset_management/tdg_wix_dashboard.gs\`):
+   - New \`computeAumBreakdown()\` returning structured payload with per-currency rollup AND per-ledger-per-currency split, matching the existing \`AUM\` headline computation.
+   - Extend \`doGet\` with \`type === 'aum_breakdown'\` branch. clasp push + clasp deploy --deploymentId \`AKfycbzlfOBo9UqKOh7jIqGcmbPAMM1RxCbsJHb-UV_vM6VbvK_HSdT44KyGbbXIeo-_Ovfy\` (existing live deployment).
+
+2. **truesight_me side**:
+   - New \`/aum/index.html\` consuming the endpoint. Sections: per-currency breakdown (with USD value + units), then collapsible per-ledger split inside each currency. Methodology footer explaining "AUM = Treasury + investor capital across all managed ledgers."
+   - Landing card: replace inline \`<details class="stat-breakdown" data-breakdown="aum">\` with \`<a class="stat-detail-link" href="/aum/">View breakdown →\`. Same chrome pattern as the Treasury card.
+   - Drop the now-dead \`renderAumBreakdown(body, treasury)\` function from \`index.html\` since no callers remain after the AUM card flips.
+
+3. **llms.txt**: add \`/aum\` and \`/treasury\` to the discovery surface so LLM agents can deep-link both.
+
+**Acceptance.** Open \`https://truesight.me/aum/\` → page renders headline AUM, per-currency rollup, per-ledger-per-currency split inside each. Open \`https://truesight.me/\` → AUM card shows a "View breakdown →" link (no inline expand), no sibling-card layout shift on click.
+
+**Cost.** ~1.5 hours including the GAS extension + clasp push/deploy + page build + landing card update + CNAME-safe prod promotion.
+
+**Blocker.** None. The pattern is fresh from \`/treasury\` (2026-05-20) — copy and adapt.
+
+**Owner.** Unclaimed.
+
+[treasury-pr]: https://github.com/TrueSightDAO/truesight_me_beta/pull/131
+
+---
+
 ### Credentialing: WhatsApp self-claim flow (deferred — held for demand signal)
 
 **Context.** Surfaced 2026-05-19 in the ERA DAO WhatsApp thread with Bilal + Shahbaz. Butterfly Effect students (and capoeira-Tribomirimbahia students) identify primarily by WhatsApp number, not email. The existing `dapp.truesight.me/create_signature.html` email-based identity flow has no equivalent for these populations. A WhatsApp self-claim flow would let students assert "this pk-hash is me" against an issued credential at `truesight.me/credentials/#<slug>`.
