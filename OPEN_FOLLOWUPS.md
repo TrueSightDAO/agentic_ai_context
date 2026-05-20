@@ -384,6 +384,49 @@ operator review.
 
 **Blocker.** Previous entry (eyeball-check) must complete green.
 
+---
+
+### Rename "Agroverse Partners" sheet → "DAO Partners" + sweep consumers
+
+**Context.** 2026-05-20: the Main Ledger tab `Agroverse Partners`
+(`1GE7PUq-...` gid=1983902109) now holds rows whose `partner_type` is
+`Operator`, `Supplier`, `Freight Provider`, `Manufacturer`, etc. — i.e.
+the whole DAO partner ecosystem, not just retail/wholesale for the
+Agroverse cacao brand. The name is now a misnomer; new operator-partner
+onboards (Wayne @ UX.APP, 2026-05-20) make it more obviously so.
+
+**Why it didn't ship inline.** A rename has cross-repo blast radius —
+every consumer keys off the literal string `"Agroverse Partners"`. Doing
+it as part of the Wayne onboarding PR would have ballooned the diff.
+
+**Scope (single PR after the Wayne onboard PR merges).**
+1. Rename the sheet tab `Agroverse Partners` → `DAO Partners` (gid is
+   stable; gid-keyed consumers are unaffected).
+2. Sweep every literal-string consumer. Known callers to grep first:
+   - `dao_client/truesight_dao_client/modules/onboard_partner.py` —
+     `PARTNERS_SHEET` constant.
+   - `market_research/scripts/sync_partners_velocity.py` (if it reads
+     the tab by name).
+   - GAS handlers under `tokenomics/` that scan the Main Ledger.
+   - DApp Partner Check-in scanner (`dapp/partner_check_in.html` →
+     GAS handler) — confirm the worksheet name.
+   - `agroverse_shop` discovery surfaces (`partner_locations.json`
+     generator, if any).
+   - `agentic_ai_context/RETAILER_TECHNICAL_ONBOARDING.md`,
+     `PARTNER_CHECK_IN_IMPLEMENTATION.md`, and any other docs that
+     name the tab.
+3. Workspace-wide grep before declaring victory:
+   `grep -r '"Agroverse Partners"' ~/Applications` and
+   `grep -r "'Agroverse Partners'" ~/Applications`.
+
+**Outcome.** Tab name reflects its actual scope; future operator /
+freight / supplier onboards stop reading as "Agroverse cacao business"
+by association.
+
+**Files.** Main Ledger spreadsheet
+`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, gid `1983902109`, plus
+every caller surfaced by the grep sweep.
+
 **Owner.** Unclaimed.
 
 ---
