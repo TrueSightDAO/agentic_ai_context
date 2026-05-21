@@ -20,9 +20,49 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-21T03:58:40Z`
+- Generated (UTC): `2026-05-21T04:52:56Z`
 - Look-back: **7** calendar days (`2026-05-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 30
+- `[PRACTICE EVENT]` × 4
+- `[PARTNER CHECK-IN EVENT]` × 3
+- `[CONTRIBUTOR ADD EVENT]` × 2
+- `[CAPITAL INJECTION EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260520061251_263` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Hyundai tree planting
+- `Edgar_20260520180458_265` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Market gap research
+- `Edgar_20260520203502_267` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Wayne - UX.APP · Contributor Email: wayne@ux.app · Initial Digital Signature: (none — store-manager contact, no key needed)
+- `Edgar_20260520210038_269` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: USD Treasury Balance: dedicated /treasury page, formula-matched breakdown
+- `Edgar_20260520211724_271` · **Edgar** · [PARTNER CHECK-IN EVENT] Contributor Name: Wayne - UX.APP · Check-in Date: 2026-05-20 · Method: Email
+- `Edgar_20260520212236_273` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Treasury breakdown endpoint: cache via PropertiesService (10x speedup)
+- `Edgar_20260520212821_275` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: QR-asset architectural cleanup + provenance surface. Created TrueSightDAO/li…
+- `Edgar_20260520213318_277` · **Edgar** · [CAPITAL INJECTION EVENT] Ledger: USD · Amount: 5.30 · Description: Personal contribution by Gary Teh covering DeepSeek API credits used by DAO …
+- `Edgar_20260520213320_279` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Scaffolded the krake_browser human-AI symbiosis initiative across KrakeIO + …
+- `Edgar_20260520214010_281` · **Edgar** · [CAPITAL INJECTION EVENT] Ledger: USD · Amount: 5.30 · Description: Personal contribution by Gary Teh covering DeepSeek API credits used by DAO …
+- `Edgar_20260520214143_283` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: QMDJ detail panel layout for oracle.truesight.me
+- `Edgar_20260520214834_285` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Wayne UX.APP onboarding + DAO Partners rename migration + operator-partner m…
+- `Edgar_20260520214944_287` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 105 · Description: AUM: dedicated /aum page + per-ledger click-through on /treasury
+- `Edgar_20260520215337_289` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Strict-typing Contributor Name in dao_client against live DAO Partners JSON
+- `Edgar_20260520221027_291` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Operational fixes + UX polish on the new QR-asset surfaces. Extended dao_cli…
+- `Edgar_20260520221409_293` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Continued the krake_browser initiative post-scaffold. Two design-refinement …
+- `Edgar_20260520221655_295` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Per-QR Related link now appends ?qr_code=<id> when navigating to current_lan…
+- `Edgar_20260520222956_297` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: AUM: refactor to read Balance Asset section (header-driven, formula-matched)
+- `Edgar_20260520224532_299` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Continued the krake_browser blog post + repo work. Flipped all three krake_b…
+- `Edgar_20260520225101_301` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: AUM: ?type=recalculate_aum operator escape hatch + landing stat alignment
 
 ---
 
@@ -132,13 +172,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,993.08**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$38.62**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -244,6 +288,8 @@ b4f96d3 | 2026-05-16 14:36:54 -0700 | Add live search filter on /members.html (#
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+97f8ace | 2026-05-20 20:58:56 -0700 | Merge pull request #178 from TrueSightDAO/auto/advisory-refresh-2026-05-21
+8252a14 | 2026-05-21 03:58:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 4409c69 | 2026-05-20 16:08:56 -0700 | OPEN_FOLLOWUPS krake_browser: add item 14 — llm_fill_form (v0.3 form comprehension) (#177)
 d2ec136 | 2026-05-20 15:29:41 -0700 | OPEN_FOLLOWUPS krake_browser: repos public + blog post live (#176)
 f03abbb | 2026-05-20 15:29:10 -0700 | MANAGED_LEDGER_EXPLORER_PATTERN: document Balance tab column map (#175)
@@ -282,8 +328,6 @@ be01edc | 2026-05-19 08:58:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 cdb9721 | 2026-05-19 03:14:33 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 8cdeaa5 | 2026-05-19 03:14:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 8b09303 | 2026-05-18 21:43:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
-078be34 | 2026-05-18 21:43:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
-1c46eb0 | 2026-05-18 20:47:33 -0700 | Merge pull request #155 from TrueSightDAO/auto/advisory-refresh-2026-05-19
 … (truncated)
 ```
 
@@ -435,6 +479,41 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/20/2026 21:50:24 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-14`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-15 | 18 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_34 | — | — |
+| 2026-05-15 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_41 | — | — |
+| 2026-05-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
