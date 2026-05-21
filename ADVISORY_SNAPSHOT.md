@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-21T15:56:40Z`
+- Generated (UTC): `2026-05-21T20:20:04Z`
 - Look-back: **7** calendar days (`2026-05-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -43,7 +43,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260520061251_263` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Hyundai tree planting
 - `Edgar_20260520180458_265` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Market gap research
 - `Edgar_20260520203502_267` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Wayne - UX.APP · Contributor Email: wayne@ux.app · Initial Digital Signature: (none — store-manager contact, no key needed)
 - `Edgar_20260520210038_269` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: USD Treasury Balance: dedicated /treasury page, formula-matched breakdown
@@ -63,6 +62,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260520222956_297` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: AUM: refactor to read Balance Asset section (header-driven, formula-matched)
 - `Edgar_20260520224532_299` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Continued the krake_browser blog post + repo work. Flipped all three krake_b…
 - `Edgar_20260520225101_301` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: AUM: ?type=recalculate_aum operator escape hatch + landing stat alignment
+- `Edgar_20260521173324_303` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Diagnosed and fixed oracle.truesight.me chart-cast failure. Root cause: qime…
 
 ---
 
@@ -236,6 +236,7 @@ _All dated lines on/after 2026-05-14_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3ff2144 | 2026-05-21 10:12:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 491d6dc | 2026-05-21 04:55:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8fd6dae | 2026-05-20 15:25:30 -0700 | aum: read from GAS aum_breakdown endpoint (Asset section, formula-matched) (#138)
@@ -275,7 +276,6 @@ a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as
 66c9cb9 | 2026-05-16 14:52:40 -0700 | edgar.html: refresh plug-and-play modules grid + add Practitioner Credentials viewer (#114)
 25fb482 | 2026-05-16 14:51:35 -0700 | Persist members search across refresh: ?q= URL param + localStorage (#113)
 ce5df87 | 2026-05-16 14:49:20 -0700 | feat(programs): per-program QR + Download PDF on credentials page (#112)
-89774b0 | 2026-05-16 14:48:50 -0700 | Enforce canonical top nav across all 89 HTML pages (#111)
 … (truncated)
 ```
 
@@ -288,6 +288,8 @@ ce5df87 | 2026-05-16 14:49:20 -0700 | feat(programs): per-program QR + Download 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8b3a4f2 | 2026-05-21 08:57:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
+19473f7 | 2026-05-21 08:57:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 01564b8 | 2026-05-21 03:10:25 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
 74e9c54 | 2026-05-21 03:10:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 fe5c304 | 2026-05-20 21:53:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
@@ -326,8 +328,6 @@ feaf681 | 2026-05-19 13:33:40 -0700 | Backlog: ERA WhatsApp unit-of-value refram
 c5a86d5 | 2026-05-19 13:14:08 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 94a9a86 | 2026-05-19 13:14:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 2ed3eda | 2026-05-19 12:42:14 -0700 | Document WhatsApp self-claim flow as deferred Phase 2 roadmap (#157)
-4343076 | 2026-05-19 11:52:38 -0700 | Document gh repo sync --force footgun on truesight_me_prod (#156)
-1a42bd6 | 2026-05-19 08:58:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 … (truncated)
 ```
 
@@ -414,6 +414,7 @@ a2e1aa2 | 2026-05-15 15:34:35 -0700 | remove Love of Ganesha partner page — re
 ### `iching_oracle` → `oracle`
 
 ```
+d6e6810 | 2026-05-21 10:31:37 -0700 | Patch qimen-dunjia 2.1.0: add 小满/芒种 to SIMPLIFIED_TO_TRADITIONAL (#21)
 cd9a453 | 2026-05-20 14:49:33 -0700 | fix(oracle): scope qmdj-detail-head/hint selectors to avoid collision with per-palace detail view
 fdabce1 | 2026-05-20 14:37:27 -0700 | feat(oracle): add QMDJ detail panel with head → hint → rest layout (#20)
 06b3470 | 2026-05-19 13:16:19 -0700 | QMDJ chart: synthesis row + always-visible structural overlay (#19)
@@ -504,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/21/2026 8:50:36 |
+| 2026-05 | 58.6 | 14977.11386 | 5/21/2026 12:54:00 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-14`; scanned last **396** data rows)
 
