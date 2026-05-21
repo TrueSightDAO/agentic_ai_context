@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-21T04:52:56Z`
+- Generated (UTC): `2026-05-21T10:10:03Z`
 - Look-back: **7** calendar days (`2026-05-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -236,6 +236,7 @@ _All dated lines on/after 2026-05-14_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+491d6dc | 2026-05-21 04:55:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8fd6dae | 2026-05-20 15:25:30 -0700 | aum: read from GAS aum_breakdown endpoint (Asset section, formula-matched) (#138)
 0f1b231 | 2026-05-20 15:13:57 -0700 | qr Related link carries ?qr_code=<id>; listing gets Minted column (#137)
 5296085 | 2026-05-20 15:05:46 -0700 | Style all 6 status values + fix 'ON CONSIGNMENT' class-name break (#136)
@@ -275,7 +276,6 @@ a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as
 ce5df87 | 2026-05-16 14:49:20 -0700 | feat(programs): per-program QR + Download PDF on credentials page (#112)
 89774b0 | 2026-05-16 14:48:50 -0700 | Enforce canonical top nav across all 89 HTML pages (#111)
 2aa07da | 2026-05-16 14:39:58 -0700 | Relabel program card CTA: 'View cohort' → 'View program' (#110)
-b4f96d3 | 2026-05-16 14:36:54 -0700 | Add live search filter on /members.html (#109)
 … (truncated)
 ```
 
@@ -288,6 +288,8 @@ b4f96d3 | 2026-05-16 14:36:54 -0700 | Add live search filter on /members.html (#
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fe5c304 | 2026-05-20 21:53:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
+6b1b178 | 2026-05-20 21:53:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 97f8ace | 2026-05-20 20:58:56 -0700 | Merge pull request #178 from TrueSightDAO/auto/advisory-refresh-2026-05-21
 8252a14 | 2026-05-21 03:58:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 4409c69 | 2026-05-20 16:08:56 -0700 | OPEN_FOLLOWUPS krake_browser: add item 14 — llm_fill_form (v0.3 form comprehension) (#177)
@@ -326,8 +328,6 @@ c5a86d5 | 2026-05-19 13:14:08 -0700 | chore(previews): refresh Beer Hall preview
 1a42bd6 | 2026-05-19 08:58:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 be01edc | 2026-05-19 08:58:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
 cdb9721 | 2026-05-19 03:14:33 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
-8cdeaa5 | 2026-05-19 03:14:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
-8b09303 | 2026-05-18 21:43:02 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 … (truncated)
 ```
 
@@ -382,6 +382,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ef6d867 | 2026-05-21 10:05:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f9f03de | 2026-05-20 09:56:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ae1d60 | 2026-05-19 10:10:29 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2aceaab | 2026-05-18 22:23:50 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -503,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/20/2026 21:50:24 |
+| 2026-05 | 58.6 | 14977.11386 | 5/21/2026 2:53:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-14`; scanned last **396** data rows)
 
