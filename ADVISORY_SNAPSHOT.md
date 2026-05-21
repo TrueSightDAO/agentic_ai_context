@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-21T10:10:03Z`
+- Generated (UTC): `2026-05-21T15:56:40Z`
 - Look-back: **7** calendar days (`2026-05-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -80,7 +80,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-20T10:59:14.831Z`
+- Generated (UTC): `2026-05-21T10:59:14.202Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -236,6 +236,7 @@ _All dated lines on/after 2026-05-14_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3ff2144 | 2026-05-21 10:12:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 491d6dc | 2026-05-21 04:55:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8fd6dae | 2026-05-20 15:25:30 -0700 | aum: read from GAS aum_breakdown endpoint (Asset section, formula-matched) (#138)
 0f1b231 | 2026-05-20 15:13:57 -0700 | qr Related link carries ?qr_code=<id>; listing gets Minted column (#137)
@@ -275,7 +276,6 @@ a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as
 25fb482 | 2026-05-16 14:51:35 -0700 | Persist members search across refresh: ?q= URL param + localStorage (#113)
 ce5df87 | 2026-05-16 14:49:20 -0700 | feat(programs): per-program QR + Download PDF on credentials page (#112)
 89774b0 | 2026-05-16 14:48:50 -0700 | Enforce canonical top nav across all 89 HTML pages (#111)
-2aa07da | 2026-05-16 14:39:58 -0700 | Relabel program card CTA: 'View cohort' → 'View program' (#110)
 … (truncated)
 ```
 
@@ -288,6 +288,8 @@ ce5df87 | 2026-05-16 14:49:20 -0700 | feat(programs): per-program QR + Download 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+01564b8 | 2026-05-21 03:10:25 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
+74e9c54 | 2026-05-21 03:10:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 fe5c304 | 2026-05-20 21:53:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
 6b1b178 | 2026-05-20 21:53:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 97f8ace | 2026-05-20 20:58:56 -0700 | Merge pull request #178 from TrueSightDAO/auto/advisory-refresh-2026-05-21
@@ -326,8 +328,6 @@ c5a86d5 | 2026-05-19 13:14:08 -0700 | chore(previews): refresh Beer Hall preview
 2ed3eda | 2026-05-19 12:42:14 -0700 | Document WhatsApp self-claim flow as deferred Phase 2 roadmap (#157)
 4343076 | 2026-05-19 11:52:38 -0700 | Document gh repo sync --force footgun on truesight_me_prod (#156)
 1a42bd6 | 2026-05-19 08:58:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
-be01edc | 2026-05-19 08:58:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-19 UTC)
-cdb9721 | 2026-05-19 03:14:33 -0700 | chore(previews): refresh Beer Hall preview (2026-05-19 UTC)
 … (truncated)
 ```
 
@@ -504,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/21/2026 2:53:35 |
+| 2026-05 | 58.6 | 14977.11386 | 5/21/2026 8:50:36 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-14`; scanned last **396** data rows)
 
