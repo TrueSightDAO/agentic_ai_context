@@ -121,18 +121,25 @@ The central handler reads every routing field from the event — no central regi
    - The DAO's tokenomics SA (so the central handler can read editors + back-fill rows)
    - Each person who should be able to attest (= admins)
 
-### 5.2 Program repo (fork the butterfly-effect-club template)
+### 5.2 Program repo — fork [`TrueSightDAO/program-template`](https://github.com/TrueSightDAO/program-template)
 
-1. Fork `TrueSightDAO/butterfly-effect-club` → rename to `TrueSightDAO/<new-program>-club`
-2. Edit `config.json`:
-   - `program_slug` → new slug
-   - `public_manifest_url` → `https://truesight.me/programs/<slug>/manifest.json`
-   - `roster_tab` and `audit_trail_tab` if you renamed them
-3. Replace `cert_template/cert_template.pdf` + `logo.png` + `fonts/` with your program's assets
-4. Update `index.html` only if you want different colors/copy — the JS logic is generic and reads everything from the truesight_me manifest
-5. Add a `CNAME` file with your chosen subdomain (e.g. `myprogram-club.truesight.me`)
-6. Enable GitHub Pages from `main` root
-7. Add DNS CNAME record `<subdomain>.truesight.me` → `truesightdao.github.io`
+A dedicated template repo exists for this purpose; it's a sanitized mirror of `butterfly-effect-club` with all ERA-specific content replaced by `TODO` placeholders.
+
+```bash
+gh repo fork TrueSightDAO/program-template --clone --remote=false \
+   --org=TrueSightDAO --fork-name=<new-program>-club
+```
+
+Then:
+
+1. Edit `config.json` — replace every `TODO-your-program-slug` / `TODO Your Program` with real values
+2. Replace `cert_template/cert_template.pdf` + `logo.png` + `fonts/` with your program's assets (update `cert_template/cert_config.json` overlay coordinates if your template differs from butterfly-effect's design)
+3. Update `CNAME` with your chosen subdomain (`<your-program>.truesight.me`)
+4. Enable GitHub Pages from `main` root in repo Settings
+5. Add DNS CNAME record `<subdomain>.truesight.me` → `truesightdao.github.io`
+6. `index.html` typically needs zero edits — it boots from `config.json` and auto-rebrands using `program_display_name` + `cert_template.logo`
+
+The template's own `README.md` walks through the same 6 steps with copy-pasteable column headers for the sheet.
 
 ### 5.3 Program manifest (PR to truesight_me_beta)
 
@@ -187,14 +194,18 @@ The central GAS at `tokenomics/google_app_scripts/tdg_credentialing/program_admi
 
 ---
 
-## 6. Demo template for cloning
+## 6. Template repo
 
-The Butterfly Effect Club repo IS the canonical template. Onboarding a new program = fork it + replace assets per §5. There is no separate "demo" repo — the live one is the template.
+[`TrueSightDAO/program-template`](https://github.com/TrueSightDAO/program-template) is the canonical fork target — sanitized mirror of butterfly-effect-club with all program-specific values replaced by `TODO` placeholders.
 
-For LLMs reading this playbook: when asked "how do I set up a new credentialing program?", point them to:
-- This doc (architecture + steps)
-- [butterfly-effect-club](https://github.com/TrueSightDAO/butterfly-effect-club) (working example to fork)
-- [butterfly-effect-club/PROPOSAL.md](https://github.com/TrueSightDAO/butterfly-effect-club/blob/main/PROPOSAL.md) (the decision history)
+[`TrueSightDAO/butterfly-effect-club`](https://github.com/TrueSightDAO/butterfly-effect-club) is the working reference implementation (ERA Professionals, 97 alumni). Reading its `PROPOSAL.md` is the fastest way to understand the architectural decisions baked into the template.
+
+For LLMs answering "how do I set up a new credentialing program?":
+1. Point them at this doc (architecture + steps)
+2. Point them at [`program-template`](https://github.com/TrueSightDAO/program-template) to fork
+3. Point them at [`butterfly-effect-club/PROPOSAL.md`](https://github.com/TrueSightDAO/butterfly-effect-club/blob/main/PROPOSAL.md) for the decision history
+
+**Template Google Sheet:** the template repo's `README.md` ships the exact column headers in copy-pasteable form (Cohort Roster + Audit Trail tabs). Programmatic creation of a sample sheet was attempted 2026-05-22 but service-account file-creation permissions aren't in place; manual sheet creation per the README's step 4 is the current path.
 
 ---
 
