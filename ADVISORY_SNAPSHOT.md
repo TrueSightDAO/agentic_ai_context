@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-22T04:44:09Z`
+- Generated (UTC): `2026-05-22T09:56:25Z`
 - Look-back: **7** calendar days (`2026-05-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -236,6 +236,7 @@ _All dated lines on/after 2026-05-15_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6c78732 | 2026-05-22 04:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 920c482 | 2026-05-21 20:24:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3ff2144 | 2026-05-21 10:12:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -275,7 +276,6 @@ ca77981 | 2026-05-18 13:56:20 -0700 | feat(programs): Butterfly Effect cert down
 a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as inline markdown (links + code) (#116)
 3931a6e | 2026-05-16 15:09:24 -0700 | feat(programs): logos on programs.html cards + per-program landing hero (#115)
 66c9cb9 | 2026-05-16 14:52:40 -0700 | edgar.html: refresh plug-and-play modules grid + add Practitioner Credentials viewer (#114)
-25fb482 | 2026-05-16 14:51:35 -0700 | Persist members search across refresh: ?q= URL param + localStorage (#113)
 … (truncated)
 ```
 
@@ -288,6 +288,8 @@ a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9aad8db | 2026-05-21 21:44:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-22 UTC)
+f069b6e | 2026-05-21 21:44:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-22 UTC)
 ec58766 | 2026-05-21 20:54:53 -0700 | Merge pull request #179 from TrueSightDAO/auto/advisory-refresh-2026-05-22
 f317131 | 2026-05-22 03:54:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-22 UTC)
 f84cbb1 | 2026-05-21 13:20:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
@@ -326,8 +328,6 @@ ba906d4 | 2026-05-19 15:55:15 -0700 | Fix retention-band vertical overlap betwee
 e4b64d3 | 2026-05-19 15:38:22 -0700 | Backlog: network_state.json daily DAO state digest (#163)
 64828ce | 2026-05-19 15:25:18 -0700 | Add SVG visual to GROWTH_MODEL.md (#162)
 c600583 | 2026-05-19 15:17:12 -0700 | Document service-identity onboarding pattern + log first bot (#161)
-7e9c162 | 2026-05-19 15:10:15 -0700 | Document TrueSight DAO growth model (#160)
-33cabca | 2026-05-19 14:30:37 -0700 | OPEN_FOLLOWUPS: log UTF-8 encoding hiccup in practice-event submission (#159)
 … (truncated)
 ```
 
@@ -382,6 +382,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+cecb4e8 | 2026-05-22 09:51:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ef6d867 | 2026-05-21 10:05:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f9f03de | 2026-05-20 09:56:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3ae1d60 | 2026-05-19 10:10:29 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -504,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/21/2026 20:50:27 |
+| 2026-05 | 58.6 | 14977.11386 | 5/22/2026 2:51:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-15`; scanned last **396** data rows)
 
