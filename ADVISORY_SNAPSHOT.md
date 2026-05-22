@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-22T09:56:25Z`
+- Generated (UTC): `2026-05-22T15:31:21Z`
 - Look-back: **7** calendar days (`2026-05-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -80,7 +80,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-21T10:59:14.202Z`
+- Generated (UTC): `2026-05-22T10:59:14.417Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -89,8 +89,8 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 - Reclassified — D2C only: 1  (#1)
 - AI: Contact Form found: 109  (#3)
-- Research: 60  (#8)
-- AI: No fit signal: 156  (#9)
+- Research: 59  (#8)
+- AI: No fit signal: 157  (#9)
 - AI: Enrich — manual: 93  (#10)
 - Manager Follow-up: 33  (#13)
 - Followed Up: 1  (#15)
@@ -236,6 +236,7 @@ _All dated lines on/after 2026-05-15_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1fa71be | 2026-05-22 09:58:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6c78732 | 2026-05-22 04:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 920c482 | 2026-05-21 20:24:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -275,7 +276,6 @@ e36743e | 2026-05-18 14:06:48 -0700 | program-shell: bypass jsDelivr cache for i
 ca77981 | 2026-05-18 13:56:20 -0700 | feat(programs): Butterfly Effect cert download + flip status to active (#117)
 a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as inline markdown (links + code) (#116)
 3931a6e | 2026-05-16 15:09:24 -0700 | feat(programs): logos on programs.html cards + per-program landing hero (#115)
-66c9cb9 | 2026-05-16 14:52:40 -0700 | edgar.html: refresh plug-and-play modules grid + add Practitioner Credentials viewer (#114)
 … (truncated)
 ```
 
@@ -288,6 +288,8 @@ a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2ece392 | 2026-05-22 02:56:39 -0700 | chore(previews): refresh Beer Hall preview (2026-05-22 UTC)
+355fecd | 2026-05-22 02:56:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-22 UTC)
 9aad8db | 2026-05-21 21:44:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-22 UTC)
 f069b6e | 2026-05-21 21:44:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-22 UTC)
 ec58766 | 2026-05-21 20:54:53 -0700 | Merge pull request #179 from TrueSightDAO/auto/advisory-refresh-2026-05-22
@@ -326,8 +328,6 @@ f1e5a27 | 2026-05-20 03:47:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 ba906d4 | 2026-05-19 15:55:15 -0700 | Fix retention-band vertical overlap between rows (#165)
 6deabfa | 2026-05-19 15:49:08 -0700 | Fix SVG text overlap by spacing loops + shortening cardinal labels (#164)
 e4b64d3 | 2026-05-19 15:38:22 -0700 | Backlog: network_state.json daily DAO state digest (#163)
-64828ce | 2026-05-19 15:25:18 -0700 | Add SVG visual to GROWTH_MODEL.md (#162)
-c600583 | 2026-05-19 15:17:12 -0700 | Document service-identity onboarding pattern + log first bot (#161)
 … (truncated)
 ```
 
@@ -505,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/22/2026 2:51:16 |
+| 2026-05 | 58.6 | 14977.11386 | 5/22/2026 7:56:02 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-15`; scanned last **396** data rows)
 
