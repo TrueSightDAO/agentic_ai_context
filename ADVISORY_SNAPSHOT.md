@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-22T15:31:21Z`
+- Generated (UTC): `2026-05-22T20:19:34Z`
 - Look-back: **7** calendar days (`2026-05-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 33
+- `[CONTRIBUTION EVENT]` × 34
 - `[PARTNER CHECK-IN EVENT]` × 3
 - `[CONTRIBUTOR ADD EVENT]` × 2
 - `[CAPITAL INJECTION EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260520212236_273` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Treasury breakdown endpoint: cache via PropertiesService (10x speedup)
-- `Edgar_20260520212821_275` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: QR-asset architectural cleanup + provenance surface. Created TrueSightDAO/li…
-- `Edgar_20260520213318_277` · **Edgar** · [CAPITAL INJECTION EVENT] Ledger: USD · Amount: 5.30 · Description: Personal contribution by Gary Teh covering DeepSeek API credits used by DAO …
-- `Edgar_20260520213320_279` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Scaffolded the krake_browser human-AI symbiosis initiative across KrakeIO + …
 - `Edgar_20260520214010_281` · **Edgar** · [CAPITAL INJECTION EVENT] Ledger: USD · Amount: 5.30 · Description: Personal contribution by Gary Teh covering DeepSeek API credits used by DAO …
 - `Edgar_20260520214143_283` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: QMDJ detail panel layout for oracle.truesight.me
 - `Edgar_20260520214834_285` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Wayne UX.APP onboarding + DAO Partners rename migration + operator-partner m…
@@ -63,6 +58,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260521231052_307` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 30 · Description: Grok subscription
 - `Edgar_20260521231123_309` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20 · Description: Claude subscription
 - `Edgar_20260522043038_311` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Observing the strengthening of two signals today while over at Dennis’s plac…
+- `Edgar_20260522170130_313` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sync up on the siscomex and Radar system registration and alternate system r…
+- `Edgar_20260522180830_315` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Following up with Jedielcio from CEPOTX in Para Brazil to see if their facil…
+- `Edgar_20260522185129_317` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Muito bom! Estarei na China em julho para me reunir com a equipe local respo…
+- `Edgar_20260522193107_319` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Generated high level architecture design direction and then past it to Kimi,…
 
 ---
 
@@ -236,6 +235,7 @@ _All dated lines on/after 2026-05-15_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+69ac392 | 2026-05-22 15:37:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1fa71be | 2026-05-22 09:58:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6c78732 | 2026-05-22 04:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 920c482 | 2026-05-21 20:24:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -275,7 +275,6 @@ e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can nav
 e36743e | 2026-05-18 14:06:48 -0700 | program-shell: bypass jsDelivr cache for index.json on members pages
 ca77981 | 2026-05-18 13:56:20 -0700 | feat(programs): Butterfly Effect cert download + flip status to active (#117)
 a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as inline markdown (links + code) (#116)
-3931a6e | 2026-05-16 15:09:24 -0700 | feat(programs): logos on programs.html cards + per-program landing hero (#115)
 … (truncated)
 ```
 
@@ -288,6 +287,8 @@ a58c872 | 2026-05-16 15:35:57 -0700 | programs landing: render description_md as
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+679ef1d | 2026-05-22 08:31:41 -0700 | chore(previews): refresh Beer Hall preview (2026-05-22 UTC)
+ba5b47c | 2026-05-22 08:31:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-22 UTC)
 2ece392 | 2026-05-22 02:56:39 -0700 | chore(previews): refresh Beer Hall preview (2026-05-22 UTC)
 355fecd | 2026-05-22 02:56:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-22 UTC)
 9aad8db | 2026-05-21 21:44:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-22 UTC)
@@ -326,8 +327,6 @@ b76ab8c | 2026-05-20 03:00:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 53dec1e | 2026-05-19 20:47:41 -0700 | Merge pull request #166 from TrueSightDAO/auto/advisory-refresh-2026-05-20
 f1e5a27 | 2026-05-20 03:47:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 ba906d4 | 2026-05-19 15:55:15 -0700 | Fix retention-band vertical overlap between rows (#165)
-6deabfa | 2026-05-19 15:49:08 -0700 | Fix SVG text overlap by spacing loops + shortening cardinal labels (#164)
-e4b64d3 | 2026-05-19 15:38:22 -0700 | Backlog: network_state.json daily DAO state digest (#163)
 … (truncated)
 ```
 
@@ -505,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/22/2026 7:56:02 |
+| 2026-05 | 58.6 | 14977.11386 | 5/22/2026 12:52:57 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-15`; scanned last **396** data rows)
 
