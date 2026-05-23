@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-23T04:24:43Z`
+- Generated (UTC): `2026-05-23T08:36:08Z`
 - Look-back: **7** calendar days (`2026-05-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -234,6 +234,7 @@ _All dated lines on/after 2026-05-16_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6254c06 | 2026-05-23 04:27:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 43900c7 | 2026-05-22 17:09:40 -0700 | blog: rewrite "The chain holds" — tighter post + SVG hero (#144)
 0519f8b | 2026-05-22 17:00:05 -0700 | blog: add "The chain holds" (Field Signals #7) (#143)
 797d455 | 2026-05-22 15:56:28 -0700 | butterfly-effect: bump tokenomics_admin_endpoint to v9 (header-keyed TCL + list_attested) (#142)
@@ -273,7 +274,6 @@ a6d4547 | 2026-05-18 15:03:10 -0700 | Landing tile expanders: USD Treasury + AUM
 5efbd52 | 2026-05-18 14:54:33 -0700 | Expand LLM-readable stats: programs, partners, deploy targets, treasury breakdown (#124)
 e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can navigate the code surface (#123)
 4b768d7 | 2026-05-18 14:35:20 -0700 | Add stats/beerhall_archive.json for historical-lookup queries (#122)
-9d4e3cf | 2026-05-18 14:33:55 -0700 | feat(programs): '← All programs' breadcrumb on each program landing (#121)
 … (truncated)
 ```
 
@@ -286,6 +286,8 @@ e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can nav
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4748b99 | 2026-05-22 21:24:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-23 UTC)
+7cc5dd7 | 2026-05-22 21:24:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-23 UTC)
 d537b33 | 2026-05-22 20:30:52 -0700 | Merge pull request #182 from TrueSightDAO/auto/advisory-refresh-2026-05-23
 765b7c1 | 2026-05-23 03:30:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-23 UTC)
 ca16b01 | 2026-05-22 16:22:19 -0700 | CREDENTIALING_COHORT_PROGRAM_ONBOARDING: point at program-template repo (#181)
@@ -324,8 +326,6 @@ e11b06e | 2026-05-20 14:32:07 -0700 | OPEN_FOLLOWUPS: log krake_browser engine i
 1791039 | 2026-05-20 13:35:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 fe27e2c | 2026-05-20 13:31:57 -0700 | Document lineage-assets architecture (parallel to lineage-credentials) (#167)
 f41fc3c | 2026-05-20 09:06:08 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
-003eb1c | 2026-05-20 09:06:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
-1d4cbdb | 2026-05-20 03:00:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
 … (truncated)
 ```
 
@@ -376,6 +376,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+bbf5afa | 2026-05-23 08:33:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cecb4e8 | 2026-05-22 09:51:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ef6d867 | 2026-05-21 10:05:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f9f03de | 2026-05-20 09:56:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -486,7 +487,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/22/2026 20:50:49 |
+| 2026-05 | 58.6 | 14977.11386 | 5/23/2026 0:50:17 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-16`; scanned last **396** data rows)
 
