@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-23T08:36:08Z`
+- Generated (UTC): `2026-05-23T14:09:02Z`
 - Look-back: **7** calendar days (`2026-05-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-22T10:59:14.417Z`
+- Generated (UTC): `2026-05-23T10:59:13.560Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -234,6 +234,7 @@ _All dated lines on/after 2026-05-16_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+52e88fc | 2026-05-23 08:36:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6254c06 | 2026-05-23 04:27:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 43900c7 | 2026-05-22 17:09:40 -0700 | blog: rewrite "The chain holds" — tighter post + SVG hero (#144)
 0519f8b | 2026-05-22 17:00:05 -0700 | blog: add "The chain holds" (Field Signals #7) (#143)
@@ -273,7 +274,6 @@ fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via
 a6d4547 | 2026-05-18 15:03:10 -0700 | Landing tile expanders: USD Treasury + AUM show per-ledger / per-currency (#125)
 5efbd52 | 2026-05-18 14:54:33 -0700 | Expand LLM-readable stats: programs, partners, deploy targets, treasury breakdown (#124)
 e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can navigate the code surface (#123)
-4b768d7 | 2026-05-18 14:35:20 -0700 | Add stats/beerhall_archive.json for historical-lookup queries (#122)
 … (truncated)
 ```
 
@@ -286,6 +286,8 @@ e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can nav
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0fd58f8 | 2026-05-23 01:36:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-23 UTC)
+fdf5491 | 2026-05-23 01:36:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-23 UTC)
 4748b99 | 2026-05-22 21:24:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-23 UTC)
 7cc5dd7 | 2026-05-22 21:24:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-23 UTC)
 d537b33 | 2026-05-22 20:30:52 -0700 | Merge pull request #182 from TrueSightDAO/auto/advisory-refresh-2026-05-23
@@ -324,8 +326,6 @@ e11b06e | 2026-05-20 14:32:07 -0700 | OPEN_FOLLOWUPS: log krake_browser engine i
 7905fee | 2026-05-20 13:42:29 -0700 | docs(OPEN_FOLLOWUPS): rename 'Agroverse Partners' sheet → 'DAO Partners' (#168)
 0d30a59 | 2026-05-20 13:35:07 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
 1791039 | 2026-05-20 13:35:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
-fe27e2c | 2026-05-20 13:31:57 -0700 | Document lineage-assets architecture (parallel to lineage-credentials) (#167)
-f41fc3c | 2026-05-20 09:06:08 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
 … (truncated)
 ```
 
@@ -487,7 +487,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/23/2026 0:50:17 |
+| 2026-05 | 58.6 | 14977.11386 | 5/23/2026 6:50:31 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-16`; scanned last **396** data rows)
 
