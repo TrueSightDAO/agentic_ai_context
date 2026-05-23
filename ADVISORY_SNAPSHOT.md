@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-23T14:09:02Z`
+- Generated (UTC): `2026-05-23T19:44:05Z`
 - Look-back: **7** calendar days (`2026-05-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,17 +34,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 26
 - `[CREDENTIALING ATTESTATION EVENT]` × 9
+- `[EMAIL REGISTERED EVENT]` × 4
 - `[CONTRIBUTOR ADD EVENT]` × 3
-- `[EMAIL REGISTERED EVENT]` × 3
-- `[CAPITAL INJECTION EVENT]` × 2
-- `[EMAIL VERIFICATION EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260522211836_325` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shereen Abdullah · Contributor Email: shereenabdullah9@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
-- `Edgar_20260522211838_327` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shahbaz Jamote · Contributor Email: shahbaz.jamote@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
-- `Edgar_20260522221214_329` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Butterfly Effect credentialing platform — v4 architecture + scaffolding
-- `Edgar_20260522222016_331` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 80.65 · Description: Upgraded Claude subscription
 - `Edgar_20260522223005_333` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation source: https://butterfly-effect-club.truesight.me/ · Submitted At: 2026-05-22T22:30:05.279Z
 - `Edgar_20260522224251_335` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
 - `Edgar_20260522224448_337` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
@@ -61,6 +56,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260522232207_015` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
 - `Edgar_20260522235119_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Butterfly Effect credentialing — operator-ready + template repo + cleanup
 - `Edgar_20260523000112_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Blog post: The chain holds (Field Signals #7)
+- `Edgar_20260523151709_021` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260523151726_023` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 1XX5H5XONF7CC2y2sC4ZExEk4hdGTABexHt-cGvUSKM · Email: garyjob@gmail.com
+- `Edgar_20260523155334_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Autopilot allowlist + mobile attest button fix
+- `Edgar_20260523171719_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Informing ERA what is human in the loop in this case
 
 ---
 
@@ -234,6 +233,7 @@ _All dated lines on/after 2026-05-16_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 52e88fc | 2026-05-23 08:36:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6254c06 | 2026-05-23 04:27:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 43900c7 | 2026-05-22 17:09:40 -0700 | blog: rewrite "The chain holds" — tighter post + SVG hero (#144)
@@ -273,7 +273,6 @@ fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via
 1fdd8d0 | 2026-05-18 15:21:34 -0700 | feat(credentials): Recent activity (pending review) section — Phase 4.1 (#126)
 a6d4547 | 2026-05-18 15:03:10 -0700 | Landing tile expanders: USD Treasury + AUM show per-ledger / per-currency (#125)
 5efbd52 | 2026-05-18 14:54:33 -0700 | Expand LLM-readable stats: programs, partners, deploy targets, treasury breakdown (#124)
-e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can navigate the code surface (#123)
 … (truncated)
 ```
 
@@ -286,6 +285,8 @@ e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can nav
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+654bb20 | 2026-05-23 07:09:25 -0700 | chore(previews): refresh Beer Hall preview (2026-05-23 UTC)
+0182457 | 2026-05-23 07:09:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-23 UTC)
 0fd58f8 | 2026-05-23 01:36:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-23 UTC)
 fdf5491 | 2026-05-23 01:36:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-23 UTC)
 4748b99 | 2026-05-22 21:24:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-23 UTC)
@@ -324,8 +325,6 @@ e11b06e | 2026-05-20 14:32:07 -0700 | OPEN_FOLLOWUPS: log krake_browser engine i
 3f88c0f | 2026-05-20 14:02:19 -0700 | OPEN_FOLLOWUPS: log AUM card /aum-page follow-up (#170)
 3064d9c | 2026-05-20 13:58:23 -0700 | Update LINEAGE_ASSETS.md: Option B migration + Product Verification (#169)
 7905fee | 2026-05-20 13:42:29 -0700 | docs(OPEN_FOLLOWUPS): rename 'Agroverse Partners' sheet → 'DAO Partners' (#168)
-0d30a59 | 2026-05-20 13:35:07 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
-1791039 | 2026-05-20 13:35:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 … (truncated)
 ```
 
@@ -487,7 +486,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/23/2026 6:50:31 |
+| 2026-05 | 58.6 | 14977.11386 | 5/23/2026 11:52:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-16`; scanned last **396** data rows)
 
