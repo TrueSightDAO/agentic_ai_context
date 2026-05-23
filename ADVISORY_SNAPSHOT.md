@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-23T03:30:36Z`
+- Generated (UTC): `2026-05-23T04:24:43Z`
 - Look-back: **7** calendar days (`2026-05-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 26
+- `[CREDENTIALING ATTESTATION EVENT]` × 9
+- `[CONTRIBUTOR ADD EVENT]` × 3
+- `[EMAIL REGISTERED EVENT]` × 3
+- `[CAPITAL INJECTION EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20260522211836_325` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shereen Abdullah · Contributor Email: shereenabdullah9@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260522211838_327` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shahbaz Jamote · Contributor Email: shahbaz.jamote@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260522221214_329` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Butterfly Effect credentialing platform — v4 architecture + scaffolding
+- `Edgar_20260522222016_331` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 80.65 · Description: Upgraded Claude subscription
+- `Edgar_20260522223005_333` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation source: https://butterfly-effect-club.truesight.me/ · Submitted At: 2026-05-22T22:30:05.279Z
+- `Edgar_20260522224251_335` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260522224448_337` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260522224713_339` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: Cro3JxOeMaafxaPv8jb3czDII79T1KmD2nYTotE3mxw · Email: garyjob@gmail.com
+- `Edgar_20260522225030_341` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522230631_343` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Butterfly Effect credentialing — end-to-end live (post-bootstrap work)
+- `Edgar_20260522230903_001` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522231104_003` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522231941_005` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522231945_007` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522231947_009` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522232002_011` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522232205_013` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522232207_015` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
+- `Edgar_20260522235119_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Butterfly Effect credentialing — operator-ready + template repo + cleanup
+- `Edgar_20260523000112_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Blog post: The chain holds (Field Signals #7)
 
 ---
 
@@ -132,13 +170,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,992.62**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$39.08**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -244,6 +286,8 @@ e82782c | 2026-05-18 14:42:58 -0700 | Add stats/repos_index.json so LLMs can nav
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d537b33 | 2026-05-22 20:30:52 -0700 | Merge pull request #182 from TrueSightDAO/auto/advisory-refresh-2026-05-23
+765b7c1 | 2026-05-23 03:30:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-23 UTC)
 ca16b01 | 2026-05-22 16:22:19 -0700 | CREDENTIALING_COHORT_PROGRAM_ONBOARDING: point at program-template repo (#181)
 8520dd8 | 2026-05-22 15:11:12 -0700 | Add CREDENTIALING_COHORT_PROGRAM_ONBOARDING.md — v4 architecture playbook (#180)
 6fbd512 | 2026-05-22 13:19:48 -0700 | chore(previews): refresh Beer Hall preview (2026-05-22 UTC)
@@ -282,8 +326,6 @@ fe27e2c | 2026-05-20 13:31:57 -0700 | Document lineage-assets architecture (para
 f41fc3c | 2026-05-20 09:06:08 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
 003eb1c | 2026-05-20 09:06:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
 1d4cbdb | 2026-05-20 03:00:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
-b76ab8c | 2026-05-20 03:00:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-20 UTC)
-5d47c45 | 2026-05-19 21:46:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-20 UTC)
 … (truncated)
 ```
 
@@ -420,6 +462,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/22/2026 20:50:49 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-16`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
