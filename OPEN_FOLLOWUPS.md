@@ -32,6 +32,14 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Edgar → `dao_protocol` extraction — continue from PR1 (scaffold + deploy `/ping`)
+
+**Context.** Pulling the DAO/Agroverse integration surface (RSA contributions, Stripe commerce, shipping rates, newsletter / email-agent tracking, GAS proxy, QR check) out of the Rails `sentiment_importer` (Edgar) app into a Python FastAPI service. Full plan, deploy topology, decisions, and a live **resume tracker** are in **`EDGAR_DAO_EXTRACTION_PLAN.md`** (this repo); Stripe flows in `STRIPE_LEDGER_ROUTING.md`. **Done:** planning/docs (PR #185) + PR0 — GitHub repo renamed `dao_client`→`dao_protocol` (PR #186; local remote updated, old URLs 301-redirect, package `truesight_dao_client` + local dir unchanged).
+
+**Scope (next unit = PR1).** Scaffold `truesight_dao_client/server/` (FastAPI `main.py`, `config.py`, `routes/health.py`) + a `[server]` extra in `pyproject.toml` + `server/deploy/` (deploy script + systemd unit modeled on Edgar `deploy.sh`); deploy to `seni_ror_new:8010` and add the health `location` block on `krake_ng` nginx. Then PR2–PR7 per the plan's strangler-fig order (one path flipped at a time, Rails handler as rollback). After each PR merges, report the DAO contribution before starting the next (per `OPERATING_INSTRUCTIONS.md` §5).
+
+**Blocker.** None for PR1, but it needs SSH to `seni_ror_new` + `krake_ng` (:2202), sudo for systemd, and an nginx edit on the **shared** `krake_ng` proxy — snapshot the `edgar.truesight.me` server block before editing. Not a rush-against-a-deadline job.
+
 ### Dual Tech Summit 2026 (≈Jun 26, SF) — per-phase event follow-ups
 
 **Context.** Agroverse is pouring two flasks — **Oscar's Farm ceremonial cacao (Bahia) + Paulo's cacao tea (Pará)** — with 3 oz cups at the SVH Capital / Orbis86 Dual Tech Summit, SF (Ken confirmed 2026-05-23). Full plan lives in `market_research/events/dualtechsummitjune26/` in **TrueSightDAO/go_to_market** (PR #133): `proposal_finalized.md` (plan-of-record), `implementation_roadmap.md` (phasing), `EXECUTION_CHECKLIST.md` (checkable), `field_assets.md` + `truesight_essay_draft.md` (drafted assets). These are **team follow-ups** (Gary / Claude / any LLM) — *not* DAO partner-ledger check-ins (`check_in_partner` is for inventory-carrying retail partners, not an event host).
