@@ -32,6 +32,20 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Dual Tech Summit 2026 (≈Jun 26, SF) — per-phase event follow-ups
+
+**Context.** Agroverse is pouring two flasks — **Oscar's Farm ceremonial cacao (Bahia) + Paulo's cacao tea (Pará)** — with 3 oz cups at the SVH Capital / Orbis86 Dual Tech Summit, SF (Ken confirmed 2026-05-23). Full plan lives in `market_research/events/dualtechsummitjune26/` in **TrueSightDAO/go_to_market** (PR #133): `proposal_finalized.md` (plan-of-record), `implementation_roadmap.md` (phasing), `EXECUTION_CHECKLIST.md` (checkable), `field_assets.md` + `truesight_essay_draft.md` (drafted assets). These are **team follow-ups** (Gary / Claude / any LLM) — *not* DAO partner-ledger check-ins (`check_in_partner` is for inventory-carrying retail partners, not an event host).
+
+**Scope (time-ordered — pick up the next due one).**
+1. **By ~May 31** — Gary confirms with Ken: date, venue (War Memorial vs "American Legion"), the table, ClawCamp block timing → unblocks the site/pipeline build.
+2. **~Jun 1–10** — review the drafted Phase-1 assets (`truesight_essay_draft.md`, `field_assets.md`).
+3. **~Jun 8–17 (after date locked)** — Claude builds the event page + wires QR → newsletter signup → Hit List (checklist Phase 2).
+4. **~Jun 18–20** — ⛔ dry-run the QR→signup→sheet loop, then publish the essay. *Nothing prints until the dry run passes.*
+5. **~Jun 20–25** — print placard/stickers, pull cacao, pre-brew both flasks; personal (no-blast) outreach only.
+6. **~Jun 27 – Jul 10** — post-event: leads → Hit List → Grok follow-ups; field-dispatch newsletter only if a real story; update `OUTREACH_QUALITATIVE_LOOP.md`.
+
+**Blocker.** Steps 3+ depend on Ken confirming date/venue (step 1). Steps 1–2 are actionable now.
+
 ### `truesight.me/stats/network_state.json` — daily-refreshed DAO network-state digest
 
 **Context.** Surfaced 2026-05-19 in a strategy conversation about what makes the DAO interesting *given* LLMs handle the plumbing. The thesis: with integration / data-entry / reconciliation cost approaching zero (per the 2026-05-19 Faire-bot onboarding session + Partner Check-in concierge UX), the scarce operator input is no longer ops work — it's **strategic design of loops + network orchestration + relationship hub-and-spoke choices**. This concentrates operator value into fewer, higher-stakes decisions, which means *visibility into network state* becomes the load-bearing input. The name `network_state.json` is a deliberate nod to Balaji's *Network State* thesis (kept in the implementation layer, not in the public-facing Growth Model SVG title — see strategy chat for the why).
