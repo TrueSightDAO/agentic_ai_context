@@ -79,11 +79,28 @@ You may add or update context only in the following ways.
 
 ---
 
-## 5. Summary for agents
+## 5. Execution convention: roadmap checklist before implementation
+
+**Before writing implementation code for any multi-step build, migration, or refactor, produce a written execution roadmap checklist and commit it to a *tracked* file in this repo (not a gitignored `notes/*.md`).** The roadmap must let any agent or session **stop and resume from where the last one left off** — this is a hard prerequisite, not an optional nicety.
+
+A compliant roadmap includes:
+
+- A **pre-flight checklist** — access, credentials, prerequisites, and decisions to confirm *before* coding.
+- A **sequenced plan** — the ordered units of work (e.g. `PR0…PRn`), each independently shippable.
+- A **resume tracker** — a status row per unit (e.g. `merged ☐` / `contribution reported ☐`) plus a prominent **"RESUME HERE"** pointer to the first unfinished step.
+
+Keep the roadmap **tracked and current**: update the resume tracker as each unit lands. Per the contribution convention, after each unit merges, **report the DAO contribution before starting the next** (see `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`).
+
+**Reference example:** `EDGAR_DAO_EXTRACTION_PLAN.md` (Edgar → `dao_protocol` extraction).
+
+---
+
+## 6. Summary for agents
 
 - **Read first:** OPERATING_INSTRUCTIONS.md → WORKSPACE_CONTEXT.md → PROJECT_INDEX.md (and credentials folder when needed).
 - **Pushing code (any repo you edit):** Create a **feature branch**, push with the agent SSH key (`GITHUB_AGENTIC_AI_SSH.md`), open a **Pull Request** whose description stands alone for humans (**goal**, **changes**, **testing**, **rollout / follow-ups**). Do not push agent work directly to the default branch unless the user explicitly orders it.
 - **Do not edit:** WORKSPACE_CONTEXT.md, PROJECT_INDEX.md, README.md, OPERATING_INSTRUCTIONS.md unless the user explicitly asks.
 - **You may:** Append to `CONTEXT_UPDATES.md`; create/update your own files under `notes/`; suggest changes via CONTEXT_UPDATES or a note instead of editing canonical docs.
+- **Before implementing:** For any multi-step build / migration / refactor, commit a *tracked* **execution roadmap checklist** (pre-flight + sequenced plan + resume tracker) **first** — see §5.
 
 Following these rules keeps the shared context consistent and allows other agents to read and use it reliably.
