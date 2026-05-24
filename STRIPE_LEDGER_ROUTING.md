@@ -14,25 +14,29 @@
 
 ```mermaid
 flowchart TD
-    %% --- ENTRY POINTS (5 origins) ---
+    %% --- ENTRY POINTS (6 origins) ---
     AGR["agroverse.shop cart<br/>(checkout.js)"]:::entry
     CAP["capoeira.agroverse.shop donate<br/>(capoeira-checkout.js)<br/>+ any future managed-ledger UI"]:::entry
     META["Meta / Instagram Shop"]:::entry
     SAAS["Edgar SaaS subscription<br/>(monthly Stripe charge)"]:::entry
     DAPP["DApp scanner.html<br/>signs [SALES EVENT]"]:::entry
+    QRSCAN["Consumer scans product QR<br/>(physical label → /qr-code-check)"]:::entry
 
     %% --- SESSION CREATION ---
     GAS["Google Apps Script<br/>createCheckoutSession (cart)<br/>createLedgerCheckoutSession (ledger)"]:::create
     EDGAR_MC["Edgar meta_checkout#create<br/>Wix product lookup → Stripe session"]:::create
+    EDGAR_QR["Edgar qr_code_check#index<br/>status MINTED → Stripe session (price_data)"]:::create
 
     AGR -- "GET ?action=createCheckoutSession" --> GAS
     CAP -- "GET ?action=createLedgerCheckoutSession&ledger=…" --> GAS
     META -- "/meta_checkout?products=PROD:QTY" --> EDGAR_MC
+    QRSCAN -- "GET /qr-code-check?qr_code=…" --> EDGAR_QR
 
     %% --- STRIPE ---
     STRIPE["Stripe Checkout<br/>user pays"]:::stripe
     GAS --> STRIPE
     EDGAR_MC --> STRIPE
+    EDGAR_QR --> STRIPE
     SAAS -.-> STRIPE
 
     %% --- WEBHOOK PATH ---
@@ -47,6 +51,7 @@ flowchart TD
     EDAO --> TG["Telegram Chat Logs"]:::sheet
     TG --> GCP["GAS campaign_codes_processor"]:::gasproc
     GCP --> QR["QR Code Sales tab"]:::sheet
+    EDGAR_QR -- "?session_id= return<br/>(synchronous, no webhook)" --> QR
 
     %% --- ROUTING ---
     SL --> RT["stripe_sales_sync.gs<br/>(hourly, or Sidekiq-triggered)"]:::gasproc
@@ -73,7 +78,7 @@ flowchart TD
 **How to read it:**
 
 - **Yellow blocks** — entry points (where a Stripe transaction originates).
-- **Blue blocks** — session creation: either Google Apps Script (website + managed-ledger flows) or Edgar's `meta_checkout#create` (Meta/Instagram). **Edgar is not in the cart/donate session-creation path — that's GAS.**
+- **Blue blocks** — session creation. **Two engines create Stripe sessions:** Google Apps Script (cart + managed-ledger/donate flows) and **Edgar Rails** (`meta_checkout#create` for Meta/Instagram, *and* `qr_code_check#index` for the consumer product-QR scan). So: **cart/donate session creation is GAS; Meta and consumer-QR session creation is Edgar.** All post-payment webhooks land in Edgar regardless of who created the session (except the consumer-QR flow, which reconciles synchronously via a `?session_id=` return rather than a webhook).
 - **Purple blocks** — Stripe itself + the resulting webhook.
 - **Pink blocks** — Edgar Rails (receives the webhook, writes to the audit-trail sheet).
 - **Green blocks** — Google Sheets (audit log + per-ledger Transactions tab).
@@ -279,14 +284,75 @@ stripe_sales_sync.gs (hourly, or Sidekiq-triggered)
 
 ---
 
+## Flow 5: Consumer Product-QR Scan → Stripe (Edgar `/qr-code-check`)
+
+**Trigger:** A consumer scans the QR code printed on a physical product (chocolate bar,
+pouch). The label encodes `GET edgar.truesight.me/qr-code-check?qr_code=<CODE>`.
+**Latency:** Synchronous — **no webhook**. Edgar creates the session and, on return,
+reconciles the sale inside the same request.
+**Distinct from Flow 2:** Flow 2 is the *operator* signing a `[SALES EVENT]` in
+`scanner.html`. Flow 5 is a *consumer* buying the specific item their QR points at, with
+Edgar acting as the storefront. Both converge on the **QR Code Sales** tab.
+
+```
+Consumer scans product QR  →  GET /qr-code-check?qr_code=CODE
+        │
+        ▼
+Edgar qr_code_check_controller#index
+        │  Gdrive::QrCodeLookup.lookup(qr_code)
+        │
+        ├── status SAMPLE / GIFT / SOLD / CONSIGNMENT  → redirect to landing page (no Stripe)
+        │
+        └── status MINTED → Stripe::Checkout::Session.create
+                              mode: 'payment', price_data from sheet `Price`
+                              metadata.qr_code = CODE
+                              success_url = /qr-code-check?qr_code=CODE&session_id={CHECKOUT_SESSION_ID}
+              │
+              ▼
+        Stripe-hosted checkout  →  consumer pays
+              │
+              ▼
+        Stripe 302 back to  /qr-code-check?qr_code=CODE&session_id=...   (NOT a webhook)
+              │
+              ▼
+        Edgar qr_code_check_controller#index  (session_id branch)
+        ├── Stripe::Checkout::Session.retrieve (expand payment_intent.charges)
+        ├── guard: payment_status == 'paid' && metadata.qr_code == qr_code
+        ├── dedup: skip if qr_code already in QR Code Sales (col E)
+        ├── Agroverse QR codes tab → status = SOLD, buyer email → col L
+        ├── compute net / fee / total from BalanceTransaction
+        ├── append row to QR Code Sales (cols A–R; A/B/M = stripe_<session.id>)
+        ├── AgroverseInventorySnapshotPublishWorker.perform_async   (refresh inventory JSON)
+        └── redirect to landing page with UTM (utm_source=edgar, utm_medium=qr)
+              │
+              ▼
+        QR Code Sales tab  →  process_sales_telegram_logs.gs  →  AGL ledger Transactions tab
+        (converges with Flow 2 downstream routing via Shipment Ledger Listing)
+```
+
+**Code:** `sentiment_importer/app/controllers/qr_code_check_controller.rb#index`
+(session_id reconciliation `:31–165`, MINTED session creation `:167–214`,
+`build_redirect_url_with_utm` UTM helper). Also `#register_email` (POST email → col L).
+**Service account:** `config/agroverse_qr_code_gdrive_key.json` (direct `GoogleDrive::Session`,
+not the `Gdrive::*` model layer for the write side).
+
+**Extraction note:** This endpoint is **not** read-only — the MINTED branch creates a
+Stripe session and the `session_id` branch writes the sale + flips inventory. When porting
+`/qr-code-check` to the Python service it must move alongside `/meta_checkout` and the
+`/stripe_webhook` handler, since all three are Edgar's server-side Stripe surface and share
+the Stripe secret key.
+
+---
+
 ## All flows summary
 
 | Flow | Trigger | Latency | Writes to | Ledger routing |
 |---|---|---|---|---|
 | 1. Meta Checkout | Webhook (channel:meta) | Real-time | Stripe tab + Wix order | None (ends at tab) |
-| 2. QR Code | DApp [SALES EVENT] | Near real-time | Telegram + AGL ledger | Shipment Ledger Listing |
+| 2. QR Code (operator) | DApp [SALES EVENT] | Near real-time | Telegram + AGL ledger | Shipment Ledger Listing |
 | 3. Edgar SaaS | Hourly GAS poll | Hourly | offchain transactions | Hardcoded product IDs |
 | 4. Managed-ledger inflows | `[LEDGER_ID]` prefix (via GAS `createLedgerCheckoutSession`) | Hourly (or trigger) | `<ledger>` Transactions tab | Shipment Ledger Listing |
+| 5. Consumer product-QR scan | `GET /qr-code-check` (MINTED) | **Synchronous (no webhook)** | Agroverse QR codes (SOLD) + QR Code Sales | Shipment Ledger Listing (via `process_sales_telegram_logs`) |
 
 ---
 
