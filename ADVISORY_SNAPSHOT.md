@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-24T04:47:40Z`
+- Generated (UTC): `2026-05-24T09:05:45Z`
 - Look-back: **7** calendar days (`2026-05-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -231,6 +231,7 @@ _All dated lines on/after 2026-05-17_ (14):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+35f1f10 | 2026-05-24 04:49:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 82ce1bd | 2026-05-23 19:46:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 52e88fc | 2026-05-23 08:36:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -270,7 +271,6 @@ fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via
 35fa68f | 2026-05-19 10:25:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6d3aed3 | 2026-05-19 04:44:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1fdd8d0 | 2026-05-18 15:21:34 -0700 | feat(credentials): Recent activity (pending review) section — Phase 4.1 (#126)
-a6d4547 | 2026-05-18 15:03:10 -0700 | Landing tile expanders: USD Treasury + AUM show per-ledger / per-currency (#125)
 … (truncated)
 ```
 
@@ -283,6 +283,8 @@ a6d4547 | 2026-05-18 15:03:10 -0700 | Landing tile expanders: USD Treasury + AUM
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d3b8b4c | 2026-05-23 21:47:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
+5da6680 | 2026-05-23 21:47:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
 9c88b8d | 2026-05-23 20:52:55 -0700 | Merge pull request #183 from TrueSightDAO/auto/advisory-refresh-2026-05-24
 a1c6a47 | 2026-05-24 03:52:44 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
 9fa2ec5 | 2026-05-23 12:44:23 -0700 | chore(previews): refresh Beer Hall preview (2026-05-23 UTC)
@@ -321,8 +323,6 @@ fe5c304 | 2026-05-20 21:53:11 -0700 | chore(previews): refresh Beer Hall preview
 d2ec136 | 2026-05-20 15:29:41 -0700 | OPEN_FOLLOWUPS krake_browser: repos public + blog post live (#176)
 f03abbb | 2026-05-20 15:29:10 -0700 | MANAGED_LEDGER_EXPLORER_PATTERN: document Balance tab column map (#175)
 76bf6d0 | 2026-05-20 14:53:41 -0700 | krake_browser: NOTES file + v0.2 scope (guideposts, teach-loop, passive observation) (#174)
-9cc824f | 2026-05-20 14:49:05 -0700 | OPEN_FOLLOWUPS: mark /aum page + ledger click-through as shipped (#173)
-f096a40 | 2026-05-20 14:36:02 -0700 | OPEN_FOLLOWUPS: krake_browser scope addendum — bundle krake_recipes + wrapper-recipe DSL (#172)
 … (truncated)
 ```
 
@@ -369,6 +369,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c100ac2 | 2026-05-24 08:46:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bbf5afa | 2026-05-23 08:33:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cecb4e8 | 2026-05-22 09:51:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ef6d867 | 2026-05-21 10:05:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -479,7 +480,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/23/2026 20:50:37 |
+| 2026-05 | 58.6 | 14977.11386 | 5/24/2026 1:50:18 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-17`; scanned last **396** data rows)
 
