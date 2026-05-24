@@ -6,9 +6,18 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** Planning/docs complete → **next is PR0 (rename `dao_client` → `dao_protocol`).**
+> **Current step:** PR0 DONE (repo renamed `dao_client` → `dao_protocol`, 2026-05-24) →
+> **next is PR1: scaffold `server/` + `[server]` extra + deploy `/ping` to `seni_ror_new:8010`
+> behind `krake_ng` nginx.** (PR1 needs SSH to `seni_ror_new`, a systemd unit, and an nginx
+> location edit on `krake_ng` — do NOT rush it against a hard time cutoff.)
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
+>
+> _Note: only the **GitHub repo + local git remote** were renamed. The local working dir is
+> still `/Users/garyjob/Applications/dao_client/` and the importable package is still
+> `truesight_dao_client` (both intentionally unchanged — path/import stability). Optional
+> cosmetic follow-up: rename the local dir. Stale `TrueSightDAO/dao_client` URL references in
+> canonical docs still 301-redirect; sweep them when convenient._
 
 **Companion docs:**
 - `STRIPE_LEDGER_ROUTING.md` — all 5 Stripe flows (incl. the consumer-QR Flow 5).
@@ -103,9 +112,9 @@ the next phase.
 
 | Step | Scope | PR | Merged | Contribution reported |
 |------|-------|----|--------|-----------------------|
-| Planning/docs | This plan + `STRIPE_LEDGER_ROUTING.md` Flow 5 | _(this PR)_ | ☐ | ☐ |
-| PR0 | Repo rename `dao_client`→`dao_protocol` | — | ☐ | ☐ |
-| PR1 | Scaffold `server/` + `[server]` extra + `/ping` deployed | — | ☐ | ☐ |
+| Planning/docs | This plan + `STRIPE_LEDGER_ROUTING.md` Flow 5 | agentic_ai_context#185 | ✓ | ✓ |
+| PR0 | Repo rename `dao_client`→`dao_protocol` (GitHub + remote) | _(settings rename)_ | ✓ | ✓ |
+| PR1 | Scaffold `server/` + `[server]` extra + `/ping` deployed | — | ☐ | ☐ |  ◀ RESUME HERE |
 | PR2 | `/proxy/gas/:name` | — | ☐ | ☐ |
 | PR3 | Sheets adapter + newsletter/email-agent tracking | — | ☐ | ☐ |
 | PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ |
