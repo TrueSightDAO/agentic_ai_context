@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-24T14:08:04Z`
+- Generated (UTC): `2026-05-24T19:47:09Z`
 - Look-back: **7** calendar days (`2026-05-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -231,6 +231,7 @@ _All dated lines on/after 2026-05-17_ (14):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+00db8cc | 2026-05-24 14:09:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 11b6cdd | 2026-05-24 09:06:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35f1f10 | 2026-05-24 04:49:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 82ce1bd | 2026-05-23 19:46:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -270,7 +271,6 @@ fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via
 87a2168 | 2026-05-19 20:16:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4cf8d28 | 2026-05-19 16:00:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35fa68f | 2026-05-19 10:25:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6d3aed3 | 2026-05-19 04:44:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -283,6 +283,8 @@ fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+426d77f | 2026-05-24 07:08:21 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
+edf6d97 | 2026-05-24 07:08:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
 2ac8ec7 | 2026-05-24 02:06:06 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
 0d7a87c | 2026-05-24 02:06:05 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
 d3b8b4c | 2026-05-23 21:47:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
@@ -321,8 +323,6 @@ fe5c304 | 2026-05-20 21:53:11 -0700 | chore(previews): refresh Beer Hall preview
 6b1b178 | 2026-05-20 21:53:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 97f8ace | 2026-05-20 20:58:56 -0700 | Merge pull request #178 from TrueSightDAO/auto/advisory-refresh-2026-05-21
 8252a14 | 2026-05-21 03:58:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
-4409c69 | 2026-05-20 16:08:56 -0700 | OPEN_FOLLOWUPS krake_browser: add item 14 — llm_fill_form (v0.3 form comprehension) (#177)
-d2ec136 | 2026-05-20 15:29:41 -0700 | OPEN_FOLLOWUPS krake_browser: repos public + blog post live (#176)
 … (truncated)
 ```
 
@@ -480,7 +480,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/24/2026 6:50:19 |
+| 2026-05 | 58.6 | 14977.11386 | 5/24/2026 11:50:50 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-17`; scanned last **396** data rows)
 
