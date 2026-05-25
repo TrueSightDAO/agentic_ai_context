@@ -8,10 +8,11 @@ so clients never change and each step has instant rollback.
 > ## ▶ RESUME HERE
 > **Current step:** PR1 LIVE + **PR2 `/proxy/gas` DONE & RAMPED LIVE** (dao_protocol#34, 2026-05-25).
 > Implemented in Python, deployed on `:8010`, and the real `https://edgar.truesight.me/proxy/gas/*`
-> path is now hard-flipped to it (`location /proxy/gas/` in `seni_ror_new:edgar.conf`) — this **fixed
-> a latent Rails 401** (the proxy's `skip_before_action :require_login` was a no-op; a global filter
-> blocked it). Functional + live POST tests pass (see `EDGAR_DAO_CUTOVER_TEST_PLAN.md`). **Next is PR3**
-> (newsletter + email-agent tracking pixels — needs the first `server/sheets/` adapter base).
+> path is now hard-flipped to it. **PR3 (newsletter + email-agent tracking) DONE & deployed too**
+> (dao_protocol#35): first `server/sheets/` adapter base + the 4 tracking endpoints, redirects
+> verified via the test prefix, gate OFF (real `/newsletter` + `/email_agent` still on Rails).
+> Functional/POST/redirect tests pass (see `EDGAR_DAO_CUTOVER_TEST_PLAN.md`). **Next is PR4**
+> (`/agroverse_shop/shipping_rates` — EasyPost; reuse the gate-off + test-prefix pattern).
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -162,8 +163,8 @@ the next phase.
 | Step | Endpoint | Impl PR | Impl merged | Contrib | Gate | Ramp→100% |
 |------|----------|---------|-------------|---------|------|-----------|
 | PR2 | `/proxy/gas/:name` | dao_protocol#34 | ✓ | ✓ | nginx hard-flip (Rails was 401) | ✅ ramped live 2026-05-25 (fixed the latent Rails 401) |
-| PR3 | newsletter + email-agent tracking pixels | — | ☐ | ☐ | nginx | ☐ ◀ RESUME (impl) |
-| PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ | nginx (+mirror shadow) | ☐ |
+| PR3 | newsletter + email-agent tracking pixels (+ first `server/sheets/` adapter) | dao_protocol#35 | ✓ | ✓ | nginx | ☐ (impl done + deployed; ramp pending) |
+| PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ | nginx (+mirror shadow) | ☐ ◀ RESUME (impl) |
 | (PR4b) | `/qr-code-check` (read path) | — | ☐ | ☐ | nginx | ☐ |
 | PR5 | `/dao/*` submit_contribution (RSA verify + dispatch) | — | ☐ | ☐ | Rails `split` by contributor | ☐ |
 | PR6 | Stripe cluster (qr-code-check sale + meta_checkout + `/stripe_webhook`) | — | ☐ | ☐ | Rails `split` / hard flip | ☐ |

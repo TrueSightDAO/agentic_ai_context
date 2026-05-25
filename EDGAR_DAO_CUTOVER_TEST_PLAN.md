@@ -50,11 +50,15 @@ ramp `/proxy/gas` → Python (recommended; it's the working impl), or (b) fix Ra
 
 ---
 
-## PR3 — newsletter + email-agent tracking pixels  · PENDING IMPL
-- [ ] ⬜ `/newsletter/open.gif` → 1×1 gif + logs open
-- [ ] ⬜ `/newsletter/click` → logs + 302 to decoded `to` URL
-- [ ] ⬜ `/email_agent/open.gif`, `/email_agent/click`
-- [ ] 🧑 confirm Main Ledger tabs update (`Agroverse News Letter Emails`, `Email Agent Drafts`) — sheet check
+## PR3 — newsletter + email-agent tracking pixels  · IMPL DONE (dao_protocol#35) · ramp pending
+Verified via the test prefix 2026-05-25 (bogus ids → redirect only, no sheet write):
+- [x] `/newsletter/open.gif` → 302 → logo
+- [x] `/newsletter/click` → 302 → decoded `to` URL (b64url); bad/missing/`javascript:` → fallback `agroverse.shop`
+- [x] `/email_agent/open.gif` → 302 → logo
+- [x] `/email_agent/click` → 302 → decoded target
+- [x] 7 mocked unit tests (redirects, b64 decode, safe-redirect, recipient guard, sheet-error-never-breaks-redirect)
+- [x] deployed — google libs present + Edgar SA key readable by the service (so real writes will work)
+- [ ] 🧑 confirm a **real** open/click bumps the sheet counters (`Agroverse News Letter Emails` H–K / L–P; `Email Agent Drafts` N / O) — operator opens a real tracked email; automated tests avoid this to not pollute live stats
 
 ## PR4 — `/agroverse_shop/shipping_rates`  · PENDING IMPL
 - [ ] ⬜ valid address → EasyPost USPS rates JSON
