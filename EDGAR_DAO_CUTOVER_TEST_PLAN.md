@@ -72,7 +72,13 @@ Verified via the test prefix 2026-05-25 (bogus ids → redirect only, no sheet w
 - [ ] ⬜ unknown qr → 404
 - [ ] 🧑 a real `MINTED` scan → Stripe **test-mode** checkout → `?session_id=` reconcile → `SOLD` + QR Code Sales row (operator; touches Stripe + ledger)
 
-## PR5 — `/dao/*` submit_contribution (per signed event)  · PENDING IMPL
+## PR5 — `/dao/*` submit_contribution (per signed event)  · IMPL DONE (dao_protocol#37 verifier, #38 intake+dispatch) · gate off
+- [x] RSA verify (valid + tampered + malformed) — `crypto/verify.py`, validated vs the **real** example payload (PR5a)
+- [x] intake logic (no-signature/failed/success branches, dedup→409) + 17-branch dispatch routing — 28 mocked unit tests; route mounted (GET→405) via test prefix
+- [ ] webhook URLs (`DAO_PROTOCOL_WEBHOOK_*`) provisioned in box `.env` — **at ramp** (server-side, like EasyPost key)
+- [ ] EMAIL REGISTERED/VERIFICATION onboarding (`DaoEmailRegistrationService`) + attachment→GitHub upload — **deferred** (flagged), not yet ported
+- live per-event tests below remain operator-driven (real ledger/GAS):
+
 For **each** event type: valid signature → accept + correct ledger write; **tampered signature → reject**; correct dispatch.
 - **Special-dispatch events** (fire `WebhookTriggerWorker` → GAS/GitHub): `ASSET RECEIPT`, `CONTRIBUTOR ADD`, `CREDENTIALING ATTESTATION`, `CURRENCY CONVERSION`, `DAPP PERMISSION CHANGE`, `DONATION MINT`, `EMAIL REGISTERED`, `EMAIL VERIFICATION`, `QR CODE UPDATE`, `REPACKAGING BATCH`, `RETAIL FIELD REPORT`, `SALES`, `STORE ADD`, `WARMUP SEND`.
 - **Log-only events** (verify + append, no special dispatch): `CONTRIBUTION`, `CAPITAL INJECTION`, `DAO EXPENSES`, `INVENTORY MOVEMENT`, `TREE PLANTING`, proposal create/review, `WITHDRAW VOTING RIGHTS`.
