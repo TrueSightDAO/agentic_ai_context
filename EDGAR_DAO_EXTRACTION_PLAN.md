@@ -6,12 +6,13 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** **PR1 fully DONE + LIVE** (2026-05-25). Scaffold merged (dao_protocol#33);
-> service deployed on `seni_ror_new:8010` (systemd `truesight-dao-protocol`); `/dao-protocol/`
-> route added to the **real** edgar nginx (`seni_ror_new:/etc/nginx/sites-available/edgar.conf`,
-> localhost hop). Verified public: `https://edgar.truesight.me/dao-protocol/healthz` → 200 JSON.
-> **Next is PR2: `/proxy/gas/:name`** (port the allowlist from Rails `proxy_controller`, add a
-> `location` in `edgar.conf`, flip).
+> **Current step:** PR1 LIVE + **PR2 `/proxy/gas` IMPLEMENTED & deployed** (dao_protocol#34,
+> 2026-05-25) — running on `:8010`, verified via the `/dao-protocol/proxy/gas/*` test prefix
+> (OPTIONS+CORS, 404 on unknown, real upstream forward all OK). **Gate OFF** — real `/proxy/gas/*`
+> still on Rails. **Next is PR3** (newsletter + email-agent tracking pixels, needs the `sheets/`
+> adapter base). Separately, **PR2 ramp** is pending: add a `split_clients` canary for `/proxy/gas`
+> in `edgar.conf` — but first **shadow/parity-check**, since a bare `qrCodes` call returned Rails
+> **401** vs Python **200** (confirm whether that's GAS variance or a Rails auth nuance before any %).
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -88,9 +89,33 @@ Bare `seni_ror`/`seni_sk` aliases = dead Cypher IPs (forensics only — do NOT d
 
 ---
 
-## Implementation plan (sequenced PRs)
+## Migration gating strategy (decoupled build vs cutover, 2026-05-25)
 
-Each endpoint PR ends with an nginx `location` flip in **`seni_ror_new:/etc/nginx/sites-available/edgar.conf`** (the real edgar front — NOT krake_ng); Rails handler stays as instant rollback until PR7.
+**Each Python PR is implementation ONLY** — build the endpoint in `dao_protocol`, test it, ship it
+(reachable for testing via the `/dao-protocol/...` prefix). It carries **no production traffic**
+until a **separate, reversible "ramp" step** opens a per-route gate. This decouples "is the code
+done" from "is traffic cut over," so a half-migrated route is never a half-broken route.
+
+**Two-tier gate, chosen per endpoint type:**
+- **Anonymous / pass-through / read** (`proxy/gas`, `shipping_rates`, newsletter+email-agent
+  pixels, `qr-code-check` read): gate at **nginx** on `seni_ror_new` (`edgar.conf`, nginx 1.18) via
+  **`split_clients`** percentage canary to `:8010`; optionally **`mirror`** to shadow-compare
+  responses before ramping. Rails stays out of the path.
+- **Identity-bearing / risky writes** (`/dao/submit_contribution`; Stripe where comparison is
+  wanted): gate **in Rails** via the already-installed **`split`** gem (`/admin/split`), keyed on
+  **contributor identity** so we migrate our own signature first, compare, then ramp the cohort.
+  Rails proxies the chosen cohort to `:8010` and keeps its own handler as the control until 100%.
+
+**Safety rule for write endpoints** (`/dao`, `/stripe_webhook`): the gate must route each request
+to **exactly one** backend (never both) — rely on identity-stickiness or a hard flip, never a
+random per-request split, and lean on existing idempotency (Telegram Update ID, Stripe session id).
+`mirror`/shadow is read-only.
+
+## Implementation plan (sequenced PRs — Python impl only; ramp is separate)
+
+Each `PRn` below = **implement endpoint X in Python + tests, gate default OFF**. Cutover is a
+distinct **"ramp X"** step (flip the `split_clients` % or the `split`-gem cohort), reversible, with
+the Rails handler as instant rollback until PR7.
 
 - **PR0 — Repo rename.** `dao_client` → `dao_protocol` (GitHub Settings → rename). Update local
   remote + hardcoded `TrueSightDAO/dao_client` doc references. Keep package name. No behavior change.
@@ -123,18 +148,26 @@ Update this table as work lands. **"Continue from the first row that isn't `merg
 Per project convention: after each PR merges, **report the DAO contribution** before starting
 the next phase.
 
-| Step | Scope | PR | Merged | Contribution reported |
-|------|-------|----|--------|-----------------------|
+**Foundation (done):**
+
+| Step | Scope | PR | Merged | Contrib |
+|------|-------|----|--------|---------|
 | Planning/docs | This plan + `STRIPE_LEDGER_ROUTING.md` Flow 5 | agentic_ai_context#185 | ✓ | ✓ |
-| PR0 | Repo rename `dao_client`→`dao_protocol` (GitHub + remote) | _(settings rename)_ | ✓ | ✓ |
-| PR1a (code) | Scaffold `server/` + `[server]` extra + `/ping`/`/healthz` (validated) | dao_protocol#33 | ✓ | ✓ |
-| PR1b (deploy) | Deployed `seni_ror_new:8010` (systemd) + `/dao-protocol/` in `seni_ror_new` `edgar.conf`; LIVE & verified (200) | _(server deploy)_ | ✓ | ✓ |
-| PR2 | `/proxy/gas/:name` | — | ☐ | ☐ |  ◀ RESUME HERE |
-| PR3 | Sheets adapter + newsletter/email-agent tracking | — | ☐ | ☐ |
-| PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ |
-| PR5 | `/dao/*` submit_contribution (verify + dispatch) | — | ☐ | ☐ |
-| PR6 | Stripe cluster (qr-code-check + meta_checkout + webhook) | — | ☐ | ☐ |
-| PR7 | Remove dead Tenant B code from Edgar | — | ☐ | ☐ |
+| PR0 | Repo rename `dao_client`→`dao_protocol` | _(settings rename)_ | ✓ | ✓ |
+| PR1a | Scaffold `server/` + `[server]` extra + `/ping`,`/healthz` | dao_protocol#33 | ✓ | ✓ |
+| PR1b | Deploy `seni_ror_new:8010` (systemd) + `/dao-protocol/*` test route live & verified | _(server deploy)_ | ✓ | ✓ |
+
+**Endpoint ports (Python impl + separate ramp). Continue from first row not `impl ✓`:**
+
+| Step | Endpoint | Impl PR | Impl merged | Contrib | Gate | Ramp→100% |
+|------|----------|---------|-------------|---------|------|-----------|
+| PR2 | `/proxy/gas/:name` | dao_protocol#34 | ✓ | ✓ | nginx `split_clients` | ☐ (shadow/parity first: Rails 401 vs Py 200 on bare qrCodes) |
+| PR3 | newsletter + email-agent tracking pixels | — | ☐ | ☐ | nginx | ☐ ◀ RESUME (impl) |
+| PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ | nginx (+mirror shadow) | ☐ |
+| (PR4b) | `/qr-code-check` (read path) | — | ☐ | ☐ | nginx | ☐ |
+| PR5 | `/dao/*` submit_contribution (RSA verify + dispatch) | — | ☐ | ☐ | Rails `split` by contributor | ☐ |
+| PR6 | Stripe cluster (qr-code-check sale + meta_checkout + `/stripe_webhook`) | — | ☐ | ☐ | Rails `split` / hard flip | ☐ |
+| PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
 
 ---
 
