@@ -6,20 +6,14 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** PR1 LIVE + **PR2 `/proxy/gas` DONE & RAMPED LIVE** (dao_protocol#34, 2026-05-25).
-> Implemented in Python, deployed on `:8010`, and the real `https://edgar.truesight.me/proxy/gas/*`
-> path is now hard-flipped to it. **PR3 (newsletter + email-agent tracking) DONE & deployed too**
-> (dao_protocol#35): first `server/sheets/` adapter base + the 4 tracking endpoints, redirects
-> verified via the test prefix, gate OFF (real `/newsletter` + `/email_agent` still on Rails).
-> **PR4 (`/agroverse_shop/shipping_rates`) DONE & deployed too** (dao_protocol#36): EasyPost USPS
-> quotes, key provisioned in the box `.env` (DAO_PROTOCOL_EASYPOST_API_KEY), **exact parity vs Rails
-> verified** on a live address. Gate OFF. **Next is PR5 — `/dao/*` submit_contribution** (the crown
-> jewel). **PR5a (RSA verifier) DONE** (dao_protocol#37, `server/crypto/verify.py`, validated vs the
-> real example payload). **Next is PR5b** (`/dao/submit_contribution` intake: verify + dedup + append
-> to Telegram Chat Logs) then **PR5c** (dispatch: `webhook_trigger` + the 15-event→webhook routing
-> table) — full spec in "PR5 detail" below. These write the REAL ledger + hit REAL GAS, so build
-> gate-OFF with mocked tests; per the test-execution policy the agent does NOT fire ledger-mutating
-> events — operator dogfoods with own key. See `EDGAR_DAO_CUTOVER_TEST_PLAN.md`.
+> **Current step:** **PR2–PR5 all implemented + deployed on `:8010`.** PR2 `/proxy/gas` RAMPED LIVE
+> (#34, fixed a latent 401); PR3 tracking pixels (#35) + PR4 `/agroverse_shop/shipping_rates` (#36,
+> exact Rails parity) deployed gate-OFF; PR5 `/dao/submit_contribution` — verifier (#37) + intake +
+> dispatch (the full 17-branch event→webhook routing) (#38) — deployed gate-OFF, route mounted, 28
+> unit tests. **Next is PR6 — Stripe cluster** (`/qr-code-check` sale + `/meta_checkout` +
+> `/stripe_webhook` → order sync; see `STRIPE_LEDGER_ROUTING.md`). **Ramp + live testing of the
+> gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger / GAS / Stripe) and need
+> the `*_webhook_url` env values provisioned in the box `.env` — see `EDGAR_DAO_CUTOVER_TEST_PLAN.md`.
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -173,10 +167,10 @@ the next phase.
 | PR3 | newsletter + email-agent tracking pixels (+ first `server/sheets/` adapter) | dao_protocol#35 | ✓ | ✓ | nginx | ☐ (impl done + deployed; ramp pending) |
 | PR4 | `/agroverse_shop/shipping_rates` | dao_protocol#36 | ✓ | ✓ | nginx (+mirror shadow) | ☐ (impl done; **exact parity vs Rails verified**) |
 | PR5a | RSA verifier (`crypto/verify.py`) | dao_protocol#37 | ✓ | ✓ | n/a (library) | n/a |
-| PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | — | ☐ | ☐ | Rails `split` by contributor | ☐ ◀ RESUME (impl) |
-| PR5c | dispatch (`webhook_trigger` + event→webhook routing table) | — | ☐ | ☐ | (with PR5b) | ☐ |
+| PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | dao_protocol#38 | ✓ | ✓ | Rails `split` by contributor | ☐ (impl+deployed; webhook URLs + live test at ramp) |
+| PR5c | dispatch (`webhook_trigger` + 17-branch event→webhook routing) | dao_protocol#38 | ✓ | ✓ | (with PR5b) | ☐ |
 | (PR4b) | `/qr-code-check` read path — folded into PR6 (Stripe-entangled: MINTED→session) | — | ☐ | ☐ | nginx | ☐ |
-| PR6 | Stripe cluster (qr-code-check sale + meta_checkout + `/stripe_webhook`) | — | ☐ | ☐ | Rails `split` / hard flip | ☐ |
+| PR6 | Stripe cluster (qr-code-check sale + meta_checkout + `/stripe_webhook`) | — | ☐ | ☐ | Rails `split` / hard flip | ☐ ◀ RESUME (impl) |
 | PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
 
 ---
@@ -219,11 +213,13 @@ EVENT]` also archived; 5) on success → dispatch (PR5c); respond `{status, sign
 
 | Event tag | config key (`*_webhook_url`) | action |
 |---|---|---|
-| `[SALES EVENT]` | sales_processing, sales_agl4, sales_non_agl4, inventory_processing, expense_processing | parseTelegramChatLogs / processTokenizedTransactions / processNonAgl4Transactions / processTelegramChatLogs / parseAndProcessTelegramLogs (fans out to 5) |
+| `[SALES EVENT]` | sales_processing, sales_agl4, sales_non_agl4 | parseTelegramChatLogs / processTokenizedTransactions / processNonAgl4Transactions |
+| `[INVENTORY MOVEMENT]` | inventory_processing | processTelegramChatLogs |
+| `[DAO Inventory Expense Event]` | expense_processing | parseAndProcessTelegramLogs |
 | `[QR CODE UPDATE EVENT]` | qr_code_update | processQrCodeUpdatesFromTelegramChatLogs |
 | `[DAPP PERMISSION CHANGE EVENT]` | dapp_permission_change | apply_permission_change |
 | `[WARMUP SEND EVENT]` | warmup_send | apply_warmup_send |
-| (QR generation) | qr_code_generation | processQRCodeGenerationTelegramLogs |
+| `[BATCH QR CODE REQUEST]` | qr_code_generation | processQRCodeGenerationTelegramLogs |
 | `[PROPOSAL CREATION]` / `[PROPOSAL VOTE]` | proposal_processing | process_dapp_payloads |
 | `[REPACKAGING BATCH EVENT]` | repackaging_processing | processRepackagingBatchesFromTelegramChatLogs |
 | `[CURRENCY CONVERSION EVENT]` | currency_conversion_processing | parseAndProcessCurrencyConversionLogs |
