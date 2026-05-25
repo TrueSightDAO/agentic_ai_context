@@ -208,6 +208,16 @@ The QR generator now lives inside lineage-assets (moved from
 `tokenomics/python_scripts/agroverse_qr_code_generator/` on
 2026-05-20; that location is now a `DEPRECATED.md` breadcrumb).
 
+> **▶ How to actually run it — canonical:** `scripts/qr_generator/generate_qr_batch.sh`
+> (a parameter-locked wrapper: box-size 12, border 8, logo-ratio 0.25, Helvetica →
+> logo-in-QR + copy beneath + serial string). **Do NOT hand-roll QR PNGs with the
+> `qrcode` library or reimplement this in another repo (market_research, etc.)** —
+> that yields logo-less, wrong-size codes (a repeated LLM stumble). Add the row(s)
+> to the `Agroverse QR codes` tab first (column-A prefix convention: `LA_`/`AUSTIN_`/`DTS_`…,
+> `CC`=ceremonial cacao, `CT`=cacao tea, status `SAMPLE` for promo/display), then run the
+> script — it skips rows already compiled. Auth: `gdrive_key.json` (gitignored) or
+> `GOOGLE_APPLICATION_CREDENTIALS` pointing at an SA JSON with Main-Ledger read.
+
 Every mint produces **three artifacts in one run**:
 
 1. **Compiled print-ready image** at `--output-dir/` (operator-local
