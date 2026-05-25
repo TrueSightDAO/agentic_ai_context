@@ -222,8 +222,11 @@ Every mint produces **three artifacts in one run**:
 
 1. **Compiled print-ready image** at `--output-dir/` (operator-local
    scratch; not committed, defaulted to `package_qr_codes/`)
-2. **Raw QR PNG** at `--pngs-dir` (defaults to `lineage-assets/pngs/`,
-   committed to the repo)
+2. **Compiled label PNG** — QR + centre logo + copy + serial string — at
+   `--pngs-dir` (defaults to `lineage-assets/pngs/`, committed to the repo).
+   This is what `truesight.me/qr/?id=<id>` renders; it is the **full label**
+   (same format as the print image), **NOT** a bare QR. All committed pngs
+   (`AUSTIN_*`, `PLEDGE_*`, `DTS_*`, …) are this label format.
 3. **Per-QR JSON manifest** at `--qrs-dir` (defaults to
    `lineage-assets/qrs/`, committed to the repo)
 
