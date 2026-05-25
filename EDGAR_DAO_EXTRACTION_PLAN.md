@@ -6,10 +6,12 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** PR0 DONE (repo renamed `dao_client` → `dao_protocol`, 2026-05-24) →
-> **next is PR1: scaffold `server/` + `[server]` extra + deploy `/ping` to `seni_ror_new:8010`
-> behind `krake_ng` nginx.** (PR1 needs SSH to `seni_ror_new`, a systemd unit, and an nginx
-> location edit on `krake_ng` — do NOT rush it against a hard time cutoff.)
+> **Current step:** PR1 **code scaffold merged** (dao_protocol#33: `server/` package, `[server]`
+> extra, `/ping` + `/healthz`, deploy.sh + systemd unit; validated locally — both health routes
+> 200, OpenAPI builds). **Remaining = PR1b, the live deploy:** install/run on `seni_ror_new:8010`
+> (systemd unit shipped in `truesight_dao_client/server/deploy/`) + add the nginx `location` flip
+> on the **shared** `krake_ng` proxy. That step touches prod infra (SSH + sudo + shared nginx) and
+> needs explicit operator go-ahead — do NOT rush it.
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -114,7 +116,8 @@ the next phase.
 |------|-------|----|--------|-----------------------|
 | Planning/docs | This plan + `STRIPE_LEDGER_ROUTING.md` Flow 5 | agentic_ai_context#185 | ✓ | ✓ |
 | PR0 | Repo rename `dao_client`→`dao_protocol` (GitHub + remote) | _(settings rename)_ | ✓ | ✓ |
-| PR1 | Scaffold `server/` + `[server]` extra + `/ping` deployed | — | ☐ | ☐ |  ◀ RESUME HERE |
+| PR1a (code) | Scaffold `server/` + `[server]` extra + `/ping`/`/healthz` (validated) | dao_protocol#33 | ✓ | ✓ |
+| PR1b (deploy) | Deploy to `seni_ror_new:8010` + nginx `location` flip on shared `krake_ng` | — | ☐ | ☐ |  ◀ RESUME HERE (needs go-ahead) |
 | PR2 | `/proxy/gas/:name` | — | ☐ | ☐ |
 | PR3 | Sheets adapter + newsletter/email-agent tracking | — | ☐ | ☐ |
 | PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ |

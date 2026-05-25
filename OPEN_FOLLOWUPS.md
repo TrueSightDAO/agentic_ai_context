@@ -32,13 +32,13 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Edgar → `dao_protocol` extraction — continue from PR1 (scaffold + deploy `/ping`)
+### Edgar → `dao_protocol` extraction — continue from PR1b (live deploy)
 
-**Context.** Pulling the DAO/Agroverse integration surface (RSA contributions, Stripe commerce, shipping rates, newsletter / email-agent tracking, GAS proxy, QR check) out of the Rails `sentiment_importer` (Edgar) app into a Python FastAPI service. Full plan, deploy topology, decisions, and a live **resume tracker** are in **`EDGAR_DAO_EXTRACTION_PLAN.md`** (this repo); Stripe flows in `STRIPE_LEDGER_ROUTING.md`. **Done:** planning/docs (PR #185) + PR0 — GitHub repo renamed `dao_client`→`dao_protocol` (PR #186; local remote updated, old URLs 301-redirect, package `truesight_dao_client` + local dir unchanged).
+**Context.** Pulling the DAO/Agroverse integration surface (RSA contributions, Stripe commerce, shipping rates, newsletter / email-agent tracking, GAS proxy, QR check) out of the Rails `sentiment_importer` (Edgar) app into a Python FastAPI service. Full plan, deploy topology, decisions, and a live **resume tracker** are in **`EDGAR_DAO_EXTRACTION_PLAN.md`** (this repo); Stripe flows in `STRIPE_LEDGER_ROUTING.md`. **Done:** planning/docs (PR #185) + PR0 repo rename (PR #186) + **PR1 code scaffold** (dao_protocol#33 — `server/` package, `[server]` extra, `/ping`+`/healthz`, deploy.sh + systemd unit; validated locally).
 
-**Scope (next unit = PR1).** Scaffold `truesight_dao_client/server/` (FastAPI `main.py`, `config.py`, `routes/health.py`) + a `[server]` extra in `pyproject.toml` + `server/deploy/` (deploy script + systemd unit modeled on Edgar `deploy.sh`); deploy to `seni_ror_new:8010` and add the health `location` block on `krake_ng` nginx. Then PR2–PR7 per the plan's strangler-fig order (one path flipped at a time, Rails handler as rollback). After each PR merges, report the DAO contribution before starting the next (per `OPERATING_INSTRUCTIONS.md` §5).
+**Scope (next unit = PR1b deploy).** Live-deploy the scaffolded service: install/run on `seni_ror_new:8010` via the shipped systemd unit (`truesight_dao_client/server/deploy/`) and add the health `location` flip on the **shared** `krake_ng` nginx. Then PR2–PR7 per the plan's strangler-fig order (one path flipped at a time, Rails handler as rollback). After each merges, report the DAO contribution before the next (per `OPERATING_INSTRUCTIONS.md` §5).
 
-**Blocker.** None for PR1, but it needs SSH to `seni_ror_new` + `krake_ng` (:2202), sudo for systemd, and an nginx edit on the **shared** `krake_ng` proxy — snapshot the `edgar.truesight.me` server block before editing. Not a rush-against-a-deadline job.
+**Blocker.** Needs operator go-ahead — PR1b requires SSH to `seni_ror_new` + `krake_ng` (:2202), sudo for systemd, a security-group rule allowing `krake_ng`→`seni_ror_new:8010`, and an nginx edit on the **shared** `krake_ng` proxy — snapshot the `edgar.truesight.me` server block before editing. Not a rush-against-a-deadline job.
 
 ### Dual Tech Summit 2026 (≈Jun 26, SF) — per-phase event follow-ups
 
