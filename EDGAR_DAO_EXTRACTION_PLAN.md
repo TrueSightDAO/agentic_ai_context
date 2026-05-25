@@ -6,14 +6,22 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** PR1 **code scaffold merged** (dao_protocol#33: `server/` package, `[server]`
-> extra, `/ping` + `/healthz`, deploy.sh + systemd unit; validated locally — both health routes
-> 200, OpenAPI builds). **Remaining = PR1b, the live deploy:** install/run on `seni_ror_new:8010`
-> (systemd unit shipped in `truesight_dao_client/server/deploy/`) + add the nginx `location` flip
-> on the **shared** `krake_ng` proxy. That step touches prod infra (SSH + sudo + shared nginx) and
-> needs explicit operator go-ahead — do NOT rush it.
+> **Current step:** **PR1 fully DONE + LIVE** (2026-05-25). Scaffold merged (dao_protocol#33);
+> service deployed on `seni_ror_new:8010` (systemd `truesight-dao-protocol`); `/dao-protocol/`
+> route added to the **real** edgar nginx (`seni_ror_new:/etc/nginx/sites-available/edgar.conf`,
+> localhost hop). Verified public: `https://edgar.truesight.me/dao-protocol/healthz` → 200 JSON.
+> **Next is PR2: `/proxy/gas/:name`** (port the allowlist from Rails `proxy_controller`, add a
+> `location` in `edgar.conf`, flip).
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
+>
+> ⚠️ **TOPOLOGY CORRECTION (verified 2026-05-25):** `edgar.truesight.me` resolves via **DNS
+> directly to `seni_ror_new` (3.90.179.151)**, which runs its **own local nginx**
+> (`/etc/nginx/sites-available/edgar.conf`, nginx 1.18) terminating `:443` → `127.0.0.1:3002`.
+> **`krake_ng` is NOT the edgar front** — it's a separate shared proxy for *other* domains
+> (truesight.me, getdata.io); its edgar block is stale/inert (`include sites-enabled` is even
+> commented). Edit edgar routing in `edgar.conf` ON `seni_ror_new`, NOT on krake_ng. (This also
+> means `deploy.sh` → `seni_ror_new` deploys ARE live, since DNS points straight there.)
 >
 > _Note: only the **GitHub repo + local git remote** were renamed. The local working dir is
 > still `/Users/garyjob/Applications/dao_client/` and the importable package is still
@@ -50,14 +58,18 @@ read caches (`truesight_dao_client/cache/*`), and a proven `Gdrive::*`→Python 
 | # | Decision |
 |---|----------|
 | Repo | Rename `dao_client` → **`dao_protocol`** (GitHub redirects old URLs). Keep importable package `truesight_dao_client` so imports/CLI don't break. Server lives here behind a `[server]` extra. |
-| Host | Run `dao_protocol` FastAPI on **`seni_ror_new`** (Edgar app box) on **:8010**, own systemd unit. |
-| Proxy | Add `location` blocks on **`krake_ng`** (nginx, SSH :2202, SHARED proxy) routing Tenant B paths to `seni_ror_new:8010`; everything else stays at `:3002` (Rails). |
+| Host | Run `dao_protocol` FastAPI on **`seni_ror_new`** (Edgar app box) on **:8010**, own systemd unit. Bind reachable only via the box's local nginx (no external SG rule needed — localhost hop). |
+| Proxy | Add `location` blocks to the **real edgar nginx** on `seni_ror_new` itself: `/etc/nginx/sites-available/edgar.conf` (nginx 1.18), proxying Tenant B paths to `http://127.0.0.1:8010/`; `location /` stays `127.0.0.1:3002` (Rails). **NOT krake_ng** — see topology correction. |
 | No clash | tokenomics is GAS on Google's servers — untouched. This replaces Edgar's **Rails** role only. |
 | No race | **User-visible writes stay synchronous in-request** to the source of truth (matches today). Async only for downstream propagation the DApp doesn't read back immediately. Each path owned by exactly ONE service at a time (atomic nginx flip) → no dual-write race. |
 
-**Edgar prod topology** (from `~/.ssh/config` + `sentiment_importer/deploy.sh`):
-`krake_ng` (54.226.114.186 :2202, nginx) → `seni_ror_new` (3.90.179.151, Rails :3002,
-`/home/ubuntu/sentiment_importer`); Sidekiq on `seni_sk_new` (54.163.216.235).
+**Edgar prod topology (CORRECTED, verified 2026-05-25):** `edgar.truesight.me` → DNS →
+**`seni_ror_new` (3.90.179.151) directly**. That box runs its own local nginx 1.18
+(`/etc/nginx/sites-available/edgar.conf`) terminating `:443` (Let's Encrypt) → `127.0.0.1:3002`
+(Rails, `/home/ubuntu/sentiment_importer`). `dao_protocol` runs on the same box (`:8010`).
+Sidekiq on `seni_sk_new` (54.163.216.235). **`krake_ng` (54.226.114.186 :2202) is a SEPARATE
+shared proxy for truesight.me / getdata.io etc. — NOT the edgar front** (the `~/.ssh/config`
+comment and the old `nginx_krake_ng.conf` edgar block are stale/misleading).
 Bare `seni_ror`/`seni_sk` aliases = dead Cypher IPs (forensics only — do NOT deploy there).
 
 ---
@@ -71,15 +83,14 @@ Bare `seni_ror`/`seni_sk` aliases = dead Cypher IPs (forensics only — do NOT d
 - [ ] Inventory Tenant B env/secrets on Edgar: Stripe secret key, EasyPost key, GitHub PAT
       (invoice/asset upload), GAS shared secrets, `AGROVERSE_INVENTORY_*`.
 - [ ] Confirm `dao_client` auth is active for contribution reporting (`auth.py status`).
-- [ ] Snapshot `krake_ng`'s nginx config (the `edgar.truesight.me` server block) before any edit.
+- [ ] Snapshot `seni_ror_new:/etc/nginx/sites-available/edgar.conf` before any edit (this is the real edgar nginx — NOT krake_ng).
 - [ ] Python runtime available on `seni_ror_new` (venv strategy; don't collide with system py).
 
 ---
 
 ## Implementation plan (sequenced PRs)
 
-Each endpoint PR ends with an nginx `location` flip on `krake_ng`; Rails handler stays as
-instant rollback until PR7.
+Each endpoint PR ends with an nginx `location` flip in **`seni_ror_new:/etc/nginx/sites-available/edgar.conf`** (the real edgar front — NOT krake_ng); Rails handler stays as instant rollback until PR7.
 
 - **PR0 — Repo rename.** `dao_client` → `dao_protocol` (GitHub Settings → rename). Update local
   remote + hardcoded `TrueSightDAO/dao_client` doc references. Keep package name. No behavior change.
@@ -117,8 +128,8 @@ the next phase.
 | Planning/docs | This plan + `STRIPE_LEDGER_ROUTING.md` Flow 5 | agentic_ai_context#185 | ✓ | ✓ |
 | PR0 | Repo rename `dao_client`→`dao_protocol` (GitHub + remote) | _(settings rename)_ | ✓ | ✓ |
 | PR1a (code) | Scaffold `server/` + `[server]` extra + `/ping`/`/healthz` (validated) | dao_protocol#33 | ✓ | ✓ |
-| PR1b (deploy) | Deploy to `seni_ror_new:8010` + nginx `location` flip on shared `krake_ng` | — | ☐ | ☐ |  ◀ RESUME HERE (needs go-ahead) |
-| PR2 | `/proxy/gas/:name` | — | ☐ | ☐ |
+| PR1b (deploy) | Deployed `seni_ror_new:8010` (systemd) + `/dao-protocol/` in `seni_ror_new` `edgar.conf`; LIVE & verified (200) | _(server deploy)_ | ✓ | ✓ |
+| PR2 | `/proxy/gas/:name` | — | ☐ | ☐ |  ◀ RESUME HERE |
 | PR3 | Sheets adapter + newsletter/email-agent tracking | — | ☐ | ☐ |
 | PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ |
 | PR5 | `/dao/*` submit_contribution (verify + dispatch) | — | ☐ | ☐ |

@@ -32,13 +32,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Edgar → `dao_protocol` extraction — continue from PR1b (live deploy)
+### Edgar → `dao_protocol` extraction — continue from PR2 (`/proxy/gas`)
 
-**Context.** Pulling the DAO/Agroverse integration surface (RSA contributions, Stripe commerce, shipping rates, newsletter / email-agent tracking, GAS proxy, QR check) out of the Rails `sentiment_importer` (Edgar) app into a Python FastAPI service. Full plan, deploy topology, decisions, and a live **resume tracker** are in **`EDGAR_DAO_EXTRACTION_PLAN.md`** (this repo); Stripe flows in `STRIPE_LEDGER_ROUTING.md`. **Done:** planning/docs (PR #185) + PR0 repo rename (PR #186) + **PR1 code scaffold** (dao_protocol#33 — `server/` package, `[server]` extra, `/ping`+`/healthz`, deploy.sh + systemd unit; validated locally).
+**Context.** Pulling the DAO/Agroverse integration surface (RSA contributions, Stripe commerce, shipping rates, newsletter / email-agent tracking, GAS proxy, QR check) out of the Rails `sentiment_importer` (Edgar) app into a Python FastAPI service. Full plan, **corrected** deploy topology, decisions, and a live **resume tracker** are in **`EDGAR_DAO_EXTRACTION_PLAN.md`** (this repo); Stripe flows in `STRIPE_LEDGER_ROUTING.md`. **Done & LIVE:** planning/docs (#185) + PR0 rename (#186) + PR1 scaffold (dao_protocol#33) + **PR1b deploy** — service running on `seni_ror_new:8010` (systemd `truesight-dao-protocol`), `/dao-protocol/` routed via the **real** edgar nginx, verified public `https://edgar.truesight.me/dao-protocol/healthz` → 200.
 
-**Scope (next unit = PR1b deploy).** Live-deploy the scaffolded service: install/run on `seni_ror_new:8010` via the shipped systemd unit (`truesight_dao_client/server/deploy/`) and add the health `location` flip on the **shared** `krake_ng` nginx. Then PR2–PR7 per the plan's strangler-fig order (one path flipped at a time, Rails handler as rollback). After each merges, report the DAO contribution before the next (per `OPERATING_INSTRUCTIONS.md` §5).
+⚠️ **Topology (verified 2026-05-25):** `edgar.truesight.me` → DNS → **`seni_ror_new` (3.90.179.151) directly**, which runs its own local nginx (`/etc/nginx/sites-available/edgar.conf`) → `127.0.0.1:3002`. **`krake_ng` is NOT the edgar front** (its edgar block is stale/inert). Edit edgar routing in `edgar.conf` on `seni_ror_new`; the dao_protocol hop is **localhost** (no SG rule needed).
 
-**Blocker.** Needs operator go-ahead — PR1b requires SSH to `seni_ror_new` + `krake_ng` (:2202), sudo for systemd, a security-group rule allowing `krake_ng`→`seni_ror_new:8010`, and an nginx edit on the **shared** `krake_ng` proxy — snapshot the `edgar.truesight.me` server block before editing. Not a rush-against-a-deadline job.
+**Scope (next unit = PR2).** Port `/proxy/gas/:name` from Rails `proxy_controller` (allowlist in lockstep with `dapp/routes.js` Routes.gas.*) into the dao_protocol server; add a `location /proxy/gas/` to `seni_ror_new:edgar.conf`. Then PR3–PR7 per the plan. After each merges, report the DAO contribution before the next (`OPERATING_INSTRUCTIONS.md` §5).
+
+**Minor hardening follow-ups (non-blocking):** (a) rebind the service to `127.0.0.1:8010` (config.py default + systemd unit still say `0.0.0.0`, a leftover from the wrong cross-box assumption — only localhost needs it now); (b) decide where the live `edgar.conf` backup should be versioned (krake_ror repo was premised on krake_ng being the edgar front — it isn't).
 
 ### Dual Tech Summit 2026 (≈Jun 26, SF) — per-phase event follow-ups
 
