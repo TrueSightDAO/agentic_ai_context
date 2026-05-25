@@ -14,10 +14,12 @@ so clients never change and each step has instant rollback.
 > **PR4 (`/agroverse_shop/shipping_rates`) DONE & deployed too** (dao_protocol#36): EasyPost USPS
 > quotes, key provisioned in the box `.env` (DAO_PROTOCOL_EASYPOST_API_KEY), **exact parity vs Rails
 > verified** on a live address. Gate OFF. **Next is PR5 — `/dao/*` submit_contribution** (the crown
-> jewel): port `signature_verifier.rb` → `server/crypto/verify.py`, the event dispatch, and
-> `webhook_trigger`. Gate via the Rails `split` gem keyed on contributor identity (dogfood own key
-> first). Per the test-execution policy, the agent does NOT fire ledger-mutating events — operator
-> runs those. See `EDGAR_DAO_CUTOVER_TEST_PLAN.md`.
+> jewel). **PR5a (RSA verifier) DONE** (dao_protocol#37, `server/crypto/verify.py`, validated vs the
+> real example payload). **Next is PR5b** (`/dao/submit_contribution` intake: verify + dedup + append
+> to Telegram Chat Logs) then **PR5c** (dispatch: `webhook_trigger` + the 15-event→webhook routing
+> table) — full spec in "PR5 detail" below. These write the REAL ledger + hit REAL GAS, so build
+> gate-OFF with mocked tests; per the test-execution policy the agent does NOT fire ledger-mutating
+> events — operator dogfoods with own key. See `EDGAR_DAO_CUTOVER_TEST_PLAN.md`.
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -170,7 +172,9 @@ the next phase.
 | PR2 | `/proxy/gas/:name` | dao_protocol#34 | ✓ | ✓ | nginx hard-flip (Rails was 401) | ✅ ramped live 2026-05-25 (fixed the latent Rails 401) |
 | PR3 | newsletter + email-agent tracking pixels (+ first `server/sheets/` adapter) | dao_protocol#35 | ✓ | ✓ | nginx | ☐ (impl done + deployed; ramp pending) |
 | PR4 | `/agroverse_shop/shipping_rates` | dao_protocol#36 | ✓ | ✓ | nginx (+mirror shadow) | ☐ (impl done; **exact parity vs Rails verified**) |
-| PR5 | `/dao/*` submit_contribution (RSA verify + dispatch) | — | ☐ | ☐ | Rails `split` by contributor | ☐ ◀ RESUME (impl) |
+| PR5a | RSA verifier (`crypto/verify.py`) | dao_protocol#37 | ✓ | ✓ | n/a (library) | n/a |
+| PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | — | ☐ | ☐ | Rails `split` by contributor | ☐ ◀ RESUME (impl) |
+| PR5c | dispatch (`webhook_trigger` + event→webhook routing table) | — | ☐ | ☐ | (with PR5b) | ☐ |
 | (PR4b) | `/qr-code-check` read path — folded into PR6 (Stripe-entangled: MINTED→session) | — | ☐ | ☐ | nginx | ☐ |
 | PR6 | Stripe cluster (qr-code-check sale + meta_checkout + `/stripe_webhook`) | — | ☐ | ☐ | Rails `split` / hard flip | ☐ |
 | PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
@@ -197,7 +201,45 @@ analytics-only blast radius) → 4. `/agroverse_shop/shipping_rates` (read-only,
 | `/qr-code-check` (+ `/stripe_webhook`) | Gdrive::QrCodeLookup + Stripe | inventory_snapshot_publish |
 | `/ping` | health | inventory_snapshot_publish, dao_members_cache_refresh (scheduled) |
 
+## PR5 detail — `/dao/submit_contribution` intake + dispatch (crown jewel)
+
+**PR5a — RSA verifier: DONE** (dao_protocol#37, `server/crypto/verify.py`; validated vs the real example payload).
+
+**PR5b — intake** (`POST /dao/submit_contribution`): 1) verify via `crypto/verify.py` →
+`signature_verification` = success|failed|no_signature_format|error; 2) on success: dedup by the
+Request-Transaction-ID signature (→ 409 if already processed) + resolve governor authority
+(`Gdrive::Governors`); 3) append the signed text to **Telegram Chat Logs**
+(`Gdrive::TelegramRawLog.add_record` → new `sheets/telegram_raw_log.py`); 4) `[RETAIL FIELD REPORT
+EVENT]` also archived; 5) on success → dispatch (PR5c); respond `{status, signature_verification, …}`.
+⚠️ **Writes the REAL Telegram Chat Logs ledger** → build gate-OFF + mocked tests; live testing operator-driven (own key).
+
+**PR5c — dispatch** (port `WebhookTriggerWorker` → `jobs/webhook_trigger.py`: HTTP GET `?action=`,
+30s timeout, retry, dup-processing lock — Redis in Rails; in-process lock / `arq` here). Event-tag →
+(Rails `config.*_webhook_url`, action):
+
+| Event tag | config key (`*_webhook_url`) | action |
+|---|---|---|
+| `[SALES EVENT]` | sales_processing, sales_agl4, sales_non_agl4, inventory_processing, expense_processing | parseTelegramChatLogs / processTokenizedTransactions / processNonAgl4Transactions / processTelegramChatLogs / parseAndProcessTelegramLogs (fans out to 5) |
+| `[QR CODE UPDATE EVENT]` | qr_code_update | processQrCodeUpdatesFromTelegramChatLogs |
+| `[DAPP PERMISSION CHANGE EVENT]` | dapp_permission_change | apply_permission_change |
+| `[WARMUP SEND EVENT]` | warmup_send | apply_warmup_send |
+| (QR generation) | qr_code_generation | processQRCodeGenerationTelegramLogs |
+| `[PROPOSAL CREATION]` / `[PROPOSAL VOTE]` | proposal_processing | process_dapp_payloads |
+| `[REPACKAGING BATCH EVENT]` | repackaging_processing | processRepackagingBatchesFromTelegramChatLogs |
+| `[CURRENCY CONVERSION EVENT]` | currency_conversion_processing | parseAndProcessCurrencyConversionLogs |
+| `[RETAIL FIELD REPORT EVENT]` | retail_field_report_processing | processRetailFieldReportsFromTelegramChatLogs |
+| `[STORE ADD EVENT]` | store_add_processing | processStoreAddsFromTelegramChatLogs |
+| `[DONATION MINT EVENT]` | donation_mint_processing | processDonationMintsFromTelegramChatLogs |
+| `[CONTRIBUTOR ADD EVENT]` | contributor_add_processing | processContributorAddsFromTelegramChatLogs |
+| `[CREDENTIALING ATTESTATION EVENT]` | credentialing_attestation | process_attestation_events |
+| `[PARTNER CHECK-IN EVENT]` | partner_check_in_processing | processPartnerCheckInsFromTelegramChatLogs |
+| `[ASSET RECEIPT EVENT]` | asset_receipt_processing | processAssetReceiptsFromTelegramChatLogs (+ enqueue inventory snapshot) |
+
+Webhook URLs live in Rails `config/application.rb`/env (`*_webhook_url`) → provision the equivalents
+in the dao_protocol box `.env` server-side (like the EasyPost key). Dispatch is non-user-visible
+propagation → may run async; the **intake ledger append stays synchronous** (no-race rule).
+
 ## Still open
-- [ ] Job durability: BackgroundTasks+APScheduler vs arq/Redis — decide at PR5.
+- [ ] Job durability: BackgroundTasks+APScheduler vs arq/Redis — decide at PR5c.
 - [ ] Zero-lag inventory: keep `AgroverseInventorySnapshotPublishWorker`-style refresh async
       (matches today) vs synchronous on the sale path — decide at PR6.
