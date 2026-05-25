@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-24T19:47:09Z`
-- Look-back: **7** calendar days (`2026-05-17` → today UTC)
+- Generated (UTC): `2026-05-25T04:02:27Z`
+- Look-back: **7** calendar days (`2026-05-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 25
-- `[CREDENTIALING ATTESTATION EVENT]` × 9
-- `[EMAIL REGISTERED EVENT]` × 4
-- `[CONTRIBUTOR ADD EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
-
-### Latest entries
-
-- `Edgar_20260522224713_339` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: Cro3JxOeMaafxaPv8jb3czDII79T1KmD2nYTotE3mxw · Email: garyjob@gmail.com
-- `Edgar_20260522225030_341` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522230631_343` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Butterfly Effect credentialing — end-to-end live (post-bootstrap work)
-- `Edgar_20260522230903_001` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522231104_003` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522231941_005` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522231945_007` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522231947_009` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522232002_011` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522232205_013` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522232207_015` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJs0L6cT5TltUCVYEPn9+fb6…
-- `Edgar_20260522235119_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Butterfly Effect credentialing — operator-ready + template repo + cleanup
-- `Edgar_20260523000112_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Blog post: The chain holds (Field Signals #7)
-- `Edgar_20260523151709_021` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
-- `Edgar_20260523151726_023` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 1XX5H5XONF7CC2y2sC4ZExEk4hdGTABexHt-cGvUSKM · Email: garyjob@gmail.com
-- `Edgar_20260523155334_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Autopilot allowlist + mobile attest button fix
-- `Edgar_20260523171719_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Informing ERA what is human in the loop in this case
-- `Edgar_20260523195508_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Reached out to Ken about bringing cacao to the conference
-- `Edgar_20260523195554_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Offered to bring cacao to Tiffine event
-- `Edgar_20260524003636_033` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 
 ---
 
@@ -68,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 221 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 221 | — |
+| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 220 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 220 | — |
 
 ---
 
@@ -170,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,992.39**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$39.31**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -196,10 +154,8 @@ _Lines in window matching configured names or status keywords:_
 - 2026-05-19 | claude | **Credentialing WhatsApp self-claim — designed and deferred.** Surfaced from the 2026-05-19 ERA DAO WhatsApp thread where Bilal + Shahbaz observed that Butterfly Effect students identify by WhatsApp number, not email (parents' WhatsApp where applicable). Captured the full minimal-flow design (1 round-trip, user-initiated wa.me deeplink with a short nonce, bot reply inside free 24h service window, browser polls Edgar for binding confirmation, never store raw phone — only `sha256(cc + national)` hash) in `CREDENTIALING_PLATFORM.md` §13. Held from immediate build: no student has asked for self-claim yet, cert PDF + QR + public `/credentials/#<slug>` page already works as the "show don't tell" demo, and Meta business verification (2–10 days) + legal-entity decision on which WABA front to use are real costs against zero current need. Four explicit defer-flip criteria documented (student asks; second WhatsApp-native program lands; TDF acquisition closes with contractual attestation; receiving platform asks for holder-verified signal). Pointer entry added to `OPEN_FOLLOWUPS.md`. 2026 Meta cost model confirmed via WebSearch: pre-2025 "first 1k conversations/month free" allowance was retired; user-initiated service conversations are unlimited free, business-initiated marketing/utility/auth are billed from msg #1 — flow is designed to ride the free user-initiated path.
 - 2026-05-20 | claude | **lineage-assets repo created + per-QR provenance pattern shipped.** New repo `TrueSightDAO/lineage-assets` (public) carries one JSON manifest per QR-coded asset under `qrs/<qr_id>.json`. Parallel architecture to `lineage-credentials` (humans + acts) — same lineage primitive (attested chain), different population (physical assets). Initial seed: 1457 manifests from the Agroverse QR codes sheet. Per-QR shape (full schema in `lineage-assets/SCHEMA.md`): asset_type (cacao_bag / tree / drum / membership / extensible), schema_version, minted_at + by, status (MINTED / CONSIGNMENT / SOLD / RETIRED), current_holder, lineage block (asset-type-specific), append-only events array, current_landing_page (what Edgar redirects to today, preserved for reference), scan_target (new truesight.me URL), edgar_resolve_url. New rendering surface at `truesight.me/qr/?id=<qr_id>` shipped to beta (PR #129) and copied to prod via Contents API (no `gh repo sync --force` per the documented CNAME footgun rule; CNAME verified intact post-PUT). Production QR-scan UX unchanged — existing Edgar `landing_page` redirect (column B of Agroverse QR codes sheet) keeps resolving to current landing pages until Kirsten + operator review and step-function switch via bulk column B update. Full doc at `LINEAGE_ASSETS.md`. Pattern unlocks future cross-jurisdiction supply-chain traceability work (per-country lineage-assets-<jurisdiction> repo splits) without re-architecting.
 
-_All dated lines on/after 2026-05-17_ (14):
+_All dated lines on/after 2026-05-18_ (13):
 
-- 2026-05-17 | claude | CREDENTIALING_PROGRAM_PAGES.md §15 (Phase 3a) added: per-credential QR + PDF, per surface. Each credential page surface (canonical + each program-scoped) gets its own QR with the proper logo in the centre and a matching PDF that embeds that QR. Naming: `_cache/cv/<slug>__<program-slug>.{qr.png,pdf}` (double-underscore namespace separator). Program logos vendored into `lineage-engine/scripts/program_assets/<program-slug>/logo.png` for build determinism. Sub-phases 3a.1–3a.5 map cleanly to `lineage-engine` → `lineage-credentials` (auto from GH Action) → `truesight_me_beta/prod`.
-- 2026-05-17 | claude | CREDENTIALING_PROGRAM_PAGES.md §17 added: Phase 3b — partner-branded PDF templates. Specifies the upgrade from "per-program PDF with QR" (current Phase 3a state) to "certificate-quality PDF suitable for printing on cardstock". Per-program `cert_template.html` + `cert_styles.css` vendored alongside `logo.png` in `lineage-engine/scripts/program_assets/<url-slug>/`. Introduces `cv.programs[<p>].locked_at` for the completion-freeze rule: once an authorized attestor commits a completion event, the certificate PDF freezes at the snapshot, even though canonical / on-screen artifacts keep regenerating. Two-button page UX: "⬇ Practice log PDF" (always) + "⬇ Certificate PDF" (only after locked_at). Sub-phases 3b.0–3b.5; defer until a partner has a real first-cohort-member who's ready to receive a printable cert.
 - 2026-05-18 | claude | CREDENTIALING_PROGRAM_PAGES.md §17.13 added: two-strategy dispatch for Phase 3b certificate generation. `certificate.strategy: "pdf_overlay"` lets partners (Bilal/ERA, future) supply a finished PDF that gets text + QR overlaid at manifest-declared coordinates; `certificate.strategy: "html_template"` (default if absent) keeps the spec'd HTML/CSS path for partners without their own design. Coordinates documented in PDF points (bottom-left origin). First partner: Butterfly Effect with Bilal's Narowal Public School cohort template, EB Garamond Italic font, QR proposed at bottom-right corner. Implementation lands next in lineage-engine.
 - 2026-05-18 | claude | CREDENTIALING_PROGRAM_PAGES.md §18 added: Phase 4 — contribution freshness. Three data sources (Ledger history quarterly canonical, Scored Chatlogs daily pending where col L is empty, Recurring Transactions derived expected since column F). Two surfaces (web shows all three with caveat banners + pills, PDF stays canonical-only — matches §17 doctrine). Dedup is owned by an existing GAS via Scored Chatlogs col L = Ledger history row number → no fuzzy matching needed. Scored Chatlogs floor is 2024-12-13 (first entry). Phased rollout 4.0-4.4; implementation deferred until ready.
 - 2026-05-18 | claude | **LLM discovery surface on truesight.me** — new doc `LLM_DISCOVERY_SURFACE.md` documents the convention. Shipped via truesight_me_beta PRs #119, #120, #122, #123, #124, #125. Live URLs: `truesight.me/llms.txt` (routing map), `truesight.me/stats/{current,beerhall_archive,repos_index,programs_index,partners_index}.json` (machine-readable digest stack, 6h refresh cron). Builder: `truesight_me_beta/scripts/build_stats_current.py`. Companion UX: landing-page tile expanders under USD Treasury + AUM lazy-fetch `treasury-cache` for per-ledger / per-currency breakdown. Solves: LLM agents fetching truesight.me with a plain HTTP GET previously saw an empty shell (stats hydrate client-side). Now agents reading `llms.txt` + the five `stats/*.json` files have full programmatic visibility into members, governors, treasury (with per-ledger breakdown), inventory, repos (with deploy targets), credentialing programs, partners, recent + historical Beer Hall digests — without browser execution. Extension protocol documented in `LLM_DISCOVERY_SURFACE.md` §"How to extend the surface". GAS webhook URLs deliberately excluded (private). `PROJECT_INDEX.md` truesight_me row updated to point at the new surface.
@@ -212,6 +168,7 @@ _All dated lines on/after 2026-05-17_ (14):
 - 2026-05-19 | claude | **Filed `network_state.json` follow-up + recorded the LLM-handles-plumbing strategic frame.** Strategy conversation surfaced the observation that with LLMs handling plumbing (Faire bot onboarded today, Partner Check-in concierge UX, etc.), the scarce operator input has shifted to strategic loop design + network orchestration + relationship hub-and-spoke choices. This concentrates operator value into fewer higher-stakes decisions, which means *visibility into network state* becomes the load-bearing input. Filed `OPEN_FOLLOWUPS.md` entry for a `truesight.me/stats/network_state.json` daily digest — per-loop velocity (30d / 90d / change), per-population growth, adjacency / hub-spoke map, cross-population flow counts. Follows the established `LLM_DISCOVERY_SURFACE.md` convention (stats/*.json + llms.txt routing). All data sources already exist; ~half day to build. Name `network_state` is a deliberate nod to Balaji's *Network State* thesis (kept in implementation layer; public-facing Growth Model SVG title stays unambiguous to avoid friction with FOs / external audiences). When built, krake_sinatra's morning briefing reads from this file. Pre-warned the standard low-N noise caveat: first-derivative as headline, second-derivative as advisory only.
 - 2026-05-20 | claude | **lineage-assets repo created + per-QR provenance pattern shipped.** New repo `TrueSightDAO/lineage-assets` (public) carries one JSON manifest per QR-coded asset under `qrs/<qr_id>.json`. Parallel architecture to `lineage-credentials` (humans + acts) — same lineage primitive (attested chain), different population (physical assets). Initial seed: 1457 manifests from the Agroverse QR codes sheet. Per-QR shape (full schema in `lineage-assets/SCHEMA.md`): asset_type (cacao_bag / tree / drum / membership / extensible), schema_version, minted_at + by, status (MINTED / CONSIGNMENT / SOLD / RETIRED), current_holder, lineage block (asset-type-specific), append-only events array, current_landing_page (what Edgar redirects to today, preserved for reference), scan_target (new truesight.me URL), edgar_resolve_url. New rendering surface at `truesight.me/qr/?id=<qr_id>` shipped to beta (PR #129) and copied to prod via Contents API (no `gh repo sync --force` per the documented CNAME footgun rule; CNAME verified intact post-PUT). Production QR-scan UX unchanged — existing Edgar `landing_page` redirect (column B of Agroverse QR codes sheet) keeps resolving to current landing pages until Kirsten + operator review and step-function switch via bulk column B update. Full doc at `LINEAGE_ASSETS.md`. Pattern unlocks future cross-jurisdiction supply-chain traceability work (per-country lineage-assets-<jurisdiction> repo splits) without re-architecting.
 - 2026-05-20 | claude | **Option B QR architecture migration complete + Product Verification surface upgraded.** Consolidated everything QR-asset into `lineage-assets` (one repo holds manifests + PNG images + generator + schema + index builder; eliminates cross-repo drift). Migrated 729 PNGs from `qr_codes` repo → `lineage-assets/pngs/`. Moved QR generator from `tokenomics/python_scripts/agroverse_qr_code_generator/` → `lineage-assets/scripts/qr_generator/` (tokenomics path now `DEPRECATED.md` breadcrumb for git-history continuity). Generator updated to write three artifacts per mint in one run: compiled label image (operator-local scratch), raw PNG (committed), per-QR JSON manifest (committed). Shared `scripts/lib/manifest.py` module — same builder used by `seed_from_sheet.py` (bulk import) AND `batch_compiler.py` (per-mint), so schema stays in lockstep regardless of entry point. All 1457 existing manifests' `qr_image_url` updated to point at new lineage-assets/pngs location. New `scripts/build_index.py` walks qrs/*.json → emits `qrs_index.json` (1457 rows summary, per-status + per-asset-type counts). New Product Verification page at `truesight.me/physical-assets/serialized/` (was a hard redirect to the raw 1457-row Google Sheet — now a real searchable/filterable listing fetched from qrs_index.json, each row links to truesight.me/qr/?id=<qr_id>). `qr_codes` repo archived on GitHub (PNGs preserved at existing raw URLs for any out-in-the-wild references; no new mints there). Production QR-scan UX unchanged; Edgar's landing_page redirect (column B of Agroverse QR codes sheet) untouched until step-function switch lands. PRs: lineage-assets (direct push), truesight_me_beta #130, tokenomics #299. Truesight prod synced via Contents API (CNAME verified intact). Updated `LINEAGE_ASSETS.md` with new repo layout + generator section + Product Verification listing section.
+- 2026-05-24 | claude | OPERATING_INSTRUCTIONS §5 execution-roadmap convention; EDGAR_DAO_EXTRACTION_PLAN.md (Edgar→dao_protocol PR0–7 + resume tracker); STRIPE_LEDGER_ROUTING Flow 5 (consumer QR→Edgar server-side Stripe).
 
 ---
 
@@ -231,6 +188,8 @@ _All dated lines on/after 2026-05-17_ (14):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d0daab6 | 2026-05-24 16:26:59 -0700 | blog: add 'The checklist that lets you do nothing' (Do Nothing Society) (#145)
+d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 00db8cc | 2026-05-24 14:09:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 11b6cdd | 2026-05-24 09:06:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35f1f10 | 2026-05-24 04:49:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -269,20 +228,24 @@ cc63411 | 2026-05-20 10:02:15 +0000 | chore(stats): refresh stats/current.json [
 5c3c082 | 2026-05-19 14:03:24 -0700 | credentials: tap-to-expand practice session details (#128)
 fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via _cache/index.json (#127)
 87a2168 | 2026-05-19 20:16:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4cf8d28 | 2026-05-19 16:00:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-35fa68f | 2026-05-19 10:25:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-0779410 | 2026-05-20 14:23:25 -0700 | refactor(extract_partner_addresses_from_repo): look up Agroverse Partners by gid (#129)
+81e70dc | 2026-05-24 16:07:09 -0700 | Dual Tech Summit 2026 — finalized proposal + roadmap (under events/) (#133)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9be4380 | 2026-05-24 16:48:39 -0700 | open-followups: add Edgar→dao_protocol extraction (RESUME at PR1) (#187)
+4459196 | 2026-05-24 16:46:28 -0700 | dao_protocol PR0 done: repo renamed; advance resume tracker to PR1 (#186)
+0327a34 | 2026-05-24 16:06:04 -0700 | docs: execution-roadmap convention + Edgar→dao_protocol extraction plan (#185)
+5ed8527 | 2026-05-24 16:01:44 -0700 | OPEN_FOLLOWUPS: add Dual Tech Summit 2026 per-phase event follow-ups (#184)
+217bdfa | 2026-05-24 12:47:29 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
+068233f | 2026-05-24 12:47:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
 426d77f | 2026-05-24 07:08:21 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
 edf6d97 | 2026-05-24 07:08:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
 2ac8ec7 | 2026-05-24 02:06:06 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
@@ -317,18 +280,13 @@ f84cbb1 | 2026-05-21 13:20:24 -0700 | chore(previews): refresh Beer Hall preview
 978409a | 2026-05-21 13:20:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 8b3a4f2 | 2026-05-21 08:57:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
 19473f7 | 2026-05-21 08:57:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
-01564b8 | 2026-05-21 03:10:25 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
-74e9c54 | 2026-05-21 03:10:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
-fe5c304 | 2026-05-20 21:53:11 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
-6b1b178 | 2026-05-20 21:53:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
-97f8ace | 2026-05-20 20:58:56 -0700 | Merge pull request #178 from TrueSightDAO/auto/advisory-refresh-2026-05-21
-8252a14 | 2026-05-21 03:58:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+fd13174 | 2026-05-24 16:42:10 -0700 | qr_code_web_service: optional newsletter opt-in on email-link (subscribe=true) (#309)
 09a6615 | 2026-05-22 15:03:03 -0700 | credentialing: add central program_admin_endpoint.gs (#308)
 6c55499 | 2026-05-20 15:50:34 -0700 | doGet: recalculate_aum operator escape hatch (#307)
 2a08067 | 2026-05-20 15:21:11 -0700 | calculateAUM: read Balance Asset section (cols A-B/E-F) instead of Equity (#306)
@@ -378,13 +336,13 @@ f9f03de | 2026-05-20 09:56:08 +0000 | chore: refresh store and partner inventory
 2aceaab | 2026-05-18 22:23:50 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 a50b773 | 2026-05-18 10:50:02 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 231788d | 2026-05-18 10:42:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-6748cc9 | 2026-05-17 08:35:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-_(no commits on origin/main in window)_
+050a682 | 2026-05-24 16:47:39 -0700 | Center-align the newsletter consent checkbox label (AGL4/AGL8) (#114)
+b23cc95 | 2026-05-24 16:39:42 -0700 | QR landing: add opt-in checkbox to join the Agroverse newsletter (#113)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -410,6 +368,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-25T040227Z_newsletter-opt-in-and-dual-tech.md`
+
+- **posted_at_utc:** `2026-05-25T04:02:27Z`  
+- **slug:** `newsletter-opt-in-and-dual-tech`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
+  - **Narrative live** — "The checklist that lets you do nothing" (Do Nothing Society) published.
+
 ### `beer-hall_2026-05-24T035235Z_treasury-aum-dashboard-live.md`
 
 - **posted_at_utc:** `2026-05-24T03:52:35Z`  
@@ -427,15 +394,6 @@ _(no commits on origin/master in window)_
 
   OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
   - **Narrative published** — "The chain holds" (Field Signals #7) live with refreshed visuals and tighter prose.
-
-### `beer-hall_2026-05-22T035436Z_oracle-fix-partner-ops-tooling.md`
-
-- **posted_at_utc:** `2026-05-22T03:54:36Z`  
-- **slug:** `oracle-fix-partner-ops-tooling`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
-  - **Oracle patched** — fixed chart-cast failure by adding missing Chinese solar terms (Xiaoman/Mangzhong) to the qimen-dunjia library.
 
 ---
 
@@ -456,39 +414,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/24/2026 11:50:50 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-17`; scanned last **396** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-05-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
