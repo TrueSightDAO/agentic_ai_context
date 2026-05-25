@@ -60,10 +60,12 @@ Verified via the test prefix 2026-05-25 (bogus ids → redirect only, no sheet w
 - [x] deployed — google libs present + Edgar SA key readable by the service (so real writes will work)
 - [ ] 🧑 confirm a **real** open/click bumps the sheet counters (`Agroverse News Letter Emails` H–K / L–P; `Email Agent Drafts` N / O) — operator opens a real tracked email; automated tests avoid this to not pollute live stats
 
-## PR4 — `/agroverse_shop/shipping_rates`  · PENDING IMPL
-- [ ] ⬜ valid address → EasyPost USPS rates JSON
-- [ ] ⬜ `mirror`/shadow vs Rails on a sample of real addresses (read-only → safe to shadow)
-- [ ] 🧑 confirm agroverse_shop client GAS fallback still covers proxy errors
+## PR4 — `/agroverse_shop/shipping_rates`  · IMPL DONE (dao_protocol#36) · ramp pending
+- [x] valid address → EasyPost USPS rates JSON (live)
+- [x] **EXACT PARITY vs Rails** (2026-05-25, "1 Infinite Loop" 8oz → GroundAdvantage $5.70 / Priority $8.26 / Express $31.11 — identical ids, amounts, deliveryDays on both)
+- [x] 5 mocked unit tests
+- [ ] 🧑 confirm agroverse_shop client GAS fallback still covers proxy errors (operator)
+- _note: `deliveryDays` shows "3-7 business days" for all three — EasyPost's modern service names (GroundAdvantage/Priority/Express) don't match the estimate regexes → default. Pre-existing in **both** Rails and Python (faithful parity, not a regression)._
 
 ## PR4b — `/qr-code-check`  · PENDING IMPL
 - [ ] ⬜ `SAMPLE`/`GIFT`/`SOLD` → landing redirect + UTM params

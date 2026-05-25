@@ -11,8 +11,13 @@ so clients never change and each step has instant rollback.
 > path is now hard-flipped to it. **PR3 (newsletter + email-agent tracking) DONE & deployed too**
 > (dao_protocol#35): first `server/sheets/` adapter base + the 4 tracking endpoints, redirects
 > verified via the test prefix, gate OFF (real `/newsletter` + `/email_agent` still on Rails).
-> Functional/POST/redirect tests pass (see `EDGAR_DAO_CUTOVER_TEST_PLAN.md`). **Next is PR4**
-> (`/agroverse_shop/shipping_rates` — EasyPost; reuse the gate-off + test-prefix pattern).
+> **PR4 (`/agroverse_shop/shipping_rates`) DONE & deployed too** (dao_protocol#36): EasyPost USPS
+> quotes, key provisioned in the box `.env` (DAO_PROTOCOL_EASYPOST_API_KEY), **exact parity vs Rails
+> verified** on a live address. Gate OFF. **Next is PR5 — `/dao/*` submit_contribution** (the crown
+> jewel): port `signature_verifier.rb` → `server/crypto/verify.py`, the event dispatch, and
+> `webhook_trigger`. Gate via the Rails `split` gem keyed on contributor identity (dogfood own key
+> first). Per the test-execution policy, the agent does NOT fire ledger-mutating events — operator
+> runs those. See `EDGAR_DAO_CUTOVER_TEST_PLAN.md`.
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -164,9 +169,9 @@ the next phase.
 |------|----------|---------|-------------|---------|------|-----------|
 | PR2 | `/proxy/gas/:name` | dao_protocol#34 | ✓ | ✓ | nginx hard-flip (Rails was 401) | ✅ ramped live 2026-05-25 (fixed the latent Rails 401) |
 | PR3 | newsletter + email-agent tracking pixels (+ first `server/sheets/` adapter) | dao_protocol#35 | ✓ | ✓ | nginx | ☐ (impl done + deployed; ramp pending) |
-| PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ | nginx (+mirror shadow) | ☐ ◀ RESUME (impl) |
-| (PR4b) | `/qr-code-check` (read path) | — | ☐ | ☐ | nginx | ☐ |
-| PR5 | `/dao/*` submit_contribution (RSA verify + dispatch) | — | ☐ | ☐ | Rails `split` by contributor | ☐ |
+| PR4 | `/agroverse_shop/shipping_rates` | dao_protocol#36 | ✓ | ✓ | nginx (+mirror shadow) | ☐ (impl done; **exact parity vs Rails verified**) |
+| PR5 | `/dao/*` submit_contribution (RSA verify + dispatch) | — | ☐ | ☐ | Rails `split` by contributor | ☐ ◀ RESUME (impl) |
+| (PR4b) | `/qr-code-check` read path — folded into PR6 (Stripe-entangled: MINTED→session) | — | ☐ | ☐ | nginx | ☐ |
 | PR6 | Stripe cluster (qr-code-check sale + meta_checkout + `/stripe_webhook`) | — | ☐ | ☐ | Rails `split` / hard flip | ☐ |
 | PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
 
