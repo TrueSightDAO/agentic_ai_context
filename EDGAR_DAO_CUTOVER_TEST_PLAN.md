@@ -12,7 +12,13 @@ route's block **before ramping that route's gate**; don't open any traffic % unt
 
 ---
 
-## PR2 — `/proxy/gas/:name`  · IMPL DONE (dao_protocol#34) · ramp pending
+## PR2 — `/proxy/gas/:name`  · IMPL DONE (dao_protocol#34) · ✅ RAMPED LIVE 2026-05-25
+
+**Ramp DONE (option A chosen):** `location /proxy/gas/` added to `seni_ror_new:edgar.conf` →
+`proxy_pass http://127.0.0.1:8010` (path preserved). Real `https://edgar.truesight.me/proxy/gas/*`
+now served by the Python service. Verified: `GET /proxy/gas/qrCodes` → **200** (GAS JSON; was 401),
+unknown → 404, `/ping` (Rails) → 200. Backup refreshed (sentiment_importer#1059). The 401 finding
+below is now **RESOLVED** by the ramp.
 
 **Functional — Python forwards to each allowlisted GAS (run 2026-05-25, all ✅):**
 - [x] `assetVerify` → 200, upstream `{"error":"Signature parameter missing"}`
@@ -26,12 +32,12 @@ route's block **before ramping that route's gate**; don't open any traffic % unt
 - [x] 5 mocked unit tests (GET raw-query, POST body+content-type, 502, OPTIONS, 404) pass
 
 **Not run / manual:**
-- [ ] 🧑 Live WRITE-GAS POST (`qrCodeGenerator`, `daoForms`, `feedback`) — skipped to avoid real
-  side effects; covered by the mocked POST test. *Operator:* approve a benign POST payload if you
-  want a live write-path proxy check.
+- [x] ✅ Live WRITE-GAS POST path — `POST /proxy/gas/feedback` (invalid/benign body) forwarded
+  through Python to GAS and returned GAS's response (a Google auth/redirect HTML for the bad
+  payload). Confirms POST forwarding works end-to-end; no record created.
 
-**⚠️ FINDING — Rails `/proxy/gas` returns 401 (decision needed):**
-Live Rails `/proxy/gas/*` returns **401 for every name + OPTIONS** (while `/ping` is 200). Root
+**✅ RESOLVED FINDING (ramped to Python, option A) — Rails `/proxy/gas` was returning 401:**
+Live Rails `/proxy/gas/*` returned **401 for every name + OPTIONS** (while `/ping` is 200). Root
 cause: `proxy_controller.rb` does `skip_before_action :require_login, raise: false`, but
 `require_login` is **not** a registered `before_action` — so the skip is a no-op. A *different*
 global filter (prime suspect **`rate_limit_bot_calls`**) 401s the unauthenticated/bot-like proxy
@@ -77,7 +83,19 @@ For **each** event type: valid signature → accept + correct ledger write; **ta
 
 ---
 
+## Testing-execution policy (Gary, 2026-05-25)
+- **Default: test on this local machine** — drive the Python service with `dao_client` + the operator's
+  key against the `/dao-protocol/*` test prefix (or the ramped real path). Signature verify + log-only
+  events + read endpoints can be tested here.
+- **Operator runs the ledger-mutating ones.** There is no test ledger — any real signed financial event
+  writes to the live Google Sheets. So **Gary executes (or supervises) events that mutate financial
+  ledger state** — `DONATION MINT`, `SALES`, `INVENTORY MOVEMENT`, `CURRENCY CONVERSION`, real QR-code
+  sales, Stripe checkouts — so they're legitimate intended entries, not test pollution. The agent does
+  not fire those autonomously.
+
 ## Operator (🧑) summary — what needs you
-1. ⚠️ **Decide the `/proxy/gas` 401**: ramp to Python (recommended — Python is the working impl) **or** fix Rails (`skip_before_action :rate_limit_bot_calls` on `proxy#gas`). Unblocks the PR2 ramp.
-2. Approve a benign POST payload if you want a live write-GAS proxy check (else the mocked POST test stands).
-3. When PR5/PR6 land: dogfood signed events with your own key/governor signature, do the `EMAIL VERIFICATION` loopback on your machine, and trigger a Stripe test-mode checkout.
+1. ✅ **`/proxy/gas` 401 — DONE.** Ramped to Python (option A); the latent 401 is fixed.
+2. ✅ **Live POST check — DONE** (`/proxy/gas/feedback` forwards through Python; no record created).
+3. When PR5/PR6 land: per the policy above — dogfood non-mutating signed events + signature verify on
+   the local machine; **you** run the ledger-mutating events (`DONATION MINT`/`SALES`/Stripe checkout),
+   the `EMAIL VERIFICATION` loopback (same-device), and governor-signature events.
