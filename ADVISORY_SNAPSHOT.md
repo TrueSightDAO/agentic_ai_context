@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-25T04:02:27Z`
+- Generated (UTC): `2026-05-25T05:04:25Z`
 - Look-back: **7** calendar days (`2026-05-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 22
+- `[CREDENTIALING ATTESTATION EVENT]` × 9
+- `[EMAIL REGISTERED EVENT]` × 4
+- `[PRACTICE EVENT]` × 4
+- `[CONTRIBUTOR ADD EVENT]` × 3
+- `[EMAIL VERIFICATION EVENT]` × 2
+
+### Latest entries
+
+- `Edgar_20260523000112_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Blog post: The chain holds (Field Signals #7)
+- `Edgar_20260523151709_021` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260523151726_023` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 1XX5H5XONF7CC2y2sC4ZExEk4hdGTABexHt-cGvUSKM · Email: garyjob@gmail.com
+- `Edgar_20260523155334_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Autopilot allowlist + mobile attest button fix
+- `Edgar_20260523171719_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Informing ERA what is human in the loop in this case
+- `Edgar_20260523195508_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Reached out to Ken about bringing cacao to the conference
+- `Edgar_20260523195554_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Offered to bring cacao to Tiffine event
+- `Edgar_20260524003636_033` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260524195705_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Feedback about important of smoothness of the chocolate and peace of mind ha…
+- `Edgar_20260524200005_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Shared on the shape of the craft chocolate movement
+- `Edgar_20260524200249_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Discussed about how the communication and human psychology actually works
+- `Edgar_20260524230327_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Dual Tech Summit 2026 — multi-LLM proposal consolidation, finalized plan + e…
+- `Edgar_20260524230345_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Dual Tech Summit 2026 — Phase-1 deliverables: field-asset copy + truesight.m…
+- `Edgar_20260524230655_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Edgar to dao_protocol extraction: execution-roadmap convention + plan + Stri…
+- `Edgar_20260524233533_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Published 'The checklist that lets you do nothing' to truesight.me (Do Nothi…
+- `Edgar_20260524234253_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: QR-scan newsletter opt-in: consent checkbox (AGL4/AGL8) + qr_code_web_servic…
+- `Edgar_20260524234654_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: dao_protocol PR0: renamed repo dao_client to dao_protocol + advanced executi…
+- `Edgar_20260525002907_053` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260525004429_055` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260525004448_057` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 
 ---
 
@@ -132,13 +170,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,992.23**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$39.48**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -240,6 +282,8 @@ fd2e296 | 2026-05-19 13:40:15 -0700 | credentials: resolve pk-hash fragments via
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bf57916 | 2026-05-24 21:02:44 -0700 | Merge pull request #188 from TrueSightDAO/auto/advisory-refresh-2026-05-25
+c24b258 | 2026-05-25 04:02:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-25 UTC)
 9be4380 | 2026-05-24 16:48:39 -0700 | open-followups: add Edgar→dao_protocol extraction (RESUME at PR1) (#187)
 4459196 | 2026-05-24 16:46:28 -0700 | dao_protocol PR0 done: repo renamed; advance resume tracker to PR1 (#186)
 0327a34 | 2026-05-24 16:06:04 -0700 | docs: execution-roadmap convention + Edgar→dao_protocol extraction plan (#185)
@@ -278,8 +322,6 @@ ec58766 | 2026-05-21 20:54:53 -0700 | Merge pull request #179 from TrueSightDAO/
 f317131 | 2026-05-22 03:54:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-22 UTC)
 f84cbb1 | 2026-05-21 13:20:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
 978409a | 2026-05-21 13:20:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
-8b3a4f2 | 2026-05-21 08:57:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-21 UTC)
-19473f7 | 2026-05-21 08:57:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-21 UTC)
 … (truncated)
 ```
 
@@ -414,6 +456,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/24/2026 21:50:09 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-18`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
