@@ -6,13 +6,12 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** PR1 LIVE + **PR2 `/proxy/gas` IMPLEMENTED & deployed** (dao_protocol#34,
-> 2026-05-25) — running on `:8010`, verified via the `/dao-protocol/proxy/gas/*` test prefix
-> (OPTIONS+CORS, 404 on unknown, real upstream forward all OK). **Gate OFF** — real `/proxy/gas/*`
-> still on Rails. **Next is PR3** (newsletter + email-agent tracking pixels, needs the `sheets/`
-> adapter base). Separately, **PR2 ramp** is pending: add a `split_clients` canary for `/proxy/gas`
-> in `edgar.conf` — but first **shadow/parity-check**, since a bare `qrCodes` call returned Rails
-> **401** vs Python **200** (confirm whether that's GAS variance or a Rails auth nuance before any %).
+> **Current step:** PR1 LIVE + **PR2 `/proxy/gas` DONE & RAMPED LIVE** (dao_protocol#34, 2026-05-25).
+> Implemented in Python, deployed on `:8010`, and the real `https://edgar.truesight.me/proxy/gas/*`
+> path is now hard-flipped to it (`location /proxy/gas/` in `seni_ror_new:edgar.conf`) — this **fixed
+> a latent Rails 401** (the proxy's `skip_before_action :require_login` was a no-op; a global filter
+> blocked it). Functional + live POST tests pass (see `EDGAR_DAO_CUTOVER_TEST_PLAN.md`). **Next is PR3**
+> (newsletter + email-agent tracking pixels — needs the first `server/sheets/` adapter base).
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -162,7 +161,7 @@ the next phase.
 
 | Step | Endpoint | Impl PR | Impl merged | Contrib | Gate | Ramp→100% |
 |------|----------|---------|-------------|---------|------|-----------|
-| PR2 | `/proxy/gas/:name` | dao_protocol#34 | ✓ | ✓ | nginx `split_clients` | ☐ (shadow/parity first: Rails 401 vs Py 200 on bare qrCodes) |
+| PR2 | `/proxy/gas/:name` | dao_protocol#34 | ✓ | ✓ | nginx hard-flip (Rails was 401) | ✅ ramped live 2026-05-25 (fixed the latent Rails 401) |
 | PR3 | newsletter + email-agent tracking pixels | — | ☐ | ☐ | nginx | ☐ ◀ RESUME (impl) |
 | PR4 | `/agroverse_shop/shipping_rates` | — | ☐ | ☐ | nginx (+mirror shadow) | ☐ |
 | (PR4b) | `/qr-code-check` (read path) | — | ☐ | ☐ | nginx | ☐ |
