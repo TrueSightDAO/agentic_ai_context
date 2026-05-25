@@ -31,6 +31,7 @@ so clients never change and each step has instant rollback.
 > canonical docs still 301-redirect; sweep them when convenient._
 
 **Companion docs:**
+- **`EDGAR_DAO_CUTOVER_TEST_PLAN.md`** — per-route cutover test checklist (run a route's block before ramping it). PR2 functional tests passed; documents the live-Rails `/proxy/gas` 401 finding + operator items.
 - `STRIPE_LEDGER_ROUTING.md` — all 5 Stripe flows (incl. the consumer-QR Flow 5).
 - Local scratch (gitignored, may be richer but not shared): `notes/claude_edgar_dao_extraction_2026-05-24.md`.
 
