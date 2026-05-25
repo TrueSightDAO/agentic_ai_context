@@ -67,10 +67,10 @@ Verified via the test prefix 2026-05-25 (bogus ids → redirect only, no sheet w
 - [ ] 🧑 confirm agroverse_shop client GAS fallback still covers proxy errors (operator)
 - _note: `deliveryDays` shows "3-7 business days" for all three — EasyPost's modern service names (GroundAdvantage/Priority/Express) don't match the estimate regexes → default. Pre-existing in **both** Rails and Python (faithful parity, not a regression)._
 
-## PR4b — `/qr-code-check`  · PENDING IMPL
-- [ ] ⬜ `SAMPLE`/`GIFT`/`SOLD` → landing redirect + UTM params
-- [ ] ⬜ unknown qr → 404
-- [ ] 🧑 a real `MINTED` scan → Stripe **test-mode** checkout → `?session_id=` reconcile → `SOLD` + QR Code Sales row (operator; touches Stripe + ledger)
+## PR6a — `/qr-code-check`  · IMPL DONE (dao_protocol#39) · gate off
+- [x] missing qr → 400; bogus qr → not-found JSON (lookup reads the **real** Agroverse QR sheet, verified live)
+- [x] SAMPLE/GIFT/SOLD → landing redirect + UTM; MINTED→Stripe session; session_id→SOLD reconcile; /link-email — 9 mocked unit tests
+- [ ] 🧑 a real `MINTED` scan → Stripe **test-mode** checkout → `?session_id=` reconcile → `SOLD` + QR Code Sales row (operator; touches Stripe + ledger). Needs `DAO_PROTOCOL_STRIPE_SECRET_KEY` in box `.env`.
 
 ## PR5 — `/dao/*` submit_contribution (per signed event)  · IMPL DONE (dao_protocol#37 verifier, #38 intake+dispatch) · gate off
 - [x] RSA verify (valid + tampered + malformed) — `crypto/verify.py`, validated vs the **real** example payload (PR5a)

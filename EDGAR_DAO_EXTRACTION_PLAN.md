@@ -10,10 +10,16 @@ so clients never change and each step has instant rollback.
 > (#34, fixed a latent 401); PR3 tracking pixels (#35) + PR4 `/agroverse_shop/shipping_rates` (#36,
 > exact Rails parity) deployed gate-OFF; PR5 `/dao/submit_contribution` — verifier (#37) + intake +
 > dispatch (the full 17-branch event→webhook routing) (#38) — deployed gate-OFF, route mounted, 28
-> unit tests. **Next is PR6 — Stripe cluster** (`/qr-code-check` sale + `/meta_checkout` +
-> `/stripe_webhook` → order sync; see `STRIPE_LEDGER_ROUTING.md`). **Ramp + live testing of the
-> gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger / GAS / Stripe) and need
-> the `*_webhook_url` env values provisioned in the box `.env` — see `EDGAR_DAO_CUTOVER_TEST_PLAN.md`.
+> unit tests. **PR6a `/qr-code-check` DONE & deployed** (dao_protocol#39): lookup→JSON/redirect,
+> MINTED→Stripe session, `?session_id`→SOLD reconcile, `/link-email`; lookup verified live (reads
+> the real QR sheet). **Next is PR6b** — `/meta_checkout` + `/stripe_webhook` → `MetaCheckoutOrderSync`
+> (the last endpoint group; see `STRIPE_LEDGER_ROUTING.md` Flow 1). **Ramp + live testing of all
+> gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger/GAS/Stripe) and need the
+> `*_webhook_url` + `DAO_PROTOCOL_STRIPE_SECRET_KEY` env values provisioned in the box `.env`.
+>
+> **Dependency convention (operator choice 2026-05-25):** server deps live in `requirements-server.txt`
+> (`-r requirements.txt` + web stack); CLI base in `requirements.txt`. NO pyproject `[server]` extra.
+> Deploy installs with `pip install -e . -r requirements-server.txt`.
 > Check the **Execution roadmap** table below for live status. Each PR is independently
 > mergeable; stop after any row and continue later from the first unchecked box.
 >
@@ -170,7 +176,8 @@ the next phase.
 | PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | dao_protocol#38 | ✓ | ✓ | Rails `split` by contributor | ☐ (impl+deployed; webhook URLs + live test at ramp) |
 | PR5c | dispatch (`webhook_trigger` + 17-branch event→webhook routing) | dao_protocol#38 | ✓ | ✓ | (with PR5b) | ☐ |
 | (PR4b) | `/qr-code-check` read path — folded into PR6 (Stripe-entangled: MINTED→session) | — | ☐ | ☐ | nginx | ☐ |
-| PR6 | Stripe cluster (qr-code-check sale + meta_checkout + `/stripe_webhook`) | — | ☐ | ☐ | Rails `split` / hard flip | ☐ ◀ RESUME (impl) |
+| PR6a | `/qr-code-check` (consumer QR→Stripe: lookup, MINTED→session, session_id→SOLD, /link-email) | dao_protocol#39 | ✓ | ✓ | Rails `split` / hard flip | ☐ (impl+deployed; lookup verified live; Stripe key + live sale at ramp) |
+| PR6b | `/meta_checkout` + `/stripe_webhook` → MetaCheckoutOrderSync | — | ☐ | ☐ | Rails `split` / hard flip | ☐ ◀ RESUME (impl) |
 | PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
 
 ---
