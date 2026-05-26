@@ -104,7 +104,7 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 
 ## 8. Resume tracker
 
-**RESUME HERE → Track A (`dapp_beta`) and/or B4–B6.** B1–B3 shipped + deployed to prod EC2 2026-05-26 (bot `@truesight_autopilot_bot`, locked to Gary's Telegram ID). Web browsing (Tavily `web_search`/`web_extract`) also shipped + deployed (truesight_autopilot#43). **Open decision:** proposed **Track C — public non-sensitive Q&A tier** (see §9); needs a shape decision before it enters the plan.
+**RESUME HERE → Track A (`dapp_beta`) and/or B4–B6.** B1–B3 shipped + deployed to prod EC2 2026-05-26 (bot `@truesight_autopilot_bot`, locked to Gary's Telegram ID). Web browsing (Tavily `web_search`/`web_extract`) also shipped + deployed (truesight_autopilot#43). Track C (public Q&A) is **shelved** — see §9.
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
@@ -125,7 +125,9 @@ Per `OPERATING_INSTRUCTIONS.md` §5 + the DAO contribution convention: after eac
 
 ---
 
-## 9. Proposed Track C — public non-sensitive Q&A tier (NOT yet committed)
+## 9. Track C — public non-sensitive Q&A tier — SHELVED (2026-05-26)
+
+**Decision (Gary, 2026-05-26): shelved, do not build.** Rationale: it mostly burns LLM tokens for random non-ops users (Tom/Dick/Harry) who don't need it, and the DAO already has public-facing surfaces (oracle.truesight.me + truesight.me `llms.txt`/`stats`) for anyone who genuinely wants DAO facts. `@truesight_autopilot_bot` stays private to Gary. Revisit only if there's a concrete ops need for public access. Original design notes kept below for that case.
 
 Idea (Gary, 2026-05-26): let **anyone** ask the bot non-sensitive questions about TrueSight DAO, while keeping the powerful capabilities owner-only.
 
