@@ -243,7 +243,7 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 
 ## Outstanding (2026-05-26 audit)
 
-**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. PR2 `/proxy/gas` ramped. **No implementation work remains — everything below is operator-driven (ramps, env, live testing, PR7 cleanup).** Remaining:
+**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. PR2 `/proxy/gas` ramped. **No implementation work remains; box `.env` env provisioning DONE (2026-05-26). Remaining is operator-driven: ramps (gate flips), live testing, PR7 cleanup.** Remaining:
 
 **1. Ramps (operator-driven — flip each gate to 100%, one at a time, Rails as rollback):**
 - [ ] PR3 newsletter + email-agent → nginx `location` flip in `seni_ror_new:edgar.conf`
@@ -253,12 +253,13 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 - [ ] PR6b → wire Rails `/stripe_webhook` to delegate `checkout.session.completed` → `POST /stripe/order_sync`
 - (PR2 `/proxy/gas` already ramped ✓)
 
-**2. Env provisioning in box `.env` (server-side at ramp, like the EasyPost key):**
-- [ ] `DAO_PROTOCOL_STRIPE_SECRET_KEY` (from Rails `production.rb config.stripe_secret`) — PR6a/PR6b
-- [ ] 15 `DAO_PROTOCOL_WEBHOOK_*` URLs (from Rails `config.*_webhook_url`) — PR5c dispatch
-- [ ] `DAO_PROTOCOL_GITHUB_PAT` (contents-write to TrueSightDAO repos) — `/dao` attachment upload
-- [ ] `DAO_PROTOCOL_AGROVERSE_INVENTORY_GAS_WEBAPP_URL` + `_PUBLISH_SECRET` — ASSET RECEIPT inventory snapshot
-- [ ] `DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_WEBHOOK_URL` + `_GAS_SECRET` — EMAIL onboarding mailer (from Rails `config.email_verification_*`)
+**2. Env provisioning in box `.env` — DONE ✓ (2026-05-26).** Extracted the canonical runtime values from the live Rails process (loaded `/proc/<pid>/environ` for `SECRET_KEY_BASE` etc., then a `rails runner` read `Rails.application.config.*`) and merged into `/home/ubuntu/dao_protocol/.env` (chmod 600) — values never echoed. Service restarted; **23 keys** verified loaded (pydantic Settings for the 4 secrets; systemd `EnvironmentFile` puts the 19 webhooks into the process env for `dispatch.py`'s `os.environ` lookups). **Still gate-off** (env-only; no traffic moved).
+- [x] `DAO_PROTOCOL_STRIPE_SECRET_KEY` (from `production.rb config.stripe_secret`, literal)
+- [x] 19 `DAO_PROTOCOL_WEBHOOK_*` URLs (from `config.*_webhook_url` in `application.rb`; mix of literal + ENV-driven — all resolved non-empty)
+- [x] `DAO_PROTOCOL_GITHUB_PAT` (literal in `application.rb`)
+- [x] `DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_WEBHOOK_URL` + `_GAS_SECRET` (ENV-driven via `config.email_verification_*`; resolved non-empty)
+- [ ] `DAO_PROTOCOL_AGROVERSE_INVENTORY_GAS_WEBAPP_URL` + `_PUBLISH_SECRET` — **no source value exists**: these are `ENV[...]` in `AgroverseInventorySnapshotPublishWorker` and are **unset in prod Rails too** (that worker currently no-ops). dao_protocol `inventory_snapshot.publish()` likewise no-ops (gate-off safe) until an operator supplies them.
+- ⚠️ **Blast-radius note:** with webhooks now populated, a *validly-signed* event POSTed to the `/dao-protocol/*` test prefix will fire **real** production GAS webhooks (propagate to real ledgers) — same as Rails. Agent never fires ledger-mutating events; operator dogfooding should use throwaway/own-key events.
 
 **3. Deferred impl gaps — ALL PORTED ✓ (dao_protocol#41 + #42, deployed gate-off 2026-05-26):**
 - [x] EMAIL REGISTERED / EMAIL VERIFICATION onboarding (`DaoEmailRegistrationService` + `Gdrive::ContributorsDigitalSignatures`) → `server/email_registration.py` + `server/sheets/contributors_digital_signatures.py`, wired into `routes/dao.py` (422 on failure). Server side is portable (only the *client* loopback was machine-bound). **#42.** Gate-off safe: empty `EMAIL_VERIFICATION_GAS_*` env → clean error (Rails parity). NOT ported: `DaoMembersCacheRefreshWorker` fan-out (best-effort cache warm).
