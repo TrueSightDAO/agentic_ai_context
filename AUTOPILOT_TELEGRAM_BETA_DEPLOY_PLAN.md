@@ -104,20 +104,36 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 
 ## 8. Resume tracker
 
-**RESUME HERE → §3 Pre-flight checklist** (nothing implemented yet; resolve operator-gated items, starting with DNS + BotFather token).
+**RESUME HERE → Track A (`dapp_beta`) and/or B4–B6.** B1–B3 shipped + deployed to prod EC2 2026-05-26 (bot `@truesight_autopilot_bot`, locked to Gary's Telegram ID). Web browsing (Tavily `web_search`/`web_extract`) also shipped + deployed (truesight_autopilot#43). **Open decision:** proposed **Track C — public non-sensitive Q&A tier** (see §9); needs a shape decision before it enters the plan.
 
-| Unit | Branch | PR | Merged | Contribution reported |
+| Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
-| Roadmap (this file) | `feature/autopilot-telegram-beta-deploy-roadmap` | — | ☐ | ☐ |
-| A0 DNS + Pages | — | — | ☐ | ☐ |
-| A1 create `dapp_beta` + CI | — | — | ☐ | ☐ |
-| A2 autopilot beta allowlist | — | — | ☐ | ☐ |
-| A3 rename `dapp`→`dapp_prod` (deferred) | — | — | ☐ | ☐ |
-| B1 Telegram adapter + single-user lock | — | — | ☐ | ☐ |
-| B2 topic↔session | — | — | ☐ | ☐ |
-| B3 identity reuse | — | — | ☐ | ☐ |
-| B4 file/photo passthrough | — | — | ☐ | ☐ |
-| B5 beta gate Tier 1 (one-tap ship) | — | — | ☐ | ☐ |
-| B6 beta gate Tier 2 (auto-on-green) | — | — | ☐ | ☐ |
+| Roadmap (this file) | agentic_ai_context#205 | ✅ | n/a | ✅ |
+| (extra) Web browsing — Tavily | truesight_autopilot#43 | ✅ | ✅ | ✅ |
+| A0 DNS + Pages | — | ☐ | ☐ | ☐ |
+| A1 create `dapp_beta` + CI | — | ☐ | ☐ | ☐ |
+| A2 autopilot beta allowlist | — | ☐ | ☐ | ☐ |
+| A3 rename `dapp`→`dapp_prod` (deferred) | — | ☐ | ☐ | ☐ |
+| B1 Telegram adapter + single-user lock | truesight_autopilot#44 | ✅ | ✅ | ☐ |
+| B2 topic↔session (in #44) | truesight_autopilot#44 | ✅ | ✅ | ☐ |
+| B3 identity reuse (in #44) | truesight_autopilot#44 | ✅ | ✅ | ☐ |
+| B4 file/photo passthrough | — | ☐ | ☐ | ☐ |
+| B5 beta gate Tier 1 (one-tap ship) | — | ☐ | ☐ | ☐ |
+| B6 beta gate Tier 2 (auto-on-green) | — | ☐ | ☐ | ☐ |
 
 Per `OPERATING_INSTRUCTIONS.md` §5 + the DAO contribution convention: after each unit merges, report the contribution before starting the next, and tick both boxes here.
+
+---
+
+## 9. Proposed Track C — public non-sensitive Q&A tier (NOT yet committed)
+
+Idea (Gary, 2026-05-26): let **anyone** ask the bot non-sensitive questions about TrueSight DAO, while keeping the powerful capabilities owner-only.
+
+**Why this is not just "remove the allowlist":** the autopilot chat agent has dangerous tools (`open_fix_pr`, `merge_pr`, `deploy_autopilot`, `submit_contribution`, `upload_file_to_github`, `read_local_file`/`list_directory` over the server FS) and its system prompt + `agentic_ai_context` grounding contain internal/operational detail. A public tier therefore needs its own walls:
+
+- **Restricted tool set** — read-only, public-safe only (e.g. `web_search`, read of *public* repos/whitepaper); none of the mutating/infra/FS tools.
+- **Public-only grounding** — answer from the existing public surface (truesight.me `llms.txt` + `stats/*.json`, whitepaper, `ecosystem_change_logs/advisory/BASE.md`), NOT internal `agentic_ai_context`.
+- **Rate limiting + abuse/prompt-injection hardening.**
+- **Tiering:** owner (Gary's ID) → full autopilot; everyone else → restricted public path.
+
+**Shape decision needed before planning:** (a) same bot `@truesight_autopilot_bot` with a public tier vs a **separate public bot**; (b) or skip a new bot entirely and put public Q&A on the **existing** oracle/`truesight.me` surface. Recommendation leans: keep `@truesight_autopilot_bot` private to Gary; do public Q&A as a separate, restricted surface reusing the public knowledge layer.
