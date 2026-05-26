@@ -32,6 +32,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Swap autopilot's hand-rolled agent loop for a model-agnostic harness (keep the service + DAO tools)
+
+**Context.** `truesight_autopilot`'s chat/agent loop is hand-rolled. On 2026-05-26 a session was spent live-debugging exactly the plumbing a mature harness ships for free: multi-round tool looping (truesight_autopilot#47), empty/whitespace output (#46), reply-thread routing (#45). The Telegram bot works now, but the fragility is structural and will resurface as models/queries vary. This is the "brain upgrade" risk flagged in the original autopilot-vs-OpenClaw decision and parked in `AUTOPILOT_TELEGRAM_BETA_DEPLOY_PLAN.md` §7.
+
+**Goal / shape.** Keep the autopilot *service* — Edgar contribution logging, RSA governor auth, repo allowlists, the DAO tool set (`app/tools/*`), the Telegram adapter, the deploy loop — and replace ONLY the hand-rolled LLM↔tool loop with a mature one used as a *library*. NOT "adopt opencode the CLI" (that re-introduces babysitting).
+
+**Decision axis = model-swapping (Gary's stated priority).**
+- **Model-agnostic engine** — a loop over **LiteLLM** / an OpenAI-compatible layer, or an opencode/OpenClaw-style engine. Keeps easy multi-model swapping and enables **tiered routing** (cheap DeepSeek/GLM for proactive monitoring + simple chat; a strong model for code / multi-step reasoning; flip tiers if a provider is down). The loop still must absorb per-model tool-call quirks (e.g. GLM-4.5 emitting tool calls as text) — but does it far better than the hand-rolled code. **Recommended given the model-swap requirement.**
+- **Claude Agent SDK** — best-in-class loop, but **Claude-first** (Anthropic / Bedrock / Vertex only); gives up the easy multi-model swapping Gary wants.
+- Note: autopilot ALREADY has a provider abstraction (`app/llm/` + `LLM_PROVIDER` env + `docs/LLM_PROVIDER_ROADMAP.md`) and basic model-swapping. The gap is **loop quality**, not the model layer — so favor the model-agnostic path unless we deliberately standardize on Claude.
+
+**Scope (likely > 1 session — sequence it).** Pick the engine; wrap the existing `app/tools/*` in its tool interface; route `/chat`, `/chat-blocking`, and the proactive `fix_agent` through it; preserve `_run_tool` dispatch + Edgar logging + governor identity injection; add tiered model routing. Verify against the 2026-05-26 regression cases (multi-step "events.json" query returns a full answer with no leaked `<tool_call>`; thread/empty handling) before cutover.
+
+**Blocker / priority.** Not urgent — bot works today. Pick up when agent-loop edge cases recur, OR **before** broadening autopilot's autonomy (Tier-2 beta auto-merge in `AUTOPILOT_TELEGRAM_BETA_DEPLOY_PLAN.md`), since a robust loop is a prerequisite for trusting unattended runs.
+
 ### Edgar → `dao_protocol` extraction — continue from PR2 (`/proxy/gas`)
 
 **Context.** Pulling the DAO/Agroverse integration surface (RSA contributions, Stripe commerce, shipping rates, newsletter / email-agent tracking, GAS proxy, QR check) out of the Rails `sentiment_importer` (Edgar) app into a Python FastAPI service. Full plan, **corrected** deploy topology, decisions, and a live **resume tracker** are in **`EDGAR_DAO_EXTRACTION_PLAN.md`** (this repo); Stripe flows in `STRIPE_LEDGER_ROUTING.md`. **Done & LIVE:** planning/docs (#185) + PR0 rename (#186) + PR1 scaffold (dao_protocol#33) + **PR1b deploy** — service running on `seni_ror_new:8010` (systemd `truesight-dao-protocol`), `/dao-protocol/` routed via the **real** edgar nginx, verified public `https://edgar.truesight.me/dao-protocol/healthz` → 200.
