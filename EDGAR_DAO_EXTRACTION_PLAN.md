@@ -6,13 +6,14 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** **ALL endpoint ports DONE & deployed gate-off (PR2–PR6b); verified live on
-> `:8010` 2026-05-26.** PR2 `/proxy/gas` RAMPED LIVE (#34); PR3 tracking (#35), PR4 shipping_rates
-> (#36, exact parity), PR5 `/dao` verify+intake+dispatch (#37/#38), PR6a `/qr-code-check` (#39),
-> PR6b order-sync audit log `POST /stripe/order_sync` (#40) — all on `:8010`, 43 unit tests. **The
-> clean Tenant B surface is fully ported.** DESCOPED per decision A: `/meta_checkout` (deprecated
-> Wix) + the shared `/stripe_webhook` entry stay on Rails. **Remaining = operator-driven RAMPs +
-> env provisioning + a few deferred impl gaps + PR7 cleanup — see the "Outstanding" section.** **Ramp + live testing of all
+> **Current step:** **ALL endpoint ports + ALL 3 deferred impl gaps DONE & deployed gate-off;
+> verified live on `:8010` 2026-05-26.** PR2 `/proxy/gas` RAMPED LIVE (#34); PR3 tracking (#35),
+> PR4 shipping_rates (#36, exact parity), PR5 `/dao` verify+intake+dispatch (#37/#38), PR6a
+> `/qr-code-check` (#39), PR6b order-sync audit log `POST /stripe/order_sync` (#40); deferred gaps
+> — inventory-snapshot enqueue + `/dao` attachment→GitHub (#41), EMAIL REGISTERED/VERIFICATION
+> onboarding (#42) — all on `:8010`, **58 unit tests**. **Implementation is 100% complete.** DESCOPED
+> per decision A: `/meta_checkout` (deprecated Wix) + the shared `/stripe_webhook` entry stay on
+> Rails. **Remaining = operator-driven RAMPs + env provisioning + PR7 cleanup — see "Outstanding".** **Ramp + live testing of all
 > gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger/GAS/Stripe) and need the
 > `*_webhook_url` + `DAO_PROTOCOL_STRIPE_SECRET_KEY` env values provisioned in the box `.env`.
 >
@@ -242,7 +243,7 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 
 ## Outstanding (2026-05-26 audit)
 
-**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40), 43 unit tests, every route verified live on `:8010`. PR2 `/proxy/gas` ramped. Remaining:
+**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. PR2 `/proxy/gas` ramped. **No implementation work remains — everything below is operator-driven (ramps, env, live testing, PR7 cleanup).** Remaining:
 
 **1. Ramps (operator-driven — flip each gate to 100%, one at a time, Rails as rollback):**
 - [ ] PR3 newsletter + email-agent → nginx `location` flip in `seni_ror_new:edgar.conf`
@@ -255,11 +256,14 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 **2. Env provisioning in box `.env` (server-side at ramp, like the EasyPost key):**
 - [ ] `DAO_PROTOCOL_STRIPE_SECRET_KEY` (from Rails `production.rb config.stripe_secret`) — PR6a/PR6b
 - [ ] 15 `DAO_PROTOCOL_WEBHOOK_*` URLs (from Rails `config.*_webhook_url`) — PR5c dispatch
+- [ ] `DAO_PROTOCOL_GITHUB_PAT` (contents-write to TrueSightDAO repos) — `/dao` attachment upload
+- [ ] `DAO_PROTOCOL_AGROVERSE_INVENTORY_GAS_WEBAPP_URL` + `_PUBLISH_SECRET` — ASSET RECEIPT inventory snapshot
+- [ ] `DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_WEBHOOK_URL` + `_GAS_SECRET` — EMAIL onboarding mailer (from Rails `config.email_verification_*`)
 
-**3. Deferred impl gaps (flagged, not yet ported):**
-- [ ] `[EMAIL REGISTERED]`/`[EMAIL VERIFICATION]` onboarding (`DaoEmailRegistrationService`, OAuth-loopback)
-- [ ] `/dao` attachment → GitHub upload (responds `fileUploadedToGithub:false` for now)
-- [ ] ASSET RECEIPT → inventory-snapshot enqueue (logged-only; distinct POST+secret shape)
+**3. Deferred impl gaps — ALL PORTED ✓ (dao_protocol#41 + #42, deployed gate-off 2026-05-26):**
+- [x] EMAIL REGISTERED / EMAIL VERIFICATION onboarding (`DaoEmailRegistrationService` + `Gdrive::ContributorsDigitalSignatures`) → `server/email_registration.py` + `server/sheets/contributors_digital_signatures.py`, wired into `routes/dao.py` (422 on failure). Server side is portable (only the *client* loopback was machine-bound). **#42.** Gate-off safe: empty `EMAIL_VERIFICATION_GAS_*` env → clean error (Rails parity). NOT ported: `DaoMembersCacheRefreshWorker` fan-out (best-effort cache warm).
+- [x] `/dao` attachment → GitHub upload → `server/services/github_upload.py`, wired into `routes/dao.py` (now returns real `fileUploadedToGithub`). **#41.** Needs `DAO_PROTOCOL_GITHUB_PAT` at ramp.
+- [x] ASSET RECEIPT → inventory-snapshot enqueue → `server/jobs/inventory_snapshot.py` (GET `?action=&token=`, corrected shape), wired into `dispatch.py`. **#41.** Needs `AGROVERSE_INVENTORY_*` at ramp.
 - intentionally **NOT ported** (stay on Rails): `/meta_checkout` (deprecated Wix); `/stripe_webhook` entry (shared with trading-SaaS subscriptions)
 
 **4. PR7 cleanup (only AFTER all ramped 100%):**
