@@ -30,6 +30,18 @@ same TRUESIGHT_DAO_AUTOPILOT account and points at `seni_ror_new`.
 > (`3.83.175.151`) point at the Cypher-account hosts. Those instances are
 > kept around for rollback only; do **not** deploy to them.
 
+> ⚠️ **Sidekiq runs ONLY on `seni_sk_new`, never on the web box `seni_ror_new`.**
+> The `seni_sk.service` unit *file* also exists on `seni_ror_new` (vestigial) but
+> is **inactive** there — so `systemctl is-active seni_sk` and `pgrep -f sidekiq`
+> on the web box both come back empty. **Do NOT conclude "Sidekiq is dead / workers
+> aren't running" from the web box** (this has burned at least one LLM session).
+> To check worker health, SSH to the worker host: `ssh seni_sk_new` →
+> `systemctl is-active seni_sk` (→ `active`) / `pgrep -f sidekiq` (→ `sidekiq 5.2.5
+> sentiment_importer …`). Same trap for **worker env vars**: a job's `ENV[...]`
+> (e.g. `AGROVERSE_INVENTORY_*`) is supplied by the `seni_sk.service` unit on
+> **`seni_sk_new`**, so inspect `/proc/<sidekiq_pid>/environ` *there*, not the Rails
+> process on the web box. (Redis-backed queue lives on `seni_redis*`.)
+
 ---
 
 ## Deploying master → production
