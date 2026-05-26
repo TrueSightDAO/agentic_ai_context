@@ -7,13 +7,13 @@ so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
 > **Current step:** **ALL endpoint ports + ALL 3 deferred impl gaps DONE & deployed gate-off;
-> verified live on `:8010` 2026-05-26.** PR2 `/proxy/gas` RAMPED LIVE (#34); PR3 tracking (#35),
+> verified live on `:8010` 2026-05-26.** PR2 `/proxy/gas` + PR3 newsletter/email-agent tracking RAMPED LIVE (#34, #35),
 > PR4 shipping_rates (#36, exact parity), PR5 `/dao` verify+intake+dispatch (#37/#38), PR6a
 > `/qr-code-check` (#39), PR6b order-sync audit log `POST /stripe/order_sync` (#40); deferred gaps
 > — inventory-snapshot enqueue + `/dao` attachment→GitHub (#41), EMAIL REGISTERED/VERIFICATION
 > onboarding (#42) — all on `:8010`, **58 unit tests**. **Implementation is 100% complete.** DESCOPED
 > per decision A: `/meta_checkout` (deprecated Wix) + the shared `/stripe_webhook` entry stay on
-> Rails. **Remaining = operator-driven RAMPs + env provisioning + PR7 cleanup — see "Outstanding".** **Ramp + live testing of all
+> Rails. Env provisioning DONE (23 keys, 2026-05-26). **Remaining = operator-driven RAMPs (PR4/PR5/PR6) + PR7 cleanup — see "Outstanding".** **Ramp + live testing of all
 > gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger/GAS/Stripe) and need the
 > `*_webhook_url` + `DAO_PROTOCOL_STRIPE_SECRET_KEY` env values provisioned in the box `.env`.
 >
@@ -170,7 +170,7 @@ the next phase.
 | Step | Endpoint | Impl PR | Impl merged | Contrib | Gate | Ramp→100% |
 |------|----------|---------|-------------|---------|------|-----------|
 | PR2 | `/proxy/gas/:name` | dao_protocol#34 | ✓ | ✓ | nginx hard-flip (Rails was 401) | ✅ ramped live 2026-05-25 (fixed the latent Rails 401) |
-| PR3 | newsletter + email-agent tracking pixels (+ first `server/sheets/` adapter) | dao_protocol#35 | ✓ | ✓ | nginx | ☐ (impl done + deployed; ramp pending) |
+| PR3 | newsletter + email-agent tracking pixels (+ first `server/sheets/` adapter) | dao_protocol#35 | ✓ | ✓ | nginx | ✅ ramped live 2026-05-26 (302 parity vs Rails + journal-confirmed; live conf mirrored sentiment_importer#1066) |
 | PR4 | `/agroverse_shop/shipping_rates` | dao_protocol#36 | ✓ | ✓ | nginx (+mirror shadow) | ☐ (impl done; **exact parity vs Rails verified**) |
 | PR5a | RSA verifier (`crypto/verify.py`) | dao_protocol#37 | ✓ | ✓ | n/a (library) | n/a |
 | PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | dao_protocol#38 | ✓ | ✓ | Rails `split` by contributor | ☐ (impl+deployed; webhook URLs + live test at ramp) |
@@ -243,15 +243,15 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 
 ## Outstanding (2026-05-26 audit)
 
-**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. PR2 `/proxy/gas` ramped. **No implementation work remains; box `.env` env provisioning DONE (2026-05-26). Remaining is operator-driven: ramps (gate flips), live testing, PR7 cleanup.** Remaining:
+**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. **PR2 `/proxy/gas` + PR3 newsletter/email-agent ramped.** **No implementation work remains; box `.env` env provisioning DONE (2026-05-26). Remaining is operator-driven: ramps (PR4/PR5/PR6 gate flips), live testing, PR7 cleanup.** Remaining:
 
 **1. Ramps (operator-driven — flip each gate to 100%, one at a time, Rails as rollback):**
-- [ ] PR3 newsletter + email-agent → nginx `location` flip in `seni_ror_new:edgar.conf`
+- [x] PR3 newsletter + email-agent → nginx `location` flip in `seni_ror_new:edgar.conf` — ✅ **ramped live 2026-05-26** (302 parity vs Rails + dao_protocol journal-confirmed; live conf mirrored to repo #1066; rollback = drop the two `location` blocks + reload)
 - [ ] PR4 `/agroverse_shop/shipping_rates` → nginx flip (optionally `mirror`-shadow first)
 - [ ] PR5 `/dao/submit_contribution` → Rails `split` by contributor (dogfood own key first)
 - [ ] PR6a `/qr-code-check` → flip (payment-critical)
 - [ ] PR6b → wire Rails `/stripe_webhook` to delegate `checkout.session.completed` → `POST /stripe/order_sync`
-- (PR2 `/proxy/gas` already ramped ✓)
+- (PR2 `/proxy/gas` ✓ and PR3 newsletter/email-agent ✓ already ramped)
 
 **2. Env provisioning in box `.env` — DONE ✓ (2026-05-26).** Extracted the canonical runtime values from the live Rails process (loaded `/proc/<pid>/environ` for `SECRET_KEY_BASE` etc., then a `rails runner` read `Rails.application.config.*`) and merged into `/home/ubuntu/dao_protocol/.env` (chmod 600) — values never echoed. Service restarted; **23 keys** verified loaded (pydantic Settings for the 4 secrets; systemd `EnvironmentFile` puts the 19 webhooks into the process env for `dispatch.py`'s `os.environ` lookups). **Still gate-off** (env-only; no traffic moved).
 - [x] `DAO_PROTOCOL_STRIPE_SECRET_KEY` (from `production.rb config.stripe_secret`, literal)
