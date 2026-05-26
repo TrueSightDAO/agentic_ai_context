@@ -9,14 +9,32 @@ how those events are tracked so any LLM session can pick one up cold.
 
 ---
 
-## 1. Read this first: the machine index
+## 1. Read this first: the unified registry
 
-`events/index.json` is the aggregated, date-sorted index of every event,
-embedding each event's full metadata. **An LLM should read it before touching
-any event folder.** It is *generated* — never hand-edit it.
+`go_to_market/events/index.json` is the **unified, two-tier** registry of every
+Agroverse event. **An LLM should read it before touching any event folder.** It
+is *generated* (schema_version 2) — never hand-edit it.
 
-- Source of truth = each `events/<slug>/event.json`.
-- Regenerate: `python3 events/build_index.py` (self-relative; run from anywhere).
+- **`upcoming`** — operational events we're actively planning. Source of truth =
+  each `events/<slug>/event.json`. Full planning metadata (phases, QR mint
+  status, host check-ins).
+- **`past`** — published "cacao circle" pages, pulled from
+  `agroverse_shop/event-details-registration/events.json` (title, date,
+  location, url, image, description). Many of these dates are duplicated
+  placeholders from page generation, so each carries `date_confidence` and the
+  tier lists `date_review_needed` — treat past dates as a hint, not truth.
+
+Regenerate: `python3 events/build_index.py` (self-relative; run from anywhere).
+It embeds the past tier from the local `agroverse_shop` sibling checkout if
+present, else the published raw URL, else leaves `past` empty with
+`source_ref: null`.
+
+The two tiers come from two repos, each owning its own generator:
+
+| Tier | Repo / source | Generator |
+|---|---|---|
+| upcoming | `go_to_market/events/<slug>/event.json` | `events/build_index.py` (also does the merge) |
+| past | `agroverse_shop/event-details-registration/<slug>/index.html` | `agroverse_shop/scripts/build_events_json.py` → `event-details-registration/events.json` |
 
 ## 2. Folder anatomy
 
