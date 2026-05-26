@@ -1122,6 +1122,45 @@ than sort+head. Keeps the difficulty bias intent but diversifies outputs.
 
 **Blocker:** None.
 
+## sentiment_importer: repurpose /compare into a backtester
+
+**Context:** Repurposing the `/compare/TICKERS/DATE/PERIOD` view (was
+correlation/sentiment overlay) into a strategy backtester — compare buy-and-hold
+vs a rebalance-band (cash-sleeve, configurable initial position) across tickers,
+reporting realized return / CAGR / Sharpe / maxDD / turnover. Designed jointly
+2026-05-25; two specs written, **not yet implemented**.
+
+**Specs (in repo root):**
+- `sentiment_importer/BACKTEST_DATA_ENDPOINT.md` — `GET /backtest/data` clean-data
+  JSON (real bars, no forward-fill; risk-free = `daily_yield_curves.month_3 ÷ 100`).
+  Deliberately **no** split/anomaly detector — the rendered chart is the detector
+  (human-in-loop); fix bad data manually via `EodHdPriceRefresher.new.perform(id)`.
+- `sentiment_importer/BACKTEST_STRATEGY_ENGINE.md` — JS `runStrategy(bars, riskFree,
+  spec)` pure function; engine runs client-side; server only serves data.
+
+**Scope (when greenlit):** build data endpoint first (so series are eyeball-able),
+then wire JS engine. Idealized fills for v1 (fractional, no cost). Rolling-window
+distribution + signal strategies (macd/rsi/buy_now) parked for later.
+
+**Blocker:** implementation not yet greenlit as of 2026-05-25.
+
+## blog post: "Gary and Claude" — knowing when NOT to automate
+
+**Context:** Write a first-person (Claude-as-teammate voice) post for truesight.me
+about the backtester design session above. Angle is **subtraction, not building**:
+Claude kept proposing data-quality machinery (scanner → auto-repair → flag-only),
+Gary kept stripping it back to "just look at the chart" — landing on Moravec's
+paradox (in an interactive tool the human is already in the loop, so a detector is
+redundant). "The best anomaly detector was the chart we were already drawing."
+Byline: Gary and Claude.
+
+**Scope:** hand-written page in `truesight_me_beta`; promote to prod via
+`gh repo sync` (NOT `--force` — beta/prod CNAMEs intentionally diverge). Include a
+real PLAY equity-curve screenshot as the punchline. Fits existing llms.txt surface.
+
+**Blocker:** gated on the backtester shipping — write it once the tool works and
+there's a real chart to show.
+
 ## Closed without shipping
 
 _(empty — move entries here with a one-line reason when they're no longer
