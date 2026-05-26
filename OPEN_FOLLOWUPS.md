@@ -1169,9 +1169,10 @@ the HTTP publish path is **dormant end-to-end** (verified 2026-05-26): GAS proje
 `1P0Mg33i…` (`update_store_inventory`) has **no** `AGROVERSE_INVENTORY_PUBLISH_SECRET`
 script property (so `verifyPublishToken_` → false → the HTTP actions
 `publishInventorySnapshot`/`recalculateAndPublishInventory` reject every call as
-Unauthorized), Edgar's Sidekiq `seni_sk.service` is **inactive**, and store-inventory
-freshness is currently maintained only by the GAS **hourly time-driven
-`updateStoreInventory` trigger**. dao_protocol's `inventory_snapshot.publish()`
+Unauthorized), the worker's `AGROVERSE_INVENTORY_*` env is unset on the `seni_sk_new`
+worker host (Sidekiq **is** running there — the worker just no-ops on the missing env),
+and store-inventory freshness is currently maintained only by the GAS **hourly
+time-driven `updateStoreInventory` trigger**. dao_protocol's `inventory_snapshot.publish()`
 (wired into `dispatch.py` on `[ASSET RECEIPT EVENT]` / sales) no-ops to match — see
 `EDGAR_DAO_EXTRACTION_PLAN.md` Outstanding §2.
 
