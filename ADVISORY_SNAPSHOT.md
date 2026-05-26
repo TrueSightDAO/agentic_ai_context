@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-26T16:26:57Z`
+- Generated (UTC): `2026-05-26T20:29:35Z`
 - Look-back: **7** calendar days (`2026-05-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 36
+- `[CONTRIBUTION EVENT]` × 40
 - `[PRACTICE EVENT]` × 4
-- `[CREDENTIALING ATTESTATION EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260525202835_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: dao_protocol PR1: scaffolded FastAPI server package + health slice
-- `Edgar_20260525210100_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Deploy QR-scan newsletter opt-in to production + fix QR web-service deploy/e…
-- `Edgar_20260525211330_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol PR1b: deployed the FastAPI service to production + routed /dao-…
-- `Edgar_20260525214142_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Versioned live nginx configs: edgar.conf → sentiment_importer, krake_ng → kr…
-- `Edgar_20260525220043_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: dao_protocol PR2: implemented /proxy/gas GAS cross-border proxy (Python) + r…
-- `Edgar_20260525221417_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Cutover test plan + ran PR2 /proxy/gas parity/functional tests + diagnosed l…
-- `Edgar_20260525222332_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Ramped /proxy/gas to the dao_protocol service (fixed latent Edgar 401) + cut…
 - `Edgar_20260525223340_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol PR3: sheets adapter base + newsletter/email-agent tracking endp…
 - `Edgar_20260525224058_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: dao_protocol PR4: /agroverse_shop/shipping_rates EasyPost port + verified ex…
 - `Edgar_20260525224836_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Strategy backtester (/compare repurpose) — endpoint + JS engine + sell-off o…
@@ -60,6 +50,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260526152003_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Finished conversation with @⁨Matheus Reis - Bahia Coop⁩
 - `Edgar_20260526152102_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with omega services
 - `Edgar_20260526152504_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Following up with Iolanda
+- `Edgar_20260526172820_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: AI based lead generation
+- `Edgar_20260526181716_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Finished chat with @⁨Paloma - Founder Haus Florianopolid⁩
+- `Edgar_20260526190333_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol PR6b: order-sync audit-log delegation endpoint (/stripe/order_s…
+- `Edgar_20260526192119_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Verifying the status of Nelan's AWS account
+- `Edgar_20260526195632_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: dao_protocol: close all 3 deferred impl gaps (inventory enqueue, attachment …
+- `Edgar_20260526201210_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Published Dual Tech Summit essay to truesight.me blog
+- `Edgar_20260526201813_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol: provision production .env secrets for ramp (Edgar extraction i…
 
 ---
 
@@ -222,6 +219,8 @@ _All dated lines on/after 2026-05-19_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0dbe726 | 2026-05-26 12:51:29 -0700 | blog: publish 'The most tracked thing in the room is a cup of cacao' (#146)
+8285bd7 | 2026-05-26 16:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b0e0616 | 2026-05-26 10:35:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0223064 | 2026-05-26 04:46:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e16f0ad | 2026-05-25 20:12:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -260,20 +259,24 @@ cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [
 abca4fd | 2026-05-20 14:10:59 -0700 | qr + Product Verification: match site templating + handle missing PNGs (#132)
 ac83700 | 2026-05-20 13:57:59 -0700 | treasury: dedicated /treasury page with formula-matched breakdown (#131)
 1410d43 | 2026-05-20 13:52:36 -0700 | Replace Product Verification redirect with real listing page (#130)
-68d13d5 | 2026-05-20 20:36:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
-c1ac0b1 | 2026-05-20 13:26:14 -0700 | Add /qr/ template page reading manifests from lineage-assets (#129)
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-f86ea67 | 2026-05-25 16:43:14 -0700 | Essay v0.3: drop 'not a booth, not a pitch' opener framing (#138)
+aad3745 | 2026-05-26 13:12:54 -0700 | DTS checklist: mark 1.1 + 3.5 (truesight.me essay) published (#141)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a5b4ffa | 2026-05-26 13:24:16 -0700 | Add execution roadmap: autopilot Telegram interface + dapp beta/prod split + Tier-2 beta auto-deploy (#205)
+6fa1707 | 2026-05-26 13:17:26 -0700 | docs(edgar-extraction): box .env env provisioning DONE (item 2) (#204)
+f587138 | 2026-05-26 12:54:36 -0700 | docs(edgar-extraction): mark all 3 deferred impl gaps done (#41 + #42) (#203)
+b09e0fb | 2026-05-26 12:03:24 -0700 | roadmap drift audit (2026-05-26): reconcile to reality + Outstanding section (#202)
+6cab116 | 2026-05-26 09:27:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
+b179320 | 2026-05-26 09:27:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
 2cc56f8 | 2026-05-26 03:34:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
 0a41a1b | 2026-05-26 03:34:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
 ffcba0d | 2026-05-25 21:43:37 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
@@ -308,12 +311,6 @@ c24b258 | 2026-05-25 04:02:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 5ed8527 | 2026-05-24 16:01:44 -0700 | OPEN_FOLLOWUPS: add Dual Tech Summit 2026 per-phase event follow-ups (#184)
 217bdfa | 2026-05-24 12:47:29 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
 068233f | 2026-05-24 12:47:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
-426d77f | 2026-05-24 07:08:21 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
-edf6d97 | 2026-05-24 07:08:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
-2ac8ec7 | 2026-05-24 02:06:06 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
-0d7a87c | 2026-05-24 02:06:05 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
-d3b8b4c | 2026-05-23 21:47:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-24 UTC)
-5da6680 | 2026-05-23 21:47:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-24 UTC)
 … (truncated)
 ```
 
@@ -476,7 +473,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/26/2026 8:51:10 |
+| 2026-05 | 58.6 | 14977.11386 | 5/26/2026 12:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-19`; scanned last **396** data rows)
 
