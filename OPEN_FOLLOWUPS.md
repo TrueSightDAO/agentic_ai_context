@@ -1161,6 +1161,36 @@ real PLAY equity-curve screenshot as the punchline. Fits existing llms.txt surfa
 **Blocker:** gated on the backtester shipping — write it once the tool works and
 there's a real chart to show.
 
+## dao_protocol: enable immediate-after-sale Agroverse inventory refresh
+
+**Context:** The Edgar → dao_protocol extraction left
+`DAO_PROTOCOL_AGROVERSE_INVENTORY_GAS_WEBAPP_URL` + `_PUBLISH_SECRET` empty because
+the HTTP publish path is **dormant end-to-end** (verified 2026-05-26): GAS project
+`1P0Mg33i…` (`update_store_inventory`) has **no** `AGROVERSE_INVENTORY_PUBLISH_SECRET`
+script property (so `verifyPublishToken_` → false → the HTTP actions
+`publishInventorySnapshot`/`recalculateAndPublishInventory` reject every call as
+Unauthorized), Edgar's Sidekiq `seni_sk.service` is **inactive**, and store-inventory
+freshness is currently maintained only by the GAS **hourly time-driven
+`updateStoreInventory` trigger**. dao_protocol's `inventory_snapshot.publish()`
+(wired into `dispatch.py` on `[ASSET RECEIPT EVENT]` / sales) no-ops to match — see
+`EDGAR_DAO_EXTRACTION_PLAN.md` Outstanding §2.
+
+**Scope (net-new setup, NOT provisioning — there is no existing value to copy):**
+1. Mint a shared secret; set it as the `AGROVERSE_INVENTORY_PUBLISH_SECRET` script
+   property on GAS `1P0Mg33i…` (Apps Script editor for that project).
+2. Put the same value + the deployed `/exec` URL into
+   `seni_ror_new:/home/ubuntu/dao_protocol/.env` (`DAO_PROTOCOL_AGROVERSE_INVENTORY_GAS_WEBAPP_URL`
+   / `_PUBLISH_SECRET`, chmod 600) and `sudo systemctl restart truesight-dao-protocol`.
+3. (Optional) re-enable `seni_sk` on Rails if the immediate path is wanted there too.
+4. Verify a signed `[ASSET RECEIPT EVENT]` / sale triggers a snapshot refresh within
+   seconds (GAS returns 200, not Unauthorized) instead of waiting up to an hour.
+
+**Payoff:** sub-second store-inventory JSON refresh after a sale/receipt instead of
+up to a ~1-hour lag. Purely additive — the hourly trigger already keeps data correct.
+
+**Blocker:** none (opt-in; only worth doing if the up-to-1-hour refresh lag is a
+problem in practice).
+
 ## Closed without shipping
 
 _(empty — move entries here with a one-line reason when they're no longer
