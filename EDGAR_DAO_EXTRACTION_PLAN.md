@@ -6,14 +6,13 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** **PR2–PR5 all implemented + deployed on `:8010`.** PR2 `/proxy/gas` RAMPED LIVE
-> (#34, fixed a latent 401); PR3 tracking pixels (#35) + PR4 `/agroverse_shop/shipping_rates` (#36,
-> exact Rails parity) deployed gate-OFF; PR5 `/dao/submit_contribution` — verifier (#37) + intake +
-> dispatch (the full 17-branch event→webhook routing) (#38) — deployed gate-OFF, route mounted, 28
-> unit tests. **PR6a `/qr-code-check` DONE & deployed** (dao_protocol#39): lookup→JSON/redirect,
-> MINTED→Stripe session, `?session_id`→SOLD reconcile, `/link-email`; lookup verified live (reads
-> the real QR sheet). **Next is PR6b** — `/meta_checkout` + `/stripe_webhook` → `MetaCheckoutOrderSync`
-> (the last endpoint group; see `STRIPE_LEDGER_ROUTING.md` Flow 1). **Ramp + live testing of all
+> **Current step:** **ALL endpoint ports DONE & deployed gate-off (PR2–PR6b); verified live on
+> `:8010` 2026-05-26.** PR2 `/proxy/gas` RAMPED LIVE (#34); PR3 tracking (#35), PR4 shipping_rates
+> (#36, exact parity), PR5 `/dao` verify+intake+dispatch (#37/#38), PR6a `/qr-code-check` (#39),
+> PR6b order-sync audit log `POST /stripe/order_sync` (#40) — all on `:8010`, 43 unit tests. **The
+> clean Tenant B surface is fully ported.** DESCOPED per decision A: `/meta_checkout` (deprecated
+> Wix) + the shared `/stripe_webhook` entry stay on Rails. **Remaining = operator-driven RAMPs +
+> env provisioning + a few deferred impl gaps + PR7 cleanup — see the "Outstanding" section.** **Ramp + live testing of all
 > gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger/GAS/Stripe) and need the
 > `*_webhook_url` + `DAO_PROTOCOL_STRIPE_SECRET_KEY` env values provisioned in the box `.env`.
 >
@@ -175,9 +174,8 @@ the next phase.
 | PR5a | RSA verifier (`crypto/verify.py`) | dao_protocol#37 | ✓ | ✓ | n/a (library) | n/a |
 | PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | dao_protocol#38 | ✓ | ✓ | Rails `split` by contributor | ☐ (impl+deployed; webhook URLs + live test at ramp) |
 | PR5c | dispatch (`webhook_trigger` + 17-branch event→webhook routing) | dao_protocol#38 | ✓ | ✓ | (with PR5b) | ☐ |
-| (PR4b) | `/qr-code-check` read path — folded into PR6 (Stripe-entangled: MINTED→session) | — | ☐ | ☐ | nginx | ☐ |
-| PR6a | `/qr-code-check` (consumer QR→Stripe: lookup, MINTED→session, session_id→SOLD, /link-email) | dao_protocol#39 | ✓ | ✓ | Rails `split` / hard flip | ☐ (impl+deployed; lookup verified live; Stripe key + live sale at ramp) |
-| PR6b | `/meta_checkout` + `/stripe_webhook` → MetaCheckoutOrderSync | — | ☐ | ☐ | Rails `split` / hard flip | ☐ ◀ RESUME (impl) |
+| PR6a | `/qr-code-check` (consumer QR→Stripe: lookup, MINTED→session, session_id→SOLD, /link-email; folds in old "PR4b" read path) | dao_protocol#39 | ✓ | ✓ | Rails `split` / hard flip | ☐ (impl+deployed; lookup verified live; Stripe key + live sale at ramp) |
+| PR6b | order-sync audit log → `POST /stripe/order_sync` (`StripeCheckoutLog`); Rails delegates `checkout.session.completed`. **DESCOPED per decision A: `/meta_checkout` (deprecated Wix) + shared `/stripe_webhook` entry stay on Rails** | dao_protocol#40 | ✓ | ✓ | Rails webhook delegation | ☐ (impl+deployed; wire delegation + Stripe key at ramp) |
 | PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
 
 ---
@@ -242,7 +240,35 @@ Webhook URLs live in Rails `config/application.rb`/env (`*_webhook_url`) → pro
 in the dao_protocol box `.env` server-side (like the EasyPost key). Dispatch is non-user-visible
 propagation → may run async; the **intake ledger append stays synchronous** (no-race rule).
 
-## Still open
-- [ ] Job durability: BackgroundTasks+APScheduler vs arq/Redis — decide at PR5c.
-- [ ] Zero-lag inventory: keep `AgroverseInventorySnapshotPublishWorker`-style refresh async
-      (matches today) vs synchronous on the sale path — decide at PR6.
+## Outstanding (2026-05-26 audit)
+
+**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40), 43 unit tests, every route verified live on `:8010`. PR2 `/proxy/gas` ramped. Remaining:
+
+**1. Ramps (operator-driven — flip each gate to 100%, one at a time, Rails as rollback):**
+- [ ] PR3 newsletter + email-agent → nginx `location` flip in `seni_ror_new:edgar.conf`
+- [ ] PR4 `/agroverse_shop/shipping_rates` → nginx flip (optionally `mirror`-shadow first)
+- [ ] PR5 `/dao/submit_contribution` → Rails `split` by contributor (dogfood own key first)
+- [ ] PR6a `/qr-code-check` → flip (payment-critical)
+- [ ] PR6b → wire Rails `/stripe_webhook` to delegate `checkout.session.completed` → `POST /stripe/order_sync`
+- (PR2 `/proxy/gas` already ramped ✓)
+
+**2. Env provisioning in box `.env` (server-side at ramp, like the EasyPost key):**
+- [ ] `DAO_PROTOCOL_STRIPE_SECRET_KEY` (from Rails `production.rb config.stripe_secret`) — PR6a/PR6b
+- [ ] 15 `DAO_PROTOCOL_WEBHOOK_*` URLs (from Rails `config.*_webhook_url`) — PR5c dispatch
+
+**3. Deferred impl gaps (flagged, not yet ported):**
+- [ ] `[EMAIL REGISTERED]`/`[EMAIL VERIFICATION]` onboarding (`DaoEmailRegistrationService`, OAuth-loopback)
+- [ ] `/dao` attachment → GitHub upload (responds `fileUploadedToGithub:false` for now)
+- [ ] ASSET RECEIPT → inventory-snapshot enqueue (logged-only; distinct POST+secret shape)
+- intentionally **NOT ported** (stay on Rails): `/meta_checkout` (deprecated Wix); `/stripe_webhook` entry (shared with trading-SaaS subscriptions)
+
+**4. PR7 cleanup (only AFTER all ramped 100%):**
+- [ ] Remove dead Tenant B controllers/workers from `sentiment_importer`; suggest PROJECT_INDEX/WORKSPACE_CONTEXT updates via CONTEXT_UPDATES.
+
+**5. Operator live testing (per test-execution policy):**
+- [ ] dogfood signed `/dao` events (own key); Stripe test-mode checkout; EMAIL VERIFICATION loopback (own machine); real MINTED QR sale → SOLD.
+
+**6. Minor hardening / open decisions:**
+- [ ] rebind service to `127.0.0.1:8010` (still `0.0.0.0`; SG blocks externally)
+- [ ] job durability: BackgroundTasks+APScheduler vs arq/Redis — decide at first ramp needing durable retries
+- [ ] zero-lag inventory: keep snapshot refresh async vs synchronous on the sale path — decide at PR6a ramp
