@@ -13,7 +13,7 @@ so clients never change and each step has instant rollback.
 > — inventory-snapshot enqueue + `/dao` attachment→GitHub (#41), EMAIL REGISTERED/VERIFICATION
 > onboarding (#42) — all on `:8010`, **58 unit tests**. **Implementation is 100% complete.** DESCOPED
 > per decision A: `/meta_checkout` (deprecated Wix) + the shared `/stripe_webhook` entry stay on
-> Rails. Env provisioning DONE (23 keys, 2026-05-26). PR2/PR3/PR4/PR5 RAMPED LIVE (4 of 6). **Remaining = operator-driven RAMP (PR6 qr-code-check + stripe order_sync) + PR7 cleanup — see "Outstanding".** **Ramp + live testing of all
+> Rails. Env provisioning DONE (23 keys, 2026-05-26). PR2–PR6a RAMPED LIVE; PR6b delegation merged (#1070, activates on next Rails web restart) — all 6 routes effectively cut over. **Remaining = `systemctl restart seni_ror` to activate PR6b + payment-path live testing + PR7 cleanup — see "Outstanding".** **Ramp + live testing of all
 > gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger/GAS/Stripe) and need the
 > `*_webhook_url` + `DAO_PROTOCOL_STRIPE_SECRET_KEY` env values provisioned in the box `.env`.
 >
@@ -175,8 +175,8 @@ the next phase.
 | PR5a | RSA verifier (`crypto/verify.py`) | dao_protocol#37 | ✓ | ✓ | n/a (library) | n/a |
 | PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | dao_protocol#38 | ✓ | ✓ | **exact-match nginx flip** (operator chose full flip over Rails `split`) | ✅ ramped live 2026-05-26 (dogfood: real signed `[CONTRIBUTION]` POST → 200, sig verified, sheet-logged, journal-confirmed; exact-match so other `/dao/*` stay on Rails; conf mirrored #1068) |
 | PR5c | dispatch (`webhook_trigger` + 17-branch event→webhook routing) | dao_protocol#38 | ✓ | ✓ | (with PR5b) | ☐ |
-| PR6a | `/qr-code-check` (consumer QR→Stripe: lookup, MINTED→session, session_id→SOLD, /link-email; folds in old "PR4b" read path) | dao_protocol#39 | ✓ | ✓ | Rails `split` / hard flip | ☐ (impl+deployed; lookup verified live; Stripe key + live sale at ramp) |
-| PR6b | order-sync audit log → `POST /stripe/order_sync` (`StripeCheckoutLog`); Rails delegates `checkout.session.completed`. **DESCOPED per decision A: `/meta_checkout` (deprecated Wix) + shared `/stripe_webhook` entry stay on Rails** | dao_protocol#40 | ✓ | ✓ | Rails webhook delegation | ☐ (impl+deployed; wire delegation + Stripe key at ramp) |
+| PR6a | `/qr-code-check` (consumer QR→Stripe: lookup, MINTED→session, session_id→SOLD, /link-email; folds in old "PR4b" read path) | dao_protocol#39 | ✓ | ✓ | exact-match nginx flip | ✅ ramped live 2026-05-26 (read lookup verified on Python + journal; conf mirrored #1069). **Operator-test the payment paths**: MINTED→Stripe session, session_id→SOLD reconcile, /link-email write (real Stripe/sheets) |
+| PR6b | order-sync audit log → `POST /stripe/order_sync` (`StripeCheckoutLog`); Rails delegates `checkout.session.completed`. **DESCOPED per decision A: `/meta_checkout` (deprecated Wix) + shared `/stripe_webhook` entry stay on Rails** | dao_protocol#40 | ✓ | ✓ | Rails webhook delegation | ✅ delegation merged (sentiment_importer#1070) — webhook_controller does a synchronous localhost POST to :8010/stripe/order_sync. ⏳ **activates on next Rails web restart** (`systemctl restart seni_ror` on seni_ror_new); until then `perform_async` still runs |
 | PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
 
 ---
@@ -243,14 +243,15 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 
 ## Outstanding (2026-05-26 audit)
 
-**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. **PR2 `/proxy/gas` + PR3 newsletter/email-agent + PR4 shipping_rates + PR5 `/dao/submit_contribution` ramped (4 of 6).** **No implementation work remains; box `.env` env provisioning DONE (2026-05-26). Remaining is operator-driven: PR6 ramp (qr-code-check + stripe order_sync), live testing, PR7 cleanup.** Remaining:
+**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. **PR2/PR3/PR4/PR5/PR6a RAMPED LIVE + PR6b delegation merged (sentiment_importer#1070, activates on next Rails web restart) — all 6 routes effectively cut over.** **No implementation work remains; box `.env` env provisioning DONE (2026-05-26). Remaining is operator-driven: `systemctl restart seni_ror` to activate PR6b, payment-path live testing (PR6a Stripe/SOLD + PR6b), PR7 cleanup.** Remaining:
 
 **1. Ramps (operator-driven — flip each gate to 100%, one at a time, Rails as rollback):**
 - [x] PR3 newsletter + email-agent → nginx `location` flip in `seni_ror_new:edgar.conf` — ✅ **ramped live 2026-05-26** (302 parity vs Rails + dao_protocol journal-confirmed; live conf mirrored to repo #1066; rollback = drop the two `location` blocks + reload)
 - [x] PR4 `/agroverse_shop/shipping_rates` → nginx exact-match flip — ✅ **ramped live 2026-05-26** (exact JSON parity vs Rails + CORS `ACAO: *` on GET/preflight + journal-confirmed; required adding global CORS to the app first, dao_protocol#44, mirroring Edgar rack-cors; conf mirrored #1067)
 - [x] PR5 `/dao/submit_contribution` → ✅ **ramped live 2026-05-26** via **exact-match nginx flip** (operator chose full flip over Rails `split`). Dogfood: a real signed `[CONTRIBUTION]` POST returned 200 + sig verified + Telegram-logged + journal-confirmed (no ledger webhook for that event type). Exact-match `location` so the other `/dao/*` routes (cypher/canvas/check_digital_signature) stay on Rails. Webhook URLs already provisioned in `.env`; conf mirrored #1068. ⚠️ Other event types (SALES/MINT/etc.) now also flow through Python's dispatch → real GAS webhooks — operator should watch the first few of each in production
 - [ ] PR6a `/qr-code-check` → flip (payment-critical)
-- [ ] PR6b → wire Rails `/stripe_webhook` to delegate `checkout.session.completed` → `POST /stripe/order_sync`
+- [x] PR6a `/qr-code-check` + `/link-email` → exact-match nginx flip ✅ **ramped live 2026-05-26** (read lookup verified on Python + journal; conf mirrored #1069). Payment paths (MINTED→Stripe session, session_id→SOLD, /link-email write) are operator-tested with real Stripe.
+- [x] PR6b → ✅ delegation **merged** (sentiment_importer#1070): `webhook_controller#stripe` does a synchronous rescued localhost POST to `:8010/stripe/order_sync` for `checkout.session.completed`. ⏳ **Activates on next Rails web restart** (`systemctl restart seni_ror` on `seni_ror_new`) — until then `perform_async` (Sidekiq) still runs (current behavior). `/stripe_webhook` entry + subscription events stay on Rails.
 - (PR2 `/proxy/gas` ✓, PR3 newsletter/email-agent ✓, PR4 shipping_rates ✓, PR5 `/dao/submit_contribution` ✓ already ramped)
 
 **2. Env provisioning in box `.env` — DONE ✓ (2026-05-26).** Extracted the canonical runtime values from the live Rails process (loaded `/proc/<pid>/environ` for `SECRET_KEY_BASE` etc., then a `rails runner` read `Rails.application.config.*`) and merged into `/home/ubuntu/dao_protocol/.env` (chmod 600) — values never echoed. Service restarted; **23 keys** verified loaded (pydantic Settings for the 4 secrets; systemd `EnvironmentFile` puts the 19 webhooks into the process env for `dispatch.py`'s `os.environ` lookups). **Still gate-off** (env-only; no traffic moved).
