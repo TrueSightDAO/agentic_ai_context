@@ -13,7 +13,7 @@ so clients never change and each step has instant rollback.
 > — inventory-snapshot enqueue + `/dao` attachment→GitHub (#41), EMAIL REGISTERED/VERIFICATION
 > onboarding (#42) — all on `:8010`, **58 unit tests**. **Implementation is 100% complete.** DESCOPED
 > per decision A: `/meta_checkout` (deprecated Wix) + the shared `/stripe_webhook` entry stay on
-> Rails. Env provisioning DONE (23 keys, 2026-05-26). PR2–PR6a RAMPED LIVE; PR6b delegation merged (#1070, activates on next Rails web restart) — all 6 routes effectively cut over. **Remaining = `systemctl restart seni_ror` to activate PR6b + payment-path live testing + PR7 cleanup — see "Outstanding".** **Ramp + live testing of all
+> Rails. Env provisioning DONE (23 keys, 2026-05-26). **PR2–PR6a RAMPED LIVE + PR6b ACTIVATED (Rails restarted 2026-05-26; delegation wiring verified) — all 6 routes cut over.** PR6a MINTED→Stripe-checkout redirect verified via a Stripe **test-mode sandbox** (2nd instance, sk_test). **Remaining = optional real-payment reconcile test + PR7 cleanup — see "Outstanding".** **Ramp + live testing of all
 > gate-off endpoints (esp. /dao, Stripe) are operator-driven** (real ledger/GAS/Stripe) and need the
 > `*_webhook_url` + `DAO_PROTOCOL_STRIPE_SECRET_KEY` env values provisioned in the box `.env`.
 >
@@ -176,7 +176,7 @@ the next phase.
 | PR5b | `/dao/submit_contribution` intake (verify + dedup + Telegram Chat Logs append) | dao_protocol#38 | ✓ | ✓ | **exact-match nginx flip** (operator chose full flip over Rails `split`) | ✅ ramped live 2026-05-26 (dogfood: real signed `[CONTRIBUTION]` POST → 200, sig verified, sheet-logged, journal-confirmed; exact-match so other `/dao/*` stay on Rails; conf mirrored #1068) |
 | PR5c | dispatch (`webhook_trigger` + 17-branch event→webhook routing) | dao_protocol#38 | ✓ | ✓ | (with PR5b) | ☐ |
 | PR6a | `/qr-code-check` (consumer QR→Stripe: lookup, MINTED→session, session_id→SOLD, /link-email; folds in old "PR4b" read path) | dao_protocol#39 | ✓ | ✓ | exact-match nginx flip | ✅ ramped live 2026-05-26 (read lookup verified on Python + journal; conf mirrored #1069). **Operator-test the payment paths**: MINTED→Stripe session, session_id→SOLD reconcile, /link-email write (real Stripe/sheets) |
-| PR6b | order-sync audit log → `POST /stripe/order_sync` (`StripeCheckoutLog`); Rails delegates `checkout.session.completed`. **DESCOPED per decision A: `/meta_checkout` (deprecated Wix) + shared `/stripe_webhook` entry stay on Rails** | dao_protocol#40 | ✓ | ✓ | Rails webhook delegation | ✅ delegation merged (sentiment_importer#1070) — webhook_controller does a synchronous localhost POST to :8010/stripe/order_sync. ⏳ **activates on next Rails web restart** (`systemctl restart seni_ror` on seni_ror_new); until then `perform_async` still runs |
+| PR6b | order-sync audit log → `POST /stripe/order_sync` (`StripeCheckoutLog`); Rails delegates `checkout.session.completed`. **DESCOPED per decision A: `/meta_checkout` (deprecated Wix) + shared `/stripe_webhook` entry stay on Rails** | dao_protocol#40 | ✓ | ✓ | Rails webhook delegation | ✅ **ACTIVATED 2026-05-26** (sentiment_importer#1070 deployed; `systemctl restart seni_ror` done, Edgar healthy). Wiring verified: a synthetic `checkout.session.completed` → Rails delegated to Python (`POST /stripe/order_sync` from 127.0.0.1, journal-confirmed; webhook still acked 200 via the rescue). Real paid-session StripeCheckoutLog write = optional operator test |
 | PR7 | Remove dead Tenant B code from Edgar (after all ramped 100%) | — | ☐ | ☐ | n/a | n/a |
 
 ---
@@ -243,7 +243,7 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 
 ## Outstanding (2026-05-26 audit)
 
-**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. **PR2/PR3/PR4/PR5/PR6a RAMPED LIVE + PR6b delegation merged (sentiment_importer#1070, activates on next Rails web restart) — all 6 routes effectively cut over.** **No implementation work remains; box `.env` env provisioning DONE (2026-05-26). Remaining is operator-driven: `systemctl restart seni_ror` to activate PR6b, payment-path live testing (PR6a Stripe/SOLD + PR6b), PR7 cleanup.** Remaining:
+**Build phase COMPLETE** — all clean Tenant B endpoints ported + deployed gate-off (PR2–PR6b, dao_protocol#33–#40) **plus all 3 deferred impl gaps closed (#41 + #42)**, 58 unit tests, every route verified live on `:8010`. **PR2–PR6a RAMPED LIVE + PR6b ACTIVATED (Rails restarted 2026-05-26) — all 6 routes cut over.** PR6a MINTED→Stripe-checkout redirect verified via a Stripe **test-mode sandbox** (2nd dao_protocol instance on `:8011` with the `sk_test` key from `development.rb`; MINTED code → 302 to `checkout.stripe.com/c/pay/cs_test_…`, no SOLD write). PR6b wiring verified (synthetic event → Rails→Python journal-confirmed). **No implementation work remains; env provisioning DONE. Remaining is operator-driven: optional real-payment reconcile→SOLD test, PR7 cleanup.** Remaining:
 
 **1. Ramps (operator-driven — flip each gate to 100%, one at a time, Rails as rollback):**
 - [x] PR3 newsletter + email-agent → nginx `location` flip in `seni_ror_new:edgar.conf` — ✅ **ramped live 2026-05-26** (302 parity vs Rails + dao_protocol journal-confirmed; live conf mirrored to repo #1066; rollback = drop the two `location` blocks + reload)
@@ -272,7 +272,8 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 - [ ] Remove dead Tenant B controllers/workers from `sentiment_importer`; suggest PROJECT_INDEX/WORKSPACE_CONTEXT updates via CONTEXT_UPDATES.
 
 **5. Operator live testing (per test-execution policy):**
-- [ ] dogfood signed `/dao` events (own key); Stripe test-mode checkout; EMAIL VERIFICATION loopback (own machine); real MINTED QR sale → SOLD.
+- [x] signed `/dao` submission → Python (dogfooded via `report_ai_agent_contribution`, 200 + sig verified + journal). [x] PR6b delegation wiring (synthetic event → Rails→Python). [x] PR6a MINTED→Stripe-checkout redirect via **test-mode sandbox** (`:8011` + `sk_test`; 302 → `cs_test_…`).
+- [ ] **optional, operator:** complete a test/real Stripe checkout to exercise reconcile→SOLD + the real StripeCheckoutLog write (needs a publicly-reachable `success_url`; the sandbox `success_url` was localhost). EMAIL VERIFICATION loopback (own machine) if/when used.
 
 **6. Minor hardening / open decisions:**
 - [ ] rebind service to `127.0.0.1:8010` (still `0.0.0.0`; SG blocks externally)
