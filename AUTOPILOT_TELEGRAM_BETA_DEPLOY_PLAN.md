@@ -104,7 +104,7 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 
 ## 8. Resume tracker
 
-**RESUME HERE → Track A COMPLETE (2026-05-27). Both domains live and convention-matched.** `dapp_beta` (non-fork base) → beta.dapp.truesight.me; `dapp_prod` (fork of dapp_beta) → dapp.truesight.me (HTTP 200); old `dapp` archived. DNS in Route53 (EXPLORYA, zone `Z0032474227N6EQ3Z4QU`). Promote beta→prod via `gh repo sync` (never `--force`). **Next real work = B4–B6** (file/photo passthrough; beta-deploy gate Tier-1→Tier-2 auto-merge into `dapp_beta`). B1–B3 + web browsing shipped 2026-05-26. Track C (public Q&A) **shelved** — §9. *(Cosmetic follow-up: ~remaining incidental `TrueSightDAO/dapp` doc mentions still resolve via the archived repo; sweep opportunistically.)*
+**RESUME HERE → Roadmap effectively COMPLETE (2026-05-27); only loose ends remain.** Track A done (dapp_beta base + dapp_prod fork, both domains live; old dapp archived). B1–B6 all shipped + deployed; **the `/ship` gate is ENABLED** (`BETA_DEPLOY_GATE_ENABLED=true`, one-tap). Track C shelved (§9). **Open loose ends:** (a) `BETA_AUTO_MERGE` is OFF — flip to true to enable B6 Tier-2 auto-merge once the gate is trusted; (b) live end-to-end `/ship` smoke test (dapp_beta#1) in progress; (c) `beta.dapp.truesight.me` HTTPS cert still provisioning (HTTP works; prod HTTPS fine); (d) optional: on-demand full-body for warmup_review + incidental `TrueSightDAO/dapp` doc-ref sweep. NOTE: the autopilot adapter is being actively extended by a DeepSeek session — coordinate before further adapter edits.
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
@@ -117,9 +117,9 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 | B1 Telegram adapter + single-user lock | truesight_autopilot#44 | ✅ | ✅ | ☐ |
 | B2 topic↔session (in #44) | truesight_autopilot#44 | ✅ | ✅ | ☐ |
 | B3 identity reuse (in #44) | truesight_autopilot#44 | ✅ | ✅ | ☐ |
-| B4 file/photo passthrough | — | ☐ | ☐ | ☐ |
-| B5 beta gate Tier 1 (one-tap ship) | — | ☐ | ☐ | ☐ |
-| B6 beta gate Tier 2 (auto-on-green) | — | ☐ | ☐ | ☐ |
+| B4 file/photo passthrough | truesight_autopilot#54 | ✅ | ✅ | ☐ |
+| B5 beta gate Tier 1 (one-tap ship) | truesight_autopilot#56 | ✅ | ✅ + **gate ENABLED** | ☐ |
+| B6 beta gate Tier 2 (auto-on-green) | truesight_autopilot#56 | ✅ | ✅ (built; `BETA_AUTO_MERGE` OFF — enable when trusted) | ☐ |
 
 Per `OPERATING_INSTRUCTIONS.md` §5 + the DAO contribution convention: after each unit merges, report the contribution before starting the next, and tick both boxes here.
 
