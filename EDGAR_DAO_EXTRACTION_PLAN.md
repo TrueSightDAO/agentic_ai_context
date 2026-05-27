@@ -268,8 +268,10 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 - [x] ASSET RECEIPT → inventory-snapshot enqueue → `server/jobs/inventory_snapshot.py` (GET `?action=&token=`, corrected shape), wired into `dispatch.py`. **#41.** Needs `AGROVERSE_INVENTORY_*` at ramp.
 - intentionally **NOT ported** (stay on Rails): `/meta_checkout` (deprecated Wix); `/stripe_webhook` entry (shared with trading-SaaS subscriptions)
 
-**4. PR7 cleanup (only AFTER all ramped 100%):**
-- [ ] Remove dead Tenant B controllers/workers from `sentiment_importer`; suggest PROJECT_INDEX/WORKSPACE_CONTEXT updates via CONTEXT_UPDATES.
+**4. PR7 cleanup + doc updates — DEFERRED ~30 days for ramp soak (revisit ~2026-06-25).** Captured as an OPEN_FOLLOWUPS entry ("Edgar → dao_protocol: post-soak cleanup"). Decision 2026-05-26: let the live ramps soak before removing the Rails controllers (they're the instant nginx-flip rollback net). When revisited:
+- [ ] PR7: remove dead Tenant B controllers/workers from `sentiment_importer` — **phased + merge-not-deploy** (safe first: `MetaCheckoutOrderSyncWorker` + newsletter/email_agent/shipping_rates controllers; hold qr_code_check/proxy/dao#submit_contribution until reconcile soak-tested). Suggest PROJECT_INDEX/WORKSPACE_CONTEXT updates via CONTEXT_UPDATES.
+- [ ] dao_protocol `README.md` — reframe "Edgar (source: sentiment_importer)" to reflect this repo now hosts the server (keep historical PR refs).
+- [ ] truesight.me blog post — update its `sentiment_importer` reference to dao_protocol.
 
 **5. Operator live testing (per test-execution policy):**
 - [x] signed `/dao` submission → Python (dogfooded via `report_ai_agent_contribution`, 200 + sig verified + journal). [x] PR6b delegation wiring (synthetic event → Rails→Python). [x] PR6a MINTED→Stripe-checkout redirect via **test-mode sandbox** (`:8011` + `sk_test`; 302 → `cs_test_…`).
