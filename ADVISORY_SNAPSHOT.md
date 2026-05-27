@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-27T16:23:48Z`
+- Generated (UTC): `2026-05-27T20:33:34Z`
 - Look-back: **7** calendar days (`2026-05-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 43
-- `[PRACTICE EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 44
 
 ### Latest entries
 
-- `Edgar_20260526190333_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol PR6b: order-sync audit-log delegation endpoint (/stripe/order_s…
-- `Edgar_20260526192119_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Verifying the status of Nelan's AWS account
-- `Edgar_20260526195632_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: dao_protocol: close all 3 deferred impl gaps (inventory enqueue, attachment …
-- `Edgar_20260526201210_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Published Dual Tech Summit essay to truesight.me blog
-- `Edgar_20260526201813_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol: provision production .env secrets for ramp (Edgar extraction i…
-- `Edgar_20260526204910_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Brazil export-entity brief + FSVP entity.json profiles
-- `Edgar_20260526205041_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: dao_protocol: wire Bugsnag error tracking into the FastAPI server
-- `Edgar_20260526205634_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Autopilot web browsing (Tavily) shipped + Telegram/beta-deploy roadmap
 - `Edgar_20260526212622_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Telegram adapter for autopilot — private single-user chat, deployed + locked
 - `Edgar_20260526213401_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Brazil export-entity structuring brief for FounderHaus/Paloma (Próspera Hold…
 - `Edgar_20260526213712_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Roadmap: shelve public Q&A tier (Track C) + Telegram forum-context guidance
@@ -57,6 +48,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260526223340_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Edgar->dao_protocol PR6 (final ramp): /qr-code-check flip + stripe order-syn…
 - `Edgar_20260527040840_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Telegram bot UX: persistent typing, Markdown→HTML rendering, dao_protocol al…
 - `Edgar_20260527041430_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Edgar->dao_protocol: activate PR6b in production + verify PR6a payment path …
+- `Edgar_20260527175959_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Track A: stand up dapp_beta → beta.dapp.truesight.me (repo + Pages + CNAME +…
+- `Edgar_20260527180823_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Track A complete: beta.dapp.truesight.me DNS (Route53) — site live
+- `Edgar_20260527181634_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Nelanco AWS Trust & Safety case 177613748700177 — unblock + consolidated rep…
+- `Edgar_20260527181659_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix autopilot email poller crash, LLM timeouts, and Telegram multi-topic blo…
+- `Edgar_20260527183030_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: LiteLLM harness — replace homegrown regex XML/DSML parsing with robust libra…
+- `Edgar_20260527184538_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: A3: dapp prod/beta fork split — dapp_prod (fork of dapp_beta) serves dapp.tr…
+- `Edgar_20260527185741_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Speaking with the staff from AWS about restoring Jake's AWS account privileg…
+- `Edgar_20260527200611_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: B4: Telegram photo/document passthrough (merged, deploy pending)
 
 ---
 
@@ -212,6 +211,7 @@ _All dated lines on/after 2026-05-20_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+72993f3 | 2026-05-27 16:25:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1c72a5e | 2026-05-27 05:00:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -251,19 +251,28 @@ cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [
 5296085 | 2026-05-20 15:05:46 -0700 | Style all 6 status values + fix 'ON CONSIGNMENT' class-name break (#136)
 4d49731 | 2026-05-20 14:44:30 -0700 | Product Verification: sync filter state to URL query params (#135)
 26947f7 | 2026-05-20 14:44:04 -0700 | aum: dedicated /aum page + ledger click-through on /treasury (#134)
-1cfd44b | 2026-05-20 14:21:21 -0700 | qr page: back-link, Related section, image aspect-fit (#133)
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-9b8949e | 2026-05-27 06:29:29 -0700 | Create comprehensive USA ceremonial cacao content marketing strategy report
+d791039 | 2026-05-27 12:58:59 -0700 | feat: add comprehensive content marketing strategy report for Agroverse
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+12ae2d9 | 2026-05-27 12:19:25 -0700 | add topic-role architecture roadmap for autopilot
+ed145fb | 2026-05-27 11:38:55 -0700 | docs: A3 complete — dapp_prod (fork of dapp_beta) is prod; old dapp archived (#225)
+7f53254 | 2026-05-27 11:30:22 -0700 | update LiteLLM migration roadmap — PR1 deployed
+19ce0f4 | 2026-05-27 11:27:28 -0700 | add LiteLLM harness migration roadmap
+1550f19 | 2026-05-27 11:20:22 -0700 | OPEN_FOLLOWUPS: check AWS case 177613748700177 (Nelanco) response by 2026-05-29 (#224)
+f08e979 | 2026-05-27 11:18:59 -0700 | roadmap A3: capture verified fork convention (prod forks beta; beta stays base) (#223)
+eeab252 | 2026-05-27 11:07:18 -0700 | roadmap: Track A complete — beta.dapp.truesight.me live (Route53 DNS done) (#222)
+8ef2895 | 2026-05-27 10:59:29 -0700 | roadmap: Track A — dapp_beta repo+Pages+CNAME+CI + allowlist done; only DNS left (#221)
+2d55291 | 2026-05-27 09:24:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
+f39c3bb | 2026-05-27 09:24:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 72bbffb | 2026-05-27 03:38:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
 8688853 | 2026-05-27 03:38:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 b795013 | 2026-05-26 23:34:17 -0700 | docs: defer PR7 cleanup + README/blog updates ~30 days for ramp soak (revisit ~2026-06-25) (#220)
@@ -294,16 +303,6 @@ b09e0fb | 2026-05-26 12:03:24 -0700 | roadmap drift audit (2026-05-26): reconcil
 b179320 | 2026-05-26 09:27:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
 2cc56f8 | 2026-05-26 03:34:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
 0a41a1b | 2026-05-26 03:34:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
-ffcba0d | 2026-05-25 21:43:37 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
-51ba993 | 2026-05-25 21:43:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
-2fa838f | 2026-05-25 20:47:41 -0700 | Merge pull request #201 from TrueSightDAO/auto/advisory-refresh-2026-05-26
-2a76b2a | 2026-05-26 03:47:32 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
-a19947e | 2026-05-25 16:34:44 -0700 | PR6a /qr-code-check DONE & deployed (gate off); deps→requirements-server.txt; RESUME → PR6b (#200)
-b915c36 | 2026-05-25 16:18:54 -0700 | LINEAGE_ASSETS: pngs/<id>.png is the compiled label, not a bare QR (#199)
-4acaac7 | 2026-05-25 16:09:41 -0700 | PR5b+PR5c /dao intake+dispatch DONE & deployed (gate off); RESUME → PR6 (#198)
-91448e1 | 2026-05-25 15:53:58 -0700 | PR5a verifier DONE; spec out PR5b intake + PR5c dispatch (full event→webhook table) (#197)
-c3ba8bd | 2026-05-25 15:49:06 -0700 | LINEAGE_ASSETS: point to generate_qr_batch.sh as the canonical QR path (#196)
-b48d2ac | 2026-05-25 15:40:53 -0700 | PR4 shipping_rates DONE & deployed (exact parity vs Rails); RESUME → PR5 (#195)
 … (truncated)
 ```
 
@@ -388,7 +387,11 @@ fdabce1 | 2026-05-20 14:37:27 -0700 | feat(oracle): add QMDJ detail panel with h
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
-_(no commits on origin/master in window)_
+ebda825 | 2026-05-27 12:06:38 -0700 | docs: add AWS live chat transcript from May 27 follow-up (#19)
+f5470ff | 2026-05-27 11:14:35 -0700 | Record send of case 177613748700177 reply (2026-05-27 11:14 PDT, as root) (#18)
+6a20d54 | 2026-05-27 11:10:08 -0700 | Update root password rotation date to 2026-05-15 in case reply (per live credential report) (#17)
+cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, no VPN) in May-27 case reply (#16)
+2a79f04 | 2026-05-27 10:59:34 -0700 | AWS case 177613748700177: consolidated reply + read-only inventory tool (#15)
 ```
 
 ---
@@ -465,7 +468,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/27/2026 8:50:43 |
+| 2026-05 | 58.6 | 14977.11386 | 5/27/2026 12:56:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-20`; scanned last **396** data rows)
 
