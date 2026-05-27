@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-27T04:55:31Z`
+- Generated (UTC): `2026-05-27T10:37:44Z`
 - Look-back: **7** calendar days (`2026-05-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -212,6 +212,7 @@ _All dated lines on/after 2026-05-20_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1c72a5e | 2026-05-27 05:00:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0dbe726 | 2026-05-26 12:51:29 -0700 | blog: publish 'The most tracked thing in the room is a cup of cacao' (#146)
 8285bd7 | 2026-05-26 16:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -251,7 +252,6 @@ cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [
 26947f7 | 2026-05-20 14:44:04 -0700 | aum: dedicated /aum page + ledger click-through on /treasury (#134)
 1cfd44b | 2026-05-20 14:21:21 -0700 | qr page: back-link, Related section, image aspect-fit (#133)
 abca4fd | 2026-05-20 14:10:59 -0700 | qr + Product Verification: match site templating + handle missing PNGs (#132)
-ac83700 | 2026-05-20 13:57:59 -0700 | treasury: dedicated /treasury page with formula-matched breakdown (#131)
 … (truncated)
 ```
 
@@ -264,6 +264,9 @@ fa15e9b | 2026-05-26 14:57:58 -0700 | events: backfill Luma RSVP links for SF Te
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b795013 | 2026-05-26 23:34:17 -0700 | docs: defer PR7 cleanup + README/blog updates ~30 days for ramp soak (revisit ~2026-06-25) (#220)
+69476d6 | 2026-05-26 21:55:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
+e822ca5 | 2026-05-26 21:55:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 320f64f | 2026-05-26 21:11:36 -0700 | docs(edgar-extraction): PR6b activated + PR6a redirect sandbox-verified (#219)
 4d575e9 | 2026-05-26 21:03:34 -0700 | Merge pull request #218 from TrueSightDAO/auto/advisory-refresh-2026-05-27
 e2d5109 | 2026-05-27 04:03:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
@@ -301,9 +304,6 @@ c3ba8bd | 2026-05-25 15:49:06 -0700 | LINEAGE_ASSETS: point to generate_qr_batch
 b48d2ac | 2026-05-25 15:40:53 -0700 | PR4 shipping_rates DONE & deployed (exact parity vs Rails); RESUME → PR5 (#195)
 9397e2e | 2026-05-25 15:33:35 -0700 | PR3 tracking pixels DONE & deployed (gate off); RESUME → PR4 (#194)
 131f4e2 | 2026-05-25 15:23:14 -0700 | PR2 /proxy/gas RAMPED LIVE (fixes latent Rails 401); test-execution policy (#193)
-f65c8ee | 2026-05-25 15:14:00 -0700 | test: add cutover test plan checklist; PR2 functional tests pass; /proxy/gas 401 finding (#192)
-34fed3c | 2026-05-25 15:00:22 -0700 | roadmap: decouple impl from cutover (two-tier gate); PR2 /proxy/gas done (#191)
-454c087 | 2026-05-25 14:12:42 -0700 | dao_protocol PR1b LIVE + topology correction; RESUME → PR2 (#190)
 … (truncated)
 ```
 
@@ -353,6 +353,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8d18e79 | 2026-05-26 10:20:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6be5d94 | 2026-05-25 10:59:53 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 26d4588 | 2026-05-25 10:51:34 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -464,7 +465,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/26/2026 21:50:49 |
+| 2026-05 | 58.6 | 14977.11386 | 5/27/2026 2:50:28 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-20`; scanned last **396** data rows)
 
