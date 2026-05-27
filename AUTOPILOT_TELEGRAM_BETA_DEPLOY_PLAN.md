@@ -104,13 +104,13 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 
 ## 8. Resume tracker
 
-**RESUME HERE → Track A: add the DNS record, then verify beta serves. ONE operator step left:** add `CNAME beta.dapp.truesight.me → truesightdao.github.io` at the truesight.me registrar. Repo + Pages + CNAME + CI are done (2026-05-27); the domain just needs DNS to resolve + GitHub to provision HTTPS. After that, Track A is functionally complete (A3 prod-rename stays deferred); remaining work is B4–B6. B1–B3 shipped + deployed 2026-05-26 (bot `@truesight_autopilot_bot`). Web browsing (Tavily) shipped (#43). Track C (public Q&A) **shelved** — §9.
+**RESUME HERE → Track A is functionally COMPLETE (2026-05-27). `beta.dapp.truesight.me` is live** — DNS (Route53, EXPLORYA acct, zone `Z0032474227N6EQ3Z4QU`, `CNAME → truesightdao.github.io`) + repo + Pages + CNAME + CI all done; site serves HTTP 200 (GitHub HTTPS cert auto-provisions shortly after DNS). Only deferred piece is **A3** (cosmetic `dapp`→`dapp_prod` rename, 91 refs). **Next real work = B4–B6** (file/photo passthrough; beta-deploy gate Tier-1→Tier-2). B1–B3 + web browsing shipped 2026-05-26. Track C (public Q&A) **shelved** — §9.
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
 | Roadmap (this file) | agentic_ai_context#205 | ✅ | n/a | ✅ |
 | (extra) Web browsing — Tavily | truesight_autopilot#43 | ✅ | ✅ | ✅ |
-| A0 DNS record | — (operator: registrar) | ☐ **← only remaining step** | ☐ | n/a |
+| A0 DNS record (Route53, EXPLORYA) | (route53 change C0171027E43KCV4QPIY6) | ✅ | ✅ resolves + serves 200 | ☐ |
 | A1 create `dapp_beta` + CNAME + Pages + CI | (gh repo create + push 2026-05-27) | ✅ | ✅ (Pages enabled, cname set) | ☐ |
 | A2 autopilot beta allowlist | truesight_autopilot#50 | ✅ | ✅ | ☐ |
 | A3 rename `dapp`→`dapp_prod` (deferred) | — | ☐ | ☐ | ☐ |
