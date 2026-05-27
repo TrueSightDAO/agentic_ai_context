@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-27T10:37:44Z`
+- Generated (UTC): `2026-05-27T16:23:48Z`
 - Look-back: **7** calendar days (`2026-05-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -74,7 +74,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-26T10:59:14.356Z`
+- Generated (UTC): `2026-05-27T10:59:15.129Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -212,6 +212,7 @@ _All dated lines on/after 2026-05-20_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1c72a5e | 2026-05-27 05:00:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0dbe726 | 2026-05-26 12:51:29 -0700 | blog: publish 'The most tracked thing in the room is a cup of cacao' (#146)
@@ -251,19 +252,20 @@ cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [
 4d49731 | 2026-05-20 14:44:30 -0700 | Product Verification: sync filter state to URL query params (#135)
 26947f7 | 2026-05-20 14:44:04 -0700 | aum: dedicated /aum page + ledger click-through on /treasury (#134)
 1cfd44b | 2026-05-20 14:21:21 -0700 | qr page: back-link, Related section, image aspect-fit (#133)
-abca4fd | 2026-05-20 14:10:59 -0700 | qr + Product Verification: match site templating + handle missing PNGs (#132)
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-fa15e9b | 2026-05-26 14:57:58 -0700 | events: backfill Luma RSVP links for SF Tech Fest + Onsen (#147)
+9b8949e | 2026-05-27 06:29:29 -0700 | Create comprehensive USA ceremonial cacao content marketing strategy report
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+72bbffb | 2026-05-27 03:38:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
+8688853 | 2026-05-27 03:38:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 b795013 | 2026-05-26 23:34:17 -0700 | docs: defer PR7 cleanup + README/blog updates ~30 days for ramp soak (revisit ~2026-06-25) (#220)
 69476d6 | 2026-05-26 21:55:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
 e822ca5 | 2026-05-26 21:55:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
@@ -302,8 +304,6 @@ b915c36 | 2026-05-25 16:18:54 -0700 | LINEAGE_ASSETS: pngs/<id>.png is the compi
 91448e1 | 2026-05-25 15:53:58 -0700 | PR5a verifier DONE; spec out PR5b intake + PR5c dispatch (full event→webhook table) (#197)
 c3ba8bd | 2026-05-25 15:49:06 -0700 | LINEAGE_ASSETS: point to generate_qr_batch.sh as the canonical QR path (#196)
 b48d2ac | 2026-05-25 15:40:53 -0700 | PR4 shipping_rates DONE & deployed (exact parity vs Rails); RESUME → PR5 (#195)
-9397e2e | 2026-05-25 15:33:35 -0700 | PR3 tracking pixels DONE & deployed (gate off); RESUME → PR4 (#194)
-131f4e2 | 2026-05-25 15:23:14 -0700 | PR2 /proxy/gas RAMPED LIVE (fixes latent Rails 401); test-execution policy (#193)
 … (truncated)
 ```
 
@@ -465,7 +465,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/27/2026 2:50:28 |
+| 2026-05 | 58.6 | 14977.11386 | 5/27/2026 8:50:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-20`; scanned last **396** data rows)
 
