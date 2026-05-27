@@ -104,15 +104,15 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 
 ## 8. Resume tracker
 
-**RESUME HERE → Track A (`dapp_beta`) and/or B4–B6.** B1–B3 shipped + deployed to prod EC2 2026-05-26 (bot `@truesight_autopilot_bot`, locked to Gary's Telegram ID). Web browsing (Tavily `web_search`/`web_extract`) also shipped + deployed (truesight_autopilot#43). Track C (public Q&A) is **shelved** — see §9.
+**RESUME HERE → Track A: add the DNS record, then verify beta serves. ONE operator step left:** add `CNAME beta.dapp.truesight.me → truesightdao.github.io` at the truesight.me registrar. Repo + Pages + CNAME + CI are done (2026-05-27); the domain just needs DNS to resolve + GitHub to provision HTTPS. After that, Track A is functionally complete (A3 prod-rename stays deferred); remaining work is B4–B6. B1–B3 shipped + deployed 2026-05-26 (bot `@truesight_autopilot_bot`). Web browsing (Tavily) shipped (#43). Track C (public Q&A) **shelved** — §9.
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
 | Roadmap (this file) | agentic_ai_context#205 | ✅ | n/a | ✅ |
 | (extra) Web browsing — Tavily | truesight_autopilot#43 | ✅ | ✅ | ✅ |
-| A0 DNS + Pages | — | ☐ | ☐ | ☐ |
-| A1 create `dapp_beta` + CI | — | ☐ | ☐ | ☐ |
-| A2 autopilot beta allowlist | — | ☐ | ☐ | ☐ |
+| A0 DNS record | — (operator: registrar) | ☐ **← only remaining step** | ☐ | n/a |
+| A1 create `dapp_beta` + CNAME + Pages + CI | (gh repo create + push 2026-05-27) | ✅ | ✅ (Pages enabled, cname set) | ☐ |
+| A2 autopilot beta allowlist | truesight_autopilot#50 | ✅ | ✅ | ☐ |
 | A3 rename `dapp`→`dapp_prod` (deferred) | — | ☐ | ☐ | ☐ |
 | B1 Telegram adapter + single-user lock | truesight_autopilot#44 | ✅ | ✅ | ☐ |
 | B2 topic↔session (in #44) | truesight_autopilot#44 | ✅ | ✅ | ☐ |
