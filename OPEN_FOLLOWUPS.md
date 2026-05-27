@@ -32,6 +32,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Check AWS T&S case 177613748700177 (Nelanco) for response — by 2026-05-29
+
+**Context.** On 2026-05-27 (~11:14 PDT) the operator sent a consolidated reply to AWS support case `177613748700177` (Nelanco account `767697632458`), as the root user, closing all three open items: confirmed every resource on AWS's Apr-30 list as authorized, answered the May-20 access-location question (San Francisco, no VPN) + user list, and reconfirmed credential posture (root MFA on, zero root access keys). Full thread, live inventory, and the sent reply are in `cypher_def/docs/aws-reports/2026-05-27-case-177613748700177-consolidated-reply.md`. The account was verified clean via `cypher_def/scripts/aws/inventory_account.py --account nelanco`.
+
+**Goal / shape (check ~2 days out, 2026-05-29).**
+- If AWS **lifted the service limitation / resolved** → record outcome in the case report §3 and move this entry to Recently shipped.
+- If AWS **asked for screenshot evidence** → the report §3 lists the 3 highest-value captures (root MFA + no-root-keys + password date; AMI naming; snapshot descriptions).
+- If AWS is **silent / auto-nudges resumed** → post a one-line "awaiting your confirmation" bump in the case (as root).
+- While there, optional hygiene (non-blocking): set the missing `SECURITY` alternate contact; deactivate the idle older access key on IAM user `truesight_dao_autopilot` (`AKIA3FPSYHTFFH4TCZUA`, last used 2026-05-03).
+
+**Blocker / priority.** Time-boxed, not blocked. The account stays service-limited until AWS verifies, so don't let it stall silently.
+
 ### Swap autopilot's hand-rolled agent loop for a model-agnostic harness (keep the service + DAO tools)
 
 **Context.** `truesight_autopilot`'s chat/agent loop is hand-rolled. On 2026-05-26 a session was spent live-debugging exactly the plumbing a mature harness ships for free: multi-round tool looping (truesight_autopilot#47), empty/whitespace output (#46), reply-thread routing (#45). The Telegram bot works now, but the fragility is structural and will resurface as models/queries vary. This is the "brain upgrade" risk flagged in the original autopilot-vs-OpenClaw decision and parked in `AUTOPILOT_TELEGRAM_BETA_DEPLOY_PLAN.md` §7.
