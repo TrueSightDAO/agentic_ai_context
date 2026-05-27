@@ -1207,7 +1207,42 @@ up to a ~1-hour lag. Purely additive — the hourly trigger already keeps data c
 **Blocker:** none (opt-in; only worth doing if the up-to-1-hour refresh lag is a
 problem in practice).
 
-## Closed without shipping
+## Edgar → dao_protocol: post-soak cleanup (revisit ~2026-06-25)
+
+**Context:** The Edgar → dao_protocol migration is functionally complete as of
+2026-05-26 — all 6 routes cut over (PR2 `/proxy/gas`, PR3 newsletter/email-agent,
+PR4 shipping_rates, PR5 `/dao/submit_contribution`, PR6a `/qr-code-check`+`/link-email`,
+PR6b `checkout.session.completed` order-sync delegation, all live), env provisioned,
+60 unit tests, payment path sandbox-verified. The remaining items are deliberately
+**deferred ~30 days to let the live ramps soak** before removing the Rails rollback
+net. Full state: `EDGAR_DAO_EXTRACTION_PLAN.md` Outstanding.
+
+**Do not start before ~2026-06-25** unless the ramps are clearly stable sooner. By
+then, confirm via the dao_protocol journal + Bugsnag that the ramped routes have run
+clean (esp. `/qr-code-check` payments and `/dao` dispatch), and ideally that a real
+checkout reconcile→SOLD has happened.
+
+**Scope (3 parts):**
+1. **PR7 cleanup (the soak-gated part)** — remove the now-dead Tenant B code from
+   `sentiment_importer`. **Recommended phased + MERGE-NOT-DEPLOY** (keep the branch;
+   don't pull onto `seni_ror_new`, so the running Rails keeps the controllers as the
+   instant nginx-flip rollback until you're fully confident):
+   - Safe first: delete `MetaCheckoutOrderSyncWorker` (dead since PR6b) +
+     `NewsletterController`, `EmailAgentController`, `AgroverseShopShippingRatesController`
+     + their routes (all fully verified, read/redirect, lowest risk).
+   - Hold longer: `qr_code_check_controller` (payment-critical; reconcile→SOLD not yet
+     e2e-tested), `proxy_controller`, and the `dao_controller#submit_contribution`
+     **action only** (the controller has ~16 other live `/dao/*` routes — surgical removal).
+   - The `/stripe_webhook` entry + subscription handling stay on Rails (decision A).
+2. **dao_protocol `README.md`** — reframe the "Edgar (source: `sentiment_importer`)"
+   framing: this repo now contains the **server** that serves the ramped endpoints
+   (extracted from `sentiment_importer`, which remains the Rails trading platform).
+   Keep the legit historical PR refs (`sentiment_importer#1024`, `#1028`).
+3. **truesight.me blog post** that still references `sentiment_importer` — locate and
+   update to dao_protocol where it describes the contribution server. (Mind the
+   beta→prod CNAME divergence on publish: `gh repo sync`, NOT `--force`.)
+
+**Blocker:** time-gated — let the ramps soak (~30 days, revisit on/after 2026-06-25).
 
 _(empty — move entries here with a one-line reason when they're no longer
 relevant)_
