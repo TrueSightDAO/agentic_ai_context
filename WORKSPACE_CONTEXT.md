@@ -248,6 +248,7 @@ Assistants should **not** tie up the session waiting for GitHub Actions to finis
 |--------|-----------------------------------|-------|
 | **truesight.me** | [TrueSightDAO/truesight_me_prod](https://github.com/TrueSightDAO/truesight_me_prod) | Main DAO landing page — production |
 | **agroverse.shop** | [TrueSightDAO/agroverse_shop_prod](https://github.com/TrueSightDAO/agroverse_shop_prod) | E‑commerce — production |
+| **dapp.truesight.me** | [TrueSightDAO/dapp_prod](https://github.com/TrueSightDAO/dapp_prod) | DApp — production. **Fork of `dapp_beta`** (beta base → **beta.dapp.truesight.me**). Old `dapp` archived 2026-05-27; promote beta→prod via `gh repo sync` (CNAME-safe). |
 | **capoeira.agroverse.shop** | [TrueSightDAO/capoeira](https://github.com/TrueSightDAO/capoeira) | **Tribo Bahia Mirim capoeira practice platform.** GitHub Pages from `main` + CNAME. 39 Bico Duro move clips on **admin@truesight.me** YouTube; static session-generator site. |
 | **mirim-bahia.truesight.me** | [TrueSightDAO/tribomirimbahia](https://github.com/TrueSightDAO/tribomirimbahia) | **Tribo Bahia Mirim donation transparency explorer.** GitHub Pages from `main` + CNAME. Reads `treasury-cache/managed-ledgers/tribomirimbahia.json` and renders monthly donation/fee/net-to-program table. **Not** the practice platform — that's `capoeira.agroverse.shop`. |
 | **getdata.io** | [KrakeIO/krake_ror](https://github.com/KrakeIO/krake_ror) | Krake Rails backend — **not** Edgar / sentiment_importer |
@@ -255,8 +256,9 @@ Assistants should **not** tie up the session waiting for GitHub Actions to finis
 
 - `truesight_me/` in the workspace may be the beta repo (truesight_me or truesight_me_beta); changes for production go to **truesight_me_prod**.
 - `agroverse_shop/` in the workspace may be the beta repo (agroverse_shop_beta); changes for production go to **agroverse_shop_prod**.
+- `dapp/` in the workspace now tracks **dapp_beta** (non-fork base → **beta.dapp.truesight.me**); production is **dapp_prod** (fork of dapp_beta → **dapp.truesight.me**). Old `dapp` archived 2026-05-27 (read-only). Work lands in `dapp_beta`; promote to `dapp_prod` via `gh repo sync` (never `--force` — CNAME divergence).
 
-When editing for **truesight.me** or **agroverse.shop**, ensure changes are made in or synced to the **\*_prod** repo that deploys that domain.
+When editing for **truesight.me**, **agroverse.shop**, or **dapp.truesight.me**, ensure changes are made in or synced to the **\*_prod** repo that deploys that domain.
 
 ---
 
@@ -267,7 +269,7 @@ Future AIs can **clone** these repos when the workspace path is missing or a fre
 | Workspace path | GitHub repo (HTTPS clone URL) | Production deploy |
 |----------------|-------------------------------|-------------------|
 | `tokenomics/` | https://github.com/TrueSightDAO/tokenomics | — |
-| `dapp/` | https://github.com/TrueSightDAO/dapp | — |
+| `dapp/` | https://github.com/TrueSightDAO/dapp_beta | → **dapp_prod** (fork) → dapp.truesight.me (old `dapp` archived 2026-05-27) |
 | `dao_client/` | https://github.com/TrueSightDAO/dao_client | — |
 | `truesight_me/` | https://github.com/TrueSightDAO/truesight_me | → **truesight_me_prod** → truesight.me |
 | `agroverse_shop/` | https://github.com/TrueSightDAO/agroverse_shop_beta | → **agroverse_shop_prod** → agroverse.shop |

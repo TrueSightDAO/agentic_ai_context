@@ -104,7 +104,7 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 
 ## 8. Resume tracker
 
-**RESUME HERE → Track A is functionally COMPLETE (2026-05-27). `beta.dapp.truesight.me` is live** — DNS (Route53, EXPLORYA acct, zone `Z0032474227N6EQ3Z4QU`, `CNAME → truesightdao.github.io`) + repo + Pages + CNAME + CI all done; site serves HTTP 200 (GitHub HTTPS cert auto-provisions shortly after DNS). Only deferred piece is **A3** (cosmetic `dapp`→`dapp_prod` rename, 91 refs). **Next real work = B4–B6** (file/photo passthrough; beta-deploy gate Tier-1→Tier-2). B1–B3 + web browsing shipped 2026-05-26. Track C (public Q&A) **shelved** — §9.
+**RESUME HERE → Track A COMPLETE (2026-05-27). Both domains live and convention-matched.** `dapp_beta` (non-fork base) → beta.dapp.truesight.me; `dapp_prod` (fork of dapp_beta) → dapp.truesight.me (HTTP 200); old `dapp` archived. DNS in Route53 (EXPLORYA, zone `Z0032474227N6EQ3Z4QU`). Promote beta→prod via `gh repo sync` (never `--force`). **Next real work = B4–B6** (file/photo passthrough; beta-deploy gate Tier-1→Tier-2 auto-merge into `dapp_beta`). B1–B3 + web browsing shipped 2026-05-26. Track C (public Q&A) **shelved** — §9. *(Cosmetic follow-up: ~remaining incidental `TrueSightDAO/dapp` doc mentions still resolve via the archived repo; sweep opportunistically.)*
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
@@ -113,7 +113,7 @@ Goal: the private, reliable, multi-context Telegram front-end that lands work on
 | A0 DNS record (Route53, EXPLORYA) | (route53 change C0171027E43KCV4QPIY6) | ✅ | ✅ resolves + serves 200 | ☐ |
 | A1 create `dapp_beta` + CNAME + Pages + CI | (gh repo create + push 2026-05-27) | ✅ | ✅ (Pages enabled, cname set) | ☐ |
 | A2 autopilot beta allowlist | truesight_autopilot#50 | ✅ | ✅ | ☐ |
-| A3 rename `dapp`→`dapp_prod` (deferred) | — | ☐ | ☐ | ☐ |
+| A3 prod-side fork: `dapp_prod` (fork of dapp_beta) → dapp.truesight.me; old dapp archived; autopilot allowlist | truesight_autopilot#53 (+gh fork/Pages/Route53) | ✅ | ✅ serves 200 | ☐ |
 | B1 Telegram adapter + single-user lock | truesight_autopilot#44 | ✅ | ✅ | ☐ |
 | B2 topic↔session (in #44) | truesight_autopilot#44 | ✅ | ✅ | ☐ |
 | B3 identity reuse (in #44) | truesight_autopilot#44 | ✅ | ✅ | ☐ |
