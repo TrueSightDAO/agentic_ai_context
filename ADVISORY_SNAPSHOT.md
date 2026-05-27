@@ -20,9 +20,43 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-27T04:03:16Z`
+- Generated (UTC): `2026-05-27T04:55:31Z`
 - Look-back: **7** calendar days (`2026-05-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 43
+- `[PRACTICE EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20260526190333_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol PR6b: order-sync audit-log delegation endpoint (/stripe/order_s…
+- `Edgar_20260526192119_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Verifying the status of Nelan's AWS account
+- `Edgar_20260526195632_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: dao_protocol: close all 3 deferred impl gaps (inventory enqueue, attachment …
+- `Edgar_20260526201210_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Published Dual Tech Summit essay to truesight.me blog
+- `Edgar_20260526201813_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: dao_protocol: provision production .env secrets for ramp (Edgar extraction i…
+- `Edgar_20260526204910_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Brazil export-entity brief + FSVP entity.json profiles
+- `Edgar_20260526205041_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: dao_protocol: wire Bugsnag error tracking into the FastAPI server
+- `Edgar_20260526205634_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Autopilot web browsing (Tavily) shipped + Telegram/beta-deploy roadmap
+- `Edgar_20260526212622_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Telegram adapter for autopilot — private single-user chat, deployed + locked
+- `Edgar_20260526213401_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Brazil export-entity structuring brief for FounderHaus/Paloma (Próspera Hold…
+- `Edgar_20260526213712_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Roadmap: shelve public Q&A tier (Track C) + Telegram forum-context guidance
+- `Edgar_20260526213915_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Edgar->dao_protocol PR3 ramp: flip newsletter + email-agent tracking to the …
+- `Edgar_20260526214932_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Unified Agroverse event registry (machine-readable, past + upcoming)
+- `Edgar_20260526215914_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Edgar->dao_protocol PR4 ramp: flip /agroverse_shop/shipping_rates to Python …
+- `Edgar_20260526215934_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix Telegram bot dropping replies (400 message thread not found)
+- `Edgar_20260526220817_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Edgar->dao_protocol PR5 ramp: flip /dao/submit_contribution (write path) to …
+- `Edgar_20260526222912_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Telegram bot reliability: empty-response + single-round tool-loop fixes
+- `Edgar_20260526223340_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Edgar->dao_protocol PR6 (final ramp): /qr-code-check flip + stripe order-syn…
+- `Edgar_20260527040840_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Telegram bot UX: persistent typing, Markdown→HTML rendering, dao_protocol al…
+- `Edgar_20260527041430_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Edgar->dao_protocol: activate PR6b in production + verify PR6a payment path …
 
 ---
 
@@ -132,13 +166,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,991.90**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$39.80**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -226,6 +264,9 @@ fa15e9b | 2026-05-26 14:57:58 -0700 | events: backfill Luma RSVP links for SF Te
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+320f64f | 2026-05-26 21:11:36 -0700 | docs(edgar-extraction): PR6b activated + PR6a redirect sandbox-verified (#219)
+4d575e9 | 2026-05-26 21:03:34 -0700 | Merge pull request #218 from TrueSightDAO/auto/advisory-refresh-2026-05-27
+e2d5109 | 2026-05-27 04:03:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 a787c2e | 2026-05-26 15:37:29 -0700 | OPEN_FOLLOWUPS: add brain-swap scoping note (model-agnostic agent loop) (#217)
 e1bf3ff | 2026-05-26 15:33:01 -0700 | docs(edgar-extraction): PR6a ramped + PR6b delegation merged — all 6 routes cut over (#216)
 4784ec4 | 2026-05-26 15:27:57 -0700 | docs: correct Edgar Sidekiq topology — workers run on seni_sk_new, not the web box (#215)
@@ -263,9 +304,6 @@ b48d2ac | 2026-05-25 15:40:53 -0700 | PR4 shipping_rates DONE & deployed (exact 
 f65c8ee | 2026-05-25 15:14:00 -0700 | test: add cutover test plan checklist; PR2 functional tests pass; /proxy/gas 401 finding (#192)
 34fed3c | 2026-05-25 15:00:22 -0700 | roadmap: decouple impl from cutover (two-tier gate); PR2 /proxy/gas done (#191)
 454c087 | 2026-05-25 14:12:42 -0700 | dao_protocol PR1b LIVE + topology correction; RESUME → PR2 (#190)
-031f0ea | 2026-05-25 13:28:12 -0700 | dao_protocol PR1: code scaffold merged (dao_protocol#33); RESUME → PR1b deploy (#189)
-22fb5dd | 2026-05-25 13:09:24 -0700 | chore(previews): refresh Beer Hall preview (2026-05-25 UTC)
-8519d9b | 2026-05-25 13:09:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-25 UTC)
 … (truncated)
 ```
 
@@ -402,6 +440,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/26/2026 21:50:49 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-20`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-05-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
