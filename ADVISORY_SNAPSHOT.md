@@ -20,42 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-27T20:33:34Z`
-- Look-back: **7** calendar days (`2026-05-20` → today UTC)
+- Generated (UTC): `2026-05-28T03:52:27Z`
+- Look-back: **7** calendar days (`2026-05-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 44
-
-### Latest entries
-
-- `Edgar_20260526212622_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Telegram adapter for autopilot — private single-user chat, deployed + locked
-- `Edgar_20260526213401_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Brazil export-entity structuring brief for FounderHaus/Paloma (Próspera Hold…
-- `Edgar_20260526213712_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Roadmap: shelve public Q&A tier (Track C) + Telegram forum-context guidance
-- `Edgar_20260526213915_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Edgar->dao_protocol PR3 ramp: flip newsletter + email-agent tracking to the …
-- `Edgar_20260526214932_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Unified Agroverse event registry (machine-readable, past + upcoming)
-- `Edgar_20260526215914_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Edgar->dao_protocol PR4 ramp: flip /agroverse_shop/shipping_rates to Python …
-- `Edgar_20260526215934_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix Telegram bot dropping replies (400 message thread not found)
-- `Edgar_20260526220817_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Edgar->dao_protocol PR5 ramp: flip /dao/submit_contribution (write path) to …
-- `Edgar_20260526222912_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Telegram bot reliability: empty-response + single-round tool-loop fixes
-- `Edgar_20260526223340_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Edgar->dao_protocol PR6 (final ramp): /qr-code-check flip + stripe order-syn…
-- `Edgar_20260527040840_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Telegram bot UX: persistent typing, Markdown→HTML rendering, dao_protocol al…
-- `Edgar_20260527041430_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Edgar->dao_protocol: activate PR6b in production + verify PR6a payment path …
-- `Edgar_20260527175959_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Track A: stand up dapp_beta → beta.dapp.truesight.me (repo + Pages + CNAME +…
-- `Edgar_20260527180823_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Track A complete: beta.dapp.truesight.me DNS (Route53) — site live
-- `Edgar_20260527181634_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Nelanco AWS Trust & Safety case 177613748700177 — unblock + consolidated rep…
-- `Edgar_20260527181659_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix autopilot email poller crash, LLM timeouts, and Telegram multi-topic blo…
-- `Edgar_20260527183030_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: LiteLLM harness — replace homegrown regex XML/DSML parsing with robust libra…
-- `Edgar_20260527184538_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: A3: dapp prod/beta fork split — dapp_prod (fork of dapp_beta) serves dapp.tr…
-- `Edgar_20260527185741_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Speaking with the staff from AWS about restoring Jake's AWS account privileg…
-- `Edgar_20260527200611_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: B4: Telegram photo/document passthrough (merged, deploy pending)
 
 ---
 
@@ -63,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 218 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 218 | — |
+| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 217 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 217 | — |
 
 ---
 
@@ -165,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,991.90**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$39.80**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -183,14 +146,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_Lines in window matching configured names or status keywords:_
+_No lines matched name/keyword heuristics in this window._
 
-- 2026-05-20 | claude | **lineage-assets repo created + per-QR provenance pattern shipped.** New repo `TrueSightDAO/lineage-assets` (public) carries one JSON manifest per QR-coded asset under `qrs/<qr_id>.json`. Parallel architecture to `lineage-credentials` (humans + acts) — same lineage primitive (attested chain), different population (physical assets). Initial seed: 1457 manifests from the Agroverse QR codes sheet. Per-QR shape (full schema in `lineage-assets/SCHEMA.md`): asset_type (cacao_bag / tree / drum / membership / extensible), schema_version, minted_at + by, status (MINTED / CONSIGNMENT / SOLD / RETIRED), current_holder, lineage block (asset-type-specific), append-only events array, current_landing_page (what Edgar redirects to today, preserved for reference), scan_target (new truesight.me URL), edgar_resolve_url. New rendering surface at `truesight.me/qr/?id=<qr_id>` shipped to beta (PR #129) and copied to prod via Contents API (no `gh repo sync --force` per the documented CNAME footgun rule; CNAME verified intact post-PUT). Production QR-scan UX unchanged — existing Edgar `landing_page` redirect (column B of Agroverse QR codes sheet) keeps resolving to current landing pages until Kirsten + operator review and step-function switch via bulk column B update. Full doc at `LINEAGE_ASSETS.md`. Pattern unlocks future cross-jurisdiction supply-chain traceability work (per-country lineage-assets-<jurisdiction> repo splits) without re-architecting.
+_All dated lines on/after 2026-05-21_ (1):
 
-_All dated lines on/after 2026-05-20_ (3):
-
-- 2026-05-20 | claude | **lineage-assets repo created + per-QR provenance pattern shipped.** New repo `TrueSightDAO/lineage-assets` (public) carries one JSON manifest per QR-coded asset under `qrs/<qr_id>.json`. Parallel architecture to `lineage-credentials` (humans + acts) — same lineage primitive (attested chain), different population (physical assets). Initial seed: 1457 manifests from the Agroverse QR codes sheet. Per-QR shape (full schema in `lineage-assets/SCHEMA.md`): asset_type (cacao_bag / tree / drum / membership / extensible), schema_version, minted_at + by, status (MINTED / CONSIGNMENT / SOLD / RETIRED), current_holder, lineage block (asset-type-specific), append-only events array, current_landing_page (what Edgar redirects to today, preserved for reference), scan_target (new truesight.me URL), edgar_resolve_url. New rendering surface at `truesight.me/qr/?id=<qr_id>` shipped to beta (PR #129) and copied to prod via Contents API (no `gh repo sync --force` per the documented CNAME footgun rule; CNAME verified intact post-PUT). Production QR-scan UX unchanged — existing Edgar `landing_page` redirect (column B of Agroverse QR codes sheet) keeps resolving to current landing pages until Kirsten + operator review and step-function switch via bulk column B update. Full doc at `LINEAGE_ASSETS.md`. Pattern unlocks future cross-jurisdiction supply-chain traceability work (per-country lineage-assets-<jurisdiction> repo splits) without re-architecting.
-- 2026-05-20 | claude | **Option B QR architecture migration complete + Product Verification surface upgraded.** Consolidated everything QR-asset into `lineage-assets` (one repo holds manifests + PNG images + generator + schema + index builder; eliminates cross-repo drift). Migrated 729 PNGs from `qr_codes` repo → `lineage-assets/pngs/`. Moved QR generator from `tokenomics/python_scripts/agroverse_qr_code_generator/` → `lineage-assets/scripts/qr_generator/` (tokenomics path now `DEPRECATED.md` breadcrumb for git-history continuity). Generator updated to write three artifacts per mint in one run: compiled label image (operator-local scratch), raw PNG (committed), per-QR JSON manifest (committed). Shared `scripts/lib/manifest.py` module — same builder used by `seed_from_sheet.py` (bulk import) AND `batch_compiler.py` (per-mint), so schema stays in lockstep regardless of entry point. All 1457 existing manifests' `qr_image_url` updated to point at new lineage-assets/pngs location. New `scripts/build_index.py` walks qrs/*.json → emits `qrs_index.json` (1457 rows summary, per-status + per-asset-type counts). New Product Verification page at `truesight.me/physical-assets/serialized/` (was a hard redirect to the raw 1457-row Google Sheet — now a real searchable/filterable listing fetched from qrs_index.json, each row links to truesight.me/qr/?id=<qr_id>). `qr_codes` repo archived on GitHub (PNGs preserved at existing raw URLs for any out-in-the-wild references; no new mints there). Production QR-scan UX unchanged; Edgar's landing_page redirect (column B of Agroverse QR codes sheet) untouched until step-function switch lands. PRs: lineage-assets (direct push), truesight_me_beta #130, tokenomics #299. Truesight prod synced via Contents API (CNAME verified intact). Updated `LINEAGE_ASSETS.md` with new repo layout + generator section + Product Verification listing section.
 - 2026-05-24 | claude | OPERATING_INSTRUCTIONS §5 execution-roadmap convention; EDGAR_DAO_EXTRACTION_PLAN.md (Edgar→dao_protocol PR0–7 + resume tracker); STRIPE_LEDGER_ROUTING Flow 5 (consumer QR→Edgar server-side Stripe).
 
 ---
@@ -211,6 +170,7 @@ _All dated lines on/after 2026-05-20_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+21d90fb | 2026-05-27 20:35:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 72993f3 | 2026-05-27 16:25:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1c72a5e | 2026-05-27 05:00:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -246,23 +206,20 @@ a5d1de7 | 2026-05-22 14:58:51 -0700 | butterfly-effect: extend manifest with cre
 cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3ff2144 | 2026-05-21 10:12:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 491d6dc | 2026-05-21 04:55:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
-8fd6dae | 2026-05-20 15:25:30 -0700 | aum: read from GAS aum_breakdown endpoint (Asset section, formula-matched) (#138)
-0f1b231 | 2026-05-20 15:13:57 -0700 | qr Related link carries ?qr_code=<id>; listing gets Minted column (#137)
-5296085 | 2026-05-20 15:05:46 -0700 | Style all 6 status values + fix 'ON CONSIGNMENT' class-name break (#136)
-4d49731 | 2026-05-20 14:44:30 -0700 | Product Verification: sync filter state to URL query params (#135)
-26947f7 | 2026-05-20 14:44:04 -0700 | aum: dedicated /aum page + ledger click-through on /treasury (#134)
-… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-d791039 | 2026-05-27 12:58:59 -0700 | feat: add comprehensive content marketing strategy report for Agroverse
+d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4e5de85 | 2026-05-27 14:42:48 -0700 | roadmap: mark B4-B6 shipped/deployed + gate enabled; record loose ends (#226)
+eca3f2d | 2026-05-27 13:33:59 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
+4899a74 | 2026-05-27 13:33:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 12ae2d9 | 2026-05-27 12:19:25 -0700 | add topic-role architecture roadmap for autopilot
 ed145fb | 2026-05-27 11:38:55 -0700 | docs: A3 complete — dapp_prod (fork of dapp_beta) is prod; old dapp archived (#225)
 7f53254 | 2026-05-27 11:30:22 -0700 | update LiteLLM migration roadmap — PR1 deployed
@@ -300,29 +257,18 @@ a5b4ffa | 2026-05-26 13:24:16 -0700 | Add execution roadmap: autopilot Telegram 
 f587138 | 2026-05-26 12:54:36 -0700 | docs(edgar-extraction): mark all 3 deferred impl gaps done (#41 + #42) (#203)
 b09e0fb | 2026-05-26 12:03:24 -0700 | roadmap drift audit (2026-05-26): reconcile to reality + Outstanding section (#202)
 6cab116 | 2026-05-26 09:27:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
-b179320 | 2026-05-26 09:27:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
-2cc56f8 | 2026-05-26 03:34:05 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
-0a41a1b | 2026-05-26 03:34:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+925bfb3 | 2026-05-27 14:21:32 -0700 | perf(gas): defer warmup full-body Gmail fetch (withBodies opt-in) — 37s→~5s (#314)
+499f11d | 2026-05-27 14:08:37 -0700 | fix(gas): dedup escapeHtml_/headerMap_/onOpen — restore storesHitList web app (#312)
 5a57172 | 2026-05-25 16:11:31 -0700 | QR generator: forward instead of dead-ending on the deprecated path (#311)
 9daac88 | 2026-05-25 13:59:59 -0700 | Fix QR web-service deploy/editor URLs + sync web_app.gs subscribe code (#310)
 fd13174 | 2026-05-24 16:42:10 -0700 | qr_code_web_service: optional newsletter opt-in on email-link (subscribe=true) (#309)
 09a6615 | 2026-05-22 15:03:03 -0700 | credentialing: add central program_admin_endpoint.gs (#308)
-6c55499 | 2026-05-20 15:50:34 -0700 | doGet: recalculate_aum operator escape hatch (#307)
-2a08067 | 2026-05-20 15:21:11 -0700 | calculateAUM: read Balance Asset section (cols A-B/E-F) instead of Equity (#306)
-4c9fe89 | 2026-05-20 15:00:42 -0700 | Old batch_compiler.py: fail loudly with migration message (#305)
-2640d1e | 2026-05-20 14:38:47 -0700 | treasury_breakdown: add ledger_urls dict for click-through to source sheets (#304)
-1b5e5d0 | 2026-05-20 14:37:57 -0700 | feat(partner-poke-drafts): auto-checkin on send + sent/discarded classification (#303)
-5cf2e77 | 2026-05-20 14:32:11 -0700 | fix(partner-checkin-scanner): accept check-ins without partner_id (operator partners) (#302)
-5ee6533 | 2026-05-20 14:22:16 -0700 | tdg_wix_dashboard: cache treasury_breakdown via PropertiesService (#301)
-076e582 | 2026-05-20 14:00:35 -0700 | refactor(gas): look up Agroverse Partners by gid first (#300)
-1f3a03e | 2026-05-20 13:53:58 -0700 | Mark agroverse_qr_code_generator deprecated (moved to lineage-assets) (#299)
-19ca987 | 2026-05-20 13:52:55 -0700 | tdg_wix_dashboard: treasury_breakdown endpoint + per-AGL DAO equity helpers (#298)
 ```
 
 ### `dapp` → `dapp`
@@ -360,7 +306,6 @@ c100ac2 | 2026-05-24 08:46:41 +0000 | chore: refresh store and partner inventory
 bbf5afa | 2026-05-23 08:33:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cecb4e8 | 2026-05-22 09:51:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ef6d867 | 2026-05-21 10:05:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-f9f03de | 2026-05-20 09:56:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -380,8 +325,6 @@ b23cc95 | 2026-05-24 16:39:42 -0700 | QR landing: add opt-in checkbox to join th
 fd17430 | 2026-05-22 13:40:23 -0700 | oracle: add whitespace between QMDJ detail hint and symbol list
 abd44df | 2026-05-22 13:24:03 -0700 | oracle: reorder QMDJ detail card and section layout
 d6e6810 | 2026-05-21 10:31:37 -0700 | Patch qimen-dunjia 2.1.0: add 小满/芒种 to SIMPLIFIED_TO_TRADITIONAL (#21)
-cd9a453 | 2026-05-20 14:49:33 -0700 | fix(oracle): scope qmdj-detail-head/hint selectors to avoid collision with per-palace detail view
-fdabce1 | 2026-05-20 14:37:27 -0700 | feat(oracle): add QMDJ detail panel with head → hint → rest layout (#20)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -397,6 +340,15 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-05-28T035227Z_dapp-prod-split-and-autopilot-gates.md`
+
+- **posted_at_utc:** `2026-05-28T03:52:27Z`  
+- **slug:** `dapp-prod-split-and-autopilot-gates`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
+  - **DApp split** — Track A complete: `beta.dapp.truesight.me` live; prod/beta fork convention (A3) established.
 
 ### `beer-hall_2026-05-27T040316Z_edgar-core-ramp-and-autopilot.md`
 
@@ -415,15 +367,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
   OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
   - **Protocol live** — `dao_protocol` FastAPI service deployed; shipping rates, GAS proxy, and contribution intake migrated from legacy Rails.
-
-### `beer-hall_2026-05-25T040227Z_newsletter-opt-in-and-dual-tech.md`
-
-- **posted_at_utc:** `2026-05-25T04:02:27Z`  
-- **slug:** `newsletter-opt-in-and-dual-tech`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
-  - **Narrative live** — "The checklist that lets you do nothing" (Do Nothing Society) published.
 
 ---
 
@@ -444,39 +387,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/27/2026 12:56:24 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-20`; scanned last **396** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-05-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
