@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-28T16:38:59Z`
+- Generated (UTC): `2026-05-28T20:43:30Z`
 - Look-back: **7** calendar days (`2026-05-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -36,11 +36,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260527175959_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Track A: stand up dapp_beta → beta.dapp.truesight.me (repo + Pages + CNAME +…
-- `Edgar_20260527180823_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Track A complete: beta.dapp.truesight.me DNS (Route53) — site live
-- `Edgar_20260527181634_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Nelanco AWS Trust & Safety case 177613748700177 — unblock + consolidated rep…
-- `Edgar_20260527181659_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix autopilot email poller crash, LLM timeouts, and Telegram multi-topic blo…
-- `Edgar_20260527183030_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: LiteLLM harness — replace homegrown regex XML/DSML parsing with robust libra…
 - `Edgar_20260527184538_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: A3: dapp prod/beta fork split — dapp_prod (fork of dapp_beta) serves dapp.tr…
 - `Edgar_20260527185741_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Speaking with the staff from AWS about restoring Jake's AWS account privileg…
 - `Edgar_20260527200611_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: B4: Telegram photo/document passthrough (merged, deploy pending)
@@ -56,6 +51,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260528072938_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Progressive move cycling: remove difficulty bias, c…
 - `Edgar_20260528133330_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with Omega Services Isis regarding the packing and the pallets
 - `Edgar_20260528163324_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Closing out the case with Jake’s colleague Cory on the AWS issue
+- `Edgar_20260528192312_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: CI: move Playwright off PR gate → post-deploy against live beta (3 repos)
+- `Edgar_20260528193739_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: [autopilot review] Merge & deploy 3 fix PRs: doGet conflict, auto-backfill, …
+- `Edgar_20260528194659_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Swap order: move Generate Session above Practice Hi…
+- `Edgar_20260528202056_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Followed up with AWS billing concerns with the recent hack.
+- `Edgar_20260528204205_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Followed up with the folks from ERA
 
 ---
 
@@ -207,6 +207,9 @@ _All dated lines on/after 2026-05-21_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+01d582e | 2026-05-28 12:40:30 -0700 | ci(playwright): omit webServer when PLAYWRIGHT_BASE_URL is set (#148)
+8c3b1fd | 2026-05-28 12:21:59 -0700 | ci: Playwright post-deploy against live beta.truesight.me (#147)
+1268fb7 | 2026-05-28 16:39:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 180d463 | 2026-05-28 10:39:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ccdac49 | 2026-05-28 04:53:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 21d90fb | 2026-05-27 20:35:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -244,7 +247,7 @@ a5d1de7 | 2026-05-22 14:58:51 -0700 | butterfly-effect: extend manifest with cre
 920c482 | 2026-05-21 20:24:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3ff2144 | 2026-05-21 10:12:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
-491d6dc | 2026-05-21 04:55:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -256,6 +259,11 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+82cc2dd | 2026-05-28 13:38:33 -0700 | Add AUTOPILOT_CAPABILITY_MANIFEST_PLAN.md (§5 roadmap) (#229)
+9920597 | 2026-05-28 13:34:29 -0700 | OPEN_FOLLOWUPS: add NELANCO dao_protocol standalone routing decision
+001570d | 2026-05-28 12:54:49 -0700 | Add AUTOPILOT_GOOGLE_ACCESS_PLAN.md — §5 roadmap for autopilot Google + AWS + PDF reach (#228)
+4e6813f | 2026-05-28 09:39:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
+a2c6c5f | 2026-05-28 09:39:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 6767da2 | 2026-05-28 03:38:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
 61485d1 | 2026-05-28 03:38:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 dc16cf7 | 2026-05-27 21:49:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
@@ -291,17 +299,14 @@ e1bf3ff | 2026-05-26 15:33:01 -0700 | docs(edgar-extraction): PR6a ramped + PR6b
 fafb950 | 2026-05-26 14:48:41 -0700 | EVENTS.md: document unified two-tier registry (upcoming + past) (#212)
 2008da3 | 2026-05-26 14:38:00 -0700 | docs(edgar-extraction): PR3 newsletter/email-agent ramped live (2026-05-26) (#211)
 82e2a91 | 2026-05-26 14:34:52 -0700 | Roadmap: shelve Track C (public Q&A) per Gary's 2026-05-26 call (#210)
-20f2534 | 2026-05-26 14:25:09 -0700 | Roadmap tracker: B1-B3 + web browsing shipped/deployed; add proposed Track C (public Q&A) (#209)
-8e688be | 2026-05-26 14:19:43 -0700 | EVENTS.md: cacao event activation playbook + index pointer (#208)
-fcaf767 | 2026-05-26 13:43:06 -0700 | docs(followups): persist backtester entries + add inventory-refresh opt-in (#207)
-be96ec2 | 2026-05-26 13:37:57 -0700 | docs(edgar-extraction): clarify AGROVERSE_INVENTORY HTTP path is dormant end-to-end (#206)
-53f122e | 2026-05-26 13:29:49 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+13cbdea | 2026-05-28 12:21:10 -0700 | feat(GAS): auto-backfill empty payload rows after credentialing parse
+e26342b | 2026-05-28 12:20:49 -0700 | fix(GAS): merge doGet dispatchers — practice_event_processing + program_admin_endpoint
 925bfb3 | 2026-05-27 14:21:32 -0700 | perf(gas): defer warmup full-body Gmail fetch (withBodies opt-in) — 37s→~5s (#314)
 499f11d | 2026-05-27 14:08:37 -0700 | fix(gas): dedup escapeHtml_/headerMap_/onOpen — restore storesHitList web app (#312)
 5a57172 | 2026-05-25 16:11:31 -0700 | QR generator: forward instead of dead-ending on the deprecated path (#311)
@@ -351,6 +356,8 @@ ef6d867 | 2026-05-21 10:05:27 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+cdbc06c | 2026-05-28 12:39:52 -0700 | chore: regenerate sitemap.xml (content drift surfaced by visual-consistency post-deploy) (#119)
+e95a339 | 2026-05-28 12:20:07 -0700 | ci: visual-consistency runs post-deploy against live beta.agroverse.shop (#118)
 5dc86ff | 2026-05-26 14:37:25 -0700 | events.json: machine-readable index of past cacao-circle pages (#117)
 62f16a0 | 2026-05-25 14:58:33 -0700 | Newsletter opt-in: default the consent box UNTICKED (genuine opt-in) (#116)
 e3c2cd3 | 2026-05-25 14:43:20 -0700 | QR opt-in form: center the Track My Impact button + default the consent box checked (#115)
@@ -370,6 +377,8 @@ d6e6810 | 2026-05-21 10:31:37 -0700 | Patch qimen-dunjia 2.1.0: add 小满/芒�
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
+1bd1102 | 2026-05-28 13:23:36 -0700 | add billing dispute follow-up log (May 28)
+ef52801 | 2026-05-28 13:23:27 -0700 | add AWS case 177613748700177 correspondence screenshot (May 28)
 ebda825 | 2026-05-27 12:06:38 -0700 | docs: add AWS live chat transcript from May 27 follow-up (#19)
 f5470ff | 2026-05-27 11:14:35 -0700 | Record send of case 177613748700177 reply (2026-05-27 11:14 PDT, as root) (#18)
 6a20d54 | 2026-05-27 11:10:08 -0700 | Update root password rotation date to 2026-05-15 in case reply (per live credential report) (#17)
@@ -451,7 +460,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 8:51:27 |
+| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 12:51:09 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-21`; scanned last **396** data rows)
 
