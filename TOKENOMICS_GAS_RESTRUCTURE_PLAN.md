@@ -184,26 +184,34 @@ Total PR estimate: 1 audit + 1 manifest-convention PR + ~12-15 restructure PRs +
 
 ## 7. Resume tracker
 
-**RESUME HERE → PR-0 + PR-1 + PR-1b all merged. Manifests carry audit-derived scriptIds, source-file mappings, consumer_callers (6 scriptIds populated), and probe data (18 deployments, all HTTP 200). Orphan + unmirrored audit committed (3 unmirrored scriptIds flagged as bug surface — would fail at `clasp push`).** PR-2…PR-N held on the operator-gated pre-flight items in §4 that remain (cache-refresh hooks, owner_email confirmation, orphan/unmirrored disposition, shared-helpers canonicalisation).
+**RESUME HERE → PR-0 + PR-1 + PR-1b + PR-1c all merged. Manifests now carry audit-derived scriptIds, source-file mappings, consumer_callers (6 scriptIds), probe data (18 deployments, all HTTP 200), and candidate cache-refresh hooks (6 scriptIds — 5 emit `notifyTreasuryCachePublisher_`, 1 dispatches on `'refresh_dao_members_cache'`). All four automatable pre-flight items are done.** PR-2…PR-N held on the operator-gated remainder of §4 (owner_email confirmation, mint the 3 missing mirrors, orphan-mirror disposition, shared-helpers canonicalisation).
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
 | **PR-0** Roadmap (this file)        | [agentic_ai_context#232](https://github.com/TrueSightDAO/agentic_ai_context/pull/232) | ✅ | n/a | ✅ |
 | **PR-1** manifest.json convention   | [tokenomics#317](https://github.com/TrueSightDAO/tokenomics/pull/317) | ✅ | ☐ (no GAS changes) | ✅ |
-| **PR-1b** pre-flight audits (orphan mirrors / consumer_callers crawl / `/exec` probe) | [tokenomics#318](https://github.com/TrueSightDAO/tokenomics/pull/318) | ✅ | ☐ (no GAS changes) | ☐ |
-| **Operator pre-flight (§4) remaining** — post-push hooks, owner_email confirmation, orphan/unmirrored disposition, shared-helpers canonicalisation | n/a (operator) | ☐ | n/a | n/a |
+| **PR-1b** pre-flight audits (orphan mirrors / consumer_callers / `/exec` probe) | [tokenomics#318](https://github.com/TrueSightDAO/tokenomics/pull/318) | ✅ | ☐ (no GAS changes) | ✅ |
+| **PR-1c** cache-refresh hook audit (mirror-grounded) | [tokenomics#319](https://github.com/TrueSightDAO/tokenomics/pull/319) | ✅ | ☐ (no GAS changes) | ☐ |
+| **Operator pre-flight (§4) remaining** — owner_email per scriptId, mint 3 missing mirrors, orphan-mirror disposition, shared-helpers canonicalisation | n/a (operator) | ☐ | n/a | n/a |
 | **PR-2** restructure folder 1       | tokenomics#TBD | ☐ | ☐ | ☐ |
 | **PR-3** restructure folder 2       | tokenomics#TBD | ☐ | ☐ | ☐ |
 | … one PR per thematic folder …      | tokenomics#TBD | ☐ | ☐ | ☐ |
 | **PR-final-1** deploy.sh per project | tokenomics#TBD | ☐ | ☐ | ☐ |
 | **PR-final-2** autopilot gas_deploy_project tool *(separate roadmap)* | truesight_autopilot#TBD | ☐ | ☐ | ☐ |
 
-### Audit artifacts in tokenomics from PR-1b
+### Audit artifacts in tokenomics from PR-1b + PR-1c
 
-- `docs/gas_orphan_mirror_audit.md` — 33 healthy / 18 orphans / **3 unmirrored** (real bug surface — `clasp push` would fail until mirrors are minted).
-- `docs/gas_exec_probe_audit.md` — flat table of every `/exec` URL probe result; all 18 returned HTTP 200.
-- `scripts/audit_orphan_clasp_mirrors.py` / `scripts/crawl_gas_consumers.py` / `scripts/probe_gas_exec_urls.py` — idempotent re-runners.
-- `scripts/gen_gas_manifests.py` — now merges instead of overwrites, so the audit data above survives any future regeneration.
+- `docs/gas_orphan_mirror_audit.md` — 33 healthy / 18 orphans / **3 unmirrored** (real bug surface — `clasp push` would fail until mirrors are minted). [PR-1b]
+- `docs/gas_exec_probe_audit.md` — flat table of every `/exec` URL probe result; all 18 returned HTTP 200. [PR-1b]
+- `docs/gas_cache_refresh_hook_audit.md` — 6 scriptIds with cache-refresh patterns. 5 emit `notifyTreasuryCachePublisher_` (the GAS-side trigger); 1 dispatches on `'refresh_dao_members_cache'` (the receiver). All 3 consumer references are GAS-to-GAS (in tokenomics itself), not from the workspace HTTP callers — so PR-final-1's `deploy.sh` doesn't need to make the cache-refresh call itself. [PR-1c]
+- `scripts/audit_orphan_clasp_mirrors.py` / `scripts/crawl_gas_consumers.py` / `scripts/probe_gas_exec_urls.py` / `scripts/crawl_gas_cache_refresh_hooks.py` — idempotent re-runners.
+- `scripts/gen_gas_manifests.py` — now merges instead of overwrites; preserves `consumer_callers`, `probe_*` deployments, `candidate_cache_refresh_hooks` across regenerations.
+
+### Grounding-source note
+
+PR-1c switched the source-of-truth from `.gs` header-comment URLs in `google_app_scripts/<theme>/` to `clasp_mirrors/<scriptId>/Code.js` (the bundled JS clasp actually pushes). Per Gary's correction 2026-05-28: each mirror IS one GAS project; its `Code.js` is authoritative for what the project contains. The header-comment proxy missed real handlers (e.g. `dao_members_cache_publisher.gs` defines the cache-refresh dispatch without carrying the header URL).
+
+A future improvement to `gen_gas_manifests.py` would re-ground its primary scriptId → file mapping on mirror Code.js too; PR-1c only applied the grounding to the new cache-refresh sweep.
 
 Per `OPERATING_INSTRUCTIONS.md` §5 + the DAO contribution convention: after each PR merges, report the contribution before starting the next, and tick both boxes here.
 
