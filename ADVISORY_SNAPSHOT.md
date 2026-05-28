@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-28T10:38:22Z`
+- Generated (UTC): `2026-05-28T16:38:59Z`
 - Look-back: **7** calendar days (`2026-05-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -36,8 +36,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260527040840_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Telegram bot UX: persistent typing, Markdown→HTML rendering, dao_protocol al…
-- `Edgar_20260527041430_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Edgar->dao_protocol: activate PR6b in production + verify PR6a payment path …
 - `Edgar_20260527175959_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Track A: stand up dapp_beta → beta.dapp.truesight.me (repo + Pages + CNAME +…
 - `Edgar_20260527180823_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Track A complete: beta.dapp.truesight.me DNS (Route53) — site live
 - `Edgar_20260527181634_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Nelanco AWS Trust & Safety case 177613748700177 — unblock + consolidated rep…
@@ -56,6 +54,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260528024844_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Backfill practice event payloads for pk-wR9zU8JMn…
 - `Edgar_20260528030504_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Fix: doGet function conflict between practice_eve…
 - `Edgar_20260528072938_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Progressive move cycling: remove difficulty bias, c…
+- `Edgar_20260528133330_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with Omega Services Isis regarding the packing and the pallets
+- `Edgar_20260528163324_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Closing out the case with Jake’s colleague Cory on the AWS issue
 
 ---
 
@@ -73,7 +73,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-27T10:59:15.129Z`
+- Generated (UTC): `2026-05-28T10:59:14.930Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -98,12 +98,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **174**, follow_up **69**, bulk **0**, unknown **2** (data rows: **245**)
+- **Email Agent Follow Up** — logged sends: warmup **177**, follow_up **69**, bulk **0**, unknown **2** (data rows: **248**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **85**, follow_up **22**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **147**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **5** / **69**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
+- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **150**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **4** / **70**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -207,6 +207,7 @@ _All dated lines on/after 2026-05-21_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+180d463 | 2026-05-28 10:39:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ccdac49 | 2026-05-28 04:53:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 21d90fb | 2026-05-27 20:35:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 72993f3 | 2026-05-27 16:25:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -255,6 +256,8 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6767da2 | 2026-05-28 03:38:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
+61485d1 | 2026-05-28 03:38:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 dc16cf7 | 2026-05-27 21:49:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
 d68d6e7 | 2026-05-27 21:49:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 b8b3777 | 2026-05-27 20:52:47 -0700 | Merge pull request #227 from TrueSightDAO/auto/advisory-refresh-2026-05-28
@@ -293,8 +296,6 @@ fafb950 | 2026-05-26 14:48:41 -0700 | EVENTS.md: document unified two-tier regis
 fcaf767 | 2026-05-26 13:43:06 -0700 | docs(followups): persist backtester entries + add inventory-refresh opt-in (#207)
 be96ec2 | 2026-05-26 13:37:57 -0700 | docs(edgar-extraction): clarify AGROVERSE_INVENTORY HTTP path is dormant end-to-end (#206)
 53f122e | 2026-05-26 13:29:49 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
-1f7e5e9 | 2026-05-26 13:29:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
-a5b4ffa | 2026-05-26 13:24:16 -0700 | Add execution roadmap: autopilot Telegram interface + dapp beta/prod split + Tier-2 beta auto-deploy (#205)
 … (truncated)
 ```
 
@@ -450,7 +451,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 2:53:26 |
+| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 8:51:27 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-21`; scanned last **396** data rows)
 
