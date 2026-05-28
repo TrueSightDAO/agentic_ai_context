@@ -32,13 +32,37 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Wire `certbot renew` automation on NELANCO Rails (`seni_ror_200250915`)
+
+**Context.** During the 2026-05-28 EXPLORYA→NELANCO Edgar cutover, the Let's Encrypt cert for `edgar.truesight.me` was copied via SSH-to-SSH from the EXPLORYA Rails box's `/etc/letsencrypt/live/edgar.truesight.me/` to NELANCO `seni_ror_200250915` (`54.211.179.126`). Cert is valid and serving prod now, but no `certbot renew` cron / systemd timer was set up on NELANCO. The cert will expire 90 days from its last LE renewal on EXPLORYA — need a fresh renewal cycle anchored on NELANCO before then.
+
+**Goal / shape.** Either (a) install `certbot --dns-route53` with NELANCO IAM creds scoped to the truesight.me hosted zone (DNS-01, robust), or (b) the simpler HTTP-01 path that nginx already supports (`certbot --nginx`) since :80 is now open and routes to NELANCO. Verify `systemctl list-timers | grep certbot` shows an active renewal timer. Once renewed once on NELANCO, auto-renewal continues without intervention.
+
+**Blocker / priority.** Not blocked. Time-bounded: must ship before cert expires (within ~90 days of the last EXPLORYA renewal — check `openssl x509 -in /etc/letsencrypt/live/edgar.truesight.me/cert.pem -noout -dates`).
+
+### Extend Edgar to accept file attachments on contribution submissions
+
+**Context.** On 2026-05-28 operator asked the AI agent to submit a DAO contribution for the Edgar NELANCO cutover with a **PDF attachment** of the cutover report. Edgar's `app/controllers/dao_controller.rb#submit_contribution` (the endpoint dao_client posts to) currently has no multipart / file-upload plumbing — no Active Storage / Shrine / Carrierwave anywhere in the codebase. The PDF report was generated locally (`~/Downloads/edgar_cutover_to_nelanco_2026-05-28.pdf`, 147 KB) and the contribution description body (`/tmp/edgar_cutover_report.md`) was attached inline via `--body-file`, but the actual binary PDF isn't on the ledger row.
+
+**Goal / shape.** Add `has_one_attached :evidence` (or equivalent) to the contribution-event flow, accept multipart in `submit_contribution`, persist the file (S3 via Active Storage is the lightest path — NELANCO IAM creds + a bucket), and write the public URL into a new ledger column so the Google Sheet row carries the attachment link. Then extend `dao_client/.../report_ai_agent_contribution.py` to accept `--attachment PATH`, POST as multipart, and verify the file lands. Likely a 3-PR change (Edgar backend → dao_client CLI → docs).
+
+**Blocker / priority.** Not blocked. Operator workaround for now: drop the PDF in a shared location (Drive / GitHub release) and link in the description body. Pick this up when there's appetite for a feature touching prod Edgar — the cutover that just stabilized prod argues for waiting a beat.
+
 ### Decide routing / HA for new NELANCO `dao_protocol` standalone instance
 
-**Context.** On 2026-05-28 stood up `dao_protocol_nelanco` (NELANCO `i-05f8770a932b76649`, t3.small, `98.93.94.86`, us-east-1c) as a peer of the EXPLORYA co-hosted dao_protocol on `seni_ror_new`. Service is healthy locally (`/healthz` → 200 on `:8010`) but **not yet reachable externally** — no nginx, no TLS, no DNS. The `.env` + `truesight-dao-protocol.service` were piped from EXPLORYA via SSH-to-SSH (transient; no local disk copy). Old NELANCO Rails mirror `seni_ror_200250915` (`i-063dc4a3be90bd630`) was stopped (cost-saving; reversible). NELANCO instances now: `dao_protocol_nelanco` running, `seni_ror_200250915` / `seni_sk_auto` / `seni_redis_2` / `seni_sql_2026` stopped.
+**Context.** On 2026-05-28 stood up `dao_protocol_nelanco` (NELANCO `i-05f8770a932b76649`, t3.small, `98.93.94.86`, us-east-1c) as a peer of the EXPLORYA co-hosted dao_protocol on `seni_ror_new`. Service is healthy locally (`/healthz` → 200 on `:8010`). After the Edgar EXPLORYA→NELANCO cutover later the same day, the NELANCO Rails box (`seni_ror_200250915`) reaches it directly via private IP `172.31.23.207:8010` (same VPC, same SG), proxied through nginx as `/proxy/gas/*`. So today it serves real prod traffic — not dormant any more. **Still no external HTTPS endpoint** for direct hits.
 
-**Goal / shape.** Pick one of (a) `dao-protocol.truesight.me` → NELANCO direct (own nginx + Let's Encrypt on new instance), or (b) add the NELANCO instance as an upstream behind EXPLORYA's existing edgar nginx for an HA pool. Then log the DAO contribution against that PR (today's standalone-EC2 bootstrap had no PR, so couldn't submit via `report_ai_agent_contribution.py`).
+**Goal / shape.** Pick one of (a) `dao-protocol.truesight.me` → NELANCO direct (own nginx + Let's Encrypt on `dao_protocol_nelanco`) for external consumers that don't go through Edgar, or (b) leave it private-only forever and route all external clients through edgar.truesight.me/proxy/gas/*. Option (b) is the de-facto state today; only file (a) if there's a concrete need.
 
-**Blocker / priority.** Not blocked. Service is dormant-but-ready; no traffic depends on it yet. Pick up when extending the [[project_edgar_dao_protocol_extraction]] cutover work.
+**Blocker / priority.** Not blocked. Lower priority now than at original filing — the cross-instance proxy works.
+
+### Move NELANCO Postgres + Redis off public IPs
+
+**Context.** NELANCO `seni_sql_2026` (Postgres) and `seni_redis_2` (Redis) both expose public IPs (`44.193.55.205`, `54.234.59.188`) because EXPLORYA Rails used to reach them over the internet. After the 2026-05-28 cutover, all consumers (NELANCO Rails, NELANCO Sidekiq) are in the same VPC; the public IPs are now unnecessary attack surface.
+
+**Goal / shape.** Detach EIPs (or move to private-only subnets), update `database.yml` host + `production.rb` `redis_host` to private IPs (`172.31.20.143` Postgres, `172.31.56.185` Redis), restart Rails + Sidekiq, verify, ship via PR.
+
+**Blocker / priority.** Not blocked but needs a short maintenance window (Rails restart). Coordinate with the certbot renewal task above so both reboots happen together.
 
 ### Check AWS T&S case 177613748700177 (Nelanco) for response — by 2026-05-29
 
