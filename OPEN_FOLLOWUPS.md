@@ -32,6 +32,14 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Decide routing / HA for new NELANCO `dao_protocol` standalone instance
+
+**Context.** On 2026-05-28 stood up `dao_protocol_nelanco` (NELANCO `i-05f8770a932b76649`, t3.small, `98.93.94.86`, us-east-1c) as a peer of the EXPLORYA co-hosted dao_protocol on `seni_ror_new`. Service is healthy locally (`/healthz` → 200 on `:8010`) but **not yet reachable externally** — no nginx, no TLS, no DNS. The `.env` + `truesight-dao-protocol.service` were piped from EXPLORYA via SSH-to-SSH (transient; no local disk copy). Old NELANCO Rails mirror `seni_ror_200250915` (`i-063dc4a3be90bd630`) was stopped (cost-saving; reversible). NELANCO instances now: `dao_protocol_nelanco` running, `seni_ror_200250915` / `seni_sk_auto` / `seni_redis_2` / `seni_sql_2026` stopped.
+
+**Goal / shape.** Pick one of (a) `dao-protocol.truesight.me` → NELANCO direct (own nginx + Let's Encrypt on new instance), or (b) add the NELANCO instance as an upstream behind EXPLORYA's existing edgar nginx for an HA pool. Then log the DAO contribution against that PR (today's standalone-EC2 bootstrap had no PR, so couldn't submit via `report_ai_agent_contribution.py`).
+
+**Blocker / priority.** Not blocked. Service is dormant-but-ready; no traffic depends on it yet. Pick up when extending the [[project_edgar_dao_protocol_extraction]] cutover work.
+
 ### Check AWS T&S case 177613748700177 (Nelanco) for response — by 2026-05-29
 
 **Context.** On 2026-05-27 (~11:14 PDT) the operator sent a consolidated reply to AWS support case `177613748700177` (Nelanco account `767697632458`), as the root user, closing all three open items: confirmed every resource on AWS's Apr-30 list as authorized, answered the May-20 access-location question (San Francisco, no VPN) + user list, and reconfirmed credential posture (root MFA on, zero root access keys). Full thread, live inventory, and the sent reply are in `cypher_def/docs/aws-reports/2026-05-27-case-177613748700177-consolidated-reply.md`. The account was verified clean via `cypher_def/scripts/aws/inventory_account.py --account nelanco`.
