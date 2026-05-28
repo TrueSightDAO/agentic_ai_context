@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-28T04:49:43Z`
+- Generated (UTC): `2026-05-28T10:38:22Z`
 - Look-back: **7** calendar days (`2026-05-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -36,7 +36,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260526223340_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Edgar->dao_protocol PR6 (final ramp): /qr-code-check flip + stripe order-syn…
 - `Edgar_20260527040840_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Telegram bot UX: persistent typing, Markdown→HTML rendering, dao_protocol al…
 - `Edgar_20260527041430_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Edgar->dao_protocol: activate PR6b in production + verify PR6a payment path …
 - `Edgar_20260527175959_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Track A: stand up dapp_beta → beta.dapp.truesight.me (repo + Pages + CNAME +…
@@ -56,6 +55,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260527214925_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Backtest explainer pages: illustrative per-strategy charts
 - `Edgar_20260528024844_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Backfill practice event payloads for pk-wR9zU8JMn…
 - `Edgar_20260528030504_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Fix: doGet function conflict between practice_eve…
+- `Edgar_20260528072938_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Progressive move cycling: remove difficulty bias, c…
 
 ---
 
@@ -207,6 +207,7 @@ _All dated lines on/after 2026-05-21_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ccdac49 | 2026-05-28 04:53:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 21d90fb | 2026-05-27 20:35:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 72993f3 | 2026-05-27 16:25:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -254,6 +255,8 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+dc16cf7 | 2026-05-27 21:49:57 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
+d68d6e7 | 2026-05-27 21:49:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 b8b3777 | 2026-05-27 20:52:47 -0700 | Merge pull request #227 from TrueSightDAO/auto/advisory-refresh-2026-05-28
 e60446b | 2026-05-28 03:52:36 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 4e5de85 | 2026-05-27 14:42:48 -0700 | roadmap: mark B4-B6 shipped/deployed + gate enabled; record loose ends (#226)
@@ -292,8 +295,6 @@ be96ec2 | 2026-05-26 13:37:57 -0700 | docs(edgar-extraction): clarify AGROVERSE_
 53f122e | 2026-05-26 13:29:49 -0700 | chore(previews): refresh Beer Hall preview (2026-05-26 UTC)
 1f7e5e9 | 2026-05-26 13:29:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-26 UTC)
 a5b4ffa | 2026-05-26 13:24:16 -0700 | Add execution roadmap: autopilot Telegram interface + dapp beta/prod split + Tier-2 beta auto-deploy (#205)
-6fa1707 | 2026-05-26 13:17:26 -0700 | docs(edgar-extraction): box .env env provisioning DONE (item 2) (#204)
-f587138 | 2026-05-26 12:54:36 -0700 | docs(edgar-extraction): mark all 3 deferred impl gaps done (#41 + #42) (#203)
 … (truncated)
 ```
 
@@ -335,6 +336,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+fe87b08 | 2026-05-28 10:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8d18e79 | 2026-05-26 10:20:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6be5d94 | 2026-05-25 10:59:53 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -448,7 +450,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/27/2026 20:50:39 |
+| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 2:53:26 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-21`; scanned last **396** data rows)
 
