@@ -160,16 +160,14 @@ full rubric, as maintained in the **Rubric** tab of the
 |---|---|---|
 | Provided funds | For every 1 USD of liquidity injected | 1 |
 | Provided labor | For every 1 hour of human effort | 100 |
-| Transactions | For every 1 TDG sent | −1 |
-| Transactions | For every 1 TDG received | +1 |
+| Transactions | For every 1 USDT sent | −1 |
+| Transactions | For every 1 USDT received | +1 |
 
-The "Transactions" rows are denominated in **TDG** (not USDT). *Formatting:* the
-rendered table should not carry the stray whitespace columns currently shown on
-both sides. **Reconciliation flagged:** the `dao_client` CLI today exposes
-contribution types labelled "USDT sent"/"USDT received" — these must be
-reconciled with the TDG-denominated rubric (rename the CLI types, or document the
-USD↔TDG mapping) so the tooling and the constitution agree. The Rubric tab
-remains the canonical source.
+The "Transactions" rows are denominated in **USDT**. *Formatting:* the rendered
+table should not carry the stray whitespace columns currently shown on both
+sides. This matches the `dao_client` CLI contribution types ("USDT sent" /
+"USDT received"), so tooling and the rubric already agree. The Rubric tab remains
+the canonical source.
 
 ### Linking convention — nomenclature → canonical artifact
 
