@@ -148,24 +148,17 @@ These files contain long-lived refresh tokens. They're **not committed to any re
 
 ---
 
-## 🗄️ Credential backup / vault — V1 shipped
+## 🗄️ Credential backup / vault — moved to own repo
 
-The disaster-recovery story (lost / wiped MacBook) is now covered by an
-automated, launchd-driven encrypted backup to iCloud Drive. **See
-[CREDENTIAL_VAULT.md](CREDENTIAL_VAULT.md) for the threat model, restore
-runbook, and maintenance procedures.**
+Disaster recovery for laptop credentials now lives in
+**[`TrueSightDAO/credential_vault`](https://github.com/TrueSightDAO/credential_vault)**.
+That repo's `ONBOARDING.md` is the LLM-runnable script for new governor
+architects; `README.md` is the disaster-recovery / restore runbook.
 
-Short version:
-- Manifest of ~46 credential files at `CREDENTIAL_MANIFEST.txt`.
-- `scripts/backup_credentials.sh` tars manifest paths and encrypts via
-  `openssl enc -aes-256-cbc -pbkdf2 -iter 600000` (LibreSSL ships on macOS;
-  no `brew install` needed at restore time).
-- Triggered by launchd `WatchPaths` on every credential edit + nightly
-  heartbeat at 03:00.
-- Snapshots live in `~/Library/Mobile Documents/com~apple~CloudDocs/credential_vault/`,
-  retention 30.
-- Passphrase stored in LastPass; mirrored to `~/.credential_vault_passphrase`
-  (0600) for unattended use by launchd.
+This document continues to be the source of truth for *what each
+credential is for*. The vault repo is the source of truth for *how to
+store/restore them*. See [`CREDENTIAL_VAULT.md`](CREDENTIAL_VAULT.md) for
+the redirect + LLM routing notes.
 
 **Out of scope for V1** (and intentionally): host-side credential
 provisioning for new EC2 instances — that's a separate vault problem
