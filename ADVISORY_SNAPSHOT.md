@@ -20,42 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-28T20:43:30Z`
-- Look-back: **7** calendar days (`2026-05-21` → today UTC)
+- Generated (UTC): `2026-05-29T03:52:49Z`
+- Look-back: **7** calendar days (`2026-05-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 44
-
-### Latest entries
-
-- `Edgar_20260527184538_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: A3: dapp prod/beta fork split — dapp_prod (fork of dapp_beta) serves dapp.tr…
-- `Edgar_20260527185741_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Speaking with the staff from AWS about restoring Jake's AWS account privileg…
-- `Edgar_20260527200611_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: B4: Telegram photo/document passthrough (merged, deploy pending)
-- `Edgar_20260527204057_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Role-loop fix + beta-deploy gate (B5/B6) shipped & deployed; warmup-queue bu…
-- `Edgar_20260527204446_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Backtest: price overlay, regime classifier, strategy library, click-only dat…
-- `Edgar_20260527210916_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix broken storesHitList GAS web app (dedup) — restore DApp store/warmup sur…
-- `Edgar_20260527211930_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Warmup queue perf: 37s→5s (fix the 504 on warmup_review + notification badge)
-- `Edgar_20260527213648_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Backtest UX iterations + per-strategy explainer pages
-- `Edgar_20260527214519_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Session closeout: roadmap tracker, beta HTTPS nudge, /ship gate live smoke t…
-- `Edgar_20260527214925_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Backtest explainer pages: illustrative per-strategy charts
-- `Edgar_20260528024844_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Backfill practice event payloads for pk-wR9zU8JMn…
-- `Edgar_20260528030504_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Fix: doGet function conflict between practice_eve…
-- `Edgar_20260528072938_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Progressive move cycling: remove difficulty bias, c…
-- `Edgar_20260528133330_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with Omega Services Isis regarding the packing and the pallets
-- `Edgar_20260528163324_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Closing out the case with Jake’s colleague Cory on the AWS issue
-- `Edgar_20260528192312_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: CI: move Playwright off PR gate → post-deploy against live beta (3 repos)
-- `Edgar_20260528193739_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: [autopilot review] Merge & deploy 3 fix PRs: doGet conflict, auto-backfill, …
-- `Edgar_20260528194659_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Swap order: move Generate Session above Practice Hi…
-- `Edgar_20260528202056_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Followed up with AWS billing concerns with the recent hack.
-- `Edgar_20260528204205_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Followed up with the folks from ERA
 
 ---
 
@@ -63,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 217 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 217 | — |
+| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 216 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 216 | — |
 
 ---
 
@@ -165,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,991.73**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$39.97**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -185,7 +148,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-05-21_ (1):
+_All dated lines on/after 2026-05-22_ (1):
 
 - 2026-05-24 | claude | OPERATING_INSTRUCTIONS §5 execution-roadmap convention; EDGAR_DAO_EXTRACTION_PLAN.md (Edgar→dao_protocol PR0–7 + resume tracker); STRIPE_LEDGER_ROUTING Flow 5 (consumer QR→Edgar server-side Stripe).
 
@@ -207,6 +170,10 @@ _All dated lines on/after 2026-05-21_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b0f2307 | 2026-05-28 14:08:44 -0700 | Blog: editorial SVG hero + ground autopilot 36-tools claim so it doesn't date (#151)
+e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's why we open-sourced it.' (#150)
+3b6511c | 2026-05-28 20:57:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
+8bd724a | 2026-05-28 13:52:45 -0700 | edgar.html: rewrite Solution as three open layers (contributor edge / runtime / AI operator) (#149)
 01d582e | 2026-05-28 12:40:30 -0700 | ci(playwright): omit webServer when PLAYWRIGHT_BASE_URL is set (#148)
 8c3b1fd | 2026-05-28 12:21:59 -0700 | ci: Playwright post-deploy against live beta.truesight.me (#147)
 1268fb7 | 2026-05-28 16:39:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -243,10 +210,6 @@ a5d1de7 | 2026-05-22 14:58:51 -0700 | butterfly-effect: extend manifest with cre
 9cc715b | 2026-05-22 20:22:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 69ac392 | 2026-05-22 15:37:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1fa71be | 2026-05-22 09:58:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6c78732 | 2026-05-22 04:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
-920c482 | 2026-05-21 20:24:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
-cd1ecef | 2026-05-21 15:59:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3ff2144 | 2026-05-21 10:12:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -259,6 +222,14 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e8f99f6 | 2026-05-28 15:13:11 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update resume tracker after PR-1c (#234)
+92cba2f | 2026-05-28 14:54:37 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update resume tracker after PR-1b (#233)
+7956456 | 2026-05-28 14:40:14 -0700 | Add TOKENOMICS_GAS_RESTRUCTURE_PLAN.md (§5 roadmap) (#232)
+0587d73 | 2026-05-28 14:26:10 -0700 | docs(edgar-extraction): durable Tenant B Sidekiq-worker audit (4 of ~100; all ported) (#231)
+8f172ed | 2026-05-28 14:22:49 -0700 | OPEN_FOLLOWUPS: post-EXPLORYA→NELANCO cutover backlog
+d1e8595 | 2026-05-28 14:14:30 -0700 | docs(edgar-extraction): DaoMembersCacheRefreshWorker now ported (#45) (#230)
+49f37e4 | 2026-05-28 13:43:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
+9bc42e3 | 2026-05-28 13:43:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 82cc2dd | 2026-05-28 13:38:33 -0700 | Add AUTOPILOT_CAPABILITY_MANIFEST_PLAN.md (§5 roadmap) (#229)
 9920597 | 2026-05-28 13:34:29 -0700 | OPEN_FOLLOWUPS: add NELANCO dao_protocol standalone routing decision
 001570d | 2026-05-28 12:54:49 -0700 | Add AUTOPILOT_GOOGLE_ACCESS_PLAN.md — §5 roadmap for autopilot Google + AWS + PDF reach (#228)
@@ -291,20 +262,15 @@ e822ca5 | 2026-05-26 21:55:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 320f64f | 2026-05-26 21:11:36 -0700 | docs(edgar-extraction): PR6b activated + PR6a redirect sandbox-verified (#219)
 4d575e9 | 2026-05-26 21:03:34 -0700 | Merge pull request #218 from TrueSightDAO/auto/advisory-refresh-2026-05-27
 e2d5109 | 2026-05-27 04:03:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
-a787c2e | 2026-05-26 15:37:29 -0700 | OPEN_FOLLOWUPS: add brain-swap scoping note (model-agnostic agent loop) (#217)
-e1bf3ff | 2026-05-26 15:33:01 -0700 | docs(edgar-extraction): PR6a ramped + PR6b delegation merged — all 6 routes cut over (#216)
-4784ec4 | 2026-05-26 15:27:57 -0700 | docs: correct Edgar Sidekiq topology — workers run on seni_sk_new, not the web box (#215)
-43f6bae | 2026-05-26 15:10:44 -0700 | docs(edgar-extraction): PR5 /dao/submit_contribution ramped live (2026-05-26) (#214)
-932d701 | 2026-05-26 14:58:42 -0700 | docs(edgar-extraction): PR4 shipping_rates ramped live (2026-05-26) (#213)
-fafb950 | 2026-05-26 14:48:41 -0700 | EVENTS.md: document unified two-tier registry (upcoming + past) (#212)
-2008da3 | 2026-05-26 14:38:00 -0700 | docs(edgar-extraction): PR3 newsletter/email-agent ramped live (2026-05-26) (#211)
-82e2a91 | 2026-05-26 14:34:52 -0700 | Roadmap: shelve Track C (public Q&A) per Gary's 2026-05-26 call (#210)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+89b184d | 2026-05-28 15:09:13 -0700 | PR-1c: cache-refresh hook audit (mirror-grounded) (#319)
+4ba1c9a | 2026-05-28 14:51:13 -0700 | PR-1b: pre-flight audits — orphan clasp_mirrors, consumer_callers crawl, /exec probe (#318)
+986ca43 | 2026-05-28 14:40:24 -0700 | PR-1: manifest.json per google_app_scripts/ thematic folder (audit-derived, no file moves) (#317)
 13cbdea | 2026-05-28 12:21:10 -0700 | feat(GAS): auto-backfill empty payload rows after credentialing parse
 e26342b | 2026-05-28 12:20:49 -0700 | fix(GAS): merge doGet dispatchers — practice_event_processing + program_admin_endpoint
 925bfb3 | 2026-05-27 14:21:32 -0700 | perf(gas): defer warmup full-body Gmail fetch (withBodies opt-in) — 37s→~5s (#314)
@@ -350,7 +316,6 @@ ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory
 c100ac2 | 2026-05-24 08:46:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bbf5afa | 2026-05-23 08:33:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cecb4e8 | 2026-05-22 09:51:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-ef6d867 | 2026-05-21 10:05:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -371,7 +336,6 @@ b23cc95 | 2026-05-24 16:39:42 -0700 | QR landing: add opt-in checkbox to join th
 9f0f54e | 2026-05-22 13:41:01 -0700 | oracle: move QMDJ synthesis/Reading row above individual symbols
 fd17430 | 2026-05-22 13:40:23 -0700 | oracle: add whitespace between QMDJ detail hint and symbol list
 abd44df | 2026-05-22 13:24:03 -0700 | oracle: reorder QMDJ detail card and section layout
-d6e6810 | 2026-05-21 10:31:37 -0700 | Patch qimen-dunjia 2.1.0: add 小满/芒种 to SIMPLIFIED_TO_TRADITIONAL (#21)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -390,6 +354,15 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-29T035249Z_ai-dao-narrative-and-autopilot-roadmaps.md`
+
+- **posted_at_utc:** `2026-05-29T03:52:49Z`  
+- **slug:** `ai-dao-narrative-and-autopilot-roadmaps`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
+  - **Blog** — "We let an AI run our DAO. Here's why we open-sourced it" published.
+
 ### `beer-hall_2026-05-28T035227Z_dapp-prod-split-and-autopilot-gates.md`
 
 - **posted_at_utc:** `2026-05-28T03:52:27Z`  
@@ -407,15 +380,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
   OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
   - **Blog live** — "The most tracked thing in the room is a cup of cacao" published.
-
-### `beer-hall_2026-05-26T034726Z_dao-protocol-live-and-backtester-launch.md`
-
-- **posted_at_utc:** `2026-05-26T03:47:26Z`  
-- **slug:** `dao-protocol-live-and-backtester-launch`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
-  - **Protocol live** — `dao_protocol` FastAPI service deployed; shipping rates, GAS proxy, and contribution intake migrated from legacy Rails.
 
 ---
 
@@ -436,39 +400,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 12:51:09 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-21`; scanned last **396** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
