@@ -20,9 +20,44 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-29T03:52:49Z`
+- Generated (UTC): `2026-05-29T04:53:34Z`
 - Look-back: **7** calendar days (`2026-05-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 42
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20260527213648_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Backtest UX iterations + per-strategy explainer pages
+- `Edgar_20260527214519_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Session closeout: roadmap tracker, beta HTTPS nudge, /ship gate live smoke t…
+- `Edgar_20260527214925_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Backtest explainer pages: illustrative per-strategy charts
+- `Edgar_20260528024844_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Backfill practice event payloads for pk-wR9zU8JMn…
+- `Edgar_20260528030504_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Fix: doGet function conflict between practice_eve…
+- `Edgar_20260528072938_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Progressive move cycling: remove difficulty bias, c…
+- `Edgar_20260528133330_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with Omega Services Isis regarding the packing and the pallets
+- `Edgar_20260528163324_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Closing out the case with Jake’s colleague Cory on the AWS issue
+- `Edgar_20260528192312_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: CI: move Playwright off PR gate → post-deploy against live beta (3 repos)
+- `Edgar_20260528193739_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: [autopilot review] Merge & deploy 3 fix PRs: doGet conflict, auto-backfill, …
+- `Edgar_20260528194659_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Swap order: move Generate Session above Practice Hi…
+- `Edgar_20260528202056_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Followed up with AWS billing concerns with the recent hack.
+- `Edgar_20260528204205_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Followed up with the folks from ERA
+- `Edgar_20260528205252_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
+- `Edgar_20260528205402_063` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.30 · Description: Top up for DeepSeek API credits.
+- `Edgar_20260528205951_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## REVERT: Switch contributor/recipient dropdowns fro…
+- `Edgar_20260528210314_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
+- `Edgar_20260528210726_069` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260528210746_071` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 9ivl8yPM4RlOYC8tKAfMOHjXG230t8ZFFjPgtwkSnFo · Email: garyjob@gmail.com
+- `Edgar_20260528211128_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Autopilot capability expansion + DAO surface refresh — 2026-05-28
 
 ---
 
@@ -132,13 +167,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,991.57**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.13**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -222,6 +261,8 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a0b178f | 2026-05-28 20:53:05 -0700 | Merge pull request #235 from TrueSightDAO/auto/advisory-refresh-2026-05-29
+a71f51e | 2026-05-29 03:52:55 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 e8f99f6 | 2026-05-28 15:13:11 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update resume tracker after PR-1c (#234)
 92cba2f | 2026-05-28 14:54:37 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update resume tracker after PR-1b (#233)
 7956456 | 2026-05-28 14:40:14 -0700 | Add TOKENOMICS_GAS_RESTRUCTURE_PLAN.md (§5 roadmap) (#232)
@@ -260,8 +301,6 @@ b795013 | 2026-05-26 23:34:17 -0700 | docs: defer PR7 cleanup + README/blog upda
 69476d6 | 2026-05-26 21:55:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
 e822ca5 | 2026-05-26 21:55:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 320f64f | 2026-05-26 21:11:36 -0700 | docs(edgar-extraction): PR6b activated + PR6a redirect sandbox-verified (#219)
-4d575e9 | 2026-05-26 21:03:34 -0700 | Merge pull request #218 from TrueSightDAO/auto/advisory-refresh-2026-05-27
-e2d5109 | 2026-05-27 04:03:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 … (truncated)
 ```
 
@@ -400,6 +439,39 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 20:51:54 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-22`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
