@@ -184,7 +184,7 @@ Total PR estimate: 1 audit + 1 manifest-convention PR + ~12-15 restructure PRs +
 
 ## 7. Resume tracker
 
-**RESUME HERE → PR-0 + PR-1 + PR-1b + PR-1c + PR-1d + PR-1e + PR-1f all merged. Audit state: 36 healthy / 13 orphans / 1 unmirrored.** PR-1f minted 2 of 3 missing mirrors (`1MnAsIQA…` and `1gi4YKh2…`) via `clasp clone` and `git rm`'d the redundant in-folder `.clasp.json` for seacoast. The third (`1zKgMwd6…`, Gmail digital-signature ingestion, admin@truesight.me) failed with `The caller does not have permission` — needs operator action (clasp login as admin@ or share the GAS project with the current account). Remaining: mint 1 missing mirror (`1zKgMwd6…`, operator-gated), resolve the 13 remaining orphan dispositions per `docs/gas_orphan_mirror_dispositions.md`, shared-helpers canonicalisation.
+**RESUME HERE → PR-0 + PR-1 + PR-1b + PR-1c + PR-1d + PR-1e + PR-1f + PR-final-1 all merged. Audit state: 36 healthy / 13 orphans / 1 unmirrored.** PR-final-1 lands `scripts/deploy_gas_project.py` — a manifest-driven one-command deploy that pools source files across every thematic folder referencing a scriptId, syncs into `clasp_mirrors/<scriptId>/`, runs `clasp push`, then fires every `post_push_hooks[]` entry. Dry-run by default; `--push --with-hooks` for real. `docs/gas_deploy_workflow.md` is the operator-facing guide and the promotion path for cache-refresh candidates. Operator pre-flight remaining: mint 1 missing mirror (`1zKgMwd6…`, needs admin@ login), 13 orphan dispositions per `docs/gas_orphan_mirror_dispositions.md`, shared-helpers canonicalisation. **PR-2…PR-N (structural restructure) is now decoupled from the deploy flow — operator can deploy any project today without restructuring first.**
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
@@ -194,7 +194,8 @@ Total PR estimate: 1 audit + 1 manifest-convention PR + ~12-15 restructure PRs +
 | **PR-1c** cache-refresh hook audit (mirror-grounded) | [tokenomics#319](https://github.com/TrueSightDAO/tokenomics/pull/319) | ✅ | ☐ (no GAS changes) | ✅ |
 | **PR-1d** owner_email assignment (3 admin@, 40 gary@) | [tokenomics#320](https://github.com/TrueSightDAO/tokenomics/pull/320) | ✅ | ☐ (no GAS changes) | ✅ |
 | **PR-1e** orphan cleanup — 4 deletes + 1 routing + dispositions doc | [tokenomics#321](https://github.com/TrueSightDAO/tokenomics/pull/321) | ✅ | ☐ (no GAS changes) | ✅ |
-| **PR-1f** mint 2 of 3 missing mirrors via `clasp clone` | [tokenomics#322](https://github.com/TrueSightDAO/tokenomics/pull/322) | ✅ | ☐ (no GAS changes) | ☐ |
+| **PR-1f** mint 2 of 3 missing mirrors via `clasp clone` | [tokenomics#322](https://github.com/TrueSightDAO/tokenomics/pull/322) | ✅ | ☐ (no GAS changes) | ✅ |
+| **PR-final-1** `scripts/deploy_gas_project.py` (manifest-driven single-project deploy) | [tokenomics#323](https://github.com/TrueSightDAO/tokenomics/pull/323) | ✅ | ☐ (per-project, operator-driven) | ☐ |
 | **Operator pre-flight (§4) remaining** — mint 1 missing mirror (`1zKgMwd6…`, needs admin@ login or share), 13 remaining orphan dispositions (see `docs/gas_orphan_mirror_dispositions.md`), shared-helpers canonicalisation | n/a (operator) | ☐ | n/a | n/a |
 | **PR-2** restructure folder 1       | tokenomics#TBD | ☐ | ☐ | ☐ |
 | **PR-3** restructure folder 2       | tokenomics#TBD | ☐ | ☐ | ☐ |
