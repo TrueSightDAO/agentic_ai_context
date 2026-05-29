@@ -137,6 +137,56 @@ body {
 
 ---
 
+## 9b. Submission result rendering (signed-request flows)
+
+When a page submits a **signed request** to Edgar (or any other DAO endpoint that takes the same `text` payload), show the operator BOTH:
+
+1. **The full signed share text** — every byte that was actually sent, including the human-readable event header + `My Digital Signature:` + `Request Transaction ID:` + the `generated using` + `Verify submission here:` lines. Wrap it in a `<pre>` block so whitespace + line breaks render verbatim.
+2. **The server's response** — JSON-serialised via `JSON.stringify(result, null, 2)`, also in a `<pre>` block.
+
+Why both: the share text is what the operator may need to forward to Telegram / WhatsApp / a teammate (and is what they signed); the response is what Edgar actually did with it. A plain status message like `"Submitted. Edgar response: { ... }"` is insufficient — operators routinely need to copy the verbatim payload after submission and copy/paste the JSON to debug a downstream failure.
+
+### Reference implementation
+
+`dapp/report_contribution.html` is the canonical example — its share-text construction is mirrored across most signed-submit pages. Look there before inventing a new layout.
+
+### Minimum shape
+
+```html
+<div id="submissionResult" style="display:none; margin-top: 1.5rem;">
+  <h3>Transaction request</h3>
+  <pre id="requestPre" style="white-space: pre-wrap; word-break: break-word; ...border, padding..."></pre>
+
+  <h3>Edgar response</h3>
+  <pre id="responsePre" style="white-space: pre-wrap; word-break: break-word; ...border, padding..."></pre>
+</div>
+```
+
+```js
+document.getElementById('requestPre').textContent  = signedShareText;          // not innerHTML — preserves &, <, > literally
+document.getElementById('responsePre').textContent = JSON.stringify(result, null, 2);
+document.getElementById('submissionResult').style.display = 'block';
+```
+
+Use `.textContent`, not `.innerHTML`, on the `<pre>`s — the signed payload can contain `<` and `&` literals from contributor names or descriptions that would otherwise break the HTML.
+
+### Status line is additive, not a replacement
+
+Keep the existing `#status` element for the short success/error sentence ("Submitted. The contributor row should appear after the next publisher run."). The `<pre>` blocks complement that line — they're for forensic detail.
+
+### Print and copy
+
+Both `<pre>` blocks should be selectable, copyable, and remain fully readable in print mode. See §16 for the `@media print` rules that ensure textareas + `<pre>` blocks expand to their full content height when printed.
+
+### Applies to
+
+Every new dapp page that submits a signed request. Existing pages that don't follow this pattern are a backlog item — fix them when you next touch them. Example PRs:
+
+- `report_contribution.html` — canonical.
+- `governor_contributor_admin.html` — migrated 2026-05-29 in dapp PR (link).
+
+---
+
 ## 10. Logo and back link
 
 - **Logo (default for full DApp tool pages):** Place the DAO logo **inside `.container`**, **above `<h1>`**, so the layout matches **`stores_nearby.html`**, **`shipping_planner.html`**, **`report_contribution.html`**, and **`store_interaction_history.html`**. Omit only for intentionally minimal pages (e.g. embed-only or redirect stubs).
@@ -234,3 +284,43 @@ Do not assume a CORS error means the `.gs` response format is wrong; **verify de
 | GAS + fetch + CORS + static host / POST + field agent ping | This file §14 |
 
 When in doubt, **copy structure and meta tags from an existing page** (e.g. `shipping_planner.html`, `report_sales.html`) and then adjust content and styles.
+
+---
+
+## 16. Print stylesheet (textareas + `<pre>` + signed payloads)
+
+Every form-bearing DApp page must keep its **input boxes and result blocks legible when printed** — the operator routinely prints a confirmation page as a receipt or to share with a partner who isn't on Telegram. Browsers truncate textareas by default in print mode (they only render what fits the on-screen scroll box), which silently cuts off long descriptions / event payloads.
+
+Add this `@media print` block to **every page that has a `<textarea>` or a result `<pre>`** (typically in `<head>` or in `styles/main.css`):
+
+```css
+@media print {
+  /* All textareas expand to show every line of their content.
+     Default browser behaviour clips to the visible scroll box. */
+  textarea {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: pre-wrap;
+    page-break-inside: auto;
+    border: 1px solid #999;       /* subtle outline so it still reads as a field */
+  }
+
+  /* Signed-request result blocks (§9b) must also expand and wrap. */
+  pre {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow: visible !important;
+    page-break-inside: auto;
+  }
+}
+```
+
+### Why this lives globally
+
+Per-page overrides are fragile (every new page invents its own print rule). Add the block once to `styles/main.css` (or whichever shared stylesheet the DApp uses for global typography) so every page inherits it. Per-page additions only when a page has additional non-default elements that also need print treatment.
+
+### Backlog
+
+Any page that has a `<textarea>` and renders OK on screen but cuts off when printed has this exact bug. Fix opportunistically when touched; sweep if there's a clear set.
