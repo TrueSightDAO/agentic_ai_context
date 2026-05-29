@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """
+⚠️ DEPRECATED (2026-05): The whitepapers are no longer Google Docs. They are now
+hand-authored static HTML pages in the `truesight_me` repo
+(`truesight_me/<area>/whitepaper/index.html`, served at truesight.me/...). The
+Google Docs this script targets are RETIRED, so its output may not match the live
+whitepaper. To read current content, read the repo page (or curl the live URL);
+to change a whitepaper, edit the HTML page via a PR. See GOVERNANCE_SOURCES.md §1.
+This script is kept only for historical capture of the old Docs.
+
 Fetch TrueSight DAO whitepaper(s) from truesight.me.
 
 Each public URL redirects (via JS + meta refresh) to a Google Doc.

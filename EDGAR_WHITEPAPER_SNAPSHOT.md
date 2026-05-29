@@ -1,4 +1,11 @@
-﻿Edgar White Paper
+﻿<!--
+⚠️ DEPRECATED SNAPSHOT — the live Edgar whitepaper is now the static page
+truesight_me/edgar/whitepaper/index.html (https://truesight.me/edgar/whitepaper/).
+The Google Doc this was captured from is RETIRED; content below may not match
+the live page. Kept for history only. See GOVERNANCE_SOURCES.md §1.
+-->
+
+Edgar White Paper
 Overview
 Edgar is an advanced AI system designed to empower a variety of trading profiles by streamlining the execution of their trades. It leverages artificial intelligence and data analysis to cater to the unique needs of different traders. In this white paper, we will explore how Edgar 
 serves 

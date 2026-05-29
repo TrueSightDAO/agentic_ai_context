@@ -1,11 +1,16 @@
 <!--
-Snapshot of the TrueSight DAO main whitepaper (truesight.me/whitepaper →
-Google Doc 1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic).
-Captured 2026-05-29 via scripts/fetch_whitepaper.py.
-Source of truth is the Google Doc; refresh with:
-  python3 scripts/fetch_whitepaper.py --which main -o WHITEPAPER_SNAPSHOT.md
-Known staleness as of capture (amendments log ends 20231115): see
-proposal_drafts/WHITEPAPER_AMENDMENTS_2024-2026_DRAFT.md.
+⚠️ DEPRECATED SNAPSHOT — DO NOT TREAT AS THE WHITEPAPER.
+
+The live TrueSight DAO main whitepaper is now a static page in the truesight_me
+repo: `truesight_me/whitepaper/index.html` (served at https://truesight.me/whitepaper/).
+The Google Doc this file was captured from (1P-IJq71...) is RETIRED.
+
+The text below is a 2026-05-29 capture of that OLD Google Doc. The live page has
+since been substantially modernized (USDT rubric table, 180-day Governors
+formula, AGL-fee section, Communications/Telegram section, historical-framing of
+the on-chain votes) and does NOT match this capture. Read the repo page instead.
+
+Kept only for historical diff. See GOVERNANCE_SOURCES.md §1.
 -->
 
 Who are we

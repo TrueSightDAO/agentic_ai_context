@@ -1,3 +1,10 @@
+<!--
+⚠️ DEPRECATED SNAPSHOT — the live Agroverse whitepaper is now the static page
+truesight_me/agroverse/whitepaper/index.html (https://truesight.me/agroverse/whitepaper/).
+The Google Doc this was captured from is RETIRED; content below may not match
+the live page. Kept for history only. See GOVERNANCE_SOURCES.md §1.
+-->
+
 # Agroverse Whitepaper Snapshot — TrueSight DAO
 
 **Source:** [https://truesight.me/agroverse/whitepaper](https://truesight.me/agroverse/whitepaper) → Google Doc  

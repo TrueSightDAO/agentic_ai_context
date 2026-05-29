@@ -1,5 +1,22 @@
 # Whitepaper amendments — proposed 2024–2026 addendum (DRAFT)
 
+> **⚠️ READ FIRST (2026-05-29 correction):** This draft was written against the
+> **deprecated Google Doc**. The **live** whitepaper is now the static page
+> `truesight_me/whitepaper/index.html` (truesight.me/whitepaper/), and it has
+> **already been substantially modernized** — it already contains the USDT rubric
+> table, the 180-day Governors formula, an AGL-fee section, a Communications
+> (Telegram) section, and historical-framing of the on-chain votes. So **most of
+> the entries below are already reflected in the live page.** The genuine
+> **remaining** edits to apply directly to the live page (via a `truesight_me`
+> PR, not a Google Doc) are:
+> 1. **Remove the OpenClaw reference** (Communications section names OpenClaw).
+> 2. **Fix the early-exit clause** — it still says *governance tokens* are
+>    reclaimed; correct to the member's **managed-ledger equity** (see 20260529H).
+> 3. **Governor privileges** — still lists "Administrative rights to our WhatsApp
+>    channels"; add Telegram + the DApp permission system (see 20260529I).
+> Treat the rest of this file as a checklist already-satisfied by the live page,
+> not as pending amendments. Reconcile against the actual page before proposing.
+
 **Status:** DRAFT for Town Hall review — **not yet ratified**. Nothing here is in
 effect until voted per the whitepaper's governance process.
 

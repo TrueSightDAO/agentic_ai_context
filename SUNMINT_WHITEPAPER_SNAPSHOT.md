@@ -1,4 +1,11 @@
-﻿SunMint Program Design Document (PDD)
+﻿<!--
+⚠️ DEPRECATED SNAPSHOT — the live Sunmint whitepaper is now the static page
+truesight_me/sunmint/whitepaper/index.html (https://truesight.me/sunmint/whitepaper/).
+The Google Doc this was captured from is RETIRED; content below may not match
+the live page. Kept for history only. See GOVERNANCE_SOURCES.md §1.
+-->
+
+SunMint Program Design Document (PDD)
 
 
 Project Title: SunMint
