@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-29T04:53:34Z`
+- Generated (UTC): `2026-05-29T10:29:32Z`
 - Look-back: **7** calendar days (`2026-05-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -209,6 +209,7 @@ _All dated lines on/after 2026-05-22_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f93cc5a | 2026-05-29 04:55:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b0f2307 | 2026-05-28 14:08:44 -0700 | Blog: editorial SVG hero + ground autopilot 36-tools claim so it doesn't date (#151)
 e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's why we open-sourced it.' (#150)
 3b6511c | 2026-05-28 20:57:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -248,7 +249,6 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 a5d1de7 | 2026-05-22 14:58:51 -0700 | butterfly-effect: extend manifest with credentialing fields (#139)
 9cc715b | 2026-05-22 20:22:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 69ac392 | 2026-05-22 15:37:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1fa71be | 2026-05-22 09:58:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -261,6 +261,8 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+70eb551 | 2026-05-28 21:53:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
+86f615f | 2026-05-28 21:53:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 a0b178f | 2026-05-28 20:53:05 -0700 | Merge pull request #235 from TrueSightDAO/auto/advisory-refresh-2026-05-29
 a71f51e | 2026-05-29 03:52:55 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 e8f99f6 | 2026-05-28 15:13:11 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update resume tracker after PR-1c (#234)
@@ -299,8 +301,6 @@ f39c3bb | 2026-05-27 09:24:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 8688853 | 2026-05-27 03:38:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 b795013 | 2026-05-26 23:34:17 -0700 | docs: defer PR7 cleanup + README/blog updates ~30 days for ramp soak (revisit ~2026-06-25) (#220)
 69476d6 | 2026-05-26 21:55:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
-e822ca5 | 2026-05-26 21:55:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
-320f64f | 2026-05-26 21:11:36 -0700 | docs(edgar-extraction): PR6b activated + PR6a redirect sandbox-verified (#219)
 … (truncated)
 ```
 
@@ -347,6 +347,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+106386c | 2026-05-29 10:15:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fe87b08 | 2026-05-28 10:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8d18e79 | 2026-05-26 10:20:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -463,7 +464,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/28/2026 20:51:54 |
+| 2026-05 | 58.6 | 14977.11386 | 5/29/2026 2:53:04 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-22`; scanned last **396** data rows)
 
