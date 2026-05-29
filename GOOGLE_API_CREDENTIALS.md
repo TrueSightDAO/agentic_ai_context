@@ -148,11 +148,29 @@ These files contain long-lived refresh tokens. They're **not committed to any re
 
 ---
 
-## 🗄️ Open follow-up — credential backup / vault
+## 🗄️ Credential backup / vault — V1 shipped
 
-As of 2026-05-29 the workspace has accumulated ~30 credential files scattered across `~/Applications/*/config/`, `~/Applications/*/.env`, `~/.clasprc-*.json`, `~/Applications/video_editor/credentials/`, etc. A laptop reset would lose all of them. Tier-1 mitigation worth considering: a single `age`-encrypted tarball (`age` is a modern, minimal-tooling sealed-box; `~/Applications/agentic_ai_context/scripts/backup_credentials.sh` would be the natural home) backed up to iCloud Drive or similar. Tier-2 (1Password / Bitwarden per-entry) and Tier-3 (cloud secret manager like GCP Secret Manager) remain options if/when the workspace outgrows tarball backups.
+The disaster-recovery story (lost / wiped MacBook) is now covered by an
+automated, launchd-driven encrypted backup to iCloud Drive. **See
+[CREDENTIAL_VAULT.md](CREDENTIAL_VAULT.md) for the threat model, restore
+runbook, and maintenance procedures.**
 
-This is **not** about hardening production autopilot (its EC2 box already lives independently of Gary's laptop) — it's about Gary not losing the ability to operate the DAO if his laptop dies.
+Short version:
+- Manifest of ~46 credential files at `CREDENTIAL_MANIFEST.txt`.
+- `scripts/backup_credentials.sh` tars manifest paths and encrypts via
+  `openssl enc -aes-256-cbc -pbkdf2 -iter 600000` (LibreSSL ships on macOS;
+  no `brew install` needed at restore time).
+- Triggered by launchd `WatchPaths` on every credential edit + nightly
+  heartbeat at 03:00.
+- Snapshots live in `~/Library/Mobile Documents/com~apple~CloudDocs/credential_vault/`,
+  retention 30.
+- Passphrase stored in LastPass; mirrored to `~/.credential_vault_passphrase`
+  (0600) for unattended use by launchd.
+
+**Out of scope for V1** (and intentionally): host-side credential
+provisioning for new EC2 instances — that's a separate vault problem
+tracked in [`OPEN_FOLLOWUPS.md`](OPEN_FOLLOWUPS.md) § "Credential vault for
+service-account keys (AWS Secrets Manager)".
 
 ---
 
