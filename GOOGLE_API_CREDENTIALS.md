@@ -109,6 +109,53 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 
 ---
 
+## 🧰 clasp OAuth — per-account credentials files
+
+For deploying Google Apps Script projects via `clasp push`. clasp itself reads `~/.clasprc.json` (single active identity). To deploy projects owned by *different* Google accounts without re-running `clasp login` every time, Gary maintains **per-account credentials files** in his home directory and swaps the active one before each push.
+
+| File | Account | Resolved 2026-05-29 |
+|---|---|---|
+| `~/.clasprc-gary.json`  | `garyjob@agroverse.shop` (daily driver) | ✅ verified via `oauth2/v3/userinfo` |
+| `~/.clasprc-admin.json` | `admin@truesight.me` (owner of digital-signature ingestion, QR-code web service, Edgar email verification, and other admin@-pinned GAS projects) | ✅ verified via `oauth2/v3/userinfo` |
+| `~/.clasprc.json`       | Whichever one was last copied into place. | (the active identity at any moment) |
+
+### Workflow
+
+The `tokenomics/scripts/deploy_gas_project.py` script (see [`TOKENOMICS_GAS_RESTRUCTURE_PLAN.md`](TOKENOMICS_GAS_RESTRUCTURE_PLAN.md) PR-final-1 + PR-1g) **refuses to push** when the active clasp identity doesn't match the project's `owner_email` in its manifest. So before pushing an admin@-owned project, do:
+
+```bash
+cp ~/.clasprc-admin.json ~/.clasprc.json
+cd ~/Applications/tokenomics
+python3 scripts/deploy_gas_project.py <scriptId> --push          # gates on owner_email match
+cp ~/.clasprc-gary.json ~/.clasprc.json                          # restore daily driver
+```
+
+The script's `CLASPRC_PATH` env var can also point identity *resolution* at a different file (for the safety check), but clasp itself still reads `~/.clasprc.json` — so the `cp` swap above is the actual deploy gesture.
+
+### Re-minting (when one of these tokens expires / gets revoked)
+
+Each clasprc holds a long-lived OAuth refresh token. If it stops working:
+
+```bash
+clasp logout
+clasp login                                    # browser flow, sign in as the target account
+cp ~/.clasprc.json ~/.clasprc-<account>.json   # save into the per-account slot
+```
+
+### Backup considerations
+
+These files contain long-lived refresh tokens. They're **not committed to any repo** (correct), but they're also **not backed up anywhere off-host** as of 2026-05-29 — a wiped laptop loses both, and the only recovery is to re-run `clasp login` for each account (~3 min). Same risk applies to several other workspace credentials (Google service-account JSONs under various `*/config/*.json`, the `dao_client/.env` RSA private key, etc.). See the *Open follow-up* below.
+
+---
+
+## 🗄️ Open follow-up — credential backup / vault
+
+As of 2026-05-29 the workspace has accumulated ~30 credential files scattered across `~/Applications/*/config/`, `~/Applications/*/.env`, `~/.clasprc-*.json`, `~/Applications/video_editor/credentials/`, etc. A laptop reset would lose all of them. Tier-1 mitigation worth considering: a single `age`-encrypted tarball (`age` is a modern, minimal-tooling sealed-box; `~/Applications/agentic_ai_context/scripts/backup_credentials.sh` would be the natural home) backed up to iCloud Drive or similar. Tier-2 (1Password / Bitwarden per-entry) and Tier-3 (cloud secret manager like GCP Secret Manager) remain options if/when the workspace outgrows tarball backups.
+
+This is **not** about hardening production autopilot (its EC2 box already lives independently of Gary's laptop) — it's about Gary not losing the ability to operate the DAO if his laptop dies.
+
+---
+
 ## 📝 Usage Examples
 
 ### Accessing Main Ledger (Ruby/Rails)
