@@ -82,14 +82,14 @@ With this, Dr Manhattan can:
 | Missing | Why it matters for Dr Manhattan |
 |--------|----------------------------------|
 | **Mission / vision** | One place that states *why* TrueSight DAO and Agroverse exist and *what change* they want to make. Without it, “growth” and “priorities” are under-specified. |
-| **Governance** | How decisions are made: proposals, voting, roles. **Now documented:** See **GOVERNANCE_SOURCES.md** in this repo. It lists: (1) **Whitepaper** — [truesight.me/whitepaper](https://truesight.me/whitepaper) (redirects to a Google Doc; governance in that doc). Pull content via `scripts/fetch_whitepaper.py` or use a browser. (2) **Proposals (GitHub)** — [TrueSightDAO/proposals](https://github.com/TrueSightDAO/proposals) (DApp create/vote/view; PRs = proposals). (3) **Proposals (Realms)** — [app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7](https://app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7) — proposals listed here; **browser typically required** to view. |
+| **Governance** | How decisions are made: proposals, voting, roles. **Now documented:** See **GOVERNANCE_SOURCES.md** in this repo. It lists: (1) **Whitepaper** — now a static page at [truesight.me/whitepaper/](https://truesight.me/whitepaper/) (source: `truesight_me/whitepaper/index.html`; the old Google Doc + `fetch_whitepaper.py` are **deprecated** — read the repo page). (2) **Proposals (GitHub)** — [TrueSightDAO/proposals](https://github.com/TrueSightDAO/proposals) (DApp create/vote/view; PRs = proposals). (3) **Proposals (Realms)** — [app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7](https://app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7) — proposals listed here; **browser typically required** to view. |
 | **Metrics / KPIs** | What “growth” means in numbers: e.g. reseller count, DAO participants, shipments, revenue, community size. Needed to assess “are we growing?” and to prioritize. |
 | **Roadmap / priorities** | What’s next; what’s in flight vs. planned. Today context is descriptive (what exists), not prescriptive (what we’re aiming for next). |
 
 **Recommendation:** Dr Manhattan can **start** making useful strategic recommendations with current context (structure, levers, coherence). For **important** decisions (e.g. “should we prioritize X or Y?”, “what’s our north star?”), add over time:
 
 1. A short **mission/vision** (in WORKSPACE_CONTEXT, or a dedicated DAO_AND_AGROVERSE_OVERVIEW.md).
-2. **Governance** — See **GOVERNANCE_SOURCES.md**: whitepaper (truesight.me/whitepaper → Google Doc), proposals (GitHub TrueSightDAO/proposals + DApp), Realms (browser). Pull whitepaper via `scripts/fetch_whitepaper.py`.
+2. **Governance** — See **GOVERNANCE_SOURCES.md**: whitepaper (now a static page `truesight_me/whitepaper/index.html` → truesight.me/whitepaper/; Google Doc + `fetch_whitepaper.py` **deprecated**), proposals (GitHub TrueSightDAO/proposals + DApp), Realms (browser).
 3. A short **metrics** list (what we track for growth) and, if possible, where they live (e.g. tokenomics stats, agroverse.shop reseller list).
 4. A **roadmap or priorities** section (current focus; next 3–6 months).
 
@@ -133,7 +133,7 @@ With the overview (and optionally governance + metrics), Dr Manhattan as a chatb
 ## 6. Summary for agents
 
 - **Read Dr Manhattan when:** The task is strategy, growth, priorities, or onboarding for the DAO/Agroverse network.
-- **He uses:** WORKSPACE_CONTEXT, PROJECT_INDEX, CMO_SETH_GODIN, SUPPLY_CHAIN_AND_FREIGHTING, **GOVERNANCE_SOURCES** (whitepaper, proposals GitHub, Realms), NOTES_*, OPERATING_INSTRUCTIONS. For whitepaper content: run `scripts/fetch_whitepaper.py` or use browser; for Realms proposal list: use browser.
+- **He uses:** WORKSPACE_CONTEXT, PROJECT_INDEX, CMO_SETH_GODIN, SUPPLY_CHAIN_AND_FREIGHTING, **GOVERNANCE_SOURCES** (whitepaper, proposals GitHub, Realms), NOTES_*, OPERATING_INSTRUCTIONS. For whitepaper content: read `truesight_me/whitepaper/index.html` (the live static page; Google Doc + `fetch_whitepaper.py` deprecated); for Realms proposal list: use browser.
 - **He can do today:** Advise on structure, growth levers, coherence, onboarding path; suggest priorities based on existing context; state assumptions when mission/metrics/roadmap are missing.
 - **For “important” decisions:** Add over time: mission/vision, governance summary, metrics, roadmap/priorities.
 - **For chatbot use:** Add DAO_AND_AGROVERSE_OVERVIEW.md (and optionally FAQ); then Dr Manhattan can onboard newcomers reliably.

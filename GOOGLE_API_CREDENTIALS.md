@@ -50,7 +50,11 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 - **Project ID**: `get-data-io`
 - **Used For**: Edgar DApp Telegram logs
 
-### 6. **TrueSight.me whitepaper (Google Docs read)**
+### 6. **TrueSight.me whitepaper (Google Docs read) — DEPRECATED**
+> ⚠️ **Deprecated (2026-05):** the whitepapers are now static pages in the
+> `truesight_me` repo (`truesight_me/<area>/whitepaper/index.html`), not Google
+> Docs. This SA and `fetch_whitepaper.py` only read the **retired** Docs. See
+> `GOVERNANCE_SOURCES.md` §1. Kept for historical access only.
 - **File (local, gitignored):** `truesight_me/credentials/whitepaper-google-sa.json` — key file lives only on developer machines; **never commit** (see `truesight_me/credentials/README.md` and `truesight_me/.gitignore`).
 - **Service Account Email**: `truesightme-whitepapers@get-data-io.iam.gserviceaccount.com`
 - **Client ID**: `111924219696923655238`

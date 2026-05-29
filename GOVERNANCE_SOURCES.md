@@ -4,31 +4,39 @@ Single reference for where **governance** (whitepaper, proposals, voting) lives 
 
 ---
 
-## 1. Whitepapers (truesight.me — all redirect to Google Docs)
+## 1. Whitepapers (static pages in the `truesight_me` repo — source of truth)
 
-All truesight.me whitepaper URLs use a JavaScript redirect (and meta refresh) to a Google Doc. The fetch script can pull any or all of them.
+> **⚠️ 2026-05 — the Google Docs are DEPRECATED.** The whitepapers are now
+> **hand-authored static HTML pages in the `truesight_me` repo**, served at
+> `truesight.me/...`. **Read the repo page (or the live URL) for current
+> content.** Do **NOT** treat the old Google Doc, `scripts/fetch_whitepaper.py`,
+> or the `*_WHITEPAPER_SNAPSHOT.md` files as the source of truth — they were
+> captured from the retired Docs and may not match the live page.
 
-| Name | URL | Doc ID | Snapshot file |
-|------|-----|--------|----------------|
-| **Main** (governance, project narrative) | [truesight.me/whitepaper](https://truesight.me/whitepaper) → [Google Doc](https://docs.google.com/document/d/1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic/edit?tab=t.0) | `1P-IJq71N0lXszUOdqdjrGwonZAfEuG1q_tJFDdKKIic` | `WHITEPAPER_SNAPSHOT.md` |
-| **Edgar** | [truesight.me/edgar/whitepaper](https://truesight.me/edgar/whitepaper) → [Google Doc](https://docs.google.com/document/d/1Ud19BdIKrg_2SvVYEfS2fxCFCwFGwuccqOD9z53k-oc/edit?tab=t.0) | `1Ud19BdIKrg_2SvVYEfS2fxCFCwFGwuccqOD9z53k-oc` | `EDGAR_WHITEPAPER_SNAPSHOT.md` |
-| **Agroverse** | [truesight.me/agroverse/whitepaper](https://truesight.me/agroverse/whitepaper) → [Google Doc](https://docs.google.com/document/d/1b3JiawnqA1QNpA_XZMH6oNQ9ZVJnLRGtOWzM31YLvJs/edit?tab=t.0) | `1b3JiawnqA1QNpA_XZMH6oNQ9ZVJnLRGtOWzM31YLvJs` | `AGROVERSE_WHITEPAPER_SNAPSHOT.md` |
-| **Sunmint** | [truesight.me/sunmint/whitepaper](https://truesight.me/sunmint/whitepaper) → [Google Doc](https://docs.google.com/document/d/1BcrV4rtG5cNTdcycw2H94OI-pmT-dDal3x5jPcyvWC0/edit?tab=t.0) | `1BcrV4rtG5cNTdcycw2H94OI-pmT-dDal3x5jPcyvWC0` | `SUNMINT_WHITEPAPER_SNAPSHOT.md` |
+| Name | Live URL | **Source of truth (repo page)** | Deprecated Google Doc |
+|------|----------|---------------------------------|------------------------|
+| **Main** | [truesight.me/whitepaper/](https://truesight.me/whitepaper/) | `truesight_me/whitepaper/index.html` | `1P-IJq71…` (retired) |
+| **Edgar** | [truesight.me/edgar/whitepaper/](https://truesight.me/edgar/whitepaper/) | `truesight_me/edgar/whitepaper/index.html` | `1Ud19Bd…` (retired) |
+| **Agroverse** | [truesight.me/agroverse/whitepaper/](https://truesight.me/agroverse/whitepaper/) | `truesight_me/agroverse/whitepaper/index.html` | `1b3Jiawn…` (retired) |
+| **Sunmint** | [truesight.me/sunmint/whitepaper/](https://truesight.me/sunmint/whitepaper/) | `truesight_me/sunmint/whitepaper/index.html` | `1BcrV4rt…` (retired) |
 
-### Pulling whitepaper content (API / script)
+`truesight_me` is the beta base (→ `beta.truesight.me`); production `truesight.me`
+deploys from **`truesight_me_prod`** (see **WORKSPACE_CONTEXT.md** §6). Edit the
+page in `truesight_me`, open a PR, then promote to prod — do **not**
+`gh repo sync --force` (CNAME divergence).
 
-- **Script:** `agentic_ai_context/scripts/fetch_whitepaper.py`  
-  Fetches one or all whitepapers. Tries **Google Docs export URL** first (no credentials); optionally uses **Google Docs API** with `GOOGLE_APPLICATION_CREDENTIALS` or `--credentials path/to.json`.
-  (See table above for doc IDs and snapshot filenames.)
-- **Local key (truesight_me clone):** `truesight_me/credentials/whitepaper-google-sa.json` — gitignored; service account `truesightme-whitepapers@get-data-io.iam.gserviceaccount.com`. Documented in **`GOOGLE_API_CREDENTIALS.md`** §6.
-- **Run (single):**  
-  `cd agentic_ai_context/scripts && pip install -r requirements.txt && python fetch_whitepaper.py -o ../WHITEPAPER_SNAPSHOT.md`  
-  Or: `python fetch_whitepaper.py --which edgar -o ../EDGAR_WHITEPAPER_SNAPSHOT.md` (same for `agroverse`, `sunmint`).
-- **Run (all four):**  
-  `python fetch_whitepaper.py --all -o ../`  
-  Writes all four snapshot files in the parent directory.
-- **Snapshot files:** When the script is run successfully (or content is pasted from each doc), LLMs can read these files. They may start as placeholders with instructions to refresh.
-- **Browser fallback:** If the script cannot access a doc, use a browser to open the URL above, let it redirect, and extract/paste the text into the corresponding snapshot file.
+### Reading / editing whitepaper content
+
+- **Read current content:** open the repo page `truesight_me/<area/>whitepaper/index.html`
+  (plain static HTML), or `curl` the live `truesight.me/...` URL. The Main
+  whitepaper has its `#amendments` section and `#rubric` table inline in the page.
+- **Change a whitepaper:** edit the HTML page in `truesight_me` via a normal PR
+  (governance approval still applies for substantive/constitutional changes).
+  **There is no Google Doc to edit anymore.**
+- **Deprecated tooling (history only):** `scripts/fetch_whitepaper.py`, the
+  `*_WHITEPAPER_SNAPSHOT.md` files, and the
+  `truesight_me/credentials/whitepaper-google-sa.json` SA all targeted the
+  retired Google Docs. Don't rely on them for current content.
 
 ---
 
@@ -60,8 +68,8 @@ All truesight.me whitepaper URLs use a JavaScript redirect (and meta refresh) to
 
 | Source | Content | How to access |
 |--------|---------|----------------|
-| **Whitepapers (main)** | Governance + project narrative | Script `scripts/fetch_whitepaper.py` or `--all -o ../`; snapshot: `WHITEPAPER_SNAPSHOT.md`. Or browser to [truesight.me/whitepaper](https://truesight.me/whitepaper). |
-| **Whitepapers (edgar, agroverse, sunmint)** | Edgar, Agroverse, Sunmint whitepapers | Same script: `--which edgar|agroverse|sunmint -o ../*_SNAPSHOT.md` or `--all -o ../`. Snapshots: `EDGAR_WHITEPAPER_SNAPSHOT.md`, `AGROVERSE_WHITEPAPER_SNAPSHOT.md`, `SUNMINT_WHITEPAPER_SNAPSHOT.md`. |
+| **Whitepapers (main)** | Governance + project narrative | **Read `truesight_me/whitepaper/index.html`** (static page; source of truth) or live [truesight.me/whitepaper/](https://truesight.me/whitepaper/). Google Doc + `fetch_whitepaper.py` + `WHITEPAPER_SNAPSHOT.md` are **deprecated** (see §1). |
+| **Whitepapers (edgar, agroverse, sunmint)** | Edgar, Agroverse, Sunmint whitepapers | Read the repo pages `truesight_me/{edgar,agroverse,sunmint}/whitepaper/index.html` (or the live `truesight.me/...` URLs). Old Docs + `*_SNAPSHOT.md` deprecated (see §1). |
 | **Proposals (GitHub)** | Proposal text, PRs, votes | Clone [TrueSightDAO/proposals](https://github.com/TrueSightDAO/proposals) or GitHub API. DApp links above for create/vote/view. |
 | **Proposals (Realms)** | Proposals listed in Solana DAO UI | Browser: [app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7](https://app.realms.today/dao/2yH36PrWii3RthpHtdJVYaPgBzfcSLe7oevvGRavrut7). |
 
