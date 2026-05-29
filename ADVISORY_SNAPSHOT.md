@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-29T10:29:32Z`
+- Generated (UTC): `2026-05-29T16:15:21Z`
 - Look-back: **7** calendar days (`2026-05-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-28T10:59:14.930Z`
+- Generated (UTC): `2026-05-29T10:59:14.250Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -209,6 +209,7 @@ _All dated lines on/after 2026-05-22_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f1ca675 | 2026-05-29 10:32:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f93cc5a | 2026-05-29 04:55:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b0f2307 | 2026-05-28 14:08:44 -0700 | Blog: editorial SVG hero + ground autopilot 36-tools claim so it doesn't date (#151)
 e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's why we open-sourced it.' (#150)
@@ -248,7 +249,6 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 2bd6f35 | 2026-05-22 15:29:00 -0700 | butterfly-effect: populate tokenomics_admin_endpoint (#140)
 a5d1de7 | 2026-05-22 14:58:51 -0700 | butterfly-effect: extend manifest with credentialing fields (#139)
 9cc715b | 2026-05-22 20:22:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
-69ac392 | 2026-05-22 15:37:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -261,6 +261,8 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b1bb433 | 2026-05-29 03:29:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
+f1c8457 | 2026-05-29 03:29:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 70eb551 | 2026-05-28 21:53:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
 86f615f | 2026-05-28 21:53:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 a0b178f | 2026-05-28 20:53:05 -0700 | Merge pull request #235 from TrueSightDAO/auto/advisory-refresh-2026-05-29
@@ -299,8 +301,6 @@ eeab252 | 2026-05-27 11:07:18 -0700 | roadmap: Track A complete — beta.dapp.tr
 f39c3bb | 2026-05-27 09:24:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 72bbffb | 2026-05-27 03:38:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
 8688853 | 2026-05-27 03:38:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
-b795013 | 2026-05-26 23:34:17 -0700 | docs: defer PR7 cleanup + README/blog updates ~30 days for ramp soak (revisit ~2026-06-25) (#220)
-69476d6 | 2026-05-26 21:55:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
 … (truncated)
 ```
 
@@ -464,7 +464,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/29/2026 2:53:04 |
+| 2026-05 | 58.6 | 14977.11386 | 5/29/2026 8:51:52 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-22`; scanned last **396** data rows)
 
