@@ -1025,6 +1025,24 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ---
 
+### Credential vault for service-account keys (AWS Secrets Manager) so cut-over hosts don't ship without creds
+
+**Context.** 2026-05-29: the DApp email-registration flow was down in prod because the standalone `dao_protocol_nelanco` host (stood up in the 2026-05-28 NELANCO cutover) was deployed **without** its Google service-account keys — `edgar_dapp_listener_key.json` existed nowhere on the box and there was no `GOOGLE_CREDS_DIR` in its `.env`, so every email-registration signature write hit `[Errno 2]`. Fixed by hand-scp'ing the 3 SA keys + setting `DAO_PROTOCOL_GOOGLE_CREDS_DIR` (see `NOTES_sentiment_importer.md` § dao_protocol, [dao_protocol#51](https://github.com/TrueSightDAO/dao_protocol/pull/51)). The same class of gap had already bitten the autopilot box. **There is no system of record for these credentials** — they're provisioned by manual SCP from a laptop and scattered across `~/Applications/*/.env`, per-host `config/*.json`, `/opt/truesight_autopilot/config/google/`, and laptop copies. Any new host / re-image silently misses them, and nothing fails at deploy time to catch it.
+
+**Goal / shape.** Stand up a managed secret store as the single source of truth for service-account JSONs + host secrets, fetched at deploy/boot instead of by manual SCP. Prefer **AWS Secrets Manager** or **SSM Parameter Store** (the EC2 fleet already runs in AWS with IAM roles; both give KMS-at-rest, per-secret IAM scoping, CloudTrail audit) over a plaintext folder. Minimum viable slice:
+- Store the 3 Google SA keys (`edgar_dapp_listener`, `cypher_defense_gdrive`, `agroverse_qr_code_gdrive`) as secrets.
+- Give each host an instance-profile IAM role scoped to **only** the secrets it needs.
+- Add a small fetch step to each deploy script (`dao_protocol`, autopilot, Edgar) that pulls its secrets into the expected creds dir on boot/deploy, so `config.py`'s `GOOGLE_CREDS_DIR` resolution (dao_protocol#51) points at a populated dir.
+- Stretch: a `deploy --verify-creds` preflight that fails loudly when a required key is absent — would have caught this incident at cutover instead of in prod.
+
+**Design caution (from the 2026-05-29 discussion with Gary).** Do **not** just dump a folder of every credential onto an internet-facing box an LLM can read + give it "SSH in and fix anything" — that concentrates the whole network's secrets on the highest-value target and crosses the autopilot's deliberate "propose-only, never auto-mutate" boundary. Least-privilege per-host scoping; keep a human-approval gate on any write/mutating path; read-only diagnosis can stay autonomous.
+
+**Blockers.** None technical. Decision needed: Secrets Manager vs SSM Parameter Store vs SOPS+age-in-git. Recommend Secrets Manager (native rotation support).
+
+**Owner.** Unclaimed.
+
+---
+
 ## Recently shipped
 
 ### `/aum` dedicated page + per-ledger click-through on `/treasury` — 2026-05-20
