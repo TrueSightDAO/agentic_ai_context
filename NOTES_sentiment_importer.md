@@ -13,34 +13,70 @@ and the gotchas that bite first-time deployers.
 
 ## Production topology
 
-Two EC2 hosts in the **TRUESIGHT_DAO_AUTOPILOT** AWS account (post-2026-05-11
-migration off the Cypher account). SSH aliases must exist in the operator's
-`~/.ssh/config`:
+> ⚠️ **2026-05-28 NELANCO cutover.** Edgar prod moved to the NELANCO hosts below.
+> The previous EXPLORYA `*_new` aliases (`seni_ror_new` `3.90.179.151`,
+> `seni_sk_new`) are now **STOPPED** — do **not** deploy there. Earlier revisions
+> of this doc listed them as prod; they are not.
 
-| Alias          | IP              | Role                                | Systemd unit      | Monit                                          |
-|----------------|-----------------|-------------------------------------|-------------------|------------------------------------------------|
-| `seni_ror_new` | `3.90.179.151`  | Rails web server (port **3002**)    | `seni_ror.service`| http://3.90.179.151:2812/seni_ror              |
-| `seni_sk_new`  | `54.163.216.235`| Sidekiq workers                     | `seni_sk.service` | http://54.163.216.235:2812/sidekiq             |
+Three EC2 hosts. SSH aliases must exist in the operator's `~/.ssh/config`:
 
-Repo lives at `/home/ubuntu/sentiment_importer` on both hosts. Both services
-run under the `ubuntu` user. Route53 (`edgar.truesight.me`) lives in the
-same TRUESIGHT_DAO_AUTOPILOT account and points at `seni_ror_new`.
+| Alias                  | IP (public / private)        | Role                                          | Systemd unit                     | Monit                                              |
+|------------------------|------------------------------|-----------------------------------------------|----------------------------------|----------------------------------------------------|
+| `seni_ror`             | `54.211.179.126`             | Rails web server (port **3002**) + nginx/TLS  | `seni_ror.service`               | http://54.211.179.126:2812/seni_ror                |
+| `seni_sk_nelanco`      | `100.53.89.222`              | Sidekiq workers                               | `seni_sk.service`                | http://100.53.89.222:2812/sidekiq                  |
+| `dao_protocol_nelanco` | `98.93.94.86` / `172.31.23.207` | **dao_protocol** FastAPI (port **8010**)   | `truesight-dao-protocol.service` | http://98.93.94.86:2812/dao_protocol_nelanco       |
 
-> The pre-migration aliases `seni_ror` (`54.211.179.126`) and `seni_sk`
-> (`3.83.175.151`) point at the Cypher-account hosts. Those instances are
-> kept around for rollback only; do **not** deploy to them.
+Rails repo lives at `/home/ubuntu/sentiment_importer` on `seni_ror` and
+`seni_sk_nelanco`; the dao_protocol service runs from `/home/ubuntu/dao_protocol`
+(EnvironmentFile `/home/ubuntu/dao_protocol/.env`) on `dao_protocol_nelanco`. All
+run under the `ubuntu` user. Route53 (`edgar.truesight.me`) points at `seni_ror`.
 
-> ⚠️ **Sidekiq runs ONLY on `seni_sk_new`, never on the web box `seni_ror_new`.**
-> The `seni_sk.service` unit *file* also exists on `seni_ror_new` (vestigial) but
+> The old Cypher-account aliases `seni_ror` (Cypher) and `seni_sk`
+> (`3.83.175.151`) are unreachable; preserved for forensics only.
+
+> ⚠️ **Sidekiq runs ONLY on `seni_sk_nelanco`, never on the web box `seni_ror`.**
+> The `seni_sk.service` unit *file* also exists on `seni_ror` (vestigial) but
 > is **inactive** there — so `systemctl is-active seni_sk` and `pgrep -f sidekiq`
 > on the web box both come back empty. **Do NOT conclude "Sidekiq is dead / workers
 > aren't running" from the web box** (this has burned at least one LLM session).
-> To check worker health, SSH to the worker host: `ssh seni_sk_new` →
-> `systemctl is-active seni_sk` (→ `active`) / `pgrep -f sidekiq` (→ `sidekiq 5.2.5
-> sentiment_importer …`). Same trap for **worker env vars**: a job's `ENV[...]`
-> (e.g. `AGROVERSE_INVENTORY_*`) is supplied by the `seni_sk.service` unit on
-> **`seni_sk_new`**, so inspect `/proc/<sidekiq_pid>/environ` *there*, not the Rails
-> process on the web box. (Redis-backed queue lives on `seni_redis*`.)
+> To check worker health, SSH to the worker host: `ssh seni_sk_nelanco` →
+> `systemctl is-active seni_sk` (→ `active`) / `pgrep -f sidekiq`. Same trap for
+> **worker env vars**: a job's `ENV[...]` (e.g. `AGROVERSE_INVENTORY_*`) is
+> supplied by the `seni_sk.service` unit on **`seni_sk_nelanco`**, so inspect
+> `/proc/<sidekiq_pid>/environ` *there*, not the Rails process on the web box.
+> (Redis-backed queue lives on `seni_redis*`.)
+
+### dao_protocol runs on its OWN host (not the Edgar box)
+
+Post-cutover, the **dao_protocol** FastAPI service (the Edgar→dao_protocol
+extraction; package `truesight-dao-client`, repo `TrueSightDAO/dao_protocol`)
+runs on **`dao_protocol_nelanco`** (`172.31.23.207:8010`), **not** on `seni_ror`.
+There is no dao_protocol service and nothing on `:8010` on the web box. The
+comment "FastAPI on this box" in `sentiment_importer/config/nginx.conf` is
+**stale** vs the live config.
+
+Edgar's live nginx (`/etc/nginx/sites-available/edgar.conf` on `seni_ror`)
+proxies these routes to `http://172.31.23.207:8010` (dao_protocol); everything
+else — including `/dao/check_digital_signature` — falls through to Rails on
+`127.0.0.1:3002`:
+
+- `= /dao/submit_contribution`
+- `/proxy/gas/`
+- `/newsletter/`, `/email_agent/`
+- `= /agroverse_shop/shipping_rates`
+- `= /qr-code-check`, `= /link-email`
+
+> ⚠️ **Creds gotcha (root-caused 2026-05-29).** `dao_protocol_nelanco` was
+> deployed **without** its Google service-account keys — `edgar_dapp_listener_key.json`
+> existed nowhere on the box and no `DAO_PROTOCOL_GOOGLE_*` / `GOOGLE_CREDS_DIR`
+> in its `.env`. Any dao_protocol endpoint doing a direct SA-keyed Sheets write
+> (e.g. DApp `[EMAIL REGISTERED EVENT]` signature write via `/dao/submit_contribution`)
+> therefore failed with `[Errno 2] No such file or directory: '/home/ubuntu/sentiment_importer/config/edgar_dapp_listener_key.json'`,
+> surfacing in the browser as `Registration failed: …`. (Contribution events
+> survive because they dispatch via a GAS webhook, not a local SA write.) Fix:
+> provision the SA keys on the box + set the creds dir (`dao_protocol#51` makes
+> `config.py` resolve `GOOGLE_CREDS_DIR` / built-in dirs instead of the hardcoded
+> Edgar-box path), then restart `truesight-dao-protocol.service`.
 
 ---
 
@@ -59,7 +95,7 @@ The script's ordering is deliberate:
 
 1. **Stage both hosts in parallel** — `git pull --ff-only` + `bundle install`
    while old processes keep serving. Zero downtime.
-2. **`rake db:migrate` from `seni_sk`** — runs *before* either restart, so
+2. **`rake db:migrate` from `seni_sk_nelanco`** — runs *before* either restart, so
    new code never meets the old schema. (User preference: migrate from the
    Sidekiq host rather than the Rails host.)
 3. **`rake assets:precompile` on `seni_ror` while the old server is still
@@ -69,7 +105,7 @@ The script's ordering is deliberate:
    to "Rails boot" (~11s measured on 2026-04-24).
 4. **`systemctl restart seni_sk`** — workers pick up new code.
 5. **Health check**: port `3002` on `seni_ror`, sidekiq PID + `systemctl
-   is-active` on `seni_sk`.
+   is-active seni_sk` on `seni_sk_nelanco`.
 
 ### There is **no** auto-deploy on master merge
 
@@ -86,8 +122,8 @@ low-traffic hosts can sit on stale code for hours.
 
 ### Prereqs on the operator laptop
 
-- SSH aliases `seni_ror` and `seni_sk` in `~/.ssh/config` with the right
-  key.
+- SSH aliases `seni_ror` and `seni_sk_nelanco` (and `dao_protocol_nelanco`
+  for the FastAPI service) in `~/.ssh/config` with the right key.
 - `gh` CLI authed (for the surrounding PR flow).
 - `ubuntu@` on each host has passwordless `sudo systemctl restart` —
   AWS ubuntu default; verify with `ssh seni_ror sudo -n systemctl is-active seni_ror` if you suspect a custom image.
@@ -159,9 +195,9 @@ later release).
 
 ---
 
-## Nginx — `seni_ror_new` TLS termination
+## Nginx — `seni_ror` TLS termination
 
-`seni_ror_new` runs nginx on :80/:443 in front of the Rails app on
+`seni_ror` runs nginx on :80/:443 in front of the Rails app on
 `127.0.0.1:3002`. TLS comes from Let's Encrypt
 (`/etc/letsencrypt/live/edgar.truesight.me/`), auto-renewed by certbot.
 
@@ -200,7 +236,7 @@ landing page keeps working.
 **Correct heredoc form** (variables stay literal because of the single quotes):
 
 ```bash
-ssh seni_ror_new "sudo bash -c 'cat > /etc/nginx/sites-available/edgar.conf' <<'NGINX'
+ssh seni_ror "sudo bash -c 'cat > /etc/nginx/sites-available/edgar.conf' <<'NGINX'
 server {
   listen 443 ssl http2;
   server_name edgar.truesight.me;
@@ -215,7 +251,7 @@ NGINX"
 vs.
 
 ```bash
-ssh seni_ror_new "sudo bash -c 'cat > /etc/nginx/sites-available/edgar.conf' <<'NGINX'
+ssh seni_ror "sudo bash -c 'cat > /etc/nginx/sites-available/edgar.conf' <<'NGINX'
 …
     proxy_set_header Host $host;                # ← CORRECT inside <<'…' heredoc
 …
