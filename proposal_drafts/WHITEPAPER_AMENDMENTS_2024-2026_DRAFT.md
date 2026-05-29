@@ -135,6 +135,57 @@ exit. Governance tokens earned for contributions are not the instrument being
 reclaimed here. The sentence in the Treasury section that states governance
 tokens are reclaimed on early exit is superseded by this clause.
 
+**20260529I — Governor privileges, updated**
+*Voted in Town Hall — past into effect __________ (set at vote)*
+
+The Governors "Privileges" list is updated to reflect current tooling. Governors
+hold: editing rights to the [Contribution Ledger](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit)
+and to the **Rubric** tab of that same workbook; authority over the DApp
+role/permission system, applied via signed `[DAPP PERMISSION CHANGE EVENT]`s
+through [governor_permissions.html](https://dapp.truesight.me/governor_permissions.html)
+(which updates the canonical `permissions.json`); and administrative rights over
+the DAO's community channels on **both WhatsApp and Telegram** (not WhatsApp
+alone). Duties (dispute resolution, contribution validation and scoring) are
+unchanged. The current roster is published at the
+[Members listing](https://truesight.me/members.html).
+
+**20260529J — Contribution rubric, full table (with correction)**
+*Voted in Town Hall — past into effect __________ (set at vote)*
+
+The Tokenomics section's prose ("100 TDG/hour, 1 TDG/USD") is replaced with the
+full rubric, as maintained in the **Rubric** tab of the
+[Contribution Ledger](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit):
+
+| Category of contribution | Type of contribution | TDG awarded |
+|---|---|---|
+| Provided funds | For every 1 USD of liquidity injected | 1 |
+| Provided labor | For every 1 hour of human effort | 100 |
+| Transactions | For every 1 TDG sent | −1 |
+| Transactions | For every 1 TDG received | +1 |
+
+The "Transactions" rows are denominated in **TDG** (not USDT). *Formatting:* the
+rendered table should not carry the stray whitespace columns currently shown on
+both sides. **Reconciliation flagged:** the `dao_client` CLI today exposes
+contribution types labelled "USDT sent"/"USDT received" — these must be
+reconciled with the TDG-denominated rubric (rename the CLI types, or document the
+USD↔TDG mapping) so the tooling and the constitution agree. The Rubric tab
+remains the canonical source.
+
+### Linking convention — nomenclature → canonical artifact
+
+When the whitepaper (or any amendment) names a DAO artifact, **hyperlink it to
+its source on first use**. Canonical targets:
+
+| Term | Artifact |
+|---|---|
+| Governors / Members | <https://truesight.me/members.html> |
+| Ledger (Contribution Ledger) | <https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit> |
+| Rubric | "Rubric" tab of the Contribution Ledger workbook (same file) |
+| DApp | <https://dapp.truesight.me> |
+| Governor permissions | <https://dapp.truesight.me/governor_permissions.html> |
+| Edgar | <https://edgar.truesight.me> |
+| Beer Hall (archive feed) | <https://truesight.me> (Beer Hall feed) |
+
 ---
 
 ## B. Needs a fresh decision (policy choices for the Assembly)
