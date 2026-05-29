@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-29T16:15:21Z`
+- Generated (UTC): `2026-05-29T20:43:05Z`
 - Look-back: **7** calendar days (`2026-05-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,32 +32,32 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 42
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 40
+- `[EMAIL REGISTERED EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260527213648_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Backtest UX iterations + per-strategy explainer pages
-- `Edgar_20260527214519_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Session closeout: roadmap tracker, beta HTTPS nudge, /ship gate live smoke t…
-- `Edgar_20260527214925_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Backtest explainer pages: illustrative per-strategy charts
-- `Edgar_20260528024844_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Backfill practice event payloads for pk-wR9zU8JMn…
-- `Edgar_20260528030504_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Fix: doGet function conflict between practice_eve…
-- `Edgar_20260528072938_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Progressive move cycling: remove difficulty bias, c…
-- `Edgar_20260528133330_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with Omega Services Isis regarding the packing and the pallets
-- `Edgar_20260528163324_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Closing out the case with Jake’s colleague Cory on the AWS issue
-- `Edgar_20260528192312_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: CI: move Playwright off PR gate → post-deploy against live beta (3 repos)
-- `Edgar_20260528193739_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: [autopilot review] Merge & deploy 3 fix PRs: doGet conflict, auto-backfill, …
-- `Edgar_20260528194659_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] capoeira: ## Swap order: move Generate Session above Practice Hi…
-- `Edgar_20260528202056_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Followed up with AWS billing concerns with the recent hack.
-- `Edgar_20260528204205_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Followed up with the folks from ERA
-- `Edgar_20260528205252_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
-- `Edgar_20260528205402_063` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.30 · Description: Top up for DeepSeek API credits.
-- `Edgar_20260528205951_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## REVERT: Switch contributor/recipient dropdowns fro…
 - `Edgar_20260528210314_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
 - `Edgar_20260528210726_069` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
 - `Edgar_20260528210746_071` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 9ivl8yPM4RlOYC8tKAfMOHjXG230t8ZFFjPgtwkSnFo · Email: garyjob@gmail.com
 - `Edgar_20260528211128_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Autopilot capability expansion + DAO surface refresh — 2026-05-28
+- `Edgar_20260529185311_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Restore prod DApp registration + deploy SA-path fix + topology docs
+- `Edgar_20260529192541_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Restore prod DApp registration + deploy SA-path fix + topology docs
+- `Edgar_20260529192633_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated the documentation for onboarding Kaon's experiential learning plat…
+- `Edgar_20260529192801_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Speeding up the loading of this view via the use of cached JSON on Github
+- `Edgar_20260529192849_009` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260529192910_011` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: TUNDFre69X_vtmFciMbqL7yZ4BemMBFiIo6hyi1577s · Email: garyjob@gmail.com
+- `Edgar_20260529192950_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Autopilot gas_deploy_project capability tool (PR-final-2)
+- `Edgar_20260529193449_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: Add a printable submission receipt (summary section w…
+- `Edgar_20260529200220_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Liz shares about how we are going to finance the planting of 4,0000 trees th…
+- `Edgar_20260529201100_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: deploy_gas_project identity check (PR-1g)
+- `Edgar_20260529201503_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: ## Problem
+- `Edgar_20260529202859_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: GAS final mirror mint + identity pinning (PR-1g + PR-1h)
+- `Edgar_20260529203741_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_prod: ## Problem
+- `Edgar_20260529203840_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
+- `Edgar_20260529204008_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
+- `Edgar_20260529204202_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: GAS routing fix + autopilot role default + identity pinning
 
 ---
 
@@ -209,6 +209,7 @@ _All dated lines on/after 2026-05-22_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5708f5f | 2026-05-29 16:25:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f1ca675 | 2026-05-29 10:32:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f93cc5a | 2026-05-29 04:55:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b0f2307 | 2026-05-28 14:08:44 -0700 | Blog: editorial SVG hero + ground autopilot 36-tools claim so it doesn't date (#151)
@@ -248,7 +249,6 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 1f443ca | 2026-05-22 15:39:36 -0700 | butterfly-effect: point tokenomics_admin_endpoint at v8 (paAuthorize helper added) (#141)
 2bd6f35 | 2026-05-22 15:29:00 -0700 | butterfly-effect: populate tokenomics_admin_endpoint (#140)
 a5d1de7 | 2026-05-22 14:58:51 -0700 | butterfly-effect: extend manifest with credentialing fields (#139)
-9cc715b | 2026-05-22 20:22:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -261,6 +261,16 @@ d7879da | 2026-05-27 14:36:41 -0700 | fix: decode double-base64 encoded content
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+68bb5e3 | 2026-05-29 13:28:55 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1g + PR-1h (#243)
+db5cc91 | 2026-05-29 12:31:52 -0700 | OPEN_FOLLOWUPS: add credential-vault (AWS Secrets Manager) entry (#242)
+487e669 | 2026-05-29 12:27:40 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-final-2 (original sequence complete) (#241)
+cff81e9 | 2026-05-29 11:46:44 -0700 | NOTES_sentiment_importer: refresh for 2026-05-28 NELANCO cutover (#240)
+3774ec2 | 2026-05-29 11:43:21 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-final-1 (#239)
+26e0408 | 2026-05-29 11:18:02 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1f (#238)
+87cc4cf | 2026-05-29 11:08:03 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1e (#237)
+7f9b144 | 2026-05-29 10:53:47 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1d (#236)
+5aefffb | 2026-05-29 09:15:46 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
+9cf4cad | 2026-05-29 09:15:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 b1bb433 | 2026-05-29 03:29:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
 f1c8457 | 2026-05-29 03:29:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 70eb551 | 2026-05-28 21:53:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
@@ -291,22 +301,20 @@ eca3f2d | 2026-05-27 13:33:59 -0700 | chore(previews): refresh Beer Hall preview
 4899a74 | 2026-05-27 13:33:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 12ae2d9 | 2026-05-27 12:19:25 -0700 | add topic-role architecture roadmap for autopilot
 ed145fb | 2026-05-27 11:38:55 -0700 | docs: A3 complete — dapp_prod (fork of dapp_beta) is prod; old dapp archived (#225)
-7f53254 | 2026-05-27 11:30:22 -0700 | update LiteLLM migration roadmap — PR1 deployed
-19ce0f4 | 2026-05-27 11:27:28 -0700 | add LiteLLM harness migration roadmap
-1550f19 | 2026-05-27 11:20:22 -0700 | OPEN_FOLLOWUPS: check AWS case 177613748700177 (Nelanco) response by 2026-05-29 (#224)
-f08e979 | 2026-05-27 11:18:59 -0700 | roadmap A3: capture verified fork convention (prod forks beta; beta stays base) (#223)
-eeab252 | 2026-05-27 11:07:18 -0700 | roadmap: Track A complete — beta.dapp.truesight.me live (Route53 DNS done) (#222)
-8ef2895 | 2026-05-27 10:59:29 -0700 | roadmap: Track A — dapp_beta repo+Pages+CNAME+CI + allowlist done; only DNS left (#221)
-2d55291 | 2026-05-27 09:24:13 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
-f39c3bb | 2026-05-27 09:24:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
-72bbffb | 2026-05-27 03:38:03 -0700 | chore(previews): refresh Beer Hall preview (2026-05-27 UTC)
-8688853 | 2026-05-27 03:38:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-27 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+a13e9a0 | 2026-05-29 13:41:34 -0700 | Bind edgar_send_email_verification.gs to scriptId 1m8IZPs1 (admin@) (#327)
+8e25085 | 2026-05-29 13:21:49 -0700 | PR-1h: mint final missing mirror (1zKgMwd6) — unmirrored count → 0 (#326)
+5fbd837 | 2026-05-29 13:17:04 -0700 | [autopilot] ## Problem
+e68d5e3 | 2026-05-29 12:57:18 -0700 | PR-1g: deploy_gas_project — identity check (owner_email vs active clasp account) (#324)
+fddf234 | 2026-05-29 11:42:07 -0700 | PR-final-1: scripts/deploy_gas_project.py — manifest-driven single-project deploy (#323)
+4ce9f2a | 2026-05-29 11:16:56 -0700 | PR-1f: mint 2 of 3 missing clasp_mirrors (3rd needs admin@ login) (#322)
+f29841e | 2026-05-29 11:06:12 -0700 | PR-1e: orphan cleanup (4 deletes + 1 routing) + docs/gas_orphan_mirror_dispositions.md (#321)
+6e2a6db | 2026-05-29 10:51:11 -0700 | PR-1d: owner_email assignment per Gary's rule (2026-05-28) (#320)
 89b184d | 2026-05-28 15:09:13 -0700 | PR-1c: cache-refresh hook audit (mirror-grounded) (#319)
 4ba1c9a | 2026-05-28 14:51:13 -0700 | PR-1b: pre-flight audits — orphan clasp_mirrors, consumer_callers crawl, /exec probe (#318)
 986ca43 | 2026-05-28 14:40:24 -0700 | PR-1: manifest.json per google_app_scripts/ thematic folder (audit-derived, no file moves) (#317)
@@ -464,7 +472,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/29/2026 8:51:52 |
+| 2026-05 | 58.6 | 14977.11386 | 5/29/2026 12:50:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-22`; scanned last **396** data rows)
 
