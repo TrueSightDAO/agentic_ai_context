@@ -184,15 +184,16 @@ Total PR estimate: 1 audit + 1 manifest-convention PR + ~12-15 restructure PRs +
 
 ## 7. Resume tracker
 
-**RESUME HERE → PR-0 + PR-1 + PR-1b + PR-1c all merged. Manifests now carry audit-derived scriptIds, source-file mappings, consumer_callers (6 scriptIds), probe data (18 deployments, all HTTP 200), and candidate cache-refresh hooks (6 scriptIds — 5 emit `notifyTreasuryCachePublisher_`, 1 dispatches on `'refresh_dao_members_cache'`). All four automatable pre-flight items are done.** PR-2…PR-N held on the operator-gated remainder of §4 (owner_email confirmation, mint the 3 missing mirrors, orphan-mirror disposition, shared-helpers canonicalisation).
+**RESUME HERE → PR-0 + PR-1 + PR-1b + PR-1c + PR-1d all merged. Manifests now carry audit-derived scriptIds, source-file mappings, consumer_callers (6 scriptIds), probe data (18 deployments, all HTTP 200), candidate cache-refresh hooks (6 scriptIds), and operator-confirmed `owner_email` per scriptId (3 admin@truesight.me, 40 garyjob@agroverse.shop). Five automatable + operator-decision pre-flight items are done.** PR-2…PR-N held on the structural pre-flight remainder of §4: mint the 3 missing mirrors (2 of which are now confirmed admin@truesight.me owners — front-load these), orphan-mirror disposition (18 of them, triage hints in PR-1d response), shared-helpers canonicalisation.
 
 | Unit | PR | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|
 | **PR-0** Roadmap (this file)        | [agentic_ai_context#232](https://github.com/TrueSightDAO/agentic_ai_context/pull/232) | ✅ | n/a | ✅ |
 | **PR-1** manifest.json convention   | [tokenomics#317](https://github.com/TrueSightDAO/tokenomics/pull/317) | ✅ | ☐ (no GAS changes) | ✅ |
 | **PR-1b** pre-flight audits (orphan mirrors / consumer_callers / `/exec` probe) | [tokenomics#318](https://github.com/TrueSightDAO/tokenomics/pull/318) | ✅ | ☐ (no GAS changes) | ✅ |
-| **PR-1c** cache-refresh hook audit (mirror-grounded) | [tokenomics#319](https://github.com/TrueSightDAO/tokenomics/pull/319) | ✅ | ☐ (no GAS changes) | ☐ |
-| **Operator pre-flight (§4) remaining** — owner_email per scriptId, mint 3 missing mirrors, orphan-mirror disposition, shared-helpers canonicalisation | n/a (operator) | ☐ | n/a | n/a |
+| **PR-1c** cache-refresh hook audit (mirror-grounded) | [tokenomics#319](https://github.com/TrueSightDAO/tokenomics/pull/319) | ✅ | ☐ (no GAS changes) | ✅ |
+| **PR-1d** owner_email assignment (3 admin@, 40 gary@) | [tokenomics#320](https://github.com/TrueSightDAO/tokenomics/pull/320) | ✅ | ☐ (no GAS changes) | ☐ |
+| **Operator pre-flight (§4) remaining** — mint 3 missing mirrors, orphan-mirror disposition, shared-helpers canonicalisation | n/a (operator) | ☐ | n/a | n/a |
 | **PR-2** restructure folder 1       | tokenomics#TBD | ☐ | ☐ | ☐ |
 | **PR-3** restructure folder 2       | tokenomics#TBD | ☐ | ☐ | ☐ |
 | … one PR per thematic folder …      | tokenomics#TBD | ☐ | ☐ | ☐ |
