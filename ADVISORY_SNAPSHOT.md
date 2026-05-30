@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-30T04:34:05Z`
+- Generated (UTC): `2026-05-30T09:00:22Z`
 - Look-back: **7** calendar days (`2026-05-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -40,9 +40,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260529203741_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_prod: ## Problem
-- `Edgar_20260529203840_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
-- `Edgar_20260529204008_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
 - `Edgar_20260529204202_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: GAS routing fix + autopilot role default + identity pinning
 - `Edgar_20260529205319_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: EC2 deploy + clasprc multi-account documentation
 - `Edgar_20260529210206_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Onboarding invitation email handler (Seth voice, names the inviter)
@@ -60,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260529232728_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: agentic_ai_context: whitepaper source-of-truth cleanup + amendments-draft ma…
 - `Edgar_20260529234307_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Credential vault V1.1 — workspace-root configurability via $TRUESIGHT_WORKSP…
 - `Edgar_20260530021656_063` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260530050109_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Update INTEGRATION_GUIDE.md to clarify that [PRACT…
+- `Edgar_20260530050731_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: The protocol is by design COPPA compliant.
+- `Edgar_20260530051603_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Ask Ken’s help for weight training program
 
 ---
 
@@ -210,6 +210,7 @@ _All dated lines on/after 2026-05-23_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2c44790 | 2026-05-30 04:36:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35d2fa4 | 2026-05-29 16:24:25 -0700 | whitepaper: drop OpenClaw, correct early-exit clause, expand governor privileges (#152)
 aa21db0 | 2026-05-29 20:59:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5708f5f | 2026-05-29 16:25:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -259,6 +260,8 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c5b626a | 2026-05-29 21:34:17 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
+7205b6c | 2026-05-29 21:34:17 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 08e5a7a | 2026-05-29 20:38:20 -0700 | Merge pull request #253 from TrueSightDAO/auto/advisory-refresh-2026-05-30
 2831dc6 | 2026-05-30 03:38:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 343280c | 2026-05-29 16:16:30 -0700 | docs: whitepapers are now static pages in truesight_me (Google Docs deprecated) (#252)
@@ -297,8 +300,6 @@ d1e8595 | 2026-05-28 14:14:30 -0700 | docs(edgar-extraction): DaoMembersCacheRef
 49f37e4 | 2026-05-28 13:43:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
 9bc42e3 | 2026-05-28 13:43:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 82cc2dd | 2026-05-28 13:38:33 -0700 | Add AUTOPILOT_CAPABILITY_MANIFEST_PLAN.md (§5 roadmap) (#229)
-9920597 | 2026-05-28 13:34:29 -0700 | OPEN_FOLLOWUPS: add NELANCO dao_protocol standalone routing decision
-001570d | 2026-05-28 12:54:49 -0700 | Add AUTOPILOT_GOOGLE_ACCESS_PLAN.md — §5 roadmap for autopilot Google + AWS + PDF reach (#228)
 … (truncated)
 ```
 
@@ -353,6 +354,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+db83e3f | 2026-05-30 08:42:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 106386c | 2026-05-29 10:15:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fe87b08 | 2026-05-28 10:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -467,7 +469,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/29/2026 20:50:20 |
+| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 1:50:29 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-23`; scanned last **396** data rows)
 
