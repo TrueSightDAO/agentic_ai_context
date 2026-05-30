@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-30T03:38:05Z`
+- Generated (UTC): `2026-05-30T04:34:05Z`
 - Look-back: **7** calendar days (`2026-05-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 38
+- `[EMAIL REGISTERED EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20260529203741_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_prod: ## Problem
+- `Edgar_20260529203840_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
+- `Edgar_20260529204008_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dapp_beta: ## Problem
+- `Edgar_20260529204202_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: GAS routing fix + autopilot role default + identity pinning
+- `Edgar_20260529205319_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: EC2 deploy + clasprc multi-account documentation
+- `Edgar_20260529210206_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Onboarding invitation email handler (Seth voice, names the inviter)
+- `Edgar_20260529211117_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Governor admin pre-blocks + print-cutoff fix + DAPP_PAGE_CONVENTIONS §9b/§16
+- `Edgar_20260529213722_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: DAPP §9b/§16 sweep batch 1 — 8 pages migrated
+- `Edgar_20260529221506_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: DAPP §9b + §16 sweep — 23 pages adopt signed-request/Edgar-response panel + …
+- `Edgar_20260529221601_043` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Kaon Krasniqi · Contributor Email: kaon.krasniqi2011@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260529221810_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: @⁨Kaon⁩ this is the documentation to have your LLM code link against (_not s…
+- `Edgar_20260529223427_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Whitepaper currency audit: refresh snapshot + draft 2024-2026 amendments
+- `Edgar_20260529224757_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Credential vault V1 — laptop disaster-recovery, encrypted iCloud snapshots v…
+- `Edgar_20260529225601_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Whitepaper review batch: governor privileges, rubric, linking, OpenClaw clea…
+- `Edgar_20260529230705_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Credential vault — migrated to own public repo + LLM-runnable governor onboa…
+- `Edgar_20260529231633_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Credential vault — fix launchd+iCloud rename/unlink quirk; verified end-to-e…
+- `Edgar_20260529232616_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Whitepaper live-page fixes: drop OpenClaw, early-exit equity, governor privi…
+- `Edgar_20260529232728_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: agentic_ai_context: whitepaper source-of-truth cleanup + amendments-draft ma…
+- `Edgar_20260529234307_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Credential vault V1.1 — workspace-root configurability via $TRUESIGHT_WORKSP…
+- `Edgar_20260530021656_063` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 
 ---
 
@@ -132,13 +169,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,991.41**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.30**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -218,6 +259,8 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+08e5a7a | 2026-05-29 20:38:20 -0700 | Merge pull request #253 from TrueSightDAO/auto/advisory-refresh-2026-05-30
+2831dc6 | 2026-05-30 03:38:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 343280c | 2026-05-29 16:16:30 -0700 | docs: whitepapers are now static pages in truesight_me (Google Docs deprecated) (#252)
 c369f8b | 2026-05-29 16:05:28 -0700 | Vault migrated to its own repo — leave LLM routing breadcrumbs (#251)
 3958aaa | 2026-05-29 16:02:43 -0700 | whitepaper rubric: revert Transactions rows to USDT (Gary corrected) (#250)
@@ -256,8 +299,6 @@ d1e8595 | 2026-05-28 14:14:30 -0700 | docs(edgar-extraction): DaoMembersCacheRef
 82cc2dd | 2026-05-28 13:38:33 -0700 | Add AUTOPILOT_CAPABILITY_MANIFEST_PLAN.md (§5 roadmap) (#229)
 9920597 | 2026-05-28 13:34:29 -0700 | OPEN_FOLLOWUPS: add NELANCO dao_protocol standalone routing decision
 001570d | 2026-05-28 12:54:49 -0700 | Add AUTOPILOT_GOOGLE_ACCESS_PLAN.md — §5 roadmap for autopilot Google + AWS + PDF reach (#228)
-4e6813f | 2026-05-28 09:39:22 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
-a2c6c5f | 2026-05-28 09:39:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
 … (truncated)
 ```
 
@@ -402,6 +443,39 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/29/2026 20:50:20 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-23`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
