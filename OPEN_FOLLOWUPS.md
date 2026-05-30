@@ -1306,5 +1306,38 @@ checkout reconcile→SOLD has happened.
 
 **Blocker:** time-gated — let the ramps soak (~30 days, revisit on/after 2026-06-25).
 
+---
+
+## truesight_autopilot: migrate sophia from `certbot --nginx` to `certbot certonly` + repo-owned SSL config — 2026-05-30
+
+**Context.** sophia.truesight.me's TLS deploy uses `certbot --nginx -d sophia.truesight.me ...` in deploy step 4. That mode obtains the Let's Encrypt cert AND mutates the nginx server block in-place — adds `listen 443 ssl`, `ssl_certificate ...`, the 80→443 redirect block, all marked `# managed by Certbot`. Because `/etc/nginx/sites-available/sophia` is a symlink into the repo at `/opt/truesight_autopilot/config/nginx/sophia.conf`, certbot's edits land inside the git checkout. The repo is therefore "dirty" between deploys, and `git pull` refuses to merge with `"Your local changes to the following files would be overwritten"`.
+
+We solved this in [autopilot#77](https://github.com/TrueSightDAO/truesight_autopilot/pull/77) by swapping `git pull` for `git fetch + reset --hard origin/main + clean -fd` in `deploy.py` (matching what `scripts/deploy.sh` already did). Deploys are now idempotent and self-healing: certbot dirties → next deploy resets → certbot re-adds the SSL directives → repeats.
+
+It works, but it's pragmatic rather than clean.
+
+**Goal / shape.** Migrate to `certbot certonly --webroot -w <docroot> -d sophia.truesight.me` so certbot only writes to `/etc/letsencrypt/live/...` and **never touches** the nginx config. The repo's `sophia.conf` becomes the full source of truth — `listen 443 ssl`, `ssl_certificate /etc/letsencrypt/live/sophia.truesight.me/fullchain.pem`, the port-80 redirect server block, all version-controlled. Cert renewal runs via certbot's cron job and reloads nginx without touching any sites-{available,enabled}/sophia file.
+
+**Trade-off snapshot:**
+
+| Concern | Current (autopilot#77) | After migration |
+|---|---|---|
+| Repo dirty between deploys | yes (expected, self-heals) | no, always clean |
+| Bootstrap on a fresh host | certbot --nginx wires SSL automatically | needs an initial cert before nginx with `listen 443 ssl` will start — chicken-and-egg, ~10-line preflight |
+| Cert renewal | re-dirties; next deploy resets | silent (certbot cron + `nginx -s reload`) |
+| SSL config in version control | partial | full |
+| Lines of deploy code | tiny | needs the bootstrap preflight |
+
+**When this becomes worth doing:**
+- A second governor architect deploys the same service and the dirty-repo state confuses them.
+- A Let's Encrypt edge case (renewal failure, multi-domain cert, account migration) produces broken nginx via the auto-edit path.
+- We add a second TLS-bearing subdomain on the same host (the current pattern doesn't compose cleanly — each `certbot --nginx` run re-walks every server block).
+
+**Blockers.** None technical. Choice is taste vs effort. ~2 hours of work: write the cert-presence preflight, fold the SSL directives into `sophia.conf`, change the deploy step, smoke-test on a fresh EC2 (or in a Docker container).
+
+**Owner.** Unclaimed.
+
+---
+
 _(empty — move entries here with a one-line reason when they're no longer
 relevant)_
