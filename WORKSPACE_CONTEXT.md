@@ -253,6 +253,7 @@ Assistants should **not** tie up the session waiting for GitHub Actions to finis
 | **mirim-bahia.truesight.me** | [TrueSightDAO/tribomirimbahia](https://github.com/TrueSightDAO/tribomirimbahia) | **Tribo Bahia Mirim donation transparency explorer.** GitHub Pages from `main` + CNAME. Reads `treasury-cache/managed-ledgers/tribomirimbahia.json` and renders monthly donation/fee/net-to-program table. **Not** the practice platform — that's `capoeira.agroverse.shop`. |
 | **getdata.io** | [KrakeIO/krake_ror](https://github.com/KrakeIO/krake_ror) | Krake Rails backend — **not** Edgar / sentiment_importer |
 | **edgar.truesight.me** | [TrueSightDAO/sentiment_importer](https://github.com/TrueSightDAO/sentiment_importer) | **Edgar** — Rails **sentiment_importer** (DAO API, Sidekiq, Meta checkout helpers). Public: **`/agroverse_shop/shipping_rates`**, **`/meta_checkout`**, **`/ping`**, etc. **Not** krake_ror / getdata.io |
+| **sophia.truesight.me** | [TrueSightDAO/truesight_autopilot](https://github.com/TrueSightDAO/truesight_autopilot) | **Sophia** — DAO wisdom layer (autopilot). Oracle advisory, governor chat, autonomous SRE, code generation. Nginx reverse proxy on autopilot EC2 (`100.52.234.163`). DNS A record → `100.52.234.163`. |
 
 - `truesight_me/` in the workspace may be the beta repo (truesight_me or truesight_me_beta); changes for production go to **truesight_me_prod**.
 - `agroverse_shop/` in the workspace may be the beta repo (agroverse_shop_beta); changes for production go to **agroverse_shop_prod**.
