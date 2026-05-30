@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-30T14:13:35Z`
+- Generated (UTC): `2026-05-30T19:49:08Z`
 - Look-back: **7** calendar days (`2026-05-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,20 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 38
-- `[EMAIL REGISTERED EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 36
+- `[EMAIL REGISTERED EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 2
+- `[PRACTICE EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260529204202_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: GAS routing fix + autopilot role default + identity pinning
-- `Edgar_20260529205319_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: EC2 deploy + clasprc multi-account documentation
-- `Edgar_20260529210206_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Onboarding invitation email handler (Seth voice, names the inviter)
-- `Edgar_20260529211117_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Governor admin pre-blocks + print-cutoff fix + DAPP_PAGE_CONVENTIONS §9b/§16
-- `Edgar_20260529213722_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: DAPP §9b/§16 sweep batch 1 — 8 pages migrated
-- `Edgar_20260529221506_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: DAPP §9b + §16 sweep — 23 pages adopt signed-request/Edgar-response panel + …
 - `Edgar_20260529221601_043` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Kaon Krasniqi · Contributor Email: kaon.krasniqi2011@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
 - `Edgar_20260529221810_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: @⁨Kaon⁩ this is the documentation to have your LLM code link against (_not s…
 - `Edgar_20260529223427_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Whitepaper currency audit: refresh snapshot + draft 2024-2026 amendments
@@ -60,6 +54,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260530050109_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Update INTEGRATION_GUIDE.md to clarify that [PRACT…
 - `Edgar_20260530050731_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: The protocol is by design COPPA compliant.
 - `Edgar_20260530051603_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Ask Ken’s help for weight training program
+- `Edgar_20260530141549_071` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyja9OujZIqpF6AUqwyqd…
+- `Edgar_20260530142658_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add a public /oracle-advisory endpoint to t…
+- `Edgar_20260530143506_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add a self-deploy endpoint to app/main.py. …
+- `Edgar_20260530143811_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the deploy_autopilot tool in app/tools/…
+- `Edgar_20260530144509_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: truesight_autopilot — production deploy of PRs #63 + #64 + #65
+- `Edgar_20260530164231_081` · **Edgar** · [EMAIL REGISTERED EVENT] Email: kaon.krasniqi2011@gmail.com
 
 ---
 
@@ -210,6 +210,7 @@ _All dated lines on/after 2026-05-23_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8c40ca5 | 2026-05-30 14:16:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9fc185a | 2026-05-30 09:01:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2c44790 | 2026-05-30 04:36:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35d2fa4 | 2026-05-29 16:24:25 -0700 | whitepaper: drop OpenClaw, correct early-exit clause, expand governor privileges (#152)
@@ -249,7 +250,7 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 52e88fc | 2026-05-23 08:36:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6254c06 | 2026-05-23 04:27:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 43900c7 | 2026-05-22 17:09:40 -0700 | blog: rewrite "The chain holds" — tighter post + SVG hero (#144)
-0519f8b | 2026-05-22 17:00:05 -0700 | blog: add "The chain holds" (Field Signals #7) (#143)
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -261,6 +262,8 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+56dd0c1 | 2026-05-30 07:13:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
+f08f508 | 2026-05-30 07:13:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 9472345 | 2026-05-30 02:00:35 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
 efaab09 | 2026-05-30 02:00:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 c5b626a | 2026-05-29 21:34:17 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
@@ -299,8 +302,6 @@ e8f99f6 | 2026-05-28 15:13:11 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update re
 7956456 | 2026-05-28 14:40:14 -0700 | Add TOKENOMICS_GAS_RESTRUCTURE_PLAN.md (§5 roadmap) (#232)
 0587d73 | 2026-05-28 14:26:10 -0700 | docs(edgar-extraction): durable Tenant B Sidekiq-worker audit (4 of ~100; all ported) (#231)
 8f172ed | 2026-05-28 14:22:49 -0700 | OPEN_FOLLOWUPS: post-EXPLORYA→NELANCO cutover backlog
-d1e8595 | 2026-05-28 14:14:30 -0700 | docs(edgar-extraction): DaoMembersCacheRefreshWorker now ported (#45) (#230)
-49f37e4 | 2026-05-28 13:43:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
 … (truncated)
 ```
 
@@ -470,7 +471,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 6:51:03 |
+| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 11:52:29 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-23`; scanned last **396** data rows)
 
