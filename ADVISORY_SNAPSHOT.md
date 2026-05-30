@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-30T09:00:22Z`
+- Generated (UTC): `2026-05-30T14:13:35Z`
 - Look-back: **7** calendar days (`2026-05-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-29T10:59:14.250Z`
+- Generated (UTC): `2026-05-30T10:59:14.869Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -210,6 +210,7 @@ _All dated lines on/after 2026-05-23_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9fc185a | 2026-05-30 09:01:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2c44790 | 2026-05-30 04:36:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35d2fa4 | 2026-05-29 16:24:25 -0700 | whitepaper: drop OpenClaw, correct early-exit clause, expand governor privileges (#152)
 aa21db0 | 2026-05-29 20:59:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -260,6 +261,8 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9472345 | 2026-05-30 02:00:35 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
+efaab09 | 2026-05-30 02:00:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 c5b626a | 2026-05-29 21:34:17 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
 7205b6c | 2026-05-29 21:34:17 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 08e5a7a | 2026-05-29 20:38:20 -0700 | Merge pull request #253 from TrueSightDAO/auto/advisory-refresh-2026-05-30
@@ -298,8 +301,6 @@ e8f99f6 | 2026-05-28 15:13:11 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update re
 8f172ed | 2026-05-28 14:22:49 -0700 | OPEN_FOLLOWUPS: post-EXPLORYA→NELANCO cutover backlog
 d1e8595 | 2026-05-28 14:14:30 -0700 | docs(edgar-extraction): DaoMembersCacheRefreshWorker now ported (#45) (#230)
 49f37e4 | 2026-05-28 13:43:44 -0700 | chore(previews): refresh Beer Hall preview (2026-05-28 UTC)
-9bc42e3 | 2026-05-28 13:43:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-28 UTC)
-82cc2dd | 2026-05-28 13:38:33 -0700 | Add AUTOPILOT_CAPABILITY_MANIFEST_PLAN.md (§5 roadmap) (#229)
 … (truncated)
 ```
 
@@ -469,7 +470,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 1:50:29 |
+| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 6:51:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-23`; scanned last **396** data rows)
 
