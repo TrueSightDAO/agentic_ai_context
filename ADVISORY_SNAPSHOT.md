@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-31T14:17:36Z`
+- Generated (UTC): `2026-05-31T19:49:26Z`
 - Look-back: **7** calendar days (`2026-05-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CREDENTIALING ATTESTATION EVENT]` × 43
-- `[PRACTICE EVENT]` × 1
+- `[CREDENTIALING ATTESTATION EVENT]` × 37
+- `[CONTRIBUTION EVENT]` × 5
+- `[PRACTICE EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260531082143_285` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082144_287` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082147_289` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082148_291` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082150_293` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082155_295` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082158_297` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082200_299` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082203_301` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
@@ -57,6 +52,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260531082258_319` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531083039_321` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531114635_323` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvG7s41fBC2SSya1eWoAY…
+- `Edgar_20260531150858_325` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussing about the chocolate production pipeline setup
+- `Edgar_20260531151353_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion of China approach to cacao
+- `Edgar_20260531153517_329` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260531160247_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discussion about utilizing the Meta suit framework for extension to cover di…
+- `Edgar_20260531161556_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Drove over to Kirsten place to drop off the cacao
+- `Edgar_20260531163448_335` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Just a food for thought
 
 ---
 
@@ -207,6 +208,9 @@ _All dated lines on/after 2026-05-24_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f89cf94 | 2026-05-31 11:15:23 -0700 | Load oracle payload renderer on truesight-grounding credential page
+5f954fc | 2026-05-31 11:14:22 -0700 | Mirror oracle payload renderer from prod
+83079c3 | 2026-05-31 14:20:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5732e8d | 2026-05-31 09:34:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5db9c97 | 2026-05-30 23:24:34 -0700 | Add TrueSight Grounding program card to programs listing
 3360f45 | 2026-05-30 23:22:37 -0700 | Add truesight-grounding credential CV page
@@ -244,9 +248,6 @@ b0e0616 | 2026-05-26 10:35:38 +0000 | chore(stats): refresh stats/current.json [
 e16f0ad | 2026-05-25 20:12:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 90d2184 | 2026-05-25 15:38:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 abc32ce | 2026-05-25 10:57:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
-2d1d671 | 2026-05-25 05:08:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d0daab6 | 2026-05-24 16:26:59 -0700 | blog: add 'The checklist that lets you do nothing' (Do Nothing Society) (#145)
-d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -259,6 +260,9 @@ d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4eb9bad | 2026-05-31 12:44:55 -0700 | Create OPEN_FOLLOW_UPS.md documenting autopilot tooling gaps
+6748c19 | 2026-05-31 07:17:49 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
+a24e4dd | 2026-05-31 07:17:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 b58a0f2 | 2026-05-31 02:29:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
 adb246f | 2026-05-31 02:29:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 a21f406 | 2026-05-30 22:00:38 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
@@ -296,9 +300,6 @@ f8a41dc | 2026-05-29 15:47:35 -0700 | Credential vault V1 — encrypted iCloud b
 8f63325 | 2026-05-29 13:43:28 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
 46db7d2 | 2026-05-29 13:43:27 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 68bb5e3 | 2026-05-29 13:28:55 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1g + PR-1h (#243)
-db5cc91 | 2026-05-29 12:31:52 -0700 | OPEN_FOLLOWUPS: add credential-vault (AWS Secrets Manager) entry (#242)
-487e669 | 2026-05-29 12:27:40 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-final-2 (original sequence complete) (#241)
-cff81e9 | 2026-05-29 11:46:44 -0700 | NOTES_sentiment_importer: refresh for 2026-05-28 NELANCO cutover (#240)
 … (truncated)
 ```
 
@@ -473,7 +474,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 6:50:22 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 11:50:25 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-24`; scanned last **396** data rows)
 
