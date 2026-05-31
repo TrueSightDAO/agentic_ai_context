@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-31T09:29:32Z`
+- Generated (UTC): `2026-05-31T14:17:36Z`
 - Look-back: **7** calendar days (`2026-05-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,11 +32,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CREDENTIALING ATTESTATION EVENT]` × 44
+- `[CREDENTIALING ATTESTATION EVENT]` × 43
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260531082139_283` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082143_285` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082144_287` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082147_289` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
@@ -56,6 +56,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260531082231_317` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082258_319` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531083039_321` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531114635_323` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvG7s41fBC2SSya1eWoAY…
 
 ---
 
@@ -73,7 +74,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-05-30T10:59:14.869Z`
+- Generated (UTC): `2026-05-31T10:59:14.594Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -206,6 +207,7 @@ _All dated lines on/after 2026-05-24_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5732e8d | 2026-05-31 09:34:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5db9c97 | 2026-05-30 23:24:34 -0700 | Add TrueSight Grounding program card to programs listing
 3360f45 | 2026-05-30 23:22:37 -0700 | Add truesight-grounding credential CV page
 585f5a2 | 2026-05-30 23:22:19 -0700 | Add truesight-grounding cohort page
@@ -245,7 +247,6 @@ abc32ce | 2026-05-25 10:57:41 +0000 | chore(stats): refresh stats/current.json [
 2d1d671 | 2026-05-25 05:08:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d0daab6 | 2026-05-24 16:26:59 -0700 | blog: add 'The checklist that lets you do nothing' (Do Nothing Society) (#145)
 d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
-00db8cc | 2026-05-24 14:09:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -258,6 +259,8 @@ d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b58a0f2 | 2026-05-31 02:29:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
+adb246f | 2026-05-31 02:29:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 a21f406 | 2026-05-30 22:00:38 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
 439fe51 | 2026-05-30 22:00:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 5bbcd89 | 2026-05-30 21:55:29 -0700 | docs: update oracle plan with truesight-grounding naming, timing flow, and program page scope
@@ -296,8 +299,6 @@ f8a41dc | 2026-05-29 15:47:35 -0700 | Credential vault V1 — encrypted iCloud b
 db5cc91 | 2026-05-29 12:31:52 -0700 | OPEN_FOLLOWUPS: add credential-vault (AWS Secrets Manager) entry (#242)
 487e669 | 2026-05-29 12:27:40 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-final-2 (original sequence complete) (#241)
 cff81e9 | 2026-05-29 11:46:44 -0700 | NOTES_sentiment_importer: refresh for 2026-05-28 NELANCO cutover (#240)
-3774ec2 | 2026-05-29 11:43:21 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-final-1 (#239)
-26e0408 | 2026-05-29 11:18:02 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1f (#238)
 … (truncated)
 ```
 
@@ -472,7 +473,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 1:52:03 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 6:50:22 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-24`; scanned last **396** data rows)
 
