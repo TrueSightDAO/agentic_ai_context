@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-30T19:49:08Z`
-- Look-back: **7** calendar days (`2026-05-23` → today UTC)
+- Generated (UTC): `2026-05-31T04:04:58Z`
+- Look-back: **7** calendar days (`2026-05-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 36
-- `[EMAIL REGISTERED EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
-- `[CONTRIBUTOR ADD EVENT]` × 1
-
-### Latest entries
-
-- `Edgar_20260529221601_043` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Kaon Krasniqi · Contributor Email: kaon.krasniqi2011@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
-- `Edgar_20260529221810_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: @⁨Kaon⁩ this is the documentation to have your LLM code link against (_not s…
-- `Edgar_20260529223427_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Whitepaper currency audit: refresh snapshot + draft 2024-2026 amendments
-- `Edgar_20260529224757_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Credential vault V1 — laptop disaster-recovery, encrypted iCloud snapshots v…
-- `Edgar_20260529225601_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Whitepaper review batch: governor privileges, rubric, linking, OpenClaw clea…
-- `Edgar_20260529230705_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Credential vault — migrated to own public repo + LLM-runnable governor onboa…
-- `Edgar_20260529231633_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Credential vault — fix launchd+iCloud rename/unlink quirk; verified end-to-e…
-- `Edgar_20260529232616_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Whitepaper live-page fixes: drop OpenClaw, early-exit equity, governor privi…
-- `Edgar_20260529232728_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: agentic_ai_context: whitepaper source-of-truth cleanup + amendments-draft ma…
-- `Edgar_20260529234307_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Credential vault V1.1 — workspace-root configurability via $TRUESIGHT_WORKSP…
-- `Edgar_20260530021656_063` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260530050109_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Update INTEGRATION_GUIDE.md to clarify that [PRACT…
-- `Edgar_20260530050731_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: The protocol is by design COPPA compliant.
-- `Edgar_20260530051603_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Ask Ken’s help for weight training program
-- `Edgar_20260530141549_071` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyja9OujZIqpF6AUqwyqd…
-- `Edgar_20260530142658_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add a public /oracle-advisory endpoint to t…
-- `Edgar_20260530143506_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add a self-deploy endpoint to app/main.py. …
-- `Edgar_20260530143811_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the deploy_autopilot tool in app/tools/…
-- `Edgar_20260530144509_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: truesight_autopilot — production deploy of PRs #63 + #64 + #65
-- `Edgar_20260530164231_081` · **Edgar** · [EMAIL REGISTERED EVENT] Email: kaon.krasniqi2011@gmail.com
 
 ---
 
@@ -67,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 215 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 215 | — |
+| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 214 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 214 | — |
 
 ---
 
@@ -169,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,991.41**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$40.30**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -189,7 +148,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-05-23_ (1):
+_All dated lines on/after 2026-05-24_ (1):
 
 - 2026-05-24 | claude | OPERATING_INSTRUCTIONS §5 execution-roadmap convention; EDGAR_DAO_EXTRACTION_PLAN.md (Edgar→dao_protocol PR0–7 + resume tracker); STRIPE_LEDGER_ROUTING Flow 5 (consumer QR→Edgar server-side Stripe).
 
@@ -201,7 +160,7 @@ _All dated lines on/after 2026-05-23_ (1):
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **no** |
+| `oracle` | `iching_oracle` | **yes** |
 
 ---
 
@@ -210,6 +169,7 @@ _All dated lines on/after 2026-05-23_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+67c13a9 | 2026-05-30 19:51:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8c40ca5 | 2026-05-30 14:16:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9fc185a | 2026-05-30 09:01:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2c44790 | 2026-05-30 04:36:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -245,12 +205,6 @@ d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [
 00db8cc | 2026-05-24 14:09:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 11b6cdd | 2026-05-24 09:06:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35f1f10 | 2026-05-24 04:49:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
-82ce1bd | 2026-05-23 19:46:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
-fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
-52e88fc | 2026-05-23 08:36:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6254c06 | 2026-05-23 04:27:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
-43900c7 | 2026-05-22 17:09:40 -0700 | blog: rewrite "The chain holds" — tighter post + SVG hero (#144)
-… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -262,6 +216,11 @@ fb975c0 | 2026-05-23 14:11:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4dad2be | 2026-05-30 18:35:03 -0700 | OPEN_FOLLOWUPS: log dao_client pip-compile-every-deploy cost (#256)
+c215670 | 2026-05-30 16:31:30 -0700 | OPEN_FOLLOWUPS: log sophia certbot --nginx → certonly migration (#255)
+6c85086 | 2026-05-30 15:44:33 -0700 | Add Sophia development workflow notes
+526b7d4 | 2026-05-30 12:49:27 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
+d1797f1 | 2026-05-30 12:49:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 56dd0c1 | 2026-05-30 07:13:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
 f08f508 | 2026-05-30 07:13:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 9472345 | 2026-05-30 02:00:35 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
@@ -297,11 +256,6 @@ f1c8457 | 2026-05-29 03:29:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 86f615f | 2026-05-28 21:53:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 a0b178f | 2026-05-28 20:53:05 -0700 | Merge pull request #235 from TrueSightDAO/auto/advisory-refresh-2026-05-29
 a71f51e | 2026-05-29 03:52:55 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
-e8f99f6 | 2026-05-28 15:13:11 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update resume tracker after PR-1c (#234)
-92cba2f | 2026-05-28 14:54:37 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: update resume tracker after PR-1b (#233)
-7956456 | 2026-05-28 14:40:14 -0700 | Add TOKENOMICS_GAS_RESTRUCTURE_PLAN.md (§5 roadmap) (#232)
-0587d73 | 2026-05-28 14:26:10 -0700 | docs(edgar-extraction): durable Tenant B Sidekiq-worker audit (4 of ~100; all ported) (#231)
-8f172ed | 2026-05-28 14:22:49 -0700 | OPEN_FOLLOWUPS: post-EXPLORYA→NELANCO cutover backlog
 … (truncated)
 ```
 
@@ -364,7 +318,6 @@ ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory
 6be5d94 | 2026-05-25 10:59:53 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 26d4588 | 2026-05-25 10:51:34 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c100ac2 | 2026-05-24 08:46:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-bbf5afa | 2026-05-23 08:33:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -382,7 +335,8 @@ b23cc95 | 2026-05-24 16:39:42 -0700 | QR landing: add opt-in checkbox to join th
 ### `iching_oracle` → `oracle`
 
 ```
-_(no commits on origin/main in window)_
+64dc42d | 2026-05-30 16:29:52 -0700 | [autopilot] Fix index.html (#23)
+416a7c7 | 2026-05-30 15:38:34 -0700 | [autopilot] Cut over the DAO Advisory panel from GAS/Grok to autopilot/D (#22)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -401,6 +355,15 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-05-31T040458Z_sophia-self-deploy-and-advisory-cutover.md`
+
+- **posted_at_utc:** `2026-05-31T04:04:58Z`  
+- **slug:** `sophia-self-deploy-and-advisory-cutover`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
+  - **Oracle (AI)** — DAO Advisory panel switched from GAS/Grok to the Autopilot agent (Sophia) for live responses.
+
 ### `beer-hall_2026-05-30T033805Z_gas-restructure-vault-and-whitepaper.md`
 
 - **posted_at_utc:** `2026-05-30T03:38:05Z`  
@@ -418,15 +381,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
   OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
   - **Blog** — "We let an AI run our DAO. Here's why we open-sourced it" published.
-
-### `beer-hall_2026-05-28T035227Z_dapp-prod-split-and-autopilot-gates.md`
-
-- **posted_at_utc:** `2026-05-28T03:52:27Z`  
-- **slug:** `dapp-prod-split-and-autopilot-gates`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
-  - **DApp split** — Track A complete: `beta.dapp.truesight.me` live; prod/beta fork convention (A3) established.
 
 ---
 
@@ -450,43 +404,11 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 ---
 
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 11:52:29 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-23`; scanned last **396** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
-
----
-
 ## Recent agent notes (`agentic_ai_context/notes/`)
 
 - `notes/claude_donation_mint_2026-04-30.md`
 - `notes/claude_serialized_qr_sales_2026-04-29.md`
+- `notes/sophia_development_workflow.md`
 
 ---
 
