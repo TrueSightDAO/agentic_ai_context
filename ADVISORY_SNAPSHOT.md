@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-31T05:00:18Z`
+- Generated (UTC): `2026-05-31T09:29:32Z`
 - Look-back: **7** calendar days (`2026-05-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,34 +32,30 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 38
-- `[PRACTICE EVENT]` × 2
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- `[EMAIL REGISTERED EVENT]` × 1
-- _free-form (no bracket tag)_ × 2
+- `[CREDENTIALING ATTESTATION EVENT]` × 44
 
 ### Latest entries
 
-- `Edgar_20260530221552_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add "Change" to the AWS read-only allowlist…
-- `Edgar_20260530221746_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix deploy.py local path: replace 'source .…
-- `Edgar_20260530223329_093` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The file app/tools/orchestration_specs.py h…
-- `Edgar_20260530223645_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: Cut over the DAO Advisory panel from GAS/Grok to autopil…
-- `Edgar_20260530224203_097` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Create a reference nginx config file at dep…
-- `Edgar_20260530224529_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: Cut over the DAO Advisory panel from GAS/Grok to autopil…
-- `Edgar_20260530224556_101` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add nginx setup to scripts/deploy.sh. After…
-- `Edgar_20260530224935_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the deploy tool (app/tools/deploy.py) l…
-- `Edgar_20260530231357_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: truesight_autopilot — self-deploy capability fixed + validated end-to-end
-- `Edgar_20260530232603_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: truesight_autopilot — sophia HSTS + self-deploy hardening (PRs #75 + #76 + #…
-- `Edgar_20260530233232_109` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add a root `/` landing page for sophia.true…
-- `Edgar_20260531010527_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: CORS headers missing on /oracle-advisory en…
-- `Edgar_20260531011715_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix /oracle-advisory endpoint: CORS errors …
-- `Edgar_20260531012121_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Create .github/workflows/pre-merge.yml with…
-- `Edgar_20260531012643_117` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix deploy_autopilot OOM failure on t3.smal…
-- `Edgar_20260531014241_119` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: truesight_autopilot — post-mortem on autopilot-shipped #78 + #83 (4 fixes sh…
-- `Edgar_20260531014854_121` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: truesight_autopilot — fix duplicate CORS header on /oracle-advisory (PR #86)
-- `Edgar_20260531041507_123` · **Edgar** · [No Text Provided]
-- `Edgar_20260531041511_125` · **Edgar** · [No Text Provided]
-- `Edgar_20260531042309_127` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Wire onboarding invitation email into [CONTRIBUTOR…
+- `Edgar_20260531082139_283` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082143_285` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082144_287` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082147_289` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082148_291` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082150_293` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082155_295` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082158_297` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082200_299` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082203_301` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082205_303` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082211_305` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082214_307` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082217_309` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082220_311` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082222_313` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082229_315` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082231_317` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082258_319` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531083039_321` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 
 ---
 
@@ -210,6 +206,12 @@ _All dated lines on/after 2026-05-24_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5db9c97 | 2026-05-30 23:24:34 -0700 | Add TrueSight Grounding program card to programs listing
+3360f45 | 2026-05-30 23:22:37 -0700 | Add truesight-grounding credential CV page
+585f5a2 | 2026-05-30 23:22:19 -0700 | Add truesight-grounding cohort page
+03aa988 | 2026-05-30 23:22:01 -0700 | Add truesight-grounding program landing page
+f4ad625 | 2026-05-30 23:21:48 -0700 | Add truesight-grounding program manifest
+575294d | 2026-05-31 05:06:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
 67c13a9 | 2026-05-30 19:51:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8c40ca5 | 2026-05-30 14:16:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9fc185a | 2026-05-30 09:01:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -244,8 +246,7 @@ abc32ce | 2026-05-25 10:57:41 +0000 | chore(stats): refresh stats/current.json [
 d0daab6 | 2026-05-24 16:26:59 -0700 | blog: add 'The checklist that lets you do nothing' (Do Nothing Society) (#145)
 d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 00db8cc | 2026-05-24 14:09:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
-11b6cdd | 2026-05-24 09:06:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
-35f1f10 | 2026-05-24 04:49:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -257,6 +258,8 @@ d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a21f406 | 2026-05-30 22:00:38 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
+439fe51 | 2026-05-30 22:00:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 5bbcd89 | 2026-05-30 21:55:29 -0700 | docs: update oracle plan with truesight-grounding naming, timing flow, and program page scope
 f6c0337 | 2026-05-30 21:54:38 -0700 | docs: update oracle plan with truesight-grounding naming, timing flow, and program page scope
 e9db434 | 2026-05-30 21:50:59 -0700 | docs: truesight-grounding oracle draw implementation plan and roadmap
@@ -295,8 +298,6 @@ db5cc91 | 2026-05-29 12:31:52 -0700 | OPEN_FOLLOWUPS: add credential-vault (AWS 
 cff81e9 | 2026-05-29 11:46:44 -0700 | NOTES_sentiment_importer: refresh for 2026-05-28 NELANCO cutover (#240)
 3774ec2 | 2026-05-29 11:43:21 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-final-1 (#239)
 26e0408 | 2026-05-29 11:18:02 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1f (#238)
-87cc4cf | 2026-05-29 11:08:03 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1e (#237)
-7f9b144 | 2026-05-29 10:53:47 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1d (#236)
 … (truncated)
 ```
 
@@ -351,6 +352,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b34d300 | 2026-05-31 09:25:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 db83e3f | 2026-05-30 08:42:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 106386c | 2026-05-29 10:15:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fe87b08 | 2026-05-28 10:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -376,6 +378,9 @@ b23cc95 | 2026-05-24 16:39:42 -0700 | QR landing: add opt-in checkbox to join th
 ### `iching_oracle` → `oracle`
 
 ```
+22c59f3 | 2026-05-30 22:12:58 -0700 | [autopilot] Rewrite oracle-draw-submit.js to auto-submit and replace Rec (#25)
+6f0a35b | 2026-05-30 22:03:02 -0700 | fix: remove scripts/draw.js reference, use inline script from index.html
+d669f9e | 2026-05-30 22:01:05 -0700 | feat: add oracle draw page with practice event submission
 f6859d5 | 2026-05-30 21:59:55 -0700 | feat: add oracle draw practice event submission logic
 64dc42d | 2026-05-30 16:29:52 -0700 | [autopilot] Fix index.html (#23)
 416a7c7 | 2026-05-30 15:38:34 -0700 | [autopilot] Cut over the DAO Advisory panel from GAS/Grok to autopilot/D (#22)
@@ -467,7 +472,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 21:51:34 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 1:52:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-24`; scanned last **396** data rows)
 
