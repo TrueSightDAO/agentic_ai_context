@@ -1308,6 +1308,33 @@ checkout reconcile→SOLD has happened.
 
 ---
 
+## truesight_autopilot: stop compiling `dao_client` native extensions on every deploy — 2026-05-30
+
+**Context.** Every `deploy_autopilot()` invocation runs `pip install -r requirements.txt`, which includes:
+
+```
+truesight-dao-client @ git+https://github.com/TrueSightDAO/dao_client.git
+```
+
+pip git-clones the repo into `/tmp/pip-install-*/...`, then builds the wheel — which **compiles `cryptography` + `cffi` native extensions** (cryptography is a transitive dep of dao_client). On a t3.small this takes 30–60 s. The compile is a long-running CPU-bound subprocess that's vulnerable to SIGTERM cascades from parent worker restarts — surfaced as `Phase-two subprocess failed (exit=-15)` errors on 2026-05-30 ([autopilot#83](https://github.com/TrueSightDAO/truesight_autopilot/pull/83) was an LLM-generated PR that misdiagnosed this as OOM; closed). It's also the slowest single step of the deploy by ~10×.
+
+**Options, in increasing order of effort:**
+
+1. **Pin to a release tag + cache `~/.cache/pip` between deploys.** Add `@vX.Y.Z` to the requirements line so pip's resolver short-circuits when the tag is unchanged. Cheapest; eliminates redundant builds for unchanged versions but still rebuilds on each version bump.
+2. **Publish `dao_client` as a wheel.** Either to public PyPI (matches DAO transparency posture) or to a private artifact store (GitHub Packages, internal index). pip pulls a binary; no compile. Best long-term; needs CI on dao_client to build + push on each release.
+3. **Vendor `dao_client` into `truesight_autopilot`.** Copy `truesight_dao_client/` into autopilot, drop the git+ dep. Decouples deploy speed from dao_client's release cadence. Costs duplication; loses single-source-of-truth.
+4. **Switch native deps for pure-Python alternatives.** cryptography → PyCryptodome (also has C, but easier wheels) or pure-Python RSA. Bigger refactor in dao_client; affects signed-event throughput.
+
+**Recommendation.** Start with (1) — five-minute change in `requirements.txt`. If deploy time still dominates after that, do (2). (3) and (4) are escape hatches if dao_client's release cadence becomes a deployment bottleneck.
+
+**Related architectural concern (separate but adjacent).** The deploy's phase-two subprocess runs inside the autopilot worker's cgroup, so any worker restart (LLM tool retry, telegram-adapter race, ELB-driven restart) propagates SIGTERM into the pip subprocess and kills the compile. Fixing the compile cost via (1)/(2) shrinks the window where this can bite. The "right" fix for the cgroup-coupling itself is to run phase-two via `systemd-run --collect --unit deploy.$(date +%s)` so it's isolated from the worker's lifetime — log as a separate follow-up if pip-compile cost stops being the limiting factor.
+
+**Blocker.** None. Ship (1) immediately when convenient.
+
+**Owner.** Unclaimed.
+
+---
+
 ## truesight_autopilot: migrate sophia from `certbot --nginx` to `certbot certonly` + repo-owned SSL config — 2026-05-30
 
 **Context.** sophia.truesight.me's TLS deploy uses `certbot --nginx -d sophia.truesight.me ...` in deploy step 4. That mode obtains the Let's Encrypt cert AND mutates the nginx server block in-place — adds `listen 443 ssl`, `ssl_certificate ...`, the 80→443 redirect block, all marked `# managed by Certbot`. Because `/etc/nginx/sites-available/sophia` is a symlink into the repo at `/opt/truesight_autopilot/config/nginx/sophia.conf`, certbot's edits land inside the git checkout. The repo is therefore "dirty" between deploys, and `git pull` refuses to merge with `"Your local changes to the following files would be overwritten"`.
