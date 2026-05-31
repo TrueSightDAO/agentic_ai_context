@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-05-31T04:04:58Z`
+- Generated (UTC): `2026-05-31T05:00:18Z`
 - Look-back: **7** calendar days (`2026-05-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 38
+- `[PRACTICE EVENT]` × 2
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20260530221552_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add "Change" to the AWS read-only allowlist…
+- `Edgar_20260530221746_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix deploy.py local path: replace 'source .…
+- `Edgar_20260530223329_093` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The file app/tools/orchestration_specs.py h…
+- `Edgar_20260530223645_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: Cut over the DAO Advisory panel from GAS/Grok to autopil…
+- `Edgar_20260530224203_097` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Create a reference nginx config file at dep…
+- `Edgar_20260530224529_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: Cut over the DAO Advisory panel from GAS/Grok to autopil…
+- `Edgar_20260530224556_101` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add nginx setup to scripts/deploy.sh. After…
+- `Edgar_20260530224935_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the deploy tool (app/tools/deploy.py) l…
+- `Edgar_20260530231357_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: truesight_autopilot — self-deploy capability fixed + validated end-to-end
+- `Edgar_20260530232603_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: truesight_autopilot — sophia HSTS + self-deploy hardening (PRs #75 + #76 + #…
+- `Edgar_20260530233232_109` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add a root `/` landing page for sophia.true…
+- `Edgar_20260531010527_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: CORS headers missing on /oracle-advisory en…
+- `Edgar_20260531011715_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix /oracle-advisory endpoint: CORS errors …
+- `Edgar_20260531012121_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Create .github/workflows/pre-merge.yml with…
+- `Edgar_20260531012643_117` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix deploy_autopilot OOM failure on t3.smal…
+- `Edgar_20260531014241_119` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: truesight_autopilot — post-mortem on autopilot-shipped #78 + #83 (4 fixes sh…
+- `Edgar_20260531014854_121` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: truesight_autopilot — fix duplicate CORS header on /oracle-advisory (PR #86)
+- `Edgar_20260531041507_123` · **Edgar** · [No Text Provided]
+- `Edgar_20260531041511_125` · **Edgar** · [No Text Provided]
+- `Edgar_20260531042309_127` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Wire onboarding invitation email into [CONTRIBUTOR…
 
 ---
 
@@ -132,13 +169,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,991.26**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.44**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -216,6 +257,14 @@ d07d8bd | 2026-05-24 19:48:23 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5bbcd89 | 2026-05-30 21:55:29 -0700 | docs: update oracle plan with truesight-grounding naming, timing flow, and program page scope
+f6c0337 | 2026-05-30 21:54:38 -0700 | docs: update oracle plan with truesight-grounding naming, timing flow, and program page scope
+e9db434 | 2026-05-30 21:50:59 -0700 | docs: truesight-grounding oracle draw implementation plan and roadmap
+3ff5198 | 2026-05-30 21:46:00 -0700 | docs: oracle draw implementation plan and roadmap
+0f39aa3 | 2026-05-30 21:33:04 -0700 | task: deploy dao_protocol onboarding invitation fix
+bfa1207 | 2026-05-30 21:22:08 -0700 | docs: AWS digital infrastructure deployment setup
+f9962cb | 2026-05-30 21:05:14 -0700 | Merge pull request #257 from TrueSightDAO/auto/advisory-refresh-2026-05-31
+95e0c6d | 2026-05-31 04:05:04 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 4dad2be | 2026-05-30 18:35:03 -0700 | OPEN_FOLLOWUPS: log dao_client pip-compile-every-deploy cost (#256)
 c215670 | 2026-05-30 16:31:30 -0700 | OPEN_FOLLOWUPS: log sophia certbot --nginx → certonly migration (#255)
 6c85086 | 2026-05-30 15:44:33 -0700 | Add Sophia development workflow notes
@@ -248,14 +297,6 @@ cff81e9 | 2026-05-29 11:46:44 -0700 | NOTES_sentiment_importer: refresh for 2026
 26e0408 | 2026-05-29 11:18:02 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1f (#238)
 87cc4cf | 2026-05-29 11:08:03 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1e (#237)
 7f9b144 | 2026-05-29 10:53:47 -0700 | TOKENOMICS_GAS_RESTRUCTURE_PLAN: tracker bump after PR-1d (#236)
-5aefffb | 2026-05-29 09:15:46 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
-9cf4cad | 2026-05-29 09:15:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
-b1bb433 | 2026-05-29 03:29:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
-f1c8457 | 2026-05-29 03:29:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
-70eb551 | 2026-05-28 21:53:55 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
-86f615f | 2026-05-28 21:53:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
-a0b178f | 2026-05-28 20:53:05 -0700 | Merge pull request #235 from TrueSightDAO/auto/advisory-refresh-2026-05-29
-a71f51e | 2026-05-29 03:52:55 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-29 UTC)
 … (truncated)
 ```
 
@@ -335,6 +376,7 @@ b23cc95 | 2026-05-24 16:39:42 -0700 | QR landing: add opt-in checkbox to join th
 ### `iching_oracle` → `oracle`
 
 ```
+f6859d5 | 2026-05-30 21:59:55 -0700 | feat: add oracle draw practice event submission logic
 64dc42d | 2026-05-30 16:29:52 -0700 | [autopilot] Fix index.html (#23)
 416a7c7 | 2026-05-30 15:38:34 -0700 | [autopilot] Cut over the DAO Advisory panel from GAS/Grok to autopilot/D (#22)
 ```
@@ -401,6 +443,39 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-04 | 1393.09 | 5248.05 | 2025-12-07 19:14:46 |
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/30/2026 21:51:34 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-24`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
