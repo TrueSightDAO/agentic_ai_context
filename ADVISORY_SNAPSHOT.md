@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-01T12:16:55Z`
+- Generated (UTC): `2026-06-01T18:24:22Z`
 - Look-back: **7** calendar days (`2026-05-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CREDENTIALING ATTESTATION EVENT]` × 32
-- `[CONTRIBUTION EVENT]` × 6
-- `[PRACTICE EVENT]` × 5
+- `[CREDENTIALING ATTESTATION EVENT]` × 29
+- `[CONTRIBUTION EVENT]` × 8
+- `[PRACTICE EVENT]` × 6
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260531082214_307` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082217_309` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082220_311` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082222_313` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082229_315` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082231_317` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
@@ -59,6 +56,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260531233615_341` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 - `Edgar_20260601042543_343` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 14.24 · Description: Gasoline for driving around
 - `Edgar_20260601042629_345` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260601162314_347` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260601165119_349` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fulfillment for Susie Fritsch, including note and drop off
+- `Edgar_20260601165341_351` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Design, print label for Cacao tea bags to give away at Onsen Global Tech sum…
 
 ---
 
@@ -207,6 +207,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-05-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3f91e97 | 2026-06-01 12:19:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 32cd21e | 2026-06-01 05:27:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 16d046d | 2026-05-31 19:50:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f89cf94 | 2026-05-31 11:15:23 -0700 | Load oracle payload renderer on truesight-grounding credential page
@@ -246,7 +247,6 @@ c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [
 8285bd7 | 2026-05-26 16:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b0e0616 | 2026-05-26 10:35:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0223064 | 2026-05-26 04:46:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e16f0ad | 2026-05-25 20:12:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -259,6 +259,8 @@ e16f0ad | 2026-05-25 20:12:34 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8b00ed2 | 2026-06-01 05:17:11 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
+926e01d | 2026-06-01 05:17:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
 f67a863 | 2026-05-31 22:25:41 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
 545415e | 2026-05-31 22:25:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
 a7acd5a | 2026-05-31 21:18:09 -0700 | Merge pull request #258 from TrueSightDAO/auto/advisory-refresh-2026-06-01
@@ -297,8 +299,6 @@ c5b626a | 2026-05-29 21:34:17 -0700 | chore(previews): refresh Beer Hall preview
 c369f8b | 2026-05-29 16:05:28 -0700 | Vault migrated to its own repo — leave LLM routing breadcrumbs (#251)
 3958aaa | 2026-05-29 16:02:43 -0700 | whitepaper rubric: revert Transactions rows to USDT (Gary corrected) (#250)
 42e37eb | 2026-05-29 15:53:55 -0700 | whitepaper amendments: add governor-privileges + rubric corrections + linking convention (#249)
-f8a41dc | 2026-05-29 15:47:35 -0700 | Credential vault V1 — encrypted iCloud backup of laptop credentials (#248)
-7fabfcb | 2026-05-29 15:40:12 -0700 | whitepaper amendments: finalize Batch 1 (A entries) as paste-ready text (#247)
 … (truncated)
 ```
 
@@ -352,6 +352,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ed5064e | 2026-06-01 12:23:37 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 9cd9e83 | 2026-06-01 12:11:52 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b34d300 | 2026-05-31 09:25:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 db83e3f | 2026-05-30 08:42:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -470,7 +471,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 0 | 14977.11386 | 6/1/2026 4:53:42 |
+| 2026-06 | 0 | 14977.11386 | 6/1/2026 10:51:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-25`; scanned last **396** data rows)
 
