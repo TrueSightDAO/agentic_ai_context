@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-01T18:24:22Z`
+- Generated (UTC): `2026-06-01T21:50:05Z`
 - Look-back: **7** calendar days (`2026-05-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -207,6 +207,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-05-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+516f0da | 2026-06-01 18:25:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3f91e97 | 2026-06-01 12:19:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 32cd21e | 2026-06-01 05:27:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 16d046d | 2026-05-31 19:50:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -246,7 +247,6 @@ c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [
 0dbe726 | 2026-05-26 12:51:29 -0700 | blog: publish 'The most tracked thing in the room is a cup of cacao' (#146)
 8285bd7 | 2026-05-26 16:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b0e0616 | 2026-05-26 10:35:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0223064 | 2026-05-26 04:46:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -259,6 +259,8 @@ b0e0616 | 2026-05-26 10:35:38 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7af54ec | 2026-06-01 11:24:46 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
+3fa2ec7 | 2026-06-01 11:24:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
 8b00ed2 | 2026-06-01 05:17:11 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
 926e01d | 2026-06-01 05:17:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
 f67a863 | 2026-05-31 22:25:41 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
@@ -297,8 +299,6 @@ c5b626a | 2026-05-29 21:34:17 -0700 | chore(previews): refresh Beer Hall preview
 2831dc6 | 2026-05-30 03:38:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 343280c | 2026-05-29 16:16:30 -0700 | docs: whitepapers are now static pages in truesight_me (Google Docs deprecated) (#252)
 c369f8b | 2026-05-29 16:05:28 -0700 | Vault migrated to its own repo — leave LLM routing breadcrumbs (#251)
-3958aaa | 2026-05-29 16:02:43 -0700 | whitepaper rubric: revert Transactions rows to USDT (Gary corrected) (#250)
-42e37eb | 2026-05-29 15:53:55 -0700 | whitepaper amendments: add governor-privileges + rubric corrections + linking convention (#249)
 … (truncated)
 ```
 
@@ -471,7 +471,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 0 | 14977.11386 | 6/1/2026 10:51:14 |
+| 2026-06 | 0 | 14977.11386 | 6/1/2026 13:51:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-25`; scanned last **396** data rows)
 
