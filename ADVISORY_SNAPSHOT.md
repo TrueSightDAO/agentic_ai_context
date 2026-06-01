@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-01T04:17:55Z`
+- Generated (UTC): `2026-06-01T05:25:28Z`
 - Look-back: **7** calendar days (`2026-05-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CREDENTIALING ATTESTATION EVENT]` × 32
+- `[CONTRIBUTION EVENT]` × 6
+- `[PRACTICE EVENT]` × 5
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260531082214_307` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082217_309` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082220_311` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082222_313` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082229_315` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082231_317` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531082258_319` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531083039_321` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260531114635_323` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvG7s41fBC2SSya1eWoAY…
+- `Edgar_20260531150858_325` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussing about the chocolate production pipeline setup
+- `Edgar_20260531151353_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion of China approach to cacao
+- `Edgar_20260531153517_329` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260531160247_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discussion about utilizing the Meta suit framework for extension to cover di…
+- `Edgar_20260531161556_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Drove over to Kirsten place to drop off the cacao
+- `Edgar_20260531163448_335` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Just a food for thought
+- `Edgar_20260531231611_337` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260531233550_339` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260531233615_341` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260601042543_343` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 14.24 · Description: Gasoline for driving around
+- `Edgar_20260601042629_345` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 
 ---
 
@@ -108,11 +144,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 13,241.57 total units · $11,829.44
+- Manager record: `Gary Teh` · 30 SKU lines · 13,227.33 total units · $11,815.20
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 13,130.39 | $11,543.06 |
+  | (uncategorized) | (unspecified) | 26 | 13,116.15 | $11,528.82 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Mass | Retail Ready | 2 | 35 | $236.39 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -132,13 +168,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,991.25**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.46**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -219,6 +259,8 @@ e16f0ad | 2026-05-25 20:12:34 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a7acd5a | 2026-05-31 21:18:09 -0700 | Merge pull request #258 from TrueSightDAO/auto/advisory-refresh-2026-06-01
+b188ce7 | 2026-06-01 04:18:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
 817484a | 2026-05-31 12:49:47 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
 8887cb6 | 2026-05-31 12:49:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 4eb9bad | 2026-05-31 12:44:55 -0700 | Create OPEN_FOLLOW_UPS.md documenting autopilot tooling gaps
@@ -257,8 +299,6 @@ f8a41dc | 2026-05-29 15:47:35 -0700 | Credential vault V1 — encrypted iCloud b
 7fabfcb | 2026-05-29 15:40:12 -0700 | whitepaper amendments: finalize Batch 1 (A entries) as paste-ready text (#247)
 8106b68 | 2026-05-29 15:34:07 -0700 | whitepaper: refresh stale snapshot + add proposed 2024-2026 amendments draft (#246)
 4454cad | 2026-05-29 14:10:32 -0700 | DAPP_PAGE_CONVENTIONS: add §9b submission result rendering + §16 print stylesheet (#245)
-1eb4aba | 2026-05-29 13:51:30 -0700 | Document per-account clasprc files + open follow-up for credential vault (#244)
-8f63325 | 2026-05-29 13:43:28 -0700 | chore(previews): refresh Beer Hall preview (2026-05-29 UTC)
 … (truncated)
 ```
 
@@ -405,6 +445,39 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 0 | 14977.11386 | 5/31/2026 21:50:31 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-25`; scanned last **396** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
