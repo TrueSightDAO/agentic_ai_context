@@ -26,6 +26,22 @@ Key docs
 > **`admin@truesight.me`**, so `clasp logout && clasp login` as admin@truesight.me first, or set
 > `CLASPRC_PATH=~/.clasprc-admin.json`). Full doc: `tokenomics/docs/gas_deploy_workflow.md`. The manual
 > mirror-copy + `clasp push`/`clasp deploy` steps below are the **legacy** fallback.
+>
+> **clasp credential files (per-account).** clasp itself reads **`~/.clasprc.json`** only. The machine
+> keeps per-account creds: **`~/.clasprc-admin.json`** (admin@truesight.me) and
+> **`~/.clasprc-gary.json`** (garyjob@agroverse.shop); `~/.clasprc.json` is a stub by default.
+> ⚠ `CLASPRC_PATH` feeds `deploy_gas_project.py`'s **identity check only — clasp does NOT read it**, so
+> to actually push as a given account you must **swap that file into the default path**:
+> `cp ~/.clasprc.json ~/.clasprc.json.bak && cp ~/.clasprc-admin.json ~/.clasprc.json` → deploy →
+> restore. (Admin-owned projects: the QR/donation-mint script `1MnAsIQAxcSfZO_…`.)
+>
+> ⚠ **Two known snags on `1MnAsIQAxcSfZO_…` (donation-mint + qr_code_web_service):** (a) the mirror has
+> stale `.js` duplicates alongside the synced `.gs` (Version / process_donation_mint_telegram_logs /
+> qr_code_web_service) → `clasp push` errors **"Conflicting files found"** (the `.clasp.json` lists both
+> `.js` and `.gs`); (b) **the tracked source `qr_code_web_service.gs` is BEHIND production** (source
+> 2026-05-25 vs prod-pushed `.js` 2026-05-29) — pushing the source would **regress the live QR web
+> service**. Reconcile source↔prod (clasp pull → backport prod changes into `google_app_scripts/`) and
+> resolve the `.js/.gs` duplication **before** deploying this scriptId.
 
 **Operator phrase “clasp deploy”:** If the user says **clasp deploy** (or **go ahead and clasp deploy**, etc.) and does **not** spell out separate steps, treat that as an instruction to **(1)** sync canonical sources from **`google_app_scripts/**`** into the target **`clasp_mirrors/<scriptId>/`** files that clasp actually pushes (often **`Code.js`** / named **`.gs`** — see **`MIGRATION_CHECKLIST.tsv`** and examples below), **(2)** run **`clasp push`** from that mirror directory, **(3)** run **`clasp deploy`**. For **Web Apps** that already have a stable public **`/exec`** URL, use **`clasp deploy --deploymentId <existingDeploymentId> --description "…"`** so the same URL gets a new version; avoid **`clasp deploy`** without **`--deploymentId`** unless the user wants a **new** deployment entry. Example (Store Interaction History): mirror **`clasp_mirrors/14gKJ0VW49RsSn4S03pgxKXy0sp4Z7Z3Wm1Wj8jQiWW5dj1sFuPnp95sh/`**, copy **`holistic_hit_list_store_history/store_interaction_history_api.gs`** → **`Code.js`**, then push + **`clasp deploy --deploymentId AKfycbwoBqZnDS4JRRdFkxSXdlGt-qIn-RauMcORuDHeWs29oQ2CpJ3L4A10uM8se9anL108`**.
 

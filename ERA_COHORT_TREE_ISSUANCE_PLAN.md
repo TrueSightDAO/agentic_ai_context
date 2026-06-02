@@ -118,12 +118,19 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 
 ## 6. Resume tracker
 
-> **RESUME HERE → clasp-deploy the donation-mint GAS as `admin@truesight.me`.** Deploy via the refactored
-> `tokenomics/scripts/deploy_gas_project.py 1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT --push`
-> — but it refuses unless the active clasp identity == the project `owner_email` (**`admin@truesight.me`**;
-> current is `garyjob@agroverse.shop`). So: `clasp logout && clasp login` as admin@truesight.me (or
-> `CLASPRC_PATH=~/.clasprc-admin.json`), then push. THEN: trace one test mint+sale to confirm the BEC
-> ledger tallies, then run the 95.
+> **RESUME HERE → reconcile + deploy the donation-mint GAS (BLOCKED on source drift).** Identity is solved
+> (swap `~/.clasprc-admin.json` → `~/.clasprc.json`; project owner = admin@truesight.me). But two snags
+> block the push on scriptId `1MnAsIQAxcSfZO_…`: (1) **`google_app_scripts/qr_code_web_service.gs` is
+> BEHIND production** (source 2026-05-25 vs prod 2026-05-29) — pushing would regress the live QR web
+> service; (2) mirror has stale `.js`+`.gs` duplicates → clasp "Conflicting files found". **Fix first:**
+> `clasp pull` the live project, backport the prod `qr_code_web_service.gs` (+ any other) changes into
+> `google_app_scripts/`, resolve the `.js/.gs` dup, THEN `deploy_gas_project.py … --push` (admin creds).
+> Only the donation-mint file change (#329) is mine; qr_code_web_service drift is pre-existing.
+> THEN: trace one test mint+sale to confirm the BEC ledger tallies, then run the 95.
+>
+> **Also pending:** `truesight.me/sunmint.html` may need a manual **BEC listing** (BEC is in
+> `treasury-cache/managed-ledgers/_index.json` with program=sunmint, but the page doesn't appear to fetch
+> the rollup) — verify and add if static.
 >
 > **Execution model (Gary 2026-06-02):** create **97** assets on the BEC ledger (✅ seeded `97`,
 > `Entity=Gary Teh`) → **sell 95** via QR `[SALES EVENT]` (`--attachment ~/Applications/tmp/era_payment.jpeg`,
