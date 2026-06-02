@@ -88,7 +88,13 @@ each other. QR id == pk_hash also gives free idempotency (the mint flow rejects 
    `tokenomics-schema` SA). One currency + one ledger **per program** (NovaGaia/SEF1 shape).
 3. **Allowlist + deploy.** Add the exact currency string to `DONATION_MINT_ALLOWED_CURRENCIES` in
    `tokenomics/google_app_scripts/agroverse_qr_codes/process_donation_mint_telegram_logs.gs`, then
-   sync the clasp mirror (`1MnAsIQAxcSfZO_…`), bump `Version.gs`, `clasp push` + `clasp deploy`.
+   deploy with the **manifest-driven deployer** (the post-2026-05 clasp refactor — do **not** hand-edit
+   the mirror): `tokenomics/scripts/deploy_gas_project.py <scriptId> --push [--with-hooks]`. It syncs
+   the tracked source → mirror, strips stale files, and `clasp push --force`. It **refuses to push** on
+   uncommitted source changes or a **clasp-identity mismatch** — this scriptId's `owner_email` is
+   **`admin@truesight.me`** (per `google_app_scripts/agroverse_qr_codes/manifest.json`), so
+   `clasp logout && clasp login` as admin@truesight.me first (or `CLASPRC_PATH=~/.clasprc-admin.json`).
+   `--list` shows all deployable scriptIds; full doc: `tokenomics/docs/gas_deploy_workflow.md`.
    (The handler already derives non-AGL Ledger Names like `BEC` and honors a per-row `landing_page`.)
 
 ### B.2 — Ongoing minting (scheduled, mint-only)
@@ -122,10 +128,29 @@ It also appends a `tree_issued` row to the program's `Audit Trail` tab. Document
 the program repo's `SCHEMA.md`. These columns are disjoint from `sync_cohort.py`'s columns (it owns
 A–P), so the two scripts never clobber each other.
 
-### B.4 — Sale + surfacing
+### B.4 — Asset balance on the managed ledger (how trees show up + tally)
 
-- **Sale is manual.** Trees stay `MINTED`; the operator marks `SOLD` (`report_sales`/`update_qr_code`),
-  which books the price to the program ledger. (Auto-sell is possible but intentionally not the default.)
+The managed-ledger sheet (SEF1-style Balance tab, right section `Asset Name | Amount`) is a **rollup of
+its own `Transactions` tab** by `Currency` where `Transaction Type = Assets`. Model: **create N assets →
+sell M via QR → (N−M) remain**.
+
+- **⚠ The mint does NOT create the managed-ledger asset balance — it only creates the QR-code entry**
+  (on the `Agroverse QR codes` tab) plus a `+1` audit row on the **Main** `offchain transactions` ledger.
+  So for now you **manually seed** the program ledger's asset inventory: one `Transactions` row on the
+  managed-ledger sheet — `Entity = <holder>`, `Amount = N`, `Currency = <program pledge>`,
+  `Type = Assets`. (BEC: seeded `97`, `Entity = Gary Teh` — the holder.)
+- **Holder + proceeds = the operator, not the program.** The QR `Manager Name` (col U) is set to the
+  **governor who signs** the mint (e.g. Gary Teh), so holdings default to them; sales use
+  `report_sales --sold-by "<holder>" --cash-proceeds-collected-by "<holder>"` so **proceeds transfer to
+  the holder**. (Use the program name only for provenance — `farm name` col E — not as the holder.)
+- **Sale is manual + decrements the asset.** Trees stay `MINTED`; the operator marks `SOLD`
+  (`report_sales --attachment <payment proof>`). Each sale routes a `-1 Assets` row to the program
+  ledger (via col V `Ledger Name`), so N seeded − M sold = remaining. (Auto-sell is possible but not the
+  default.)
+- **🔮 Future enhancement (Gary 2026-06-02):** the **mint should also create the managed-ledger asset
+  balance** (a `+1 Assets` row on the program ledger per QR), so created/sold tally automatically with
+  no manual seed. Until then, seed manually and don't double-count (if minting starts creating the
+  balance, drop the manual seed). Tracked in `ERA_COHORT_TREE_ISSUANCE_PLAN.md`.
 - **Serialized page.** Run `lineage-assets/scripts/seed_from_sheet.py --execute` then `build_index.py`
   and push — the trees appear at **`truesight.me/physical-assets/serialized/`** automatically
   (`infer_asset_type` maps any currency containing "tree" → `tree`; no allowlist change). See
