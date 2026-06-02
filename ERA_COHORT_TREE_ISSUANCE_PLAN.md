@@ -29,6 +29,8 @@ and a generalized pattern doc are first-class deliverables, not BEC-specific glu
 | 0.5 | Per-tree → student binding | **`qr_code == pk_hash`** (F1-a). The QR id IS the student's `pk_hash`, shared with the credential page. → **Requires extending the product QR-generation flow to accept explicit ids (PR1).** |
 | 0.6 | Origin identity (farm/manager) | **"ERA Butterfly Effect Club"** — not a physical farm. Use as `farm name` (col E) and `Manager Name` (col U). |
 | 0.7 | Reusable template | BEC is the **first instance of a general "attestation → tree planting" template**. Build the orchestrator program-parameterized and ship a generalized pattern doc for future programs. §8. |
+| 0.8 | Trigger model | **Attestation-driven via a scheduled, idempotent orchestrator** (cron GitHub Action), NOT a one-time batch. Each run mints trees for newly-attested rows lacking `tree_qr_code`; first run backfills the current 95; the 2 pending get picked up automatically when they attest. §11. |
+| 0.9 | Sale step | **Mint-only — orchestrator leaves trees `MINTED`; Gary marks `SOLD` manually** (`update_qr_code`/`report_sales`). The $1 is prepaid by ERA; booking to BEC happens at Gary's manual sale. |
 
 ---
 
@@ -106,9 +108,10 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 | **PR0** | This roadmap. | `agentic_ai_context` |
 | **SETUP** ✅ DONE 2026-06-02 | BEC ledger sheet `19CDo-Pdu6tClb_dux42IkFzGwNT_sGvEYIKmLnmp3aY` (Gary-owned, shared to schema + qr-manager SAs) · `Currencies` row 24 (`Butterfly Effect Club Tree Planting Pledge - QR Code`, B=1, F=`truesight.me/sunmint/bec`, farm=`ERA Butterfly Effect Club`) · `Shipment Ledger Listing` row 19 (`BEC`, SALES IN PROGRESS, Merchant Green Pledge, Trees=95, Program=sunmint) · `treasury-cache/managed-ledgers/BEC.json` published (commit `b031169`). Leftovers: `Transactions!B1` contract URL (stale tribomirimbahia link); `truesight.me/sunmint/bec` redirect (verify). | sheets / treasury-cache / tokenomics |
 | **PR1** | Extend product QR-generation (GAS `qr_code_web_service.gs`/generation handler + `dao_client batch_qr_generator`) to accept **per-item `qr_code` (=pk_hash) AND per-item `landing_page` (=profile_url)** instead of the static-from-Currency landing_page. (Other cols — ledger/currency/farm/manager — still from Currency/manifest.) Clasp deploy. | tokenomics / dao_client |
-| **PR2** | **`link_attestations_to_trees.py`** orchestrator — **program-parameterized** (manifest: program slug, roster sheet id + SA creds, attested-filter, currency, ledger codename, origin identity, price, binding=`pk_hash`), modeled on `onboard_retail_partner.py`. For the program: read roster → generate/ensure QR rows (id = pk_hash, landing_page = profile_url) → `report_sales --sales-price <price>` → **write roster annotation** (new col `tree_qr_code` + `tree_issued_at`, append `Audit Trail` `tree_issued` row — §9). `--dry-run` default; idempotent (skip rows whose `tree_qr_code` is already set / QR already SOLD); logs rows skipped for missing pk_hash. BEC ships as the first manifest (`examples/attestation-trees/butterfly-effect.yaml`). | `dao_client` |
+| **PR2** | **`link_attestations_to_trees.py`** orchestrator — **program-parameterized** (manifest: program slug, roster sheet id + SA creds, attested-filter, currency, ledger codename, origin identity, binding=`pk_hash`), modeled on `onboard_retail_partner.py`. **MINT-ONLY** (no sale): read roster → for each attested row lacking `tree_qr_code`, mint a QR (id = pk_hash, landing_page = profile_url, status `MINTED`) → **write roster annotation** (`tree_qr_code` + `tree_issued_at`, append `Audit Trail` `tree_issued` row — §9). `--dry-run` default; idempotent (skip rows whose `tree_qr_code` is set); logs rows skipped for missing pk_hash. BEC ships as the first manifest (`examples/attestation-trees/butterfly-effect.yaml`). | `dao_client` |
+| **PR2b** | **Scheduled trigger (lives in the PROGRAM repo, not dao_client)** — `butterfly_effects_club/.github/workflows/mint_cohort_trees.yml` (cron, ~hourly), next to `sync_cohort.py`. `pip install`s dao_client and runs PR2 `--execute` with `manifests/butterfly-effect.yaml`. Idempotent on `tree_qr_code`. Secrets (already pattern-matched to that repo): roster SA creds + signer key. Future programs add their own manifest + cron; the dao_client engine is reused unchanged. §12. | butterfly_effects_club |
 | **PR3** | **Generalized pattern doc** `CREDENTIAL_ATTESTATION_TREE_LINKING.md` (peer of `MANAGED_LEDGER_EXPLORER_PATTERN.md`) — reusable template (§8/§9) + cross-refs (`OPERATING_INSTRUCTIONS.md` §2 / `WORKSPACE_CONTEXT.md` / `PROJECT_INDEX.md` / `CREDENTIALING_PLATFORM.md`) + `butterfly_effects_club/SCHEMA.md` (document the new roster cols) + `CONTEXT_UPDATES.md`. | `agentic_ai_context` / butterfly_effects_club |
-| **RUN** | `--dry-run` → `--execute` 95 → verify sample via `lookup_qr_code` → confirm 95 SOLD on BEC = $95 (run `snapshot_managed_ledgers.py --ledger BEC`) → **surface on serialized page**: `lineage-assets/scripts/seed_from_sheet.py --execute` then `build_index.py`, commit/push `lineage-assets` (§10). Re-run for the 2 on attestation. | — |
+| **RUN** | First run: `--dry-run` → `--execute` → **mint 95 (`MINTED`)** + annotate roster → verify sample via `lookup_qr_code`. **Gary marks SOLD** (manual) → `snapshot_managed_ledgers.py --ledger BEC` to confirm BEC totals. **Surface on serialized page**: `lineage-assets/scripts/seed_from_sheet.py --execute` then `build_index.py`, commit/push `lineage-assets` (§10). After PR2b, the 2 pending + all future attestations are handled automatically. | — |
 
 ---
 
@@ -123,9 +126,10 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 | Pre-flight 4.1–4.8 | ☑ | — | — |
 | SETUP (BEC ledger + currency) | ☑ | ☑ | ☐ |
 | PR1 (per-item id + landing_page) | ☐ | ☐ | ☐ |
-| PR2 (`link_attestations_to_trees.py`) | ☐ | ☐ | ☐ |
-| PR3 (docs) | ☐ | ☐ | ☐ |
-| RUN (95 now / 2 later) | ☐ | — | ☐ |
+| PR2 (`link_attestations_to_trees.py`, mint-only, in dao_client) | ☐ | ☐ | ☐ |
+| PR2b (cron + manifest in butterfly_effects_club) | ☐ | ☐ | ☐ |
+| PR3 (docs + SCHEMA cols) | ☐ | ☐ | ☐ |
+| RUN (mint 95; Gary marks SOLD; surface) | ☐ | — | ☐ |
 
 ---
 
@@ -202,6 +206,47 @@ git commit -am "chore: seed BEC cohort trees into qrs index" && git push       #
 No scheduled workflow exists in `lineage-assets` today → this refresh is part of **RUN** (and a CI cron
 is a reasonable follow-up). Each manifest's `current_landing_page` will be the student's `profile_url`
 (per the per-row landing_page), and `edgar_resolve_url` = `…/qr-code-check?qr_code=<pk_hash>`.
+
+---
+
+## 12. Where the code lives (engine vs config)
+
+| Piece | Repo | Why |
+|-------|------|-----|
+| **Generic mint engine** `link_attestations_to_trees.py` + per-item id/landing extension | **dao_client** | Reusable across all programs (decision 0.7). dao_client is the established home for Edgar-event orchestrators. **Do NOT** put generic logic in a program repo — it wouldn't be reusable. |
+| GAS per-item id/landing change | **tokenomics** | Server-side product QR-generation flow. |
+| **Per-program manifest** (`butterfly-effect.yaml`) + **cron workflow** + new roster columns + SCHEMA update | **butterfly_effects_club** (the program repo) | Program-specific config, secrets, schedule, schema. Sits next to `sync_cohort.py` + its workflow + the roster SA creds. |
+| Managed ledger + currency + treasury JSON | sheets / treasury-cache | Per-program data plane (done for BEC). |
+| QR surfacing | **lineage-assets** | `seed_from_sheet.py` + `build_index.py` (program-agnostic; reads whole QR tab). |
+
+**Rule for future programs:** new repo (or section) drops a *manifest + cron* and reuses the dao_client
+engine + the tokenomics GAS + lineage-assets surfacing unchanged.
+
+---
+
+## 11. Trigger model — attestation → auto-mint (scheduled, mint-only)
+
+The flow is **event-driven, not a one-off batch.** When a program manager attests a student, the
+credentialing pipeline writes the roster row (`pk_hash`, `attestation_tx_id`, `profile_url`, `status`).
+A **scheduled orchestrator** (PR2 on a cron Action, PR2b) then picks it up:
+
+```
+every ~hour:
+  for each roster row where status=processed AND pk_hash set AND tree_qr_code empty:
+      mint BEC QR (id=pk_hash, landing_page=profile_url, status=MINTED)   # PR1 product flow
+      write roster tree_qr_code + tree_issued_at + Audit Trail 'tree_issued'
+```
+
+- **Idempotent on `tree_qr_code`** → each run only handles newly-attested students; safe to run forever.
+  The **first run backfills the current 95**; the 2 without `pk_hash` are picked up automatically once
+  they attest. No separate backfill vs steady-state code path.
+- **Mint-only.** Trees land `MINTED`; **Gary marks `SOLD` manually** (decision 0.9). The sale books the
+  $1 to the BEC ledger.
+- **Loosely coupled** (chosen over minting inside the credentialing GAS): reuses everything we built,
+  no cross-workbook writes from the credentialing handler; cost is a minutes-to-hour delay (fine).
+
+**Template:** the scheduled trigger is part of the reusable pattern — each program gets a manifest +
+a cron entry; new attestations → trees with zero per-event work.
 
 ---
 
