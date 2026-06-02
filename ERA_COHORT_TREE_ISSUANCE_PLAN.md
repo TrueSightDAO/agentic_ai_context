@@ -129,10 +129,20 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 | SETUP (BEC ledger + currency) | ☑ | ☑ | ☐ |
 | PR1 (donation-mint GAS + CLI deltas) | ☑ | ☑ (tok #329, dao_protocol #57) | ☐ |
 | ↳ clasp deploy of GAS | ☐ | — | — |
-| PR2 (`link_attestations_to_trees.py`, mint-only, in dao_protocol) | ☐ | ☐ | ☐ |
+| PR2 (`link_attestations_to_trees.py` + BEC manifest) | ☑ | ☑ (dao_protocol #58) | ☐ |
 | PR2b (cron + manifest in butterfly_effects_club) | ☐ | ☐ | ☐ |
-| PR3 (docs + SCHEMA cols) | ☐ | ☐ | ☐ |
+| PR3 (onboarding/route docs) | ☑ `PROGRAM_PARTNER_ONBOARDING.md` | ☐ | ☐ |
+| PR4 (tree badge on credential page — `build_cv_cache.py`) | ☐ | ☐ | ☐ |
 | RUN (mint 95; Gary marks SOLD; surface) | ☐ | — | ☐ |
+
+---
+
+## 8b. Route decision (where this fits)
+
+This plan is the worked example of **Route B (Credential + trees)** in the general
+**`PROGRAM_PARTNER_ONBOARDING.md`** decision guide. That doc routes any new partner to:
+**Route A** credential-only (no ledger), **Route B** credential + trees (new ledger — this plan), or
+**Route C** donation transparency (capoeira/TBM). Onboard future partners via that guide.
 
 ---
 
