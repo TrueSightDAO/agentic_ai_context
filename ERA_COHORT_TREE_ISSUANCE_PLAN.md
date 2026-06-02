@@ -118,19 +118,20 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 
 ## 6. Resume tracker
 
-> **RESUME HERE → reconcile + deploy the donation-mint GAS (BLOCKED on source drift).** Identity is solved
-> (swap `~/.clasprc-admin.json` → `~/.clasprc.json`; project owner = admin@truesight.me). But two snags
-> block the push on scriptId `1MnAsIQAxcSfZO_…`: (1) **`google_app_scripts/qr_code_web_service.gs` is
-> BEHIND production** (source 2026-05-25 vs prod 2026-05-29) — pushing would regress the live QR web
-> service; (2) mirror has stale `.js`+`.gs` duplicates → clasp "Conflicting files found". **Fix first:**
-> `clasp pull` the live project, backport the prod `qr_code_web_service.gs` (+ any other) changes into
-> `google_app_scripts/`, resolve the `.js/.gs` dup, THEN `deploy_gas_project.py … --push` (admin creds).
-> Only the donation-mint file change (#329) is mine; qr_code_web_service drift is pre-existing.
-> THEN: trace one test mint+sale to confirm the BEC ledger tallies, then run the 95.
+> **✅ DONE (2026-06-02): 95 trees minted + sold end-to-end.** Full battle-tested runbook + gotchas are in
+> **`PROGRAM_PARTNER_ONBOARDING.md` §B.6** (the canonical reusable guide — read that for future programs).
+> Shipped: BEC ledger + currency + registration + treasury JSON; donation-mint GAS (BEC support, dynamic
+> currency validation, per-row landing_page, **mint→managed-ledger**) deployed; webhook repointed off the
+> deprecated `1slQVojn` script to `1MnAsIQA`; 95 minted (`qr_code=pk_hash`, holder=Gary) + 95 sold ($1,
+> proceeds=Gary); $2 capital injection processed (Asset+Equity); `/sunmint/bec` redirect; serialized
+> listing refreshed; `/qr/` farm-link fix; `sunmint.html` BEC card. Sales→ledger self-heals hourly.
 >
-> **Also pending:** `truesight.me/sunmint.html` may need a manual **BEC listing** (BEC is in
-> `treasury-cache/managed-ledgers/_index.json` with program=sunmint, but the page doesn't appear to fetch
-> the rollup) — verify and add if static.
+> **REMAINING → PR4 (credential-page tree badge + qr link).** `lineage-engine/build_cv_cache.py` looks up
+> `qr_id==pk_hash` in `qrs_index.json` → adds a `tree` field → credential front-end (shared
+> `TrueSightProgramShell`) renders a "🌳 tree planted" badge linking to `truesight.me/qr/?id=<pk_hash>`;
+> rebuild CVs. Spec in `PROGRAM_PARTNER_ONBOARDING.md` §B.6 item 6. Plus trivial: add
+> `truesight_me/assets/shipments/bec.avif` (sunmint card image). The 2 unattested (Hajira, Harram) get
+> trees automatically when they attest + the orchestrator re-runs.
 >
 > **Execution model (Gary 2026-06-02):** create **97** assets on the BEC ledger (✅ seeded `97`,
 > `Entity=Gary Teh`) → **sell 95** via QR `[SALES EVENT]` (`--attachment ~/Applications/tmp/era_payment.jpeg`,
