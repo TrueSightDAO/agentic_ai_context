@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-02T17:01:21Z`
+- Generated (UTC): `2026-06-02T21:31:51Z`
 - Look-back: **7** calendar days (`2026-05-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,33 +32,35 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CREDENTIALING ATTESTATION EVENT]` × 27
-- `[CONTRIBUTION EVENT]` × 10
-- `[PRACTICE EVENT]` × 6
+- `[INVENTORY MOVEMENT]` × 19
+- `[CONTRIBUTION EVENT]` × 12
+- `[PRACTICE EVENT]` × 7
+- `[CREDENTIALING ATTESTATION EVENT]` × 3
+- `[SALES EVENT]` × 2
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260531082231_317` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082258_319` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531083039_321` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531114635_323` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvG7s41fBC2SSya1eWoAY…
-- `Edgar_20260531150858_325` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussing about the chocolate production pipeline setup
-- `Edgar_20260531151353_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion of China approach to cacao
-- `Edgar_20260531153517_329` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260531160247_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discussion about utilizing the Meta suit framework for extension to cover di…
-- `Edgar_20260531161556_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Drove over to Kirsten place to drop off the cacao
-- `Edgar_20260531163448_335` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Just a food for thought
-- `Edgar_20260531231611_337` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260531233550_339` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260531233615_341` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260601042543_343` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 14.24 · Description: Gasoline for driving around
-- `Edgar_20260601042629_345` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260601162314_347` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260601165119_349` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fulfillment for Susie Fritsch, including note and drop off
-- `Edgar_20260601165341_351` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Design, print label for Cacao tea bags to give away at Onsen Global Tech sum…
-- `Edgar_20260602154355_353` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to FounderHaus
-- `Edgar_20260602154504_355` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: @⁨Kaon⁩ when designing the experience module editor keep in mind Polyani’s a…
+- `Edgar_20260602190819_365` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190820_367` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190821_369` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190823_371` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190823_373` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190824_375` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190825_377` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190826_379` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190827_381` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602190827_383` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602190828_385` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602190829_387` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602190830_389` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602190831_391` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602190832_393` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602190833_395` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602190834_397` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602191153_399` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Packa…
+- `Edgar_20260602191237_401` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260602191318_403` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Updating the inventory and sales movements
 
 ---
 
@@ -66,7 +68,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,699 | 7% | `2026-12-31` | 212 | **behind** |
+| 2026 QR Code Sales | $40,000 | $2,756 | 7% | `2026-12-31` | 212 | **behind** |
 | USA Agroverse Partners | 100 | — | — | `2026-12-31` | 212 | — |
 
 ---
@@ -121,14 +123,14 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 14 SKU lines · 1,404 total units · $1,431.71
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,421 total units · $1,527.39
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 895 | $652.10 |
   | (uncategorized) | (unspecified) | 8 | 458 | $769.54 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
-  | Cacao Mass | Retail Ready | 1 | 1 | $8.52 |
+  | Cacao Mass | Retail Ready | 3 | 18 | $104.20 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
@@ -144,13 +146,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 13,295.13 total units · $11,860.50
+- Manager record: `Gary Teh` · 30 SKU lines · 13,332.74 total units · $11,810.53
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 13,185.95 | $11,591.11 |
+  | (uncategorized) | (unspecified) | 26 | 13,242.56 | $11,647.72 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
-  | Cacao Mass | Retail Ready | 2 | 33 | $219.40 |
+  | Cacao Mass | Retail Ready | 2 | 14 | $112.82 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
@@ -170,7 +172,7 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$3,062.01**
+- USD on hand: **$3,118.62**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$40.49**
 
@@ -186,9 +188,13 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_No lines matched name/keyword heuristics in this window._
+_Lines in window matching configured names or status keywords:_
 
-_(No `YYYY-MM-DD |` lines on/after 2026-05-26 in CONTEXT_UPDATES.md.)_
+- 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
+
+_All dated lines on/after 2026-05-26_ (1):
+
+- 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
 
 ---
 
@@ -207,6 +213,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-05-26 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+90b1481 | 2026-06-02 17:05:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1a9a468 | 2026-06-02 11:06:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2d5271e | 2026-06-02 05:13:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5470d69 | 2026-06-01 21:51:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -246,7 +253,6 @@ ccdac49 | 2026-05-28 04:53:03 +0000 | chore(stats): refresh stats/current.json [
 72993f3 | 2026-05-27 16:25:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1c72a5e | 2026-05-27 05:00:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
-c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -259,6 +265,13 @@ c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5e9def2 | 2026-06-02 14:05:09 -0700 | Add PROGRAM_PARTNER_ONBOARDING route guide; roadmap PR2/PR3 done + PR4 (#264)
+77acb67 | 2026-06-02 13:55:18 -0700 | BEC roadmap: PR1 merged (reuse [DONATION MINT EVENT]); codebase = dao_protocol (#263)
+e1cedcb | 2026-06-02 13:40:11 -0700 | BEC roadmap: attestation-driven scheduled trigger + engine/config placement (#262)
+c000e8b | 2026-06-02 13:36:13 -0700 | BEC roadmap: SETUP done; add roster annotation (§9) + serialized surfacing (§10) (#261)
+cdcb8d0 | 2026-06-02 13:16:20 -0700 | Roadmap: ERA/Butterfly Effect → BEC attestation-to-tree-planting template (#260)
+0cda52d | 2026-06-02 10:01:48 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
+b50e13f | 2026-06-02 10:01:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 e77b699 | 2026-06-02 04:05:14 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
 7a4aed8 | 2026-06-02 04:05:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 339dfa4 | 2026-06-01 22:10:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
@@ -292,19 +305,13 @@ e9db434 | 2026-05-30 21:50:59 -0700 | docs: truesight-grounding oracle draw impl
 bfa1207 | 2026-05-30 21:22:08 -0700 | docs: AWS digital infrastructure deployment setup
 f9962cb | 2026-05-30 21:05:14 -0700 | Merge pull request #257 from TrueSightDAO/auto/advisory-refresh-2026-05-31
 95e0c6d | 2026-05-31 04:05:04 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
-4dad2be | 2026-05-30 18:35:03 -0700 | OPEN_FOLLOWUPS: log dao_client pip-compile-every-deploy cost (#256)
-c215670 | 2026-05-30 16:31:30 -0700 | OPEN_FOLLOWUPS: log sophia certbot --nginx → certonly migration (#255)
-6c85086 | 2026-05-30 15:44:33 -0700 | Add Sophia development workflow notes
-526b7d4 | 2026-05-30 12:49:27 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
-d1797f1 | 2026-05-30 12:49:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
-56dd0c1 | 2026-05-30 07:13:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
-f08f508 | 2026-05-30 07:13:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+24dbd34 | 2026-06-02 13:53:47 -0700 | donation-mint GAS: support BEC cohort-tree currency + per-row landing_page (#329)
 b0fc0f7 | 2026-05-29 14:01:30 -0700 | Add sendOnboardingInvitation handler to 1m8IZPs1 (Seth-voice copy) (#328)
 a13e9a0 | 2026-05-29 13:41:34 -0700 | Bind edgar_send_email_verification.gs to scriptId 1m8IZPs1 (admin@) (#327)
 8e25085 | 2026-05-29 13:21:49 -0700 | PR-1h: mint final missing mirror (1zKgMwd6) — unmirrored count → 0 (#326)
@@ -350,6 +357,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+efbb37b | 2026-06-02 12:28:47 -0700 | chore: refresh Agroverse store inventory snapshot
 2433b3d | 2026-06-02 10:56:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4cc5485 | 2026-06-01 16:28:37 -0700 | chore: refresh Agroverse store inventory snapshot
 ed5064e | 2026-06-01 12:23:37 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -467,15 +475,17 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 70.8 | 15047.91386 | 6/2/2026 9:50:46 |
+| 2026-06 | 127.41 | 15104.52386 | 6/2/2026 13:51:18 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-26`; scanned last **399** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-26`; scanned last **401** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
 | 2026-06-01 | 23.6 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_31 | PRv7I9ZLe7CP | Stripe checkout (online) |
 | 2026-06-01 | 23.6 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_18 | f3FtZFO52vQu | Stripe checkout (online) |
 | 2026-06-01 | 23.6 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_2 | IuaxE9sOW5TZ | Stripe checkout (online) |
+| 2026-06-02 | 28.305 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_21 | — | — |
+| 2026-06-02 | 28.305 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_23 | zmtUnrslp6dq | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
