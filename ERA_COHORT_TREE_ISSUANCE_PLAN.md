@@ -104,25 +104,26 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 | Unit | Scope | Repo |
 |------|-------|------|
 | **PR0** | This roadmap. | `agentic_ai_context` |
-| **SETUP** (gates everything) | BEC ledger sheet + `Shipment Ledger Listing` row + `treasury-cache` JSON + `Currencies` row (4.4–4.7). | sheets / treasury-cache / tokenomics |
+| **SETUP** ✅ DONE 2026-06-02 | BEC ledger sheet `19CDo-Pdu6tClb_dux42IkFzGwNT_sGvEYIKmLnmp3aY` (Gary-owned, shared to schema + qr-manager SAs) · `Currencies` row 24 (`Butterfly Effect Club Tree Planting Pledge - QR Code`, B=1, F=`truesight.me/sunmint/bec`, farm=`ERA Butterfly Effect Club`) · `Shipment Ledger Listing` row 19 (`BEC`, SALES IN PROGRESS, Merchant Green Pledge, Trees=95, Program=sunmint) · `treasury-cache/managed-ledgers/BEC.json` published (commit `b031169`). Leftovers: `Transactions!B1` contract URL (stale tribomirimbahia link); `truesight.me/sunmint/bec` redirect (verify). | sheets / treasury-cache / tokenomics |
 | **PR1** | Extend product QR-generation (GAS `qr_code_web_service.gs`/generation handler + `dao_client batch_qr_generator`) to accept **per-item `qr_code` (=pk_hash) AND per-item `landing_page` (=profile_url)** instead of the static-from-Currency landing_page. (Other cols — ledger/currency/farm/manager — still from Currency/manifest.) Clasp deploy. | tokenomics / dao_client |
-| **PR2** | **`link_attestations_to_trees.py`** orchestrator — **program-parameterized** (manifest: program slug, roster sheet id + SA creds, attested-filter, currency, ledger codename, origin identity, price, binding=`pk_hash`), modeled on `onboard_retail_partner.py`. For the program: read roster → generate/ensure QR rows (id = pk_hash) → `report_sales --sales-price <price>`. `--dry-run` default; idempotent (skip existing/SOLD); logs rows skipped for missing pk_hash. BEC ships as the first manifest (`examples/attestation-trees/butterfly-effect.yaml`). | `dao_client` |
-| **PR3** | **Generalized pattern doc** `CREDENTIAL_ATTESTATION_TREE_LINKING.md` (peer of `MANAGED_LEDGER_EXPLORER_PATTERN.md`) — the reusable template for future programs (§8) + cross-refs (`OPERATING_INSTRUCTIONS.md` §2 / `WORKSPACE_CONTEXT.md` / `PROJECT_INDEX.md` / `CREDENTIALING_PLATFORM.md`) + `CONTEXT_UPDATES.md`. | `agentic_ai_context` (+ dao_client README) |
-| **RUN** | `--dry-run` → `--execute` 95 → verify sample via `lookup_qr_code` → confirm 95 SOLD on BEC = $95. Re-run for the 2 on attestation. | — |
+| **PR2** | **`link_attestations_to_trees.py`** orchestrator — **program-parameterized** (manifest: program slug, roster sheet id + SA creds, attested-filter, currency, ledger codename, origin identity, price, binding=`pk_hash`), modeled on `onboard_retail_partner.py`. For the program: read roster → generate/ensure QR rows (id = pk_hash, landing_page = profile_url) → `report_sales --sales-price <price>` → **write roster annotation** (new col `tree_qr_code` + `tree_issued_at`, append `Audit Trail` `tree_issued` row — §9). `--dry-run` default; idempotent (skip rows whose `tree_qr_code` is already set / QR already SOLD); logs rows skipped for missing pk_hash. BEC ships as the first manifest (`examples/attestation-trees/butterfly-effect.yaml`). | `dao_client` |
+| **PR3** | **Generalized pattern doc** `CREDENTIAL_ATTESTATION_TREE_LINKING.md` (peer of `MANAGED_LEDGER_EXPLORER_PATTERN.md`) — reusable template (§8/§9) + cross-refs (`OPERATING_INSTRUCTIONS.md` §2 / `WORKSPACE_CONTEXT.md` / `PROJECT_INDEX.md` / `CREDENTIALING_PLATFORM.md`) + `butterfly_effects_club/SCHEMA.md` (document the new roster cols) + `CONTEXT_UPDATES.md`. | `agentic_ai_context` / butterfly_effects_club |
+| **RUN** | `--dry-run` → `--execute` 95 → verify sample via `lookup_qr_code` → confirm 95 SOLD on BEC = $95 (run `snapshot_managed_ledgers.py --ledger BEC`) → **surface on serialized page**: `lineage-assets/scripts/seed_from_sheet.py --execute` then `build_index.py`, commit/push `lineage-assets` (§10). Re-run for the 2 on attestation. | — |
 
 ---
 
 ## 6. Resume tracker
 
-> **RESUME HERE → 4.3 (Fork F1) — it determines whether PR1 exists at all — then 4.4 (create BEC ledger).**
+> **RESUME HERE → PR1 (extend product QR-generation for per-item `qr_code` + `landing_page`).** SETUP
+> is done; minting can't run until PR1 lands.
 
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
-| PR0 (roadmap) | ☑ | ☐ | ☐ |
-| Pre-flight 4.3–4.8 | ☐ | — | — |
-| SETUP (BEC ledger + currency) | ☐ | ☐ | ☐ |
-| PR1 (custom-id, only if F1-a) | ☐ | ☐ | ☐ |
-| PR2 (`issue_cohort_trees.py`) | ☐ | ☐ | ☐ |
+| PR0 (roadmap) | ☑ | ☑ (#260) | ☐ |
+| Pre-flight 4.1–4.8 | ☑ | — | — |
+| SETUP (BEC ledger + currency) | ☑ | ☑ | ☐ |
+| PR1 (per-item id + landing_page) | ☐ | ☐ | ☐ |
+| PR2 (`link_attestations_to_trees.py`) | ☐ | ☐ | ☐ |
 | PR3 (docs) | ☐ | ☐ | ☐ |
 | RUN (95 now / 2 later) | ☐ | — | ☐ |
 
@@ -159,6 +160,48 @@ Listing row + treasury-cache JSON), add the `Currencies` row, drop a manifest. D
 
 **Candidate next programs:** Tribo Bahia Mirim capoeira; future ERA alumni cohorts; any
 `CREDENTIALING_PLATFORM.md` program.
+
+---
+
+## 9. Roster annotation — marking that a tree is linked to a certificate
+
+The `Cohort Roster` already has a clean audit-column convention: **A–D ERA-owned** (don't overwrite),
+**E–P written by `sync_cohort.py`** (`pk_hash`, `attestation_tx_id`, `profile_url`, `status`, …), plus an
+**`Audit Trail`** tab (per-action log). Follow that pattern — the orchestrator (PR2) owns **new columns
+past P**, disjoint from `sync_cohort.py`, so no clobber (document in `butterfly_effects_club/SCHEMA.md`):
+
+| New col | Label | Filled when | Value |
+|---------|-------|-------------|-------|
+| Q | `tree_qr_code` | after the tree's `[SALES EVENT]` lands | the BEC QR id (**== `pk_hash`**). Presence = tree issued → **idempotency marker** (skip set rows on re-run). |
+| R | `tree_issued_at` | same | ISO 8601 UTC. |
+| (opt) S | `tree_ledger_url` | same | `edgar.truesight.me/agroverse/qr-code-check?qr_code=<pk_hash>` for click-through. |
+
+Also append an **`Audit Trail`** row: `action = tree_issued`, with `name`, `processed_at`, and the QR
+id / ledger URL — mirroring the existing `profile_created` / `certificate_issued` actions.
+
+**Template note:** every program's roster gets the same `tree_qr_code` / `tree_issued_at` columns,
+written by the orchestrator. `tree_qr_code` is the per-program idempotency key on the roster side.
+
+---
+
+## 10. Surfacing on `truesight.me/physical-assets/serialized/`
+
+The serialized listing reads `lineage-assets/qrs_index.json` ← `build_index.py` aggregates per-QR
+manifests `lineage-assets/qrs/<qr_id>.json` ← **`seed_from_sheet.py` reads the whole `Agroverse QR
+codes` tab** (no currency/ledger allowlist) and classifies `asset_type` via `infer_asset_type`
+(currency containing **"tree"** → `"tree"`). BEC currency contains "Tree", so **BEC QRs auto-classify
+as trees and require no config**. To surface them after minting:
+
+```
+cd lineage-assets
+GOOGLE_APPLICATION_CREDENTIALS=… python3 scripts/seed_from_sheet.py --execute   # writes qrs/<pk_hash>.json
+python3 scripts/build_index.py                                                  # regenerates qrs_index.json
+git commit -am "chore: seed BEC cohort trees into qrs index" && git push       # GitHub Pages / raw serves it
+```
+
+No scheduled workflow exists in `lineage-assets` today → this refresh is part of **RUN** (and a CI cron
+is a reasonable follow-up). Each manifest's `current_landing_page` will be the student's `profile_url`
+(per the per-row landing_page), and `edgar_resolve_url` = `…/qr-code-check?qr_code=<pk_hash>`.
 
 ---
 
