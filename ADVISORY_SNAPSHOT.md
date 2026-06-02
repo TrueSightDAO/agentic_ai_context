@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-02T05:10:44Z`
+- Generated (UTC): `2026-06-02T11:04:58Z`
 - Look-back: **7** calendar days (`2026-05-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -76,7 +76,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-01T10:59:14.736Z`
+- Generated (UTC): `2026-06-02T10:59:14.409Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **668**
 - Partnered (north-star): **14**
@@ -207,6 +207,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-05-26 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2d5271e | 2026-06-02 05:13:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5470d69 | 2026-06-01 21:51:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 516f0da | 2026-06-01 18:25:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3f91e97 | 2026-06-01 12:19:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -246,7 +247,6 @@ d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [
 1c72a5e | 2026-05-27 05:00:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0dbe726 | 2026-05-26 12:51:29 -0700 | blog: publish 'The most tracked thing in the room is a cup of cacao' (#146)
-8285bd7 | 2026-05-26 16:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -259,6 +259,8 @@ c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+339dfa4 | 2026-06-01 22:10:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
+40379e7 | 2026-06-01 22:10:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 b4bd07e | 2026-06-01 21:12:48 -0700 | Merge pull request #259 from TrueSightDAO/auto/advisory-refresh-2026-06-02
 8c7f28a | 2026-06-02 04:12:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 e1eef75 | 2026-06-01 14:50:19 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
@@ -297,8 +299,6 @@ d1797f1 | 2026-05-30 12:49:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 f08f508 | 2026-05-30 07:13:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 9472345 | 2026-05-30 02:00:35 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
 efaab09 | 2026-05-30 02:00:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
-c5b626a | 2026-05-29 21:34:17 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
-7205b6c | 2026-05-29 21:34:17 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 … (truncated)
 ```
 
@@ -350,6 +350,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+2433b3d | 2026-06-02 10:56:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4cc5485 | 2026-06-01 16:28:37 -0700 | chore: refresh Agroverse store inventory snapshot
 ed5064e | 2026-06-01 12:23:37 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 9cd9e83 | 2026-06-01 12:11:52 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -466,7 +467,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 70.8 | 15047.91386 | 6/1/2026 21:50:17 |
+| 2026-06 | 70.8 | 15047.91386 | 6/2/2026 3:50:44 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-26`; scanned last **399** data rows)
 
