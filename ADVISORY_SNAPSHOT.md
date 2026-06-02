@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-02T11:04:58Z`
+- Generated (UTC): `2026-06-02T17:01:21Z`
 - Look-back: **7** calendar days (`2026-05-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CREDENTIALING ATTESTATION EVENT]` × 29
-- `[CONTRIBUTION EVENT]` × 8
+- `[CREDENTIALING ATTESTATION EVENT]` × 27
+- `[CONTRIBUTION EVENT]` × 10
 - `[PRACTICE EVENT]` × 6
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260531082222_313` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082229_315` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082231_317` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531082258_319` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260531083039_321` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
@@ -59,6 +57,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260601162314_347` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
 - `Edgar_20260601165119_349` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fulfillment for Susie Fritsch, including note and drop off
 - `Edgar_20260601165341_351` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Design, print label for Cacao tea bags to give away at Onsen Global Tech sum…
+- `Edgar_20260602154355_353` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to FounderHaus
+- `Edgar_20260602154504_355` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: @⁨Kaon⁩ when designing the experience module editor keep in mind Polyani’s a…
 
 ---
 
@@ -207,6 +207,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-05-26 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1a9a468 | 2026-06-02 11:06:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2d5271e | 2026-06-02 05:13:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5470d69 | 2026-06-01 21:51:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 516f0da | 2026-06-01 18:25:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -246,7 +247,6 @@ ccdac49 | 2026-05-28 04:53:03 +0000 | chore(stats): refresh stats/current.json [
 d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1c72a5e | 2026-05-27 05:00:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0dbe726 | 2026-05-26 12:51:29 -0700 | blog: publish 'The most tracked thing in the room is a cup of cacao' (#146)
 … (truncated)
 ```
 
@@ -259,6 +259,8 @@ c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e77b699 | 2026-06-02 04:05:14 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
+7a4aed8 | 2026-06-02 04:05:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 339dfa4 | 2026-06-01 22:10:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
 40379e7 | 2026-06-01 22:10:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 b4bd07e | 2026-06-01 21:12:48 -0700 | Merge pull request #259 from TrueSightDAO/auto/advisory-refresh-2026-06-02
@@ -297,8 +299,6 @@ c215670 | 2026-05-30 16:31:30 -0700 | OPEN_FOLLOWUPS: log sophia certbot --nginx
 d1797f1 | 2026-05-30 12:49:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 56dd0c1 | 2026-05-30 07:13:58 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
 f08f508 | 2026-05-30 07:13:56 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
-9472345 | 2026-05-30 02:00:35 -0700 | chore(previews): refresh Beer Hall preview (2026-05-30 UTC)
-efaab09 | 2026-05-30 02:00:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 … (truncated)
 ```
 
@@ -467,7 +467,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 70.8 | 15047.91386 | 6/2/2026 3:50:44 |
+| 2026-06 | 70.8 | 15047.91386 | 6/2/2026 9:50:46 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-26`; scanned last **399** data rows)
 
