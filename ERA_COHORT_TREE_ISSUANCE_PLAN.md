@@ -39,7 +39,7 @@ Live rows on `Agroverse QR codes` to mirror for BEC:
 | Col | SEF value | BEC value |
 |-----|-----------|-----------|
 | A `qr_code` | `20250716_SEF_1` (date_NAME_serial) | **F1-dependent** — `pk-<hash>` *or* `YYYYMMDD_BEC_<n>` |
-| B `landing_page` | `truesight.me/sunmint-tree-planting-pledges/sef1` | `…/butterfly-effect` (TBD) |
+| B `landing_page` | `truesight.me/sunmint-tree-planting-pledges/sef1` (static, from Currency) | **PER-ROW = the student's `profile_url`** (Roster col I), e.g. `https://truesight.me/programs/butterfly-effect/credentials/#pk-<hash>`. **Not** static-from-Currency — scanning the tree resolves to the owner's credential page. |
 | C `ledger` | `truesight.me/sunmint/sef1` | `truesight.me/sunmint/bec` (TBD) |
 | D `status` | `SOLD` | `MINTED` → `SOLD` after `report_sales` |
 | E/F/G/H farm/state/country/year | Sacred Earth Farms / Oregon / USA / 2025 | **which farm hosts these trees? (TBD)** |
@@ -105,7 +105,7 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 |------|-------|------|
 | **PR0** | This roadmap. | `agentic_ai_context` |
 | **SETUP** (gates everything) | BEC ledger sheet + `Shipment Ledger Listing` row + `treasury-cache` JSON + `Currencies` row (4.4–4.7). | sheets / treasury-cache / tokenomics |
-| **PR1** *(only if F1-a)* | Extend product QR-generation (GAS `qr_code_web_service.gs`/generation handler + `dao_client batch_qr_generator`) to accept **explicit QR ids** (the 95 pk_hashes). Clasp deploy. | tokenomics / dao_client |
+| **PR1** | Extend product QR-generation (GAS `qr_code_web_service.gs`/generation handler + `dao_client batch_qr_generator`) to accept **per-item `qr_code` (=pk_hash) AND per-item `landing_page` (=profile_url)** instead of the static-from-Currency landing_page. (Other cols — ledger/currency/farm/manager — still from Currency/manifest.) Clasp deploy. | tokenomics / dao_client |
 | **PR2** | **`link_attestations_to_trees.py`** orchestrator — **program-parameterized** (manifest: program slug, roster sheet id + SA creds, attested-filter, currency, ledger codename, origin identity, price, binding=`pk_hash`), modeled on `onboard_retail_partner.py`. For the program: read roster → generate/ensure QR rows (id = pk_hash) → `report_sales --sales-price <price>`. `--dry-run` default; idempotent (skip existing/SOLD); logs rows skipped for missing pk_hash. BEC ships as the first manifest (`examples/attestation-trees/butterfly-effect.yaml`). | `dao_client` |
 | **PR3** | **Generalized pattern doc** `CREDENTIAL_ATTESTATION_TREE_LINKING.md` (peer of `MANAGED_LEDGER_EXPLORER_PATTERN.md`) — the reusable template for future programs (§8) + cross-refs (`OPERATING_INSTRUCTIONS.md` §2 / `WORKSPACE_CONTEXT.md` / `PROJECT_INDEX.md` / `CREDENTIALING_PLATFORM.md`) + `CONTEXT_UPDATES.md`. | `agentic_ai_context` (+ dao_client README) |
 | **RUN** | `--dry-run` → `--execute` 95 → verify sample via `lookup_qr_code` → confirm 95 SOLD on BEC = $95. Re-run for the 2 on attestation. | — |
@@ -140,7 +140,8 @@ BEC is instance #1. A future credentialing program links its attested members to
 | `program_slug` | `butterfly-effect` | Matches the credentialing program; roster lives in its sheet. |
 | `roster_sheet_id` + `roster_tab` + `sa_credentials` | `1pApVCRq…` / `Cohort Roster` / `butterfly-effect-club@…` | Read access via the program's SA. |
 | `attested_filter` | `status==processed && attestation_tx_id != ''` | Which rows are eligible. |
-| `id_source` | `pk_hash` | QR id == credential `pk_hash` (the binding convention; skip rows lacking it). |
+| `id_source` | `pk_hash` (Roster col F) | QR id (col A) == credential `pk_hash` (the binding convention; skip rows lacking it). |
+| `landing_page_source` | `profile_url` (Roster col I) | Per-row QR `landing_page` (col B) = the member's credential page. The second half of the binding. |
 | `currency` | `Butterfly Effect Club Tree Planting Pledge - QR Code` | **One dedicated `Currencies` row per program** (NovaGaia shape, not the shared SunMint currency). Convention: **`<Program Name> Tree Planting Pledge - QR Code`**. |
 | `ledger_codename` | `BEC` | **One dedicated managed ledger per program** (peer of `SEF1`/`PP1`), Program=`sunmint`. e.g. future Tribo Bahia Mirim → `Tribo Bahia Mirim Tree Planting Pledge - QR Code` → ledger `TBM`. |
 | `origin_identity` | `ERA Butterfly Effect Club` | `farm name` (E) + `Manager Name` (U). |
@@ -148,8 +149,9 @@ BEC is instance #1. A future credentialing program links its attested members to
 
 **Generic mechanism (build once, reuse):** (1) product QR-generation accepts **explicit ids** (PR1);
 (2) `link_attestations_to_trees.py` (PR2) runs the read→mint→sell loop from a manifest, idempotently;
-(3) the binding rule **QR id == credential `pk_hash`** ties the Agroverse QR row to the
-`truesight.me/programs/<slug>/credentials/#<pk_hash>` page for every program.
+(3) the **two-way binding** for every program: **QR id (col A) == credential `pk_hash`** AND **QR
+`landing_page` (col B) == the member's `profile_url`** — so the Agroverse QR row and the
+`truesight.me/programs/<slug>/credentials/#<pk_hash>` page point at each other.
 
 **Per-program SETUP (one-time, ~30 min):** create the managed ledger (template copy + Shipment Ledger
 Listing row + treasury-cache JSON), add the `Currencies` row, drop a manifest. Documented in
