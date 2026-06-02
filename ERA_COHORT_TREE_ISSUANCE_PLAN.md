@@ -118,9 +118,20 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 
 ## 6. Resume tracker
 
-> **RESUME HERE → clasp-deploy the donation-mint GAS** (tokenomics #329 is merged but not live until
-> `clasp push`/`deploy`), then **PR2** (`link_attestations_to_trees.py`). Minting can't run until the
-> GAS is deployed.
+> **RESUME HERE → clasp-deploy the donation-mint GAS as `admin@truesight.me`.** Deploy via the refactored
+> `tokenomics/scripts/deploy_gas_project.py 1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT --push`
+> — but it refuses unless the active clasp identity == the project `owner_email` (**`admin@truesight.me`**;
+> current is `garyjob@agroverse.shop`). So: `clasp logout && clasp login` as admin@truesight.me (or
+> `CLASPRC_PATH=~/.clasprc-admin.json`), then push. THEN: trace one test mint+sale to confirm the BEC
+> ledger tallies, then run the 95.
+>
+> **Execution model (Gary 2026-06-02):** create **97** assets on the BEC ledger (✅ seeded `97`,
+> `Entity=Gary Teh`) → **sell 95** via QR `[SALES EVENT]` (`--attachment ~/Applications/tmp/era_payment.jpeg`,
+> `--sold-by/--cash-proceeds-collected-by "Gary Teh"`) → 2 remain. **Holder + proceeds = Gary Teh.**
+> The mint creates **only the QR entry** today (asset balance seeded manually); **🔮 future: make the mint
+> create the managed-ledger asset balance** so it tallies without a manual seed (don't double-count —
+> drop the seed when that lands). Deploy path uses the **refactored manifest-driven
+> `deploy_gas_project.py`** (no hand-editing mirrors).
 
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|

@@ -15,6 +15,18 @@ Key docs
 
 ### Google Apps Script — `clasp push` and Web App deploy (assistant convention)
 
+> **⚡ UPDATE 2026-06 (clasp refactor — prefer this over the manual steps below).** Deploy a project with
+> the **manifest-driven deployer**:
+> `tokenomics/scripts/deploy_gas_project.py <scriptId> --push [--with-hooks]` (`--list` to see all
+> scriptIds; dry-run by default — omit `--push` to preview). It reads each
+> `google_app_scripts/<theme>/manifest.json`, **syncs the tracked source → `clasp_mirrors/<scriptId>/`**,
+> strips stale files, `clasp push --force`, and fires `post_push_hooks[]`. It **refuses to push** on
+> uncommitted source changes or a **clasp-identity mismatch** (checks the active clasp account vs the
+> manifest's **`owner_email`** — e.g. the QR / donation-mint project `1MnAsIQAxcSfZO_…` is owned by
+> **`admin@truesight.me`**, so `clasp logout && clasp login` as admin@truesight.me first, or set
+> `CLASPRC_PATH=~/.clasprc-admin.json`). Full doc: `tokenomics/docs/gas_deploy_workflow.md`. The manual
+> mirror-copy + `clasp push`/`clasp deploy` steps below are the **legacy** fallback.
+
 **Operator phrase “clasp deploy”:** If the user says **clasp deploy** (or **go ahead and clasp deploy**, etc.) and does **not** spell out separate steps, treat that as an instruction to **(1)** sync canonical sources from **`google_app_scripts/**`** into the target **`clasp_mirrors/<scriptId>/`** files that clasp actually pushes (often **`Code.js`** / named **`.gs`** — see **`MIGRATION_CHECKLIST.tsv`** and examples below), **(2)** run **`clasp push`** from that mirror directory, **(3)** run **`clasp deploy`**. For **Web Apps** that already have a stable public **`/exec`** URL, use **`clasp deploy --deploymentId <existingDeploymentId> --description "…"`** so the same URL gets a new version; avoid **`clasp deploy`** without **`--deploymentId`** unless the user wants a **new** deployment entry. Example (Store Interaction History): mirror **`clasp_mirrors/14gKJ0VW49RsSn4S03pgxKXy0sp4Z7Z3Wm1Wj8jQiWW5dj1sFuPnp95sh/`**, copy **`holistic_hit_list_store_history/store_interaction_history_api.gs`** → **`Code.js`**, then push + **`clasp deploy --deploymentId AKfycbwoBqZnDS4JRRdFkxSXdlGt-qIn-RauMcORuDHeWs29oQ2CpJ3L4A10uM8se9anL108`**.
 
 Canonical index of **all** clasp-backed projects (names, script IDs, editor links): `tokenomics/clasp_mirrors/PROJECT_INDEX.md`.
