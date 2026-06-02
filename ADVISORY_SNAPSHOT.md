@@ -20,45 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-01T21:50:05Z`
-- Look-back: **7** calendar days (`2026-05-25` → today UTC)
+- Generated (UTC): `2026-06-02T04:12:31Z`
+- Look-back: **7** calendar days (`2026-05-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CREDENTIALING ATTESTATION EVENT]` × 29
-- `[CONTRIBUTION EVENT]` × 8
-- `[PRACTICE EVENT]` × 6
-- _free-form (no bracket tag)_ × 1
-
-### Latest entries
-
-- `Edgar_20260531082222_313` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082229_315` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082231_317` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531082258_319` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531083039_321` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260531114635_323` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvG7s41fBC2SSya1eWoAY…
-- `Edgar_20260531150858_325` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussing about the chocolate production pipeline setup
-- `Edgar_20260531151353_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion of China approach to cacao
-- `Edgar_20260531153517_329` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260531160247_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discussion about utilizing the Meta suit framework for extension to cover di…
-- `Edgar_20260531161556_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Drove over to Kirsten place to drop off the cacao
-- `Edgar_20260531163448_335` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Just a food for thought
-- `Edgar_20260531231611_337` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260531233550_339` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260531233615_341` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260601042543_343` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 14.24 · Description: Gasoline for driving around
-- `Edgar_20260601042629_345` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260601162314_347` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260601165119_349` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fulfillment for Susie Fritsch, including note and drop off
-- `Edgar_20260601165341_351` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Design, print label for Cacao tea bags to give away at Onsen Global Tech sum…
 
 ---
 
@@ -66,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,628 | 7% | `2026-12-31` | 213 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 213 | — |
+| 2026 QR Code Sales | $40,000 | $2,699 | 7% | `2026-12-31` | 212 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 212 | — |
 
 ---
 
@@ -144,13 +108,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 13,227.33 total units · $11,815.20
+- Manager record: `Gary Teh` · 30 SKU lines · 13,295.13 total units · $11,860.50
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 13,116.15 | $11,528.82 |
+  | (uncategorized) | (unspecified) | 26 | 13,185.95 | $11,591.11 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
-  | Cacao Mass | Retail Ready | 2 | 35 | $236.39 |
+  | Cacao Mass | Retail Ready | 2 | 33 | $219.40 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
@@ -168,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,991.25**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$40.46**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -188,7 +148,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-05-25 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-05-26 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -207,6 +167,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-05-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5470d69 | 2026-06-01 21:51:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 516f0da | 2026-06-01 18:25:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3f91e97 | 2026-06-01 12:19:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 32cd21e | 2026-06-01 05:27:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -246,7 +207,6 @@ d815291 | 2026-05-27 10:39:42 +0000 | chore(stats): refresh stats/current.json [
 c8eefc1 | 2026-05-26 20:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0dbe726 | 2026-05-26 12:51:29 -0700 | blog: publish 'The most tracked thing in the room is a cup of cacao' (#146)
 8285bd7 | 2026-05-26 16:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b0e0616 | 2026-05-26 10:35:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -259,6 +219,8 @@ b0e0616 | 2026-05-26 10:35:38 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e1eef75 | 2026-06-01 14:50:19 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
+2b12aff | 2026-06-01 14:50:18 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
 7af54ec | 2026-06-01 11:24:46 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
 3fa2ec7 | 2026-06-01 11:24:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
 8b00ed2 | 2026-06-01 05:17:11 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
@@ -297,8 +259,6 @@ c5b626a | 2026-05-29 21:34:17 -0700 | chore(previews): refresh Beer Hall preview
 7205b6c | 2026-05-29 21:34:17 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
 08e5a7a | 2026-05-29 20:38:20 -0700 | Merge pull request #253 from TrueSightDAO/auto/advisory-refresh-2026-05-30
 2831dc6 | 2026-05-30 03:38:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-30 UTC)
-343280c | 2026-05-29 16:16:30 -0700 | docs: whitepapers are now static pages in truesight_me (Google Docs deprecated) (#252)
-c369f8b | 2026-05-29 16:05:28 -0700 | Vault migrated to its own repo — leave LLM routing breadcrumbs (#251)
 … (truncated)
 ```
 
@@ -321,8 +281,6 @@ f29841e | 2026-05-29 11:06:12 -0700 | PR-1e: orphan cleanup (4 deletes + 1 routi
 e26342b | 2026-05-28 12:20:49 -0700 | fix(GAS): merge doGet dispatchers — practice_event_processing + program_admin_endpoint
 925bfb3 | 2026-05-27 14:21:32 -0700 | perf(gas): defer warmup full-body Gmail fetch (withBodies opt-in) — 37s→~5s (#314)
 499f11d | 2026-05-27 14:08:37 -0700 | fix(gas): dedup escapeHtml_/headerMap_/onOpen — restore storesHitList web app (#312)
-5a57172 | 2026-05-25 16:11:31 -0700 | QR generator: forward instead of dead-ending on the deprecated path (#311)
-9daac88 | 2026-05-25 13:59:59 -0700 | Fix QR web-service deploy/editor URLs + sync web_app.gs subscribe code (#310)
 ```
 
 ### `dapp` → `dapp`
@@ -352,6 +310,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+4cc5485 | 2026-06-01 16:28:37 -0700 | chore: refresh Agroverse store inventory snapshot
 ed5064e | 2026-06-01 12:23:37 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 9cd9e83 | 2026-06-01 12:11:52 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b34d300 | 2026-05-31 09:25:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -360,8 +319,6 @@ db83e3f | 2026-05-30 08:42:32 +0000 | chore: refresh store and partner inventory
 fe87b08 | 2026-05-28 10:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8d18e79 | 2026-05-26 10:20:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-6be5d94 | 2026-05-25 10:59:53 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-26d4588 | 2026-05-25 10:51:34 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -370,8 +327,6 @@ ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory
 cdbc06c | 2026-05-28 12:39:52 -0700 | chore: regenerate sitemap.xml (content drift surfaced by visual-consistency post-deploy) (#119)
 e95a339 | 2026-05-28 12:20:07 -0700 | ci: visual-consistency runs post-deploy against live beta.agroverse.shop (#118)
 5dc86ff | 2026-05-26 14:37:25 -0700 | events.json: machine-readable index of past cacao-circle pages (#117)
-62f16a0 | 2026-05-25 14:58:33 -0700 | Newsletter opt-in: default the consent box UNTICKED (genuine opt-in) (#116)
-e3c2cd3 | 2026-05-25 14:43:20 -0700 | QR opt-in form: center the Track My Impact button + default the consent box checked (#115)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -401,6 +356,15 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-06-02T041231Z_grounding-renderer-and-onboarding-tools.md`
+
+- **posted_at_utc:** `2026-06-02T04:12:31Z`  
+- **slug:** `grounding-renderer-and-onboarding-tools`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
+  - **Programs (Grounding)** — Oracle payload renderer now loads on TrueSight Grounding credential pages for live data visualization.
+
 ### `beer-hall_2026-06-01T041755Z_truesight-grounding-launch-oracle-draw.md`
 
 - **posted_at_utc:** `2026-06-01T04:17:55Z`  
@@ -418,15 +382,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
   OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
   - **Oracle (AI)** — DAO Advisory panel switched from GAS/Grok to the Autopilot agent (Sophia) for live responses.
-
-### `beer-hall_2026-05-30T033805Z_gas-restructure-vault-and-whitepaper.md`
-
-- **posted_at_utc:** `2026-05-30T03:38:05Z`  
-- **slug:** `gas-restructure-vault-and-whitepaper`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
-  - **Governance** — Whitepaper amended to drop OpenClaw, expand governor privileges, and correct early-exit clauses; source of truth migrated to static pages.
 
 ---
 
@@ -447,39 +402,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 0 | 14977.11386 | 6/1/2026 13:51:33 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-25`; scanned last **396** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
