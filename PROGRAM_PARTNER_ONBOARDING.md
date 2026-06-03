@@ -318,3 +318,57 @@ No `Currencies` pledge row, no QR mint, no attestation→tree linking.
 | Managed ledger + treasury cache | `MANAGED_LEDGER_EXPLORER_PATTERN.md`; `treasury-cache`; `snapshot_managed_ledgers.py` |
 | Serialized-QR public listing | `lineage-assets` (`seed_from_sheet.py` + `build_index.py`); `LINEAGE_ASSETS.md` |
 | BEC plan of record (worked example of Route B) | `ERA_COHORT_TREE_ISSUANCE_PLAN.md` |
+
+---
+
+## Toward one-call self-serve — the two-step `[PROGRAM REGISTRATION]` flow (blueprint)
+
+Today Routes A–C are run by an operator/LLM. The target is **one definition → reviewed provisioning**,
+modeled on the DAO's existing governance pattern (proposal `create`→`review`; donation-mint governor
+gate). Resource creation (a permanent subdomain, a ledger, a currency, SA access) is governor-gated, so:
+**anyone may request; a governor must approve before anything is provisioned.**
+
+### Step 1 — `[PROGRAM REGISTRATION REQUEST]` (anyone with a digital signature)
+- **Surface:** DApp page `report_program_registration.html` + `dao_client` module
+  `report_program_registration.py` (build_event_cli). Submitter = the partner admin or a sponsoring
+  contributor (registered signer).
+- **Payload = the Program-definition parameter set** (see top of this doc): `program_slug`,
+  `display_name`, `description`, `logo_url`, `website`, `partner_organization`, `capabilities` (csv of
+  credentialing/activity_reporting/tree_planting/donation), `roster_sheet_url`, `admin_subdomain`
+  (`<slug>.truesight.me`), and for tree/donation: `currency`, `ledger_codename` (reuse or new), `price`,
+  `origin_identity`.
+- **Effect:** Edgar/dao_protocol logs it to Telegram Chat Logs → a GAS scanner appends a **`PENDING`** row
+  to a new **`Program Registrations`** tab (dedup on Telegram Update ID). **No provisioning yet.**
+- **Validate at submit:** required fields + **clash-check** (slug + `admin_subdomain` not already taken —
+  grep workspace `CNAME`s + existing `programs/<slug>/`), so the requester gets instant feedback.
+
+### Step 2 — governor approval → provision
+- **Surface:** a governor review page `review_program_registration.html` (modeled on
+  `review_proposal.html` / `warmup_review.html`) listing `PENDING` rows with **Approve / Reject**, and a
+  **notification-bell source** registered in `dapp/js/notifications.js` (per `DAPP_NOTIFICATION_BADGE.md`)
+  that counts `PENDING` registrations so it surfaces in the bell for governors.
+- **Gate:** Pattern-A governor check (signer must be in the `Governors` tab — same as donation-mint).
+- **On approve → scaffolding handler provisions** (idempotent; re-approval is a no-op): program dir +
+  `config.json` + `truesight.me/programs/<slug>/manifest.json` + program listing; the
+  `<slug>.truesight.me` Admin Console (repo + `CNAME`, re-run clash-check); and per capability — managed
+  ledger + `Currencies` row (tree/donation), attestation-tree manifest + cron (tree). Sets row → `APPROVED`.
+- **Reject:** row → `REJECTED` + reason.
+
+### Public funnel — "Onboard your program" marketing page
+A public `truesight.me` page (e.g. `programs.html` extension or `onboard.html`) that pitches the
+**pathways** a partner can join the ecosystem (experiential-learning credentialing · activity reporting ·
+attestation→tree-planting · donation transparency), each with a one-line value prop + "what you provide"
++ a CTA into the registration request (`dapp.truesight.me/report_program_registration.html`). This is the
+top of the funnel: marketing page → request → governor approval → provisioned program.
+
+### Build order (status)
+1. ☑ This spec (blueprint).
+2. ☐ Request side: `report_program_registration.py` (dao_client) + `report_program_registration.html`
+   (DApp) + `[PROGRAM REGISTRATION REQUEST]` dispatch entry → `Program Registrations` PENDING row.
+3. ☐ Governor surface: `review_program_registration.html` + bell source (notifications.js) + Pattern-A gate.
+4. ☐ Public marketing/funnel page on truesight.me (pathways + CTA into the request).
+5. ☐ Provisioning handler (the heaviest — scaffolds everything on approval).
+
+Precedents to copy: `create_proposal`/`review_proposal` (submit→review), `mint_donation` /
+`process_donation_mint_telegram_logs.gs` (governor gate + PENDING dedup tab), `DAPP_NOTIFICATION_BADGE.md`
+(bell source registration).
