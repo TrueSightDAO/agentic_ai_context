@@ -5,6 +5,15 @@ e.g. ERA Professionals / Butterfly Effect Club, Tribo Bahia Mirim capoeira). It 
 three routes** to take and the exact procedure + scripts for each. Pick the route by what the partner
 actually needs; don't over-build (a credential-only program does **not** need a ledger).
 
+> **This platform is "Lineage" — the DAO's experiential-learning credentialing network** (repos
+> `lineage-credentials` / `lineage-engine` / `lineage-assets`). It is the emerging **4th DAO initiative**
+> alongside **SunMint** (regeneration), **Agroverse** (commerce), and **Edgar** (infrastructure) —
+> Lineage is the *education / human-development / recognition* arm + the front door that recruits new
+> communities (a Lineage program can then plug into SunMint trees or Agroverse commerce, or stand alone).
+> The public **"Onboard your program" funnel page = Lineage's landing-page tile** on `truesight.me`
+> (the two are the same artifact). Agreed framing 2026-06-03 (Gary); finalize landing-tile copy via
+> `DR_MANHATTAN.md`. It's the newest pillar (2 partners today) — frame as confident-but-emerging.
+
 ---
 
 ## Decision tree
