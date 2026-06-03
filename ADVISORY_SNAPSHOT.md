@@ -20,9 +20,44 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-03T04:21:29Z`
+- Generated (UTC): `2026-06-03T05:25:39Z`
 - Look-back: **7** calendar days (`2026-05-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[SALES EVENT]` × 41
+- `[CONTRIBUTION EVENT]` × 2
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260602225422_351` · **Edgar** · [SALES EVENT] Item: pk-Fd3q3S0Bq-6F · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225425_353` · **Edgar** · [SALES EVENT] Item: pk-u0UDJKke8-Vy · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225428_355` · **Edgar** · [SALES EVENT] Item: pk-ztJmAFd7WFgS · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225431_357` · **Edgar** · [SALES EVENT] Item: pk-CaEJ4UNqpknL · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225434_359` · **Edgar** · [SALES EVENT] Item: pk-J2aZSMGLlj1b · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225441_361` · **Edgar** · [SALES EVENT] Item: pk-HaKpMdzM9ycZ · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225446_363` · **Edgar** · [SALES EVENT] Item: pk-EpWV_YV1qJUX · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225455_365` · **Edgar** · [SALES EVENT] Item: pk-VDKakvgCtd04 · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225502_367` · **Edgar** · [SALES EVENT] Item: pk-uv1UhjawJzo9 · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225505_369` · **Edgar** · [SALES EVENT] Item: pk-NEJv843YObrg · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225508_371` · **Edgar** · [SALES EVENT] Item: pk-z6g9SWhL_ati · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225512_373` · **Edgar** · [SALES EVENT] Item: pk-2QBKOeqIfVSG · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225516_375` · **Edgar** · [SALES EVENT] Item: pk-DXDofYc0ESp7 · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225527_377` · **Edgar** · [SALES EVENT] Item: pk-FaSZxIBdebqe · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225543_379` · **Edgar** · [SALES EVENT] Item: pk-h5qizrAWl76c · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225556_381` · **Edgar** · [SALES EVENT] Item: pk-P3nkiL4k81h3 · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602225608_383` · **Edgar** · [SALES EVENT] Item: pk-Lzs3a8k_5iMI · Sales price: 1 · Sold by: Gary Teh
+- `Edgar_20260602232115_385` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: BEC
+- `Edgar_20260602235000_387` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: ERA/Butterfly Effect Club → BEC tree issuance (95 trees minted + sold, end-t…
+- `Edgar_20260603001113_389` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: BEC finalization: credential-page tree badge + surfacing + docs
 
 ---
 
@@ -132,13 +167,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,118.58**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.53**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -225,6 +264,8 @@ e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's wh
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+132517c | 2026-06-02 21:21:44 -0700 | Merge pull request #269 from TrueSightDAO/auto/advisory-refresh-2026-06-03
+c63e0a3 | 2026-06-03 04:21:34 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 c257690 | 2026-06-02 17:08:55 -0700 | Roadmap: PR4 credential tree badge done — BEC effort complete (#268)
 81ccff9 | 2026-06-02 16:41:02 -0700 | Onboarding doc: end-to-end BEC runbook (§B.6) + roadmap done-state (#267)
 410bdbb | 2026-06-02 14:48:16 -0700 | Docs: clasp credential files + donation-mint deploy drift blocker + sunmint BEC listing (#266)
@@ -263,8 +304,6 @@ b58a0f2 | 2026-05-31 02:29:45 -0700 | chore(previews): refresh Beer Hall preview
 adb246f | 2026-05-31 02:29:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 a21f406 | 2026-05-30 22:00:38 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
 439fe51 | 2026-05-30 22:00:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
-5bbcd89 | 2026-05-30 21:55:29 -0700 | docs: update oracle plan with truesight-grounding naming, timing flow, and program page scope
-f6c0337 | 2026-05-30 21:54:38 -0700 | docs: update oracle plan with truesight-grounding naming, timing flow, and program page scope
 … (truncated)
 ```
 
@@ -411,6 +450,63 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/2/2026 21:50:41 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-27`; scanned last **498** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-02 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Lzs3a8k_5iMI | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-P3nkiL4k81h3 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-h5qizrAWl76c | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FaSZxIBdebqe | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-DXDofYc0ESp7 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-2QBKOeqIfVSG | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-z6g9SWhL_ati | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NEJv843YObrg | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-uv1UhjawJzo9 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-VDKakvgCtd04 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-EpWV_YV1qJUX | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-HaKpMdzM9ycZ | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-J2aZSMGLlj1b | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-CaEJ4UNqpknL | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-ztJmAFd7WFgS | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-u0UDJKke8-Vy | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Fd3q3S0Bq-6F | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NTqCXKtd7yXC | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FgGGKCdJFijx | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-kW9Dr8DAEJ5O | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-SAbs8DKErxhj | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-_TNoRprgbCwR | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-3ljjhKC3AEk_ | — | — |
+| 2026-06-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
