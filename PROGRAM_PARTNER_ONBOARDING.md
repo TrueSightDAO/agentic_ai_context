@@ -59,7 +59,7 @@ full automation" below). Today these live in several files (`<program-repo>/conf
 **Capabilities (opt-in booleans) → what gets provisioned:**
 | Capability | Extra params the partner provides | We create |
 |------------|-----------------------------------|-----------|
-| `credentialing` (experiential learning) | `roster_sheet_url` + `roster_tab`; **grant our credentialing SA Viewer/Editor on that sheet** (e.g. `butterfly-effect-club@get-data-io.iam.gserviceaccount.com`) | program listing `truesight.me/programs/<slug>` + per-member credential records (Route A) |
+| `credentialing` (experiential learning) | `roster_sheet_url` + `roster_tab`; **grant our credentialing SA Viewer/Editor on that sheet** (e.g. `butterfly-effect-club@get-data-io.iam.gserviceaccount.com`); a **unique `<slug>.truesight.me`** for the admin/attestation console (must not clash — see Route A step 2) | program listing `truesight.me/programs/<slug>` + per-member credential records + the **`<slug>.truesight.me` Admin Console** (Route A) |
 | `activity_reporting` | — (already supported) | activity/practice events surface on each credential |
 | `tree_planting` (per attestation) | `currency` name + `ledger_codename` (reuse or new) + `price` + origin identity | per-member tree QR (`qr_code==pk_hash`, `landing_page==profile_url`) + credential tree badge (Route B) |
 | `donation` | `ledger_codename` (reuse or new) | managed-ledger explorer listing (Route C) |
@@ -85,11 +85,20 @@ Members get a digital signature, a public credential page, and a certificate PDF
    e.g. `butterfly_effects_club/`), a public `truesight.me/programs/<slug>/manifest.json`, and a
    roster sheet (`Cohort Roster` tab). See **`CREDENTIALING_PLATFORM.md`** and
    **`CREDENTIALING_PROGRAM_PAGES.md`** (URL pattern, manifest schema, co-branding, consent).
-2. **Roster → identities + attestations.** The program repo's **`scripts/sync_cohort.py`** reads the
+2. **Attestation/admin subdomain (per program).** Give the program repo its own **Admin Console** where
+   managers attest members — a GitHub Pages site (`index.html` with per-member Attest/View actions,
+   modeled on `butterfly_effects_club/index.html`) served from a **`CNAME` = `<program-slug>.truesight.me`**.
+   ⚠ **Must not clash with an existing subdomain.** Pick a unique `<program-slug>.truesight.me` and check
+   it against the in-use list first (search each workspace repo's `CNAME`): currently taken —
+   `butterfly-effect-club`, `oracle`, `tribomirimbahia` / `mirim-bahia`, `beta`, `beta.dapp`, `dapp`,
+   `edgar`, `heierling`, `www`, and the apex `truesight.me` (also the `*.agroverse.shop` family:
+   `capoeira`, `beta`). Set `config.json.admin_console_url` to the new subdomain. (The *public* credential
+   surface stays at `truesight.me/programs/<slug>/credentials/` — the subdomain is the *operator* console.)
+3. **Roster → identities + attestations.** The program repo's **`scripts/sync_cohort.py`** reads the
    roster, mints a participant keypair per member, signs `[ATTESTATION EVENT]`s to Edgar/dao_protocol,
    commits to **`lineage-credentials`**, and writes the roster audit columns (`pk_hash`,
    `attestation_tx_id`, `profile_url`, `status`, …). Schema: that repo's `SCHEMA.md`.
-3. **Credential pages + certs.** **`lineage-engine/scripts/build_cv_cache.py`** renders each member's
+4. **Credential pages + certs.** **`lineage-engine/scripts/build_cv_cache.py`** renders each member's
    public page at `truesight.me/programs/<slug>/credentials/#<pk_hash>` + PDF/cert
    (`cert_overlay.py`). See **`CREDENTIALING_COHORT_PROGRAM_ONBOARDING.md`**.
 
