@@ -75,6 +75,27 @@ done by an operator/LLM following Routes A–C below. A signed registration even
 set above would let a governor (or partner admin) provision a whole program in one call; until then,
 this doc IS the runbook.
 
+### Integration boundary — who does what
+
+Clear division of responsibility once a program is live:
+
+- **Partner submits (signed events) — their side.** Two event types:
+  - **Attestation** (`[CREDENTIALING ATTESTATION EVENT]`) — "this member completed our program." Usual
+    path: the program repo's `sync_cohort.py` reads their roster sheet and attests; or they submit
+    directly. Handler: `process_attestation_events` (dispatch).
+  - **Activity** — practice/activity logs that accrue on a member's credential (e.g. capoeira sessions).
+  - **Integration tooling we already provide:** `dapp/scripts/edgar_payload_helper.js` (browser RSA
+    signing reference), the `dao_client` / `truesight_dao_client` package (terminal/automation, same
+    signing + `POST /dao/submit_contribution`), and `CREDENTIALING_PLATFORM.md` /
+    `CREDENTIALING_PROGRAM_PAGES.md` / `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`. Partners integrate against
+    these — they never touch QR minting or ledgers directly.
+- **We handle automatically — our side.** When a program has `tree_planting`, an attestation → a minted
+  tree is **our** job: the scheduled `link_attestations_to_trees` orchestrator picks up newly-attested
+  members and mints the QR (`qr_code == pk_hash`). Partners do **not** mint.
+- **We handle manually — our side.** **Marking a tree `SOLD` stays a manual trigger on our end**, done
+  only **after we confirm the partner's payment landed** (`report_sales`/`update_qr_code`). The mint-only
+  orchestrator never auto-sells. (Decision 0.9 in `ERA_COHORT_TREE_ISSUANCE_PLAN.md`.)
+
 ---
 
 ## Route A — Credential-only (no ledger, no trees)
