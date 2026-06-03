@@ -358,10 +358,24 @@ modeled on the DAO's existing governance pattern (proposal `create`→`review`; 
 gate). Resource creation (a permanent subdomain, a ledger, a currency, SA access) is governor-gated, so:
 **anyone may request; a governor must approve before anything is provisioned.**
 
-### Step 1 — `[PROGRAM REGISTRATION REQUEST]` (anyone with a digital signature)
-- **Surface:** DApp page `report_program_registration.html` + `dao_client` module
-  `report_program_registration.py` (build_event_cli). Submitter = the partner admin or a sponsoring
-  contributor (registered signer).
+### Step 1 — `[PROGRAM REGISTRATION REQUEST]` (anyone — identity auto-minted) ✅ SHIPPED
+- **Surface (LIVE):** public self-serve form **`truesight.me/lineage-register.html`** (+ module
+  `truesight_me/js/lineage-register.js`). The "Talk to us" / "Onboard your program" CTAs on `lineage.html`
+  lead here. **The submitter does NOT need a pre-existing signature** — the page mirrors the capoeira flow
+  (`capoeira/assets/js/practice-event-submit.js`): `ensureKeypair()` auto-generates an anonymous RSA
+  identity in `localStorage` (`publicKey`/`privateKey`, same keys the DApp uses), then fires **two signed
+  events** to Edgar `/dao/submit_contribution` (CORS `*`): **`[EMAIL REGISTERED EVENT]`** (registers email
+  + pubkey, triggers the verify email) then **`[PROGRAM REGISTRATION REQUEST]`**. Email is **required**.
+  - **Verify-email loop stays same-origin:** the verify link is derived server-side from the
+    "generated using `<URL>`" line (`dao_protocol email_registration.py::_generation_source_url`), so we set
+    it to the same page; on `?vk=&em=` return, `handleVerificationReturn()` signs `[EMAIL VERIFICATION EVENT]`
+    with the local key (no dapp.truesight.me localStorage trap). Success panel offers a private-key backup
+    download + the identity fingerprint (`pk-<hash>`) + `/credentials/#pk-<hash>` link.
+  - Governor-assigned fields (`Admin Subdomain`, `Currency`, `Ledger Codename`, `Price`) are sent as
+    `(pending governor assignment)`; `Origin Identity` = the auto-minted pubkey; `Submission Source` = page URL.
+- **Alt surface (CLI/legacy):** `dao_client` module `report_program_registration.py` (build_event_cli). The
+  spec'd DApp page `report_program_registration.html` was **not** built — the truesight_me form supersedes it
+  for the public funnel.
 - **Payload = the Program-definition parameter set** (see top of this doc): `program_slug`,
   `display_name`, `description`, `logo_url`, `website`, `partner_organization`, `capabilities` (csv of
   credentialing/activity_reporting/tree_planting/donation), `roster_sheet_url`, `admin_subdomain`
@@ -393,10 +407,14 @@ top of the funnel: marketing page → request → governor approval → provisio
 
 ### Build order (status)
 1. ☑ This spec (blueprint).
-2. ☐ Request side: `report_program_registration.py` (dao_client) + `report_program_registration.html`
-   (DApp) + `[PROGRAM REGISTRATION REQUEST]` dispatch entry → `Program Registrations` PENDING row.
+2. ☑ Request side: **`truesight.me/lineage-register.html` + `js/lineage-register.js`** (self-serve, auto-mints
+   identity, fires email-reg + program-reg, same-origin verify loop). `report_program_registration.py`
+   (dao_client) + `[PROGRAM REGISTRATION REQUEST]` dispatch entry also in place. **Remaining on this item:** the
+   GAS scanner that appends the `[PROGRAM REGISTRATION REQUEST]` to a `Program Registrations` PENDING tab
+   (`processProgramRegistrationsFromTelegramChatLogs` is wired in dispatch.py — confirm the GAS handler exists).
 3. ☐ Governor surface: `review_program_registration.html` + bell source (notifications.js) + Pattern-A gate.
-4. ☐ Public marketing/funnel page on truesight.me (pathways + CTA into the request).
+4. ☑ Public marketing/funnel: **`lineage.html`** (Lineage = 4th initiative, pathways + "what you provide")
+   → CTA into `lineage-register.html`. (Landing-page tile in `index.html` too.)
 5. ☐ Provisioning handler (the heaviest — scaffolds everything on approval).
 
 Precedents to copy: `create_proposal`/`review_proposal` (submit→review), `mint_donation` /
