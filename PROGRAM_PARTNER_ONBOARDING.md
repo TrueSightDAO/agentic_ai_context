@@ -37,6 +37,46 @@ mutually exclusive — but **only add the layer the partner needs.**
 
 ---
 
+## Program definition — the single parameter set (what a partner provides)
+
+A partner spins up a program by supplying **one definition** + opting into capabilities. This is the
+self-serve input set (and the parameter list for a future `[PROGRAM REGISTRATION EVENT]` — see "Toward
+full automation" below). Today these live in several files (`<program-repo>/config.json`,
+`truesight_me/programs/<slug>/manifest.json`, the attestation-tree manifest, the ledger setup); a future
+`program.yaml` should unify them.
+
+**Identity / metadata** (always required):
+| Field | Notes |
+|-------|-------|
+| `program_slug` | **Permanent** (etched into printed cert QR codes). Lowercase, hyphenated. |
+| `display_name` | e.g. "Butterfly Effect". |
+| `description` | One paragraph (md). |
+| `logo` | Image (e.g. 300×300 PNG) — used for credential co-brand + sunmint card. |
+| `website` / `partner_url` | Partner's site. |
+| `partner_organization` + lead contact | e.g. ERA Professionals / Bilal. |
+| co-brand colors, consent defaults | `public_listable` default; minors posture. |
+
+**Capabilities (opt-in booleans) → what gets provisioned:**
+| Capability | Extra params the partner provides | We create |
+|------------|-----------------------------------|-----------|
+| `credentialing` (experiential learning) | `roster_sheet_url` + `roster_tab`; **grant our credentialing SA Viewer/Editor on that sheet** (e.g. `butterfly-effect-club@get-data-io.iam.gserviceaccount.com`) | program listing `truesight.me/programs/<slug>` + per-member credential records (Route A) |
+| `activity_reporting` | — (already supported) | activity/practice events surface on each credential |
+| `tree_planting` (per attestation) | `currency` name + `ledger_codename` (reuse or new) + `price` + origin identity | per-member tree QR (`qr_code==pk_hash`, `landing_page==profile_url`) + credential tree badge (Route B) |
+| `donation` | `ledger_codename` (reuse or new) | managed-ledger explorer listing (Route C) |
+
+**SA access (the recurring "they add our account" step):** for any capability that reads/writes a
+partner Google Sheet (credentialing roster; a partner-owned ledger), the partner must **share that sheet
+with the program's service account** (Viewer for read-only, Editor for write-back of audit columns).
+For Butterfly Effect that SA is `butterfly-effect-club@get-data-io.iam.gserviceaccount.com`.
+
+**Toward full automation (current gap):** there is **no `[PROGRAM REGISTRATION EVENT]` yet** — program
+scaffolding (program dir + `manifest.json` + `config.json` + listing + ledger/currency + SA wiring) is
+done by an operator/LLM following Routes A–C below. A signed registration event carrying the parameter
+set above would let a governor (or partner admin) provision a whole program in one call; until then,
+this doc IS the runbook.
+
+---
+
 ## Route A — Credential-only (no ledger, no trees)
 
 Members get a digital signature, a public credential page, and a certificate PDF. Nothing financial.
