@@ -126,12 +126,16 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 > proceeds=Gary); $2 capital injection processed (Asset+Equity); `/sunmint/bec` redirect; serialized
 > listing refreshed; `/qr/` farm-link fix; `sunmint.html` BEC card. Sales→ledger self-heals hourly.
 >
-> **REMAINING → PR4 (credential-page tree badge + qr link).** `lineage-engine/build_cv_cache.py` looks up
-> `qr_id==pk_hash` in `qrs_index.json` → adds a `tree` field → credential front-end (shared
-> `TrueSightProgramShell`) renders a "🌳 tree planted" badge linking to `truesight.me/qr/?id=<pk_hash>`;
-> rebuild CVs. Spec in `PROGRAM_PARTNER_ONBOARDING.md` §B.6 item 6. Plus trivial: add
-> `truesight_me/assets/shipments/bec.avif` (sunmint card image). The 2 unattested (Hajira, Harram) get
-> trees automatically when they attest + the orchestrator re-runs.
+> **✅ PR4 DONE (2026-06-03): credential-page tree badge shipped.** Implemented in the credential
+> front-end shell `truesight_me/js/program-shell.js` (no build_cv_cache change needed): on a credential
+> page it fetches the member's tree manifest from `lineage-assets/qrs/<pk_hash>.json` (jsDelivr→raw
+> fallback) and, if a tree exists, renders a "🌳 A tree was planted for this credential" section linking
+> to `truesight.me/qr/?id=<pk_hash>` (program-agnostic; derived from `qr_code == pk_hash`). Live on beta
+> (#155) + prod. `bec.avif` placeholder added for the sunmint card.
+>
+> **🎉 ENTIRE EFFORT COMPLETE.** Only optional polish left: replace the `bec.avif` placeholder with a real
+> BEC image; the 2 unattested (Hajira, Harram) auto-get trees when they attest + the scheduled orchestrator
+> runs (PR2b cron — not yet scheduled; today it's a manual `link_attestations_to_trees --execute`).
 >
 > **Execution model (Gary 2026-06-02):** create **97** assets on the BEC ledger (✅ seeded `97`,
 > `Entity=Gary Teh`) → **sell 95** via QR `[SALES EVENT]` (`--attachment ~/Applications/tmp/era_payment.jpeg`,
