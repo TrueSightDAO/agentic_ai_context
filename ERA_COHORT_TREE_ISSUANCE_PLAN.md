@@ -133,9 +133,13 @@ accept an explicit id list** (the 95 pk_hashes). This is the affirmative answer 
 > to `truesight.me/qr/?id=<pk_hash>` (program-agnostic; derived from `qr_code == pk_hash`). Live on beta
 > (#155) + prod. `bec.avif` placeholder added for the sunmint card.
 >
-> **🎉 ENTIRE EFFORT COMPLETE.** Only optional polish left: replace the `bec.avif` placeholder with a real
-> BEC image; the 2 unattested (Hajira, Harram) auto-get trees when they attest + the scheduled orchestrator
-> runs (PR2b cron — not yet scheduled; today it's a manual `link_attestations_to_trees --execute`).
+> **🎉 ENTIRE EFFORT COMPLETE (2026-06-03).** Final round: `bec.avif` = the real Butterfly Effect logo
+> (deployed); **PR2b shipped** — `butterfly-effect-club` PR #2 adds a 6-hourly `mint_cohort_trees.yml`
+> cron running the mint-only orchestrator, so newly-attested members (incl. the 2 pending, Hajira/Harram)
+> auto-get trees. **Action for operator:** add 3 repo secrets to `butterfly-effect-club` to enable it —
+> `GOOGLE_CREDENTIALS_JSON_B64` (SA, same as sync_cohort), `ERA_PAYMENT_PROOF_B64` (mint proof image),
+> `DAO_GOVERNOR_{EMAIL,PUBLIC_KEY,PRIVATE_KEY}` (governor signer). Until then, mint manually via
+> `link_attestations_to_trees --execute`.
 >
 > **Execution model (Gary 2026-06-02):** create **97** assets on the BEC ledger (✅ seeded `97`,
 > `Entity=Gary Teh`) → **sell 95** via QR `[SALES EVENT]` (`--attachment ~/Applications/tmp/era_payment.jpeg`,
