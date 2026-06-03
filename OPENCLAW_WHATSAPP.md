@@ -199,12 +199,13 @@ When including **GitHub** URLs (PR, commit, compare, tree) in digests for **eith
 
 ### Attribution (required for both channels)
 
-Every digest must open with a clear line that the post is **generated via OpenClaw and Cursor**, **not** manually written by the founder/operator. Examples:
+Every digest must open with a clear line signalling it's an **automated AI digest** (so readers know it
+isn't a hand-written post). Keep it short — **don't** name dead tooling (OpenClaw is retired) or tack on
+clauses like "(not a manual post from Gary)". Examples:
 
-- **Beer Hall:** `*OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)*`  
-  (Adjust the name if someone else is the named operator.)
+- **Beer Hall:** `*Automated daily digest of the DAO*`
 
-- **Founder Haus AI prompt:** `*OpenClaw × Cursor — AI / agent tooling update (automated summary; not a manual post from Gary)*`  
+- **Founder Haus AI prompt:** `*Automated digest — AI / agent tooling update*`  
   (Stress **tooling and how AIs are used**; see subset rules below.)
 
 ### WhatsApp-safe formatting
