@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-03T11:27:15Z`
+- Generated (UTC): `2026-06-03T17:27:29Z`
 - Look-back: **7** calendar days (`2026-05-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -212,6 +212,7 @@ _All dated lines on/after 2026-05-27_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2dc06d4 | 2026-06-03 11:29:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 220738f | 2026-06-03 05:29:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 15a0f38 | 2026-06-02 17:20:34 -0700 | sunmint BEC card: use the Butterfly Effect logo (was sef1 placeholder) (#156)
 65b9abe | 2026-06-02 17:04:06 -0700 | Credential page: tree-planted badge linking to /qr/?id=<pk_hash>; BEC card image (#155)
@@ -251,7 +252,6 @@ e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's wh
 8bd724a | 2026-05-28 13:52:45 -0700 | edgar.html: rewrite Solution as three open layers (contributor edge / runtime / AI operator) (#149)
 01d582e | 2026-05-28 12:40:30 -0700 | ci(playwright): omit webServer when PLAYWRIGHT_BASE_URL is set (#148)
 8c3b1fd | 2026-05-28 12:21:59 -0700 | ci: Playwright post-deploy against live beta.truesight.me (#147)
-1268fb7 | 2026-05-28 16:39:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -264,6 +264,8 @@ e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's wh
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5b18292 | 2026-06-03 04:27:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
+31ad65b | 2026-06-03 04:27:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 e25e380 | 2026-06-02 22:25:51 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
 9b2d9f2 | 2026-06-02 22:25:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 132517c | 2026-06-02 21:21:44 -0700 | Merge pull request #269 from TrueSightDAO/auto/advisory-refresh-2026-06-03
@@ -302,8 +304,6 @@ b188ce7 | 2026-06-01 04:18:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 4eb9bad | 2026-05-31 12:44:55 -0700 | Create OPEN_FOLLOW_UPS.md documenting autopilot tooling gaps
 6748c19 | 2026-05-31 07:17:49 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
 a24e4dd | 2026-05-31 07:17:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
-b58a0f2 | 2026-05-31 02:29:45 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
-adb246f | 2026-05-31 02:29:44 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 … (truncated)
 ```
 
@@ -475,7 +475,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/3/2026 3:51:43 |
+| 2026-06 | 222.41 | 15199.52386 | 6/3/2026 9:51:15 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-27`; scanned last **498** data rows)
 
