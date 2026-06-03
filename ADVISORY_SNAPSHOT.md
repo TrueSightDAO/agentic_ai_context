@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-03T17:27:29Z`
+- Generated (UTC): `2026-06-03T21:35:53Z`
 - Look-back: **7** calendar days (`2026-05-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[SALES EVENT]` × 41
-- `[CONTRIBUTION EVENT]` × 2
+- `[SALES EVENT]` × 36
+- `[CONTRIBUTION EVENT]` × 6
+- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260602225422_351` · **Edgar** · [SALES EVENT] Item: pk-Fd3q3S0Bq-6F · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225425_353` · **Edgar** · [SALES EVENT] Item: pk-u0UDJKke8-Vy · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225428_355` · **Edgar** · [SALES EVENT] Item: pk-ztJmAFd7WFgS · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225431_357` · **Edgar** · [SALES EVENT] Item: pk-CaEJ4UNqpknL · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225434_359` · **Edgar** · [SALES EVENT] Item: pk-J2aZSMGLlj1b · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225441_361` · **Edgar** · [SALES EVENT] Item: pk-HaKpMdzM9ycZ · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225446_363` · **Edgar** · [SALES EVENT] Item: pk-EpWV_YV1qJUX · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225455_365` · **Edgar** · [SALES EVENT] Item: pk-VDKakvgCtd04 · Sales price: 1 · Sold by: Gary Teh
@@ -58,6 +54,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260602232115_385` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: BEC
 - `Edgar_20260602235000_387` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: ERA/Butterfly Effect Club → BEC tree issuance (95 trees minted + sold, end-t…
 - `Edgar_20260603001113_389` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: BEC finalization: credential-page tree badge + surfacing + docs
+- `Edgar_20260603174137_391` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260603180713_393` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Graziela from SeaCoast Logistics about Matheus
+- `Edgar_20260603204710_395` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: @⁨Kaon⁩
+- `Edgar_20260603204957_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Chatted about how to coordinate with kaon, what to expect when over in China…
+- `Edgar_20260603205409_399` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discussion about the on boarding of alchemy springs in San Francisco
 
 ---
 
@@ -212,6 +213,7 @@ _All dated lines on/after 2026-05-27_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0224ea6 | 2026-06-03 17:31:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2dc06d4 | 2026-06-03 11:29:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 220738f | 2026-06-03 05:29:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 15a0f38 | 2026-06-02 17:20:34 -0700 | sunmint BEC card: use the Butterfly Effect logo (was sef1 placeholder) (#156)
@@ -251,7 +253,6 @@ e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's wh
 3b6511c | 2026-05-28 20:57:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8bd724a | 2026-05-28 13:52:45 -0700 | edgar.html: rewrite Solution as three open layers (contributor edge / runtime / AI operator) (#149)
 01d582e | 2026-05-28 12:40:30 -0700 | ci(playwright): omit webServer when PLAYWRIGHT_BASE_URL is set (#148)
-8c3b1fd | 2026-05-28 12:21:59 -0700 | ci: Playwright post-deploy against live beta.truesight.me (#147)
 … (truncated)
 ```
 
@@ -264,6 +265,8 @@ e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's wh
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+597fea1 | 2026-06-03 10:27:43 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
+2984e4f | 2026-06-03 10:27:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 5b18292 | 2026-06-03 04:27:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
 31ad65b | 2026-06-03 04:27:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 e25e380 | 2026-06-02 22:25:51 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
@@ -302,8 +305,6 @@ b188ce7 | 2026-06-01 04:18:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 817484a | 2026-05-31 12:49:47 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
 8887cb6 | 2026-05-31 12:49:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 4eb9bad | 2026-05-31 12:44:55 -0700 | Create OPEN_FOLLOW_UPS.md documenting autopilot tooling gaps
-6748c19 | 2026-05-31 07:17:49 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
-a24e4dd | 2026-05-31 07:17:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
 … (truncated)
 ```
 
@@ -475,7 +476,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/3/2026 9:51:15 |
+| 2026-06 | 222.41 | 15199.52386 | 6/3/2026 13:51:19 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-27`; scanned last **498** data rows)
 
