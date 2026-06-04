@@ -32,6 +32,14 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Cypher-Defense AWS scanner — swap to dedicated read-only IAM keys
+
+**Context.** The security-dashboard daily scan (Cypher-Defense, `scan_aws_inventory.py`) authenticates to the two AWS accounts via repo Actions secrets `CYPHER_DEFENCE_AWS_KEY`/`_SECRET` (nelanco, acct 767697632458) and `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET` (explorya, acct 440626669078). On 2026-06-04 these were populated from existing working keys (nelanco from `truesight_autopilot/.env`, explorya from `~/.aws` profile) to unblock the dashboard — but those keys are likely **broader than read-only**, and they now sit in a **public** repo's CI.
+
+**Goal / shape.** Create a dedicated read-only IAM user in each account with **only** these actions: `sts:GetCallerIdentity`, `ec2:DescribeRegions`, `ec2:DescribeInstances`, `ec2:DescribeKeyPairs`, `ec2:DescribeSecurityGroups`. Rotate the 4 Actions secrets to those scoped keys (`gh secret set -R TrueSightDAO/Cypher-Defense …`). No code change needed. Then revoke/rotate the broad keys that were temporarily used.
+
+**Blocker / priority.** Not blocked; security hardening. Do after the current dashboard phase. Owner: Gary (needs IAM console).
+
 ### Wire `certbot renew` automation on NELANCO Rails (`seni_ror_200250915`)
 
 **Context.** During the 2026-05-28 EXPLORYA→NELANCO Edgar cutover, the Let's Encrypt cert for `edgar.truesight.me` was copied via SSH-to-SSH from the EXPLORYA Rails box's `/etc/letsencrypt/live/edgar.truesight.me/` to NELANCO `seni_ror_200250915` (`54.211.179.126`). Cert is valid and serving prod now, but no `certbot renew` cron / systemd timer was set up on NELANCO. The cert will expire 90 days from its last LE renewal on EXPLORYA — need a fresh renewal cycle anchored on NELANCO before then.
