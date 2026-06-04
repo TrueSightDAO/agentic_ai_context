@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-04T10:25:24Z`
+- Generated (UTC): `2026-06-04T15:58:24Z`
 - Look-back: **7** calendar days (`2026-05-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[SALES EVENT]` × 27
+- `[SALES EVENT]` × 26
 - `[CONTRIBUTION EVENT]` × 11
-- `[PRACTICE EVENT]` × 3
+- `[PRACTICE EVENT]` × 4
 - `[CREDENTIALING ATTESTATION EVENT]` × 2
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260602225543_379` · **Edgar** · [SALES EVENT] Item: pk-h5qizrAWl76c · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225556_381` · **Edgar** · [SALES EVENT] Item: pk-P3nkiL4k81h3 · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225608_383` · **Edgar** · [SALES EVENT] Item: pk-Lzs3a8k_5iMI · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602232115_385` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: BEC
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260604053920_007` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 - `Edgar_20260604073052_009` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 - `Edgar_20260604073057_011` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260604151913_013` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 
 ---
 
@@ -77,9 +77,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-03T10:59:14.944Z`
+- Generated (UTC): `2026-06-04T10:59:14.317Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
-- Total stores tracked: **668**
+- Total stores tracked: **669**
 - Partnered (north-star): **14**
 
 ## Funnel by status (curated order)
@@ -89,7 +89,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - Research: 59  (#8)
 - AI: No fit signal: 157  (#9)
 - AI: Enrich — manual: 93  (#10)
-- Manager Follow-up: 33  (#13)
+- Manager Follow-up: 34  (#13)
 - Followed Up: 1  (#15)
 - Instagram Followed: 11  (#18)
 - Rejected: 14  (#19)
@@ -108,10 +108,10 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
 - **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **150**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **4** / **70**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
-- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
+- **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **30** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **4** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **29** / **1** / **3**; follow-up depth (none / once / ≥2): **12** / **4** / **17**
+- **Follow-up pipeline (combined)**: **34** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **30** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **4** / **17**
 
 ---
 
@@ -215,6 +215,7 @@ _All dated lines on/after 2026-05-28_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e0118b5 | 2026-06-04 10:27:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 17084c6 | 2026-06-04 05:24:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48d9361 | 2026-06-03 16:30:00 -0700 | Lineage: self-serve program registration form (auto-identity + two signed events) (#160)
 c778775 | 2026-06-03 16:11:50 -0700 | Landing + Lineage polish: portrait card crop, code wrap, email CTAs (#159)
@@ -254,7 +255,6 @@ f4ad625 | 2026-05-30 23:21:48 -0700 | Add truesight-grounding program manifest
 35d2fa4 | 2026-05-29 16:24:25 -0700 | whitepaper: drop OpenClaw, correct early-exit clause, expand governor privileges (#152)
 aa21db0 | 2026-05-29 20:59:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5708f5f | 2026-05-29 16:25:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f1ca675 | 2026-05-29 10:32:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -267,6 +267,8 @@ c394620 | 2026-06-03 15:55:47 -0700 | Beer Hall digest: drop 'OpenClaw × Cursor
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6156f67 | 2026-06-04 03:25:38 -0700 | chore(previews): refresh Beer Hall preview (2026-06-04 UTC)
+5aed724 | 2026-06-04 03:25:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-04 UTC)
 0efda3b | 2026-06-03 22:21:17 -0700 | chore(previews): refresh Beer Hall preview (2026-06-04 UTC)
 8c0285f | 2026-06-03 22:21:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-04 UTC)
 f140e0b | 2026-06-03 21:16:22 -0700 | Merge pull request #280 from TrueSightDAO/auto/advisory-refresh-2026-06-04
@@ -305,8 +307,6 @@ c000e8b | 2026-06-02 13:36:13 -0700 | BEC roadmap: SETUP done; add roster annota
 cdcb8d0 | 2026-06-02 13:16:20 -0700 | Roadmap: ERA/Butterfly Effect → BEC attestation-to-tree-planting template (#260)
 0cda52d | 2026-06-02 10:01:48 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
 b50e13f | 2026-06-02 10:01:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
-e77b699 | 2026-06-02 04:05:14 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
-7a4aed8 | 2026-06-02 04:05:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 … (truncated)
 ```
 
@@ -394,6 +394,14 @@ f6859d5 | 2026-05-30 21:59:55 -0700 | feat: add oracle draw practice event submi
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
+16e09c0 | 2026-06-04 15:43:56 +0000 | Add daily security dashboard workflow
+e88fe89 | 2026-06-04 08:38:20 -0700 | Add workflow template (move to .github/workflows/)
+f9db1bd | 2026-06-04 08:33:28 -0700 | Add security scanner README
+e4212ee | 2026-06-04 08:32:24 -0700 | Add security report compiler script
+15a7712 | 2026-06-04 08:32:22 -0700 | Add phishing blacklist scanner for security dashboard
+4b0559a | 2026-06-04 08:32:21 -0700 | Add GitHub security scanner for security dashboard
+d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dashboard
+5f4ce67 | 2026-06-04 08:32:19 -0700 | Add AWS inventory scanner for security dashboard
 241fe49 | 2026-06-03 22:45:27 -0700 | Add Unity Risk Indicator integration proposal
 1bd1102 | 2026-05-28 13:23:36 -0700 | add billing dispute follow-up log (May 28)
 ef52801 | 2026-05-28 13:23:27 -0700 | add AWS case 177613748700177 correspondence screenshot (May 28)
@@ -473,7 +481,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/4/2026 2:50:33 |
+| 2026-06 | 222.41 | 15199.52386 | 6/4/2026 8:50:56 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-28`; scanned last **498** data rows)
 
