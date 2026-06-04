@@ -1,5 +1,34 @@
 # GitHub SSH — dedicated key for Agentic AI (`git push`)
 
+## 🚫 NEVER push directly to production repos
+
+**These repos are deployed to production domains. NEVER push to them directly:**
+
+| Repo | Domain |
+|------|--------|
+| `TrueSightDAO/truesight_me_prod` | truesight.me |
+| `TrueSightDAO/dapp_prod` | dapp.truesight.me |
+| `TrueSightDAO/agroverse_shop_prod` | agroverse.shop |
+
+**Always push to the beta/staging counterpart first:**
+
+| Instead of this | Push to this |
+|----------------|-------------|
+| `truesight_me_prod` | `truesight_me_beta` |
+| `dapp_prod` | `dapp_beta` |
+| `agroverse_shop_prod` | `agroverse_shop_beta` |
+
+**Workflow:**
+1. Push changes to the beta repo
+2. Open a PR for human review
+3. After merge, promote to prod via `gh repo sync` (never `--force` — see CNAME footgun rule in LLM_DISCOVERY_SURFACE.md)
+
+This applies to ALL agents — Claude, Sophia, Cursor, autopilot, and any future LLM.
+
+---
+
+# GitHub SSH — dedicated key for Agentic AI (`git push`)
+
 This workspace uses a **separate Ed25519 key** for automated or agent-driven `git push` to GitHub, so your personal SSH key and day-to-day identity stay untouched.
 
 ## Paths (this machine)
