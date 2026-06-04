@@ -179,6 +179,30 @@ Both workflows need these repo secrets on `TrueSightDAO/go_to_market`: `ANTHROPI
 
 ## 3e. GitHub Actions and PR checks — **no long polling**
 
+---
+
+## 3f. Production deployment rule — **beta-first, never direct**
+
+**Hard rule for all agents (LLMs, Sophia, Cursor, autopilot, etc.):**
+
+Do **NOT** push changes directly to production repos. All work must land in the corresponding **beta/staging** repo first, then be promoted to production after human review.
+
+| Production repo | Deploys | Beta/staging repo |
+|-----------------|---------|-------------------|
+| `truesight_me_prod` | truesight.me | `truesight_me_beta` |
+| `agroverse_shop_prod` | agroverse.shop | `agroverse_shop_beta` |
+| `dapp_prod` | dapp.truesight.me | `dapp_beta` |
+
+**Workflow:**
+1. Clone / checkout the **beta** repo
+2. Create a feature branch, commit, push, open a PR against the beta repo's default branch
+3. Let a human review the PR
+4. Human promotes to prod (via `gh repo sync` or manual merge)
+
+This applies to ALL changes — code, config, assets, workflows, everything. See `GITHUB_AGENTIC_AI_SSH.md` § "Never push directly to production repos".
+
+**Exception:** Only the human operator (Gary) may push directly to production repos.
+
 Assistants should **not** tie up the session waiting for GitHub Actions to finish. Avoid long or repeated waits such as **`gh pr checks --watch`**, **`gh run watch`** for many minutes, or tight loops of **`sleep`** + **`gh api …/actions/jobs/…`** until **`conclusion`** is set.
 
 **Preferred workflow**

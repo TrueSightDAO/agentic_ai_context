@@ -79,6 +79,27 @@ ssh-keygen -t ed25519 -f ~/.ssh/agentic_ai_github/id_ed25519 -C "agentic-ai-gith
 
 Remove the old public key from GitHub, add the new `.pub`, update any CI references.
 
+## Never push directly to production repos
+
+**Hard rule for all agents (LLMs, Sophia, Cursor, autopilot, etc.):**
+
+Do **NOT** push changes directly to production repos. Production repos are:
+
+| Production repo | Deploys | Use beta/staging instead |
+|-----------------|---------|--------------------------|
+| `truesight_me_prod` | truesight.me | `truesight_me_beta` |
+| `agroverse_shop_prod` | agroverse.shop | `agroverse_shop_beta` |
+| `dapp_prod` | dapp.truesight.me | `dapp_beta` |
+
+**Workflow:**
+1. Make changes in the **beta** repo (e.g. `truesight_me_beta`)
+2. Open a PR against the beta repo's default branch
+3. Let a human review and promote to prod (via `gh repo sync` or manual merge)
+
+This applies to ALL changes — code, config, assets, workflows. No exceptions.
+
+See `WORKSPACE_CONTEXT.md §3f` for the full deployment convention.
+
 ## Pull requests — branch-first workflow (agents)
 
 **Convention for any codebase the agent edits and pushes:** do **not** push directly to `main` (or the default production branch) unless the user explicitly orders it.
