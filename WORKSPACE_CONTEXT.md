@@ -268,6 +268,8 @@ Assistants should **not** tie up the session waiting for GitHub Actions to finis
 
 **Rails hosts (do not conflate):** **`getdata.io`** is the production deploy for **`krake_ror`** ([KrakeIO/krake_ror](https://github.com/KrakeIO/krake_ror)) — the Krake **data-harvesting** Rails app. **`edgar.truesight.me`** is the production deploy for **`sentiment_importer`** ([TrueSightDAO/sentiment_importer](https://github.com/TrueSightDAO/sentiment_importer)) — **“Edgar”** (DAO API, Sidekiq, Meta checkout, **`/agroverse_shop/shipping_rates`**, inventory snapshot workers, etc.). These are **different codebases** and **different servers**; do not assume APIs or env vars on one apply to the other.
 
+**🚫 NEVER push directly to these repos. Always push to the beta/staging counterpart first, then promote.**
+
 | Domain | Deployed from (production source) | Notes |
 |--------|-----------------------------------|-------|
 | **truesight.me** | [TrueSightDAO/truesight_me_prod](https://github.com/TrueSightDAO/truesight_me_prod) | Main DAO landing page — production |
