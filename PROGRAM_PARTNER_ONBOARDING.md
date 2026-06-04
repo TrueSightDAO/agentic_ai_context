@@ -409,14 +409,23 @@ top of the funnel: marketing page → request → governor approval → provisio
 1. ☑ This spec (blueprint).
 2. ☑ Request side: **`truesight.me/lineage-register.html` + `js/lineage-register.js`** (self-serve, auto-mints
    identity, fires email-reg + program-reg, same-origin verify loop). `report_program_registration.py`
-   (dao_client) + `[PROGRAM REGISTRATION REQUEST]` dispatch entry also in place. **Remaining on this item:** the
-   GAS scanner that appends the `[PROGRAM REGISTRATION REQUEST]` to a `Program Registrations` PENDING tab
-   (`processProgramRegistrationsFromTelegramChatLogs` is wired in dispatch.py — confirm the GAS handler exists).
-3. ☐ Governor surface: `review_program_registration.html` + bell source (notifications.js) + Pattern-A gate.
+   (dao_client) + `[PROGRAM REGISTRATION REQUEST]` dispatch entry. **GAS scanner SHIPPED:**
+   `process_program_registration_telegram_logs.gs` (agroverse_qr_codes, scriptId 1MnAsIQA…) —
+   `processProgramRegistrationsFromTelegramChatLogs` scans Telegram Chat Logs (leading-line tag match, so
+   contribution events that merely mention the tag are skipped) → appends `PENDING` rows to a new
+   **`Program Registrations`** tab on the Telegram & Submissions workbook (1qbZZhf…); dedup on Telegram Update
+   ID; hourly safety-net cron. Read endpoint `getPendingProgramRegistrations`. Live anonymous web app
+   **`AKfycbyxwkIp6…`** (@11). Real-time webhook env `DAO_PROTOCOL_WEBHOOK_PROGRAM_REGISTRATION_PROCESSING`
+   set on dao_protocol_nelanco. (tokenomics #332)
+3. ◑ Governor surface: **review page SHIPPED** — DApp `program_registrations_review.html` (governor-gated via
+   the existing `governor_chat.access` action), + `js/notifications.js` bell source + menu entry + routes
+   `gas.programRegistrations`. **Read-only for now** (dapp_beta #39). **Remaining:** an Approve/Reject signed
+   action (e.g. `[PROGRAM REGISTRATION DECISION]`) + a dedicated `program_registration.review` permission
+   action, flipping the row status APPROVED/REJECTED.
 4. ☑ Public marketing/funnel: **`lineage.html`** (Lineage = 4th initiative, pathways + "what you provide")
    → CTA into `lineage-register.html`. (Landing-page tile in `index.html` too.)
 5. ☐ Provisioning handler (the heaviest — scaffolds everything on approval).
 
 Precedents to copy: `create_proposal`/`review_proposal` (submit→review), `mint_donation` /
-`process_donation_mint_telegram_logs.gs` (governor gate + PENDING dedup tab), `DAPP_NOTIFICATION_BADGE.md`
-(bell source registration).
+`process_donation_mint_telegram_logs.gs` (governor gate + PENDING dedup tab — the program-reg scanner mirrors
+this), `DAPP_NOTIFICATION_BADGE.md` (bell source registration).
