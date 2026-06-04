@@ -1,0 +1,179 @@
+{
+  "version": "1.0",
+  "updated": "2026-06-04",
+  "canonical_doc": "ATTENTION_SURFACES.md",
+  "disclaimer": "Trigram affinities are a modern synthesis, not classical practice — a prompt scaffold for advisors. Affinity suggests; staleness and mission-weight decide.",
+  "protocol": {
+    "max_surfaces_per_reading": 3,
+    "steps": [
+      "Read the draw (hexagrams, changing lines, practitioner's advisory summary).",
+      "Shortlist 1-3 surfaces; trigram affinities are hints, not rules.",
+      "Check each surface's signals before recommending; evidence, not vibes.",
+      "If a tracker is missing or stale, recommend building/refreshing the tracker, never more activity.",
+      "Per surface output: signal checked + what it showed, ONE next action, one-line mission tie-back."
+    ]
+  },
+  "surfaces": [
+    {
+      "id": 1,
+      "slug": "origin-restoration",
+      "name": "Origin & Restoration",
+      "scope": "Trees, farms, Matheus/Brazil ops, ERA/BEC tree issuance — the mission itself",
+      "mission_link": "This surface IS the mission: hectares restored, trees in the ground.",
+      "signals": [
+        "tree-planting ledger events in the Telegram pulse (ADVISORY_SNAPSHOT)",
+        "https://raw.githubusercontent.com/TrueSightDAO/treasury-cache/main/managed-ledgers/ (BEC and related ledgers)",
+        "SUPPLY_CHAIN_AND_FREIGHTING.md (Brazil ops context)"
+      ],
+      "levers": ["plantings", "farmer relations", "BRL purchases"],
+      "staleness_hint": "no origin/tree event in 14 days",
+      "trigram_affinity": ["heaven"]
+    },
+    {
+      "id": 2,
+      "slug": "supply-line",
+      "name": "Supply Line",
+      "scope": "AGL shipments, freight, customs, FSVP, Próspera export entity",
+      "mission_link": "Moves the harvest that funds restoration.",
+      "signals": [
+        "Shipment Ledger Listing tab (Main Ledger)",
+        "CP…BR Correios tracking numbers",
+        "https://agroverse.shop/shipments/ pages",
+        "ops-health block in ADVISORY_SNAPSHOT"
+      ],
+      "levers": ["financing syndicates", "booking freight", "compliance docs"],
+      "staleness_hint": "shipment in transit with no status change in 14 days",
+      "trigram_affinity": ["water"]
+    },
+    {
+      "id": 3,
+      "slug": "inventory-ledger",
+      "name": "Inventory & Ledger Integrity",
+      "scope": "Main Ledger, conversions/repackaging, QR serialization, double-entry health",
+      "mission_link": "Trustworthy books are why anyone believes the hectares.",
+      "signals": [
+        "https://raw.githubusercontent.com/TrueSightDAO/treasury-cache/main/dao_offchain_treasury.json",
+        "offchain transactions tab (Main Ledger)",
+        "Agroverse QR codes tab (Main Ledger)"
+      ],
+      "levers": ["repackaging runs", "reconciliation", "serialization batches"],
+      "staleness_hint": "snapshot age; unpaired double-entry legs",
+      "trigram_affinity": ["earth"]
+    },
+    {
+      "id": 4,
+      "slug": "commerce-online",
+      "name": "Commerce (online)",
+      "scope": "agroverse.shop, Stripe, Merchant Center, restock recommender",
+      "mission_link": "Direct revenue line from cacao to restoration.",
+      "signals": [
+        "https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/store-inventory.json",
+        "[SALES EVENT] stream in the Telegram pulse",
+        "Stripe sheet (Main Ledger workbook)"
+      ],
+      "levers": ["SKU launches", "pricing", "feed fixes"],
+      "staleness_hint": "days since last online sale event",
+      "trigram_affinity": ["fire"]
+    },
+    {
+      "id": 5,
+      "slug": "retail-partner-network",
+      "name": "Retail Partner Network",
+      "scope": "Hit List funnel, partner check-ins, velocity, restocks",
+      "mission_link": "Each shelf is a recurring revenue node and a story outpost.",
+      "signals": [
+        "Hit List statuses + pipeline-metrics block in ADVISORY_SNAPSHOT",
+        "Partner Check-in tab (Main Ledger)",
+        "https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/partners-inventory.json"
+      ],
+      "levers": ["outreach", "sample drops", "restock pokes"],
+      "staleness_hint": "partners without a check-in in 30 days",
+      "trigram_affinity": ["wind", "lake"]
+    },
+    {
+      "id": 6,
+      "slug": "community-programs",
+      "name": "Community & Programs",
+      "scope": "capoeira, BEC, grounding, Aora, credentialing pipeline, cohorts",
+      "mission_link": "Grows the human lineage that sustains the mission beyond any one person.",
+      "signals": [
+        "[PRACTICE EVENT] / attestation stream in the Telegram pulse",
+        "lineage-credentials repo commits",
+        "https://truesight.me/stats/programs_index.json"
+      ],
+      "levers": ["new programs", "sessions", "attestations"],
+      "staleness_hint": "programs with zero practice events in 14 days",
+      "trigram_affinity": ["lake"]
+    },
+    {
+      "id": 7,
+      "slug": "treasury-governance",
+      "name": "Treasury & Governance",
+      "scope": "TDG, managed ledgers, proposals/amendments, trading-dashboard runway",
+      "mission_link": "Stewards what has been gathered so the mission survives volatility.",
+      "signals": [
+        "https://raw.githubusercontent.com/TrueSightDAO/treasury-cache/main/dao_offchain_treasury.json",
+        "goal-progress block in ADVISORY_SNAPSHOT (GROWTH_GOALS.json)",
+        "TrueSightDAO/proposals repo + Realms"
+      ],
+      "levers": ["conversions", "amendments", "runway moves"],
+      "staleness_hint": "goals pacing behind in goal-progress block",
+      "trigram_affinity": ["water", "heaven"]
+    },
+    {
+      "id": 8,
+      "slug": "content-reach",
+      "name": "Content & Reach",
+      "scope": "blog, YouTube, newsletter, LLM discovery surface",
+      "mission_link": "Widens the circle of people who can find and join the mission.",
+      "signals": [
+        "https://truesight.me/stats/current.json (and stats/*.json)",
+        "Agroverse News Letter Emails tab (opens/clicks)",
+        "blog/repo commit activity in ADVISORY_SNAPSHOT"
+      ],
+      "levers": ["posts", "newsletter sends", "llms.txt extensions"],
+      "staleness_hint": "days since last post/send",
+      "trigram_affinity": ["fire", "wind"]
+    },
+    {
+      "id": 9,
+      "slug": "infra-agent-health",
+      "name": "Infra & Agent Health",
+      "scope": "Edgar, GAS fleet, Sophia herself, AWS costs, credential vault",
+      "mission_link": "Keeps every other surface standing; quiet when healthy.",
+      "signals": [
+        "monit :2812 endpoints (4 prod hosts)",
+        "CloudWatch / Cost Explorer via aws_query",
+        "GH Action failure emails (already polled by Sophia)",
+        "OPEN_FOLLOW_UPS.md infra items"
+      ],
+      "levers": ["fix PRs", "deploys", "key rotation", "cost trims"],
+      "staleness_hint": "any red monit check; failure email unactioned 48h",
+      "trigram_affinity": ["mountain"]
+    },
+    {
+      "id": 10,
+      "slug": "frontier",
+      "name": "Frontier",
+      "scope": "China/Aora launch, Kosovo GO, Krake browser, new bets — open loops not yet in any pipeline",
+      "mission_link": "Where the next surfaces 1-8 come from.",
+      "signals": [
+        "OPEN_FOLLOWUPS.md / OPEN_FOLLOW_UPS.md",
+        "*_PLAN.md resume trackers in agentic_ai_context (e.g. AORA_EXPERIENCE_PLAN.md)"
+      ],
+      "levers": ["the next irreversible step on each open loop"],
+      "staleness_hint": "a tracker whose RESUME pointer hasn't moved in 14 days",
+      "trigram_affinity": ["thunder"]
+    }
+  ],
+  "trigrams": [
+    {"glyph": "☷", "name": "Earth", "quality": "receptivity, stores", "surfaces": [3]},
+    {"glyph": "☵", "name": "Water", "quality": "flow, danger, cash", "surfaces": [7, 2]},
+    {"glyph": "☴", "name": "Wind", "quality": "gradual penetration", "surfaces": [5, 8]},
+    {"glyph": "☲", "name": "Fire", "quality": "visibility, clarity", "surfaces": [8, 4]},
+    {"glyph": "☳", "name": "Thunder", "quality": "initiative, launch", "surfaces": [10]},
+    {"glyph": "☶", "name": "Mountain", "quality": "stillness, maintenance", "surfaces": [9]},
+    {"glyph": "☱", "name": "Lake", "quality": "joy, exchange", "surfaces": [6]},
+    {"glyph": "☰", "name": "Heaven", "quality": "creative order", "surfaces": [7, 1]}
+  ]
+}
