@@ -20,45 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-03T21:35:53Z`
-- Look-back: **7** calendar days (`2026-05-27` → today UTC)
+- Generated (UTC): `2026-06-04T04:15:56Z`
+- Look-back: **7** calendar days (`2026-05-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[SALES EVENT]` × 36
-- `[CONTRIBUTION EVENT]` × 6
-- `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
-
-### Latest entries
-
-- `Edgar_20260602225441_361` · **Edgar** · [SALES EVENT] Item: pk-HaKpMdzM9ycZ · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225446_363` · **Edgar** · [SALES EVENT] Item: pk-EpWV_YV1qJUX · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225455_365` · **Edgar** · [SALES EVENT] Item: pk-VDKakvgCtd04 · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225502_367` · **Edgar** · [SALES EVENT] Item: pk-uv1UhjawJzo9 · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225505_369` · **Edgar** · [SALES EVENT] Item: pk-NEJv843YObrg · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225508_371` · **Edgar** · [SALES EVENT] Item: pk-z6g9SWhL_ati · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225512_373` · **Edgar** · [SALES EVENT] Item: pk-2QBKOeqIfVSG · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225516_375` · **Edgar** · [SALES EVENT] Item: pk-DXDofYc0ESp7 · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225527_377` · **Edgar** · [SALES EVENT] Item: pk-FaSZxIBdebqe · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225543_379` · **Edgar** · [SALES EVENT] Item: pk-h5qizrAWl76c · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225556_381` · **Edgar** · [SALES EVENT] Item: pk-P3nkiL4k81h3 · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225608_383` · **Edgar** · [SALES EVENT] Item: pk-Lzs3a8k_5iMI · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602232115_385` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: BEC
-- `Edgar_20260602235000_387` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: ERA/Butterfly Effect Club → BEC tree issuance (95 trees minted + sold, end-t…
-- `Edgar_20260603001113_389` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: BEC finalization: credential-page tree badge + surfacing + docs
-- `Edgar_20260603174137_391` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260603180713_393` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Graziela from SeaCoast Logistics about Matheus
-- `Edgar_20260603204710_395` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: @⁨Kaon⁩
-- `Edgar_20260603204957_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Chatted about how to coordinate with kaon, what to expect when over in China…
-- `Edgar_20260603205409_399` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discussion about the on boarding of alchemy springs in San Francisco
 
 ---
 
@@ -66,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 211 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 211 | — |
+| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 210 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 210 | — |
 
 ---
 
@@ -168,17 +132,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,118.58**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$40.53**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -190,11 +150,12 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
 
-_All dated lines on/after 2026-05-27_ (3):
+_All dated lines on/after 2026-05-28_ (4):
 
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
 - 2026-06-02 | claude | **clasp deploy refactor + managed-ledger asset-balance mechanics (BEC).** (1) GAS deploys now use the manifest-driven `tokenomics/scripts/deploy_gas_project.py <scriptId> --push` (syncs tracked source→mirror, strips stale, `clasp push --force`, fires post_push_hooks; refuses on uncommitted source or clasp-identity mismatch vs manifest `owner_email`). Documented in NOTES_tokenomics.md (legacy manual mirror push/deploy demoted to fallback) + tokenomics/docs/gas_deploy_workflow.md. **Suggested canonical edit (human approval): WORKSPACE_CONTEXT §3 "clasp push/clasp deploy" bullet should point to deploy_gas_project.py.** (2) Managed-ledger trees show as a Balance-tab asset rollup of the sheet's own Transactions tab (Currency + Type=Assets). **The mint creates ONLY the QR entry (+1 on Main `offchain transactions`), NOT the managed-ledger asset balance** — so the program ledger asset inventory is **seeded manually** for now (BEC: seeded 97 `Assets`, Entity=Gary Teh); the 95 QR `[SALES EVENT]`s decrement via col V Ledger Name routing → 2 remain. Holder + proceeds = the governor/operator (Gary Teh), not the program. **🔮 Future enhancement (Gary): make the mint create the managed-ledger asset balance so created/sold tally without a manual seed (drop the seed when that lands).** Captured in PROGRAM_PARTNER_ONBOARDING.md §B.4 + ERA_COHORT_TREE_ISSUANCE_PLAN.md. RESUME: deploy donation-mint GAS as admin@truesight.me, trace 1 mint+sale, then run 95.
 - 2026-06-03 | claude | **BEC effort COMPLETE — credential tree badge (PR4) shipped.** Credential front-end (`truesight_me/js/program-shell.js`) now renders a "🌳 A tree was planted for this credential" section linking to `truesight.me/qr/?id=<pk_hash>` when a tree QR exists (fetches `lineage-assets/qrs/<pk_hash>.json`, jsDelivr→raw fallback; program-agnostic; derived from `qr_code == pk_hash`). Live beta (#155) + prod. Whole ERA/Butterfly Effect → BEC effort done: 95 trees minted+sold, BEC ledger (mints write to managed ledger now), webhook repointed off deprecated 1slQVojn, surfacing (sunmint/bec redirect + card + serialized listing + /qr farm-link + credential badge). Full reusable runbook: PROGRAM_PARTNER_ONBOARDING.md §B.6. Plan-of-record: ERA_COHORT_TREE_ISSUANCE_PLAN.md (marked complete). Optional: replace bec.avif placeholder; schedule the link_attestations_to_trees cron (PR2b) so new attestations auto-get trees.
+- 2026-06-03 | claude | **"Lineage" = the 4th DAO initiative (agreed, Gary).** The experiential-learning credentialing platform (repos lineage-credentials/engine/assets; surfaces truesight.me/programs/ + per-program <slug>.truesight.me) is framed as the 4th large initiative alongside SunMint (regeneration), Agroverse (commerce), Edgar (infrastructure) — the education/human-development/recognition arm + the front door that recruits new communities. The public "Onboard your program" funnel page IS Lineage's landing-page tile. Newest pillar (2 partners: Tribo Bahia Mirim, ERA Butterfly Effect) — frame confident-but-emerging; finalize landing-tile copy via DR_MANHATTAN.md. Captured in PROGRAM_PARTNER_ONBOARDING.md (top). **Suggested canonical edits (human approval): add a 4th "Lineage" initiative tile to the truesight.me landing page + a WORKSPACE_CONTEXT note.**
 
 ---
 
@@ -213,6 +174,11 @@ _All dated lines on/after 2026-05-27_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+48d9361 | 2026-06-03 16:30:00 -0700 | Lineage: self-serve program registration form (auto-identity + two signed events) (#160)
+c778775 | 2026-06-03 16:11:50 -0700 | Landing + Lineage polish: portrait card crop, code wrap, email CTAs (#159)
+fe5c744 | 2026-06-03 15:59:35 -0700 | Landing initiatives: 2x2 grid + uniform card-image height (fix squish + capoeira aspect mismatch) (#158)
+cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing tile (capoeira hero + cert proof) (#157)
+0e61c2a | 2026-06-03 21:36:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0224ea6 | 2026-06-03 17:31:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2dc06d4 | 2026-06-03 11:29:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 220738f | 2026-06-03 05:29:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -248,23 +214,31 @@ aa21db0 | 2026-05-29 20:59:08 +0000 | chore(stats): refresh stats/current.json [
 5708f5f | 2026-05-29 16:25:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f1ca675 | 2026-05-29 10:32:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f93cc5a | 2026-05-29 04:55:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b0f2307 | 2026-05-28 14:08:44 -0700 | Blog: editorial SVG hero + ground autopilot 36-tools claim so it doesn't date (#151)
-e4cd767 | 2026-05-28 14:00:47 -0700 | Blog: 'We let an AI run our DAO. Here's why we open-sourced it.' (#150)
-3b6511c | 2026-05-28 20:57:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
-8bd724a | 2026-05-28 13:52:45 -0700 | edgar.html: rewrite Solution as three open layers (contributor edge / runtime / AI operator) (#149)
-01d582e | 2026-05-28 12:40:30 -0700 | ci(playwright): omit webServer when PLAYWRIGHT_BASE_URL is set (#148)
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-726818b | 2026-05-29 15:55:26 -0700 | advisory snapshot: stop sourcing OpenClaw (retired) (#148)
+c394620 | 2026-06-03 15:55:47 -0700 | Beer Hall digest: drop 'OpenClaw × Cursor' + '(not a manual post from Gary)' opener (#150)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9844c83 | 2026-06-03 17:32:02 -0700 | Onboarding doc: program-reg scanner + DApp review surface shipped (#279)
+6c5dd5d | 2026-06-03 16:37:25 -0700 | Onboarding doc: request side of two-step flow shipped (lineage-register.html) (#278)
+8e33cb8 | 2026-06-03 16:08:22 -0700 | test: verify GitHub write access
+2158dba | 2026-06-03 15:56:35 -0700 | Digest attribution convention: drop OpenClaw × Cursor + '(not a manual post)' clause (#277)
+1320e6f | 2026-06-03 15:25:03 -0700 | Docs: frame Lineage as the 4th DAO initiative (experiential-learning credentialing) (#276)
+5ec5ceb | 2026-06-03 15:19:54 -0700 | Onboarding doc: integration boundary (partner submits attestation/activity; we mint + manually sell) (#275)
+944ebaa | 2026-06-03 15:14:53 -0700 | Onboarding doc: two-step [PROGRAM REGISTRATION] flow blueprint + public funnel (#274)
+f245170 | 2026-06-03 15:02:33 -0700 | Onboarding doc: per-program attestation/admin subdomain step + clash-check (#273)
+c3d0c70 | 2026-06-03 14:56:25 -0700 | Onboarding doc: consolidated 'Program definition' parameter set + self-serve gaps (#272)
+a5e904f | 2026-06-03 14:54:59 -0700 | Add Sophia capability uplift roadmap (git, clasp, SSH fleet, AWS write) (#271)
+4590a74 | 2026-06-03 14:46:34 -0700 | Roadmap: PR2b mint cron shipped + BEC logo; operator must add 3 repo secrets (#270)
+98a4662 | 2026-06-03 14:36:15 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
+fc03465 | 2026-06-03 14:36:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 597fea1 | 2026-06-03 10:27:43 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
 2984e4f | 2026-06-03 10:27:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 5b18292 | 2026-06-03 04:27:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
@@ -292,25 +266,13 @@ e77b699 | 2026-06-02 04:05:14 -0700 | chore(previews): refresh Beer Hall preview
 40379e7 | 2026-06-01 22:10:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 b4bd07e | 2026-06-01 21:12:48 -0700 | Merge pull request #259 from TrueSightDAO/auto/advisory-refresh-2026-06-02
 8c7f28a | 2026-06-02 04:12:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
-e1eef75 | 2026-06-01 14:50:19 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
-2b12aff | 2026-06-01 14:50:18 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
-7af54ec | 2026-06-01 11:24:46 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
-3fa2ec7 | 2026-06-01 11:24:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
-8b00ed2 | 2026-06-01 05:17:11 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
-926e01d | 2026-06-01 05:17:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
-f67a863 | 2026-05-31 22:25:41 -0700 | chore(previews): refresh Beer Hall preview (2026-06-01 UTC)
-545415e | 2026-05-31 22:25:41 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
-a7acd5a | 2026-05-31 21:18:09 -0700 | Merge pull request #258 from TrueSightDAO/auto/advisory-refresh-2026-06-01
-b188ce7 | 2026-06-01 04:18:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-01 UTC)
-817484a | 2026-05-31 12:49:47 -0700 | chore(previews): refresh Beer Hall preview (2026-05-31 UTC)
-8887cb6 | 2026-05-31 12:49:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-05-31 UTC)
-4eb9bad | 2026-05-31 12:44:55 -0700 | Create OPEN_FOLLOW_UPS.md documenting autopilot tooling gaps
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+e3e3cae | 2026-06-03 17:21:12 -0700 | GAS: [PROGRAM REGISTRATION REQUEST] scanner → Program Registrations review tab (#332)
 e2a5730 | 2026-06-02 16:20:32 -0700 | donation-mint: write +1 Pledge asset to the program managed ledger, not main offchain (#331)
 106dd26 | 2026-06-02 15:14:52 -0700 | donation-mint: validate currency against Currencies tab, not a hardcoded allowlist (#330)
 24dbd34 | 2026-06-02 13:53:47 -0700 | donation-mint GAS: support BEC cohort-tree currency + per-row landing_page (#329)
@@ -328,8 +290,6 @@ f29841e | 2026-05-29 11:06:12 -0700 | PR-1e: orphan cleanup (4 deletes + 1 routi
 986ca43 | 2026-05-28 14:40:24 -0700 | PR-1: manifest.json per google_app_scripts/ thematic folder (audit-derived, no file moves) (#317)
 13cbdea | 2026-05-28 12:21:10 -0700 | feat(GAS): auto-backfill empty payload rows after credentialing parse
 e26342b | 2026-05-28 12:20:49 -0700 | fix(GAS): merge doGet dispatchers — practice_event_processing + program_admin_endpoint
-925bfb3 | 2026-05-27 14:21:32 -0700 | perf(gas): defer warmup full-body Gmail fetch (withBodies opt-in) — 37s→~5s (#314)
-499f11d | 2026-05-27 14:08:37 -0700 | fix(gas): dedup escapeHtml_/headerMap_/onOpen — restore storesHitList web app (#312)
 ```
 
 ### `dapp` → `dapp`
@@ -369,7 +329,6 @@ b34d300 | 2026-05-31 09:25:55 +0000 | chore: refresh store and partner inventory
 db83e3f | 2026-05-30 08:42:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 106386c | 2026-05-29 10:15:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fe87b08 | 2026-05-28 10:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-ec5f6ca | 2026-05-27 10:32:02 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -395,16 +354,20 @@ f6859d5 | 2026-05-30 21:59:55 -0700 | feat: add oracle draw practice event submi
 ```
 1bd1102 | 2026-05-28 13:23:36 -0700 | add billing dispute follow-up log (May 28)
 ef52801 | 2026-05-28 13:23:27 -0700 | add AWS case 177613748700177 correspondence screenshot (May 28)
-ebda825 | 2026-05-27 12:06:38 -0700 | docs: add AWS live chat transcript from May 27 follow-up (#19)
-f5470ff | 2026-05-27 11:14:35 -0700 | Record send of case 177613748700177 reply (2026-05-27 11:14 PDT, as root) (#18)
-6a20d54 | 2026-05-27 11:10:08 -0700 | Update root password rotation date to 2026-05-15 in case reply (per live credential report) (#17)
-cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, no VPN) in May-27 case reply (#16)
-2a79f04 | 2026-05-27 10:59:34 -0700 | AWS case 177613748700177: consolidated reply + read-only inventory tool (#15)
 ```
 
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-06-04T041556Z_lineage-self-serve-live.md`
+
+- **posted_at_utc:** `2026-06-04T04:15:56Z`  
+- **slug:** `lineage-self-serve-live`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  - **Programs (Lineage)** — Self-serve program registration form now live with auto-identity generation and two signed-event verification.
+  - **Web (Landing)** — Initiatives landing page updated with a 2x2 grid, the 4th initiative (Capoeira) tile, and fixed card styling.
 
 ### `beer-hall_2026-06-03T042129Z_bec-launch-and-ledger-fixes.md`
 
@@ -423,15 +386,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
   OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
   - **Programs (Grounding)** — Oracle payload renderer now loads on TrueSight Grounding credential pages for live data visualization.
-
-### `beer-hall_2026-06-01T041755Z_truesight-grounding-launch-oracle-draw.md`
-
-- **posted_at_utc:** `2026-06-01T04:17:55Z`  
-- **slug:** `truesight-grounding-launch-oracle-draw`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  OpenClaw × Cursor — daily state of the DAO (not a manual post from Gary)
-  - **Programs (Grounding)** — TrueSight Grounding program pages live: full manifest, landing page, cohort roster, and credential CV card added to the main site.
 
 ---
 
@@ -452,63 +406,6 @@ cf1ab5a | 2026-05-27 11:05:45 -0700 | Fill in operator location (San Francisco, 
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/3/2026 13:51:19 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-27`; scanned last **498** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-02 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Lzs3a8k_5iMI | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-P3nkiL4k81h3 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-h5qizrAWl76c | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FaSZxIBdebqe | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-DXDofYc0ESp7 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-2QBKOeqIfVSG | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-z6g9SWhL_ati | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NEJv843YObrg | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-uv1UhjawJzo9 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-VDKakvgCtd04 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-EpWV_YV1qJUX | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-HaKpMdzM9ycZ | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-J2aZSMGLlj1b | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-CaEJ4UNqpknL | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-ztJmAFd7WFgS | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-u0UDJKke8-Vy | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Fd3q3S0Bq-6F | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NTqCXKtd7yXC | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FgGGKCdJFijx | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-kW9Dr8DAEJ5O | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-SAbs8DKErxhj | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-_TNoRprgbCwR | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-3ljjhKC3AEk_ | — | — |
-| 2026-06-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
