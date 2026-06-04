@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-04T05:21:04Z`
+- Generated (UTC): `2026-06-04T10:25:24Z`
 - Look-back: **7** calendar days (`2026-05-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[SALES EVENT]` × 30
+- `[SALES EVENT]` × 27
 - `[CONTRIBUTION EVENT]` × 11
-- `[PRACTICE EVENT]` × 2
+- `[PRACTICE EVENT]` × 3
+- `[CREDENTIALING ATTESTATION EVENT]` × 2
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260602225512_373` · **Edgar** · [SALES EVENT] Item: pk-2QBKOeqIfVSG · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225516_375` · **Edgar** · [SALES EVENT] Item: pk-DXDofYc0ESp7 · Sales price: 1 · Sold by: Gary Teh
-- `Edgar_20260602225527_377` · **Edgar** · [SALES EVENT] Item: pk-FaSZxIBdebqe · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225543_379` · **Edgar** · [SALES EVENT] Item: pk-h5qizrAWl76c · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225556_381` · **Edgar** · [SALES EVENT] Item: pk-P3nkiL4k81h3 · Sales price: 1 · Sold by: Gary Teh
 - `Edgar_20260602225608_383` · **Edgar** · [SALES EVENT] Item: pk-Lzs3a8k_5iMI · Sales price: 1 · Sold by: Gary Teh
@@ -59,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260604003226_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Program-registration review pipeline: GAS scanner + DApp governor surface
 - `Edgar_20260604003505_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fixed Sophia (truesight-autopilot) HTTPS outage blocking oracle.truesight.me…
 - `Edgar_20260604003748_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The deploy.sh script always runs pip instal…
+- `Edgar_20260604053920_007` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
+- `Edgar_20260604073052_009` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
+- `Edgar_20260604073057_011` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
 
 ---
 
@@ -214,6 +215,7 @@ _All dated lines on/after 2026-05-28_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+17084c6 | 2026-06-04 05:24:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48d9361 | 2026-06-03 16:30:00 -0700 | Lineage: self-serve program registration form (auto-identity + two signed events) (#160)
 c778775 | 2026-06-03 16:11:50 -0700 | Landing + Lineage polish: portrait card crop, code wrap, email CTAs (#159)
 fe5c744 | 2026-06-03 15:59:35 -0700 | Landing initiatives: 2x2 grid + uniform card-image height (fix squish + capoeira aspect mismatch) (#158)
@@ -253,7 +255,6 @@ f4ad625 | 2026-05-30 23:21:48 -0700 | Add truesight-grounding program manifest
 aa21db0 | 2026-05-29 20:59:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5708f5f | 2026-05-29 16:25:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f1ca675 | 2026-05-29 10:32:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f93cc5a | 2026-05-29 04:55:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -266,6 +267,8 @@ c394620 | 2026-06-03 15:55:47 -0700 | Beer Hall digest: drop 'OpenClaw × Cursor
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0efda3b | 2026-06-03 22:21:17 -0700 | chore(previews): refresh Beer Hall preview (2026-06-04 UTC)
+8c0285f | 2026-06-03 22:21:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-04 UTC)
 f140e0b | 2026-06-03 21:16:22 -0700 | Merge pull request #280 from TrueSightDAO/auto/advisory-refresh-2026-06-04
 d3eb292 | 2026-06-04 04:16:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-04 UTC)
 9844c83 | 2026-06-03 17:32:02 -0700 | Onboarding doc: program-reg scanner + DApp review surface shipped (#279)
@@ -304,8 +307,6 @@ cdcb8d0 | 2026-06-02 13:16:20 -0700 | Roadmap: ERA/Butterfly Effect → BEC atte
 b50e13f | 2026-06-02 10:01:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 e77b699 | 2026-06-02 04:05:14 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
 7a4aed8 | 2026-06-02 04:05:12 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
-339dfa4 | 2026-06-01 22:10:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-02 UTC)
-40379e7 | 2026-06-01 22:10:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-02 UTC)
 … (truncated)
 ```
 
@@ -359,6 +360,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6d04dcc | 2026-06-04 10:14:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9fc0569 | 2026-06-03 11:24:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 efbb37b | 2026-06-02 12:28:47 -0700 | chore: refresh Agroverse store inventory snapshot
 2433b3d | 2026-06-02 10:56:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -392,6 +394,7 @@ f6859d5 | 2026-05-30 21:59:55 -0700 | feat: add oracle draw practice event submi
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
+241fe49 | 2026-06-03 22:45:27 -0700 | Add Unity Risk Indicator integration proposal
 1bd1102 | 2026-05-28 13:23:36 -0700 | add billing dispute follow-up log (May 28)
 ef52801 | 2026-05-28 13:23:27 -0700 | add AWS case 177613748700177 correspondence screenshot (May 28)
 ```
@@ -470,7 +473,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/3/2026 21:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/4/2026 2:50:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-28`; scanned last **498** data rows)
 
