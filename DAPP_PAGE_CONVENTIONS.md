@@ -324,3 +324,51 @@ Per-page overrides are fragile (every new page invents its own print rule). Add 
 ### Backlog
 
 Any page that has a `<textarea>` and renders OK on screen but cuts off when printed has this exact bug. Fix opportunistically when touched; sweep if there's a clear set.
+
+---
+
+## 17. Anti-patterns — common LLM-generated mistakes
+
+When an LLM generates a DApp page from scratch, these mistakes recur. Review new LLM-generated pages against this list specifically.
+
+### Body / layout mistakes
+
+| Anti-pattern | Convention |
+|---|---|
+| Custom wrapper class (`.wrap`, `.page`, etc.) instead of `.container` | Use `.container` with `max-width: 600px` (form) or `800px` (table/lists), white bg, border-radius, box-shadow per §7 |
+| Custom body background (`#faf8f4`, `#fff`, etc.) | Use `#f5f5f5` with flex column centering per §7 |
+| Minified/one-line CSS | Use readable multi-line CSS matching existing pages |
+| Omitting the `#tdgBalanceBadge` div | Include after `navDropdown` per §6/§11 |
+| Omitting the DAO logo from `.container` | Include centered logo above `h1` per §10 |
+| `<title>` using middot (`·`) instead of dash | Use `Page Name - TrueSight DAO` per §2 |
+
+### Meta tag mistakes
+
+| Anti-pattern | Convention |
+|---|---|
+| Generic `og:url` (`.../dapp/`) instead of page-specific | Use the specific page URL per §3 |
+| Missing `og:site_name` | Always include `content="TrueSight DAO"` per §3 |
+| Missing Twitter Card tags entirely | Include all four (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`) per §4 |
+
+### Form / submission mistakes
+
+| Anti-pattern | Convention |
+|---|---|
+| Status messages in JS only, no `<pre>` blocks | §9b — always render both the signed share text AND server response in `<pre>` blocks |
+| No `@media print` styles | §16 — every page with `<textarea>` or `<pre>` must include the print block |
+| No `aria-live="polite"` on status | §9 — add to the status element |
+
+### Quick audit command
+
+After creating or reviewing an LLM-generated page, diff against `report_contribution.html` (the canonical page) for structural blocks:
+
+```bash
+diff <(grep -oE '<meta|og:|twitter:|#tdg|#navDropdown|\.container|\.body|@media' report_contribution.html | sort) \
+     <(grep -oE '<meta|og:|twitter:|#tdg|#navDropdown|\.container|\.body|@media' new_page.html | sort)
+```
+
+Missing blocks will show as removed lines and are immediate flags.
+
+### Example: program_registrations_review.html (2026-06-04)
+
+Sophia (truesight_autopilot) generated the initial version which missed: Twitter Card, `og:site_name`, specific `og:url`, `#tdgBalanceBadge`, DAO logo, `@media print`, `aria-live`, §9b `<pre>` blocks, and used a custom `.wrap` class with non-standard body styling. The page worked functionally but looked like a foreign import. Fixed in dapp_beta#42 — the diff serves as a reference for what LLMs miss.
