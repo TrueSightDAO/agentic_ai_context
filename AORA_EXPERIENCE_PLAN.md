@@ -33,13 +33,13 @@ Jerri (China team) needs initial ideas + a rough timeline to line up events
 
 | Unit | What | Status |
 |------|------|--------|
-| **PR0** | This roadmap (agentic_ai_context) | merged ☐ · contribution reported ☐ |
-| **PR1** | `TrueSightDAO/aora` repo: README (purpose, layout, bilingual convention, engine-agnostic note), `modules/agroforestry/index.md`, `modules/supply_chain/index.md`, zh-CN stubs, `scripts/build_pdfs.py`, generated PDFs in `pdfs/` | merged ☐ · contribution reported ☐ |
+| **PR0** | This roadmap (agentic_ai_context) | merged ☑ ([#285](https://github.com/TrueSightDAO/agentic_ai_context/pull/285)) · contribution reported ☑ (consolidated w/ PR1) |
+| **PR1** | `TrueSightDAO/aora` repo: README (purpose, layout, bilingual convention, engine-agnostic note), `modules/agroforestry/index.md`, `modules/supply_chain/index.md`, zh-CN stubs, `scripts/build_pdfs.py`, generated PDFs in `pdfs/` | merged ☑ ([aora#1](https://github.com/TrueSightDAO/aora/pull/1), 2026-06-04) · contribution reported ☑ |
 | **PR2** | zh-CN intake — Jerri's team translates; we review structure only | not started (theirs) |
 | **PR3** | Fast follow: `data/exercises.json` (1:1 with module exercise tables) + session-generator scaffold + GitHub Pages → experience.agroverse.shop CNAME | not started |
 | **PR4** | Credentialing tie-in: `programs/<aora>/manifest.json` on credentialing platform, `experience.agroverse.shop` in `source_pages[]` | not started |
 
-**RESUME HERE → PR1** (if PR1 shows merged, resume at PR3 unless Jerri feedback arrived first).
+**RESUME HERE → PR3** (or fold in Jerri/Evan feedback on the v0.1 module docs first if it has arrived — that takes precedence over the generator scaffold).
 
 ## Timeline communicated to Jerri
 
