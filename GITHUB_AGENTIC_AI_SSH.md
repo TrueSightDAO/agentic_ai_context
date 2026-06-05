@@ -123,11 +123,59 @@ Do **NOT** push changes directly to production repos. Production repos are:
 **Workflow:**
 1. Make changes in the **beta** repo (e.g. `truesight_me_beta`)
 2. Open a PR against the beta repo's default branch
-3. Let a human review and promote to prod (via `gh repo sync` or manual merge)
+3. Let a human review **the live beta deploy** and give explicit approval
+4. Promotion is a **fork sync** — `gh repo sync`, or Sophia's `sync_beta_to_prod`
+   tool (GitHub `merge-upstream`; no clone). On a sync **conflict, stop and
+   escalate — NEVER `--force`**: prod/beta CNAMEs intentionally differ and a
+   force sync clobbers the production domain binding.
 
 This applies to ALL changes — code, config, assets, workflows. No exceptions.
 
+**Enforcement (Sophia / truesight_autopilot, since 2026-06-06):**
+`settings.prod_repos` — `git_push_changes`, `open_fix_pr`, and `merge_pr`
+refuse the `*_prod` repos in code; promotion only via `sync_beta_to_prod`
+after explicit governor approval.
+
 See `WORKSPACE_CONTEXT.md §3f` for the full deployment convention.
+
+## API-only repos — never clone (machine-owned data)
+
+**Hard rule for all agents (LLMs, Sophia, Cursor, autopilot, etc.):** the
+repos below are **data surfaces owned by automation** — caches, ledgers,
+transcripts, logs, and blob stores written by GAS / workers / CI via the
+GitHub Contents API. Agents interface the same way:
+
+- **Read:** `raw.githubusercontent.com` URLs, the Contents API, or Sophia's `read_repo_file`.
+- **Write (when sanctioned at all):** single-file atomic commits via the Contents API with a PAT (Sophia: `upload_file_to_github`).
+- **NEVER:** `git clone`, local branch-edits, fix PRs, or bulk rewrites. Hand-edits race the automated writers or get regenerated over; clones spread potentially sensitive material (transcripts) onto agent disks.
+
+Classification from the full org audit (2026-06-06):
+
+| Repo | What it is | Writer |
+|------|-----------|--------|
+| `treasury-cache` | Ledger JSON cache (treasury, managed ledgers) | GAS / workers |
+| `places-cache` | Google Places API response cache | scripts / CI |
+| `contributors-cache` | Contributor records cache | GAS |
+| `truesight_autopilot_transcript` | Sophia conversation transcripts (**privacy-sensitive**) | autopilot |
+| `oracle_logs` | Oracle advisory logs | GAS / autopilot |
+| `lineage-credentials` | Credential / practice-event records | GAS |
+| `lineage-assets` | Per-asset provenance manifests + QR JSONs (jsdelivr-served) | scripts |
+| `ecosystem_change_logs` | Beer Hall archives, advisory snapshots, metrics, ops health | CI workflows |
+| `.github` | Org blob store (invoice PDFs, assets) | Contents-API uploads |
+| `qr_codes` | Generated QR code assets | scripts |
+| `sunmint` | Tree-planting photo submissions | uploads |
+| `store_interaction_attachments` | Store-interaction attachment blobs | uploads |
+| `agroverse-inventory` | Workflow-pushed inventory JSON snapshots | CI workflows |
+
+**Enforcement (Sophia):** `settings.api_only_repos` — `git_push_changes`,
+`open_fix_pr`, and `merge_pr` refuse these in code. Other LLMs: this section
+is the convention — about to `git clone` one of these? Use the raw URL or
+Contents API instead.
+
+**Everything else** in the org (dapp_beta, tokenomics, truesight_me_beta,
+capoeira, aora, oracle, dao_client, go_to_market, sentiment_importer, …) is a
+normal code repo: clone, branch, PR per the workflow below. Deprecated repos
+(`dapp`, `governor_chatbot_service`) should not be touched at all.
 
 ## Pull requests — branch-first workflow (agents)
 
