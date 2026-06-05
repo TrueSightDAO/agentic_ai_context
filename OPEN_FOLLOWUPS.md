@@ -39,6 +39,42 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Activate the Telegram attention watchdog — one-time Telethon login (operator-only)
+
+**Context.** The watchdog itself is SHIPPED and deployed
+([truesight_autopilot#102](https://github.com/TrueSightDAO/truesight_autopilot/pull/102),
+2026-06-05; see *Recently shipped*). The systemd unit
+`truesight-autopilot-watchdog` is installed on the sophia box but **stopped**:
+it needs a one-time interactive MTProto login that only Gary can perform.
+First attempt 2026-06-06 stalled — **my.telegram.org's confirmation code was
+not arriving**. Known gotchas: the code is delivered to the in-app
+**"Telegram" service-account chat** (verified blue-check chat on any
+logged-in device), **never SMS**; and repeated "send code" clicks trigger
+**silent rate-limiting** — wait ≥ 1 h before a single clean retry.
+
+**Steps (~10 min once the code arrives).**
+1. https://my.telegram.org → log in (code appears in the Telegram app's
+   "Telegram" chat) → *API development tools* → create an app → copy
+   `api_id` + `api_hash`.
+2. `ssh sophia "printf 'TELEGRAM_API_ID=<id>\nTELEGRAM_API_HASH=<hash>\n' >> /opt/truesight_autopilot/.env"`
+3. `ssh -t sophia "cd /opt/truesight_autopilot && .venv/bin/python scripts/telethon_login.py"`
+   (phone number → login code from the Telegram app → 2FA password if set;
+   sends a 👋 confirmation to Saved Messages)
+4. `ssh sophia "sudo systemctl enable --now truesight-autopilot-watchdog"`
+
+**Why it matters.** Until this runs, the June-12-style failure mode (missed
+time-sensitive Telegram ask → cancelled event) has no guard. Everything else
+is already live.
+
+**Trigger to act.** Any 10-minute window after the my.telegram.org rate
+limit has cooled (≥ 1 h since the last code request).
+
+**Blockers.** my.telegram.org code delivery (see gotchas above). If the code
+still never arrives after a clean retry, escalate: try Telegram Desktop as
+the logged-in device, or Telegram support — and note findings here.
+
+**Owner.** Gary (operator-only — no agent can perform this login).
+
 ### Hit List: geographic-expansion gate — when to open the top of the funnel
 
 **Context.** Warm-up auto-send shipped 2026-06-05 (`WARMUP_AUTOSEND_PLAN.md`;
