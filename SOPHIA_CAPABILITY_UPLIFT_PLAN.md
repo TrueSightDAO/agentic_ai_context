@@ -36,7 +36,8 @@ Local (operator Mac): clasp 3.3.0 under nvm node v20.19.1; `~/.clasprc.json` pre
 
 ## Sequenced plan + RESUME TRACKER
 
-> **RESUME HERE →** PR1 (git capability, truesight_autopilot).
+> **RESUME HERE →** DOC1 remainder (AWS_DIGITAL_INFRASTRUCTURE §7 row) + DAO contribution, if not already done.
+> PR1–PR3 capabilities verified present on the box 2026-06-06 (`git_tools.py`, `ssh_tools.py`, clasp + `sophia_infra` key synced by `deploy.sh`); `OPEN_FOLLOW_UPS.md` items 1–4 marked resolved and migrated into `OPEN_FOLLOWUPS.md` → Recently shipped (DOC1, first half).
 
 | Unit | Repo | Scope | Status |
 |---|---|---|---|

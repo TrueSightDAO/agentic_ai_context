@@ -145,7 +145,7 @@
         "monit :2812 endpoints (4 prod hosts)",
         "CloudWatch / Cost Explorer via aws_query",
         "GH Action failure emails (already polled by Sophia)",
-        "OPEN_FOLLOW_UPS.md infra items"
+        "OPEN_FOLLOWUPS.md infra items"
       ],
       "levers": ["fix PRs", "deploys", "key rotation", "cost trims"],
       "staleness_hint": "any red monit check; failure email unactioned 48h",
@@ -158,7 +158,7 @@
       "scope": "China/Aora launch, Kosovo GO, Krake browser, new bets — open loops not yet in any pipeline",
       "mission_link": "Where the next surfaces 1-8 come from.",
       "signals": [
-        "OPEN_FOLLOWUPS.md / OPEN_FOLLOW_UPS.md",
+        "OPEN_FOLLOWUPS.md (the single backlog)",
         "*_PLAN.md resume trackers in agentic_ai_context (e.g. AORA_EXPERIENCE_PLAN.md)"
       ],
       "levers": ["the next irreversible step on each open loop"],

@@ -1,5 +1,12 @@
 # Open follow-ups (cross-session backlog)
 
+> **This is the ONLY open-followups file.** Do not create variant filenames
+> (`OPEN_FOLLOW_UPS.md`, `FOLLOWUPS.md`, `TODO.md`, …) — a duplicate
+> `OPEN_FOLLOW_UPS.md` existed 2026-05-31 → 2026-06-06 and split the backlog
+> across two files until it was merged back here; that file is now a tombstone
+> pointing at this one. Sophia / autopilot agents: file new tooling gaps and
+> follow-ups **here**, under `## Pending`, via PR.
+
 Short list of **scoped follow-up tasks** future AI agents (Claude / Cursor /
 Codex / Kimi / etc.) and humans can pick up between sessions. The bar is:
 
@@ -1052,6 +1059,19 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### Autopilot tooling gaps ×4 (migrated from the duplicate `OPEN_FOLLOW_UPS.md`) — resolved by 2026-06-03 capability uplift
+
+Sophia filed four items in a separately-created `OPEN_FOLLOW_UPS.md` on
+2026-05-31 (large-file updates via GitHub API; SSH key + git client on her box;
+`open_fix_pr` repo enum too narrow; `upload_file_to_github` lacking `sha`
+update support). All four were resolved by the `SOPHIA_CAPABILITY_UPLIFT_PLAN.md`
+PRs — verified present 2026-06-06: `app/tools/git_tools.py` (native git
+branch+PR with search/replace semantics, no file-size limit),
+`app/tools/ssh_tools.py` (`sophia_infra` fleet key), `upload_file_to_github`
+auto-fetches `sha` for updates, and `settings.allowed_repos` now includes the
+beta/prod site repos. The duplicate file is now a tombstone redirect; this file
+is the single backlog.
 
 ### `/aum` dedicated page + per-ledger click-through on `/treasury` — 2026-05-20
 
