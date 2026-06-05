@@ -43,13 +43,13 @@ Telegram events, per-surface staleness)
 
 | Unit | Repo | Scope | Status |
 |------|------|-------|--------|
-| **PR0** | agentic_ai_context | This plan + `ATTENTION_SURFACES.md` + `attention_surfaces.json` + `scripts/build_attention_surfaces_pdf.py` + `ATTENTION_SURFACES.pdf` + CONTEXT_UPDATES line | merged ☐ |
-| **PR1** | market_research (go_to_market) | Embed catalog in `ADVISORY_SNAPSHOT.md` via `_read_operator_block` in `generate_advisory_snapshot.py` | merged ☐ |
-| **PR2** | truesight_autopilot | DAILY ORACLE READINGS section in `_SYSTEM_PROMPT_HEADER` + `ATTENTION_SURFACES.md` in the CONTEXT FILES key list | merged ☐ |
-| **OPS1** | — | `scripts/deploy.sh` against the box (syncs context + restarts service); verify health + prompt live | done ☐ |
-| **DAO** | — | Consolidated `[CONTRIBUTION EVENT]` via dao_client | done ☐ |
+| **PR0** | agentic_ai_context | This plan + `ATTENTION_SURFACES.md` + `attention_surfaces.json` + `scripts/build_attention_surfaces_pdf.py` + `ATTENTION_SURFACES.pdf` + CONTEXT_UPDATES line | merged ☑ ([#288](https://github.com/TrueSightDAO/agentic_ai_context/pull/288)) |
+| **PR1** | market_research (go_to_market) | Embed catalog in `ADVISORY_SNAPSHOT.md` via `_read_operator_block` in `generate_advisory_snapshot.py` | merged ☑ ([go_to_market#151](https://github.com/TrueSightDAO/go_to_market/pull/151)) |
+| **PR2** | truesight_autopilot | DAILY ORACLE READINGS section in `_SYSTEM_PROMPT_HEADER` + `ATTENTION_SURFACES.md` in the CONTEXT FILES key list | merged ☑ ([truesight_autopilot#95](https://github.com/TrueSightDAO/truesight_autopilot/pull/95)) |
+| **OPS1** | — | `scripts/deploy.sh` against the box (syncs context + restarts service); verify health + prompt live | done ☑ (2026-06-05: `EC2_HOST=sophia`, service active, /health ok, prompt + catalog confirmed on box) |
+| **DAO** | — | Consolidated `[CONTRIBUTION EVENT]` via dao_client | done ☑ |
 
-> **RESUME HERE →** PR0.
+> **COMPLETE** — this pass shipped end to end. Next iterations live under "Later" below.
 
 ## Later (not this pass)
 
