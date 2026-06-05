@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-05T15:35:14Z`
+- Generated (UTC): `2026-06-05T20:24:54Z`
 - Look-back: **7** calendar days (`2026-05-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,34 +32,32 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 23
-- `[SALES EVENT]` × 12
-- `[PRACTICE EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 35
+- `[PRACTICE EVENT]` × 7
 - `[CREDENTIALING ATTESTATION EVENT]` × 2
-- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260604003505_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fixed Sophia (truesight-autopilot) HTTPS outage blocking oracle.truesight.me…
-- `Edgar_20260604003748_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The deploy.sh script always runs pip instal…
-- `Edgar_20260604053920_007` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260604073052_009` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260604073057_011` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: butterfly-effect · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hKD5U4SZGhLrr1BYKfU8uo7…
-- `Edgar_20260604151913_013` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260604173605_015` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260604204902_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Security dashboard fixes: empty sections, TLS scanner, squished table
-- `Edgar_20260604212750_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Credentialing workflow improvements — DApp & truesight_me conventions, linea…
-- `Edgar_20260604213848_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Picked up Kirsten's information about the chocolate mold and propogated to L…
-- `Edgar_20260604214345_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 85 · Description: Security dashboard end-to-end: AWS inventory, TLS, clickable repos, scanner …
-- `Edgar_20260604215427_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Surfaced proposal on how to collaborate with FounderHaus
-- `Edgar_20260604215607_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Aora learning modules v0.1 — Agroforestry + Supply Chain (md + PDF) for Chin…
-- `Edgar_20260604220727_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Follow up with Conexión Chocolate to get more information from  Jenny (owner…
-- `Edgar_20260604220817_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Aora Module 2 v0.2 — SC-8 chocolate tasting exercise (terroir + concentratio…
 - `Edgar_20260604222405_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tasting session and introduction to Jenny Mario from Conexion
 - `Edgar_20260604222813_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 70 · Description: Security dashboard: scoring recalibration, EC2 SG audit artifact, landing nav
 - `Edgar_20260604233403_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 95 · Description: Security dashboard: dynamic domain discovery, hosting classification, score …
 - `Edgar_20260605133154_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Asked SeaCoast logistics on the updates on rates time of pick up and arrival…
 - `Edgar_20260605151020_041` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260605165752_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Attention surfaces — ecosystem catalog + trigram resonance layer wired into …
+- `Edgar_20260605170344_045` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsblIMMxwstvu6RiqpQN3…
+- `Edgar_20260605172358_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: DTC paid-ads advisory brief for Hubert Yee (go_to_market PR #152)
+- `Edgar_20260605173247_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Oracle credential-link fix + deploy-alias fix + advisory panel declutter
+- `Edgar_20260605174853_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Hubert Yee DTC paid-ads brief — iteration rounds + final PDF (go_to_market P…
+- `Edgar_20260605175833_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Sophia content-search capability — root-caused and fixed the 'email360 not i…
+- `Edgar_20260605190530_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Backlog dedupe: merged OPEN_FOLLOW_UPS.md into canonical OPEN_FOLLOWUPS.md +…
+- `Edgar_20260605191359_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: B2B outreach human-attention reallocation: warm-up auto-send + reply acceler…
+- `Edgar_20260605192107_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Repo-class guardrails: API-only data repos (never clone) + beta-first prod e…
+- `Edgar_20260605192820_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Bounce handling for B2B outreach pipeline: dead addresses re-queue contact d…
+- `Edgar_20260605192832_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Repo-class policy follow-up: scoped agent PAT escalation path filed in OPEN_…
+- `Edgar_20260605193431_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Filed geographic-expansion gating follow-up for Hit List top-of-funnel
+- `Edgar_20260605195316_067` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Top up of DeepSeek API credits
+- `Edgar_20260605195625_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Oracle reading permalinks — credential source links now reproduce the full r…
+- `Edgar_20260605201154_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Backfilled all 9 truesight-grounding practice records with reading permalink…
 
 ---
 
@@ -159,8 +157,8 @@ A reading is a **compass, not a dashboard review** — never more than 3 surface
 | 6 | **Community & Programs** | capoeira, BEC, grounding, Aora, credentialing pipeline, cohorts | `[PRACTICE EVENT]`/attestation stream in pulse; `lineage-credentials` commits; truesight.me/stats/programs_index.json | new programs, sessions, attestations | programs with zero practice events in 14 days |
 | 7 | **Treasury & Governance** | TDG, managed ledgers, proposals/amendments, trading-dashboard runway | `dao_offchain_treasury.json`; goal-progress block in snapshot; proposals repo / Realms | conversions, amendments, runway moves | goals pacing behind in goal-progress block |
 | 8 | **Content & Reach** | blog, YouTube, newsletter, LLM discovery surface | truesight.me/stats/*.json; `Agroverse News Letter Emails` opens; blog/repo commit activity | posts, newsletter sends, llms.txt extensions | days since last post/send |
-| 9 | **Infra & Agent Health** | Edgar, GAS fleet, Sophia herself, AWS costs, credential vault | monit :2812 endpoints; CloudWatch/Cost Explorer via `aws_query`; GH Action failure emails (already polled); `OPEN_FOLLOW_UPS.md` infra items | fix PRs, deploys, key rotation, cost trims | any red monit check; failure email unactioned 48h |
-| 10 | **Frontier** | China/Aora launch, Kosovo GO, Krake browser, new bets — open loops not yet in any pipeline | `OPEN_FOLLOWUPS.md` / `OPEN_FOLLOW_UPS.md`; `*_PLAN.md` resume trackers (e.g. `AORA_EXPERIENCE_PLAN.md`) | the next irreversible step on each open loop | a tracker whose RESUME pointer hasn't moved in 14 days |
+| 9 | **Infra & Agent Health** | Edgar, GAS fleet, Sophia herself, AWS costs, credential vault | monit :2812 endpoints; CloudWatch/Cost Explorer via `aws_query`; GH Action failure emails (already polled); `OPEN_FOLLOWUPS.md` infra items | fix PRs, deploys, key rotation, cost trims | any red monit check; failure email unactioned 48h |
+| 10 | **Frontier** | China/Aora launch, Kosovo GO, Krake browser, new bets — open loops not yet in any pipeline | `OPEN_FOLLOWUPS.md` (the single backlog); `*_PLAN.md` resume trackers (e.g. `AORA_EXPERIENCE_PLAN.md`) | the next irreversible step on each open loop | a tracker whose RESUME pointer hasn't moved in 14 days |
 
 **Mission traceability:** Surface 1 *is* the mission. 2–5 fund it (cacao
 revenue → restoration). 6 grows the human lineage that sustains it. 7 stewards
@@ -272,8 +270,9 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 _Lines in window matching configured names or status keywords:_
 
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
+- 2026-06-06 | claude-code | Filed OPEN_FOLLOWUPS pending entry: scoped fine-grained agent PAT for GitHub-side enforcement of the repo-class policy (deferred by operator choice; trigger = observed guard bypass or second autonomous agent).
 
-_All dated lines on/after 2026-05-29_ (7):
+_All dated lines on/after 2026-05-29_ (12):
 
 - 2026-06-04 | autopilot | HARD RULE ADDED: Never push directly to production repos (truesight_me_prod, dapp_prod, agroverse_shop_prod). Always push to beta/staging first, then promote. Documented in GITHUB_AGENTIC_AI_SSH.md (top banner) and WORKSPACE_CONTEXT.md §6 (table warning). Applies to all LLM agents (Claude, Sophia, Cursor, autopilot).
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
@@ -282,6 +281,11 @@ _All dated lines on/after 2026-05-29_ (7):
 - 2026-06-03 | claude | **"Lineage" = the 4th DAO initiative (agreed, Gary).** The experiential-learning credentialing platform (repos lineage-credentials/engine/assets; surfaces truesight.me/programs/ + per-program <slug>.truesight.me) is framed as the 4th large initiative alongside SunMint (regeneration), Agroverse (commerce), Edgar (infrastructure) — the education/human-development/recognition arm + the front door that recruits new communities. The public "Onboard your program" funnel page IS Lineage's landing-page tile. Newest pillar (2 partners: Tribo Bahia Mirim, ERA Butterfly Effect) — frame confident-but-emerging; finalize landing-tile copy via DR_MANHATTAN.md. Captured in PROGRAM_PARTNER_ONBOARDING.md (top). **Suggested canonical edits (human approval): add a 4th "Lineage" initiative tile to the truesight.me landing page + a WORKSPACE_CONTEXT note.**
 - 2026-06-04 | claude-code | Added AORA_EXPERIENCE_PLAN.md — roadmap for Aora learning modules (Agroforestry + Supply Chain), repo TrueSightDAO/aora, docs-first md+PDF for Jerri/China pilot.
 - 2026-06-04 | claude-code | Added ATTENTION_SURFACES.md + attention_surfaces.json + shareable PDF — 10-surface catalog + trigram resonance layer for Sophia/oracle draw-time attention direction (plan: ATTENTION_SURFACES_PLAN.md).
+- 2026-06-05 | claude | Correction: Ora Cacao (ceremonial-cacao.com) DOES sell on Amazon.com — the Feb 2026 Playwright crawl in market_research/ceremonial_cacao_seo/brand_sales_drivers_report.md ('no clear Amazon presence' for all 5 brands) is stale on this point per Gary. Re-verify Amazon presence before citing that report.
+- 2026-06-05 | claude | Added WARMUP_AUTOSEND_PLAN.md (+pdf, +scripts/build_warmup_autosend_plan_pdf.py): B2B warm-up auto-send graduation plan (assessment + PR1-3 roadmap; implementation lands in go_to_market). Sibling of EMAIL360.md (DTC loop).
+- 2026-06-06 | claude-code | Merged duplicate OPEN_FOLLOW_UPS.md into OPEN_FOLLOWUPS.md (4 autopilot items → Recently shipped, all resolved by capability uplift); duplicate is now a tombstone redirect; canonical-file warning added; attention-surfaces refs updated; Sophia prompt gained single-backlog rule (truesight_autopilot#98).
+- 2026-06-06 | claude-code | Repo-class policy: full org audit → 13 API-only data repos (never clone; Contents API only) + beta-first enforcement for *_prod repos with new sync_beta_to_prod tool. Doc: GITHUB_AGENTIC_AI_SSH.md §§ API-only repos / prod promotion. Code enforcement in truesight_autopilot (api_only_repos + prod_repos settings; git_push_changes/open_fix_pr/merge_pr guards).
+- 2026-06-06 | claude-code | Filed OPEN_FOLLOWUPS pending entry: scoped fine-grained agent PAT for GitHub-side enforcement of the repo-class policy (deferred by operator choice; trigger = observed guard bypass or second autonomous agent).
 
 ---
 
@@ -300,6 +304,7 @@ _All dated lines on/after 2026-05-29_ (7):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 818b14d | 2026-06-05 10:34:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48afa9f | 2026-06-05 05:00:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 15ea706 | 2026-06-04 17:06:49 -0700 | fix: support headings and ordered lists in renderInlineMarkdown (#181)
@@ -339,19 +344,30 @@ cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing til
 0224ea6 | 2026-06-03 17:31:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2dc06d4 | 2026-06-03 11:29:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 220738f | 2026-06-03 05:29:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-15a0f38 | 2026-06-02 17:20:34 -0700 | sunmint BEC card: use the Butterfly Effect logo (was sef1 placeholder) (#156)
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-d6b9dc5 | 2026-06-04 16:34:52 -0700 | Advisory snapshot: embed attention-surfaces catalog for draw-time direction (#151)
+90259f3 | 2026-06-05 12:24:30 -0700 | Bounce handling: clear dead emails, re-queue discovery, exclude from re-pick (#159)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2a15ec5 | 2026-06-05 13:11:18 -0700 | Document Sophia voice-note capture (on-box faster-whisper, free) (#299)
+d8ef7d6 | 2026-06-05 12:34:12 -0700 | OPEN_FOLLOWUPS: geographic-expansion gate for Hit List top-of-funnel (Places API metros) (#298)
+ef76fbb | 2026-06-05 12:27:31 -0700 | Warmup autosend plan: PR4 bounce handling shipped (tracker + changelog) (#297)
+0cd3bd7 | 2026-06-05 12:26:40 -0700 | OPEN_FOLLOWUPS: file scoped agent PAT entry (GitHub-side repo-class enforcement, deferred) (#296)
+1fced7f | 2026-06-05 12:18:49 -0700 | Repo-class policy: API-only data repos (never clone) + beta-first prod promotion via fork sync (#295)
+6dd6ac4 | 2026-06-05 12:10:16 -0700 | Warmup autosend plan: all units shipped (PR0-PR3 merged, system armed) (#294)
+bc49cf5 | 2026-06-05 12:03:46 -0700 | Dedupe backlog: merge OPEN_FOLLOW_UPS.md into OPEN_FOLLOWUPS.md, tombstone the duplicate (#293)
+af51165 | 2026-06-05 11:42:36 -0700 | Add WARMUP_AUTOSEND_PLAN — B2B outreach human-attention reallocation (assessment + roadmap) (#292)
+ec08ae1 | 2026-06-05 10:39:29 -0700 | Log correction: Ora Cacao sells on Amazon (Feb 2026 crawl stale)
+db67380 | 2026-06-05 09:57:14 -0700 | Attention surfaces plan: all units shipped (PR0-PR2 + deploy) (#290)
+34b7248 | 2026-06-05 08:35:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
+1e7f97d | 2026-06-05 08:35:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
 f1f3a13 | 2026-06-05 03:31:37 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
 f856bfd | 2026-06-05 03:31:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
 4221fff | 2026-06-04 21:56:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
@@ -380,18 +396,6 @@ d3eb292 | 2026-06-04 04:16:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 9844c83 | 2026-06-03 17:32:02 -0700 | Onboarding doc: program-reg scanner + DApp review surface shipped (#279)
 6c5dd5d | 2026-06-03 16:37:25 -0700 | Onboarding doc: request side of two-step flow shipped (lineage-register.html) (#278)
 8e33cb8 | 2026-06-03 16:08:22 -0700 | test: verify GitHub write access
-2158dba | 2026-06-03 15:56:35 -0700 | Digest attribution convention: drop OpenClaw × Cursor + '(not a manual post)' clause (#277)
-1320e6f | 2026-06-03 15:25:03 -0700 | Docs: frame Lineage as the 4th DAO initiative (experiential-learning credentialing) (#276)
-5ec5ceb | 2026-06-03 15:19:54 -0700 | Onboarding doc: integration boundary (partner submits attestation/activity; we mint + manually sell) (#275)
-944ebaa | 2026-06-03 15:14:53 -0700 | Onboarding doc: two-step [PROGRAM REGISTRATION] flow blueprint + public funnel (#274)
-f245170 | 2026-06-03 15:02:33 -0700 | Onboarding doc: per-program attestation/admin subdomain step + clash-check (#273)
-c3d0c70 | 2026-06-03 14:56:25 -0700 | Onboarding doc: consolidated 'Program definition' parameter set + self-serve gaps (#272)
-a5e904f | 2026-06-03 14:54:59 -0700 | Add Sophia capability uplift roadmap (git, clasp, SSH fleet, AWS write) (#271)
-4590a74 | 2026-06-03 14:46:34 -0700 | Roadmap: PR2b mint cron shipped + BEC logo; operator must add 3 repo secrets (#270)
-98a4662 | 2026-06-03 14:36:15 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
-fc03465 | 2026-06-03 14:36:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
-597fea1 | 2026-06-03 10:27:43 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
-2984e4f | 2026-06-03 10:27:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 … (truncated)
 ```
 
@@ -462,6 +466,8 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
+09cd649 | 2026-06-05 12:55:48 -0700 | Reading permalinks: cast-time in share URLs, permalink as practice-event Source URL, no auto-submit on viewed readings (#27)
+8d064f2 | 2026-06-05 10:31:41 -0700 | Always surface credential link; collapse advisory debug links (#26)
 22c59f3 | 2026-05-30 22:12:58 -0700 | [autopilot] Rewrite oracle-draw-submit.js to auto-submit and replace Rec (#25)
 6f0a35b | 2026-05-30 22:03:02 -0700 | fix: remove scripts/draw.js reference, use inline script from index.html
 d669f9e | 2026-05-30 22:01:05 -0700 | feat: add oracle draw page with practice event submission
@@ -574,7 +580,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/5/2026 7:50:35 |
+| 2026-06 | 222.41 | 15199.52386 | 6/5/2026 12:50:28 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-29`; scanned last **498** data rows)
 
