@@ -222,7 +222,8 @@ subject line).
 | PR1 | `send_clean_warmup_drafts.py` + `warmup_autosend.yml` + `email_domain_mismatch` lint rule | go_to_market | ✅ [#156](https://github.com/TrueSightDAO/go_to_market/pull/156) | ✅ consolidated |
 | PR2 | `draft_prospect_reply_responses.py` + notification + hourly workflow | go_to_market | ✅ [#157](https://github.com/TrueSightDAO/go_to_market/pull/157) | ✅ consolidated |
 | PR3 | `classify_warmup_replies.py` + soft-no auto-parking | go_to_market | ✅ [#158](https://github.com/TrueSightDAO/go_to_market/pull/158) | ✅ consolidated |
-| Post | Arm `WARMUP_AUTOSEND_ENABLED`, observe first run, drain 98-draft backlog | operations | ✅ armed 2026-06-05, first run dispatched | — |
+| Post | Arm `WARMUP_AUTOSEND_ENABLED`, observe first run, drain 98-draft backlog | operations | ✅ armed 2026-06-05, first run sent 12 | — |
+| PR4 | `handle_warmup_bounces.py` + enrich bounced-address exclusion + hourly step | go_to_market | ✅ [#159](https://github.com/TrueSightDAO/go_to_market/pull/159) | ✅ |
 
 ---
 
@@ -257,3 +258,13 @@ resuming.
   they could auto-send; classifier matched the manual reading on all 7 real
   reply threads and refused to clobber 3 operator-triaged rows. System armed
   (`WARMUP_AUTOSEND_ENABLED=true`), first run dispatched.
+- **2026-06-05 (PR4, bounce handling)** — First live run (12 sends) surfaced a
+  bounce (`abemassage@yahoo.com`), exposing that the "message bounced"
+  terminal transition in `HIT_LIST_STATE_MACHINE.md` was documented but never
+  implemented — bounced rows kept their send counters and would age out into
+  follow-up drafts to dead inboxes. Shipped `handle_warmup_bounces.py`
+  (Notes `bounced_email=` marker, Email cleared, staged drafts discarded,
+  Status → `AI: Enrich with contact`) + enrich-side exclusion so re-discovery
+  can't re-pick a dead address; runs hourly. Backfill over 45 days cleaned
+  11 rows, including manual-era placeholders `your@email.com` and
+  `filler@godaddy.com`.
