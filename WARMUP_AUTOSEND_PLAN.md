@@ -1,6 +1,6 @@
 # Warm-up Auto-send Plan — Reallocating Human Attention in B2B Outreach
 
-**Status:** APPROVED — execution in progress
+**Status:** SHIPPED — PR0–PR3 merged 2026-06-05; system armed
 **Date:** 2026-06-05
 **Owner:** Gary Teh (human) + Claude Code (AI assist)
 **Repos affected:** [TrueSightDAO/go_to_market](https://github.com/TrueSightDAO/go_to_market) (implementation), [TrueSightDAO/agentic_ai_context](https://github.com/TrueSightDAO/agentic_ai_context) (this plan)
@@ -205,26 +205,24 @@ subject line).
 - [x] Evidence gate met (reply rate ~6%, zero copy complaints — §1.4)
 - [x] Repo secrets present on `go_to_market`: `GOOGLE_CREDENTIALS_JSON`,
       `GMAIL_TOKEN_JSON`, `GROK_API_KEY` (used by sibling workflows)
-- [ ] Repo variable `WARMUP_AUTOSEND_ENABLED` created (set `true` to arm; PR1
-      ships with the variable unset = disarmed)
-- [ ] Operator confirms daily cap (default **12**) and AW=Yes exclusion default
-- [ ] First armed run observed end-to-end (manual `workflow_dispatch`)
+- [x] Repo variable `WARMUP_AUTOSEND_ENABLED=true` created 2026-06-05
+- [x] Daily cap **12** + AW=Yes exclusion confirmed (operator green-lit full execution)
+- [x] First armed run dispatched 2026-06-05 (workflow_dispatch, max_sends=12)
 
 ---
 
 ## 5. Execution roadmap — resume tracker
 
-> **RESUME HERE →** PR1 (auto-send script + workflow) is the first unfinished
-> unit. Update this table as units land; report the DAO contribution after each
-> merge before starting the next (per `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`).
+> **RESUME HERE →** all build units shipped 2026-06-05. Remaining: observe the
+> backlog drain over the coming week and read out the §6 metrics at +30 days.
 
 | Unit | Scope | Repo | Merged | Contribution reported |
 |---|---|---|---|---|
-| PR0 | This plan (md + pdf) | agentic_ai_context | ☐ | ☐ |
-| PR1 | `send_clean_warmup_drafts.py` + `warmup_autosend.yml` + `email_domain_mismatch` lint rule | go_to_market | ☐ | ☐ |
-| PR2 | `draft_prospect_reply_responses.py` + notification + hourly workflow | go_to_market | ☐ | ☐ |
-| PR3 | `classify_warmup_replies.py` + soft-no auto-parking | go_to_market | ☐ | ☐ |
-| Post | Arm `WARMUP_AUTOSEND_ENABLED`, observe first run, drain 98-draft backlog | operations | ☐ | — |
+| PR0 | This plan (md + pdf) | agentic_ai_context | ✅ [#292](https://github.com/TrueSightDAO/agentic_ai_context/pull/292) | ✅ consolidated |
+| PR1 | `send_clean_warmup_drafts.py` + `warmup_autosend.yml` + `email_domain_mismatch` lint rule | go_to_market | ✅ [#156](https://github.com/TrueSightDAO/go_to_market/pull/156) | ✅ consolidated |
+| PR2 | `draft_prospect_reply_responses.py` + notification + hourly workflow | go_to_market | ✅ [#157](https://github.com/TrueSightDAO/go_to_market/pull/157) | ✅ consolidated |
+| PR3 | `classify_warmup_replies.py` + soft-no auto-parking | go_to_market | ✅ [#158](https://github.com/TrueSightDAO/go_to_market/pull/158) | ✅ consolidated |
+| Post | Arm `WARMUP_AUTOSEND_ENABLED`, observe first run, drain 98-draft backlog | operations | ✅ armed 2026-06-05, first run dispatched | — |
 
 ---
 
@@ -254,3 +252,8 @@ resuming.
 
 - **2026-06-05** — Plan created from the outreach-data audit (470 drafts, 232
   thread Gmail audit). Approved by Gary same day; execution started.
+- **2026-06-05 (later)** — PR0–PR3 all merged same day. Live dry-runs during
+  build: linter caught `compliance@4life.com` + `filler@godaddy.com` before
+  they could auto-send; classifier matched the manual reading on all 7 real
+  reply threads and refused to clobber 3 operator-triaged rows. System armed
+  (`WARMUP_AUTOSEND_ENABLED=true`), first run dispatched.
