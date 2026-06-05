@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-05T10:31:23Z`
+- Generated (UTC): `2026-06-05T15:35:14Z`
 - Look-back: **7** calendar days (`2026-05-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 22
-- `[SALES EVENT]` × 14
-- `[PRACTICE EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 23
+- `[SALES EVENT]` × 12
+- `[PRACTICE EVENT]` × 6
 - `[CREDENTIALING ATTESTATION EVENT]` × 2
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260603233956_407` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Lineage self-serve program registration + landing/lineage UI polish
-- `Edgar_20260604003226_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Program-registration review pipeline: GAS scanner + DApp governor surface
 - `Edgar_20260604003505_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fixed Sophia (truesight-autopilot) HTTPS outage blocking oracle.truesight.me…
 - `Edgar_20260604003748_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The deploy.sh script always runs pip instal…
 - `Edgar_20260604053920_007` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260604222405_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tasting session and introduction to Jenny Mario from Conexion
 - `Edgar_20260604222813_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 70 · Description: Security dashboard: scoring recalibration, EC2 SG audit artifact, landing nav
 - `Edgar_20260604233403_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 95 · Description: Security dashboard: dynamic domain discovery, hosting classification, score …
+- `Edgar_20260605133154_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Asked SeaCoast logistics on the updates on rates time of pick up and arrival…
+- `Edgar_20260605151020_041` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
 
 ---
 
@@ -77,16 +77,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-04T10:59:14.317Z`
+- Generated (UTC): `2026-06-05T10:59:14.078Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
-- Total stores tracked: **669**
+- Total stores tracked: **670**
 - Partnered (north-star): **14**
 
 ## Funnel by status (curated order)
 
 - Reclassified — D2C only: 1  (#1)
 - AI: Contact Form found: 109  (#3)
-- Research: 59  (#8)
+- Research: 60  (#8)
 - AI: No fit signal: 157  (#9)
 - AI: Enrich — manual: 93  (#10)
 - Manager Follow-up: 34  (#13)
@@ -300,6 +300,7 @@ _All dated lines on/after 2026-05-29_ (7):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+818b14d | 2026-06-05 10:34:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48afa9f | 2026-06-05 05:00:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 15ea706 | 2026-06-04 17:06:49 -0700 | fix: support headings and ordered lists in renderInlineMarkdown (#181)
 7ff0508 | 2026-06-04 17:05:50 -0700 | fix: convert truesight-grounding description_md to HTML for proper rendering (#179)
@@ -339,7 +340,6 @@ cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing til
 2dc06d4 | 2026-06-03 11:29:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 220738f | 2026-06-03 05:29:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 15a0f38 | 2026-06-02 17:20:34 -0700 | sunmint BEC card: use the Butterfly Effect logo (was sef1 placeholder) (#156)
-65b9abe | 2026-06-02 17:04:06 -0700 | Credential page: tree-planted badge linking to /qr/?id=<pk_hash>; BEC card image (#155)
 … (truncated)
 ```
 
@@ -352,6 +352,8 @@ d6b9dc5 | 2026-06-04 16:34:52 -0700 | Advisory snapshot: embed attention-surface
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f1f3a13 | 2026-06-05 03:31:37 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
+f856bfd | 2026-06-05 03:31:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
 4221fff | 2026-06-04 21:56:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
 81bd581 | 2026-06-04 21:56:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
 61eb380 | 2026-06-04 21:01:16 -0700 | Merge pull request #289 from TrueSightDAO/auto/advisory-refresh-2026-06-05
@@ -390,8 +392,6 @@ a5e904f | 2026-06-03 14:54:59 -0700 | Add Sophia capability uplift roadmap (git,
 fc03465 | 2026-06-03 14:36:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 597fea1 | 2026-06-03 10:27:43 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
 2984e4f | 2026-06-03 10:27:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
-5b18292 | 2026-06-03 04:27:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
-31ad65b | 2026-06-03 04:27:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 … (truncated)
 ```
 
@@ -574,7 +574,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/5/2026 2:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/5/2026 7:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-29`; scanned last **498** data rows)
 
