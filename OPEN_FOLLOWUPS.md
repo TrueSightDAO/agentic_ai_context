@@ -39,6 +39,52 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Hit List: geographic-expansion gate — when to open the top of the funnel
+
+**Context.** Warm-up auto-send shipped 2026-06-05 (`WARMUP_AUTOSEND_PLAN.md`;
+go_to_market #156–#159) and now drains the clean-tier draft queue at 12
+sends/weekday. Top-of-funnel supply on ship day: ~60 `Research` + ~100
+enrich-queue rows, sourced from **LA + SF Bay centroid sweeps only**
+(`discover_apothecaries_la_hit_list.py --region la|sf_bay`, manual
+`workflow_dispatch`; how to add regions is documented in
+`market_research/HIT_LIST_CREDENTIALS.md` § *Bulk discovery*). At the current
+drain rate the warm-up queue starves in roughly 2–4 weeks. Operator intent
+(2026-06-06): expand coverage to more metros via Google Places Nearby Search —
+but **gated on evidence, not enthusiasm** (standing anti-pattern: no more
+activity on an unmeasured surface).
+
+**Goal / shape.**
+1. **Gating read-out** (small script or a §6 read-out section appended to
+   `WARMUP_AUTOSEND_PLAN.md`): auto-sent cohort vs the plan's §6 targets —
+   reply rate **≥ 5%** over **≥ 50 auto-sends**, bounce rate **< 2%**, zero
+   spam complaints, operator reply latency median **< 24 h** — plus the
+   starvation signal: clean-tier pending supply **< ~36 drafts (≈ 3 send-days)**.
+   All green → expand; any red → fix quality before adding volume.
+2. **The expansion itself:** add centroid lists for the next metros to
+   `discover_apothecaries_la_hit_list.py`. Priority by existing signal
+   density: Portland + Seattle first (replies and an email-only `Partnered`
+   close — The Way Home Shop — already came from there), then one
+   deliberately **no-visit-possible metro tagged as a pure-remote experiment
+   cohort** so email-only conversion gets its own read-out before bulk
+   national expansion.
+3. **v2 (optional):** a weekly "funnel supply" workflow that auto-runs
+   discovery for the next region in a priority list whenever the gate is
+   green — the mechanism graduates from human decision to thermostat.
+
+**Key sizing note.** Expansion should extend **runway**, not raise the daily
+send cap — 12/day from one Gmail mailbox is inside the deliverability comfort
+zone; more regions keep that drip fed for months. The true ceiling is
+operator conversation bandwidth: ~6% reply rate means every +200 prospects ≈
++12 human conversations.
+
+**Trigger to act.** Clean-tier pending supply drops below ~36 drafts, or the
+§6 30-day read-out (due ~2026-07-05), whichever comes first.
+
+**Blockers.** Places API spend per metro sweep (low tens of $, mitigated by
+`PLACES_API_CACHING.md`); operator reply bandwidth is the real constraint.
+
+**Owner.** Unclaimed.
+
 ### Scoped agent PAT — GitHub-side enforcement of the repo-class policy
 
 **Context.** The repo-class policy (2026-06-06; `GITHUB_AGENTIC_AI_SSH.md`
