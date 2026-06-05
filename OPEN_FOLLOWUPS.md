@@ -39,59 +39,6 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Telegram attention watchdog — don't drop coordination balls (minimal v0)
-
-**Context.** 2026-06-06: a cacao serving scheduled for June 12 was cancelled
-because a time-sensitive coordination message **on a Telegram channel** went
-unanswered. The reply-latency instrumentation shipped 2026-06-05
-(`WARMUP_AUTOSEND_PLAN.md` PR2) watches **Gmail only** — Telegram, where much
-of Gary's partner/event coordination actually happens, has zero coverage.
-Sophia's existing `telegram_adapter` is a **bot** (allowlist long-poller): it
-cannot see DMs and only sees groups it is explicitly added to, so it cannot be
-the watcher. Operator scoping decision (2026-06-06): **Telegram only, keep it
-minimal** — no unified digest infrastructure yet.
-
-**Goal / shape (v0, heuristics only — no LLM, content never leaves the box).**
-A read-only **MTProto user-session** watcher (Telethon) on the autopilot EC2
-box, new systemd unit alongside `telegram_adapter`:
-
-1. **Detect "awaiting Gary":** incoming message that (a) is a DM, mentions
-   his handle, or replies to one of his messages, AND (b) contains a question
-   mark or a date/time pattern. Start a timer keyed by chat; clear it when
-   Gary posts in that chat afterwards.
-2. **Nudge:** one Telegram message to **Saved Messages** (self-DM) after
-   ~4 h unanswered, with chat name + sender + first line + deep link
-   (`tg://`). Date-bearing asks whose date is within 72 h escalate at ~2 h.
-   At most one nudge per chat per day — the watchdog must not become the
-   noise it filters.
-3. **Daily 9 am digest** (also to Saved Messages): all still-outstanding
-   items, oldest first.
-
-**Why user-session (and the honest caveats).** Bots can't see DMs; the
-Chat Logs GAS compilation only covers the DAO groups it was added to — the
-June 12 miss happened outside both. A Telethon session sees everything
-Gary's account sees. Caveats to accept before building: the session file on
-the EC2 box is full account access (same box that already holds JWT_SECRET;
-still, personal-account blast radius); one-time interactive login requires
-Gary (my.telegram.org api_id/api_hash + phone code, plus 2FA password);
-Telegram occasionally invalidates long-lived sessions → needs a re-auth
-runbook note; read-only + self-DM nudges is the ToS-tolerated end of the
-userbot spectrum — no automated outbound to anyone but himself.
-
-**Explicit non-goals (v0).** No LLM classification, no auto-replies, no
-Gmail unification (design the nudge format so a Gmail leg can join a shared
-digest later), no monitoring of channels where Gary is a passive reader
-(broadcast channels without his participation are excluded by the
-reply/mention/DM heuristic).
-
-**Trigger to act.** Gary green-lights the user-session tradeoff and runs the
-one-time Telethon login on the autopilot box (~10 min interactive).
-
-**Blockers.** Requires operator: my.telegram.org API credentials + login
-code. Decision to hold a personal-account session file on the EC2 box.
-
-**Owner.** Unclaimed.
-
 ### Hit List: geographic-expansion gate — when to open the top of the funnel
 
 **Context.** Warm-up auto-send shipped 2026-06-05 (`WARMUP_AUTOSEND_PLAN.md`;
@@ -1189,6 +1136,18 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### Telegram attention watchdog — minimal v0 (SHIPPED 2026-06-05, activation pending operator login)
+
+Shipped as [truesight_autopilot#102](https://github.com/TrueSightDAO/truesight_autopilot/pull/102)
+and deployed to the sophia box same day: read-only Telethon user-session
+watcher (`app/attention_watchdog.py`), Saved-Messages nudges (4 h / 2 h dated)
++ daily 9 am digest, 17 heuristic unit tests, systemd unit installed but
+**stopped until the operator runs the one-time login**
+(`scripts/telethon_login.py` after adding `TELEGRAM_API_ID/HASH` to the box
+`.env`). Originally filed 2026-06-06 after the June 12 cacao-serving
+coordination miss. Gmail-leg unification remains a possible future follow-up.
+
 
 ### Autopilot tooling gaps ×4 (migrated from the duplicate `OPEN_FOLLOW_UPS.md`) — resolved by 2026-06-03 capability uplift
 
