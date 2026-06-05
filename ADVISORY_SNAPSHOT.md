@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-05T04:56:21Z`
+- Generated (UTC): `2026-06-05T10:31:23Z`
 - Look-back: **7** calendar days (`2026-05-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -300,6 +300,7 @@ _All dated lines on/after 2026-05-29_ (7):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+48afa9f | 2026-06-05 05:00:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 15ea706 | 2026-06-04 17:06:49 -0700 | fix: support headings and ordered lists in renderInlineMarkdown (#181)
 7ff0508 | 2026-06-04 17:05:50 -0700 | fix: convert truesight-grounding description_md to HTML for proper rendering (#179)
 10f36f3 | 2026-06-04 17:02:53 -0700 | fix: add missing cobrand-strip CSS to truesight-grounding program page (#178)
@@ -339,7 +340,6 @@ cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing til
 220738f | 2026-06-03 05:29:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 15a0f38 | 2026-06-02 17:20:34 -0700 | sunmint BEC card: use the Butterfly Effect logo (was sef1 placeholder) (#156)
 65b9abe | 2026-06-02 17:04:06 -0700 | Credential page: tree-planted badge linking to /qr/?id=<pk_hash>; BEC card image (#155)
-0471175 | 2026-06-02 16:30:14 -0700 | BEC surfacing: no broken farm link on /qr, add BEC card to sunmint.html (#154)
 … (truncated)
 ```
 
@@ -352,6 +352,8 @@ d6b9dc5 | 2026-06-04 16:34:52 -0700 | Advisory snapshot: embed attention-surface
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4221fff | 2026-06-04 21:56:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
+81bd581 | 2026-06-04 21:56:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
 61eb380 | 2026-06-04 21:01:16 -0700 | Merge pull request #289 from TrueSightDAO/auto/advisory-refresh-2026-06-05
 6bf7d95 | 2026-06-05 04:01:05 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
 11bf2ec | 2026-06-04 16:31:38 -0700 | Attention surfaces: 10-surface catalog + trigram resonance layer + shareable PDF (oracle draw-time direction) (#288)
@@ -390,8 +392,6 @@ fc03465 | 2026-06-03 14:36:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 2984e4f | 2026-06-03 10:27:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 5b18292 | 2026-06-03 04:27:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
 31ad65b | 2026-06-03 04:27:28 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
-e25e380 | 2026-06-02 22:25:51 -0700 | chore(previews): refresh Beer Hall preview (2026-06-03 UTC)
-9b2d9f2 | 2026-06-02 22:25:50 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-03 UTC)
 … (truncated)
 ```
 
@@ -440,6 +440,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a1d2b51 | 2026-06-05 10:18:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6d04dcc | 2026-06-04 10:14:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9fc0569 | 2026-06-03 11:24:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 efbb37b | 2026-06-02 12:28:47 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -573,7 +574,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/4/2026 21:51:51 |
+| 2026-06 | 222.41 | 15199.52386 | 6/5/2026 2:50:11 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-29`; scanned last **498** data rows)
 
