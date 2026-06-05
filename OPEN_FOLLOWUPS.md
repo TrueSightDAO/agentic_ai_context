@@ -39,6 +39,37 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Scoped agent PAT — GitHub-side enforcement of the repo-class policy
+
+**Context.** The repo-class policy (2026-06-06; `GITHUB_AGENTIC_AI_SSH.md`
+§§ "API-only repos" / "Never push directly to production repos") is enforced
+in Sophia's *tools* (`settings.api_only_repos` + `settings.prod_repos` guards
+in `git_push_changes` / `open_fix_pr` / `merge_pr`, truesight_autopilot#99)
+and by convention for other LLMs. Residual gap: any agent holding the broad
+`TRUESIGHT_DAO_AUTOPILOT` PAT can still bypass the guards (e.g. `ssh_run` →
+raw `git clone` on a fleet box, or a future tool that forgets the check).
+Operator decision 2026-06-06: low likelihood, not worth doing now — "if she
+does [bypass], then we guardrail her." Filed so the design is ready when/if
+that day comes.
+
+**Goal / shape.** Make the policy unviolatable server-side: a dedicated
+**fine-grained PAT** for agent use with per-repo permissions — Contents
+**Read/Write** on code repos, Contents **Read-only** on the 13 API-only data
+repos and the three `*_prod` repos (promotion via `sync_beta_to_prod` would
+then need its own narrowly-scoped token with write on just the prod forks, or
+a GitHub Actions `repository_dispatch` path). Rotate `TRUESIGHT_DAO_AUTOPILOT`
+on Sophia's box to the scoped token; the broad PAT retreats to operator-only
+use. ~1–2 h: mint token, map permissions, swap box `.env`, smoke-test
+`git_push_changes` + `upload_file_to_github` + `sync_beta_to_prod`.
+
+**Trigger to act.** Any observed guard bypass (a direct prod push or a clone
+of an API-only repo), or onboarding a second autonomous agent with GitHub
+write access.
+
+**Blockers.** None technical. Deliberately deferred by operator choice.
+
+**Owner.** Unclaimed.
+
 ### Cypher-Defense AWS scanner — swap to dedicated read-only IAM keys
 
 **Context.** The security-dashboard daily scan (Cypher-Defense, `scan_aws_inventory.py`) authenticates to the two AWS accounts via repo Actions secrets `CYPHER_DEFENCE_AWS_KEY`/`_SECRET` (nelanco, acct 767697632458) and `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY`/`_SECRET` (explorya, acct 440626669078). On 2026-06-04 these were populated from existing working keys (nelanco from `truesight_autopilot/.env`, explorya from `~/.aws` profile) to unblock the dashboard — but those keys are likely **broader than read-only**, and they now sit in a **public** repo's CI.
