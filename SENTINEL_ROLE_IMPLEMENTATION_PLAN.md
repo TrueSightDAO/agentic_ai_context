@@ -27,7 +27,7 @@ The Sentinel flag lives on **Contributors contact information** as a new column.
 
 **Manual step**: Requires editing the Google Sheet directly (no code change).
 
-**Status**: ☐ Not started
+**Status**: ✅ Complete
 
 ---
 
@@ -89,12 +89,12 @@ The Sentinel flag lives on **Contributors contact information** as a new column.
 
 | Step | PR | Status |
 |------|-----|--------|
-| Add `Is Sentinel` column to sheet | Manual sheet edit | ☐ |
+| Add `Is Sentinel` column to sheet | Manual sheet edit | ✅ |
 | Update `dao_members_cache_publisher.gs` | tokenomics PR | ☐ |
 | Remove `TRUSTED_AGENTS` from `governors.rb` | sentiment_importer PR (deferred) | ☐ |
 | Client-side event gating in `dao_protocol` | dao_protocol PR (deferred) | ☐ |
 
-**RESUME HERE** → **Step 1: Add the `Is Sentinel` column to the Google Sheet.**
+**RESUME HERE** → **Step 2: Update `dao_members_cache_publisher.gs` to read the Sentinel column.**
 
 ## Notes
 
