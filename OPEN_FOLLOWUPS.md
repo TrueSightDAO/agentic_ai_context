@@ -39,9 +39,9 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Graziela / Seacos Logistic — airline quote still pending (poke Monday)
+### Graziela / Seacoast Logistic — airline quote still pending (poke Monday)
 
-**Context.** In the email thread "Re: Quote Gary / Exportação = NCM 1801.00.00" (May–June 2026), Graziela Vedana (Seacos Logistic, Graziela@5cl.rs) was waiting on the airline to revalidate their quote as of her last message on June 5, 2026. She said she would send the finalized figures once received. As of the last message in the thread, no further response has come from her. The pre-flight checklist has been extracted and filed as `BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`.
+**Context.** In the email thread "Re: Quote Gary / Exportação = NCM 1801.00.00" (May–June 2026), Graziela Vedana (Seacoast Logistic, Graziela@5cl.rs) was waiting on the airline to revalidate their quote as of her last message on June 5, 2026. She said she would send the finalized figures once received. As of the last message in the thread, no further response has come from her. The pre-flight checklist has been extracted and filed as `BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`.
 
 **Trigger / next action.** On Monday (next session with Gary), if no email from Graziela has arrived in Gary's inbox:
 - Propose sending a polite follow-up email in the same thread to Graziela, asking if the airline has revalidated the quote and if she can share the finalized figures.
