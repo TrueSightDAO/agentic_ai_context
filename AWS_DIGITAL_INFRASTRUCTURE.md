@@ -155,6 +155,35 @@ Runs on a **dedicated EC2** separate from Edgar to protect critical infrastructu
 
 ---
 
+## 4.5 Autopilot (Sophia) Upgrade & Disaster Recovery — EIP blue-green + AMI
+
+**The autopilot box has an Elastic IP** — `eipalloc-04772e4a20f10c1c4` (`52.200.38.206`) — and
+`sophia.truesight.me` points to it. That stable EIP is the enabler: you can swap the underlying EC2 box
+and **Route53 never changes**. Point Route53 at the EIP **once** (done); thereafter every upgrade/replace
+is just "move the EIP."
+
+### Replace / upgrade the box (blue-green, near-zero downtime, rollback-able)
+1. Have a recent **AMI** of the current box (cadence below).
+2. **Launch the new box** at the target size (e.g. `t3.medium`) from the latest AMI — or fresh Ubuntu 22.04 + `scripts/user-data.sh`.
+3. On the new box: `git pull` + `scripts/deploy.sh` (AMIs are point-in-time — always pull latest code), restore `.env`, start services, **health-check** `:8001/health` + Telegram adapter + `dao_protocol :8010` + Monit `:2812`.
+4. **Reassociate the EIP** to the new instance: `aws ec2 associate-address --allocation-id eipalloc-04772e4a20f10c1c4 --instance-id <new-id>` (Explorya creds, `us-east-1`). `sophia.truesight.me` flips instantly; **no Route53 edit needed.**
+5. Verify, then **stop** (don't terminate) the old box for a few days as rollback; terminate once confident.
+6. **Rollback** = reassociate the EIP back to the old instance.
+
+> The Telegram adapter is **outbound-polling**, so it doesn't depend on the inbound IP — the EIP matters for SSH, the web API (`:8001`/`:443`), Monit, and `sophia.truesight.me`.
+
+### AMI backup cadence (DR + source for step 2)
+- **Weekly AMI** of `i-02c699d3d7efbdc82` (tag-driven **AWS Data Lifecycle Manager** policy, or cron `aws ec2 create-image --no-reboot`), retain ~4.
+- ⚠️ The AMI contains the on-disk **`.env` (secrets)** → keep it **private** (default in-account); never share cross-account/publicly.
+- AMI ≠ latest code — a new box still runs `deploy.sh` to pull current code.
+
+### Known issues this addresses / to watch
+- **Deploy OOM (2026-06-06):** `pip install dao_client` was OOM-killed (SIGTERM) on the 2 GB box (it runs two services). Immediate fix: **t3.medium (4 GB) + 2 GB swap** (Sophia's `infrastructure/autopilot_upgrade_proposal_2026-06-06.pdf`). Since the EIP exists, do it **blue-green** (launch t3.medium from AMI → deploy → reassociate EIP) for zero downtime + rollback, not an in-place resize. Also consider lightening deploy memory (prebuilt wheels / `pip --no-cache-dir`).
+- **dao_protocol co-location:** the proposal lists `dao_protocol :8010` on this box, but there is also a separate `dao_protocol_nelanco` host (Nelanco, `98.93.94.86`) — **verify which is authoritative**; co-locating a prod API with a self-deploying agent is a resilience risk.
+- **Self-deploy restarts all units** as of `truesight_autopilot#107` (main + telegram + watchdog); a fresh box must run the same `deploy.sh`.
+
+---
+
 ## 5. Edgar Migration (2026-05-28)
 
 The old Edgar infrastructure in the **Explorya** account was **stopped** on 2026-05-28:
