@@ -40,7 +40,7 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 
 | Name | Instance ID | Type | State | Private IP | Public IP | Purpose |
 |------|-------------|------|-------|------------|-----------|---------|
-| **truesight-autopilot** | `i-02c699d3d7efbdc82` | t3.small | running | 10.0.0.158 | 100.52.234.163 | **Autopilot server.** FastAPI service for governor chat + autonomous SRE. Code at `/opt/truesight_autopilot`, systemd `truesight-autopilot.service`. DNS: `sophia.truesight.me` → this host. |
+| **truesight-autopilot** | `i-02c699d3d7efbdc82` | t3.small | running | 10.0.0.158 | 52.200.38.206 | **Autopilot server (Sophia).** FastAPI service for governor chat + autonomous SRE. Code at `/opt/truesight_autopilot`, systemd `truesight-autopilot.service`. DNS: `sophia.truesight.me` → this host. **Elastic IP** (`eipalloc-04772e4a20f10c1c4`) — persists across stop/start. |
 | **seni_ror_2026** | `i-0ac8462aa6bb54986` | t2.small | **stopped** | 10.0.0.162 | — | **Old Edgar (Rails).** Stopped 2026-05-28. Replaced by `seni_ror_200250915` in Nelanco. |
 | **seni_sk_2026** | `i-0bb43299c84c5ccd5` | t2.small | **stopped** | 10.0.0.14 | — | **Old Sidekiq.** Stopped 2026-05-28. Replaced by new `seni_sk_auto` in Nelanco. |
 
@@ -55,7 +55,7 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 | `edgar.truesight.me` | A | `54.211.179.126` | Points to **krake_nginx** (Nelanco). Nginx proxies to `seni_ror_200250915` (Rails Edgar) on the internal network. |
 | `api.truesight.me` | A | `54.226.114.186` | Also krake_nginx. |
 | `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies to `seni_ror_200250915:8000` (governor chatbot / autopilot). |
-| `sophia.truesight.me` | A | `100.52.234.163` | Points directly to **truesight-autopilot** (Explorya). |
+| `sophia.truesight.me` | A | `52.200.38.206` | Points directly to **truesight-autopilot** (Explorya). Elastic IP — stable across restarts. |
 | `dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages. |
 | `beta.dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages (beta). |
 | `truesight.me` | A | `185.199.108.153` + 3 more | GitHub Pages. |
@@ -70,7 +70,7 @@ Internet → Route53 → krake_nginx (54.226.114.186)
   ├── api.truesight.me/   → seni_ror_200250915:3000
   └── chatbot.truesight.me/ → seni_ror_200250915:8000 (governor chatbot)
 
-Internet → Route53 → sophia.truesight.me → truesight-autopilot (100.52.234.163:8000)
+Internet → Route53 → sophia.truesight.me → truesight-autopilot (52.200.38.206:8001 / :443)
 
 Internet → Route53 → GitHub Pages
   ├── truesight.me
@@ -131,7 +131,7 @@ The `dao_protocol` server is a **Python port** of Edgar's core submission + disp
 ### 4.3 Autopilot (Governor Chat + SRE)
 
 ```
-truesight-autopilot (100.52.234.163:8000)
+truesight-autopilot (52.200.38.206:8001)
   └── POST /chat — governor chat (RSA-signed or JWT)
   └── POST /fix — autonomous fix PR agent
   └── GET /health — health check
@@ -152,6 +152,50 @@ Runs on a **dedicated EC2** separate from Edgar to protect critical infrastructu
 | Tribo Mirim Bahia ledger | `tribomirimbahia` | `mirim-bahia.truesight.me` |
 | Oracle | `oracle` | `oracle.truesight.me` |
 | Butterfly Effect Club | `butterfly-effect-club` | `butterfly-effect-club.truesight.me` |
+
+---
+
+## 4.5 Autopilot (Sophia) Upgrade & Disaster Recovery — EIP blue-green + AMI
+
+**The autopilot box already has an Elastic IP** — `eipalloc-04772e4a20f10c1c4` (`52.200.38.206`) — and
+`sophia.truesight.me` points to it. **This is the key enabler:** because the EIP is stable, you can swap
+the underlying EC2 box and **Route53 never changes**. Point Route53 at the EIP **once** (already done);
+after that, every upgrade/replacement is just "move the EIP."
+
+### Replace / upgrade the box (blue-green, near-zero downtime, rollback-able)
+1. Have a recent **AMI** of the current box (see backup cadence below).
+2. **Launch the new box** at the target size (e.g. `t3.medium`) from the latest AMI — or from fresh
+   Ubuntu 22.04 + `scripts/user-data.sh`.
+3. On the new box: `git pull` + `scripts/deploy.sh` (AMIs are point-in-time — always pull latest code),
+   restore `.env`, start services, and **health-check**: `:8001/health`, the Telegram adapter,
+   `dao_protocol :8010`, Monit `:2812`.
+4. **Reassociate the EIP** to the new instance:
+   `aws ec2 associate-address --allocation-id eipalloc-04772e4a20f10c1c4 --instance-id <new-id>`
+   (Explorya creds, `us-east-1`). `sophia.truesight.me` flips instantly; **no Route53 edit needed.**
+5. Verify, then **stop** (don't terminate) the old box for a few days as a rollback; terminate once confident.
+6. **Rollback** = reassociate the EIP back to the old instance.
+
+> The Telegram adapter is **outbound-polling** (getUpdates), so it doesn't depend on the inbound IP — the
+> EIP matters for SSH, the web API (`:8001`/`:443`), Monit, and `sophia.truesight.me`.
+
+### AMI backup cadence (DR + the source for step 2)
+- Run a **weekly AMI** of `i-02c699d3d7efbdc82` (tag-driven **AWS Data Lifecycle Manager** policy, or a
+  cron `aws ec2 create-image --no-reboot`). Retain ~4.
+- ⚠️ The AMI contains the on-disk **`.env` (secrets)** → keep it **private** (default in-account); never
+  share the AMI cross-account or publicly.
+- AMI ≠ latest code — the new box still runs `deploy.sh` to pull current code on launch.
+
+### Known issues this addresses / to watch
+- **Deploy OOM (2026-06-06):** `pip install dao_client` was SIGTERM-killed by the OOM killer on the 2 GB
+  box (it runs two services). Immediate fix: **t3.medium (4 GB) + 2 GB swap** (Sophia's upgrade proposal,
+  `infrastructure/autopilot_upgrade_proposal_2026-06-06.pdf`). Since the EIP exists, do this upgrade
+  **blue-green** (launch a t3.medium from the AMI → deploy → reassociate EIP) for zero downtime + rollback,
+  rather than an in-place resize. Also consider lightening deploy memory (prebuilt wheels / `pip --no-cache-dir`).
+- **dao_protocol co-location:** the proposal lists `dao_protocol :8010` on this box. There is also a separate
+  `dao_protocol_nelanco` host (Nelanco, `98.93.94.86`) — **verify which is authoritative.** Co-locating a prod
+  API with a self-deploying agent is a resilience risk; consider separating it.
+- **Self-deploy restarts all units** as of `truesight_autopilot#107` (main + telegram + watchdog) — so merged
+  adapter features actually go live; a fresh box must run the same `deploy.sh`.
 
 ---
 
@@ -207,7 +251,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 | seni_sk_auto | `seni_sk` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | seni_sql_2026 | `seni_sql` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | seni_redis_2 | — | `GETDATA_IO_PAIR_20201122` | ubuntu |
-| truesight-autopilot | — | `garyjob_aws` | ubuntu |
+| truesight-autopilot | — | `garyjob_aws` / also `truesight-autopilot` (ed25519 at `/home/ubuntu/.ssh/id_ed25519_truesight_autopilot`) | ubuntu |
 
 ---
 
@@ -217,7 +261,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 |---------|-----|
 | Edgar health | `https://edgar.truesight.me/ping` |
 | dao_protocol health | `http://98.93.94.86:8010/healthz` |
-| Autopilot health | `http://100.52.234.163:8000/health` |
+| Autopilot health | `https://sophia.truesight.me/health` (or `http://52.200.38.206:8001/health`) |
 | Governor chatbot | `https://chatbot.truesight.me` |
 | Monit (Rails) | `http://54.211.179.126:2812/seni_ror` |
 | Monit (Sidekiq) | `http://3.83.175.151:2812/sidekiq` (old — verify) |
