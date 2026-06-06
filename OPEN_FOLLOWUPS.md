@@ -39,6 +39,49 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Sophia-drafted Telegram replies — watchdog v2 (revisit ~2026-07-06)
+
+**Context.** The Telegram attention watchdog went live 2026-06-06
+(`truesight_autopilot/app/attention_watchdog.py`, #102) — read-only by
+deliberate v0 scope: it nudges Gary's Saved Messages about unanswered asks
+but never writes to anyone else. The MTProto user-session it runs on **can
+send as Gary** — no new login or build needed. Operator signalled interest
+the same day ("I am thinking perhaps to also respond in the future") and
+asked for this dated follow-up. **Gate: ~1 month of observed watchdog signal
+quality first** — drafting on top of a noisy detector multiplies the noise.
+
+**Read-out to do at revisit (from the watchdog's state/journal + lived
+experience):** how many nudges fired; false-positive rate (nudges about
+non-asks); any missed June-12-style asks the heuristics didn't catch; whether
+response latency on nudged items actually improved.
+
+**Goal / shape (two rungs, ship separately).**
+- **v2a — draft-to-Saved-Messages (low risk):** when a nudge fires, also
+  generate a context-grounded reply draft and post it to Saved Messages
+  beneath the nudge. Gary long-presses → Forward → sends to the chat
+  himself. The watchdog still only ever messages Gary; sending stays 100%
+  manual.
+- **v2b — send-on-approval (crosses the as-Gary line, gate hard):** Gary
+  reacts (e.g. 👍) to a v2a draft and the watchdog forwards it to the chat
+  as him. Requires: reply-only to tracked asks (never initiate), per-message
+  explicit approval, daily send cap, kill switch env var, and an audit log.
+  Do NOT build v2b until v2a has been used comfortably for a while.
+
+**Privacy decision to make consciously (v2a blocker).** v0 promises chat
+content never leaves the box (pure heuristics). Drafting needs an LLM:
+either (a) route through the autopilot's existing DeepSeek `/chat-blocking`
+path — Sophia already processes Gary's chat content there, but this extends
+that egress to third-party Telegram messages; (b) an on-box model (box is
+small even post-upgrade — likely a stretch); or (c) scope egress to only the
+chats where a nudge fired. Operator should pick before any code is written.
+
+**Trigger to act.** ~2026-07-06, or earlier if Gary finds himself manually
+typing replies the watchdog nudged him about and wishing they were drafted.
+
+**Blockers.** The ~1-month signal-quality gate; the privacy decision above.
+
+**Owner.** Unclaimed.
+
 ### Graziela / Seacoast Logistic — airline quote still pending (poke Monday)
 
 **Context.** In the email thread "Re: Quote Gary / Exportação = NCM 1801.00.00" (May–June 2026), Graziela Vedana (Seacoast Logistic, Graziela@5cl.rs) was waiting on the airline to revalidate their quote as of her last message on June 5, 2026. She said she would send the finalized figures once received. As of the last message in the thread, no further response has come from her. The pre-flight checklist has been extracted and filed as `BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`.
