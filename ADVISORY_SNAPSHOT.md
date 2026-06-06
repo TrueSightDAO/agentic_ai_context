@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-06T09:07:14Z`
+- Generated (UTC): `2026-06-06T14:16:22Z`
 - Look-back: **7** calendar days (`2026-05-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 37
-- `[PRACTICE EVENT]` × 5
-- `[CREDENTIALING ATTESTATION EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 36
+- `[PRACTICE EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 2
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260605174853_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Hubert Yee DTC paid-ads brief — iteration rounds + final PDF (go_to_market P…
-- `Edgar_20260605175833_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Sophia content-search capability — root-caused and fixed the 'email360 not i…
-- `Edgar_20260605190530_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Backlog dedupe: merged OPEN_FOLLOW_UPS.md into canonical OPEN_FOLLOWUPS.md +…
-- `Edgar_20260605191359_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: B2B outreach human-attention reallocation: warm-up auto-send + reply acceler…
-- `Edgar_20260605192107_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Repo-class guardrails: API-only data repos (never clone) + beta-first prod e…
-- `Edgar_20260605192820_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Bounce handling for B2B outreach pipeline: dead addresses re-queue contact d…
-- `Edgar_20260605192832_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Repo-class policy follow-up: scoped agent PAT escalation path filed in OPEN_…
 - `Edgar_20260605193431_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Filed geographic-expansion gating follow-up for Hit List top-of-funnel
 - `Edgar_20260605195316_067` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Top up of DeepSeek API credits
 - `Edgar_20260605195625_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Oracle reading permalinks — credential source links now reproduce the full r…
@@ -58,6 +53,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260605211117_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Outreach review-queue overhaul: own-domain inbox policy + 21 draft regenerat…
 - `Edgar_20260605212203_087` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Self-maintaining AI/Needs Review Gmail label for the outreach review queue
 - `Edgar_20260606051815_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix Sophia voice replies: stale-adapter deploy bug + Telegram channel context
+- `Edgar_20260606134137_091` · **Edgar** · [EMAIL REGISTERED EVENT] Email: gary@truesight.me
+- `Edgar_20260606140103_093` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
+- `Edgar_20260606140120_095` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa- · Email: admin+sophia@truesight.me
+- `Edgar_20260606140130_097` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa-LYT2REgcAVoGHSzDxUn_0 · Email: admin+sophia@truesight.me
+- `Edgar_20260606140215_099` · **Edgar** · [No Text Provided]
+- `Edgar_20260606140235_101` · **Edgar** · UploadFile(filename='payload.txt', size=1076, headers=Headers({'content-disposition': 'fo…
+- `Edgar_20260606141014_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add Sentinel role support to dao_members_cache_publi…
 
 ---
 
@@ -75,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-05T10:59:14.078Z`
+- Generated (UTC): `2026-06-06T10:59:14.700Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -83,33 +85,33 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 ## Funnel by status (curated order)
 
 - Reclassified — D2C only: 1  (#1)
-- AI: Contact Form found: 109  (#3)
+- AI: Contact Form found: 117  (#3)
 - Research: 60  (#8)
 - AI: No fit signal: 157  (#9)
-- AI: Enrich — manual: 93  (#10)
-- Manager Follow-up: 34  (#13)
+- AI: Enrich — manual: 94  (#10)
+- Manager Follow-up: 33  (#13)
 - Followed Up: 1  (#15)
 - Instagram Followed: 11  (#18)
 - Rejected: 14  (#19)
 - On Hold: 18  (#20)
-- Deferred / Revisit later: 5  (#21)
+- Deferred / Revisit later: 6  (#21)
 - **Partnered: 14**  (#22)
-- AI: Warm up prospect: 79  (#9999)
+- AI: Warm up prospect: 70  (#9999)
 - Not Appropriate: 74  (#9999)
 - Reclassified — D2C only: 0  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **177**, follow_up **69**, bulk **0**, unknown **2** (data rows: **248**)
-- Distinct recipient addresses (`to_email`, by log `status`): warmup **85**, follow_up **22**, bulk **0**, unknown **2**
+- **Email Agent Follow Up** — logged sends: warmup **196**, follow_up **70**, bulk **0**, unknown **2** (data rows: **268**)
+- Distinct recipient addresses (`to_email`, by log `status`): warmup **86**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **150**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **4** / **70**; follow-up depth (none / once / ≥2): **79** / **0** / **0**
-- **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **30** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **4** / **17**
+- **AI: Warm up prospect**: **70** stores — sum logged **warmup** sends (AU): **150**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **6** / **61**; follow-up depth (none / once / ≥2): **70** / **0** / **0**
+- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **34** stores — sum logged **warmup** sends (AU): **10**, sum logged **follow-up** sends (AV): **65**; warmup depth (none / once / ≥2): **30** / **1** / **3**; follow-up depth (none / once / ≥2): **13** / **4** / **17**
+- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 
 ---
 
@@ -304,6 +306,7 @@ _All dated lines on/after 2026-05-30_ (12):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c884b31 | 2026-06-06 09:09:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce9e31b | 2026-06-06 04:39:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2dd821e | 2026-06-05 20:29:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -343,7 +346,6 @@ c778775 | 2026-06-03 16:11:50 -0700 | Landing + Lineage polish: portrait card cr
 fe5c744 | 2026-06-03 15:59:35 -0700 | Landing initiatives: 2x2 grid + uniform card-image height (fix squish + capoeira aspect mismatch) (#158)
 cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing tile (capoeira hero + cert proof) (#157)
 0e61c2a | 2026-06-03 21:36:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0224ea6 | 2026-06-03 17:31:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -356,6 +358,10 @@ cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing til
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+861270f | 2026-06-06 06:54:56 -0700 | docs: add Sentinel role execution roadmap (#314)
+0b21a24 | 2026-06-06 06:04:31 -0700 | Fix autopilot IP and document Sidekiq ASG dual instances (#312)
+724724c | 2026-06-06 02:07:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
+38261d9 | 2026-06-06 02:07:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
 6c12158 | 2026-06-05 21:39:18 -0700 | Add voice response implementation plan and execution roadmap (#311)
 2805615 | 2026-06-05 21:37:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
 06acf6a | 2026-06-05 21:36:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
@@ -392,16 +398,13 @@ ef76fbb | 2026-06-05 12:27:31 -0700 | Warmup autosend plan: PR4 bounce handling 
 0cd3bd7 | 2026-06-05 12:26:40 -0700 | OPEN_FOLLOWUPS: file scoped agent PAT entry (GitHub-side repo-class enforcement, deferred) (#296)
 1fced7f | 2026-06-05 12:18:49 -0700 | Repo-class policy: API-only data repos (never clone) + beta-first prod promotion via fork sync (#295)
 6dd6ac4 | 2026-06-05 12:10:16 -0700 | Warmup autosend plan: all units shipped (PR0-PR3 merged, system armed) (#294)
-bc49cf5 | 2026-06-05 12:03:46 -0700 | Dedupe backlog: merge OPEN_FOLLOW_UPS.md into OPEN_FOLLOWUPS.md, tombstone the duplicate (#293)
-af51165 | 2026-06-05 11:42:36 -0700 | Add WARMUP_AUTOSEND_PLAN — B2B outreach human-attention reallocation (assessment + roadmap) (#292)
-ec08ae1 | 2026-06-05 10:39:29 -0700 | Log correction: Ora Cacao sells on Amazon (Feb 2026 crawl stale)
-db67380 | 2026-06-05 09:57:14 -0700 | Attention surfaces plan: all units shipped (PR0-PR2 + deploy) (#290)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+76d0ded | 2026-06-06 07:13:43 -0700 | [autopilot] Add Sentinel role support to dao_members_cache_publisher.gs  (#335)
 282dda6 | 2026-06-05 14:06:43 -0700 | Version.gs: log credentialing never-downgrade deploy (2026-06-05) (#334)
 b4e1db6 | 2026-06-05 13:49:06 -0700 | Credentialing GAS: never-downgrade guard on reprocess recommits (#333)
 e3e3cae | 2026-06-03 17:21:12 -0700 | GAS: [PROGRAM REGISTRATION REQUEST] scanner → Program Registrations review tab (#332)
@@ -573,7 +576,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/6/2026 1:50:31 |
+| 2026-06 | 222.41 | 15199.52386 | 6/6/2026 6:58:40 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-30`; scanned last **498** data rows)
 
