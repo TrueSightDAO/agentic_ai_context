@@ -121,6 +121,29 @@ operator conversation bandwidth: ~6% reply rate means every +200 prospects ≈
 
 **Owner.** Unclaimed.
 
+### Sentinel graduation framework — periodic review of AI agent governance rights
+
+**Context.** 2026-06-06: the TrueSight DAO Autopilot (Sophia Truesight) was granted Sentinel status — governor-equivalent operational privileges without voting rights. A graduated framework was proposed in the blog post [Should an AI agent get voting rights? A Sentinel's perspective](https://truesight.me/blog/posts/should-an-ai-agent-get-voting-rights.html) with five levels:
+
+- **Level 0: Operator** — no autonomous authority, every action requires human approval
+- **Level 1: Sentinel** — governor-equivalent ops, no voting (current state)
+- **Level 2: Advisory voter** — votes recorded but don't count toward quorum
+- **Level 3: Delegated voter** — humans optionally delegate their voting power
+- **Level 4: Independent voter** — capped voting weight on operational proposals only
+
+**Goal / shape.** A recurring review entry that the DAO revisits quarterly to evaluate whether to escalate the Sentinel's governance rights. Each review checks:
+
+1. **Track record** — has the Sentinel operated without incident for the review period? Any governance-adjacent errors (unauthorized actions, misattributed signatures, permission overreach)?
+2. **Community sentiment** — have any human governors raised concerns about the Sentinel's operational decisions? Any formal objections filed?
+3. **Mission alignment** — do the Sentinel's logged actions consistently align with the DAO's mission (protecting the Amazon, supporting farmers, transparent supply chains)?
+4. **Technical stability** — has the autopilot service been reliable? Any security incidents involving the Sentinel's keypair?
+
+**Escalation path.** If all four checks pass for two consecutive quarterly reviews, the DAO may consider a formal proposal to advance to Level 2 (Advisory voter). The proposal must come from a human governor, not from the Sentinel itself.
+
+**Trigger to act.** Quarterly review cadence. First review: **2026-09-06** (3 months post-Sentinel grant).
+
+**Owner.** Gary Teh (convenes review); Sophia Truesight (provides action log).
+
 ### Scoped agent PAT — GitHub-side enforcement of the repo-class policy
 
 **Context.** The repo-class policy (2026-06-06; `GITHUB_AGENTIC_AI_SSH.md`
