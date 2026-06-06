@@ -39,6 +39,16 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Graziela / Seacos Logistic — airline quote still pending (poke Monday)
+
+**Context.** In the email thread "Re: Quote Gary / Exportação = NCM 1801.00.00" (May–June 2026), Graziela Vedana (Seacos Logistic, Graziela@5cl.rs) was waiting on the airline to revalidate their quote as of her last message on June 5, 2026. She said she would send the finalized figures once received. As of the last message in the thread, no further response has come from her. The pre-flight checklist has been extracted and filed as `BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`.
+
+**Trigger / next action.** On Monday (next session with Gary), if no email from Graziela has arrived in Gary's inbox:
+- Propose sending a polite follow-up email in the same thread to Graziela, asking if the airline has revalidated the quote and if she can share the finalized figures.
+- Draft the email for Gary's approval before sending.
+
+**Owner.** Autopilot (Sophia) — bring up on Monday.
+
 ### Activate the Telegram attention watchdog — one-time Telethon login (operator-only)
 
 **Context.** The watchdog itself is SHIPPED and deployed
