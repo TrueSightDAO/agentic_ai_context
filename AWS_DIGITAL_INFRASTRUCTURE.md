@@ -24,7 +24,7 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 | **krake_nginx** | `i-05a041b6956aa7154` | t2.micro | running | 172.31.26.102 | 54.226.114.186 | **Nginx reverse proxy.** Terminates HTTPS for `edgar.truesight.me`, `api.truesight.me`, `chatbot.truesight.me`. Proxies to backend Rails/Python services. |
 | **seni_ror_200250915** | `i-063dc4a3be90bd630` | t2.small | running | 172.31.19.78 | 54.211.179.126 | **Edgar (Rails).** `sentiment_importer` — DAO API server. Receives signed event submissions, verifies signatures, logs to Google Sheets, dispatches GAS webhooks. DNS: `edgar.truesight.me` → this host (via nginx proxy). |
 | **dao_protocol_nelanco** | `i-05f8770a932b76649` | t3.small | running | 172.31.23.207 | 98.93.94.86 | **dao_protocol FastAPI server.** Python port of Edgar's submission + dispatch logic. Runs on port 8010. Accepts `POST /dao/submit_contribution`. |
-| **seni_sk_auto** (new) | `i-0dfeb7a93f1f78e8e` | t2.small | running | 172.31.50.44 | 34.234.193.80 | **Sidekiq worker** for Edgar (sentiment_importer). Processes background jobs (webhook triggers, inventory snapshots). |
+| **seni_sk_auto** (ASG — 2 instances) | `i-0dfeb7a93f1f78e8e` / `i-09883a010a52509f6` | t2.small | running | 172.31.50.44 / 172.31.84.218 | 34.234.193.80 / 100.53.89.222 | **Sidekiq worker** for Edgar (sentiment_importer). ASG-managed; deploy script targets `100.53.89.222` as `seni_sk_nelanco`. Processes background jobs (webhook triggers, inventory snapshots). |
 | **krake_ror** | `i-0df7a9e513dc537a6` | t2.micro | running | 172.31.19.151 | 18.205.20.43 | Krake Rails backend (getdata.io). Behind ALB `krake-ror-1`. |
 | **krake_sk** | `i-0b82138aa45b4029a` | t2.nano | running | 172.31.53.209 | 54.227.147.20 | Krake Sidekiq worker. |
 | **krake_sk_webhook** | `i-02599e3b3a03e38e4` | t2.small | running | 172.31.57.215 | 52.207.88.236 | Krake webhook worker. |
@@ -40,7 +40,7 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 
 | Name | Instance ID | Type | State | Private IP | Public IP | Purpose |
 |------|-------------|------|-------|------------|-----------|---------|
-| **truesight-autopilot** | `i-02c699d3d7efbdc82` | t3.small | running | 10.0.0.158 | 100.52.234.163 | **Autopilot server.** FastAPI service for governor chat + autonomous SRE. Code at `/opt/truesight_autopilot`, systemd `truesight-autopilot.service`. DNS: `sophia.truesight.me` → this host. |
+| **truesight-autopilot** | `i-02c699d3d7efbdc82` | t3.small | running | 10.0.0.158 | 52.200.38.206 | **Autopilot server.** FastAPI service for governor chat + autonomous SRE. Code at `/opt/truesight_autopilot`, systemd `truesight-autopilot.service`. DNS: `sophia.truesight.me` → this host. |
 | **seni_ror_2026** | `i-0ac8462aa6bb54986` | t2.small | **stopped** | 10.0.0.162 | — | **Old Edgar (Rails).** Stopped 2026-05-28. Replaced by `seni_ror_200250915` in Nelanco. |
 | **seni_sk_2026** | `i-0bb43299c84c5ccd5` | t2.small | **stopped** | 10.0.0.14 | — | **Old Sidekiq.** Stopped 2026-05-28. Replaced by new `seni_sk_auto` in Nelanco. |
 
@@ -55,7 +55,7 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 | `edgar.truesight.me` | A | `54.211.179.126` | Points to **krake_nginx** (Nelanco). Nginx proxies to `seni_ror_200250915` (Rails Edgar) on the internal network. |
 | `api.truesight.me` | A | `54.226.114.186` | Also krake_nginx. |
 | `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies to `seni_ror_200250915:8000` (governor chatbot / autopilot). |
-| `sophia.truesight.me` | A | `100.52.234.163` | Points directly to **truesight-autopilot** (Explorya). |
+| `sophia.truesight.me` | A | `52.200.38.206` | Points directly to **truesight-autopilot** (Explorya). |
 | `dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages. |
 | `beta.dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages (beta). |
 | `truesight.me` | A | `185.199.108.153` + 3 more | GitHub Pages. |
@@ -70,7 +70,7 @@ Internet → Route53 → krake_nginx (54.226.114.186)
   ├── api.truesight.me/   → seni_ror_200250915:3000
   └── chatbot.truesight.me/ → seni_ror_200250915:8000 (governor chatbot)
 
-Internet → Route53 → sophia.truesight.me → truesight-autopilot (100.52.234.163:8000)
+Internet → Route53 → sophia.truesight.me → truesight-autopilot (52.200.38.206:8000)
 
 Internet → Route53 → GitHub Pages
   ├── truesight.me
@@ -131,7 +131,7 @@ The `dao_protocol` server is a **Python port** of Edgar's core submission + disp
 ### 4.3 Autopilot (Governor Chat + SRE)
 
 ```
-truesight-autopilot (100.52.234.163:8000)
+truesight-autopilot (52.200.38.206:8000)
   └── POST /chat — governor chat (RSA-signed or JWT)
   └── POST /fix — autonomous fix PR agent
   └── GET /health — health check
@@ -217,7 +217,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 |---------|-----|
 | Edgar health | `https://edgar.truesight.me/ping` |
 | dao_protocol health | `http://98.93.94.86:8010/healthz` |
-| Autopilot health | `http://100.52.234.163:8000/health` |
+| Autopilot health | `http://52.200.38.206:8000/health` |
 | Governor chatbot | `https://chatbot.truesight.me` |
 | Monit (Rails) | `http://54.211.179.126:2812/seni_ror` |
 | Monit (Sidekiq) | `http://3.83.175.151:2812/sidekiq` (old — verify) |
