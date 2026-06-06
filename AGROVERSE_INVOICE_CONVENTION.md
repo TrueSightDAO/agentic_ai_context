@@ -89,6 +89,24 @@ See the Green Gulch invoice at:
 
 ---
 
+## Sending to customers
+
+**NEVER send raw GitHub download links to customers.** Always attach the PDF directly to the email.
+
+### Gmail attachment workflow
+
+1. Upload the PDF to `store_interaction_attachments/invoices/` on GitHub (archive copy)
+2. Download the PDF locally from GitHub raw URL
+3. Use `gmail_send` with the PDF as an attachment
+
+**Note:** The current `gmail_send` tool does not support file attachments directly. If attachment support is unavailable, download the PDF to the server and use a Python script with the Gmail API (`google-auth` + `google-api-python-client`) to send with a MIME attachment.
+
+### Fallback (no attachment tooling)
+
+If attachment tooling is unavailable, inform the governor and ask them to attach the PDF manually. Do NOT send raw GitHub URLs as a substitute.
+
+---
+
 ## Related
 
 - `PURCHASE_AGREEMENT_PDFS.md` — for purchase agreements (different format, for import/wholesale contracts)
