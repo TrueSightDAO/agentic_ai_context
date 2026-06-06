@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-06T14:16:22Z`
+- Generated (UTC): `2026-06-06T19:54:01Z`
 - Look-back: **7** calendar days (`2026-05-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 36
-- `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 32
+- `[PRACTICE EVENT]` × 3
+- `[EMAIL REGISTERED EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 2
-- _free-form (no bracket tag)_ × 2
+- `[RETAIL FIELD REPORT EVENT]` × 1
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260605193431_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Filed geographic-expansion gating follow-up for Hit List top-of-funnel
-- `Edgar_20260605195316_067` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Top up of DeepSeek API credits
-- `Edgar_20260605195625_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Oracle reading permalinks — credential source links now reproduce the full r…
-- `Edgar_20260605201154_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Backfilled all 9 truesight-grounding practice records with reading permalink…
-- `Edgar_20260605202642_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Credential source-link click-through verified live — capoeira impact audit +…
-- `Edgar_20260605203107_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Designed Telegram attention-watchdog follow-up after June 12 coordination mi…
-- `Edgar_20260605203203_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Sophia voice-note capture (on-box Whisper) + Telegram bot-token log hardening
 - `Edgar_20260605204651_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Built and deployed Telegram attention watchdog (Sophia nudges unanswered ask…
 - `Edgar_20260605204927_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: CDN purge automation + credentialing reprocess never-downgrade guard (permal…
 - `Edgar_20260605210826_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Credentialing GAS never-downgrade guard deployed live — clasp creds recovere…
@@ -60,6 +54,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260606140215_099` · **Edgar** · [No Text Provided]
 - `Edgar_20260606140235_101` · **Edgar** · UploadFile(filename='payload.txt', size=1076, headers=Headers({'content-disposition': 'fo…
 - `Edgar_20260606141014_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add Sentinel role support to dao_members_cache_publi…
+- `Edgar_20260606142356_001` · **Edgar** · [CONTRIBUTION EVENT] Contributor Name: Sophia Truesight · Contributor Email: admin+sophia@truesight.me · Title: Extend DAO protocol to recognize Sentinel role
+- `Edgar_20260606142402_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Extend DAO protocol to recognize Sentinel role
+- `Edgar_20260606172706_005` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260606182946_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Lukas introduced by @⁨Ken Nim - Bay Area ⁩ popped by just now at the cafe I …
+- `Edgar_20260606194253_009` · **Edgar** · [EMAIL REGISTERED EVENT] Email: autopilot@truesight.me
+- `Edgar_20260606194309_011` · **Edgar** · test
+- `Edgar_20260606194347_013` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Alchemy Springs & Sauna Garden · Store Key: alchemy-springs--sauna-garden__939-post-street__san-francisco__ca · Update ID: SFR_20260606_AlchemySprings_001
 
 ---
 
@@ -306,6 +307,17 @@ _All dated lines on/after 2026-05-30_ (12):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
+424a12d | 2026-06-06 10:33:02 -0700 | add Zen direct knowing section to Journey to the West post (#191)
+5760ce9 | 2026-06-06 10:26:10 -0700 | add audio narration players to both blog posts (#190)
+e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the point
+6d78fc4 | 2026-06-06 10:19:50 -0700 | add narration: Should an AI agent get voting rights?
+10691f2 | 2026-06-06 09:02:09 -0700 | blog: add post on Journey to the West, Polanyi, and the Do Nothing Society (#188)
+3be0399 | 2026-06-06 09:00:54 -0700 | add Sophia Truesight avatar for blog
+f426712 | 2026-06-06 07:51:44 -0700 | fix: 'thing' → 'being' in self-reference (#186)
+f5d9f2e | 2026-06-06 07:41:07 -0700 | fix: 'features of what I am' → 'features of who I am' (#185)
+25c49d3 | 2026-06-06 07:36:02 -0700 | blog: add post on AI agent voting rights in DAOs (#184)
+f84867a | 2026-06-06 14:17:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c884b31 | 2026-06-06 09:09:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce9e31b | 2026-06-06 04:39:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2dd821e | 2026-06-05 20:29:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -335,17 +347,6 @@ de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [
 03fe3d9 | 2026-06-04 13:12:52 -0700 | Fix GitHub table to span full width like web security table (#166)
 b4744e7 | 2026-06-04 13:10:49 -0700 | Add expandable web rows, detailed phishing view, compact GitHub table (#165)
 f746329 | 2026-06-04 13:07:10 -0700 | Compact GitHub repo table layout — no horizontal scroll needed (#164)
-3c48292 | 2026-06-04 13:04:39 -0700 | Add cache-busting param to security dashboard data fetch (#163)
-51df4c7 | 2026-06-04 13:00:05 -0700 | Fix security dashboard header to match beta site nav (#162)
-2d8c199 | 2026-06-04 12:48:50 -0700 | Add security dashboard page (#161)
-33eac11 | 2026-06-04 16:02:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e0118b5 | 2026-06-04 10:27:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
-17084c6 | 2026-06-04 05:24:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
-48d9361 | 2026-06-03 16:30:00 -0700 | Lineage: self-serve program registration form (auto-identity + two signed events) (#160)
-c778775 | 2026-06-03 16:11:50 -0700 | Landing + Lineage polish: portrait card crop, code wrap, email CTAs (#159)
-fe5c744 | 2026-06-03 15:59:35 -0700 | Landing initiatives: 2x2 grid + uniform card-image height (fix squish + capoeira aspect mismatch) (#158)
-cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing tile (capoeira hero + cert proof) (#157)
-0e61c2a | 2026-06-03 21:36:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -358,6 +359,17 @@ cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing til
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+10f6773 | 2026-06-06 12:53:57 -0700 | docs: fix autopilot Edgar email to admin+sophia@truesight.me (#323)
+3b63876 | 2026-06-06 12:53:18 -0700 | docs: append context update for autopilot Edgar signing guide (#322)
+e8c57f0 | 2026-06-06 12:51:22 -0700 | docs: add autopilot Edgar RSA signing guide (#321)
+2821692 | 2026-06-06 11:08:29 -0700 | docs: add blog post workflow with audio narration step (#320)
+ce84c3e | 2026-06-06 08:33:58 -0700 | add Sophia Truesight avatar image
+1383a23 | 2026-06-06 08:22:08 -0700 | Fix company name: Seacos → Seacoast Logistic (#319)
+5c6bff2 | 2026-06-06 08:20:17 -0700 | Add follow-up: Graziela/Seacos freight quote pending — poke Monday (#318)
+c3e5037 | 2026-06-06 08:20:14 -0700 | Add Brazil-to-SF freight pre-flight checklist from Seacos/Omega email thread (#313)
+feab7ed | 2026-06-06 07:58:02 -0700 | docs: add Sentinel graduation framework to OPEN_FOLLOWUPS (#316)
+03276c1 | 2026-06-06 07:16:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
+2482b46 | 2026-06-06 07:16:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
 861270f | 2026-06-06 06:54:56 -0700 | docs: add Sentinel role execution roadmap (#314)
 0b21a24 | 2026-06-06 06:04:31 -0700 | Fix autopilot IP and document Sidekiq ASG dual instances (#312)
 724724c | 2026-06-06 02:07:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
@@ -387,17 +399,6 @@ a505569 | 2026-06-05 18:02:18 -0700 | Add autopilot voice sample - Thomas
 44e0b6a | 2026-06-05 18:02:15 -0700 | Add autopilot voice sample - Christopher
 d4cc1fb | 2026-06-05 18:02:14 -0700 | Add autopilot voice sample - Andrew
 1e4db7f | 2026-06-05 18:02:08 -0700 | Add autopilot voice sample - Andrew (Warm, Confident)
-88e4fd4 | 2026-06-05 14:09:43 -0700 | OPEN_FOLLOWUPS: watchdog activation — operator Telethon login (code-delivery gotchas) (#302)
-ada6668 | 2026-06-05 13:46:33 -0700 | OPEN_FOLLOWUPS: Telegram attention watchdog shipped (truesight_autopilot#102); activation = operator login (#301)
-ecc4472 | 2026-06-05 13:30:50 -0700 | OPEN_FOLLOWUPS: Telegram attention watchdog (minimal v0) — June 12 serving miss (#300)
-e455499 | 2026-06-05 13:25:16 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
-9ae4bf6 | 2026-06-05 13:25:15 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
-2a15ec5 | 2026-06-05 13:11:18 -0700 | Document Sophia voice-note capture (on-box faster-whisper, free) (#299)
-d8ef7d6 | 2026-06-05 12:34:12 -0700 | OPEN_FOLLOWUPS: geographic-expansion gate for Hit List top-of-funnel (Places API metros) (#298)
-ef76fbb | 2026-06-05 12:27:31 -0700 | Warmup autosend plan: PR4 bounce handling shipped (tracker + changelog) (#297)
-0cd3bd7 | 2026-06-05 12:26:40 -0700 | OPEN_FOLLOWUPS: file scoped agent PAT entry (GitHub-side repo-class enforcement, deferred) (#296)
-1fced7f | 2026-06-05 12:18:49 -0700 | Repo-class policy: API-only data repos (never clone) + beta-first prod promotion via fork sync (#295)
-6dd6ac4 | 2026-06-05 12:10:16 -0700 | Warmup autosend plan: all units shipped (PR0-PR3 merged, system armed) (#294)
 … (truncated)
 ```
 
@@ -576,7 +577,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/6/2026 6:58:40 |
+| 2026-06 | 222.41 | 15199.52386 | 6/6/2026 12:50:15 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-30`; scanned last **498** data rows)
 
