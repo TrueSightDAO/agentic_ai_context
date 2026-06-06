@@ -6,11 +6,11 @@ The autopilot has its own RSA-2048 keypair registered with Edgar. It can **sign 
 
 ## Keypair
 
-- Registered via `register_identity("autopilot@truesight.me")`
+- Registered via `register_identity("admin+sophia@truesight.me")`
 - Stored in `/opt/truesight_autopilot/.env`:
   - `PUBLIC_KEY` — base64 SPKI (public key)
   - `PRIVATE_KEY` — base64 PKCS8 (private key)
-  - `EMAIL` — `autopilot@truesight.me`
+  - `EMAIL` — `admin+sophia@truesight.me`
 
 ## How to sign and submit
 
