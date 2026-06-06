@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-06T04:36:48Z`
+- Generated (UTC): `2026-06-06T09:07:14Z`
 - Look-back: **7** calendar days (`2026-05-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260605173247_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Oracle credential-link fix + deploy-alias fix + advisory panel declutter
 - `Edgar_20260605174853_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Hubert Yee DTC paid-ads brief — iteration rounds + final PDF (go_to_market P…
 - `Edgar_20260605175833_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Sophia content-search capability — root-caused and fixed the 'email360 not i…
 - `Edgar_20260605190530_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Backlog dedupe: merged OPEN_FOLLOW_UPS.md into canonical OPEN_FOLLOWUPS.md +…
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260605210826_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Credentialing GAS never-downgrade guard deployed live — clasp creds recovere…
 - `Edgar_20260605211117_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Outreach review-queue overhaul: own-domain inbox policy + 21 draft regenerat…
 - `Edgar_20260605212203_087` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Self-maintaining AI/Needs Review Gmail label for the outreach review queue
+- `Edgar_20260606051815_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix Sophia voice replies: stale-adapter deploy bug + Telegram channel context
 
 ---
 
@@ -304,6 +304,7 @@ _All dated lines on/after 2026-05-30_ (12):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ce9e31b | 2026-06-06 04:39:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2dd821e | 2026-06-05 20:29:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 818b14d | 2026-06-05 10:34:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -343,19 +344,21 @@ fe5c744 | 2026-06-03 15:59:35 -0700 | Landing initiatives: 2x2 grid + uniform ca
 cd38c6d | 2026-06-03 15:48:12 -0700 | Lineage: 4th-initiative page + landing tile (capoeira hero + cert proof) (#157)
 0e61c2a | 2026-06-03 21:36:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0224ea6 | 2026-06-03 17:31:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
-2dc06d4 | 2026-06-03 11:29:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-33a7ee4 | 2026-06-05 14:21:43 -0700 | Maintain 'AI/Needs Review' Gmail label as the human review queue (#161)
+7a806bd | 2026-06-05 22:39:52 -0700 | Add West Coast distributor list assembly proposal for ceremonial cacao & chocolate (#165)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6c12158 | 2026-06-05 21:39:18 -0700 | Add voice response implementation plan and execution roadmap (#311)
+2805615 | 2026-06-05 21:37:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
+06acf6a | 2026-06-05 21:36:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
 ffea77b | 2026-06-05 20:42:17 -0700 | Merge pull request #310 from TrueSightDAO/auto/advisory-refresh-2026-06-06
 f12ed10 | 2026-06-06 03:42:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
 16f33ed | 2026-06-05 20:15:47 -0700 | Add sentinel intro - Aria (English)
@@ -393,9 +396,6 @@ bc49cf5 | 2026-06-05 12:03:46 -0700 | Dedupe backlog: merge OPEN_FOLLOW_UPS.md i
 af51165 | 2026-06-05 11:42:36 -0700 | Add WARMUP_AUTOSEND_PLAN — B2B outreach human-attention reallocation (assessment + roadmap) (#292)
 ec08ae1 | 2026-06-05 10:39:29 -0700 | Log correction: Ora Cacao sells on Amazon (Feb 2026 crawl stale)
 db67380 | 2026-06-05 09:57:14 -0700 | Attention surfaces plan: all units shipped (PR0-PR2 + deploy) (#290)
-34b7248 | 2026-06-05 08:35:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
-1e7f97d | 2026-06-05 08:35:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-05 UTC)
-f1f3a13 | 2026-06-05 03:31:37 -0700 | chore(previews): refresh Beer Hall preview (2026-06-05 UTC)
 … (truncated)
 ```
 
@@ -437,6 +437,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1c64adf | 2026-06-06 08:48:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a1d2b51 | 2026-06-05 10:18:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6d04dcc | 2026-06-04 10:14:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 9fc0569 | 2026-06-03 11:24:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -572,7 +573,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/5/2026 20:52:13 |
+| 2026-06 | 222.41 | 15199.52386 | 6/6/2026 1:50:31 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-30`; scanned last **498** data rows)
 
