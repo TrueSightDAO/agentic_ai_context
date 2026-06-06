@@ -179,8 +179,21 @@ is just "move the EIP."
 
 ### Known issues this addresses / to watch
 - **Deploy OOM (2026-06-06):** `pip install dao_client` was OOM-killed (SIGTERM) on the 2 GB box (it runs two services). Immediate fix: **t3.medium (4 GB) + 2 GB swap** (Sophia's `infrastructure/autopilot_upgrade_proposal_2026-06-06.pdf`). Since the EIP exists, do it **blue-green** (launch t3.medium from AMI → deploy → reassociate EIP) for zero downtime + rollback, not an in-place resize. Also consider lightening deploy memory (prebuilt wheels / `pip --no-cache-dir`).
-- **dao_protocol co-location:** the proposal lists `dao_protocol :8010` on this box, but there is also a separate `dao_protocol_nelanco` host (Nelanco, `98.93.94.86`) — **verify which is authoritative**; co-locating a prod API with a self-deploying agent is a resilience risk.
+- **dao_protocol is NOT on this box** (verified 2026-06-06 — no `:8010` listener). It runs on `dao_protocol_nelanco` (Nelanco, `98.93.94.86`). The proposal's "two services / co-located" claim was wrong — the autopilot box is single-service (autopilot + telegram + watchdog).
 - **Self-deploy restarts all units** as of `truesight_autopilot#107` (main + telegram + watchdog); a fresh box must run the same `deploy.sh`.
+
+### Post-cutover verification — run on EVERY resize / new box / EC2 event
+After a stop/start resize, an EIP reassociate, or a fresh box, confirm before walking away (the units auto-start on boot, but given session-duplication stakes, verify explicitly):
+- [ ] `describe-instances` → expected `InstanceType`, `State=running`
+- [ ] `ssh sophia` reachable on the EIP (`52.200.38.206`)
+- [ ] **All three units active:** `systemctl is-active truesight-autopilot truesight-autopilot-telegram truesight-autopilot-watchdog` → all `active`. **Confirm the watchdog especially** — it must reconnect cleanly.
+- [ ] `free -m` shows expected RAM; `swapon --show` shows the 2 GB swap (re-add on a fresh box)
+- [ ] `curl localhost:8001/health` → `status: ok` (give the heavy app ~10–20 s after a restart)
+- [ ] Monit `:2812` listening
+- [ ] `git pull` to current `main` + restart all units (AMIs / stopped boxes lag the repo)
+
+### Status
+- **2026-06-06:** resized in-place **t3.small → t3.medium** (4 GB) + **2 GB swap**; all units (incl. watchdog) verified active; box pulled to current `main` (incl. PDF house style). Pre-resize backup AMI `ami-0e1f8559e760c5fd9`. EIP held → no Route53 change. **TODO:** automate the **weekly AMI** (DLM policy).
 
 ---
 
