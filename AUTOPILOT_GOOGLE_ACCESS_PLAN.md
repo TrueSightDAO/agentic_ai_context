@@ -117,4 +117,37 @@ After Track B merges + deploys: report one DAO contribution covering Tracks A + 
 
 - Symlink `sentiment_importer/config/*_gdrive_key.json` → `truesight_autopilot/config/google/` to eliminate the duplicate-source-of-truth risk noted in §6.1.
 - Build the autonomous `gas_error` handler in `app/email_poller.py` that uses the new Sheets + `http_fetch` reach to remediate failed Apps Script runs.
-- Consider Apps Script *deployment management* (clasp / Apps Script API) for the autopilot to push GAS code changes — currently it can only read source from GitHub and trigger anonymous web-app deployments.
+- ✅ **DONE 2026-06-07** — Apps Script *deployment management* via clasp is now provisioned on the box (see §9). The autopilot can push GAS code changes (`clasp push`) under either DAO Google identity.
+
+---
+
+## 9. Clasp deploy auth — TWO identities on the box (LIVE 2026-06-07)
+
+The box (`/home/ubuntu`, autopilot runs as `ubuntu`) has **two** clasp credential
+files plus one active slot. **clasp 3.3.0 reads only `~/.clasprc.json`** — the named
+files are inert until copied into that slot.
+
+| File | Google account | Owns (typical) |
+|---|---|---|
+| `~/.clasprc-admin.json` | **admin@truesight.me** | identity / credentialing / most DAO GAS projects (e.g. `tdg_identity_management` scriptId `1m8IZPs1…`) |
+| `~/.clasprc-gary.json` | **garyjob@agroverse.shop** | agroverse_shop / agroverse_qr_codes projects |
+| `~/.clasprc.json` | **ACTIVE slot** (currently = admin) | whatever you copied in last |
+
+**Deploy procedure (you, Sophia):**
+1. Find the project's owner from its `manifest.json` → `owner_email` (under
+   `context/tokenomics/google_app_scripts/<folder>/manifest.json`).
+2. Copy that account's file into the active slot **before** deploying:
+   `cp ~/.clasprc-admin.json ~/.clasprc.json`  *(or `~/.clasprc-gary.json`)*.
+   Confirm with `clasp show-authorized-user` → it must print the **owner** account, or
+   the push 403s / silently targets the wrong Drive.
+3. `gas_deploy_project.py` (your deploy tool) uses whatever is in the active slot, so
+   the copy in step 2 is mandatory for any non-admin project.
+4. After `clasp push`, **redeploy the serving web-app deployment id** (manifest
+   `deployments[]`) or the `/exec` URL serves stale code; then fire `post_push_hooks[]`
+   / the cache refresh.
+
+**Security:** both files are full OAuth refresh tokens for two Google accounts living
+on a self-modifying agent box (`chmod 600`). Gary authorized this explicitly on
+2026-06-07 ("grant her clasp auth for both … make sure she is aware of both"). If
+either token is ever suspected leaked, revoke it from the respective Google account's
+*Third-party access* settings and re-mint.
