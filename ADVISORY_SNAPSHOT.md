@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-07T09:46:19Z`
+- Generated (UTC): `2026-06-07T14:28:10Z`
 - Look-back: **7** calendar days (`2026-05-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 33
+- `[CONTRIBUTION EVENT]` × 34
 - `[EMAIL REGISTERED EVENT]` × 3
-- `[PRACTICE EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
+- `[PRACTICE EVENT]` × 1
 - `[RETAIL FIELD REPORT EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260606134137_091` · **Edgar** · [EMAIL REGISTERED EVENT] Email: gary@truesight.me
-- `Edgar_20260606140103_093` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
 - `Edgar_20260606140120_095` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa- · Email: admin+sophia@truesight.me
 - `Edgar_20260606140130_097` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa-LYT2REgcAVoGHSzDxUn_0 · Email: admin+sophia@truesight.me
 - `Edgar_20260606140215_099` · **Edgar** · [No Text Provided]
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260606214234_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Documented Telegram watchdog runbook + sophia upgrade hazards for cross-agen…
 - `Edgar_20260606214501_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Activated Telegram attention watchdog + coordinated sophia upgrade with para…
 - `Edgar_20260606215115_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Filed dated follow-up: Sophia-drafted Telegram replies (watchdog v2, revisit…
+- `Edgar_20260607142659_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Reaching out to Lucas Root about placing chocolate bars in his vending machi…
+- `Edgar_20260607142753_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Dennis about Nora’s question as well as placement of cacao in …
 
 ---
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-06T10:59:14.700Z`
+- Generated (UTC): `2026-06-07T10:59:16.822Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -90,12 +90,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - Research: 60  (#8)
 - AI: No fit signal: 157  (#9)
 - AI: Enrich — manual: 94  (#10)
-- Manager Follow-up: 33  (#13)
+- Manager Follow-up: 32  (#13)
 - Followed Up: 1  (#15)
 - Instagram Followed: 11  (#18)
 - Rejected: 14  (#19)
 - On Hold: 18  (#20)
-- Deferred / Revisit later: 6  (#21)
+- Deferred / Revisit later: 7  (#21)
 - **Partnered: 14**  (#22)
 - AI: Warm up prospect: 70  (#9999)
 - Not Appropriate: 74  (#9999)
@@ -103,16 +103,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **196**, follow_up **70**, bulk **0**, unknown **2** (data rows: **268**)
+- **Email Agent Follow Up** — logged sends: warmup **197**, follow_up **70**, bulk **0**, unknown **2** (data rows: **269**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **86**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **70** stores — sum logged **warmup** sends (AU): **150**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **6** / **61**; follow-up depth (none / once / ≥2): **70** / **0** / **0**
-- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
+- **AI: Warm up prospect**: **70** stores — sum logged **warmup** sends (AU): **151**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **6** / **61**; follow-up depth (none / once / ≥2): **70** / **0** / **0**
+- **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
+- **Follow-up pipeline (combined)**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 
 ---
 
@@ -311,6 +311,7 @@ _All dated lines on/after 2026-05-31_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5d14a7a | 2026-06-07 09:47:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
@@ -350,7 +351,6 @@ e620f0c | 2026-06-04 13:44:15 -0700 | Security dashboard: read renamed JSON keys
 de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0bbb824 | 2026-06-04 13:19:58 -0700 | Merge pull request #167 from TrueSightDAO/fix/security-dashboard-conventions
 52ab40f | 2026-06-04 13:19:37 -0700 | Fix security-dashboard: add GA, full footer, correct nav paths, overlay handler
-03fe3d9 | 2026-06-04 13:12:52 -0700 | Fix GitHub table to span full width like web security table (#166)
 … (truncated)
 ```
 
@@ -363,6 +363,8 @@ de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a077bdb | 2026-06-07 02:46:31 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
+9f9b60b | 2026-06-07 02:46:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 0809bd4 | 2026-06-06 22:06:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
 1cfb1f4 | 2026-06-06 22:06:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 0448368 | 2026-06-06 21:09:47 -0700 | Merge pull request #335 from TrueSightDAO/auto/advisory-refresh-2026-06-07
@@ -401,8 +403,6 @@ feab7ed | 2026-06-06 07:58:02 -0700 | docs: add Sentinel graduation framework to
 ffea77b | 2026-06-05 20:42:17 -0700 | Merge pull request #310 from TrueSightDAO/auto/advisory-refresh-2026-06-06
 f12ed10 | 2026-06-06 03:42:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
 16f33ed | 2026-06-05 20:15:47 -0700 | Add sentinel intro - Aria (English)
-a69a710 | 2026-06-05 18:34:15 -0700 | Add ecosystem steward intro - Aria (English)
-d8eb92f | 2026-06-05 18:26:41 -0700 | Add autopilot Portuguese voice - Francisca (Female, pt-BR)
 … (truncated)
 ```
 
@@ -580,7 +580,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 1:50:32 |
+| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 6:50:52 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-31`; scanned last **498** data rows)
 
