@@ -15,12 +15,15 @@ so clients never change and each step has instant rollback.
 > of this doc**; that section owns the live resume tracker for this phase. Prior phases
 > (PR2–PR6b) remain DONE as described below.
 >
-> **PR8 status (2026-06-07):** **PR8a DONE** (verify-signature + check_digital_signature ported,
-> deployed gate-off, parity-verified — dao_protocol#62). **PR8b + PR8c DROPPED, not ported**
-> (Gary: the HelloCash/POS invoice flow is abandoned — Hans Martin inactive); `link_upc` +
-> `express_submit_contribution` + their backing services **deleted from Rails** in
-> sentiment_importer#1088. **Remaining: PR8a nginx ramp → PR8d** (delete the 3 ported Rails
-> actions after ramp/soak).
+> **PR8 status (2026-06-07):** **PR8a DONE + RAMPED LIVE** (verify-signature + check_digital_signature
+> ported — dao_protocol#62 — and nginx exact-match flipped to `:8010`, plain-curl verified;
+> mirrored sentiment_importer#1089). **PR8b + PR8c DROPPED, not ported** (Gary: HelloCash/POS invoice
+> flow abandoned — Hans Martin inactive); `link_upc` + `express_submit_contribution` + backing
+> services **deleted from Rails** in sentiment_importer#1088. **ONLY REMAINING: PR8d** — after a ramp
+> soak (~aligns with the existing PR7 ~2026-06-25 soak window), delete the 3 now-dead ported Rails
+> actions (`submit_contribution`, `verify_signature`, `check_digital_signature`) from `dao_controller`
+> + their routes/skip-list entries, then a normal Rails deploy. That fully retires the `/dao/*`
+> submit/dispatch surface from Edgar.
 >
 > **Current step (prior phases):** **ALL endpoint ports + ALL 3 deferred impl gaps DONE & deployed gate-off;
 > verified live on `:8010` 2026-05-26.** PR2 `/proxy/gas` + PR3 newsletter/email-agent tracking RAMPED LIVE (#34, #35),
@@ -329,7 +332,7 @@ independently shippable — stop after any unchecked box.
 
 | Step | Scope | Impl PR | Merged | Deployed gate-off | nginx ramp | Rails delete |
 |---|---|---|---|---|---|---|
-| PR8a | `POST /dao/verify-signature` + `GET /dao/check_digital_signature` (read/verify only; reuse `crypto/verify` + sig-sheet adapter) | dao_protocol#62 | ✅ | ✅ 2026-06-07 (restart clean; 80 tests; **parity verified**: `check_digital_signature` exact-match vs live Rails for an ACTIVE key) | ☐ `location = /dao/verify-signature` + `location = /dao/check_digital_signature` | ☐ |
+| PR8a | `POST /dao/verify-signature` + `GET /dao/check_digital_signature` (read/verify only; reuse `crypto/verify` + sig-sheet adapter) | dao_protocol#62 | ✅ | ✅ 2026-06-07 (restart clean; 80 tests; **parity verified**: `check_digital_signature` exact-match vs live Rails for an ACTIVE key) | ✅ **ramped live 2026-06-07** (edgar.conf exact-match `location =` for both; `nginx -t` ok + graceful reload; plain-curl confirms Python serves — Rails would 401 its bot-throttle; control `/dao` still Rails; mirrored sentiment_importer#1089) | ☐ (PR8d, after soak) |
 | ~~PR8b~~ **DROPPED** | `link_upc` — abandoned POS flow; **deleted from Rails, not ported** | sentiment_importer#1088 ✅ | ✅ | n/a | n/a | ✅ |
 | ~~PR8c~~ **DROPPED** | `express_submit_contribution` (HelloCash/invoice) — abandoned, Hans Martin inactive (Gary 2026-06-07); **deleted from Rails, not ported** + orphaned `HelloCashService`/`InvoicesSheet`/`UpcBarcodeSheet` + dead HelloCash config (incl. a hardcoded token) | sentiment_importer#1088 ✅ | ✅ | n/a | n/a | ✅ |
 | PR8d | **Delete** the remaining *ported* Rails actions once ramped + soaked: `submit_contribution` (PR5, soaked since 2026-05-26) + `verify_signature` + `check_digital_signature` (after their PR8a nginx ramp). express/link_upc + backing services already removed in #1088. Merge-not-deploy. | sentiment_importer#TBD | ☐ | n/a | n/a | ☐ |
