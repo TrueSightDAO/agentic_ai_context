@@ -322,7 +322,7 @@ independently shippable — stop after any unchecked box.
 
 | Step | Scope | Impl PR | Merged | Deployed gate-off | nginx ramp | Rails delete |
 |---|---|---|---|---|---|---|
-| PR8a | `POST /dao/verify-signature` + `GET /dao/check_digital_signature` (read/verify only; reuse `crypto/verify` + sig-sheet adapter) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/verify-signature` + `location = /dao/check_digital_signature` | ☐ |
+| PR8a | `POST /dao/verify-signature` + `GET /dao/check_digital_signature` (read/verify only; reuse `crypto/verify` + sig-sheet adapter) | dao_protocol#62 | ✅ | ✅ 2026-06-07 (restart clean; 80 tests; **parity verified**: `check_digital_signature` exact-match vs live Rails for an ACTIVE key) | ☐ `location = /dao/verify-signature` + `location = /dao/check_digital_signature` | ☐ |
 | PR8b | `POST /dao/link_upc` (+ `sheets/upc_barcode_sheet.py`) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/link_upc` | ☐ |
 | PR8c | `POST /dao/express_submit_contribution` (+ `services/hellocash.py` + `sheets/invoices_sheet.py`; [INVOICE CONTRIBUTION] + [UPC LINKING CONTRIBUTION]) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/express_submit_contribution` | ☐ |
 | PR8d | **Delete** the 4 Rails actions + routes + now-orphaned helpers/services (`HelloCashService`, `Gdrive::{UpcBarcodeSheet,InvoicesSheet}` if unused elsewhere) from `sentiment_importer`; **also** delete the already-ramped `submit_contribution` action (PR5, soaked since 2026-05-26). Merge-not-deploy first; this is the original **PR7 cleanup** for the `/dao/*` surface. | sentiment_importer#TBD | ☐ | n/a | n/a | ☐ |
@@ -339,6 +339,15 @@ the "user-visible writes stay synchronous" decision). Confirm HelloCash API cred
 (`DAO_PROTOCOL_HELLOCASH_*` — likely NOT yet provisioned; net-new, like the inventory secret).
 
 **Parity test harness:** for each, POST/GET the same payload to live Rails (`/dao/<route>`) and to the
-gate-off Python (`/dao-protocol/dao/<route>`) and diff the JSON (the POS/DApp clients depend on exact
-shape — `verify-signature` returns `{valid, message}`, `check_digital_signature` returns
-`{registered, contributor_name, contributor_email}` / `{registered:false, pending_verification:true,…}`).
+gate-off Python (`http://127.0.0.1:8010/dao/<route>` on the box, or `/dao-protocol/...` prefix) and diff
+the JSON (the POS/DApp clients depend on exact shape — `verify-signature` returns `{valid, message}`,
+`check_digital_signature` returns `{registered, contributor_name, contributor_email}` /
+`{registered:false, pending_verification:true,…}`).
+
+> ⚠️ **Parity gotcha (found 2026-06-07):** live Rails applies a global `rate_limit_bot_calls`
+> before_action that **401s curl/bot requests** (empty body) even on the skip-listed `/dao/*` actions —
+> real browsers pass. So a naked `curl` to Rails returns 401, not the real payload. Send a browser
+> `User-Agent` + `Origin: https://dapp.truesight.me` to get the true Rails response. The Python port
+> intentionally does NOT replicate the bot-throttle (a Tenant-A/global concern), so it answers curl
+> directly — confirmed identical JSON to browser-Rails for `check_digital_signature`. (Same class of
+> latent Rails 401 that PR2 `/proxy/gas` fixed.)
