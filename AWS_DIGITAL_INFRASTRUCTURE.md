@@ -173,7 +173,7 @@ is just "move the EIP."
 > The Telegram adapter is **outbound-polling**, so it doesn't depend on the inbound IP — the EIP matters for SSH, the web API (`:8001`/`:443`), Monit, and `sophia.truesight.me`.
 
 ### AMI backup cadence (DR + source for step 2)
-- **Weekly AMI** of `i-02c699d3d7efbdc82` (tag-driven **AWS Data Lifecycle Manager** policy, or cron `aws ec2 create-image --no-reboot`), retain ~4.
+- **Weekly AMI — AUTOMATED 2026-06-07** via GitHub Action **`Cypher-Defense/.github/workflows/snapshot_autopilot_ami.yml`** (Sundays 03:00 UTC + `workflow_dispatch`), script **`scripts/aws/snapshot_autopilot_ami.py`**. Resolves the instance by **Name tag `truesight-autopilot`** (not a hardcoded ID — survives resizes / blue-green), `create-image --no-reboot`, tags AMI + snapshots `ManagedBy=snapshot_autopilot_ami`, **retains newest 8 (~2 months)** and prunes older AMIs + their backing snapshots. Repo secrets `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY/SECRET` (account that owns the instance). First validated run: `ami-0dae91c5216989753`.
 - ⚠️ The AMI contains the on-disk **`.env` (secrets)** → keep it **private** (default in-account); never share cross-account/publicly.
 - AMI ≠ latest code — a new box still runs `deploy.sh` to pull current code.
 
@@ -193,7 +193,8 @@ After a stop/start resize, an EIP reassociate, or a fresh box, confirm before wa
 - [ ] `git pull` to current `main` + restart all units (AMIs / stopped boxes lag the repo)
 
 ### Status
-- **2026-06-06:** resized in-place **t3.small → t3.medium** (4 GB) + **2 GB swap**; all units (incl. watchdog) verified active; box pulled to current `main` (incl. PDF house style). Pre-resize backup AMI `ami-0e1f8559e760c5fd9`. EIP held → no Route53 change. **TODO:** automate the **weekly AMI** (DLM policy).
+- **2026-06-06:** resized in-place **t3.small → t3.medium** (4 GB) + **2 GB swap**; all units (incl. watchdog) verified active; box pulled to current `main` (incl. PDF house style). Pre-resize backup AMI `ami-0e1f8559e760c5fd9`. EIP held → no Route53 change.
+- **2026-06-07:** weekly-AMI TODO **DONE** — automated via the Cypher-Defense GitHub Action above (first AMI `ami-0dae91c5216989753`). Also shipped (`truesight_autopilot#114`): Sophia can now run sudo / install packages on her **own** box via `ssh_run(host='autopilot', …)` (loopback self-host; `sophia_infra.pub` self-trusted in the box's own `authorized_keys` by `deploy.sh`); the system prompt embeds a live **host-identity block** (instance id/type/region via IMDS) so she stops hallucinating her location; `GROK_API_KEY` added to the box `.env` (`/health` → `grok_key_set: true`).
 
 ---
 
