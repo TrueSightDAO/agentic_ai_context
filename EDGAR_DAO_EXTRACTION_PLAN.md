@@ -6,7 +6,16 @@ stock/crypto trading platform. Migrate **one endpoint at a time** behind `edgar.
 so clients never change and each step has instant rollback.
 
 > ## ▶ RESUME HERE
-> **Current step:** **ALL endpoint ports + ALL 3 deferred impl gaps DONE & deployed gate-off;
+>
+> **▶ ACTIVE WORK (2026-06-07): PR8 — finish the `/dao/*` cutover (4 remaining endpoints).**
+> Gary chose "finish cutover, then delete." The original extraction intentionally left
+> 4 `/dao/*` routes on Rails (exact-match nginx only moved `submit_contribution`).
+> Audit confirms **all 4 are in active use** (POS integrations + DApp + CLI) → each must
+> be **ported**, not just deleted. Sequenced easy→hard in the **PR8 section at the bottom
+> of this doc**; that section owns the live resume tracker for this phase. Prior phases
+> (PR2–PR6b) remain DONE as described below.
+>
+> **Current step (prior phases):** **ALL endpoint ports + ALL 3 deferred impl gaps DONE & deployed gate-off;
 > verified live on `:8010` 2026-05-26.** PR2 `/proxy/gas` + PR3 newsletter/email-agent tracking RAMPED LIVE (#34, #35),
 > PR4 shipping_rates (#36, exact parity), PR5 `/dao` verify+intake+dispatch (#37/#38), PR6a
 > `/qr-code-check` (#39), PR6b order-sync audit log `POST /stripe/order_sync` (#40); deferred gaps
@@ -283,3 +292,53 @@ propagation → may run async; the **intake ledger append stays synchronous** (n
 - [ ] rebind service to `127.0.0.1:8010` (still `0.0.0.0`; SG blocks externally)
 - [ ] job durability: BackgroundTasks+APScheduler vs arq/Redis — decide at first ramp needing durable retries
 - [ ] zero-lag inventory: keep snapshot refresh async vs synchronous on the sale path — decide at PR6a ramp
+
+---
+
+## PR8 — Finish the `/dao/*` cutover (the 4 routes intentionally left on Rails)
+
+**Why now:** Gary (2026-06-07) wants the Rails DAO submit/dispatch surface retired to stop
+LLMs (and humans) being confused by "two backends both accept `/dao/*`." PR5 only moved
+`POST /dao/submit_contribution` (exact-match nginx). These 4 stayed on Rails by design — but
+all 4 are **still live and still called**, so the cutover = *port → nginx flip → delete*, not
+just delete.
+
+**Usage audit (2026-06-07) — who calls each (so none is wrongly deleted as "dead"):**
+
+| Rails route → action | Real callers | Backing | Port complexity |
+|---|---|---|---|
+| `POST /dao/verify-signature` → `dao#verify_signature` | dao_client CLI (`edgar_client.py`), heierling-pos, point-of-sales-integrations | `SignatureVerifier` only | **Trivial** — Python `crypto/verify.py` already exists; just map `{valid, message/error}` |
+| `GET /dao/check_digital_signature` → `dao#check_digital_signature` | `dapp/create_signature.html`, butterfly_effects_club, dao_client CLI | `Gdrive::ContributorsDigitalSignatures.find_row_by_public_key` (+ Name/Email/Status) | **Low** — extend `sheets/contributors_digital_signatures.find_by_public_key` to also return Contributor Name; 3 response shapes + `ACAO:*` |
+| `POST /dao/link_upc` → `dao#link_upc` | heierling-pos, point-of-sales-integrations (`create_invoice.html`) | `Gdrive::UpcBarcodeSheet.update_upc_code(product_id, upc_code)` | **Medium** — new `sheets/upc_barcode_sheet.py` adapter (single update) |
+| `POST /dao/express_submit_contribution` → `dao#express_submit_contribution` | heierling-pos, point-of-sales-integrations (invoice flow) | `HelloCashService` (POS API) + `Gdrive::InvoicesSheet` + `UpcBarcodeSheet` + sig verify + Telegram log + GAS dispatch | **High** — new `services/hellocash.py` + `sheets/invoices_sheet.py`; reuses verify/dispatch/telegram_raw_log |
+
+**Convention (same as every prior PR here):** build in `dao_protocol` **gate-off** (reachable via
+the `/dao-protocol/*` test prefix, no traffic moved) with unit tests + exact-JSON parity vs live
+Rails; ramp later via an **exact-match nginx `location =`** flip in `seni_ror:edgar.conf` (Rails stays
+as instant rollback); only delete the Rails action in the final PR after soak. Each row is
+independently shippable — stop after any unchecked box.
+
+**Sequenced sub-PRs (easy→hard, lowest risk first):**
+
+| Step | Scope | Impl PR | Merged | Deployed gate-off | nginx ramp | Rails delete |
+|---|---|---|---|---|---|---|
+| PR8a | `POST /dao/verify-signature` + `GET /dao/check_digital_signature` (read/verify only; reuse `crypto/verify` + sig-sheet adapter) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/verify-signature` + `location = /dao/check_digital_signature` | ☐ |
+| PR8b | `POST /dao/link_upc` (+ `sheets/upc_barcode_sheet.py`) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/link_upc` | ☐ |
+| PR8c | `POST /dao/express_submit_contribution` (+ `services/hellocash.py` + `sheets/invoices_sheet.py`; [INVOICE CONTRIBUTION] + [UPC LINKING CONTRIBUTION]) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/express_submit_contribution` | ☐ |
+| PR8d | **Delete** the 4 Rails actions + routes + now-orphaned helpers/services (`HelloCashService`, `Gdrive::{UpcBarcodeSheet,InvoicesSheet}` if unused elsewhere) from `sentiment_importer`; **also** delete the already-ramped `submit_contribution` action (PR5, soaked since 2026-05-26). Merge-not-deploy first; this is the original **PR7 cleanup** for the `/dao/*` surface. | sentiment_importer#TBD | ☐ | n/a | n/a | ☐ |
+
+**Keep on Rails (NOT in scope — Edgar-specific, no Python equivalent):** `dao#index`,
+`dao#chrome_installed`, `dao#review_contribution` (human review UI + TDG award), `dao#cypher`,
+`dao#canvas`, and the email-onboarding *that the DApp drives through Rails* — note `submit_contribution`'s
+email-registration path was already ported (#42), so PR8d's delete of `submit_contribution` is safe, but
+confirm `DaoEmailRegistrationService` has no *other* Rails caller before removing it.
+
+**Pre-flight before PR8c (express):** confirm whether `HelloCashService` POS-invoice creation should
+stay synchronous in-request (it returns invoice data the POS client reads back → yes, keep sync, matches
+the "user-visible writes stay synchronous" decision). Confirm HelloCash API creds exist in the box `.env`
+(`DAO_PROTOCOL_HELLOCASH_*` — likely NOT yet provisioned; net-new, like the inventory secret).
+
+**Parity test harness:** for each, POST/GET the same payload to live Rails (`/dao/<route>`) and to the
+gate-off Python (`/dao-protocol/dao/<route>`) and diff the JSON (the POS/DApp clients depend on exact
+shape — `verify-signature` returns `{valid, message}`, `check_digital_signature` returns
+`{registered, contributor_name, contributor_email}` / `{registered:false, pending_verification:true,…}`).
