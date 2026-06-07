@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-07T05:06:41Z`
+- Generated (UTC): `2026-06-07T09:46:19Z`
 - Look-back: **7** calendar days (`2026-05-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -311,6 +311,7 @@ _All dated lines on/after 2026-05-31_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 424a12d | 2026-06-06 10:33:02 -0700 | add Zen direct knowing section to Journey to the West post (#191)
@@ -350,7 +351,6 @@ de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [
 0bbb824 | 2026-06-04 13:19:58 -0700 | Merge pull request #167 from TrueSightDAO/fix/security-dashboard-conventions
 52ab40f | 2026-06-04 13:19:37 -0700 | Fix security-dashboard: add GA, full footer, correct nav paths, overlay handler
 03fe3d9 | 2026-06-04 13:12:52 -0700 | Fix GitHub table to span full width like web security table (#166)
-b4744e7 | 2026-06-04 13:10:49 -0700 | Add expandable web rows, detailed phishing view, compact GitHub table (#165)
 … (truncated)
 ```
 
@@ -363,6 +363,8 @@ b4744e7 | 2026-06-04 13:10:49 -0700 | Add expandable web rows, detailed phishing
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0809bd4 | 2026-06-06 22:06:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
+1cfb1f4 | 2026-06-06 22:06:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 0448368 | 2026-06-06 21:09:47 -0700 | Merge pull request #335 from TrueSightDAO/auto/advisory-refresh-2026-06-07
 34d5d82 | 2026-06-07 04:09:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 5be5f25 | 2026-06-06 15:09:16 -0700 | AWS §4.5: post-cutover verification checklist (watchdog!) + record t3.medium resize (#334)
@@ -401,8 +403,6 @@ f12ed10 | 2026-06-06 03:42:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 16f33ed | 2026-06-05 20:15:47 -0700 | Add sentinel intro - Aria (English)
 a69a710 | 2026-06-05 18:34:15 -0700 | Add ecosystem steward intro - Aria (English)
 d8eb92f | 2026-06-05 18:26:41 -0700 | Add autopilot Portuguese voice - Francisca (Female, pt-BR)
-efdc324 | 2026-06-05 18:18:45 -0700 | Add autopilot voice sample - Aria (Positive, Confident)
-207a1ef | 2026-06-05 18:13:53 -0700 | Add autopilot Mandarin voice - Xiaoyi (Female, Optimistic)
 … (truncated)
 ```
 
@@ -446,6 +446,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+e5206f4 | 2026-06-07 09:41:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1c64adf | 2026-06-06 08:48:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a1d2b51 | 2026-06-05 10:18:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6d04dcc | 2026-06-04 10:14:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -579,7 +580,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/6/2026 21:51:54 |
+| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 1:50:32 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-31`; scanned last **498** data rows)
 
