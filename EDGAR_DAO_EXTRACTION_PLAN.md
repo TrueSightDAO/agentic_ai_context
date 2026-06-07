@@ -15,6 +15,13 @@ so clients never change and each step has instant rollback.
 > of this doc**; that section owns the live resume tracker for this phase. Prior phases
 > (PR2–PR6b) remain DONE as described below.
 >
+> **PR8 status (2026-06-07):** **PR8a DONE** (verify-signature + check_digital_signature ported,
+> deployed gate-off, parity-verified — dao_protocol#62). **PR8b + PR8c DROPPED, not ported**
+> (Gary: the HelloCash/POS invoice flow is abandoned — Hans Martin inactive); `link_upc` +
+> `express_submit_contribution` + their backing services **deleted from Rails** in
+> sentiment_importer#1088. **Remaining: PR8a nginx ramp → PR8d** (delete the 3 ported Rails
+> actions after ramp/soak).
+>
 > **Current step (prior phases):** **ALL endpoint ports + ALL 3 deferred impl gaps DONE & deployed gate-off;
 > verified live on `:8010` 2026-05-26.** PR2 `/proxy/gas` + PR3 newsletter/email-agent tracking RAMPED LIVE (#34, #35),
 > PR4 shipping_rates (#36, exact parity), PR5 `/dao` verify+intake+dispatch (#37/#38), PR6a
@@ -309,8 +316,8 @@ just delete.
 |---|---|---|---|
 | `POST /dao/verify-signature` → `dao#verify_signature` | dao_client CLI (`edgar_client.py`), heierling-pos, point-of-sales-integrations | `SignatureVerifier` only | **Trivial** — Python `crypto/verify.py` already exists; just map `{valid, message/error}` |
 | `GET /dao/check_digital_signature` → `dao#check_digital_signature` | `dapp/create_signature.html`, butterfly_effects_club, dao_client CLI | `Gdrive::ContributorsDigitalSignatures.find_row_by_public_key` (+ Name/Email/Status) | **Low** — extend `sheets/contributors_digital_signatures.find_by_public_key` to also return Contributor Name; 3 response shapes + `ACAO:*` |
-| `POST /dao/link_upc` → `dao#link_upc` | heierling-pos, point-of-sales-integrations (`create_invoice.html`) | `Gdrive::UpcBarcodeSheet.update_upc_code(product_id, upc_code)` | **Medium** — new `sheets/upc_barcode_sheet.py` adapter (single update) |
-| `POST /dao/express_submit_contribution` → `dao#express_submit_contribution` | heierling-pos, point-of-sales-integrations (invoice flow) | `HelloCashService` (POS API) + `Gdrive::InvoicesSheet` + `UpcBarcodeSheet` + sig verify + Telegram log + GAS dispatch | **High** — new `services/hellocash.py` + `sheets/invoices_sheet.py`; reuses verify/dispatch/telegram_raw_log |
+| ~~`POST /dao/link_upc`~~ **DROPPED #1088** | (was) heierling-pos, point-of-sales-integrations | — | **Deleted, not ported** — abandoned POS flow |
+| ~~`POST /dao/express_submit_contribution`~~ **DROPPED #1088** | (was) heierling-pos, point-of-sales-integrations invoice flow | — | **Deleted, not ported** — HelloCash/invoice abandoned (Hans Martin inactive, Gary 2026-06-07) |
 
 **Convention (same as every prior PR here):** build in `dao_protocol` **gate-off** (reachable via
 the `/dao-protocol/*` test prefix, no traffic moved) with unit tests + exact-JSON parity vs live
@@ -323,9 +330,9 @@ independently shippable — stop after any unchecked box.
 | Step | Scope | Impl PR | Merged | Deployed gate-off | nginx ramp | Rails delete |
 |---|---|---|---|---|---|---|
 | PR8a | `POST /dao/verify-signature` + `GET /dao/check_digital_signature` (read/verify only; reuse `crypto/verify` + sig-sheet adapter) | dao_protocol#62 | ✅ | ✅ 2026-06-07 (restart clean; 80 tests; **parity verified**: `check_digital_signature` exact-match vs live Rails for an ACTIVE key) | ☐ `location = /dao/verify-signature` + `location = /dao/check_digital_signature` | ☐ |
-| PR8b | `POST /dao/link_upc` (+ `sheets/upc_barcode_sheet.py`) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/link_upc` | ☐ |
-| PR8c | `POST /dao/express_submit_contribution` (+ `services/hellocash.py` + `sheets/invoices_sheet.py`; [INVOICE CONTRIBUTION] + [UPC LINKING CONTRIBUTION]) | dao_protocol#TBD | ☐ | ☐ | ☐ `location = /dao/express_submit_contribution` | ☐ |
-| PR8d | **Delete** the 4 Rails actions + routes + now-orphaned helpers/services (`HelloCashService`, `Gdrive::{UpcBarcodeSheet,InvoicesSheet}` if unused elsewhere) from `sentiment_importer`; **also** delete the already-ramped `submit_contribution` action (PR5, soaked since 2026-05-26). Merge-not-deploy first; this is the original **PR7 cleanup** for the `/dao/*` surface. | sentiment_importer#TBD | ☐ | n/a | n/a | ☐ |
+| ~~PR8b~~ **DROPPED** | `link_upc` — abandoned POS flow; **deleted from Rails, not ported** | sentiment_importer#1088 ✅ | ✅ | n/a | n/a | ✅ |
+| ~~PR8c~~ **DROPPED** | `express_submit_contribution` (HelloCash/invoice) — abandoned, Hans Martin inactive (Gary 2026-06-07); **deleted from Rails, not ported** + orphaned `HelloCashService`/`InvoicesSheet`/`UpcBarcodeSheet` + dead HelloCash config (incl. a hardcoded token) | sentiment_importer#1088 ✅ | ✅ | n/a | n/a | ✅ |
+| PR8d | **Delete** the remaining *ported* Rails actions once ramped + soaked: `submit_contribution` (PR5, soaked since 2026-05-26) + `verify_signature` + `check_digital_signature` (after their PR8a nginx ramp). express/link_upc + backing services already removed in #1088. Merge-not-deploy. | sentiment_importer#TBD | ☐ | n/a | n/a | ☐ |
 
 **Keep on Rails (NOT in scope — Edgar-specific, no Python equivalent):** `dao#index`,
 `dao#chrome_installed`, `dao#review_contribution` (human review UI + TDG award), `dao#cypher`,
