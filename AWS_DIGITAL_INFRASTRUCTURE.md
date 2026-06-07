@@ -251,6 +251,45 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 | seni_redis_2 | — | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | truesight-autopilot | — | `garyjob_aws` | ubuntu |
 
+### 7.1 Reaching Nelanco hosts from a non-allowlisted network — **bastion via Sophia**
+
+**Symptom:** `ssh ubuntu@54.211.179.126` (or any Nelanco host) **times out** from a
+laptop / phone-hotspot / café network, even though the key is correct.
+
+**Why:** the Nelanco Security Group allowlists inbound SSH (22) and ICMP to a short
+list of source IPs — it is *allow-only*, so any source not on the list is **silently
+dropped** (hence *timeout*, not *connection refused*). The **autopilot/Sophia Elastic
+IP `52.200.38.206` is on that allowlist**; arbitrary dynamic IPs (e.g. T-Mobile
+cellular) are not. This is cross-account (Explorya ↔ Nelanco) over the public
+internet, so gating is purely source-IP based — there is no VPC peering.
+
+**Fix — use Sophia as a ProxyJump bastion** (the TCP hop to the target then
+originates from `52.200.38.206`, which *is* allowlisted; auth to the target still
+uses your **local** Nelanco key):
+
+```bash
+KEY=~/Applications/aws_keypairs/NELANCO_aws_20201122.pem
+ssh -J sophia -i "$KEY" ubuntu@54.211.179.126   # Edgar (seni_ror, sentiment_importer)
+ssh -J sophia -i "$KEY" ubuntu@98.93.94.86       # dao_protocol (FastAPI + DAO secrets)
+```
+
+`sophia` is a working `~/.ssh/config` alias (`HostName sophia.truesight.me`). This is
+the **standard, durable way** for any operator / LLM to reach the Nelanco boxes — do
+**not** widen the SG to `0.0.0.0/0` to avoid it (these are treasury-grade hosts; see §9).
+
+**Secrets stay on the box.** The GAS web apps are public (`ANYONE_ANONYMOUS`); only the
+shared secret is gated. DAO secrets (e.g. `DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_SECRET`,
+`..._WEBHOOK_URL`) live in `~/dao_protocol/.env` on the dao_protocol box. Run any
+secret-bearing call **from that box** (`set -a; . ~/dao_protocol/.env; set +a; curl …`)
+so the secret never lands in a local shell history or transcript. Example — force a
+`dao_members.json` cache refresh:
+
+```bash
+ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
+  'set -a; . ~/dao_protocol/.env; set +a;
+   curl -s "${DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_WEBHOOK_URL}?action=refresh_dao_members_cache&secret=${DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_SECRET}&force=1"'
+```
+
 ---
 
 ## 8. Monitoring
@@ -273,6 +312,14 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 | `sg-4314630c` | `default` (Nelanco) | All Nelanco instances. Allows SSH, HTTP/HTTPS, internal traffic. |
 | `sg-e98f788e` | `default` (Explorya) | Autopilot. |
 | `sg-093be54e48c6478e8` | `edgar-2026-05-10` | Old Edgar instances (stopped). |
+
+> **SSH/ICMP are source-IP allowlisted, not open.** The Sophia/autopilot EIP
+> `52.200.38.206` is allowlisted; random operator IPs are not — reach these hosts via
+> the **Sophia bastion** (§7.1), not by widening the SG. The crown-jewel host is
+> **`dao_protocol`** (`98.93.94.86`) — it holds the DAO submit/dispatch logic and the
+> GAS/Stripe/webhook secrets in `~/dao_protocol/.env`; Edgar/`seni_ror` runs only the
+> `sentiment_importer` Rails app. Do **not** expose either to `0.0.0.0/0`; prefer SSM
+> Session Manager if direct access is ever needed.
 
 ---
 
