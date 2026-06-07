@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-07T04:09:32Z`
+- Generated (UTC): `2026-06-07T05:06:41Z`
 - Look-back: **7** calendar days (`2026-05-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 33
+- `[EMAIL REGISTERED EVENT]` × 3
+- `[PRACTICE EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[RETAIL FIELD REPORT EVENT]` × 1
+- _free-form (no bracket tag)_ × 3
+
+### Latest entries
+
+- `Edgar_20260606134137_091` · **Edgar** · [EMAIL REGISTERED EVENT] Email: gary@truesight.me
+- `Edgar_20260606140103_093` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
+- `Edgar_20260606140120_095` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa- · Email: admin+sophia@truesight.me
+- `Edgar_20260606140130_097` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa-LYT2REgcAVoGHSzDxUn_0 · Email: admin+sophia@truesight.me
+- `Edgar_20260606140215_099` · **Edgar** · [No Text Provided]
+- `Edgar_20260606140235_101` · **Edgar** · UploadFile(filename='payload.txt', size=1076, headers=Headers({'content-disposition': 'fo…
+- `Edgar_20260606141014_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add Sentinel role support to dao_members_cache_publi…
+- `Edgar_20260606142356_001` · **Edgar** · [CONTRIBUTION EVENT] Contributor Name: Sophia Truesight · Contributor Email: admin+sophia@truesight.me · Title: Extend DAO protocol to recognize Sentinel role
+- `Edgar_20260606142402_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Extend DAO protocol to recognize Sentinel role
+- `Edgar_20260606172706_005` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260606182946_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Lukas introduced by @⁨Ken Nim - Bay Area ⁩ popped by just now at the cafe I …
+- `Edgar_20260606194253_009` · **Edgar** · [EMAIL REGISTERED EVENT] Email: autopilot@truesight.me
+- `Edgar_20260606194309_011` · **Edgar** · test
+- `Edgar_20260606194347_013` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Alchemy Springs & Sauna Garden · Store Key: alchemy-springs--sauna-garden__939-post-street__san-francisco__ca · Update ID: SFR_20260606_AlchemySprings_001
+- `Edgar_20260606203352_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Extend gmail_send and gmail_create_draft to…
+- `Edgar_20260606204612_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add pre-deploy syntax check to deploy.sh so…
+- `Edgar_20260606212047_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Reply-only involvement: outreach pipeline now machine-handles every pre-repl…
+- `Edgar_20260606214234_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Documented Telegram watchdog runbook + sophia upgrade hazards for cross-agen…
+- `Edgar_20260606214501_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Activated Telegram attention watchdog + coordinated sophia upgrade with para…
+- `Edgar_20260606215115_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Filed dated follow-up: Sophia-drafted Telegram replies (watchdog v2, revisit…
 
 ---
 
@@ -214,13 +252,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,118.40**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.71**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -321,6 +363,8 @@ b4744e7 | 2026-06-04 13:10:49 -0700 | Add expandable web rows, detailed phishing
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0448368 | 2026-06-06 21:09:47 -0700 | Merge pull request #335 from TrueSightDAO/auto/advisory-refresh-2026-06-07
+34d5d82 | 2026-06-07 04:09:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 5be5f25 | 2026-06-06 15:09:16 -0700 | AWS §4.5: post-cutover verification checklist (watchdog!) + record t3.medium resize (#334)
 e2d0ba1 | 2026-06-06 14:50:55 -0700 | OPEN_FOLLOWUPS: Sophia-drafted Telegram replies (watchdog v2) — revisit ~2026-07-06 (#333)
 af67ca9 | 2026-06-06 14:38:41 -0700 | AWS infra: add §4.5 autopilot EIP blue-green upgrade + AMI DR runbook (#332)
@@ -359,8 +403,6 @@ a69a710 | 2026-06-05 18:34:15 -0700 | Add ecosystem steward intro - Aria (Englis
 d8eb92f | 2026-06-05 18:26:41 -0700 | Add autopilot Portuguese voice - Francisca (Female, pt-BR)
 efdc324 | 2026-06-05 18:18:45 -0700 | Add autopilot voice sample - Aria (Positive, Confident)
 207a1ef | 2026-06-05 18:13:53 -0700 | Add autopilot Mandarin voice - Xiaoyi (Female, Optimistic)
-f8805f8 | 2026-06-05 18:13:52 -0700 | Add autopilot Mandarin voice - Yunjian (Male, Professional)
-2eb4fde | 2026-06-05 18:13:51 -0700 | Add autopilot Mandarin voice - Yunxi (Male, Lively)
 … (truncated)
 ```
 
@@ -513,6 +555,63 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/6/2026 21:51:54 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-31`; scanned last **498** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-02 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Lzs3a8k_5iMI | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-P3nkiL4k81h3 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-h5qizrAWl76c | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FaSZxIBdebqe | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-DXDofYc0ESp7 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-2QBKOeqIfVSG | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-z6g9SWhL_ati | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NEJv843YObrg | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-uv1UhjawJzo9 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-VDKakvgCtd04 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-EpWV_YV1qJUX | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-HaKpMdzM9ycZ | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-J2aZSMGLlj1b | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-CaEJ4UNqpknL | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-ztJmAFd7WFgS | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-u0UDJKke8-Vy | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Fd3q3S0Bq-6F | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NTqCXKtd7yXC | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FgGGKCdJFijx | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-kW9Dr8DAEJ5O | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-SAbs8DKErxhj | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-_TNoRprgbCwR | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-3ljjhKC3AEk_ | — | — |
+| 2026-06-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
