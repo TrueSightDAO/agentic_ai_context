@@ -140,6 +140,13 @@ truesight-autopilot (52.200.38.206:8000)
 
 Runs on a **dedicated EC2** separate from Edgar to protect critical infrastructure. Code at `/opt/truesight_autopilot`, systemd service `truesight-autopilot.service`.
 
+**Telegram identifiers (Sophia):**
+- Bot: **`@truesight_autopilot_bot`** (id `8217115914`).
+- **Working group: `TrueSight DAO Ops` = `-1003919341801`** (forum/topics enabled; the bot is a **group admin with Manage Topics**). This is `TELEGRAM_HOME_GROUP_ID` in the box `.env` — where `create_telegram_topic` opens topics for execution handoffs triggered off-Telegram.
+- Watchdog user-session = Gary's account `garyjob` (id `2102593402`) — read-only nudges (see §4.5 / OPEN_FOLLOWUPS).
+
+**Execution-handoff path (local LLM → Sophia):** a governor crafts a plan + roadmap with a local LLM and commits the roadmap to `agentic_ai_context` (the baton), then runs **`truesight-dao-ping-sophia`** (`dao_client`/`dao_protocol` module `ping_sophia`, governor-signed → Sophia `/chat-blocking`, **governor-only, 403 otherwise**) telling Sophia to open a topic + load the plan + post a kickoff. Sophia uses the `create_telegram_topic` tool; the governor steps into that topic in `TrueSight DAO Ops` and monitors execution (one autopilot session per topic). Validated end-to-end 2026-06-07.
+
 ### 4.4 GitHub Pages (Static Sites)
 
 | Site | Repo | Domain |
