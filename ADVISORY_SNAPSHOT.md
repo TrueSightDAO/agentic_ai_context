@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-07T14:28:10Z`
+- Generated (UTC): `2026-06-07T19:54:58Z`
 - Look-back: **7** calendar days (`2026-05-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 34
+- `[CONTRIBUTION EVENT]` × 33
 - `[EMAIL REGISTERED EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
+- `[PRACTICE EVENT]` × 2
 - `[RETAIL FIELD REPORT EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260606140120_095` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa- · Email: admin+sophia@truesight.me
-- `Edgar_20260606140130_097` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: YVf7tX5q68i5p7uaBybPa-LYT2REgcAVoGHSzDxUn_0 · Email: admin+sophia@truesight.me
 - `Edgar_20260606140215_099` · **Edgar** · [No Text Provided]
 - `Edgar_20260606140235_101` · **Edgar** · UploadFile(filename='payload.txt', size=1076, headers=Headers({'content-disposition': 'fo…
 - `Edgar_20260606141014_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add Sentinel role support to dao_members_cache_publi…
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260606215115_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Filed dated follow-up: Sophia-drafted Telegram replies (watchdog v2, revisit…
 - `Edgar_20260607142659_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Reaching out to Lucas Root about placing chocolate bars in his vending machi…
 - `Edgar_20260607142753_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Dennis about Nora’s question as well as placement of cacao in …
+- `Edgar_20260607164909_031` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260607184839_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Phase 1 of attachment processing: install t…
 
 ---
 
@@ -311,6 +311,7 @@ _All dated lines on/after 2026-05-31_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1b50fad | 2026-06-07 14:30:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5d14a7a | 2026-06-07 09:47:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -350,7 +351,6 @@ defd4c4 | 2026-06-04 13:48:59 -0700 | Merge pull request #170 from TrueSightDAO/
 e620f0c | 2026-06-04 13:44:15 -0700 | Security dashboard: read renamed JSON keys + full-width GitHub table (#168)
 de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0bbb824 | 2026-06-04 13:19:58 -0700 | Merge pull request #167 from TrueSightDAO/fix/security-dashboard-conventions
-52ab40f | 2026-06-04 13:19:37 -0700 | Fix security-dashboard: add GA, full footer, correct nav paths, overlay handler
 … (truncated)
 ```
 
@@ -363,6 +363,9 @@ de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+94ed0c3 | 2026-06-07 10:34:27 -0700 | Add attachment processing implementation plan (PDF/OCR/Vision → transcript persistence) (#337)
+ff00690 | 2026-06-07 07:28:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
+412ef8e | 2026-06-07 07:28:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 a077bdb | 2026-06-07 02:46:31 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
 9f9b60b | 2026-06-07 02:46:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 0809bd4 | 2026-06-06 22:06:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
@@ -400,9 +403,6 @@ feab7ed | 2026-06-06 07:58:02 -0700 | docs: add Sentinel graduation framework to
 6c12158 | 2026-06-05 21:39:18 -0700 | Add voice response implementation plan and execution roadmap (#311)
 2805615 | 2026-06-05 21:37:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
 06acf6a | 2026-06-05 21:36:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
-ffea77b | 2026-06-05 20:42:17 -0700 | Merge pull request #310 from TrueSightDAO/auto/advisory-refresh-2026-06-06
-f12ed10 | 2026-06-06 03:42:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
-16f33ed | 2026-06-05 20:15:47 -0700 | Add sentinel intro - Aria (English)
 … (truncated)
 ```
 
@@ -580,7 +580,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 6:50:52 |
+| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 12:51:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-31`; scanned last **498** data rows)
 
