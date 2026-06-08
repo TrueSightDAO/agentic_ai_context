@@ -30,27 +30,57 @@ Do **not** act on a possibly-stale local copy (this caused confusion on 2026-06-
 
 ## How to reference a handoff from a fresh local LLM
 
-The magic field is **`session_id`** = `tg:{chat_id}:{thread_id}`. Because the
-autopilot keys a chat session as `{governor_pubkey[:20]}:{X-Session-Id}`, a
-local LLM that pings with that same `session_id` (and the same governor's
-`./.env` keys) lands in **the exact same conversation thread as the Telegram
-topic** — so it can pick up where Sophia left off:
+**How handoffs actually reach Sophia (the earlier claim here was WRONG).**
+`ping_sophia` POSTs to the HTTP endpoint `https://sophia.truesight.me/chat-blocking`
+with an `X-Session-Id` header. That endpoint returns Sophia's reply **in the HTTP
+response to the caller** — it does **NOT** post into a Telegram topic on its own,
+and its session does **not** automatically share memory with the Telegram-facing
+Sophia the governor chats with. (Proven 2026-06-08: a handoff to thread 3 was
+answered over HTTP but never appeared in Telegram, so the governor saw "no
+handoff from Claude.") `session_id = tg:{chat_id}:{thread_id}` is just a **label**
+tying a handoff to its topic in this registry — it is **not** a guaranteed bridge.
+
+Therefore:
+- **The durable handoff is the committed plan file + this registry** (always on
+  GitHub `main`). That is the source of truth Sophia reads — every time.
+- **The ping is only a *trigger*.** It MUST explicitly instruct Sophia to **post
+  the context into a Telegram topic and wait there** (protocol below), so the
+  governor finds her ready when they open Telegram.
+
+To **rejoin** an existing handoff, ping with its `session_id` AND tell Sophia
+which `message_thread_id` to post in:
 
 ```
 truesight-dao-ping-sophia \
   --session-id tg:-1003919341801:<thread_id> \
-  --message "Where are we on THEOBROMA-1? Summarize progress + blockers."
+  --message "Post in thread <thread_id>: where are we on <plan>? Summarize progress + blockers."
 ```
 
-To start a **new** handoff: commit the plan to `agentic_ai_context`, then
-`truesight-dao-ping-sophia` telling Sophia to open a topic named for it and
-post a kickoff. Add a row below (newest first).
+## Handoff trigger protocol (REQUIRED)
 
-## Convention for the trigger message
+Every handoff must end with **Sophia waiting in a Telegram topic, the full
+context already posted there** — so the governor finds her ready, not a cold
+thread. The ping message MUST instruct Sophia to:
 
-> Open a new Telegram topic named `<short title>` and post a kickoff. You've
-> taken over execution of `<plan file>` in agentic_ai_context — read its resume
-> tracker and start at RESUME HERE. Report progress in this topic.
+1. **Refresh** — read the plan via `read_repo_file` (GitHub `main`).
+2. **Ensure a topic exists** — if none exists for this handoff, **create one**
+   with `create_telegram_topic` named `<short title>`; otherwise use the given
+   `message_thread_id`.
+3. **Post the kickoff + context INTO that Telegram topic** (not just the HTTP
+   reply): confirm she's read the plan, restate the RESUME-HERE step + key gates,
+   state she's ready/parked.
+4. **Reply with the `message_thread_id` + `t.me` link** (the handing-off LLM
+   records it in the registry).
+5. **Wait in that topic** for the governor.
+
+Trigger-message template:
+
+> Refresh first (read `<plan file>` via read_repo_file on GitHub `main`). If no
+> Telegram topic exists for this handoff, create one named `<short title>` with
+> create_telegram_topic; otherwise post in thread `<id>`. **Post your kickoff +
+> context summary INTO that Telegram topic** — confirm you've read the plan,
+> restate RESUME HERE + the gates, state you're ready/parked — then reply with
+> the thread_id + link and wait there for the governor.
 
 ---
 
