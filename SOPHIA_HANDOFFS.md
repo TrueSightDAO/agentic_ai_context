@@ -5,6 +5,20 @@ Index of execution handoffs from a local LLM to **Sophia** (the autopilot).
 (`-1003919341801`). This file is the durable, LLM-readable record so a future
 local session can find, reference, and **rejoin** any handoff conversation.
 
+## ⚠️ Pull-first rule (critical)
+
+Before acting on ANY handoff mentioned in this file, **always `git pull` the
+agentic_ai_context remote `main` branch first.** Plans are committed to the
+remote by the handing-off LLM (Claude, Cursor, etc.) and may not be in your
+local clone. Searching your local cache without pulling first will miss new
+or updated plan files.
+
+**Workflow:**
+1. `cd agentic_ai_context && git pull origin main`
+2. Check `HANDOFF_MANIFEST.md` for the active handoff list
+3. Read the plan file referenced in the manifest
+4. Read `SOPHIA_HANDOFFS.md` for Telegram topic context
+
 ## How to reference a handoff from a fresh local LLM
 
 The magic field is **`session_id`** = `tg:{chat_id}:{thread_id}`. Because the

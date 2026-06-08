@@ -30,6 +30,8 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | — | **LEAD_LIST_EXTRACTION.md** | **Lead list / Hit List extraction.** When discovering retailer contacts (apothecaries, metaphysical shops) or updating the Hit List, read for Playwright → CSV → append workflow, schema, credentials. |
 | — | **TRUECHAIN.md** | **TrueChain integration.** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read TRUECHAIN.md. Includes "For AI Assistants" section, setup, technical proposal. Repo: https://github.com/TrueSightDAO/TrueChain. |
 | — | **GITHUB_AGENTIC_AI_SSH.md** | **GitHub pushes by agents.** Dedicated SSH key under `~/.ssh/agentic_ai_github/`; host alias `github.com-agentic-ai` or `GIT_SSH_COMMAND`. **Branch + PR:** new branch per task, PR body with goal / changes / testing / rollout for reviewers; do not push agent work to default branch unless the user explicitly orders it. **If the user explicitly asks to merge to `main` / `master` after the PR:** complete the loop with `gh pr merge` (or web UI) per that doc’s § “When the user requests the full release loop.” Never commit the private key. |
+| — | **HANDOFF_MANIFEST.md** | **Active handoff index.** Machine-readable table of all active handoffs from a local LLM to Sophia. Check this first when the governor mentions a "plan" or "handoff." |
+| — | **SOPHIA_HANDOFFS.md** | **Sophia handoff registry.** Telegram topic links, session IDs, and status for each handoff. Cross-reference with HANDOFF_MANIFEST.md. |
 
 Other files in this folder (e.g. `AI_SETUP.md`, `GROK_CLI_410_FIX.md`, `CURSOR_AUTO_APPROVE_SETTINGS.md`) are reference docs for setup and fixes; read them when relevant to your task.
 
@@ -44,7 +46,7 @@ The following files are the **authoritative** context. **Do not modify them** un
 - **README.md**
 - **OPERATING_INSTRUCTIONS.md**
 
-If you discover something that should change in those files (e.g. a new project, a corrected convention), use **“Suggested context updates”** (see section 5) instead of editing them directly.
+If you discover something that should change in those files (e.g. a new project, a corrected convention), use **"Suggested context updates"** (see section 5) instead of editing them directly.
 
 ---
 
@@ -58,7 +60,7 @@ You may add or update context only in the following ways.
 - **Rule:** **Append only.** Do not remove or rewrite existing lines.
 - **Format:** One line per entry: `YYYY-MM-DD | <agent-id> | <short note>`  
   Example: `2025-01-29 | cursor | Noted: krake_local uses Node 20; add to PROJECT_INDEX if human approves.`
-- **Use it for:** Short, factual notes (e.g. “X uses Y”, “entry point is Z”) so other agents or the user can see what was learned. Do not put secrets or long prose here.
+- **Use it for:** Short, factual notes (e.g. "X uses Y", "entry point is Z") so other agents or the user can see what was learned. Do not put secrets or long prose here.
 
 ### 4.2 Per-agent or per-session notes: `notes/`
 
@@ -67,8 +69,8 @@ You may add or update context only in the following ways.
   - `notes/cursor_2025-01-29.md`
   - `notes/claude_session.md`
   - `notes/grok_notes.md`
-- **Do not** overwrite another agent’s file unless the filename clearly belongs to you (e.g. your own `*_session.md`).
-- **Use it for:** Session summaries, “what I did / what I learned,” or structured notes for other agents. Keep filenames predictable (e.g. date or agent name).
+- **Do not** overwrite another agent's file unless the filename clearly belongs to you (e.g. your own `*_session.md`).
+- **Use it for:** Session summaries, "what I did / what I learned," or structured notes for other agents. Keep filenames predictable (e.g. date or agent name).
 
 ### 4.3 Suggested context updates (for human approval)
 
@@ -102,5 +104,55 @@ Keep the roadmap **tracked and current**: update the resume tracker as each unit
 - **Do not edit:** WORKSPACE_CONTEXT.md, PROJECT_INDEX.md, README.md, OPERATING_INSTRUCTIONS.md unless the user explicitly asks.
 - **You may:** Append to `CONTEXT_UPDATES.md`; create/update your own files under `notes/`; suggest changes via CONTEXT_UPDATES or a note instead of editing canonical docs.
 - **Before implementing:** For any multi-step build / migration / refactor, commit a *tracked* **execution roadmap checklist** (pre-flight + sequenced plan + resume tracker) **first** — see §5.
+
+---
+
+## 7. Handoff protocol for all LLMs
+
+When the governor mentions a "plan," "handoff," or asks you to pick up work from another agent:
+
+### 7.1 Pull first, search second
+
+**Always `git pull` the agentic_ai_context remote `main` branch before searching for plan files.**
+Plans are committed to the remote by the handing-off LLM (Claude, Cursor, etc.) and may not be
+in your local clone. Searching your local cache without pulling will miss new or updated files.
+
+```bash
+cd agentic_ai_context && git pull origin main
+```
+
+### 7.2 Check the handoff manifest
+
+Read `HANDOFF_MANIFEST.md` — it lists every active handoff with its plan file, status, and
+resume tracker state. This is the fastest way to find what you should be working on.
+
+### 7.3 Cross-reference with SOPHIA_HANDOFFS.md
+
+`SOPHIA_HANDOFFS.md` has Telegram topic links and session IDs for rejoining conversations.
+Use it when you need to pick up a conversation mid-stream.
+
+### 7.4 Read the plan file
+
+Once you've identified the right plan file from the manifest, read it in full before proposing
+any actions. Pay attention to the **pre-flight checklist** and **resume tracker** — they tell
+you what's been done and what's next.
+
+### 7.5 If the manifest is empty or unclear
+
+If `HANDOFF_MANIFEST.md` doesn't list the plan the governor mentioned:
+1. Pull the remote again (in case it was just committed)
+2. Search for the filename pattern (`*PLAN*.md`, `*HANDOFF*.md`)
+3. Check `SOPHIA_HANDOFFS.md` registry
+4. If still not found, ask the governor for the exact filename
+
+### 7.6 Sophia-specific: update the manifest on handoff
+
+When Sophia (the autopilot) starts, resumes, or completes a handoff, she updates the
+relevant row in `HANDOFF_MANIFEST.md` (Status, Resume tracker state, Last manifest update)
+and commits it to `main`.
+
+Following this protocol prevents the confusion that occurred on 2026-06-08, where Sophia
+searched her local cache for "verification plan" and found a stale file instead of pulling
+the remote to discover `RESEND_VERIFICATION_PLAN.md`.
 
 Following these rules keeps the shared context consistent and allows other agents to read and use it reliably.
