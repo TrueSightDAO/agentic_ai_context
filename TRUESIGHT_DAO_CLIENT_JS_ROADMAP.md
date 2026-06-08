@@ -8,6 +8,9 @@
 
 ## Problem
 
+> **CORRECTION (2026-06-08, post-oracle-outage):** the published scope is **`@truesight_dao/dao-client`** (not `@truesight/...`). `1.0.0` has a browser global-shape bug (`window.DaoClient` is the module namespace, so `DaoClient.base64ToArrayBuffer` is `undefined`) that broke oracle prod (oracle #42 → reverted #43); the fix is **`1.0.1`** (topic 1638). All consumer swaps (PR2 capoeira, PR3 butterfly, PR4 oracle) MUST depend on `@1.0.1`, verify the unpkg URL 200 in-PR, run a **runtime** smoke test (not just `node --check`), fix CDN load order (no blind `defer`), and open-PR-don't-auto-merge. **PR2 detail: see `CAPOEIRA_DAO_CLIENT_SWAP_PLAN.md`.**
+
+
 Three front-end repos — **capoeira**, **butterfly-effect-club**, and **oracle** — each independently reimplement the same DAO protocol integration boilerplate:
 
 | Component | Lines duplicated across 3 repos |
