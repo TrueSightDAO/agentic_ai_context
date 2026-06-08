@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-08T16:35:11Z`
+- Generated (UTC): `2026-06-08T20:40:01Z`
 - Look-back: **7** calendar days (`2026-06-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,22 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[EMAIL REGISTERED EVENT]` × 26
+- `[EMAIL REGISTERED EVENT]` × 20
 - `[EMAIL VERIFICATION EVENT]` × 12
-- `[CONTRIBUTION EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 10
+- `[PRACTICE EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260608033018_067` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:30:18.093Z
-- `Edgar_20260608033040_069` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: GVx8-oQBD1eqygvhf4pjKeEHos86lgJkwmUPXgyFPow
-- `Edgar_20260608034210_071` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:42:10.073Z
-- `Edgar_20260608034226_073` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: DZxbiyj2nFRUkdRqGPoQWW65AgPwyx9rKcIsP46zouY
-- `Edgar_20260608034447_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:44:46.626Z
-- `Edgar_20260608034504_077` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: UgzrCiIeH7qFFHlAkpQrHAQFF3zH3GEi5azf9Zujl9U
-- `Edgar_20260608034925_079` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:49:24.913Z
-- `Edgar_20260608034946_081` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: K1Lu1Y7aiVCRFXxISeIpaRyoPiJ6Vy2xUxTS8xDeMI4
-- `Edgar_20260608035502_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:55:01.764Z
-- `Edgar_20260608035528_085` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:55:27.582Z
 - `Edgar_20260608035547_087` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: vrMIf_5DFpT8lqmsWuP_ljrhKN6zaJkSxd8jqlFLPUs
 - `Edgar_20260608035656_089` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:56:56.327Z
 - `Edgar_20260608035804_091` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:58:04.569Z
@@ -58,6 +49,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260608043044_001` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 45 · Description: Resend verification email — server-side logic (PR1)
 - `Edgar_20260608043112_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Resend verification email — server-side logic (PR1)
 - `Edgar_20260608161857_005` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: WhatsApp follow-up with Graziela / Seacos — pallet dimensions
+- `Edgar_20260608165758_007` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
+- `Edgar_20260608170314_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: Add a GitHub Actions CI workflow that runs `node --check…
+- `Edgar_20260608170344_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Oracle identity flow fixed + deployed, prod outage diagnosed & hotfixed, res…
+- `Edgar_20260608171243_013` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoFB0vFsZtadCJYeADXIk…
+- `Edgar_20260608171600_015` · **Edgar** · [EMAIL REGISTERED EVENT] Email: kirsten@kikiscocoa.com · Timestamp: 2026-06-08T17:15:59.540Z
+- `Edgar_20260608172211_017` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: kirsten@kikiscocoa.com · Verification Key: i4STEAgObV6eCn6SDGSilhB8JZcDLoKV87k5KqX7fS0
+- `Edgar_20260608191309_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Following up with Nora introduced by Dennis
+- `Edgar_20260608191354_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Following up with SeaCoast Logistics
+- `Edgar_20260608200236_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Published @truesight_dao/dao-client to npm (scope rename + CI publish workfl…
+- `Edgar_20260608203316_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Oracle CDN re-wire handed off to Sophia (full context); refresh-first handof…
 
 ---
 
@@ -272,7 +273,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
 - 2026-06-06 | claude-code | Filed OPEN_FOLLOWUPS pending entry: scoped fine-grained agent PAT for GitHub-side enforcement of the repo-class policy (deferred by operator choice; trigger = observed guard bypass or second autonomous agent).
 
-_All dated lines on/after 2026-06-01_ (21):
+_All dated lines on/after 2026-06-01_ (22):
 
 - 2026-06-04 | autopilot | HARD RULE ADDED: Never push directly to production repos (truesight_me_prod, dapp_prod, agroverse_shop_prod). Always push to beta/staging first, then promote. Documented in GITHUB_AGENTIC_AI_SSH.md (top banner) and WORKSPACE_CONTEXT.md §6 (table warning). Applies to all LLM agents (Claude, Sophia, Cursor, autopilot).
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
@@ -295,6 +296,7 @@ _All dated lines on/after 2026-06-01_ (21):
 - 2026-06-07 | claude (outreach session) | AWS BACKUP STORAGE PRUNED + EBS-only DB job RETIRED: Cypher-Defense prune_aws_backups.py + prune_aws_backups.yml (monthly 2nd, after the 1st-of-month AMI backups) — keeps newest 2 legacy monthly EBS/codebase, deregisters AMIs >2yr + frees snapshots, deletes orphans; dry-run default, recomputes kept-AMI backing set after dereg so kept AMIs never lose snapshots. snapshot_databases.yml DELETED (redundant — DB AMI captures the data vol); snapshot_databases.py deprecation-bannered. First run: Nelanco 62 snaps/4164GiB -> 26/2690GiB, 41 AMIs -> 14 (27 deregistered, 36 snaps deleted, ~1474 GiB reclaimed). The two new DB AMIs survived. All three backup scripts (autopilot retain 8, db-ami retain 6, this janitor) now bound storage. (PR #40)
 - 2026-06-07 | claude (outreach session) | SOPHIA EXECUTION-HANDOFF SHIPPED: (1) create_telegram_topic tool (truesight_autopilot#119) — Sophia opens a forum topic on request; needs bot=group admin w/ Manage Topics + TELEGRAM_HOME_GROUP_ID. (2) ping_sophia (dao_protocol#63, console `truesight-dao-ping-sophia`) — governor-signed one-shot to /chat-blocking; GOVERNOR-ONLY (Sophia 403s non-governors); reusable by any LLM on a governor machine. Working group = TrueSight DAO Ops -1003919341801; bot @truesight_autopilot_bot (8217115914). TELEGRAM_HOME_GROUP_ID set on box .env. Validated e2e: ping -> topic created in Ops group. Full handoff: local LLM commits roadmap to agentic_ai_context -> ping_sophia -> Sophia opens topic+kickoff -> governor monitors in that topic.
 - 2026-06-07 | autopilot | Gary Teh grounding credential PK mapping: `pk-iWL9OH9hpE_D` = Gary Teh's public key for the truesight-grounding program. Practice events live in `lineage-credentials/programs/truesight-grounding/pk-iWL9OH9hpE_D/practice/`. This key is NOT in dao_members.json — it's a separate program-registration key. When Gary shares a credential URL like `truesight.me/programs/truesight-grounding/credentials/#pk-iWL9OH9hpE_D`, read the latest practice event from lineage-credentials, NOT from oracle_logs (which may return stale data).
+- 2026-06-08 | claude (outreach session) | NEW CONVENTION — agent attribution required on every commit + PR: add `Generated-by: <agent>` trailer to commits (squash-merge persists it) + same line in PR body; identifies Sophia vs Claude Code vs Cursor vs Kimi etc. (git author is the human operator). Motivated by the 2026-06-08 oracle outage: Sophia PRs #36/#38/#39 broke oracle.truesight.me prod (index.html SyntaxError from a Didnt apostrophe +
 
 ---
 
@@ -313,6 +315,7 @@ _All dated lines on/after 2026-06-01_ (21):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1eb4edf | 2026-06-08 16:37:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e7fbcbf | 2026-06-08 11:28:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f32ac72 | 2026-06-07 23:54:37 -0700 | Add two missing blog posts to index: voting rights + scripture (#194)
 f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -352,7 +355,6 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 6769379 | 2026-06-04 14:11:52 -0700 | Security dashboard: make GitHub repo names link to the repo URL (#172)
 f0b3a64 | 2026-06-04 14:10:49 -0700 | Merge pull request #171 from TrueSightDAO/feat/lineage-register-url-sync
 ea24111 | 2026-06-04 14:10:36 -0700 | Add URL-param checkbox sync + conditional roster field to lineage-register
-b2373d5 | 2026-06-04 13:55:06 -0700 | Update tree price placeholder to $5
 … (truncated)
 ```
 
@@ -365,6 +367,11 @@ b2373d5 | 2026-06-04 13:55:06 -0700 | Update tree price placeholder to $5
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+907c347 | 2026-06-08 13:32:47 -0700 | SOPHIA_HANDOFFS: record oracle CDN re-wire topic (thread 1638) (#363)
+c3bf913 | 2026-06-08 13:23:40 -0700 | Oracle CDN re-wire plan + handoff hygiene (refresh-first) + NPM token rotation followup (#362)
+f710cd1 | 2026-06-08 09:56:57 -0700 | Convention: require agent attribution (Generated-by) on every commit + PR (#361)
+423e856 | 2026-06-08 09:35:25 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
+9795acd | 2026-06-08 09:35:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
 7db903d | 2026-06-08 09:21:16 -0700 | Add instruction: use dao_client (dao_protocol repo) for governor contribution reports (#360)
 9172127 | 2026-06-08 04:25:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
 4934e42 | 2026-06-08 04:25:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
@@ -400,11 +407,6 @@ a077bdb | 2026-06-07 02:46:31 -0700 | chore(previews): refresh Beer Hall preview
 9f9b60b | 2026-06-07 02:46:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 0809bd4 | 2026-06-06 22:06:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
 1cfb1f4 | 2026-06-06 22:06:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
-0448368 | 2026-06-06 21:09:47 -0700 | Merge pull request #335 from TrueSightDAO/auto/advisory-refresh-2026-06-07
-34d5d82 | 2026-06-07 04:09:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
-5be5f25 | 2026-06-06 15:09:16 -0700 | AWS §4.5: post-cutover verification checklist (watchdog!) + record t3.medium resize (#334)
-e2d0ba1 | 2026-06-06 14:50:55 -0700 | OPEN_FOLLOWUPS: Sophia-drafted Telegram replies (watchdog v2) — revisit ~2026-07-06 (#333)
-af67ca9 | 2026-06-06 14:38:41 -0700 | AWS infra: add §4.5 autopilot EIP blue-green upgrade + AMI DR runbook (#332)
 … (truncated)
 ```
 
@@ -471,6 +473,8 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
+176eac6 | 2026-06-08 13:36:31 -0700 | PR1: Add CDN @truesight_dao/dao-client@1.0.0, replace base64 helpers with DaoClient.* (#42)
+edc64bc | 2026-06-08 09:53:47 -0700 | hotfix: restore oracle — revert broken CDN refactor + resend syntax errors (#40)
 d175a6f | 2026-06-08 00:23:43 -0700 | fix: add @truesight/dao-client CDN script tag to index.html (#39)
 bda78aa | 2026-06-08 00:22:40 -0700 | refactor: swap inline DAO client code for @truesight/dao-client (#38)
 ed016e2 | 2026-06-07 22:13:32 -0700 | feat: add resend verification email affordance to oracle (PR2) (#36)
@@ -592,7 +596,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/8/2026 8:50:41 |
+| 2026-06 | 222.41 | 15199.52386 | 6/8/2026 12:52:27 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-01`; scanned last **498** data rows)
 
