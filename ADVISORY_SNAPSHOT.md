@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-08T05:12:42Z`
+- Generated (UTC): `2026-06-08T11:25:43Z`
 - Look-back: **7** calendar days (`2026-06-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-07T10:59:16.822Z`
+- Generated (UTC): `2026-06-08T10:59:15.550Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -313,6 +313,8 @@ _All dated lines on/after 2026-06-01_ (21):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f32ac72 | 2026-06-07 23:54:37 -0700 | Add two missing blog posts to index: voting rights + scripture (#194)
+f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1e0e0a4 | 2026-06-07 19:04:16 -0700 | Resolve practitioner name from dao_members.json when CV display_name is empty (#193)
 3c8f36d | 2026-06-07 13:51:50 -0700 | members: add Sentinels section sourced from dao_members.json (#192)
 0156fed | 2026-06-07 19:56:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -351,8 +353,6 @@ f0b3a64 | 2026-06-04 14:10:49 -0700 | Merge pull request #171 from TrueSightDAO/
 ea24111 | 2026-06-04 14:10:36 -0700 | Add URL-param checkbox sync + conditional roster field to lineage-register
 b2373d5 | 2026-06-04 13:55:06 -0700 | Update tree price placeholder to $5
 defd4c4 | 2026-06-04 13:48:59 -0700 | Merge pull request #170 from TrueSightDAO/fix/lineage-governance-language
-4c69da2 | 2026-06-04 13:48:41 -0700 | Fix lineage governance language and add roster sheet format guidance
-6563e57 | 2026-06-04 13:45:42 -0700 | Security dashboard: GitHub table spans full grid width (#169)
 … (truncated)
 ```
 
@@ -365,6 +365,8 @@ defd4c4 | 2026-06-04 13:48:59 -0700 | Merge pull request #170 from TrueSightDAO/
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fd0dda3 | 2026-06-07 22:12:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
+ad5e9aa | 2026-06-07 22:12:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
 df947a1 | 2026-06-07 21:37:22 -0700 | feat: handoff manifest + pull-first protocol for all LLMs (#358)
 96f7b62 | 2026-06-07 21:13:41 -0700 | Merge pull request #357 from TrueSightDAO/auto/advisory-refresh-2026-06-08
 bba3d96 | 2026-06-08 04:13:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
@@ -403,8 +405,6 @@ af67ca9 | 2026-06-06 14:38:41 -0700 | AWS infra: add §4.5 autopilot EIP blue-gr
 c5b91ba | 2026-06-06 14:37:06 -0700 | Add TrueSight DAO PDF house-style convention (Saffron Monk; binding on all LLMs + Sophia) (#331)
 7984635 | 2026-06-06 14:36:59 -0700 | CONTEXT_UPDATES: sophia AMI cutover — Telethon AuthKeyDuplicatedError gotcha + service-stop order (#330)
 9e39eb8 | 2026-06-06 14:36:07 -0700 | CONTEXT_UPDATES: sophia hardware upgrade — preserve watchdog session + on-box .env (#329)
-90232d1 | 2026-06-06 14:32:27 -0700 | OPEN_FOLLOWUPS: watchdog activated — operator login completed, unit live (#327)
-a07d8c8 | 2026-06-06 14:07:50 -0700 | Add autopilot infrastructure diagnosis and upgrade proposal
 … (truncated)
 ```
 
@@ -448,6 +448,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d4be99b | 2026-06-08 11:22:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e5206f4 | 2026-06-07 09:41:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1c64adf | 2026-06-06 08:48:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a1d2b51 | 2026-06-05 10:18:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -469,6 +470,9 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
+d175a6f | 2026-06-08 00:23:43 -0700 | fix: add @truesight/dao-client CDN script tag to index.html (#39)
+bda78aa | 2026-06-08 00:22:40 -0700 | refactor: swap inline DAO client code for @truesight/dao-client (#38)
+ed016e2 | 2026-06-07 22:13:32 -0700 | feat: add resend verification email affordance to oracle (PR2) (#36)
 c49f533 | 2026-06-07 21:09:35 -0700 | Fix DAO-identity linking: signature verification, dynamic verify URL, 3-state UX, retire stale SW (#35)
 c41b37e | 2026-06-07 19:39:25 -0700 | fix: add generation_source_url to EMAIL REGISTERED EVENT so verification email returns to oracle.truesight.me (#33)
 8f93da3 | 2026-06-07 19:21:21 -0700 | Add timestamp nonce to email registration to avoid duplicate signature rejection (#32)
@@ -587,7 +591,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 21:54:57 |
+| 2026-06 | 222.41 | 15199.52386 | 6/8/2026 3:50:28 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-01`; scanned last **498** data rows)
 
