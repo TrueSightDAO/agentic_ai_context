@@ -56,31 +56,64 @@ truesight-dao-ping-sophia \
   --message "Post in thread <thread_id>: where are we on <plan>? Summarize progress + blockers."
 ```
 
-## Handoff trigger protocol (REQUIRED)
+## Handoff runbook — for ANY local LLM (Claude, Cursor, Kimi, Codex, …)
 
-Every handoff must end with **Sophia waiting in a Telegram topic, the full
-context already posted there** — so the governor finds her ready, not a cold
-thread. The ping message MUST instruct Sophia to:
+The process is **agent-agnostic** — any local LLM on the governor's machine
+follows the same five steps:
+
+1. **Write the plan** (`*_PLAN.md` in `agentic_ai_context`, §5 shape: context,
+   sequenced PRs, gates, RESUME HERE, acceptance) and commit it to **`main`**
+   (PR → merge). **This committed plan is the durable handoff — the source of
+   truth Sophia reads.**
+2. **Add a registry row** (below, newest first): plan file + intended topic.
+3. **Trigger Sophia** with `ping_sophia` using the trigger-message template below.
+4. **Record the `message_thread_id`** Sophia replies with, in the registry row.
+5. Give the governor the topic link. Done — Sophia is parked there with context.
+
+## What the trigger MUST tell Sophia (REQUIRED)
+
+Every handoff must end with **Sophia parked in a Telegram topic, full context
+posted** — so the governor finds her ready, not a cold thread. The ping MUST
+instruct Sophia to:
 
 1. **Refresh** — read the plan via `read_repo_file` (GitHub `main`).
-2. **Ensure a topic exists** — if none exists for this handoff, **create one**
-   with `create_telegram_topic` named `<short title>`; otherwise use the given
+2. **Ensure a topic exists** — create one (`create_telegram_topic`, named
+   `<short title>`) if none exists for this handoff; else use the given
    `message_thread_id`.
-3. **Post the kickoff + context INTO that Telegram topic** (not just the HTTP
-   reply): confirm she's read the plan, restate the RESUME-HERE step + key gates,
-   state she's ready/parked.
-4. **Reply with the `message_thread_id` + `t.me` link** (the handing-off LLM
-   records it in the registry).
-5. **Wait in that topic** for the governor.
+3. **Post the kickoff + context INTO the topic** (not just the HTTP reply):
+   confirm she read the plan, restate RESUME HERE + the gates, state she's
+   ready/parked, and **end with the GO prompt**:
+   > ✅ Ready. Reply **"go for it"** and I'll execute from RESUME HERE through the
+   > gates, reporting progress here.
+4. **Reply with the `message_thread_id` + `t.me` link.**
+5. **Wait** in that topic for the governor.
 
 Trigger-message template:
 
 > Refresh first (read `<plan file>` via read_repo_file on GitHub `main`). If no
-> Telegram topic exists for this handoff, create one named `<short title>` with
-> create_telegram_topic; otherwise post in thread `<id>`. **Post your kickoff +
-> context summary INTO that Telegram topic** — confirm you've read the plan,
-> restate RESUME HERE + the gates, state you're ready/parked — then reply with
-> the thread_id + link and wait there for the governor.
+> Telegram topic exists for this handoff, create one named `<short title>`
+> (create_telegram_topic); else post in thread `<id>`. **Post your kickoff +
+> context INTO that topic** — confirm you've read the plan, restate RESUME HERE +
+> the gates, state you're ready/parked, and end with: 'Reply "go for it" and I'll
+> execute from RESUME HERE.' Then reply with the thread_id + link and wait there.
+
+## The GO convention (governor authorization)
+
+Once Sophia is parked in a handoff topic, the governor authorizes execution by
+replying in that topic with a short go-signal — **"go for it"**, "go",
+"proceed", "ship it", "Sophia go for it". On that signal, Sophia:
+
+- **Executes the plan** referenced in this topic's kickoff, **starting at RESUME
+  HERE**, straight through its units.
+- **Honors every gate without re-asking** — especially **open the PR, do NOT
+  auto-merge** where the plan says so, the verify / runtime-smoke-test gates, and
+  the `Generated-by: Sophia (TrueSight Autopilot)` trailer.
+- **Reports progress + blockers in the topic**; pauses only at a real blocker or
+  a step the plan explicitly marks for review.
+- Treats the go-signal as **full authorization for the whole plan** — no per-step
+  confirmation.
+
+**The contract: after a handoff, the governor only needs to say "go for it."**
 
 ---
 
