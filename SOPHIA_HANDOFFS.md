@@ -58,6 +58,7 @@ post a kickoff. Add a row below (newest first).
 
 | Date | Handoff | Plan file | Topic | thread_id | session_id (to rejoin) | Status |
 |------|---------|-----------|-------|-----------|------------------------|--------|
+| 2026-06-08 | Capoeira dao-client swap (PR2) | `TRUESIGHT_DAO_CLIENT_JS_ROADMAP.md` | [topic](https://t.me/c/3919341801/1658) | 1658 | `tg:-1003919341801:1658` | active |
 | 2026-06-08 | Oracle CDN re-wire (@truesight_dao/dao-client) | `ORACLE_CDN_REWIRE_PLAN.md` | [topic](https://t.me/c/3919341801/1638) | 1638 | `tg:-1003919341801:1638` | active |
 | 2026-06-08 | Resend verification email | `RESEND_VERIFICATION_PLAN.md` | [topic](https://t.me/c/3919341801/1504) | 1504 | `tg:-1003919341801:1504` | active |
 | 2026-06-07 | THEOBROMA-1 (cacao brew, demo) | `SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md` | [THEOBROMA-1](https://t.me/c/3919341801/1401) | 1401 | `tg:-1003919341801:1401` | demo · live |
