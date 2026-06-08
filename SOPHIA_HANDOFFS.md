@@ -19,6 +19,15 @@ or updated plan files.
 3. Read the plan file referenced in the manifest
 4. Read `SOPHIA_HANDOFFS.md` for Telegram topic context
 
+## Before you start ANY handoff — refresh your repo view
+
+Sophia/agents read a **synced clone** of this repo, which can be **stale**. A handoff doc may have been committed after your clone was last pulled. So the FIRST step of picking up any handoff is to refresh:
+
+- Read the plan via **`read_repo_file`** (GitHub `main` — always current), **or**
+- `ssh_run(host='autopilot', "cd /opt/truesight_autopilot/context/agentic_ai_context && git fetch origin main && git reset --hard origin/main")` then read.
+
+Do **not** act on a possibly-stale local copy (this caused confusion on 2026-06-08).
+
 ## How to reference a handoff from a fresh local LLM
 
 The magic field is **`session_id`** = `tg:{chat_id}:{thread_id}`. Because the
@@ -49,5 +58,6 @@ post a kickoff. Add a row below (newest first).
 
 | Date | Handoff | Plan file | Topic | thread_id | session_id (to rejoin) | Status |
 |------|---------|-----------|-------|-----------|------------------------|--------|
+| 2026-06-08 | Oracle CDN re-wire (@truesight_dao/dao-client) | `ORACLE_CDN_REWIRE_PLAN.md` | _pending ping_ | _pending_ | `tg:-1003919341801:<thread>` | active |
 | 2026-06-08 | Resend verification email | `RESEND_VERIFICATION_PLAN.md` | [topic](https://t.me/c/3919341801/1504) | 1504 | `tg:-1003919341801:1504` | active |
 | 2026-06-07 | THEOBROMA-1 (cacao brew, demo) | `SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md` | [THEOBROMA-1](https://t.me/c/3919341801/1401) | 1401 | `tg:-1003919341801:1401` | demo · live |

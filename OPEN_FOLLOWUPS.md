@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Rotate the npm publish token (NPM_TOKEN) before ~2026-09-06
+
+**Context.** `@truesight_dao/dao-client` is published to npm via CI (`dao_protocol/.github/workflows/npm-publish-dao-client.yml`) using the **`NPM_TOKEN`** GitHub Actions secret on `TrueSightDAO/dao_protocol`. The token is an Automation/granular-write token for npm account **`sophia_truesight`** (owner of the `truesight_dao` org), created 2026-06-08 with a **90-day expiry (~2026-09-06)**. When it expires, the publish workflow fails with 401.
+
+**Action (~10 min).** On npmjs.com as `sophia_truesight` → Access Tokens → regenerate a **Classic Automation** (or granular read+write on `truesight_dao`) token → update **(a)** the `NPM_TOKEN` GitHub secret on `dao_protocol` (`gh secret set NPM_TOKEN --repo TrueSightDAO/dao_protocol`) and **(b)** the local `truesight_autopilot/.env` `NPM_TOKEN=`. Verify with a `workflow_dispatch` (bump the package patch version first, or just confirm `npm whoami`). Never paste the token into chat — set it via subshell from `.env`.
+
+**Trigger to act.** ~2026-09-01 (before the ~2026-09-06 expiry), or sooner if a publish run 401s.
+
+**Owner.** Gary (token generation is account-owner only).
+
+
 ### Sophia-drafted Telegram replies — watchdog v2 (revisit ~2026-07-06)
 
 **Context.** The Telegram attention watchdog went live 2026-06-06
