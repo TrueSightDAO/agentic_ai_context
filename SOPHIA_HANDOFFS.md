@@ -125,6 +125,7 @@ replying in that topic with a short go-signal — **"go for it"**, "go",
 
 | Date | Handoff | Plan file | Topic | thread_id | session_id (to rejoin) | Status |
 |------|---------|-----------|-------|-----------|------------------------|--------|
+| 2026-06-08 | Morning Oracle Standup (draw → daily briefing in #General) | `MORNING_ORACLE_STANDUP_PLAN.md` | _pending ping_ | _pending_ | _new topic_ | active |
 | 2026-06-08 | DAO client integration fixes (consolidated: oracle + capoeira) | `DAO_CLIENT_INTEGRATION_FIXES.md` | [topic](https://t.me/c/3919341801/1695) | 1695 | `tg:-1003919341801:1695` | active (Sophia parked, GO-ready; supersedes thread 3) |
 | 2026-06-08 | Capoeira dao-client swap (PR2) | `CAPOEIRA_DAO_CLIENT_SWAP_PLAN.md` | [topic](https://t.me/c/3919341801/1658) | 1658 | `tg:-1003919341801:1658` | active |
 | 2026-06-08 | Oracle CDN re-wire (@truesight_dao/dao-client) | `ORACLE_CDN_REWIRE_PLAN.md` | [topic](https://t.me/c/3919341801/1638) | 1638 | `tg:-1003919341801:1638` | active |
