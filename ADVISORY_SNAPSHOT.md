@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-07T19:54:58Z`
-- Look-back: **7** calendar days (`2026-05-31` → today UTC)
+- Generated (UTC): `2026-06-08T04:13:25Z`
+- Look-back: **7** calendar days (`2026-06-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 33
-- `[EMAIL REGISTERED EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
-- `[RETAIL FIELD REPORT EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
-
-### Latest entries
-
-- `Edgar_20260606140215_099` · **Edgar** · [No Text Provided]
-- `Edgar_20260606140235_101` · **Edgar** · UploadFile(filename='payload.txt', size=1076, headers=Headers({'content-disposition': 'fo…
-- `Edgar_20260606141014_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add Sentinel role support to dao_members_cache_publi…
-- `Edgar_20260606142356_001` · **Edgar** · [CONTRIBUTION EVENT] Contributor Name: Sophia Truesight · Contributor Email: admin+sophia@truesight.me · Title: Extend DAO protocol to recognize Sentinel role
-- `Edgar_20260606142402_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Extend DAO protocol to recognize Sentinel role
-- `Edgar_20260606172706_005` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260606182946_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Lukas introduced by @⁨Ken Nim - Bay Area ⁩ popped by just now at the cafe I …
-- `Edgar_20260606194253_009` · **Edgar** · [EMAIL REGISTERED EVENT] Email: autopilot@truesight.me
-- `Edgar_20260606194309_011` · **Edgar** · test
-- `Edgar_20260606194347_013` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Alchemy Springs & Sauna Garden · Store Key: alchemy-springs--sauna-garden__939-post-street__san-francisco__ca · Update ID: SFR_20260606_AlchemySprings_001
-- `Edgar_20260606203352_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Extend gmail_send and gmail_create_draft to…
-- `Edgar_20260606204612_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add pre-deploy syntax check to deploy.sh so…
-- `Edgar_20260606212047_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Reply-only involvement: outreach pipeline now machine-handles every pre-repl…
-- `Edgar_20260606214234_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Documented Telegram watchdog runbook + sophia upgrade hazards for cross-agen…
-- `Edgar_20260606214501_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Activated Telegram attention watchdog + coordinated sophia upgrade with para…
-- `Edgar_20260606215115_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Filed dated follow-up: Sophia-drafted Telegram replies (watchdog v2, revisit…
-- `Edgar_20260607142659_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Reaching out to Lucas Root about placing chocolate bars in his vending machi…
-- `Edgar_20260607142753_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Dennis about Nora’s question as well as placement of cacao in …
-- `Edgar_20260607164909_031` · **Edgar** · [PRACTICE EVENT] Program: truesight-grounding · Practice Type: oracle-consultation · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0sfJ5LymHHnpZRvzmaW1…
-- `Edgar_20260607184839_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Phase 1 of attachment processing: install t…
 
 ---
 
@@ -68,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 207 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 207 | — |
+| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 206 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 206 | — |
 
 ---
 
@@ -252,17 +214,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,118.40**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$40.71**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -275,7 +233,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
 - 2026-06-06 | claude-code | Filed OPEN_FOLLOWUPS pending entry: scoped fine-grained agent PAT for GitHub-side enforcement of the repo-class policy (deferred by operator choice; trigger = observed guard bypass or second autonomous agent).
 
-_All dated lines on/after 2026-05-31_ (16):
+_All dated lines on/after 2026-06-01_ (21):
 
 - 2026-06-04 | autopilot | HARD RULE ADDED: Never push directly to production repos (truesight_me_prod, dapp_prod, agroverse_shop_prod). Always push to beta/staging first, then promote. Documented in GITHUB_AGENTIC_AI_SSH.md (top banner) and WORKSPACE_CONTEXT.md §6 (table warning). Applies to all LLM agents (Claude, Sophia, Cursor, autopilot).
 - 2026-06-02 | claude | **Program partner onboarding route guide + attestation→tree-planting template.** Added `PROGRAM_PARTNER_ONBOARDING.md` (decision tree: Route A credential-only / Route B credential+trees / Route C donation transparency) + `ERA_COHORT_TREE_ISSUANCE_PLAN.md` (Route B worked example → ERA Butterfly Effect Club `BEC` ledger). Reusable template: per attested member mint a tree QR with `qr_code==pk_hash` + `landing_page==profile_url` via existing `[DONATION MINT EVENT]` (no new event; dao_protocol `dispatch.py` already routes it). Shipped: BEC managed ledger + `Currencies` row + Shipment Ledger Listing reg + `treasury-cache/managed-ledgers/BEC.json`; tokenomics #329 (donation-mint GAS: BEC currency allowlist + generalized non-AGL ledger-name + per-row landing_page); dao_protocol #57 (`mint_donation` optional email + `--landing-page`) + #58 (`link_attestations_to_trees` mint-only orchestrator + `examples/attestation-trees/butterfly-effect.yaml`). PENDING: clasp-deploy the donation-mint GAS; PR2b cron+manifest in butterfly_effects_club; PR4 tree badge on credential page (`lineage-engine/build_cv_cache.py`, lookup qrs_index by qr_id==pk_hash); RUN. **Suggested canonical edits (human approval): add `PROGRAM_PARTNER_ONBOARDING.md` to README.md table + OPERATING_INSTRUCTIONS §2 as the first-read for onboarding a new program partner.**
@@ -293,6 +251,11 @@ _All dated lines on/after 2026-05-31_ (16):
 - 2026-06-06 | autopilot | Added AGROVERSE_INVOICE_CONVENTION.md — invoice PDF convention for Agroverse partners. truesight.me color scheme (gold #d38900, warm cream bg), ReportLab layout, line-item table with alternating rows, payment/mailing address section. Upload to store_interaction_attachments/invoices/. See AGROVERSE_INVOICE_CONVENTION.md for full guide.
 - 2026-06-06 | claude (outreach session) | SOPHIA BOX HARDWARE UPGRADE — PRESERVE THESE (not in git): /opt/truesight_autopilot/.env (incl. TELEGRAM_API_ID/HASH added on-box 2026-06-06, may differ from local .env), /opt/truesight_autopilot/.telethon_watchdog.session (Telethon user-session = full account access; loss requires Gary to redo interactive login), data/attention_watchdog_state.json (nudge timers, minor). In-place resize keeps EBS = safe; fresh volume must migrate these three. Watchdog runbook: memory + truesight_autopilot#102.
 - 2026-06-06 | claude (outreach session) | SOPHIA AMI BLUE/GREEN RUNBOOK GOTCHA: never boot an AMI clone while the old box still runs the Telegram services — two clients on one Telethon auth key => AuthKeyDuplicatedError => session PERMANENTLY invalidated (Gary must redo interactive login); bot adapter double-getUpdates conflicts too. Cutover order: (1) stop truesight-autopilot-watchdog + truesight-autopilot-telegram on OLD box, (2) boot new instance + verify, (3) repoint Elastic IP, (4) shutdown old. Also: use AWS DLM for periodic AMIs; keep AMIs private (they contain .env, Gmail token, Telethon session).
+- 2026-06-07 | claude (outreach session) | SOPHIA SELF-EXEC + AMI AUTOMATION SHIPPED: (1) ssh_run host="autopilot" (127.0.0.1 loopback) lets Sophia sudo/apt-get on her own box; sophia_infra.pub now self-trusted in box authorized_keys via deploy.sh + user-data.sh (truesight_autopilot#114). (2) System prompt embeds live host-identity block (IMDS) — no more location hallucination. (3) GROK_API_KEY added to box .env (health grok_key_set=true). (4) Weekly AMI automated: Cypher-Defense/.github/workflows/snapshot_autopilot_ami.yml (#37,#38), resolves by Name tag truesight-autopilot, --no-reboot, retain 8; secrets TRUESIGHT_DAO_AUTOPILOT_AWS_KEY/SECRET set on Cypher-Defense; first AMI ami-0dae91c5216989753. For the parallel infra session: the FLEET self-host + the AMI Name-tag resolution both assume tag Name=truesight-autopilot — keep that tag on any blue/green replacement instance.
+- 2026-06-07 | claude (outreach session) | DB AMI BACKUPS AUTOMATED: Cypher-Defense/.github/workflows/snapshot_databases_ami.yml + scripts/aws/snapshot_databases_ami.py — full bootable AMIs of the two Nelanco DB boxes seni_sql (i-08ebe96afbc649a95, ext /dev/sdb 250GiB) + krake_data (i-07c76510b231d787f, ext /dev/sdf 100GiB), monthly 1st 04:00 UTC, --no-reboot, retain 6/instance, CYPHER_DEFENCE_AWS_* secrets. Complements (does not replace) the data-vol-only snapshot_databases.py. First AMIs: seni_sql ami-05098dac19769a8ae, krake_data ami-07f1e676f7c7b14aa (#39).
+- 2026-06-07 | claude (outreach session) | AWS BACKUP STORAGE PRUNED + EBS-only DB job RETIRED: Cypher-Defense prune_aws_backups.py + prune_aws_backups.yml (monthly 2nd, after the 1st-of-month AMI backups) — keeps newest 2 legacy monthly EBS/codebase, deregisters AMIs >2yr + frees snapshots, deletes orphans; dry-run default, recomputes kept-AMI backing set after dereg so kept AMIs never lose snapshots. snapshot_databases.yml DELETED (redundant — DB AMI captures the data vol); snapshot_databases.py deprecation-bannered. First run: Nelanco 62 snaps/4164GiB -> 26/2690GiB, 41 AMIs -> 14 (27 deregistered, 36 snaps deleted, ~1474 GiB reclaimed). The two new DB AMIs survived. All three backup scripts (autopilot retain 8, db-ami retain 6, this janitor) now bound storage. (PR #40)
+- 2026-06-07 | claude (outreach session) | SOPHIA EXECUTION-HANDOFF SHIPPED: (1) create_telegram_topic tool (truesight_autopilot#119) — Sophia opens a forum topic on request; needs bot=group admin w/ Manage Topics + TELEGRAM_HOME_GROUP_ID. (2) ping_sophia (dao_protocol#63, console `truesight-dao-ping-sophia`) — governor-signed one-shot to /chat-blocking; GOVERNOR-ONLY (Sophia 403s non-governors); reusable by any LLM on a governor machine. Working group = TrueSight DAO Ops -1003919341801; bot @truesight_autopilot_bot (8217115914). TELEGRAM_HOME_GROUP_ID set on box .env. Validated e2e: ping -> topic created in Ops group. Full handoff: local LLM commits roadmap to agentic_ai_context -> ping_sophia -> Sophia opens topic+kickoff -> governor monitors in that topic.
+- 2026-06-07 | autopilot | Gary Teh grounding credential PK mapping: `pk-iWL9OH9hpE_D` = Gary Teh's public key for the truesight-grounding program. Practice events live in `lineage-credentials/programs/truesight-grounding/pk-iWL9OH9hpE_D/practice/`. This key is NOT in dao_members.json — it's a separate program-registration key. When Gary shares a credential URL like `truesight.me/programs/truesight-grounding/credentials/#pk-iWL9OH9hpE_D`, read the latest practice event from lineage-credentials, NOT from oracle_logs (which may return stale data).
 
 ---
 
@@ -311,6 +274,9 @@ _All dated lines on/after 2026-05-31_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1e0e0a4 | 2026-06-07 19:04:16 -0700 | Resolve practitioner name from dao_members.json when CV display_name is empty (#193)
+3c8f36d | 2026-06-07 13:51:50 -0700 | members: add Sentinels section sourced from dao_members.json (#192)
+0156fed | 2026-06-07 19:56:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1b50fad | 2026-06-07 14:30:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5d14a7a | 2026-06-07 09:47:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -348,9 +314,6 @@ b2373d5 | 2026-06-04 13:55:06 -0700 | Update tree price placeholder to $5
 defd4c4 | 2026-06-04 13:48:59 -0700 | Merge pull request #170 from TrueSightDAO/fix/lineage-governance-language
 4c69da2 | 2026-06-04 13:48:41 -0700 | Fix lineage governance language and add roster sheet format guidance
 6563e57 | 2026-06-04 13:45:42 -0700 | Security dashboard: GitHub table spans full grid width (#169)
-e620f0c | 2026-06-04 13:44:15 -0700 | Security dashboard: read renamed JSON keys + full-width GitHub table (#168)
-de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0bbb824 | 2026-06-04 13:19:58 -0700 | Merge pull request #167 from TrueSightDAO/fix/security-dashboard-conventions
 … (truncated)
 ```
 
@@ -363,6 +326,26 @@ de96367 | 2026-06-04 20:34:51 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+da2b991 | 2026-06-07 21:12:37 -0700 | SOPHIA_HANDOFFS: record resend-verification topic (thread 1504) (#356)
+7399c7b | 2026-06-07 21:10:58 -0700 | Resend verification email: implementation plan + roadmap (handoff to Sophia) (#355)
+88e8f8e | 2026-06-07 18:57:16 -0700 | Add Gary Teh credential PK mapping to CONTEXT_UPDATES (#352)
+c0e2051 | 2026-06-07 18:57:11 -0700 | Add oracle credential email-link implementation plan (#353)
+28cf7cf | 2026-06-07 15:39:53 -0700 | docs: record Gary's oracle draw source URL (lineage credentials pk-iWL9OH9hpE_D) (#350)
+2d045b8 | 2026-06-07 15:36:59 -0700 | SOPHIA_HANDOFFS: record THEOBROMA-1 topic (thread 1401, session tg:-1003919341801:1401) (#351)
+c917caa | 2026-06-07 15:35:04 -0700 | Sandbox handoff demo: THEOBROMA-1 plan + SOPHIA_HANDOFFS registry (#349)
+84997df | 2026-06-07 15:35:03 -0700 | OPEN_FOLLOWUPS: refresh Edgar->dao_protocol entry to PR8d (delete ported Rails /dao actions after soak) (#348)
+50dd1c8 | 2026-06-07 15:31:51 -0700 | plan(edgar-dao): PR8a RAMPED LIVE; only PR8d (delete after soak) remains (#347)
+89bb5ea | 2026-06-07 15:29:12 -0700 | AWS infra §4.3: Sophia Telegram identifiers (Ops group -1003919341801, bot) + execution-handoff path (#346)
+017b05f | 2026-06-07 15:18:59 -0700 | plan(edgar-dao): PR8b/PR8c DROPPED (HelloCash/POS invoice abandoned) (#345)
+3fbd361 | 2026-06-07 15:05:44 -0700 | plan(edgar-dao): PR8a built + deployed gate-off + parity-verified (#344)
+e2275a2 | 2026-06-07 14:55:51 -0700 | CONTEXT_UPDATES: AWS backup prune + EBS-only DB job retired (Cypher-Defense #40) (#343)
+7a00e58 | 2026-06-07 14:45:37 -0700 | plan(edgar-dao): PR8 roadmap — finish the /dao/* cutover (4 endpoints) (#342)
+888095c | 2026-06-07 14:38:07 -0700 | CONTEXT_UPDATES: DB AMI backups automated (Cypher-Defense #39) (#341)
+53386b0 | 2026-06-07 14:24:07 -0700 | AWS infra §4.5: weekly AMI automated (Cypher-Defense action) + Sophia self-exec/host-identity/Grok shipped (#340)
+e4fc6d3 | 2026-06-07 14:06:41 -0700 | docs(autopilot): document both clasp identities on the box (§9) (#339)
+7caee6a | 2026-06-07 13:58:30 -0700 | docs(aws): bastion-via-Sophia access for Nelanco hosts + crown-jewel note (#338)
+886529f | 2026-06-07 12:55:19 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
+8232b41 | 2026-06-07 12:55:18 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
 94ed0c3 | 2026-06-07 10:34:27 -0700 | Add attachment processing implementation plan (PDF/OCR/Vision → transcript persistence) (#337)
 ff00690 | 2026-06-07 07:28:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-07 UTC)
 412ef8e | 2026-06-07 07:28:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-07 UTC)
@@ -383,26 +366,6 @@ a07d8c8 | 2026-06-06 14:07:50 -0700 | Add autopilot infrastructure diagnosis and
 885b5dc | 2026-06-06 13:29:10 -0700 | docs: add email attachment rule to AGROVERSE_INVOICE_CONVENTION.md (#326)
 a2eb064 | 2026-06-06 13:23:12 -0700 | docs: append context update for AGROVERSE_INVOICE_CONVENTION.md (#325)
 27a40f7 | 2026-06-06 13:22:59 -0700 | docs: add AGROVERSE_INVOICE_CONVENTION.md for partner invoice PDFs (#324)
-1539f12 | 2026-06-06 12:54:21 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
-431cf06 | 2026-06-06 12:54:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
-10f6773 | 2026-06-06 12:53:57 -0700 | docs: fix autopilot Edgar email to admin+sophia@truesight.me (#323)
-3b63876 | 2026-06-06 12:53:18 -0700 | docs: append context update for autopilot Edgar signing guide (#322)
-e8c57f0 | 2026-06-06 12:51:22 -0700 | docs: add autopilot Edgar RSA signing guide (#321)
-2821692 | 2026-06-06 11:08:29 -0700 | docs: add blog post workflow with audio narration step (#320)
-ce84c3e | 2026-06-06 08:33:58 -0700 | add Sophia Truesight avatar image
-1383a23 | 2026-06-06 08:22:08 -0700 | Fix company name: Seacos → Seacoast Logistic (#319)
-5c6bff2 | 2026-06-06 08:20:17 -0700 | Add follow-up: Graziela/Seacos freight quote pending — poke Monday (#318)
-c3e5037 | 2026-06-06 08:20:14 -0700 | Add Brazil-to-SF freight pre-flight checklist from Seacos/Omega email thread (#313)
-feab7ed | 2026-06-06 07:58:02 -0700 | docs: add Sentinel graduation framework to OPEN_FOLLOWUPS (#316)
-03276c1 | 2026-06-06 07:16:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
-2482b46 | 2026-06-06 07:16:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
-861270f | 2026-06-06 06:54:56 -0700 | docs: add Sentinel role execution roadmap (#314)
-0b21a24 | 2026-06-06 06:04:31 -0700 | Fix autopilot IP and document Sidekiq ASG dual instances (#312)
-724724c | 2026-06-06 02:07:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
-38261d9 | 2026-06-06 02:07:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
-6c12158 | 2026-06-05 21:39:18 -0700 | Add voice response implementation plan and execution roadmap (#311)
-2805615 | 2026-06-05 21:37:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-06 UTC)
-06acf6a | 2026-06-05 21:36:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-06 UTC)
 … (truncated)
 ```
 
@@ -456,7 +419,6 @@ efbb37b | 2026-06-02 12:28:47 -0700 | chore: refresh Agroverse store inventory s
 4cc5485 | 2026-06-01 16:28:37 -0700 | chore: refresh Agroverse store inventory snapshot
 ed5064e | 2026-06-01 12:23:37 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 9cd9e83 | 2026-06-01 12:11:52 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b34d300 | 2026-05-31 09:25:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -468,17 +430,23 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
+c49f533 | 2026-06-07 21:09:35 -0700 | Fix DAO-identity linking: signature verification, dynamic verify URL, 3-state UX, retire stale SW (#35)
+c41b37e | 2026-06-07 19:39:25 -0700 | fix: add generation_source_url to EMAIL REGISTERED EVENT so verification email returns to oracle.truesight.me (#33)
+8f93da3 | 2026-06-07 19:21:21 -0700 | Add timestamp nonce to email registration to avoid duplicate signature rejection (#32)
+5908140 | 2026-06-07 19:14:34 -0700 | Fix verification email return_url to point back to oracle page (#31)
+9414bcf | 2026-06-07 19:10:27 -0700 | Fix email registration format to include -------- separator for SignatureVerifier (#30)
+9440e3b | 2026-06-07 19:02:58 -0700 | Add "Link to DAO Identity" button in hero actions row (#29)
 09cd649 | 2026-06-05 12:55:48 -0700 | Reading permalinks: cast-time in share URLs, permalink as practice-event Source URL, no auto-submit on viewed readings (#27)
 8d064f2 | 2026-06-05 10:31:41 -0700 | Always surface credential link; collapse advisory debug links (#26)
-22c59f3 | 2026-05-30 22:12:58 -0700 | [autopilot] Rewrite oracle-draw-submit.js to auto-submit and replace Rec (#25)
-6f0a35b | 2026-05-30 22:03:02 -0700 | fix: remove scripts/draw.js reference, use inline script from index.html
-d669f9e | 2026-05-30 22:01:05 -0700 | feat: add oracle draw page with practice event submission
-f6859d5 | 2026-05-30 21:59:55 -0700 | feat: add oracle draw practice event submission logic
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
+4a68565 | 2026-06-07 14:52:29 -0700 | Prune old AWS backups + retire redundant EBS-only DB snapshot job (#40)
+6328007 | 2026-06-07 14:35:36 -0700 | Monthly AMI backups of the two production DB EC2 instances (Nelanco) (#39)
+e749b90 | 2026-06-07 14:17:11 -0700 | Fix AMI backup: AMI Description must be ASCII (em-dash -> hyphen) (#38)
+a7615af | 2026-06-07 14:12:26 -0700 | Weekly AMI backup of the autopilot EC2 (blue/green DR) (#37)
 93db2df | 2026-06-04 16:31:42 -0700 | Score: collapse per-repo GitHub deductions into category counts (readable deductions list) (#36)
 3a70f95 | 2026-06-04 16:26:25 -0700 | Web scanner: derive GitHub Pages IPs + domain list dynamically (no hardcoding) (#35)
 aca891b | 2026-06-04 16:21:21 -0700 | Classify each domain's hosting (GitHub Pages / EC2 / CloudFront) + recalibrate score (#34)
@@ -510,6 +478,15 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-06-08T041325Z_oracle-dao-linking-live-sentinel-roster.md`
+
+- **posted_at_utc:** `2026-06-08T04:13:25Z`  
+- **slug:** `oracle-dao-linking-live-sentinel-roster`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Oracle (Identity)** — DAO identity linking is now live on the practice page; verification emails return users to the oracle page and signature verification is hardened.
+
 ### `beer-hall_2026-06-07T040932Z_blog-updates-sentinel-role-live.md`
 
 - **posted_at_utc:** `2026-06-07T04:09:32Z`  
@@ -527,15 +504,6 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
   Automated daily digest of the DAO
   - **Oracle (Practice)** — Reading permalinks live: shareable URLs now capture the full cast state (hexagram + QMDJ) for practice tracking.
-
-### `beer-hall_2026-06-05T040057Z_security-dashboard-live-aora-modules.md`
-
-- **posted_at_utc:** `2026-06-05T04:00:57Z`  
-- **slug:** `security-dashboard-live-aora-modules`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Security (Cypher-Defense)** — Security dashboard now live with AWS inventory, phishing blacklist, and dynamic web/GitHub scanning.
 
 ---
 
@@ -556,63 +524,6 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 12:51:24 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-05-31`; scanned last **498** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-02 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Lzs3a8k_5iMI | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-P3nkiL4k81h3 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-h5qizrAWl76c | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FaSZxIBdebqe | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-DXDofYc0ESp7 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-2QBKOeqIfVSG | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-z6g9SWhL_ati | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NEJv843YObrg | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-uv1UhjawJzo9 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-VDKakvgCtd04 | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-EpWV_YV1qJUX | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-HaKpMdzM9ycZ | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-J2aZSMGLlj1b | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-CaEJ4UNqpknL | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-ztJmAFd7WFgS | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-u0UDJKke8-Vy | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Fd3q3S0Bq-6F | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NTqCXKtd7yXC | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FgGGKCdJFijx | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-kW9Dr8DAEJ5O | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-SAbs8DKErxhj | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-_TNoRprgbCwR | — | — |
-| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-3ljjhKC3AEk_ | — | — |
-| 2026-06-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
