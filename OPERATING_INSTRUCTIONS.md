@@ -97,7 +97,29 @@ Keep the roadmap **tracked and current**: update the resume tracker as each unit
 
 ---
 
-## 6. Summary for agents
+## 6. Contribution reporting — use dao_client (dao_protocol repo)
+
+When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:
+
+```bash
+cd ~/Applications/dao_client  # or wherever dao_protocol is checked out
+source .venv/bin/activate
+truesight-dao-report-contribution \
+    --type "Time (Minutes)" --amount <minutes> \
+    --description "<what was done>" \
+    --contributors "Gary Teh" \
+    --tdg-issued <computed TDG>
+```
+
+- **Time contributions:** 100 TDG per 1 hour → `--tdg-issued` = `100 * minutes / 60`
+- **USD expenses:** `--type "USD"` and `--tdg-issued` matches the dollar amount
+- **AI agent work:** Use `truesight-dao-report-ai-agent-contribution` instead (requires PR URLs)
+- **Always `--dry-run` first** so Gary can review before the real submission
+- The `.env` credentials live in `dao_client/.env` (never committed)
+
+Full convention: `agentic_ai_context/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`
+
+## 7. Summary for agents
 
 - **Read first:** OPERATING_INSTRUCTIONS.md → WORKSPACE_CONTEXT.md → PROJECT_INDEX.md (and credentials folder when needed).
 - **Pushing code (any repo you edit):** Create a **feature branch**, push with the agent SSH key (`GITHUB_AGENTIC_AI_SSH.md`), open a **Pull Request** whose description stands alone for humans (**goal**, **changes**, **testing**, **rollout / follow-ups**). Do not push agent work directly to the default branch unless the user explicitly orders it.
