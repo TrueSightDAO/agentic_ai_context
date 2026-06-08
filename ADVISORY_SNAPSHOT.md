@@ -20,9 +20,44 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-08T04:13:25Z`
+- Generated (UTC): `2026-06-08T05:12:42Z`
 - Look-back: **7** calendar days (`2026-06-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[EMAIL REGISTERED EVENT]` × 26
+- `[EMAIL VERIFICATION EVENT]` × 12
+- `[CONTRIBUTION EVENT]` × 6
+
+### Latest entries
+
+- `Edgar_20260608032911_065` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 4d6xXcP32h_onqefzOlwD5xMZL3oTSWki02V6GhycS0 · Email: garyjob@gmail.com
+- `Edgar_20260608033018_067` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:30:18.093Z
+- `Edgar_20260608033040_069` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: GVx8-oQBD1eqygvhf4pjKeEHos86lgJkwmUPXgyFPow
+- `Edgar_20260608034210_071` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:42:10.073Z
+- `Edgar_20260608034226_073` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: DZxbiyj2nFRUkdRqGPoQWW65AgPwyx9rKcIsP46zouY
+- `Edgar_20260608034447_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:44:46.626Z
+- `Edgar_20260608034504_077` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: UgzrCiIeH7qFFHlAkpQrHAQFF3zH3GEi5azf9Zujl9U
+- `Edgar_20260608034925_079` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:49:24.913Z
+- `Edgar_20260608034946_081` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: K1Lu1Y7aiVCRFXxISeIpaRyoPiJ6Vy2xUxTS8xDeMI4
+- `Edgar_20260608035502_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:55:01.764Z
+- `Edgar_20260608035528_085` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:55:27.582Z
+- `Edgar_20260608035547_087` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: vrMIf_5DFpT8lqmsWuP_ljrhKN6zaJkSxd8jqlFLPUs
+- `Edgar_20260608035656_089` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:56:56.327Z
+- `Edgar_20260608035804_091` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:58:04.569Z
+- `Edgar_20260608040716_093` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T04:07:15.688Z
+- `Edgar_20260608040742_095` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: y9ecOLC0nJpckc442iOGGLuTxtXDTHF5hfdPlBwn7LY
+- `Edgar_20260608041953_097` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T04:19:52.991Z
+- `Edgar_20260608042006_099` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: KrCUWOoE-b47ygHJn_IlUt3WZKkAmaumuebBVarqGvg
+- `Edgar_20260608043044_001` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 45 · Description: Resend verification email — server-side logic (PR1)
+- `Edgar_20260608043112_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Resend verification email — server-side logic (PR1)
 
 ---
 
@@ -214,13 +249,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,118.35**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.76**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -326,6 +365,9 @@ defd4c4 | 2026-06-04 13:48:59 -0700 | Merge pull request #170 from TrueSightDAO/
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+df947a1 | 2026-06-07 21:37:22 -0700 | feat: handoff manifest + pull-first protocol for all LLMs (#358)
+96f7b62 | 2026-06-07 21:13:41 -0700 | Merge pull request #357 from TrueSightDAO/auto/advisory-refresh-2026-06-08
+bba3d96 | 2026-06-08 04:13:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
 da2b991 | 2026-06-07 21:12:37 -0700 | SOPHIA_HANDOFFS: record resend-verification topic (thread 1504) (#356)
 7399c7b | 2026-06-07 21:10:58 -0700 | Resend verification email: implementation plan + roadmap (handoff to Sophia) (#355)
 88e8f8e | 2026-06-07 18:57:16 -0700 | Add Gary Teh credential PK mapping to CONTEXT_UPDATES (#352)
@@ -363,9 +405,6 @@ c5b91ba | 2026-06-06 14:37:06 -0700 | Add TrueSight DAO PDF house-style conventi
 9e39eb8 | 2026-06-06 14:36:07 -0700 | CONTEXT_UPDATES: sophia hardware upgrade — preserve watchdog session + on-box .env (#329)
 90232d1 | 2026-06-06 14:32:27 -0700 | OPEN_FOLLOWUPS: watchdog activated — operator login completed, unit live (#327)
 a07d8c8 | 2026-06-06 14:07:50 -0700 | Add autopilot infrastructure diagnosis and upgrade proposal
-885b5dc | 2026-06-06 13:29:10 -0700 | docs: add email attachment rule to AGROVERSE_INVOICE_CONVENTION.md (#326)
-a2eb064 | 2026-06-06 13:23:12 -0700 | docs: append context update for AGROVERSE_INVOICE_CONVENTION.md (#325)
-27a40f7 | 2026-06-06 13:22:59 -0700 | docs: add AGROVERSE_INVOICE_CONVENTION.md for partner invoice PDFs (#324)
 … (truncated)
 ```
 
@@ -524,6 +563,63 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/7/2026 21:54:57 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-01`; scanned last **498** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-02 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Lzs3a8k_5iMI | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-P3nkiL4k81h3 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-h5qizrAWl76c | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FaSZxIBdebqe | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-DXDofYc0ESp7 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-2QBKOeqIfVSG | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-z6g9SWhL_ati | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NEJv843YObrg | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-uv1UhjawJzo9 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-VDKakvgCtd04 | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-EpWV_YV1qJUX | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-HaKpMdzM9ycZ | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-J2aZSMGLlj1b | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-CaEJ4UNqpknL | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-ztJmAFd7WFgS | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-u0UDJKke8-Vy | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-Fd3q3S0Bq-6F | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-NTqCXKtd7yXC | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-FgGGKCdJFijx | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-kW9Dr8DAEJ5O | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-SAbs8DKErxhj | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-_TNoRprgbCwR | — | — |
+| 2026-06-02 | 1 | Butterfly Effect Club Tree Planting Ple… | ACCOUNTED | pk-3ljjhKC3AEk_ | — | — |
+| 2026-06-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
