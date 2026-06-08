@@ -1,6 +1,8 @@
 # Sophia handoffs — registry
 
 Index of execution handoffs from a local LLM to **Sophia** (the autopilot).
+
+> 🗺️ **New here? Read [`HANDOFF_PROTOCOL_OVERVIEW.md`](HANDOFF_PROTOCOL_OVERVIEW.md)** for the big-picture map (actors, interfaces, mermaid flow diagrams, and the three human touchpoints). This file is the operational registry + conventions.
 **Each handoff opens its own Telegram topic** in `TrueSight DAO Ops`
 (`-1003919341801`). This file is the durable, LLM-readable record so a future
 local session can find, reference, and **rejoin** any handoff conversation.
