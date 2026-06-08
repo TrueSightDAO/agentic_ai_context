@@ -192,6 +192,33 @@ normal code repo: clone, branch, PR per the workflow below. Deprecated repos
    - **Rollout / follow-ups** — Sheets, clasp, env, or anything not in git.
 6. **Merge** — leave to **human reviewers by default**. If the user **explicitly** asks to “merge into main / master” (or the default branch) after opening a PR, the agent may finish the loop: confirm CI with **at most one non-blocking snapshot** (e.g. **`gh pr checks`**, **`gh pr view --json statusCheckRollup`**, or the user says checks are green)—**do not** run long **`gh pr checks --watch`** / **`gh run watch`** loops—then merge via **`gh pr merge`** (prefer **`--merge`** or **`--squash`** according to repo convention; use **`--delete-branch`** when the team prefers it) or the GitHub web UI. Prefer running the same tests **locally** when feasible (`npm test`, Playwright, etc.). Document what shipped in the PR body before merging. See **`WORKSPACE_CONTEXT.md` §3e**.
 
+### Agent attribution — REQUIRED on every commit and PR (2026-06-08)
+
+**Every commit and PR produced by an AI agent MUST clearly identify which agent
+generated it.** The git *author* is almost always the human operator (e.g.
+`Gary Teh`, because commits use the operator's identity / a shared PAT), so
+without an explicit marker you cannot tell at a glance whether a change came
+from **Sophia** (the autonomous autopilot), **Claude Code**, **Cursor**,
+**Kimi**, **Codex**, etc. This bit us in the **2026-06-08 oracle outage**:
+Sophia's PRs (#36 resend affordance, #38/#39 `@truesight/dao-client` CDN
+refactor) broke `oracle.truesight.me` in production but were indistinguishable
+from a human's commits, so the regression wasn't attributable.
+
+**Rules:**
+
+1. **Commit trailer** — end every agent commit message with a line:
+   `Generated-by: <agent>` — e.g. `Generated-by: Sophia (TrueSight Autopilot)`,
+   `Generated-by: Claude Code (operator: Gary)`, `Generated-by: Cursor`,
+   `Generated-by: Kimi`. PRs are usually **squash-merged**, so the trailer must
+   live in the **commit**, not only the PR description.
+2. **PR body** — include the same agent attribution line in the PR description.
+3. This is **distinct from** the generic Anthropic boilerplate
+   `Co-Authored-By: Claude <noreply@anthropic.com>` (still NOT wanted — see
+   `feedback_no_claude_co_author_in_commits`). Use a **meaningful agent name**,
+   not the model-vendor boilerplate.
+4. Applies to **all** agents and **all** repos (code + data + context).
+   Human-only commits need no marker.
+
 ### When the user requests the full release loop
 
 If they ask to push recent work, open a PR, **and merge to default branch** in one go:
