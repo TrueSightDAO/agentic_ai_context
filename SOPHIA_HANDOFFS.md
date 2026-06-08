@@ -77,9 +77,11 @@ posted** — so the governor finds her ready, not a cold thread. The ping MUST
 instruct Sophia to:
 
 1. **Refresh** — read the plan via `read_repo_file` (GitHub `main`).
-2. **Ensure a topic exists** — create one (`create_telegram_topic`, named
-   `<short title>`) if none exists for this handoff; else use the given
-   `message_thread_id`.
+2. **Sophia creates the topic** — with `create_telegram_topic`, named
+   `<short title>`, and reports its `message_thread_id`. ⚠️ Sophia can ONLY post
+   into topics **she creates** — there is **no post-to-existing-thread tool yet**
+   — so do NOT hand off to a pre-existing thread (e.g. General/thread 3); let her
+   create the topic and tell you which one to open.
 3. **Post the kickoff + context INTO the topic** (not just the HTTP reply):
    confirm she read the plan, restate RESUME HERE + the gates, state she's
    ready/parked, and **end with the GO prompt**:
@@ -121,7 +123,7 @@ replying in that topic with a short go-signal — **"go for it"**, "go",
 
 | Date | Handoff | Plan file | Topic | thread_id | session_id (to rejoin) | Status |
 |------|---------|-----------|-------|-----------|------------------------|--------|
-| 2026-06-08 | DAO client integration fixes (consolidated: oracle + capoeira) | `DAO_CLIENT_INTEGRATION_FIXES.md` | [topic](https://t.me/c/3919341801/3) | 3 | `tg:-1003919341801:3` | active |
+| 2026-06-08 | DAO client integration fixes (consolidated: oracle + capoeira) | `DAO_CLIENT_INTEGRATION_FIXES.md` | [topic](https://t.me/c/3919341801/1695) | 1695 | `tg:-1003919341801:1695` | active (Sophia parked, GO-ready; supersedes thread 3) |
 | 2026-06-08 | Capoeira dao-client swap (PR2) | `CAPOEIRA_DAO_CLIENT_SWAP_PLAN.md` | [topic](https://t.me/c/3919341801/1658) | 1658 | `tg:-1003919341801:1658` | active |
 | 2026-06-08 | Oracle CDN re-wire (@truesight_dao/dao-client) | `ORACLE_CDN_REWIRE_PLAN.md` | [topic](https://t.me/c/3919341801/1638) | 1638 | `tg:-1003919341801:1638` | active |
 | 2026-06-08 | Resend verification email | `RESEND_VERIFICATION_PLAN.md` | [topic](https://t.me/c/3919341801/1504) | 1504 | `tg:-1003919341801:1504` | active |
