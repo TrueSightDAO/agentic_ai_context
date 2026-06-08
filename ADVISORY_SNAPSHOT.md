@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-08T11:25:43Z`
+- Generated (UTC): `2026-06-08T16:35:11Z`
 - Look-back: **7** calendar days (`2026-06-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260608032911_065` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 4d6xXcP32h_onqefzOlwD5xMZL3oTSWki02V6GhycS0 · Email: garyjob@gmail.com
 - `Edgar_20260608033018_067` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:30:18.093Z
 - `Edgar_20260608033040_069` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: GVx8-oQBD1eqygvhf4pjKeEHos86lgJkwmUPXgyFPow
 - `Edgar_20260608034210_071` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Timestamp: 2026-06-08T03:42:10.073Z
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260608042006_099` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: KrCUWOoE-b47ygHJn_IlUt3WZKkAmaumuebBVarqGvg
 - `Edgar_20260608043044_001` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 45 · Description: Resend verification email — server-side logic (PR1)
 - `Edgar_20260608043112_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Resend verification email — server-side logic (PR1)
+- `Edgar_20260608161857_005` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: WhatsApp follow-up with Graziela / Seacos — pallet dimensions
 
 ---
 
@@ -313,6 +313,7 @@ _All dated lines on/after 2026-06-01_ (21):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e7fbcbf | 2026-06-08 11:28:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f32ac72 | 2026-06-07 23:54:37 -0700 | Add two missing blog posts to index: voting rights + scripture (#194)
 f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1e0e0a4 | 2026-06-07 19:04:16 -0700 | Resolve practitioner name from dao_members.json when CV display_name is empty (#193)
@@ -352,7 +353,6 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 f0b3a64 | 2026-06-04 14:10:49 -0700 | Merge pull request #171 from TrueSightDAO/feat/lineage-register-url-sync
 ea24111 | 2026-06-04 14:10:36 -0700 | Add URL-param checkbox sync + conditional roster field to lineage-register
 b2373d5 | 2026-06-04 13:55:06 -0700 | Update tree price placeholder to $5
-defd4c4 | 2026-06-04 13:48:59 -0700 | Merge pull request #170 from TrueSightDAO/fix/lineage-governance-language
 … (truncated)
 ```
 
@@ -365,6 +365,9 @@ defd4c4 | 2026-06-04 13:48:59 -0700 | Merge pull request #170 from TrueSightDAO/
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7db903d | 2026-06-08 09:21:16 -0700 | Add instruction: use dao_client (dao_protocol repo) for governor contribution reports (#360)
+9172127 | 2026-06-08 04:25:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
+4934e42 | 2026-06-08 04:25:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
 fd0dda3 | 2026-06-07 22:12:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
 ad5e9aa | 2026-06-07 22:12:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
 df947a1 | 2026-06-07 21:37:22 -0700 | feat: handoff manifest + pull-first protocol for all LLMs (#358)
@@ -402,9 +405,6 @@ a077bdb | 2026-06-07 02:46:31 -0700 | chore(previews): refresh Beer Hall preview
 5be5f25 | 2026-06-06 15:09:16 -0700 | AWS §4.5: post-cutover verification checklist (watchdog!) + record t3.medium resize (#334)
 e2d0ba1 | 2026-06-06 14:50:55 -0700 | OPEN_FOLLOWUPS: Sophia-drafted Telegram replies (watchdog v2) — revisit ~2026-07-06 (#333)
 af67ca9 | 2026-06-06 14:38:41 -0700 | AWS infra: add §4.5 autopilot EIP blue-green upgrade + AMI DR runbook (#332)
-c5b91ba | 2026-06-06 14:37:06 -0700 | Add TrueSight DAO PDF house-style convention (Saffron Monk; binding on all LLMs + Sophia) (#331)
-7984635 | 2026-06-06 14:36:59 -0700 | CONTEXT_UPDATES: sophia AMI cutover — Telethon AuthKeyDuplicatedError gotcha + service-stop order (#330)
-9e39eb8 | 2026-06-06 14:36:07 -0700 | CONTEXT_UPDATES: sophia hardware upgrade — preserve watchdog session + on-box .env (#329)
 … (truncated)
 ```
 
@@ -448,6 +448,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b082748 | 2026-06-08 11:30:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 d4be99b | 2026-06-08 11:22:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e5206f4 | 2026-06-07 09:41:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1c64adf | 2026-06-06 08:48:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -591,7 +592,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/8/2026 3:50:28 |
+| 2026-06 | 222.41 | 15199.52386 | 6/8/2026 8:50:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-01`; scanned last **498** data rows)
 
