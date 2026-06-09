@@ -15,6 +15,16 @@ remote by the handing-off LLM (Claude, Cursor, etc.) and may not be in your
 local clone. Searching your local cache without pulling first will miss new
 or updated plan files.
 
+> **Automatic safety net (truesight_autopilot#130, 2026-06-09):** Sophia's
+> autopilot now hard-refreshes its read-only context mirrors
+> (`agentic_ai_context`, `tokenomics`) to `origin/main` every ~5 min via a
+> background loop (`_context_sync_loop`), so `read_context_file` /
+> `search_context` no longer go stale between deploys (the root cause of the
+> 2026-06-09 "plan doesn't exist" handoff miss — clone was 21 commits behind).
+> This is a backstop, not a license to skip the rule: **`read_repo_file` on
+> GitHub `main` is still the freshest read** and the recommended way to load a
+> just-committed plan. Activated on the next deploy after the PR merged.
+
 **Workflow:**
 1. `cd agentic_ai_context && git pull origin main`
 2. Check `HANDOFF_MANIFEST.md` for the active handoff list
