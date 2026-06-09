@@ -123,32 +123,50 @@ model. So:
 
 ---
 
-## Sandbox / test setup (how to test without real charges)
+## Sandbox / test setup — WHO tests WHAT
 
 **Topology recap:** session creation = **GAS**; webhook (first charge +
-`invoice.paid` renewals) = **Rails `sentiment_importer` `/stripe_webhook`** (it
-stayed on Rails — *not* dao_protocol). So testing has two independent legs:
+`invoice.paid` renewals) = **Rails `sentiment_importer` `/stripe_webhook`** (stayed
+on Rails — *not* dao_protocol).
 
-1. **Stripe Test mode** (or a Stripe **Sandbox** — newer isolated env). Gives
-   `sk_test` / `pk_test` + test cards (`4242 4242 4242 4242`).
-2. **GAS leg (session creation):** add a **`STRIPE_TEST_SECRET_KEY`** Script
-   Property and an **`environment=development`** param to
-   `createSubscriptionCheckoutSession` — mirror the env-switch
-   `createLedgerCheckoutSession` already does (`STRIPE_LEDGER_ROUTING.md`). The
-   beta `/subscribe/` page sends `environment=development` from localhost. Test
-   by completing a test-card subscription → a real test-mode subscription +
-   invoices appear in the Stripe **test** dashboard.
-3. **Webhook leg (Rails — your existing method still works):** run
-   `sentiment_importer` locally and use the **Stripe CLI**:
-   - `stripe listen --forward-to localhost:<railsport>/stripe_webhook`
-   - `stripe trigger checkout.session.completed` (first charge) and
-     **`stripe trigger invoice.payment_succeeded`** (renewal) — simulate a
-     month's renewal **instantly**, no waiting a cycle.
-   dao_protocol need not be running; Rails' delegate POST to `:8010/stripe/order_sync`
-   fail-softs locally (rescued).
+**Key constraint — Sophia is headless:** no browser (can't click a Stripe-hosted
+Checkout page), no interactive terminal (can't run a live `stripe listen`). So
+**Stripe payment paths are OPERATOR-tested, not autopilot-tested** — the same
+precedent the extraction plan set for PR6a ("operator-test the payment paths …
+real Stripe"). Split the work:
 
-**Do NOT** "smoke test" by paying with a real card on prod keys. If the GAS test
-switch (step 2) isn't in place yet, that's a STOP — build it first (pre-flight).
+### Sophia (automated, headless, in CI — this *is* her testing)
+- **Unit / integration tests with mocked Stripe + GAS + Sheets** (the repos
+  already mock GAS/Edgar — `WORKSPACE_CONTEXT` §"DApp CI/testing"; no real
+  network). Cover: the engine's catalog→picker→GAS-call logic; the GAS line-item
+  builder (recurring unit line + recurring shipping line shapes); the Rails
+  webhook → fulfillment-queue write — **feed a fixture `invoice.paid` /
+  `checkout.session.completed` JSON and assert the PENDING row** (this is the
+  headless stand-in for `stripe trigger`); the per-bar `[SALES EVENT]` fan-out.
+- **Headless Playwright up to the redirect boundary ONLY** — assert "Subscribe"
+  calls the GAS and would redirect to a `checkout.stripe.com` URL; **do not**
+  drive the hosted Stripe page (not reliably automatable).
+- **(Optional) programmatic Stripe test-API smoke** — *only if `sk_test` is
+  provisioned to her box*: create a test customer + `pm_card_visa` + subscription
+  **via the Stripe API** (no browser), read it back, assert `recurring`/amounts.
+- Ship **green CI**, open the PR, then **pause for the operator gate** (handoff
+  convention: Sophia opens PRs, never self-promotes). Every code PR ships its
+  mocked tests; CI green is the bar before the operator step.
+
+### Operator (real Stripe — the gate before promotion)
+The human does the real-money-shaped pass:
+1. **Stripe Test mode / Sandbox** → `sk_test` + test cards (`4242 4242 4242 4242`).
+2. **GAS** with `STRIPE_TEST_SECRET_KEY` + `environment=development` (the
+   `createLedgerCheckoutSession` env-switch pattern); complete a **hosted** test
+   subscription from the local `/subscribe/` page.
+3. **Local `sentiment_importer` + Stripe CLI:** `stripe listen --forward-to
+   localhost:<port>/stripe_webhook`, then `stripe trigger invoice.payment_succeeded`
+   to simulate a renewal **instantly**; confirm the fulfillment-queue row. (dao_protocol
+   need not run; Rails' delegate POST to `:8010/stripe/order_sync` fail-softs.)
+4. Visual QA of `/subscribe/` + PDP → promote beta→prod → prod smoke.
+
+**Do NOT** test by paying with a real card on **prod** keys. If the GAS test
+switch isn't in place yet, that's a STOP (pre-flight).
 
 ---
 
@@ -290,7 +308,7 @@ once; expose each line via a thin wrapper.
 | **1.4** | GAS (checkout) | New **ADDITIVE** `createSubscriptionCheckoutSession` action — **do NOT touch the existing cart `createCheckoutSession`** (GAS is shared beta+prod; additive keeps it inert until the beta page calls it). Unit line `recurring:{interval:'month'}`; run existing EasyPost weight+rate code **once** → recurring shipping line (**one tier**, e.g. Ground Advantage); `mode:'subscription'`; **`environment` test/live key switch** (see *Sandbox*); return `checkoutUrl`; key off `sku`. | ☐ |
 | **1.5** | `agroverse_shop_beta` | **Generic-bar PDP** at `/product-page/<generic-slug>/` per the *PDP spec*: discovery/rotating-origin copy, hero=product, gallery incl. packaging-back QR shot, **primary Subscribe CTA → `/subscribe/chocolate-bar/`**, optional one-off Add-to-Cart, provenance block, wholesale banner. (Cross-listing grids N/A — generic is not farm/shipment-bound.) | ☐ |
 | **1.6** | `sentiment_importer` (Rails) / verify | Subscription-mode `checkout.session.completed` must **not break** `MetaCheckoutOrderSync` (it assumes `channel=='meta'` + `wix_products` — a sub session has neither → make it no-op/log cleanly, not error). **Renewals arrive as `invoice.paid`, which nothing handles until PR2.2** — so until Phase 2, only the FIRST charge is recorded anywhere. | ☐ |
-| **1.7** | promote (human) | **Sandbox** end-to-end smoke (Stripe test mode, GAS test key, Stripe-CLI `trigger`); beta → prod promotion (human). **Do NOT onboard Linda here — see the Activation gate below.** | ☐ |
+| **1.7** | operator gate + promote | **Sophia:** green CI (mocked tests) + optional Stripe test-API smoke; PR open. **Operator:** the real hosted-checkout + `stripe listen`/`trigger` pass (see *Sandbox — WHO tests WHAT*), then beta → prod promotion. **Do NOT onboard Linda here — see the Activation gate below.** | ☐ |
 
 > **Adding ceremonial cacao later = data only:** one new `products.js` entry
 > (`subscriptionSlug:'ceremonial-cacao'`) + a `/subscribe/ceremonial-cacao/`
