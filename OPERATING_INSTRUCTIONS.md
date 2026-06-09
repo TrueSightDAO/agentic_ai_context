@@ -123,6 +123,103 @@ Full convention: `agentic_ai_context/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`
 
 - **Read first:** OPERATING_INSTRUCTIONS.md → WORKSPACE_CONTEXT.md → PROJECT_INDEX.md (and credentials folder when needed).
 - **Pushing code (any repo you edit):** Create a **feature branch**, push with the agent SSH key (`GITHUB_AGENTIC_AI_SSH.md`), open a **Pull Request** whose description stands alone for humans (**goal**, **changes**, **testing**, **rollout / follow-ups**). Do not push agent work directly to the default branch unless the user explicitly orders it.
+- **Do not edit:** WORKSPACE_CONTEXT.md, PROJECT_INDEX.md, README.md, OPERATING_INSTRUCTIONS.md unless the user explicitly asks.
+- **You may:** Append to `CONTEXT_UPDATES.md`; create/update your own files under `notes/`; suggest changes via CONTEXT_UPDATES or a note instead of editing canonical docs.
+- **Before implementing:** For any multi-step build / migration / refactor, commit a *tracked* **execution roadmap checklist** (pre-flight + sequenced plan + resume tracker) **first** — see §5.
+
+---
+
+## 8. dao-client version bump rule
+
+**Any code change to `dao_protocol/packages/dao-client/` MUST bump the version in `package.json` in the same PR, before merge.**
+
+This applies to:
+- New features (methods, exports, types)
+- Bug fixes (test fixes, validation fixes)
+- Refactors that change the public API or behavior
+
+It does **not** apply to:
+- Changes to `test/` files only (no source change)
+- Documentation-only changes (comments, README)
+- CI/workflow changes (`.github/`)
+
+**How to bump:**
+- Patch: `1.1.0-rc.2` → `1.1.0-rc.3` (bug fixes, minor additions)
+- Minor: `1.1.0-rc.2` → `1.2.0-rc.1` (new features, breaking-ish changes)
+- Major: `1.1.0-rc.2` → `2.0.0-rc.1` (breaking changes)
+
+**Why:** The CI publish workflow (`npm-publish-dao-client.yml`) only triggers on pushes to `main` that change `packages/dao-client/package.json`. Without a version bump, the code lands on `main` but never reaches npm — and the Butterfly Effect Club, oracle, and dapp all consume the npm package, not the repo directly.
+
+**Enforcement:** This is a human-review rule. The PR description should call out the version bump explicitly. If a PR merges without a bump, the next agent who notices should open a follow-up PR that bumps the version.
+
+---
+
+## 9. HTML/JS test-before-merge rule
+
+**Any code change to an HTML/JS repo (oracle, capoeira, truesight_me, truesight_me_beta, agroverse_shop, agroverse_shop_beta, dapp_beta, butterfly-effect-club, tribomirimbahia, aora, or any other repo containing `index.html` or frontend JavaScript) MUST be tested with a local JSDom/happy-dom test suite before the PR is merged.**
+
+### Why
+
+Without local testing, the review cycle becomes: submit PR → governor finds bugs → fix → resubmit → governor reviews again. This wastes the governor's time. Testing locally first means the governor reviews working code, not broken code.
+
+### How to set up the test suite
+
+For any HTML/JS repo that doesn't already have one:
+
+```bash
+# In the repo root
+npm init -y
+npm install --save-dev vitest happy-dom
+```
+
+Create `vitest.config.ts`:
+```typescript
+import { defineConfig } from 'vitest/config';
+export default defineConfig({
+  test: {
+    environment: 'happy-dom',
+    include: ['test/**/*.test.ts'],
+  },
+});
+```
+
+Update `package.json`:
+```json
+"scripts": {
+  "test": "vitest run"
+}
+```
+
+### What to test
+
+- **DOM state changes** — does the function show/hide the right elements?
+- **Link/URL correctness** — are hrefs set correctly?
+- **Event handlers** — do click handlers produce the right DOM changes?
+- **Edge cases** — what happens when elements are missing?
+- **Regression** — does the fix break anything else?
+
+### Process
+
+1. Write the test first (it should fail, proving the bug exists)
+2. Apply the fix
+3. Run `npm test` — all tests pass
+4. Open the PR with both the fix and the tests
+5. The governor reviews once, confident the code works
+
+### Repos that already have this setup
+
+| Repo | Test file | How to run |
+|------|-----------|------------|
+| oracle | `test/credentials.test.ts` | `npm test` |
+
+When you add this setup to a new repo, update this table.
+
+---
+
+## 10. Handoff protocol for all LLMs
+
+- **Read first:** OPERATING_INSTRUCTIONS.md → WORKSPACE_CONTEXT.md → PROJECT_INDEX.md (and credentials folder when needed).
+- **Pushing code (any repo you edit):** Create a **feature branch**, push with the agent SSH key (`GITHUB_AGENTIC_AI_SSH.md`), open a **Pull Request** whose description stands alone for humans (**goal**, **changes**, **testing**, **rollout / follow-ups**). Do not push agent work directly to the default branch unless the user explicitly orders it.
 - **dao-client version bump rule:** Any code change to `dao_protocol/packages/dao-client/` MUST bump the version in `package.json` in the **same PR**, before merge. This triggers the CI publish workflow so the npm package stays in sync with `main`. See §8 for the full rule.
 - **Do not edit:** WORKSPACE_CONTEXT.md, PROJECT_INDEX.md, README.md, OPERATING_INSTRUCTIONS.md unless the user explicitly asks.
 - **You may:** Append to `CONTEXT_UPDATES.md`; create/update your own files under `notes/`; suggest changes via CONTEXT_UPDATES or a note instead of editing canonical docs.
