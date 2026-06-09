@@ -216,7 +216,43 @@ When you add this setup to a new repo, update this table.
 
 ---
 
-## 10. Handoff protocol for all LLMs
+## 10. dao-client version audit rule
+
+**Whenever a new version of `@truesight_dao/dao-client` is published to npm, ALL repos that reference it must be bumped in the same session, before the session ends.**
+
+### Why
+
+If only one repo is bumped and others are left on the old version, the old version's bugs (like the `1.1.0-rc.1` constructor crash) continue to break those pages. The governor should not have to chase down stale versions across repos.
+
+### Audit table
+
+| Repo | Uses dao-client? | Current version | Last bumped |
+|------|-----------------|----------------|-------------|
+| oracle | ✅ | `1.1.0-rc.3` | 2026-06-09 |
+| capoeira | ❌ | — | — |
+| butterfly-effect-club | ❌ | — | — |
+| truesight_me_beta | ❌ | — | — |
+| dapp_beta | ❌ | — | — |
+| agroverse_shop_beta | ❌ | — | — |
+| tribomirimbahia | ❌ | — | — |
+| aora | ❌ | — | — |
+
+### Process
+
+1. Publish the new version to npm (CI handles this automatically on merge)
+2. Search all org repos for the old version string: `search_code("@truesight_dao/dao-client@<old-version>")`
+3. For each repo found, open a PR bumping to the new version
+4. Run the repo's test suite (`npm test`) to confirm nothing broke
+5. Merge each PR
+6. Update this audit table
+
+### Enforcement
+
+This is a human-review rule. The PR description for any dao-client publish should call out which repos need bumping. If a repo is missed, the next agent who notices should open a follow-up PR.
+
+---
+
+## 11. Handoff protocol for all LLMs
 
 - **Read first:** OPERATING_INSTRUCTIONS.md → WORKSPACE_CONTEXT.md → PROJECT_INDEX.md (and credentials folder when needed).
 - **Pushing code (any repo you edit):** Create a **feature branch**, push with the agent SSH key (`GITHUB_AGENTIC_AI_SSH.md`), open a **Pull Request** whose description stands alone for humans (**goal**, **changes**, **testing**, **rollout / follow-ups**). Do not push agent work directly to the default branch unless the user explicitly orders it.
