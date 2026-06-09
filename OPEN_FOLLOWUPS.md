@@ -39,6 +39,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight_autopilot: fix 3 deselected unit tests, then enforce full pytest in CI
+**Found 2026-06-09:** CI (`smoke.yml`) historically ran only `compileall` +
+`smoke_tools.py` — the `tests/test_*.py` pytest suite was **never executed** (and
+`pytest` was undeclared). Now wired (truesight_autopilot#136): `requirements-dev.txt`
+adds pytest, `pyproject.toml` sets unit testpaths, `smoke.yml` runs `pytest` — but
+with **3 pre-existing failures deselected** (real network calls / missing mocks):
+- `tests/test_ssh_tools.py::test_missing_key_is_a_clear_error`
+- `tests/test_telegram_adapter.py::test_handle_message_allowed_calls_chat`
+- `tests/test_telegram_adapter.py::test_send_message_retries_without_thread_on_400`
+**Do:** mock their network/IO so they're hermetic, then drop the `--deselect` flags
+in `smoke.yml` so the full unit suite gates PRs. (157 tests pass today.)
+
 ### Chocolate subscriptions: run the full E2E test once the beta sandbox is up
 **Sequencing (Gary, 2026-06-09):** do **1955** (`BETA_SANDBOX_ENDPOINT_PLAN.md` —
 `beta.edgar.truesight.me` sandbox in Stripe TEST) **first**, *then* test the
