@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-09T15:38:34Z`
+- Generated (UTC): `2026-06-09T20:27:27Z`
 - Look-back: **7** calendar days (`2026-06-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,34 +32,33 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
-- `[EMAIL REGISTERED EVENT]` × 15
-- `[PRACTICE EVENT]` × 7
-- `[EMAIL VERIFICATION EVENT]` × 4
-- `[TEST EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 16
+- `[PRACTICE EVENT]` × 12
+- `[CONTRIBUTION EVENT]` × 8
+- `[EMAIL VERIFICATION EVENT]` × 8
 
 ### Latest entries
 
-- `Edgar_20260608222812_073` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:28:12.165Z · Email: garyjob@agroverse.shop
-- `Edgar_20260608222816_075` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-08T22:28:16.541Z · Email: garyjob@agroverse.shop · Verification Key: Iu6g_4AqnYY-gdrTsUtwEhGE_RS3eCctV1ZZyECmxQ4
-- `Edgar_20260608222841_077` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:28:41.755Z · Email: garyjob@agroverse.shop
-- `Edgar_20260608224737_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Made the GO convention real: Telegram adapter resolves thread_id → handoff p…
-- `Edgar_20260608225101_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Automated dao-client npm publishing: publish-on-version-bump (gated, idempot…
-- `Edgar_20260608230231_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: dao-client release flow documented + npm-token expiry hardened; Sophia notif…
-- `Edgar_20260608231307_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: PR2 — Oracle migration to @truesight_dao/dao-client high…
-- `Edgar_20260609000220_087` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260609000229_089` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260609000241_091` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
-- `Edgar_20260609010256_093` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_client: Add comprehensive API documentation to the @truesigh…
-- `Edgar_20260609012818_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Fix DaoClient constructor crash on fresh install —…
-- `Edgar_20260609134907_097` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T13:49:07.847Z · Email: garyjob@truesight.me
-- `Edgar_20260609135938_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T13:59:38.892Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260609135939_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T13:59:38.947Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260609141149_103` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T14:11:49.687Z · Email: garyjob@gmail.com
-- `Edgar_20260609141408_105` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T14:14:08.222Z · Email: garyjob@gmail.com
-- `Edgar_20260609141745_107` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T14:17:45.405Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260609141746_109` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T14:17:45.569Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260609141950_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: The oracle's index.html is missing the `arrayBufferToBas…
+- `Edgar_20260609160041_127` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T16:00:41.251Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260609160042_129` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T16:00:41.246Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260609173909_131` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T17:39:09.571Z · Email: garyjob@gmail.com
+- `Edgar_20260609174218_133` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T17:42:18.515Z · Email: garyjob@gmail.com
+- `Edgar_20260609175658_135` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T17:56:58.746Z · Email: garyjob@gmail.com
+- `Edgar_20260609180055_137` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: 582GEHJ7Fm4PaejAAYorq0-Snb6WrVT1shxDJb78SWE
+- `Edgar_20260609180927_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:09:26.179Z · Email: garyjob@gmail.com
+- `Edgar_20260609181643_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:16:42.218Z · Email: garyjob@gmail.com · Verification Key: 582GEHJ7Fm4PaejAAYorq0-Snb6WrVT1shxDJb78SWE
+- `Edgar_20260609182216_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: ## What changed
+- `Edgar_20260609182537_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:25:36.809Z · Email: garyjob@gmail.com
+- `Edgar_20260609182555_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:25:55.704Z · Email: garyjob@gmail.com · Verification Key: FTrKAyWY2YNdchkMcwlLOJuuLkjw2GU089ytWWp4K98
+- `Edgar_20260609182749_011` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:27:49.604Z · Email: garyjob@gmail.com
+- `Edgar_20260609182840_013` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:28:40.466Z · Email: garyjob@gmail.com
+- `Edgar_20260609182857_015` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:28:56.518Z · Email: garyjob@gmail.com · Verification Key: rSa7ClRlU1JbeerGqx9vWAmA-JPeoLlrgu9uQ9a9_k8
+- `Edgar_20260609184019_017` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:40:10.469Z · Email: garyjob@gmail.com
+- `Edgar_20260609184129_019` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:41:29.112Z · Email: garyjob@gmail.com
+- `Edgar_20260609184144_021` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:41:43.287Z · Email: garyjob@gmail.com · Verification Key: y_hNSt5cnxZkbKf5mkhiBCGL-8CjM0kMhmgFsvHevQg
+- `Edgar_20260609185209_023` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:52:08.800Z · Email: garyjob@gmail.com
+- `Edgar_20260609185259_025` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:52:59.409Z · Email: garyjob@gmail.com
+- `Edgar_20260609185315_027` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:53:14.993Z · Email: garyjob@gmail.com · Verification Key: ny46Y7Ekm2Fq6i8OGAGu6pHKUtwXrM5A137QymoYhpM
 
 ---
 
@@ -316,6 +315,7 @@ _All dated lines on/after 2026-06-02_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+572cb66 | 2026-06-09 15:42:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d8e2111 | 2026-06-09 10:10:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4c16606 | 2026-06-09 04:48:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e16db2 | 2026-06-08 20:41:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -355,7 +355,6 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 853f3a2 | 2026-06-04 15:54:32 -0700 | Landing hero: add Security Dashboard button (prominent nav) (#175)
 7a299b2 | 2026-06-04 15:02:42 -0700 | Landing page: link to Security Dashboard (Resources dropdown + footer) (#174)
 9cd66e4 | 2026-06-04 14:34:28 -0700 | Merge pull request #173 from TrueSightDAO/feat/programs-lineage-cta
-7a9e025 | 2026-06-04 14:34:11 -0700 | Add Lineage bridge CTAs to programs.html
 … (truncated)
 ```
 
@@ -368,6 +367,12 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2eb0805 | 2026-06-09 12:29:13 -0700 | docs(handoff): note automatic context-mirror auto-sync backstop (#389)
+1cf6e74 | 2026-06-09 12:08:01 -0700 | handoff(subscriptions): register Sophia handoff for chocolate subscriptions (#388)
+5a7b2a7 | 2026-06-09 11:58:56 -0700 | plan(subscriptions): shareable PDF of the subscription roadmap (#387)
+fc61cb0 | 2026-06-09 11:51:03 -0700 | plan(subscriptions): Agroverse chocolate-bar subscription roadmap (#386)
+a1c93d2 | 2026-06-09 08:38:49 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
+8aca2e1 | 2026-06-09 08:38:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 d0bc88e | 2026-06-09 07:28:21 -0700 | Add Engineering Self-Assessment PDF
 ad7c1cd | 2026-06-09 07:26:53 -0700 | Add Sophia engineering self-assessment PDF
 e3baad9 | 2026-06-09 07:21:18 -0700 | docs: add E2E registration test methodology + base64ToArrayBuffer bug postmortem (#385)
@@ -402,12 +407,6 @@ a1cbe22 | 2026-06-08 13:40:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 c3bf913 | 2026-06-08 13:23:40 -0700 | Oracle CDN re-wire plan + handoff hygiene (refresh-first) + NPM token rotation followup (#362)
 f710cd1 | 2026-06-08 09:56:57 -0700 | Convention: require agent attribution (Generated-by) on every commit + PR (#361)
 423e856 | 2026-06-08 09:35:25 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
-9795acd | 2026-06-08 09:35:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
-7db903d | 2026-06-08 09:21:16 -0700 | Add instruction: use dao_client (dao_protocol repo) for governor contribution reports (#360)
-9172127 | 2026-06-08 04:25:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
-4934e42 | 2026-06-08 04:25:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
-fd0dda3 | 2026-06-07 22:12:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
-ad5e9aa | 2026-06-07 22:12:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
 … (truncated)
 ```
 
@@ -466,12 +465,22 @@ efbb37b | 2026-06-02 12:28:47 -0700 | chore: refresh Agroverse store inventory s
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-_(no commits on origin/main in window)_
+fcc8a76 | 2026-06-09 12:58:19 -0700 | Merge pull request #120 from TrueSightDAO/feat/gtin-source-of-truth
+b5fbbe5 | 2026-06-09 12:57:47 -0700 | Add GTIN to products.js as single source of truth + fix JSON-LD script
 ```
 
 ### `iching_oracle` → `oracle`
 
 ```
+4f22eee | 2026-06-09 11:51:48 -0700 | fix: add .hero-glass[hidden] CSS rule to override display:grid
+55251c5 | 2026-06-09 11:47:20 -0700 | fix: prevent initDaoIdentityState from racing with verification flow
+e3877c0 | 2026-06-09 11:32:03 -0700 | feat: collapsible verified-identity panel with Unlink Identity
+d89a94b | 2026-06-09 11:14:23 -0700 | fix: use DaoClient.verifyEmail() for EMAIL VERIFICATION flow
+87d0e74 | 2026-06-09 10:50:23 -0700 | refactor: use DaoClient 1.1.0-rc.4 with explicit key names
+6568fba | 2026-06-09 10:43:27 -0700 | fix: sync DaoClient truesight_dao_* keys to bare publicKey/privateKey
+c46fe61 | 2026-06-09 10:41:13 -0700 | fix: call ensureKeys before checking keypair in DAO identity flows
+936fa93 | 2026-06-09 09:13:22 -0700 | fix: ensureKeypair and submitSession must reuse existing keys — was overwriting on every page load (#61)
+c23c573 | 2026-06-09 09:13:18 -0700 | fix: add missing arrayBufferToBase64 function and puppeteer dep — verification was crashing (#59)
 0017b56 | 2026-06-09 07:21:25 -0700 | fix: add missing base64ToArrayBuffer helper + E2E registration test (#58)
 1729307 | 2026-06-09 07:00:13 -0700 | test: add DAO Identity UI and full casting flow integration tests (#52)
 690e0f8 | 2026-06-09 06:54:37 -0700 | test: add headless browser integration test — loads pages and checks console for errors (#51)
@@ -605,7 +614,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/9/2026 7:50:27 |
+| 2026-06 | 222.41 | 15199.52386 | 6/9/2026 12:50:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-02`; scanned last **498** data rows)
 
