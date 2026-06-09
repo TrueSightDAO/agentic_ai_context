@@ -63,7 +63,9 @@ model. So:
 |---|----------|
 | Scope | **Chocolate bars only** for now (no generic ceremonial-cacao SKU yet). |
 | Billing engine | **Stays in the existing GAS** (`agroverse_shop_checkout.gs` → `createCheckoutSession`). Subscriptions reuse the same **dynamic inline `price_data`**, adding `recurring:{interval:'month'}` + `mode:'subscription'`. No pre-created Stripe Price IDs. Confirmed: Stripe Checkout supports on-the-fly recurring `price_data`. |
-| Quantity | **User-chosen** bars/month on the subscribe page (also the event-placard QR target). |
+| Quantity | **User-chosen but BOUNDED** — preset chips (3 / 6 / 12) + stepper, default 6, hard cap ~24. **Not** an unbounded field: above the cap, route to **wholesale** ("buying for your shop?"). Rationale: per-bar manual fulfillment + shipping locked at signup + typo guard. |
+| One-off vs subscription | **Both** — Subscribe is the hero CTA, one-off Add-to-Cart is the secondary on-ramp. The "don't hold generic one-off stock" worry is **moot**: all bars share one GTIN, so one-off generic sells from the *same* pool as the vintage PDPs (fulfilled exactly like today). |
+| GTIN model | **One GTIN per product TYPE, not per vintage.** All chocolate bars share a single chocolate-bar GTIN; all ceremonial cacao share a single cacao GTIN. The **QR code** (not the GTIN) differentiates farm/vintage. So the generic SKU **reuses the existing shared GTIN** — do NOT mint a new one. The vintage PDPs are presentation sub-views of the same GTIN/product. |
 | Pricing | **Same basis as the shop today** — generic bar unit price × quantity (dynamic), computed server-side. |
 | Shipping | **Computed from signup address** — run EasyPost once at signup, lock that amount as a **recurring shipping line item** (subscription mode has no interactive `shipping_options` picker, so a recurring line is the correct mechanism). |
 | Fulfillment attribution | On each per-bar `[SALES EVENT]`: **Sold by = Kirsten Ritschel**, **Cash proceeds collected by = Gary Teh** (same as today). |
@@ -85,11 +87,12 @@ model. So:
 - [ ] **Generic SKU definition.** Confirm: the canonical retail bar **price**
       from `agroverse_shop/js/products.js` (Elizabeth Wong batch was $10.00/bar —
       verify it's still current); the **name** (proposed: `Ceremonial Cacao
-      Chocolate Bar — Single-Estate, Rotating Origins`); a **generic GTIN** to
-      assign (distinct from the vintage SKUs); the **hero + gallery images**
-      (product-forward, incl. packaging-back QR shot); and the **one-off decision**
-      (subscription-only vs. also one-off Add-to-Cart). See *Generic SKU model +
-      PDP spec*.
+      Chocolate Bar — Single-Estate, Rotating Origins`); the **existing shared
+      chocolate-bar GTIN** to reuse (all bars share one GTIN; the QR differentiates
+      farm/vintage — do NOT mint a new GTIN); and the **hero + gallery images**
+      (product-forward, incl. packaging-back QR shot). *(Decided: keep one-off +
+      subscribe; quantity bounded with wholesale overflow — see Decisions.)*
+      See *Generic SKU model + PDP spec*.
 - [ ] **Stripe test mode.** Confirm the `sk_test` sandbox path (used for the PR6a
       QR-checkout work) is available to validate `mode:'subscription'` end to end
       before any prod promotion.
@@ -161,7 +164,7 @@ engine. Proposed shape (extends today's fields: `productId`, `productPageSlug`,
   productId: 'generic-ceremonial-cacao-chocolate-bar',
   productPageSlug: 'ceremonial-cacao-chocolate-bar',   // PDP at /product-page/<slug>/
   name: 'Ceremonial Cacao Chocolate Bar — Single-Estate, Rotating Origins',
-  gtin: '<assign a generic GTIN>',                      // its own barcode, distinct from vintage SKUs
+  gtin: '<existing shared chocolate-bar GTIN>',         // ALL bars share ONE GTIN — reuse it; the QR (not GTIN) differentiates farm/vintage
   price: 10.00,                                         // unit price (confirm vs current bar price)
   weight: 1.76,                                         // oz, per bar (50g)
   image: '/assets/images/products/generic-bar-hero.jpg',
@@ -171,7 +174,7 @@ engine. Proposed shape (extends today's fields: `productId`, `productPageSlug`,
   subscribable: true,
   subscriptionSlug: 'chocolate-bar',                    // → /subscribe/chocolate-bar/
   cadence: 'monthly',
-  minQty: 1, maxQty: 24, defaultQty: 6,                 // Linda = 6/month
+  minQty: 1, maxQty: 24, defaultQty: 6,                 // Linda = 6/month; presets 3/6/12 + stepper; >cap → wholesale
 }
 ```
 
@@ -204,7 +207,8 @@ in a `.gallery` grid inside `.product-image-container`):
    `/subscribe/chocolate-bar/`; note **cancel/modify anytime** (Stripe Customer
    Portal, Phase 3). Show the default 6/month, adjustable.
 3. **Secondary CTA → one-off.** Standard Add-to-Cart for a single generic bar
-   (current stock), if we offer one-off (decision below).
+   (sells from the same shared-GTIN pool as the vintage PDPs). **Decided: keep
+   one-off** — it's a free on-ramp with no extra stock to hold.
 4. **What you get.** 6 bars/month (configurable), shipped from SF, each
    QR-traceable to its estate + vintage.
 5. **Provenance & traceability.** Every bar carries a QR → exact farm, vintage,
@@ -219,14 +223,12 @@ in a `.gallery` grid inside `.product-image-container`):
 9. **Impact.** Regenerative, single-estate, supports farmers + the DAO.
 
 **Feeds / Merchant Center / JSON-LD:** the **one-off** generic bar is a normal
-feed product (give it its own GTIN; follow `agroverse_shop/docs/PRODUCT_CREATION_CHECKLIST.md`).
+feed product using the **existing shared chocolate-bar GTIN** (do not mint a new
+one; all bars share it). Heads-up: the multiple vintage PDPs already share that
+one GTIN, so watch for Merchant Center duplicate-GTIN warnings — the generic PDP
+is arguably the canonical one. Follow `agroverse_shop/docs/PRODUCT_CREATION_CHECKLIST.md`.
 The **subscription** itself is a site feature, not a Merchant Center product —
-don't try to model the recurring SKU in the product feed.
-
-**Open decision (one-off on the generic PDP?):** offer the generic bar as a
-single one-off purchase too, or make it **subscription-only**? Defaulting to
-"one-off allowed" (the PDP doubles as a normal product page); flip to
-subscription-only if we don't want to hold generic one-off stock.
+don't model the recurring SKU in the product feed.
 
 ---
 
