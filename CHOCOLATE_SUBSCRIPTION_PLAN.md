@@ -17,6 +17,12 @@ intended as a **cacao-circle event placard QR** target.
 > Nothing implemented yet (doc written 2026-06-09, architecture folded in
 > 2026-06-09). Start at the **Pre-flight checklist** (GAS deploy path + generic
 > SKU definition), then PR1.1.
+>
+> **🛑 Where to STOP:** build PR1.1→1.6 with **green CI** + an **Operator Test
+> Runbook** on each PR; **open PRs, do NOT merge or promote.** Then **STOP at the
+> Phase-1 operator test gate** and hand back to Gary for a local test-mode pass —
+> do not run PR1.7 (promotion) or start Phase 2 until he signs off. Same pattern at
+> the end of Phase 2. See the *Execution protocol* + 🛑 gates in the roadmap.
 > Each PR is independently shippable; after any PR merges, report the DAO
 > contribution before starting the next (see `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`).
 
@@ -294,6 +300,16 @@ don't model the recurring SKU in the product feed.
 
 Legend: ☐ todo · ⧗ in progress · ☑ merged · 💸 DAO contribution reported
 
+**Execution protocol (Sophia ⇄ operator).** Within a phase Sophia builds each PR
+with **green mocked CI** and a short **Operator Test Runbook (OTR)** appended to the
+PR body — the *exact* commands for the operator to verify locally (pull/serve the
+branch, deploy the **test-mode** GAS, `stripe listen` + `stripe trigger`, and what
+to assert). **Sophia opens PRs; she does NOT merge or promote.** At each **🛑
+operator test gate** (end of a phase) she **STOPS and hands back to the operator**
+for a local **test-mode** pass; only after the operator signs off do merge,
+promotion, and the next phase proceed. Payment paths are never autopilot-tested
+against real Stripe (see *Sandbox — WHO tests WHAT*).
+
 ### Phase 1 — Generic SKU + data-driven subscribe engine (START HERE)
 
 **Architecture:** one shared engine, clean path URLs, catalog-as-source-of-truth
@@ -309,6 +325,15 @@ once; expose each line via a thin wrapper.
 | **1.5** | `agroverse_shop_beta` | **Generic-bar PDP** at `/product-page/<generic-slug>/` per the *PDP spec*: discovery/rotating-origin copy, hero=product, gallery incl. packaging-back QR shot, **primary Subscribe CTA → `/subscribe/chocolate-bar/`**, optional one-off Add-to-Cart, provenance block, wholesale banner. (Cross-listing grids N/A — generic is not farm/shipment-bound.) | ☐ |
 | **1.6** | `sentiment_importer` (Rails) / verify | Subscription-mode `checkout.session.completed` must **not break** `MetaCheckoutOrderSync` (it assumes `channel=='meta'` + `wix_products` — a sub session has neither → make it no-op/log cleanly, not error). **Renewals arrive as `invoice.paid`, which nothing handles until PR2.2** — so until Phase 2, only the FIRST charge is recorded anywhere. | ☐ |
 | **1.7** | operator gate + promote | **Sophia:** green CI (mocked tests) + optional Stripe test-API smoke; PR open. **Operator:** the real hosted-checkout + `stripe listen`/`trigger` pass (see *Sandbox — WHO tests WHAT*), then beta → prod promotion. **Do NOT onboard Linda here — see the Activation gate below.** | ☐ |
+
+> ## 🛑 STOP — operator test gate (end of Phase 1)
+> After **PR1.6** (PR1.1–1.6 merged-ready with **green CI** + each PR's **OTR**),
+> **Sophia STOPS and hands back to the operator.** She does **not** run PR1.7's
+> promotion. **Operator:** pull the branch/beta, run locally against **test-mode**
+> Stripe (per *Sandbox — WHO tests WHAT*) — confirm subscribe → test-checkout
+> works and the session has the right recurring + shipping lines. On sign-off,
+> PR1.7 (promote beta→prod) proceeds. **Linda still waits** for the Activation
+> gate below.
 
 > **Adding ceremonial cacao later = data only:** one new `products.js` entry
 > (`subscriptionSlug:'ceremonial-cacao'`) + a `/subscribe/ceremonial-cacao/`
@@ -336,6 +361,14 @@ once; expose each line via a thin wrapper.
 | **2.3** | `dapp_beta` | `fulfill_subscriptions.html`: list PENDING obligations, pick one, scan/enter N QR codes (reuse `report_sales.html` + `edgar_payload_helper.js`), enter tracking#, submit once → loop N `[SALES EVENT]`s (Sold by=Kirsten, Cash proceeds=Gary, tag invoice id) → mark FULFILLED. | ☐ |
 | **2.4** | GAS (sales parser) | Accept subscription invoice/`sub_` ids (or read a dedicated attr) so renewal-sourced `[SALES EVENT]`s reconcile without the `cs_` guard tripping. | ☐ |
 | **2.5** | `dapp_beta` (stretch) | Low-stock alert on the queue: warn when generic-pool stock < upcoming obligations (supply-buffer second-order effect). | ☐ |
+
+> ## 🛑 STOP — operator test gate (end of Phase 2)
+> After **PR2.4** (green CI + OTRs), **Sophia STOPS.** **Operator:** run the FULL
+> loop locally — local `sentiment_importer` + Stripe CLI
+> `stripe trigger invoice.payment_succeeded` → a PENDING fulfillment-queue row →
+> `fulfill_subscriptions.html` batch-scan → N per-bar `[SALES EVENT]`s → FULFILLED.
+> On sign-off: promote, **then activate Linda** (Activation gate now satisfied).
+> Phase 3 is independent and can follow later.
 
 ### Phase 3 — RSA accounts + cross-browser portability
 
