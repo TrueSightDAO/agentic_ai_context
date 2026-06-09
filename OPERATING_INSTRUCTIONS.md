@@ -216,7 +216,78 @@ When you add this setup to a new repo, update this table.
 
 ---
 
-## 10. dao-client version audit rule
+## 10. Headless browser integration tests
+
+For frontend repos (oracle, capoeira, dapp_beta, butterfly-effect-club, etc.), unit tests alone cannot catch runtime errors that only surface when the page actually loads in a browser — e.g. a CDN script that throws in its constructor, a missing DOM element, or a CSP violation.
+
+### Methodology
+
+Use **Puppeteer** (Chrome headless) via vitest to load the actual HTML pages and observe the developer console:
+
+```typescript
+// test/integration.test.ts
+import puppeteer from 'puppeteer';
+
+const browser = await puppeteer.launch({
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+});
+const page = await browser.newPage();
+
+// Collect console errors
+page.on('console', (msg) => {
+  if (msg.type() === 'error') errors.push(msg.text());
+});
+
+// Load the page
+await page.goto('file:///path/to/index.html', { waitUntil: 'networkidle0' });
+await new Promise(r => setTimeout(r, 2000));  // let async scripts settle
+
+// Assert no errors
+expect(errors.length).toBe(0);
+```
+
+### Key checks
+
+1. **No DaoClient constructor crash** — look for `generateKeyPairSync`, `Use generateKeyPair`, `DaoClient` in error messages
+2. **No uncaught errors** — look for `Uncaught`, `TypeError`, `ReferenceError`
+3. **No failed network requests** — CDN scripts should load successfully
+4. **Page renders expected content** — check `document.title` and `document.body.innerText`
+
+### Running
+
+Gate integration tests behind an env var so they don't slow down normal `npm test`:
+
+```bash
+# Normal unit tests (fast)
+npm test
+
+# With integration tests (slow — launches browser)
+VITEST_INTEGRATION=true npm test
+```
+
+In `vitest.config.ts`, set `environment: 'happy-dom'` for unit tests. The integration test file imports puppeteer dynamically only when `VITEST_INTEGRATION` is set.
+
+### Prerequisites
+
+Puppeteer must be installed as a dev dependency:
+
+```bash
+npm install --save-dev puppeteer
+```
+
+Puppeteer downloads its own Chromium (~300MB) on first install. On the autopilot box, it's cached at `~/.cache/puppeteer/`.
+
+### When to add integration tests
+
+- When changing a CDN script URL (e.g. dao-client version bump)
+- When adding a new external dependency loaded at page load
+- When fixing a runtime error that only reproduces in a browser
+- Before deploying to production
+
+---
+
+## 11. dao-client version audit rule
 
 **Whenever a new version of `@truesight_dao/dao-client` is published to npm, ALL repos that reference it must be bumped in the same session, before the session ends.**
 
