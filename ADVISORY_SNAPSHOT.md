@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-09T10:08:44Z`
+- Generated (UTC): `2026-06-09T15:38:34Z`
 - Look-back: **7** calendar days (`2026-06-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,22 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[EMAIL REGISTERED EVENT]` × 13
-- `[EMAIL VERIFICATION EVENT]` × 5
-- `[PRACTICE EVENT]` × 4
+- `[CONTRIBUTION EVENT]` × 16
+- `[EMAIL REGISTERED EVENT]` × 15
+- `[PRACTICE EVENT]` × 7
+- `[EMAIL VERIFICATION EVENT]` × 4
 - `[TEST EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260608222558_057` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:25:58.719Z · Email: garyjob@agroverse.shop
-- `Edgar_20260608222626_059` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:26:26.312Z · Email: garyjob@agroverse.shop
-- `Edgar_20260608222641_061` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:26:41.285Z · Email: garyjob@agroverse.shop
-- `Edgar_20260608222646_063` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-08T22:26:46.390Z · Email: garyjob@agroverse.shop · Verification Key: Iu6g_4AqnYY-gdrTsUtwEhGE_RS3eCctV1ZZyECmxQ4
-- `Edgar_20260608222705_065` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:27:05.522Z · Email: garyjob@agroverse.shop
-- `Edgar_20260608222720_067` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:27:20.618Z · Email: garyjob@agroverse.shop
-- `Edgar_20260608222725_069` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-08T22:27:25.558Z · Email: garyjob@agroverse.shop · Verification Key: Iu6g_4AqnYY-gdrTsUtwEhGE_RS3eCctV1ZZyECmxQ4
-- `Edgar_20260608222757_071` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:27:57.190Z · Email: garyjob@agroverse.shop
 - `Edgar_20260608222812_073` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:28:12.165Z · Email: garyjob@agroverse.shop
 - `Edgar_20260608222816_075` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-08T22:28:16.541Z · Email: garyjob@agroverse.shop · Verification Key: Iu6g_4AqnYY-gdrTsUtwEhGE_RS3eCctV1ZZyECmxQ4
 - `Edgar_20260608222841_077` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-08T22:28:41.755Z · Email: garyjob@agroverse.shop
@@ -60,6 +52,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260609000241_091` · **Edgar** · [PRACTICE EVENT] Program: capoeira-tribo-mirim · Practice Type: training-session · Practitioner Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9ldqZG+FCoZQds2Y11G…
 - `Edgar_20260609010256_093` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_client: Add comprehensive API documentation to the @truesigh…
 - `Edgar_20260609012818_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Fix DaoClient constructor crash on fresh install —…
+- `Edgar_20260609134907_097` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T13:49:07.847Z · Email: garyjob@truesight.me
+- `Edgar_20260609135938_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T13:59:38.892Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260609135939_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T13:59:38.947Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260609141149_103` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T14:11:49.687Z · Email: garyjob@gmail.com
+- `Edgar_20260609141408_105` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T14:14:08.222Z · Email: garyjob@gmail.com
+- `Edgar_20260609141745_107` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T14:17:45.405Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260609141746_109` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-09T14:17:45.569Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260609141950_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] oracle: The oracle's index.html is missing the `arrayBufferToBas…
 
 ---
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-08T10:59:15.550Z`
+- Generated (UTC): `2026-06-09T10:59:14.833Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -102,12 +102,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **197**, follow_up **70**, bulk **0**, unknown **2** (data rows: **269**)
+- **Email Agent Follow Up** — logged sends: warmup **209**, follow_up **70**, bulk **0**, unknown **2** (data rows: **281**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **86**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **70** stores — sum logged **warmup** sends (AU): **151**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **6** / **61**; follow-up depth (none / once / ≥2): **70** / **0** / **0**
+- **AI: Warm up prospect**: **70** stores — sum logged **warmup** sends (AU): **163**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **4** / **63**; follow-up depth (none / once / ≥2): **70** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -316,6 +316,7 @@ _All dated lines on/after 2026-06-02_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d8e2111 | 2026-06-09 10:10:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4c16606 | 2026-06-09 04:48:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e16db2 | 2026-06-08 20:41:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1eb4edf | 2026-06-08 16:37:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -355,7 +356,6 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 7a299b2 | 2026-06-04 15:02:42 -0700 | Landing page: link to Security Dashboard (Resources dropdown + footer) (#174)
 9cd66e4 | 2026-06-04 14:34:28 -0700 | Merge pull request #173 from TrueSightDAO/feat/programs-lineage-cta
 7a9e025 | 2026-06-04 14:34:11 -0700 | Add Lineage bridge CTAs to programs.html
-6769379 | 2026-06-04 14:11:52 -0700 | Security dashboard: make GitHub repo names link to the repo URL (#172)
 … (truncated)
 ```
 
@@ -368,6 +368,17 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d0bc88e | 2026-06-09 07:28:21 -0700 | Add Engineering Self-Assessment PDF
+ad7c1cd | 2026-06-09 07:26:53 -0700 | Add Sophia engineering self-assessment PDF
+e3baad9 | 2026-06-09 07:21:18 -0700 | docs: add E2E registration test methodology + base64ToArrayBuffer bug postmortem (#385)
+7291b8d | 2026-06-09 07:21:12 -0700 | docs: add bug screenshot — base64ToArrayBuffer ReferenceError in oracle verification
+2830c60 | 2026-06-09 06:54:30 -0700 | docs: add headless browser integration test methodology for frontend repos (#384)
+40c69a8 | 2026-06-09 06:50:30 -0700 | docs: add dao-client version audit rule — bump all repos when publishing (#383)
+8c78f72 | 2026-06-09 06:27:15 -0700 | docs: add rule — test HTML/JS changes locally before merging PR (#382)
+e6d51e6 | 2026-06-09 06:21:36 -0700 | plan: oracle credentials link fix + JSDom sandbox testing roadmap (#381)
+8a300fb | 2026-06-09 06:17:36 -0700 | docs: add rule — bump dao-client package.json before merging any code change (#380)
+ab71c95 | 2026-06-09 03:08:58 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
+5cbb3b6 | 2026-06-09 03:08:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 e6db09a | 2026-06-08 21:45:39 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
 3a2570d | 2026-06-08 21:45:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 5ffc453 | 2026-06-08 20:44:17 -0700 | Merge pull request #379 from TrueSightDAO/auto/advisory-refresh-2026-06-09
@@ -397,17 +408,6 @@ f710cd1 | 2026-06-08 09:56:57 -0700 | Convention: require agent attribution (Gen
 4934e42 | 2026-06-08 04:25:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
 fd0dda3 | 2026-06-07 22:12:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-08 UTC)
 ad5e9aa | 2026-06-07 22:12:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
-df947a1 | 2026-06-07 21:37:22 -0700 | feat: handoff manifest + pull-first protocol for all LLMs (#358)
-96f7b62 | 2026-06-07 21:13:41 -0700 | Merge pull request #357 from TrueSightDAO/auto/advisory-refresh-2026-06-08
-bba3d96 | 2026-06-08 04:13:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-08 UTC)
-da2b991 | 2026-06-07 21:12:37 -0700 | SOPHIA_HANDOFFS: record resend-verification topic (thread 1504) (#356)
-7399c7b | 2026-06-07 21:10:58 -0700 | Resend verification email: implementation plan + roadmap (handoff to Sophia) (#355)
-88e8f8e | 2026-06-07 18:57:16 -0700 | Add Gary Teh credential PK mapping to CONTEXT_UPDATES (#352)
-c0e2051 | 2026-06-07 18:57:11 -0700 | Add oracle credential email-link implementation plan (#353)
-28cf7cf | 2026-06-07 15:39:53 -0700 | docs: record Gary's oracle draw source URL (lineage credentials pk-iWL9OH9hpE_D) (#350)
-2d045b8 | 2026-06-07 15:36:59 -0700 | SOPHIA_HANDOFFS: record THEOBROMA-1 topic (thread 1401, session tg:-1003919341801:1401) (#351)
-c917caa | 2026-06-07 15:35:04 -0700 | Sandbox handoff demo: THEOBROMA-1 plan + SOPHIA_HANDOFFS registry (#349)
-84997df | 2026-06-07 15:35:03 -0700 | OPEN_FOLLOWUPS: refresh Edgar->dao_protocol entry to PR8d (delete ported Rails /dao actions after soak) (#348)
 … (truncated)
 ```
 
@@ -472,6 +472,11 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
+0017b56 | 2026-06-09 07:21:25 -0700 | fix: add missing base64ToArrayBuffer helper + E2E registration test (#58)
+1729307 | 2026-06-09 07:00:13 -0700 | test: add DAO Identity UI and full casting flow integration tests (#52)
+690e0f8 | 2026-06-09 06:54:37 -0700 | test: add headless browser integration test — loads pages and checks console for errors (#51)
+9de9c02 | 2026-06-09 06:46:03 -0700 | fix: bump dao-client from 1.1.0-rc.1 to 1.1.0-rc.3 (fixes constructor crash) (#50)
+677aff7 | 2026-06-09 06:27:21 -0700 | fix: show credentials link after DAO identity verification + add JSDom test suite (#49)
 63fed34 | 2026-06-08 17:10:30 -0700 | [autopilot] PR2 — Oracle migration to @truesight_dao/dao-client high-lev (#47)
 1493693 | 2026-06-08 15:39:22 -0700 | feat: fire-and-forget daily briefing trigger after governor's reading (#46)
 f7f4575 | 2026-06-08 15:35:57 -0700 | Update dao-client CDN URL to @1.1.0-rc.1 for testing (#45)
@@ -600,7 +605,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/9/2026 2:50:52 |
+| 2026-06 | 222.41 | 15199.52386 | 6/9/2026 7:50:27 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-02`; scanned last **498** data rows)
 
