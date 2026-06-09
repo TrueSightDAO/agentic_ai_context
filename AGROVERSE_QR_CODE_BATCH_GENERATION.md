@@ -4,6 +4,22 @@ Read this when the operator asks to **create new serialized QR codes** on the **
 
 ---
 
+## 0. GTIN vs QR — what identifies what (read first)
+
+**The retail GTIN (barcode) identifies the product TYPE, not the unit or the vintage.**
+
+- **All chocolate bars share ONE chocolate-bar GTIN; all ceremonial cacao share ONE cacao GTIN.** A new farm or vintage does **not** get a new GTIN.
+- The **serialized QR code** on each individual unit is what differentiates the specific **farm + vintage**, and resolves its provenance / ledger entry. **Provenance is always via the QR, never the GTIN.**
+
+**Consequences (don't get these wrong):**
+1. A **generic, vintage-independent SKU** is the natural representation of the product and **reuses the existing shared GTIN** — never mint a new GTIN per vintage.
+2. The per-vintage **product pages on agroverse.shop are presentation sub-views** that all share that one GTIN (so Merchant Center may report duplicate GTINs across them — expected, not a bug to "fix" by inventing GTINs).
+3. When recording sales/inventory, the **QR code is the unit identity** (see the serialized-QR sales pattern in `notes/claude_serialized_qr_sales_*.md`); the GTIN never identifies a unit.
+
+Full rationale + the subscription use case: `CHOCOLATE_SUBSCRIPTION_PLAN.md` (Decisions → *GTIN model*).
+
+---
+
 ## 1. Naming (column **A** — `qr_code`)
 
 - **Payload:** Edgar check URL is `https://edgar.truesight.me/agroverse/qr-code-check?qr_code=` + **column A**. Keep **A** **short** (dense codes are harder on cheap label printers). Local compiler warns above ~28 characters (`MAX_RECOMMENDED_QR_LENGTH` in `tokenomics/python_scripts/agroverse_qr_code_generator/batch_compiler.py`).
