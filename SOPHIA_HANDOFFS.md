@@ -135,6 +135,7 @@ replying in that topic with a short go-signal — **"go for it"**, "go",
 
 | Date | Handoff | Plan file | Topic | thread_id | session_id (to rejoin) | Status |
 |------|---------|-----------|-------|-----------|------------------------|--------|
+| 2026-06-09 | Beta Sandbox Endpoint (beta.edgar.truesight.me; standalone NELANCO EC2 + beta dao_protocol in Stripe TEST) | `BETA_SANDBOX_ENDPOINT_PLAN.md` | [topic](https://t.me/c/3919341801/1955) | 1955 | `tg:-1003919341801:1955` | **active — Sophia parked GO-ready**; on GO executes from Unit 1, STOPS at operator gates (launch approval / prod deploy / Stripe dashboard); Unit 8 = mandatory AWS_DIGITAL_INFRASTRUCTURE.md update |
 | 2026-06-09 | Agroverse Chocolate Subscriptions — Phase 1 (finalized plan w/ STOP gates) | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | [topic](https://t.me/c/3919341801/1939) | 1939 | `tg:-1003919341801:1939` | **active — Sophia parked GO-ready**; on GO executes Phase 1 PR1.1–1.6, then STOPS at the operator test gate for Gary's local test-mode pass |
 | 2026-06-09 | ~~Agroverse Chocolate Subscriptions (initial handoff)~~ | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | [topic](https://t.me/c/3919341801/1924) | 1924 | `tg:-1003919341801:1924` | **SUPERSEDED by 1939** (kickoff predated the STOP-gate finalization) |
 | 2026-06-08 | DAO client adoption audit (oracle + capoeira use lib, not hand-rolled) | `DAO_CLIENT_ADOPTION_AUDIT_PLAN.md` | [topic](https://t.me/c/3919341801/1776) | 1776 | `tg:-1003919341801:1776` | active (Sophia parked PR1, GO-ready) |
