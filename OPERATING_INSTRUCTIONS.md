@@ -216,7 +216,62 @@ When you add this setup to a new repo, update this table.
 
 ---
 
-## 10. Headless browser integration tests
+## 10. End-to-end registration + verification tests
+
+For frontend repos that use dao-client's email registration flow (oracle, capoeira, dapp_beta), a lightweight integration test that just loads the page is NOT enough — real bugs only surface when you actually submit a registration and follow the verification link.
+
+### The `base64ToArrayBuffer` bug (postmortem)
+
+The oracle's DAO Identity verification handler called `base64ToArrayBuffer(priv)` and `arrayBufferToBase64(sig)` as bare global functions, but neither was defined in the page. These functions exist as static methods on `DaoClient` (`DaoClient.base64ToArrayBuffer()` and `DaoClient.arrayBufferToBase64()`), but the verification handler code was copied from `create_signature.html` which defines them as standalone helpers.
+
+**How it was caught:** A governor clicked the email verification link and saw `Can't find variable: base64ToArrayBuffer` in the browser console. The lightweight integration test (which only loaded the page and checked for console errors) did NOT catch this because the verification handler only runs when the user navigates to the `?em=...&vk=...` URL.
+
+**Lesson:** Integration tests must simulate the FULL flow — registration → email → verification link click — to catch runtime errors in the verification handler.
+
+### E2E test methodology
+
+The E2E test (`test/e2e-registration.test.ts`) uses Puppeteer to:
+
+1. **Load the page** — check for console errors on initial load
+2. **Click "Link to DAO Identity"** — reveal the email form
+3. **Fill in the email** — `admin+sophia@truesight.me` (the autopilot's own email)
+4. **Submit registration** — verify the pending state appears
+5. **Wait for verification email** — poll the admin Gmail inbox (or accept URL via `VITEST_VERIFICATION_URL`)
+6. **Navigate to verification link** — in the SAME browser session (keypair is in localStorage)
+7. **Confirm verified state** — check the UI shows "Verified"
+8. **Check for errors** — no `ReferenceError`, `TypeError`, or `base64ToArrayBuffer` errors
+
+### Running
+
+```bash
+# Unit tests (fast)
+npm test
+
+# Integration tests (headless browser, no email)
+VITEST_INTEGRATION=true npm test
+
+# End-to-end test (full flow with email)
+VITEST_E2E=true npx vitest run test/e2e-registration.test.ts
+```
+
+### Email polling
+
+The E2E test can accept the verification URL via the `VITEST_VERIFICATION_URL` environment variable. This allows the autopilot to search Gmail using its built-in `gmail_search` tool and pass the URL to the test:
+
+```bash
+VITEST_VERIFICATION_URL="https://oracle.truesight.me/?em=...&vk=..." VITEST_E2E=true npx vitest run
+```
+
+### When to run E2E tests
+
+- After any change to the DAO Identity / email registration flow
+- After bumping dao-client version
+- Before deploying to production
+- Weekly as a CI cron job
+
+---
+
+## 11. Headless browser integration tests
 
 For frontend repos (oracle, capoeira, dapp_beta, butterfly-effect-club, etc.), unit tests alone cannot catch runtime errors that only surface when the page actually loads in a browser — e.g. a CDN script that throws in its constructor, a missing DOM element, or a CSP violation.
 
