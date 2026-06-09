@@ -12,7 +12,7 @@ Sophia updates this file when she starts, resumes, or completes a handoff.
 
 | Plan file | Handoff title | Handoff date | Status | Resume tracker state | Last manifest update |
 |-----------|---------------|--------------|--------|---------------------|---------------------|
-| `CHOCOLATE_SUBSCRIPTION_PLAN.md` | Agroverse Chocolate Subscriptions | 2026-06-09 | blocked | Parked at RESUME HERE (Phase 1 PR1.1); awaiting governor "go for it" | 2026-06-09 |
+| `CHOCOLATE_SUBSCRIPTION_PLAN.md` | Agroverse Chocolate Subscriptions — Phase 1 | 2026-06-09 | blocked | Parked GO-ready in **thread 1939** (supersedes 1924); on GO runs Phase 1 PR1.1–1.6 then STOPS at the operator test gate for Gary | 2026-06-09 |
 | `RESEND_VERIFICATION_PLAN.md` | Resend verification email | 2026-06-08 | in progress | PR1 merged + deployed; PR2 (oracle) next | 2026-06-08 |
 | `SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md` | THEOBROMA-1 (cacao brew demo) | 2026-06-07 | demo · live | — | 2026-06-08 |
 
