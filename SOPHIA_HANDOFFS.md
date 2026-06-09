@@ -135,7 +135,8 @@ replying in that topic with a short go-signal — **"go for it"**, "go",
 
 | Date | Handoff | Plan file | Topic | thread_id | session_id (to rejoin) | Status |
 |------|---------|-----------|-------|-----------|------------------------|--------|
-| 2026-06-09 | Agroverse Chocolate Subscriptions (recurring bar subscriptions; Linda) | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | [topic](https://t.me/c/3919341801/1924) | 1924 | `tg:-1003919341801:1924` | active (Sophia parked at RESUME HERE = Phase 1 PR1.1, GO-ready) |
+| 2026-06-09 | Agroverse Chocolate Subscriptions — Phase 1 (finalized plan w/ STOP gates) | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | [topic](https://t.me/c/3919341801/1939) | 1939 | `tg:-1003919341801:1939` | **active — Sophia parked GO-ready**; on GO executes Phase 1 PR1.1–1.6, then STOPS at the operator test gate for Gary's local test-mode pass |
+| 2026-06-09 | ~~Agroverse Chocolate Subscriptions (initial handoff)~~ | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | [topic](https://t.me/c/3919341801/1924) | 1924 | `tg:-1003919341801:1924` | **SUPERSEDED by 1939** (kickoff predated the STOP-gate finalization) |
 | 2026-06-08 | DAO client adoption audit (oracle + capoeira use lib, not hand-rolled) | `DAO_CLIENT_ADOPTION_AUDIT_PLAN.md` | [topic](https://t.me/c/3919341801/1776) | 1776 | `tg:-1003919341801:1776` | active (Sophia parked PR1, GO-ready) |
 | 2026-06-08 | Morning Oracle Standup (draw → daily briefing in #General) | `MORNING_ORACLE_STANDUP_PLAN.md` | [topic](https://t.me/c/3919341801/1722) | 1722 | `tg:-1003919341801:1722` | active (Sophia parked PR1, GO-ready) |
 | 2026-06-08 | DAO client integration fixes (consolidated: oracle + capoeira) | `DAO_CLIENT_INTEGRATION_FIXES.md` | [topic](https://t.me/c/3919341801/1695) | 1695 | `tg:-1003919341801:1695` | active (Sophia parked, GO-ready; supersedes thread 3) |
