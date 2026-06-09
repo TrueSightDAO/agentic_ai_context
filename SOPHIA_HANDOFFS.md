@@ -3,6 +3,8 @@
 Index of execution handoffs from a local LLM to **Sophia** (the autopilot).
 
 > 🗺️ **New here? Read [`HANDOFF_PROTOCOL_OVERVIEW.md`](HANDOFF_PROTOCOL_OVERVIEW.md)** for the big-picture map (actors, interfaces, mermaid flow diagrams, and the three human touchpoints). This file is the operational registry + conventions.
+>
+> 🔐 **Handing a secret (API key / token / webhook secret) to a box Sophia owns?** Follow [`CREDENTIAL_HANDOFF_PROTOCOL.md`](CREDENTIAL_HANDOFF_PROTOCOL.md): never put it in chat/Telegram/PRs — stage it on the autopilot box under `/home/ubuntu/` (`chmod 600`, value via stdin, outside the git repo), then hand off to Sophia (she holds the target-box keys) to propagate. The autopilot box is the credential-staging hub.
 **Each handoff opens its own Telegram topic** in `TrueSight DAO Ops`
 (`-1003919341801`). This file is the durable, LLM-readable record so a future
 local session can find, reference, and **rejoin** any handoff conversation.
