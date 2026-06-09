@@ -135,5 +135,21 @@ in the PR body; **opens PRs, never merges/promotes**; STOPS at the 🛑 gates.
 
 ---
 
+## Downstream dependency & on-completion
+
+This sandbox is the **prerequisite for full E2E testing of `CHOCOLATE_SUBSCRIPTION_PLAN.md`**
+(Gary's sequencing, 2026-06-09): **do 1955 first, then test 1939 end-to-end against
+it.** 1939 **Phase 1** (subscribe → Stripe test checkout, already merged to beta)
+is testable with just the GAS test key and does **not** need this box; 1939
+**Phase 2** (webhook → fulfillment queue) is built and tested **against this
+sandbox**.
+
+**On completion (after Unit 9):** Sophia reports in the handoff topic that
+`beta.edgar.truesight.me` is live in Stripe TEST mode, so Gary can run the 1939
+full E2E. Then 1939 Phase 2 proceeds (its PR2.2 webhook targets dao_protocol per
+Unit 10).
+
+---
+
 *Plan owner: this doc. Update the resume tracker as each unit lands; report the DAO
 contribution before starting the next.*
