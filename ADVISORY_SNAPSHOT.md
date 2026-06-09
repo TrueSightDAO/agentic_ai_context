@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-09T04:45:27Z`
+- Generated (UTC): `2026-06-09T10:08:44Z`
 - Look-back: **7** calendar days (`2026-06-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -316,6 +316,7 @@ _All dated lines on/after 2026-06-02_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4c16606 | 2026-06-09 04:48:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e16db2 | 2026-06-08 20:41:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1eb4edf | 2026-06-08 16:37:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e7fbcbf | 2026-06-08 11:28:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -355,7 +356,6 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 9cd66e4 | 2026-06-04 14:34:28 -0700 | Merge pull request #173 from TrueSightDAO/feat/programs-lineage-cta
 7a9e025 | 2026-06-04 14:34:11 -0700 | Add Lineage bridge CTAs to programs.html
 6769379 | 2026-06-04 14:11:52 -0700 | Security dashboard: make GitHub repo names link to the repo URL (#172)
-f0b3a64 | 2026-06-04 14:10:49 -0700 | Merge pull request #171 from TrueSightDAO/feat/lineage-register-url-sync
 … (truncated)
 ```
 
@@ -368,6 +368,8 @@ f0b3a64 | 2026-06-04 14:10:49 -0700 | Merge pull request #171 from TrueSightDAO/
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e6db09a | 2026-06-08 21:45:39 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
+3a2570d | 2026-06-08 21:45:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 5ffc453 | 2026-06-08 20:44:17 -0700 | Merge pull request #379 from TrueSightDAO/auto/advisory-refresh-2026-06-09
 a907a08 | 2026-06-09 03:44:08 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 4f1b1a0 | 2026-06-08 16:07:58 -0700 | SOPHIA_HANDOFFS: record DAO client adoption audit topic (thread 1776) (#377)
@@ -406,8 +408,6 @@ c0e2051 | 2026-06-07 18:57:11 -0700 | Add oracle credential email-link implement
 2d045b8 | 2026-06-07 15:36:59 -0700 | SOPHIA_HANDOFFS: record THEOBROMA-1 topic (thread 1401, session tg:-1003919341801:1401) (#351)
 c917caa | 2026-06-07 15:35:04 -0700 | Sandbox handoff demo: THEOBROMA-1 plan + SOPHIA_HANDOFFS registry (#349)
 84997df | 2026-06-07 15:35:03 -0700 | OPEN_FOLLOWUPS: refresh Edgar->dao_protocol entry to PR8d (delete ported Rails /dao actions after soak) (#348)
-50dd1c8 | 2026-06-07 15:31:51 -0700 | plan(edgar-dao): PR8a RAMPED LIVE; only PR8d (delete after soak) remains (#347)
-89bb5ea | 2026-06-07 15:29:12 -0700 | AWS infra §4.3: Sophia Telegram identifiers (Ops group -1003919341801, bot) + execution-handoff path (#346)
 … (truncated)
 ```
 
@@ -451,6 +451,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+5ce8b7a | 2026-06-09 10:04:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b082748 | 2026-06-08 11:30:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 d4be99b | 2026-06-08 11:22:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e5206f4 | 2026-06-07 09:41:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -599,7 +600,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/8/2026 20:50:31 |
+| 2026-06 | 222.41 | 15199.52386 | 6/9/2026 2:50:52 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-02`; scanned last **498** data rows)
 
