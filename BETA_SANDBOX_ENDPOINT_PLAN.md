@@ -111,7 +111,7 @@ in the PR body; **opens PRs, never merges/promotes**; STOPS at the 🛑 gates.
 | **6 🛑** | **Prod Rails delegation** — extend `sentiment_importer` `/stripe_webhook` to delegate sub `invoice.paid` to (prod) dao_protocol (PR6b pattern). **Gate:** operator deploys (touches prod Edgar). | `sentiment_importer` | ☐ |
 | **7 🛑** | **Stripe TEST webhook** — register `https://beta.edgar.truesight.me/stripe_webhook` in Stripe **test** mode; store signing secret on the box. **Gate:** Stripe-dashboard step (operator), or Sophia via Stripe API if test key provisioned. | Stripe | ☐ |
 | **8** | **Update `AWS_DIGITAL_INFRASTRUCTURE.md`** — add the box to the fleet inventory: instance id, EIP, region/account (`767697632458`/`us-east-1`), role (dao-protocol-beta / sandbox), systemd unit, subdomain, SG id, creds reference (`AWS_*_NELANCO`). **Mandatory — do not skip.** | `agentic_ai_context` | ☐ |
-| **9** | **Headless E2E test (Sophia-runnable)** — script: create test customer + `pm_card_visa` + subscription via Stripe **test API** → Stripe delivers `invoice.paid` to the beta endpoint → assert the SANDBOX queue row. Document as the canonical Sophia E2E. | `dao_protocol` | ☐ |
+| **9** | **Headless E2E test (Sophia-runnable)** — script: create test customer + `pm_card_visa` + subscription via Stripe **test API** → Stripe delivers `invoice.paid` to the beta endpoint → assert the SANDBOX queue row. Document as the canonical Sophia E2E. | `dao_protocol` | ⧗ PRs #95, #96 |
 | **10** | **Update `CHOCOLATE_SUBSCRIPTION_PLAN.md` Phase 2** — point PR2.2 webhook at dao_protocol (beta-tested here); note prod Rails delegation. | `agentic_ai_context` | ☐ |
 
 > **🛑 STOP gates summary:** Unit 1 (approve billable launch), Unit 6 (prod Edgar
