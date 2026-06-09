@@ -70,6 +70,24 @@ truesight-dao-ping-sophia \
   --message "Post in thread <thread_id>: where are we on <plan>? Summarize progress + blockers."
 ```
 
+## Thread management — Sophia's two moves (truesight_autopilot#135)
+
+Sophia has two topic tools, so she can structure work across threads:
+
+- **`create_telegram_topic`** — open a NEW topic (+ optional kickoff). Use for a
+  new handoff, or to **shard a sub-scope into its own thread**: open a topic, post
+  a kickoff that names the plan file + the *specific* units/scope, and cross-link
+  it from the parent. ⚠️ Each topic = a **separate autopilot session**, so the new
+  thread's kickoff MUST carry its scope (plan + units) — a fresh session has no
+  memory of the parent thread.
+- **`post_to_telegram_topic`** — post into an EXISTING topic by `message_thread_id`.
+  Use to **rejoin** a parked handoff, **report cross-thread** ("sandbox is ready,
+  you can test"), or cross-link a sharded sub-thread back to its parent — without
+  spawning a duplicate topic.
+
+So the prior "always create a new topic" churn (1924→1939) is no longer forced:
+prefer reusing the existing handoff thread via `post_to_telegram_topic`.
+
 ## Handoff runbook — for ANY local LLM (Claude, Cursor, Kimi, Codex, …)
 
 The process is **agent-agnostic** — any local LLM on the governor's machine
@@ -91,11 +109,13 @@ posted** — so the governor finds her ready, not a cold thread. The ping MUST
 instruct Sophia to:
 
 1. **Refresh** — read the plan via `read_repo_file` (GitHub `main`).
-2. **Sophia creates the topic** — with `create_telegram_topic`, named
-   `<short title>`, and reports its `message_thread_id`. ⚠️ Sophia can ONLY post
-   into topics **she creates** — there is **no post-to-existing-thread tool yet**
-   — so do NOT hand off to a pre-existing thread (e.g. General/thread 3); let her
-   create the topic and tell you which one to open.
+2. **Sophia opens (or reuses) the topic.** New handoff → `create_telegram_topic`
+   (named `<short title>`), report its `message_thread_id`. **Existing thread**
+   (rejoin / cross-link / report into a parked handoff) → **`post_to_telegram_topic`**
+   (truesight_autopilot#135, 2026-06-09) — Sophia CAN now post into a thread she
+   didn't create (the Bot API + adapter `send_message` always supported
+   `message_thread_id`; it was just an unexposed tool). So the old "can only post
+   into topics she creates" limitation is **retired**.
 3. **Post the kickoff + context INTO the topic** (not just the HTTP reply):
    confirm she read the plan, restate RESUME HERE + the gates, state she's
    ready/parked, and **end with the GO prompt**:
