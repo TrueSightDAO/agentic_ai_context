@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Chocolate subscriptions: run the full E2E test once the beta sandbox is up
+**Sequencing (Gary, 2026-06-09):** do **1955** (`BETA_SANDBOX_ENDPOINT_PLAN.md` —
+`beta.edgar.truesight.me` sandbox in Stripe TEST) **first**, *then* test the
+**1939** (`CHOCOLATE_SUBSCRIPTION_PLAN.md`) subscription **end-to-end against it**.
+When 1955 lands (Sophia reports the sandbox live), Gary runs the full E2E
+(subscribe → test charge → webhook → SANDBOX fulfillment queue); 1939 **Phase 2**
+(webhook → queue) is built/tested against the sandbox (its PR2.2 targets
+dao_protocol). 1939 **Phase 1** (subscribe → checkout, already merged to beta) is
+testable now with just the GAS test key — it does NOT need the sandbox. Handoff
+topics: 1955 = `tg:-1003919341801:1955`, 1939 = `tg:-1003919341801:1939`.
+
 ### Rotate the npm publish token (NPM_TOKEN) before ~2026-09-06
 
 **Context.** `@truesight_dao/dao-client` is published to npm via CI (`dao_protocol/.github/workflows/npm-publish-dao-client.yml`) using the **`NPM_TOKEN`** GitHub Actions secret on `TrueSightDAO/dao_protocol`. The token is an Automation/granular-write token for npm account **`sophia_truesight`** (owner of the `truesight_dao` org), created 2026-06-08 with a **90-day expiry (~2026-09-06)**. When it expires, the publish workflow fails with 401.
