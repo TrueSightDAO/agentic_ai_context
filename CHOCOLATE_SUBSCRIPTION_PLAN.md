@@ -382,6 +382,39 @@ once; expose each line via a thin wrapper.
 
 ---
 
+## UAT phase (human acceptance testing — beta staging)
+
+The operator (Gary) validates the real end-to-end experience on the **beta**
+stack in **Stripe TEST mode** — never prod, never a real card. See `GLOSSARY.md`
+(UAT). Run this after the relevant phase's 🛑 operator gate.
+
+**Pre-conditions (confirm in thread 1955 before paying):**
+- The Stripe checkout page shows a **"TEST MODE"** banner. If it doesn't, **STOP**
+  — beta isn't pinned to test and a real card could be charged.
+- Whether the **SANDBOX fulfillment queue** is a real sheet or still the
+  stdout-placeholder (sets expectations for the back-end checks below).
+- Use Stripe test card **`4242 4242 4242 4242`**, any future expiry / any CVC / any ZIP.
+
+| # | Surface / URL | What to expect | Interaction / eyeball | Acceptance |
+|---|---------------|----------------|-----------------------|------------|
+| U1 | `beta.agroverse.shop/subscribe/chocolate-bar/` | Subscribe page renders | Generic bar **name, price, image**; quantity **presets 3/6/12 + stepper**; address form | Renders correctly; no console/load errors |
+| U2 | same page | — | Pick a quantity, fill the address, click **Subscribe** | Redirects to a Stripe-hosted checkout |
+| U3 | `checkout.stripe.com` (hosted) | **TEST MODE** checkout | Eyeball: **monthly recurring**, correct **qty × unit price**, a **shipping line**; pay with `4242…` | Amounts/cadence/shipping correct; payment succeeds |
+| U4 | success redirect | back on the shop | Eyeball the confirmation | Clean success return |
+| U5 | back-end (ask Sophia in 1955 / SANDBOX sheet) | first charge recorded | Confirm **one** SANDBOX fulfillment obligation created | Exactly one obligation; correct subscriber/addr/qty/invoice id |
+| U6 | back-end (Sophia fires `stripe trigger invoice.payment_succeeded`) | renewal handled | Confirm a **new** SANDBOX obligation for the renewal | Exactly one new obligation, no duplicate |
+| U7 | Stripe **test** customer portal | self-serve manage | Cancel the subscription | No new obligations next cycle; cancel reflected |
+
+**Acceptance = all of U1–U7 pass:** price/qty/recurring/shipping correct, each
+billing cycle creates exactly one fulfillment obligation, and cancel stops it.
+Report pass/fail in thread 1955.
+
+> **Scope note:** U1–U4 exercise **Phase 1** (subscribe → test checkout) and need
+> only the test-mode GAS. U5–U7 exercise **Phase 2** (webhook → fulfillment queue)
+> and run against the **beta sandbox** (`beta.edgar.truesight.me`, `BETA_SANDBOX_ENDPOINT_PLAN.md`).
+
+---
+
 ## Risks / open items
 
 - **Supply buffer.** Subscriptions create a recurring inventory commitment; the

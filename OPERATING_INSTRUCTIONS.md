@@ -90,6 +90,7 @@ A compliant roadmap includes:
 - A **pre-flight checklist** — access, credentials, prerequisites, and decisions to confirm *before* coding.
 - A **sequenced plan** — the ordered units of work (e.g. `PR0…PRn`), each independently shippable.
 - A **resume tracker** — a status row per unit (e.g. `merged ☐` / `contribution reported ☐`) plus a prominent **"RESUME HERE"** pointer to the first unfinished step.
+- A **UAT phase** (User Acceptance Testing — see `GLOSSARY.md`) — the **human-tested** steps to validate the end-to-end experience before go-live, on the **beta staging** stack (never prod, never real money). Each UAT step states: the **digital surface / URL** to open, **what to expect** there, the **user interaction** to perform (click/scan/pay with a test card, etc.) and **what to eyeball**, and the **acceptance criterion** (pass/fail). This is for anything with a human-facing surface (a page, a checkout, a scan flow); a pure backend/library change can say "UAT: n/a (covered by automated tests)".
 
 Keep the roadmap **tracked and current**: update the resume tracker as each unit lands. Per the contribution convention, after each unit merges, **report the DAO contribution before starting the next** (see `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`).
 
