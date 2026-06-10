@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-10T04:57:21Z`
+- Generated (UTC): `2026-06-10T10:40:49Z`
 - Look-back: **7** calendar days (`2026-06-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -316,6 +316,7 @@ _All dated lines on/after 2026-06-03_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8a70773 | 2026-06-10 05:03:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5a2ca3c | 2026-06-09 20:31:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 572cb66 | 2026-06-09 15:42:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d8e2111 | 2026-06-09 10:10:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -355,7 +356,6 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 76f6b98 | 2026-06-04 17:01:19 -0700 | fix: ensure pill and h3 are on separate lines in initiative cards (#177)
 66e4787 | 2026-06-04 16:27:05 -0700 | Security dashboard: add Hosting column to web table (GitHub Pages / EC2 / CloudFront) (#176)
 853f3a2 | 2026-06-04 15:54:32 -0700 | Landing hero: add Security Dashboard button (prominent nav) (#175)
-7a299b2 | 2026-06-04 15:02:42 -0700 | Landing page: link to Security Dashboard (Resources dropdown + footer) (#174)
 … (truncated)
 ```
 
@@ -368,6 +368,10 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5e59406 | 2026-06-09 23:16:39 -0700 | docs: one-pager for Bilal/ERA Butterfly Effect Club
+284640c | 2026-06-09 23:05:19 -0700 | Add Mermaid architecture diagrams to AWS_DIGITAL_INFRASTRUCTURE.md (#412)
+3392c29 | 2026-06-09 21:57:38 -0700 | chore(previews): refresh Beer Hall preview (2026-06-10 UTC)
+cf31eeb | 2026-06-09 21:57:37 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
 734f30d | 2026-06-09 20:59:16 -0700 | Merge pull request #411 from TrueSightDAO/auto/advisory-refresh-2026-06-10
 087fc9b | 2026-06-10 03:59:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
 9aa108e | 2026-06-09 15:44:08 -0700 | followup: fix 3 deselected autopilot unit tests, then enforce full pytest in CI (#409)
@@ -404,10 +408,6 @@ e6d51e6 | 2026-06-09 06:21:36 -0700 | plan: oracle credentials link fix + JSDom 
 8a300fb | 2026-06-09 06:17:36 -0700 | docs: add rule — bump dao-client package.json before merging any code change (#380)
 ab71c95 | 2026-06-09 03:08:58 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
 5cbb3b6 | 2026-06-09 03:08:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
-e6db09a | 2026-06-08 21:45:39 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
-3a2570d | 2026-06-08 21:45:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
-5ffc453 | 2026-06-08 20:44:17 -0700 | Merge pull request #379 from TrueSightDAO/auto/advisory-refresh-2026-06-09
-a907a08 | 2026-06-09 03:44:08 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 … (truncated)
 ```
 
@@ -448,6 +448,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a68906a | 2026-06-10 10:35:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5ce8b7a | 2026-06-09 10:04:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b082748 | 2026-06-08 11:30:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 d4be99b | 2026-06-08 11:22:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -616,7 +617,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/9/2026 21:50:23 |
+| 2026-06 | 222.41 | 15199.52386 | 6/10/2026 2:50:55 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-03`; scanned last **499** data rows)
 
