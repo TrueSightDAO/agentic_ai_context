@@ -1,6 +1,6 @@
 # Sophia Per-Thread Concurrency — Execution Roadmap
 
-**Status as of 2026-06-10:** pre-flight (no code written yet)
+**Status as of 2026-06-10:** ✅ shipped & deployed (PR0–PR3 merged, `--workers 1` live on prod). Remaining: Gary's live multi-attachment smoke test.
 **Repo under change:** `truesight_autopilot` (Sophia)
 **Owner:** Gary Teh · **Driver:** Claude Code
 **Reference incident:** 2026-06-10 — Telegram topics *Stream of consciousness* (thread `780`) and
@@ -165,12 +165,14 @@ threads.* "Within a thread, Sophia doesn't trip over herself."
 | Unit | Code | Merged | Deployed | DAO contribution reported |
 |------|------|--------|----------|---------------------------|
 | Immediate session repair + restart | ☑ (2026-06-10) | n/a | ☑ | ☐ |
-| PR0 — Safety net | ☐ | ☐ | ☐ | ☐ |
-| PR1 — Single writer/executor (workers=1 + lock) | ☐ | ☐ | ☐ | ☐ |
-| PR2 — Adapter per-thread queue + fold-in | ☐ | ☐ | ☐ | ☐ |
-| PR3 — Per-turn completion reports | ☐ | ☐ | ☐ | ☐ |
-| PR4 — Rollout + live smoke | ☐ | — | ☐ | ☐ |
+| PR0 — Safety net | ☑ | ☑ [#138](https://github.com/TrueSightDAO/truesight_autopilot/pull/138) | ☑ | ☐ |
+| PR1 — Single writer/executor (workers=1 + lock) | ☑ | ☑ ([#139 includes the /chat lock fix]; commit `280e46d`) | ☑ | ☐ |
+| PR2 — Adapter per-thread queue + fold-in | ☑ | ☑ [#139](https://github.com/TrueSightDAO/truesight_autopilot/pull/139) | ☑ | ☐ |
+| PR3 — Per-turn completion reports | ☑ | ☑ [#140](https://github.com/TrueSightDAO/truesight_autopilot/pull/140) | ☑ | ☐ |
+| PR4 — Rollout + live smoke | ☑ deployed 2026-06-10 (targeted: `checkout main` + unit + restart, **no `git clean`**) | — | ☑ | ☐ |
 
-> Per `OPERATING_INSTRUCTIONS.md` §6: after each PR merges, report the DAO contribution
-> (`dao_client`, `--contributors "Gary Teh"`) before starting the next unit.
-> **RESUME HERE:** PR0 step 0a.
+**Deploy notes (2026-06-10):**
+- Box was on stale branch `fix/transcript-include-chat-thread-id`; moved to `origin/main` (`ea1c951`) via `git checkout -B main origin/main`. Verified `--workers 1` (1 worker proc), health ok, 12 sessions / 0 dangling, adapter polling, watchdog active.
+- ⚠️ **`deploy.sh` footgun:** it runs `git reset --hard origin/main && git clean -fd`, but `sessions/`, `context/`, `oracle/` are **NOT gitignored** → a normal `deploy.sh` run would **delete Sophia's live session transcripts**. Backed up to `/tmp/sessions_predeploy_*.tar.gz` before deploying. **Fix forward:** add `sessions/`, `context/`, `oracle/` to `.gitignore` (separate PR) so `git clean` can't nuke them.
+
+> **RESUME HERE:** (1) Gary's live smoke — fire text + 3 attachments rapidly into a scratch topic; confirm one in-flight turn, content folded in, per-turn report posted, 0 dangling. (2) Open the `.gitignore` follow-up for `sessions/`+`context/`+`oracle/`. (3) Log the consolidated DAO contribution.
