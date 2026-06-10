@@ -152,6 +152,7 @@ flowchart LR
 | Record | Type | Target | Notes |
 |--------|------|--------|-------|
 | `edgar.truesight.me` | A | `54.211.179.126` | Points to **krake_nginx** (Nelanco). Nginx proxies to `seni_ror_200250915` (Rails Edgar) on the internal network. |
+| `beta.edgar.truesight.me` | A | `54.162.175.189` | Points directly to **dao-protocol-beta** (Nelanco). Standalone beta sandbox for Stripe test-mode E2E tests. |
 | `api.truesight.me` | A | `54.226.114.186` | Also krake_nginx. |
 | `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies to `seni_ror_200250915:8000` (governor chatbot / autopilot). |
 | `sophia.truesight.me` | A | `52.200.38.206` | Points directly to **truesight-autopilot** (Explorya). |
@@ -353,6 +354,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 | krake_nginx | `krake_nginx` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | seni_ror_200250915 | `seni_ror` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | dao_protocol_nelanco | — | `GETDATA_IO_PAIR_20201122` | ubuntu |
+| dao-protocol-beta | — | `dao-protocol-beta-key` (ed25519, on autopilot) | ubuntu |
 | seni_sk_auto | `seni_sk` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | seni_sql_2026 | `seni_sql` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | seni_redis_2 | — | `GETDATA_IO_PAIR_20201122` | ubuntu |
@@ -405,6 +407,7 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 |---------|-----|
 | Edgar health | `https://edgar.truesight.me/ping` |
 | dao_protocol health | `http://98.93.94.86:8010/healthz` |
+| Beta dao_protocol health | `https://beta.edgar.truesight.me/ping` |
 | Autopilot health | `http://52.200.38.206:8000/health` |
 | Governor chatbot | `https://chatbot.truesight.me` |
 | Monit (Rails) | `http://54.211.179.126:2812/seni_ror` |
