@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-10T03:59:01Z`
+- Generated (UTC): `2026-06-10T04:57:21Z`
 - Look-back: **7** calendar days (`2026-06-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 15
+- `[EMAIL REGISTERED EVENT]` × 14
+- `[EMAIL VERIFICATION EVENT]` × 8
+- `[PRACTICE EVENT]` × 7
+
+### Latest entries
+
+- `Edgar_20260609182857_015` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:28:56.518Z · Email: garyjob@gmail.com · Verification Key: rSa7ClRlU1JbeerGqx9vWAmA-JPeoLlrgu9uQ9a9_k8
+- `Edgar_20260609184019_017` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:40:10.469Z · Email: garyjob@gmail.com
+- `Edgar_20260609184129_019` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:41:29.112Z · Email: garyjob@gmail.com
+- `Edgar_20260609184144_021` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:41:43.287Z · Email: garyjob@gmail.com · Verification Key: y_hNSt5cnxZkbKf5mkhiBCGL-8CjM0kMhmgFsvHevQg
+- `Edgar_20260609185209_023` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:52:08.800Z · Email: garyjob@gmail.com
+- `Edgar_20260609185259_025` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:52:59.409Z · Email: garyjob@gmail.com
+- `Edgar_20260609185315_027` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:53:14.993Z · Email: garyjob@gmail.com · Verification Key: ny46Y7Ekm2Fq6i8OGAGu6pHKUtwXrM5A137QymoYhpM
+- `Edgar_20260609205227_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: treasury-cache schema-v4 (gtin/hs_code): DeepSeek build + Claude deploy-veri…
+- `Edgar_20260609211507_031` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 45 · Description: PR1.1: Generic SKU + subscription schema in products.js
+- `Edgar_20260609211621_033` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR1.2: Shared subscribe engine at /subscribe/
+- `Edgar_20260609211706_035` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 15 · Description: PR1.3: Clean path wrapper /subscribe/chocolate-bar/
+- `Edgar_20260609211839_037` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR1.4: Additive GAS createSubscriptionCheckoutSession
+- `Edgar_20260609211938_039` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 45 · Description: PR1.5: Generic-bar PDP at /product-page/ceremonial-cacao-chocolate-bar/
+- `Edgar_20260609215936_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agroverse_shop_beta: Facebook Pixel leaks from beta.agroverse.sh…
+- `Edgar_20260609220231_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: ## Unit 4: Add sk_live guard to config
+- `Edgar_20260609221423_045` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 15 · Description: Fix beta analytics leakage — Facebook Pixel hostname guard
+- `Edgar_20260609233959_047` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 30 · Description: PR2.1: Subscription Fulfillment Queue sheet module
+- `Edgar_20260609234004_049` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.2: Handle invoice.paid for Agroverse subscription renewals
+- `Edgar_20260609234009_051` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.3: Fulfill Subscriptions page + dao_protocol endpoints
+- `Edgar_20260610022440_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Cory
 
 ---
 
@@ -214,13 +250,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,118.26**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.85**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -328,6 +368,8 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+734f30d | 2026-06-09 20:59:16 -0700 | Merge pull request #411 from TrueSightDAO/auto/advisory-refresh-2026-06-10
+087fc9b | 2026-06-10 03:59:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
 9aa108e | 2026-06-09 15:44:08 -0700 | followup: fix 3 deselected autopilot unit tests, then enforce full pytest in CI (#409)
 a944e72 | 2026-06-09 15:35:27 -0700 | docs(handoff): retire 'can only post to topics she creates'; document the two thread moves (#408)
 c44014a | 2026-06-09 15:28:51 -0700 | docs(protocol): credential hand-off protocol (LLM stages on autopilot box, Sophia propagates) (#406)
@@ -366,8 +408,6 @@ e6db09a | 2026-06-08 21:45:39 -0700 | chore(previews): refresh Beer Hall preview
 3a2570d | 2026-06-08 21:45:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 5ffc453 | 2026-06-08 20:44:17 -0700 | Merge pull request #379 from TrueSightDAO/auto/advisory-refresh-2026-06-09
 a907a08 | 2026-06-09 03:44:08 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
-4f1b1a0 | 2026-06-08 16:07:58 -0700 | SOPHIA_HANDOFFS: record DAO client adoption audit topic (thread 1776) (#377)
-70e87a6 | 2026-06-08 16:06:45 -0700 | DAO client adoption audit: oracle + capoeira must use library methods, not hand-rolled (#376)
 … (truncated)
 ```
 
@@ -552,6 +592,40 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/9/2026 21:50:23 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-03`; scanned last **499** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-06-09 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
