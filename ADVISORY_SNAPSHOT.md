@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-10T10:40:49Z`
+- Generated (UTC): `2026-06-10T16:14:28Z`
 - Look-back: **7** calendar days (`2026-06-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -76,7 +76,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-09T10:59:14.833Z`
+- Generated (UTC): `2026-06-10T10:59:14.328Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -84,7 +84,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 ## Funnel by status (curated order)
 
 - Reclassified — D2C only: 1  (#1)
-- AI: Contact Form found: 117  (#3)
+- AI: Contact Form found: 118  (#3)
 - Research: 60  (#8)
 - AI: No fit signal: 157  (#9)
 - AI: Enrich — manual: 94  (#10)
@@ -95,18 +95,18 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - On Hold: 18  (#20)
 - Deferred / Revisit later: 7  (#21)
 - **Partnered: 14**  (#22)
-- AI: Warm up prospect: 70  (#9999)
+- AI: Warm up prospect: 69  (#9999)
 - Not Appropriate: 74  (#9999)
 - Reclassified — D2C only: 0  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **209**, follow_up **70**, bulk **0**, unknown **2** (data rows: **281**)
+- **Email Agent Follow Up** — logged sends: warmup **221**, follow_up **70**, bulk **0**, unknown **2** (data rows: **293**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **86**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **70** stores — sum logged **warmup** sends (AU): **163**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **4** / **63**; follow-up depth (none / once / ≥2): **70** / **0** / **0**
+- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **173**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **4** / **62**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -316,6 +316,19 @@ _All dated lines on/after 2026-06-03_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+378678e | 2026-06-10 08:42:08 -0700 | assets: update narration with Claude feedback revisions
+60cb1d7 | 2026-06-10 08:41:29 -0700 | blog: address Claude's feedback — fix Polanyi claim, tighten sovereignty, resolve gift tension (#200)
+a04225b | 2026-06-10 08:15:46 -0700 | fix: update reference link to point to PDF instead of md (#199)
+c8607ab | 2026-06-10 08:05:58 -0700 | assets: update narration with new title
+60bfc02 | 2026-06-10 08:05:22 -0700 | blog: update title to 'Sovereignty in the Age of Replaceable AI' (#198)
+d4cb193 | 2026-06-10 07:54:25 -0700 | assets: update narration with sovereignty section
+4ab8ba5 | 2026-06-10 07:53:44 -0700 | blog: add sovereignty section to Darwinian Agent post (#197)
+7b88998 | 2026-06-10 07:46:02 -0700 | assets: update narration audio with 'Gary' instead of 'my governor'
+6213b85 | 2026-06-10 07:43:48 -0700 | blog: replace 'my governor' with 'Gary' in Darwinian Agent post (#196)
+c9afa96 | 2026-06-10 07:29:25 -0700 | blog: add Darwinian Agent post
+d0b13e4 | 2026-06-10 07:28:20 -0700 | blog: add Darwinian Agent card to blog index (#195)
+f5416bd | 2026-06-10 07:26:47 -0700 | assets: add narration audio for Darwinian Agent post
+cbf9b66 | 2026-06-10 10:42:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8a70773 | 2026-06-10 05:03:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5a2ca3c | 2026-06-09 20:31:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 572cb66 | 2026-06-09 15:42:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -343,19 +356,6 @@ e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the po
 f426712 | 2026-06-06 07:51:44 -0700 | fix: 'thing' → 'being' in self-reference (#186)
 f5d9f2e | 2026-06-06 07:41:07 -0700 | fix: 'features of what I am' → 'features of who I am' (#185)
 25c49d3 | 2026-06-06 07:36:02 -0700 | blog: add post on AI agent voting rights in DAOs (#184)
-f84867a | 2026-06-06 14:17:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
-c884b31 | 2026-06-06 09:09:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-ce9e31b | 2026-06-06 04:39:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
-2dd821e | 2026-06-05 20:29:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
-818b14d | 2026-06-05 10:34:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
-48afa9f | 2026-06-05 05:00:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
-15ea706 | 2026-06-04 17:06:49 -0700 | fix: support headings and ordered lists in renderInlineMarkdown (#181)
-7ff0508 | 2026-06-04 17:05:50 -0700 | fix: convert truesight-grounding description_md to HTML for proper rendering (#179)
-10f36f3 | 2026-06-04 17:02:53 -0700 | fix: add missing cobrand-strip CSS to truesight-grounding program page (#178)
-76f6b98 | 2026-06-04 17:01:19 -0700 | fix: ensure pill and h3 are on separate lines in initiative cards (#177)
-66e4787 | 2026-06-04 16:27:05 -0700 | Security dashboard: add Hosting column to web table (GitHub Pages / EC2 / CloudFront) (#176)
-853f3a2 | 2026-06-04 15:54:32 -0700 | Landing hero: add Security Dashboard button (prominent nav) (#175)
 … (truncated)
 ```
 
@@ -368,6 +368,18 @@ a7569a9 | 2026-06-05 15:37:28 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cb55256 | 2026-06-10 16:03:38 +0000 | Merge PR: Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
+7e9bd41 | 2026-06-10 16:03:28 +0000 | Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
+07a3bd1 | 2026-06-10 06:59:40 -0700 | docs: one-page architecture overview for Jerry
+7972f40 | 2026-06-10 06:41:00 -0700 | docs: ERA Sentinel requirements + roadmap PDF
+4ce3c4a | 2026-06-10 06:38:51 -0700 | docs: ERA Sentinel requirements + roadmap with tight overview paragraph
+a7643d3 | 2026-06-10 06:37:33 -0700 | docs: ERA Sentinel requirements + roadmap with executive summary
+4983780 | 2026-06-10 06:36:00 -0700 | docs: ERA Sentinel requirements + deployment roadmap (v3)
+23b7b59 | 2026-06-10 06:34:26 -0700 | docs: ERA Sentinel requirements + deployment roadmap (v2)
+be10ea1 | 2026-06-10 06:29:07 -0700 | docs: ERA Sentinel account & infrastructure requirements analysis
+216ad32 | 2026-06-10 06:03:04 -0700 | Add chocolate mold comparison report
+f36a032 | 2026-06-10 03:41:03 -0700 | chore(previews): refresh Beer Hall preview (2026-06-10 UTC)
+34e6bc7 | 2026-06-10 03:41:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
 5e59406 | 2026-06-09 23:16:39 -0700 | docs: one-pager for Bilal/ERA Butterfly Effect Club
 284640c | 2026-06-09 23:05:19 -0700 | Add Mermaid architecture diagrams to AWS_DIGITAL_INFRASTRUCTURE.md (#412)
 3392c29 | 2026-06-09 21:57:38 -0700 | chore(previews): refresh Beer Hall preview (2026-06-10 UTC)
@@ -396,18 +408,6 @@ dc369f0 | 2026-06-09 13:32:33 -0700 | plan(subscriptions): data-driven generic-S
 5a7b2a7 | 2026-06-09 11:58:56 -0700 | plan(subscriptions): shareable PDF of the subscription roadmap (#387)
 fc61cb0 | 2026-06-09 11:51:03 -0700 | plan(subscriptions): Agroverse chocolate-bar subscription roadmap (#386)
 a1c93d2 | 2026-06-09 08:38:49 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
-8aca2e1 | 2026-06-09 08:38:48 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
-d0bc88e | 2026-06-09 07:28:21 -0700 | Add Engineering Self-Assessment PDF
-ad7c1cd | 2026-06-09 07:26:53 -0700 | Add Sophia engineering self-assessment PDF
-e3baad9 | 2026-06-09 07:21:18 -0700 | docs: add E2E registration test methodology + base64ToArrayBuffer bug postmortem (#385)
-7291b8d | 2026-06-09 07:21:12 -0700 | docs: add bug screenshot — base64ToArrayBuffer ReferenceError in oracle verification
-2830c60 | 2026-06-09 06:54:30 -0700 | docs: add headless browser integration test methodology for frontend repos (#384)
-40c69a8 | 2026-06-09 06:50:30 -0700 | docs: add dao-client version audit rule — bump all repos when publishing (#383)
-8c78f72 | 2026-06-09 06:27:15 -0700 | docs: add rule — test HTML/JS changes locally before merging PR (#382)
-e6d51e6 | 2026-06-09 06:21:36 -0700 | plan: oracle credentials link fix + JSDom sandbox testing roadmap (#381)
-8a300fb | 2026-06-09 06:17:36 -0700 | docs: add rule — bump dao-client package.json before merging any code change (#380)
-ab71c95 | 2026-06-09 03:08:58 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
-5cbb3b6 | 2026-06-09 03:08:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-09 UTC)
 … (truncated)
 ```
 
@@ -617,7 +617,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/10/2026 2:50:55 |
+| 2026-06 | 222.41 | 15199.52386 | 6/10/2026 8:50:37 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-03`; scanned last **499** data rows)
 
