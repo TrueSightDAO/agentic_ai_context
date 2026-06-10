@@ -4,6 +4,104 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 
 ---
 
+## 0. Architecture Overview
+
+### 0.1 High-Level Account Architecture
+
+```mermaid
+flowchart TB
+    subgraph Internet["Internet"]
+        Users["Users / Operators"]
+        GitHub["GitHub Pages"]
+    end
+
+    subgraph Explorya["AWS Account: Explorya (440626669078)"]
+        R53["Route53\ntruesight.me zone"]
+        Autopilot["truesight-autopilot\nt3.medium\nsophia.truesight.me"]
+        OldEdgar["seni_ror_2026\nSTOPPED"]
+        OldSK["seni_sk_2026\nSTOPPED"]
+    end
+
+    subgraph Nelanco["AWS Account: Nelanco (767697632458)"]
+        Nginx["krake_nginx\nt2.micro\n54.226.114.186"]
+        EdgarRails["seni_ror_200250915\nt2.small\nEdgar (Rails)"]
+        DaoProtocol["dao_protocol_nelanco\nt3.small\nFastAPI (Python)"]
+        Sidekiq["seni_sk_auto\nASG × 2\nSidekiq workers"]
+        Postgres["seni_sql_2026\nt2.small\nPostgreSQL"]
+        Redis["seni_redis_2\nt2.large\nRedis"]
+        KrakeROR["krake_ror\nt2.micro\nKrake Rails"]
+        KrakeWorkers["Krake workers\nSK / Webhook / Crawler\nScaler / Data / Cache"]
+        KrakeRedis["GETDATA_REDIS\nt3a.small\nRedis"]
+    end
+
+    Users -->|HTTPS| R53
+    R53 -->|edgar/api/chatbot.truesight.me| Nginx
+    R53 -->|sophia.truesight.me| Autopilot
+    R53 -->|*.truesight.me| GitHub
+
+    Nginx -->|:3000| EdgarRails
+    Nginx -->|:8000| Autopilot
+
+    EdgarRails --> Postgres
+    EdgarRails --> Redis
+    EdgarRails --> Sidekiq
+
+    DaoProtocol -.->|same interface| EdgarRails
+
+    Users -.->|SSH bastion via Sophia EIP| Autopilot
+    Autopilot -.->|ProxyJump| Nginx
+    Autopilot -.->|ProxyJump| EdgarRails
+    Autopilot -.->|ProxyJump| DaoProtocol
+
+    style Explorya fill:#1a1a2e,color:#fff,stroke:#e94560
+    style Nelanco fill:#16213e,color:#fff,stroke:#0f3460
+    style Internet fill:#222,color:#fff,stroke:#555
+    style OldEdgar fill:#555,color:#999,stroke:#666,stroke-dasharray: 5 5
+    style OldSK fill:#555,color:#999,stroke:#666,stroke-dasharray: 5 5
+```
+
+### 0.2 Edgar Service Topology
+
+```mermaid
+flowchart LR
+    subgraph External["External"]
+        GAS["Google Apps Script\nWebhooks"]
+        Stripe["Stripe"]
+        EasyPost["EasyPost\nUSPS Rates"]
+    end
+
+    subgraph EdgarStack["Edgar (sentiment_importer)"]
+        Rails["Rails (Puma)\n:3000"]
+        SK["Sidekiq Workers\nASG × 2"]
+        PG["PostgreSQL\nseni_sql_2026"]
+        RD["Redis\nseni_redis_2"]
+    end
+
+    subgraph PythonStack["dao_protocol (Python)"]
+        FastAPI["FastAPI\n:8010"]
+    end
+
+    Nginx["krake_nginx"] -->|POST /dao/submit_contribution| Rails
+    Nginx -->|same endpoint| FastAPI
+
+    Rails -->|reads/writes| PG
+    Rails -->|Sidekiq queue| RD
+    SK -->|reads jobs| RD
+    SK -->|WebhookTriggerWorker| GAS
+    SK -->|InventorySnapshotWorker| GAS
+    SK -->|DaoMembersCacheWorker| GAS
+
+    Rails -->|EasyPost API| EasyPost
+    FastAPI -->|Stripe sync| Stripe
+    FastAPI -->|GAS proxy| GAS
+
+    style External fill:#2d2d2d,color:#fff,stroke:#888
+    style EdgarStack fill:#1a3a2e,color:#fff,stroke:#2ecc71
+    style PythonStack fill:#1a2a3e,color:#fff,stroke:#3498db
+```
+
+---
+
 ## 1. AWS Accounts
 
 | Account | Label | Owner ID | Purpose |
