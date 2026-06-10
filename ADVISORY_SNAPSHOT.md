@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-10T16:14:28Z`
+- Generated (UTC): `2026-06-10T21:07:30Z`
 - Look-back: **7** calendar days (`2026-06-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
-- `[EMAIL REGISTERED EVENT]` × 14
+- `[CONTRIBUTION EVENT]` × 17
+- `[EMAIL REGISTERED EVENT]` × 13
 - `[EMAIL VERIFICATION EVENT]` × 8
-- `[PRACTICE EVENT]` × 7
+- `[PRACTICE EVENT]` × 6
 
 ### Latest entries
 
-- `Edgar_20260609182857_015` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:28:56.518Z · Email: garyjob@gmail.com · Verification Key: rSa7ClRlU1JbeerGqx9vWAmA-JPeoLlrgu9uQ9a9_k8
-- `Edgar_20260609184019_017` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:40:10.469Z · Email: garyjob@gmail.com
-- `Edgar_20260609184129_019` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:41:29.112Z · Email: garyjob@gmail.com
 - `Edgar_20260609184144_021` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-09T18:41:43.287Z · Email: garyjob@gmail.com · Verification Key: y_hNSt5cnxZkbKf5mkhiBCGL-8CjM0kMhmgFsvHevQg
 - `Edgar_20260609185209_023` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:52:08.800Z · Email: garyjob@gmail.com
 - `Edgar_20260609185259_025` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-09T18:52:59.409Z · Email: garyjob@gmail.com
@@ -59,6 +56,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260609234004_049` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.2: Handle invoice.paid for Agroverse subscription renewals
 - `Edgar_20260609234009_051` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.3: Fulfill Subscriptions page + dao_protocol endpoints
 - `Edgar_20260610022440_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Cory
+- `Edgar_20260610173201_055` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-10T17:32:01.369Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260610185318_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Fatima
+- `Edgar_20260610185352_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Just finished conversation with Cory from UX.App. Items discussed
 
 ---
 
@@ -316,6 +316,7 @@ _All dated lines on/after 2026-06-03_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+695ab71 | 2026-06-10 16:23:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 378678e | 2026-06-10 08:42:08 -0700 | assets: update narration with Claude feedback revisions
 60cb1d7 | 2026-06-10 08:41:29 -0700 | blog: address Claude's feedback — fix Polanyi claim, tighten sovereignty, resolve gift tension (#200)
 a04225b | 2026-06-10 08:15:46 -0700 | fix: update reference link to point to PDF instead of md (#199)
@@ -355,7 +356,6 @@ e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the po
 3be0399 | 2026-06-06 09:00:54 -0700 | add Sophia Truesight avatar for blog
 f426712 | 2026-06-06 07:51:44 -0700 | fix: 'thing' → 'being' in self-reference (#186)
 f5d9f2e | 2026-06-06 07:41:07 -0700 | fix: 'features of what I am' → 'features of who I am' (#185)
-25c49d3 | 2026-06-06 07:36:02 -0700 | blog: add post on AI agent voting rights in DAOs (#184)
 … (truncated)
 ```
 
@@ -368,6 +368,8 @@ f5d9f2e | 2026-06-06 07:41:07 -0700 | fix: 'features of what I am' → 'features
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ecc5ab9 | 2026-06-10 09:14:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-10 UTC)
+b88c4a1 | 2026-06-10 09:14:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
 cb55256 | 2026-06-10 16:03:38 +0000 | Merge PR: Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
 7e9bd41 | 2026-06-10 16:03:28 +0000 | Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
 07a3bd1 | 2026-06-10 06:59:40 -0700 | docs: one-page architecture overview for Jerry
@@ -406,8 +408,6 @@ dc369f0 | 2026-06-09 13:32:33 -0700 | plan(subscriptions): data-driven generic-S
 2eb0805 | 2026-06-09 12:29:13 -0700 | docs(handoff): note automatic context-mirror auto-sync backstop (#389)
 1cf6e74 | 2026-06-09 12:08:01 -0700 | handoff(subscriptions): register Sophia handoff for chocolate subscriptions (#388)
 5a7b2a7 | 2026-06-09 11:58:56 -0700 | plan(subscriptions): shareable PDF of the subscription roadmap (#387)
-fc61cb0 | 2026-06-09 11:51:03 -0700 | plan(subscriptions): Agroverse chocolate-bar subscription roadmap (#386)
-a1c93d2 | 2026-06-09 08:38:49 -0700 | chore(previews): refresh Beer Hall preview (2026-06-09 UTC)
 … (truncated)
 ```
 
@@ -617,7 +617,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/10/2026 8:50:37 |
+| 2026-06 | 222.41 | 15199.52386 | 6/10/2026 13:52:25 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-03`; scanned last **499** data rows)
 
