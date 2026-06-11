@@ -445,3 +445,127 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 4. **Nginx proxies Edgar.** `edgar.truesight.me` → krake_nginx → `seni_ror_200250915:3000`. The nginx config is on `krake_nginx` (54.226.114.186), not on the Rails host itself.
 
 5. **Webhook URLs are env-configured.** The `dao_protocol` server reads webhook URLs from `DAO_PROTOCOL_WEBHOOK_*` env vars. The Rails Edgar reads from `config/application.rb`. They are independent — a change to one does not affect the other.
+
+---
+
+## 11. Deployment Guide — How Each Service Ships
+
+This section documents how each service is deployed. Use this when setting up a new box, recovering from failure, or onboarding a new operator.
+
+### 11.1 Edgar (sentiment_importer — Rails)
+
+| Aspect | Detail |
+|--------|--------|
+| **Host** | `seni_ror_200250915` (54.211.179.126) |
+| **Code** | `TrueSightDAO/sentiment_importer` |
+| **Deploy** | `deploy.sh` on the box — `git pull`, `bundle install`, `rake assets:precompile`, `rake db:migrate`, `sudo service puma restart` |
+| **Process** | Puma (Rails) on port 3000, behind nginx on krake_nginx |
+| **Sidekiq** | `seni_sk_auto` ASG (2 instances). Deploy via `capistrano` or manual `git pull + bundle exec sidekiq -C config/sidekiq.yml` |
+| **DB** | PostgreSQL on `seni_sql_2026` (44.193.55.205) |
+| **Redis** | `seni_redis_2` (54.234.59.188) |
+| **Env vars** | `config/application.rb` + `config/tsd_configuration.rb` |
+| **Health** | `https://edgar.truesight.me/ping` |
+
+### 11.2 dao_protocol (FastAPI — Python)
+
+| Aspect | Detail |
+|--------|--------|
+| **Host** | `dao_protocol_nelanco` (98.93.94.86) |
+| **Code** | `TrueSightDAO/dao_protocol` |
+| **Deploy** | `deploy.sh` on the box — `git pull`, `pip install -r requirements.txt`, `sudo systemctl restart truesight-dao-protocol` |
+| **Process** | systemd `truesight-dao-protocol.service`, port 8010 |
+| **Env vars** | `~/dao_protocol/.env` (chmod 600) — GAS webhook URLs, Stripe keys, Google SA keys |
+| **Health** | `http://98.93.94.86:8010/healthz` |
+| **Beta sandbox** | `dao-protocol-beta` (54.162.175.189), systemd `dao-protocol-beta.service`, same deploy pattern |
+
+### 11.3 Autopilot (Sophia — FastAPI)
+
+| Aspect | Detail |
+|--------|--------|
+| **Host** | `truesight-autopilot` (52.200.38.206 — EIP) |
+| **Code** | `TrueSightDAO/truesight_autopilot` |
+| **Deploy** | `scripts/deploy.sh` on the box — `git pull`, `pip install -r requirements.txt`, restarts 3 systemd units: `truesight-autopilot`, `truesight-autopilot-telegram`, `truesight-autopilot-watchdog` |
+| **Processes** | 3 systemd units (main API, Telegram adapter, Telegram watchdog) |
+| **Env vars** | `/opt/truesight_autopilot/.env` — LLM API keys, AWS creds, Telegram tokens, Gmail OAuth |
+| **Health** | `http://52.200.38.206:8000/health` |
+| **AMI backup** | Weekly automated via Cypher-Defense GitHub Action (Sundays 03:00 UTC). Retains newest 8. |
+| **Blue-green** | EIP-based: launch new box from AMI → deploy → reassociate EIP. No DNS change. |
+
+### 11.4 Krake (getdata.io — Rails + Sidekiq)
+
+| Aspect | Detail |
+|--------|--------|
+| **Rails host** | `krake_ror` (18.205.20.43) — ASG-managed, behind ALB `krake-ror-1` |
+| **Sidekiq host** | `krake_sk_consolidated` (54.237.53.162) — ASG-managed, auto-heals |
+| **Code** | `KrakeIO/krake_ror` (private) |
+| **Sidekiq processes** | 5 Upstart scripts on consolidated box:
+  - `/etc/init/krake_sk.conf` — general queues (`config/sidekiq.yml`)
+  - `/etc/init/krake_sk_webhook.conf` — webhook queues (`config/sidekiq_webhook.yml`)
+  - `/etc/init/krake_sk_crawler.conf` — crawler queues (`config/sidekiq_crawler.yml`)
+  - `/etc/init/krake_sk_scaler.conf` — scaler queues (`config/sidekiq_scaler.yml`)
+  - `/etc/init/krake_publisher.conf` — s3_cacher queue (`config/sidekiq_s3_cacher.yml`) |
+| **Deploy** | `git pull` on the box → `bundle install` → `sudo restart krake_sk` (and siblings) |
+| **Redis** | `GETDATA_REDIS` (52.1.162.134) — shared across all 5 Sidekiq processes |
+| **Monit** | `/etc/monit/conf.d/krake_sk.conf` — monitors all 5 processes, restarts on failure or >65% memory |
+| **AMI** | `ami-046aefdade31fd70a` (`krake-sk-consolidated-2026-06-21`) — created from the consolidated box after setup |
+| **ASG** | `krake_sk_consolidated` — Min=1, Max=1, Desired=1. Launch template `krake-sk-consolidated` (t2.small). Auto-heals on instance failure. |
+
+**To deploy a code change to Krake Sidekiq:**
+1. SSH to the consolidated box: `ssh -J sophia -i "$KEY" ubuntu@54.237.53.162`
+2. `cd /home/ubuntu/krake_ror && git pull && bundle install`
+3. `sudo restart krake_sk && sudo restart krake_sk_webhook && sudo restart krake_sk_crawler && sudo restart krake_sk_scaler`
+4. If krake_publisher changed: `cd /home/ubuntu/krake_publisher && git pull && bundle install && sudo restart krake_publisher`
+
+### 11.5 GitHub Pages (Static Sites)
+
+| Aspect | Detail |
+|--------|--------|
+| **Deploy** | Push to `main` on the beta repo → GitHub Pages auto-deploys. For prod: `sync_beta_to_prod` (fork sync, never force). |
+| **Beta-first flow** | All changes go to `*_beta` repos first. After review, promote to `*_prod` via `sync_beta_to_prod`. |
+| **Key repos** | `truesight_me_beta` → `truesight_me_prod`, `dapp_beta` → `dapp_prod`, `agroverse_shop_beta` → `agroverse_shop_prod` |
+| **CNAMEs** | Beta and prod repos have different CNAME files — `sync_beta_to_prod` is a non-force merge-upstream to preserve this. |
+
+### 11.6 Security Dashboard
+
+| Aspect | Detail |
+|--------|--------|
+| **Code** | `TrueSightDAO/Cypher-Defense` |
+| **Scanner** | `scripts/security_scan/compile_security_report.py` — runs 4 sub-scanners (AWS, web, GitHub, phishing) |
+| **Schedule** | Daily at 06:00 UTC via GitHub Action `.github/workflows/security-dashboard-daily.yml` |
+| **Output** | Published to `TrueSightDAO/treasury-cache/managed-ledgers/security-dashboard.json` |
+| **Frontend** | `truesight.me/security-dashboard/` — static page reads the JSON from treasury-cache |
+| **AWS discovery** | Fully dynamic — uses `boto3 describe_instances()` across all regions. No hardcoded instance IDs. New boxes appear automatically. |
+| **Credentials** | GitHub Actions secrets `CYPHER_DEFENCE_AWS_KEY/SECRET` (Nelanco) + `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY/SECRET` (Explorya). Currently using broad keys — should be scoped to read-only (see OPEN_FOLLOWUPS.md). |
+
+### 11.7 Krake Publisher (GETDATA_CACHE)
+
+| Aspect | Detail |
+|--------|--------|
+| **Host** | Consolidated onto `krake_sk_consolidated` (54.237.53.162) |
+| **Code** | `KrakeIO/krake_publisher` (private) |
+| **Process** | Upstart `/etc/init/krake_publisher.conf` — runs `bundle exec sidekiq -e production -C config/sidekiq_s3_cacher.yml` |
+| **Env vars** | In `/home/ubuntu/.profile`: `AWS_S3_BUCKET=cache.getdata.io`, `KRAKE_REDIS_HOST=redis.getdata.io`, etc. |
+| **Deploy** | `cd /home/ubuntu/krake_publisher && git pull && bundle install && sudo restart krake_publisher` |
+| **Monit** | Monitored alongside the 4 krake_sk processes in `/etc/monit/conf.d/krake_sk.conf` |
+
+---
+
+## 12. Infrastructure Consolidation History
+
+### 2026-06-11 — Krake SK + Publisher Consolidation
+
+**Before (6 instances, ~$55/mo):**
+- `krake_sk` (t2.nano) — general Sidekiq
+- `krake_sk_webhook` (t2.small) — webhook Sidekiq
+- `krake_sk_crawler` (t2.small) — crawler Sidekiq
+- `krake_sk_scaler` (t2.micro) — scaler Sidekiq
+- `GETDATA_CACHE` (t2.micro) — s3_cacher Sidekiq
+- All managed by separate ASGs
+
+**After (1 instance, ~$17/mo):**
+- `krake_sk_consolidated` (t2.small) — all 5 Sidekiq processes on one box
+- ASG-managed (auto-heals), AMI-backed
+- Old ASGs disabled (Min=0, Max=0, Desired=0)
+- Old instances terminated
+
+**Savings: ~$38/mo**
