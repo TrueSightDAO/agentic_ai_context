@@ -7,9 +7,11 @@ engine is Agroverse Lineage (`truesight.me/lineage.html` — experiential-learni
 credentialing). Online piece will eventually sit at **experience.agroverse.shop**,
 following the `capoeira.agroverse.shop` pattern (setting-aware session generator).
 
-**Context:** Mr. Cao asked Gary to design two learning modules — **1. Agroforestry**
-and **2. Supply Chain** — for the Aora pilot program (mentors + children co-creating;
-"TED for children", content a 6-year-old can grasp; senses: see/smell/taste/hear/create).
+**Context:** Mr. Cao (Liz's friend) is the founder of the GO/Nucleus network. Gary offered to
+generate two learning modules — **1. Agroforestry** and **2. Supply Chain** — for the Aora
+pilot program, based on his firsthand experience in Brazil among the farmers. The program is
+for mentors + children co-creating; "TED for children", content a 6-year-old can grasp;
+senses: see/smell/taste/hear/create.
 Jerri (China team, reports to Liz) needs initial ideas + a rough timeline to line up events.
 
 **Kaon** (partner brought in by Liz) is building the **MindLoop engine** — a platform for
