@@ -39,6 +39,34 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+```followup
+id: chocolate-subscription-phase2
+chat_id: -1003919341801
+thread_id: 1939
+title: Revisit Chocolate Subscription Phase 2 (fulfillment automation)
+created_at: 2026-06-11
+condition:
+  kind: elapsed_days
+  escalate_after_days: 60
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Phase 2 (fulfillment queue sheet + invoice.paid webhook + fulfillment UI +
+  sales parser update) was deferred until Linda has successfully received 2
+  subscription shipments (~2 months after her first subscribe). When this
+  follow-up fires, remind Gary that Phase 2 is ready to build and ask if
+  Linda has received 2 shipments yet. If yes, proceed with Phase 2 per
+  CHOCOLATE_SUBSCRIPTION_PLAN.md. If not, extend the timer.
+  
+  Context: Phase 1 (subscribe engine + PDPs + homepage card) is fully built
+  and merged. The activation gate in the plan says don't send real subscribers
+  until Phase 2 is live, but Gary decided to let Linda subscribe first and
+  revisit Phase 2 after 2 successful shipments to validate the model before
+  building the automation.
+```
+
 ### truesight_autopilot: fix 3 deselected unit tests, then enforce full pytest in CI
 **Found 2026-06-09:** CI (`smoke.yml`) historically ran only `compileall` +
 `smoke_tools.py` — the `tests/test_*.py` pytest suite was **never executed** (and
