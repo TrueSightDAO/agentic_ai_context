@@ -126,17 +126,15 @@ All transactions leading up to sales and delivery are tracked via the **AORA led
 
 ## Cash position & capital available
 
-### Current USD cash (from [treasury-cache](https://github.com/TrueSightDAO/treasury-cache/blob/main/dao_offchain_treasury.json), 2026-06-11)
+### Current USD cash earmarked for inventory deployment (from [treasury-cache](https://github.com/TrueSightDAO/treasury-cache/blob/main/dao_offchain_treasury.json), 2026-06-11)
 
 | Ledger | Amount (USD) |
 |--------|-------------|
 | Main Ledger (Gary Teh) | $3,172.29 |
 | AGL15 (Gary Teh) | $5,279.73 |
-| AGL4 (TrueSight DAO) | $9,036.35 |
-| AGL6 (Gary Teh) | $1,312.59 |
-| AGL8 (Gary Teh) | $518.95 |
-| AGL10 (Gary Teh) | $194.83 |
-| **Total USD** | **$19,682.85** |
+| **Total deployable** | **$8,452.02** |
+
+> Note: AGL4 ($9,036.35) is TrueSight DAO equity, not cash. AGL6, AGL8, AGL10 are earmarked for disbursement back to financiers — not available for Aora/Go.
 
 ### Current freight cost (Matheus → Kirsten)
 
