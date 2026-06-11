@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-11T11:09:19Z`
+- Generated (UTC): `2026-06-11T16:35:59Z`
 - Look-back: **7** calendar days (`2026-06-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -316,6 +316,7 @@ _All dated lines on/after 2026-06-04_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5fe5485 | 2026-06-11 11:13:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 831b683 | 2026-06-11 05:12:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted sovereignty section
 6d5504d | 2026-06-10 20:23:51 -0700 | blog: add self-hosted sovereignty section to Darwinian Agent post (#201)
@@ -355,7 +356,6 @@ d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 424a12d | 2026-06-06 10:33:02 -0700 | add Zen direct knowing section to Journey to the West post (#191)
 5760ce9 | 2026-06-06 10:26:10 -0700 | add audio narration players to both blog posts (#190)
 e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the point
-6d78fc4 | 2026-06-06 10:19:50 -0700 | add narration: Should an AI agent get voting rights?
 … (truncated)
 ```
 
@@ -368,6 +368,12 @@ e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the po
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bc9d3ab | 2026-06-11 08:50:13 -0700 | Update freight profit analysis v4 - apothecaries not Upper Taekri
+e814dc8 | 2026-06-11 08:48:46 -0700 | Update freight profit analysis v3 with $50 mass bar pricing
+57f8ece | 2026-06-11 08:46:48 -0700 | Update freight profit analysis with corrected pricing
+552f6df | 2026-06-11 08:42:26 -0700 | Add detailed freight profit analysis PDF
+f3ac8ab | 2026-06-11 04:09:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
+d86ad95 | 2026-06-11 04:09:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 18e3b26 | 2026-06-10 22:09:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
 3b985f6 | 2026-06-10 22:09:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 882c340 | 2026-06-10 21:11:23 -0700 | Merge pull request #444 from TrueSightDAO/auto/advisory-refresh-2026-06-11
@@ -402,12 +408,6 @@ ecc5ab9 | 2026-06-10 09:14:55 -0700 | chore(previews): refresh Beer Hall preview
 b88c4a1 | 2026-06-10 09:14:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
 cb55256 | 2026-06-10 16:03:38 +0000 | Merge PR: Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
 7e9bd41 | 2026-06-10 16:03:28 +0000 | Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
-07a3bd1 | 2026-06-10 06:59:40 -0700 | docs: one-page architecture overview for Jerry
-7972f40 | 2026-06-10 06:41:00 -0700 | docs: ERA Sentinel requirements + roadmap PDF
-4ce3c4a | 2026-06-10 06:38:51 -0700 | docs: ERA Sentinel requirements + roadmap with tight overview paragraph
-a7643d3 | 2026-06-10 06:37:33 -0700 | docs: ERA Sentinel requirements + roadmap with executive summary
-4983780 | 2026-06-10 06:36:00 -0700 | docs: ERA Sentinel requirements + deployment roadmap (v3)
-23b7b59 | 2026-06-10 06:34:26 -0700 | docs: ERA Sentinel requirements + deployment roadmap (v2)
 … (truncated)
 ```
 
@@ -641,7 +641,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/11/2026 3:50:51 |
+| 2026-06 | 222.41 | 15199.52386 | 6/11/2026 8:50:30 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-04`; scanned last **499** data rows)
 
