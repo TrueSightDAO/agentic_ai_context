@@ -8,7 +8,14 @@
 > `truesight_autopilot` PRs** — a human reviews + merges. Every commit carries the
 > `Generated-by: Sophia (TrueSight Autopilot)` trailer.
 
-> **RESUME HERE:** Phase 0, PR0.1 — the policy resolver + tool-layer enforcement.
+> **RESUME HERE (vault-first order, 2026-06-11):** Phase 0, PR0.1 — `app/policy.py` identity
+> resolver (telegram_id → {guest, governor}). Then immediately Phase 3 (vault). The vault
+> needs identity resolution to gate its web page; it does NOT need the full tool-layer
+> enforcement or data/instruction boundary from Phase 0.2–0.4.
+>
+> **Worktree convention:** because the follow-up monitor handoff (thread 2622) is actively
+> opening PRs on `truesight_autopilot`, all vault work uses a `git worktree` at
+> `/opt/truesight_autopilot/worktrees/vault/` to avoid clone conflicts. See §11.
 
 ---
 
@@ -87,36 +94,20 @@ governor-cache) — credential mutation was never a Telegram action.
 
 ---
 
-## 6. Phased roadmap (sequenced per the agreed order)
+## 6. Phased roadmap (vault-first order — Gary decision 2026-06-11)
 
-### Phase 0 — Policy layer + tool-layer enforcement + data-vs-instruction boundary *(load-bearing; FIRST)*
+> **Why vault-first:** the credential vault is universally useful regardless of multi-tenant
+> governance decisions (Bilal conversation, Liz's interest). It secures credentials for the
+> Gary–Sophia collaboration immediately. Phase 0.1 (identity resolver) is the minimal
+> dependency the vault needs — it does NOT need the full tool-layer enforcement or
+> data/instruction boundary.
+
+### Step A — Phase 0.1: Identity resolver *(minimal dependency for vault)*
 | PR | Description |
 |----|-------------|
-| 0.1 | `app/policy.py` — resolve `(tenant, surface, identity, action) → allow/deny`. Identity resolver: `telegram_id → Column X → Governors cache → {guest, governor}`. Unbound = guest. |
-| 0.2 | **Tool-layer enforcement** — write/admin tools consult the policy with the *requester's* resolved role and refuse for guests. Read tools open; secret values never returned. |
-| 0.3 | **Data-vs-instruction boundary** — mark ingested content (attachments, transcriptions, third-party messages) as non-actionable context; only a governor's direct message is an instruction. |
-| 0.4 | Tests: guest blocked from each write tool; governor allowed; ingested "please deploy" never triggers a tool; secret never surfaced. |
+| 0.1 | `app/policy.py` — resolve `(tenant, surface, identity, action) → allow/deny`. Identity resolver: `telegram_id → Column X → Governors cache → {guest, governor}`. Unbound = guest. **Only this sub-PR of Phase 0 — the rest of Phase 0 is deferred.** |
 
-### Phase 1 — Identity binding (email-challenge → Telegram)
-| PR | Description |
-|----|-------------|
-| 1.1 | Challenge mint: generate the Verification Key (reuse), store **hash in Column G** (never plaintext), email the **plaintext code** to the address on file; **sign the email** with Sophia's key (authenticity). Abuse controls: 15-min expiry, ≤5 attempts, rate-limit per telegram_id + per email, one pending per pair (newest supersedes), no governor-enumeration. |
-| 1.2 | **Move-to-DM** — the code exchange happens in DM (email + code never group-visible); verification is the one thing an *unverified* user may do in DM. |
-| 1.3 | Consume + bind: hash the pasted code, compare to Column G → set **Column D = verified**, **Verification Key Consumed = true**, write **Column X = numeric telegram_id**. Emit an `[IDENTITY BINDING EVENT]` for audit (never the code). |
-| 1.4 | **Re-bind alerts + revocation** — notify existing governors + the email owner on a new binding ("@handle linked to X — revoke if not you"); any governor can revoke; re-bind supersedes. |
-| 1.5 | Tests: happy path; wrong code (attempts decrement); expired; replay (consumed key dead); plaintext never written to G; non-governor email verifies as member (no privilege). |
-
-### Phase 2 — Engagement modes, collaborative groups, DMs
-| PR | Description |
-|----|-------------|
-| 2.1 | Per-surface **engagement mode**: `proactive` (personal workspace, current behavior) vs `addressed-only` (collaborative). |
-| 2.2 | **Addressed-only behavior**: ingest + transcribe everything into the thread transcript, but **reply only when addressed** — @mention, leading vocative ("Sophia, …"), her name in a voice transcript, or a reply to her message. Require a clear address token (avoid name false-positives). |
-| 2.3 | **❤️-on-ingest**: react with a heart when an attachment is ingested/transcribed — a "seen + logged" receipt without a noisy reply. |
-| 2.4 | **DM policy**: read-only + write-disabled; gate who may DM (known/verified), rate-limit unknowns; verification flow is the allowed on-ramp. |
-| 2.5 | **Audit/announce channel**: every privileged action posts a one-liner to a governed channel. |
-| 2.6 | Tests: addressed-only stays silent on un-addressed chatter but ❤️s an attachment; @mention triggers a reply; DM write refused; privileged action announced. |
-
-### Phase 3 — Credential vault (box-local)
+### Step B — Phase 3: Credential vault (box-local) *(immediate value)*
 | PR | Description |
 |----|-------------|
 | 3.1 | **Vault store** on the box: encrypted at rest; entries `{name, purpose, scopes, version, value(enc), created_by, created_at}`. **Never-overwrite**; **delete allowed**; **versioning** for safe rotation. Audit log of add/delete (RSA-signed actor). |
@@ -127,7 +118,33 @@ governor-cache) — credential mutation was never a Telegram action.
 | 3.6 | "What's your vault URL?" → returns the (non-secret) auth URL to anyone; access still gated. |
 | 3.7 | Tests: overwrite refused; delete works; versioned rotation keeps in-flight refs; value never returned in any chat/tool-trace path; non-governor bounced; restore round-trip. |
 
-### Phase 4 — Multi-org replication (one instance per org)
+### Step C — Phase 0.2–0.4: Remaining policy + enforcement *(deferred after vault)*
+| PR | Description |
+|----|-------------|
+| 0.2 | **Tool-layer enforcement** — write/admin tools consult the policy with the *requester's* resolved role and refuse for guests. Read tools open; secret values never returned. |
+| 0.3 | **Data-vs-instruction boundary** — mark ingested content (attachments, transcriptions, third-party messages) as non-actionable context; only a governor's direct message is an instruction. |
+| 0.4 | Tests: guest blocked from each write tool; governor allowed; ingested "please deploy" never triggers a tool; secret never surfaced. |
+
+### Step D — Phase 1: Identity binding (email-challenge → Telegram)
+| PR | Description |
+|----|-------------|
+| 1.1 | Challenge mint: generate the Verification Key (reuse), store **hash in Column G** (never plaintext), email the **plaintext code** to the address on file; **sign the email** with Sophia's key (authenticity). Abuse controls: 15-min expiry, ≤5 attempts, rate-limit per telegram_id + per email, one pending per pair (newest supersedes), no governor-enumeration. |
+| 1.2 | **Move-to-DM** — the code exchange happens in DM (email + code never group-visible); verification is the one thing an *unverified* user may do in DM. |
+| 1.3 | Consume + bind: hash the pasted code, compare to Column G → set **Column D = verified**, **Verification Key Consumed = true**, write **Column X = numeric telegram_id**. Emit an `[IDENTITY BINDING EVENT]` for audit (never the code). |
+| 1.4 | **Re-bind alerts + revocation** — notify existing governors + the email owner on a new binding ("@handle linked to X — revoke if not you"); any governor can revoke; re-bind supersedes. |
+| 1.5 | Tests: happy path; wrong code (attempts decrement); expired; replay (consumed key dead); plaintext never written to G; non-governor email verifies as member (no privilege). |
+
+### Step E — Phase 2: Engagement modes, collaborative groups, DMs
+| PR | Description |
+|----|-------------|
+| 2.1 | Per-surface **engagement mode**: `proactive` (personal workspace, current behavior) vs `addressed-only` (collaborative). |
+| 2.2 | **Addressed-only behavior**: ingest + transcribe everything into the thread transcript, but **reply only when addressed** — @mention, leading vocative ("Sophia, …"), her name in a voice transcript, or a reply to her message. Require a clear address token (avoid name false-positives). |
+| 2.3 | **❤️-on-ingest**: react with a heart when an attachment is ingested/transcribed — a "seen + logged" receipt without a noisy reply. |
+| 2.4 | **DM policy**: read-only + write-disabled; gate who may DM (known/verified), rate-limit unknowns; verification flow is the allowed on-ramp. |
+| 2.5 | **Audit/announce channel**: every privileged action posts a one-liner to a governed channel. |
+| 2.6 | Tests: addressed-only stays silent on un-addressed chatter but ❤️s an attachment; @mention triggers a reply; DM write refused; privileged action announced. |
+
+### Step F — Phase 4: Multi-org replication (one instance per org)
 | PR | Description |
 |----|-------------|
 | 4.1 | **Tenant config** abstraction: `{context_repo, vault, transcript_sink, ledger, governor_set, telegram_group(s), mailer_identity}` — replaces hardcoded TrueSight singletons. |
@@ -182,23 +199,54 @@ Deploy each phase via the targeted path (`git checkout -B main origin/main` on t
 `truesight-autopilot`, then run that phase's UAT. Phase 4 provisions *new* boxes rather than
 touching the TrueSight instance.
 
-## 9. Resume tracker
+## 9. Resume tracker (vault-first order)
 
-| Phase | PRs opened | Merged (human) | Deployed | UAT |
-|-------|-----------|----------------|----------|-----|
-| 0 — Policy + tool-gate + data/instruction boundary | ☐ | ☐ | ☐ | P0.1–P0.4 |
-| 1 — Identity binding (email-challenge) | ☐ | ☐ | ☐ | P1.1–P1.5 |
-| 2 — Engagement modes + groups + DMs | ☐ | ☐ | ☐ | P2.1–P2.4 |
-| 3 — Credential vault | ☐ | ☐ | ☐ | P3.1–P3.5 |
-| 4 — Multi-org replication | ☐ | ☐ | ☐ | P4.1–P4.3 |
+| Step | PRs opened | Merged (human) | Deployed | UAT |
+|------|-----------|----------------|----------|-----|
+| **A — Phase 0.1: Identity resolver** | ☐ | ☐ | ☐ | P0.1 |
+| **B — Phase 3: Credential vault** | ☐ | ☐ | ☐ | P3.1–P3.7 |
+| **C — Phase 0.2–0.4: Remaining policy** | ☐ | ☐ | ☐ | P0.2–P0.4 |
+| **D — Phase 1: Identity binding** | ☐ | ☐ | ☐ | P1.1–P1.5 |
+| **E — Phase 2: Engagement modes** | ☐ | ☐ | ☐ | P2.1–P2.4 |
+| **F — Phase 4: Multi-org replication** | ☐ | ☐ | ☐ | P4.1–P4.3 |
 
-> **RESUME HERE:** Phase 0, PR0.1 — `app/policy.py` (identity resolver + tool-layer enforcement)
-> and the data-vs-instruction boundary. Open PRs; **do not self-merge** (human reviews). Report
-> progress in the handoff topic.
+> **RESUME HERE (vault-first):** Step A — Phase 0.1 `app/policy.py` (identity resolver:
+> `telegram_id → Column X → Governors cache → {guest, governor}`). Then Step B — Phase 3
+> (credential vault). Open PRs via git worktree; **do not self-merge** (human reviews).
+> Report progress in this handoff topic (thread 2744).
 
 ---
 
-## 10. Dependency notes / cross-references
+## 11. Worktree convention (parallel handoff threads)
+
+Because the follow-up monitor handoff (thread 2622) is actively opening PRs on
+`truesight_autopilot`, all vault/governance work uses a **git worktree** to avoid clone
+conflicts:
+
+```bash
+# Set up the worktree (one-time)
+cd /opt/truesight_autopilot
+git worktree add /opt/truesight_autopilot/worktrees/vault/ main
+
+# Work in it
+cd /opt/truesight_autopilot/worktrees/vault/
+git checkout -b feature/vault-store
+# ... make changes, commit, push, open PR ...
+
+# Clean up when done
+git worktree remove /opt/truesight_autopilot/worktrees/vault/
+```
+
+The worktree shares the same `.git` directory as the main clone, so branches, remotes, and
+config are identical. The working tree is independent — changes in one don't affect the other
+until you `git merge` or `git pull`.
+
+**Rule:** every vault/governance PR opened from this thread (2744) uses the worktree path.
+The follow-up monitor thread (2622) uses the main clone path. Never the twain shall conflict.
+
+---
+
+## 12. Dependency notes / cross-references
 
 - Builds on the shipped **per-topic concurrency** (lock/queue/ack) and **watch-and-notify** work
   (the AMI primitive in Phase 4.3), and the **durable follow-up monitor** (`SOPHIA_FOLLOWUP_MONITOR_PLAN.md`).
