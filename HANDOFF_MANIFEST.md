@@ -12,6 +12,7 @@ Sophia updates this file when she starts, resumes, or completes a handoff.
 
 | Plan file | Handoff title | Handoff date | Status | Resume tracker state | Last manifest update |
 |-----------|---------------|--------------|--------|---------------------|---------------------|
+| `AUTOPILOT_HARDENING_PLAN.md` | Autopilot Hardening (Sophia's own codebase) | 2026-06-10 | blocked | Parked GO-ready in **thread 2317**; on GO runs Phase 1 PR-A→; **opens PRs only, never self-merges own-repo PRs** (human merges — Phase-2 gate dogfooded) | 2026-06-10 |
 | `BETA_SANDBOX_ENDPOINT_PLAN.md` | Beta Sandbox Endpoint (beta.edgar.truesight.me) | 2026-06-09 | blocked | Parked GO-ready in **thread 1955**; on GO runs Unit 1→10, STOPS at operator gates (launch approval / prod deploy / Stripe dashboard); Unit 8 = mandatory AWS infra-doc update | 2026-06-09 |
 | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | Agroverse Chocolate Subscriptions — Phase 1 | 2026-06-09 | blocked | Parked GO-ready in **thread 1939** (supersedes 1924); on GO runs Phase 1 PR1.1–1.6 then STOPS at the operator test gate for Gary | 2026-06-09 |
 | `RESEND_VERIFICATION_PLAN.md` | Resend verification email | 2026-06-08 | in progress | PR1 merged + deployed; PR2 (oracle) next | 2026-06-08 |
