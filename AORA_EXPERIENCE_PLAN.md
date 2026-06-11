@@ -62,8 +62,8 @@ gantt
     Physical experiential events        :2026-09-01, 30d
 ```
 
-**Critical path:** Freight quote → cacao arrives at Kirsten → produce 63 bars → Gary backpack carry to China.
-Parallel track: Liz demand forecast → capital sourcing → mold quantity → production throughput.
+- **Critical path:** Freight quote → cacao arrives at Kirsten → produce 63 bars → Gary backpack carry to China
+- **Parallel track:** Liz demand forecast → capital sourcing → mold quantity → production throughput
 
 ---
 
