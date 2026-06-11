@@ -175,7 +175,7 @@ The following inventory stays in Matheus's warehouse (Ilhéus) and is **NOT on t
 
 | Step | What | Owner | Status |
 |------|------|-------|--------|
-| **Recipe** | 81% cacao / 19% sugar (default; may adjust when Liz has market visibility) | Gary / Liz | decided |
+| **Recipe** | 81% cacao / 19% sugar (Gary's suggestion; may adjust when Liz has market visibility) | Gary / Liz | Gary suggested |
 | **Mold** | Cabrellon Italian (27.5×17.5cm, 4×50g cavities) — same as SF. Dongguan factory also has MHC-CL082 in stock (quotation received from Jerri) | Gary | decided |
 | **Santos pricing** | R$130/kg for 70% bars; Santos willing to try 50g bars | Santos | quoted |
 | **Mold quantity** | Depends on Liz's demand forecast (annual kg → mold count → throughput) | Liz | **blocked** — no forecast yet |
