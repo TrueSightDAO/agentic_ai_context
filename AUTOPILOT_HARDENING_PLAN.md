@@ -9,9 +9,9 @@ critical box.
 
 > ## ▶ RESUME HERE
 >
-> **▶ ACTIVE: Phase 1, PR-A — fix the 3 deselected unit tests, then drop the
-> `--deselect` flags in `smoke.yml`.** Nothing implemented yet (plan written
-> 2026-06-10). Start at the **Pre-flight checklist**, then PR-A.
+> **▶ ACTIVE: Phase 1, PR-B — add `ruff` (lint + format check) to CI.**
+> PR-A merged (PR #146). Next: add ruff to `requirements-dev.txt` + `pyproject.toml`
+> config + a CI step in `smoke.yml`. Fix or `# noqa`-justify violations so it passes.
 >
 > **Order of priority:** Phase 1 (real CI) → Phase 2 (self-modification gate) →
 > Phase 3 (operational state) → Phase 4 (stretch). Each PR is independently
@@ -52,7 +52,7 @@ Legend: ☐ todo · ⧗ in progress · ☑ merged · 💸 contribution reported
 
 | PR | Scope | Status |
 |----|-------|--------|
-| **A** | **Fix the 3 deselected unit tests** (mock their network/IO so they're hermetic): `tests/test_ssh_tools.py::test_missing_key_is_a_clear_error`, `tests/test_telegram_adapter.py::test_handle_message_allowed_calls_chat`, `tests/test_telegram_adapter.py::test_send_message_retries_without_thread_on_400`. Then **remove the `--deselect` flags** in `smoke.yml` so the full unit suite gates. (Closes the OPEN_FOLLOWUPS item.) | ☐ |
+| **A** | **Fix the 3 deselected unit tests** (mock their network/IO so they're hermetic): `tests/test_ssh_tools.py::test_missing_key_is_a_clear_error`, `tests/test_telegram_adapter.py::test_handle_message_allowed_calls_chat`, `tests/test_telegram_adapter.py::test_send_message_retries_without_thread_on_400`. Then **remove the `--deselect` flags** in `smoke.yml` so the full unit suite gates. (Closes the OPEN_FOLLOWUPS item.) | ☑ |
 | **B** | **Add `ruff`** (lint + format check) to `requirements-dev.txt` + `pyproject.toml` config + a CI step in `smoke.yml`. Fix or `# noqa`-justify violations so it passes. Catches style + a class of bugs cheaply. | ☐ |
 | **C** | **Add `mypy`** (type check) — start lenient (`ignore_missing_imports`, no `--strict`), establish a passing baseline, wire into CI. Types catch the "wrong attr / half-pasted snippet" failure mode that dominates LLM-authored code (and that `compileall` misses). Tighten incrementally later. | ☐ |
 
