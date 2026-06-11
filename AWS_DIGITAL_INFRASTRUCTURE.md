@@ -30,7 +30,7 @@ flowchart TB
         Postgres["seni_sql_2026\nt2.small\nPostgreSQL"]
         Redis["seni_redis_2\nt2.large\nRedis"]
         KrakeROR["krake_ror\nt2.micro\nKrake Rails"]
-        KrakeWorkers["krake_sk_consolidated\nt2.small\n4× Sidekiq processes"]
+        KrakeWorkers["krake_sk_consolidated\nt2.small\n5× Sidekiq processes\nASG auto-heals"]
         KrakeRedis["GETDATA_REDIS\nt3a.small\nRedis"]
     end
 
@@ -125,14 +125,15 @@ flowchart LR
 | **dao-protocol-beta** | `i-0b8c6d989594fb229` | t3.small | running | 172.31.20.96 | 54.162.175.189 | **Beta sandbox dao_protocol.** Isolated test instance for Stripe test-mode subscription E2E tests. systemd `dao-protocol-beta.service`, port 8010. DNS: `beta.edgar.truesight.me`. SG: `dao-protocol-beta-sg` (443 open, 22 restricted to autopilot). Keypair: `dao-protocol-beta-key`. |
 | **seni_sk_auto** (ASG — 2 instances) | `i-0dfeb7a93f1f78e8e` / `i-09883a010a52509f6` | t2.small | running | 172.31.50.44 / 172.31.84.218 | 34.234.193.80 / 100.53.89.222 | **Sidekiq worker** for Edgar (sentiment_importer). ASG-managed; deploy script targets `100.53.89.222` as `seni_sk_nelanco`. Processes background jobs (webhook triggers, inventory snapshots). |
 | **krake_ror** | `i-0df7a9e513dc537a6` | t2.micro | running | 172.31.19.151 | 18.205.20.43 | Krake Rails backend (getdata.io). Behind ALB `krake-ror-1`. |
-| **krake_sk_consolidated** | `i-09d97cc0780fc8363` | t2.small | running | 172.31.48.178 | 54.160.89.135 | **Consolidated Krake Sidekiq.** Runs 4 Sidekiq processes (general, webhook, crawler, scaler) on one box. Replaces 4 separate krake_sk* instances. Upstart scripts at `/etc/init/krake_sk*.conf`. |
-| ~~krake_sk~~ | ~~i-0b82138aa45b4029a~~ | ~~t2.nano~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
-| ~~krake_sk_webhook~~ | ~~i-02599e3b3a03e38e4~~ | ~~t2.small~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
-| ~~krake_sk_crawler~~ | ~~i-06fc0dd44fa9cdbf2~~ | ~~t2.small~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
-| ~~krake_sk_scaler~~ | ~~i-03224db5f5a49709c~~ | ~~t2.micro~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
+| **krake_sk_consolidated** | `i-05eb7c0c69349991d` | t2.small | running | 172.31.48.64 | 54.237.53.162 | **Consolidated Krake Sidekiq + Publisher.** ASG-managed (ASG: `krake_sk_consolidated`, LT: `krake-sk-consolidated`, AMI: `ami-046aefdade31fd70a`). Runs 5 Sidekiq processes: general, webhook, crawler, scaler, and s3_cacher (krake_publisher). Upstart scripts at `/etc/init/krake_sk*.conf` + `/etc/init/krake_publisher.conf`. Auto-heals on failure. |
+| ~~krake_sk~~ | ~~i-0b82138aa45b4029a~~ | ~~t2.nano~~ | **terminated** | — | — | Replaced by krake_sk_consolidated. |
+| ~~krake_sk_webhook~~ | ~~i-02599e3b3a03e38e4~~ | ~~t2.small~~ | **terminated** | — | — | Replaced by krake_sk_consolidated. |
+| ~~krake_sk_crawler~~ | ~~i-06fc0dd44fa9cdbf2~~ | ~~t2.small~~ | **terminated** | — | — | Replaced by krake_sk_consolidated. |
+| ~~krake_sk_scaler~~ | ~~i-03224db5f5a49709c~~ | ~~t2.micro~~ | **terminated** | — | — | Replaced by krake_sk_consolidated. |
+| ~~GETDATA_CACHE~~ | ~~i-0d63b472d8a8893f8~~ | ~~t2.micro~~ | **terminated** | — | — | krake_publisher consolidated onto krake_sk_consolidated. |
 | **krake_data** | `i-07c76510b231d787f` | t3.medium | running | 172.31.19.2 | 52.5.179.48 | Krake data processing. |
 | **GETDATA_REDIS** | `i-030c1452b197c920a` | t3a.small | running | 172.31.19.183 | 52.1.162.134 | Redis for Krake. |
-| **GETDATA_CACHE** | `i-0d63b472d8a8893f8` | t2.micro | running | 172.31.19.80 | 98.84.169.188 | Krake cache worker. |
+
 | **seni_sql_2026** | `i-08ebe96afbc649a95` | t2.small | running | 172.31.20.143 | 44.193.55.205 | PostgreSQL database for Edgar (sentiment_importer). |
 | **seni_redis_2** | `i-09ecc8ecc91d09206` | t2.large | running | 172.31.56.185 | 54.234.59.188 | Redis for Edgar (Sidekiq, caching). |
 
