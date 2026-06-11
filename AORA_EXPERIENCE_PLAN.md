@@ -3,9 +3,9 @@
 **Owner:** Gary Teh · **Started:** 2026-06-04 · **Last updated:** 2026-06-10 · **Status:** ACTIVE
 
 Aora is the front-of-house name (China launch with Mr. Cao's GO/Nucleus network, led by **Elizabeth Wong**); the
-engine is Agroverse Lineage (`truesight.me/lineage.html` — experiential-learning
+engine is Agroverse Lineage ([truesight.me/lineage.html](https://truesight.me/lineage.html) — experiential-learning
 credentialing). Online piece will eventually sit at **experience.agroverse.shop**,
-following the `capoeira.agroverse.shop` pattern (setting-aware session generator).
+following the [capoeira.agroverse.shop](https://capoeira.agroverse.shop) pattern (setting-aware session generator).
 
 **Context:** Mr. Cao (Liz's friend) is the founder of the GO/Nucleus network. Gary offered to
 generate two learning modules — **1. Agroforestry** and **2. Supply Chain** — for the Aora
@@ -69,6 +69,50 @@ gantt
 
 ---
 
+## 🚨 Critical blockers
+
+These are the gates that must clear before the pilot can launch. Surfaced here so everyone referencing this plan sees them immediately.
+
+| # | Blocker | Owner | Status | Unblocks |
+|---|---------|-------|--------|----------|
+| 🔴 | **Liz's demand forecast** — annual volume from China retailers/distributors | Liz | no visibility yet | Mold quantity, freight cadence, capital planning, pre-stock |
+| 🔴 | **Kaon's MindLoop engine** — experiential learning platform for publishing Aora modules | Kaon | in development, not started | Experiential learning track, credentialing tie-in, GO app integration |
+| 🔴 | **Capital source for China stocking** — ~$5,626.93 available after freight; beyond that needs new AGL round | Liz / Gary | no investor visibility | Scaling beyond initial 100 bars, pre-stock warehouse |
+| 🟡 | **Border crossing / customs clearance** — cacao import into China | Jerri | in progress (1-2 months typical) | Shipping chocolate bars to China |
+| 🟡 | **Launch date decision** — July shifted, new target TBD | Liz / Jerri | ~Jul 1 | Venue booking, school outreach, Gary's travel |
+| 🟢 | **Freight quote** — airline revalidation from Graziela/SeaCoast | Graziela | blocked (awaiting airline) | Cacao arriving at Kirsten → bar production |
+
+---
+
+## China final package — what the consumer receives
+
+When a Chinese consumer buys an Aora experience, here's what the assembled package looks like:
+
+### Physical components
+- **1 × 50g chocolate bar** — 81% cacao, Cabrellon mold, wrapped in **generic foil** (DAO delivers)
+- **Final consumer packaging** — provided by Liz's side (Go/Nucleus), branded for Chinese market
+- **Retail price:** $10/bar (Gary recommended)
+- **DAO return:** $6/bar flows back to TrueSight DAO after bars are sold
+
+### Digital components
+- **QR code** on packaging → links to Aora module on MindLoop engine
+- **Two learning modules:** Agroforestry (forest→dried bean) + Supply Chain (bag→bar→you)
+- **Credentialing:** Module completion triggers a record on TrueSight DAO's Lineage layer
+- **AORA ledger:** All transactions (production, shipping, sales, DAO return) tracked via managed ledger
+
+### Experience components
+- **Venue:** Tanxiang Island (Dongguan) or similar natural setting — no immersive projection equipment
+- **Format:** Two-part physical workshop (mentors + children co-creating)
+- **Senses:** see/smell/taste/hear/create — content a 6-year-old can grasp
+- **School partnerships:** BBK Xiaotiancai School mentioned; aligns with Pakistan program (4 schools)
+
+### Revenue flow
+```
+Consumer pays $10 → Liz/Go collects retail → $6/bar flows to TrueSight DAO → funds Agroverse operations
+```
+
+---
+
 ## Pricing model
 
 Gary recommended:
@@ -82,7 +126,7 @@ All transactions leading up to sales and delivery are tracked via the **AORA led
 
 ## Cash position & capital available
 
-### Current USD cash (from treasury-cache, 2026-06-11)
+### Current USD cash (from [treasury-cache](https://github.com/TrueSightDAO/treasury-cache/blob/main/dao_offchain_treasury.json), 2026-06-11)
 
 | Ledger | Amount (USD) |
 |--------|-------------|
@@ -110,6 +154,8 @@ From the shipping manifest (4/6/2026):
 | MPF (Merchandise Processing Fee) | $33.58 |
 | **Total Freight Cost** | **$2,825.09** |
 
+> ⚠️ **War risk note:** This freight cost is tentative. The escalating Iran/USA conflict is driving up global air freight rates. Actual cost may shift upward.
+
 ### Available for Aora/Go collaboration
 
 After deducting the current freight from Main Ledger + AGL15 (the ledgers Gary manages directly):
@@ -125,7 +171,7 @@ This is what's available to finance Aora/Go collaboration follow-up needs (molds
 
 ### Graziela's freight pricing (Omega/5CL, Ilhéus → SF)
 
-Tiered air freight rates per kg:
+Tiered air freight rates per kg (from [freight_lanes.json](https://github.com/TrueSightDAO/agroverse-freight-audit/blob/main/pointers/freight_lanes.json)):
 
 | Weight Tier | Rate (USD/kg) |
 |-------------|--------------|
@@ -188,7 +234,7 @@ Plus ancillary costs:
 | **PR2** | zh-CN intake — Jerri's team translates; we review structure only | Jerri | in progress (theirs) |
 | **PR3** | `data/exercises.json` (1:1 with module exercise tables) + session-generator scaffold + GitHub Pages → experience.agroverse.shop CNAME | Gary | not started |
 | **PR4** | Credentialing tie-in: `programs/<aora>/manifest.json` on credentialing platform, `experience.agroverse.shop` in `source_pages[]` | Gary | not started |
-| **MindLoop** | Kaon completes MindLoop engine; Aora modules published as MindLoop experiences; completion triggers Lineage credential | Kaon | not started |
+| **MindLoop** | Kaon completes MindLoop engine; Aora modules published as MindLoop experiences; completion triggers Lineage credential | Kaon | **blocker** — not started |
 | **Evan feedback** | Venue (Tanxiang Island), school partnerships, July timing — incorporated into launch planning | Jerri / Gary | received |
 
 **RESUME HERE → PR3** (or fold in Jerri/Evan feedback on the v0.1 module docs first if it has arrived — that takes precedence over the generator scaffold).
@@ -222,6 +268,8 @@ Shipping manifest dated 4/6/2026, managed by Matheus Reis:
 | **TOTAL** | **613** | | **375.08 kg** |
 
 **Freight cost:** $2,825.09 (see Cash Position section for full breakdown)
+
+> ⚠️ **War risk note:** This freight cost is tentative. The escalating Iran/USA conflict is driving up global air freight rates. Actual cost may shift upward.
 
 ### 2b. 100 bars for Liz — production & delivery
 
@@ -288,7 +336,7 @@ Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimat
 | **Consumer packaging** | Liz's side provides final packaging for Chinese market; DAO delivers bars in generic foil | Liz | decided |
 | **Pricing** | Retail $10/bar (Gary recommended). DAO return $6/bar after bars sold | Gary / Liz | Gary suggested |
 | **AORA ledger** | All transactions tracked via managed ledger by TrueSight DAO | Gary | decided |
-| **MindLoop engine** | Experiential learning platform for publishing Aora modules | Kaon | in development |
+| **MindLoop engine** | Experiential learning platform for publishing Aora modules | Kaon | **blocker** — in development |
 | **GO app integration** | Exercise schema contract between Aora's `exercises.json` and GO's session recomposition | Kaon / Gary | not started |
 | **Border crossing** | Cacao import regulations, labeling, customs for China | Jerri | in progress |
 | **Pre-stock warehouse** | If demand justifies, pre-stock chocolate bars in China warehouse to minimize freight frequency (Omega = high friction) | Liz / Gary | pending forecast + capital |
@@ -349,11 +397,11 @@ Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimat
 
 ## Related
 
-- `capoeira/` — session-generator pattern + moves.json schema to mirror
-- `truesight_me/lineage.html` — credentialing pitch this program instantiates
-- `OPEN_FOLLOWUPS.md` — Graziela/SeaCoast airline quote pending (poke Monday)
-- `notes/claude_serialized_qr_sales_2026-04-29.md` — Elizabeth Wong's 37-bar purchase record
-- `fda_fsvp/suppliers/black_king/entity.json` — Matheus Reis / Black King entity profile
-- `agroverse-freight-audit/pointers/freight_partners.json` — Omega, 5cl.rs, Matheus contact details
-- `agroverse-freight-audit/pointers/freight_lanes.json` — Graziela's tiered pricing snapshot
-- `agroverse.shop/js/products.js` — full SKU list with GTINs, weights, HS codes
+- [capoeira/](https://github.com/TrueSightDAO/capoeira) — session-generator pattern + moves.json schema to mirror
+- [truesight.me/lineage.html](https://truesight.me/lineage.html) — credentialing pitch this program instantiates
+- [OPEN_FOLLOWUPS.md](https://github.com/TrueSightDAO/agentic_ai_context/blob/main/OPEN_FOLLOWUPS.md) — Graziela/SeaCoast airline quote pending (poke Monday)
+- [notes/claude_serialized_qr_sales_2026-04-29.md](https://github.com/TrueSightDAO/agentic_ai_context/blob/main/notes/claude_serialized_qr_sales_2026-04-29.md) — Elizabeth Wong's 37-bar purchase record
+- [fda_fsvp/suppliers/black_king/entity.json](https://github.com/TrueSightDAO/fda_fsvp/blob/main/suppliers/black_king/entity.json) — Matheus Reis / Black King entity profile
+- [agroverse-freight-audit/pointers/freight_partners.json](https://github.com/TrueSightDAO/agroverse-freight-audit/blob/main/pointers/freight_partners.json) — Omega, 5cl.rs, Matheus contact details
+- [agroverse-freight-audit/pointers/freight_lanes.json](https://github.com/TrueSightDAO/agroverse-freight-audit/blob/main/pointers/freight_lanes.json) — Graziela's tiered pricing snapshot
+- [agroverse.shop/js/products.js](https://agroverse.shop/js/products.js) — full SKU list with GTINs, weights, HS codes
