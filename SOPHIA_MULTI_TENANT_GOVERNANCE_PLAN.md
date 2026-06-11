@@ -203,17 +203,20 @@ touching the TrueSight instance.
 
 | Step | PRs opened | Merged (human) | Deployed | UAT |
 |------|-----------|----------------|----------|-----|
-| **A — Phase 0.1: Identity resolver** | ☐ | ☐ | ☐ | P0.1 |
-| **B — Phase 3: Credential vault** | ☐ | ☐ | ☐ | P3.1–P3.7 |
+| **A — Phase 0.1: Identity resolver** | ✅ #160 | ✅ Merged | ☐ | P0.1 |
+| **B — Phase 3: Credential vault (store)** | ✅ #165 | ✅ Merged | ☐ | P3.1–P3.7 |
+| **B2 — Phase 3.3: Vault web page** | ☐ | ☐ | ☐ | P3.3 |
+| **B3 — Phase 3.5: Missing-credential tool** | ☐ | ☐ | ☐ | P3.4 |
+| **B4 — Phase 3.6: Vault URL tool** | ☐ | ☐ | ☐ | P3.6 |
 | **C — Phase 0.2–0.4: Remaining policy** | ☐ | ☐ | ☐ | P0.2–P0.4 |
 | **D — Phase 1: Identity binding** | ☐ | ☐ | ☐ | P1.1–P1.5 |
 | **E — Phase 2: Engagement modes** | ☐ | ☐ | ☐ | P2.1–P2.4 |
 | **F — Phase 4: Multi-org replication** | ☐ | ☐ | ☐ | P4.1–P4.3 |
 
-> **RESUME HERE (vault-first):** Step A — Phase 0.1 `app/policy.py` (identity resolver:
-> `telegram_id → Column X → Governors cache → {guest, governor}`). Then Step B — Phase 3
-> (credential vault). Open PRs via git worktree; **do not self-merge** (human reviews).
-> Report progress in this handoff topic (thread 2744).
+> **RESUME HERE (vault-first, 2026-06-11):** Step B2 — Phase 3.3 vault web page
+> (FastAPI + Jinja2, email→RSA auth, Governors cache gate). Then B3 — missing-credential
+> tool, B4 — vault URL tool. Open PRs via git worktree; **do not self-merge** (human
+> reviews). Report progress in this handoff topic (thread 2744).
 
 ---
 
