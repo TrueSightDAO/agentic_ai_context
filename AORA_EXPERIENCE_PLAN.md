@@ -76,7 +76,7 @@ These are the gates that must clear before the pilot can launch. Surfaced here s
 | # | Blocker | Owner | Status | Unblocks |
 |---|---------|-------|--------|----------|
 | 🔴 | **Liz's demand forecast** — annual volume from China retailers/distributors | Liz | no visibility yet | Mold quantity, freight cadence, capital planning, pre-stock |
-| 🔴 | **Kaon's MindLoop engine** — experiential learning platform for publishing Aora modules | Kaon | in development, not started | Experiential learning track, credentialing tie-in, GO app integration |
+| 🔴 | **Kaon's MindLoop engine** — experiential learning platform for publishing Aora modules | Kaon | actively working — not yet available for Gary's UAT | Experiential learning track, credentialing tie-in, GO app integration |
 | 🔴 | **Capital source for China stocking** — ~$5,626.93 available after freight; beyond that needs new AGL round | Liz / Gary | no investor visibility | Scaling beyond initial 100 bars, pre-stock warehouse |
 | 🟡 | **Border crossing / customs clearance** — cacao import into China | Jerri | in progress (1-2 months typical) | Shipping chocolate bars to China |
 | 🟡 | **Launch date decision** — July shifted, new target TBD | Liz / Jerri | ~Jul 1 | Venue booking, school outreach, Gary's travel |
@@ -230,7 +230,7 @@ Plus ancillary costs:
 | **PR2** | zh-CN intake — Jerri's team translates; we review structure only | Jerri | in progress (theirs) |
 | **PR3** | `data/exercises.json` (1:1 with module exercise tables) + session-generator scaffold + GitHub Pages → experience.agroverse.shop CNAME | Gary | not started |
 | **PR4** | Credentialing tie-in: `programs/<aora>/manifest.json` on credentialing platform, `experience.agroverse.shop` in `source_pages[]` | Gary | not started |
-| **MindLoop** | Kaon completes MindLoop engine; Aora modules published as MindLoop experiences; completion triggers Lineage credential | Kaon | **blocker** — not started |
+| **MindLoop** | Kaon completes MindLoop engine; Aora modules published as MindLoop experiences; completion triggers Lineage credential | Kaon | **blocker** — actively working, not yet UAT-ready |
 | **Evan feedback** | Venue (Tanxiang Island), school partnerships, July timing — incorporated into launch planning | Jerri / Gary | received |
 
 **RESUME HERE → PR3** (or fold in Jerri/Evan feedback on the v0.1 module docs first if it has arrived — that takes precedence over the generator scaffold).
@@ -332,7 +332,7 @@ Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimat
 | **Consumer packaging** | Liz's side provides final packaging for Chinese market; DAO delivers bars in generic foil | Liz | decided |
 | **Pricing** | Retail $10/bar (Gary recommended). DAO return $6/bar after bars sold | Gary / Liz | Gary suggested |
 | **AORA ledger** | All transactions tracked via managed ledger by TrueSight DAO | Gary | decided |
-| **MindLoop engine** | Experiential learning platform for publishing Aora modules | Kaon | **blocker** — in development |
+| **MindLoop engine** | Experiential learning platform for publishing Aora modules | Kaon | **blocker** — actively working, not yet UAT-ready |
 | **GO app integration** | Exercise schema contract between Aora's `exercises.json` and GO's session recomposition | Kaon / Gary | not started |
 | **Border crossing** | Cacao import regulations, labeling, customs for China | Jerri | in progress |
 | **Pre-stock warehouse** | If demand justifies, pre-stock chocolate bars in China warehouse to minimize freight frequency (Omega = high friction) | Liz / Gary | pending forecast + capital |
