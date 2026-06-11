@@ -21,13 +21,10 @@ This means the autopilot cannot mint a QR code for an event (like SF Tech Fest) 
 ```
 dao_client register_qr_code
   |
+  |  HTTP POST (signed params)
   v
-Edgar (sentiment_importer)
-  |  POST /dao/qr_code_register
-  |  (signed contribution -> Telegram Chat Logs)
-  v
-GAS Web App (process_qr_code_generation_telegram_logs.gs)
-  |  Reads Telegram Chat Logs
+GAS Web App (qr_code_web_service.gs on 1MnAsIQAxcSf...)
+  |  Validates fields, checks duplicates
   |  Creates row in "Agroverse QR codes" sheet
   |  Triggers GitHub Actions webhook
   v
@@ -43,9 +40,8 @@ QR code live at truesight.me/qr/?id=<code>
 
 | Component | Repo | What it does |
 |-----------|------|-------------|
-| **dao_client command** | `dao_client` | New `register_qr_code` CLI command. Signs a `[QR CODE REGISTRATION]` event, submits to Edgar. |
-| **Edgar endpoint** | `sentiment_importer` | New `DaoController#register_qr_code` action. Receives signed event, appends to Telegram Chat Logs. |
-| **GAS processor** | `tokenomics` (GAS script `1N6o00N9VtRK...`) | New `processQrCodeRegistrationTelegramLogs()` function. Reads `[QR CODE REGISTRATION]` messages, creates single row in Agroverse QR codes sheet. |
+| **dao_client command** | `dao_client` | New `register_qr_code` CLI command. Signs params, POSTs directly to GAS web app URL. |
+| **GAS web app** | `tokenomics` (GAS script `1MnAsIQAxcSf...`) | `handleRegisterSingleQRCode()` in `qr_code_web_service.gs`. Validates, deduplicates, appends row, triggers GitHub Actions. |
 | **GitHub Actions** | `lineage-assets` | Existing `generate_qr_batch.sh` workflow. Triggered by GAS webhook. Generates branded QR PNG + manifest. |
 
 ---
