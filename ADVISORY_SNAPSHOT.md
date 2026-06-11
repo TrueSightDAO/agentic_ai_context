@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-11T16:35:59Z`
+- Generated (UTC): `2026-06-11T20:42:42Z`
 - Look-back: **7** calendar days (`2026-06-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
-- `[EMAIL REGISTERED EVENT]` × 11
+- `[CONTRIBUTION EVENT]` × 27
+- `[EMAIL REGISTERED EVENT]` × 9
 - `[EMAIL VERIFICATION EVENT]` × 6
-- `[PRACTICE EVENT]` × 1
+- `[PRACTICE EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260609215936_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agroverse_shop_beta: Facebook Pixel leaks from beta.agroverse.sh…
-- `Edgar_20260609220231_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: ## Unit 4: Add sk_live guard to config
 - `Edgar_20260609221423_045` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 15 · Description: Fix beta analytics leakage — Facebook Pixel hostname guard
 - `Edgar_20260609233959_047` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 30 · Description: PR2.1: Subscription Fulfillment Queue sheet module
 - `Edgar_20260609234004_049` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.2: Handle invoice.paid for Agroverse subscription renewals
@@ -59,6 +57,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260611013839_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix all remaining ruff violations in truesi…
 - `Edgar_20260611014656_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Aora Experience Plan — session 2026-06-10
 - `Edgar_20260611015715_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-B: Add ruff lint+format check to CI
+- `Edgar_20260611171943_081` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-11T17:19:43.679Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260611201219_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: PR1.5 — Subscribe CTA on all bar PDPs + generic PDP
 
 ---
 
@@ -316,6 +316,7 @@ _All dated lines on/after 2026-06-04_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9b54839 | 2026-06-11 16:38:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5fe5485 | 2026-06-11 11:13:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 831b683 | 2026-06-11 05:12:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted sovereignty section
@@ -355,7 +356,6 @@ b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [
 d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 424a12d | 2026-06-06 10:33:02 -0700 | add Zen direct knowing section to Journey to the West post (#191)
 5760ce9 | 2026-06-06 10:26:10 -0700 | add audio narration players to both blog posts (#190)
-e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the point
 … (truncated)
 ```
 
@@ -368,6 +368,15 @@ e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the po
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+aea7136 | 2026-06-11 13:32:23 -0700 | handoff(followup-monitor): register thread 2622 (Sophia parked GO-ready) (#449)
+0b9ab07 | 2026-06-11 13:23:54 -0700 | Add deferred follow-up for Chocolate Subscription Phase 2 (#448)
+36d0344 | 2026-06-11 13:09:32 -0700 | handoff: Sophia durable follow-up monitor — plan + UAT + registry rows (#447)
+2f3c4fd | 2026-06-11 11:17:41 -0700 | Update PDF: clarify events live on agroverse.shop, not truesight.me
+b5468ec | 2026-06-11 11:09:17 -0700 | Update PDF with self-reinforcing loop diagram
+206b97e | 2026-06-11 11:02:27 -0700 | Add PDF of Partner Events Monitoring implementation plan
+a1d6129 | 2026-06-11 10:38:28 -0700 | Add freight profit analysis methodology runbook (#445)
+29a6110 | 2026-06-11 09:36:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
+53e4401 | 2026-06-11 09:36:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 bc9d3ab | 2026-06-11 08:50:13 -0700 | Update freight profit analysis v4 - apothecaries not Upper Taekri
 e814dc8 | 2026-06-11 08:48:46 -0700 | Update freight profit analysis v3 with $50 mass bar pricing
 57f8ece | 2026-06-11 08:46:48 -0700 | Update freight profit analysis with corrected pricing
@@ -399,15 +408,6 @@ ff51dcc | 2026-06-10 17:08:22 -0700 | docs: Sophia watch-and-notify execution ro
 5bb3ad4 | 2026-06-10 16:48:26 -0700 | docs: mark Sophia per-thread concurrency roadmap shipped + deployed (#417)
 bb8e07d | 2026-06-10 16:15:30 -0700 | docs: Sophia per-thread concurrency execution roadmap (#416)
 9c29c6b | 2026-06-10 15:53:50 -0700 | convention: roadmap docs must include a UAT phase; add it to the subscription plan (#415)
-f336e0c | 2026-06-10 15:47:23 -0700 | docs(glossary): define UAT (+ workspace convention) so LLMs/Sophia aren't confused (#414)
-03d2a28 | 2026-06-10 15:40:32 -0700 | Add beta.edgar.truesight.me DNS and monitoring entries (#403)
-bb32f59 | 2026-06-10 15:40:25 -0700 | Add dao-protocol-beta sandbox box to AWS_DIGITAL_INFRASTRUCTURE.md (Unit 8) (#402)
-4063fbd | 2026-06-10 14:07:48 -0700 | chore(previews): refresh Beer Hall preview (2026-06-10 UTC)
-00ae319 | 2026-06-10 14:07:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
-ecc5ab9 | 2026-06-10 09:14:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-10 UTC)
-b88c4a1 | 2026-06-10 09:14:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
-cb55256 | 2026-06-10 16:03:38 +0000 | Merge PR: Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
-7e9bd41 | 2026-06-10 16:03:28 +0000 | Add ACH banking reference for Zhiwen Teh (Wells Fargo checking)
 … (truncated)
 ```
 
@@ -463,6 +463,15 @@ a1d2b51 | 2026-06-05 10:18:14 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+c896c25 | 2026-06-11 13:39:20 -0700 | Remove Buy One Bar button from generic PDP (#163)
+51949fb | 2026-06-11 13:36:53 -0700 | Restructure generic PDP: hero two-column, content full-width below (#162)
+394808d | 2026-06-11 13:33:23 -0700 | Revert generic PDP to two-column layout (#161)
+4112de7 | 2026-06-11 13:30:14 -0700 | Switch generic PDP to full-width single-column layout (#160)
+0b4cea3 | 2026-06-11 13:29:19 -0700 | Add playful tagline to generic PDP hero (#159)
+75262c8 | 2026-06-11 13:13:41 -0700 | Add Premium Dark Chocolate Bar card to homepage product gallery (#158)
+67e2d05 | 2026-06-11 13:12:13 -0700 | Add Subscribe CTA to Oscar + Santa Ana PDPs, create generic PDP (#157)
+e718c15 | 2026-06-11 12:47:28 -0700 | Add Manage Subscription button to order status page for subscriptions (#156)
+443efbb | 2026-06-11 12:41:35 -0700 | Add order-history.js to subscribe page so subscription saves to localStorage (#155)
 9e1414d | 2026-06-10 19:39:47 -0700 | Save subscription to order history on success page (#154)
 9fa0ab4 | 2026-06-10 19:26:49 -0700 | Fix redirect script stripping success/cancel params (#153)
 792cf71 | 2026-06-10 19:11:02 -0700 | Fix subscription success/cancel URLs to match subscribe.js expectations (#152)
@@ -641,7 +650,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/11/2026 8:50:30 |
+| 2026-06 | 222.41 | 15199.52386 | 6/11/2026 12:50:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-04`; scanned last **499** data rows)
 
