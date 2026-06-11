@@ -7,9 +7,11 @@ engine is Agroverse Lineage (`truesight.me/lineage.html` — experiential-learni
 credentialing). Online piece will eventually sit at **experience.agroverse.shop**,
 following the `capoeira.agroverse.shop` pattern (setting-aware session generator).
 
-**Context:** Mr. Cao asked Gary to design two learning modules — **1. Agroforestry**
-and **2. Supply Chain** — for the Aora pilot program (mentors + children co-creating;
-"TED for children", content a 6-year-old can grasp; senses: see/smell/taste/hear/create).
+**Context:** Mr. Cao (Liz's friend) is the founder of the GO/Nucleus network. Gary offered to
+generate two learning modules — **1. Agroforestry** and **2. Supply Chain** — for the Aora
+pilot program, based on his firsthand experience in Brazil among the farmers. The program is
+for mentors + children co-creating; "TED for children", content a 6-year-old can grasp;
+senses: see/smell/taste/hear/create.
 Jerri (China team, reports to Liz) needs initial ideas + a rough timeline to line up events.
 
 **Kaon** (partner brought in by Liz) is building the **MindLoop engine** — a platform for
@@ -62,8 +64,84 @@ gantt
     Physical experiential events        :2026-09-01, 30d
 ```
 
-**Critical path:** Freight quote → cacao arrives at Kirsten → produce 63 bars → Gary backpack carry to China.
-Parallel track: Liz demand forecast → capital sourcing → mold quantity → production throughput.
+- **Critical path:** Freight quote → cacao arrives at Kirsten → produce 63 bars → Gary backpack carry to China
+- **Parallel track:** Liz demand forecast → capital sourcing → mold quantity → production throughput
+
+---
+
+## Pricing model
+
+Gary recommended:
+- **Retail price:** **$10/bar** (final consumer price in China, collected by Liz/Go)
+- **DAO return:** **$6/bar** (flows back to TrueSight DAO after bars are sold — includes tree planting component)
+- **Revenue flow:** Liz/Go collects full $10 retail → $6 per bar made available to TrueSight DAO (operates Agroverse project)
+
+All transactions leading up to sales and delivery are tracked via the **AORA ledger** — a managed ledger by TrueSight DAO.
+
+---
+
+## Cash position & capital available
+
+### Current USD cash (from treasury-cache, 2026-06-11)
+
+| Ledger | Amount (USD) |
+|--------|-------------|
+| Main Ledger (Gary Teh) | $3,172.29 |
+| AGL15 (Gary Teh) | $5,279.73 |
+| AGL4 (TrueSight DAO) | $9,036.35 |
+| AGL6 (Gary Teh) | $1,312.59 |
+| AGL8 (Gary Teh) | $518.95 |
+| AGL10 (Gary Teh) | $194.83 |
+| **Total USD** | **$19,682.85** |
+
+### Current freight cost (Matheus → Kirsten)
+
+From the shipping manifest (4/6/2026):
+
+| Cost Component | Amount (USD) |
+|----------------|-------------|
+| Air Freight (airport to airport) | $1,261.20 |
+| Export Documentation | $95.00 |
+| Inland Transport (Brazil) | $697.81 |
+| Brazil Airport Charges | $250.00 |
+| US Airline Terminal Fee | $212.50 |
+| US Import Handling Fee | $125.00 |
+| US Customs Clearance | $150.00 |
+| MPF (Merchandise Processing Fee) | $33.58 |
+| **Total Freight Cost** | **$2,825.09** |
+
+### Available for Aora/Go collaboration
+
+After deducting the current freight from Main Ledger + AGL15 (the ledgers Gary manages directly):
+- Main Ledger: $3,172.29
+- AGL15: $5,279.73
+- **Subtotal:** $8,452.02
+- **Less freight:** -$2,825.09
+- **Remaining:** **~$5,626.93**
+
+This is what's available to finance Aora/Go collaboration follow-up needs (molds, foil, packaging materials, etc.).
+
+**Beyond this:** Any additional capital requires a new AGL round with investors. No visibility on who that would be.
+
+### Graziela's freight pricing (Omega/5CL, Ilhéus → SF)
+
+Tiered air freight rates per kg:
+
+| Weight Tier | Rate (USD/kg) |
+|-------------|--------------|
+| 200 kg | $3.50 |
+| 300 kg | $3.40 |
+| 500 kg | $3.30 |
+| 750 kg | $3.30 |
+| 1,000 kg | $3.20 |
+
+Plus ancillary costs:
+- Inland transport (Brazil): $695 + 0.15% of cargo value
+- Airport charges (Brazil): $0.30/kg, min $250
+- US airline terminal fee: ~$200–212.50
+- US import handling: $125
+- US customs clearance: $150
+- Door delivery: $295
 
 ---
 
@@ -93,6 +171,9 @@ Parallel track: Liz demand forecast → capital sourcing → mold quantity → p
 17. **Pilot scope:** Aora/Go collaboration is **chocolate bars only** (50g, 81% cacao). Beans, nibs, mass, tea, and other SKUs are existing DAO inventory for other channels. Future phases may expand.
 18. **Available for Go:** The **La do Sitio cacao beans** (~274 kg on AGL8, Paulo's farm, Pará) stay in Brazil and can be converted to chocolate bars for Go/Aora. They are NOT on the current freight to Kirsten.
 19. **100-bar delivery method:** Gary carries them in his backpack to China. If July shifts, bars stay at Kirsten's until Gary's next China trip.
+20. **Pricing:** Retail $10/bar (Gary recommended). DAO return $6/bar (includes trees). Liz/Go collects retail; $6 flows back to DAO after bars sold.
+21. **AORA ledger:** All transactions tracked via a managed ledger by TrueSight DAO.
+22. **Available cash after freight:** ~$5,626.93 (Main Ledger + AGL15 - $2,825.09 freight). Beyond that needs new AGL round — no investor visibility.
 
 ---
 
@@ -140,7 +221,7 @@ Shipping manifest dated 4/6/2026, managed by Matheus Reis:
 | Pallet packaging | 1 | 35.000 | 35.00 |
 | **TOTAL** | **613** | | **375.08 kg** |
 
-**Freight cost:** $2,825.09 (air freight $1,261.20 + documentation $95 + inland transport $697.81 + airport charges $250 + US fees $521.08)
+**Freight cost:** $2,825.09 (see Cash Position section for full breakdown)
 
 ### 2b. 100 bars for Liz — production & delivery
 
@@ -175,24 +256,14 @@ The following inventory stays in Matheus's warehouse (Ilhéus) and is **NOT on t
 
 | Step | What | Owner | Status |
 |------|------|-------|--------|
-| **Recipe** | 81% cacao / 19% sugar (default; may adjust when Liz has market visibility) | Gary / Liz | decided |
+| **Recipe** | 81% cacao / 19% sugar (Gary's suggestion; may adjust when Liz has market visibility) | Gary / Liz | Gary suggested |
 | **Mold** | Cabrellon Italian (27.5×17.5cm, 4×50g cavities) — same as SF. Dongguan factory also has MHC-CL082 in stock (quotation received from Jerri) | Gary | decided |
 | **Santos pricing** | R$130/kg for 70% bars; Santos willing to try 50g bars | Santos | quoted |
 | **Mold quantity** | Depends on Liz's demand forecast (annual kg → mold count → throughput) | Liz | **blocked** — no forecast yet |
 | **Wrapper foil** | Who provides? | Liz / Gary | open |
 | **Border crossing** | Jerri consulting freight forwarder on cacao import requirements for China | Jerri | in progress |
 
-### 2e. Capital constraint
-
-DAO capital already committed:
-- **AGL15:** $5,279.73
-- **Main Ledger:** $3,172.29 (USD) + additional freight costs
-- **Current freight cost:** $2,825.09 (Matheus → Kirsten)
-- Allocated to USA-bound freight
-
-**China-dedicated stocking:** The ~274 kg La do Sitio beans in Matheus's warehouse can be converted to bars without new capital (they're already paid for). Beyond that, any additional cacao for China requires **new capital**. No visibility on source yet.
-
-### 2f. Weight/volume estimates for Jerri's freight forwarder
+### 2e. Weight/volume estimates for Jerri's freight forwarder
 
 Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimates:
 
@@ -215,11 +286,13 @@ Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimat
 |------|------|-------|--------|
 | **Demand forecast** | Annual expected volume from China retailers/distributors → informs mold quantity, freight cadence, pre-stock, capital needs | Liz | **critical blocker** — no visibility yet |
 | **Consumer packaging** | Liz's side provides final packaging for Chinese market; DAO delivers bars in generic foil | Liz | decided |
+| **Pricing** | Retail $10/bar (Gary recommended). DAO return $6/bar after bars sold | Gary / Liz | Gary suggested |
+| **AORA ledger** | All transactions tracked via managed ledger by TrueSight DAO | Gary | decided |
 | **MindLoop engine** | Experiential learning platform for publishing Aora modules | Kaon | in development |
 | **GO app integration** | Exercise schema contract between Aora's `exercises.json` and GO's session recomposition | Kaon / Gary | not started |
 | **Border crossing** | Cacao import regulations, labeling, customs for China | Jerri | in progress |
 | **Pre-stock warehouse** | If demand justifies, pre-stock chocolate bars in China warehouse to minimize freight frequency (Omega = high friction) | Liz / Gary | pending forecast + capital |
-| **Capital source** | Where does China-dedicated stocking capital come from? | Liz / Gary | **open** — no visibility |
+| **Capital source** | Where does China-dedicated stocking capital come from? | Liz / Gary | **open** — ~$5,626.93 available after freight; beyond that needs new AGL round |
 
 **Key principle:** Omega services are high-friction. Fewer, larger freights are better than frequent small ones. Pre-stocking is preferred once demand is known and capital is secured.
 
@@ -252,11 +325,12 @@ Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimat
 | 1 | **Launch date:** When is the new target? (Sep–Oct 2026 or later) | Liz / Jerri | ~Jul 1 |
 | 2 | **Venue:** Tanxiang Island or alternative? | Jerri / Evan | ~Jul 15 |
 | 3 | **Demand forecast:** Annual volume from China retailers/distributors | Liz | ASAP — blocks everything downstream |
-| 4 | **Capital source:** Where does China-dedicated stocking capital come from? | Liz / Gary | after #3 |
+| 4 | **Capital source:** Where does China-dedicated stocking capital come from? (~$5,626.93 available; beyond that needs new AGL round) | Liz / Gary | after #3 |
 | 5 | **Wrapper foil:** Who provides the foil for generic-wrapped bars? | Liz / Gary | ~Jun 20 |
 | 6 | **Border crossing:** Freight forwarder feedback on cacao import into China | Jerri | ongoing |
 | 7 | **Santos mold quantity:** How many molds needed for throughput? | Liz (via forecast) | after #3 |
 | 8 | **Cacao percentage:** 81% default or adjust based on market feedback? | Liz | after market visibility |
+| 9 | **Next AGL investor:** Who finances the next round when current cash is exhausted? | Gary | unknown |
 
 ---
 
@@ -281,4 +355,5 @@ Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimat
 - `notes/claude_serialized_qr_sales_2026-04-29.md` — Elizabeth Wong's 37-bar purchase record
 - `fda_fsvp/suppliers/black_king/entity.json` — Matheus Reis / Black King entity profile
 - `agroverse-freight-audit/pointers/freight_partners.json` — Omega, 5cl.rs, Matheus contact details
+- `agroverse-freight-audit/pointers/freight_lanes.json` — Graziela's tiered pricing snapshot
 - `agroverse.shop/js/products.js` — full SKU list with GTINs, weights, HS codes
