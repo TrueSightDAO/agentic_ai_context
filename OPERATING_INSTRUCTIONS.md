@@ -98,6 +98,16 @@ Keep the roadmap **tracked and current**: update the resume tracker as each unit
 
 ---
 
+## 5b. Sophia's DAO contributor ledger name
+
+**Sophia Truesight** is the exact display name on the Contributors ledger.
+
+- When filing contributions for Sophia (the autopilot), ALWAYS use `"Sophia Truesight"` as the contributor name — not `"Sophia (Autopilot)"`, `"Sophia"`, or any variant.
+- Edgar will reject submissions that don't match the ledger exactly.
+- When filing contributions that include both Gary Teh and Sophia Truesight, use both names: `"Gary Teh, Sophia Truesight"`.
+
+---
+
 ## 6. Contribution reporting — use dao_client (dao_protocol repo)
 
 When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:
