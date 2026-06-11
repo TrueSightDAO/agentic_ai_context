@@ -21,10 +21,18 @@ This means the autopilot cannot mint a QR code for an event (like SF Tech Fest) 
 ```
 dao_client register_qr_code
   |
-  |  HTTP POST (signed params)
+  |  1. POST signed [QR CODE REGISTRATION] event to Edgar
   v
-GAS Web App (qr_code_web_service.gs on 1MnAsIQAxcSf...)
-  |  Validates fields, checks duplicates
+Edgar (sentiment_importer)
+  |  Appends row to "Telegram Chat Logs" sheet
+  v
+dao_client (same command, step 2)
+  |
+  |  2. GET GAS web app with ?action=processQRCodeGenerationTelegramLogs
+  v
+GAS Web App (process_qr_code_generation_telegram_logs.gs on 1N6o00N9VtRK...)
+  |  Reads "Telegram Chat Logs" sheet
+  |  Picks up new row, validates
   |  Creates row in "Agroverse QR codes" sheet
   |  Triggers GitHub Actions webhook
   v
@@ -40,8 +48,9 @@ QR code live at truesight.me/qr/?id=<code>
 
 | Component | Repo | What it does |
 |-----------|------|-------------|
-| **dao_client command** | `dao_client` | New `register_qr_code` CLI command. Signs params, POSTs directly to GAS web app URL. |
-| **GAS web app** | `tokenomics` (GAS script `1MnAsIQAxcSf...`) | `handleRegisterSingleQRCode()` in `qr_code_web_service.gs`. Validates, deduplicates, appends row, triggers GitHub Actions. |
+| **dao_client command** | `dao_client` | New `register_qr_code` CLI command. Step 1: POSTs signed `[QR CODE REGISTRATION]` event to Edgar. Step 2: GETs GAS web app to trigger processing. |
+| **Edgar endpoint** | `sentiment_importer` | New `DaoController#register_qr_code` action. Receives signed event, appends to "Telegram Chat Logs" sheet. |
+| **GAS processor** | `tokenomics` (GAS script `1N6o00N9VtRK...`) | `processQRCodeGenerationTelegramLogs()` reads "Telegram Chat Logs", picks up new row, creates entry in "Agroverse QR codes" sheet. |
 | **GitHub Actions** | `lineage-assets` | Existing `generate_qr_batch.sh` workflow. Triggered by GAS webhook. Generates branded QR PNG + manifest. |
 
 ---
@@ -75,11 +84,17 @@ New GAS file that adds a `doGet(e)` handler for `?action=registerSingleQRCode` w
 
 ---
 
-### ~~Phase 2: Edgar Endpoint~~ (REMOVED)
+### Phase 2: Edgar Endpoint
 
-No Edgar hop needed. dao_client POSTs directly to the GAS web app URL.
+**PR2 — `sentiment_importer` — Add `DaoController#register_qr_code`**
 
-Nginx can optionally proxy `POST /dao/qr-code-register` to the GAS `/exec` URL for a cleaner API surface, but this is a deployment concern, not a code change.
+New action that:
+1. Accepts POST with signed `[QR CODE REGISTRATION]` event
+2. Verifies digital signature
+3. Appends to "Telegram Chat Logs" sheet
+4. Returns success with the row ID
+
+This preserves the audit trail in Telegram Chat Logs (the canonical event log).
 
 ---
 
@@ -100,12 +115,17 @@ truesight-dao-register-qr-code \
   --manager "Gary Teh"
 ```
 
-**Logic:**
-1. Build query params from CLI args
-2. POST directly to GAS web app URL: `https://script.google.com/macros/s/AKfycbzMJom6MSHfbBL2RWOPrHg62iau8lgDbuAjxFbd3eBQ9L7SIXMBvh8tkdko4k1J_PMf/exec?action=registerSingleQRCode&...`
+**Logic (two-step):**
+1. **Step 1:** POST signed `[QR CODE REGISTRATION]` event to Edgar `/dao/qr_code_register`
+   - Builds event payload with all params
+   - Signs with contributor key
+   - Edgar appends to "Telegram Chat Logs" sheet
+2. **Step 2:** GET the GAS web app to trigger processing
+   - Calls `?action=processQRCodeGenerationTelegramLogs` on the GAS web app
+   - GAS reads "Telegram Chat Logs", picks up the new row
+   - Creates entry in "Agroverse QR codes" sheet
+   - Triggers GitHub Actions webhook for branded PNG
 3. Print result + QR code URL
-
-**No Edgar dependency.** The GAS web app handles validation, deduplication, sheet write, and webhook trigger.
 
 ---
 
@@ -125,7 +145,7 @@ Update the autopilot's QR code workflow so that when a governor asks to mint a Q
 | Gate | Phase | Description | Who |
 |------|-------|-------------|-----|
 | G1 | Phase 1 | GAS deploys, manual test with curl | Gary |
-| G2 | ~~Phase 2~~ | ~~Edgar endpoint~~ — removed | — |
+| G2 | Phase 2 | Edgar endpoint deployed, test with signed request | Gary |
 | G3 | Phase 3 | dao_client command works end-to-end | Gary |
 | G4 | Phase 4 | Autopilot successfully mints a QR for SF Tech Fest | Gary |
 
@@ -142,12 +162,14 @@ Update the autopilot's QR code workflow so that when a governor asks to mint a Q
 1. Register the same QR code twice
 2. Verify second call returns error "QR code already exists"
 
-### ~~U3: Edgar Endpoint~~ (REMOVED)
-No Edgar endpoint to test. dao_client → GAS directly.
+### U3: Edgar Endpoint
+1. POST signed `[QR CODE REGISTRATION]` to Edgar
+2. Verify row appears in "Telegram Chat Logs" sheet
+3. Verify GAS processes it and creates row in "Agroverse QR codes" sheet
 
 ### U4: dao_client Command
 1. Run `truesight-dao-register-qr-code --dry-run`
-2. Verify output shows correct payload and GAS URL
+2. Verify output shows correct payload for both Edgar POST and GAS GET
 3. Run without `--dry-run`
 4. Verify QR code appears in "Agroverse QR codes" sheet
 
@@ -190,6 +212,7 @@ No Edgar endpoint to test. dao_client → GAS directly.
 | File | Repo | Change |
 |------|------|--------|
 | `dao_client/setup.py` | `dao_client` | Register new command entry point |
+| `sentiment_importer/config/routes.rb` | `sentiment_importer` | Add route for QR registration |
 | `truesight_autopilot/app/qr_workflow.py` | `truesight_autopilot` | Wire autopilot to use new command |
 
 ---
@@ -210,10 +233,10 @@ No Edgar endpoint to test. dao_client → GAS directly.
 | Phase | Effort | Dependencies |
 |-------|--------|-------------|
 | Phase 1: GAS | 2-3 hours | clasp access to `1N6o00N9VtRK...` |
-| ~~Phase 2: Edgar~~ | ~~1-2 hours~~ | ~~removed~~ |
+| Phase 2: Edgar | 1-2 hours | sentiment_importer deploy |
 | Phase 3: dao_client | 1-2 hours | dao_client release |
 | Phase 4: Autopilot | 1 hour | truesight_autopilot deploy |
-| **Total** | **4-6 hours** | |
+| **Total** | **5-8 hours** | |
 
 ---
 
@@ -221,10 +244,10 @@ No Edgar endpoint to test. dao_client → GAS directly.
 
 When governor says "go for it":
 1. ~~PR1~~ ✅ GAS handler deployed (Phase 1 complete — `registerSingleQRCode` action live on `1MnAsIQAxcSf...` project)
-2. ~~PR2~~ ❌ Removed — no Edgar endpoint needed
-3. Open PR3: Add `register_qr_code` CLI command to `dao_client` that POSTs directly to GAS web app URL
+2. Open PR2: Add Edgar endpoint in `sentiment_importer` — receives signed event, appends to Telegram Chat Logs
+3. Open PR3: Add `register_qr_code` CLI command to `dao_client` — Step 1: POST to Edgar, Step 2: GET GAS to trigger processing
 4. Open PR4: Wire autopilot to call dao_client command
-5. Run UAT U1, U2, U4-U9 (U3 removed)
+5. Run UAT U1-U9
 6. Report results in this thread
 
 **Gate: PRs are opened only — NEVER self-merge. Governor reviews and merges.**
