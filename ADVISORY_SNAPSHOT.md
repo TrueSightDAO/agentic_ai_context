@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-11T05:09:27Z`
+- Generated (UTC): `2026-06-11T11:09:19Z`
 - Look-back: **7** calendar days (`2026-06-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -76,7 +76,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-10T10:59:14.328Z`
+- Generated (UTC): `2026-06-11T10:59:15.036Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -85,8 +85,8 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 - Reclassified — D2C only: 1  (#1)
 - AI: Contact Form found: 118  (#3)
-- Research: 60  (#8)
-- AI: No fit signal: 157  (#9)
+- Research: 59  (#8)
+- AI: No fit signal: 158  (#9)
 - AI: Enrich — manual: 94  (#10)
 - Manager Follow-up: 32  (#13)
 - Followed Up: 1  (#15)
@@ -101,12 +101,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **221**, follow_up **70**, bulk **0**, unknown **2** (data rows: **293**)
+- **Email Agent Follow Up** — logged sends: warmup **233**, follow_up **70**, bulk **0**, unknown **2** (data rows: **305**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **86**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **173**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **4** / **62**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
+- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **186**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **2** / **64**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -316,6 +316,7 @@ _All dated lines on/after 2026-06-04_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+831b683 | 2026-06-11 05:12:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted sovereignty section
 6d5504d | 2026-06-10 20:23:51 -0700 | blog: add self-hosted sovereignty section to Darwinian Agent post (#201)
 95d921a | 2026-06-10 21:09:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -355,7 +356,6 @@ d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 5760ce9 | 2026-06-06 10:26:10 -0700 | add audio narration players to both blog posts (#190)
 e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the point
 6d78fc4 | 2026-06-06 10:19:50 -0700 | add narration: Should an AI agent get voting rights?
-10691f2 | 2026-06-06 09:02:09 -0700 | blog: add post on Journey to the West, Polanyi, and the Do Nothing Society (#188)
 … (truncated)
 ```
 
@@ -368,6 +368,8 @@ e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the po
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+18e3b26 | 2026-06-10 22:09:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
+3b985f6 | 2026-06-10 22:09:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 882c340 | 2026-06-10 21:11:23 -0700 | Merge pull request #444 from TrueSightDAO/auto/advisory-refresh-2026-06-11
 74d0e43 | 2026-06-11 04:11:14 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 1815612 | 2026-06-10 18:55:49 -0700 | Add §11: Deployment guide for each service (#442)
@@ -406,8 +408,6 @@ cb55256 | 2026-06-10 16:03:38 +0000 | Merge PR: Add ACH banking reference for Zh
 a7643d3 | 2026-06-10 06:37:33 -0700 | docs: ERA Sentinel requirements + roadmap with executive summary
 4983780 | 2026-06-10 06:36:00 -0700 | docs: ERA Sentinel requirements + deployment roadmap (v3)
 23b7b59 | 2026-06-10 06:34:26 -0700 | docs: ERA Sentinel requirements + deployment roadmap (v2)
-be10ea1 | 2026-06-10 06:29:07 -0700 | docs: ERA Sentinel account & infrastructure requirements analysis
-216ad32 | 2026-06-10 06:03:04 -0700 | Add chocolate mold comparison report
 … (truncated)
 ```
 
@@ -449,6 +449,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8cba6bb | 2026-06-11 10:59:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a68906a | 2026-06-10 10:35:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5ce8b7a | 2026-06-09 10:04:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b082748 | 2026-06-08 11:30:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -640,7 +641,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/10/2026 21:55:57 |
+| 2026-06 | 222.41 | 15199.52386 | 6/11/2026 3:50:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-04`; scanned last **499** data rows)
 
