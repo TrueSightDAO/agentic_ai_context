@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-11T04:11:08Z`
+- Generated (UTC): `2026-06-11T05:09:27Z`
 - Look-back: **7** calendar days (`2026-06-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 26
+- `[EMAIL REGISTERED EVENT]` × 11
+- `[EMAIL VERIFICATION EVENT]` × 6
+- `[PRACTICE EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20260609215936_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agroverse_shop_beta: Facebook Pixel leaks from beta.agroverse.sh…
+- `Edgar_20260609220231_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: ## Unit 4: Add sk_live guard to config
+- `Edgar_20260609221423_045` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 15 · Description: Fix beta analytics leakage — Facebook Pixel hostname guard
+- `Edgar_20260609233959_047` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 30 · Description: PR2.1: Subscription Fulfillment Queue sheet module
+- `Edgar_20260609234004_049` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.2: Handle invoice.paid for Agroverse subscription renewals
+- `Edgar_20260609234009_051` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.3: Fulfill Subscriptions page + dao_protocol endpoints
+- `Edgar_20260610022440_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Cory
+- `Edgar_20260610173201_055` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-10T17:32:01.369Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260610185318_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Fatima
+- `Edgar_20260610185352_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Just finished conversation with Cory from UX.App. Items discussed
+- `Edgar_20260610223921_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Agroverse subscriptions design + autopilot handoff/credential/CI hardening
+- `Edgar_20260611002014_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix Sophia per-thread concurrency race + build watch-and-notify capability
+- `Edgar_20260611004541_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests so they're …
+- `Edgar_20260611004658_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests and drop th…
+- `Edgar_20260611005420_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-A: Fix 3 deselected unit tests + drop --deselect flags
+- `Edgar_20260611005945_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
+- `Edgar_20260611010827_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
+- `Edgar_20260611013839_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix all remaining ruff violations in truesi…
+- `Edgar_20260611014656_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Aora Experience Plan — session 2026-06-10
+- `Edgar_20260611015715_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-B: Add ruff lint+format check to CI
 
 ---
 
@@ -214,13 +250,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,118.22**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.89**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -328,6 +368,8 @@ e14fb60 | 2026-06-06 10:20:00 -0700 | add narration: The scripture is not the po
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+882c340 | 2026-06-10 21:11:23 -0700 | Merge pull request #444 from TrueSightDAO/auto/advisory-refresh-2026-06-11
+74d0e43 | 2026-06-11 04:11:14 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 1815612 | 2026-06-10 18:55:49 -0700 | Add §11: Deployment guide for each service (#442)
 fbefd2e | 2026-06-10 18:41:00 -0700 | Update AORA_EXPERIENCE_PLAN.pdf with latest fixes
 ef9bcc7 | 2026-06-10 18:40:31 -0700 | Aora: fix — Liz is the founder of GO, Mr Cao is her friend (#439)
@@ -366,8 +408,6 @@ a7643d3 | 2026-06-10 06:37:33 -0700 | docs: ERA Sentinel requirements + roadmap 
 23b7b59 | 2026-06-10 06:34:26 -0700 | docs: ERA Sentinel requirements + deployment roadmap (v2)
 be10ea1 | 2026-06-10 06:29:07 -0700 | docs: ERA Sentinel account & infrastructure requirements analysis
 216ad32 | 2026-06-10 06:03:04 -0700 | Add chocolate mold comparison report
-f36a032 | 2026-06-10 03:41:03 -0700 | chore(previews): refresh Beer Hall preview (2026-06-10 UTC)
-34e6bc7 | 2026-06-10 03:41:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-10 UTC)
 … (truncated)
 ```
 
@@ -576,6 +616,39 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/10/2026 21:55:57 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-04`; scanned last **499** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-09 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
