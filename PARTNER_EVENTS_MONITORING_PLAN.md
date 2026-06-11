@@ -10,7 +10,7 @@
 
 ---
 
-## 1. Vision (what we're building)
+## 1. Vision
 
 A system where Sophia monitors newsletters from Agroverse's retail and ecosystem partners, extracts events (talks, workshops, ceremonies, retreats), and maintains a curated, living events listing on the Agroverse landing page. Anyone in the ecosystem can reference it to see what's happening across the network.
 
@@ -18,9 +18,74 @@ A system where Sophia monitors newsletters from Agroverse's retail and ecosystem
 
 > "Now that Sophia has become so good at managing my inbox, it might start making sense for her to monitor it for newsletters from our retail partners. It lists events happening over at their space. Sophia can read through all of them and then maintain a list of Agroverse affiliated events listings. Once this bridge is setup, anyone keen to find out more about what's going on in our ecosystem can just reference Agroverse landing page."
 
+**Gary's extension (2026-06-12):**
+
+> "And I think this would naturally feed into the monthly newsletter that we sent out to folks who left their emails when they bought the QR code. So then it becomes a self-reinforcing loop."
+
 ---
 
-## 2. Architecture
+## 2. The Self-Reinforcing Loop
+
+This isn't just a linear pipeline — it's a compounding flywheel that connects three existing DAO growth surfaces:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              PARTNER EVENTS → NEWSLETTER LOOP                    │
+│                                                                  │
+│  Partner sends newsletter                                         │
+│         │                                                        │
+│         ▼                                                        │
+│  Sophia extracts events                                           │
+│         │                                                        │
+│         ▼                                                        │
+│  Events listed on Agroverse landing page                          │
+│         │                                                        │
+│         ▼                                                        │
+│  Monthly newsletter to QR-code buyers  ◄── Email360 Retention    │
+│         │                                                        │
+│         ▼                                                        │
+│  Buyers see partner events near them                              │
+│         │                                                        │
+│         ▼                                                        │
+│  Buyers attend events at partner spaces                           │
+│         │                                                        │
+│         ▼                                                        │
+│  Attendees scan QR codes on cacao bags  ◄── QR Trace-Back Loop   │
+│         │                                                        │
+│         ▼                                                        │
+│  More trees financed → more subscribers                           │
+│         │                                                        │
+│         └──────────→ back to monthly newsletter ──────────────────┘
+│                                                                  │
+│              PARTNER BENEFITS (compounds back)                    │
+│                                                                  │
+│  Partners get foot traffic from newsletter                        │
+│         │                                                        │
+│         ▼                                                        │
+│  Partners restock cacao more frequently                           │
+│         │                                                        │
+│         ▼                                                        │
+│  Partners refer other venues  ◄── feeds B2B Sales Loop           │
+│         │                                                        │
+│         ▼                                                        │
+│  New partners onboarded → new newsletters → cycle continues      │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### How the loops connect to the Growth Model
+
+| Growth Model Loop | How this feeds it |
+|-------------------|-------------------|
+| **Email360 Retention Loop** 🟧 | Monthly newsletter gets richer content (real events) → higher engagement → more re-purchases |
+| **QR Trace-Back Loop** 🟧 | Event attendees scan bags → trees financed → more subscribers → cycle continues |
+| **B2B Sales Loop** 🟧 | Partners see foot traffic from events listing → more likely to restock + refer peers |
+| **Retail Partner Referral Loop** 🟧 | Satisfied partners refer nearby venues → new partners → new newsletters → more events |
+
+**Key insight:** The events listing is the bridge between the physical partner space and the digital retention surface. It turns a one-way content pipeline into a compounding flywheel.
+
+---
+
+## 3. Architecture
 
 ```
 Partner Newsletter (email)
@@ -42,11 +107,14 @@ Partner Newsletter (email)
         │  - Each event links back to partner's original listing
         ▼
   Community discovers & attends
+        │
+        ▼
+  (feeds back into monthly newsletter → loop)
 ```
 
 ---
 
-## 3. Phased Roadmap
+## 4. Phased Roadmap
 
 ### Phase 1 — Foundation (MVP)
 
@@ -94,7 +162,7 @@ Partner Newsletter (email)
 
 ---
 
-## 4. Events Schema
+## 5. Events Schema
 
 Each event entry follows this structure:
 
@@ -121,7 +189,7 @@ Each event entry follows this structure:
 
 ---
 
-## 5. Partner Onboarding Checklist
+## 6. Partner Onboarding Checklist
 
 When a new partner wants their events listed:
 
@@ -135,7 +203,7 @@ When a new partner wants their events listed:
 
 ---
 
-## 6. First Seed — SF Zen Center Events (from June 11 newsletter)
+## 7. First Seed — SF Zen Center Events (from June 11 newsletter)
 
 ### Upcoming
 
@@ -172,7 +240,7 @@ When a new partner wants their events listed:
 
 ---
 
-## 7. Open Questions
+## 8. Open Questions
 
 1. **Where should the events live on the site?** Options:
    - A new `/events` page on `agroverse.shop` (feels natural — cacao + community)
@@ -198,7 +266,7 @@ When a new partner wants their events listed:
 
 ---
 
-## 8. Success Metrics
+## 9. Success Metrics
 
 | Metric | Target (Phase 1) | Target (Phase 3) |
 |--------|------------------|------------------|
@@ -210,7 +278,7 @@ When a new partner wants their events listed:
 
 ---
 
-## 9. Files to Create
+## 10. Files to Create
 
 | File | Location | Purpose |
 |------|----------|---------|
@@ -220,7 +288,7 @@ When a new partner wants their events listed:
 
 ---
 
-## 10. Execution Checklist
+## 11. Execution Checklist
 
 ### Phase 1 — Foundation
 
