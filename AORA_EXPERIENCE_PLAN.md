@@ -130,11 +130,9 @@ All transactions leading up to sales and delivery are tracked via the **AORA led
 
 | Ledger | Amount (USD) |
 |--------|-------------|
-| Main Ledger (Gary Teh) | $3,172.29 |
-| AGL15 (Gary Teh) | $5,279.73 |
+| [Main Ledger (Gary Teh)](https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU) | $3,172.29 |
+| [AGL15 (Gary Teh)](https://docs.google.com/spreadsheets/d/1tXgDss-AAdAFgBWVcW4ESRzRTodRmXyp7JxwBb0A-fE/edit?gid=2133986329#gid=2133986329) | $5,279.73 |
 | **Total deployable** | **$8,452.02** |
-
-> Note: AGL4 ($9,036.35) is TrueSight DAO equity, not cash. AGL6, AGL8, AGL10 are earmarked for disbursement back to financiers — not available for Aora/Go.
 
 ### Current freight cost (Matheus → Kirsten)
 
