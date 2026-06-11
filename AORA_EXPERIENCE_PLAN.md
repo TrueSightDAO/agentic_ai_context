@@ -16,6 +16,15 @@ Jerri (China team, reports to Liz) needs initial ideas + a rough timeline to lin
 publishing experiential learning modules. Aora modules will be published on MindLoop;
 completion triggers a record on TrueSight DAO's credentialing layer (Lineage).
 
+**Pilot scope:** The Aora/Go collaboration is focused on **chocolate bars only** (50g, 81%
+cacao, Cabrellon mold). Initial pilot: 100 bars. Beans, nibs, mass, tea, and other SKUs
+are existing DAO inventory for other channels — not part of Aora/Go at this phase.
+Future phases may expand the SKU range.
+
+**Available for Go collaboration (stays in Brazil):** The **La do Sitio cacao beans**
+(Paulo's farm, Pará) — ~274 kg on AGL8 ledger — can be converted to chocolate bars
+for Go/Aora. These are NOT on the current freight to Kirsten.
+
 ---
 
 ## PERT chart — workstream dependencies
@@ -41,7 +50,7 @@ gantt
     
     section 3. Go Partnership (Liz)
     Demand forecast (Liz)               :2026-06-15, 30d
-    Mold procurement (Cabrellon)        :2026-06-15, 14d
+    Mold procurement (Cabrellon/DG)     :2026-06-15, 14d
     Wrapper foil decision               :2026-06-20, 5d
     Capital sourcing for China stock    :2026-07-01, 60d
     
@@ -52,7 +61,7 @@ gantt
     Physical experiential events        :2026-09-01, 30d
 ```
 
-**Critical path:** Freight quote → cacao arrives at Kirsten → produce 63 bars → Gary carries to China.
+**Critical path:** Freight quote → cacao arrives at Kirsten → produce 63 bars → deliver to China.
 Parallel track: Liz demand forecast → capital sourcing → mold quantity → production throughput.
 
 ---
@@ -69,7 +78,7 @@ Parallel track: Liz demand forecast → capital sourcing → mold quantity → p
 
 ### 2026-06-10 (this session)
 
-6. **Mold spec:** Cabrellon Italian polycarbonate mold (27.5×17.5cm, 4 cavities × 50g) — same as Kirsten uses in SF. Santos's 40g mold is not used for Aora.
+6. **Mold spec:** Cabrellon Italian polycarbonate mold (27.5×17.5cm, 4 cavities × 50g) — same as Kirsten uses in SF. Santos's 40g mold is not used for Aora. Jerri also found a Dongguan factory with MHC-CL082 model in stock (closest match to Cabrellon dimensions) — quotation received.
 7. **Packaging boundary:** DAO delivers bars in **generic foil** only. Liz's side (Go/Nucleus) provides the **final consumer packaging** for the Chinese market.
 8. **Jerri's team:** Currently repackaging cacao for the Chinese market (border-crossing-ready format).
 9. **Capital deployed:** DAO capital has been and continues to be deployed to the USA-bound freight (AGL15 + Main Ledger). Zero visibility on China demand volume until Liz provides a forecast.
@@ -80,6 +89,8 @@ Parallel track: Liz demand forecast → capital sourcing → mold quantity → p
 14. **Brazil shipping address:** R. Cel. Paiva, 46 - Centro, Ilhéus - BA, 45653-310, Brazil.
 15. **Company entity:** Currently using another community member's registered company for exports. DAO is setting up a dedicated entity — will update Jerri when ready.
 16. **Capital constraint for China:** Beyond current bean stock in Matheus's warehouse (Ilhéus), any additional China-dedicated stocking requires **new capital**. No visibility on source yet — this is a blocker for scaling beyond the initial 100 bars.
+17. **Pilot scope:** Aora/Go collaboration is **chocolate bars only** (50g, 81% cacao). Beans, nibs, mass, tea, and other SKUs are existing DAO inventory for other channels. Future phases may expand.
+18. **Available for Go:** The **La do Sitio cacao beans** (~274 kg on AGL8, Paulo's farm, Pará) stay in Brazil and can be converted to chocolate bars for Go/Aora. They are NOT on the current freight to Kirsten.
 
 ---
 
@@ -105,54 +116,98 @@ Parallel track: Liz demand forecast → capital sourcing → mold quantity → p
 
 **Lead:** Gary · **Partners:** Kirsten (production), Matheus (warehouse), Graziela/SeaCoast (freight), Santos (Brazil production), Jerri (border crossing)
 
-### 2a. USA-bound: 100 bars for Liz
+**Pilot scope:** Chocolate bars only (50g, 81% cacao). All other SKUs (beans, nibs, mass, tea) are existing DAO inventory for other channels.
+
+### 2a. Current freight: Matheus → Kirsten (in progress)
+
+Shipping manifest dated 4/6/2026, managed by Matheus Reis:
+
+| Line Item | Qty | Unit Wt (kg) | Total Wt (kg) |
+|-----------|-----|-------------|---------------|
+| 8 oz Cacao Nibs Kraft Pouch [Main Inventory] | 137 | 0.227 | 31.07 |
+| Cacao Husk (KG) [Main Inventory] | 20 | 1.000 | 20.00 |
+| Cacao Mass Bar (500g) [Main Inventory] | 38 | 0.500 | 19.00 |
+| Cacao Nibs (KG) [Main Inventory] | 80 | 1.000 | 80.00 |
+| Cacao Almonds (KG) [AGL8] | 10 | 1.000 | 10.00 |
+| Cacao Tea (KG) [AGL8] | 12 | 0.001 | 0.01 |
+| Ceremonial Cacao Pouch 200g (Paulo) [AGL8] | 170 | 0.200 | 34.00 |
+| Cacao Almonds KG (Vivi's farm) [AGL13] | 15 | 1.000 | 15.00 |
+| Cacao Nibs (KG) Santos [AGL13] | 100 | 1.000 | 100.00 |
+| Cacao Tea (KG) Santos [AGL13] | 21 | 1.000 | 21.00 |
+| Cacao Almonds KG (Oscar's farm) [AGL14] | 10 | 1.000 | 10.00 |
+| Pallet packaging | 1 | 35.000 | 35.00 |
+| **TOTAL** | **613** | | **375.08 kg** |
+
+**Freight cost:** $2,825.09 (air freight $1,261.20 + documentation $95 + inland transport $697.81 + airport charges $250 + US fees $521.08)
+
+### 2b. USA-bound: 100 bars for Liz
 
 | Step | What | Owner | Status |
 |------|------|-------|--------|
 | **Freight quote** | Airline revalidation from Graziela (SeaCoast) — pending since June 5 | Graziela | blocked (awaiting airline) |
-| **Cacao freight** | Matheus warehouse (Ilhéus) → Kirsten warehouse (SF) via Omega/SeaCoast | Gary / Graziela | pending quote |
-| **Production** | Kirsten produces remaining 63 bars (37 already purchased) using Cabrellon mold | Kirsten | waiting on freight |
+| **Cacao freight** | Matheus warehouse (Ilhéus) → Kirsten warehouse (SF) — manifest above | Gary / Graziela | in progress |
+| **Production** | Kirsten produces remaining 63 bars (37 already purchased) using Cabrellon mold | Kirsten | waiting on freight arrival |
 | **Foil wrap** | Bars delivered in generic foil (no consumer branding) | Kirsten | ready |
-| **Delivery to Gary** | Bars ready for Gary to carry to China (or ship if no July launch) | Kirsten | waiting on production |
+| **Delivery to China** | Bars need to reach China — options below | Gary | pending launch decision |
 
 **Numbers:**
 - Elizabeth Wong purchased: **37 bars** (20 Oscar 2024 + 17 Santa Ana 2023) — April 2026
 - Total needed: **100 bars**
 - Outstanding: **63 bars**
 
-### 2b. Brazil production (Santos) — future scale
+**100-bar logistics options (July shifted, Gary in Brazil in August):**
+
+| Option | Description | Pros | Cons |
+|--------|-------------|------|------|
+| **A. Store at Kirsten's** | Produce 63 bars, store at Kirsten's SF warehouse until China date firms up, then ship | Bars safe, no travel damage risk | Additional shipping cost later |
+| **B. Ship Kirsten → China direct** | Produce + ship from SF to China via freight forwarder | One logistics leg | Freight cost, customs clearance |
+| **C. Produce via Santos in Brazil** | If Gary is in Brazil in August, produce bars there using Cabrellon mold at Santos | No cross-Pacific shipping, Gary can quality-check | Santos needs mold + setup; timeline tight |
+
+### 2c. Available for Go/Aora collaboration (stays in Brazil)
+
+The following inventory stays in Matheus's warehouse (Ilhéus) and is **NOT on the current freight**. These can be converted to chocolate bars for Go/Aora:
+
+| Item | Qty | Ledger | Notes |
+|------|-----|--------|-------|
+| **Cacao Almonds (KG) — La do Sitio, Paulo's farm, Pará** | **~274 kg** | AGL8 | Main source for Go/Aora bar production. Can be converted to 50g bars |
+| Cacao Tea (KG) — Paulo 2024 | ~14.7 kg | AGL8 | Not in scope for pilot |
+| Ceremonial Cacao Pouch 200g (Paulo) | 170 units | AGL8 | Already on freight to Kirsten |
+
+**Conversion math:** 274 kg of cacao almonds → ~2,740 × 50g bars (at 81% cacao content, accounting for sugar + processing loss, roughly ~2,000–2,200 finished bars). This is the ceiling for Go/Aora production from existing stock without new capital.
+
+### 2d. Brazil production (Santos) — future scale
 
 | Step | What | Owner | Status |
 |------|------|-------|--------|
 | **Recipe** | 81% cacao / 19% sugar (default; may adjust when Liz has market visibility) | Gary / Liz | decided |
-| **Mold** | Cabrellon Italian (27.5×17.5cm, 4×50g cavities) — same as SF | Gary | decided |
+| **Mold** | Cabrellon Italian (27.5×17.5cm, 4×50g cavities) — same as SF. Dongguan factory also has MHC-CL082 in stock (quotation received from Jerri) | Gary | decided |
 | **Santos pricing** | R$130/kg for 70% bars; Santos willing to try 50g bars | Santos | quoted |
 | **Mold quantity** | Depends on Liz's demand forecast (annual kg → mold count → throughput) | Liz | **blocked** — no forecast yet |
 | **Wrapper foil** | Who provides? | Liz / Gary | open |
 | **Border crossing** | Jerri consulting freight forwarder on cacao import requirements for China | Jerri | in progress |
 
-### 2c. Capital constraint
+### 2e. Capital constraint
 
 DAO capital already committed:
 - **AGL15:** $5,279.73
 - **Main Ledger:** $3,172.29 (USD) + additional freight costs
-- Allocated to USA-bound freight (Matheus → Kirsten)
+- **Current freight cost:** $2,825.09 (Matheus → Kirsten)
+- Allocated to USA-bound freight
 
-**China-dedicated stocking:** Beyond the current bean stock in Matheus's warehouse (Ilhéus), any additional cacao/chocolate for the China market requires **new capital**. No visibility on source yet. This is a structural blocker for scaling beyond the initial 100 bars.
+**China-dedicated stocking:** The ~274 kg La do Sitio beans in Matheus's warehouse can be converted to bars without new capital (they're already paid for). Beyond that, any additional cacao for China requires **new capital**. No visibility on source yet.
 
-### 2d. Jerri's freight forwarder requests
+### 2f. Weight/volume estimates for Jerri's freight forwarder
 
-Jerri is consulting a freight forwarder on China import requirements. She asked for:
+Since the Aora/Go pilot is **chocolate bars only**, here are the precise estimates:
 
-| Item | Weight estimate | Volume estimate | Status |
-|------|----------------|-----------------|--------|
-| Frozen pulp | ? | ? | needs estimate |
-| Dried pods | ? | ? | needs estimate |
-| Cacao beans | ? | ? | needs estimate |
-| Chocolate bars | ? | ? | needs estimate |
+| Item | Est. Weight | Est. Volume | HS Code | Notes |
+|------|-------------|-------------|---------|-------|
+| **Chocolate bars (100 × 50g)** | **5 kg** | **~0.03 m³** | 1806.31 | Pilot batch. 50g bars, generic foil. Boxed volume ~0.03 m³ |
+| **Chocolate bars (full batch from La do Sitio, ~2,000 bars)** | **~100 kg** | **~0.5 m³** | 1806.31 | Ceiling from existing stock without new capital |
 
 **Brazil shipping address:** R. Cel. Paiva, 46 - Centro, Ilhéus - BA, 45653-310, Brazil
 **Export entity:** Currently using another community member's registered company. DAO setting up a dedicated entity — will update when ready.
+**Freight partners:** Omega Serviços (Brazil forwarder, contact Isis Ribeiro) + 5cl.rs / Graziela Vedana (international air freight broker)
 
 ---
 
@@ -200,13 +255,13 @@ Jerri is consulting a freight forwarder on China import requirements. She asked 
 |---|----------|-------------|----------|
 | 1 | **Launch date:** When is the new target? (Sep–Oct 2026 or later) | Liz / Jerri | ~Jul 1 |
 | 2 | **Venue:** Tanxiang Island or alternative? | Jerri / Evan | ~Jul 15 |
-| 3 | **Demand forecast:** Annual kg volume from China retailers/distributors | Liz | ASAP — blocks everything downstream |
+| 3 | **Demand forecast:** Annual volume from China retailers/distributors | Liz | ASAP — blocks everything downstream |
 | 4 | **Capital source:** Where does China-dedicated stocking capital come from? | Liz / Gary | after #3 |
 | 5 | **Wrapper foil:** Who provides the foil for generic-wrapped bars? | Liz / Gary | ~Jun 20 |
 | 6 | **Border crossing:** Freight forwarder feedback on cacao import into China | Jerri | ongoing |
-| 7 | **Santos mold quantity:** How many molds needed for throughput? | Liz (via forecast) | after #3 |
-| 8 | **Cacao percentage:** 81% default or adjust based on market feedback? | Liz | after market visibility |
-| 9 | **Weight/volume estimates:** Per-item estimates for Jerri's freight forwarder (frozen pulp, dried pods, beans, bars) | Gary | ~Jun 15 |
+| 7 | **100-bar logistics:** Store at Kirsten's, ship direct, or produce in Brazil? | Gary | after launch date decision |
+| 8 | **Santos mold quantity:** How many molds needed for throughput? | Liz (via forecast) | after #3 |
+| 9 | **Cacao percentage:** 81% default or adjust based on market feedback? | Liz | after market visibility |
 
 ---
 
@@ -214,7 +269,7 @@ Jerri is consulting a freight forwarder on China import requirements. She asked 
 
 - **~Jun 11:** v0.1 module outlines (md + PDF, EN) to Jerri ✅
 - **Jun 12–25:** Revise w/ Jerri+Evan; exercises.json + generator scaffold; zh-CN pass (Jerri's team)
-- **~Jun 15:** Provide weight/volume estimates to Jerri for freight forwarder
+- **~Jun 15:** Provide weight/volume estimates to Jerri for freight forwarder (chocolate bars only)
 - **~Jun 20:** Launch date decision from Liz/Jerri
 - **~Jul 1:** Venue decision
 - **~Jul 7–end Jul:** Gary in China (relationship building even if launch shifts)
@@ -229,3 +284,6 @@ Jerri is consulting a freight forwarder on China import requirements. She asked 
 - `truesight_me/lineage.html` — credentialing pitch this program instantiates
 - `OPEN_FOLLOWUPS.md` — Graziela/SeaCoast airline quote pending (poke Monday)
 - `notes/claude_serialized_qr_sales_2026-04-29.md` — Elizabeth Wong's 37-bar purchase record
+- `fda_fsvp/suppliers/black_king/entity.json` — Matheus Reis / Black King entity profile
+- `agroverse-freight-audit/pointers/freight_partners.json` — Omega, 5cl.rs, Matheus contact details
+- `agroverse.shop/js/products.js` — full SKU list with GTINs, weights, HS codes
