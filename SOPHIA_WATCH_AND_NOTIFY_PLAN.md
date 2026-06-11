@@ -1,6 +1,6 @@
 # Sophia Watch-and-Notify — Execution Roadmap
 
-**Status as of 2026-06-10:** pre-flight
+**Status as of 2026-06-10:** ✅ shipped & deployed ([#143](https://github.com/TrueSightDAO/truesight_autopilot/pull/143) + envelope fix `3891f7e`). Verified end-to-end: a real probe of `ami-05da693e385f7585a` returns `(done, available)`. Remaining: live Telegram smoke (have Sophia register a watcher and confirm the ping).
 **Repo under change:** `truesight_autopilot` (Sophia)
 **Owner:** Gary Teh · **Driver:** Claude Code
 
@@ -73,6 +73,16 @@ throwaway AWS op (or re-watch the existing AMI) and confirm the topic gets the c
 ## Resume tracker
 | Unit | Code | Merged | Deployed |
 |------|------|--------|----------|
-| PR-A — watch_runner + tools + tests | ☐ | ☐ | ☐ |
+| PR-A — watch_runner + tools + tests | ☑ | ☑ [#143](https://github.com/TrueSightDAO/truesight_autopilot/pull/143) | ☑ |
+| Envelope fix (aws_query `{response:{…}}` unwrap) | ☑ | ☑ `3891f7e` (direct to main) | ☑ |
 
-> **RESUME HERE:** PR-A step 1 — `app/watch_runner.py`.
+**Verified:** tools auto-discovered live (`watch_aws_resource`, `watch_url`); real probe of the
+incident AMI returns `(done, available)`; notify path reuses `ci_pingback.send_telegram`.
+
+**Live smoke (operator):** have Sophia register a watcher (e.g. re-watch a throwaway op) and
+confirm the originating topic gets the completion ping.
+
+**Follow-up (optional):** dedupe identical resource+topic watchers; add a `github_actions` kind
+(fold in `ci_pingback`); auto-suggest `watch_*` after a write-class `aws_query` that returns a pending resource.
+
+> **RESUME HERE:** operator live smoke + optional follow-ups above.
