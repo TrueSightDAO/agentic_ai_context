@@ -12,7 +12,11 @@
 
 ## 1. Vision
 
-A system where Sophia monitors newsletters from Agroverse's retail and ecosystem partners, extracts events (talks, workshops, ceremonies, retreats), and maintains a curated, living events listing on the Agroverse landing page. Anyone in the ecosystem can reference it to see what's happening across the network.
+A system where Sophia monitors newsletters from Agroverse's retail and ecosystem partners, extracts events (talks, workshops, ceremonies, retreats), and maintains a curated, living events listing on **agroverse.shop**. Anyone in the ecosystem can reference it to see what's happening across the network.
+
+**Site split clarified (Gary, 2026-06-12):**
+- **agroverse.shop** — community-facing surface. Events listing lives here. Where cacao buyers, partners, and the broader ecosystem go.
+- **truesight.me** — DAO hub. Governance, metrics, ops, Beer Hall, treasury. Not for events.
 
 **Gary's framing (2026-06-12):**
 
@@ -38,7 +42,7 @@ This isn't just a linear pipeline — it's a compounding flywheel that connects 
 │  Sophia extracts events                                           │
 │         │                                                        │
 │         ▼                                                        │
-│  Events listed on Agroverse landing page                          │
+│  Events listed on agroverse.shop/events                           │
 │         │                                                        │
 │         ▼                                                        │
 │  Monthly newsletter to QR-code buyers  ◄── Email360 Retention    │
@@ -102,7 +106,7 @@ Partner Newsletter (email)
   AGROVERSE_AFFILIATED_EVENTS.md  ◄── Canonical events file in agentic_ai_context
         │
         ▼
-  Events rendered on Agroverse landing page
+  Events rendered on agroverse.shop/events
         │  - Filterable by date / location / partner
         │  - Each event links back to partner's original listing
         ▼
@@ -118,7 +122,7 @@ Partner Newsletter (email)
 
 ### Phase 1 — Foundation (MVP)
 
-**Goal:** One partner (SF Zen Center) → one events file → manual review → landing page.
+**Goal:** One partner (SF Zen Center) → one events file → manual review → agroverse.shop/events.
 
 | Step | What | How | Est. time |
 |------|------|-----|-----------|
@@ -126,10 +130,10 @@ Partner Newsletter (email)
 | 1.2 | **Seed with SFZC events** | Extract all events from the June 11 PDF into the file | 20 min |
 | 1.3 | **Set up inbox monitoring** | When `admin+sophia@truesight.me` receives a newsletter from a known partner domain, Sophia detects it and extracts events | Built into autopilot |
 | 1.4 | **Build events extraction prompt** | Sophia reads newsletter email body, extracts structured events, flags for review | 30 min |
-| 1.5 | **Landing page section** | Add an "Ecosystem Events" section to `agroverse_shop_beta` (or `truesight_me_beta`) that reads from the events file | 1–2 h |
+| 1.5 | **Add /events page to agroverse.shop** | New page on `agroverse_shop_beta` that reads from the events file. Beta-first, then promote to prod. | 1–2 h |
 | 1.6 | **Review & publish** | Gary reviews the first batch, approves, events go live | Ongoing |
 
-**Phase 1 deliverable:** A static events section on the Agroverse site showing SF Zen Center's upcoming programs, updated when new newsletters arrive.
+**Phase 1 deliverable:** `agroverse.shop/events` showing SF Zen Center's upcoming programs, updated when new newsletters arrive.
 
 ---
 
@@ -145,7 +149,7 @@ Partner Newsletter (email)
 | 2.4 | **Events JSON** | Convert the markdown file to a structured JSON (`ecosystem-events.json`) that the landing page can fetch dynamically. |
 | 2.5 | **Filter/sort UI** | Add date filters, partner filter, location filter to the events section. |
 
-**Phase 2 deliverable:** Events from 3–5 partners auto-populated on the site, filterable.
+**Phase 2 deliverable:** Events from 3–5 partners auto-populated on `agroverse.shop/events`, filterable.
 
 ---
 
@@ -198,7 +202,7 @@ When a new partner wants their events listed:
 3. [ ] Sophia adds partner to the registry (`PARTNER_EVENTS_REGISTRY.md`)
 4. [ ] Sophia extracts events from the first newsletter and presents them for review
 5. [ ] Gary approves the first batch
-6. [ ] Events go live on the landing page
+6. [ ] Events go live on `agroverse.shop/events`
 7. [ ] Ongoing: Sophia monitors future newsletters from this sender
 
 ---
@@ -240,27 +244,19 @@ When a new partner wants their events listed:
 
 ---
 
-## 8. Open Questions
+## 8. Open Questions (resolved)
 
-1. **Where should the events live on the site?** Options:
-   - A new `/events` page on `agroverse.shop` (feels natural — cacao + community)
-   - A section on `truesight.me` (the DAO hub)
-   - Both (cross-linked)
-   - Gary's preference: "Agroverse landing page"
-
+1. ~~**Where should the events live on the site?**~~ → **agroverse.shop/events** (Gary confirmed 2026-06-12). truesight.me is governance/ops only.
 2. **Should events be manually reviewed before going live?**
    - Phase 1: Yes — Gary reviews first batch
    - Phase 3: Maybe — auto-publish with a "suggested" flag
-
 3. **What counts as an "Agroverse-affiliated" event?**
    - Events hosted by retail partners who carry Agroverse cacao
    - Events hosted by ecosystem partners (SFZC, capoeira, BE, Vipassana)
    - Events where Agroverse is participating / pouring
    - Events that align with the mission (compassion, rainforest, community)
-
 4. **How do we handle recurring events?**
    - Weekly/monthly events (like Thursday Drop-in) could be listed as "ongoing" with a link to the partner's calendar
-
 5. **Privacy — should events link to the partner's original listing?**
    - Yes — always link back. We're a directory, not a ticket seller.
 
@@ -284,7 +280,7 @@ When a new partner wants their events listed:
 |------|----------|---------|
 | `AGROVERSE_AFFILIATED_EVENTS.md` | `agentic_ai_context/` | Canonical events list (markdown, human-readable) |
 | `PARTNER_EVENTS_REGISTRY.md` | `agentic_ai_context/` | Registry of partner → newsletter sender mapping |
-| `ecosystem-events.json` | `agroverse-inventory/` or `truesight_me_beta/_site/` | Machine-readable events feed for the landing page |
+| `ecosystem-events.json` | `agroverse-inventory/` | Machine-readable events feed for `agroverse.shop/events` |
 
 ---
 
@@ -296,7 +292,7 @@ When a new partner wants their events listed:
 - [ ] **1.2** Create `PARTNER_EVENTS_REGISTRY.md` with SFZC entry
 - [ ] **1.3** Build newsletter detection into autopilot's inbox monitoring
 - [ ] **1.4** Build events extraction prompt
-- [ ] **1.5** Add events section to Agroverse landing page (beta first)
+- [ ] **1.5** Add `/events` page to `agroverse_shop_beta` (beta first, then promote to prod)
 - [ ] **1.6** Gary reviews first batch, approves, goes live
 
 ### Phase 2 — Multi-Partner
