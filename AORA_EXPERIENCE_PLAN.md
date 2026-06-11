@@ -223,6 +223,8 @@ Shipping manifest dated 4/6/2026, managed by Matheus Reis:
 
 **Freight cost:** $2,825.09 (see Cash Position section for full breakdown)
 
+> ⚠️ **War risk note:** This freight cost is tentative. The escalating Iran/USA conflict is driving up global air freight rates. Actual cost may shift upward.
+
 ### 2b. 100 bars for Liz — production & delivery
 
 | Step | What | Owner | Status |
