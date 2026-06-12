@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-12T10:49:03Z`
+- Generated (UTC): `2026-06-12T15:46:50Z`
 - Look-back: **7** calendar days (`2026-06-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,14 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 33
-- `[EMAIL REGISTERED EVENT]` × 4
-- `[PRACTICE EVENT]` × 4
+- `[PRACTICE EVENT]` × 5
+- `[EMAIL REGISTERED EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 2
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260611004541_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests so they're …
 - `Edgar_20260611004658_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests and drop th…
 - `Edgar_20260611005420_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-A: Fix 3 deselected unit tests + drop --deselect flags
 - `Edgar_20260611005945_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260612022510_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:25:10.205Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260612024349_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:43:48.621Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260612062627_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia incident-response night: recover bricked threads + ship the self-bric…
+- `Edgar_20260612152350_105` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T15:23:50.581Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-11T10:59:15.036Z`
+- Generated (UTC): `2026-06-12T10:59:14.491Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -102,12 +102,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **233**, follow_up **70**, bulk **0**, unknown **2** (data rows: **305**)
-- Distinct recipient addresses (`to_email`, by log `status`): warmup **86**, follow_up **23**, bulk **0**, unknown **2**
+- **Email Agent Follow Up** — logged sends: warmup **245**, follow_up **70**, bulk **0**, unknown **2** (data rows: **317**)
+- Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **186**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **2** / **64**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
+- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **198**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **1** / **65**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -314,6 +314,7 @@ _All dated lines on/after 2026-06-05_ (19):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8e5e8c3 | 2026-06-12 10:50:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 83779f0 | 2026-06-12 05:21:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 810badd | 2026-06-11 21:03:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9b54839 | 2026-06-11 16:38:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -353,7 +354,6 @@ f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [
 5d14a7a | 2026-06-07 09:47:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 … (truncated)
 ```
 
@@ -366,6 +366,8 @@ d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c965ad8 | 2026-06-12 03:49:17 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
+b6152ba | 2026-06-12 03:49:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 618cefd | 2026-06-11 22:14:07 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
 9a2547f | 2026-06-11 22:14:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 7b52b89 | 2026-06-11 21:58:25 -0700 | handoff: Sophia vault hotfix + ops-safety roll-up (thread 2744) (#472)
@@ -404,8 +406,6 @@ d86ad95 | 2026-06-11 04:09:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 74d0e43 | 2026-06-11 04:11:14 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 1815612 | 2026-06-10 18:55:49 -0700 | Add §11: Deployment guide for each service (#442)
 fbefd2e | 2026-06-10 18:41:00 -0700 | Update AORA_EXPERIENCE_PLAN.pdf with latest fixes
-ef9bcc7 | 2026-06-10 18:40:31 -0700 | Aora: fix — Liz is the founder of GO, Mr Cao is her friend (#439)
-6c1e5a9 | 2026-06-10 18:40:25 -0700 | Aora: Kaon actively working on MindLoop, not yet ready for Gary's UAT (#440)
 … (truncated)
 ```
 
@@ -635,7 +635,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 2:51:04 |
+| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 7:50:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-05`; scanned last **499** data rows)
 
