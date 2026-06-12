@@ -20,45 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-11T20:42:42Z`
-- Look-back: **7** calendar days (`2026-06-04` → today UTC)
+- Generated (UTC): `2026-06-12T04:12:29Z`
+- Look-back: **7** calendar days (`2026-06-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 27
-- `[EMAIL REGISTERED EVENT]` × 9
-- `[EMAIL VERIFICATION EVENT]` × 6
-- `[PRACTICE EVENT]` × 2
-
-### Latest entries
-
-- `Edgar_20260609221423_045` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 15 · Description: Fix beta analytics leakage — Facebook Pixel hostname guard
-- `Edgar_20260609233959_047` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 30 · Description: PR2.1: Subscription Fulfillment Queue sheet module
-- `Edgar_20260609234004_049` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.2: Handle invoice.paid for Agroverse subscription renewals
-- `Edgar_20260609234009_051` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 60 · Description: PR2.3: Fulfill Subscriptions page + dao_protocol endpoints
-- `Edgar_20260610022440_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Cory
-- `Edgar_20260610173201_055` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-10T17:32:01.369Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260610185318_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Fatima
-- `Edgar_20260610185352_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Just finished conversation with Cory from UX.App. Items discussed
-- `Edgar_20260610223921_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Agroverse subscriptions design + autopilot handoff/credential/CI hardening
-- `Edgar_20260611002014_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix Sophia per-thread concurrency race + build watch-and-notify capability
-- `Edgar_20260611004541_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests so they're …
-- `Edgar_20260611004658_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests and drop th…
-- `Edgar_20260611005420_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-A: Fix 3 deselected unit tests + drop --deselect flags
-- `Edgar_20260611005945_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
-- `Edgar_20260611010827_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
-- `Edgar_20260611013839_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix all remaining ruff violations in truesi…
-- `Edgar_20260611014656_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Aora Experience Plan — session 2026-06-10
-- `Edgar_20260611015715_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-B: Add ruff lint+format check to CI
-- `Edgar_20260611171943_081` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-11T17:19:43.679Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260611201219_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: PR1.5 — Subscribe CTA on all bar PDPs + generic PDP
 
 ---
 
@@ -66,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 203 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 203 | — |
+| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 202 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 202 | — |
 
 ---
 
@@ -226,11 +190,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 31 SKU lines · 13,425.86 total units · $11,903.65
+- Manager record: `Gary Teh` · 31 SKU lines · 13,420.11 total units · $11,897.90
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 13,335.68 | $11,740.84 |
+  | (uncategorized) | (unspecified) | 27 | 13,329.93 | $11,735.09 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Mass | Retail Ready | 2 | 14 | $112.82 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -250,17 +214,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,118.22**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$40.89**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -274,12 +234,9 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-09 | claude (subscriptions session) | GTIN MODEL (canonical, confirmed by Gary): the retail GTIN identifies the PRODUCT TYPE, not the unit/vintage — ALL chocolate bars share one chocolate-bar GTIN; ALL ceremonial cacao share one cacao GTIN. The serialized QR code (Agroverse QR codes tab, column A) is the per-unit identity that differentiates farm+vintage and resolves provenance. A vintage-independent "generic" SKU REUSES the existing shared GTIN (never mint a new GTIN per vintage); per-vintage agroverse.shop product pages are presentation sub-views of one GTIN (expect Merchant Center duplicate-GTIN across them). Provenance is always via QR, never GTIN. Documented in AGROVERSE_QR_CODE_BATCH_GENERATION.md §0 + NOTES_tokenomics.md (Agroverse QR codes tab) + CHOCOLATE_SUBSCRIPTION_PLAN.md (Decisions → GTIN model).
 - 2026-06-09 | claude (subscriptions session) | CREDENTIAL HAND-OFF PROTOCOL (new canonical doc CREDENTIAL_HANDOFF_PROTOCOL.md): to get a secret onto a locked-down box an LLM can't SSH (SG blocks 22; box trusts only its own keypair, which lives on the autopilot box), the autopilot box (`sophia`) is the staging hub and Sophia propagates. Rules: never put secrets in chat/Telegram/PRs/commits; move via stdin (mask to prefix+len); chmod 600; stage under /home/ubuntu/ NOT /opt/truesight_autopilot (deploy.sh git-cleans it); prefer sourcing an existing secret (e.g. Stripe test key in sentiment_importer config/environments/development.rb). Then hand off in the Sophia thread (LLM can't post into an existing TG topic — operator drops the line; adapter auto-loads the plan). Pointer added to SOPHIA_HANDOFFS.md. Worked example: beta sandbox Stripe test key staged at ~/stripe_test_key → thread 1955.
 
-_All dated lines on/after 2026-06-04_ (22):
+_All dated lines on/after 2026-06-05_ (19):
 
 - 2026-06-10 | claude-code | UAT (User Acceptance Testing) — end-to-end validation by the governor before signing off on a feature. The beta sandbox endpoint (thread 1955, `beta.edgar.truesight.me`) is the canonical UAT surface for Stripe-touching flows: standalone EC2 in NELANCO, Stripe TEST mode, isolated fulfillment queue. UAT is distinct from CI/E2E tests — it's the human governor running through the real user journey. Future LLMs and Sophia: when a plan says "UAT," it means the governor (Gary) tests end-to-end on the beta staging environment, not in CI.
-- 2026-06-04 | autopilot | HARD RULE ADDED: Never push directly to production repos (truesight_me_prod, dapp_prod, agroverse_shop_prod). Always push to beta/staging first, then promote. Documented in GITHUB_AGENTIC_AI_SSH.md (top banner) and WORKSPACE_CONTEXT.md §6 (table warning). Applies to all LLM agents (Claude, Sophia, Cursor, autopilot).
-- 2026-06-04 | claude-code | Added AORA_EXPERIENCE_PLAN.md — roadmap for Aora learning modules (Agroforestry + Supply Chain), repo TrueSightDAO/aora, docs-first md+PDF for Jerri/China pilot.
-- 2026-06-04 | claude-code | Added ATTENTION_SURFACES.md + attention_surfaces.json + shareable PDF — 10-surface catalog + trigram resonance layer for Sophia/oracle draw-time attention direction (plan: ATTENTION_SURFACES_PLAN.md).
 - 2026-06-05 | claude | Correction: Ora Cacao (ceremonial-cacao.com) DOES sell on Amazon.com — the Feb 2026 Playwright crawl in market_research/ceremonial_cacao_seo/brand_sales_drivers_report.md ('no clear Amazon presence' for all 5 brands) is stale on this point per Gary. Re-verify Amazon presence before citing that report.
 - 2026-06-05 | claude | Added WARMUP_AUTOSEND_PLAN.md (+pdf, +scripts/build_warmup_autosend_plan_pdf.py): B2B warm-up auto-send graduation plan (assessment + PR1-3 roadmap; implementation lands in go_to_market). Sibling of EMAIL360.md (DTC loop).
 - 2026-06-06 | claude-code | Merged duplicate OPEN_FOLLOW_UPS.md into OPEN_FOLLOWUPS.md (4 autopilot items → Recently shipped, all resolved by capability uplift); duplicate is now a tombstone redirect; canonical-file warning added; attention-surfaces refs updated; Sophia prompt gained single-backlog rule (truesight_autopilot#98).
@@ -316,6 +273,7 @@ _All dated lines on/after 2026-06-04_ (22):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+810badd | 2026-06-11 21:03:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9b54839 | 2026-06-11 16:38:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5fe5485 | 2026-06-11 11:13:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 831b683 | 2026-06-11 05:12:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -355,7 +313,6 @@ f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [
 b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 424a12d | 2026-06-06 10:33:02 -0700 | add Zen direct knowing section to Journey to the West post (#191)
-5760ce9 | 2026-06-06 10:26:10 -0700 | add audio narration players to both blog posts (#190)
 … (truncated)
 ```
 
@@ -368,6 +325,18 @@ d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2dbb8e1 | 2026-06-11 16:17:56 -0700 | Reorder execution plan: vault-first (Phase 3 → Phase 0.1 → vault), add worktree convention (#459)
+8983672 | 2026-06-11 16:10:31 -0700 | handoff(live-progress): register thread 2799 (Sophia parked GO-ready) (#458)
+b572f09 | 2026-06-11 16:03:18 -0700 | plan: Sophia live-progress introspection (quick handoff) (#457)
+f90cae3 | 2026-06-11 15:12:23 -0700 | Add Phase 0 governance plan PDF for DAO sharing
+5ddf6b3 | 2026-06-11 15:10:36 -0700 | handoff(governance): register thread 2744 (Sophia parked GO-ready, Phase 0) (#454)
+7de043c | 2026-06-11 15:06:20 -0700 | Add QR Code Registration implementation plan (#452)
+e67dfa2 | 2026-06-11 15:05:48 -0700 | plan: Sophia multi-tenant governance, identity & vault roadmap + UAT (#453)
+b6db1a1 | 2026-06-11 15:03:32 -0700 | Add QR Code Registration implementation plan PDF
+336a02e | 2026-06-11 14:06:44 -0700 | Add PDF of Friends of the Rainforest implementation plan
+40d3d21 | 2026-06-11 13:54:48 -0700 | Add Sophia's DAO contributor ledger name to operating instructions (#450)
+f8c5102 | 2026-06-11 13:42:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
+3ccc8d5 | 2026-06-11 13:42:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 aea7136 | 2026-06-11 13:32:23 -0700 | handoff(followup-monitor): register thread 2622 (Sophia parked GO-ready) (#449)
 0b9ab07 | 2026-06-11 13:23:54 -0700 | Add deferred follow-up for Chocolate Subscription Phase 2 (#448)
 36d0344 | 2026-06-11 13:09:32 -0700 | handoff: Sophia durable follow-up monitor — plan + UAT + registry rows (#447)
@@ -396,30 +365,27 @@ e041253 | 2026-06-10 18:35:53 -0700 | Aora: make ledger names clickable links to
 82db5db | 2026-06-10 18:32:47 -0700 | Aora: fix cash position — only Main Ledger + AGL15 earmarked for inventory; AGL4 is equity not cash (#437)
 e248325 | 2026-06-10 18:28:02 -0700 | Aora: surface critical blockers at top, add China final package description, fix links (#436)
 cec7205 | 2026-06-10 18:22:47 -0700 | Krake SK consolidation complete + update infra doc (#435)
-b97b905 | 2026-06-10 18:19:07 -0700 | Aora: add pricing model, AORA ledger, cash position, and freight cost breakdown (#433)
-eeb9230 | 2026-06-10 18:06:44 -0700 | Add Krake Sidekiq consolidation plan (#419)
-1761058 | 2026-06-10 18:05:48 -0700 | Aora: 100-bar pilot logistics = Gary carries in backpack; simplify options (#429)
-741b098 | 2026-06-10 17:51:25 -0700 | Update AORA_EXPERIENCE_PLAN.md with Jerri correspondence, July shift, venue, capital constraint (#424)
-04cdfbb | 2026-06-10 17:48:49 -0700 | Restructure AORA_EXPERIENCE_PLAN.md with 4 workstreams, PERT chart, and execution checklists (#423)
-12ac96e | 2026-06-10 17:21:43 -0700 | handoff(autopilot-hardening): parked GO-ready in thread 2317 (#422)
-50933ca | 2026-06-10 17:18:11 -0700 | docs: mark watch-and-notify shipped + deployed (real AMI probe verified) (#421)
-aac6e73 | 2026-06-10 17:12:18 -0700 | plan(autopilot): hardening roadmap — verification, self-modification safety, op state (#420)
-ff51dcc | 2026-06-10 17:08:22 -0700 | docs: Sophia watch-and-notify execution roadmap (#418)
-5bb3ad4 | 2026-06-10 16:48:26 -0700 | docs: mark Sophia per-thread concurrency roadmap shipped + deployed (#417)
-bb8e07d | 2026-06-10 16:15:30 -0700 | docs: Sophia per-thread concurrency execution roadmap (#416)
-9c29c6b | 2026-06-10 15:53:50 -0700 | convention: roadmap docs must include a UAT phase; add it to the subscription plan (#415)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+1f17941 | 2026-06-11 16:38:11 -0700 | Fix target-path quoting in workflow (#345)
+289ca71 | 2026-06-11 23:32:48 +0000 | Use default GITHUB_TOKEN, commit PNGs to tokenomics/generated_qr_codes
+617894e | 2026-06-11 23:27:28 +0000 | Use base64-encoded token from webhook payload for lineage-assets upload
+80d2311 | 2026-06-11 23:25:56 +0000 | Revert to using secrets.QR_CODE_REPOSITORY_TOKEN for lineage-assets
+c306c4d | 2026-06-11 23:21:09 +0000 | Use github_token from webhook payload instead of repo secret
+d120a8a | 2026-06-11 23:19:30 +0000 | Fix: pass target_path through handle_webhook_request properly
+d601430 | 2026-06-11 23:17:29 +0000 | Switch QR PNG upload target from qr_codes to lineage-assets/pngs
+e328c6f | 2026-06-11 23:06:52 +0000 | Fix: use product_name from client_payload (GitHub 10-property limit)
+72bfd55 | 2026-06-11 16:05:39 -0700 | Update QR webhook workflow to use client_payload data instead of reading sheet (#344)
+25e568d | 2026-06-11 16:05:33 -0700 | [autopilot] Fix github_webhook_handler.py to use production sheet and qr (#343)
 f7a52ac | 2026-06-10 18:19:56 -0700 | Sync Code.js from agroverse_shop_beta PR #141
 85a4d98 | 2026-06-06 17:45:35 -0700 | docs(identity manifest): map the 3 orphan files to scriptId 1m8IZPs1 (#338)
 76d0ded | 2026-06-06 07:13:43 -0700 | [autopilot] Add Sentinel role support to dao_members_cache_publisher.gs  (#335)
 282dda6 | 2026-06-05 14:06:43 -0700 | Version.gs: log credentialing never-downgrade deploy (2026-06-05) (#334)
 b4e1db6 | 2026-06-05 13:49:06 -0700 | Credentialing GAS: never-downgrade guard on reprocess recommits (#333)
-e3e3cae | 2026-06-03 17:21:12 -0700 | GAS: [PROGRAM REGISTRATION REQUEST] scanner → Program Registrations review tab (#332)
 ```
 
 ### `dapp` → `dapp`
@@ -437,7 +403,9 @@ _(no commits on origin/master in window)_
 ### `qr_codes` → `qr_codes`
 
 ```
-_(no commits on origin/main in window)_
+b04a540 | 2026-06-11 16:14:09 -0700 | Add QR code for Ceremonial Cacao: E2E_TEST_002 [skip ci]
+3411548 | 2026-06-11 16:13:31 -0700 | cleanup test file
+2a7e7c4 | 2026-06-11 16:13:25 -0700 | test write after unarchive
 ```
 
 ### `proposals` → `proposals`
@@ -457,12 +425,15 @@ d4be99b | 2026-06-08 11:22:22 +0000 | chore: refresh store and partner inventory
 e5206f4 | 2026-06-07 09:41:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1c64adf | 2026-06-06 08:48:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a1d2b51 | 2026-06-05 10:18:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-6d04dcc | 2026-06-04 10:14:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+30e9f9e | 2026-06-11 14:32:39 -0700 | Add subscription CTA to Friends of the Rainforest page to offset event CAC (#167)
+fc17fad | 2026-06-11 14:29:40 -0700 | Use shipment-style QR-linked email signup on Friends of the Rainforest page (#166)
+67e51df | 2026-06-11 14:18:08 -0700 | Rebuild Friends of the Rainforest page with rich farm content, videos, maps, and product cards (#165)
+aead514 | 2026-06-11 14:11:34 -0700 | Add Friends of the Rainforest landing page for event sampling QR code (#164)
 c896c25 | 2026-06-11 13:39:20 -0700 | Remove Buy One Bar button from generic PDP (#163)
 51949fb | 2026-06-11 13:36:53 -0700 | Restructure generic PDP: hero two-column, content full-width below (#162)
 394808d | 2026-06-11 13:33:23 -0700 | Revert generic PDP to two-column layout (#161)
@@ -499,10 +470,7 @@ a9e10a9 | 2026-06-09 15:02:38 -0700 | [autopilot] Facebook Pixel leaks from beta
 3e0f708 | 2026-06-09 14:32:12 -0700 | PR1.5: Generic-bar PDP at /product-page/ceremonial-cacao-chocolate-bar/ (#126)
 44c22fa | 2026-06-09 14:32:08 -0700 | PR1.4: Add createSubscriptionCheckoutSession function body (#125)
 dd41a5b | 2026-06-09 14:32:05 -0700 | PR1.3: Clean path wrapper /subscribe/chocolate-bar/ (#123)
-651947c | 2026-06-09 14:32:02 -0700 | PR1.2: Shared subscribe engine at /subscribe/ (#122)
-fc6309a | 2026-06-09 14:31:58 -0700 | PR1.1: Add generic SKU + subscription schema to products.js (#121)
-fcc8a76 | 2026-06-09 12:58:19 -0700 | Merge pull request #120 from TrueSightDAO/feat/gtin-source-of-truth
-b5fbbe5 | 2026-06-09 12:57:47 -0700 | Add GTIN to products.js as single source of truth + fix JSON-LD script
+… (truncated)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -549,36 +517,20 @@ c41b37e | 2026-06-07 19:39:25 -0700 | fix: add generation_source_url to EMAIL RE
 6328007 | 2026-06-07 14:35:36 -0700 | Monthly AMI backups of the two production DB EC2 instances (Nelanco) (#39)
 e749b90 | 2026-06-07 14:17:11 -0700 | Fix AMI backup: AMI Description must be ASCII (em-dash -> hyphen) (#38)
 a7615af | 2026-06-07 14:12:26 -0700 | Weekly AMI backup of the autopilot EC2 (blue/green DR) (#37)
-93db2df | 2026-06-04 16:31:42 -0700 | Score: collapse per-repo GitHub deductions into category counts (readable deductions list) (#36)
-3a70f95 | 2026-06-04 16:26:25 -0700 | Web scanner: derive GitHub Pages IPs + domain list dynamically (no hardcoding) (#35)
-aca891b | 2026-06-04 16:21:21 -0700 | Classify each domain's hosting (GitHub Pages / EC2 / CloudFront) + recalibrate score (#34)
-66b3f0a | 2026-06-04 16:12:14 -0700 | Web scanner: discover domains from Route53 (covers beta + new subdomains) (#33)
-b70ff79 | 2026-06-04 16:06:34 -0700 | EC2 SG audit: drop SSM/CIDR per operator — keep SSH/Monit open (key auth), lock down data ports (#32)
-e5fd38d | 2026-06-04 15:55:18 -0700 | EC2 SG audit: SSH 22 vs 2202 mapping + admin CIDR for SSH/Monit (#31)
-0d6953b | 2026-06-04 15:45:03 -0700 | EC2 SG audit: add cattle/pet (ASG vs pet) model, Monit 2812, observed ports (#30)
-6c8ffb8 | 2026-06-04 15:27:44 -0700 | Add EC2 security-group audit + implementation plan + execution roadmap (#29)
-2c4e546 | 2026-06-04 14:56:58 -0700 | Rewrite security score: correct keys, per-category caps, don't penalize unknowns (#28)
-49912dd | 2026-06-04 14:38:26 -0700 | Put scanner credentials on the compile step (it re-runs all scanners) (#27)
-ec857f0 | 2026-06-04 14:33:24 -0700 | Fix AWS scan crash: sort open_ports with mixed int/'any' values (#26)
-9b6bd6c | 2026-06-04 14:12:15 -0700 | Fix Mirim Bahia scan URL: mirim-bahia.truesight.me (NXDOMAIN) → tribomirimbahia.truesight.me (#25)
-d51be5e | 2026-06-04 13:53:22 -0700 | Fix secret_scanning/dependabot — read from repo object, not a fake endpoint (#24)
-5b10246 | 2026-06-04 13:43:38 -0700 | Fix TLS cert parsing — flatten issuer/subject RDN tuples (#23)
-42e7e8f | 2026-06-04 13:10:43 -0700 | Fix AWS scanner env detection, use OPS PAT for GitHub scanner (#22)
-2373c4e | 2026-06-04 13:02:17 -0700 | Fix: remove 2>&1 from compile step so stderr log lines don't pollute JSON output (#20)
-16e09c0 | 2026-06-04 15:43:56 +0000 | Add daily security dashboard workflow
-e88fe89 | 2026-06-04 08:38:20 -0700 | Add workflow template (move to .github/workflows/)
-f9db1bd | 2026-06-04 08:33:28 -0700 | Add security scanner README
-e4212ee | 2026-06-04 08:32:24 -0700 | Add security report compiler script
-15a7712 | 2026-06-04 08:32:22 -0700 | Add phishing blacklist scanner for security dashboard
-4b0559a | 2026-06-04 08:32:21 -0700 | Add GitHub security scanner for security dashboard
-d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dashboard
-5f4ce67 | 2026-06-04 08:32:19 -0700 | Add AWS inventory scanner for security dashboard
-241fe49 | 2026-06-03 22:45:27 -0700 | Add Unity Risk Indicator integration proposal
 ```
 
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-06-12T041228Z_friends-rainforest-live-sophia-phase-0.md`
+
+- **posted_at_utc:** `2026-06-12T04:12:28Z`  
+- **slug:** `friends-rainforest-live-sophia-phase-0`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Web (Shop)** — "Friends of the Rainforest" landing page live with rich media, QR-linked event signup, and subscription CTAs.
 
 ### `beer-hall_2026-06-11T041108Z_subscription-verification-aora-plan.md`
 
@@ -597,15 +549,6 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
   Automated daily digest of the DAO
   - **Web (Shop)** — Facebook Pixel hostname guard added to prevent beta analytics leakage; GTIN added to products.js as single source of truth.
-
-### `beer-hall_2026-06-09T034402Z_dao-client-migration-sentinel-roster.md`
-
-- **posted_at_utc:** `2026-06-09T03:44:02Z`  
-- **slug:** `dao-client-migration-sentinel-roster`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Oracle (Identity)** — DAO identity linking is now live on the practice page; verification emails return users to the oracle page and signature verification is hardened.
 
 ---
 
@@ -626,39 +569,6 @@ d36239f | 2026-06-04 08:32:20 -0700 | Add web security scanner for security dash
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/11/2026 12:50:16 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-04`; scanned last **499** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-09 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
