@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-12T15:46:50Z`
+- Generated (UTC): `2026-06-12T20:35:03Z`
 - Look-back: **7** calendar days (`2026-06-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 33
-- `[PRACTICE EVENT]` × 5
-- `[EMAIL REGISTERED EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 34
+- `[PRACTICE EVENT]` × 6
+- `[EMAIL REGISTERED EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260611004658_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests and drop th…
-- `Edgar_20260611005420_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-A: Fix 3 deselected unit tests + drop --deselect flags
 - `Edgar_20260611005945_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
 - `Edgar_20260611010827_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
 - `Edgar_20260611013839_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix all remaining ruff violations in truesi…
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260612024349_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:43:48.621Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260612062627_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia incident-response night: recover bricked threads + ship the self-bric…
 - `Edgar_20260612152350_105` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T15:23:50.581Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260612155006_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: @⁨Liz Wong - Shen Zhen Fireworks Dealer⁩ now that the prototype that @⁨Kaon⁩…
+- `Edgar_20260612202754_109` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T20:27:54.194Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -314,6 +314,7 @@ _All dated lines on/after 2026-06-05_ (19):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+feb220f | 2026-06-12 15:49:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8e5e8c3 | 2026-06-12 10:50:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 83779f0 | 2026-06-12 05:21:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 810badd | 2026-06-11 21:03:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -353,7 +354,6 @@ f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [
 1b50fad | 2026-06-07 14:30:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5d14a7a | 2026-06-07 09:47:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -366,6 +366,8 @@ b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e3c44fa | 2026-06-12 08:47:15 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
+d2693aa | 2026-06-12 08:47:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 c965ad8 | 2026-06-12 03:49:17 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
 b6152ba | 2026-06-12 03:49:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 618cefd | 2026-06-11 22:14:07 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
@@ -404,8 +406,6 @@ d86ad95 | 2026-06-11 04:09:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 3b985f6 | 2026-06-10 22:09:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 882c340 | 2026-06-10 21:11:23 -0700 | Merge pull request #444 from TrueSightDAO/auto/advisory-refresh-2026-06-11
 74d0e43 | 2026-06-11 04:11:14 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
-1815612 | 2026-06-10 18:55:49 -0700 | Add §11: Deployment guide for each service (#442)
-fbefd2e | 2026-06-10 18:41:00 -0700 | Update AORA_EXPERIENCE_PLAN.pdf with latest fixes
 … (truncated)
 ```
 
@@ -635,7 +635,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 7:50:51 |
+| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 12:50:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-05`; scanned last **499** data rows)
 
