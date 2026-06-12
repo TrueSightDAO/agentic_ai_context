@@ -103,12 +103,35 @@ Verify:
 
 ## 7. Quick Reference: Full Command
 
+### Using the CLI tool (recommended)
+
+The CLI tool at `/opt/truesight_autopilot/scripts/placard_generator.py` handles PNG generation and GitHub upload in one step:
+
 ```bash
-python3 generate_placard.py \
+python3 /opt/truesight_autopilot/scripts/placard_generator.py \
   --qr-code "SFTF_FR_20260612_2" \
   --event "SF Tech Fest 2026" \
   --collection "Friends of the Rainforest" \
   --origin "Brazilian Amazon Rainforest" \
-  --url "agroverse.shop/friends-of-the-rainforest" \
-  --mission "Every purchase helps restore 10,000 hectares of Amazon Rainforest through regenerative agroforestry with local farming communities."
+  --url "agroverse.shop/friends-of-the-rainforest"
 ```
+
+Use `--dry-run` to test locally without uploading.
+
+## 8. Context for Future AI Incarnations
+
+When a governor asks you to generate a placard for an event:
+
+1. **Check this SOP first** — it has all the parameters and design rules
+2. **Use the CLI tool** at `/opt/truesight_autopilot/scripts/placard_generator.py`
+3. **Run with --dry-run first** to verify the output, then without for the real upload
+4. **The PNG goes to** `TrueSightDAO/lineage-assets/pngs/{QR_CODE}_placard.png`
+5. **The raw URL is** `https://raw.githubusercontent.com/TrueSightDAO/lineage-assets/main/pngs/{QR_CODE}_placard.png`
+6. **Always verify** the QR is square and no text overflows the right edge
+
+**Key lessons learned (do not repeat these mistakes):**
+- Never resize a QR code image — generate at native resolution
+- Always use word wrap for text that could overflow the right edge
+- The GitHub API has a 10-property limit on repository_dispatch client_payload
+- The qr_codes repo is archived — use lineage-assets/pngs/ instead
+- The default GITHUB_TOKEN in workflows can't write to other repos — use a PAT with cross-repo access
