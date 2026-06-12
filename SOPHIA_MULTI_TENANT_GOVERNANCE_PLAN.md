@@ -203,16 +203,18 @@ touching the TrueSight instance.
 
 | Step | PRs opened | Merged (human) | Deployed | UAT |
 |------|-----------|----------------|----------|-----|
-| **A — Phase 0.1: Identity resolver** | ☐ | ☐ | ☐ | P0.1 |
-| **B — Phase 3: Credential vault** | ☐ | ☐ | ☐ | P3.1–P3.7 |
+| **A — Phase 0.1: Identity resolver** | ✅ #160 | ✅ Merged | ☐ | P0.1 |
+| **B — Phase 3: Credential vault** | ✅ #165, #166 | ✅ Merged | ☐ | P3.1–P3.7 |
+| **B5 — Safe deploy orchestration** | ✅ #167 | ✅ Merged | ☐ | — |
 | **C — Phase 0.2–0.4: Remaining policy** | ☐ | ☐ | ☐ | P0.2–P0.4 |
 | **D — Phase 1: Identity binding** | ☐ | ☐ | ☐ | P1.1–P1.5 |
 | **E — Phase 2: Engagement modes** | ☐ | ☐ | ☐ | P2.1–P2.4 |
 | **F — Phase 4: Multi-org replication** | ☐ | ☐ | ☐ | P4.1–P4.3 |
 
-> **RESUME HERE (vault-first):** Step A — Phase 0.1 `app/policy.py` (identity resolver:
-> `telegram_id → Column X → Governors cache → {guest, governor}`). Then Step B — Phase 3
-> (credential vault). Open PRs via git worktree; **do not self-merge** (human reviews).
+> **RESUME HERE (2026-06-11):** All Phase 3 items complete (store, web page, tools,
+> safe deploy orchestration). Next: wire heartbeat hooks into background loops
+> (follow-up monitor, email poller, telegram adapter), then continue with remaining
+> phases (C–F). Open PRs via git worktree; **do not self-merge** (human reviews).
 > Report progress in this handoff topic (thread 2744).
 
 ---
@@ -246,7 +248,121 @@ The follow-up monitor thread (2622) uses the main clone path. Never the twain sh
 
 ---
 
-## 12. Dependency notes / cross-references
+## 13. Safe deploy orchestration — idle-check watcher
+
+**Context (Gary, 2026-06-11 voice thread 2744):** deploying new code while other
+active tracks (follow-up monitor in thread 2622, active Telegram sessions, long-running
+tool calls) are mid-execution causes SIGTERM and lost work. The deploy must wait until
+all tracks are idle.
+
+**Anti-pattern to avoid:** a long-running loop that never idles (e.g. a background
+watcher that polls every 30s) should not block deployment forever. Each track gets a
+max expected duration; if exceeded, the track is treated as stuck/crashed and the
+deploy proceeds.
+
+### Track registry
+
+Each background process registers itself in a shared state file
+(`data/active_tracks.json`):
+
+```json
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "followup-monitor",
+      "label": "Follow-up monitor (thread 2622)",
+      "started_at": "2026-06-11T23:00:00Z",
+      "last_heartbeat": "2026-06-11T23:05:00Z",
+      "expected_max_duration_s": 30,
+      "status": "running"
+    },
+    {
+      "id": "email-poller",
+      "label": "Email poller",
+      "started_at": "2026-06-11T22:00:00Z",
+      "last_heartbeat": "2026-06-11T23:05:00Z",
+      "expected_max_duration_s": 15,
+      "status": "running"
+    },
+    {
+      "id": "telegram:2744",
+      "label": "Chat session (thread 2744)",
+      "started_at": "2026-06-11T23:04:00Z",
+      "last_heartbeat": "2026-06-11T23:05:00Z",
+      "expected_max_duration_s": 120,
+      "status": "running"
+    }
+  ]
+}
+```
+
+### Deploy watcher logic
+
+```python
+def can_deploy() -> bool:
+    """Check if it's safe to restart the service."""
+    tracks = load_active_tracks()
+    now = time.time()
+    
+    for track in tracks:
+        if track["status"] != "running":
+            continue
+        
+        elapsed = now - parse_iso(track["last_heartbeat"])
+        max_duration = track["expected_max_duration_s"]
+        
+        if elapsed < max_duration:
+            # Track is actively running — wait
+            logger.info("Deploy blocked: %s is active (%ds elapsed, %ds max)",
+                        track["id"], elapsed, max_duration)
+            return False
+        
+        # Track exceeded its max duration — treat as stuck/crashed
+        logger.warning("Deploy proceeding: %s exceeded max duration (%ds > %ds)",
+                       track["id"], elapsed, max_duration)
+    
+    return True
+```
+
+### Heartbeat mechanism
+
+Each long-running loop writes its heartbeat to the shared state file on every
+iteration. The deploy watcher reads the file, not the live process state — so
+a crashed process with a stale heartbeat is detected and doesn't block deployment.
+
+### Manual override
+
+On the vault web page (Phase 3.3), the System Status panel shows:
+- Active tracks with their IDs and status
+- Whether a deploy is pending
+- A **"Deploy now"** button that bypasses the idle check entirely
+
+### Timeout table
+
+| Track | Expected max duration | Notes |
+|-------|----------------------|-------|
+| Telegram chat turn | 120 s | LLM call + tool execution |
+| Follow-up monitor check | 30 s | Probe + state write |
+| Email poller poll | 15 s | Gmail query + dispatch |
+| SSH / git operation | 60 s | Clone, push, deploy |
+| AWS watcher poll | 10 s | Status check |
+| Daily briefing | 60 s | LLM generation |
+
+### Implementation (PR #167)
+
+1. `app/deploy_watcher.py` — shared state file reader + `can_deploy()` logic
+2. Wire heartbeat writes into: `followup_loop`, `email_poller`, `telegram_adapter`
+   (per-session), `watch_runner`, `daily_briefing`
+3. Add `/vault/api/system-status` endpoint to vault_routes.py
+4. Add "System Status" panel to vault web page showing active tracks + deploy button
+5. Modify `deploy_autopilot()` to call `can_deploy()` before restarting
+6. Tests: can_deploy blocks when track is active; proceeds when idle; proceeds when
+   track exceeded timeout; manual override bypasses check
+
+---
+
+## 14. Dependency notes / cross-references
 
 - Builds on the shipped **per-topic concurrency** (lock/queue/ack) and **watch-and-notify** work
   (the AMI primitive in Phase 4.3), and the **durable follow-up monitor** (`SOPHIA_FOLLOWUP_MONITOR_PLAN.md`).
