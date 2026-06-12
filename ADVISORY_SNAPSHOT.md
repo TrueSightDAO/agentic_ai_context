@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-12T05:13:53Z`
+- Generated (UTC): `2026-06-12T10:49:03Z`
 - Look-back: **7** calendar days (`2026-06-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 32
+- `[CONTRIBUTION EVENT]` × 33
 - `[EMAIL REGISTERED EVENT]` × 4
 - `[PRACTICE EVENT]` × 4
-- `[EMAIL VERIFICATION EVENT]` × 3
+- `[EMAIL VERIFICATION EVENT]` × 2
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260611002014_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix Sophia per-thread concurrency race + build watch-and-notify capability
 - `Edgar_20260611004541_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests so they're …
 - `Edgar_20260611004658_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix the 3 deselected unit tests and drop th…
 - `Edgar_20260611005420_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-A: Fix 3 deselected unit tests + drop --deselect flags
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260612012605_097` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260612022510_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:25:10.205Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260612024349_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:43:48.621Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260612062627_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia incident-response night: recover bricked threads + ship the self-bric…
 
 ---
 
@@ -314,6 +314,7 @@ _All dated lines on/after 2026-06-05_ (19):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+83779f0 | 2026-06-12 05:21:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 810badd | 2026-06-11 21:03:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9b54839 | 2026-06-11 16:38:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5fe5485 | 2026-06-11 11:13:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -353,7 +354,6 @@ f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [
 57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b36173e | 2026-06-06 19:55:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
-424a12d | 2026-06-06 10:33:02 -0700 | add Zen direct knowing section to Journey to the West post (#191)
 … (truncated)
 ```
 
@@ -366,6 +366,8 @@ d25bafc | 2026-06-06 10:35:18 -0700 | update narration with Zen section
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+618cefd | 2026-06-11 22:14:07 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
+9a2547f | 2026-06-11 22:14:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 7b52b89 | 2026-06-11 21:58:25 -0700 | handoff: Sophia vault hotfix + ops-safety roll-up (thread 2744) (#472)
 e2257d1 | 2026-06-11 21:12:46 -0700 | Merge pull request #470 from TrueSightDAO/auto/advisory-refresh-2026-06-12
 4854c6c | 2026-06-12 04:12:35 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
@@ -404,8 +406,6 @@ d86ad95 | 2026-06-11 04:09:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 fbefd2e | 2026-06-10 18:41:00 -0700 | Update AORA_EXPERIENCE_PLAN.pdf with latest fixes
 ef9bcc7 | 2026-06-10 18:40:31 -0700 | Aora: fix — Liz is the founder of GO, Mr Cao is her friend (#439)
 6c1e5a9 | 2026-06-10 18:40:25 -0700 | Aora: Kaon actively working on MindLoop, not yet ready for Gary's UAT (#440)
-da5f59d | 2026-06-10 18:36:25 -0700 | Generate AORA_EXPERIENCE_PLAN.pdf for sharing
-e041253 | 2026-06-10 18:35:53 -0700 | Aora: make ledger names clickable links to Google Sheets, remove note (#438)
 … (truncated)
 ```
 
@@ -458,6 +458,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+706b159 | 2026-06-12 10:41:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8cba6bb | 2026-06-11 10:59:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a68906a | 2026-06-10 10:35:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5ce8b7a | 2026-06-09 10:04:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -634,7 +635,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/11/2026 21:50:59 |
+| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 2:51:04 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-05`; scanned last **499** data rows)
 
