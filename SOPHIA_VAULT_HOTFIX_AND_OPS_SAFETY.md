@@ -29,10 +29,27 @@ So the context dict was being passed where the template *name* goes → jinja2 u
 cache key → "unhashable type: dict". **Fix every `TemplateResponse(...)` call in `vault_routes.py`**
 (login page too, not just `/vault/`). **UAT:** `/vault/` and `/vault/login` → 200, render.
 
+## Fix #1.5 — Login mechanism: use the DAO Identity (dao-client) flow, like capoeira 🔴
+The current vault login is **email/cookie-based** — Gary: *"wrong mechanism."* It must instead
+use the **same client-side RSA-signature flow as capoeira / oracle** (the dao-client DAO Identity
+pattern):
+- The governor's **RSA keypair lives in the browser `localStorage`** (created/loaded via the
+  dao-client `create_signature` flow — *not* an email + password + server cookie).
+- To access the vault, the page has the governor **sign a vault-access challenge** with that
+  localStorage key (dao-client `create_signature`), and the vault **verifies the signature against
+  the Governors registry** → grants access. Same authn≠authz split: signature proves *who*, the
+  Governors cache decides *whether* (non-governor → friendly contribution nudge).
+- Mirror capoeira's implementation: see `capoeira/assets/js/*` (`create_signature`, the
+  `localStorage` public-key/RSA-key handling) and oracle's DAO Identity flow. Reuse the published
+  **`@truesight_dao/dao-client`** library rather than hand-rolling crypto.
+- Rip out the email/cookie login Sophia built; the email-OTP idea was for the *binding* flow
+  (SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md), not the vault page login.
+
 ## Fix #2 — Discoverability 🔴
 The Sophia root landing page (`/`, "Sophia — TrueSight DAO Oracle") links only to
 `oracle.truesight.me` and `truesight.me` — **nothing to the vault.** Add a clear nav link/button
-from `/` to `/vault/`, so a governor who opens `sophia.truesight.me` can actually reach the vault.
+from `/` to **`/vault/login`** (Gary's exact ask), so a governor who opens `sophia.truesight.me`
+can reach the vault login directly.
 
 ## Requirement #3 — Live thread-status panel (Gary) 🟡
 On the (governor-gated) vault page, render a **UI on top of `/vault/api/system-status`**:
