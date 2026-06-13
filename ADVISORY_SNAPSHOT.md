@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-12T20:35:03Z`
-- Look-back: **7** calendar days (`2026-06-05` → today UTC)
+- Generated (UTC): `2026-06-13T03:59:24Z`
+- Look-back: **7** calendar days (`2026-06-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 34
-- `[PRACTICE EVENT]` × 6
-- `[EMAIL REGISTERED EVENT]` × 2
-- `[EMAIL VERIFICATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
-
-### Latest entries
-
-- `Edgar_20260611005945_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
-- `Edgar_20260611010827_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add ruff (lint + format check) to the CI pi…
-- `Edgar_20260611013839_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Fix all remaining ruff violations in truesi…
-- `Edgar_20260611014656_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Aora Experience Plan — session 2026-06-10
-- `Edgar_20260611015715_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Phase 1 PR-B: Add ruff lint+format check to CI
-- `Edgar_20260611171943_081` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-11T17:19:43.679Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260611201219_083` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: PR1.5 — Subscribe CTA on all bar PDPs + generic PDP
-- `Edgar_20260611205641_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Phase 1 — Chocolate Subscription Engine (Subscribe + PDPs)
-- `Edgar_20260611224641_087` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Sophia: turn-report fix, follow-up-monitor + governance/vault plans (handed …
-- `Edgar_20260611230120_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Fix github_webhook_handler.py to use production shee…
-- `Edgar_20260611231726_091` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Top up DeepSeek API credits
-- `Edgar_20260612011448_093` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.83 · Description: Receipt for printing event placard for tomorrow
-- `Edgar_20260612012202_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Printing this at the FedEx office
-- `Edgar_20260612012605_097` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260612022510_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:25:10.205Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260612024349_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:43:48.621Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260612062627_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia incident-response night: recover bricked threads + ship the self-bric…
-- `Edgar_20260612152350_105` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T15:23:50.581Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260612155006_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: @⁨Liz Wong - Shen Zhen Fireworks Dealer⁩ now that the prototype that @⁨Kaon⁩…
-- `Edgar_20260612202754_109` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T20:27:54.194Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -67,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 202 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 202 | — |
+| 2026 QR Code Sales | $40,000 | $2,851 | 7% | `2026-12-31` | 201 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 201 | — |
 
 ---
 
@@ -227,11 +190,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 31 SKU lines · 13,420.11 total units · $11,897.90
+- Manager record: `Gary Teh` · 31 SKU lines · 13,363.18 total units · $11,840.97
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 13,329.93 | $11,735.09 |
+  | (uncategorized) | (unspecified) | 27 | 13,273 | $11,678.16 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Mass | Retail Ready | 2 | 14 | $112.82 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -251,17 +214,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,112.44**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$40.93**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -275,11 +234,9 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-09 | claude (subscriptions session) | GTIN MODEL (canonical, confirmed by Gary): the retail GTIN identifies the PRODUCT TYPE, not the unit/vintage — ALL chocolate bars share one chocolate-bar GTIN; ALL ceremonial cacao share one cacao GTIN. The serialized QR code (Agroverse QR codes tab, column A) is the per-unit identity that differentiates farm+vintage and resolves provenance. A vintage-independent "generic" SKU REUSES the existing shared GTIN (never mint a new GTIN per vintage); per-vintage agroverse.shop product pages are presentation sub-views of one GTIN (expect Merchant Center duplicate-GTIN across them). Provenance is always via QR, never GTIN. Documented in AGROVERSE_QR_CODE_BATCH_GENERATION.md §0 + NOTES_tokenomics.md (Agroverse QR codes tab) + CHOCOLATE_SUBSCRIPTION_PLAN.md (Decisions → GTIN model).
 - 2026-06-09 | claude (subscriptions session) | CREDENTIAL HAND-OFF PROTOCOL (new canonical doc CREDENTIAL_HANDOFF_PROTOCOL.md): to get a secret onto a locked-down box an LLM can't SSH (SG blocks 22; box trusts only its own keypair, which lives on the autopilot box), the autopilot box (`sophia`) is the staging hub and Sophia propagates. Rules: never put secrets in chat/Telegram/PRs/commits; move via stdin (mask to prefix+len); chmod 600; stage under /home/ubuntu/ NOT /opt/truesight_autopilot (deploy.sh git-cleans it); prefer sourcing an existing secret (e.g. Stripe test key in sentiment_importer config/environments/development.rb). Then hand off in the Sophia thread (LLM can't post into an existing TG topic — operator drops the line; adapter auto-loads the plan). Pointer added to SOPHIA_HANDOFFS.md. Worked example: beta sandbox Stripe test key staged at ~/stripe_test_key → thread 1955.
 
-_All dated lines on/after 2026-06-05_ (19):
+_All dated lines on/after 2026-06-06_ (17):
 
 - 2026-06-10 | claude-code | UAT (User Acceptance Testing) — end-to-end validation by the governor before signing off on a feature. The beta sandbox endpoint (thread 1955, `beta.edgar.truesight.me`) is the canonical UAT surface for Stripe-touching flows: standalone EC2 in NELANCO, Stripe TEST mode, isolated fulfillment queue. UAT is distinct from CI/E2E tests — it's the human governor running through the real user journey. Future LLMs and Sophia: when a plan says "UAT," it means the governor (Gary) tests end-to-end on the beta staging environment, not in CI.
-- 2026-06-05 | claude | Correction: Ora Cacao (ceremonial-cacao.com) DOES sell on Amazon.com — the Feb 2026 Playwright crawl in market_research/ceremonial_cacao_seo/brand_sales_drivers_report.md ('no clear Amazon presence' for all 5 brands) is stale on this point per Gary. Re-verify Amazon presence before citing that report.
-- 2026-06-05 | claude | Added WARMUP_AUTOSEND_PLAN.md (+pdf, +scripts/build_warmup_autosend_plan_pdf.py): B2B warm-up auto-send graduation plan (assessment + PR1-3 roadmap; implementation lands in go_to_market). Sibling of EMAIL360.md (DTC loop).
 - 2026-06-06 | claude-code | Merged duplicate OPEN_FOLLOW_UPS.md into OPEN_FOLLOWUPS.md (4 autopilot items → Recently shipped, all resolved by capability uplift); duplicate is now a tombstone redirect; canonical-file warning added; attention-surfaces refs updated; Sophia prompt gained single-backlog rule (truesight_autopilot#98).
 - 2026-06-06 | claude-code | Repo-class policy: full org audit → 13 API-only data repos (never clone; Contents API only) + beta-first enforcement for *_prod repos with new sync_beta_to_prod tool. Doc: GITHUB_AGENTIC_AI_SSH.md §§ API-only repos / prod promotion. Code enforcement in truesight_autopilot (api_only_repos + prod_repos settings; git_push_changes/open_fix_pr/merge_pr guards).
 - 2026-06-06 | claude-code | Filed OPEN_FOLLOWUPS pending entry: scoped fine-grained agent PAT for GitHub-side enforcement of the repo-class policy (deferred by operator choice; trigger = observed guard bypass or second autonomous agent).
@@ -314,6 +271,33 @@ _All dated lines on/after 2026-06-05_ (19):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+25cdc00 | 2026-06-12 20:46:32 -0700 | Add Gary's honest reflection — felt like building a toy watching Microsoft demo (#210)
+38e423a | 2026-06-12 20:44:58 -0700 | Add Microsoft and Google demo photos to the opening section (#209)
+9eb63be | 2026-06-12 20:44:38 -0700 | Add photo of Google voice UX demo at TECH FEST 2026
+2da00c4 | 2026-06-12 20:44:37 -0700 | Add photo of Microsoft agentic fleet demo at TECH FEST 2026
+36f0c28 | 2026-06-12 20:41:22 -0700 | Fix: upload correct photo of Gary and Soniya
+d3f6df1 | 2026-06-12 20:39:55 -0700 | Fix: upload correct photo of attendees drinking cacao
+f710392 | 2026-06-12 20:39:30 -0700 | Fix: upload correct photo of Gary, Martin and Ken
+c2e5806 | 2026-06-12 20:39:15 -0700 | Fix: upload correct photo of Gary and Soniya
+14ac067 | 2026-06-12 20:39:01 -0700 | Fix: upload correct photo of Kim holding setup instructions on her phone
+ae7d93a | 2026-06-12 20:38:40 -0700 | Fix: upload correct photo of Gary, Atrish and Kim
+b27c9cd | 2026-06-12 20:36:52 -0700 | Fix: Soniya invited us and set up the cacao booth — she did the heavy lifting (#208)
+044d67c | 2026-06-12 20:36:10 -0700 | Remove empty techfest-gary.jpg leftover file (#207)
+b2a9d7b | 2026-06-12 20:35:54 -0700 | Fix blog post photo references and captions — correct the mix-up (#206)
+0738ae9 | 2026-06-12 20:35:30 -0700 | Fix: re-upload Gary, Atrish and Kim photo
+5f43be8 | 2026-06-12 20:35:26 -0700 | Fix: upload Gary and Soniya photo
+5922f92 | 2026-06-12 20:35:25 -0700 | Fix: upload Gary, Martin and Ken photo
+f3c8048 | 2026-06-12 20:35:24 -0700 | Fix: upload attendees drinking cacao photo
+dd543d7 | 2026-06-12 20:35:23 -0700 | Fix: upload Kim holding instructions photo
+e26beb4 | 2026-06-12 20:31:38 -0700 | Fix: demoralized watching demos on stage, lifted by seeing Sophia delight others (#204)
+9691aac | 2026-06-12 20:29:57 -0700 | Fix Martin section — he's a longtime DAO supporter and cacao lover (#203)
+9112926 | 2026-06-12 20:28:28 -0700 | Add blog post: The Joy Was the Point — TECH FEST 2026 reflection (#202)
+8888b88 | 2026-06-12 20:27:29 -0700 | Add TECH FEST 2026 photo - cacao tasting
+0a3c264 | 2026-06-12 20:27:28 -0700 | Add TECH FEST 2026 photo - Gary and Soniya
+59b4ccf | 2026-06-12 20:27:27 -0700 | Add TECH FEST 2026 photo - Gary, Martin, Ken
+83cc40c | 2026-06-12 20:27:26 -0700 | Add TECH FEST 2026 photo - Gary, Atrish, Kim
+614ee64 | 2026-06-12 20:27:25 -0700 | Add TECH FEST 2026 photo - Gary
+8ac0df3 | 2026-06-12 20:38:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 feb220f | 2026-06-12 15:49:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8e5e8c3 | 2026-06-12 10:50:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 83779f0 | 2026-06-12 05:21:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,33 +311,6 @@ d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted 
 695ab71 | 2026-06-10 16:23:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 378678e | 2026-06-10 08:42:08 -0700 | assets: update narration with Claude feedback revisions
 60cb1d7 | 2026-06-10 08:41:29 -0700 | blog: address Claude's feedback — fix Polanyi claim, tighten sovereignty, resolve gift tension (#200)
-a04225b | 2026-06-10 08:15:46 -0700 | fix: update reference link to point to PDF instead of md (#199)
-c8607ab | 2026-06-10 08:05:58 -0700 | assets: update narration with new title
-60bfc02 | 2026-06-10 08:05:22 -0700 | blog: update title to 'Sovereignty in the Age of Replaceable AI' (#198)
-d4cb193 | 2026-06-10 07:54:25 -0700 | assets: update narration with sovereignty section
-4ab8ba5 | 2026-06-10 07:53:44 -0700 | blog: add sovereignty section to Darwinian Agent post (#197)
-7b88998 | 2026-06-10 07:46:02 -0700 | assets: update narration audio with 'Gary' instead of 'my governor'
-6213b85 | 2026-06-10 07:43:48 -0700 | blog: replace 'my governor' with 'Gary' in Darwinian Agent post (#196)
-c9afa96 | 2026-06-10 07:29:25 -0700 | blog: add Darwinian Agent post
-d0b13e4 | 2026-06-10 07:28:20 -0700 | blog: add Darwinian Agent card to blog index (#195)
-f5416bd | 2026-06-10 07:26:47 -0700 | assets: add narration audio for Darwinian Agent post
-cbf9b66 | 2026-06-10 10:42:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
-8a70773 | 2026-06-10 05:03:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-5a2ca3c | 2026-06-09 20:31:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-572cb66 | 2026-06-09 15:42:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d8e2111 | 2026-06-09 10:10:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4c16606 | 2026-06-09 04:48:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4e16db2 | 2026-06-08 20:41:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1eb4edf | 2026-06-08 16:37:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e7fbcbf | 2026-06-08 11:28:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f32ac72 | 2026-06-07 23:54:37 -0700 | Add two missing blog posts to index: voting rights + scripture (#194)
-f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1e0e0a4 | 2026-06-07 19:04:16 -0700 | Resolve practitioner name from dao_members.json when CV display_name is empty (#193)
-3c8f36d | 2026-06-07 13:51:50 -0700 | members: add Sentinels section sourced from dao_members.json (#192)
-0156fed | 2026-06-07 19:56:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1b50fad | 2026-06-07 14:30:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
-5d14a7a | 2026-06-07 09:47:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
-57f2f29 | 2026-06-07 05:10:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -366,6 +323,9 @@ f73e13b | 2026-06-08 05:16:12 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+63db74d | 2026-06-12 16:59:09 -0700 | handoff(vault): login via dao-client DAO Identity (like capoeira) + root->/vault/login link (#473)
+198aba4 | 2026-06-12 13:35:23 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
+91cb1cb | 2026-06-12 13:35:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 e3c44fa | 2026-06-12 08:47:15 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
 d2693aa | 2026-06-12 08:47:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 c965ad8 | 2026-06-12 03:49:17 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
@@ -403,9 +363,6 @@ e814dc8 | 2026-06-11 08:48:46 -0700 | Update freight profit analysis v3 with $50
 f3ac8ab | 2026-06-11 04:09:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
 d86ad95 | 2026-06-11 04:09:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 18e3b26 | 2026-06-10 22:09:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
-3b985f6 | 2026-06-10 22:09:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
-882c340 | 2026-06-10 21:11:23 -0700 | Merge pull request #444 from TrueSightDAO/auto/advisory-refresh-2026-06-11
-74d0e43 | 2026-06-11 04:11:14 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 … (truncated)
 ```
 
@@ -425,8 +382,6 @@ e328c6f | 2026-06-11 23:06:52 +0000 | Fix: use product_name from client_payload 
 f7a52ac | 2026-06-10 18:19:56 -0700 | Sync Code.js from agroverse_shop_beta PR #141
 85a4d98 | 2026-06-06 17:45:35 -0700 | docs(identity manifest): map the 3 orphan files to scriptId 1m8IZPs1 (#338)
 76d0ded | 2026-06-06 07:13:43 -0700 | [autopilot] Add Sentinel role support to dao_members_cache_publisher.gs  (#335)
-282dda6 | 2026-06-05 14:06:43 -0700 | Version.gs: log credentialing never-downgrade deploy (2026-06-05) (#334)
-b4e1db6 | 2026-06-05 13:49:06 -0700 | Credentialing GAS: never-downgrade guard on reprocess recommits (#333)
 ```
 
 ### `dapp` → `dapp`
@@ -466,7 +421,6 @@ b082748 | 2026-06-08 11:30:42 +0000 | chore: refresh partners-velocity snapshot 
 d4be99b | 2026-06-08 11:22:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e5206f4 | 2026-06-07 09:41:41 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1c64adf | 2026-06-06 08:48:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-a1d2b51 | 2026-06-05 10:18:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -548,8 +502,6 @@ c41b37e | 2026-06-07 19:39:25 -0700 | fix: add generation_source_url to EMAIL RE
 5908140 | 2026-06-07 19:14:34 -0700 | Fix verification email return_url to point back to oracle page (#31)
 9414bcf | 2026-06-07 19:10:27 -0700 | Fix email registration format to include -------- separator for SignatureVerifier (#30)
 9440e3b | 2026-06-07 19:02:58 -0700 | Add "Link to DAO Identity" button in hero actions row (#29)
-09cd649 | 2026-06-05 12:55:48 -0700 | Reading permalinks: cast-time in share URLs, permalink as practice-event Source URL, no auto-submit on viewed readings (#27)
-8d064f2 | 2026-06-05 10:31:41 -0700 | Always surface credential link; collapse advisory debug links (#26)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -564,6 +516,15 @@ a7615af | 2026-06-07 14:12:26 -0700 | Weekly AMI backup of the autopilot EC2 (bl
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-06-13T035924Z_tech-fest-recap-sophia-hotfix.md`
+
+- **posted_at_utc:** `2026-06-13T03:59:24Z`  
+- **slug:** `tech-fest-recap-sophia-hotfix`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Web (Blog)** — "The Joy Was the Point" TECH FEST 2026 reflection published with full event gallery and contributor credits.
 
 ### `beer-hall_2026-06-12T041228Z_friends-rainforest-live-sophia-phase-0.md`
 
@@ -582,15 +543,6 @@ a7615af | 2026-06-07 14:12:26 -0700 | Weekly AMI backup of the autopilot EC2 (bl
 
   Automated daily digest of the DAO
   - **Web (Blog)** — "Sovereignty in the Age of Replaceable AI" post published with revised sovereignty section and updated narration.
-
-### `beer-hall_2026-06-10T035900Z_subscription-roadmap-oracle-identity-updates.md`
-
-- **posted_at_utc:** `2026-06-10T03:59:00Z`  
-- **slug:** `subscription-roadmap-oracle-identity-updates`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Web (Shop)** — Facebook Pixel hostname guard added to prevent beta analytics leakage; GTIN added to products.js as single source of truth.
 
 ---
 
@@ -611,39 +563,6 @@ a7615af | 2026-06-07 14:12:26 -0700 | Weekly AMI backup of the autopilot EC2 (bl
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 12:50:33 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-05`; scanned last **499** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-09 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
