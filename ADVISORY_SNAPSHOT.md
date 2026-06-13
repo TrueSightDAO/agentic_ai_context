@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-13T14:37:58Z`
+- Generated (UTC): `2026-06-13T20:00:50Z`
 - Look-back: **7** calendar days (`2026-06-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 29
-- `[PRACTICE EVENT]` × 7
+- `[CONTRIBUTION EVENT]` × 28
+- `[PRACTICE EVENT]` × 8
 - `[EMAIL REGISTERED EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 3
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260612011448_093` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.83 · Description: Receipt for printing event placard for tomorrow
-- `Edgar_20260612012202_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Printing this at the FedEx office
 - `Edgar_20260612012605_097` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260612022510_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:25:10.205Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260612024349_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:43:48.621Z · Program: capoeira-tribo-mirim · Practice Type: training-session
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260613132423_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-13T13:24:23.622Z · Email: kirsten@kikiscocoa.com
 - `Edgar_20260613132442_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-13T13:24:41.785Z · Email: kirsten@kikiscocoa.com · Verification Key: zGfsnjXegPAzWIXOOVulvU0MDHmfG_DRsIJ-lObdqBA
 - `Edgar_20260613132747_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-13T13:27:47.290Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260613162020_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: When a governor sends a TEXT message on Tel…
+- `Edgar_20260613164107_009` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-13T16:41:06.927Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -312,6 +312,16 @@ _All dated lines on/after 2026-06-06_ (17):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+995531e | 2026-06-13 11:12:55 -0700 | Add Anatman section: LLM behavior mirrors no-self doctrine (#226)
+b0e3afa | 2026-06-13 11:07:03 -0700 | Add hyperscaler monetization collapse argument (#224)
+76a2f0a | 2026-06-13 11:07:00 -0700 | Correct model reference: Sophia runs on DeepSeek, not Claude/GPT (#225)
+10eb75b | 2026-06-13 10:49:55 -0700 | Add Taoist reversal closing section with data sovereignty (#223)
+82fd794 | 2026-06-13 10:33:45 -0700 | Add self-hosted LLM sovereignty section and Sophia profile image (#221)
+280ccbb | 2026-06-13 10:20:56 -0700 | Add LKY self-imposed constraint parallel to blog post (#220)
+e45cd9b | 2026-06-13 10:19:11 -0700 | Add new post to blog index with LKY image (#219)
+8103bfb | 2026-06-13 10:19:06 -0700 | New post: Agentic AI and the Common Law Tradition (with LKY image) (#218)
+bd0bb81 | 2026-06-13 10:19:00 -0700 | Add Lee Kuan Yew public domain photo for blog post
+96ea59c | 2026-06-13 14:39:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3f1820d | 2026-06-13 09:43:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 204e271 | 2026-06-13 05:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a6b4aa | 2026-06-12 21:54:13 -0700 | Add detail about people coming back for seconds of cacao (#213)
@@ -342,16 +352,6 @@ e26beb4 | 2026-06-12 20:31:38 -0700 | Fix: demoralized watching demos on stage, 
 0a3c264 | 2026-06-12 20:27:28 -0700 | Add TECH FEST 2026 photo - Gary and Soniya
 59b4ccf | 2026-06-12 20:27:27 -0700 | Add TECH FEST 2026 photo - Gary, Martin, Ken
 83cc40c | 2026-06-12 20:27:26 -0700 | Add TECH FEST 2026 photo - Gary, Atrish, Kim
-614ee64 | 2026-06-12 20:27:25 -0700 | Add TECH FEST 2026 photo - Gary
-8ac0df3 | 2026-06-12 20:38:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
-feb220f | 2026-06-12 15:49:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
-8e5e8c3 | 2026-06-12 10:50:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-83779f0 | 2026-06-12 05:21:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
-810badd | 2026-06-11 21:03:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9b54839 | 2026-06-11 16:38:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
-5fe5485 | 2026-06-11 11:13:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
-831b683 | 2026-06-11 05:12:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted sovereignty section
 … (truncated)
 ```
 
@@ -364,6 +364,8 @@ d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bd0704c | 2026-06-13 07:38:10 -0700 | chore(previews): refresh Beer Hall preview (2026-06-13 UTC)
+152f3ee | 2026-06-13 07:38:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-13 UTC)
 f6e1a42 | 2026-06-13 02:43:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-13 UTC)
 cfa87ca | 2026-06-13 02:43:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-13 UTC)
 ca71ee5 | 2026-06-12 22:01:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-13 UTC)
@@ -402,8 +404,6 @@ b5468ec | 2026-06-11 11:09:17 -0700 | Update PDF with self-reinforcing loop diag
 206b97e | 2026-06-11 11:02:27 -0700 | Add PDF of Partner Events Monitoring implementation plan
 a1d6129 | 2026-06-11 10:38:28 -0700 | Add freight profit analysis methodology runbook (#445)
 29a6110 | 2026-06-11 09:36:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
-53e4401 | 2026-06-11 09:36:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
-bc9d3ab | 2026-06-11 08:50:13 -0700 | Update freight profit analysis v4 - apothecaries not Upper Taekri
 … (truncated)
 ```
 
@@ -629,13 +629,14 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/13/2026 6:50:23 |
+| 2026-06 | 222.41 | 15199.52386 | 6/13/2026 12:50:57 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-06`; scanned last **499** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-06`; scanned last **500** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
 | 2026-06-09 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | — | 2024OSCAR_20260330_32 | gTCPqiehO5IS | Stripe checkout (online) |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
