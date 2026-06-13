@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-13T03:59:24Z`
+- Generated (UTC): `2026-06-13T05:01:33Z`
 - Look-back: **7** calendar days (`2026-06-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 32
+- `[PRACTICE EVENT]` × 6
+- `[EMAIL REGISTERED EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 2
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20260611224641_087` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Sophia: turn-report fix, follow-up-monitor + governance/vault plans (handed …
+- `Edgar_20260611230120_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Fix github_webhook_handler.py to use production shee…
+- `Edgar_20260611231726_091` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Top up DeepSeek API credits
+- `Edgar_20260612011448_093` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.83 · Description: Receipt for printing event placard for tomorrow
+- `Edgar_20260612012202_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Printing this at the FedEx office
+- `Edgar_20260612012605_097` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260612022510_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:25:10.205Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260612024349_101` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T02:43:48.621Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260612062627_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia incident-response night: recover bricked threads + ship the self-bric…
+- `Edgar_20260612152350_105` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T15:23:50.581Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260612155006_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: @⁨Liz Wong - Shen Zhen Fireworks Dealer⁩ now that the prototype that @⁨Kaon⁩…
+- `Edgar_20260612202754_109` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-12T20:27:54.194Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260613005954_111` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-13T00:59:54.568Z · Email: garyjob@gmail.com
+- `Edgar_20260613010019_113` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-13T01:00:18.838Z · Email: garyjob@gmail.com · Verification Key: ronyUvbxUd4Znr8phQ7TDCcssanc-WrDPmWcIDke2q0
+- `Edgar_20260613010247_115` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-13T01:02:47.178Z · Email: garyjob@gmail.com
+- `Edgar_20260613010339_117` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-13T01:03:39.231Z · Email: garyjob@gmail.com · Verification Key: H8XE-tRdlcuiqlDV5Tg_FQqXfonOH1kg0gNB0cUYrig
+- `Edgar_20260613023627_119` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 56.93 · Description: Gasoline for driving around to attend Tech Fest 2026
+- `Edgar_20260613023715_121` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260613023841_123` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Driving from San Francisco to Milpitas for the Tech Fest 2026 meet up to ser…
+- `Edgar_20260613024819_125` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SF Tech Fest 2026 — booth duty: served ceremonial cacao, chatted with attend…
 
 ---
 
@@ -214,13 +251,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,112.40**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$40.97**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -271,6 +312,9 @@ _All dated lines on/after 2026-06-06_ (17):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0a6b4aa | 2026-06-12 21:54:13 -0700 | Add detail about people coming back for seconds of cacao (#213)
+8ab6d9c | 2026-06-12 21:43:59 -0700 | Add Alina, students, and group hug ending to blog post (#212)
+a53ccf0 | 2026-06-12 21:40:49 -0700 | Add Sophia's name, voice, and profile photo story to blog post (#211)
 25cdc00 | 2026-06-12 20:46:32 -0700 | Add Gary's honest reflection — felt like building a toy watching Microsoft demo (#210)
 38e423a | 2026-06-12 20:44:58 -0700 | Add Microsoft and Google demo photos to the opening section (#209)
 9eb63be | 2026-06-12 20:44:38 -0700 | Add photo of Google voice UX demo at TECH FEST 2026
@@ -308,9 +352,6 @@ feb220f | 2026-06-12 15:49:03 +0000 | chore(stats): refresh stats/current.json [
 d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted sovereignty section
 6d5504d | 2026-06-10 20:23:51 -0700 | blog: add self-hosted sovereignty section to Darwinian Agent post (#201)
 95d921a | 2026-06-10 21:09:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
-695ab71 | 2026-06-10 16:23:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-378678e | 2026-06-10 08:42:08 -0700 | assets: update narration with Claude feedback revisions
-60cb1d7 | 2026-06-10 08:41:29 -0700 | blog: address Claude's feedback — fix Polanyi claim, tighten sovereignty, resolve gift tension (#200)
 … (truncated)
 ```
 
@@ -323,6 +364,8 @@ d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+57e8e6b | 2026-06-12 20:59:37 -0700 | Merge pull request #475 from TrueSightDAO/auto/advisory-refresh-2026-06-13
+3e3c909 | 2026-06-13 03:59:28 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-13 UTC)
 63db74d | 2026-06-12 16:59:09 -0700 | handoff(vault): login via dao-client DAO Identity (like capoeira) + root->/vault/login link (#473)
 198aba4 | 2026-06-12 13:35:23 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
 91cb1cb | 2026-06-12 13:35:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
@@ -361,8 +404,6 @@ e814dc8 | 2026-06-11 08:48:46 -0700 | Update freight profit analysis v3 with $50
 57f8ece | 2026-06-11 08:46:48 -0700 | Update freight profit analysis with corrected pricing
 552f6df | 2026-06-11 08:42:26 -0700 | Add detailed freight profit analysis PDF
 f3ac8ab | 2026-06-11 04:09:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
-d86ad95 | 2026-06-11 04:09:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
-18e3b26 | 2026-06-10 22:09:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
 … (truncated)
 ```
 
@@ -563,6 +604,39 @@ a7615af | 2026-06-07 14:12:26 -0700 | Weekly AMI backup of the autopilot EC2 (bl
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 21:50:57 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-06`; scanned last **499** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-09 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
