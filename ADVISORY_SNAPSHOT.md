@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-13T05:01:33Z`
+- Generated (UTC): `2026-06-13T09:43:00Z`
 - Look-back: **7** calendar days (`2026-06-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -312,6 +312,7 @@ _All dated lines on/after 2026-06-06_ (17):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+204e271 | 2026-06-13 05:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a6b4aa | 2026-06-12 21:54:13 -0700 | Add detail about people coming back for seconds of cacao (#213)
 8ab6d9c | 2026-06-12 21:43:59 -0700 | Add Alina, students, and group hug ending to blog post (#212)
 a53ccf0 | 2026-06-12 21:40:49 -0700 | Add Sophia's name, voice, and profile photo story to blog post (#211)
@@ -351,7 +352,6 @@ feb220f | 2026-06-12 15:49:03 +0000 | chore(stats): refresh stats/current.json [
 831b683 | 2026-06-11 05:12:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted sovereignty section
 6d5504d | 2026-06-10 20:23:51 -0700 | blog: add self-hosted sovereignty section to Darwinian Agent post (#201)
-95d921a | 2026-06-10 21:09:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -364,6 +364,8 @@ d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ca71ee5 | 2026-06-12 22:01:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-13 UTC)
+30a1491 | 2026-06-12 22:01:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-13 UTC)
 57e8e6b | 2026-06-12 20:59:37 -0700 | Merge pull request #475 from TrueSightDAO/auto/advisory-refresh-2026-06-13
 3e3c909 | 2026-06-13 03:59:28 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-13 UTC)
 63db74d | 2026-06-12 16:59:09 -0700 | handoff(vault): login via dao-client DAO Identity (like capoeira) + root->/vault/login link (#473)
@@ -402,8 +404,6 @@ a1d6129 | 2026-06-11 10:38:28 -0700 | Add freight profit analysis methodology ru
 bc9d3ab | 2026-06-11 08:50:13 -0700 | Update freight profit analysis v4 - apothecaries not Upper Taekri
 e814dc8 | 2026-06-11 08:48:46 -0700 | Update freight profit analysis v3 with $50 mass bar pricing
 57f8ece | 2026-06-11 08:46:48 -0700 | Update freight profit analysis with corrected pricing
-552f6df | 2026-06-11 08:42:26 -0700 | Add detailed freight profit analysis PDF
-f3ac8ab | 2026-06-11 04:09:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
 … (truncated)
 ```
 
@@ -454,6 +454,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+75c15d2 | 2026-06-13 09:36:17 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 706b159 | 2026-06-12 10:41:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8cba6bb | 2026-06-11 10:59:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a68906a | 2026-06-10 10:35:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -628,7 +629,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/12/2026 21:50:57 |
+| 2026-06 | 222.41 | 15199.52386 | 6/13/2026 1:50:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-06`; scanned last **499** data rows)
 
