@@ -20,6 +20,7 @@ Sophia updates this file when she starts, resumes, or completes a handoff.
 | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | Agroverse Chocolate Subscriptions — Phase 1 | 2026-06-09 | blocked | Parked GO-ready in **thread 1939** (supersedes 1924); on GO runs Phase 1 PR1.1–1.6 then STOPS at the operator test gate for Gary | 2026-06-09 |
 | `RESEND_VERIFICATION_PLAN.md` | Resend verification email | 2026-06-08 | in progress | PR1 merged + deployed; PR2 (oracle) next | 2026-06-08 |
 | `SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md` | THEOBROMA-1 (cacao brew demo) | 2026-06-07 | demo · live | — | 2026-06-08 |
+| `EDGAR_PERCH_SEPARATION_PLAN.md` | Edgar/Perch separation — protocol vs trading dashboard | 2026-06-13 | blocked | Parked GO-ready in **thread 3** ([topic](https://t.me/c/3919341801/3)); on GO runs Phase 1 (DNS + SSL + nginx + landing page + Rails routing), STOPS for Gary to test before Phase 2; **own-repo gate: opens PRs only, NEVER self-merges** | 2026-06-13 |
 
 ## Status values
 
