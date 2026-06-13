@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-13T09:43:00Z`
+- Generated (UTC): `2026-06-13T14:37:58Z`
 - Look-back: **7** calendar days (`2026-06-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 32
-- `[PRACTICE EVENT]` × 6
-- `[EMAIL REGISTERED EVENT]` × 2
-- `[EMAIL VERIFICATION EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 29
+- `[PRACTICE EVENT]` × 7
+- `[EMAIL REGISTERED EVENT]` × 3
+- `[EMAIL VERIFICATION EVENT]` × 3
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260611224641_087` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Sophia: turn-report fix, follow-up-monitor + governance/vault plans (handed …
-- `Edgar_20260611230120_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Fix github_webhook_handler.py to use production shee…
-- `Edgar_20260611231726_091` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Top up DeepSeek API credits
 - `Edgar_20260612011448_093` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.83 · Description: Receipt for printing event placard for tomorrow
 - `Edgar_20260612012202_095` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Printing this at the FedEx office
 - `Edgar_20260612012605_097` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
@@ -60,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260613023715_121` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260613023841_123` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Driving from San Francisco to Milpitas for the Tech Fest 2026 meet up to ser…
 - `Edgar_20260613024819_125` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SF Tech Fest 2026 — booth duty: served ceremonial cacao, chatted with attend…
+- `Edgar_20260613132423_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-13T13:24:23.622Z · Email: kirsten@kikiscocoa.com
+- `Edgar_20260613132442_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-13T13:24:41.785Z · Email: kirsten@kikiscocoa.com · Verification Key: zGfsnjXegPAzWIXOOVulvU0MDHmfG_DRsIJ-lObdqBA
+- `Edgar_20260613132747_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-13T13:27:47.290Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-12T10:59:14.491Z`
+- Generated (UTC): `2026-06-13T10:59:14.632Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -102,12 +102,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **245**, follow_up **70**, bulk **0**, unknown **2** (data rows: **317**)
+- **Email Agent Follow Up** — logged sends: warmup **251**, follow_up **70**, bulk **0**, unknown **2** (data rows: **323**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **198**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **1** / **65**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
+- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **204**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **0** / **66**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -312,6 +312,7 @@ _All dated lines on/after 2026-06-06_ (17):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3f1820d | 2026-06-13 09:43:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 204e271 | 2026-06-13 05:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a6b4aa | 2026-06-12 21:54:13 -0700 | Add detail about people coming back for seconds of cacao (#213)
 8ab6d9c | 2026-06-12 21:43:59 -0700 | Add Alina, students, and group hug ending to blog post (#212)
@@ -351,7 +352,6 @@ feb220f | 2026-06-12 15:49:03 +0000 | chore(stats): refresh stats/current.json [
 5fe5485 | 2026-06-11 11:13:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 831b683 | 2026-06-11 05:12:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted sovereignty section
-6d5504d | 2026-06-10 20:23:51 -0700 | blog: add self-hosted sovereignty section to Darwinian Agent post (#201)
 … (truncated)
 ```
 
@@ -364,6 +364,8 @@ d20a461 | 2026-06-10 20:24:26 -0700 | assets: update narration with self-hosted 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f6e1a42 | 2026-06-13 02:43:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-13 UTC)
+cfa87ca | 2026-06-13 02:43:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-13 UTC)
 ca71ee5 | 2026-06-12 22:01:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-13 UTC)
 30a1491 | 2026-06-12 22:01:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-13 UTC)
 57e8e6b | 2026-06-12 20:59:37 -0700 | Merge pull request #475 from TrueSightDAO/auto/advisory-refresh-2026-06-13
@@ -402,8 +404,6 @@ a1d6129 | 2026-06-11 10:38:28 -0700 | Add freight profit analysis methodology ru
 29a6110 | 2026-06-11 09:36:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
 53e4401 | 2026-06-11 09:36:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 bc9d3ab | 2026-06-11 08:50:13 -0700 | Update freight profit analysis v4 - apothecaries not Upper Taekri
-e814dc8 | 2026-06-11 08:48:46 -0700 | Update freight profit analysis v3 with $50 mass bar pricing
-57f8ece | 2026-06-11 08:46:48 -0700 | Update freight profit analysis with corrected pricing
 … (truncated)
 ```
 
@@ -629,7 +629,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 222.41 | 15199.52386 | 6/13/2026 1:50:14 |
+| 2026-06 | 222.41 | 15199.52386 | 6/13/2026 6:50:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-06`; scanned last **499** data rows)
 
