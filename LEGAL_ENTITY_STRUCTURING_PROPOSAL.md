@@ -1,402 +1,243 @@
-# Legal Entity Structuring Proposal — TrueSight DAO
+# Legal Entity Structuring Proposal
 
-**Prepared:** 2026-06-22
-**Context:** Friday Tech Fest signals + SVH Capital cacao circle on June 26
-**Author:** Sophia (TrueSight DAO Autopilot)
+**TrueSight DAO** | Prepared for SVH Capital Meeting — June 26, 2025
 
 ---
 
-## 1. Executive Summary
+## Executive Summary
 
-The convergence is accelerating. Nora (Kopi Bar, Berkeley) is onboarding. More partners are joining. Matheus channels exports through his private Brazilian entity. TrueTech Inc (Delaware C-corp) handles import and distribution. Gary's personal bank account collects funds.
+The TrueSight DAO is at an inflection point. Partner onboarding is accelerating (Nora's Kopi Bar, Kirsten's network, Matheus's Brazil operations), and the volume of funds flowing through the network is scaling. Currently, funds flow through Gary's personal bank account and Matheus's private Brazilian CNPJ — both single points of failure and liability exposure.
 
-This worked at pilot scale. But three signals are turning from grey to red:
+**The core problem:** The DAO needs a legal wrapper — not just for tax write-offs, but for:
+1. **Member liability shield** — Ooki DAO precedent means unincorporated DAO members can be treated as general partners
+2. **DAO bank account** — funds should not flow through any individual's personal account
+3. **Institutional fundraising channel** — impact funds, foundations, and corporate ESG need a tax-deductible donation pathway
 
-| Signal | Status | Why Now |
-|--------|--------|---------|
-| **DAO legal wrapper** | 🔴 Red | Member liability shield (Ooki DAO precedent), DAO bank account, governance clarity for TDG holders |
-| **Tax-deductible donation channel** | 🟡 Yellow | Impact funds, corporate ESG, foundations need a 501(c)(3) to write checks |
-| **Personal bank account** | 🔴 Red | Gary's personal account is the bottleneck — more volume = more personal risk |
+**The proposed solution:** A Wyoming UNA (Unincorporated Nonprofit Association) formed via OtoCo, which auto-converts to a DUNA (Decentralized Unincorporated Nonprofit Association) when membership exceeds 100. TrueTech Inc operates as a voluntary DAO member, not a separate legal layer. Wise serves as the single banking platform for both entities.
 
-### The core insight
+---
 
-**TrueTech Inc is just another DAO member.** It contributes voluntarily (import, distribution) and gets compensated in TDG — same as Nora, Kirsten, Matheus, or any other partner. No service agreement needed. No principal-agent complexity.
+## Section 1: The Simplified Model
 
-**The UNA opens its own bank account.** No need for TrueTech Inc to act as custodian. No need for a TrueTech Inc business account as an interim step. Funds flow directly from partners → UNA bank account → tree planting. Gary's personal account is completely out of the picture.
-
-**The Brazilian CNPJ should eventually be owned by the DUNA,** not by Matheus personally. This ensures the export channel is a DAO asset, not dependent on any single individual.
-
-**Only one person needs to report under the CTA.** Gary (40.76% TDG control) is the sole beneficial owner. Every other TDG holder remains pseudonymous — wallet address only. No cascading KYC.
-
-### Recommended structure
+### Core Structure
 
 ```
-Wyoming UNA/DUNA (nonprofit, DAO legal wrapper)
-    ├── Own bank account (receives partner contributions)
-    ├── TDG holders govern the UNA (pseudonymous — wallet only)
-    ├── TrueTech Inc = DAO member (voluntary contributor)
-    └── Brazilian LTDA (CNPJ) = export/sourcing entity (DUNA-owned)
+Wyoming UNA/DUNA (nonprofit, 501(c)(3) aspirant)
+    ↓ Holds: mission, brand, carbon credits, treasury
+    ↓ Governed by: all TDG holders
+    ↓ Bank: Wise Business account
+
+TrueTech Inc (Delaware C-corp, DAO member)
+    ↓ Role: import, distribution, payment processing
+    ↓ Compensated in: TDG (like any other contributor)
+    ↓ Bank: Wise Business account (interim, then separate)
+
+Brazilian LTDA (CNPJ) — eventual DUNA-owned
+    ↓ Role: farmer payments, export documentation
+    ↓ Currently: Matheus's private CNPJ
+```
+
+### Key Design Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| **TrueTech Inc = DAO member** | No service agreement needed. TrueTech Inc contributes voluntarily, compensated in TDG like Nora, Kirsten, Matheus. |
+| **UNA → DUNA auto-conversion** | OtoCo handles this via smart contract when membership hits 100. Same EIN, same bank account. |
+| **Wise as single banking layer** | Both TrueTech Inc and the DUNA use Wise Business accounts. Same API, same Brazil pipeline, multi-currency support. |
+| **Brazil CNPJ eventually DUNA-owned** | Removes single-person dependency on Matheus. Requires cross-border legal counsel. |
+
+---
+
+## Section 2: Financial Flow
+
+### Current Flow
+
+```
+Nora / partners → Gary's personal bank account → tree planting / expenses
+Brazil farmers → Matheus's private CNPJ → export → TrueTech Inc
+```
+
+### Interim Flow (this week — TrueTech Inc Wise account)
+
+```
+Nora / partners → TrueTech Inc Wise Business → tree planting / expenses
+Brazil farmers → Matheus's private CNPJ → export → TrueTech Inc
+```
+
+### Target Flow (after UNA bank account)
+
+```
+Nora / partners → UNA Wise Business → tree planting / expenses
+Brazil farmers → DUNA-owned CNPJ → export → UNA Wise Business
+TrueTech Inc Wise → import/distribution expenses only
 ```
 
 ---
 
-## 2. Current State Assessment
+## Section 3: CTA Beneficial Ownership — Who Reports
 
-### 2.1 Financial Flows
+The Corporate Transparency Act (CTA) requires reporting Beneficial Ownership Information (BOI) to FinCEN for anyone who exercises "substantial control" over the entity or owns ≥25% of its ownership interests.
 
-**Current (problematic):**
-```
-Brazil Farmers → Matheus (private CNPJ) → Export → TrueTech Inc → Gary's personal bank account → DAO expenses
-```
+### "Substantial Control" Defined
 
-**Target (with UNA bank account + DUNA-owned CNPJ):**
-```
-Brazil Farmers → DUNA-owned CNPJ → Export → TrueTech Inc (import/dist, DAO member) → UNA bank account → tree planting / DAO expenses
-```
+Under the CTA, an individual has substantial control if they:
+1. Serve as a senior officer (CEO, CFO, COO, etc.)
+2. Have authority to appoint or remove senior officers or a majority of the board
+3. Have substantial influence over important decisions — including:
+   - Authority over bank accounts or treasury
+   - Authority over smart contract upgrades or governance parameters
+   - Power to bind the entity to contracts
+   - Control over the entity's direction or purpose
 
-Gary's personal account and Matheus's private CNPJ are both removed from the flow.
+### How This Maps to Our DAO
 
-**Risks in current flow:**
-
-| Risk | Severity | Detail |
-|------|----------|--------|
-| Personal liability | 🔴 High | Gary's personal account commingles DAO funds with personal funds |
-| No member liability shield | 🔴 High | Token holders could be treated as general partners (per Ooki DAO precedent) |
-| No tax-advantaged donation pathway | 🔴 High | Impact funds, foundations, corporate ESG have no channel |
-| Governance ambiguity | 🔴 High | TDG holders don't have a clear answer to "what entity am I voting on?" |
-| Single-person dependency (Brazil) | 🔴 High | Matheus's private CNPJ means the export channel is tied to one person |
-| Tax reporting complexity | 🟡 Medium | C-corp filing + personal income + potential partnership tax treatment |
-| Brazil export compliance | 🟡 Medium | Matheus's private entity bears all Brazilian compliance burden |
-
-### 2.2 Current Treasury Snapshot
-
-**Only Main Ledger cash is available for deployment.** Managed ledgers (AGL4, AGL6, AGL8, AGL10, AGL13, AGL15, SEF1, BEC, etc.) are earmarked for specific purposes — mostly cacao shipment financing.
-
-| Item | Amount |
-|------|--------|
-| **Main Ledger USD** | **$3,476.27** |
-| Main Ledger USDT | $66.93 |
-| Main Ledger Brazilian Reis | R$2,511.97 (~$583.53 USD) |
-| **Total available cash** | **~$4,126.73** |
-| Cumulative sales (all time) | ~$15,736 USD |
-| Monthly run rate (2026) | ~$500-1,100/month trending up |
-| TDG issued | ~2.3M tokens across ~350 contributors |
-| Partners | Nora (Kopi Bar), Kirsten, Matheus, Edge & Node, Shuar Design Boutique, and growing |
-
-### 2.3 The Governance Story Problem
-
-When a TDG holder asks "what entity do my voting rights govern?", the current answer is unsatisfying:
-
-> *"You're voting on the DAO community itself. TrueTech Inc is our operational partner, not the DAO. We're in the process of forming a Wyoming DUNA that will become the formal legal wrapper."*
-
-A UNA/DUNA solves it cleanly:
-
-> *"TDG holders govern the TrueSight UNA — a Wyoming nonprofit association. The UNA holds the mission, the brand, the carbon credit rights, and its own bank account. TrueTech Inc is one of our DAO members. When you vote with TDG, you're voting on UNA matters."*
-
----
-
-## 3. CTA Beneficial Ownership — Who Reports
-
-Under the Corporate Transparency Act (CTA), any individual who exercises **"substantial control"** over the entity or owns **≥25%** of its ownership interests must report Beneficial Ownership Information (BOI) to FinCEN.
-
-**"Substantial control"** includes:
-1. Serving as a senior officer (CEO, CFO, etc.)
-2. Having authority to appoint or remove senior officers or board members
-3. Having substantial influence over important decisions (bank accounts, contracts, governance parameters, treasury)
-
-### Who in the DAO crosses the threshold?
-
-From the Contributors Voting Weight ledger:
+From the Contributors Voting Weight ledger (Sheet ID: 1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU, gid=1460794618):
 
 | Rank | Contributor | % Controlled | CTA Trigger? |
 |------|------------|-------------|--------------|
-| 1 | **Gary Teh** | **40.76%** | ✅ **Yes** — >25% ownership + substantial control |
+| 1 | **Gary Teh** | **40.76%** | ✅ **Yes** — >25% threshold + substantial control |
 | 2 | Garis Pang | 2.89% | ❌ No |
 | 3 | Fatima Toledo | 2.81% | ❌ No |
-| 4-10 | Various | <3% each | ❌ No |
-| 11-350+ | All other TDG holders | <2% each | ❌ No |
+| 4-350+ | All others | <3% each | ❌ No |
 
-**Result: Only Gary needs to report.** Name, DOB, address, and government ID for the CTA BOI filing. Every other TDG holder (~350 people) remains pseudonymous — wallet address only.
+**Result:** Only Gary needs to report name, DOB, address, and ID for the CTA BOI filing. The other ~350 TDG holders remain pseudonymous — wallet address only.
 
-**For the initial UNA formation (2 signers):** Gary + TrueTech Inc representative. Both provide their personal info for the CTA filing. That's it. No cascading KYC. No asking 350 people to dox themselves.
-
-This is a key advantage of the UNA/DUNA structure: the vast majority of contributors never need to reveal their identity.
+**For the initial UNA formation (2 signers):** Gary + TrueTech Inc representative. Both provide their personal information for the CTA filing and Wise bank signatory requirements.
 
 ---
 
-## 4. Option Analysis
+## Section 4: Implementation Timeline
 
-### 4.1 Option A: Wyoming UNA → DUNA (Recommended)
+| Phase | What | Cost | Timeline | % of Treasury |
+|-------|------|------|----------|--------------|
+| **Phase 1a: This week** | TrueTech Inc opens Wise Business account (interim) | $0-500 | 1-2 weeks | 0-12% |
+| **Phase 1b: This week** | Gary + TrueTech Inc sign OtoCo → UNA formed | ~$50 gas | 1 day | ~1.2% |
+| **Phase 2: Next 2-4 weeks** | UNA gets EIN → opens its own Wise Business account | $0 | 2-4 weeks | 0% |
+| **Phase 3: After UNA account** | Migrate partner flows to UNA Wise account | $0 | Ongoing | 0% |
+| **Phase 4: 6-12 months** | 501(c)(3) application via tax attorney | $2K-10K | 6-12 months | 48-242%* |
+| **Phase 5: Future** | DUNA-owned Brazilian CNPJ | $1K-3K | After DUNA | 24-73%* |
 
-**What it is:** A Wyoming Unincorporated Nonprofit Association (UNA) — the simpler precursor to the Decentralized Unincorporated Nonprofit Association (DUNA). Formed on-chain via [OtoCo](https://otoco.io). Auto-converts to DUNA when membership reaches 100.
+*\*Requires fundraising or revenue growth before proceeding.*
 
-| Dimension | Detail |
-|-----------|--------|
-| **Liability** | Members shielded from personal liability for DAO obligations |
-| **Tax status** | Nonprofit entity; can apply for 501(c)(3) tax-exempt status with IRS |
-| **Governance** | Smart contract-based voting explicitly recognized by law |
-| **Minimum members** | None for UNA; 100 for DUNA (auto-conversion) |
-| **Profit distribution** | ❌ Not allowed — all revenue must be reinvested in mission |
-| **Formation cost** | ~$50 gas ([OtoCo](https://otoco.io) smart contract, 2+ wallets sign) |
-| **Annual cost** | $60-$200 license tax; no Wyoming state income tax |
-| **Bank account** | Can open US bank account with EIN |
-| **Time to form** | 1 day (OtoCo) |
-| **CTA reporting** | Only Gary (40.76%) — all others pseudonymous |
+### Available Treasury
 
-**✅ Pros:**
-- Near-free formation (~$50 gas) — well within $4,126 available treasury
-- Perfect mission alignment (nonprofit, rainforest restoration)
-- Impact funds can write tax-deductible checks (if 501(c)(3) obtained later)
-- Legal recognition of on-chain governance
-- Clean answer for TDG holders
-- Own bank account — Gary's personal account removed from flow
-- Auto-converts to DUNA at 100 members
-- No state income tax (Wyoming)
-- Only 1 person reports under CTA — everyone else stays pseudonymous
+Only the **Main Ledger** cash is available for deployment. Managed ledgers are earmarked for cacao shipment financing.
 
-**❌ Cons:**
-- Cannot distribute profits to TDG token holders
-- IRS 501(c)(3) application is separate (6-12 months, $2K-$10K)
-- Some banks may hesitate to open accounts for a fresh UNA
-- US nexus exposes DAO to US jurisdiction
-
-### 4.2 Option B: Wyoming DAO LLC (For-Profit)
-
-**What it is:** A Wyoming LLC with a "DAO" designation under the Wyoming DAO Supplement Act (2021). For-profit structure.
-
-| Dimension | Detail |
-|-----------|--------|
-| **Liability** | Full LLC liability protection for members |
-| **Tax status** | Pass-through taxation (default); can elect C-corp or S-corp |
-| **Governance** | Smart contract governance allowed |
-| **Minimum members** | None |
-| **Profit distribution** | ✅ Allowed — can distribute to token holders |
-| **Formation cost** | $100 state filing + $15K-$50K legal fees |
-| **Annual cost** | $60-$200 license tax; no Wyoming state income tax |
-| **Bank account** | Can open US bank account with EIN |
-
-**✅ Pros:**
-- Can distribute profits to TDG holders
-- No minimum membership requirement
-- Pass-through taxation avoids double taxation
-
-**❌ Cons:**
-- ❌ Cannot issue tax-deductible receipts (not a nonprofit)
-- Impact funds cannot write tax-deductible checks
-- Less mission-aligned than UNA/DUNA
-- Higher formation cost ($15K+) — exceeds available treasury
-- Governance story is murkier
-
-### 4.3 Option C: Brazilian CNPJ (LTDA) — DUNA-Owned
-
-| Dimension | Detail |
-|-----------|--------|
-| **Formation cost** | $1,000-$3,000 |
-| **Annual cost** | $500-$2,000 (accounting + compliance) |
-| **Time to form** | 4-8 weeks |
-| **Foreign ownership** | 100% allowed |
-
-**✅ Pros:** Formalizes exports, Brazilian tax compliance, farmer contracting, removes single-person dependency
-**❌ Cons:** Bureaucratic, consumes significant portion of available treasury ($1K-$3K of $4,126)
+| Account | Amount | Available? |
+|---------|--------|-----------|
+| Main Ledger USD | $3,476.27 | ✅ Yes |
+| Main Ledger USDT | $66.93 | ✅ Yes |
+| Main Ledger Brazilian Reis | ~$583.53 | ✅ Yes |
+| **Total Available** | **~$4,126.73** | ✅ Yes |
+| Managed Ledgers | Various | ❌ No — earmarked for cacao shipments |
 
 ---
 
-## 5. Recommended Path: OtoCo UNA → Bank Account
+## Section 5: Resource Gap Analysis
 
-### Step 1: Form the UNA (This Week)
+### ✅ What We Already Have Internally
 
-Gary + TrueTech Inc (2 wallets) sign [OtoCo's](https://otoco.io) on-chain UNA smart contract.
-- **Cost:** ~$50 gas
-- **Time:** 1 day
-- **Result:** Wyoming UNA formed. Legal personhood achieved. Liability shield active.
+| Resource | Status | Detail |
+|----------|--------|--------|
+| **Mission clarity** | ✅ Strong | Restore 10,000 hectares of Amazon rainforest — compelling narrative for donors |
+| **On-chain governance** | ✅ Strong | TDG tokens, contribution ledger, Edgar API — DUNA-compatible governance model |
+| **Physical operations** | ✅ Strong | Supply chain from Brazil farmers → US distribution → retail (agroverse.shop) |
+| **Tree-planting pipeline** | ✅ Strong | sunmint repo, lineage-credentials, existing reforestation partners |
+| **Partner network** | ✅ Growing | Nora (Kopi Bar), Kirsten, Matheus, Edge & Node, Shuar Design Boutique |
+| **Carbon credit potential** | ✅ Emerging | Trees being planted → future carbon credits → revenue stream |
+| **Technical infrastructure** | ✅ Strong | AWS, Edgar API, tokenomics automation, QR inventory tracking |
+| **SVH Capital connection** | ✅ Warm intro | June 26 cacao circle — Stanley specializes in web3 legal entity structuring |
+| **Wise banking relationship** | ✅ Existing | Already using Wise for Brazil transfers. Can open business accounts for both entities. |
 
-### Step 2: Get EIN + Open Bank Account (Next 2-4 Weeks)
+### ❌ What We Need to Acquire
 
-1. UNA applies for IRS EIN (free, online)
-2. UNA opens a **[Wise Business](https://wise.com)** account (we already use Wise for Brazil transfers)
-3. If Wise won't accept a fresh UNA, fall back to **[Mercury](https://mercury.com)** or **[Relay](https://relayfi.com)**
-
-**Important:** The UNA → DUNA conversion (at 100 members) uses the **same EIN and same bank account**. No reset needed.
-
-### Step 3: Route Partner Contributions Through the UNA Account
-
-```
-Nora's coffee sales → UNA bank account → tree planting
-Other partner contributions → UNA bank account → DAO expenses
-```
-
-TrueTech Inc continues handling import and distribution as a DAO member, compensated in TDG. It doesn't need to touch the DAO's money.
-
-### Step 4 (Later): Form DUNA-Owned Brazilian CNPJ
-
-Once the UNA is established and cash flow allows, form a Brazilian LTDA owned by the DUNA to replace Matheus's private CNPJ.
-- Cost: $1,000-$3,000
-- Timeline: After UNA bank account is operational
-- Result: Export channel becomes a DAO asset, not dependent on any single individual
-
-### Why this works
-
-| Before | After |
-|--------|-------|
-| Gary's personal account collects all funds | UNA bank account collects DAO funds |
-| Gary bears personal liability | UNA provides liability shield |
-| Matheus's private CNPJ is the export channel | DUNA-owned CNPJ is the export channel |
-| TDG holders vote on "the community" | TDG holders vote on the UNA |
-| No clear answer for impact funds | UNA can pursue 501(c)(3) |
-| TrueTech Inc needed as custodian | TrueTech Inc is just a member |
-| 350+ TDG holders potentially exposed to KYC | Only Gary reports — everyone else pseudonymous |
+| # | Need | Severity | Why | Est. Cost |
+|---|------|----------|-----|-----------|
+| 1 | **Legal counsel (DUNA → Brazil CNPJ)** | 🟡 Medium | Cross-border entity ownership needs a lawyer familiar with both Wyoming DUNA law and Brazilian corporate law | $5K-15K |
+| 2 | **501(c)(3) tax attorney** | 🟡 Medium | IRS tax exemption application requires specialized expertise | $2K-10K |
+| 3 | **Brazilian legal representative** | 🟡 Medium | Brazilian LTDA requires a local lawyer as legal representative | $1K-3K |
+| 4 | **Multi-entity accounting** | 🟢 Low | Three entities need consolidated bookkeeping | $2K-5K/yr |
 
 ---
 
-## 6. Cost Analysis
+## Section 6: Governance Clarity — The Story for TDG Holders
 
-### Path A: OtoCo UNA → Bank Account (Recommended — Do Now)
+When TDG holders ask "what entity am I voting on?", the answer is:
 
-| Item | Cost |
-|------|------|
-| [OtoCo](https://otoco.io) smart contract (2+ wallets) | ~$50 gas |
-| [IRS EIN application](https://www.irs.gov/ein) | Free |
-| Bank account minimum deposit | $0-$500 |
-| Annual Wyoming license tax | $60-$200/yr |
-| Registered agent | $100-$200/yr |
-| **Total Year 1** | **~$250-$750** |
-| **% of available treasury** | **~6-18%** |
+> *"TDG holders govern the TrueSight DAO community — its mission, its partnerships, its reforestation commitments. TrueTech Inc is a DAO member who contributes import and distribution services voluntarily, compensated in TDG like any other contributor. The Wyoming UNA/DUNA is the legal wrapper that formalizes this. When you vote with TDG, you're voting on the DAO's direction — and eventually, the DUNA's governance."*
 
-### Path B: Full DUNA via Law Firm (Future, If Needed)
+**Key points:**
+- TrueTech Inc is not the DAO — it's a member of the DAO
+- TDG voting rights govern the mission, not a corporation
+- The UNA/DUNA provides the legal wrapper without changing who holds power
+- Only Gary (40.76% holder) needs to report under CTA — everyone else stays pseudonymous
 
-| Item | Cost |
-|------|------|
-| State filing | $100 |
-| Legal fees | $20,000-$60,000 |
-| Annual costs | $200-$400/yr |
-| **Total Year 1** | **~$20,500-$60,500** |
-| **% of available treasury** | **~500-1,500%** — requires fundraising |
+### TDG Buyback & Exit Liquidity
 
-### Path C: Brazilian LTDA (DUNA-Owned)
+If a TDG holder wants to sell their tokens, the UNA/DUNA could use its treasury to buy TDG from the DApp, providing exit liquidity. This is a treasury management decision voted on by TDG holders. The UNA holds the purchased TDG as an asset on its balance sheet.
 
-| Item | Cost |
-|------|------|
-| Formation | $1,000-$3,000 |
-| Annual compliance | $500-$2,000/yr |
-| **% of available treasury** | **~24-73%** — significant but feasible |
-
-### Path D: 501(c)(3) Application (Downstream)
-
-| Item | Cost |
-|------|------|
-| Tax attorney | $2,000-$10,000 |
-| IRS filing fee | $600-$2,500 |
-| Timeline | 6-12 months |
+**Question for SVH:** Can a Wyoming UNA/DUNA use its treasury to purchase its own membership tokens (TDG) from members on a secondary market (our DApp) as a liquidity provision mechanism?
 
 ---
 
-## 7. Resource Gap Analysis
+## Section 7: Questions for SVH Capital (June 26)
 
-### ✅ What We Have
+1. **DUNA formation:** Do you work with or can you refer us to a Wyoming law firm that specializes in DUNA formation for DAOs? (Hathaway & Kunz, Astraea, etc.)
 
-| Resource | Status |
-|----------|--------|
-| Mission clarity (10,000 hectares) | ✅ Strong |
-| On-chain governance (TDG, Edgar API) | ✅ Strong |
-| Physical supply chain (Brazil → US → retail) | ✅ Strong |
-| Tree-planting pipeline (sunmint, lineage-credentials) | ✅ Strong |
-| Partner network (Nora, Kirsten, Matheus) | ✅ Growing |
-| Technical infrastructure (AWS, QR inventory) | ✅ Strong |
-| SVH Capital connection (June 26) | ✅ Warm intro |
-| Available cash for formation | ✅ ~$4,126 (enough for OtoCo + bank account) |
+2. **Cost efficiency:** What's the leanest way to get a DUNA in place — full-service law firm or is OtoCo's on-chain UNA → DUNA path sufficient for our stage?
 
-### ❌ What We're Missing
+3. **501(c)(3) pathway:** Once DUNA is formed, what's the realistic timeline and cost for the IRS exemption application for a DAO that plants trees?
 
-| Gap | Severity | Cost to Resolve |
-|-----|----------|-----------------|
-| Legal counsel for DUNA/501(c)(3) | 🟡 Medium | $50 (OtoCo) or $20K-$60K (full-service) |
-| 100 DUNA members | 🟢 Low | $0 (use UNA workaround) |
-| 501(c)(3) expertise | 🟡 Medium | $2K-$10K (later) |
-| Brazilian legal rep for CNPJ | 🟡 Medium | $1K-$3K (later) |
-| Multi-entity accounting | 🟢 Low | $2K-$5K/yr (later) |
+4. **TDG as compensation:** Would your referred counsel consider a partial TDG token grant to reduce the cash outlay?
 
-**Total cash needed for Year 1: ~$250-$750** — well within available treasury of ~$4,126.
+5. **Brazilian entity:** Can a Wyoming DUNA own or affiliate with a Brazilian LTDA, or does that need a separate US holding LLC in between?
+
+6. **Governance clarity:** We have a for-profit C-corp (TrueTech Inc) as a voluntary DAO member and a DAO with token voting rights. How do we structure the UNA/DUNA so TDG holders are clearly voting on DAO matters, and TrueTech Inc is clearly a member — not the thing being governed?
+
+7. **TDG buyback:** Can a Wyoming UNA/DUNA use its treasury to purchase its own membership tokens (TDG) from members on a secondary market (our DApp) as a liquidity provision mechanism? If a member wants to exit, can the UNA buy their TDG back without triggering nonprofit distribution concerns?
 
 ---
 
-## 8. Implementation Timeline
+## Section 8: Service Provider Reference
 
-| Phase | What | Cost | Timeline |
-|-------|------|------|----------|
-| **Phase 1: This week** | Gary + TrueTech Inc sign OtoCo → UNA formed | ~$50 gas | 1 day |
-| **Phase 2: Next 2-4 weeks** | UNA gets EIN → opens bank account (Wise) | $0-$500 | 2-4 weeks |
-| **Phase 3: Ongoing** | Route partner contributions through UNA account | $0 | After bank account |
-| **June 26** | Ask SVH Capital about DUNA + 501(c)(3) pathway | $0 | One conversation |
-| **Later** | UNA auto-converts to DUNA at 100 members | $0 | Automatic |
-| **Later** | Form DUNA-owned Brazilian LTDA | $1K-3K | 4-8 weeks |
-| **Later** | 501(c)(3) application | $2K-10K | 6-12 months |
-
----
-
-## 9. Questions for SVH Capital (June 26)
-
-### Primary
-
-1. **UNA bank account:** Will a freshly-formed Wyoming UNA (no credit history, no operating track record) be able to open a US bank account? Any recommended banks that work with DAO entities? We already use Wise for Brazil transfers — will they accept a UNA?
-
-2. **DUNA formation:** Can you refer us to a Wyoming law firm specializing in DUNA formation? Or is the OtoCo UNA → DUNA path sufficient for our stage?
-
-3. **Governance clarity:** Can a Wyoming UNA/DUNA issue TDG tokens to a for-profit C-corp (TrueTech Inc) as member compensation?
-
-4. **501(c)(3) pathway:** Realistic timeline and cost for IRS exemption for a DAO that plants trees?
-
-5. **DUNA-owned Brazilian CNPJ:** Can a Wyoming DUNA directly own a Brazilian LTDA? If not, what's the cleanest intermediate structure (e.g., US holding LLC owned by DUNA)?
-
-6. **TDG as compensation:** Would your referred counsel consider a partial TDG token grant to reduce cash outlay?
-
-### Secondary
-
-7. What do impact funds look for in a DAO's legal structure before writing a check?
-8. How should the UNA/DUNA structure carbon credit rights?
-9. Is there a practical upper limit on UNA/DUNA members before compliance complexity increases?
+| Service | Purpose | Link | Cost |
+|---------|---------|------|------|
+| **OtoCo** | On-chain UNA formation (smart contract + 2 wallets) | https://otoco.io | ~$50 gas |
+| **Skala.io** | Alternative UNA formation with pre-filled bank apps | https://skala.io | Custom pricing |
+| **Wise** | Business bank account for TrueTech Inc + eventual DUNA | https://wise.com | $0 setup, per-transaction fees |
+| **Mercury** | Backup bank option (crypto-friendly) | https://mercury.com | $0 |
+| **Relay** | Backup bank option (smaller, more flexible) | https://relayfi.com | $0 |
+| **IRS EIN** | Free Employer Identification Number | https://www.irs.gov/ein | $0 |
+| **Wyoming SOS** | Wyoming Secretary of State — business entity search | https://wyoming.gov | N/A |
 
 ---
 
-## 10. Clarifying Questions for the DAO
+## Section 9: Risks & Mitigations
 
-1. Should TDG tokens represent membership in the UNA directly, or a separate membership token?
-2. Is TrueTech Inc comfortable being a DAO member compensated in TDG, with no separate service agreement?
-3. Should the UNA own the Brazilian LTDA directly, or via a separate holding LLC?
-4. Apply for 501(c)(3) immediately after UNA formation, or wait for a donation track record?
-5. Carbon credits: asset of the UNA (mission-locked) or TrueTech Inc (tradeable)?
-6. When should we transition from Matheus's private CNPJ to a DUNA-owned CNPJ — immediately or after the UNA bank account is operational?
-
----
-
-## 11. Risks and Mitigations
-
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|------------|
-| Bank refuses to open account for fresh UNA | Medium | High | Use Mercury, Relay, or other DAO-friendly banks; have TrueTech Inc as backup custodian |
-| IRS denies 501(c)(3) for DAO | Low | High | Clear charitable purpose; crypto-nonprofit precedent exists |
-| Wyoming UNA/DUNA law changes | Low | Medium | Monitor; Wyoming is pro-DAO |
-| Brazilian LTDA formation delays | Medium | Low | Matheus continues using private entity interim |
-| TDG classified as security | Low | High | UNA membership tokens generally not securities; consult SVH-referred counsel |
-| Insufficient treasury for full-service legal | High | Medium | OtoCo path costs ~$50; full-service requires fundraising first |
+| Risk | Severity | Mitigation |
+|------|----------|-----------|
+| **UNA can't open bank account quickly** | 🟡 Medium | TrueTech Inc Wise account serves as interim custodian. No operational delay. |
+| **Wise rejects UNA application** | 🟡 Medium | Fall back to Mercury or Relay. Or keep TrueTech Inc as custodian longer. |
+| **501(c)(3) takes longer than expected** | 🟢 Low | DUNA can operate without 501(c)(3) — just can't issue tax-deductible receipts. Fundraising can proceed via grants and impact investments. |
+| **Brazil CNPJ ownership complex** | 🟡 Medium | Add a US holding LLC between DUNA and Brazilian LTDA. Adds ~$100/yr in filing costs. |
+| **Single-person dependency (Brazil)** | 🔴 High | Matheus's private CNPJ is the only export channel. Mitigation: DUNA-owned CNPJ as eventual structure. |
+| **CTA reporting changes** | 🟢 Low | Only Gary reports currently. If regulations change, reassess. |
 
 ---
 
-## 12. Appendix: Key Terms
+## Appendix: OtoCo UNA Formation Steps
 
-| Term | Definition |
-|------|------------|
-| **DUNA** | Decentralized Unincorporated Nonprofit Association — Wyoming entity for DAOs (effective July 2024) |
-| **UNA** | Unincorporated Nonprofit Association — simpler precursor to DUNA, no 100-member minimum |
-| **DAO LLC** | Wyoming LLC with DAO designation under the DAO Supplement Act (2021) — for-profit |
-| **LTDA** | Limitada — Brazilian limited liability company |
-| **CNPJ** | Cadastro Nacional da Pessoa Jurídica — Brazilian federal tax ID for businesses |
-| **501(c)(3)** | US IRS tax exemption for charitable, religious, educational organizations |
-| **[OtoCo](https://otoco.io)** | On-chain entity formation platform — creates Wyoming UNAs/DUNAs via smart contract |
-| **TDG** | TrueSight DAO Governance token — voting rights in the DAO |
-| **CTA** | Corporate Transparency Act — US law requiring Beneficial Ownership Information reporting to FinCEN |
-| **BOI** | Beneficial Ownership Information — report filed with FinCEN under the CTA |
-| **FinCEN** | Financial Crimes Enforcement Network — US Treasury bureau |
-| **[Mercury](https://mercury.com)** | DAO-friendly US bank (backup option) |
-| **[Relay](https://relayfi.com)** | Small business banking (backup option) |
-| **[Wise](https://wise.com)** | International money transfer and multi-currency business account provider |
-| **Ooki DAO** | CFTC enforcement action establishing precedent that DAO token holders may be treated as general partners |
+1. Go to https://otoco.io
+2. Connect wallet (MetaMask or compatible)
+3. Select "Summon a UNA"
+4. 2+ wallet addresses sign the smart contract
+5. Pay gas (~$50 on Ethereum L1 or L2)
+6. UNA is formed — receive UNA Declaration + Operating Agreement
+7. Apply for EIN at https://www.irs.gov/ein (free, online)
+8. Open Wise Business account using UNA's EIN
+9. When membership exceeds 100 wallets, UNA auto-converts to DUNA
+
+---
+
+*Prepared by Sophia Truesight (admin+sophia@truesight.me)*
+*TrueSight DAO Autopilot*
