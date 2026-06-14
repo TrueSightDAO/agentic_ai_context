@@ -174,11 +174,11 @@ with all flags off the brain cannot overflow.
 
 | PR | Status | Notes |
 |----|--------|-------|
-| CM0 | ☐ not started | |
-| CM1 | ☐ not started | |
-| CM2 | ☐ not started | |
-| CM3 | ☐ not started | |
-| CM4 | ☐ not started | |
+| CM0 | ◑ partial | Artifacts dir is **lazy-created** (`mkdir + chmod 700`) on first externalized result — no separate infra PR needed. **Remaining:** an artifact-GC cron (delete files older than N days / cap per-session size) + baseline token metrics. |
+| CM1 | ✅ **done — truesight_autopilot #193, deployed 2026-06-14** | `_externalize_tool_result` + `_read_artifact` + `read_tool_result` tool (universal across roles). Env: `CONTEXT_EXTERNALIZE` (default on). |
+| CM2 | ✅ **done — #193, deployed 2026-06-14** | `_compact_old_tool_chains` runs before the trim. Env: `CONTEXT_COMPACT` / `CONTEXT_COMPACT_KEEP_RECENT=30` (default on). |
+| CM3 | ☐ not started | `search_transcript` + pinned working-set + recency default. Candidate Sophia handoff. |
+| CM4 | ☐ not started | token/compaction metrics + `/chat/context` introspection (vault status panel). |
 
 _Update this table as PRs land (link the PR, flip the box). Keep the active sub-task uncompacted
 while iterating._
