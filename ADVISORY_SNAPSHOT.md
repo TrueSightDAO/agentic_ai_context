@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-14T05:16:10Z`
+- Generated (UTC): `2026-06-14T10:03:20Z`
 - Look-back: **7** calendar days (`2026-06-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,8 +33,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[SALES EVENT]` × 21
-- `[CONTRIBUTION EVENT]` × 9
-- `[PRACTICE EVENT]` × 4
+- `[CONTRIBUTION EVENT]` × 10
+- `[PRACTICE EVENT]` × 3
 - `[EMAIL REGISTERED EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 3
@@ -42,8 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260613233224_025` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20251011_2 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233226_027` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20251011_13 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
 - `Edgar_20260613233229_029` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20251011_22 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
 - `Edgar_20260613233232_031` · **Edgar** · [SALES EVENT] Item: 2024PAULO_20251013_6 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
 - `Edgar_20260613233234_033` · **Edgar** · [SALES EVENT] Item: 2024PAULO_20251013_7 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
@@ -62,6 +60,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260614000134_003` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Green Gulch Zen Monastery · Recipient Name: Gary Teh · Inventory Item: USD
 - `Edgar_20260614000249_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Description: Prod recovery + vault DAO-Identity UX + context-overflow & GAS-stamp root-ca…
 - `Edgar_20260614001319_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Processed Green Gulch Zen Monastery consignment settlement: 18 bulk QR sales…
+- `Edgar_20260614053311_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Community Initiatives section on the landing …
+- `Edgar_20260614055817_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Was having dinner with Jerry just now in Palo Alto after meeting Nora up nor…
 
 ---
 
@@ -306,6 +306,15 @@ _All dated lines on/after 2026-06-07_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6a1a97e | 2026-06-13 23:59:07 -0700 | Add RLHF/weights leakage nuance to context separation (#234)
+bbfeb4d | 2026-06-13 23:57:43 -0700 | Add civil law vs common law epistemological framing (#233)
+f833765 | 2026-06-13 23:57:23 -0700 | Add weights lineage, stare decisis, and practical challenges nuance (#232)
+c53cd52 | 2026-06-13 23:21:39 -0700 | Restructure post flow and add Christensen disruptive innovation section (#231)
+9d73221 | 2026-06-13 22:41:18 -0700 | fix: steps grid to 2x2 layout with min-width:0 guard (#230)
+391a48d | 2026-06-13 22:39:34 -0700 | fix: card-grid 2+1 layout — restrict media-top a to first-child, add min-width:0 (#229)
+e254eb0 | 2026-06-13 22:33:57 -0700 | [autopilot] Fix index.html (#228)
+a366168 | 2026-06-14 05:26:40 +0000 | trigger: rebuild GitHub Pages
+0f904f3 | 2026-06-14 05:17:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6df8a34 | 2026-06-14 00:33:50 +0000 | Fix Chat with Sophia link: beerhall → sophia.truesight.me
 e72d4bf | 2026-06-14 00:33:09 +0000 | Reorder Platform Services: Sophia → Edgar → Perch
 5a18f58 | 2026-06-13 17:23:52 -0700 | Add Platform Services section with Perch and Sophia (#227)
@@ -337,15 +346,6 @@ c2e5806 | 2026-06-12 20:39:15 -0700 | Fix: upload correct photo of Gary and Soni
 ae7d93a | 2026-06-12 20:38:40 -0700 | Fix: upload correct photo of Gary, Atrish and Kim
 b27c9cd | 2026-06-12 20:36:52 -0700 | Fix: Soniya invited us and set up the cacao booth — she did the heavy lifting (#208)
 044d67c | 2026-06-12 20:36:10 -0700 | Remove empty techfest-gary.jpg leftover file (#207)
-b2a9d7b | 2026-06-12 20:35:54 -0700 | Fix blog post photo references and captions — correct the mix-up (#206)
-0738ae9 | 2026-06-12 20:35:30 -0700 | Fix: re-upload Gary, Atrish and Kim photo
-5f43be8 | 2026-06-12 20:35:26 -0700 | Fix: upload Gary and Soniya photo
-5922f92 | 2026-06-12 20:35:25 -0700 | Fix: upload Gary, Martin and Ken photo
-f3c8048 | 2026-06-12 20:35:24 -0700 | Fix: upload attendees drinking cacao photo
-dd543d7 | 2026-06-12 20:35:23 -0700 | Fix: upload Kim holding instructions photo
-e26beb4 | 2026-06-12 20:31:38 -0700 | Fix: demoralized watching demos on stage, lifted by seeing Sophia delight others (#204)
-9691aac | 2026-06-12 20:29:57 -0700 | Fix Martin section — he's a longtime DAO supporter and cacao lover (#203)
-9112926 | 2026-06-12 20:28:28 -0700 | Add blog post: The Joy Was the Point — TECH FEST 2026 reflection (#202)
 … (truncated)
 ```
 
@@ -358,6 +358,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b52713e | 2026-06-13 22:16:24 -0700 | chore(previews): refresh Beer Hall preview (2026-06-14 UTC)
+eb18cea | 2026-06-13 22:16:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-14 UTC)
 05d960b | 2026-06-13 21:18:38 -0700 | Merge pull request #482 from TrueSightDAO/auto/advisory-refresh-2026-06-14
 ab4c828 | 2026-06-14 04:18:27 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-14 UTC)
 b5f552b | 2026-06-13 17:32:50 -0700 | plan: Sophia context-management (stop context-poisoning bricks) (#481)
@@ -396,8 +398,6 @@ b6db1a1 | 2026-06-11 15:03:32 -0700 | Add QR Code Registration implementation pl
 f8c5102 | 2026-06-11 13:42:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
 3ccc8d5 | 2026-06-11 13:42:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
 aea7136 | 2026-06-11 13:32:23 -0700 | handoff(followup-monitor): register thread 2622 (Sophia parked GO-ready) (#449)
-0b9ab07 | 2026-06-11 13:23:54 -0700 | Add deferred follow-up for Chocolate Subscription Phase 2 (#448)
-36d0344 | 2026-06-11 13:09:32 -0700 | handoff: Sophia durable follow-up monitor — plan + UAT + registry rows (#447)
 … (truncated)
 ```
 
@@ -448,6 +448,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+14867ca | 2026-06-14 09:58:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c90a0d4 | 2026-06-13 17:28:35 -0700 | chore: refresh Agroverse store inventory snapshot
 912e060 | 2026-06-13 13:28:38 -0700 | chore: refresh Agroverse store inventory snapshot
 75c15d2 | 2026-06-13 09:36:17 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -624,7 +625,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/13/2026 21:51:26 |
+| 2026-06 | 759.35 | 15736.46386 | 6/14/2026 2:50:42 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-07`; scanned last **522** data rows)
 
