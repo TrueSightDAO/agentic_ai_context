@@ -6,7 +6,7 @@ This document describes every API credential (and credential-like config) found 
 
 ## 1. sentiment_importer
 
-**Deployment:** Production Rails app (“Edgar”) is **`https://edgar.truesight.me`**. **`https://getdata.io`** is a **different** codebase — **krake_ror** ([KrakeIO/krake_ror](https://github.com/KrakeIO/krake_ror)); do not conflate hosts or credentials.
+**Deployment:** Production Rails app (Perch, formerly called "Edgar") is **`https://edgar.truesight.me`**. **`https://getdata.io`** is a **different** codebase — **krake_ror** ([KrakeIO/krake_ror](https://github.com/KrakeIO/krake_ror)); do not conflate hosts or credentials.
 
 | Variable | What it is | Use case | Where / scenario | Code location |
 |----------|------------|----------|------------------|----------------|
@@ -22,9 +22,9 @@ This document describes every API credential (and credential-like config) found 
 
 | Item | Detail |
 |------|--------|
-| **Production base URL** | **`https://edgar.truesight.me`** — deployed **sentiment_importer** (“Edgar”). |
+| **Production base URL** | **`https://edgar.truesight.me`** — deployed **sentiment_importer** (Perch, formerly "Edgar"). |
 | **Agroverse Shop checkout shipping** | **`GET /agroverse_shop/shipping_rates`** — query: **`weightOz`**, **`shippingAddress`** (JSON string), optional **`environment`**. Returns USPS options via EasyPost (mirrors GAS `calculateShippingRates`). Browser **`fetch`** from **agroverse.shop** / beta; **rack-cors** on Edgar allows cross-origin access. Shop sets origin in **`agroverse_shop/js/config.js`** → **`shippingRatesApiOrigin`**. |
-| **Agroverse inventory snapshot (Sidekiq → GAS → GitHub JSON)** | Env on Edgar: **`AGROVERSE_INVENTORY_GAS_WEBAPP_URL`**, **`AGROVERSE_INVENTORY_PUBLISH_SECRET`**, optional **`AGROVERSE_INVENTORY_GAS_ACTION`**. Worker: **`AgroverseInventorySnapshotPublishWorker`**. |
+| **Agroverse inventory snapshot (Sidekiq → GAS → GitHub JSON)** | Env on Perch (Rails): **`AGROVERSE_INVENTORY_GAS_WEBAPP_URL`**, **`AGROVERSE_INVENTORY_PUBLISH_SECRET`**, optional **`AGROVERSE_INVENTORY_GAS_ACTION`**. Worker: **`AgroverseInventorySnapshotPublishWorker`**. |
 
 EasyPost for rate quotes uses **`EASYPOST_API_KEY`** (or `config.easypost_api` in environment files); same code path as **`ShippingCalculatorService`**.
 
@@ -131,7 +131,7 @@ EasyPost for rate quotes uses **`EASYPOST_API_KEY`** (or `config.easypost_api` i
 
 | Codebase | Credentials / config |
 |----------|----------------------|
-| **sentiment_importer** | ALPHA_VANTAGE_API_KEY, FMP_API_KEY, POLYGON_API_KEY, IEX_API_KEY, WIX_API_ACCESS_TOKEN, HELLOCASH_PROXY_*, EASYPOST_API_KEY, **AGROVERSE_INVENTORY_*** (production on **`https://edgar.truesight.me`**) |
+| **sentiment_importer** | ALPHA_VANTAGE_API_KEY, FMP_API_KEY, POLYGON_API_KEY, IEX_API_KEY, WIX_API_ACCESS_TOKEN, HELLOCASH_PROXY_*, EASYPOST_API_KEY, **AGROVERSE_INVENTORY_*** (production on **`https://perch.truesight.me`**) |
 | **krake_ror** | SENDGRID_API_KEY |
 | **video_editor** | GROK_API_KEY, MAX_CONCURRENT_ANALYSIS, PORT |
 | **market_research** | GOOGLE_CALENDAR_ID, DEFAULT_TIMEZONE (plus Google OAuth/service account if used) |

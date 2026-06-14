@@ -24,8 +24,8 @@ flowchart TB
 
     subgraph Nelanco["AWS Account: Nelanco (767697632458)"]
         Nginx["krake_nginx\nt2.micro\n54.226.114.186"]
-        EdgarRails["seni_ror_200250915\nt2.small\nEdgar (Rails)"]
-        DaoProtocol["dao_protocol_nelanco\nt3.small\nFastAPI (Python)"]
+        PerchRails["seni_ror_200250915\nt2.small\nPerch (Rails)"]
+        EdgarPython["dao_protocol_nelanco\nt3.small\nFastAPI (Edgar)"]
         Sidekiq["seni_sk_auto\nASG × 2\nSidekiq workers"]
         Postgres["seni_sql_2026\nt2.small\nPostgreSQL"]
         Redis["seni_redis_2\nt2.large\nRedis"]
@@ -39,19 +39,19 @@ flowchart TB
     R53 -->|sophia.truesight.me| Autopilot
     R53 -->|*.truesight.me| GitHub
 
-    Nginx -->|:3000| EdgarRails
+    Nginx -->|:3000| PerchRails
     Nginx -->|:8000| Autopilot
 
-    EdgarRails --> Postgres
-    EdgarRails --> Redis
-    EdgarRails --> Sidekiq
+    PerchRails --> Postgres
+    PerchRails --> Redis
+    PerchRails --> Sidekiq
 
-    DaoProtocol -.->|same interface| EdgarRails
+    EdgarPython -.->|same interface| PerchRails
 
     Users -.->|SSH bastion via Sophia EIP| Autopilot
     Autopilot -.->|ProxyJump| Nginx
-    Autopilot -.->|ProxyJump| EdgarRails
-    Autopilot -.->|ProxyJump| DaoProtocol
+    Autopilot -.->|ProxyJump| PerchRails
+    Autopilot -.->|ProxyJump| EdgarPython
 
     style Explorya fill:#1a1a2e,color:#fff,stroke:#e94560
     style Nelanco fill:#16213e,color:#fff,stroke:#0f3460
@@ -70,14 +70,14 @@ flowchart LR
         EasyPost["EasyPost\nUSPS Rates"]
     end
 
-    subgraph EdgarStack["Edgar (sentiment_importer)"]
+    subgraph PerchStack["Perch (sentiment_importer)"]
         Rails["Rails (Puma)\n:3000"]
         SK["Sidekiq Workers\nASG × 2"]
         PG["PostgreSQL\nseni_sql_2026"]
         RD["Redis\nseni_redis_2"]
     end
 
-    subgraph PythonStack["dao_protocol (Python)"]
+    subgraph EdgarStack["Edgar (dao_protocol / Python)"]
         FastAPI["FastAPI\n:8010"]
     end
 
@@ -96,8 +96,8 @@ flowchart LR
     FastAPI -->|GAS proxy| GAS
 
     style External fill:#2d2d2d,color:#fff,stroke:#888
-    style EdgarStack fill:#1a3a2e,color:#fff,stroke:#2ecc71
-    style PythonStack fill:#1a2a3e,color:#fff,stroke:#3498db
+    style PerchStack fill:#1a3a2e,color:#fff,stroke:#2ecc71
+    style EdgarStack fill:#1a2a3e,color:#fff,stroke:#3498db
 ```
 
 ---
@@ -106,10 +106,10 @@ flowchart LR
 
 | Account | Label | Owner ID | Purpose |
 |---------|-------|----------|---------|
-| **Explorya** | `explorya` | `440626669078` | TrueSight DAO / Agroverse production. Contains the autopilot, old Edgar instances (stopped), and Route53 DNS for `truesight.me`, `agroverse.shop`. |
-| **Nelanco** | `nelanco` | `767697632458` | Krake / GetData.io production + **new Edgar** + **dao_protocol**. Contains the nginx reverse proxy, ALB, Sidekiq workers, Redis, PostgreSQL, and the new `dao_protocol` FastAPI server. |
+| **Explorya** | `explorya` | `440626669078` | TrueSight DAO / Agroverse production. Contains the autopilot, old Perch instances (stopped), and Route53 DNS for `truesight.me`, `agroverse.shop`. |
+| **Nelanco** | `nelanco` | `767697632458` | Krake / GetData.io production + **Perch** (Rails) + **Edgar** (dao_protocol Python). Contains the nginx reverse proxy, ALB, Sidekiq workers, Redis, PostgreSQL, and the new `dao_protocol` FastAPI server. |
 
-**Key insight:** The old `seni_ror_2026` / `seni_sk_2026` instances in Explorya were **stopped 2026-05-28**. Edgar was migrated to a fresh host in Nelanco. The autopilot remains in Explorya.
+**Key insight:** The old `seni_ror_2026` / `seni_sk_2026` instances in Explorya were **stopped 2026-05-28**. Perch was migrated to a fresh host in Nelanco. The autopilot remains in Explorya.
 
 ---
 
@@ -120,10 +120,10 @@ flowchart LR
 | Name | Instance ID | Type | State | Private IP | Public IP | Purpose |
 |------|-------------|------|-------|------------|-----------|---------|
 | **krake_nginx** | `i-05a041b6956aa7154` | t2.micro | running | 172.31.26.102 | 54.226.114.186 | **Nginx reverse proxy.** Terminates HTTPS for `edgar.truesight.me`, `api.truesight.me`, `chatbot.truesight.me`. Proxies to backend Rails/Python services. |
-| **seni_ror_200250915** | `i-063dc4a3be90bd630` | t2.small | running | 172.31.19.78 | 54.211.179.126 | **Edgar (Rails).** `sentiment_importer` — DAO API server. Receives signed event submissions, verifies signatures, logs to Google Sheets, dispatches GAS webhooks. DNS: `edgar.truesight.me` → this host (via nginx proxy). |
-| **dao_protocol_nelanco** | `i-05f8770a932b76649` | t3.small | running | 172.31.23.207 | 98.93.94.86 | **dao_protocol FastAPI server.** Python port of Edgar's submission + dispatch logic. Runs on port 8010. Accepts `POST /dao/submit_contribution`. |
+| **seni_ror_200250915** | `i-063dc4a3be90bd630` | t2.small | running | 172.31.19.78 | 54.211.179.126 | **Perch (Rails).** `sentiment_importer` — DAO API server. Receives signed event submissions, verifies signatures, logs to Google Sheets, dispatches GAS webhooks. DNS: `edgar.truesight.me` → this host (via nginx proxy). |
+| **dao_protocol_nelanco** | `i-05f8770a932b76649` | t3.small | running | 172.31.23.207 | 98.93.94.86 | **Edgar FastAPI server.** Python port of the original submission + dispatch logic. Runs on port 8010. Accepts `POST /dao/submit_contribution`. |
 | **dao-protocol-beta** | `i-0b8c6d989594fb229` | t3.small | running | 172.31.20.96 | 54.162.175.189 | **Beta sandbox dao_protocol.** Isolated test instance for Stripe test-mode subscription E2E tests. systemd `dao-protocol-beta.service`, port 8010. DNS: `beta.edgar.truesight.me`. SG: `dao-protocol-beta-sg` (443 open, 22 restricted to autopilot). Keypair: `dao-protocol-beta-key`. |
-| **seni_sk_auto** (ASG — 2 instances) | `i-0dfeb7a93f1f78e8e` / `i-09883a010a52509f6` | t2.small | running | 172.31.50.44 / 172.31.84.218 | 34.234.193.80 / 100.53.89.222 | **Sidekiq worker** for Edgar (sentiment_importer). ASG-managed; deploy script targets `100.53.89.222` as `seni_sk_nelanco`. Processes background jobs (webhook triggers, inventory snapshots). |
+| **seni_sk_auto** (ASG — 2 instances) | `i-0dfeb7a93f1f78e8e` / `i-09883a010a52509f6` | t2.small | running | 172.31.50.44 / 172.31.84.218 | 34.234.193.80 / 100.53.89.222 | **Sidekiq worker** for Perch (sentiment_importer). ASG-managed; deploy script targets `100.53.89.222` as `seni_sk_nelanco`. Processes background jobs (webhook triggers, inventory snapshots). |
 | **krake_ror** | `i-0df7a9e513dc537a6` | t2.micro | running | 172.31.19.151 | 18.205.20.43 | Krake Rails backend (getdata.io). Behind ALB `krake-ror-1`. |
 | **krake_sk_consolidated** | `i-09d97cc0780fc8363` | t2.small | running | 172.31.48.178 | 54.160.89.135 | **Consolidated Krake Sidekiq.** Runs 4 Sidekiq processes (general, webhook, crawler, scaler) on one box. Replaces 4 separate krake_sk* instances. Upstart scripts at `/etc/init/krake_sk*.conf`. |
 | ~~krake_sk~~ | ~~i-0b82138aa45b4029a~~ | ~~t2.nano~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
@@ -133,15 +133,15 @@ flowchart LR
 | **krake_data** | `i-07c76510b231d787f` | t3.medium | running | 172.31.19.2 | 52.5.179.48 | Krake data processing. |
 | **GETDATA_REDIS** | `i-030c1452b197c920a` | t3a.small | running | 172.31.19.183 | 52.1.162.134 | Redis for Krake. |
 | **GETDATA_CACHE** | `i-0d63b472d8a8893f8` | t2.micro | running | 172.31.19.80 | 98.84.169.188 | Krake cache worker. |
-| **seni_sql_2026** | `i-08ebe96afbc649a95` | t2.small | running | 172.31.20.143 | 44.193.55.205 | PostgreSQL database for Edgar (sentiment_importer). |
-| **seni_redis_2** | `i-09ecc8ecc91d09206` | t2.large | running | 172.31.56.185 | 54.234.59.188 | Redis for Edgar (Sidekiq, caching). |
+| **seni_sql_2026** | `i-08ebe96afbc649a95` | t2.small | running | 172.31.20.143 | 44.193.55.205 | PostgreSQL database for Perch (sentiment_importer). |
+| **seni_redis_2** | `i-09ecc8ecc91d09206` | t2.large | running | 172.31.56.185 | 54.234.59.188 | Redis for Perch (Sidekiq, caching). |
 
 ### 2.2 Explorya Account (440626669078) — `us-east-1`
 
 | Name | Instance ID | Type | State | Private IP | Public IP | Purpose |
 |------|-------------|------|-------|------------|-----------|---------|
 | **truesight-autopilot** | `i-02c699d3d7efbdc82` | t3.small | running | 10.0.0.158 | 52.200.38.206 | **Autopilot server.** FastAPI service for governor chat + autonomous SRE. Code at `/opt/truesight_autopilot`, systemd `truesight-autopilot.service`. DNS: `sophia.truesight.me` → this host. |
-| **seni_ror_2026** | `i-0ac8462aa6bb54986` | t2.small | **stopped** | 10.0.0.162 | — | **Old Edgar (Rails).** Stopped 2026-05-28. Replaced by `seni_ror_200250915` in Nelanco. |
+| **seni_ror_2026** | `i-0ac8462aa6bb54986` | t2.small | **stopped** | 10.0.0.162 | — | **Old Perch (Rails).** Stopped 2026-05-28. Replaced by `seni_ror_200250915` in Nelanco. |
 | **seni_sk_2026** | `i-0bb43299c84c5ccd5` | t2.small | **stopped** | 10.0.0.14 | — | **Old Sidekiq.** Stopped 2026-05-28. Replaced by new `seni_sk_auto` in Nelanco. |
 
 ---
@@ -152,7 +152,8 @@ flowchart LR
 
 | Record | Type | Target | Notes |
 |--------|------|--------|-------|
-| `edgar.truesight.me` | A | `54.211.179.126` | Points to **krake_nginx** (Nelanco). Nginx proxies to `seni_ror_200250915` (Rails Edgar) on the internal network. |
+| `edgar.truesight.me` | A | `54.226.114.186` | Points to **krake_nginx** (Nelanco). Currently proxies to `seni_ror_200250915` (Rails Perch, port 3002). Will be repointed to the Python Edgar server (`dao_protocol_nelanco`, port 8010). |
+| `perch.truesight.me` | A | `54.226.114.186` | Points to **krake_nginx** (Nelanco). Proxies to `seni_ror_200250915` (Rails Perch, port 3002). Canonical domain for the Rails `sentiment_importer` (Perch, formerly called "Edgar"). |
 | `beta.edgar.truesight.me` | A | `54.162.175.189` | Points directly to **dao-protocol-beta** (Nelanco). Standalone beta sandbox for Stripe test-mode E2E tests. |
 | `api.truesight.me` | A | `54.226.114.186` | Also krake_nginx. |
 | `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies to `seni_ror_200250915:8000` (governor chatbot / autopilot). |
@@ -167,8 +168,9 @@ flowchart LR
 
 ```
 Internet → Route53 → krake_nginx (54.226.114.186)
-  ├── edgar.truesight.me/ → seni_ror_200250915:3000 (Rails Edgar)
-  ├── api.truesight.me/   → seni_ror_200250915:3000
+  ├── edgar.truesight.me/ → seni_ror_200250915:3002 (Rails Perch)
+  ├── perch.truesight.me/  → seni_ror_200250915:3002 (Rails Perch)
+  ├── api.truesight.me/   → redirects to GAS QR checking
   └── chatbot.truesight.me/ → seni_ror_200250915:8000 (governor chatbot)
 
 Internet → Route53 → sophia.truesight.me → truesight-autopilot (52.200.38.206:8000)
@@ -183,9 +185,33 @@ Internet → Route53 → GitHub Pages
 
 The nginx reverse proxy on `krake_nginx` (54.226.114.186) terminates HTTPS and routes:
 
-- `edgar.truesight.me` → `seni_ror_200250915:3000` (Rails Edgar, port 3000)
-- `api.truesight.me` → `seni_ror_200250915:3000`
-- `chatbot.truesight.me` → `seni_ror_200250915:8000` (governor chatbot FastAPI)
+| Domain | Upstream | Target | Port |
+|--------|----------|--------|------|
+| `edgar.truesight.me` | `trends_server` | `seni_ror_200250915` (Rails Perch) | 3002 |
+| `perch.truesight.me` | `trends_server` | `seni_ror_200250915` (Rails Perch) | 3002 |
+| `chatbot.truesight.me` | `governor_chatbot` | `100.52.234.163` (old autopilot) | 8001 |
+| `api.truesight.me` | — | Redirects to GAS QR checking | — |
+| `truesight.me` | `shadi_server` | `50.87.178.128` (deprecated) | 80 |
+
+**Config:** `/etc/nginx/sites-enabled/nginx_krake_ng.conf` on `krake_nginx`.
+
+**Key upstream definitions:**
+- `trends_server` = `54.211.179.126:3002` → `seni_ror_200250915` (Rails Perch/sentiment_importer)
+- `governor_chatbot` = `100.52.234.163:8001` → old autopilot IP (⚠️ needs updating to `52.200.38.206`)
+- `edgar` = `18.232.199.204:8081` → `edgar.getdata.io` (Krake legacy)
+
+**SSL certs** live at `/home/ubuntu/ssl_certs/`:
+- `truesight_edgar.key` + `edgar_truesight_me_combined.crt`
+- `perch_truesight.key` + `perch_truesight_me_combined.crt`
+- `chatbot_truesight.key` + `chatbot_truesight_me_combined.crt`
+- `STAR_truesight_me.crt` + `truesight.key`
+- `STAR_getdata_io_combined.crt` + `getdata_io.key`
+
+**Domain routing notes:**
+- Both `edgar.truesight.me` and `perch.truesight.me` currently share the same `trends_server` upstream (Rails Perch). The plan is to eventually repoint `edgar.truesight.me` to the Python `dao_protocol` server on `98.93.94.86:8010`.
+- `chatbot.truesight.me` points to old autopilot IP `100.52.234.163` — should be updated to the current EIP `52.200.38.206`.
+- `truesight.me` points to `shadi_server` (50.87.178.128) which appears deprecated/offline.
+- `api.truesight.me` does not proxy — it redirects (302) to the GAS QR checking script.
 
 The ALB `krake-ror-1` handles `getdata.io` traffic to the Krake Rails app (port 3002).
 
@@ -193,11 +219,11 @@ The ALB `krake-ror-1` handles `getdata.io` traffic to the Krake Rails app (port 
 
 ## 4. Service Architecture
 
-### 4.1 Edgar (DAO API) — `sentiment_importer`
+### 4.1 Perch (DAO API) — `sentiment_importer`
 
 ```
 krake_nginx (54.226.114.186:443)
-  └── seni_ror_200250915 (54.211.179.126:3000) — Rails (Puma)
+  └── seni_ror_200250915 (54.211.179.126:3002) — Rails (Puma)
         ├── seni_sql_2026 (44.193.55.205) — PostgreSQL
         ├── seni_redis_2 (54.234.59.188) — Redis (Sidekiq, cache)
         └── seni_sk_auto (34.234.193.80) — Sidekiq workers
@@ -215,11 +241,11 @@ krake_nginx (54.226.114.186:443)
 - `GET /newsletter/click` — email click tracking redirect
 - `GET /proxy/gas/<name>` — GAS proxy for regions blocking script.google.com
 
-### 4.2 dao_protocol (FastAPI) — Python Port
+### 4.2 Edgar (FastAPI) — Python Port
 
 ```
 dao_protocol_nelanco (98.93.94.86:8010)
-  └── POST /dao/submit_contribution — same interface as Rails Edgar
+  └── POST /dao/submit_contribution — same interface as Rails Perch
   └── GET /healthz — health check
   └── GET /proxy/gas/<name> — GAS proxy
   └── GET /agroverse_shop/shipping_rates — USPS rates
@@ -227,7 +253,7 @@ dao_protocol_nelanco (98.93.94.86:8010)
   └── POST /stripe/order-sync — Stripe order sync
 ```
 
-The `dao_protocol` server is a **Python port** of Edgar's core submission + dispatch logic. It runs independently and can accept submissions. Currently both the Rails Edgar and `dao_protocol` are live, but `edgar.truesight.me` DNS still points to the Rails instance via nginx.
+The `dao_protocol` server is a **Python port** of Perch's core submission + dispatch logic. It runs independently and can accept submissions. Currently both Perch (Rails) and `dao_protocol` are live, but `edgar.truesight.me` DNS still points to the Rails instance via nginx.
 
 ### 4.3 Autopilot (Governor Chat + SRE)
 
@@ -239,7 +265,7 @@ truesight-autopilot (52.200.38.206:8000)
   └── Background: Gmail poller, AWS monitor
 ```
 
-Runs on a **dedicated EC2** separate from Edgar to protect critical infrastructure. Code at `/opt/truesight_autopilot`, systemd service `truesight-autopilot.service`.
+Runs on a **dedicated EC2** separate from Perch (Rails) to protect critical infrastructure. Code at `/opt/truesight_autopilot`, systemd service `truesight-autopilot.service`.
 
 **Telegram identifiers (Sophia):**
 - Bot: **`@truesight_autopilot_bot`** (id `8217115914`).
@@ -306,9 +332,9 @@ After a stop/start resize, an EIP reassociate, or a fresh box, confirm before wa
 
 ---
 
-## 5. Edgar Migration (2026-05-28)
+## 5. Perch Migration (2026-05-28)
 
-The old Edgar infrastructure in the **Explorya** account was **stopped** on 2026-05-28:
+The old Perch infrastructure in the **Explorya** account was **stopped** on 2026-05-28:
 
 | Old (Explorya — stopped) | New (Nelanco — running) |
 |--------------------------|--------------------------|
@@ -322,7 +348,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 
 ## 6. Key Configuration Files
 
-### 6.1 Edgar (sentiment_importer)
+### 6.1 Perch (sentiment_importer)
 
 - **`config/application.rb`** — All webhook URLs, API keys, secrets
 - **`config/tsd_configuration.rb`** — DAO-specific configuration
@@ -379,8 +405,8 @@ uses your **local** Nelanco key):
 
 ```bash
 KEY=~/Applications/aws_keypairs/NELANCO_aws_20201122.pem
-ssh -J sophia -i "$KEY" ubuntu@54.211.179.126   # Edgar (seni_ror, sentiment_importer)
-ssh -J sophia -i "$KEY" ubuntu@98.93.94.86       # dao_protocol (FastAPI + DAO secrets)
+ssh -J sophia -i "$KEY" ubuntu@54.211.179.126   # Perch (seni_ror, sentiment_importer)
+ssh -J sophia -i "$KEY" ubuntu@98.93.94.86       # Edgar (dao_protocol FastAPI + DAO secrets)
 ```
 
 `sophia` is a working `~/.ssh/config` alias (`HostName sophia.truesight.me`). This is
@@ -406,9 +432,9 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 
 | Service | URL |
 |---------|-----|
-| Edgar health | `https://edgar.truesight.me/ping` |
-| dao_protocol health | `http://98.93.94.86:8010/healthz` |
-| Beta dao_protocol health | `https://beta.edgar.truesight.me/ping` |
+| Perch health | `https://edgar.truesight.me/ping` |
+| Edgar (dao_protocol) health | `http://98.93.94.86:8010/healthz` |
+| Beta Edgar health | `https://beta.edgar.truesight.me/ping` |
 | Autopilot health | `http://52.200.38.206:8000/health` |
 | Governor chatbot | `https://chatbot.truesight.me` |
 | Monit (Rails) | `http://54.211.179.126:2812/seni_ror` |
@@ -422,13 +448,13 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 |-------|------|---------|
 | `sg-4314630c` | `default` (Nelanco) | All Nelanco instances. Allows SSH, HTTP/HTTPS, internal traffic. |
 | `sg-e98f788e` | `default` (Explorya) | Autopilot. |
-| `sg-093be54e48c6478e8` | `edgar-2026-05-10` | Old Edgar instances (stopped). |
+| `sg-093be54e48c6478e8` | `edgar-2026-05-10` | Old Perch instances (stopped). |
 
 > **SSH/ICMP are source-IP allowlisted, not open.** The Sophia/autopilot EIP
 > `52.200.38.206` is allowlisted; random operator IPs are not — reach these hosts via
 > the **Sophia bastion** (§7.1), not by widening the SG. The crown-jewel host is
 > **`dao_protocol`** (`98.93.94.86`) — it holds the DAO submit/dispatch logic and the
-> GAS/Stripe/webhook secrets in `~/dao_protocol/.env`; Edgar/`seni_ror` runs only the
+> GAS/Stripe/webhook secrets in `~/dao_protocol/.env`; Perch/`seni_ror` runs only the
 > `sentiment_importer` Rails app. Do **not** expose either to `0.0.0.0/0`; prefer SSM
 > Session Manager if direct access is ever needed.
 
@@ -436,15 +462,15 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 
 ## 10. Common Pitfalls
 
-1. **Edgar is NOT `getdata.io`.** `edgar.truesight.me` = `sentiment_importer` (Rails). `getdata.io` = `krake_ror` (different codebase, different server). Do not conflate.
+1. **Perch is NOT `getdata.io`.** `perch.truesight.me` = `sentiment_importer` (Rails). `edgar.truesight.me` = `dao_protocol` (Python/FastAPI). `getdata.io` = `krake_ror` (different codebase, different server). Do not conflate.
 
-2. **Two Edgar backends exist.** The Rails Edgar (`sentiment_importer`) and the Python `dao_protocol` both accept `POST /dao/submit_contribution`. DNS still points to Rails. The `dao_protocol` server is the newer port.
+2. **Service topology:** The Rails Perch (`sentiment_importer`) and the Python Edgar (`dao_protocol`) both accept `POST /dao/submit_contribution`. The Rails Perch (`sentiment_importer`) and the Python `dao_protocol` both accept `POST /dao/submit_contribution`. DNS `edgar.truesight.me` currently points to the Rails Perch via nginx. The Python Edgar server runs on `dao_protocol_nelanco`.
 
-3. **Old Edgar instances are stopped.** `seni_ror_2026` and `seni_sk_2026` in Explorya were stopped 2026-05-28. Do not try to SSH into them or deploy to them.
+3. **Old Perch instances are stopped.** `seni_ror_2026` and `seni_sk_2026` in Explorya were stopped 2026-05-28. Do not try to SSH into them or deploy to them.
 
-4. **Nginx proxies Edgar.** `edgar.truesight.me` → krake_nginx → `seni_ror_200250915:3000`. The nginx config is on `krake_nginx` (54.226.114.186), not on the Rails host itself.
+4. **Nginx proxies Perch.**  `edgar.truesight.me` and `perch.truesight.me` → krake_nginx → `seni_ror_200250915:3002`. The nginx config is on `krake_nginx` (54.226.114.186), not on the Rails host itself.
 
-5. **Webhook URLs are env-configured.** The `dao_protocol` server reads webhook URLs from `DAO_PROTOCOL_WEBHOOK_*` env vars. The Rails Edgar reads from `config/application.rb`. They are independent — a change to one does not affect the other.
+5. **Webhook URLs are env-configured.** The `dao_protocol` server reads webhook URLs from `DAO_PROTOCOL_WEBHOOK_*` env vars. The Rails Perch reads from `config/application.rb`. They are independent — a change to one does not affect the other.
 
 ---
 
@@ -452,7 +478,7 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 
 This section documents how each service is deployed. Use this when setting up a new box, recovering from failure, or onboarding a new operator.
 
-### 11.1 Edgar (sentiment_importer — Rails)
+### 11.1 Perch (sentiment_importer — Rails)
 
 | Aspect | Detail |
 |--------|--------|
@@ -466,12 +492,12 @@ This section documents how each service is deployed. Use this when setting up a 
 | **Env vars** | `config/application.rb` + `config/tsd_configuration.rb` |
 | **Health** | `https://edgar.truesight.me/ping` |
 
-### 11.2 dao_protocol (FastAPI — Python)
+### 11.2 Edgar (dao_protocol) (FastAPI — Python)
 
 | Aspect | Detail |
 |--------|--------|
 | **Host** | `dao_protocol_nelanco` (98.93.94.86) |
-| **Code** | `TrueSightDAO/dao_protocol` |
+| **Code** | `TrueSightDAO/dao_client` (server lives in `truesight_dao_client/server/`) |
 | **Deploy** | `deploy.sh` on the box — `git pull`, `pip install -r requirements.txt`, `sudo systemctl restart truesight-dao-protocol` |
 | **Process** | systemd `truesight-dao-protocol.service`, port 8010 |
 | **Env vars** | `~/dao_protocol/.env` (chmod 600) — GAS webhook URLs, Stripe keys, Google SA keys |
