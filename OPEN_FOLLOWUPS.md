@@ -67,6 +67,33 @@ description: >
   building the automation.
 ```
 
+### Self-host DeepSeek / local LLM cost analysis
+**Filed 2026-06-14.** Gary asked: at what point does it make sense to self-host
+DeepSeek (or another open-weight model) vs paying API credits for Sophia's
+agentic loops?
+
+**Sophia's analysis:** The breakeven is roughly **$500-1000/month** in API costs
+before self-hosting (GPU box + ops) becomes cheaper than per-token pricing.
+Below that, API credits win when factoring in ops overhead (CUDA maintenance,
+GPU failures, scaling). Recommended trigger: **$200/month** as the point to
+start the conversation.
+
+**Action (~2-4h):**
+1. Set up monthly cost tracking / alert for Sophia's API usage (Anthropic +
+   DeepSeek + any other LLM providers)
+2. Research GPU pricing: AWS p3/p4 spot vs dedicated providers (Lambda Labs,
+   Vast.ai, RunPod) vs on-prem
+3. Draft a hybrid architecture: route simple tasks (QR lookups, context
+   searches) to a local model, keep frontier models (Claude, GPT-4) for
+   complex reasoning
+4. Present findings to Gary with a recommendation
+
+**Trigger to act:** Monthly API spend hits **$200** (or Gary asks to revisit).
+
+**Owner:** Sophia (can do research autonomously; Gary makes the call on spend).
+
+---
+
 ### truesight_autopilot: fix 3 deselected unit tests, then enforce full pytest in CI
 **Found 2026-06-09:** CI (`smoke.yml`) historically ran only `compileall` +
 `smoke_tools.py` — the `tests/test_*.py` pytest suite was **never executed** (and
