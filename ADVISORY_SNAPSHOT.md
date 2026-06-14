@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-14T10:03:20Z`
+- Generated (UTC): `2026-06-14T14:40:23Z`
 - Look-back: **7** calendar days (`2026-06-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,18 +33,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[SALES EVENT]` × 21
-- `[CONTRIBUTION EVENT]` × 10
-- `[PRACTICE EVENT]` × 3
-- `[EMAIL REGISTERED EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 11
 - `[EMAIL VERIFICATION EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 3
-- _free-form (no bracket tag)_ × 1
+- `[EMAIL REGISTERED EVENT]` × 2
+- `[PRACTICE EVENT]` × 2
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260613233229_029` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20251011_22 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233232_031` · **Edgar** · [SALES EVENT] Item: 2024PAULO_20251013_6 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233234_033` · **Edgar** · [SALES EVENT] Item: 2024PAULO_20251013_7 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
 - `Edgar_20260613233237_035` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_4 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
 - `Edgar_20260613233240_037` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_16 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
 - `Edgar_20260613233242_039` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_19 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
@@ -62,6 +59,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260614001319_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Processed Green Gulch Zen Monastery consignment settlement: 18 bulk QR sales…
 - `Edgar_20260614053311_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Community Initiatives section on the landing …
 - `Edgar_20260614055817_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Was having dinner with Jerry just now in Palo Alto after meeting Nora up nor…
+- `Edgar_20260614131512_007` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260614131656_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: For processing sales commission to Sierra for sale bag of cacao from yesterd…
+- `Edgar_20260614141724_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Giving Matheus instructions on how to generate the nota fiscal
 
 ---
 
@@ -79,7 +79,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-13T10:59:14.632Z`
+- Generated (UTC): `2026-06-14T10:59:14.936Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -255,7 +255,7 @@ _(+27 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$3,364.24**
+- USD on hand: **$3,356.24**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$41.07**
 
@@ -306,6 +306,7 @@ _All dated lines on/after 2026-06-07_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ebef91d | 2026-06-14 10:05:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6a1a97e | 2026-06-13 23:59:07 -0700 | Add RLHF/weights leakage nuance to context separation (#234)
 bbfeb4d | 2026-06-13 23:57:43 -0700 | Add civil law vs common law epistemological framing (#233)
 f833765 | 2026-06-13 23:57:23 -0700 | Add weights lineage, stare decisis, and practical challenges nuance (#232)
@@ -345,7 +346,6 @@ c2e5806 | 2026-06-12 20:39:15 -0700 | Fix: upload correct photo of Gary and Soni
 14ac067 | 2026-06-12 20:39:01 -0700 | Fix: upload correct photo of Kim holding setup instructions on her phone
 ae7d93a | 2026-06-12 20:38:40 -0700 | Fix: upload correct photo of Gary, Atrish and Kim
 b27c9cd | 2026-06-12 20:36:52 -0700 | Fix: Soniya invited us and set up the cacao booth — she did the heavy lifting (#208)
-044d67c | 2026-06-12 20:36:10 -0700 | Remove empty techfest-gary.jpg leftover file (#207)
 … (truncated)
 ```
 
@@ -358,6 +358,13 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c896144 | 2026-06-14 07:20:54 -0700 | Add detailed NF-e export SOP to BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md (#483)
+3bb5ca7 | 2026-06-14 07:12:39 -0700 | Add Export NF-e step-by-step guide for Matheus/Black King
+a4e4bfa | 2026-06-14 07:12:09 -0700 | Add original Commercial Invoice for reference
+cc36afc | 2026-06-14 07:12:06 -0700 | Add Commercial Invoice Rev 2 FOB for Black King to TrueTech shipment
+83344c9 | 2026-06-14 07:12:02 -0700 | Add Packing List Rev 1 for Black King to TrueTech shipment
+081eb4f | 2026-06-14 03:03:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-14 UTC)
+4880dd9 | 2026-06-14 03:03:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-14 UTC)
 b52713e | 2026-06-13 22:16:24 -0700 | chore(previews): refresh Beer Hall preview (2026-06-14 UTC)
 eb18cea | 2026-06-13 22:16:23 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-14 UTC)
 05d960b | 2026-06-13 21:18:38 -0700 | Merge pull request #482 from TrueSightDAO/auto/advisory-refresh-2026-06-14
@@ -391,13 +398,6 @@ b572f09 | 2026-06-11 16:03:18 -0700 | plan: Sophia live-progress introspection (
 f90cae3 | 2026-06-11 15:12:23 -0700 | Add Phase 0 governance plan PDF for DAO sharing
 5ddf6b3 | 2026-06-11 15:10:36 -0700 | handoff(governance): register thread 2744 (Sophia parked GO-ready, Phase 0) (#454)
 7de043c | 2026-06-11 15:06:20 -0700 | Add QR Code Registration implementation plan (#452)
-e67dfa2 | 2026-06-11 15:05:48 -0700 | plan: Sophia multi-tenant governance, identity & vault roadmap + UAT (#453)
-b6db1a1 | 2026-06-11 15:03:32 -0700 | Add QR Code Registration implementation plan PDF
-336a02e | 2026-06-11 14:06:44 -0700 | Add PDF of Friends of the Rainforest implementation plan
-40d3d21 | 2026-06-11 13:54:48 -0700 | Add Sophia's DAO contributor ledger name to operating instructions (#450)
-f8c5102 | 2026-06-11 13:42:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-11 UTC)
-3ccc8d5 | 2026-06-11 13:42:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-11 UTC)
-aea7136 | 2026-06-11 13:32:23 -0700 | handoff(followup-monitor): register thread 2622 (Sophia parked GO-ready) (#449)
 … (truncated)
 ```
 
@@ -625,7 +625,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/14/2026 2:50:42 |
+| 2026-06 | 759.35 | 15736.46386 | 6/14/2026 6:50:53 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-07`; scanned last **522** data rows)
 
