@@ -128,7 +128,7 @@ This is a key advantage of the UNA/DUNA structure: the vast majority of contribu
 
 ### 4.1 Option A: Wyoming UNA → DUNA (Recommended)
 
-**What it is:** A Wyoming Unincorporated Nonprofit Association (UNA) — the simpler precursor to the Decentralized Unincorporated Nonprofit Association (DUNA). Formed on-chain via OtoCo. Auto-converts to DUNA when membership reaches 100.
+**What it is:** A Wyoming Unincorporated Nonprofit Association (UNA) — the simpler precursor to the Decentralized Unincorporated Nonprofit Association (DUNA). Formed on-chain via [OtoCo](https://otoco.io). Auto-converts to DUNA when membership reaches 100.
 
 | Dimension | Detail |
 |-----------|--------|
@@ -137,7 +137,7 @@ This is a key advantage of the UNA/DUNA structure: the vast majority of contribu
 | **Governance** | Smart contract-based voting explicitly recognized by law |
 | **Minimum members** | None for UNA; 100 for DUNA (auto-conversion) |
 | **Profit distribution** | ❌ Not allowed — all revenue must be reinvested in mission |
-| **Formation cost** | ~$50 gas (OtoCo smart contract, 2+ wallets sign) |
+| **Formation cost** | ~$50 gas ([OtoCo](https://otoco.io) smart contract, 2+ wallets sign) |
 | **Annual cost** | $60-$200 license tax; no Wyoming state income tax |
 | **Bank account** | Can open US bank account with EIN |
 | **Time to form** | 1 day (OtoCo) |
@@ -205,7 +205,7 @@ This is a key advantage of the UNA/DUNA structure: the vast majority of contribu
 
 ### Step 1: Form the UNA (This Week)
 
-Gary + TrueTech Inc (2 wallets) sign OtoCo's on-chain UNA smart contract.
+Gary + TrueTech Inc (2 wallets) sign [OtoCo's](https://otoco.io) on-chain UNA smart contract.
 - **Cost:** ~$50 gas
 - **Time:** 1 day
 - **Result:** Wyoming UNA formed. Legal personhood achieved. Liability shield active.
@@ -213,8 +213,8 @@ Gary + TrueTech Inc (2 wallets) sign OtoCo's on-chain UNA smart contract.
 ### Step 2: Get EIN + Open Bank Account (Next 2-4 Weeks)
 
 1. UNA applies for IRS EIN (free, online)
-2. UNA opens a **Wise Business** account (we already use Wise for Brazil transfers)
-3. If Wise won't accept a fresh UNA, fall back to **Mercury** or **Relay**
+2. UNA opens a **[Wise Business](https://wise.com)** account (we already use Wise for Brazil transfers)
+3. If Wise won't accept a fresh UNA, fall back to **[Mercury](https://mercury.com)** or **[Relay](https://relayfi.com)**
 
 **Important:** The UNA → DUNA conversion (at 100 members) uses the **same EIN and same bank account**. No reset needed.
 
@@ -254,8 +254,8 @@ Once the UNA is established and cash flow allows, form a Brazilian LTDA owned by
 
 | Item | Cost |
 |------|------|
-| OtoCo smart contract (2+ wallets) | ~$50 gas |
-| IRS EIN application | Free |
+| [OtoCo](https://otoco.io) smart contract (2+ wallets) | ~$50 gas |
+| [IRS EIN application](https://www.irs.gov/ein) | Free |
 | Bank account minimum deposit | $0-$500 |
 | Annual Wyoming license tax | $60-$200/yr |
 | Registered agent | $100-$200/yr |
@@ -391,10 +391,12 @@ Once the UNA is established and cash flow allows, form a Brazilian LTDA owned by
 | **LTDA** | Limitada — Brazilian limited liability company |
 | **CNPJ** | Cadastro Nacional da Pessoa Jurídica — Brazilian federal tax ID for businesses |
 | **501(c)(3)** | US IRS tax exemption for charitable, religious, educational organizations |
-| **OtoCo** | On-chain entity formation platform — creates Wyoming UNAs/DUNAs via smart contract |
+| **[OtoCo](https://otoco.io)** | On-chain entity formation platform — creates Wyoming UNAs/DUNAs via smart contract |
 | **TDG** | TrueSight DAO Governance token — voting rights in the DAO |
 | **CTA** | Corporate Transparency Act — US law requiring Beneficial Ownership Information reporting to FinCEN |
 | **BOI** | Beneficial Ownership Information — report filed with FinCEN under the CTA |
 | **FinCEN** | Financial Crimes Enforcement Network — US Treasury bureau |
-| **Wise** | International money transfer and multi-currency business account provider |
+| **[Mercury](https://mercury.com)** | DAO-friendly US bank (backup option) |
+| **[Relay](https://relayfi.com)** | Small business banking (backup option) |
+| **[Wise](https://wise.com)** | International money transfer and multi-currency business account provider |
 | **Ooki DAO** | CFTC enforcement action establishing precedent that DAO token holders may be treated as general partners |
