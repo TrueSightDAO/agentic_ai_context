@@ -10,7 +10,7 @@
 
 The convergence is accelerating. Nora (Kopi Bar, Berkeley) is onboarding. More partners are joining. Matheus channels exports through his private Brazilian entity. TrueTech Inc (Delaware C-corp) handles import and distribution. Gary's personal bank account collects funds.
 
-This worked at pilot scale (~$15K cumulative sales). But three signals are turning from grey to red:
+This worked at pilot scale. But three signals are turning from grey to red:
 
 | Signal | Status | Why Now |
 |--------|--------|---------|
@@ -24,6 +24,8 @@ This worked at pilot scale (~$15K cumulative sales). But three signals are turni
 
 **The UNA opens its own bank account.** No need for TrueTech Inc to act as custodian. No need for a TrueTech Inc business account as an interim step. Funds flow directly from partners → UNA bank account → tree planting. Gary's personal account is completely out of the picture.
 
+**The Brazilian CNPJ should eventually be owned by the DUNA,** not by Matheus personally. This ensures the export channel is a DAO asset, not dependent on any single individual.
+
 ### Recommended structure
 
 ```
@@ -31,7 +33,7 @@ Wyoming UNA/DUNA (nonprofit, DAO legal wrapper)
     ├── Own bank account (receives partner contributions)
     ├── TDG holders govern the UNA
     ├── TrueTech Inc = DAO member (voluntary contributor)
-    └── Brazilian LTDA (CNPJ) = export/sourcing entity
+    └── Brazilian LTDA (CNPJ) = export/sourcing entity (DUNA-owned)
 ```
 
 ---
@@ -45,13 +47,12 @@ Wyoming UNA/DUNA (nonprofit, DAO legal wrapper)
 Brazil Farmers → Matheus (private CNPJ) → Export → TrueTech Inc → Gary's personal bank account → DAO expenses
 ```
 
-**Target (with UNA bank account):**
+**Target (with UNA bank account + DUNA-owned CNPJ):**
 ```
-Brazil Farmers → Matheus (private CNPJ) → Export → TrueTech Inc (import/dist)
-Nora / partners → UNA bank account → tree planting / DAO expenses
+Brazil Farmers → DUNA-owned CNPJ → Export → TrueTech Inc (import/dist, DAO member) → UNA bank account → tree planting / DAO expenses
 ```
 
-Gary's personal account is completely removed from the flow.
+Gary's personal account and Matheus's private CNPJ are both removed from the flow.
 
 **Risks in current flow:**
 
@@ -61,18 +62,24 @@ Gary's personal account is completely removed from the flow.
 | No member liability shield | 🔴 High | Token holders could be treated as general partners (per Ooki DAO precedent) |
 | No tax-advantaged donation pathway | 🔴 High | Impact funds, foundations, corporate ESG have no channel |
 | Governance ambiguity | 🔴 High | TDG holders don't have a clear answer to "what entity am I voting on?" |
+| Single-person dependency (Brazil) | 🔴 High | Matheus's private CNPJ means the export channel is tied to one person |
 | Tax reporting complexity | 🟡 Medium | C-corp filing + personal income + potential partnership tax treatment |
 | Brazil export compliance | 🟡 Medium | Matheus's private entity bears all Brazilian compliance burden |
 
-### 2.2 Current Ledger Snapshot
+### 2.2 Current Treasury Snapshot
 
-- **Cumulative sales (all time):** ~$15,736 USD
-- **Monthly run rate (2026):** ~$500-1,100/month trending up
-- **USD Treasury Balance:** ~$14,622
-- **AUM:** ~$28,144
-- **Physical assets on ledger:** ~$14,622 across 25+ asset types
-- **Partners:** Nora (Kopi Bar), Kirsten, Matheus, Edge & Node, Shuar Design Boutique, and growing
-- **TDG issued:** ~2.3M tokens across contributors
+**Only Main Ledger cash is available for deployment.** Managed ledgers (AGL4, AGL6, AGL8, AGL10, AGL13, AGL15, SEF1, BEC, etc.) are earmarked for specific purposes — mostly cacao shipment financing.
+
+| Item | Amount |
+|------|--------|
+| **Main Ledger USD** | **$3,476.27** |
+| Main Ledger USDT | $66.93 |
+| Main Ledger Brazilian Reis | R$2,511.97 (~$583.53 USD) |
+| **Total available cash** | **~$4,126.73** |
+| Cumulative sales (all time) | ~$15,736 USD |
+| Monthly run rate (2026) | ~$500-1,100/month trending up |
+| TDG issued | ~2.3M tokens across contributors |
+| Partners | Nora (Kopi Bar), Kirsten, Matheus, Edge & Node, Shuar Design Boutique, and growing |
 
 ### 2.3 The Governance Story Problem
 
@@ -105,7 +112,7 @@ A UNA/DUNA solves it cleanly:
 | **Time to form** | 1 day (OtoCo) |
 
 **✅ Pros:**
-- Near-free formation (~$50 gas)
+- Near-free formation (~$50 gas) — well within $4,126 available treasury
 - Perfect mission alignment (nonprofit, rainforest restoration)
 - Impact funds can write tax-deductible checks (if 501(c)(3) obtained later)
 - Legal recognition of on-chain governance
@@ -144,10 +151,10 @@ A UNA/DUNA solves it cleanly:
 - ❌ Cannot issue tax-deductible receipts (not a nonprofit)
 - Impact funds cannot write tax-deductible checks
 - Less mission-aligned than UNA/DUNA
-- Higher formation cost ($15K+)
+- Higher formation cost ($15K+) — exceeds available treasury
 - Governance story is murkier
 
-### 3.3 Option C: Brazilian CNPJ (LTDA)
+### 3.3 Option C: Brazilian CNPJ (LTDA) — DUNA-Owned
 
 | Dimension | Detail |
 |-----------|--------|
@@ -156,8 +163,8 @@ A UNA/DUNA solves it cleanly:
 | **Time to form** | 4-8 weeks |
 | **Foreign ownership** | 100% allowed |
 
-**✅ Pros:** Formalizes exports, Brazilian tax compliance, farmer contracting
-**❌ Cons:** Bureaucratic, doesn't solve US problems
+**✅ Pros:** Formalizes exports, Brazilian tax compliance, farmer contracting, removes single-person dependency
+**❌ Cons:** Bureaucratic, consumes significant portion of available treasury ($1K-$3K of $4,126)
 
 ---
 
@@ -186,12 +193,20 @@ Other partner contributions → UNA bank account → DAO expenses
 
 TrueTech Inc continues handling import and distribution as a DAO member, compensated in TDG. It doesn't need to touch the DAO's money.
 
+### Step 4 (Later): Form DUNA-Owned Brazilian CNPJ
+
+Once the UNA is established and cash flow allows, form a Brazilian LTDA owned by the DUNA to replace Matheus's private CNPJ.
+- Cost: $1,000-$3,000
+- Timeline: After UNA bank account is operational
+- Result: Export channel becomes a DAO asset, not dependent on any single individual
+
 ### Why this works
 
 | Before | After |
 |--------|-------|
 | Gary's personal account collects all funds | UNA bank account collects DAO funds |
 | Gary bears personal liability | UNA provides liability shield |
+| Matheus's private CNPJ is the export channel | DUNA-owned CNPJ is the export channel |
 | TDG holders vote on "the community" | TDG holders vote on the UNA |
 | No clear answer for impact funds | UNA can pursue 501(c)(3) |
 | TrueTech Inc needed as custodian | TrueTech Inc is just a member |
@@ -200,7 +215,7 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 
 ## 5. Cost Analysis
 
-### Path A: OtoCo UNA → Bank Account (Recommended)
+### Path A: OtoCo UNA → Bank Account (Recommended — Do Now)
 
 | Item | Cost |
 |------|------|
@@ -210,6 +225,7 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 | Annual Wyoming license tax | $60-$200/yr |
 | Registered agent | $100-$200/yr |
 | **Total Year 1** | **~$250-$750** |
+| **% of available treasury** | **~6-18%** |
 
 ### Path B: Full DUNA via Law Firm (Future, If Needed)
 
@@ -219,13 +235,15 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 | Legal fees | $20,000-$60,000 |
 | Annual costs | $200-$400/yr |
 | **Total Year 1** | **~$20,500-$60,500** |
+| **% of available treasury** | **~500-1,500%** — requires fundraising |
 
-### Path C: Brazilian LTDA
+### Path C: Brazilian LTDA (DUNA-Owned)
 
 | Item | Cost |
 |------|------|
 | Formation | $1,000-$3,000 |
 | Annual compliance | $500-$2,000/yr |
+| **% of available treasury** | **~24-73%** — significant but feasible |
 
 ### Path D: 501(c)(3) Application (Downstream)
 
@@ -250,6 +268,7 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 | Partner network (Nora, Kirsten, Matheus) | ✅ Growing |
 | Technical infrastructure (AWS, QR inventory) | ✅ Strong |
 | SVH Capital connection (June 26) | ✅ Warm intro |
+| Available cash for formation | ✅ ~$4,126 (enough for OtoCo + bank account) |
 
 ### ❌ What We're Missing
 
@@ -258,10 +277,10 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 | Legal counsel for DUNA/501(c)(3) | 🟡 Medium | $50 (OtoCo) or $20K-$60K (full-service) |
 | 100 DUNA members | 🟢 Low | $0 (use UNA workaround) |
 | 501(c)(3) expertise | 🟡 Medium | $2K-$10K (later) |
-| Brazilian legal rep | 🟡 Medium | $1K-$3K (later) |
+| Brazilian legal rep for CNPJ | 🟡 Medium | $1K-$3K (later) |
 | Multi-entity accounting | 🟢 Low | $2K-$5K/yr (later) |
 
-**Total cash needed for Year 1: ~$250-$750** — well within treasury.
+**Total cash needed for Year 1: ~$250-$750** — well within available treasury of ~$4,126.
 
 ---
 
@@ -274,7 +293,7 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 | **Phase 3: Ongoing** | Route partner contributions through UNA account | $0 | After bank account |
 | **June 26** | Ask SVH Capital about DUNA + 501(c)(3) pathway | $0 | One conversation |
 | **Later** | UNA auto-converts to DUNA at 100 members | $0 | Automatic |
-| **Later** | Form Brazilian LTDA | $1K-3K | 4-8 weeks |
+| **Later** | Form DUNA-owned Brazilian LTDA | $1K-3K | 4-8 weeks |
 | **Later** | 501(c)(3) application | $2K-10K | 6-12 months |
 
 ---
@@ -291,7 +310,7 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 
 4. **501(c)(3) pathway:** Realistic timeline and cost for IRS exemption for a DAO that plants trees?
 
-5. **Brazilian entity:** Can a Wyoming UNA/DUNA own or affiliate with a Brazilian LTDA?
+5. **DUNA-owned Brazilian CNPJ:** Can a Wyoming DUNA directly own a Brazilian LTDA? If not, what's the cleanest intermediate structure (e.g., US holding LLC owned by DUNA)?
 
 6. **TDG as compensation:** Would your referred counsel consider a partial TDG token grant to reduce cash outlay?
 
@@ -307,9 +326,10 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 
 1. Should TDG tokens represent membership in the UNA directly, or a separate membership token?
 2. Is TrueTech Inc comfortable being a DAO member compensated in TDG, with no separate service agreement?
-3. Should the UNA own the Brazilian LTDA directly, or via a separate holding entity?
+3. Should the UNA own the Brazilian LTDA directly, or via a separate holding LLC?
 4. Apply for 501(c)(3) immediately after UNA formation, or wait for a donation track record?
 5. Carbon credits: asset of the UNA (mission-locked) or TrueTech Inc (tradeable)?
+6. When should we transition from Matheus's private CNPJ to a DUNA-owned CNPJ — immediately or after the UNA bank account is operational?
 
 ---
 
@@ -322,6 +342,7 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 | Wyoming UNA/DUNA law changes | Low | Medium | Monitor; Wyoming is pro-DAO |
 | Brazilian LTDA formation delays | Medium | Low | Matheus continues using private entity interim |
 | TDG classified as security | Low | High | UNA membership tokens generally not securities; consult SVH-referred counsel |
+| Insufficient treasury for full-service legal | High | Medium | OtoCo path costs ~$50; full-service requires fundraising first |
 
 ---
 
@@ -338,6 +359,8 @@ TrueTech Inc continues handling import and distribution as a DAO member, compens
 | **OtoCo** | On-chain entity formation platform — creates Wyoming UNAs/DUNAs via smart contract |
 | **TDG** | TrueSight DAO Governance token — voting rights in the DAO |
 | **TrueTech Inc** | Delaware C-corporation — DAO member handling import and distribution |
+| **Main Ledger** | The DAO's primary cash ledger — only cash here is available for deployment |
+| **Managed Ledgers** | Earmarked ledgers (AGL4, AGL6, AGL8, etc.) for cacao shipment financing |
 
 ---
 
