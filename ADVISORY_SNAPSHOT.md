@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-14T14:40:23Z`
+- Generated (UTC): `2026-06-14T20:06:15Z`
 - Look-back: **7** calendar days (`2026-06-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,21 +33,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[SALES EVENT]` × 21
-- `[CONTRIBUTION EVENT]` × 11
-- `[EMAIL VERIFICATION EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 14
+- `[PRACTICE EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 3
-- `[EMAIL REGISTERED EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 2
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260613233237_035` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_4 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233240_037` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_16 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233242_039` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_19 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233245_041` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_20 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233247_043` · **Edgar** · [SALES EVENT] Item: 2024OS_2025051022_N_21 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
-- `Edgar_20260613233250_045` · **Edgar** · [SALES EVENT] Item: 2024OS_20250613_N_1 · Sales price: 17 · Sold by: Green Gulch Zen Monastery
 - `Edgar_20260613234510_047` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Green Gulch Zen Monastery · Recipient Name: Gary Teh · Inventory Item: USD
 - `Edgar_20260613234939_049` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Green Gulch Zen Monastery · Recipient Name: Green Gulch Zen Monastery · Inventory Item: USD
 - `Edgar_20260613235339_051` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_16 · Sales price: 17 · Sold by: Gary Teh
@@ -62,6 +56,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260614131512_007` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260614131656_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: For processing sales commission to Sierra for sale bag of cacao from yesterd…
 - `Edgar_20260614141724_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Giving Matheus instructions on how to generate the nota fiscal
+- `Edgar_20260614173435_013` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-14T17:34:35.153Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260614192339_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Unit 3: Wire SSH, GitHub, and GAS deploy to…
+- `Edgar_20260614192926_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Sign-out on the vault page is broken: the /…
+- `Edgar_20260614195034_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Re-order the sections on the landing page (in…
+- `Edgar_20260614195533_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Re-order the landing page (index.html) sectio…
+- `Edgar_20260614200033_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Move the Ecosystem Updates section (Beer Hall…
 
 ---
 
@@ -229,11 +229,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 31 SKU lines · 13,872.15 total units · $12,319.95
+- Manager record: `Gary Teh` · 31 SKU lines · 13,864.15 total units · $12,311.95
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 13,784.97 | $12,182.62 |
+  | (uncategorized) | (unspecified) | 27 | 13,776.97 | $12,174.62 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Mass | Retail Ready | 2 | 11 | $87.34 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -276,7 +276,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-09 | claude (subscriptions session) | GTIN MODEL (canonical, confirmed by Gary): the retail GTIN identifies the PRODUCT TYPE, not the unit/vintage — ALL chocolate bars share one chocolate-bar GTIN; ALL ceremonial cacao share one cacao GTIN. The serialized QR code (Agroverse QR codes tab, column A) is the per-unit identity that differentiates farm+vintage and resolves provenance. A vintage-independent "generic" SKU REUSES the existing shared GTIN (never mint a new GTIN per vintage); per-vintage agroverse.shop product pages are presentation sub-views of one GTIN (expect Merchant Center duplicate-GTIN across them). Provenance is always via QR, never GTIN. Documented in AGROVERSE_QR_CODE_BATCH_GENERATION.md §0 + NOTES_tokenomics.md (Agroverse QR codes tab) + CHOCOLATE_SUBSCRIPTION_PLAN.md (Decisions → GTIN model).
 - 2026-06-09 | claude (subscriptions session) | CREDENTIAL HAND-OFF PROTOCOL (new canonical doc CREDENTIAL_HANDOFF_PROTOCOL.md): to get a secret onto a locked-down box an LLM can't SSH (SG blocks 22; box trusts only its own keypair, which lives on the autopilot box), the autopilot box (`sophia`) is the staging hub and Sophia propagates. Rules: never put secrets in chat/Telegram/PRs/commits; move via stdin (mask to prefix+len); chmod 600; stage under /home/ubuntu/ NOT /opt/truesight_autopilot (deploy.sh git-cleans it); prefer sourcing an existing secret (e.g. Stripe test key in sentiment_importer config/environments/development.rb). Then hand off in the Sophia thread (LLM can't post into an existing TG topic — operator drops the line; adapter auto-loads the plan). Pointer added to SOPHIA_HANDOFFS.md. Worked example: beta sandbox Stripe test key staged at ~/stripe_test_key → thread 1955.
 
-_All dated lines on/after 2026-06-07_ (10):
+_All dated lines on/after 2026-06-07_ (12):
 
 - 2026-06-10 | claude-code | UAT (User Acceptance Testing) — end-to-end validation by the governor before signing off on a feature. The beta sandbox endpoint (thread 1955, `beta.edgar.truesight.me`) is the canonical UAT surface for Stripe-touching flows: standalone EC2 in NELANCO, Stripe TEST mode, isolated fulfillment queue. UAT is distinct from CI/E2E tests — it's the human governor running through the real user journey. Future LLMs and Sophia: when a plan says "UAT," it means the governor (Gary) tests end-to-end on the beta staging environment, not in CI.
 - 2026-06-07 | claude (outreach session) | SOPHIA SELF-EXEC + AMI AUTOMATION SHIPPED: (1) ssh_run host="autopilot" (127.0.0.1 loopback) lets Sophia sudo/apt-get on her own box; sophia_infra.pub now self-trusted in box authorized_keys via deploy.sh + user-data.sh (truesight_autopilot#114). (2) System prompt embeds live host-identity block (IMDS) — no more location hallucination. (3) GROK_API_KEY added to box .env (health grok_key_set=true). (4) Weekly AMI automated: Cypher-Defense/.github/workflows/snapshot_autopilot_ami.yml (#37,#38), resolves by Name tag truesight-autopilot, --no-reboot, retain 8; secrets TRUESIGHT_DAO_AUTOPILOT_AWS_KEY/SECRET set on Cypher-Defense; first AMI ami-0dae91c5216989753. For the parallel infra session: the FLEET self-host + the AMI Name-tag resolution both assume tag Name=truesight-autopilot — keep that tag on any blue/green replacement instance.
@@ -288,6 +288,8 @@ _All dated lines on/after 2026-06-07_ (10):
 - 2026-06-09 | claude (subscriptions session) | GTIN MODEL (canonical, confirmed by Gary): the retail GTIN identifies the PRODUCT TYPE, not the unit/vintage — ALL chocolate bars share one chocolate-bar GTIN; ALL ceremonial cacao share one cacao GTIN. The serialized QR code (Agroverse QR codes tab, column A) is the per-unit identity that differentiates farm+vintage and resolves provenance. A vintage-independent "generic" SKU REUSES the existing shared GTIN (never mint a new GTIN per vintage); per-vintage agroverse.shop product pages are presentation sub-views of one GTIN (expect Merchant Center duplicate-GTIN across them). Provenance is always via QR, never GTIN. Documented in AGROVERSE_QR_CODE_BATCH_GENERATION.md §0 + NOTES_tokenomics.md (Agroverse QR codes tab) + CHOCOLATE_SUBSCRIPTION_PLAN.md (Decisions → GTIN model).
 - 2026-06-09 | claude (subscriptions session) | CREDENTIAL HAND-OFF PROTOCOL (new canonical doc CREDENTIAL_HANDOFF_PROTOCOL.md): to get a secret onto a locked-down box an LLM can't SSH (SG blocks 22; box trusts only its own keypair, which lives on the autopilot box), the autopilot box (`sophia`) is the staging hub and Sophia propagates. Rules: never put secrets in chat/Telegram/PRs/commits; move via stdin (mask to prefix+len); chmod 600; stage under /home/ubuntu/ NOT /opt/truesight_autopilot (deploy.sh git-cleans it); prefer sourcing an existing secret (e.g. Stripe test key in sentiment_importer config/environments/development.rb). Then hand off in the Sophia thread (LLM can't post into an existing TG topic — operator drops the line; adapter auto-loads the plan). Pointer added to SOPHIA_HANDOFFS.md. Worked example: beta sandbox Stripe test key staged at ~/stripe_test_key → thread 1955.
 - 2026-06-10 | claude (subscriptions session) | TERM: UAT = User Acceptance Testing — a human walks the real end-to-end flow before go-live (NOT more automated tests). Convention: UAT runs on the BETA staging stack (beta.agroverse.shop + beta.edgar.truesight.me beta dao_protocol in Stripe TEST mode, SANDBOX rows), never prod, with Stripe test cards (4242…) — checkout must show TEST MODE. Prefer beta staging over local for UAT (that's what the beta sandbox is for). New doc GLOSSARY.md. Active: chocolate-bar subscription UAT = thread 1955. Live as of 2026-06-10: beta.agroverse.shop/subscribe/chocolate-bar/=200, beta.edgar webhook=400-on-unsigned (verifying).
+- 2026-06-14 | claude (sophia prod-incident session) | Sophia prod stall cascade on the Kopi Bay onboarding thread (tg 3926) — root-caused + fixed 3 distinct bugs (all deployed to box 958e8cc). (1) truesight_autopilot#195: submit_contribution crashed when DeepSeek double-encoded `attributes` as a JSON string → AttributeError in _normalize_submission_labels → turn died mid tool-loop, orphan tool_call, silent stall. (2) #200: _externalize_tool_result (CM1, from #193/#194) returned non-str tool results raw — recall_context/search_code/sheet tools return dicts → `result_text[:300]` raised `TypeError: unhashable type: 'slice'` → streaming turn crashed → adapter showed "incomplete chunked read". HEADS-UP to whoever owns the CM work: #200 patched _externalize_tool_result in your subsystem (coerce non-str → json.dumps before the length check) — don't re-fix/revert. (3) #201: deploy_autopilot had no already-on-latest check → always reset --hard + restarted, severing in-flight turns → adapter resubmits → REDEPLOY LOOP (hit the vault commit-hash thread 3981); added a phase-one hash precheck returning status=noop when HEAD==origin/main.
+- 2026-06-14 | claude (sophia prod-incident session) | OPEN BUG (diagnosed, NOT yet fixed) — vault panel sophia.truesight.me/vault/ shows "Active tracks: 0" during live chat. Two disconnected active-turn registries: main._active_streams (in-memory; what deploy_autopilot idle-drain reads) vs deploy_watcher active_tracks.json (file; what the vault panel get_system_status + can_deploy read). register_track/unregister_track are called ONLY by aws_monitor.py + email_poller.py — the chat path (main.py) never registers a track. Consequence: panel under-reports live conversations AND its Deploy button (can_deploy) would greenlight a deploy while turns run. Fix options: (a) chat loop calls deploy_watcher.register_track/unregister around each turn, or (b) get_system_status/can_deploy also union main._active_streams. Likely belongs with the thread-3981 vault-panel feature work.
 
 ---
 
@@ -306,6 +308,9 @@ _All dated lines on/after 2026-06-07_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+208d4a2 | 2026-06-14 13:00:59 -0700 | [autopilot] Fix index.html (#237)
+638172d | 2026-06-14 12:56:39 -0700 | [autopilot] Re-order the landing page (index.html) sections to follow a  (#236)
+5c00607 | 2026-06-14 14:56:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ebef91d | 2026-06-14 10:05:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6a1a97e | 2026-06-13 23:59:07 -0700 | Add RLHF/weights leakage nuance to context separation (#234)
 bbfeb4d | 2026-06-13 23:57:43 -0700 | Add civil law vs common law epistemological framing (#233)
@@ -343,9 +348,6 @@ a53ccf0 | 2026-06-12 21:40:49 -0700 | Add Sophia's name, voice, and profile phot
 d3f6df1 | 2026-06-12 20:39:55 -0700 | Fix: upload correct photo of attendees drinking cacao
 f710392 | 2026-06-12 20:39:30 -0700 | Fix: upload correct photo of Gary, Martin and Ken
 c2e5806 | 2026-06-12 20:39:15 -0700 | Fix: upload correct photo of Gary and Soniya
-14ac067 | 2026-06-12 20:39:01 -0700 | Fix: upload correct photo of Kim holding setup instructions on her phone
-ae7d93a | 2026-06-12 20:38:40 -0700 | Fix: upload correct photo of Gary, Atrish and Kim
-b27c9cd | 2026-06-12 20:36:52 -0700 | Fix: Soniya invited us and set up the cacao booth — she did the heavy lifting (#208)
 … (truncated)
 ```
 
@@ -358,6 +360,15 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+aa986cc | 2026-06-14 12:55:20 -0700 | context: log Sophia Kopi Bay stall cascade fixes (#195/#200/#201) + open Active-tracks panel bug
+6f478ba | 2026-06-14 12:22:00 -0700 | chore(plan): all context-management pillars (CM0-CM4) done + deployed 2026-06-14 (#489)
+1a6f6c5 | 2026-06-14 12:15:43 -0700 | chore: add thread 3981 to vault migration handoff manifest
+6f7ea59 | 2026-06-14 12:15:18 -0700 | feat: vault credential migration plan + roadmap (#488)
+e403d64 | 2026-06-14 12:02:55 -0700 | docs: refresh Edgar/Perch naming across all canonical context files (#486)
+6f20cfc | 2026-06-14 12:00:38 -0700 | Add follow-up: self-host DeepSeek cost analysis at $200/mo API spend (#485)
+dba087f | 2026-06-14 11:56:11 -0700 | chore(plan): mark CM1+CM2 done (deployed) in context-management resume tracker (#484)
+a2c4500 | 2026-06-14 07:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-14 UTC)
+5a16296 | 2026-06-14 07:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-14 UTC)
 c896144 | 2026-06-14 07:20:54 -0700 | Add detailed NF-e export SOP to BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md (#483)
 3bb5ca7 | 2026-06-14 07:12:39 -0700 | Add Export NF-e step-by-step guide for Matheus/Black King
 a4e4bfa | 2026-06-14 07:12:09 -0700 | Add original Commercial Invoice for reference
@@ -389,15 +400,6 @@ c965ad8 | 2026-06-12 03:49:17 -0700 | chore(previews): refresh Beer Hall preview
 b6152ba | 2026-06-12 03:49:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
 618cefd | 2026-06-11 22:14:07 -0700 | chore(previews): refresh Beer Hall preview (2026-06-12 UTC)
 9a2547f | 2026-06-11 22:14:06 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
-7b52b89 | 2026-06-11 21:58:25 -0700 | handoff: Sophia vault hotfix + ops-safety roll-up (thread 2744) (#472)
-e2257d1 | 2026-06-11 21:12:46 -0700 | Merge pull request #470 from TrueSightDAO/auto/advisory-refresh-2026-06-12
-4854c6c | 2026-06-12 04:12:35 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-12 UTC)
-2dbb8e1 | 2026-06-11 16:17:56 -0700 | Reorder execution plan: vault-first (Phase 3 → Phase 0.1 → vault), add worktree convention (#459)
-8983672 | 2026-06-11 16:10:31 -0700 | handoff(live-progress): register thread 2799 (Sophia parked GO-ready) (#458)
-b572f09 | 2026-06-11 16:03:18 -0700 | plan: Sophia live-progress introspection (quick handoff) (#457)
-f90cae3 | 2026-06-11 15:12:23 -0700 | Add Phase 0 governance plan PDF for DAO sharing
-5ddf6b3 | 2026-06-11 15:10:36 -0700 | handoff(governance): register thread 2744 (Sophia parked GO-ready, Phase 0) (#454)
-7de043c | 2026-06-11 15:06:20 -0700 | Add QR Code Registration implementation plan (#452)
 … (truncated)
 ```
 
@@ -625,7 +627,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/14/2026 6:50:53 |
+| 2026-06 | 759.35 | 15736.46386 | 6/14/2026 12:57:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-07`; scanned last **522** data rows)
 
