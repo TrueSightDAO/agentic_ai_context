@@ -12,7 +12,7 @@ Three signals turning from grey to red:
 
 | Signal | Why |
 |--------|-----|
-| **No DAO legal wrapper** | No member liability shield, no DAO bank account, no clear answer for "what entity do TDG holders govern?" |
+| **No DAO legal wrapper** | No member liability shield, no clear answer for "what entity do TDG holders govern?" |
 | **No impact fund channel** | Impact funds, foundations, corporate ESG have no entity to write checks to |
 | **Personal bank account** | Gary's personal account is the bottleneck — more volume = more personal risk |
 
@@ -24,9 +24,9 @@ Three signals turning from grey to red:
 
 That's it. The UNA is a legal entity with:
 - Liability protection for members
-- Ability to open a bank account
 - A clear answer for TDG holders: "you govern the UNA"
 - A counterparty for impact funds to write checks to
+- **No bank account needed** — TrueTech Inc handles all money flows
 
 If we later hit 100+ members by mutual consent under a governing agreement, we can elect to form a DUNA. But the UNA works today.
 
@@ -36,13 +36,13 @@ If we later hit 100+ members by mutual consent under a governing agreement, we c
 
 ```
 Wyoming UNA (nonprofit, DAO legal wrapper) — formed this week for ~$50
-    ├── Own bank account (partner contributions + impact fund capital)
+    ├── No bank account needed — TrueTech Inc handles all money flows
     ├── TDG holders govern the UNA (pseudonymous — wallet only)
     └── Contractual relationship with TrueTech Inc
 
 TrueTech Inc (Delaware C-corp, independent entity)
     ├── Own cap table and shareholders (Gary)
-    ├── Own bank account (commercial operations: imports, sales, revenue)
+    ├── Own bank account (ALL money flows: commercial, partner contributions, buybacks)
     ├── May buy back TDG at NAV using operating cash reserves (discretionary)
     └── Buyback reserve formula published on truesight.me
 
@@ -54,7 +54,7 @@ Brazilian LTDA (CNPJ) = export facility (eventual future goal)
 | Decision | What |
 |----------|------|
 | TrueTech Inc | Independent entity, not a DUNA subsidiary. Separate cap table. Contractual relationship. Avoids UBIT. |
-| Bank accounts | Two separate: TrueTech Inc (commercial) + UNA (mission/treasury) |
+| Bank accounts | **One account** — TrueTech Inc handles everything. UNA doesn't need its own. |
 | TDG buyback | TrueTech may buy back at NAV using operating cash. Formula on truesight.me. Discretionary, not guaranteed. |
 | Wise | Primary banking platform. Handles standard transfers + PIX. Venmo/Zelle/Western Union executed manually. |
 | Withdrawal flow | Member submits DApp request → TrueTech issues cash → TDG deducted from ledger → burned |
@@ -67,10 +67,8 @@ Brazilian LTDA (CNPJ) = export facility (eventual future goal)
 |--------|------|----------|
 | Form UNA via OtoCo (2 wallets sign) | ~$50 gas | 1 day |
 | Open TrueTech Inc Wise Business account | $0-500 | 1-2 days |
-| Get UNA EIN from IRS | $0 | Online, instant |
-| Open UNA Wise Business account | $0 | 2-4 weeks |
 
-**Total cost to get started: ~$50-550.** We have ~$4,126 in the Main Ledger.
+**Total cost: ~$50-550.** We have ~$4,126 in the Main Ledger.
 
 ---
 
@@ -86,6 +84,7 @@ That's it. The structure is resolved. We don't need advisory on governance, impa
 
 | Thing | Why Not | When |
 |-------|---------|------|
+| UNA bank account | TrueTech Inc handles all money flows. No need. | Only if impact fund capital requires separate home |
 | 501(c)(3) application | Costs $2K-10K. Not needed until impact funds require tax-deductible receipts. | 6-12 months |
 | Brazilian CNPJ ownership | Costs $1K-3K + legal counsel. Matheus's private CNPJ works for now. | Future |
 | DUNA formation | Requires 100+ members by mutual consent. UNA works as stopgap. | When eligible |
