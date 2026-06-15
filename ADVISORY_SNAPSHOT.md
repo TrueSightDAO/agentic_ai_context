@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-15T12:49:01Z`
+- Generated (UTC): `2026-06-15T21:31:49Z`
 - Look-back: **7** calendar days (`2026-06-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,26 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 35
-- `[SALES EVENT]` × 3
-- `[PRACTICE EVENT]` × 2
-- `[INVENTORY MOVEMENT]` × 1
+- `[CONTRIBUTION EVENT]` × 34
+- `[PRACTICE EVENT]` × 5
+- `[EMAIL REGISTERED EVENT]` × 2
 - `[PARTNER ADD EVENT]` × 1
-- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260614212630_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add Sophia's registered ledger name to the …
-- `Edgar_20260614212951_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: New wholesale partner onboarding: Nora Haron, Kopi Bar & Bakery, 2155 Center…
-- `Edgar_20260614212952_041` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-14T21:29:52.297Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260614215342_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Add deployed commit hash to the vault Syste…
-- `Edgar_20260614215756_001` · **Edgar** · [PARTNER ADD EVENT] Partner Name: Kopi Bar & Bakery · Email: nora@noraharon.com · Address: 2155 Center St, 2nd Floor, Berkeley, CA 94704
-- `Edgar_20260614222102_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 80 · Description: Vault Credential Migration — Sophia Truesight + Gary Teh
-- `Edgar_20260614225528_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agroverse_shop_beta: Fix three issues on the Agroverse shop beta…
-- `Edgar_20260614230503_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agroverse_shop_beta: Update the Kopi Bar & Bakery partner detail…
-- `Edgar_20260614231228_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agroverse_shop_beta: Fix two issues on the Kopi Bar & Bakery par…
-- `Edgar_20260614231732_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agroverse_shop_beta: On the Pacific West Coast path page (cacao-…
 - `Edgar_20260614232426_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Kopi Bar & Bakery partner page setup — direction & images
 - `Edgar_20260614232427_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Kopi Bar & Bakery partner page setup — execution
 - `Edgar_20260614234420_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix Sophia duplicate text reply on Telegram voice path
@@ -62,6 +51,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260615031820_003` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
 - `Edgar_20260615053557_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Legal Entity Structuring — Governance & SVH Prep
 - `Edgar_20260615053644_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Legal Entity Structuring — Governance & SVH Prep
+- `Edgar_20260615135516_009` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-15T13:55:16.582Z · Email: garyjob@gmail.com
+- `Edgar_20260615135533_011` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-15T13:55:33.022Z · Email: garyjob@gmail.com · Verification Key: jTPbBbeF-CVB69CoI92_qFM_TfTddfbQFpBXORukgoE
+- `Edgar_20260615140208_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] butterfly-effect-club: The sync_cohort.py script fails immediate…
+- `Edgar_20260615153555_015` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T15:35:55.803Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260615164743_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: The `/ping` endpoint only handles GET requests, bu…
+- `Edgar_20260615164936_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260615165049_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Diagnose & fix HEAD /ping 405 on dao_protocol (expense report submission bro…
+- `Edgar_20260615172315_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T17:23:14.662Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260615172526_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T17:25:26.356Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260615211612_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Finished chatting with Eugene who was introduced by Fadi
 
 ---
 
@@ -229,11 +228,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 31 SKU lines · 13,864.15 total units · $12,311.95
+- Manager record: `Gary Teh` · 31 SKU lines · 13,833.15 total units · $12,280.95
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 13,776.97 | $12,174.62 |
+  | (uncategorized) | (unspecified) | 27 | 13,745.97 | $12,143.62 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Mass | Retail Ready | 2 | 11 | $87.34 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -255,7 +254,7 @@ _(+27 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$3,356.13**
+- USD on hand: **$3,325.13**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$41.17**
 
@@ -304,6 +303,8 @@ _All dated lines on/after 2026-06-08_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f28f13d | 2026-06-15 11:26:02 -0700 | Add all 46 blog posts to index (restore missing older entries) (#238)
+ac11f45 | 2026-06-15 12:51:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0ed1f14 | 2026-06-15 05:41:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ddee7f4 | 2026-06-14 20:08:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 208d4a2 | 2026-06-14 13:00:59 -0700 | [autopilot] Fix index.html (#237)
@@ -342,8 +343,6 @@ a53ccf0 | 2026-06-12 21:40:49 -0700 | Add Sophia's name, voice, and profile phot
 38e423a | 2026-06-12 20:44:58 -0700 | Add Microsoft and Google demo photos to the opening section (#209)
 9eb63be | 2026-06-12 20:44:38 -0700 | Add photo of Google voice UX demo at TECH FEST 2026
 2da00c4 | 2026-06-12 20:44:37 -0700 | Add photo of Microsoft agentic fleet demo at TECH FEST 2026
-36f0c28 | 2026-06-12 20:41:22 -0700 | Fix: upload correct photo of Gary and Soniya
-d3f6df1 | 2026-06-12 20:39:55 -0700 | Fix: upload correct photo of attendees drinking cacao
 … (truncated)
 ```
 
@@ -356,6 +355,13 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2a997fb | 2026-06-15 11:06:46 -0700 | Fix V2: sentiment importer already has subscribers + subscription revenue flowing to NAV (#516)
+e83c167 | 2026-06-15 09:22:11 -0700 | Fix V2: remove unnecessary lockup guardrail, clarify licensing surplus boosts NAV directly (#515)
+58bc9ae | 2026-06-15 09:08:38 -0700 | Add V2 PDF: full capital channels map
+c2857b1 | 2026-06-15 09:08:04 -0700 | Add V2: full capital channels map, ecosystem diagram, revenue model
+f04aaff | 2026-06-15 09:04:06 -0700 | Fix V1 doc: strip capital channels, keep lean. Add licensing revenue suggestion. (#514)
+d8972a1 | 2026-06-15 05:49:15 -0700 | chore(previews): refresh Beer Hall preview (2026-06-15 UTC)
+07b6acc | 2026-06-15 05:49:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-15 UTC)
 43d0bfd | 2026-06-14 23:25:16 -0700 | Split into lean SVH doc + internal strategy memo. Fix carbon credits, AGL securities question, capital-injected TDG. (#513)
 2a4ac89 | 2026-06-14 23:12:27 -0700 | Add ecosystem mermaid diagram, revenue distribution model, fix names (Bilal/Liz) (#512)
 5a1324d | 2026-06-14 22:58:07 -0700 | Add capital channels map: how partners inject resources, what they get, how they exit (#511)
@@ -389,13 +395,6 @@ aa986cc | 2026-06-14 12:55:20 -0700 | context: log Sophia Kopi Bay stall cascade
 1a6f6c5 | 2026-06-14 12:15:43 -0700 | chore: add thread 3981 to vault migration handoff manifest
 6f7ea59 | 2026-06-14 12:15:18 -0700 | feat: vault credential migration plan + roadmap (#488)
 e403d64 | 2026-06-14 12:02:55 -0700 | docs: refresh Edgar/Perch naming across all canonical context files (#486)
-6f20cfc | 2026-06-14 12:00:38 -0700 | Add follow-up: self-host DeepSeek cost analysis at $200/mo API spend (#485)
-dba087f | 2026-06-14 11:56:11 -0700 | chore(plan): mark CM1+CM2 done (deployed) in context-management resume tracker (#484)
-a2c4500 | 2026-06-14 07:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-14 UTC)
-5a16296 | 2026-06-14 07:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-14 UTC)
-c896144 | 2026-06-14 07:20:54 -0700 | Add detailed NF-e export SOP to BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md (#483)
-3bb5ca7 | 2026-06-14 07:12:39 -0700 | Add Export NF-e step-by-step guide for Matheus/Black King
-a4e4bfa | 2026-06-14 07:12:09 -0700 | Add original Commercial Invoice for reference
 … (truncated)
 ```
 
@@ -448,6 +447,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b476a9f | 2026-06-15 12:54:19 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 9fd9e3b | 2026-06-15 12:44:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 14867ca | 2026-06-14 09:58:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c90a0d4 | 2026-06-13 17:28:35 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -622,7 +622,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/15/2026 4:50:39 |
+| 2026-06 | 759.35 | 15736.46386 | 6/15/2026 13:50:38 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-08`; scanned last **522** data rows)
 
