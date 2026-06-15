@@ -30,7 +30,7 @@ TrueTech Inc (Delaware C-corp, independent entity)
     ├── Own cap table and shareholders (Gary)
     ├── Own bank account (commercial operations: imports, sales, revenue)
     ├── May buy back TDG at NAV using operating cash reserves (discretionary)
-    └── Publishes buyback reserve formula on website
+    └── Buyback reserve formula published on truesight.me
 
 Brazilian LTDA (CNPJ) = export facility (eventually DUNA-owned)
 ```
@@ -42,9 +42,9 @@ Brazilian LTDA (CNPJ) = export facility (eventually DUNA-owned)
 | **TrueTech Inc = independent entity** | Not a subsidiary of the DUNA. Separate cap table, separate shareholders. Contractual relationship, not structural. Avoids UBIT and 501(c)(3) jeopardy. |
 | **Two separate bank accounts** | TrueTech Inc account: commercial operations (imports, sales, revenue). DUNA account: partner contributions, tree planting, impact fund capital. |
 | **TDG buyback at NAV** | TrueTech Inc may buy back TDG at net asset value (total DAO assets ÷ total TDG issued) using its own operating cash reserves. This is a business decision, not a DUNA obligation. |
-| **Buyback reserve formula** | TrueTech publishes a formula on the website (e.g. X% of monthly sales). Buybacks are not guaranteed — they depend on available reserves calculated by the formula. |
+| **Buyback reserve formula on truesight.me** | The formula governing redemption capacity is published on the TrueSight DAO website. Buybacks are not guaranteed — they depend on available reserves calculated by the formula. |
 | **UNA first, DUNA if eligible** | Wyoming DUNA requires 100+ members joined by mutual consent under a blockchain-based governance agreement. If we don't meet this, UNA is the current stopgap. No auto-upgrade from UNA to DUNA exists in statute. |
-| **Wise as single banking platform** | Both TrueTech Inc and DUNA use Wise Business accounts. Same API, same Brazil pipeline, multi-currency support. |
+| **Wise as primary banking platform** | Both TrueTech Inc and DUNA use Wise Business accounts. Wise handles standard bank transfers and PIX. Non-standard rails (Venmo, Zelle, Western Union) are executed manually from TrueTech's bank account as needed. |
 | **Brazil CNPJ eventually DUNA-owned** | Removes single-person dependency on Matheus. Requires cross-border legal counsel. |
 
 ---
@@ -216,9 +216,16 @@ TDG tokens represent **voting rights in the DAO entity** (UNA or DUNA form). The
 
 **TDG is not a financial security or profit-sharing instrument.** It is a governance right that happens to be transferable/tradeable. This distinction is critical for securities law compliance.
 
-### 6.2 Current Flow (Live Today)
+### 6.2 Member Exit Options
 
-When a member wants to exit, they use the existing DApp withdrawal page:
+Contributors can see in real time what liquidity capacity exists. If a contributor wants to exit, they have two options:
+
+1. **Sell on the secondary market** — if liquidity exists and a buyer appears
+2. **Request redemption from TrueTech at NAV** — subject to available reserves calculated by the published formula
+
+### 6.3 Current Withdrawal Flow (Live Today)
+
+When a member chooses to redeem, they use the existing DApp withdrawal page:
 
 > **https://dapp.truesight.me/withdraw_voting_rights.html**
 
@@ -228,13 +235,13 @@ When a member wants to exit, they use the existing DApp withdrawal page:
 2. DApp shows their total voting rights, value per right, and available USD reserves
 3. Member enters the number of voting rights to cash out
 4. Member selects their Withdrawal Method from the dropdown:
-   - PIX (Brazil)
+   - PIX (Brazil) — handled via Wise
    - PayLah (Singapore)
-   - Venmo (USA)
-   - Zelle (USA)
+   - Venmo (USA) — executed manually from TrueTech bank account
+   - Zelle (USA) — executed manually from TrueTech bank account
    - PayPal (International)
-   - WiseTransfer (International)
-   - Western Union (International)
+   - WiseTransfer (International) — handled via Wise
+   - Western Union (International) — executed manually from TrueTech bank account
 5. Member enters their account details for the selected method
 6. Member submits — request is recorded in the ledger
 7. TrueTech Inc may buy back the TDG at NAV using operating cash reserves
@@ -242,11 +249,17 @@ When a member wants to exit, they use the existing DApp withdrawal page:
 9. TDG is effectively burned — removed from circulation
 ```
 
-### 6.3 Buyback Reserve Mechanism
+**Payout coverage note:** Wise handles standard bank transfers and PIX. Non-standard rails (Venmo, Zelle, Western Union) are executed manually by Gary from TrueTech's bank account as needed.
+
+### 6.4 Buyback Reserve Formula
 
 There is no separate "impact fund" backend or committed buyback reserve. TrueTech's buyback capacity is simply its **available operating cash flow**.
 
-TrueTech publishes a **reserve formula** on the website (e.g. "X percent of monthly sales volume"). This formula determines what portion of TrueTech's revenue gets set aside for potential token redemptions versus reinvestment, operations, and growth.
+TrueTech's buyback reserve formula is published on **truesight.me** and calculated as:
+
+> **Reserve = X% of monthly sales volume**
+
+This formula determines what portion of TrueTech's revenue gets set aside for potential token redemptions versus reinvestment, operations, and growth. Reserve capacity scales with TrueTech sales volume per this published policy.
 
 **Key characteristics:**
 - Buybacks are **not guaranteed or promised** — available based on current reserves calculated by the published formula
@@ -258,7 +271,7 @@ TrueTech publishes a **reserve formula** on the website (e.g. "X percent of mont
 - TDG is deducted from the ledger, reducing total supply
 - Deflationary mechanism rewards remaining holders
 
-### 6.4 What Exists Today
+### 6.5 What Exists Today
 
 | Component | What It Does | Status |
 |-----------|-------------|--------|
@@ -268,8 +281,9 @@ TrueTech publishes a **reserve formula** on the website (e.g. "X percent of mont
 | **TrueTech Inc payout** | Cash issued to exiting member via selected method | ✅ Live |
 | **Buyback budget automation** | GAS script calculates daily budget from 30-day sales × asset/TDG | ✅ Live ($0.093/day) |
 | **Buyback price automation** | ASSET_PER_TDG_ISSUED calculated from total assets ÷ total TDG | ✅ Live ($0.0067/TDG) |
+| **Reserve formula publication** | Published on truesight.me | ✅ Live |
 
-### 6.5 What Changes with the DUNA
+### 6.6 What Changes with the DUNA
 
 The buyback budget and price are already fully automated by the existing tokenomics GAS script:
 
@@ -309,6 +323,7 @@ With the DUNA, the only change is the source account — from Gary's personal ac
 | **Wise banking relationship** | ✅ Existing | Already using Wise for Brazil transfers. Can open business accounts for both entities. |
 | **Member exit mechanism** | ✅ Live | DApp withdrawal page + cash receipt channel + ledger deduction |
 | **Buyback automation** | ✅ Live | Budget and price calculated daily by GAS script |
+| **Reserve formula published** | ✅ Live | Published on truesight.me |
 
 ### ❌ What We Need to Acquire
 
@@ -323,21 +338,25 @@ With the DUNA, the only change is the source account — from Gary's personal ac
 
 ## 8. Questions for SVH Capital (June 26)
 
-1. **DUNA formation:** Can you refer us to a Wyoming law firm that specializes in DUNA formation? We need to verify whether our ~350 TDG holders qualify as "members by mutual consent" under a blockchain-based governance agreement.
+The original SVH approach was to seek advisory input on governance structure — that work is now complete via this discussion. The only remaining legal gate is a narrow **Howey analysis**: does issuing governance tokens (TDG) to contributors for work count as a security offering under SEC law?
 
-2. **OtoCo verification:** OtoCo claims to automate UNA formation via smart contract. Do they also handle DUNA formation, or is that a separate process requiring a law firm? We need to confirm this directly.
+This is a counsel question, not a strategic workshop. The structure is resolved. Bring this doc, flag the Howey question as the one thing requiring their legal review, and clarify that you're not seeking capital or advisory on impact mechanics.
 
-3. **UNA vs. DUNA:** If we don't meet the 100-member threshold for DUNA, is a Wyoming UNA sufficient as a stopgap? What are the practical limitations of operating as a UNA vs. a DUNA?
+1. **DUNA formation:** Can you refer us to a Wyoming law firm that specializes in DUNA formation? We need to verify whether our ~350 TDG holders qualify as "members by mutual consent."
 
-4. **501(c)(3) pathway:** Once DUNA is formed, what's the realistic timeline and cost for IRS exemption for a DAO that plants trees?
+2. **OtoCo verification:** OtoCo claims to automate UNA formation via smart contract. Do they also handle DUNA formation, or is that a separate process requiring a law firm?
 
-5. **Brazilian entity:** Can a Wyoming DUNA own or affiliate with a Brazilian LTDA, or does that need a separate US holding LLC in between?
+3. **UNA vs. DUNA:** If we don't meet the 100-member threshold for DUNA, is a Wyoming UNA sufficient as a stopgap? What are the practical limitations?
 
-6. **TrueTech Inc independence:** TrueTech Inc is a separate Delaware C-corp with its own cap table and shareholders. It has a contractual relationship with the DUNA, not a structural one. Does this arrangement avoid UBIT and 501(c)(3) jeopardy for the DUNA?
+4. **Howey analysis (the one thing):** TDG is issued to contributors for work (cacao logistics, contribution scoring, development, onboarding) and grants governance rights. It is not a financial security or profit-sharing instrument. Does this pass the Howey Test? This is the narrow legal question requiring their review.
 
-7. **TDG buyback:** TrueTech Inc may buy back TDG at NAV using its own operating cash reserves, publishing a reserve formula on the website. Buybacks are discretionary and not guaranteed. Can this continue as-is under a DUNA structure?
+5. **501(c)(3) pathway:** Once DUNA is formed, what's the realistic timeline and cost for IRS exemption for a DAO that plants trees?
 
-8. **Impact fund capital:** Can a Wyoming UNA/DUNA issue governance tokens (TDG) to impact funds in exchange for capital contributions, without creating securities law or nonprofit distribution concerns?
+6. **Brazilian entity:** Can a Wyoming DUNA own or affiliate with a Brazilian LTDA, or does that need a separate US holding LLC in between?
+
+7. **TrueTech Inc independence:** TrueTech Inc is a separate Delaware C-corp with its own cap table and shareholders. Contractual relationship with DUNA, not structural. Does this avoid UBIT and 501(c)(3) jeopardy?
+
+8. **TDG buyback:** TrueTech Inc may buy back TDG at NAV using operating cash, publishing a reserve formula on truesight.me. Buybacks discretionary, not guaranteed. Can this continue under a DUNA structure?
 
 ---
 
@@ -367,7 +386,8 @@ With the DUNA, the only change is the source account — from Gary's personal ac
 | **Brazil CNPJ ownership complex** | 🟡 Medium | Add a US holding LLC between DUNA and Brazilian LTDA. Adds ~$100/yr in filing costs. |
 | **Single-person dependency (Brazil)** | 🔴 High | Matheus's private CNPJ is the only export channel. Mitigation: DUNA-owned CNPJ as eventual structure. |
 | **DUNA eligibility unclear** | 🟡 Medium | Need legal counsel to verify whether ~350 contributors qualify as "members by mutual consent." If not, UNA is the stopgap. |
-| **Buyback reserve insufficient** | 🟢 Low | TrueTech publishes formula transparently. Members know buybacks are discretionary and tied to business performance. |
+| **Buyback reserve insufficient** | 🟢 Low | TrueTech publishes formula transparently on truesight.me. Members know buybacks are discretionary and tied to business performance. |
+| **Howey risk (TDG as security)** | 🟡 Medium | Narrow legal question for SVH-referred counsel. TDG is a governance right, not a security or profit-sharing instrument. |
 
 ---
 
