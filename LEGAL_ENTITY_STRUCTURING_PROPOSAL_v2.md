@@ -29,6 +29,7 @@ flowchart TD
     end
 
     subgraph Licensing["Layer 3: Technology Licensing (Revenue — TrueTech Inc)"]
+        Sentiment["Sentiment Importer (purge.truesight.me)"] -->|Subscription revenue| TrueTech
         Bilal["Bilal (Butterfly Effect)"] -->|License fee| TrueTech
         Liz["Liz"] -->|License fee| TrueTech
         Future["Future Licensees"] -->|License fee| TrueTech
@@ -119,9 +120,10 @@ flowchart TD
 **Counterparty:** TrueTech Inc (for-profit). Not the UNA.
 
 **Why this is future optionality, not now:**
-- TrueTech Inc currently has **no retained asset base** — it's a pass-through trading company. Capital comes in, shipment sells, 80% returns to financier, 20% retained as thin reserve.
-- No IP, no hard assets, no growing balance sheet to invest in.
-- **If** a licensing model emerges (e.g. Bilal from Butterfly Effect Club wants his own Sophia instance for his investment fund), TrueTech Inc would have recurring licensing revenue + IP assets — making it VC-investable.
+- TrueTech Inc currently has **limited retained asset base** — the cacao trading side is pass-through (capital in, shipment sells, 80% returns to financier).
+- However, TrueTech Inc **already has IP** — the **Sentiment Importer** at purge.truesight.me is a live codebase with paying subscribers generating recurring subscription revenue.
+- This subscription revenue already flows into the buyback reserve, boosting NAV per TDG.
+- If the licensing model expands (Bilal, Liz), TrueTech Inc would have multiple recurring revenue streams + IP assets — making it VC-investable.
 
 ---
 
@@ -144,7 +146,8 @@ flowchart TD
 ## Revenue Distribution Model
 
 ```
-Licensing revenue → TrueTech Inc (collects)
+Subscription revenue (Sentiment Importer) → TrueTech Inc (collects)
+Licensing revenue (future) → TrueTech Inc (collects)
     → TrueTech Inc margin (operational costs)
     → Surplus → Buyback reserve → Boosts NAV per TDG
     → All TDG holders benefit
@@ -155,7 +158,9 @@ DAO governance (TDG holders) sets:
     - Buyback allocation percentage
 ```
 
-The UNA never touches the money directly (nonprofit constraint). But TDG holders control the economics through governance. The surplus from licensing directly increases the NAV calculation (total assets ÷ total TDG), making every holder's TDG more valuable.
+The UNA never touches the money directly (nonprofit constraint). But TDG holders control the economics through governance. The surplus from subscription and licensing revenue directly increases the NAV calculation (total assets ÷ total TDG), making every holder's TDG more valuable.
+
+**This is already happening.** The Sentiment Importer's subscription revenue is live and flowing into the buyback reserve today.
 
 ---
 
@@ -168,11 +173,11 @@ Ecosystem (farmers, partners, contributors, shipments)
     ↓ Generates raw operational data
 TrueSight DAO operations (QR scans, contributions, governance votes, supply chain events)
     ↓ Feeds
-Sophia (autopilot) + Edgar (API)
+Sophia (autopilot) + Edgar (API) + Sentiment Importer
     ↓ Learns and improves
 Better automation, better decisions, better protocols
     ↓ Gets licensed back to
-New orgs (Edge & Node, Bilal, Liz) who want their own instance
+New orgs (Bilal, Liz) who want their own instance
 ```
 
 The moat isn't the code — it's the **data flywheel**. Every cacao bag scanned, every contribution logged, every governance vote cast makes the system smarter. A new org licensing the tech gets the software, but they start with zero data. The ecosystem's data is what makes the AI useful.
@@ -189,7 +194,7 @@ If a fund buys TDG at $1/TDG and current NAV is ~$0.0018/TDG, they're already lo
 
 ### Buyback Capacity
 
-TrueTech Inc's buyback capacity is its available operating cash flow, published as a formula on truesight.me (e.g. X% of monthly sales volume). Buybacks are discretionary, not guaranteed. If reserves are insufficient, redemptions are queued and filled as new revenue comes in.
+TrueTech Inc's buyback capacity is its available operating cash flow (including subscription revenue from Sentiment Importer), published as a formula on truesight.me. Buybacks are discretionary, not guaranteed. If reserves are insufficient, redemptions are queued and filled as new revenue comes in.
 
 ### NAV Reality Check
 
@@ -201,10 +206,9 @@ Current NAV: **~$0.0018/TDG** ($4,126 ÷ 2,306,000 TDG). No rational fund would 
 
 | Lead | Wants | Product |
 |------|-------|---------|
+| **Sentiment Importer** (purge.truesight.me) | Already live with subscribers | Subscription revenue → NAV |
 | **Bilal** (Butterfly Effect Club) | Sophia for investment fund mgmt (team of 5) | Self-hosted Sophia instance |
 | **Liz** | Sophia for deal flow + Edgar protocol for trading ops | Self-hosted Sophia + Edgar |
-
-Both want their own instance — their data stays with them. This validates the self-hosted licensing model.
 
 ---
 
@@ -214,7 +218,7 @@ Both want their own instance — their data stays with them. This validates the 
 
 2. **AGL securities question:** Individuals finance cacao shipments for a return from sale proceeds. Does this pattern raise a separate securities question under Reves (promissory note / investment contract)?
 
-3. **Revenue distribution:** If licensing revenue flows to TrueTech Inc and surplus is used to boost NAV via the buyback reserve, does this create any securities or tax concerns for the UNA?
+3. **Revenue distribution:** If subscription and licensing revenue flows to TrueTech Inc and surplus boosts NAV via the buyback reserve, does this create any securities or tax concerns for the UNA?
 
 4. **Carbon credits:** Can the UNA grant future carbon credit rights to commercial funders without jeopardizing its nonprofit status or creating UBIT?
 
