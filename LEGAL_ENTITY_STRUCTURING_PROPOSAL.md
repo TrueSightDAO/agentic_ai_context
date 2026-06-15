@@ -8,12 +8,11 @@
 
 ## The Problem
 
-Three signals turning from grey to red:
+Two signals turning from grey to red:
 
 | Signal | Why |
 |--------|-----|
 | **No DAO legal wrapper** | No member liability shield, no clear answer for "what entity do TDG holders govern?" |
-| **No impact fund channel** | Impact funds, foundations, corporate ESG have no entity to write checks to |
 | **Personal bank account** | Gary's personal account is the bottleneck — more volume = more personal risk |
 
 ---
@@ -25,7 +24,6 @@ Three signals turning from grey to red:
 That's it. The UNA is a legal entity with:
 - Liability protection for members
 - A clear answer for TDG holders: "you govern the UNA"
-- A counterparty for impact funds to write checks to
 - **No bank account needed** — TrueTech Inc handles all money flows
 
 If we later hit 100+ members by mutual consent under a governing agreement, we can elect to form a DUNA. But the UNA works today.
@@ -74,9 +72,9 @@ Brazilian LTDA (CNPJ) = export facility (eventual future goal)
 
 ## The One Question for SVH Capital
 
-> *"We're forming a Wyoming UNA via OtoCo this week. TDG is issued to contributors for work (cacao logistics, contribution scoring, development, onboarding) and grants governance rights. It is not a financial security or profit-sharing instrument. Does this pass the Howey Test?"*
+> *"We're forming a Wyoming UNA via OtoCo this week. TDG is issued to contributors for work (cacao logistics, contribution scoring, development, onboarding) and grants governance rights. An independent affiliated C-corp (TrueTech Inc) may, at its discretion, buy back TDG at net asset value (total DAO assets ÷ total TDG issued) from its own operating cash. Does TDG constitute a security under Howey?"*
 
-That's it. The structure is resolved. We don't need advisory on governance, impact mechanics, or entity design. We just need a narrow legal opinion on whether TDG is a security.
+That's it. The structure is resolved. We don't need advisory on governance, impact mechanics, or entity design. We just need a narrow legal opinion on whether TDG — including the buyback feature — is a security.
 
 ---
 
@@ -84,7 +82,8 @@ That's it. The structure is resolved. We don't need advisory on governance, impa
 
 | Thing | Why Not | When |
 |-------|---------|------|
-| UNA bank account | TrueTech Inc handles all money flows. No need. | Only if impact fund capital requires separate home |
+| Impact fund channel | No committed backend. TrueTech Inc handles commercial flows only. Impact/donation money would need the UNA's own bank account + 501(c)(3). | When a genuine donation-type funder appears |
+| UNA bank account | TrueTech Inc handles all current money flows. No need. | Only if impact fund capital requires a separate home |
 | 501(c)(3) application | Costs $2K-10K. Not needed until impact funds require tax-deductible receipts. | 6-12 months |
 | Brazilian CNPJ ownership | Costs $1K-3K + legal counsel. Matheus's private CNPJ works for now. | Future |
 | DUNA formation | Requires 100+ members by mutual consent. UNA works as stopgap. | When eligible |
