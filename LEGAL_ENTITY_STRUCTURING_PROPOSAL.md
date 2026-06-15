@@ -35,7 +35,7 @@ Wyoming UNA/DUNA (nonprofit, DAO legal wrapper)
 |----------|-----------|
 | **TrueTech Inc = DAO-operated facility** | Not a member. No TDG compensation. No voting rights. Its board handles operational/compliance decisions. DAO members are reflected in the DUNA, not on TrueTech Inc's board. |
 | **Two separate bank accounts** | TrueTech Inc account: customs bonds, FDA fees, import duties, TDG buyback. DUNA account: partner contributions, tree planting, impact fund capital, DAO treasury. |
-| **TDG buyback → burn** | When a member wants to exit, TrueTech Inc buys TDG from the DApp and burns it. No TDG held by TrueTech Inc → no voting rights issue. Deflationary mechanism rewards remaining holders. |
+| **TDG buyback → burn** | When a member wants to exit, they submit a withdrawal request via the DApp. TrueTech Inc issues cash via the member's receipt channel and deducts their TDG balance. No TDG held by TrueTech Inc → no voting rights issue. Deflationary mechanism rewards remaining holders. |
 | **UNA → DUNA auto-conversion** | OtoCo handles via smart contract when membership hits 100. Same EIN, same bank account. |
 | **Wise as single banking platform** | Both TrueTech Inc and DUNA use Wise Business accounts. Same API, same Brazil pipeline, multi-currency support. |
 | **Brazil CNPJ eventually DUNA-owned** | Removes single-person dependency on Matheus. Requires cross-border legal counsel. |
@@ -57,7 +57,7 @@ Impact funds → nowhere (no entity to write checks to)
 Brazil Farmers → DUNA-owned CNPJ → Export → TrueTech Inc (facility) → TrueTech Inc account (import expenses)
 Partners (Nora, etc.) → DUNA bank account → tree planting / DAO expenses
 Impact funds → DUNA bank account → tree planting / carbon credits
-Member exit → TrueTech Inc buys TDG from DApp → TDG burned
+Member exit → Member submits DApp withdrawal → TrueTech Inc issues cash → TDG deducted
 ```
 
 Gary's personal account and Matheus's private CNPJ are both removed from the flow.
@@ -164,9 +164,7 @@ The DUNA applies for IRS 501(c)(3) tax-exempt status. This requires a tax attorn
 
 ---
 
-## 5. Implementation Timeline
-
-### 5.1 Parallel Tracks (No Waiting)
+## 5. Implementation Timeline — Parallel Tracks
 
 | Track | What | Cost | Timeline |
 |-------|------|------|----------|
@@ -176,7 +174,7 @@ The DUNA applies for IRS 501(c)(3) tax-exempt status. This requires a tax attorn
 
 **No dependency between tracks.** TrueTech Inc's account handles the commercial side immediately. The UNA account handles the mission side when it's ready.
 
-### 5.2 Full Timeline
+### Full Timeline
 
 | Phase | What | Cost | Timeline | % of Treasury |
 |-------|------|------|----------|--------------|
@@ -192,37 +190,47 @@ The DUNA applies for IRS 501(c)(3) tax-exempt status. This requires a tax attorn
 
 ---
 
-## 6. Existing Buyback Infrastructure
+## 6. Member Exit / TDG Buyback Mechanism
 
-The DAO already has a functioning TDG buyback mechanism. This infrastructure can be extended to support the TDG buyback → burn model described in this proposal.
+### 6.1 Current Flow (Live Today)
 
-### 6.1 What Exists Today
+When a member wants to exit, they use the existing DApp withdrawal page:
+
+> **https://dapp.truesight.me/withdraw_voting_rights.html**
+
+**The flow:**
+```
+1. Member signs a withdrawal request on the DApp
+2. Member submits their cash receipt channel (bank details, Wise, etc.)
+3. TrueTech Inc issues cash to the member via their receipt channel
+4. Member's TDG balance is deducted from the ledger
+5. TDG is effectively burned — removed from circulation
+```
+
+**Key characteristics:**
+- No Raydium or DEX swap involved
+- No open market purchase — direct redemption against the DAO's treasury
+- TDG is deducted from the ledger, reducing total supply
+- Deflationary mechanism rewards remaining holders
+- TrueTech Inc never holds TDG → no voting rights concern
+
+### 6.2 What Exists Today
 
 | Component | What It Does | Status |
 |-----------|-------------|--------|
-| **`getDailyTdgBuyBackBudget()`** (GAS) | Fetches daily buyback budget from Performance Statistics sheet | ✅ Live |
-| **`buyback_sol_to_tdg.ts`** (TypeScript) | Executes the buyback on Raydium (SOL → TDG swap) | ✅ Live |
-| **`daily-buyback.yml`** (GitHub Action) | Runs the buyback script daily at 05:00 UTC | ✅ Live |
-| **Performance Statistics sheet** | Row 4: `TDG_DAILY_BUY_BACK_BUDGET` = **$0.093/day** | ✅ Live |
+| **DApp withdrawal page** | Member signs withdrawal request | ✅ Live at dapp.truesight.me/withdraw_voting_rights.html |
+| **Cash receipt channel** | Member submits payout details | ✅ Live |
+| **Ledger deduction** | TDG balance deducted on withdrawal | ✅ Live |
+| **TrueTech Inc payout** | Cash issued to exiting member | ✅ Live |
 
-### 6.2 Current Flow
+### 6.3 What Changes with the DUNA
 
-```
-Performance Statistics sheet → TDG_DAILY_BUY_BACK_BUDGET ($0.093/day)
-    → buyback_sol_to_tdg.ts reads budget
-    → Swaps SOL for TDG on Raydium
-    → TDG is bought from the open market
-```
-
-### 6.3 What Needs to Change for the New Model
-
-For the TDG buyback → burn model (TrueTech Inc buys TDG from exiting members via the DApp), we need:
-
-1. **A new buyback path** — instead of Raydium, buy directly from the DApp's internal order book or from a member's wallet
-2. **The burn mechanism** — currently the bought TDG goes to a treasury wallet. Add a burn step
-3. **A larger budget** — $0.093/day is tiny. Scale with impact fund capital
-
-**The infrastructure is already there.** The budget line item, the automation pipeline, and the swap execution all exist. It's a matter of adding a new "buy from DApp → burn" path alongside the existing "buy from Raydium" path.
+| Aspect | Today | With DUNA |
+|--------|-------|-----------|
+| **Who issues cash** | TrueTech Inc (from Gary's personal account) | TrueTech Inc (from its own Wise account) |
+| **Who authorizes** | Gary manually | DUNA governance can set buyback budget |
+| **TDG deduction** | Ledger entry | Same — ledger entry |
+| **Transparency** | Manual record | On-chain via Edgar API |
 
 ---
 
@@ -241,7 +249,7 @@ For the TDG buyback → burn model (TrueTech Inc buys TDG from exiting members v
 | **Technical infrastructure** | ✅ Strong | AWS, Edgar API, tokenomics automation, QR inventory tracking |
 | **SVH Capital connection** | ✅ Warm intro | June 26 cacao circle — Stanley specializes in web3 legal entity structuring |
 | **Wise banking relationship** | ✅ Existing | Already using Wise for Brazil transfers. Can open business accounts for both entities. |
-| **TDG buyback infrastructure** | ✅ Live | Daily buyback script, budget line item, GitHub Action automation |
+| **Member exit mechanism** | ✅ Live | DApp withdrawal page + cash receipt channel + ledger deduction |
 
 ### ❌ What We Need to Acquire
 
@@ -262,15 +270,13 @@ For the TDG buyback → burn model (TrueTech Inc buys TDG from exiting members v
 
 3. **501(c)(3) pathway:** Once DUNA is formed, what's the realistic timeline and cost for the IRS exemption application for a DAO that plants trees?
 
-4. **TDG as compensation:** Would your referred counsel consider a partial TDG token grant to reduce the cash outlay?
+4. **Brazilian entity:** Can a Wyoming DUNA own or affiliate with a Brazilian LTDA, or does that need a separate US holding LLC in between?
 
-5. **Brazilian entity:** Can a Wyoming DUNA own or affiliate with a Brazilian LTDA, or does that need a separate US holding LLC in between?
+5. **Governance clarity:** We have a for-profit C-corp (TrueTech Inc) as a DAO-operated facility and a DAO with token voting rights. How do we structure the UNA/DUNA so TDG holders are clearly voting on DAO matters, and TrueTech Inc is clearly a facility — not the thing being governed?
 
-6. **Governance clarity:** We have a for-profit C-corp (TrueTech Inc) as a DAO-operated facility and a DAO with token voting rights. How do we structure the UNA/DUNA so TDG holders are clearly voting on DAO matters, and TrueTech Inc is clearly a facility — not the thing being governed?
+6. **TDG buyback → burn:** Currently, when a member wants to exit, they submit a withdrawal request via our DApp, TrueTech Inc issues cash, and the member's TDG balance is deducted. Can this continue as-is under a DUNA structure, or does the DUNA need to be the one issuing the cash?
 
-7. **TDG buyback → burn:** Can TrueTech Inc (Delaware C-corp, DAO-operated facility) buy and burn TDG tokens from the DApp as an operational expense, without creating governance or nonprofit distribution concerns?
-
-8. **Impact fund capital:** Can a Wyoming UNA issue governance tokens (TDG) to impact funds in exchange for capital contributions, without creating securities law or nonprofit distribution concerns?
+7. **Impact fund capital:** Can a Wyoming UNA issue governance tokens (TDG) to impact funds in exchange for capital contributions, without creating securities law or nonprofit distribution concerns?
 
 ---
 
