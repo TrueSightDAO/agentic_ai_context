@@ -200,11 +200,22 @@ When a member wants to exit, they use the existing DApp withdrawal page:
 
 **The flow:**
 ```
-1. Member signs a withdrawal request on the DApp
-2. Member submits their cash receipt channel (bank details, Wise, etc.)
-3. TrueTech Inc issues cash to the member via their receipt channel
-4. Member's TDG balance is deducted from the ledger
-5. TDG is effectively burned — removed from circulation
+1. Member connects wallet and signs in on the DApp
+2. DApp shows their total voting rights, value per right, and available USD reserves
+3. Member enters the number of voting rights to cash out
+4. Member selects their Withdrawal Method from the dropdown:
+   - PIX (Brazil)
+   - PayLah (Singapore)
+   - Venmo (USA)
+   - Zelle (USA)
+   - PayPal (International)
+   - WiseTransfer (International)
+   - Western Union (International)
+5. Member enters their account details for the selected method
+6. Member submits — request is recorded in the ledger
+7. TrueTech Inc issues cash via the selected method
+8. Member's TDG balance is deducted from the ledger
+9. TDG is effectively burned — removed from circulation
 ```
 
 **Key characteristics:**
@@ -218,10 +229,10 @@ When a member wants to exit, they use the existing DApp withdrawal page:
 
 | Component | What It Does | Status |
 |-----------|-------------|--------|
-| **DApp withdrawal page** | Member signs withdrawal request | ✅ Live at dapp.truesight.me/withdraw_voting_rights.html |
-| **Cash receipt channel** | Member submits payout details | ✅ Live |
+| **DApp withdrawal page** | Member signs in, sees balance, submits request | ✅ Live at dapp.truesight.me/withdraw_voting_rights.html |
+| **Withdrawal Method dropdown** | PIX, PayLah, Venmo, Zelle, PayPal, WiseTransfer, Western Union | ✅ Live |
 | **Ledger deduction** | TDG balance deducted on withdrawal | ✅ Live |
-| **TrueTech Inc payout** | Cash issued to exiting member | ✅ Live |
+| **TrueTech Inc payout** | Cash issued to exiting member via selected method | ✅ Live |
 
 ### 6.3 What Changes with the DUNA
 
@@ -274,7 +285,7 @@ When a member wants to exit, they use the existing DApp withdrawal page:
 
 5. **Governance clarity:** We have a for-profit C-corp (TrueTech Inc) as a DAO-operated facility and a DAO with token voting rights. How do we structure the UNA/DUNA so TDG holders are clearly voting on DAO matters, and TrueTech Inc is clearly a facility — not the thing being governed?
 
-6. **TDG buyback → burn:** Currently, when a member wants to exit, they submit a withdrawal request via our DApp, TrueTech Inc issues cash, and the member's TDG balance is deducted. Can this continue as-is under a DUNA structure, or does the DUNA need to be the one issuing the cash?
+6. **TDG buyback → burn:** Currently, when a member wants to exit, they connect their wallet on the DApp, select a Withdrawal Method (PIX, PayLah, Venmo, Zelle, PayPal, WiseTransfer, Western Union), enter their details, and submit. TrueTech Inc issues cash via the selected method and the member's TDG balance is deducted. Can this continue as-is under a DUNA structure, or does the DUNA need to be the one issuing the cash?
 
 7. **Impact fund capital:** Can a Wyoming UNA issue governance tokens (TDG) to impact funds in exchange for capital contributions, without creating securities law or nonprofit distribution concerns?
 
