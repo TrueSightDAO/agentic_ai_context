@@ -59,6 +59,72 @@ Brazilian LTDA (CNPJ) = export facility (eventual future goal)
 
 ---
 
+## Ecosystem Map
+
+```mermaid
+graph TD
+    subgraph SupplyChain["Supply Chain — Commercial (TrueTech Inc)"]
+        Farmers["Farmers (Brazil)"] -->|Sell cacao| Matheus["Matheus / CNPJ"]
+        Matheus -->|Export| TrueTech["TrueTech Inc"]
+        TrueTech -->|Import & distribute| Retailers["Retailers (Nora, etc.)"]
+        Retailers -->|Sell for profit| Consumers["Consumers"]
+        Manufacturers["Manufacturer"] -->|Processing fee| TrueTech
+        Freight["Freight Forwarder"] -->|Shipping fee| TrueTech
+        AGL["AGL Financiers"] -->|Working capital| TrueTech
+        TrueTech -->|Repayment + fee| AGL
+    end
+
+    subgraph DAOGovernance["DAO Governance — Mission (UNA)"]
+        Contributors["Contributors (time)"] -->|Labor| UNA["Wyoming UNA"]
+        ExpenseContributors["Contributors (expenses)"] -->|Cash for DAO costs| UNA
+        UNA -->|TDG voting rights| Contributors
+        UNA -->|TDG voting rights| ExpenseContributors
+        ImpactFunds["Impact Funds"] -->|Grants| UNA
+        FamilyOffices["Family Offices"] -->|Capital| UNA
+        UNA -->|Impact reports + carbon credits| ImpactFunds
+        UNA -->|Impact reports + carbon credits| FamilyOffices
+    end
+
+    subgraph Licensing["Technology Licensing — Revenue (TrueTech Inc)"]
+        Bilal["Bilal (Butterfly Effect)"] -->|License fee| TrueTech
+        Liz["Liz"] -->|License fee| TrueTech
+        FutureLicensees["Future Licensees"] -->|License fee| TrueTech
+        TrueTech -->|Sophia instance + Edgar protocol| Bilal
+        TrueTech -->|Sophia for deal flow + Edgar for trading| Liz
+        TrueTech -->|Self-hosted instance| FutureLicensees
+    end
+
+    subgraph CapitalInvestment["Capital Investment — Future (TrueTech Inc)"]
+        VCs["Venture Capital"] -->|Capital for tech build| TrueTech
+        TrueTech -->|Equity or revenue share| VCs
+    end
+
+    subgraph RevenueDistribution["Revenue Distribution"]
+        TrueTech -->|Licensing surplus| Buyback["TDG Buyback (DApp)"]
+        Buyback -->|Burns TDG| NAVGrowth["NAV per TDG increases"]
+        NAVGrowth -->|Benefits| Contributors
+        NAVGrowth -->|Benefits| ExpenseContributors
+        DAOGovernance["DAO Governance"] -->|Sets| LicenseTerms["License terms & margin"]
+        LicenseTerms -->|Controls| TrueTech
+    end
+
+    subgraph ExitPaths["Exit Paths"]
+        Contributors -->|DApp withdrawal| TrueTechBuyback["TrueTech buys at NAV"]
+        TrueTechBuyback -->|TDG burned| Done["Exited"]
+        AGL -->|Contract ends| Done
+        ImpactFunds -->|No exit needed| Done
+        VCs -->|Sell stake| Done
+        Bilal -->|Subscription ends| Done
+    end
+
+    style UNA fill:#FF9933,stroke:#3E2723,color:#3E2723
+    style TrueTech fill:#3E2723,stroke:#FF9933,color:#FF9933
+    style Buyback fill:#FF9933,stroke:#3E2723,color:#3E2723
+    style NAVGrowth fill:#FF9933,stroke:#3E2723,color:#3E2723
+```
+
+---
+
 ## Capital Channels: How Partners Inject Resources, What They Get, How They Exit
 
 ### Channel 1: Contributors (Time / Labor)
@@ -124,12 +190,12 @@ Brazilian LTDA (CNPJ) = export facility (eventual future goal)
 **Why this is future optionality, not now:**
 - TrueTech Inc currently has **no retained asset base** — it's a pass-through trading company. Capital comes in, shipment sells, 80% returns to financier, 20% retained as thin reserve.
 - No IP, no hard assets, no growing balance sheet to invest in.
-- **If** a licensing model emerges (e.g. Edge & Node wants its own instance of the DAO stack), TrueTech Inc would have recurring licensing revenue + IP assets — making it VC-investable.
+- **If** a licensing model emerges (e.g. Bilal from Butterfly Effect Club wants his own Sophia instance for his investment fund), TrueTech Inc would have recurring licensing revenue + IP assets — making it VC-investable.
 
 **Licensing scenario:**
 ```
 TrueTech Inc builds software stack (Edgar, DApp, oracle, QR system)
-    → Licenses to orgs like Edge & Node who want their own instance
+    → Licenses to orgs like Butterfly Effect Club who want their own instance
     → Licensing revenue feeds buyback reserve
     → TrueTech Inc now has an asset base → VC-investable
 ```
@@ -164,7 +230,52 @@ The code can be cloned. The network of verified farmers, provenance data, and go
 
 **Counterparty:** TrueTech Inc (for-profit).
 
-**Why this matters:** Organizations like Edge & Node (Bella) have expressed interest in running their own instance. They don't want their data inside someone else's system. A self-hosted licensing model solves this.
+**Why this matters:** Bilal (Butterfly Effect Club) wants to use Sophia for his investment fund to support a team of 5. Liz wants to use Sophia for deal flow management and Edgar's protocol for her own trading operations. Both want their own instance — their data stays with them. A self-hosted licensing model solves this.
+
+---
+
+## Revenue Distribution Model
+
+### The Principle
+
+The DAO is the **proving ground** — it surfaces bugs, edge cases, and feature gaps through real operations. The technology gets battle-tested here, then the polished product gets licensed out.
+
+### The Flow
+
+```
+Licensing revenue → TrueTech Inc (collects)
+    → TrueTech Inc margin (operational costs, support, hosting)
+    → Surplus → TDG buyback from DApp → burned
+    → All TDG holders benefit via NAV growth
+```
+
+### Who Governs the Terms
+
+| What | Who Decides |
+|------|-------------|
+| Minimum license fee | DAO governance (TDG vote) |
+| TrueTech Inc margin cap | DAO governance (TDG vote) |
+| Buyback allocation % | DAO governance (TDG vote) |
+| Licensee approval | DAO governance (TDG vote) |
+
+### Why This Works
+
+- **TrueTech Inc** handles the commercial side (contracts, invoices, support, liability) — it's a for-profit C-corp, so it can do this cleanly
+- **The UNA** never touches the money directly — avoids UBIT and 501(c)(3) jeopardy
+- **TDG holders** benefit through NAV growth (buyback → burned → deflationary pressure) — not through direct revenue distribution
+- **DAO governance** controls the economics without touching the money — sets the terms, TrueTech Inc executes
+
+### The Data Flywheel Moat
+
+```
+Ecosystem → raw operational data → DAO operations
+    → Sophia + Edgar learn and improve
+    → Better automation, better protocols
+    → Licensed back to new orgs
+    → More data from licensees (anonymized) → flywheel accelerates
+```
+
+The code can be cloned. The network of verified farmers, provenance data, and governance trust cannot. And that network lives in the **UNA** — governed by TDG holders — not in TrueTech Inc.
 
 ---
 
@@ -192,9 +303,9 @@ Any new capital channel must not destabilize the TDG buyback mechanism. TrueTech
 
 ## The One Question for SVH Capital
 
-> *"We're forming a Wyoming UNA via OtoCo this week. TDG is issued to contributors for work (cacao logistics, contribution scoring, development, onboarding) and grants governance rights. An independent affiliated C-corp (TrueTech Inc) may, at its discretion, buy back TDG at net asset value (total DAO assets ÷ total TDG issued) from its own operating cash. Does TDG constitute a security under Howey?"*
+> "We're forming a Wyoming UNA via OtoCo this week. TDG is issued to contributors for work and grants governance rights. An independent affiliated C-corp (TrueTech Inc) may, at its discretion, buy back TDG at net asset value (total DAO assets ÷ total TDG issued) from its own operating cash. Does TDG constitute a security under Howey?"
 
-That's it. The structure is resolved. We don't need advisory on governance, impact mechanics, or entity design. We just need a narrow legal opinion on whether TDG — including the buyback feature — is a security.
+The structure is resolved. We just need a narrow legal opinion on whether TDG — including the buyback feature — is a security.
 
 ---
 
@@ -202,13 +313,13 @@ That's it. The structure is resolved. We don't need advisory on governance, impa
 
 | Thing | Why Not | When |
 |-------|---------|------|
-| Impact fund channel | No committed backend. TrueTech Inc handles commercial flows only. Impact/donation money would need the UNA's own bank account + 501(c)(3). | When a genuine donation-type funder appears |
-| UNA bank account | TrueTech Inc handles all current money flows. No need. | Only if impact fund capital requires a separate home |
-| 501(c)(3) application | Costs $2K-10K. Not needed until impact funds require tax-deductible receipts. | 6-12 months |
-| Brazilian CNPJ ownership | Costs $1K-3K + legal counsel. Matheus's private CNPJ works for now. | Future |
-| DUNA formation | Requires 100+ members by mutual consent. UNA works as stopgap. | When eligible |
-| Multi-entity accounting | $2K-5K/yr. Not needed at current scale. | When revenue grows |
-| VC investment | TrueTech Inc has no retained asset base yet. Licensing model needed first. | If licensing revenue materializes |
+| Impact fund channel | No committed backend | When a donation-type funder appears |
+| UNA bank account | TrueTech handles all flows | Only if impact fund capital requires it |
+| 501(c)(3) application | $2K-10K | 6-12 months |
+| Brazilian CNPJ ownership | $1K-3K + counsel | Future |
+| DUNA formation | Need 100+ members by consent | When eligible |
+| Multi-entity accounting | $2K-5K/yr | When revenue grows |
+| VC investment | No retained asset base yet | If licensing revenue materializes |
 
 ---
 
