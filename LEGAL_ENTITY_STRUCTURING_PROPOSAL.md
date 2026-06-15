@@ -56,7 +56,7 @@ Brazilian LTDA (CNPJ) = export facility (eventual future goal)
 | TrueTech Inc | Independent entity, not a DUNA subsidiary. Separate cap table. Contractual relationship. Avoids UBIT. |
 | Bank accounts | **One account** — TrueTech Inc handles everything. UNA doesn't need its own. |
 | TDG buyback | TrueTech may buy back at NAV using operating cash. Formula on truesight.me. Discretionary, not guaranteed. |
-| Wise | Primary banking platform. Handles standard transfers + PIX. Venmo/Zelle/Western Union executed manually. |
+| Wise | Primary banking platform. $0 to open, no minimum deposit. Handles standard transfers + PIX. Venmo/Zelle/Western Union executed manually. |
 | Withdrawal flow | Member submits DApp request → TrueTech issues cash → TDG deducted from ledger → burned |
 
 ---
@@ -66,9 +66,9 @@ Brazilian LTDA (CNPJ) = export facility (eventual future goal)
 | Action | Cost | Timeline |
 |--------|------|----------|
 | Form UNA via OtoCo (2 wallets sign) | ~$50 gas | 1 day |
-| Open TrueTech Inc Wise Business account | $0-500 | 1-2 days |
+| Open TrueTech Inc Wise Business account | **$0** (no fees, no minimum deposit) | 1-2 days |
 
-**Total cost: ~$50-550.** We have ~$4,126 in the Main Ledger.
+**Total cost: ~$50.** We have ~$4,126 in the Main Ledger.
 
 ---
 
