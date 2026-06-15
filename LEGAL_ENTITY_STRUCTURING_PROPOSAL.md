@@ -236,12 +236,24 @@ When a member wants to exit, they use the existing DApp withdrawal page:
 
 ### 6.3 What Changes with the DUNA
 
+The buyback budget and price are already fully automated by the existing tokenomics GAS script:
+
+| Metric | Formula | Current Value |
+|--------|---------|--------------|
+| **Buyback budget** | (30-day sales ÷ 30) × min(Asset/TDG, 1 - Treasury yield) | **$0.093/day** |
+| **Buyback price** | Total DAO assets ÷ Total TDG issued | **$0.0067/TDG** |
+| **Execution** | `createDailyTdgBuyBackTransactions()` — creates ledger entries daily | ✅ Automated |
+
+With the DUNA, the only change is the source account — from Gary's personal account to TrueTech Inc's Wise account. The automation stays the same.
+
 | Aspect | Today | With DUNA |
 |--------|-------|-----------|
 | **Who issues cash** | TrueTech Inc (from Gary's personal account) | TrueTech Inc (from its own Wise account via API) |
-| **Who authorizes** | Gary manually | DUNA governance sets buyback budget; Wise API executes |
+| **Who authorizes** | Automated — GAS script calculates budget daily | Same — DUNA governance can adjust formula |
+| **Buyback price** | Automated — ASSET_PER_TDG_ISSUED ($0.0067) | Same — formula-driven |
+| **Buyback budget** | Automated — $0.093/day from 30-day sales × asset/TDG | Same — scales with revenue |
 | **TDG deduction** | Ledger entry | Same — ledger entry |
-| **Transparency** | Manual record | On-chain via Edgar API + Wise API reconciliation |
+| **Transparency** | On-chain via Edgar API + Wise API reconciliation | Same |
 
 ---
 
