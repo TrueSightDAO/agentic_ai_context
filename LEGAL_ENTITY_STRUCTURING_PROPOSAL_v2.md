@@ -44,8 +44,7 @@ flowchart TD
 
     subgraph Buyback["Revenue Distribution"]
         TrueTech -->|Surplus after costs| BuybackReserve["Buyback Reserve"]
-        BuybackReserve -->|Buys TDG from DApp| Burn["TDG Burned"]
-        Burn -->|NAV increases| AllHolders["All TDG Holders Benefit"]
+        BuybackReserve -->|Boosts NAV| AllHolders["All TDG Holders Benefit"]
     end
 
     UNA -.->|Governs terms via TDG vote| TrueTech
@@ -147,8 +146,8 @@ flowchart TD
 ```
 Licensing revenue → TrueTech Inc (collects)
     → TrueTech Inc margin (operational costs)
-    → Surplus → TDG buyback from DApp → burned
-    → All TDG holders benefit via NAV growth
+    → Surplus → Buyback reserve → Boosts NAV per TDG
+    → All TDG holders benefit
 
 DAO governance (TDG holders) sets:
     - Minimum license fee
@@ -156,7 +155,7 @@ DAO governance (TDG holders) sets:
     - Buyback allocation percentage
 ```
 
-The UNA never touches the money directly (nonprofit constraint). But TDG holders control the economics through governance.
+The UNA never touches the money directly (nonprofit constraint). But TDG holders control the economics through governance. The surplus from licensing directly increases the NAV calculation (total assets ÷ total TDG), making every holder's TDG more valuable.
 
 ---
 
@@ -184,14 +183,13 @@ And that data lives in the **UNA/DUNA** — governed by TDG holders — not in T
 
 ## Design Constraints
 
-### Ecosystem Stability
+### NAV Is the Natural Lockup
 
-If impact funds or VCs come in with large capital, they get TDG. More TDG in circulation = more potential redemption demand. If too many holders try to cash out at once, TrueTech Inc's operating cash might not cover it.
+If a fund buys TDG at $1/TDG and current NAV is ~$0.0018/TDG, they're already locked by economics — cashing out would mean a 99.8% loss. No artificial vesting schedules needed. The NAV itself is the natural lockup.
 
-**Guardrails:**
-1. **Tiered TDG with lockups** — Funds that come in get TDG with vesting schedules. Contributors (time/labor) have no lockup — they earned it.
-2. **Buyback queue with priority** — When reserves are insufficient, redemptions are queued. Contributors get priority over capital-injected holders.
-3. **Published reserve cap** — The formula on truesight.me states: "Total outstanding TDG eligible for redemption is capped at X months of TrueTech's operating cash reserves."
+### Buyback Capacity
+
+TrueTech Inc's buyback capacity is its available operating cash flow, published as a formula on truesight.me (e.g. X% of monthly sales volume). Buybacks are discretionary, not guaranteed. If reserves are insufficient, redemptions are queued and filled as new revenue comes in.
 
 ### NAV Reality Check
 
@@ -216,7 +214,7 @@ Both want their own instance — their data stays with them. This validates the 
 
 2. **AGL securities question:** Individuals finance cacao shipments for a return from sale proceeds. Does this pattern raise a separate securities question under Reves (promissory note / investment contract)?
 
-3. **Revenue distribution:** If licensing revenue flows to TrueTech Inc and surplus is used for TDG buyback, does this create any securities or tax concerns for the UNA?
+3. **Revenue distribution:** If licensing revenue flows to TrueTech Inc and surplus is used to boost NAV via the buyback reserve, does this create any securities or tax concerns for the UNA?
 
 4. **Carbon credits:** Can the UNA grant future carbon credit rights to commercial funders without jeopardizing its nonprofit status or creating UBIT?
 
