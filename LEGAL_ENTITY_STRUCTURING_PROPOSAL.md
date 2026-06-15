@@ -238,10 +238,10 @@ When a member wants to exit, they use the existing DApp withdrawal page:
 
 | Aspect | Today | With DUNA |
 |--------|-------|-----------|
-| **Who issues cash** | TrueTech Inc (from Gary's personal account) | TrueTech Inc (from its own Wise account) |
-| **Who authorizes** | Gary manually | DUNA governance can set buyback budget |
+| **Who issues cash** | TrueTech Inc (from Gary's personal account) | TrueTech Inc (from its own Wise account via API) |
+| **Who authorizes** | Gary manually | DUNA governance sets buyback budget; Wise API executes |
 | **TDG deduction** | Ledger entry | Same — ledger entry |
-| **Transparency** | Manual record | On-chain via Edgar API |
+| **Transparency** | Manual record | On-chain via Edgar API + Wise API reconciliation |
 
 ---
 
