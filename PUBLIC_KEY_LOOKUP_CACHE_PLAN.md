@@ -1,12 +1,12 @@
 # Public-Key Lookup Cache — Content-Addressed Per-Key Store — Execution Roadmap
 
-**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361).
+**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — see [truesight_autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230).
 **Repos under change:** `tokenomics` (generator GAS), `treasury-cache` (data surface),
 `truesight_autopilot` (reader), `dapp` (later consumer).
 **Designed by:** Gary Teh + Claude · **Implemented by:** TBD (open PRs; `truesight_autopilot`
 is own-repo / human-merge gated).
 
-> **RESUME HERE:** PR3 — reader point-lookup · `truesight_autopilot/app/governor_registry.py`
+> **RESUME HERE:** PR4 — deploy + UAT · deploy PR3 to beta autopilot, smoke-test resolve_key(), then promote to prod
 >
 > **⚠️ ONE PR PER TURN (mandatory — `OPERATING_INSTRUCTIONS.md §5a`):** an execution turn does
 > **exactly the single `RESUME HERE` PR, opens it, reports the contribution, ticks the tracker,
