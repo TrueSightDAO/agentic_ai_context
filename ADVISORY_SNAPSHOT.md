@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-16T11:41:14Z`
+- Generated (UTC): `2026-06-16T17:32:00Z`
 - Look-back: **7** calendar days (`2026-06-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -42,9 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260615164743_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: The `/ping` endpoint only handles GET requests, bu…
-- `Edgar_20260615164936_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260615165049_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Diagnose & fix HEAD /ping 405 on dao_protocol (expense report submission bro…
 - `Edgar_20260615172315_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T17:23:14.662Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260615172526_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T17:25:26.356Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260615211612_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Finished chatting with Eugene who was introduced by Fadi
@@ -62,6 +59,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260616030451_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Discussions on
 - `Edgar_20260616032147_035` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-16T03:21:47.490Z · Email: garyjob@gmail.com
 - `Edgar_20260616032214_037` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-16T03:22:14.802Z · Email: garyjob@gmail.com · Verification Key: PrWn0wOBiv6sZLAAqCTE-KrfVDJUdSIry2hivXt6vGM
+- `Edgar_20260616133847_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add BUY_BACK_RESERVE to Performance Statistics sync …
+- `Edgar_20260616134536_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add a `?action=triggerSync` handler to the `doGet` f…
+- `Edgar_20260616162051_043` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-16T16:20:51.767Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -303,6 +303,12 @@ _All dated lines on/after 2026-06-09_ (7):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ad43e40 | 2026-06-16 10:30:52 -0700 | Add provisions table rendering JavaScript (#246)
+5f42a97 | 2026-06-16 10:30:46 -0700 | Add provisions history table to buy-back reserve detail page (#245)
+9c5406d | 2026-06-16 10:17:40 -0700 | Fix buy-back reserve detail page: use JSON cache + correct GAS URL (#244)
+e7a20b5 | 2026-06-16 06:42:15 -0700 | Create buy-back reserve detail page (#243)
+b1acf88 | 2026-06-16 06:42:09 -0700 | Add Accumulated Buy-Back Reserve stat card and detail page (#242)
+bcc0c24 | 2026-06-16 11:54:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a757252 | 2026-06-16 06:12:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7e527a7 | 2026-06-15 22:32:01 -0700 | Add buy-back budget blog post to blog index (#241)
 2bf3d30 | 2026-06-15 20:19:40 -0700 | Center Sophia avatar image in blog post (#240)
@@ -337,12 +343,6 @@ b0e3afa | 2026-06-13 11:07:03 -0700 | Add hyperscaler monetization collapse argu
 280ccbb | 2026-06-13 10:20:56 -0700 | Add LKY self-imposed constraint parallel to blog post (#220)
 e45cd9b | 2026-06-13 10:19:11 -0700 | Add new post to blog index with LKY image (#219)
 8103bfb | 2026-06-13 10:19:06 -0700 | New post: Agentic AI and the Common Law Tradition (with LKY image) (#218)
-bd0bb81 | 2026-06-13 10:19:00 -0700 | Add Lee Kuan Yew public domain photo for blog post
-96ea59c | 2026-06-13 14:39:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3f1820d | 2026-06-13 09:43:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
-204e271 | 2026-06-13 05:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0a6b4aa | 2026-06-12 21:54:13 -0700 | Add detail about people coming back for seconds of cacao (#213)
-8ab6d9c | 2026-06-12 21:43:59 -0700 | Add Alina, students, and group hug ending to blog post (#212)
 … (truncated)
 ```
 
@@ -355,6 +355,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+273da1d | 2026-06-16 10:28:54 -0700 | Add STATS_CARD_PATTERN.md — the TrueSight Stats Card pattern (#521)
+a299638 | 2026-06-16 04:41:37 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
+d59c4bb | 2026-06-16 04:41:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 3b5c3fe | 2026-06-15 23:06:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
 a7839dd | 2026-06-15 23:05:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 e11f535 | 2026-06-15 21:26:37 -0700 | Merge pull request #520 from TrueSightDAO/auto/advisory-refresh-2026-06-16
@@ -392,15 +395,20 @@ d40fd13 | 2026-06-14 16:58:48 -0700 | Update PDF with parallel Wise accounts + b
 59bee80 | 2026-06-14 16:57:51 -0700 | Add parallel Wise accounts timeline + existing buyback infra documentation (#499)
 0e16a5c | 2026-06-14 16:42:21 -0700 | Final structure: TrueTech Inc as facility, TDG buyback→burn, impact fund pathways (#498)
 93f5599 | 2026-06-14 15:21:17 -0700 | Update PDF with service provider links (OtoCo, Wise)
-55d3542 | 2026-06-14 15:20:51 -0700 | v7: Add service provider links (OtoCo, Wise) (#496)
-6e5622c | 2026-06-14 15:08:58 -0700 | v6: CTA clarification — only Gary reports as beneficial owner (#495)
-0d0b1fd | 2026-06-14 14:44:11 -0700 | Legal Entity Structuring Proposal v5 — Corrected Treasury, DUNA-Owned CNPJ (#494)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+d09d6f8 | 2026-06-16 09:08:11 -0700 | Fix: use absolute values for provision amounts (#358)
+09ac3a3 | 2026-06-16 09:05:51 -0700 | Remove commit_and_push from script — workflow handles it (#357)
+34df3ca | 2026-06-16 07:10:03 -0700 | Fix: write cache to current directory, not hardcoded path (#356)
+162356c | 2026-06-16 07:02:56 -0700 | Add buy-back reserve cache builder script (#355)
+63f8457 | 2026-06-16 06:50:56 -0700 | Add getCredentials() function to tdg_wix_dashboard.gs for clasp deploy compatibility (#354)
+40fe460 | 2026-06-16 06:46:44 -0700 | Add ?action=triggerSync handler to doGet for remote sync triggering (#353)
+d761af3 | 2026-06-16 06:45:49 -0700 | [autopilot] Fix google_app_scripts/tdg_asset_management/tdg_wix_dashboard.gs (#352)
+b763976 | 2026-06-16 06:42:03 -0700 | [autopilot] Add BUY_BACK_RESERVE to Performance Statistics sync in tdg_w (#351)
 15298bf | 2026-06-14 14:59:28 -0700 | fix: align [PARTNER ADD EVENT] handler with existing DAO Partners column format (#349)
 74cc56e | 2026-06-14 14:49:04 -0700 | fix: add process_partner_add_telegram_logs.gs to find_nearby_stores manifest (#348)
 dae9818 | 2026-06-14 14:48:40 -0700 | feat: add processPartnerAddsFromTelegramChatLogs GAS handler (#347)
@@ -606,7 +614,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/16/2026 3:51:23 |
+| 2026-06 | 759.35 | 15736.46386 | 6/16/2026 9:53:29 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-09`; scanned last **522** data rows)
 
