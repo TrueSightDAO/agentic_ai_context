@@ -35,8 +35,9 @@ Every decision Sophia makes resolves through a single policy layer:
   set. **One Sophia instance per org** (decided) — full isolation.
 - **Surface** (group / topic / DM) → an **engagement mode** (proactive vs addressed-only) and a
   transparency requirement.
-- **Identity** (who's speaking) → resolved from `telegram_id → Contributors contact (Column X)
-  → Governors cache`. Unbound = **guest**.
+- **Identity** (who's speaking) → resolved from `telegram_id → Contributors contact (Column X,
+  numeric Telegram ID) → Governors cache`. Unbound = **guest**. Column **H** holds the
+  **Telegram Handle** (`@username`) for display/audit only — never the authorization key.
 - **Action-class** → `read` (open) vs `write/admin` (governor) vs `secrets` (never in chat;
   vault page only).
 
@@ -83,7 +84,8 @@ governor-cache) — credential mutation was never a Telegram action.
 - [ ] Confirm the Governors cache (`governor_registry`) is the single source of truth for
       governor status, keyed by an identifier reachable from `Contributors contact information`.
 - [ ] Confirm `Contributors contact information` has a usable **Column X** for the numeric
-      telegram_id, and `Contributors Digital Signatures` has **Column D** (verified) + **Column
+      telegram_id and **Column H** for the **Telegram Handle** (`@username`), and
+      `Contributors Digital Signatures` has **Column D** (verified) + **Column
       G** (challenge artifact) + a **Verification Key Consumed** flag.
 - [ ] Confirm the existing `[EMAIL REGISTERED EVENT]`/`[EMAIL VERIFICATION EVENT]` plumbing can
       be reused for code mint + consume (adapt link → paste-back code).
@@ -130,7 +132,7 @@ governor-cache) — credential mutation was never a Telegram action.
 |----|-------------|
 | 1.1 | Challenge mint: generate the Verification Key (reuse), store **hash in Column G** (never plaintext), email the **plaintext code** to the address on file; **sign the email** with Sophia's key (authenticity). Abuse controls: 15-min expiry, ≤5 attempts, rate-limit per telegram_id + per email, one pending per pair (newest supersedes), no governor-enumeration. |
 | 1.2 | **Move-to-DM** — the code exchange happens in DM (email + code never group-visible); verification is the one thing an *unverified* user may do in DM. |
-| 1.3 | Consume + bind: hash the pasted code, compare to Column G → set **Column D = verified**, **Verification Key Consumed = true**, write **Column X = numeric telegram_id**. Emit an `[IDENTITY BINDING EVENT]` for audit (never the code). |
+| 1.3 | Consume + bind: hash the pasted code, compare to Column G → set **Column D = verified**, **Verification Key Consumed = true**, write **Column X = numeric telegram_id** and **Column H = Telegram Handle (`@username`)**. Emit an `[IDENTITY BINDING EVENT]` for audit (never the code). |
 | 1.4 | **Re-bind alerts + revocation** — notify existing governors + the email owner on a new binding ("@handle linked to X — revoke if not you"); any governor can revoke; re-bind supersedes. |
 | 1.5 | Tests: happy path; wrong code (attempts decrement); expired; replay (consumed key dead); plaintext never written to G; non-governor email verifies as member (no privilege). |
 
@@ -200,6 +202,24 @@ Deploy each phase via the targeted path (`git checkout -B main origin/main` on t
 touching the TrueSight instance.
 
 ## 9. Resume tracker (vault-first order)
+
+> **Build-status note (2026-06-16, audited against `truesight_autopilot@main 0f9d0a9`):** the
+> checkboxes below predate the code. Actual state in the repo:
+> - **Step A — Phase 0.1 (identity resolver):** `app/policy.py` exists and is wired into
+>   `main.py`, **but** resolves governors via an **env allowlist + display-name match**, not yet
+>   the `telegram_id → Column X → Governors cache` sheet lookup (TODO comment in `policy.py`).
+> - **Step B — Phase 3 (vault):** `app/vault.py` + `vault_routes` + vault UI templates shipped
+>   and merged (durability fixes through PR #214, 2026-06-15). Substantially done.
+> - **Step D — Phase 1 (identity binding):** `app/identity_binding.py` fully built **with tests**
+>   (mint/verify/bind/revoke/status), **but not wired into the Telegram adapter** — no `/verify`
+>   command, no callers. Column mapping corrected to **X=ID / H=Handle** in PR #221.
+> - **Step E — Phase 2 (engagement modes):** `app/engagement.py` shipped with tests.
+> - **Topic-role architecture** (`AUTOPILOT_TOPIC_ROLE_ARCHITECTURE.md`): `app/roles.py` shipped,
+>   wired into `main.py` + `telegram_adapter.py` (role menu, tool gating, per-topic role). That
+>   doc's resume tracker is also stale — PR1 is effectively done.
+>
+> Net: the *modules* for Phases 0.1/1/2/3 + topic-roles exist; the *remaining glue* is the
+> Column-X read-side resolver in `policy.py` and exposing identity-binding as a Telegram flow.
 
 | Step | PRs opened | Merged (human) | Deployed | UAT |
 |------|-----------|----------------|----------|-----|
