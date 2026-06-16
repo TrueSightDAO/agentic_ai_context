@@ -7,6 +7,12 @@
 is own-repo / human-merge gated).
 
 > **RESUME HERE:** PR1 — generator emits `public_keys/<sha256>.json` files (additive, no reader change).
+>
+> **⚠️ ONE PR PER TURN (mandatory — `OPERATING_INSTRUCTIONS.md §5a`):** an execution turn does
+> **exactly the single `RESUME HERE` PR, opens it, reports the contribution, ticks the tracker,
+> and STOPS.** Do **not** chain PR1→PR2→PR3 in one turn — that is what choked Sophia on
+> 2026-06-16 (whole-roadmap turn exhausted the 30-round cap → empty response). The next turn
+> resumes the next PR.
 
 ---
 
@@ -183,6 +189,8 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 
 > **RESUME HERE:** PR1 — generator emits `public_keys/<sha256>.json` (additive). Open PRs;
 > human-merge `truesight_autopilot`. Report the DAO contribution after each unit before the next.
+> **One PR per turn:** do PR1 and STOP; the next turn picks up PR2. Never run multiple PRs in a
+> single turn (`OPERATING_INSTRUCTIONS.md §5a`).
 
 | Unit | PR opened | Merged | Deployed | Contribution reported | UAT |
 |------|-----------|--------|----------|-----------------------|-----|

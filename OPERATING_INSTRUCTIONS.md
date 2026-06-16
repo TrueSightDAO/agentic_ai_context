@@ -88,13 +88,45 @@ You may add or update context only in the following ways.
 A compliant roadmap includes:
 
 - A **pre-flight checklist** — access, credentials, prerequisites, and decisions to confirm *before* coding.
-- A **sequenced plan** — the ordered units of work (e.g. `PR0…PRn`), each independently shippable.
+- A **sequenced plan** — the ordered units of work (e.g. `PR0…PRn`), each independently shippable **and each sized to exactly ONE PR per execution turn** (see §5a below — this is mandatory, not stylistic).
 - A **resume tracker** — a status row per unit (e.g. `merged ☐` / `contribution reported ☐`) plus a prominent **"RESUME HERE"** pointer to the first unfinished step.
 - A **UAT phase** (User Acceptance Testing — see `GLOSSARY.md`) — the **human-tested** steps to validate the end-to-end experience before go-live, on the **beta staging** stack (never prod, never real money). Each UAT step states: the **digital surface / URL** to open, **what to expect** there, the **user interaction** to perform (click/scan/pay with a test card, etc.) and **what to eyeball**, and the **acceptance criterion** (pass/fail). This is for anything with a human-facing surface (a page, a checkout, a scan flow); a pure backend/library change can say "UAT: n/a (covered by automated tests)".
 
 Keep the roadmap **tracked and current**: update the resume tracker as each unit lands. Per the contribution convention, after each unit merges, **report the DAO contribution before starting the next** (see `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`).
 
 **Reference example:** `EDGAR_DAO_EXTRACTION_PLAN.md` (Edgar → `dao_protocol` extraction).
+
+---
+
+## 5a. One PR per turn — scope every plan so Sophia doesn't choke (MANDATORY)
+
+**Every implementation plan, execution roadmap, and checklist in this workspace MUST be
+scoped so that a single execution turn does exactly ONE PR's worth of work — then stops.**
+This applies to all LLMs (Claude, Cursor, Sophia, Codex, Gemini, etc.), not just Sophia.
+
+**Why (root-caused 2026-06-16, `CONTEXT_UPDATES.md`):** the autopilot runs each turn under a
+hard tool-round cap (`CHAT_MAX_TOOL_ROUNDS`, default **30**). A turn that tries to execute a
+whole multi-repo roadmap calls a tool every round, never converges to a final answer, exhausts
+the cap, and the forced final completion comes back as DSML leakage stripped to empty → the
+governor sees **"⚠️ Autopilot produced an empty response."** The turn burned minutes and
+produced nothing. A turn scoped to one PR (read the few files it needs → make the change →
+open the PR → report) finishes comfortably inside the budget.
+
+**How to comply when authoring a plan:**
+- Make each `PRn` in the sequenced plan **self-contained and independently shippable** — its own
+  files, its own tests, its own contribution report. No `PRn` should require reading another
+  `PRn`'s in-flight diff.
+- The resume tracker's **"RESUME HERE"** must point at a **single** PR. An execution turn does
+  that one PR and **STOPS** — it does not roll into the next PR in the same turn.
+- Put any cross-PR reads (audits, consumer matrices, design decisions) in the **pre-flight**, so
+  individual PR turns don't have to re-discover them.
+- If a single PR is itself too large to finish in one turn, split it further until each unit fits.
+- Prefer a short **plan-of-record** turn (produce/refresh the roadmap) separate from the
+  execution turns (one PR each).
+
+**How to comply when executing:** pick up the single `RESUME HERE` PR, complete + open it,
+report the contribution, tick the resume tracker, and end the turn. Update the checklist as that
+unit lands (see §4 and the per-task tracker-update rule), then the next turn resumes the next PR.
 
 ---
 
