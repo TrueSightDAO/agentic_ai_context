@@ -67,6 +67,17 @@ description: >
   building the automation.
 ```
 
+### Public-key lookup → content-addressed per-key cache (governor vault scaling)
+**Filed 2026-06-16.** Replace the O(n) `dao_members.json` monolith scan with a
+content-addressed per-key store (`treasury-cache/public_keys/<sha256(pubkey)>.json`) so
+governor checks are point lookups, generation becomes diff-incremental, and the 5-min
+cache-lag bug (a freshly-registered governor key denied at the vault, observed 2026-06-16)
+is retired via force-fresh-on-deny. Full roadmap — pre-flight, sequenced PRs
+(generator → reader → vault auth), checklist, UAT — in **`PUBLIC_KEY_LOOKUP_CACHE_PLAN.md`**.
+RESUME at PR1 (additive generator write). **PR4 (`vault_routes.py`) is held** until the
+in-flight `track_registry` work merges (collision). Interim mitigation for the live lag:
+lower `GOVERNORS_CACHE_TTL` / restart `truesight-vault`.
+
 ### Self-host DeepSeek / local LLM cost analysis
 **Filed 2026-06-14.** Gary asked: at what point does it make sense to self-host
 DeepSeek (or another open-weight model) vs paying API credits for Sophia's
