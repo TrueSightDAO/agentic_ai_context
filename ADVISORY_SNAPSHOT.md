@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-15T21:31:49Z`
-- Look-back: **7** calendar days (`2026-06-08` → today UTC)
+- Generated (UTC): `2026-06-16T04:26:18Z`
+- Look-back: **7** calendar days (`2026-06-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 34
-- `[PRACTICE EVENT]` × 5
-- `[EMAIL REGISTERED EVENT]` × 2
-- `[PARTNER ADD EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
-
-### Latest entries
-
-- `Edgar_20260614232426_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Kopi Bar & Bakery partner page setup — direction & images
-- `Edgar_20260614232427_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Kopi Bar & Bakery partner page setup — execution
-- `Edgar_20260614234420_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix Sophia duplicate text reply on Telegram voice path
-- `Edgar_20260614235336_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Deploy Sophia voice duplicate-text fix to EC2
-- `Edgar_20260614235434_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fixed partner_add.html DApp convention violations: added DAO logo, aria-live…
-- `Edgar_20260615002611_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Replace the hardcoded version "1.0.0" on the EDGAR…
-- `Edgar_20260615002651_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Replace hardcoded version with live Git commit hash on EDGAR DAO Protocol la…
-- `Edgar_20260615031820_003` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
-- `Edgar_20260615053557_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Legal Entity Structuring — Governance & SVH Prep
-- `Edgar_20260615053644_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Legal Entity Structuring — Governance & SVH Prep
-- `Edgar_20260615135516_009` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-15T13:55:16.582Z · Email: garyjob@gmail.com
-- `Edgar_20260615135533_011` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-15T13:55:33.022Z · Email: garyjob@gmail.com · Verification Key: jTPbBbeF-CVB69CoI92_qFM_TfTddfbQFpBXORukgoE
-- `Edgar_20260615140208_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] butterfly-effect-club: The sync_cohort.py script fails immediate…
-- `Edgar_20260615153555_015` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T15:35:55.803Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260615164743_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: The `/ping` endpoint only handles GET requests, bu…
-- `Edgar_20260615164936_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260615165049_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Diagnose & fix HEAD /ping 405 on dao_protocol (expense report submission bro…
-- `Edgar_20260615172315_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T17:23:14.662Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260615172526_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-15T17:25:26.356Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260615211612_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Finished chatting with Eugene who was introduced by Fadi
 
 ---
 
@@ -68,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $3,388 | 8% | `2026-12-31` | 199 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 199 | — |
+| 2026 QR Code Sales | $40,000 | $3,388 | 8% | `2026-12-31` | 198 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 198 | — |
 
 ---
 
@@ -252,17 +214,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,325.13**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$41.17**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -275,10 +233,9 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-09 | claude (subscriptions session) | GTIN MODEL (canonical, confirmed by Gary): the retail GTIN identifies the PRODUCT TYPE, not the unit/vintage — ALL chocolate bars share one chocolate-bar GTIN; ALL ceremonial cacao share one cacao GTIN. The serialized QR code (Agroverse QR codes tab, column A) is the per-unit identity that differentiates farm+vintage and resolves provenance. A vintage-independent "generic" SKU REUSES the existing shared GTIN (never mint a new GTIN per vintage); per-vintage agroverse.shop product pages are presentation sub-views of one GTIN (expect Merchant Center duplicate-GTIN across them). Provenance is always via QR, never GTIN. Documented in AGROVERSE_QR_CODE_BATCH_GENERATION.md §0 + NOTES_tokenomics.md (Agroverse QR codes tab) + CHOCOLATE_SUBSCRIPTION_PLAN.md (Decisions → GTIN model).
 - 2026-06-09 | claude (subscriptions session) | CREDENTIAL HAND-OFF PROTOCOL (new canonical doc CREDENTIAL_HANDOFF_PROTOCOL.md): to get a secret onto a locked-down box an LLM can't SSH (SG blocks 22; box trusts only its own keypair, which lives on the autopilot box), the autopilot box (`sophia`) is the staging hub and Sophia propagates. Rules: never put secrets in chat/Telegram/PRs/commits; move via stdin (mask to prefix+len); chmod 600; stage under /home/ubuntu/ NOT /opt/truesight_autopilot (deploy.sh git-cleans it); prefer sourcing an existing secret (e.g. Stripe test key in sentiment_importer config/environments/development.rb). Then hand off in the Sophia thread (LLM can't post into an existing TG topic — operator drops the line; adapter auto-loads the plan). Pointer added to SOPHIA_HANDOFFS.md. Worked example: beta sandbox Stripe test key staged at ~/stripe_test_key → thread 1955.
 
-_All dated lines on/after 2026-06-08_ (8):
+_All dated lines on/after 2026-06-09_ (7):
 
 - 2026-06-10 | claude-code | UAT (User Acceptance Testing) — end-to-end validation by the governor before signing off on a feature. The beta sandbox endpoint (thread 1955, `beta.edgar.truesight.me`) is the canonical UAT surface for Stripe-touching flows: standalone EC2 in NELANCO, Stripe TEST mode, isolated fulfillment queue. UAT is distinct from CI/E2E tests — it's the human governor running through the real user journey. Future LLMs and Sophia: when a plan says "UAT," it means the governor (Gary) tests end-to-end on the beta staging environment, not in CI.
-- 2026-06-08 | claude (outreach session) | NEW CONVENTION — agent attribution required on every commit + PR: add `Generated-by: <agent>` trailer to commits (squash-merge persists it) + same line in PR body; identifies Sophia vs Claude Code vs Cursor vs Kimi etc. (git author is the human operator). Motivated by the 2026-06-08 oracle outage: Sophia PRs #36/#38/#39 broke oracle.truesight.me prod (index.html SyntaxError from a Didnt apostrophe +
 - 2026-06-09 | claude (subscriptions session) | GTIN MODEL (canonical, confirmed by Gary): the retail GTIN identifies the PRODUCT TYPE, not the unit/vintage — ALL chocolate bars share one chocolate-bar GTIN; ALL ceremonial cacao share one cacao GTIN. The serialized QR code (Agroverse QR codes tab, column A) is the per-unit identity that differentiates farm+vintage and resolves provenance. A vintage-independent "generic" SKU REUSES the existing shared GTIN (never mint a new GTIN per vintage); per-vintage agroverse.shop product pages are presentation sub-views of one GTIN (expect Merchant Center duplicate-GTIN across them). Provenance is always via QR, never GTIN. Documented in AGROVERSE_QR_CODE_BATCH_GENERATION.md §0 + NOTES_tokenomics.md (Agroverse QR codes tab) + CHOCOLATE_SUBSCRIPTION_PLAN.md (Decisions → GTIN model).
 - 2026-06-09 | claude (subscriptions session) | CREDENTIAL HAND-OFF PROTOCOL (new canonical doc CREDENTIAL_HANDOFF_PROTOCOL.md): to get a secret onto a locked-down box an LLM can't SSH (SG blocks 22; box trusts only its own keypair, which lives on the autopilot box), the autopilot box (`sophia`) is the staging hub and Sophia propagates. Rules: never put secrets in chat/Telegram/PRs/commits; move via stdin (mask to prefix+len); chmod 600; stage under /home/ubuntu/ NOT /opt/truesight_autopilot (deploy.sh git-cleans it); prefer sourcing an existing secret (e.g. Stripe test key in sentiment_importer config/environments/development.rb). Then hand off in the Sophia thread (LLM can't post into an existing TG topic — operator drops the line; adapter auto-loads the plan). Pointer added to SOPHIA_HANDOFFS.md. Worked example: beta sandbox Stripe test key staged at ~/stripe_test_key → thread 1955.
 - 2026-06-10 | claude (subscriptions session) | TERM: UAT = User Acceptance Testing — a human walks the real end-to-end flow before go-live (NOT more automated tests). Convention: UAT runs on the BETA staging stack (beta.agroverse.shop + beta.edgar.truesight.me beta dao_protocol in Stripe TEST mode, SANDBOX rows), never prod, with Stripe test cards (4242…) — checkout must show TEST MODE. Prefer beta staging over local for UAT (that's what the beta sandbox is for). New doc GLOSSARY.md. Active: chocolate-bar subscription UAT = thread 1955. Live as of 2026-06-10: beta.agroverse.shop/subscribe/chocolate-bar/=200, beta.edgar webhook=400-on-unsigned (verifying).
@@ -303,6 +260,9 @@ _All dated lines on/after 2026-06-08_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2bf3d30 | 2026-06-15 20:19:40 -0700 | Center Sophia avatar image in blog post (#240)
+da253ef | 2026-06-15 18:10:30 -0700 | Add link to Self-Replication SOP in blog post (#239)
+9732e85 | 2026-06-15 21:34:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f28f13d | 2026-06-15 11:26:02 -0700 | Add all 46 blog posts to index (restore missing older entries) (#238)
 ac11f45 | 2026-06-15 12:51:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0ed1f14 | 2026-06-15 05:41:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -340,9 +300,6 @@ bd0bb81 | 2026-06-13 10:19:00 -0700 | Add Lee Kuan Yew public domain photo for b
 8ab6d9c | 2026-06-12 21:43:59 -0700 | Add Alina, students, and group hug ending to blog post (#212)
 a53ccf0 | 2026-06-12 21:40:49 -0700 | Add Sophia's name, voice, and profile photo story to blog post (#211)
 25cdc00 | 2026-06-12 20:46:32 -0700 | Add Gary's honest reflection — felt like building a toy watching Microsoft demo (#210)
-38e423a | 2026-06-12 20:44:58 -0700 | Add Microsoft and Google demo photos to the opening section (#209)
-9eb63be | 2026-06-12 20:44:38 -0700 | Add photo of Google voice UX demo at TECH FEST 2026
-2da00c4 | 2026-06-12 20:44:37 -0700 | Add photo of Microsoft agentic fleet demo at TECH FEST 2026
 … (truncated)
 ```
 
@@ -355,6 +312,11 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e48dabe | 2026-06-15 18:02:41 -0700 | Add Self-Replication SOP as PDF
+602e508 | 2026-06-15 17:57:13 -0700 | Merge Clone/Fork SOP: add Fork path for new ecosystems (#519)
+79c08e5 | 2026-06-15 17:56:44 -0700 | Add SOP for spawning a new autopilot instance (#517)
+b99699b | 2026-06-15 14:32:03 -0700 | chore(previews): refresh Beer Hall preview (2026-06-15 UTC)
+f5dafad | 2026-06-15 14:32:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-15 UTC)
 2a997fb | 2026-06-15 11:06:46 -0700 | Fix V2: sentiment importer already has subscribers + subscription revenue flowing to NAV (#516)
 e83c167 | 2026-06-15 09:22:11 -0700 | Fix V2: remove unnecessary lockup guardrail, clarify licensing surplus boosts NAV directly (#515)
 58bc9ae | 2026-06-15 09:08:38 -0700 | Add V2 PDF: full capital channels map
@@ -390,11 +352,6 @@ d40fd13 | 2026-06-14 16:58:48 -0700 | Update PDF with parallel Wise accounts + b
 ca393bb | 2026-06-14 13:29:31 -0700 | context: Active-tracks vault bug resolved (truesight_autopilot#203)
 2f03fb3 | 2026-06-14 13:06:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-14 UTC)
 3bfd4fa | 2026-06-14 13:06:27 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-14 UTC)
-aa986cc | 2026-06-14 12:55:20 -0700 | context: log Sophia Kopi Bay stall cascade fixes (#195/#200/#201) + open Active-tracks panel bug
-6f478ba | 2026-06-14 12:22:00 -0700 | chore(plan): all context-management pillars (CM0-CM4) done + deployed 2026-06-14 (#489)
-1a6f6c5 | 2026-06-14 12:15:43 -0700 | chore: add thread 3981 to vault migration handoff manifest
-6f7ea59 | 2026-06-14 12:15:18 -0700 | feat: vault credential migration plan + roadmap (#488)
-e403d64 | 2026-06-14 12:02:55 -0700 | docs: refresh Edgar/Perch naming across all canonical context files (#486)
 … (truncated)
 ```
 
@@ -457,8 +414,6 @@ c90a0d4 | 2026-06-13 17:28:35 -0700 | chore: refresh Agroverse store inventory s
 8cba6bb | 2026-06-11 10:59:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a68906a | 2026-06-10 10:35:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5ce8b7a | 2026-06-09 10:04:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b082748 | 2026-06-08 11:30:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-d4be99b | 2026-06-08 11:22:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -525,21 +480,6 @@ c23c573 | 2026-06-09 09:13:18 -0700 | fix: add missing arrayBufferToBase64 funct
 9de9c02 | 2026-06-09 06:46:03 -0700 | fix: bump dao-client from 1.1.0-rc.1 to 1.1.0-rc.3 (fixes constructor crash) (#50)
 677aff7 | 2026-06-09 06:27:21 -0700 | fix: show credentials link after DAO identity verification + add JSDom test suite (#49)
 63fed34 | 2026-06-08 17:10:30 -0700 | [autopilot] PR2 — Oracle migration to @truesight_dao/dao-client high-lev (#47)
-1493693 | 2026-06-08 15:39:22 -0700 | feat: fire-and-forget daily briefing trigger after governor's reading (#46)
-f7f4575 | 2026-06-08 15:35:57 -0700 | Update dao-client CDN URL to @1.1.0-rc.1 for testing (#45)
-1abc49b | 2026-06-08 14:41:13 -0700 | fix(oracle): adopt @truesight_dao/dao-client@1.0.1 CDN bundle (#44)
-88ec3fd | 2026-06-08 13:48:29 -0700 | hotfix: revert #42 CDN integration — package global API mismatch broke signing (#43)
-176eac6 | 2026-06-08 13:36:31 -0700 | PR1: Add CDN @truesight_dao/dao-client@1.0.0, replace base64 helpers with DaoClient.* (#42)
-edc64bc | 2026-06-08 09:53:47 -0700 | hotfix: restore oracle — revert broken CDN refactor + resend syntax errors (#40)
-d175a6f | 2026-06-08 00:23:43 -0700 | fix: add @truesight/dao-client CDN script tag to index.html (#39)
-bda78aa | 2026-06-08 00:22:40 -0700 | refactor: swap inline DAO client code for @truesight/dao-client (#38)
-ed016e2 | 2026-06-07 22:13:32 -0700 | feat: add resend verification email affordance to oracle (PR2) (#36)
-c49f533 | 2026-06-07 21:09:35 -0700 | Fix DAO-identity linking: signature verification, dynamic verify URL, 3-state UX, retire stale SW (#35)
-c41b37e | 2026-06-07 19:39:25 -0700 | fix: add generation_source_url to EMAIL REGISTERED EVENT so verification email returns to oracle.truesight.me (#33)
-8f93da3 | 2026-06-07 19:21:21 -0700 | Add timestamp nonce to email registration to avoid duplicate signature rejection (#32)
-5908140 | 2026-06-07 19:14:34 -0700 | Fix verification email return_url to point back to oracle page (#31)
-9414bcf | 2026-06-07 19:10:27 -0700 | Fix email registration format to include -------- separator for SignatureVerifier (#30)
-9440e3b | 2026-06-07 19:02:58 -0700 | Add "Link to DAO Identity" button in hero actions row (#29)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -551,6 +491,15 @@ _(no commits on origin/master in window)_
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-06-16T042618Z_self-replication-sop-and-v2.md`
+
+- **posted_at_utc:** `2026-06-16T04:26:18Z`  
+- **slug:** `self-replication-sop-and-v2`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Governance (Process)** — Self-Replication SOP published: guides for spawning new autopilot instances and forking into new ecosystems.
 
 ### `beer-hall_2026-06-15T042930Z_kopi-bar-onboarding-legal-v7.md`
 
@@ -569,15 +518,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Web (Narrative)** — "Agentic AI and the Common Law Tradition" essay published with Lee Kuan Yew reflection and data sovereignty arguments.
-
-### `beer-hall_2026-06-13T035924Z_tech-fest-recap-sophia-hotfix.md`
-
-- **posted_at_utc:** `2026-06-13T03:59:24Z`  
-- **slug:** `tech-fest-recap-sophia-hotfix`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Web (Blog)** — "The Joy Was the Point" TECH FEST 2026 reflection published with full event gallery and contributor credits.
 
 ---
 
@@ -598,62 +538,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/15/2026 13:50:38 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-08`; scanned last **522** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-09 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_33 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_19 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_16 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_20250613_N_1 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_21 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_20 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_19 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_16 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_4 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_7 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_6 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_22 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_13 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_2 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_15 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_12 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_5 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_4 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_3 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_2 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_15 | — | — |
-| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_15 | XNJAKJJZifjv | Stripe checkout (online) |
-| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_32 | gTCPqiehO5IS | Stripe checkout (online) |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
