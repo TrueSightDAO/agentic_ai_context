@@ -1,12 +1,12 @@
 # Public-Key Lookup Cache — Content-Addressed Per-Key Store — Execution Roadmap
 
-**Status as of 2026-06-16:** design approved (Gary + Claude); **not started** — RESUME at PR1.
+**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359).
 **Repos under change:** `tokenomics` (generator GAS), `treasury-cache` (data surface),
 `truesight_autopilot` (reader), `dapp` (later consumer).
 **Designed by:** Gary Teh + Claude · **Implemented by:** TBD (open PRs; `truesight_autopilot`
 is own-repo / human-merge gated).
 
-> **RESUME HERE:** PR1 — generator emits `public_keys/<sha256>.json` files (additive, no reader change).
+> **RESUME HERE:** PR2 — incremental write (diff-based) · `tokenomics` GAS
 >
 > **⚠️ ONE PR PER TURN (mandatory — `OPERATING_INSTRUCTIONS.md §5a`):** an execution turn does
 > **exactly the single `RESUME HERE` PR, opens it, reports the contribution, ticks the tracker,
