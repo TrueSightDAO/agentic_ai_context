@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-16T06:05:45Z`
+- Generated (UTC): `2026-06-16T11:41:14Z`
 - Look-back: **7** calendar days (`2026-06-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -79,7 +79,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-15T10:59:14.270Z`
+- Generated (UTC): `2026-06-16T10:59:13.907Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -87,7 +87,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 ## Funnel by status (curated order)
 
 - Reclassified — D2C only: 1  (#1)
-- AI: Contact Form found: 118  (#3)
+- AI: Contact Form found: 119  (#3)
 - Research: 59  (#8)
 - AI: No fit signal: 158  (#9)
 - AI: Enrich — manual: 94  (#10)
@@ -98,18 +98,18 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - On Hold: 18  (#20)
 - Deferred / Revisit later: 7  (#21)
 - **Partnered: 14**  (#22)
-- AI: Warm up prospect: 69  (#9999)
+- AI: Warm up prospect: 68  (#9999)
 - Not Appropriate: 74  (#9999)
 - Reclassified — D2C only: 0  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **251**, follow_up **70**, bulk **0**, unknown **2** (data rows: **323**)
+- **Email Agent Follow Up** — logged sends: warmup **262**, follow_up **70**, bulk **0**, unknown **2** (data rows: **334**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **204**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **3** / **0** / **66**; follow-up depth (none / once / ≥2): **69** / **0** / **0**
+- **AI: Warm up prospect**: **68** stores — sum logged **warmup** sends (AU): **215**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **66**; follow-up depth (none / once / ≥2): **68** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -303,6 +303,7 @@ _All dated lines on/after 2026-06-09_ (7):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a757252 | 2026-06-16 06:12:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7e527a7 | 2026-06-15 22:32:01 -0700 | Add buy-back budget blog post to blog index (#241)
 2bf3d30 | 2026-06-15 20:19:40 -0700 | Center Sophia avatar image in blog post (#240)
 da253ef | 2026-06-15 18:10:30 -0700 | Add link to Self-Replication SOP in blog post (#239)
@@ -342,7 +343,6 @@ bd0bb81 | 2026-06-13 10:19:00 -0700 | Add Lee Kuan Yew public domain photo for b
 204e271 | 2026-06-13 05:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a6b4aa | 2026-06-12 21:54:13 -0700 | Add detail about people coming back for seconds of cacao (#213)
 8ab6d9c | 2026-06-12 21:43:59 -0700 | Add Alina, students, and group hug ending to blog post (#212)
-a53ccf0 | 2026-06-12 21:40:49 -0700 | Add Sophia's name, voice, and profile photo story to blog post (#211)
 … (truncated)
 ```
 
@@ -355,6 +355,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3b5c3fe | 2026-06-15 23:06:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
+a7839dd | 2026-06-15 23:05:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 e11f535 | 2026-06-15 21:26:37 -0700 | Merge pull request #520 from TrueSightDAO/auto/advisory-refresh-2026-06-16
 44b5645 | 2026-06-16 04:26:26 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 e48dabe | 2026-06-15 18:02:41 -0700 | Add Self-Replication SOP as PDF
@@ -393,8 +395,6 @@ d40fd13 | 2026-06-14 16:58:48 -0700 | Update PDF with parallel Wise accounts + b
 55d3542 | 2026-06-14 15:20:51 -0700 | v7: Add service provider links (OtoCo, Wise) (#496)
 6e5622c | 2026-06-14 15:08:58 -0700 | v6: CTA clarification — only Gary reports as beneficial owner (#495)
 0d0b1fd | 2026-06-14 14:44:11 -0700 | Legal Entity Structuring Proposal v5 — Corrected Treasury, DUNA-Owned CNPJ (#494)
-9003547 | 2026-06-14 14:26:38 -0700 | Legal Entity Structuring Proposal v4 — UNA Bank Account, No TrueTech Inc Custodian (#493)
-ca393bb | 2026-06-14 13:29:31 -0700 | context: Active-tracks vault bug resolved (truesight_autopilot#203)
 … (truncated)
 ```
 
@@ -447,6 +447,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c5305b1 | 2026-06-16 11:36:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b476a9f | 2026-06-15 12:54:19 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 9fd9e3b | 2026-06-15 12:44:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 14867ca | 2026-06-14 09:58:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -605,7 +606,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/15/2026 22:50:06 |
+| 2026-06 | 759.35 | 15736.46386 | 6/16/2026 3:51:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-09`; scanned last **522** data rows)
 
