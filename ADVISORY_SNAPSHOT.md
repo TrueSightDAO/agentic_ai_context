@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-17T04:20:00Z`
+- Generated (UTC): `2026-06-17T05:24:26Z`
 - Look-back: **7** calendar days (`2026-06-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 26
+- `[EMAIL REGISTERED EVENT]` × 7
+- `[PRACTICE EVENT]` × 4
+- `[EMAIL VERIFICATION EVENT]` × 3
+- `[DONATION MINT EVENT]` × 2
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20260616032214_037` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-16T03:22:14.802Z · Email: garyjob@gmail.com · Verification Key: PrWn0wOBiv6sZLAAqCTE-KrfVDJUdSIry2hivXt6vGM
+- `Edgar_20260616133847_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add BUY_BACK_RESERVE to Performance Statistics sync …
+- `Edgar_20260616134536_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add a `?action=triggerSync` handler to the `doGet` f…
+- `Edgar_20260616162051_043` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-16T16:20:51.767Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260616173932_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The /vault/status page has text spilling ou…
+- `Edgar_20260616174520_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 7 · Description: Fix mobile text overflow on /vault/status page
+- `Edgar_20260616174639_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Make overflow-wrap: break-word and word-bre…
+- `Edgar_20260616175452_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 7 · Description: Fix mobile text overflow on /vault/status page
+- `Edgar_20260616210013_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia vault UI fixes + public-key lookup cache design & handoff. (1) Fixed …
+- `Edgar_20260616211551_055` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+claude@truesight.me
+- `Edgar_20260616212133_057` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+claude@truesight.me
+- `Edgar_20260616212945_059` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: xwyNzPWD_eyj0muWW8NFeyMvtuDd5SzI97yrSfQcSf0 · Email: admin+claude@truesight.me
+- `Edgar_20260616213527_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Sophia identity/auth (Telegram<->ledger, /verify, Column X policy) + vault 5…
+- `Edgar_20260616214813_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Diagnose + fix Sophia empty-response; codify one-PR-per-turn planning conven…
+- `Edgar_20260616220236_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR1 — Public-Key Lookup Cache: generator emits per-key files
+- `Edgar_20260616220612_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: PR2 — Public-Key Lookup Cache: incremental per-key write via manifest diff
+- `Edgar_20260616221504_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix second Sophia empty-response root cause (non-adjacent tool messages + su…
+- `Edgar_20260616221528_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR3 — Public-Key Lookup Cache: reader point-lookup via resolve_key()
+- `Edgar_20260616232201_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The deploy tool's no-op guard (deploy.py, ~…
+- `Edgar_20260617051015_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix Gmail admin@truesight.me token (audit + re-mint + vault/box install) + R…
 
 ---
 
@@ -214,13 +252,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,325.04**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$41.26**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -314,6 +356,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7142962 | 2026-06-16 21:20:16 -0700 | Merge pull request #528 from TrueSightDAO/auto/advisory-refresh-2026-06-17
+097a091 | 2026-06-17 04:20:05 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 4c4bb57 | 2026-06-16 15:12:41 -0700 | context: second empty-response root cause fixed (#229 merged, deploy pending)
 a972538 | 2026-06-16 15:10:04 -0700 | tick: PR2 completed — incremental per-key write via manifest diff (#526)
 87bb520 | 2026-06-16 15:03:49 -0700 | tick: PR1 completed — public_keys/<sha256>.json generator emitted (#525)
@@ -352,14 +396,13 @@ d8972a1 | 2026-06-15 05:49:15 -0700 | chore(previews): refresh Beer Hall preview
 c8b9041 | 2026-06-14 22:36:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-15 UTC)
 d4f1402 | 2026-06-14 22:36:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-15 UTC)
 836e259 | 2026-06-14 21:29:43 -0700 | Merge pull request #510 from TrueSightDAO/auto/advisory-refresh-2026-06-15
-28d935d | 2026-06-15 04:29:34 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-15 UTC)
-f4a4f08 | 2026-06-14 20:14:03 -0700 | Fix Howey question (include buyback) and impact fund contradiction (#509)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+77e58fe | 2026-06-16 22:15:01 -0700 | fix: correct spreadsheet column mapping in dao_members_cache_publisher (col B/E/C/D shift)
 a98d7f2 | 2026-06-16 15:09:58 -0700 | feat(dao_members_cache): incremental per-key write via manifest diff (PR2) (#361)
 a62fc96 | 2026-06-16 15:03:44 -0700 | feat(dao_members_cache): emit public_keys/<sha256>.json per-key files (PR1) (#359)
 d09d6f8 | 2026-06-16 09:08:11 -0700 | Fix: use absolute values for provision amounts (#358)
@@ -536,6 +579,61 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 759.35 | 15736.46386 | 6/16/2026 21:50:34 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-10`; scanned last **522** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_33 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_19 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_16 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_20250613_N_1 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_21 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_20 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_19 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_16 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_4 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_7 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_6 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_22 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_13 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_2 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_15 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_12 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_5 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_4 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_3 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_2 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_15 | — | — |
+| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_15 | XNJAKJJZifjv | Stripe checkout (online) |
+| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_32 | gTCPqiehO5IS | Stripe checkout (online) |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
