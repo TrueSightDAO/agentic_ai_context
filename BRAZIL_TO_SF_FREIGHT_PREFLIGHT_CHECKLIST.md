@@ -38,6 +38,9 @@
   - **Black King currently CANNOT issue NF-e.** The CNPJ has only service CNAEs (82.30-0-01, events/fairs), no Inscrição Estadual (IE), and no NF-e credentialing at SEFAZ-BA.
   - **NFA-e (Nota Fiscal Avulsa) is NOT accepted for DU-E registration.** DU-E/Siscomex requires NF-e model 55, which needs IE. Confirmed via online research of Siscomex documentation — the DU-E pulls data directly from NF-e XML; no NFA-e integration exists.
   - **Self-service enablement path (no accountant needed):** See **Appendix A** for the complete step-by-step guide. Summary: (1) Add commerce CNAE to CNPJ via e-CAC, (2) Request IE at SEFAZ-BA, (3) Credential for NF-e emission, (4) Issue the export NF-e.
+  - **Bilingual self-service guide (PDF):** A polished 10-page bilingual (EN/PT) guide was sent to Matheus on 16 Jun 2026 and is saved at:
+    `agentic_ai_context/exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf`
+    Covers everything from SEFAZ password setup through issuing the DANFE, plus the Coopercabruca fallback.
   - **Estimated timeline:** 8 days self-service vs. 1–2 months if routed through Matheus's accountant.
   - **Fallback:** Coopercabruca (CNPJ 31.948.811/0001-42, Itabuna BA) already has IE and NF-e capability — see **Appendix B**.
   - Once NF-e issued, share XML + DANFE with Omega/Graziela + PIX details for Gary's payment.
@@ -164,6 +167,10 @@
 ---
 
 ## Appendix A: Export NF-e Enablement & Issuance SOP
+
+> **📄 Bilingual companion guide (EN/PT):** A polished 10-page PDF was sent to Matheus on 16 Jun 2026 and is saved in the repo at:
+> [`exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf`](https://github.com/TrueSightDAO/agentic_ai_context/blob/main/exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf)
+> It covers all steps below plus: SEFAZ password/DTE setup, IE request procedure, NF-e credentialing, exchange rate (BACEN), CFOP codes, troubleshooting per step, and the Coopercabruca fallback route.
 
 > **Purpose:** This appendix covers the COMPLETE journey — from enabling NF-e capability on Black King's CNPJ (which currently lacks IE and commerce CNAE) to issuing the final export NF-e. All steps are self-service by Matheus using his e-CNPJ certificate. No accountant needed.
 > **Reference:** Commercial Invoice INV-2026-0611-001 (Rev 2, FOB), Packing List PL-2026-0611-001
