@@ -36,7 +36,9 @@ Every food item imported into China requires the manufacturer to have a **GACC r
 
 Under Decree No. 280:
 - **Unroasted cocoa beans (NCM 1801.00.00):** **Self-application** (Pathway 2) — removed from official recommendation list. Apply directly via CIFER.
-- **Processed cacao (nibs, mass, husk, tea — NCM 1803.10.00, 2106.90.00):** Likely also **Self-application** (Pathway 2) as processed plant-based foods. Confirm with GACC consultant.
+- **Processed cacao (nibs, mass, husk — NCM 1803.10.00):** Likely also **Self-application** (Pathway 2) as processed plant-based foods. Confirm with GACC consultant.
+- **Chocolate bars (NCM 1806.32.00):** **Self-application** (Pathway 2) — processed food product.
+- **Cacao tea (NCM 2106.90.00):** Likely **Self-application** (Pathway 2). Confirm with GACC consultant.
 
 ---
 
@@ -44,34 +46,36 @@ Under Decree No. 280:
 
 ### Category A — Event Samples (small quantity, promotional)
 
-| Item | Unit Weight (Net) | Unit Weight (Gross) | Packaging |
-|------|-------------------|---------------------|-----------|
-| Ceremonial Cacao Pouch 200g | 200 g | 250 g | Retail pouch |
-| Cacao Nibs Kraft Pouch 8oz | 227 g | 300 g | Retail pouch |
-| Cacao Mass Bar 500g | 500 g | 600 g | Wrapped bar |
-| Cacao Tea (KG) | 1 kg | 1.25 kg | Vacuum bag |
+| Item | Unit Weight (Net) | Packaging |
+|------|-------------------|-----------|
+| Ceremonial Cacao Pouch 200g | 200 g | Retail pouch |
+| Cacao Nibs Kraft Pouch 8oz | 227 g | Retail pouch |
+| Cacao Mass Bar 500g | 500 g | Wrapped bar |
+| Premium Dark Chocolate Bar 50g | 50 g | Retail bar (wrapped) |
+| Cacao Tea (KG) | 1 kg | Sealed bag |
 
-**Est. Total:** ~27 units, ~8.8 kg net / ~11 kg gross
+**Est. Total:** ~27+ units, ~8.9 kg net
 **Est. Declared Value:** ~$200–300 USD (sample / no commercial value)
 
 ### Category B — Commercial Goods
 
-| Item | Unit Weight (Net) | Unit Weight (Gross) | Packaging |
-|------|-------------------|---------------------|-----------|
-| Cacao Nibs Kraft Pouch 8oz | 227 g | 300 g | Retail pouch in carton |
-| Cacao Husk (KG) | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Mass Bar 500g | 500 g | 600 g | Wrapped bar in carton |
-| Cacao Nibs (KG) — Main | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Almonds (KG) — AGL8 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Tea (KG) — AGL8 | 1 kg | 1.1 kg | Vacuum bag |
-| Ceremonial Cacao Pouch 200g | 200 g | 250 g | Retail pouch in carton |
-| Cacao Almonds (KG) — AGL13 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Nibs (KG) — AGL13 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Tea (KG) — AGL13 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Almonds (KG) — AGL14 | 1 kg | 1.1 kg | Vacuum bag |
+| Item | Unit Weight (Net) | Packaging |
+|------|-------------------|-----------|
+| Cacao Nibs Kraft Pouch 8oz | 227 g | Retail pouch in carton |
+| Cacao Husk (KG) | 1 kg | Sealed bag |
+| Cacao Mass Bar 500g | 500 g | Wrapped bar in carton |
+| Premium Dark Chocolate Bar 50g | 50 g | Retail bar in carton |
+| Cacao Nibs (KG) — Main | 1 kg | Sealed bag |
+| Cacao Almonds (KG) — AGL8 | 1 kg | Sealed bag |
+| Cacao Tea (KG) — AGL8 | 1 kg | Sealed bag |
+| Ceremonial Cacao Pouch 200g | 200 g | Retail pouch in carton |
+| Cacao Almonds (KG) — AGL13 | 1 kg | Sealed bag |
+| Cacao Nibs (KG) — AGL13 | 1 kg | Sealed bag |
+| Cacao Tea (KG) — AGL13 | 1 kg | Sealed bag |
+| Cacao Almonds (KG) — AGL14 | 1 kg | Sealed bag |
 
-**Est. Total:** ~611 units, ~351.4 kg net / ~397 kg gross
-**Est. Declared Value:** ~$7,032.53 USD (FOB)
+**Est. Total:** ~611+ units, ~351.5 kg net
+**Est. Declared Value:** ~$7,032.53+ USD (FOB)
 
 ---
 
@@ -102,6 +106,7 @@ Under Decree No. 280 (effective June 1, 2026):
 |---------|-----|---------|
 | Unroasted cocoa beans / almonds | 1801.00.00 | **Self-application** (Pathway 2) — removed from official recommendation list |
 | Cacao nibs, mass, husk | 1803.10.00 | Likely **Self-application** — confirm with GACC consultant |
+| Chocolate bars (not filled) | 1806.32.00 | **Self-application** (Pathway 2) |
 | Cacao tea | 2106.90.00 | Likely **Self-application** — confirm with GACC consultant |
 
 ### Step 2: Register on CIFER System
@@ -179,6 +184,7 @@ They would also need GACC registration, but as a cooperative with established fo
 - **CIFER System:** cifer.singlewindow.cn
 - **Brazil competent authority:** MAPA (Ministério da Agricultura, Pecuária e Abastecimento)
 - **Brazil is on the approved list** of countries that can export unroasted cocoa beans to China
+- **Packaging:** Must comply with GB 4806 series (food contact materials). Heat-sealed food-grade bags are sufficient — vacuum sealing is not required by Chinese regulations.
 
 ---
 
