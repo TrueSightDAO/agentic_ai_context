@@ -44,33 +44,33 @@ Under Decree No. 280:
 
 ### Category A — Event Samples (small quantity, promotional)
 
-| Item | Unit Weight (Net) | Unit Weight (Gross) | Packaging |
-|------|-------------------|---------------------|-----------|
-| Ceremonial Cacao Pouch 200g | 200 g | 250 g | Retail pouch |
-| Cacao Nibs Kraft Pouch 8oz | 227 g | 300 g | Retail pouch |
-| Cacao Mass Bar 500g | 500 g | 600 g | Wrapped bar |
-| Cacao Tea (KG) | 1 kg | 1.25 kg | Vacuum bag |
+| Item | Unit Weight (Net) | Packaging |
+|------|-------------------|-----------|
+| Ceremonial Cacao Pouch 200g | 200 g | Retail pouch |
+| Cacao Nibs Kraft Pouch 8oz | 227 g | Retail pouch |
+| Cacao Mass Bar 500g | 500 g | Wrapped bar |
+| Cacao Tea (KG) | 1 kg | Vacuum bag |
 
-**Est. Total:** ~27 units, ~8.8 kg net / ~11 kg gross
+**Est. Total:** ~27 units, ~8.8 kg net
 **Est. Declared Value:** ~$200–300 USD (sample / no commercial value)
 
 ### Category B — Commercial Goods
 
-| Item | Unit Weight (Net) | Unit Weight (Gross) | Packaging |
-|------|-------------------|---------------------|-----------|
-| Cacao Nibs Kraft Pouch 8oz | 227 g | 300 g | Retail pouch in carton |
-| Cacao Husk (KG) | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Mass Bar 500g | 500 g | 600 g | Wrapped bar in carton |
-| Cacao Nibs (KG) — Main | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Almonds (KG) — AGL8 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Tea (KG) — AGL8 | 1 kg | 1.1 kg | Vacuum bag |
-| Ceremonial Cacao Pouch 200g | 200 g | 250 g | Retail pouch in carton |
-| Cacao Almonds (KG) — AGL13 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Nibs (KG) — AGL13 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Tea (KG) — AGL13 | 1 kg | 1.1 kg | Vacuum bag |
-| Cacao Almonds (KG) — AGL14 | 1 kg | 1.1 kg | Vacuum bag |
+| Item | Unit Weight (Net) | Packaging |
+|------|-------------------|-----------|
+| Cacao Nibs Kraft Pouch 8oz | 227 g | Retail pouch in carton |
+| Cacao Husk (KG) | 1 kg | Vacuum bag |
+| Cacao Mass Bar 500g | 500 g | Wrapped bar in carton |
+| Cacao Nibs (KG) — Main | 1 kg | Vacuum bag |
+| Cacao Almonds (KG) — AGL8 | 1 kg | Vacuum bag |
+| Cacao Tea (KG) — AGL8 | 1 kg | Vacuum bag |
+| Ceremonial Cacao Pouch 200g | 200 g | Retail pouch in carton |
+| Cacao Almonds (KG) — AGL13 | 1 kg | Vacuum bag |
+| Cacao Nibs (KG) — AGL13 | 1 kg | Vacuum bag |
+| Cacao Tea (KG) — AGL13 | 1 kg | Vacuum bag |
+| Cacao Almonds (KG) — AGL14 | 1 kg | Vacuum bag |
 
-**Est. Total:** ~611 units, ~351.4 kg net / ~397 kg gross
+**Est. Total:** ~611 units, ~351.4 kg net
 **Est. Declared Value:** ~$7,032.53 USD (FOB)
 
 ---
