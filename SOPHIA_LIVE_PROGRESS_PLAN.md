@@ -79,11 +79,20 @@ restart `truesight-autopilot`, run U1–U5.
 ## 6. Resume tracker
 | Unit | PR opened | Merged (human) | Deployed | UAT |
 |------|-----------|----------------|----------|-----|
-| PR1 — live-progress record + richer ack | ☐ | ☐ | ☐ | U1 |
-| PR2 — progress-query immediate answer | ☐ | ☐ | ☐ | U2–U5 |
+| PR1 — live-progress record + richer ack | ☑ [#160](https://github.com/TrueSightDAO/truesight_autopilot/pull/160) | ☑ | ☑ | ⚠️ broke (see below) |
+| PR2 — progress-query immediate answer | ☑ [#161](https://github.com/TrueSightDAO/truesight_autopilot/pull/161) + hotfix [#163](https://github.com/TrueSightDAO/truesight_autopilot/pull/163) | ☑ | ☑ | ⚠️ broke (see below) |
+| Cross-process fix | ☑ [#241](https://github.com/TrueSightDAO/truesight_autopilot/pull/241) | ☐ | ☐ | U1–U5 |
 
-> **RESUME HERE:** PR1 — `_live_progress` record + `_render_progress` + richer `_ack_queued_if_busy`.
-> Open PRs; **do not self-merge** (human reviews). Report progress in the handoff topic.
+> **⚠️ Postmortem (2026-06-17):** PR1/PR2 merged + deployed but **never worked** — Gary still
+> got the generic ack. Two cross-process bugs (the adapter is a SEPARATE process from the brain):
+> (1) the ack read the in-process `_live_progress` dict, always empty in the adapter; (2)
+> `/chat/progress` required `X-Public-Key` but the adapter sends a Bearer JWT → 400 → fell through.
+> Fixed in **#241** (`fix/live-progress-cross-process`): adapter fetches over HTTP; `/chat/progress`
+> accepts the JWT and keys the session like `/chat`.
+
+> **RESUME HERE:** Merge **#241** (human — own-repo gate), deploy (targeted `git checkout -B main
+> origin/main`, **no `git clean`**), then run UAT U1–U5 in Telegram to confirm the snapshot now
+> appears in both the mid-turn ack and the "how's progress?" reply.
 
 ## 7. Dependency notes
 Builds directly on the shipped per-topic concurrency work (the dispatch lock + `_ack_queued_if_busy`
