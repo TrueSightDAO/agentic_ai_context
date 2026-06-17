@@ -147,7 +147,7 @@ Present all documents from Section C at customs clearance in Dongguan.
 | China Logistics Coordinator | Jerri / Ling | (via Gary Teh) |
 | Brazil Supplier (Black King) | Matheus Reis Pereira | theus.reis.ssa@gmail.com / +55 73 99109-0002 |
 
-| Freight Forwarder (Brazil) | Graziela Vedana (Seacos Logistic) | Graziela@5cl.rs |
+| Freight Forwarder (Brazil) | Omega Services | (contact via Gary Teh) |
 | GACC Registration Consultant | TBD — recommend engaging a China regulatory consultant | — |
 
 ---
