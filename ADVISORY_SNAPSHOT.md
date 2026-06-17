@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-17T16:12:17Z`
+- Generated (UTC): `2026-06-17T20:35:10Z`
 - Look-back: **7** calendar days (`2026-06-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
-- `[EMAIL REGISTERED EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 27
+- `[EMAIL REGISTERED EVENT]` × 6
 - `[EMAIL VERIFICATION EVENT]` × 5
 - `[DONATION MINT EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
+- `[PRACTICE EVENT]` × 2
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260616220612_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: PR2 — Public-Key Lookup Cache: incremental per-key write via manifest diff
-- `Edgar_20260616221504_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix second Sophia empty-response root cause (non-adjacent tool messages + su…
 - `Edgar_20260616221528_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR3 — Public-Key Lookup Cache: reader point-lookup via resolve_key()
 - `Edgar_20260616232201_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The deploy tool's no-op guard (deploy.py, ~…
 - `Edgar_20260617051015_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix Gmail admin@truesight.me token (audit + re-mint + vault/box install) + R…
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260617151311_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Generated information for GACC registration
 - `Edgar_20260617152905_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Gary Teh)
 - `Edgar_20260617152906_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Sophia Truesight)
+- `Edgar_20260617171608_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-17T17:16:08.260Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260617201116_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sharing about his diet of how he is cutting out sugar and ramping up protein…
 
 ---
 
@@ -304,6 +304,7 @@ _All dated lines on/after 2026-06-10_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+27d4249 | 2026-06-17 16:25:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 54608f5 | 2026-06-17 11:22:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7d2c892 | 2026-06-17 05:27:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e31c358 | 2026-06-16 21:31:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -343,7 +344,6 @@ a366168 | 2026-06-14 05:26:40 +0000 | trigger: rebuild GitHub Pages
 6df8a34 | 2026-06-14 00:33:50 +0000 | Fix Chat with Sophia link: beerhall → sophia.truesight.me
 e72d4bf | 2026-06-14 00:33:09 +0000 | Reorder Platform Services: Sophia → Edgar → Perch
 5a18f58 | 2026-06-13 17:23:52 -0700 | Add Platform Services section with Perch and Sophia (#227)
-c622d33 | 2026-06-13 20:05:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -356,6 +356,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5be00b6 | 2026-06-17 09:12:41 -0700 | chore(previews): refresh Beer Hall preview (2026-06-17 UTC)
+d8c1379 | 2026-06-17 09:12:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 2bfaec8 | 2026-06-17 08:26:43 -0700 | Add GACC registration guides for Coopercabruca and CEPOTX (#540)
 dc46c48 | 2026-06-17 08:06:27 -0700 | Add real Omega Services contact details from Gmail (#539)
 92ff888 | 2026-06-17 08:06:22 -0700 | Update PDF with Omega Services contact details
@@ -394,8 +396,6 @@ a299638 | 2026-06-16 04:41:37 -0700 | chore(previews): refresh Beer Hall preview
 d59c4bb | 2026-06-16 04:41:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 3b5c3fe | 2026-06-15 23:06:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
 a7839dd | 2026-06-15 23:05:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
-e11f535 | 2026-06-15 21:26:37 -0700 | Merge pull request #520 from TrueSightDAO/auto/advisory-refresh-2026-06-16
-44b5645 | 2026-06-16 04:26:26 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 … (truncated)
 ```
 
@@ -610,7 +610,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 8:51:01 |
+| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 12:50:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-10`; scanned last **522** data rows)
 
