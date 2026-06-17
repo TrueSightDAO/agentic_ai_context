@@ -215,181 +215,79 @@ sudo tee /usr/local/bin/disk-cleanup.sh > /dev/null << 'SCRIPT'
 # Clean /tmp — remove dirs older than 1 day (not files, those may be in-use)
 find /tmp -maxdepth 1 -type d -mtime +1 -exec rm -rf {} + 2>/dev/null || true
 
-# Clean pip cache
-rm -rf /home/ubuntu/.cache/pip/ 2>/dev/null || true
+# Clean pip cache older than 7 days
+find /home/ubuntu/.cache/pip -mtime +7 -type f -delete 2>/dev/null || true
 
-# Truncate old journal logs
+# Clean apt cache
+sudo apt-get clean -y 2>/dev/null || true
+
+# Clean old journal logs (keep last 3 days)
 sudo journalctl --vacuum-time=3d 2>/dev/null || true
 
 echo "Disk cleanup complete"
 df -h / | tail -1
 SCRIPT
 
+# Make it executable
 sudo chmod +x /usr/local/bin/disk-cleanup.sh
 
-# Add daily cron
-(crontab -l 2>/dev/null; echo "0 3 * * * /usr/local/bin/disk-cleanup.sh > /dev/null 2>&1") | crontab -
+# Add daily cron entry (runs at 3am)
+(crontab -l 2>/dev/null | grep -q disk-cleanup) || \
+  (crontab -l 2>/dev/null; echo "0 3 * * * /usr/local/bin/disk-cleanup.sh >> /var/log/disk-cleanup.log 2>&1") | crontab -
 ```
 
 ### 7.2 SSH key setup
 
-The dao_protocol box (`172.31.23.207`) is only reachable via the `seni_ror` jump host. Copy the NELANCO key:
+The dao_protocol box (`172.31.23.207`) is only reachable via jump through `seni_ror`:
 
 ```bash
-# Copy the nelanco.pem public key to seni_ror's authorized_keys
-ssh -o StrictHostKeyChecking=no ubuntu@seni_ror "echo '$(cat ~/.ssh/nelanco.pem.pub)' >> ~/.ssh/authorized_keys"
+# Copy the NELANCO key to seni_ror for jump access
+cat ~/.ssh/nelanco.pub | ssh ubuntu@seni_ror "cat >> ~/.ssh/authorized_keys"
 
-# Test the jump
-ssh -o StrictHostKeyChecking=no -J ubuntu@seni_ror ubuntu@172.31.23.207 "hostname"
+# Test jump access
+ssh -J ubuntu@seni_ror ubuntu@172.31.23.207 "hostname"
 ```
 
-### 7.3 Service account verification
+### 7.3 Service accounts
 
 Verify the Google Sheets service accounts have access to the Main Ledger:
 
-```bash
-curl -s http://172.31.23.207:8010/ping
-# Should return: {"status": "ok", "version": "..."}
-```
+- `edgar_dapp_listener_key.json` — used by transactions + inventory movement queries
+- `cypher_defense_gdrive_key.json` — used by QR code queries
 
-### 7.4 Git clone dao_protocol
+### 7.4 Git clone + deploy
 
 ```bash
-ssh -o StrictHostKeyChecking=no -J ubuntu@seni_ror ubuntu@172.31.23.207 "\
+ssh -J ubuntu@seni_ror ubuntu@172.31.23.207 "
   cd /home/ubuntu && \
-  git clone git@github.com:TrueSightDAO/dao_protocol.git && \
+  git clone https://github.com/TrueSightDAO/dao_protocol.git && \
   cd dao_protocol && \
   pip install -e . && \
-  sudo systemctl restart dao_protocol"
+  sudo systemctl restart dao_protocol
+"
 ```
 
 ### 7.5 Verify endpoints
 
 ```bash
-curl -s https://edgar.truesight.me/ping
-curl -s "https://edgar.truesight.me/dao/qr-codes?limit=1"
-curl -s "https://edgar.truesight.me/dao/transactions?limit=1"
-curl -s "https://edgar.truesight.me/dao/inventory-movements?limit=1"
+curl https://edgar.truesight.me/ping
+curl https://edgar.truesight.me/dao/qr-codes?manager=test&limit=1
+curl https://edgar.truesight.me/dao/transactions?partner=test&limit=1
+curl https://edgar.truesight.me/dao/inventory-movements?person=test&limit=1
 ```
 
 ---
 
-## 8. Checklist
+## 8. Context Engineering
 
-### PR1 — Query Endpoints
+This plan follows the **context engineering** pattern (see Weaviate blog): instead of trying to make the LLM smarter through fine-tuning or prompt changes, we give it better context at the point of need.
 
-- [ ] Create `truesight_dao_client/server/sheets/transactions.py` — reads `QR Code Sales` tab
-- [ ] Create `truesight_dao_client/server/sheets/qr_codes.py` — reads `Agroverse QR codes` tab
-- [ ] Create `truesight_dao_client/server/sheets/inventory_movements.py` — reads `Inventory Movement` tab
-- [ ] Create `truesight_dao_client/server/routes/query.py` — three GET endpoints
-- [ ] Mount query router in `main.py`
-- [ ] Add substring matching helper (case-insensitive)
-- [ ] Add `max_rows` cap per endpoint
-- [ ] Write unit tests for all three sheet readers
-- [ ] Write unit tests for the query router
-- [ ] Run full test suite (58 existing + new)
-- [ ] Open PR on `dao_protocol` repo
-- [ ] Merge (after Gary review)
-- [ ] Deploy: `ssh` to `dao_protocol_nelanco`, `git pull`, restart systemd service
-- [ ] UAT: call each endpoint with known test values
+Key design decisions:
+1. **`lookup_event_docs` tool** — fetches live docs from the Edgar landing page before calling `submit_contribution`, so the LLM always has the correct format and when-to-use rules
+2. **Edgar landing page as single source of truth** — update it once, every instance of the LLM gets the new docs
+3. **Pre-flight check before action** — look up docs first, then act, rather than act and check after
 
-### PR2 — Cache Layer (filed, not implemented)
-
-- [ ] Document cache schema (file paths, TTL, bust strategy)
-- [ ] File in `agentic_ai_context/` for future reference
-
----
-
-## 8. Schema Reference
-
-### Workbook: TrueSight DAO Telegram & Submissions
-`1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`
-
-#### Tab: `QR Code Sales` (gid=1003674539)
-| Col | Header | Type | Notes |
-|-----|--------|------|-------|
-| A | Telegram Update ID | Number | |
-| B | Telegram Chatroom ID | Number | |
-| C | Telegram Chatroom Name | String | |
-| D | Telegram Message ID / Reporter | String | Legacy reporter name |
-| E | Contributor Name | String | Person reporting sale |
-| F | Contribution Made | String | Full sale message |
-| G | Status date | Date | YYYYMMDD |
-| H | Currency | String | Product/SKU name |
-| I | Amount | Number | Quantity |
-| J | Status | String | PROCESSING, TOKENIZED, ACCOUNTED, IGNORED |
-| K | QR Code | String | QR code identifier |
-| L | Owner email | String | Buyer email |
-| M | Stripe Session ID | String | Stripe checkout session |
-| N | Shipping Provider | String | Carrier name |
-| O | Tracking Number | String | Tracking number |
-| P | Sold by | String | Seller name |
-| Q | Cash Collected By | String | Cash collector |
-| R | Remarks | String | Audit notes |
-
-#### Tab: `Inventory Movement` (gid varies)
-| Col | Header | Type | Notes |
-|-----|--------|------|-------|
-| A | Telegram Update ID | Number | |
-| B | Telegram Chatroom ID | Number | |
-| C | Telegram Chatroom Name | String | |
-| D | Telegram Message ID | Number | |
-| E | Contributor Name | String | Reporter |
-| F | Contribution Made | String | Full message |
-| G | Status Date | Date | YYYYMMDD |
-| H | SENDER NAME | String | Uppercase header |
-| I | RECIPIENT NAME | String | Uppercase header |
-| J | CURRENCY | String | SKU/product |
-| K | AMOUNT | Number | Quantity |
-| L | LEDGER_NAME | String | e.g. AGL#25 |
-| M | LEDGER_URL | String | Spreadsheet URL |
-| N | STATUS | String | NEW, unauthorized, PROCESSED, ERROR |
-| O | RECORD ROWS | String | Destination row numbers |
-
-### Workbook: Main Ledger
-`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`
-
-#### Tab: `Agroverse QR codes` (gid varies)
-| Col | Header | Type | Notes |
-|-----|--------|------|-------|
-| A | QR Code | String | QR identifier |
-| B | Status | String | MINTED, SOLD, SAMPLE, GIFT, etc. |
-| C | Price | Number | Unit price |
-| D | Product Image | String | Image URL |
-| E | landing_page | String | Product page URL |
-| F | farm name | String | Farm of origin |
-| G | state | String | State of origin |
-| H | country | String | Country of origin |
-| I | Currency | String | SKU/product name (maps to Currencies tab) |
-| J | Year | String | Harvest year |
-| K | Product Name | String | Display name |
-| L | Product Description | String | Description |
-| M | Onboarding Email \nSent Date | String | Header has line break |
-| N | Tree Planting Date\n(YYYYMMDD) | String | Header has line break |
-| O | Tree ID | String | Associated tree ID |
-| P | Notarization URL | String | Notarization link |
-| Q | Notarization Date | String | Notarization date |
-| R | Notarized By | String | Notarizer name |
-| S | Owner | String | Current owner |
-| T | Batch ID | String | Generation batch |
-| U | Manager \nName | String | Header has line break; current manager |
-| V | Ledger Name | String | NEW column |
-
----
-
-## 9. Service Account Access
-
-dao_protocol uses multiple service accounts for different sheets:
-- `cypher_defense_gdrive_key.json` — Main Ledger access (Agroverse QR codes tab)
-- `edgar_dapp_listener_key.json` — Telegram & Submissions workbook (QR Code Sales, Inventory Movement)
-
-The sheet reader modules will accept an optional `key_path` parameter, defaulting to the appropriate key per sheet.
-
----
-
-## 10. Open Questions
-
-1. **Pagination:** For large result sets, should we add offset-based pagination? (Deferred — start with `limit` cap)
-2. **Caching TTL:** What default TTL makes sense for the cache layer? (Deferred to PR2)
-3. **Auth:** Should query endpoints require authentication? (Deferred — they're read-only and behind nginx already)
-4. **SCHEMA.md updates:** If column headers change, who updates the schema mapping? (Gary or Sophia, as needed)
+This is more robust than hardcoding rules into the system prompt because:
+- Docs can evolve without redeploying the LLM
+- No false positives — the LLM sees the docs and makes the call
+- Works for any future event type — add it to the landing page, and `lookup_event_docs` finds it
