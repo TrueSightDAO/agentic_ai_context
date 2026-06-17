@@ -140,38 +140,19 @@ Present all documents from Section C at customs clearance in Dongguan.
 
 ---
 
-## F. Fallback: Coopercabruca Route
-
-If Black King's GACC registration is delayed, **Coopercabruca** is an alternative supplier:
-
-| Attribute | Value |
-|-----------|-------|
-| Legal Name | COOPERATIVA DOS CACAUICULTORES DO SUL DA BAHIA |
-| CNPJ | 31.948.811/0001-42 |
-| Location | Itabuna, BA (same region as Ilhéus) |
-| CNAE | 10.93-7-01 (cocoa manufacturing) |
-| IE + NF-e | ✅ Already has both |
-| FDA FSVP | ✅ Valid (FFR 17660066140) |
-| Export experience | ✅ Shipped 100kg cacao SSA→SFO via Omega in Nov 2023 |
-| Contact | coopercabruca@gmail.com / +55 73 9138-8884 |
-
-They would also need GACC registration, but as a cooperative with established food safety systems, their application may be faster.
-
----
-
-## G. Key Contacts for This Lane
+## F. Key Contacts for This Lane
 
 | Role | Name | Contact |
 |------|------|---------|
 | China Logistics Coordinator | Jerri / Ling | (via Gary Teh) |
 | Brazil Supplier (Black King) | Matheus Reis Pereira | theus.reis.ssa@gmail.com / +55 73 99109-0002 |
-| Brazil Supplier (Coopercabruca fallback) | Orlantildes Santos Pereira | coopercabruca@gmail.com / +55 73 9138-8884 |
+
 | Freight Forwarder (Brazil) | Graziela Vedana (Seacos Logistic) | Graziela@5cl.rs |
 | GACC Registration Consultant | TBD — recommend engaging a China regulatory consultant | — |
 
 ---
 
-## H. Regulatory References
+## G. Regulatory References
 
 - **GACC Decree No. 280** — Regulations on Registration of Overseas Manufacturers of Imported Food (effective June 1, 2026)
 - **GACC Announcement No. 27 (2026)** — Implementation rules for Decree No. 280
@@ -183,4 +164,4 @@ They would also need GACC registration, but as a cooperative with established fo
 ---
 
 *Prepared by Sophia Truesight (TrueSight DAO Autopilot) — 16 June 2026*
-*Data sources: GACC Decree No. 280, Announcement No. 27, Black King entity profile (fda_fsvp), Coopercabruca entity profile (fda_fsvp)*
+*Data sources: GACC Decree No. 280, Announcement No. 27, Black King entity profile (fda_fsvp)*
