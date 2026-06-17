@@ -140,6 +140,46 @@ unit lands (see §4 and the per-task tracker-update rule), then the next turn re
 
 ---
 
+## 5c. The `Advance` column — auto-advance gate markers (resume trackers)
+
+§5a still holds — **one PR per execution turn** (each turn must converge inside
+the `CHAT_MAX_TOOL_ROUNDS` cap). What changes is that Sophia no longer has to
+**wait for a human prompt between PRs**: when `AUTO_ADVANCE` is enabled she runs
+the next unit automatically, pausing only at explicit gates. This is safe now
+that context-compaction keeps a multi-turn thread under the model window
+(`SOPHIA_CONTEXT_MANAGEMENT_PLAN.md`, shipped 2026-06-14). Full design:
+**`SOPHIA_AUTO_ADVANCE_PLAN.md`**.
+
+**To make a roadmap auto-advanceable, add an `Advance` column to its resume
+tracker.** The marker on each unit row answers *"may Sophia auto-START this
+unit?"*:
+
+| Marker | Meaning |
+|--------|---------|
+| `auto` | When the previous unit completes, start this one immediately — no human prompt. |
+| `gate: <reason>` | **STOP** before this unit; Sophia posts a pause report carrying `<reason>` and waits for the governor to reply `go`. |
+
+Example:
+
+| Unit | Advance | PR opened | Merged (human) | Deployed |
+|------|---------|-----------|----------------|----------|
+| PR1 — parser | `auto` | ☐ | ☐ | n/a |
+| PR2 — signal | `auto` | ☐ | ☐ | ☐ |
+| PR3 — loop | `gate: deploy + UAT before go-live` | ☐ | ☐ | ☐ |
+
+**Rules:**
+- **Always gate** any unit that touches prod, needs a human merge before the
+  next can start, or is a UAT phase.
+- **Fail closed.** Sophia treats anything she can't parse unambiguously — no
+  `Advance` column, no `RESUME HERE` pointer, unit not found, malformed marker,
+  a turn that didn't open a PR — as a **gate** (stop and ask), never `auto`.
+- The executing turn **advances the `RESUME HERE` pointer** as each unit lands;
+  that pointer is how Sophia finds the next unit (then reads its marker).
+- A roadmap **without** an `Advance` column behaves exactly as before
+  (one PR, then wait) regardless of the `AUTO_ADVANCE` flag.
+
+---
+
 ## 6. Contribution reporting — use dao_client (dao_protocol repo)
 
 When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:
