@@ -127,7 +127,7 @@ Present all documents from Section C at customs clearance in Dongguan.
 |------|------|---------|
 | China Logistics Coordinator | Jerri / Ling | (via Gary Teh) |
 | Brazil Supplier (CEPOTX) | CEPOTX (accounting) | marcelcontabilidade@gmail.com / +55 93 3515-1453 / +55 93 9189-2322 |
-| Freight Forwarder (Brazil) | Omega Serviços Logísticos | Ana Barros (ana.barros@omegaservicos.com.br) / Isis Ribeiro (isis.ribeiro@omegaservicos.com.br) / EXPORTAÇÃO (exportacao@omegaservicos.com.br) |
+| Freight Forwarder (Brazil) | TBD — CEPOTX is in Pará, different region from Omega (Bahia) | — |
 | GACC Registration Consultant | TBD — recommend engaging a China regulatory consultant | — |
 
 ---
@@ -148,7 +148,6 @@ This guide was compiled from:
 - GACC Decree No. 280 (effective June 1, 2026)
 - CIFER system documentation (cifer.singlewindow.cn)
 - CEPOTX entity profile (fda_fsvp/suppliers/cepotx/)
-- Omega Serviços Logísticos contact records (agroverse-freight-audit)
 
 ---
 
