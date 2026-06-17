@@ -197,7 +197,84 @@ Track inventory through a person's hands.
 
 ---
 
-## 7. Checklist
+## 7. Deployment Checklist
+
+When setting up a new autopilot instance or provisioning a new machine, perform these steps:
+
+### 7.1 Disk cleanup cron
+
+Install the disk cleanup script and cron job to prevent the autopilot box from running out of space:
+
+```bash
+# Create the cleanup script
+sudo tee /usr/local/bin/disk-cleanup.sh > /dev/null << 'SCRIPT'
+#!/bin/bash
+# Disk cleanup for autopilot box
+# Removes stale temp dirs, old logs, and pip cache
+
+# Clean /tmp — remove dirs older than 1 day (not files, those may be in-use)
+find /tmp -maxdepth 1 -type d -mtime +1 -exec rm -rf {} + 2>/dev/null || true
+
+# Clean pip cache
+rm -rf /home/ubuntu/.cache/pip/ 2>/dev/null || true
+
+# Truncate old journal logs
+sudo journalctl --vacuum-time=3d 2>/dev/null || true
+
+echo "Disk cleanup complete"
+df -h / | tail -1
+SCRIPT
+
+sudo chmod +x /usr/local/bin/disk-cleanup.sh
+
+# Add daily cron
+(crontab -l 2>/dev/null; echo "0 3 * * * /usr/local/bin/disk-cleanup.sh > /dev/null 2>&1") | crontab -
+```
+
+### 7.2 SSH key setup
+
+The dao_protocol box (`172.31.23.207`) is only reachable via the `seni_ror` jump host. Copy the NELANCO key:
+
+```bash
+# Copy the nelanco.pem public key to seni_ror's authorized_keys
+ssh -o StrictHostKeyChecking=no ubuntu@seni_ror "echo '$(cat ~/.ssh/nelanco.pem.pub)' >> ~/.ssh/authorized_keys"
+
+# Test the jump
+ssh -o StrictHostKeyChecking=no -J ubuntu@seni_ror ubuntu@172.31.23.207 "hostname"
+```
+
+### 7.3 Service account verification
+
+Verify the Google Sheets service accounts have access to the Main Ledger:
+
+```bash
+curl -s http://172.31.23.207:8010/ping
+# Should return: {"status": "ok", "version": "..."}
+```
+
+### 7.4 Git clone dao_protocol
+
+```bash
+ssh -o StrictHostKeyChecking=no -J ubuntu@seni_ror ubuntu@172.31.23.207 "\
+  cd /home/ubuntu && \
+  git clone git@github.com:TrueSightDAO/dao_protocol.git && \
+  cd dao_protocol && \
+  pip install -e . && \
+  sudo systemctl restart dao_protocol"
+```
+
+### 7.5 Verify endpoints
+
+```bash
+curl -s https://edgar.truesight.me/ping
+curl -s "https://edgar.truesight.me/dao/qr-codes?limit=1"
+curl -s "https://edgar.truesight.me/dao/transactions?limit=1"
+curl -s "https://edgar.truesight.me/dao/inventory-movements?limit=1"
+```
+
+---
+
+## 8. Checklist
 
 ### PR1 — Query Endpoints
 
