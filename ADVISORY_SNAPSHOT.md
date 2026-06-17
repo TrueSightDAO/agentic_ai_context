@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-17T05:24:26Z`
+- Generated (UTC): `2026-06-17T11:21:20Z`
 - Look-back: **7** calendar days (`2026-06-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,27 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
-- `[EMAIL REGISTERED EVENT]` × 7
-- `[PRACTICE EVENT]` × 4
-- `[EMAIL VERIFICATION EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 24
+- `[EMAIL REGISTERED EVENT]` × 9
+- `[EMAIL VERIFICATION EVENT]` × 5
 - `[DONATION MINT EVENT]` × 2
-- _free-form (no bracket tag)_ × 2
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260616032214_037` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-16T03:22:14.802Z · Email: garyjob@gmail.com · Verification Key: PrWn0wOBiv6sZLAAqCTE-KrfVDJUdSIry2hivXt6vGM
-- `Edgar_20260616133847_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add BUY_BACK_RESERVE to Performance Statistics sync …
-- `Edgar_20260616134536_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: Add a `?action=triggerSync` handler to the `doGet` f…
-- `Edgar_20260616162051_043` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-16T16:20:51.767Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260616173932_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The /vault/status page has text spilling ou…
-- `Edgar_20260616174520_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 7 · Description: Fix mobile text overflow on /vault/status page
-- `Edgar_20260616174639_049` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Make overflow-wrap: break-word and word-bre…
-- `Edgar_20260616175452_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 7 · Description: Fix mobile text overflow on /vault/status page
-- `Edgar_20260616210013_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia vault UI fixes + public-key lookup cache design & handoff. (1) Fixed …
-- `Edgar_20260616211551_055` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+claude@truesight.me
-- `Edgar_20260616212133_057` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+claude@truesight.me
-- `Edgar_20260616212945_059` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: xwyNzPWD_eyj0muWW8NFeyMvtuDd5SzI97yrSfQcSf0 · Email: admin+claude@truesight.me
 - `Edgar_20260616213527_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Sophia identity/auth (Telegram<->ledger, /verify, Column X policy) + vault 5…
 - `Edgar_20260616214813_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Diagnose + fix Sophia empty-response; codify one-PR-per-turn planning conven…
 - `Edgar_20260616220236_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR1 — Public-Key Lookup Cache: generator emits per-key files
@@ -61,6 +49,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260616221528_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR3 — Public-Key Lookup Cache: reader point-lookup via resolve_key()
 - `Edgar_20260616232201_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The deploy tool's no-op guard (deploy.py, ~…
 - `Edgar_20260617051015_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix Gmail admin@truesight.me token (audit + re-mint + vault/box install) + R…
+- `Edgar_20260617060309_077` · **Edgar** · [No Text Provided]
+- `Edgar_20260617060354_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Researched on how to get the NF-e (nota fiscal e) issued for Matheus company…
+- `Edgar_20260617064105_081` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T06:41:05.557Z · Email: garyjob@gmail.com
+- `Edgar_20260617064127_083` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T06:41:27.025Z · Email: garyjob@gmail.com · Verification Key: JyYeLnyRCo6ZT8h68ApEbI135FO1N9yWaueShggfYm4
+- `Edgar_20260617064747_085` · **Edgar** · [No Text Provided]
+- `Edgar_20260617070616_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:06:16.172Z · Email: garyjob@gmail.com
+- `Edgar_20260617070639_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:06:39.555Z · Email: garyjob@gmail.com · Verification Key: ADtWcq8DbSKX8o8ddyqoU3CXEtEqwupmqOQ1Eifxsis
+- `Edgar_20260617071609_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault governor identity resolution — per-key lookup + whoami is_governor…
+- `Edgar_20260617072426_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:24:26.681Z · Email: garyjob@gmail.com
+- `Edgar_20260617072443_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:24:43.336Z · Email: garyjob@gmail.com · Verification Key: RiaJM3bmOALM2DD8xULaxtvUgdf-94ciSgnRcpP3tGY
+- `Edgar_20260617073149_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault status/followups pages — full runtime-config schema, resilient JS,…
+- `Edgar_20260617073256_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix /agroverse/qr-code-check 404 — register router with /agroverse prefix
 
 ---
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-16T10:59:13.907Z`
+- Generated (UTC): `2026-06-17T10:59:13.801Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -89,7 +89,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - AI: Contact Form found: 119  (#3)
 - Research: 59  (#8)
 - AI: No fit signal: 158  (#9)
-- AI: Enrich — manual: 94  (#10)
+- AI: Enrich — manual: 95  (#10)
 - Manager Follow-up: 32  (#13)
 - Followed Up: 1  (#15)
 - Instagram Followed: 11  (#18)
@@ -97,18 +97,18 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - On Hold: 18  (#20)
 - Deferred / Revisit later: 7  (#21)
 - **Partnered: 14**  (#22)
-- AI: Warm up prospect: 68  (#9999)
+- AI: Warm up prospect: 67  (#9999)
 - Not Appropriate: 74  (#9999)
 - Reclassified — D2C only: 0  (#9999)
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **262**, follow_up **70**, bulk **0**, unknown **2** (data rows: **334**)
+- **Email Agent Follow Up** — logged sends: warmup **273**, follow_up **70**, bulk **0**, unknown **2** (data rows: **345**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **68** stores — sum logged **warmup** sends (AU): **215**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **66**; follow-up depth (none / once / ≥2): **68** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **226**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -304,6 +304,7 @@ _All dated lines on/after 2026-06-10_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7d2c892 | 2026-06-17 05:27:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e31c358 | 2026-06-16 21:31:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bebf4a3 | 2026-06-16 12:23:59 -0700 | fix: add View history link to Daily Buy-Back Budget card for equal height
 ce43fa5 | 2026-06-16 12:14:33 -0700 | fix: add Buy-Back Reserve to show/hide toggle; match footer style on buy-back-reserve page
@@ -343,7 +344,6 @@ e72d4bf | 2026-06-14 00:33:09 +0000 | Reorder Platform Services: Sophia → Edga
 5a18f58 | 2026-06-13 17:23:52 -0700 | Add Platform Services section with Perch and Sophia (#227)
 c622d33 | 2026-06-13 20:05:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 995531e | 2026-06-13 11:12:55 -0700 | Add Anatman section: LLM behavior mirrors no-self doctrine (#226)
-b0e3afa | 2026-06-13 11:07:03 -0700 | Add hyperscaler monetization collapse argument (#224)
 … (truncated)
 ```
 
@@ -356,6 +356,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5f28c24 | 2026-06-16 22:59:09 -0700 | feat: add self-service NF-e enablement steps + Coopercabruca fallback to freight SOP
+9f2a492 | 2026-06-16 22:24:39 -0700 | chore(previews): refresh Beer Hall preview (2026-06-17 UTC)
+57fe419 | 2026-06-16 22:24:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 7142962 | 2026-06-16 21:20:16 -0700 | Merge pull request #528 from TrueSightDAO/auto/advisory-refresh-2026-06-17
 097a091 | 2026-06-17 04:20:05 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 4c4bb57 | 2026-06-16 15:12:41 -0700 | context: second empty-response root cause fixed (#229 merged, deploy pending)
@@ -393,15 +396,18 @@ d8972a1 | 2026-06-15 05:49:15 -0700 | chore(previews): refresh Beer Hall preview
 43d0bfd | 2026-06-14 23:25:16 -0700 | Split into lean SVH doc + internal strategy memo. Fix carbon credits, AGL securities question, capital-injected TDG. (#513)
 2a4ac89 | 2026-06-14 23:12:27 -0700 | Add ecosystem mermaid diagram, revenue distribution model, fix names (Bilal/Liz) (#512)
 5a1324d | 2026-06-14 22:58:07 -0700 | Add capital channels map: how partners inject resources, what they get, how they exit (#511)
-c8b9041 | 2026-06-14 22:36:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-15 UTC)
-d4f1402 | 2026-06-14 22:36:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-15 UTC)
-836e259 | 2026-06-14 21:29:43 -0700 | Merge pull request #510 from TrueSightDAO/auto/advisory-refresh-2026-06-15
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+63ff33d | 2026-06-16 23:40:26 -0700 | feat: add Credentials.sample.js template, fix gitignore to allow sample files
+08c2cb4 | 2026-06-16 23:36:21 -0700 | refactor: delete thematic folders, inline manifests into project folders
+63f441e | 2026-06-16 23:30:19 -0700 | chore: remove redundant .gs files already migrated to project folders
+1bc1dab | 2026-06-16 23:29:05 -0700 | fix: remove clasp_mirrors from .gitignore and manifest mirror_code_path references
+50999ec | 2026-06-16 23:23:01 -0700 | migrate: flatten clasp_mirrors/ into google_app_scripts/<scriptId>/ folders
+296c41a | 2026-06-16 23:13:02 -0700 | fix(deploy): prevent duplicate .gs/.js files in GAS mirror via mirror_filename_map
 77e58fe | 2026-06-16 22:15:01 -0700 | fix: correct spreadsheet column mapping in dao_members_cache_publisher (col B/E/C/D shift)
 a98d7f2 | 2026-06-16 15:09:58 -0700 | feat(dao_members_cache): incremental per-key write via manifest diff (PR2) (#361)
 a62fc96 | 2026-06-16 15:03:44 -0700 | feat(dao_members_cache): emit public_keys/<sha256>.json per-key files (PR1) (#359)
@@ -459,6 +465,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+02978d1 | 2026-06-17 11:19:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c5305b1 | 2026-06-16 11:36:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b476a9f | 2026-06-15 12:54:19 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 9fd9e3b | 2026-06-15 12:44:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -603,7 +610,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/16/2026 21:50:34 |
+| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 3:53:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-10`; scanned last **522** data rows)
 
