@@ -198,19 +198,21 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 
 | Unit | Advance | PR opened | Merged (human) | Deployed | UAT | DAO contribution reported |
 |------|---------|-----------|----------------|----------|-----|---------------------------|
-| PR1 — convention + parser | `auto` | ☑ [#244](https://github.com/TrueSightDAO/truesight_autopilot/pull/244) + doc [agentic#545](https://github.com/TrueSightDAO/agentic_ai_context/pull/545) ✅ merged | ☐ | n/a | — | ☑ |
-| PR2 — brain advance signal | `auto` | ☑ [#245](https://github.com/TrueSightDAO/truesight_autopilot/pull/245) | ☐ | ☐ | — | ☑ |
-| PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☑ [#246](https://github.com/TrueSightDAO/truesight_autopilot/pull/246) | ☐ | ☐ | U1–U6 | ☑ |
-| PR4 — rollout + UAT | `gate: UAT` | ☐ | ☐ | ☐ | U1–U6 | ☐ |
+| PR1 — convention + parser | `auto` | ☑ [#244](https://github.com/TrueSightDAO/truesight_autopilot/pull/244) + doc [agentic#545](https://github.com/TrueSightDAO/agentic_ai_context/pull/545) | ☑ | ☑ | — | ☑ |
+| PR2 — brain advance signal | `auto` | ☑ [#248](https://github.com/TrueSightDAO/truesight_autopilot/pull/248) | ☑ | ☑ | — | ☑ |
+| PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☑ [#246](https://github.com/TrueSightDAO/truesight_autopilot/pull/246) | ☑ | ☑ | U1–U6 | ☑ |
+| PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ⏳ U1–U6 | ☐ |
 
-**Status 2026-06-17:** PR1–PR3 implemented + opened, stacked (#244 → #245 → #246);
-convention doc (§5c) merged via agentic#545; full unit suite green (568 pass; the lone
-`test_vault_system_status` failure is pre-existing + unrelated). All behavior is behind the
-`AUTO_ADVANCE` flag (default **off**) — prod is unchanged until merged, deployed, and the flag flipped.
+**Status 2026-06-17:** PR1–PR3 + convention doc all **merged to `main`** and **deployed** to the box
+(`sophia`, HEAD `f0be109`, `/health` ok, clean boot — no import errors). Restart was done while the box
+was **idle** (`active_tracks` empty → non-forced; severed nothing). Full unit suite green (570 pass; lone
+`test_vault_system_status` failure is pre-existing + unrelated). PR2 landed as **#248** (the stacked #245
+was auto-closed by GitHub when the PR1 base branch was deleted on merge). **`AUTO_ADVANCE` is OFF** on the
+box (env unset) — code is live but behavior is unchanged until the flag is flipped.
 
-> **RESUME HERE:** Human-merge the stack **in order** #244 → #245 → #246 (own-repo gate — Sophia/Claude
-> open, never self-merge). Then deploy (targeted `git checkout -B main origin/main`, **no `git clean`**;
-> `deploy_autopilot`), set `AUTO_ADVANCE=true`, and run UAT **U1–U6**. PR4 is this rollout step.
+> **RESUME HERE (PR4 — UAT):** Code is deployed + healthy. To activate, set **`AUTO_ADVANCE=true`** in
+> `/opt/truesight_autopilot/.env` on `sophia` and restart, then run **UAT U1–U6** on a scratch handoff
+> thread with a throwaway 3-PR plan. Until then prod behaves exactly as before (one PR, then wait).
 
 ## 11. Dependency notes
 
