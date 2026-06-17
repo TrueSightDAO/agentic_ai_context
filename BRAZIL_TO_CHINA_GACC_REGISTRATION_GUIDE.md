@@ -140,26 +140,7 @@ Present all documents from Section C at customs clearance in Dongguan.
 
 ---
 
-## F. Fallback: Coopercabruca Route
-
-If Black King's GACC registration is delayed, **Coopercabruca** is an alternative supplier:
-
-| Attribute | Value |
-|-----------|-------|
-| Legal Name | COOPERATIVA DOS CACAUICULTORES DO SUL DA BAHIA |
-| CNPJ | 31.948.811/0001-42 |
-| Location | Itabuna, BA (same region as Ilhéus) |
-| CNAE | 10.93-7-01 (cocoa manufacturing) |
-| IE + NF-e | ✅ Already has both |
-| FDA FSVP | ✅ Valid (FFR 17660066140) |
-| Export experience | ✅ Shipped 100kg cacao SSA→SFO via Omega in Nov 2023 |
-| Contact | coopercabruca@gmail.com / +55 73 9138-8884 |
-
-They would also need GACC registration, but as a cooperative with established food safety systems, their application may be faster.
-
----
-
-## G. Key Contacts for This Lane
+## F. Key Contacts for This Lane
 
 | Role | Name | Contact |
 |------|------|---------|
