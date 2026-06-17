@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-17T11:21:20Z`
+- Generated (UTC): `2026-06-17T16:12:17Z`
 - Look-back: **7** calendar days (`2026-06-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[EMAIL REGISTERED EVENT]` × 9
+- `[CONTRIBUTION EVENT]` × 26
+- `[EMAIL REGISTERED EVENT]` × 8
 - `[EMAIL VERIFICATION EVENT]` × 5
 - `[DONATION MINT EVENT]` × 2
 - `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260616213527_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Sophia identity/auth (Telegram<->ledger, /verify, Column X policy) + vault 5…
-- `Edgar_20260616214813_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Diagnose + fix Sophia empty-response; codify one-PR-per-turn planning conven…
-- `Edgar_20260616220236_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR1 — Public-Key Lookup Cache: generator emits per-key files
 - `Edgar_20260616220612_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: PR2 — Public-Key Lookup Cache: incremental per-key write via manifest diff
 - `Edgar_20260616221504_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix second Sophia empty-response root cause (non-adjacent tool messages + su…
 - `Edgar_20260616221528_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR3 — Public-Key Lookup Cache: reader point-lookup via resolve_key()
@@ -61,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260617072443_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:24:43.336Z · Email: garyjob@gmail.com · Verification Key: RiaJM3bmOALM2DD8xULaxtvUgdf-94ciSgnRcpP3tGY
 - `Edgar_20260617073149_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault status/followups pages — full runtime-config schema, resilient JS,…
 - `Edgar_20260617073256_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix /agroverse/qr-code-check 404 — register router with /agroverse prefix
+- `Edgar_20260617151311_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Generated information for GACC registration
+- `Edgar_20260617152905_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Gary Teh)
+- `Edgar_20260617152906_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Sophia Truesight)
 
 ---
 
@@ -304,6 +304,7 @@ _All dated lines on/after 2026-06-10_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+54608f5 | 2026-06-17 11:22:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7d2c892 | 2026-06-17 05:27:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e31c358 | 2026-06-16 21:31:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bebf4a3 | 2026-06-16 12:23:59 -0700 | fix: add View history link to Daily Buy-Back Budget card for equal height
@@ -343,7 +344,6 @@ a366168 | 2026-06-14 05:26:40 +0000 | trigger: rebuild GitHub Pages
 e72d4bf | 2026-06-14 00:33:09 +0000 | Reorder Platform Services: Sophia → Edgar → Perch
 5a18f58 | 2026-06-13 17:23:52 -0700 | Add Platform Services section with Perch and Sophia (#227)
 c622d33 | 2026-06-13 20:05:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
-995531e | 2026-06-13 11:12:55 -0700 | Add Anatman section: LLM behavior mirrors no-self doctrine (#226)
 … (truncated)
 ```
 
@@ -356,6 +356,21 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2bfaec8 | 2026-06-17 08:26:43 -0700 | Add GACC registration guides for Coopercabruca and CEPOTX (#540)
+dc46c48 | 2026-06-17 08:06:27 -0700 | Add real Omega Services contact details from Gmail (#539)
+92ff888 | 2026-06-17 08:06:22 -0700 | Update PDF with Omega Services contact details
+0630f59 | 2026-06-17 08:05:19 -0700 | Replace PDF with clean version (no Coopercabruca, Omega Services)
+b6aba5a | 2026-06-17 08:04:51 -0700 | Fix freight forwarder: Seacos Logistic → Omega Services (#538)
+229c8ac | 2026-06-17 08:04:23 -0700 | Update PDF: Seacos Logistic → Omega Services
+52401d2 | 2026-06-17 08:02:55 -0700 | Update GACC PDF — remove Coopercabruca references
+956b8ac | 2026-06-17 08:01:16 -0700 | Remove all Coopercabruca mentions from GACC registration guide (#537)
+ec5c829 | 2026-06-17 07:54:54 -0700 | Remove estimated total and declared value, add chocolate bar, sealed bag, no gross weight (#535)
+7b14dcc | 2026-06-17 07:48:55 -0700 | Simplify product tables to per-unit weight instead of total quantity (#531)
+0738441 | 2026-06-17 07:45:00 -0700 | Add Brazil-China GACC registration guide for Black King to Dongguan lane (#530)
+21b1a01 | 2026-06-17 07:35:12 -0700 | Supplement checklist with Export NF-e Enablement PDF reference (#529)
+c354f07 | 2026-06-17 07:32:47 -0700 | Add Export NF-e Enablement self-service guide for Black King
+7f16686 | 2026-06-17 04:21:43 -0700 | chore(previews): refresh Beer Hall preview (2026-06-17 UTC)
+f990965 | 2026-06-17 04:21:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 5f28c24 | 2026-06-16 22:59:09 -0700 | feat: add self-service NF-e enablement steps + Coopercabruca fallback to freight SOP
 9f2a492 | 2026-06-16 22:24:39 -0700 | chore(previews): refresh Beer Hall preview (2026-06-17 UTC)
 57fe419 | 2026-06-16 22:24:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
@@ -381,21 +396,6 @@ d59c4bb | 2026-06-16 04:41:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a7839dd | 2026-06-15 23:05:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 e11f535 | 2026-06-15 21:26:37 -0700 | Merge pull request #520 from TrueSightDAO/auto/advisory-refresh-2026-06-16
 44b5645 | 2026-06-16 04:26:26 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
-e48dabe | 2026-06-15 18:02:41 -0700 | Add Self-Replication SOP as PDF
-602e508 | 2026-06-15 17:57:13 -0700 | Merge Clone/Fork SOP: add Fork path for new ecosystems (#519)
-79c08e5 | 2026-06-15 17:56:44 -0700 | Add SOP for spawning a new autopilot instance (#517)
-b99699b | 2026-06-15 14:32:03 -0700 | chore(previews): refresh Beer Hall preview (2026-06-15 UTC)
-f5dafad | 2026-06-15 14:32:02 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-15 UTC)
-2a997fb | 2026-06-15 11:06:46 -0700 | Fix V2: sentiment importer already has subscribers + subscription revenue flowing to NAV (#516)
-e83c167 | 2026-06-15 09:22:11 -0700 | Fix V2: remove unnecessary lockup guardrail, clarify licensing surplus boosts NAV directly (#515)
-58bc9ae | 2026-06-15 09:08:38 -0700 | Add V2 PDF: full capital channels map
-c2857b1 | 2026-06-15 09:08:04 -0700 | Add V2: full capital channels map, ecosystem diagram, revenue model
-f04aaff | 2026-06-15 09:04:06 -0700 | Fix V1 doc: strip capital channels, keep lean. Add licensing revenue suggestion. (#514)
-d8972a1 | 2026-06-15 05:49:15 -0700 | chore(previews): refresh Beer Hall preview (2026-06-15 UTC)
-07b6acc | 2026-06-15 05:49:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-15 UTC)
-43d0bfd | 2026-06-14 23:25:16 -0700 | Split into lean SVH doc + internal strategy memo. Fix carbon credits, AGL securities question, capital-injected TDG. (#513)
-2a4ac89 | 2026-06-14 23:12:27 -0700 | Add ecosystem mermaid diagram, revenue distribution model, fix names (Bilal/Liz) (#512)
-5a1324d | 2026-06-14 22:58:07 -0700 | Add capital channels map: how partners inject resources, what they get, how they exit (#511)
 … (truncated)
 ```
 
@@ -610,7 +610,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 3:53:58 |
+| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 8:51:01 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-10`; scanned last **522** data rows)
 
