@@ -207,12 +207,14 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 (`sophia`, HEAD `f0be109`, `/health` ok, clean boot — no import errors). Restart was done while the box
 was **idle** (`active_tracks` empty → non-forced; severed nothing). Full unit suite green (570 pass; lone
 `test_vault_system_status` failure is pre-existing + unrelated). PR2 landed as **#248** (the stacked #245
-was auto-closed by GitHub when the PR1 base branch was deleted on merge). **`AUTO_ADVANCE` is OFF** on the
-box (env unset) — code is live but behavior is unchanged until the flag is flipped.
+was auto-closed by GitHub when the PR1 base branch was deleted on merge). **`AUTO_ADVANCE=true` is now
+LIVE** (`/opt/truesight_autopilot/.env` line 49; verified `settings.auto_advance=True`, max_turns=8;
+brain + adapter restarted while idle 2026-06-17, `/health` ok).
 
-> **RESUME HERE (PR4 — UAT):** Code is deployed + healthy. To activate, set **`AUTO_ADVANCE=true`** in
-> `/opt/truesight_autopilot/.env` on `sophia` and restart, then run **UAT U1–U6** on a scratch handoff
-> thread with a throwaway 3-PR plan. Until then prod behaves exactly as before (one PR, then wait).
+> **RESUME HERE (PR4 — UAT):** Feature is deployed AND enabled. Remaining: run **UAT U1–U6** on a scratch
+> handoff thread with a throwaway 3-PR plan (`auto`/`gate` markers) — confirm she auto-advances the `auto`
+> units with a heartbeat between each, pauses at the `gate:`, halts on a failed unit, and stops at the
+> cap (8). To roll back instantly: set `AUTO_ADVANCE=false` (or remove the line) + restart.
 
 ## 11. Dependency notes
 
