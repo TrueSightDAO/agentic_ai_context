@@ -198,14 +198,19 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 
 | Unit | Advance | PR opened | Merged (human) | Deployed | UAT | DAO contribution reported |
 |------|---------|-----------|----------------|----------|-----|---------------------------|
-| PR1 — convention + parser | `auto` | ☐ | ☐ | n/a | — | ☐ |
-| PR2 — brain advance signal | `auto` | ☐ | ☐ | ☐ | — | ☐ |
-| PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☐ | ☐ | ☐ | U1–U6 | ☐ |
+| PR1 — convention + parser | `auto` | ☑ [#244](https://github.com/TrueSightDAO/truesight_autopilot/pull/244) + doc [agentic#545](https://github.com/TrueSightDAO/agentic_ai_context/pull/545) ✅ merged | ☐ | n/a | — | ☑ |
+| PR2 — brain advance signal | `auto` | ☑ [#245](https://github.com/TrueSightDAO/truesight_autopilot/pull/245) | ☐ | ☐ | — | ☑ |
+| PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☑ [#246](https://github.com/TrueSightDAO/truesight_autopilot/pull/246) | ☐ | ☐ | U1–U6 | ☑ |
 | PR4 — rollout + UAT | `gate: UAT` | ☐ | ☐ | ☐ | U1–U6 | ☐ |
 
-> **RESUME HERE:** PR1 — add the `Advance`-column convention to `OPERATING_INSTRUCTIONS.md` §5a +
-> roadmap template, and ship the pure `app/auto_advance.py` parser with tests. Open a PR; **do not
-> self-merge** (human reviews). This unit is itself `auto` → on success continue to PR2.
+**Status 2026-06-17:** PR1–PR3 implemented + opened, stacked (#244 → #245 → #246);
+convention doc (§5c) merged via agentic#545; full unit suite green (568 pass; the lone
+`test_vault_system_status` failure is pre-existing + unrelated). All behavior is behind the
+`AUTO_ADVANCE` flag (default **off**) — prod is unchanged until merged, deployed, and the flag flipped.
+
+> **RESUME HERE:** Human-merge the stack **in order** #244 → #245 → #246 (own-repo gate — Sophia/Claude
+> open, never self-merge). Then deploy (targeted `git checkout -B main origin/main`, **no `git clean`**;
+> `deploy_autopilot`), set `AUTO_ADVANCE=true`, and run UAT **U1–U6**. PR4 is this rollout step.
 
 ## 11. Dependency notes
 
