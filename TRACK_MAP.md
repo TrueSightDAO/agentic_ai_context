@@ -56,6 +56,8 @@ flowchart TD
 | **Status** | 🔴 Critical blocker |
 | **Owner** | Matheus / Paloma / Gary |
 | **Goal** | Create new Brazilian CNPJ with correct CNAE (46.23-1/04 — wholesale cacao trade), Inscrição Estadual (IE) at SEFAZ-BA, and NF-e model 55 credentialing. Replace Black King's personal CNPJ as the export vehicle. |
+| **Expected timeline** | **5–20 business days** to change/add CNAE for a Microempresa (ME). Cost: R$400–R$2,100 depending on state and accounting services. [Source: Matheus, 2026-06-19](https://github.com/TrueSightDAO/.github/blob/main/attachments/2026-06-19_matheus_cnae_timeline.jpg) |
+| **Next check-in** | **~2026-06-26** (5 business days from 2026-06-19) — earliest possible completion |
 | **Key docs** | [`BRAZIL_EXPORT_ENTITY_BRIEF.md`](./BRAZIL_EXPORT_ENTITY_BRIEF.md) — explains why Black King's current CNPJ (service CNAEs only, no IE, no NF-e model 55) cannot legally issue export invoices. See §4 for the full diagnosis. |
 | **Context** | Current state: Black King (CNPJ 50.042.585/0001-80) is an Empresário Individual with only service CNAEs (82.30-0-01). Cannot issue export NF-e. New entity needs CNAE 46.23-1/04 + IE + NF-e model 55 credentialing at SEFAZ-BA. |
 | **Dependencies** | Legal Entity Structuring (holding entity must own the new CNPJ) |
@@ -89,13 +91,13 @@ flowchart TD
 
 ## Quick Reference
 
-| Track | Status | Owner | Blocked By |
-|-------|--------|-------|------------|
-| Legal Entity Structuring | 🟡 Offline | Gary / Paloma | — |
-| GACC / Brazil Compliance | 🟡 Offline | Gary / Paloma | — |
-| Brazil Export Entity (CNPJ/NF-e/CNAE) | 🔴 Gate | Matheus / Paloma / Gary | Legal Entity Structuring |
-| Chocolate Subscription Delivery | 🟡 Blocked | Gary | Brazil Export Entity 🔴 |
-| China / Aora Events (100 bars) | 🟡 Blocked | Gary / Liz / Jerri | Brazil Export Entity 🔴 |
+| Track | Status | Owner | Next Check-in | Blocked By |
+|-------|--------|-------|---------------|------------|
+| Legal Entity Structuring | 🟡 Offline | Gary / Paloma | — | — |
+| GACC / Brazil Compliance | 🟡 Offline | Gary / Paloma | — | — |
+| Brazil Export Entity (CNPJ/NF-e/CNAE) | 🔴 Gate | Matheus / Paloma / Gary | ~2026-06-26 | Legal Entity Structuring |
+| Chocolate Subscription Delivery | 🟡 Blocked | Gary | — | Brazil Export Entity 🔴 |
+| China / Aora Events (100 bars) | 🟡 Blocked | Gary / Liz / Jerri | — | Brazil Export Entity 🔴 |
 
 ---
 
