@@ -143,7 +143,7 @@ replying in that topic with a short go-signal —
 
 | Plan file | Handoff title | Telegram topic | message_thread_id | Handoff date | Status |
 |-----------|---------------|----------------|-------------------|--------------|--------|
-| `CLI_SALES_EVENT_ALIGNMENT_PLAN.md` | CLI Sales Event Audit & Alignment with DApp | [CLI Sales Event Alignment](https://t.me/c/3919341801/6311) | 6311 | 2026-06-17 | in progress |
+| `CLI_SALES_EVENT_ALIGNMENT_PLAN.md` | CLI Sales Event Audit & Alignment with DApp | [CLI Sales Event Alignment](https://t.me/c/3919341801/6369) | 6369 | 2026-06-17 | in progress |
 | `PUBLIC_KEY_LOOKUP_CACHE_PLAN.md` | Public-Key Lookup Cache | [Public-Key Lookup Cache](https://t.me/c/3919341801/5712) | 5712 | 2026-06-16 | blocked |
 | `SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md` | Vault Initialization & Credential Migration | [Vault Init & Credential Migration](https://t.me/c/3919341801/3981) | 3981 | 2026-06-14 | blocked |
 | `SOPHIA_LIVE_PROGRESS_PLAN.md` | Live Progress Introspection | [Live Progress Introspection](https://t.me/c/3919341801/2799) | 2799 | 2026-06-11 | blocked |
