@@ -8,6 +8,7 @@
 
 ```mermaid
 flowchart TD
+    G[Graeme Read / Amazon Restoration Partnership]:::new
     T5[Legal Entity Structuring] --> T7
     T6[GACC / Brazil Compliance] --> T7
     T7[Brazil Export Entity<br/>CNPJ / NF-e / CNAE]:::gate --> T8
@@ -99,6 +100,7 @@ flowchart TD
 | Brazil Export Entity (CNPJ/NF-e/CNAE) | 🔴 Gate | Matheus / Paloma / Gary | ~2026-06-26 | Legal Entity Structuring |
 | Chocolate Subscription Delivery | 🟡 Blocked | Gary | — | Brazil Export Entity 🔴 |
 | China / Aora Events (100 bars) | 🟡 Blocked | Gary / Liz / Jerri | — | Brazil Export Entity 🔴 |
+| Graeme Read / Amazon Restoration Partnership | 🔵 New | Gary / Graeme / Jonathan | — | — |
 
 ---
 
