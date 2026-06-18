@@ -62,6 +62,7 @@ Brazilian exports currently flow through "Black King" — the individual CNPJ of
 2. **Not automatable** — building automation on an individual's personal registration is inappropriate and risky
 3. **Single point of failure** — a community-wide operation should not depend on one person's personal legal standing, banking, and RADAR limits
 4. **Scale & financing** — a Simples Nacional micro-enterprise has limited RADAR capacity
+5. **Wrong CNAE for exports** — Black King's CNPJ has only service CNAEs (82.30-0-01, events/fairs), no Inscrição Estadual (IE), and no NF-e model 55 credentialing at SEFAZ-BA. This means it **cannot legally issue export NF-e**, which is required for DU-E registration in Siscomex. A new CNPJ with the correct commerce/export CNAE is essential.
 
 ---
 
