@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-18T05:16:48Z`
+- Generated (UTC): `2026-06-18T10:53:32Z`
 - Look-back: **7** calendar days (`2026-06-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,17 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 29
-- `[EMAIL REGISTERED EVENT]` × 6
 - `[EMAIL VERIFICATION EVENT]` × 5
+- `[EMAIL REGISTERED EVENT]` × 5
 - `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 2
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260617060309_077` · **Edgar** · [No Text Provided]
-- `Edgar_20260617060354_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Researched on how to get the NF-e (nota fiscal e) issued for Matheus company…
-- `Edgar_20260617064105_081` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T06:41:05.557Z · Email: garyjob@gmail.com
-- `Edgar_20260617064127_083` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T06:41:27.025Z · Email: garyjob@gmail.com · Verification Key: JyYeLnyRCo6ZT8h68ApEbI135FO1N9yWaueShggfYm4
 - `Edgar_20260617064747_085` · **Edgar** · [No Text Provided]
 - `Edgar_20260617070616_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:06:16.172Z · Email: garyjob@gmail.com
 - `Edgar_20260617070639_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:06:39.555Z · Email: garyjob@gmail.com · Verification Key: ADtWcq8DbSKX8o8ddyqoU3CXEtEqwupmqOQ1Eifxsis
@@ -60,6 +56,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260617222749_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sophia auto-advance roadmap + live-progress cross-process fix
 - `Edgar_20260617231013_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia auto-advance feature — implemented PR1-PR3 + convention doc
 - `Edgar_20260617231042_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Bug: submit_contribution tool rejects SALES…
+- `Edgar_20260618053802_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Delivering and dropping off the cacao over at Kirsten’s place
+- `Edgar_20260618053905_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Sharing about our community efforts to restore our Amazon rainforest as well…
+- `Edgar_20260618054250_009` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260618054428_011` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 25 · Description: For toll gates driving back from kopi bar cafe in Berkeley to San Francisco …
 
 ---
 
@@ -227,11 +227,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 31 SKU lines · 13,833.15 total units · $12,280.95
+- Manager record: `Gary Teh` · 31 SKU lines · 13,808.15 total units · $12,255.95
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 13,745.97 | $12,143.62 |
+  | (uncategorized) | (unspecified) | 27 | 13,720.97 | $12,118.62 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Mass | Retail Ready | 2 | 11 | $87.34 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -301,6 +301,7 @@ _All dated lines on/after 2026-06-11_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e7ac037 | 2026-06-18 05:20:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9396a06 | 2026-06-17 20:35:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 27d4249 | 2026-06-17 16:25:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 54608f5 | 2026-06-17 11:22:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -340,7 +341,6 @@ e254eb0 | 2026-06-13 22:33:57 -0700 | [autopilot] Fix index.html (#228)
 a366168 | 2026-06-14 05:26:40 +0000 | trigger: rebuild GitHub Pages
 0f904f3 | 2026-06-14 05:17:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6df8a34 | 2026-06-14 00:33:50 +0000 | Fix Chat with Sophia link: beerhall → sophia.truesight.me
-e72d4bf | 2026-06-14 00:33:09 +0000 | Reorder Platform Services: Sophia → Edgar → Perch
 … (truncated)
 ```
 
@@ -353,6 +353,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7d7517c | 2026-06-17 22:17:02 -0700 | chore(previews): refresh Beer Hall preview (2026-06-18 UTC)
+b0a25c8 | 2026-06-17 22:17:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
 db9a957 | 2026-06-17 21:12:49 -0700 | Merge pull request #546 from TrueSightDAO/auto/advisory-refresh-2026-06-18
 c151fc2 | 2026-06-18 04:12:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
 35d1e42 | 2026-06-17 16:34:09 -0700 | docs(auto-advance): AUTO_ADVANCE=true now live on sophia
@@ -391,8 +393,6 @@ f990965 | 2026-06-17 04:21:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 4c4bb57 | 2026-06-16 15:12:41 -0700 | context: second empty-response root cause fixed (#229 merged, deploy pending)
 a972538 | 2026-06-16 15:10:04 -0700 | tick: PR2 completed — incremental per-key write via manifest diff (#526)
 87bb520 | 2026-06-16 15:03:49 -0700 | tick: PR1 completed — public_keys/<sha256>.json generator emitted (#525)
-94beb93 | 2026-06-16 14:49:23 -0700 | context: close loop — #227 merged+deployed, contribution reported as Claude
-a305755 | 2026-06-16 14:39:49 -0700 | convention: one-PR-per-turn scoping (OPERATING_INSTRUCTIONS §5a); re-scope Public-Key Lookup Cache handoff so Sophia isn't choked
 … (truncated)
 ```
 
@@ -462,6 +462,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+03e126c | 2026-06-18 10:50:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 02978d1 | 2026-06-17 11:19:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c5305b1 | 2026-06-16 11:36:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b476a9f | 2026-06-15 12:54:19 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -606,7 +607,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 21:51:07 |
+| 2026-06 | 759.35 | 15736.46386 | 6/18/2026 3:52:50 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-11`; scanned last **522** data rows)
 
