@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-17T20:35:10Z`
-- Look-back: **7** calendar days (`2026-06-10` → today UTC)
+- Generated (UTC): `2026-06-18T04:12:29Z`
+- Look-back: **7** calendar days (`2026-06-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 27
-- `[EMAIL REGISTERED EVENT]` × 6
-- `[EMAIL VERIFICATION EVENT]` × 5
-- `[DONATION MINT EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 2
-
-### Latest entries
-
-- `Edgar_20260616221528_071` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: PR3 — Public-Key Lookup Cache: reader point-lookup via resolve_key()
-- `Edgar_20260616232201_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The deploy tool's no-op guard (deploy.py, ~…
-- `Edgar_20260617051015_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix Gmail admin@truesight.me token (audit + re-mint + vault/box install) + R…
-- `Edgar_20260617060309_077` · **Edgar** · [No Text Provided]
-- `Edgar_20260617060354_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Researched on how to get the NF-e (nota fiscal e) issued for Matheus company…
-- `Edgar_20260617064105_081` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T06:41:05.557Z · Email: garyjob@gmail.com
-- `Edgar_20260617064127_083` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T06:41:27.025Z · Email: garyjob@gmail.com · Verification Key: JyYeLnyRCo6ZT8h68ApEbI135FO1N9yWaueShggfYm4
-- `Edgar_20260617064747_085` · **Edgar** · [No Text Provided]
-- `Edgar_20260617070616_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:06:16.172Z · Email: garyjob@gmail.com
-- `Edgar_20260617070639_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:06:39.555Z · Email: garyjob@gmail.com · Verification Key: ADtWcq8DbSKX8o8ddyqoU3CXEtEqwupmqOQ1Eifxsis
-- `Edgar_20260617071609_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault governor identity resolution — per-key lookup + whoami is_governor…
-- `Edgar_20260617072426_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:24:26.681Z · Email: garyjob@gmail.com
-- `Edgar_20260617072443_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:24:43.336Z · Email: garyjob@gmail.com · Verification Key: RiaJM3bmOALM2DD8xULaxtvUgdf-94ciSgnRcpP3tGY
-- `Edgar_20260617073149_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault status/followups pages — full runtime-config schema, resilient JS,…
-- `Edgar_20260617073256_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix /agroverse/qr-code-check 404 — register router with /agroverse prefix
-- `Edgar_20260617151311_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Generated information for GACC registration
-- `Edgar_20260617152905_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Gary Teh)
-- `Edgar_20260617152906_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Sophia Truesight)
-- `Edgar_20260617171608_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-17T17:16:08.260Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260617201116_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sharing about his diet of how he is cutting out sugar and ramping up protein…
 
 ---
 
@@ -68,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $3,388 | 8% | `2026-12-31` | 197 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 197 | — |
+| 2026 QR Code Sales | $40,000 | $3,388 | 8% | `2026-12-31` | 196 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 196 | — |
 
 ---
 
@@ -252,17 +214,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$3,325.04**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$41.26**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -274,10 +232,8 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-06-16 | claude | Second root cause of Sophia empty-response (thread 5712), distinct from #227: corrupted transcript had a tool result NOT adjacent to its assistant tool_calls -> DeepSeek 400 -> stream emitted error event w/ no done -> adapter (no error branch) showed empty banner. Fix PR #229 MERGED to main (b8b7d37), NOT deployed per Gary (Sophia mid-task; her context file already repaired by DeepSeek out-of-band). _sanitise_tool_messages Pass1 now adjacency-aware; telegram adapter surfaces error events. 532 tests pass. *** DEPLOY PENDING: box runs #227 but not #229 — next truesight-autopilot deploy must pick up b8b7d37. ***
 
-_All dated lines on/after 2026-06-10_ (10):
+_All dated lines on/after 2026-06-11_ (8):
 
-- 2026-06-10 | claude-code | UAT (User Acceptance Testing) — end-to-end validation by the governor before signing off on a feature. The beta sandbox endpoint (thread 1955, `beta.edgar.truesight.me`) is the canonical UAT surface for Stripe-touching flows: standalone EC2 in NELANCO, Stripe TEST mode, isolated fulfillment queue. UAT is distinct from CI/E2E tests — it's the human governor running through the real user journey. Future LLMs and Sophia: when a plan says "UAT," it means the governor (Gary) tests end-to-end on the beta staging environment, not in CI.
-- 2026-06-10 | claude (subscriptions session) | TERM: UAT = User Acceptance Testing — a human walks the real end-to-end flow before go-live (NOT more automated tests). Convention: UAT runs on the BETA staging stack (beta.agroverse.shop + beta.edgar.truesight.me beta dao_protocol in Stripe TEST mode, SANDBOX rows), never prod, with Stripe test cards (4242…) — checkout must show TEST MODE. Prefer beta staging over local for UAT (that's what the beta sandbox is for). New doc GLOSSARY.md. Active: chocolate-bar subscription UAT = thread 1955. Live as of 2026-06-10: beta.agroverse.shop/subscribe/chocolate-bar/=200, beta.edgar webhook=400-on-unsigned (verifying).
 - 2026-06-14 | claude (sophia prod-incident session) | Sophia prod stall cascade on the Kopi Bay onboarding thread (tg 3926) — root-caused + fixed 3 distinct bugs (all deployed to box 958e8cc). (1) truesight_autopilot#195: submit_contribution crashed when DeepSeek double-encoded `attributes` as a JSON string → AttributeError in _normalize_submission_labels → turn died mid tool-loop, orphan tool_call, silent stall. (2) #200: _externalize_tool_result (CM1, from #193/#194) returned non-str tool results raw — recall_context/search_code/sheet tools return dicts → `result_text[:300]` raised `TypeError: unhashable type: 'slice'` → streaming turn crashed → adapter showed "incomplete chunked read". HEADS-UP to whoever owns the CM work: #200 patched _externalize_tool_result in your subsystem (coerce non-str → json.dumps before the length check) — don't re-fix/revert. (3) #201: deploy_autopilot had no already-on-latest check → always reset --hard + restarted, severing in-flight turns → adapter resubmits → REDEPLOY LOOP (hit the vault commit-hash thread 3981); added a phase-one hash precheck returning status=noop when HEAD==origin/main.
 - 2026-06-14 | claude (sophia prod-incident session) | OPEN BUG (diagnosed, NOT yet fixed) — vault panel sophia.truesight.me/vault/ shows "Active tracks: 0" during live chat. Two disconnected active-turn registries: main._active_streams (in-memory; what deploy_autopilot idle-drain reads) vs deploy_watcher active_tracks.json (file; what the vault panel get_system_status + can_deploy read). register_track/unregister_track are called ONLY by aws_monitor.py + email_poller.py — the chat path (main.py) never registers a track. Consequence: panel under-reports live conversations AND its Deploy button (can_deploy) would greenlight a deploy while turns run. Fix options: (a) chat loop calls deploy_watcher.register_track/unregister around each turn, or (b) get_system_status/can_deploy also union main._active_streams. Likely belongs with the thread-3981 vault-panel feature work.
 - 2026-06-14 | claude (sophia prod-incident session) | RESOLVED the Active-tracks bug above via truesight_autopilot#203 (deployed, box 969f170): chose option (a) — the chat turn lifecycle now register_track/unregister_track into deploy_watcher's file registry (track_type "telegram_chat", which already existed unused). Option (b) was wrong: the vault panel runs in the standalone vault_app process (port 8002) and can't see main._active_streams — the FILE registry is the cross-process bridge. Verified live: a thread-3966 turn appeared as a telegram_chat track and cleared on completion. This also makes can_deploy block deploys during live turns (a second guard alongside #201). All four incident PRs (#195/#200/#201/#203) merged + deployed.
@@ -304,6 +260,7 @@ _All dated lines on/after 2026-06-10_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9396a06 | 2026-06-17 20:35:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 27d4249 | 2026-06-17 16:25:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 54608f5 | 2026-06-17 11:22:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7d2c892 | 2026-06-17 05:27:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -343,7 +300,6 @@ a366168 | 2026-06-14 05:26:40 +0000 | trigger: rebuild GitHub Pages
 0f904f3 | 2026-06-14 05:17:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6df8a34 | 2026-06-14 00:33:50 +0000 | Fix Chat with Sophia link: beerhall → sophia.truesight.me
 e72d4bf | 2026-06-14 00:33:09 +0000 | Reorder Platform Services: Sophia → Edgar → Perch
-5a18f58 | 2026-06-13 17:23:52 -0700 | Add Platform Services section with Perch and Sophia (#227)
 … (truncated)
 ```
 
@@ -356,6 +312,17 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+35d1e42 | 2026-06-17 16:34:09 -0700 | docs(auto-advance): AUTO_ADVANCE=true now live on sophia
+1bca2b1 | 2026-06-17 16:31:17 -0700 | docs: auto-advance + live-progress deployed to sophia (HEAD f0be109)
+883131a | 2026-06-17 16:09:48 -0700 | docs(auto-advance): tick resume tracker — PR1-PR3 opened, doc merged
+bdc1857 | 2026-06-17 16:09:21 -0700 | docs(ops): add §5c — the Advance column (auto-advance gate markers) (#545)
+1ec959e | 2026-06-17 15:56:33 -0700 | docs: add deployment checklist with disk cleanup cron to plan (#544)
+994239b | 2026-06-17 15:52:01 -0700 | docs: add deployment checklist to DAO_QUERY_ENDPOINTS_PLAN.md (#543)
+4fa47f2 | 2026-06-17 15:22:50 -0700 | docs(live-progress): update resume tracker — PR1/PR2 shipped but broke; fix #241
+e6d5379 | 2026-06-17 15:15:20 -0700 | docs: add Sophia Auto-Advance execution roadmap (#542)
+cab7a59 | 2026-06-17 14:50:48 -0700 | Add DAO Query Endpoints implementation plan (#541)
+d94d5ac | 2026-06-17 13:35:25 -0700 | chore(previews): refresh Beer Hall preview (2026-06-17 UTC)
+4fd98f9 | 2026-06-17 13:35:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 5be00b6 | 2026-06-17 09:12:41 -0700 | chore(previews): refresh Beer Hall preview (2026-06-17 UTC)
 d8c1379 | 2026-06-17 09:12:40 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 2bfaec8 | 2026-06-17 08:26:43 -0700 | Add GACC registration guides for Coopercabruca and CEPOTX (#540)
@@ -385,17 +352,6 @@ a972538 | 2026-06-16 15:10:04 -0700 | tick: PR2 completed — incremental per-ke
 a305755 | 2026-06-16 14:39:49 -0700 | convention: one-PR-per-turn scoping (OPERATING_INSTRUCTIONS §5a); re-scope Public-Key Lookup Cache handoff so Sophia isn't choked
 65441fc | 2026-06-16 14:25:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
 45b5599 | 2026-06-16 14:25:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
-3fbc004 | 2026-06-16 14:20:27 -0700 | context: root-cause Sophia empty-response on Public-Key Lookup Cache thread (DSML-strip-to-empty in streaming path + 30-round-cap exhaustion)
-b04366e | 2026-06-16 13:57:46 -0700 | Register Public-Key Lookup Cache handoff to Sophia (thread 5712) (#524)
-cde9f11 | 2026-06-16 13:53:26 -0700 | Add Public-Key Lookup Cache plan (content-addressed per-key store) (#523)
-619a904 | 2026-06-16 13:17:00 -0700 | docs(sophia): Telegram ID=Column X, Handle=Column H; refresh stale build status (#522)
-181475c | 2026-06-16 10:32:14 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
-036cc30 | 2026-06-16 10:32:13 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
-273da1d | 2026-06-16 10:28:54 -0700 | Add STATS_CARD_PATTERN.md — the TrueSight Stats Card pattern (#521)
-a299638 | 2026-06-16 04:41:37 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
-d59c4bb | 2026-06-16 04:41:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
-3b5c3fe | 2026-06-15 23:06:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
-a7839dd | 2026-06-15 23:05:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 … (truncated)
 ```
 
@@ -475,7 +431,6 @@ c90a0d4 | 2026-06-13 17:28:35 -0700 | chore: refresh Agroverse store inventory s
 75c15d2 | 2026-06-13 09:36:17 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 706b159 | 2026-06-12 10:41:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8cba6bb | 2026-06-11 10:59:43 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-a68906a | 2026-06-10 10:35:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -540,6 +495,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-06-18T041229Z_sophia-auto-advance-and-gacc-updates.md`
+
+- **posted_at_utc:** `2026-06-18T04:12:29Z`  
+- **slug:** `sophia-auto-advance-and-gacc-updates`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Ops (Sophia)** — Auto-Advance feature roadmap published: execution plan and "Advance column" convention added to governance docs.
+
 ### `beer-hall_2026-06-17T041959Z_buy-back-reserve-live-and-sophia-stabilization.md`
 
 - **posted_at_utc:** `2026-06-17T04:19:59Z`  
@@ -557,15 +521,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Governance (Process)** — Self-Replication SOP published: guides for spawning new autopilot instances and forking into new ecosystems.
-
-### `beer-hall_2026-06-15T042930Z_kopi-bar-onboarding-legal-v7.md`
-
-- **posted_at_utc:** `2026-06-15T04:29:30Z`  
-- **slug:** `kopi-bar-onboarding-legal-v7`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Partners (Agroverse)** — Kopi Bar & Bakery (Berkeley) onboarded: partner page live with interior/hero photos and listed as wholesale stockist.
 
 ---
 
@@ -586,61 +541,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 12:50:59 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-10`; scanned last **522** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_33 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_19 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_16 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_20250613_N_1 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_21 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_20 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_19 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_16 | — | — |
-| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_4 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_7 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_6 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_22 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_13 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_2 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_15 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_12 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_5 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_4 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_3 | — | — |
-| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_2 | — | — |
-| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_15 | — | — |
-| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_15 | XNJAKJJZifjv | Stripe checkout (online) |
-| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_32 | gTCPqiehO5IS | Stripe checkout (online) |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
