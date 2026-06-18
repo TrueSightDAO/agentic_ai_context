@@ -87,6 +87,8 @@ flowchart TD
 | **Owner** | Gary / Elizabeth Wong (Liz) / Jerri |
 | **Goal** | Aora pilot in China with GO/Nucleus network. 100 chocolate bars (50g, 81% cacao) for experiential learning events. Gary backpack-carry to China. |
 | **Key docs** | [`AORA_EXPERIENCE_PLAN.md`](./AORA_EXPERIENCE_PLAN.md) — full execution roadmap with PERT chart, critical path, revenue model ($10 retail, $6 back to DAO), and blocker table |
+| **Event plan** | Jerri shared a 40-page detailed event plan (Jul 2026 beta + Autumn public launch). [Full PDF](https://github.com/TrueSightDAO/.github/blob/main/attachments/2026-06-19_aora_agroverse_event_plan.pdf) |
+| **July beta** | 10-15 seed families (ages 6-12), co-invited by Teacher Evan + Liz. 90-min immersive experience. Gary as "Guardian of the Cacao Rainforest." 4-tier technical plan (1C recommended: 1 projector + 6 scenes). 15-item risk register. |
 | **Dependencies** | 🔴 **Blocked by** Brazil Export Entity — bars must be produced in Brazil and exported legally |
 
 ---
