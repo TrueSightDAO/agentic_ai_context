@@ -25,7 +25,7 @@ We are evaluating two structural paths for the holding entity that will own the 
 
 **Path B — Wyoming UNA/DUNA (alternative):** Form a Wyoming Unincorporated Nonprofit Association (UNA) via OtoCo (~$50 gas, this week) which can later convert to a Decentralized Unincorporated Nonprofit Association (DUNA). The UNA/DUNA would own the Brazilian export CNPJ directly.
 
-**Decision question for counsel:** Can a Wyoming UNA/DUNA legally own a Brazilian Ltda (CNPJ) as a foreign quotaholder? If yes, Path B is simpler and cheaper. If no, Path A (Próspera) is needed as the intermediate holding layer.
+**Decision question for counsel:** Can a Wyoming UNA/DUNA legally own a Brazilian Ltda (CNPJ) as a foreign quotaholder? If yes, Path B is simpler and cheaper. If no, we proceed with Path A (Próspera HoldCo) as the final holding entity.
 
 **In one line (either path):**
 > DAO contributors → [Holding Entity] → Brazilian Export CNPJ (RADAR + Siscomex), Bahia & Pará → dedicated importers: US (TrueTech Inc, live), China & Europe (TBD) → Agroverse reseller network.
