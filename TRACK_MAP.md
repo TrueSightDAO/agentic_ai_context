@@ -101,6 +101,8 @@ flowchart TD
 | Chocolate Subscription Delivery | 🟡 Blocked | Gary | — | Brazil Export Entity 🔴 |
 | China / Aora Events (100 bars) | 🟡 Blocked | Gary / Liz / Jerri | — | Brazil Export Entity 🔴 |
 | Graeme Read / Amazon Restoration Partnership | 🔵 New | Gary / Graeme / Jonathan | — | — |
+| Chives Root (consignment) | 🟡 Blocked | Chives Root / Gary | — | Brazil Export Entity 🔴 |
+| Michael Johnson (consignment) | 🟡 Blocked | Michael Johnson / Gary | — | Brazil Export Entity 🔴 |
 
 ---
 
