@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-18T04:12:29Z`
+- Generated (UTC): `2026-06-18T05:16:48Z`
 - Look-back: **7** calendar days (`2026-06-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 29
+- `[EMAIL REGISTERED EVENT]` × 6
+- `[EMAIL VERIFICATION EVENT]` × 5
+- `[PRACTICE EVENT]` × 2
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20260617060309_077` · **Edgar** · [No Text Provided]
+- `Edgar_20260617060354_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Researched on how to get the NF-e (nota fiscal e) issued for Matheus company…
+- `Edgar_20260617064105_081` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T06:41:05.557Z · Email: garyjob@gmail.com
+- `Edgar_20260617064127_083` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T06:41:27.025Z · Email: garyjob@gmail.com · Verification Key: JyYeLnyRCo6ZT8h68ApEbI135FO1N9yWaueShggfYm4
+- `Edgar_20260617064747_085` · **Edgar** · [No Text Provided]
+- `Edgar_20260617070616_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:06:16.172Z · Email: garyjob@gmail.com
+- `Edgar_20260617070639_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:06:39.555Z · Email: garyjob@gmail.com · Verification Key: ADtWcq8DbSKX8o8ddyqoU3CXEtEqwupmqOQ1Eifxsis
+- `Edgar_20260617071609_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault governor identity resolution — per-key lookup + whoami is_governor…
+- `Edgar_20260617072426_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:24:26.681Z · Email: garyjob@gmail.com
+- `Edgar_20260617072443_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:24:43.336Z · Email: garyjob@gmail.com · Verification Key: RiaJM3bmOALM2DD8xULaxtvUgdf-94ciSgnRcpP3tGY
+- `Edgar_20260617073149_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault status/followups pages — full runtime-config schema, resilient JS,…
+- `Edgar_20260617073256_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix /agroverse/qr-code-check 404 — register router with /agroverse prefix
+- `Edgar_20260617151311_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Generated information for GACC registration
+- `Edgar_20260617152905_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Gary Teh)
+- `Edgar_20260617152906_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: GACC Registration Guides — Brazil to China (Sophia Truesight)
+- `Edgar_20260617171608_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-17T17:16:08.260Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260617201116_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sharing about his diet of how he is cutting out sugar and ramping up protein…
+- `Edgar_20260617222749_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sophia auto-advance roadmap + live-progress cross-process fix
+- `Edgar_20260617231013_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia auto-advance feature — implemented PR1-PR3 + convention doc
+- `Edgar_20260617231042_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Bug: submit_contribution tool rejects SALES…
 
 ---
 
@@ -214,13 +251,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,325.04**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$41.26**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -312,6 +353,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+db9a957 | 2026-06-17 21:12:49 -0700 | Merge pull request #546 from TrueSightDAO/auto/advisory-refresh-2026-06-18
+c151fc2 | 2026-06-18 04:12:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
 35d1e42 | 2026-06-17 16:34:09 -0700 | docs(auto-advance): AUTO_ADVANCE=true now live on sophia
 1bca2b1 | 2026-06-17 16:31:17 -0700 | docs: auto-advance + live-progress deployed to sophia (HEAD f0be109)
 883131a | 2026-06-17 16:09:48 -0700 | docs(auto-advance): tick resume tracker — PR1-PR3 opened, doc merged
@@ -350,8 +393,6 @@ a972538 | 2026-06-16 15:10:04 -0700 | tick: PR2 completed — incremental per-ke
 87bb520 | 2026-06-16 15:03:49 -0700 | tick: PR1 completed — public_keys/<sha256>.json generator emitted (#525)
 94beb93 | 2026-06-16 14:49:23 -0700 | context: close loop — #227 merged+deployed, contribution reported as Claude
 a305755 | 2026-06-16 14:39:49 -0700 | convention: one-PR-per-turn scoping (OPERATING_INSTRUCTIONS §5a); re-scope Public-Key Lookup Cache handoff so Sophia isn't choked
-65441fc | 2026-06-16 14:25:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-16 UTC)
-45b5599 | 2026-06-16 14:25:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-16 UTC)
 … (truncated)
 ```
 
@@ -541,6 +582,61 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 759.35 | 15736.46386 | 6/17/2026 21:51:07 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-11`; scanned last **522** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_33 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_19 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_16 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_20250613_N_1 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_21 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_20 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_19 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_16 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_4 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_7 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_6 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_22 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_13 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_2 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_15 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_12 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_5 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_4 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_3 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_2 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_15 | — | — |
+| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_15 | XNJAKJJZifjv | Stripe checkout (online) |
+| 2026-06-13 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_32 | gTCPqiehO5IS | Stripe checkout (online) |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
