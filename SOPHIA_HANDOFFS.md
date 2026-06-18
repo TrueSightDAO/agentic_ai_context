@@ -136,38 +136,21 @@ Trigger-message template:
 ## The GO convention (governor authorization)
 
 Once Sophia is parked in a handoff topic, the governor authorizes execution by
-replying in that topic with a short go-signal — **"go for it"**, "go",
-"proceed", "ship it", "Sophia go for it". On that signal, Sophia:
+replying in that topic with a short go-signal —
+…
 
-- **Executes the plan** referenced in this topic's kickoff, **starting at RESUME
-  HERE**, straight through its units.
-- **Honors every gate without re-asking** — especially **open the PR, do NOT
-  auto-merge** where the plan says so, the verify / runtime-smoke-test gates, and
-  the `Generated-by: Sophia (TrueSight Autopilot)` trailer.
-- **Reports progress + blockers in the topic**; pauses only at a real blocker or
-  a step the plan explicitly marks for review.
-- Treats the go-signal as **full authorization for the whole plan** — no per-step
-  confirmation.
+## Registry
 
-**The contract: after a handoff, the governor only needs to say "go for it."**
-
----
-
-## Registry (newest first)
-
-| Date | Handoff | Plan file | Topic | thread_id | session_id (to rejoin) | Status |
-|------|---------|-----------|-------|-----------|------------------------|--------|
-| 2026-06-16 | Public-Key Lookup Cache (content-addressed per-key governor store; retires the 5-min vault cache-lag bug) | `PUBLIC_KEY_LOOKUP_CACHE_PLAN.md` | [Public-Key Lookup Cache](https://t.me/c/3919341801/5712) | 5712 | `tg:-1003919341801:5712` | **active — Sophia parked GO-ready** (kickoff posted 2026-06-16); on GO executes PR1 (GAS generator emits `treasury-cache/public_keys/<sha256>.json`) → PR2 (incremental + revocation) → PR3 (`governor_registry.resolve_key`); **HOLD PR4 (`vault_routes.py`) until the in-flight `track_registry` work merges** (collision); `truesight_autopilot` own-repo gated — opens PRs only, NEVER self-merges; UAT U1–U5 on beta = completion gate |
-| 2026-06-11 | Live Progress Introspection (report what the executing turn is doing when Gary asks mid-turn) — **on Sophia's OWN codebase** | `SOPHIA_LIVE_PROGRESS_PLAN.md` | [Live Progress](https://t.me/c/3919341801/2799) | 2799 | `tg:-1003919341801:2799` | **active — Sophia parked GO-ready** (kickoff posted 2026-06-11); on GO executes PR1 (`_live_progress` + richer ack) → PR2 (lock-bypassing progress query); **opens PRs only, NEVER self-merges own-repo PRs** (human merges); UAT U1–U5 = completion gate |
-| 2026-06-11 | Sophia Multi-Tenant Governance, Identity & Vault — **PHASE 0 only** (policy layer + tool-layer authorization + data-vs-instruction boundary + guest-default) — **on Sophia's OWN codebase** | `SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md` | [Governance and Vault](https://t.me/c/3919341801/2744) | 2744 | `tg:-1003919341801:2744` | **active — Sophia parked GO-ready** (kickoff posted 2026-06-11); on GO executes **Phase 0 only** from RESUME HERE (PR0.1 `app/policy.py`), then STOPS for human merge + Phase 0 UAT P0.1–P0.4 before Phase 1; **opens PRs only, NEVER self-merges own-repo PRs** (human merges) |
-| 2026-06-11 | Durable Follow-up Monitor (thread-bound, multi-day follow-ups; `gmail_reply` + `elapsed_days`; on strike spins a Sophia turn in the originating thread) — **on Sophia's OWN codebase** | `SOPHIA_FOLLOWUP_MONITOR_PLAN.md` | [Follow-up Monitor](https://t.me/c/3919341801/2622) | 2622 | `tg:-1003919341801:2622` | **active — Sophia parked GO-ready** (kickoff posted 2026-06-11); on GO executes from RESUME HERE (PR1 `app/followups.py`) through PR4; **opens PRs only, NEVER self-merges own-repo PRs** (human merges); UAT U1–U9 = completion gate |
-| 2026-06-09 | Beta Sandbox Endpoint (beta.edgar.truesight.me; standalone NELANCO EC2 + beta dao_protocol in Stripe TEST) | `BETA_SANDBOX_ENDPOINT_PLAN.md` | [topic](https://t.me/c/3919341801/1955) | 1955 | `tg:-1003919341801:1955` | **active — Sophia parked GO-ready**; on GO executes from Unit 1, STOPS at operator gates (launch approval / prod deploy / Stripe dashboard); Unit 8 = mandatory AWS_DIGITAL_INFRASTRUCTURE.md update |
-| 2026-06-09 | Agroverse Chocolate Subscriptions — Phase 1 (finalized plan w/ STOP gates) | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | [topic](https://t.me/c/3919341801/1939) | 1939 | `tg:-1003919341801:1939` | **active — Sophia parked GO-ready**; on GO executes Phase 1 PR1.1–1.6, then STOPS at the operator test gate for Gary's local test-mode pass |
-| 2026-06-09 | ~~Agroverse Chocolate Subscriptions (initial handoff)~~ | `CHOCOLATE_SUBSCRIPTION_PLAN.md` | [topic](https://t.me/c/3919341801/1924) | 1924 | `tg:-1003919341801:1924` | **SUPERSEDED by 1939** (kickoff predated the STOP-gate finalization) |
-| 2026-06-08 | DAO client adoption audit (oracle + capoeira use lib, not hand-rolled) | `DAO_CLIENT_ADOPTION_AUDIT_PLAN.md` | [topic](https://t.me/c/3919341801/1776) | 1776 | `tg:-1003919341801:1776` | active (Sophia parked PR1, GO-ready) |
-| 2026-06-08 | Morning Oracle Standup (draw → daily briefing in #General) | `MORNING_ORACLE_STANDUP_PLAN.md` | [topic](https://t.me/c/3919341801/1722) | 1722 | `tg:-1003919341801:1722` | active (Sophia parked PR1, GO-ready) |
-| 2026-06-08 | DAO client integration fixes (consolidated: oracle + capoeira) | `DAO_CLIENT_INTEGRATION_FIXES.md` | [topic](https://t.me/c/3919341801/1695) | 1695 | `tg:-1003919341801:1695` | active (Sophia parked, GO-ready; supersedes thread 3) |
-| 2026-06-08 | Capoeira dao-client swap (PR2) | `CAPOEIRA_DAO_CLIENT_SWAP_PLAN.md` | [topic](https://t.me/c/3919341801/1658) | 1658 | `tg:-1003919341801:1658` | active |
-| 2026-06-08 | Oracle CDN re-wire (@truesight_dao/dao-client) | `ORACLE_CDN_REWIRE_PLAN.md` | [topic](https://t.me/c/3919341801/1638) | 1638 | `tg:-1003919341801:1638` | active |
-| 2026-06-08 | Resend verification email | `RESEND_VERIFICATION_PLAN.md` | [topic](https://t.me/c/3919341801/1504) | 1504 | `tg:-1003919341801:1504` | active |
-| 2026-06-07 | THEOBROMA-1 (cacao brew, demo) | `SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md` | [THEOBROMA-1](https://t.me/c/3919341801/1401) | 1401 | `tg:-1003919341801:1401` | demo · live |
+| Plan file | Handoff title | Telegram topic | message_thread_id | Handoff date | Status |
+|-----------|---------------|----------------|-------------------|--------------|--------|
+| `CLI_SALES_EVENT_ALIGNMENT_PLAN.md` | CLI Sales Event Audit & Alignment with DApp | [CLI Sales Event Alignment](https://t.me/c/3919341801/6311) | 6311 | 2026-06-17 | in progress |
+| `PUBLIC_KEY_LOOKUP_CACHE_PLAN.md` | Public-Key Lookup Cache | [Public-Key Lookup Cache](https://t.me/c/3919341801/5712) | 5712 | 2026-06-16 | blocked |
+| `SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md` | Vault Initialization & Credential Migration | [Vault Init & Credential Migration](https://t.me/c/3919341801/3981) | 3981 | 2026-06-14 | blocked |
+| `SOPHIA_LIVE_PROGRESS_PLAN.md` | Live Progress Introspection | [Live Progress Introspection](https://t.me/c/3919341801/2799) | 2799 | 2026-06-11 | blocked |
+| `SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md` | Multi-Tenant Governance & Vault — Phase 0 | [Multi-Tenant Governance — Phase 0](https://t.me/c/3919341801/2744) | 2744 | 2026-06-11 | blocked |
+| `SOPHIA_FOLLOWUP_MONITOR_PLAN.md` | Durable Follow-up Monitor | [Follow-up Monitor](https://t.me/c/3919341801/2622) | 2622 | 2026-06-11 | in progress |
+| `AUTOPILOT_HARDENING_PLAN.md` | Autopilot Hardening | [Autopilot Hardening](https://t.me/c/3919341801/2317) | 2317 | 2026-06-10 | blocked |
+| `BETA_SANDBOX_ENDPOINT_PLAN.md` | Beta Sandbox Endpoint | [Beta Sandbox Endpoint](https://t.me/c/3919341801/1955) | 1955 | 2026-06-09 | blocked |
+| `CHOCOLATE_SUBSCRIPTION_PLAN.md` | Agroverse Chocolate Subscriptions — Phase 1 | [Chocolate Subscriptions — Phase 1](https://t.me/c/3919341801/1939) | 1939 | 2026-06-09 | blocked |
+| `RESEND_VERIFICATION_PLAN.md` | Resend verification email | [Resend Verification](https://t.me/c/3919341801/2622) | 2622 | 2026-06-08 | in progress |
+| `SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md` | THEOBROMA-1 (cacao brew demo) | [THEOBROMA-1 Demo](https://t.me/c/3919341801/2622) | 2622 | 2026-06-07 | demo · live |
