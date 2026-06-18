@@ -73,20 +73,20 @@ Changes:
 
 ### PR 3: Re-submit Gergana's sale with correct format
 
-**Scope:** One-time CLI invocation
+**Status:** ~~Skipped~~ — Already handled by governor. No re-submission needed.
 
-After PRs 1+2 are live, re-submit:
+~~After PRs 1+2 are live, re-submit:~~
 ```
-truesight-dao-report-sales \
+~~truesight-dao-report-sales \
   --qr-code 2024OSCAR_20260121_32 \
   --sales-price 17.50 \
   --sold-by "Gergana - The Way Home Shop" \
   --cash-proceeds-collected-by "Gary Teh" \
   --owner-email info@thewayhomeshop.com \
-  --submission-source "https://dapp.truesight.me/report_sales.html"
+  --submission-source "https://dapp.truesight.me/report_sales.html"~~
 ```
 
-**Gate:** Governor confirms submission succeeded
+**Gate:** ~~Governor confirms submission succeeded~~ ✅ Already done.
 
 ## RESUME HERE
 
@@ -109,19 +109,20 @@ PR 1: Update CLI `report_sales` module in `dao_client` repo.
 
 - [x] PR 1 merged: CLI accepts all DApp fields, `--owner-email` required
 - [x] PR 2 merged: Edgar docs show correct payload format
-- [ ] PR 3 done: Gergana's sale re-submitted with complete payload
+- [x] PR 3: ~~Gergana's sale re-submitted~~ — Already handled, no action needed
 - [ ] Contribution reported for the work
 
-## Blockers for PR 3
+## Remaining Blocker
 
-- **PyPI publish**: The GitHub Actions workflow is configured but needs the `PYPI_API_TOKEN` secret added to the TrueSightDAO/dao_protocol repo Settings → Secrets → Actions. Once set, triggering the workflow will publish v0.2.0 so the governor's machine gets the updated CLI.
+- **PyPI publish**: The GitHub Actions workflow is configured but needs the `PYPI_API_TOKEN` secret added to the TrueSightDAO/dao_protocol repo Settings → Secrets → Actions. Once set, triggering the workflow will publish v0.2.0.
 - Alternative: Install from source via `pip install -e .` in the repo.
 
 ## Handoff to Sophia
 
-@sophia-truesight — all code changes are merged to `dao_protocol#main`. Ready for:
-1. **PyPI secret configuration** → trigger publish → verify `pip install truesight-dao-client` gets v0.2.0
-2. **PR 3 execution** → run the Gergana sale re-submission command above
-3. **Contribution reporting** → report the work via `truesight-dao-report-contribution`
+@sophia-truesight — all code changes are merged to `dao_protocol#main`. PR 3 (Gergana's sale) was already handled by the governor and does not need re-submission.
+
+**Remaining for you:**
+1. **PyPI secret configuration** → Add `PYPI_API_TOKEN` to GitHub repo secrets → trigger publish → verify `pip install truesight-dao-client` gets v0.2.0
+2. **Contribution reporting** → Report this work via `truesight-dao-report-contribution` (include PRs: `39699cb`, `429aea6`, `531d3da`, `f5a97f5`)
 
 See `dao_protocol` repo for full diff.
