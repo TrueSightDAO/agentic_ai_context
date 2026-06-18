@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-18T10:53:32Z`
+- Generated (UTC): `2026-06-18T15:59:32Z`
 - Look-back: **7** calendar days (`2026-06-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,16 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 29
-- `[EMAIL VERIFICATION EVENT]` × 5
 - `[EMAIL REGISTERED EVENT]` × 5
-- `[PRACTICE EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 4
+- `[PRACTICE EVENT]` × 3
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260617064747_085` · **Edgar** · [No Text Provided]
-- `Edgar_20260617070616_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:06:16.172Z · Email: garyjob@gmail.com
-- `Edgar_20260617070639_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:06:39.555Z · Email: garyjob@gmail.com · Verification Key: ADtWcq8DbSKX8o8ddyqoU3CXEtEqwupmqOQ1Eifxsis
 - `Edgar_20260617071609_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix vault governor identity resolution — per-key lookup + whoami is_governor…
 - `Edgar_20260617072426_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-06-17T07:24:26.681Z · Email: garyjob@gmail.com
 - `Edgar_20260617072443_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-06-17T07:24:43.336Z · Email: garyjob@gmail.com · Verification Key: RiaJM3bmOALM2DD8xULaxtvUgdf-94ciSgnRcpP3tGY
@@ -60,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260618053905_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Sharing about our community efforts to restore our Amazon rainforest as well…
 - `Edgar_20260618054250_009` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260618054428_011` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 25 · Description: For toll gates driving back from kopi bar cafe in Berkeley to San Francisco …
+- `Edgar_20260618134109_013` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1025.50 · Description: Flight tickets to San Francisco from China to coordinate on the Supply Chain…
+- `Edgar_20260618134813_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Coordinating the registration of the three Brazilian explorers with the Chin…
+- `Edgar_20260618154701_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-18T15:47:01.135Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-17T10:59:13.801Z`
+- Generated (UTC): `2026-06-18T10:59:15.900Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -102,12 +102,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **273**, follow_up **70**, bulk **0**, unknown **2** (data rows: **345**)
+- **Email Agent Follow Up** — logged sends: warmup **284**, follow_up **70**, bulk **0**, unknown **2** (data rows: **356**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **226**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **237**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -301,6 +301,7 @@ _All dated lines on/after 2026-06-11_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+06502d9 | 2026-06-18 10:56:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e7ac037 | 2026-06-18 05:20:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9396a06 | 2026-06-17 20:35:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 27d4249 | 2026-06-17 16:25:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -340,7 +341,6 @@ c53cd52 | 2026-06-13 23:21:39 -0700 | Restructure post flow and add Christensen 
 e254eb0 | 2026-06-13 22:33:57 -0700 | [autopilot] Fix index.html (#228)
 a366168 | 2026-06-14 05:26:40 +0000 | trigger: rebuild GitHub Pages
 0f904f3 | 2026-06-14 05:17:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6df8a34 | 2026-06-14 00:33:50 +0000 | Fix Chat with Sophia link: beerhall → sophia.truesight.me
 … (truncated)
 ```
 
@@ -353,6 +353,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+08d9331 | 2026-06-18 03:53:48 -0700 | chore(previews): refresh Beer Hall preview (2026-06-18 UTC)
+f8868b5 | 2026-06-18 03:53:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
 7d7517c | 2026-06-17 22:17:02 -0700 | chore(previews): refresh Beer Hall preview (2026-06-18 UTC)
 b0a25c8 | 2026-06-17 22:17:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
 db9a957 | 2026-06-17 21:12:49 -0700 | Merge pull request #546 from TrueSightDAO/auto/advisory-refresh-2026-06-18
@@ -391,8 +393,6 @@ f990965 | 2026-06-17 04:21:42 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 7142962 | 2026-06-16 21:20:16 -0700 | Merge pull request #528 from TrueSightDAO/auto/advisory-refresh-2026-06-17
 097a091 | 2026-06-17 04:20:05 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-17 UTC)
 4c4bb57 | 2026-06-16 15:12:41 -0700 | context: second empty-response root cause fixed (#229 merged, deploy pending)
-a972538 | 2026-06-16 15:10:04 -0700 | tick: PR2 completed — incremental per-key write via manifest diff (#526)
-87bb520 | 2026-06-16 15:03:49 -0700 | tick: PR1 completed — public_keys/<sha256>.json generator emitted (#525)
 … (truncated)
 ```
 
@@ -607,7 +607,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 759.35 | 15736.46386 | 6/18/2026 3:52:50 |
+| 2026-06 | 759.35 | 15736.46386 | 6/18/2026 8:50:56 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-11`; scanned last **522** data rows)
 
