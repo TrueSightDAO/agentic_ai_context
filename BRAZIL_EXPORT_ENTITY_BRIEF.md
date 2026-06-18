@@ -25,7 +25,15 @@ We are evaluating two structural paths for the holding entity that will own the 
 
 **Path B — Wyoming UNA/DUNA (alternative):** Form a Wyoming Unincorporated Nonprofit Association (UNA) via OtoCo (~$50 gas, this week) which can later convert to a Decentralized Unincorporated Nonprofit Association (DUNA). The UNA/DUNA would own the Brazilian export CNPJ directly.
 
-**Decision question for counsel:** Can a Wyoming UNA/DUNA legally own a Brazilian Ltda (CNPJ) as a foreign quotaholder? If yes, Path B is simpler and cheaper. If no, we proceed with Path A (Próspera HoldCo) as the final holding entity.
+**Core question for counsel:** We need a comparative assessment of both routes — not a binary yes/no. Specifically:
+
+1. **Can a Wyoming UNA/DUNA legally own a Brazilian Ltda as a foreign quotaholder?** If yes, what are the specific requirements, restrictions, and ongoing compliance obligations?
+
+2. **What does Próspera offer that the UNA/DUNA cannot?** — e.g. tax treatment of the holding entity, recognition by Brazilian authorities as a foreign quotaholder, banking access, ease of AI-agent operation, ability to issue equity to contributors
+
+3. **What does the UNA/DUNA offer that Próspera cannot?** — e.g. cost, speed, US legal recognition, Wise banking, simpler ownership mapping to TDG holders
+
+4. **If both are viable, which is more appropriate for our specific use case?** — a bot-enabled agricultural export bridge owned by ~316 token-holding contributors, with AI-agent-operated subsidiaries
 
 **In one line (either path):**
 > DAO contributors → [Holding Entity] → Brazilian Export CNPJ (RADAR + Siscomex), Bahia & Pará → dedicated importers: US (TrueTech Inc, live), China & Europe (TBD) → Agroverse reseller network.
