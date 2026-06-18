@@ -177,6 +177,32 @@ capoeira, aora, oracle, dao_client, go_to_market, sentiment_importer, …) is a
 normal code repo: clone, branch, PR per the workflow below. Deprecated repos
 (`dapp`, `governor_chatbot_service`) should not be touched at all.
 
+## Sophia git operations — SSH, not PAT
+
+**Sophia (truesight_autopilot)** uses SSH for all `git_push_changes` operations
+(clone, branch, commit, push). The dedicated key lives on the autopilot box:
+
+| | Path |
+|--|------|
+| **Private key** | `~/.ssh/id_ed25519_truesight_autopilot` |
+| **Public key** | `~/.ssh/id_ed25519_truesight_autopilot.pub` |
+| **Authorised as** | `garyjob` on GitHub |
+
+The tool uses `GIT_SSH_COMMAND` to point git at this key without touching
+`~/.ssh/config` or the SSH agent. No PAT is needed for clone/push — the PAT
+(`TRUESIGHT_DAO_AUTOPILOT`) is only used for GitHub API calls (PR creation,
+repo reading, etc.).
+
+**When to use each transport:**
+
+| Transport | When | Mechanism |
+|-----------|------|-----------|
+| **SSH** | Normal code repos (clone, branch, push) | `git@github.com:TrueSightDAO/{repo}.git` |
+| **Contents API (PAT)** | `api_only_repos` — write-only data repos, single-file atomic writes | `GET/PUT /repos/TrueSightDAO/{repo}/contents/{path}` |
+
+Sophia refuses `api_only_repos` in `git_push_changes` — use `read_repo_file`
+and `upload_file_to_github` (Contents API) for those repos instead.
+
 ## Pull requests — branch-first workflow (agents)
 
 **Convention for any codebase the agent edits and pushes:** do **not** push directly to `main` (or the default production branch) unless the user explicitly orders it.
