@@ -92,9 +92,36 @@ truesight-dao-report-sales \
 
 PR 1: Update CLI `report_sales` module in `dao_client` repo.
 
+## Progress Log
+
+| Step | Status | Commit / Detail |
+|------|--------|-----------------|
+| PR 1: `report_sales.py` alignment | ✅ Merged | `39699cb` + `429aea6` on `dao_protocol#main` |
+| PR 1a: `build_event_cli` extensions | ✅ Merged | `defaults`, `required_labels` params added |
+| PR 1b: QR code format validation | ✅ Merged | `qr_code_format` validator wired to `Item` |
+| PR 2: Edgar docs page | ✅ Merged | `531d3da` — SALES EVENT payload updated |
+| PyPI workflow | ✅ Merged | `f5a97f5` — trusted publishing workflow + v0.2.0 bump |
+| Inventory/ledger validators | ✅ Merged | `inventory_item`, `manager_name`, `ledger_name` from treasury-cache |
+| `report_inventory_movement.py` | ✅ Validated | `manager_name`, `inventory_item`, `positive_integer`, `latitude`, `longitude` |
+| `report_capital_injection.py` | ✅ Validated | `ledger_name` replaces basic `required` |
+
 ## Acceptance
 
-- [ ] PR 1 merged: CLI accepts all DApp fields, `--owner-email` required
-- [ ] PR 2 merged: Edgar docs show correct payload format
+- [x] PR 1 merged: CLI accepts all DApp fields, `--owner-email` required
+- [x] PR 2 merged: Edgar docs show correct payload format
 - [ ] PR 3 done: Gergana's sale re-submitted with complete payload
 - [ ] Contribution reported for the work
+
+## Blockers for PR 3
+
+- **PyPI publish**: The GitHub Actions workflow is configured but needs the `PYPI_API_TOKEN` secret added to the TrueSightDAO/dao_protocol repo Settings → Secrets → Actions. Once set, triggering the workflow will publish v0.2.0 so the governor's machine gets the updated CLI.
+- Alternative: Install from source via `pip install -e .` in the repo.
+
+## Handoff to Sophia
+
+@sophia-truesight — all code changes are merged to `dao_protocol#main`. Ready for:
+1. **PyPI secret configuration** → trigger publish → verify `pip install truesight-dao-client` gets v0.2.0
+2. **PR 3 execution** → run the Gergana sale re-submission command above
+3. **Contribution reporting** → report the work via `truesight-dao-report-contribution`
+
+See `dao_protocol` repo for full diff.
