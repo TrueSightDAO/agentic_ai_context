@@ -19,12 +19,16 @@ The Brazilian export side is not yet formalised in a dedicated entity. Today, ex
 
 ## 2 · Executive Summary
 
-Incorporate a new entity in the **Próspera jurisdiction** which will, in turn, own/control a new **Brazilian company (CNPJ)** dedicated to exporting agricultural products out of Northern Brazil (Bahia and Pará), starting with cacao. The Brazilian entity will hold its own RADAR license and Siscomex access so it can file export declarations in its own name, independent of any individual's personal CNPJ.
+We are evaluating two structural paths for the holding entity that will own the Brazilian export CNPJ. Both solve the same problem — replacing Matheus's personal CNPJ with a dedicated, DAO-owned export entity — but through different jurisdictions and at different cost/complexity.
 
-The Próspera entity is owned by the DAO's contributors — the people on our contributor ledger, in proportion to the governance tokens (TDG) they have earned — not by a single founder.
+**Path A — Próspera HoldCo (original proposal):** Incorporate in the Próspera ZEDE (Honduras special economic zone) as the holding company owning the Brazilian export CNPJ.
 
-**In one line:**
-> DAO contributors → Próspera HoldCo → Brazilian Export CNPJ (RADAR + Siscomex), Bahia & Pará → dedicated importers: US (TrueTech Inc, live), China & Europe (TBD) → Agroverse reseller network.
+**Path B — Wyoming UNA/DUNA (alternative):** Form a Wyoming Unincorporated Nonprofit Association (UNA) via OtoCo (~$50 gas, this week) which can later convert to a Decentralized Unincorporated Nonprofit Association (DUNA). The UNA/DUNA would own the Brazilian export CNPJ directly.
+
+**Decision question for counsel:** Can a Wyoming UNA/DUNA legally own a Brazilian Ltda (CNPJ) as a foreign quotaholder? If yes, Path B is simpler and cheaper. If no, Path A (Próspera) is needed as the intermediate holding layer.
+
+**In one line (either path):**
+> DAO contributors → [Holding Entity] → Brazilian Export CNPJ (RADAR + Siscomex), Bahia & Pará → dedicated importers: US (TrueTech Inc, live), China & Europe (TBD) → Agroverse reseller network.
 
 ---
 
@@ -61,18 +65,55 @@ Brazilian exports currently flow through "Black King" — the individual CNPJ of
 
 ---
 
-## 5 · Proposed Structure
+## 5 · Proposed Structure — Two Paths
+
+### Path A: Próspera HoldCo (original proposal)
+
+```
+DAO contributors (TDG holders)
+    ↓
+Próspera HoldCo (Honduras ZEDE)
+    ↓ owns
+Brazilian Export CNPJ (Ltda, RADAR + Siscomex)
+    ↓ exports to
+TrueTech Inc (US import, Delaware C-corp) — already live
+```
 
 - **Tier 1 — Próspera HoldCo.** A new entity incorporated in the Próspera jurisdiction acts as the holding/operating company and owner of the Brazilian export entity.
 - **Tier 2 — Brazilian Export CNPJ.** A new Brazilian company, owned/controlled by the Próspera HoldCo, incorporated to export Northern-Brazilian agricultural products. It obtains RADAR habilitation and operates in Portal Único Siscomex in its own name.
 - **Tier 3 — Destination-market importers** (one per market). US: TrueTech Inc (already established); China and Europe: TBD.
-- **Operating model.** Autonomous AI agents prepare documents, reconcile the ledger, and orchestrate filings; a licensed Brazilian customs broker and accountants remain in the loop as required by law.
+
+**Pros:** Designed path for foreign-owned Brazilian entity; Próspera counsel already identified (Layon Costa, Tools for the Commons)
+**Cons:** Higher cost ($5K-15K+), longer timeline (2-6 months), unknown banking
+
+---
+
+### Path B: Wyoming UNA/DUNA (alternative)
+
+```
+DAO contributors (TDG holders)
+    ↓
+Wyoming UNA/DUNA (US nonprofit association, ~$50 via OtoCo)
+    ↓ owns
+Brazilian Export CNPJ (Ltda, RADAR + Siscomex)
+    ↓ exports to
+TrueTech Inc (US import, Delaware C-corp) — already live
+```
+
+- **Tier 1 — Wyoming UNA.** Formed via OtoCo smart contract (~$50 gas, this week). Two wallet addresses sign. Auto-converts to DUNA when membership exceeds 100.
+- **Tier 2 — Brazilian Export CNPJ.** Same as Path A — a new Brazilian company owned by the UNA/DUNA.
+- **Tier 3 — Destination-market importers.** Same as Path A.
+
+**Pros:** Very low cost (~$50), this week, US jurisdiction (Wyoming), Wise banking available, simpler ownership mapping
+**Cons:** Unclear whether a Wyoming UNA/DUNA (nonprofit association) can legally own a Brazilian for-profit Ltda — this is the core question for counsel
+
+**Key question for Layon Costa:** Can a Wyoming UNA/DUNA hold equity in a Brazilian Ltda as a foreign quotaholder, or does Brazilian law require an intermediate for-profit holding entity (like a Próspera corporation)?
 
 ---
 
 ## 6 · Ownership — Mapped to DAO Contributor Ledger
 
-The Próspera HoldCo is not owned by a single founder. Its beneficial ownership is intended to map to the DAO's existing contributor ledger: the individuals recorded in the Main Ledger's "Contributors contact information" tab, each owning in proportion to the governance tokens (TDG) they have earned.
+Regardless of which path, the holding entity is not owned by a single founder. Its beneficial ownership is intended to map to the DAO's existing contributor ledger: the individuals recorded in the Main Ledger's "Contributors contact information" tab, each owning in proportion to the governance tokens (TDG) they have earned.
 
 **Snapshot — 26 May 2026:**
 - 316 contributors hold a non-zero TDG balance across ~2,263,640 TDG issued
@@ -100,26 +141,33 @@ The Próspera HoldCo is not owned by a single founder. Its beneficial ownership 
 
 ## 7 · What We Need From Counsel
 
-### For Brazilian foreign-trade / customs & tax counsel
+### Core decision question (for Layon Costa / Tools for the Commons)
+
+**Can a Wyoming UNA/DUNA legally own a Brazilian Ltda as a foreign quotaholder?**
+
+This determines which path we take. If yes, we proceed with Path B (UNA/DUNA, ~$50, this week). If no, we proceed with Path A (Próspera HoldCo).
+
+### For Brazilian foreign-trade / customs & tax counsel (either path)
 - Most suitable Brazilian legal form for an export-only entity that will be foreign-owned
 - Foreign-ownership mechanics (resident legal representative, RDE registration)
 - RADAR habilitation modality, documentation, timeline
 - Siscomex / Portal Único access and API vs. despachante aduaneiro requirements
 - Tax regime selection (Simples vs. Lucro Presumido vs. Lucro Real)
-- Transfer-pricing between Brazilian entity, Próspera HoldCo, and TrueTech Inc
+- Transfer-pricing between Brazilian entity, holding entity, and TrueTech Inc
 - Clean migration path from Black King arrangement
 - Multi-market and multi-product export implications
 
-### For Próspera-jurisdiction incorporation counsel
+### For Próspera-jurisdiction incorporation counsel (Path A only)
 - Appropriate Próspera entity type for holding company owning a Brazilian subsidiary
 - Banking, substance, and reporting requirements
+- How a Próspera entity is recognised as a foreign quotaholder in Brazil
 - Interaction with TrueTech Inc (US)
 - Suitability for DAO/tokenised governance and AI-agent-operated subsidiaries
 
-### On ownership & securities (for both counsel)
-- How to translate a ~316-holder, continuously-updating, TDG-weighted contributor base into recognised ownership
-- Securities-law treatment of TDG-as-ownership across Próspera, Brazil, and US
-- Snapshot/cut-off mechanics and KYC requirements
+### On ownership & securities (for both paths)
+- How to translate a ~316-holder, continuously-updating, TDG-weighted contributor base into recognised ownership of the holding entity
+- Securities-law treatment of TDG-as-ownership across the relevant jurisdictions
+- Snapshot/cut-off mechanics and KYC requirements for owners of record
 
 ---
 
@@ -168,5 +216,7 @@ The Próspera HoldCo is not owned by a single founder. Its beneficial ownership 
 | FDA FFR | FDA Food Facility Registration number |
 | D-U-N-S | Dun & Bradstreet business identifier |
 | EIN | US Employer Identification Number |
-| Próspera (ZEDE) | Special economic/governance jurisdiction |
+| UNA | Unincorporated Nonprofit Association (Wyoming) |
+| DUNA | Decentralized Unincorporated Nonprofit Association (Wyoming) |
+| Próspera (ZEDE) | Special economic/governance jurisdiction (Honduras) |
 | TDG | TrueSight DAO governance token |
