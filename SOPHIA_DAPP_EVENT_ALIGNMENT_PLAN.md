@@ -8,7 +8,7 @@ mis-route + submit_contribution incidents. Pending execution.
 > ⛔ **Own-repo gate:** open PRs only, **NEVER self-merge** `truesight_autopilot` PRs.
 > Every new behavior behind a flag defaulting to current behavior until soak-verified.
 
-> **RESUME HERE:** PR1 — catalog-merge correctness (sync load + update-not-just-add).
+> **RESUME HERE:** PR1 — catalog merge: UPDATE existing events, not just add (G2).
 
 ---
 
@@ -67,41 +67,58 @@ picking** — not to hand-maintain 30 hardcoded definitions.
 
 ## 4. Sequenced plan (one PR per turn — §5a)
 
-### PR1 — Catalog-merge correctness *(highest leverage)*
-- Load the events-catalog **synchronously at startup** (or block first
-  `submit_contribution` until first load) — close the 120s window (G1).
-- Change the merge to **UPDATE** `canonical_labels` **and** `required_fields` for
-  events already present, not just add new ones (G2). Catalog wins over the
-  stale hardcoded snapshot.
-- Tests: stub catalog with changed required fields → Sophia adopts them; Edgar
-  down → falls back to snapshot; boot-window submit waits for/uses the catalog.
+Each unit is **single-concern, self-contained, independently shippable**, with its
+own tests + contribution, sized to ONE execution turn. Cross-PR context (the gap
+analysis, catalog schema) lives in §2–§3 so no PR re-discovers it. Every brain
+change ships behind a flag defaulting to current behavior. **Dependency gates:** a
+PR that needs a *prior* PR's merged code is marked `gate` in §8 (don't auto-advance
+onto an unmerged dependency in Sophia's own human-merged repo).
 
-### PR2 — Catalog-driven field normalization *(highest-frequency gap)*
-- Replace the per-event `_FIELD_ALIASES` with a **generic normalizer** that maps
-  LLM-supplied keys to the catalog's `canonical_labels` for **all** events
-  (case/space/underscore-insensitive; use catalog `aliases` if present) (G3).
-- **Stop silently dropping** non-canonical keys for events with no hardcoded alias
-  map — either map via the catalog or surface them, never drop blind.
-- Tests: for ≥5 event types incl. ones with no old alias map, LLM-natural keys
-  normalize correctly and nothing is dropped.
+### PR1 — Catalog merge: UPDATE existing events, not just add (G2)
+Change the merge in `_refresh_events_catalog` so an event already in
+`_CANONICAL_LABELS` / `_VALIDATE_REQUIRED_FIELDS` has its labels **and** required
+fields **updated** from the catalog (catalog wins), instead of only adding new
+events. Tests: catalog with changed required/labels for an existing event → adopted;
+new event → still added.
 
-### PR3 — Intent→event disambiguation + completeness *(this incident's class)*
-- Strengthen `lookup_event_docs` / the submit flow so the LLM reliably picks the
-  right event for an intent and fills important canonical fields (G4): e.g.
-  "sale" → SALES EVENT incl. `Cash proceeds collected by` + `Owner email`;
-  "move/transfer custody" → INVENTORY MOVEMENT; never conflate.
-- Consider gating: `submit_contribution` requires a prior `lookup_event_docs`
-  for the event type in-session, else it injects the catalog spec inline.
-- Tests: a "sales" intent yields SALES EVENT with the cash-proceeds field; an
-  inventory-movement intent stays INVENTORY MOVEMENT.
+### PR2 — Catalog load timing: close the boot-window gap (G1)
+Load the catalog **synchronously at startup** (or block the first
+`submit_contribution` until the first load completes), with a capped fetch timeout
+and snapshot fallback. Touches the startup/loop path, not PR1's merge function.
+Tests: a submit during the boot window validates against the catalog; fetch
+timeout → snapshot, turn still completes.
 
-### PR4 — Auto-generated fallback snapshot *(kills staleness)*
-- A small script/CI step that writes a committed snapshot of the catalog
-  (`app/data/events_catalog_snapshot.json`) used as the offline fallback, so the
-  fallback is regenerated from Edgar, never hand-maintained (G5). Document refresh.
-- Tests: snapshot loads as fallback when Edgar is unreachable.
+### PR3 — Auto-generated fallback snapshot (G5)
+Script/CI step that fetches the catalog and writes a committed
+`app/data/events_catalog_snapshot.json`; load it as the offline fallback (seeds all
+~30 events, replacing the stale hardcoded 9). Standalone. Tests: Edgar unreachable
+→ snapshot loads, all events known. Doc: how/when to refresh.
 
-### PR5 — (rollout) deploy + UAT — see §6.
+### PR4 — Generic catalog-driven field normalizer (G3a)
+Add a normalizer that maps LLM-supplied keys to the catalog's `canonical_labels`
+for **all** event types (exact + case/space/underscore-insensitive + catalog
+`aliases` if present), behind `CATALOG_NORMALIZE` (default off; the old
+`_FIELD_ALIASES` stays as fallback). New code path; does not change behavior until
+flagged on. Tests: ≥5 event types incl. ones with no old alias map normalize.
+
+### PR5 — Stop silently dropping non-canonical keys (G3b) — needs PR4
+When a supplied key can't be mapped to a canonical label, **surface it** (warn +
+pass through / attach), never drop blind. Builds on PR4's normalizer. Tests: an
+unmappable key is preserved/flagged, not lost.
+
+### PR6 — Intent→event picking guidance (G4a)
+Strengthen `lookup_event_docs` output + the system-prompt so the LLM reliably
+picks the right event for an intent and fills important canonical fields (sale →
+SALES EVENT incl. `Cash proceeds collected by` + `Owner email`; custody transfer →
+INVENTORY MOVEMENT; never conflate). Standalone (lookup/prompt only). Tests:
+"sales" intent → SALES EVENT with cash-proceeds; "transfer" → INVENTORY MOVEMENT.
+
+### PR7 — Enforce lookup-before-submit (G4b) — needs PR6
+`submit_contribution` requires a prior in-session `lookup_event_docs` for the
+event type, else it injects the catalog spec inline before validating. Builds on
+PR6. Tests: submit without prior lookup → spec injected/guided; with lookup → proceeds.
+
+### PR8 — (rollout, not a PR) deploy + UAT — see §6.
 
 ## 5. Per-event verification checklist (UAT matrix)
 
@@ -137,16 +154,23 @@ land (tick as verified). Group by priority:
 ## 8. Resume tracker
 | Unit | Advance | PR opened | Merged (human) | Deployed | UAT | Contribution |
 |------|---------|-----------|----------------|----------|-----|--------------|
-| PR1 — catalog-merge correctness | `auto` | ☐ | ☐ | ☐ | — | ☐ |
-| PR2 — catalog-driven normalization | `auto` | ☐ | ☐ | ☐ | — | ☐ |
-| PR3 — intent→event disambiguation | `gate: review picking logic before next` | ☐ | ☐ | ☐ | U1 | ☐ |
-| PR4 — auto-generated fallback snapshot | `auto` | ☐ | ☐ | ☐ | U4 | ☐ |
-| PR5 — rollout + UAT | `gate: UAT` | ☐ | ☐ | ☐ | U1–U5 | ☐ |
+| PR1 — catalog merge UPDATE (G2) | `auto` | ☐ | ☐ | ☐ | — | ☐ |
+| PR2 — catalog load timing (G1) | `auto` | ☐ | ☐ | ☐ | — | ☐ |
+| PR3 — fallback snapshot (G5) | `auto` | ☐ | ☐ | ☐ | U4 | ☐ |
+| PR4 — generic normalizer, flagged (G3a) | `auto` | ☐ | ☐ | ☐ | — | ☐ |
+| PR5 — stop dropping keys (G3b) | `gate: needs PR4 merged first` | ☐ | ☐ | ☐ | U5 | ☐ |
+| PR6 — intent→event picking (G4a) | `gate: review picking logic` | ☐ | ☐ | ☐ | U1 | ☐ |
+| PR7 — enforce lookup-before-submit (G4b) | `gate: needs PR6 merged first` | ☐ | ☐ | ☐ | — | ☐ |
+| PR8 — rollout + UAT | `gate: UAT` | ☐ | ☐ | ☐ | U1–U5 | ☐ |
 
-> **RESUME HERE:** PR1 — make the events-catalog fully authoritative: load it
-> synchronously at boot (close the 120s window) and have the merge UPDATE (not
-> just add) required_fields + canonical_labels for existing events. Open a PR;
-> do not self-merge.
+**Dependency notes:** PR1–PR4 + PR6 are independent (open off `main`). PR5 needs PR4's
+normalizer merged; PR7 needs PR6's picking guidance merged — hence their `gate` markers
+(don't auto-advance onto an unmerged dependency in a human-merged repo).
+
+> **RESUME HERE:** PR1 — catalog merge UPDATE: change `_refresh_events_catalog` so an
+> event already in `_CANONICAL_LABELS` / `_VALIDATE_REQUIRED_FIELDS` gets its
+> required_fields + canonical_labels UPDATED from the catalog (catalog wins), not just
+> new events added. Open a PR; do not self-merge.
 
 ## 9. Notes
 - The catalog being complete means this is mostly a **consumption-correctness**
