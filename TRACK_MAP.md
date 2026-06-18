@@ -10,14 +10,20 @@
 flowchart TD
     G[Graeme Read / Amazon Restoration Partnership]:::new
     T5[Legal Entity Structuring] --> T7
-    T6[GACC / Brazil Compliance] --> T7
     T7[Brazil Export Entity<br/>CNPJ / NF-e / CNAE]:::gate --> T8
     T7 --> T9
+    T7 --> T10
+    T7 --> T11
+    T7 --> T12
     T8[Chocolate Subscription Delivery]:::blocked
     T9[China / Aora Events<br/>100 chocolate bars]:::blocked
+    T10[Chives Root Consignment<br/>10 bags ceremonial cacao]:::blocked
+    T11[Michael Johnson Consignment]:::blocked
+    T12[Kopi Bar Jul 10 Tasting<br/>Nora Haron]:::blocked
 
     classDef gate fill:#e74c3c,color:#fff,stroke:#c0392b,stroke-width:2px
     classDef blocked fill:#f39c12,color:#fff,stroke:#e67e22
+    classDef new fill:#3498db,color:#fff
 ```
 
 ---
@@ -44,10 +50,10 @@ flowchart TD
 |-------|--------|
 | **Status** | 🟡 Offline prep |
 | **Owner** | Gary / Paloma |
-| **Goal** | Regulatory filing prep for Brazil-to-China cacao export (GACC registration) |
+| **Goal** | Regulatory filing prep for Brazil-to-China cacao export (GACC registration). This is a **prerequisite** for exporting to China — separate from the Aora events themselves. |
 | **Key docs** | [`BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md`](./BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md) — GACC registration requirements and process |
 | **Dependencies** | None — parallel work |
-| **Blocks** | Brazil Export Entity (export entity must exist to register with GACC) |
+| **Blocks** | Brazil Export Entity (export entity must register with GACC to export to China) |
 
 ---
 
@@ -101,8 +107,9 @@ flowchart TD
 | Chocolate Subscription Delivery | 🟡 Blocked | Gary | — | Brazil Export Entity 🔴 |
 | China / Aora Events (100 bars) | 🟡 Blocked | Gary / Liz / Jerri | — | Brazil Export Entity 🔴 |
 | Graeme Read / Amazon Restoration Partnership | 🔵 New | Gary / Graeme / Jonathan | — | — |
-| Chives Root (consignment) | 🟡 Blocked | Chives Root / Gary | — | Brazil Export Entity 🔴 |
-| Michael Johnson (consignment) | 🟡 Blocked | Michael Johnson / Gary | — | Brazil Export Entity 🔴 |
+| Chives Root Consignment (10 bags ceremonial cacao) | 🟡 Blocked | Chives Root / Gary | — | Brazil Export Entity 🔴 |
+| Michael Johnson Consignment | 🟡 Blocked | Michael Johnson / Gary | — | Brazil Export Entity 🔴 |
+| Kopi Bar Jul 10 Tasting (Nora Haron) | 🟡 Blocked | Nora / Gary | 2026-07-10 | Brazil Export Entity 🔴 |
 
 ---
 
