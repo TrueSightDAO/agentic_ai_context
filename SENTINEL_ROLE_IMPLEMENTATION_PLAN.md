@@ -12,8 +12,8 @@ The Sentinel flag lives on **Contributors contact information** as a new column.
 - [x] **Confirmed publisher reads `Governors` tab** to derive `roles` — same pattern will be used for Sentinel.
 - [x] **Confirmed `dao_members.json` schema v3** already has `roles: ["governor", "member"]` — adding `"sentinel"` is additive.
 - [x] **Confirmed `dao_protocol` `contributors.py`** returns the full contributor record including `roles` — no client change needed.
-- [ ] **Decision**: Should Sentinels also get `"member"` in their roles array? (Proposal: yes — `["sentinel", "member"]` so existing member checks still pass.)
-- [ ] **Decision**: Should the `sentiment_importer`'s `TRUSTED_AGENTS` hardcoded list in `governors.rb` be removed in favor of the cache? (Proposal: defer to a follow-up PR — the Rails app still needs the Telegram Chat Logs column S stamp, which reads the Governors tab directly, not the cache.)
+- [x] **Decision**: Should Sentinels also get `"member"` in their roles array? (Proposal: yes — `["sentinel", "member"]` so existing member checks still pass.)
+- [x] **Decision**: Should the `sentiment_importer`'s `TRUSTED_AGENTS` hardcoded list in `governors.rb` be removed in favor of the cache? (Proposal: defer to a follow-up PR — the Rails app still needs the Telegram Chat Logs column S stamp, which reads the Governors tab directly, not the cache.)
 
 ## Sequenced Plan
 
@@ -27,7 +27,7 @@ The Sentinel flag lives on **Contributors contact information** as a new column.
 
 **Manual step**: Requires editing the Google Sheet directly (no code change).
 
-**Status**: ☐ Not started
+**Status**: [x] Completed — W4 header "Is Sentinel" added; row 399 (truesight-autopilot) set to TRUE (2026-06-18).
 
 ---
 
@@ -61,7 +61,7 @@ The Sentinel flag lives on **Contributors contact information** as a new column.
 - Verify `dao_members.json` on `treasury-cache` main branch shows `"roles": ["member", "sentinel"]` for `truesight-autopilot`
 - Verify the autopilot's `for_self()` lookup returns the updated roles
 
-**Status**: ☐ Not started
+**Status**: [x] Completed — DaoMembersCache.js reads column W, pushes "sentinel" into roles, and counts sentinels. Clasp-pushed 2026-06-18. PRs: tokenomics#363 + #365.
 
 ---
 
@@ -89,12 +89,16 @@ The Sentinel flag lives on **Contributors contact information** as a new column.
 
 | Step | PR | Status |
 |------|-----|--------|
-| Add `Is Sentinel` column to sheet | Manual sheet edit | ☐ |
-| Update `dao_members_cache_publisher.gs` | tokenomics PR | ☐ |
+| Add `Is Sentinel` column to sheet | Manual sheet edit | [x] W4 header + row 399 TRUE (2026-06-18) |
+| Update `dao_members_cache_publisher.gs` | tokenomics PR #363 + #365 | [x] Clasp-pushed |
 | Remove `TRUSTED_AGENTS` from `governors.rb` | sentiment_importer PR (deferred) | ☐ |
 | Client-side event gating in `dao_protocol` | dao_protocol PR (deferred) | ☐ |
+| Edgar column S (Governor) populate | dao_protocol PR #124 | [x] Deployed |
+| Edgar column T (Is Sentinel) populate | dao_protocol PR #124 | [x] Deployed |
+| GAS movement processor sentinel check | tokenomics PR #363 | [x] Clasp-pushed |
+| SCHEMA.md column T documentation | tokenomics PR #363 | [x] Merged |
 
-**RESUME HERE** → **Step 1: Add the `Is Sentinel` column to the Google Sheet.**
+**STATUS: COMPLETE** — All active steps done. Deferred items (PRs 3-4) are optional follow-ups.
 
 ## Notes
 
