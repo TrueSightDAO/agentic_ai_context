@@ -31,6 +31,7 @@ flowchart TD
 | **Owner** | Gary / Paloma |
 | **Goal** | Choose holding entity structure (DUNA vs Próspera) for DAO-owned Brazilian export CNPJ |
 | **Key docs** | [`BRAZIL_EXPORT_ENTITY_BRIEF.md`](./BRAZIL_EXPORT_ENTITY_BRIEF.md) — full structuring brief with two paths (Próspera HoldCo vs Wyoming UNA/DUNA), ownership mapping to TDG holders, and questions for counsel Layon Costa |
+| **Next milestone** | Mon Jun 22, 2026 · 11am PDT — call with Layon Costa (counsel), Breno, Paloma. [Google Meet](https://meet.google.com/eht-bdgp-tdh) |
 | **Dependencies** | None — parallel work |
 | **Blocks** | Brazil Export Entity (entity must exist to own the new CNPJ) |
 
