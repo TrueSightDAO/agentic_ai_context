@@ -9,15 +9,23 @@
 ```mermaid
 flowchart TD
     G[Graeme Read / Amazon Restoration Partnership]:::new
-    T5[Legal Entity Structuring] --> T7
-    T6[GACC / Brazil Compliance] --> T7
+    T5[Legal Entity Structuring]:::offline
+    T6[GACC / Brazil Compliance]:::offline
     T7[Brazil Export Entity<br/>CNPJ / NF-e / CNAE]:::gate --> T8
     T7 --> T9
+    T7 --> T10
+    T7 --> T11
+    T7 --> T12
     T8[Chocolate Subscription Delivery]:::blocked
     T9[China / Aora Events<br/>100 chocolate bars]:::blocked
+    T10[Chives Root Consignment<br/>10 bags ceremonial cacao]:::blocked
+    T11[Michael Johnson Consignment]:::blocked
+    T12[Kopi Bar Jul 10 Tasting<br/>Nora Haron]:::blocked
 
     classDef gate fill:#e74c3c,color:#fff,stroke:#c0392b,stroke-width:2px
     classDef blocked fill:#f39c12,color:#fff,stroke:#e67e22
+    classDef offline fill:#95a5a6,color:#fff
+    classDef new fill:#3498db,color:#fff
 ```
 
 ---
@@ -34,7 +42,7 @@ flowchart TD
 | **Key docs** | [`BRAZIL_EXPORT_ENTITY_BRIEF.md`](./BRAZIL_EXPORT_ENTITY_BRIEF.md) — full structuring brief with two paths (Próspera HoldCo vs Wyoming UNA/DUNA), ownership mapping to TDG holders, and questions for counsel Layon Costa |
 | **Next milestone** | Mon Jun 22, 2026 · 11am PDT — call with Layon Costa (counsel), Breno, Paloma. [Google Meet](https://meet.google.com/eht-bdgp-tdh) |
 | **Dependencies** | None — parallel work |
-| **Blocks** | Brazil Export Entity (entity must exist to own the new CNPJ) |
+| **Blocks** | None — parallel to all other tracks |
 
 ---
 
@@ -47,7 +55,7 @@ flowchart TD
 | **Goal** | Regulatory filing prep for Brazil-to-China cacao export (GACC registration) |
 | **Key docs** | [`BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md`](./BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md) — GACC registration requirements and process |
 | **Dependencies** | None — parallel work |
-| **Blocks** | Brazil Export Entity (export entity must exist to register with GACC) |
+| **Blocks** | None — parallel to all other tracks |
 
 ---
 
@@ -62,7 +70,7 @@ flowchart TD
 | **Next check-in** | **~2026-06-26** (5 business days from 2026-06-19) — earliest possible completion |
 | **Key docs** | [`BRAZIL_EXPORT_ENTITY_BRIEF.md`](./BRAZIL_EXPORT_ENTITY_BRIEF.md) — explains why Black King's current CNPJ (service CNAEs only, no IE, no NF-e model 55) cannot legally issue export invoices. See §4 for the full diagnosis. |
 | **Context** | Current state: Black King (CNPJ 50.042.585/0001-80) is an Empresário Individual with only service CNAEs (82.30-0-01). Cannot issue export NF-e. New entity needs CNAE 46.23-1/04 + IE + NF-e model 55 credentialing at SEFAZ-BA. |
-| **Dependencies** | Legal Entity Structuring (holding entity must own the new CNPJ) |
+| **Dependencies** | None — parallel to Legal Entity Structuring and GACC |
 | **Blocks** | Chocolate Subscription Delivery, China / Aora Events |
 
 ---
@@ -95,9 +103,9 @@ flowchart TD
 
 | Track | Status | Owner | Next Check-in | Blocked By |
 |-------|--------|-------|---------------|------------|
-| Legal Entity Structuring | 🟡 Offline | Gary / Paloma | — | — |
+| Legal Entity Structuring | 🟡 Offline | Gary / Paloma | Jun 22 call w/ Layon | — |
 | GACC / Brazil Compliance | 🟡 Offline | Gary / Paloma | — | — |
-| Brazil Export Entity (CNPJ/NF-e/CNAE) | 🔴 Gate | Matheus / Paloma / Gary | ~2026-06-26 | Legal Entity Structuring |
+| Brazil Export Entity (CNPJ/NF-e/CNAE) | 🔴 Gate | Matheus / Paloma / Gary | ~2026-06-26 | — |
 | Chocolate Subscription Delivery | 🟡 Blocked | Gary | — | Brazil Export Entity 🔴 |
 | China / Aora Events (100 bars) | 🟡 Blocked | Gary / Liz / Jerri | — | Brazil Export Entity 🔴 |
 | Graeme Read / Amazon Restoration Partnership | 🔵 New | Gary / Graeme / Jonathan | — | — |
