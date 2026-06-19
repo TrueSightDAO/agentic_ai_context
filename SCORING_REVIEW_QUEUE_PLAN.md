@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v3: simplified sign event — Edgar resolves reviewer email from RSA signature)
+**Last updated:** 2026-06-18 (v4: cursor-based pagination, email simplification)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -90,10 +90,12 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 ┌─────────────────────────────────────────────────────────────────────┐
 │  EDGAR (sentiment_importer / dao_protocol)                          │
 │                                                                     │
-│  GET /dao/review_queue?limit=10&offset=0                            │
-│  - Reads treasury-cache/review-queue/ directory                     │
-│  - Returns oldest 10 files (sorted by filename = hash_key age)      │
-│  - Includes total count for infinite scroll                         │
+│  GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw│
+│  - Lists treasury-cache/review-queue/ directory (sorted by name)    │
+│  - Skips files up to and including after_filename (if provided)     │
+│  - Returns next `limit` files + their content                       │
+│  - Includes `next_filename` for the DApp to use as cursor           │
+│  - No numeric offset — cursor is the filename itself                │
 │                                                                     │
 │  POST /dao/submit_contribution  (CONTRIBUTION REVIEW EVENT)         │
 │  - Verifies signer is governor or Sentinel (via RSA signature)      │
@@ -112,7 +114,8 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │                                                                     │
 │  review_queue.html (new page)                                       │
 │  - Anyone can view the queue (read-only)                            │
-│  - Infinite scroll (calls Edgar for next 10)                        │
+│  - Infinite scroll using cursor-based pagination                     │
+│    (tracks `last_filename` instead of `offset`)                      │
 │  - Each row shows: contributor, contribution, rubric, provisioned   │
 │  - Contributor resolution badge: ✓ Resolved / ⚠ Resolve Failed     │
 │  - Governor/Sentinel sees three-action panel:                       │
@@ -165,13 +168,28 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
    - For each processed row, write current timestamp to `Column N` (via Sheets API batch update)
 6. **Idempotency:** If a file already exists in the repo, skip it (don't overwrite). If `Column N` already has a timestamp, skip the row.
 
-### 4.2 Queue Serving (Edgar)
+### 4.2 Queue Serving (Edgar) — Cursor-Based Pagination
 
-1. **Endpoint:** `GET /dao/review_queue?limit=10&offset=0`
-2. **Read:** GitHub API → list `treasury-cache/review-queue/` directory, sorted by filename (oldest first)
-3. **Paginate:** Return `limit` files starting at `offset`. Include `total_count` for the DApp to know how many pages exist.
-4. **Read each file's content** and return as JSON array (see §6 for response schema)
-5. **Auth:** Anyone can call this endpoint (read-only). No signature required.
+1. **Endpoint:** `GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw`
+   - `limit` (optional, default 10, max 50): how many items to return
+   - `after_filename` (optional): the filename of the last item from the previous page. If omitted, start from the beginning.
+2. **Read:** GitHub API → list `treasury-cache/review-queue/` directory, sorted alphabetically by filename (ascending)
+3. **Skip:** If `after_filename` is provided, skip all files up to and including that filename
+4. **Slice:** Take the next `limit` files from the remaining list
+5. **Read each file's content** and return as JSON array
+6. **Response:**
+   ```json
+   {
+     "items": [ /* cache file objects */ ],
+     "total_count": 42,
+     "next_filename": "M52VB3RP2VLzU3UxLIf",
+     "has_more": true
+   }
+   ```
+   - `next_filename` is the filename of the last item in this page. The DApp passes this as `after_filename` on the next request.
+   - `has_more` is `false` when there are no more files after this page.
+7. **Why cursor-based instead of offset:** Files are deleted from the directory as approvals happen. A numeric offset would shift — the file at offset 10 today might be a different file tomorrow. The filename is stable; even if files before it are deleted, the cursor still points to the right place.
+8. **Auth:** Anyone can call this endpoint (read-only). No signature required.
 
 ### 4.3 Approval / Rejection (DApp → Edgar)
 
@@ -304,18 +322,6 @@ Each file in `treasury-cache/review-queue/<hash_key>.json`:
 }
 ```
 
-### Edgar Queue Response (per item)
-
-Same as cache file, plus:
-```json
-{
-  "items": [ /* cache file objects */ ],
-  "total_count": 42,
-  "offset": 0,
-  "limit": 10
-}
-```
-
 ---
 
 ## 7. Scored Chatlogs Column Reference
@@ -346,7 +352,9 @@ Same as cache file, plus:
 
 - **Header:** "Contribution Review Queue" with count badge (e.g., "42 pending")
 - **Filter bar:** Optional — filter by contributor name or date range
-- **Card list** (infinite scroll):
+- **Card list** (infinite scroll using cursor-based pagination):
+  - DApp tracks `last_filename` (not `offset`) for the next page request
+  - On scroll to bottom, calls `GET /dao/review_queue?limit=10&after_filename=<last_filename>`
   - Each card shows:
     - **Contributor name** with resolution badge:
       - ✓ Green badge = `found_in_contributors: true`
@@ -417,25 +425,29 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 
 ---
 
-### PR 2: Edgar — Review Queue Endpoint
+### PR 2: Edgar — Review Queue Endpoint (Cursor-Based Pagination)
 
 **Repo:** `sentiment_importer` (Rails) or `dao_protocol` (Python FastAPI)
 
 **Scope:**
-- Add `GET /dao/review_queue` endpoint
+- Add `GET /dao/review_queue` endpoint with cursor-based pagination
+- Parameters: `limit` (default 10, max 50), `after_filename` (optional cursor)
 - Reads `treasury-cache/review-queue/` directory via GitHub API
-- Returns paginated results (limit, offset, total_count)
-- Reads each JSON file's content and returns as array
+- Lists files sorted alphabetically by filename (ascending)
+- Skips files up to and including `after_filename` (if provided)
+- Returns next `limit` files with their content
+- Response includes `next_filename` and `has_more` for the DApp cursor
 - Also add `GET /dao/contributors` (or reuse existing) to return contributor list for the dropdown
 
 **Files created/modified:**
 - `app/controllers/dao_controller.rb` (Rails) or `app/routes/review_queue.py` (FastAPI)
-- Tests for pagination, empty queue, file-not-found
+- Tests for pagination, empty queue, file-not-found, cursor stability after deletion
 
 **Acceptance:**
-- `GET /dao/review_queue?limit=10&offset=0` returns 10 items + total_count
-- `GET /dao/review_queue?limit=10&offset=100` returns next page
-- Returns empty array when queue is empty
+- `GET /dao/review_queue?limit=10` returns first 10 items + `next_filename` + `has_more: true`
+- `GET /dao/review_queue?limit=10&after_filename=...` returns next 10 items
+- Returns empty array + `has_more: false` when queue is empty
+- Cursor still works correctly even if files before it were deleted
 
 ---
 
@@ -511,7 +523,8 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 
 **Scope:**
 - Create `review_queue.html` (new page)
-- Fetches queue from `GET /dao/review_queue` with infinite scroll
+- Fetches queue from `GET /dao/review_queue` with cursor-based infinite scroll
+  (tracks `last_filename` instead of `offset`)
 - Fetches contributor list from `GET /dao/contributors` (for resolve-failed dropdown)
 - Renders card list: contributor (with resolution badge), contribution, rubric, provisioned TDG, date, reporter
 - For governors/Sentinels (checked via Edgar identity lookup):
@@ -531,7 +544,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 - Navigation menu update
 
 **Acceptance:**
-- Anyone can view the queue with infinite scroll
+- Anyone can view the queue with cursor-based infinite scroll
 - Governor sees three-action panel + contributor dropdown + TDG field
 - Non-governor sees read-only queue with observer notice
 - Successful approval removes item from queue (after refresh)
@@ -548,14 +561,14 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 - Deploy PR 4 GAS script (clasp push + deploy)
 - Verify end-to-end:
   - U1: Cache generator creates files for pending rows (includes found_in_contributors)
-  - U2: Edgar serves queue with pagination
+  - U2: Edgar serves queue with cursor-based pagination
   - U3: Governor approves a row → cache file deleted → sheet updated to "Reviewed"
   - U4: Governor rejects a row → cache file deleted → sheet updated to "Rejected" + reason
   - U5: Governor skips a row → cache file stays, row re-appears on reload
   - U6: Non-governor sees queue but cannot approve/reject
   - U7: Resolve-failed row shows dropdown, governor picks correct contributor
   - U8: Double-counting guard prevents re-approval of already-processed row
-  - U9: Infinite scroll loads more items
+  - U9: Infinite scroll loads more items with cursor stability
 - Fix any issues found
 
 **Acceptance:**
@@ -618,6 +631,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 | Governor rejects without reason | Edgar returns 400. DApp shows validation error on the reason field. |
 | Resolve-failed contributor — governor picks wrong name | Governor can correct on re-review if caught. Otherwise, the transfer script uses whatever name is in Column A. |
 | GitHub Action timeout (6 hours) | Unlikely for this workload. Each run processes at most a few hundred rows. |
+| Cursor points to a file that was deleted | Edgar skips missing files silently and continues to the next one. The cursor is just a starting point — if the file is gone, it moves to the next alphabetical file. |
 
 ---
 
