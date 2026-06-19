@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v9: add doGet health check to telegram_webhook_listener.js)
+**Last updated:** 2026-06-18 (v10: Edgar calls doGet with query params instead of POST webhook)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -31,9 +31,9 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 3. **Governor/Sentinel** sees a three-action panel per row: **Approve** (accepts Grok's provisioned TDG or an adjusted amount), **Skip** (leaves for later), or **Reject** (with required reason).
 4. **Contributor resolution** — The cache includes the `found_in_contributors` flag (Column I). If TRUE, the contributor dropdown is pre-selected. If FALSE or "RESOLVE FAILED", the governor must pick the right contributor from a dropdown before approving.
 5. **On Approve/Reject**, the browser signs a `[CONTRIBUTION REVIEW EVENT]` to Edgar. The event payload is minimal — only the hash key, action, and TDG amount/rejection reason. **No reviewer email** — Edgar resolves the reviewer's identity from the RSA signature.
-6. **Edgar verifies** the signer is a governor or Sentinel (via RSA signature → `Contributors Digital Signatures` sheet). On success, Edgar resolves the reviewer's email and includes it in the webhook to GAS.
-7. **On approval**, Edgar deletes the cache file from `treasury-cache/review-queue/` and fires a webhook to the GAS write-back script with the TDG amount and reviewer email.
-8. **On rejection**, Edgar deletes the cache file and fires a webhook with the rejection reason and reviewer email. The GAS script sets Status = "Rejected" and records the reason.
+6. **Edgar verifies** the signer is a governor or Sentinel (via RSA signature → `Contributors Digital Signatures` sheet). On success, Edgar resolves the reviewer's email and calls the GAS web app via **doGet with query parameters**.
+7. **On approval**, Edgar deletes the cache file from `treasury-cache/review-queue/` and calls `GET <webhook_url>?action=Approve&scoringHashKey=...&tdgIssued=...&reviewerEmail=...`
+8. **On rejection**, Edgar deletes the cache file and calls `GET <webhook_url>?action=Reject&scoringHashKey=...&rejectionReason=...&reviewerEmail=...`
 9. **On Skip**, the cache file stays — it will be re-surfaced on the next page load.
 
 ---
@@ -68,9 +68,10 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  │   Chatlogs)                                             │       │
 │  │ Existing: telegram_webhook_listener.js (doPost for      │       │
 │  │   Telegram webhooks + orchestrator calls)               │       │
-│  │ Extended: telegram_webhook_listener.js — add doGet for  │       │
-│  │   health check/ping + route for Edgar review callbacks  │       │
-│  │   in doPost                                              │       │
+│  │ NEW: telegram_webhook_listener.js — add doGet(e) that   │       │
+│  │   accepts query params from Edgar to process review     │       │
+│  │   callbacks                                              │       │
+│  │ Existing doPost stays untouched for Telegram webhooks    │       │
 │  └─────────────────────────────────────────────────────────┘       │
 └─────────────────────────────────────────────────────────────────────┘
          │
@@ -120,10 +121,12 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  POST /dao/submit_contribution  (CONTRIBUTION REVIEW EVENT)         │
 │  - Verifies signer is governor or Sentinel (via RSA signature)      │
 │  - Resolves reviewer email from the RSA signature                   │
-│  - On Approve: deletes cache file, fires webhook with TDG amount   │
-│    + reviewer email                                                  │
-│  - On Reject: deletes cache file, fires webhook with rejection      │
-│    reason + reviewer email                                           │
+│  - On Approve: deletes cache file, calls GAS via doGet:             │
+│    GET <webhook_url>?action=Approve&scoringHashKey=...              │
+│      &tdgIssued=...&reviewerEmail=...                               │
+│  - On Reject: deletes cache file, calls GAS via doGet:              │
+│    GET <webhook_url>?action=Reject&scoringHashKey=...               │
+│      &rejectionReason=...&reviewerEmail=...                         │
 │  - On Skip: no-op (cache file stays)                                │
 └─────────────────────────────────────────────────────────────────────┘
          │                    ▲
@@ -151,38 +154,38 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │    success confirmation                                              │
 └─────────────────────────────────────────────────────────────────────┘
          │
-         │ (Edgar fires webhook to GAS)
+         │ (Edgar calls GAS via doGet with query params)
          ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │  GAS WRITE-BACK (in Grok Scoring GAS Project — 1BHAGZd…)           │
 │                                                                     │
-│  Extended: telegram_webhook_listener.js                             │
+│  NEW: telegram_webhook_listener.js — function doGet(e)              │
 │                                                                     │
-│  NEW: function doGet(e) — health check / ping endpoint              │
-│  - Returns JSON: { status: "ok", project: "tdg_scoring",           │
-│    version: "1.0.0" }                                               │
-│  - Edgar can GET this URL to verify the webhook is reachable        │
-│    before sending POST callbacks                                     │
-│  - Avoids CORS/content-type issues that can block POST              │
+│  - Reads query parameters from the URL:                             │
+│    GET <webhook_url>?action=Approve&scoringHashKey=XzQ2...          │
+│      &tdgIssued=45.00&reviewerEmail=gary@truesight.me              │
+│    OR                                                               │
+│    GET <webhook_url>?action=Reject&scoringHashKey=XzQ2...           │
+│      &rejectionReason=Duplicate&reviewerEmail=gary@truesight.me    │
 │                                                                     │
-│  EXISTING: function doPost(e) — extended with route check           │
-│  - Existing doPost already handles Telegram webhooks                │
-│  - Add a route check: if JSON body contains `scoringHashKey`,       │
-│    route to review callback handler instead of Telegram handler     │
-│  - Parses { scoringHashKey, action, tdgIssued?, rejectionReason?,  │
-│      reviewerEmail }                                                │
+│  - Parses: action, scoringHashKey, tdgIssued?, rejectionReason?,    │
+│    reviewerEmail                                                    │
 │  - Looks up the row in Scored Chatlogs by scoringHashKey (Col K)    │
 │  - Double-counting guard: checks if Status is already "Reviewed"    │
-│    or "Transferred to Main Ledger" — if so, skips (no-op)           │
+│    or "Transferred to Main Ledger" — if so, returns 200 with       │
+│    { status: "skipped", reason: "already processed" } (no-op)      │
 │  - On Approve: sets Col F = "Reviewed", Col G = tdgIssued,         │
 │    Col M = reviewerEmail                                             │
 │  - On Reject: sets Col F = "Rejected", Col O = rejectionReason,    │
 │    Col M = reviewerEmail                                             │
-│  - Returns 200 OK with { status: "updated" }                       │
+│  - Returns JSON response with { status: "updated" }                │
+│                                                                     │
+│  Existing doPost(e) stays untouched — still handles Telegram        │
+│  webhooks and orchestrator calls                                    │
 │                                                                     │
 │  Deployment: clasp push from tokenomics/google_app_scripts/         │
 │  1BHAGZd…/ (same project as Grok scoring)                           │
-│  No new deployment needed — same web app URL, same doPost entry     │
+│  No new deployment needed — same web app URL                        │
 └─────────────────────────────────────────────────────────────────────┘
          │
          │ (scheduled trigger picks up "Reviewed" rows)
@@ -265,17 +268,22 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 
 **Note:** `Reviewer Email` is NOT in the signed payload. Edgar resolves it server-side from the RSA signature.
 
-### 4.4 Edgar Webhook to GAS (POST)
+### 4.4 Edgar → GAS Callback (doGet with query params)
 
-```json
-{
-  "scoringHashKey": "XzQ2EhAMD7MN8X0zFhvw",
-  "action": "Approve",
-  "tdgIssued": "45.00",
-  "contributorName": "Alice",
-  "reviewerEmail": "gary@truesight.me",
-  "timestamp": "2026-06-18T14:30:00Z"
-}
+**Approve:**
+```
+GET <webhook_url>?action=Approve
+  &scoringHashKey=XzQ2EhAMD7MN8X0zFhvw
+  &tdgIssued=45.00
+  &reviewerEmail=gary@truesight.me
+```
+
+**Reject:**
+```
+GET <webhook_url>?action=Reject
+  &scoringHashKey=XzQ2EhAMD7MN8X0zFhvw
+  &rejectionReason=Duplicate+entry
+  &reviewerEmail=gary@truesight.me
 ```
 
 ---
@@ -342,10 +350,10 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 - Resolves the reviewer's email from the RSA signature
 - On **Approve**:
   - Deletes the cache file from `treasury-cache/review-queue/<hash_key>.json`
-  - Fires webhook to GAS with `{ scoringHashKey, action: "Approve", tdgIssued, contributorName, reviewerEmail }`
+  - Calls GAS via doGet: `GET <webhook_url>?action=Approve&scoringHashKey=...&tdgIssued=...&reviewerEmail=...`
 - On **Reject**:
   - Deletes the cache file
-  - Fires webhook to GAS with `{ scoringHashKey, action: "Reject", rejectionReason, reviewerEmail }`
+  - Calls GAS via doGet: `GET <webhook_url>?action=Reject&scoringHashKey=...&rejectionReason=...&reviewerEmail=...`
 - On **Skip**: no-op (cache file stays)
 
 **Authorization:**
@@ -354,73 +362,109 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 - Approve without `TDGs Issued` → HTTP 400
 - Reject without `Rejection Reason` → HTTP 400
 
-**Webhook retry:**
-- If GAS webhook returns non-200, retry up to 3 times with exponential backoff
+**GAS callback retry:**
+- If GAS doGet returns non-200, retry up to 3 times with exponential backoff
 - After 3 failures, log the error and leave the cache file (manual recovery)
 
 ---
 
-### PR 4 — Extend GAS doPost + Add doGet in Grok Scoring Project
+### PR 4 — Add doGet to Grok Scoring GAS Project for Review Callbacks
 
 **GAS Project:** `1BHAGZd…` (same project as Grok scoring script)
 **Repo:** `tokenomics` → `google_app_scripts/1BHAGZd…/`
 **Files:**
-- `telegram_webhook_listener.js` — **extend** existing doPost(e) + **add** doGet(e)
+- `telegram_webhook_listener.js` — **add** new `doGet(e)` function
 
-**Why extend instead of new file:** The Grok scoring project already has a `doPost(e)` deployed as a web app in `telegram_webhook_listener.js`. Rather than creating a new GAS project or a new file with a separate deployment, we add a route check to the existing `doPost(e)` and add a `doGet(e)` for health checks.
+**Why doGet instead of doPost:** Edgar calls the GAS web app via a simple GET request with query parameters. This avoids CORS issues, content-type restrictions, and the complexity of POST webhook handling. The existing `doPost(e)` stays untouched — it still handles Telegram webhooks and orchestrator calls.
 
-**NEW — function doGet(e) — Health check / ping endpoint:**
+**NEW — function doGet(e) — Review callback handler:**
 ```javascript
 function doGet(e) {
+  try {
+    const params = e.parameter;
+    const action = params.action;
+    const scoringHashKey = params.scoringHashKey;
+    const reviewerEmail = params.reviewerEmail;
+
+    if (!action || !scoringHashKey || !reviewerEmail) {
+      return createJsonResponse({ status: 'error', reason: 'Missing required params' }, 400);
+    }
+
+    if (action === 'Approve') {
+      return handleApprove(scoringHashKey, params.tdgIssued, reviewerEmail);
+    } else if (action === 'Reject') {
+      return handleReject(scoringHashKey, params.rejectionReason, reviewerEmail);
+    } else {
+      return createJsonResponse({ status: 'error', reason: 'Unknown action: ' + action }, 400);
+    }
+  } catch (err) {
+    Logger.log('doGet error: ' + err.message);
+    return createJsonResponse({ status: 'error', reason: err.message }, 500);
+  }
+}
+
+function handleApprove(hashKey, tdgIssued, reviewerEmail) {
+  const row = findRowByHashKey(hashKey);
+  if (!row) {
+    return createJsonResponse({ status: 'error', reason: 'Row not found' }, 404);
+  }
+
+  const currentStatus = row[5]; // Col F
+  // Double-counting guard
+  if (currentStatus === 'Reviewed' ||
+      currentStatus === 'Transferred to Main Ledger' ||
+      currentStatus === 'Rejected' ||
+      currentStatus === 'Ignored') {
+    return createJsonResponse({ status: 'skipped', reason: 'already processed' });
+  }
+
+  row[5] = 'Reviewed';        // Col F
+  row[6] = tdgIssued;         // Col G
+  row[12] = reviewerEmail;    // Col M
+  updateRow(row);
+
+  return createJsonResponse({ status: 'updated' });
+}
+
+function handleReject(hashKey, rejectionReason, reviewerEmail) {
+  const row = findRowByHashKey(hashKey);
+  if (!row) {
+    return createJsonResponse({ status: 'error', reason: 'Row not found' }, 404);
+  }
+
+  const currentStatus = row[5]; // Col F
+  // Double-counting guard
+  if (currentStatus === 'Reviewed' ||
+      currentStatus === 'Transferred to Main Ledger' ||
+      currentStatus === 'Rejected' ||
+      currentStatus === 'Ignored') {
+    return createJsonResponse({ status: 'skipped', reason: 'already processed' });
+  }
+
+  row[5] = 'Rejected';            // Col F
+  row[14] = rejectionReason;      // Col O
+  row[12] = reviewerEmail;        // Col M
+  updateRow(row);
+
+  return createJsonResponse({ status: 'updated' });
+}
+
+function createJsonResponse(data, statusCode = 200) {
   return ContentService
-    .createTextOutput(JSON.stringify({
-      status: "ok",
-      project: "tdg_scoring",
-      version: "1.0.0",
-      timestamp: new Date().toISOString()
-    }))
+    .createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
 }
 ```
-- Edgar can GET this URL to verify the webhook is reachable before sending POST callbacks
-- Avoids CORS/content-type issues that can block POST — GET is universally allowed
-- Returns a simple JSON status response
-
-**EXISTING — function doPost(e) — Extended with route check:**
-```javascript
-function doPost(e) {
-  const json = JSON.parse(e.postData.contents);
-  // Route: if this is an Edgar review callback, handle it
-  if (json.scoringHashKey) {
-    return handleReviewCallback(json);
-  }
-  // Existing Telegram webhook handling...
-}
-```
-
-**handleReviewCallback(json) function:**
-- Parses `{ scoringHashKey, action, tdgIssued?, rejectionReason?, reviewerEmail }`
-- Looks up the row in Scored Chatlogs by `scoringHashKey` (Column K)
-- **Double-counting guard:** Checks if `Status` is already `"Reviewed"` or `"Transferred to Main Ledger"` — if so, returns 200 with `{ status: "skipped", reason: "already processed" }` (no-op)
-- On **Approve**:
-  - Sets `Col F` = `"Reviewed"`
-  - Sets `Col G` = `tdgIssued`
-  - Sets `Col M` = `reviewerEmail`
-- On **Reject**:
-  - Sets `Col F` = `"Rejected"`
-  - Sets `Col O` = `rejectionReason`
-  - Sets `Col M` = `reviewerEmail`
-- Returns 200 OK with `{ status: "updated" }`
 
 **Deployment:**
 - `clasp push` from `tokenomics/google_app_scripts/1BHAGZd…/`
-- Same web app URL — no new deployment needed, same `doPost(e)` entry point
+- Same web app URL — no new deployment needed
 - The web app URL is configured in Edgar's environment as `GAS_REVIEW_WEBHOOK_URL`
 
 **Edge cases:**
 - Row not found (hash key doesn't match) → return 404
 - Row already processed (double-counting guard) → return 200 with skip reason
-- Invalid JSON body → return 400
+- Missing required params (action, scoringHashKey, reviewerEmail) → return 400
 - Sheets API write failure → return 500 (triggers Edgar retry)
 
 ---
@@ -586,11 +630,11 @@ Successfully Completed ──────► Reviewed ──────► Tran
 
 ### 7.3 Double-Counting Guard Logic
 
-The GAS write-back script MUST check the current Status before updating:
+The GAS doGet handler MUST check the current Status before updating:
 
 ```javascript
-function handleReviewCallback(json) {
-  const row = findRowByHashKey(json.scoringHashKey);
+function handleApprove(hashKey, tdgIssued, reviewerEmail) {
+  const row = findRowByHashKey(hashKey);
   const currentStatus = row[5]; // Col F (0-indexed)
 
   // Double-counting guard: skip if already processed
@@ -602,16 +646,9 @@ function handleReviewCallback(json) {
   }
 
   // Proceed with update
-  if (json.action === 'Approve') {
-    row[5] = 'Reviewed';  // Col F
-    row[6] = json.tdgIssued; // Col G
-    row[12] = json.reviewerEmail; // Col M
-  } else if (json.action === 'Reject') {
-    row[5] = 'Rejected';  // Col F
-    row[14] = json.rejectionReason; // Col O
-    row[12] = json.reviewerEmail; // Col M
-  }
-
+  row[5] = 'Reviewed';        // Col F
+  row[6] = tdgIssued;         // Col G
+  row[12] = reviewerEmail;    // Col M
   updateRow(row);
   return { status: 'updated' };
 }
@@ -651,9 +688,9 @@ Enforcement:
 | Cache generator finds 0 new rows | No-op (empty commit skipped) |
 | GitHub push fails after Sheets write | Column N already marked, next run skips this row — manual recovery needed |
 | Edgar receives Approve but cache file was already deleted | No-op (idempotent — file gone = already processed) |
-| Edgar receives Approve but GAS webhook fails | Retry 3x with backoff, then log error for manual recovery |
-| GAS webhook receives duplicate callback | Double-counting guard skips if Status is already Reviewed/Transferred |
-| Transfer script and GAS webhook race | Transfer script checks Status before moving — if GAS hasn't written yet, it sees "Successfully Completed" and transfers with TDG=0 (existing behavior) |
+| Edgar receives Approve but GAS doGet fails | Retry 3x with backoff, then log error for manual recovery |
+| GAS doGet receives duplicate callback | Double-counting guard skips if Status is already Reviewed/Transferred |
+| Transfer script and GAS doGet race | Transfer script checks Status before moving — if GAS hasn't written yet, it sees "Successfully Completed" and transfers with TDG=0 (existing behavior) |
 | Governor approves with TDG=0 | Transfer script sets Status = "Ignored" (existing behavior) |
 | Governor rejects but cache file was already deleted by another governor | No-op (idempotent) |
 | DApp page loads but Edgar is down | Shows error state with retry button |
