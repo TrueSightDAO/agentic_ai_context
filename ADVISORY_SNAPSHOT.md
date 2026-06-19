@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-19T04:30:14Z`
+- Generated (UTC): `2026-06-19T05:33:51Z`
 - Look-back: **7** calendar days (`2026-06-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[INVENTORY MOVEMENT]` × 34
+- `[CONTRIBUTION EVENT]` × 3
+- `[CONTRIBUTOR ADD EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20260619022318_167` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: SOHA - David Campbell · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
+- `Edgar_20260619030312_169` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix stale inventory records — root cause unauthorized column S + sentinel im…
+- `Edgar_20260619030713_171` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030716_173` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030718_175` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030721_177` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030723_179` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030725_181` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030727_183` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030729_185` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030731_187` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030733_189` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619030735_191` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
+- `Edgar_20260619032449_193` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Align Premium Dark Chocolate Bar subscription card on agroverse.shop homepage
+- `Edgar_20260619032725_195` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Deep Seek · Contributor Email: admin+deepseek@truesight.me · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260619033211_197` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Deep Seek · Contributor Email: admin+deepseek@truesight.me
+- `Edgar_20260619033253_199` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+deepseek@truesight.me
+- `Edgar_20260619033712_201` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: u9iv3gX1RFYExIRnEWiPE7olaf_tN6mPwrVdL6Y6SXs · Email: garyjob@gmail.com
+- `Edgar_20260619033716_203` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: u9iv3gX1RFYExIRnEWiPE7olaf_tN6mPwrVdL6Y6SXs · Email: admin+deepseek@truesight.me
+- `Edgar_20260619045104_205` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Calculating how much Cacao we have and whether we can fulfill all the obliga…
 
 ---
 
@@ -213,13 +250,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$3,358.31**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$41.26**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -314,6 +355,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+239d84e | 2026-06-18 21:30:33 -0700 | Merge pull request #574 from TrueSightDAO/auto/advisory-refresh-2026-06-19
+9342318 | 2026-06-19 04:30:22 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
 431beb4 | 2026-06-18 20:38:18 -0700 | docs: register Deep Seek as interactive DAO agent
 bf20635 | 2026-06-18 20:30:05 -0700 | docs: add AI_AGENT_DAO_REGISTRATION.md — self-registration guide for interactive LLMs (#573)
 14b7bfb | 2026-06-18 16:19:46 -0700 | Merge pull request #572 from TrueSightDAO/docs/sentinel-plan-complete
@@ -352,8 +395,6 @@ f8868b5 | 2026-06-18 03:53:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b0a25c8 | 2026-06-17 22:17:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
 db9a957 | 2026-06-17 21:12:49 -0700 | Merge pull request #546 from TrueSightDAO/auto/advisory-refresh-2026-06-18
 c151fc2 | 2026-06-18 04:12:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
-35d1e42 | 2026-06-17 16:34:09 -0700 | docs(auto-advance): AUTO_ADVANCE=true now live on sophia
-1bca2b1 | 2026-06-17 16:31:17 -0700 | docs: auto-advance + live-progress deployed to sophia (HEAD f0be109)
 … (truncated)
 ```
 
@@ -517,6 +558,63 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 811.85 | 15788.96386 | 6/18/2026 21:50:35 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-12`; scanned last **529** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_33 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_19 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_16 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_20250613_N_1 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_21 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_20 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_19 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_16 | — | — |
+| 2026-06-13 | 17 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OS_2025051022_N_4 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_7 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20251013_6 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_22 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_13 | — | — |
+| 2026-06-13 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_2 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_15 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_12 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_5 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_4 | — | — |
+| 2026-06-13 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_3 | — | — |
+| 2026-06-18 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-06-18 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-06-18 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-06-18 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_34 | — | — |
+| 2026-06-18 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_33 | — | — |
+| 2026-06-18 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_32 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
