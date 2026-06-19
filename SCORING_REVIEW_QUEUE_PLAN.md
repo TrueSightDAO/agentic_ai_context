@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v6: GAS project home, dao_client module, explicit status transitions)
+**Last updated:** 2026-06-18 (v7: boundary conditions, GAS project home, dao_client module)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -106,8 +106,12 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │                                                                     │
 │  GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw│
 │  - Lists treasury-cache/review-queue/ directory (sorted by name)    │
-│  - Skips files up to and including after_filename (if provided)     │
-│  - Returns next `limit` files + their content                       │
+│  - If after_filename is NOT provided: return the first `limit` files│
+│    from the directory (earliest = first alphabetically)             │
+│  - If after_filename IS provided but the file no longer exists      │
+│    (already approved/deleted): skip to the next available file      │
+│    — do NOT fail or return empty                                    │
+│  - Returns next `limit` files + their JSON content                  │
 │  - Includes `next_filename` for the DApp to use as cursor           │
 │  - No numeric offset — cursor is the filename itself                │
 │                                                                     │
@@ -300,14 +304,14 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 - `GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw`
 - Lists `treasury-cache/review-queue/` directory via GitHub Contents API
 - Sorts files alphabetically (by filename = hash key = chronological order)
-- Skips files up to and including `after_filename` (if provided)
+- **Boundary condition — no cursor (first load):** If `after_filename` is NOT provided, return the first `limit` files from the directory (earliest = first alphabetically). This is the initial page load.
+- **Boundary condition — cursor file deleted:** If `after_filename` IS provided but the file no longer exists (already approved/deleted by another governor), skip to the next available file after where it would have been. Do NOT fail, do NOT return empty — just advance the cursor.
 - Returns next `limit` files with their JSON content
 - Response includes `next_filename` (for cursor) and `has_more` (boolean)
-- If `after_filename` file was already deleted (approved), skips to next
 
 **Edge cases:**
 - Empty directory → returns `{ items: [], has_more: false }`
-- `after_filename` not found (deleted) → starts from the beginning
+- `after_filename` not found (deleted) → starts from the next available file
 - GitHub API rate limit → cache the directory listing for 30 seconds
 
 ---
@@ -387,6 +391,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 
 **What it does:**
 - Fetches queue from Edgar via `GET /dao/review_queue?limit=10&after_filename=...`
+- On first load, no `after_filename` is sent — Edgar returns the earliest files
 - Infinite scroll: tracks `last_filename` instead of numeric offset
 - Each row displays:
   - Contributor name + resolution badge (✓ green / ⚠ yellow)
@@ -539,7 +544,7 @@ Successfully Completed ──────► Reviewed ──────► Tran
 
 The GAS write-back script MUST check the current Status before updating:
 
-```
+```javascript
 function handleReviewWebhook(e) {
   const row = findRowByHashKey(e.scoringHashKey);
   const currentStatus = row[5]; // Col F (0-indexed)
@@ -612,6 +617,8 @@ Enforcement:
 | Infinite scroll reaches end of queue | `has_more: false` stops loading |
 | Contributor resolution fails (RESOLVE FAILED) | Governor must pick from dropdown before approving |
 | Reviewer's RSA key is rotated between viewing and approving | Edgar verifies the current key — if rotated, the old signature is rejected (governor re-logs in) |
+| **after_filename not provided (first load)** | Edgar returns the first `limit` files from the directory (earliest = first alphabetically) |
+| **after_filename provided but file was already deleted** | Edgar skips to the next available file — does NOT fail or return empty |
 
 ---
 
