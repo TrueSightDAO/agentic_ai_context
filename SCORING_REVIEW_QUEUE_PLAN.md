@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v10: Edgar calls doGet with query params instead of POST webhook)
+**Last updated:** 2026-06-18 (v11: Edgar calls doGet with exec=processApprovalRejections)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -31,10 +31,11 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 3. **Governor/Sentinel** sees a three-action panel per row: **Approve** (accepts Grok's provisioned TDG or an adjusted amount), **Skip** (leaves for later), or **Reject** (with required reason).
 4. **Contributor resolution** — The cache includes the `found_in_contributors` flag (Column I). If TRUE, the contributor dropdown is pre-selected. If FALSE or "RESOLVE FAILED", the governor must pick the right contributor from a dropdown before approving.
 5. **On Approve/Reject**, the browser signs a `[CONTRIBUTION REVIEW EVENT]` to Edgar. The event payload is minimal — only the hash key, action, and TDG amount/rejection reason. **No reviewer email** — Edgar resolves the reviewer's identity from the RSA signature.
-6. **Edgar verifies** the signer is a governor or Sentinel (via RSA signature → `Contributors Digital Signatures` sheet). On success, Edgar resolves the reviewer's email and calls the GAS web app via **doGet with query parameters**.
-7. **On approval**, Edgar deletes the cache file from `treasury-cache/review-queue/` and calls `GET <webhook_url>?action=Approve&scoringHashKey=...&tdgIssued=...&reviewerEmail=...`
-8. **On rejection**, Edgar deletes the cache file and calls `GET <webhook_url>?action=Reject&scoringHashKey=...&rejectionReason=...&reviewerEmail=...`
-9. **On Skip**, the cache file stays — it will be re-surfaced on the next page load.
+6. **Edgar verifies** the signer is a governor or Sentinel (via RSA signature → `Contributors Digital Signatures` sheet). On success, Edgar resolves the reviewer's email and appends the approved event to the **Telegram Chat Logs** sheet (same sheet where `[CONTRIBUTION EVENT]` records land).
+7. **Edgar then calls** `GET <GAS_webhook_url>?exec=processApprovalRejections` — this triggers the GAS script to scan Telegram Chat Logs for unprocessed `[CONTRIBUTION REVIEW EVENT]` records and process them in batch.
+8. **On approval**, Edgar deletes the cache file from `treasury-cache/review-queue/`.
+9. **On rejection**, Edgar deletes the cache file.
+10. **On Skip**, the cache file stays — it will be re-surfaced on the next page load.
 
 ---
 
@@ -48,16 +49,21 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  │ Telegram Chat Logs   │    │  Scored Chatlogs             │      │
 │  │ (1qbZZ…)             │───→│  (1Tbj7H5ur…)                │      │
 │  │                      │    │                              │      │
-│  │ Column J = "Pending"  │    │  Col A = Contributor Name    │      │
-│  └──────────────────────┘    │  Col F = Status (see §7)     │      │
-│         │                    │  Col E = TDGs Provisioned    │      │
-│         │ Grok scoring       │  Col G = TDGs Issued (0.00)  │      │
-│         ▼                    │  Col I = Found in Contribs   │      │
-│  ┌──────────────────────┐    │  Col K = Scoring Hash Key    │      │
-│  │ Grok Scoring Script  │    │  Col M = Reviewer Email (NEW)│      │
-│  │ (1BHAGZd…)           │    │  Col N = Cache Generated(NEW)│      │
-│  │ Scheduled GAS        │    │  Col O = Rejection Reason(NEW)│      │
-│  └──────────────────────┘    └──────────┬───────────────────┘      │
+│  │ Contains BOTH:       │    │  Col A = Contributor Name    │      │
+│  │  - [CONTRIBUTION     │    │  Col F = Status (see §7)     │      │
+│  │    EVENT] records    │    │  Col E = TDGs Provisioned    │      │
+│  │  - [CONTRIBUTION     │    │  Col G = TDGs Issued (0.00)  │      │
+│  │    REVIEW EVENT]     │    │  Col I = Found in Contribs   │      │
+│  │    records (NEW)     │    │  Col K = Scoring Hash Key    │      │
+│  └──────────────────────┘    │  Col M = Reviewer Email (NEW)│      │
+│         │                    │  Col N = Cache Generated(NEW)│      │
+│         │ Grok scoring       │  Col O = Rejection Reason(NEW)│      │
+│         ▼                    └──────────┬───────────────────┘      │
+│  ┌──────────────────────┐               │                          │
+│  │ Grok Scoring Script  │               │                          │
+│  │ (1BHAGZd…)           │               │                          │
+│  │ Scheduled GAS        │               │                          │
+│  └──────────────────────┘               │                          │
 │         │                               │                          │
 │         │ (same GAS project)            │ (same GAS project)       │
 │         ▼                               ▼                          │
@@ -69,9 +75,10 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  │ Existing: telegram_webhook_listener.js (doPost for      │       │
 │  │   Telegram webhooks + orchestrator calls)               │       │
 │  │ NEW: telegram_webhook_listener.js — add doGet(e) that   │       │
-│  │   accepts query params from Edgar to process review     │       │
-│  │   callbacks                                              │       │
-│  │ Existing doPost stays untouched for Telegram webhooks    │       │
+│  │   accepts ?exec=processApprovalRejections, scans        │       │
+│  │   Telegram Chat Logs for unprocessed review events,     │       │
+│  │   and updates Scored Chatlogs accordingly               │       │
+│  │ Existing doPost stays untouched for Telegram webhooks   │       │
 │  └─────────────────────────────────────────────────────────┘       │
 └─────────────────────────────────────────────────────────────────────┘
          │
@@ -110,24 +117,20 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw│
 │  - Lists treasury-cache/review-queue/ directory (sorted by name)    │
 │  - If after_filename is NOT provided: return the first `limit` files│
-│    from the directory (earliest = first alphabetically)             │
-│  - If after_filename IS provided but the file no longer exists      │
-│    (already approved/deleted): skip to the next available file      │
-│    — do NOT fail or return empty                                    │
+│  - If after_filename IS provided but file was deleted: skip to next │
 │  - Returns next `limit` files + their JSON content                  │
-│  - Includes `next_filename` for the DApp to use as cursor           │
-│  - No numeric offset — cursor is the filename itself                │
+│  - Includes `next_filename` (cursor) and `has_more` (boolean)       │
 │                                                                     │
 │  POST /dao/submit_contribution  (CONTRIBUTION REVIEW EVENT)         │
 │  - Verifies signer is governor or Sentinel (via RSA signature)      │
 │  - Resolves reviewer email from the RSA signature                   │
-│  - On Approve: deletes cache file, calls GAS via doGet:             │
-│    GET <webhook_url>?action=Approve&scoringHashKey=...              │
-│      &tdgIssued=...&reviewerEmail=...                               │
-│  - On Reject: deletes cache file, calls GAS via doGet:              │
-│    GET <webhook_url>?action=Reject&scoringHashKey=...               │
-│      &rejectionReason=...&reviewerEmail=...                         │
-│  - On Skip: no-op (cache file stays)                                │
+│  - Appends the approved event to Telegram Chat Logs sheet           │
+│  - Deletes the cache file from treasury-cache/review-queue/         │
+│  - Calls GAS via doGet:                                             │
+│    GET <webhook_url>?exec=processApprovalRejections                 │
+│                                                                     │
+│  The GAS script then scans Telegram Chat Logs for unprocessed       │
+│  [CONTRIBUTION REVIEW EVENT] records and updates Scored Chatlogs    │
 └─────────────────────────────────────────────────────────────────────┘
          │                    ▲
          │ (serves queue)     │ (signed event — minimal payload)
@@ -138,11 +141,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  review_queue.html (new page)                                       │
 │  - Anyone can view the queue (read-only)                            │
 │  - Infinite scroll using cursor-based pagination                     │
-│    (tracks `last_filename` instead of `offset`)                      │
-│  - Each row shows: contributor, contribution, rubric, provisioned   │
 │  - Contributor resolution badge: ✓ Resolved / ⚠ Resolve Failed     │
-│    - If Resolved: dropdown pre-selected to matched contributor      │
-│    - If Failed: dropdown empty, governor must pick from list        │
 │  - Three-action panel per row:                                      │
 │    ✓ Approve (with optional TDG override field)                     │
 │    → Skip (leaves cache file, re-surfaces later)                    │
@@ -150,42 +149,38 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  - On Approve: signs [CONTRIBUTION REVIEW EVENT] with Action=Approve│
 │  - On Reject: signs [CONTRIBUTION REVIEW EVENT] with Action=Reject  │
 │  - On Skip: no event, just advances to next row                     │
-│  - States: loading, empty (no pending reviews), error, submitting,  │
-│    success confirmation                                              │
 └─────────────────────────────────────────────────────────────────────┘
          │
-         │ (Edgar calls GAS via doGet with query params)
+         │ (Edgar calls GAS via doGet with exec=processApprovalRejections)
          ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │  GAS WRITE-BACK (in Grok Scoring GAS Project — 1BHAGZd…)           │
 │                                                                     │
 │  NEW: telegram_webhook_listener.js — function doGet(e)              │
 │                                                                     │
-│  - Reads query parameters from the URL:                             │
-│    GET <webhook_url>?action=Approve&scoringHashKey=XzQ2...          │
-│      &tdgIssued=45.00&reviewerEmail=gary@truesight.me              │
-│    OR                                                               │
-│    GET <webhook_url>?action=Reject&scoringHashKey=XzQ2...           │
-│      &rejectionReason=Duplicate&reviewerEmail=gary@truesight.me    │
-│                                                                     │
-│  - Parses: action, scoringHashKey, tdgIssued?, rejectionReason?,    │
-│    reviewerEmail                                                    │
-│  - Looks up the row in Scored Chatlogs by scoringHashKey (Col K)    │
-│  - Double-counting guard: checks if Status is already "Reviewed"    │
-│    or "Transferred to Main Ledger" — if so, returns 200 with       │
-│    { status: "skipped", reason: "already processed" } (no-op)      │
-│  - On Approve: sets Col F = "Reviewed", Col G = tdgIssued,         │
-│    Col M = reviewerEmail                                             │
-│  - On Reject: sets Col F = "Rejected", Col O = rejectionReason,    │
-│    Col M = reviewerEmail                                             │
-│  - Returns JSON response with { status: "updated" }                │
+│  - Reads query parameter: exec                                      │
+│  - If exec === "processApprovalRejections":                         │
+│    1. Reads Telegram Chat Logs sheet for rows containing            │
+│       "[CONTRIBUTION REVIEW EVENT]" that haven't been processed    │
+│    2. Parses each event: action, scoringHashKey, tdgIssued,         │
+│       rejectionReason, reviewerEmail                                │
+│    3. For each event, looks up the row in Scored Chatlogs by        │
+│       scoringHashKey (Col K)                                        │
+│    4. Double-counting guard: checks if Status is already            │
+│       "Reviewed" / "Transferred" / "Rejected" / "Ignored"         │
+│    5. On Approve: sets Col F = "Reviewed", Col G = tdgIssued,      │
+│       Col M = reviewerEmail                                         │
+│    6. On Reject: sets Col F = "Rejected", Col O = rejectionReason, │
+│       Col M = reviewerEmail                                         │
+│    7. Marks the Telegram Chat Logs row as processed (e.g. sets      │
+│       a column or appends "[PROCESSED]" to the event text)          │
+│  - Returns JSON: { status: "ok", processed: N, errors: M }         │
 │                                                                     │
 │  Existing doPost(e) stays untouched — still handles Telegram        │
 │  webhooks and orchestrator calls                                    │
 │                                                                     │
 │  Deployment: clasp push from tokenomics/google_app_scripts/         │
 │  1BHAGZd…/ (same project as Grok scoring)                           │
-│  No new deployment needed — same web app URL                        │
 └─────────────────────────────────────────────────────────────────────┘
          │
          │ (scheduled trigger picks up "Reviewed" rows)
@@ -199,7 +194,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │    "Successfully Completed / Full Provision Awarded"                │
 │  - Transfers to Ledger history in main ledger                       │
 │  - Sets Status = "Transferred to Main Ledger"                       │
-│  - No changes needed — it already works with the "Reviewed" status  │
+│  - No changes needed                                                │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -266,25 +261,15 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 --------
 ```
 
-**Note:** `Reviewer Email` is NOT in the signed payload. Edgar resolves it server-side from the RSA signature.
+**Note:** `Reviewer Email` is NOT in the signed payload. Edgar resolves it server-side from the RSA signature and appends it to the Telegram Chat Logs record.
 
-### 4.4 Edgar → GAS Callback (doGet with query params)
+### 4.4 Edgar → GAS Callback (doGet with exec parameter)
 
-**Approve:**
 ```
-GET <webhook_url>?action=Approve
-  &scoringHashKey=XzQ2EhAMD7MN8X0zFhvw
-  &tdgIssued=45.00
-  &reviewerEmail=gary@truesight.me
+GET <webhook_url>?exec=processApprovalRejections
 ```
 
-**Reject:**
-```
-GET <webhook_url>?action=Reject
-  &scoringHashKey=XzQ2EhAMD7MN8X0zFhvw
-  &rejectionReason=Duplicate+entry
-  &reviewerEmail=gary@truesight.me
-```
+No per-action parameters. Edgar just triggers the GAS script, which scans Telegram Chat Logs for unprocessed `[CONTRIBUTION REVIEW EVENT]` records and processes them in batch.
 
 ---
 
@@ -348,13 +333,9 @@ GET <webhook_url>?action=Reject
 - Handles `[CONTRIBUTION REVIEW EVENT]` submissions
 - Verifies the signer is a governor or Sentinel (lookup in `Contributors Digital Signatures` sheet or Edgar's identity registry)
 - Resolves the reviewer's email from the RSA signature
-- On **Approve**:
-  - Deletes the cache file from `treasury-cache/review-queue/<hash_key>.json`
-  - Calls GAS via doGet: `GET <webhook_url>?action=Approve&scoringHashKey=...&tdgIssued=...&reviewerEmail=...`
-- On **Reject**:
-  - Deletes the cache file
-  - Calls GAS via doGet: `GET <webhook_url>?action=Reject&scoringHashKey=...&rejectionReason=...&reviewerEmail=...`
-- On **Skip**: no-op (cache file stays)
+- Appends the approved/rejected event to the **Telegram Chat Logs** sheet (same sheet where `[CONTRIBUTION EVENT]` records land)
+- Deletes the cache file from `treasury-cache/review-queue/<hash_key>.json`
+- Calls GAS via doGet: `GET <webhook_url>?exec=processApprovalRejections`
 
 **Authorization:**
 - Non-governor/non-Sentinel signatures → HTTP 403
@@ -364,89 +345,121 @@ GET <webhook_url>?action=Reject
 
 **GAS callback retry:**
 - If GAS doGet returns non-200, retry up to 3 times with exponential backoff
-- After 3 failures, log the error and leave the cache file (manual recovery)
+- After 3 failures, log the error (the event is still in Telegram Chat Logs, so it can be processed manually or on next trigger)
 
 ---
 
-### PR 4 — Add doGet to Grok Scoring GAS Project for Review Callbacks
+### PR 4 — Add doGet to Grok Scoring GAS Project for Review Processing
 
 **GAS Project:** `1BHAGZd…` (same project as Grok scoring script)
 **Repo:** `tokenomics` → `google_app_scripts/1BHAGZd…/`
 **Files:**
 - `telegram_webhook_listener.js` — **add** new `doGet(e)` function
 
-**Why doGet instead of doPost:** Edgar calls the GAS web app via a simple GET request with query parameters. This avoids CORS issues, content-type restrictions, and the complexity of POST webhook handling. The existing `doPost(e)` stays untouched — it still handles Telegram webhooks and orchestrator calls.
+**Why doGet instead of doPost:** Edgar calls the GAS web app via a simple GET request with a single query parameter (`exec=processApprovalRejections`). This avoids CORS issues, content-type restrictions, and the complexity of POST webhook handling. The existing `doPost(e)` stays untouched — it still handles Telegram webhooks and orchestrator calls.
 
-**NEW — function doGet(e) — Review callback handler:**
+**NEW — function doGet(e) — Review processing trigger:**
 ```javascript
 function doGet(e) {
   try {
-    const params = e.parameter;
-    const action = params.action;
-    const scoringHashKey = params.scoringHashKey;
-    const reviewerEmail = params.reviewerEmail;
+    const exec = e.parameter.exec;
 
-    if (!action || !scoringHashKey || !reviewerEmail) {
-      return createJsonResponse({ status: 'error', reason: 'Missing required params' }, 400);
+    if (exec === 'processApprovalRejections') {
+      return processApprovalRejections();
     }
 
-    if (action === 'Approve') {
-      return handleApprove(scoringHashKey, params.tdgIssued, reviewerEmail);
-    } else if (action === 'Reject') {
-      return handleReject(scoringHashKey, params.rejectionReason, reviewerEmail);
-    } else {
-      return createJsonResponse({ status: 'error', reason: 'Unknown action: ' + action }, 400);
-    }
+    return createJsonResponse({ status: 'error', reason: 'Unknown exec: ' + exec }, 400);
   } catch (err) {
     Logger.log('doGet error: ' + err.message);
     return createJsonResponse({ status: 'error', reason: err.message }, 500);
   }
 }
 
-function handleApprove(hashKey, tdgIssued, reviewerEmail) {
-  const row = findRowByHashKey(hashKey);
-  if (!row) {
-    return createJsonResponse({ status: 'error', reason: 'Row not found' }, 404);
+function processApprovalRejections() {
+  // 1. Read Telegram Chat Logs sheet
+  const chatLogs = getTelegramChatLogs();
+
+  // 2. Find rows containing [CONTRIBUTION REVIEW EVENT] that haven't been processed
+  //    (e.g. no "[PROCESSED]" marker in the row)
+  const unprocessed = chatLogs.filter(row =>
+    row.text && row.text.includes('[CONTRIBUTION REVIEW EVENT]') &&
+    !row.processed
+  );
+
+  let processed = 0;
+  let errors = 0;
+
+  // 3. Process each event
+  for (const event of unprocessed) {
+    try {
+      const parsed = parseReviewEvent(event.text);
+      const result = applyReviewToScoredChatlogs(parsed);
+
+      if (result.status === 'updated') {
+        markEventAsProcessed(event.rowNumber);
+        processed++;
+      } else if (result.status === 'skipped') {
+        // Already processed — still mark as processed to avoid re-scanning
+        markEventAsProcessed(event.rowNumber);
+        processed++;
+      } else {
+        errors++;
+      }
+    } catch (err) {
+      Logger.log('Error processing event at row ' + event.rowNumber + ': ' + err.message);
+      errors++;
+    }
   }
 
-  const currentStatus = row[5]; // Col F
-  // Double-counting guard
-  if (currentStatus === 'Reviewed' ||
-      currentStatus === 'Transferred to Main Ledger' ||
-      currentStatus === 'Rejected' ||
-      currentStatus === 'Ignored') {
-    return createJsonResponse({ status: 'skipped', reason: 'already processed' });
-  }
-
-  row[5] = 'Reviewed';        // Col F
-  row[6] = tdgIssued;         // Col G
-  row[12] = reviewerEmail;    // Col M
-  updateRow(row);
-
-  return createJsonResponse({ status: 'updated' });
+  return createJsonResponse({
+    status: 'ok',
+    processed: processed,
+    errors: errors
+  });
 }
 
-function handleReject(hashKey, rejectionReason, reviewerEmail) {
-  const row = findRowByHashKey(hashKey);
+function parseReviewEvent(text) {
+  // Parse the [CONTRIBUTION REVIEW EVENT] text format
+  const lines = text.split('\n');
+  const result = {};
+  for (const line of lines) {
+    if (line.startsWith('- Action:')) result.action = line.split(':')[1].trim();
+    if (line.startsWith('- Scoring Hash Key:')) result.scoringHashKey = line.split(':')[1].trim();
+    if (line.startsWith('- TDGs Issued:')) result.tdgIssued = line.split(':')[1].trim();
+    if (line.startsWith('- Rejection Reason:')) result.rejectionReason = line.split(':')[1].trim();
+    if (line.startsWith('- Reviewer Email:')) result.reviewerEmail = line.split(':')[1].trim();
+  }
+  return result;
+}
+
+function applyReviewToScoredChatlogs(parsed) {
+  const row = findRowByHashKey(parsed.scoringHashKey);
   if (!row) {
-    return createJsonResponse({ status: 'error', reason: 'Row not found' }, 404);
+    return { status: 'error', reason: 'Row not found' };
   }
 
   const currentStatus = row[5]; // Col F
+
   // Double-counting guard
   if (currentStatus === 'Reviewed' ||
       currentStatus === 'Transferred to Main Ledger' ||
       currentStatus === 'Rejected' ||
       currentStatus === 'Ignored') {
-    return createJsonResponse({ status: 'skipped', reason: 'already processed' });
+    return { status: 'skipped', reason: 'already processed' };
   }
 
-  row[5] = 'Rejected';            // Col F
-  row[14] = rejectionReason;      // Col O
-  row[12] = reviewerEmail;        // Col M
-  updateRow(row);
+  if (parsed.action === 'Approve') {
+    row[5] = 'Reviewed';           // Col F
+    row[6] = parsed.tdgIssued;     // Col G
+    row[12] = parsed.reviewerEmail; // Col M
+  } else if (parsed.action === 'Reject') {
+    row[5] = 'Rejected';            // Col F
+    row[14] = parsed.rejectionReason; // Col O
+    row[12] = parsed.reviewerEmail;   // Col M
+  }
 
-  return createJsonResponse({ status: 'updated' });
+  updateRow(row);
+  return { status: 'updated' };
 }
 
 function createJsonResponse(data, statusCode = 200) {
@@ -462,10 +475,11 @@ function createJsonResponse(data, statusCode = 200) {
 - The web app URL is configured in Edgar's environment as `GAS_REVIEW_WEBHOOK_URL`
 
 **Edge cases:**
-- Row not found (hash key doesn't match) → return 404
-- Row already processed (double-counting guard) → return 200 with skip reason
-- Missing required params (action, scoringHashKey, reviewerEmail) → return 400
-- Sheets API write failure → return 500 (triggers Edgar retry)
+- No unprocessed events found → returns `{ processed: 0, errors: 0 }`
+- Row not found (hash key doesn't match) → logged as error, continues to next event
+- Row already processed (double-counting guard) → marked as processed, skipped
+- Invalid event format → logged as error, continues to next event
+- Sheets API write failure → logged as error, event NOT marked as processed (retry on next trigger)
 
 ---
 
@@ -633,8 +647,8 @@ Successfully Completed ──────► Reviewed ──────► Tran
 The GAS doGet handler MUST check the current Status before updating:
 
 ```javascript
-function handleApprove(hashKey, tdgIssued, reviewerEmail) {
-  const row = findRowByHashKey(hashKey);
+function applyReviewToScoredChatlogs(parsed) {
+  const row = findRowByHashKey(parsed.scoringHashKey);
   const currentStatus = row[5]; // Col F (0-indexed)
 
   // Double-counting guard: skip if already processed
@@ -646,9 +660,16 @@ function handleApprove(hashKey, tdgIssued, reviewerEmail) {
   }
 
   // Proceed with update
-  row[5] = 'Reviewed';        // Col F
-  row[6] = tdgIssued;         // Col G
-  row[12] = reviewerEmail;    // Col M
+  if (parsed.action === 'Approve') {
+    row[5] = 'Reviewed';           // Col F
+    row[6] = parsed.tdgIssued;     // Col G
+    row[12] = parsed.reviewerEmail; // Col M
+  } else if (parsed.action === 'Reject') {
+    row[5] = 'Rejected';            // Col F
+    row[14] = parsed.rejectionReason; // Col O
+    row[12] = parsed.reviewerEmail;   // Col M
+  }
+
   updateRow(row);
   return { status: 'updated' };
 }
@@ -688,7 +709,7 @@ Enforcement:
 | Cache generator finds 0 new rows | No-op (empty commit skipped) |
 | GitHub push fails after Sheets write | Column N already marked, next run skips this row — manual recovery needed |
 | Edgar receives Approve but cache file was already deleted | No-op (idempotent — file gone = already processed) |
-| Edgar receives Approve but GAS doGet fails | Retry 3x with backoff, then log error for manual recovery |
+| Edgar receives Approve but GAS doGet fails | Retry 3x with backoff, then log error (event still in Telegram Chat Logs for next trigger) |
 | GAS doGet receives duplicate callback | Double-counting guard skips if Status is already Reviewed/Transferred |
 | Transfer script and GAS doGet race | Transfer script checks Status before moving — if GAS hasn't written yet, it sees "Successfully Completed" and transfers with TDG=0 (existing behavior) |
 | Governor approves with TDG=0 | Transfer script sets Status = "Ignored" (existing behavior) |
