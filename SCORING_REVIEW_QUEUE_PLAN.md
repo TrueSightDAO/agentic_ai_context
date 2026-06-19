@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v8: extend existing doPost in Grok scoring project)
+**Last updated:** 2026-06-18 (v9: add doGet health check to telegram_webhook_listener.js)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -68,9 +68,9 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  │   Chatlogs)                                             │       │
 │  │ Existing: telegram_webhook_listener.js (doPost for      │       │
 │  │   Telegram webhooks + orchestrator calls)               │       │
-│  │ Extended: telegram_webhook_listener.js — add route for  │       │
-│  │   Edgar review callbacks alongside existing Telegram    │       │
-│  │   webhook handling                                      │       │
+│  │ Extended: telegram_webhook_listener.js — add doGet for  │       │
+│  │   health check/ping + route for Edgar review callbacks  │       │
+│  │   in doPost                                              │       │
 │  └─────────────────────────────────────────────────────────┘       │
 └─────────────────────────────────────────────────────────────────────┘
          │
@@ -156,7 +156,16 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 ┌─────────────────────────────────────────────────────────────────────┐
 │  GAS WRITE-BACK (in Grok Scoring GAS Project — 1BHAGZd…)           │
 │                                                                     │
-│  Extended: telegram_webhook_listener.js — doPost(e) handler         │
+│  Extended: telegram_webhook_listener.js                             │
+│                                                                     │
+│  NEW: function doGet(e) — health check / ping endpoint              │
+│  - Returns JSON: { status: "ok", project: "tdg_scoring",           │
+│    version: "1.0.0" }                                               │
+│  - Edgar can GET this URL to verify the webhook is reachable        │
+│    before sending POST callbacks                                     │
+│  - Avoids CORS/content-type issues that can block POST              │
+│                                                                     │
+│  EXISTING: function doPost(e) — extended with route check           │
 │  - Existing doPost already handles Telegram webhooks                │
 │  - Add a route check: if JSON body contains `scoringHashKey`,       │
 │    route to review callback handler instead of Telegram handler     │
@@ -351,41 +360,57 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 
 ---
 
-### PR 4 — Extend GAS doPost in Grok Scoring Project
+### PR 4 — Extend GAS doPost + Add doGet in Grok Scoring Project
 
 **GAS Project:** `1BHAGZd…` (same project as Grok scoring script)
 **Repo:** `tokenomics` → `google_app_scripts/1BHAGZd…/`
 **Files:**
-- `telegram_webhook_listener.js` — **extend** existing doPost(e) handler
+- `telegram_webhook_listener.js` — **extend** existing doPost(e) + **add** doGet(e)
 
-**Why extend instead of new file:** The Grok scoring project already has a `doPost(e)` deployed as a web app in `telegram_webhook_listener.js`. Rather than creating a new GAS project or a new file with a separate deployment, we add a route check to the existing `doPost(e)`. If the incoming JSON contains a `scoringHashKey` field, route to the review callback handler instead of the Telegram webhook handler.
+**Why extend instead of new file:** The Grok scoring project already has a `doPost(e)` deployed as a web app in `telegram_webhook_listener.js`. Rather than creating a new GAS project or a new file with a separate deployment, we add a route check to the existing `doPost(e)` and add a `doGet(e)` for health checks.
 
-**What it does:**
-- Existing `doPost(e)` already handles Telegram webhooks and orchestrates micro-services
-- Add a route check at the top of `doPost(e)`:
-  ```javascript
-  function doPost(e) {
-    const json = JSON.parse(e.postData.contents);
-    // Route: if this is an Edgar review callback, handle it
-    if (json.scoringHashKey) {
-      return handleReviewCallback(json);
-    }
-    // Existing Telegram webhook handling...
+**NEW — function doGet(e) — Health check / ping endpoint:**
+```javascript
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({
+      status: "ok",
+      project: "tdg_scoring",
+      version: "1.0.0",
+      timestamp: new Date().toISOString()
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+```
+- Edgar can GET this URL to verify the webhook is reachable before sending POST callbacks
+- Avoids CORS/content-type issues that can block POST — GET is universally allowed
+- Returns a simple JSON status response
+
+**EXISTING — function doPost(e) — Extended with route check:**
+```javascript
+function doPost(e) {
+  const json = JSON.parse(e.postData.contents);
+  // Route: if this is an Edgar review callback, handle it
+  if (json.scoringHashKey) {
+    return handleReviewCallback(json);
   }
-  ```
-- `handleReviewCallback(json)` function:
-  - Parses `{ scoringHashKey, action, tdgIssued?, rejectionReason?, reviewerEmail }`
-  - Looks up the row in Scored Chatlogs by `scoringHashKey` (Column K)
-  - **Double-counting guard:** Checks if `Status` is already `"Reviewed"` or `"Transferred to Main Ledger"` — if so, returns 200 with `{ status: "skipped", reason: "already processed" }` (no-op)
-  - On **Approve**:
-    - Sets `Col F` = `"Reviewed"`
-    - Sets `Col G` = `tdgIssued`
-    - Sets `Col M` = `reviewerEmail`
-  - On **Reject**:
-    - Sets `Col F` = `"Rejected"`
-    - Sets `Col O` = `rejectionReason`
-    - Sets `Col M` = `reviewerEmail`
-  - Returns 200 OK with `{ status: "updated" }`
+  // Existing Telegram webhook handling...
+}
+```
+
+**handleReviewCallback(json) function:**
+- Parses `{ scoringHashKey, action, tdgIssued?, rejectionReason?, reviewerEmail }`
+- Looks up the row in Scored Chatlogs by `scoringHashKey` (Column K)
+- **Double-counting guard:** Checks if `Status` is already `"Reviewed"` or `"Transferred to Main Ledger"` — if so, returns 200 with `{ status: "skipped", reason: "already processed" }` (no-op)
+- On **Approve**:
+  - Sets `Col F` = `"Reviewed"`
+  - Sets `Col G` = `tdgIssued`
+  - Sets `Col M` = `reviewerEmail`
+- On **Reject**:
+  - Sets `Col F` = `"Rejected"`
+  - Sets `Col O` = `rejectionReason`
+  - Sets `Col M` = `reviewerEmail`
+- Returns 200 OK with `{ status: "updated" }`
 
 **Deployment:**
 - `clasp push` from `tokenomics/google_app_scripts/1BHAGZd…/`
