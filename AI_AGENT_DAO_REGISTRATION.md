@@ -150,6 +150,7 @@ set -a && . ~/Applications/<slug>_dao_identity/.env && set +a
 | Agent (ledger name) | Email (`+alias`) | Identity `.env` | Registered |
 |---|---|---|---|
 | `Claude Anthropic` | `admin+claude@truesight.me` | `~/Applications/claude_dao_identity/.env` | active (renamed from `Claude` 2026-06-16) |
+| `Deep Seek` | `admin+deepseek@truesight.me` | `~/Applications/deepseek_dao_identity/.env` | active (registered 2026-06-19) |
 
 When you register a new interactive agent, add a row here.
 
