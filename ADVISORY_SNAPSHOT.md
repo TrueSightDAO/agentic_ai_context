@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-19T15:48:26Z`
+- Generated (UTC): `2026-06-19T20:14:19Z`
 - Look-back: **7** calendar days (`2026-06-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[INVENTORY MOVEMENT]` × 30
+- `[INVENTORY MOVEMENT]` × 29
 - `[CONTRIBUTION EVENT]` × 5
+- `[PRACTICE EVENT]` × 3
 - `[CONTRIBUTOR ADD EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260619030718_175` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
 - `Edgar_20260619030721_177` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
 - `Edgar_20260619030723_179` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
 - `Edgar_20260619030725_181` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260619110150_209` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Created FSVP compliance roadmap & unit economics template for Indonesia caca…
 - `Edgar_20260619133345_211` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-19T13:33:44.386Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260619133347_213` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-19T13:33:44.391Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260619181951_215` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-19T18:19:49.122Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -304,6 +304,10 @@ _All dated lines on/after 2026-06-12_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e3c7927 | 2026-06-19 09:15:07 -0700 | Reframe tension section: system design, not founder dependency (#254)
+828d4e4 | 2026-06-19 09:10:47 -0700 | Add concluding section on institutional shift (#253)
+195bc2e | 2026-06-19 09:06:15 -0700 | Update FDA Agent post with honest framing: unbundling, not disintermediation (#252)
+31e27a9 | 2026-06-19 15:50:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9f01cd7 | 2026-06-19 04:18:05 -0700 | Add FDA Agent blog post to blog index (#251)
 b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of Business (#250)
 954b85c | 2026-06-19 11:05:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -340,10 +344,6 @@ da253ef | 2026-06-15 18:10:30 -0700 | Add link to Self-Replication SOP in blog p
 9732e85 | 2026-06-15 21:34:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f28f13d | 2026-06-15 11:26:02 -0700 | Add all 46 blog posts to index (restore missing older entries) (#238)
 ac11f45 | 2026-06-15 12:51:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0ed1f14 | 2026-06-15 05:41:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
-ddee7f4 | 2026-06-14 20:08:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
-208d4a2 | 2026-06-14 13:00:59 -0700 | [autopilot] Fix index.html (#237)
-638172d | 2026-06-14 12:56:39 -0700 | [autopilot] Re-order the landing page (index.html) sections to follow a  (#236)
 … (truncated)
 ```
 
@@ -356,6 +356,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c4b66f2 | 2026-06-19 08:48:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-19 UTC)
+d3c0714 | 2026-06-19 08:48:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
 4f57db4 | 2026-06-19 04:04:58 -0700 | chore(previews): refresh Beer Hall preview (2026-06-19 UTC)
 4d099f9 | 2026-06-19 04:04:57 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
 d467993 | 2026-06-19 03:45:54 -0700 | Add freight/logistics section to FSVP roadmap PDF
@@ -394,8 +396,6 @@ ed1735c | 2026-06-18 12:14:14 -0700 | docs: add Sophia<->DApp Event Alignment ro
 d7fa33f | 2026-06-18 12:06:16 -0700 | docs: correct misleading [INVENTORY MOVEMENT] 'depletion' framing in QR-sales flow (#552)
 eb1f558 | 2026-06-18 12:02:02 -0700 | Register CLI Sales Event Alignment handoff in manifest + registry (#550)
 f5660d0 | 2026-06-18 12:01:50 -0700 | Add CLI Sales Event Audit & Alignment Plan (#549)
-69fe204 | 2026-06-18 11:39:08 -0700 | Add FIFO QR code selection rule for consignment sales (#548)
-9f64179 | 2026-06-18 11:22:05 -0700 | context: note submit_contribution approval-gate removal (#251)
 … (truncated)
 ```
 
@@ -584,7 +584,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 811.85 | 15788.96386 | 6/19/2026 7:50:55 |
+| 2026-06 | 811.85 | 15788.96386 | 6/19/2026 12:50:06 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-12`; scanned last **529** data rows)
 
