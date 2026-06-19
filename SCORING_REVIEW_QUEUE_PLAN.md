@@ -1,14 +1,14 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v4: cursor-based pagination, email simplification)
+**Last updated:** 2026-06-18 (v5: explicit status state machine, corrected initial status)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
 
 ## 1. Problem Statement
 
-Today, after Grok scores a `[CONTRIBUTION EVENT]` and writes it to the **Scored Chatlogs** sheet (spreadsheet `1Tbj7H5ur_egQLRugdXUaSIhEYIKp0vvVv2IZ7WTLCUo`), the row sits with `Status = "Pending Review"` and `TDGs Issued = "0.00"`. A governor must:
+Today, after Grok scores a `[CONTRIBUTION EVENT]` and writes it to the **Scored Chatlogs** sheet (spreadsheet `1Tbj7H5ur_egQLRugdXUaSIhEYIKp0vvVv2IZ7WTLCUo`), the row sits with `Status = "Successfully Completed / Full Provision Awarded"` and `TDGs Issued = "0.00"`. A governor must:
 
 1. Open the Google Sheet
 2. Find the row
@@ -26,7 +26,7 @@ This is slow, error-prone, and has no audit trail for who approved what.
 
 Replace the manual sheet-editing step with a **DApp-based review queue**:
 
-1. **GitHub Actions cache generator** (Python, scheduled cron) reads Scored Chatlogs, finds rows with `Status = "Pending Review"` that haven't been cached yet, generates one JSON cache file per row in `treasury-cache/review-queue/`, and marks a `Cache Generated` column on the sheet.
+1. **GitHub Actions cache generator** (Python, scheduled cron) reads Scored Chatlogs, finds rows with `Status = "Successfully Completed / Full Provision Awarded"` AND `Column N` empty, generates one JSON cache file per row in `treasury-cache/review-queue/`, and marks a `Cache Generated` column on the sheet.
 2. **DApp review page** (new HTML page) reads the cache files via Edgar, surfaces the oldest 10 with infinite scroll. Anyone can view the queue.
 3. **Governor/Sentinel** sees a three-action panel per row: **Approve** (accepts Grok's provisioned TDG or an adjusted amount), **Skip** (leaves for later), or **Reject** (with required reason).
 4. **Contributor resolution** — The cache includes the `found_in_contributors` flag (Column I). If TRUE, the contributor dropdown is pre-selected. If FALSE or "RESOLVE FAILED", the governor must pick the right contributor from a dropdown before approving.
@@ -49,7 +49,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  │ (1qbZZ…)             │───→│  (1Tbj7H5ur…)                │      │
 │  │                      │    │                              │      │
 │  │ Column J = "Pending"  │    │  Col A = Contributor Name    │      │
-│  └──────────────────────┘    │  Col F = Status (Pending…)   │      │
+│  └──────────────────────┘    │  Col F = Status (see §7)     │      │
 │         │                    │  Col E = TDGs Provisioned    │      │
 │         │ Grok scoring       │  Col G = TDGs Issued (0.00)  │      │
 │         ▼                    │  Col I = Found in Contribs   │      │
@@ -67,7 +67,8 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │                                                                     │
 │  generate_review_cache.py                                           │
 │  - Reads Scored Chatlogs via Google Sheets API                      │
-│  - Finds rows with Status = "Pending Review" AND Col N empty        │
+│  - Finds rows with Status = "Successfully Completed / Full Provision
+│    Awarded" AND Col N empty                                          │
 │  - Generates one JSON file per row                                  │
 │  - Pushes to treasury-cache/review-queue/<hash_key>.json            │
 │  - Writes timestamp to Col N ("Cache Generated")                    │
@@ -140,7 +141,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │      rejection_reason (if reject), contributor_name                 │
 │  - Opens Scored Chatlogs sheet                                      │
 │  - Finds row by hash_key (Column K)                                 │
-│  - Double-counting guard: skip if already Reviewed/Rejected/Transfd │
+│  - Double-counting guard: skip if Status is terminal (see §7)       │
 │  - On Approve: sets Status = "Reviewed", TDGs Issued, Reviewer,    │
 │    and Contributor Name (if corrected)                               │
 │  - On Reject: sets Status = "Rejected", Rejection Reason (Col O),   │
@@ -157,7 +158,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 
 1. **Trigger:** GitHub Actions scheduled cron (every 5 minutes, or on-demand via workflow_dispatch)
 2. **Read:** Google Sheets API → `Scored Chatlogs` tab, columns A–N
-3. **Filter:** Rows where `Column F (Status) = "Pending Review"` AND `Column N (Cache Generated)` is empty
+3. **Filter:** Rows where `Column F (Status) = "Successfully Completed / Full Provision Awarded"` AND `Column N (Cache Generated)` is empty
 4. **For each matching row:**
    - Read `Column K (Scoring Hash Key)` → this is the filename
    - Read `Column I (Found in Contributors)` → TRUE / FALSE / "RESOLVE FAILED"
@@ -261,7 +262,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 2. **GAS script:**
    - Opens `Scored Chatlogs` sheet
    - Finds row by `Column K = hash_key`
-   - **Double-counting guard:** Checks if `Column F (Status)` is already `"Reviewed"`, `"Rejected"`, `"Transferred to Main Ledger"`, or `"Successfully Completed / Full Provision Awarded"` → if so, SKIP (return 200 with `"already_processed"`)
+   - **Double-counting guard:** Checks if `Column F (Status)` is a terminal status (see §7) → if so, SKIP (return 200 with `"already_processed"`)
    - **On Approve:**
      - Sets `Column F = "Reviewed"`
      - Sets `Column G (TDGs Issued)` = approved amount
@@ -324,7 +325,87 @@ Each file in `treasury-cache/review-queue/<hash_key>.json`:
 
 ---
 
-## 7. Scored Chatlogs Column Reference
+## 7. Status State Machine (Column F)
+
+This is the definitive reference for every possible status value in Column F of the Scored Chatlogs sheet, who sets it, when, and what transitions are valid.
+
+### Status Values and Transitions
+
+```
+                    ┌──────────────────────────────────────────────┐
+                    │                                              │
+                    ▼                                              │
+  ┌─────────────────────────────────────────────────────┐         │
+  │ Successfully Completed / Full Provision Awarded     │         │
+  │ (Initial — set by Grok scoring script)              │         │
+  │ TDGs Issued = 0.00 (placeholder)                    │         │
+  └─────────────────────┬───────────────────────────────┘         │
+                        │                                         │
+          ┌─────────────┼─────────────┐                           │
+          ▼             ▼             ▼                           │
+  ┌──────────┐  ┌──────────────┐  ┌──────────┐                   │
+  │ Reviewed │  │   Rejected   │  │ (stays)  │  ← Skip (no       │
+  │          │  │              │  │          │    status change)  │
+  │ TDGs > 0 │  │ TDGs = 0    │  │          │                   │
+  └─────┬────┘  └──────┬───────┘  └──────────┘                   │
+        │              │                                          │
+        │              │  (terminal — no further transitions)     │
+        ▼              │                                          │
+  ┌──────────┐         │                                          │
+  │Ignored   │         │                                          │
+  │(TDG=0)   │         │                                          │
+  └─────┬────┘         │                                          │
+        │              │                                          │
+        ▼              │                                          │
+  ┌────────────────┐   │                                          │
+  │ Transferred to │   │                                          │
+  │ Main Ledger    │   │                                          │
+  │ (terminal)     │   │                                          │
+  └────────────────┘   │                                          │
+                        │                                          │
+  ┌────────────────┐    │                                          │
+  │ Entry Error    │◄───┘  (set by transfer script if contributor │
+  │                │        not found in Contributors sheet)       │
+  │ Entry Error -  │                                               │
+  │ Contributor    │                                               │
+  │ Not Found      │                                               │
+  └────────────────┘                                               │
+```
+
+### Detailed Status Table
+
+| # | Status Value | Set By | When | Column G (TDGs Issued) | Terminal? | Next Valid Statuses |
+|---|-------------|--------|------|----------------------|-----------|-------------------|
+| 1 | `Successfully Completed / Full Provision Awarded` | Grok scoring script | After AI scoring completes | `0.00` (placeholder) | No | Reviewed, Rejected, (stays same on Skip) |
+| 2 | `Reviewed` | GAS write-back script | Governor approves via DApp | Governor's approved amount (> 0) | No | Ignored (if TDG=0), Transferred to Main Ledger |
+| 3 | `Reviewed` | GAS write-back script | Governor approves via DApp | `0` (zero TDG) | No | Ignored (transfer script auto-converts) |
+| 4 | `Rejected` | GAS write-back script | Governor rejects via DApp | `0` | **Yes** | (none) |
+| 5 | `Ignored` | Transfer script | Auto-set when Reviewed row has TDGs Issued = 0 | `0` | **Yes** | (none) |
+| 6 | `Transferred to Main Ledger` | Transfer script | After successful transfer to Ledger history | Governor's approved amount | **Yes** | (none) |
+| 7 | `Entry Error` | Transfer script | Contributor not found in Contributors sheet | `0` | **Yes** | (none) |
+| 8 | `Entry Error - Contributor Not Found` | Transfer script | Contributor not found (variant) | `0` | **Yes** | (none) |
+
+### Double-Counting Guard Logic
+
+The GAS write-back script MUST check Column F before writing. If the current status is any of the **terminal** statuses (Rejected, Ignored, Transferred to Main Ledger, Entry Error, Entry Error - Contributor Not Found), the script MUST skip the write and return `"already_processed"`. This prevents:
+
+- A row that was already transferred from being set back to "Reviewed" (which would cause the transfer script to re-process it)
+- A row that was already rejected from being approved later
+
+### Transfer Script Behavior
+
+The existing `transfer_scored_contributions_to_main_ledger.js` checks for these statuses:
+- `"Reviewed"` → proceeds with transfer (if TDGs Issued > 0)
+- `"Reviewed"` with TDGs Issued = 0 → sets to `"Ignored"` immediately
+- `"Successfully Completed / Full Provision Awarded"` → also proceeds (legacy support)
+- `"Transferred to Main Ledger"` → skips
+- Any other status → skips
+
+**Important:** The transfer script does NOT check for `"Rejected"` explicitly — it will skip it because it doesn't match `"Reviewed"` or `"Successfully Completed / Full Provision Awarded"`. This is correct behavior.
+
+---
+
+## 8. Scored Chatlogs Column Reference
 
 | Col | Header | Role |
 |-----|--------|------|
@@ -333,7 +414,7 @@ Each file in `treasury-cache/review-queue/<hash_key>.json`:
 | C | Contribution Made | The contribution text |
 | D | Rubric classification | Grok's classification |
 | E | TDGs Provisioned | Grok's suggested TDG amount |
-| F | Status | `"Pending Review"` → `"Reviewed"` / `"Rejected"` → `"Transferred to Main Ledger"` |
+| F | Status | See §7 for full state machine |
 | G | TDGs Issued | Final awarded TDG (set by governor) |
 | H | Status date | Date of the original contribution |
 | I | Existing Contributor | TRUE / FALSE / "RESOLVE FAILED" — whether contributor resolved |
@@ -346,7 +427,7 @@ Each file in `treasury-cache/review-queue/<hash_key>.json`:
 
 ---
 
-## 8. UI Specification (DApp review_queue.html)
+## 9. UI Specification (DApp review_queue.html)
 
 ### Layout
 
@@ -393,7 +474,7 @@ Each file in `treasury-cache/review-queue/<hash_key>.json`:
 
 ---
 
-## 9. PR Breakdown (Sequenced)
+## 10. PR Breakdown (Sequenced)
 
 Each PR is standalone, small, and independently reviewable. Do NOT chain multiple PRs in one turn.
 
@@ -405,7 +486,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 - Create `.github/workflows/generate_review_cache.yml` — scheduled cron (every 5 min) + `workflow_dispatch`
 - Create `scripts/generate_review_cache.py` — Python script that:
   - Reads Scored Chatlogs via Google Sheets API (service account from GitHub Secrets)
-  - Filters for `Status = "Pending Review"` AND `Column N` empty
+  - Filters for `Status = "Successfully Completed / Full Provision Awarded"` AND `Column N` empty
   - Generates JSON files in `review-queue/<hash_key>.json` (includes `found_in_contributors` field)
   - Writes timestamp to Column N via Sheets API batch update
   - Commits + pushes new files to `main`
@@ -492,16 +573,16 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
   - Parses JSON payload: `hash_key`, `review_action`, `tdgs_issued`, `reviewer_email`, `contributor_name`, `rejection_reason`
   - Opens Scored Chatlogs sheet
   - Finds row by Column K
-  - **Double-counting guard:** Skip if Status is already Reviewed/Rejected/Transferred/Completed
+  - **Double-counting guard:** Check Column F — if terminal status (Rejected, Ignored, Transferred to Main Ledger, Entry Error, Entry Error - Contributor Not Found), skip and return `"already_processed"`
   - **On Approve:**
-    - Sets Status = "Reviewed"
-    - Sets TDGs Issued = approved amount
-    - Sets Reviewer Email (Column M) = reviewer_email
-    - Updates Contributor Name (Column A) if `contributor_name` provided and differs
+    - Sets `Column F = "Reviewed"`
+    - Sets `Column G (TDGs Issued)` = approved amount
+    - Sets `Column M (Reviewer Email)` = reviewer_email
+    - Updates `Column A (Contributor Name)` if `contributor_name` provided and differs
   - **On Reject:**
-    - Sets Status = "Rejected"
-    - Sets Rejection Reason (Column O) = rejection_reason
-    - Sets Reviewer Email (Column M) = reviewer_email
+    - Sets `Column F = "Rejected"`
+    - Sets `Column O (Rejection Reason)` = rejection_reason
+    - Sets `Column M (Reviewer Email)` = reviewer_email
   - Returns JSON `{"status": "ok"}` or `{"status": "already_processed"}`
 - Deploy as web app ("Anyone" access for Edgar to POST)
 
@@ -535,7 +616,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
   - On Approve/Reject: builds `[CONTRIBUTION REVIEW EVENT]` with **minimal payload** (no reviewer email), signs with RSA keypair, submits to Edgar
   - On Skip: removes card from view (no event)
 - For non-governors: read-only view with observer notice
-- Loading, empty, error states as specified in §8
+- Loading, empty, error states as specified in §9
 - Link from DApp navigation
 
 **Files created/modified:**
@@ -591,7 +672,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 
 ---
 
-## 10. Double-Counting Guard (Critical)
+## 11. Double-Counting Guard (Critical)
 
 **Problem:** If the GAS write-back script runs after the row is already "Transferred to Main Ledger", it could set Status back to "Reviewed", causing the transfer script to re-process it and award TDGs twice.
 
@@ -599,13 +680,13 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 
 1. **Cache file deletion:** Once a cache file is deleted from `treasury-cache/review-queue/`, the DApp can no longer surface it. The GitHub Action won't re-generate it because Column N is already populated.
 
-2. **GAS write-back guard:** Before writing, check `Column F (Status)`. If it's already `"Reviewed"`, `"Rejected"`, `"Transferred to Main Ledger"`, `"Successfully Completed / Full Provision Awarded"`, or `"Ignored"` → skip. Return `"already_processed"`.
+2. **GAS write-back guard:** Before writing, check `Column F (Status)`. If it's a terminal status (Rejected, Ignored, Transferred to Main Ledger, Entry Error, Entry Error - Contributor Not Found), skip. Return `"already_processed"`. See §7 for the full state machine.
 
 3. **Transfer script guard:** The existing `transfer_scored_contributions_to_main_ledger.js` already checks for `"Transferred to Main Ledger"` status and skips those rows. It also checks for existing records in Ledger history by matching contributor + contribution + TDG + date.
 
 ---
 
-## 11. Authorization Model
+## 12. Authorization Model
 
 | Action | Who can do it | How enforced |
 |--------|---------------|-------------|
@@ -618,11 +699,11 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 
 ---
 
-## 12. Edge Cases
+## 13. Edge Cases
 
 | Case | Handling |
 |------|----------|
-| Grok scores a row as "Unknown" | Status is still "Pending Review" with TDGs Provisioned = 0. Governor can approve (0 TDG), reject, or skip. |
+| Grok scores a row as "Unknown" | Status is still "Successfully Completed / Full Provision Awarded" with TDGs Provisioned = 0. Governor can approve (0 TDG), reject, or skip. |
 | Cache file exists but row is already reviewed | GitHub Action skips because Column N is populated. If manually deleted, next run re-generates. |
 | Edgar goes down | DApp shows error state. Cache files remain in repo — no data loss. |
 | GAS write-back fails | Edgar logs the failure. Cache file is already deleted (approval already processed). Manual retry via admin endpoint. |
@@ -635,7 +716,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 
 ---
 
-## 13. Files to Create / Modify Summary
+## 14. Files to Create / Modify Summary
 
 | PR | Repo | Files | Type |
 |----|------|-------|------|
@@ -649,7 +730,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 
 ---
 
-## 14. RESUME HERE
+## 15. RESUME HERE
 
 **Next action:** PR 1 — GitHub Action cache generator for `treasury-cache`.
 
