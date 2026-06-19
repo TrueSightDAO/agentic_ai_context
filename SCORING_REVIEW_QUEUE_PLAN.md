@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v2: contributor resolution, approve/skip/reject, rejection reason)
+**Last updated:** 2026-06-18 (v3: simplified sign event — Edgar resolves reviewer email from RSA signature)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -30,10 +30,11 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 2. **DApp review page** (new HTML page) reads the cache files via Edgar, surfaces the oldest 10 with infinite scroll. Anyone can view the queue.
 3. **Governor/Sentinel** sees a three-action panel per row: **Approve** (accepts Grok's provisioned TDG or an adjusted amount), **Skip** (leaves for later), or **Reject** (with required reason).
 4. **Contributor resolution** — The cache includes the `found_in_contributors` flag (Column I). If TRUE, the contributor dropdown is pre-selected. If FALSE or "RESOLVE FAILED", the governor must pick the right contributor from a dropdown before approving.
-5. **On Approve/Reject**, the browser signs a `[CONTRIBUTION REVIEW EVENT]` to Edgar. Edgar verifies the signer is a governor or Sentinel, rejects otherwise.
-6. **On approval**, Edgar deletes the cache file from `treasury-cache/review-queue/` and fires a webhook to the GAS write-back script.
-7. **On rejection**, Edgar deletes the cache file and fires a webhook with the rejection reason. The GAS script sets Status = "Rejected" and records the reason.
-8. **On Skip**, the cache file stays — it will be re-surfaced on the next page load.
+5. **On Approve/Reject**, the browser signs a `[CONTRIBUTION REVIEW EVENT]` to Edgar. The event payload is minimal — only the hash key, action, and TDG amount/rejection reason. **No reviewer email** — Edgar resolves the reviewer's identity from the RSA signature.
+6. **Edgar verifies** the signer is a governor or Sentinel (via RSA signature → `Contributors Digital Signatures` sheet). On success, Edgar resolves the reviewer's email and includes it in the webhook to GAS.
+7. **On approval**, Edgar deletes the cache file from `treasury-cache/review-queue/` and fires a webhook to the GAS write-back script with the TDG amount and reviewer email.
+8. **On rejection**, Edgar deletes the cache file and fires a webhook with the rejection reason and reviewer email. The GAS script sets Status = "Rejected" and records the reason.
+9. **On Skip**, the cache file stays — it will be re-surfaced on the next page load.
 
 ---
 
@@ -96,12 +97,15 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │                                                                     │
 │  POST /dao/submit_contribution  (CONTRIBUTION REVIEW EVENT)         │
 │  - Verifies signer is governor or Sentinel (via RSA signature)      │
+│  - Resolves reviewer email from the RSA signature                   │
 │  - On Approve: deletes cache file, fires webhook with TDG amount    │
+│    + reviewer email                                                  │
 │  - On Reject: deletes cache file, fires webhook with rejection      │
+│    reason + reviewer email                                           │
 │  - On Skip: no-op (cache file stays)                                │
 └─────────────────────────────────────────────────────────────────────┘
          │                    ▲
-         │ (serves queue)     │ (signed event)
+         │ (serves queue)     │ (signed event — minimal payload)
          ▼                    │
 ┌─────────────────────────────────────────────────────────────────────┐
 │  DAPP (dapp_beta / dapp_prod)                                       │
@@ -116,11 +120,12 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │    • **Skip** — leaves for later (cache file stays)                 │
 │    • **Reject** — requires reason text field                        │
 │  - If contributor resolve failed: dropdown to pick correct person   │
-│  - On Approve/Reject: browser signs event → Edgar                   │
+│  - On Approve/Reject: browser signs minimal event → Edgar           │
+│    (no reviewer email in the signed payload)                         │
 │  - Non-governors see queue but no action buttons                    │
 └─────────────────────────────────────────────────────────────────────┘
          │
-         │ (Edgar webhook on approval/rejection)
+         │ (Edgar webhook on approval/rejection — includes reviewer_email)
          ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │  GAS WRITE-BACK SCRIPT                                              │
@@ -128,7 +133,8 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  process_review_approval.gs                                         │
 │  - Receives webhook from Edgar with:                                │
 │    • hash_key, action (approve/reject), tdgs_issued (if approve),   │
-│      reviewer_email, rejection_reason (if reject), contributor_name │
+│      reviewer_email (resolved by Edgar from signature),             │
+│      rejection_reason (if reject), contributor_name                 │
 │  - Opens Scored Chatlogs sheet                                      │
 │  - Finds row by hash_key (Column K)                                 │
 │  - Double-counting guard: skip if already Reviewed/Rejected/Transfd │
@@ -177,37 +183,35 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
    - TDG amount field (pre-filled with Grok's provisioned value, editable)
    - Rejection reason text field (shown when Reject is selected)
 3. **On Approve click:**
-   - Browser builds `[CONTRIBUTION REVIEW EVENT]` payload:
+   - Browser builds `[CONTRIBUTION REVIEW EVENT]` payload — **minimal, no reviewer email**:
      ```
      [CONTRIBUTION REVIEW EVENT]
      - Action: Approve
      - Scoring Hash Key: XzQ2EhAMD7MN8X0zFhvw
      - TDGs Issued: 8.33
-     - Reviewer Email: garyjob@agroverse.shop
      - Contributor Name: Gary Teh (if corrected from resolve-failed)
      ```
    - Browser signs with RSA private key
    - Submits to `POST /dao/submit_contribution`
 4. **On Reject click:**
-   - Browser builds payload:
+   - Browser builds payload — **no reviewer email**:
      ```
      [CONTRIBUTION REVIEW EVENT]
      - Action: Reject
      - Scoring Hash Key: XzQ2EhAMD7MN8X0zFhvw
-     - Reviewer Email: garyjob@agroverse.shop
      - Rejection Reason: Duplicate contribution, already recorded in ledger
      ```
    - Browser signs and submits
 5. **On Skip click:** No event sent. Cache file stays. UI simply removes the row from the current view (it will re-appear on next page load).
 6. **Edgar receives and validates:**
    - Verifies RSA signature
-   - Looks up signer's email in `Contributors Digital Signatures`
+   - Looks up signer's email in `Contributors Digital Signatures` sheet → this is the `reviewer_email`
    - Checks if signer is a governor (in `Governors` tab) OR Sentinel (`Is Sentinel = TRUE`)
    - If not authorized → return 403
    - If authorized:
      a. Logs the event to Telegram Chat Logs
      b. Deletes `treasury-cache/review-queue/<hash_key>.json` via GitHub API
-     c. Fires webhook to GAS write-back script with action + payload
+     c. Fires webhook to GAS write-back script with action + payload + `reviewer_email` (resolved from signature)
      d. Returns success
 
 ### 4.4 Write-Back (GAS webhook)
@@ -219,7 +223,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
      "hash_key": "XzQ2EhAMD7MN8X0zFhvw",
      "review_action": "approve",
      "tdgs_issued": 8.33,
-     "reviewer_email": "garyjob@agroverse.shop",
+     "reviewer_email": "garyjob@agroverse.shop",  ← resolved by Edgar from RSA signature
      "contributor_name": "Gary Teh",
      "rejection_reason": null
    }
@@ -231,7 +235,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
      "hash_key": "XzQ2EhAMD7MN8X0zFhvw",
      "review_action": "reject",
      "tdgs_issued": 0,
-     "reviewer_email": "garyjob@agroverse.shop",
+     "reviewer_email": "garyjob@agroverse.shop",  ← resolved by Edgar from RSA signature
      "contributor_name": null,
      "rejection_reason": "Duplicate contribution, already recorded in ledger"
    }
@@ -255,16 +259,29 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 
 ## 5. Event Schema
 
-### CONTRIBUTION REVIEW EVENT
+### CONTRIBUTION REVIEW EVENT (signed by browser → Edgar)
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `Action` | Yes | `"Approve"` or `"Reject"` |
 | `Scoring Hash Key` | Yes | The hash key from Scored Chatlogs Column K |
 | `TDGs Issued` | On Approve | Final TDG amount awarded (number) |
-| `Reviewer Email` | Yes | Email of the governor/Sentinel who approved/rejected |
 | `Contributor Name` | On Approve | Corrected contributor name (if different from cache) |
 | `Rejection Reason` | On Reject | Free-text reason for rejection |
+
+**Note:** `Reviewer Email` is NOT in the signed event. Edgar resolves it from the RSA signature server-side.
+
+### Edgar → GAS Webhook Payload
+
+| Field | Source | Description |
+|-------|--------|-------------|
+| `action` | Fixed | Always `"process_review_result"` |
+| `hash_key` | From sign event | The hash key |
+| `review_action` | From sign event | `"approve"` or `"reject"` |
+| `tdgs_issued` | From sign event | Final TDG amount (0 for reject) |
+| `reviewer_email` | Resolved by Edgar | Email of the governor/Sentinel who signed |
+| `contributor_name` | From sign event | Corrected contributor name (if provided) |
+| `rejection_reason` | From sign event | Reason for rejection (null if approve) |
 
 ---
 
@@ -317,7 +334,7 @@ Same as cache file, plus:
 | J | Reporter Name | Who reported the contribution |
 | K | Scoring Hash Key | Unique hash for deduplication |
 | L | Main Ledger Row Number | Row in Ledger history after transfer |
-| M | Reviewer Email | (NEW) Email of the approving/rejecting governor |
+| M | Reviewer Email | (NEW) Email of the approving/rejecting governor (set by GAS write-back) |
 | N | Cache Generated | (NEW) Timestamp when cache file was created |
 | O | Rejection Reason | (NEW) Free-text reason if rejected |
 
@@ -430,10 +447,12 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 - Register `[CONTRIBUTION REVIEW EVENT]` in Edgar's event catalog
 - On receipt:
   1. Parse action field: `"Approve"` or `"Reject"`
-  2. Verify signer is governor or Sentinel (reuse existing check)
-  3. Delete `treasury-cache/review-queue/<hash_key>.json` via GitHub API
-  4. Fire webhook to GAS write-back URL with full payload (action, tdgs_issued, rejection_reason, etc.)
-  5. Log to Telegram Chat Logs
+  2. Verify RSA signature
+  3. **Resolve reviewer email** from the RSA signature via `Contributors Digital Signatures` sheet
+  4. Check if signer is governor or Sentinel (reuse existing check)
+  5. Delete `treasury-cache/review-queue/<hash_key>.json` via GitHub API
+  6. Fire webhook to GAS write-back URL with full payload including `reviewer_email`
+  7. Log to Telegram Chat Logs
 - Return 403 for non-governor/non-Sentinel signers
 - Return 400 if Reject without rejection_reason
 
@@ -443,8 +462,8 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 - Webhook dispatch to GAS URL
 
 **Acceptance:**
-- Governor's signed Approve event deletes cache file + fires webhook with tdgs_issued
-- Governor's signed Reject event deletes cache file + fires webhook with rejection_reason
+- Governor's signed Approve event deletes cache file + fires webhook with tdgs_issued + reviewer_email
+- Governor's signed Reject event deletes cache file + fires webhook with rejection_reason + reviewer_email
 - Non-governor's signed event returns 403
 - Reject without reason returns 400
 - Missing hash_key returns 400
@@ -465,12 +484,12 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
   - **On Approve:**
     - Sets Status = "Reviewed"
     - Sets TDGs Issued = approved amount
-    - Sets Reviewer Email = reviewer_email
+    - Sets Reviewer Email (Column M) = reviewer_email
     - Updates Contributor Name (Column A) if `contributor_name` provided and differs
   - **On Reject:**
     - Sets Status = "Rejected"
     - Sets Rejection Reason (Column O) = rejection_reason
-    - Sets Reviewer Email = reviewer_email
+    - Sets Reviewer Email (Column M) = reviewer_email
   - Returns JSON `{"status": "ok"}` or `{"status": "already_processed"}`
 - Deploy as web app ("Anyone" access for Edgar to POST)
 
@@ -500,7 +519,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
   - TDG adjust field (pre-filled with Grok's provisioned)
   - Three-action panel: Approve (green), Skip (gray), Reject (red)
   - Rejection reason text area (shown when Reject selected, required)
-  - On Approve/Reject: builds `[CONTRIBUTION REVIEW EVENT]`, signs with RSA keypair, submits to Edgar
+  - On Approve/Reject: builds `[CONTRIBUTION REVIEW EVENT]` with **minimal payload** (no reviewer email), signs with RSA keypair, submits to Edgar
   - On Skip: removes card from view (no event)
 - For non-governors: read-only view with observer notice
 - Loading, empty, error states as specified in §8
@@ -578,7 +597,7 @@ Each PR is standalone, small, and independently reviewable. Do NOT chain multipl
 | Action | Who can do it | How enforced |
 |--------|---------------|-------------|
 | View the queue | Anyone (no auth) | No check needed — read-only data |
-| Approve a review | Governor or Sentinel | Edgar verifies RSA signature → checks `Governors` tab + `Is Sentinel` column |
+| Approve a review | Governor or Sentinel | Edgar verifies RSA signature → resolves email → checks `Governors` tab + `Is Sentinel` column |
 | Reject a review | Governor or Sentinel | Same as above |
 | Skip a review | Governor or Sentinel | Client-side only (no event sent) |
 | Generate cache files | GitHub Action (service account) | GitHub Secrets + Google Sheets API scope |
