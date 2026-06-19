@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v7: boundary conditions, GAS project home, dao_client module)
+**Last updated:** 2026-06-18 (v8: extend existing doPost in Grok scoring project)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -66,9 +66,11 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  │                                                         │       │
 │  │ Existing: Code.js (Grok scoring + write to Scored       │       │
 │  │   Chatlogs)                                             │       │
-│  │ New:      Webhook.gs (doPost receiver for Edgar         │       │
-│  │   callbacks — updates Status, TDGs Issued, Reviewer     │       │
-│  │   Email, Rejection Reason on the Scored Chatlogs row)   │       │
+│  │ Existing: telegram_webhook_listener.js (doPost for      │       │
+│  │   Telegram webhooks + orchestrator calls)               │       │
+│  │ Extended: telegram_webhook_listener.js — add route for  │       │
+│  │   Edgar review callbacks alongside existing Telegram    │       │
+│  │   webhook handling                                      │       │
 │  └─────────────────────────────────────────────────────────┘       │
 └─────────────────────────────────────────────────────────────────────┘
          │
@@ -154,9 +156,11 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 ┌─────────────────────────────────────────────────────────────────────┐
 │  GAS WRITE-BACK (in Grok Scoring GAS Project — 1BHAGZd…)           │
 │                                                                     │
-│  Webhook.gs — doPost(e) handler                                     │
-│  - Receives POST from Edgar with:                                   │
-│    { scoringHashKey, action, tdgIssued?, rejectionReason?,          │
+│  Extended: telegram_webhook_listener.js — doPost(e) handler         │
+│  - Existing doPost already handles Telegram webhooks                │
+│  - Add a route check: if JSON body contains `scoringHashKey`,       │
+│    route to review callback handler instead of Telegram handler     │
+│  - Parses { scoringHashKey, action, tdgIssued?, rejectionReason?,  │
 │      reviewerEmail }                                                │
 │  - Looks up the row in Scored Chatlogs by scoringHashKey (Col K)    │
 │  - Double-counting guard: checks if Status is already "Reviewed"    │
@@ -169,6 +173,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │                                                                     │
 │  Deployment: clasp push from tokenomics/google_app_scripts/         │
 │  1BHAGZd…/ (same project as Grok scoring)                           │
+│  No new deployment needed — same web app URL, same doPost entry     │
 └─────────────────────────────────────────────────────────────────────┘
          │
          │ (scheduled trigger picks up "Reviewed" rows)
@@ -346,31 +351,45 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 
 ---
 
-### PR 4 — GAS Write-Back Webhook (in Grok Scoring Project)
+### PR 4 — Extend GAS doPost in Grok Scoring Project
 
 **GAS Project:** `1BHAGZd…` (same project as Grok scoring script)
 **Repo:** `tokenomics` → `google_app_scripts/1BHAGZd…/`
 **Files:**
-- `Webhook.gs` — new file (doPost receiver)
+- `telegram_webhook_listener.js` — **extend** existing doPost(e) handler
+
+**Why extend instead of new file:** The Grok scoring project already has a `doPost(e)` deployed as a web app in `telegram_webhook_listener.js`. Rather than creating a new GAS project or a new file with a separate deployment, we add a route check to the existing `doPost(e)`. If the incoming JSON contains a `scoringHashKey` field, route to the review callback handler instead of the Telegram webhook handler.
 
 **What it does:**
-- `doPost(e)` handler receives POST from Edgar
-- Parses `{ scoringHashKey, action, tdgIssued?, rejectionReason?, reviewerEmail }`
-- Looks up the row in Scored Chatlogs by `scoringHashKey` (Column K)
-- **Double-counting guard:** Checks if `Status` is already `"Reviewed"` or `"Transferred to Main Ledger"` — if so, returns 200 with `{ status: "skipped", reason: "already processed" }` (no-op)
-- On **Approve**:
-  - Sets `Col F` = `"Reviewed"`
-  - Sets `Col G` = `tdgIssued`
-  - Sets `Col M` = `reviewerEmail`
-- On **Reject**:
-  - Sets `Col F` = `"Rejected"`
-  - Sets `Col O` = `rejectionReason`
-  - Sets `Col M` = `reviewerEmail`
-- Returns 200 OK with `{ status: "updated" }`
+- Existing `doPost(e)` already handles Telegram webhooks and orchestrates micro-services
+- Add a route check at the top of `doPost(e)`:
+  ```javascript
+  function doPost(e) {
+    const json = JSON.parse(e.postData.contents);
+    // Route: if this is an Edgar review callback, handle it
+    if (json.scoringHashKey) {
+      return handleReviewCallback(json);
+    }
+    // Existing Telegram webhook handling...
+  }
+  ```
+- `handleReviewCallback(json)` function:
+  - Parses `{ scoringHashKey, action, tdgIssued?, rejectionReason?, reviewerEmail }`
+  - Looks up the row in Scored Chatlogs by `scoringHashKey` (Column K)
+  - **Double-counting guard:** Checks if `Status` is already `"Reviewed"` or `"Transferred to Main Ledger"` — if so, returns 200 with `{ status: "skipped", reason: "already processed" }` (no-op)
+  - On **Approve**:
+    - Sets `Col F` = `"Reviewed"`
+    - Sets `Col G` = `tdgIssued`
+    - Sets `Col M` = `reviewerEmail`
+  - On **Reject**:
+    - Sets `Col F` = `"Rejected"`
+    - Sets `Col O` = `rejectionReason`
+    - Sets `Col M` = `reviewerEmail`
+  - Returns 200 OK with `{ status: "updated" }`
 
 **Deployment:**
 - `clasp push` from `tokenomics/google_app_scripts/1BHAGZd…/`
-- Must be deployed as a **Web App** (Execute as: Me, Access: Anyone) so Edgar can POST to it
+- Same web app URL — no new deployment needed, same `doPost(e)` entry point
 - The web app URL is configured in Edgar's environment as `GAS_REVIEW_WEBHOOK_URL`
 
 **Edge cases:**
@@ -545,8 +564,8 @@ Successfully Completed ──────► Reviewed ──────► Tran
 The GAS write-back script MUST check the current Status before updating:
 
 ```javascript
-function handleReviewWebhook(e) {
-  const row = findRowByHashKey(e.scoringHashKey);
+function handleReviewCallback(json) {
+  const row = findRowByHashKey(json.scoringHashKey);
   const currentStatus = row[5]; // Col F (0-indexed)
 
   // Double-counting guard: skip if already processed
@@ -558,14 +577,14 @@ function handleReviewWebhook(e) {
   }
 
   // Proceed with update
-  if (e.action === 'Approve') {
+  if (json.action === 'Approve') {
     row[5] = 'Reviewed';  // Col F
-    row[6] = e.tdgIssued; // Col G
-    row[12] = e.reviewerEmail; // Col M
-  } else if (e.action === 'Reject') {
+    row[6] = json.tdgIssued; // Col G
+    row[12] = json.reviewerEmail; // Col M
+  } else if (json.action === 'Reject') {
     row[5] = 'Rejected';  // Col F
-    row[14] = e.rejectionReason; // Col O
-    row[12] = e.reviewerEmail; // Col M
+    row[14] = json.rejectionReason; // Col O
+    row[12] = json.reviewerEmail; // Col M
   }
 
   updateRow(row);
