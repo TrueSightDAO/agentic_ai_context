@@ -10,14 +10,17 @@
 flowchart TD
     G[Graeme Read / Amazon Restoration Partnership]:::new
     T5[Legal Entity Structuring]:::offline
-    T6[GACC / Brazil Compliance]:::offline
-    T7[Brazil Export Entity<br/>CNPJ / NF-e / CNAE]:::gate --> T8
-    T7 --> T9
+    T6[GACC / Brazil Compliance<br/>China-only, 3-6 months]:::offline
+    T7[Brazil Export CNPJ<br/>CNAE / IE / NF-e]:::gate
     T7 --> T10
     T7 --> T11
     T7 --> T12
-    T8[Chocolate Subscription Delivery]:::blocked
-    T9[China / Aora Events<br/>100 chocolate bars]:::blocked
+    T7 --> T8
+    T7 --> T9
+    T6 --> T8
+    T6 --> T9
+    T8[China / Aora Events<br/>100 chocolate bars]:::blocked
+    T9[Chocolate Subscription Delivery]:::blocked
     T10[Chives Root Consignment<br/>10 bags ceremonial cacao]:::blocked
     T11[Michael Johnson Consignment]:::blocked
     T12[Kopi Bar Jul 10 Tasting<br/>Nora Haron]:::blocked
@@ -51,19 +54,19 @@ flowchart TD
 | Field | Detail |
 |-------|--------|
 | **Status** | 🟡 Offline prep |
-| **Owner** | Gary / Paloma |
-| **Goal** | Regulatory filing prep for Brazil-to-China cacao export (GACC registration). This is a **prerequisite** for exporting to China — separate from the Aora events themselves. |
+| **Owner** | Gary / Paloma / BoQiang |
+| **Goal** | GACC registration for Brazil-to-China cacao export. BoQiang has sorted documents for both cooperatives. Coopercabruca preferred (more complete product line, mature freight forwarders). Cycle: **3–6 months**. Required before any commercial cargo can clear Chinese customs. |
 | **Key docs** | [`BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md`](./BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md) — GACC registration requirements and process |
-| **Dependencies** | None — parallel work |
-| **Blocks** | None — parallel to all other tracks |
+| **Dependencies** | None — parallel to [Brazil Export CNPJ](#brazil-export-cnpj) |
+| **Blocks** | [China / Aora Events](#china-aora-events), [Chocolate Subscription Delivery](#chocolate-subscription-delivery) (China subscribers) — GACC is one of two parallel gates for China-bound cargo |
 
 ---
 
-### Brazil Export Entity (CNPJ / NF-e / CNAE) ← THE GATE {#brazil-export-entity}
+### Brazil Export CNPJ (CNAE / IE / NF-e) {#brazil-export-cnpj}
 
 | Field | Detail |
 |-------|--------|
-| **Status** | 🔴 Critical blocker |
+| **Status** | 🔴 Critical blocker — single source feeding all export channels |
 | **Owner** | Matheus / Paloma / Gary |
 | **Goal** | Create new Brazilian CNPJ with correct CNAE (46.23-1/04 — wholesale cacao trade), Inscrição Estadual (IE) at SEFAZ-BA, and NF-e model 55 credentialing. Replace Black King's personal CNPJ as the export vehicle. |
 | **Expected timeline** | **5–20 business days** to change/add CNAE for a Microempresa (ME). Cost: R$400–R$2,100 depending on state and accounting services. [Source: Matheus, 2026-06-19](https://github.com/TrueSightDAO/.github/blob/main/attachments/2026-06-19_matheus_cnae_timeline.jpg) |
@@ -72,7 +75,7 @@ flowchart TD
 | **Context** | Current state: Black King (CNPJ 50.042.585/0001-80) is an Empresário Individual with only service CNAEs (82.30-0-01). Cannot issue export NF-e. New entity needs CNAE 46.23-1/04 + IE + NF-e model 55 credentialing at SEFAZ-BA. |
 | **Downstream chain** | Matheus (CNPJ/NF-e/CNAE) → Omega Services (logistics) → SeaCoast Logistics (freight) → Kirsten (receives) |
 | **Dependencies** | None — parallel to [Legal Entity Structuring](#legal-entity-structuring) and [GACC / Brazil Compliance](#gacc-brazil-compliance) |
-| **Blocks** | [Chocolate Subscription Delivery](#chocolate-subscription-delivery), [China / Aora Events](#china-aora-events), [Chives Root Consignment](#chives-root-consignment), [Michael Johnson Consignment](#michael-johnson-consignment), [Kopi Bar Jul 10 Tasting](#kopi-bar-jul-10-tasting) |
+| **Blocks** | **USA-bound:** [Chives Root Consignment](#chives-root-consignment), [Michael Johnson Consignment](#michael-johnson-consignment), [Kopi Bar Jul 10 Tasting](#kopi-bar-jul-10-tasting) — US import already live via TrueTech Inc (Delaware C-Corp, FDA-registered, Customs importer-of-record). **China-bound:** [China / Aora Events](#china-aora-events), [Chocolate Subscription Delivery](#chocolate-subscription-delivery) — needs both CNPJ + GACC |
 
 ---
 
@@ -82,9 +85,9 @@ flowchart TD
 |-------|--------|
 | **Status** | 🟡 Blocked |
 | **Owner** | Gary / Linda (first subscriber) |
-| **Goal** | Fulfill chocolate bar subscriptions. Phase 1 (subscribe engine + PDPs + homepage card) is built and merged. Phase 2 (fulfillment automation) deferred until export entity clears. |
+| **Goal** | Fulfill chocolate bar subscriptions. Phase 1 (subscribe engine + PDPs + homepage card) is built and merged. Phase 2 (fulfillment automation) deferred until export channels clear. |
 | **Key docs** | [`CHOCOLATE_SUBSCRIPTION_PLAN.md`](./CHOCOLATE_SUBSCRIPTION_PLAN.md) — full subscription plan with Phase 1/2 split |
-| **Dependencies** | 🔴 **Blocked by** [Brazil Export Entity](#brazil-export-entity) — cannot ship bars without legal export |
+| **Dependencies** | 🔴 **Blocked by** [Brazil Export CNPJ](#brazil-export-cnpj) **and** [GACC / Brazil Compliance](#gacc-brazil-compliance) — China subscribers need both. USA subscribers only need the new CNPJ. |
 
 ---
 
@@ -96,9 +99,9 @@ flowchart TD
 | **Owner** | Gary / Elizabeth Wong (Liz) / Jerri |
 | **Goal** | Aora pilot in China with GO/Nucleus network. 100 chocolate bars (50g, 81% cacao) for experiential learning events. Gary backpack-carry to China. |
 | **Key docs** | [`AORA_EXPERIENCE_PLAN.md`](./AORA_EXPERIENCE_PLAN.md) — full execution roadmap with PERT chart, critical path, revenue model ($10 retail, $6 back to DAO), and blocker table |
-| **Event plan** | Jerri shared a 40-page detailed event plan (Jul 2026 beta + Autumn public launch). [Full PDF](https://github.com/TrueSightDAO/.github/blob/main/attachments/2026-06-19_aora_agroverse_event_plan.pdf) |
+| **Event plan** | Jerri shared a 40-page detailed event plan (Jul 2026 beta + Autumn public launch). [Full PDF](https://github.com/TrueSightDAO/.github/blob/main/attachments/2026-06-19_aora_agroverse_event_plan.pdf) · [Venue Layout](https://github.com/TrueSightDAO/.github/blob/main/attachments/2026-06-19_aora_event_flow_and_venue_layout.pdf) |
 | **July beta** | 10-15 seed families (ages 6-12), co-invited by Teacher Evan + Liz. 90-min immersive experience. Gary as "Guardian of the Cacao Rainforest." 4-tier technical plan (1C recommended: 1 projector + 6 scenes). 15-item risk register. |
-| **Dependencies** | 🔴 **Blocked by** [Brazil Export Entity](#brazil-export-entity) — bars must be produced in Brazil and exported legally |
+| **Dependencies** | 🔴 **Blocked by** [Brazil Export CNPJ](#brazil-export-cnpj) **and** [GACC / Brazil Compliance](#gacc-brazil-compliance) — both must clear for commercial cargo. July event samples may use separate fast path via BoQiang (cooperative docs + courier to Dongguan Airport). |
 
 ---
 
@@ -109,7 +112,7 @@ flowchart TD
 | **Status** | 🟡 Blocked |
 | **Owner** | Chives Root / Gary |
 | **Goal** | Ship 10 bags of ceremonial cacao to Chives Root for consignment-based sales |
-| **Dependencies** | 🔴 **Blocked by** [Brazil Export Entity](#brazil-export-entity) — bags must be exported from Brazil first |
+| **Dependencies** | 🔴 **Blocked by** [Brazil Export CNPJ](#brazil-export-cnpj) — USA-bound, only needs the new CNPJ (US import already live via TrueTech Inc) |
 
 ---
 
@@ -120,7 +123,7 @@ flowchart TD
 | **Status** | 🟡 Blocked |
 | **Owner** | Michael Johnson / Gary |
 | **Goal** | Ship ceremonial cacao to Michael Johnson for consignment-based sales |
-| **Dependencies** | 🔴 **Blocked by** [Brazil Export Entity](#brazil-export-entity) — bags must be exported from Brazil first |
+| **Dependencies** | 🔴 **Blocked by** [Brazil Export CNPJ](#brazil-export-cnpj) — USA-bound, only needs the new CNPJ |
 
 ---
 
@@ -131,7 +134,7 @@ flowchart TD
 | **Status** | 🟡 Blocked |
 | **Owner** | Nora Haron / Gary |
 | **Goal** | Organize a chocolate tasting event at Kopi Bar on July 10. Nora wants to host. |
-| **Dependencies** | 🔴 **Blocked by** [Brazil Export Entity](#brazil-export-entity) — chocolate bars must clear the full supply chain first |
+| **Dependencies** | 🔴 **Blocked by** [Brazil Export CNPJ](#brazil-export-cnpj) — USA-bound, only needs the new CNPJ |
 
 ---
 
@@ -144,24 +147,23 @@ flowchart TD
 | **Goal** | Explore partnership with Graeme Read — fellow contributor restoring 10,000 hectares of Amazon rainforest through single-estate cacao, QR traceability, and community dashboard at truesight.me. Nearly identical mission. |
 | **Key docs** | [Introduction screenshot](https://github.com/TrueSightDAO/.github/blob/main/attachments/2026-06-19_graeme_read_introduction.jpg) — Jonathan Hakem intro via WhatsApp |
 | **Dependencies** | None — exploratory |
-| **Blocks** | None |
 
 ---
 
 ## Quick Reference
 
-| Track | Status | Owner | Next Check-in | Blocked By |
-|-------|--------|-------|---------------|------------|
+| Track | Status | Owner | Next Check-in | Blocks |
+|-------|--------|-------|---------------|--------|
 | Legal Entity Structuring | 🟡 Offline | Gary / Paloma | Jun 22 call w/ Layon | — |
-| GACC / Brazil Compliance | 🟡 Offline | Gary / Paloma | — | — |
-| Brazil Export Entity (CNPJ/NF-e/CNAE) | 🔴 Gate | Matheus / Paloma / Gary | ~2026-06-26 | — |
-| Chocolate Subscription Delivery | 🟡 Blocked | Gary | — | Brazil Export Entity 🔴 |
-| China / Aora Events (100 bars) | 🟡 Blocked | Gary / Liz / Jerri | — | Brazil Export Entity 🔴 |
-| Chives Root Consignment (10 bags) | 🟡 Blocked | Chives Root / Gary | — | Brazil Export Entity 🔴 |
-| Michael Johnson Consignment | 🟡 Blocked | Michael Johnson / Gary | — | Brazil Export Entity 🔴 |
-| Kopi Bar Jul 10 Tasting | 🟡 Blocked | Nora / Gary | 2026-07-10 | Brazil Export Entity 🔴 |
-| Graeme Read / Amazon Restoration Partnership | 🔵 New | Gary / Graeme / Jonathan | — | — |
+| GACC / Brazil Compliance | 🟡 Offline | Gary / Paloma / BoQiang | 3–6 month cycle | China cargo (with CNPJ) |
+| Brazil Export CNPJ | 🔴 Gate | Matheus / Paloma / Gary | ~Jun 26 | All cargo (USA alone, China with GACC) |
+| Chocolate Subscription | 🟡 Blocked | Gary | — | CNPJ (USA) / CNPJ+GACC (China) |
+| China / Aora Events | 🟡 Blocked | Gary / Liz / Jerri | Jul beta | CNPJ + GACC |
+| Chives Root Consignment | 🟡 Blocked | Chives Root / Gary | — | Brazil Export CNPJ |
+| Michael Johnson Consignment | 🟡 Blocked | Michael Johnson / Gary | — | Brazil Export CNPJ |
+| Kopi Bar Jul 10 Tasting | 🟡 Blocked | Nora Haron / Gary | Jul 10 | Brazil Export CNPJ |
+| Graeme Read Partnership | 🔵 New | Gary / Graeme / Jonathan | — | — |
 
 ---
 
-*Last updated: 2026-06-19. Update this file when track statuses change.*
+> **July event samples — separate fast path:** BoQiang has arranged an alternative channel for July event samples. Various cacao raw material samples (sensory teaching aids) can be sent via courier to Dongguan Airport. Required docs: plant inspection certificates, certificates of origin, organic qualifications, formal invoices, packing lists, cooperative Brazilian CNPJ registration docs. BoQiang will arrange freight forwarder to handle customs clearance. This path does **not** require the full export CNPJ or GACC — it uses the cooperative's existing docs.
