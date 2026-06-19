@@ -753,7 +753,37 @@ Enforcement:
 
 ---
 
-## 10. Rollback Plan
+## 10. UAT Testing Environments
+
+Each component deploys to a beta environment for isolated testing before production promotion.
+
+| Component | Production | Beta (UAT) | Notes |
+|-----------|-----------|------------|-------|
+| **Edgar API** | `edgar.truesight.me` (Rails + FastAPI) | `beta.edgar.truesight.me` (EC2 `dao-protocol-beta`, `i-0b8c6d989594fb229`, t3.small) | Beta box already provisioned. Deploy new endpoints (`GET /dao/review_queue`, `POST /dao/submit_contribution_review`) to beta first. |
+| **DApp review page** | `dapp.truesight.me` → `truesightdao.github.io` (GitHub Pages) | `beta.dapp.truesight.me` → `truesightdao.github.io` (same CNAME) | Both point to the same GitHub Pages site. Beta testing uses a separate page path (e.g. `beta.dapp.truesight.me/dapp/review_queue.html`). The page checks `window.location.hostname` to switch between beta/prod Edgar URLs. |
+| **GAS webhook** | Grok scoring GAS project (`1BHAGZd…`) — deployed via `clasp push` | Same GAS project, separate **deployment** (GAS supports multiple deployments per project) | Create a new deployment version for beta. The `doGet(e)` handler checks a `?env=beta` query param or a config variable to switch between beta/prod sheet IDs. |
+| **GitHub Action cache generator** | `treasury-cache/review-queue/` | `treasury-cache/review-queue-test/` | Same Action, different folder. The Action checks a `BETA_MODE` repo variable or branch name to decide which folder to write to. |
+| **Scored Chatlogs sheet** | `1Tbj7H5ur_egQLRugdXUaSIhEYIKp0vvVv2IZ7WTLCUo` | Same sheet, or a **SANDBOX copy** for isolated testing | For full isolation, create a copy of the Scored Chatlogs sheet and configure the beta GAS deployment + cache generator to use the SANDBOX sheet ID. |
+
+### UAT Flow
+
+1. Deploy Edgar changes to `beta.edgar.truesight.me` first
+2. Deploy GAS changes as a new deployment version on the Grok scoring project
+3. Configure the GitHub Action to write to `review-queue-test/` folder
+4. Point the DApp review page at `beta.dapp.truesight.me` → uses `beta.edgar.truesight.me` API
+5. Run end-to-end test: submit a test contribution → Grok scores it → cache generated → DApp surfaces it → governor approves → GAS writes back → transfer script picks it up
+6. Only after UAT passes, promote to production (update DNS, deploy to prod Edgar, push GAS to default deployment)
+
+### DNS Records (already exist)
+
+| Record | Type | Value |
+|--------|------|-------|
+| `beta.edgar.truesight.me` | A | `54.162.175.189` (beta EC2 box) |
+| `beta.dapp.truesight.me` | CNAME | `truesightdao.github.io` |
+
+---
+
+## 11. Rollback Plan
 
 If the new system has issues:
 1. **Disable the GitHub Action** — cache generation stops, no new files appear
