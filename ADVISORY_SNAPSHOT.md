@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-19T05:33:51Z`
+- Generated (UTC): `2026-06-19T11:04:36Z`
 - Look-back: **7** calendar days (`2026-06-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[INVENTORY MOVEMENT]` × 34
-- `[CONTRIBUTION EVENT]` × 3
+- `[INVENTORY MOVEMENT]` × 32
+- `[CONTRIBUTION EVENT]` × 5
 - `[CONTRIBUTOR ADD EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260619022318_167` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: SOHA - David Campbell · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
-- `Edgar_20260619030312_169` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix stale inventory records — root cause unauthorized column S + sentinel im…
 - `Edgar_20260619030713_171` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
 - `Edgar_20260619030716_173` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
 - `Edgar_20260619030718_175` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260619033712_201` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: u9iv3gX1RFYExIRnEWiPE7olaf_tN6mPwrVdL6Y6SXs · Email: garyjob@gmail.com
 - `Edgar_20260619033716_203` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: u9iv3gX1RFYExIRnEWiPE7olaf_tN6mPwrVdL6Y6SXs · Email: admin+deepseek@truesight.me
 - `Edgar_20260619045104_205` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Calculating how much Cacao we have and whether we can fulfill all the obliga…
+- `Edgar_20260619101318_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: I am right now in SF. Mostly moving around between Pacific West Coast and Br…
+- `Edgar_20260619110150_209` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Created FSVP compliance roadmap & unit economics template for Indonesia caca…
 
 ---
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-18T10:59:15.900Z`
+- Generated (UTC): `2026-06-19T10:59:14.778Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -102,12 +102,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **284**, follow_up **70**, bulk **0**, unknown **2** (data rows: **356**)
+- **Email Agent Follow Up** — logged sends: warmup **295**, follow_up **70**, bulk **0**, unknown **2** (data rows: **367**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **237**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **249**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -303,6 +303,9 @@ _All dated lines on/after 2026-06-12_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9fec88e | 2026-06-19 09:15:36 +0000 | Fix Mermaid diagram: Black King CNAE, New Export Entity, Pará, GACC arrows
+5fa4680 | 2026-06-19 09:09:15 +0000 | Update roadmap: Black King CNAE fix, New Export Entity, Pará tree planting, GACC owner fix
+044c50c | 2026-06-19 05:36:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7887fb5 | 2026-06-18 22:06:05 +0000 | Add venue layout PDF link to China/Aora Events track
 0210009 | 2026-06-18 21:23:47 +0000 | Update roadmap: fix dependencies, add anchor IDs, add Aora event plan
 56eab56 | 2026-06-18 21:05:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -340,9 +343,6 @@ ddee7f4 | 2026-06-14 20:08:52 +0000 | chore(stats): refresh stats/current.json [
 5c00607 | 2026-06-14 14:56:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ebef91d | 2026-06-14 10:05:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6a1a97e | 2026-06-13 23:59:07 -0700 | Add RLHF/weights leakage nuance to context separation (#234)
-bbfeb4d | 2026-06-13 23:57:43 -0700 | Add civil law vs common law epistemological framing (#233)
-f833765 | 2026-06-13 23:57:23 -0700 | Add weights lineage, stare decisis, and practical challenges nuance (#232)
-c53cd52 | 2026-06-13 23:21:39 -0700 | Restructure post flow and add Christensen disruptive innovation section (#231)
 … (truncated)
 ```
 
@@ -355,6 +355,13 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d467993 | 2026-06-19 03:45:54 -0700 | Add freight/logistics section to FSVP roadmap PDF
+0a3eca8 | 2026-06-19 03:45:05 -0700 | Add FDA FSVP compliance & first shipment roadmap PDF for Indonesia cacao
+0ce9469 | 2026-06-19 03:41:03 -0700 | Replace unit economics PDF with blank template (no prices, just slots)
+7da739d | 2026-06-19 03:38:44 -0700 | Add unit economics reference PDF for new SKU evaluation
+bb5236a | 2026-06-19 02:08:30 -0700 | Remove Paloma from GACC track, add Pará tree planting (#580)
+a3cfab4 | 2026-06-18 22:34:12 -0700 | chore(previews): refresh Beer Hall preview (2026-06-19 UTC)
+9ff4baf | 2026-06-18 22:34:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
 239d84e | 2026-06-18 21:30:33 -0700 | Merge pull request #574 from TrueSightDAO/auto/advisory-refresh-2026-06-19
 9342318 | 2026-06-19 04:30:22 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
 431beb4 | 2026-06-18 20:38:18 -0700 | docs: register Deep Seek as interactive DAO agent
@@ -388,13 +395,6 @@ f5660d0 | 2026-06-18 12:01:50 -0700 | Add CLI Sales Event Audit & Alignment Plan
 9f64179 | 2026-06-18 11:22:05 -0700 | context: note submit_contribution approval-gate removal (#251)
 6c4f0d4 | 2026-06-18 10:48:30 -0700 | docs: document Sophia SSH-based git operations (#547)
 15453dc | 2026-06-18 08:59:47 -0700 | chore(previews): refresh Beer Hall preview (2026-06-18 UTC)
-9d41eff | 2026-06-18 08:59:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
-08d9331 | 2026-06-18 03:53:48 -0700 | chore(previews): refresh Beer Hall preview (2026-06-18 UTC)
-f8868b5 | 2026-06-18 03:53:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
-7d7517c | 2026-06-17 22:17:02 -0700 | chore(previews): refresh Beer Hall preview (2026-06-18 UTC)
-b0a25c8 | 2026-06-17 22:17:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
-db9a957 | 2026-06-17 21:12:49 -0700 | Merge pull request #546 from TrueSightDAO/auto/advisory-refresh-2026-06-18
-c151fc2 | 2026-06-18 04:12:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-18 UTC)
 … (truncated)
 ```
 
@@ -458,6 +458,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f006e46 | 2026-06-19 10:58:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4b25ffb | 2026-06-18 20:11:14 -0700 | chore: refresh Agroverse store inventory snapshot
 08f24da | 2026-06-18 19:58:56 -0700 | chore: refresh Agroverse store inventory snapshot
 0e2e8c4 | 2026-06-18 19:28:40 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -582,7 +583,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 811.85 | 15788.96386 | 6/18/2026 21:50:35 |
+| 2026-06 | 811.85 | 15788.96386 | 6/19/2026 3:50:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-12`; scanned last **529** data rows)
 
