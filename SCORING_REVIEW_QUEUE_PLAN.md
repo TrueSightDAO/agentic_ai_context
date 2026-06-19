@@ -1,7 +1,7 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v5: explicit status state machine, corrected initial status)
+**Last updated:** 2026-06-18 (v6: GAS project home, dao_client module, explicit status transitions)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 ---
@@ -58,6 +58,18 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  │ (1BHAGZd…)           │    │  Col N = Cache Generated(NEW)│      │
 │  │ Scheduled GAS        │    │  Col O = Rejection Reason(NEW)│      │
 │  └──────────────────────┘    └──────────┬───────────────────┘      │
+│         │                               │                          │
+│         │ (same GAS project)            │ (same GAS project)       │
+│         ▼                               ▼                          │
+│  ┌─────────────────────────────────────────────────────────┐       │
+│  │ Grok Scoring GAS Project (1BHAGZd…)                     │       │
+│  │                                                         │       │
+│  │ Existing: Code.js (Grok scoring + write to Scored       │       │
+│  │   Chatlogs)                                             │       │
+│  │ New:      Webhook.gs (doPost receiver for Edgar         │       │
+│  │   callbacks — updates Status, TDGs Issued, Reviewer     │       │
+│  │   Email, Rejection Reason on the Scored Chatlogs row)   │       │
+│  └─────────────────────────────────────────────────────────┘       │
 └─────────────────────────────────────────────────────────────────────┘
          │
          │ (reads via Google Sheets API)
@@ -65,10 +77,11 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 ┌─────────────────────────────────────────────────────────────────────┐
 │  GITHUB ACTIONS (scheduled cron)                                    │
 │                                                                     │
-│  generate_review_cache.py                                           │
+│  .github/workflows/generate_review_cache.yml                        │
+│  scripts/generate_review_cache.py                                   │
 │  - Reads Scored Chatlogs via Google Sheets API                      │
-│  - Finds rows with Status = "Successfully Completed / Full Provision
-│    Awarded" AND Col N empty                                          │
+│  - Finds rows with Status = "Successfully Completed / Full          │
+│    Provision Awarded" AND Col N empty                               │
 │  - Generates one JSON file per row                                  │
 │  - Pushes to treasury-cache/review-queue/<hash_key>.json            │
 │  - Writes timestamp to Col N ("Cache Generated")                    │
@@ -101,7 +114,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  POST /dao/submit_contribution  (CONTRIBUTION REVIEW EVENT)         │
 │  - Verifies signer is governor or Sentinel (via RSA signature)      │
 │  - Resolves reviewer email from the RSA signature                   │
-│  - On Approve: deletes cache file, fires webhook with TDG amount    │
+│  - On Approve: deletes cache file, fires webhook with TDG amount   │
 │    + reviewer email                                                  │
 │  - On Reject: deletes cache file, fires webhook with rejection      │
 │    reason + reviewer email                                           │
@@ -119,621 +132,496 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │    (tracks `last_filename` instead of `offset`)                      │
 │  - Each row shows: contributor, contribution, rubric, provisioned   │
 │  - Contributor resolution badge: ✓ Resolved / ⚠ Resolve Failed     │
-│  - Governor/Sentinel sees three-action panel:                       │
-│    • **Approve** — accepts Grok's provisioned TDG or adjusted amt   │
-│    • **Skip** — leaves for later (cache file stays)                 │
-│    • **Reject** — requires reason text field                        │
-│  - If contributor resolve failed: dropdown to pick correct person   │
-│  - On Approve/Reject: browser signs minimal event → Edgar           │
-│    (no reviewer email in the signed payload)                         │
-│  - Non-governors see queue but no action buttons                    │
+│    - If Resolved: dropdown pre-selected to matched contributor      │
+│    - If Failed: dropdown empty, governor must pick from list        │
+│  - Three-action panel per row:                                      │
+│    ✓ Approve (with optional TDG override field)                     │
+│    → Skip (leaves cache file, re-surfaces later)                    │
+│    ✕ Reject (requires reason text field)                            │
+│  - On Approve: signs [CONTRIBUTION REVIEW EVENT] with Action=Approve│
+│  - On Reject: signs [CONTRIBUTION REVIEW EVENT] with Action=Reject  │
+│  - On Skip: no event, just advances to next row                     │
+│  - States: loading, empty (no pending reviews), error, submitting,  │
+│    success confirmation                                              │
 └─────────────────────────────────────────────────────────────────────┘
          │
-         │ (Edgar webhook on approval/rejection — includes reviewer_email)
+         │ (Edgar fires webhook to GAS)
          ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│  GAS WRITE-BACK SCRIPT                                              │
+│  GAS WRITE-BACK (in Grok Scoring GAS Project — 1BHAGZd…)           │
 │                                                                     │
-│  process_review_approval.gs                                         │
-│  - Receives webhook from Edgar with:                                │
-│    • hash_key, action (approve/reject), tdgs_issued (if approve),   │
-│      reviewer_email (resolved by Edgar from signature),             │
-│      rejection_reason (if reject), contributor_name                 │
-│  - Opens Scored Chatlogs sheet                                      │
-│  - Finds row by hash_key (Column K)                                 │
-│  - Double-counting guard: skip if Status is terminal (see §7)       │
-│  - On Approve: sets Status = "Reviewed", TDGs Issued, Reviewer,    │
-│    and Contributor Name (if corrected)                               │
-│  - On Reject: sets Status = "Rejected", Rejection Reason (Col O),   │
-│    Reviewer Email                                                    │
-│  - Returns JSON status                                              │
+│  Webhook.gs — doPost(e) handler                                     │
+│  - Receives POST from Edgar with:                                   │
+│    { scoringHashKey, action, tdgIssued?, rejectionReason?,          │
+│      reviewerEmail }                                                │
+│  - Looks up the row in Scored Chatlogs by scoringHashKey (Col K)    │
+│  - Double-counting guard: checks if Status is already "Reviewed"    │
+│    or "Transferred to Main Ledger" — if so, skips (no-op)           │
+│  - On Approve: sets Col F = "Reviewed", Col G = tdgIssued,         │
+│    Col M = reviewerEmail                                             │
+│  - On Reject: sets Col F = "Rejected", Col O = rejectionReason,    │
+│    Col M = reviewerEmail                                             │
+│  - Returns 200 OK with { status: "updated" }                       │
+│                                                                     │
+│  Deployment: clasp push from tokenomics/google_app_scripts/         │
+│  1BHAGZd…/ (same project as Grok scoring)                           │
+└─────────────────────────────────────────────────────────────────────┘
+         │
+         │ (scheduled trigger picks up "Reviewed" rows)
+         ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  TRANSFER SCRIPT (separate GAS project — 1-ts0WTM8…)               │
+│                                                                     │
+│  transfer_scored_contributions_to_main_ledger.js                    │
+│  - Runs on scheduled trigger (unchanged)                            │
+│  - Reads Scored Chatlogs for Status = "Reviewed" or                │
+│    "Successfully Completed / Full Provision Awarded"                │
+│  - Transfers to Ledger history in main ledger                       │
+│  - Sets Status = "Transferred to Main Ledger"                       │
+│  - No changes needed — it already works with the "Reviewed" status  │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 4. Data Flow (Step by Step)
+## 4. Data Schema
 
-### 4.1 Cache Generation (GitHub Action)
+### 4.1 Scored Chatlogs Sheet (Google Sheets — 1Tbj7H5ur…)
 
-1. **Trigger:** GitHub Actions scheduled cron (every 5 minutes, or on-demand via workflow_dispatch)
-2. **Read:** Google Sheets API → `Scored Chatlogs` tab, columns A–N
-3. **Filter:** Rows where `Column F (Status) = "Successfully Completed / Full Provision Awarded"` AND `Column N (Cache Generated)` is empty
-4. **For each matching row:**
-   - Read `Column K (Scoring Hash Key)` → this is the filename
-   - Read `Column I (Found in Contributors)` → TRUE / FALSE / "RESOLVE FAILED"
-   - Build JSON object (see §6 for schema)
-   - Write to `treasury-cache/review-queue/<hash_key>.json`
-5. **After all files written:**
-   - Git commit + push to `main`
-   - For each processed row, write current timestamp to `Column N` (via Sheets API batch update)
-6. **Idempotency:** If a file already exists in the repo, skip it (don't overwrite). If `Column N` already has a timestamp, skip the row.
+| Col | Label | Type | Description |
+|-----|-------|------|-------------|
+| A | Contributor Name | string | Name of the contributor |
+| B | Contribution Description | string | What was done |
+| C | Rubric | string | Scoring rubric category |
+| D | Contribution Type | string | Time (Minutes) / USD / etc. |
+| E | TDGs Provisioned | decimal | Grok's AI-provisioned TDG amount |
+| F | Status | string | Current state (see §7) |
+| G | TDGs Issued | decimal | Final TDG amount (set by governor) |
+| H | Contribution Date | date | When the work was done |
+| I | Found in Contributors | string | TRUE / FALSE / RESOLVE FAILED |
+| J | Contributor Email | string | Email from contributor lookup |
+| K | Scoring Hash Key | string | Unique hash identifying this row |
+| L | (reserved) | | |
+| M | Reviewer Email | string | **NEW** — Email of the approving governor |
+| N | Cache Generated | timestamp | **NEW** — Set by cache generator when JSON is pushed |
+| O | Rejection Reason | string | **NEW** — Reason if Status = Rejected |
 
-### 4.2 Queue Serving (Edgar) — Cursor-Based Pagination
-
-1. **Endpoint:** `GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw`
-   - `limit` (optional, default 10, max 50): how many items to return
-   - `after_filename` (optional): the filename of the last item from the previous page. If omitted, start from the beginning.
-2. **Read:** GitHub API → list `treasury-cache/review-queue/` directory, sorted alphabetically by filename (ascending)
-3. **Skip:** If `after_filename` is provided, skip all files up to and including that filename
-4. **Slice:** Take the next `limit` files from the remaining list
-5. **Read each file's content** and return as JSON array
-6. **Response:**
-   ```json
-   {
-     "items": [ /* cache file objects */ ],
-     "total_count": 42,
-     "next_filename": "M52VB3RP2VLzU3UxLIf",
-     "has_more": true
-   }
-   ```
-   - `next_filename` is the filename of the last item in this page. The DApp passes this as `after_filename` on the next request.
-   - `has_more` is `false` when there are no more files after this page.
-7. **Why cursor-based instead of offset:** Files are deleted from the directory as approvals happen. A numeric offset would shift — the file at offset 10 today might be a different file tomorrow. The filename is stable; even if files before it are deleted, the cursor still points to the right place.
-8. **Auth:** Anyone can call this endpoint (read-only). No signature required.
-
-### 4.3 Approval / Rejection (DApp → Edgar)
-
-1. **DApp page** loads the queue from Edgar, renders each row
-2. **Governor/Sentinel** sees:
-   - Contributor name with resolution badge (✓ Resolved / ⚠ Resolve Failed)
-   - If resolve failed: a dropdown of all known contributors to pick the correct one
-   - Three buttons: **Approve**, **Skip**, **Reject**
-   - TDG amount field (pre-filled with Grok's provisioned value, editable)
-   - Rejection reason text field (shown when Reject is selected)
-3. **On Approve click:**
-   - Browser builds `[CONTRIBUTION REVIEW EVENT]` payload — **minimal, no reviewer email**:
-     ```
-     [CONTRIBUTION REVIEW EVENT]
-     - Action: Approve
-     - Scoring Hash Key: XzQ2EhAMD7MN8X0zFhvw
-     - TDGs Issued: 8.33
-     - Contributor Name: Gary Teh (if corrected from resolve-failed)
-     ```
-   - Browser signs with RSA private key
-   - Submits to `POST /dao/submit_contribution`
-4. **On Reject click:**
-   - Browser builds payload — **no reviewer email**:
-     ```
-     [CONTRIBUTION REVIEW EVENT]
-     - Action: Reject
-     - Scoring Hash Key: XzQ2EhAMD7MN8X0zFhvw
-     - Rejection Reason: Duplicate contribution, already recorded in ledger
-     ```
-   - Browser signs and submits
-5. **On Skip click:** No event sent. Cache file stays. UI simply removes the row from the current view (it will re-appear on next page load).
-6. **Edgar receives and validates:**
-   - Verifies RSA signature
-   - Looks up signer's email in `Contributors Digital Signatures` sheet → this is the `reviewer_email`
-   - Checks if signer is a governor (in `Governors` tab) OR Sentinel (`Is Sentinel = TRUE`)
-   - If not authorized → return 403
-   - If authorized:
-     a. Logs the event to Telegram Chat Logs
-     b. Deletes `treasury-cache/review-queue/<hash_key>.json` via GitHub API
-     c. Fires webhook to GAS write-back script with action + payload + `reviewer_email` (resolved from signature)
-     d. Returns success
-
-### 4.4 Write-Back (GAS webhook)
-
-1. **Trigger:** Edgar sends POST to GAS web app URL with payload:
-   ```json
-   {
-     "action": "process_review_result",
-     "hash_key": "XzQ2EhAMD7MN8X0zFhvw",
-     "review_action": "approve",
-     "tdgs_issued": 8.33,
-     "reviewer_email": "garyjob@agroverse.shop",  ← resolved by Edgar from RSA signature
-     "contributor_name": "Gary Teh",
-     "rejection_reason": null
-   }
-   ```
-   Or for rejection:
-   ```json
-   {
-     "action": "process_review_result",
-     "hash_key": "XzQ2EhAMD7MN8X0zFhvw",
-     "review_action": "reject",
-     "tdgs_issued": 0,
-     "reviewer_email": "garyjob@agroverse.shop",  ← resolved by Edgar from RSA signature
-     "contributor_name": null,
-     "rejection_reason": "Duplicate contribution, already recorded in ledger"
-   }
-   ```
-2. **GAS script:**
-   - Opens `Scored Chatlogs` sheet
-   - Finds row by `Column K = hash_key`
-   - **Double-counting guard:** Checks if `Column F (Status)` is a terminal status (see §7) → if so, SKIP (return 200 with `"already_processed"`)
-   - **On Approve:**
-     - Sets `Column F = "Reviewed"`
-     - Sets `Column G (TDGs Issued)` = approved amount
-     - Sets `Column M (Reviewer Email)` = reviewer_email
-     - If `contributor_name` provided and differs from current `Column A`, update it
-   - **On Reject:**
-     - Sets `Column F = "Rejected"`
-     - Sets `Column O (Rejection Reason)` = rejection_reason
-     - Sets `Column M (Reviewer Email)` = reviewer_email
-   - Returns 200
-
----
-
-## 5. Event Schema
-
-### CONTRIBUTION REVIEW EVENT (signed by browser → Edgar)
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `Action` | Yes | `"Approve"` or `"Reject"` |
-| `Scoring Hash Key` | Yes | The hash key from Scored Chatlogs Column K |
-| `TDGs Issued` | On Approve | Final TDG amount awarded (number) |
-| `Contributor Name` | On Approve | Corrected contributor name (if different from cache) |
-| `Rejection Reason` | On Reject | Free-text reason for rejection |
-
-**Note:** `Reviewer Email` is NOT in the signed event. Edgar resolves it from the RSA signature server-side.
-
-### Edgar → GAS Webhook Payload
-
-| Field | Source | Description |
-|-------|--------|-------------|
-| `action` | Fixed | Always `"process_review_result"` |
-| `hash_key` | From sign event | The hash key |
-| `review_action` | From sign event | `"approve"` or `"reject"` |
-| `tdgs_issued` | From sign event | Final TDG amount (0 for reject) |
-| `reviewer_email` | Resolved by Edgar | Email of the governor/Sentinel who signed |
-| `contributor_name` | From sign event | Corrected contributor name (if provided) |
-| `rejection_reason` | From sign event | Reason for rejection (null if approve) |
-
----
-
-## 6. Cache File Schema
-
-Each file in `treasury-cache/review-queue/<hash_key>.json`:
+### 4.2 Cache File Schema (treasury-cache/review-queue/<hash_key>.json)
 
 ```json
 {
-  "hash_key": "XzQ2EhAMD7MN8X0zFhvw",
-  "contributor": "gotothe_peak",
-  "project": "telegram_chatlog",
-  "contribution": "Who's looking for a dev for your DeFi or Tg miniapp project?",
-  "rubric": "100TDG For every 1 hour of human effort",
-  "tdgs_provisioned": 8.33,
-  "status_date": "20241214",
-  "reporter": "gotothe_peak",
-  "found_in_contributors": false,
-  "generated_at": "2026-06-18T12:00:00Z"
+  "scoringHashKey": "XzQ2EhAMD7MN8X0zFhvw",
+  "contributorName": "Alice",
+  "contributionDescription": "Ledger reconciliation for Q1",
+  "rubric": "Operations",
+  "contributionType": "Time (Minutes)",
+  "tdgsProvisioned": "45.00",
+  "tdgsIssued": "0.00",
+  "contributionDate": "2026-06-15",
+  "foundInContributors": true,
+  "contributorEmail": "alice@example.com",
+  "scoredChatlogsRow": 142
+}
+```
+
+### 4.3 CONTRIBUTION REVIEW EVENT Payload
+
+**Approve:**
+```
+[CONTRIBUTION REVIEW EVENT]
+- Action: Approve
+- Scoring Hash Key: XzQ2EhAMD7MN8X0zFhvw
+- TDGs Issued: 45.00
+- Contributor Name: Alice
+--------
+```
+
+**Reject:**
+```
+[CONTRIBUTION REVIEW EVENT]
+- Action: Reject
+- Scoring Hash Key: XzQ2EhAMD7MN8X0zFhvw
+- Rejection Reason: Duplicate entry — already recorded in Q1 batch
+--------
+```
+
+**Note:** `Reviewer Email` is NOT in the signed payload. Edgar resolves it server-side from the RSA signature.
+
+### 4.4 Edgar Webhook to GAS (POST)
+
+```json
+{
+  "scoringHashKey": "XzQ2EhAMD7MN8X0zFhvw",
+  "action": "Approve",
+  "tdgIssued": "45.00",
+  "contributorName": "Alice",
+  "reviewerEmail": "gary@truesight.me",
+  "timestamp": "2026-06-18T14:30:00Z"
 }
 ```
 
 ---
 
-## 7. Status State Machine (Column F)
+## 5. PR Breakdown
 
-This is the definitive reference for every possible status value in Column F of the Scored Chatlogs sheet, who sets it, when, and what transitions are valid.
+### PR 1 — GitHub Actions Cache Generator
 
-### Status Values and Transitions
+**Repo:** `treasury-cache` (or `dao_protocol` if scripts live there)
+**Files:**
+- `.github/workflows/generate_review_cache.yml` — scheduled cron (every 5 min)
+- `scripts/generate_review_cache.py` — Python script
 
-```
-                    ┌──────────────────────────────────────────────┐
-                    │                                              │
-                    ▼                                              │
-  ┌─────────────────────────────────────────────────────┐         │
-  │ Successfully Completed / Full Provision Awarded     │         │
-  │ (Initial — set by Grok scoring script)              │         │
-  │ TDGs Issued = 0.00 (placeholder)                    │         │
-  └─────────────────────┬───────────────────────────────┘         │
-                        │                                         │
-          ┌─────────────┼─────────────┐                           │
-          ▼             ▼             ▼                           │
-  ┌──────────┐  ┌──────────────┐  ┌──────────┐                   │
-  │ Reviewed │  │   Rejected   │  │ (stays)  │  ← Skip (no       │
-  │          │  │              │  │          │    status change)  │
-  │ TDGs > 0 │  │ TDGs = 0    │  │          │                   │
-  └─────┬────┘  └──────┬───────┘  └──────────┘                   │
-        │              │                                          │
-        │              │  (terminal — no further transitions)     │
-        ▼              │                                          │
-  ┌──────────┐         │                                          │
-  │Ignored   │         │                                          │
-  │(TDG=0)   │         │                                          │
-  └─────┬────┘         │                                          │
-        │              │                                          │
-        ▼              │                                          │
-  ┌────────────────┐   │                                          │
-  │ Transferred to │   │                                          │
-  │ Main Ledger    │   │                                          │
-  │ (terminal)     │   │                                          │
-  └────────────────┘   │                                          │
-                        │                                          │
-  ┌────────────────┐    │                                          │
-  │ Entry Error    │◄───┘  (set by transfer script if contributor │
-  │                │        not found in Contributors sheet)       │
-  │ Entry Error -  │                                               │
-  │ Contributor    │                                               │
-  │ Not Found      │                                               │
-  └────────────────┘                                               │
-```
+**What it does:**
+- Reads Scored Chatlogs via Google Sheets API (service account: `tdg_scoring`)
+- Finds rows where `Status = "Successfully Completed / Full Provision Awarded"` AND `Column N` is empty
+- For each row, generates a JSON file at `review-queue/<hash_key>.json`
+- Pushes all new files to `treasury-cache` repo in one commit
+- Writes timestamp to Column N (`Cache Generated`) via Sheets API
 
-### Detailed Status Table
+**Edge cases:**
+- If the sheet is unreachable (API error), the Action fails with a clear error message
+- If a row's hash key already exists as a cache file (from a previous run), skip it
+- If the Sheets API returns partial data (rate limited), retry with exponential backoff
+- If the push to GitHub fails, don't mark Column N (so next run retries)
 
-| # | Status Value | Set By | When | Column G (TDGs Issued) | Terminal? | Next Valid Statuses |
-|---|-------------|--------|------|----------------------|-----------|-------------------|
-| 1 | `Successfully Completed / Full Provision Awarded` | Grok scoring script | After AI scoring completes | `0.00` (placeholder) | No | Reviewed, Rejected, (stays same on Skip) |
-| 2 | `Reviewed` | GAS write-back script | Governor approves via DApp | Governor's approved amount (> 0) | No | Ignored (if TDG=0), Transferred to Main Ledger |
-| 3 | `Reviewed` | GAS write-back script | Governor approves via DApp | `0` (zero TDG) | No | Ignored (transfer script auto-converts) |
-| 4 | `Rejected` | GAS write-back script | Governor rejects via DApp | `0` | **Yes** | (none) |
-| 5 | `Ignored` | Transfer script | Auto-set when Reviewed row has TDGs Issued = 0 | `0` | **Yes** | (none) |
-| 6 | `Transferred to Main Ledger` | Transfer script | After successful transfer to Ledger history | Governor's approved amount | **Yes** | (none) |
-| 7 | `Entry Error` | Transfer script | Contributor not found in Contributors sheet | `0` | **Yes** | (none) |
-| 8 | `Entry Error - Contributor Not Found` | Transfer script | Contributor not found (variant) | `0` | **Yes** | (none) |
-
-### Double-Counting Guard Logic
-
-The GAS write-back script MUST check Column F before writing. If the current status is any of the **terminal** statuses (Rejected, Ignored, Transferred to Main Ledger, Entry Error, Entry Error - Contributor Not Found), the script MUST skip the write and return `"already_processed"`. This prevents:
-
-- A row that was already transferred from being set back to "Reviewed" (which would cause the transfer script to re-process it)
-- A row that was already rejected from being approved later
-
-### Transfer Script Behavior
-
-The existing `transfer_scored_contributions_to_main_ledger.js` checks for these statuses:
-- `"Reviewed"` → proceeds with transfer (if TDGs Issued > 0)
-- `"Reviewed"` with TDGs Issued = 0 → sets to `"Ignored"` immediately
-- `"Successfully Completed / Full Provision Awarded"` → also proceeds (legacy support)
-- `"Transferred to Main Ledger"` → skips
-- Any other status → skips
-
-**Important:** The transfer script does NOT check for `"Rejected"` explicitly — it will skip it because it doesn't match `"Reviewed"` or `"Successfully Completed / Full Provision Awarded"`. This is correct behavior.
+**Testing:**
+- Dry-run mode: `--dry-run` flag that prints what it would do without writing
+- Unit tests for the row-filtering logic (mock Sheets API)
 
 ---
 
-## 8. Scored Chatlogs Column Reference
+### PR 2 — Edgar GET /dao/review_queue Endpoint
 
-| Col | Header | Role |
-|-----|--------|------|
-| A | Contributor Name | Contributor display name |
-| B | Project Name | Source platform (e.g. `telegram_chatlog`) |
-| C | Contribution Made | The contribution text |
-| D | Rubric classification | Grok's classification |
-| E | TDGs Provisioned | Grok's suggested TDG amount |
-| F | Status | See §7 for full state machine |
-| G | TDGs Issued | Final awarded TDG (set by governor) |
-| H | Status date | Date of the original contribution |
-| I | Existing Contributor | TRUE / FALSE / "RESOLVE FAILED" — whether contributor resolved |
-| J | Reporter Name | Who reported the contribution |
-| K | Scoring Hash Key | Unique hash for deduplication |
-| L | Main Ledger Row Number | Row in Ledger history after transfer |
-| M | Reviewer Email | (NEW) Email of the approving/rejecting governor (set by GAS write-back) |
-| N | Cache Generated | (NEW) Timestamp when cache file was created |
-| O | Rejection Reason | (NEW) Free-text reason if rejected |
+**Repo:** `dao_protocol` (Python/FastAPI)
+**Files:**
+- `app/routers/review_queue.py` — new router
 
----
-
-## 9. UI Specification (DApp review_queue.html)
-
-### Layout
-
-- **Header:** "Contribution Review Queue" with count badge (e.g., "42 pending")
-- **Filter bar:** Optional — filter by contributor name or date range
-- **Card list** (infinite scroll using cursor-based pagination):
-  - DApp tracks `last_filename` (not `offset`) for the next page request
-  - On scroll to bottom, calls `GET /dao/review_queue?limit=10&after_filename=<last_filename>`
-  - Each card shows:
-    - **Contributor name** with resolution badge:
-      - ✓ Green badge = `found_in_contributors: true`
-      - ⚠ Yellow badge = `found_in_contributors: false` or `"RESOLVE FAILED"`
-    - **Contribution text** (truncated to 3 lines, expandable)
-    - **Rubric** (classification)
-    - **TDGs Provisioned** (Grok's amount)
-    - **Date** (status_date)
-    - **Reporter** name
-
-### Governor/Sentinel Actions (only visible to authorized users)
-
-- **Contributor dropdown** — If `found_in_contributors` is FALSE or "RESOLVE FAILED", show a dropdown of all known contributors (loaded from `dao_members.json` or Edgar). Pre-selected to current value if resolved.
-- **TDG amount field** — Pre-filled with Grok's provisioned value. Editable.
-- **Three buttons:**
-  - **✓ Approve** — Green button. Submits approval with current TDG amount and selected contributor.
-  - **→ Skip** — Gray button. Removes card from view (no event sent).
-  - **✕ Reject** — Red button. When clicked, reveals a text area for rejection reason (required). Submits rejection.
-
-### Non-Governor View
-
-- Same card list, but no action buttons, no dropdown, no TDG field.
-- Text at top: "You are viewing the review queue as a read-only observer."
-
-### States
-
-| State | UI |
-|-------|-----|
-| Loading | Skeleton cards with pulse animation |
-| Empty queue | "🎉 All contributions have been reviewed!" with illustration |
-| Error (Edgar down) | "Unable to load review queue. Retry" button |
-| Submitting approval | Button shows spinner, disabled state |
-| Approval success | Card fades out with green checkmark animation |
-| Approval error | Toast: "Approval failed. Please try again." |
-| Rejection (no reason) | Reject button disabled, red border on reason field |
-
----
-
-## 10. PR Breakdown (Sequenced)
-
-Each PR is standalone, small, and independently reviewable. Do NOT chain multiple PRs in one turn.
-
-### PR 1: GitHub Action — Cache Generator
-
-**Repo:** `treasury-cache` (API-only DATA repo — single-file write via `upload_file_to_github`)
-
-**Scope:**
-- Create `.github/workflows/generate_review_cache.yml` — scheduled cron (every 5 min) + `workflow_dispatch`
-- Create `scripts/generate_review_cache.py` — Python script that:
-  - Reads Scored Chatlogs via Google Sheets API (service account from GitHub Secrets)
-  - Filters for `Status = "Successfully Completed / Full Provision Awarded"` AND `Column N` empty
-  - Generates JSON files in `review-queue/<hash_key>.json` (includes `found_in_contributors` field)
-  - Writes timestamp to Column N via Sheets API batch update
-  - Commits + pushes new files to `main`
-- Add `google_credentials.json` to GitHub Secrets (or use existing SA)
-- Add `requirements.txt` with `google-auth`, `google-api-python-client`, `pygithub`
-
-**Files created:**
-- `.github/workflows/generate_review_cache.yml`
-- `scripts/generate_review_cache.py`
-- `scripts/requirements.txt`
-
-**Acceptance:**
-- Manual `workflow_dispatch` run creates JSON files in `review-queue/`
-- Column N populated with timestamps for processed rows
-- Re-run skips already-cached rows
-- `found_in_contributors` field correctly reflects Column I
-
----
-
-### PR 2: Edgar — Review Queue Endpoint (Cursor-Based Pagination)
-
-**Repo:** `sentiment_importer` (Rails) or `dao_protocol` (Python FastAPI)
-
-**Scope:**
-- Add `GET /dao/review_queue` endpoint with cursor-based pagination
-- Parameters: `limit` (default 10, max 50), `after_filename` (optional cursor)
-- Reads `treasury-cache/review-queue/` directory via GitHub API
-- Lists files sorted alphabetically by filename (ascending)
+**What it does:**
+- `GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw`
+- Lists `treasury-cache/review-queue/` directory via GitHub Contents API
+- Sorts files alphabetically (by filename = hash key = chronological order)
 - Skips files up to and including `after_filename` (if provided)
-- Returns next `limit` files with their content
-- Response includes `next_filename` and `has_more` for the DApp cursor
-- Also add `GET /dao/contributors` (or reuse existing) to return contributor list for the dropdown
+- Returns next `limit` files with their JSON content
+- Response includes `next_filename` (for cursor) and `has_more` (boolean)
+- If `after_filename` file was already deleted (approved), skips to next
 
-**Files created/modified:**
-- `app/controllers/dao_controller.rb` (Rails) or `app/routes/review_queue.py` (FastAPI)
-- Tests for pagination, empty queue, file-not-found, cursor stability after deletion
-
-**Acceptance:**
-- `GET /dao/review_queue?limit=10` returns first 10 items + `next_filename` + `has_more: true`
-- `GET /dao/review_queue?limit=10&after_filename=...` returns next 10 items
-- Returns empty array + `has_more: false` when queue is empty
-- Cursor still works correctly even if files before it were deleted
+**Edge cases:**
+- Empty directory → returns `{ items: [], has_more: false }`
+- `after_filename` not found (deleted) → starts from the beginning
+- GitHub API rate limit → cache the directory listing for 30 seconds
 
 ---
 
-### PR 3: Edgar — CONTRIBUTION REVIEW EVENT Handler + Cache File Deletion
+### PR 3 — Edgar CONTRIBUTION REVIEW EVENT Handler
 
-**Repo:** `sentiment_importer` or `dao_protocol`
+**Repo:** `dao_protocol` (Python/FastAPI)
+**Files:**
+- `app/event_handlers/contribution_review.py` — new handler
 
-**Scope:**
-- Register `[CONTRIBUTION REVIEW EVENT]` in Edgar's event catalog
-- On receipt:
-  1. Parse action field: `"Approve"` or `"Reject"`
-  2. Verify RSA signature
-  3. **Resolve reviewer email** from the RSA signature via `Contributors Digital Signatures` sheet
-  4. Check if signer is governor or Sentinel (reuse existing check)
-  5. Delete `treasury-cache/review-queue/<hash_key>.json` via GitHub API
-  6. Fire webhook to GAS write-back URL with full payload including `reviewer_email`
-  7. Log to Telegram Chat Logs
-- Return 403 for non-governor/non-Sentinel signers
-- Return 400 if Reject without rejection_reason
+**What it does:**
+- Handles `[CONTRIBUTION REVIEW EVENT]` submissions
+- Verifies the signer is a governor or Sentinel (lookup in `Contributors Digital Signatures` sheet or Edgar's identity registry)
+- Resolves the reviewer's email from the RSA signature
+- On **Approve**:
+  - Deletes the cache file from `treasury-cache/review-queue/<hash_key>.json`
+  - Fires webhook to GAS with `{ scoringHashKey, action: "Approve", tdgIssued, contributorName, reviewerEmail }`
+- On **Reject**:
+  - Deletes the cache file
+  - Fires webhook to GAS with `{ scoringHashKey, action: "Reject", rejectionReason, reviewerEmail }`
+- On **Skip**: no-op (cache file stays)
 
-**Files created/modified:**
-- Event handler in `app/services/` or `app/controllers/dao_controller.rb`
-- GitHub API client for file deletion
-- Webhook dispatch to GAS URL
+**Authorization:**
+- Non-governor/non-Sentinel signatures → HTTP 403
+- Missing `Action` field → HTTP 400
+- Approve without `TDGs Issued` → HTTP 400
+- Reject without `Rejection Reason` → HTTP 400
 
-**Acceptance:**
-- Governor's signed Approve event deletes cache file + fires webhook with tdgs_issued + reviewer_email
-- Governor's signed Reject event deletes cache file + fires webhook with rejection_reason + reviewer_email
-- Non-governor's signed event returns 403
-- Reject without reason returns 400
-- Missing hash_key returns 400
-
----
-
-### PR 4: GAS Write-Back Script
-
-**Repo:** `tokenomics` (GAS script)
-
-**Scope:**
-- Create new GAS project (or add to existing scoring script) with web-app endpoint
-- `doPost(e)` handler:
-  - Parses JSON payload: `hash_key`, `review_action`, `tdgs_issued`, `reviewer_email`, `contributor_name`, `rejection_reason`
-  - Opens Scored Chatlogs sheet
-  - Finds row by Column K
-  - **Double-counting guard:** Check Column F — if terminal status (Rejected, Ignored, Transferred to Main Ledger, Entry Error, Entry Error - Contributor Not Found), skip and return `"already_processed"`
-  - **On Approve:**
-    - Sets `Column F = "Reviewed"`
-    - Sets `Column G (TDGs Issued)` = approved amount
-    - Sets `Column M (Reviewer Email)` = reviewer_email
-    - Updates `Column A (Contributor Name)` if `contributor_name` provided and differs
-  - **On Reject:**
-    - Sets `Column F = "Rejected"`
-    - Sets `Column O (Rejection Reason)` = rejection_reason
-    - Sets `Column M (Reviewer Email)` = reviewer_email
-  - Returns JSON `{"status": "ok"}` or `{"status": "already_processed"}`
-- Deploy as web app ("Anyone" access for Edgar to POST)
-
-**Files created/modified:**
-- `google_app_scripts/<scriptId>/process_review_approval.gs`
-- `google_app_scripts/<scriptId>/Code.js` (if needed for doPost routing)
-
-**Acceptance:**
-- POST with valid hash_key + approve updates the row
-- POST with valid hash_key + reject sets Status = "Rejected" + reason
-- POST with already-processed hash_key returns `already_processed`
-- POST with invalid hash_key returns 404
+**Webhook retry:**
+- If GAS webhook returns non-200, retry up to 3 times with exponential backoff
+- After 3 failures, log the error and leave the cache file (manual recovery)
 
 ---
 
-### PR 5: DApp — Review Queue Page
+### PR 4 — GAS Write-Back Webhook (in Grok Scoring Project)
+
+**GAS Project:** `1BHAGZd…` (same project as Grok scoring script)
+**Repo:** `tokenomics` → `google_app_scripts/1BHAGZd…/`
+**Files:**
+- `Webhook.gs` — new file (doPost receiver)
+
+**What it does:**
+- `doPost(e)` handler receives POST from Edgar
+- Parses `{ scoringHashKey, action, tdgIssued?, rejectionReason?, reviewerEmail }`
+- Looks up the row in Scored Chatlogs by `scoringHashKey` (Column K)
+- **Double-counting guard:** Checks if `Status` is already `"Reviewed"` or `"Transferred to Main Ledger"` — if so, returns 200 with `{ status: "skipped", reason: "already processed" }` (no-op)
+- On **Approve**:
+  - Sets `Col F` = `"Reviewed"`
+  - Sets `Col G` = `tdgIssued`
+  - Sets `Col M` = `reviewerEmail`
+- On **Reject**:
+  - Sets `Col F` = `"Rejected"`
+  - Sets `Col O` = `rejectionReason`
+  - Sets `Col M` = `reviewerEmail`
+- Returns 200 OK with `{ status: "updated" }`
+
+**Deployment:**
+- `clasp push` from `tokenomics/google_app_scripts/1BHAGZd…/`
+- Must be deployed as a **Web App** (Execute as: Me, Access: Anyone) so Edgar can POST to it
+- The web app URL is configured in Edgar's environment as `GAS_REVIEW_WEBHOOK_URL`
+
+**Edge cases:**
+- Row not found (hash key doesn't match) → return 404
+- Row already processed (double-counting guard) → return 200 with skip reason
+- Invalid JSON body → return 400
+- Sheets API write failure → return 500 (triggers Edgar retry)
+
+---
+
+### PR 5 — DApp Review Queue Page
 
 **Repo:** `dapp_beta`
+**Files:**
+- `review_queue.html` — new page
+- `scripts/review_queue.js` — new JS module
+- `styles/review_queue.css` — new stylesheet
 
-**Scope:**
-- Create `review_queue.html` (new page)
-- Fetches queue from `GET /dao/review_queue` with cursor-based infinite scroll
-  (tracks `last_filename` instead of `offset`)
-- Fetches contributor list from `GET /dao/contributors` (for resolve-failed dropdown)
-- Renders card list: contributor (with resolution badge), contribution, rubric, provisioned TDG, date, reporter
-- For governors/Sentinels (checked via Edgar identity lookup):
-  - Contributor dropdown (if resolve failed)
-  - TDG adjust field (pre-filled with Grok's provisioned)
-  - Three-action panel: Approve (green), Skip (gray), Reject (red)
-  - Rejection reason text area (shown when Reject selected, required)
-  - On Approve/Reject: builds `[CONTRIBUTION REVIEW EVENT]` with **minimal payload** (no reviewer email), signs with RSA keypair, submits to Edgar
-  - On Skip: removes card from view (no event)
-- For non-governors: read-only view with observer notice
-- Loading, empty, error states as specified in §9
-- Link from DApp navigation
+**What it does:**
+- Fetches queue from Edgar via `GET /dao/review_queue?limit=10&after_filename=...`
+- Infinite scroll: tracks `last_filename` instead of numeric offset
+- Each row displays:
+  - Contributor name + resolution badge (✓ green / ⚠ yellow)
+  - Contribution description
+  - Rubric category
+  - Grok-provisioned TDG amount
+  - Contribution date
+- **Contributor resolution:**
+  - If `foundInContributors = true`: dropdown pre-selected to matched contributor, green badge
+  - If `foundInContributors = false` or `"RESOLVE FAILED"`: dropdown empty, yellow badge, governor must pick from a dropdown of all known contributors before approving
+- **Three-action panel per row:**
+  - **✓ Approve** — accepts Grok's provisioned TDG or an adjusted amount (text input field)
+  - **→ Skip** — leaves cache file, row re-appears on next load
+  - **✕ Reject** — requires reason text field (button disabled until reason entered)
+- On Approve: signs `[CONTRIBUTION REVIEW EVENT]` with browser's RSA keypair, submits to Edgar
+- On Reject: signs `[CONTRIBUTION REVIEW EVENT]` with Action=Reject + reason
+- On Skip: no event, just advances to next row
+- States: loading spinner, empty state ("No pending reviews"), error state (with retry button), submitting state (with spinner), success confirmation toast
 
-**Files created/modified:**
-- `review_queue.html`
-- `scripts/edgar_payload_helper.js` (update for new event type)
-- Navigation menu update
-
-**Acceptance:**
-- Anyone can view the queue with cursor-based infinite scroll
-- Governor sees three-action panel + contributor dropdown + TDG field
-- Non-governor sees read-only queue with observer notice
-- Successful approval removes item from queue (after refresh)
-- Successful rejection removes item and sets status to Rejected
-- Skip removes item from current view only
-- Error states handled gracefully
-
----
-
-### PR 6: Beta Deploy + UAT
-
-**Scope:**
-- Deploy PR 5 to `dapp_beta` (GitHub Pages)
-- Deploy PR 4 GAS script (clasp push + deploy)
-- Verify end-to-end:
-  - U1: Cache generator creates files for pending rows (includes found_in_contributors)
-  - U2: Edgar serves queue with cursor-based pagination
-  - U3: Governor approves a row → cache file deleted → sheet updated to "Reviewed"
-  - U4: Governor rejects a row → cache file deleted → sheet updated to "Rejected" + reason
-  - U5: Governor skips a row → cache file stays, row re-appears on reload
-  - U6: Non-governor sees queue but cannot approve/reject
-  - U7: Resolve-failed row shows dropdown, governor picks correct contributor
-  - U8: Double-counting guard prevents re-approval of already-processed row
-  - U9: Infinite scroll loads more items with cursor stability
-- Fix any issues found
-
-**Acceptance:**
-- All UAT tests pass
-- Governor signs off
+**Authorization:**
+- Anyone can view the queue (read-only)
+- Only governors/Sentinels see the action buttons (checked via Edgar's `GET /dao/identity/me`)
+- Non-governors see a read-only view with a "Request review access" note
 
 ---
 
-### PR 7: Promote to Production
+### PR 6 — dao_client Module for CONTRIBUTION REVIEW EVENT
 
-**Scope:**
-- Sync `dapp_prod` from `dapp_beta`
-- Deploy GAS script to production deployment
-- Enable GitHub Action cron (set to 5-minute schedule)
-- Update `OPEN_FOLLOWUPS.md` with any known gaps
+**Repo:** `dao_protocol` (the repo that IS dao_client)
+**Files:**
+- `truesight_dao_client/modules/report_contribution_review.py` — new module
+- `pyproject.toml` — add console_scripts entry point
 
-**Acceptance:**
-- Live on production
-- Governor can review, approve, reject, and skip from the DApp
+**What it does:**
+- Thin CLI wrapper using `build_event_cli` (same pattern as `report_contribution.py`)
+- Canonical labels: `Action`, `Scoring Hash Key`, `TDGs Issued`, `Contributor Name`, `Rejection Reason`
+- Validators:
+  - `Action`: must be one of `Approve`, `Reject`, `Skip`
+  - `TDGs Issued`: positive number (required for Approve)
+  - `Rejection Reason`: non-empty (required for Reject)
+- Console script: `truesight-dao-report-contribution-review`
 
----
+**Usage:**
+```bash
+# Approve with Grok's provisioned amount
+truesight-dao-report-contribution-review \
+    --action Approve \
+    --scoring-hash-key XzQ2EhAMD7MN8X0zFhvw \
+    --tdgs-issued 45.00 \
+    --contributor-name Alice
 
-## 11. Double-Counting Guard (Critical)
+# Reject
+truesight-dao-report-contribution-review \
+    --action Reject \
+    --scoring-hash-key XzQ2EhAMD7MN8X0zFhvw \
+    --rejection-reason "Duplicate entry"
 
-**Problem:** If the GAS write-back script runs after the row is already "Transferred to Main Ledger", it could set Status back to "Reviewed", causing the transfer script to re-process it and award TDGs twice.
+# Dry-run
+truesight-dao-report-contribution-review \
+    --action Approve \
+    --scoring-hash-key XzQ2EhAMD7MN8X0zFhvw \
+    --tdgs-issued 45.00 \
+    --dry-run
+```
 
-**Solution (three layers):**
-
-1. **Cache file deletion:** Once a cache file is deleted from `treasury-cache/review-queue/`, the DApp can no longer surface it. The GitHub Action won't re-generate it because Column N is already populated.
-
-2. **GAS write-back guard:** Before writing, check `Column F (Status)`. If it's a terminal status (Rejected, Ignored, Transferred to Main Ledger, Entry Error, Entry Error - Contributor Not Found), skip. Return `"already_processed"`. See §7 for the full state machine.
-
-3. **Transfer script guard:** The existing `transfer_scored_contributions_to_main_ledger.js` already checks for `"Transferred to Main Ledger"` status and skips those rows. It also checks for existing records in Ledger history by matching contributor + contribution + TDG + date.
-
----
-
-## 12. Authorization Model
-
-| Action | Who can do it | How enforced |
-|--------|---------------|-------------|
-| View the queue | Anyone (no auth) | No check needed — read-only data |
-| Approve a review | Governor or Sentinel | Edgar verifies RSA signature → resolves email → checks `Governors` tab + `Is Sentinel` column |
-| Reject a review | Governor or Sentinel | Same as above |
-| Skip a review | Governor or Sentinel | Client-side only (no event sent) |
-| Generate cache files | GitHub Action (service account) | GitHub Secrets + Google Sheets API scope |
-| Write back to sheet | GAS web app (called by Edgar) | Edgar authenticates via shared secret or IP allowlist |
-
----
-
-## 13. Edge Cases
-
-| Case | Handling |
-|------|----------|
-| Grok scores a row as "Unknown" | Status is still "Successfully Completed / Full Provision Awarded" with TDGs Provisioned = 0. Governor can approve (0 TDG), reject, or skip. |
-| Cache file exists but row is already reviewed | GitHub Action skips because Column N is populated. If manually deleted, next run re-generates. |
-| Edgar goes down | DApp shows error state. Cache files remain in repo — no data loss. |
-| GAS write-back fails | Edgar logs the failure. Cache file is already deleted (approval already processed). Manual retry via admin endpoint. |
-| Governor approves with 0 TDG | Valid — some contributions may be worth 0. Row becomes "Reviewed" with 0. Transfer script will mark as "Ignored". |
-| Two governors approve the same row simultaneously | First one deletes the cache file. Second one gets 404 from Edgar (file not found) → DApp shows "already approved". |
-| Governor rejects without reason | Edgar returns 400. DApp shows validation error on the reason field. |
-| Resolve-failed contributor — governor picks wrong name | Governor can correct on re-review if caught. Otherwise, the transfer script uses whatever name is in Column A. |
-| GitHub Action timeout (6 hours) | Unlikely for this workload. Each run processes at most a few hundred rows. |
-| Cursor points to a file that was deleted | Edgar skips missing files silently and continues to the next one. The cursor is just a starting point — if the file is gone, it moves to the next alphabetical file. |
+**Possible states for Action:**
+| Action | Required Fields | Effect |
+|--------|----------------|--------|
+| `Approve` | Scoring Hash Key, TDGs Issued, Contributor Name | Sets Status = "Reviewed", Col G = TDGs Issued |
+| `Reject` | Scoring Hash Key, Rejection Reason | Sets Status = "Rejected", Col O = Rejection Reason |
+| `Skip` | Scoring Hash Key | No-op (cache file stays) |
 
 ---
 
-## 14. Files to Create / Modify Summary
+### PR 7 — Beta Deploy + UAT
 
-| PR | Repo | Files | Type |
-|----|------|-------|------|
-| 1 | `treasury-cache` | `.github/workflows/generate_review_cache.yml`, `scripts/generate_review_cache.py`, `scripts/requirements.txt` | New |
-| 2 | `sentiment_importer` or `dao_protocol` | Review queue controller/route + tests + contributors endpoint | New |
-| 3 | `sentiment_importer` or `dao_protocol` | Event handler + GitHub API client + webhook dispatch | New/Modify |
-| 4 | `tokenomics` | `google_app_scripts/<id>/process_review_approval.gs` | New |
-| 5 | `dapp_beta` | `review_queue.html`, `scripts/edgar_payload_helper.js` (maybe), nav update | New/Modify |
-| 6 | — | UAT testing (no code changes) | — |
-| 7 | `dapp_prod` | Sync from beta | Sync |
+**Steps:**
+1. Deploy PR 1 (GitHub Action) — test with a dry-run first
+2. Deploy PR 2 (Edgar endpoint) — test with curl against staging
+3. Deploy PR 3 (Edgar handler) — test with signed event from DApp
+4. Deploy PR 4 (GAS webhook) — `clasp push` to Grok scoring project, test with curl
+5. Deploy PR 5 (DApp page) — push to `dapp_beta`, test on beta site
+6. Deploy PR 6 (dao_client) — test CLI with dry-run
+7. End-to-end test: submit contribution → Grok scores → cache generated → DApp shows it → governor approves → GAS updates sheet → transfer script picks it up → appears in Ledger history
 
 ---
 
-## 15. RESUME HERE
+### PR 8 — Promote to Production
 
-**Next action:** PR 1 — GitHub Action cache generator for `treasury-cache`.
+- `sync_beta_to_prod` for `dapp_prod`
+- Update Edgar production environment with GAS webhook URL
+- Monitor first 24 hours for any issues
 
-**Gate:** Governor says "go for it" or "proceed" in this thread.
+---
 
-**One PR per turn rule:** On GO, execute PR 1 ONLY, then stop and report the PR URL. Do NOT chain PRs.
+## 6. Column Reference (Scored Chatlogs)
+
+| Col | Label | Set by | Description |
+|-----|-------|--------|-------------|
+| A | Contributor Name | Grok scoring script | Name of the contributor |
+| B | Contribution Description | Grok scoring script | What was done |
+| C | Rubric | Grok scoring script | Scoring rubric category |
+| D | Contribution Type | Grok scoring script | Time (Minutes) / USD / etc. |
+| E | TDGs Provisioned | Grok scoring script | Grok's AI-provisioned TDG amount |
+| F | Status | Multiple (see §7) | Current state of the row |
+| G | TDGs Issued | GAS write-back (on Approve) | Final TDG amount |
+| H | Contribution Date | Grok scoring script | When the work was done |
+| I | Found in Contributors | Grok scoring script | TRUE / FALSE / RESOLVE FAILED |
+| J | Contributor Email | Grok scoring script | Email from contributor lookup |
+| K | Scoring Hash Key | Grok scoring script | Unique hash identifying this row |
+| L | (reserved) | — | — |
+| M | Reviewer Email | GAS write-back | **NEW** — Email of the approving governor |
+| N | Cache Generated | GitHub Action cache generator | **NEW** — Timestamp when JSON was pushed |
+| O | Rejection Reason | GAS write-back (on Reject) | **NEW** — Reason if Status = Rejected |
+
+---
+
+## 7. Status State Machine
+
+### 7.1 All Possible Status Values
+
+| Status | Set by | Terminal? | Description |
+|--------|--------|-----------|-------------|
+| `Successfully Completed / Full Provision Awarded` | Grok scoring script (initial) | No | Row has been scored by Grok, awaiting review |
+| `Reviewed` | GAS write-back (on Approve) | No | Governor has approved, ready for transfer |
+| `Rejected` | GAS write-back (on Reject) | **Yes** | Governor has rejected with a reason |
+| `Ignored` | Transfer script (TDG=0) | **Yes** | TDGs Issued was 0, skipped by transfer |
+| `Transferred to Main Ledger` | Transfer script | **Yes** | Successfully moved to Ledger history |
+| `Entry Error` | Transfer script | **Yes** | Error during transfer |
+| `Entry Error - Contributor Not Found` | Transfer script | **Yes** | Contributor lookup failed during transfer |
+
+### 7.2 State Transitions
+
+```
+[Grok scores]                    [Governor approves]          [Transfer script]
+     │                                │                            │
+     ▼                                ▼                            ▼
+Successfully Completed ──────► Reviewed ──────► Transferred to Main Ledger
+ / Full Provision Awarded           │                            ▲
+     │                              │ (TDG=0)                    │
+     │                              ▼                            │
+     │                          Ignored ──────────────────────────┘
+     │
+     │ [Governor rejects]
+     ▼
+  Rejected (terminal)
+```
+
+### 7.3 Double-Counting Guard Logic
+
+The GAS write-back script MUST check the current Status before updating:
+
+```
+function handleReviewWebhook(e) {
+  const row = findRowByHashKey(e.scoringHashKey);
+  const currentStatus = row[5]; // Col F (0-indexed)
+
+  // Double-counting guard: skip if already processed
+  if (currentStatus === 'Reviewed' ||
+      currentStatus === 'Transferred to Main Ledger' ||
+      currentStatus === 'Rejected' ||
+      currentStatus === 'Ignored') {
+    return { status: 'skipped', reason: 'already processed' };
+  }
+
+  // Proceed with update
+  if (e.action === 'Approve') {
+    row[5] = 'Reviewed';  // Col F
+    row[6] = e.tdgIssued; // Col G
+    row[12] = e.reviewerEmail; // Col M
+  } else if (e.action === 'Reject') {
+    row[5] = 'Rejected';  // Col F
+    row[14] = e.rejectionReason; // Col O
+    row[12] = e.reviewerEmail; // Col M
+  }
+
+  updateRow(row);
+  return { status: 'updated' };
+}
+```
+
+### 7.4 Transfer Script Compatibility
+
+The existing transfer script (`transfer_scored_contributions_to_main_ledger.js`) checks for:
+- `Status = "Reviewed"` → transfers to Ledger history
+- `Status = "Successfully Completed / Full Provision Awarded"` → also transfers (backward compatibility for rows that were never reviewed)
+
+No changes needed to the transfer script — it already works with the new flow.
+
+---
+
+## 8. Authorization Model
+
+| Role | View Queue | Approve/Reject | Submit via dao_client |
+|------|-----------|----------------|----------------------|
+| Anyone (unauthenticated) | ✓ (read-only) | ✕ | ✕ |
+| Contributor | ✓ (read-only) | ✕ | ✕ |
+| Governor | ✓ | ✓ | ✓ |
+| Sentinel (Sophia) | ✓ | ✓ | ✓ |
+
+Enforcement:
+- **DApp side:** The review page checks `GET /dao/identity/me` to determine if the user is a governor/Sentinel. If not, action buttons are hidden.
+- **Edgar side:** The `[CONTRIBUTION REVIEW EVENT]` handler verifies the RSA signature against the `Contributors Digital Signatures` sheet. Non-governor/non-Sentinel signatures get HTTP 403.
+- **dao_client side:** Same RSA signature verification — the CLI uses the user's own keypair. Edgar rejects non-governor keys.
+
+---
+
+## 9. Edge Cases & Failure Modes
+
+| Scenario | Handling |
+|----------|----------|
+| Cache generator runs but sheet is unreachable | Action fails with clear error, retries next cycle |
+| Cache generator finds 0 new rows | No-op (empty commit skipped) |
+| GitHub push fails after Sheets write | Column N already marked, next run skips this row — manual recovery needed |
+| Edgar receives Approve but cache file was already deleted | No-op (idempotent — file gone = already processed) |
+| Edgar receives Approve but GAS webhook fails | Retry 3x with backoff, then log error for manual recovery |
+| GAS webhook receives duplicate callback | Double-counting guard skips if Status is already Reviewed/Transferred |
+| Transfer script and GAS webhook race | Transfer script checks Status before moving — if GAS hasn't written yet, it sees "Successfully Completed" and transfers with TDG=0 (existing behavior) |
+| Governor approves with TDG=0 | Transfer script sets Status = "Ignored" (existing behavior) |
+| Governor rejects but cache file was already deleted by another governor | No-op (idempotent) |
+| DApp page loads but Edgar is down | Shows error state with retry button |
+| DApp page loads but treasury-cache repo is empty | Shows "No pending reviews" empty state |
+| Infinite scroll reaches end of queue | `has_more: false` stops loading |
+| Contributor resolution fails (RESOLVE FAILED) | Governor must pick from dropdown before approving |
+| Reviewer's RSA key is rotated between viewing and approving | Edgar verifies the current key — if rotated, the old signature is rejected (governor re-logs in) |
+
+---
+
+## 10. Rollback Plan
+
+If the new system has issues:
+1. **Disable the GitHub Action** — cache generation stops, no new files appear
+2. **Revert the DApp page** — governors go back to manual sheet editing
+3. **Delete remaining cache files** — `treasury-cache/review-queue/` can be cleared
+4. **Revert Edgar changes** — roll back the FastAPI deployment
+5. **Revert GAS webhook** — `clasp push` the previous version
+
+The Scored Chatlogs sheet is never modified by the new system in a way that breaks the existing transfer script — the transfer script already handles "Reviewed" and "Successfully Completed / Full Provision Awarded" statuses.
