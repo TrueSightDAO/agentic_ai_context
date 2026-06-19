@@ -8,7 +8,7 @@
 
 ## 1. Problem Statement
 
-Today, after Grok scores a `[CONTRIBUTION EVENT]` and writes it to the **Scored Chatlogs** sheet (spreadsheet `1Tbj7H5ur_egQLRugdXUaSIhEYIKp0vvVv2IZ7WTLCUo`), the row sits with `Status = "Successfully Completed / Full Provision Awarded"` and `TDGs Issued = "0.00"`. A governor must:
+Today, after Grok scores a `[CONTRIBUTION EVENT]` and writes it to the **Scored Chatlogs** sheet (spreadsheet `1Tbj7H5ur_egQLRugdXUaSIhEYIKp0vvVv2IZ7WTLCUo`), the row sits with `Status = "Pending Review"` and `TDGs Issued = "0.00"`. A governor must:
 
 1. Open the Google Sheet
 2. Find the row
@@ -26,7 +26,7 @@ This is slow, error-prone, and has no audit trail for who approved what.
 
 Replace the manual sheet-editing step with a **DApp-based review queue**:
 
-1. **GitHub Actions cache generator** (Python, scheduled cron) reads Scored Chatlogs, finds rows with `Status = "Successfully Completed / Full Provision Awarded"` AND `Column N` empty, generates one JSON cache file per row in `treasury-cache/review-queue/`, and marks a `Cache Generated` column on the sheet.
+1. **GitHub Actions cache generator** (Python, scheduled cron) reads Scored Chatlogs, finds rows with `Status = "Pending Review"` AND `Column N` empty, generates one JSON cache file per row in `treasury-cache/review-queue/`, and marks a `Cache Generated` column on the sheet.
 2. **DApp review page** (new HTML page) reads the cache files via Edgar, surfaces the oldest 10 with infinite scroll. Anyone can view the queue.
 3. **Governor/Sentinel** sees a three-action panel per row: **Approve** (accepts Grok's provisioned TDG or an adjusted amount), **Skip** (leaves for later), or **Reject** (with required reason).
 4. **Contributor resolution** — The cache includes the `found_in_contributors` flag (Column I). If TRUE, the contributor dropdown is pre-selected. If FALSE or "RESOLVE FAILED", the governor must pick the right contributor from a dropdown before approving.
@@ -100,8 +100,8 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  .github/workflows/generate_review_cache.yml                        │
 │  scripts/generate_review_cache.py                                   │
 │  - Reads Scored Chatlogs via Google Sheets API                      │
-│  - Finds rows with Status = "Successfully Completed / Full          │
-│    Provision Awarded" AND Col N empty                               │
+│  - Finds rows with Status = "Pending Review" AND Col N empty                    │
+│                                                                                             │
 │  - Generates one JSON file per row                                  │
 │  - Pushes to treasury-cache/review-queue/<hash_key>.json            │
 │  - Writes timestamp to Col N ("Cache Generated")                    │
@@ -201,7 +201,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
 │  transfer_scored_contributions_to_main_ledger.js                    │
 │  - Runs on scheduled trigger (unchanged)                            │
 │  - Reads Scored Chatlogs for Status = "Reviewed" or                │
-│    "Successfully Completed / Full Provision Awarded"                │
+│    "Pending Review"                                           │
 │  - Transfers to Ledger history in main ledger                       │
 │  - Sets Status = "Transferred to Main Ledger"                       │
 │  - No changes needed                                                │
@@ -302,7 +302,7 @@ No per-action parameters. Edgar just triggers the GAS script, which scans Telegr
 
 **What it does:**
 - Reads Scored Chatlogs via Google Sheets API (service account: `tdg_scoring`)
-- Finds rows where `Status = "Successfully Completed / Full Provision Awarded"` AND `Column N` is empty
+- Finds rows where `Status = "Pending Review"` AND `Column N` is empty
 - For each row, generates a JSON file at `review-queue/<hash_key>.json`
 - Pushes all new files to `treasury-cache` repo in one commit
 - Writes timestamp to Column N (`Cache Generated`) via Sheets API
@@ -644,13 +644,13 @@ truesight-dao-report-contribution-review \
 
 | Status | Set by | Terminal? | Description |
 |--------|--------|-----------|-------------|
-| `Successfully Completed / Full Provision Awarded` | Grok scoring script (initial) | No | Row has been scored by Grok, awaiting review |
+| `Pending Review` | Grok scoring script (initial write) | Scored Chatlogs Col F (source) | No | Row has been scored by Grok, awaiting review |
 | `Reviewed` | GAS write-back (on Approve) | No | Governor has approved, ready for transfer |
 | `Rejected` | GAS write-back (on Reject) | **Yes** | Governor has rejected with a reason |
-| `Ignored` | Transfer script (TDG=0) | **Yes** | TDGs Issued was 0, skipped by transfer |
-| `Transferred to Main Ledger` | Transfer script | **Yes** | Successfully moved to Ledger history |
-| `Entry Error` | Transfer script | **Yes** | Error during transfer |
-| `Entry Error - Contributor Not Found` | Transfer script | **Yes** | Contributor lookup failed during transfer |
+| `Successfully Completed / Full Provision Awarded` | Transfer script (on transfer) | **Ledger history** Col F (destination) | No | TDGs Issued was 0, skipped by transfer |
+| `Transferred to Main Ledger` | Transfer script (after transfer) | Scored Chatlogs Col F (source) | **Yes** | Successfully moved to Ledger history |
+| `Ignored` | Transfer script (TDG=0) | Scored Chatlogs Col F (source) | **Yes** | Error during transfer |
+| `Entry Error` | Transfer script | Scored Chatlogs Col F (source) | **Yes** | Contributor lookup failed during transfer |
 
 ### 7.2 State Transitions
 
@@ -658,7 +658,7 @@ truesight-dao-report-contribution-review \
 [Grok scores]                    [Governor approves]          [Transfer script]
      │                                │                            │
      ▼                                ▼                            ▼
-Successfully Completed ──────► Reviewed ──────► Transferred to Main Ledger
+Pending Review ─────────► Reviewed ──────► Transferred to Main Ledger
  / Full Provision Awarded           │                            ▲
      │                              │ (TDG=0)                    │
      │                              ▼                            │
@@ -706,7 +706,7 @@ function applyReviewToScoredChatlogs(parsed) {
 
 The existing transfer script (`transfer_scored_contributions_to_main_ledger.js`) checks for:
 - `Status = "Reviewed"` → transfers to Ledger history
-- `Status = "Successfully Completed / Full Provision Awarded"` → also transfers (backward compatibility for rows that were never reviewed)
+- `Status = "Pending Review"` → does NOT transfer (must be reviewed first)
 
 No changes needed to the transfer script — it already works with the new flow.
 
@@ -738,7 +738,7 @@ Enforcement:
 | Edgar receives Approve but cache file was already deleted | No-op (idempotent — file gone = already processed) |
 | Edgar receives Approve but GAS doGet fails | Retry 3x with backoff, then log error (event still in Telegram Chat Logs with Review Processed=FALSE, picked up on next trigger) |
 | GAS doGet receives duplicate callback | "Review Processed" column check prevents re-processing |
-| Transfer script and GAS doGet race | Transfer script checks Status before moving — if GAS hasn't written yet, it sees "Successfully Completed" and transfers with TDG=0 (existing behavior) |
+| Transfer script and GAS doGet race | Transfer script checks Status before moving — if GAS hasn't written yet, it sees "Pending Review" and skips the row (no transfer) |
 | Governor approves with TDG=0 | Transfer script sets Status = "Ignored" (existing behavior) |
 | Governor rejects but cache file was already deleted by another governor | No-op (idempotent) |
 | DApp page loads but Edgar is down | Shows error state with retry button |
@@ -762,4 +762,4 @@ If the new system has issues:
 4. **Revert Edgar changes** — roll back the FastAPI deployment
 5. **Revert GAS webhook** — `clasp push` the previous version
 
-The Scored Chatlogs sheet is never modified by the new system in a way that breaks the existing transfer script — the transfer script already handles "Reviewed" and "Successfully Completed / Full Provision Awarded" statuses.
+The Scored Chatlogs sheet is never modified by the new system in a way that breaks the existing transfer script — the transfer script already handles "Reviewed" status (and "Pending Review" for backward compatibility).
