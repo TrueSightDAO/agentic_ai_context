@@ -1,12 +1,74 @@
 # SOPHIA Batch Sales Execution Plan
 
-**Purpose:** Teach Sophia how to autonomously handle bulk QR code sales (cash or Stripe)
-without the operator having to manually loop through 40 QR codes or debug Edgar errors.
+**Purpose:** SOP for Sophia to correctly interpret and execute bulk QR code sales
+from a governor's Telegram message. Covers intent parsing, field mapping, and execution.
 
-**Status:** DRAFT — 2026-06-20
-**Context:** From SOHA 40-bag cash sale experience — 40 submissions attempted, all failed
-with HTTP 500 due to Edgar server-side issue. This plan codifies the pattern so Sophia
-can self-serve next time.
+**Status:** LIVE — 2026-06-20
+**Incident:** SOHA 40-bag cash sale. Sophia misinterpreted the governor's message and
+submitted 2 erroneous aggregate entries (total $680, Sold by Gary Teh, Item as
+description instead of QR codes). This SOP prevents that class of mistake.
+
+---
+
+## 0. SOP — Interpreting the governor's batch sale message (READ FIRST)
+
+When a governor sends a message in a batch-sale Telegram topic like:
+
+> "David just transferred $680 to me for the purchase of all 40 bags of cacao"
+
+or:
+
+> "Here's the receipt for 40 bags sold to SOHA at $17 each. QR codes below:"
+
+**Sophia MUST apply these rules BEFORE calling any tool:**
+
+### Rule 1: ONE SALES EVENT PER QR CODE — never aggregate
+
+A batch of N bags with N distinct QR codes = **N separate `[SALES EVENT]` submissions**.
+NEVER submit a single `[SALES EVENT]` with `Item: "Ceremonial Cacao (40 bags)"` or
+`Item: "QR1, QR2, QR3, ..."`. Each QR code gets its own submission.
+
+### Rule 2: Extract per-unit price, never use the total
+
+- Governor says "$680 for 40 bags" → `Sales price` = `17.00` (680 ÷ 40)
+- Governor says "$17 each" → `Sales price` = `17.00`
+- Never set `Sales price` to the total payment amount.
+
+### Rule 3: "Sold by" = the person/entity SELLING the bags — NOT the governor
+
+- Governor says "David from SOHA bought 40 bags" → `Sold by` = `SOHA - David Campbell`
+- Governor says "I (Gary) collected the cash" → `Cash proceeds collected by` = `Gary Teh`
+- The governor is often the cash collector, rarely the seller. Do NOT copy the
+  governor's name into `Sold by`.
+
+### Rule 4: "Item" = the QR code ID — never a product description
+
+- `Item` MUST be a QR code like `2024OSCAR_20260330_1`
+- NEVER use `Item: "Ceremonial Cacao"`, `Item: "Cacao Kraft Pouch"`, etc.
+- The QR code IS the item identifier. The product name lives in GAS.
+
+### Rule 5: The governor provides the QR code list — do not invent one
+
+- Wait for the governor to post the QR code list. Do not guess, fabricate, or derive
+  QR codes from context.
+- If a list is provided, parse it. If not, ask: "Please paste the list of QR codes."
+
+### Rule 6: Validate before submitting
+
+- Run `lookup_qr_code` on at least one QR code to confirm it exists and is MINTED.
+- Health-check Edgar with `GET /events-catalog` (must return 200).
+- If either check fails, stop and report to the governor.
+
+### Quick field-reference card
+
+| Field | Source | Example from SOHA incident |
+|-------|--------|---------------------------|
+| `Item` | QR code from governor's list | `2024OSCAR_20260330_1` |
+| `Sales price` | Per-unit price (total ÷ count) | `17.00` |
+| `Sold by` | Named seller in governor's message | `SOHA - David Campbell` |
+| `Cash proceeds collected by` | Person who received the money | `Gary Teh` |
+| `Owner email` | Buyer's email from governor | `david@soha.center` |
+| `Submission Source` | Descriptive string | `dao_client / bulk cash sale, local pickup` |
 
 ---
 
@@ -14,12 +76,12 @@ can self-serve next time.
 
 Every batch sale follows the same structure:
 
-1. Receive QR code list + sale metadata from the governor
-2. Validate QR codes exist in GAS (lookup, confirm status = MINTED)
-3. Health-check Edgar (`GET /events-catalog` should return 200)
-4. Submit one `[SALES EVENT]` per QR code (each must have a unique payload — different
-   `Bulk order index` or unique `Submission Source` timestamp so signatures don't collide)
-5. Report results
+1. Parse the governor's message using the SOP rules in §0 above.
+2. Receive the QR code list from the governor.
+3. Validate QR codes exist in GAS (lookup, confirm status = MINTED).
+4. Health-check Edgar (`GET /events-catalog` should return 200).
+5. Submit one `[SALES EVENT]` per QR code (each with a unique payload).
+6. Report results.
 
 Key rule: **ONE SALES EVENT PER QR CODE.** Do NOT submit an INVENTORY MOVEMENT to
 deplete — that event type transfers custody person-to-person, NOT inventory-to-sale.
