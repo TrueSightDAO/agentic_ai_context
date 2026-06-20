@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-20T14:40:54Z`
+- Generated (UTC): `2026-06-20T20:04:07Z`
 - Look-back: **7** calendar days (`2026-06-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[INVENTORY MOVEMENT]` × 25
+- `[INVENTORY MOVEMENT]` × 22
 - `[CONTRIBUTION EVENT]` × 9
-- `[PRACTICE EVENT]` × 3
+- `[PRACTICE EVENT]` × 4
 - `[CONTRIBUTOR ADD EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
+- `[SALES EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260619030729_185` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
-- `Edgar_20260619030731_187` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
-- `Edgar_20260619030733_189` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
 - `Edgar_20260619030735_191` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Kirsten Ritschel · Inventory Item: 8 Ounce Package Kraft Pouch  CP340992735BR
 - `Edgar_20260619032449_193` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Align Premium Dark Chocolate Bar subscription card on agroverse.shop homepage
 - `Edgar_20260619032725_195` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Deep Seek · Contributor Email: admin+deepseek@truesight.me · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
@@ -61,6 +59,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260620012023_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Add sample payloads to every contract card on…
 - `Edgar_20260620012430_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Resolve merge conflict on contracts/index.htm…
 - `Edgar_20260620014632_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: Update contracts/index.html with two changes:
+- `Edgar_20260620160701_009` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-20T16:06:59.993Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260620192801_011` · **Edgar** · [SALES EVENT] Item: Ceremonial Cacao Kraft Pouch (40 bags) · Sales price: 680 · Sold by: Gary Teh
+- `Edgar_20260620192819_013` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_1, 2024OSCAR_20260330_2, 2024OSCAR_20260330_3, 2024OSCAR_2026033… · Sales price: 680 · Sold by: Gary Teh
 
 ---
 
@@ -304,6 +305,7 @@ _All dated lines on/after 2026-06-13_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d500e2b | 2026-06-20 14:54:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 89ac153 | 2026-06-20 09:51:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 79fee0c | 2026-06-20 04:54:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 706da0d | 2026-06-19 18:46:39 -0700 | [autopilot] Update contracts/index.html with two changes:
@@ -343,7 +345,6 @@ ad43e40 | 2026-06-16 10:30:52 -0700 | Add provisions table rendering JavaScript 
 5f42a97 | 2026-06-16 10:30:46 -0700 | Add provisions history table to buy-back reserve detail page (#245)
 9c5406d | 2026-06-16 10:17:40 -0700 | Fix buy-back reserve detail page: use JSON cache + correct GAS URL (#244)
 e7a20b5 | 2026-06-16 06:42:15 -0700 | Create buy-back reserve detail page (#243)
-b1acf88 | 2026-06-16 06:42:09 -0700 | Add Accumulated Buy-Back Reserve stat card and detail page (#242)
 … (truncated)
 ```
 
@@ -356,6 +357,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+de0a6e6 | 2026-06-20 07:41:10 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
+5594881 | 2026-06-20 07:41:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 194c97b | 2026-06-20 02:49:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
 c959853 | 2026-06-20 02:49:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 30044f9 | 2026-06-19 21:51:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
@@ -394,8 +397,6 @@ d467993 | 2026-06-19 03:45:54 -0700 | Add freight/logistics section to FSVP road
 0a3eca8 | 2026-06-19 03:45:05 -0700 | Add FDA FSVP compliance & first shipment roadmap PDF for Indonesia cacao
 0ce9469 | 2026-06-19 03:41:03 -0700 | Replace unit economics PDF with blank template (no prices, just slots)
 7da739d | 2026-06-19 03:38:44 -0700 | Add unit economics reference PDF for new SKU evaluation
-bb5236a | 2026-06-19 02:08:30 -0700 | Remove Paloma from GACC track, add Pará tree planting (#580)
-a3cfab4 | 2026-06-18 22:34:12 -0700 | chore(previews): refresh Beer Hall preview (2026-06-19 UTC)
 … (truncated)
 ```
 
@@ -585,7 +586,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 811.85 | 15788.96386 | 6/20/2026 6:50:19 |
+| 2026-06 | 811.85 | 15788.96386 | 6/20/2026 12:50:37 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-13`; scanned last **529** data rows)
 
