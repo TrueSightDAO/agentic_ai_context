@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-20T09:49:16Z`
+- Generated (UTC): `2026-06-20T14:40:54Z`
 - Look-back: **7** calendar days (`2026-06-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-19T10:59:14.778Z`
+- Generated (UTC): `2026-06-20T10:59:14.225Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -103,12 +103,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **295**, follow_up **70**, bulk **0**, unknown **2** (data rows: **367**)
+- **Email Agent Follow Up** — logged sends: warmup **306**, follow_up **70**, bulk **0**, unknown **2** (data rows: **378**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **249**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **260**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -304,6 +304,7 @@ _All dated lines on/after 2026-06-13_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+89ac153 | 2026-06-20 09:51:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 79fee0c | 2026-06-20 04:54:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 706da0d | 2026-06-19 18:46:39 -0700 | [autopilot] Update contracts/index.html with two changes:
 1a7e762 | 2026-06-19 18:35:12 -0700 | Fix source code link overflow and make links clickable on contracts page (#259)
@@ -343,7 +344,6 @@ ad43e40 | 2026-06-16 10:30:52 -0700 | Add provisions table rendering JavaScript 
 9c5406d | 2026-06-16 10:17:40 -0700 | Fix buy-back reserve detail page: use JSON cache + correct GAS URL (#244)
 e7a20b5 | 2026-06-16 06:42:15 -0700 | Create buy-back reserve detail page (#243)
 b1acf88 | 2026-06-16 06:42:09 -0700 | Add Accumulated Buy-Back Reserve stat card and detail page (#242)
-bcc0c24 | 2026-06-16 11:54:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -356,6 +356,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+194c97b | 2026-06-20 02:49:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
+c959853 | 2026-06-20 02:49:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 30044f9 | 2026-06-19 21:51:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
 ccaa2c1 | 2026-06-19 21:51:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 f4fb53d | 2026-06-19 20:54:52 -0700 | Merge pull request #603 from TrueSightDAO/auto/advisory-refresh-2026-06-20
@@ -394,8 +396,6 @@ d467993 | 2026-06-19 03:45:54 -0700 | Add freight/logistics section to FSVP road
 7da739d | 2026-06-19 03:38:44 -0700 | Add unit economics reference PDF for new SKU evaluation
 bb5236a | 2026-06-19 02:08:30 -0700 | Remove Paloma from GACC track, add Pará tree planting (#580)
 a3cfab4 | 2026-06-18 22:34:12 -0700 | chore(previews): refresh Beer Hall preview (2026-06-19 UTC)
-9ff4baf | 2026-06-18 22:34:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
-239d84e | 2026-06-18 21:30:33 -0700 | Merge pull request #574 from TrueSightDAO/auto/advisory-refresh-2026-06-19
 … (truncated)
 ```
 
@@ -585,7 +585,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 811.85 | 15788.96386 | 6/20/2026 1:50:47 |
+| 2026-06 | 811.85 | 15788.96386 | 6/20/2026 6:50:19 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-13`; scanned last **529** data rows)
 
