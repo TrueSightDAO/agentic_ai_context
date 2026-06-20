@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-20T04:51:08Z`
+- Generated (UTC): `2026-06-20T09:49:16Z`
 - Look-back: **7** calendar days (`2026-06-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -304,6 +304,7 @@ _All dated lines on/after 2026-06-13_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+79fee0c | 2026-06-20 04:54:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 706da0d | 2026-06-19 18:46:39 -0700 | [autopilot] Update contracts/index.html with two changes:
 1a7e762 | 2026-06-19 18:35:12 -0700 | Fix source code link overflow and make links clickable on contracts page (#259)
 b253594 | 2026-06-19 18:24:41 -0700 | [autopilot] Resolve merge conflict on contracts/index.html and add sampl (#258)
@@ -343,7 +344,6 @@ ad43e40 | 2026-06-16 10:30:52 -0700 | Add provisions table rendering JavaScript 
 e7a20b5 | 2026-06-16 06:42:15 -0700 | Create buy-back reserve detail page (#243)
 b1acf88 | 2026-06-16 06:42:09 -0700 | Add Accumulated Buy-Back Reserve stat card and detail page (#242)
 bcc0c24 | 2026-06-16 11:54:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a757252 | 2026-06-16 06:12:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -356,6 +356,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+30044f9 | 2026-06-19 21:51:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
+ccaa2c1 | 2026-06-19 21:51:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 f4fb53d | 2026-06-19 20:54:52 -0700 | Merge pull request #603 from TrueSightDAO/auto/advisory-refresh-2026-06-20
 9276050 | 2026-06-20 03:54:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 7649ec8 | 2026-06-19 16:35:37 -0700 | manifest: PR7 (beta deploy + UAT) complete (#602)
@@ -394,8 +396,6 @@ bb5236a | 2026-06-19 02:08:30 -0700 | Remove Paloma from GACC track, add Pará t
 a3cfab4 | 2026-06-18 22:34:12 -0700 | chore(previews): refresh Beer Hall preview (2026-06-19 UTC)
 9ff4baf | 2026-06-18 22:34:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
 239d84e | 2026-06-18 21:30:33 -0700 | Merge pull request #574 from TrueSightDAO/auto/advisory-refresh-2026-06-19
-9342318 | 2026-06-19 04:30:22 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
-431beb4 | 2026-06-18 20:38:18 -0700 | docs: register Deep Seek as interactive DAO agent
 … (truncated)
 ```
 
@@ -460,6 +460,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d0de9cc | 2026-06-20 09:44:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f006e46 | 2026-06-19 10:58:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4b25ffb | 2026-06-18 20:11:14 -0700 | chore: refresh Agroverse store inventory snapshot
 08f24da | 2026-06-18 19:58:56 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -584,7 +585,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 811.85 | 15788.96386 | 6/19/2026 20:50:06 |
+| 2026-06 | 811.85 | 15788.96386 | 6/20/2026 1:50:47 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-13`; scanned last **529** data rows)
 
