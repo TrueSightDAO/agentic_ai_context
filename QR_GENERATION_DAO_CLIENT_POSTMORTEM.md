@@ -72,6 +72,22 @@ This means **every repackaging batch requires manual follow-up** to populate the
 - [ ] Document that repackaging batches currently need manual `isSerializable` + farm info population before QR codes can be generated.
 - [ ] Add a `post_repackaging_checklist` to `LEDGER_CONVERSION_AND_REPACKAGING.md`.
 
+## Additional finding: `truesight.me/physical-assets/serialized/` data source
+
+The physical assets serialized page (`truesight.me/physical-assets/serialized/`) does **not** read from the Google Sheet. It reads from the **`TrueSightDAO/lineage-assets`** GitHub repo:
+
+- **Per-QR manifests:** `qrs/<qr_id>.json` — JSON files describing each QR's asset type, farm, status, lineage events, scan target, etc.
+- **Compiled QR PNGs:** `pngs/<qr_id>.png` — the print-ready label images (QR + logo + farm info + serial)
+- **Index:** `qrs_index.json` — built by `scripts/build_index.py`, aggregating all manifests into a queryable index
+
+If QR codes are written to the Google Sheet but **not** to `lineage-assets`, they will appear in the sheet but not on `truesight.me`. The fix was:
+1. Generate per-QR JSON manifests using `lib.manifest.build_manifest()` / `write_manifest()`
+2. Copy compiled PNGs to `pngs/`
+3. Rebuild `qrs_index.json` via `scripts/build_index.py`
+4. Commit and push to `main`
+
+The `batch_compiler.py` script normally does all of this, but our targeted approach had to replicate it manually since the full batch compiler times out on the entire sheet.
+
 ---
 
 ## Request ID reference
