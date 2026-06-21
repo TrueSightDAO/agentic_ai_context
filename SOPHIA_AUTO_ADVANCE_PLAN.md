@@ -1,6 +1,6 @@
 # Sophia Auto-Advance — Execution Roadmap (handoff to Sophia)
 
-**Status as of 2026-06-17:** DRAFT — design approved by Gary 2026-06-17; pending execution.
+**Status as of 2026-06-21:** LIVE — fully implemented, merged, and deployed.
 **Repo under change:** `truesight_autopilot` (Sophia's OWN codebase — adapter + brain).
 **Designed by:** Gary Teh + Claude · **Implemented by:** Sophia (or Claude), human-merged.
 
