@@ -1,6 +1,6 @@
 # Sophia Auto-Advance — Execution Roadmap (handoff to Sophia)
 
-**Status as of 2026-06-17:** DRAFT — design approved by Gary 2026-06-17; pending execution.
+**Status as of 2026-06-17:** IMPLEMENTED AND DEPLOYED — auto-advance now works on all threads (not just handoff threads) as of PR [#268](https://github.com/TrueSightDAO/truesight_autopilot/pull/268).
 **Repo under change:** `truesight_autopilot` (Sophia's OWN codebase — adapter + brain).
 **Designed by:** Gary Teh + Claude · **Implemented by:** Sophia (or Claude), human-merged.
 
