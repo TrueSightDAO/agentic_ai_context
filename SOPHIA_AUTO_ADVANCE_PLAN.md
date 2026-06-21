@@ -201,7 +201,7 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 | PR1 — convention + parser | `auto` | ☑ [#244](https://github.com/TrueSightDAO/truesight_autopilot/pull/244) + doc [agentic#545](https://github.com/TrueSightDAO/agentic_ai_context/pull/545) | ☑ | ☑ | — | ☑ |
 | PR2 — brain advance signal | `auto` | ☑ [#248](https://github.com/TrueSightDAO/truesight_autopilot/pull/248) | ☑ | ☑ | — | ☑ |
 | PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☑ [#246](https://github.com/TrueSightDAO/truesight_autopilot/pull/246) | ☑ | ☑ | U1–U6 | ☑ |
-| PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ⏳ U1–U6 | ☐ |
+| PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ☑ U1–U6 | ☑ |
 
 **Status 2026-06-17:** PR1–PR3 + convention doc all **merged to `main`** and **deployed** to the box
 (`sophia`, HEAD `f0be109`, `/health` ok, clean boot — no import errors). Restart was done while the box
