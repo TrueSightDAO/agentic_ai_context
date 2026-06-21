@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-21T10:09:54Z`
+- Generated (UTC): `2026-06-21T14:41:06Z`
 - Look-back: **7** calendar days (`2026-06-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-20T10:59:14.225Z`
+- Generated (UTC): `2026-06-21T10:59:13.808Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -303,6 +303,7 @@ _All dated lines on/after 2026-06-14_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+55715e9 | 2026-06-21 10:11:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 75953a3 | 2026-06-21 05:27:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b4ba18e | 2026-06-20 20:05:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d500e2b | 2026-06-20 14:54:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -342,7 +343,6 @@ ce43fa5 | 2026-06-16 12:14:33 -0700 | fix: add Buy-Back Reserve to show/hide tog
 ab391e6 | 2026-06-16 10:47:12 -0700 | Add CTA link to voting rights withdrawal page (#247)
 6d12a27 | 2026-06-16 17:34:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ad43e40 | 2026-06-16 10:30:52 -0700 | Add provisions table rendering JavaScript (#246)
-5f42a97 | 2026-06-16 10:30:46 -0700 | Add provisions history table to buy-back reserve detail page (#245)
 … (truncated)
 ```
 
@@ -355,6 +355,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+aa77bb7 | 2026-06-21 03:10:08 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
+bbc45c8 | 2026-06-21 03:10:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
 28d337b | 2026-06-20 22:25:31 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
 1c32b5e | 2026-06-20 22:25:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
 3823ab3 | 2026-06-20 21:25:47 -0700 | Merge pull request #606 from TrueSightDAO/auto/advisory-refresh-2026-06-21
@@ -393,8 +395,6 @@ aa2e202 | 2026-06-19 14:10:11 -0700 | Plan v7: add boundary condition for missin
 e13b011 | 2026-06-19 13:58:55 -0700 | Cursor-based pagination: replace offset with after_filename param (#586)
 32ee3dc | 2026-06-19 13:56:54 -0700 | Simplify sign event: remove reviewer email from payload, Edgar resolves from signature (#585)
 4e23f2f | 2026-06-19 13:55:10 -0700 | Extend plan: contributor resolution, approve/skip/reject, rejection reason, UI dropdown (#584)
-94d4949 | 2026-06-19 13:50:39 -0700 | Register Scoring Review Queue handoff in manifest (#583)
-0506103 | 2026-06-19 13:50:33 -0700 | Scoring Review Queue — implementation plan, architecture, and PR breakdown (#582)
 … (truncated)
 ```
 
@@ -584,7 +584,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/21/2026 2:58:21 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/21/2026 6:51:31 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-14`; scanned last **582** data rows)
 
