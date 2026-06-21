@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-21T14:41:06Z`
+- Generated (UTC): `2026-06-21T20:12:11Z`
 - Look-back: **7** calendar days (`2026-06-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[SALES EVENT]` × 26
-- `[CONTRIBUTION EVENT]` × 7
+- `[SALES EVENT]` × 23
+- `[CONTRIBUTION EVENT]` × 9
 - `[BATCH QR CODE REQUEST]` × 2
 - `[REPACKAGING BATCH EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260620222830_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Test · Amount: 0.01 · Description: Edgar health check
-- `Edgar_20260620223517_105` · **Edgar** · test
-- `Edgar_20260620223700_107` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_2 · Sales price: 17.00 · Sold by: SOHA - David Campbell
 - `Edgar_20260620223719_109` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_6 · Sales price: 17.00 · Sold by: SOHA - David Campbell
 - `Edgar_20260620223734_111` · **Edgar** · test
 - `Edgar_20260620223735_113` · **Edgar** · hello
@@ -60,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260621011417_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: **Problem:** Auto-advance only works on han…
 - `Edgar_20260621013840_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agentic_ai_context: Update SOPHIA_AUTO_ADVANCE_PLAN.md to reflec…
 - `Edgar_20260621052709_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agentic_ai_context: The SOPHIA_AUTO_ADVANCE_PLAN.md still says "…
+- `Edgar_20260621174626_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-21T17:46:25.377Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260621195245_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Smart Contracts catalog page: inline RSA verification + signed payloads
+- `Edgar_20260621195257_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Smart Contracts catalog page review: inline RSA verification + signed payloa…
 
 ---
 
@@ -272,8 +273,9 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-06-16 | claude | Second root cause of Sophia empty-response (thread 5712), distinct from #227: corrupted transcript had a tool result NOT adjacent to its assistant tool_calls -> DeepSeek 400 -> stream emitted error event w/ no done -> adapter (no error branch) showed empty banner. Fix PR #229 MERGED to main (b8b7d37), NOT deployed per Gary (Sophia mid-task; her context file already repaired by DeepSeek out-of-band). _sanitise_tool_messages Pass1 now adjacency-aware; telegram adapter surfaces error events. 532 tests pass. *** DEPLOY PENDING: box runs #227 but not #229 — next truesight-autopilot deploy must pick up b8b7d37. ***
 - 2026-06-18 | claude | truesight_autopilot: removed the submit_contribution approval gate (PR #251). It was QR-keyed (built for INVENTORY MOVEMENT, b0b134b) but applied to all submissions; a no-QR CONTRIBUTION EVENT could never be approved -> permanent 'pending' -> model re-called to the round cap (the Sophia-thread infinite loop). Now behind REQUIRE_SUBMISSION_APPROVAL (default false): signed submissions execute directly. Set the flag true to restore the Approve/Reject card.
+- 2026-06-21 | claude | SCORING_REVIEW_QUEUE_PLAN.md — code-verified the pipeline; the manifest's "PR7 done / RESUME HERE = PR8" was WRONG. PR4 (GAS processApprovalRejections write-back in the 1BHAGZd Grok project) is NOT deployed: live probe of the /exec returns "No valid action specified", and processApprovalRejections is absent from source + git log. Result: DApp approve -> Edgar appends [CONTRIBUTION REVIEW EVENT] to Telegram Chat Logs -> nothing writes it back to Scored Chatlogs as "Reviewed" -> transfer batch (processAllReviewedRows, already batch-capable, no change needed) never sees it -> never reaches Ledger history. Loop broken end-to-end. Also Edgar gas_review_webhook_url defaults to "" (config.py:115) with no fallback cron. Verified in place: PR2/PR3 (dao_protocol routes), PR5 (dapp_beta review_queue.html). Re-pointed RESUME HERE = PR4 in HANDOFF_MANIFEST + plan §12 (resume tracker w/ Advance markers) + added the missing SOPHIA_HANDOFFS registry row (thread 7191). PR4 caveat: existing doGet uses e.parameter.action — MERGE an exec branch, do NOT add a 2nd doGet; reconcile the duplicate doGet in Code.js + grok_scoring_for_telegram_and_whatsapp_logs.js; add a time-trigger + set DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL on Edgar.
 
-_All dated lines on/after 2026-06-14_ (10):
+_All dated lines on/after 2026-06-14_ (11):
 
 - 2026-06-14 | claude (sophia prod-incident session) | Sophia prod stall cascade on the Kopi Bay onboarding thread (tg 3926) — root-caused + fixed 3 distinct bugs (all deployed to box 958e8cc). (1) truesight_autopilot#195: submit_contribution crashed when DeepSeek double-encoded `attributes` as a JSON string → AttributeError in _normalize_submission_labels → turn died mid tool-loop, orphan tool_call, silent stall. (2) #200: _externalize_tool_result (CM1, from #193/#194) returned non-str tool results raw — recall_context/search_code/sheet tools return dicts → `result_text[:300]` raised `TypeError: unhashable type: 'slice'` → streaming turn crashed → adapter showed "incomplete chunked read". HEADS-UP to whoever owns the CM work: #200 patched _externalize_tool_result in your subsystem (coerce non-str → json.dumps before the length check) — don't re-fix/revert. (3) #201: deploy_autopilot had no already-on-latest check → always reset --hard + restarted, severing in-flight turns → adapter resubmits → REDEPLOY LOOP (hit the vault commit-hash thread 3981); added a phase-one hash precheck returning status=noop when HEAD==origin/main.
 - 2026-06-14 | claude (sophia prod-incident session) | OPEN BUG (diagnosed, NOT yet fixed) — vault panel sophia.truesight.me/vault/ shows "Active tracks: 0" during live chat. Two disconnected active-turn registries: main._active_streams (in-memory; what deploy_autopilot idle-drain reads) vs deploy_watcher active_tracks.json (file; what the vault panel get_system_status + can_deploy read). register_track/unregister_track are called ONLY by aws_monitor.py + email_poller.py — the chat path (main.py) never registers a track. Consequence: panel under-reports live conversations AND its Deploy button (can_deploy) would greenlight a deploy while turns run. Fix options: (a) chat loop calls deploy_watcher.register_track/unregister around each turn, or (b) get_system_status/can_deploy also union main._active_streams. Likely belongs with the thread-3981 vault-panel feature work.
@@ -285,6 +287,7 @@ _All dated lines on/after 2026-06-14_ (10):
 - 2026-06-16 | claude | Second root cause of Sophia empty-response (thread 5712), distinct from #227: corrupted transcript had a tool result NOT adjacent to its assistant tool_calls -> DeepSeek 400 -> stream emitted error event w/ no done -> adapter (no error branch) showed empty banner. Fix PR #229 MERGED to main (b8b7d37), NOT deployed per Gary (Sophia mid-task; her context file already repaired by DeepSeek out-of-band). _sanitise_tool_messages Pass1 now adjacency-aware; telegram adapter surfaces error events. 532 tests pass. *** DEPLOY PENDING: box runs #227 but not #229 — next truesight-autopilot deploy must pick up b8b7d37. ***
 - 2026-06-18 | claude | truesight_autopilot: removed the submit_contribution approval gate (PR #251). It was QR-keyed (built for INVENTORY MOVEMENT, b0b134b) but applied to all submissions; a no-QR CONTRIBUTION EVENT could never be approved -> permanent 'pending' -> model re-called to the round cap (the Sophia-thread infinite loop). Now behind REQUIRE_SUBMISSION_APPROVAL (default false): signed submissions execute directly. Set the flag true to restore the Approve/Reject card.
 - 2026-06-18 | claude | Added AI_AGENT_DAO_REGISTRATION.md — how an interactive LLM registers its OWN DAO identity (the 'Claude Anthropic' pattern: dedicated ~/Applications/<slug>_dao_identity/.env + +alias email + truesight-dao-auth login → report-ai-agent-contribution). Complements SERVICE_IDENTITY_ONBOARDING.md (cron bots). Human: consider adding a pointer row to README.md Contents + OPERATING_INSTRUCTIONS §2 table.
+- 2026-06-21 | claude | SCORING_REVIEW_QUEUE_PLAN.md — code-verified the pipeline; the manifest's "PR7 done / RESUME HERE = PR8" was WRONG. PR4 (GAS processApprovalRejections write-back in the 1BHAGZd Grok project) is NOT deployed: live probe of the /exec returns "No valid action specified", and processApprovalRejections is absent from source + git log. Result: DApp approve -> Edgar appends [CONTRIBUTION REVIEW EVENT] to Telegram Chat Logs -> nothing writes it back to Scored Chatlogs as "Reviewed" -> transfer batch (processAllReviewedRows, already batch-capable, no change needed) never sees it -> never reaches Ledger history. Loop broken end-to-end. Also Edgar gas_review_webhook_url defaults to "" (config.py:115) with no fallback cron. Verified in place: PR2/PR3 (dao_protocol routes), PR5 (dapp_beta review_queue.html). Re-pointed RESUME HERE = PR4 in HANDOFF_MANIFEST + plan §12 (resume tracker w/ Advance markers) + added the missing SOPHIA_HANDOFFS registry row (thread 7191). PR4 caveat: existing doGet uses e.parameter.action — MERGE an exec branch, do NOT add a 2nd doGet; reconcile the duplicate doGet in Code.js + grok_scoring_for_telegram_and_whatsapp_logs.js; add a time-trigger + set DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL on Edgar.
 
 ---
 
@@ -303,6 +306,10 @@ _All dated lines on/after 2026-06-14_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+45f37ee | 2026-06-21 12:53:05 -0700 | Merge pull request #261 from TrueSightDAO/contracts-verify-pr
+207637f | 2026-06-21 12:52:35 -0700 | feat: Smart Contracts catalog with inline RSA verification
+71d88e0 | 2026-06-21 12:48:16 -0700 | feat: add smart contracts catalog with inline RSA signature verification
+4658d6b | 2026-06-21 15:01:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 55715e9 | 2026-06-21 10:11:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 75953a3 | 2026-06-21 05:27:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b4ba18e | 2026-06-20 20:05:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -339,10 +346,6 @@ e7ac037 | 2026-06-18 05:20:54 +0000 | chore(stats): refresh stats/current.json [
 e31c358 | 2026-06-16 21:31:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bebf4a3 | 2026-06-16 12:23:59 -0700 | fix: add View history link to Daily Buy-Back Budget card for equal height
 ce43fa5 | 2026-06-16 12:14:33 -0700 | fix: add Buy-Back Reserve to show/hide toggle; match footer style on buy-back-reserve page
-464f2b2 | 2026-06-16 10:53:23 -0700 | Fix mobile dropdown menu showing bullet points (#248)
-ab391e6 | 2026-06-16 10:47:12 -0700 | Add CTA link to voting rights withdrawal page (#247)
-6d12a27 | 2026-06-16 17:34:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
-ad43e40 | 2026-06-16 10:30:52 -0700 | Add provisions table rendering JavaScript (#246)
 … (truncated)
 ```
 
@@ -355,6 +358,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1e1275b | 2026-06-21 12:48:19 -0700 | Scoring Review Queue: correct handoff — PR4 (GAS write-back) undeployed; RESUME HERE = PR4 (#608)
+dc3e498 | 2026-06-21 07:41:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
+d986f42 | 2026-06-21 07:41:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
 aa77bb7 | 2026-06-21 03:10:08 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
 bbc45c8 | 2026-06-21 03:10:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
 28d337b | 2026-06-20 22:25:31 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
@@ -392,9 +398,6 @@ b2b1aca | 2026-06-19 14:20:28 -0700 | Plan v8: extend existing doPost in Grok sc
 aa2e202 | 2026-06-19 14:10:11 -0700 | Plan v7: add boundary condition for missing after_filename, GAS project home, dao_client module (#589)
 776638a | 2026-06-19 14:09:04 -0700 | Plan v6: specify GAS project home, add dao_client module, explicit status transitions (#588)
 496e834 | 2026-06-19 14:01:23 -0700 | Add explicit status state machine table + correct initial status from Grok (#587)
-e13b011 | 2026-06-19 13:58:55 -0700 | Cursor-based pagination: replace offset with after_filename param (#586)
-32ee3dc | 2026-06-19 13:56:54 -0700 | Simplify sign event: remove reviewer email from payload, Edgar resolves from signature (#585)
-4e23f2f | 2026-06-19 13:55:10 -0700 | Extend plan: contributor resolution, approve/skip/reject, rejection reason, UI dropdown (#584)
 … (truncated)
 ```
 
@@ -584,7 +587,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/21/2026 6:51:31 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/21/2026 12:50:38 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-14`; scanned last **582** data rows)
 
