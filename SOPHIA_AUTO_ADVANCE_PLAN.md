@@ -211,10 +211,9 @@ was auto-closed by GitHub when the PR1 base branch was deleted on merge). **`AUT
 LIVE** (`/opt/truesight_autopilot/.env` line 49; verified `settings.auto_advance=True`, max_turns=8;
 brain + adapter restarted while idle 2026-06-17, `/health` ok).
 
-> **RESUME HERE (PR4 — UAT):** Feature is deployed AND enabled. Remaining: run **UAT U1–U6** on a scratch
-> handoff thread with a throwaway 3-PR plan (`auto`/`gate` markers) — confirm she auto-advances the `auto`
-> units with a heartbeat between each, pauses at the `gate:`, halts on a failed unit, and stops at the
-> cap (8). To roll back instantly: set `AUTO_ADVANCE=false` (or remove the line) + restart.
+**UAT U1–U6 all passed.** Auto-advance was subsequently extended to work on **all threads** (not just
+handoff threads) via PR [#268](https://github.com/TrueSightDAO/truesight_autopilot/pull/268), which was
+merged and deployed. The feature is fully **IMPLEMENTED AND DEPLOYED** across the entire platform.
 
 ## 11. Dependency notes
 
