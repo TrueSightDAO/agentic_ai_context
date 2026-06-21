@@ -1,8 +1,15 @@
 # Scoring Review Queue — Implementation Plan
 
-**Status:** Draft · **Created:** 2026-06-18
-**Last updated:** 2026-06-18 (v12: add processed-flag column + transaction ID to Telegram Chat Logs)
+**Status:** In progress · **Created:** 2026-06-18
+**Last updated:** 2026-06-21 (v13: code-verified state — **PR4 GAS write-back is NOT deployed**; corrected the manifest's "PR7 done" claim; added §12 resume tracker with `Advance` column; **RESUME HERE = PR4**)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
+
+> ⚠️ **2026-06-21 verification (Claude):** A live probe + source/git audit found the review
+> loop **broken at the write-back step** — **PR4 (`processApprovalRejections` in the `1BHAGZd`
+> Grok project) is not deployed.** The earlier *"PR7 done — UAT passed end-to-end"* status was
+> **not credible**: without PR4 nothing writes a governor's approval back into Scored Chatlogs
+> as `Reviewed`, so the transfer batch never sees it and nothing reaches Ledger history.
+> **The next execution turn is PR4, not PR8.** Full evidence + resume tracker in **§12**.
 
 ---
 
@@ -379,17 +386,42 @@ No per-action parameters. Edgar just triggers the GAS script, which scans Telegr
 
 **Why doGet instead of doPost:** Edgar calls the GAS web app via a simple GET request with a single query parameter (`exec=processApprovalRejections`). This avoids CORS issues, content-type restrictions, and the complexity of POST webhook handling. The existing `doPost(e)` stays untouched — it still handles Telegram webhooks and orchestrator calls.
 
-**NEW — function doGet(e) — Review processing trigger:**
+> ⚠️ **PR4 implementation caveats (verified 2026-06-21):**
+> 1. **The `1BHAGZd` project ALREADY defines a `doGet(e)`** (it reads `e.parameter.action`
+>    and handles `action === 'processTelegramChatLogs'`). GAS does **not** allow two
+>    functions of the same name in one project — **do NOT add a second `doGet`.** Instead
+>    **merge** an `exec` branch into the existing `doGet` (keep the `action` branch intact),
+>    e.g. `const exec = e.parameter.exec; if (exec === 'processApprovalRejections') return processApprovalRejections();`
+>    placed alongside the existing `action` check.
+> 2. **Duplicate-file hazard:** `doGet` currently appears **identically in both `Code.js` and
+>    `grok_scoring_for_telegram_and_whatsapp_logs.js`** (byte-identical 70997-byte files,
+>    same `doGet` at line 279). Two definitions in one clasp project collide — **reconcile to a
+>    single source file before `clasp push`** (delete/rename the orphan; confirm which file the
+>    deployment actually loads).
+> 3. **Edgar trigger is NOT wired:** `gas_review_webhook_url` defaults to `""`
+>    (`dao_protocol/.../server/config.py:115`); `dao.py:203` then falls back to *"GAS cron will
+>    process"* — but **no such cron is deployed.** PR4 must therefore ALSO add a **time-based
+>    trigger** on `processApprovalRejections` (safety net) **and** the operator must set
+>    `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` on the Edgar box to the `1BHAGZd` `/exec` URL for
+>    immediate processing. Without one of these, approvals sit unprocessed in Telegram Chat Logs.
+
+**NEW — `doGet(e)` — merge a Review-processing branch into the EXISTING `doGet` (illustrative; do not duplicate the function):**
 ```javascript
+// EXISTING doGet already handles e.parameter.action — ADD this branch, don't redefine doGet:
 function doGet(e) {
   try {
-    const exec = e.parameter.exec;
+    const action = e.parameter && e.parameter.action;
+    const exec = e.parameter && e.parameter.exec;
 
-    if (exec === 'processApprovalRejections') {
+    if (action === 'processTelegramChatLogs') {   // existing behavior — keep
+      processTelegramChatLogs();
+      return ContentService.createTextOutput("✅ Telegram logs processed");
+    }
+    if (exec === 'processApprovalRejections') {    // NEW — review write-back
       return processApprovalRejections();
     }
 
-    return createJsonResponse({ status: 'error', reason: 'Unknown exec: ' + exec }, 400);
+    return ContentService.createTextOutput("ℹ️ No valid action specified");
   } catch (err) {
     Logger.log('doGet error: ' + err.message);
     return createJsonResponse({ status: 'error', reason: err.message }, 500);
@@ -793,3 +825,56 @@ If the new system has issues:
 5. **Revert GAS webhook** — `clasp push` the previous version
 
 The Scored Chatlogs sheet is never modified by the new system in a way that breaks the existing transfer script — the transfer script already handles "Reviewed" status (and "Pending Review" for backward compatibility).
+
+---
+
+## 12. Verification & Resume Tracker (2026-06-21, Claude)
+
+A code-level audit (live GAS probe + source + `git log` across `tokenomics`, `dao_protocol`,
+`dapp_beta`) found the pipeline **broken at the write-back step**. This section is the source of
+truth for resume state — it supersedes the manifest's prior *"PR7 done"* line.
+
+### 12.1 What was verified
+
+| Unit | Verdict | Evidence |
+|------|---------|----------|
+| **PR2** — Edgar `GET /dao/review_queue` | ✅ **in place** | `dao_protocol/truesight_dao_client/server/routes/dao.py` (review-queue cache read) |
+| **PR3** — Edgar `POST /dao/submit_contribution_review` | ✅ **in place** | `dao.py:315` — verifies governor/Sentinel, appends `[CONTRIBUTION REVIEW EVENT]` to Telegram Chat Logs, deletes cache, calls `_call_gas_review_webhook()` (`dao.py:195`) |
+| **PR5** — DApp `review_queue.html` | ✅ **in place** | committed to `dapp_beta` `main` (`git ls-files` → `review_queue.html`) |
+| **PR4** — GAS `processApprovalRejections` write-back (`1BHAGZd` Grok project) | ❌ **NOT deployed** | Live probe `…AKfycbwnCn80es…/exec?exec=processApprovalRejections` → `ℹ️ No valid action specified`; deployed `doGet` only knows `?action=processTelegramChatLogs` (April code); `grep -c processApprovalRejections` = 0 across all project files; no review commit in `git log` |
+| **Edgar trigger config** | ❌ **not wired** | `config.py:115` `gas_review_webhook_url: str = ""`; `dao.py:203` falls back to a "GAS cron" that does not exist |
+| **PR1** — GitHub Action cache generator | ⚠️ **unverified** | manifest claims deployed; **operator gate** still open: `GH_PAT_TOKEN` + `GOOGLE_SERVICE_ACCOUNT_JSON` secrets in `treasury-cache` |
+| **PR6** — `dao_client` review module | ⚠️ **unverified** | not audited this pass |
+| Transfer script (`1-ts0WTM8…`) | ✅ **already batch-capable** | `processAllReviewedRows()` (line 256) scans all `Reviewed` rows → `transferRowByIndex()`; **no per-row manual call needed**, **no changes needed** (plan §7.4 confirmed) |
+
+**Net effect of the PR4 gap:** DApp approve ✅ → Edgar appends `[CONTRIBUTION REVIEW EVENT]` ✅
+→ **❌ nothing writes it back to Scored Chatlogs as `Reviewed`** → transfer batch never sees it
+→ never reaches Ledger history. The loop cannot complete end-to-end until PR4 lands.
+
+> 🛑 **Myth-buster (supersedes an earlier "add a cron to the transfer script" analysis):** the
+> transfer step is **not** the bottleneck and is **not** per-hash-key-manual — `processAllReviewedRows()`
+> already batches. `"Successfully Completed / Full Provision Awarded"` is the **destination**
+> status in Ledger history, not a transfer trigger. The genuinely missing automation is **PR4**.
+
+### 12.2 Resume tracker — `Advance` markers per OPERATING_INSTRUCTIONS §5c
+
+**RESUME HERE → PR4.** One PR per turn (§5a).
+
+| Unit | Advance | PR opened | Merged (human) | Deployed | State |
+|------|---------|-----------|----------------|----------|-------|
+| PR1 — cache generator | `gate: confirm treasury-cache secrets (GH_PAT_TOKEN, GOOGLE_SERVICE_ACCOUNT_JSON)` | ☑ (claimed) | ☑ | ⚠️ operator gate | unverified — confirm before relying on it |
+| PR2 — Edgar review_queue | — | ☑ | ☑ | ☑ | ✅ verified |
+| PR3 — Edgar submit_contribution_review | — | ☑ | ☑ | ☑ | ✅ verified |
+| **PR4 — GAS write-back (`1BHAGZd`)** ← **RESUME HERE** | `gate: clasp push to prod GAS + set Edgar DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL + add time-trigger` | ☐ | ☐ | ☐ | ❌ **not deployed — load-bearing gap** |
+| PR5 — DApp review_queue.html | — | ☑ | ☑ | ☑ (beta) | ✅ verified |
+| PR6 — dao_client module | `auto` | ☐ | ☐ | ☐ | unverified — audit, then ship if missing |
+| PR7 — Beta deploy + **real** E2E UAT | `gate: true end-to-end after PR4 (submit → score → cache → approve → write-back → transfer → Ledger history)` | ☐ | ☐ | ☐ | ⚠️ prior "done" was inaccurate; cannot pass until PR4 |
+| PR8 — Promote to prod | `gate: UAT pass + prod Edgar webhook env set` | ☐ | ☐ | ☐ | blocked on PR4 + PR7 |
+
+**PR4 scope (one turn):** in `tokenomics/google_app_scripts/1BHAGZd…/` — (a) reconcile the duplicate
+`doGet` to a single source file; (b) **merge** an `exec=processApprovalRejections` branch into the
+existing `doGet` (keep the `action` branch); (c) add `processApprovalRejections` +
+`parseReviewEvent` + `applyReviewToScoredChatlogs` (with the §7.3 double-counting guard) +
+`markEventAsProcessed`; (d) add a **time-based trigger** on `processApprovalRejections` as the
+safety-net cron; (e) `clasp push`; (f) operator sets `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` on the
+Edgar box. Open the PR against `tokenomics`. Then report the contribution and STOP (§5a).
