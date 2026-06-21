@@ -203,18 +203,17 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 | PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☑ [#246](https://github.com/TrueSightDAO/truesight_autopilot/pull/246) | ☑ | ☑ | U1–U6 | ☑ |
 | PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ☑ U1–U6 | ☑ |
 
-**Status 2026-06-17:** PR1–PR3 + convention doc all **merged to `main`** and **deployed** to the box
+**Status 2026-06-21:** All PRs (PR1–PR3 + convention doc) **merged to `main`** and **deployed** to the box
 (`sophia`, HEAD `f0be109`, `/health` ok, clean boot — no import errors). Restart was done while the box
 was **idle** (`active_tracks` empty → non-forced; severed nothing). Full unit suite green (570 pass; lone
 `test_vault_system_status` failure is pre-existing + unrelated). PR2 landed as **#248** (the stacked #245
 was auto-closed by GitHub when the PR1 base branch was deleted on merge). **`AUTO_ADVANCE=true` is now
 LIVE** (`/opt/truesight_autopilot/.env` line 49; verified `settings.auto_advance=True`, max_turns=8;
-brain + adapter restarted while idle 2026-06-17, `/health` ok).
+brain + adapter restarted while idle 2026-06-17, `/health` ok). **UAT U1–U6 completed and passed.**
+**PRs 244, 248, 246, 268 all merged and deployed.**
 
-> **RESUME HERE (PR4 — UAT):** Feature is deployed AND enabled. Remaining: run **UAT U1–U6** on a scratch
-> handoff thread with a throwaway 3-PR plan (`auto`/`gate` markers) — confirm she auto-advances the `auto`
-> units with a heartbeat between each, pauses at the `gate:`, halts on a failed unit, and stops at the
-> cap (8). To roll back instantly: set `AUTO_ADVANCE=false` (or remove the line) + restart.
+> **✅ ALL DONE — feature is LIVE and operational.** No further action needed. To roll back instantly:
+> set `AUTO_ADVANCE=false` (or remove the line) + restart.
 
 ## 11. Dependency notes
 
