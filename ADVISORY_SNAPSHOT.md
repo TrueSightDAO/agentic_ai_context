@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-21T05:25:07Z`
+- Generated (UTC): `2026-06-21T10:09:54Z`
 - Look-back: **7** calendar days (`2026-06-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[SALES EVENT]` × 27
-- `[CONTRIBUTION EVENT]` × 6
+- `[SALES EVENT]` × 26
+- `[CONTRIBUTION EVENT]` × 7
 - `[BATCH QR CODE REQUEST]` × 2
 - `[REPACKAGING BATCH EVENT]` × 1
 - _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260620222821_101` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_42 · Sales price: 17.00 · Sold by: SOHA - David Campbell
 - `Edgar_20260620222830_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Test · Amount: 0.01 · Description: Edgar health check
 - `Edgar_20260620223517_105` · **Edgar** · test
 - `Edgar_20260620223700_107` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_2 · Sales price: 17.00 · Sold by: SOHA - David Campbell
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260620232121_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Repackaging batch + QR code generation (7 nibs → 3 ceremonial + 15 bars)
 - `Edgar_20260621011417_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: **Problem:** Auto-advance only works on han…
 - `Edgar_20260621013840_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agentic_ai_context: Update SOPHIA_AUTO_ADVANCE_PLAN.md to reflec…
+- `Edgar_20260621052709_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agentic_ai_context: The SOPHIA_AUTO_ADVANCE_PLAN.md still says "…
 
 ---
 
@@ -303,6 +303,7 @@ _All dated lines on/after 2026-06-14_ (10):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+75953a3 | 2026-06-21 05:27:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b4ba18e | 2026-06-20 20:05:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d500e2b | 2026-06-20 14:54:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 89ac153 | 2026-06-20 09:51:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -342,7 +343,6 @@ ab391e6 | 2026-06-16 10:47:12 -0700 | Add CTA link to voting rights withdrawal p
 6d12a27 | 2026-06-16 17:34:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ad43e40 | 2026-06-16 10:30:52 -0700 | Add provisions table rendering JavaScript (#246)
 5f42a97 | 2026-06-16 10:30:46 -0700 | Add provisions history table to buy-back reserve detail page (#245)
-9c5406d | 2026-06-16 10:17:40 -0700 | Fix buy-back reserve detail page: use JSON cache + correct GAS URL (#244)
 … (truncated)
 ```
 
@@ -355,6 +355,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+28d337b | 2026-06-20 22:25:31 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
+1c32b5e | 2026-06-20 22:25:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
 3823ab3 | 2026-06-20 21:25:47 -0700 | Merge pull request #606 from TrueSightDAO/auto/advisory-refresh-2026-06-21
 4f49859 | 2026-06-21 04:25:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
 5377e00 | 2026-06-20 16:23:23 -0700 | docs: add lineage-assets data source finding to postmortem
@@ -393,8 +395,6 @@ e13b011 | 2026-06-19 13:58:55 -0700 | Cursor-based pagination: replace offset wi
 4e23f2f | 2026-06-19 13:55:10 -0700 | Extend plan: contributor resolution, approve/skip/reject, rejection reason, UI dropdown (#584)
 94d4949 | 2026-06-19 13:50:39 -0700 | Register Scoring Review Queue handoff in manifest (#583)
 0506103 | 2026-06-19 13:50:33 -0700 | Scoring Review Queue — implementation plan, architecture, and PR breakdown (#582)
-d022069 | 2026-06-19 13:14:32 -0700 | chore(previews): refresh Beer Hall preview (2026-06-19 UTC)
-ac79a17 | 2026-06-19 13:14:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-19 UTC)
 … (truncated)
 ```
 
@@ -458,6 +458,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+da65eaa | 2026-06-21 10:07:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5366c32 | 2026-06-20 15:59:53 -0700 | chore(inventory): repackaging composition b08d324b-e2f4-4645-9d25-ee43f9e7d9e0
 e7f8817 | 2026-06-20 15:59:52 -0700 | chore(inventory): refresh currencies.json (repackaging ingest)
 d0de9cc | 2026-06-20 09:44:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -583,7 +584,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/20/2026 21:51:42 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/21/2026 2:58:21 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-14`; scanned last **582** data rows)
 
