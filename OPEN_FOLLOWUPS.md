@@ -39,6 +39,96 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Edgar SKU onboarding robustness (regenerative SKU pipeline)
+**Filed 2026-07-22.** Gary handing off ops to focus on digital infrastructure. First priority: Edgar's workflow needs to be robust enough that new regenerative SKUs can onboard easily without friction or holding. Currently each new SKU requires manual ledger wiring.
+
+**Action (~4-6h):**
+1. Audit the current SKU onboarding path (Edgar → GAS → ledgers) and identify every manual touchpoint
+2. Design a generic SKU registry — a sheet or config where a new SKU is defined once (name, unit, material composition, default price, tree-planting allocation %) and Edgar auto-instantiates the required ledgers
+3. Build the GAS / Edgar endpoint: `POST /dao/register_sku` with fields: name, category, material_composition (JSON), unit_cost, tree_planting_allocation_pct, manager
+4. Update `process_sales_telegram_logs.gs` and `processInventoryMovementToLedgers` to handle dynamic SKUs (not just hardcoded cacao)
+5. Test with a dummy SKU end-to-end
+
+**Owner:** Sophia (can design + PR; Gary reviews)
+
+### Dynamic ledger instantiation for new SKUs
+**Filed 2026-07-22.** When a new regenerative SKU is registered, a new ledger tab (or linked sheet) should be auto-created to track that SKU's inventory, sales, and fund channeling back to tree planting via the QR code infrastructure.
+
+**Action (~3-5h):**
+1. Design the ledger template (columns: QR Code, Status, Manager, Sale Price, Tree Planting Allocation, Date Sold, etc.)
+2. Build GAS function `createSkuLedger(skuName)` that duplicates the template and names it after the SKU
+3. Wire it into the SKU registration flow so ledger creation is automatic
+4. Ensure QR code generation (`AGROVERSE_QR_CODE_BATCH_GENERATION.md`) can accept a `sku` parameter so QR codes are namespaced per SKU
+
+**Depends on:** Edgar SKU onboarding robustness (above)
+
+### Material composition recording on ledger
+**Filed 2026-07-22.** For new regenerative SKUs (especially multi-ingredient products like chocolate bars), the material composition needs to be recorded on the ledger — what % is cacao, what % is other regenerative ingredients, what % is packaging, etc.
+
+**Action (~2-3h):**
+1. Add a `material_composition` JSON column to the SKU registry (or a separate `SKU Compositions` sheet tab)
+2. Define a schema: `{"cacao": 0.7, "coconut_sugar": 0.15, "packaging": 0.1, "other": 0.05}`
+3. Expose via Edgar API so Sophia can read it when answering brand owner questions
+4. Optionally: display composition on the QR code lookup result for transparency
+
+### Sophia as brand onboarding interface
+**Filed 2026-07-22.** Gary wants Sophia to be able to answer questions from new regenerative brand owners onboarding onto the chain, and submit their inventory and sales transactions to Edgar without hiccups.
+
+**Action (~4-6h):**
+1. Create a brand onboarding runbook in agentic_ai_context (`BRAND_ONBOARDING_PROTOCOL.md`) covering:
+   - What info Sophia needs from a brand owner (SKU details, material composition, pricing, inventory location)
+   - How to register a new SKU (via the SKU registry above)
+   - How to submit inventory movements and sales on behalf of the brand
+   - Common error states and resolutions
+2. Ensure `submit_contribution` tool can accept a `brand` / `on_behalf_of` parameter so Sophia can submit for third parties
+3. Test the flow with a simulated brand owner conversation
+
+**Depends on:** Edgar SKU onboarding robustness, Dynamic ledger instantiation
+
+### White-label chocolate bar infrastructure
+**Filed 2026-07-22.** Infrastructure to handle white-label chocolate bars for corporate gifting and donation drives. Companies want their own branding on bars that also fund tree planting.
+
+**Action (~5-8h):**
+1. Design the white-label SKU model: base product (chocolate bar) + custom wrapper/branding overlay
+2. Add fields to SKU registry: `is_white_label`, `parent_sku`, `branding_asset_url`, `minimum_order_qty`
+3. Build a white-label order flow: company selects base bar → uploads logo/art → Sophia creates a white-label SKU → QR codes generated with custom branding metadata
+4. Wire to Stripe for bulk corporate orders (invoice, not just checkout)
+5. Document in `WHITE_LABEL_CHOCOLATE_PLAN.md`
+
+### Non-profit / tax-deductible tree-gifting layer
+**Filed 2026-07-22.** As corporate gifting ramps up, a non-profit infrastructure becomes important — allow companies to write off tax while their employees get gifted a tree in the Amazon rainforest along with a bar of chocolate.
+
+**Action (~6-10h — strategic, needs Gary's direction):**
+1. Research the optimal non-profit vehicle: existing 501(c)(3) partner vs. setting up a new one vs. fiscal sponsorship
+2. Design the flow: company pays → non-profit issues tax receipt → tree planted in employee's name → QR code on chocolate bar links to tree certificate
+3. Build the tree-gifting ledger: track which trees are gifted, to whom, under which corporate donation
+4. Integrate with SunMint tree planting data
+5. Draft a one-pager for potential corporate partners explaining the tax benefit + impact story
+
+**Owner:** Gary (strategic direction) + Sophia (research + implementation)
+
+### Full-time ops hire needed
+**Filed 2026-07-22.** Gary identified that ops-related human-in-the-loop activities need to be professionalized — someone full-time brought onboard as staff to handle day-to-day coordination that Sophia cannot yet tackle (physical logistics, farmer relationships, warehouse coordination, etc.).
+
+**Action (~2-3h for Sophia):**
+1. Draft a job description / role scope for the ops hire based on the current bottlenecks Sophia observes
+2. List the specific tasks that are currently falling through cracks (or consuming Gary's time) that this person would own
+3. Suggest where to post (Beer Hall, LinkedIn, impact-jobs boards)
+4. Present to Gary for review
+
+### Liz channel distribution scaling (cacao supply chain stabilization gate)
+**Filed 2026-07-22.** Once the cacao supply chain is stabilized, Liz will scale sales and marketing volume by connecting with channel distribution partners. This is a sequencing note: don't push for channel distribution until the supply chain can reliably fulfill.
+
+**Action:** No code change needed. This is a strategic gate. Sophia should flag when inventory levels and fulfillment reliability metrics hit the threshold where Liz's channel push becomes safe. Define the threshold in `SUPPLY_CHAIN_AND_FREIGHTING.md` or a new `CHANNEL_DISTRIBUTION_GATE.md`.
+
+### Gary handoff: ops/sales/marketing → digital infrastructure focus
+**Filed 2026-07-22.** Gary is handing off ops coordination, sales, and marketing to devote bandwidth to digital infrastructure. This affects how Sophia routes questions and who to escalate to.
+
+**Action:**
+1. Update `OPERATING_INSTRUCTIONS.md` to reflect the new role boundaries
+2. Add a note: for ops/sales/marketing questions, Sophia should capture the request and flag for the ops hire (once hired) or Liz (for sales channel) rather than escalating to Gary
+3. Gary's new focus areas: Edgar robustness, SKU infrastructure, white-label, non-profit layer, DApp improvements
+
 ```followup
 id: chocolate-subscription-phase2
 chat_id: -1003919341801
