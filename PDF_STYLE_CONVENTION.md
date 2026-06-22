@@ -1,62 +1,133 @@
-# TrueSight DAO — PDF / Document House Style
+# PDF Style Convention — Saffron Monk
 
-**Binding on every PDF generated within the DAO** — by Sophia (autopilot `app/tools/pdf_tools.py`),
-by `market_research/` generators, and by any LLM (Claude / Cursor / Codex / etc.) producing a document
-for the DAO. The goal: every PDF we hand to a partner, governor, or the public looks like it came from
-**one brand**, not from whichever tool happened to render it.
+> **Canonical reference for PDF generation across all TrueSight DAO projects.**
+> Every `.md` document in the DAO's digital infrastructure should have a corresponding `.pdf` generated using this style.
 
-**Canonical exemplar:** `market_research/briefs/2026-06-05_dtc_paid_ads_brief_hubert_yee.pdf` (the Hubert
-Yee DTC brief) and the invoice PDFs Gary prompt-styled on 2026-06-05. Match these. This is the
-**"Saffron Monk"** brand palette (same tokens as truesight.me) applied to documents.
+---
 
-## Palette (use these exact hex values)
+## 1. Why This Convention
 
-| Role | Hex | Use |
-|---|---|---|
-| Body text | `#222222` | all paragraph/body copy (soft near-black, never pure `#000`) |
-| **Saffron (primary accent)** | `#C98A2D` | top header band, section accents, key rules |
-| Clay / caramel (secondary accent) | `#8A5A1D` | links, emphasis, callouts |
-| Cacao brown (dark) | `#3D2B1F` | titles/headings on light bg, strong emphasis |
-| Cacao brown (mid) | `#5A4632` | subheads, secondary headings |
-| Muted gray | `#888888` | captions, footnotes, metadata labels |
-| Rule / table-gray | `#DDDDDD` | table header fill, row separators, light zebra striping |
+TrueSight DAO produces many documents — implementation plans, proposals, reports, agreements, runbooks. A consistent visual identity builds trust, professionalism, and brand recognition. The **Saffron Monk** style is the DAO's house style for all generated PDFs.
 
-## Typography
+**Brand name:** Saffron Monk
+**Design principle:** Warm, grounded, readable — like a cacao ceremony in document form.
 
-- **Family:** **Helvetica Neue** (Regular / Bold / Italic). Monospace (code, IDs, IPs, commands): **Andale Mono** (fallback: any monospace). Do **not** use Times New Roman or default serif.
-- **Type scale:**
-  - Document title — Helvetica Neue **Bold ~19pt**
-  - Section heading (numbered) — **Bold ~14pt**
-  - Subheading — **Bold ~11pt**
-  - Body — Regular **10pt** (secondary/dense **9pt**)
-  - Caption / footnote — **8pt** (muted gray)
-  - Code / mono — **8pt** Andale Mono
+---
 
-## Layout
+## 2. Brand Palette
 
-1. **Saffron header band** (`#C98A2D`, full content width, ~33pt tall) at the top of page 1, with the document title on it.
-2. **Metadata block** directly under the title — `For: … / From: … / Date: … / Status: …` (labels in muted gray).
-3. **Numbered sections** (`1.`, `2.`, …) with Bold 14pt headings.
-4. **Content width ~475pt** on US-Letter (≈1″ margins).
-5. **Footer:** small muted-gray line — "TrueSight DAO" + page number.
+| Token | Hex | Usage |
+|-------|-----|-------|
+| Saffron | `#C98A2D` | Primary accent — header band, decorative elements |
+| Clay | `#8A5A1D` | Secondary accent — links, secondary headers |
+| Cacao Dark | `#3D2B1F` | Titles, strong headings |
+| Cacao Mid | `#5A4632` | Subheadings |
+| Body | `#222222` | Body text |
+| Muted | `#888888` | Captions, footer text, page numbers |
+| Rule | `#DDDDDD` | Table header fill, separators, grid lines |
+| Zebra | `#FBF7EF` | Light cream — alternating table row background |
+| White | `#FFFFFF` | Page background, table row background |
 
-## Tables — the #1 rule
+---
 
-**Render tables as real tables. Never dump raw Markdown pipes (`| col | col |`) into a PDF.**
-(The 2026-06-06 autopilot upgrade proposal violated this — its tables printed as literal `| … |` text because `pdf_tools.py` uses reportlab's default stylesheet.) Table style:
-- Header row: `#DDDDDD` fill, Bold text.
-- Body rows: light zebra striping (alternate `#FFFFFF` / very light gray), thin `#DDDDDD` separators.
-- Cell text 9–10pt Helvetica Neue.
+## 3. Typography
 
-## Implementation notes
+| Element | Font | Size | Leading | Color |
+|---------|------|------|---------|-------|
+| Document title (header band) | Helvetica Bold | 14 pt | — | White |
+| H1 heading | Helvetica Bold | 15 pt | 19 pt | Cacao Dark |
+| H2 heading | Helvetica Bold | 12.5 pt | 16 pt | Cacao Dark |
+| H3 heading | Helvetica Bold | 11 pt | 14 pt | Cacao Mid |
+| Body text | Helvetica | 10 pt | 14.5 pt | Body |
+| Bullet text | Helvetica | 10 pt | 14.5 pt | Body |
+| Table header | Helvetica Bold | 9 pt | 12 pt | Cacao Dark |
+| Table cell | Helvetica | 9 pt | 12 pt | Body |
+| Footer | Helvetica | 8 pt | — | Muted |
+| Code/monospace | Courier | 9 pt | — | Body |
 
-- **Sophia's `app/tools/pdf_tools.py` currently uses `getSampleStyleSheet()` (reportlab defaults)** → it does NOT yet emit this style and renders Markdown tables as raw text. It must be updated to: register Helvetica Neue + Andale Mono, define ParagraphStyles per the type scale + palette, draw the saffron header band on the canvas, and convert Markdown tables to reportlab `Table`/`TableStyle`. Until then, Sophia PDFs will look off-brand.
-- Prefer a **single shared styling helper** that all generators import, rather than each re-implementing the palette — so the brand only lives in one place.
-- HTML→PDF generators (weasyprint/wkhtmltopdf) should use a shared brand CSS encoding the same palette/fonts.
+**Notes:**
+- Helvetica is used instead of Helvetica Neue because it's built into reportlab and available on all deployment targets without TTF files.
+- Bold is `Helvetica-Bold`, italic is `Helvetica-Oblique`.
 
-## Quick checklist before shipping any PDF
-- [ ] Saffron header band + title on page 1
-- [ ] Helvetica Neue throughout (Andale Mono for code/IDs); no serif
-- [ ] Body `#222`, accents from the palette above
-- [ ] Tables rendered as tables (gray header, zebra) — **no raw `|` pipes**
-- [ ] Metadata block under title; muted-gray footer with page number
+---
+
+## 4. Page Furniture
+
+### Header Band
+- **Height:** 42 pt from the top of the page
+- **Fill:** Saffron (`#C98A2D`), full page width
+- **Content:** Document title in white Helvetica Bold 14 pt, left-aligned at page margin
+- **Every page** gets the header band (first page and later pages)
+
+### Footer
+- **Position:** 28 pt from the bottom of the page
+- **Left:** "TrueSight DAO" in Muted Helvetica 8 pt
+- **Right:** "Page N" in Muted Helvetica 8 pt
+- **Every page** gets the footer
+
+### Margins
+- **Left/Right:** 60 pt
+- **Top:** Header band height (42 pt) + 24 pt clearance
+- **Bottom:** 48 pt
+
+---
+
+## 5. Tables
+
+All Markdown pipe tables (`| a | b |` + `|---|---|`) must render as **real tables**, never as raw pipe text.
+
+| Property | Value |
+|----------|-------|
+| Header row fill | Rule (`#DDDDDD`) |
+| Row backgrounds | Alternating White / Zebra (`#FBF7EF`) |
+| Grid lines | 0.5 pt, Rule (`#DDDDDD`) |
+| Cell padding | 5 pt left/right, 4 pt top/bottom |
+| Vertical alignment | Top |
+| Column widths | Equal distribution across content width |
+| Header row | Repeated on page breaks |
+
+---
+
+## 6. Supported Markdown Subset
+
+PDF generators must support at minimum:
+
+| Syntax | Renders As |
+|--------|-----------|
+| `# Heading` | H1 (Cacao Dark, 15 pt) |
+| `## Heading` | H2 (Cacao Dark, 12.5 pt) |
+| `### Heading` | H3 (Cacao Mid, 11 pt) |
+| Blank line | Paragraph break (6 pt spacer) |
+| `- item` or `* item` | Bullet (•) with 14 pt left indent |
+| `**bold**` | Bold |
+| `*italic*` | Italic |
+| `| a \| b |` + `|---|---|` | Real table (gray header, zebra rows) |
+| `---`, `***`, `___` | Horizontal rule → vertical spacing |
+
+---
+
+## 7. PDF Generation Workflow
+
+For every significant `.md` document in the DAO's infrastructure:
+
+1. Write the `.md` file with full content
+2. Generate a corresponding `.pdf` using the Saffron Monk style
+3. Commit both files together (same PR, same branch)
+4. The `.pdf` filename matches the `.md` filename, e.g.:
+   - `IMPLEMENTATION_PLAN.md` → `IMPLEMENTATION_PLAN.pdf`
+   - `FEATURE_IMPLEMENTATION_CONVENTION.md` → `FEATURE_IMPLEMENTATION_CONVENTION.pdf`
+
+**Generation tool:** Use the `generate_pdf` tool (available in truesight_autopilot) with:
+- `content`: The full markdown content
+- `title`: The document title (shown in the saffron header band)
+- `output_path`: Path to save the PDF
+
+---
+
+## 8. Implementation Reference
+
+The reference implementation is in `truesight_autopilot/app/tools/pdf_tools.py` — the `generate_pdf` function. All PDF generators across the DAO should match this style.
+
+---
+
+*Last updated: 2026-06-07*
