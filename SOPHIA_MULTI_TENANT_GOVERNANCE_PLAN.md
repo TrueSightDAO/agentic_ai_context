@@ -102,7 +102,7 @@ governor-cache) — credential mutation was never a Telegram action.
 > governance decisions (Bilal conversation, Liz's interest). It secures credentials for the
 > Gary–Sophia collaboration immediately. Phase 0.1 (identity resolver) is the minimal
 > dependency the vault needs — it does NOT need the full tool-layer enforcement or
-> data/instruction boundary.
+> data/instruction boundary from Phase 0.2–0.4.
 
 ### Step A — Phase 0.1: Identity resolver *(minimal dependency for vault)*
 | PR | Description |
@@ -155,6 +155,18 @@ governor-cache) — credential mutation was never a Telegram action.
 | 4.4 | **Onboarding runbook**: clone image → set tenant config → governor seeds the vault via its page → bind the org's Telegram group → first verification. |
 | 4.5 | Tests/dry-run: a second tenant config routes context/transcripts/vault to its own targets; no cross-tenant credential or context bleed. |
 
+### Step G — Operational quality-of-life (immediately after vault, before Phase 0.2)
+
+> **Why here:** Both requirements build on the `_live_progress` + `_session_locks` +
+> `_message_queues` infrastructure already shipped in the Live Progress Introspection handoff
+> (PR1/PR2, thread 2799). They are independent of the remaining policy work (Phase 0.2–0.4)
+> and provide immediate operational value once the vault is live.
+
+| PR | Description |
+|----|-------------|
+| G1 | **Idle-before-redeploy**: Before restarting (admin/deploy, self-heal, or manual), check all `_session_locks` are free. If any thread has an active turn, wait and retry (with configurable timeout) or notify the governor which threads are busy. Prevents dropping in-flight turns on deploy. |
+| G2 | **Thread status dashboard**: A `GET /admin/threads` endpoint returning per-thread: session_id, role, live progress snapshot (`_render_progress`), queue depth (`_message_queues`), last activity timestamp (`_active_streams`). The vault web page (Phase 3.3) renders this as a sidebar or tab so the governor can see what Sophia is doing across all threads at a glance. |
+
 ---
 
 ## 7. UAT — operator acceptance (run in Telegram / the vault page)
@@ -189,6 +201,12 @@ governor-cache) — credential mutation was never a Telegram action.
 - P4.1 A second tenant config routes its **context, transcripts, and vault** to its own targets.
 - P4.2 **No cross-tenant bleed** — tenant B can't read tenant A's context or credentials.
 - P4.3 A fresh instance onboards end-to-end: image → config → governor seeds vault → group bound → first verification works.
+
+**Step G — operational**
+- G1.1 Deploying while a turn is running → Sophia waits for it to finish (or warns the governor) instead of killing it.
+- G1.2 Deploying while all threads idle → immediate restart, no delay.
+- G2.1 The vault UI shows a thread status tab listing all active threads with live progress, queue depth, and role.
+- G2.2 A thread with nothing running shows as idle.
 
 **Completion gate:** each phase's PRs are **human-merged** (Sophia opens, never self-merges) and its UAT block passes before the next phase starts.
 
@@ -225,6 +243,7 @@ touching the TrueSight instance.
 |------|-----------|----------------|----------|-----|
 | **A — Phase 0.1: Identity resolver** | ☐ | ☐ | ☐ | P0.1 |
 | **B — Phase 3: Credential vault** | ☐ | ☐ | ☐ | P3.1–P3.7 |
+| **G — Operational QoL (idle-redeploy + thread dashboard)** | ☐ | ☐ | ☐ | G1.1–G2.2 |
 | **C — Phase 0.2–0.4: Remaining policy** | ☐ | ☐ | ☐ | P0.2–P0.4 |
 | **D — Phase 1: Identity binding** | ☐ | ☐ | ☐ | P1.1–P1.5 |
 | **E — Phase 2: Engagement modes** | ☐ | ☐ | ☐ | P2.1–P2.4 |
@@ -232,8 +251,9 @@ touching the TrueSight instance.
 
 > **RESUME HERE (vault-first):** Step A — Phase 0.1 `app/policy.py` (identity resolver:
 > `telegram_id → Column X → Governors cache → {guest, governor}`). Then Step B — Phase 3
-> (credential vault). Open PRs via git worktree; **do not self-merge** (human reviews).
-> Report progress in this handoff topic (thread 2744).
+> (credential vault). Then Step G — idle-before-redeploy + thread status dashboard. Open PRs
+> via git worktree; **do not self-merge** (human reviews). Report progress in this handoff
+> topic (thread 2744).
 
 ---
 
@@ -270,6 +290,8 @@ The follow-up monitor thread (2622) uses the main clone path. Never the twain sh
 
 - Builds on the shipped **per-topic concurrency** (lock/queue/ack) and **watch-and-notify** work
   (the AMI primitive in Phase 4.3), and the **durable follow-up monitor** (`SOPHIA_FOLLOWUP_MONITOR_PLAN.md`).
+- Step G builds on the **live-progress introspection** (`_live_progress`, `_session_locks`,
+  `_message_queues`) shipped in `SOPHIA_LIVE_PROGRESS_PLAN.md` (PR1/PR2, thread 2799).
 - Phase 1 reuses the `dao_client` / Edgar email-verification plumbing.
 - Phase 3 backup ties to `credential_vault` (restore runbook).
 - Box hardening (Cypher-Defense / EC2-SG remediation) becomes **load-bearing** once the vault
