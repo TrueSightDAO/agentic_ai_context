@@ -1,7 +1,8 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** In progress · **Created:** 2026-06-18
-**Last updated:** 2026-06-21 (v13: code-verified state — **PR4 GAS write-back is NOT deployed**; corrected the manifest's "PR7 done" claim; added §12 resume tracker with `Advance` column; **RESUME HERE = PR4**)
+**Last updated:** 2026-06-22 (v14: PR4 **code merged + made deployable** — handler #367, dup-`doGet` deploy-blocker fixed #368; **RESUME HERE moved to the PR4 DEPLOY gate** — operator `clasp push` + `installReviewProcessingTrigger()` + Edgar env, then PR7 UAT)
+**Last updated:** 2026-06-21 (v13: code-verified state — PR4 GAS write-back was NOT deployed; corrected the manifest's "PR7 done" claim; added §12 resume tracker with `Advance` column)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
 > ⚠️ **2026-06-21 verification (Claude):** A live probe + source/git audit found the review
@@ -858,23 +859,31 @@ truth for resume state — it supersedes the manifest's prior *"PR7 done"* line.
 
 ### 12.2 Resume tracker — `Advance` markers per OPERATING_INSTRUCTIONS §5c
 
-**RESUME HERE → PR4.** One PR per turn (§5a).
+> **2026-06-22 update (Claude):** PR4 **code is now merged** — handler in
+> tokenomics #367, and the deploy-blocker it left (duplicate `doGet`) fixed in #368.
+> The 1BHAGZd project is now `clasp`-pushable (one `doGet`, no duplicate functions,
+> `node --check` clean). **RESUME HERE moved from "write PR4" to the PR4 DEPLOY GATE**
+> (operator: `clasp push` + run `installReviewProcessingTrigger()` + set the Edgar env).
+> §12.1's "PR4 NOT deployed" row reflected the pre-#367/#368 state and is now historical.
+
+**RESUME HERE → PR4-DEPLOY (operator gate), then PR7 (real E2E UAT), then PR8.** One PR per turn (§5a).
 
 | Unit | Advance | PR opened | Merged (human) | Deployed | State |
 |------|---------|-----------|----------------|----------|-------|
 | PR1 — cache generator | `gate: confirm treasury-cache secrets (GH_PAT_TOKEN, GOOGLE_SERVICE_ACCOUNT_JSON)` | ☑ (claimed) | ☑ | ⚠️ operator gate | unverified — confirm before relying on it |
 | PR2 — Edgar review_queue | — | ☑ | ☑ | ☑ | ✅ verified |
 | PR3 — Edgar submit_contribution_review | — | ☑ | ☑ | ☑ | ✅ verified |
-| **PR4 — GAS write-back (`1BHAGZd`)** ← **RESUME HERE** | `gate: clasp push to prod GAS + set Edgar DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL + add time-trigger` | ☐ | ☐ | ☐ | ❌ **not deployed — load-bearing gap** |
+| PR4 — GAS write-back **code** (`1BHAGZd`) | — | ☑ #367 + #368 | ☑ | ☐ | ✅ **code merged + deployable** (dup-`doGet` collision fixed #368; `installReviewProcessingTrigger()` added) |
+| **PR4-DEPLOY — push + wire** ← **RESUME HERE** | `gate: operator clasp push 1BHAGZd + run installReviewProcessingTrigger() + set Edgar DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` | n/a | n/a | ☐ | ⏳ **operator action** — code is ready; not yet pushed/wired |
 | PR5 — DApp review_queue.html | — | ☑ | ☑ | ☑ (beta) | ✅ verified |
 | PR6 — dao_client module | `auto` | ☐ | ☐ | ☐ | unverified — audit, then ship if missing |
-| PR7 — Beta deploy + **real** E2E UAT | `gate: true end-to-end after PR4 (submit → score → cache → approve → write-back → transfer → Ledger history)` | ☐ | ☐ | ☐ | ⚠️ prior "done" was inaccurate; cannot pass until PR4 |
-| PR8 — Promote to prod | `gate: UAT pass + prod Edgar webhook env set` | ☐ | ☐ | ☐ | blocked on PR4 + PR7 |
+| PR7 — Beta deploy + **real** E2E UAT | `gate: true end-to-end after PR4-DEPLOY (submit → score → cache → approve → write-back → transfer → Ledger history)` | ☐ | ☐ | ☐ | ⚠️ prior "done" was inaccurate; cannot pass until PR4 is deployed |
+| PR8 — Promote to prod | `gate: UAT pass + prod Edgar webhook env set` | ☐ | ☐ | ☐ | blocked on PR4-DEPLOY + PR7 |
 
-**PR4 scope (one turn):** in `tokenomics/google_app_scripts/1BHAGZd…/` — (a) reconcile the duplicate
-`doGet` to a single source file; (b) **merge** an `exec=processApprovalRejections` branch into the
-existing `doGet` (keep the `action` branch); (c) add `processApprovalRejections` +
-`parseReviewEvent` + `applyReviewToScoredChatlogs` (with the §7.3 double-counting guard) +
-`markEventAsProcessed`; (d) add a **time-based trigger** on `processApprovalRejections` as the
-safety-net cron; (e) `clasp push`; (f) operator sets `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` on the
-Edgar box. Open the PR against `tokenomics`. Then report the contribution and STOP (§5a).
+**PR4-DEPLOY gate (operator / Sophia, not a code PR):**
+1. `clasp push` from `tokenomics/google_app_scripts/1BHAGZd…/` (this folder carries its own `.clasp.json`; no `clasp_mirror` exists). Confirm the deployment Edgar calls is updated.
+2. Run **`installReviewProcessingTrigger()`** once in the Apps Script editor (installs the idempotent 15-min safety-net cron on `processApprovalRejections`).
+3. Set **`DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL`** on the Edgar box to the `1BHAGZd` `/exec` URL (else write-back relies solely on the cron).
+4. Re-probe: `GET …/exec?exec=processApprovalRejections` should now return `{status:"ok",processed:…}` instead of `ℹ️ No valid action specified`.
+
+**Then PR7 (one turn):** run the real end-to-end UAT on beta. **Then PR8:** promote to prod.
