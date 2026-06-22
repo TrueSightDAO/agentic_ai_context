@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-22T05:41:31Z`
+- Generated (UTC): `2026-06-22T12:32:39Z`
 - Look-back: **7** calendar days (`2026-06-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-21T10:59:13.808Z`
+- Generated (UTC): `2026-06-22T10:59:17.284Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -303,6 +303,7 @@ _All dated lines on/after 2026-06-15_ (8):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0d8783c | 2026-06-22 06:08:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ae13648 | 2026-06-21 20:14:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 45f37ee | 2026-06-21 12:53:05 -0700 | Merge pull request #261 from TrueSightDAO/contracts-verify-pr
 207637f | 2026-06-21 12:52:35 -0700 | feat: Smart Contracts catalog with inline RSA verification
@@ -342,7 +343,6 @@ e7ac037 | 2026-06-18 05:20:54 +0000 | chore(stats): refresh stats/current.json [
 54608f5 | 2026-06-17 11:22:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7d2c892 | 2026-06-17 05:27:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e31c358 | 2026-06-16 21:31:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
-bebf4a3 | 2026-06-16 12:23:59 -0700 | fix: add View history link to Daily Buy-Back Budget card for equal height
 … (truncated)
 ```
 
@@ -355,6 +355,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6824865 | 2026-06-21 22:41:53 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
+c6827cd | 2026-06-21 22:41:52 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
 38dccd2 | 2026-06-21 22:21:42 -0700 | Add infrastructure implementation plan PDF
 a7e3fef | 2026-06-21 21:27:54 -0700 | Merge pull request #609 from TrueSightDAO/auto/advisory-refresh-2026-06-22
 14695c1 | 2026-06-22 04:27:44 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
@@ -393,8 +395,6 @@ a382e68 | 2026-06-19 15:17:39 -0700 | manifest: PR2 done — advance resume trac
 a158caa | 2026-06-19 14:54:38 -0700 | handoff: mark PR1 done, resume at PR2 (#596)
 948a8df | 2026-06-19 14:49:47 -0700 | v9: add UAT environment details - beta.edgar.truesight.me + beta.dapp.truesight.me (#595)
 2639fc2 | 2026-06-19 21:40:38 +0000 | v8: fix all status references - Grok writes Pending Review, not Successfully Completed
-19dc83b | 2026-06-19 14:32:12 -0700 | Plan v12: add processed-flag column + transaction ID to Telegram Chat Logs to prevent re-processing (#594)
-993fff5 | 2026-06-19 14:30:07 -0700 | Plan v11: Edgar calls doGet with exec=processApprovalRejections, GAS scans for unprocessed events (#593)
 … (truncated)
 ```
 
@@ -455,6 +455,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ce72c06 | 2026-06-22 12:28:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 da65eaa | 2026-06-21 10:07:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5366c32 | 2026-06-20 15:59:53 -0700 | chore(inventory): repackaging composition b08d324b-e2f4-4645-9d25-ee43f9e7d9e0
 e7f8817 | 2026-06-20 15:59:52 -0700 | chore(inventory): refresh currencies.json (repackaging ingest)
@@ -566,7 +567,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/21/2026 21:50:53 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/22/2026 4:57:21 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-15`; scanned last **582** data rows)
 
