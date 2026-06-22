@@ -1311,6 +1311,21 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Owner.** Unclaimed.
 
+### Back up autopilot `.env` to credential_vault (quick win before AWS Secrets Manager)
+
+**Context.** 2026-06-09 deployment-map audit revealed that the autopilot box's `.env` (`/opt/truesight_autopilot/.env`) is **not backed up anywhere**. It holds ~15 secrets (GitHub PAT, DeepSeek API key, Grok API key, Tavily key, Edgar private key, Telegram API ID/Hash, AWS keys for both accounts, Bugsnag key, JWT secret, NPM token). If this box dies, recovery requires manually regenerating or looking up each one from 8 different service dashboards — a 30–60 min error-prone process. The Google SA keys + Gmail tokens + SSH key are already in `credential_vault` (laptop backup), but the `.env` is host-only.
+
+**Goal / shape.** Two options, do the quick one first:
+
+1. **Quick win (~10 min):** Add `/opt/truesight_autopilot/.env` to `credential_vault`'s `MANIFEST.txt`. The vault already handles workspace-relative paths (`${WORKSPACE}/truesight_autopilot/.env` is already listed — but that's the **laptop** copy, which may be stale vs the running box). The gap is that the **running** `.env` on the EC2 box isn't synced to the laptop. Fix: after any `.env` change on the box, manually run `credential_vault/scripts/backup.sh` on the laptop (or set up a cron to SCP the box `.env` to the laptop first).
+2. **Better (~30 min):** Add a `deploy_autopilot` post-deploy hook that copies the live `.env` to a timestamped backup in `credential_vault`'s iCloud Drive path — or to a private encrypted GitHub repo. This way every deploy snapshots the secrets.
+
+**Long-term fix** is the AWS Secrets Manager entry above. This entry is the **immediate** fix so the next box re-image doesn't require reconstructing 15 secrets from memory.
+
+**Blockers.** None. Quick win is a MANIFEST.txt edit + one manual backup.
+
+**Owner.** Unclaimed.
+
 ---
 
 ## Recently shipped
