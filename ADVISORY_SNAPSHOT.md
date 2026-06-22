@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-22T04:27:40Z`
+- Generated (UTC): `2026-06-22T05:41:31Z`
 - Look-back: **7** calendar days (`2026-06-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[SALES EVENT]` × 20
+- `[CONTRIBUTION EVENT]` × 10
+- `[BATCH QR CODE REQUEST]` × 2
+- `[PRACTICE EVENT]` × 2
+- `[REPACKAGING BATCH EVENT]` × 1
+- _free-form (no bracket tag)_ × 7
+
+### Latest entries
+
+- `Edgar_20260620223735_115` · **Edgar** · hello
+- `Edgar_20260620223736_117` · **Edgar** · xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx…
+- `Edgar_20260620223737_119` · **Edgar** · xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx…
+- `Edgar_20260620223800_121` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_16 · Sales price: 17.00 · Sold by: SOHA - David Campbell
+- `Edgar_20260620223837_123` · **Edgar** · [CONTRIBUTION EVENT] Type: Test - server debug · Amount: 0.01 · Description: Edgar 500 investigation 0x654b711d72d0a
+- `Edgar_20260620224116_001` · **Edgar** · [SALES EVENT] Item: test-fix-0x654b71b464 · Sales price: 1.00 · Sold by: Gary Teh
+- `Edgar_20260620225943_003` · **Edgar** · [REPACKAGING BATCH EVENT] Request ID: b08d324b-e2f4-4645-9d25-ee43f9e7d9e0 · Holder: Kirsten Ritschel · Inputs:
+- `Edgar_20260620230144_005` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| 200 gr… · Quantity: 3
+- `Edgar_20260620230146_007` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| 8 Ounce Nibs CP340992735BR \| Kirsten 20… · Quantity: 15
+- `Edgar_20260620231957_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix Edgar 500 + add Sophia batch-sale SOP guard (SOHA incident)
+- `Edgar_20260620232121_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Repackaging batch + QR code generation (7 nibs → 3 ceremonial + 15 bars)
+- `Edgar_20260621011417_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: **Problem:** Auto-advance only works on han…
+- `Edgar_20260621013840_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agentic_ai_context: Update SOPHIA_AUTO_ADVANCE_PLAN.md to reflec…
+- `Edgar_20260621052709_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] agentic_ai_context: The SOPHIA_AUTO_ADVANCE_PLAN.md still says "…
+- `Edgar_20260621174626_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-21T17:46:25.377Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260621195245_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Smart Contracts catalog page: inline RSA verification + signed payloads
+- `Edgar_20260621195257_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Smart Contracts catalog page review: inline RSA verification + signed payloa…
+- `Edgar_20260622005844_025` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-22T00:58:43.763Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260622053543_027` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260622053627_029` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 72.66 · Description: Gasoline for driving around
 
 ---
 
@@ -190,11 +228,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,594 total units · $12,767.85
+- Manager record: `Gary Teh` · 26 SKU lines · 14,521.34 total units · $12,695.19
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,517.82 | $12,717.87 |
+  | (uncategorized) | (unspecified) | 24 | 14,445.16 | $12,645.21 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -213,13 +251,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,038.31**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$41.26**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -313,6 +355,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+38dccd2 | 2026-06-21 22:21:42 -0700 | Add infrastructure implementation plan PDF
+a7e3fef | 2026-06-21 21:27:54 -0700 | Merge pull request #609 from TrueSightDAO/auto/advisory-refresh-2026-06-22
+14695c1 | 2026-06-22 04:27:44 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
 cb5bc7a | 2026-06-21 18:07:01 -0700 | Add TDG vs ITKN comparative analysis PDF
 ffb5b75 | 2026-06-21 13:12:25 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
 8868340 | 2026-06-21 13:12:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
@@ -350,9 +395,6 @@ a158caa | 2026-06-19 14:54:38 -0700 | handoff: mark PR1 done, resume at PR2 (#59
 2639fc2 | 2026-06-19 21:40:38 +0000 | v8: fix all status references - Grok writes Pending Review, not Successfully Completed
 19dc83b | 2026-06-19 14:32:12 -0700 | Plan v12: add processed-flag column + transaction ID to Telegram Chat Logs to prevent re-processing (#594)
 993fff5 | 2026-06-19 14:30:07 -0700 | Plan v11: Edgar calls doGet with exec=processApprovalRejections, GAS scans for unprocessed events (#593)
-bb22b8f | 2026-06-19 14:26:20 -0700 | Plan v10: Edgar calls doGet with query params instead of POST webhook (#592)
-4d7c77a | 2026-06-19 14:23:17 -0700 | Plan v9: add doGet health check to telegram_webhook_listener.js (#591)
-b2b1aca | 2026-06-19 14:20:28 -0700 | Plan v8: extend existing doPost in Grok scoring project instead of new file (#590)
 … (truncated)
 ```
 
@@ -500,6 +542,63 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/21/2026 21:50:53 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-15`; scanned last **582** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-06-20 | 1 | — | — | test-fix-0x654b71b464 | — | — |
+| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_42 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_40 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_39 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_38 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_37 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_36 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_35 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_31 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_30 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_29 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_28 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_27 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_26 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_25 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_24 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_22 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_36 | — | — |
+| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_35 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
