@@ -97,3 +97,59 @@ The `batch_compiler.py` script normally does all of this, but our targeted appro
 | Repackaging batch | `b08d324b-e2f4-4645-9d25-ee43f9e7d9e0` |
 | Composition JSON | `https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/currency-compositions/b08d324b-e2f4-4645-9d25-ee43f9e7d9e0.json` |
 | QR rows | Sheet rows 1572–1589 on `Agroverse QR codes` tab |
+
+---
+
+## Deployment reference (2026-06-22)
+
+The QR generation pipeline uses two GAS projects. When updating code, redeploy the **existing** deployment — never create new ones.
+
+### 1N6o00 — QR processor (Telegram logs → Agroverse QR codes)
+
+| Item | Value |
+|------|-------|
+| Project | `1N6o00N9VtRK_L3e0NQXEsmC6QME1KObZdmdbJgo0Tbgj_7P-ElNL5THn` |
+| Editor | https://script.google.com/home/projects/1N6o00N9VtRK_L3e0NQXEsmC6QME1KObZdmdbJgo0Tbgj_7P-ElNL5THn/edit |
+| Clasp dir | `tokenomics/google_app_scripts/1N6o00…/` |
+| Deployment ID | `AKfycbxn3siu2QrzCGdcsipt5FRxxMGY6gVPN1Z_tQdbfJY1GABsL1pZUlWpUbpdE_OymvIO` |
+| Web app URL | `https://script.google.com/macros/s/AKfycbxn3siu2QrzCGdcsipt5FRxxMGY6gVPN1Z_tQdbfJY1GABsL1pZUlWpUbpdE_OymvIO/exec` |
+| Clasp update cmd | `clasp deploy --deploymentId AKfycbxn3siu2QrzCGdcsipt5FRxxMGY6gVPN1Z_tQdbfJY1GABsL1pZUlWpUbpdE_OymvIO -V <version>` |
+| Source files | Single merged file: `process_qr_code_generation_telegram_logs.js` (no `register_single_qr_code.js` — merged 2026-06-22 to fix const collision) |
+
+### 1MnAs — Consolidated web service (forwarder → 1N6o00)
+
+| Item | Value |
+|------|-------|
+| Project | `1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT` |
+| Editor | https://script.google.com/home/projects/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/edit |
+| Script Property | `QR_CODE_TELEGRAM_PROCESSOR_EXEC_BASE` = the 1N6o00 web app URL (above) |
+
+When code changes are pushed to the 1N6o00 project, run `clasp deploy --deploymentId <ID> -V <new_version>` to update the existing web app deployment. Do NOT create new deployments — the Script Property on 1MnAs points to this specific deployment URL.
+
+---
+
+## RESOLUTION — async Edgar → GAS batch-QR pipeline wired end-to-end (2026-06-22, Claude)
+
+The async path (`truesight-dao-batch-qr-generator` → Edgar → GAS `processQRCodeGenerationTelegramLogs`) is now functional. Three independent breaks were found and fixed:
+
+**1. The 1N6o00 web app served nothing (Page Not Found).** `appsscript.json` had **no `webapp` block**, so the `AKfycbxn3siu…` deployment (and `@HEAD`) returned "Page Not Found" on `/exec` — there was no web-app entry point at all. Fixed in **tokenomics #370** (added `webapp { executeAs: USER_DEPLOYING, access: ANYONE_ANONYMOUS }`, version 8) and the existing `AKfycbxn3siu…` deployment was **redeployed to v8** (`clasp update-deployment AKfycbxn3siu… -V 8`) so its **stable URL now serves** — verified: `?action=ping` → JSON, `?action=registerSingleQRCode` → "Missing required parameter: qr_code". (A throwaway `@8` deployment created during diagnosis was deleted; `AKfycbxn3siu…` stays canonical, matching 1MnAs' `QR_CODE_TELEGRAM_PROCESSOR_EXEC_BASE`.)
+
+**2. The marker mismatch is already gone.** The 2026-06-20 failure ("processor didn't pick up `[BATCH QR CODE REQUEST]`") predates the 2026-06-22 merge. The deployed processor now matches `contributionMade.startsWith("[BATCH QR CODE REQUEST]")` (line ~389) — same tag `dao_client` emits. No further change needed.
+
+**3. Edgar's webhook env pointed at the WRONG GAS deployment.** `DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION` on the Edgar box (`dao_protocol_nelanco:/home/ubuntu/dao_protocol/.env`) was set to a **1MnAs public-query deployment** (`AKfycbyGD…`) whose only actions are `list / search / generate / generate_single` — it has **no `processQRCodeGenerationTelegramLogs` action**, so every dispatch returned `{"error":"Invalid action…"}` (HTTP 200) and nothing processed. **Fix:** repointed it **directly at the 1N6o00 processor** (`AKfycbxn3siu…/exec`), which natively handles that action — no dependence on the 1MnAs forwarder's Script Property. (`.env.bak.20260622212504` saved; `truesight-dao-protocol.service` restarted; var confirmed in `/proc/<pid>/environ`.)
+
+**Wiring now (canonical):**
+```
+truesight-dao-batch-qr-generator  →  [BATCH QR CODE REQUEST]  →  Edgar (dao_protocol)
+  dispatch.py: "[BATCH QR CODE REQUEST]" → DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION ?action=processQRCodeGenerationTelegramLogs
+  →  https://script.google.com/macros/s/AKfycbxn3siu…/exec  (1N6o00 processor, anonymous web app)
+  →  reads Telegram Chat Logs, writes QR Code Generation tab, triggers GitHub batch-zip webhook
+```
+
+**Not re-triggered on purpose:** I did not fire `processQRCodeGenerationTelegramLogs` against the live sheet as a test — the processor scans all unprocessed rows from its watermark and the b08d324b batch was already QR'd manually (rows 1572–1589), so a manual trigger could double-generate. The real end-to-end proof is the next genuine `[BATCH QR CODE REQUEST]`.
+
+**Still open (separate, upstream data-quality — unchanged by this fix):** the repackaging currency-ingest GAS still doesn't set col C `isSerializable` + cols E–J farm info, so a repackaging batch's currency rows need manual population before generation *succeeds* (see "Medium-term (code fixes)" above). Wiring is fixed; row-completeness is not.
+
+| Env var (Edgar box) | Old (broken) | New (fixed) |
+|---------------------|--------------|-------------|
+| `DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION` | `…/s/AKfycbyGD…/exec` (1MnAs query svc — no processor action) | `…/s/AKfycbxn3siu…/exec` (1N6o00 processor) |
