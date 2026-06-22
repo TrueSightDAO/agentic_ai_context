@@ -439,5 +439,241 @@ Report pass/fail in thread 1955.
 
 ---
 
+## User Acceptance Testing (UAT) — end-to-end walkthrough
+
+This section lists every URL/view in the subscription system, what you should see,
+and what to test. Run through these in order after deploying all Phase 1 + Phase 2
+code. Use **Stripe test mode** (test card `4242 4242 4242 4242`) — never a real card.
+
+### Prerequisites
+- [ ] GAS deployed with the additive `createSubscriptionCheckoutSession` function
+- [ ] `STRIPE_TEST_SECRET_KEY` set in GAS Script Properties
+- [ ] `dao_protocol` running on port 8010
+- [ ] `sentiment_importer` running with webhook endpoint live
+- [ ] Stripe CLI installed and logged in
+
+---
+
+### 1. Generic-bar PDP (product page)
+
+**URL:** `https://beta.agroverse.shop/product-page/ceremonial-cacao-chocolate-bar/`
+
+| Check | What to expect |
+|-------|----------------|
+| Page loads | Hero image of the chocolate bar packaging. Gallery below with close-up + packaging-back QR shot. |
+| Title | "Ceremonial Cacao Chocolate Bar — Single-Estate, Rotating Origins" |
+| Price | "$10.00" visible |
+| Primary CTA | **Subscribe button** linking to `/subscribe/chocolate-bar/`. Text says "Subscribe — 6 bars/month for $60/mo" |
+| Secondary CTA | **"Buy one bar — $10.00"** Add-to-Cart button below the subscribe CTA |
+| Rotating-origin copy | A highlighted box explains: "Every bar is a discovery. We rotate through our partner farms… Scan the QR code on the back to learn the exact farm." |
+| Product details | Weight (50g), bar size, composition (81%/19%), origin ("Rotating single estates, Bahia, Brazil"), crafted by (Kirsten Ritschel link) |
+| Subscribe CTA block | A brown-tinted section mid-page: "Monthly chocolate, rotating origins" with another Subscribe button |
+| Traceability section | Explains QR scanning, on-chain provenance, Cacao Chasers experience |
+| Impact section | Green-tinted: 1 tree planted per bar, direct trade, regenerative practices |
+| Wholesale banner | "Selling Agroverse in your shop?" link to `/wholesale/` |
+| JSON-LD structured data | View page source — search for `application/ld+json`. GTIN should be `00860010660256`, price `10.00`, availability `InStock` |
+| Add-to-Cart works | Click "Buy one bar" — verify it adds to cart (cart icon updates, cart drawer shows the item) |
+| Inventory display | Shows "N bars left in stock" or "Out of stock" below the Add-to-Cart button |
+
+---
+
+### 2. Subscribe engine — chocolate bar
+
+**URL:** `https://beta.agroverse.shop/subscribe/chocolate-bar/`
+
+| Check | What to expect |
+|-------|----------------|
+| Page loads | Header: "Subscribe to Chocolate Bars". Subtitle explains monthly QR-traceable bars. |
+| Product card | Shows the bar image, name, and "$10.00 per bar" |
+| Quantity presets | Three buttons: **3 bars**, **6 bars** (default, highlighted), **12 bars**. Clicking one updates the quantity input and summary. |
+| Stepper buttons | − and + buttons. − disabled at min (1), + disabled at max (24). Clicking updates quantity and summary. |
+| Manual input | Type a number directly. On blur, clamps to min/max range. |
+| Live summary | As you change quantity: "Monthly bars" updates, "Unit price" stays $10.00, "Monthly charge" recalculates (qty × $10). "Shipping" says "Calculated at signup". "Monthly total" says "Calculated at signup". |
+| Address form | Fields: Full Name, Email, Phone, Street Address, City, State (2-letter), ZIP (5-digit), Country (US only). |
+| Form validation | Submit with empty fields — error messages appear, invalid fields highlighted red. |
+| Valid submission | Fill all fields, click "Subscribe Now" — should redirect to `checkout.stripe.com` (test mode). |
+| Stripe Checkout (test) | Complete with test card `4242 4242 4242 4242 4242 4242`. Verify:
+  - Mode is "subscription" (not one-time payment)
+  - Line items: N bars × $10.00 (recurring monthly) + shipping (recurring monthly)
+  - Total matches: (N × $10) + shipping
+  - Billing address collected
+  - Phone number collected |
+| Post-checkout redirect | After payment, should redirect to `/order-status?session_id=cs_test_…` |
+| Order status page | Shows the session details, items, shipping address, payment status |
+| Cancel URL | Click "back" or cancel on Stripe — should return to `/subscribe/chocolate-bar/` |
+
+---
+
+### 3. Subscribe engine — direct slug param
+
+**URL:** `https://beta.agroverse.shop/subscribe/?slug=chocolate-bar`
+
+| Check | What to expect |
+|-------|----------------|
+| Same as above | Identical behavior to the clean-URL wrapper. The `?slug=` param is the engine's native interface. |
+| Invalid slug | Visit `?slug=nonexistent` — should show "Product not found" message and disable the submit button. |
+
+---
+
+### 4. Stripe webhook — first charge (checkout.session.completed)
+
+**Setup:** `stripe listen --forward-to localhost:3000/stripe_webhook`
+
+| Check | What to expect |
+|-------|----------------|
+| Trigger | After completing the test checkout above, check the Rails logs. Should see: `dao_protocol order_sync delegation` (no-op, no ledger tag) followed by `subscription obligation delegation` (creates PENDING row). |
+| Google Sheet | Open the Main Ledger → **"Subscription Fulfillment Queue"** tab. Should see a new row with:
+  - subscriber_name = the name you entered
+  - email = the email you entered
+  - address = the shipping address
+  - sku = `generic-ceremonial-cacao-chocolate-bar`
+  - qty = the quantity you selected
+  - period_start / period_end = current billing period
+  - invoice_id = the Stripe invoice ID (starts with `in_`)
+  - status = `PENDING` |
+| Idempotency | Run the same test again with the same subscription — no duplicate row should appear. |
+
+---
+
+### 5. Stripe webhook — renewal (invoice.paid)
+
+**Setup:** `stripe listen --forward-to localhost:3000/stripe_webhook`
+
+| Check | What to expect |
+|-------|----------------|
+| Trigger | Run: `stripe trigger invoice.payment_succeeded` |
+| Rails logs | Should show the webhook received, detected as Agroverse subscription (by metadata), delegated to `dao_protocol` |
+| Google Sheet | A new PENDING row should appear in the "Subscription Fulfillment Queue" tab for this renewal invoice |
+| Idempotency | Run `stripe trigger invoice.payment_succeeded` again — no duplicate. The `invoice_id` dedup prevents it. |
+
+---
+
+### 6. Fulfillment page (DApp)
+
+**URL:** `https://beta.dapp.truesight.me/fulfill_subscriptions.html`
+
+| Check | What to expect |
+|-------|----------------|
+| Page loads | Title "Fulfill Subscriptions". Digital signature verification runs automatically. |
+| Signature check | If no signature, redirects to `create_signature.html`. Create one, then return. |
+| Welcome message | Shows "Welcome back, [your name]!" after signature verified |
+| Pending obligations list | Shows all PENDING rows from the queue as cards. Each card shows: subscriber name/email, SKU, quantity, period dates, invoice ID, PENDING badge. |
+| Select an obligation | Click a card — it highlights green. Below, the fulfillment section appears with:
+  - Subscriber detail (name, email, address, SKU, qty, period, invoice)
+  - QR code textarea with "Need N codes" counter
+  - Tracking number input
+  - Fulfilled by dropdown (pre-selects you) |
+| QR code entry | Type/paste QR codes, one per line. Counter updates in real-time: green "N codes entered ✓" when enough, red "N codes entered — need N" when not enough. |
+| Submit button | Disabled until: enough QR codes entered + tracking filled + fulfilled by selected |
+| Submit fulfillment | Enter enough QR codes + tracking + select yourself → click "Submit Fulfillment" |
+| Progress bar | Shows during submission: "Submitted 1 of 6..." with a green progress bar |
+| Success | Shows "✅ All N sales submitted!" and a fulfillment summary with:
+  - Obligation invoice ID
+  - QR codes submitted count
+  - Tracking number
+  - Fulfilled by
+  - Any errors (if some submissions failed) |
+| Google Sheet | After submission, the obligation row should now show:
+  - status = `FULFILLED`
+  - fulfilled_by = your name
+  - tracking_number = what you entered
+  - fulfilled_at = ISO timestamp |
+| Edgar audit | Each QR code should have a corresponding `[SALES EVENT]` in Edgar's submission log. Each event has:
+  - Item = QR code
+  - Sales price = $10.00
+  - Sold by = fulfilled_by
+  - Cash proceeds collected by = Gary Teh
+  - Stripe Session ID = invoice_id
+  - Tracking number = what you entered |
+| Clear & start over | Click "Clear & Start Over" — resets selection, hides fulfillment section, reloads obligation list |
+| Empty state | If all obligations are fulfilled, shows "No pending obligations. 🎉" |
+
+---
+
+### 7. Sales Reporter (existing — verify no regression)
+
+**URL:** `https://beta.dapp.truesight.me/report_sales.html`
+
+| Check | What to expect |
+|-------|----------------|
+| Page loads | Normal sales reporter. QR code list, camera, upload all work. |
+| Stripe session dropdown | Should show unassigned sessions from the Stripe Social Media Checkout ID tab. Subscription sessions (no ledger tag) should NOT appear here (they're not in that tab). |
+| One-off sale | Submit a normal one-off sale — should work exactly as before. No regression. |
+
+---
+
+### 8. Stripe Dashboard — subscription management
+
+**URL:** `https://dashboard.stripe.com/test/subscriptions`
+
+| Check | What to expect |
+|-------|----------------|
+| Subscription appears | After the test checkout, a subscription should appear with status "active" or "trialing" |
+| Line items | Shows the recurring line: N bars × $10.00/month + shipping |
+| Customer | The customer record has the email and name you entered |
+| Invoices | The first invoice (and any triggered renewals) appear under the subscription |
+| Customer Portal | Enable the Customer Portal in Stripe Dashboard settings. Generate a portal link — should let you:
+  - View subscription details
+  - Cancel subscription
+  - Update payment method
+  - Update shipping address (note: shipping re-quote is manual for v1) |
+
+---
+
+### 9. Google Sheets — audit trail
+
+**Spreadsheet:** Main Ledger (`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`)
+
+#### Tab: "Subscription Fulfillment Queue"
+
+| Check | What to expect |
+|-------|----------------|
+| Tab exists | Created automatically on first access. Header row with all 12 columns. |
+| PENDING rows | Each paid invoice has a row with status = PENDING |
+| FULFILLED rows | After fulfillment, status changes to FULFILLED, fulfilled_at populated |
+| No duplicates | Same invoice_id never appears twice |
+
+#### Tab: "Stripe Social Media Checkout ID"
+
+| Check | What to expect |
+|-------|----------------|
+| No subscription rows | Subscription sessions have no `ledger` metadata, so they are NOT written to this tab. This is correct — the subscription charge is audit-only here. |
+| One-off sales still appear | Normal one-off checkout sessions still get written here as before. |
+
+---
+
+### 10. Edge cases
+
+| Test | What to do | Expected result |
+|------|------------|-----------------|
+| Quantity = 1 | Select 1 bar on the subscribe page | Summary shows $10.00/month + shipping. Stripe session has qty=1. |
+| Quantity = 24 | Select 24 bars | Summary shows $240.00/month + shipping. Stripe session has qty=24. |
+| Quantity > 24 | Try to enter 25 in the stepper | Stepper caps at 24. The wholesale banner is visible. |
+| Invalid ZIP | Enter "abc" as ZIP | Form validation shows "Valid ZIP code is required" |
+| Missing phone | Enter fewer than 10 digits | Form validation shows "Valid phone number is required" |
+| Empty cart + subscribe | Visit `/subscribe/chocolate-bar/` directly | Works independently of cart — no cart dependency |
+| Stripe test card declines | Use `4000000000000002` (declined) on Stripe Checkout | Stripe shows decline message. No obligation created (no webhook fires). |
+| Webhook timeout | Stop `dao_protocol`, then complete a test checkout | Rails rescue catches the timeout, logs error, returns 200 to Stripe. No obligation created — but no crash. |
+| Fulfill with wrong qty | Enter 3 QR codes for a 6-bar obligation | Submit button stays disabled until 6 codes entered |
+| Fulfill without tracking | Leave tracking blank | Submit button stays disabled |
+| Fulfill without selecting fulfilled by | Leave dropdown blank | Submit button stays disabled |
+| Browser refresh mid-fulfill | Refresh the fulfill_subscriptions page | Obligation list reloads from scratch. Previous progress is lost (expected — no partial state). |
+| Multiple obligations | Create 2+ PENDING rows (via multiple test checkouts or `stripe trigger`) | All appear in the list. Fulfilling one doesn't affect the others. |
+
+---
+
+### 11. Production smoke test (after beta→prod promotion)
+
+**Only after all beta tests pass and you've promoted.**
+
+| URL | Check |
+|-----|-------|
+| `https://www.agroverse.shop/product-page/ceremonial-cacao-chocolate-bar/` | Same as beta — all content, CTAs, images load |
+| `https://www.agroverse.shop/subscribe/chocolate-bar/` | Subscribe engine works, Stripe Checkout loads (use test mode keys still) |
+| `https://dapp.truesight.me/fulfill_subscriptions.html` | Fulfillment page loads, obligations list works |
+| Google Sheet tabs | Both tabs present and populated |
+
+---
+
 *Plan owner: this doc. Update the resume tracker as each PR lands; report the DAO
 contribution before starting the next PR.*
