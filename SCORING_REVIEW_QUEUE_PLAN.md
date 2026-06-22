@@ -1,7 +1,8 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** In progress · **Created:** 2026-06-18
-**Last updated:** 2026-06-22 (v16: **PR4 DEPLOYED + WIRED** — Edgar `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` set on `dao_protocol_nelanco` + service restarted (var confirmed loaded); automated write-back path now live end-to-end. **RESUME HERE = PR7** real E2E UAT on beta)
+**Last updated:** 2026-06-22 (v17: UAT attempt found a **page↔Edgar integration gap** — `review_queue.html` calls `/api/v1/...` + `/dao/verify_identity` + `/dao/contributors` that 404 on Edgar; `verify_identity` 404 means no Approve buttons render. **RESUME HERE = PR-INTEGRATION** (close the gap), then PR7. See §12.3)
+**Last updated:** 2026-06-22 (v16: PR4 DEPLOYED + WIRED — Edgar webhook env set + service restarted; automated write-back path live end-to-end)
 **Last updated:** 2026-06-22 (v15: PR4 DEPLOYED — `clasp push` 1BHAGZd + anonymous versioned deployment `@2`; `?exec=processApprovalRejections` verified live)
 **Last updated:** 2026-06-22 (v14: PR4 code merged + made deployable — handler #367, dup-`doGet` deploy-blocker fixed #368)
 **Last updated:** 2026-06-21 (v13: code-verified state — PR4 GAS write-back was NOT deployed; corrected the manifest's "PR7 done" claim; added §12 resume tracker with `Advance` column)
@@ -880,7 +881,8 @@ truth for resume state — it supersedes the manifest's prior *"PR7 done"* line.
 | PR4-WIRE — close the loop (Edgar webhook) | — | n/a | n/a | ☑ **DONE 2026-06-22** | ✅ `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` = @2 `/exec` URL set in `/home/ubuntu/dao_protocol/.env` on `dao_protocol_nelanco` (backup `.env.bak.20260622`); service restarted, `/ping`→200, var confirmed in `/proc/<pid>/environ`. **Automated path now live:** approve → Edgar calls webhook → `processApprovalRejections` writes back. **Optional backup (not required):** run `installReviewProcessingTrigger()` in the GAS editor for the 15-min safety-net cron. |
 | PR5 — DApp review_queue.html | — | ☑ | ☑ | ☑ (beta) | ✅ verified |
 | PR6 — dao_client module | `auto` | ☐ | ☐ | ☐ | unverified — audit, then ship if missing |
-| **PR7 — Beta deploy + real E2E UAT** ← **RESUME HERE** | `gate: human-run UAT on beta` | ☐ | ☐ | ☐ | ▶️ **ready to run** — all backend pieces deployed + wired. Exercise: submit → score → cache → DApp approve → write-back → transfer → Ledger history |
+| **PR-INTEGRATION — close review_queue.html ↔ Edgar gap** ← **RESUME HERE** | `gate: review fix; multi-PR` | ☐ | ☐ | ☐ | 🛑 **UAT BLOCKED (found 2026-06-22).** The page↔Edgar contract is broken — never integration-tested. See §12.3. Must fix before any UAT. |
+| PR7 — real E2E UAT on beta/prod | `gate: human-run, after integration fixed` | ☐ | ☐ | ☐ | blocked on PR-INTEGRATION. Note: **no beta backend** — `beta.edgar` lacks the review routes; only prod Edgar is wired, and all sheets/cache are prod (no true staging for this feature) |
 | PR8 — Promote to prod | `gate: UAT pass + prod Edgar webhook env set` | ☐ | ☐ | ☐ | blocked on PR4-DEPLOY + PR7 |
 
 **PR4-DEPLOY — DONE 2026-06-22 (Claude):**
@@ -894,4 +896,31 @@ truth for resume state — it supersedes the manifest's prior *"PR7 done"* line.
 - **(a) Edgar env (primary path) ✅:** appended `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL=<@2 /exec URL>` to `/home/ubuntu/dao_protocol/.env` on `dao_protocol_nelanco` (host 98.93.94.86; backup `.env.bak.20260622`), restarted `truesight-dao-protocol.service` — `/ping`→200, startup clean, var confirmed in the running process env. Edgar now calls the write-back immediately after each approval/rejection.
 - **(b) Safety-net cron (optional backup, NOT done):** run `installReviewProcessingTrigger()` once in the `1BHAGZd` Apps Script editor for a 15-min trigger. Only needed as a fallback if an Edgar→GAS callback fails; not required for the primary path.
 
-**RESUME HERE → PR7 (one turn, human-run):** real end-to-end UAT on beta (submit → score → cache → approve → write-back → transfer → Ledger history). **Then PR8:** promote to prod.
+**RESUME HERE → PR-INTEGRATION (close the page↔Edgar gap), THEN PR7.**
+
+### 12.3 review_queue.html ↔ Edgar integration gap (found 2026-06-22 during UAT attempt)
+
+PR5 (the DApp page) was written against an Edgar API that PR2/PR3 only partially implement.
+Verified live against prod `edgar.truesight.me`:
+
+| Page call (review_queue.html) | Live result | Problem |
+|-------------------------------|-------------|---------|
+| `DAO_PROTOCOL_BASE = EDGAR_BASE + '/api/v1'` then `/dao/review_queue` (L334/426) | `/api/v1/dao/review_queue` → **404**; `/dao/review_queue` → **200** | bogus `/api/v1` prefix |
+| `/api/v1/dao/contributors` (L400) | **404** (even `/dao/contributors` → 404) | **no contributors endpoint on Edgar** |
+| `POST /dao/verify_identity` (L370) | **404** | **no identity endpoint on Edgar** → `checkAuth` can't set `isGovernor` → **Approve/Reject buttons never render for anyone** |
+| `POST /dao/submit_contribution_review` (L586) | **405** (POST works) | ✅ OK |
+
+Actual Edgar routes: `query.py` serves the review queue (reachable at `/dao/review_queue`),
+`dao.py` serves `POST /dao/submit_contribution` + `POST /dao/submit_contribution_review`.
+**There is no `verify_identity` or `contributors` route anywhere in the server.**
+
+Additional UAT blockers:
+- **Empty queue:** `/dao/review_queue` → `{"items":[],"has_more":false}`. No `review-queue/*.json` cache files exist — PR1 (GitHub Action cache generator) is operator-gated on `treasury-cache` secrets and hasn't produced any.
+- **No beta backend:** `beta.edgar.truesight.me/dao/review_queue` → 404 (review routes never deployed to the beta box). Only prod Edgar is wired. All data (Scored Chatlogs, Ledger history, treasury-cache) is prod — there is no real staging for this feature.
+
+**PR-INTEGRATION scope (needs design decision + likely 2–3 PRs, one per turn):**
+1. **Page PR (dapp_beta):** set `DAO_PROTOCOL_BASE = EDGAR_BASE` (drop `/api/v1`); repoint governor-auth + contributor-list to real sources.
+2. **Decide the auth + contributor sources** — implement Edgar `POST /dao/verify_identity` + `GET /dao/contributors`, **or** repoint the page at the existing governor registry / contributor cache (treasury-cache JSON / GAS) the rest of the DApp already uses. (The `truesight-dao-cache-contributors` CLI + the public-key/governor registry already exist — prefer reusing them over new Edgar endpoints.)
+3. **Seed the queue:** run/operator-gate PR1 so ≥1 real `Pending Review` row produces a cache file (note: approving it mutates **prod** Scored Chatlogs + Ledger history / real TDG — treat the first UAT as a controlled prod test with a disposable row).
+
+**Then PR7:** real E2E UAT (against prod, since no beta backend). **Then PR8:** promote page to prod.
