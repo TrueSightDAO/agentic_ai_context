@@ -225,15 +225,15 @@ touching the TrueSight instance.
 |------|-----------|----------------|----------|-----|
 | **A — Phase 0.1: Identity resolver** | ☐ | ☐ | ☐ | P0.1 |
 | **B — Phase 3: Credential vault** | ☐ | ☐ | ☐ | P3.1–P3.7 |
-| **C — Phase 0.2–0.4: Remaining policy** | ☐ | ☐ | ☐ | P0.2–P0.4 |
-| **D — Phase 1: Identity binding** | ☐ | ☐ | ☐ | P1.1–P1.5 |
+| **C — Phase 0.2–0.4: Tool enforcement + CI** | ✅ #174 | ✅ Merged | ☐ | P0.2–P0.4 |
+| **D — Phase 1: Identity binding** | ✅ #172 | ✅ Merged | ☐ | P1.1–P1.5 |
 | **E — Phase 2: Engagement modes** | ☐ | ☐ | ☐ | P2.1–P2.4 |
 | **F — Phase 4: Multi-org replication** | ☐ | ☐ | ☐ | P4.1–P4.3 |
 
-> **RESUME HERE (vault-first):** Step A — Phase 0.1 `app/policy.py` (identity resolver:
-> `telegram_id → Column X → Governors cache → {guest, governor}`). Then Step B — Phase 3
-> (credential vault). Open PRs via git worktree; **do not self-merge** (human reviews).
-> Report progress in this handoff topic (thread 2744).
+> **RESUME HERE (2026-06-11):** Phase C complete (tool enforcement + data boundary +
+> GitHub Actions CI). Phase 1 complete (identity binding). Remaining: E (Phase 2
+> engagement modes) and F (Phase 4 multi-org replication). Open PRs via git worktree;
+> **do not self-merge** (human reviews). Report progress in this handoff topic (thread 2744).
 
 ---
 
