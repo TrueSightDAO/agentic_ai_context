@@ -1,7 +1,8 @@
 # Scoring Review Queue — Implementation Plan
 
 **Status:** In progress · **Created:** 2026-06-18
-**Last updated:** 2026-06-22 (v14: PR4 **code merged + made deployable** — handler #367, dup-`doGet` deploy-blocker fixed #368; **RESUME HERE moved to the PR4 DEPLOY gate** — operator `clasp push` + `installReviewProcessingTrigger()` + Edgar env, then PR7 UAT)
+**Last updated:** 2026-06-22 (v15: **PR4 DEPLOYED** — `clasp push` 1BHAGZd + new anonymous versioned deployment `@2`; `?exec=processApprovalRejections` verified live. **RESUME HERE = PR4-WIRE** — set Edgar `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` and/or run `installReviewProcessingTrigger()`; then PR7 UAT)
+**Last updated:** 2026-06-22 (v14: PR4 code merged + made deployable — handler #367, dup-`doGet` deploy-blocker fixed #368)
 **Last updated:** 2026-06-21 (v13: code-verified state — PR4 GAS write-back was NOT deployed; corrected the manifest's "PR7 done" claim; added §12 resume tracker with `Advance` column)
 **Handoff thread:** [Telegram topic 7191](https://t.me/c/3919341801/7191)
 
@@ -873,17 +874,23 @@ truth for resume state — it supersedes the manifest's prior *"PR7 done"* line.
 | PR1 — cache generator | `gate: confirm treasury-cache secrets (GH_PAT_TOKEN, GOOGLE_SERVICE_ACCOUNT_JSON)` | ☑ (claimed) | ☑ | ⚠️ operator gate | unverified — confirm before relying on it |
 | PR2 — Edgar review_queue | — | ☑ | ☑ | ☑ | ✅ verified |
 | PR3 — Edgar submit_contribution_review | — | ☑ | ☑ | ☑ | ✅ verified |
-| PR4 — GAS write-back **code** (`1BHAGZd`) | — | ☑ #367 + #368 | ☑ | ☐ | ✅ **code merged + deployable** (dup-`doGet` collision fixed #368; `installReviewProcessingTrigger()` added) |
-| **PR4-DEPLOY — push + wire** ← **RESUME HERE** | `gate: operator clasp push 1BHAGZd + run installReviewProcessingTrigger() + set Edgar DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` | n/a | n/a | ☐ | ⏳ **operator action** — code is ready; not yet pushed/wired |
+| PR4 — GAS write-back **code** (`1BHAGZd`) | — | ☑ #367 + #368 | ☑ | ☑ | ✅ **code merged + deployable** (dup-`doGet` collision fixed #368; `installReviewProcessingTrigger()` added) |
+| PR4-DEPLOY — clasp push + versioned deployment | — | n/a | n/a | ☑ **DONE 2026-06-22** | ✅ `clasp push` @HEAD (gary acct — owns project; also repaired @HEAD: removed orphan Code.js, restored Credentials.js, single doGet). New **anonymous versioned deployment @2** `AKfycbzati5N6aT1slb5C8SAIfs11avrAg_8Wf_ecXXMmoUp0K6I3-TnDwIlv1Cth4IHOQMq` — **verified live:** `?exec=processApprovalRejections` → `{"status":"ok","processed":0,"skipped":0}`. Telegram `@1` deployment left untouched. |
+| **PR4-WIRE — close the loop** ← **RESUME HERE** | `gate: operator action (Edgar box + GAS editor)` | n/a | n/a | ☐ | ⏳ **TWO operator steps, need ≥1:** (a) set `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` on Edgar = the @2 `/exec` URL below; and/or (b) run `installReviewProcessingTrigger()` once in the Apps Script editor (15-min safety-net cron — `clasp run` blocked: script not API-executable). Until one is in place, approvals sit unprocessed in Telegram Chat Logs. |
 | PR5 — DApp review_queue.html | — | ☑ | ☑ | ☑ (beta) | ✅ verified |
 | PR6 — dao_client module | `auto` | ☐ | ☐ | ☐ | unverified — audit, then ship if missing |
 | PR7 — Beta deploy + **real** E2E UAT | `gate: true end-to-end after PR4-DEPLOY (submit → score → cache → approve → write-back → transfer → Ledger history)` | ☐ | ☐ | ☐ | ⚠️ prior "done" was inaccurate; cannot pass until PR4 is deployed |
 | PR8 — Promote to prod | `gate: UAT pass + prod Edgar webhook env set` | ☐ | ☐ | ☐ | blocked on PR4-DEPLOY + PR7 |
 
-**PR4-DEPLOY gate (operator / Sophia, not a code PR):**
-1. `clasp push` from `tokenomics/google_app_scripts/1BHAGZd…/` (this folder carries its own `.clasp.json`; no `clasp_mirror` exists). Confirm the deployment Edgar calls is updated.
-2. Run **`installReviewProcessingTrigger()`** once in the Apps Script editor (installs the idempotent 15-min safety-net cron on `processApprovalRejections`).
-3. Set **`DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL`** on the Edgar box to the `1BHAGZd` `/exec` URL (else write-back relies solely on the cron).
-4. Re-probe: `GET …/exec?exec=processApprovalRejections` should now return `{status:"ok",processed:…}` instead of `ℹ️ No valid action specified`.
+**PR4-DEPLOY — DONE 2026-06-22 (Claude):**
+- `clasp push` from `tokenomics/google_app_scripts/1BHAGZd…/` with the **gary** account (`garyjob@agroverse.shop`, owns the project). This also repaired an inconsistent live `@HEAD` (it had drifted: orphan `Code.js`, a missing `Credentials.js`, and 3 `doGet`s). Push reconciled it to 5 files / single `doGet`. **Pinned production deployments are unaffected by a `@HEAD` push.**
+- ⚠️ GAS gotcha confirmed: the **`@HEAD` test deployment is login-walled** despite `ANYONE_ANONYMOUS`. Anonymous access only applies to **versioned** deployments — so created a **new versioned deployment @2**.
+- **Review webhook URL (anonymous, serves the new code):**
+  `https://script.google.com/macros/s/AKfycbzati5N6aT1slb5C8SAIfs11avrAg_8Wf_ecXXMmoUp0K6I3-TnDwIlv1Cth4IHOQMq/exec`
+  Verified: `?exec=processApprovalRejections` → `{"status":"ok","processed":0,"skipped":0}`; health check lists `["processApprovalRejections","processTelegramChatLogs"]`.
 
-**Then PR7 (one turn):** run the real end-to-end UAT on beta. **Then PR8:** promote to prod.
+**PR4-WIRE — remaining operator steps (need ≥1 of a/b):**
+- **(a) Edgar env (primary path):** set `DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL` on the Edgar/`dao_protocol` box (NELANCO: `dao_protocol_nelanco`) to the @2 `/exec` URL above, then restart the service. This makes Edgar call the write-back immediately after each approval.
+- **(b) Safety-net cron (backup):** open the `1BHAGZd` project in the Apps Script editor → run **`installReviewProcessingTrigger()`** once (installs the idempotent 15-min trigger). `clasp run` is blocked (script not deployed as API-executable).
+
+**Then PR7 (one turn):** real end-to-end UAT on beta (submit → score → cache → approve → write-back → transfer → Ledger history). **Then PR8:** promote to prod.
