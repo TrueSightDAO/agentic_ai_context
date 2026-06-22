@@ -35,6 +35,23 @@ Key docs
 > `cp ~/.clasprc.json ~/.clasprc.json.bak && cp ~/.clasprc-admin.json ~/.clasprc.json` → deploy →
 > restore. (Admin-owned projects: the QR/donation-mint script `1MnAsIQAxcSfZO_…`.)
 >
+> **`.clasp-owner` convention (added 2026-06-11).** Every clasp mirror directory should contain a
+> **`.clasp-owner`** file (single line: the owner email, e.g. `garyjob@agroverse.shop`). Before
+> attempting `clasp push`, check this file to know which credentials to swap in:
+> ```bash
+> cat clasp_mirrors/<scriptId>/.clasp-owner
+> # If it says garyjob@agroverse.shop:
+> cp ~/.clasprc-gary.json ~/.clasprc.json
+> # If it says admin@truesight.me:
+> cp ~/.clasprc-admin.json ~/.clasprc.json
+> ```
+> After pushing, restore the default:
+> ```bash
+> cp ~/.clasprc-admin.json ~/.clasprc.json
+> ```
+> The `Version.gs` in each mirror also carries an `@owner` JSDoc tag as a fallback. This prevents
+> the "caller does not have permission" error that happens when the wrong clasp account tries to push.
+>
 > ⚠ **Two known snags on `1MnAsIQAxcSfZO_…` (donation-mint + qr_code_web_service):** (a) the mirror has
 > stale `.js` duplicates alongside the synced `.gs` (Version / process_donation_mint_telegram_logs /
 > qr_code_web_service) → `clasp push` errors **"Conflicting files found"** (the `.clasp.json` lists both
