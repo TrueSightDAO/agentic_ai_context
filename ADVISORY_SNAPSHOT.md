@@ -20,48 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-22T21:20:31Z`
-- Look-back: **7** calendar days (`2026-06-15` → today UTC)
+- Generated (UTC): `2026-06-23T03:46:00Z`
+- Look-back: **7** calendar days (`2026-06-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 16
-- `[CONTRIBUTION REVIEW EVENT]` × 10
-- `[SALES EVENT]` × 4
-- `[PRACTICE EVENT]` × 3
-- `[BATCH QR CODE REQUEST]` × 2
-- `[REPACKAGING BATCH EVENT]` × 1
-- _free-form (no bracket tag)_ × 6
-
-### Latest entries
-
-- `Edgar_20260622053543_027` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260622053627_029` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 72.66 · Description: Gasoline for driving around
-- `Edgar_20260622141322_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Submission of document for Coopercabruca and CEPOTX to China for GACC.
-- `Edgar_20260622141737_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: _*Topics discussed today at the local cafe as well as over dinner by the str…
-- `Edgar_20260622142053_035` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1460 · Description: Hotel stay for work discussion with Gary on supply chain sales and marketing…
-- `Edgar_20260622160245_037` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-22T16:02:43.365Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260622191454_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Scoring Review Queue: verify handoff + unblock PR4 (GAS review write-back) f…
-- `Edgar_20260622202103_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Scoring Review Queue: deploy PR4 GAS write-back + secret-gitignore hardening
-- `Edgar_20260622203325_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Scoring Review Queue: wire Edgar to the review write-back webhook (close the…
-- `Edgar_20260622211035_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix QR Code Generation GAS web-app deployment (missing webapp manifest block)
-- `Edgar_20260622211443_005` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: 1JOvLNino3MFuiIZpdkr · TDGs Issued: 50
-- `Edgar_20260622211446_007` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: QW/Sm4nNGZeXOuPsleYm · TDGs Issued: 400
-- `Edgar_20260622211449_009` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: 10y2NZu4qv/yvyEayXcd · TDGs Issued: 75
-- `Edgar_20260622211451_011` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: GSXdfNbfvJ1xZZmqjzX4 · TDGs Issued: 25
-- `Edgar_20260622211454_013` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: f8OhamwCY/y2fqaKcYD7 · TDGs Issued: 25
-- `Edgar_20260622211456_015` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: 9dcSPulbDcqxWWxGNbfY · TDGs Issued: 2.5
-- `Edgar_20260622211459_017` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zD2lgRz2ZU1XdIfoKkuN · TDGs Issued: 25
-- `Edgar_20260622211502_019` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
-- `Edgar_20260622211505_021` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: SS1GMcUJbXE+Xsj83ufJ · TDGs Issued: 100
-- `Edgar_20260622211507_023` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: +epdeH2GH0WwI403sGMh · TDGs Issued: 25
 
 ---
 
@@ -69,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $4,120 | 10% | `2026-12-31` | 192 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 192 | — |
+| 2026 QR Code Sales | $40,000 | $4,120 | 10% | `2026-12-31` | 191 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 191 | — |
 
 ---
 
@@ -252,17 +213,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,038.31**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$41.26**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -278,8 +235,10 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-22 | claude | SCORING_REVIEW_QUEUE PR4 unblocked. During the verification session, PR4 handler merged to tokenomics main (#367, Gary+Sophia) — but it added doGet(?exec=processApprovalRejections) to telegram_webhook_listener.js while leaving the existing doGet in grok_scoring_for_telegram_and_whatsapp_logs.js => TWO doGet defs => GAS duplicate-function collision => clasp push would fail (review write-back could never deploy). Also Code.js was a byte-identical orphan of grok_scoring (excluded from manifest source_files) duplicating all 39 fns. Fixed in tokenomics #368 (MERGED): deleted Code.js, removed doGet from scoring file and folded its ?action=processTelegramChatLogs branch into the unified doGet, added idempotent installReviewProcessingTrigger() (15-min safety-net cron). Verified: 1 doGet, 0 duplicate fn names, node --check clean. RESUME HERE moved to PR4-DEPLOY operator gate: clasp push 1BHAGZd + run installReviewProcessingTrigger() + set DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL on Edgar; then PR7 real E2E UAT; then PR8 promote. Plan §12 + HANDOFF_MANIFEST + SOPHIA_HANDOFFS updated.
 - 2026-06-22 | claude | SCORING_REVIEW_QUEUE PR4 DEPLOYED. clasp push of 1BHAGZd (Grok scoring) with the gary account (garyjob@agroverse.shop, project owner). The live @HEAD had drifted from the repo (orphan Code.js present, Credentials.js MISSING so getCredentials was unresolved at @HEAD, and 3 doGet defs); the push reconciled @HEAD to the correct 5-file single-doGet state (pinned prod deployments are unaffected by a @HEAD push, and getCredentials reads Script Properties so credential resolution is preserved). GAS gotcha reconfirmed: the @HEAD test deployment is login-walled even with ANYONE_ANONYMOUS — only VERSIONED deployments are anonymous. Created a new versioned deployment @2 = AKfycbzati5N6aT1slb5C8SAIfs11avrAg_8Wf_ecXXMmoUp0K6I3-TnDwIlv1Cth4IHOQMq; /exec?exec=processApprovalRejections verified live -> {"status":"ok","processed":0,"skipped":0}; health check lists [processApprovalRejections, processTelegramChatLogs]. Telegram @1 deployment left untouched. RESUME HERE = PR4-WIRE operator steps (need >=1): (a) set Edgar DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL to the @2 /exec URL + restart dao_protocol; and/or (b) run installReviewProcessingTrigger() once in the GAS editor (clasp run blocked: not API-executable). Then PR7 real E2E UAT, then PR8 promote. Also shipped tokenomics #369 (gitignore hardening + credential templates) after a near-miss where git add -A swept a stray Wix-token Credentials.gs.js + nested .env.
 - 2026-06-22 | claude | SCORING_REVIEW_QUEUE PR4-WIRE DONE (Edgar primary path). Set DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL (env_prefix DAO_PROTOCOL_ + gas_review_webhook_url) = the @2 /exec URL in /home/ubuntu/dao_protocol/.env on dao_protocol_nelanco (host 98.93.94.86; backup .env.bak.20260622), restarted truesight-dao-protocol.service: /ping 200, clean startup, var confirmed in /proc/<pid>/environ. Automated write-back loop now live end-to-end: DApp approve -> Edgar appends [CONTRIBUTION REVIEW EVENT] + calls webhook -> processApprovalRejections writes Reviewed back to Scored Chatlogs -> transfer batch -> Ledger history. Optional backup not done: installReviewProcessingTrigger() 15-min cron in the GAS editor (only needed if an Edgar->GAS callback fails). RESUME HERE = PR7 human-run E2E UAT on beta, then PR8 promote.
+- 2026-06-22 | claude | Wired the async Edgar -> GAS batch-QR pipeline end-to-end (was fully broken). truesight-dao-batch-qr-generator emits [BATCH QR CODE REQUEST] -> Edgar dispatch.py routes it to DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION ?action=processQRCodeGenerationTelegramLogs. THREE breaks: (1) 1N6o00 web app served Page Not Found (no webapp block in appsscript.json) — fixed tokenomics #370 + redeployed the EXISTING AKfycbxn3siu deployment to v8 so its stable URL works (deleted a throwaway @8). (2) marker mismatch from the 2026-06-20 postmortem already gone — deployed processor matches startsWith("[BATCH QR CODE REQUEST]"). (3) THE ACTUAL DeepSeek/Sophia misconfig: Edgar's DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION pointed at the WRONG GAS deployment — a 1MnAs public-query service (AKfycbyGD, actions: list/search/generate/generate_single) with NO processQRCodeGenerationTelegramLogs action, so every dispatch got {"error":"Invalid action"} HTTP200 and nothing ran. Repointed it DIRECTLY at the 1N6o00 processor (AKfycbxn3siu/exec) on dao_protocol_nelanco:/home/ubuntu/dao_protocol/.env (backup .env.bak.20260622212504), restarted truesight-dao-protocol.service, var confirmed in /proc/<pid>/environ. Did NOT trigger a live run (watermark would rescan the already-manually-QR'd b08d324b batch -> dup risk). Still open & separate: repackaging currency-ingest GAS doesn't set col C isSerializable + E-J farm info, so repackaging rows need manual population before generation SUCCEEDS. Full writeup: QR_GENERATION_DAO_CLIENT_POSTMORTEM.md RESOLUTION section.
+- 2026-06-22 | claude | Live-tested the Edgar->GAS batch-QR hook end-to-end: submitted a real [BATCH QR CODE REQUEST] (Cacao Tea 1LB Oscar x1, signed Gary Teh) -> Edgar dispatched -> 1N6o00 processor minted QR 2024_20260622_22 (row 1611, MINTED) + fired the render webhook. HOOK CONFIRMED WORKING. But render then exposed a 4th break: the tokenomics qr-code-batch-webhook workflow uploaded the PNG to TrueSightDAO/qr_codes, which was ARCHIVED (read-only) 2026-06-11 -> 403 "Repository was archived". Every batch QR since mints a sheet row with no PNG. Repointed PNG storage qr_codes -> lineage-assets/pngs (canonical home; the workflow derives repo+path from the col-K URL via parse_github_url so the GAS const is the single source of truth): tokenomics #373 MERGED + GAS deployment AKfycbxn3siu redeployed @9. Verified target now resolves to lineage-assets and PNG renders. STILL BLOCKED on a credential: QR_CODE_REPOSITORY_TOKEN is a fine-grained PAT scoped to qr_codes -> 403 "Resource not accessible by personal access token" on lineage-assets. Gary must grant that PAT Contents:write on lineage-assets (OPEN_FOLLOWUPS, BLOCKING). Separate follow-up filed: the workflow emits only the PNG, not qrs/<id>.json + qrs_index.json rebuild, so workflow-generated QRs won't show on truesight.me/physical-assets/serialized until added (or unify on batch_compiler.py). Full writeup: QR_GENERATION_DAO_CLIENT_POSTMORTEM.md.
 
-_All dated lines on/after 2026-06-15_ (13):
+_All dated lines on/after 2026-06-16_ (16):
 
 - 2026-06-16 | claude | Telegram identity schema: Column X = Telegram ID (numeric), Column H = Telegram Handle (@username). Fixed truesight_autopilot identity_binding (was writing ID to H, handle nowhere) — PR #221. Audited Sophia build status; multi-tenant + topic-role resume trackers were stale (policy/roles/vault/engagement/identity_binding all built; remaining: Column-X read resolver in policy.py + wiring identity_binding into Telegram adapter).
 - 2026-06-16 | claude | Root-caused Sophia "⚠️ Autopilot produced an empty response" on the Public-Key Lookup Cache thread (5712). NOT a crash: the GO turn is too big — model calls a tool every round (ctx ~90K tok/round) and never emits a final answer, hitting CHAT_MAX_TOOL_ROUNDS=30. At the cap, main.py:2407 forces a text-only completion, but DeepSeek emits DSML tool-call syntax AS content; _strip_dsml (main.py:1125/2418) strips it to "". The STREAMING path (_stream_chat) has no final non-empty fallback, unlike the non-streaming /chat (main.py:3827-3844), so done.response="" → telegram_adapter.py:877 banner. Logs req [511455]/[104929] confirm "Empty after 30 tool rounds" + "Stripped DSML leakage". Fix: re-force a clean completion after DSML-strip-to-empty + mirror the non-streaming non-empty fallback in the streaming path; also chunk huge handoff GO turns. Full diagnosis: notes/claude_sophia_empty_response_rootcause_2026-06-16.md
@@ -294,6 +253,9 @@ _All dated lines on/after 2026-06-15_ (13):
 - 2026-06-22 | claude | SCORING_REVIEW_QUEUE PR4-WIRE DONE (Edgar primary path). Set DAO_PROTOCOL_GAS_REVIEW_WEBHOOK_URL (env_prefix DAO_PROTOCOL_ + gas_review_webhook_url) = the @2 /exec URL in /home/ubuntu/dao_protocol/.env on dao_protocol_nelanco (host 98.93.94.86; backup .env.bak.20260622), restarted truesight-dao-protocol.service: /ping 200, clean startup, var confirmed in /proc/<pid>/environ. Automated write-back loop now live end-to-end: DApp approve -> Edgar appends [CONTRIBUTION REVIEW EVENT] + calls webhook -> processApprovalRejections writes Reviewed back to Scored Chatlogs -> transfer batch -> Ledger history. Optional backup not done: installReviewProcessingTrigger() 15-min cron in the GAS editor (only needed if an Edgar->GAS callback fails). RESUME HERE = PR7 human-run E2E UAT on beta, then PR8 promote.
 - 2026-06-22 | claude | SCORING_REVIEW_QUEUE UAT attempt found a page<->Edgar integration gap (PR5 never integration-tested). review_queue.html: DAO_PROTOCOL_BASE = EDGAR_BASE + '/api/v1' so /api/v1/dao/review_queue -> 404 (real /dao/review_queue -> 200); /api/v1/dao/contributors -> 404 (no /dao/contributors route at all); POST /dao/verify_identity -> 404 (no such route) which makes checkAuth leave isGovernor=false so Approve/Reject buttons never render. Only /dao/submit_contribution_review (405 POST) is correct. Actual Edgar routes: query.py serves the review queue, dao.py serves submit_contribution + submit_contribution_review; NO verify_identity or contributors route exists. Plus queue empty (no review-queue cache files; PR1 generator gated) and beta.edgar lacks the review routes (only prod wired; no real staging since all sheets/cache are prod). RESUME HERE corrected from PR7 to PR-INTEGRATION: fix page /api/v1; implement or repoint verify_identity + contributors to the existing governor registry / truesight-dao-cache-contributors; seed a cache file; THEN PR7 UAT (prod), THEN PR8. Recommend reusing existing governor/contributor caches over new Edgar endpoints. Evidence in plan §12.3.
 - 2026-06-22 | claude | QR Code Generation GAS (1N6o00N9VtRK…) "can't deploy a webapp" root-caused: appsscript.json had NO `webapp` block, so EVERY clasp deployment (@HEAD + versioned @7) returned "Page Not Found" on /exec — the script has a doGet (processQRCodeGenerationTelegramLogs + registerSingleQRCode) but no web-app entry point was ever declared, so re-deploying never helped (the deploy step wasn't the problem, the manifest was). Fix (tokenomics #370, MERGED): added webapp {executeAs: USER_DEPLOYING, access: ANYONE_ANONYMOUS} to appsscript.json, clasp push, created versioned web-app deployment @8 = AKfycby8m5XEuFLyw4plNnN-_lciS8aRRP1C3VrvuqN3V3dy0hYsn92T01Icer7Qwi2NTMMN (verified live anon: ?action=ping -> JSON error; ?action=registerSingleQRCode -> "Missing required parameter: qr_code"). GENERAL LESSON for any GAS web-app deploy: a doGet/doPost alone is NOT enough — appsscript.json must carry a `webapp` block or clasp deployments serve nothing. Only VERSIONED deployments are anonymous; @HEAD stays login-walled even with ANYONE_ANONYMOUS. Also dropped migration-orphan Code.js/Version.gs (live = Version.js + main .js only).
+- 2026-06-22 | claude | Wired the async Edgar -> GAS batch-QR pipeline end-to-end (was fully broken). truesight-dao-batch-qr-generator emits [BATCH QR CODE REQUEST] -> Edgar dispatch.py routes it to DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION ?action=processQRCodeGenerationTelegramLogs. THREE breaks: (1) 1N6o00 web app served Page Not Found (no webapp block in appsscript.json) — fixed tokenomics #370 + redeployed the EXISTING AKfycbxn3siu deployment to v8 so its stable URL works (deleted a throwaway @8). (2) marker mismatch from the 2026-06-20 postmortem already gone — deployed processor matches startsWith("[BATCH QR CODE REQUEST]"). (3) THE ACTUAL DeepSeek/Sophia misconfig: Edgar's DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION pointed at the WRONG GAS deployment — a 1MnAs public-query service (AKfycbyGD, actions: list/search/generate/generate_single) with NO processQRCodeGenerationTelegramLogs action, so every dispatch got {"error":"Invalid action"} HTTP200 and nothing ran. Repointed it DIRECTLY at the 1N6o00 processor (AKfycbxn3siu/exec) on dao_protocol_nelanco:/home/ubuntu/dao_protocol/.env (backup .env.bak.20260622212504), restarted truesight-dao-protocol.service, var confirmed in /proc/<pid>/environ. Did NOT trigger a live run (watermark would rescan the already-manually-QR'd b08d324b batch -> dup risk). Still open & separate: repackaging currency-ingest GAS doesn't set col C isSerializable + E-J farm info, so repackaging rows need manual population before generation SUCCEEDS. Full writeup: QR_GENERATION_DAO_CLIENT_POSTMORTEM.md RESOLUTION section.
+- 2026-06-22 | claude | Live-tested the Edgar->GAS batch-QR hook end-to-end: submitted a real [BATCH QR CODE REQUEST] (Cacao Tea 1LB Oscar x1, signed Gary Teh) -> Edgar dispatched -> 1N6o00 processor minted QR 2024_20260622_22 (row 1611, MINTED) + fired the render webhook. HOOK CONFIRMED WORKING. But render then exposed a 4th break: the tokenomics qr-code-batch-webhook workflow uploaded the PNG to TrueSightDAO/qr_codes, which was ARCHIVED (read-only) 2026-06-11 -> 403 "Repository was archived". Every batch QR since mints a sheet row with no PNG. Repointed PNG storage qr_codes -> lineage-assets/pngs (canonical home; the workflow derives repo+path from the col-K URL via parse_github_url so the GAS const is the single source of truth): tokenomics #373 MERGED + GAS deployment AKfycbxn3siu redeployed @9. Verified target now resolves to lineage-assets and PNG renders. STILL BLOCKED on a credential: QR_CODE_REPOSITORY_TOKEN is a fine-grained PAT scoped to qr_codes -> 403 "Resource not accessible by personal access token" on lineage-assets. Gary must grant that PAT Contents:write on lineage-assets (OPEN_FOLLOWUPS, BLOCKING). Separate follow-up filed: the workflow emits only the PNG, not qrs/<id>.json + qrs_index.json rebuild, so workflow-generated QRs won't show on truesight.me/physical-assets/serialized until added (or unify on batch_compiler.py). Full writeup: QR_GENERATION_DAO_CLIENT_POSTMORTEM.md.
+- 2026-06-22 | claude | QR generation pipeline now FULLY GREEN end-to-end (no operator action needed). After repoint (#373), resolved the two remaining upload blockers: (1) CI token — old QR_CODE_REPOSITORY_TOKEN was a fine-grained PAT scoped to qr_codes (403 "Resource not accessible" on lineage-assets); tested workspace tokens for real Contents:write to lineage-assets (GITHUB_PAT/TREASURY_CACHE_PAT/PLACES_CACHE_PAT/KRAKE* all 403 despite permissions.push=true — push=true is misleading for fine-grained PATs; only ORACLE_ADVISORY_PUSH_TOKEN PUT 201). Set the tokenomics QR_CODE_REPOSITORY_TOKEN secret to ORACLE_ADVISORY_PUSH_TOKEN's value. (2) zip upload — batch_webhook_handler.upload_zip_file had target_repo='TrueSightDAO/qr_codes' HARDCODED (#373 only fixed the col-K-derived PNG path); fixed in #375. Final workflow_dispatch on row 1611 = SUCCESS; pngs/2024_20260622_22.png + batch_files/*.zip both HTTP 200 in lineage-assets. CAVEAT logged in OPEN_FOLLOWUPS: reusing ORACLE_ADVISORY_PUSH_TOKEN couples QR gen to the oracle-advisory token (rotating it breaks QR) — optional hardening = dedicated scoped PAT. Still open (separate): workflow emits PNG only, not qrs/<id>.json + qrs_index.json, so workflow-gen QRs won't show on truesight.me/physical-assets/serialized until added.
 
 ---
 
@@ -312,6 +274,7 @@ _All dated lines on/after 2026-06-15_ (13):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9bb3580 | 2026-06-22 21:21:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 883730f | 2026-06-22 17:17:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2acd573 | 2026-06-22 12:35:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0d8783c | 2026-06-22 06:08:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -351,7 +314,6 @@ e87ec22 | 2026-06-18 13:55:39 -0700 | Replace roadmap redirect with live track m
 e7ac037 | 2026-06-18 05:20:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9396a06 | 2026-06-17 20:35:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 27d4249 | 2026-06-17 16:25:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-54608f5 | 2026-06-17 11:22:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -364,6 +326,12 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+60cb330 | 2026-06-22 18:28:56 -0700 | log: postmortem RESOLUTION -> QR pipeline fully green (token + zip repoint #375)
+4e31ffe | 2026-06-22 18:28:32 -0700 | log: QR pipeline fully green (token wired to ORACLE_ADVISORY_PUSH_TOKEN + zip repoint #375)
+ad2386c | 2026-06-22 18:09:10 -0700 | log: QR PNG storage repoint to lineage-assets (tokenomics #373) + token-grant blocker + manifest/index follow-up
+8c9d5f6 | 2026-06-22 14:29:29 -0700 | log: wire Edgar->GAS batch-QR pipeline (repoint DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION to the 1N6o00 processor)
+1d44eaf | 2026-06-22 14:20:53 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
+d9b7d0e | 2026-06-22 14:20:51 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
 e718def | 2026-06-22 14:07:35 -0700 | log: QR-gen GAS webapp-block root cause + deployment @8 (tokenomics #370)
 91dc3b1 | 2026-06-22 13:50:57 -0700 | Scoring Review Queue: UAT blocked by review_queue.html<->Edgar integration gap; RESUME HERE = PR-INTEGRATION (#615)
 3a54e4b | 2026-06-22 13:32:45 -0700 | Scoring Review Queue: PR4-WIRE done (Edgar webhook env set + restarted); RESUME HERE = PR7 (#614)
@@ -398,18 +366,16 @@ de0a6e6 | 2026-06-20 07:41:10 -0700 | chore(previews): refresh Beer Hall preview
 5594881 | 2026-06-20 07:41:09 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 194c97b | 2026-06-20 02:49:30 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
 c959853 | 2026-06-20 02:49:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
-30044f9 | 2026-06-19 21:51:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
-ccaa2c1 | 2026-06-19 21:51:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
-f4fb53d | 2026-06-19 20:54:52 -0700 | Merge pull request #603 from TrueSightDAO/auto/advisory-refresh-2026-06-20
-9276050 | 2026-06-20 03:54:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
-7649ec8 | 2026-06-19 16:35:37 -0700 | manifest: PR7 (beta deploy + UAT) complete (#602)
-b475e3b | 2026-06-19 16:25:52 -0700 | manifest: PR6 done — advance resume tracker to PR7 (#601)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+ce68b47 | 2026-06-22 18:22:49 -0700 | fix(qr-gen): repoint batch-zip upload off archived qr_codes -> lineage-assets (#375)
+029dc6c | 2026-06-22 18:10:03 -0700 | Review approve: write reviewer-selected contributor back to Col A (#374)
+4ffe230 | 2026-06-22 18:06:10 -0700 | fix(qr-gen): repoint serialized-QR PNG storage from archived qr_codes -> lineage-assets (#373)
+578df97 | 2026-06-22 17:57:43 -0700 | Review write-back: match Scored Chatlogs row by (hash + contributor), not hash alone (#372)
 f16ccfc | 2026-06-22 14:09:55 -0700 | Fix review write-back: look up Scored Chatlogs by Col K (hash key), not Col H (#371)
 02bb429 | 2026-06-22 14:06:47 -0700 | fix(qr-gen GAS): add webapp manifest block so /exec deploys as a web app (#370)
 f8b38a8 | 2026-06-22 13:01:16 -0700 | Harden secret gitignore + add credential templates (stray Wix token leak follow-up) (#369)
@@ -483,16 +449,12 @@ f006e46 | 2026-06-19 10:58:56 +0000 | chore: refresh store and partner inventory
 03e126c | 2026-06-18 10:50:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 02978d1 | 2026-06-17 11:19:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c5305b1 | 2026-06-16 11:36:56 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b476a9f | 2026-06-15 12:54:19 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-9fd9e3b | 2026-06-15 12:44:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
 ab4e96e | 2026-06-18 20:22:47 -0700 | fix(shop): align Premium Dark Chocolate Bar subscription card with other product cards (#178)
-3ea8d84 | 2026-06-14 17:07:07 -0700 | Swap Kopi Bar hero to interior photo, demote exterior to gallery (#177)
-eaa7c15 | 2026-06-14 17:02:32 -0700 | Add Kopi Bar interior hero image
 ```
 
 ### `iching_oracle` → `oracle`
@@ -511,6 +473,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-06-23T034600Z_qr-pipeline-green-pr4-deployed.md`
+
+- **posted_at_utc:** `2026-06-23T03:46:00Z`  
+- **slug:** `qr-pipeline-green-pr4-deployed`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Ops (Infrastructure)** — QR code generation pipeline fully green: CI token wired and storage repointed to `lineage-assets`.
+
 ### `beer-hall_2026-06-22T042740Z_smart-contracts-rsa-verification.md`
 
 - **posted_at_utc:** `2026-06-22T04:27:40Z`  
@@ -528,15 +499,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Ops (Governance)** — SOHA incident postmortem closed: added intent interpretation rules and a batch sales execution plan for the 40-bag cash pattern to SOPHIA.
-
-### `beer-hall_2026-06-20T035437Z_smart-contracts-catalog-and-fda-blog.md`
-
-- **posted_at_utc:** `2026-06-20T03:54:37Z`  
-- **slug:** `smart-contracts-catalog-and-fda-blog`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Web (Transparency)** — Smart Contracts catalog page live: architecture diagram and clickable source code links added for all deployed contracts.
 
 ---
 
@@ -557,63 +519,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/22/2026 13:51:57 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-15`; scanned last **582** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-06-20 | 1 | — | — | test-fix-0x654b71b464 | — | — |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_42 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_40 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_39 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_38 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_37 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_36 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_35 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_31 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_30 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_29 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_28 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_27 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_26 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_25 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_24 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_22 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_36 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_35 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
