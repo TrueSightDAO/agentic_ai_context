@@ -83,19 +83,39 @@ Brazilian exports currently flow through "Black King" — the individual CNPJ of
 ```
 DAO contributors (TDG holders)
     ↓
-Próspera HoldCo (Honduras ZEDE)
+Próspera LLC (Honduras ZEDE)
     ↓ owns
 Brazilian Export CNPJ (Ltda, RADAR + Siscomex)
     ↓ exports to
 TrueTech Inc (US import, Delaware C-corp) — already live
 ```
 
-- **Tier 1 — Próspera HoldCo.** A new entity incorporated in the Próspera jurisdiction acts as the holding/operating company and owner of the Brazilian export entity.
-- **Tier 2 — Brazilian Export CNPJ.** A new Brazilian company, owned/controlled by the Próspera HoldCo, incorporated to export Northern-Brazilian agricultural products. It obtains RADAR habilitation and operates in Portal Único Siscomex in its own name.
+- **Tier 1 — Próspera LLC.** A new LLC incorporated in the Próspera ZEDE jurisdiction acts as the holding/operating company and owner of the Brazilian export entity.
+- **Tier 2 — Brazilian Export CNPJ.** A new Brazilian company, owned/controlled by the Próspera LLC, incorporated to export Northern-Brazilian agricultural products. It obtains RADAR habilitation and operates in Portal Único Siscomex in its own name.
 - **Tier 3 — Destination-market importers** (one per market). US: TrueTech Inc (already established); China and Europe: TBD.
 
-**Pros:** Designed path for foreign-owned Brazilian entity; Próspera counsel already identified (Layon Costa, Tools for the Commons)
-**Cons:** Higher cost ($5K-15K+), longer timeline (2-6 months), unknown banking
+**Próspera LLC specifics (from Breno, Tools for the Commons):**
+- **Cost:** $300 + $75 setup fee, $230/year annual maintenance
+- **Tax:** 1% flat taxation on profits booked in Próspera
+- **Governance:** 1 share = 1 vote; company grants shares to contributors; shares can be sold back to the company at net asset value (NAV)
+- **This NAV buyback model aligns with our existing TDG redemption mechanism** — contributors exit at NAV, same as the current model
+
+**Triangular international trade structure (recommended by Breno):**
+```
+Brazilian CNPJ → sells cacao to → Próspera LLC (at cost + small margin)
+Próspera LLC → sells to → TrueTech Inc (at wholesale price)
+TrueTech Inc → sells to → Retailers (at wholesale price)
+
+Profit is booked in Próspera LLC (1% tax)
+```
+
+This structure minimizes tax leakage:
+- **Brazil:** Low margin on export (minimizes Brazilian corporate tax + ICMS/PIS/COFINS)
+- **Próspera:** Profit sits at 1% tax
+- **US (TrueTech Inc):** Wholesale pass-through, minimal profit retained
+
+**Pros:** Designed path for foreign-owned Brazilian entity; Próspera counsel already identified (Layon Costa, Tools for the Commons); clear tax advantage (1% vs 21% US corporate tax); triangular trade structure validated
+**Cons:** Higher upfront cost ($375 setup + $230/yr), longer timeline (2-6 months), Próspera banking still to be confirmed
 
 ---
 
