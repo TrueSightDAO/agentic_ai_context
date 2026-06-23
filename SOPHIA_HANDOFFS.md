@@ -143,6 +143,7 @@ replying in that topic with a short go-signal —
 
 | Plan file | Handoff title | Telegram topic | message_thread_id | Handoff date | Status |
 |-----------|---------------|----------------|-------------------|--------------|--------|
+| `SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md` | Sophia Durable Journal + Checkpoint-Resume Loop | _draft — not parked_ | _TBD_ | 2026-06-23 | draft — awaiting governor review; RESUME HERE = **PR1** (`app/journal.py`); own-repo gate |
 | `QR_SELF_SERVE_CURRENCY_PLAN.md` | Self-Serve QR-Ready Currency Definition via Edgar | [QR Self-Serve Currency](https://t.me/c/3919341801/7611) | 7611 | 2026-06-23 | parked GO-ready — RESUME HERE = **PR1** (`dao_protocol`: define-currency CLI + dispatch route); §5a one PR per turn; opens PRs only, never self-merges |
 | `SCORING_REVIEW_QUEUE_PLAN.md` | Scoring Review Queue (DApp review → GAS write-back → main ledger) | [Scoring Review Queue](https://t.me/c/3919341801/7191) | 7191 | 2026-06-18 | in progress — PR4 code merged + deployable (#367/#368); RESUME HERE = **PR4-DEPLOY** operator gate (clasp push + trigger + Edgar env), then PR7 UAT (plan §12) |
 | `SOPHIA_DAPP_EVENT_ALIGNMENT_PLAN.md` | DApp Event Alignment (all event types) | [DApp Event Alignment](https://t.me/c/3919341801/6416) | 6416 | 2026-06-18 | parked GO-ready |
