@@ -153,3 +153,21 @@ truesight-dao-batch-qr-generator  →  [BATCH QR CODE REQUEST]  →  Edgar (dao_
 | Env var (Edgar box) | Old (broken) | New (fixed) |
 |---------------------|--------------|-------------|
 | `DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION` | `…/s/AKfycbyGD…/exec` (1MnAs query svc — no processor action) | `…/s/AKfycbxn3siu…/exec` (1N6o00 processor) |
+
+### Live end-to-end test (2026-06-22) + PNG-storage repoint
+
+Submitted a real `[BATCH QR CODE REQUEST]` for `Cacao Tea 1LB - Oscar Fazenda 2024` ×1 via `truesight-dao-batch-qr-generator` (signed Gary Teh). Result: **the Edgar hook works** — Edgar dispatched the webhook and the processor minted QR **`2024_20260622_22`** (row 1611, status `MINTED`, manager Gary Teh) and fired the GitHub render webhook. So the whole async chain is proven: `dao_client → Edgar → 1N6o00 processor → sheet mint → render webhook`.
+
+**But the PNG render then failed at upload**, exposing a 4th break: the render workflow (`tokenomics/.github/workflows/qr-code-batch-webhook.yml`) uploaded the compiled PNG to **`TrueSightDAO/qr_codes`, which was archived (read-only) 2026-06-11** → `403 Repository was archived`. Every batch QR since has minted a sheet row with no PNG.
+
+**Repoint fix (tokenomics #373, MERGED + GAS deployed @9):** the canonical serialized-QR home is `lineage-assets/pngs/`. The workflow derives the upload repo+path from the **column-K URL** (`parse_github_url`), so the GAS const is the single source of truth:
+- `QR_GEN_TELEGRAM_GITHUB_BLOB_BASE_URL` → `…/lineage-assets/blob/main/pngs/`
+- `ZIP_FILE_DOWNLOAD_BASE_URL` + `QR_CODES_ZIP_GITHUB_REPO` → `lineage-assets`
+- workflow `GITHUB_REPOSITORY` default + `github_webhook_handler.py` fallback → `lineage-assets`
+- 1N6o00 deployment `AKfycbxn3siu…` redeployed to v9 with the new const.
+
+Verified via `workflow_dispatch` on row 1611: target now resolves to `TrueSightDAO/lineage-assets` and the PNG renders.
+
+**⚠️ STILL BLOCKED on a credential (account-owner action):** upload now returns `403 "Resource not accessible by personal access token"` — the `QR_CODE_REPOSITORY_TOKEN` secret on `TrueSightDAO/tokenomics` is a fine-grained PAT scoped to `qr_codes` and has **no write on `lineage-assets`**. **Fix:** grant that PAT `Contents: Read and write` on `TrueSightDAO/lineage-assets` (or replace the secret with a token that has it), then re-run generation. Until then, new QR rows carry correct `lineage-assets` col-K URLs but the PNGs don't upload.
+
+**Separate follow-up:** the workflow emits only the PNG — not `qrs/<id>.json` + a `qrs_index.json` rebuild — so workflow-generated QRs won't appear on `truesight.me/physical-assets/serialized` until that's added (or generation unifies on `batch_compiler.py`). Filed in `OPEN_FOLLOWUPS.md`.

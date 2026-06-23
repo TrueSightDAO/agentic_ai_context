@@ -39,6 +39,31 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Grant QR_CODE_REPOSITORY_TOKEN write access to lineage-assets (unblocks all QR PNG generation)
+**Filed 2026-06-22. Owner: Gary (account-owner action). BLOCKING — QR PNGs currently never upload.**
+The batch QR render workflow (`tokenomics/.github/workflows/qr-code-batch-webhook.yml`) uploads
+compiled PNGs using the `QR_CODE_REPOSITORY_TOKEN` secret on `TrueSightDAO/tokenomics`. PNG storage
+was repointed from the archived `qr_codes` repo to `lineage-assets/pngs/` (tokenomics #373), but the
+token is a **fine-grained PAT scoped to `qr_codes`** and now returns `403 "Resource not accessible by
+personal access token"` on `lineage-assets`. **Fix (~5 min):** on github.com → the PAT backing
+`QR_CODE_REPOSITORY_TOKEN`, add `TrueSightDAO/lineage-assets` to its repository access with
+**Contents: Read and write** (or mint/replace the secret with a token that already has it), then
+`gh secret set QR_CODE_REPOSITORY_TOKEN --repo TrueSightDAO/tokenomics`. Verify by re-running the
+workflow on a minted row (e.g. `gh workflow run qr-code-batch-webhook.yml --repo TrueSightDAO/tokenomics
+-f start_row=1611 -f end_row=1611 -f zip_file_name=test.zip`) and confirming the PNG lands at
+`lineage-assets/pngs/2024_20260622_22.png`. Context: `QR_GENERATION_DAO_CLIENT_POSTMORTEM.md` RESOLUTION.
+
+### QR render workflow should emit qrs/<id>.json manifest + rebuild qrs_index.json
+**Filed 2026-06-22. Owner: unclaimed.** The tokenomics batch QR workflow
+(`agroverse_qr_code_web_service/batch_webhook_handler.py` → `github_webhook_handler.py`) uploads only
+the compiled **PNG** to `lineage-assets/pngs/`. It does NOT write the per-QR `qrs/<id>.json` manifest
+or rebuild `qrs_index.json` — which is what `truesight.me/physical-assets/serialized` reads. So a
+workflow-generated QR will have a PNG but won't appear on the serialized page. `lineage-assets/scripts/
+qr_generator/batch_compiler.py` already does the full PNG+manifest+index flow (the postmortem used it
+manually for batch b08d324b). Either (a) extend the workflow handler to also build+commit the manifest
+and rebuild the index, or (b) retire the simple workflow generator and unify QR generation on
+`batch_compiler.py`. Gated behind the token grant above (no point until PNGs upload).
+
 ```followup
 id: chocolate-subscription-phase2
 chat_id: -1003919341801
