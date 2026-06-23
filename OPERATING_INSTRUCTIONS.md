@@ -146,38 +146,52 @@ unit lands (see §4 and the per-task tracker-update rule), then the next turn re
 §5a still holds — **one PR per execution turn** (each turn must converge inside
 the `CHAT_MAX_TOOL_ROUNDS` cap). What changes is that Sophia no longer has to
 **wait for a human prompt between PRs**: when `AUTO_ADVANCE` is enabled she runs
-the next unit automatically, pausing only at explicit gates. This is safe now
-that context-compaction keeps a multi-turn thread under the model window
+the next unit automatically, pausing only at gates. This is safe now that
+context-compaction keeps a multi-turn thread under the model window
 (`SOPHIA_CONTEXT_MANAGEMENT_PLAN.md`, shipped 2026-06-14). Full design:
 **`SOPHIA_AUTO_ADVANCE_PLAN.md`**.
 
-**To make a roadmap auto-advanceable, add an `Advance` column to its resume
-tracker.** The marker on each unit row answers *"may Sophia auto-START this
-unit?"*:
+### Default = AUTO-ADVANCE (changed 2026-06-23)
 
-| Marker | Meaning |
-|--------|---------|
-| `auto` | When the previous unit completes, start this one immediately — no human prompt. |
-| `gate: <reason>` | **STOP** before this unit; Sophia posts a pause report carrying `<reason>` and waits for the governor to reply `go`. |
+**Sophia auto-advances to the next unit by default.** A roadmap needs **no `Advance`
+column** to auto-advance — the previous fail-closed default (no column ⇒ stop) caused
+plans to silently stall when an author forgot the column, while the safe common case
+(keep working through code units) is what we want for free. The `Advance` column is now
+**optional**, used only to add *extra* gates beyond the always-stop list below.
 
-Example:
+**Sophia STOPS (pauses, posts a report, waits for the governor to reply `go`) only when:**
+
+1. **The next unit is irreversible / outward-facing** — enforced by rule, NOT by whether
+   anyone annotated it. **Always stop before:**
+   - a **production deploy / promote** (e.g. `gh repo sync` beta→prod, restarting a prod
+     service, `clasp` deploy to a live project, DNS/infra changes);
+   - **merging code to a default branch** (`main`/`master`) — Sophia opens PRs, a human
+     merges (own-repo gate);
+   - **issuing TDG / moving money** (mass contribution approvals, `[CAPITAL INJECTION]`,
+     payouts, treasury transfers);
+   - a **UAT / human-acceptance phase**.
+2. **The turn didn't converge** — it opened no PR, hit the round cap, or came back empty.
+   Never auto-advance on a broken turn.
+3. **An explicit `gate: <reason>` marker** says so (opt-in extra gate), **or** Sophia
+   **can't identify the next unit** (no `RESUME HERE` pointer, unit not found). Ambiguity
+   about *where she is* still fails closed; ambiguity about *whether a safe unit may run*
+   now resolves to auto.
+
+Optional `Advance` markers (when you want them): `auto` (explicit — same as the default)
+or `gate: <reason>` (an extra stop on top of the always-stop list).
+
+Example — note PR1/PR2 need no markers to auto-advance; only the deploy is gated:
 
 | Unit | Advance | PR opened | Merged (human) | Deployed |
 |------|---------|-----------|----------------|----------|
-| PR1 — parser | `auto` | ☐ | ☐ | n/a |
-| PR2 — signal | `auto` | ☐ | ☐ | ☐ |
-| PR3 — loop | `gate: deploy + UAT before go-live` | ☐ | ☐ | ☐ |
+| PR1 — parser | _(auto)_ | ☐ | ☐ | n/a |
+| PR2 — signal | _(auto)_ | ☐ | ☐ | ☐ |
+| PR3 — deploy + UAT | `gate: prod deploy` (also an always-stop) | ☐ | ☐ | ☐ |
 
-**Rules:**
-- **Always gate** any unit that touches prod, needs a human merge before the
-  next can start, or is a UAT phase.
-- **Fail closed.** Sophia treats anything she can't parse unambiguously — no
-  `Advance` column, no `RESUME HERE` pointer, unit not found, malformed marker,
-  a turn that didn't open a PR — as a **gate** (stop and ask), never `auto`.
-- The executing turn **advances the `RESUME HERE` pointer** as each unit lands;
-  that pointer is how Sophia finds the next unit (then reads its marker).
-- A roadmap **without** an `Advance` column behaves exactly as before
-  (one PR, then wait) regardless of the `AUTO_ADVANCE` flag.
+- The executing turn **advances the `RESUME HERE` pointer** as each unit lands; that
+  pointer is how Sophia finds the next unit. Keep it current.
+- The always-stop list is a **standing safety rule** — a forgetful plan author cannot
+  arm a prod deploy or a TDG issuance for unattended auto-run.
 
 ---
 
