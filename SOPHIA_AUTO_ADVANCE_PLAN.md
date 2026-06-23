@@ -37,18 +37,25 @@ only at explicitly-marked gates, on failure, on completion, or at a runaway cap.
 
 ## 2. Design
 
-### 2a. The `Advance` marker (the explicit gate convention)
+### 2a. Advance decision — **auto by default, gate the irreversible** (revised 2026-06-23)
 
-The roadmap's **resume tracker** grows one column, `Advance`, per unit:
+> **Default flipped 2026-06-23 (Gary):** auto-advance is the **default**; the `Advance` column is
+> now optional (extra gates only). The old fail-closed default (no column ⇒ stop) silently stalled
+> plans whose author forgot the column. See `OPERATING_INSTRUCTIONS.md` §5c.
 
-| Value | Meaning |
-|-------|---------|
-| `auto` | On successful completion of this unit, **immediately continue** to the next unit. |
-| `gate: <reason>` | After this unit, **STOP** and post a pause report carrying `<reason>` + open-PR links + "reply `go` to continue." |
+`advance_after(plan, completed_unit)` returns `auto` **unless** one of these forces a `gate`:
 
-Sophia obeys the column **literally** — she does not infer gates. Anything she cannot parse
-unambiguously is treated as `gate` (**safe default: stop, never auto-advance blindly**). UAT and any
-prod-touching / human-merge-dependent unit are always marked `gate:`.
+1. **Always-stop category (by rule, not annotation)** — the next unit is irreversible / outward-facing:
+   a **prod deploy / promote**, a **code merge to `main`/`master`**, **issuing TDG / moving money**,
+   or a **UAT phase**. Detected from the unit text (keywords: deploy, promote, `gh repo sync`, restart,
+   clasp deploy, merge to main, prod, TDG, issue, treasury, payout, capital injection, UAT). A
+   forgetful author **cannot** arm these for unattended auto-run.
+2. **Explicit `gate: <reason>`** marker on the next unit (opt-in extra gate).
+3. **Can't locate the next unit** — no `RESUME HERE`, unit not found, malformed tracker. Ambiguity
+   about *where she is* still fails closed; ambiguity about *whether a plain unit may run* now → `auto`.
+
+Optional markers: `auto` (explicit, == default) · `gate: <reason>` (extra stop). Non-convergence
+(turn opened no PR / empty) is handled upstream as `failed` (§3) — never auto-advances.
 
 Example tracker:
 
@@ -104,8 +111,11 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
   turn; whether to continue is a literal read of the `Advance` column, not the LLM's judgment.
 - **Failure = halt.** A turn that errors, or completes **without opening a PR** (the success
   signal), never auto-advances. Halt and report.
-- **Ambiguity = gate.** Unparseable tracker, missing `Advance` column, can't identify the next unit
-  → treat as gate (stop), never auto-advance. Mirrors live-progress's "bias toward safe."
+- **Auto by default; gate the irreversible (revised 2026-06-23).** Default decision is `auto`. A
+  `gate` is forced only by an always-stop category (prod deploy / merge-to-main / TDG-or-money / UAT,
+  detected from the unit text), an explicit `gate:` marker, or inability to **locate** the next unit
+  (no `RESUME HERE` / unit-not-found still fails closed). A *missing `Advance` column* now means
+  `auto`, not gate. See §2a + `OPERATING_INSTRUCTIONS.md` §5c.
 - **Runaway cap + human interrupt.** A consecutive-auto-turn cap (`AUTO_ADVANCE_MAX_TURNS`, default
   **8**) backstops a mis-marked all-`auto` plan. A real governor message arriving mid-chain folds
   into the per-thread queue (existing concurrency machinery) and can halt the loop ("stop").
