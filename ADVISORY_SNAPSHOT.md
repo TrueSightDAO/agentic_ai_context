@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-23T15:32:49Z`
+- Generated (UTC): `2026-06-23T20:33:03Z`
 - Look-back: **7** calendar days (`2026-06-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,25 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 19
-- `[CONTRIBUTION REVIEW EVENT]` × 12
+- `[CONTRIBUTION EVENT]` × 21
+- `[CONTRIBUTION REVIEW EVENT]` × 13
 - `[PRACTICE EVENT]` × 4
-- `[BATCH QR CODE REQUEST]` × 3
-- `[SALES EVENT]` × 2
-- `[REPACKAGING BATCH EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
+- `[BATCH QR CODE REQUEST]` × 1
+- `[PROPOSAL CREATION]` × 1
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260622202103_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Scoring Review Queue: deploy PR4 GAS write-back + secret-gitignore hardening
-- `Edgar_20260622203325_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Scoring Review Queue: wire Edgar to the review write-back webhook (close the…
-- `Edgar_20260622211035_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix QR Code Generation GAS web-app deployment (missing webapp manifest block)
-- `Edgar_20260622211443_005` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: 1JOvLNino3MFuiIZpdkr · TDGs Issued: 50
-- `Edgar_20260622211446_007` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: QW/Sm4nNGZeXOuPsleYm · TDGs Issued: 400
-- `Edgar_20260622211449_009` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: 10y2NZu4qv/yvyEayXcd · TDGs Issued: 75
-- `Edgar_20260622211451_011` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: GSXdfNbfvJ1xZZmqjzX4 · TDGs Issued: 25
-- `Edgar_20260622211454_013` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: f8OhamwCY/y2fqaKcYD7 · TDGs Issued: 25
-- `Edgar_20260622211456_015` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: 9dcSPulbDcqxWWxGNbfY · TDGs Issued: 2.5
 - `Edgar_20260622211459_017` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zD2lgRz2ZU1XdIfoKkuN · TDGs Issued: 25
 - `Edgar_20260622211502_019` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
 - `Edgar_20260622211505_021` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: SS1GMcUJbXE+Xsj83ufJ · TDGs Issued: 100
@@ -62,6 +52,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260623010937_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Verify batch-QR Edgar pipeline live + repoint QR PNG storage off the archive…
 - `Edgar_20260623012924_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Take QR generation pipeline fully green: wire CI token + repoint batch-zip t…
 - `Edgar_20260623152624_003` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-23T15:26:21.706Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260623164549_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: _*Suggestions from Breno on Prospera LLC setup_*
+- `Edgar_20260623170021_001` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: +CUxW7+Xktdxg265gEBJ · TDGs Issued: 8.33
+- `Edgar_20260623170718_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Authored two tracked execution plans in agentic_ai_context (QR_SELF_SERVE_CU…
+- `Edgar_20260623171813_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
+- `Edgar_20260623171850_007` · **Edgar** · [PROPOSAL CREATION] Type: governance · Title: Establish Legal Holding Entity for Brazil Export Operations · Content: ## Summary
+- `Edgar_20260623171922_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Implemented Proposal CLI: created create_proposal.py and review_proposal.py …
+- `Edgar_20260623172300_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reviewed and merged PR #132 (Proposal CLI implementation); oversaw execution…
+- `Edgar_20260623180016_013` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260623180153_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Driving to print the brochure at FedEx office
 
 ---
 
@@ -229,11 +228,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,521.34 total units · $12,695.19
+- Manager record: `Gary Teh` · 26 SKU lines · 14,520.51 total units · $12,694.36
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,445.16 | $12,645.21 |
+  | (uncategorized) | (unspecified) | 24 | 14,444.33 | $12,644.38 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -254,7 +253,7 @@ _(+27 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,038.31**
+- USD on hand: **$4,037.48**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$41.26**
 
@@ -317,6 +316,7 @@ _All dated lines on/after 2026-06-16_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+50c54cb | 2026-06-23 15:36:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6e49f35 | 2026-06-23 10:21:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a21ddf7 | 2026-06-23 04:43:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9bb3580 | 2026-06-22 21:21:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -356,7 +356,6 @@ b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of B
 e87ec22 | 2026-06-18 13:55:39 -0700 | Replace roadmap redirect with live track map page (#249)
 5c66376 | 2026-06-18 16:01:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 06502d9 | 2026-06-18 10:56:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e7ac037 | 2026-06-18 05:20:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -369,6 +368,18 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b6be207 | 2026-06-23 10:20:26 -0700 | Auto-advance: flip default to AUTO; gate the irreversible by rule (§5c + design) (#622)
+b041ed1 | 2026-06-23 10:16:03 -0700 | Proposal CLI plan: add Advance column + RESUME HERE (was fail-closed → not auto-advancing) (#621)
+e6b350b | 2026-06-23 10:15:27 -0700 | docs: add deploy runbook for QR self-serve currency definition (PR3) (#619)
+25e256e | 2026-06-23 10:12:12 -0700 | Add Sophia contribution-scoring plan (review the 906-row Pending backlog; ~90.7k TDG, gated) (#620)
+16fb94a | 2026-06-23 10:06:00 -0700 | Add Proposal CLI Implementation Plan (#618)
+0a0213e | 2026-06-23 10:04:17 -0700 | plan: Sophia Durable Journal + Checkpoint-Resume Loop (harness improvement; DRAFT, awaiting review)
+948d5d9 | 2026-06-23 10:00:11 -0700 | handoff(qr-currency): register Sophia thread 7611 (parked GO-ready)
+89c3aa5 | 2026-06-23 09:55:22 -0700 | plan(qr-currency): add turnkey appendix (paste-ready CLI + GAS skeleton + line refs); mark PR3 operator-run
+502e0b3 | 2026-06-23 09:47:25 -0700 | Add Prospera LLC specifics from Breno: costs, governance, triangular trade structure (#617)
+533c1d0 | 2026-06-23 09:43:57 -0700 | plan: Self-Serve QR-Ready Currency Definition via Edgar (handoff to Sophia, RESUME HERE = PR1)
+371b798 | 2026-06-23 08:33:12 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
+e5d4691 | 2026-06-23 08:33:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 26153d8 | 2026-06-23 03:10:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
 2d10146 | 2026-06-23 03:10:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 fe3893c | 2026-06-22 21:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
@@ -397,24 +408,13 @@ cb5bc7a | 2026-06-21 18:07:01 -0700 | Add TDG vs ITKN comparative analysis PDF
 ffb5b75 | 2026-06-21 13:12:25 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
 8868340 | 2026-06-21 13:12:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
 1e1275b | 2026-06-21 12:48:19 -0700 | Scoring Review Queue: correct handoff — PR4 (GAS write-back) undeployed; RESUME HERE = PR4 (#608)
-dc3e498 | 2026-06-21 07:41:22 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
-d986f42 | 2026-06-21 07:41:21 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
-aa77bb7 | 2026-06-21 03:10:08 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
-bbc45c8 | 2026-06-21 03:10:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
-28d337b | 2026-06-20 22:25:31 -0700 | chore(previews): refresh Beer Hall preview (2026-06-21 UTC)
-1c32b5e | 2026-06-20 22:25:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
-3823ab3 | 2026-06-20 21:25:47 -0700 | Merge pull request #606 from TrueSightDAO/auto/advisory-refresh-2026-06-21
-4f49859 | 2026-06-21 04:25:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-21 UTC)
-5377e00 | 2026-06-20 16:23:23 -0700 | docs: add lineage-assets data source finding to postmortem
-58e1e2b | 2026-06-20 16:21:08 -0700 | docs: QR generation dao_client postmortem (repackaging batch b08d324b) (#604)
-2614254 | 2026-06-20 15:58:34 -0700 | Add SOP section 0: intent interpretation rules for batch sales (SOHA incident postmortem)
-bcd4cca | 2026-06-20 15:29:11 -0700 | Add SOPHIA batch sales execution plan (SOHA 40-bag cash sale pattern)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+f3fdfa4 | 2026-06-23 10:15:21 -0700 | feat: add processCurrencyDefinitionsFromTelegramChatLogs GAS handler (1N6o00) (#376)
 ce68b47 | 2026-06-22 18:22:49 -0700 | fix(qr-gen): repoint batch-zip upload off archived qr_codes -> lineage-assets (#375)
 029dc6c | 2026-06-22 18:10:03 -0700 | Review approve: write reviewer-selected contributor back to Col A (#374)
 4ffe230 | 2026-06-22 18:06:10 -0700 | fix(qr-gen): repoint serialized-QR PNG storage from archived qr_codes -> lineage-assets (#373)
@@ -587,7 +587,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/23/2026 7:56:07 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/23/2026 12:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-16`; scanned last **582** data rows)
 
