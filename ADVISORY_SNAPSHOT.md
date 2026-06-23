@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-23T10:10:11Z`
+- Generated (UTC): `2026-06-23T15:32:49Z`
 - Look-back: **7** calendar days (`2026-06-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,15 +34,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 19
 - `[CONTRIBUTION REVIEW EVENT]` × 12
+- `[PRACTICE EVENT]` × 4
 - `[BATCH QR CODE REQUEST]` × 3
-- `[PRACTICE EVENT]` × 3
 - `[SALES EVENT]` × 2
 - `[REPACKAGING BATCH EVENT]` × 1
-- _free-form (no bracket tag)_ × 2
+- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260622191454_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Scoring Review Queue: verify handoff + unblock PR4 (GAS review write-back) f…
 - `Edgar_20260622202103_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Scoring Review Queue: deploy PR4 GAS write-back + secret-gitignore hardening
 - `Edgar_20260622203325_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Scoring Review Queue: wire Edgar to the review write-back webhook (close the…
 - `Edgar_20260622211035_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Fix QR Code Generation GAS web-app deployment (missing webapp manifest block)
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260623005833_007` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
 - `Edgar_20260623010937_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Verify batch-QR Edgar pipeline live + repoint QR PNG storage off the archive…
 - `Edgar_20260623012924_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Take QR generation pipeline fully green: wire CI token + repoint batch-zip t…
+- `Edgar_20260623152624_003` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-23T15:26:21.706Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -79,7 +79,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-22T10:59:17.284Z`
+- Generated (UTC): `2026-06-23T10:59:19.660Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -104,12 +104,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **306**, follow_up **70**, bulk **0**, unknown **2** (data rows: **378**)
+- **Email Agent Follow Up** — logged sends: warmup **316**, follow_up **70**, bulk **0**, unknown **2** (data rows: **388**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **260**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **270**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -317,6 +317,7 @@ _All dated lines on/after 2026-06-16_ (16):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6e49f35 | 2026-06-23 10:21:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a21ddf7 | 2026-06-23 04:43:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9bb3580 | 2026-06-22 21:21:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 883730f | 2026-06-22 17:17:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -356,7 +357,6 @@ e87ec22 | 2026-06-18 13:55:39 -0700 | Replace roadmap redirect with live track m
 5c66376 | 2026-06-18 16:01:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 06502d9 | 2026-06-18 10:56:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e7ac037 | 2026-06-18 05:20:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9396a06 | 2026-06-17 20:35:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -369,6 +369,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+26153d8 | 2026-06-23 03:10:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
+2d10146 | 2026-06-23 03:10:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 fe3893c | 2026-06-22 21:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
 e84f723 | 2026-06-22 21:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 57d642a | 2026-06-22 20:46:17 -0700 | Merge pull request #616 from TrueSightDAO/auto/advisory-refresh-2026-06-23
@@ -407,8 +409,6 @@ bbc45c8 | 2026-06-21 03:10:07 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 58e1e2b | 2026-06-20 16:21:08 -0700 | docs: QR generation dao_client postmortem (repackaging batch b08d324b) (#604)
 2614254 | 2026-06-20 15:58:34 -0700 | Add SOP section 0: intent interpretation rules for batch sales (SOHA incident postmortem)
 bcd4cca | 2026-06-20 15:29:11 -0700 | Add SOPHIA batch sales execution plan (SOHA 40-bag cash sale pattern)
-94c6c2b | 2026-06-20 13:04:32 -0700 | chore(previews): refresh Beer Hall preview (2026-06-20 UTC)
-560eb15 | 2026-06-20 13:04:30 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-20 UTC)
 … (truncated)
 ```
 
@@ -587,7 +587,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/23/2026 2:50:40 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/23/2026 7:56:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-16`; scanned last **582** data rows)
 
