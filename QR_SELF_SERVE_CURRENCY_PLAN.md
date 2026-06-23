@@ -137,7 +137,7 @@ GAS. *(Pre-flight: confirm on the live sheet.)*
 |------|---------|-----------|----------------|----------|----------------------|
 | PR1 — CLI + dispatch (`dao_protocol`) | `auto` | ☐ | ☐ | n/a | ☐ |
 | PR2 — GAS handler (`tokenomics`) | `auto` | ☐ | ☐ | n/a | ☐ |
-| PR3 — deploy + wire env | `gate: prod deploy + Edgar env change` | ☐ | ☐ | ☐ | ☐ |
+| PR3 — deploy + wire env (**OPERATOR-run**: clasp + prod ssh; Sophia writes the runbook only — see §8) | `gate: operator runs clasp + Edgar env change` | ☐ | ☐ | ☐ | ☐ |
 | PR4 — auto-define (optional) | `gate: confirm operator wants it` | ☐ | ☐ | ☐ | ☐ |
 | PR5 — docs | `auto` | ☐ | ☐ | n/a | ☐ |
 | UAT — human, beta/sandbox | `gate: human-run completion gate` | ☐ | ☐ | ☐ | ☐ |
@@ -171,3 +171,160 @@ opening the PR. After each unit merges, **report the DAO contribution before the
 - **Token coupling (orthogonal)** — QR PNG upload currently uses `ORACLE_ADVISORY_PUSH_TOKEN`; unrelated to
   this plan but see the OPEN_FOLLOWUPS hardening note.
 - **Reference example for plan shape:** `EDGAR_DAO_EXTRACTION_PLAN.md`, `SCORING_REVIEW_QUEUE_PLAN.md`.
+
+---
+
+## 8. Turnkey appendix for Sophia (paste-ready — minimise discovery, stay inside the round budget)
+
+> **Read only the cited line ranges, not the whole 1854-line GAS file.** Each PR below is sized to
+> finish well inside `CHAT_MAX_TOOL_ROUNDS`. If a turn starts to sprawl, checkpoint and STOP.
+
+### PR1 (`dao_protocol`) — paste-ready
+
+**New file `truesight_dao_client/modules/define_currency.py`** (the CLI is a declarative factory —
+`build_event_cli` auto-generates `--kebab-case` flags from `canonical_labels`):
+
+```python
+#!/usr/bin/env python3
+"""Submit [CURRENCY DEFINITION EVENT] to Edgar — define a QR-ready serializable currency.
+
+Writes a Currencies-tab row carrying the fields the QR generator requires (col C
+Serializable=TRUE + landing/ledger/farm/state/country/year), so a brand-new SKU can be
+QR'd via Edgar alone. Browser equivalent: none yet (CLI-first).
+
+    python -m truesight_dao_client.modules.define_currency \\
+        --currency 'Cacao Tea 1LB - NewFarm 2025' --serializable TRUE \\
+        --price-in-usd 25 --landing-page 'https://...' --ledger 'https://...' \\
+        --farm-name 'NewFarm' --state Bahia --country Brazil --year 2025 --dry-run
+"""
+import sys
+from ..edgar_client import build_event_cli
+from ..validators import (
+    currency_code, normalize_currency, normalize_number,
+    positive_number, positive_integer, url_or_empty, google_sheets_url_or_empty,
+)
+
+main = build_event_cli(
+    event_name='CURRENCY DEFINITION EVENT',
+    canonical_labels=[
+        'Currency', 'Price in USD', 'Serializable', 'Product Image',
+        'Landing Page', 'Ledger', 'Farm Name', 'State', 'Country', 'Year',
+        'Unit Weight Grams', 'Unit Weight Ounces',
+    ],
+    required_labels=['Currency', 'Serializable', 'Landing Page', 'Ledger',
+                     'Farm Name', 'State', 'Country', 'Year'],
+    validators={
+        'Currency': currency_code,            # relax to `required` if it rejects a valid new name
+        'Price in USD': positive_number,
+        'Year': positive_integer,
+        'Landing Page': url_or_empty,
+        'Ledger': google_sheets_url_or_empty,
+    },
+    normalizers={'Currency': normalize_currency, 'Price in USD': normalize_number},
+)
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+*(If `build_event_cli` requires a `dapp_page` arg, pass `dapp_page=None`. Template to copy:
+`modules/batch_qr_generator.py` — same shape, fewer labels.)*
+
+**`pyproject.toml` `[project.scripts]`** — add:
+```
+truesight-dao-define-currency = "truesight_dao_client.modules.define_currency:main"
+```
+
+**`truesight_dao_client/server/dispatch.py`** — add to the `ROUTING` list (next to the other QR rows):
+```python
+("[CURRENCY DEFINITION EVENT]", [("CURRENCY_DEFINITION", "processCurrencyDefinitionsFromTelegramChatLogs")], False),
+```
+
+**Test:** mirror an existing module test — assert `--currency X --serializable TRUE … --dry-run` renders
+`[CURRENCY DEFINITION EVENT]` with the required labels. (§8 dao-client version bump does NOT apply — that's
+the `packages/dao-client/` TS package, not `truesight_dao_client`.)
+
+**Acceptance:** dry-run prints a well-formed signed event; `pytest` green. Open PR, STOP.
+
+### PR2 (`tokenomics`) — GAS handler skeleton (read only lines 59-66, 204-236, 304-360, 801-836)
+
+Add a `doGet` branch (next to the existing `action ===` branches, ~line 1670) and this handler. It mirrors
+`processQRCodeGenerationTelegramLogs` (watermark scan + dedup + sig-verify) but writes a Currencies row:
+
+```javascript
+// in doGet(e):
+if (action === 'processCurrencyDefinitionsFromTelegramChatLogs') {
+  return ContentService.createTextOutput(JSON.stringify(processCurrencyDefinitionsFromTelegramChatLogs()))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function cdef_(text, label) {            // field extractor — same idea as extractCurrencyName (line 204)
+  var m = (text || '').match(new RegExp('- ' + label + ':\\s*(.+)$', 'm'));
+  return m ? m[1].trim() : '';
+}
+
+function processCurrencyDefinitionsFromTelegramChatLogs() {
+  var logTab = SpreadsheetApp.openByUrl(QR_GEN_TELEGRAM_MAIN_WORKBOOK_URL).getSheetByName(telegramLogTabName);
+  var cur = SpreadsheetApp.openByUrl(AGROVERSE_QR_SPREADSHEET_URL).getSheetByName('Currencies');
+  var existing = {}; var nA = cur.getLastRow();
+  if (nA >= 2) cur.getRange(2,1,nA-1,1).getValues().forEach(function(r){ existing[String(r[0]).trim().toLowerCase()] = true; });
+  var processed = 0, skipped = 0;
+  var last = logTab.getLastRow();
+  var rows = logTab.getRange(2, 1, last - 1, TELEGRAM_LOG_READ_LAST_COL).getValues();  // see line 370 for col-count const
+  rows.forEach(function(row) {
+    var contributionMade = row[6];       // col G = contribution text (see line ~377-391)
+    if (!contributionMade || String(contributionMade).indexOf('[CURRENCY DEFINITION EVENT]') !== 0) return;
+    var sigRaw = row[/* signature-status col index, see line ~391-395 */ 15];
+    if (!isTelegramSignatureVerificationSuccess_(sigRaw)) return;                       // reuse helper line 59
+    var name = cdef_(contributionMade, 'Currency');
+    if (!name || existing[name.toLowerCase()]) { skipped++; return; }                   // idempotent
+    var serial = (cdef_(contributionMade,'Serializable').toUpperCase() !== 'FALSE');     // default TRUE
+    cur.appendRow([                       // cols A..L (Currencies schema)
+      name,                               // A name
+      Number(cdef_(contributionMade,'Price in USD')) || '',  // B
+      serial,                             // C Serializable (boolean -> TRUE)
+      cdef_(contributionMade,'Product Image'),   // D
+      cdef_(contributionMade,'Landing Page'),    // E
+      cdef_(contributionMade,'Ledger'),          // F
+      cdef_(contributionMade,'Farm Name'),       // G
+      cdef_(contributionMade,'State'),           // H
+      cdef_(contributionMade,'Country'),         // I
+      cdef_(contributionMade,'Year'),            // J
+      Number(cdef_(contributionMade,'Unit Weight Grams')) || '',   // K
+      Number(cdef_(contributionMade,'Unit Weight Ounces')) || '',  // L
+    ]);
+    existing[name.toLowerCase()] = true; processed++;
+  });
+  SpreadsheetApp.flush();
+  var lr = cur.getLastRow(), lc = cur.getLastColumn();                                  // sort A->Z full-width
+  if (lr > 2) cur.getRange(2, 1, lr - 1, lc).sort({ column: 1, ascending: true });      // same as repackaging ingest
+  return { status: 'ok', processed: processed, skipped: skipped };
+}
+```
+**Confirm before commit (1 quick read each):** the exact col index of the signature-status cell (the `sigRaw`
+`15` above is a guess — verify against the read near line 391-395) and `TELEGRAM_LOG_READ_LAST_COL`. Then
+`node --check`. Open PR, STOP.
+
+### PR3 — DEPLOY + WIRE = **operator step, not Sophia** (clasp auth + prod ssh)
+Sophia almost certainly lacks clasp auth on the 1N6o00 project and ssh to `dao_protocol_nelanco`. So **PR3 is a
+runbook Sophia writes, a human runs.** The exact steps (for Gary / a clasp-authed operator):
+```bash
+# 1. deploy GAS (from the 1N6o00 mirror dir)
+clasp push --force
+clasp update-deployment AKfycbxn3siu2QrzCGdcsipt5FRxxMGY6gVPN1Z_tQdbfJY1GABsL1pZUlWpUbpdE_OymvIO -V <new>
+# 2. wire Edgar (on the box)
+ssh dao_protocol_nelanco
+cp /home/ubuntu/dao_protocol/.env /home/ubuntu/dao_protocol/.env.bak.$(date -u +%Y%m%d%H%M%S)
+# add: DAO_PROTOCOL_WEBHOOK_CURRENCY_DEFINITION=https://script.google.com/macros/s/AKfycbxn3siu…/exec
+sudo systemctl restart truesight-dao-protocol.service
+# 3. verify
+curl -s localhost:8010/ping
+curl -sL 'https://script.google.com/macros/s/AKfycbxn3siu…/exec?action=processCurrencyDefinitionsFromTelegramChatLogs'
+```
+**Acceptance:** `/ping` 200; var in `/proc/<pid>/environ`; probe returns `{"status":"ok","processed":0,...}`.
+
+### Sophia execution notes
+- **Targeted reads only:** for PR2, read the cited line ranges — do **not** load the whole file.
+- **One PR per turn, then STOP.** After each merge, report the DAO contribution before the next unit.
+- **You can't do PR3** (clasp/prod-ssh) — produce the runbook and hand it to the operator as a gate.
+- If any turn approaches the round cap, **checkpoint your state into the PR/thread and STOP cleanly** rather
+  than looping to the cap.
