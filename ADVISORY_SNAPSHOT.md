@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-24T09:57:24Z`
+- Generated (UTC): `2026-06-24T15:18:22Z`
 - Look-back: **7** calendar days (`2026-06-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
+- `[CONTRIBUTION EVENT]` × 20
 - `[CONTRIBUTION REVIEW EVENT]` × 13
-- `[PRACTICE EVENT]` × 4
+- `[PRACTICE EVENT]` × 5
 - `[BATCH QR CODE REQUEST]` × 1
 - `[PROPOSAL CREATION]` × 1
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260622211459_017` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zD2lgRz2ZU1XdIfoKkuN · TDGs Issued: 25
 - `Edgar_20260622211502_019` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
 - `Edgar_20260622211505_021` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: SS1GMcUJbXE+Xsj83ufJ · TDGs Issued: 100
 - `Edgar_20260622211507_023` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: +epdeH2GH0WwI403sGMh · TDGs Issued: 25
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260623172300_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reviewed and merged PR #132 (Proposal CLI implementation); oversaw execution…
 - `Edgar_20260623180016_013` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260623180153_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Driving to print the brochure at FedEx office
+- `Edgar_20260624144232_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-24T14:42:30.812Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-23T10:59:19.660Z`
+- Generated (UTC): `2026-06-24T10:59:14.312Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -103,12 +103,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **316**, follow_up **70**, bulk **0**, unknown **2** (data rows: **388**)
+- **Email Agent Follow Up** — logged sends: warmup **327**, follow_up **70**, bulk **0**, unknown **2** (data rows: **399**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **270**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **281**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -310,6 +310,7 @@ _All dated lines on/after 2026-06-17_ (11):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9c89006 | 2026-06-24 09:59:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40870f7 | 2026-06-24 04:48:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f2c6719 | 2026-06-23 20:35:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 50c54cb | 2026-06-23 15:36:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -349,7 +350,6 @@ b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of B
 7887fb5 | 2026-06-18 22:06:05 +0000 | Add venue layout PDF link to China/Aora Events track
 0210009 | 2026-06-18 21:23:47 +0000 | Update roadmap: fix dependencies, add anchor IDs, add Aora event plan
 56eab56 | 2026-06-18 21:05:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e87ec22 | 2026-06-18 13:55:39 -0700 | Replace roadmap redirect with live track map page (#249)
 … (truncated)
 ```
 
@@ -362,6 +362,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+948aa1b | 2026-06-24 02:57:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
+fe734ca | 2026-06-24 02:57:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 384d875 | 2026-06-23 21:46:52 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
 4bd2684 | 2026-06-23 21:46:51 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 5851ac9 | 2026-06-23 20:48:55 -0700 | Merge pull request #623 from TrueSightDAO/auto/advisory-refresh-2026-06-24
@@ -400,8 +402,6 @@ e37ac4e | 2026-06-22 12:12:00 -0700 | Scoring Review Queue: PR4 code merged + ma
 b2a64ef | 2026-06-22 05:33:02 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
 96eea7e | 2026-06-22 05:33:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
 6824865 | 2026-06-21 22:41:53 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
-c6827cd | 2026-06-21 22:41:52 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
-38dccd2 | 2026-06-21 22:21:42 -0700 | Add infrastructure implementation plan PDF
 … (truncated)
 ```
 
@@ -571,7 +571,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/24/2026 2:50:28 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/24/2026 7:50:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-17`; scanned last **582** data rows)
 
