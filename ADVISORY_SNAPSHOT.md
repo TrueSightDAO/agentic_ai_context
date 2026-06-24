@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-24T15:18:22Z`
+- Generated (UTC): `2026-06-24T20:17:41Z`
 - Look-back: **7** calendar days (`2026-06-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,17 +34,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 20
 - `[CONTRIBUTION REVIEW EVENT]` × 13
-- `[PRACTICE EVENT]` × 5
+- `[PRACTICE EVENT]` × 4
 - `[BATCH QR CODE REQUEST]` × 1
 - `[PROPOSAL CREATION]` × 1
-- _free-form (no bracket tag)_ × 2
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260622211502_019` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
-- `Edgar_20260622211505_021` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: SS1GMcUJbXE+Xsj83ufJ · TDGs Issued: 100
-- `Edgar_20260622211507_023` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: +epdeH2GH0WwI403sGMh · TDGs Issued: 25
-- `Edgar_20260622213052_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Hook the batch-QR pipeline into Edgar (repoint QR_CODE_GENERATION webhook to…
 - `Edgar_20260622221003_003` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Cacao Tea 1LB - Oscar Fazenda 2024 · Quantity: 1
 - `Edgar_20260623005829_005` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: QW/Sm4nNGZeXOuPsleYm · TDGs Issued: 400
 - `Edgar_20260623005833_007` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
@@ -61,6 +57,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260623180016_013` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260623180153_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Driving to print the brochure at FedEx office
 - `Edgar_20260624144232_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-24T14:42:30.812Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260624172832_019` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 8.8 · Description: Parking ticket for dual tech summit
+- `Edgar_20260624172917_021` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260624173132_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Helping set up with the dual tech summit
+- `Edgar_20260624173238_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Bring the cacao tea to the Onsen global gathering
 
 ---
 
@@ -228,11 +228,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,520.51 total units · $12,694.36
+- Manager record: `Gary Teh` · 26 SKU lines · 14,502.91 total units · $12,676.76
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,444.33 | $12,644.38 |
+  | (uncategorized) | (unspecified) | 24 | 14,426.73 | $12,626.78 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -310,6 +310,7 @@ _All dated lines on/after 2026-06-17_ (11):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ba83e60 | 2026-06-24 15:20:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9c89006 | 2026-06-24 09:59:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40870f7 | 2026-06-24 04:48:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f2c6719 | 2026-06-23 20:35:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -349,7 +350,6 @@ b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of B
 044c50c | 2026-06-19 05:36:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7887fb5 | 2026-06-18 22:06:05 +0000 | Add venue layout PDF link to China/Aora Events track
 0210009 | 2026-06-18 21:23:47 +0000 | Update roadmap: fix dependencies, add anchor IDs, add Aora event plan
-56eab56 | 2026-06-18 21:05:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -362,6 +362,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+933dc28 | 2026-06-24 08:18:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
+e546e9d | 2026-06-24 08:18:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 948aa1b | 2026-06-24 02:57:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
 fe734ca | 2026-06-24 02:57:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 384d875 | 2026-06-23 21:46:52 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
@@ -400,8 +402,6 @@ e718def | 2026-06-22 14:07:35 -0700 | log: QR-gen GAS webapp-block root cause + 
 3e734a4 | 2026-06-22 13:20:11 -0700 | Scoring Review Queue: PR4 DEPLOYED (clasp push + versioned deployment @2); RESUME HERE = PR4-WIRE (#613)
 e37ac4e | 2026-06-22 12:12:00 -0700 | Scoring Review Queue: PR4 code merged + made deployable (#367/#368); RESUME HERE = PR4-DEPLOY gate (#612)
 b2a64ef | 2026-06-22 05:33:02 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
-96eea7e | 2026-06-22 05:33:01 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
-6824865 | 2026-06-21 22:41:53 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
 … (truncated)
 ```
 
@@ -571,7 +571,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/24/2026 7:50:33 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/24/2026 12:50:32 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-17`; scanned last **582** data rows)
 
