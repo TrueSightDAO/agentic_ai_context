@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-25T15:23:34Z`
+- Generated (UTC): `2026-06-25T20:31:11Z`
 - Look-back: **7** calendar days (`2026-06-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,20 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
+- `[CONTRIBUTION EVENT]` × 20
 - `[CONTRIBUTION REVIEW EVENT]` × 13
 - `[PRACTICE EVENT]` × 3
 - `[BATCH QR CODE REQUEST]` × 1
 - `[PROPOSAL CREATION]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260623005833_007` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
-- `Edgar_20260623010937_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Verify batch-QR Edgar pipeline live + repoint QR PNG storage off the archive…
-- `Edgar_20260623012924_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Take QR generation pipeline fully green: wire CI token + repoint batch-zip t…
-- `Edgar_20260623152624_003` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-23T15:26:21.706Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260623164549_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: _*Suggestions from Breno on Prospera LLC setup_*
 - `Edgar_20260623170021_001` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: +CUxW7+Xktdxg265gEBJ · TDGs Issued: 8.33
 - `Edgar_20260623170718_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Authored two tracked execution plans in agentic_ai_context (QR_SELF_SERVE_CU…
 - `Edgar_20260623171813_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
@@ -61,6 +57,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260624173238_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Bring the cacao tea to the Onsen global gathering
 - `Edgar_20260624211539_027` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 6.20 · Description: Parking for dual tech summit part 2
 - `Edgar_20260624211624_029` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260625164156_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Chat with Matheus about status of the CNPJ addition of the CNAE classificati…
+- `Edgar_20260625164537_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Setup of the serving station for the cacao circle at the Dual Tech Conference
+- `Edgar_20260625165616_035` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shirley Lin · Contributor Email: shirley+lin@placeholder.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260625165928_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Serving and sharing cacao at the cacao booth
+- `Edgar_20260625181507_039` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-25T18:15:05.686Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -310,6 +311,7 @@ _All dated lines on/after 2026-06-18_ (11):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5b2ed63 | 2026-06-25 15:26:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0db2744 | 2026-06-25 09:54:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9e694aa | 2026-06-25 04:47:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bad4b7e | 2026-06-24 20:20:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -349,7 +351,6 @@ e3c7927 | 2026-06-19 09:15:07 -0700 | Reframe tension section: system design, no
 b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of Business (#250)
 954b85c | 2026-06-19 11:05:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9fec88e | 2026-06-19 09:15:36 +0000 | Fix Mermaid diagram: Black King CNAE, New Export Entity, Pará, GACC arrows
-5fa4680 | 2026-06-19 09:09:15 +0000 | Update roadmap: Black King CNAE fix, New Export Entity, Pará tree planting, GACC owner fix
 … (truncated)
 ```
 
@@ -362,6 +363,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+aa57179 | 2026-06-25 08:23:49 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
+dffab2b | 2026-06-25 08:23:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 c26ce92 | 2026-06-25 02:51:50 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
 21bf339 | 2026-06-25 02:51:49 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 383376e | 2026-06-24 21:45:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
@@ -400,8 +403,6 @@ e84f723 | 2026-06-22 21:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a019cef | 2026-06-23 03:46:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 60cb330 | 2026-06-22 18:28:56 -0700 | log: postmortem RESOLUTION -> QR pipeline fully green (token + zip repoint #375)
 4e31ffe | 2026-06-22 18:28:32 -0700 | log: QR pipeline fully green (token wired to ORACLE_ADVISORY_PUSH_TOKEN + zip repoint #375)
-ad2386c | 2026-06-22 18:09:10 -0700 | log: QR PNG storage repoint to lineage-assets (tokenomics #373) + token-grant blocker + manifest/index follow-up
-8c9d5f6 | 2026-06-22 14:29:29 -0700 | log: wire Edgar->GAS batch-QR pipeline (repoint DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION to the 1N6o00 processor)
 … (truncated)
 ```
 
@@ -564,7 +565,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/25/2026 7:51:54 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/25/2026 12:50:25 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-18`; scanned last **582** data rows)
 
