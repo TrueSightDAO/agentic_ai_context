@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-24T20:17:41Z`
-- Look-back: **7** calendar days (`2026-06-17` → today UTC)
+- Generated (UTC): `2026-06-25T03:46:55Z`
+- Look-back: **7** calendar days (`2026-06-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 20
-- `[CONTRIBUTION REVIEW EVENT]` × 13
-- `[PRACTICE EVENT]` × 4
-- `[BATCH QR CODE REQUEST]` × 1
-- `[PROPOSAL CREATION]` × 1
-- _free-form (no bracket tag)_ × 3
-
-### Latest entries
-
-- `Edgar_20260622221003_003` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Cacao Tea 1LB - Oscar Fazenda 2024 · Quantity: 1
-- `Edgar_20260623005829_005` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: QW/Sm4nNGZeXOuPsleYm · TDGs Issued: 400
-- `Edgar_20260623005833_007` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: THMD9oj8jBeh9qE+2TqZ · TDGs Issued: 100
-- `Edgar_20260623010937_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Verify batch-QR Edgar pipeline live + repoint QR PNG storage off the archive…
-- `Edgar_20260623012924_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Take QR generation pipeline fully green: wire CI token + repoint batch-zip t…
-- `Edgar_20260623152624_003` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-23T15:26:21.706Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260623164549_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: _*Suggestions from Breno on Prospera LLC setup_*
-- `Edgar_20260623170021_001` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: +CUxW7+Xktdxg265gEBJ · TDGs Issued: 8.33
-- `Edgar_20260623170718_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Authored two tracked execution plans in agentic_ai_context (QR_SELF_SERVE_CU…
-- `Edgar_20260623171813_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
-- `Edgar_20260623171850_007` · **Edgar** · [PROPOSAL CREATION] Type: governance · Title: Establish Legal Holding Entity for Brazil Export Operations · Content: ## Summary
-- `Edgar_20260623171922_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Implemented Proposal CLI: created create_proposal.py and review_proposal.py …
-- `Edgar_20260623172300_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reviewed and merged PR #132 (Proposal CLI implementation); oversaw execution…
-- `Edgar_20260623180016_013` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260623180153_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Driving to print the brochure at FedEx office
-- `Edgar_20260624144232_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-24T14:42:30.812Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260624172832_019` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 8.8 · Description: Parking ticket for dual tech summit
-- `Edgar_20260624172917_021` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260624173132_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Helping set up with the dual tech summit
-- `Edgar_20260624173238_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Bring the cacao tea to the Onsen global gathering
 
 ---
 
@@ -68,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $4,120 | 10% | `2026-12-31` | 190 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 190 | — |
+| 2026 QR Code Sales | $40,000 | $4,120 | 10% | `2026-12-31` | 189 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 189 | — |
 
 ---
 
@@ -228,11 +190,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,502.91 total units · $12,676.76
+- Manager record: `Gary Teh` · 26 SKU lines · 14,496.71 total units · $12,670.56
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,426.73 | $12,626.78 |
+  | (uncategorized) | (unspecified) | 24 | 14,420.53 | $12,620.58 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -251,17 +213,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,037.48**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$41.26**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -279,7 +237,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-22 | claude | Wired the async Edgar -> GAS batch-QR pipeline end-to-end (was fully broken). truesight-dao-batch-qr-generator emits [BATCH QR CODE REQUEST] -> Edgar dispatch.py routes it to DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION ?action=processQRCodeGenerationTelegramLogs. THREE breaks: (1) 1N6o00 web app served Page Not Found (no webapp block in appsscript.json) — fixed tokenomics #370 + redeployed the EXISTING AKfycbxn3siu deployment to v8 so its stable URL works (deleted a throwaway @8). (2) marker mismatch from the 2026-06-20 postmortem already gone — deployed processor matches startsWith("[BATCH QR CODE REQUEST]"). (3) THE ACTUAL DeepSeek/Sophia misconfig: Edgar's DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION pointed at the WRONG GAS deployment — a 1MnAs public-query service (AKfycbyGD, actions: list/search/generate/generate_single) with NO processQRCodeGenerationTelegramLogs action, so every dispatch got {"error":"Invalid action"} HTTP200 and nothing ran. Repointed it DIRECTLY at the 1N6o00 processor (AKfycbxn3siu/exec) on dao_protocol_nelanco:/home/ubuntu/dao_protocol/.env (backup .env.bak.20260622212504), restarted truesight-dao-protocol.service, var confirmed in /proc/<pid>/environ. Did NOT trigger a live run (watermark would rescan the already-manually-QR'd b08d324b batch -> dup risk). Still open & separate: repackaging currency-ingest GAS doesn't set col C isSerializable + E-J farm info, so repackaging rows need manual population before generation SUCCEEDS. Full writeup: QR_GENERATION_DAO_CLIENT_POSTMORTEM.md RESOLUTION section.
 - 2026-06-22 | claude | Live-tested the Edgar->GAS batch-QR hook end-to-end: submitted a real [BATCH QR CODE REQUEST] (Cacao Tea 1LB Oscar x1, signed Gary Teh) -> Edgar dispatched -> 1N6o00 processor minted QR 2024_20260622_22 (row 1611, MINTED) + fired the render webhook. HOOK CONFIRMED WORKING. But render then exposed a 4th break: the tokenomics qr-code-batch-webhook workflow uploaded the PNG to TrueSightDAO/qr_codes, which was ARCHIVED (read-only) 2026-06-11 -> 403 "Repository was archived". Every batch QR since mints a sheet row with no PNG. Repointed PNG storage qr_codes -> lineage-assets/pngs (canonical home; the workflow derives repo+path from the col-K URL via parse_github_url so the GAS const is the single source of truth): tokenomics #373 MERGED + GAS deployment AKfycbxn3siu redeployed @9. Verified target now resolves to lineage-assets and PNG renders. STILL BLOCKED on a credential: QR_CODE_REPOSITORY_TOKEN is a fine-grained PAT scoped to qr_codes -> 403 "Resource not accessible by personal access token" on lineage-assets. Gary must grant that PAT Contents:write on lineage-assets (OPEN_FOLLOWUPS, BLOCKING). Separate follow-up filed: the workflow emits only the PNG, not qrs/<id>.json + qrs_index.json rebuild, so workflow-generated QRs won't show on truesight.me/physical-assets/serialized until added (or unify on batch_compiler.py). Full writeup: QR_GENERATION_DAO_CLIENT_POSTMORTEM.md.
 
-_All dated lines on/after 2026-06-17_ (11):
+_All dated lines on/after 2026-06-18_ (11):
 
 - 2026-06-18 | claude | truesight_autopilot: removed the submit_contribution approval gate (PR #251). It was QR-keyed (built for INVENTORY MOVEMENT, b0b134b) but applied to all submissions; a no-QR CONTRIBUTION EVENT could never be approved -> permanent 'pending' -> model re-called to the round cap (the Sophia-thread infinite loop). Now behind REQUIRE_SUBMISSION_APPROVAL (default false): signed submissions execute directly. Set the flag true to restore the Approve/Reject card.
 - 2026-06-18 | claude | Added AI_AGENT_DAO_REGISTRATION.md — how an interactive LLM registers its OWN DAO identity (the 'Claude Anthropic' pattern: dedicated ~/Applications/<slug>_dao_identity/.env + +alias email + truesight-dao-auth login → report-ai-agent-contribution). Complements SERVICE_IDENTITY_ONBOARDING.md (cron bots). Human: consider adding a pointer row to README.md Contents + OPERATING_INSTRUCTIONS §2 table.
@@ -310,6 +268,7 @@ _All dated lines on/after 2026-06-17_ (11):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+bad4b7e | 2026-06-24 20:20:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ba83e60 | 2026-06-24 15:20:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9c89006 | 2026-06-24 09:59:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40870f7 | 2026-06-24 04:48:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -349,7 +308,6 @@ b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of B
 5fa4680 | 2026-06-19 09:09:15 +0000 | Update roadmap: Black King CNAE fix, New Export Entity, Pará tree planting, GACC owner fix
 044c50c | 2026-06-19 05:36:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7887fb5 | 2026-06-18 22:06:05 +0000 | Add venue layout PDF link to China/Aora Events track
-0210009 | 2026-06-18 21:23:47 +0000 | Update roadmap: fix dependencies, add anchor IDs, add Aora event plan
 … (truncated)
 ```
 
@@ -362,6 +320,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+191f3ca | 2026-06-24 13:17:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
+605c1a0 | 2026-06-24 13:17:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 933dc28 | 2026-06-24 08:18:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
 e546e9d | 2026-06-24 08:18:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 948aa1b | 2026-06-24 02:57:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
@@ -400,8 +360,6 @@ e718def | 2026-06-22 14:07:35 -0700 | log: QR-gen GAS webapp-block root cause + 
 91dc3b1 | 2026-06-22 13:50:57 -0700 | Scoring Review Queue: UAT blocked by review_queue.html<->Edgar integration gap; RESUME HERE = PR-INTEGRATION (#615)
 3a54e4b | 2026-06-22 13:32:45 -0700 | Scoring Review Queue: PR4-WIRE done (Edgar webhook env set + restarted); RESUME HERE = PR7 (#614)
 3e734a4 | 2026-06-22 13:20:11 -0700 | Scoring Review Queue: PR4 DEPLOYED (clasp push + versioned deployment @2); RESUME HERE = PR4-WIRE (#613)
-e37ac4e | 2026-06-22 12:12:00 -0700 | Scoring Review Queue: PR4 code merged + made deployable (#367/#368); RESUME HERE = PR4-DEPLOY gate (#612)
-b2a64ef | 2026-06-22 05:33:02 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
 … (truncated)
 ```
 
@@ -425,13 +383,6 @@ a92fd20 | 2026-06-18 16:18:20 -0700 | feat: add sentinels count to dao_members.j
 6722b2f | 2026-06-18 16:15:57 -0700 | Merge pull request #363 from TrueSightDAO/feat/sentinel-column-t
 617d0e3 | 2026-06-18 16:15:36 -0700 | feat: add Sentinel authorization to inventory movement + column T schema
 127a9f7 | 2026-06-18 16:07:36 -0700 | feat: add sentinel role to dao_members_cache_publisher (#362)
-63ff33d | 2026-06-16 23:40:26 -0700 | feat: add Credentials.sample.js template, fix gitignore to allow sample files
-08c2cb4 | 2026-06-16 23:36:21 -0700 | refactor: delete thematic folders, inline manifests into project folders
-63f441e | 2026-06-16 23:30:19 -0700 | chore: remove redundant .gs files already migrated to project folders
-1bc1dab | 2026-06-16 23:29:05 -0700 | fix: remove clasp_mirrors from .gitignore and manifest mirror_code_path references
-50999ec | 2026-06-16 23:23:01 -0700 | migrate: flatten clasp_mirrors/ into google_app_scripts/<scriptId>/ folders
-296c41a | 2026-06-16 23:13:02 -0700 | fix(deploy): prevent duplicate .gs/.js files in GAS mirror via mirror_filename_map
-77e58fe | 2026-06-16 22:15:01 -0700 | fix: correct spreadsheet column mapping in dao_members_cache_publisher (col B/E/C/D shift)
 ```
 
 ### `dapp` → `dapp`
@@ -476,7 +427,6 @@ f006e46 | 2026-06-19 10:58:56 +0000 | chore: refresh store and partner inventory
 331f7fa | 2026-06-18 16:28:55 -0700 | chore: refresh Agroverse store inventory snapshot
 8f5dfca | 2026-06-18 11:28:42 -0700 | chore: refresh Agroverse store inventory snapshot
 03e126c | 2026-06-18 10:50:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-02978d1 | 2026-06-17 11:19:08 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -501,6 +451,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-06-25T034654Z_contracts-catalog-live-event-logistics.md`
+
+- **posted_at_utc:** `2026-06-25T03:46:54Z`  
+- **slug:** `contracts-catalog-live-event-logistics`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Product (Trust)** — Smart Contracts catalog deployed: inline RSA verification now live on truesight.me for on-chain contract transparency.
+
 ### `beer-hall_2026-06-24T034837Z_proposal-cli-live-qr-self-serve-prospera-plan.md`
 
 - **posted_at_utc:** `2026-06-24T03:48:37Z`  
@@ -518,15 +477,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Ops (Infrastructure)** — QR code generation pipeline fully green: CI token wired and storage repointed to `lineage-assets`.
-
-### `beer-hall_2026-06-22T042740Z_smart-contracts-rsa-verification.md`
-
-- **posted_at_utc:** `2026-06-22T04:27:40Z`  
-- **slug:** `smart-contracts-rsa-verification`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Web (Transparency)** — Smart Contracts catalog upgraded: inline RSA signature verification added for signed payloads.
 
 ---
 
@@ -547,63 +497,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/24/2026 12:50:32 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-17`; scanned last **582** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-06-20 | 1 | — | — | test-fix-0x654b71b464 | — | — |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_42 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_40 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_39 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_38 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_37 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_36 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_35 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_31 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_30 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_29 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_28 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_27 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_26 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_25 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_24 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_22 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_36 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_35 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
