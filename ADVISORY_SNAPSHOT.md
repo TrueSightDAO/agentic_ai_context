@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-25T09:51:31Z`
+- Generated (UTC): `2026-06-25T15:23:34Z`
 - Look-back: **7** calendar days (`2026-06-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-24T10:59:14.312Z`
+- Generated (UTC): `2026-06-25T10:59:13.826Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -103,12 +103,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **327**, follow_up **70**, bulk **0**, unknown **2** (data rows: **399**)
+- **Email Agent Follow Up** — logged sends: warmup **338**, follow_up **70**, bulk **0**, unknown **2** (data rows: **410**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **281**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **292**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -310,6 +310,7 @@ _All dated lines on/after 2026-06-18_ (11):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0db2744 | 2026-06-25 09:54:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9e694aa | 2026-06-25 04:47:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bad4b7e | 2026-06-24 20:20:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ba83e60 | 2026-06-24 15:20:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -349,7 +350,6 @@ b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of B
 954b85c | 2026-06-19 11:05:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9fec88e | 2026-06-19 09:15:36 +0000 | Fix Mermaid diagram: Black King CNAE, New Export Entity, Pará, GACC arrows
 5fa4680 | 2026-06-19 09:09:15 +0000 | Update roadmap: Black King CNAE fix, New Export Entity, Pará tree planting, GACC owner fix
-044c50c | 2026-06-19 05:36:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -362,6 +362,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c26ce92 | 2026-06-25 02:51:50 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
+21bf339 | 2026-06-25 02:51:49 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 383376e | 2026-06-24 21:45:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
 ba113bf | 2026-06-24 21:45:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 9445cbd | 2026-06-24 20:47:13 -0700 | Merge pull request #624 from TrueSightDAO/auto/advisory-refresh-2026-06-25
@@ -400,8 +402,6 @@ a019cef | 2026-06-23 03:46:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 4e31ffe | 2026-06-22 18:28:32 -0700 | log: QR pipeline fully green (token wired to ORACLE_ADVISORY_PUSH_TOKEN + zip repoint #375)
 ad2386c | 2026-06-22 18:09:10 -0700 | log: QR PNG storage repoint to lineage-assets (tokenomics #373) + token-grant blocker + manifest/index follow-up
 8c9d5f6 | 2026-06-22 14:29:29 -0700 | log: wire Edgar->GAS batch-QR pipeline (repoint DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION to the 1N6o00 processor)
-1d44eaf | 2026-06-22 14:20:53 -0700 | chore(previews): refresh Beer Hall preview (2026-06-22 UTC)
-d9b7d0e | 2026-06-22 14:20:51 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-22 UTC)
 … (truncated)
 ```
 
@@ -564,7 +564,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/25/2026 1:51:03 |
+| 2026-06 | 1491.85 | 16468.96386 | 6/25/2026 7:51:54 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-18`; scanned last **582** data rows)
 
