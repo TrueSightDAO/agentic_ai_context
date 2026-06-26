@@ -1,7 +1,7 @@
 # Zach Roth — Program Runner Brief
 
 **Aora × Agroverse Cacao Rainforest Adventure**
-**Compiled by Sophia Truesight (admin+sophia@truesight.me) | TrueSight DAO | July 2025**
+**Compiled by TrueSight DAO | July 2025**
 
 ---
 
@@ -28,8 +28,8 @@ An immersive children's educational event — the **Aora × Agroverse Cacao Rain
 - **Audience:** 10-15 families (parents + children aged 6-12)
 - **Timing:** Mid-to-late July 2025 (pending confirmation)
 - **Location:** Indoor venue in China
-- **Narrative:** Gary (Guardian of the Cacao Rainforest) + Aora Kuku (nature spirit) — children create their own Aora companion online, attend the event, and continue the story online after
-- **Format:** ~90 minutes onsite — sensory exploration, a supply chain board game, chocolate-making workshop, and Gary's true story around a starlit campfire
+- **Narrative:** The program runner is the **central character** — the Guardian of the Cacao Rainforest. Children create their own Aora companion online, attend the event, and continue the story online after
+- **Format:** ~90 minutes onsite — sensory exploration, a supply chain board game, chocolate-making workshop, and the Guardian's true story around a starlit campfire
 - **Long-term:** After cacao, the same engine can be used for tea, honey, cotton, and other themes
 
 *Full event details are in the companion document: aora_agroverse_event_brief.pdf*
@@ -39,10 +39,10 @@ An immersive children's educational event — the **Aora × Agroverse Cacao Rain
 ## 3. What's Expected of the Program Runner
 
 - **Run the program** as and when sessions take place
-- **Onsite facilitation** — lead children through the experience
+- **Onsite facilitation** — lead children through the experience as the central character
 - **Material management** — teaching aids, props, Gift Set samples
 - **Quality control** — maintain TEDx-level standards
-- **Coordination** with Liz (TEDxSSL operator), Teacher Evan (Educational Advisor), and Gary
+- **Coordination** with Liz (TEDxSSL operator) and Teacher Evan (Educational Advisor)
 
 ---
 
@@ -54,7 +54,7 @@ An immersive children's educational event — the **Aora × Agroverse Cacao Rain
 | 2 | Budget for ongoing program operation | Evan |
 | 3 | Jerri (Liz's team) or Zach as the runner? | Liz |
 | 4 | Final program content sign-off | Dr Ye + Evan |
-| 5 | July date confirmation (three-party) | Liz, Evan, Gary |
+| 5 | July date confirmation (three-party) | Liz, Evan, program runner |
 | 6 | Technical plan lock-in | Liz + supplier |
 | 7 | Gift Set delivery timeline | Liz + Evan |
 
@@ -85,6 +85,6 @@ For time spent running programs, Zach will be compensated in **TDG tokens** via 
 
 ---
 
-*Brief compiled by Sophia Truesight (admin+sophia@truesight.me)*
-*TrueSight DAO — July 2025*
+*Brief compiled by TrueSight DAO*
+*July 2025*
 *Detailed event reference: aora_agroverse_event_brief.pdf*
