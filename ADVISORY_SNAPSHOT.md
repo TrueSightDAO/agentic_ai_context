@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-26T04:49:43Z`
+- Generated (UTC): `2026-06-26T09:58:13Z`
 - Look-back: **7** calendar days (`2026-06-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,9 +32,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
+- `[CONTRIBUTION EVENT]` × 18
 - `[CONTRIBUTION REVIEW EVENT]` × 13
 - `[PRACTICE EVENT]` × 3
+- `[SALES EVENT]` × 2
 - `[BATCH QR CODE REQUEST]` × 1
 - `[PROPOSAL CREATION]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
@@ -42,9 +43,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260623170021_001` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: +CUxW7+Xktdxg265gEBJ · TDGs Issued: 8.33
-- `Edgar_20260623170718_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Authored two tracked execution plans in agentic_ai_context (QR_SELF_SERVE_CU…
-- `Edgar_20260623171813_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
 - `Edgar_20260623171850_007` · **Edgar** · [PROPOSAL CREATION] Type: governance · Title: Establish Legal Holding Entity for Brazil Export Operations · Content: ## Summary
 - `Edgar_20260623171922_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Implemented Proposal CLI: created create_proposal.py and review_proposal.py …
 - `Edgar_20260623172300_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reviewed and merged PR #132 (Proposal CLI implementation); oversaw execution…
@@ -62,6 +60,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260625165616_035` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shirley Lin · Contributor Email: shirley+lin@placeholder.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
 - `Edgar_20260625165928_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Serving and sharing cacao at the cacao booth
 - `Edgar_20260625181507_039` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-25T18:15:05.686Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260626053913_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Chocolate experience to figure out how to extend it to China
+- `Edgar_20260626054225_043` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_1 · Sales price: $25 · Sold by: Kirsten Ritschel
+- `Edgar_20260626054402_045` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250711_NIBS_8 · Sales price: $25 · Sold by: Kirsten Ritschel
 
 ---
 
@@ -69,7 +70,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $4,120 | 10% | `2026-12-31` | 188 | **behind** |
+| 2026 QR Code Sales | $40,000 | $4,170 | 10% | `2026-12-31` | 188 | **behind** |
 | USA Agroverse Partners | 100 | — | — | `2026-12-31` | 188 | — |
 
 ---
@@ -206,12 +207,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,416 total units · $1,521.60
+- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,415 total units · $1,513.09
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 895 | $652.10 |
-  | (uncategorized) | (unspecified) | 9 | 469 | $863.14 |
+  | (uncategorized) | (unspecified) | 9 | 468 | $854.63 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
   | Cacao Mass | Retail Ready | 1 | 2 | $4.81 |
 
@@ -229,11 +230,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,496.71 total units · $12,670.56
+- Manager record: `Gary Teh` · 26 SKU lines · 14,546.71 total units · $12,720.56
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,420.53 | $12,620.58 |
+  | (uncategorized) | (unspecified) | 24 | 14,470.53 | $12,670.58 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -254,7 +255,7 @@ _(+27 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,037.48**
+- USD on hand: **$4,087.48**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$41.26**
 
@@ -308,6 +309,7 @@ _All dated lines on/after 2026-06-19_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+59c0d80 | 2026-06-26 04:52:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6892e18 | 2026-06-25 20:32:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5b2ed63 | 2026-06-25 15:26:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0db2744 | 2026-06-25 09:54:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -347,7 +349,6 @@ e3c7927 | 2026-06-19 09:15:07 -0700 | Reframe tension section: system design, no
 31e27a9 | 2026-06-19 15:50:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9f01cd7 | 2026-06-19 04:18:05 -0700 | Add FDA Agent blog post to blog index (#251)
 b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of Business (#250)
-954b85c | 2026-06-19 11:05:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -360,6 +361,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6626d9f | 2026-06-25 21:49:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-26 UTC)
+1f24ea1 | 2026-06-25 21:49:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
 32a21ed | 2026-06-25 20:57:53 -0700 | Merge pull request #625 from TrueSightDAO/auto/advisory-refresh-2026-06-26
 062a487 | 2026-06-26 03:57:45 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
 df9a113 | 2026-06-25 13:31:24 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
@@ -398,8 +401,6 @@ e6b350b | 2026-06-23 10:15:27 -0700 | docs: add deploy runbook for QR self-serve
 e5d4691 | 2026-06-23 08:33:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 26153d8 | 2026-06-23 03:10:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
 2d10146 | 2026-06-23 03:10:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
-fe3893c | 2026-06-22 21:40:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
-e84f723 | 2026-06-22 21:40:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 … (truncated)
 ```
 
@@ -447,6 +448,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+48f8cd7 | 2026-06-26 09:53:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
+fbe83bb | 2026-06-25 23:28:44 -0700 | chore: refresh Agroverse store inventory snapshot
 ee79c37 | 2026-06-25 09:46:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5fe3701 | 2026-06-24 09:52:31 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1ddcb08 | 2026-06-23 10:05:12 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -554,9 +557,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1491.85 | 16468.96386 | 6/25/2026 20:50:17 |
+| 2026-06 | 1541.85 | 16518.96386 | 6/26/2026 2:50:30 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-19`; scanned last **582** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-19`; scanned last **584** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
@@ -583,8 +586,8 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_25 | — | — |
 | 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_24 | — | — |
 | 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_22 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_36 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_35 | — | — |
+| 2026-06-26 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_8 | — | — |
+| 2026-06-26 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_1 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
