@@ -26,7 +26,7 @@
 An immersive children's educational event — the **Aora × Agroverse Cacao Rainforest Adventure** — built as a configurable, replicable engine (TEDx-style, Mystic Manor-benchmarked).
 
 - **Audience:** 10-15 families (parents + children aged 6-12)
-- **Timing:** Mid-to-late July 2025 (pending confirmation)
+- **Timing:** Mid-to-late July 2025 (subject to Zach's availability)
 - **Location:** Indoor venue in China
 - **Narrative:** The program runner is the **central character** — the Guardian of the Cacao Rainforest. Children create their own Aora companion online, attend the event, and continue the story online after
 - **Format:** ~90 minutes onsite — sensory exploration, a supply chain board game, chocolate-making workshop, and the Guardian's true story around a starlit campfire
@@ -54,7 +54,7 @@ An immersive children's educational event — the **Aora × Agroverse Cacao Rain
 | 2 | Budget for ongoing program operation | Evan |
 | 3 | Jerri (Liz's team) or Zach as the runner? | Liz |
 | 4 | Final program content sign-off | Dr Ye + Evan |
-| 5 | July date confirmation (three-party) | Liz, Evan, program runner |
+| 5 | Event date | Subject to Zach's availability |
 | 6 | Technical plan lock-in | Liz + supplier |
 | 7 | Gift Set delivery timeline | Liz + Evan |
 
@@ -70,7 +70,11 @@ If Evan wants someone on our side to run the program and has a budget for it, Za
 
 ## 6. Compensation
 
-For time spent running programs, Zach will be compensated in **TDG tokens** via the DAO's standard contributor model. The exact rate per session will be determined once the budget and scope are finalized.
+**100 TDG per hour** for time spent:
+- Delivering the program (onsite facilitation)
+- Coordinating the program (preparation, coordination, material management)
+
+The exact number of hours per session will be determined once the program scope is finalized.
 
 ---
 
@@ -80,8 +84,7 @@ For time spent running programs, Zach will be compensated in **TDG tokens** via 
 2. Zach to assess his own cost of living for China relocation
 3. Liz to decide Jerri vs Zach
 4. Finalize program content with Dr Ye and Evan
-5. Confirm July date
-6. Lock in technical plan
+5. Lock in technical plan
 
 ---
 
