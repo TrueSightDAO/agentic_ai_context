@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-26T09:58:13Z`
+- Generated (UTC): `2026-06-26T15:10:04Z`
 - Look-back: **7** calendar days (`2026-06-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,10 +32,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
-- `[CONTRIBUTION REVIEW EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 17
+- `[CONTRIBUTION REVIEW EVENT]` × 12
 - `[PRACTICE EVENT]` × 3
 - `[SALES EVENT]` × 2
+- `[PROPOSAL VOTE]` × 2
 - `[BATCH QR CODE REQUEST]` × 1
 - `[PROPOSAL CREATION]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
@@ -43,8 +44,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260623171850_007` · **Edgar** · [PROPOSAL CREATION] Type: governance · Title: Establish Legal Holding Entity for Brazil Export Operations · Content: ## Summary
-- `Edgar_20260623171922_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Implemented Proposal CLI: created create_proposal.py and review_proposal.py …
 - `Edgar_20260623172300_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reviewed and merged PR #132 (Proposal CLI implementation); oversaw execution…
 - `Edgar_20260623180016_013` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260623180153_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Driving to print the brochure at FedEx office
@@ -63,6 +62,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260626053913_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Chocolate experience to figure out how to extend it to China
 - `Edgar_20260626054225_043` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_1 · Sales price: $25 · Sold by: Kirsten Ritschel
 - `Edgar_20260626054402_045` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250711_NIBS_8 · Sales price: $25 · Sold by: Kirsten Ritschel
+- `Edgar_20260626150812_047` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
+- `Edgar_20260626150816_049` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
 
 ---
 
@@ -80,7 +81,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-25T10:59:13.826Z`
+- Generated (UTC): `2026-06-26T10:59:14.209Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -105,12 +106,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **338**, follow_up **70**, bulk **0**, unknown **2** (data rows: **410**)
+- **Email Agent Follow Up** — logged sends: warmup **349**, follow_up **70**, bulk **0**, unknown **2** (data rows: **421**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **292**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **303**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -309,6 +310,7 @@ _All dated lines on/after 2026-06-19_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e8ba753 | 2026-06-26 09:59:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 59c0d80 | 2026-06-26 04:52:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6892e18 | 2026-06-25 20:32:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5b2ed63 | 2026-06-25 15:26:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -348,7 +350,6 @@ e3c7927 | 2026-06-19 09:15:07 -0700 | Reframe tension section: system design, no
 195bc2e | 2026-06-19 09:06:15 -0700 | Update FDA Agent post with honest framing: unbundling, not disintermediation (#252)
 31e27a9 | 2026-06-19 15:50:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9f01cd7 | 2026-06-19 04:18:05 -0700 | Add FDA Agent blog post to blog index (#251)
-b763cfb | 2026-06-19 04:18:01 -0700 | New blog post: The FDA Agent Went Out of Business (#250)
 … (truncated)
 ```
 
@@ -361,6 +362,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+174502b | 2026-06-26 02:58:25 -0700 | chore(previews): refresh Beer Hall preview (2026-06-26 UTC)
+e8e15df | 2026-06-26 02:58:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
 6626d9f | 2026-06-25 21:49:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-26 UTC)
 1f24ea1 | 2026-06-25 21:49:55 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
 32a21ed | 2026-06-25 20:57:53 -0700 | Merge pull request #625 from TrueSightDAO/auto/advisory-refresh-2026-06-26
@@ -399,8 +402,6 @@ e6b350b | 2026-06-23 10:15:27 -0700 | docs: add deploy runbook for QR self-serve
 533c1d0 | 2026-06-23 09:43:57 -0700 | plan: Self-Serve QR-Ready Currency Definition via Edgar (handoff to Sophia, RESUME HERE = PR1)
 371b798 | 2026-06-23 08:33:12 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
 e5d4691 | 2026-06-23 08:33:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
-26153d8 | 2026-06-23 03:10:35 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
-2d10146 | 2026-06-23 03:10:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 … (truncated)
 ```
 
@@ -557,7 +558,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1541.85 | 16518.96386 | 6/26/2026 2:50:30 |
+| 2026-06 | 1541.85 | 16518.96386 | 6/26/2026 8:05:48 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-19`; scanned last **584** data rows)
 
