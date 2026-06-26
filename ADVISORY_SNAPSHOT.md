@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-26T15:10:04Z`
+- Generated (UTC): `2026-06-26T20:17:39Z`
 - Look-back: **7** calendar days (`2026-06-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,9 +32,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 17
-- `[CONTRIBUTION REVIEW EVENT]` × 12
-- `[PRACTICE EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 19
+- `[CONTRIBUTION REVIEW EVENT]` × 9
+- `[PRACTICE EVENT]` × 4
 - `[SALES EVENT]` × 2
 - `[PROPOSAL VOTE]` × 2
 - `[BATCH QR CODE REQUEST]` × 1
@@ -44,9 +44,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260623172300_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reviewed and merged PR #132 (Proposal CLI implementation); oversaw execution…
-- `Edgar_20260623180016_013` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260623180153_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Driving to print the brochure at FedEx office
 - `Edgar_20260624144232_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-24T14:42:30.812Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260624172832_019` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 8.8 · Description: Parking ticket for dual tech summit
 - `Edgar_20260624172917_021` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
@@ -64,6 +61,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260626054402_045` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250711_NIBS_8 · Sales price: $25 · Sold by: Kirsten Ritschel
 - `Edgar_20260626150812_047` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
 - `Edgar_20260626150816_049` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
+- `Edgar_20260626155854_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: append_to_transcript.py line 248 AttributeE…
+- `Edgar_20260626163612_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh, Sophia Truesight
+- `Edgar_20260626180212_055` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-26T18:02:10.539Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -310,6 +310,7 @@ _All dated lines on/after 2026-06-19_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ca2c7a4 | 2026-06-26 15:13:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e8ba753 | 2026-06-26 09:59:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 59c0d80 | 2026-06-26 04:52:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6892e18 | 2026-06-25 20:32:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -349,7 +350,6 @@ e3c7927 | 2026-06-19 09:15:07 -0700 | Reframe tension section: system design, no
 828d4e4 | 2026-06-19 09:10:47 -0700 | Add concluding section on institutional shift (#253)
 195bc2e | 2026-06-19 09:06:15 -0700 | Update FDA Agent post with honest framing: unbundling, not disintermediation (#252)
 31e27a9 | 2026-06-19 15:50:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9f01cd7 | 2026-06-19 04:18:05 -0700 | Add FDA Agent blog post to blog index (#251)
 … (truncated)
 ```
 
@@ -362,6 +362,18 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8b594a1 | 2026-06-26 09:30:41 -0700 | Update Zach brief markdown — 100 TDG/hr, date subject to Zach's availability
+cc558ee | 2026-06-26 09:30:32 -0700 | Update Zach brief — 100 TDG/hr, date subject to Zach's availability
+dc4785d | 2026-06-26 09:29:13 -0700 | Update Zach brief markdown — remove Gary mentions, Zach is central character
+eaee3ad | 2026-06-26 09:29:05 -0700 | Update Zach brief — remove Gary mentions, Zach is central character
+12ff37c | 2026-06-26 09:26:41 -0700 | Update Zach Roth brief markdown — trimmed to high-level overview
+fdbf791 | 2026-06-26 09:26:31 -0700 | Update Zach Roth brief — trimmed to high-level overview
+7f85796 | 2026-06-26 09:26:07 -0700 | Add Zach Roth program runner brief markdown
+9ae6f84 | 2026-06-26 09:25:54 -0700 | Add Zach Roth program runner brief PDF
+ae6b021 | 2026-06-26 09:25:02 -0700 | Add Aora × Agroverse event brief markdown
+2f80637 | 2026-06-26 09:24:47 -0700 | Add Aora × Agroverse event brief PDF
+1fab291 | 2026-06-26 08:10:21 -0700 | chore(previews): refresh Beer Hall preview (2026-06-26 UTC)
+95cfe1d | 2026-06-26 08:10:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
 174502b | 2026-06-26 02:58:25 -0700 | chore(previews): refresh Beer Hall preview (2026-06-26 UTC)
 e8e15df | 2026-06-26 02:58:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
 6626d9f | 2026-06-25 21:49:56 -0700 | chore(previews): refresh Beer Hall preview (2026-06-26 UTC)
@@ -390,18 +402,6 @@ fe734ca | 2026-06-24 02:57:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 16e4a74 | 2026-06-24 03:48:44 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 967e8ea | 2026-06-23 13:33:17 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
 450292c | 2026-06-23 13:33:16 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
-b6be207 | 2026-06-23 10:20:26 -0700 | Auto-advance: flip default to AUTO; gate the irreversible by rule (§5c + design) (#622)
-b041ed1 | 2026-06-23 10:16:03 -0700 | Proposal CLI plan: add Advance column + RESUME HERE (was fail-closed → not auto-advancing) (#621)
-e6b350b | 2026-06-23 10:15:27 -0700 | docs: add deploy runbook for QR self-serve currency definition (PR3) (#619)
-25e256e | 2026-06-23 10:12:12 -0700 | Add Sophia contribution-scoring plan (review the 906-row Pending backlog; ~90.7k TDG, gated) (#620)
-16fb94a | 2026-06-23 10:06:00 -0700 | Add Proposal CLI Implementation Plan (#618)
-0a0213e | 2026-06-23 10:04:17 -0700 | plan: Sophia Durable Journal + Checkpoint-Resume Loop (harness improvement; DRAFT, awaiting review)
-948d5d9 | 2026-06-23 10:00:11 -0700 | handoff(qr-currency): register Sophia thread 7611 (parked GO-ready)
-89c3aa5 | 2026-06-23 09:55:22 -0700 | plan(qr-currency): add turnkey appendix (paste-ready CLI + GAS skeleton + line refs); mark PR3 operator-run
-502e0b3 | 2026-06-23 09:47:25 -0700 | Add Prospera LLC specifics from Breno: costs, governance, triangular trade structure (#617)
-533c1d0 | 2026-06-23 09:43:57 -0700 | plan: Self-Serve QR-Ready Currency Definition via Edgar (handoff to Sophia, RESUME HERE = PR1)
-371b798 | 2026-06-23 08:33:12 -0700 | chore(previews): refresh Beer Hall preview (2026-06-23 UTC)
-e5d4691 | 2026-06-23 08:33:11 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-23 UTC)
 … (truncated)
 ```
 
@@ -558,7 +558,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1541.85 | 16518.96386 | 6/26/2026 8:05:48 |
+| 2026-06 | 1541.85 | 16518.96386 | 6/26/2026 12:51:30 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-19`; scanned last **584** data rows)
 
