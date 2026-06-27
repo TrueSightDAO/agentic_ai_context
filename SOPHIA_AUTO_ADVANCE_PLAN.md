@@ -1,6 +1,6 @@
 # Sophia Auto-Advance — Execution Roadmap (handoff to Sophia)
 
-**Status as of 2026-06-17:** DRAFT — design approved by Gary 2026-06-17; pending execution.
+**Status as of 2026-06-17:** IMPLEMENTED AND DEPLOYED — auto-advance now works on all threads (not just handoff threads) as of PR [#268](https://github.com/TrueSightDAO/truesight_autopilot/pull/268).
 **Repo under change:** `truesight_autopilot` (Sophia's OWN codebase — adapter + brain).
 **Designed by:** Gary Teh + Claude · **Implemented by:** Sophia (or Claude), human-merged.
 
@@ -211,7 +211,7 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 | PR1 — convention + parser | `auto` | ☑ [#244](https://github.com/TrueSightDAO/truesight_autopilot/pull/244) + doc [agentic#545](https://github.com/TrueSightDAO/agentic_ai_context/pull/545) | ☑ | ☑ | — | ☑ |
 | PR2 — brain advance signal | `auto` | ☑ [#248](https://github.com/TrueSightDAO/truesight_autopilot/pull/248) | ☑ | ☑ | — | ☑ |
 | PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☑ [#246](https://github.com/TrueSightDAO/truesight_autopilot/pull/246) | ☑ | ☑ | U1–U6 | ☑ |
-| PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ⏳ U1–U6 | ☐ |
+| PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ☑ U1–U6 | ☑ |
 
 **Status 2026-06-17:** PR1–PR3 + convention doc all **merged to `main`** and **deployed** to the box
 (`sophia`, HEAD `f0be109`, `/health` ok, clean boot — no import errors). Restart was done while the box
@@ -221,10 +221,9 @@ was auto-closed by GitHub when the PR1 base branch was deleted on merge). **`AUT
 LIVE** (`/opt/truesight_autopilot/.env` line 49; verified `settings.auto_advance=True`, max_turns=8;
 brain + adapter restarted while idle 2026-06-17, `/health` ok).
 
-> **RESUME HERE (PR4 — UAT):** Feature is deployed AND enabled. Remaining: run **UAT U1–U6** on a scratch
-> handoff thread with a throwaway 3-PR plan (`auto`/`gate` markers) — confirm she auto-advances the `auto`
-> units with a heartbeat between each, pauses at the `gate:`, halts on a failed unit, and stops at the
-> cap (8). To roll back instantly: set `AUTO_ADVANCE=false` (or remove the line) + restart.
+**UAT U1–U6 all passed.** Auto-advance was subsequently extended to work on **all threads** (not just
+handoff threads) via PR [#268](https://github.com/TrueSightDAO/truesight_autopilot/pull/268), which was
+merged and deployed. The feature is fully **IMPLEMENTED AND DEPLOYED** across the entire platform.
 
 ## 11. Dependency notes
 
