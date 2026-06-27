@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-27T14:13:13Z`
+- Generated (UTC): `2026-06-27T19:52:44Z`
 - Look-back: **7** calendar days (`2026-06-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,8 +34,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 19
 - `[SALES EVENT]` × 8
-- `[PRACTICE EVENT]` × 4
-- `[CONTRIBUTION REVIEW EVENT]` × 3
+- `[PRACTICE EVENT]` × 5
+- `[CONTRIBUTION REVIEW EVENT]` × 2
 - `[PROPOSAL VOTE]` × 2
 - `[PROPOSAL CREATION]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
@@ -43,7 +43,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260625164537_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Setup of the serving station for the cacao circle at the Dual Tech Conference
 - `Edgar_20260625165616_035` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shirley Lin · Contributor Email: shirley+lin@placeholder.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
 - `Edgar_20260625165928_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Serving and sharing cacao at the cacao booth
 - `Edgar_20260625181507_039` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-25T18:15:05.686Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
@@ -63,6 +62,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260627110930_067` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Kirsten
 - `Edgar_20260627111144_069` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Kirsten Ritschel
 - `Edgar_20260627111628_071` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260627143553_073` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-27T14:35:51.555Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -309,6 +309,7 @@ _All dated lines on/after 2026-06-20_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+010c83d | 2026-06-27 14:15:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6bca5c2 | 2026-06-27 09:13:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3a79893 | 2026-06-27 04:37:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1aae8a9 | 2026-06-26 20:20:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -357,6 +358,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7abcbb3 | 2026-06-27 07:13:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
+33292c0 | 2026-06-27 07:13:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
 65ba9e9 | 2026-06-27 02:11:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
 217b3f6 | 2026-06-27 02:11:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
 a9f96aa | 2026-06-26 21:34:38 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
@@ -395,8 +398,6 @@ ba113bf | 2026-06-24 21:45:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 d98d4aa | 2026-06-25 03:47:02 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 191f3ca | 2026-06-24 13:17:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
 605c1a0 | 2026-06-24 13:17:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
-933dc28 | 2026-06-24 08:18:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
-e546e9d | 2026-06-24 08:18:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 … (truncated)
 ```
 
@@ -548,7 +549,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1602.65 | 16579.76386 | 6/27/2026 6:50:51 |
+| 2026-06 | 1602.65 | 16579.76386 | 6/27/2026 11:51:04 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-20`; scanned last **590** data rows)
 
