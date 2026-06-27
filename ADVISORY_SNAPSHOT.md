@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-27T09:11:43Z`
+- Generated (UTC): `2026-06-27T14:13:13Z`
 - Look-back: **7** calendar days (`2026-06-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,25 +33,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 19
-- `[CONTRIBUTION REVIEW EVENT]` × 9
+- `[SALES EVENT]` × 8
 - `[PRACTICE EVENT]` × 4
-- `[SALES EVENT]` × 2
+- `[CONTRIBUTION REVIEW EVENT]` × 3
 - `[PROPOSAL VOTE]` × 2
-- `[BATCH QR CODE REQUEST]` × 1
 - `[PROPOSAL CREATION]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
+- _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260624144232_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-24T14:42:30.812Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260624172832_019` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 8.8 · Description: Parking ticket for dual tech summit
-- `Edgar_20260624172917_021` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260624173132_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Helping set up with the dual tech summit
-- `Edgar_20260624173238_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Bring the cacao tea to the Onsen global gathering
-- `Edgar_20260624211539_027` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 6.20 · Description: Parking for dual tech summit part 2
-- `Edgar_20260624211624_029` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260625164156_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Chat with Matheus about status of the CNPJ addition of the CNAE classificati…
 - `Edgar_20260625164537_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Setup of the serving station for the cacao circle at the Dual Tech Conference
 - `Edgar_20260625165616_035` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Shirley Lin · Contributor Email: shirley+lin@placeholder.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
 - `Edgar_20260625165928_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Serving and sharing cacao at the cacao booth
@@ -64,6 +55,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260626155854_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: append_to_transcript.py line 248 AttributeE…
 - `Edgar_20260626163612_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh, Sophia Truesight
 - `Edgar_20260626180212_055` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-26T18:02:10.539Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260627105458_057` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_3 · Sales price: 35.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260627105509_059` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_3 · Sales price: 35.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260627105520_061` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_3 · Sales price: 35.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260627105812_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The SALES EVENT QR code validation regex in…
+- `Edgar_20260627110815_065` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Stripe Social Media Checkout
+- `Edgar_20260627110930_067` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Kirsten
+- `Edgar_20260627111144_069` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Kirsten Ritschel
+- `Edgar_20260627111628_071` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 
 ---
 
@@ -71,7 +70,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $4,170 | 10% | `2026-12-31` | 187 | **behind** |
+| 2026 QR Code Sales | $40,000 | $4,231 | 11% | `2026-12-31` | 187 | **behind** |
 | USA Agroverse Partners | 100 | — | — | `2026-12-31` | 187 | — |
 
 ---
@@ -81,7 +80,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-26T10:59:14.209Z`
+- Generated (UTC): `2026-06-27T10:59:14.343Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -106,12 +105,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **349**, follow_up **70**, bulk **0**, unknown **2** (data rows: **421**)
+- **Email Agent Follow Up** — logged sends: warmup **359**, follow_up **70**, bulk **0**, unknown **2** (data rows: **431**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **303**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **313**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **66**; follow-up depth (none / once / ≥2): **67** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -208,14 +207,14 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,415 total units · $1,513.09
+- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,414 total units · $1,510.69
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 895 | $652.10 |
   | (uncategorized) | (unspecified) | 9 | 468 | $854.63 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
-  | Cacao Mass | Retail Ready | 1 | 2 | $4.81 |
+  | Cacao Mass | Retail Ready | 1 | 1 | $2.40 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
@@ -231,11 +230,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,546.71 total units · $12,720.56
+- Manager record: `Gary Teh` · 26 SKU lines · 14,600.57 total units · $12,774.42
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,470.53 | $12,670.58 |
+  | (uncategorized) | (unspecified) | 24 | 14,524.39 | $12,724.44 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -256,7 +255,7 @@ _(+27 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,087.48**
+- USD on hand: **$4,141.34**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$41.26**
 
@@ -310,6 +309,7 @@ _All dated lines on/after 2026-06-20_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6bca5c2 | 2026-06-27 09:13:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3a79893 | 2026-06-27 04:37:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1aae8a9 | 2026-06-26 20:20:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ca2c7a4 | 2026-06-26 15:13:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -357,6 +357,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+65ba9e9 | 2026-06-27 02:11:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
+217b3f6 | 2026-06-27 02:11:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
 a9f96aa | 2026-06-26 21:34:38 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
 92c6289 | 2026-06-26 21:34:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
 0c8302b | 2026-06-26 20:39:24 -0700 | Merge pull request #626 from TrueSightDAO/auto/advisory-refresh-2026-06-27
@@ -395,8 +397,6 @@ d98d4aa | 2026-06-25 03:47:02 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 605c1a0 | 2026-06-24 13:17:54 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 933dc28 | 2026-06-24 08:18:44 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
 e546e9d | 2026-06-24 08:18:43 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
-948aa1b | 2026-06-24 02:57:40 -0700 | chore(previews): refresh Beer Hall preview (2026-06-24 UTC)
-fe734ca | 2026-06-24 02:57:39 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-24 UTC)
 … (truncated)
 ```
 
@@ -441,6 +441,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ddfd787 | 2026-06-27 04:28:35 -0700 | chore: refresh Agroverse store inventory snapshot
 5b24715 | 2026-06-27 09:06:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 48f8cd7 | 2026-06-26 09:53:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fbe83bb | 2026-06-25 23:28:44 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -547,9 +548,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1541.85 | 16518.96386 | 6/27/2026 1:50:20 |
+| 2026-06 | 1602.65 | 16579.76386 | 6/27/2026 6:50:51 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-20`; scanned last **584** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-20`; scanned last **590** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
@@ -570,14 +571,14 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_31 | — | — |
 | 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_30 | — | — |
 | 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_29 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_28 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_27 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_26 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_25 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_24 | — | — |
-| 2026-06-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260121_22 | — | — |
 | 2026-06-26 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_8 | — | — |
 | 2026-06-26 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_1 | — | — |
+| 2026-06-27 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_33 | VkoLViXv9l3t | — |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-27 | 35.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_3 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
