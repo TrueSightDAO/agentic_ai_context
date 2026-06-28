@@ -1,16 +1,17 @@
-# Post-Repackaging Cleanup — Implementation Plan
+# Post-Repackaging Cleanup — Implementation Plan (v2)
 
-**Status:** Draft — awaiting governor review (§10)
+**Status:** Updated — awaiting governor review (§14)
 **Handoff target:** Sophia (truesight_autopilot)
-**Repo:** `TrueSightDAO/dao_client`
+**Repos:** `TrueSightDAO/dao_client` + `TrueSightDAO/tokenomics`
 **Date:** 2026-06-28
+**Update:** v2 — rewritten per governor directive: follow Edgar event → dispatch → GAS pattern (no direct gspread)
 
 ---
 
 ## §1 — Context
 
 ### What
-A new `dao_client` module that closes the known gap between `[REPACKAGING BATCH EVENT]` submission and a fully populated Main Ledger. Today the repackaging GAS (`agroverse-inventory/gas/repackaging-currency-ingest/Code.gs`) writes only `Currencies` columns **A, B, N, O**. Everything else requires manual gspread ad-hoc edits (documented in `QR_GENERATION_DAO_CLIENT_POSTMORTEM.md:49-56`).
+A new event type + CLI + GAS handler that closes the known gap between `[REPACKAGING BATCH EVENT]` submission and a fully populated Main Ledger. Today the repackaging GAS (`agroverse-inventory/gas/repackaging-currency-ingest/Code.gs`) writes only `Currencies` columns **A, B, N, O**. Everything else requires manual gspread ad-hoc edits (documented in `QR_GENERATION_DAO_CLIENT_POSTMORTEM.md:49-56`).
 
 ### Why
 Every repackaging batch leaves four manual cleanup steps:
@@ -19,8 +20,6 @@ Every repackaging batch leaves four manual cleanup steps:
 3. **Set** `Currencies` columns C (`isSerializable`), D (product image), E–J (farm info), M (SKU Product ID)
 4. **Rebuild** `store-inventory.json` so the website reflects reality
 
-This module automates all four from a composition JSON + CLI/YAML input.
-
 ### Who
 - **Governor:** Gary Teh
 - **Builder:** Sophia (truesight_autopilot)
@@ -28,25 +27,53 @@ This module automates all four from a composition JSON + CLI/YAML input.
 
 ---
 
-## §2 — Current State
+## §2 — Architecture (CANONICAL)
 
-| Item | Status |
-|------|--------|
-| `[REPACKAGING BATCH EVENT]` submission | Exists: DApp `repackaging_planner.html` + CLI `repackaging_planner.py` |
-| GAS writes `Currencies` A, B, N, O | Working |
-| GAS writes `offchain asset location` | **Not implemented** — gap |
-| GAS writes `Currencies` C, D, E–J, M | **Not implemented** — gap |
-| gspread helpers in `dao_client` | Exists: `onboard_partner.py` lines 287-315 (`_gspread_client`, `_find_google_credentials`, `_retry`) |
-| Sheets v4 API helpers in `dao_client` | Exists: `server/sheets/base.py` (`update_cell`, `find_row_by_col_a`, `batch_update`, `append_row`) |
-| Composition JSON schema | Stable (v2), example: `b08d324b-e2f4-4645-9d25-ee43f9e7d9e0.json` |
-| Test framework | pytest, monkeypatch, TestClient |
-| Console script entry pattern | `pyproject.toml` `[project.scripts]` |
+Every other event type in the system follows this pipeline. This module MUST follow it too.
+
+```
+┌──────────┐    sign + POST      ┌───────┐   log to Telegram   ┌──────────────┐
+│ dao_client│ ──────────────────→ │ Edgar │ ──────────────────→ │ Telegram     │
+│ (CLI)    │  /dao/submit_       │       │   Chat Logs tab     │ Chat Logs    │
+│          │  contribution       └───────┘                     └──────┬───────┘
+└──────────┘                                                         │
+                                                               dispatch.py
+                                                               matches event tag
+                                                                     │
+                                                               ┌─────▼──────┐
+                                                               │ GAS        │
+                                                               │ webhook    │
+                                                               │ handler    │
+                                                               │            │
+                                                               │ Writes to: │
+                                                               │ • offchain │
+                                                               │   asset    │
+                                                               │   location │
+                                                               │ • Currencies│
+                                                               │ • triggers │
+                                                               │   inventory│
+                                                               │   snapshot │
+                                                               └────────────┘
+```
+
+**Key properties:**
+- RSA signing at the CLI (cryptographic proof of who ran it)
+- Audit trail in Telegram Chat Logs (immutable, searchable)
+- Edgar verifies signature before dispatching
+- GAS handler does all sheet writes (server-side, no client credentials needed)
+- First-match-wins routing in `dispatch.py` (matches existing pattern)
+
+### Anti-pattern (DO NOT USE)
+```
+CLI ──gspread──→ Google Sheets   ← DIRECT WRITE, NO AUDIT TRAIL, NO SIGNING
+```
+This approach is explicitly rejected. The `onboard_partner.py` direct gspread pattern is a legacy exception, not the canonical pattern for new event types.
 
 ---
 
 ## §3 — Composition JSON Reference (input format)
 
-The module's primary input is a composition JSON file (same format the repackaging GAS already consumes). Key fields:
+The GAS handler's primary input is the composition JSON URL embedded in the event payload. Format (v2, stable):
 
 ```json
 {
@@ -73,7 +100,7 @@ The module's primary input is a composition JSON file (same format the repackagi
 }
 ```
 
-**Only `inputs` with `line_kind == "from_holder_inventory"` are depleted** (custom/packaging lines are consumed in the batch but don't have an `offchain asset location` entry to deplete).
+**Only `inputs` with `line_kind == "from_holder_inventory"` are depleted.** Packaging/custom lines do not have `offchain asset location` entries.
 
 ---
 
@@ -83,7 +110,7 @@ The module's primary input is a composition JSON file (same format the repackagi
 | Col | Name | Action |
 |-----|------|--------|
 | A | Currency | Match against `inputs[].currency` for depletion; write `outputs[].suggested_currency` for addition |
-| B | Location | Match/filter by `--holder-name` |
+| B | Location | Match/filter by Holder Name from event payload |
 | C | Amount Managed | **Decrement** by `inputs[].quantity` for depletion; **write** `outputs[].units` for addition |
 | D | Unit Cost | Write `outputs[].unit_cost_usd` for addition |
 | E | Total Value | Write `outputs[].line_total_usd` for addition |
@@ -92,205 +119,383 @@ The module's primary input is a composition JSON file (same format the repackagi
 | Col | Name | Action |
 |-----|------|--------|
 | A | Currencies | Match against `outputs[].suggested_currency` |
-| C | Serializable | Set to `"TRUE"` (always for QR-ready output) |
-| E | landing_page | From `--landing-page` flag |
-| F | ledger | From `--ledger` flag |
-| G | farm name | From `--farm-name` flag |
-| H | state | From `--state` flag |
-| I | country | From `--country` flag |
-| J | Year | From `--year` flag |
-| M | SKU Product ID | From `--sku-mapping` (keyed by output label substring match) |
+| C | Serializable | Set to `"TRUE"` |
+| E | landing_page | From event payload Landing Page |
+| F | ledger | From event payload Ledger URL |
+| G | farm name | From event payload Farm Name |
+| H | state | From event payload State |
+| I | country | From event payload Country |
+| J | Year | From event payload Year |
+| M | SKU Product ID | From event payload SKU Mapping (substring-matched against output label) |
 
 ---
 
-## §5 — PR Breakdown
+## §5 — New Event Type Specification
 
-### PR1: Core module — `modules/post_repackaging_cleanup.py` (NEW FILE)
-
-**What it does:**
-1. Parse CLI args (argparse, no `build_event_cli` — this is NOT an Edgar event, it's direct sheet writes)
-2. Fetch composition JSON from `--composition-url` (HTTP GET)
-3. Validate composition against expected schema (check for `inputs`, `outputs`, `request_id`)
-4. If `--deplete-inputs` (default true):
-   - For each input with `line_kind == "from_holder_inventory"`:
-     - Find row in `offchain asset location` where col A = `currency` AND col B = `--holder-name`
-     - If row found: read current amount (col C), compute new amount = current - quantity
-     - If new amount ≤ 0: set amount to 0 (or delete row? decision below)
-     - If new amount > 0: write new amount to col C
-     - If row NOT found: warn and skip (the input may not have been in offchain asset location)
-5. If `--add-output-locations` (default true):
-   - For each output:
-     - Append row to `offchain asset location`: col A = `suggested_currency`, col B = `--holder-name`, col C = `units`, col D = `unit_cost_usd`, col E = `line_total_usd`
-6. If `--set-currencies-metadata` (default true):
-   - For each output:
-     - Find row in `Currencies` where col A = `suggested_currency`
-     - If found: batch-update columns C, E, F, G, H, I, J, M with provided values
-     - If NOT found: warn and skip (the repackaging GAS may not have run yet)
-7. If `--rebuild-inventory` (default false, opt-in):
-   - Invoke `sync_agroverse_store_inventory.py` as subprocess
-8. Print summary table of what was done / skipped / warned
-
-**Pattern:** Follow `onboard_partner.py` — custom argparse, gspread for sheet writes, `_find_google_credentials` / `_gspread_client` / `_retry` copied from that module.
-
-**Dependencies:**
-- `gspread` (already in the repo's transitive deps via `onboard_partner.py`)
-- `google-auth` (same)
-- `requests` or `urllib` (stdlib — for fetching composition JSON)
-
-**CLI arguments:**
+### Event tag
 ```
-Required:
-  --composition-url URL       URL to composition JSON (GitHub raw or any HTTP)
-
-Optional:
-  --holder-name NAME          Who physically holds the inventory (required if depleting/adding locations)
-  --sku-mapping JSON          {"<substring>": "<sku-id>", ...} — matches output label substrings
-  --landing-page URL          Landing page for Currencies!E
-  --ledger URL                Ledger URL for Currencies!F
-  --farm-name NAME            Farm name for Currencies!G
-  --state STATE               State for Currencies!H
-  --country COUNTRY           Country for Currencies!I
-  --year YEAR                 Year for Currencies!J
-
-  --deplete-inputs / --no-deplete-inputs         (default: true)
-  --add-output-locations / --no-add-output-locations  (default: true)
-  --set-currencies-metadata / --no-set-currencies-metadata  (default: true)
-  --rebuild-inventory / --no-rebuild-inventory   (default: false)
-
-  --spreadsheet-id ID         Override Main Ledger spreadsheet ID (default: 1GE7PUq-...)
-  --dry-run                   Validate, resolve, print what WOULD be written — don't write
-  --verbose                   Print per-row detail
+[POST-REPACKAGING CLEANUP EVENT]
 ```
 
-**SKU mapping logic:**
-The `--sku-mapping` flag accepts a JSON object where each key is a substring to match against `outputs[].suggested_currency` and each value is the SKU Product ID to write to Currencies!M. Example:
-```json
-{
-  "Ceremonial Cacao Kraft Pouch": "ceremonial-cacao-kraft-pouch-200g",
-  "Agroverse 81% Cacao Chocolate Bar 50g": "agroverse-81-cacao-chocolate-bar-50g"
+### Canonical labels (order matters — matches payload format)
+| # | Label | Required | Validator | Description |
+|---|-------|----------|-----------|-------------|
+| 1 | `Composition URL` | **Yes** | `required, url` | URL to the composition JSON (GitHub raw) |
+| 2 | `Holder Name` | **Yes** | `required` | Who physically holds the inventory (e.g. "Kirsten Ritschel") |
+| 3 | `Farm Name` | No | — | Farm name for Currencies!G |
+| 4 | `State` | No | — | State/region for Currencies!H |
+| 5 | `Country` | No | — | Country for Currencies!I |
+| 6 | `Year` | No | — | Harvest year for Currencies!J |
+| 7 | `Landing Page` | No | `url_or_empty` | Landing page URL for Currencies!E |
+| 8 | `Ledger URL` | No | `url_or_empty` | Ledger URL for Currencies!F |
+| 9 | `SKU Mapping` | No | — | JSON string: `{"substring": "sku-id", ...}` |
+| 10 | `Deplete Inputs` | No | — | `"true"` or `"false"` (default: `"true"`) |
+| 11 | `Add Output Locations` | No | — | `"true"` or `"false"` (default: `"true"`) |
+| 12 | `Set Currencies Metadata` | No | — | `"true"` or `"false"` (default: `"true"`) |
+| 13 | `Rebuild Inventory` | No | — | `"true"` or `"false"` (default: `"false"`) |
+| 14 | `Submission Source` | No | — | Standard source label |
+
+### Default values (set in CLI via `defaults` dict)
+```python
+defaults={
+    "Deplete Inputs": "true",
+    "Add Output Locations": "true",
+    "Set Currencies Metadata": "true",
+    "Rebuild Inventory": "false",
+    "Submission Source": "Post-Repackaging Cleanup CLI",
 }
 ```
-First match wins. If no key matches, Currencies!M is left empty (warn).
 
-**Design decisions:**
-- **Delete vs. zero for depletion:** Write amount to 0 rather than deleting the row (preserves audit trail; the GAS ignores zero-amount rows for inventory snapshots).
-- **Idempotency:** The module checks existing values before writing. If `offchain asset location` already has a row for an output, it skips (warns). If Currencies!C is already `TRUE`, it skips that column. This makes the module safe to re-run.
-- **No Edgar integration:** This module writes directly to Google Sheets (like `onboard_partner.py`'s Steps 2 & 3). It does NOT submit events to Edgar — no cryptographic signing, no Telegram Chat Log audit trail. This matches the postmortem workaround pattern.
+### DApp page
+None (no browser equivalent — this is CLI-only, operator-facing post-repackaging tool).
 
 ---
 
-### PR2: Console script + pyproject.toml entry
+## §6 — Dispatch Route
 
-**File:** `pyproject.toml` — add one line under `[project.scripts]`:
+### Addition to `dispatch.py` ROUTING list
+
+Insert BEFORE the `[ASSET RECEIPT EVENT]` entry (line 61 in the current file):
+
+```python
+("[POST-REPACKAGING CLEANUP EVENT]", [
+    ("POST_REPACKAGING_CLEANUP", "processPostRepackagingCleanup"),
+], True),  # enqueue inventory snapshot (writes to offchain asset location)
+```
+
+### Env var required
+```
+DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP = <GAS webapp URL>
+```
+This must be set on the Edgar box and the autopilot EC2.
+
+### Why `enqueue_inventory=True`
+Because this event writes to `offchain asset location` and `Currencies`, the inventory snapshot (`store-inventory.json`) must be rebuilt afterward — same as `[INVENTORY MOVEMENT]` and `[DAO Inventory Expense Event]`.
+
+---
+
+## §7 — GAS Handler Specification
+
+### Location
+`tokenomics/google_app_scripts/<deployment_id>/post_repackaging_cleanup.gs`
+
+(Or added to an existing GAS project that already handles Telegram Chat Log processing — follow the pattern of `processRepackagingBatchesFromTelegramChatLogs`.)
+
+### Entry point
+```javascript
+function processPostRepackagingCleanup(request) {
+  // Standard GAS webapp entry: doGet/doPost → calls this
+  // request.parameter.action === "processPostRepackagingCleanup"
+}
+```
+
+### Processing logic
+
+```
+1. PARSE the Telegram Chat Log row for this event
+   - Extract Composition URL, Holder Name, Farm Name, etc. from the text body
+   - Parse the SKU Mapping JSON string
+
+2. FETCH composition JSON from Composition URL
+   - UrlFetchApp.fetch(compositionUrl)
+   - Validate schema (inputs array, outputs array, request_id)
+
+3. DEPLETE INPUTS (if Deplete Inputs != "false")
+   For each input where line_kind == "from_holder_inventory":
+     a. Open "offchain asset location" tab
+     b. Find row where col A == input.currency AND col B == Holder Name
+     c. If found:
+        - Read current amount (col C)
+        - new_amount = max(0, current_amount - input.quantity)
+        - Write new_amount to col C
+        - Log: "Depleted {currency} from {old} to {new} (consumed {qty})"
+     d. If NOT found:
+        - Log warning, skip
+   Packaging/custom lines (line_kind != "from_holder_inventory"): skip with log
+
+4. ADD OUTPUT LOCATIONS (if Add Output Locations != "false")
+   For each output in composition.outputs:
+     a. Check if row already exists: col A == output.suggested_currency AND col B == Holder Name
+     b. If exists: skip (idempotent), log "already present"
+     c. If NOT exists: append row:
+        A = output.suggested_currency
+        B = Holder Name
+        C = output.units
+        D = output.unit_cost_usd
+        E = output.line_total_usd
+        Log: "Added {currency} x{units} @ ${cost}"
+
+5. SET CURRENCIES METADATA (if Set Currencies Metadata != "false")
+   For each output in composition.outputs:
+     a. Open "Currencies" tab
+     b. Find row where col A == output.suggested_currency
+     c. If found:
+        - If col C is empty/false: set to "TRUE"
+        - If Farm Name provided: set col G
+        - If State provided: set col H
+        - If Country provided: set col I
+        - If Year provided: set col J
+        - If Landing Page provided: set col E
+        - If Ledger URL provided: set col F
+        - If SKU Mapping provided: resolve SKU ID (substring match), set col M
+        - Log per-column what was set (or skipped if already populated)
+     d. If NOT found:
+        - Log warning: "Currencies row not found for {currency} — repackaging GAS may not have run yet"
+
+6. REBUILD INVENTORY (if Rebuild Inventory == "true")
+   - Trigger the inventory snapshot publish (same mechanism as dispatch.py's inventory_snapshot.publish())
+   - This rebuilds store-inventory.json on GitHub
+
+7. LOG summary to a status column or a dedicated log
+```
+
+### GAS SKU Mapping logic (JavaScript)
+```javascript
+function resolveSkuId(suggestedCurrency, skuMappingJson) {
+  if (!skuMappingJson) return null;
+  var mapping = JSON.parse(skuMappingJson);
+  var keys = Object.keys(mapping);
+  for (var i = 0; i < keys.length; i++) {
+    if (suggestedCurrency.indexOf(keys[i]) !== -1) {
+      return mapping[keys[i]];
+    }
+  }
+  return null;  // no match — col M left empty
+}
+```
+
+### Idempotency
+The handler must be safe to re-run:
+- **Depletion:** Check current amount before decrementing. If already 0, skip.
+- **Output locations:** Check if row already exists (A + B match). If yes, skip.
+- **Currencies metadata:** Check each column before writing. If already populated, skip that column only.
+- **Rebuild inventory:** The snapshot publisher is already idempotent (coalesces duplicate enqueues).
+
+### Error handling
+- If composition URL fetch fails (non-200): log error, abort processing
+- If sheet is not found: log error, abort
+- If individual row operations fail: log error per row, continue with remaining rows
+- Never throw unhandled exceptions that could crash the GAS webapp
+
+### Logging
+Write a processing summary to a status column or dedicated log tab (follow existing GAS conventions). At minimum, log to `Logger.log()` for GAS console debugging.
+
+---
+
+## §8 — PR Breakdown (REVISED)
+
+### PR1 (dao_client): CLI module — `modules/post_repackaging_cleanup.py` (NEW FILE)
+
+**Pattern:** Follow `repackaging_planner.py` — a ~25-line wrapper using `build_event_cli()`.
+
+```python
+#!/usr/bin/env python3
+"""Submit [POST-REPACKAGING CLEANUP EVENT] to Edgar.
+
+Populates offchain asset location + Currencies metadata after a repackaging
+batch has been processed by the repackaging-currency-ingest GAS.
+
+CLI-only (no DApp equivalent).
+
+Run from the dao_client repo root:
+    python -m truesight_dao_client.modules.post_repackaging_cleanup --help
+"""
+import sys
+
+from ..edgar_client import build_event_cli
+from ..validators import required, url_or_empty
+
+main = build_event_cli(
+    event_name='POST-REPACKAGING CLEANUP EVENT',
+    canonical_labels=[
+        'Composition URL',
+        'Holder Name',
+        'Farm Name',
+        'State',
+        'Country',
+        'Year',
+        'Landing Page',
+        'Ledger URL',
+        'SKU Mapping',
+        'Deplete Inputs',
+        'Add Output Locations',
+        'Set Currencies Metadata',
+        'Rebuild Inventory',
+        'Submission Source',
+    ],
+    required_labels=['Composition URL', 'Holder Name'],
+    validators={
+        'Composition URL': required,
+        'Holder Name': required,
+        'Landing Page': url_or_empty,
+        'Ledger URL': url_or_empty,
+    },
+    defaults={
+        'Deplete Inputs': 'true',
+        'Add Output Locations': 'true',
+        'Set Currencies Metadata': 'true',
+        'Rebuild Inventory': 'false',
+        'Submission Source': 'Post-Repackaging Cleanup CLI',
+    },
+)
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+**Dependencies:** None beyond existing `build_event_cli` / `EdgarClient` / `validators`.
+
+**Console script entry** in `pyproject.toml`:
 ```toml
 truesight-dao-post-repackaging-cleanup = "truesight_dao_client.modules.post_repackaging_cleanup:main"
 ```
 
-**No other changes.** The module's `main()` follows standard argparse conventions.
+**IMPORTANT:** The SKU Mapping label value is a JSON string. The operator passes it as:
+```
+--sku-mapping '{"Ceremonial Cacao Kraft Pouch": "ceremonial-cacao-kraft-pouch-200g", "Agroverse 81% Cacao Chocolate Bar 50g": "agroverse-81-cacao-chocolate-bar-50g"}'
+```
+This gets embedded as `- SKU Mapping: {"Ceremonial Cacao...": ...}` in the signed payload. The GAS handler parses it with `JSON.parse()`.
 
 ---
 
-### PR3: Unit tests — `test_post_repackaging_cleanup.py` (NEW FILE)
+### PR2 (dao_client): Dispatch route — `server/dispatch.py`
 
-**Test file location:** `dao_client/tests/test_post_repackaging_cleanup.py`
+**Change:** Add one entry to the `ROUTING` list.
 
-**Framework:** pytest + monkeypatch (matching repo conventions — no unittest.mock, no test classes)
+Insert after the `[REPACKAGING BATCH EVENT]` entry (line 49) and before `[CURRENCY CONVERSION EVENT]` (line 50):
 
-**Test cases:**
+```python
+("[POST-REPACKAGING CLEANUP EVENT]", [
+    ("POST_REPACKAGING_CLEANUP", "processPostRepackagingCleanup"),
+], True),
+```
+
+**Env var** to provision on the Edgar box + autopilot EC2:
+```bash
+DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP=<GAS webapp deployment URL>
+```
+
+---
+
+### PR3 (tokenomics): GAS handler — Google Apps Script
+
+**File:** New `.gs` file in the appropriate GAS project (the one that hosts the existing Telegram Chat Log processing handlers — e.g., the project containing `processRepackagingBatchesFromTelegramChatLogs`).
+
+**Function signature:**
+```javascript
+function processPostRepackagingCleanup(request) { ... }
+```
+
+**Implementation:** Follows the logic in §7 above.
+
+**Deployment:** Deploy as a new webapp version (or add to existing deployment if the GAS project already serves multiple handlers via the `?action=` query parameter). Update the `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` env var with the new deployment URL.
+
+**Testing the GAS handler (manual):**
+1. Submit a `[POST-REPACKAGING CLEANUP EVENT]` from the CLI with `--dry-run` to see the signed payload
+2. Copy the payload text and manually POST it to the GAS webapp URL (or use the GAS editor's debugger)
+3. Verify sheet changes in the Main Ledger
+
+---
+
+### PR4: Tests
+
+**Test file:** `tests/test_post_repackaging_cleanup.py`
+
+**Framework:** pytest + monkeypatch + TestClient (matching repo conventions)
+
+**Test cases (revised for Edgar event pattern):**
 
 | # | Test | What it verifies |
 |---|------|-----------------|
-| 1 | `test_parse_composition_json` | Valid composition JSON parses correctly; missing fields raise clear errors |
-| 2 | `test_filter_holder_inventory_inputs` | Only `line_kind == "from_holder_inventory"` inputs are depleted; packaging/custom lines are skipped |
-| 3 | `test_deplete_input_partial` | Input with quantity 7 and existing amount 10 → writes 3 to col C |
-| 4 | `test_deplete_input_full` | Input with quantity 7 and existing amount 7 → writes 0 to col C |
-| 5 | `test_deplete_input_more_than_available` | Input with quantity 7 and existing amount 3 → writes 0, warns |
-| 6 | `test_deplete_input_not_found` | Input currency not in offchain asset location → warns, skips |
-| 7 | `test_deplete_input_wrong_holder` | Input currency exists but under different holder → skips (row not matched) |
-| 8 | `test_add_output_location_new` | Output not yet in offchain asset location → appends row |
-| 9 | `test_add_output_location_idempotent` | Output already in offchain asset location → skips, warns |
-| 10 | `test_set_currencies_metadata` | Currencies row found → batch-updates C, E-J, M |
-| 11 | `test_set_currencies_metadata_not_found` | Currencies row not found → warns, skips |
-| 12 | `test_sku_mapping_substring_match` | `--sku-mapping '{"Ceremonial Cacao": "sku-cc"}'` matches `"... Ceremonial Cacao Kraft Pouch ..."` |
-| 13 | `test_sku_mapping_first_match_wins` | Multiple keys could match → first wins |
-| 14 | `test_sku_mapping_no_match` | No key matches → Currencies!M left empty, warns |
-| 15 | `test_dry_run_no_writes` | `--dry-run` prints what WOULD happen, no gspread calls |
-| 16 | `test_empty_composition` | Composition with no inputs/outputs → graceful message, exit 0 |
-| 17 | `test_fetch_composition_http_error` | URL returns 404 → clear error message |
-| 18 | `test_all_flags_disabled` | `--no-deplete-inputs --no-add-output-locations --no-set-currencies-metadata` → prints "nothing to do" |
+| 1 | `test_cli_help` | `--help` prints all canonical labels, defaults |
+| 2 | `test_cli_required_fields` | Missing `--composition-url` or `--holder-name` → error |
+| 3 | `test_cli_dry_run_output` | `--dry-run` prints signed share text, does NOT hit Edgar |
+| 4 | `test_cli_sku_mapping_flag` | `--sku-mapping '{"key": "val"}'` is accepted and appears in payload |
+| 5 | `test_cli_defaults_applied` | `--deplete-inputs`, `--add-output-locations`, etc. default to "true"/"false" |
+| 6 | `test_cli_all_flags_disabled` | `--attr "Deplete Inputs=false" --attr "Add Output Locations=false" --attr "Set Currencies Metadata=false"` → payload contains all three |
+| 7 | `test_dispatch_route_matches` | Text containing `[POST-REPACKAGING CLEANUP EVENT]` is matched by dispatch |
+| 8 | `test_dispatch_route_env_var` | When `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` is set, webhook is triggered |
+| 9 | `test_dispatch_enqueues_inventory_snapshot` | `enqueue_inventory=True` → `inventory_snapshot.publish()` is called |
+| 10 | `test_event_submission_end_to_end` | Full integration: CLI → Edgar → dispatch → mock GAS |
 
 **Mocking strategy:**
-- `monkeypatch.setattr` on `_gspread_client` to return a mock gspread client
-- `monkeypatch.setattr` on `_retry` to be a pass-through
-- Mock `worksheet.get_all_values()`, `worksheet.update_cell()`, `worksheet.append_row()`
-- Mock `urllib.request.urlopen` for composition URL fetch
-- Use `tmp_path` fixture for local JSON file testing
+- `monkeypatch.setattr` on `EdgarClient.submit` for CLI tests (mock HTTP)
+- `monkeypatch.setattr` on `webhook_trigger.trigger` for dispatch tests
+- `monkeypatch.setattr` on `inventory_snapshot.publish` for snapshot enqueue test
+- `TestClient` against `create_app()` for end-to-end FastAPI tests
 
 ---
 
-### PR4: Integration test — real dry-run against b08d324b
-
-**Script:** `tests/test_post_repackaging_cleanup_integration.py`
-
-**What it does:**
-1. Run `--dry-run` against the actual `b08d324b` composition JSON
-2. Verify it correctly identifies:
-   - 4 inputs (1 holder-inventory nibs + 3 packaging lines)
-   - 2 outputs (ceremonial + bars)
-3. Verify SKU mapping resolution
-4. Verify it does NOT write to any sheet (dry-run)
-5. Verify output is parseable and human-readable
-
-**Run:** `pytest tests/test_post_repackaging_cleanup_integration.py -v`
-
----
-
-## §6 — Gates
+## §9 — Gates (REVISED)
 
 | Gate | What | Who |
 |------|------|-----|
-| **G1** | PR1, PR2, PR3 merged to `main` | Sophia |
-| **G2** | `pytest tests/test_post_repackaging_cleanup.py -v` — all pass | Sophia |
-| **G3** | `pytest tests/test_post_repackaging_cleanup_integration.py -v` — pass | Sophia |
-| **G4** | `python -m truesight_dao_client.modules.post_repackaging_cleanup --help` prints clean help | Sophia |
-| **G5** | Dry-run against b08d324b produces expected output (UAT §9) | Governor / QA |
-| **G6** | Real run against a test composition (UAT §9) — verify sheet changes | Governor / QA |
-| **G7** | Post-UAT sign-off | Governor |
+| **G1** | PR1 (CLI module) merged to `dao_client` `main` | Sophia → Governor |
+| **G2** | PR2 (dispatch route) merged to `dao_client` `main` | Sophia → Governor |
+| **G3** | PR3 (GAS handler) deployed to GAS, env var provisioned | Sophia → Governor |
+| **G4** | `pytest tests/test_post_repackaging_cleanup.py -v` — all pass | Sophia |
+| **G5** | `python -m truesight_dao_client.modules.post_repackaging_cleanup --help` prints clean help | Sophia |
+| **G6** | Dry-run against b08d324b prints expected signed payload | Governor / QA |
+| **G7** | Real run against b08d324b — verify sheet changes in Main Ledger | Governor / QA |
+| **G8** | Real run is idempotent — second run produces Telegram log but no duplicate sheet writes | Governor / QA |
+| **G9** | Post-UAT sign-off | Governor |
 
 ---
 
-## §7 — RESUME HERE
+## §10 — RESUME HERE
 
-**After the plan is committed + Sophia pinged:** Sophia reads this file via `read_repo_file` on GitHub `main`, opens a Telegram topic, posts kickoff, and awaits the GO signal.
+**After the plan is committed + Sophia pinged:** Sophia reads this file via `read_repo_file` on GitHub `main`, refreshes her clone, opens a Telegram topic (or reuses existing thread 7987), posts kickoff, and awaits the GO signal.
 
-**RESUME HERE = PR1** (core module `post_repackaging_cleanup.py`).
+**RESUME HERE = PR1** (CLI module `post_repackaging_cleanup.py` — the thin `build_event_cli` wrapper).
 
-Execution order: PR1 → PR2 (trivial, can be same PR) → PR3 → G2/G3 → hand off for G5/G6 UAT.
+Execution order: PR1 → PR2 → PR3 → G4/G5 → hand off for G6/G7/G8 UAT.
 
 ---
 
-## §8 — Roadmap
+## §11 — Roadmap
 
 ```
-Week 1: PR1+PR2 → PR3 → G2/G3 → ping QA for G5/G6
-Week 1-2: UAT (manual dry-run + real run against a test batch)
-Week 2: G7 sign-off → merge → Sophia pings "governor, cleanup module is live"
+Day 1: PR1 (CLI module, ~25 lines) + PR2 (dispatch, ~3 lines)
+Day 2: PR3 (GAS handler, ~150 lines) + deploy + provision env var
+Day 3: PR4 (tests, ~200 lines) → G4/G5
+Day 3-4: UAT (dry-run + real run against b08d324b)
+Day 4: G9 sign-off
 ```
 
 ---
 
-## §9 — User Acceptance Testing (UAT)
+## §12 — User Acceptance Testing (UAT)
 
 ### UAT-1: CLI help
 ```bash
 cd /Users/garyjob/Applications/dao_client
-python -m truesight_dao_client.modules.post_repackaging_cleanup --help
+python3 -m truesight_dao_client.modules.post_repackaging_cleanup --help
 ```
-**Expected:** Clean help text listing all flags, defaults, and examples.
+**Expected:** Clean help listing all 14 canonical labels with their flags, defaults shown, required fields marked.
 
-### UAT-2: Dry-run against b08d324b (no sheet writes)
+### UAT-2: Dry-run against b08d324b
 ```bash
-python -m truesight_dao_client.modules.post_repackaging_cleanup \
+python3 -m truesight_dao_client.modules.post_repackaging_cleanup \
     --composition-url "https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/currency-compositions/b08d324b-e2f4-4645-9d25-ee43f9e7d9e0.json" \
     --holder-name "Kirsten Ritschel" \
     --farm-name "Oscar's Farm, Bahia" \
@@ -298,281 +503,281 @@ python -m truesight_dao_client.modules.post_repackaging_cleanup \
     --country "Brazil" \
     --year "2024" \
     --landing-page "https://agroverse.shop/shipments/agl4" \
-    --ledger "https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit#gid=1762218634" \
+    --ledger-url "https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit#gid=1762218634" \
     --sku-mapping '{"Ceremonial Cacao Kraft Pouch": "ceremonial-cacao-kraft-pouch-200g", "Agroverse 81% Cacao Chocolate Bar 50g": "agroverse-81-cacao-chocolate-bar-50g"}' \
-    --dry-run \
-    --verbose
+    --dry-run
 ```
 
-**Expected output:**
+**Expected output:** Signed share text with all labels populated:
 ```
-Composition: b08d324b-e2f4-4645-9d25-ee43f9e7d9e0
-DRY RUN — no changes will be written
+[POST-REPACKAGING CLEANUP EVENT]
 
-[1/4] DEPLETE INPUTS (offchain asset location)
-  SKIP  "Ceremonial Cacao Kraft Pouch - Alibaba:..." (qty 3) — packaging line, not holder inventory
-  SKIP  "Sticker Mule 4x2in custom rectangle label..." (qty 15) — packaging line
-  SKIP  "RLAVBL 7x5x4 corrugated ship box..." (qty 15) — packaging line
-  WOULD deplete "8 Ounce Package Kraft Pouch  CP340992735BR" by 7 (Kirsten Ritschel)
+- Composition URL: https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/currency-compositions/b08d324b-...
+- Holder Name: Kirsten Ritschel
+- Farm Name: Oscar's Farm, Bahia
+- State: Bahia
+- Country: Brazil
+- Year: 2024
+- Landing Page: https://agroverse.shop/shipments/agl4
+- Ledger URL: https://docs.google.com/spreadsheets/d/...
+- SKU Mapping: {"Ceremonial Cacao Kraft Pouch": "ceremonial-cacao-kraft-pouch-200g", ...}
+- Deplete Inputs: true
+- Add Output Locations: true
+- Set Currencies Metadata: true
+- Rebuild Inventory: false
+- Submission Source: Post-Repackaging Cleanup CLI
 
-[2/4] ADD OUTPUT LOCATIONS (offchain asset location)
-  WOULD add "Ceremonial Cacao Kraft Pouch - ... | Kirsten 20260620 | San Francisco - AGL4" x3  @ $11.61 ($34.84 total)
-  WOULD add "Agroverse 81% Cacao Chocolate Bar 50g | ... | Kirsten 20260620 | San Francisco - AGL4" x15 @ $2.90 ($43.55 total)
-
-[3/4] SET CURRENCIES METADATA
-  WOULD set cols C,E,F,G,H,I,J,M on "Ceremonial Cacao Kraft Pouch - ..."
-    C = TRUE
-    E = https://agroverse.shop/shipments/agl4
-    F = https://docs.google.com/spreadsheets/d/...
-    G = Oscar's Farm, Bahia
-    H = Bahia
-    I = Brazil
-    J = 2024
-    M = ceremonial-cacao-kraft-pouch-200g
-  WOULD set cols C,E,F,G,H,I,J,M on "Agroverse 81% Cacao Chocolate Bar 50g | ..."
-    ... (same farm info)
-    M = agroverse-81-cacao-chocolate-bar-50g
-
-[4/4] REBUILD INVENTORY SNAPSHOT
-  SKIP — --rebuild-inventory not set
-
-Done (dry run). 0 writes, 0 errors.
+-----BEGIN DAO SIGNED CONTRIBUTION-----
+...
+-----END DAO SIGNED CONTRIBUTION-----
 ```
 
 ### UAT-3: Real run against b08d324b
 ```bash
-# SAME COMMAND AS UAT-2 but without --dry-run
-python -m truesight_dao_client.modules.post_repackaging_cleanup \
-    --composition-url "https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/currency-compositions/b08d324b-e2f4-4645-9d25-ee43f9e7d9e0.json" \
-    --holder-name "Kirsten Ritschel" \
-    --farm-name "Oscar's Farm, Bahia" \
-    --state "Bahia" \
-    --country "Brazil" \
-    --year "2024" \
-    --landing-page "https://agroverse.shop/shipments/agl4" \
-    --ledger "https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit#gid=1762218634" \
-    --sku-mapping '{"Ceremonial Cacao Kraft Pouch": "ceremonial-cacao-kraft-pouch-200g", "Agroverse 81% Cacao Chocolate Bar 50g": "agroverse-81-cacao-chocolate-bar-50g"}' \
-    --verbose
-```
-
-**Post-run verification checklist:**
-- [ ] `offchain asset location`: "8 Ounce Package Kraft Pouch CP340992735BR" under "Kirsten Ritschel" is now 0
-- [ ] `offchain asset location`: 2 new rows for ceremonial + bars under Kirsten Ritschel
-- [ ] `Currencies`: `isSerializable` = TRUE on both CC and CB output rows
-- [ ] `Currencies`: farm info (E-J) populated on both rows
-- [ ] `Currencies`: SKU Product ID (M) populated on both rows
-- [ ] Re-run the same command → all steps report "already done, skipping" (idempotency)
-
-### UAT-4: Rebuild inventory snapshot
-```bash
-python -m truesight_dao_client.modules.post_repackaging_cleanup \
+# SAME AS UAT-2 but WITHOUT --dry-run
+python3 -m truesight_dao_client.modules.post_repackaging_cleanup \
     --composition-url "..." \
     --holder-name "Kirsten Ritschel" \
-    --deplete-inputs --no-add-output-locations --no-set-currencies-metadata \
-    --rebuild-inventory \
-    --verbose
+    --farm-name "Oscar's Farm, Bahia" \
+    --state "Bahia" --country "Brazil" --year "2024" \
+    --landing-page "https://agroverse.shop/shipments/agl4" \
+    --ledger-url "..." \
+    --sku-mapping '{"Ceremonial Cacao Kraft Pouch": "ceremonial-cacao-kraft-pouch-200g", "Agroverse 81% Cacao Chocolate Bar 50g": "agroverse-81-cacao-chocolate-bar-50g"}'
+```
+
+**Expected:** HTTP 200 from Edgar. Edgar logs to Telegram Chat Logs. Dispatch fires webhook. GAS handler processes.
+
+**Post-run verification checklist:**
+- [ ] Telegram Chat Logs shows `[POST-REPACKAGING CLEANUP EVENT]` entry
+- [ ] `offchain asset location`: "8 Ounce Package Kraft Pouch CP340992735BR" under Kirsten → 0
+- [ ] `offchain asset location`: 2 new rows for ceremonial (x3) + bars (x15) under Kirsten
+- [ ] `Currencies`: `isSerializable` = TRUE on both CC and CB rows
+- [ ] `Currencies`: farm info E-J populated on both rows
+- [ ] `Currencies`: SKU Product ID M populated on both rows
+- [ ] `store-inventory.json` updated (because `enqueue_inventory=True`)
+
+### UAT-4: Idempotency
+Re-run the same command. **Expected:**
+- [ ] Edgar accepts the duplicate event (HTTP 200)
+- [ ] Telegram Chat Logs shows a second entry
+- [ ] GAS handler detects all outputs already in `offchain asset location` → skips addition
+- [ ] GAS handler detects `isSerializable` already TRUE → skips
+- [ ] GAS handler detects farm info already populated → skips
+- [ ] No duplicate rows created, no data corruption
+
+### UAT-5: Rebuild inventory flag
+```bash
+python3 -m truesight_dao_client.modules.post_repackaging_cleanup \
+    --composition-url "..." \
+    --holder-name "Kirsten Ritschel" \
+    --attr "Rebuild Inventory=true" \
+    --attr "Deplete Inputs=false" \
+    --attr "Add Output Locations=false" \
+    --attr "Set Currencies Metadata=false"
 ```
 
 **Post-run verification:**
-- [ ] `store-inventory.json` updated on GitHub
-- [ ] agroverse.shop shows correct stock for the new SKUs
+- [ ] `store-inventory.json` rebuilt on GitHub
+- [ ] agroverse.shop reflects current stock
 
-### UAT-5: Error handling
+### UAT-6: Error handling
 ```bash
-# Invalid URL
-python -m ... --composition-url "https://example.com/nonexistent.json"
-# Expected: clear error "Failed to fetch composition: HTTP 404"
+# Invalid composition URL
+python3 -m ... --composition-url "https://example.com/nonexistent.json" --dry-run
+# Expected: dry-run still succeeds (CLI doesn't fetch), but payload shows the bad URL
 
-# Composition without matching Currencies rows (GAS hasn't run yet)
-# Expected: warns "Currency row not found, skipping metadata for: ..."
-
-# Duplicate run (idempotency)
-# Run the same command twice → second run reports all skips
+# Real run: Edgar submits successfully, GAS handler fetches URL → returns 404
+# Expected: GAS handler logs error, aborts gracefully, no sheet corruption
 ```
 
 ---
 
-## §10 — Unit Test Specifications (for PR3)
+## §13 — Unit Test Specifications (for PR4)
 
 ```python
 # tests/test_post_repackaging_cleanup.py
 
 import pytest
-from types import SimpleNamespace
+from fastapi.testclient import TestClient
+from truesight_dao_client.server.main import create_app
+from truesight_dao_client.server import dispatch
+from truesight_dao_client.server.jobs import inventory_snapshot
 
-# ---------- fixtures ----------
+# ---------- CLI tests ----------
 
-@pytest.fixture
-def sample_composition():
-    return {
-        "request_id": "b08d324b-...",
-        "inputs": [
-            {"line_kind": "from_holder_inventory", "currency": "8 Ounce Nibs CP340992735BR", "quantity": 7, "unit_cost_usd": 8.51},
-            {"line_kind": "from_holder_inventory", "currency": "Ceremonial Cacao Kraft Pouch - Alibaba:...", "quantity": 3, "unit_cost_usd": 0.74},
-            {"line_kind": "from_holder_inventory", "currency": "Sticker Mule 4x2in label...", "quantity": 15, "unit_cost_usd": 0.55},
-            {"line_kind": "from_holder_inventory", "currency": "RLAVBL 7x5x4 box...", "quantity": 15, "unit_cost_usd": 0.55},
-        ],
-        "outputs": [
-            {"suggested_currency": "Ceremonial Cacao Kraft Pouch - ... | Kirsten 20260620 | SF - AGL4", "units": 3, "unit_cost_usd": 11.61, "line_total_usd": 34.84, "unit_kind": "pouch", "weight_per_unit_grams": 200},
-            {"suggested_currency": "Agroverse 81% Cacao Chocolate Bar 50g | ... | Kirsten 20260620 | SF - AGL4", "units": 15, "unit_cost_usd": 2.90, "line_total_usd": 43.55, "unit_kind": "each", "weight_per_unit_grams": 50},
-        ],
-        "totals": {"inputs_subtotal_usd": 78.39, "grand_total_usd": 78.39, "total_output_weight_grams": 1350, "cost_per_gram_usd": 0.058}
-    }
-
-@pytest.fixture
-def sample_offchain_data():
-    """Mock offchain asset location sheet data (header at row 1)."""
-    return [
-        ["Currency", "Location", "Amount", "Unit Cost", "Total Value"],  # header
-        ["8 Ounce Nibs CP340992735BR", "Kirsten Ritschel", "7", "8.51", "59.57"],
-        ["Ceremonial Cacao Kraft Pouch - Alibaba:...", "Kirsten Ritschel", "10", "0.74", "7.40"],
-        ["Sticker Mule 4x2in label...", "Kirsten Ritschel", "100", "0.55", "55.00"],
-        ["8 Ounce Nibs CP340992735BR", "Gary Teh", "5", "8.51", "42.55"],  # different holder
-    ]
-
-@pytest.fixture
-def sample_currencies_data():
-    """Mock Currencies tab data (header at row 1)."""
-    return [
-        ["Currencies", "Price", "Serializable", "Image", "Landing", "Ledger", "Farm", "State", "Country", "Year", "Wt(g)", "Wt(oz)", "SKU", "Raw", "Composition"],
-        ["Ceremonial Cacao Kraft Pouch - ... | Kirsten 20260620 | SF - AGL4", "11.61", "", "", "", "", "", "", "", "", "", "", "", "...", "..."],
-        ["Agroverse 81% Cacao Chocolate Bar 50g | ... | Kirsten 20260620 | SF - AGL4", "2.90", "", "", "", "", "", "", "", "", "", "", "", "...", "..."],
-    ]
+def test_cli_help(capsys):
+    """--help prints all canonical labels."""
+    from truesight_dao_client.modules.post_repackaging_cleanup import main as cli_main
+    try:
+        cli_main(["--help"])
+    except SystemExit:
+        pass
+    captured = capsys.readouterr()
+    assert "Composition URL" in captured.out
+    assert "Holder Name" in captured.out
+    assert "SKU Mapping" in captured.out
+    assert "Deplete Inputs" in captured.out
+    assert "--dry-run" in captured.out
 
 
-# ---------- unit tests ----------
+def test_cli_required_fields_missing(monkeypatch):
+    """Missing --composition-url or --holder-name → SystemExit."""
+    from truesight_dao_client.modules.post_repackaging_cleanup import main as cli_main
+    # Mock EdgarClient.from_env to avoid .env lookup during dry-run
+    with pytest.raises(SystemExit):
+        cli_main(["--dry-run"])
 
-def test_filter_holder_inventory_inputs(sample_composition):
-    """Only inputs with line_kind 'from_holder_inventory' are depleted."""
-    from truesight_dao_client.modules.post_repackaging_cleanup import _holder_inventory_inputs
-    result = _holder_inventory_inputs(sample_composition["inputs"])
-    assert len(result) == 4
-    # (all sample inputs are holder inventory; custom lines would be skipped)
 
-def test_deplete_input_partial(monkeypatch, sample_composition, sample_offchain_data):
-    """Deplete: amount 7 → 0 (was exactly 7)."""
-    # ... mock gspread, verify update_cell called with "0"
-    pass
+def test_cli_dry_run_output(monkeypatch, capsys):
+    """--dry-run prints signed share text, does NOT POST to Edgar."""
+    from truesight_dao_client.modules.post_repackaging_cleanup import main as cli_main
+    from ..edgar_client import EdgarClient
+    monkeypatch.setattr(EdgarClient, "from_env", lambda: EdgarClient(
+        email="test@test.com",
+        public_key="fake",
+        private_key="fake",
+        edgar_url="https://edgar.example.com",
+    ))
+    cli_main([
+        "--composition-url", "https://example.com/comp.json",
+        "--holder-name", "Test Holder",
+        "--dry-run",
+    ])
+    captured = capsys.readouterr()
+    assert "[POST-REPACKAGING CLEANUP EVENT]" in captured.out
+    assert "BEGIN DAO SIGNED CONTRIBUTION" in captured.out
 
-def test_deplete_input_not_found(monkeypatch, sample_composition):
-    """Deplete: currency not in sheet → warn."""
-    pass
 
-def test_deplete_input_wrong_holder(monkeypatch, sample_composition, sample_offchain_data):
-    """Deplete: currency exists but under different holder → skip."""
-    pass
+def test_cli_defaults_applied(monkeypatch, capsys):
+    """Defaults for boolean flags appear in payload."""
+    from truesight_dao_client.modules.post_repackaging_cleanup import main as cli_main
+    from ..edgar_client import EdgarClient
+    monkeypatch.setattr(EdgarClient, "from_env", lambda: EdgarClient(
+        email="test@test.com", public_key="fake", private_key="fake",
+        edgar_url="https://edgar.example.com",
+    ))
+    cli_main([
+        "--composition-url", "https://example.com/comp.json",
+        "--holder-name", "Test Holder",
+        "--dry-run",
+    ])
+    captured = capsys.readouterr()
+    assert "- Deplete Inputs: true" in captured.out
+    assert "- Add Output Locations: true" in captured.out
+    assert "- Rebuild Inventory: false" in captured.out
 
-def test_add_output_location_new(monkeypatch, sample_composition):
-    """Add: output not yet in offchain → append row."""
-    pass
 
-def test_add_output_location_idempotent(monkeypatch, sample_composition, sample_offchain_data):
-    """Add: output already in offchain → skip."""
-    pass
+def test_cli_all_flags_can_be_overridden(monkeypatch, capsys):
+    """--attr overrides for boolean flags."""
+    from truesight_dao_client.modules.post_repackaging_cleanup import main as cli_main
+    from ..edgar_client import EdgarClient
+    monkeypatch.setattr(EdgarClient, "from_env", lambda: EdgarClient(
+        email="test@test.com", public_key="fake", private_key="fake",
+        edgar_url="https://edgar.example.com",
+    ))
+    cli_main([
+        "--composition-url", "https://example.com/comp.json",
+        "--holder-name", "Test Holder",
+        "--attr", "Deplete Inputs=false",
+        "--attr", "Add Output Locations=false",
+        "--attr", "Set Currencies Metadata=false",
+        "--attr", "Rebuild Inventory=true",
+        "--dry-run",
+    ])
+    captured = capsys.readouterr()
+    assert "- Deplete Inputs: false" in captured.out
+    assert "- Rebuild Inventory: true" in captured.out
 
-def test_set_currencies_metadata(monkeypatch, sample_composition, sample_currencies_data):
-    """Set: Currencies row found → batch-update C,E-J,M."""
-    pass
 
-def test_set_currencies_metadata_not_found(monkeypatch, sample_composition):
-    """Set: Currencies row not found → warn."""
-    pass
+def test_cli_sku_mapping_in_payload(monkeypatch, capsys):
+    """SKU Mapping JSON string appears correctly in signed payload."""
+    from truesight_dao_client.modules.post_repackaging_cleanup import main as cli_main
+    from ..edgar_client import EdgarClient
+    monkeypatch.setattr(EdgarClient, "from_env", lambda: EdgarClient(
+        email="test@test.com", public_key="fake", private_key="fake",
+        edgar_url="https://edgar.example.com",
+    ))
+    cli_main([
+        "--composition-url", "https://example.com/comp.json",
+        "--holder-name", "Test Holder",
+        "--sku-mapping", '{"CC": "sku-cc", "CB": "sku-cb"}',
+        "--dry-run",
+    ])
+    captured = capsys.readouterr()
+    assert '- SKU Mapping: {"CC": "sku-cc", "CB": "sku-cb"}' in captured.out
 
-def test_sku_mapping_substring_match():
-    """Substring 'Ceremonial Cacao' matches 'Ceremonial Cacao Kraft Pouch - ...'."""
-    from truesight_dao_client.modules.post_repackaging_cleanup import _resolve_sku
-    mapping = {"Ceremonial Cacao Kraft Pouch": "sku-cc"}
-    result = _resolve_sku("Ceremonial Cacao Kraft Pouch - Alibaba:... | 200g", mapping)
-    assert result == "sku-cc"
+# ---------- Dispatch tests ----------
 
-def test_sku_mapping_first_match_wins():
-    """First matching key wins."""
-    from truesight_dao_client.modules.post_repackaging_cleanup import _resolve_sku
-    mapping = {"Ceremonial": "sku-first", "Ceremonial Cacao": "sku-second"}
-    result = _resolve_sku("Ceremonial Cacao Kraft Pouch", mapping)
-    assert result == "sku-first"  # Order depends on dict insertion order (Python 3.7+)
+def test_dispatch_route_matches(monkeypatch):
+    """Text containing [POST-REPACKAGING CLEANUP EVENT] is matched by dispatch."""
+    triggered = []
+    monkeypatch.setattr(dispatch.webhook_trigger, "trigger", lambda url, action: triggered.append((url, action)))
+    monkeypatch.setattr(dispatch, "_webhook_url", lambda key: f"https://example.com/{key}")
+    monkeypatch.setattr(dispatch.inventory_snapshot, "publish", lambda: triggered.append("snapshot"))
 
-def test_sku_mapping_no_match():
-    """No key matches → return None."""
-    from truesight_dao_client.modules.post_repackaging_cleanup import _resolve_sku
-    mapping = {"Chocolate Bar": "sku-cb"}
-    result = _resolve_sku("Ceremonial Cacao Kraft Pouch", mapping)
-    assert result is None
+    dispatch.dispatch_event("[POST-REPACKAGING CLEANUP EVENT]\n- Holder Name: Test\n")
+    assert len(triggered) == 2  # webhook + snapshot
+    assert triggered[1] == "snapshot"
 
-def test_dry_run_no_writes(monkeypatch, sample_composition, capsys):
-    """--dry-run prints but does not call gspread write methods."""
-    pass
 
-def test_empty_composition(capsys):
-    """Composition with no inputs/outputs → graceful."""
+def test_dispatch_route_no_match():
+    """Unrelated event text does not trigger the route."""
+    import os
+    # Ensure no env var is set for the cleanup route
+    old = os.environ.pop("DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP", None)
+    try:
+        # dispatch_event should silently skip (no matching tag for this text)
+        dispatch.dispatch_event("[SOME OTHER EVENT]\n...")
+        # Should not raise
+    finally:
+        if old:
+            os.environ["DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP"] = old
+
+
+def test_dispatch_route_no_webhook_url_logs_warning(monkeypatch, caplog):
+    """When env var is unset, dispatch logs warning and skips webhook."""
+    monkeypatch.setattr(dispatch, "_webhook_url", lambda key: "")
+    monkeypatch.setattr(dispatch.inventory_snapshot, "publish", lambda: None)
+
+    dispatch.dispatch_event("[POST-REPACKAGING CLEANUP EVENT]\n...")
+    assert "no webhook URL" in caplog.text or "POST_REPACKAGING_CLEANUP" in caplog.text
+
+# ---------- Integration test ----------
+
+def test_end_to_end_signed_submission(monkeypatch):
+    """Full flow: CLI signs, Edgar verifies, dispatch triggers webhook + snapshot."""
+    from fastapi.testclient import TestClient
+    from truesight_dao_client.server.main import create_app
+    # ... set up TestClient, mock GAS webhook response, verify dispatch
     pass
 ```
 
 ---
 
-## §11 — Integration Test Specifications (for PR4)
+## §14 — Acceptance Criteria
 
-```python
-# tests/test_post_repackaging_cleanup_integration.py
-
-import json
-import subprocess
-import sys
-
-def test_dry_run_against_b08d324b():
-    """Dry-run the module against the real b08d324b composition."""
-    result = subprocess.run(
-        [sys.executable, "-m", "truesight_dao_client.modules.post_repackaging_cleanup",
-         "--composition-url", "https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/currency-compositions/b08d324b-e2f4-4645-9d25-ee43f9e7d9e0.json",
-         "--holder-name", "Kirsten Ritschel",
-         "--dry-run", "--verbose"],
-        capture_output=True, text=True, cwd="/Users/garyjob/Applications/dao_client"
-    )
-    assert result.returncode == 0
-    output = result.stdout + result.stderr
-    assert "DRY RUN" in output
-    assert "b08d324b" in output
-    # 4 inputs total, but only 1 is holder inventory (nibs) — 3 are packaging
-    assert "deplete" in output.lower()
-    # 2 outputs
-    assert "Ceremonial Cacao" in output
-    assert "81% Cacao Chocolate Bar" in output
-    assert "Done" in output
-
-
-def test_help():
-    """--help prints and exits 0."""
-    result = subprocess.run(
-        [sys.executable, "-m", "truesight_dao_client.modules.post_repackaging_cleanup", "--help"],
-        capture_output=True, text=True, cwd="/Users/garyjob/Applications/dao_client"
-    )
-    assert result.returncode == 0
-    assert "--composition-url" in result.stdout
-    assert "--dry-run" in result.stdout
-
-
-def test_invalid_url():
-    """Invalid URL → nonzero exit, clear error."""
-    result = subprocess.run(
-        [sys.executable, "-m", "truesight_dao_client.modules.post_repackaging_cleanup",
-         "--composition-url", "https://httpbin.org/status/404",
-         "--dry-run"],
-        capture_output=True, text=True, cwd="/Users/garyjob/Applications/dao_client"
-    )
-    assert result.returncode != 0
-```
-
----
-
-## §12 — Acceptance Criteria
-
-- [ ] `truesight-dao-post-repackaging-cleanup --help` prints clean help
+- [ ] `truesight-dao-post-repackaging-cleanup --help` prints all 14 canonical labels
+- [ ] CLI module uses `build_event_cli` (NOT custom argparse, NOT gspread)
+- [ ] `--dry-run` prints signed share text without hitting Edgar
+- [ ] Dispatch route matches `[POST-REPACKAGING CLEANUP EVENT]`
+- [ ] Dispatch enqueues inventory snapshot (`enqueue_inventory=True`)
+- [ ] GAS handler processes Telegram Chat Log entry and writes to sheets
+- [ ] GAS handler is idempotent (safe to re-run)
+- [ ] GAS handler handles errors gracefully (bad URL, missing rows)
 - [ ] All unit tests pass (`pytest tests/test_post_repackaging_cleanup.py -v`)
-- [ ] All integration tests pass (`pytest tests/test_post_repackaging_cleanup_integration.py -v`)
-- [ ] Dry-run against b08d324b prints expected depletion + addition + metadata plan
-- [ ] Real run successfully writes to `offchain asset location` and `Currencies`
-- [ ] Real run is idempotent — second run reports all skips
-- [ ] No errors or unexpected warnings in verbose output
-- [ ] `--rebuild-inventory` triggers `sync_agroverse_store_inventory.py` successfully
-- [ ] Module follows existing code conventions (argparse, gspread helpers, no new dependencies beyond gspread/google-auth)
-- [ ] Console script registered in `pyproject.toml`
+- [ ] Real run against b08d324b produces correct sheet changes
+- [ ] Real run is idempotent — second run produces no duplicate writes
+- [ ] `--rebuild-inventory` flag triggers snapshot rebuild
+- [ ] Module follows existing code conventions (build_event_cli, canonical labels, validators)
+
+---
+
+## §15 — Sophia Feedback (2026-06-28)
+
+Sophia opened PR https://github.com/TrueSightDAO/dao_protocol/pull/133 with two issues:
+
+1. **Wrong repo.** The plan specifies `TrueSightDAO/dao_client`, not `dao_protocol`. All CLI modules live in `dao_client/truesight_dao_client/modules/`. The dispatch route lives in `dao_client/truesight_dao_client/server/dispatch.py`.
+
+2. **Wrong architecture.** The PR uses direct gspread writes (following the `onboard_partner.py` pattern). This plan has been updated to v2 to specify the canonical Edgar event → dispatch → GAS pattern instead. The CLI module must be a thin `build_event_cli` wrapper that signs and POSTs to Edgar. All sheet writes must happen in a new GAS handler, triggered by Edgar's dispatch.
+
+**Action for Sophia:** Close PR #133. Start fresh with this v2 plan. RESUME HERE = PR1 (the CLI wrapper in dao_client, ~25 lines using `build_event_cli`).
