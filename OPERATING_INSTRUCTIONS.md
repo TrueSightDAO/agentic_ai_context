@@ -88,7 +88,7 @@ You may add or update context only in the following ways.
 
 A compliant roadmap includes:
 
-- A **pre-flight checklist** — access, credentials, prerequisites, and decisions to confirm *before* coding.
+- A **pre-flight checklist** — access, credentials, prerequisites, and decisions to confirm *before* coding. **It MUST satisfy the Pre-flight Completeness gate (§5d):** every cross-repo / cross-file read an execution unit needs is *captured in the pre-flight itself* (snapshot, quote, or path+line range), so no PR turn re-discovers it live.
 - A **sequenced plan** — the ordered units of work (e.g. `PR0…PRn`), each independently shippable **and each sized to exactly ONE PR per execution turn** (see §5a below — this is mandatory, not stylistic).
 - A **resume tracker** — a status row per unit (e.g. `merged ☐` / `contribution reported ☐`) plus a prominent **"RESUME HERE"** pointer to the first unfinished step.
 - A **UAT phase** (User Acceptance Testing — see `GLOSSARY.md`) — the **human-tested** steps to validate the end-to-end experience before go-live, on the **beta staging** stack (never prod, never real money). Each UAT step states: the **digital surface / URL** to open, **what to expect** there, the **user interaction** to perform (click/scan/pay with a test card, etc.) and **what to eyeball**, and the **acceptance criterion** (pass/fail). This is for anything with a human-facing surface (a page, a checkout, a scan flow); a pure backend/library change can say "UAT: n/a (covered by automated tests)".
@@ -192,6 +192,33 @@ Example — note PR1/PR2 need no markers to auto-advance; only the deploy is gat
   pointer is how Sophia finds the next unit. Keep it current.
 - The always-stop list is a **standing safety rule** — a forgetful plan author cannot
   arm a prod deploy or a TDG issuance for unattended auto-run.
+
+---
+
+## 5d. Pre-flight Completeness gate — no execution unit reads what the plan didn't pre-flight (MANDATORY)
+
+§5a caps each turn at one PR; this gate makes that PR *cheap enough to finish in one turn*. The
+2026-06-28 round-cap blowout (see `ROUND_CAP_RESILIENCE_PLAN.md`) happened because a PR unit had to
+curl a live `Code.gs` from another repo mid-turn to learn its current state — a cross-repo audit
+that belonged in the pre-flight. Merge + re-discovery in one turn exhausted the 30-round budget and
+came back as the empty-response banner.
+
+**Rule:** in the sequenced plan, each `PRn` implicitly or explicitly lists the files / API shapes /
+ledger columns / current handler state it must read. **Every such read that crosses a repo, or that
+isn't a trivial open-the-file-you're-editing, MUST already be captured in the pre-flight** — as a
+quoted snapshot, a path + line range, or a short transcription of the current behavior. A PR turn
+should be able to execute from the plan alone, without fetching another repo to *understand* (as
+opposed to *edit*) it.
+
+**Self-cert (put this line in the plan, near the resume tracker):**
+
+> ✅ Pre-flight Completeness: no execution unit requires reading a file/state not already captured
+> in the pre-flight.
+
+A plan that can't truthfully assert this isn't ready to hand off — finish the pre-flight first. This
+is reviewer- and LLM-checkable: before starting `PRn`, if you find yourself about to read a
+cross-repo file to *learn* how it works, stop — that read should have been pre-flighted; add it to
+the plan (a plan-of-record turn) rather than burning execution rounds on discovery.
 
 ---
 
