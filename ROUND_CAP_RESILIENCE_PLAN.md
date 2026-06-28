@@ -1,6 +1,6 @@
 # Round-Cap Resilience — prevent silent per-turn blowups in future plans
 
-**Status:** in progress · **Owner:** Claude (Opus 4.8) · **Created:** 2026-06-28
+**Status:** shipped + deployed 2026-06-28 · **Owner:** Claude (Opus 4.8) · **Created:** 2026-06-28
 **Repos touched:** `agentic_ai_context` (docs), `truesight_autopilot` (code)
 
 ---
@@ -105,14 +105,14 @@ own test. No PR turn reads a file not snapshotted in §3.
 
 | Unit | PR opened | Merged | Deployed (restart) | Contribution reported |
 |------|-----------|--------|--------------------|-----------------------|
-| PR1 — roadmap + §5d authoring gate (#1) | ✅ [agentic_ai_context#630](https://github.com/TrueSightDAO/agentic_ai_context/pull/630) | ✅ | n/a (docs) | ☐ |
-| PR2 + PR3 — convergence backstop: soft-budget (#2) + one-PR-boundary (#3) | ✅ [truesight_autopilot#275](https://github.com/TrueSightDAO/truesight_autopilot/pull/275) | ☐ (governor) | ☐ `systemctl restart truesight-autopilot` | ☐ |
+| PR1 — roadmap + §5d authoring gate (#1) | ✅ [agentic_ai_context#630](https://github.com/TrueSightDAO/agentic_ai_context/pull/630) | ✅ | n/a (docs) | ✅ |
+| PR2 + PR3 — convergence backstop: soft-budget (#2) + one-PR-boundary (#3) | ✅ [truesight_autopilot#275](https://github.com/TrueSightDAO/truesight_autopilot/pull/275) | ✅ | ✅ 2026-06-28 (HEAD `9bb8a43`, restart clean — Uvicorn :8001 startup complete, no ImportError) | ✅ |
 
 > PR2 and PR3 were folded into one autopilot PR (#275) — they share the
 > `turn_convergence` helper and the single injection site, so one cohesive review
 > beats a stacked split. 17 unit tests; existing suite unaffected.
 
-**RESUME HERE → governor merges [truesight_autopilot#275](https://github.com/TrueSightDAO/truesight_autopilot/pull/275), restart the service, then run UAT U1 + U2 (§6).** (Own-repo gate: opens PR only, never self-merges; restart is a gated prod deploy.)
+**RESUME HERE → DONE (all units shipped + deployed 2026-06-28).** Optional: run UAT U1 + U2 (§6) to eyeball the backstop on a scratch thread. The backstop runs at default `CHAT_TOOL_ROUNDS_SOFT_FRACTION=0.75` (not set on the box → code default); set it on the box only to tune.
 
 > ✅ Pre-flight Completeness (§5d): no execution unit requires reading a file/state not already
 > captured in §3.
