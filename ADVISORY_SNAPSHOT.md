@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-28T14:22:58Z`
+- Generated (UTC): `2026-06-28T19:54:06Z`
 - Look-back: **7** calendar days (`2026-06-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,25 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 17
+- `[CONTRIBUTION EVENT]` × 16
 - `[SALES EVENT]` × 8
 - `[PRACTICE EVENT]` × 5
-- `[PROPOSAL VOTE]` × 2
+- `[PROPOSAL VOTE]` × 4
+- `[CONTRIBUTOR ADD EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 2
-- `[CONTRIBUTION REVIEW EVENT]` × 1
-- `[PROPOSAL CREATION]` × 1
-- `[CONTRIBUTOR ADD EVENT]` × 1
 - `[PROGRAM REGISTRATION REQUEST]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260626053913_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Chocolate experience to figure out how to extend it to China
-- `Edgar_20260626054225_043` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_1 · Sales price: $25 · Sold by: Kirsten Ritschel
-- `Edgar_20260626054402_045` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250711_NIBS_8 · Sales price: $25 · Sold by: Kirsten Ritschel
-- `Edgar_20260626150812_047` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
-- `Edgar_20260626150816_049` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
-- `Edgar_20260626155854_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: append_to_transcript.py line 248 AttributeE…
 - `Edgar_20260626163612_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh, Sophia Truesight
 - `Edgar_20260626180212_055` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-26T18:02:10.539Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260627105458_057` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_3 · Sales price: 35.80 · Sold by: Kirsten Ritschel
@@ -65,6 +57,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260628032131_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: meza.djylycc@gmail.com
 - `Edgar_20260628032137_077` · **Edgar** · [PROGRAM REGISTRATION REQUEST] Program Slug: (pending governor assignment) · Display Name: XysraBvHfNTSvAraec · Description: Submitted by CoQbCzVDIYNDBRRKDj · meza.djylycc@gmail.com.
 - `Edgar_20260628122354_079` · **Edgar** · [EMAIL REGISTERED EVENT] Email: paloma@founderhaus.cluh
+- `Edgar_20260628163202_081` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-28T16:32:00.880Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260628172158_083` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
+- `Edgar_20260628192700_085` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
+- `Edgar_20260628194346_087` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Martin Kirkwood · Contributor Email: martin@mkirkwood.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20260628194501_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: During the coffee session organized by @⁨Ken Nim - Bay Area⁩ this morning, M…
+- `Edgar_20260628195356_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Dim sum club sharing about Agroverse Cacao
 
 ---
 
@@ -311,6 +309,7 @@ _All dated lines on/after 2026-06-21_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+11fc1d0 | 2026-06-28 14:25:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3cf5799 | 2026-06-28 09:44:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 41b618e | 2026-06-28 05:05:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e7bbf6a | 2026-06-27 19:54:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -355,6 +354,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+67b0a57 | 2026-06-28 07:23:21 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
+b4e439d | 2026-06-28 07:23:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 246dfeb | 2026-06-28 02:41:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
 f3f8846 | 2026-06-28 02:41:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 834e4d5 | 2026-06-27 22:00:21 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
@@ -393,14 +394,13 @@ e8e15df | 2026-06-26 02:58:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 062a487 | 2026-06-26 03:57:45 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
 df9a113 | 2026-06-25 13:31:24 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
 0436e28 | 2026-06-25 13:31:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
-aa57179 | 2026-06-25 08:23:49 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
-dffab2b | 2026-06-25 08:23:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+2350874 | 2026-06-28 12:43:13 -0700 | fix: dedup proposal votes by contributor identity, not just by key (#376)
 f3fdfa4 | 2026-06-23 10:15:21 -0700 | feat: add processCurrencyDefinitionsFromTelegramChatLogs GAS handler (1N6o00) (#376)
 ce68b47 | 2026-06-22 18:22:49 -0700 | fix(qr-gen): repoint batch-zip upload off archived qr_codes -> lineage-assets (#375)
 029dc6c | 2026-06-22 18:10:03 -0700 | Review approve: write reviewer-selected contributor back to Col A (#374)
@@ -544,7 +544,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1602.65 | 16579.76386 | 6/28/2026 6:13:14 |
+| 2026-06 | 1602.65 | 16579.76386 | 6/28/2026 12:50:22 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-21`; scanned last **590** data rows)
 
