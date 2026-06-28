@@ -48,18 +48,20 @@ Both console scripts are already registered.
 
 ## Execution Roadmap — resume tracker (§5c Advance markers)
 
-**RESUME HERE = PR1.** One PR per turn (§5a). `dao_client` repo gate — **open PRs only, never
-self-merge.** PR1 and PR2 touch independent files, so PR2 may be authored without PR1's merge.
+One PR per turn (§5a). `dao_client` repo gate — **open PRs only, never self-merge.** PR1 and PR2
+touch independent files, so PR2 may be authored without PR1's merge.
+
+> **RESUME HERE:** PR1 — create_proposal.py CLI flags
 
 | Unit | Advance | PR opened | Merged (human) | State |
 |------|---------|-----------|----------------|-------|
-| **PR1 — `modules/create_proposal.py`** ← **RESUME HERE** | `auto` | ☐ | ☐ | Add canonical labels + `--type`/`--title`/`--content`/`--body-file`/`--performance-metrics` (~40 lines) |
-| PR2 — `modules/review_proposal.py` | `auto` | ☐ | ☐ | Add canonical labels + `--proposal-id`/`--vote`/`--comment` (~25 lines) |
-| Deploy + UAT | `gate: both PRs merged, then pip install -e . + dry-run on Sophia's box` | ☐ | ☐ | `truesight-dao-create-proposal --dry-run` verifies payload; `pip install -e .` updates the installed CLI |
+| PR1 — create_proposal.py CLI flags | auto | ☐ | ☐ | Add canonical labels + `--type`/`--title`/`--content`/`--body-file`/`--performance-metrics` (~40 lines) |
+| PR2 — review_proposal.py CLI flags | auto | ☐ | ☐ | Add canonical labels + `--proposal-id`/`--vote`/`--comment` (~25 lines) |
+| PR3 — deploy + UAT | gate: both PRs merged, then pip install -e . + dry-run on Sophia's box | ☐ | ☐ | `truesight-dao-create-proposal --dry-run` verifies payload; `pip install -e .` updates the installed CLI |
 
-> **Note (2026-06-23):** this plan previously had **no `Advance` column / no `RESUME HERE`**, so
-> per OPERATING_INSTRUCTIONS §5c Sophia **failed closed** (one PR, then waited) regardless of the
-> `AUTO_ADVANCE` flag — that's why it wasn't auto-advancing. Markers added above.
+_Note (2026-06-23): this plan previously had no `Advance` column / resume pointer, so per
+OPERATING_INSTRUCTIONS §5c Sophia failed closed (one PR, then waited) regardless of the
+`AUTO_ADVANCE` flag — that's why it wasn't auto-advancing. Markers added above._
 
 ## Checklist
 
