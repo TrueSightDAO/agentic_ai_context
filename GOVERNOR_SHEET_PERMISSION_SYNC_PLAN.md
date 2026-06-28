@@ -1,7 +1,9 @@
 # Governor Sheet-Permission Sync — Implementation Plan
 
-**Status:** Draft · **Created:** 2026-06-28  
-**Goal:** Automatically sync the Main Ledger spreadsheet's editor list to the current governor roster, without touching SA (service account) permissions.
+**Status:** Deployed · **Last updated:** 2026-06-28  
+**GAS project:** `1m8IZPs1vFN99cuu-39kbC-OGXggRVtJtXq5rfSB0M1sCQjMdolEUDuGU`  
+**Script:** `GovernorSheetPermissionSync.js`  
+**Goal:** Automatically sync the Main Ledger spreadsheet's editor list to the current governor roster, without touching GCP SAs, external collaborators, or the owner.
 
 ---
 
@@ -15,83 +17,56 @@ Today, adding a new governor to the Main Ledger Sheet requires manually sharing 
 
 | Source | Sheet | Column | Purpose |
 |--------|-------|--------|---------|
-| Main Ledger | `1GE7PUq-...` | — | Target spreadsheet to manage permissions on |
-| "Governors" tab | gid=842148543 | Column A, rows 11+ | Current governor names (leaderboard-derived) |
-| "Contributors contact information" | gid=1460794618 | Col A = Name, Col D = Email | Map governor names → email addresses |
-| Script properties | — | `GOVERNOR_SYNC_SA_EMAILS` (comma-sep) | SA/agent emails to NEVER remove |
+| Main Ledger | `1GE7PUq-...` | — | Target spreadsheet |
+| "Governors" tab | gid=842148543 | Col A, rows 11+ | Current governor names (leaderboard-derived) |
+| "Contributors contact information" | gid=1460794618 | Col A=Name, Col D=Email, Col W=Is Sentinel | Map names → emails + sentinel flag |
 
 ---
 
-## 3. Safety Philosophy
+## 3. Final Rule (v5)
 
-The script **only removes editors it previously added itself**, tracked via the "Governor Sync Log" tab. This avoids the need to catalog every SA, GitHub Actions bot, or GCP service account.
+```
+Eligible editor = in "Contributors contact information", has email,
+                  AND is EITHER a governor OR a sentinel.
 
-- **ADD:** governor email not currently an editor → `addEditor()`
-- **REMOVE:** only editors previously added BY THIS SCRIPT (tracked in Governor Sync Log `ADD` rows) who are no longer governors → `removeEditor()`
-- **NEVER remove:** the spreadsheet owner, any `*.iam.gserviceaccount.com` / `*.gserviceaccount.com` address, `admin+*` agent aliases, or any editor we didn't add ourselves — even if they're not governors.
+ADD:    eligible contributors not currently editors
+REMOVE: only editors whose email IS in the Contact sheet but are
+        NEITHER governor NOR sentinel (ex-governors who left the roster)
+KEEP:   everyone NOT in the Contact sheet (GCP SAs, external
+        collaborators, IAM service accounts) — completely untouched
+NEVER:  the spreadsheet owner; sentinels
+```
 
-Patterns auto-detected as protected (never removed):
-| Pattern | Example |
-|---------|---------|
-| `@*.iam.gserviceaccount.com` | `butterfly-effect-club@get-data-io.iam.gserviceaccount.com` |
-| `@*.gserviceaccount.com` | older GCP service accounts |
-| `admin+*` | `admin+sophia@truesight.me` |
-| `admin@truesight.me` | master autopilot |
-| Spreadsheet owner | detected at runtime via `Spreadsheet.getOwner()` |
+**Key insight:** The Contact sheet is the boundary. Only people IN the Contact sheet are subject to removal. Everything outside it — GCP IAM service accounts (`@*.iam.gserviceaccount.com`), GitHub Actions bots, external collaborators, manually-shared humans — is never touched.
 
 ---
 
-## 4. Algorithm
+## 4. Simulation Result (2026-06-28)
 
-```
-FOR the Main Ledger spreadsheet:
-  1. READ "Governors" tab (col A, rows 11+) → governor names
-  2. READ "Contributors contact information" (col A=name, col D=email) → name→email map
-  3. RESOLVE governor name → email from contact sheet
-     → Names without email are logged (warn) and skipped
-  4. GET current editors via Spreadsheet.getEditors()
-  5. READ "Governor Sync Log" tab → find emails previously ADD-ed by this script
-     → Only these are eligible for removal
-  6. DETERMINE
-     a. Editors to ADD = governor_emails NOT in current_editors
-     b. Editors to REMOVE = previously-added-by-us emails NOT in governor_emails,
-        NOT matching SA patterns, NOT owner
-  7. APPLY: addEditor() for each ADD, removeEditor() for each REMOVE
-  8. LOG changes to "Governor Sync Log" tab and Logger
-```
+With the v5 rule applied to the current editor list (18 editors including GCP SAs, external collaborators, governors):
 
-**Key difference from v1:** Step 5 reads the log to build a safelist. Only editors previously added by this script are ever removed. Unknown SAs, bots, and manually shared humans are completely untouched.
+| | Count | Details |
+|---|---|---|
+| **Kept** | 18 | All GCP SAs (`butterfly-effect-club@get-data-io.iam.gserviceaccount.com`, etc.), external collaborators (`ed@hackerdojo.com`, `emelinjung@gmail.com`, etc.), governors with email in Contact sheet |
+| **Removed** | 0 | No ex-governors currently in the Contact sheet as editors |
+| **Added** | 5 | `garyjob@gmail.com` (Gary Teh, governor), `admin+claude@truesight.me`, `admin+deepseek@truesight.me`, `admin+kimi@truesight.me`, `admin+sophia@truesight.me` (sentinel agents) |
 
 ---
 
 ## 5. GAS Implementation Checklist
 
-### PR1: Governor Sheet-Permission Sync Script
-
-- [ ] Create `GovernorSheetPermissionSync.js` in GAS project `1m8IZPs...`
-- [ ] Read "Governors" tab names (col A, rows 11+)
-- [ ] Read "Contributors contact information" (col A=name, col D=email)
-- [ ] Map governor names → emails (skip names without email, log warnings)
-- [ ] Build protected-accounts set from script property `GOVERNOR_SYNC_SA_EMAILS` + runtime owner
-- [ ] Compute add/remove diffs
-- [ ] Apply changes: `addEditor()`, `removeEditor()`
-- [ ] Log to "Governor Sync Log" tab (timestamp, action, email, reason)
-- [ ] Create `installGovernorSyncTrigger()` for daily UTC cron
-- [ ] Create `syncGovernorEditorsNow()` for manual execution
-- [ ] Wire `doGet(?action=sync_governor_editors)` for Edgar-triggered sync
-
-### PR2: Deploy & Test
-
-- [ ] Set `GOVERNOR_SYNC_SA_EMAILS` script property with SA email list
-- [ ] Deploy web app version
-- [ ] Run `syncGovernorEditorsNow()` manually, verify Log tab
-- [ ] Verify editor list in Share dialog matches expectations
-- [ ] Verify SA accounts still have edit access
-
-### PR3: Wire Into Governor Rotation Cadence
-
-- [ ] After each equinox/solstice governor recomputation, trigger sync
-- [ ] Daily safety-net cron: `installGovernorSyncTrigger()`
+- [x] Create `GovernorSheetPermissionSync.js` in GAS project `1m8IZPs...`
+- [x] Read "Governors" tab names (col A, rows 11+)
+- [x] Read "Contributors contact information" (col A=name, col D=email, col W=Is Sentinel)
+- [x] Map governor names → emails; map sentinel names → emails
+- [x] Only remove editors whose email IS in the Contact sheet but not eligible
+- [x] Never remove: owner, sentinels, anyone not in Contact sheet
+- [x] Apply changes: `addEditor()`, `removeEditor()`
+- [x] Log to "Governor Sync Log" tab (timestamp, action, email, reason)
+- [x] `installGovernorSyncTrigger()` for daily UTC 04:00 cron
+- [x] `syncGovernorEditorsNow()` for manual execution
+- [x] Wire `doGet(?action=sync_governor_editors)` for Edgar-triggered sync
+- [x] Deploy to GAS
 
 ---
 
@@ -104,8 +79,8 @@ The "Governor Sync Log" tab (auto-created if not present):
 | A | Timestamp | `2026-06-28T22:30:00Z` |
 | B | Action | `ADD` / `REMOVE` / `SKIP` |
 | C | Email | `kirsten@kikiscocoa.com` |
-| D | Governor Name | `Kirsten Ritschel` |
-| E | Reason | `new governor, not yet editor` / `no longer governor` / `no email in contact sheet` |
+| D | Name | `Kirsten Ritschel` |
+| E | Reason | `governor — added as editor` / `in Contact sheet but neither governor nor sentinel` |
 
 ---
 
@@ -116,7 +91,7 @@ Equinox/Solstice
   ↓
 Governors tab leaderboard recalculates (formula-driven)
   ↓
-Edgar calls doGet(?action=sync_governor_editors)
+Edgar calls doGet(?action=sync_governor_editors&secret=...)
   ↓
 GAS syncs editor list
   ↓
@@ -127,11 +102,8 @@ Plus daily safety-net cron at 04:00 UTC (runs even if Edgar ping fails).
 
 ---
 
-## 8. Edge Cases & Safeguards
+## 8. Related Changes (2026-06-28 Session)
 
-- **Governor name with no email in Contact sheet:** Log warning, skip (don't remove, don't add)
-- **SA email appears in governor list:** Never remove, even if not currently a governor
-- **Spreadsheet owner:** Never remove (detected at runtime)
-- **Concurrent sync:** Script lock prevents overlapping runs
-- **Empty governors tab:** Abort with log entry (no removals)
-- **New governor email already an editor but with different permissions:** No-op for add (don't downgrade viewer→editor until confirmed)
+- **DaoMembersCache.js** — now includes ALL Contact sheet names (406+ contributors, 6 sentinels), not just signature-holders. Enables sentinel section on `truesight.me/members.html`.
+- **REVIEW_QUEUE_SOP.md** — automatable SOP for reviewing scored chatlogs: name resolution (dao_members.json → lineage-credentials), auto-compute TDG from event Amount, auto-approve via Deep Seek RSA key.
+- **Review queue** — ~475 items approved, ~15 rejected, ~10 skipped. Deep Seek signed all `[CONTRIBUTION REVIEW EVENT]` submissions via `POST /dao/submit_contribution_review`.
