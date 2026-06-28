@@ -1,4 +1,4 @@
-# Post-Repackaging Cleanup — Implementation Plan (v2)
+# Repackaging Settlement — Implementation Plan (v2)
 
 **Status:** Updated — awaiting governor review (§14)
 **Handoff target:** Sophia (truesight_autopilot)
@@ -106,7 +106,7 @@ The GAS handler's primary input is the composition JSON URL embedded in the even
 
 ## §4 — Full Surface Checklist
 
-Every new event type must be registered across **all** the surfaces where existing events live. This is the complete checklist extracted from analyzing the `[REPACKAGING BATCH EVENT]` footprint (27 files across 8 layers). The `[POST-REPACKAGING CLEANUP EVENT]` must be added to **every** applicable surface.
+Every new event type must be registered across **all** the surfaces where existing events live. This is the complete checklist extracted from analyzing the `[REPACKAGING BATCH EVENT]` footprint (27 files across 8 layers). The `[REPACKAGING SETTLEMENT EVENT]` must be added to **every** applicable surface.
 
 ### Layer 1: Event Catalog (definition — source of truth)
 
@@ -117,12 +117,12 @@ Every new event type must be registered across **all** the surfaces where existi
 
 **Entry format** (add as last entry in `"Inventory & Supply Chain"` category, after `REPACKAGING BATCH EVENT`):
 ```json
-"POST-REPACKAGING CLEANUP EVENT": {
+"REPACKAGING SETTLEMENT EVENT": {
   "category": "Inventory & Supply Chain",
   "description": "Populate offchain asset location + Currencies metadata after a repackaging batch",
   "canonical_labels": ["Composition URL", "Holder Name", "Farm Name", "State", "Country", "Year", "Landing Page", "Ledger URL", "SKU Mapping", "Deplete Inputs", "Add Output Locations", "Set Currencies Metadata", "Rebuild Inventory", "Submission Source"],
   "required_fields": ["Composition URL", "Holder Name"],
-  "dapp_page": "post_repackaging_cleanup.html"
+  "dapp_page": "repackaging_settlement.html"
 }
 ```
 
@@ -132,7 +132,7 @@ Every new event type must be registered across **all** the surfaces where existi
 |---|-------------|--------|
 | 3 | `dao_client/.../server/dispatch.py` | Add `ROUTING` entry (see §6) |
 | 4 | `dao_protocol/.../server/dispatch.py` | Mirror #3 |
-| 5 | `sentiment_importer/app/controllers/dao_controller.rb` | Add `elsif text.include?('[POST-REPACKAGING CLEANUP EVENT]')` branch |
+| 5 | `sentiment_importer/app/controllers/dao_controller.rb` | Add `elsif text.include?('[REPACKAGING SETTLEMENT EVENT]')` branch |
 | 6 | `sentiment_importer/config/application.rb` | Add `config.post_repackaging_cleanup_processing_webhook_url` |
 | 7 | `sentiment_importer-donation-mint/app/controllers/dao_controller.rb` | Mirror if that fork is active |
 
@@ -147,8 +147,8 @@ Every new event type must be registered across **all** the surfaces where existi
 
 | # | File (repo) | Action |
 |---|-------------|--------|
-| 10 | `dapp/post_repackaging_cleanup.html` | New DApp page — follows `DAPP_PAGE_CONVENTIONS.md` exactly (see §4b) |
-| 11 | `dapp/menu.js` | Add nav entry: `{ title: 'Post-Repackaging Cleanup', url: './post_repackaging_cleanup.html', section: 'Inventory & ledger' }` |
+| 10 | `dapp/repackaging_settlement.html` | New DApp page — follows `DAPP_PAGE_CONVENTIONS.md` exactly (see §4b) |
+| 11 | `dapp/menu.js` | Add nav entry: `{ title: 'Repackaging Settlement', url: './repackaging_settlement.html', section: 'Inventory & ledger' }` |
 
 ### Layer 5: CLI (command-line client)
 
@@ -197,11 +197,11 @@ Every new event type must be registered across **all** the surfaces where existi
 
 ## §4b — DApp Page Specification
 
-**File:** `dapp/post_repackaging_cleanup.html`
+**File:** `dapp/repackaging_settlement.html`
 
 Must follow `DAPP_PAGE_CONVENTIONS.md` exactly (full checklist in that doc, §2 of this plan summarises key rules). Reference page: `dapp/report_dao_expenses.html` (simple form, similar structure).
 
-**Page purpose:** Operator-facing form that builds a `[POST-REPACKAGING CLEANUP EVENT]`, signs it, and POSTs to Edgar. Matches the CLI's canonical labels 1:1.
+**Page purpose:** Operator-facing form that builds a `[REPACKAGING SETTLEMENT EVENT]`, signs it, and POSTs to Edgar. Matches the CLI's canonical labels 1:1.
 
 **Form fields:**
 
@@ -229,7 +229,7 @@ Must follow `DAPP_PAGE_CONVENTIONS.md` exactly (full checklist in that doc, §2 
 
 **Menu entry** in `dapp/menu.js` (insert after Repackaging Planner, line 24):
 ```javascript
-{ title: 'Post-Repackaging Cleanup', url: './post_repackaging_cleanup.html', section: 'Inventory & ledger' },
+{ title: 'Repackaging Settlement', url: './repackaging_settlement.html', section: 'Inventory & ledger' },
 ```
 
 **Version bump:** Increment the `?v=` query on `<script src="./menu.js?v=...">` in every HTML page (and `service-worker.js` `URLS_TO_CACHE`).
@@ -245,7 +245,7 @@ Add a new `.contract-card` in the **"Inventory & Supply Chain"** category sectio
 **Card template:**
 ```html
 <div class="contract-card">
-  <h3>Post-Repackaging Cleanup <span class="event-name">[POST-REPACKAGING CLEANUP EVENT]</span></h3>
+  <h3>Repackaging Settlement <span class="event-name">[REPACKAGING SETTLEMENT EVENT]</span></h3>
   <p class="purpose">Automates the four cleanup steps after a repackaging batch is processed: depletes consumed inputs from offchain asset location, adds output rows for new products, sets Currencies metadata (isSerializable, SKU ID, farm info), and optionally rebuilds the store inventory snapshot so agroverse.shop reflects current stock.</p>
   <div class="meta">
     <span class="tag">Inventory Manager</span>
@@ -285,7 +285,7 @@ Add a new `.contract-card` in the **"Inventory & Supply Chain"** category sectio
 Insert BEFORE the `[ASSET RECEIPT EVENT]` entry (line 61 in the current file):
 
 ```python
-("[POST-REPACKAGING CLEANUP EVENT]", [
+("[REPACKAGING SETTLEMENT EVENT]", [
     ("POST_REPACKAGING_CLEANUP", "processPostRepackagingCleanup"),
 ], True),  # enqueue inventory snapshot (writes to offchain asset location)
 ```
@@ -329,7 +329,7 @@ Because this event writes to `offchain asset location` and `Currencies`, the inv
 
 ### Event tag
 ```
-[POST-REPACKAGING CLEANUP EVENT]
+[REPACKAGING SETTLEMENT EVENT]
 ```
 
 ### Canonical labels (order matters — matches payload format)
@@ -357,7 +357,7 @@ defaults={
     "Add Output Locations": "true",
     "Set Currencies Metadata": "true",
     "Rebuild Inventory": "false",
-    "Submission Source": "Post-Repackaging Cleanup CLI",
+    "Submission Source": "Repackaging Settlement CLI",
 }
 ```
 
@@ -373,7 +373,7 @@ None (no browser equivalent — this is CLI-only, operator-facing post-repackagi
 Insert BEFORE the `[ASSET RECEIPT EVENT]` entry (line 61 in the current file):
 
 ```python
-("[POST-REPACKAGING CLEANUP EVENT]", [
+("[REPACKAGING SETTLEMENT EVENT]", [
     ("POST_REPACKAGING_CLEANUP", "processPostRepackagingCleanup"),
 ], True),  # enqueue inventory snapshot (writes to offchain asset location)
 ```
@@ -514,12 +514,12 @@ Write a processing summary to a status column or dedicated log tab (follow exist
 
 ```python
 #!/usr/bin/env python3
-"""Submit [POST-REPACKAGING CLEANUP EVENT] to Edgar.
+"""Submit [REPACKAGING SETTLEMENT EVENT] to Edgar.
 
 Populates offchain asset location + Currencies metadata after a repackaging
 batch has been processed by the repackaging-currency-ingest GAS.
 
-DApp equivalent: dapp.truesight.me/post_repackaging_cleanup.html
+DApp equivalent: dapp.truesight.me/repackaging_settlement.html
 
 Run from the dao_client repo root:
     python -m truesight_dao_client.modules.post_repackaging_cleanup --help
@@ -530,7 +530,7 @@ from ..edgar_client import build_event_cli
 from ..validators import required, url_or_empty
 
 main = build_event_cli(
-    event_name='POST-REPACKAGING CLEANUP EVENT',
+    event_name='REPACKAGING SETTLEMENT EVENT',
     canonical_labels=[
         'Composition URL',
         'Holder Name',
@@ -559,9 +559,9 @@ main = build_event_cli(
         'Add Output Locations': 'true',
         'Set Currencies Metadata': 'true',
         'Rebuild Inventory': 'false',
-        'Submission Source': 'Post-Repackaging Cleanup CLI',
+        'Submission Source': 'Repackaging Settlement CLI',
     },
-    dapp_page='post_repackaging_cleanup.html',
+    dapp_page='repackaging_settlement.html',
 )
 
 if __name__ == "__main__":
@@ -577,12 +577,12 @@ truesight-dao-post-repackaging-cleanup = "truesight_dao_client.modules.post_repa
 
 **Events catalog entry** in `events_catalog.json` (add to `"Inventory & Supply Chain"`, after REPACKAGING):
 ```json
-"POST-REPACKAGING CLEANUP EVENT": {
+"REPACKAGING SETTLEMENT EVENT": {
   "category": "Inventory & Supply Chain",
   "description": "Populate offchain asset location + Currencies metadata after a repackaging batch",
   "canonical_labels": ["Composition URL", "Holder Name", "Farm Name", "State", "Country", "Year", "Landing Page", "Ledger URL", "SKU Mapping", "Deplete Inputs", "Add Output Locations", "Set Currencies Metadata", "Rebuild Inventory", "Submission Source"],
   "required_fields": ["Composition URL", "Holder Name"],
-  "dapp_page": "post_repackaging_cleanup.html"
+  "dapp_page": "repackaging_settlement.html"
 }
 ```
 
@@ -595,7 +595,7 @@ truesight-dao-post-repackaging-cleanup = "truesight_dao_client.modules.post_repa
 Add to `ROUTING` list (after `[REPACKAGING BATCH EVENT]`, before `[CURRENCY CONVERSION EVENT]`):
 
 ```python
-("[POST-REPACKAGING CLEANUP EVENT]", [
+("[REPACKAGING SETTLEMENT EVENT]", [
     ("POST_REPACKAGING_CLEANUP", "processPostRepackagingCleanup"),
 ], True),
 ```
@@ -610,14 +610,14 @@ DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP=<GAS webapp deployment URL>
 ### PR3 (dapp): DApp page + menu entry
 
 **Files changed:**
-1. `dapp/post_repackaging_cleanup.html` — **NEW** (full page following `DAPP_PAGE_CONVENTIONS.md`)
+1. `dapp/repackaging_settlement.html` — **NEW** (full page following `DAPP_PAGE_CONVENTIONS.md`)
 2. `dapp/menu.js` — add nav entry
 
 **DApp page** — must follow §4b spec (full DApp conventions checklist). Reference implementation: `dapp/report_dao_expenses.html`.
 
 **Menu entry** (insert after Repackaging Planner, line 24):
 ```javascript
-{ title: 'Post-Repackaging Cleanup', url: './post_repackaging_cleanup.html', section: 'Inventory & ledger' },
+{ title: 'Repackaging Settlement', url: './repackaging_settlement.html', section: 'Inventory & ledger' },
 ```
 
 **Version bump:** Increment `?v=` on `<script src="./menu.js?v=...">` in every HTML page and `service-worker.js`.
@@ -636,7 +636,7 @@ Add contract card per §4c template. Update category count.
 
 **File:** New `.gs` file, following the logic in §7.
 
-**Also update:** `grok_scoring_for_telegram_and_whatsapp_logs.js` — add `[POST-REPACKAGING CLEANUP EVENT]` to recognized event types (excluded from TDG scoring).
+**Also update:** `grok_scoring_for_telegram_and_whatsapp_logs.js` — add `[REPACKAGING SETTLEMENT EVENT]` to recognized event types (excluded from TDG scoring).
 
 **Deployment:** Deploy webapp, update `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` env var.
 
@@ -657,7 +657,7 @@ Add contract card per §4c template. Update category count.
 ### PR7 (sentiment_importer): Rails dispatch
 
 **Files changed:**
-1. `app/controllers/dao_controller.rb` — add `elsif` branch for `[POST-REPACKAGING CLEANUP EVENT]`
+1. `app/controllers/dao_controller.rb` — add `elsif` branch for `[REPACKAGING SETTLEMENT EVENT]`
 2. `config/application.rb` — add `config.post_repackaging_cleanup_processing_webhook_url`
 
 (If sentiment_importer-donation-mint fork is active, mirror there too.)
@@ -672,12 +672,12 @@ Add to `_INTENT_GUIDANCE` and `_IMPORTANT_FIELDS` dicts:
 
 ```python
 # In _INTENT_GUIDANCE:
-"post-repackaging cleanup": "POST-REPACKAGING CLEANUP EVENT",
-"populate offchain": "POST-REPACKAGING CLEANUP EVENT",
-"set currencies metadata": "POST-REPACKAGING CLEANUP EVENT",
+"post-repackaging cleanup": "REPACKAGING SETTLEMENT EVENT",
+"populate offchain": "REPACKAGING SETTLEMENT EVENT",
+"set currencies metadata": "REPACKAGING SETTLEMENT EVENT",
 
 # In _IMPORTANT_FIELDS:
-"POST-REPACKAGING CLEANUP EVENT": "Composition URL (required), Holder Name (required), Farm Name, State, Country, Year, Landing Page, SKU Mapping (JSON)",
+"REPACKAGING SETTLEMENT EVENT": "Composition URL (required), Holder Name (required), Farm Name, State, Country, Year, Landing Page, SKU Mapping (JSON)",
 ```
 
 ---
@@ -721,7 +721,7 @@ Same test cases as §13 (18 tests covering CLI, dispatch, DApp, and integration)
 | **G9** | PR9 (tests) merged + `pytest` all pass | Sophia |
 | **G10** | `python -m truesight_dao_client.modules.post_repackaging_cleanup --help` clean | Sophia |
 | **G11** | Dry-run against b08d324b prints expected signed payload | Governor / QA |
-| **G12** | DApp page loads correctly at dapp.truesight.me/post_repackaging_cleanup.html | Governor / QA |
+| **G12** | DApp page loads correctly at dapp.truesight.me/repackaging_settlement.html | Governor / QA |
 | **G13** | Contracts page shows new card at truesight.me/contracts | Governor / QA |
 | **G14** | Real run against b08d324b — verify Main Ledger sheet changes | Governor / QA |
 | **G15** | Real run idempotent — second run no duplicate writes | Governor / QA |
@@ -764,22 +764,22 @@ Day 7: G16 sign-off
 cd /Users/garyjob/Applications/dao_client
 python3 -m truesight_dao_client.modules.post_repackaging_cleanup --help
 ```
-**Expected:** Clean help listing all 14 canonical labels with flags, defaults, required fields. Shows `DApp equivalent: dapp.truesight.me/post_repackaging_cleanup.html`.
+**Expected:** Clean help listing all 14 canonical labels with flags, defaults, required fields. Shows `DApp equivalent: dapp.truesight.me/repackaging_settlement.html`.
 
 ### UAT-2: DApp page loads
-1. Open `https://dapp.truesight.me/post_repackaging_cleanup.html`
-2. **Expected:** Page loads with DAO logo, nav dropdown (includes "Post-Repackaging Cleanup" under "Inventory & ledger"), all 12 form fields per §4b, TDG balance badge, status indicator
+1. Open `https://dapp.truesight.me/repackaging_settlement.html`
+2. **Expected:** Page loads with DAO logo, nav dropdown (includes "Repackaging Settlement" under "Inventory & ledger"), all 12 form fields per §4b, TDG balance badge, status indicator
 3. Verify meta tags: Open Graph (6 tags), Twitter Card (4 tags), favicon
-4. Verify `menu.js` dropdown includes `{ title: 'Post-Repackaging Cleanup', url: './post_repackaging_cleanup.html', section: 'Inventory & ledger' }`
+4. Verify `menu.js` dropdown includes `{ title: 'Repackaging Settlement', url: './repackaging_settlement.html', section: 'Inventory & ledger' }`
 
 ### UAT-3: Contracts page updated
 1. Open `https://truesight.me/contracts`
-2. **Expected:** New card "Post-Repackaging Cleanup `[POST-REPACKAGING CLEANUP EVENT]`" under "Inventory & Supply Chain"
+2. **Expected:** New card "Repackaging Settlement `[REPACKAGING SETTLEMENT EVENT]`" under "Inventory & Supply Chain"
 3. Verify: description accurate, authority shows "Inventory Manager only", sheet links correct, source code links resolve
 
 ### UAT-4: Events catalog serves new entry
 ```bash
-curl https://edgar.truesight.me/events-catalog | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['events']['POST-REPACKAGING CLEANUP EVENT'])"
+curl https://edgar.truesight.me/events-catalog | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['events']['REPACKAGING SETTLEMENT EVENT'])"
 ```
 **Expected:** Returns the full event entry with category, description, labels, required_fields, dapp_page.
 
@@ -800,7 +800,7 @@ python3 -m truesight_dao_client.modules.post_repackaging_cleanup \
 
 **Expected output:** Signed share text with all labels populated:
 ```
-[POST-REPACKAGING CLEANUP EVENT]
+[REPACKAGING SETTLEMENT EVENT]
 
 - Composition URL: https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/currency-compositions/b08d324b-...
 - Holder Name: Kirsten Ritschel
@@ -815,7 +815,7 @@ python3 -m truesight_dao_client.modules.post_repackaging_cleanup \
 - Add Output Locations: true
 - Set Currencies Metadata: true
 - Rebuild Inventory: false
-- Submission Source: Post-Repackaging Cleanup CLI
+- Submission Source: Repackaging Settlement CLI
 
 -----BEGIN DAO SIGNED CONTRIBUTION-----
 ...
@@ -838,7 +838,7 @@ python3 -m truesight_dao_client.modules.post_repackaging_cleanup \
 **Expected:** HTTP 200 from Edgar. Edgar logs to Telegram Chat Logs. Dispatch fires webhook. GAS handler processes.
 
 **Post-run verification checklist:**
-- [ ] Telegram Chat Logs shows `[POST-REPACKAGING CLEANUP EVENT]` entry
+- [ ] Telegram Chat Logs shows `[REPACKAGING SETTLEMENT EVENT]` entry
 - [ ] `offchain asset location`: "8 Ounce Package Kraft Pouch CP340992735BR" under Kirsten → 0
 - [ ] `offchain asset location`: 2 new rows for ceremonial (x3) + bars (x15) under Kirsten
 - [ ] `Currencies`: `isSerializable` = TRUE on both CC and CB rows
@@ -934,7 +934,7 @@ def test_cli_dry_run_output(monkeypatch, capsys):
         "--dry-run",
     ])
     captured = capsys.readouterr()
-    assert "[POST-REPACKAGING CLEANUP EVENT]" in captured.out
+    assert "[REPACKAGING SETTLEMENT EVENT]" in captured.out
     assert "BEGIN DAO SIGNED CONTRIBUTION" in captured.out
 
 
@@ -999,13 +999,13 @@ def test_cli_sku_mapping_in_payload(monkeypatch, capsys):
 # ---------- Dispatch tests ----------
 
 def test_dispatch_route_matches(monkeypatch):
-    """Text containing [POST-REPACKAGING CLEANUP EVENT] is matched by dispatch."""
+    """Text containing [REPACKAGING SETTLEMENT EVENT] is matched by dispatch."""
     triggered = []
     monkeypatch.setattr(dispatch.webhook_trigger, "trigger", lambda url, action: triggered.append((url, action)))
     monkeypatch.setattr(dispatch, "_webhook_url", lambda key: f"https://example.com/{key}")
     monkeypatch.setattr(dispatch.inventory_snapshot, "publish", lambda: triggered.append("snapshot"))
 
-    dispatch.dispatch_event("[POST-REPACKAGING CLEANUP EVENT]\n- Holder Name: Test\n")
+    dispatch.dispatch_event("[REPACKAGING SETTLEMENT EVENT]\n- Holder Name: Test\n")
     assert len(triggered) == 2  # webhook + snapshot
     assert triggered[1] == "snapshot"
 
@@ -1029,7 +1029,7 @@ def test_dispatch_route_no_webhook_url_logs_warning(monkeypatch, caplog):
     monkeypatch.setattr(dispatch, "_webhook_url", lambda key: "")
     monkeypatch.setattr(dispatch.inventory_snapshot, "publish", lambda: None)
 
-    dispatch.dispatch_event("[POST-REPACKAGING CLEANUP EVENT]\n...")
+    dispatch.dispatch_event("[REPACKAGING SETTLEMENT EVENT]\n...")
     assert "no webhook URL" in caplog.text or "POST_REPACKAGING_CLEANUP" in caplog.text
 
 # ---------- Integration test ----------
@@ -1050,9 +1050,9 @@ def test_end_to_end_signed_submission(monkeypatch):
 - [ ] CLI module uses `build_event_cli` (NOT custom argparse, NOT gspread)
 - [ ] Events catalog (`events_catalog.json`) has new entry at `GET /events-catalog`
 - [ ] `--dry-run` prints signed share text without hitting Edgar
-- [ ] Dispatch route matches `[POST-REPACKAGING CLEANUP EVENT]` and enqueues inventory snapshot
+- [ ] Dispatch route matches `[REPACKAGING SETTLEMENT EVENT]` and enqueues inventory snapshot
 - [ ] `edgar.truesight.me/events-catalog` returns the new event in JSON
-- [ ] `dapp.truesight.me/post_repackaging_cleanup.html` loads correctly with all form fields
+- [ ] `dapp.truesight.me/repackaging_settlement.html` loads correctly with all form fields
 - [ ] DApp nav dropdown includes the new page under "Inventory & ledger"
 - [ ] `truesight.me/contracts` shows new contract card in "Inventory & Supply Chain"
 - [ ] GAS handler processes Telegram Chat Log entry and writes to sheets
