@@ -22,20 +22,22 @@ Today, adding a new governor to the Main Ledger Sheet requires manually sharing 
 
 ---
 
-## 3. Protected Accounts (Never Removed)
+## 3. Safety Philosophy
 
-These service-account identities own/edit the sheet for automation and must never be touched:
+The script **only removes editors it previously added itself**, tracked via the "Governor Sync Log" tab. This avoids the need to catalog every SA, GitHub Actions bot, or GCP service account.
 
-| Account | Role |
-|---------|------|
-| `admin@truesight.me` | Owner, autopilot |
-| `admin+sophia@truesight.me` | Sophia Truesight |
-| `admin+claude@truesight.me` | Claude Anthropic |
-| `admin+deepseek@truesight.me` | Deep Seek |
-| `admin+kimi@truesight.me` | Kimi Moon |
-| `garyjob@gmail.com` | Creator / governor |
+- **ADD:** governor email not currently an editor → `addEditor()`
+- **REMOVE:** only editors previously added BY THIS SCRIPT (tracked in Governor Sync Log `ADD` rows) who are no longer governors → `removeEditor()`
+- **NEVER remove:** the spreadsheet owner, any `*.iam.gserviceaccount.com` / `*.gserviceaccount.com` address, `admin+*` agent aliases, or any editor we didn't add ourselves — even if they're not governors.
 
-Plus the spreadsheet owner (detected at runtime via `Spreadsheet.getOwner()`).
+Patterns auto-detected as protected (never removed):
+| Pattern | Example |
+|---------|---------|
+| `@*.iam.gserviceaccount.com` | `butterfly-effect-club@get-data-io.iam.gserviceaccount.com` |
+| `@*.gserviceaccount.com` | older GCP service accounts |
+| `admin+*` | `admin+sophia@truesight.me` |
+| `admin@truesight.me` | master autopilot |
+| Spreadsheet owner | detected at runtime via `Spreadsheet.getOwner()` |
 
 ---
 
@@ -48,12 +50,17 @@ FOR the Main Ledger spreadsheet:
   3. RESOLVE governor name → email from contact sheet
      → Names without email are logged (warn) and skipped
   4. GET current editors via Spreadsheet.getEditors()
-  5. DETERMINE
+  5. READ "Governor Sync Log" tab → find emails previously ADD-ed by this script
+     → Only these are eligible for removal
+  6. DETERMINE
      a. Editors to ADD = governor_emails NOT in current_editors
-     b. Editors to REMOVE = current_editors NOT in governor_emails, NOT in SA list, NOT owner
-  6. APPLY: addEditor() for each ADD, removeEditor() for each REMOVE
-  7. LOG changes to a "Governor Sync Log" tab and Logger
+     b. Editors to REMOVE = previously-added-by-us emails NOT in governor_emails,
+        NOT matching SA patterns, NOT owner
+  7. APPLY: addEditor() for each ADD, removeEditor() for each REMOVE
+  8. LOG changes to "Governor Sync Log" tab and Logger
 ```
+
+**Key difference from v1:** Step 5 reads the log to build a safelist. Only editors previously added by this script are ever removed. Unknown SAs, bots, and manually shared humans are completely untouched.
 
 ---
 
