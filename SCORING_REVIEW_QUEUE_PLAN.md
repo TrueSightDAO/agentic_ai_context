@@ -133,7 +133,7 @@ Replace the manual sheet-editing step with a **DApp-based review queue**:
          │ (reads directory listing + individual files)
          ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│  EDGAR (sentiment_importer / dao_protocol)                          │
+│  EDGAR (dao_protocol)                                               │
 │                                                                     │
 │  GET /dao/review_queue?limit=10&after_filename=XzQ2EhAMD7MN8X0zFhvw│
 │  - Lists treasury-cache/review-queue/ directory (sorted by name)    │

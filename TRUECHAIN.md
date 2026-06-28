@@ -467,4 +467,4 @@ Each Agroverse product (e.g. [Ceremonial Cacao – La do Sitio Farm](https://agr
 | **WORKSPACE_CONTEXT.md** | Workspace overview, project relationships |
 | **PROJECT_INDEX.md** | Per-project summary, entry points, credentials |
 | **GOOGLE_API_CREDENTIALS.md** | Service accounts, spreadsheet IDs |
-| **Edgar** | sentiment_importer (edgar.truesight.me) |
+| **Edgar** | `dao_protocol` — standalone Python/FastAPI (edgar.truesight.me); `sentiment_importer` is the separate Perch Rails app (perch.truesight.me) |
