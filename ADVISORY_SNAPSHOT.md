@@ -20,9 +20,51 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-28T04:03:10Z`
+- Generated (UTC): `2026-06-28T05:00:07Z`
 - Look-back: **7** calendar days (`2026-06-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 18
+- `[SALES EVENT]` × 8
+- `[PRACTICE EVENT]` × 5
+- `[PROPOSAL VOTE]` × 2
+- `[CONTRIBUTION REVIEW EVENT]` × 1
+- `[PROPOSAL CREATION]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[PROGRAM REGISTRATION REQUEST]` × 1
+- _free-form (no bracket tag)_ × 4
+
+### Latest entries
+
+- `Edgar_20260625181507_039` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-25T18:15:05.686Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260626053913_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Chocolate experience to figure out how to extend it to China
+- `Edgar_20260626054225_043` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_1 · Sales price: $25 · Sold by: Kirsten Ritschel
+- `Edgar_20260626054402_045` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250711_NIBS_8 · Sales price: $25 · Sold by: Kirsten Ritschel
+- `Edgar_20260626150812_047` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
+- `Edgar_20260626150816_049` · **Edgar** · [PROPOSAL VOTE] Proposal: establish-legal-holding-entity-for-brazil-export-operations · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/18 · Vote: YES
+- `Edgar_20260626155854_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: append_to_transcript.py line 248 AttributeE…
+- `Edgar_20260626163612_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh, Sophia Truesight
+- `Edgar_20260626180212_055` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-26T18:02:10.539Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260627105458_057` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_3 · Sales price: 35.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260627105509_059` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_3 · Sales price: 35.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260627105520_061` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_3 · Sales price: 35.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260627105812_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The SALES EVENT QR code validation regex in…
+- `Edgar_20260627110815_065` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Stripe Social Media Checkout
+- `Edgar_20260627110930_067` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Kirsten
+- `Edgar_20260627111144_069` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_33 · Sales price: 25 · Sold by: Kirsten Ritschel
+- `Edgar_20260627111628_071` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260627143553_073` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-27T14:35:51.555Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260628032131_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: meza.djylycc@gmail.com
+- `Edgar_20260628032137_077` · **Edgar** · [PROGRAM REGISTRATION REQUEST] Program Slug: (pending governor assignment) · Display Name: XysraBvHfNTSvAraec · Description: Submitted by CoQbCzVDIYNDBRRKDj · meza.djylycc@gmail.com.
 
 ---
 
@@ -213,13 +255,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,141.34**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$41.26**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -307,6 +353,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7573b9f | 2026-06-27 21:03:30 -0700 | Merge pull request #627 from TrueSightDAO/auto/advisory-refresh-2026-06-28
+c479e43 | 2026-06-28 04:03:19 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 053e338 | 2026-06-27 12:53:00 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
 65ae963 | 2026-06-27 12:52:59 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
 7abcbb3 | 2026-06-27 07:13:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
@@ -345,8 +393,6 @@ c26ce92 | 2026-06-25 02:51:50 -0700 | chore(previews): refresh Beer Hall preview
 21bf339 | 2026-06-25 02:51:49 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 383376e | 2026-06-24 21:45:55 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
 ba113bf | 2026-06-24 21:45:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
-9445cbd | 2026-06-24 20:47:13 -0700 | Merge pull request #624 from TrueSightDAO/auto/advisory-refresh-2026-06-25
-d98d4aa | 2026-06-25 03:47:02 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 … (truncated)
 ```
 
@@ -471,6 +517,46 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1602.65 | 16579.76386 | 6/27/2026 21:50:17 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-21`; scanned last **590** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-26 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_8 | — | — |
+| 2026-06-26 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_1 | — | — |
+| 2026-06-27 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_33 | VkoLViXv9l3t | — |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-27 | 35.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_3 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
