@@ -58,7 +58,7 @@ oracle.truesight.me (GitHub Pages)
         ├── Signs with RSASSA-PKCS1-v1_5 / SHA-256
         └── POST → Edgar /dao/submit_contribution
 
-Edgar (sentiment_importer / dao_protocol)
+Edgar (dao_protocol)
   └── Logs to Telegram Chat Logs
   └── Webhook → GAS practice_event_processing.gs
         ├── Parses [PRACTICE EVENT]
