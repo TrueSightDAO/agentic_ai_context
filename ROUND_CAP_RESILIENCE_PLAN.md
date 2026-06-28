@@ -105,11 +105,14 @@ own test. No PR turn reads a file not snapshotted in §3.
 
 | Unit | PR opened | Merged | Deployed (restart) | Contribution reported |
 |------|-----------|--------|--------------------|-----------------------|
-| PR1 — roadmap + authoring gate | ☐ | ☐ | n/a (docs) | ☐ |
-| PR2 — soft-budget backstop (#2) | ☐ | ☐ | ☐ | ☐ |
-| PR3 — one-PR-boundary (#3) | ☐ | ☐ | ☐ | ☐ |
+| PR1 — roadmap + §5d authoring gate (#1) | ✅ [agentic_ai_context#630](https://github.com/TrueSightDAO/agentic_ai_context/pull/630) | ✅ | n/a (docs) | ☐ |
+| PR2 + PR3 — convergence backstop: soft-budget (#2) + one-PR-boundary (#3) | ✅ [truesight_autopilot#275](https://github.com/TrueSightDAO/truesight_autopilot/pull/275) | ☐ (governor) | ☐ `systemctl restart truesight-autopilot` | ☐ |
 
-**RESUME HERE → PR1.**
+> PR2 and PR3 were folded into one autopilot PR (#275) — they share the
+> `turn_convergence` helper and the single injection site, so one cohesive review
+> beats a stacked split. 17 unit tests; existing suite unaffected.
+
+**RESUME HERE → governor merges [truesight_autopilot#275](https://github.com/TrueSightDAO/truesight_autopilot/pull/275), restart the service, then run UAT U1 + U2 (§6).** (Own-repo gate: opens PR only, never self-merges; restart is a gated prod deploy.)
 
 > ✅ Pre-flight Completeness (§5d): no execution unit requires reading a file/state not already
 > captured in §3.
