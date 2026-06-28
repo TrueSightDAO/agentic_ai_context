@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-28T09:41:14Z`
+- Generated (UTC): `2026-06-28T14:22:58Z`
 - Look-back: **7** calendar days (`2026-06-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,20 +32,19 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
+- `[CONTRIBUTION EVENT]` × 17
 - `[SALES EVENT]` × 8
 - `[PRACTICE EVENT]` × 5
 - `[PROPOSAL VOTE]` × 2
+- `[EMAIL REGISTERED EVENT]` × 2
 - `[CONTRIBUTION REVIEW EVENT]` × 1
 - `[PROPOSAL CREATION]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- `[EMAIL REGISTERED EVENT]` × 1
 - `[PROGRAM REGISTRATION REQUEST]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260625181507_039` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-25T18:15:05.686Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260626053913_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Chocolate experience to figure out how to extend it to China
 - `Edgar_20260626054225_043` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_1 · Sales price: $25 · Sold by: Kirsten Ritschel
 - `Edgar_20260626054402_045` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250711_NIBS_8 · Sales price: $25 · Sold by: Kirsten Ritschel
@@ -65,6 +64,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260627143553_073` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-27T14:35:51.555Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260628032131_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: meza.djylycc@gmail.com
 - `Edgar_20260628032137_077` · **Edgar** · [PROGRAM REGISTRATION REQUEST] Program Slug: (pending governor assignment) · Display Name: XysraBvHfNTSvAraec · Description: Submitted by CoQbCzVDIYNDBRRKDj · meza.djylycc@gmail.com.
+- `Edgar_20260628122354_079` · **Edgar** · [EMAIL REGISTERED EVENT] Email: paloma@founderhaus.cluh
 
 ---
 
@@ -82,7 +82,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-27T10:59:14.343Z`
+- Generated (UTC): `2026-06-28T10:59:19.473Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -311,6 +311,7 @@ _All dated lines on/after 2026-06-21_ (9):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3cf5799 | 2026-06-28 09:44:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 41b618e | 2026-06-28 05:05:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e7bbf6a | 2026-06-27 19:54:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 010c83d | 2026-06-27 14:15:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -354,6 +355,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+246dfeb | 2026-06-28 02:41:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
+f3f8846 | 2026-06-28 02:41:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 834e4d5 | 2026-06-27 22:00:21 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
 e14b3e4 | 2026-06-27 22:00:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 7573b9f | 2026-06-27 21:03:30 -0700 | Merge pull request #627 from TrueSightDAO/auto/advisory-refresh-2026-06-28
@@ -392,8 +395,6 @@ df9a113 | 2026-06-25 13:31:24 -0700 | chore(previews): refresh Beer Hall preview
 0436e28 | 2026-06-25 13:31:24 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 aa57179 | 2026-06-25 08:23:49 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
 dffab2b | 2026-06-25 08:23:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
-c26ce92 | 2026-06-25 02:51:50 -0700 | chore(previews): refresh Beer Hall preview (2026-06-25 UTC)
-21bf339 | 2026-06-25 02:51:49 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-25 UTC)
 … (truncated)
 ```
 
@@ -543,7 +544,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1602.65 | 16579.76386 | 6/28/2026 1:50:35 |
+| 2026-06 | 1602.65 | 16579.76386 | 6/28/2026 6:13:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-21`; scanned last **590** data rows)
 
