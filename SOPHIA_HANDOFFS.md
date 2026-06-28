@@ -143,6 +143,7 @@ replying in that topic with a short go-signal —
 
 | Plan file | Handoff title | Telegram topic | message_thread_id | Handoff date | Status |
 |-----------|---------------|----------------|-------------------|--------------|--------|
+| `POST_REPACKAGING_CLEANUP_PLAN.md` | Post-Repackaging Cleanup: Auto-populate Currencies + offchain after repackaging GAS | _triggering — awaiting Sophia_ | _TBD_ | 2026-06-28 | triggering Sophia; RESUME HERE = **PR1** (`modules/post_repackaging_cleanup.py`); own-repo gate |
 | `SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md` | Sophia Durable Journal + Checkpoint-Resume Loop | _draft — not parked_ | _TBD_ | 2026-06-23 | draft — awaiting governor review; RESUME HERE = **PR1** (`app/journal.py`); own-repo gate |
 | `QR_SELF_SERVE_CURRENCY_PLAN.md` | Self-Serve QR-Ready Currency Definition via Edgar | [QR Self-Serve Currency](https://t.me/c/3919341801/7611) | 7611 | 2026-06-23 | parked GO-ready — RESUME HERE = **PR1** (`dao_protocol`: define-currency CLI + dispatch route); §5a one PR per turn; opens PRs only, never self-merges |
 | `SOPHIA_CONTRIBUTION_SCORING_PLAN.md` | Score contribution review backlog | _(register on GO)_ | — | 2026-06-23 | draft — awaiting governor §10 + GO |
