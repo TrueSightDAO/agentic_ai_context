@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-29T16:23:40Z`
+- Generated (UTC): `2026-06-29T20:24:11Z`
 - Look-back: **7** calendar days (`2026-06-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION REVIEW EVENT]` × 28
+- `[CONTRIBUTION REVIEW EVENT]` × 26
 - `[SALES EVENT]` × 8
-- `[CONTRIBUTION EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 5
 - `[REPACKAGING SETTLEMENT EVENT]` × 1
 - `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260628221649_1945` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: OR+wJme+DDzHVdC2voU3 · TDGs Issued: 0
-- `Edgar_20260628221653_1947` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: UwvwMmEj7DLmSvSwCdM3 · TDGs Issued: 0
 - `Edgar_20260628221656_1949` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: bB0qR7pQaPgZvCKbvmFd · TDGs Issued: 0
 - `Edgar_20260628221701_1951` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: owHVu6Id9QQ/lZcnLE0w · TDGs Issued: 0
 - `Edgar_20260628221704_1953` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: prFpZ3hcC225GWORLsei · TDGs Issued: 0
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260629111734_1979` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_3 · Sales price: $10.09 · Sold by: Kirsten Ritschel
 - `Edgar_20260629141124_1981` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-29T14:11:22.649Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260629150331_1983` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Prep, set-up chocolate experience, clean up. For four people, each made thei…
+- `Edgar_20260629184921_1985` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.69 · Description: Oat milk
+- `Edgar_20260629185357_1987` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: First Etsy fullfillment
 
 ---
 
@@ -313,6 +313,7 @@ _All dated lines on/after 2026-06-22_ (13):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+14f767f | 2026-06-29 16:25:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 673bf6c | 2026-06-29 11:33:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2ef4628 | 2026-06-29 05:15:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 86857c7 | 2026-06-28 15:51:17 -0700 | rename: Post-Repackaging Cleanup → Repackaging Settlement on contracts page
@@ -356,6 +357,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+20b114d | 2026-06-29 09:23:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
+7dcf8ea | 2026-06-29 09:23:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
 23597d5 | 2026-06-29 04:32:06 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
 50ee546 | 2026-06-29 04:32:05 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
 19354dd | 2026-06-28 22:12:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
@@ -394,8 +397,6 @@ c479e43 | 2026-06-28 04:03:19 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 7abcbb3 | 2026-06-27 07:13:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
 33292c0 | 2026-06-27 07:13:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
 65ba9e9 | 2026-06-27 02:11:59 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
-217b3f6 | 2026-06-27 02:11:58 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
-a9f96aa | 2026-06-26 21:34:38 -0700 | chore(previews): refresh Beer Hall preview (2026-06-27 UTC)
 … (truncated)
 ```
 
@@ -558,7 +559,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1673.41 | 16650.52386 | 6/29/2026 8:50:24 |
+| 2026-06 | 1673.41 | 16650.52386 | 6/29/2026 12:50:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-22`; scanned last **598** data rows)
 
