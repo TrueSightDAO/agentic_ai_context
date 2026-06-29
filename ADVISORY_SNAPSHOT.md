@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-29T04:08:08Z`
+- Generated (UTC): `2026-06-29T05:12:05Z`
 - Look-back: **7** calendar days (`2026-06-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION REVIEW EVENT]` × 38
+- `[CONTRIBUTION EVENT]` × 2
+- `[REPACKAGING SETTLEMENT EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260628221538_1925` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zcM8Tz05hG4ANJrZbHKs · TDGs Issued: 116.67
+- `Edgar_20260628221541_1927` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zi0nNqOmGCtk5dnPqO/1 · TDGs Issued: 800.0
+- `Edgar_20260628221544_1929` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zi2ZkjesAZUgZfevKssr · TDGs Issued: 16.27
+- `Edgar_20260628221550_1931` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zr0Z70Qdwe2BF6AL2bYU · TDGs Issued: 16.67
+- `Edgar_20260628221553_1933` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zsabZQTv8GRiEiyw3uM0 · TDGs Issued: 100.0
+- `Edgar_20260628221556_1935` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zt64vLWkpF7M8cRIUuvT · TDGs Issued: 8.33
+- `Edgar_20260628221602_1937` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: ztrW42iJ0O7V5LpXtb/i · TDGs Issued: 0.0
+- `Edgar_20260628221605_1939` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zvhMYqWXH8b743IWah1Q · TDGs Issued: 8.33
+- `Edgar_20260628221608_1941` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Approve · Scoring Hash Key: zz62F8OLw1bF2Kk9ffol · TDGs Issued: 60.23
+- `Edgar_20260628221644_1943` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: CKm4/OPN4ugCpmUyzmHp · TDGs Issued: 0
+- `Edgar_20260628221649_1945` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: OR+wJme+DDzHVdC2voU3 · TDGs Issued: 0
+- `Edgar_20260628221653_1947` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: UwvwMmEj7DLmSvSwCdM3 · TDGs Issued: 0
+- `Edgar_20260628221656_1949` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: bB0qR7pQaPgZvCKbvmFd · TDGs Issued: 0
+- `Edgar_20260628221701_1951` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: owHVu6Id9QQ/lZcnLE0w · TDGs Issued: 0
+- `Edgar_20260628221704_1953` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: prFpZ3hcC225GWORLsei · TDGs Issued: 0
+- `Edgar_20260628222227_1955` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: Reject · Scoring Hash Key: T50gF8FeNuiJwI7ZV9vA · TDGs Issued: 0
+- `Edgar_20260628225150_1957` · **Edgar** · [REPACKAGING SETTLEMENT EVENT] Composition URL: https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/… · Holder Name: Kirsten Ritschel · Farm Name: Oscar's Farm, Bahia
+- `Edgar_20260628233851_1959` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Round-cap resilience (prevent per-turn blowouts) + sentiment_importer/dao_pr…
+- `Edgar_20260628235026_1961` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Kirsten Ritschel · Target Ledger: offchain
+- `Edgar_20260628235357_1963` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Repackaging settlement: full pipeline execution + SOP + plan v3
 
 ---
 
@@ -213,13 +249,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,141.34**
+- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
+- USD provisioned for voting-rights cash-out: **$41.26**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -312,6 +352,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d741fd3 | 2026-06-28 21:08:22 -0700 | Merge pull request #635 from TrueSightDAO/auto/advisory-refresh-2026-06-29
+1c2d6fc | 2026-06-29 04:08:11 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
 fea6d9d | 2026-06-28 16:53:40 -0700 | docs: repackaging settlement SOP + v3 plan (#634)
 fd841ff | 2026-06-28 16:49:23 -0700 | docs: repackaging settlement SOP — full reference for AIs and Sophia
 b784c55 | 2026-06-28 16:49:06 -0700 | chore(roadmap): round-cap resilience COMPLETE — #275 merged + deployed (#633)
@@ -350,8 +392,6 @@ a9f96aa | 2026-06-26 21:34:38 -0700 | chore(previews): refresh Beer Hall preview
 0c8302b | 2026-06-26 20:39:24 -0700 | Merge pull request #626 from TrueSightDAO/auto/advisory-refresh-2026-06-27
 42d99af | 2026-06-27 03:39:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-27 UTC)
 d9ee86a | 2026-06-26 13:18:02 -0700 | chore(previews): refresh Beer Hall preview (2026-06-26 UTC)
-3965641 | 2026-06-26 13:18:00 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-26 UTC)
-8b594a1 | 2026-06-26 09:30:41 -0700 | Update Zach brief markdown — 100 TDG/hr, date subject to Zach's availability
 … (truncated)
 ```
 
@@ -488,6 +528,46 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1602.65 | 16579.76386 | 6/28/2026 21:50:39 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-22`; scanned last **590** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-06-26 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_8 | — | — |
+| 2026-06-26 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_1 | — | — |
+| 2026-06-27 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_33 | VkoLViXv9l3t | — |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-06-27 | 35.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_3 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
