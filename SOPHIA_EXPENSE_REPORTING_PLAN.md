@@ -29,7 +29,7 @@ Target Ledger: offchain
 
 For shipping labels, include the carrier, service level, and tracking number:
 ```
-Item: UPS Ground Saver shipping label (tracking 1ZXG9979YN25983449)
+Inventory Type: UPS Ground Saver shipping label (tracking 1ZXG9979YN25983449)
 ```
 
 ### Rule 4: Cost = exact dollar amount from the receipt
@@ -44,14 +44,17 @@ Always use `--attachment` to upload the receipt as proof. The attachment gets up
 
 | Field | Source | Example |
 |-------|--------|---------|
-| `Item` | Carrier + service + tracking | `UPS Ground Saver shipping label (tracking 1ZXG9979YN25983449)` |
-| `Cost` | Dollar amount from receipt | `6.94` |
-| `Category` | Type of expense | `Shipping` |
 | `DAO Member Name` | Who paid | `Gary Teh` |
 | `Target Ledger` | **Always `offchain`** | `offchain` |
+| `Latitude` | Geolocation (optional, use `NA` if unknown) | `NA` |
+| `Longitude` | Geolocation (optional, use `NA` if unknown) | `NA` |
+| `Inventory Type` | What was purchased — carrier + tracking for shipping | `UPS Ground Saver shipping label (tracking 1ZXG9979YN25983449)` |
+| `Inventory Quantity` | Dollar amount from receipt | `6.94` |
 | `Description` | Context — what order/person is this for | `Pirate Ship shipping label for Etsy order #4088615882 (Raven Runyan)` |
 | `Submission Source` | Where the receipt came from | `pirate_ship_receipt` |
 | Attachment | Receipt PDF | `Pirate Ship.pdf` |
+
+**Critical: field names MUST match the GAS parser exactly.** The GAS regex expects `Inventory Type` (not `Item`) and `Inventory Quantity` (not `Cost`). The field order is strict — `DAO Member Name` must come first, then `Target Ledger`.
 
 ---
 
@@ -59,17 +62,18 @@ Always use `--attachment` to upload the receipt as proof. The attachment gets up
 
 ```bash
 python3 -m truesight_dao_client.modules.report_dao_expenses \
-  --attr "Item=UPS Ground Saver shipping label (tracking 1ZXG9979YN25983449)" \
-  --attr "Cost=6.94" \
-  --attr "Category=Shipping" \
   --dao-member-name "Gary Teh" \
   --target-ledger "offchain" \
+  --inventory-type "UPS Ground Saver shipping label (tracking 1ZXG9979YN25983449)" \
+  --inventory-quantity "6.94" \
   --description "Pirate Ship shipping label for Etsy order #4088615882 (Raven Runyan)" \
   --submission-source "pirate_ship_receipt" \
+  --latitude "NA" \
+  --longitude "NA" \
   --attachment "/path/to/Pirate Ship.pdf"
 ```
 
-Note: `--item` and `--cost` are NOT exposed as dedicated flags for this module — use `--attr` for both.
+Note: Use the dedicated flags (`--inventory-type`, `--inventory-quantity`), NOT `--attr "Item=..."` or `--attr "Cost=..."`. The GAS parser expects the exact field names `Inventory Type` and `Inventory Quantity`.
 
 Path to the .env credentials file: `/Users/garyjob/Applications/dao_client/.env`
 
