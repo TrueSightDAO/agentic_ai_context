@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-30T04:44:13Z`
+- Generated (UTC): `2026-06-30T10:10:11Z`
 - Look-back: **7** calendar days (`2026-06-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION REVIEW EVENT]` × 18
+- `[CONTRIBUTION REVIEW EVENT]` × 14
 - `[SALES EVENT]` × 9
-- `[CONTRIBUTION EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 8
 - `[REPACKAGING SETTLEMENT EVENT]` × 1
 - `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 4
+- _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260628233851_1959` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Round-cap resilience (prevent per-turn blowouts) + sentiment_importer/dao_pr…
-- `Edgar_20260628235026_1961` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Kirsten Ritschel · Target Ledger: offchain
-- `Edgar_20260628235357_1963` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Repackaging settlement: full pipeline execution + SOP + plan v3
-- `Edgar_20260629104654_1965` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_1 · Sales price: 10.11 · Sold by: Kirsten Ritschel
 - `Edgar_20260629104701_1967` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_2 · Sales price: 10.11 · Sold by: Kirsten Ritschel
 - `Edgar_20260629104710_1969` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_4 · Sales price: 10.11 · Sold by: Kirsten Ritschel
 - `Edgar_20260629104718_1971` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_5 · Sales price: 10.11 · Sold by: Kirsten Ritschel
@@ -61,6 +57,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260630012141_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix SSE stream crash + sheet-based QR dedup + remove stale Edgar/Rails conte…
 - `Edgar_20260630012320_009` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260630013531_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260630060133_003` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260630060236_005` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260630061805_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Fix expense parser: order-independent GAS extractExpenseDetails + detailed d…
+- `Edgar_20260630065317_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Verifying inventory level with Kirsten
 
 ---
 
@@ -300,6 +300,8 @@ _All dated lines on/after 2026-06-23_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+db5c084 | 2026-06-30 10:09:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
+6734b67 | 2026-06-30 04:47:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d3ff19a | 2026-06-29 20:27:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 14f767f | 2026-06-29 16:25:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 673bf6c | 2026-06-29 11:33:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -341,6 +343,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e9eda23 | 2026-06-29 21:44:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
+3d9d957 | 2026-06-29 21:44:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 2191bc7 | 2026-06-29 20:54:12 -0700 | Merge pull request #636 from TrueSightDAO/auto/advisory-refresh-2026-06-30
 3139a64 | 2026-06-30 03:54:03 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 66ea32e | 2026-06-29 21:35:11 -0400 | fix(sop): correct expense reporting SOP to use GAS-compatible field names
@@ -379,14 +383,13 @@ a27bc48 | 2026-06-28 15:03:23 -0700 | handoff(sophia): post-repackaging cleanup 
 b4e439d | 2026-06-28 07:23:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 246dfeb | 2026-06-28 02:41:34 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
 f3f8846 | 2026-06-28 02:41:33 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
-834e4d5 | 2026-06-27 22:00:21 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
-e14b3e4 | 2026-06-27 22:00:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+761dc08 | 2026-06-29 23:17:50 -0700 | fix(gas): make extractExpenseDetails order-independent with detailed diagnostics (#377)
 b95d84a | 2026-06-28 16:01:22 -0700 | Transfer script: O(n) refactoring, batch trigger, data validation fix
 154fa0f | 2026-06-28 15:33:26 -0700 | GovernorSheetPermissionSync v5: only remove editors IN Contact sheet who aren't governor/sentinel
 926af1d | 2026-06-28 15:31:23 -0700 | GovernorSheetPermissionSync v4: sentinels always keep editing rights
@@ -430,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+102677d | 2026-06-30 10:03:09 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4095414 | 2026-06-29 18:28:39 -0700 | chore: refresh Agroverse store inventory snapshot
 681953f | 2026-06-29 11:35:18 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 6789db8 | 2026-06-29 11:25:21 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -538,7 +542,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/29/2026 20:50:42 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 2:52:46 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-23`; scanned last **600** data rows)
 
