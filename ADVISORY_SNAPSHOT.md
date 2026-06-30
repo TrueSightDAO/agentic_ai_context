@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-30T15:10:23Z`
+- Generated (UTC): `2026-06-30T20:29:23Z`
 - Look-back: **7** calendar days (`2026-06-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION REVIEW EVENT]` × 14
 - `[SALES EVENT]` × 9
+- `[CONTRIBUTION REVIEW EVENT]` × 8
 - `[CONTRIBUTION EVENT]` × 8
+- `[PRACTICE EVENT]` × 7
 - `[REPACKAGING SETTLEMENT EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260629104701_1967` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_2 · Sales price: 10.11 · Sold by: Kirsten Ritschel
-- `Edgar_20260629104710_1969` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_4 · Sales price: 10.11 · Sold by: Kirsten Ritschel
-- `Edgar_20260629104718_1971` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_5 · Sales price: 10.11 · Sold by: Kirsten Ritschel
-- `Edgar_20260629104726_1973` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_6 · Sales price: 10.11 · Sold by: Kirsten Ritschel
-- `Edgar_20260629104733_1975` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_7 · Sales price: 10.11 · Sold by: Kirsten Ritschel
-- `Edgar_20260629104835_1977` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CB_20260620_7 · Sales price: 10.11 · Sold by: Kirsten Ritschel
 - `Edgar_20260629111734_1979` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_3 · Sales price: $10.09 · Sold by: Kirsten Ritschel
 - `Edgar_20260629141124_1981` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-29T14:11:22.649Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260629150331_1983` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Prep, set-up chocolate experience, clean up. For four people, each made thei…
@@ -61,6 +55,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260630060236_005` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260630061805_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Fix expense parser: order-independent GAS extractExpenseDetails + detailed d…
 - `Edgar_20260630065317_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Verifying inventory level with Kirsten
+- `Edgar_20260630155920_011` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T15:59:18.571Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260630161708_013` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T16:17:07.659Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260630173542_015` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:35:41.470Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260630173712_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:37:12.190Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260630174705_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:47:02.977Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260630174708_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:47:02.975Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -300,6 +300,7 @@ _All dated lines on/after 2026-06-23_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7694e25 | 2026-06-30 15:14:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 db5c084 | 2026-06-30 10:09:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6734b67 | 2026-06-30 04:47:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d3ff19a | 2026-06-29 20:27:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -343,6 +344,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b36b4d7 | 2026-06-30 08:10:47 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
+75ff285 | 2026-06-30 08:10:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 a0f4d49 | 2026-06-30 03:10:32 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
 b0ee2bd | 2026-06-30 03:10:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 e9eda23 | 2026-06-29 21:44:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
@@ -381,8 +384,6 @@ a27bc48 | 2026-06-28 15:03:23 -0700 | handoff(sophia): post-repackaging cleanup 
 73f9fef | 2026-06-28 13:01:03 -0700 | Proposal CLI plan: clean resume pointer + tracker (parseable by auto-advance) (#628)
 40f2699 | 2026-06-28 12:54:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
 63d93ed | 2026-06-28 12:54:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
-67b0a57 | 2026-06-28 07:23:21 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
-b4e439d | 2026-06-28 07:23:19 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 … (truncated)
 ```
 
@@ -542,7 +543,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 7:51:42 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 12:52:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-23`; scanned last **600** data rows)
 
