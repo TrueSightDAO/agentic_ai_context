@@ -103,12 +103,12 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 ## Other Projects
 
-### sentiment_importer (Edgar)
+### sentiment_importer (trading platform)
 
 **Location:** `/Users/garyjob/Applications/sentiment_importer/`
 
-- **Production deploy:** **`https://edgar.truesight.me`** (Rails app + Sidekiq). **Not** **`getdata.io`** — that is **krake_ror** (see **WORKSPACE_CONTEXT.md** §6).
-- **Agroverse Shop** checkout calls **`GET https://edgar.truesight.me/agroverse_shop/shipping_rates`** for USPS quotes (see **`agroverse_shop/js/config.js`** `shippingRatesApiOrigin`); inventory snapshot worker uses **`AGROVERSE_INVENTORY_*`** env vars on the Edgar host.
+- **Production:** **`https://perch.truesight.me`** (Rails app + Sidekiq). Trading platform (stock/crypto) — DAO operations are in **dao_protocol**. **Not** **`getdata.io`** — that is **krake_ror** (see **WORKSPACE_CONTEXT.md** §6).
+- **Agroverse Shop** checkout calls **`GET https://edgar.truesight.me/agroverse_shop/shipping_rates`** for USPS quotes (this route is proxied to dao_protocol via nginx); see **`agroverse_shop/js/config.js`** `shippingRatesApiOrigin`.
 - Environment variables (see `agentic_ai_api_credentials` / **`API_CREDENTIALS_DOCUMENTATION.md`** for variable names)
 - No credential files required (uses `.env`)
 

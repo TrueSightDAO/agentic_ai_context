@@ -81,8 +81,7 @@ flowchart LR
         FastAPI["FastAPI\n:8010"]
     end
 
-    Nginx["krake_nginx"] -->|POST /dao/submit_contribution| Rails
-    Nginx -->|same endpoint| FastAPI
+    Nginx["krake_nginx"] -->|POST /dao/submit_contribution| FastAPI
 
     Rails -->|reads/writes| PG
     Rails -->|Sidekiq queue| RD
@@ -245,7 +244,7 @@ krake_nginx (54.226.114.186:443)
 
 ```
 dao_protocol_nelanco (98.93.94.86:8010)
-  └── POST /dao/submit_contribution — same interface as Rails Perch
+  └── POST /dao/submit_contribution — canonical DAO event intake (replaces Rails Perch route)
   └── GET /healthz — health check
   └── GET /proxy/gas/<name> — GAS proxy
   └── GET /agroverse_shop/shipping_rates — USPS rates
@@ -462,13 +461,13 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 
 ## 10. Common Pitfalls
 
-1. **Perch is NOT `getdata.io`.** `perch.truesight.me` = `sentiment_importer` (Rails). `edgar.truesight.me` = `dao_protocol` (Python/FastAPI). `getdata.io` = `krake_ror` (different codebase, different server). Do not conflate.
+1. **Perch is NOT `getdata.io`.** `perch.truesight.me` = `sentiment_importer` (Rails trading platform). `edgar.truesight.me` = `dao_protocol` (Python/FastAPI — the canonical DAO API). `getdata.io` = `krake_ror` (different codebase, different server). Do not conflate.
 
-2. **Service topology:** The Rails Perch (`sentiment_importer`) and the Python Edgar (`dao_protocol`) both accept `POST /dao/submit_contribution`. The Rails Perch (`sentiment_importer`) and the Python `dao_protocol` both accept `POST /dao/submit_contribution`. DNS `edgar.truesight.me` currently points to the Rails Perch via nginx. The Python Edgar server runs on `dao_protocol_nelanco`.
+2. **Service topology:** `POST /dao/submit_contribution` is handled exclusively by the Python `dao_protocol` server. The nginx flip was completed in PR8a (2026-06-07) — `edgar.truesight.me` DNS → `seni_ror_new` nginx → `dao_protocol_nelanco:8010`. The Rails Perch (`sentiment_importer`) no longer handles DAO submissions. Legacy `dao_controller.rb` actions still exist in the Rails codebase but are dead code (scheduled for deletion in PR8d).
 
 3. **Old Perch instances are stopped.** `seni_ror_2026` and `seni_sk_2026` in Explorya were stopped 2026-05-28. Do not try to SSH into them or deploy to them.
 
-4. **Nginx proxies Perch.**  `edgar.truesight.me` and `perch.truesight.me` → krake_nginx → `seni_ror_200250915:3002`. The nginx config is on `krake_nginx` (54.226.114.186), not on the Rails host itself.
+4. **Nginx routing:** `edgar.truesight.me` → DNS to `seni_ror_new` (3.90.179.151) → local nginx → `/dao/*` routes go to `dao_protocol_nelanco:8010`, trading routes go to `127.0.0.1:3002` (Rails). The nginx config is on `seni_ror_new`, NOT krake_nginx.
 
 5. **Webhook URLs are env-configured.** The `dao_protocol` server reads webhook URLs from `DAO_PROTOCOL_WEBHOOK_*` env vars. The Rails Perch reads from `config/application.rb`. They are independent — a change to one does not affect the other.
 

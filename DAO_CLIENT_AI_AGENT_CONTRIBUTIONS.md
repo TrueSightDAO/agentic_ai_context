@@ -93,7 +93,7 @@ After both events land in Telegram Chat Logs:
 
 - **Exec URL**: `https://script.google.com/macros/s/AKfycbzcXBXYKmKiYg-tS2cqf60gWVm0ro17ndWVMnxNkc0dimaGUW3CYoi4b8nMZzVbENaw/exec`
 - **Clasp mirror**: `tokenomics/clasp_mirrors/1o2lzpdTZBYTTFdXzWJoATxznbqL959b_O7_no2Gd-OV4ryOPZOsqxtpU/`
-- **Edgar config**: `sentiment_importer/config/application.rb` → `config.asset_receipt_processing_webhook_url`
+- **Edgar webhook config**: `dao_protocol` .env → `OFFCHAIN_PROCESSING_WEBHOOK_URL`
 
 ## Cash sales via `[SALES EVENT]` (no Stripe checkout)
 
@@ -112,7 +112,7 @@ For serialized QR products, `[SALES EVENT]` per QR code IS sufficient — the do
 ## Related context
 
 - **`tokenomics/SCHEMA.md`** — `Telegram Chat Logs`, **Governor** column **S**, **Inventory Movement**, **Scored Expense Submissions**.
-- **`sentiment_importer`** — Edgar appends **A–S** to Telegram Chat Logs; `Gdrive::Governors`.
+- **`sentiment_importer`** — **TRADING PLATFORM ONLY**, not the DAO API. DAO submissions go through **`dao_protocol`** (FastAPI, Python). The Rails Edgar app appends to Telegram Chat Logs via the legacy code path; all new DAO traffic routes through dao_protocol.
 - **`WORKSPACE_CONTEXT.md`** § Edgar / tokenomics / DApp relationships.
 
 ---
