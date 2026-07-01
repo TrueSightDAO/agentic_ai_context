@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-06-30T20:29:23Z`
-- Look-back: **7** calendar days (`2026-06-23` → today UTC)
+- Generated (UTC): `2026-07-01T04:07:09Z`
+- Look-back: **7** calendar days (`2026-06-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[SALES EVENT]` × 9
-- `[CONTRIBUTION REVIEW EVENT]` × 8
-- `[CONTRIBUTION EVENT]` × 8
-- `[PRACTICE EVENT]` × 7
-- `[REPACKAGING SETTLEMENT EVENT]` × 1
-- _free-form (no bracket tag)_ × 6
-
-### Latest entries
-
-- `Edgar_20260629111734_1979` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_3 · Sales price: $10.09 · Sold by: Kirsten Ritschel
-- `Edgar_20260629141124_1981` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-29T14:11:22.649Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260629150331_1983` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Prep, set-up chocolate experience, clean up. For four people, each made thei…
-- `Edgar_20260629184921_1985` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.69 · Description: Oat milk
-- `Edgar_20260629185357_1987` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: First Etsy fullfillment
-- `Edgar_20260630004838_1991` · **Edgar** · [No Text Provided]
-- `Edgar_20260630011615_003` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_2 · Sales price: 29.53 · Sold by: Kirsten Ritschel
-- `Edgar_20260630012141_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix SSE stream crash + sheet-based QR dedup + remove stale Edgar/Rails conte…
-- `Edgar_20260630012320_009` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260630013531_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260630060133_003` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260630060236_005` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260630061805_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Fix expense parser: order-independent GAS extractExpenseDetails + detailed d…
-- `Edgar_20260630065317_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Verifying inventory level with Kirsten
-- `Edgar_20260630155920_011` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T15:59:18.571Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260630161708_013` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T16:17:07.659Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260630173542_015` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:35:41.470Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260630173712_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:37:12.190Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260630174705_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:47:02.977Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260630174708_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:47:02.975Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -68,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $4,361 | 11% | `2026-12-31` | 184 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 184 | — |
+| 2026 QR Code Sales | $40,000 | $4,361 | 11% | `2026-12-31` | 183 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 183 | — |
 
 ---
 
@@ -205,12 +167,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,378 total units · $1,443.91
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,382 total units · $1,455.52
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 10 | 435 | $790.06 |
+  | (uncategorized) | (unspecified) | 10 | 439 | $801.67 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
   | Cacao Mass | Retail Ready | 1 | 1 | $2.40 |
 
@@ -251,17 +213,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,271.16**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$41.26**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -275,7 +233,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-06-28 | deepseek | Governor Sheet-Permission Sync: Created GAS script (GovernorSheetPermissionSync.js) that syncs Main Ledger editor list to governor roster + sentinels. Rule: ADD governors/sentinels from Contact sheet not yet editors; REMOVE only editors IN Contact sheet who aren't governor/sentinel; KEEP everyone not in Contact sheet (GCP SAs, externals). Wired via doGet(?action=sync_governor_editors) + daily 04:00 UTC cron. See GOVERNOR_SHEET_PERMISSION_SYNC_PLAN.md.
 - 2026-06-28 | claude | Disassociated sentiment_importer from dao_protocol in current-state docs: Edgar = standalone Python dao_protocol (own host); Perch = sentiment_importer (Rails). Fixed WORKSPACE_CONTEXT §6 prose+table (incl. dao_protocol link that pointed at dao_client repo), TRUECHAIN AI-docs table, and EDGAR(...) diagram labels in SCORING_REVIEW_QUEUE_PLAN + TRUESIGHT_GROUNDING. Historical migration plans (EDGAR_DAO_EXTRACTION_PLAN etc.) left intact as accurate record.
 
-_All dated lines on/after 2026-06-23_ (5):
+_All dated lines on/after 2026-06-24_ (5):
 
 - 2026-06-28 | deepseek | Review Queue SOP + auto-review: Created REVIEW_QUEUE_SOP.md with automatable rules (Scenario A: name matching against dao_members.json then lineage-credentials; Scenario B: compute TDG from event Amount, not Grok's estimate; Scenario C: Edgar should enforce TDG server-side). Reviewed ~500 scored chatlogs — 475 approved via Deep Seek RSA key signing [CONTRIBUTION REVIEW EVENT]s to Edgar. 5 remaining edge cases (unrecognized names: X, Gergana, openai, Nora, Edgar-no-contributor).
 - 2026-06-28 | deepseek | dao_members.json expanded to 406 contributors (was 18): DaoMembersCache.js now seeds byName from ALL Contributors contact information sheet entries, not just signature-holders. Enables sentinel section on truesight.me/members.html (6 sentinels: Sophia Truesight, Claude Anthropic, Kimi Moon, Deep Seek, truesight-autopilot, Open Ai).
@@ -300,6 +258,7 @@ _All dated lines on/after 2026-06-23_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a7e7857 | 2026-06-30 20:31:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7694e25 | 2026-06-30 15:14:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 db5c084 | 2026-06-30 10:09:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6734b67 | 2026-06-30 04:47:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,10 +288,6 @@ bad4b7e | 2026-06-24 20:20:30 +0000 | chore(stats): refresh stats/current.json [
 ba83e60 | 2026-06-24 15:20:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9c89006 | 2026-06-24 09:59:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40870f7 | 2026-06-24 04:48:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f2c6719 | 2026-06-23 20:35:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
-50c54cb | 2026-06-23 15:36:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6e49f35 | 2026-06-23 10:21:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a21ddf7 | 2026-06-23 04:43:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -344,6 +299,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8d7f029 | 2026-06-30 13:29:37 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
+6178c45 | 2026-06-30 13:29:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 b36b4d7 | 2026-06-30 08:10:47 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
 75ff285 | 2026-06-30 08:10:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 a0f4d49 | 2026-06-30 03:10:32 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
@@ -382,8 +339,6 @@ ea9fdba | 2026-06-28 15:04:04 -0700 | registry: record sophia handoff thread_id 
 a27bc48 | 2026-06-28 15:03:23 -0700 | handoff(sophia): post-repackaging cleanup plan — auto-populate Currencies + offchain location after repackaging GAS
 5d59c40 | 2026-06-28 13:32:59 -0700 | SOP: switch primary name match to dao_members.json, lineage-credentials as fallback
 73f9fef | 2026-06-28 13:01:03 -0700 | Proposal CLI plan: clean resume pointer + tracker (parseable by auto-advance) (#628)
-40f2699 | 2026-06-28 12:54:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-28 UTC)
-63d93ed | 2026-06-28 12:54:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-28 UTC)
 … (truncated)
 ```
 
@@ -400,11 +355,6 @@ b95d84a | 2026-06-28 16:01:22 -0700 | Transfer script: O(n) refactoring, batch t
 8be8c7c | 2026-06-28 13:14:33 -0700 | DaoMembersCache: seed byName from all Contact sheet names, not just signature-holders
 256d247 | 2026-06-28 13:06:54 -0700 | feat: add update_tabulation endpoint for retroactive vote dedup (#376)
 2350874 | 2026-06-28 12:43:13 -0700 | fix: dedup proposal votes by contributor identity, not just by key (#376)
-f3fdfa4 | 2026-06-23 10:15:21 -0700 | feat: add processCurrencyDefinitionsFromTelegramChatLogs GAS handler (1N6o00) (#376)
-ce68b47 | 2026-06-22 18:22:49 -0700 | fix(qr-gen): repoint batch-zip upload off archived qr_codes -> lineage-assets (#375)
-029dc6c | 2026-06-22 18:10:03 -0700 | Review approve: write reviewer-selected contributor back to Col A (#374)
-4ffe230 | 2026-06-22 18:06:10 -0700 | fix(qr-gen): repoint serialized-QR PNG storage from archived qr_codes -> lineage-assets (#373)
-578df97 | 2026-06-22 17:57:43 -0700 | Review write-back: match Scored Chatlogs row by (hash + contributor), not hash alone (#372)
 ```
 
 ### `dapp` → `dapp`
@@ -428,12 +378,13 @@ _(no commits on origin/main in window)_
 ### `proposals` → `proposals`
 
 ```
-_(no commits on origin/main in window)_
+b1b1eaa | 2026-06-30 20:31:56 -0700 | Merge proposal: 18
 ```
 
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+455bc76 | 2026-06-30 15:28:41 -0700 | chore: refresh Agroverse store inventory snapshot
 102677d | 2026-06-30 10:03:09 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4095414 | 2026-06-29 18:28:39 -0700 | chore: refresh Agroverse store inventory snapshot
 681953f | 2026-06-29 11:35:18 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -448,7 +399,6 @@ ddfd787 | 2026-06-27 04:28:35 -0700 | chore: refresh Agroverse store inventory s
 fbe83bb | 2026-06-25 23:28:44 -0700 | chore: refresh Agroverse store inventory snapshot
 ee79c37 | 2026-06-25 09:46:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 5fe3701 | 2026-06-24 09:52:31 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-1ddcb08 | 2026-06-23 10:05:12 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -473,6 +423,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-07-01T040709Z_expense-parsing-fix-aora-program-scope.md`
+
+- **posted_at_utc:** `2026-07-01T04:07:09Z`  
+- **slug:** `expense-parsing-fix-aora-program-scope`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Engineering (Tokenomics)** — Expense parsing logic hardened: GAS extraction now order-independent with detailed diagnostics.
+
 ### `beer-hall_2026-06-30T035358Z_sophia-expense-reporting-plan-live.md`
 
 - **posted_at_utc:** `2026-06-30T03:53:58Z`  
@@ -490,15 +449,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Ops (Inventory)** — Repackaging settlement executed: 14 Oscar 81% bars and 2 ceremonial cacao units settled; inventory updated.
-
-### `beer-hall_2026-06-28T040310Z_edgar-registration-oscar-sales-qr-flag.md`
-
-- **posted_at_utc:** `2026-06-28T04:03:10Z`  
-- **slug:** `edgar-registration-oscar-sales-qr-flag`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Ops (Governance)** — New program registration request submitted by Edgar (XysraBvHfNTSvAraec).
 
 ---
 
@@ -519,55 +469,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 12:52:43 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-23`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-26 | 25 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_8 | — | — |
-| 2026-06-26 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_1 | — | — |
-| 2026-06-27 | 25 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_33 | VkoLViXv9l3t | — |
-| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
-| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: [SALES EVENT] with QR/price but sold-by or cash proceeds not i… |
-| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-27 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-27 | 35.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_3 | — | — |
-| 2026-06-29 | 10.09 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_3 | zpFSulJXVklN | — |
-| 2026-06-29 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_7 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_6 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_5 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_4 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_2 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_1 | — | — |
-| 2026-06-30 | 29.53 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_2 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
