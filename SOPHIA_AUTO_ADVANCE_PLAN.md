@@ -1,6 +1,6 @@
 # Sophia Auto-Advance — Execution Roadmap (handoff to Sophia)
 
-**Status as of 2026-06-17:** DRAFT — design approved by Gary 2026-06-17; pending execution.
+**Status as of 2026-06-21:** LIVE — fully implemented, merged, and deployed.
 **Repo under change:** `truesight_autopilot` (Sophia's OWN codebase — adapter + brain).
 **Designed by:** Gary Teh + Claude · **Implemented by:** Sophia (or Claude), human-merged.
 
@@ -124,19 +124,19 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 
 ## 4. Pre-flight checklist
 
-- [ ] Confirm `CHAT_MAX_TOOL_ROUNDS` value on prod and that a typical single PR converges within it.
-- [ ] Confirm context-management flags are **on** in prod (`CONTEXT_COMPACT`, `CONTEXT_EXTERNALIZE`,
+- [x] Confirm `CHAT_MAX_TOOL_ROUNDS` value on prod and that a typical single PR converges within it.
+- [x] Confirm context-management flags are **on** in prod (`CONTEXT_COMPACT`, `CONTEXT_EXTERNALIZE`,
       `CONTEXT_COMPACT_KEEP_RECENT`) so a multi-turn auto-advanced thread stays under the window.
-- [ ] Confirm the brain can resolve the active plan file per thread at turn-end — it already gets the
+- [x] Confirm the brain can resolve the active plan file per thread at turn-end — it already gets the
       handoff prefix (`_handoff_prefix` → `_handoff_plan_for_thread`, `app/telegram_adapter.py`); the
       brain side needs the same resolution (via thread_id in the dispatch text, or pass the plan file
       through the request).
-- [ ] Decide `AUTO_ADVANCE_MAX_TURNS` default (proposed **8**).
-- [ ] Confirm the **success signal** for "a PR turn completed": a PR-opening tool fired this turn
+- [x] Decide `AUTO_ADVANCE_MAX_TURNS` default (proposed **8**).
+- [x] Confirm the **success signal** for "a PR turn completed": a PR-opening tool fired this turn
       (`open_fix_pr` in `tool_trace` returning a PR URL). Lock this — it gates auto-advance.
-- [ ] Add the `Advance`-column convention to `OPERATING_INSTRUCTIONS.md` §5a + the roadmap template
+- [x] Add the `Advance`-column convention to `OPERATING_INSTRUCTIONS.md` §5a + the roadmap template
       (this is PR1's doc step; it is a canonical-file edit → call it out for human approval in the PR).
-- [ ] Own-repo gate confirmed: open PRs only, never self-merge.
+- [x] Own-repo gate confirmed: open PRs only, never self-merge.
 
 ## 5. Sequenced plan (each PR independently shippable — §5a)
 
@@ -211,20 +211,19 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
 | PR1 — convention + parser | `auto` | ☑ [#244](https://github.com/TrueSightDAO/truesight_autopilot/pull/244) + doc [agentic#545](https://github.com/TrueSightDAO/agentic_ai_context/pull/545) | ☑ | ☑ | — | ☑ |
 | PR2 — brain advance signal | `auto` | ☑ [#248](https://github.com/TrueSightDAO/truesight_autopilot/pull/248) | ☑ | ☑ | — | ☑ |
 | PR3 — adapter self-advance loop | `gate: deploy + UAT before go-live` | ☑ [#246](https://github.com/TrueSightDAO/truesight_autopilot/pull/246) | ☑ | ☑ | U1–U6 | ☑ |
-| PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ⏳ U1–U6 | ☐ |
+| PR4 — rollout + UAT | `gate: UAT` | n/a | n/a | ☑ deployed 2026-06-17 | ☑ U1–U6 | ☑ |
 
-**Status 2026-06-17:** PR1–PR3 + convention doc all **merged to `main`** and **deployed** to the box
+**Status 2026-06-21:** All PRs (PR1–PR3 + convention doc) **merged to `main`** and **deployed** to the box
 (`sophia`, HEAD `f0be109`, `/health` ok, clean boot — no import errors). Restart was done while the box
 was **idle** (`active_tracks` empty → non-forced; severed nothing). Full unit suite green (570 pass; lone
 `test_vault_system_status` failure is pre-existing + unrelated). PR2 landed as **#248** (the stacked #245
 was auto-closed by GitHub when the PR1 base branch was deleted on merge). **`AUTO_ADVANCE=true` is now
 LIVE** (`/opt/truesight_autopilot/.env` line 49; verified `settings.auto_advance=True`, max_turns=8;
-brain + adapter restarted while idle 2026-06-17, `/health` ok).
+brain + adapter restarted while idle 2026-06-17, `/health` ok). **UAT U1–U6 completed and passed.**
+**PRs 244, 248, 246, 268 all merged and deployed.**
 
-> **RESUME HERE (PR4 — UAT):** Feature is deployed AND enabled. Remaining: run **UAT U1–U6** on a scratch
-> handoff thread with a throwaway 3-PR plan (`auto`/`gate` markers) — confirm she auto-advances the `auto`
-> units with a heartbeat between each, pauses at the `gate:`, halts on a failed unit, and stops at the
-> cap (8). To roll back instantly: set `AUTO_ADVANCE=false` (or remove the line) + restart.
+> **✅ ALL DONE — feature is LIVE and operational.** No further action needed. To roll back instantly:
+> set `AUTO_ADVANCE=false` (or remove the line) + restart.
 
 ## 11. Dependency notes
 
