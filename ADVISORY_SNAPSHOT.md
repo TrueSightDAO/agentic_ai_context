@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-01T05:05:59Z`
+- Generated (UTC): `2026-07-01T10:30:05Z`
 - Look-back: **7** calendar days (`2026-06-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 12
+- `[CONTRIBUTION EVENT]` × 14
 - `[SALES EVENT]` × 9
 - `[PRACTICE EVENT]` × 7
-- `[CONTRIBUTION REVIEW EVENT]` × 4
+- `[CONTRIBUTION REVIEW EVENT]` × 1
 - `[REPACKAGING SETTLEMENT EVENT]` × 1
-- _free-form (no bracket tag)_ × 6
+- _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260629185357_1987` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: First Etsy fullfillment
-- `Edgar_20260630004838_1991` · **Edgar** · [No Text Provided]
-- `Edgar_20260630011615_003` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_CC_20260620_2 · Sales price: 29.53 · Sold by: Kirsten Ritschel
 - `Edgar_20260630012141_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix SSE stream crash + sheet-based QR dedup + remove stale Edgar/Rails conte…
 - `Edgar_20260630012320_009` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260630013531_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
@@ -61,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260630220801_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20260701043919_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Members page single-source: PR1 + PR2 (cron bump + event-driven poke)
 - `Edgar_20260701045014_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: PR3: Sentinel entries + is_sentinel flag in index.json
+- `Edgar_20260701054854_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Fixed treasury/dao_members caching pipeline + members page single-source con…
+- `Edgar_20260701071026_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Governor sheet permission rotation: audit, revoke non-governors, grant new g…
+- `Edgar_20260701085541_035` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 
 ---
 
@@ -228,11 +228,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,730.39 total units · $12,904.24
+- Manager record: `Gary Teh` · 26 SKU lines · 14,680.39 total units · $12,854.24
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,654.21 | $12,854.26 |
+  | (uncategorized) | (unspecified) | 24 | 14,604.21 | $12,804.26 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -253,7 +253,7 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,271.16**
+- USD on hand: **$4,221.16**
 - Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
 - USD provisioned for voting-rights cash-out: **$41.26**
 
@@ -300,6 +300,8 @@ _All dated lines on/after 2026-06-24_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7b25ecc | 2026-07-01 01:18:40 -0400 | refactor(members): single-source from index.json, drop separate dao_members fetch (#263)
+aab6284 | 2026-07-01 05:08:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7e7857 | 2026-06-30 20:31:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7694e25 | 2026-06-30 15:14:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 db5c084 | 2026-06-30 10:09:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -341,6 +343,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9500aa9 | 2026-07-01 03:10:44 -0400 | docs: SOP for seasonal governor sheet permission rotation
+a1d4532 | 2026-07-01 01:06:21 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
+04625eb | 2026-07-01 01:06:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
 8dca2bb | 2026-07-01 00:26:23 -0400 | handoff: members page single-source parked GO-ready in thread 8185
 37ce722 | 2026-07-01 00:23:37 -0400 | handoff: register members page single-source consolidation (draft, awaiting trigger+GO)
 ca2f94c | 2026-07-01 00:21:40 -0400 | plan: members page reliability + single-source consolidation roadmap
@@ -378,9 +383,6 @@ d6c4dcf | 2026-06-28 16:18:04 -0700 | docs: disassociate sentiment_importer from
 4325d1f | 2026-06-28 15:51:25 -0700 | rename: POST-REPACKAGING CLEANUP → REPACKAGING SETTLEMENT throughout plan
 d1a1f59 | 2026-06-28 15:35:03 -0700 | Update context: review queue complete, governor sync deployed, SOP created
 6dfd039 | 2026-06-28 15:28:58 -0700 | Governor sheet sync plan v2: log-based safelist, SA pattern detection
-6eed131 | 2026-06-28 15:25:51 -0700 | Add Governor Sheet-Permission Sync implementation plan
-0766a4c | 2026-06-28 15:20:37 -0700 | plan(post-repackaging-cleanup): v3 — add full surface checklist
-e019a10 | 2026-06-28 15:16:00 -0700 | plan(post-repackaging-cleanup): v2 — switch to Edgar event → dispatch → GAS pattern
 … (truncated)
 ```
 
@@ -426,6 +428,7 @@ b1b1eaa | 2026-06-30 20:31:56 -0700 | Merge proposal: 18
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8fc82a0 | 2026-07-01 10:16:44 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 455bc76 | 2026-06-30 15:28:41 -0700 | chore: refresh Agroverse store inventory snapshot
 102677d | 2026-06-30 10:03:09 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4095414 | 2026-06-29 18:28:39 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -522,7 +525,6 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 
 | Year-Month | Monthly USD | Cumulative USD | Last updated |
 |------------|-------------|------------------|---------------|
-| 2025-05 | 825.37 | 6073.42 | 2025-12-07 19:14:46 |
 | 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
 | 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
 | 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
@@ -535,7 +537,8 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 21:51:13 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 0 | 16709.58386 | 7/1/2026 2:50:50 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-24`; scanned last **600** data rows)
 
