@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-01T10:30:05Z`
+- Generated (UTC): `2026-07-01T15:18:46Z`
 - Look-back: **7** calendar days (`2026-06-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-06-30T10:59:13.947Z`
+- Generated (UTC): `2026-07-01T10:59:13.315Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -103,12 +103,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **371**, follow_up **70**, bulk **0**, unknown **2** (data rows: **443**)
+- **Email Agent Follow Up** — logged sends: warmup **382**, follow_up **70**, bulk **0**, unknown **2** (data rows: **454**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **321**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
+- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **332**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -300,6 +300,7 @@ _All dated lines on/after 2026-06-24_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+835a1b0 | 2026-07-01 10:31:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b25ecc | 2026-07-01 01:18:40 -0400 | refactor(members): single-source from index.json, drop separate dao_members fetch (#263)
 aab6284 | 2026-07-01 05:08:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7e7857 | 2026-06-30 20:31:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -343,6 +344,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+db3dda5 | 2026-07-01 06:30:22 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
+0d48cd6 | 2026-07-01 06:30:21 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
 9500aa9 | 2026-07-01 03:10:44 -0400 | docs: SOP for seasonal governor sheet permission rotation
 a1d4532 | 2026-07-01 01:06:21 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
 04625eb | 2026-07-01 01:06:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
@@ -381,8 +384,6 @@ b784c55 | 2026-06-28 16:49:06 -0700 | chore(roadmap): round-cap resilience COMPL
 d6c4dcf | 2026-06-28 16:18:04 -0700 | docs: disassociate sentiment_importer from dao_protocol (now separate standalone codebases) (#631)
 0ece68c | 2026-06-28 15:59:21 -0700 | Round-cap resilience: roadmap + §5d Pre-flight Completeness gate (#630)
 4325d1f | 2026-06-28 15:51:25 -0700 | rename: POST-REPACKAGING CLEANUP → REPACKAGING SETTLEMENT throughout plan
-d1a1f59 | 2026-06-28 15:35:03 -0700 | Update context: review queue complete, governor sync deployed, SOP created
-6dfd039 | 2026-06-28 15:28:58 -0700 | Governor sheet sync plan v2: log-based safelist, SA pattern detection
 … (truncated)
 ```
 
@@ -538,7 +539,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/1/2026 2:50:50 |
+| 2026-07 | 0 | 16709.58386 | 7/1/2026 7:51:21 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-24`; scanned last **600** data rows)
 
