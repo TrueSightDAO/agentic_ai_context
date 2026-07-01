@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-01T15:18:46Z`
+- Generated (UTC): `2026-07-01T20:24:52Z`
 - Look-back: **7** calendar days (`2026-06-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,14 +34,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 14
 - `[SALES EVENT]` × 9
-- `[PRACTICE EVENT]` × 7
-- `[CONTRIBUTION REVIEW EVENT]` × 1
+- `[PRACTICE EVENT]` × 8
 - `[REPACKAGING SETTLEMENT EVENT]` × 1
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260630012141_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix SSE stream crash + sheet-based QR dedup + remove stale Edgar/Rails conte…
 - `Edgar_20260630012320_009` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260630013531_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260630060133_003` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
@@ -61,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260701054854_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Fixed treasury/dao_members caching pipeline + members page single-source con…
 - `Edgar_20260701071026_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Governor sheet permission rotation: audit, revoke non-governors, grant new g…
 - `Edgar_20260701085541_035` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260701155030_037` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-01T15:50:28.275Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -300,6 +299,7 @@ _All dated lines on/after 2026-06-24_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+89672ca | 2026-07-01 15:21:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 835a1b0 | 2026-07-01 10:31:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b25ecc | 2026-07-01 01:18:40 -0400 | refactor(members): single-source from index.json, drop separate dao_members fetch (#263)
 aab6284 | 2026-07-01 05:08:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -344,6 +344,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fded38f | 2026-07-01 11:19:00 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
+e4663ca | 2026-07-01 11:18:59 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
 db3dda5 | 2026-07-01 06:30:22 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
 0d48cd6 | 2026-07-01 06:30:21 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
 9500aa9 | 2026-07-01 03:10:44 -0400 | docs: SOP for seasonal governor sheet permission rotation
@@ -382,8 +384,6 @@ fd841ff | 2026-06-28 16:49:23 -0700 | docs: repackaging settlement SOP — full 
 b784c55 | 2026-06-28 16:49:06 -0700 | chore(roadmap): round-cap resilience COMPLETE — #275 merged + deployed (#633)
 4fee8cc | 2026-06-28 16:26:55 -0700 | chore(roadmap): round-cap resilience resume tracker — PR1 merged, #275 open (#632)
 d6c4dcf | 2026-06-28 16:18:04 -0700 | docs: disassociate sentiment_importer from dao_protocol (now separate standalone codebases) (#631)
-0ece68c | 2026-06-28 15:59:21 -0700 | Round-cap resilience: roadmap + §5d Pre-flight Completeness gate (#630)
-4325d1f | 2026-06-28 15:51:25 -0700 | rename: POST-REPACKAGING CLEANUP → REPACKAGING SETTLEMENT throughout plan
 … (truncated)
 ```
 
@@ -539,7 +539,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/1/2026 7:51:21 |
+| 2026-07 | 0 | 16709.58386 | 7/1/2026 12:51:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-24`; scanned last **600** data rows)
 
