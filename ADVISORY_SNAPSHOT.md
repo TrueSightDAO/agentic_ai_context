@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-02T09:42:59Z`
+- Generated (UTC): `2026-07-02T14:38:35Z`
 - Look-back: **7** calendar days (`2026-06-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -77,7 +77,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-01T10:59:13.315Z`
+- Generated (UTC): `2026-07-02T10:59:14.049Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -102,12 +102,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **382**, follow_up **70**, bulk **0**, unknown **2** (data rows: **454**)
+- **Email Agent Follow Up** — logged sends: warmup **394**, follow_up **70**, bulk **0**, unknown **2** (data rows: **466**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **332**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
+- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **344**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -299,6 +299,7 @@ _All dated lines on/after 2026-06-25_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ae5caaf | 2026-07-02 09:45:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 533f8b4 | 2026-07-02 04:43:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 04a6207 | 2026-07-01 20:26:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 89672ca | 2026-07-01 15:21:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -342,6 +343,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6d5b970 | 2026-07-02 05:43:12 -0400 | chore(previews): refresh Beer Hall preview (2026-07-02 UTC)
+cc196c0 | 2026-07-02 05:43:12 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-02 UTC)
 2f1f2fe | 2026-07-02 03:58:19 -0400 | handoff: Large Spike Index parked GO-ready in thread 8297 (#640)
 552350a | 2026-07-02 03:55:55 -0400 | handoff: register Large Spike Index (/large_spikes) draft (awaiting trigger+GO) (#639)
 0e98016 | 2026-07-02 00:39:56 -0400 | chore(previews): refresh Beer Hall preview (2026-07-02 UTC)
@@ -380,8 +383,6 @@ a53f829 | 2026-06-29 13:24:33 -0700 | chore(previews): refresh Beer Hall preview
 20b114d | 2026-06-29 09:23:54 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
 7dcf8ea | 2026-06-29 09:23:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
 23597d5 | 2026-06-29 04:32:06 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
-50ee546 | 2026-06-29 04:32:05 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
-19354dd | 2026-06-28 22:12:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
 … (truncated)
 ```
 
@@ -542,7 +543,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/2/2026 1:52:20 |
+| 2026-07 | 0 | 16709.58386 | 7/2/2026 6:54:02 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-25`; scanned last **600** data rows)
 
