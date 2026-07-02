@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-02T04:39:34Z`
+- Generated (UTC): `2026-07-02T09:42:59Z`
 - Look-back: **7** calendar days (`2026-06-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
+- `[CONTRIBUTION EVENT]` × 18
 - `[PRACTICE EVENT]` × 10
-- `[SALES EVENT]` × 8
+- `[SALES EVENT]` × 4
+- `[INVENTORY MOVEMENT]` × 1
 - _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260630065317_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Verifying inventory level with Kirsten
-- `Edgar_20260630155920_011` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T15:59:18.571Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260630161708_013` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T16:17:07.659Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260630173542_015` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:35:41.470Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260630173712_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:37:12.190Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260630174705_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:47:02.977Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260630174708_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-06-30T17:47:02.975Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
@@ -59,6 +56,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260701225834_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
 - `Edgar_20260702014328_045` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Fix three production bugs on perch.truesight.me (500 errors + missing chart …
 - `Edgar_20260702015048_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up on Nelanco AWS Account hack charges in May
+- `Edgar_20260702060025_049` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Linda Gorski · Inventory Item: Agroverse 81% Cacao Chocolate Bar 50g \| 8 Ounce Nibs CP340992735BR \| Kirs…
+- `Edgar_20260702071643_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Built Etsy order monitoring integration for Agroverse Shop GAS project (585 …
+- `Edgar_20260702075919_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: SPCX white-label, crypto cleanup, and Agroverse inventory sync
+- `Edgar_20260702080027_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Large Spike Index (/large_spikes) — roadmap + Sophia handoff
 
 ---
 
@@ -203,12 +204,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,382 total units · $1,455.52
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,375 total units · $1,435.20
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 10 | 439 | $801.67 |
+  | (uncategorized) | (unspecified) | 10 | 432 | $781.35 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
   | Cacao Mass | Retail Ready | 1 | 1 | $2.40 |
 
@@ -247,7 +248,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 | Tess Walkowski | 2 | 13 | $108.75 |
 
-_(+26 more in JSON snapshot.)_
+_(+27 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
@@ -298,6 +299,7 @@ _All dated lines on/after 2026-06-25_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+533f8b4 | 2026-07-02 04:43:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 04a6207 | 2026-07-01 20:26:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 89672ca | 2026-07-01 15:21:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 835a1b0 | 2026-07-01 10:31:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -340,6 +342,10 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2f1f2fe | 2026-07-02 03:58:19 -0400 | handoff: Large Spike Index parked GO-ready in thread 8297 (#640)
+552350a | 2026-07-02 03:55:55 -0400 | handoff: register Large Spike Index (/large_spikes) draft (awaiting trigger+GO) (#639)
+0e98016 | 2026-07-02 00:39:56 -0400 | chore(previews): refresh Beer Hall preview (2026-07-02 UTC)
+50f65fc | 2026-07-02 00:39:55 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-02 UTC)
 b382e21 | 2026-07-01 23:47:21 -0400 | Merge pull request #638 from TrueSightDAO/auto/advisory-refresh-2026-07-02
 525cb89 | 2026-07-02 03:47:12 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-02 UTC)
 66d8a6f | 2026-07-01 16:25:16 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
@@ -376,10 +382,6 @@ a53f829 | 2026-06-29 13:24:33 -0700 | chore(previews): refresh Beer Hall preview
 23597d5 | 2026-06-29 04:32:06 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
 50ee546 | 2026-06-29 04:32:05 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
 19354dd | 2026-06-28 22:12:27 -0700 | chore(previews): refresh Beer Hall preview (2026-06-29 UTC)
-e4ffa4f | 2026-06-28 22:12:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
-d741fd3 | 2026-06-28 21:08:22 -0700 | Merge pull request #635 from TrueSightDAO/auto/advisory-refresh-2026-06-29
-1c2d6fc | 2026-06-29 04:08:11 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-29 UTC)
-fea6d9d | 2026-06-28 16:53:40 -0700 | docs: repackaging settlement SOP + v3 plan (#634)
 … (truncated)
 ```
 
@@ -425,6 +427,9 @@ b1b1eaa | 2026-06-30 20:31:56 -0700 | Merge proposal: 18
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+00cb449 | 2026-07-02 09:34:45 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
+8c46e5f | 2026-07-02 03:59:01 -0400 | sync inventory snapshots via sync_agroverse_store_inventory.py (#16)
+32f1f3a | 2026-07-02 02:28:54 -0400 | chore: refresh Agroverse store inventory snapshot
 8fc82a0 | 2026-07-01 10:16:44 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 455bc76 | 2026-06-30 15:28:41 -0700 | chore: refresh Agroverse store inventory snapshot
 102677d | 2026-06-30 10:03:09 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -445,7 +450,10 @@ ee79c37 | 2026-06-25 09:46:53 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-_(no commits on origin/main in window)_
+28ab8fb | 2026-07-02 03:09:05 -0400 | chore: remove .clasp.json from tracking, add to .gitignore
+7074c49 | 2026-07-02 03:08:54 -0400 | fix: prevent double-encoding of Etsy OAuth scopes
+e8eec32 | 2026-07-02 03:04:11 -0400 | fix: correct Etsy OAuth URLs in GAS script
+624ea22 | 2026-07-02 02:53:08 -0400 | feat: add Etsy order monitoring to agroverse shop checkout
 ```
 
 ### `iching_oracle` → `oracle`
@@ -534,7 +542,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/1/2026 20:51:25 |
+| 2026-07 | 0 | 16709.58386 | 7/2/2026 1:52:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-25`; scanned last **600** data rows)
 
