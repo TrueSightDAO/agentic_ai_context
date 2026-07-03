@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-03T04:25:46Z`
+- Generated (UTC): `2026-07-03T09:42:49Z`
 - Look-back: **7** calendar days (`2026-06-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,8 +32,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[PRACTICE EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 25
+- `[PRACTICE EVENT]` × 5
 - `[INVENTORY MOVEMENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
@@ -43,7 +43,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260702080027_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Large Spike Index (/large_spikes) — roadmap + Sophia handoff
 - `Edgar_20260702164539_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-02T16:45:37.707Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 - `Edgar_20260703001720_009` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Micaelly  Pinheiro · Contributor Email: micaxlly@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
 - `Edgar_20260703002024_011` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Micaelly  Pinheiro · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
@@ -63,6 +62,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260703040617_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Diagnosed and resolved dao_members.json regression where only ~18 key-holder…
 - `Edgar_20260703041352_015` · **Edgar** · [VOTING RIGHTS WITHDRAWAL SETTLEMENT EVENT] Contributor: Linda Gorski · Voting Rights Withdrawn (TDG): 208 · Amount Paid (USD): 1.40
 - `Edgar_20260703042133_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Root-caused and fixed dao_members.json regression (only key-holders appearin…
+- `Edgar_20260703042639_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Designed and implemented full voting rights cash-out settlement pipeline acr…
 
 ---
 
@@ -229,11 +229,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 14,680.39 total units · $12,854.24
+- Manager record: `Gary Teh` · 26 SKU lines · 14,678.99 total units · $12,852.84
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 14,604.21 | $12,804.26 |
+  | (uncategorized) | (unspecified) | 24 | 14,602.81 | $12,802.86 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -301,6 +301,7 @@ _All dated lines on/after 2026-06-26_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4e46e77 | 2026-07-03 04:28:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 65bbe5d | 2026-07-02 23:09:05 -0400 | trigger redeploy [skip ci]
 eaca091 | 2026-07-02 23:09:05 -0400 | Merge branch 'main' of https://github.com/TrueSightDAO/truesight_me_beta
 8fd48ff | 2026-07-02 23:08:24 -0400 | Merge pull request #266 from TrueSightDAO/feat/update-voting-rights-contracts
@@ -350,6 +351,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d784612 | 2026-07-03 00:26:09 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
+6faf0e9 | 2026-07-03 00:26:08 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-03 UTC)
 bf39827 | 2026-07-02 23:28:48 -0400 | Merge pull request #641 from TrueSightDAO/auto/advisory-refresh-2026-07-03
 0c47b47 | 2026-07-03 03:28:36 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-03 UTC)
 0819ee3 | 2026-07-02 16:01:55 -0400 | chore(previews): refresh Beer Hall preview (2026-07-02 UTC)
@@ -388,8 +391,6 @@ e9eda23 | 2026-06-29 21:44:26 -0700 | chore(previews): refresh Beer Hall preview
 3d9d957 | 2026-06-29 21:44:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 2191bc7 | 2026-06-29 20:54:12 -0700 | Merge pull request #636 from TrueSightDAO/auto/advisory-refresh-2026-06-30
 3139a64 | 2026-06-30 03:54:03 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
-66ea32e | 2026-06-29 21:35:11 -0400 | fix(sop): correct expense reporting SOP to use GAS-compatible field names
-96b0ad4 | 2026-06-29 21:27:35 -0400 | feat: add SOPHIA_EXPENSE_REPORTING_PLAN.md — SOP for shipping expense reporting
 … (truncated)
 ```
 
@@ -435,6 +436,7 @@ b1b1eaa | 2026-06-30 20:31:56 -0700 | Merge proposal: 18
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a1f26f7 | 2026-07-03 09:37:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 27e8083 | 2026-07-02 20:28:41 -0400 | chore: refresh Agroverse store inventory snapshot
 00cb449 | 2026-07-02 09:34:45 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8c46e5f | 2026-07-02 03:59:01 -0400 | sync inventory snapshots via sync_agroverse_store_inventory.py (#16)
@@ -552,7 +554,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/2/2026 20:52:42 |
+| 2026-07 | 0 | 16709.58386 | 7/3/2026 1:50:17 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-26`; scanned last **600** data rows)
 
