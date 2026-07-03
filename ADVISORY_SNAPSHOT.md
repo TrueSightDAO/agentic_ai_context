@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-03T14:41:18Z`
+- Generated (UTC): `2026-07-03T19:57:33Z`
 - Look-back: **7** calendar days (`2026-06-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,20 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
+- `[CONTRIBUTION EVENT]` × 23
 - `[PRACTICE EVENT]` × 5
+- `[EMAIL VERIFICATION EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 2
-- `[EMAIL VERIFICATION EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- `[EMAIL REGISTERED EVENT]` × 1
 - `[VOTING RIGHTS WITHDRAWAL SETTLEMENT EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260702164539_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-02T16:45:37.707Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
-- `Edgar_20260703001720_009` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Micaelly  Pinheiro · Contributor Email: micaxlly@gmail.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
-- `Edgar_20260703002024_011` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Micaelly  Pinheiro · Inventory Item: Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 \| Cacao Mass \| …
 - `Edgar_20260703014820_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Code review + rectification roadmap: Large Spike Index (/large_spikes)
 - `Edgar_20260703022501_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Breakout chart design (regime gauge) + ready-to-build implementation plan
 - `Edgar_20260703022521_017` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek credits
@@ -63,6 +60,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260703041352_015` · **Edgar** · [VOTING RIGHTS WITHDRAWAL SETTLEMENT EVENT] Contributor: Linda Gorski · Voting Rights Withdrawn (TDG): 208 · Amount Paid (USD): 1.40
 - `Edgar_20260703042133_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Root-caused and fixed dao_members.json regression (only key-holders appearin…
 - `Edgar_20260703042639_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Designed and implemented full voting rights cash-out settlement pipeline acr…
+- `Edgar_20260703162139_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-03T16:21:18.594Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
+- `Edgar_20260703162300_023` · **Edgar** · [EMAIL REGISTERED EVENT] Email: theus.reis.ssa@gmail.com
+- `Edgar_20260703162420_025` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: S1NrH_VL-9FPz5jGlOdDKiykYj7j9DnLGPqE331YRtk · Email: theus.reis.ssa@gmail.com
 
 ---
 
@@ -301,6 +301,7 @@ _All dated lines on/after 2026-06-26_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5f956ef | 2026-07-03 14:54:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 55ac7c3 | 2026-07-03 09:43:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e46e77 | 2026-07-03 04:28:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 65bbe5d | 2026-07-02 23:09:05 -0400 | trigger redeploy [skip ci]
@@ -340,7 +341,7 @@ e7bbf6a | 2026-06-27 19:54:16 +0000 | chore(stats): refresh stats/current.json [
 1aae8a9 | 2026-06-26 20:20:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ca2c7a4 | 2026-06-26 15:13:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e8ba753 | 2026-06-26 09:59:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
-59c0d80 | 2026-06-26 04:52:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -352,6 +353,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5c6c262 | 2026-07-03 10:41:39 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
+9c3f74b | 2026-07-03 10:41:38 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-03 UTC)
 26bf54d | 2026-07-03 05:43:13 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
 65e9911 | 2026-07-03 05:43:11 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-03 UTC)
 d784612 | 2026-07-03 00:26:09 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
@@ -390,8 +393,6 @@ b36b4d7 | 2026-06-30 08:10:47 -0700 | chore(previews): refresh Beer Hall preview
 75ff285 | 2026-06-30 08:10:46 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 a0f4d49 | 2026-06-30 03:10:32 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
 b0ee2bd | 2026-06-30 03:10:31 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
-e9eda23 | 2026-06-29 21:44:26 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
-3d9d957 | 2026-06-29 21:44:25 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 … (truncated)
 ```
 
@@ -555,7 +556,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/3/2026 6:50:31 |
+| 2026-07 | 0 | 16709.58386 | 7/3/2026 12:52:26 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-26`; scanned last **600** data rows)
 
