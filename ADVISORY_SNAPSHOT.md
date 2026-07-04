@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-04T04:11:08Z`
+- Generated (UTC): `2026-07-04T09:05:08Z`
 - Look-back: **7** calendar days (`2026-06-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -301,6 +301,7 @@ _All dated lines on/after 2026-06-27_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+14ec4f5 | 2026-07-04 04:22:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b570f8d | 2026-07-03 19:59:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5f956ef | 2026-07-03 14:54:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 55ac7c3 | 2026-07-03 09:43:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -350,6 +351,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f5d5c16 | 2026-07-04 00:11:24 -0400 | chore(previews): refresh Beer Hall preview (2026-07-04 UTC)
+97f52d0 | 2026-07-04 00:11:23 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-04 UTC)
 83ee950 | 2026-07-03 23:22:24 -0400 | Merge pull request #642 from TrueSightDAO/auto/advisory-refresh-2026-07-04
 312a596 | 2026-07-04 03:22:16 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-04 UTC)
 9fdc0e7 | 2026-07-03 15:57:50 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
@@ -388,8 +391,6 @@ a1d4532 | 2026-07-01 01:06:21 -0400 | chore(previews): refresh Beer Hall preview
 ca2f94c | 2026-07-01 00:21:40 -0400 | plan: members page reliability + single-source consolidation roadmap
 c3c04f6 | 2026-06-30 21:07:29 -0700 | Merge pull request #637 from TrueSightDAO/auto/advisory-refresh-2026-07-01
 ef7d3a1 | 2026-07-01 04:07:17 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
-8d7f029 | 2026-06-30 13:29:37 -0700 | chore(previews): refresh Beer Hall preview (2026-06-30 UTC)
-6178c45 | 2026-06-30 13:29:36 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-06-30 UTC)
 … (truncated)
 ```
 
@@ -435,6 +436,7 @@ b1b1eaa | 2026-06-30 20:31:56 -0700 | Merge proposal: 18
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+9c625f7 | 2026-07-04 09:02:44 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a1f26f7 | 2026-07-03 09:37:22 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 27e8083 | 2026-07-02 20:28:41 -0400 | chore: refresh Agroverse store inventory snapshot
 00cb449 | 2026-07-02 09:34:45 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -551,7 +553,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/3/2026 20:50:32 |
+| 2026-07 | 0 | 16709.58386 | 7/4/2026 1:50:30 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-27`; scanned last **600** data rows)
 
