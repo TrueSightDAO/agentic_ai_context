@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-04T14:09:08Z`
+- Generated (UTC): `2026-07-04T19:45:08Z`
 - Look-back: **7** calendar days (`2026-06-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,8 +32,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 23
-- `[PRACTICE EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 22
+- `[PRACTICE EVENT]` × 6
 - `[EMAIL VERIFICATION EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 2
@@ -43,7 +43,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260703023223_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1155 · Description: Large Spike Index — code review rectification (RX1–RX4) + regime gauge redes…
 - `Edgar_20260703023758_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Design + review collaboration on the /large_spikes breakout dashboard (senti…
 - `Edgar_20260703030344_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1170 · Description: Consolidate shared nav + footer for truesight_me and agroverse_shop
 - `Edgar_20260703031013_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Implementation plan: make dao_client compute TDG (LLM-proof contribution sub…
@@ -63,6 +62,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260704032039_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Michael Johnson
 - `Edgar_20260704032141_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Responding to Joseph yeh from the dim sum club
 - `Edgar_20260704032509_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Corresponding on Kirsten warehouse information
+- `Edgar_20260704141347_033` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-04T14:13:45.976Z · hexagrams: [object Object] · advisory_summary: Morning oracle grounding session.
 
 ---
 
@@ -301,6 +301,7 @@ _All dated lines on/after 2026-06-27_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+223f17b | 2026-07-04 14:10:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1ddc9d1 | 2026-07-04 09:06:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 14ec4f5 | 2026-07-04 04:22:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b570f8d | 2026-07-03 19:59:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -340,7 +341,7 @@ d68b67a | 2026-06-28 15:35:34 -0700 | PR4: Add Post-Repackaging Cleanup contract
 e7bbf6a | 2026-06-27 19:54:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 010c83d | 2026-06-27 14:15:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6bca5c2 | 2026-06-27 09:13:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3a79893 | 2026-06-27 04:37:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -352,6 +353,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+03fb362 | 2026-07-04 10:09:29 -0400 | chore(previews): refresh Beer Hall preview (2026-07-04 UTC)
+76fb0bd | 2026-07-04 10:09:27 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-04 UTC)
 2f93a85 | 2026-07-04 05:05:22 -0400 | chore(previews): refresh Beer Hall preview (2026-07-04 UTC)
 e142908 | 2026-07-04 05:05:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-04 UTC)
 f5d5c16 | 2026-07-04 00:11:24 -0400 | chore(previews): refresh Beer Hall preview (2026-07-04 UTC)
@@ -390,8 +393,6 @@ db3dda5 | 2026-07-01 06:30:22 -0400 | chore(previews): refresh Beer Hall preview
 a1d4532 | 2026-07-01 01:06:21 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
 04625eb | 2026-07-01 01:06:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
 8dca2bb | 2026-07-01 00:26:23 -0400 | handoff: members page single-source parked GO-ready in thread 8185
-37ce722 | 2026-07-01 00:23:37 -0400 | handoff: register members page single-source consolidation (draft, awaiting trigger+GO)
-ca2f94c | 2026-07-01 00:21:40 -0400 | plan: members page reliability + single-source consolidation roadmap
 … (truncated)
 ```
 
@@ -554,7 +555,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 0 | 16709.58386 | 7/4/2026 6:50:11 |
+| 2026-07 | 0 | 16709.58386 | 7/4/2026 11:52:25 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-27`; scanned last **600** data rows)
 
