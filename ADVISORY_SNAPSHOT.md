@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-05T09:27:28Z`
+- Generated (UTC): `2026-07-05T14:16:18Z`
 - Look-back: **7** calendar days (`2026-06-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -80,7 +80,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-04T10:59:14.243Z`
+- Generated (UTC): `2026-07-05T10:59:13.725Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -301,6 +301,7 @@ _All dated lines on/after 2026-06-28_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a4a3758 | 2026-07-05 09:28:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f714c82 | 2026-07-05 04:43:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7a07075 | 2026-07-04 19:47:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 223f17b | 2026-07-04 14:10:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -351,6 +352,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c1fe7ad | 2026-07-05 05:27:49 -0400 | chore(previews): refresh Beer Hall preview (2026-07-05 UTC)
+26e1e09 | 2026-07-05 05:27:48 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-05 UTC)
 3983009 | 2026-07-05 02:42:43 -0400 | Handoff plan: /large_spikes disappearing-cards fix + breakout-gauge legibility (#644)
 6a70a4c | 2026-07-05 00:39:37 -0400 | chore(previews): refresh Beer Hall preview (2026-07-05 UTC)
 88ec351 | 2026-07-05 00:39:36 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-05 UTC)
@@ -389,8 +392,6 @@ cc196c0 | 2026-07-02 05:43:12 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b382e21 | 2026-07-01 23:47:21 -0400 | Merge pull request #638 from TrueSightDAO/auto/advisory-refresh-2026-07-02
 525cb89 | 2026-07-02 03:47:12 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-02 UTC)
 66d8a6f | 2026-07-01 16:25:16 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
-21c7037 | 2026-07-01 16:25:14 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-01 UTC)
-fded38f | 2026-07-01 11:19:00 -0400 | chore(previews): refresh Beer Hall preview (2026-07-01 UTC)
 … (truncated)
 ```
 
@@ -552,7 +553,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 68 | 16777.58386 | 7/5/2026 1:53:26 |
+| 2026-07 | 68 | 16777.58386 | 7/5/2026 6:56:44 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-28`; scanned last **600** data rows)
 
