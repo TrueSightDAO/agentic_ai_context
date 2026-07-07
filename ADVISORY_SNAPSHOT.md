@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-07T15:25:14Z`
+- Generated (UTC): `2026-07-07T20:24:53Z`
 - Look-back: **7** calendar days (`2026-06-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,16 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[QR CODE UPDATE EVENT]` × 15
-- `[CONTRIBUTION EVENT]` × 12
-- `[SALES EVENT]` × 4
-- `[PRACTICE EVENT]` × 4
+- `[CONTRIBUTION EVENT]` × 14
+- `[PRACTICE EVENT]` × 5
+- `[SALES EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260706165903_077` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_8 · Associated Member: Linda Gorski
-- `Edgar_20260706165907_079` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_9 · Associated Member: Linda Gorski
-- `Edgar_20260706165910_081` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_10 · Associated Member: Linda Gorski
 - `Edgar_20260706165912_083` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_11 · Associated Member: Linda Gorski
 - `Edgar_20260706165915_085` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_12 · Associated Member: Linda Gorski
 - `Edgar_20260706165919_087` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_13 · Associated Member: Linda Gorski
@@ -60,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260707030331_111` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260707030915_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Setting of DAO legal wrapper in Prospera
 - `Edgar_20260707035018_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: surfacing https://www.sosma.org.br/en/ as a potential partner for our tree p…
+- `Edgar_20260707160110_117` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-07T16:01:08.027Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260707163549_119` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Guild size reconfiguration on China side as well as alignment of FounderHaus…
+- `Edgar_20260707180929_121` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Figuring out Gary’s timing and accommodation in Florianopolis Brazil
 
 ---
 
@@ -288,6 +288,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-06-30 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+89eb995 | 2026-07-07 15:29:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e8bc5b3 | 2026-07-07 10:07:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c76b904 | 2026-07-07 04:34:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 63eb2a1 | 2026-07-06 20:28:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -337,6 +338,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+85014da | 2026-07-07 11:25:39 -0400 | chore(previews): refresh Beer Hall preview (2026-07-07 UTC)
+faedd27 | 2026-07-07 11:25:37 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-07 UTC)
 11d053b | 2026-07-07 06:06:20 -0400 | chore(previews): refresh Beer Hall preview (2026-07-07 UTC)
 54ec401 | 2026-07-07 06:06:19 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-07 UTC)
 97d935c | 2026-07-07 00:33:08 -0400 | chore(previews): refresh Beer Hall preview (2026-07-07 UTC)
@@ -375,8 +378,6 @@ f5d5c16 | 2026-07-04 00:11:24 -0400 | chore(previews): refresh Beer Hall preview
 83ee950 | 2026-07-03 23:22:24 -0400 | Merge pull request #642 from TrueSightDAO/auto/advisory-refresh-2026-07-04
 312a596 | 2026-07-04 03:22:16 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-04 UTC)
 9fdc0e7 | 2026-07-03 15:57:50 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
-924181d | 2026-07-03 15:57:49 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-03 UTC)
-5c6c262 | 2026-07-03 10:41:39 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
 … (truncated)
 ```
 
@@ -528,7 +529,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/7/2026 7:50:50 |
+| 2026-07 | 100.38 | 16809.96386 | 7/7/2026 12:53:48 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-30`; scanned last **600** data rows)
 
