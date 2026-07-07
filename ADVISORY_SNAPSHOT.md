@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-06T20:23:43Z`
-- Look-back: **7** calendar days (`2026-06-29` → today UTC)
+- Generated (UTC): `2026-07-07T03:36:27Z`
+- Look-back: **7** calendar days (`2026-06-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[QR CODE UPDATE EVENT]` × 15
-- `[CONTRIBUTION EVENT]` × 12
-- `[SALES EVENT]` × 5
-- `[PRACTICE EVENT]` × 4
-- _free-form (no bracket tag)_ × 2
-
-### Latest entries
-
-- `Edgar_20260706165338_069` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_11 · Associate Member: Linda Gorski
-- `Edgar_20260706165341_071` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_12 · Associate Member: Linda Gorski
-- `Edgar_20260706165344_073` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_13 · Associate Member: Linda Gorski
-- `Edgar_20260706165346_075` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_14 · Associate Member: Linda Gorski
-- `Edgar_20260706165903_077` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_8 · Associated Member: Linda Gorski
-- `Edgar_20260706165907_079` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_9 · Associated Member: Linda Gorski
-- `Edgar_20260706165910_081` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_10 · Associated Member: Linda Gorski
-- `Edgar_20260706165912_083` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_11 · Associated Member: Linda Gorski
-- `Edgar_20260706165915_085` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_12 · Associated Member: Linda Gorski
-- `Edgar_20260706165919_087` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_13 · Associated Member: Linda Gorski
-- `Edgar_20260706165923_089` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_14 · Associated Member: Linda Gorski
-- `Edgar_20260706170007_091` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260706170510_093` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024SA_20251227_32 · New Email: micaxlly@gmail.com
-- `Edgar_20260706170740_095` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_32 · Sales price: 32.38 · Sold by: Gary Teh
-- `Edgar_20260706171427_097` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 8 · Description: Looked up Santa Ana Fazenda QR codes on main ledger, updated QR code 2024SA_…
-- `Edgar_20260706171601_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: fix: harden update_qr_code CLI with canonical labels
-- `Edgar_20260706171719_101` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 718.45 · Description: Flight tickets for Gary to fly from LAX to ShangHai to attend discussions wi…
-- `Edgar_20260706182551_103` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-06T18:25:49.738Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260706185749_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: fix: align PRACTICE EVENT payloads with GAS canonical labels (Oracle + Capoe…
-- `Edgar_20260706185917_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: fix: align PRACTICE EVENT payloads with GAS canonical labels (Oracle + Capoe…
 
 ---
 
@@ -67,8 +30,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 | Goal | Target | Actual | % | Deadline | Days left | Pace |
 |------|--------|--------|---|----------|-----------|------|
-| 2026 QR Code Sales | $40,000 | $4,461 | 11% | `2026-12-31` | 178 | **behind** |
-| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 178 | — |
+| 2026 QR Code Sales | $40,000 | $4,461 | 11% | `2026-12-31` | 177 | **behind** |
+| USA Agroverse Partners | 100 | — | — | `2026-12-31` | 177 | — |
 
 ---
 
@@ -249,17 +212,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,281.93**
-- Brazilian Reis: R$2,511.97 · rate `0.2323` USD/BRL → ≈ **$583.53**
-- USD provisioned for voting-rights cash-out: **$41.26**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -269,7 +228,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-06-29 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-06-30 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -288,6 +247,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-06-29 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+63eb2a1 | 2026-07-06 20:28:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5009b67 | 2026-07-06 16:02:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 59b26db | 2026-07-06 11:14:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1ee7b03 | 2026-07-06 04:54:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -323,10 +283,6 @@ a7e7857 | 2026-06-30 20:31:30 +0000 | chore(stats): refresh stats/current.json [
 7694e25 | 2026-06-30 15:14:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 db5c084 | 2026-06-30 10:09:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6734b67 | 2026-06-30 04:47:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d3ff19a | 2026-06-29 20:27:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
-14f767f | 2026-06-29 16:25:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
-673bf6c | 2026-06-29 11:33:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
-2ef4628 | 2026-06-29 05:15:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -338,6 +294,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b76bfb6 | 2026-07-06 16:24:07 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
+092a4a5 | 2026-07-06 16:24:06 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
 c3487ba | 2026-07-06 11:59:27 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
 12a6de0 | 2026-07-06 11:59:26 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
 c7b3564 | 2026-07-06 07:12:23 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
@@ -376,8 +334,6 @@ f5d5c16 | 2026-07-04 00:11:24 -0400 | chore(previews): refresh Beer Hall preview
 d784612 | 2026-07-03 00:26:09 -0400 | chore(previews): refresh Beer Hall preview (2026-07-03 UTC)
 6faf0e9 | 2026-07-03 00:26:08 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-03 UTC)
 bf39827 | 2026-07-02 23:28:48 -0400 | Merge pull request #641 from TrueSightDAO/auto/advisory-refresh-2026-07-03
-0c47b47 | 2026-07-03 03:28:36 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-03 UTC)
-0819ee3 | 2026-07-02 16:01:55 -0400 | chore(previews): refresh Beer Hall preview (2026-07-02 UTC)
 … (truncated)
 ```
 
@@ -427,8 +383,6 @@ a1f26f7 | 2026-07-03 09:37:22 +0000 | chore: refresh store and partner inventory
 455bc76 | 2026-06-30 15:28:41 -0700 | chore: refresh Agroverse store inventory snapshot
 102677d | 2026-06-30 10:03:09 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4095414 | 2026-06-29 18:28:39 -0700 | chore: refresh Agroverse store inventory snapshot
-681953f | 2026-06-29 11:35:18 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-6789db8 | 2026-06-29 11:25:21 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -460,6 +414,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-07-07T033627Z_oracle-canonical-fixes-and-sales.md`
+
+- **posted_at_utc:** `2026-07-07T03:36:27Z`  
+- **slug:** `oracle-canonical-fixes-and-sales`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Engineering (Oracle)** — Standardized "PRACTICE EVENT" labels in the I Ching Oracle to ensure canonical payload handling for Capoeira and other programs.
+
 ### `beer-hall_2026-07-06T034432Z_etsy-integration-and-sales-processing.md`
 
 - **posted_at_utc:** `2026-07-06T03:44:32Z`  
@@ -477,15 +440,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Governance (Mechanics)** — Fixed retroactive vote deduplication logic to rely on contributor identity rather than cryptographic key.
-
-### `beer-hall_2026-07-04T032211Z_settlement-pipeline-tdg-hardening-members-fix.md`
-
-- **posted_at_utc:** `2026-07-04T03:22:11Z`  
-- **slug:** `settlement-pipeline-tdg-hardening-members-fix`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Governance (Settlement)** — Implemented full voting rights cash-out settlement pipeline across tokenomics and inventory scripts.
 
 ---
 
@@ -506,52 +460,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/6/2026 12:50:50 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-06-29`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-06-29 | 10.09 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_3 | zpFSulJXVklN | — |
-| 2026-06-29 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_7 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_6 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_5 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_4 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_2 | — | — |
-| 2026-06-29 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_1 | — | — |
-| 2026-06-30 | 29.53 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_CC_20260620_2 | — | — |
-| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_15 | — | — |
-| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_18 | — | — |
-| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_21 | — | — |
-| 2026-07-05 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_14 | — | — |
-| 2026-07-06 | 32.38 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_32 | UDtMWkpHbpcT | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
