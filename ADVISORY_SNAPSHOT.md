@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-08T03:54:19Z`
+- Generated (UTC): `2026-07-08T09:06:28Z`
 - Look-back: **7** calendar days (`2026-07-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,15 +33,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[QR CODE UPDATE EVENT]` × 15
-- `[CONTRIBUTION EVENT]` × 13
-- `[PRACTICE EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 12
+- `[PRACTICE EVENT]` × 6
 - `[SALES EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260706165923_089` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CB_20260620_14 · Associated Member: Linda Gorski
 - `Edgar_20260706170007_091` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260706170510_093` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024SA_20251227_32 · New Email: micaxlly@gmail.com
 - `Edgar_20260706170740_095` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_32 · Sales price: 32.38 · Sold by: Gary Teh
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260708023035_123` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Latitude: 43.084417 · Longitude: -77.603060
 - `Edgar_20260708025208_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Added TrueSight DAO Prospera legal entity approval as latest milestone on tr…
 - `Edgar_20260708025513_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix notarization commit messages to include full signed event text (match Ra…
+- `Edgar_20260708082233_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-08T08:22:31.187Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -289,6 +289,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-01 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5f5918a | 2026-07-08 03:56:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1e7eedb | 2026-07-07 22:41:14 -0400 | fix: handle order 0 correctly in timeline sort (0 was falsy, pushed to end)
 93028cd | 2026-07-07 22:39:34 -0400 | fix: use local date parsing for timeline dates to avoid UTC timezone shift
 a916548 | 2026-07-07 22:38:15 -0400 | fix: sync inline timeline events copy with Prospera milestone
@@ -328,7 +329,7 @@ ae5caaf | 2026-07-02 09:45:02 +0000 | chore(stats): refresh stats/current.json [
 89672ca | 2026-07-01 15:21:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 835a1b0 | 2026-07-01 10:31:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b25ecc | 2026-07-01 01:18:40 -0400 | refactor(members): single-source from index.json, drop separate dao_members fetch (#263)
-aab6284 | 2026-07-01 05:08:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -340,6 +341,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+55fff56 | 2026-07-07 23:54:32 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
+fe2f487 | 2026-07-07 23:54:31 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
 259b170 | 2026-07-07 22:52:43 -0400 | Merge pull request #647 from TrueSightDAO/auto/advisory-refresh-2026-07-08
 7ecde8b | 2026-07-08 02:52:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
 d3d015c | 2026-07-07 16:25:20 -0400 | chore(previews): refresh Beer Hall preview (2026-07-07 UTC)
@@ -378,8 +381,6 @@ b2f69b1 | 2026-07-04 15:45:30 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 03fb362 | 2026-07-04 10:09:29 -0400 | chore(previews): refresh Beer Hall preview (2026-07-04 UTC)
 76fb0bd | 2026-07-04 10:09:27 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-04 UTC)
 2f93a85 | 2026-07-04 05:05:22 -0400 | chore(previews): refresh Beer Hall preview (2026-07-04 UTC)
-e142908 | 2026-07-04 05:05:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-04 UTC)
-f5d5c16 | 2026-07-04 00:11:24 -0400 | chore(previews): refresh Beer Hall preview (2026-07-04 UTC)
 … (truncated)
 ```
 
@@ -416,6 +417,7 @@ b1b1eaa | 2026-06-30 20:31:56 -0700 | Merge proposal: 18
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+2e39986 | 2026-07-08 08:45:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 566618c | 2026-07-07 10:02:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 311f801 | 2026-07-06 11:16:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 13d1ec7 | 2026-07-06 11:06:03 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -528,7 +530,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/7/2026 20:50:57 |
+| 2026-07 | 100.38 | 16809.96386 | 7/8/2026 1:51:37 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-01`; scanned last **600** data rows)
 
