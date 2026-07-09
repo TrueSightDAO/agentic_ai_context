@@ -48,6 +48,32 @@ Yee DTC brief) and the invoice PDFs Gary prompt-styled on 2026-06-05. Match thes
 - Body rows: light zebra striping (alternate `#FFFFFF` / very light gray), thin `#DDDDDD` separators.
 - Cell text 9–10pt Helvetica Neue.
 
+## Overlap safety — binding on every generated PDF
+
+Content in tables, boxes, and callouts must **never overlap** adjacent columns,
+rows, or the page edge. Long strings (URLs, IDs, quantities, farm names) are the
+usual culprit. Every generator MUST bake these in:
+
+- **Fixed table layout + wrapping.** `table-layout: fixed;` with
+  `word-wrap: break-word; overflow-wrap: break-word; hyphens: auto;` on cells so
+  long text wraps inside its column instead of bleeding into the next one or off
+  the page.
+- **Top-aligned, padded cells.** `vertical-align: top;` and generous cell padding
+  (≥4pt) so a multi-line row never collides with the row below it.
+- **Keep boxes whole.** `page-break-inside: avoid;` on `tr`, `thead`, `blockquote`,
+  and headings so a row/box is not split across a page break (which reads as
+  overlap). `page-break-after: avoid;` on headings so a heading never strands at
+  the foot of a page away from its content.
+- **Header band is a block, not an overlay.** Draw the saffron band as a
+  normal-flow block element (or a canvas band with its own reserved height and a
+  body top-margin below it) — never absolutely positioned over body text.
+- **Verify before shipping.** Open the rendered PDF and confirm no cell text
+  crosses a column border and no box is clipped at a page edge.
+
+The canonical implementation is
+`scripts/build_usa_santos_production_spec_pdf.py` — copy its CSS block as the
+starting point for new HTML→PDF generators.
+
 ## Implementation notes
 
 - **Sophia's `app/tools/pdf_tools.py` currently uses `getSampleStyleSheet()` (reportlab defaults)** → it does NOT yet emit this style and renders Markdown tables as raw text. It must be updated to: register Helvetica Neue + Andale Mono, define ParagraphStyles per the type scale + palette, draw the saffron header band on the canvas, and convert Markdown tables to reportlab `Table`/`TableStyle`. Until then, Sophia PDFs will look off-brand.
@@ -59,4 +85,5 @@ Yee DTC brief) and the invoice PDFs Gary prompt-styled on 2026-06-05. Match thes
 - [ ] Helvetica Neue throughout (Andale Mono for code/IDs); no serif
 - [ ] Body `#222`, accents from the palette above
 - [ ] Tables rendered as tables (gray header, zebra) — **no raw `|` pipes**
+- [ ] Overlap-safe: fixed table layout + cell wrapping; no cell text crossing a column border; no box clipped at a page edge
 - [ ] Metadata block under title; muted-gray footer with page number
