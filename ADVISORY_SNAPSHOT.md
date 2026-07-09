@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-09T04:30:34Z`
+- Generated (UTC): `2026-07-09T10:03:46Z`
 - Look-back: **7** calendar days (`2026-07-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -289,6 +289,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4151d8a | 2026-07-09 04:34:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 be8e366 | 2026-07-08 20:06:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c84fd17 | 2026-07-08 14:57:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6b17e62 | 2026-07-08 09:08:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -339,6 +340,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c379795 | 2026-07-09 00:30:47 -0400 | chore(previews): refresh Beer Hall preview (2026-07-09 UTC)
+e4e54e8 | 2026-07-09 00:30:46 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-09 UTC)
 0128cbe | 2026-07-08 16:03:39 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
 754260b | 2026-07-08 16:03:38 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
 6a9974f | 2026-07-08 10:55:40 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
@@ -377,8 +380,6 @@ c1fe7ad | 2026-07-05 05:27:49 -0400 | chore(previews): refresh Beer Hall preview
 26e1e09 | 2026-07-05 05:27:48 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-05 UTC)
 3983009 | 2026-07-05 02:42:43 -0400 | Handoff plan: /large_spikes disappearing-cards fix + breakout-gauge legibility (#644)
 6a70a4c | 2026-07-05 00:39:37 -0400 | chore(previews): refresh Beer Hall preview (2026-07-05 UTC)
-88ec351 | 2026-07-05 00:39:36 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-05 UTC)
-9c755c0 | 2026-07-04 23:39:08 -0400 | Merge pull request #643 from TrueSightDAO/auto/advisory-refresh-2026-07-05
 … (truncated)
 ```
 
@@ -415,6 +416,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8985561 | 2026-07-09 09:59:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2e39986 | 2026-07-08 08:45:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 566618c | 2026-07-07 10:02:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 311f801 | 2026-07-06 11:16:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -527,7 +529,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/8/2026 20:53:42 |
+| 2026-07 | 100.38 | 16809.96386 | 7/9/2026 2:59:15 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-02`; scanned last **600** data rows)
 
