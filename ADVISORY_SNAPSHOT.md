@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-09T15:40:51Z`
+- Generated (UTC): `2026-07-09T20:18:54Z`
 - Look-back: **7** calendar days (`2026-07-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -41,7 +41,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260706170007_091` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260706170510_093` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024SA_20251227_32 · New Email: micaxlly@gmail.com
 - `Edgar_20260706170740_095` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_32 · Sales price: 32.38 · Sold by: Gary Teh
 - `Edgar_20260706171427_097` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 8 · Description: Looked up Santa Ana Fazenda QR codes on main ledger, updated QR code 2024SA_…
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260708025208_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Added TrueSight DAO Prospera legal entity approval as latest milestone on tr…
 - `Edgar_20260708025513_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Fix notarization commit messages to include full signed event text (match Ra…
 - `Edgar_20260708082233_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-08T08:22:31.187Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260709175251_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-09T17:52:49.920Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -289,6 +289,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4f1d681 | 2026-07-09 15:43:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8ad2a7d | 2026-07-09 10:05:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4151d8a | 2026-07-09 04:34:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 be8e366 | 2026-07-08 20:06:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,7 +329,6 @@ d5a19ca | 2026-07-02 23:07:56 -0400 | docs: update voting rights contracts with 
 66d3e47 | 2026-07-02 23:03:21 -0400 | feat: shared nav + footer via JS injection with root-relative paths (#264)
 bfbe0b0 | 2026-07-02 20:04:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 07cc1a7 | 2026-07-02 14:54:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
-ae5caaf | 2026-07-02 09:45:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -341,6 +341,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a3277e2 | 2026-07-09 11:41:09 -0400 | chore(previews): refresh Beer Hall preview (2026-07-09 UTC)
+627a2b7 | 2026-07-09 11:41:08 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-09 UTC)
 971bd07 | 2026-07-09 06:04:02 -0400 | chore(previews): refresh Beer Hall preview (2026-07-09 UTC)
 7f7be29 | 2026-07-09 06:04:01 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-09 UTC)
 c379795 | 2026-07-09 00:30:47 -0400 | chore(previews): refresh Beer Hall preview (2026-07-09 UTC)
@@ -379,8 +381,6 @@ b89ce75 | 2026-07-06 03:44:40 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 753c58a | 2026-07-05 15:50:57 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-05 UTC)
 7f61d72 | 2026-07-05 10:16:39 -0400 | chore(previews): refresh Beer Hall preview (2026-07-05 UTC)
 22dd5eb | 2026-07-05 10:16:38 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-05 UTC)
-c1fe7ad | 2026-07-05 05:27:49 -0400 | chore(previews): refresh Beer Hall preview (2026-07-05 UTC)
-26e1e09 | 2026-07-05 05:27:48 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-05 UTC)
 … (truncated)
 ```
 
@@ -530,7 +530,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/9/2026 7:50:40 |
+| 2026-07 | 100.38 | 16809.96386 | 7/9/2026 12:53:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-02`; scanned last **600** data rows)
 
