@@ -65,7 +65,7 @@ Older rows may use a **short** composite such as `Ceremonial … Alibaba:… + 8
 | **`off chain asset balance`** | Network totals by `Currency` | — |
 | **`Currencies`** (Main Ledger) | Catalog names, weights, prices + repackaging audit trail | A Currency, B Price in USD, K–M weights/SKU, **N Raw request text** (repackaging), **O Composition JSON URL** (repackaging) |
 | **`Currency Creation`** (Ops sheet `1qbZZhf…`, gid `2120959876`) | Per-output processing log for the repackaging planner flow | A Created at (ISO), B `{request_id}#{index}`, C Suggested Currency, D Unit Cost (USD), E Holder, F Payload JSON |
-| **`Telegram Chat Logs`** (Ops sheet `1qbZZhf…`) | Intake log for all DApp submissions including `[REPACKAGING BATCH EVENT]` | Col G holds the full signed text; Edgar writes it on `submit_contribution` |
+| **`Telegram Chat Logs`** (Ops sheet `1qbZZhf…`) | Intake log for all DApp submissions including `[REPACKAGING BATCH EVENT]` and `[REPACKAGING SETTLEMENT EVENT]` | Col G holds the full signed text (Edgar writes it on `submit_contribution`). **Col R is the processor dedup gate** — GAS handlers scan Col G for their event tag and skip rows where Col R already has `PROCESSED:<EVENT_TYPE>` (e.g. `PROCESSED:REPACKAGING_SETTLEMENT`). See `tokenomics/SCHEMA.md` § Telegram Chat Logs, column R for the full convention. |
 | **`Agroverse QR codes`** | Per-unit QR view | `Currency`, Manager Name, status |
 
 ---
@@ -110,6 +110,26 @@ If **input bag count** ≠ **output bag count** but the user defines a single ba
 
 ---
 
+---
+
+## Settlement handler (post-batch finalisation)
+
+After the batch is processed and the `currency-compositions/<request_id>.json` is live, submit a `[REPACKAGING SETTLEMENT EVENT]` (via `dao_client` `post_repackaging_cleanup` or `dapp/repackaging_settlement.html`). Edgar logs it to **Telegram Chat Logs col G**.
+
+The downstream GAS handler (`processPostRepackagingCleanup_` in `agroverse-inventory/gas/repackaging-currency-ingest/Code.gs`, same script as the batch processor) scans col G for `[REPACKAGING SETTLEMENT EVENT]` rows and applies the settlement deterministically:
+1. **Deplete inputs** from `offchain asset location` (col C)
+2. **Add output locations** to `offchain asset location` (new rows, idempotent)
+3. **Set Currencies metadata** (col C=TRUE, E–J, M=SKU via `--sku-mapping` substring match)
+4. **Append structured audit row** to **`Repackaging Settlement`** tab on the ops sheet (`1qbZZhf…`)
+5. **Mark col R** with `PROCESSED:REPACKAGING_SETTLEMENT` (dedup gate — future scans skip this row)
+
+**Trigger:** The GAS public exec URL `?action=processPostRepackagingCleanup` (same deployment as the batch webhook). If the `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` env var is set on the Edgar/dao_protocol box, the dispatch layer fires it automatically on `submit_contribution`. Otherwise the GAS cron or a manual trigger (`doGet` with `?action=…`) is the fallback.
+
+**Dedup convention (critical for all GAS handlers reading Telegram Chat Logs):**
+- Processors scan **col G** for their event tag and **skip** rows where **col R** already has a `PROCESSED:<EVENT_TYPE>` marker.
+- See `tokenomics/SCHEMA.md` column R for the full convention listing all known `PROCESSED:` markers.
+
+---
 ## Cross-ledger conversions (managed AGLs) — upcoming
 
 **Do not assume rules yet.** The user will define flows where inputs live on **managed ledgers** (e.g. **AGL13**: **bulk cacao nibs** → **packaged 200 g ceremonial**). Wait for explicit instructions (which spreadsheet, which `Currency`, how cost flows). Extend **this file** when those rules are provided.
