@@ -381,12 +381,73 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 
 ---
 
+## Appendix C: Triangular Trade Documentation (Two-Layer Invoice Flow)
+
+> **Context:** Under the Próspera ZEDE structure (see `BRAZIL_EXPORT_ENTITY_BRIEF.md` and `PROSPERA_ENTITY_OPERATING_AGREEMENT.md`), the trade flow is: Brazilian Export Partner → TrueSight DAO LLC (Próspera) → TrueTech Inc (US) → retailers. This creates two separate documentation layers — one for Brazilian customs, one for tax/transfer pricing.
+
+### C.1 — Two Documentation Layers
+
+**Layer 1: Brazilian customs (NF-e + DU-E + customs Commercial Invoice)**
+
+These documents go to Receita Federal/Siscomex and the freight forwarder. They all show the **physical destination**:
+
+| Document | Exporter | Buyer/Destination |
+|----------|----------|-------------------|
+| NF-e (model 55, CFOP 7.101/7.102) | Black King (or Coopercabruca) | TrueTech Inc (US, EIN 88-3411514) |
+| DU-E (Declaração Única de Exportação) | Black King | TrueTech Inc |
+| Commercial Invoice (customs-facing) | Black King | TrueTech Inc |
+
+Brazilian customs only cares about where the goods physically go (US). The NF-e and customs invoice must match — both show TrueTech Inc as the buyer. The Próspera intermediary is invisible to Brazilian customs.
+
+**Layer 2: Tax/transfer pricing (commercial invoices for corporate tax)**
+
+These are separate invoices for the respective tax jurisdictions, documenting where profit is booked:
+
+```
+Black King (BR) → TrueSight DAO LLC (Próspera, HN)
+    Invoice: at cost + small margin (arm's-length)
+    Purpose: Black King's Brazilian tax filing; Próspera's purchase basis
+
+TrueSight DAO LLC (Próspera) → TrueTech Inc (US)
+    Invoice: at wholesale price
+    Purpose: TrueTech's COGS (reduces US taxable income); Próspera's revenue
+
+TrueTech Inc → Retailers
+    Invoice: at wholesale/retail price
+    Purpose: US sales reporting
+```
+
+Profit is booked at the Próspera layer at **1% flat tax** (Próspera ZEDE regime). Tax authorities see arm's-length transactions between independent entities.
+
+### C.2 — FDA/FSVP: Próspera Does NOT Register
+
+| Role | Who | Requirement |
+|------|-----|-------------|
+| Foreign suppliers (food facilities) | Black King, Coopercabruca, CEPOTX, etc. | FDA Food Facility Registration + DUNS (VALID, exp 2026-12-31) |
+| US FSVP + CBP importer of record | TrueTech Inc | FDA FFR 12202640780, DUNS 119035208, FSVP small-importer program |
+| Intermediary (coordination/bookkeeping) | TrueSight DAO LLC (Próspera) | **None.** Does not manufacture, process, hold food, or import into US. Not a food facility. |
+
+The Operating Agreement §11.4 explicitly preserves this: *"TrueTech Inc remains the U.S. FDA-FSVP and Customs importer of record."* FDA only cares about the actual food facility (origin) and the US importer — the intermediary that never touches the product is out of scope.
+
+### C.3 — Key Principle
+
+> **Brazilian customs sees: Black King → TrueTech Inc.**
+> **Tax authorities see: Black King → Próspera → TrueTech Inc.**
+> **FDA sees: Black King (facility) → TrueTech Inc (importer).**
+
+Do NOT put Próspera on the NF-e, DU-E, or customs Commercial Invoice. Those documents reflect the physical export, and the goods physically ship from Brazil to the US.
+
+---
+
 ## Related Documents
 
 - **SUPPLY_CHAIN_AND_FREIGHTING.md** — Freight cost logic, unit economics
 - **CONSIGNMENT_OPTIMAL_QUANTITY_PROPOSAL.md** — Bag quantities and inventory
 - **LEDGER_CONVERSION_AND_REPACKAGING.md** — Repackaging and bag conversion
+- **BRAZIL_EXPORT_ENTITY_BRIEF.md** — Legal structuring brief (Próspera LLC vs Wyoming UNA/DUNA)
+- **PROSPERA_ENTITY_OPERATING_AGREEMENT.md** — Próspera ZEDE operating agreement (Article XI — triangular trade, §11.4 — FSVP continuity)
 - **fda_fsvp/suppliers/black_king/entity.json** — Black King entity profile (CNPJ, DUNS, FDA FFR, FSVP status)
 - **fda_fsvp/suppliers/coopercabruca/entity.json** — Coopercabruca entity profile (fallback exporter)
+- **fda_fsvp/truetech_inc.entity.json** — TrueTech Inc importer of record (EIN, CBP, FDA FFR, DUNS)
 - **~/Applications/tmp/BlackKing_Export_NFe_Enablement.pdf** — Printable self-service guide (generated 16 Jun 2026)
 - **~/Applications/tmp/Instrucoes_Exportacao_Cacau_BlackKing.pdf** — Original bilingual export instructions (16 Jun 2026)
