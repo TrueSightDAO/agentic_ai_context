@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-10T04:33:07Z`
+- Generated (UTC): `2026-07-10T10:00:20Z`
 - Look-back: **7** calendar days (`2026-07-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[QR CODE UPDATE EVENT]` × 15
-- `[CONTRIBUTION EVENT]` × 12
-- `[PRACTICE EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 15
+- `[QR CODE UPDATE EVENT]` × 13
+- `[PRACTICE EVENT]` × 5
 - `[SALES EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260706170740_095` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_32 · Sales price: 32.38 · Sold by: Gary Teh
-- `Edgar_20260706171427_097` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 8 · Description: Looked up Santa Ana Fazenda QR codes on main ledger, updated QR code 2024SA_…
-- `Edgar_20260706171601_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: fix: harden update_qr_code CLI with canonical labels
 - `Edgar_20260706171719_101` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 718.45 · Description: Flight tickets for Gary to fly from LAX to ShangHai to attend discussions wi…
 - `Edgar_20260706182551_103` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-06T18:25:49.738Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260706185749_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: fix: align PRACTICE EVENT payloads with GAS canonical labels (Oracle + Capoe…
@@ -61,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260708082233_005` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-08T08:22:31.187Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260709175251_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-09T17:52:49.920Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260709203457_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: USA Santos chocolate production spec (MD + PDF)
+- `Edgar_20260710071507_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Coordinating pickup of cacao from Liz
+- `Edgar_20260710071747_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Description: Processing 164.9 grams of cacao into 127.6grams cacao nibs and 22.9grams cac…
+- `Edgar_20260710072951_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Drive over to drop off caramelized cacao Kraft pouch and pickup ceremonial c…
 
 ---
 
@@ -289,6 +289,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+85b9571 | 2026-07-10 04:35:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4f1d681 | 2026-07-09 15:43:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8ad2a7d | 2026-07-09 10:05:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -339,6 +340,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7b47b8d | 2026-07-10 00:33:21 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
+682119c | 2026-07-10 00:33:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 70dbcff | 2026-07-09 23:32:36 -0400 | Merge pull request #649 from TrueSightDAO/auto/advisory-refresh-2026-07-10
 a9f1c32 | 2026-07-10 03:32:24 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 96f461e | 2026-07-09 16:35:23 -0400 | Add USA Santos chocolate production spec (MD + PDF) (#648)
@@ -377,8 +380,6 @@ c3487ba | 2026-07-06 11:59:27 -0400 | chore(previews): refresh Beer Hall preview
 c7b3564 | 2026-07-06 07:12:23 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
 9b08dd6 | 2026-07-06 07:12:22 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
 40d74d4 | 2026-07-06 00:51:29 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
-eaee6c9 | 2026-07-06 00:51:28 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
-796299a | 2026-07-05 23:44:50 -0400 | Merge pull request #645 from TrueSightDAO/auto/advisory-refresh-2026-07-06
 … (truncated)
 ```
 
@@ -415,6 +416,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6d54628 | 2026-07-10 09:55:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8985561 | 2026-07-09 09:59:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2e39986 | 2026-07-08 08:45:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 566618c | 2026-07-07 10:02:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -521,7 +523,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/9/2026 20:50:32 |
+| 2026-07 | 100.38 | 16809.96386 | 7/10/2026 2:50:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-03`; scanned last **600** data rows)
 
