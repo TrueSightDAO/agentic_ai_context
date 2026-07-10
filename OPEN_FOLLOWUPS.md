@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Complete Etsy order monitoring OAuth setup (blocked on Etsy app approval)
+**Filed 2026-07-02. Owner: Gary.** Etsy order monitoring GAS code is written and
+pushed to the `agroverse_shop_checkout` GAS project (script ID `1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn`).
+The Etsy app "Agroverse" at https://www.etsy.com/developers/your-apps is in
+**Pending Personal Approval** — until Etsy approves it, OAuth returns
+"application not recognized."
+
+Once approved, RESUME steps:
+1. Add redirect URI `https://agroverse.shop/etsy/callback` to Etsy app settings.
+2. In GAS Script Properties, add `ETSY_SHOP_ID` (your shop ID number).
+3. Run `setupEtsyOAuth()` in the GAS editor → visit auth URL → copy code → run `completeEtsyOAuth("CODE")`.
+4. Alternatively, use `python3 agroverse_shop/scripts/etsy_oauth.py` locally (not yet created — build it or use GAS).
+5. Change the time-driven trigger from `syncStripeOrders` to `syncAllOrders`.
+6. Verify by running `syncEtsyOrders()` manually.
+
+Credentials already stored:
+- Sophia vault: `etsy_api` (v1)
+- Local: `agroverse_shop/.env`
+- GAS Script Properties: `ETSY_KEYSTRING`, `ETSY_SHARED_SECRET` (done)
+
+Repo: `TrueSightDAO/agroverse_shop_beta`, commits `624ea22` + `e8eec32`.
+
 ### [RESOLVED 2026-06-22, optional hardening remains] QR_CODE_REPOSITORY_TOKEN ↔ lineage-assets write
 **Resolved by Claude:** PNG storage was repointed to `lineage-assets` (tokenomics #373/#375) but the
 old `QR_CODE_REPOSITORY_TOKEN` (a fine-grained PAT scoped to `qr_codes`) 403'd on `lineage-assets`.

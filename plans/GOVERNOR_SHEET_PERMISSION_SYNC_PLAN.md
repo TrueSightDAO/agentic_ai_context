@@ -5,6 +5,8 @@
 **Script:** `GovernorSheetPermissionSync.js`  
 **Goal:** Automatically sync the Main Ledger spreadsheet's editor list to the current governor roster, without touching GCP SAs, external collaborators, or the owner.
 
+**Important (2026-06-30):** The `Governors` tab now has an **`ALLOW SENTINELS`** boolean toggle at `E12` (label at `D12`). When `E12 = FALSE`, the leaderboard formula in A11 **excludes** sentinels from column A. However, this GAS independently reads `Contributors contact information` column W for sentinel editor grants (lines 126-151) — sentinels still get editor access even when excluded from formal governorship. See `tokenomics/SCHEMA.md` § Governors for the full formula documentation.
+
 ---
 
 ## 1. Problem
