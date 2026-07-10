@@ -37,6 +37,7 @@
 - [ ] **Fiscal Nota (NF-e) issued** ⚠️ **CRITICAL BLOCKER**
   - **Black King currently CANNOT issue NF-e.** The CNPJ has only service CNAEs (82.30-0-01, events/fairs), no Inscrição Estadual (IE), and no NF-e credentialing at SEFAZ-BA.
   - **NFA-e (Nota Fiscal Avulsa) is NOT accepted for DU-E registration.** DU-E/Siscomex requires NF-e model 55, which needs IE. Confirmed via online research of Siscomex documentation — the DU-E pulls data directly from NF-e XML; no NFA-e integration exists.
+  - **Sebrae NF-e Emitter (FREE, recommended post-IE):** Sebrae offers a free, web-based NF-e emitter at **https://emissornfe.sebrae.com.br** (350k+ users, 4M+ documents). Supports export NF-e (CFOP 7.101/7.102) — exportação is a Natureza de Operação variation of standard NF-e. Also handles NFS-e, CT-e, NFC-e, and stock control. Requires: Conta Sebrae (free account), ICP-Brasil digital certificate (A1/A3), **IE + SEFAZ credentialing (same prerequisites as any NF-e emitter).** See Appendix A.1.4 for setup steps.
   - **Self-service enablement path (no accountant needed):** See **Appendix A** for the complete step-by-step guide. Summary: (1) Add commerce CNAE to CNPJ via e-CAC, (2) Request IE at SEFAZ-BA, (3) Credential for NF-e emission, (4) Issue the export NF-e.
   - **Bilingual self-service guide (PDF):** A polished 10-page bilingual (EN/PT) guide was sent to Matheus on 16 Jun 2026 and is saved at:
     `agentic_ai_context/exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf`
@@ -241,9 +242,10 @@
 4. Processing: 24–48 hours. "Emissão de NF-e" appears in SEFAZ menu.
 
 **NF-e emitter options (all work without accountant):**
-- **Option A (FREE, recommended):** SEFAZ-BA web emitter — login to SEFAZ-BA → Emissão de NF-e. Built-in, no installation.
-- **Option B (FREE):** National NF-e portal at nfe.fazenda.gov.br — download free emitter for BA.
-- **Option C (PAID):** Commercial software. Only worth it for high-volume NF-e issuance.
+- **Option A (FREE, RECOMMENDED): Sebrae NF-e Emitter** at https://emissornfe.sebrae.com.br — web-based, no installation, 350k+ users. Supports export NF-e (Natureza de Operação "Exportação" with CFOP 7.101/7.102), plus NFS-e, CT-e, NFC-e, and stock control. Login with Conta Sebrae (free account at amei.sebrae.com.br). After first login: complete company profile in Ajustes → Configurações da Empresa, configure Naturezas de Operação (export CFOPs), register products/clients, upload ICP-Brasil certificate (Ajustes → Configuração Fiscal). See full manual at https://sebrae.com.br/subsites/emissor-nf-e
+- **Option B (FREE):** SEFAZ-BA web emitter — login to SEFAZ-BA → Emissão de NF-e. Built-in, no installation. BA-specific.
+- **Option C (FREE):** National NF-e portal at nfe.fazenda.gov.br — download free emitter for BA.
+- **Option D (PAID):** Commercial software. Only worth it for high-volume NF-e issuance.
 
 > **If NF-e menu doesn't appear after approval:** Call SEFAZ-BA support. Sometimes manual profile activation is needed. This is a known first-time issue — they resolve it on the same call.
 
