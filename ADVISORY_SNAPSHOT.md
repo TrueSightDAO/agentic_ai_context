@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-10T15:11:48Z`
+- Generated (UTC): `2026-07-10T19:58:47Z`
 - Look-back: **7** calendar days (`2026-07-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,24 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
-- `[QR CODE UPDATE EVENT]` × 13
-- `[PRACTICE EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 22
+- `[PRACTICE EVENT]` × 6
+- `[QR CODE UPDATE EVENT]` × 4
 - `[SALES EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
+- `[REPACKAGING BATCH EVENT]` × 1
+- `[REPACKAGING SETTLEMENT EVENT]` × 1
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260706182551_103` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-06T18:25:49.738Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260706185749_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: fix: align PRACTICE EVENT payloads with GAS canonical labels (Oracle + Capoe…
-- `Edgar_20260706185917_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: fix: align PRACTICE EVENT payloads with GAS canonical labels (Oracle + Capoe…
-- `Edgar_20260706231156_109` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-06T23:11:55.122Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260707030331_111` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260707030915_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Setting of DAO legal wrapper in Prospera
-- `Edgar_20260707035018_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: surfacing https://www.sosma.org.br/en/ as a potential partner for our tree p…
-- `Edgar_20260707160110_117` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-07T16:01:08.027Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260707163549_119` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Guild size reconfiguration on China side as well as alignment of FounderHaus…
 - `Edgar_20260707180929_121` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Figuring out Gary’s timing and accommodation in Florianopolis Brazil
 - `Edgar_20260708023035_123` · **Edgar** · [NOTARIZATION EVENT] Submitter: Gary Teh · Latitude: 43.084417 · Longitude: -77.603060
 - `Edgar_20260708025208_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Added TrueSight DAO Prospera legal entity approval as latest milestone on tr…
@@ -61,6 +54,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260710071747_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Description: Processing 164.9 grams of cacao into 127.6grams cacao nibs and 22.9grams cac…
 - `Edgar_20260710072951_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Drive over to drop off caramelized cacao Kraft pouch and pickup ceremonial c…
 - `Edgar_20260710135646_017` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 144.56 · Description: Flight tickets from Florianopolis to Altamira
+- `Edgar_20260710154423_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-10T15:44:21.731Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260710170019_021` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix halted daily buy-back provision pipeline (Wix decoupling)
+- `Edgar_20260710185310_023` · **Edgar** · [REPACKAGING BATCH EVENT] Request ID: e963c8ff-4520-4b52-a5c7-3abfaae963fb · Holder: Gary Teh · Inputs:
+- `Edgar_20260710185419_025` · **Edgar** · [REPACKAGING SETTLEMENT EVENT] Composition URL: https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/… · Holder Name: Gary Teh · Farm Name: Fazenda São Jorge
+- `Edgar_20260710190305_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Had a quick chat about picking up the cacao beans, cacao nibs and cacao tea …
+- `Edgar_20260710190606_029` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 116 · Description: Flight tickets from Rio to Florianopolis
+- `Edgar_20260710190803_031` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 394.43 · Description: Hotel accommodation in Florianopolis
+- `Edgar_20260710193734_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 47 · Description: Cache-first signature verification across DApp pages
+- `Edgar_20260710193748_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Cache-first signature verification — review & direction
 
 ---
 
@@ -227,11 +229,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 13,958.28 total units · $12,733.15
+- Manager record: `Gary Teh` · 28 SKU lines · 14,210.63 total units · $12,733.15
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 24 | 13,882.10 | $12,683.16 |
+  | (uncategorized) | (unspecified) | 26 | 14,134.45 | $12,683.16 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -289,6 +291,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d176020 | 2026-07-10 15:15:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b64c26 | 2026-07-10 10:02:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 85b9571 | 2026-07-10 04:35:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,7 +331,6 @@ eaca091 | 2026-07-02 23:09:05 -0400 | Merge branch 'main' of https://github.com/
 8fd48ff | 2026-07-02 23:08:24 -0400 | Merge pull request #266 from TrueSightDAO/feat/update-voting-rights-contracts
 d5a19ca | 2026-07-02 23:07:56 -0400 | docs: update voting rights contracts with corrected event names and settlement flow
 592168d | 2026-07-02 23:07:34 -0400 | fix(ci): replace deprecated sync_top_nav.py check with placeholder verification (#265)
-213a34e | 2026-07-02 23:06:34 -0400 | fix(ci): replace deprecated sync_top_nav.py check with placeholder verification
 … (truncated)
 ```
 
@@ -341,6 +343,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+01ae5a7 | 2026-07-10 11:12:14 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
+e25e21d | 2026-07-10 11:12:12 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 cf9a443 | 2026-07-10 06:00:43 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
 a68ef9f | 2026-07-10 06:00:41 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 7b47b8d | 2026-07-10 00:33:21 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
@@ -379,8 +383,6 @@ faedd27 | 2026-07-07 11:25:37 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b76bfb6 | 2026-07-06 16:24:07 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
 092a4a5 | 2026-07-06 16:24:06 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
 c3487ba | 2026-07-06 11:59:27 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
-12a6de0 | 2026-07-06 11:59:26 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
-c7b3564 | 2026-07-06 07:12:23 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
 … (truncated)
 ```
 
@@ -417,6 +419,11 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+3d3590e | 2026-07-10 12:38:00 -0700 | fix: restore São Jorge repackaging composition JSON (accidentally removed in prior sync)
+6fc3df4 | 2026-07-10 12:37:38 -0700 | chore: sync store-inventory (São Jorge 81% bar 25 in stock)
+79e0c23 | 2026-07-10 15:29:07 -0400 | chore: refresh Agroverse store inventory snapshot
+821b4ab | 2026-07-10 14:53:30 -0400 | chore(inventory): repackaging composition e963c8ff-4520-4b52-a5c7-3abfaae963fb
+29a886c | 2026-07-10 14:53:20 -0400 | chore(inventory): refresh currencies.json (repackaging ingest)
 6d54628 | 2026-07-10 09:55:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8985561 | 2026-07-09 09:59:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2e39986 | 2026-07-08 08:45:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -432,7 +439,10 @@ a1f26f7 | 2026-07-03 09:37:22 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+e82943e | 2026-07-10 12:52:45 -0700 | Add São Jorge (Coopercabruca) 81% dark chocolate bar SKU (#180)
+ec0269d | 2026-07-02 23:10:47 -0400 | Merge branch 'TrueSightDAO:main' into main
 9d8f70e | 2026-07-02 23:09:05 -0400 | trigger redeploy [skip ci]
+8df2467 | 2026-07-02 23:08:35 -0400 | Merge branch 'TrueSightDAO:main' into main
 40d70fe | 2026-07-02 23:03:21 -0400 | feat: shared nav + footer via JS injection with root-relative paths (#179)
 ```
 
@@ -524,7 +534,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/10/2026 7:52:58 |
+| 2026-07 | 100.38 | 16809.96386 | 7/10/2026 12:50:11 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-03`; scanned last **600** data rows)
 
