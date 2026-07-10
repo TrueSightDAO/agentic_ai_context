@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-10T10:00:20Z`
+- Generated (UTC): `2026-07-10T15:11:48Z`
 - Look-back: **7** calendar days (`2026-07-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
+- `[CONTRIBUTION EVENT]` × 16
 - `[QR CODE UPDATE EVENT]` × 13
 - `[PRACTICE EVENT]` × 5
 - `[SALES EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260706171719_101` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 718.45 · Description: Flight tickets for Gary to fly from LAX to ShangHai to attend discussions wi…
 - `Edgar_20260706182551_103` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-06T18:25:49.738Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260706185749_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: fix: align PRACTICE EVENT payloads with GAS canonical labels (Oracle + Capoe…
 - `Edgar_20260706185917_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: fix: align PRACTICE EVENT payloads with GAS canonical labels (Oracle + Capoe…
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260710071507_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Coordinating pickup of cacao from Liz
 - `Edgar_20260710071747_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Description: Processing 164.9 grams of cacao into 127.6grams cacao nibs and 22.9grams cac…
 - `Edgar_20260710072951_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Drive over to drop off caramelized cacao Kraft pouch and pickup ceremonial c…
+- `Edgar_20260710135646_017` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 144.56 · Description: Flight tickets from Florianopolis to Altamira
 
 ---
 
@@ -78,7 +78,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-09T10:59:16.880Z`
+- Generated (UTC): `2026-07-10T10:59:14.311Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -103,12 +103,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **446**, follow_up **70**, bulk **0**, unknown **2** (data rows: **518**)
+- **Email Agent Follow Up** — logged sends: warmup **457**, follow_up **70**, bulk **0**, unknown **2** (data rows: **529**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **397**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
+- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **408**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
 - **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -289,6 +289,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2b64c26 | 2026-07-10 10:02:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 85b9571 | 2026-07-10 04:35:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4f1d681 | 2026-07-09 15:43:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,7 +329,7 @@ eaca091 | 2026-07-02 23:09:05 -0400 | Merge branch 'main' of https://github.com/
 d5a19ca | 2026-07-02 23:07:56 -0400 | docs: update voting rights contracts with corrected event names and settlement flow
 592168d | 2026-07-02 23:07:34 -0400 | fix(ci): replace deprecated sync_top_nav.py check with placeholder verification (#265)
 213a34e | 2026-07-02 23:06:34 -0400 | fix(ci): replace deprecated sync_top_nav.py check with placeholder verification
-66d3e47 | 2026-07-02 23:03:21 -0400 | feat: shared nav + footer via JS injection with root-relative paths (#264)
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -340,6 +341,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cf9a443 | 2026-07-10 06:00:43 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
+a68ef9f | 2026-07-10 06:00:41 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 7b47b8d | 2026-07-10 00:33:21 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
 682119c | 2026-07-10 00:33:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 70dbcff | 2026-07-09 23:32:36 -0400 | Merge pull request #649 from TrueSightDAO/auto/advisory-refresh-2026-07-10
@@ -378,8 +381,6 @@ b76bfb6 | 2026-07-06 16:24:07 -0400 | chore(previews): refresh Beer Hall preview
 c3487ba | 2026-07-06 11:59:27 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
 12a6de0 | 2026-07-06 11:59:26 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
 c7b3564 | 2026-07-06 07:12:23 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
-9b08dd6 | 2026-07-06 07:12:22 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-06 UTC)
-40d74d4 | 2026-07-06 00:51:29 -0400 | chore(previews): refresh Beer Hall preview (2026-07-06 UTC)
 … (truncated)
 ```
 
@@ -523,7 +524,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/10/2026 2:50:24 |
+| 2026-07 | 100.38 | 16809.96386 | 7/10/2026 7:52:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-03`; scanned last **600** data rows)
 
