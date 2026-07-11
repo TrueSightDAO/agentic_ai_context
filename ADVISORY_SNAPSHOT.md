@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-11T02:48:54Z`
+- Generated (UTC): `2026-07-11T03:51:42Z`
 - Look-back: **7** calendar days (`2026-07-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[INVENTORY MOVEMENT]` × 25
+- `[CONTRIBUTION EVENT]` × 11
+- `[BATCH QR CODE REQUEST]` × 1
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260710212606_083` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212616_085` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212620_087` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212624_089` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212637_091` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212641_093` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212645_095` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212649_097` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212652_099` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212656_101` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212700_103` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212703_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212707_107` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710212711_109` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710214948_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Reorganize agentic_ai_context + transfer 25 São Jorge chocolate bars to Kirs…
+- `Edgar_20260710215815_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
+- `Edgar_20260711023911_115` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 63.87 · Description: Gasoline for driving to LA to catch flight to China
+- `Edgar_20260711025810_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260711025900_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
+- `Edgar_20260711025903_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Derive valid expense ledgers dynamically from treasury cache — fix AGL15 rej…
 
 ---
 
@@ -186,11 +222,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 14,185.63 total units · $12,592.54
+- Manager record: `Gary Teh` · 27 SKU lines · 14,057.89 total units · $12,464.80
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 14,109.45 | $12,542.56 |
+  | (uncategorized) | (unspecified) | 25 | 13,981.71 | $12,414.82 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -209,13 +245,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,275.74**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$47.45**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -293,6 +333,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8346518 | 2026-07-10 22:49:10 -0400 | Merge pull request #652 from TrueSightDAO/auto/advisory-refresh-2026-07-11
+5fe5cd4 | 2026-07-11 02:48:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 0d75cf0 | 2026-07-10 17:49:29 -0400 | Merge pull request #651 from TrueSightDAO/contribution/jul10-deepseek
 87164cd | 2026-07-10 14:49:09 -0700 | docs: record DeepSeek contributions (Jul 10)
 7af7221 | 2026-07-10 14:05:21 -0700 | Reorganize root: move ~168 files into 13 new + 6 existing folders
@@ -331,8 +373,6 @@ fe2f487 | 2026-07-07 23:54:31 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 259b170 | 2026-07-07 22:52:43 -0400 | Merge pull request #647 from TrueSightDAO/auto/advisory-refresh-2026-07-08
 7ecde8b | 2026-07-08 02:52:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
 d3d015c | 2026-07-07 16:25:20 -0400 | chore(previews): refresh Beer Hall preview (2026-07-07 UTC)
-6d72337 | 2026-07-07 16:25:14 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-07 UTC)
-85014da | 2026-07-07 11:25:39 -0400 | chore(previews): refresh Beer Hall preview (2026-07-07 UTC)
 … (truncated)
 ```
 
@@ -459,6 +499,43 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 100.38 | 16809.96386 | 7/10/2026 20:51:35 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-04`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_15 | — | — |
+| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_18 | — | — |
+| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_21 | — | — |
+| 2026-07-05 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_14 | — | — |
+| 2026-07-06 | 32.38 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_32 | UDtMWkpHbpcT | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
