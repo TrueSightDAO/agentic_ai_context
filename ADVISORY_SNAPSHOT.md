@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-11T03:51:42Z`
+- Generated (UTC): `2026-07-11T08:19:45Z`
 - Look-back: **7** calendar days (`2026-07-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -290,6 +290,7 @@ _All dated lines on/after 2026-07-04_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+739ab69 | 2026-07-11 03:54:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d6e332e | 2026-07-10 20:01:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d176020 | 2026-07-10 15:15:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b64c26 | 2026-07-10 10:02:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -333,6 +334,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ba44c3d | 2026-07-10 23:51:53 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
+7a88642 | 2026-07-10 23:51:52 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 8346518 | 2026-07-10 22:49:10 -0400 | Merge pull request #652 from TrueSightDAO/auto/advisory-refresh-2026-07-11
 5fe5cd4 | 2026-07-11 02:48:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 0d75cf0 | 2026-07-10 17:49:29 -0400 | Merge pull request #651 from TrueSightDAO/contribution/jul10-deepseek
@@ -371,8 +374,6 @@ f69d87c | 2026-07-08 05:06:41 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 55fff56 | 2026-07-07 23:54:32 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
 fe2f487 | 2026-07-07 23:54:31 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
 259b170 | 2026-07-07 22:52:43 -0400 | Merge pull request #647 from TrueSightDAO/auto/advisory-refresh-2026-07-08
-7ecde8b | 2026-07-08 02:52:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
-d3d015c | 2026-07-07 16:25:20 -0400 | chore(previews): refresh Beer Hall preview (2026-07-07 UTC)
 … (truncated)
 ```
 
@@ -411,6 +412,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+695df5d | 2026-07-11 08:16:21 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement handler to real event tag + add audit tab (#17)
 3d3590e | 2026-07-10 12:38:00 -0700 | fix: restore São Jorge repackaging composition JSON (accidentally removed in prior sync)
 6fc3df4 | 2026-07-10 12:37:38 -0700 | chore: sync store-inventory (São Jorge 81% bar 25 in stock)
@@ -523,7 +525,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/10/2026 20:51:35 |
+| 2026-07 | 100.38 | 16809.96386 | 7/11/2026 0:52:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-04`; scanned last **600** data rows)
 
