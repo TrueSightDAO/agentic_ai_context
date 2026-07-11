@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-11T14:01:11Z`
+- Generated (UTC): `2026-07-11T19:41:20Z`
 - Look-back: **7** calendar days (`2026-07-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,13 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[INVENTORY MOVEMENT]` × 25
-- `[CONTRIBUTION EVENT]` × 11
+- `[CONTRIBUTION EVENT]` × 10
 - `[BATCH QR CODE REQUEST]` × 1
+- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260710212606_083` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260710212616_085` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260710212620_087` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260710212624_089` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
@@ -59,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260711025810_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260711025900_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
 - `Edgar_20260711025903_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Derive valid expense ledgers dynamically from treasury cache — fix AGL15 rej…
+- `Edgar_20260711172129_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T17:21:28.234Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -290,6 +291,7 @@ _All dated lines on/after 2026-07-04_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4ff8350 | 2026-07-11 14:03:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3d2dad3 | 2026-07-11 08:22:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 739ab69 | 2026-07-11 03:54:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d6e332e | 2026-07-10 20:01:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -335,6 +337,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ec557a3 | 2026-07-11 10:01:24 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
+1b446a0 | 2026-07-11 10:01:23 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 c60af84 | 2026-07-11 04:20:06 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
 df5a5b9 | 2026-07-11 04:20:04 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 ba44c3d | 2026-07-10 23:51:53 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
@@ -373,8 +377,6 @@ e4e54e8 | 2026-07-09 00:30:46 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 6a9974f | 2026-07-08 10:55:40 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
 10d9014 | 2026-07-08 10:55:39 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
 098eac7 | 2026-07-08 05:06:42 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
-f69d87c | 2026-07-08 05:06:41 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
-55fff56 | 2026-07-07 23:54:32 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
 … (truncated)
 ```
 
@@ -526,7 +528,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/11/2026 6:52:14 |
+| 2026-07 | 100.38 | 16809.96386 | 7/11/2026 11:52:15 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-04`; scanned last **600** data rows)
 
