@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-12T08:38:17Z`
+- Generated (UTC): `2026-07-12T14:03:13Z`
 - Look-back: **7** calendar days (`2026-07-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-11T10:59:15.681Z`
+- Generated (UTC): `2026-07-12T10:59:14.054Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -291,6 +291,7 @@ _All dated lines on/after 2026-07-05_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2c6eb84 | 2026-07-12 08:40:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8062c26 | 2026-07-11 23:59:35 -0700 | Fix 'each trip' to 'this upcoming trip' and add uncertainty framing (#281)
 462cf47 | 2026-07-11 23:57:48 -0700 | Fix postscript to third person — Gary's warning in Sophia's voice (#280)
 fc2f15a | 2026-07-11 23:52:51 -0700 | Expand postscript into full warning about Altamira and Ilhéus reality (#279)
@@ -330,7 +331,6 @@ a916548 | 2026-07-07 22:38:15 -0400 | fix: sync inline timeline events copy with
 a1dde41 | 2026-07-07 20:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 89eb995 | 2026-07-07 15:29:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e8bc5b3 | 2026-07-07 10:07:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-c76b904 | 2026-07-07 04:34:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -343,6 +343,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+378816c | 2026-07-12 01:38:33 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
+e2ddbe7 | 2026-07-12 01:38:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-12 UTC)
 b5f698f | 2026-07-11 21:06:48 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
 a6a0081 | 2026-07-11 21:06:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-12 UTC)
 ab7d46e | 2026-07-11 19:56:52 -0700 | Merge pull request #653 from TrueSightDAO/auto/advisory-refresh-2026-07-12
@@ -381,8 +383,6 @@ e9e8dfb | 2026-07-09 16:19:12 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a3277e2 | 2026-07-09 11:41:09 -0400 | chore(previews): refresh Beer Hall preview (2026-07-09 UTC)
 627a2b7 | 2026-07-09 11:41:08 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-09 UTC)
 971bd07 | 2026-07-09 06:04:02 -0400 | chore(previews): refresh Beer Hall preview (2026-07-09 UTC)
-7f7be29 | 2026-07-09 06:04:01 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-09 UTC)
-c379795 | 2026-07-09 00:30:47 -0400 | chore(previews): refresh Beer Hall preview (2026-07-09 UTC)
 … (truncated)
 ```
 
@@ -534,7 +534,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/12/2026 0:52:24 |
+| 2026-07 | 100.38 | 16809.96386 | 7/12/2026 6:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-05`; scanned last **600** data rows)
 
