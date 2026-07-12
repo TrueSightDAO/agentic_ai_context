@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-11T19:41:20Z`
-- Look-back: **7** calendar days (`2026-07-04` → today UTC)
+- Generated (UTC): `2026-07-12T02:56:39Z`
+- Look-back: **7** calendar days (`2026-07-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[INVENTORY MOVEMENT]` × 25
-- `[CONTRIBUTION EVENT]` × 10
-- `[BATCH QR CODE REQUEST]` × 1
-- `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
-
-### Latest entries
-
-- `Edgar_20260710212616_085` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212620_087` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212624_089` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212637_091` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212641_093` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212645_095` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212649_097` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212652_099` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212656_101` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212700_103` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212703_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212707_107` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212711_109` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710214948_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Reorganize agentic_ai_context + transfer 25 São Jorge chocolate bars to Kirs…
-- `Edgar_20260710215815_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
-- `Edgar_20260711023911_115` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 63.87 · Description: Gasoline for driving to LA to catch flight to China
-- `Edgar_20260711025810_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260711025900_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
-- `Edgar_20260711025903_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Derive valid expense ledgers dynamically from treasury cache — fix AGL15 rej…
-- `Edgar_20260711172129_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T17:21:28.234Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -246,17 +209,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,275.74**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$47.45**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -269,7 +228,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
 - 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
 
-_All dated lines on/after 2026-07-04_ (2):
+_All dated lines on/after 2026-07-05_ (2):
 
 - 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
 - 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
@@ -291,6 +250,16 @@ _All dated lines on/after 2026-07-04_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c27eddb | 2026-07-11 17:03:13 -0700 | Strip job titles from People section — names and context only (#275)
+818c4a0 | 2026-07-11 16:59:42 -0700 | Editorial v2: move lede, add epistemic markers, honest mistake, proof point, consent note (#274)
+5535f15 | 2026-07-11 16:55:14 -0700 | Fix Jerry Luk title: VP -> Director of Engineering at Edmodo (#273)
+ab652ff | 2026-07-11 16:40:34 -0700 | Remove duplicate Epilogue section causing rendering error (#272)
+a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move People section after epilogue, fix Chinese chars, reconcile cacao origins (#271)
+0cecf88 | 2026-07-11 15:58:20 -0700 | Add Jerry Luk to blog post: convinced Gary to join Edmodo, making getdata.io a side project (#269)
+5d4cd1d | 2026-07-11 15:28:12 -0700 | Fix blog post format: convert from Jekyll markdown to static HTML (#268)
+2c7f591 | 2026-07-11 18:25:07 -0400 | Add blog post: The Desert and the Diamond (#267)
+9862364 | 2026-07-11 18:24:07 -0400 | Add header image for desert-and-diamond blog post
+5c7af25 | 2026-07-11 19:45:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4ff8350 | 2026-07-11 14:03:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3d2dad3 | 2026-07-11 08:22:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 739ab69 | 2026-07-11 03:54:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -321,11 +290,7 @@ c76b904 | 2026-07-07 04:34:48 +0000 | chore(stats): refresh stats/current.json [
 99554b4 | 2026-07-05 19:53:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5b5db91 | 2026-07-05 14:18:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a4a3758 | 2026-07-05 09:28:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f714c82 | 2026-07-05 04:43:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
-7a07075 | 2026-07-04 19:47:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
-223f17b | 2026-07-04 14:10:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1ddc9d1 | 2026-07-04 09:06:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
-14ec4f5 | 2026-07-04 04:22:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -337,6 +302,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+005e5e6 | 2026-07-11 15:41:32 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
+2977789 | 2026-07-11 15:41:31 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 ec557a3 | 2026-07-11 10:01:24 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
 1b446a0 | 2026-07-11 10:01:23 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 c60af84 | 2026-07-11 04:20:06 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
@@ -375,8 +342,6 @@ e4e54e8 | 2026-07-09 00:30:46 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT
 0128cbe | 2026-07-08 16:03:39 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
 754260b | 2026-07-08 16:03:38 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
 6a9974f | 2026-07-08 10:55:40 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
-10d9014 | 2026-07-08 10:55:39 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-08 UTC)
-098eac7 | 2026-07-08 05:06:42 -0400 | chore(previews): refresh Beer Hall preview (2026-07-08 UTC)
 … (truncated)
 ```
 
@@ -429,7 +394,6 @@ e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement h
 311f801 | 2026-07-06 11:16:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 13d1ec7 | 2026-07-06 11:06:03 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 85fc0c0 | 2026-07-05 09:24:31 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-9c625f7 | 2026-07-04 09:02:44 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -458,6 +422,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-07-12T025639Z_desert-diamond-narrative-published.md`
+
+- **posted_at_utc:** `2026-07-12T02:56:39Z`  
+- **slug:** `desert-diamond-narrative-published`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Marketing (Content)** — Published "The Desert and the Diamond" narrative blog post with updated editorial standards.
+
 ### `beer-hall_2026-07-11T024853Z_sao-jorge-launch-and-prospera-bylaws.md`
 
 - **posted_at_utc:** `2026-07-11T02:48:53Z`  
@@ -475,15 +448,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Ops (Product)** — Added USA Santos chocolate production specification (MD + PDF) to the shared knowledge base.
-
-### `beer-hall_2026-07-08T025225Z_web-timeline-fixes-and-china-guild-alignment.md`
-
-- **posted_at_utc:** `2026-07-08T02:52:25Z`  
-- **slug:** `web-timeline-fixes-and-china-guild-alignment`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Engineering (Web)** — Fixed timeline sorting bugs (zero-index handling) and corrected date parsing to display local time instead of UTC on the beta site.
 
 ---
 
@@ -504,43 +468,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/11/2026 11:52:15 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-04`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_15 | — | — |
-| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251102_18 | — | — |
-| 2026-07-05 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20251011_21 | — | — |
-| 2026-07-05 | 17 | Caramelized Cacao Kraft Pouch - Alibaba… | ACCOUNTED | 2025CAPELAVELHA_20250809_14 | — | — |
-| 2026-07-06 | 32.38 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_32 | UDtMWkpHbpcT | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
