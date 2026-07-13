@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-13T04:09:09Z`
+- Generated (UTC): `2026-07-13T09:53:36Z`
 - Look-back: **7** calendar days (`2026-07-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -291,6 +291,7 @@ _All dated lines on/after 2026-07-06_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ca74d67 | 2026-07-13 04:10:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 44d10d5 | 2026-07-12 19:42:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dfa1249 | 2026-07-12 14:12:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2c6eb84 | 2026-07-12 08:40:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -330,7 +331,6 @@ c84fd17 | 2026-07-08 14:57:40 +0000 | chore(stats): refresh stats/current.json [
 93028cd | 2026-07-07 22:39:34 -0400 | fix: use local date parsing for timeline dates to avoid UTC timezone shift
 a916548 | 2026-07-07 22:38:15 -0400 | fix: sync inline timeline events copy with Prospera milestone
 0ab454e | 2026-07-07 22:34:19 -0400 | feat: add Prospera legal entity approval to timeline milestones
-a1dde41 | 2026-07-07 20:28:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -343,6 +343,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a7c8889 | 2026-07-12 21:09:34 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
+d261cf0 | 2026-07-12 21:09:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 a1aa62c | 2026-07-12 19:58:18 -0700 | Merge pull request #654 from TrueSightDAO/auto/advisory-refresh-2026-07-13
 3861d5a | 2026-07-13 02:58:09 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 198eb06 | 2026-07-12 12:39:06 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
@@ -381,8 +383,6 @@ cf9a443 | 2026-07-10 06:00:43 -0400 | chore(previews): refresh Beer Hall preview
 a68ef9f | 2026-07-10 06:00:41 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 7b47b8d | 2026-07-10 00:33:21 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
 682119c | 2026-07-10 00:33:20 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
-70dbcff | 2026-07-09 23:32:36 -0400 | Merge pull request #649 from TrueSightDAO/auto/advisory-refresh-2026-07-10
-a9f1c32 | 2026-07-10 03:32:24 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 … (truncated)
 ```
 
@@ -421,6 +421,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+222ac87 | 2026-07-13 09:49:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 12d2d2b | 2026-07-12 08:33:15 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 695df5d | 2026-07-11 08:16:21 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement handler to real event tag + add audit tab (#17)
@@ -533,7 +534,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/12/2026 20:51:29 |
+| 2026-07 | 100.38 | 16809.96386 | 7/13/2026 2:50:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-06`; scanned last **600** data rows)
 
