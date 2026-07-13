@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-13T15:21:29Z`
+- Generated (UTC): `2026-07-13T19:58:00Z`
 - Look-back: **7** calendar days (`2026-07-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[INVENTORY MOVEMENT]` × 25
-- `[CONTRIBUTION EVENT]` × 7
-- `[PRACTICE EVENT]` × 4
-- `[BATCH QR CODE REQUEST]` × 1
+- `[INVENTORY MOVEMENT]` × 22
+- `[CONTRIBUTION EVENT]` × 8
+- `[PRACTICE EVENT]` × 7
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260710212641_093` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212645_095` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212649_097` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212652_099` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212656_101` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260710212700_103` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260710212703_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260710212707_107` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
@@ -60,6 +54,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260711213754_011` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T21:37:53.784Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260712164736_013` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-12T16:47:34.272Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260712210009_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Surfacing the insight that it is possible now to run agents within Claude an…
+- `Edgar_20260713164828_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T16:48:26.373Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260713183127_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T18:31:25.155Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260713185745_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T18:57:38.496Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260713185926_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Sophia Truesight
+- `Edgar_20260713185927_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
 
 ---
 
@@ -291,6 +290,7 @@ _All dated lines on/after 2026-07-06_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+888a471 | 2026-07-13 15:25:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4c95b1a | 2026-07-13 09:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ca74d67 | 2026-07-13 04:10:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 44d10d5 | 2026-07-12 19:42:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -330,7 +330,6 @@ c84fd17 | 2026-07-08 14:57:40 +0000 | chore(stats): refresh stats/current.json [
 5f5918a | 2026-07-08 03:56:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1e7eedb | 2026-07-07 22:41:14 -0400 | fix: handle order 0 correctly in timeline sort (0 was falsy, pushed to end)
 93028cd | 2026-07-07 22:39:34 -0400 | fix: use local date parsing for timeline dates to avoid UTC timezone shift
-a916548 | 2026-07-07 22:38:15 -0400 | fix: sync inline timeline events copy with Prospera milestone
 … (truncated)
 ```
 
@@ -343,6 +342,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ac9c78f | 2026-07-13 11:57:20 -0700 | Add FINAL v1.0 Operating Agreement PDF (clean, signable)
+a58465b | 2026-07-13 08:21:49 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
+0e6eb2b | 2026-07-13 08:21:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 3f90553 | 2026-07-13 02:53:50 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
 ed43c64 | 2026-07-13 02:53:49 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 a7c8889 | 2026-07-12 21:09:34 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
@@ -380,9 +382,6 @@ dccde5b | 2026-07-10 13:23:54 -0700 | CONTEXT_UPDATES: record AI contributor led
 4ed9965 | 2026-07-10 15:59:00 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
 3c169b4 | 2026-07-10 15:58:59 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 01ae5a7 | 2026-07-10 11:12:14 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
-e25e21d | 2026-07-10 11:12:12 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
-cf9a443 | 2026-07-10 06:00:43 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
-a68ef9f | 2026-07-10 06:00:41 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
 … (truncated)
 ```
 
@@ -535,7 +534,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/13/2026 7:50:56 |
+| 2026-07 | 100.38 | 16809.96386 | 7/13/2026 12:50:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-06`; scanned last **600** data rows)
 
