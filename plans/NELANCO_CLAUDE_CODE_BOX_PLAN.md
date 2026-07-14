@@ -177,12 +177,12 @@ DAO contribution, tick the tracker, **stop**.
 
 ## 5. Resume tracker
 
-**➡️ RESUME HERE: PR1** — Nelanco provisioning artifact (PR0 done: plan revised to correct scope).
+**➡️ RESUME HERE: PR2** — Gate-C laydown script (creds + repos + dedicated fleet SSH key + `~/.ssh/config`). PR0 + PR1 done.
 
 | Unit | PR opened | Merged (human) | Executed / deployed | Contribution reported |
 |------|-----------|----------------|---------------------|-----------------------|
-| PR0 — roadmap (revised) | ✅ | ☐ | n/a | ☐ |
-| PR1 — provisioning artifact (Claude Code + tmux) | ☐ | ☐ | n/a | ☐ |
+| PR0 — roadmap (revised) | ✅ | ✅ #657/#658 | n/a | ✅ |
+| PR1 — provisioning artifact (Claude Code + tmux) | ✅ | ✅ #276 (truesight_autopilot) | n/a | ✅ |
 | PR2 — laydown (creds + full fleet SSH) | ☐ | ☐ | n/a | ☐ |
 | Gate B — EC2 provision + SG allowlist | ☐ | ☐ | ☐ | ☐ |
 | Gate C — cred + SSH laydown + ~/.ssh/config + Claude auth | ☐ | ☐ | ☐ | ☐ |
