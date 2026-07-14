@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-14T02:39:18Z`
+- Generated (UTC): `2026-07-14T03:44:21Z`
 - Look-back: **7** calendar days (`2026-07-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[INVENTORY MOVEMENT]` × 19
+- `[CONTRIBUTION EVENT]` × 10
+- `[PRACTICE EVENT]` × 7
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20260710212711_109` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260710214948_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Reorganize agentic_ai_context + transfer 25 São Jorge chocolate bars to Kirs…
+- `Edgar_20260710215815_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
+- `Edgar_20260711023911_115` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 63.87 · Description: Gasoline for driving to LA to catch flight to China
+- `Edgar_20260711025810_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260711025900_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
+- `Edgar_20260711025903_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Derive valid expense ledgers dynamically from treasury cache — fix AGL15 rej…
+- `Edgar_20260711172129_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T17:21:28.234Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260711203239_009` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T20:32:38.242Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260711213754_011` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T21:37:53.784Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260712164736_013` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-12T16:47:34.272Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260712210009_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Surfacing the insight that it is possible now to run agents within Claude an…
+- `Edgar_20260713164828_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T16:48:26.373Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260713183127_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T18:31:25.155Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260713185745_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T18:57:38.496Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260713185926_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Sophia Truesight
+- `Edgar_20260713185927_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260713214043_027` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 52.29 · Description: Gasoline for driving to LA to catch flight
+- `Edgar_20260713214136_029` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260714004840_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Gary's hand roasted cacao from Fazenda Sao Jorge: Pre-grinding, melanging, t…
 
 ---
 
@@ -209,13 +245,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,274.87**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$48.33**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -302,6 +342,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4eec69b | 2026-07-13 19:39:30 -0700 | Merge pull request #656 from TrueSightDAO/auto/advisory-refresh-2026-07-14
+15a20d6 | 2026-07-14 02:39:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 2583e97 | 2026-07-13 12:58:22 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
 880002d | 2026-07-13 12:58:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 ac9c78f | 2026-07-13 11:57:20 -0700 | Add FINAL v1.0 Operating Agreement PDF (clean, signable)
@@ -340,8 +382,6 @@ fde57df | 2026-07-10 13:47:49 -0700 | docs(freight): add Appendix C — triangul
 eee6a3e | 2026-07-10 13:38:08 -0700 | docs(freight): add Sebrae NF-e emitter as recommended Option A for export NF-e issuance
 dccde5b | 2026-07-10 13:23:54 -0700 | CONTEXT_UPDATES: record AI contributor ledger name 'Deep Seek' for all future DeepSeek sessions
 68974cd | 2026-07-10 13:23:18 -0700 | docs: document processor dedup gate (col R) convention for GAS handlers
-67aa7c4 | 2026-07-10 16:17:22 -0400 | Add Próspera ZEDE Operating Agreement (By-Laws) for TrueSight DAO LLC (#650)
-4ed9965 | 2026-07-10 15:59:00 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
 … (truncated)
 ```
 
@@ -466,6 +506,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 100.38 | 16809.96386 | 7/13/2026 19:56:55 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-07`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
