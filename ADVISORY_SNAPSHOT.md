@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-14T03:44:21Z`
+- Generated (UTC): `2026-07-14T08:35:53Z`
 - Look-back: **7** calendar days (`2026-07-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -290,6 +290,7 @@ _All dated lines on/after 2026-07-07_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+dfc30b2 | 2026-07-14 03:45:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 685d282 | 2026-07-13 20:00:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 888a471 | 2026-07-13 15:25:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4c95b1a | 2026-07-13 09:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,7 +330,6 @@ be8e366 | 2026-07-08 20:06:11 +0000 | chore(stats): refresh stats/current.json [
 c84fd17 | 2026-07-08 14:57:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6b17e62 | 2026-07-08 09:08:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5f5918a | 2026-07-08 03:56:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1e7eedb | 2026-07-07 22:41:14 -0400 | fix: handle order 0 correctly in timeline sort (0 was falsy, pushed to end)
 … (truncated)
 ```
 
@@ -342,6 +342,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4910ff5 | 2026-07-13 20:44:33 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
+94b5307 | 2026-07-13 20:44:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 4eec69b | 2026-07-13 19:39:30 -0700 | Merge pull request #656 from TrueSightDAO/auto/advisory-refresh-2026-07-14
 15a20d6 | 2026-07-14 02:39:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 2583e97 | 2026-07-13 12:58:22 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
@@ -380,8 +382,6 @@ ba44c3d | 2026-07-10 23:51:53 -0400 | chore(previews): refresh Beer Hall preview
 7af7221 | 2026-07-10 14:05:21 -0700 | Reorganize root: move ~168 files into 13 new + 6 existing folders
 fde57df | 2026-07-10 13:47:49 -0700 | docs(freight): add Appendix C — triangular trade documentation flow + PDF
 eee6a3e | 2026-07-10 13:38:08 -0700 | docs(freight): add Sebrae NF-e emitter as recommended Option A for export NF-e issuance
-dccde5b | 2026-07-10 13:23:54 -0700 | CONTEXT_UPDATES: record AI contributor ledger name 'Deep Seek' for all future DeepSeek sessions
-68974cd | 2026-07-10 13:23:18 -0700 | docs: document processor dedup gate (col R) convention for GAS handlers
 … (truncated)
 ```
 
@@ -420,6 +420,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+fd0852e | 2026-07-14 08:29:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6c2b915 | 2026-07-13 09:59:56 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 222ac87 | 2026-07-13 09:49:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 12d2d2b | 2026-07-12 08:33:15 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -530,7 +531,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/13/2026 19:56:55 |
+| 2026-07 | 100.38 | 16809.96386 | 7/14/2026 0:51:44 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-07`; scanned last **600** data rows)
 
