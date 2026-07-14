@@ -177,15 +177,28 @@ DAO contribution, tick the tracker, **stop**.
 
 ## 5. Resume tracker
 
-**➡️ RESUME HERE: PR2** — Gate-C laydown script (creds + repos + dedicated fleet SSH key + `~/.ssh/config`). PR0 + PR1 done.
+**➡️ RESUME HERE: Gate C** — laydown (all repos + all creds + dedicated fleet SSH key + fleet `~/.ssh/config` on the box) **and** the interactive `claude` login. Box is provisioned + reachable (Gate B done). PR2 = optional script-ified version of the laydown; the laydown can also be run directly.
+
+### Provisioned resources (Gate B — 2026-07-14)
+| Resource | Value |
+|----------|-------|
+| Instance | `i-01ad5eca707e4445f` (t3.medium, Ubuntu 22.04, encrypted 30GB gp3) |
+| Account / VPC / subnet | Nelanco `767697632458` / `vpc-d59748af` / `subnet-de8102b9` (us-east-1a) |
+| Security group | `launch-wizard-1` (`sg-003e8016026715f25`) — 22 open 0.0.0.0/0, key-only (Gary's call, dynamic cellular IP) |
+| Key pair | `GETDATA_IO_PAIR_20201122` (operator `.pem`: `aws_keypairs/NELANCO_aws_20201122.pem`) |
+| Elastic IP | `100.57.50.48` (`eipalloc-046cd5691e3a098a5`) |
+| DNS | `claude.truesight.me` → `100.57.50.48` (Explorya Route53 zone `Z0032474227N6EQ3Z4QU`) |
+| Operator alias | `ssh nelanco-claude` (in Gary's `~/.ssh/config`) |
+| Installed | Claude Code 2.1.197, tmux, node 20, clasp 3.3.0, ffmpeg; workspace `/opt/claude_workspace` |
+
+**Still needed at Gate C:** clone all repos → `/opt/claude_workspace`; lay down creds (`.env`s, Google SAs, Gmail tokens, `~/.clasprc.json`, `claude_dao_identity`); mint a **dedicated fleet SSH key** on the box + distribute to the fleet (`distribute_sophia_ssh_key.sh` variant) + fleet host aliases in the box's `~/.ssh/config`; add the box EIP `100.57.50.48` to the Nelanco fleet SG allowlists; and Gary runs `claude` login (Pro/Max/Team account — interactive, cannot be scripted).
 
 | Unit | PR opened | Merged (human) | Executed / deployed | Contribution reported |
 |------|-----------|----------------|---------------------|-----------------------|
 | PR0 — roadmap (revised) | ✅ | ✅ #657/#658 | n/a | ✅ |
 | PR1 — provisioning artifact (Claude Code + tmux) | ✅ | ✅ #276 (truesight_autopilot) | n/a | ✅ |
-| PR2 — laydown (creds + full fleet SSH) | ☐ | ☐ | n/a | ☐ |
-| Gate B — EC2 provision + SG allowlist | ☐ | ☐ | ☐ | ☐ |
-| Gate C — cred + SSH laydown + ~/.ssh/config + Claude auth | ☐ | ☐ | ☐ | ☐ |
+| Gate B — EC2 provision + EIP + DNS + ~/.ssh/config | ✅ | ✅ | ✅ 2026-07-14 (`i-01ad5eca707e4445f` / `100.57.50.48`) | ☐ |
+| PR2 / Gate C — laydown (creds + repos + fleet SSH) + `claude` login | ☐ | ☐ | ☐ | ☐ |
 | Gate D — security + fleet-SSH verify | ☐ | ☐ | ☐ | ☐ |
 
 ---
