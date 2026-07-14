@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-14T14:24:25Z`
+- Generated (UTC): `2026-07-14T19:51:18Z`
 - Look-back: **7** calendar days (`2026-07-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[INVENTORY MOVEMENT]` × 19
-- `[CONTRIBUTION EVENT]` × 10
-- `[PRACTICE EVENT]` × 7
+- `[INVENTORY MOVEMENT]` × 17
+- `[CONTRIBUTION EVENT]` × 11
+- `[PRACTICE EVENT]` × 8
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260710212711_109` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710214948_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Reorganize agentic_ai_context + transfer 25 São Jorge chocolate bars to Kirs…
 - `Edgar_20260710215815_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
 - `Edgar_20260711023911_115` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 63.87 · Description: Gasoline for driving to LA to catch flight to China
 - `Edgar_20260711025810_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
@@ -59,6 +57,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260713214043_027` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 52.29 · Description: Gasoline for driving to LA to catch flight
 - `Edgar_20260713214136_029` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260714004840_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Gary's hand roasted cacao from Fazenda Sao Jorge: Pre-grinding, melanging, t…
+- `Edgar_20260714161634_033` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-14T16:16:32.412Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260714194954_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Agroverse business-development outreach: drafted and sent an introduction em…
 
 ---
 
@@ -290,6 +290,7 @@ _All dated lines on/after 2026-07-07_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d4ce96f | 2026-07-14 14:25:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 79787f5 | 2026-07-14 08:38:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dfc30b2 | 2026-07-14 03:45:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 685d282 | 2026-07-13 20:00:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,7 +330,6 @@ fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [
 4151d8a | 2026-07-09 04:34:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 be8e366 | 2026-07-08 20:06:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c84fd17 | 2026-07-08 14:57:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6b17e62 | 2026-07-08 09:08:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -342,6 +342,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e6852a7 | 2026-07-14 12:21:46 -0700 | plan: subscription renewal sheet sync (implemented 2026-07-13)
+9c37fef | 2026-07-14 07:24:39 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
+50c962b | 2026-07-14 07:24:38 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 5941430 | 2026-07-14 01:36:06 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
 2687c7d | 2026-07-14 01:36:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 4910ff5 | 2026-07-13 20:44:33 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
@@ -379,15 +382,13 @@ ba44c3d | 2026-07-10 23:51:53 -0400 | chore(previews): refresh Beer Hall preview
 7a88642 | 2026-07-10 23:51:52 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
 8346518 | 2026-07-10 22:49:10 -0400 | Merge pull request #652 from TrueSightDAO/auto/advisory-refresh-2026-07-11
 5fe5cd4 | 2026-07-11 02:48:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-11 UTC)
-0d75cf0 | 2026-07-10 17:49:29 -0400 | Merge pull request #651 from TrueSightDAO/contribution/jul10-deepseek
-87164cd | 2026-07-10 14:49:09 -0700 | docs: record DeepSeek contributions (Jul 10)
-7af7221 | 2026-07-10 14:05:21 -0700 | Reorganize root: move ~168 files into 13 new + 6 existing folders
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+a278954 | 2026-07-14 12:21:08 -0700 | docs: add subscription renewal columns R/S/T to SCHEMA
 c224d36 | 2026-07-10 13:23:27 -0700 | docs: redefine Telegram Chat Logs col R as Processor Dedup Marker
 3b4403c | 2026-07-10 16:12:54 -0400 | fix(dao-members-cache): probe first contributor WITH a public key (#379)
 64ca7e1 | 2026-07-09 16:29:32 -0400 | fix(buyback): decouple daily buy-back budget from retired Wix (#378)
@@ -440,6 +441,7 @@ e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement h
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+285ef34 | 2026-07-14 12:21:01 -0700 | feat: sync subscription renewal payments (invoice.paid) to Stripe Checkout sheet
 4871cd1 | 2026-07-10 13:55:18 -0700 | fix: split video/photo grids on São Jorge farm page, restore original photo markup
 e25b4ac | 2026-07-10 16:33:28 -0400 | Add São Jorge farm video embeds + Bean to Bliss ep 12 + swamp-walk blog posts (#181)
 e82943e | 2026-07-10 12:52:45 -0700 | Add São Jorge (Coopercabruca) 81% dark chocolate bar SKU (#180)
@@ -531,7 +533,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/14/2026 6:51:41 |
+| 2026-07 | 100.38 | 16809.96386 | 7/14/2026 11:50:55 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-07`; scanned last **600** data rows)
 
