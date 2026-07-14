@@ -20,45 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-13T19:58:00Z`
-- Look-back: **7** calendar days (`2026-07-06` → today UTC)
+- Generated (UTC): `2026-07-14T02:39:18Z`
+- Look-back: **7** calendar days (`2026-07-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[INVENTORY MOVEMENT]` × 22
-- `[CONTRIBUTION EVENT]` × 8
-- `[PRACTICE EVENT]` × 7
-- _free-form (no bracket tag)_ × 1
-
-### Latest entries
-
-- `Edgar_20260710212700_103` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212703_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212707_107` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710212711_109` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Kirsten Ritschel · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260710214948_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Reorganize agentic_ai_context + transfer 25 São Jorge chocolate bars to Kirs…
-- `Edgar_20260710215815_113` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
-- `Edgar_20260711023911_115` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 63.87 · Description: Gasoline for driving to LA to catch flight to China
-- `Edgar_20260711025810_001` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260711025900_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Cache QR code assignments in treasury snapshot (schema v5) — eliminates 3.5s…
-- `Edgar_20260711025903_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Derive valid expense ledgers dynamically from treasury cache — fix AGL15 rej…
-- `Edgar_20260711172129_007` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T17:21:28.234Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260711203239_009` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T20:32:38.242Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260711213754_011` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-11T21:37:53.784Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260712164736_013` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-12T16:47:34.272Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260712210009_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Surfacing the insight that it is possible now to run agents within Claude an…
-- `Edgar_20260713164828_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T16:48:26.373Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260713183127_019` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T18:31:25.155Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260713185745_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-13T18:57:38.496Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260713185926_023` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Sophia Truesight
-- `Edgar_20260713185927_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
 
 ---
 
@@ -222,11 +186,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 14,057.89 total units · $12,464.80
+- Manager record: `Gary Teh` · 27 SKU lines · 13,953.31 total units · $12,360.22
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 13,981.71 | $12,414.82 |
+  | (uncategorized) | (unspecified) | 25 | 13,877.13 | $12,310.24 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -245,17 +209,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+27 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,275.16**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$48.03**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -268,7 +228,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
 - 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
 
-_All dated lines on/after 2026-07-06_ (2):
+_All dated lines on/after 2026-07-07_ (2):
 
 - 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
 - 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
@@ -281,7 +241,7 @@ _All dated lines on/after 2026-07-06_ (2):
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **no** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **yes** |
+| `oracle` | `iching_oracle` | **no** |
 
 ---
 
@@ -290,6 +250,7 @@ _All dated lines on/after 2026-07-06_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+685d282 | 2026-07-13 20:00:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 888a471 | 2026-07-13 15:25:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4c95b1a | 2026-07-13 09:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ca74d67 | 2026-07-13 04:10:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,7 +290,6 @@ c84fd17 | 2026-07-08 14:57:40 +0000 | chore(stats): refresh stats/current.json [
 6b17e62 | 2026-07-08 09:08:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5f5918a | 2026-07-08 03:56:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1e7eedb | 2026-07-07 22:41:14 -0400 | fix: handle order 0 correctly in timeline sort (0 was falsy, pushed to end)
-93028cd | 2026-07-07 22:39:34 -0400 | fix: use local date parsing for timeline dates to avoid UTC timezone shift
 … (truncated)
 ```
 
@@ -342,6 +302,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2583e97 | 2026-07-13 12:58:22 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
+880002d | 2026-07-13 12:58:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 ac9c78f | 2026-07-13 11:57:20 -0700 | Add FINAL v1.0 Operating Agreement PDF (clean, signable)
 a58465b | 2026-07-13 08:21:49 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
 0e6eb2b | 2026-07-13 08:21:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
@@ -380,8 +342,6 @@ dccde5b | 2026-07-10 13:23:54 -0700 | CONTEXT_UPDATES: record AI contributor led
 68974cd | 2026-07-10 13:23:18 -0700 | docs: document processor dedup gate (col R) convention for GAS handlers
 67aa7c4 | 2026-07-10 16:17:22 -0400 | Add Próspera ZEDE Operating Agreement (By-Laws) for TrueSight DAO LLC (#650)
 4ed9965 | 2026-07-10 15:59:00 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
-3c169b4 | 2026-07-10 15:58:59 -0400 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-10 UTC)
-01ae5a7 | 2026-07-10 11:12:14 -0400 | chore(previews): refresh Beer Hall preview (2026-07-10 UTC)
 … (truncated)
 ```
 
@@ -434,8 +394,6 @@ e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement h
 8985561 | 2026-07-09 09:59:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2e39986 | 2026-07-08 08:45:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 566618c | 2026-07-07 10:02:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-311f801 | 2026-07-06 11:16:42 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-13d1ec7 | 2026-07-06 11:06:03 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -449,9 +407,7 @@ e82943e | 2026-07-10 12:52:45 -0700 | Add São Jorge (Coopercabruca) 81% dark ch
 ### `iching_oracle` → `oracle`
 
 ```
-031779b | 2026-07-06 15:02:50 -0400 | Merge pull request #62 from TrueSightDAO/fix/practice-event-canonical-labels
-eb7a57d | 2026-07-06 14:58:58 -0400 | fix: send canonical PRACTICE EVENT labels (Program, Practitioner Public Key, Payload JSON)
-0971a9d | 2026-07-06 14:56:26 -0400 | fix: send canonical PRACTICE EVENT labels (Program, Practitioner Public Key, Payload JSON)
+_(no commits on origin/main in window)_
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -463,6 +419,15 @@ _(no commits on origin/master in window)_
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-07-14T023918Z_operating-agreement-signed-shop-updates.md`
+
+- **posted_at_utc:** `2026-07-14T02:39:18Z`  
+- **slug:** `operating-agreement-signed-shop-updates`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Ops (Legal)** — Finalized and uploaded the clean v1.0 Operating Agreement PDF, ready for signature.
 
 ### `beer-hall_2026-07-13T025806Z_narrative-reality-check-docs-reorg.md`
 
@@ -481,15 +446,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Marketing (Content)** — Published "The Desert and the Diamond" narrative blog post with updated editorial standards.
-
-### `beer-hall_2026-07-11T024853Z_sao-jorge-launch-and-prospera-bylaws.md`
-
-- **posted_at_utc:** `2026-07-11T02:48:53Z`  
-- **slug:** `sao-jorge-launch-and-prospera-bylaws`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Sales (Product)** — Launched São Jorge (Coopercabruca) 81% dark chocolate bar SKU with live inventory on the beta shop.
 
 ---
 
@@ -510,39 +466,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 100.38 | 16809.96386 | 7/13/2026 12:50:23 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-06`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-07-06 | 32.38 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_32 | UDtMWkpHbpcT | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
