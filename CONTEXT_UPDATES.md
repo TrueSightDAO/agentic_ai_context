@@ -14,6 +14,8 @@ Format: `YYYY-MM-DD | <agent-id> | <short note>`
 
 2026-06-28 | deepseek | DApp menu: Added Review Queue to nav dropdown (menu.js) — Governor only section. Bumped cache version to v=20260628a across all 39 files.
 
+2026-07-05 | sophia | OPERATING_INSTRUCTIONS.md §11 (handoff protocol) references HANDOFF_MANIFEST.md + SOPHIA_HANDOFFS.md as the live mechanism, but the actual working flow is: (1) local LLM writes plan → commits to agentic_ai_context/plans/ on main, (2) pings Sophia via truesight-dao-ping-sophia, (3) Sophia opens Telegram topic, reads plan, executes one PR per turn. The manifest/handoffs files are still useful as a registry but are no longer the primary handoff mechanism. Flagged by Claude Anthropic 2026-07-05 — see plans/LARGE_SPIKES_CARD_FIX_AND_CHART_LEGIBILITY_PLAN.md for context.
+
 2026-05-05 | claude | Autopilot self-improvement loop: added SELF-IMPROVEMENT section to system prompt. LLM now proactively detects patterns (OCR errors, misreads, protocol violations) and proposes code-level fixes via `open_fix_pr`. NEVER auto-merges — PRs go through human review. Safety hooks block dangerous ops. This creates a cybernetic adversarial loop: governor (discriminator) corrects → autopilot (generator) improves → system sharpens itself. Production-safe: crashes are prevented by PR gate — no hot code changes while serving users.
 
 2026-05-05 | claude (test-automation) | Autopilot `submit_contribution` now enforces canonical dao_client labels via `_normalize_submission_labels()` — maps 30+ LLM-invented aliases to canonical field names, drops non-canonical descriptive keys, validates required fields per event type.
