@@ -247,8 +247,8 @@ Ordered by severity. **B1 and B2 are showstoppers — the funnel does not work t
 
 | ID | Severity | Flow | Mechanism (verified) |
 |----|----------|------|----------------------|
-| **B1** | 🔴 **Critical** | **Registration dead-ends into an empty card.** Enter email → click *Get Started* → the form vanishes and **nothing replaces it**. No feedback, ever. | `white-label.js:96` writes to `#wl-auth-loading`, **which does not exist in the HTML** → `TypeError: Cannot set properties of null`. Thrown *after* `hide('wl-auth-form')` (:95) and *before* `show('wl-verify-state')` (:97), so the verify panel never appears. The `catch` (:99) writes the error into `#wl-auth-error` — **which is a child of the form it just hid** (`index.html:60`), so the error is invisible too. Result: heading + intro paragraph + ~250px of void. **This is the exact class of bug in `OPERATING_INSTRUCTIONS.md` §10** (`base64ToArrayBuffer`) — a runtime error in a handler that only fires on interaction, which page-load tests cannot catch. |
-| **B2** | 🔴 **Critical** | **After paying, the customer sees "No designs yet. Upload your first one above."** | Two IIFEs race. The success IIFE (:520) shows `#wl-success` on `?session_id=`. Then the init IIFE (:533) runs `initAuth()` → keys+email exist → `showGallery()` → **`hide('wl-success')`** (:154). Verified: at 500ms the success panel is *already gone*. The confirmation is unreachable for every returning customer — i.e. everyone who just paid. A $2,000 Stripe redirect lands on an empty-gallery message. |
+| ~~**B1**~~ ✅ [#184](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/184) | 🔴 **Critical** | **Registration dead-ends into an empty card.** Enter email → click *Get Started* → the form vanishes and **nothing replaces it**. No feedback, ever. | `white-label.js:96` writes to `#wl-auth-loading`, **which does not exist in the HTML** → `TypeError: Cannot set properties of null`. Thrown *after* `hide('wl-auth-form')` (:95) and *before* `show('wl-verify-state')` (:97), so the verify panel never appears. The `catch` (:99) writes the error into `#wl-auth-error` — **which is a child of the form it just hid** (`index.html:60`), so the error is invisible too. Result: heading + intro paragraph + ~250px of void. **This is the exact class of bug in `OPERATING_INSTRUCTIONS.md` §10** (`base64ToArrayBuffer`) — a runtime error in a handler that only fires on interaction, which page-load tests cannot catch. |
+| ~~**B2**~~ ✅ [#184](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/184) | 🔴 **Critical** | **After paying, the customer sees "No designs yet. Upload your first one above."** | Two IIFEs race. The success IIFE (:520) shows `#wl-success` on `?session_id=`. Then the init IIFE (:533) runs `initAuth()` → keys+email exist → `showGallery()` → **`hide('wl-success')`** (:154). Verified: at 500ms the success panel is *already gone*. The confirmation is unreachable for every returning customer — i.e. everyone who just paid. A $2,000 Stripe redirect lands on an empty-gallery message. |
 | **B3** | 🟠 **Money** | **Shipping is quoted for the wrong weight.** Enter address at qty=200 → rates load → change qty to 1,000 → total updates to $10,000, **rates do not re-fetch**, the old selection stays, button stays enabled → checkout with shipping quoted for 1/5 the weight. | `:369` binds qty `change` → `updateOrderTotal` **only**. `calculateShipping` derives weight from qty (`:396`) but is bound solely to address blur / state change (`:378–381`). Nothing invalidates `selectedShippingRateId`. |
 | **B4** | 🟠 | **Gallery never sorts; "newest first" is a no-op.** | Upload signs via legacy **`client.sign()`** (`:320`) which is *"v1.0.x compatible — **no Timestamp injection**"* (`dao-client/src/payload.ts:21`). Backend sets `created_at = _extract_field(text, "Timestamp") or ""` (`dao.py:369`) → **`created_at: ""` on every design** → `(b.created_at||'').localeCompare(...)` (`:192`) always returns 0 → designs render in GitHub API order (alphabetical by UUID) forever. The order path (`:451`) correctly uses `submitEvent()`, which *does* inject Timestamp — **two different signers in one file.** |
 | **B5** | 🟠 | **Shipping failures are silent.** Network error → nothing renders, button stays disabled, no reason shown. | `catch (e) {}` — empty (`:435`). |
@@ -259,6 +259,7 @@ Ordered by severity. **B1 and B2 are showstoppers — the funnel does not work t
 | **B10** | 🟡 | **Duplicate hero image.** The same packaging photo renders twice, ~350px apart (`index.html:44` and `:70`), and again on mobile within one scroll. | — |
 | **B11** | 🟡 | **State select truncates to "Stat".** | `.wl-ship-row { grid-template-columns: 1fr 80px 100px }` (`white-label.css:52`) — 80px cannot hold a select + arrow. |
 | **B12** | 🟡 | **"How It Works" orphans step 5** onto a second row, centered under step 1. | `repeat(auto-fit, minmax(160px, 1fr))` (`:60`) yields 4-up at 960px for a 5-step flow. |
+| ~~**B14**~~ ✅ [#184](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/184) | 🟠 | **A TypeError on every page load.** `universal-nav.js:122` injects `cart-ui.js`, which calls `window.Cart.getItemCount()` for the nav badge — but `white-label/index.html` never loaded `cart.js`, so it threw on every load. Every other page loads it explicitly. Found while establishing a no-uncaught-errors invariant; fixed with one script tag. |
 | **B13** | 🟡 | **Pricing table is six rows of `$10.00`.** Sets up an expectation of volume discounts, then delivers none, and restates the dropdown verbatim. | `index.html:167–181`. |
 
 ### Open questions for Gary (not bugs — decisions)
@@ -399,16 +400,18 @@ never prod (§3f; note Phase 1 violated this).
 |------|-----------|----------------|----------|----------------------|
 | **PR0** — commit the implementation + correct the mockup | ☑ [beta#182](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/182) | ☑ | n/a | ☑ |
 | **D0** — confirm + flip the label spec | ☑ [beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183) | ☑ | n/a | ☑ |
-| PR1 | ☐ | ☐ | n/a | ☐ |
+| PR1 — B1 + B2 | ☑ [beta#184](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/184) | ☑ | n/a | ☑ |
 | PR2 | ☐ | ☐ | n/a | ☐ |
 | PR3 | ☐ | ☐ | n/a | ☐ |
 | PR4 | ☐ | ☐ | n/a | ☐ |
 | PR5 | ☐ | ☐ | n/a | ☐ |
 | PR6 | ☐ | ☐ | ☐ | ☐ |
 
-> **▶ RESUME HERE: PR1** — B1 + B2, the two showstoppers. D0 is **done**: Gary confirmed 2" W ×
-> 4" H on 2026-07-14 and the spec is flipped and test-guarded ([beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183)). The funnel is still dead until
-> PR1 lands; everything after it is polish on a page nobody can get through. Ship PR1 and **stop**.
+> **▶ RESUME HERE: PR2** — B3 + B4 + B5. **The funnel now works end-to-end**: D0 (spec flipped,
+> [beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183)) and PR1 (registration +
+> receipt repaired, [beta#184](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/184)) are
+> merged, and the white-label suite is **34/34 green**. PR2 is the first unit that is *improvement*
+> rather than *resuscitation*. Ship PR2 and **stop**.
 
 ---
 
