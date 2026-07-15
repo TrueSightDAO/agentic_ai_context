@@ -133,6 +133,54 @@ LLM (DeepSeek is active in `agroverse_shop/` — see § Division of labor).
 
 ---
 
+## 2.0 🔴 D0 — THE LABEL SPEC IS ROTATED 90°. Resolve this before writing any other code.
+
+**Found 2026-07-14 by Gary, confirmed by measurement.** Colour-isolating the orange label in
+`agroverse_shop/assets/images/products/81-dark-chocolate-bar-50g-packaging.jpg` (1597×900):
+
+| | Aspect (W:H) | Real size | Orientation |
+|---|---|---|---|
+| **Label on the actual product** | **1 : 1.95** (bbox x1190–1457, y221–741 = **267 × 520 px**) | **2.05" W × 4" H** | **Portrait** |
+| Spec asserted across the page | 1 : 0.5 (1200 × 600 px) | 4" W × 2" H | Landscape |
+
+**Every design collected under the current spec is unusable.** Customers upload landscape artwork
+for a portrait label. Fixing B1/B2 without fixing this just means we collect broken artwork faster
+— which is why **D0 outranks PR1**.
+
+**Where the 4"×2" likely came from:** `WORKSPACE_CONTEXT.md:131` cites a real ledger purchase —
+*"Sticker Mule 4x2in custom rectangle label (per piece, order R384751187)"*. That is almost
+certainly the **QR-code label stock** (see `AGROVERSE_QR_CODE_BATCH_GENERATION.md`), **not** the
+chocolate-bar label. The 4"×2" figure appears to have been lifted from that ledger line and adopted
+as the artwork spec. **Unverified — Gary must confirm against the actual printer / die.**
+
+**Why the repo can't answer it:** `agroverse_shop/docs/WHITE_LABEL_SUPPLY_CHAIN_HANDOFF.md` points
+to **`agentic_ai_context/AGROVERSE_WHITE_LABEL_SUPPLY_CHAIN.md`** — which **does not exist**, on
+`main` or locally. The Liz pilot, routing, school pricing, and shipping tiers it references are
+unrecorded anywhere. **Someone must write that file**; it is the missing authority for D0.
+
+### D0 checklist — flip the spec (only after Gary confirms 2" W × 4" H)
+
+| File | Line | Now | → |
+|---|---|---|---|
+| `agroverse_shop/js/white-label.js` | 247–248 | `naturalWidth !== 1200 \|\| naturalHeight !== 600` | `!== 600 \|\| !== 1200` + message |
+| `agroverse_shop/js/white-label.js` | 324 | `Dimensions: '4x2in'` | `'2x4in'` |
+| `agroverse_shop/css/white-label.css` | 33 | `aspect-ratio: 2/1` | `aspect-ratio: 1/2` |
+| `agroverse_shop/white-label/index.html` | 43 | subtitle `4"×2" labels` | `2"×4" labels` |
+| `agroverse_shop/white-label/index.html` | 45 | badge `4"×2" labels` | `2"×4" labels` |
+| `agroverse_shop/white-label/index.html` | 86 | drop hint `1200×600px (4"×2")` | `600×1200px (2"×4")` |
+| `agroverse_shop/white-label/index.html` | 159 | step 1 `1200×600px (4"×2")` | `600×1200px (2"×4")` |
+| `agentic_ai_context/PROJECT_INDEX.md` | 75 | agroverse-designs `(4″×2″ PNG)` | `(2″×4″ PNG)` |
+| — | — | **Any designs already uploaded** | audit `agroverse-designs`; landscape files must be re-collected |
+
+✅ **Already done (merged, [agroverse_shop_beta#182](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/182)):**
+`white-label-mockup.png` rebuilt from the real photo — portrait 2"×4" placeholder composited onto
+the actual kraft pouch at the real label's bbox; auth card shows that single mockup;
+`object-fit: contain`; mockup stacks above the email field on narrow viewports (P3).
+**The page is internally inconsistent until the table above lands** — the mockup says 2"×4", the
+copy still says 4"×2".
+
+---
+
 ## 2.1 The core placement diagnosis
 
 **The page is a marketing page with app panels injected into its middle.** The frame — hero
@@ -332,6 +380,8 @@ never prod (§3f; note Phase 1 violated this).
 
 | Unit | PR opened | Merged (human) | Deployed | Contribution reported |
 |------|-----------|----------------|----------|----------------------|
+| **PR0** — commit the implementation + correct the mockup | ☑ [beta#182](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/182) | ☑ | n/a | ☑ |
+| **D0** — confirm + flip the label spec | ☐ | ☐ | n/a | ☐ |
 | PR1 | ☐ | ☐ | n/a | ☐ |
 | PR2 | ☐ | ☐ | n/a | ☐ |
 | PR3 | ☐ | ☐ | n/a | ☐ |
@@ -339,8 +389,51 @@ never prod (§3f; note Phase 1 violated this).
 | PR5 | ☐ | ☐ | n/a | ☐ |
 | PR6 | ☐ | ☐ | ☐ | ☐ |
 
-> **▶ RESUME HERE: PR1** — B1 + B2. The funnel is dead until this lands; everything else is polish
-> on a page nobody can get through. Ship PR1 and **stop**.
+> **▶ RESUME HERE: D0** — `gate: needs Gary to confirm the physical label is 2" W × 4" H.`
+> Do **not** start PR1 until D0 is answered. PR1–PR5 are wasted effort if the spec flips: the
+> validation, the copy, the card aspect-ratio, and any already-collected artwork all change.
+> If Gary confirms, apply the §2.0 checklist as **D0** (one PR), then resume at **PR1**.
+
+---
+
+### ▶ START HERE — handoff for the next agent
+
+**Read in this order:** `OPERATING_INSTRUCTIONS.md` → this file top-to-bottom (§2.0 first) →
+`agroverse_shop/js/white-label.js` (543 lines, the whole state machine) →
+`agroverse_shop/white-label/index.html`.
+
+**Before touching `agroverse_shop`:**
+```bash
+cd ~/Applications/agroverse_shop && git fetch origin main
+git worktree add /tmp/wl-<unit> -b fix/white-label-<unit> origin/main
+```
+**Use a worktree — not `stash`+branch.** The DeepSeek session has ~20 uncommitted blog-post edits
+in that working directory; a `git checkout` will clobber them
+(`feedback_use_worktree_for_parallel_sessions`). PR0 already committed the white-label files and
+the 4 files it depends on (`products.js`, `shared-chrome.js`, `index.html`, `checkout.gs`), so
+`origin/main` has a complete, working copy of the feature — you do not need that dirty tree.
+
+**Repo routing:** work lands in **`agroverse_shop_beta`**, never `agroverse_shop_prod` (§3f).
+Phase 1 violated this; don't repeat it.
+
+**How to verify (this is what found B1/B2/B4 — the existing UAT spec did not):**
+```bash
+cd ~/Applications/agroverse_shop && python3 -m http.server 8000 &
+# Playwright drives each state with stubbed Edgar/GitHub routes, asserting
+# console errors + which #wl-* sections are visible. Page-load-only tests
+# cannot catch these — the bugs live in interaction handlers (§10 postmortem).
+```
+Per §9, every unit needs happy-dom/JSDom tests that **fail first**, then pass.
+
+**Per unit:** one PR, then **stop** (§5a — the 30-round cap). Tick the tracker above, report the
+DAO contribution (`truesight-dao-report-ai-agent-contribution`, contributor **`Claude Anthropic`**
+for AI work), then the next turn resumes the next unit.
+
+**Don't re-derive these — they're settled and cited:**
+- B1 root cause: `#wl-auth-loading` doesn't exist; error element is trapped inside the hidden form.
+- B2 root cause: two IIFEs race; `showGallery()` hides `#wl-success`.
+- B4 root cause: `sign()` vs `submitEvent()` — only the latter injects `Timestamp`.
+- The label is portrait; the mockup is already fixed; the **copy is not**.
 
 ✅ **Pre-flight Completeness (§5d):** no execution unit requires reading a file/state not already
 captured here. Every mechanism above cites its file + line (`white-label.js`, `white-label.css`,
