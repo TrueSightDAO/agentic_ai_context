@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-15T02:36:57Z`
+- Generated (UTC): `2026-07-15T03:44:44Z`
 - Look-back: **7** calendar days (`2026-07-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 13
+- `[EMAIL REGISTERED EVENT]` × 9
+- `[SALES EVENT]` × 7
+- `[INVENTORY MOVEMENT]` × 2
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 6
+
+### Latest entries
+
+- `Edgar_20260714204439_065` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Kirsten Ritschel · Target Ledger: offchain
+- `Edgar_20260714205005_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Implement subscription renewal sync to Stripe Checkout sheet + process Linda…
+- `Edgar_20260714205312_069` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 232.88 · Description: Traffic violation while distracted driving to Cacao Circle
+- `Edgar_20260714205403_071` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260714205552_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Nelanco Claude Code box: scope correction + PR1 provisioning artifacts
+- `Edgar_20260714211919_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Provisioned the Nelanco Claude Code box (Gate B): EC2 + EIP + DNS
+- `Edgar_20260715000248_077` · **Edgar** · test
+- `Edgar_20260715000315_079` · **Edgar** · test
+- `Edgar_20260715002113_081` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
+- `Edgar_20260715002115_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
+- `Edgar_20260715002218_085` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
+- `Edgar_20260715002228_087` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
+- `Edgar_20260715002332_089` · **Edgar** · [EMAIL REGISTERED EVENT] Email: test@test.com · Generation Source URL: https://agroverse.shop/white-label/
+- `Edgar_20260715003132_091` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T00:31:31.182Z · Email: garyjob@gmail.com
+- `Edgar_20260715003717_093` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T00:37:16.429Z · Email: garyjob@gmail.com
+- `Edgar_20260715010405_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T01:04:01.704Z · Email: garyjob@gmail.com
+- `Edgar_20260715011808_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Nelanco Claude Code box Gate C laydown + Sophia migration plan
+- `Edgar_20260715013435_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: White-label page: 7-state UI/UX audit + Phase 2 placement spec
+- `Edgar_20260715014556_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T01:45:55.888Z · Email: garyjob@gmail.com
+- `Edgar_20260715020936_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: White-label: label-orientation fix, mockup rebuild, and implementation commi…
 
 ---
 
@@ -209,13 +247,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,375.78**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$48.52**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -302,6 +344,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+372de3b | 2026-07-14 19:37:11 -0700 | Merge pull request #664 from TrueSightDAO/auto/advisory-refresh-2026-07-15
+c3872a6 | 2026-07-15 02:37:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 38fadb7 | 2026-07-14 19:08:47 -0700 | plans: white-label D0 — the label spec is rotated 90 degrees (#663)
 7a62c02 | 2026-07-14 18:29:59 -0700 | plans: white-label Phase 2 — state repair + visual placement spec (#662)
 c2de69b | 2026-07-14 18:17:00 -0700 | plans: Nelanco box Gate C done + add Sophia->Nelanco migration roadmap (#661)
@@ -340,8 +384,6 @@ e2ddbe7 | 2026-07-12 01:38:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b5f698f | 2026-07-11 21:06:48 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
 a6a0081 | 2026-07-11 21:06:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-12 UTC)
 ab7d46e | 2026-07-11 19:56:52 -0700 | Merge pull request #653 from TrueSightDAO/auto/advisory-refresh-2026-07-12
-d29a2ac | 2026-07-12 02:56:43 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-12 UTC)
-005e5e6 | 2026-07-11 15:41:32 -0400 | chore(previews): refresh Beer Hall preview (2026-07-11 UTC)
 … (truncated)
 ```
 
@@ -472,6 +514,49 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/14/2026 19:50:50 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-08`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-07-14 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_14 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_12 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_10 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_8 | zpFSulJXVklN | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
