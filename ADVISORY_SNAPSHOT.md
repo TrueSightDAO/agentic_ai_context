@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-15T14:19:56Z`
+- Generated (UTC): `2026-07-15T19:45:20Z`
 - Look-back: **7** calendar days (`2026-07-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,23 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
+- `[CONTRIBUTION EVENT]` × 21
 - `[EMAIL REGISTERED EVENT]` × 9
-- `[SALES EVENT]` × 4
-- `[INVENTORY MOVEMENT]` × 2
+- `[INVENTORY MOVEMENT]` × 1
 - `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260715002113_081` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
-- `Edgar_20260715002115_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
-- `Edgar_20260715002218_085` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
-- `Edgar_20260715002228_087` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
-- `Edgar_20260715002332_089` · **Edgar** · [EMAIL REGISTERED EVENT] Email: test@test.com · Generation Source URL: https://agroverse.shop/white-label/
-- `Edgar_20260715003132_091` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T00:31:31.182Z · Email: garyjob@gmail.com
-- `Edgar_20260715003717_093` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T00:37:16.429Z · Email: garyjob@gmail.com
-- `Edgar_20260715010405_001` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T01:04:01.704Z · Email: garyjob@gmail.com
 - `Edgar_20260715011808_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Nelanco Claude Code box Gate C laydown + Sophia migration plan
 - `Edgar_20260715013435_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: White-label page: 7-state UI/UX audit + Phase 2 placement spec
 - `Edgar_20260715014556_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T01:45:55.888Z · Email: garyjob@gmail.com
@@ -61,6 +52,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260715125629_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-15T12:56:28.333Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260715132428_023` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 154.50 · Description: Monthly parking while in China to expand cacao distribution
 - `Edgar_20260715132549_025` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260715184914_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Unblocked Sophia (autopilot) ssh_run tool on sophia-nelanco box (i-05276b8ae…
+- `Edgar_20260715191349_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] tokenomics: The `action=triggerSync` endpoint in the GAS web app…
+- `Edgar_20260715191438_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Diagnosed and resolved USD Treasury Balance discrepancy between landing page…
+- `Edgar_20260715191614_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: White-label chocolate bar system + AWS infrastructure documentation
+- `Edgar_20260715191624_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: White-label chocolate bar system + AWS infrastructure + documentation
+- `Edgar_20260715192301_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
+- `Edgar_20260715193053_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Sophia Truesight
+- `Edgar_20260715193057_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
 
 ---
 
@@ -298,6 +297,7 @@ _All dated lines on/after 2026-07-08_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0e14a14 | 2026-07-15 14:22:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e0414c | 2026-07-15 03:46:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48ee72a | 2026-07-14 19:52:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -337,7 +337,6 @@ d176020 | 2026-07-10 15:15:15 +0000 | chore(stats): refresh stats/current.json [
 85b9571 | 2026-07-10 04:35:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4f1d681 | 2026-07-09 15:43:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
-8ad2a7d | 2026-07-09 10:05:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -350,6 +349,12 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5f183fa | 2026-07-15 12:15:53 -0700 | docs: Sophia Nelanco migration, Claude Cloud box, white-label changelog (#671)
+979d0c3 | 2026-07-15 11:48:38 -0700 | handoffs: mark large_spikes plan as SUPERSEDED (already implemented) (#670)
+bae6f0d | 2026-07-15 11:38:08 -0700 | CONTEXT_UPDATES: flag stale handoff protocol in OPERATING_INSTRUCTIONS §11 (#669)
+6fbdad3 | 2026-07-15 07:57:37 -0700 | Add handoff PDF: Gary to Fatima (Brazil ops, Jul 2026)
+0e1cad9 | 2026-07-15 07:20:12 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
+172d58e | 2026-07-15 07:20:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 d5a1f20 | 2026-07-15 05:06:40 -0700 | handoffs: register white-label Phase 2 -> nelanco-claude box (#668)
 7584532 | 2026-07-15 04:52:16 -0700 | plans: white-label PR1 done — funnel works end-to-end; resume moves to PR2 (#667)
 3684ae4 | 2026-07-15 04:37:43 -0700 | docs(infra): Sophia migrated Explorya->Nelanco (2026-07-15) + new Claude box (#666)
@@ -384,18 +389,13 @@ ac9c78f | 2026-07-13 11:57:20 -0700 | Add FINAL v1.0 Operating Agreement PDF (cl
 a58465b | 2026-07-13 08:21:49 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
 0e6eb2b | 2026-07-13 08:21:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 3f90553 | 2026-07-13 02:53:50 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
-ed43c64 | 2026-07-13 02:53:49 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
-a7c8889 | 2026-07-12 21:09:34 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
-d261cf0 | 2026-07-12 21:09:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
-a1aa62c | 2026-07-12 19:58:18 -0700 | Merge pull request #654 from TrueSightDAO/auto/advisory-refresh-2026-07-13
-3861d5a | 2026-07-13 02:58:09 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
-198eb06 | 2026-07-12 12:39:06 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+e111714 | 2026-07-15 11:47:00 -0700 | fix(tokenomics): remove all Wix dependencies from tdg_wix_dashboard.js (#380)
 a278954 | 2026-07-14 12:21:08 -0700 | docs: add subscription renewal columns R/S/T to SCHEMA
 c224d36 | 2026-07-10 13:23:27 -0700 | docs: redefine Telegram Chat Logs col R as Processor Dedup Marker
 3b4403c | 2026-07-10 16:12:54 -0400 | fix(dao-members-cache): probe first contributor WITH a public key (#379)
@@ -452,6 +452,9 @@ e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement h
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+7604237 | 2026-07-15 12:24:11 -0700 | fix(white-label): PR3 — State A re-composition (P1, P2, B10, B12, B13) (#187)
+5cdd1b7 | 2026-07-15 12:11:03 -0700 | fix(pages): point CNAME at beta.agroverse.shop, not the apex domain (#186)
+b939f0a | 2026-07-15 12:08:08 -0700 | fix(white-label): PR2 — re-quote shipping on qty change, timestamp uploads, surface shipping errors (B3+B4+B5) (#185)
 4fc77ac | 2026-07-15 04:48:21 -0700 | fix(white-label): PR1 — repair registration (B1) and the post-payment receipt (B2) (#184)
 9e03bc8 | 2026-07-15 04:31:03 -0700 | fix(white-label): D0 — flip the label spec to portrait 2"x4" (#183)
 89e7622 | 2026-07-14 19:05:28 -0700 | feat(white-label): correct label to portrait 2"×4" + commit the full implementation (#182)
@@ -547,7 +550,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/15/2026 6:50:48 |
+| 2026-07 | 201.48 | 16911.06386 | 7/15/2026 12:12:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-08`; scanned last **600** data rows)
 
