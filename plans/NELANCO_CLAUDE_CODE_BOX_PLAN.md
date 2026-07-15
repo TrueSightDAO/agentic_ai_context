@@ -177,7 +177,14 @@ DAO contribution, tick the tracker, **stop**.
 
 ## 5. Resume tracker
 
-**➡️ RESUME HERE: Gate C** — laydown (all repos + all creds + dedicated fleet SSH key + fleet `~/.ssh/config` on the box) **and** the interactive `claude` login. Box is provisioned + reachable (Gate B done). PR2 = optional script-ified version of the laydown; the laydown can also be run directly.
+**➡️ RESUME HERE: Gate D** — Gary runs the interactive `claude` login + first `/remote-control` from the phone (only he can do this). Gate C laydown DONE 2026-07-14 (see below).
+
+**Gate C — DONE 2026-07-14:**
+- 47 repos cloned → `/opt/claude_workspace` (TrueSightDAO + KrakeIO via PATs; personal/3rd-party anon).
+- 64 gitignored secret files + 3 clasp tokens laid down (mirrored layout), perms 600.
+- **Fleet SSH:** used `sophia_infra` (fleet already authorizes it) rather than minting a new key — the box holds full master creds so a dedicated key adds no isolation but 14 prod-host touches (reasoned deviation from D2). Box `~/.ssh/config` has all 14 fleet aliases. **DAO/Agroverse fleet fully covered** (dao_protocol, seni_ror, seni_sk, seni_sql, seni_redis, getdata_redis AUTH_OK). Krake side partial: krake_ror/krake_data auth-fail (different keypair), krake_sk_webhook/crawler/scaler + getdata_cache + krake_nginx blocked (several are stale phantoms post the 2026-06-11 krake_sk consolidation) — left for Gary to decide.
+- Box git: identity `Claude Anthropic`, DAO-PAT credential helper (HTTPS push OK), dedicated ed25519 push key generated (`~/.ssh/id_ed25519_nelanco_claude`) — **Gary: add its pubkey to github.com/settings/keys (optional; HTTPS already works)**.
+- **Still needs Gary:** `ssh nelanco-claude` → `tmux` → `claude` (login to Pro/Max/Team account) → `/remote-control` → drive from phone.
 
 ### Provisioned resources (Gate B — 2026-07-14)
 | Resource | Value |
@@ -197,9 +204,9 @@ DAO contribution, tick the tracker, **stop**.
 |------|-----------|----------------|---------------------|-----------------------|
 | PR0 — roadmap (revised) | ✅ | ✅ #657/#658 | n/a | ✅ |
 | PR1 — provisioning artifact (Claude Code + tmux) | ✅ | ✅ #276 (truesight_autopilot) | n/a | ✅ |
-| Gate B — EC2 provision + EIP + DNS + ~/.ssh/config | ✅ | ✅ | ✅ 2026-07-14 (`i-01ad5eca707e4445f` / `100.57.50.48`) | ☐ |
-| PR2 / Gate C — laydown (creds + repos + fleet SSH) + `claude` login | ☐ | ☐ | ☐ | ☐ |
-| Gate D — security + fleet-SSH verify | ☐ | ☐ | ☐ | ☐ |
+| Gate B — EC2 provision + EIP + DNS + ~/.ssh/config | ✅ | ✅ | ✅ 2026-07-14 (`i-01ad5eca707e4445f` / `100.57.50.48`) | ✅ |
+| Gate C — laydown (47 repos + 64 creds + fleet SSH + box git) | ✅ | ✅ | ✅ 2026-07-14 | ✅ |
+| Gate D — `claude` login + first `/remote-control` from phone | n/a | n/a | ☐ **(Gary)** | n/a |
 
 ---
 
