@@ -158,7 +158,22 @@ to **`agentic_ai_context/AGROVERSE_WHITE_LABEL_SUPPLY_CHAIN.md`** — which **do
 `main` or locally. The Liz pilot, routing, school pricing, and shipping tiers it references are
 unrecorded anywhere. **Someone must write that file**; it is the missing authority for D0.
 
-### D0 checklist — flip the spec (only after Gary confirms 2" W × 4" H)
+### ✅ D0 RESOLVED — Gary confirmed 2" W × 4" H (2026-07-14); flipped in [beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183)
+
+**No data migration was needed** — audited `TrueSightDAO/agroverse-designs`: `designs/` contained
+only `.gitkeep`, so zero artwork had been collected under the wrong spec.
+
+Guarded by `agroverse_shop/tests/white-label-label-spec.spec.ts` (verified fails-first: 5/7 failed
+pre-flip, 7/7 pass after). It tests **spec drift** — the bug class that caused D0, the same fact
+hard-coded in 7 places with nothing checking they agreed — and the **validator via a real file
+drop**, since `validateImageDimensions()` only runs on interaction (§10).
+
+Also fixed an off-by-one in the pre-existing UAT spec (asserted CA at `nth(6)`, TX at `nth(45)`;
+index 0 is the placeholder, so those were CO and VT). **That spec had never passed** — further
+evidence Phase 1's "UAT test spec ✅" was ticked without being run. Suite is now **26/26 green**.
+
+<details><summary>Original checklist (all applied)</summary>
+
 
 | File | Line | Now | → |
 |---|---|---|---|
@@ -169,8 +184,10 @@ unrecorded anywhere. **Someone must write that file**; it is the missing authori
 | `agroverse_shop/white-label/index.html` | 45 | badge `4"×2" labels` | `2"×4" labels` |
 | `agroverse_shop/white-label/index.html` | 86 | drop hint `1200×600px (4"×2")` | `600×1200px (2"×4")` |
 | `agroverse_shop/white-label/index.html` | 159 | step 1 `1200×600px (4"×2")` | `600×1200px (2"×4")` |
-| `agentic_ai_context/PROJECT_INDEX.md` | 75 | agroverse-designs `(4″×2″ PNG)` | `(2″×4″ PNG)` |
-| — | — | **Any designs already uploaded** | audit `agroverse-designs`; landscape files must be re-collected |
+| `agentic_ai_context/PROJECT_INDEX.md` | 75 | agroverse-designs `(4″×2″ PNG)` | `(2″×4″ PNG)` — **still open**: canonical file, §3 says don't edit without an explicit ask. Logged in `CONTEXT_UPDATES.md` for Gary to apply. |
+| — | — | **Any designs already uploaded** | ✅ audited — none existed (`.gitkeep` only) |
+
+</details>
 
 ✅ **Already done (merged, [agroverse_shop_beta#182](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/182)):**
 `white-label-mockup.png` rebuilt from the real photo — portrait 2"×4" placeholder composited onto
@@ -381,7 +398,7 @@ never prod (§3f; note Phase 1 violated this).
 | Unit | PR opened | Merged (human) | Deployed | Contribution reported |
 |------|-----------|----------------|----------|----------------------|
 | **PR0** — commit the implementation + correct the mockup | ☑ [beta#182](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/182) | ☑ | n/a | ☑ |
-| **D0** — confirm + flip the label spec | ☐ | ☐ | n/a | ☐ |
+| **D0** — confirm + flip the label spec | ☑ [beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183) | ☑ | n/a | ☑ |
 | PR1 | ☐ | ☐ | n/a | ☐ |
 | PR2 | ☐ | ☐ | n/a | ☐ |
 | PR3 | ☐ | ☐ | n/a | ☐ |
@@ -389,10 +406,9 @@ never prod (§3f; note Phase 1 violated this).
 | PR5 | ☐ | ☐ | n/a | ☐ |
 | PR6 | ☐ | ☐ | ☐ | ☐ |
 
-> **▶ RESUME HERE: D0** — `gate: needs Gary to confirm the physical label is 2" W × 4" H.`
-> Do **not** start PR1 until D0 is answered. PR1–PR5 are wasted effort if the spec flips: the
-> validation, the copy, the card aspect-ratio, and any already-collected artwork all change.
-> If Gary confirms, apply the §2.0 checklist as **D0** (one PR), then resume at **PR1**.
+> **▶ RESUME HERE: PR1** — B1 + B2, the two showstoppers. D0 is **done**: Gary confirmed 2" W ×
+> 4" H on 2026-07-14 and the spec is flipped and test-guarded ([beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183)). The funnel is still dead until
+> PR1 lands; everything after it is polish on a page nobody can get through. Ship PR1 and **stop**.
 
 ---
 
