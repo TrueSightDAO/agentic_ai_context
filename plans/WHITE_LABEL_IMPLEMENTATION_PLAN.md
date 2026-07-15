@@ -401,17 +401,28 @@ never prod (§3f; note Phase 1 violated this).
 | **PR0** — commit the implementation + correct the mockup | ☑ [beta#182](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/182) | ☑ | n/a | ☑ |
 | **D0** — confirm + flip the label spec | ☑ [beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183) | ☑ | n/a | ☑ |
 | PR1 — B1 + B2 | ☑ [beta#184](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/184) | ☑ | n/a | ☑ |
-| PR2 | ☐ | ☐ | n/a | ☐ |
-| PR3 | ☐ | ☐ | n/a | ☐ |
-| PR4 | ☐ | ☐ | n/a | ☐ |
-| PR5 | ☐ | ☐ | n/a | ☐ |
+| PR2 — B3 + B4 + B5 | ☑ [beta#185](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/185) | ☑ | n/a | ☐ |
+| PR3 — State A re-composition | ☑ [beta#187](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/187) | ☑ | n/a | ☐ |
+| PR4 — State C/D | ☑ [beta#188](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/188) | ☐ | n/a | ☐ |
+| PR5 — State E/F | ☑ [beta#189](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/189) (stacked on #188) | ☐ | n/a | ☐ |
 | PR6 | ☐ | ☐ | ☐ | ☐ |
 
-> **▶ RESUME HERE: PR2** — B3 + B4 + B5. **The funnel now works end-to-end**: D0 (spec flipped,
-> [beta#183](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/183)) and PR1 (registration +
-> receipt repaired, [beta#184](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/184)) are
-> merged, and the white-label suite is **34/34 green**. PR2 is the first unit that is *improvement*
-> rather than *resuscitation*. Ship PR2 and **stop**.
+**Also landed this session (infra, outside the PR1-6 sequence):** [beta#186](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/186)
+fixed `beta.agroverse.shop`'s CNAME — it was still claiming the apex domain from
+before `agroverse_shop_prod` was split out, so GitHub Pages had no repo
+registered for the beta subdomain (DNS was already correct). Beta is now
+reachable at **https://beta.agroverse.shop/white-label/** — confirmed live,
+serving PR2+PR3 (PR4/PR5 not yet merged, see below).
+
+> **▶ RESUME HERE: review + merge PR4** ([beta#188](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/188)),
+> **then PR5** ([beta#189](https://github.com/TrueSightDAO/agroverse_shop_beta/pull/189), stacked on
+> #188 — GitHub will auto-retarget it to `main` once #188 merges). Both are opened, tested
+> (47/47 and 54/54 green respectively), and stopped here per §5c — merging to `main` is a human gate.
+> PR4 ships Q5 (template download + auto-fit) as a generated interim rather than blocking on a
+> designed asset from Gary; P7 (fully photorealistic composited previews) remains open pending a
+> blank base-pouch asset, same gap class as Q5 — flagged in-code, not faked. Once PR4 + PR5 are
+> merged, next turn resumes **PR6** (UAT + beta→prod promotion) — an always-stop gate requiring
+> Gary's explicit review of the live beta site first.
 
 ---
 
