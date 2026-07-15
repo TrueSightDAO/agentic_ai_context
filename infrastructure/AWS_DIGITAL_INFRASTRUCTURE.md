@@ -4,6 +4,26 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 
 ---
 
+## ⚠️ CURRENT STATE BANNER — updated 2026-07-15 (authoritative; supersedes older sections below)
+
+Two changes landed 2026-07-15. **Where the text below conflicts with this banner, the banner wins** (a full line-by-line sweep of the older sections is a pending follow-up).
+
+**1. Sophia (autopilot) migrated Explorya → Nelanco** (AMI lift-and-shift):
+
+| | Old (retired) | New (current) |
+|---|---|---|
+| Instance | `i-02c699d3d7efbdc82` (**STOPPED** 2026-07-15, kept for rollback) | **`i-05276b8ae82d6b88c`** |
+| Account | Explorya `440626669078` | **Nelanco `767697632458`** |
+| EIP | `52.200.38.206` (`eipalloc-04772e4a20f10c1c4`) | **`3.214.167.219`** (`eipalloc-018e2cad67ecbcd8a`) |
+| VPC / subnet / SG | Explorya `sg-e98f788e` | `vpc-d59748af` / `subnet-de8102b9` / `governor-chatbot-sg` (`sg-0d3b6c10480d83248`, 80/443/22) |
+| Type | t3.medium | t3.medium |
+
+`sophia.truesight.me` now → **`3.214.167.219`** (Route53 A, Explorya zone `Z0032474227N6EQ3Z4QU`). All 4 systemd units (`truesight-autopilot`, `-telegram`, `-watchdog`, `truesight-vault`) run on the new box; `DRY_RUN=false`; health `:8001` = 200; nginx serves HTTPS 200. Migration was an **AMI copy** (Explorya `ami-0b05acc998af71d0f` → shared → Nelanco copy `ami-049ff1f01152ef25d`) so the box is a byte-for-byte clone (Edgar identity, Telethon session, code all intact). Weekly AMI backup **retargeted** (Cypher-Defense `snapshot_autopilot_ami`): now Name tag `sophia-nelanco` + `CYPHER_DEFENCE_AWS_*` secrets (Nelanco). **Pending follow-ups:** swap `52.200.38.206`→`3.214.167.219` in fleet SG `dao-protocol-beta-sg` allowlist (SSH); reconcile stale `governor_chatbot`/`chatbot.truesight.me` notes; eventually terminate the stopped Explorya box + prune old Explorya AMIs.
+
+**2. New interactive Claude Code box** (`nelanco-claude`): `i-01ad5eca707e4445f`, EIP **`100.57.50.48`**, `claude.truesight.me`, Nelanco `vpc-d59748af`/`subnet-de8102b9`, SG `launch-wizard-1`. Runs Claude Code (driven from the mobile app via `--remote-control`), Sophia-parity env + fleet SSH — **not** autonomous. Plan: `plans/NELANCO_CLAUDE_CODE_BOX_PLAN.md`.
+
+---
+
 ## 0. Architecture Overview
 
 ### 0.1 High-Level Account Architecture
@@ -139,7 +159,7 @@ flowchart LR
 
 | Name | Instance ID | Type | State | Private IP | Public IP | Purpose |
 |------|-------------|------|-------|------------|-----------|---------|
-| **truesight-autopilot** | `i-02c699d3d7efbdc82` | t3.small | running | 10.0.0.158 | 52.200.38.206 | **Autopilot server.** FastAPI service for governor chat + autonomous SRE. Code at `/opt/truesight_autopilot`, systemd `truesight-autopilot.service`. DNS: `sophia.truesight.me` → this host. |
+| ~~**truesight-autopilot**~~ | `i-02c699d3d7efbdc82` | t3.medium | **STOPPED 2026-07-15** | 10.0.0.158 | 52.200.38.206 | **RETIRED — migrated to Nelanco** (`i-05276b8ae82d6b88c`, EIP `3.214.167.219`). Kept stopped for rollback. See top banner. |
 | **seni_ror_2026** | `i-0ac8462aa6bb54986` | t2.small | **stopped** | 10.0.0.162 | — | **Old Perch (Rails).** Stopped 2026-05-28. Replaced by `seni_ror_200250915` in Nelanco. |
 | **seni_sk_2026** | `i-0bb43299c84c5ccd5` | t2.small | **stopped** | 10.0.0.14 | — | **Old Sidekiq.** Stopped 2026-05-28. Replaced by new `seni_sk_auto` in Nelanco. |
 
@@ -156,7 +176,8 @@ flowchart LR
 | `beta.edgar.truesight.me` | A | `54.162.175.189` | Points directly to **dao-protocol-beta** (Nelanco). Standalone beta sandbox for Stripe test-mode E2E tests. |
 | `api.truesight.me` | A | `54.226.114.186` | Also krake_nginx. |
 | `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies to `seni_ror_200250915:8000` (governor chatbot / autopilot). |
-| `sophia.truesight.me` | A | `52.200.38.206` | Points directly to **truesight-autopilot** (Explorya). |
+| `sophia.truesight.me` | A | `3.214.167.219` | → **truesight-autopilot in Nelanco** (`i-05276b8ae82d6b88c`); was `52.200.38.206` (Explorya) until the 2026-07-15 migration. |
+| `claude.truesight.me` | A | `100.57.50.48` | → **nelanco-claude** interactive Claude Code box (`i-01ad5eca707e4445f`, Nelanco). Added 2026-07-14. |
 | `dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages. |
 | `beta.dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages (beta). |
 | `truesight.me` | A | `185.199.108.153` + 3 more | GitHub Pages. |
