@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-15T08:42:04Z`
+- Generated (UTC): `2026-07-15T14:19:56Z`
 - Look-back: **7** calendar days (`2026-07-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,23 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 16
 - `[EMAIL REGISTERED EVENT]` × 9
-- `[SALES EVENT]` × 7
+- `[SALES EVENT]` × 4
 - `[INVENTORY MOVEMENT]` × 2
 - `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260714204439_065` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Kirsten Ritschel · Target Ledger: offchain
-- `Edgar_20260714205005_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Implement subscription renewal sync to Stripe Checkout sheet + process Linda…
-- `Edgar_20260714205312_069` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 232.88 · Description: Traffic violation while distracted driving to Cacao Circle
-- `Edgar_20260714205403_071` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260714205552_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Nelanco Claude Code box: scope correction + PR1 provisioning artifacts
-- `Edgar_20260714211919_075` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Provisioned the Nelanco Claude Code box (Gate B): EC2 + EIP + DNS
-- `Edgar_20260715000248_077` · **Edgar** · test
-- `Edgar_20260715000315_079` · **Edgar** · test
 - `Edgar_20260715002113_081` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
 - `Edgar_20260715002115_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
 - `Edgar_20260715002218_085` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com · Generation Source URL: https://agroverse.shop/white-label/
@@ -61,6 +53,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260715013435_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: White-label page: 7-state UI/UX audit + Phase 2 placement spec
 - `Edgar_20260715014556_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T01:45:55.888Z · Email: garyjob@gmail.com
 - `Edgar_20260715020936_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: White-label: label-orientation fix, mockup rebuild, and implementation commi…
+- `Edgar_20260715113343_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: White-label D0: flip label spec to portrait 2x4 + fails-first test guard
+- `Edgar_20260715113855_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 65 · Description: Migrated Sophia (autopilot) Explorya->Nelanco via AMI lift-and-shift
+- `Edgar_20260715115256_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: White-label PR1: repair registration (B1) and post-payment receipt (B2)
+- `Edgar_20260715120714_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: White-label Phase 2 handoff registered to the nelanco-claude box
+- `Edgar_20260715123901_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: White-label corporate gifting page — governor review and direction (2026-07-…
+- `Edgar_20260715125629_021` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-15T12:56:28.333Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260715132428_023` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 154.50 · Description: Monthly parking while in China to expand cacao distribution
+- `Edgar_20260715132549_025` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 
 ---
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-14T10:59:13.722Z`
+- Generated (UTC): `2026-07-15T10:59:16.588Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -87,12 +87,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 - Research: 59  (#8)
 - AI: No fit signal: 158  (#9)
 - AI: Enrich — manual: 95  (#10)
-- Manager Follow-up: 32  (#13)
+- Manager Follow-up: 33  (#13)
 - Followed Up: 1  (#15)
 - Instagram Followed: 11  (#18)
 - Rejected: 15  (#19)
 - On Hold: 18  (#20)
-- Deferred / Revisit later: 7  (#21)
+- Deferred / Revisit later: 6  (#21)
 - **Partnered: 14**  (#22)
 - AI: Warm up prospect: 66  (#9999)
 - Not Appropriate: 74  (#9999)
@@ -100,16 +100,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **481**, follow_up **70**, bulk **0**, unknown **2** (data rows: **553**)
+- **Email Agent Follow Up** — logged sends: warmup **488**, follow_up **70**, bulk **0**, unknown **2** (data rows: **560**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **432**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
-- **Manager Follow-up**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
+- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **439**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
+- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **32** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **29** / **1** / **2**; follow-up depth (none / once / ≥2): **10** / **5** / **17**
+- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 
 ---
 
@@ -224,11 +224,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 13,821.54 total units · $12,228.45
+- Manager record: `Gary Teh` · 27 SKU lines · 13,512.54 total units · $11,919.45
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 13,745.36 | $12,178.47 |
+  | (uncategorized) | (unspecified) | 25 | 13,436.36 | $11,869.47 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -269,11 +269,17 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
 - 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
+- 2026-07-14 | claude | White-label label spec was ROTATED 90°. Gary confirmed the physical label is 2" W x 4" H portrait (measured 267x520px = 1:1.95 in 81-dark-chocolate-bar-50g-packaging.jpg); the page asserted 4"x2" landscape in 7 places. Flipped in agroverse_shop_beta#183. NEEDS HUMAN APPROVAL: PROJECT_INDEX.md:75 still describes agroverse-designs as "(4″×2″ PNG)" — should read "(2″×4″ PNG)". Not edited directly per OPERATING_INSTRUCTIONS §3 (canonical file).
+- 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
 
-_All dated lines on/after 2026-07-08_ (2):
+_All dated lines on/after 2026-07-08_ (6):
 
 - 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
 - 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
+- 2026-07-14 | claude | White-label label spec was ROTATED 90°. Gary confirmed the physical label is 2" W x 4" H portrait (measured 267x520px = 1:1.95 in 81-dark-chocolate-bar-50g-packaging.jpg); the page asserted 4"x2" landscape in 7 places. Flipped in agroverse_shop_beta#183. NEEDS HUMAN APPROVAL: PROJECT_INDEX.md:75 still describes agroverse-designs as "(4″×2″ PNG)" — should read "(2″×4″ PNG)". Not edited directly per OPERATING_INSTRUCTIONS §3 (canonical file).
+- 2026-07-14 | claude | Likely origin of the 4"x2" error: WORKSPACE_CONTEXT.md:131 cites a real ledger purchase, "Sticker Mule 4x2in custom rectangle label (per piece, order R384751187)" — that is almost certainly the QR-code label stock, not the chocolate-bar label. Suggest a clarifying note there so the next agent doesn't reuse it as an artwork spec. Needs human approval (canonical file).
+- 2026-07-14 | claude | MISSING FILE: agroverse_shop/docs/WHITE_LABEL_SUPPLY_CHAIN_HANDOFF.md points to agentic_ai_context/AGROVERSE_WHITE_LABEL_SUPPLY_CHAIN.md, which does not exist on main or locally. The Liz pilot, routing, school pricing and shipping tiers it references are unrecorded — which is why the label spec had to be recovered by measuring pixels off a product JPEG. Someone should write it.
+- 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
 
 ---
 
@@ -292,6 +298,7 @@ _All dated lines on/after 2026-07-08_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e0414c | 2026-07-15 03:46:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48ee72a | 2026-07-14 19:52:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d4ce96f | 2026-07-14 14:25:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -331,7 +338,6 @@ d176020 | 2026-07-10 15:15:15 +0000 | chore(stats): refresh stats/current.json [
 fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4f1d681 | 2026-07-09 15:43:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8ad2a7d | 2026-07-09 10:05:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4151d8a | 2026-07-09 04:34:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -344,6 +350,12 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d5a1f20 | 2026-07-15 05:06:40 -0700 | handoffs: register white-label Phase 2 -> nelanco-claude box (#668)
+7584532 | 2026-07-15 04:52:16 -0700 | plans: white-label PR1 done — funnel works end-to-end; resume moves to PR2 (#667)
+3684ae4 | 2026-07-15 04:37:43 -0700 | docs(infra): Sophia migrated Explorya->Nelanco (2026-07-15) + new Claude box (#666)
+937b23d | 2026-07-15 04:33:07 -0700 | plans: D0 done — label spec flipped to portrait 2"x4" (#665)
+c8c72a0 | 2026-07-15 01:42:24 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
+74eeea7 | 2026-07-15 01:42:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 ccc959a | 2026-07-14 20:45:05 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
 8ab0af0 | 2026-07-14 20:45:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 372de3b | 2026-07-14 19:37:11 -0700 | Merge pull request #664 from TrueSightDAO/auto/advisory-refresh-2026-07-15
@@ -378,12 +390,6 @@ d261cf0 | 2026-07-12 21:09:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a1aa62c | 2026-07-12 19:58:18 -0700 | Merge pull request #654 from TrueSightDAO/auto/advisory-refresh-2026-07-13
 3861d5a | 2026-07-13 02:58:09 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 198eb06 | 2026-07-12 12:39:06 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
-37d53a7 | 2026-07-12 12:39:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-12 UTC)
-c0aa4fe | 2026-07-12 07:03:30 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
-f344620 | 2026-07-12 07:03:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-12 UTC)
-378816c | 2026-07-12 01:38:33 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
-e2ddbe7 | 2026-07-12 01:38:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-12 UTC)
-b5f698f | 2026-07-11 21:06:48 -0700 | chore(previews): refresh Beer Hall preview (2026-07-12 UTC)
 … (truncated)
 ```
 
@@ -446,6 +452,8 @@ e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement h
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+4fc77ac | 2026-07-15 04:48:21 -0700 | fix(white-label): PR1 — repair registration (B1) and the post-payment receipt (B2) (#184)
+9e03bc8 | 2026-07-15 04:31:03 -0700 | fix(white-label): D0 — flip the label spec to portrait 2"x4" (#183)
 89e7622 | 2026-07-14 19:05:28 -0700 | feat(white-label): correct label to portrait 2"×4" + commit the full implementation (#182)
 285ef34 | 2026-07-14 12:21:01 -0700 | feat: sync subscription renewal payments (invoice.paid) to Stripe Checkout sheet
 4871cd1 | 2026-07-10 13:55:18 -0700 | fix: split video/photo grids on São Jorge farm page, restore original photo markup
@@ -462,7 +470,7 @@ _(no commits on origin/main in window)_
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
-_(no commits on origin/master in window)_
+47a3bb5 | 2026-07-15 04:33:04 -0700 | fix(backup): retarget weekly autopilot AMI backup to the Nelanco box (#41)
 ```
 
 ---
@@ -539,7 +547,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/15/2026 1:03:26 |
+| 2026-07 | 201.48 | 16911.06386 | 7/15/2026 6:50:48 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-08`; scanned last **600** data rows)
 
