@@ -446,6 +446,32 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
    curl -s "${DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_WEBHOOK_URL}?action=refresh_dao_members_cache&secret=${DAO_PROTOCOL_EMAIL_VERIFICATION_GAS_SECRET}&force=1"'
 ```
 
+### 7.2 SSH Keys on the Autopilot Box (Sophia @ sophia.truesight.me)
+
+Sophia's `~/.ssh/` holds all fleet SSH keys. PEM keys are staged at `/home/ubuntu/`
+(AMI-survivable, outside `/opt/truesight_autopilot/`). Future blue-green rebuilds:
+copy from `/home/ubuntu/` to `~/.ssh/` if missing. `~/.ssh/config` maps each host
+alias to the correct key via `IdentityFile`.
+
+| Key file | Type | Covers | Host aliases |
+|----------|------|--------|-------------|
+| `id_ed25519_truesight_autopilot` | ed25519 | DAO fleet | `krake-nginx`, `seni-ror`, `dao-protocol`, `seni-sk`, `seni-sql`, `seni-redis` |
+| `NELANCO_aws_20201122.pem` | RSA (PEM) | Krake/Seni fleet (16 hosts) | `krake_redis`, `krake_sk`, `krake_sk_2`, `krake_sk_3`, `krake_sk_crawler`, `krake_crawler`, `krake_sk_webhook`, `krake_scaler`, `krake_ng`, `seni_ror_nelanco`, `seni_redis`, `seni_redis_2`, `seni_data`, `seni_sk`, `seni_sk_nelanco`, `dao_protocol_nelanco` |
+| `server_us.pem` | RSA (PEM) | Krake core hosts (3 hosts) | `krake_ror`, `krake_data`, `krake_data_2` |
+| `NELANCO_california_20260213.pem` | RSA (PEM) | California proxy (1 host) | `californian_proxy` |
+
+**Verification:** After key provisioning, test one host per key:
+```bash
+ssh -i ~/.ssh/NELANCO_aws_20201122.pem -o StrictHostKeyChecking=no ubuntu@krake_ng -p 2202 hostname
+ssh -i ~/.ssh/server_us.pem -o StrictHostKeyChecking=no ubuntu@krake_ror hostname
+ssh -i ~/.ssh/NELANCO_california_20260213.pem -o StrictHostKeyChecking=no ubuntu@californian_proxy hostname
+```
+
+**On AMI-based rebuild:** `/home/ubuntu/` is captured by the weekly AMI snapshot
+(`Cypher-Defense/.github/workflows/snapshot_autopilot_ami.yml`). After launching
+from AMI, ensure `~/.ssh/config` references all keys and test connectivity.
+`deploy.sh` does NOT wipe `/home/ubuntu/`.
+
 ---
 
 ## 8. Monitoring
