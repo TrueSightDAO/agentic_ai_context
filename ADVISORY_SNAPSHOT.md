@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-15T19:45:20Z`
-- Look-back: **7** calendar days (`2026-07-08` → today UTC)
+- Generated (UTC): `2026-07-16T03:47:01Z`
+- Look-back: **7** calendar days (`2026-07-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -248,9 +248,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,375.78**
+- USD on hand: **$4,375.50**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$48.52**
+- USD provisioned for voting-rights cash-out: **$48.79**
 
 ### In-transit freight (1 row)
 
@@ -271,7 +271,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-07-14 | claude | White-label label spec was ROTATED 90°. Gary confirmed the physical label is 2" W x 4" H portrait (measured 267x520px = 1:1.95 in 81-dark-chocolate-bar-50g-packaging.jpg); the page asserted 4"x2" landscape in 7 places. Flipped in agroverse_shop_beta#183. NEEDS HUMAN APPROVAL: PROJECT_INDEX.md:75 still describes agroverse-designs as "(4″×2″ PNG)" — should read "(2″×4″ PNG)". Not edited directly per OPERATING_INSTRUCTIONS §3 (canonical file).
 - 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
 
-_All dated lines on/after 2026-07-08_ (6):
+_All dated lines on/after 2026-07-09_ (6):
 
 - 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
 - 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
@@ -297,6 +297,7 @@ _All dated lines on/after 2026-07-08_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+bab6a0b | 2026-07-15 19:46:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0e14a14 | 2026-07-15 14:22:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e0414c | 2026-07-15 03:46:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -336,7 +337,6 @@ d176020 | 2026-07-10 15:15:15 +0000 | chore(stats): refresh stats/current.json [
 2b64c26 | 2026-07-10 10:02:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 85b9571 | 2026-07-10 04:35:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4f1d681 | 2026-07-09 15:43:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -349,6 +349,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+948aadf | 2026-07-15 12:45:36 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
+7921720 | 2026-07-15 12:45:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 5f183fa | 2026-07-15 12:15:53 -0700 | docs: Sophia Nelanco migration, Claude Cloud box, white-label changelog (#671)
 979d0c3 | 2026-07-15 11:48:38 -0700 | handoffs: mark large_spikes plan as SUPERSEDED (already implemented) (#670)
 bae6f0d | 2026-07-15 11:38:08 -0700 | CONTEXT_UPDATES: flag stale handoff protocol in OPERATING_INSTRUCTIONS §11 (#669)
@@ -387,8 +389,6 @@ e6852a7 | 2026-07-14 12:21:46 -0700 | plan: subscription renewal sheet sync (imp
 880002d | 2026-07-13 12:58:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
 ac9c78f | 2026-07-13 11:57:20 -0700 | Add FINAL v1.0 Operating Agreement PDF (clean, signable)
 a58465b | 2026-07-13 08:21:49 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
-0e6eb2b | 2026-07-13 08:21:47 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
-3f90553 | 2026-07-13 02:53:50 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
 … (truncated)
 ```
 
@@ -446,7 +446,6 @@ e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement h
 29a886c | 2026-07-10 14:53:20 -0400 | chore(inventory): refresh currencies.json (repackaging ingest)
 6d54628 | 2026-07-10 09:55:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8985561 | 2026-07-09 09:59:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-2e39986 | 2026-07-08 08:45:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -550,9 +549,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/15/2026 12:12:59 |
+| 2026-07 | 201.48 | 16911.06386 | 7/15/2026 19:53:34 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-08`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-09`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
