@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-16T14:32:41Z`
+- Generated (UTC): `2026-07-16T19:41:06Z`
 - Look-back: **7** calendar days (`2026-07-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,20 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
-- `[EMAIL REGISTERED EVENT]` × 9
-- `[INVENTORY MOVEMENT]` × 1
+- `[CONTRIBUTION EVENT]` × 20
+- `[EMAIL REGISTERED EVENT]` × 12
+- `[EMAIL VERIFICATION EVENT]` × 2
 - `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 6
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260715011808_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Nelanco Claude Code box Gate C laydown + Sophia migration plan
-- `Edgar_20260715013435_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: White-label page: 7-state UI/UX audit + Phase 2 placement spec
-- `Edgar_20260715014556_007` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-15T01:45:55.888Z · Email: garyjob@gmail.com
-- `Edgar_20260715020936_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: White-label: label-orientation fix, mockup rebuild, and implementation commi…
-- `Edgar_20260715113343_011` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: White-label D0: flip label spec to portrait 2x4 + fails-first test guard
-- `Edgar_20260715113855_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 65 · Description: Migrated Sophia (autopilot) Explorya->Nelanco via AMI lift-and-shift
 - `Edgar_20260715115256_015` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: White-label PR1: repair registration (B1) and post-payment receipt (B2)
 - `Edgar_20260715120714_017` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: White-label Phase 2 handoff registered to the nelanco-claude box
 - `Edgar_20260715123901_019` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: White-label corporate gifting page — governor review and direction (2026-07-…
@@ -60,6 +54,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260715192301_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
 - `Edgar_20260715193053_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Sophia Truesight
 - `Edgar_20260715193057_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
+- `Edgar_20260716192704_043` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T19:27:01.553Z · Email: garyjob@gmail.com
+- `Edgar_20260716192714_045` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T19:27:12.524Z · Email: garyjob@gmail.com
+- `Edgar_20260716192717_047` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T19:27:14.478Z · Email: garyjob@gmail.com
+- `Edgar_20260716192738_049` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T19:27:35.209Z · Email: garyjob@gmail.com · Verification Key: Tzo84BQtwG7tnmYX3YYu_yeJykpnkBzmuAWgZfZkhzM
+- `Edgar_20260716192803_051` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T19:27:37.427Z · Email: garyjob@gmail.com · Verification Key: Tzo84BQtwG7tnmYX3YYu_yeJykpnkBzmuAWgZfZkhzM
+- `Edgar_20260716193315_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Handoff of instructions to Fatima and orlantildes
 
 ---
 
@@ -297,6 +297,7 @@ _All dated lines on/after 2026-07-09_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 043bb75 | 2026-07-16 08:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 44701ae | 2026-07-16 03:48:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bab6a0b | 2026-07-15 19:46:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -336,7 +337,6 @@ a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move Pe
 739ab69 | 2026-07-11 03:54:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d6e332e | 2026-07-10 20:01:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d176020 | 2026-07-10 15:15:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
-2b64c26 | 2026-07-10 10:02:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -349,6 +349,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c83fca0 | 2026-07-16 07:32:54 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
+994a646 | 2026-07-16 07:32:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
 be8a478 | 2026-07-16 01:40:46 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
 5d711f7 | 2026-07-16 01:40:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
 fafe122 | 2026-07-15 20:47:16 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
@@ -387,8 +389,6 @@ e6852a7 | 2026-07-14 12:21:46 -0700 | plan: subscription renewal sheet sync (imp
 2687c7d | 2026-07-14 01:36:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 4910ff5 | 2026-07-13 20:44:33 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
 94b5307 | 2026-07-13 20:44:32 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
-4eec69b | 2026-07-13 19:39:30 -0700 | Merge pull request #656 from TrueSightDAO/auto/advisory-refresh-2026-07-14
-15a20d6 | 2026-07-14 02:39:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 … (truncated)
 ```
 
@@ -550,7 +550,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/16/2026 6:53:08 |
+| 2026-07 | 201.48 | 16911.06386 | 7/16/2026 11:50:40 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-09`; scanned last **600** data rows)
 
