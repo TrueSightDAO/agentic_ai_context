@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-16T03:47:01Z`
+- Generated (UTC): `2026-07-16T08:40:33Z`
 - Look-back: **7** calendar days (`2026-07-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -297,6 +297,7 @@ _All dated lines on/after 2026-07-09_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+44701ae | 2026-07-16 03:48:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bab6a0b | 2026-07-15 19:46:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0e14a14 | 2026-07-15 14:22:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -336,7 +337,6 @@ d6e332e | 2026-07-10 20:01:47 +0000 | chore(stats): refresh stats/current.json [
 d176020 | 2026-07-10 15:15:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b64c26 | 2026-07-10 10:02:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 85b9571 | 2026-07-10 04:35:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
-fa9b74b | 2026-07-09 20:24:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -349,6 +349,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fafe122 | 2026-07-15 20:47:16 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
+b81d2cb | 2026-07-15 20:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
 948aadf | 2026-07-15 12:45:36 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
 7921720 | 2026-07-15 12:45:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 5f183fa | 2026-07-15 12:15:53 -0700 | docs: Sophia Nelanco migration, Claude Cloud box, white-label changelog (#671)
@@ -387,8 +389,6 @@ e6852a7 | 2026-07-14 12:21:46 -0700 | plan: subscription renewal sheet sync (imp
 15a20d6 | 2026-07-14 02:39:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 2583e97 | 2026-07-13 12:58:22 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
 880002d | 2026-07-13 12:58:20 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-13 UTC)
-ac9c78f | 2026-07-13 11:57:20 -0700 | Add FINAL v1.0 Operating Agreement PDF (clean, signable)
-a58465b | 2026-07-13 08:21:49 -0700 | chore(previews): refresh Beer Hall preview (2026-07-13 UTC)
 … (truncated)
 ```
 
@@ -429,6 +429,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+48c1f0b | 2026-07-16 08:36:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8ee569b | 2026-07-15 08:37:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 81e1bfc | 2026-07-14 14:30:52 -0700 | inventory: refresh cache counters
 f29ce99 | 2026-07-14 14:28:37 -0700 | chore: refresh Agroverse store inventory snapshot
@@ -549,7 +550,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/15/2026 19:53:34 |
+| 2026-07 | 201.48 | 16911.06386 | 7/16/2026 0:56:47 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-09`; scanned last **600** data rows)
 
