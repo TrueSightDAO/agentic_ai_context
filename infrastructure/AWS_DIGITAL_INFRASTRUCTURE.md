@@ -22,6 +22,13 @@ Two changes landed 2026-07-15. **Where the text below conflicts with this banner
 
 **2. New interactive Claude Code box** (`nelanco-claude`): `i-01ad5eca707e4445f`, EIP **`100.57.50.48`**, `claude.truesight.me`, Nelanco `vpc-d59748af`/`subnet-de8102b9`, SG `launch-wizard-1`. Runs Claude Code (driven from the mobile app via `--remote-control`), Sophia-parity env + fleet SSH — **not** autonomous. Plan: `plans/NELANCO_CLAUDE_CODE_BOX_PLAN.md`.
 
+**Gmail OAuth tokens deployed 2026-07-16:**
+- `admin_token.json` → `admin@truesight.me` (gmail.modify scope)
+- `gary_token.json` → `gary@agroverse.shop` (gmail.modify scope)
+- Both at `/home/ubuntu/` on the Claude box
+- SSH config added: `Host sophia` → `3.214.167.219` (key at `~/.ssh/id_ed25519_truesight_autopilot`)
+- Sophia's public key added to Claude's `~/.ssh/authorized_keys` (bidirectional)
+
 ---
 
 ## 0. Architecture Overview
