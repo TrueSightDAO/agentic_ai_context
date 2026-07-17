@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-17T02:47:54Z`
+- Generated (UTC): `2026-07-17T03:46:36Z`
 - Look-back: **7** calendar days (`2026-07-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[EMAIL VERIFICATION EVENT]` × 21
+- `[EMAIL REGISTERED EVENT]` × 11
+- `[CONTRIBUTION EVENT]` × 3
+- `[DESIGN UPLOAD EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260716204528_091` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:45:27.731Z · Email: admin+claudefresh1@truesight.me · Verification Key: pVzKj1oNrh8FWJ5OASUHZLYz1CEnXj0PX-CNuRwDtus
+- `Edgar_20260716204617_093` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T20:46:16.769Z · Email: admin+claudefresh2@truesight.me
+- `Edgar_20260716204807_095` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:48:06.006Z · Email: admin+claudefresh2@truesight.me · Verification Key: L135TlOM0VlYLvKMzWgYktcgDYepspbwxS6SeyOqd18
+- `Edgar_20260716204935_097` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:49:34.363Z · Email: admin+claudefresh2@truesight.me · Verification Key: L135TlOM0VlYLvKMzWgYktcgDYepspbwxS6SeyOqd18
+- `Edgar_20260716205029_099` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:50:28.577Z · Email: admin+claudefresh2@truesight.me · Verification Key: L135TlOM0VlYLvKMzWgYktcgDYepspbwxS6SeyOqd18
+- `Edgar_20260716210048_101` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T21:00:48.319Z · Email: admin+claudeupload1@truesight.me
+- `Edgar_20260716210219_103` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:02:17.985Z · Email: admin+claudeupload1@truesight.me · Verification Key: U3Mf87CXPdk2BioT0FXI2u3-cXqxbRBnEzUYOxh_-8U
+- `Edgar_20260716210253_105` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:02:51.225Z · Email: admin+claudeupload1@truesight.me · Verification Key: U3Mf87CXPdk2BioT0FXI2u3-cXqxbRBnEzUYOxh_-8U
+- `Edgar_20260716210450_107` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T21:04:50.476Z · Email: admin+claudeupload2@truesight.me
+- `Edgar_20260716210612_109` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:06:11.395Z · Email: admin+claudeupload2@truesight.me · Verification Key: AccpuSBNOnOoKthluL45awq3TGF8eOLjTy6ZxuN7vgc
+- `Edgar_20260716210657_111` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:06:56.381Z · Email: admin+claudeupload2@truesight.me · Verification Key: AccpuSBNOnOoKthluL45awq3TGF8eOLjTy6ZxuN7vgc
+- `Edgar_20260716211122_113` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T21:11:21.830Z · Email: admin+claudeupload3@truesight.me
+- `Edgar_20260716211243_115` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:12:42.539Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
+- `Edgar_20260716211313_117` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:13:08.957Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
+- `Edgar_20260716211342_119` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:13:41.344Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
+- `Edgar_20260716211424_121` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:14:24.035Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
+- `Edgar_20260716211430_123` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-16T21:14:29.284Z · Email: admin+claudeupload3@truesight.me · Design ID: 09d3b747-45ae-41ac-b7d2-4c653c86e2cb
+- `Edgar_20260716212553_125` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
+- `Edgar_20260716212603_127` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: HTS code infrastructure documentation: researched existing HS codes on Curre…
+- `Edgar_20260716224022_129` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-16T22:40:19.671Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -209,13 +247,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,375.23**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$49.07**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -308,6 +350,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+aab4d0d | 2026-07-17 10:48:12 +0800 | Merge pull request #676 from TrueSightDAO/auto/advisory-refresh-2026-07-17
+b8ade86 | 2026-07-17 02:48:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 3c7af1d | 2026-07-16 14:16:05 -0700 | Add live ledger URL to HTS schema PDF so partners can click through
 962c9eb | 2026-07-16 14:15:14 -0700 | Update HTS schema PDF with complete product mapping and existing data
 fe62004 | 2026-07-16 14:13:55 -0700 | Update HTS schema PDF with research links and existing HS data
@@ -346,8 +390,6 @@ dba7187 | 2026-07-14 14:18:29 -0700 | chore(plan): Gate B done — Nelanco Claud
 f5ee11e | 2026-07-14 13:19:45 -0700 | plan: Nelanco Claude Code box (2nd Sophia + mobile remote-control) (#657)
 0c4e7b5 | 2026-07-14 12:51:30 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
 1996524 | 2026-07-14 12:51:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
-e6852a7 | 2026-07-14 12:21:46 -0700 | plan: subscription renewal sheet sync (implemented 2026-07-13)
-9c37fef | 2026-07-14 07:24:39 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
 … (truncated)
 ```
 
@@ -487,6 +529,49 @@ _(no commits on origin/main in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/16/2026 19:50:35 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-10`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-07-14 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_14 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_12 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_10 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_8 | zpFSulJXVklN | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
