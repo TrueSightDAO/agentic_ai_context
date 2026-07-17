@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-17T08:34:14Z`
+- Generated (UTC): `2026-07-17T14:11:43Z`
 - Look-back: **7** calendar days (`2026-07-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[EMAIL VERIFICATION EVENT]` × 21
-- `[EMAIL REGISTERED EVENT]` × 11
-- `[CONTRIBUTION EVENT]` × 3
-- `[DESIGN UPLOAD EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
+- `[EMAIL VERIFICATION EVENT]` × 19
+- `[EMAIL REGISTERED EVENT]` × 12
+- `[PRACTICE EVENT]` × 3
+- `[DESIGN UPLOAD EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 1
+- `[DESIGN ORDER EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260716204528_091` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:45:27.731Z · Email: admin+claudefresh1@truesight.me · Verification Key: pVzKj1oNrh8FWJ5OASUHZLYz1CEnXj0PX-CNuRwDtus
-- `Edgar_20260716204617_093` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T20:46:16.769Z · Email: admin+claudefresh2@truesight.me
-- `Edgar_20260716204807_095` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:48:06.006Z · Email: admin+claudefresh2@truesight.me · Verification Key: L135TlOM0VlYLvKMzWgYktcgDYepspbwxS6SeyOqd18
-- `Edgar_20260716204935_097` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:49:34.363Z · Email: admin+claudefresh2@truesight.me · Verification Key: L135TlOM0VlYLvKMzWgYktcgDYepspbwxS6SeyOqd18
-- `Edgar_20260716205029_099` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T20:50:28.577Z · Email: admin+claudefresh2@truesight.me · Verification Key: L135TlOM0VlYLvKMzWgYktcgDYepspbwxS6SeyOqd18
-- `Edgar_20260716210048_101` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T21:00:48.319Z · Email: admin+claudeupload1@truesight.me
 - `Edgar_20260716210219_103` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:02:17.985Z · Email: admin+claudeupload1@truesight.me · Verification Key: U3Mf87CXPdk2BioT0FXI2u3-cXqxbRBnEzUYOxh_-8U
 - `Edgar_20260716210253_105` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:02:51.225Z · Email: admin+claudeupload1@truesight.me · Verification Key: U3Mf87CXPdk2BioT0FXI2u3-cXqxbRBnEzUYOxh_-8U
 - `Edgar_20260716210450_107` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T21:04:50.476Z · Email: admin+claudeupload2@truesight.me
@@ -61,6 +55,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260716212553_125` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
 - `Edgar_20260716212603_127` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: HTS code infrastructure documentation: researched existing HS codes on Curre…
 - `Edgar_20260716224022_129` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-16T22:40:19.671Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260717091416_131` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-17T09:14:14.945Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260717092911_133` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-17T09:29:10.989Z · Email: admin+claudestripe1@truesight.me
+- `Edgar_20260717093032_135` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-17T09:30:31.058Z · Email: admin+claudestripe1@truesight.me · Design ID: b9945037-0a43-4a59-b5fa-f6d29fe1e510
+- `Edgar_20260717093345_137` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-17T09:33:45.303Z · Email: admin+claudestripe2@truesight.me
+- `Edgar_20260717094203_139` · **Edgar** · [DESIGN ORDER EVENT] Timestamp: 2026-07-17T09:42:03.203Z · Email: brand@acme.com · Design ID: design-0001
+- `Edgar_20260717094445_141` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-17T09:44:43.924Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-16T10:59:14.444Z`
+- Generated (UTC): `2026-07-17T10:59:14.351Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -298,6 +298,7 @@ _All dated lines on/after 2026-07-10_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0b13bdb | 2026-07-17 03:48:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 90c9c38 | 2026-07-16 19:43:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -337,7 +338,6 @@ a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move Pe
 5c7af25 | 2026-07-11 19:45:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4ff8350 | 2026-07-11 14:03:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3d2dad3 | 2026-07-11 08:22:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
-739ab69 | 2026-07-11 03:54:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -350,6 +350,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f8f99dc | 2026-07-17 16:34:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
+9a13590 | 2026-07-17 16:34:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 9cab0db | 2026-07-17 11:46:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
 bdb7def | 2026-07-17 11:46:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 aab4d0d | 2026-07-17 10:48:12 +0800 | Merge pull request #676 from TrueSightDAO/auto/advisory-refresh-2026-07-17
@@ -388,8 +390,6 @@ c3872a6 | 2026-07-15 02:37:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 c2de69b | 2026-07-14 18:17:00 -0700 | plans: Nelanco box Gate C done + add Sophia->Nelanco migration roadmap (#661)
 dba7187 | 2026-07-14 14:18:29 -0700 | chore(plan): Gate B done — Nelanco Claude Code box provisioned (#660)
 7b1a878 | 2026-07-14 13:55:26 -0700 | chore(plan): tick PR1, advance RESUME to PR2 (Nelanco Claude Code box) (#659)
-2df0616 | 2026-07-14 13:41:00 -0700 | plan: correct Nelanco box scope — interactive Claude Code + SSH parity, not a 2nd Sophia (#658)
-f5ee11e | 2026-07-14 13:19:45 -0700 | plan: Nelanco Claude Code box (2nd Sophia + mobile remote-control) (#657)
 … (truncated)
 ```
 
@@ -452,6 +452,7 @@ e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement h
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+842aeb4 | 2026-07-17 17:45:15 +0800 | fix(white-label): route beta/localhost checkout through Stripe test mode (#192)
 a2e9ca6 | 2026-07-17 05:24:44 +0800 | Add Coopercabruca membership to Oscar's farm page (#191)
 5798a7b | 2026-07-16 14:10:31 -0700 | fix(white-label): PR5 — State E/F order emphasis + real success receipt (#189)
 166cf42 | 2026-07-16 14:08:40 -0700 | fix(white-label): PR4 — State C/D gallery + upload (P4, B7, B9, Q5, P7-partial) (#188)
@@ -554,7 +555,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 0:52:41 |
+| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 6:52:38 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-10`; scanned last **600** data rows)
 
