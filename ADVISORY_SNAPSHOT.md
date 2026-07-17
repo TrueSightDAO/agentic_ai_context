@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-17T03:46:36Z`
+- Generated (UTC): `2026-07-17T08:34:14Z`
 - Look-back: **7** calendar days (`2026-07-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -298,6 +298,7 @@ _All dated lines on/after 2026-07-10_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0b13bdb | 2026-07-17 03:48:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 90c9c38 | 2026-07-16 19:43:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 043bb75 | 2026-07-16 08:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -337,7 +338,6 @@ a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move Pe
 4ff8350 | 2026-07-11 14:03:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3d2dad3 | 2026-07-11 08:22:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 739ab69 | 2026-07-11 03:54:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d6e332e | 2026-07-10 20:01:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -350,6 +350,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9cab0db | 2026-07-17 11:46:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
+bdb7def | 2026-07-17 11:46:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 aab4d0d | 2026-07-17 10:48:12 +0800 | Merge pull request #676 from TrueSightDAO/auto/advisory-refresh-2026-07-17
 b8ade86 | 2026-07-17 02:48:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 3c7af1d | 2026-07-16 14:16:05 -0700 | Add live ledger URL to HTS schema PDF so partners can click through
@@ -388,8 +390,6 @@ dba7187 | 2026-07-14 14:18:29 -0700 | chore(plan): Gate B done — Nelanco Claud
 7b1a878 | 2026-07-14 13:55:26 -0700 | chore(plan): tick PR1, advance RESUME to PR2 (Nelanco Claude Code box) (#659)
 2df0616 | 2026-07-14 13:41:00 -0700 | plan: correct Nelanco box scope — interactive Claude Code + SSH parity, not a 2nd Sophia (#658)
 f5ee11e | 2026-07-14 13:19:45 -0700 | plan: Nelanco Claude Code box (2nd Sophia + mobile remote-control) (#657)
-0c4e7b5 | 2026-07-14 12:51:30 -0700 | chore(previews): refresh Beer Hall preview (2026-07-14 UTC)
-1996524 | 2026-07-14 12:51:29 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-14 UTC)
 … (truncated)
 ```
 
@@ -429,6 +429,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 48c1f0b | 2026-07-16 08:36:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8ee569b | 2026-07-15 08:37:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 81e1bfc | 2026-07-14 14:30:52 -0700 | inventory: refresh cache counters
@@ -553,7 +554,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/16/2026 19:50:35 |
+| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 0:52:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-10`; scanned last **600** data rows)
 
