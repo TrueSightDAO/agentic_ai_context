@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-17T14:11:43Z`
+- Generated (UTC): `2026-07-17T19:39:41Z`
 - Look-back: **7** calendar days (`2026-07-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -298,6 +298,7 @@ _All dated lines on/after 2026-07-10_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f1067d3 | 2026-07-17 14:13:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0b13bdb | 2026-07-17 03:48:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 90c9c38 | 2026-07-16 19:43:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -337,7 +338,6 @@ a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move Pe
 9862364 | 2026-07-11 18:24:07 -0400 | Add header image for desert-and-diamond blog post
 5c7af25 | 2026-07-11 19:45:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4ff8350 | 2026-07-11 14:03:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3d2dad3 | 2026-07-11 08:22:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -350,6 +350,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+dc25e54 | 2026-07-17 22:11:57 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
+04379aa | 2026-07-17 22:11:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 f8f99dc | 2026-07-17 16:34:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
 9a13590 | 2026-07-17 16:34:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 9cab0db | 2026-07-17 11:46:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
@@ -388,8 +390,6 @@ c3872a6 | 2026-07-15 02:37:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 38fadb7 | 2026-07-14 19:08:47 -0700 | plans: white-label D0 — the label spec is rotated 90 degrees (#663)
 7a62c02 | 2026-07-14 18:29:59 -0700 | plans: white-label Phase 2 — state repair + visual placement spec (#662)
 c2de69b | 2026-07-14 18:17:00 -0700 | plans: Nelanco box Gate C done + add Sophia->Nelanco migration roadmap (#661)
-dba7187 | 2026-07-14 14:18:29 -0700 | chore(plan): Gate B done — Nelanco Claude Code box provisioned (#660)
-7b1a878 | 2026-07-14 13:55:26 -0700 | chore(plan): tick PR1, advance RESUME to PR2 (Nelanco Claude Code box) (#659)
 … (truncated)
 ```
 
@@ -555,7 +555,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 6:52:38 |
+| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 11:50:27 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-10`; scanned last **600** data rows)
 
