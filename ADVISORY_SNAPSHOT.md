@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-18T02:38:39Z`
+- Generated (UTC): `2026-07-18T03:41:32Z`
 - Look-back: **7** calendar days (`2026-07-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[EMAIL VERIFICATION EVENT]` × 10
+- `[DESIGN UPLOAD EVENT]` × 7
+- `[CONTRIBUTION EVENT]` × 6
+- `[PRACTICE EVENT]` × 6
+- `[EMAIL REGISTERED EVENT]` × 5
+- `[DESIGN ORDER EVENT]` × 4
+
+### Latest entries
+
+- `Edgar_20260718004847_163` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:48:27.184Z · Email: admin+claude1784335646@truesight.me · Design ID: 0186ea46-cf4a-4b32-be09-ad022fd8bd8b
+- `Edgar_20260718004934_165` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:49:33.706Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
+- `Edgar_20260718005035_167` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:50:34.715Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
+- `Edgar_20260718005221_169` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:52:20.075Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
+- `Edgar_20260718005325_171` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:53:25.074Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
+- `Edgar_20260718005440_173` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:54:39.824Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
+- `Edgar_20260718005614_175` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:56:13.631Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
+- `Edgar_20260718005624_177` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:56:24.025Z · Email: admin+claude1784335646@truesight.me · Design ID: c45fe872-1a33-4abe-b579-2bc5dc0cdfc0
+- `Edgar_20260718005708_179` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:57:07.078Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
+- `Edgar_20260718005723_181` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:57:17.390Z · Email: admin+claude1784335646@truesight.me · Design ID: cd1db0e7-349e-4af0-b194-0c052fe7f736
+- `Edgar_20260718005733_183` · **Edgar** · [DESIGN ORDER EVENT] Timestamp: 2026-07-18T00:57:32.723Z · Email: admin+claude1784335646@truesight.me · Design ID: c45fe872-1a33-4abe-b579-2bc5dc0cdfc0
+- `Edgar_20260718005803_185` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-18T00:58:02.711Z · Email: admin+claude1784336280@truesight.me
+- `Edgar_20260718005808_187` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Shared about the new USA to Brazil tariffs to watch out for regarding our ca…
+- `Edgar_20260718005832_189` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:58:31.697Z · Email: admin+claude1784336280@truesight.me · Verification Key: muesx_BCbiuBFOOv4XHYCoibyb9_qNMNQCSlCzI8Idk
+- `Edgar_20260718005900_191` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:58:41.019Z · Email: admin+claude1784336280@truesight.me · Design ID: 97007e17-3e1b-4c9b-a1c3-52e97e2f7fa7
+- `Edgar_20260718005927_193` · **Edgar** · [DESIGN ORDER EVENT] Timestamp: 2026-07-18T00:59:26.801Z · Email: admin+claude1784336280@truesight.me · Design ID: 97007e17-3e1b-4c9b-a1c3-52e97e2f7fa7
+- `Edgar_20260718010001_195` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260718010003_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Sophia Truesight
+- `Edgar_20260718014401_199` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T01:43:56.566Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260718020525_201` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T02:05:22.587Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -209,13 +247,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,374.95**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$49.34**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -304,6 +346,10 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c1d9b0c | 2026-07-18 11:00:34 +0800 | Merge pull request #685 from TrueSightDAO/docs/agroverse-checkout-e2e-policy
+aeaa1e2 | 2026-07-18 10:38:53 +0800 | Merge pull request #686 from TrueSightDAO/auto/advisory-refresh-2026-07-18
+d1ec567 | 2026-07-18 02:38:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
+7a71975 | 2026-07-18 01:02:24 +0000 | docs: add Agroverse checkout E2E verification policy
 daa6a8e | 2026-07-18 08:54:55 +0800 | Update Brazil tariff report with Pix operational impact
 8b48c5b | 2026-07-18 08:48:14 +0800 | Add Brazil tariff impact assessment PDF report
 8ba2a8e | 2026-07-18 04:03:21 +0800 | Fix name: 安娜贝尔 → 凯心
@@ -336,14 +382,10 @@ b81d2cb | 2026-07-15 20:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 948aadf | 2026-07-15 12:45:36 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
 7921720 | 2026-07-15 12:45:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 5f183fa | 2026-07-15 12:15:53 -0700 | docs: Sophia Nelanco migration, Claude Cloud box, white-label changelog (#671)
+f25f319 | 2026-07-15 19:01:52 +0000 | plans: white-label PR2 opened (beta#185) — B3+B4+B5, 38/38 green, awaiting human merge
 979d0c3 | 2026-07-15 11:48:38 -0700 | handoffs: mark large_spikes plan as SUPERSEDED (already implemented) (#670)
 bae6f0d | 2026-07-15 11:38:08 -0700 | CONTEXT_UPDATES: flag stale handoff protocol in OPERATING_INSTRUCTIONS §11 (#669)
 6fbdad3 | 2026-07-15 07:57:37 -0700 | Add handoff PDF: Gary to Fatima (Brazil ops, Jul 2026)
-0e1cad9 | 2026-07-15 07:20:12 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
-172d58e | 2026-07-15 07:20:10 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
-d5a1f20 | 2026-07-15 05:06:40 -0700 | handoffs: register white-label Phase 2 -> nelanco-claude box (#668)
-7584532 | 2026-07-15 04:52:16 -0700 | plans: white-label PR1 done — funnel works end-to-end; resume moves to PR2 (#667)
-3684ae4 | 2026-07-15 04:37:43 -0700 | docs(infra): Sophia migrated Explorya->Nelanco (2026-07-15) + new Claude box (#666)
 … (truncated)
 ```
 
@@ -476,6 +518,49 @@ _(no commits on origin/main in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 19:50:33 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-11`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-07-14 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_14 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_12 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_10 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
+| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_8 | zpFSulJXVklN | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
