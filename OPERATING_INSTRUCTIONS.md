@@ -75,6 +75,37 @@ You may add or update context only in the following ways.
 
 ### 4.3 Suggested context updates (for human approval)
 
+### 4.4 PDF generation for CJK (Chinese/Japanese/Korean)
+
+When generating PDFs that contain **Chinese, Japanese, or Korean characters**, use **WeasyPrint** with **HTML+CSS** and the **DroidSansFallbackFull.ttf** font.
+
+- **Do NOT use** ReportLab's `drawString` or `Paragraph` — they produce null-byte corruption with CID/CJK fonts.
+- **Do NOT use** PyMuPDF (fitz) built-in fonts — they lack CJK glyphs.
+- **Do NOT use** the `generate_pdf` tool — it uses Helvetica which has no CJK support.
+
+**Correct approach:**
+```python
+from weasyprint import HTML
+
+html = '''<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face {
+  font-family: 'DroidCN';
+  src: url('file:///usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf');
+}
+body { font-family: 'DroidCN', sans-serif; }
+</style></head><body>
+... Chinese content here ...
+</body></html>'''
+
+HTML(string=html).write_pdf('/tmp/output.pdf')
+```
+
+The font is installed at `/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf` on the autopilot box. Always verify the output by extracting text with PyMuPDF before uploading.
+
+### 4.3 Suggested context updates (for human approval)
+
 - When something should change in **WORKSPACE_CONTEXT.md**, **PROJECT_INDEX.md**, or **README.md**, do **not** edit those files yourself.
 - Instead, produce a **suggested update** in one of these ways:
   - Append a line to **CONTEXT_UPDATES.md** (see 4.1) describing the change and that it needs human approval, or
