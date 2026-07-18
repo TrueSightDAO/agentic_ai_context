@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-17T19:39:41Z`
-- Look-back: **7** calendar days (`2026-07-10` → today UTC)
+- Generated (UTC): `2026-07-18T02:38:39Z`
+- Look-back: **7** calendar days (`2026-07-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[EMAIL VERIFICATION EVENT]` × 19
-- `[EMAIL REGISTERED EVENT]` × 12
-- `[PRACTICE EVENT]` × 3
-- `[DESIGN UPLOAD EVENT]` × 2
-- `[CONTRIBUTION EVENT]` × 1
-- `[DESIGN ORDER EVENT]` × 1
-
-### Latest entries
-
-- `Edgar_20260716210219_103` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:02:17.985Z · Email: admin+claudeupload1@truesight.me · Verification Key: U3Mf87CXPdk2BioT0FXI2u3-cXqxbRBnEzUYOxh_-8U
-- `Edgar_20260716210253_105` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:02:51.225Z · Email: admin+claudeupload1@truesight.me · Verification Key: U3Mf87CXPdk2BioT0FXI2u3-cXqxbRBnEzUYOxh_-8U
-- `Edgar_20260716210450_107` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T21:04:50.476Z · Email: admin+claudeupload2@truesight.me
-- `Edgar_20260716210612_109` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:06:11.395Z · Email: admin+claudeupload2@truesight.me · Verification Key: AccpuSBNOnOoKthluL45awq3TGF8eOLjTy6ZxuN7vgc
-- `Edgar_20260716210657_111` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:06:56.381Z · Email: admin+claudeupload2@truesight.me · Verification Key: AccpuSBNOnOoKthluL45awq3TGF8eOLjTy6ZxuN7vgc
-- `Edgar_20260716211122_113` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-16T21:11:21.830Z · Email: admin+claudeupload3@truesight.me
-- `Edgar_20260716211243_115` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:12:42.539Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
-- `Edgar_20260716211313_117` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:13:08.957Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
-- `Edgar_20260716211342_119` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:13:41.344Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
-- `Edgar_20260716211424_121` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-16T21:14:24.035Z · Email: admin+claudeupload3@truesight.me · Verification Key: l3ezPHi7sByxPy3WsEYn24umMNapq9BAn4C1Bds9SxI
-- `Edgar_20260716211430_123` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-16T21:14:29.284Z · Email: admin+claudeupload3@truesight.me · Design ID: 09d3b747-45ae-41ac-b7d2-4c653c86e2cb
-- `Edgar_20260716212553_125` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
-- `Edgar_20260716212603_127` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: HTS code infrastructure documentation: researched existing HS codes on Curre…
-- `Edgar_20260716224022_129` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-16T22:40:19.671Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260717091416_131` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-17T09:14:14.945Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260717092911_133` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-17T09:29:10.989Z · Email: admin+claudestripe1@truesight.me
-- `Edgar_20260717093032_135` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-17T09:30:31.058Z · Email: admin+claudestripe1@truesight.me · Design ID: b9945037-0a43-4a59-b5fa-f6d29fe1e510
-- `Edgar_20260717093345_137` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-17T09:33:45.303Z · Email: admin+claudestripe2@truesight.me
-- `Edgar_20260717094203_139` · **Edgar** · [DESIGN ORDER EVENT] Timestamp: 2026-07-17T09:42:03.203Z · Email: brand@acme.com · Design ID: design-0001
-- `Edgar_20260717094445_141` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-17T09:44:43.924Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -247,17 +209,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,375.23**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$49.07**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -267,15 +225,11 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _Lines in window matching configured names or status keywords:_
 
-- 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
-- 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
 - 2026-07-14 | claude | White-label label spec was ROTATED 90°. Gary confirmed the physical label is 2" W x 4" H portrait (measured 267x520px = 1:1.95 in 81-dark-chocolate-bar-50g-packaging.jpg); the page asserted 4"x2" landscape in 7 places. Flipped in agroverse_shop_beta#183. NEEDS HUMAN APPROVAL: PROJECT_INDEX.md:75 still describes agroverse-designs as "(4″×2″ PNG)" — should read "(2″×4″ PNG)". Not edited directly per OPERATING_INSTRUCTIONS §3 (canonical file).
 - 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
 
-_All dated lines on/after 2026-07-10_ (6):
+_All dated lines on/after 2026-07-11_ (4):
 
-- 2026-07-10 | deepseek | **AI contributor ledger name = "Deep Seek"** (confirmed by Gary 2026-07-10). When filing AI-agent [CONTRIBUTION EVENT]s for this opencode/DeepSeek assistant (model deepseek-v4-pro), ALWAYS use --contributors "Deep Seek" — it is the exact display name registered on the Contributors ledger (Edgar rejects mismatches, same rule as "Sophia Truesight" in OPERATING_INSTRUCTIONS §5b). Applies to ALL current and future Deep Seek sessions. Example filed this session: Próspera ZEDE Operating Agreement/By-Laws for TrueSight DAO LLC — Gary Teh 15min (25 TDG) + Deep Seek 94min via report_ai_agent_contribution, PR https://github.com/TrueSightDAO/agentic_ai_context/pull/650 (merged). Both HTTP 200, signature_verification success.
-- 2026-07-10 | DeepSeek | Reorganized agentic_ai_context repository (168 files into 13 new + 6 existing folders). Generated 25 QR codes + inventory movements for São Jorge 81% chocolate bars to Kirsten. Fixed QR manifest schema + rebuilt qrs_index.json for serialized page. Fixed product image on checkout flow.
 - 2026-07-14 | claude | White-label label spec was ROTATED 90°. Gary confirmed the physical label is 2" W x 4" H portrait (measured 267x520px = 1:1.95 in 81-dark-chocolate-bar-50g-packaging.jpg); the page asserted 4"x2" landscape in 7 places. Flipped in agroverse_shop_beta#183. NEEDS HUMAN APPROVAL: PROJECT_INDEX.md:75 still describes agroverse-designs as "(4″×2″ PNG)" — should read "(2″×4″ PNG)". Not edited directly per OPERATING_INSTRUCTIONS §3 (canonical file).
 - 2026-07-14 | claude | Likely origin of the 4"x2" error: WORKSPACE_CONTEXT.md:131 cites a real ledger purchase, "Sticker Mule 4x2in custom rectangle label (per piece, order R384751187)" — that is almost certainly the QR-code label stock, not the chocolate-bar label. Suggest a clarifying note there so the next agent doesn't reuse it as an artwork spec. Needs human approval (canonical file).
 - 2026-07-14 | claude | MISSING FILE: agroverse_shop/docs/WHITE_LABEL_SUPPLY_CHAIN_HANDOFF.md points to agentic_ai_context/AGROVERSE_WHITE_LABEL_SUPPLY_CHAIN.md, which does not exist on main or locally. The Liz pilot, routing, school pricing and shipping tiers it references are unrecorded — which is why the label spec had to be recovered by measuring pixels off a product JPEG. Someone should write it.
@@ -298,6 +252,7 @@ _All dated lines on/after 2026-07-10_ (6):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7febebb | 2026-07-17 19:41:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f1067d3 | 2026-07-17 14:13:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0b13bdb | 2026-07-17 03:48:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -337,7 +292,6 @@ a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move Pe
 2c7f591 | 2026-07-11 18:25:07 -0400 | Add blog post: The Desert and the Diamond (#267)
 9862364 | 2026-07-11 18:24:07 -0400 | Add header image for desert-and-diamond blog post
 5c7af25 | 2026-07-11 19:45:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4ff8350 | 2026-07-11 14:03:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -350,6 +304,16 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+daa6a8e | 2026-07-18 08:54:55 +0800 | Update Brazil tariff report with Pix operational impact
+8b48c5b | 2026-07-18 08:48:14 +0800 | Add Brazil tariff impact assessment PDF report
+8ba2a8e | 2026-07-18 04:03:21 +0800 | Fix name: 安娜贝尔 → 凯心
+43004df | 2026-07-18 04:01:53 +0800 | Fix PDF: replace emoji symbols with clean ✓/✗, remove orphaned bullets
+73737c6 | 2026-07-18 03:56:55 +0800 | Fix Chinese PDF - verified CJK rendering with WeasyPrint
+fb9743c | 2026-07-18 03:54:38 +0800 | Replace PDF with DroidSansFallback font version
+85ebee3 | 2026-07-18 03:54:04 +0800 | Fix Chinese PDF with DroidSansFallback font
+e73776d | 2026-07-18 03:52:30 +0800 | Add Chinese PDF version for Anabel
+322543a | 2026-07-18 03:39:54 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
+3eefc8a | 2026-07-18 03:39:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 dc25e54 | 2026-07-17 22:11:57 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
 04379aa | 2026-07-17 22:11:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 f8f99dc | 2026-07-17 16:34:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
@@ -380,16 +344,6 @@ bae6f0d | 2026-07-15 11:38:08 -0700 | CONTEXT_UPDATES: flag stale handoff protoc
 d5a1f20 | 2026-07-15 05:06:40 -0700 | handoffs: register white-label Phase 2 -> nelanco-claude box (#668)
 7584532 | 2026-07-15 04:52:16 -0700 | plans: white-label PR1 done — funnel works end-to-end; resume moves to PR2 (#667)
 3684ae4 | 2026-07-15 04:37:43 -0700 | docs(infra): Sophia migrated Explorya->Nelanco (2026-07-15) + new Claude box (#666)
-937b23d | 2026-07-15 04:33:07 -0700 | plans: D0 done — label spec flipped to portrait 2"x4" (#665)
-c8c72a0 | 2026-07-15 01:42:24 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
-74eeea7 | 2026-07-15 01:42:22 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
-ccc959a | 2026-07-14 20:45:05 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
-8ab0af0 | 2026-07-14 20:45:04 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
-372de3b | 2026-07-14 19:37:11 -0700 | Merge pull request #664 from TrueSightDAO/auto/advisory-refresh-2026-07-15
-c3872a6 | 2026-07-15 02:37:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
-38fadb7 | 2026-07-14 19:08:47 -0700 | plans: white-label D0 — the label spec is rotated 90 degrees (#663)
-7a62c02 | 2026-07-14 18:29:59 -0700 | plans: white-label Phase 2 — state repair + visual placement spec (#662)
-c2de69b | 2026-07-14 18:17:00 -0700 | plans: Nelanco box Gate C done + add Sophia->Nelanco migration roadmap (#661)
 … (truncated)
 ```
 
@@ -398,8 +352,6 @@ c2de69b | 2026-07-14 18:17:00 -0700 | plans: Nelanco box Gate C done + add Sophi
 ```
 e111714 | 2026-07-15 11:47:00 -0700 | fix(tokenomics): remove all Wix dependencies from tdg_wix_dashboard.js (#380)
 a278954 | 2026-07-14 12:21:08 -0700 | docs: add subscription renewal columns R/S/T to SCHEMA
-c224d36 | 2026-07-10 13:23:27 -0700 | docs: redefine Telegram Chat Logs col R as Processor Dedup Marker
-3b4403c | 2026-07-10 16:12:54 -0400 | fix(dao-members-cache): probe first contributor WITH a public key (#379)
 ```
 
 ### `dapp` → `dapp`
@@ -440,18 +392,14 @@ fd0852e | 2026-07-14 08:29:51 +0000 | chore: refresh store and partner inventory
 222ac87 | 2026-07-13 09:49:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 12d2d2b | 2026-07-12 08:33:15 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 695df5d | 2026-07-11 08:16:21 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-e569571 | 2026-07-10 16:13:10 -0400 | fix(repackaging-ingest): wire settlement handler to real event tag + add audit tab (#17)
-3d3590e | 2026-07-10 12:38:00 -0700 | fix: restore São Jorge repackaging composition JSON (accidentally removed in prior sync)
-6fc3df4 | 2026-07-10 12:37:38 -0700 | chore: sync store-inventory (São Jorge 81% bar 25 in stock)
-79e0c23 | 2026-07-10 15:29:07 -0400 | chore: refresh Agroverse store inventory snapshot
-821b4ab | 2026-07-10 14:53:30 -0400 | chore(inventory): repackaging composition e963c8ff-4520-4b52-a5c7-3abfaae963fb
-29a886c | 2026-07-10 14:53:20 -0400 | chore(inventory): refresh currencies.json (repackaging ingest)
-6d54628 | 2026-07-10 09:55:00 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+29afc0c | 2026-07-18 09:00:53 +0800 | test: add real E2E checkout verification script + pre-merge policy (#195)
+0b28731 | 2026-07-18 08:43:27 +0800 | fix(white-label): use correct shipping rate field names from GAS (#194)
+bd72396 | 2026-07-18 08:22:43 +0800 | fix: replace stale checkout GAS deployment URL (#193)
 842aeb4 | 2026-07-17 17:45:15 +0800 | fix(white-label): route beta/localhost checkout through Stripe test mode (#192)
 a2e9ca6 | 2026-07-17 05:24:44 +0800 | Add Coopercabruca membership to Oscar's farm page (#191)
 5798a7b | 2026-07-16 14:10:31 -0700 | fix(white-label): PR5 — State E/F order emphasis + real success receipt (#189)
@@ -464,9 +412,6 @@ b939f0a | 2026-07-15 12:08:08 -0700 | fix(white-label): PR2 — re-quote shippin
 9e03bc8 | 2026-07-15 04:31:03 -0700 | fix(white-label): D0 — flip the label spec to portrait 2"x4" (#183)
 89e7622 | 2026-07-14 19:05:28 -0700 | feat(white-label): correct label to portrait 2"×4" + commit the full implementation (#182)
 285ef34 | 2026-07-14 12:21:01 -0700 | feat: sync subscription renewal payments (invoice.paid) to Stripe Checkout sheet
-4871cd1 | 2026-07-10 13:55:18 -0700 | fix: split video/photo grids on São Jorge farm page, restore original photo markup
-e25b4ac | 2026-07-10 16:33:28 -0400 | Add São Jorge farm video embeds + Bean to Bliss ep 12 + swamp-walk blog posts (#181)
-e82943e | 2026-07-10 12:52:45 -0700 | Add São Jorge (Coopercabruca) 81% dark chocolate bar SKU (#180)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -485,6 +430,15 @@ _(no commits on origin/main in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-07-18T023839Z_tariff-analysis-sugar-rfq-checkout-fixes.md`
+
+- **posted_at_utc:** `2026-07-18T02:38:39Z`  
+- **slug:** `tariff-analysis-sugar-rfq-checkout-fixes`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Trade Policy (Compliance)** — Published US Section 301 tariff impact analysis for Brazil, assessing effects on Pix usage and cacao import exemptions.
+
 ### `beer-hall_2026-07-17T024754Z_white-label-fixes-hts-schema-pdf.md`
 
 - **posted_at_utc:** `2026-07-17T02:47:54Z`  
@@ -502,15 +456,6 @@ _(no commits on origin/main in window)_
 
   Automated daily digest of the DAO
   - **Engineering (Shop)** — Committed full implementation for white-label label orientation (corrected to portrait 2"×4").
-
-### `beer-hall_2026-07-14T023918Z_operating-agreement-signed-shop-updates.md`
-
-- **posted_at_utc:** `2026-07-14T02:39:18Z`  
-- **slug:** `operating-agreement-signed-shop-updates`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Ops (Legal)** — Finalized and uploaded the clean v1.0 Operating Agreement PDF, ready for signature.
 
 ---
 
@@ -531,49 +476,6 @@ _(no commits on origin/main in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 11:50:27 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-10`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-07-14 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_14 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_13 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_12 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_10 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_11 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_9 | zpFSulJXVklN | — |
-| 2026-07-14 | 10.11 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024OSCAR_CB_20260620_8 | zpFSulJXVklN | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
