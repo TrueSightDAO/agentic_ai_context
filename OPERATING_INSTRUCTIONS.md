@@ -222,6 +222,43 @@ the plan (a plan-of-record turn) rather than burning execution rounds on discove
 
 ---
 
+## 5e. Pre-scope the authorization envelope — batch gates, don't trickle them (applies to ALL agents, not just Sophia)
+
+§5c solved this for Sophia's autopilot (a named always-stop list instead of asking mid-turn). This
+extends the same principle to **interactive sessions** (Claude Code, Cursor, etc. — anywhere a human
+is driving turn-by-turn, not just autopilot).
+
+**Root cause (2026-07-18, `AGROVERSE_CHECKOUT_E2E_POLICY.md` incident and its follow-up):** fixing a
+live checkout outage required going back to the governor for a prod-vs-beta authorization decision
+**three separate times** — once per fix that happened to touch prod — instead of once for the whole
+arc. Reconstructing the timeline afterward showed **~3.5 hours of actual work spread across a ~73-hour
+elapsed window**, almost entirely because each short round-trip ("can I sync this to prod too?")
+left the agent idle for hours until the next reply, rather than the governor pre-granting the scope
+once and letting the agent run the whole arc.
+
+**Rule:** when starting a multi-step implementation arc (whether or not it needs a full §5 roadmap),
+the pre-flight — or, for a quick interactive task, the first response — must name the **authorization
+envelope**:
+
+- Which repos/environments are **pre-authorized for autonomous action** for the duration of this arc
+  (e.g. "beta = go, merge and iterate freely").
+- Which are **gated** and need a stop (e.g. "prod = ask, but only once per arc — not once per fix").
+- Any **other foreseeable go/no-go decisions** the plan can already see coming (e.g. "will also need
+  to sync this fix to the prod fork if one exists — OK to do that under the same authorization, or
+  should that be a separate ask?").
+
+**Batch these into ONE upfront question round** (e.g. one `AskUserQuestion` call with multiple
+questions, or one paragraph in the kickoff message) instead of surfacing them one at a time as the
+agent discovers each new instance of a similar decision mid-execution. If a genuinely new, unforeseen
+gate-worthy decision shows up mid-arc (not just a repeat of one already scoped), stop and ask — but
+don't re-ask a question the governor already answered for this arc in a different guise.
+
+**This does not relax any always-stop gate from §5c** (prod deploy, merge to default branch, TDG/money
+movement, UAT) — those still require a human in the loop every time. What changes is *how many separate
+round-trips it takes to get there*: one scoping conversation per arc, not one per occurrence.
+
+---
+
 ## 6. Contribution reporting — use dao_client (dao_protocol repo)
 
 When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:
