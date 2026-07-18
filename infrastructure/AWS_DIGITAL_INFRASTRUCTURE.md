@@ -20,7 +20,11 @@ Two changes landed 2026-07-15. **Where the text below conflicts with this banner
 
 `sophia.truesight.me` now → **`3.214.167.219`** (Route53 A, Explorya zone `Z0032474227N6EQ3Z4QU`). All 4 systemd units (`truesight-autopilot`, `-telegram`, `-watchdog`, `truesight-vault`) run on the new box; `DRY_RUN=false`; health `:8001` = 200; nginx serves HTTPS 200. Migration was an **AMI copy** (Explorya `ami-0b05acc998af71d0f` → shared → Nelanco copy `ami-049ff1f01152ef25d`) so the box is a byte-for-byte clone (Edgar identity, Telethon session, code all intact). Weekly AMI backup **retargeted** (Cypher-Defense `snapshot_autopilot_ami`): now Name tag `sophia-nelanco` + `CYPHER_DEFENCE_AWS_*` secrets (Nelanco). **Pending follow-ups:** swap `52.200.38.206`→`3.214.167.219` in fleet SG `dao-protocol-beta-sg` allowlist (SSH); reconcile stale `governor_chatbot`/`chatbot.truesight.me` notes; eventually terminate the stopped Explorya box + prune old Explorya AMIs.
 
-**2. New interactive Claude Code box** (`nelanco-claude`): `i-01ad5eca707e4445f`, EIP **`100.57.50.48`**, `claude.truesight.me`, Nelanco `vpc-d59748af`/`subnet-de8102b9`, SG `launch-wizard-1`. Runs Claude Code (driven from the mobile app via `--remote-control`), Sophia-parity env + fleet SSH — **not** autonomous. Plan: `plans/NELANCO_CLAUDE_CODE_BOX_PLAN.md`.
+**2. New interactive Claude Code box** (`nelanco-claude`): `i-01ad5eca707e4445f`, EIP **`100.57.50.48`**, `claude.truesight.me`, Nelanco
+
+**Naming alias (2026-07-16):** "Claude in the cloud" or just "Claude" in infrastructure context = **nelanco-claude** (`100.57.50.48`). This is the interactive Claude Code box, not the Claude API or Claude.ai.
+
+**Gmail OAuth tokens deployed 2026-07-16:** `vpc-d59748af`/`subnet-de8102b9`, SG `launch-wizard-1`. Runs Claude Code (driven from the mobile app via `--remote-control`), Sophia-parity env + fleet SSH — **not** autonomous. Plan: `plans/NELANCO_CLAUDE_CODE_BOX_PLAN.md`.
 
 ---
 
