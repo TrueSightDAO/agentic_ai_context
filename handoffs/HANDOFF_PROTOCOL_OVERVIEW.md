@@ -3,9 +3,11 @@
 **What this is.** The big-picture map of how work flows between the **local
 LLMs** (Claude Code, Cursor, Kimi, Codex…), **Sophia** (the autopilot), and the
 **human governors** — across the interfaces they share (local terminal, GitHub,
-Telegram). For the operational details (registry, trigger template, the GO
-convention) see **`SOPHIA_HANDOFFS.md`**; this doc is the human-readable
-orientation.
+Telegram). For the **live registry** (status, resume tracker, Telegram
+topic/thread_id per handoff) see **`HANDOFF_MANIFEST.md`** — the single source
+of truth (consolidated 2026-07-18, see `../plans/HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md`).
+For the **Sophia trigger protocol** (ping template, the GO convention, thread
+rules) see **`SOPHIA_HANDOFFS.md`**; this doc is the human-readable orientation.
 
 ---
 
@@ -43,7 +45,7 @@ sequenceDiagram
     G->>L: 1. "Do X" (local terminal)
     L->>GH: 2. Write *_PLAN.md, commit to main (PR→merge)
     Note over GH: Durable handoff = committed plan + registry
-    L->>GH: 3. Add registry row (SOPHIA_HANDOFFS.md)
+    L->>GH: 3. Add registry row (HANDOFF_MANIFEST.md)
     L->>S: 4. ping_sophia (HTTPS) — trigger only
     S->>GH: 5a. Refresh + read plan (read_repo_file)
     S->>TG: 5b. Create topic, post kickoff + context, end with GO prompt, park
@@ -126,6 +128,7 @@ Carried in each plan and enforced by Sophia on "go for it":
   same session as the Telegram-facing Sophia. Trust the **committed artifacts**
   (plan, registry, PRs), not the ping reply, as the record of truth.
 
-See also: `SOPHIA_HANDOFFS.md` (registry + GO convention + trigger template),
+See also: `HANDOFF_MANIFEST.md` (the live registry — status, resume tracker, Telegram
+topic/thread_id), `SOPHIA_HANDOFFS.md` (GO convention + trigger template),
 `GITHUB_AGENTIC_AI_SSH.md` (agent attribution + PR workflow),
 `OPERATING_INSTRUCTIONS.md` §5 (the plan/roadmap requirement).

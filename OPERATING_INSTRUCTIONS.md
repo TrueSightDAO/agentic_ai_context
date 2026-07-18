@@ -31,8 +31,8 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | — | **TRUECHAIN.md** | **TrueChain integration.** When working on TrueChain (blockchain, mirror service, block explorer, provenance), read TRUECHAIN.md. Includes "For AI Assistants" section, setup, technical proposal. Repo: https://github.com/TrueSightDAO/TrueChain. |
 | — | **GITHUB_AGENTIC_AI_SSH.md** | **GitHub pushes by agents.** Dedicated SSH key under `~/.ssh/agentic_ai_github/`; host alias `github.com-agentic-ai` or `GIT_SSH_COMMAND`. **Branch + PR:** new branch per task, PR body with goal / changes / testing / rollout for reviewers; do not push agent work to default branch unless the user explicitly orders it. **If the user explicitly asks to merge to `main` / `master` after the PR:** complete the loop with `gh pr merge` (or web UI) per that doc’s § “When the user requests the full release loop.” Never commit the private key. |
 | — | **ROADMAP_UPDATE_SOP.md** | **Track map / roadmap updates.** When the governor says "update the roadmap" or "update the track map," follow this SOP. Edit TRACK_MAP.md + tracks.json in agentic_ai_context, then deploy via truesight_me_beta → prod. |
-| — | **HANDOFF_MANIFEST.md** | **Active handoff index.** Machine-readable table of all active handoffs from a local LLM to Sophia. Check this first when the governor mentions a "plan" or "handoff." |
-| — | **SOPHIA_HANDOFFS.md** | **Sophia handoff registry.** Telegram topic links, session IDs, and status for each handoff. Cross-reference with HANDOFF_MANIFEST.md. |
+| — | **handoffs/HANDOFF_MANIFEST.md** | **Active handoff index — single source of truth (consolidated 2026-07-18).** Machine-readable table of all active handoffs: status, resume tracker state, and Telegram topic/message_thread_id, in one place. Check this first when the governor mentions a "plan" or "handoff." |
+| — | **sophia/SOPHIA_HANDOFFS.md** | **Sophia trigger protocol.** How to ping Sophia, the GO convention, and Telegram thread-management rules — no registry table here (that moved to HANDOFF_MANIFEST.md to stop the two files drifting out of sync). |
 
 Other files in this folder (e.g. `AI_SETUP.md`, `GROK_CLI_410_FIX.md`, `CURSOR_AUTO_APPROVE_SETTINGS.md`) are reference docs for setup and fixes; read them when relevant to your task.
 
@@ -592,13 +592,16 @@ cd agentic_ai_context && git pull origin main
 
 ### 7.2 Check the handoff manifest
 
-Read `HANDOFF_MANIFEST.md` — it lists every active handoff with its plan file, status, and
-resume tracker state. This is the fastest way to find what you should be working on.
+Read `handoffs/HANDOFF_MANIFEST.md` — it lists every active handoff with its plan file,
+status, resume tracker state, and Telegram topic/message_thread_id (single source of truth
+since the 2026-07-18 consolidation). This is the fastest way to find what you should be
+working on and where to rejoin the conversation.
 
-### 7.3 Cross-reference with SOPHIA_HANDOFFS.md
+### 7.3 Sophia trigger protocol
 
-`SOPHIA_HANDOFFS.md` has Telegram topic links and session IDs for rejoining conversations.
-Use it when you need to pick up a conversation mid-stream.
+`sophia/SOPHIA_HANDOFFS.md` has the ping template, GO convention, and thread-management
+rules for triggering or rejoining Sophia. It no longer carries its own registry table — that
+lives solely in `HANDOFF_MANIFEST.md`.
 
 ### 7.4 Read the plan file
 
