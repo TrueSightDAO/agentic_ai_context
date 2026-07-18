@@ -33,6 +33,7 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | — | **ROADMAP_UPDATE_SOP.md** | **Track map / roadmap updates.** When the governor says "update the roadmap" or "update the track map," follow this SOP. Edit TRACK_MAP.md + tracks.json in agentic_ai_context, then deploy via truesight_me_beta → prod. |
 | — | **HANDOFF_MANIFEST.md** | **Active handoff index.** Machine-readable table of all active handoffs from a local LLM to Sophia. Check this first when the governor mentions a "plan" or "handoff." |
 | — | **SOPHIA_HANDOFFS.md** | **Sophia handoff registry.** Telegram topic links, session IDs, and status for each handoff. Cross-reference with HANDOFF_MANIFEST.md. |
+| — | **PERSONAL_MARKET_ANALYSIS_BACKLOGS.md** | **Personal market/trading analysis logging (not DAO work).** When a contributor explicitly asks for market or trading analysis (via Perch or otherwise), check this registry for their private backlog repo and log a dated entry there — but only for that specific trigger, never other requests. Opt-in per contributor; results live in their own private repo, never in this one. |
 
 Other files in this folder (e.g. `AI_SETUP.md`, `GROK_CLI_410_FIX.md`, `CURSOR_AUTO_APPROVE_SETTINGS.md`) are reference docs for setup and fixes; read them when relevant to your task.
 
