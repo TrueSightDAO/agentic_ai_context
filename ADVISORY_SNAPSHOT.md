@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-18T03:41:32Z`
+- Generated (UTC): `2026-07-18T08:18:46Z`
 - Look-back: **7** calendar days (`2026-07-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -294,6 +294,7 @@ _All dated lines on/after 2026-07-11_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7febebb | 2026-07-17 19:41:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f1067d3 | 2026-07-17 14:13:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -333,7 +334,6 @@ a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move Pe
 5d4cd1d | 2026-07-11 15:28:12 -0700 | Fix blog post format: convert from Jekyll markdown to static HTML (#268)
 2c7f591 | 2026-07-11 18:25:07 -0400 | Add blog post: The Desert and the Diamond (#267)
 9862364 | 2026-07-11 18:24:07 -0400 | Add header image for desert-and-diamond blog post
-5c7af25 | 2026-07-11 19:45:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -346,6 +346,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+589f837 | 2026-07-18 11:41:44 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
+7dc6e11 | 2026-07-18 11:41:43 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
 c1d9b0c | 2026-07-18 11:00:34 +0800 | Merge pull request #685 from TrueSightDAO/docs/agroverse-checkout-e2e-policy
 aeaa1e2 | 2026-07-18 10:38:53 +0800 | Merge pull request #686 from TrueSightDAO/auto/advisory-refresh-2026-07-18
 d1ec567 | 2026-07-18 02:38:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
@@ -384,8 +386,6 @@ b81d2cb | 2026-07-15 20:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT
 5f183fa | 2026-07-15 12:15:53 -0700 | docs: Sophia Nelanco migration, Claude Cloud box, white-label changelog (#671)
 f25f319 | 2026-07-15 19:01:52 +0000 | plans: white-label PR2 opened (beta#185) — B3+B4+B5, 38/38 green, awaiting human merge
 979d0c3 | 2026-07-15 11:48:38 -0700 | handoffs: mark large_spikes plan as SUPERSEDED (already implemented) (#670)
-bae6f0d | 2026-07-15 11:38:08 -0700 | CONTEXT_UPDATES: flag stale handoff protocol in OPERATING_INSTRUCTIONS §11 (#669)
-6fbdad3 | 2026-07-15 07:57:37 -0700 | Add handoff PDF: Gary to Fatima (Brazil ops, Jul 2026)
 … (truncated)
 ```
 
@@ -423,6 +423,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 48c1f0b | 2026-07-16 08:36:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8ee569b | 2026-07-15 08:37:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -542,7 +543,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/17/2026 19:50:33 |
+| 2026-07 | 201.48 | 16911.06386 | 7/18/2026 0:50:49 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-11`; scanned last **600** data rows)
 
