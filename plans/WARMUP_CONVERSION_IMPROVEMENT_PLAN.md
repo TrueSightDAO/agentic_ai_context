@@ -228,13 +228,15 @@ Documentation only. No behavior change.
 
 ## 6. Resume tracker
 
-> **RESUME HERE →** PR0 + PR1 land this turn. PR2 requires the UAT read-through with Gary before the
-> linter/auto-send path is allowed to run new copy at volume — do not proceed to PR2 without that.
+> **RESUME HERE →** PR0 + PR1 opened this turn, both awaiting Gary's merge (per §3a, merging to `main`
+> is a human gate — Claude does not self-merge). Once PR1 merges and gets one live (`--execute`) run
+> reviewed, proceed to PR2. PR2 requires the UAT read-through with Gary before the linter/auto-send path
+> is allowed to run new copy at volume — do not proceed to PR2's auto-send exposure without that.
 
 | Unit | Scope | Repo | Opened | Merged (human) | Contribution reported |
 |---|---|---|---|---|---|
-| PR0 | This plan | agentic_ai_context | ✅ | ☐ | ☐ |
-| PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ☐ | ☐ | ☐ |
+| PR0 | This plan | agentic_ai_context | ✅ [#697](https://github.com/TrueSightDAO/agentic_ai_context/pull/697) | ☐ | ☐ |
+| PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ✅ [#168](https://github.com/TrueSightDAO/go_to_market/pull/168) | ☐ | ☐ |
 | PR2 | Segmented first-touch templates + UAT | go_to_market | ☐ | ☐ | ☐ |
 | PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ☐ | ☐ | ☐ |
 
