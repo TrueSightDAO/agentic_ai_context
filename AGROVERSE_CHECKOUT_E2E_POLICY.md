@@ -5,6 +5,13 @@ checkout or the checkout Google Apps Script must be verified with a **real, live
 actual Stripe Checkout session** before merging to `main`. This applies to any LLM agent (Claude, Sophia,
 etc.) or human making these changes.
 
+This is a specialization of **`OPERATING_INSTRUCTIONS.md` §9** (HTML/JS test-before-merge rule) for
+checkout/GAS code specifically: §9's JSDom/happy-dom unit tests stub the network boundary and cannot catch
+a live contract mismatch on either side of it (see "Why" below) — checkout/GAS changes need the real,
+live round trip on top of, not instead of, the §9 unit tests. See also **`OPERATING_INSTRUCTIONS.md` §5e**
+for how to scope the authorization envelope up front so verifying and syncing a fix like this doesn't
+require asking the governor once per repo it touches.
+
 ## What triggers this policy
 
 A PR touching any of:
