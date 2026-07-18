@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-18T13:56:52Z`
+- Generated (UTC): `2026-07-18T19:41:23Z`
 - Look-back: **7** calendar days (`2026-07-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -294,6 +294,7 @@ _All dated lines on/after 2026-07-11_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9a5d9d3 | 2026-07-18 14:00:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5ce114a | 2026-07-18 08:22:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7febebb | 2026-07-17 19:41:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -333,7 +334,6 @@ ab652ff | 2026-07-11 16:40:34 -0700 | Remove duplicate Epilogue section causing 
 a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move People section after epilogue, fix Chinese chars, reconcile cacao origins (#271)
 0cecf88 | 2026-07-11 15:58:20 -0700 | Add Jerry Luk to blog post: convinced Gary to join Edmodo, making getdata.io a side project (#269)
 5d4cd1d | 2026-07-11 15:28:12 -0700 | Fix blog post format: convert from Jekyll markdown to static HTML (#268)
-2c7f591 | 2026-07-11 18:25:07 -0400 | Add blog post: The Desert and the Diamond (#267)
 … (truncated)
 ```
 
@@ -346,6 +346,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+709bd84 | 2026-07-18 21:57:12 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
+b38335b | 2026-07-18 21:57:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
 e6e0cab | 2026-07-18 20:54:48 +0800 | docs: add §5e — pre-scope authorization envelope, batch gates (#687)
 59d6e81 | 2026-07-18 16:18:59 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
 11d9e7b | 2026-07-18 16:18:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
@@ -384,8 +386,6 @@ be8a478 | 2026-07-16 01:40:46 -0700 | chore(previews): refresh Beer Hall preview
 5d711f7 | 2026-07-16 01:40:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
 fafe122 | 2026-07-15 20:47:16 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
 b81d2cb | 2026-07-15 20:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
-948aadf | 2026-07-15 12:45:36 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
-7921720 | 2026-07-15 12:45:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
 … (truncated)
 ```
 
@@ -543,7 +543,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/18/2026 6:51:14 |
+| 2026-07 | 201.48 | 16911.06386 | 7/18/2026 11:51:19 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-11`; scanned last **600** data rows)
 
