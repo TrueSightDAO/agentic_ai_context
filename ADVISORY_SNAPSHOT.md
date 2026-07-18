@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-18T08:18:46Z`
+- Generated (UTC): `2026-07-18T13:56:52Z`
 - Look-back: **7** calendar days (`2026-07-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,15 +34,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[EMAIL VERIFICATION EVENT]` × 10
 - `[DESIGN UPLOAD EVENT]` × 7
-- `[CONTRIBUTION EVENT]` × 6
-- `[PRACTICE EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 7
+- `[PRACTICE EVENT]` × 5
 - `[EMAIL REGISTERED EVENT]` × 5
 - `[DESIGN ORDER EVENT]` × 4
 
 ### Latest entries
 
-- `Edgar_20260718004847_163` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:48:27.184Z · Email: admin+claude1784335646@truesight.me · Design ID: 0186ea46-cf4a-4b32-be09-ad022fd8bd8b
-- `Edgar_20260718004934_165` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:49:33.706Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
 - `Edgar_20260718005035_167` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:50:34.715Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
 - `Edgar_20260718005221_169` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:52:20.075Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
 - `Edgar_20260718005325_171` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:53:25.074Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260718010003_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Sophia Truesight
 - `Edgar_20260718014401_199` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T01:43:56.566Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260718020525_201` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T02:05:22.587Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260718120637_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: White-label checkout: stale GAS URL + shipping field-name fixes, prod sync, …
+- `Edgar_20260718120659_205` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Manual UAT/oversight on white-label checkout fixes: found the original two U…
 
 ---
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-17T10:59:14.351Z`
+- Generated (UTC): `2026-07-18T10:59:14.753Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -100,12 +100,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **498**, follow_up **70**, bulk **0**, unknown **2** (data rows: **570**)
+- **Email Agent Follow Up** — logged sends: warmup **510**, follow_up **70**, bulk **0**, unknown **2** (data rows: **582**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **450**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
+- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **462**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -294,6 +294,7 @@ _All dated lines on/after 2026-07-11_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5ce114a | 2026-07-18 08:22:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7febebb | 2026-07-17 19:41:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f1067d3 | 2026-07-17 14:13:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -333,7 +334,6 @@ a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move Pe
 0cecf88 | 2026-07-11 15:58:20 -0700 | Add Jerry Luk to blog post: convinced Gary to join Edmodo, making getdata.io a side project (#269)
 5d4cd1d | 2026-07-11 15:28:12 -0700 | Fix blog post format: convert from Jekyll markdown to static HTML (#268)
 2c7f591 | 2026-07-11 18:25:07 -0400 | Add blog post: The Desert and the Diamond (#267)
-9862364 | 2026-07-11 18:24:07 -0400 | Add header image for desert-and-diamond blog post
 … (truncated)
 ```
 
@@ -346,6 +346,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e6e0cab | 2026-07-18 20:54:48 +0800 | docs: add §5e — pre-scope authorization envelope, batch gates (#687)
+59d6e81 | 2026-07-18 16:18:59 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
+11d9e7b | 2026-07-18 16:18:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
 589f837 | 2026-07-18 11:41:44 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
 7dc6e11 | 2026-07-18 11:41:43 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
 c1d9b0c | 2026-07-18 11:00:34 +0800 | Merge pull request #685 from TrueSightDAO/docs/agroverse-checkout-e2e-policy
@@ -383,9 +386,6 @@ fafe122 | 2026-07-15 20:47:16 -0700 | chore(previews): refresh Beer Hall preview
 b81d2cb | 2026-07-15 20:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
 948aadf | 2026-07-15 12:45:36 -0700 | chore(previews): refresh Beer Hall preview (2026-07-15 UTC)
 7921720 | 2026-07-15 12:45:34 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-15 UTC)
-5f183fa | 2026-07-15 12:15:53 -0700 | docs: Sophia Nelanco migration, Claude Cloud box, white-label changelog (#671)
-f25f319 | 2026-07-15 19:01:52 +0000 | plans: white-label PR2 opened (beta#185) — B3+B4+B5, 38/38 green, awaiting human merge
-979d0c3 | 2026-07-15 11:48:38 -0700 | handoffs: mark large_spikes plan as SUPERSEDED (already implemented) (#670)
 … (truncated)
 ```
 
@@ -543,7 +543,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/18/2026 0:50:49 |
+| 2026-07 | 201.48 | 16911.06386 | 7/18/2026 6:51:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-11`; scanned last **600** data rows)
 
