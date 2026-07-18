@@ -520,6 +520,48 @@ from AMI, ensure `~/.ssh/config` references all keys and test connectivity.
 
 ---
 
+## 8. getdata.io SSL/TLS Certificate Topology
+
+**⚠️ CRITICAL: Cross-account topology.** The Route53 zone for `getdata.io` is in the **Explorya** account. The ALB `krake-ror-1` that terminates TLS for the apex domain is in the **Nelanco** account. The imported cert lives in **Nelanco ACM**. Do NOT look for the ALB or cert in Explorya — you will not find them.
+
+### 8.1 Current State (as of 2026-07-18)
+
+| Subdomain | TLS terminator | Account | Cert type | Status |
+|-----------|---------------|---------|-----------|--------|
+| **getdata.io** (apex) | ALB `krake-ror-1` (ALB ARN: `arn:aws:elasticloadbalancing:us-east-1:767697632458:loadbalancer/app/krake-ror-1/0ae6fc336773faac`) | **Nelanco** (`767697632458`) | Imported `*.getdata.io` (Sectigo-issued) | **EXPIRED** (NotAfter: 2026-06-21) |
+| **cache.getdata.io** | CloudFront `EUNVMCIM57S3M` | **Explorya** (`440626669078`) | Imported `*.getdata.io` (Sectigo-issued) | **EXPIRED** |
+| **cache-2.getdata.io** | CloudFront `EUNVMCIM57S3M` (same distro) | **Explorya** | Imported `*.getdata.io` (Sectigo-issued) | **EXPIRED** |
+| **cldf-2.getdata.io** | CloudFront `E1VXVT406L85U7` | **Explorya** | Imported `*.getdata.io` (Sectigo-issued) | **EXPIRED** |
+| **cldf-assets.getdata.io** | CloudFront `E11KT1YXCCPSQ4` | **Explorya** | Imported `*.getdata.io` (Sectigo-issued) | **EXPIRED** |
+
+### 8.2 Root Cause
+
+All 5 endpoints share the same imported Sectigo wildcard cert (`*.getdata.io` + `getdata.io`). Because it was **imported** (not Amazon-issued), ACM reports `RenewalEligibility: INELIGIBLE` — it can never auto-renew. The cert expired on 2026-06-21 and all endpoints are now serving an expired cert.
+
+### 8.3 Fix Procedure
+
+The fix requires **two separate ACM cert requests** (one per account) because ACM certs cannot be shared across accounts:
+
+**Step 1 — Nelanco ALB cert (apex getdata.io):**
+1. Request a new Amazon-issued cert in **Nelanco** ACM for `*.getdata.io` + `getdata.io` with **DNS validation**.
+2. ACM will emit CNAME validation records. Create them in **Explorya** Route53 (zone `Z2HLUYI5VU4W5` — the `getdata.io` hosted zone).
+3. Wait for validation (typically 1–5 minutes).
+4. Swap the cert on the ALB HTTPS listener (port 443) via `elbv2 modify-listener --certificates`.
+
+**Step 2 — Explorya CloudFront certs (cache/cldf subdomains):**
+1. Request a second new Amazon-issued cert in **Explorya** ACM for `*.getdata.io` + `getdata.io` with DNS validation.
+2. Create the CNAME validation records in Explorya Route53 (same zone).
+3. Wait for validation.
+4. Swap the cert on all 3 CloudFront distributions via `cloudfront update-distribution`.
+
+**Important:** The Explorya cert CANNOT be used on the Nelanco ALB (cross-account), and the Nelanco cert CANNOT be used on Explorya CloudFront. Two certs are required.
+
+### 8.4 Why Claude Couldn't Find the ALB
+
+Claude's investigation (2026-07-18) searched for `krake-ror-1` in the **Explorya** account only and got `LoadBalancerNotFound`. The ALB is in **Nelanco** — it was migrated from Classic ELB to Application Load Balancer on 2025-10-24. The DNS alias in Explorya Route53 (`krake-ror-1-1141435618.us-east-1.elb.amazonaws.com`) resolves to the Nelanco ALB. Always check **both** accounts when searching for infrastructure.
+
+---
+
 ## 11. Deployment Guide — How Each Service Ships
 
 This section documents how each service is deployed. Use this when setting up a new box, recovering from failure, or onboarding a new operator.
