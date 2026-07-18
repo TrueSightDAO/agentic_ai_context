@@ -7,8 +7,16 @@ Amazon-issued (auto-renewing) one so this class of outage can't recur silently.
 
 > ## ▶ RESUME HERE
 >
-> **Unit 1 — not started.** Nothing has been changed in AWS yet; only read-only investigation
-> (below) has happened so far, 2026-07-18, by Claude (interactive session, not Sophia).
+> **Unit 3 — gated (prod ALB listener swap).** Units 1 and 2 completed 2026-07-18 by Sophia
+> (autopilot). See PR #... for execution details.
+>
+> **Unit 1 ✅** — Nelanco ACM cert requested + issued:
+> `arn:aws:acm:us-east-1:767697632458:certificate/8e76c9ff-f1a8-491a-8d86-f2dc2caabdd7`
+> Domain `getdata.io` + `*.getdata.io`, DNS validation CNAME added to Explorya Route53.
+>
+> **Unit 2 ✅** — CNAME record `_9ef609a13ec8920f051efb34e52d6ba2.getdata.io` →
+> `_db5aed0bc044849b5a2ca95da807354f.jkddzztszm.acm-validations.aws` added to Explorya zone
+> `Z1WSQ5L32FCMCC`. Cert status: **ISSUED**.
 
 **Companion context:** this plan was scoped after a live chat investigation — see conversation
 history for the full narration if any pre-flight fact below needs re-deriving (it shouldn't; see
@@ -113,8 +121,8 @@ No execution unit below requires reading a file/state not already captured in th
 
 | Unit | What | Advance | Status |
 |------|------|---------|--------|
-| 1 | Request new Amazon-issued ACM cert in **Nelanco** (us-east-1), domain `getdata.io` + SAN `*.getdata.io`, DNS validation. Capture the returned validation CNAME (name + value). | _(auto)_ | ☐ |
-| 2 | Add that validation CNAME to Explorya's Route53 zone `Z1WSQ5L32FCMCC` (cross-account: the requesting account is Nelanco but the zone is in Explorya, so this must be added manually, not via ACM's one-click Route53 integration). Poll `aws acm describe-certificate` until `Status: ISSUED`. | _(auto)_ | ☐ |
+| 1 | Request new Amazon-issued ACM cert in **Nelanco** (us-east-1), domain `getdata.io` + SAN `*.getdata.io`, DNS validation. Capture the returned validation CNAME (name + value). | _(auto)_ | ✅ |
+| 2 | Add that validation CNAME to Explorya's Route53 zone `Z1WSQ5L32FCMCC` (cross-account: the requesting account is Nelanco but the zone is in Explorya, so this must be added manually, not via ACM's one-click Route53 integration). Poll `aws acm describe-certificate` until `Status: ISSUED`. | _(auto)_ | ✅ |
 | 3 | **Gate: DNS/infra change (§5c always-stop).** Modify the Nelanco ALB's port-443 listener (`.../listener/app/krake-ror-1/.../6d904270a9d6d427`) to use the newly-issued cert ARN from Unit 1/2 instead of the expired imported one (`aws elbv2 modify-listener`). | `gate: prod listener swap` | ☐ |
 | 4 | Request new Amazon-issued ACM cert in **Explorya** (us-east-1), domain `getdata.io` + SAN `*.getdata.io`, DNS validation. Same account owns the zone here, so ACM's Route53 auto-validation option can be used directly. Poll until `ISSUED`. | _(auto)_ | ☐ |
 | 5 | **Gate: DNS/infra change (§5c always-stop).** Swap the new Explorya cert onto all 3 CloudFront distributions (`E1VXVT406L85U7`, `E11KT1YXCCPSQ4`, `EUNVMCIM57S3M`). Poll each for `Status: Deployed` before moving to the next. | `gate: prod CDN cert swap` | ☐ |
