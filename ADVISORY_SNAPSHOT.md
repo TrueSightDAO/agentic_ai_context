@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-19T08:44:00Z`
+- Generated (UTC): `2026-07-19T14:02:34Z`
 - Look-back: **7** calendar days (`2026-07-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-18T10:59:14.753Z`
+- Generated (UTC): `2026-07-19T10:59:16.186Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -295,6 +295,7 @@ _All dated lines on/after 2026-07-12_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9d9818b | 2026-07-19 08:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92389be | 2026-07-19 04:04:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bcb26b2 | 2026-07-18 19:44:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9a5d9d3 | 2026-07-18 14:00:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -342,6 +343,8 @@ c27eddb | 2026-07-11 17:03:13 -0700 | Strip job titles from People section — n
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+492572a | 2026-07-19 16:44:17 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
+d94f8dd | 2026-07-19 16:44:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
 71b7d8b | 2026-07-19 12:03:46 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
 f239be7 | 2026-07-19 12:03:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
 7715b7c | 2026-07-19 04:52:51 +0800 | plan: pre-authorize Units 3 & 5 (cert swaps) for getdata.io recovery (#696)
@@ -380,8 +383,6 @@ f8f99dc | 2026-07-17 16:34:30 +0800 | chore(previews): refresh Beer Hall preview
 bdb7def | 2026-07-17 11:46:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 aab4d0d | 2026-07-17 10:48:12 +0800 | Merge pull request #676 from TrueSightDAO/auto/advisory-refresh-2026-07-17
 b8ade86 | 2026-07-17 02:48:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
-3c7af1d | 2026-07-16 14:16:05 -0700 | Add live ledger URL to HTS schema PDF so partners can click through
-962c9eb | 2026-07-16 14:15:14 -0700 | Update HTS schema PDF with complete product mapping and existing data
 … (truncated)
 ```
 
@@ -539,7 +540,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/19/2026 0:50:45 |
+| 2026-07 | 201.48 | 16911.06386 | 7/19/2026 6:51:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-12`; scanned last **600** data rows)
 
