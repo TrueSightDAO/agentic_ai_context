@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-19T04:03:32Z`
+- Generated (UTC): `2026-07-19T08:44:00Z`
 - Look-back: **7** calendar days (`2026-07-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -295,6 +295,7 @@ _All dated lines on/after 2026-07-12_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+92389be | 2026-07-19 04:04:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bcb26b2 | 2026-07-18 19:44:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9a5d9d3 | 2026-07-18 14:00:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5ce114a | 2026-07-18 08:22:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -341,6 +342,8 @@ c27eddb | 2026-07-11 17:03:13 -0700 | Strip job titles from People section — n
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+71b7d8b | 2026-07-19 12:03:46 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
+f239be7 | 2026-07-19 12:03:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
 7715b7c | 2026-07-19 04:52:51 +0800 | plan: pre-authorize Units 3 & 5 (cert swaps) for getdata.io recovery (#696)
 888d178 | 2026-07-19 04:46:44 +0800 | CONTEXT_UPDATES: PERSONAL_PAT staged on sophia + nelanco-claude boxes (#695)
 498bc90 | 2026-07-19 04:24:52 +0800 | plans: mark Units 1 & 2 complete in GETDATA_IO_SSL_RECOVERY_PLAN.md (#691)
@@ -379,8 +382,6 @@ aab4d0d | 2026-07-17 10:48:12 +0800 | Merge pull request #676 from TrueSightDAO/
 b8ade86 | 2026-07-17 02:48:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 3c7af1d | 2026-07-16 14:16:05 -0700 | Add live ledger URL to HTS schema PDF so partners can click through
 962c9eb | 2026-07-16 14:15:14 -0700 | Update HTS schema PDF with complete product mapping and existing data
-fe62004 | 2026-07-16 14:13:55 -0700 | Update HTS schema PDF with research links and existing HS data
-16e2323 | 2026-07-16 14:12:11 -0700 | Add Currencies sheet HS/HTS codes schema PDF for partner sharing
 … (truncated)
 ```
 
@@ -418,6 +419,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 48c1f0b | 2026-07-16 08:36:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -537,7 +539,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/18/2026 20:50:39 |
+| 2026-07 | 201.48 | 16911.06386 | 7/19/2026 0:50:45 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-12`; scanned last **600** data rows)
 
