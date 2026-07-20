@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-20T14:38:04Z`
+- Generated (UTC): `2026-07-20T20:06:15Z`
 - Look-back: **7** calendar days (`2026-07-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -295,6 +295,7 @@ _All dated lines on/after 2026-07-13_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9695910 | 2026-07-20 14:41:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7bd31b0 | 2026-07-20 09:42:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 49d6910 | 2026-07-20 04:24:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7edb5de | 2026-07-19 19:44:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -336,6 +337,8 @@ ca74d67 | 2026-07-13 04:10:33 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6c40fb8 | 2026-07-20 22:38:25 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
+feb788c | 2026-07-20 22:38:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 a4d7f5f | 2026-07-20 17:41:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
 cf40213 | 2026-07-20 17:41:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 8ae6bf2 | 2026-07-20 15:06:42 +0800 | Add DAO asset/infrastructure/agent inventory report
@@ -374,8 +377,6 @@ daa6a8e | 2026-07-18 08:54:55 +0800 | Update Brazil tariff report with Pix opera
 8ba2a8e | 2026-07-18 04:03:21 +0800 | Fix name: 安娜贝尔 → 凯心
 43004df | 2026-07-18 04:01:53 +0800 | Fix PDF: replace emoji symbols with clean ✓/✗, remove orphaned bullets
 73737c6 | 2026-07-18 03:56:55 +0800 | Fix Chinese PDF - verified CJK rendering with WeasyPrint
-fb9743c | 2026-07-18 03:54:38 +0800 | Replace PDF with DroidSansFallback font version
-85ebee3 | 2026-07-18 03:54:04 +0800 | Fix Chinese PDF with DroidSansFallback font
 … (truncated)
 ```
 
@@ -534,7 +535,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/20/2026 6:51:05 |
+| 2026-07 | 201.48 | 16911.06386 | 7/20/2026 12:50:32 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-13`; scanned last **600** data rows)
 
