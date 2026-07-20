@@ -228,17 +228,29 @@ Documentation only. No behavior change.
 
 ## 6. Resume tracker
 
-> **RESUME HERE →** PR0 + PR1 opened this turn, both awaiting Gary's merge (per §3a, merging to `main`
-> is a human gate — Claude does not self-merge). Once PR1 merges and gets one live (`--execute`) run
-> reviewed, proceed to PR2. PR2 requires the UAT read-through with Gary before the linter/auto-send path
-> is allowed to run new copy at volume — do not proceed to PR2's auto-send exposure without that.
+> **RESUME HERE →** PR1 is done (Sophia's #170, merged). PR2 is open (#169) and rebased cleanly on top
+> of PR1 — **awaiting the UAT read-through with Gary** before the linter/auto-send path is allowed to
+> run the new segmented copy at volume; do not enable it blind. PR3 in progress.
 
 | Unit | Scope | Repo | Opened | Merged (human) | Contribution reported |
 |---|---|---|---|---|---|
 | PR0 | This plan | agentic_ai_context | ✅ [#697](https://github.com/TrueSightDAO/agentic_ai_context/pull/697) | ☐ | ☐ |
-| PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ✅ [#168](https://github.com/TrueSightDAO/go_to_market/pull/168) | ☐ | ☐ |
-| PR2 | Segmented first-touch templates + UAT | go_to_market | ☐ | ☐ | ☐ |
+| PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ✅ [#170](https://github.com/TrueSightDAO/go_to_market/pull/170) (Sophia) | ✅ | ☐ |
+| PR2 | Segmented first-touch templates + UAT | go_to_market | ✅ [#169](https://github.com/TrueSightDAO/go_to_market/pull/169) | ☐ (UAT pending) | ☐ |
 | PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ☐ | ☐ | ☐ |
+
+**Note on PR1 (2026-07-19):** Claude opened [#168](https://github.com/TrueSightDAO/go_to_market/pull/168)
+implementing PR1 the same turn this plan was committed to `agentic_ai_context` `main`. Sophia
+independently pulled the same plan from `main` and shipped an equivalent, functionally-identical PR1
+as [#170](https://github.com/TrueSightDAO/go_to_market/pull/170) (idempotent auto-reply logging via a
+Gmail label, park-after-2-cycles to `On Hold`), which Gary merged first. #168 was closed as a duplicate
+once discovered; #169 (PR2) was rebased onto the post-#170 `main` and merges cleanly (disjoint code
+regions — reply-promotion vs. draft-generation). **Lesson for future plans handed off this way:**
+committing a roadmap to `agentic_ai_context/plans/*.md` on `main` is the exact surface Sophia watches
+per the handoff protocol (`OPERATING_INSTRUCTIONS.md` §"Handoff protocol") — she can pick it up and
+start executing even without an explicit `truesight-dao-ping-sophia` trigger, so an interactive session
+building the same roadmap in parallel should check `git log` on the target repo before opening each PR,
+not just before starting the turn.
 
 ---
 
