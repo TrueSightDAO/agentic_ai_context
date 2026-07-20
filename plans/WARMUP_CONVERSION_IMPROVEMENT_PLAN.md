@@ -228,16 +228,18 @@ Documentation only. No behavior change.
 
 ## 6. Resume tracker
 
-> **RESUME HERE →** PR1 is done (Sophia's #170, merged). PR2 is open (#169) and rebased cleanly on top
-> of PR1 — **awaiting the UAT read-through with Gary** before the linter/auto-send path is allowed to
-> run the new segmented copy at volume; do not enable it blind. PR3 in progress.
+> **RESUME HERE →** All 3 build units are opened. PR1 is merged (Sophia's #170). **PR2 (#169) is
+> UAT-gated — do not merge/enable at volume until Gary reads the sample in the PR description.** PR3
+> (#171) is stacked on PR2 (merge order: #169 then #171). Once both merge, arm the monthly readout
+> workflow (already scheduled, no extra step needed) and watch the first live batch under PR2's new
+> copy before calling this arc done — see §7 success metrics.
 
 | Unit | Scope | Repo | Opened | Merged (human) | Contribution reported |
 |---|---|---|---|---|---|
 | PR0 | This plan | agentic_ai_context | ✅ [#697](https://github.com/TrueSightDAO/agentic_ai_context/pull/697) | ☐ | ☐ |
 | PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ✅ [#170](https://github.com/TrueSightDAO/go_to_market/pull/170) (Sophia) | ✅ | ☐ |
 | PR2 | Segmented first-touch templates + UAT | go_to_market | ✅ [#169](https://github.com/TrueSightDAO/go_to_market/pull/169) | ☐ (UAT pending) | ☐ |
-| PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ☐ | ☐ | ☐ |
+| PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ✅ [#171](https://github.com/TrueSightDAO/go_to_market/pull/171) (stacked on #169) | ☐ | ☐ |
 
 **Note on PR1 (2026-07-19):** Claude opened [#168](https://github.com/TrueSightDAO/go_to_market/pull/168)
 implementing PR1 the same turn this plan was committed to `agentic_ai_context` `main`. Sophia
