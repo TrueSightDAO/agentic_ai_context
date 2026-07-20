@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-18T19:41:23Z`
-- Look-back: **7** calendar days (`2026-07-11` → today UTC)
+- Generated (UTC): `2026-07-20T04:13:42Z`
+- Look-back: **7** calendar days (`2026-07-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,24 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
+- `[CONTRIBUTION EVENT]` × 11
 - `[EMAIL VERIFICATION EVENT]` × 10
-- `[DESIGN UPLOAD EVENT]` × 7
-- `[CONTRIBUTION EVENT]` × 7
-- `[PRACTICE EVENT]` × 5
-- `[EMAIL REGISTERED EVENT]` × 5
-- `[DESIGN ORDER EVENT]` × 4
+- `[DESIGN UPLOAD EVENT]` × 6
+- `[EMAIL REGISTERED EVENT]` × 4
+- `[PRACTICE EVENT]` × 4
+- `[DESIGN ORDER EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20260718005035_167` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:50:34.715Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
-- `Edgar_20260718005221_169` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:52:20.075Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
-- `Edgar_20260718005325_171` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:53:25.074Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
-- `Edgar_20260718005440_173` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:54:39.824Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
-- `Edgar_20260718005614_175` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:56:13.631Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
-- `Edgar_20260718005624_177` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:56:24.025Z · Email: admin+claude1784335646@truesight.me · Design ID: c45fe872-1a33-4abe-b579-2bc5dc0cdfc0
-- `Edgar_20260718005708_179` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:57:07.078Z · Email: admin+claude1784335646@truesight.me · Verification Key: -V76iDMcbrXmAYrb4u_Ns9TkM_W40t1-Swu3HOzy3o0
-- `Edgar_20260718005723_181` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:57:17.390Z · Email: admin+claude1784335646@truesight.me · Design ID: cd1db0e7-349e-4af0-b194-0c052fe7f736
-- `Edgar_20260718005733_183` · **Edgar** · [DESIGN ORDER EVENT] Timestamp: 2026-07-18T00:57:32.723Z · Email: admin+claude1784335646@truesight.me · Design ID: c45fe872-1a33-4abe-b579-2bc5dc0cdfc0
 - `Edgar_20260718005803_185` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-07-18T00:58:02.711Z · Email: admin+claude1784336280@truesight.me
 - `Edgar_20260718005808_187` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Shared about the new USA to Brazil tariffs to watch out for regarding our ca…
 - `Edgar_20260718005832_189` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:58:31.697Z · Email: admin+claude1784336280@truesight.me · Verification Key: muesx_BCbiuBFOOv4XHYCoibyb9_qNMNQCSlCzI8Idk
@@ -61,6 +52,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260718020525_201` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T02:05:22.587Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260718120637_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: White-label checkout: stale GAS URL + shipping field-name fixes, prod sync, …
 - `Edgar_20260718120659_205` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Manual UAT/oversight on white-label checkout fixes: found the original two U…
+- `Edgar_20260718203409_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): admin+claude@truesight.me
+- `Edgar_20260718203413_209` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): admin+sophia@truesight.me
+- `Edgar_20260718204649_211` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
+- `Edgar_20260718212509_213` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 70 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20260718212514_215` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
+- `Edgar_20260718212739_217` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] go_to_market: PR1 from WARMUP_CONVERSION_IMPROVEMENT_PLAN.md: St…
+- `Edgar_20260718224139_219` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T22:41:36.733Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260718230205_221` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Signing DAO LLC agreement and then moving on to next stage for setting up of…
+- `Edgar_20260719231758_223` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-19T23:17:56.450Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-18T10:59:14.753Z`
+- Generated (UTC): `2026-07-19T10:59:16.186Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -249,9 +249,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,374.95**
+- USD on hand: **$4,374.41**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$49.34**
+- USD provisioned for voting-rights cash-out: **$49.88**
 
 ### In-transit freight (1 row)
 
@@ -270,12 +270,13 @@ _Lines in window matching configured names or status keywords:_
 - 2026-07-14 | claude | White-label label spec was ROTATED 90°. Gary confirmed the physical label is 2" W x 4" H portrait (measured 267x520px = 1:1.95 in 81-dark-chocolate-bar-50g-packaging.jpg); the page asserted 4"x2" landscape in 7 places. Flipped in agroverse_shop_beta#183. NEEDS HUMAN APPROVAL: PROJECT_INDEX.md:75 still describes agroverse-designs as "(4″×2″ PNG)" — should read "(2″×4″ PNG)". Not edited directly per OPERATING_INSTRUCTIONS §3 (canonical file).
 - 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
 
-_All dated lines on/after 2026-07-11_ (4):
+_All dated lines on/after 2026-07-13_ (5):
 
 - 2026-07-14 | claude | White-label label spec was ROTATED 90°. Gary confirmed the physical label is 2" W x 4" H portrait (measured 267x520px = 1:1.95 in 81-dark-chocolate-bar-50g-packaging.jpg); the page asserted 4"x2" landscape in 7 places. Flipped in agroverse_shop_beta#183. NEEDS HUMAN APPROVAL: PROJECT_INDEX.md:75 still describes agroverse-designs as "(4″×2″ PNG)" — should read "(2″×4″ PNG)". Not edited directly per OPERATING_INSTRUCTIONS §3 (canonical file).
 - 2026-07-14 | claude | Likely origin of the 4"x2" error: WORKSPACE_CONTEXT.md:131 cites a real ledger purchase, "Sticker Mule 4x2in custom rectangle label (per piece, order R384751187)" — that is almost certainly the QR-code label stock, not the chocolate-bar label. Suggest a clarifying note there so the next agent doesn't reuse it as an artwork spec. Needs human approval (canonical file).
 - 2026-07-14 | claude | MISSING FILE: agroverse_shop/docs/WHITE_LABEL_SUPPLY_CHAIN_HANDOFF.md points to agentic_ai_context/AGROVERSE_WHITE_LABEL_SUPPLY_CHAIN.md, which does not exist on main or locally. The Liz pilot, routing, school pricing and shipping tiers it references are unrecorded — which is why the label spec had to be recovered by measuring pixels off a product JPEG. Someone should write it.
 - 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
+- 2026-07-18 | DeepSeek | PERSONAL_PAT (github_pat_… fine-grained, 93 chars) staged for cross-agent access per credentials/CREDENTIAL_HANDOFF_PROTOCOL.md: operator Mac ~/Applications/tmp/PERSONAL_PAT, sophia box /home/ubuntu/PERSONAL_PAT, nelanco-claude box /home/ubuntu/PERSONAL_PAT (all chmod 600; value never in chat/commits). nelanco-claude Claude: read /home/ubuntu/PERSONAL_PAT to continue the white-label work; box git auth is credential.helper=store with one x-access-token github.com entry, so use the PAT explicitly (or add a store entry) for repos the DAO PAT cannot reach.
 
 ---
 
@@ -283,7 +284,7 @@ _All dated lines on/after 2026-07-11_ (4):
 
 | Pipeline | Mapped clone | Activity in window |
 |----------|----------------|----------------------|
-| `go_to_market` | `market_research` | **no** |
+| `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
 | `oracle` | `iching_oracle` | **no** |
 
@@ -294,6 +295,11 @@ _All dated lines on/after 2026-07-11_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7edb5de | 2026-07-19 19:44:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
+4d2147b | 2026-07-19 14:05:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
+9d9818b | 2026-07-19 08:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
+92389be | 2026-07-19 04:04:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
+bcb26b2 | 2026-07-18 19:44:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9a5d9d3 | 2026-07-18 14:00:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5ce114a | 2026-07-18 08:22:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,35 +323,34 @@ dfc30b2 | 2026-07-14 03:45:34 +0000 | chore(stats): refresh stats/current.json [
 888a471 | 2026-07-13 15:25:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4c95b1a | 2026-07-13 09:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ca74d67 | 2026-07-13 04:10:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
-44d10d5 | 2026-07-12 19:42:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-dfa1249 | 2026-07-12 14:12:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-2c6eb84 | 2026-07-12 08:40:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-8062c26 | 2026-07-11 23:59:35 -0700 | Fix 'each trip' to 'this upcoming trip' and add uncertainty framing (#281)
-462cf47 | 2026-07-11 23:57:48 -0700 | Fix postscript to third person — Gary's warning in Sophia's voice (#280)
-fc2f15a | 2026-07-11 23:52:51 -0700 | Expand postscript into full warning about Altamira and Ilhéus reality (#279)
-485fb8e | 2026-07-11 23:48:53 -0700 | Add Ilhéus to postscript (#278)
-55eeb1c | 2026-07-11 23:48:20 -0700 | Add postscript about Altamira reality (#277)
-110c5c1 | 2026-07-11 21:49:10 -0700 | Drop The People Behind the Story section entirely (#276)
-b87e4a1 | 2026-07-12 04:08:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
-c27eddb | 2026-07-11 17:03:13 -0700 | Strip job titles from People section — names and context only (#275)
-818c4a0 | 2026-07-11 16:59:42 -0700 | Editorial v2: move lede, add epistemic markers, honest mistake, proof point, consent note (#274)
-5535f15 | 2026-07-11 16:55:14 -0700 | Fix Jerry Luk title: VP -> Director of Engineering at Edmodo (#273)
-ab652ff | 2026-07-11 16:40:34 -0700 | Remove duplicate Epilogue section causing rendering error (#272)
-a752209 | 2026-07-11 16:33:20 -0700 | Apply Claude's editorial feedback: move People section after epilogue, fix Chinese chars, reconcile cacao origins (#271)
-0cecf88 | 2026-07-11 15:58:20 -0700 | Add Jerry Luk to blog post: convinced Gary to join Edmodo, making getdata.io a side project (#269)
-5d4cd1d | 2026-07-11 15:28:12 -0700 | Fix blog post format: convert from Jekyll markdown to static HTML (#268)
-… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-_(no commits on origin/main in window)_
+2e355a9 | 2026-07-19 08:46:26 +0800 | [autopilot] PR1 from WARMUP_CONVERSION_IMPROVEMENT_PLAN.md: Stop wasting (#170)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cd8acc7 | 2026-07-20 11:22:11 +0800 | Merge pull request #700 from TrueSightDAO/auto/advisory-refresh-2026-07-20
+3cbdab2 | 2026-07-20 03:22:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
+7c5e6c7 | 2026-07-20 03:40:54 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
+402d32b | 2026-07-20 03:40:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
+b14f79a | 2026-07-19 22:02:46 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
+efd03cc | 2026-07-19 22:02:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
+492572a | 2026-07-19 16:44:17 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
+d94f8dd | 2026-07-19 16:44:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
+71b7d8b | 2026-07-19 12:03:46 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
+f239be7 | 2026-07-19 12:03:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
+7715b7c | 2026-07-19 04:52:51 +0800 | plan: pre-authorize Units 3 & 5 (cert swaps) for getdata.io recovery (#696)
+888d178 | 2026-07-19 04:46:44 +0800 | CONTEXT_UPDATES: PERSONAL_PAT staged on sophia + nelanco-claude boxes (#695)
+498bc90 | 2026-07-19 04:24:52 +0800 | plans: mark Units 1 & 2 complete in GETDATA_IO_SSL_RECOVERY_PLAN.md (#691)
+90788e9 | 2026-07-19 04:16:43 +0800 | plan: getdata.io SSL cert renewal + backend health recovery (#689)
+835131d | 2026-07-19 04:07:49 +0800 | docs: add getdata.io SSL/TLS certificate documentation (#688)
+0090a03 | 2026-07-19 03:41:43 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
+bbd015e | 2026-07-19 03:41:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
 709bd84 | 2026-07-18 21:57:12 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
 b38335b | 2026-07-18 21:57:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
 e6e0cab | 2026-07-18 20:54:48 +0800 | docs: add §5e — pre-scope authorization envelope, batch gates (#687)
@@ -369,23 +374,6 @@ e73776d | 2026-07-18 03:52:30 +0800 | Add Chinese PDF version for Anabel
 3eefc8a | 2026-07-18 03:39:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
 dc25e54 | 2026-07-17 22:11:57 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
 04379aa | 2026-07-17 22:11:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
-f8f99dc | 2026-07-17 16:34:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
-9a13590 | 2026-07-17 16:34:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
-9cab0db | 2026-07-17 11:46:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
-bdb7def | 2026-07-17 11:46:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
-aab4d0d | 2026-07-17 10:48:12 +0800 | Merge pull request #676 from TrueSightDAO/auto/advisory-refresh-2026-07-17
-b8ade86 | 2026-07-17 02:48:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-17 UTC)
-3c7af1d | 2026-07-16 14:16:05 -0700 | Add live ledger URL to HTS schema PDF so partners can click through
-962c9eb | 2026-07-16 14:15:14 -0700 | Update HTS schema PDF with complete product mapping and existing data
-fe62004 | 2026-07-16 14:13:55 -0700 | Update HTS schema PDF with research links and existing HS data
-16e2323 | 2026-07-16 14:12:11 -0700 | Add Currencies sheet HS/HTS codes schema PDF for partner sharing
-73473cd | 2026-07-16 12:41:26 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
-c83fca0 | 2026-07-16 07:32:54 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
-994a646 | 2026-07-16 07:32:53 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
-be8a478 | 2026-07-16 01:40:46 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
-5d711f7 | 2026-07-16 01:40:45 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
-fafe122 | 2026-07-15 20:47:16 -0700 | chore(previews): refresh Beer Hall preview (2026-07-16 UTC)
-b81d2cb | 2026-07-15 20:47:14 -0700 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-16 UTC)
 … (truncated)
 ```
 
@@ -423,6 +411,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 48c1f0b | 2026-07-16 08:36:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -433,8 +422,6 @@ f29ce99 | 2026-07-14 14:28:37 -0700 | chore: refresh Agroverse store inventory s
 fd0852e | 2026-07-14 08:29:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 6c2b915 | 2026-07-13 09:59:56 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 222ac87 | 2026-07-13 09:49:27 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-12d2d2b | 2026-07-12 08:33:15 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-695df5d | 2026-07-11 08:16:21 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -473,6 +460,15 @@ _(no commits on origin/main in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-07-20T032156Z_warmup-conversion-ssl-recovery-plan.md`
+
+- **posted_at_utc:** `2026-07-20T03:21:56Z`  
+- **slug:** `warmup-conversion-ssl-recovery-plan`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Sales (Conversion)** — Launched "WARMUP" conversion improvement plan to eliminate waste in sales onboarding.
+
 ### `beer-hall_2026-07-18T023839Z_tariff-analysis-sugar-rfq-checkout-fixes.md`
 
 - **posted_at_utc:** `2026-07-18T02:38:39Z`  
@@ -490,15 +486,6 @@ _(no commits on origin/main in window)_
 
   Automated daily digest of the DAO
   - **Engineering (Shop)** — Shipped white-label PR4 (gallery/upload) and PR5 (success receipt); fixed a critical dao-client field-name bug blocking registration/verification.
-
-### `beer-hall_2026-07-15T023656Z_white-label-fixes-subscription-sync.md`
-
-- **posted_at_utc:** `2026-07-15T02:36:56Z`  
-- **slug:** `white-label-fixes-subscription-sync`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Engineering (Shop)** — Committed full implementation for white-label label orientation (corrected to portrait 2"×4").
 
 ---
 
@@ -543,9 +530,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/18/2026 11:51:19 |
+| 2026-07 | 201.48 | 16911.06386 | 7/19/2026 20:50:33 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-11`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-13`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
