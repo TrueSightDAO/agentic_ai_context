@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-20T09:41:23Z`
+- Generated (UTC): `2026-07-20T14:38:04Z`
 - Look-back: **7** calendar days (`2026-07-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-19T10:59:16.186Z`
+- Generated (UTC): `2026-07-20T10:59:14.956Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -295,6 +295,7 @@ _All dated lines on/after 2026-07-13_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7bd31b0 | 2026-07-20 09:42:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 49d6910 | 2026-07-20 04:24:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7edb5de | 2026-07-19 19:44:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4d2147b | 2026-07-19 14:05:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -335,6 +336,8 @@ ca74d67 | 2026-07-13 04:10:33 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a4d7f5f | 2026-07-20 17:41:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
+cf40213 | 2026-07-20 17:41:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 8ae6bf2 | 2026-07-20 15:06:42 +0800 | Add DAO asset/infrastructure/agent inventory report
 e9dbce6 | 2026-07-20 12:14:02 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
 e7b3ea4 | 2026-07-20 12:14:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
@@ -373,8 +376,6 @@ daa6a8e | 2026-07-18 08:54:55 +0800 | Update Brazil tariff report with Pix opera
 73737c6 | 2026-07-18 03:56:55 +0800 | Fix Chinese PDF - verified CJK rendering with WeasyPrint
 fb9743c | 2026-07-18 03:54:38 +0800 | Replace PDF with DroidSansFallback font version
 85ebee3 | 2026-07-18 03:54:04 +0800 | Fix Chinese PDF with DroidSansFallback font
-e73776d | 2026-07-18 03:52:30 +0800 | Add Chinese PDF version for Anabel
-322543a | 2026-07-18 03:39:54 +0800 | chore(previews): refresh Beer Hall preview (2026-07-17 UTC)
 … (truncated)
 ```
 
@@ -412,6 +413,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+139695f | 2026-07-20 09:45:36 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 058bcde | 2026-07-20 09:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -532,7 +534,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/20/2026 1:52:20 |
+| 2026-07 | 201.48 | 16911.06386 | 7/20/2026 6:51:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-13`; scanned last **600** data rows)
 
