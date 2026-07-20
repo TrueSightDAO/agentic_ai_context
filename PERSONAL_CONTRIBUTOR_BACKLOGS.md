@@ -9,9 +9,13 @@ picking up a personal request from them knows where to log it.
 
 ## Registry
 
-| Contributor | Backlog repo | Format | Credential (if agent needs write access to a non-DAO repo) |
+| Contributor | Backlog repo | Format | Vault credential name |
 |---|---|---|---|
-| Gary Teh | `github.com/garyjob/perch-market-analysis` (private) | `BACKLOG.md` — **Queue** (upcoming items) + **Log** (dated entries, most recent first) | See note below — credential source under review, not yet wired into a tool |
+| Gary Teh | `github.com/garyjob/perch-market-analysis` (private) | `BACKLOG.md` — **Queue** (upcoming items) + **Log** (dated entries, most recent first) | `PERSONAL_GITHUB_PAT` (in `sophia.truesight.me/vault/`) |
+
+The **Vault credential name** column is a pointer, not a secret — it names which vault entry an
+agent should use for that contributor's repo. It does not by itself grant access; see "Credential
+custody" below for what still has to exist in code before this pairing is actionable.
 
 Add yourself here (one row) if you want an agent to log your personal work.
 The repo must be **private** and under **your own** account — never a DAO org.
@@ -43,10 +47,17 @@ has **no existing path** for pushing to a contributor's personal repo. The crede
 `app/vault.py` / `app/vault_routes.py`) can *store* a named credential like `PERSONAL_GITHUB_PAT`,
 and Sophia's chat tools can *check* whether one exists (`check_credential`) without ever seeing
 the raw value in chat (`SECRET` tier — vault page only, by design). But nothing currently
-*consumes* a vault credential to act on a non-DAO repo. Wiring that up (a new tool, scoped to the
-registered repo per row above, same branch+PR-never-direct-push guardrails as `git_tools.py`) is
-a real feature, not a config change — needs its own roadmap per `OPERATING_INSTRUCTIONS.md` §5
-before implementation, not an inline patch to a live autonomous service.
+*consumes* a vault credential to act on a non-DAO repo.
+
+**This table is designed to double as the allowlist for that future tool**, not just human
+documentation: repo + credential name are paired per row, so a tool can (1) look up the
+contributor's row here, (2) refuse to act if repo/credential aren't both present and paired
+exactly as listed, (3) call `vault.get_value(credential_name)` server-side only — never exposing
+the raw value to the LLM/chat layer — and (4) push to *only* that repo, branch + PR, never the
+default branch (same guardrail `git_tools.py` already uses for DAO repos). That tool doesn't
+exist yet; building it is a real feature (new code path in a live autonomous service, touching
+credential handling) and needs its own roadmap per `OPERATING_INSTRUCTIONS.md` §5, even though
+the scope is now small and well-defined by this table.
 
 ## Why a registry instead of one hardcoded repo
 
