@@ -1,13 +1,19 @@
-# Sophia handoffs — registry
+# Sophia handoffs — trigger protocol & runbook
 
-Index of execution handoffs from a local LLM to **Sophia** (the autopilot).
+**The live registry (status, resume tracker, Telegram topic/thread_id per handoff) lives in
+[`../handoffs/HANDOFF_MANIFEST.md`](../handoffs/HANDOFF_MANIFEST.md) — that is the single
+source of truth (consolidated 2026-07-18, see
+`../plans/HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md`). This file no longer carries its own
+registry table; it documents the Sophia-specific trigger protocol only: how to ping her, the
+GO convention, and thread-management rules.**
 
-> 🗺️ **New here? Read [`HANDOFF_PROTOCOL_OVERVIEW.md`](HANDOFF_PROTOCOL_OVERVIEW.md)** for the big-picture map (actors, interfaces, mermaid flow diagrams, and the three human touchpoints). This file is the operational registry + conventions.
+> 🗺️ **New here? Read [`HANDOFF_PROTOCOL_OVERVIEW.md`](HANDOFF_PROTOCOL_OVERVIEW.md)** for the big-picture map (actors, interfaces, mermaid flow diagrams, and the three human touchpoints). This file is the Sophia trigger protocol + conventions.
 >
 > 🔐 **Handing a secret (API key / token / webhook secret) to a box Sophia owns?** Follow [`CREDENTIAL_HANDOFF_PROTOCOL.md`](CREDENTIAL_HANDOFF_PROTOCOL.md): never put it in chat/Telegram/PRs — stage it on the autopilot box under `/home/ubuntu/` (`chmod 600`, value via stdin, outside the git repo), then hand off to Sophia (she holds the target-box keys) to propagate. The autopilot box is the credential-staging hub.
+
 **Each handoff opens its own Telegram topic** in `TrueSight DAO Ops`
-(`-1003919341801`). This file is the durable, LLM-readable record so a future
-local session can find, reference, and **rejoin** any handoff conversation.
+(`-1003919341801`). The topic link + `message_thread_id` for each handoff is recorded in
+`HANDOFF_MANIFEST.md`, not here.
 
 ## ⚠️ Pull-first rule (critical)
 
@@ -29,9 +35,9 @@ or updated plan files.
 
 **Workflow:**
 1. `cd agentic_ai_context && git pull origin main`
-2. Check `HANDOFF_MANIFEST.md` for the active handoff list
+2. Check `HANDOFF_MANIFEST.md` for the active handoff list, status, and Telegram topic/thread_id
 3. Read the plan file referenced in the manifest
-4. Read `SOPHIA_HANDOFFS.md` for Telegram topic context
+4. Read this file (`SOPHIA_HANDOFFS.md`) for the trigger protocol / GO convention if you need to ping or rejoin Sophia
 
 ## Before you start ANY handoff — refresh your repo view
 
@@ -97,9 +103,9 @@ follows the same five steps:
    sequenced PRs, gates, RESUME HERE, acceptance) and commit it to **`main`**
    (PR → merge). **This committed plan is the durable handoff — the source of
    truth Sophia reads.**
-2. **Add a registry row** (below, newest first): plan file + intended topic.
+2. **Add a row to `HANDOFF_MANIFEST.md`** (not this file): plan file + intended topic.
 3. **Trigger Sophia** with `ping_sophia` using the trigger-message template below.
-4. **Record the `message_thread_id`** Sophia replies with, in the registry row.
+4. **Record the `message_thread_id`** Sophia replies with, in the `HANDOFF_MANIFEST.md` row.
 5. Give the governor the topic link. Done — Sophia is parked there with context.
 
 ## What the trigger MUST tell Sophia (REQUIRED)
@@ -141,25 +147,9 @@ replying in that topic with a short go-signal —
 
 ## Registry
 
-| Plan file | Handoff title | Telegram topic | message_thread_id | Handoff date | Status |
-|-----------|---------------|----------------|-------------------|--------------|--------|
-| `LARGE_SPIKES_CARD_FIX_AND_CHART_LEGIBILITY_PLAN.md` (repo: TrueSightDAO/sentiment_importer) | `/large_spikes` — disappearing company cards fix + breakout-gauge legibility | _TBD — open a thread & register here before GO_ | _TBD_ | 2026-07-05 | **DRAFTED — awaiting thread + governor GO.** Register the real `message_thread_id` here + in `HANDOFF_MANIFEST.md` BEFORE telling Gary it's GO-ready ([[feedback_handoff_register_thread_before_go]]). §5a one PR per turn; RESUME HERE = **PR1** (wire dead `@the_company_period`=180 into card list — fixes cards vanishing on 3/10/20/30yr lookbacks) → PR2 (shaded over-extended band [Chart.js **v2.9.3** fill] + today-vs-norm headline) → DEPLOY+UAT gate (`./deploy.sh --skip-migrate`); own-repo — opens PRs only, never self-merges |
-| `sentiment_importer/LARGE_SPIKE_INDEX_EXECUTION_ROADMAP.md` (repo: TrueSightDAO/sentiment_importer) | Large Spike Index (`/large_spikes`) — bullish/momentum mirror of the sell-off index | [Large Spike Index](https://t.me/c/3919341801/8297) | 8297 | 2026-07-02 | parked GO-ready — roadmap merged to sentiment_importer `master` (PR #1098); §5a one PR per turn; RESUME HERE = **PR1** (migration `add large_spike` + `mark_large_spikes`, `gate: eyeball predicate`); own-repo — opens PRs only, never self-merges |
-| `MEMBERS_PAGE_SINGLE_SOURCE_PLAN.md` | Members page reliability + single-source consolidation | [Members page single-source](https://t.me/c/3919341801/8185) | 8185 | 2026-07-01 | parked GO-ready — §5a one PR per turn; RESUME HERE = **PR1** (lineage-credentials cron 6h→2h); PR2 gate = `LINEAGE_DISPATCH_PAT` secret; PR4 gate = beta→prod human promotion; cross-repo — opens PRs only, never self-merges |
-| `POST_REPACKAGING_CLEANUP_PLAN.md` | Post-Repackaging Cleanup: Auto-populate Currencies + offchain after repackaging GAS | [Post-Repackaging Cleanup](https://t.me/c/3919341801/7987) | 7987 | 2026-06-28 | parked GO-ready — RESUME HERE = **PR1** (`modules/post_repackaging_cleanup.py`); own-repo gate |
-| `SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md` | Sophia Durable Journal + Checkpoint-Resume Loop | _draft — not parked_ | _TBD_ | 2026-06-23 | draft — awaiting governor review; RESUME HERE = **PR1** (`app/journal.py`); own-repo gate |
-| `QR_SELF_SERVE_CURRENCY_PLAN.md` | Self-Serve QR-Ready Currency Definition via Edgar | [QR Self-Serve Currency](https://t.me/c/3919341801/7611) | 7611 | 2026-06-23 | parked GO-ready — RESUME HERE = **PR1** (`dao_protocol`: define-currency CLI + dispatch route); §5a one PR per turn; opens PRs only, never self-merges |
-| `SOPHIA_CONTRIBUTION_SCORING_PLAN.md` | Score contribution review backlog | _(register on GO)_ | — | 2026-06-23 | draft — awaiting governor §10 + GO |
-| `SCORING_REVIEW_QUEUE_PLAN.md` | Scoring Review Queue (DApp review → GAS write-back → main ledger) | [Scoring Review Queue](https://t.me/c/3919341801/7191) | 7191 | 2026-06-28 | completed — PR-INTEGRATION fixed, queue processed (~475 approvals), SENTINEL section on members.html live, review SOP at REVIEW_QUEUE_SOP.md |
-| `SOPHIA_DAPP_EVENT_ALIGNMENT_PLAN.md` | DApp Event Alignment (all event types) | [DApp Event Alignment](https://t.me/c/3919341801/6416) | 6416 | 2026-06-18 | parked GO-ready |
-| `CLI_SALES_EVENT_ALIGNMENT_PLAN.md` | CLI Sales Event Audit & Alignment with DApp | [CLI Sales Event Alignment](https://t.me/c/3919341801/6311) | 6311 | 2026-06-17 | in progress |
-| `PUBLIC_KEY_LOOKUP_CACHE_PLAN.md` | Public-Key Lookup Cache | [Public-Key Lookup Cache](https://t.me/c/3919341801/5712) | 5712 | 2026-06-16 | blocked |
-| `SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md` | Vault Initialization & Credential Migration | [Vault Init & Credential Migration](https://t.me/c/3919341801/3981) | 3981 | 2026-06-14 | blocked |
-| `SOPHIA_LIVE_PROGRESS_PLAN.md` | Live Progress Introspection | [Live Progress Introspection](https://t.me/c/3919341801/2799) | 2799 | 2026-06-11 | blocked |
-| `SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md` | Multi-Tenant Governance & Vault — Phase 0 | [Multi-Tenant Governance — Phase 0](https://t.me/c/3919341801/2744) | 2744 | 2026-06-11 | blocked |
-| `SOPHIA_FOLLOWUP_MONITOR_PLAN.md` | Durable Follow-up Monitor | [Follow-up Monitor](https://t.me/c/3919341801/2622) | 2622 | 2026-06-11 | in progress |
-| `AUTOPILOT_HARDENING_PLAN.md` | Autopilot Hardening | [Autopilot Hardening](https://t.me/c/3919341801/2317) | 2317 | 2026-06-10 | blocked |
-| `BETA_SANDBOX_ENDPOINT_PLAN.md` | Beta Sandbox Endpoint | [Beta Sandbox Endpoint](https://t.me/c/3919341801/1955) | 1955 | 2026-06-09 | blocked |
-| `CHOCOLATE_SUBSCRIPTION_PLAN.md` | Agroverse Chocolate Subscriptions — Phase 1 | [Chocolate Subscriptions — Phase 1](https://t.me/c/3919341801/1939) | 1939 | 2026-06-09 | blocked |
-| `RESEND_VERIFICATION_PLAN.md` | Resend verification email | [Resend Verification](https://t.me/c/3919341801/2622) | 2622 | 2026-06-08 | in progress |
-| `SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md` | THEOBROMA-1 (cacao brew demo) | [THEOBROMA-1 Demo](https://t.me/c/3919341801/2622) | 2622 | 2026-06-07 | demo · live |
+**Moved to [`../handoffs/HANDOFF_MANIFEST.md`](../handoffs/HANDOFF_MANIFEST.md).** As of
+2026-07-18 this file no longer keeps its own copy of the handoff table — the two tables had
+already drifted (e.g. one handoff's status disagreed between the two files; another handoff
+existed here but was never added to the manifest; a `message_thread_id` was accidentally
+reused across three unrelated handoffs). See `../plans/HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md`
+for the full writeup. **Add new rows to `HANDOFF_MANIFEST.md`, not here.**
