@@ -21,19 +21,18 @@ scoped to GetData.IO's existing marketplace rather than a new one.
 
 > ## ▶ RESUME HERE
 >
-> **Unit 1 ✅ done (2026-07-21, Claude interactive session — Sophia hit the round-cap twice trying
-> this unit via open-ended remote filesystem/SSH exploration; Claude finished it directly since it
-> was read-only research, no prod risk). Unit 2 is next.**
+> **Unit 1 ✅ and Unit 2a ✅ both done (2026-07-21). Unit 2b (Doorkeeper grant-type check) or Unit
+> 2c (scaffold the MCP server repo) is next — 2c can proceed even before 2b finishes, since 2b only
+> gates *automated* token provisioning, not building the server itself.**
 >
-> **Finding 1 — public marketplace search already exists in code, just HTML-only.**
-> `krake_ror/app/controllers/krakes_controller.rb#public` is the real, live backend for
-> `getdata.io/data-for-everyone` (routed via `get "data-for-everyone" => "krakes#public"` in
-> `config/routes.rb`). It already supports `search`, `public_sort`, `data_category`, and pagination
-> params, and calls `Krake.public(@keyword, @domain, @sort, @data_category, ...)`. It has **no
-> `respond_to` block** — unlike other actions in the same controller (e.g. `run`, `create` at lines
-> 333-335, 412-420) which already support `format.json`. **Unit 2a: add a `format.json` branch to
-> `krakes#public`** (small, additive, doesn't touch existing HTML behavior) to give
-> `search_data_sources` a real JSON API to call, instead of scraping the HTML page.
+> **Finding 1 (superseded) — public marketplace search already returns JSON, live, today, with
+> zero code changes.** `https://getdata.io/data-for-everyone.json` works right now — a
+> `public.json.jbuilder` view already existed in the codebase (Rails' implicit responder serves it
+> automatically), nobody had tried the `.json` suffix before. Confirmed live: bare request returns
+> `{total: 47475, pagination: {...}, results: [{id, name, description, ...}]}` instantly. **Caveat**:
+> `?search=` on the `.json` route timed out in testing (15s) where the bare request is fast — likely
+> an uncached search path. Unit 2c should verify/handle this (retry+backoff, or a follow-up caching
+> fix) rather than assume search is as fast as browsing.
 >
 > **Finding 2 — token issuance uses Doorkeeper.** `Member` has
 > `has_many :oauth_access_tokens, foreign_key: "resource_owner_id", class_name: "Doorkeeper::AccessToken"`
@@ -149,7 +148,7 @@ gap before Unit 2 starts building.
 | Unit | What | Advance | Status |
 |------|------|---------|--------|
 | 1 | **Pre-flight completion (read-only).** ✅ Done — see RESUME HERE. | _(auto — read-only)_ | ✅ |
-| 2a | **`krake_ror` PR: add `format.json` to `KrakesController#public`.** Small, additive — mirror the `respond_to` pattern already used by `run`/`create` in the same controller. Return the same fields as `Krake.public(...)` already computes for the HTML view (id, name, description, category, popularity/run-count, handle) so `search_data_sources` has real structured data. This is the one unit in this plan that touches the existing production `krake_ror` app — small and additive, but flagging it as the plan's one real touch-point on live code. | _(auto — additive, doesn't change existing HTML behavior, easy to revert)_ | ☐ |
+| 2a | ~~`krake_ror` PR: add `format.json`~~ **NOT NEEDED — already live.** Verified 2026-07-21: `https://getdata.io/data-for-everyone.json` already returns real structured JSON in production (`{total, pagination, results: [{id, name, description, ...}]}`) — a `public.json.jbuilder` view + `_krake_summary.json.jbuilder` partial already exist in the codebase, Rails' implicit responder serves them, nobody had ever tried the `.json` suffix. **Zero code change required for basic listing.** Caveat found during verification: `?search=` query param on the `.json` route timed out (15s) where the bare unfiltered request is fast — likely an uncached/slow DB path for search specifically. **Unit 2c must verify search-param performance before relying on it**; may need a small caching fix as a follow-up, but doesn't block starting 2c. | _(auto — read-only verification, done)_ | ✅ |
 | 2b | **Confirm Doorkeeper grant-type config** (`config/initializers/doorkeeper.rb`) supports `client_credentials` (or equivalent) for programmatic token issuance. If not enabled, enable it (small config change) so an agent's operator can provision a token via one API call instead of the dashboard. | _(auto — config-only, no behavior change for existing dashboard users)_ | ☐ |
 | 2c | **Scaffold new MCP server repo** (`KrakeIO/getdata-mcp` or similar — new repo, not touching `krake_ror` beyond 2a/2b). Node/TypeScript MCP server (matches the ecosystem's dominant tooling). Tools: `search_data_sources(query, category?)` [free, now backed by 2a's JSON endpoint], `run_data_source(id, params)` [paid], `get_results(id, timestamp?, page?)` [free — result retrieval shouldn't be double-charged after the run already was], `create_data_source(recipe: SemanticQueryLanguage)` [paid, priced higher — this is the "extend the marketplace" action]. | _(auto — new repo, no prod impact)_ | ☐ |
 | 3 | **Payment integration.** Build-vs-buy decision: hand-rolled x402 vs. `SettleGrid`'s `@settlegrid/mcp` SDK. Wire the paid tools (`run_data_source`, `create_data_source`) behind per-call settlement at the pricing in the pre-flight. Free tools (`search_data_sources`, `get_results`) stay ungated. | _(auto — new repo, no prod impact, no real money moves until Unit 6 UAT)_ | ☐ |
