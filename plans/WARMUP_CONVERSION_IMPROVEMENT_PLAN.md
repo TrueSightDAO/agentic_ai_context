@@ -238,10 +238,15 @@ Documentation only. No behavior change.
 
 | Unit | Scope | Repo | Opened | Merged (human) | Contribution reported |
 |---|---|---|---|---|---|
-| PR0 | This plan | agentic_ai_context | ✅ [#697](https://github.com/TrueSightDAO/agentic_ai_context/pull/697) | ☐ | ☐ |
-| PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ✅ [#170](https://github.com/TrueSightDAO/go_to_market/pull/170) (Sophia) | ✅ | ☐ |
-| PR2 | Segmented first-touch templates + UAT | go_to_market | ✅ [#169](https://github.com/TrueSightDAO/go_to_market/pull/169) | ✅ 2026-07-21 (UAT read by Claude per Gary's explicit delegation, sample judged against §5's acceptance criterion) | ☐ |
-| PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ✅ [#171](https://github.com/TrueSightDAO/go_to_market/pull/171) (stacked on #169) | ✅ 2026-07-21 | ☐ |
+| PR0 | This plan | agentic_ai_context | ✅ [#697](https://github.com/TrueSightDAO/agentic_ai_context/pull/697) | ☐ | ✅ 2026-07-21 |
+| PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ✅ [#170](https://github.com/TrueSightDAO/go_to_market/pull/170) (Sophia) | ✅ | — (Sophia's own contribution) |
+| PR2 | Segmented first-touch templates + UAT | go_to_market | ✅ [#169](https://github.com/TrueSightDAO/go_to_market/pull/169) | ✅ 2026-07-21 (UAT read by Claude per Gary's explicit delegation, sample judged against §5's acceptance criterion) | ✅ 2026-07-21 |
+| PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ✅ [#171](https://github.com/TrueSightDAO/go_to_market/pull/171) (stacked on #169) | ✅ 2026-07-21 | ✅ 2026-07-21 |
+
+**Contribution reported (2026-07-21):** `[CONTRIBUTION EVENT]` filed via `dao_client` — Type "Time
+(Minutes)", 240 min / 400 TDG, signed "Claude Anthropic", PR evidence #170/#169/#171. Signature
+verified (HTTP 200). Covers the stats audit, Gmail thread audit, plan authorship, and all 3 build
+units end to end.
 
 **UAT note (2026-07-21):** Per §3a, merging to `go_to_market` `main` is normally a standing human gate.
 Gary explicitly delegated the PR2 UAT read-through and authorized the merge by name ("merge #169 and
