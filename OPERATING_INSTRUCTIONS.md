@@ -628,4 +628,42 @@ Following this protocol prevents the confusion that occurred on 2026-06-08, wher
 searched her local cache for "verification plan" and found a stale file instead of pulling
 the remote to discover `RESEND_VERIFICATION_PLAN.md`.
 
+---
+
+## 12. Concurrent sessions — use a git worktree per session (MANDATORY)
+
+**Root cause (2026-07-21):** multiple LLM sessions (Claude Code, Sophia, Cursor, etc.) routinely
+run concurrently against the **same on-disk checkout** of a repo — e.g. everyone sharing
+`/opt/claude_workspace/<repo>/`. A plain `git checkout -b` or `git checkout <branch>` changes
+`HEAD` for that directory **globally**; any other session pointed at the same path gets its
+branch silently swapped out from under it mid-task. This caused two real collisions in one
+session on 2026-07-21: a branch reverted mid-sequence with no warning, and a commit nearly
+landed on the wrong branch (caught only by re-checking `git branch --show-current` before every
+commit — don't rely on that as your safety net; the fix is to not share the directory).
+
+**Rule:** before creating a branch or making commits in a repo that other agents/sessions may
+also be working in, use a **git worktree** so your session gets its own working directory and
+branch, fully isolated from every other session's `git checkout`:
+
+```bash
+cd /opt/claude_workspace/<repo>
+git worktree add .claude/worktrees/<session-name> -b <branch-name> origin/main
+cd .claude/worktrees/<session-name>
+# ... work, commit, push from here — no other session can touch this directory ...
+```
+
+- **Claude Code sessions:** use the built-in `EnterWorktree` tool — it creates the worktree and
+  switches the session into it in one step (base ref is the remote default branch by default).
+  `ExitWorktree` cleans up when done (`action: "remove"`) or leaves it for later (`"keep"`).
+- **Other agents (Sophia, Cursor, Codex, Gemini CLI, etc.) without an equivalent built-in:** run
+  `git worktree add` directly, as shown above.
+- Clean up when finished: `git worktree remove <path>` (or `ExitWorktree`) once the branch is
+  pushed and the PR is open — don't leave stale worktrees accumulating under `.claude/worktrees/`.
+- **This is additive, not a replacement** for the feature-branch → PR convention elsewhere in
+  this file. The worktree is *where* you make the branch, not a substitute for branching, PRs,
+  or the merge-requires-a-human rule.
+- Applies to **any** repo under active concurrent use, not just `agentic_ai_context` — the same
+  failure mode can happen in `truesight_autopilot`, `dao_client`, or any other shared checkout
+  multiple agents touch.
+
 Following these rules keeps the shared context consistent and allows other agents to read and use it reliably.
