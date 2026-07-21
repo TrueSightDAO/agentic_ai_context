@@ -21,9 +21,11 @@ scoped to GetData.IO's existing marketplace rather than a new one.
 
 > ## ▶ RESUME HERE
 >
-> **Unit 1 ✅ and Unit 2a ✅ both done (2026-07-21). Unit 2b (Doorkeeper grant-type check) or Unit
-> 2c (scaffold the MCP server repo) is next — 2c can proceed even before 2b finishes, since 2b only
-> gates *automated* token provisioning, not building the server itself.**
+> **Units 1, 2a, and 2b all done (2026-07-21) — all three turned out to need zero backend code
+> changes, just verification. Unit 2c (scaffold the new MCP server repo) is next**, and is the first
+> unit in this plan that actually writes new code. It's also self-contained (new repo, no legacy
+> `krake_ror` archaeology needed) — a better fit for autonomous execution than Units 1/2a/2b turned
+> out to be.
 >
 > **Finding 1 (superseded) — public marketplace search already returns JSON, live, today, with
 > zero code changes.** `https://getdata.io/data-for-everyone.json` works right now — a
@@ -149,7 +151,7 @@ gap before Unit 2 starts building.
 |------|------|---------|--------|
 | 1 | **Pre-flight completion (read-only).** ✅ Done — see RESUME HERE. | _(auto — read-only)_ | ✅ |
 | 2a | ~~`krake_ror` PR: add `format.json`~~ **NOT NEEDED — already live.** Verified 2026-07-21: `https://getdata.io/data-for-everyone.json` already returns real structured JSON in production (`{total, pagination, results: [{id, name, description, ...}]}`) — a `public.json.jbuilder` view + `_krake_summary.json.jbuilder` partial already exist in the codebase, Rails' implicit responder serves them, nobody had ever tried the `.json` suffix. **Zero code change required for basic listing.** Caveat found during verification: `?search=` query param on the `.json` route timed out (15s) where the bare unfiltered request is fast — likely an uncached/slow DB path for search specifically. **Unit 2c must verify search-param performance before relying on it**; may need a small caching fix as a follow-up, but doesn't block starting 2c. | _(auto — read-only verification, done)_ | ✅ |
-| 2b | **Confirm Doorkeeper grant-type config** (`config/initializers/doorkeeper.rb`) supports `client_credentials` (or equivalent) for programmatic token issuance. If not enabled, enable it (small config change) so an agent's operator can provision a token via one API call instead of the dashboard. | _(auto — config-only, no behavior change for existing dashboard users)_ | ☐ |
+| 2b | ~~Confirm/enable Doorkeeper `client_credentials`~~ **NOT NEEDED — already enabled.** Verified 2026-07-21: `config/initializers/doorkeeper.rb` line 8 has `grant_flows ["authorization_code", "client_credentials", "password"]`. Both `client_credentials` (service-to-service, no member credentials needed) and `password` (exchange a member's email+password directly for a token via `POST /oauth/token`) are already live. Zero config change needed. Client app registration uses Doorkeeper's standard built-in `Doorkeeper::Application` model — no custom model found, which is normal/expected for a stock Doorkeeper setup. | _(auto — verification only, done)_ | ✅ |
 | 2c | **Scaffold new MCP server repo** (`KrakeIO/getdata-mcp` or similar — new repo, not touching `krake_ror` beyond 2a/2b). Node/TypeScript MCP server (matches the ecosystem's dominant tooling). Tools: `search_data_sources(query, category?)` [free, now backed by 2a's JSON endpoint], `run_data_source(id, params)` [paid], `get_results(id, timestamp?, page?)` [free — result retrieval shouldn't be double-charged after the run already was], `create_data_source(recipe: SemanticQueryLanguage)` [paid, priced higher — this is the "extend the marketplace" action]. | _(auto — new repo, no prod impact)_ | ☐ |
 | 3 | **Payment integration.** Build-vs-buy decision: hand-rolled x402 vs. `SettleGrid`'s `@settlegrid/mcp` SDK. Wire the paid tools (`run_data_source`, `create_data_source`) behind per-call settlement at the pricing in the pre-flight. Free tools (`search_data_sources`, `get_results`) stay ungated. | _(auto — new repo, no prod impact, no real money moves until Unit 6 UAT)_ | ☐ |
 | 4 | **Deploy.** Needs a hosting decision — could piggyback on existing Nelanco/Explorya AWS (consistent with the rest of the Krake fleet) or a simple serverless deploy (Cloudflare Workers has first-class x402/paid-MCP-tool support per pre-flight research, worth considering to avoid touching the fragile EC2/ALB fleet at all). | `gate: infra/deploy decision` (§5c — this is standing up new infrastructure, even if low-risk; worth a quick governor confirmation on where it lives before it's live) | ☐ |
