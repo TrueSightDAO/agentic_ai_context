@@ -21,8 +21,31 @@ scoped to GetData.IO's existing marketplace rather than a new one.
 
 > ## ▶ RESUME HERE
 >
-> **Unit 1 — not started.** This plan was drafted 2026-07-21 by Claude (interactive session); no
-> code has been written yet.
+> **Unit 1 ✅ done (2026-07-21, Claude interactive session — Sophia hit the round-cap twice trying
+> this unit via open-ended remote filesystem/SSH exploration; Claude finished it directly since it
+> was read-only research, no prod risk). Unit 2 is next.**
+>
+> **Finding 1 — public marketplace search already exists in code, just HTML-only.**
+> `krake_ror/app/controllers/krakes_controller.rb#public` is the real, live backend for
+> `getdata.io/data-for-everyone` (routed via `get "data-for-everyone" => "krakes#public"` in
+> `config/routes.rb`). It already supports `search`, `public_sort`, `data_category`, and pagination
+> params, and calls `Krake.public(@keyword, @domain, @sort, @data_category, ...)`. It has **no
+> `respond_to` block** — unlike other actions in the same controller (e.g. `run`, `create` at lines
+> 333-335, 412-420) which already support `format.json`. **Unit 2a: add a `format.json` branch to
+> `krakes#public`** (small, additive, doesn't touch existing HTML behavior) to give
+> `search_data_sources` a real JSON API to call, instead of scraping the HTML page.
+>
+> **Finding 2 — token issuance uses Doorkeeper.** `Member` has
+> `has_many :oauth_access_tokens, foreign_key: "resource_owner_id", class_name: "Doorkeeper::AccessToken"`
+> — this is the standard Ruby OAuth2 provider gem. Doorkeeper supports fully programmatic token
+> issuance via standard OAuth2 grant flows (e.g. `client_credentials`), which is what makes
+> "no human in the loop" token provisioning for MCP-server tenants realistic. **Unit 2b: confirm
+> which grant type(s) are actually enabled** (check `config/initializers/doorkeeper.rb`) and whether
+> a `client_credentials`-style flow is already usable, or needs enabling — this determines whether
+> an AI agent's operator can get a token via one API call, or still needs a one-time dashboard step.
+>
+> Both findings mean **Unit 2 is smaller than the pre-flight worried it might be** — no major
+> backend rebuild needed, just two small additive changes plus the new MCP-server repo itself.
 
 ---
 
@@ -125,8 +148,10 @@ gap before Unit 2 starts building.
 
 | Unit | What | Advance | Status |
 |------|------|---------|--------|
-| 1 | **Pre-flight completion (read-only).** Render (Playwright) the full `/docs/data-source-management/api` page (List data sources, List batches sections) and check for a public marketplace search endpoint. Confirm token-issuance mechanism (dashboard-only vs. API). Read `krake_ror`'s `app/controllers` for the actual Rails routes backing these docs (ground-truth beats docs that may be stale). Output: an updated pre-flight section in this file with the gaps closed, or an explicit note if a small backend addition is needed before Unit 2 can proceed. | _(auto — read-only)_ | ☐ |
-| 2 | **Scaffold new MCP server repo** (`KrakeIO/getdata-mcp` or similar — new repo, not touching `krake_ror`). Node/TypeScript MCP server (matches the ecosystem's dominant tooling). Tools: `search_data_sources(query, category?)` [free], `run_data_source(id, params)` [paid], `get_results(id, timestamp?, page?)` [free — result retrieval shouldn't be double-charged after the run already was], `create_data_source(recipe: SemanticQueryLanguage)` [paid, priced higher — this is the "extend the marketplace" action]. Wraps the existing REST API from Unit 1 — no new backend logic unless Unit 1 found a gap. | _(auto — new repo, no prod impact)_ | ☐ |
+| 1 | **Pre-flight completion (read-only).** ✅ Done — see RESUME HERE. | _(auto — read-only)_ | ✅ |
+| 2a | **`krake_ror` PR: add `format.json` to `KrakesController#public`.** Small, additive — mirror the `respond_to` pattern already used by `run`/`create` in the same controller. Return the same fields as `Krake.public(...)` already computes for the HTML view (id, name, description, category, popularity/run-count, handle) so `search_data_sources` has real structured data. This is the one unit in this plan that touches the existing production `krake_ror` app — small and additive, but flagging it as the plan's one real touch-point on live code. | _(auto — additive, doesn't change existing HTML behavior, easy to revert)_ | ☐ |
+| 2b | **Confirm Doorkeeper grant-type config** (`config/initializers/doorkeeper.rb`) supports `client_credentials` (or equivalent) for programmatic token issuance. If not enabled, enable it (small config change) so an agent's operator can provision a token via one API call instead of the dashboard. | _(auto — config-only, no behavior change for existing dashboard users)_ | ☐ |
+| 2c | **Scaffold new MCP server repo** (`KrakeIO/getdata-mcp` or similar — new repo, not touching `krake_ror` beyond 2a/2b). Node/TypeScript MCP server (matches the ecosystem's dominant tooling). Tools: `search_data_sources(query, category?)` [free, now backed by 2a's JSON endpoint], `run_data_source(id, params)` [paid], `get_results(id, timestamp?, page?)` [free — result retrieval shouldn't be double-charged after the run already was], `create_data_source(recipe: SemanticQueryLanguage)` [paid, priced higher — this is the "extend the marketplace" action]. | _(auto — new repo, no prod impact)_ | ☐ |
 | 3 | **Payment integration.** Build-vs-buy decision: hand-rolled x402 vs. `SettleGrid`'s `@settlegrid/mcp` SDK. Wire the paid tools (`run_data_source`, `create_data_source`) behind per-call settlement at the pricing in the pre-flight. Free tools (`search_data_sources`, `get_results`) stay ungated. | _(auto — new repo, no prod impact, no real money moves until Unit 6 UAT)_ | ☐ |
 | 4 | **Deploy.** Needs a hosting decision — could piggyback on existing Nelanco/Explorya AWS (consistent with the rest of the Krake fleet) or a simple serverless deploy (Cloudflare Workers has first-class x402/paid-MCP-tool support per pre-flight research, worth considering to avoid touching the fragile EC2/ALB fleet at all). | `gate: infra/deploy decision` (§5c — this is standing up new infrastructure, even if low-risk; worth a quick governor confirmation on where it lives before it's live) | ☐ |
 | 5 | **GTM submissions.** Submit to the official MCP Registry, PulseMCP, MCP.so, Glama, and 2-3 top `awesome-mcp-servers` lists per the pre-flight's channel list. Write and publish an agent-onboarding doc (SKILL.md-style) linked from `getdata.io`. | _(auto — all channels are PR/CLI-driven, reversible, no spend)_ | ☐ |
