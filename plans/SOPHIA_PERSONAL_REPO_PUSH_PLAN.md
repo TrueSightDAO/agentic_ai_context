@@ -163,14 +163,22 @@ No execution unit below requires reading a file/state not already captured above
 
 ## Resume tracker
 
-**RESUME HERE →** PR1 (only unit in this plan) — not started.
+**RESUME HERE →** PR1 opened (truesight_autopilot#280) — awaiting human review + merge. Do not
+merge or deploy without the governor's explicit go-ahead (see authorization envelope above).
 
 | Unit | Status | PR opened | Merged (human) | Deployed (human, separate gate) |
 |---|---|---|---|---|
-| PR1 — `personal_git_tools.py` + policy.py classification + tests | ☐ not started | ☐ | ☐ | ☐ |
+| PR1 — `personal_git_tools.py` + policy.py classification + tests | done, PR open | ☑ [#280](https://github.com/TrueSightDAO/truesight_autopilot/pull/280) | ☐ | ☐ |
 
-Dependency (tracked in its own PR, not this plan): `agentic_ai_context` PR #699 must merge before
-this tool will find any registry rows in production.
+Dependency: `agentic_ai_context` PR #699 — **merged** 2026-07-21. Registry is live on `main`.
+
+**Correction found during PR1 (2026-07-21):** §6 above says to add the tool to both
+`write_tools` and `secret_tools` in `policy.py`. That's wrong — `policy.py::evaluate()` treats
+`ActionClass.SECRET` as an *unconditional* deny ("secret values are never returned through
+chat"), checked before `WRITE`, which would make the tool permanently uncallable. The tool never
+returns the credential value (only uses it server-side), so it belongs in `write_tools` only.
+PR #280 implements it correctly; this note is so a future reader of this plan doesn't copy the
+original (wrong) instruction.
 
 ## UAT
 
