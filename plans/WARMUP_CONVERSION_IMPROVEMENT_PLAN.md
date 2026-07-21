@@ -1,6 +1,7 @@
 # Warm-up Conversion Improvement Plan — Fixing the Reply-Rate Collapse
 
-**Status:** IN PROGRESS — PR0 (this plan) + PR1 landing this turn
+**Status:** BUILD COMPLETE — PR1/PR2/PR3 all merged and live 2026-07-21; watching the 30-day metrics
+window before calling the arc closed (see §7)
 **Date:** 2026-07-18
 **Owner:** Gary Teh (human) + Claude Code (AI assist, acting in CMO capacity per governor request)
 **Repos affected:** [TrueSightDAO/go_to_market](https://github.com/TrueSightDAO/go_to_market) (implementation),
@@ -228,18 +229,24 @@ Documentation only. No behavior change.
 
 ## 6. Resume tracker
 
-> **RESUME HERE →** All 3 build units are opened. PR1 is merged (Sophia's #170). **PR2 (#169) is
-> UAT-gated — do not merge/enable at volume until Gary reads the sample in the PR description.** PR3
-> (#171) is stacked on PR2 (merge order: #169 then #171). Once both merge, arm the monthly readout
-> workflow (already scheduled, no extra step needed) and watch the first live batch under PR2's new
-> copy before calling this arc done — see §7 success metrics.
+> **RESUME HERE →** All 3 build units merged 2026-07-21. Monthly readout workflow verified live
+> end-to-end (manual `workflow_dispatch` run completed successfully, committed a fresh report to
+> `reports/warmup_conversion_readout_latest.md`). **Nothing left to build.** What's left is
+> *watching*: track the §7 metrics over the next 30 days (genuine reply rate by segment especially —
+> current baseline post-merge is still early-sample, 285 sent / 3 engaged / 1.1%, 0 engaged yet in
+> `circles_host` or `retail_merch`) and close the loop by reporting the DAO contribution.
 
 | Unit | Scope | Repo | Opened | Merged (human) | Contribution reported |
 |---|---|---|---|---|---|
 | PR0 | This plan | agentic_ai_context | ✅ [#697](https://github.com/TrueSightDAO/agentic_ai_context/pull/697) | ☐ | ☐ |
 | PR1 | Dedupe auto-reply logging + auto-park confirmed dead ends | go_to_market | ✅ [#170](https://github.com/TrueSightDAO/go_to_market/pull/170) (Sophia) | ✅ | ☐ |
-| PR2 | Segmented first-touch templates + UAT | go_to_market | ✅ [#169](https://github.com/TrueSightDAO/go_to_market/pull/169) | ☐ (UAT pending) | ☐ |
-| PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ✅ [#171](https://github.com/TrueSightDAO/go_to_market/pull/171) (stacked on #169) | ☐ | ☐ |
+| PR2 | Segmented first-touch templates + UAT | go_to_market | ✅ [#169](https://github.com/TrueSightDAO/go_to_market/pull/169) | ✅ 2026-07-21 (UAT read by Claude per Gary's explicit delegation, sample judged against §5's acceptance criterion) | ☐ |
+| PR3 | Hosts Circles fast lane + segment/channel readout | go_to_market | ✅ [#171](https://github.com/TrueSightDAO/go_to_market/pull/171) (stacked on #169) | ✅ 2026-07-21 | ☐ |
+
+**UAT note (2026-07-21):** Per §3a, merging to `go_to_market` `main` is normally a standing human gate.
+Gary explicitly delegated the PR2 UAT read-through and authorized the merge by name ("merge #169 and
+#171") after Claude's first attempt was correctly blocked by the harness for insufficient specificity
+("go do it" alone didn't name the PRs). Both merged clean, in dependency order, no conflicts.
 
 **Note on PR1 (2026-07-19):** Claude opened [#168](https://github.com/TrueSightDAO/go_to_market/pull/168)
 implementing PR1 the same turn this plan was committed to `agentic_ai_context` `main`. Sophia
