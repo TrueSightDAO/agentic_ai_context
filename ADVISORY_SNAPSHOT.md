@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-21T03:55:40Z`
+- Generated (UTC): `2026-07-21T09:09:09Z`
 - Look-back: **7** calendar days (`2026-07-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 11
-- `[EMAIL VERIFICATION EVENT]` × 10
-- `[DESIGN UPLOAD EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 13
+- `[EMAIL VERIFICATION EVENT]` × 9
+- `[DESIGN UPLOAD EVENT]` × 5
 - `[PRACTICE EVENT]` × 5
 - `[DESIGN ORDER EVENT]` × 3
 - `[EMAIL REGISTERED EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20260718005808_187` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Shared about the new USA to Brazil tariffs to watch out for regarding our ca…
-- `Edgar_20260718005832_189` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-07-18T00:58:31.697Z · Email: admin+claude1784336280@truesight.me · Verification Key: muesx_BCbiuBFOOv4XHYCoibyb9_qNMNQCSlCzI8Idk
 - `Edgar_20260718005900_191` · **Edgar** · [DESIGN UPLOAD EVENT] Timestamp: 2026-07-18T00:58:41.019Z · Email: admin+claude1784336280@truesight.me · Design ID: 97007e17-3e1b-4c9b-a1c3-52e97e2f7fa7
 - `Edgar_20260718005927_193` · **Edgar** · [DESIGN ORDER EVENT] Timestamp: 2026-07-18T00:59:26.801Z · Email: admin+claude1784336280@truesight.me · Design ID: 97007e17-3e1b-4c9b-a1c3-52e97e2f7fa7
 - `Edgar_20260718010001_195` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260718230205_221` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Signing DAO LLC agreement and then moving on to next stage for setting up of…
 - `Edgar_20260719231758_223` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-19T23:17:56.450Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260720230448_225` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-20T23:04:45.851Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260721054727_227` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Warm-up conversion improvement: stats audit + segmented outreach + recurring…
+- `Edgar_20260721054818_229` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Handoff registry consolidation, 3 production bug fixes, and deploy
 
 ---
 
@@ -295,6 +295,7 @@ _All dated lines on/after 2026-07-14_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+273723f | 2026-07-21 03:57:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3787edb | 2026-07-20 20:08:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9695910 | 2026-07-20 14:41:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7bd31b0 | 2026-07-20 09:42:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,12 +329,31 @@ dfc30b2 | 2026-07-14 03:45:34 +0000 | chore(stats): refresh stats/current.json [
 ### `market_research` → `go_to_market`
 
 ```
-2e355a9 | 2026-07-19 08:46:26 +0800 | [autopilot] PR1 from WARMUP_CONVERSION_IMPROVEMENT_PLAN.md: Stop wasting (#170)
+0a30bc3 | 2026-07-21 05:44:11 +0000 | chore: refresh warm-up conversion readout [skip ci]
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bbff316 | 2026-07-21 07:02:41 +0000 | Merge: add opt-in Auto-start marker for handoffs (skip initial GO wait)
+c03285f | 2026-07-21 06:28:14 +0000 | feat: add opt-in Auto-start marker for handoffs (skip initial GO wait)
+3ff186c | 2026-07-21 14:26:59 +0800 | Update resume tracker: PR1 opened (truesight_autopilot#280); correct secret_tools guidance (#706)
+d4c5ef7 | 2026-07-21 14:26:11 +0800 | Merge pull request #709 from TrueSightDAO/plan/getdata-io-mcp-unit2b-done
+4b9f308 | 2026-07-21 06:24:45 +0000 | plan: GetData.IO MCP bridge -- Unit 2b already enabled, no config needed
+3dcf9ac | 2026-07-21 14:24:26 +0800 | Merge pull request #708 from TrueSightDAO/docs/worktree-convention
+5452bbb | 2026-07-21 14:23:07 +0800 | Merge pull request #707 from TrueSightDAO/plan/getdata-io-mcp-unit2a-done
+9d535cb | 2026-07-21 06:23:05 +0000 | Add §12: mandatory git worktree per concurrent session
+cc68848 | 2026-07-21 06:14:45 +0000 | plan: GetData.IO MCP bridge -- Unit 2a needed no code, already live
+bc0d4d6 | 2026-07-21 14:08:43 +0800 | plan: GetData.IO MCP bridge -- Unit 1 findings, split Unit 2 into 2a/2b/2c (#704)
+edf8b8a | 2026-07-21 14:08:35 +0800 | Add warmup-conversion-30day-readout followup block to OPEN_FOLLOWUPS.md (#705)
+f8d366d | 2026-07-21 14:00:29 +0800 | plan: GetData.IO MCP agent-marketplace bridge (#703)
+993f522 | 2026-07-21 13:58:39 +0800 | Merge pull request #699 from TrueSightDAO/feature/personal-market-analysis-backlogs
+8c7365a | 2026-07-21 05:57:10 +0000 | Merge main into feature/personal-market-analysis-backlogs, resolve conflict
+1d28681 | 2026-07-21 13:50:48 +0800 | Merge pull request #702 from TrueSightDAO/claude/sophia-personal-repo-push-plan
+bb7ab6d | 2026-07-21 05:49:32 +0000 | Add execution plan: Sophia personal (non-DAO) repo push tool
+ce4550b | 2026-07-21 13:43:55 +0800 | Add DAO capability catalog for Nelanco/Herbalife/Restory
+f950b4e | 2026-07-21 11:55:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
+d2c0644 | 2026-07-21 11:55:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
 b5c8c48 | 2026-07-21 02:59:26 +0000 | Merge: consolidate handoff registry into single source of truth (HANDOFF_MANIFEST.md)
 39c52d0 | 2026-07-21 10:50:30 +0800 | Merge pull request #701 from TrueSightDAO/auto/advisory-refresh-2026-07-21
 4e19f60 | 2026-07-21 02:50:19 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
@@ -344,6 +364,7 @@ feb788c | 2026-07-20 22:38:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a4d7f5f | 2026-07-20 17:41:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
 cf40213 | 2026-07-20 17:41:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 8ae6bf2 | 2026-07-20 15:06:42 +0800 | Add DAO asset/infrastructure/agent inventory report
+41ad037 | 2026-07-20 07:04:39 +0000 | Registry: pair vault credential name with repo per contributor
 e9dbce6 | 2026-07-20 12:14:02 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
 e7b3ea4 | 2026-07-20 12:14:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 cd8acc7 | 2026-07-20 11:22:11 +0800 | Merge pull request #700 from TrueSightDAO/auto/advisory-refresh-2026-07-20
@@ -354,26 +375,6 @@ b14f79a | 2026-07-19 22:02:46 +0800 | chore(previews): refresh Beer Hall preview
 efd03cc | 2026-07-19 22:02:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
 492572a | 2026-07-19 16:44:17 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
 d94f8dd | 2026-07-19 16:44:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
-71b7d8b | 2026-07-19 12:03:46 +0800 | chore(previews): refresh Beer Hall preview (2026-07-19 UTC)
-f239be7 | 2026-07-19 12:03:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-19 UTC)
-7715b7c | 2026-07-19 04:52:51 +0800 | plan: pre-authorize Units 3 & 5 (cert swaps) for getdata.io recovery (#696)
-888d178 | 2026-07-19 04:46:44 +0800 | CONTEXT_UPDATES: PERSONAL_PAT staged on sophia + nelanco-claude boxes (#695)
-0260236 | 2026-07-18 20:33:34 +0000 | fix: consolidate handoff registry into single source of truth (HANDOFF_MANIFEST.md)
-498bc90 | 2026-07-19 04:24:52 +0800 | plans: mark Units 1 & 2 complete in GETDATA_IO_SSL_RECOVERY_PLAN.md (#691)
-90788e9 | 2026-07-19 04:16:43 +0800 | plan: getdata.io SSL cert renewal + backend health recovery (#689)
-835131d | 2026-07-19 04:07:49 +0800 | docs: add getdata.io SSL/TLS certificate documentation (#688)
-0090a03 | 2026-07-19 03:41:43 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
-bbd015e | 2026-07-19 03:41:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
-709bd84 | 2026-07-18 21:57:12 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
-b38335b | 2026-07-18 21:57:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
-e6e0cab | 2026-07-18 20:54:48 +0800 | docs: add §5e — pre-scope authorization envelope, batch gates (#687)
-59d6e81 | 2026-07-18 16:18:59 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
-11d9e7b | 2026-07-18 16:18:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
-589f837 | 2026-07-18 11:41:44 +0800 | chore(previews): refresh Beer Hall preview (2026-07-18 UTC)
-7dc6e11 | 2026-07-18 11:41:43 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
-c1d9b0c | 2026-07-18 11:00:34 +0800 | Merge pull request #685 from TrueSightDAO/docs/agroverse-checkout-e2e-policy
-aeaa1e2 | 2026-07-18 10:38:53 +0800 | Merge pull request #686 from TrueSightDAO/auto/advisory-refresh-2026-07-18
-d1ec567 | 2026-07-18 02:38:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-18 UTC)
 … (truncated)
 ```
 
@@ -411,6 +412,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 139695f | 2026-07-20 09:45:36 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 058bcde | 2026-07-20 09:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -530,7 +532,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/20/2026 20:50:21 |
+| 2026-07 | 201.48 | 16911.06386 | 7/21/2026 1:53:18 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-14`; scanned last **600** data rows)
 
