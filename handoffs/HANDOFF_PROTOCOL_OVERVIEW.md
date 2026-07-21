@@ -94,7 +94,10 @@ flowchart LR
   terminal. The LLM turns it into a committed plan and triggers Sophia.
 - **B — Authorize:** the governor opens the Telegram topic (where Sophia is
   already parked with context) and says **"go for it"** — full authorization for
-  the whole plan (see the GO convention in `SOPHIA_HANDOFFS.md`).
+  the whole plan (see the GO convention in `SOPHIA_HANDOFFS.md`). **Exception:**
+  a plan marked `Auto-start: yes` skips this touchpoint entirely — Sophia posts
+  her kickoff and starts executing without waiting for it (§5c gates still
+  apply). Opt-in per plan; see "Auto-start" in `SOPHIA_HANDOFFS.md`.
 - **C — Review / merge:** PRs that touch production / deploy-from-main are
   **opened, not auto-merged** — the governor (optionally with an LLM reviewing the
   diff against the plan's checklist) reviews and merges. Account-only actions

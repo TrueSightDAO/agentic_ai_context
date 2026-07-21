@@ -102,8 +102,10 @@ follows the same five steps:
 1. **Write the plan** (`*_PLAN.md` in `agentic_ai_context`, §5 shape: context,
    sequenced PRs, gates, RESUME HERE, acceptance) and commit it to **`main`**
    (PR → merge). **This committed plan is the durable handoff — the source of
-   truth Sophia reads.**
-2. **Add a row to `HANDOFF_MANIFEST.md`** (not this file): plan file + intended topic.
+   truth Sophia reads.** If this plan should skip the GO wait, mark it
+   **`Auto-start: yes`** near RESUME HERE — see the dedicated section below.
+2. **Add a row to `HANDOFF_MANIFEST.md`** (not this file): plan file + intended
+   topic + `Auto-start` (`yes` if the plan says so, `no` by default).
 3. **Trigger Sophia** with `ping_sophia` using the trigger-message template below.
 4. **Record the `message_thread_id`** Sophia replies with, in the `HANDOFF_MANIFEST.md` row.
 5. Give the governor the topic link. Done — Sophia is parked there with context.
@@ -139,10 +141,56 @@ Trigger-message template:
 > the gates, state you're ready/parked, and end with: 'Reply "go for it" and I'll
 > execute from RESUME HERE.' Then reply with the thread_id + link and wait there.
 
+## Auto-start — opt-in skip of the initial GO wait (2026-07-21)
+
+By default a handoff **always** waits for the governor's "go for it" before
+touching RESUME HERE (below) — that wait is the one point a human confirms the
+plan is still *current* before Sophia commits real PRs to it. A plan that's
+gone stale between writing and triggering (e.g. someone else already shipped
+the fix elsewhere) gets caught here instead of burning a redundant execution
+cycle — this happened for real with
+`LARGE_SPIKES_CARD_FIX_AND_CHART_LEGIBILITY_PLAN` (see
+`HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md`).
+
+For plans where that risk is low (routine, narrowly-scoped, freshly-triggered),
+a plan author can mark the plan **`Auto-start: yes`** — near the RESUME HERE
+marker in the plan file, and in the `Auto-start` column of its
+`HANDOFF_MANIFEST.md` row once registered. This does **not** relax any §5c
+always-stop gate (prod deploy, default-branch merge, TDG/money, UAT) or a
+per-unit `gate:` marker — those still stop and wait for the governor every
+time. It only removes the *initial* "wait for go" step before the first unit.
+
+**Two places this changes behavior:**
+
+- **First trigger of a brand-new handoff** — the topic doesn't exist yet, so
+  `HANDOFF_MANIFEST.md` can't be looked up by thread_id. Use the Auto-start
+  trigger-message template below instead of the standard one; it tells Sophia
+  to check the plan file's own `Auto-start: yes` marker directly.
+- **Rejoining an already-registered Auto-start thread** (redeploys, follow-up
+  pings) — `app/telegram_adapter.py`'s per-message context injection reads the
+  `Auto-start` column from `HANDOFF_MANIFEST.md` and tells Sophia she's
+  pre-authorized to keep going without waiting for a fresh go-signal.
+
+Auto-start trigger-message template (use instead of the standard one when the
+plan is marked `Auto-start: yes`):
+
+> Refresh first (read `<plan file>` via read_repo_file on GitHub `main`). This
+> plan is marked **Auto-start: yes** — confirm that marker is actually present
+> before proceeding this way; if it's missing or says "no", fall back to the
+> standard wait-for-GO template instead. If no Telegram topic exists for this
+> handoff, create one named `<short title>` (create_telegram_topic); else post
+> in thread `<id>`. **Post a short kickoff into that topic** (confirm you've
+> read the plan, restate RESUME HERE + the gates), then **begin executing
+> immediately** from RESUME HERE — do not wait for a governor reply to start.
+> Post progress into the topic as you go, and still stop cleanly at any `gate:`
+> marker or §5c always-stop. Reply with the thread_id + link once posted.
+
 ## The GO convention (governor authorization)
 
 Once Sophia is parked in a handoff topic, the governor authorizes execution by
-replying in that topic with a short go-signal —
+replying in that topic with a short go-signal — **unless the plan is marked
+Auto-start: yes, in which case there is no wait: see the Auto-start section
+above.**
 …
 
 ## Registry

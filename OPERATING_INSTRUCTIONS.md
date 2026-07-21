@@ -260,6 +260,26 @@ round-trips it takes to get there*: one scoping conversation per arc, not one pe
 
 ---
 
+## 5f. Auto-start — opt-in skip of the initial GO wait (2026-07-21)
+
+Every handoff normally waits for the governor's explicit "go for it" before Sophia touches
+**RESUME HERE** (see the GO convention, `sophia/SOPHIA_HANDOFFS.md`). That wait is a deliberate
+safety checkpoint — the one point a human confirms the plan is still *current* before real PRs get
+opened against it (a stale plan executed on trigger is wasted work at best; see the
+`LARGE_SPIKES_CARD_FIX_AND_CHART_LEGIBILITY_PLAN` case in `HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md`,
+where another fix had already landed by the time anyone looked).
+
+A plan author may **opt a specific plan in** to skipping that wait by marking it
+**`Auto-start: yes`** (near RESUME HERE in the plan file, and in the `Auto-start` column of its
+`HANDOFF_MANIFEST.md` row). Full mechanics, the trigger-message variant, and the runtime behavior
+are documented in `sophia/SOPHIA_HANDOFFS.md` § "Auto-start."
+
+**This does not relax any §5c always-stop gate or a per-unit `gate:` marker** — those still require
+a human in the loop every time. Auto-start only removes the initial "wait for a human to say go"
+step before the first unit.
+
+---
+
 ## 6. Contribution reporting — use dao_client (dao_protocol repo)
 
 When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:

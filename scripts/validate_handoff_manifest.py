@@ -9,6 +9,7 @@ the same plan's status (see plans/HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md):
   - undocumented `Status` values (typos vs the '## Status values' legend)
   - a `Telegram topic` without a `message_thread_id` (or vice versa)
   - a `message_thread_id` reused across more than one `Plan file`
+  - an `Auto-start` cell that isn't exactly `yes` or `no`
 
 Usage:
     python3 scripts/validate_handoff_manifest.py [path/to/HANDOFF_MANIFEST.md]
@@ -29,6 +30,7 @@ REQUIRED_COLUMNS = [
     "Status",
     "Telegram topic",
     "message_thread_id",
+    "Auto-start",
     "Resume tracker state",
     "Last manifest update",
 ]
@@ -149,6 +151,12 @@ def validate(text: str) -> ValidationResult:
             result.warnings.append(
                 f"{plan}: Status {row.get('Status')!r} does not contain any known "
                 "status keyword — check the '## Status values' legend"
+            )
+
+        auto_start = row.get("Auto-start").strip().lower()
+        if auto_start not in ("yes", "no"):
+            result.errors.append(
+                f"{plan}: 'Auto-start' must be exactly 'yes' or 'no', got {row.get('Auto-start')!r}"
             )
 
         topic = row.get("Telegram topic")
