@@ -40,3 +40,13 @@ def test_real_manifest_known_needs_verification_rows_are_flagged_not_broken():
     assert result.ok, result.errors
     assert "NEEDS VERIFICATION" in text
     assert text.count("NEEDS VERIFICATION") >= 3
+
+
+def test_real_manifest_has_auto_start_column_defaulted_to_no():
+    """No handoff is opted into Auto-start yet — every row should be 'no'
+    until a plan author explicitly marks one 'yes'."""
+    manifest_path = default_manifest_path()
+    text = manifest_path.read_text(encoding="utf-8")
+    result = validate(text)
+    assert result.ok, result.errors
+    assert "| Auto-start |" in text

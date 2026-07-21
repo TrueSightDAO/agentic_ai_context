@@ -16,9 +16,9 @@ from validate_handoff_manifest import validate  # noqa: E402
 
 HEADER = (
     "| Plan file | Handoff title | Handoff date | Status | Telegram topic | "
-    "message_thread_id | Resume tracker state | Last manifest update |"
+    "message_thread_id | Auto-start | Resume tracker state | Last manifest update |"
 )
-SEPARATOR = "|---|---|---|---|---|---|---|---|"
+SEPARATOR = "|---|---|---|---|---|---|---|---|---|"
 
 
 def make_table(rows: list[str]) -> str:
@@ -32,10 +32,14 @@ def row(
     status="in progress",
     topic="[Topic A](https://t.me/x/1)",
     thread_id="1",
+    auto_start="no",
     resume="RESUME HERE = PR1",
     updated="2026-07-18",
 ):
-    return f"| {plan} | {title} | {date} | {status} | {topic} | {thread_id} | {resume} | {updated} |"
+    return (
+        f"| {plan} | {title} | {date} | {status} | {topic} | {thread_id} | "
+        f"{auto_start} | {resume} | {updated} |"
+    )
 
 
 def test_valid_table_passes():
@@ -150,3 +154,16 @@ def test_no_table_found_is_error():
     result = validate(text)
     assert not result.ok
     assert any("No markdown table" in e for e in result.errors)
+
+
+def test_auto_start_yes_is_valid():
+    text = make_table([row(auto_start="yes")])
+    result = validate(text)
+    assert result.ok, result.errors
+
+
+def test_auto_start_bad_value_is_error():
+    text = make_table([row(auto_start="sure")])
+    result = validate(text)
+    assert not result.ok
+    assert any("Auto-start" in e and "sure" in e for e in result.errors)
