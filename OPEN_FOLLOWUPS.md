@@ -113,6 +113,31 @@ description: >
   building the automation.
 ```
 
+```followup
+id: warmup-conversion-30day-readout
+chat_id: -1003919341801
+thread_id: 9346
+title: Warm-up conversion 30-day readout check-in
+created_at: 2026-07-21
+condition:
+  kind: elapsed_days
+  escalate_after_days: 30
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Pull go_to_market main, read reports/warmup_conversion_readout_latest.md,
+  and compare against agentic_ai_context/plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md
+  section 7 targets: genuine reply rate >= 2% for the general (non-circles_host)
+  cohort, Hosts Circles=Yes same-day review turnaround, zero new DApp Remarks
+  duplicate rows from auto-reply detection, at least 1 new Partnered or
+  Manager Follow-up row sourced from the warm-up channel. Report the
+  comparison to Gary in this thread, specifically calling out whether the
+  circles_host segment (the ~1.8x-converting one) has started showing any
+  engagement yet.
+```
+
 ### Public-key lookup → content-addressed per-key cache (governor vault scaling)
 **Filed 2026-06-16.** Replace the O(n) `dao_members.json` monolith scan with a
 content-addressed per-key store (`treasury-cache/public_keys/<sha256(pubkey)>.json`) so
