@@ -253,6 +253,23 @@ Gary explicitly delegated the PR2 UAT read-through and authorized the merge by n
 #171") after Claude's first attempt was correctly blocked by the harness for insufficient specificity
 ("go do it" alone didn't name the PRs). Both merged clean, in dependency order, no conflicts.
 
+**30-day check-in wired to Sophia (2026-07-21):** Confirmed Sophia already has a generic durable
+follow-up primitive (`truesight_autopilot/app/followups.py` + `followup_loop.py` +
+`followup_probes.py` — an hourly comb loop, `elapsed_days` probe, posts to an existing Telegram
+thread and spins a full turn there on strike) rather than building anything new — a live sibling
+example (`chocolate-subscription-phase2`) already existed in `OPEN_FOLLOWUPS.md` before this. Pinged
+her (governor-signed, `truesight-dao-ping-sophia`) to open a dedicated Telegram topic and register
+the check-in. **Lesson repeated from the PR1 handoff:** the first ping asked her to do too much in
+one turn (open topic + read plan + register a schema'd follow-up entry + commit) and came back
+garbled/empty — the exact round-cap failure mode `OPERATING_INSTRUCTIONS.md` §5a describes. A status
+check confirmed partial completion (topic created, thread_id known); a second, tightly-scoped ping
+supplying that thread_id directly converged cleanly. Result: Telegram topic **"Exec: Warmup
+Conversion Readout"** (`thread_id: 9346`, `chat_id: -1003919341801`), follow-up entry
+`warmup-conversion-30day-readout` committed to `OPEN_FOLLOWUPS.md` on `main`
+(`edf8b8a`) — `elapsed_days` / `escalate_after_days: 30` / weekly check / `on_escalate: ping_thread`.
+Fires ~2026-08-20; Sophia will pull the readout, compare against §7 targets below, and report to
+Gary in that thread.
+
 **Note on PR1 (2026-07-19):** Claude opened [#168](https://github.com/TrueSightDAO/go_to_market/pull/168)
 implementing PR1 the same turn this plan was committed to `agentic_ai_context` `main`. Sophia
 independently pulled the same plan from `main` and shipped an equivalent, functionally-identical PR1
