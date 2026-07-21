@@ -1,0 +1,30 @@
+name: Validate handoff manifest
+
+on:
+  pull_request:
+    paths:
+      - "handoffs/HANDOFF_MANIFEST.md"
+      - "scripts/validate_handoff_manifest.py"
+      - "scripts/tests/test_validate_handoff_manifest*.py"
+      - ".github/workflows/validate-handoff-manifest.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "handoffs/HANDOFF_MANIFEST.md"
+      - "scripts/validate_handoff_manifest.py"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: pip install pytest
+      - name: Run validator against the committed manifest
+        run: python3 scripts/validate_handoff_manifest.py
+      - name: Run unit + integration tests
+        run: python3 -m pytest scripts/tests/ -v

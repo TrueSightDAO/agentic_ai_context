@@ -88,7 +88,9 @@ def fetch_doc_via_docs_api(doc_id: str, credentials_path: str | None) -> str | N
         return None
     SCOPES = ["https://www.googleapis.com/auth/documents.readonly"]
     try:
-        creds = service_account.Credentials.from_service_account_file(creds_path, scopes=SCOPES)
+        creds = service_account.Credentials.from_service_account_file(
+            creds_path, scopes=SCOPES
+        )
         service = build("docs", "v1", credentials=creds)
         doc = service.documents().get(documentId=doc_id).execute()
     except (HttpError, OSError, ValueError):
@@ -127,11 +129,27 @@ def fetch_one(key: str, credentials_path: str | None) -> str | None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Fetch TrueSight DAO whitepaper(s)")
-    parser.add_argument("-o", "--output", metavar="PATH", help="Output file or directory (for --all)")
-    parser.add_argument("--credentials", metavar="PATH", help="Path to Google service account JSON (optional)")
-    parser.add_argument("--all", action="store_true", help="Fetch all four whitepapers (main, edgar, agroverse, sunmint)")
-    parser.add_argument("--which", choices=list(WHITEPAPERS), help="Fetch only this whitepaper (default: main)")
-    parser.add_argument("--list", action="store_true", help="List whitepaper keys and URLs, then exit")
+    parser.add_argument(
+        "-o", "--output", metavar="PATH", help="Output file or directory (for --all)"
+    )
+    parser.add_argument(
+        "--credentials",
+        metavar="PATH",
+        help="Path to Google service account JSON (optional)",
+    )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Fetch all four whitepapers (main, edgar, agroverse, sunmint)",
+    )
+    parser.add_argument(
+        "--which",
+        choices=list(WHITEPAPERS),
+        help="Fetch only this whitepaper (default: main)",
+    )
+    parser.add_argument(
+        "--list", action="store_true", help="List whitepaper keys and URLs, then exit"
+    )
     args = parser.parse_args()
 
     if args.list:
