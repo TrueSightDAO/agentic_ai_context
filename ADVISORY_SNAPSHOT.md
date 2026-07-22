@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-22T09:09:05Z`
+- Generated (UTC): `2026-07-22T14:33:38Z`
 - Look-back: **7** calendar days (`2026-07-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
-- `[EMAIL VERIFICATION EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 18
+- `[EMAIL VERIFICATION EVENT]` × 7
 - `[PRACTICE EVENT]` × 6
-- `[DESIGN UPLOAD EVENT]` × 4
+- `[DESIGN UPLOAD EVENT]` × 3
 - `[DESIGN ORDER EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260718014401_199` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T01:43:56.566Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260718020525_201` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T02:05:22.587Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260718120637_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: White-label checkout: stale GAS URL + shipping field-name fixes, prod sync, …
 - `Edgar_20260718120659_205` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Manual UAT/oversight on white-label checkout fixes: found the original two U…
 - `Edgar_20260718203409_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): admin+claude@truesight.me
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260722004843_233` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Reviewed and merged PRs for personal contributor backlog registry, Sophia pu…
 - `Edgar_20260722030709_235` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to Max on HBO documentary
 - `Edgar_20260722042014_237` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-22T04:20:11.074Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260722095632_239` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussions to setup the Brazilian CNPJ
+- `Edgar_20260722095835_241` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussion about how to distribute in USA and China
 
 ---
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-21T10:59:13.596Z`
+- Generated (UTC): `2026-07-22T10:59:13.674Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -100,12 +100,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **521**, follow_up **70**, bulk **0**, unknown **2** (data rows: **593**)
+- **Email Agent Follow Up** — logged sends: warmup **533**, follow_up **70**, bulk **0**, unknown **2** (data rows: **605**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **473**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
+- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **485**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **65**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -291,6 +291,7 @@ _All dated lines on/after 2026-07-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0198714 | 2026-07-22 09:11:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 913ffcf | 2026-07-22 03:58:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 544ca85 | 2026-07-21 20:03:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4a5903e | 2026-07-21 14:36:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -331,6 +332,8 @@ dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+64f18de | 2026-07-22 17:09:28 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
+4c72b78 | 2026-07-22 17:09:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
 4ddfc6a | 2026-07-22 11:57:31 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
 3960f5b | 2026-07-22 11:57:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
 81df7b3 | 2026-07-22 04:00:17 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
@@ -369,8 +372,6 @@ a4d7f5f | 2026-07-20 17:41:36 +0800 | chore(previews): refresh Beer Hall preview
 cf40213 | 2026-07-20 17:41:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 8ae6bf2 | 2026-07-20 15:06:42 +0800 | Add DAO asset/infrastructure/agent inventory report
 41ad037 | 2026-07-20 07:04:39 +0000 | Registry: pair vault credential name with repo per contributor
-e9dbce6 | 2026-07-20 12:14:02 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
-e7b3ea4 | 2026-07-20 12:14:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 … (truncated)
 ```
 
@@ -523,7 +524,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/22/2026 1:50:23 |
+| 2026-07 | 201.48 | 16911.06386 | 7/22/2026 6:56:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-15`; scanned last **600** data rows)
 
