@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-22T03:57:13Z`
+- Generated (UTC): `2026-07-22T09:09:05Z`
 - Look-back: **7** calendar days (`2026-07-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,15 +33,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 16
-- `[EMAIL VERIFICATION EVENT]` × 9
-- `[PRACTICE EVENT]` × 5
+- `[EMAIL VERIFICATION EVENT]` × 8
+- `[PRACTICE EVENT]` × 6
 - `[DESIGN UPLOAD EVENT]` × 4
 - `[DESIGN ORDER EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260718010003_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Sophia Truesight
 - `Edgar_20260718014401_199` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T01:43:56.566Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260718020525_201` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T02:05:22.587Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260718120637_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: White-label checkout: stale GAS URL + shipping field-name fixes, prod sync, …
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260722004520_231` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 63 · Description: Personal contributor backlog: registry, Sophia push tool, worktree convention
 - `Edgar_20260722004843_233` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Reviewed and merged PRs for personal contributor backlog registry, Sophia pu…
 - `Edgar_20260722030709_235` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to Max on HBO documentary
+- `Edgar_20260722042014_237` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-22T04:20:11.074Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -291,6 +291,7 @@ _All dated lines on/after 2026-07-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+913ffcf | 2026-07-22 03:58:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 544ca85 | 2026-07-21 20:03:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4a5903e | 2026-07-21 14:36:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3bbb12d | 2026-07-21 09:12:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -330,6 +331,8 @@ dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4ddfc6a | 2026-07-22 11:57:31 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
+3960f5b | 2026-07-22 11:57:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
 81df7b3 | 2026-07-22 04:00:17 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
 1d570fc | 2026-07-22 04:00:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
 1dcdc5d | 2026-07-21 22:34:25 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
@@ -368,8 +371,6 @@ cf40213 | 2026-07-20 17:41:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 41ad037 | 2026-07-20 07:04:39 +0000 | Registry: pair vault credential name with repo per contributor
 e9dbce6 | 2026-07-20 12:14:02 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
 e7b3ea4 | 2026-07-20 12:14:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
-cd8acc7 | 2026-07-20 11:22:11 +0800 | Merge pull request #700 from TrueSightDAO/auto/advisory-refresh-2026-07-20
-3cbdab2 | 2026-07-20 03:22:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 … (truncated)
 ```
 
@@ -406,6 +407,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+0eebd69 | 2026-07-22 08:46:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 139695f | 2026-07-20 09:45:36 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 058bcde | 2026-07-20 09:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -521,7 +523,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/21/2026 20:51:06 |
+| 2026-07 | 201.48 | 16911.06386 | 7/22/2026 1:50:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-15`; scanned last **600** data rows)
 
