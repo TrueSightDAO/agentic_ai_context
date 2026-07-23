@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-23T14:40:41Z`
+- Generated (UTC): `2026-07-23T19:55:47Z`
 - Look-back: **7** calendar days (`2026-07-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -288,6 +288,7 @@ _All dated lines on/after 2026-07-16_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+92efb9d | 2026-07-23 14:51:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 688c31f | 2026-07-23 09:11:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 851f5bd | 2026-07-23 03:56:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 096cfd2 | 2026-07-22 19:54:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,6 +330,8 @@ d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bb4bcc3 | 2026-07-23 22:41:00 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
+37504f2 | 2026-07-23 22:40:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
 25ced49 | 2026-07-23 18:59:51 +0800 | plan: GetData.IO MCP bridge -- pivot to Rails-native (krake_ror), abandon separate repo (#711)
 ccecf17 | 2026-07-23 10:23:47 +0000 | Merge: allow commit-URL evidence for AI-agent contributions with no PR
 0fdde9d | 2026-07-23 17:36:14 +0800 | Add pricing PDF: Wisconsin wild ginseng & Xinhui chenpi per kg
@@ -367,8 +370,6 @@ f8d366d | 2026-07-21 14:00:29 +0800 | plan: GetData.IO MCP agent-marketplace bri
 8c7365a | 2026-07-21 05:57:10 +0000 | Merge main into feature/personal-market-analysis-backlogs, resolve conflict
 1d28681 | 2026-07-21 13:50:48 +0800 | Merge pull request #702 from TrueSightDAO/claude/sophia-personal-repo-push-plan
 bb7ab6d | 2026-07-21 05:49:32 +0000 | Add execution plan: Sophia personal (non-DAO) repo push tool
-ce4550b | 2026-07-21 13:43:55 +0800 | Add DAO capability catalog for Nelanco/Herbalife/Restory
-f950b4e | 2026-07-21 11:55:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
 … (truncated)
 ```
 
@@ -515,7 +516,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/23/2026 6:51:00 |
+| 2026-07 | 201.48 | 16911.06386 | 7/23/2026 12:51:27 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-16`; scanned last **600** data rows)
 
