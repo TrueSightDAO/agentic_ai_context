@@ -23,6 +23,8 @@ When an **AI coding assistant** completes work that should appear on the **DAO c
 
 2. **At least one merged (or ready) GitHub PR URL** under **`https://github.com/TrueSightDAO/`** must be supplied with **`--pr`** (repeatable). The script rejects non–TrueSightDAO URLs so personal forks do not pollute the audit trail.
 
+   **PR or commit URL evidence (2026-07-22):** when the work was merged **directly, without a PR** — e.g. the governor explicitly said "merge and deploy" in an interactive session rather than routing through a reviewed PR — a **commit URL** is acceptable in its place: `https://github.com/TrueSightDAO/<repo>/commit/<sha>` (full or short SHA, 7+ hex chars). The script validates this the same way it validates PR URLs (TrueSightDAO org only, real pattern match — a bare `.../commits/<branch>` listing page does NOT count as evidence, it has to be a specific commit). **Prefer a real PR whenever one exists** — only fall back to a commit URL when there genuinely isn't a PR to cite. This convention exists so **all LLMs** hit the same fallback instead of getting stuck (this was discovered when a session had four units of work merged directly with no PR, and the submission had no way to comply until this fallback was added).
+
 3. **Be explicit in the body** (bullet list is ideal):
    - **What changed** (repos, files, behavior).
    - **Why** (safeguard, bugfix, operator workflow).
@@ -119,6 +121,6 @@ For serialized QR products, `[SALES EVENT]` per QR code IS sufficient — the do
 
 ## Anti-patterns
 
-- Submitting without **any** `github.com/TrueSightDAO/.../pull/` link when code or docs landed in GitHub.
+- Submitting without **any** `github.com/TrueSightDAO/.../pull/` (or, for a direct merge with no PR, `.../commit/<sha>`) link when code or docs landed in GitHub.
 - Vague one-line descriptions with no file/PR reference.
 - Using a non–`dao_client` signing path that drifts from DApp canonical formatting.
