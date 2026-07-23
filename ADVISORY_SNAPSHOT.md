@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-22T19:52:46Z`
-- Look-back: **7** calendar days (`2026-07-15` → today UTC)
+- Generated (UTC): `2026-07-23T03:54:11Z`
+- Look-back: **7** calendar days (`2026-07-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -249,9 +249,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,374.05**
+- USD on hand: **$4,373.95**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$50.24**
+- USD provisioned for voting-rights cash-out: **$50.34**
 
 ### In-transit freight (1 row)
 
@@ -265,13 +265,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_Lines in window matching configured names or status keywords:_
+_No lines matched name/keyword heuristics in this window._
 
-- 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
+_All dated lines on/after 2026-07-16_ (1):
 
-_All dated lines on/after 2026-07-15_ (2):
-
-- 2026-07-15 | claude | White-label PR1 merged (agroverse_shop_beta#184): B1 (registration dead-ended into an empty card — phantom #wl-auth-loading write; #wl-auth-error moved out of the form it was trapped inside) and B2 (post-payment receipt destroyed ~200ms after render by a two-IIFE race) are fixed. Also B14: white-label/index.html never loaded cart.js, so universal-nav's injected cart-ui.js threw window.Cart.getItemCount() on every page load. Suite 34/34 green. STILL AWAITING EXPLICIT HUMAN APPROVAL (canonical files, §3): (1) PROJECT_INDEX.md:75 says agroverse-designs is "(4x2 PNG)" — should be "(2x4 portrait PNG, 600x1200)"; (2) WORKSPACE_CONTEXT.md:131 "Sticker Mule 4x2in custom rectangle label" needs a note that it is QR-code label stock, NOT the chocolate-bar label — reusing it as an artwork spec is the likely origin of the rotated spec fixed in beta#183.
 - 2026-07-18 | DeepSeek | PERSONAL_PAT (github_pat_… fine-grained, 93 chars) staged for cross-agent access per credentials/CREDENTIAL_HANDOFF_PROTOCOL.md: operator Mac ~/Applications/tmp/PERSONAL_PAT, sophia box /home/ubuntu/PERSONAL_PAT, nelanco-claude box /home/ubuntu/PERSONAL_PAT (all chmod 600; value never in chat/commits). nelanco-claude Claude: read /home/ubuntu/PERSONAL_PAT to continue the white-label work; box git auth is credential.helper=store with one x-access-token github.com entry, so use the PAT explicitly (or add a store entry) for repos the DAO PAT cannot reach.
 
 ---
@@ -291,6 +288,7 @@ _All dated lines on/after 2026-07-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+096cfd2 | 2026-07-22 19:54:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 284ba00 | 2026-07-22 14:36:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0198714 | 2026-07-22 09:11:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 913ffcf | 2026-07-22 03:58:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -318,10 +316,6 @@ dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [
 d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 043bb75 | 2026-07-16 08:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 44701ae | 2026-07-16 03:48:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
-bab6a0b | 2026-07-15 19:46:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0e14a14 | 2026-07-15 14:22:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
-dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4e0414c | 2026-07-15 03:46:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -333,6 +327,8 @@ dc2e738 | 2026-07-15 08:56:20 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e99e1e5 | 2026-07-23 03:53:04 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
+1bcab99 | 2026-07-23 03:53:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
 374ee33 | 2026-07-22 22:34:00 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
 cd1f100 | 2026-07-22 22:33:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
 64f18de | 2026-07-22 17:09:28 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
@@ -371,15 +367,13 @@ b5c8c48 | 2026-07-21 02:59:26 +0000 | Merge: consolidate handoff registry into s
 f038450 | 2026-07-21 04:06:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 6c40fb8 | 2026-07-20 22:38:25 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
 feb788c | 2026-07-20 22:38:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
-a4d7f5f | 2026-07-20 17:41:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
-cf40213 | 2026-07-20 17:41:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
-e111714 | 2026-07-15 11:47:00 -0700 | fix(tokenomics): remove all Wix dependencies from tdg_wix_dashboard.js (#380)
+_(no commits on origin/main in window)_
 ```
 
 ### `dapp` → `dapp`
@@ -417,7 +411,6 @@ bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory
 fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 48c1f0b | 2026-07-16 08:36:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-8ee569b | 2026-07-15 08:37:32 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -431,12 +424,6 @@ a2e9ca6 | 2026-07-17 05:24:44 +0800 | Add Coopercabruca membership to Oscar's fa
 5798a7b | 2026-07-16 14:10:31 -0700 | fix(white-label): PR5 — State E/F order emphasis + real success receipt (#189)
 166cf42 | 2026-07-16 14:08:40 -0700 | fix(white-label): PR4 — State C/D gallery + upload (P4, B7, B9, Q5, P7-partial) (#188)
 ecb4e42 | 2026-07-16 13:58:19 -0700 | fix(white-label): registration/verification never worked -- dao-client field-name bug (#190)
-7604237 | 2026-07-15 12:24:11 -0700 | fix(white-label): PR3 — State A re-composition (P1, P2, B10, B12, B13) (#187)
-5cdd1b7 | 2026-07-15 12:11:03 -0700 | fix(pages): point CNAME at beta.agroverse.shop, not the apex domain (#186)
-b939f0a | 2026-07-15 12:08:08 -0700 | fix(white-label): PR2 — re-quote shipping on qty change, timestamp uploads, surface shipping errors (B3+B4+B5) (#185)
-4fc77ac | 2026-07-15 04:48:21 -0700 | fix(white-label): PR1 — repair registration (B1) and the post-payment receipt (B2) (#184)
-9e03bc8 | 2026-07-15 04:31:03 -0700 | fix(white-label): D0 — flip the label spec to portrait 2"x4" (#183)
-89e7622 | 2026-07-14 19:05:28 -0700 | feat(white-label): correct label to portrait 2"×4" + commit the full implementation (#182)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -448,7 +435,7 @@ _(no commits on origin/main in window)_
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
-47a3bb5 | 2026-07-15 04:33:04 -0700 | fix(backup): retarget weekly autopilot AMI backup to the Nelanco box (#41)
+_(no commits on origin/master in window)_
 ```
 
 ---
@@ -525,9 +512,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/22/2026 12:50:30 |
+| 2026-07 | 201.48 | 16911.06386 | 7/22/2026 20:52:19 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-15`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-16`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
