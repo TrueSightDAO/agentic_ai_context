@@ -7,6 +7,16 @@ channels an LLM agent can reach without a human doing sales/outreach. This is **
 Language`, export/webhook APIs); the work here is wrapping that API as MCP tools, adding
 agent-native billing, and listing it where agents already look.
 
+**Architecture pivot (2026-07-23, governor decision):** the MCP server is now built **directly into
+`krake_ror`** (the existing, already-deployed Rails app) using Ruby's official `mcp` gem (or
+`FastMCP` — decide in 2c), **not** as a separate `getdata-mcp-bridge` Node/TypeScript repo. See
+"Why the pivot" below — the separate-repo path hit five distinct blockers in a row (wrong-org repo
+creation, PAT scope gaps, round-cap failures on multi-file Node scaffolding) that a Rails-native
+build sidesteps entirely, since `krake_ror` already exists, is already deployed, already has
+Doorkeeper OAuth wired (Unit 2b), and Sophia already has confirmed working push access to it.
+`KrakeIO/getdata-mcp-bridge` was never successfully created and this plan no longer targets it —
+don't resume work there.
+
 **Why this and not a broader pivot:** see conversation history 2026-07-18 through 2026-07-21 for
 the full research trail. Short version: gray-area social scraping is a losing cat-and-mouse fight;
 "agentic browser automation" is an even more brutal, fast-moving, well-funded battlefield
@@ -19,34 +29,51 @@ real, differentiated asset found: a live, currently-growing, 47,475-source commu
 exists. Apify's own answer to the AI-agent wave was `apify-mcp-server`; this plan is the same move,
 scoped to GetData.IO's existing marketplace rather than a new one.
 
+**Why the Rails-native pivot (2026-07-23):** the original Unit 2c (scaffold a new
+`KrakeIO/getdata-mcp-bridge` Node/TS repo) hit five distinct blockers across several turns:
+(1) `git_tools.py` hardcoded the TrueSightDAO org, so pushing to a KrakeIO repo would have gone to
+the wrong org even once created; (2) Sophia had no tool capable of creating a brand-new repo at
+all; (3) once that tool was built and deployed, `KRAKE_IO_PAT` turned out to lack org-repo-creation
+scope (404, despite being documented as "full" Krake access); (4) `KrakeIO` turned out to be a
+personal GitHub **user** account, not a true Organization, so `POST /orgs/KrakeIO/repos` was never
+going to work regardless of credential — the correct endpoint is `POST /user/repos` authenticated
+*as* that account; (5) even with the repo problem fixed, Sophia hit the round-cap three separate
+times trying to construct-and-push a 7-file Node scaffold in one turn, and in one of those attempts
+manually bypassed the (at-the-time-broken) tooling and created the repo under the wrong org by
+hand. None of this is a reason the *product* idea is wrong — it's all friction specific to standing
+up brand-new cross-org infrastructure. Building the MCP endpoint directly into `krake_ror` (already
+deployed, already has confirmed working push access, already has Doorkeeper OAuth live) sidesteps
+every one of these five problems at once. Ruby has first-class MCP tooling for this: an **official
+`mcp` gem** (`bundle add mcp`) and **`FastMCP`**, a popular Rails-specific wrapper gem — this is not
+an awkward off-path choice, it's well-supported, current (2026), production-used tooling (see e.g.
+Fleetio's engineering blog on securing an MCP server in Rails).
+
 > ## ▶ RESUME HERE
 >
-> **Units 1, 2a, and 2b all done (2026-07-21) — all three turned out to need zero backend code
-> changes, just verification. Unit 2c (scaffold the new MCP server repo) is next**, and is the first
-> unit in this plan that actually writes new code. It's also self-contained (new repo, no legacy
-> `krake_ror` archaeology needed) — a better fit for autonomous execution than Units 1/2a/2b turned
-> out to be.
+> **Units 1, 2a, 2b done (2026-07-21) — all three needed zero backend code changes, just
+> verification (see Findings 1-2 below, still accurate).** Unit 2c is **being redone** per the
+> 2026-07-23 architecture pivot above: instead of a separate `getdata-mcp-bridge` repo, add MCP
+> routes directly to `krake_ror` using the `mcp` gem (or `FastMCP` — pick one and document why in
+> the PR). **This is the current RESUME HERE unit — nothing has been built for it yet.**
 >
-> **Finding 1 (superseded) — public marketplace search already returns JSON, live, today, with
-> zero code changes.** `https://getdata.io/data-for-everyone.json` works right now — a
-> `public.json.jbuilder` view already existed in the codebase (Rails' implicit responder serves it
-> automatically), nobody had tried the `.json` suffix before. Confirmed live: bare request returns
-> `{total: 47475, pagination: {...}, results: [{id, name, description, ...}]}` instantly. **Caveat**:
-> `?search=` on the `.json` route timed out in testing (15s) where the bare request is fast — likely
-> an uncached search path. Unit 2c should verify/handle this (retry+backoff, or a follow-up caching
-> fix) rather than assume search is as fast as browsing.
+> **Finding 1 — public marketplace search already returns JSON, live, today, with zero code
+> changes.** `https://getdata.io/data-for-everyone.json` works right now — a `public.json.jbuilder`
+> view already existed in the codebase (Rails' implicit responder serves it automatically), nobody
+> had tried the `.json` suffix before. Confirmed live: bare request returns `{total: 47475,
+> pagination: {...}, results: [{id, name, description, ...}]}` instantly. **Caveat**: `?search=` on
+> the `.json` route timed out in testing (15s) where the bare request is fast — likely an uncached
+> search path. Since the new MCP routes live in the same Rails app now, prefer calling
+> `Krake.public(...)` (the model method) directly from the MCP tool handler rather than making an
+> HTTP round-trip to the app's own JSON endpoint — faster, and sidesteps the caching question until
+> it's addressed separately.
 >
 > **Finding 2 — token issuance uses Doorkeeper.** `Member` has
 > `has_many :oauth_access_tokens, foreign_key: "resource_owner_id", class_name: "Doorkeeper::AccessToken"`
 > — this is the standard Ruby OAuth2 provider gem. Doorkeeper supports fully programmatic token
-> issuance via standard OAuth2 grant flows (e.g. `client_credentials`), which is what makes
-> "no human in the loop" token provisioning for MCP-server tenants realistic. **Unit 2b: confirm
-> which grant type(s) are actually enabled** (check `config/initializers/doorkeeper.rb`) and whether
-> a `client_credentials`-style flow is already usable, or needs enabling — this determines whether
-> an AI agent's operator can get a token via one API call, or still needs a one-time dashboard step.
->
-> Both findings mean **Unit 2 is smaller than the pre-flight worried it might be** — no major
-> backend rebuild needed, just two small additive changes plus the new MCP-server repo itself.
+> issuance via standard OAuth2 grant flows (`client_credentials` and `password` are both already
+> enabled — see Unit 2b below), which is what makes "no human in the loop" token provisioning for
+> MCP-server tenants realistic. The new MCP routes should sit behind this existing auth, not a new
+> auth mechanism.
 
 ---
 
@@ -152,10 +179,10 @@ gap before Unit 2 starts building.
 | 1 | **Pre-flight completion (read-only).** ✅ Done — see RESUME HERE. | _(auto — read-only)_ | ✅ |
 | 2a | ~~`krake_ror` PR: add `format.json`~~ **NOT NEEDED — already live.** Verified 2026-07-21: `https://getdata.io/data-for-everyone.json` already returns real structured JSON in production (`{total, pagination, results: [{id, name, description, ...}]}`) — a `public.json.jbuilder` view + `_krake_summary.json.jbuilder` partial already exist in the codebase, Rails' implicit responder serves them, nobody had ever tried the `.json` suffix. **Zero code change required for basic listing.** Caveat found during verification: `?search=` query param on the `.json` route timed out (15s) where the bare unfiltered request is fast — likely an uncached/slow DB path for search specifically. **Unit 2c must verify search-param performance before relying on it**; may need a small caching fix as a follow-up, but doesn't block starting 2c. | _(auto — read-only verification, done)_ | ✅ |
 | 2b | ~~Confirm/enable Doorkeeper `client_credentials`~~ **NOT NEEDED — already enabled.** Verified 2026-07-21: `config/initializers/doorkeeper.rb` line 8 has `grant_flows ["authorization_code", "client_credentials", "password"]`. Both `client_credentials` (service-to-service, no member credentials needed) and `password` (exchange a member's email+password directly for a token via `POST /oauth/token`) are already live. Zero config change needed. Client app registration uses Doorkeeper's standard built-in `Doorkeeper::Application` model — no custom model found, which is normal/expected for a stock Doorkeeper setup. | _(auto — verification only, done)_ | ✅ |
-| 2c | **Scaffold new MCP server repo** (`KrakeIO/getdata-mcp` or similar — new repo, not touching `krake_ror` beyond 2a/2b). Node/TypeScript MCP server (matches the ecosystem's dominant tooling). Tools: `search_data_sources(query, category?)` [free, now backed by 2a's JSON endpoint], `run_data_source(id, params)` [paid], `get_results(id, timestamp?, page?)` [free — result retrieval shouldn't be double-charged after the run already was], `create_data_source(recipe: SemanticQueryLanguage)` [paid, priced higher — this is the "extend the marketplace" action]. | _(auto — new repo, no prod impact)_ | ☐ |
-| 3 | **Payment integration.** Build-vs-buy decision: hand-rolled x402 vs. `SettleGrid`'s `@settlegrid/mcp` SDK. Wire the paid tools (`run_data_source`, `create_data_source`) behind per-call settlement at the pricing in the pre-flight. Free tools (`search_data_sources`, `get_results`) stay ungated. | _(auto — new repo, no prod impact, no real money moves until Unit 6 UAT)_ | ☐ |
-| 4 | **Deploy.** Needs a hosting decision — could piggyback on existing Nelanco/Explorya AWS (consistent with the rest of the Krake fleet) or a simple serverless deploy (Cloudflare Workers has first-class x402/paid-MCP-tool support per pre-flight research, worth considering to avoid touching the fragile EC2/ALB fleet at all). | `gate: infra/deploy decision` (§5c — this is standing up new infrastructure, even if low-risk; worth a quick governor confirmation on where it lives before it's live) | ☐ |
-| 5 | **GTM submissions.** Submit to the official MCP Registry, PulseMCP, MCP.so, Glama, and 2-3 top `awesome-mcp-servers` lists per the pre-flight's channel list. Write and publish an agent-onboarding doc (SKILL.md-style) linked from `getdata.io`. | _(auto — all channels are PR/CLI-driven, reversible, no spend)_ | ☐ |
+| 2c | **[REDONE 2026-07-23] Add MCP server to `krake_ror`** via a `krake_ror` PR (branch + PR, same convention as any other change to this repo — not a fresh empty-repo push). `bundle add mcp` (or `FastMCP` — pick one, document the choice in the PR description). New route (e.g. `POST /mcp`, Streamable HTTP transport) behind Doorkeeper OAuth (Finding 2). Three tools: `search_data_sources(query, category?)` [free — calls `Krake.public(...)` directly, not an HTTP round-trip to the app's own JSON endpoint], `run_data_source(handle, origin_urls?, data?)` [paid — calls the existing run logic], `get_results(handle, timestamp?, page?)` [free — reads from the existing cache path]. Dropped `create_data_source` (recipe creation via Semantic Query Language) from this first cut — smaller v1, add it as a follow-up unit once the three read/run tools are proven live. Include a request spec per §9 (this workspace's HTML/JS/Rails test-before-merge convention). | _(auto — additive PR to an already-deployed, already-working app; standard branch+PR review, not a prod-infra gate)_ | ☐ |
+| 3 | **Payment integration.** Build-vs-buy decision: hand-rolled x402 (Ruby: check for an x402 gem/middleware first, otherwise implement the HTTP 402 + payment-header exchange directly — it's a fairly small spec) vs. `SettleGrid`'s hosted proxy (its docs reference `@settlegrid/mcp`, a Node package — check for a language-agnostic/HTTP-proxy mode before ruling it out for a Ruby app). Wire `run_data_source` behind per-call settlement at the pricing in the pre-flight. `search_data_sources` and `get_results` stay free/ungated. | _(auto — additive to krake_ror, no real money moves until Unit 6 UAT)_ | ☐ |
+| 4 | **Deploy.** No new infrastructure needed — this ships as part of `krake_ror`'s normal deploy process to its existing EC2 instance. Still worth a quick governor confirmation before the route goes live on production traffic, since `krake_ror` is a real, currently-used app (see the traffic-surge findings from 2026-07-18/19). | `gate: prod deploy confirmation` (§5c — lower-stakes than standing up new infra, but still touches live prod) | ☐ |
+| 5 | **GTM submissions.** Submit to the official MCP Registry, PulseMCP, MCP.so, Glama, and 2-3 top `awesome-mcp-servers` lists per the pre-flight's channel list — these list the live endpoint URL (e.g. `https://getdata.io/mcp`), not a GitHub repo, so the earlier repo-creation problems don't even apply here. Write and publish an agent-onboarding doc (SKILL.md-style) linked from `getdata.io`. | _(auto — all channels are PR/CLI-driven, reversible, no spend)_ | ☐ |
 | 6 | **UAT (§5c always-stop).** A human (governor) — or an agent under the governor's supervision — actually discovers the MCP server through one of the Unit 5 channels (not by being told the URL directly), calls `search_data_sources`, runs a real `run_data_source` call, and confirms a real x402 (or SettleGrid) payment settles correctly end-to-end. This is the first point real money moves — hard stop regardless of how Units 1-5 went. | `gate: UAT + first real payment` | ☐ |
 
 **Note on scope**: this plan deliberately stops at "live, discoverable, and provably working
