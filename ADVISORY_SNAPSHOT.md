@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-23T03:54:11Z`
+- Generated (UTC): `2026-07-23T09:07:12Z`
 - Look-back: **7** calendar days (`2026-07-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
-- `[EMAIL VERIFICATION EVENT]` × 7
+- `[CONTRIBUTION EVENT]` × 20
 - `[PRACTICE EVENT]` × 6
+- `[EMAIL VERIFICATION EVENT]` × 5
 - `[DESIGN UPLOAD EVENT]` × 3
 - `[DESIGN ORDER EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260718120637_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: White-label checkout: stale GAS URL + shipping field-name fixes, prod sync, …
-- `Edgar_20260718120659_205` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Manual UAT/oversight on white-label checkout fixes: found the original two U…
 - `Edgar_20260718203409_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): admin+claude@truesight.me
 - `Edgar_20260718203413_209` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): admin+sophia@truesight.me
 - `Edgar_20260718204649_211` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
@@ -61,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260722042014_237` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-22T04:20:11.074Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260722095632_239` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussions to setup the Brazilian CNPJ
 - `Edgar_20260722095835_241` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussion about how to distribute in USA and China
+- `Edgar_20260723080251_243` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20260723080256_245` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh (gary@truesight.me)
 
 ---
 
@@ -288,6 +288,7 @@ _All dated lines on/after 2026-07-16_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+851f5bd | 2026-07-23 03:56:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 096cfd2 | 2026-07-22 19:54:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 284ba00 | 2026-07-22 14:36:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0198714 | 2026-07-22 09:11:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,6 +328,8 @@ d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+28d92bc | 2026-07-23 11:54:25 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
+72917ea | 2026-07-23 11:54:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
 e99e1e5 | 2026-07-23 03:53:04 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
 1bcab99 | 2026-07-23 03:53:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
 374ee33 | 2026-07-22 22:34:00 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
@@ -365,8 +368,6 @@ b5c8c48 | 2026-07-21 02:59:26 +0000 | Merge: consolidate handoff registry into s
 4e19f60 | 2026-07-21 02:50:19 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
 56d05d4 | 2026-07-21 04:06:29 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
 f038450 | 2026-07-21 04:06:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
-6c40fb8 | 2026-07-20 22:38:25 +0800 | chore(previews): refresh Beer Hall preview (2026-07-20 UTC)
-feb788c | 2026-07-20 22:38:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-20 UTC)
 … (truncated)
 ```
 
@@ -403,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8dffed9 | 2026-07-23 08:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0eebd69 | 2026-07-22 08:46:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 139695f | 2026-07-20 09:45:36 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -512,7 +514,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/22/2026 20:52:19 |
+| 2026-07 | 201.48 | 16911.06386 | 7/23/2026 1:54:10 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-16`; scanned last **600** data rows)
 
