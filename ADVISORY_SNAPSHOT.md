@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-24T03:53:11Z`
+- Generated (UTC): `2026-07-24T09:03:25Z`
 - Look-back: **7** calendar days (`2026-07-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,20 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
+- `[CONTRIBUTION EVENT]` × 29
 - `[PRACTICE EVENT]` × 6
-- `[DESIGN UPLOAD EVENT]` × 2
-- `[DESIGN ORDER EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 2
-- `[EMAIL VERIFICATION EVENT]` × 1
+- `[DESIGN UPLOAD EVENT]` × 1
+- `[DESIGN ORDER EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260718212739_217` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] go_to_market: PR1 from WARMUP_CONVERSION_IMPROVEMENT_PLAN.md: St…
-- `Edgar_20260718224139_219` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-18T22:41:36.733Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260718230205_221` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Signing DAO LLC agreement and then moving on to next stage for setting up of…
-- `Edgar_20260719231758_223` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-19T23:17:56.450Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260720230448_225` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-20T23:04:45.851Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260721054727_227` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Warm-up conversion improvement: stats audit + segmented outreach + recurring…
 - `Edgar_20260721054818_229` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Handoff registry consolidation, 3 production bug fixes, and deploy
 - `Edgar_20260722004520_231` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 63 · Description: Personal contributor backlog: registry, Sophia push tool, worktree convention
@@ -61,6 +55,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260723105735_251` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20 · Description: Monthly Claude Pro subscription (receipt #2690-1065-0974) — July 2026
 - `Edgar_20260723115426_253` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Discussion with Vini on setting up CNPJ
 - `Edgar_20260723115626_255` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Arranging of talk with lawyers.
+- `Edgar_20260724053745_257` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Compiling Dr. Ye product feedback, Liz表哥 market insight, and cacao beverage …
+- `Edgar_20260724054209_259` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Dinner meeting with Liz's cousin (表哥) — market research gathering on cacao b…
+- `Edgar_20260724054212_261` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Dinner meeting with cousin (表哥) — market research gathering on cacao beverag…
+- `Edgar_20260724060111_263` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The built-in generate_pdf tool uses Helveti…
+- `Edgar_20260724060140_265` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
 
 ---
 
@@ -288,6 +287,7 @@ _All dated lines on/after 2026-07-17_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7d3eb6e | 2026-07-23 19:56:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92efb9d | 2026-07-23 14:51:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 688c31f | 2026-07-23 09:11:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,6 +327,15 @@ dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a75063c | 2026-07-24 15:01:24 +0800 | Update Chinese PDF with competitive comparison tables
+c939d80 | 2026-07-24 15:01:22 +0800 | Update English PDF with competitive comparison tables
+1dfb5f3 | 2026-07-24 14:20:10 +0800 | Add fully Chinese PDF for Dr. Ye, Liz's cousin, and Chaoshan group
+fb1bc61 | 2026-07-24 14:07:29 +0800 | Regenerate PDF using WeasyPrint with DroidSansFallback font - all Chinese characters verified
+658bc4e | 2026-07-24 14:03:22 +0800 | Fix: regenerate PDF with embedded DroidSansFallback Chinese font
+c0a4620 | 2026-07-24 14:00:07 +0800 | Update cacao beverage PDF with Chinese font support (DroidSansFallback)
+f3a3b79 | 2026-07-24 13:57:46 +0800 | Add cacao beverage opportunity PDF for Dr Ye, Liz's cousin & Chaoshan group
+4cd05d3 | 2026-07-24 11:53:23 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
+252e8c5 | 2026-07-24 11:53:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
 f70e345 | 2026-07-24 03:56:10 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
 4e34356 | 2026-07-24 03:56:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
 bb4bcc3 | 2026-07-23 22:41:00 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
@@ -358,15 +367,6 @@ c03285f | 2026-07-21 06:28:14 +0000 | feat: add opt-in Auto-start marker for han
 3ff186c | 2026-07-21 14:26:59 +0800 | Update resume tracker: PR1 opened (truesight_autopilot#280); correct secret_tools guidance (#706)
 d4c5ef7 | 2026-07-21 14:26:11 +0800 | Merge pull request #709 from TrueSightDAO/plan/getdata-io-mcp-unit2b-done
 4b9f308 | 2026-07-21 06:24:45 +0000 | plan: GetData.IO MCP bridge -- Unit 2b already enabled, no config needed
-3dcf9ac | 2026-07-21 14:24:26 +0800 | Merge pull request #708 from TrueSightDAO/docs/worktree-convention
-5452bbb | 2026-07-21 14:23:07 +0800 | Merge pull request #707 from TrueSightDAO/plan/getdata-io-mcp-unit2a-done
-9d535cb | 2026-07-21 06:23:05 +0000 | Add §12: mandatory git worktree per concurrent session
-cc68848 | 2026-07-21 06:14:45 +0000 | plan: GetData.IO MCP bridge -- Unit 2a needed no code, already live
-bc0d4d6 | 2026-07-21 14:08:43 +0800 | plan: GetData.IO MCP bridge -- Unit 1 findings, split Unit 2 into 2a/2b/2c (#704)
-edf8b8a | 2026-07-21 14:08:35 +0800 | Add warmup-conversion-30day-readout followup block to OPEN_FOLLOWUPS.md (#705)
-f8d366d | 2026-07-21 14:00:29 +0800 | plan: GetData.IO MCP agent-marketplace bridge (#703)
-993f522 | 2026-07-21 13:58:39 +0800 | Merge pull request #699 from TrueSightDAO/feature/personal-market-analysis-backlogs
-8c7365a | 2026-07-21 05:57:10 +0000 | Merge main into feature/personal-market-analysis-backlogs, resolve conflict
 … (truncated)
 ```
 
@@ -403,6 +403,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a14d554 | 2026-07-24 08:45:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8dffed9 | 2026-07-23 08:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0eebd69 | 2026-07-22 08:46:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -508,7 +509,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/23/2026 20:50:36 |
+| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 0:50:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-17`; scanned last **600** data rows)
 
