@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-23T19:55:47Z`
-- Look-back: **7** calendar days (`2026-07-16` → today UTC)
+- Generated (UTC): `2026-07-24T03:53:11Z`
+- Look-back: **7** calendar days (`2026-07-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -249,9 +249,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.95**
+- USD on hand: **$4,373.85**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$50.34**
+- USD provisioned for voting-rights cash-out: **$50.44**
 
 ### In-transit freight (1 row)
 
@@ -267,7 +267,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-07-16_ (1):
+_All dated lines on/after 2026-07-17_ (1):
 
 - 2026-07-18 | DeepSeek | PERSONAL_PAT (github_pat_… fine-grained, 93 chars) staged for cross-agent access per credentials/CREDENTIAL_HANDOFF_PROTOCOL.md: operator Mac ~/Applications/tmp/PERSONAL_PAT, sophia box /home/ubuntu/PERSONAL_PAT, nelanco-claude box /home/ubuntu/PERSONAL_PAT (all chmod 600; value never in chat/commits). nelanco-claude Claude: read /home/ubuntu/PERSONAL_PAT to continue the white-label work; box git auth is credential.helper=store with one x-access-token github.com entry, so use the PAT explicitly (or add a store entry) for repos the DAO PAT cannot reach.
 
@@ -288,6 +288,7 @@ _All dated lines on/after 2026-07-16_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7d3eb6e | 2026-07-23 19:56:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92efb9d | 2026-07-23 14:51:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 688c31f | 2026-07-23 09:11:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 851f5bd | 2026-07-23 03:56:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -315,10 +316,6 @@ a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [
 f1067d3 | 2026-07-17 14:13:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0b13bdb | 2026-07-17 03:48:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
-90c9c38 | 2026-07-16 19:43:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
-043bb75 | 2026-07-16 08:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-44701ae | 2026-07-16 03:48:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -330,6 +327,8 @@ d56e7ad | 2026-07-16 14:35:05 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f70e345 | 2026-07-24 03:56:10 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
+4e34356 | 2026-07-24 03:56:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
 bb4bcc3 | 2026-07-23 22:41:00 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
 37504f2 | 2026-07-23 22:40:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
 25ced49 | 2026-07-23 18:59:51 +0800 | plan: GetData.IO MCP bridge -- pivot to Rails-native (krake_ror), abandon separate repo (#711)
@@ -368,8 +367,6 @@ edf8b8a | 2026-07-21 14:08:35 +0800 | Add warmup-conversion-30day-readout follow
 f8d366d | 2026-07-21 14:00:29 +0800 | plan: GetData.IO MCP agent-marketplace bridge (#703)
 993f522 | 2026-07-21 13:58:39 +0800 | Merge pull request #699 from TrueSightDAO/feature/personal-market-analysis-backlogs
 8c7365a | 2026-07-21 05:57:10 +0000 | Merge main into feature/personal-market-analysis-backlogs, resolve conflict
-1d28681 | 2026-07-21 13:50:48 +0800 | Merge pull request #702 from TrueSightDAO/claude/sophia-personal-repo-push-plan
-bb7ab6d | 2026-07-21 05:49:32 +0000 | Add execution plan: Sophia personal (non-DAO) repo push tool
 … (truncated)
 ```
 
@@ -414,7 +411,6 @@ bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory
 01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-48c1f0b | 2026-07-16 08:36:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -424,10 +420,6 @@ b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory
 0b28731 | 2026-07-18 08:43:27 +0800 | fix(white-label): use correct shipping rate field names from GAS (#194)
 bd72396 | 2026-07-18 08:22:43 +0800 | fix: replace stale checkout GAS deployment URL (#193)
 842aeb4 | 2026-07-17 17:45:15 +0800 | fix(white-label): route beta/localhost checkout through Stripe test mode (#192)
-a2e9ca6 | 2026-07-17 05:24:44 +0800 | Add Coopercabruca membership to Oscar's farm page (#191)
-5798a7b | 2026-07-16 14:10:31 -0700 | fix(white-label): PR5 — State E/F order emphasis + real success receipt (#189)
-166cf42 | 2026-07-16 14:08:40 -0700 | fix(white-label): PR4 — State C/D gallery + upload (P4, B7, B9, Q5, P7-partial) (#188)
-ecb4e42 | 2026-07-16 13:58:19 -0700 | fix(white-label): registration/verification never worked -- dao-client field-name bug (#190)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -516,9 +508,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/23/2026 12:51:27 |
+| 2026-07 | 201.48 | 16911.06386 | 7/23/2026 20:50:36 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-16`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-17`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
