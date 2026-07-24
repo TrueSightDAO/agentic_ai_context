@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-24T09:03:25Z`
+- Generated (UTC): `2026-07-24T14:20:34Z`
 - Look-back: **7** calendar days (`2026-07-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-23T10:59:14.536Z`
+- Generated (UTC): `2026-07-24T10:59:13.801Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -83,8 +83,8 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 - Reclassified — D2C only: 1  (#1)
 - AI: Contact Form found: 119  (#3)
-- Research: 58  (#8)
-- AI: No fit signal: 159  (#9)
+- Research: 53  (#8)
+- AI: No fit signal: 164  (#9)
 - AI: Enrich — manual: 95  (#10)
 - Manager Follow-up: 33  (#13)
 - Followed Up: 1  (#15)
@@ -99,12 +99,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **544**, follow_up **70**, bulk **0**, unknown **2** (data rows: **616**)
+- **Email Agent Follow Up** — logged sends: warmup **556**, follow_up **70**, bulk **0**, unknown **2** (data rows: **628**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **65** stores — sum logged **warmup** sends (AU): **488**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **64**; follow-up depth (none / once / ≥2): **65** / **0** / **0**
+- **AI: Warm up prospect**: **65** stores — sum logged **warmup** sends (AU): **501**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **64**; follow-up depth (none / once / ≥2): **65** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -287,6 +287,7 @@ _All dated lines on/after 2026-07-17_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+88517b2 | 2026-07-24 09:05:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7d3eb6e | 2026-07-23 19:56:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92efb9d | 2026-07-23 14:51:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,6 +328,8 @@ dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3f1fff4 | 2026-07-24 17:03:38 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
+bf1e610 | 2026-07-24 17:03:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
 a75063c | 2026-07-24 15:01:24 +0800 | Update Chinese PDF with competitive comparison tables
 c939d80 | 2026-07-24 15:01:22 +0800 | Update English PDF with competitive comparison tables
 1dfb5f3 | 2026-07-24 14:20:10 +0800 | Add fully Chinese PDF for Dr. Ye, Liz's cousin, and Chaoshan group
@@ -365,8 +368,6 @@ d56c7c0 | 2026-07-21 22:34:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 bbff316 | 2026-07-21 07:02:41 +0000 | Merge: add opt-in Auto-start marker for handoffs (skip initial GO wait)
 c03285f | 2026-07-21 06:28:14 +0000 | feat: add opt-in Auto-start marker for handoffs (skip initial GO wait)
 3ff186c | 2026-07-21 14:26:59 +0800 | Update resume tracker: PR1 opened (truesight_autopilot#280); correct secret_tools guidance (#706)
-d4c5ef7 | 2026-07-21 14:26:11 +0800 | Merge pull request #709 from TrueSightDAO/plan/getdata-io-mcp-unit2b-done
-4b9f308 | 2026-07-21 06:24:45 +0000 | plan: GetData.IO MCP bridge -- Unit 2b already enabled, no config needed
 … (truncated)
 ```
 
@@ -509,7 +510,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 0:50:58 |
+| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 6:51:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-17`; scanned last **600** data rows)
 
