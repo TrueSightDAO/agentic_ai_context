@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-24T14:20:34Z`
+- Generated (UTC): `2026-07-24T19:54:51Z`
 - Look-back: **7** calendar days (`2026-07-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -287,6 +287,7 @@ _All dated lines on/after 2026-07-17_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c56f0cf | 2026-07-24 14:22:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 88517b2 | 2026-07-24 09:05:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7d3eb6e | 2026-07-23 19:56:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,6 +329,8 @@ dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d2dfc53 | 2026-07-24 22:20:48 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
+e74957c | 2026-07-24 22:20:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
 3f1fff4 | 2026-07-24 17:03:38 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
 bf1e610 | 2026-07-24 17:03:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
 a75063c | 2026-07-24 15:01:24 +0800 | Update Chinese PDF with competitive comparison tables
@@ -366,8 +369,6 @@ d56c7c0 | 2026-07-21 22:34:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 1cebc5a | 2026-07-21 17:09:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
 8d14bc4 | 2026-07-21 17:09:28 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
 bbff316 | 2026-07-21 07:02:41 +0000 | Merge: add opt-in Auto-start marker for handoffs (skip initial GO wait)
-c03285f | 2026-07-21 06:28:14 +0000 | feat: add opt-in Auto-start marker for handoffs (skip initial GO wait)
-3ff186c | 2026-07-21 14:26:59 +0800 | Update resume tracker: PR1 opened (truesight_autopilot#280); correct secret_tools guidance (#706)
 … (truncated)
 ```
 
@@ -510,7 +511,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 6:51:07 |
+| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 12:50:40 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-17`; scanned last **600** data rows)
 
