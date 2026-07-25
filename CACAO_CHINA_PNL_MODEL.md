@@ -21,8 +21,8 @@
 **Farm profile — La Dio Sitio, Pará, Brazil (Paulo)**
 - Product on Agroverse Shop: "Ceremonial Cacao – La do Sitio Farm, Pará Brazil, 2024 (200g)" — retail $25
 - AGL8 shipment from Paulo's farm, Pará region
-- Raw cacao almonds: **R$100/kg (~$18/kg)** (per Agroverse Processing Cost ledger, Oscar Fazenda/Fernando/Jedelicio)
-- Cacao husk is a **byproduct** of nib/chocolate production — traditionally discarded, so priced much lower
+- Raw cacao almonds: **R$100/kg (~$18/kg)** (per Agroverse Processing Cost ledger)
+- Cacao husk is a **byproduct** of nib/chocolate production — traditionally discarded
 
 **Estimated cacao husk cost:** ~R$25/kg = **~$4.50/kg**
 
@@ -36,9 +36,7 @@
 
 ## 3. Packaging Cost
 
-Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (from ledger, Alibaba quotes):
-- Kraft pouches: $0.43-0.90/unit depending on quantity
-- For 小罐茶 style, we need aluminum cans + outer box
+Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (Alibaba quotes):
 
 | Item | Qty per Box | Est. Cost/Unit | Per Box |
 |---|---|---|---|
@@ -53,12 +51,12 @@ Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (from ledger, Alibaba quo
 
 ## 4. Freight Cost (Brazil Ilhéus → Shenzhen, China)
 
-### Existing Freight Infrastructure (from Brazil→SF preflight checklist):
+**Existing Freight Infrastructure (from Brazil→SF preflight checklist):**
 - **Forwarder**: Seacos Logistic (Graziela Vedana) + Omega Services
 - **Air freight rates (Brazil→USA)**: $3.20-3.50/kg (confirmed June 2026)
 - **Brazil→China** is similar distance — expect comparable rates via same forwarders
 
-### DHL Express Rates (for comparison — use only for samples):
+**DHL Express Rates (for comparison — use only for samples):**
 - Brazil→China DHL Express: ~$15-20/kg (per tonlexing.com and sendfromchina.com)
 
 | Method | Rate/kg | Per Box (40g) | Best For |
@@ -71,20 +69,35 @@ Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (from ledger, Alibaba quo
 
 ---
 
-## 5. Total COGS per Box (40g)
+## 5. Carbon Credit Reserve — Forest Impact
 
-| Component | Cost (USD) | % of Revenue |
-|---|---|---|
-| Cacao tea raw material + processing | $0.30 | 0.6% |
-| Packaging (aluminum cans + box + bags) | $2.30 | 4.6% |
-| Freight (air, consolidated) | $0.18 | 0.4% |
-| Customs/duties (China import ~5-15%) | $0.14 | 0.3% |
-| **Total COGS** | **$2.92** | **5.8%** |
-| **Gross Margin** | **$47.08** | **94.2%** |
+For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4 tons of carbon credit** per tree. This becomes a core brand story: every cacao tea box **regenerates the Amazon**. TrueSight DAO's mission is 10,000 hectares of Amazon rainforest.
+
+| Metric | Per Box | Per Month (5K boxes) | Per Year |
+|---|---|---|---|
+| Carbon reserve ($5/SKU) | **$5.00** | $25,000 | $300,000 |
+| Cacao trees planted | **1 tree** | 5,000 | 60,000 |
+| Carbon credits (tons CO₂) | **4 tons** | 20,000 | 240,000 |
+
+**Net revenue after carbon reserve:** $50.00 − $5.00 = **$45.00/box**
 
 ---
 
-## 6. Operating Expenses (Monthly)
+## 6. Total COGS & Profit per Box (After Carbon Reserve)
+
+| Component | Cost (USD) | % of Net Revenue |
+|---|---|---|
+| Carbon reserve (→ reforestation) | $5.00 | 11.1% |
+| Cacao tea raw material + processing | $0.30 | 0.7% |
+| Packaging (aluminum cans + box + bags) | $2.30 | 5.1% |
+| Freight (air, consolidated) | $0.18 | 0.4% |
+| Customs/duties (China import ~5-15%) | $0.14 | 0.3% |
+| **Total Cost + Carbon** | **$7.92** | **17.6%** |
+| **Net Profit per Box** | **$42.08** | **82.4%** |
+
+---
+
+## 7. Operating Expenses (Monthly)
 
 | Category | Monthly (USD) | Annual (USD) | Note |
 |---|---|---|---|
@@ -102,33 +115,42 @@ Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (from ledger, Alibaba quo
 
 ---
 
-## 7. Break-Even Analysis
+## 8. Break-Even Analysis (After Carbon Reserve)
 
 | Metric | Value |
 |---|---|
 | Retail price per box | $50.00 |
+| − Carbon reserve | −$5.00 |
+| **Net revenue per box** | **$45.00** |
 | COGS per box | $2.92 |
-| Gross profit per box | $47.08 |
+| **Net profit per box (after carbon)** | **$42.08** |
 | Annual OpEx | $106,000 |
-| **Boxes to break even (annual)** | **2,252 boxes** |
-| **Cacao tea kg needed** | **~90 kg** |
-| **Monthly break-even** | **188 boxes (7.5 kg tea)** |
+| **Boxes to break even (annual)** | **2,520 boxes** |
+| **Cacao tea kg needed** | **~101 kg** |
+| **Monthly break-even** | **210 boxes (8.4 kg tea)** |
 
 ---
 
-## 8. Monthly Revenue Scenarios
+## 9. Monthly Revenue Scenarios (After Carbon Reserve)
 
-| Scenario | Boxes/Month | Revenue | COGS | OpEx | Net Profit |
+| Scenario | Boxes/Mo | Net Revenue | COGS | OpEx | Net Profit | Trees/Mo | Carbon (tons/mo) |
+|---|---|---|---|---|---|---|---|
+| B/E | 210 | $9,450 | $613 | $8,000 | $837 | 210 | 840 |
+| Conservative | 500 | $22,500 | $1,460 | $8,000 | $13,040 | 500 | 2,000 |
+| Moderate | 1,000 | $45,000 | $2,920 | $8,000 | $34,080 | 1,000 | 4,000 |
+| Growth | 2,500 | $112,500 | $7,300 | $10,000 | $95,200 | 2,500 | 10,000 |
+| Scale | 5,000 | $225,000 | $14,600 | $15,000 | $195,400 | 5,000 | 20,000 |
+
+### Annual Carbon Impact at Scale
+
+| Scale | Boxes/Yr | Revenue After Carbon | Trees/Yr | Carbon Credits (tons) | Reforestation Fund |
 |---|---|---|---|---|---|
-| Break-even | 188 | $9,400 | $549 | $8,000 | $851 |
-| Conservative | 500 | $25,000 | $1,460 | $8,000 | $15,540 |
-| Moderate | 1,000 | $50,000 | $2,920 | $8,000 | $39,080 |
-| Growth | 2,500 | $125,000 | $7,300 | $10,000 | $107,700 |
-| Scale | 5,000 | $250,000 | $14,600 | $15,000 | $220,400 |
+| Growth | 30,000 | $1,350,000 | 30,000 | 120,000 | $150,000 |
+| Scale | 60,000 | $2,700,000 | 60,000 | 240,000 | $300,000 |
 
 ---
 
-## 9. Funding Requirements
+## 10. Funding Requirements
 
 | Use | Amount |
 |---|---|
@@ -146,7 +168,7 @@ Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (from ledger, Alibaba quo
 
 ---
 
-## 10. Open Items
+## 11. Open Items
 
 | Item | Owner | Status |
 |---|---|---|
