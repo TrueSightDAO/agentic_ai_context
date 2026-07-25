@@ -137,21 +137,36 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ---
 
-## 9. Minimum Sales Target: $500,000/year
+## 9. Required Projections to Hit $500,000 Annual Sales Revenue
 
-| Metric | Value |
-|---|---|
-| **Minimum annual gross sales** | **$500,000** |
-| Boxes per year | **10,000** |
-| Boxes per month (avg) | **833** |
-| Cacao tea per year | **~400 kg** (~16 kg/mo) |
-| Trees planted per year | **10,000** |
-| Carbon credits per year | **40,000 tons CO₂** |
-| Net profit per year (after carbon + OpEx) | **~$344,500** |
-| Reforestation fund per year | **$50,000** |
-| **% of farm capacity used** | **100% (conservative)** |
+### Summary Line
 
-> The **$500K target consumes the full conservative capacity of La Dio Sitio** (400 kg shell/yr → 10,000 boxes). At moderate yield (14% shell weight), same target uses ~71% of farm output.
+> **To achieve $500,000 in annual gross sales revenue, the operation requires:**
+> **10,000 boxes sold per year = 833 boxes per month = ~400 kg of cacao tea annually = 1 cacao tree planted per box = 40,000 tons CO₂ carbon credits generated annually.**
+
+### Breakdown Table
+
+| Projection | Value | Formula |
+|---|---|---|
+| **Annual gross sales revenue** | **$500,000** | 10,000 boxes × $50 |
+| **Monthly gross sales revenue** | **$41,667** | 833 boxes × $50 |
+| **Boxes required per year** | **10,000** | $500,000 / $50 |
+| **Boxes required per month** | **833** | 10,000 / 12 |
+| **Boxes required per day** | **~28** | 833 / 30 |
+| **Cacao tea per year** | **~400 kg** | 10,000 boxes × 40g |
+| **Cacao tea per month** | **~33 kg** | 400 / 12 |
+| **Farm capacity used** | **100% (conservative)** | 400 kg / 400 kg shell yield |
+| **Revenue after carbon reserve** | **$450,000** | 10,000 × $45 (net of $5 carbon) |
+| **COGS (total)** | **$7,920** | 10,000 × $0.792 |
+| **Net revenue after COGS** | **$442,080** | $450,000 − $7,920 |
+| **OpEx (annual)** | **$121,000** | Per section 8 |
+| **Net profit before tax** | **~$321,080** | $442,080 − $121,000 |
+| **Net profit margin** | **~64.2%** | $321,080 / $500,000 |
+| **Cash reserved for reforestation** | **$50,000** | 10,000 boxes × $5 |
+| **Trees planted per year** | **10,000** | 1 per box |
+| **Carbon credits generated** | **40,000 tons CO₂** | 4 tons per tree |
+| **Monthly net profit at 833/mo** | **~$24,970** | Per scenarios table |
+| **Break-even vs $500K target** | **29% of target** | 2,904 boxes break-even / 10,000 target |
 
 ---
 
