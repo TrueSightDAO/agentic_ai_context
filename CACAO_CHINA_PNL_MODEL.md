@@ -127,10 +127,11 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 | **Events & KOL activations** | **$3,333** | **$40,000** | **2 events/yr × $20K — drives all 3 channels** |
 | Warehousing (Shenzhen) | $500 | $6,000 | All channels |
 | Legal & compliance (China) | $500 | $6,000 | All channels |
+| **Analysis lab** (nutritional, heavy metals, pesticide residue, microbiology) | **$250** | **$3,000** | Per-batch testing — import compliance |
 | Miscellaneous | $500 | $6,000 | All channels |
-| **Total Monthly OPEX** | **$9,833** | **$118,000** | |
+| **Total Monthly OPEX** | **$10,083** | **$121,000** | |
 | + One-time setup | | $10,000 | Branding, packaging design, regulatory |
-| **Total Year 1** | | **$128,000** | |
+| **Total Year 1** | | **$131,000** | |
 
 > **Network Expansion Budget:** Elizabeth Wong's $2,000/mo sales & marketing + $40,000/yr events = **$64,000/yr dedicated to expanding Dr. Ye, Cousin, and Chaoshan channels.** This is the core GTM investment.
 
@@ -156,15 +157,15 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ## 10. Minimum Viable Scale — Units Required to Sustain Operations
 
-To cover monthly operating expenses of **$9,833**, you need **219 boxes per month** at $45 net revenue per box. That's just **~8.8 kg of cacao tea** per month.
+To cover monthly operating expenses of **$10,083**, you need **224 boxes per month** at $45 net revenue per box. That's just **~9.0 kg of cacao tea** per month.
 
 | Timeframe | Boxes Needed | Net Revenue | COGS | Net Profit | Cacao Tea Required |
 |---|---|---|---|---|---|
-| **Per month (min viable)** | **219 boxes** | $9,855 | $639 | **$16** | **~8.8 kg** |
-| Per quarter | 657 boxes | $29,565 | $1,918 | **$47** | ~26 kg |
-| Per year (break-even) | 2,844 boxes | $127,980 | $8,304 | **$0 (B/E)** | ~114 kg |
+| **Per month (min viable)** | **224 boxes** | $10,080 | $654 | **~$0** | **~9.0 kg** |
+| Per quarter | 672 boxes | $30,240 | $1,962 | **~$0** | ~27 kg |
+| Per year (break-even) | 2,904 boxes | $130,680 | $8,479 | **$0 (B/E)** | ~116 kg |
 
-> **Minimum Viable Scale = 219 boxes/month (8.8 kg cacao tea).** This is the floor. Every box beyond that is pure profit.
+> **Minimum Viable Scale = 224 boxes/month (9.0 kg cacao tea).** This is the floor after adding lab testing costs. Every box beyond that is pure profit.
 
 ---
 
@@ -172,39 +173,27 @@ To cover monthly operating expenses of **$9,833**, you need **219 boxes per mont
 
 | Scenario | Boxes/Mo | Net Revenue | COGS | OpEx | Net Profit | Trees/Mo | Carbon (tons/mo) |
 |---|---|---|---|---|---|---|---|
-| **Min Viable Scale** | **219** | **$9,855** | **$639** | **$9,833** | **$16** | 219 | 876 |
-| Conservative | 500 | $22,500 | $1,460 | $9,833 | **$11,207** | 500 | 2,000 |
-| **$500K Target (833/mo)** | **833** | **$37,485** | **$2,432** | **$9,833** | **$25,220** | **833** | **3,332** |
-| Moderate | 1,000 | $45,000 | $2,920 | $9,833 | **$32,247** | 1,000 | 4,000 |
-| Growth | 2,500 | $112,500 | $7,300 | $11,833 | **$93,367** | 2,500 | 10,000 |
-| Scale | 5,000 | $225,000 | $14,600 | $16,833 | **$193,567** | 5,000 | 20,000 |
-
-> **At Min Viable Scale (219 boxes/mo):** You sustain ops with near-zero loss.
-> **At $500K Target (833 boxes/mo):** Net profit of $25,220/month — team paid, carbon funded, $300K+/yr net.
-> **Note:** $500K target = 10,000 boxes/yr = 400 kg tea = conservative capacity of La Dio Sitio.
-
-### Annual Carbon Impact at Scale
-
-| Scale | Boxes/Yr | Revenue After Carbon | Trees/Yr | Carbon Credits (tons) | Reforestation Fund |
-|---|---|---|---|---|---|
-| $500K Target | 10,000 | $450,000 | 10,000 | 40,000 | $50,000 |
-| Farm max (optimistic) | 17,000 | $765,000 | 17,000 | 68,000 | $85,000 |
+| **Min Viable Scale** | **224** | **$10,080** | **$654** | **$10,083** | **$0** | 224 | 896 |
+| Conservative | 500 | $22,500 | $1,460 | $10,083 | **$10,957** | 500 | 2,000 |
+| **$500K Target (833/mo)** | **833** | **$37,485** | **$2,432** | **$10,083** | **$24,970** | 833 | 3,332 |
+| Growth | 2,500 | $112,500 | $7,300 | $12,083 | **$93,117** | 2,500 | 10,000 |
+| Scale | 5,000 | $225,000 | $14,600 | $17,083 | **$193,317** | 5,000 | 20,000 |
 
 ---
 
-## 12. Funding Requirements
+## 12. Funding Required (Year 1)
 
-| Use | Amount |
-|---|---|
-| Initial inventory (50 kg cacao tea from AGL8) | $375 |
-| Packaging (aluminum cans + boxes — 5,000 units) | $11,500 |
-| Freight (50 kg air consolidated Brazil→China) | $250 |
-| Branding & packaging design (one-time) | $3,000 |
-| China food import compliance | $3,000 |
-| Operating reserve (6 months) | $59,000 |
-| Marketing launch (KOLs, 1 event) | $25,000 |
-| Contingency (15%) | $15,319 |
-| **Total Required** | **~$117,444** |
+| Item | Amount | Notes |
+|---|---|---|
+| Initial inventory (50 kg cacao tea) | $375 | Cacao tea raw material |
+| Initial packaging (5,000 sets) | $11,500 | Aluminum cans + boxes (per Shenzhen quote) |
+| Freight (50 kg air, Brazil→China) | $250 | Consolidated air freight |
+| Brand & packaging design | $3,000 | One-time |
+| China food import compliance | $3,000 | Regulatory registration |
+| Operating reserve (6 months) | $60,498 | $10,083 × 6 |
+| Market activation (KOL + 1 event) | $25,000 | First event + initial KOL partnerships |
+| Contingency (15%) | $15,319 | |
+| **Total Required** | **~$118,942** | Close to Elizabeth Wong's $100K estimate |
 
 ---
 
@@ -212,14 +201,12 @@ To cover monthly operating expenses of **$9,833**, you need **219 boxes per mont
 
 | Item | Owner | Status |
 |---|---|---|
-| Packaging pricing (aluminum cans, boxes, labels — 小罐茶 style) | **Ling** | ⚠️ NEED |
-| Packaging details (materials, dimensions, artwork requirements) | **Ling** | ⚠️ NEED |
-| Events budget — confirmed 2 events/yr × $20K | **Elizabeth Wong** | ✅ DONE |
-| KOL partnership budget and target list | **Elizabeth Wong** | ⚠️ NEED |
-| China food import regulations — cacao husk tea classification | **Legal** | ⚠️ NEED |
-| Dr. Ye's Douyin side account launch timing | **Dr. Ye** | ⚠️ PENDING |
-| Chaoshan group introduction and partnership terms | **Elizabeth Wong** | ⚠️ PENDING |
-
----
-
-*This document supplements CACAO_MARKET_COMPETITIVE_ANALYSIS.md and CACAO_TCM_MEDICAL_RESEARCH.md with financial modeling data.*
+| Packaging pricing (aluminum cans, boxes, labels) | Ling | ⚠️ NEED |
+| Packaging details (materials, dimensions, artwork) | Ling | ⚠️ NEED |
+| Events budget — confirmed 2 events/yr × $20K | Elizabeth Wong | ✅ DONE |
+| KOL partnership budget and target list | Elizabeth Wong | ⚠️ NEED |
+| China food import regulations (cacao husk tea classification) | Legal | ⚠️ NEED |
+| Dr. Ye's Douyin side account launch timing | Dr. Ye | ⚠️ PENDING |
+| Chaoshan group introduction and partnership terms | Elizabeth Wong | ⚠️ PENDING |
+| **TCM specialist to formulate blends for 10-can box** (Heart-Nourishing, Digestive-Warming, Liver-Soothing, Kidney-Warming + cacao shell base) | **TCM Specialist** (Dr. Ye to recommend) | ⚠️ NEED |
+| **Analysis lab fees** — nutritional panel, heavy metals (Pb/Cd/As), pesticide residue, microbiology for China import compliance | **Accredited Food Lab** (~$250/mo ongoing) | ⚠️ NEED |
