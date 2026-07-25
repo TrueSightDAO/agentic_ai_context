@@ -19,7 +19,7 @@ Sales, marketing, and events budgets are allocated to expand these three channel
 
 ---
 
-## 2. Raw Material Cost (Cacao Tea from AGL8)
+## 2. Raw Material Cost (Cacao Tea Shell from AGL8)
 
 **Farm profile — La Dio Sitio, Pará, Brazil (Paulo)**
 - Product on Agroverse Shop: "Ceremonial Cacao – La do Sitio Farm, Pará Brazil, 2024 (200g)" — retail $25
@@ -37,7 +37,23 @@ Sales, marketing, and events budgets are allocated to expand these three channel
 
 ---
 
-## 3. Packaging Cost
+## 3. Supply Constraints — La Dio Sitio Farm
+
+La Dio Sitio is a **4-hectare** farm producing **~4,000 kg of cacao beans per year** (1,000 kg/ha). The cacao shell (husk) — used for tea — makes up **10-17% of bean weight** per peer-reviewed research (PMC7230451).
+
+| Metric | Conservative (10%) | Moderate (14%) | Optimistic (17%) |
+|---|---|---|---|
+| Cacao tea per year | 400 kg | 560 kg | 680 kg |
+| Boxes per year (40g/box) | **10,000** | **14,000** | **17,000** |
+| Revenue at $50/box | **$500,000** | **$700,000** | **$850,000** |
+| Trees planted/yr | 10,000 | 14,000 | 17,000 |
+| Carbon (tons CO₂/yr) | 40,000 | 56,000 | 68,000 |
+
+**Key insight:** The **$500K minimum annual sales target is exactly at the farm's conservative capacity** (10,000 boxes from 400 kg tea). To scale beyond 10,000 boxes/yr, additional cacao shell supply is needed — either from other farms or through partnerships for shell byproduct from chocolate/nib production.
+
+---
+
+## 4. Packaging Cost
 
 Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (Alibaba quotes):
 
@@ -52,7 +68,7 @@ Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (Alibaba quotes):
 
 ---
 
-## 4. Freight Cost (Brazil Ilhéus → Shenzhen, China)
+## 5. Freight Cost (Brazil Ilhéus → Shenzhen, China)
 
 **Existing Freight Infrastructure (from Brazil→SF preflight checklist):**
 - **Forwarder**: Seacos Logistic (Graziela Vedana) + Omega Services
@@ -72,7 +88,7 @@ Reference: Jessie Peng — Shenzhen Source Pack Co Ltd (Alibaba quotes):
 
 ---
 
-## 5. Carbon Credit Reserve — Forest Impact
+## 6. Carbon Credit Reserve — Forest Impact
 
 For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4 tons of carbon credit** per tree. This becomes a core brand story: every cacao tea box **regenerates the Amazon**. TrueSight DAO's mission is 10,000 hectares of Amazon rainforest.
 
@@ -86,7 +102,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ---
 
-## 6. Total COGS & Profit per Box (After Carbon Reserve)
+## 7. Total COGS & Profit per Box (After Carbon Reserve)
 
 | Component | Cost (USD) | % of Net Revenue |
 |---|---|---|
@@ -100,7 +116,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ---
 
-## 7. Operating Expenses (Monthly)
+## 8. Operating Expenses (Monthly)
 
 | Category | Monthly | Annual | Channel Served |
 |---|---|---|---|
@@ -120,7 +136,25 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ---
 
-## 8. Minimum Viable Scale — Units Required to Sustain Operations
+## 9. Minimum Sales Target: $500,000/year
+
+| Metric | Value |
+|---|---|
+| **Minimum annual gross sales** | **$500,000** |
+| Boxes per year | **10,000** |
+| Boxes per month (avg) | **833** |
+| Cacao tea per year | **~400 kg** (~16 kg/mo) |
+| Trees planted per year | **10,000** |
+| Carbon credits per year | **40,000 tons CO₂** |
+| Net profit per year (after carbon + OpEx) | **~$344,500** |
+| Reforestation fund per year | **$50,000** |
+| **% of farm capacity used** | **100% (conservative)** |
+
+> The **$500K target consumes the full conservative capacity of La Dio Sitio** (400 kg shell/yr → 10,000 boxes). At moderate yield (14% shell weight), same target uses ~71% of farm output.
+
+---
+
+## 10. Minimum Viable Scale — Units Required to Sustain Operations
 
 To cover monthly operating expenses of **$9,833**, you need **219 boxes per month** at $45 net revenue per box. That's just **~8.8 kg of cacao tea** per month.
 
@@ -134,29 +168,31 @@ To cover monthly operating expenses of **$9,833**, you need **219 boxes per mont
 
 ---
 
-## 9. Monthly Revenue Scenarios (After Carbon Reserve)
+## 11. Monthly Revenue Scenarios (After Carbon Reserve)
 
 | Scenario | Boxes/Mo | Net Revenue | COGS | OpEx | Net Profit | Trees/Mo | Carbon (tons/mo) |
 |---|---|---|---|---|---|---|---|
 | **Min Viable Scale** | **219** | **$9,855** | **$639** | **$9,833** | **$16** | 219 | 876 |
 | Conservative | 500 | $22,500 | $1,460 | $9,833 | **$11,207** | 500 | 2,000 |
+| **$500K Target (833/mo)** | **833** | **$37,485** | **$2,432** | **$9,833** | **$25,220** | **833** | **3,332** |
 | Moderate | 1,000 | $45,000 | $2,920 | $9,833 | **$32,247** | 1,000 | 4,000 |
 | Growth | 2,500 | $112,500 | $7,300 | $11,833 | **$93,367** | 2,500 | 10,000 |
 | Scale | 5,000 | $225,000 | $14,600 | $16,833 | **$193,567** | 5,000 | 20,000 |
 
 > **At Min Viable Scale (219 boxes/mo):** You sustain ops with near-zero loss.
-> **At Conservative (500 boxes/mo):** Net profit of $11,207/month — team paid, carbon funded, surplus for growth.
+> **At $500K Target (833 boxes/mo):** Net profit of $25,220/month — team paid, carbon funded, $300K+/yr net.
+> **Note:** $500K target = 10,000 boxes/yr = 400 kg tea = conservative capacity of La Dio Sitio.
 
 ### Annual Carbon Impact at Scale
 
 | Scale | Boxes/Yr | Revenue After Carbon | Trees/Yr | Carbon Credits (tons) | Reforestation Fund |
 |---|---|---|---|---|---|
-| Growth | 30,000 | $1,350,000 | 30,000 | 120,000 | $150,000 |
-| Scale | 60,000 | $2,700,000 | 60,000 | 240,000 | $300,000 |
+| $500K Target | 10,000 | $450,000 | 10,000 | 40,000 | $50,000 |
+| Farm max (optimistic) | 17,000 | $765,000 | 17,000 | 68,000 | $85,000 |
 
 ---
 
-## 10. Funding Requirements
+## 12. Funding Requirements
 
 | Use | Amount |
 |---|---|
@@ -172,7 +208,7 @@ To cover monthly operating expenses of **$9,833**, you need **219 boxes per mont
 
 ---
 
-## 11. Open Items
+## 13. Open Items
 
 | Item | Owner | Status |
 |---|---|---|
