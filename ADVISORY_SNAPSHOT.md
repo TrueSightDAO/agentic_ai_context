@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-24T19:54:51Z`
-- Look-back: **7** calendar days (`2026-07-17` → today UTC)
+- Generated (UTC): `2026-07-25T03:48:32Z`
+- Look-back: **7** calendar days (`2026-07-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,16 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 29
-- `[PRACTICE EVENT]` × 6
-- `[DESIGN UPLOAD EVENT]` × 1
-- `[DESIGN ORDER EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 30
+- `[PRACTICE EVENT]` × 7
 - `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260721054727_227` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Warm-up conversion improvement: stats audit + segmented outreach + recurring…
-- `Edgar_20260721054818_229` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Handoff registry consolidation, 3 production bug fixes, and deploy
 - `Edgar_20260722004520_231` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 63 · Description: Personal contributor backlog: registry, Sophia push tool, worktree convention
 - `Edgar_20260722004843_233` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Reviewed and merged PRs for personal contributor backlog registry, Sophia pu…
 - `Edgar_20260722030709_235` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to Max on HBO documentary
@@ -60,6 +56,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260724054212_261` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Dinner meeting with cousin (表哥) — market research gathering on cacao beverag…
 - `Edgar_20260724060111_263` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The built-in generate_pdf tool uses Helveti…
 - `Edgar_20260724060140_265` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
+- `Edgar_20260724222908_267` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-24T22:29:05.029Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260725021102_269` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: DeepSeek API credit
 
 ---
 
@@ -248,9 +246,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.85**
+- USD on hand: **$4,373.75**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$50.44**
+- USD provisioned for voting-rights cash-out: **$50.55**
 
 ### In-transit freight (1 row)
 
@@ -266,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-07-17_ (1):
+_All dated lines on/after 2026-07-18_ (1):
 
 - 2026-07-18 | DeepSeek | PERSONAL_PAT (github_pat_… fine-grained, 93 chars) staged for cross-agent access per credentials/CREDENTIAL_HANDOFF_PROTOCOL.md: operator Mac ~/Applications/tmp/PERSONAL_PAT, sophia box /home/ubuntu/PERSONAL_PAT, nelanco-claude box /home/ubuntu/PERSONAL_PAT (all chmod 600; value never in chat/commits). nelanco-claude Claude: read /home/ubuntu/PERSONAL_PAT to continue the white-label work; box git auth is credential.helper=store with one x-access-token github.com entry, so use the PAT explicitly (or add a store entry) for repos the DAO PAT cannot reach.
 
@@ -287,6 +285,7 @@ _All dated lines on/after 2026-07-17_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9162711 | 2026-07-24 19:57:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c56f0cf | 2026-07-24 14:22:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 88517b2 | 2026-07-24 09:05:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -314,10 +313,6 @@ bcb26b2 | 2026-07-18 19:44:54 +0000 | chore(stats): refresh stats/current.json [
 9a5d9d3 | 2026-07-18 14:00:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5ce114a | 2026-07-18 08:22:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
-7febebb | 2026-07-17 19:41:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f1067d3 | 2026-07-17 14:13:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
-dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0b13bdb | 2026-07-17 03:48:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -329,6 +324,26 @@ dc8a664 | 2026-07-17 08:37:37 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a3d1ca4 | 2026-07-25 11:13:41 +0800 | Add 八、必要预测 for $500K sales target (CN)
+6a09b34 | 2026-07-25 11:13:39 +0800 | Add Part 8: Required Projections for $500K sales target
+020d23c | 2026-07-25 11:06:43 +0800 | Add analysis lab fees to OpEx + open items (CN)
+b8ae0ce | 2026-07-25 11:06:42 +0800 | Add analysis lab fees to OpEx + open items
+28a3036 | 2026-07-25 11:03:21 +0800 | Add supply constraints: La Dio Sitio 4ha → 400-680kg tea/yr → 10K-17K boxes max
+827e0b2 | 2026-07-25 11:03:20 +0800 | Add supply constraints: La Dio Sitio 4ha → 400-680kg tea/yr → 10K-17K boxes max
+d181b43 | 2026-07-25 10:40:05 +0800 | Fix name: 表姐Liz → Elizabeth Wong throughout
+1cf538e | 2026-07-25 10:40:04 +0800 | Fix name: 表姐Liz → Elizabeth Wong throughout
+d8c1cad | 2026-07-25 10:36:57 +0800 | Update P&L: $40K/yr events (2×$20K), 219 boxes/mo min viable, GTM channels reframed
+55c83b1 | 2026-07-25 10:36:56 +0800 | Update P&L: $40K/yr events (2×$20K), 219 boxes/mo min viable, GTM channels reframed
+57c2775 | 2026-07-25 10:34:18 +0800 | Reframe cover — 叶医生/表哥/潮汕 as Network Expansion Channels
+59d3cb4 | 2026-07-25 10:34:17 +0800 | Reframe cover — Dr. Ye/Cousin/Chaoshan as Network Expansion Channels
+109ad61 | 2026-07-25 10:33:19 +0800 | Add Minimum Viable Scale section — 191 boxes/mo sustains ops
+674bd84 | 2026-07-25 10:33:18 +0800 | Add Minimum Viable Scale section — 191 boxes/mo sustains ops
+7ce0084 | 2026-07-25 10:29:39 +0800 | Add carbon credit reserve ($5/SKU → 4 tons CO2, 1 tree per box)
+df34263 | 2026-07-25 10:29:38 +0800 | Add carbon credit reserve ($5/SKU → 4 tons CO2, 1 tree per box)
+bae1ba9 | 2026-07-25 10:27:38 +0800 | Add operating P&L model, cost analysis, and freight estimates to Chinese PDF
+9df1bb1 | 2026-07-25 10:27:36 +0800 | Add operating P&L model, cost analysis, and freight estimates to English PDF
+9291caa | 2026-07-25 03:55:04 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
+a37a521 | 2026-07-25 03:55:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
 d2dfc53 | 2026-07-24 22:20:48 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
 e74957c | 2026-07-24 22:20:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
 3f1fff4 | 2026-07-24 17:03:38 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
@@ -349,26 +364,6 @@ bb4bcc3 | 2026-07-23 22:41:00 +0800 | chore(previews): refresh Beer Hall preview
 25ced49 | 2026-07-23 18:59:51 +0800 | plan: GetData.IO MCP bridge -- pivot to Rails-native (krake_ror), abandon separate repo (#711)
 ccecf17 | 2026-07-23 10:23:47 +0000 | Merge: allow commit-URL evidence for AI-agent contributions with no PR
 0fdde9d | 2026-07-23 17:36:14 +0800 | Add pricing PDF: Wisconsin wild ginseng & Xinhui chenpi per kg
-df9c02f | 2026-07-23 17:07:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
-28a579f | 2026-07-23 17:07:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
-28d92bc | 2026-07-23 11:54:25 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
-72917ea | 2026-07-23 11:54:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
-e99e1e5 | 2026-07-23 03:53:04 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
-1bcab99 | 2026-07-23 03:53:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
-374ee33 | 2026-07-22 22:34:00 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
-cd1f100 | 2026-07-22 22:33:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
-64f18de | 2026-07-22 17:09:28 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
-4c72b78 | 2026-07-22 17:09:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
-4ddfc6a | 2026-07-22 11:57:31 +0800 | chore(previews): refresh Beer Hall preview (2026-07-22 UTC)
-3960f5b | 2026-07-22 11:57:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-22 UTC)
-d047157 | 2026-07-22 01:07:34 +0000 | docs: allow commit-URL evidence for AI-agent contributions with no PR
-81df7b3 | 2026-07-22 04:00:17 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
-1d570fc | 2026-07-22 04:00:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
-1dcdc5d | 2026-07-21 22:34:25 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
-d56c7c0 | 2026-07-21 22:34:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
-1cebc5a | 2026-07-21 17:09:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-21 UTC)
-8d14bc4 | 2026-07-21 17:09:28 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-21 UTC)
-bbff316 | 2026-07-21 07:02:41 +0000 | Merge: add opt-in Auto-start marker for handoffs (skip initial GO wait)
 … (truncated)
 ```
 
@@ -413,7 +408,6 @@ bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory
 058bcde | 2026-07-20 09:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -422,7 +416,6 @@ b2e899e | 2026-07-17 08:30:13 +0000 | chore: refresh store and partner inventory
 29afc0c | 2026-07-18 09:00:53 +0800 | test: add real E2E checkout verification script + pre-merge policy (#195)
 0b28731 | 2026-07-18 08:43:27 +0800 | fix(white-label): use correct shipping rate field names from GAS (#194)
 bd72396 | 2026-07-18 08:22:43 +0800 | fix: replace stale checkout GAS deployment URL (#193)
-842aeb4 | 2026-07-17 17:45:15 +0800 | fix(white-label): route beta/localhost checkout through Stripe test mode (#192)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -511,9 +504,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 12:50:40 |
+| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 19:50:27 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-17`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-18`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
