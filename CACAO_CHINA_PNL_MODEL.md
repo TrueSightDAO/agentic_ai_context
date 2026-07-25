@@ -1,8 +1,8 @@
 # Cacao Tea China Market — Operating P&L Model
 
 **Compiled**: July 13, 2026  
-**Source**: DAO ledger (Agroverse Processing Cost), AGL8 shipment data, DHL/air freight research, Liz's market input  
-**Initial Go-to-Market Network Expansion Channels**: Dr. Ye (TCM) · Liz's Cousin (Market Insider) · Chaoshan Group  
+**Source**: DAO ledger (Agroverse Processing Cost), AGL8 shipment data, DHL/air freight research, Elizabeth Wong's market input  
+**Initial Go-to-Market Network Expansion Channels**: Dr. Ye (TCM) · Elizabeth Wong's Cousin (Market Insider) · Chaoshan Group  
 
 Sales, marketing, and events budgets are allocated to expand these three channels.
 
@@ -15,7 +15,7 @@ Sales, marketing, and events budgets are allocated to expand these three channel
 | Serving size | **4g per can** | 小罐茶 industry standard |
 | Box size | 10 cans = **40g per box** | Standard retail format |
 | Units per kg | **250 boxes** (25,000 servings) | 1,000g / 4g |
-| Retail price | **$50 per box** | Suggested by Liz |
+| Retail price | **$50 per box** | Suggested by Elizabeth Wong |
 
 ---
 
@@ -106,7 +106,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 |---|---|---|---|
 | Team — Jerrie (operations) | $1,000 | $12,000 | All channels |
 | Team — Ling (packaging/logistics) | $1,000 | $12,000 | All channels |
-| Liz — Sales & marketing (KOL wining/dining) | $2,000 | $24,000 | Dr. Ye / Cousin / Chaoshan expansion |
+| Elizabeth Wong — Sales & marketing (KOL wining/dining) | $2,000 | $24,000 | Dr. Ye / Cousin / Chaoshan expansion |
 | Marketing content production | $1,000 | $12,000 | Dr. Ye's Douyin content |
 | **Events & KOL activations** | **$3,333** | **$40,000** | **2 events/yr × $20K — drives all 3 channels** |
 | Warehousing (Shenzhen) | $500 | $6,000 | All channels |
@@ -116,7 +116,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 | + One-time setup | | $10,000 | Branding, packaging design, regulatory |
 | **Total Year 1** | | **$128,000** | |
 
-> **Network Expansion Budget:** Liz's $2,000/mo sales & marketing + $40,000/yr events = **$64,000/yr dedicated to expanding Dr. Ye, Cousin, and Chaoshan channels.** This is the core GTM investment.
+> **Network Expansion Budget:** Elizabeth Wong's $2,000/mo sales & marketing + $40,000/yr events = **$64,000/yr dedicated to expanding Dr. Ye, Cousin, and Chaoshan channels.** This is the core GTM investment.
 
 ---
 
@@ -178,11 +178,11 @@ To cover monthly operating expenses of **$9,833**, you need **219 boxes per mont
 |---|---|---|
 | Packaging pricing (aluminum cans, boxes, labels — 小罐茶 style) | **Ling** | ⚠️ NEED |
 | Packaging details (materials, dimensions, artwork requirements) | **Ling** | ⚠️ NEED |
-| Events budget — confirmed 2 events/yr × $20K | **Liz** | ✅ DONE |
-| KOL partnership budget and target list | **Liz** | ⚠️ NEED |
+| Events budget — confirmed 2 events/yr × $20K | **Elizabeth Wong** | ✅ DONE |
+| KOL partnership budget and target list | **Elizabeth Wong** | ⚠️ NEED |
 | China food import regulations — cacao husk tea classification | **Legal** | ⚠️ NEED |
 | Dr. Ye's Douyin side account launch timing | **Dr. Ye** | ⚠️ PENDING |
-| Chaoshan group introduction and partnership terms | **Liz** | ⚠️ PENDING |
+| Chaoshan group introduction and partnership terms | **Elizabeth Wong** | ⚠️ PENDING |
 
 ---
 
