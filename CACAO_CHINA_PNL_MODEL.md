@@ -1,7 +1,8 @@
 # Cacao Tea China Market — Operating P&L Model
 
 **Compiled**: July 13, 2026  
-**Source**: DAO ledger (Agroverse Processing Cost), AGL8 shipment data, DHL/air freight research, Liz's market input
+**Source**: DAO ledger (Agroverse Processing Cost), AGL8 shipment data, DHL/air freight research, Liz's market input  
+**Network Channels**: Dr. Ye / Liz's Cousin / Chaoshan Group
 
 ---
 
