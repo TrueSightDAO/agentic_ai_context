@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-25T03:48:32Z`
+- Generated (UTC): `2026-07-25T08:30:02Z`
 - Look-back: **7** calendar days (`2026-07-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -285,6 +285,7 @@ _All dated lines on/after 2026-07-18_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9416215 | 2026-07-25 03:51:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9162711 | 2026-07-24 19:57:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c56f0cf | 2026-07-24 14:22:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 88517b2 | 2026-07-24 09:05:06 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -324,6 +325,8 @@ a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f9d9afe | 2026-07-25 11:48:49 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
+c1f145d | 2026-07-25 11:48:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
 a3d1ca4 | 2026-07-25 11:13:41 +0800 | Add 八、必要预测 for $500K sales target (CN)
 6a09b34 | 2026-07-25 11:13:39 +0800 | Add Part 8: Required Projections for $500K sales target
 020d23c | 2026-07-25 11:06:43 +0800 | Add analysis lab fees to OpEx + open items (CN)
@@ -362,8 +365,6 @@ f70e345 | 2026-07-24 03:56:10 +0800 | chore(previews): refresh Beer Hall preview
 bb4bcc3 | 2026-07-23 22:41:00 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
 37504f2 | 2026-07-23 22:40:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-23 UTC)
 25ced49 | 2026-07-23 18:59:51 +0800 | plan: GetData.IO MCP bridge -- pivot to Rails-native (krake_ror), abandon separate repo (#711)
-ccecf17 | 2026-07-23 10:23:47 +0000 | Merge: allow commit-URL evidence for AI-agent contributions with no PR
-0fdde9d | 2026-07-23 17:36:14 +0800 | Add pricing PDF: Wisconsin wild ginseng & Xinhui chenpi per kg
 … (truncated)
 ```
 
@@ -400,6 +401,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f31d38f | 2026-07-25 08:25:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a14d554 | 2026-07-24 08:45:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8dffed9 | 2026-07-23 08:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0eebd69 | 2026-07-22 08:46:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -504,7 +506,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/24/2026 19:50:27 |
+| 2026-07 | 201.48 | 16911.06386 | 7/25/2026 0:52:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-18`; scanned last **600** data rows)
 
