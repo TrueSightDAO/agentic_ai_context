@@ -117,29 +117,31 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ## 8. Minimum Viable Scale — Units Required to Sustain Operations
 
-| Timeframe | Units (Boxes) Needed | Revenue (After Carbon) | COGS | Net Profit | Cacao Tea Required |
+| Timeframe | Boxes Needed | Net Revenue | COGS | Net Profit | Cacao Tea Required |
 |---|---|---|---|---|---|
 | **Per month** | **191 boxes** | $8,595 | $558 | **$37** | **~7.6 kg** |
-| **Per quarter** | **573 boxes** | $25,785 | $1,674 | **$111** | **~23 kg** |
-| **Per year** | **2,520 boxes** | $113,400 | $7,358 | **$0 (break-even)** | **~101 kg** |
+| Per quarter | 573 boxes | $25,785 | $1,674 | **$111** | ~23 kg |
+| Per year (break-even) | 2,520 boxes | $113,400 | $7,358 | **$0** | ~101 kg |
 
-> **To cover monthly operating expenses of $8,000**, you need to sell **191 boxes per month** — that's **~7.6 kg of cacao tea** per month at $45 net revenue per box. At that rate, net profit is ~$37/month (essentially break-even on OpEx).
+> **To cover monthly OpEx of $8,000**, you need **191 boxes per month** at $45 net revenue per box. That's just **~7.6 kg of cacao tea**. At this volume, net profit is ~$37/month — essentially break-even on OpEx.
 
-> **To fully cover Year 1 total costs ($106,000 including one-time setup)**, you need **2,520 boxes total** (~101 kg cacao tea).
+> **Minimum Viable Scale = 191 boxes/month (7.6 kg cacao tea).** This is the floor. Every box beyond that is pure profit.
 
-### Monthly Revenue Scenarios (After Carbon Reserve)
+---
+
+## 9. Monthly Revenue Scenarios (After Carbon Reserve)
 
 | Scenario | Boxes/Mo | Net Revenue | COGS | OpEx | Net Profit | Trees/Mo | Carbon (tons/mo) |
 |---|---|---|---|---|---|---|---|
-| **Minimum Viable Scale** | **191** | **$8,595** | **$558** | **$8,000** | **$37** | 191 | 764 |
+| **Min Viable Scale** | **191** | **$8,595** | **$558** | **$8,000** | **$37** | 191 | 764 |
+| B/E | 210 | $9,450 | $613 | $8,000 | $837 | 210 | 840 |
 | Conservative | 500 | $22,500 | $1,460 | $8,000 | $13,040 | 500 | 2,000 |
 | Moderate | 1,000 | $45,000 | $2,920 | $8,000 | $34,080 | 1,000 | 4,000 |
 | Growth | 2,500 | $112,500 | $7,300 | $10,000 | $95,200 | 2,500 | 10,000 |
 | Scale | 5,000 | $225,000 | $14,600 | $15,000 | $195,400 | 5,000 | 20,000 |
 
-> **At Minimum Viable Scale (191 boxes/mo):** You sustain operations with zero loss. This is the floor — every box beyond that is profit.
-
-> **At Conservative (500 boxes/mo):** Net profit of **$13,040/month** — the team is paid, carbon is funded, and there's meaningful surplus for growth.
+> **At Min Viable Scale (191 boxes/mo):** You sustain ops with zero loss.
+> **At Conservative (500 boxes/mo):** Net profit of $13,040/month — team paid, carbon funded, surplus for growth.
 
 ### Annual Carbon Impact at Scale
 
@@ -150,7 +152,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ---
 
-## 9. Funding Requirements
+## 10. Funding Requirements
 
 | Use | Amount |
 |---|---|
@@ -168,7 +170,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 
 ---
 
-## 10. Open Items
+## 11. Open Items
 
 | Item | Owner | Status |
 |---|---|---|
