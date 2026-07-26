@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-26T14:07:59Z`
+- Generated (UTC): `2026-07-26T19:43:56Z`
 - Look-back: **7** calendar days (`2026-07-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-19 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+76917e9 | 2026-07-26 14:11:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 71d1c73 | 2026-07-26 08:58:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e700fc | 2026-07-26 04:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9e8a677 | 2026-07-25 19:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -324,6 +325,8 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a41e5a6 | 2026-07-26 22:08:12 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
+4af87e0 | 2026-07-26 22:08:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 2a0fe49 | 2026-07-26 16:56:09 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
 3a7a882 | 2026-07-26 16:56:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 567a2c9 | 2026-07-26 14:39:50 +0800 | Replace with full Mandarin CN PowerPoint - 13 slides, all content in Chinese
@@ -362,8 +365,6 @@ d8c1cad | 2026-07-25 10:36:57 +0800 | Update P&L: $40K/yr events (2×$20K), 219 
 674bd84 | 2026-07-25 10:33:18 +0800 | Add Minimum Viable Scale section — 191 boxes/mo sustains ops
 7ce0084 | 2026-07-25 10:29:39 +0800 | Add carbon credit reserve ($5/SKU → 4 tons CO2, 1 tree per box)
 df34263 | 2026-07-25 10:29:38 +0800 | Add carbon credit reserve ($5/SKU → 4 tons CO2, 1 tree per box)
-bae1ba9 | 2026-07-25 10:27:38 +0800 | Add operating P&L model, cost analysis, and freight estimates to Chinese PDF
-9df1bb1 | 2026-07-25 10:27:36 +0800 | Add operating P&L model, cost analysis, and freight estimates to English PDF
 … (truncated)
 ```
 
@@ -503,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 6:50:20 |
+| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 11:50:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-19`; scanned last **600** data rows)
 
