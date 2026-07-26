@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-26T04:05:52Z`
+- Generated (UTC): `2026-07-26T08:55:56Z`
 - Look-back: **7** calendar days (`2026-07-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260722004843_233` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Reviewed and merged PRs for personal contributor backlog registry, Sophia pu…
 - `Edgar_20260722030709_235` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to Max on HBO documentary
 - `Edgar_20260722042014_237` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-22T04:20:11.074Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260722095632_239` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussions to setup the Brazilian CNPJ
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260724222908_267` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-24T22:29:05.029Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260725021102_269` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: DeepSeek API credit
 - `Edgar_20260726023147_271` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-26T02:31:45.722Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260726063158_273` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-19 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4e700fc | 2026-07-26 04:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9e8a677 | 2026-07-25 19:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6f084c2 | 2026-07-25 14:12:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 10b5566 | 2026-07-25 08:32:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,6 +323,18 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+567a2c9 | 2026-07-26 14:39:50 +0800 | Replace with full Mandarin CN PowerPoint - 13 slides, all content in Chinese
+e18d328 | 2026-07-26 14:31:50 +0800 | Add slide mockdowns for easy reference and future modifications
+07ef71b | 2026-07-26 14:31:35 +0800 | Add Chinese PowerPoint deck - 13 slides
+239baea | 2026-07-26 14:31:28 +0800 | Add English PowerPoint deck - 13 slides cacao tea China opportunity
+ab18d32 | 2026-07-26 14:22:53 +0800 | Update married couples tagline to 昨天的我们青春正好
+b752522 | 2026-07-26 14:22:52 +0800 | Update married couples tagline to Yesterday We Were Young
+a174d6f | 2026-07-26 14:12:43 +0800 | Add divine feminine tagline to women demographics (CN)
+8826961 | 2026-07-26 14:12:41 +0800 | Add divine feminine tagline to women demographics
+f53cfe3 | 2026-07-26 13:57:36 +0800 | Add epicatechin active ingredient + dual-product extraction strategy (CN)
+9a0a0ce | 2026-07-26 13:57:35 +0800 | Add epicatechin active ingredient + dual-product extraction strategy
+b4f866c | 2026-07-26 12:06:09 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
+9a587ef | 2026-07-26 12:06:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 89e6e5a | 2026-07-26 03:42:56 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
 7f39a55 | 2026-07-26 03:42:55 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
 a6c8dae | 2026-07-25 22:09:56 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
@@ -350,18 +363,6 @@ bae1ba9 | 2026-07-25 10:27:38 +0800 | Add operating P&L model, cost analysis, an
 9df1bb1 | 2026-07-25 10:27:36 +0800 | Add operating P&L model, cost analysis, and freight estimates to English PDF
 9291caa | 2026-07-25 03:55:04 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
 a37a521 | 2026-07-25 03:55:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
-d2dfc53 | 2026-07-24 22:20:48 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
-e74957c | 2026-07-24 22:20:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
-3f1fff4 | 2026-07-24 17:03:38 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
-bf1e610 | 2026-07-24 17:03:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
-a75063c | 2026-07-24 15:01:24 +0800 | Update Chinese PDF with competitive comparison tables
-c939d80 | 2026-07-24 15:01:22 +0800 | Update English PDF with competitive comparison tables
-1dfb5f3 | 2026-07-24 14:20:10 +0800 | Add fully Chinese PDF for Dr. Ye, Liz's cousin, and Chaoshan group
-fb1bc61 | 2026-07-24 14:07:29 +0800 | Regenerate PDF using WeasyPrint with DroidSansFallback font - all Chinese characters verified
-658bc4e | 2026-07-24 14:03:22 +0800 | Fix: regenerate PDF with embedded DroidSansFallback Chinese font
-c0a4620 | 2026-07-24 14:00:07 +0800 | Update cacao beverage PDF with Chinese font support (DroidSansFallback)
-f3a3b79 | 2026-07-24 13:57:46 +0800 | Add cacao beverage opportunity PDF for Dr Ye, Liz's cousin & Chaoshan group
-4cd05d3 | 2026-07-24 11:53:23 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
 … (truncated)
 ```
 
@@ -398,6 +399,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+01a0461 | 2026-07-26 08:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f31d38f | 2026-07-25 08:25:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a14d554 | 2026-07-24 08:45:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8dffed9 | 2026-07-23 08:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -500,7 +502,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/25/2026 20:50:40 |
+| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 1:53:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-19`; scanned last **600** data rows)
 
