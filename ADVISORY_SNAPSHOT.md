@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-25T19:42:43Z`
-- Look-back: **7** calendar days (`2026-07-18` → today UTC)
+- Generated (UTC): `2026-07-26T04:05:52Z`
+- Look-back: **7** calendar days (`2026-07-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,13 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 30
-- `[PRACTICE EVENT]` × 7
+- `[CONTRIBUTION EVENT]` × 29
+- `[PRACTICE EVENT]` × 8
 - `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260722004520_231` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 63 · Description: Personal contributor backlog: registry, Sophia push tool, worktree convention
 - `Edgar_20260722004843_233` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Reviewed and merged PRs for personal contributor backlog registry, Sophia pu…
 - `Edgar_20260722030709_235` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to Max on HBO documentary
 - `Edgar_20260722042014_237` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-22T04:20:11.074Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260724060140_265` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
 - `Edgar_20260724222908_267` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-24T22:29:05.029Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260725021102_269` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: DeepSeek API credit
+- `Edgar_20260726023147_271` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-26T02:31:45.722Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -246,9 +246,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.75**
+- USD on hand: **$4,373.65**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$50.55**
+- USD provisioned for voting-rights cash-out: **$50.65**
 
 ### In-transit freight (1 row)
 
@@ -264,9 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-07-18_ (1):
-
-- 2026-07-18 | DeepSeek | PERSONAL_PAT (github_pat_… fine-grained, 93 chars) staged for cross-agent access per credentials/CREDENTIAL_HANDOFF_PROTOCOL.md: operator Mac ~/Applications/tmp/PERSONAL_PAT, sophia box /home/ubuntu/PERSONAL_PAT, nelanco-claude box /home/ubuntu/PERSONAL_PAT (all chmod 600; value never in chat/commits). nelanco-claude Claude: read /home/ubuntu/PERSONAL_PAT to continue the white-label work; box git auth is credential.helper=store with one x-access-token github.com entry, so use the PAT explicitly (or add a store entry) for repos the DAO PAT cannot reach.
+_(No `YYYY-MM-DD |` lines on/after 2026-07-19 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -285,6 +283,7 @@ _All dated lines on/after 2026-07-18_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9e8a677 | 2026-07-25 19:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6f084c2 | 2026-07-25 14:12:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 10b5566 | 2026-07-25 08:32:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9416215 | 2026-07-25 03:51:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,10 +311,6 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 4d2147b | 2026-07-19 14:05:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9d9818b | 2026-07-19 08:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92389be | 2026-07-19 04:04:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-bcb26b2 | 2026-07-18 19:44:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9a5d9d3 | 2026-07-18 14:00:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
-5ce114a | 2026-07-18 08:22:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -327,6 +322,8 @@ a48183e | 2026-07-18 03:42:47 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+89e6e5a | 2026-07-26 03:42:56 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
+7f39a55 | 2026-07-26 03:42:55 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
 a6c8dae | 2026-07-25 22:09:56 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
 8b5b6f5 | 2026-07-25 22:09:55 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
 c197728 | 2026-07-25 16:30:21 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
@@ -365,8 +362,6 @@ fb1bc61 | 2026-07-24 14:07:29 +0800 | Regenerate PDF using WeasyPrint with Droid
 c0a4620 | 2026-07-24 14:00:07 +0800 | Update cacao beverage PDF with Chinese font support (DroidSansFallback)
 f3a3b79 | 2026-07-24 13:57:46 +0800 | Add cacao beverage opportunity PDF for Dr Ye, Liz's cousin & Chaoshan group
 4cd05d3 | 2026-07-24 11:53:23 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
-252e8c5 | 2026-07-24 11:53:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
-f70e345 | 2026-07-24 03:56:10 +0800 | chore(previews): refresh Beer Hall preview (2026-07-23 UTC)
 … (truncated)
 ```
 
@@ -411,15 +406,12 @@ bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory
 139695f | 2026-07-20 09:45:36 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 058bcde | 2026-07-20 09:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-fc0376e | 2026-07-18 08:11:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-29afc0c | 2026-07-18 09:00:53 +0800 | test: add real E2E checkout verification script + pre-merge policy (#195)
-0b28731 | 2026-07-18 08:43:27 +0800 | fix(white-label): use correct shipping rate field names from GAS (#194)
-bd72396 | 2026-07-18 08:22:43 +0800 | fix: replace stale checkout GAS deployment URL (#193)
+_(no commits on origin/main in window)_
 ```
 
 ### `iching_oracle` → `oracle`
@@ -508,9 +500,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/25/2026 11:50:46 |
+| 2026-07 | 201.48 | 16911.06386 | 7/25/2026 20:50:40 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-18`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-19`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
