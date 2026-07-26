@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-26T08:55:56Z`
+- Generated (UTC): `2026-07-26T14:07:59Z`
 - Look-back: **7** calendar days (`2026-07-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-25T10:59:14.020Z`
+- Generated (UTC): `2026-07-26T10:59:15.486Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-19 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+71d1c73 | 2026-07-26 08:58:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e700fc | 2026-07-26 04:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9e8a677 | 2026-07-25 19:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6f084c2 | 2026-07-25 14:12:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -323,6 +324,8 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2a0fe49 | 2026-07-26 16:56:09 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
+3a7a882 | 2026-07-26 16:56:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 567a2c9 | 2026-07-26 14:39:50 +0800 | Replace with full Mandarin CN PowerPoint - 13 slides, all content in Chinese
 e18d328 | 2026-07-26 14:31:50 +0800 | Add slide mockdowns for easy reference and future modifications
 07ef71b | 2026-07-26 14:31:35 +0800 | Add Chinese PowerPoint deck - 13 slides
@@ -361,8 +364,6 @@ d8c1cad | 2026-07-25 10:36:57 +0800 | Update P&L: $40K/yr events (2×$20K), 219 
 df34263 | 2026-07-25 10:29:38 +0800 | Add carbon credit reserve ($5/SKU → 4 tons CO2, 1 tree per box)
 bae1ba9 | 2026-07-25 10:27:38 +0800 | Add operating P&L model, cost analysis, and freight estimates to Chinese PDF
 9df1bb1 | 2026-07-25 10:27:36 +0800 | Add operating P&L model, cost analysis, and freight estimates to English PDF
-9291caa | 2026-07-25 03:55:04 +0800 | chore(previews): refresh Beer Hall preview (2026-07-24 UTC)
-a37a521 | 2026-07-25 03:55:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-24 UTC)
 … (truncated)
 ```
 
@@ -502,7 +503,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 1:53:35 |
+| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 6:50:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-19`; scanned last **600** data rows)
 
