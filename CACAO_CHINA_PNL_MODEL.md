@@ -105,7 +105,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 |---|---|---|---|
 | Team — Jerrie (ops) | $1,000 | $12,000 | All |
 | Team — Ling (packaging/logistics) | $1,000 | $12,000 | All |
-| Elizabeth Wong — Sales & marketing (KOL) | $2,000 | $24,000 | Network expansion |
+| Sales & marketing (KOL recruitment, wining/dining) | $2,000 | $24,000 | Network expansion |
 | Marketing content production | $1,000 | $12,000 | Dr. Ye's Douyin |
 | **Events & KOL activations (2×$20K/yr)** | **$3,333** | **$40,000** | All 3 network channels |
 | Warehousing (Shenzhen) | $500 | $6,000 | All |
@@ -172,7 +172,7 @@ For **every SKU sold, $5 is reserved** to plant **1 cacao tree**, generating **4
 | Item | Owner | Status |
 |---|---|---|
 | Packaging pricing + details (aluminum cans, boxes, labels) | Ling | ⚠️ NEED |
-| KOL partnership budget and target list | Elizabeth Wong | ⚠️ NEED |
+| KOL recruitment & partnership budget | KOL specialist | ⚠️ NEED |
 | China food import regulations (cacao husk tea classification) | Legal | ⚠️ NEED |
 | TCM specialist — formulate 4 functional blends for 10-can box | TCM Specialist (Dr. Ye to recommend) | ⚠️ NEED |
 | Analysis lab accreditation and testing schedule | Accredited Food Lab (~$250/mo) | ⚠️ NEED |
