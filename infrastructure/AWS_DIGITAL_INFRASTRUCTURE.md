@@ -180,6 +180,7 @@ flowchart LR
 | `claude.truesight.me` | A | `100.57.50.48` | → **nelanco-claude** interactive Claude Code box (`i-01ad5eca707e4445f`, Nelanco). Added 2026-07-14. |
 | `dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages. |
 | `beta.dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages (beta). |
+| `context.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages — public read-only mirror of **`agentic_ai_context`**, served from its `main` branch (`CNAME` file + bare `index.md`, no theme). Added 2026-07-27 so the workspace-context repo is reachable even where `github.com` itself is blocked. |
 | `truesight.me` | A | `185.199.108.153` + 3 more | GitHub Pages. |
 | `www.truesight.me` | CNAME | `TrueSightDAO.github.io` | GitHub Pages. |
 | `agroverse.shop` | — | (separate zone) | Route53 zone `Z03648011LL9LLYA2X5F5` in Explorya. |
@@ -198,6 +199,7 @@ Internet → Route53 → sophia.truesight.me → truesight-autopilot (52.200.38.
 Internet → Route53 → GitHub Pages
   ├── truesight.me
   ├── dapp.truesight.me
+  ├── context.truesight.me (agentic_ai_context, public mirror)
   └── agroverse.shop
 ```
 
