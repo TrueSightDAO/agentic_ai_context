@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-27T04:13:13Z`
+- Generated (UTC): `2026-07-27T10:26:24Z`
 - Look-back: **7** calendar days (`2026-07-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-20 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4b98174 | 2026-07-26 19:45:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 76917e9 | 2026-07-26 14:11:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 71d1c73 | 2026-07-26 08:58:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,6 +323,9 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b8d2ec0 | 2026-07-27 15:03:27 +0800 | Add Cacao Club membership model proposal PDF
+22a6336 | 2026-07-27 12:13:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
+ef120a9 | 2026-07-27 12:13:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 79415f3 | 2026-07-27 10:31:09 +0800 | pdf(en): updated with 4 demographics, epicatechin, P&L
 534bdec | 2026-07-27 10:31:04 +0800 | ppt(cn): compressed version 23MB→793KB
 54a8e1a | 2026-07-27 10:31:00 +0800 | ppt(en): compressed version 23MB→794KB
@@ -359,9 +363,6 @@ b8ae0ce | 2026-07-25 11:06:42 +0800 | Add analysis lab fees to OpEx + open items
 827e0b2 | 2026-07-25 11:03:20 +0800 | Add supply constraints: La Dio Sitio 4ha → 400-680kg tea/yr → 10K-17K boxes max
 d181b43 | 2026-07-25 10:40:05 +0800 | Fix name: 表姐Liz → Elizabeth Wong throughout
 1cf538e | 2026-07-25 10:40:04 +0800 | Fix name: 表姐Liz → Elizabeth Wong throughout
-d8c1cad | 2026-07-25 10:36:57 +0800 | Update P&L: $40K/yr events (2×$20K), 219 boxes/mo min viable, GTM channels reframed
-55c83b1 | 2026-07-25 10:36:56 +0800 | Update P&L: $40K/yr events (2×$20K), 219 boxes/mo min viable, GTM channels reframed
-57c2775 | 2026-07-25 10:34:18 +0800 | Reframe cover — 叶医生/表哥/潮汕 as Network Expansion Channels
 … (truncated)
 ```
 
@@ -398,6 +399,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+40f9d80 | 2026-07-27 10:11:01 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01a0461 | 2026-07-26 08:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f31d38f | 2026-07-25 08:25:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a14d554 | 2026-07-24 08:45:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -500,7 +502,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 20:50:51 |
+| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 2:51:49 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-20`; scanned last **600** data rows)
 
