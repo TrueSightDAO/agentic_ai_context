@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-27T10:26:24Z`
+- Generated (UTC): `2026-07-27T15:23:37Z`
 - Look-back: **7** calendar days (`2026-07-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-26T10:59:15.486Z`
+- Generated (UTC): `2026-07-27T10:59:14.128Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-20 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d81df71 | 2026-07-27 10:27:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4b98174 | 2026-07-26 19:45:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 76917e9 | 2026-07-26 14:11:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -323,6 +324,8 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6ab8f71 | 2026-07-27 18:26:42 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
+bd0b6c7 | 2026-07-27 18:26:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 b8d2ec0 | 2026-07-27 15:03:27 +0800 | Add Cacao Club membership model proposal PDF
 22a6336 | 2026-07-27 12:13:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
 ef120a9 | 2026-07-27 12:13:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
@@ -361,8 +364,6 @@ a3d1ca4 | 2026-07-25 11:13:41 +0800 | Add 八、必要预测 for $500K sales tar
 b8ae0ce | 2026-07-25 11:06:42 +0800 | Add analysis lab fees to OpEx + open items
 28a3036 | 2026-07-25 11:03:21 +0800 | Add supply constraints: La Dio Sitio 4ha → 400-680kg tea/yr → 10K-17K boxes max
 827e0b2 | 2026-07-25 11:03:20 +0800 | Add supply constraints: La Dio Sitio 4ha → 400-680kg tea/yr → 10K-17K boxes max
-d181b43 | 2026-07-25 10:40:05 +0800 | Fix name: 表姐Liz → Elizabeth Wong throughout
-1cf538e | 2026-07-25 10:40:04 +0800 | Fix name: 表姐Liz → Elizabeth Wong throughout
 … (truncated)
 ```
 
@@ -399,6 +400,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a3a04be | 2026-07-27 10:29:07 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 40f9d80 | 2026-07-27 10:11:01 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01a0461 | 2026-07-26 08:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f31d38f | 2026-07-25 08:25:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -502,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 2:51:49 |
+| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 7:54:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-20`; scanned last **600** data rows)
 
