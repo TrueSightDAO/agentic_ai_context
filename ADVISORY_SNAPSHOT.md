@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-26T19:43:56Z`
-- Look-back: **7** calendar days (`2026-07-19` → today UTC)
+- Generated (UTC): `2026-07-27T04:13:13Z`
+- Look-back: **7** calendar days (`2026-07-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260722030709_235` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Responding to Max on HBO documentary
 - `Edgar_20260722042014_237` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-22T04:20:11.074Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260722095632_239` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussions to setup the Brazilian CNPJ
 - `Edgar_20260722095835_241` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussion about how to distribute in USA and China
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260725021102_269` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: DeepSeek API credit
 - `Edgar_20260726023147_271` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-26T02:31:45.722Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260726063158_273` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20260727011654_275` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T01:16:52.881Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -246,9 +246,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.65**
+- USD on hand: **$4,373.55**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$50.65**
+- USD provisioned for voting-rights cash-out: **$50.75**
 
 ### In-transit freight (1 row)
 
@@ -264,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-19 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-20 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-19 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4b98174 | 2026-07-26 19:45:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 76917e9 | 2026-07-26 14:11:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 71d1c73 | 2026-07-26 08:58:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e700fc | 2026-07-26 04:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -310,10 +311,6 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 9695910 | 2026-07-20 14:41:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7bd31b0 | 2026-07-20 09:42:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
 49d6910 | 2026-07-20 04:24:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
-7edb5de | 2026-07-19 19:44:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4d2147b | 2026-07-19 14:05:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9d9818b | 2026-07-19 08:55:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
-92389be | 2026-07-19 04:04:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -325,6 +322,11 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+79415f3 | 2026-07-27 10:31:09 +0800 | pdf(en): updated with 4 demographics, epicatechin, P&L
+534bdec | 2026-07-27 10:31:04 +0800 | ppt(cn): compressed version 23MB→793KB
+54a8e1a | 2026-07-27 10:31:00 +0800 | ppt(en): compressed version 23MB→794KB
+db2fad5 | 2026-07-27 03:44:11 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
+fd54e5d | 2026-07-27 03:44:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 a41e5a6 | 2026-07-26 22:08:12 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
 4af87e0 | 2026-07-26 22:08:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 2a0fe49 | 2026-07-26 16:56:09 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
@@ -360,11 +362,6 @@ d181b43 | 2026-07-25 10:40:05 +0800 | Fix name: 表姐Liz → Elizabeth Wong thr
 d8c1cad | 2026-07-25 10:36:57 +0800 | Update P&L: $40K/yr events (2×$20K), 219 boxes/mo min viable, GTM channels reframed
 55c83b1 | 2026-07-25 10:36:56 +0800 | Update P&L: $40K/yr events (2×$20K), 219 boxes/mo min viable, GTM channels reframed
 57c2775 | 2026-07-25 10:34:18 +0800 | Reframe cover — 叶医生/表哥/潮汕 as Network Expansion Channels
-59d3cb4 | 2026-07-25 10:34:17 +0800 | Reframe cover — Dr. Ye/Cousin/Chaoshan as Network Expansion Channels
-109ad61 | 2026-07-25 10:33:19 +0800 | Add Minimum Viable Scale section — 191 boxes/mo sustains ops
-674bd84 | 2026-07-25 10:33:18 +0800 | Add Minimum Viable Scale section — 191 boxes/mo sustains ops
-7ce0084 | 2026-07-25 10:29:39 +0800 | Add carbon credit reserve ($5/SKU → 4 tons CO2, 1 tree per box)
-df34263 | 2026-07-25 10:29:38 +0800 | Add carbon credit reserve ($5/SKU → 4 tons CO2, 1 tree per box)
 … (truncated)
 ```
 
@@ -409,7 +406,6 @@ a14d554 | 2026-07-24 08:45:05 +0000 | chore: refresh store and partner inventory
 bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 139695f | 2026-07-20 09:45:36 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 058bcde | 2026-07-20 09:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-01d7e61 | 2026-07-19 08:35:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -504,9 +500,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 11:50:41 |
+| 2026-07 | 201.48 | 16911.06386 | 7/26/2026 20:50:51 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-19`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-20`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
