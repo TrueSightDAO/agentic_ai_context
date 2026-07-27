@@ -74,6 +74,10 @@ Then point your editor or LLM at this folder (or at least `OPERATING_INSTRUCTION
 
 ## Location
 
+- **Public read-only mirror:** [context.truesight.me](https://context.truesight.me) — served via GitHub Pages straight from
+  `main` (bare, no theme/site generator — pages are raw Markdown source). Useful when `github.com` itself is unreachable
+  (e.g. behind a firewall that blocks it but not other domains). `git@github.com:TrueSightDAO/agentic_ai_context.git`
+  remains the canonical repo for cloning/editing.
 - **Context (this repo):** Clone from `git@github.com:TrueSightDAO/agentic_ai_context.git` (or your local path, e.g. `/Users/garyjob/Applications/agentic_ai_context`).
 - **Credentials reference:** `/Users/garyjob/Applications/agentic_ai_api_credentials` (or see PROJECT_INDEX for credential docs; no secrets in this repo).
 - **Workspace root (multi-root):** Typically `/Users/garyjob/Applications` — contains many project directories; adjust for your machine.
