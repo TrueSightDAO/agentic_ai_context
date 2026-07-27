@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-27T15:23:37Z`
+- Generated (UTC): `2026-07-27T20:04:30Z`
 - Look-back: **7** calendar days (`2026-07-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-20 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a65c861 | 2026-07-27 15:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d81df71 | 2026-07-27 10:27:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4b98174 | 2026-07-26 19:45:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -324,6 +325,8 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+02a307e | 2026-07-27 23:23:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
+2ed895b | 2026-07-27 23:23:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 6ab8f71 | 2026-07-27 18:26:42 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
 bd0b6c7 | 2026-07-27 18:26:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 b8d2ec0 | 2026-07-27 15:03:27 +0800 | Add Cacao Club membership model proposal PDF
@@ -362,8 +365,6 @@ a3d1ca4 | 2026-07-25 11:13:41 +0800 | Add 八、必要预测 for $500K sales tar
 6a09b34 | 2026-07-25 11:13:39 +0800 | Add Part 8: Required Projections for $500K sales target
 020d23c | 2026-07-25 11:06:43 +0800 | Add analysis lab fees to OpEx + open items (CN)
 b8ae0ce | 2026-07-25 11:06:42 +0800 | Add analysis lab fees to OpEx + open items
-28a3036 | 2026-07-25 11:03:21 +0800 | Add supply constraints: La Dio Sitio 4ha → 400-680kg tea/yr → 10K-17K boxes max
-827e0b2 | 2026-07-25 11:03:20 +0800 | Add supply constraints: La Dio Sitio 4ha → 400-680kg tea/yr → 10K-17K boxes max
 … (truncated)
 ```
 
@@ -504,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 7:54:59 |
+| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 12:51:04 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-20`; scanned last **600** data rows)
 
