@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-28T03:46:29Z`
+- Generated (UTC): `2026-07-28T09:17:57Z`
 - Look-back: **7** calendar days (`2026-07-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,13 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 29
-- `[PRACTICE EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 28
+- `[PRACTICE EVENT]` × 9
 - `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260723080251_243` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
 - `Edgar_20260723080256_245` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh (gary@truesight.me)
 - `Edgar_20260723102116_247` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Directed and reviewed the Handoff Auto-start feature (opt-in marker so Sophi…
 - `Edgar_20260723102130_249` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Handoff Auto-start feature + /chat session-lock ordering fix
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260727234034_277` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T23:40:31.131Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260728001025_279` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on Oracle reading framing — flagged that a governor's personal draw…
 - `Edgar_20260728002156_281` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
+- `Edgar_20260728084429_283` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-28T08:44:30.650Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-21 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6131fc5 | 2026-07-28 03:48:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fcabaca | 2026-07-27 20:06:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a65c861 | 2026-07-27 15:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d81df71 | 2026-07-27 10:27:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,6 +323,8 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+251a89d | 2026-07-28 11:46:45 +0800 | chore(previews): refresh Beer Hall preview (2026-07-28 UTC)
+03b2ca1 | 2026-07-28 11:46:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-28 UTC)
 ecd1e06 | 2026-07-28 04:04:50 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
 0d12491 | 2026-07-28 04:04:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 02a307e | 2026-07-27 23:23:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
@@ -360,8 +363,6 @@ c197728 | 2026-07-25 16:30:21 +0800 | chore(previews): refresh Beer Hall preview
 d801a98 | 2026-07-25 16:30:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
 f9d9afe | 2026-07-25 11:48:49 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
 c1f145d | 2026-07-25 11:48:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
-a3d1ca4 | 2026-07-25 11:13:41 +0800 | Add 八、必要预测 for $500K sales target (CN)
-6a09b34 | 2026-07-25 11:13:39 +0800 | Add Part 8: Required Projections for $500K sales target
 … (truncated)
 ```
 
@@ -398,6 +399,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8690717 | 2026-07-28 09:08:10 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a3a04be | 2026-07-27 10:29:07 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 40f9d80 | 2026-07-27 10:11:01 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01a0461 | 2026-07-26 08:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -500,7 +502,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 19:50:14 |
+| 2026-07 | 201.48 | 16911.06386 | 7/28/2026 1:51:54 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-21`; scanned last **600** data rows)
 
