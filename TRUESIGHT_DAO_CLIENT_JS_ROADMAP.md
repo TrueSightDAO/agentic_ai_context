@@ -1,6 +1,6 @@
 # TrueSight DAO Client JS — Implementation Plan & Execution Roadmap
 
-**Status:** PLANNING — roadmap committed, implementation not started.
+**Status:** IN PROGRESS — PR1 (library) and PR4 (oracle) complete. PR2 (capoeira) in progress.
 
 **Convention:** This is the tracked roadmap required by `OPERATING_INSTRUCTIONS.md` §5 before any implementation code. Keep the **Resume tracker** current as each unit lands.
 
@@ -28,7 +28,7 @@ Every new front-end project (tribomirimbahia, aora, future credentialing UIs) wi
 
 ## Solution
 
-A single **zero-dependency npm package** (`@truesight/dao-client`) that any front-end can import. One source of truth for:
+A single **zero-dependency npm package** (`@truesight_dao/dao-client`) that any front-end can import. One source of truth for:
 
 - RSA-2048 keypair generation (Web Crypto API)
 - Canonical payload formatting and signing
@@ -45,14 +45,14 @@ A single **zero-dependency npm package** (`@truesight/dao-client`) that any fron
   - Option A: New repo `TrueSightDAO/truesight-dao-client-js` (clean separation, independent versioning)
   - Option B: `TrueSightDAO/dao_protocol/packages/dao-client-js/` (alongside the Python client, single source of truth for protocol tooling)
   - **Recommendation: Option B** — the Python client (`dao_client`) already lives in `dao_protocol`; adding a JS sibling keeps protocol tooling in one place. The `dao_protocol` README already references both.
-- [ ] **npm org** — Publish under `@truesight/` scope (requires npm org setup if not done)
-- [ ] **Package name** — `@truesight/dao-client` (mirrors the Python `truesight-dao-client` naming)
+- [x] **npm org** — Published under `@truesight_dao/` scope
+- [x] **Package name** — `@truesight_dao/dao-client` (underscore, not slash — the npm org name)
 - [ ] **Version strategy** — Start at `0.1.0`, semver. First stable release = `1.0.0` after all three consumer repos are swapped.
 - [ ] **License** — Same as `dao_protocol` (MIT suggested)
-- [ ] **Build tool** — `tsup` or `esbuild` for ESM + CJS dual output. Zero runtime dependencies.
-- [ ] **TypeScript** — Strict mode. Ship `.d.ts` types.
-- [ ] **Browser target** — ES2020 (covers `crypto.subtle`, `fetch`, `FormData`, `localStorage`). No polyfills.
-- [ ] **Testing** — Vitest for unit tests. No browser automation needed (pure JS crypto + string manipulation).
+- [x] **Build tool** — `esbuild` for IIFE bundle (dao-client.min.js)
+- [x] **TypeScript** — Strict mode. Ships `.d.ts` types.
+- [x] **Browser target** — ES2020
+- [x] **Testing** — Vitest unit tests
 
 ---
 
@@ -253,14 +253,16 @@ import { signPayload } from '@truesight/dao-client/payload';
 
 | Unit | PR | Status | Contribution | Notes |
 |------|----|--------|-------------|-------|
-| PR0 — Roadmap | agentic_ai_context#TBD | ✅ Committed | ☐ | This file |
-| PR1 — Core library | dao_protocol#TBD | ☐ | ☐ | `packages/dao-client-js/` |
-| PR2 — Swap capoeira | capoeira#TBD | ☐ | ☐ | Replace inline helpers |
+| Unit | PR | Status | Contribution | Notes |
+|------|----|--------|-------------|-------|
+| PR0 — Roadmap | agentic_ai_context#359 | ✅ Merged | ☐ | This file |
+| PR1 — Core library | @truesight_dao/dao-client@1.0.0 | ✅ Published to npm | ☐ | Published as `@truesight_dao/dao-client` (underscore, not slash) |
+| PR2 — Swap capoeira | capoeira#TBD | 🔄 In progress | ☐ | Replace inline helpers in practice-event-submit.js |
 | PR3 — Swap butterfly-effect-club | butterfly-effect-club#TBD | ☐ | ☐ | Replace inline helpers |
-| PR4 — Swap oracle | oracle#TBD | ☐ | ☐ | Replace inline helpers |
+| PR4 — Swap oracle | oracle#42 | ✅ Merged | ☐ | CDN script tag + replaced base64 helpers with DaoClient static methods |
 | PR5 — Migration guide + template | agentic_ai_context#TBD + program-template#TBD | ☐ | ☐ | Docs + template update |
 
-**RESUME HERE → PR1: Create the core library package in `dao_protocol/packages/dao-client-js/`**
+**RESUME HERE → PR2: Swap capoeira's practice-event-submit.js to use `@truesight_dao/dao-client`**
 
 ---
 
