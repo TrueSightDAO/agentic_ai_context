@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-27T20:04:30Z`
-- Look-back: **7** calendar days (`2026-07-20` → today UTC)
+- Generated (UTC): `2026-07-28T03:46:29Z`
+- Look-back: **7** calendar days (`2026-07-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -38,9 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260722042014_237` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-22T04:20:11.074Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260722095632_239` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussions to setup the Brazilian CNPJ
-- `Edgar_20260722095835_241` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussion about how to distribute in USA and China
 - `Edgar_20260723080251_243` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
 - `Edgar_20260723080256_245` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh (gary@truesight.me)
 - `Edgar_20260723102116_247` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Directed and reviewed the Handoff Auto-start feature (opt-in marker so Sophi…
@@ -58,6 +55,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260726023147_271` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-26T02:31:45.722Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260726063158_273` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
 - `Edgar_20260727011654_275` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T01:16:52.881Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260727234034_277` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T23:40:31.131Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260728001025_279` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on Oracle reading framing — flagged that a governor's personal draw…
+- `Edgar_20260728002156_281` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
 
 ---
 
@@ -246,9 +246,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.55**
+- USD on hand: **$4,373.46**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$50.75**
+- USD provisioned for voting-rights cash-out: **$50.84**
 
 ### In-transit freight (1 row)
 
@@ -264,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-20 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-21 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -274,7 +274,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-20 in CONTEXT_UPDATES.md.)_
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **no** |
+| `oracle` | `iching_oracle` | **yes** |
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-20 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+fcabaca | 2026-07-27 20:06:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a65c861 | 2026-07-27 15:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d81df71 | 2026-07-27 10:27:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -310,10 +311,6 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 4a5903e | 2026-07-21 14:36:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3bbb12d | 2026-07-21 09:12:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 273723f | 2026-07-21 03:57:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3787edb | 2026-07-20 20:08:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9695910 | 2026-07-20 14:41:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
-7bd31b0 | 2026-07-20 09:42:56 +0000 | chore(stats): refresh stats/current.json [skip ci]
-49d6910 | 2026-07-20 04:24:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -325,6 +322,8 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ecd1e06 | 2026-07-28 04:04:50 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
+0d12491 | 2026-07-28 04:04:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 02a307e | 2026-07-27 23:23:52 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
 2ed895b | 2026-07-27 23:23:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 6ab8f71 | 2026-07-27 18:26:42 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
@@ -363,8 +362,6 @@ f9d9afe | 2026-07-25 11:48:49 +0800 | chore(previews): refresh Beer Hall preview
 c1f145d | 2026-07-25 11:48:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
 a3d1ca4 | 2026-07-25 11:13:41 +0800 | Add 八、必要预测 for $500K sales target (CN)
 6a09b34 | 2026-07-25 11:13:39 +0800 | Add Part 8: Required Projections for $500K sales target
-020d23c | 2026-07-25 11:06:43 +0800 | Add analysis lab fees to OpEx + open items (CN)
-b8ae0ce | 2026-07-25 11:06:42 +0800 | Add analysis lab fees to OpEx + open items
 … (truncated)
 ```
 
@@ -409,8 +406,6 @@ a14d554 | 2026-07-24 08:45:05 +0000 | chore: refresh store and partner inventory
 8dffed9 | 2026-07-23 08:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 0eebd69 | 2026-07-22 08:46:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bd02d25 | 2026-07-21 08:47:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-139695f | 2026-07-20 09:45:36 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-058bcde | 2026-07-20 09:35:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -422,7 +417,7 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
-_(no commits on origin/main in window)_
+40c0070 | 2026-07-28 08:23:07 +0800 | Frame oracle readings as the operator's personal practice, not a DAO-wide directive (#63)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -505,9 +500,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 12:51:04 |
+| 2026-07 | 201.48 | 16911.06386 | 7/27/2026 19:50:14 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-20`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-21`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
