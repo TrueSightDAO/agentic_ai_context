@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-29T09:21:19Z`
+- Generated (UTC): `2026-07-29T14:41:15Z`
 - Look-back: **7** calendar days (`2026-07-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,13 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
+- `[CONTRIBUTION EVENT]` × 25
 - `[PRACTICE EVENT]` × 10
-- _free-form (no bracket tag)_ × 2
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260723115426_253` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Discussion with Vini on setting up CNPJ
 - `Edgar_20260723115626_255` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Arranging of talk with lawyers.
 - `Edgar_20260724053745_257` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Compiling Dr. Ye product feedback, Liz表哥 market insight, and cacao beverage …
 - `Edgar_20260724054209_259` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Dinner meeting with Liz's cousin (表哥) — market research gathering on cacao b…
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260729001009_287` · **Edgar** · [No Text Provided]
 - `Edgar_20260729001135_289` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Chocolate museum analysis
 - `Edgar_20260729043257_291` · **Edgar** · [No Text Provided]
+- `Edgar_20260729094839_293` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-28T10:59:14.182Z`
+- Generated (UTC): `2026-07-29T10:59:13.680Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -97,12 +97,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **574**, follow_up **70**, bulk **0**, unknown **2** (data rows: **646**)
+- **Email Agent Follow Up** — logged sends: warmup **585**, follow_up **70**, bulk **0**, unknown **2** (data rows: **657**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **510**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
+- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **521**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-22 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a7795f1 | 2026-07-29 09:23:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 21eb1ca | 2026-07-28 20:03:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 254a23b | 2026-07-28 15:02:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -323,6 +324,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+50406c7 | 2026-07-29 17:21:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
+c1bc336 | 2026-07-29 17:21:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 2f2cb9a | 2026-07-29 11:49:59 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
 e9d8c94 | 2026-07-29 11:49:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 c9a1d23 | 2026-07-29 04:01:05 +0800 | chore(previews): refresh Beer Hall preview (2026-07-28 UTC)
@@ -361,8 +364,6 @@ a174d6f | 2026-07-26 14:12:43 +0800 | Add divine feminine tagline to women demog
 8826961 | 2026-07-26 14:12:41 +0800 | Add divine feminine tagline to women demographics
 f53cfe3 | 2026-07-26 13:57:36 +0800 | Add epicatechin active ingredient + dual-product extraction strategy (CN)
 9a0a0ce | 2026-07-26 13:57:35 +0800 | Add epicatechin active ingredient + dual-product extraction strategy
-b4f866c | 2026-07-26 12:06:09 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
-9a587ef | 2026-07-26 12:06:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 … (truncated)
 ```
 
@@ -503,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/29/2026 1:51:20 |
+| 2026-07 | 201.48 | 16911.06386 | 7/29/2026 6:56:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-22`; scanned last **600** data rows)
 
