@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-29T03:49:39Z`
+- Generated (UTC): `2026-07-29T09:21:19Z`
 - Look-back: **7** calendar days (`2026-07-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,13 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 27
+- `[CONTRIBUTION EVENT]` × 26
 - `[PRACTICE EVENT]` × 10
-- _free-form (no bracket tag)_ × 1
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260723105735_251` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20 · Description: Monthly Claude Pro subscription (receipt #2690-1065-0974) — July 2026
 - `Edgar_20260723115426_253` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Discussion with Vini on setting up CNPJ
 - `Edgar_20260723115626_255` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Arranging of talk with lawyers.
 - `Edgar_20260724053745_257` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Compiling Dr. Ye product feedback, Liz表哥 market insight, and cacao beverage …
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260728231637_285` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-28T23:16:34.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260729001009_287` · **Edgar** · [No Text Provided]
 - `Edgar_20260729001135_289` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Chocolate museum analysis
+- `Edgar_20260729043257_291` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-22 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 21eb1ca | 2026-07-28 20:03:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 254a23b | 2026-07-28 15:02:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cc4874c | 2026-07-28 09:19:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,6 +323,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2f2cb9a | 2026-07-29 11:49:59 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
+e9d8c94 | 2026-07-29 11:49:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 c9a1d23 | 2026-07-29 04:01:05 +0800 | chore(previews): refresh Beer Hall preview (2026-07-28 UTC)
 7117843 | 2026-07-29 04:01:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-28 UTC)
 96956ad | 2026-07-28 22:59:06 +0800 | chore(previews): refresh Beer Hall preview (2026-07-28 UTC)
@@ -360,8 +363,6 @@ f53cfe3 | 2026-07-26 13:57:36 +0800 | Add epicatechin active ingredient + dual-p
 9a0a0ce | 2026-07-26 13:57:35 +0800 | Add epicatechin active ingredient + dual-product extraction strategy
 b4f866c | 2026-07-26 12:06:09 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
 9a587ef | 2026-07-26 12:06:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
-89e6e5a | 2026-07-26 03:42:56 +0800 | chore(previews): refresh Beer Hall preview (2026-07-25 UTC)
-7f39a55 | 2026-07-26 03:42:55 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-25 UTC)
 … (truncated)
 ```
 
@@ -398,6 +399,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8690717 | 2026-07-28 09:08:10 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a3a04be | 2026-07-27 10:29:07 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 40f9d80 | 2026-07-27 10:11:01 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -417,6 +419,7 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
+0bd1a09 | 2026-07-29 15:25:55 +0800 | Fix hexagram lines rendering blank in printed/exported PDFs (#64)
 40c0070 | 2026-07-28 08:23:07 +0800 | Frame oracle readings as the operator's personal practice, not a DAO-wide directive (#63)
 ```
 
@@ -500,7 +503,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/28/2026 19:52:42 |
+| 2026-07 | 201.48 | 16911.06386 | 7/29/2026 1:51:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-22`; scanned last **600** data rows)
 
