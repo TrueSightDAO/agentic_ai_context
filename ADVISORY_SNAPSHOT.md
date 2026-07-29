@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-29T14:41:15Z`
+- Generated (UTC): `2026-07-29T19:52:20Z`
 - Look-back: **7** calendar days (`2026-07-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-22 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+67367c2 | 2026-07-29 14:54:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7795f1 | 2026-07-29 09:23:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 21eb1ca | 2026-07-28 20:03:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -324,6 +325,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+24c6885 | 2026-07-29 22:41:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
+04f9e9d | 2026-07-29 22:41:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 50406c7 | 2026-07-29 17:21:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
 c1bc336 | 2026-07-29 17:21:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 2f2cb9a | 2026-07-29 11:49:59 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
@@ -362,8 +365,6 @@ ab18d32 | 2026-07-26 14:22:53 +0800 | Update married couples tagline to 昨天�
 b752522 | 2026-07-26 14:22:52 +0800 | Update married couples tagline to Yesterday We Were Young
 a174d6f | 2026-07-26 14:12:43 +0800 | Add divine feminine tagline to women demographics (CN)
 8826961 | 2026-07-26 14:12:41 +0800 | Add divine feminine tagline to women demographics
-f53cfe3 | 2026-07-26 13:57:36 +0800 | Add epicatechin active ingredient + dual-product extraction strategy (CN)
-9a0a0ce | 2026-07-26 13:57:35 +0800 | Add epicatechin active ingredient + dual-product extraction strategy
 … (truncated)
 ```
 
@@ -504,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/29/2026 6:56:43 |
+| 2026-07 | 201.48 | 16911.06386 | 7/29/2026 11:52:29 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-22`; scanned last **600** data rows)
 
