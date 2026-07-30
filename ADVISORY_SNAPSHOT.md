@@ -20,44 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-29T19:52:20Z`
-- Look-back: **7** calendar days (`2026-07-22` → today UTC)
+- Generated (UTC): `2026-07-30T02:32:25Z`
+- Look-back: **7** calendar days (`2026-07-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 25
-- `[PRACTICE EVENT]` × 10
-- _free-form (no bracket tag)_ × 3
-
-### Latest entries
-
-- `Edgar_20260723115626_255` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Arranging of talk with lawyers.
-- `Edgar_20260724053745_257` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Compiling Dr. Ye product feedback, Liz表哥 market insight, and cacao beverage …
-- `Edgar_20260724054209_259` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Dinner meeting with Liz's cousin (表哥) — market research gathering on cacao b…
-- `Edgar_20260724054212_261` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Dinner meeting with cousin (表哥) — market research gathering on cacao beverag…
-- `Edgar_20260724060111_263` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The built-in generate_pdf tool uses Helveti…
-- `Edgar_20260724060140_265` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
-- `Edgar_20260724222908_267` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-24T22:29:05.029Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260725021102_269` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: DeepSeek API credit
-- `Edgar_20260726023147_271` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-26T02:31:45.722Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260726063158_273` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
-- `Edgar_20260727011654_275` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T01:16:52.881Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260727234034_277` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T23:40:31.131Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260728001025_279` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on Oracle reading framing — flagged that a governor's personal draw…
-- `Edgar_20260728002156_281` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
-- `Edgar_20260728084429_283` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-28T08:44:30.650Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260728231637_285` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-28T23:16:34.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260729001009_287` · **Edgar** · [No Text Provided]
-- `Edgar_20260729001135_289` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Chocolate museum analysis
-- `Edgar_20260729043257_291` · **Edgar** · [No Text Provided]
-- `Edgar_20260729094839_293` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -244,17 +209,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,373.38**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$50.91**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -264,7 +225,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-22 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-23 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -283,6 +244,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-22 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+caf27df | 2026-07-29 19:54:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 67367c2 | 2026-07-29 14:54:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7795f1 | 2026-07-29 09:23:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -310,10 +272,6 @@ ffa1c3a | 2026-07-24 03:55:55 +0000 | chore(stats): refresh stats/current.json [
 92efb9d | 2026-07-23 14:51:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 688c31f | 2026-07-23 09:11:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 851f5bd | 2026-07-23 03:56:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
-096cfd2 | 2026-07-22 19:54:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
-284ba00 | 2026-07-22 14:36:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0198714 | 2026-07-22 09:11:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-913ffcf | 2026-07-22 03:58:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -325,6 +283,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+213e8d4 | 2026-07-30 03:52:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
+b5689fd | 2026-07-30 03:52:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 24c6885 | 2026-07-29 22:41:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
 04f9e9d | 2026-07-29 22:41:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 50406c7 | 2026-07-29 17:21:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
@@ -363,8 +323,6 @@ e18d328 | 2026-07-26 14:31:50 +0800 | Add slide mockdowns for easy reference and
 239baea | 2026-07-26 14:31:28 +0800 | Add English PowerPoint deck - 13 slides cacao tea China opportunity
 ab18d32 | 2026-07-26 14:22:53 +0800 | Update married couples tagline to 昨天的我们青春正好
 b752522 | 2026-07-26 14:22:52 +0800 | Update married couples tagline to Yesterday We Were Young
-a174d6f | 2026-07-26 14:12:43 +0800 | Add divine feminine tagline to women demographics (CN)
-8826961 | 2026-07-26 14:12:41 +0800 | Add divine feminine tagline to women demographics
 … (truncated)
 ```
 
@@ -409,7 +367,6 @@ a3a04be | 2026-07-27 10:29:07 +0000 | chore: refresh partners-velocity snapshot 
 f31d38f | 2026-07-25 08:25:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a14d554 | 2026-07-24 08:45:05 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8dffed9 | 2026-07-23 08:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-0eebd69 | 2026-07-22 08:46:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -435,6 +392,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-07-30T023225Z_cacao-club-and-oracle-updates.md`
+
+- **posted_at_utc:** `2026-07-30T02:32:25Z`  
+- **slug:** `cacao-club-and-oracle-updates`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Product (Oracle)** — Fixed blank lines in exported PDFs and reframed readings as personal practice rather than DAO directives.
+
 ### `beer-hall_2026-07-21T025013Z_dao-infrastructure-inventory-report.md`
 
 - **posted_at_utc:** `2026-07-21T02:50:13Z`  
@@ -452,15 +418,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Sales (Conversion)** — Launched "WARMUP" conversion improvement plan to eliminate waste in sales onboarding.
-
-### `beer-hall_2026-07-18T023839Z_tariff-analysis-sugar-rfq-checkout-fixes.md`
-
-- **posted_at_utc:** `2026-07-18T02:38:39Z`  
-- **slug:** `tariff-analysis-sugar-rfq-checkout-fixes`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Trade Policy (Compliance)** — Published US Section 301 tariff impact analysis for Brazil, assessing effects on Pix usage and cacao import exemptions.
 
 ---
 
@@ -481,39 +438,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-06 | 1552.45386 | 7625.87386 | 2025-12-07 19:14:46 |
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/29/2026 11:52:29 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-22`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
