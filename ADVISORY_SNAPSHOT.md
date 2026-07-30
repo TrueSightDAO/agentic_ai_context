@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-30T03:41:21Z`
+- Generated (UTC): `2026-07-30T09:13:14Z`
 - Look-back: **7** calendar days (`2026-07-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,9 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-23 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7831a95 | 2026-07-30 13:00:59 +0800 | Merge pull request #283: Add blog post: how our cacao gets from Brazil to San Francisco
+b9fa12b | 2026-07-30 03:43:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
+f3f86a9 | 2026-07-30 01:17:49 +0000 | Add blog post: how our cacao gets from Brazil to San Francisco
 caf27df | 2026-07-29 19:54:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 67367c2 | 2026-07-29 14:54:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7795f1 | 2026-07-29 09:23:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,6 +325,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+29cfdd4 | 2026-07-30 11:41:39 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
+746aa28 | 2026-07-30 11:41:38 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 62cb402 | 2026-07-30 10:32:40 +0800 | Merge pull request #719 from TrueSightDAO/auto/advisory-refresh-2026-07-30
 c80b66a | 2026-07-30 02:32:29 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 213e8d4 | 2026-07-30 03:52:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
@@ -360,8 +365,6 @@ a41e5a6 | 2026-07-26 22:08:12 +0800 | chore(previews): refresh Beer Hall preview
 3a7a882 | 2026-07-26 16:56:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 567a2c9 | 2026-07-26 14:39:50 +0800 | Replace with full Mandarin CN PowerPoint - 13 slides, all content in Chinese
 e18d328 | 2026-07-26 14:31:50 +0800 | Add slide mockdowns for easy reference and future modifications
-07ef71b | 2026-07-26 14:31:35 +0800 | Add Chinese PowerPoint deck - 13 slides
-239baea | 2026-07-26 14:31:28 +0800 | Add English PowerPoint deck - 13 slides cacao tea China opportunity
 … (truncated)
 ```
 
@@ -398,6 +401,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+34cb744 | 2026-07-30 09:04:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8690717 | 2026-07-28 09:08:10 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a3a04be | 2026-07-27 10:29:07 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -501,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/29/2026 19:52:52 |
+| 2026-07 | 201.48 | 16911.06386 | 7/30/2026 1:50:54 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-23`; scanned last **600** data rows)
 
