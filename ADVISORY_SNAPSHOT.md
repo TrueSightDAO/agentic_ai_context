@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-30T14:41:35Z`
+- Generated (UTC): `2026-07-30T20:01:21Z`
 - Look-back: **7** calendar days (`2026-07-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-23 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+74d0754 | 2026-07-30 14:52:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 aaf07bc | 2026-07-30 09:15:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7831a95 | 2026-07-30 13:00:59 +0800 | Merge pull request #283: Add blog post: how our cacao gets from Brazil to San Francisco
 b9fa12b | 2026-07-30 03:43:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -326,6 +327,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+dc77e7b | 2026-07-30 22:41:50 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
+081ec38 | 2026-07-30 22:41:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 9f282a3 | 2026-07-30 17:13:27 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
 f9ea70a | 2026-07-30 17:13:26 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 29cfdd4 | 2026-07-30 11:41:39 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
@@ -364,8 +367,6 @@ db2fad5 | 2026-07-27 03:44:11 +0800 | chore(previews): refresh Beer Hall preview
 fd54e5d | 2026-07-27 03:44:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 a41e5a6 | 2026-07-26 22:08:12 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
 4af87e0 | 2026-07-26 22:08:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
-2a0fe49 | 2026-07-26 16:56:09 +0800 | chore(previews): refresh Beer Hall preview (2026-07-26 UTC)
-3a7a882 | 2026-07-26 16:56:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-26 UTC)
 … (truncated)
 ```
 
@@ -506,7 +507,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/30/2026 6:50:32 |
+| 2026-07 | 201.48 | 16911.06386 | 7/30/2026 12:50:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-23`; scanned last **600** data rows)
 
