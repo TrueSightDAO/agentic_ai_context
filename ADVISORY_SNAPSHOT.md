@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-31T03:59:59Z`
+- Generated (UTC): `2026-07-31T09:23:49Z`
 - Look-back: **7** calendar days (`2026-07-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,10 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-24 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+49489fe | 2026-07-31 12:39:21 +0800 | Add photo: sealing the pack
+e7f1cfa | 2026-07-31 12:39:19 +0800 | Add photo: the ceremonial cacao pack
+783d0ec | 2026-07-31 12:39:18 +0800 | Add photo: where the pack was signed (origin)
+054d618 | 2026-07-31 04:03:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 429e0cb | 2026-07-30 20:03:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 74d0754 | 2026-07-30 14:52:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 aaf07bc | 2026-07-30 09:15:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -324,6 +328,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d14ff39 | 2026-07-31 12:00:11 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
+ca295a1 | 2026-07-31 12:00:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 6733288 | 2026-07-31 10:57:57 +0800 | Merge pull request #720 from TrueSightDAO/auto/advisory-refresh-2026-07-31
 055cfee | 2026-07-31 02:57:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 0bfbaa9 | 2026-07-31 04:01:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
@@ -362,8 +368,6 @@ b8d2ec0 | 2026-07-27 15:03:27 +0800 | Add Cacao Club membership model proposal P
 22a6336 | 2026-07-27 12:13:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
 ef120a9 | 2026-07-27 12:13:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 79415f3 | 2026-07-27 10:31:09 +0800 | pdf(en): updated with 4 demographics, epicatechin, P&L
-534bdec | 2026-07-27 10:31:04 +0800 | ppt(cn): compressed version 23MB→793KB
-54a8e1a | 2026-07-27 10:31:00 +0800 | ppt(en): compressed version 23MB→794KB
 … (truncated)
 ```
 
@@ -400,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8876d46 | 2026-07-31 09:18:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 34cb744 | 2026-07-30 09:04:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8690717 | 2026-07-28 09:08:10 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -503,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/30/2026 20:50:43 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 1:53:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-24`; scanned last **600** data rows)
 
