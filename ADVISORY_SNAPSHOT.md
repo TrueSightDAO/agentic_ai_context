@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-31T14:59:05Z`
+- Generated (UTC): `2026-07-31T20:03:07Z`
 - Look-back: **7** calendar days (`2026-07-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-24 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+976cfd7 | 2026-07-31 15:02:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a6c9019 | 2026-07-31 09:25:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 49489fe | 2026-07-31 12:39:21 +0800 | Add photo: sealing the pack
 e7f1cfa | 2026-07-31 12:39:19 +0800 | Add photo: the ceremonial cacao pack
@@ -329,6 +330,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5ba024b | 2026-07-31 22:59:27 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
+d6cfb10 | 2026-07-31 22:59:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 2df66e0 | 2026-07-31 17:24:03 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
 5df8dc0 | 2026-07-31 17:24:02 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 d14ff39 | 2026-07-31 12:00:11 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
@@ -367,8 +370,6 @@ ecd1e06 | 2026-07-28 04:04:50 +0800 | chore(previews): refresh Beer Hall preview
 2ed895b | 2026-07-27 23:23:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 6ab8f71 | 2026-07-27 18:26:42 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
 bd0b6c7 | 2026-07-27 18:26:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
-b8d2ec0 | 2026-07-27 15:03:27 +0800 | Add Cacao Club membership model proposal PDF
-22a6336 | 2026-07-27 12:13:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
 … (truncated)
 ```
 
@@ -509,7 +510,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 7:50:54 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 12:50:26 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-24`; scanned last **600** data rows)
 
