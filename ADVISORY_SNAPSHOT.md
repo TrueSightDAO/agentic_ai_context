@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-07-31T09:23:49Z`
+- Generated (UTC): `2026-07-31T14:59:05Z`
 - Look-back: **7** calendar days (`2026-07-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260724060111_263` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: The built-in generate_pdf tool uses Helveti…
 - `Edgar_20260724060140_265` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
 - `Edgar_20260724222908_267` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-24T22:29:05.029Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260725021102_269` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10 · Description: DeepSeek API credit
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260730012603_297` · **Edgar** · [No Text Provided]
 - `Edgar_20260730012806_299` · **Edgar** · [No Text Provided]
 - `Edgar_20260731002048_301` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-31T00:20:45.518Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260731122151_303` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Gary Teh and Elizabeth Wong — 30 min strategy session preparing for upcoming…
 
 ---
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-07-30T10:59:14.308Z`
+- Generated (UTC): `2026-07-31T10:59:17.496Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -97,12 +97,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **597**, follow_up **70**, bulk **0**, unknown **2** (data rows: **669**)
+- **Email Agent Follow Up** — logged sends: warmup **607**, follow_up **70**, bulk **0**, unknown **2** (data rows: **679**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **533**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
+- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **543**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-24 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a6c9019 | 2026-07-31 09:25:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 49489fe | 2026-07-31 12:39:21 +0800 | Add photo: sealing the pack
 e7f1cfa | 2026-07-31 12:39:19 +0800 | Add photo: the ceremonial cacao pack
 783d0ec | 2026-07-31 12:39:18 +0800 | Add photo: where the pack was signed (origin)
@@ -328,6 +329,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2df66e0 | 2026-07-31 17:24:03 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
+5df8dc0 | 2026-07-31 17:24:02 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 d14ff39 | 2026-07-31 12:00:11 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
 ca295a1 | 2026-07-31 12:00:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 6733288 | 2026-07-31 10:57:57 +0800 | Merge pull request #720 from TrueSightDAO/auto/advisory-refresh-2026-07-31
@@ -366,8 +369,6 @@ ecd1e06 | 2026-07-28 04:04:50 +0800 | chore(previews): refresh Beer Hall preview
 bd0b6c7 | 2026-07-27 18:26:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
 b8d2ec0 | 2026-07-27 15:03:27 +0800 | Add Cacao Club membership model proposal PDF
 22a6336 | 2026-07-27 12:13:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-27 UTC)
-ef120a9 | 2026-07-27 12:13:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-27 UTC)
-79415f3 | 2026-07-27 10:31:09 +0800 | pdf(en): updated with 4 demographics, epicatechin, P&L
 … (truncated)
 ```
 
@@ -508,7 +509,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 1:53:41 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 7:50:54 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-24`; scanned last **600** data rows)
 
