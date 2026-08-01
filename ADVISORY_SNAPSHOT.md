@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-01T04:00:45Z`
+- Generated (UTC): `2026-08-01T08:39:57Z`
 - Look-back: **7** calendar days (`2026-07-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+fd04396 | 2026-08-01 04:02:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f47edbe | 2026-07-31 20:05:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 976cfd7 | 2026-07-31 15:02:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a6c9019 | 2026-07-31 09:25:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,6 +328,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cddbb0d | 2026-08-01 12:00:58 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
+a38276f | 2026-08-01 12:00:57 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
 0335989 | 2026-08-01 10:56:44 +0800 | Add temple offering covenant PDF (proof of work for Gary & Elizabeth 2h session)
 fac562b | 2026-08-01 10:56:30 +0800 | Merge pull request #724 from TrueSightDAO/auto/advisory-refresh-2026-08-01
 2a93c48 | 2026-08-01 02:56:19 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
@@ -365,8 +368,6 @@ c9a1d23 | 2026-07-29 04:01:05 +0800 | chore(previews): refresh Beer Hall preview
 7117843 | 2026-07-29 04:01:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-28 UTC)
 96956ad | 2026-07-28 22:59:06 +0800 | chore(previews): refresh Beer Hall preview (2026-07-28 UTC)
 64da0f6 | 2026-07-28 22:59:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-28 UTC)
-60497f1 | 2026-07-28 17:18:21 +0800 | chore(previews): refresh Beer Hall preview (2026-07-28 UTC)
-fd94d9e | 2026-07-28 17:18:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-28 UTC)
 … (truncated)
 ```
 
@@ -403,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+50493bf | 2026-08-01 08:35:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8876d46 | 2026-07-31 09:18:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 34cb744 | 2026-07-30 09:04:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -506,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 7/31/2026 20:50:53 |
+| 2026-08 | 0 | 16911.06386 | 8/1/2026 0:51:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-25`; scanned last **600** data rows)
 
