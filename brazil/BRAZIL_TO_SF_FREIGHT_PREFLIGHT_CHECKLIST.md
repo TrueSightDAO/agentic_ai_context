@@ -35,7 +35,11 @@
   - No MAPA (Ministry of Agriculture) clearance needed — confirmed by Omega
   - Also applies: 1803.10.00 (cacao mass/husk), 2106.90.00 (cacao tea)
 - [ ] **Fiscal Nota (NF-e) issued** ⚠️ **CRITICAL BLOCKER**
-  - **Black King currently CANNOT issue NF-e.** The CNPJ has only service CNAEs (82.30-0-01, events/fairs), no Inscrição Estadual (IE), and no NF-e credentialing at SEFAZ-BA.
+  - **Black King currently CANNOT issue NF-e.** THREE concurrent root causes (confirmed Jul 2026 by Matheus + former accountant):
+    (1) **Missing commerce CNAE** — CNPJ has only service CNAEs (82.30-0-01, events/fairs) → no Inscrição Estadual (IE) → no NF-e credentialing at SEFAZ-BA;
+    (2) **e-CNPJ digital certificate EXPIRED early June 2026** — blocks all gov portals;
+    (3) **CNPJ flagged "Inapto" (ineligible)** by Receita Federal due to unpaid invoices over the past year — clearance expected Friday→Monday after settling pending invoices.
+  - **PRE-FLIGHT CHECK (new, for ALL future Brazil shipments):** Before booking any cargo, verify (a) e-CNPJ certificate is valid/unexpired, (b) CNPJ status is NOT "Inapto" (check at https://solucoes.receita.fazenda.gov.br/Servicos/ConsCnpjCpf/ConsultaCnpjCpf.asp or e-CAC). An "Inapto" status silently blocks ALL issuance. Fix = settle pending invoices + accountant confirms status update.
   - **NFA-e (Nota Fiscal Avulsa) is NOT accepted for DU-E registration.** DU-E/Siscomex requires NF-e model 55, which needs IE. Confirmed via online research of Siscomex documentation — the DU-E pulls data directly from NF-e XML; no NFA-e integration exists.
   - **Sebrae NF-e Emitter (FREE, recommended post-IE):** Sebrae offers a free, web-based NF-e emitter at **https://emissornfe.sebrae.com.br** (350k+ users, 4M+ documents). Supports export NF-e (CFOP 7.101/7.102) — exportação is a Natureza de Operação variation of standard NF-e. Also handles NFS-e, CT-e, NFC-e, and stock control. Requires: Conta Sebrae (free account), ICP-Brasil digital certificate (A1/A3), **IE + SEFAZ credentialing (same prerequisites as any NF-e emitter).** See Appendix A.1.4 for setup steps.
   - **Self-service enablement path (no accountant needed):** See **Appendix A** for the complete step-by-step guide. Summary: (1) Add commerce CNAE to CNPJ via e-CAC, (2) Request IE at SEFAZ-BA, (3) Credential for NF-e emission, (4) Issue the export NF-e.
