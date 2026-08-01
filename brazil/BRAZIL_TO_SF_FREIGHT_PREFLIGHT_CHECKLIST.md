@@ -189,6 +189,8 @@
 | Item | Status |
 |------|--------|
 | e-CNPJ digital certificate (ICP-Brasil A1/A3) | ✓ Already used for RADAR/Siscomex |
+| **e-CNPJ certificate VALID (not expired)** | ⚠️ **EXPIRED early June 2026 — RENEW BEFORE SHIPPING** |
+| **CNPJ status NOT "Inapto"** | ⚠️ **WAS "Inapto" (unpaid invoices) — verify cleared at solucoes.receita.fazenda.gov.br** |
 | SEFAZ Services password | Obtain at sefaz.ba.gov.br if not yet |
 | DTE (Domicílio Tributário Eletrônico) adhesion | Required for export ops; do at sefaz.ba.gov.br |
 | Computer with internet | Any browser works |
