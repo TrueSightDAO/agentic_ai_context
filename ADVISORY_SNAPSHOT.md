@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-01T19:42:59Z`
-- Look-back: **7** calendar days (`2026-07-25` → today UTC)
+- Generated (UTC): `2026-08-02T04:03:52Z`
+- Look-back: **7** calendar days (`2026-07-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260726063158_273` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
 - `Edgar_20260727011654_275` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T01:16:52.881Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260727234034_277` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T23:40:31.131Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260728001025_279` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on Oracle reading framing — flagged that a governor's personal draw…
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260801014900_307` · **Edgar** · [No Text Provided]
 - `Edgar_20260801025639_309` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Gary & Elizabeth Wong — 2h collaboration interface strategy (temple offering…
 - `Edgar_20260801031617_311` · **Edgar** · [No Text Provided]
+- `Edgar_20260801225006_313` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-01T22:50:05.220Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -246,9 +246,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.20**
+- USD on hand: **$4,373.16**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.09**
+- USD provisioned for voting-rights cash-out: **$51.13**
 
 ### In-transit freight (1 row)
 
@@ -264,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-25 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-26 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+575470b | 2026-08-01 19:46:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
 50edfaf | 2026-08-01 14:08:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 33bd02c | 2026-08-01 08:54:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fd04396 | 2026-08-01 04:02:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -315,10 +316,6 @@ b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [
 76917e9 | 2026-07-26 14:11:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 71d1c73 | 2026-07-26 08:58:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4e700fc | 2026-07-26 04:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9e8a677 | 2026-07-25 19:46:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6f084c2 | 2026-07-25 14:12:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
-10b5566 | 2026-07-25 08:32:58 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9416215 | 2026-07-25 03:51:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -330,6 +327,8 @@ b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4afc6a0 | 2026-08-02 03:43:16 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
+770390f | 2026-08-02 03:43:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
 bb1d6be | 2026-08-01 22:07:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
 c4a8e47 | 2026-08-01 22:07:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
 c7b5f43 | 2026-08-01 16:40:10 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
@@ -368,8 +367,6 @@ b5689fd | 2026-07-30 03:52:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 04f9e9d | 2026-07-29 22:41:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 50406c7 | 2026-07-29 17:21:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
 c1bc336 | 2026-07-29 17:21:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
-2f2cb9a | 2026-07-29 11:49:59 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
-e9d8c94 | 2026-07-29 11:49:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 … (truncated)
 ```
 
@@ -414,7 +411,6 @@ a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory
 a3a04be | 2026-07-27 10:29:07 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 40f9d80 | 2026-07-27 10:11:01 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 01a0461 | 2026-07-26 08:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-f31d38f | 2026-07-25 08:25:53 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -510,9 +506,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/1/2026 11:50:28 |
+| 2026-08 | 0 | 16911.06386 | 8/1/2026 20:50:36 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-25`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-26`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
