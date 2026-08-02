@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-02T08:43:22Z`
+- Generated (UTC): `2026-08-02T14:08:10Z`
 - Look-back: **7** calendar days (`2026-07-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-01T10:59:14.327Z`
+- Generated (UTC): `2026-08-02T10:59:15.151Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-26 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f292701 | 2026-08-02 08:56:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c814abf | 2026-08-02 04:06:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 575470b | 2026-08-01 19:46:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
 50edfaf | 2026-08-01 14:08:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,6 +329,8 @@ b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3c92e33 | 2026-08-02 16:43:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
+5b8002f | 2026-08-02 16:43:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-02 UTC)
 9954464 | 2026-08-02 12:04:15 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
 ea0be93 | 2026-08-02 12:04:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-02 UTC)
 4afc6a0 | 2026-08-02 03:43:16 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
@@ -366,8 +369,6 @@ f9ea70a | 2026-07-30 17:13:26 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 c80b66a | 2026-07-30 02:32:29 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 213e8d4 | 2026-07-30 03:52:32 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
 b5689fd | 2026-07-30 03:52:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
-24c6885 | 2026-07-29 22:41:30 +0800 | chore(previews): refresh Beer Hall preview (2026-07-29 UTC)
-04f9e9d | 2026-07-29 22:41:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-29 UTC)
 … (truncated)
 ```
 
@@ -508,7 +509,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/2/2026 0:57:16 |
+| 2026-08 | 0 | 16911.06386 | 8/2/2026 6:50:17 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-26`; scanned last **600** data rows)
 
