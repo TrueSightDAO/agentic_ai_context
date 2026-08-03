@@ -154,6 +154,7 @@ flowchart LR
 | **GETDATA_CACHE** | `i-0d63b472d8a8893f8` | t2.micro | running | 172.31.19.80 | 98.84.169.188 | Krake cache worker. |
 | **seni_sql_2026** | `i-08ebe96afbc649a95` | t2.small | running | 172.31.20.143 | 44.193.55.205 | PostgreSQL database for Perch (sentiment_importer). |
 | **seni_redis_2** | `i-09ecc8ecc91d09206` | t2.large | running | 172.31.56.185 | 54.234.59.188 | Redis for Perch (Sidekiq, caching). |
+| **mtproto-proxy** | `i-085d04224ca04e106` | t3.micro | running | 172.31.5.1 | 44.201.50.229 (**dynamic, not an EIP** — Nelanco was at its EIP cap of 17/17 when provisioned 2026-08-03; the 3 unassociated EIPs at the time were tagged for other components (`seni_sk`, `seni_elastic`, `seni_redis_2`) and left alone pending governor decision) | **MTProto (Telegram) proxy** (`mtg`, fake-TLS disguised as `www.google.com`, port 443) so the governor can reach Telegram/Sophia from behind firewalls that block Telegram directly (e.g. China). SG `mtproto-proxy-sg` (`sg-0bcb1414252eb5f2b`): 22 + 443 open. Keypair `GETDATA_IO_PAIR_20201122` (same as other Nelanco boxes). Repo: `TrueSightDAO/mtproto_proxy` (private — install script + redeploy runbook; the live secret/connect link is intentionally NOT committed there or here, since this doc is public — ask the governor or regenerate via `mtg access /etc/mtg/config.toml` on the box). DNS: `mtproxy.truesight.me` → this IP (Explorya zone). **Follow-up:** if this IP is ever stopped/restarted it will change (not an EIP) — either request an EIP limit increase or free one of the tagged-but-unassociated EIPs above, then re-associate and update the DNS record. |
 
 ### 2.2 Explorya Account (440626669078) — `us-east-1`
 
@@ -178,6 +179,7 @@ flowchart LR
 | `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies to `seni_ror_200250915:8000` (governor chatbot / autopilot). |
 | `sophia.truesight.me` | A | `3.214.167.219` | → **truesight-autopilot in Nelanco** (`i-05276b8ae82d6b88c`); was `52.200.38.206` (Explorya) until the 2026-07-15 migration. |
 | `claude.truesight.me` | A | `100.57.50.48` | → **nelanco-claude** interactive Claude Code box (`i-01ad5eca707e4445f`, Nelanco). Added 2026-07-14. |
+| `mtproxy.truesight.me` | A | `44.201.50.229` | → **mtproto-proxy** (`i-085d04224ca04e106`, Nelanco). Dynamic IP, not an EIP (see §2.1 follow-up) — update this record if the instance's public IP ever changes. Added 2026-08-03. |
 | `dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages. |
 | `beta.dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages (beta). |
 | `truesight.me` | A | `185.199.108.153` + 3 more | GitHub Pages. |
