@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-03T04:05:41Z`
+- Generated (UTC): `2026-08-03T10:12:34Z`
 - Look-back: **7** calendar days (`2026-07-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[PRACTICE EVENT]` × 11
+- `[CONTRIBUTION EVENT]` × 19
+- `[PRACTICE EVENT]` × 12
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260727234034_277` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-27T23:40:31.131Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260728001025_279` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on Oracle reading framing — flagged that a governor's personal draw…
-- `Edgar_20260728002156_281` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
-- `Edgar_20260728084429_283` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-28T08:44:30.650Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260728231637_285` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-28T23:16:34.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260729001009_287` · **Edgar** · [No Text Provided]
 - `Edgar_20260729001135_289` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Chocolate museum analysis
 - `Edgar_20260729043257_291` · **Edgar** · [No Text Provided]
@@ -58,6 +53,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260801031617_311` · **Edgar** · [No Text Provided]
 - `Edgar_20260801225006_313` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-01T22:50:05.220Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260802202142_315` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-02T20:21:40.395Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260803065455_317` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Gary Teh
+- `Edgar_20260803065458_319` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Elizabeth Wong
+- `Edgar_20260803075318_321` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Research on MAPA registration requirements for China (GACC) imports — includ…
+- `Edgar_20260803075525_323` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Amount: 60 · Type: Time (Minutes)
+- `Edgar_20260803091533_325` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-03T09:15:31.451Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a73eeee | 2026-08-03 04:09:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2a419ac | 2026-08-02 19:45:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f7a856a | 2026-08-02 14:10:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f292701 | 2026-08-02 08:56:31 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,6 +328,8 @@ b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+25be376 | 2026-08-03 12:05:54 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
+944eea4 | 2026-08-03 12:05:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 a168dc9 | 2026-08-03 03:43:07 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
 e53aba0 | 2026-08-03 03:43:05 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-02 UTC)
 9b27164 | 2026-08-02 22:08:29 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
@@ -365,8 +368,6 @@ dc77e7b | 2026-07-30 22:41:50 +0800 | chore(previews): refresh Beer Hall preview
 081ec38 | 2026-07-30 22:41:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 9f282a3 | 2026-07-30 17:13:27 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
 f9ea70a | 2026-07-30 17:13:26 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
-29cfdd4 | 2026-07-30 11:41:39 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
-746aa28 | 2026-07-30 11:41:38 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 … (truncated)
 ```
 
@@ -403,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+2e3478f | 2026-08-03 10:07:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 da51bf2 | 2026-08-02 08:38:35 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 50493bf | 2026-08-01 08:35:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8876d46 | 2026-07-31 09:18:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -506,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/2/2026 20:51:19 |
+| 2026-08 | 0 | 16911.06386 | 8/3/2026 2:54:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-27`; scanned last **600** data rows)
 
