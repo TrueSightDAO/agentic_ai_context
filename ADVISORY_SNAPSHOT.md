@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-03T15:25:16Z`
+- Generated (UTC): `2026-08-03T20:11:06Z`
 - Look-back: **7** calendar days (`2026-07-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cf4c46e | 2026-08-03 15:26:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 aa9d193 | 2026-08-03 10:24:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a73eeee | 2026-08-03 04:09:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2a419ac | 2026-08-02 19:45:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,6 +330,8 @@ b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e900d13 | 2026-08-03 23:25:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
+0666f69 | 2026-08-03 23:25:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 9752831 | 2026-08-03 18:41:13 +0800 | Add signed TrueSight DAO LLC Próspera Operating Agreement v1.0 (15p, signed ZHIWEN TEH 2026-07-18)
 9c451f7 | 2026-08-03 18:12:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
 0513656 | 2026-08-03 18:12:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
@@ -367,8 +370,6 @@ ca295a1 | 2026-07-31 12:00:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 6733288 | 2026-07-31 10:57:57 +0800 | Merge pull request #720 from TrueSightDAO/auto/advisory-refresh-2026-07-31
 055cfee | 2026-07-31 02:57:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 0bfbaa9 | 2026-07-31 04:01:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
-f449e56 | 2026-07-31 04:01:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
-dc77e7b | 2026-07-30 22:41:50 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
 … (truncated)
 ```
 
@@ -510,7 +511,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/3/2026 7:51:05 |
+| 2026-08 | 0 | 16911.06386 | 8/3/2026 13:04:19 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-27`; scanned last **600** data rows)
 
