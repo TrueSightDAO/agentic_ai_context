@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-03T10:12:34Z`
+- Generated (UTC): `2026-08-03T15:25:16Z`
 - Look-back: **7** calendar days (`2026-07-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260729001009_287` · **Edgar** · [No Text Provided]
 - `Edgar_20260729001135_289` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Chocolate museum analysis
 - `Edgar_20260729043257_291` · **Edgar** · [No Text Provided]
 - `Edgar_20260729094839_293` · **Edgar** · [No Text Provided]
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260803075318_321` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Research on MAPA registration requirements for China (GACC) imports — includ…
 - `Edgar_20260803075525_323` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Amount: 60 · Type: Time (Minutes)
 - `Edgar_20260803091533_325` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-03T09:15:31.451Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260803104517_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh, Paloma Lecheta
 
 ---
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-02T10:59:15.151Z`
+- Generated (UTC): `2026-08-03T10:59:14.527Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+aa9d193 | 2026-08-03 10:24:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a73eeee | 2026-08-03 04:09:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2a419ac | 2026-08-02 19:45:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f7a856a | 2026-08-02 14:10:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,6 +329,9 @@ b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9752831 | 2026-08-03 18:41:13 +0800 | Add signed TrueSight DAO LLC Próspera Operating Agreement v1.0 (15p, signed ZHIWEN TEH 2026-07-18)
+9c451f7 | 2026-08-03 18:12:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
+0513656 | 2026-08-03 18:12:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 25be376 | 2026-08-03 12:05:54 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
 944eea4 | 2026-08-03 12:05:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 a168dc9 | 2026-08-03 03:43:07 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
@@ -365,9 +369,6 @@ ca295a1 | 2026-07-31 12:00:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 0bfbaa9 | 2026-07-31 04:01:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
 f449e56 | 2026-07-31 04:01:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 dc77e7b | 2026-07-30 22:41:50 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
-081ec38 | 2026-07-30 22:41:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
-9f282a3 | 2026-07-30 17:13:27 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
-f9ea70a | 2026-07-30 17:13:26 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-30 UTC)
 … (truncated)
 ```
 
@@ -404,6 +405,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+16d8cd9 | 2026-08-03 10:26:45 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 2e3478f | 2026-08-03 10:07:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 da51bf2 | 2026-08-02 08:38:35 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 50493bf | 2026-08-01 08:35:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -508,7 +510,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/3/2026 2:54:16 |
+| 2026-08 | 0 | 16911.06386 | 8/3/2026 7:51:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-27`; scanned last **600** data rows)
 
