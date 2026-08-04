@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-04T15:00:35Z`
+- Generated (UTC): `2026-08-04T20:09:03Z`
 - Look-back: **7** calendar days (`2026-07-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-28 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ed89f8a | 2026-08-04 15:04:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 43a7a00 | 2026-08-04 09:22:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd4a6c1 | 2026-08-04 03:51:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 67fd004 | 2026-08-03 20:14:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,6 +330,8 @@ cc4874c | 2026-07-28 09:19:19 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5ddf304 | 2026-08-04 23:00:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
+6ceb4e4 | 2026-08-04 23:00:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 d18eeac | 2026-08-04 17:20:28 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
 08f6ae2 | 2026-08-04 17:20:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 e21fc64 | 2026-08-04 11:48:10 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
@@ -367,8 +370,6 @@ fac562b | 2026-08-01 10:56:30 +0800 | Merge pull request #724 from TrueSightDAO/
 227b0b0 | 2026-08-01 10:22:11 +0800 | Add CNPJ Inapto + cert expiry to Appendix A prerequisites and notes (#722)
 b03b412 | 2026-08-01 10:22:08 +0800 | Document all 3 concurrent NF-e blockers (CNAE + cert expiry + Inapto) with pre-flight checks (#723)
 e677eac | 2026-08-01 04:03:26 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
-1859624 | 2026-08-01 04:03:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
-5ba024b | 2026-07-31 22:59:27 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
 … (truncated)
 ```
 
@@ -509,7 +510,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/4/2026 7:51:15 |
+| 2026-08 | 0 | 16911.06386 | 8/4/2026 12:53:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-28`; scanned last **600** data rows)
 
