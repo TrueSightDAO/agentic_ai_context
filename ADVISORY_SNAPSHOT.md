@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-04T09:20:07Z`
+- Generated (UTC): `2026-08-04T15:00:35Z`
 - Look-back: **7** calendar days (`2026-07-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-03T10:59:14.527Z`
+- Generated (UTC): `2026-08-04T10:59:14.735Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -97,16 +97,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **619**, follow_up **70**, bulk **0**, unknown **2** (data rows: **691**)
+- **Email Agent Follow Up** — logged sends: warmup **625**, follow_up **71**, bulk **0**, unknown **2** (data rows: **698**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **556**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
-- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
+- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **562**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
+- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **66**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
+- **Follow-up pipeline (combined)**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-28 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+43a7a00 | 2026-08-04 09:22:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd4a6c1 | 2026-08-04 03:51:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 67fd004 | 2026-08-03 20:14:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cf4c46e | 2026-08-03 15:26:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,6 +329,8 @@ cc4874c | 2026-07-28 09:19:19 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d18eeac | 2026-08-04 17:20:28 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
+08f6ae2 | 2026-08-04 17:20:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 e21fc64 | 2026-08-04 11:48:10 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
 86b6607 | 2026-08-04 11:48:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 be07074 | 2026-08-04 10:42:35 +0800 | Merge pull request #730 from TrueSightDAO/auto/advisory-refresh-2026-08-04
@@ -366,8 +369,6 @@ b03b412 | 2026-08-01 10:22:08 +0800 | Document all 3 concurrent NF-e blockers (C
 e677eac | 2026-08-01 04:03:26 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
 1859624 | 2026-08-01 04:03:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 5ba024b | 2026-07-31 22:59:27 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
-d6cfb10 | 2026-07-31 22:59:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
-2df66e0 | 2026-07-31 17:24:03 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
 … (truncated)
 ```
 
@@ -508,7 +509,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/4/2026 2:04:02 |
+| 2026-08 | 0 | 16911.06386 | 8/4/2026 7:51:15 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-28`; scanned last **600** data rows)
 
