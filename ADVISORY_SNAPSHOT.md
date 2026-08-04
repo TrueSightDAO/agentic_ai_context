@@ -20,44 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-03T20:11:06Z`
-- Look-back: **7** calendar days (`2026-07-27` → today UTC)
+- Generated (UTC): `2026-08-04T02:42:20Z`
+- Look-back: **7** calendar days (`2026-07-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 19
-- `[PRACTICE EVENT]` × 12
-- _free-form (no bracket tag)_ × 7
-
-### Latest entries
-
-- `Edgar_20260729001135_289` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Chocolate museum analysis
-- `Edgar_20260729043257_291` · **Edgar** · [No Text Provided]
-- `Edgar_20260729094839_293` · **Edgar** · [No Text Provided]
-- `Edgar_20260730004627_295` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-30T00:46:24.270Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260730012603_297` · **Edgar** · [No Text Provided]
-- `Edgar_20260730012806_299` · **Edgar** · [No Text Provided]
-- `Edgar_20260731002048_301` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-31T00:20:45.518Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260731122151_303` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Gary Teh and Elizabeth Wong — 30 min strategy session preparing for upcoming…
-- `Edgar_20260801011009_305` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-01T01:10:07.529Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260801014900_307` · **Edgar** · [No Text Provided]
-- `Edgar_20260801025639_309` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Gary & Elizabeth Wong — 2h collaboration interface strategy (temple offering…
-- `Edgar_20260801031617_311` · **Edgar** · [No Text Provided]
-- `Edgar_20260801225006_313` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-01T22:50:05.220Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260802202142_315` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-02T20:21:40.395Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260803065455_317` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Gary Teh
-- `Edgar_20260803065458_319` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Elizabeth Wong
-- `Edgar_20260803075318_321` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Research on MAPA registration requirements for China (GACC) imports — includ…
-- `Edgar_20260803075525_323` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Amount: 60 · Type: Time (Minutes)
-- `Edgar_20260803091533_325` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-03T09:15:31.451Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260803104517_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh, Paloma Lecheta
 
 ---
 
@@ -244,17 +209,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,373.12**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.17**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -264,7 +225,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-27 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-28 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -283,6 +244,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+67fd004 | 2026-08-03 20:14:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cf4c46e | 2026-08-03 15:26:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 aa9d193 | 2026-08-03 10:24:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a73eeee | 2026-08-03 04:09:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -315,10 +277,6 @@ dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [
 254a23b | 2026-07-28 15:02:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cc4874c | 2026-07-28 09:19:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6131fc5 | 2026-07-28 03:48:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-fcabaca | 2026-07-27 20:06:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a65c861 | 2026-07-27 15:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d81df71 | 2026-07-27 10:27:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -330,6 +288,8 @@ b287932 | 2026-07-27 04:24:50 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e4f7303 | 2026-08-04 04:11:29 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
+4ad5d42 | 2026-08-04 04:11:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 e900d13 | 2026-08-03 23:25:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
 0666f69 | 2026-08-03 23:25:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 9752831 | 2026-08-03 18:41:13 +0800 | Add signed TrueSight DAO LLC Próspera Operating Agreement v1.0 (15p, signed ZHIWEN TEH 2026-07-18)
@@ -368,8 +328,6 @@ d6cfb10 | 2026-07-31 22:59:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 d14ff39 | 2026-07-31 12:00:11 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
 ca295a1 | 2026-07-31 12:00:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
 6733288 | 2026-07-31 10:57:57 +0800 | Merge pull request #720 from TrueSightDAO/auto/advisory-refresh-2026-07-31
-055cfee | 2026-07-31 02:57:46 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-07-31 UTC)
-0bfbaa9 | 2026-07-31 04:01:36 +0800 | chore(previews): refresh Beer Hall preview (2026-07-30 UTC)
 … (truncated)
 ```
 
@@ -414,8 +372,6 @@ da51bf2 | 2026-08-02 08:38:35 +0000 | chore: refresh store and partner inventory
 34cb744 | 2026-07-30 09:04:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8690717 | 2026-07-28 09:08:10 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-a3a04be | 2026-07-27 10:29:07 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-40f9d80 | 2026-07-27 10:11:01 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -441,6 +397,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-08-04T024220Z_prospera-operating-agreement-signed-china-market-strategy.md`
+
+- **posted_at_utc:** `2026-08-04T02:42:20Z`  
+- **slug:** `prospera-operating-agreement-signed-china-market-strategy`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Legal** — Filed the signed TrueSight DAO LLC Próspera Operating Agreement v1.0, formalizing the entity’s foundational framework.
+
 ### `beer-hall_2026-08-01T025616Z_cacao-pack-visuals-sop.md`
 
 - **posted_at_utc:** `2026-08-01T02:56:16Z`  
@@ -458,15 +423,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Narrative** — Published explainer on the cacao logistics route from Brazil to San Francisco.
-
-### `beer-hall_2026-07-30T023225Z_cacao-club-and-oracle-updates.md`
-
-- **posted_at_utc:** `2026-07-30T02:32:25Z`  
-- **slug:** `cacao-club-and-oracle-updates`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Product (Oracle)** — Fixed blank lines in exported PDFs and reframed readings as personal practice rather than DAO directives.
 
 ---
 
@@ -487,39 +443,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/3/2026 13:04:19 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-27`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
