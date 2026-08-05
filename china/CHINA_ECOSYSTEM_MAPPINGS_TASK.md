@@ -26,6 +26,19 @@ So the mappings you investigate are not an abstract exercise — they determine 
 
 ---
 
+## 0.1 Why this is relevant: the strategic document prepared for Liu (UN SDG)
+
+A formal white paper — **"Supply-Chain Traceability for Chinese Exports" (EN + zh-CN)** — was prepared for **Liu (Liu Yunhu), Chair of the UN SDG Global Cooperation Project Working Committee**, the UN-affiliated contact engaging on China's export competitiveness.
+
+**The document's thesis:**
+- Chinese manufacturers are capped below top ESG ratings (e.g. MSCI ESG Ratings, AAA/AA level) and face EU/US market-access barriers (EU CSRD/CSDDD/EUDR; US UFLPA/CBP) — not because of performance, but because of a **verifiable-evidence gap**: ~2% of Chinese companies publish sustainability reports vs ~34% across the MSCI ACWI; only ~1.9% of rated Chinese companies are ESG Leaders.
+- The fix is **verifiable per-unit traceability**: QR lineage manifests → blockchain anchoring → notarized evidence → scan-verifiable verification — the due-diligence / ESG evidence packet that EU/US buyers and raters accept.
+- The stack is **proven live in Brazil** (a BRICS member) and the play is **exporting the digitalization**: traceability-as-a-service for manufacturers across BRICS and Belt & Road countries, aligned with UN SDGs.
+
+**How this links to your work:** Elizabeth Wong's Trade Accelerator is the **operational vehicle** that delivers this thesis — onboarding exporters, issuing manifests, and producing the evidence for real export transactions. **Every program the accelerator runs sits on the infrastructure you are mapping.** Your mappings therefore determine which accelerator programs (and which promises in the Liu document) can actually be delivered in mainland China. Your investigation is the delivery layer for the case Liu received.
+
+---
+
 ## 1. Why mappings
 
 We deploy a per-unit supply-chain traceability stack: **QR → lineage manifest → blockchain anchor → notarized evidence → scan-verifiable verification**. It currently runs on Google Apps Script + GitHub + GitHub Actions + AWS — most of which is blocked or unreliable behind the Chinese firewall.
@@ -111,4 +124,4 @@ Use your own method and existing accounts. For each capability:
 
 ---
 
-*Draft v0.2 — internal task brief. Platform choices are the China team's investigation output; this brief deliberately pre-fills nothing.*
+*Draft v0.3 — internal task brief. Platform choices are the China team's investigation output; this brief deliberately pre-fills nothing.*
