@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-05T14:54:50Z`
+- Generated (UTC): `2026-08-05T20:08:26Z`
 - Look-back: **7** calendar days (`2026-07-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-29 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e62ca76 | 2026-08-05 14:57:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b82746 | 2026-08-05 09:20:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 16559a7 | 2026-08-05 03:46:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0f013d8 | 2026-08-04 20:10:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -329,6 +330,8 @@ dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d8cf7eb | 2026-08-05 22:55:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
+f6bf5a3 | 2026-08-05 22:55:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 9a8bd15 | 2026-08-05 17:19:05 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
 60478ac | 2026-08-05 17:19:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 830ee09 | 2026-08-05 11:43:24 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
@@ -367,8 +370,6 @@ c4a8e47 | 2026-08-01 22:07:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 c7b5f43 | 2026-08-01 16:40:10 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
 608eec3 | 2026-08-01 16:40:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
 cddbb0d | 2026-08-01 12:00:58 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
-a38276f | 2026-08-01 12:00:57 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
-0335989 | 2026-08-01 10:56:44 +0800 | Add temple offering covenant PDF (proof of work for Gary & Elizabeth 2h session)
 … (truncated)
 ```
 
@@ -508,7 +509,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/5/2026 7:51:31 |
+| 2026-08 | 0 | 16911.06386 | 8/5/2026 12:51:06 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-29`; scanned last **600** data rows)
 
