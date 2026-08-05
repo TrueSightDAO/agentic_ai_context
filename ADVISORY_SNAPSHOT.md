@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-04T20:09:03Z`
-- Look-back: **7** calendar days (`2026-07-28` → today UTC)
+- Generated (UTC): `2026-08-05T03:43:11Z`
+- Look-back: **7** calendar days (`2026-07-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,13 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
-- `[PRACTICE EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 17
+- `[PRACTICE EVENT]` × 14
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260730004627_295` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-30T00:46:24.270Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260730012603_297` · **Edgar** · [No Text Provided]
 - `Edgar_20260730012806_299` · **Edgar** · [No Text Provided]
 - `Edgar_20260731002048_301` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-31T00:20:45.518Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260804002927_329` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-04T00:29:25.710Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260804024337_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Investigated whether to notify newsletter subscribers about Fazenda São Jorg…
 - `Edgar_20260804042819_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Assembled bilingual supply-chain traceability white paper (EN + zh-CN) and s…
+- `Edgar_20260805013230_335` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-05T01:25:32.828Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -246,9 +246,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.07**
+- USD on hand: **$4,373.03**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.22**
+- USD provisioned for voting-rights cash-out: **$51.26**
 
 ### In-transit freight (1 row)
 
@@ -264,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-28 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-29 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-28 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0f013d8 | 2026-08-04 20:10:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ed89f8a | 2026-08-04 15:04:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 43a7a00 | 2026-08-04 09:22:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd4a6c1 | 2026-08-04 03:51:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -315,10 +316,6 @@ caf27df | 2026-07-29 19:54:08 +0000 | chore(stats): refresh stats/current.json [
 67367c2 | 2026-07-29 14:54:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a7795f1 | 2026-07-29 09:23:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
-21eb1ca | 2026-07-28 20:03:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-254a23b | 2026-07-28 15:02:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
-cc4874c | 2026-07-28 09:19:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6131fc5 | 2026-07-28 03:48:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -330,6 +327,8 @@ cc4874c | 2026-07-28 09:19:19 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ecab6ea | 2026-08-05 04:09:44 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
+8dd3948 | 2026-08-05 04:09:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 5ddf304 | 2026-08-04 23:00:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
 6ceb4e4 | 2026-08-04 23:00:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 d18eeac | 2026-08-04 17:20:28 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
@@ -368,8 +367,6 @@ fac562b | 2026-08-01 10:56:30 +0800 | Merge pull request #724 from TrueSightDAO/
 2a93c48 | 2026-08-01 02:56:19 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
 152bcf8 | 2026-08-01 10:23:29 +0800 | Build PDF of updated Brazil-SF freight preflight SOP (3 NF-e blockers)
 227b0b0 | 2026-08-01 10:22:11 +0800 | Add CNPJ Inapto + cert expiry to Appendix A prerequisites and notes (#722)
-b03b412 | 2026-08-01 10:22:08 +0800 | Document all 3 concurrent NF-e blockers (CNAE + cert expiry + Inapto) with pre-flight checks (#723)
-e677eac | 2026-08-01 04:03:26 +0800 | chore(previews): refresh Beer Hall preview (2026-07-31 UTC)
 … (truncated)
 ```
 
@@ -414,7 +411,6 @@ da51bf2 | 2026-08-02 08:38:35 +0000 | chore: refresh store and partner inventory
 8876d46 | 2026-07-31 09:18:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 34cb744 | 2026-07-30 09:04:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-8690717 | 2026-07-28 09:08:10 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -427,7 +423,6 @@ _(no commits on origin/main in window)_
 
 ```
 0bd1a09 | 2026-07-29 15:25:55 +0800 | Fix hexagram lines rendering blank in printed/exported PDFs (#64)
-40c0070 | 2026-07-28 08:23:07 +0800 | Frame oracle readings as the operator's personal practice, not a DAO-wide directive (#63)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -510,9 +505,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/4/2026 12:53:07 |
+| 2026-08 | 0 | 16911.06386 | 8/4/2026 19:52:28 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-28`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-29`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
