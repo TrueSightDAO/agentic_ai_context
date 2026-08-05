@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-05T03:43:11Z`
+- Generated (UTC): `2026-08-05T09:18:46Z`
 - Look-back: **7** calendar days (`2026-07-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-29 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+16559a7 | 2026-08-05 03:46:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0f013d8 | 2026-08-04 20:10:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ed89f8a | 2026-08-04 15:04:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 43a7a00 | 2026-08-04 09:22:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,6 +328,8 @@ dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+830ee09 | 2026-08-05 11:43:24 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
+143a77f | 2026-08-05 11:43:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 ecab6ea | 2026-08-05 04:09:44 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
 8dd3948 | 2026-08-05 04:09:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 5ddf304 | 2026-08-04 23:00:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
@@ -365,8 +368,6 @@ a38276f | 2026-08-01 12:00:57 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 0335989 | 2026-08-01 10:56:44 +0800 | Add temple offering covenant PDF (proof of work for Gary & Elizabeth 2h session)
 fac562b | 2026-08-01 10:56:30 +0800 | Merge pull request #724 from TrueSightDAO/auto/advisory-refresh-2026-08-01
 2a93c48 | 2026-08-01 02:56:19 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
-152bcf8 | 2026-08-01 10:23:29 +0800 | Build PDF of updated Brazil-SF freight preflight SOP (3 NF-e blockers)
-227b0b0 | 2026-08-01 10:22:11 +0800 | Add CNPJ Inapto + cert expiry to Appendix A prerequisites and notes (#722)
 … (truncated)
 ```
 
@@ -403,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a5787ce | 2026-08-05 09:07:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1c71295 | 2026-08-04 09:10:57 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 16d8cd9 | 2026-08-03 10:26:45 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 2e3478f | 2026-08-03 10:07:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -505,7 +507,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/4/2026 19:52:28 |
+| 2026-08 | 0 | 16911.06386 | 8/5/2026 1:51:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-29`; scanned last **600** data rows)
 
