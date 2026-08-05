@@ -10,11 +10,27 @@
 
 ---
 
+## 0. Context: this infrastructure hosts the Trade Accelerator
+
+This investigation serves **Elizabeth Wong's planned Trade Accelerator** — a program that helps Chinese manufacturers/exporters move **actual trade out of China** (physical exports) with verifiable supply-chain traceability.
+
+**The accelerator's programs run on this infrastructure by default.** The platform we stand up in China is the operating backbone for:
+
+- onboarding factories/exporters
+- issuing QR lineage manifests per unit/batch
+- anchoring records to chain (TrueChain pattern)
+- producing the due-diligence / ESG evidence that EU/US buyers and raters accept
+- supporting cross-border verification for export transactions
+
+So the mappings you investigate are not an abstract exercise — they determine **which capabilities the accelerator can launch with**. A capability that is missing or broken behind the firewall blocks the corresponding accelerator program.
+
+---
+
 ## 1. Why mappings
 
 We deploy a per-unit supply-chain traceability stack: **QR → lineage manifest → blockchain anchor → notarized evidence → scan-verifiable verification**. It currently runs on Google Apps Script + GitHub + GitHub Actions + AWS — most of which is blocked or unreliable behind the Chinese firewall.
 
-Before we can operate in mainland China, we need to know exactly which capabilities can be **mapped onto what you already have** (your current ecosystem), and which are missing or need rebuilding. The investigation and the platform choices are yours to make.
+Before the Trade Accelerator can operate in mainland China, we need to know exactly which capabilities can be **mapped onto what you already have** (your current ecosystem), and which are missing or need rebuilding. The investigation and the platform choices are yours to make.
 
 ---
 
@@ -91,8 +107,8 @@ Use your own method and existing accounts. For each capability:
 2. Review your recommendations per capability.
 3. Discuss and sign off the China deployment direction.
 4. Assign next actions.
-5. Confirm pilot scope with Liz (textiles / electronics / agro).
+5. Confirm pilot scope with Liz (textiles / electronics / agro) for the Trade Accelerator.
 
 ---
 
-*Draft v0.1 — internal task brief. Platform choices are the China team's investigation output; this brief deliberately pre-fills nothing.*
+*Draft v0.2 — internal task brief. Platform choices are the China team's investigation output; this brief deliberately pre-fills nothing.*
