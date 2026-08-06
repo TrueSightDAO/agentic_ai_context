@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-06T09:21:21Z`
+- Generated (UTC): `2026-08-06T14:53:44Z`
 - Look-back: **7** calendar days (`2026-07-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-05T10:59:15.640Z`
+- Generated (UTC): `2026-08-06T10:59:14.411Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **670**
 - Partnered (north-star): **14**
@@ -97,12 +97,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **635**, follow_up **71**, bulk **0**, unknown **2** (data rows: **708**)
+- **Email Agent Follow Up** — logged sends: warmup **647**, follow_up **71**, bulk **0**, unknown **2** (data rows: **720**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **572**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
+- **AI: Warm up prospect**: **64** stores — sum logged **warmup** sends (AU): **584**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **63**; follow-up depth (none / once / ≥2): **64** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-30 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5de2bae | 2026-08-06 09:24:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d7e0ce6 | 2026-08-06 03:51:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d3036ce | 2026-08-05 20:11:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e62ca76 | 2026-08-05 14:57:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -328,6 +329,8 @@ f3f86a9 | 2026-07-30 01:17:49 +0000 | Add blog post: how our cacao gets from Bra
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ed8b7ca | 2026-08-06 17:21:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-06 UTC)
+fb46220 | 2026-08-06 17:21:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-06 UTC)
 564e507 | 2026-08-06 16:47:03 +0800 | v14: secure supply + price insulation goal (maintenance-cost peg)
 a3dfba4 | 2026-08-06 16:46:27 +0800 | v13: machine-maintenance-cost barter anchor (bypass commodity price)
 d737649 | 2026-08-06 16:28:15 +0800 | Update robotics-for-cacao barter PDF v12: sequence farmer receptiveness check before Gianluca farm visit
@@ -366,8 +369,6 @@ e4f7303 | 2026-08-04 04:11:29 +0800 | chore(previews): refresh Beer Hall preview
 4ad5d42 | 2026-08-04 04:11:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 e900d13 | 2026-08-03 23:25:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
 0666f69 | 2026-08-03 23:25:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
-9752831 | 2026-08-03 18:41:13 +0800 | Add signed TrueSight DAO LLC Próspera Operating Agreement v1.0 (15p, signed ZHIWEN TEH 2026-07-18)
-9c451f7 | 2026-08-03 18:12:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
 … (truncated)
 ```
 
@@ -507,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/6/2026 1:50:34 |
+| 2026-08 | 0 | 16911.06386 | 8/6/2026 7:50:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-30`; scanned last **600** data rows)
 
