@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-05T20:08:26Z`
-- Look-back: **7** calendar days (`2026-07-29` → today UTC)
+- Generated (UTC): `2026-08-06T03:48:46Z`
+- Look-back: **7** calendar days (`2026-07-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,13 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 17
-- `[PRACTICE EVENT]` × 14
+- `[CONTRIBUTION EVENT]` × 16
+- `[PRACTICE EVENT]` × 15
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260730012603_297` · **Edgar** · [No Text Provided]
 - `Edgar_20260730012806_299` · **Edgar** · [No Text Provided]
 - `Edgar_20260731002048_301` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-07-31T00:20:45.518Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260731122151_303` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Gary Teh and Elizabeth Wong — 30 min strategy session preparing for upcoming…
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260804024337_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Investigated whether to notify newsletter subscribers about Fazenda São Jorg…
 - `Edgar_20260804042819_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Assembled bilingual supply-chain traceability white paper (EN + zh-CN) and s…
 - `Edgar_20260805013230_335` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-05T01:25:32.828Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260805224620_337` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-05T22:46:18.172Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -246,9 +246,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,373.03**
+- USD on hand: **$4,373.00**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.26**
+- USD provisioned for voting-rights cash-out: **$51.29**
 
 ### In-transit freight (1 row)
 
@@ -264,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-29 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-30 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -274,7 +274,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-29 in CONTEXT_UPDATES.md.)_
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **yes** |
+| `oracle` | `iching_oracle` | **no** |
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-29 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d3036ce | 2026-08-05 20:11:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e62ca76 | 2026-08-05 14:57:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b82746 | 2026-08-05 09:20:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 16559a7 | 2026-08-05 03:46:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -315,10 +316,6 @@ aaf07bc | 2026-07-30 09:15:08 +0000 | chore(stats): refresh stats/current.json [
 7831a95 | 2026-07-30 13:00:59 +0800 | Merge pull request #283: Add blog post: how our cacao gets from Brazil to San Francisco
 b9fa12b | 2026-07-30 03:43:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f3f86a9 | 2026-07-30 01:17:49 +0000 | Add blog post: how our cacao gets from Brazil to San Francisco
-caf27df | 2026-07-29 19:54:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
-67367c2 | 2026-07-29 14:54:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a7795f1 | 2026-07-29 09:23:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -330,6 +327,8 @@ dd67901 | 2026-07-29 03:52:16 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e818a63 | 2026-08-06 04:08:49 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
+227e9bb | 2026-08-06 04:08:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 d8cf7eb | 2026-08-05 22:55:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
 f6bf5a3 | 2026-08-05 22:55:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 9a8bd15 | 2026-08-05 17:19:05 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
@@ -368,8 +367,6 @@ ea0be93 | 2026-08-02 12:04:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 bb1d6be | 2026-08-01 22:07:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
 c4a8e47 | 2026-08-01 22:07:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
 c7b5f43 | 2026-08-01 16:40:10 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
-608eec3 | 2026-08-01 16:40:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
-cddbb0d | 2026-08-01 12:00:58 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
 … (truncated)
 ```
 
@@ -414,7 +411,6 @@ da51bf2 | 2026-08-02 08:38:35 +0000 | chore: refresh store and partner inventory
 50493bf | 2026-08-01 08:35:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8876d46 | 2026-07-31 09:18:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 34cb744 | 2026-07-30 09:04:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-a2580e9 | 2026-07-29 09:11:37 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -426,7 +422,7 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
-0bd1a09 | 2026-07-29 15:25:55 +0800 | Fix hexagram lines rendering blank in printed/exported PDFs (#64)
+_(no commits on origin/main in window)_
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -509,9 +505,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/5/2026 12:51:06 |
+| 2026-08 | 0 | 16911.06386 | 8/5/2026 19:52:17 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-29`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-30`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
