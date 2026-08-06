@@ -39,6 +39,9 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Follow up: Evan + Cao — roll out Aora program via Cao's WeAcademy
+**Filed 2026-08-06. Owner: Gary.** After the upcoming Beijing meeting with Evan (Teacher Evan, educational advisor) + Model UN, follow up with Evan and Mr. Cao (Liz's partner, GO/Nucleus network) about potentially rolling out the Aora China program via **Cao's WeAcademy**. The program extends Aora Modules 1 (Agroforestry) + 2 (Supply Chain) into a multi-session arc: (1) PBL program — info-first, students generate their own solutions, AI-powered rapid deep dive; (2) student exchange Brazil↔China; (3) post-graduation outcomes — Lineage credentials, registered tree plantings, certificates; (4) farm stay in Bahia/Pará. NOTE: "WeAcademy" has zero hits in agentic_ai_context + org code search (checked 2026-08-06) — confirm what it is (assumed Mr. Cao's education platform) and how Aora maps onto it (venue / curriculum channel / distribution). **Evan comes in as a consultant** (educational advisor) on the roll-out. Deliverable: short one-pager proposal for Cao/Evan on Aora + WeAcademy roll-out.
+
 ### Complete Etsy order monitoring OAuth setup (blocked on Etsy app approval)
 **Filed 2026-07-02. Owner: Gary.** Etsy order monitoring GAS code is written and
 pushed to the `agroverse_shop_checkout` GAS project (script ID `1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn`).
