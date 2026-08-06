@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-06T03:48:46Z`
+- Generated (UTC): `2026-08-06T09:21:21Z`
 - Look-back: **7** calendar days (`2026-07-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-30 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d7e0ce6 | 2026-08-06 03:51:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d3036ce | 2026-08-05 20:11:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e62ca76 | 2026-08-05 14:57:50 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b82746 | 2026-08-05 09:20:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -327,6 +328,22 @@ f3f86a9 | 2026-07-30 01:17:49 +0000 | Add blog post: how our cacao gets from Bra
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+564e507 | 2026-08-06 16:47:03 +0800 | v14: secure supply + price insulation goal (maintenance-cost peg)
+a3dfba4 | 2026-08-06 16:46:27 +0800 | v13: machine-maintenance-cost barter anchor (bypass commodity price)
+d737649 | 2026-08-06 16:28:15 +0800 | Update robotics-for-cacao barter PDF v12: sequence farmer receptiveness check before Gianluca farm visit
+1f86459 | 2026-08-06 16:12:33 +0800 | Update robotics-for-cacao barter PDF v11: automation extends farmer ownership longevity (causal chain)
+d4fef6d | 2026-08-06 15:56:26 +0800 | Update robotics-for-cacao barter PDF v10: cut & collect witches broom, no spray (agroforestry)
+e89d2fe | 2026-08-06 15:55:13 +0800 | Update robotics-for-cacao barter PDF v9: add Problem 4 farm succession risk
+7d2911f | 2026-08-06 15:51:12 +0800 | Update robotics-for-cacao barter PDF v8: restructure around 3 problems (broom, aging farmers, roast consistency)
+0331c5d | 2026-08-06 15:46:49 +0800 | Update robotics-for-cacao barter PDF v7: remove DAO references
+454154f | 2026-08-06 15:46:19 +0800 | Update robotics-for-cacao barter PDF v6: roast control as reinforcement learning problem
+5d15cec | 2026-08-06 15:45:36 +0800 | Update robotics-for-cacao barter PDF v5: add §3 scalable roast control via particle detection
+c6d934a | 2026-08-06 15:44:34 +0800 | Update robotics-for-cacao barter PDF v4: anonymize roles (drop Matheus/Sophia/CNPJ)
+82798f4 | 2026-08-06 15:43:05 +0800 | Update robotics-for-cacao barter PDF v3: Frasky ref in context, §2, and pilot step 1
+ef01339 | 2026-08-06 15:42:37 +0800 | Update robotics-for-cacao barter PDF: add Frasky working-prototype reference (§2)
+e7e2b77 | 2026-08-06 15:19:13 +0800 | Add robotics-for-cacao barter action item PDF (2026-08-06)
+53326c7 | 2026-08-06 11:48:59 +0800 | chore(previews): refresh Beer Hall preview (2026-08-06 UTC)
+537e82b | 2026-08-06 11:48:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-06 UTC)
 e818a63 | 2026-08-06 04:08:49 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
 227e9bb | 2026-08-06 04:08:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 d8cf7eb | 2026-08-05 22:55:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
@@ -351,22 +368,6 @@ e900d13 | 2026-08-03 23:25:35 +0800 | chore(previews): refresh Beer Hall preview
 0666f69 | 2026-08-03 23:25:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 9752831 | 2026-08-03 18:41:13 +0800 | Add signed TrueSight DAO LLC Próspera Operating Agreement v1.0 (15p, signed ZHIWEN TEH 2026-07-18)
 9c451f7 | 2026-08-03 18:12:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
-0513656 | 2026-08-03 18:12:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
-25be376 | 2026-08-03 12:05:54 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
-944eea4 | 2026-08-03 12:05:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
-a168dc9 | 2026-08-03 03:43:07 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
-e53aba0 | 2026-08-03 03:43:05 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-02 UTC)
-9b27164 | 2026-08-02 22:08:29 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
-63eb21b | 2026-08-02 22:08:28 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-02 UTC)
-3c92e33 | 2026-08-02 16:43:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
-5b8002f | 2026-08-02 16:43:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-02 UTC)
-9954464 | 2026-08-02 12:04:15 +0800 | chore(previews): refresh Beer Hall preview (2026-08-02 UTC)
-ea0be93 | 2026-08-02 12:04:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-02 UTC)
-4afc6a0 | 2026-08-02 03:43:16 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
-770390f | 2026-08-02 03:43:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
-bb1d6be | 2026-08-01 22:07:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
-c4a8e47 | 2026-08-01 22:07:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-01 UTC)
-c7b5f43 | 2026-08-01 16:40:10 +0800 | chore(previews): refresh Beer Hall preview (2026-08-01 UTC)
 … (truncated)
 ```
 
@@ -403,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d1fa08f | 2026-08-06 09:08:36 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a5787ce | 2026-08-05 09:07:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1c71295 | 2026-08-04 09:10:57 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 16d8cd9 | 2026-08-03 10:26:45 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -505,7 +507,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/5/2026 19:52:17 |
+| 2026-08 | 0 | 16911.06386 | 8/6/2026 1:50:34 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-30`; scanned last **600** data rows)
 
