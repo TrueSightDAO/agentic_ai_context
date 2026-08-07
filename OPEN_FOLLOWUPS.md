@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### [NEW 2026-08-07] Follow up with Erica (Tuya) — office visit: IoT sensors + app platform
+**Filed 2026-08-07. Owner: Gary.** After the office visit with Erica & Gianluca (Tuya, tuya.com), the research report is in `go_to_market` PR #172 (`tuya_iot_research/TUYA_IOT_AGROVERSE_REPORT.md`) and PDF v2 shared in Telegram thread 10510.
+
+Next steps:
+1. **Contact Erica** — no email on record yet; get her address + confirm her role (OEM / reseller / integrator / solution provider) and Brazil presence.
+2. **Send report** to Erica + Gianluca for review; ask the 7 questions in report §11 (Brazil ag references, sensor pricing/lead times, off-grid LoRa connectivity, data ownership/private cloud, pilot minimum order, time-series APIs).
+3. **Hand to Jerry (team)** — review §7 Bean Quality × Environment schema; decide QC app / data-pipeline approach.
+4. **Cost the pilot** (hardware + gateway + platform fees) → DAO budget.
+
 ### Complete Etsy order monitoring OAuth setup (blocked on Etsy app approval)
 **Filed 2026-07-02. Owner: Gary.** Etsy order monitoring GAS code is written and
 pushed to the `agroverse_shop_checkout` GAS project (script ID `1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn`).
