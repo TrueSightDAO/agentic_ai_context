@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-06T14:53:44Z`
-- Look-back: **7** calendar days (`2026-07-30` → today UTC)
+- Generated (UTC): `2026-08-07T00:23:50Z`
+- Look-back: **7** calendar days (`2026-07-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -264,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-30 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-07-31 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-30 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+11f03e7 | 2026-08-06 14:56:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5de2bae | 2026-08-06 09:24:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d7e0ce6 | 2026-08-06 03:51:47 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d3036ce | 2026-08-05 20:11:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,12 +313,6 @@ a6c9019 | 2026-07-31 09:25:17 +0000 | chore(stats): refresh stats/current.json [
 e7f1cfa | 2026-07-31 12:39:19 +0800 | Add photo: the ceremonial cacao pack
 783d0ec | 2026-07-31 12:39:18 +0800 | Add photo: where the pack was signed (origin)
 054d618 | 2026-07-31 04:03:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
-429e0cb | 2026-07-30 20:03:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
-74d0754 | 2026-07-30 14:52:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
-aaf07bc | 2026-07-30 09:15:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
-7831a95 | 2026-07-30 13:00:59 +0800 | Merge pull request #283: Add blog post: how our cacao gets from Brazil to San Francisco
-b9fa12b | 2026-07-30 03:43:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f3f86a9 | 2026-07-30 01:17:49 +0000 | Add blog post: how our cacao gets from Brazil to San Francisco
 ```
 
 ### `market_research` → `go_to_market`
@@ -329,6 +324,8 @@ f3f86a9 | 2026-07-30 01:17:49 +0000 | Add blog post: how our cacao gets from Bra
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+15f4a4b | 2026-08-06 22:54:08 +0800 | chore(previews): refresh Beer Hall preview (2026-08-06 UTC)
+a86ec0a | 2026-08-06 22:54:06 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-06 UTC)
 ed8b7ca | 2026-08-06 17:21:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-06 UTC)
 fb46220 | 2026-08-06 17:21:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-06 UTC)
 564e507 | 2026-08-06 16:47:03 +0800 | v14: secure supply + price insulation goal (maintenance-cost peg)
@@ -367,8 +364,6 @@ be07074 | 2026-08-04 10:42:35 +0800 | Merge pull request #730 from TrueSightDAO/
 f41c435 | 2026-08-04 02:42:24 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 e4f7303 | 2026-08-04 04:11:29 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
 4ad5d42 | 2026-08-04 04:11:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
-e900d13 | 2026-08-03 23:25:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-03 UTC)
-0666f69 | 2026-08-03 23:25:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-03 UTC)
 … (truncated)
 ```
 
@@ -413,7 +408,6 @@ a5787ce | 2026-08-05 09:07:58 +0000 | chore: refresh store and partner inventory
 da51bf2 | 2026-08-02 08:38:35 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 50493bf | 2026-08-01 08:35:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8876d46 | 2026-07-31 09:18:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-34cb744 | 2026-07-30 09:04:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -508,9 +502,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/6/2026 7:50:58 |
+| 2026-08 | 0 | 16911.06386 | 8/6/2026 15:50:41 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-30`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-31`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
