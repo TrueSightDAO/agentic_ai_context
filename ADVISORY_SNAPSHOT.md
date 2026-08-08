@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-08T13:26:29Z`
+- Generated (UTC): `2026-08-08T19:08:48Z`
 - Look-back: **7** calendar days (`2026-08-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -268,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-01 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+048efae | 2026-08-08 13:28:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ab2b373 | 2026-08-08 07:31:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6af247d | 2026-08-08 02:29:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 73bbb6f | 2026-08-07 19:33:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -309,6 +310,8 @@ fd04396 | 2026-08-01 04:02:37 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+571479a | 2026-08-08 21:26:44 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
+4f62000 | 2026-08-08 21:26:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
 b0e0610 | 2026-08-08 15:29:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
 2cc8831 | 2026-08-08 15:29:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
 03d4156 | 2026-08-08 10:28:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
@@ -347,8 +350,6 @@ e7e2b77 | 2026-08-06 15:19:13 +0800 | Add robotics-for-cacao barter action item 
 537e82b | 2026-08-06 11:48:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-06 UTC)
 e818a63 | 2026-08-06 04:08:49 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
 227e9bb | 2026-08-06 04:08:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
-d8cf7eb | 2026-08-05 22:55:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
-f6bf5a3 | 2026-08-05 22:55:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 … (truncated)
 ```
 
@@ -488,7 +489,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/8/2026 5:53:13 |
+| 2026-08 | 0 | 16911.06386 | 8/8/2026 11:50:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-01`; scanned last **600** data rows)
 
