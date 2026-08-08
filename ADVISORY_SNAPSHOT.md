@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-07T19:29:16Z`
-- Look-back: **7** calendar days (`2026-07-31` → today UTC)
+- Generated (UTC): `2026-08-08T02:28:20Z`
+- Look-back: **7** calendar days (`2026-08-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260801031617_311` · **Edgar** · [No Text Provided]
 - `Edgar_20260801225006_313` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-01T22:50:05.220Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260802202142_315` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-02T20:21:40.395Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260803065455_317` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Gary Teh
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260807113046_345` · **Edgar** · [No Text Provided]
 - `Edgar_20260807130326_347` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.048Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260807130327_349` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.054Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260808014019_351` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-08T01:40:15.209Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -264,7 +264,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-07-31 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-08-01 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -283,6 +283,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-07-31 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+73bbb6f | 2026-08-07 19:33:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b179a7e | 2026-08-07 13:52:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c068909 | 2026-08-07 07:53:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6e64040 | 2026-08-07 03:32:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -310,13 +311,6 @@ c814abf | 2026-08-02 04:06:29 +0000 | chore(stats): refresh stats/current.json [
 50edfaf | 2026-08-01 14:08:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 33bd02c | 2026-08-01 08:54:26 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fd04396 | 2026-08-01 04:02:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f47edbe | 2026-07-31 20:05:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-976cfd7 | 2026-07-31 15:02:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a6c9019 | 2026-07-31 09:25:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
-49489fe | 2026-07-31 12:39:21 +0800 | Add photo: sealing the pack
-e7f1cfa | 2026-07-31 12:39:19 +0800 | Add photo: the ceremonial cacao pack
-783d0ec | 2026-07-31 12:39:18 +0800 | Add photo: where the pack was signed (origin)
-054d618 | 2026-07-31 04:03:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -328,6 +322,8 @@ e7f1cfa | 2026-07-31 12:39:19 +0800 | Add photo: the ceremonial cacao pack
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bc3f59a | 2026-08-08 03:29:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
+96f33d3 | 2026-08-08 03:29:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 9640852 | 2026-08-07 21:49:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
 2db1457 | 2026-08-07 21:49:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 5e68ff8 | 2026-08-07 15:52:26 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
@@ -366,8 +362,6 @@ f6bf5a3 | 2026-08-05 22:55:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 60478ac | 2026-08-05 17:19:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
 830ee09 | 2026-08-05 11:43:24 +0800 | chore(previews): refresh Beer Hall preview (2026-08-05 UTC)
 143a77f | 2026-08-05 11:43:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-05 UTC)
-ecab6ea | 2026-08-05 04:09:44 +0800 | chore(previews): refresh Beer Hall preview (2026-08-04 UTC)
-8dd3948 | 2026-08-05 04:09:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-04 UTC)
 … (truncated)
 ```
 
@@ -412,7 +406,6 @@ a5787ce | 2026-08-05 09:07:58 +0000 | chore: refresh store and partner inventory
 2e3478f | 2026-08-03 10:07:58 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 da51bf2 | 2026-08-02 08:38:35 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 50493bf | 2026-08-01 08:35:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-8876d46 | 2026-07-31 09:18:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -507,9 +500,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/7/2026 11:57:33 |
+| 2026-08 | 0 | 16911.06386 | 8/7/2026 18:51:00 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-07-31`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-01`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
