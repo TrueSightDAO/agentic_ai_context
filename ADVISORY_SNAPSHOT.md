@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-09T07:31:37Z`
+- Generated (UTC): `2026-08-09T13:31:11Z`
 - Look-back: **7** calendar days (`2026-08-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,14 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PRACTICE EVENT]` × 15
-- `[CONTRIBUTION EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 15
+- `[PRACTICE EVENT]` × 13
 - _free-form (no bracket tag)_ × 10
 
 ### Latest entries
 
-- `Edgar_20260803065458_319` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Elizabeth Wong
-- `Edgar_20260803075318_321` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Research on MAPA registration requirements for China (GACC) imports — includ…
 - `Edgar_20260803075525_323` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Amount: 60 · Type: Time (Minutes)
 - `Edgar_20260803091533_325` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-03T09:15:31.451Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260803104517_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh, Paloma Lecheta
@@ -58,6 +56,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260808030646_353` · **Edgar** · [No Text Provided]
 - `Edgar_20260809042755_355` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Chocolate tasting session with Gaia and Aria (Liz's kids). Findings: 65% sug…
 - `Edgar_20260809042801_357` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Chocolate tasting session with Gaia and Aria (her kids). Findings: 65% sugar…
+- `Edgar_20260809102150_359` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: TLS certificate incident response + ecosystem hardening (2026-08-08/09): dia…
+- `Edgar_20260809102153_361` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Oversight + direction for TLS certificate incident response (2026-08-08/09):…
 
 ---
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-08T10:59:14.816Z`
+- Generated (UTC): `2026-08-09T10:59:14.111Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -268,6 +268,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3ae0288 | 2026-08-09 18:30:33 +0800 | feat(sunmint): add Farmer App CTA linking to sunmint.truesight.me (#290)
+6ee7070 | 2026-08-09 07:36:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 01b8e49 | 2026-08-09 02:36:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cc43080 | 2026-08-08 19:09:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 048efae | 2026-08-08 13:28:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -308,6 +310,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f0e9b9f | 2026-08-09 15:31:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-09 UTC)
+85e602d | 2026-08-09 15:31:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-09 UTC)
 5e42293 | 2026-08-09 10:35:27 +0800 | chore(previews): refresh Beer Hall preview (2026-08-09 UTC)
 4ee1530 | 2026-08-09 10:35:26 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-09 UTC)
 ce81eb9 | 2026-08-09 03:09:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
@@ -346,8 +350,6 @@ e89d2fe | 2026-08-06 15:55:13 +0800 | Update robotics-for-cacao barter PDF v9: a
 5d15cec | 2026-08-06 15:45:36 +0800 | Update robotics-for-cacao barter PDF v5: add §3 scalable roast control via particle detection
 c6d934a | 2026-08-06 15:44:34 +0800 | Update robotics-for-cacao barter PDF v4: anonymize roles (drop Matheus/Sophia/CNPJ)
 82798f4 | 2026-08-06 15:43:05 +0800 | Update robotics-for-cacao barter PDF v3: Frasky ref in context, §2, and pilot step 1
-ef01339 | 2026-08-06 15:42:37 +0800 | Update robotics-for-cacao barter PDF: add Frasky working-prototype reference (§2)
-e7e2b77 | 2026-08-06 15:19:13 +0800 | Add robotics-for-cacao barter action item PDF (2026-08-06)
 … (truncated)
 ```
 
@@ -487,7 +489,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/8/2026 23:50:17 |
+| 2026-08 | 0 | 16911.06386 | 8/9/2026 5:51:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-02`; scanned last **600** data rows)
 
