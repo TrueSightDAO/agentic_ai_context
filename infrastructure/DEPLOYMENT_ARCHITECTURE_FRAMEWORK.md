@@ -77,7 +77,27 @@ For each service: role → global deployment → China equivalent → open quest
 
 ---
 
-## 6. Blank-by-design sections / 刻意留空的原因
+## 6. API integration layer / API 集成层
+
+**Key insight / 关键洞察:** Once China-side infrastructure is upright, it does **not** need to replicate the Google ledger — it can hook into the DAO event system directly via **API calls** to generate records for inventory transfers/movements, raw-material → finished-product conversions, and manufacturer materials data. The submission endpoint (`dao_protocol` → `POST /dao/submit_contribution`) is **AWS-hosted and NOT Google-dependent**, so China can POST structured events directly (or via a proxy).
+
+| Event 事件 | Use 用途 | Key fields 关键字段 |
+|---|---|---|
+| INVENTORY MOVEMENT 库存转移 | 原材料/半成品在仓库、制造商之间的流转 | Manager Name, Recipient Name, Inventory Item, QR Code, Quantity, Destination inventory file location |
+| REPACKAGING BATCH EVENT 转化批次 | 原材料 → 成品（输入消耗 + 输出生成，按重量分摊成本） | inputs (qty × unit cost), outputs (units × weight), holder, YYYYMMDD |
+| REPACKAGING SETTLEMENT EVENT 转化结算 | 批次结算、成本入账 | request_id, settlement rows |
+| POST-REPACKAGING CLEANUP 清理 | 转化后冲减输入库存 | input Currency rows, depleted quantity |
+| QR CODE REGISTRATION | 为每个成品/批次注册 QR 标识 | QR code, Currency, Manager |
+| CONTRIBUTOR ADD / PARTNER ADD 入驻 | 制造商、原材料供应商入驻 | name, email, type |
+
+**Why this works / 为何可行:**
+- The application is **already generating these records** (QR batches, inventory, conversions) → the API is a **write-bridge**: China-side app POSTs records as structured events, the DAO ledger absorbs them without manual Sheets entry.
+- The China cluster can keep its own local ledger (DB/ERP) while **mirroring key events** to the global DAO via API; or use the DAO API as the primary ledger.
+- Data-egress compliance boundary (which data may leave China) is still **TBD — investigation item**.
+
+---
+
+## 7. Blank-by-design sections / 刻意留空的原因
 
 | Section 章节 | Global implementation 全球实现 | Why blank for China 为何留空 |
 |---|---|---|
@@ -89,7 +109,7 @@ For each service: role → global deployment → China equivalent → open quest
 
 ---
 
-## 7. Next steps / 下一步
+## 8. Next steps / 下一步
 
 1. 与 Luca 对齐本框架 — 确认中国侧部署形态（独立集群假设）
 2. 填写第 5 节调研清单
