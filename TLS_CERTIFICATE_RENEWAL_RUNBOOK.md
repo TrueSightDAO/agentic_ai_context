@@ -12,14 +12,23 @@ submissions until manually re-issued.
 
 ## 1. Domain inventory (ground truth, probed 2026-08-09)
 
-### A. Certbot-managed — Let's Encrypt (our boxes, auto-renew)
+### A. Certbot-managed — Let's Encrypt via nginx on our boxes (auto-renew)
 
-| Endpoint | Host | Renewal | Expiry (checked 2026-08-09) |
-|---|---|---|---|
-| `edgar.truesight.me` | seni_ror (54.211.179.126) | `certbot.timer` (twice daily) | **2026-11-07** ✅ |
-| `beta.edgar.truesight.me` | (Explorya-era host) | certbot | 2026-11-07 ✅ |
-| `perch.truesight.me` | seni_ror (54.211.179.126) | `certbot.timer` | **2026-09-11** (33d — watch) |
-| `sophia.truesight.me` | autopilot (3.214.167.219) | `certbot.timer` + snap timer | 2026-10-28 ✅ |
+These are the subdomains whose HTTPS is enabled **via the certbot → nginx route**
+(the route this runbook covers; all use HTTP-01 through the nginx authenticator
+and renew via `certbot.timer`):
+
+| Endpoint | Serving host (verified) | nginx block | Renewal | Expiry (2026-08-09) |
+|---|---|---|---|---|
+| `edgar.truesight.me` | seni_ror (54.211.179.126) | `edgar.conf` | `certbot.timer` (twice daily) | **2026-11-07** ✅ |
+| `perch.truesight.me` | seni_ror (54.211.179.126) | `perch.conf` | `certbot.timer` | **2026-09-11** (33d — next to renew) |
+| `sophia.truesight.me` | autopilot (3.214.167.219) | `sophia` | `certbot.timer` + snap timer | 2026-10-28 ✅ |
+| `beta.edgar.truesight.me` | TLS live (Nov 7) — cert **not** present on seni_ror or autopilot; managing host unconfirmed | unknown | unknown | 2026-11-07 ✅ (fleet monitor covers it) |
+
+> **Note on perch:** the autopilot box also holds a **replica** `perch.truesight.me`
+> cert (expires 2026-09-11 13:11 UTC) but has **no** perch nginx :443 server block —
+> it is NOT serving traffic. The live perch cert is the seni_ror one (expires
+> 2026-09-11 22:05 UTC). Don't confuse the two copies.
 
 ### B. AWS ACM — Amazon-managed (auto-renew, no action)
 
@@ -121,6 +130,9 @@ sudo certbot renew --dry-run                  # confirm the automated path works
   block on the API host should serve a proper `api.truesight.me` cert. **Follow-up.**
 - ⚠️ **`affiliate.agroverse.shop`** (ZeroSSL, expires **2026-09-20**) is the nearest
   manual renewal — monitor will alert at Sep 5 (15d).
+- ⚠️ **`beta.edgar.truesight.me`** — TLS live but the managing certbot host is
+  unconfirmed (not on seni_ror or autopilot). Locate it so its renewal timer can be
+  verified. **Follow-up.**
 - Dead endpoints (`mtproxy`, `claude`, `orchard`, `www/app.getdata.io`) — DNS still
   points; consider pruning or documenting as intentionally offline.
 
