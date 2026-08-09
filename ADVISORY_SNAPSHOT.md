@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-09T13:31:11Z`
+- Generated (UTC): `2026-08-09T19:11:20Z`
 - Look-back: **7** calendar days (`2026-08-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -268,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0fc83ef | 2026-08-09 13:32:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3ae0288 | 2026-08-09 18:30:33 +0800 | feat(sunmint): add Farmer App CTA linking to sunmint.truesight.me (#290)
 6ee7070 | 2026-08-09 07:36:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 01b8e49 | 2026-08-09 02:36:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -310,6 +311,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1931ab4 | 2026-08-09 21:31:32 +0800 | chore(previews): refresh Beer Hall preview (2026-08-09 UTC)
+dd988ba | 2026-08-09 21:31:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-09 UTC)
 f0e9b9f | 2026-08-09 15:31:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-09 UTC)
 85e602d | 2026-08-09 15:31:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-09 UTC)
 5e42293 | 2026-08-09 10:35:27 +0800 | chore(previews): refresh Beer Hall preview (2026-08-09 UTC)
@@ -348,8 +351,6 @@ e89d2fe | 2026-08-06 15:55:13 +0800 | Update robotics-for-cacao barter PDF v9: a
 0331c5d | 2026-08-06 15:46:49 +0800 | Update robotics-for-cacao barter PDF v7: remove DAO references
 454154f | 2026-08-06 15:46:19 +0800 | Update robotics-for-cacao barter PDF v6: roast control as reinforcement learning problem
 5d15cec | 2026-08-06 15:45:36 +0800 | Update robotics-for-cacao barter PDF v5: add §3 scalable roast control via particle detection
-c6d934a | 2026-08-06 15:44:34 +0800 | Update robotics-for-cacao barter PDF v4: anonymize roles (drop Matheus/Sophia/CNPJ)
-82798f4 | 2026-08-06 15:43:05 +0800 | Update robotics-for-cacao barter PDF v3: Frasky ref in context, §2, and pilot step 1
 … (truncated)
 ```
 
@@ -489,7 +490,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 0 | 16911.06386 | 8/9/2026 5:51:20 |
+| 2026-08 | 0 | 16911.06386 | 8/9/2026 11:52:02 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-02`; scanned last **600** data rows)
 
