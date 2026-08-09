@@ -23,7 +23,14 @@ and renew via `certbot.timer`):
 | `edgar.truesight.me` | seni_ror (54.211.179.126) | `edgar.conf` | `certbot.timer` (twice daily) | **2026-11-07** ✅ |
 | `perch.truesight.me` | seni_ror (54.211.179.126) | `perch.conf` | `certbot.timer` | **2026-09-11** (33d — next to renew) |
 | `sophia.truesight.me` | autopilot (3.214.167.219) | `sophia` | `certbot.timer` + snap timer | 2026-10-28 ✅ |
-| `beta.edgar.truesight.me` | TLS live (Nov 7) — cert **not** present on seni_ror or autopilot; managing host unconfirmed | unknown | unknown | 2026-11-07 ✅ (fleet monitor covers it) |
+| `beta.edgar.truesight.me` | **dao-protocol-beta** (NELANCO `i-0b8c6d989594fb229`, 54.162.175.189) | nginx :443 | `certbot.timer` (enabled, verified) | 2026-11-07 ✅ |
+
+> **beta.edgar.truesight.me (verified 2026-08-09):** runs on the `dao-protocol-beta`
+> EC2 box (NELANCO, t3.small, us-east-1c, SG `dao-protocol-beta-sg`, launched
+> 2026-06-09). Certbot: `authenticator = nginx` / `installer = nginx` (correct
+> route). `certbot.timer` enabled — next run within ~6h, last run 2026-08-09
+> 02:51 UTC (issued today's fresh cert — proof the pipeline works). SSH via
+> `~/.ssh/dao-protocol-beta-key` from the autopilot box.
 
 > **Note on perch:** the autopilot box also holds a **replica** `perch.truesight.me`
 > cert (expires 2026-09-11 13:11 UTC) but has **no** perch nginx :443 server block —
@@ -64,6 +71,7 @@ and renew via `certbot.timer`):
 | Host | Timer | Status |
 |---|---|---|
 | **seni_ror** (edgar, perch) | `certbot.timer` — `OnCalendar=*-*-* 00,12:00:00` | ✅ enabled, healthy |
+| **dao-protocol-beta** (beta.edgar) | `certbot.timer` | ✅ enabled, verified 2026-08-09 |
 | **autopilot** (sophia) | `certbot.timer` + `snap.certbot.renew.timer` | ✅ enabled |
 | **autopilot** (fleet check) | `tls-cert-check.timer` — daily 06:00 UTC | ✅ enabled (new 2026-08-09) |
 | ACM / GitHub Pages | AWS / GitHub managed | ✅ n/a |
@@ -130,9 +138,6 @@ sudo certbot renew --dry-run                  # confirm the automated path works
   block on the API host should serve a proper `api.truesight.me` cert. **Follow-up.**
 - ⚠️ **`affiliate.agroverse.shop`** (ZeroSSL, expires **2026-09-20**) is the nearest
   manual renewal — monitor will alert at Sep 5 (15d).
-- ⚠️ **`beta.edgar.truesight.me`** — TLS live but the managing certbot host is
-  unconfirmed (not on seni_ror or autopilot). Locate it so its renewal timer can be
-  verified. **Follow-up.**
 - Dead endpoints (`mtproxy`, `claude`, `orchard`, `www/app.getdata.io`) — DNS still
   points; consider pruning or documenting as intentionally offline.
 
@@ -142,3 +147,5 @@ sudo certbot renew --dry-run                  # confirm the automated path works
   → **Congratulations, all simulated renewals succeeded** ✅
 - `tls-cert-check` first run → all 16 live endpoints OK, FAIL=0 ✅
 - `certbot.timer` on seni_ror → enabled, next run within 12h ✅
+- `beta.edgar.truesight.me` host located + verified (dao-protocol-beta box, nginx
+  authenticator, timer enabled) ✅
