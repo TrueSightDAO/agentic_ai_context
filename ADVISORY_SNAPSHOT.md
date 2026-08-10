@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-10T02:40:47Z`
+- Generated (UTC): `2026-08-10T08:13:46Z`
 - Look-back: **7** calendar days (`2026-08-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,12 +33,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 15
-- `[PRACTICE EVENT]` × 13
-- _free-form (no bracket tag)_ × 10
+- `[PRACTICE EVENT]` × 14
+- _free-form (no bracket tag)_ × 9
 
 ### Latest entries
 
-- `Edgar_20260803075525_323` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Amount: 60 · Type: Time (Minutes)
 - `Edgar_20260803091533_325` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-03T09:15:31.451Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260803104517_327` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh, Paloma Lecheta
 - `Edgar_20260804002927_329` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-04T00:29:25.710Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260809042801_357` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Chocolate tasting session with Gaia and Aria (her kids). Findings: 65% sugar…
 - `Edgar_20260809102150_359` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: TLS certificate incident response + ecosystem hardening (2026-08-08/09): dia…
 - `Edgar_20260809102153_361` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Oversight + direction for TLS certificate incident response (2026-08-08/09):…
+- `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -231,9 +231,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,489.15**
+- USD on hand: **$4,489.09**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.37**
+- USD provisioned for voting-rights cash-out: **$51.42**
 
 ### In-transit freight (1 row)
 
@@ -268,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0739671 | 2026-08-10 02:53:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 eb48adc | 2026-08-09 19:15:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0fc83ef | 2026-08-09 13:32:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3ae0288 | 2026-08-09 18:30:33 +0800 | feat(sunmint): add Farmer App CTA linking to sunmint.truesight.me (#290)
@@ -308,6 +309,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+260c3e6 | 2026-08-10 10:41:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
+ffd80a5 | 2026-08-10 10:41:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 25bf02a | 2026-08-10 09:56:05 +0800 | Merge pull request #745 from TrueSightDAO/auto/advisory-refresh-2026-08-10
 288e425 | 2026-08-10 01:55:54 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 cb131da | 2026-08-10 03:11:38 +0800 | chore(previews): refresh Beer Hall preview (2026-08-09 UTC)
@@ -346,8 +349,6 @@ fb46220 | 2026-08-06 17:21:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a3dfba4 | 2026-08-06 16:46:27 +0800 | v13: machine-maintenance-cost barter anchor (bypass commodity price)
 d737649 | 2026-08-06 16:28:15 +0800 | Update robotics-for-cacao barter PDF v12: sequence farmer receptiveness check before Gianluca farm visit
 1f86459 | 2026-08-06 16:12:33 +0800 | Update robotics-for-cacao barter PDF v11: automation extends farmer ownership longevity (causal chain)
-d4fef6d | 2026-08-06 15:56:26 +0800 | Update robotics-for-cacao barter PDF v10: cut & collect witches broom, no spray (agroforestry)
-e89d2fe | 2026-08-06 15:55:13 +0800 | Update robotics-for-cacao barter PDF v9: add Problem 4 farm succession risk
 … (truncated)
 ```
 
@@ -384,6 +385,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+146cc6d | 2026-08-10 08:06:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac22f10 | 2026-08-09 07:18:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3caae45 | 2026-08-08 07:20:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4e4c702 | 2026-08-07 07:43:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -486,7 +488,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 120 | 17031.06386 | 8/9/2026 18:50:26 |
+| 2026-08 | 120 | 17031.06386 | 8/10/2026 0:50:34 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-03`; scanned last **600** data rows)
 
