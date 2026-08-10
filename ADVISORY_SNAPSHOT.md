@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-10T08:13:46Z`
+- Generated (UTC): `2026-08-10T13:55:10Z`
 - Look-back: **7** calendar days (`2026-08-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-09T10:59:14.111Z`
+- Generated (UTC): `2026-08-10T10:59:14.626Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -259,7 +259,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-03 in CONTEXT_UPDATES.md.)_
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **no** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **no** |
+| `oracle` | `iching_oracle` | **yes** |
 
 ---
 
@@ -268,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3b0486c | 2026-08-10 08:14:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0739671 | 2026-08-10 02:53:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 eb48adc | 2026-08-09 19:15:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0fc83ef | 2026-08-09 13:32:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -309,6 +310,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7b4f39b | 2026-08-10 16:14:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
+cbd3240 | 2026-08-10 16:14:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 260c3e6 | 2026-08-10 10:41:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
 ffd80a5 | 2026-08-10 10:41:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 25bf02a | 2026-08-10 09:56:05 +0800 | Merge pull request #745 from TrueSightDAO/auto/advisory-refresh-2026-08-10
@@ -347,8 +350,6 @@ ed8b7ca | 2026-08-06 17:21:35 +0800 | chore(previews): refresh Beer Hall preview
 fb46220 | 2026-08-06 17:21:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-06 UTC)
 564e507 | 2026-08-06 16:47:03 +0800 | v14: secure supply + price insulation goal (maintenance-cost peg)
 a3dfba4 | 2026-08-06 16:46:27 +0800 | v13: machine-maintenance-cost barter anchor (bypass commodity price)
-d737649 | 2026-08-06 16:28:15 +0800 | Update robotics-for-cacao barter PDF v12: sequence farmer receptiveness check before Gianluca farm visit
-1f86459 | 2026-08-06 16:12:33 +0800 | Update robotics-for-cacao barter PDF v11: automation extends farmer ownership longevity (causal chain)
 … (truncated)
 ```
 
@@ -385,6 +386,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ac48cad | 2026-08-10 08:16:51 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 146cc6d | 2026-08-10 08:06:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac22f10 | 2026-08-09 07:18:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3caae45 | 2026-08-08 07:20:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -405,7 +407,8 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
-_(no commits on origin/main in window)_
+2e2ea19 | 2026-08-10 19:00:18 +0800 | Merge pull request #65 from TrueSightDAO/fix/broken-line-print-gap
+3852e8b | 2026-08-10 10:51:21 +0000 | Fix broken-line gap printing solid black instead of transparent
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -488,7 +491,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 120 | 17031.06386 | 8/10/2026 0:50:34 |
+| 2026-08 | 120 | 17031.06386 | 8/10/2026 6:50:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-03`; scanned last **600** data rows)
 
