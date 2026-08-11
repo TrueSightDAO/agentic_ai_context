@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-11T02:34:32Z`
+- Generated (UTC): `2026-08-11T07:45:52Z`
 - Look-back: **7** calendar days (`2026-08-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,12 +33,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 16
-- `[PRACTICE EVENT]` × 14
-- _free-form (no bracket tag)_ × 8
+- `[PRACTICE EVENT]` × 15
+- _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260804002927_329` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-04T00:29:25.710Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260804024337_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Investigated whether to notify newsletter subscribers about Fazenda São Jorg…
 - `Edgar_20260804042819_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Assembled bilingual supply-chain traceability white paper (EN + zh-CN) and s…
 - `Edgar_20260805013230_335` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-05T01:25:32.828Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20260811014838_367` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Volume analysis work
+- `Edgar_20260811031442_369` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T03:14:40.079Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -231,9 +231,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,489.09**
+- USD on hand: **$4,489.04**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.42**
+- USD provisioned for voting-rights cash-out: **$51.47**
 
 ### In-transit freight (1 row)
 
@@ -268,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+48e4551 | 2026-08-11 02:36:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6138b4e | 2026-08-10 19:34:22 +0000 | chore(stats): refresh stats/current.json [skip ci]
 25b2baf | 2026-08-10 13:58:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3b0486c | 2026-08-10 08:14:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -308,6 +309,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+71ce539 | 2026-08-11 10:34:47 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
+c8930d4 | 2026-08-11 10:34:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 0621871 | 2026-08-11 09:52:18 +0800 | Merge pull request #746 from TrueSightDAO/auto/advisory-refresh-2026-08-11
 94a0d83 | 2026-08-11 01:52:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 24361ac | 2026-08-11 03:30:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
@@ -346,8 +349,6 @@ f2d41c2 | 2026-08-07 11:29:17 +0800 | chore(previews): refresh Beer Hall preview
 377e8e8 | 2026-08-07 11:29:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 942d8d8 | 2026-08-07 10:45:01 +0800 | Merge pull request #736 from TrueSightDAO/auto/advisory-refresh-2026-08-07
 1594892 | 2026-08-07 02:44:51 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
-56caaa2 | 2026-08-07 08:24:13 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
-03fa478 | 2026-08-07 08:24:12 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 … (truncated)
 ```
 
@@ -384,6 +385,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+07bec35 | 2026-08-11 07:39:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac48cad | 2026-08-10 08:16:51 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 146cc6d | 2026-08-10 08:06:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac22f10 | 2026-08-09 07:18:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -487,7 +489,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 120 | 17031.06386 | 8/10/2026 18:50:27 |
+| 2026-08 | 120 | 17031.06386 | 8/10/2026 23:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-04`; scanned last **600** data rows)
 
