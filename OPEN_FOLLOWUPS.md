@@ -86,6 +86,35 @@ and rebuild the index, or (b) retire the simple workflow generator and unify QR 
 `batch_compiler.py`. Gated behind the token grant above (no point until PNGs upload).
 
 ```followup
+id: multi-tenant-governance-phase0
+chat_id: -1003919341801
+thread_id: 2744
+title: Revisit Multi-Tenant Governance Phase 0 after Bilal conversation
+created_at: 2026-06-11
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: daily
+  on_escalate: ping_thread
+status: open
+description: >
+  Phase 0 of the Multi-Tenant Governance & Vault plan
+  (SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md) is designed and ready for
+  execution — policy layer (app/policy.py), tool-layer enforcement,
+  data-vs-instruction boundary. Gary is waiting on a conversation with
+  Bilal to decide whether to proceed. When this follow-up fires (~2
+  weeks, 2026-06-25), remind Gary in thread 2744 that Phase 0 is
+  ready to execute and ask if the Bilal conversation has happened / what
+  the decision is. If go-ahead is given, execute from RESUME HERE
+  (Phase 0 PR0.1 — app/policy.py) through Phase 0 PRs (P0.1–P0.4),
+  opening PRs only (never self-merging).
+  
+  Context: Full plan at agentic_ai_context/SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md.
+  PDF version at agentic_ai_context/pdfs/SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN_PHASE0.pdf.
+  Handoff topic: tg:-1003919341801:2744.
+
+```followup
 id: chocolate-subscription-phase2
 chat_id: -1003919341801
 thread_id: 1939
