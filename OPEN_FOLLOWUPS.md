@@ -39,6 +39,14 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Promote `tls_cert_check.sh` fleet TLS monitor into the truesight_autopilot repo
+**Filed 2026-08-09. Owner: unclaimed.** The daily fleet-wide TLS health monitor
+(`/opt/truesight_autopilot/scripts/tls_cert_check.sh` + `tls-cert-check.timer`/`.service`
+on the autopilot box) is deployed and verified but lives only on the box. Promote it
+into the `truesight_autopilot` repo (`scripts/tls_cert_check.sh` + a `systemd/` unit
+pair + unit tests) so it's version-controlled, testable, and re-deployable. Update
+`TLS_CERTIFICATE_RENEWAL_RUNBOOK.md` §3 to point at the repo path once merged.
+
 ### Complete Etsy order monitoring OAuth setup (blocked on Etsy app approval)
 **Filed 2026-07-02. Owner: Gary.** Etsy order monitoring GAS code is written and
 pushed to the `agroverse_shop_checkout` GAS project (script ID `1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn`).
@@ -371,7 +379,15 @@ write access.
 
 **Blocker / priority.** Not blocked; security hardening. Do after the current dashboard phase. Owner: Gary (needs IAM console).
 
-### Wire `certbot renew` automation on NELANCO Rails (`seni_ror_200250915`)
+### [RESOLVED 2026-08-09] Wire `certbot renew` automation on NELANCO Rails (`seni_ror_200250915`)
+
+**Resolution (2026-08-09).** The edgar cert was re-issued on seni_ror via
+`sudo certbot certonly --nginx -d edgar.truesight.me`, which rewrote the renewal
+config to `authenticator = nginx` / `installer = nginx` with a fresh v02 ACME
+account. Verified: `certbot renew --dry-run` → all simulated renewals succeeded.
+`certbot.timer` (twice daily) + a new fleet-wide `tls-cert-check.timer` daily
+monitor (Telegram alert ≤15d) now cover it. Full details:
+`TLS_CERTIFICATE_RENEWAL_RUNBOOK.md` (PR #739).
 
 **Context.** During the 2026-05-28 EXPLORYA→NELANCO Edgar cutover, the Let's Encrypt cert for `edgar.truesight.me` was copied via SSH-to-SSH from the EXPLORYA Rails box's `/etc/letsencrypt/live/edgar.truesight.me/` to NELANCO `seni_ror_200250915` (`54.211.179.126`). Cert is valid and serving prod now, but no `certbot renew` cron / systemd timer was set up on NELANCO. The cert will expire 90 days from its last LE renewal on EXPLORYA — need a fresh renewal cycle anchored on NELANCO before then.
 
