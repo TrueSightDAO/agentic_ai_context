@@ -39,6 +39,37 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Robotics-for-cacao barter — farmers + Gianluca (robotics design expert)
+**Filed 2026-08-06. Owner: Gary (Sophia assist).** Offer robotics services
+(**witches' broom / vassoura-de-bruxa pruning** + **cacao harvesting**) to
+Bahia/Pará farmers **in exchange for cacao as payment** (barter). Gianluca — a
+robotics design expert Gary just added on WhatsApp (shared Reuters' Frasky
+precision-ag vineyard robot, https://youtu.be/hg8qYrjyYCU) — designs the
+robots. Agroverse supplies the farmer network (Ilhéus/Bahia: Matheus
+warehouse, Oscar's farm), deployment coordination, and a market for the cacao
+received as payment.
+
+Steps:
+1. **Scoping call with Gianluca** — define MVP honestly: broom detection +
+   pruning (and/or monitoring + targeted spray à la Frasky) is tractable;
+   *selective* cacao pod harvesting is much harder R&D — set expectations so
+   the pilot is deliverable.
+2. **Farmer pitch (PT-BR)** — value prop in farmer terms: labor shortage,
+   witches' broom yield loss, no cash outlay (paid in cacao at fair BRL
+   market price).
+3. **Route via Matheus (Ilhéus warehouse / Black King CNPJ) + Oscar's farm**
+   to 2–3 test farms.
+4. **Barter accounting** — value cacao received at market BRL/USD; record as
+   INVENTORY MOVEMENT + purchase so it lands in the Main Ledger / tokenomics
+   (see SUPPLY_CHAIN_AND_FREIGHTING.md).
+5. **Pilot scope** — 1 season, N ha: measure % broom removed, harvest kg,
+   labor hours saved; decide scale on evidence (standing anti-pattern: no
+   more activity on an unmeasured surface).
+
+**Status:** Draft outreach messages (WhatsApp to Gianluca + PT-BR farmer
+pitch via Matheus) written and shown to Gary for approval — **nothing sent**.
+**Blocker:** Gary approval of outreach copy + Gianluca intro.
+
 ### Complete Etsy order monitoring OAuth setup (blocked on Etsy app approval)
 **Filed 2026-07-02. Owner: Gary.** Etsy order monitoring GAS code is written and
 pushed to the `agroverse_shop_checkout` GAS project (script ID `1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn`).
