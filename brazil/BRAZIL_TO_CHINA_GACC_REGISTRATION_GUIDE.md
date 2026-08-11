@@ -14,6 +14,8 @@ Every food item imported into China requires the manufacturer to have a **GACC r
 
 **Key change for cocoa:** Under Decree No. 280, **unroasted cocoa beans** have been **removed from the "Official Recommendation" list** (reduced from 18 to 17 categories). This means cocoa/cacao products now follow **Pathway 2: Self-Application Registration** — faster and simpler than before. No recommendation letter from MAPA needed.
 
+**Who must register (critical):** GACC registration attaches to the **production enterprise** (the facility that manufactures/processes/beneficiates the food), NOT to the trading/exporter company. Each separate legal entity (CNPJ) needs its own GACC registration — one application per CNPJ, even if multiple entities share the same physical factory. See Section A.1 (MAPA Registration) below.
+
 ---
 
 ## A. Supplier Info — Black King
@@ -39,6 +41,50 @@ Under Decree No. 280:
 - **Processed cacao (nibs, mass, husk — NCM 1803.10.00):** Likely also **Self-application** (Pathway 2) as processed plant-based foods. Confirm with GACC consultant.
 - **Chocolate bars (NCM 1806.32.00):** **Self-application** (Pathway 2) — processed food product.
 - **Cacao tea (NCM 2106.90.00):** Likely **Self-application** (Pathway 2). Confirm with GACC consultant.
+
+---
+
+## A.1 MAPA Registration (MAPA — Ministério da Agricultura e Pecuária)
+
+### What MAPA registration is
+
+MAPA registers the **establishment** (physical facility), not the farm or the trading entity. For cacao, the registrable category is **"BENEFICIADOR DE AMÊNDOA DE CACAU"** (cocoa bean beneficiation facility — NCM 1801.00.00), at **"Básico (geral)"** registration level, with **on-site inspection DISPENSED** (no mandatory physical audit).
+
+### Who needs it
+
+| Entity | Role | Needs MAPA registration? |
+|--------|------|:-----------------------:|
+| **Coopercabruca** | Producer/beneficiador (Itabuna, BA) | ✅ Yes — apply as "beneficiador" if not already held |
+| **CEPOTX** | Producer/beneficiador (Altamira, PA) | ✅ Yes — apply as "beneficiador" if not already held |
+| **Black King** | Trader/exporter (Ilhéus, BA) | Optional — see coverage play below |
+| **New DAO-owned CNPJ** | Trader/exporter (future) | Optional — see coverage play below |
+| **Independent farmers** (Oscar, Clara, etc.) | Raw growers | ❌ No — covered by the registered facility that beneficiates their beans |
+
+**Important nuance:** Registration is **voluntary for domestic operation** (MAPA IN 9/2019, "registro facultativo"), so a producer may not hold it yet — but it becomes **effectively required** for the China lane, because the CIFER/GACC application asks for the "production approval certificate issued by the competent authority" (the MAPA number).
+
+### The independent-farmer coverage play
+
+Black King (or the future DAO-owned CNPJ) **can apply for its own MAPA "beneficiador" registration** at its Ilhéus facility. This gives GACC coverage for cacao sourced from **independent farmers who will never register themselves** — coverage attaches the moment beans enter a registered facility. Same logic that lets cooperatives cover dozens of smallholder members.
+
+- Registration level: **Básico (geral)**, **vistoria dispensada** (no on-site inspection)
+- Facility needs: dry, ventilated, clean storage meeting basic hygiene/BPF (boas práticas) standards
+- To legitimately claim "beneficiador," the facility should perform at least part of beneficiation: receiving wet/fresh beans, fermenting, drying, sorting, grading, or final packing
+- One registration per physical facility address (each address = one MAPA number = one CIFER application)
+
+### How to register (links)
+
+1. **Request system access first** via the "Solicita" system: **https://solicita.agricultura.gov.br** — MAPA emails login credentials for SIPEAGRO (typically requires the company e-CNPJ certificate or a gov.br login associated with the CNPJ)
+2. **SIPEAGRO system** (Sistema Integrado de Produtos e Estabelecimentos Agropecuários):
+   - Overview page: **https://sistemasweb.agricultura.gov.br/pages/SIPEAGRO.html**
+   - Direct login: **https://sistemasweb.agricultura.gov.br/sipeagro/**
+3. In SIPEAGRO: **Estabelecimento → Solicitação → Novo** → select activity "Beneficiador de amêndoa de cacau" (NCM 1801.00.00, nível básico)
+4. Attach: CNPJ registration card, facility layout/photos, hygiene & BPF declaration
+5. MAPA reviews → issues the establishment registration number → use that number in the CIFER application
+
+### Official reference pages
+
+- MAPA systems directory: https://www.gov.br/agricultura/pt-br/acesso-a-informacao/tecnologia-da-informacao/sistemas/orgaos/mapa/animal/sipeagro-sistema-integrado-de-produtos-e-estabelecimentos-agropecuarios
+- Registrable products list (shows "Beneficiador de amêndoa de cacau" under NCM 1801.00.00, nível básico, vistoria dispensada): https://www.gov.br/agricultura/pt-br/assuntos/inspecao/produtos-vegetal/registro-importacao-e-exportacao-1/registro/registro-de-estabelecimentos/registro-estabelecimento-produtos-vegetais-no-cgc-mapa-1/listagem-de-produtos-passiveis-de-registro-no-cgc-mapa
 
 ---
 
