@@ -45,6 +45,19 @@ This ensures:
 | `/opt/truesight_autopilot/app/llm/` | LLM provider abstraction (DeepSeek, etc.) |
 | `/opt/truesight_autopilot/.env` | Environment variables (secrets) |
 
+### Before adding a new route or tool: the concurrency gotcha
+
+The brain (`truesight-autopilot`) runs as a **single uvicorn worker** (session state
+and locks live in one process's memory) — any synchronous blocking call placed
+directly inside an `async def` route handler (an LLM call, a plain `httpx.get`, a
+`subprocess.run`, etc.) freezes the *entire* process, including `/health`, for the
+call's whole duration. This caused a real incident (2026-08-08/09, "Sophia is briefly
+restarting" false alarm even though the process never crashed). Read
+**`truesight_autopilot` README.md § "Concurrency gotcha: never block the brain's event
+loop"** before writing any new blocking call — it has the fix pattern
+(`await asyncio.to_thread(...)`), a worked incident writeup, and how to verify whether
+you're looking at this bug vs. an actual crash.
+
 ### Self-improvement loop
 
 Sophia is part of a cybernetic adversarial loop. When patterns of errors are detected (repeated OCR failures, misread QR codes, failed submissions, context gaps, protocol violations), Sophia should:
