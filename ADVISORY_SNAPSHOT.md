@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-11T07:45:52Z`
+- Generated (UTC): `2026-08-11T13:53:26Z`
 - Look-back: **7** calendar days (`2026-08-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
-- `[PRACTICE EVENT]` × 15
+- `[CONTRIBUTION EVENT]` × 17
+- `[PRACTICE EVENT]` × 13
+- `[TREE PLANTING EVENT]` × 1
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260804024337_331` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Investigated whether to notify newsletter subscribers about Fazenda São Jorg…
-- `Edgar_20260804042819_333` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Assembled bilingual supply-chain traceability white paper (EN + zh-CN) and s…
-- `Edgar_20260805013230_335` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-05T01:25:32.828Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260805224620_337` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-05T22:46:18.172Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260807012133_339` · **Edgar** · [No Text Provided]
-- `Edgar_20260807030320_341` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T03:03:18.293Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260807034651_343` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Finishing up the registration of taxation details with the Brazilian Governm…
 - `Edgar_20260807113046_345` · **Edgar** · [No Text Provided]
 - `Edgar_20260807130326_347` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.048Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -58,6 +53,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20260811014838_367` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Volume analysis work
 - `Edgar_20260811031442_369` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T03:14:40.079Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260811081933_371` · **Edgar** · [No Text Provided]
+- `Edgar_20260811083736_373` · **Edgar** · [No Text Provided]
+- `Edgar_20260811093312_375` · **Edgar** · [TREE PLANTING EVENT] Latitude: 22.94274910991584 · Longitude: 113.88559466712027 · Species: Cacao - Criolla
+- `Edgar_20260811114423_377` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sunmint Farmer App (tree-planting DApp)
+- `Edgar_20260811114432_379` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Directed, tested, and reviewed the Sunmint Farmer App build (tree-planting D…
+- `Edgar_20260811124448_381` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T12:44:48.072Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -72,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-10T10:59:14.626Z`
+- Generated (UTC): `2026-08-11T10:59:14.892Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -82,12 +83,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **659**, follow_up **71**, bulk **0**, unknown **2** (data rows: **732**)
+- **Email Agent Follow Up** — logged sends: warmup **671**, follow_up **71**, bulk **0**, unknown **2** (data rows: **744**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **587**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **62**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
+- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **599**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **62**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **9**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
@@ -268,6 +269,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+99bc749 | 2026-08-11 16:25:33 +0800 | Add Farmer App link to the Part 4 (Trees Registry) card too (#291)
+f040442 | 2026-08-11 07:47:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48e4551 | 2026-08-11 02:36:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6138b4e | 2026-08-10 19:34:22 +0000 | chore(stats): refresh stats/current.json [skip ci]
 25b2baf | 2026-08-10 13:58:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -309,6 +312,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a02e5e3 | 2026-08-11 15:46:18 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
+2c37433 | 2026-08-11 15:46:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 71ce539 | 2026-08-11 10:34:47 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
 c8930d4 | 2026-08-11 10:34:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 0621871 | 2026-08-11 09:52:18 +0800 | Merge pull request #746 from TrueSightDAO/auto/advisory-refresh-2026-08-11
@@ -347,8 +352,6 @@ bc3f59a | 2026-08-08 03:29:39 +0800 | chore(previews): refresh Beer Hall preview
 122298f | 2026-08-07 15:52:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 f2d41c2 | 2026-08-07 11:29:17 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
 377e8e8 | 2026-08-07 11:29:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
-942d8d8 | 2026-08-07 10:45:01 +0800 | Merge pull request #736 from TrueSightDAO/auto/advisory-refresh-2026-08-07
-1594892 | 2026-08-07 02:44:51 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 … (truncated)
 ```
 
@@ -489,7 +492,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 120 | 17031.06386 | 8/10/2026 23:50:35 |
+| 2026-08 | 120 | 17031.06386 | 8/11/2026 6:52:29 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-04`; scanned last **600** data rows)
 
