@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-11T13:53:26Z`
+- Generated (UTC): `2026-08-11T19:34:27Z`
 - Look-back: **7** calendar days (`2026-08-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -39,8 +39,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260807034651_343` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Finishing up the registration of taxation details with the Brazilian Governm…
-- `Edgar_20260807113046_345` · **Edgar** · [No Text Provided]
 - `Edgar_20260807130326_347` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.048Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260807130327_349` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.054Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260808014019_351` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-08T01:40:15.209Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -59,6 +57,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260811114423_377` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sunmint Farmer App (tree-planting DApp)
 - `Edgar_20260811114432_379` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Directed, tested, and reviewed the Sunmint Farmer App build (tree-planting D…
 - `Edgar_20260811124448_381` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T12:44:48.072Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260811141836_383` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260811142125_385` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 
 ---
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+35d8593 | 2026-08-11 13:59:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 99bc749 | 2026-08-11 16:25:33 +0800 | Add Farmer App link to the Part 4 (Trees Registry) card too (#291)
 f040442 | 2026-08-11 07:47:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 48e4551 | 2026-08-11 02:36:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,6 +313,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fd0cce1 | 2026-08-11 21:53:47 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
+a149548 | 2026-08-11 21:53:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 a02e5e3 | 2026-08-11 15:46:18 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
 2c37433 | 2026-08-11 15:46:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 71ce539 | 2026-08-11 10:34:47 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
@@ -350,8 +353,6 @@ bc3f59a | 2026-08-08 03:29:39 +0800 | chore(previews): refresh Beer Hall preview
 2db1457 | 2026-08-07 21:49:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 5e68ff8 | 2026-08-07 15:52:26 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
 122298f | 2026-08-07 15:52:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
-f2d41c2 | 2026-08-07 11:29:17 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
-377e8e8 | 2026-08-07 11:29:16 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 … (truncated)
 ```
 
@@ -492,7 +493,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 120 | 17031.06386 | 8/11/2026 6:52:29 |
+| 2026-08 | 120 | 17031.06386 | 8/11/2026 11:51:21 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-04`; scanned last **600** data rows)
 
