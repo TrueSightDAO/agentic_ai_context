@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-12T13:56:37Z`
+- Generated (UTC): `2026-08-12T19:36:31Z`
 - Look-back: **7** calendar days (`2026-08-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,13 +33,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 17
-- `[PRACTICE EVENT]` × 14
+- `[PRACTICE EVENT]` × 13
 - `[TREE PLANTING EVENT]` × 1
-- _free-form (no bracket tag)_ × 6
+- _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260807130327_349` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.054Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260808014019_351` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-08T01:40:15.209Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260808030646_353` · **Edgar** · [No Text Provided]
 - `Edgar_20260809042755_355` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Chocolate tasting session with Gaia and Aria (Liz's kids). Findings: 65% sug…
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260811141836_383` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260811142125_385` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20260812043322_387` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-12T04:33:20.081Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260812172153_389` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e820ba1 | 2026-08-12 14:05:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dded1eb | 2026-08-12 08:00:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8576ef4 | 2026-08-12 03:06:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6228897 | 2026-08-11 19:38:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,6 +313,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b2f3b9f | 2026-08-12 21:57:00 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
+0a91144 | 2026-08-12 21:56:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 133ce07 | 2026-08-12 16:00:32 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
 625c72a | 2026-08-12 16:00:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 cefcafe | 2026-08-12 11:04:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
@@ -350,8 +353,6 @@ ce81eb9 | 2026-08-09 03:09:12 +0800 | chore(previews): refresh Beer Hall preview
 6a81567 | 2026-08-09 03:09:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
 571479a | 2026-08-08 21:26:44 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
 4f62000 | 2026-08-08 21:26:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
-b0e0610 | 2026-08-08 15:29:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
-2cc8831 | 2026-08-08 15:29:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
 … (truncated)
 ```
 
@@ -492,7 +493,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 240 | 17151.06386 | 8/12/2026 6:51:04 |
+| 2026-08 | 240 | 17151.06386 | 8/12/2026 11:51:40 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-05`; scanned last **600** data rows)
 
