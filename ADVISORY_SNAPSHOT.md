@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-12T02:04:37Z`
+- Generated (UTC): `2026-08-12T03:04:24Z`
 - Look-back: **7** calendar days (`2026-08-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 17
+- `[PRACTICE EVENT]` × 13
+- `[TREE PLANTING EVENT]` × 1
+- _free-form (no bracket tag)_ × 7
+
+### Latest entries
+
+- `Edgar_20260807130326_347` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.048Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260807130327_349` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.054Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260808014019_351` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-08T01:40:15.209Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260808030646_353` · **Edgar** · [No Text Provided]
+- `Edgar_20260809042755_355` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Chocolate tasting session with Gaia and Aria (Liz's kids). Findings: 65% sug…
+- `Edgar_20260809042801_357` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Chocolate tasting session with Gaia and Aria (her kids). Findings: 65% sugar…
+- `Edgar_20260809102150_359` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: TLS certificate incident response + ecosystem hardening (2026-08-08/09): dia…
+- `Edgar_20260809102153_361` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Oversight + direction for TLS certificate incident response (2026-08-08/09):…
+- `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260811014838_367` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Volume analysis work
+- `Edgar_20260811031442_369` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T03:14:40.079Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260811081933_371` · **Edgar** · [No Text Provided]
+- `Edgar_20260811083736_373` · **Edgar** · [No Text Provided]
+- `Edgar_20260811093312_375` · **Edgar** · [TREE PLANTING EVENT] Latitude: 22.94274910991584 · Longitude: 113.88559466712027 · Species: Cacao - Criolla
+- `Edgar_20260811114423_377` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sunmint Farmer App (tree-planting DApp)
+- `Edgar_20260811114432_379` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Directed, tested, and reviewed the Sunmint Farmer App build (tree-planting D…
+- `Edgar_20260811124448_381` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T12:44:48.072Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260811141836_383` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260811142125_385` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 
 ---
 
@@ -194,13 +230,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,489.04**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$51.47**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -270,6 +310,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f579586 | 2026-08-12 10:04:52 +0800 | Merge pull request #747 from TrueSightDAO/auto/advisory-refresh-2026-08-12
+550cecb | 2026-08-12 02:04:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 22f4062 | 2026-08-12 03:34:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
 1550f2d | 2026-08-12 03:34:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 fd0cce1 | 2026-08-11 21:53:47 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
@@ -308,8 +350,6 @@ b0e0610 | 2026-08-08 15:29:39 +0800 | chore(previews): refresh Beer Hall preview
 a015a8b | 2026-08-08 10:28:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
 bc3f59a | 2026-08-08 03:29:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
 96f33d3 | 2026-08-08 03:29:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
-9640852 | 2026-08-07 21:49:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
-2db1457 | 2026-08-07 21:49:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 … (truncated)
 ```
 
@@ -425,6 +465,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 120 | 17031.06386 | 8/11/2026 19:50:59 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-05`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
