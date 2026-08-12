@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-12T03:04:24Z`
+- Generated (UTC): `2026-08-12T08:00:08Z`
 - Look-back: **7** calendar days (`2026-08-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,13 +33,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 17
-- `[PRACTICE EVENT]` × 13
+- `[PRACTICE EVENT]` × 14
 - `[TREE PLANTING EVENT]` × 1
-- _free-form (no bracket tag)_ × 7
+- _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260807130326_347` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.048Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260807130327_349` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-07T13:03:25.054Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260808014019_351` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-08T01:40:15.209Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260808030646_353` · **Edgar** · [No Text Provided]
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260811124448_381` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T12:44:48.072Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260811141836_383` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260811142125_385` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260812043322_387` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-12T04:33:20.081Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -207,11 +207,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 13,628.76 total units · $12,035.67
+- Manager record: `Gary Teh` · 27 SKU lines · 13,744.98 total units · $12,151.89
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 13,552.58 | $11,985.69 |
+  | (uncategorized) | (unspecified) | 25 | 13,668.80 | $12,101.91 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -232,9 +232,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,489.04**
+- USD on hand: **$4,605.21**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.47**
+- USD provisioned for voting-rights cash-out: **$51.52**
 
 ### In-transit freight (1 row)
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8576ef4 | 2026-08-12 03:06:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6228897 | 2026-08-11 19:38:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 35d8593 | 2026-08-11 13:59:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 99bc749 | 2026-08-11 16:25:33 +0800 | Add Farmer App link to the Part 4 (Trees Registry) card too (#291)
@@ -310,6 +311,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cefcafe | 2026-08-12 11:04:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
+912fa09 | 2026-08-12 11:04:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 f579586 | 2026-08-12 10:04:52 +0800 | Merge pull request #747 from TrueSightDAO/auto/advisory-refresh-2026-08-12
 550cecb | 2026-08-12 02:04:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 22f4062 | 2026-08-12 03:34:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
@@ -348,8 +351,6 @@ b0e0610 | 2026-08-08 15:29:39 +0800 | chore(previews): refresh Beer Hall preview
 2cc8831 | 2026-08-08 15:29:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
 03d4156 | 2026-08-08 10:28:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
 a015a8b | 2026-08-08 10:28:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
-bc3f59a | 2026-08-08 03:29:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-07 UTC)
-96f33d3 | 2026-08-08 03:29:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-07 UTC)
 … (truncated)
 ```
 
@@ -386,6 +387,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+e7cd591 | 2026-08-12 07:54:38 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 07bec35 | 2026-08-11 07:39:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac48cad | 2026-08-10 08:16:51 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 146cc6d | 2026-08-10 08:06:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -489,7 +491,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 120 | 17031.06386 | 8/11/2026 19:50:59 |
+| 2026-08 | 240 | 17151.06386 | 8/12/2026 0:50:55 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-05`; scanned last **600** data rows)
 
