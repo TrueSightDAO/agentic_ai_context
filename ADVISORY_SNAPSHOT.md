@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-13T03:07:49Z`
+- Generated (UTC): `2026-08-13T08:00:50Z`
 - Look-back: **7** calendar days (`2026-08-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -232,9 +232,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,605.21**
+- USD on hand: **$4,605.13**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.52**
+- USD provisioned for voting-rights cash-out: **$51.61**
 
 ### In-transit freight (1 row)
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-06 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cf50f72 | 2026-08-13 03:10:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0f66057 | 2026-08-12 19:41:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e820ba1 | 2026-08-12 14:05:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dded1eb | 2026-08-12 08:00:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -310,6 +311,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e55e83a | 2026-08-13 11:08:04 +0800 | chore(previews): refresh Beer Hall preview (2026-08-13 UTC)
+74ff69b | 2026-08-13 11:08:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-13 UTC)
 7255e5e | 2026-08-13 03:36:52 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
 b5b084e | 2026-08-13 03:36:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 b2f3b9f | 2026-08-12 21:57:00 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
@@ -348,8 +351,6 @@ f0e9b9f | 2026-08-09 15:31:55 +0800 | chore(previews): refresh Beer Hall preview
 85e602d | 2026-08-09 15:31:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-09 UTC)
 5e42293 | 2026-08-09 10:35:27 +0800 | chore(previews): refresh Beer Hall preview (2026-08-09 UTC)
 4ee1530 | 2026-08-09 10:35:26 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-09 UTC)
-ce81eb9 | 2026-08-09 03:09:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-08 UTC)
-6a81567 | 2026-08-09 03:09:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-08 UTC)
 … (truncated)
 ```
 
@@ -386,6 +387,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+3a0f243 | 2026-08-13 07:55:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e7cd591 | 2026-08-12 07:54:38 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 07bec35 | 2026-08-11 07:39:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac48cad | 2026-08-10 08:16:51 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -489,7 +491,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 240 | 17151.06386 | 8/12/2026 19:50:24 |
+| 2026-08 | 240 | 17151.06386 | 8/13/2026 0:52:39 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-06`; scanned last **600** data rows)
 
