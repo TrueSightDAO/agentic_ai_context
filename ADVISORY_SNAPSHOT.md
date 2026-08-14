@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-14T13:52:21Z`
+- Generated (UTC): `2026-08-14T19:29:09Z`
 - Look-back: **7** calendar days (`2026-08-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -39,7 +39,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260809042801_357` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Chocolate tasting session with Gaia and Aria (her kids). Findings: 65% sugar…
 - `Edgar_20260809102150_359` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: TLS certificate incident response + ecosystem hardening (2026-08-08/09): dia…
 - `Edgar_20260809102153_361` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Oversight + direction for TLS certificate incident response (2026-08-08/09):…
 - `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260813000731_391` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T00:07:28.979Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260813204826_393` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T20:48:24.907Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260814003354_395` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-14T00:33:53.090Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260814142529_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
 
 ---
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-07 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+870fec3 | 2026-08-14 13:56:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5457e6b | 2026-08-14 07:58:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd22aa5 | 2026-08-14 03:08:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 080f7b7 | 2026-08-13 19:36:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -313,6 +314,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7d1e65d | 2026-08-14 21:52:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
+82196eb | 2026-08-14 21:52:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 47610f7 | 2026-08-14 15:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 6a637ff | 2026-08-14 15:57:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 1a7e3d7 | 2026-08-14 11:07:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
@@ -351,8 +354,6 @@ d945e3d | 2026-08-10 21:55:33 +0800 | chore(previews): refresh Beer Hall preview
 0dceb41 | 2026-08-10 21:55:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 7b4f39b | 2026-08-10 16:14:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
 cbd3240 | 2026-08-10 16:14:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
-260c3e6 | 2026-08-10 10:41:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
-ffd80a5 | 2026-08-10 10:41:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 … (truncated)
 ```
 
@@ -493,7 +494,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 240 | 17151.06386 | 8/14/2026 6:51:27 |
+| 2026-08 | 240 | 17151.06386 | 8/14/2026 11:50:26 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-07`; scanned last **600** data rows)
 
