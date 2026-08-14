@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-14T07:57:30Z`
+- Generated (UTC): `2026-08-14T13:52:21Z`
 - Look-back: **7** calendar days (`2026-08-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-13T10:59:13.556Z`
+- Generated (UTC): `2026-08-14T10:59:14.392Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -83,12 +83,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **694**, follow_up **71**, bulk **0**, unknown **2** (data rows: **767**)
+- **Email Agent Follow Up** — logged sends: warmup **706**, follow_up **71**, bulk **0**, unknown **2** (data rows: **779**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **615**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **627**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-07 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5457e6b | 2026-08-14 07:58:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd22aa5 | 2026-08-14 03:08:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
 080f7b7 | 2026-08-13 19:36:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 06ca853 | 2026-08-13 14:01:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,6 +313,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+47610f7 | 2026-08-14 15:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
+6a637ff | 2026-08-14 15:57:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 1a7e3d7 | 2026-08-14 11:07:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 7e937eb | 2026-08-14 11:07:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 413c12b | 2026-08-14 03:34:53 +0800 | chore(previews): refresh Beer Hall preview (2026-08-13 UTC)
@@ -350,8 +353,6 @@ d945e3d | 2026-08-10 21:55:33 +0800 | chore(previews): refresh Beer Hall preview
 cbd3240 | 2026-08-10 16:14:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 260c3e6 | 2026-08-10 10:41:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
 ffd80a5 | 2026-08-10 10:41:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
-25bf02a | 2026-08-10 09:56:05 +0800 | Merge pull request #745 from TrueSightDAO/auto/advisory-refresh-2026-08-10
-288e425 | 2026-08-10 01:55:54 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 … (truncated)
 ```
 
@@ -492,7 +493,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 240 | 17151.06386 | 8/14/2026 0:50:34 |
+| 2026-08 | 240 | 17151.06386 | 8/14/2026 6:51:27 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-07`; scanned last **600** data rows)
 
