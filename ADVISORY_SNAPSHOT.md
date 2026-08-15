@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-14T19:29:09Z`
-- Look-back: **7** calendar days (`2026-08-07` → today UTC)
+- Generated (UTC): `2026-08-15T01:56:27Z`
+- Look-back: **7** calendar days (`2026-08-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,14 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
-- `[PRACTICE EVENT]` × 15
+- `[PRACTICE EVENT]` × 16
+- `[CONTRIBUTION EVENT]` × 14
 - `[TREE PLANTING EVENT]` × 1
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260809102150_359` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: TLS certificate incident response + ecosystem hardening (2026-08-08/09): dia…
 - `Edgar_20260809102153_361` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Oversight + direction for TLS certificate incident response (2026-08-08/09):…
 - `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260813204826_393` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T20:48:24.907Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260814003354_395` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-14T00:33:53.090Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260814142529_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
+- `Edgar_20260815010219_399` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-15T01:02:16.548Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -250,7 +250,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-08-07 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-08-08 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-07 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+097c4d3 | 2026-08-14 19:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 870fec3 | 2026-08-14 13:56:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5457e6b | 2026-08-14 07:58:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dd22aa5 | 2026-08-14 03:08:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -298,11 +299,6 @@ cc43080 | 2026-08-08 19:09:27 +0000 | chore(stats): refresh stats/current.json [
 048efae | 2026-08-08 13:28:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ab2b373 | 2026-08-08 07:31:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
 6af247d | 2026-08-08 02:29:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
-73bbb6f | 2026-08-07 19:33:17 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b179a7e | 2026-08-07 13:52:28 +0000 | chore(stats): refresh stats/current.json [skip ci]
-c068909 | 2026-08-07 07:53:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6e64040 | 2026-08-07 03:32:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
-413ae62 | 2026-08-07 00:25:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -314,6 +310,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+27bc65a | 2026-08-15 03:29:36 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
+8c41eef | 2026-08-15 03:29:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 7d1e65d | 2026-08-14 21:52:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 82196eb | 2026-08-14 21:52:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 47610f7 | 2026-08-14 15:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
@@ -352,8 +350,6 @@ c8930d4 | 2026-08-11 10:34:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 1c6b4de | 2026-08-11 03:30:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 d945e3d | 2026-08-10 21:55:33 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
 0dceb41 | 2026-08-10 21:55:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
-7b4f39b | 2026-08-10 16:14:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
-cbd3240 | 2026-08-10 16:14:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 … (truncated)
 ```
 
@@ -398,7 +394,6 @@ ac48cad | 2026-08-10 08:16:51 +0000 | chore: refresh partners-velocity snapshot 
 146cc6d | 2026-08-10 08:06:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac22f10 | 2026-08-09 07:18:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3caae45 | 2026-08-08 07:20:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-4e4c702 | 2026-08-07 07:43:55 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -494,9 +489,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 240 | 17151.06386 | 8/14/2026 11:50:26 |
+| 2026-08 | 240 | 17151.06386 | 8/14/2026 18:50:32 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-07`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-08`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
