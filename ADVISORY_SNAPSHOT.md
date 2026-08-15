@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-15T07:13:28Z`
+- Generated (UTC): `2026-08-15T13:08:05Z`
 - Look-back: **7** calendar days (`2026-08-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,7 +30,35 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 _Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
 
-_(Skipped: sheet read failed: `APIError: [503]: The service is currently unavailable.`.)_
+### Event-type rollup
+
+- `[PRACTICE EVENT]` × 16
+- `[CONTRIBUTION EVENT]` × 14
+- `[TREE PLANTING EVENT]` × 1
+- _free-form (no bracket tag)_ × 7
+
+### Latest entries
+
+- `Edgar_20260809102153_361` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Oversight + direction for TLS certificate incident response (2026-08-08/09):…
+- `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260811014838_367` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Volume analysis work
+- `Edgar_20260811031442_369` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T03:14:40.079Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260811081933_371` · **Edgar** · [No Text Provided]
+- `Edgar_20260811083736_373` · **Edgar** · [No Text Provided]
+- `Edgar_20260811093312_375` · **Edgar** · [TREE PLANTING EVENT] Latitude: 22.94274910991584 · Longitude: 113.88559466712027 · Species: Cacao - Criolla
+- `Edgar_20260811114423_377` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sunmint Farmer App (tree-planting DApp)
+- `Edgar_20260811114432_379` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Directed, tested, and reviewed the Sunmint Farmer App build (tree-planting D…
+- `Edgar_20260811124448_381` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T12:44:48.072Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260811141836_383` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260811142125_385` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260812043322_387` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-12T04:33:20.081Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260812172153_389` · **Edgar** · [No Text Provided]
+- `Edgar_20260813000731_391` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T00:07:28.979Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260813204826_393` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T20:48:24.907Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260814003354_395` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-14T00:33:53.090Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260814142529_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
+- `Edgar_20260815010219_399` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-15T01:02:16.548Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -45,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-14T10:59:14.392Z`
+- Generated (UTC): `2026-08-15T10:59:14.763Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -55,12 +83,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **706**, follow_up **71**, bulk **0**, unknown **2** (data rows: **779**)
+- **Email Agent Follow Up** — logged sends: warmup **708**, follow_up **71**, bulk **0**, unknown **2** (data rows: **781**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **627**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **629**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -284,6 +312,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+425be72 | 2026-08-15 15:13:52 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
+6a2411d | 2026-08-15 15:13:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-15 UTC)
 a5f27ad | 2026-08-15 09:56:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
 683a100 | 2026-08-15 09:56:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-15 UTC)
 27bc65a | 2026-08-15 03:29:36 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
@@ -322,8 +352,6 @@ a02e5e3 | 2026-08-11 15:46:18 +0800 | chore(previews): refresh Beer Hall preview
 c8930d4 | 2026-08-11 10:34:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 0621871 | 2026-08-11 09:52:18 +0800 | Merge pull request #746 from TrueSightDAO/auto/advisory-refresh-2026-08-11
 94a0d83 | 2026-08-11 01:52:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
-24361ac | 2026-08-11 03:30:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
-1c6b4de | 2026-08-11 03:30:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 … (truncated)
 ```
 
@@ -464,9 +492,15 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 360 | 17271.06386 | 8/14/2026 23:50:42 |
+| 2026-08 | 360 | 17271.06386 | 8/15/2026 5:50:34 |
 
-### `QR Code Sales` _(read failed: APIError: [503]: The service is currently unavailable.)_
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-08`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
