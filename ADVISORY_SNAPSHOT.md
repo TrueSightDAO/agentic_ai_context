@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-15T01:56:27Z`
+- Generated (UTC): `2026-08-15T07:13:28Z`
 - Look-back: **7** calendar days (`2026-08-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -30,35 +30,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 _Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
 
-### Event-type rollup
-
-- `[PRACTICE EVENT]` × 16
-- `[CONTRIBUTION EVENT]` × 14
-- `[TREE PLANTING EVENT]` × 1
-- _free-form (no bracket tag)_ × 7
-
-### Latest entries
-
-- `Edgar_20260809102153_361` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Oversight + direction for TLS certificate incident response (2026-08-08/09):…
-- `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260811014838_367` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Volume analysis work
-- `Edgar_20260811031442_369` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T03:14:40.079Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260811081933_371` · **Edgar** · [No Text Provided]
-- `Edgar_20260811083736_373` · **Edgar** · [No Text Provided]
-- `Edgar_20260811093312_375` · **Edgar** · [TREE PLANTING EVENT] Latitude: 22.94274910991584 · Longitude: 113.88559466712027 · Species: Cacao - Criolla
-- `Edgar_20260811114423_377` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sunmint Farmer App (tree-planting DApp)
-- `Edgar_20260811114432_379` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Directed, tested, and reviewed the Sunmint Farmer App build (tree-planting D…
-- `Edgar_20260811124448_381` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T12:44:48.072Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260811141836_383` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260811142125_385` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260812043322_387` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-12T04:33:20.081Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260812172153_389` · **Edgar** · [No Text Provided]
-- `Edgar_20260813000731_391` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T00:07:28.979Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260813204826_393` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T20:48:24.907Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260814003354_395` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-14T00:33:53.090Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260814142529_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
-- `Edgar_20260815010219_399` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-15T01:02:16.548Z · Program: truesight-grounding · Practice Type: oracle-consultation
+_(Skipped: sheet read failed: `APIError: [503]: The service is currently unavailable.`.)_
 
 ---
 
@@ -207,11 +179,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 13,744.98 total units · $12,151.89
+- Manager record: `Gary Teh` · 27 SKU lines · 13,861.20 total units · $12,268.11
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 13,668.80 | $12,101.91 |
+  | (uncategorized) | (unspecified) | 25 | 13,785.02 | $12,218.13 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -232,9 +204,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,605.04**
+- USD on hand: **$4,721.18**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$51.69**
+- USD provisioned for voting-rights cash-out: **$51.78**
 
 ### In-transit freight (1 row)
 
@@ -269,6 +241,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-08 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+bda77b3 | 2026-08-15 07:07:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
+fd8c1b4 | 2026-08-15 01:59:52 +0000 | chore(stats): refresh stats/current.json [skip ci]
 097c4d3 | 2026-08-14 19:31:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 870fec3 | 2026-08-14 13:56:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5457e6b | 2026-08-14 07:58:20 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -310,6 +284,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a5f27ad | 2026-08-15 09:56:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
+683a100 | 2026-08-15 09:56:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-15 UTC)
 27bc65a | 2026-08-15 03:29:36 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 8c41eef | 2026-08-15 03:29:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 7d1e65d | 2026-08-14 21:52:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
@@ -348,8 +324,6 @@ c8930d4 | 2026-08-11 10:34:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 94a0d83 | 2026-08-11 01:52:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 24361ac | 2026-08-11 03:30:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
 1c6b4de | 2026-08-11 03:30:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
-d945e3d | 2026-08-10 21:55:33 +0800 | chore(previews): refresh Beer Hall preview (2026-08-10 UTC)
-0dceb41 | 2026-08-10 21:55:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-10 UTC)
 … (truncated)
 ```
 
@@ -386,6 +360,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b1d29ce | 2026-08-15 06:59:28 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a5214b4 | 2026-08-14 07:53:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3a0f243 | 2026-08-13 07:55:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e7cd591 | 2026-08-12 07:54:38 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -489,15 +464,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 240 | 17151.06386 | 8/14/2026 18:50:32 |
+| 2026-08 | 360 | 17271.06386 | 8/14/2026 23:50:42 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-08`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
+### `QR Code Sales` _(read failed: APIError: [503]: The service is currently unavailable.)_
 
 ---
 
