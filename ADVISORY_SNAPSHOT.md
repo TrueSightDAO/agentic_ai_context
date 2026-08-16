@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-16T13:09:46Z`
+- Generated (UTC): `2026-08-16T18:56:03Z`
 - Look-back: **7** calendar days (`2026-08-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-09 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0de21d3 | 2026-08-16 13:11:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e56ceeb | 2026-08-16 07:10:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f2b5dde | 2026-08-16 02:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 62bd300 | 2026-08-15 18:58:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,6 +313,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1a49f22 | 2026-08-16 21:10:11 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
+1a089c9 | 2026-08-16 21:10:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 a903ad5 | 2026-08-16 15:09:14 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
 54e6450 | 2026-08-16 15:09:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 d51a20a | 2026-08-16 10:06:18 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
@@ -350,8 +353,6 @@ cefcafe | 2026-08-12 11:04:46 +0800 | chore(previews): refresh Beer Hall preview
 912fa09 | 2026-08-12 11:04:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 f579586 | 2026-08-12 10:04:52 +0800 | Merge pull request #747 from TrueSightDAO/auto/advisory-refresh-2026-08-12
 550cecb | 2026-08-12 02:04:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
-22f4062 | 2026-08-12 03:34:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
-1550f2d | 2026-08-12 03:34:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 … (truncated)
 ```
 
@@ -493,7 +494,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 360 | 17271.06386 | 8/16/2026 5:50:38 |
+| 2026-08 | 360 | 17271.06386 | 8/16/2026 11:50:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-09`; scanned last **600** data rows)
 
