@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-16T07:08:59Z`
+- Generated (UTC): `2026-08-16T13:09:46Z`
 - Look-back: **7** calendar days (`2026-08-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -39,7 +39,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260810024955_363` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-10T02:49:53.556Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20260811014838_367` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Volume analysis work
 - `Edgar_20260811031442_369` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T03:14:40.079Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260814142529_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
 - `Edgar_20260815010219_399` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-15T01:02:16.548Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260816024046_401` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-16T02:40:43.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260816115623_403` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 145 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me), Gary Teh (garyjob@agroverse…
 
 ---
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-15T10:59:14.763Z`
+- Generated (UTC): `2026-08-16T10:59:14.184Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-09 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e56ceeb | 2026-08-16 07:10:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f2b5dde | 2026-08-16 02:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 62bd300 | 2026-08-15 18:58:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d6421f7 | 2026-08-15 13:09:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -311,6 +312,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a903ad5 | 2026-08-16 15:09:14 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
+54e6450 | 2026-08-16 15:09:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 d51a20a | 2026-08-16 10:06:18 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
 c83fbff | 2026-08-16 10:06:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 0723186 | 2026-08-16 02:56:59 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
@@ -349,15 +352,14 @@ f579586 | 2026-08-12 10:04:52 +0800 | Merge pull request #747 from TrueSightDAO/
 550cecb | 2026-08-12 02:04:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 22f4062 | 2026-08-12 03:34:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
 1550f2d | 2026-08-12 03:34:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
-fd0cce1 | 2026-08-11 21:53:47 +0800 | chore(previews): refresh Beer Hall preview (2026-08-11 UTC)
-a149548 | 2026-08-11 21:53:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-11 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
-_(no commits on origin/main in window)_
+67373a9 | 2026-08-16 19:28:35 +0800 | feat(1ovx): email notification for subscription renewal payments on ledger (#387)
+29c4898 | 2026-08-16 19:23:17 +0800 | sync(1ovx): commit live agroverse_shop_checkout.js from production clasp pull (#386)
 ```
 
 ### `dapp` → `dapp`
@@ -491,7 +493,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 360 | 17271.06386 | 8/15/2026 23:50:20 |
+| 2026-08 | 360 | 17271.06386 | 8/16/2026 5:50:38 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-09`; scanned last **600** data rows)
 
