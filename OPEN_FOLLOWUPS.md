@@ -138,6 +138,148 @@ description: >
   engagement yet.
 ```
 
+```followup
+id: matheus-nota-fiscal-exportacao
+chat_id: -1003919341801
+thread_id: 11042
+title: Matheus — nota fiscal exportação (stuck)
+created_at: 2026-08-16
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Matheus is still stuck on the nota fiscal exportação (Brazil NF-e export
+  gate). Chase status with Matheus. Context lives in TRACK_MAP.md (GACC /
+  Brazil compliance track) and BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md;
+  goal is to get the NF-e issued so Brazil→SF freight can proceed. All pings
+  go to thread 11042 (Gary's ops/task tracking).
+```
+
+```followup
+id: podream-tech-followup
+chat_id: -1003919341801
+thread_id: 11042
+title: PODream — follow up on their tech
+created_at: 2026-08-16
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Gary needs to follow up with PODream on their technology. Not yet
+  documented in DAO context — treat as a new partner/tech contact; when this
+  fires, remind Gary to chase PODream's tech status and capture details.
+  All pings go to thread 11042.
+```
+
+```followup
+id: gianluca-farmers-tech-followup
+chat_id: -1003919341801
+thread_id: 11042
+title: Gianluca's farmers — technology implementation follow-up
+created_at: 2026-08-16
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Gary needs to follow up with the farmers of Gianluca on the technology
+  implementations. Not yet documented in DAO context; when this fires, chase
+  status with Gianluca's farmers and capture what was implemented vs pending.
+  All pings go to thread 11042.
+```
+
+```followup
+id: ling-mobile-capsule
+chat_id: -1003919341801
+thread_id: 11042
+title: Ling — mobile space capsule details
+created_at: 2026-08-16
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Ling is working on the mobile space capsule details. Per Gary this is a
+  follow-up track, NOT part of the Aora plan. When this fires, get status /
+  details from Ling on the mobile capsule. All pings go to thread 11042.
+```
+
+```followup
+id: jerrie-mobile-un-aora-ppt
+chat_id: -1003919341801
+thread_id: 11042
+title: Jerrie — Mobile UN Aora modules PDF→PPT (Mr Liu certification path)
+created_at: 2026-08-16
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Jerrie is still translating Gary's PDF for Mobile UN Aora modules to PPT,
+  so it can first be presented to Mr Liu via Evan's for certification, and
+  then to Cao for distribution. Follow-up on progress. All pings go to
+  thread 11042.
+```
+
+```followup
+id: jerrie-cacao-ceremonial-tea-ppt
+chat_id: -1003919341801
+thread_id: 11042
+title: Jerrie — cacao ceremonial + cacao tea PDF→PPT (Win discussion)
+created_at: 2026-08-16
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Jerrie is still translating Gary's PDF for cacao ceremonial and cacao tea
+  to PPT for discussion with Win. Follow up on progress. All pings go to
+  thread 11042.
+```
+
+```followup
+id: orlantildes-coopercabruca
+chat_id: -1003919341801
+thread_id: 11042
+title: Orlantildes / Coopercabruca — MAPA + 5 kg cacao butter receipt
+created_at: 2026-08-16
+condition:
+  kind: elapsed_days
+  escalate_after_days: 14
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Two threads under Orlantildes (Coopercabruca): (1) she is working on MAPA
+  (China-gate compliance item); (2) she has delivered cacao butter for 5 kg
+  that Kirsten requested — conceptually an inventory receipt from Orlantildes
+  to Matheus's warehouse, but tentatively tracked here until a formal
+  INVENTORY MOVEMENT is recorded. When this fires, chase MAPA status and
+  decide whether to record the cacao butter receipt in the ledger. All pings
+  go to thread 11042.
+```
+
 ### Public-key lookup → content-addressed per-key cache (governor vault scaling)
 **Filed 2026-06-16.** Replace the O(n) `dao_members.json` monolith scan with a
 content-addressed per-key store (`treasury-cache/public_keys/<sha256(pubkey)>.json`) so
