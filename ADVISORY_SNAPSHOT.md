@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-16T18:56:03Z`
-- Look-back: **7** calendar days (`2026-08-09` → today UTC)
+- Generated (UTC): `2026-08-17T02:03:11Z`
+- Look-back: **7** calendar days (`2026-08-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,21 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PRACTICE EVENT]` × 16
-- `[CONTRIBUTION EVENT]` × 14
+- `[CONTRIBUTION EVENT]` × 13
+- `[PRACTICE EVENT]` × 12
+- `[SALES EVENT]` × 6
 - `[TREE PLANTING EVENT]` × 1
-- _free-form (no bracket tag)_ × 7
+- _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260811014803_365` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260811014838_367` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Volume analysis work
-- `Edgar_20260811031442_369` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T03:14:40.079Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260811081933_371` · **Edgar** · [No Text Provided]
-- `Edgar_20260811083736_373` · **Edgar** · [No Text Provided]
-- `Edgar_20260811093312_375` · **Edgar** · [TREE PLANTING EVENT] Latitude: 22.94274910991584 · Longitude: 113.88559466712027 · Species: Cacao - Criolla
-- `Edgar_20260811114423_377` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sunmint Farmer App (tree-planting DApp)
-- `Edgar_20260811114432_379` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Directed, tested, and reviewed the Sunmint Farmer App build (tree-planting D…
 - `Edgar_20260811124448_381` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-11T12:44:48.072Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260811141836_383` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260811142125_385` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
@@ -59,6 +52,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260815010219_399` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-15T01:02:16.548Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260816024046_401` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-16T02:40:43.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260816115623_403` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 145 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me), Gary Teh (garyjob@agroverse…
+- `Edgar_20260816185922_405` · **Edgar** · [SALES EVENT] Item: 2024_20260710_16 · Sales price: 11.41 · Sold by: Kirsten Ritschel
+- `Edgar_20260816185926_407` · **Edgar** · [SALES EVENT] Item: 2024_20260710_17 · Sales price: 11.41 · Sold by: Kirsten Ritschel
+- `Edgar_20260816185932_409` · **Edgar** · [SALES EVENT] Item: 2024_20260710_18 · Sales price: 11.41 · Sold by: Kirsten Ritschel
+- `Edgar_20260816185940_411` · **Edgar** · [SALES EVENT] Item: 2024_20260710_19 · Sales price: 11.41 · Sold by: Kirsten Ritschel
+- `Edgar_20260816185945_413` · **Edgar** · [SALES EVENT] Item: 2024_20260710_20 · Sales price: 11.41 · Sold by: Kirsten Ritschel
+- `Edgar_20260816185950_415` · **Edgar** · [SALES EVENT] Item: 2024_20260710_21 · Sales price: 11.41 · Sold by: Kirsten Ritschel
+- `Edgar_20260816190636_417` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 105 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20260816190639_419` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Contributor(s): Gary Teh (garyjob@agroverse.shop)
 
 ---
 
@@ -185,12 +186,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,345 total units · $1,569.88
+- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,339 total units · $1,536.14
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 10 | 403 | $918.43 |
+  | (uncategorized) | (unspecified) | 10 | 397 | $884.69 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -207,11 +208,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 13,861.20 total units · $12,268.11
+- Manager record: `Gary Teh` · 27 SKU lines · 13,929.66 total units · $12,336.57
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 13,785.02 | $12,218.13 |
+  | (uncategorized) | (unspecified) | 25 | 13,853.48 | $12,286.59 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -232,7 +233,7 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,721.09**
+- USD on hand: **$4,789.55**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
 - USD provisioned for voting-rights cash-out: **$51.86**
 
@@ -250,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-08-09 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-08-10 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -269,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-09 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+96a5919 | 2026-08-16 18:58:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0de21d3 | 2026-08-16 13:11:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e56ceeb | 2026-08-16 07:10:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f2b5dde | 2026-08-16 02:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -297,11 +299,6 @@ f040442 | 2026-08-11 07:47:49 +0000 | chore(stats): refresh stats/current.json [
 25b2baf | 2026-08-10 13:58:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3b0486c | 2026-08-10 08:14:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0739671 | 2026-08-10 02:53:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
-eb48adc | 2026-08-09 19:15:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0fc83ef | 2026-08-09 13:32:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3ae0288 | 2026-08-09 18:30:33 +0800 | feat(sunmint): add Farmer App CTA linking to sunmint.truesight.me (#290)
-6ee7070 | 2026-08-09 07:36:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
-01b8e49 | 2026-08-09 02:36:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -313,6 +310,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f97f6f3 | 2026-08-17 06:30:45 +0800 | Add 7 followup blocks to OPEN_FOLLOWUPS (Matheus, PODream, Gianluca, Ling, Jerrie x2, Orlantildes) — all ping thread 11042 (#749)
+667043c | 2026-08-17 02:56:29 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
+24a4818 | 2026-08-17 02:56:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 1a49f22 | 2026-08-16 21:10:11 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
 1a089c9 | 2026-08-16 21:10:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 a903ad5 | 2026-08-16 15:09:14 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
@@ -350,9 +350,6 @@ b2f3b9f | 2026-08-12 21:57:00 +0800 | chore(previews): refresh Beer Hall preview
 133ce07 | 2026-08-12 16:00:32 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
 625c72a | 2026-08-12 16:00:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 cefcafe | 2026-08-12 11:04:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-12 UTC)
-912fa09 | 2026-08-12 11:04:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
-f579586 | 2026-08-12 10:04:52 +0800 | Merge pull request #747 from TrueSightDAO/auto/advisory-refresh-2026-08-12
-550cecb | 2026-08-12 02:04:41 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-12 UTC)
 … (truncated)
 ```
 
@@ -390,6 +387,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+06232e8 | 2026-08-17 03:28:41 +0800 | chore: refresh Agroverse store inventory snapshot
 70e69b1 | 2026-08-16 07:01:45 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b1d29ce | 2026-08-15 06:59:28 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a5214b4 | 2026-08-14 07:53:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -398,7 +396,6 @@ e7cd591 | 2026-08-12 07:54:38 +0000 | chore: refresh store and partner inventory
 07bec35 | 2026-08-11 07:39:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ac48cad | 2026-08-10 08:16:51 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 146cc6d | 2026-08-10 08:06:25 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-ac22f10 | 2026-08-09 07:18:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -494,13 +491,18 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 360 | 17271.06386 | 8/16/2026 11:50:51 |
+| 2026-08 | 428.46 | 17339.52386 | 8/16/2026 18:50:35 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-09`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-10`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_21 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_20 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_19 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_18 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_17 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_16 | zpFSulJXVklN | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
