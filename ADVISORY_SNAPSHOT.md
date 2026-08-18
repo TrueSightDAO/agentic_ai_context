@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-18T07:14:25Z`
+- Generated (UTC): `2026-08-18T13:23:32Z`
 - Look-back: **7** calendar days (`2026-08-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 13
-- `[PRACTICE EVENT]` × 10
+- `[CONTRIBUTION EVENT]` × 12
+- `[PRACTICE EVENT]` × 11
 - `[SALES EVENT]` × 6
 - `[TREE PLANTING EVENT]` × 1
 - _free-form (no bracket tag)_ × 8
 
 ### Latest entries
 
-- `Edgar_20260813204826_393` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-13T20:48:24.907Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260814003354_395` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-14T00:33:53.090Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260814142529_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
 - `Edgar_20260815010219_399` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-15T01:02:16.548Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260816024046_401` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-16T02:40:43.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260817193952_427` · **Edgar** · [No Text Provided]
 - `Edgar_20260817225831_429` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-17T22:58:29.298Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260818065327_431` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh + Sophia Truesight
+- `Edgar_20260818083537_433` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-18T08:35:34.609Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260818094114_435` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Evan Bahia origin-tour slide deck (30 min)
 
 ---
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-17T10:59:14.016Z`
+- Generated (UTC): `2026-08-18T10:59:13.510Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -84,12 +84,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **708**, follow_up **71**, bulk **0**, unknown **2** (data rows: **781**)
+- **Email Agent Follow Up** — logged sends: warmup **718**, follow_up **71**, bulk **0**, unknown **2** (data rows: **791**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **629**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **639**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -259,7 +259,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-11 in CONTEXT_UPDATES.md.)_
 
 | Pipeline | Mapped clone | Activity in window |
 |----------|----------------|----------------------|
-| `go_to_market` | `market_research` | **no** |
+| `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
 | `oracle` | `iching_oracle` | **no** |
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-11 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+08c1a5a | 2026-08-18 07:20:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31daf4d | 2026-08-18 02:01:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4293736 | 2026-08-17 13:22:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -305,12 +306,16 @@ f040442 | 2026-08-11 07:47:49 +0000 | chore(stats): refresh stats/current.json [
 ### `market_research` → `go_to_market`
 
 ```
-_(no commits on origin/main in window)_
+0655d78 | 2026-08-18 17:34:59 +0800 | Fix photo orientations (EXIF transpose + portrait-aware layouts) in Evan Bahia deck
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e95a248 | 2026-08-18 17:28:57 +0800 | Register SLIDE_DECK_STANDARD.md in PROJECT_INDEX + WORKSPACE_CONTEXT so all AI sessions discover it (#752)
+98f5f37 | 2026-08-18 17:24:54 +0800 | Add SLIDE_DECK_STANDARD.md — mandatory format for all Sophia/LLM-generated decks (#751)
+8608d61 | 2026-08-18 15:14:42 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
+2dacb06 | 2026-08-18 15:14:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
 1b1a8c8 | 2026-08-18 09:57:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
 23e314d | 2026-08-18 09:57:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
 af4c2fa | 2026-08-18 09:18:41 +0800 | Merge pull request #750 from TrueSightDAO/auto/advisory-refresh-2026-08-18
@@ -347,10 +352,6 @@ a5f27ad | 2026-08-15 09:56:46 +0800 | chore(previews): refresh Beer Hall preview
 47610f7 | 2026-08-14 15:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 6a637ff | 2026-08-14 15:57:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 1a7e3d7 | 2026-08-14 11:07:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
-7e937eb | 2026-08-14 11:07:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
-413c12b | 2026-08-14 03:34:53 +0800 | chore(previews): refresh Beer Hall preview (2026-08-13 UTC)
-16fa83c | 2026-08-14 03:34:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-13 UTC)
-828a3a9 | 2026-08-13 21:56:50 +0800 | chore(previews): refresh Beer Hall preview (2026-08-13 UTC)
 … (truncated)
 ```
 
@@ -492,7 +493,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/17/2026 23:50:35 |
+| 2026-08 | 428.46 | 17339.52386 | 8/18/2026 5:52:57 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-11`; scanned last **600** data rows)
 
