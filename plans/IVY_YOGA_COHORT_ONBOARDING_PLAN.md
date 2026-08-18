@@ -80,12 +80,21 @@ All of the following were verified live during this planning session — no exec
    Promotion to `truesight_me_prod` (`gh repo sync`) is a **human-only, explicitly-requested action** — not part
    of this plan's execution units.
 
-7. **Assets not yet in hand:** Shahbaz's actual "IVY certificate - blank - v1.2.pdf" (and IVY logo / instructor-name
-   font) were sent in the WhatsApp chat but were **not included** in the exported zip's media (WhatsApp trimmed
-   attachments on export). The repo scaffold ships with the template's placeholder `cert_template/` assets;
-   swapping in the real v1.2 template is a follow-up once Shahbaz hands off the PDF/logo/font files directly
-   (not blocking — the admin panel and infra work end-to-end without it, cert *rendering* will look like the
-   generic template until swapped).
+7. **✅ Resolved 2026-08-18 (same session):** Gary hand-delivered "IVY certificate - blank - v1.2.pdf" and the
+   filled "IVY certificate - sample.pdf" (the WhatsApp export had dropped both from its media). Full program name
+   is **Indus Valley Yoga**; co-signers are **Bilal Musharraf** (Founding Board Member) and **Olivia Anselmo**
+   (Creator, Original Hot Yoga Teacher Training, Liv for Yoga LLC). Fonts identified from embedded PDF font-subset
+   names and confirmed against github.com/google/fonts: **Cormorant Garamond** (body/name/dates), **Inter**
+   (labels), **Great Vibes** (the two co-signer signatures). All three are open-source (OFL) — full family files
+   vendored in `ivy-yoga-club/cert_template/fonts/` (not the PDF's subsetted glyphs, so any recipient name renders
+   correctly). Overlay coordinates in `cert_config.json` reverse-engineered by word/image bounding-box extraction
+   (pdfplumber + pymupdf) against both PDFs. Logo extracted from the PDF's embedded image, real brand color sampled
+   as `#A84504`. Pushed as a second commit on the same `ivy-yoga-club#1` PR branch (§3 PR1).
+   **New finding, not yet buildable:** the real design has two overlay field *types* the platform doesn't support
+   yet — `signature_bilal`/`signature_olivia` (rendered only once each co-signer independently attests — this is
+   Gary's dual-signature design, now visible baked into the actual artwork) and a cosmetic `certificate_id`
+   (`IVY-TT-<year>-<seq>`, no generator exists for the sequence). Both documented with real coordinates in
+   `cert_config.json` for **PR3** to implement against — see §5.
 
 ---
 
@@ -179,7 +188,11 @@ captured in §1 above.
    names yoga lineages as the reason to keep the data model open for. Needs `manifest.json.authorized_attestors`
    to grow from a flat list to role-tagged entries (`program_director`, `lineage_authority`). Open sub-question:
    does Olivia need to re-sign on every renewal, or just Bilal (her signature being a one-time lineage-provenance
-   fact rather than a time-bound "still active" assertion)? Not yet built (PR3).
+   fact rather than a time-bound "still active" assertion)? **Confirmed real, not speculative** — the actual v1.2
+   cert artwork (§1.7) shows exactly this: an underline + printed name/title for each co-signer, with a script
+   ("Great Vibes" font) signature that only renders once that person has attested (visible in
+   `reference_sample_filled.pdf`, absent in `cert_template.pdf`). `cert_config.json` has real coordinates for both
+   (`overlay_fields.signature_bilal` / `signature_olivia`) for PR3 to implement against. Not yet built (PR3).
 
 ---
 
