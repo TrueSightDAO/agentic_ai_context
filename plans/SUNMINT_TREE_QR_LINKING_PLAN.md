@@ -17,7 +17,8 @@ owner by email, and book the ledger fulfillment entry. A dedicated governor-only
 |---|----------|--------|
 | 0.1 | Event/transport shape | **Dedicated event type `[TREE PLANTING LINK EVENT]`** (not an extension of `[QR CODE UPDATE EVENT]`) — it must atomically touch three sheets (QR row, SunMint Tree Planting row, managed-ledger Transactions) plus send an email; folding that into the generic QR-update handler would overload a handler other flows depend on staying simple. |
 | 0.2 | DApp surface | **Dedicated page** `dapp/link_tree_planting.html` (not a mode bolted onto `update_qr_code.html`), governor/sentinel-gated like `review_queue.html`. |
-| 0.3 | Everything else in the 2026-08-18 discussion | **Confirmed as-is** — reuse `ASSIGNED_TO_TREE` as the post-link status, reuse the existing `Cacao Tree To Be Planted` liability line as the pre-link "tree to be planted" currency, add a new `Cacao Tree Planted` line as the fulfillment leg (exact ledger classification is an open question — §7), reuse the `Owner Email` (col L) onboarding-email pattern for the notification, and fix the `ASSIGNED_TO_TREE` re-sale gap before anything else ships. |
+| 0.3 | Everything else in the 2026-08-18 discussion | **Confirmed as-is** — reuse `ASSIGNED_TO_TREE` as the post-link status, reuse the existing `Cacao Tree To Be Planted` liability line as the pre-link "tree to be planted" currency, add a new `Cacao Tree Planted` line classified **`Asset`** as the fulfillment leg (§7), reuse the `Owner Email` (col L) onboarding-email pattern for the notification. |
+| 0.4 | Merge cadence for PR2–PR8 | **Merge each as it lands** (Gary, 2026-08-18) — branch off updated `main` for each subsequent PR rather than opening the whole stack unmerged. |
 
 ---
 
@@ -273,15 +274,15 @@ Per `OPERATING_INSTRUCTIONS.md` §6, report each merged PR via `dao_client` (`tr
 
 ---
 
-## 7. Open questions for Gary (before PR4 executes for real)
+## 7. Decisions resolved after initial PR execution began
 
-- **Ledger classification of the fulfillment leg.** §1.5's existing sale-time entry is
-  `+1 "Cacao Tree To Be Planted"` classified `Liability`. On linking, is the right move (a) simply
-  `-1 "Cacao Tree To Be Planted"` (discharge the liability, no new line) or (b) the two-line pair this plan
-  assumes, `-1 "Cacao Tree To Be Planted"` + `+1 "Cacao Tree Planted"` (also `Liability`, or should the
-  fulfilled-obligation line be `Equity`/something else)? (b) gives a running count of fulfilled pledges per
-  ledger "for free" via existing ledger-summary tooling; (a) is simpler and avoids inventing a new
-  category. **PR4 should not guess this — confirm before the ledger-write code is finalized.**
+- **Ledger classification of the fulfillment leg — RESOLVED (Gary, 2026-08-18).** §1.5's existing
+  sale-time entry is `+1 "Cacao Tree To Be Planted"` classified `Liability`. PR4's fulfillment write is a
+  **two-line pair**: `-1 "Cacao Tree To Be Planted"` (`Liability`, discharges the sale-time obligation) +
+  `+1 "Cacao Tree Planted"` classified **`Asset`** (not `Liability` — once fulfilled it's no longer an
+  obligation, it's a countable asset the DAO can point to; also gives a running per-ledger count of
+  fulfilled pledges via existing ledger-summary tooling, same benefit originally proposed under the
+  liability-pair option).
 - **Backfill.** QR rows already `SOLD` before PR2 ships won't have a `Sold Date` (§1.6) — acceptable gap,
   or worth a one-time backfill pass (e.g. from the linked Stripe session's created-at, where available)?
 - **`dao_client` vs `dao_protocol` sync** (§1.10) — resolved in PR6, but if Gary already knows the
