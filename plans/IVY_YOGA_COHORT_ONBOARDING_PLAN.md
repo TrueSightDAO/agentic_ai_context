@@ -140,16 +140,22 @@ description_md drafted from Bilal's framing, `status: "active"`).
 
 ## 4. Resume tracker
 
-**RESUME HERE → PR1** (as of this plan's authoring — Claude is executing PR1 immediately after committing this
-plan, in the same session, per Gary's explicit go-ahead).
+**RESUME HERE → Gary merges the three open PRs below**, then execution resumes at "enable Pages + add DNS" (the
+back half of PR1). The harness's own permission layer blocks Claude from self-merging default-branch PRs (hard
+stop, correctly enforced even under an explicit "go ahead" instruction earlier in this session) — every PR below
+is opened and ready, none are merged.
 
-| Unit | PR opened | Merged | Deployed/live | Reported |
-|---|---|---|---|---|
-| PR0 — this plan | ☐ | ☐ | n/a | n/a |
-| PR1 — repo scaffold + Pages + DNS | ☐ | ☐ | ☐ | ☐ |
-| PR2 — truesight_me_beta manifest | ☐ | ☐ | n/a (beta) | ☐ |
-| PR3 — recertification + co-sign | not started | not started | not started | blocked on Gary |
-| Promote to prod | n/a | n/a | n/a | **not requested — do not do** |
+| Unit | PR | Opened | Merged | Deployed/live | Reported |
+|---|---|---|---|---|---|
+| PR0 — this plan | [agentic_ai_context#755](https://github.com/TrueSightDAO/agentic_ai_context/pull/755) | ☑ | ☐ **← needs Gary's merge** | n/a | n/a |
+| PR1 — repo scaffold | [ivy-yoga-club#1](https://github.com/TrueSightDAO/ivy-yoga-club/pull/1) | ☑ | ☐ **← needs Gary's merge** | ☐ (Pages + DNS blocked on merge) | ☐ |
+| PR2 — truesight_me_beta manifest + program page | [truesight_me_beta#293](https://github.com/TrueSightDAO/truesight_me_beta/pull/293) | ☑ | ☐ **← needs Gary's merge** | n/a (beta) | ☐ |
+| PR3 — recertification + co-sign | not started | — | — | — | blocked on Gary (§5 open decisions) |
+| Promote to prod | n/a | n/a | n/a | n/a | **not requested — do not do** |
+
+**Once Gary merges PR1 + PR2:** enable GitHub Pages on `ivy-yoga-club` (source: `main` root), add the Route53
+CNAME (`ivy-yoga.truesight.me` → `truesightdao.github.io`, Explorya zone `Z0032474227N6EQ3Z4QU`), then run the
+§6 UAT checklist.
 
 ✅ **Pre-flight Completeness (§5d):** no execution unit in PR1/PR2 requires reading a file/state not already
 captured in §1 above.
