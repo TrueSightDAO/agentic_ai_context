@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-18T13:23:32Z`
+- Generated (UTC): `2026-08-18T19:06:55Z`
 - Look-back: **7** calendar days (`2026-08-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-11 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+31dfabc | 2026-08-18 13:24:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 08c1a5a | 2026-08-18 07:20:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31daf4d | 2026-08-18 02:01:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,6 +313,8 @@ f040442 | 2026-08-11 07:47:49 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9373c84 | 2026-08-18 21:23:52 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
+344de21 | 2026-08-18 21:23:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
 e95a248 | 2026-08-18 17:28:57 +0800 | Register SLIDE_DECK_STANDARD.md in PROJECT_INDEX + WORKSPACE_CONTEXT so all AI sessions discover it (#752)
 98f5f37 | 2026-08-18 17:24:54 +0800 | Add SLIDE_DECK_STANDARD.md — mandatory format for all Sophia/LLM-generated decks (#751)
 8608d61 | 2026-08-18 15:14:42 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
@@ -350,8 +353,6 @@ a5f27ad | 2026-08-15 09:56:46 +0800 | chore(previews): refresh Beer Hall preview
 7d1e65d | 2026-08-14 21:52:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 82196eb | 2026-08-14 21:52:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
 47610f7 | 2026-08-14 15:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
-6a637ff | 2026-08-14 15:57:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
-1a7e3d7 | 2026-08-14 11:07:02 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 … (truncated)
 ```
 
@@ -493,7 +494,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/18/2026 5:52:57 |
+| 2026-08 | 428.46 | 17339.52386 | 8/18/2026 11:53:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-11`; scanned last **600** data rows)
 
