@@ -1,6 +1,12 @@
 # Sunmint Tree Planting → QR Code Linking — Execution Roadmap
 
-**Status:** Pre-flight complete, ready for PR1. **Owner:** Gary Teh. **Requested by:** Gary Teh, 2026-08-18.
+**Status:** All units (PR2–PR8) built and merged. **Owner:** Gary Teh.
+**Requested by:** Gary Teh, 2026-08-18.
+
+**Errata (2026-08-18, same day):** PR1 as originally scoped ("patch the SOLD-only re-sale guard") was
+built on a wrong read of the sale-processing code, caught before any file was touched — see the corrected
+§1.4. **PR1 is retired.** Its one real, much smaller finding (a cosmetic picker-UI filter) is folded into
+PR2. PR numbering elsewhere in this doc is left as-is (PR2…PR8) rather than renumbered.
 **Goal:** Give a governor (or Sophia / an authorized LLM agent, signing as themselves) a way to link a
 farmer-submitted `[TREE PLANTING EVENT]` (landing in the `SunMint Tree Planting` sheet) to a **sold**
 `Agroverse QR codes` row — flip its status, copy the planting evidence onto the QR row, notify the QR
@@ -98,15 +104,25 @@ Spreadsheet `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, gid `472328231`.
   → **introducing `ASSIGNED_TO_TREE` does not regress the public tree count**; no PR needed there.
 - `truesight_me/scripts/build_stats_current.py` has no independent SOLD-only counter — confirmed clean.
 
-### 1.4 Re-sale gap (must fix before ASSIGNED_TO_TREE goes live) — PR1
+### 1.4 Re-sale guard — CORRECTED 2026-08-18 (no gap; PR1 retired)
 
-- Sale-processing scripts that must not allow re-selling an already-`ASSIGNED_TO_TREE` QR:
-  `tokenomics/google_app_scripts/1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/process_sales_telegram_logs.js`
-  and the sibling `Parse Telegram ChatLogs.js` in the same script-id folder — both reference the literal
-  string `"SOLD"` for availability checks. **PR1 reads these two files' exact guard conditions and patches
-  them to also treat `ASSIGNED_TO_TREE` as unavailable-for-sale** (do not assume the fix shape yet — the
-  exact line/condition is PR1's first read, which is in-repo and single-purpose, not a cross-repo
-  discovery, so it doesn't violate §5d).
+Original plan assumed `process_sales_telegram_logs.js` / `Parse Telegram ChatLogs.js`
+(`1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7`) gate re-sale on the live
+`Agroverse QR codes` **status** column and would need to learn `ASSIGNED_TO_TREE`. **Traced the actual
+code before writing anything and that's wrong:**
+
+- `updateAgroverseQrStatus(qrCode)` (`process_sales_telegram_logs.js:392-410`) unconditionally
+  `.setValue('SOLD')`s column D — no status read, no guard, nothing to patch.
+- The real re-sale prevention is `buildQrOnSheetLookup_()` (line 657), fed by `existingQrCodes` —
+  **`QR Code Sales` sheet column E** (`parseTelegramChatLogs():886-889` and the single-row variant at
+  `:1076-1078`). A QR that has ever appeared as a row on `QR Code Sales` is permanently in that dedup
+  lookup and any later `[SALES EVENT]` mentioning it is rejected as a duplicate — **independent of
+  `Agroverse QR codes.status`**. So a QR that flips `SOLD → ASSIGNED_TO_TREE` is already protected from
+  re-sale today, before this plan does anything.
+
+**The one real (much smaller) finding:** `qr_code_web_service.js`'s `list=true` endpoint (doc comment:
+"return QR codes where column D is NOT 'SOLD'") — the "available to sell" picker — filters out `SOLD` but
+not `ASSIGNED_TO_TREE`. Purely cosmetic, but cheap to fix. **Folded into PR2 and shipped there** (`tokenomics` PR #389).
 
 ### 1.5 Ledger booking at sale time (the existing "tree to be planted" currency)
 
@@ -132,12 +148,11 @@ Column J is QR **creation** date, not sale date. No column captures "date this r
 set to `SOLD`:
   - `process_qr_code_updates.js` — the `New Status` branch (`extracted.status`, line ~266-271 in
     `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v/process_qr_code_updates.js`).
-  - `process_sales_telegram_logs.js` and `Parse Telegram ChatLogs.js`
-    (`1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/`) — wherever they write `SOLD` to
-    column D of `Agroverse QR codes` (same files touched by PR1; **PR2 should land after PR1, but is a
-    distinct, independently-revertible change to the same two files** — keep the diffs non-overlapping).
-  - Backfill: **not in scope for this plan** — rows sold before PR2 ships will sort last / show blank in
-    PR5's chronological list. Acceptable; flagged in §7 as an open question if Gary wants a backfill pass.
+  - `process_sales_telegram_logs.js`'s `updateAgroverseQrStatus()` and its `Parse Telegram ChatLogs.js`
+    sibling (`1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/`) — wherever they write `SOLD` to
+    column D of `Agroverse QR codes`.
+  - Backfill: **not in scope for this plan** — rows sold before PR2 shipped sort last / show blank in
+    PR3's chronological list. Acceptable; not revisited.
 
 ### 1.7 Governor gating — confirmed there is no free server-side enforcement anywhere in this stack
 
@@ -179,15 +194,14 @@ Sent Date" is a different email).
 wrapper around `edgar_client.build_event_cli(event_name=..., canonical_labels=[...], dapp_page=...)`.
 PR3 follows this exact shape.
 
-### 1.10 Repo-sync open item (do not guess during PR3 — resolve in PR3's own turn, it's in-repo)
+### 1.10 Repo-sync — RESOLVED 2026-08-18 (during PR6)
 
-`dao_client` and `dao_protocol` both contain an apparently-identical `truesight_dao_client/` tree
-(confirmed: `modules/update_qr_code.py`, `modules/report_tree_planting.py`,
-`server/dispatch.py`/`data/events_catalog.json` all exist in both, byte-for-byte unchecked). Whether one
-is a fork/mirror of the other, or `dao_protocol` vendors a frozen copy, was **not resolved this session**.
-PR3 must check `git remote -v` / recent commit history in both before deciding whether it needs to open a
-matching PR in the second repo, or whether one is derived/generated and shouldn't be hand-edited. This is
-a same-repo `git log` check, not a cross-repo *design* discovery, so it satisfies §5d.
+`dao_client` and `dao_protocol` are **the same git repository** — both local checkouts on this box have
+`origin` pointing at `https://github.com/TrueSightDAO/dao_protocol.git`, and identical commit history for
+every file checked (e.g. `modules/update_qr_code.py`). `dao_client` is a second, legacy-named local clone,
+not a fork or a vendored copy. **One PR against `dao_protocol` is sufficient** for any `truesight_dao_client`
+change; pulling either local checkout picks up the other's merges. No separate `dao_client` PR was needed
+for PR6.
 
 ---
 
@@ -209,14 +223,14 @@ a same-repo `git log` check, not a cross-repo *design* discovery, so it satisfie
 | Unit | Scope | Repo |
 |------|-------|------|
 | **PR0** | This roadmap. | `agentic_ai_context` |
-| **PR1** | Read the exact SOLD-availability guard in `process_sales_telegram_logs.js` + `Parse Telegram ChatLogs.js` (script id `1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7`); patch so `ASSIGNED_TO_TREE` is also treated as unavailable-for-sale, same as `SOLD`. Independent, ships alone, no dependency on later units. | `tokenomics` |
-| **PR2** | Add column **W `Sold Date`** to `Agroverse QR codes`; stamp it wherever status is set to `SOLD` in `process_qr_code_updates.js` (New Status branch) and in the two sale-processing files touched by PR1 (non-overlapping diff from PR1). | `tokenomics` |
-| **PR3** | Governor-gated read endpoints on `qr_code_web_service.js` (mirror `1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT`): (a) `list_sold_pending_tree=true` → QR rows where `status=SOLD`, `Owner Email` non-empty, `Tree Planting Date` (col N) empty, sorted by col W descending, each row includes qr_code/owner email/sold date; (b) a **new** read endpoint on the SunMint-tree-planting project (script id `1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF`, which has no `doGet` at all today — confirm this in PR3's own read, it's in-repo) → rows where `Status` (col M) = `NEW`, sorted by col G (planting date) ascending, each row includes Telegram Message ID / photo URL / species / lat-long / submitted name. Both gated by a shared-secret query param (new Script Property, e.g. `GOVERNOR_READ_KEY`) since both return PII/pre-decision data — do not ship these as open endpoints. | `tokenomics` |
-| **PR4** | New handler `process_tree_planting_link.gs` in the QR-codes mirror (script id `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v`, alongside `process_qr_code_updates.js`). Parses `[TREE PLANTING LINK EVENT]` (fields: `QR Code`, `SunMint Submission Message ID`, `Updated by`, `Submission Source`). Resolves signer → contributor name (same lookup as `process_tree_planting_telegram_logs.js`) → **governor check** (§1.7, copied `isGovernorByName_`) → reject silently-logged if not governor. Validates QR status is exactly `SOLD` and SunMint row status is exactly `NEW` (idempotency / no double-link). On pass: writes QR cols D/N/O/P/Q/R (status→`ASSIGNED_TO_TREE`, planting date/lat/long/photo from the SunMint row; leave Q blank), writes SunMint row col M→`LINKED` plus two new cols **R `Linked QR Code`**, **S `Linked At`**; appends the ledger fulfillment pair (§1.5/§7) to the managed ledger resolved via QR col V; sends the owner-email (§1.8) and stamps QR col X. New tracking tab `Tree Planting Link` (mirrors the `QR Code Update` tab shape) for dedup. Cron fallback `processTreePlantingLinkCron`, consistent with every other event type. **⚠ clasp deploy held** — see §2 gate. | `tokenomics` |
-| **PR5** | Route `[TREE PLANTING LINK EVENT]` in `dispatch.py`'s `ROUTING` (env key e.g. `TREE_PLANTING_LINK`, action `processTreePlantingLinkFromTelegramChatLogs`) for immediate processing — additive, harmless without the env var set (falls back to PR4's cron), ships after PR4 is live. | `dao_protocol` |
-| **PR6** | CLI module `truesight_dao_client/modules/link_tree_planting.py` (pattern in §1.9): `event_name='TREE PLANTING LINK EVENT'`, `canonical_labels=['QR Code', 'SunMint Submission Message ID', 'Updated by']`, `dapp_page='link_tree_planting.html'`. Resolve the `dao_client`/`dao_protocol` sync question (§1.10) as this PR's first step; open a matching PR in the second repo only if that check shows they need independent changes. | `dao_client` (+ possibly `dao_protocol`) |
-| **PR7** | Dedicated DApp module `dapp/link_tree_planting.html` (→ lands in `dapp_beta` first, §2). Client-side governor/sentinel gate exactly like `review_queue.html`'s `checkAuth()`. Left list = PR3(a) endpoint (QR, owner email, sold date, chronological). Right list = PR3(b) endpoint (submission, photo thumbnail, species, planting date, chronological). Governor picks one of each, confirms, signs `[TREE PLANTING LINK EVENT]` via the same RSA-keypair-in-localStorage flow as `update_qr_code.html`. | `dapp` (→ `dapp_beta`) |
-| **PR8** | Docs: `tokenomics/SCHEMA.md` new columns (`Agroverse QR codes` W/X, `SunMint Tree Planting` R/S) and new tab (`Tree Planting Link`); `tokenomics/API.md` / `API_ENDPOINTS.md` new event + endpoints; `CONTEXT_UPDATES.md` entry. | `tokenomics` / `agentic_ai_context` |
+| ~~**PR1**~~ | **RETIRED 2026-08-18** — premise was wrong, see §1.4 errata. No file was touched. | — |
+| **PR2** ✅ MERGED (tokenomics #389) | Added column **W `Sold Date`** to `Agroverse QR codes`; stamped wherever status is set to `SOLD` in `process_qr_code_updates.js` (New Status branch) and in `process_sales_telegram_logs.js`/`Parse Telegram ChatLogs.js`. Folded in the retired PR1's one real finding: `qr_code_web_service.js`'s `list=true`/`list_with_members=true` picker filters — exclude `ASSIGNED_TO_TREE` alongside `SOLD`. | `tokenomics` |
+| **PR3** ✅ MERGED (tokenomics #390) | Governor-gated read endpoints on `qr_code_web_service.js` (mirror `1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT`): (a) `list_sold_pending_tree=true` → QR rows where `status=SOLD`, `Owner Email` non-empty, `Tree Planting Date` (col N) empty, sorted by col W descending, each row includes qr_code/owner email/sold date; (b) a **new** read endpoint on the SunMint-tree-planting project (script id `1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF`, which has no `doGet` at all today — confirm this in PR3's own read, it's in-repo) → rows where `Status` (col M) = `NEW`, sorted by col G (planting date) ascending, each row includes Telegram Message ID / photo URL / species / lat-long / submitted name. Both gated by a shared-secret query param (new Script Property, e.g. `GOVERNOR_READ_KEY`) since both return PII/pre-decision data — do not ship these as open endpoints. | `tokenomics` |
+| **PR4** ✅ MERGED (tokenomics #391) | New handler `process_tree_planting_link.gs` in the QR-codes mirror (script id `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v`, alongside `process_qr_code_updates.js`). Parses `[TREE PLANTING LINK EVENT]` (fields: `QR Code`, `SunMint Submission Message ID`, `Updated by`, `Submission Source`). Resolves signer → contributor name (same lookup as `process_tree_planting_telegram_logs.js`) → **governor check** (§1.7, copied `isGovernorByName_`) → reject silently-logged if not governor. Validates QR status is exactly `SOLD` and SunMint row status is exactly `NEW` (idempotency / no double-link). On pass: writes QR cols D/N/O/P/Q/R (status→`ASSIGNED_TO_TREE`, planting date/lat/long/photo from the SunMint row; leave Q blank), writes SunMint row col M→`LINKED` plus two new cols **R `Linked QR Code`**, **S `Linked At`**; appends the ledger fulfillment pair (§1.5/§7) to the managed ledger resolved via QR col V; sends the owner-email (§1.8) and stamps QR col X. New tracking tab `Tree Planting Link` (mirrors the `QR Code Update` tab shape) for dedup. Cron fallback `processTreePlantingLinkCron`, consistent with every other event type. **⚠ clasp deploy held** — see §2 gate. | `tokenomics` |
+| **PR5** ✅ MERGED (dao_protocol #142) | Route `[TREE PLANTING LINK EVENT]` in `dispatch.py`'s `ROUTING` (env key e.g. `TREE_PLANTING_LINK`, action `processTreePlantingLinkFromTelegramChatLogs`) for immediate processing — additive, harmless without the env var set (falls back to PR4's cron), ships after PR4 is live. | `dao_protocol` |
+| **PR6** ✅ MERGED (dao_protocol #143) | CLI module `truesight_dao_client/modules/link_tree_planting.py` (pattern in §1.9): `event_name='TREE PLANTING LINK EVENT'`, `canonical_labels=['QR Code', 'SunMint Submission Message ID', 'Updated by', 'Submission Source']`. **§1.10 resolved: `dao_client` and `dao_protocol` are the same git repository** (same `origin` remote, identical file history) — `dao_client` is a second, legacy-named local clone on this box, not a separate fork/vendor copy. One PR sufficed. | `dao_protocol` (== `dao_client`) |
+| **PR7** ✅ MERGED (dapp_beta #62; companion treasury-cache #11) | Dedicated DApp module `dapp_beta/link_tree_planting.html`. Gated via `window.Permissions.requireRole('tree_planting.link')` (the established permissions.js pattern, not `review_queue.html`'s older manual `checkAuth()`) — required a small companion PR adding the `tree_planting.link` action to `treasury-cache/permissions.json`. Left list = PR3(a) endpoint. Right list = PR3(b) endpoint, via an **operator-configured** endpoint URL (localStorage) since the Sunmint Tree Planting GAS project has no known deployment URL yet (`manifest.json` marks it "TBC"). Signs via `EdgarPayloadHelper`. | `dapp_beta` + `treasury-cache` |
+| **PR8** ✅ MERGED (tokenomics #392; this plan-doc update) | Docs: `tokenomics/SCHEMA.md` new columns (`Agroverse QR codes` W/X, `SunMint Tree Planting` R/S), status enum, and a corrected pre-existing mismatch (column O was documented as "Notarization URL", actually "GitHub Commit URL"); `tokenomics/API.md` / `API_ENDPOINTS.md` new event + endpoints; this plan's resume tracker + `CONTEXT_UPDATES.md` entry. | `tokenomics` / `agentic_ai_context` |
 | **RUN** | First live link: governor picks one real SOLD+email QR and one real NEW submission on **beta** data if possible, else a low-stakes real pair; confirms via `link_tree_planting.html`; verifies QR row + SunMint row + ledger Transactions row + owner inbox by hand. **Ledger-money-movement gate (§2).** | — |
 | **UAT** | See §5. **Always-stop gate.** | — |
 
@@ -224,27 +238,34 @@ a same-repo `git log` check, not a cross-repo *design* discovery, so it satisfie
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR1** (tokenomics: patch the ASSIGNED_TO_TREE re-sale gap).
+> **RESUME HERE → clasp deploy** (tokenomics: `process_qr_code_updates.js` + new
+> `process_tree_planting_link.js` in mirror `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v`,
+> and `qr_code_web_service.js` + `process_tree_planting_telegram_logs.js` in their mirrors — see §2 gate).
+> All 7 code/docs PRs (PR2–PR8) are merged. **Before deploying**, provision the `GOVERNOR_READ_KEY` Script
+> Property (same value) on both the QR-codes mirror and the SunMint Tree Planting mirror — PR3's read
+> endpoints fail closed without it. After deploy: RUN (first live link, ledger-money-movement gate) → UAT
+> (always-stop gate).
 
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
-| PR0 (this roadmap) | ☐ | ☐ | ☐ |
-| PR1 (re-sale guard fix) | ☐ | ☐ | ☐ |
-| PR2 (Sold Date column + stamping) | ☐ | ☐ | ☐ |
-| PR3 (governor-gated read endpoints ×2) | ☐ | ☐ | ☐ |
-| PR4 (link handler + ledger + email) | ☐ | ☐ | ☐ |
+| PR0 (this roadmap) | ☑ | ☑ (#756) | ☐ |
+| ~~PR1 (re-sale guard fix)~~ | RETIRED — no gap existed, see §1.4 | — | — |
+| PR2 (Sold Date column + stamping) | ☑ | ☑ (tokenomics #389) | ☐ |
+| PR3 (governor-gated read endpoints ×2) | ☑ | ☑ (tokenomics #390) | ☐ |
+| PR4 (link handler + ledger + email) | ☑ | ☑ (tokenomics #391) | ☐ |
 | ↳ clasp deploy of PR4 | ☐ | — | — |
-| PR5 (dispatch.py routing) | ☐ | ☐ | ☐ |
-| PR6 (dao_client CLI module) | ☐ | ☐ | ☐ |
-| PR7 (dapp link_tree_planting.html) | ☐ | ☐ | ☐ |
-| PR8 (docs) | ☐ | ☐ | ☐ |
+| PR5 (dispatch.py routing) | ☑ | ☑ (dao_protocol #142) | ☐ |
+| PR6 (CLI module) | ☑ | ☑ (dao_protocol #143) | ☐ |
+| PR7 (dapp link_tree_planting.html + treasury-cache permission) | ☑ | ☑ (dapp_beta #62, treasury-cache #11) | ☐ |
+| PR8 (docs) | ☑ | ☑ (tokenomics #392, this update) | ☐ |
 | RUN (first live link) | ☐ | — | ☐ |
 | UAT | ☐ | — | ☐ |
 
-✅ **Pre-flight Completeness (§5d):** no execution unit above requires reading a cross-repo file/state not
-already captured in §1. The two items explicitly deferred to their own PR's first step (§1.4's exact
-guard-condition text, §1.10's fork/vendor relationship) are same-repo, single-file reads at the start of
-the PR that owns them, not cross-repo design discovery.
+✅ **Pre-flight Completeness (§5d):** no execution unit above required reading a cross-repo file/state not
+captured in §1. The two items deferred to their own PR's first step (§1.4's exact guard-condition text,
+§1.10's fork/vendor relationship) were same-repo, single-file reads at the start of the PR that owned
+them, not cross-repo design discovery — both resolved during execution (§1.4, §1.10), confirming the gate
+held. All units PR2–PR8 are now built and merged; only the deploy/RUN/UAT gates remain (§2).
 
 ---
 
@@ -263,7 +284,7 @@ beta QR isn't practical — this mirrors the BEC precedent of a small real-money
 | 6 | Managed ledger `Transactions` tab (resolved via the QR's Ledger Name) | New `-1 Cacao Tree To Be Planted` / `+1 Cacao Tree Planted` pair appended | Inspect the ledger | Matches §7's resolved accounting decision |
 | 7 | Owner's inbox (the email in QR col L — **use a test address for UAT, not a real customer**) | Notification email arrives | Check inbox | Correct QR code / tracking link referenced |
 | 8 | `agroverse_shop` landing page | "Trees planted" counter unchanged (still counts the now-`ASSIGNED_TO_TREE` row) | Reload the page | Counter did not drop |
-| 9 | Attempt to re-sell the same QR (simulate a `[SALES EVENT]` against it) | Rejected, same as a `SOLD` QR would be (PR1) | Submit a test sale against the linked QR | Sale is blocked |
+| 9 | Attempt to re-sell the same QR (simulate a `[SALES EVENT]` against it) | Rejected by the existing `QR Code Sales` dedup (§1.4) — pre-existing behavior, not new in this plan | Submit a test sale against the linked QR | Sale is blocked |
 
 ---
 
@@ -274,7 +295,7 @@ Per `OPERATING_INSTRUCTIONS.md` §6, report each merged PR via `dao_client` (`tr
 
 ---
 
-## 7. Decisions resolved after initial PR execution began
+## 7. Decisions resolved after initial PR execution began, and remaining open items
 
 - **Ledger classification of the fulfillment leg — RESOLVED (Gary, 2026-08-18).** §1.5's existing
   sale-time entry is `+1 "Cacao Tree To Be Planted"` classified `Liability`. PR4's fulfillment write is a
@@ -283,11 +304,11 @@ Per `OPERATING_INSTRUCTIONS.md` §6, report each merged PR via `dao_client` (`tr
   obligation, it's a countable asset the DAO can point to; also gives a running per-ledger count of
   fulfilled pledges via existing ledger-summary tooling, same benefit originally proposed under the
   liability-pair option).
-- **Backfill.** QR rows already `SOLD` before PR2 ships won't have a `Sold Date` (§1.6) — acceptable gap,
-  or worth a one-time backfill pass (e.g. from the linked Stripe session's created-at, where available)?
-- **`dao_client` vs `dao_protocol` sync** (§1.10) — resolved in PR6, but if Gary already knows the
-  relationship (e.g. "dao_protocol vendors a frozen copy, never hand-edit it"), stating it now saves PR6 a
-  git-archaeology detour.
+- **`dao_client` vs `dao_protocol` sync — RESOLVED** (§1.10) — same repository, one PR sufficed.
+
+**Still open (not blocking RUN/UAT, but worth Gary's call eventually):**
+- **Backfill.** QR rows already `SOLD` before PR2 shipped don't have a `Sold Date` — acceptable gap, or
+  worth a one-time backfill pass (e.g. from the linked Stripe session's created-at, where available)?
 - **Sunmint app video collection.** QR col Q `Planting Video URL` is left blank by this plan (the farmer
   app doesn't collect video). Worth adding to `sunmint_beta` later, or is video out of scope entirely for
   this program?
