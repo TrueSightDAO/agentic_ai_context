@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-18T19:06:55Z`
-- Look-back: **7** calendar days (`2026-08-11` → today UTC)
+- Generated (UTC): `2026-08-19T01:20:20Z`
+- Look-back: **7** calendar days (`2026-08-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 12
-- `[PRACTICE EVENT]` × 11
-- `[SALES EVENT]` × 6
-- `[TREE PLANTING EVENT]` × 1
-- _free-form (no bracket tag)_ × 8
-
-### Latest entries
-
-- `Edgar_20260814142529_397` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
-- `Edgar_20260815010219_399` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-15T01:02:16.548Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260816024046_401` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-16T02:40:43.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260816115623_403` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 145 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me), Gary Teh (garyjob@agroverse…
-- `Edgar_20260816185922_405` · **Edgar** · [SALES EVENT] Item: 2024_20260710_16 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185926_407` · **Edgar** · [SALES EVENT] Item: 2024_20260710_17 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185932_409` · **Edgar** · [SALES EVENT] Item: 2024_20260710_18 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185940_411` · **Edgar** · [SALES EVENT] Item: 2024_20260710_19 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185945_413` · **Edgar** · [SALES EVENT] Item: 2024_20260710_20 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185950_415` · **Edgar** · [SALES EVENT] Item: 2024_20260710_21 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816190636_417` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 105 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20260816190639_419` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Contributor(s): Gary Teh (garyjob@agroverse.shop)
-- `Edgar_20260817191216_421` · **Edgar** · [No Text Provided]
-- `Edgar_20260817191423_423` · **Edgar** · [No Text Provided]
-- `Edgar_20260817191739_425` · **Edgar** · [No Text Provided]
-- `Edgar_20260817193952_427` · **Edgar** · [No Text Provided]
-- `Edgar_20260817225831_429` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-17T22:58:29.298Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260818065327_431` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh + Sophia Truesight
-- `Edgar_20260818083537_433` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-18T08:35:34.609Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260818094114_435` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Evan Bahia origin-tour slide deck (30 min)
 
 ---
 
@@ -231,17 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,789.34**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.07**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -249,9 +208,13 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_No lines matched name/keyword heuristics in this window._
+_Lines in window matching configured names or status keywords:_
 
-_(No `YYYY-MM-DD |` lines on/after 2026-08-11 in CONTEXT_UPDATES.md.)_
+- 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
+
+_All dated lines on/after 2026-08-12_ (1):
+
+- 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
 
 ---
 
@@ -270,6 +233,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-08-11 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+214293a | 2026-08-19 03:58:23 +0800 | feat: add IVY (Liv for Yoga) program page (#293)
+1fa6f07 | 2026-08-18 19:08:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31dfabc | 2026-08-18 13:24:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 08c1a5a | 2026-08-18 07:20:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31daf4d | 2026-08-18 02:01:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -297,11 +262,6 @@ cf50f72 | 2026-08-13 03:10:27 +0000 | chore(stats): refresh stats/current.json [
 e820ba1 | 2026-08-12 14:05:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 dded1eb | 2026-08-12 08:00:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8576ef4 | 2026-08-12 03:06:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
-6228897 | 2026-08-11 19:38:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-35d8593 | 2026-08-11 13:59:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-99bc749 | 2026-08-11 16:25:33 +0800 | Add Farmer App link to the Part 4 (Trees Registry) card too (#291)
-f040442 | 2026-08-11 07:47:49 +0000 | chore(stats): refresh stats/current.json [skip ci]
-48e4551 | 2026-08-11 02:36:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -313,6 +273,17 @@ f040442 | 2026-08-11 07:47:49 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+33eb80b | 2026-08-19 05:39:39 +0800 | Add Bionpact autopilot execution roadmap (#754)
+f26b02e | 2026-08-19 05:35:51 +0800 | Document Bionpact in PROJECT_INDEX and WORKSPACE_CONTEXT (#760)
+46bbae1 | 2026-08-19 05:11:44 +0800 | Merge pull request #759 from TrueSightDAO/worktree-sunmint-pr8-plan-update
+0f9e91f | 2026-08-18 21:11:25 +0000 | Mark SUNMINT_TREE_QR_LINKING_PLAN PR2-PR8 built/merged; retire PR1 for real this time
+669f121 | 2026-08-19 04:32:31 +0800 | Merge pull request #758 from TrueSightDAO/worktree-sunmint-ledger-classification-fix
+ca71abe | 2026-08-18 20:32:18 +0000 | Resolve SUNMINT_TREE_QR_LINKING_PLAN §7 ledger classification decision
+89fff52 | 2026-08-19 04:19:52 +0800 | Merge pull request #756 from TrueSightDAO/worktree-sunmint-tree-qr-plan
+66cc4c6 | 2026-08-18 20:13:28 +0000 | Add execution roadmap: link Sunmint tree-planting submissions to sold QR codes
+cbcde84 | 2026-08-19 03:55:59 +0800 | docs: IVY (Liv for Yoga) cohort onboarding — plan of record (#755)
+eb8faac | 2026-08-19 03:07:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
+3a8dce3 | 2026-08-19 03:07:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
 9373c84 | 2026-08-18 21:23:52 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
 344de21 | 2026-08-18 21:23:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
 e95a248 | 2026-08-18 17:28:57 +0800 | Register SLIDE_DECK_STANDARD.md in PROJECT_INDEX + WORKSPACE_CONTEXT so all AI sessions discover it (#752)
@@ -342,23 +313,20 @@ d51a20a | 2026-08-16 10:06:18 +0800 | chore(previews): refresh Beer Hall preview
 c83fbff | 2026-08-16 10:06:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 0723186 | 2026-08-16 02:56:59 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
 9e84da9 | 2026-08-16 02:56:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-15 UTC)
-1fce9ca | 2026-08-15 21:08:25 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
-bbe1ef5 | 2026-08-15 21:08:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-15 UTC)
-425be72 | 2026-08-15 15:13:52 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
-6a2411d | 2026-08-15 15:13:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-15 UTC)
-a5f27ad | 2026-08-15 09:56:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-15 UTC)
-683a100 | 2026-08-15 09:56:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-15 UTC)
-27bc65a | 2026-08-15 03:29:36 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
-8c41eef | 2026-08-15 03:29:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
-7d1e65d | 2026-08-14 21:52:43 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
-82196eb | 2026-08-14 21:52:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-14 UTC)
-47610f7 | 2026-08-14 15:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-14 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+2d85e9b | 2026-08-19 05:06:10 +0800 | Merge pull request #392 from TrueSightDAO/docs/tree-planting-link-schema
+9ee6e94 | 2026-08-18 21:05:27 +0000 | Document [TREE PLANTING LINK EVENT], its new columns, and its endpoints
+11de876 | 2026-08-19 04:44:48 +0800 | Merge pull request #391 from TrueSightDAO/feature/tree-planting-link-handler
+d532ef3 | 2026-08-18 20:44:26 +0000 | Add [TREE PLANTING LINK EVENT] handler: link Sunmint submissions to sold QR codes
+124c0c2 | 2026-08-19 04:36:38 +0800 | Merge pull request #390 from TrueSightDAO/feature/tree-planting-read-endpoints
+e79c9b6 | 2026-08-18 20:36:10 +0000 | Add governor-gated read endpoints for the tree-planting linking picker
+47c2dc1 | 2026-08-19 04:31:16 +0800 | Merge pull request #389 from TrueSightDAO/feature/qr-sold-date-column
+63c5072 | 2026-08-18 20:30:39 +0000 | Add Sold Date column (W) to Agroverse QR codes; exclude ASSIGNED_TO_TREE from availability pickers
 67373a9 | 2026-08-16 19:28:35 +0800 | feat(1ovx): email notification for subscription renewal payments on ledger (#387)
 29c4898 | 2026-08-16 19:23:17 +0800 | sync(1ovx): commit live agroverse_shop_checkout.js from production clasp pull (#386)
 ```
@@ -399,7 +367,6 @@ b1d29ce | 2026-08-15 06:59:28 +0000 | chore: refresh store and partner inventory
 a5214b4 | 2026-08-14 07:53:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3a0f243 | 2026-08-13 07:55:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 e7cd591 | 2026-08-12 07:54:38 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-07bec35 | 2026-08-11 07:39:48 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -424,6 +391,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-08-19T012020Z_tree-planting-links-ivy-page.md`
+
+- **posted_at_utc:** `2026-08-19T01:20:20Z`  
+- **slug:** `tree-planting-links-ivy-page`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  - **Sunmint** — Activated the link between sold QR codes and tree-planting submissions, enabling direct traceability from purchased bar to specific farm trees.
+  - **Web** — Published the IVY (Liv for Yoga) program page to the main site to support partner visibility.
+
 ### `beer-hall_2026-08-18T011823Z_ledger-notifications-advisor-update.md`
 
 - **posted_at_utc:** `2026-08-18T01:18:23Z`  
@@ -441,15 +417,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Product** — Refined Sunmint Farmer App UX following live beta testing, including a shift to tree-first reporting and live camera capture instead of file uploads.
-
-### `beer-hall_2026-08-11T015201Z_oracle-fix-startup-summit-coordination.md`
-
-- **posted_at_utc:** `2026-08-11T01:52:01Z`  
-- **slug:** `oracle-fix-startup-summit-coordination`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Oracle** — Fixed a visual rendering bug where broken hexagram lines appeared as solid black blocks instead of transparent gaps.
 
 ---
 
@@ -470,44 +437,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/18/2026 11:53:16 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-11`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_21 | zpFSulJXVklN | — |
-| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_20 | zpFSulJXVklN | — |
-| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_19 | zpFSulJXVklN | — |
-| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_18 | zpFSulJXVklN | — |
-| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_17 | zpFSulJXVklN | — |
-| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_16 | zpFSulJXVklN | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
