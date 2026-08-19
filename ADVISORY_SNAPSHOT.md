@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-19T13:25:10Z`
+- Generated (UTC): `2026-08-19T19:03:31Z`
 - Look-back: **7** calendar days (`2026-08-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,19 +33,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[EMAIL VERIFICATION EVENT]` × 10
+- `[CONTRIBUTION EVENT]` × 8
 - `[EMAIL REGISTERED EVENT]` × 8
-- `[CONTRIBUTION EVENT]` × 7
-- `[SALES EVENT]` × 6
-- `[PRACTICE EVENT]` × 3
+- `[PRACTICE EVENT]` × 5
+- `[TREE PLANTING EVENT]` × 2
+- `[SALES EVENT]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260819071219_441` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@agroverse.shop
-- `Edgar_20260819071239_443` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: LPMNhxd3ZRcNTteL-A9Aww6IKqD2NoLPwG37PcuwEtA · Email: garyjob@agroverse.shop
-- `Edgar_20260819083655_445` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T08:36:52.358Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260819092231_447` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@truesight.me
-- `Edgar_20260819093033_449` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
 - `Edgar_20260819093045_451` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: -geQYOt8r1U4vuUC1q6IFeaAVxGYzboF6AUAgchVqSE · Email: admin@truesight.me
 - `Edgar_20260819093241_453` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
 - `Edgar_20260819093254_455` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: MLzIZm8n4NPeEfHyPUiOVF0Aw3EQhNcUcMHrTI60CII · Email: admin@truesight.me
@@ -61,6 +57,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260819093845_475` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OOmV__AwTh-nZC3Qwsqiq4SKICN8ya8jkgwrNiIMKYI · Email: admin@truesight.me
 - `Edgar_20260819093925_477` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OOmV__AwTh-nZC3Qwsqiq4SKICN8ya8jkgwrNiIMKYI · Email: admin@truesight.me
 - `Edgar_20260819101307_479` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260819133043_481` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T13:30:41.259Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260819133045_483` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T13:30:41.266Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260819133841_485` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Paloma
+- `Edgar_20260819134722_487` · **Edgar** · [TREE PLANTING EVENT] Latitude: -27.438551759141834 · Longitude: -48.49968606487751 · Species: Cacao - Criolla
+- `Edgar_20260819134740_489` · **Edgar** · [TREE PLANTING EVENT] Latitude: -27.438551759141834 · Longitude: -48.49968606487751 · Species: Cacao - Criolla
 
 ---
 
@@ -275,6 +276,7 @@ _All dated lines on/after 2026-08-12_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92fb673 | 2026-08-19 07:22:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 186f92b | 2026-08-19 02:04:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 214293a | 2026-08-19 03:58:23 +0800 | feat: add IVY (Liv for Yoga) program page (#293)
@@ -317,6 +319,8 @@ dded1eb | 2026-08-12 08:00:54 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+aedebc0 | 2026-08-19 21:25:38 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
+b7a07a0 | 2026-08-19 21:25:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
 9985176 | 2026-08-19 18:12:52 +0800 | docs: Black King admin access options decision PDF (for Vini review)
 b0e0f82 | 2026-08-19 15:20:30 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
 1a366cc | 2026-08-19 15:20:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
@@ -355,8 +359,6 @@ dd1aaac | 2026-08-17 15:32:35 +0800 | chore(previews): refresh Beer Hall preview
 a273171 | 2026-08-17 15:32:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
 3250419 | 2026-08-17 10:03:38 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
 7b894db | 2026-08-17 10:03:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
-f97f6f3 | 2026-08-17 06:30:45 +0800 | Add 7 followup blocks to OPEN_FOLLOWUPS (Matheus, PODream, Gianluca, Ling, Jerrie x2, Orlantildes) — all ping thread 11042 (#749)
-667043c | 2026-08-17 02:56:29 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
 … (truncated)
 ```
 
@@ -508,7 +510,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 5:50:24 |
+| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 11:50:29 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-12`; scanned last **600** data rows)
 
