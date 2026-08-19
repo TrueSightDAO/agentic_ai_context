@@ -1,0 +1,12 @@
+{
+  "name": "sophia",
+  "display_name": "Sophia",
+  "purpose": "Public-facing TrueSight DAO autopilot — governor chat + autonomous SRE/developer. Reads and writes across the public TrueSightDAO org (scoped by allowed_repos), holds the DAO signing identity, AWS/Gmail access, and fleet SSH. See PROJECT_INDEX.md.",
+  "codebase": "https://github.com/TrueSightDAO/truesight_autopilot",
+  "transcript_repo": "truesight_autopilot_transcript",
+  "context_repo": "agentic_ai_context",
+  "handoff": {
+    "inbox_repo": "agent_handoffs",
+    "protocol": "see TrueSightDAO/agent_handoffs/handoffs/README.md"
+  }
+}
