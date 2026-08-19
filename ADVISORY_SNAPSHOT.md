@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-19T07:20:14Z`
+- Generated (UTC): `2026-08-19T13:25:10Z`
 - Look-back: **7** calendar days (`2026-08-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,36 +32,35 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 11
-- `[PRACTICE EVENT]` × 10
+- `[EMAIL VERIFICATION EVENT]` × 10
+- `[EMAIL REGISTERED EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 7
 - `[SALES EVENT]` × 6
-- `[TREE PLANTING EVENT]` × 1
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 8
+- `[PRACTICE EVENT]` × 3
+- _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260816185922_405` · **Edgar** · [SALES EVENT] Item: 2024_20260710_16 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185926_407` · **Edgar** · [SALES EVENT] Item: 2024_20260710_17 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185932_409` · **Edgar** · [SALES EVENT] Item: 2024_20260710_18 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185940_411` · **Edgar** · [SALES EVENT] Item: 2024_20260710_19 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185945_413` · **Edgar** · [SALES EVENT] Item: 2024_20260710_20 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816185950_415` · **Edgar** · [SALES EVENT] Item: 2024_20260710_21 · Sales price: 11.41 · Sold by: Kirsten Ritschel
-- `Edgar_20260816190636_417` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 105 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20260816190639_419` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Contributor(s): Gary Teh (garyjob@agroverse.shop)
-- `Edgar_20260817191216_421` · **Edgar** · [No Text Provided]
-- `Edgar_20260817191423_423` · **Edgar** · [No Text Provided]
-- `Edgar_20260817191739_425` · **Edgar** · [No Text Provided]
-- `Edgar_20260817193952_427` · **Edgar** · [No Text Provided]
-- `Edgar_20260817225831_429` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-17T22:58:29.298Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260818065327_431` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh + Sophia Truesight
-- `Edgar_20260818083537_433` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-18T08:35:34.609Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260818094114_435` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Evan Bahia origin-tour slide deck (30 min)
-- `Edgar_20260818213105_437` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Description: Stand up Bionpact — locked-down Ops-team autopilot instance
-- `Edgar_20260818213120_439` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Directed and reviewed the build of Bionpact — a locked-down, private Ops-tea…
 - `Edgar_20260819071219_441` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@agroverse.shop
 - `Edgar_20260819071239_443` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: LPMNhxd3ZRcNTteL-A9Aww6IKqD2NoLPwG37PcuwEtA · Email: garyjob@agroverse.shop
+- `Edgar_20260819083655_445` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T08:36:52.358Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260819092231_447` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@truesight.me
+- `Edgar_20260819093033_449` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260819093045_451` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: -geQYOt8r1U4vuUC1q6IFeaAVxGYzboF6AUAgchVqSE · Email: admin@truesight.me
+- `Edgar_20260819093241_453` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260819093254_455` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: MLzIZm8n4NPeEfHyPUiOVF0Aw3EQhNcUcMHrTI60CII · Email: admin@truesight.me
+- `Edgar_20260819093337_457` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: MLzIZm8n4NPeEfHyPUiOVF0Aw3EQhNcUcMHrTI60CII · Email: admin@truesight.me
+- `Edgar_20260819093401_459` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260819093411_461` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 26j3pvmaU7WzHvkoDBm6EQexqGfRJgywkvX88su6-nw · Email: admin@truesight.me
+- `Edgar_20260819093452_463` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 26j3pvmaU7WzHvkoDBm6EQexqGfRJgywkvX88su6-nw · Email: admin@truesight.me
+- `Edgar_20260819093453_465` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260819093507_467` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: JPgfBQBb-M3rh-OCTi2hzrwhDsr-dJQKb_x1KAvWlhQ · Email: admin@truesight.me
+- `Edgar_20260819093556_469` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260819093607_471` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: Wb5BU2mjcTXsh2KpO6xMklfpfhhJ8Mchp9AKA1HVyIM · Email: admin@truesight.me
+- `Edgar_20260819093834_473` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260819093845_475` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OOmV__AwTh-nZC3Qwsqiq4SKICN8ya8jkgwrNiIMKYI · Email: admin@truesight.me
+- `Edgar_20260819093925_477` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OOmV__AwTh-nZC3Qwsqiq4SKICN8ya8jkgwrNiIMKYI · Email: admin@truesight.me
+- `Edgar_20260819101307_479` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 
 ---
 
@@ -76,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-18T10:59:13.510Z`
+- Generated (UTC): `2026-08-19T10:59:13.998Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **718**, follow_up **71**, bulk **0**, unknown **2** (data rows: **791**)
+- **Email Agent Follow Up** — logged sends: warmup **730**, follow_up **71**, bulk **0**, unknown **2** (data rows: **803**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **639**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **651**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -276,6 +275,7 @@ _All dated lines on/after 2026-08-12_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+92fb673 | 2026-08-19 07:22:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 186f92b | 2026-08-19 02:04:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 214293a | 2026-08-19 03:58:23 +0800 | feat: add IVY (Liv for Yoga) program page (#293)
 1fa6f07 | 2026-08-18 19:08:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,6 +317,9 @@ dded1eb | 2026-08-12 08:00:54 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9985176 | 2026-08-19 18:12:52 +0800 | docs: Black King admin access options decision PDF (for Vini review)
+b0e0f82 | 2026-08-19 15:20:30 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
+1a366cc | 2026-08-19 15:20:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
 5539ca1 | 2026-08-19 15:15:43 +0800 | Add agent registry
 8c6c453 | 2026-08-19 15:14:54 +0800 | Add Agent Handoff Protocol implementation plan (#763)
 7fff494 | 2026-08-19 10:00:49 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
@@ -354,15 +357,14 @@ a273171 | 2026-08-17 15:32:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 7b894db | 2026-08-17 10:03:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
 f97f6f3 | 2026-08-17 06:30:45 +0800 | Add 7 followup blocks to OPEN_FOLLOWUPS (Matheus, PODream, Gianluca, Ling, Jerrie x2, Orlantildes) — all ping thread 11042 (#749)
 667043c | 2026-08-17 02:56:29 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
-24a4818 | 2026-08-17 02:56:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
-1a49f22 | 2026-08-16 21:10:11 +0800 | chore(previews): refresh Beer Hall preview (2026-08-16 UTC)
-1a089c9 | 2026-08-16 21:10:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-16 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+701de08 | 2026-08-19 17:25:34 +0800 | Merge pull request #393 from TrueSightDAO/fix/sunmint-webapp-config
+4102e66 | 2026-08-19 09:24:29 +0000 | Fix SunMint Tree Planting deploy: add webapp config, Credentials.sample.js, .claspignore
 2d85e9b | 2026-08-19 05:06:10 +0800 | Merge pull request #392 from TrueSightDAO/docs/tree-planting-link-schema
 9ee6e94 | 2026-08-18 21:05:27 +0000 | Document [TREE PLANTING LINK EVENT], its new columns, and its endpoints
 11de876 | 2026-08-19 04:44:48 +0800 | Merge pull request #391 from TrueSightDAO/feature/tree-planting-link-handler
@@ -506,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/18/2026 23:51:23 |
+| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 5:50:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-12`; scanned last **600** data rows)
 
