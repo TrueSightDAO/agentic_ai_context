@@ -169,6 +169,30 @@ Add `truesight_me_beta/programs/<slug>/manifest.json`:
 
 After merge, `gh repo sync TrueSightDAO/truesight_me_prod --force` to publish.
 
+### 5.3a Internal data-repo manifest (PR to lineage-credentials) — REQUIRED, easy to miss
+
+The web-facing manifest above powers the public `truesight.me/programs/<slug>/` page. The CV-cache build reads a **separate, internal copy** in the data repo: `lineage-credentials/programs/<slug>/manifest.json` (created via the Contents API / `upload_file_to_github` — `lineage-credentials` is an api-only data repo, no branch edits). This is what `build_cv_cache.py` consults to decide whether a program's attestations get **rendered** — without it, the build indexes the attestation but silently never renders it (completes green, credential never appears on the credentials page).
+
+Model it on the canonical `lineage-credentials/programs/butterfly-effect/manifest.json`:
+
+```json
+{
+  "program": "<slug>",
+  "display_name": "<Program Name>",
+  "lineage_root": "<lineage/tradition name>",
+  "lineage_root_public_key": null,
+  "authorized_attestors": [],
+  "practice_types": { "module-completion": { "payload_schema": null } },
+  "attestation_types": {
+    "program-completion": { "payload_schema": null, "co_signer_optional": true }
+  },
+  "source_pages": ["<program repo URL>"],
+  "notes": "<one paragraph: lineage, lead, current status>"
+}
+```
+
+**Do not skip this step.** IVY (2026-08-20) shipped the web manifest but not the internal copy; the first test attestation (`pk-LaDRlxRBcvN6`) was indexed by the build but silently never rendered until `lineage-credentials#17` added the missing internal manifest (and switched the build to a `fetch-depth: 2` shallow checkout — a full clone of the ~10GB data repo was taking 20–60+ min). Every new program needs **BOTH** manifests, in both repos.
+
 ### 5.4 No tokenomics work needed
 
 The central GAS at `tokenomics/google_app_scripts/tdg_credentialing/program_admin_endpoint.gs` already handles your program. As long as:

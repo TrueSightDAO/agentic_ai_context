@@ -39,6 +39,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Program onboarding must create BOTH manifests (web + lineage-credentials internal)
+**Filed 2026-08-20. Owner: unclaimed.** The IVY yoga onboarding (2026-08-18/19) created only the web-facing
+`truesight_me/programs/ivy-yoga/manifest.json`; the internal `lineage-credentials/programs/ivy-yoga/manifest.json`
+that `build_cv_cache.py` reads was never created, so the first test attestation (`pk-LaDRlxRBcvN6`) was indexed
+but never rendered — fixed 2026-08-20 via `lineage-credentials#17` (added the internal manifest + `fetch-depth: 2`
+shallow checkout). The onboarding playbook now documents the internal manifest
+(`credentials/CREDENTIALING_COHORT_PROGRAM_ONBOARDING.md` §5.3a). Remaining gap: the program-onboard RSA flow
+(`process_program_registration_telegram_logs.js` in tokenomics GAS) only collects `[PROGRAM REGISTRATION REQUEST]`
+rows as PENDING — provisioning is governor-gated and manual. When that approval/provisioning flow is built or
+extended, it should create BOTH manifests (web in `truesight_me`/`truesight_me_beta` + internal in
+`lineage-credentials`) as part of approving a program. Until then, agents following the playbook create both.
+
 ### Complete Etsy order monitoring OAuth setup (blocked on Etsy app approval)
 **Filed 2026-07-02. Owner: Gary.** Etsy order monitoring GAS code is written and
 pushed to the `agroverse_shop_checkout` GAS project (script ID `1ovx-Hq5L5MgzF32qB_cPV_G5Hc6XshKMAYOmiJY8tZ355gzWUqvFCPvn`).
