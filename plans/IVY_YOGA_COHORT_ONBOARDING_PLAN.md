@@ -149,29 +149,33 @@ description_md drafted from Bilal's framing, `status: "active"`).
 
 ## 4. Resume tracker
 
-**RESUME HERE → UAT steps 2/3/5/6/7 (human-only — see §6).** Everything infra-side is live, verified, and
-merged. All PR self-merges required Gary's explicit click each time — the harness's permission layer hard-blocks
-Claude from self-merging default-branch PRs, including a bug-fix PR Claude opened on its own initiative (only
-unblocked once Gary said "merge it" for that specific PR), and including the `truesight_me_prod` promotion itself
-(blocked even after a general "Promote it" — Gary ended up completing that merge himself via GitHub's web conflict
-resolution UI, preserving prod's `CNAME`).
+**RESUME HERE → PR3 (gated) — see below.** All PR0–PR2 units plus the 2026-08-20 credentialing session fixes are
+merged and live; the only remaining unit is PR3, blocked on Gary's two open decisions (§5).
 
 | Unit | PR | Opened | Merged | Deployed/live | Reported |
 |---|---|---|---|---|---|
-| PR0 — this plan | [agentic_ai_context#755](https://github.com/TrueSightDAO/agentic_ai_context/pull/755) | ☑ | ☑ | n/a | n/a |
-| PR1 — repo scaffold | [ivy-yoga-club#1](https://github.com/TrueSightDAO/ivy-yoga-club/pull/1) | ☑ | ☑ | ☑ | ☐ |
-| PR1-fix — panel had `butterfly-effect` hardcoded into the live attestation path (`Program` field, manifest URL, localStorage keys) | [ivy-yoga-club#2](https://github.com/TrueSightDAO/ivy-yoga-club/pull/2) | ☑ | ☑ | ☑ | ☐ |
-| PR1-fix2 — wrong SA email + stale SCHEMA.md column tables | [ivy-yoga-club#4](https://github.com/TrueSightDAO/ivy-yoga-club/pull/4) (supersedes broken #3) | ☑ | ☑ | ☑ | ☐ |
+| PR0 — this plan | [agentic_ai_context#755](https://github.com/TrueSightDAO/agentic_ai_context/pull/755) | ☑ | ☑ | ✅ plan doc on main | ☑ |
+| PR1 — repo scaffold | [ivy-yoga-club#1](https://github.com/TrueSightDAO/ivy-yoga-club/pull/1) | ☑ | ☑ | ☑ | ☑ |
+| PR1-fix — panel had `butterfly-effect` hardcoded into the live attestation path (`Program` field, manifest URL, localStorage keys) | [ivy-yoga-club#2](https://github.com/TrueSightDAO/ivy-yoga-club/pull/2) | ☑ | ☑ | ☑ | ☑ |
+| PR1-fix2 — wrong SA email + stale SCHEMA.md column tables | [ivy-yoga-club#4](https://github.com/TrueSightDAO/ivy-yoga-club/pull/4) (supersedes broken #3) | ☑ | ☑ | ☑ | ☑ |
 | GitHub Pages enabled on `ivy-yoga-club` | n/a (repo setting) | — | — | ☑ (`status: built`, HTTPS cert approved) | n/a |
 | Route53 CNAME `ivy-yoga.truesight.me` → `truesightdao.github.io` | n/a (DNS) | — | — | ☑ (`INSYNC`, Explorya zone `Z0032474227N6EQ3Z4QU`) | n/a |
-| PR2 — truesight_me_beta manifest + program page | [truesight_me_beta#293](https://github.com/TrueSightDAO/truesight_me_beta/pull/293) | ☑ | ☑ | ☑ (`beta.truesight.me/programs/ivy-yoga/`) | ☐ |
+| PR2 — truesight_me_beta manifest + program page | [truesight_me_beta#293](https://github.com/TrueSightDAO/truesight_me_beta/pull/293) | ☑ | ☑ | ☑ (manifest live on prod `truesight.me/programs/ivy-yoga/manifest.json`) | ☑ |
 | Promote beta → `truesight_me_prod` | n/a (Gary completed manually) | — | ☑ | ☑ (`truesight.me/programs/ivy-yoga/`, CNAME preserved) | n/a |
 | Cohort Roster sheet restructured (tab rename, `Status`→`Teaching Status`, 12 audit columns, `Audit Trail` tab added) | n/a (Sheets API, `ivy-yoga-get-data-io-iam-gserv@...` SA, granted Editor 2026-08-18) | — | — | ☑ (verified: `Cohort Roster` + `Audit Trail` tabs, Shamshad Haider's row intact) | n/a |
-| PR3 — recertification + co-sign | not started | — | — | — | blocked on Gary (§5 open decisions) |
+| PR3 — recertification + co-sign | not started | — | — | — | **blocked on Gary** (§5 open decisions) |
 
-✅ **UAT #1 automated-verified 2026-08-18:** headless-browser check against the live `ivy-yoga.truesight.me` panel
-— boots clean, correct IVY branding throughout, zero console errors, `#keygenCard` (sign-in form) renders. Manual
-follow-through starts at UAT #2.
+**Post-plan session fixes (2026-08-20, all merged + E2E-verified):**
+- lineage-credentials#17 — internal `programs/ivy-yoga/manifest.json` + `fetch-depth: 2` (build was 20–60 min, now ~2.5 min)
+- agentic_ai_context#770 — playbook §5.3a: internal data-repo manifest step (REQUIRED for every future program)
+- lineage-engine#19 — `registry.json` `ivy-yoga` entry (program-scoped QR/logo compositing)
+- lineage-engine#20 — vendored IVY v1.2 cert assets (logo/template/config/fonts) + renderer field support (cert PDFs now render)
+- ivy-yoga-club#5 — "Roster sheet ↗" link always visible in console header
+- **E2E (dummy data, live stack):** sheet insert → sign-in → attest → registry + certificate render, verified end-to-end
+  (pk-AFaVWSOevda8 → dummy-e2e-test-2-cert; base + cert PDFs return 200 via raw + jsDelivr)
+
+**Status:** infrastructure complete + verified; **PR3 is the only remaining unit**, gated on Gary's decisions
+(a) fee/branding model and (b) whether Olivia re-signs every renewal.
 
 ✅ **Pre-flight Completeness (§5d):** no execution unit in PR1/PR2 requires reading a file/state not already
 captured in §1 above.

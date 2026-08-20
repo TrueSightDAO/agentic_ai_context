@@ -34,6 +34,7 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | — | **handoffs/HANDOFF_MANIFEST.md** | **Active handoff index — single source of truth (consolidated 2026-07-18).** Machine-readable table of all active handoffs: status, resume tracker state, and Telegram topic/message_thread_id, in one place. Check this first when the governor mentions a "plan" or "handoff." |
 | — | **sophia/SOPHIA_HANDOFFS.md** | **Sophia trigger protocol.** How to ping Sophia, the GO convention, and Telegram thread-management rules — no registry table here (that moved to HANDOFF_MANIFEST.md to stop the two files drifting out of sync). |
 | — | **PERSONAL_CONTRIBUTOR_BACKLOGS.md** | **Personal, non-DAO work logging.** When a contributor explicitly flags something as personal work they want logged (market/trading analysis, or another task they call out as personal), check this registry for their private backlog repo and log a dated entry there — but only for that specific trigger, never other requests. Opt-in per contributor; results live in their own private repo, never in this one. Credential custody for pushing to non-DAO repos is an open item — see the doc's "Credential custody" section before assuming a vault credential is wired up. |
+| — | **AGENT_HANDOFF_PROTOCOL_PLAN.md** + **`agents/*.json`** | **Agent-to-agent handoffs.** How Sophia, Bionpact, and any future sibling autopilot instance pass information to each other (`send_handoff`/`check_handoffs` tools, shared `TrueSightDAO/agent_handoffs` mailbox repo). **§13 below is MANDATORY when standing up any new sibling instance** — it must get an `agents/<name>.json` registry entry as part of setup. |
 
 Other files in this folder (e.g. `AI_SETUP.md`, `GROK_CLI_410_FIX.md`, `CURSOR_AUTO_APPROVE_SETTINGS.md`) are reference docs for setup and fixes; read them when relevant to your task.
 
@@ -685,5 +686,26 @@ cd .claude/worktrees/<session-name>
 - Applies to **any** repo under active concurrent use, not just `agentic_ai_context` — the same
   failure mode can happen in `truesight_autopilot`, `dao_client`, or any other shared checkout
   multiple agents touch.
+
+## 13. New autopilot instances — register in the agent registry (MANDATORY)
+
+**Any new sibling autopilot instance** (another deployment of the `truesight_autopilot`
+codebase — a second Sophia-like instance, e.g. Bionpact, or any future one) **MUST get an entry
+in `agentic_ai_context/agents/<name>.json` as part of its setup**, before or alongside its first
+deploy. This is not optional cleanup — other instances discover each other's existence and
+mailbox location entirely through this registry (see `AGENT_HANDOFF_PROTOCOL_PLAN.md` and
+`TrueSightDAO/agent_handoffs/handoffs/README.md`). An unregistered instance can't participate in
+handoffs at all, and other agents (LLM or autonomous) reading the registry won't know it exists.
+
+This applies regardless of who or what is standing up the new instance — a human-driven Claude
+Code session, Sophia self-provisioning a sibling, or any other LLM (Cursor, Codex, Gemini CLI,
+etc.) doing the work. If you're the one building a new instance and you reach the point of
+choosing its identity/name, that's the moment to also create its registry entry — don't leave it
+for a later cleanup pass.
+
+**Minimum entry** (see `agents/sophia.json` / `agents/bionpact.json` for worked examples):
+```json
+{"name": "<name>", "purpose": "<one paragraph>", "inbox_repo": "agent_handoffs"}
+```
 
 Following these rules keeps the shared context consistent and allows other agents to read and use it reliably.
