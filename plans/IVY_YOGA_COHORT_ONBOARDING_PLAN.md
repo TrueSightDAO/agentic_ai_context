@@ -149,22 +149,28 @@ description_md drafted from Bilal's framing, `status: "active"`).
 
 ## 4. Resume tracker
 
-**RESUME HERE → Gary merges the three open PRs below**, then execution resumes at "enable Pages + add DNS" (the
-back half of PR1). The harness's own permission layer blocks Claude from self-merging default-branch PRs (hard
-stop, correctly enforced even under an explicit "go ahead" instruction earlier in this session) — every PR below
-is opened and ready, none are merged.
+**RESUME HERE → PR3 (gated) — see below.** All PR0–PR2 units plus the 2026-08-20 credentialing session fixes are
+merged and live; the only remaining unit is PR3, blocked on Gary's two open decisions (§5).
 
 | Unit | PR | Opened | Merged | Deployed/live | Reported |
 |---|---|---|---|---|---|
-| PR0 — this plan | [agentic_ai_context#755](https://github.com/TrueSightDAO/agentic_ai_context/pull/755) | ☑ | ☐ **← needs Gary's merge** | n/a | n/a |
-| PR1 — repo scaffold | [ivy-yoga-club#1](https://github.com/TrueSightDAO/ivy-yoga-club/pull/1) | ☑ | ☐ **← needs Gary's merge** | ☐ (Pages + DNS blocked on merge) | ☐ |
-| PR2 — truesight_me_beta manifest + program page | [truesight_me_beta#293](https://github.com/TrueSightDAO/truesight_me_beta/pull/293) | ☑ | ☐ **← needs Gary's merge** | n/a (beta) | ☐ |
-| PR3 — recertification + co-sign | not started | — | — | — | blocked on Gary (§5 open decisions) |
+| PR0 — this plan | [agentic_ai_context#755](https://github.com/TrueSightDAO/agentic_ai_context/pull/755) | ☑ | ☑ | ✅ plan doc on main | ☑ |
+| PR1 — repo scaffold | [ivy-yoga-club#1](https://github.com/TrueSightDAO/ivy-yoga-club/pull/1) (+ #2, #4) | ☑ | ☑ | ✅ Pages built (cname ivy-yoga.truesight.me) + Route53 CNAME live | ☑ |
+| PR2 — truesight_me_beta manifest + program page | [truesight_me_beta#293](https://github.com/TrueSightDAO/truesight_me_beta/pull/293) | ☑ | ☑ | ✅ manifest live on prod (truesight.me/programs/ivy-yoga/manifest.json) | ☑ |
+| PR3 — recertification + co-sign | not started | — | — | — | **blocked on Gary** (§5 open decisions) |
 | Promote to prod | n/a | n/a | n/a | n/a | **not requested — do not do** |
 
-**Once Gary merges PR1 + PR2:** enable GitHub Pages on `ivy-yoga-club` (source: `main` root), add the Route53
-CNAME (`ivy-yoga.truesight.me` → `truesightdao.github.io`, Explorya zone `Z0032474227N6EQ3Z4QU`), then run the
-§6 UAT checklist.
+**Post-plan session fixes (2026-08-20, all merged + E2E-verified):**
+- lineage-credentials#17 — internal `programs/ivy-yoga/manifest.json` + `fetch-depth: 2` (build was 20–60 min, now ~2.5 min)
+- agentic_ai_context#770 — playbook §5.3a: internal data-repo manifest step (REQUIRED for every future program)
+- lineage-engine#19 — `registry.json` `ivy-yoga` entry (program-scoped QR/logo compositing)
+- lineage-engine#20 — vendored IVY v1.2 cert assets (logo/template/config/fonts) + renderer field support (cert PDFs now render)
+- ivy-yoga-club#5 — "Roster sheet ↗" link always visible in console header
+- **E2E (dummy data, live stack):** sheet insert → sign-in → attest → registry + certificate render, verified end-to-end
+  (pk-AFaVWSOevda8 → dummy-e2e-test-2-cert; base + cert PDFs return 200 via raw + jsDelivr)
+
+**Status:** infrastructure complete + verified; **PR3 is the only remaining unit**, gated on Gary's decisions
+(a) fee/branding model and (b) whether Olivia re-signs every renewal.
 
 ✅ **Pre-flight Completeness (§5d):** no execution unit in PR1/PR2 requires reading a file/state not already
 captured in §1 above.
