@@ -213,6 +213,30 @@ Assistants should **not** tie up the session waiting for GitHub Actions to finis
 
 **Related:** **`GITHUB_AGENTIC_AI_SSH.md` § Pull requests** (merge step: snapshot, not long watch).
 
+**When a flow appears stuck — verify root cause before assuming it's just slow (SOP, all agents).**
+A multi-leg pipeline (browser → Edgar → GAS → GitHub Action → sheet back-fill, or similar) that looks "hung"
+usually isn't broken — most of this workspace's async chains are just legitimately slow at one leg. **Don't
+guess; check the state directly:**
+
+- **GAS leg:** Apps Script has an execution log (`Extensions → Apps Script → Executions` in the Sheet's bound
+  script, or the equivalent for a standalone deployment) — check it for a thrown error before assuming the
+  call is still running.
+- **Google Sheets leg:** re-read the actual sheet (audit columns, `Audit Trail` tab, or wherever the pipeline
+  writes status) — if a row already shows `processed` / a real `attestation_tx_id` / a commit SHA, the write
+  succeeded even if a UI polling loop upstream hasn't caught up yet.
+- **GitHub Actions leg:** don't just poll `status`/`conclusion` — pull **per-step timing**
+  (`gh api repos/<owner>/<repo>/actions/runs/<id>/jobs`) and compare against a **previous successful run's**
+  step timings for the *same workflow*. A step that's taking materially longer than history is a real problem
+  (investigate — check for a stuck runner, a growing repo/checkout, a changed dependency); a step that matches
+  historical timing (e.g. a data-heavy repo whose checkout always takes 20+ minutes) is just normal and safe
+  to keep waiting on.
+
+**Example (2026-08-19, IVY credentialing UAT):** the `lineage-credentials` → `build-cv-cache.yml` PDF-render
+step looked hung after ~25 minutes. Comparing against the prior successful run's job log showed the same
+`Checkout lineage-credentials (data)` step alone took 21m44s there too (the repo has grown to ~10GB from
+accumulated PDF/QR/image blobs) — confirming legitimate wait time, not a stuck runner. Worth a separate
+follow-up (shallow clone or history pruning for that repo), but not a live incident.
+
 ---
 
 ## 4. Cross-Repo Relationships
