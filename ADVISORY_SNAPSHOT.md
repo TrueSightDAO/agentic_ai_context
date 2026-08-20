@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-19T19:03:31Z`
-- Look-back: **7** calendar days (`2026-08-12` → today UTC)
+- Generated (UTC): `2026-08-20T01:58:41Z`
+- Look-back: **7** calendar days (`2026-08-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,25 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
+- `[CONTRIBUTION EVENT]` × 14
 - `[EMAIL VERIFICATION EVENT]` × 10
-- `[CONTRIBUTION EVENT]` × 8
 - `[EMAIL REGISTERED EVENT]` × 8
-- `[PRACTICE EVENT]` × 5
+- `[PRACTICE EVENT]` × 4
 - `[TREE PLANTING EVENT]` × 2
-- `[SALES EVENT]` × 1
-- _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260819093045_451` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: -geQYOt8r1U4vuUC1q6IFeaAVxGYzboF6AUAgchVqSE · Email: admin@truesight.me
-- `Edgar_20260819093241_453` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260819093254_455` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: MLzIZm8n4NPeEfHyPUiOVF0Aw3EQhNcUcMHrTI60CII · Email: admin@truesight.me
-- `Edgar_20260819093337_457` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: MLzIZm8n4NPeEfHyPUiOVF0Aw3EQhNcUcMHrTI60CII · Email: admin@truesight.me
-- `Edgar_20260819093401_459` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260819093411_461` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 26j3pvmaU7WzHvkoDBm6EQexqGfRJgywkvX88su6-nw · Email: admin@truesight.me
-- `Edgar_20260819093452_463` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 26j3pvmaU7WzHvkoDBm6EQexqGfRJgywkvX88su6-nw · Email: admin@truesight.me
-- `Edgar_20260819093453_465` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260819093507_467` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: JPgfBQBb-M3rh-OCTi2hzrwhDsr-dJQKb_x1KAvWlhQ · Email: admin@truesight.me
 - `Edgar_20260819093556_469` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
 - `Edgar_20260819093607_471` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: Wb5BU2mjcTXsh2KpO6xMklfpfhhJ8Mchp9AKA1HVyIM · Email: admin@truesight.me
 - `Edgar_20260819093834_473` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
@@ -62,6 +51,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260819133841_485` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Paloma
 - `Edgar_20260819134722_487` · **Edgar** · [TREE PLANTING EVENT] Latitude: -27.438551759141834 · Longitude: -48.49968606487751 · Species: Cacao - Criolla
 - `Edgar_20260819134740_489` · **Edgar** · [TREE PLANTING EVENT] Latitude: -27.438551759141834 · Longitude: -48.49968606487751 · Species: Cacao - Criolla
+- `Edgar_20260819221906_491` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Contributor(s): Gary Teh, Paloma
+- `Edgar_20260819222031_493` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Paloma
+- `Edgar_20260819222229_495` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 100 · Description: Agent Handoff Protocol — generic, pull-based inter-instance handoff
+- `Edgar_20260819222239_497` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Designed the core architecture of the Agent Handoff Protocol: proposed the p…
+- `Edgar_20260820003704_499` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: PDF slide-deck overlap checker + mandatory QA step in slide standard
+- `Edgar_20260820005635_501` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20260820005638_503` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
+- `Edgar_20260820012624_505` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Gary Teh
+- `Edgar_20260820012630_507` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight
 
 ---
 
@@ -255,7 +253,7 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
 
-_All dated lines on/after 2026-08-12_ (1):
+_All dated lines on/after 2026-08-13_ (1):
 
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
 
@@ -276,6 +274,7 @@ _All dated lines on/after 2026-08-12_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+82ffc2b | 2026-08-19 19:04:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92fb673 | 2026-08-19 07:22:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 186f92b | 2026-08-19 02:04:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -304,10 +303,6 @@ dd22aa5 | 2026-08-14 03:08:49 +0000 | chore(stats): refresh stats/current.json [
 06ca853 | 2026-08-13 14:01:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 8e4dfef | 2026-08-13 08:02:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 cf50f72 | 2026-08-13 03:10:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0f66057 | 2026-08-12 19:41:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e820ba1 | 2026-08-12 14:05:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-dded1eb | 2026-08-12 08:00:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
-8576ef4 | 2026-08-12 03:06:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -319,6 +314,9 @@ dded1eb | 2026-08-12 08:00:54 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0c54787 | 2026-08-20 06:24:11 +0800 | Mandate agent registry entry for new sibling instances
+983ab02 | 2026-08-20 03:03:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
+e28c586 | 2026-08-20 03:03:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
 aedebc0 | 2026-08-19 21:25:38 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
 b7a07a0 | 2026-08-19 21:25:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
 9985176 | 2026-08-19 18:12:52 +0800 | docs: Black King admin access options decision PDF (for Vini review)
@@ -356,15 +354,14 @@ f418f11 | 2026-08-18 01:18:29 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a6368fd | 2026-08-17 21:21:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
 1727975 | 2026-08-17 21:21:38 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
 dd1aaac | 2026-08-17 15:32:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
-a273171 | 2026-08-17 15:32:34 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
-3250419 | 2026-08-17 10:03:38 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
-7b894db | 2026-08-17 10:03:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+b319262 | 2026-08-20 09:05:48 +0800 | Merge pull request #394 from TrueSightDAO/fix/sunmint-claspignore-credentials-sample
+517c1b4 | 2026-08-20 01:05:02 +0000 | Exclude Credentials.sample.js from SunMint's clasp push
 701de08 | 2026-08-19 17:25:34 +0800 | Merge pull request #393 from TrueSightDAO/fix/sunmint-webapp-config
 4102e66 | 2026-08-19 09:24:29 +0000 | Fix SunMint Tree Planting deploy: add webapp config, Credentials.sample.js, .claspignore
 2d85e9b | 2026-08-19 05:06:10 +0800 | Merge pull request #392 from TrueSightDAO/docs/tree-planting-link-schema
@@ -415,7 +412,6 @@ af2a122 | 2026-08-17 07:18:29 +0000 | chore: refresh store and partner inventory
 b1d29ce | 2026-08-15 06:59:28 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 a5214b4 | 2026-08-14 07:53:30 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3a0f243 | 2026-08-13 07:55:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-e7cd591 | 2026-08-12 07:54:38 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -510,9 +506,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 11:50:29 |
+| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 18:50:50 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-12`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-13`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
