@@ -39,6 +39,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Remove duplicate script-tag includes on farm/shipment pages (cachedPath console error)
+**Filed 2026-08-20. Owner: unclaimed.** Discovered during agroverse_shop_beta#196 (PR0 of
+FARM_SHIPMENT_MEDIA_JSON_PLAN): many farm/shipment pages double-include `config.js` /
+`farms-data.js` / `partners-data.js`, and `partners-data.js` declares top-level `let cachedPath`,
+so the second include throws `Identifier 'cachedPath' has already been declared` — a console error
+that violates the media-externalization plan's UAT "zero console errors" requirement on every
+affected page. Affected: `farms/oscar-bahia` (FIXED in PR0), `farms/fazenda-santa-ana-bahia`,
+`shipments/agl0`, `agl1`, `agl2`, `agl5`, `agl6`, `agl7`, `agl8`, `agl10`, `agl13`, `agl14`.
+Fix per page: keep exactly ONE include each of `config.js` / `farms-data.js` / `partners-data.js`
+(remove the duplicate second set near the bottom of `<body>`). ~5 min per page. Verify with
+`npx playwright test` zero-console-error specs.
+
 ### Program onboarding must create BOTH manifests (web + lineage-credentials internal)
 **Filed 2026-08-20. Owner: unclaimed.** The IVY yoga onboarding (2026-08-18/19) created only the web-facing
 `truesight_me/programs/ivy-yoga/manifest.json`; the internal `lineage-credentials/programs/ivy-yoga/manifest.json`
