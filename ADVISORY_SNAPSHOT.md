@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-20T07:22:55Z`
+- Generated (UTC): `2026-08-20T13:27:09Z`
 - Look-back: **7** calendar days (`2026-08-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,34 +32,35 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[EMAIL VERIFICATION EVENT]` × 13
-- `[CONTRIBUTION EVENT]` × 11
-- `[EMAIL REGISTERED EVENT]` × 9
-- `[PRACTICE EVENT]` × 3
-- `[TREE PLANTING EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 13
+- `[EMAIL VERIFICATION EVENT]` × 11
+- `[EMAIL REGISTERED EVENT]` × 7
+- `[CREDENTIALING ATTESTATION EVENT]` × 5
+- `[PRACTICE EVENT]` × 1
+- `[TREE PLANTING LINK EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260819101307_479` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260819133043_481` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T13:30:41.259Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260819133045_483` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T13:30:41.266Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260819133841_485` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Paloma
-- `Edgar_20260819134722_487` · **Edgar** · [TREE PLANTING EVENT] Latitude: -27.438551759141834 · Longitude: -48.49968606487751 · Species: Cacao - Criolla
-- `Edgar_20260819134740_489` · **Edgar** · [TREE PLANTING EVENT] Latitude: -27.438551759141834 · Longitude: -48.49968606487751 · Species: Cacao - Criolla
-- `Edgar_20260819221906_491` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Contributor(s): Gary Teh, Paloma
-- `Edgar_20260819222031_493` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Paloma
-- `Edgar_20260819222229_495` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 100 · Description: Agent Handoff Protocol — generic, pull-based inter-instance handoff
-- `Edgar_20260819222239_497` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Designed the core architecture of the Agent Handoff Protocol: proposed the p…
-- `Edgar_20260820003704_499` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: PDF slide-deck overlap checker + mandatory QA step in slide standard
-- `Edgar_20260820005635_501` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
-- `Edgar_20260820005638_503` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
-- `Edgar_20260820012624_505` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Gary Teh
-- `Edgar_20260820012630_507` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight
-- `Edgar_20260820065834_001` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260820065845_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: cWI3mUD1Qi50OR6BCiKGwMKLxvvZYta-dpQgOUBNasU · Email: admin@truesight.me
-- `Edgar_20260820065916_005` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: cWI3mUD1Qi50OR6BCiKGwMKLxvvZYta-dpQgOUBNasU · Email: admin@truesight.me
-- `Edgar_20260820065922_007` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260820065932_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: Uk1Fn9lWr_U07N3R8Jj85AMn3aIXm9Xw54-v8d55qp8 · Email: admin@truesight.me
+- `Edgar_20260820105631_035` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260820105652_037` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: vcXHTi9LjqHs4dpxxgX9xBPMmzS8CxCbQxtAq2bblZk · Email: admin@truesight.me
+- `Edgar_20260820105820_039` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvM6NOL5VZCD2rzwQcUNCH+AW…
+- `Edgar_20260820111706_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: PR0: Farm/Shipment media JSON externalization — js/media-gallery.js loader +…
+- `Edgar_20260820112045_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260820112723_045` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PF_20250505_03 · SunMint Submission Message ID: 6875 · Updated by: Gary Teh (via Sophia, RUN first live link)
+- `Edgar_20260820112859_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Sophia Truesight
+- `Edgar_20260820113327_049` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR2: migrated farms/fazenda-santa-ana-bahia (h…
+- `Edgar_20260820113647_051` · **Edgar** · [CONTRIBUTION EVENT] Amount: 35 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR3: migrated farms/fazenda-sao-jorge-bahia (2…
+- `Edgar_20260820113933_053` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR4: migrated shipment pages agl0 (hero-only),…
+- `Edgar_20260820114453_055` · **Edgar** · [CONTRIBUTION EVENT] Amount: 20 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR5: investigated agl5/agl7/agl8 migration (he…
+- `Edgar_20260820115003_057` · **Edgar** · [CONTRIBUTION EVENT] Amount: 25 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR6: built the full agl10/agl13/agl14 migratio…
+- `Edgar_20260820121559_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
+- `Edgar_20260820121601_061` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260820121609_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260820121616_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
+- `Edgar_20260820121623_067` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: b7h59uTtHF-gvNT59HAmQaWa_gvfRRm_fRgrgHeFftQ · Email: admin@truesight.me
+- `Edgar_20260820121707_069` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: b7h59uTtHF-gvNT59HAmQaWa_gvfRRm_fRgrgHeFftQ · Email: admin@truesight.me
+- `Edgar_20260820121739_071` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxv/EBTe1ugv/HCV77zDhkfxE…
+- `Edgar_20260820122210_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
 
 ---
 
@@ -74,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-19T10:59:13.998Z`
+- Generated (UTC): `2026-08-20T10:59:14.227Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -84,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **730**, follow_up **71**, bulk **0**, unknown **2** (data rows: **803**)
+- **Email Agent Follow Up** — logged sends: warmup **741**, follow_up **71**, bulk **0**, unknown **2** (data rows: **814**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **651**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **663**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -252,10 +253,12 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 _Lines in window matching configured names or status keywords:_
 
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
+- 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
 
-_All dated lines on/after 2026-08-13_ (1):
+_All dated lines on/after 2026-08-13_ (2):
 
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
+- 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
 
 ---
 
@@ -274,6 +277,7 @@ _All dated lines on/after 2026-08-13_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+710a8d7 | 2026-08-20 07:24:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 229e051 | 2026-08-20 02:03:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 82ffc2b | 2026-08-19 19:04:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -315,6 +319,19 @@ cf50f72 | 2026-08-13 03:10:27 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e9a185f | 2026-08-20 19:39:34 +0800 | docs: log cacao tea 50g Oscar Farm QR batch delivery to CONTEXT_UPDATES (#777)
+7edfcc7 | 2026-08-20 19:37:26 +0800 | docs: note cacao tea 50g QR serial _3 VOID (replaced by _101) (#776)
+8291504 | 2026-08-20 19:24:37 +0800 | docs: IVY plan — infra fully live, UAT narrowed to human-only steps (#761)
+4a0d8f3 | 2026-08-20 19:22:39 +0800 | fix(ivy-plan): refresh §4 tracker — all units merged + E2E verified, PR3 gated on Gary (#774)
+6a3ecb7 | 2026-08-20 18:58:29 +0800 | docs(handoffs): add SUNMINT_TREE_QR_LINKING row for thread 11596 (Sophia-owned) (#772)
+6e9e985 | 2026-08-20 17:50:25 +0800 | future-proof credentialing onboarding: internal lineage-credentials manifest step + backlog entry (#770)
+7ae5ef9 | 2026-08-20 17:28:50 +0800 | Merge pull request #769 from TrueSightDAO/worktree-sunmint-deploy-complete
+4dc3950 | 2026-08-20 09:28:12 +0000 | Mark all 4 GAS deploy targets complete; RESUME HERE -> RUN
+40abbf8 | 2026-08-20 09:07:41 +0000 | Record Sophia's Telegram topic for Farm/Shipment Media JSON handoff
+aceaaaa | 2026-08-20 09:05:44 +0000 | Add Farm & Shipment Media JSON plan — hand off to Sophia
+7e9d78a | 2026-08-20 16:47:19 +0800 | docs: SOP — verify root cause before assuming an async flow is just slow (#768)
+852cbd3 | 2026-08-20 15:23:11 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
+c499091 | 2026-08-20 15:23:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
 379b864 | 2026-08-20 09:59:06 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
 ca6a690 | 2026-08-20 09:59:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
 0c54787 | 2026-08-20 06:24:11 +0800 | Mandate agent registry entry for new sibling instances
@@ -342,25 +359,15 @@ ca71abe | 2026-08-18 20:32:18 +0000 | Resolve SUNMINT_TREE_QR_LINKING_PLAN §7 l
 cbcde84 | 2026-08-19 03:55:59 +0800 | docs: IVY (Liv for Yoga) cohort onboarding — plan of record (#755)
 eb8faac | 2026-08-19 03:07:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
 3a8dce3 | 2026-08-19 03:07:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
-9373c84 | 2026-08-18 21:23:52 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
-344de21 | 2026-08-18 21:23:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
-e95a248 | 2026-08-18 17:28:57 +0800 | Register SLIDE_DECK_STANDARD.md in PROJECT_INDEX + WORKSPACE_CONTEXT so all AI sessions discover it (#752)
-98f5f37 | 2026-08-18 17:24:54 +0800 | Add SLIDE_DECK_STANDARD.md — mandatory format for all Sophia/LLM-generated decks (#751)
-8608d61 | 2026-08-18 15:14:42 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
-2dacb06 | 2026-08-18 15:14:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
-1b1a8c8 | 2026-08-18 09:57:48 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
-23e314d | 2026-08-18 09:57:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
-af4c2fa | 2026-08-18 09:18:41 +0800 | Merge pull request #750 from TrueSightDAO/auto/advisory-refresh-2026-08-18
-f418f11 | 2026-08-18 01:18:29 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
-7a80680 | 2026-08-18 03:08:14 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
-4d8f164 | 2026-08-18 03:08:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
-a6368fd | 2026-08-17 21:21:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+be92958 | 2026-08-20 18:23:14 +0800 | feat(tokenomics): add TREE PLANTING REJECT path — governor marks SunMint submission INVALID (#396)
+3e07028 | 2026-08-20 17:26:17 +0800 | Merge pull request #395 from TrueSightDAO/fix/sales-processing-claspignore
+0276607 | 2026-08-20 09:25:44 +0000 | Add .claspignore for sales-processing GAS project
 b319262 | 2026-08-20 09:05:48 +0800 | Merge pull request #394 from TrueSightDAO/fix/sunmint-claspignore-credentials-sample
 517c1b4 | 2026-08-20 01:05:02 +0000 | Exclude Credentials.sample.js from SunMint's clasp push
 701de08 | 2026-08-19 17:25:34 +0800 | Merge pull request #393 from TrueSightDAO/fix/sunmint-webapp-config
@@ -404,6 +411,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1fdd50d | 2026-08-20 18:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
 1cb9039 | 2026-08-20 07:08:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 66f6778 | 2026-08-19 07:07:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 efbaec2 | 2026-08-18 07:06:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -419,7 +427,28 @@ a5214b4 | 2026-08-14 07:53:30 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-_(no commits on origin/main in window)_
+a44b7ce | 2026-08-20 21:08:44 +0800 | fix: mobile polish for cacao tea PDP (stack detail rows, tighten 480px layout) (#219)
+df6756e | 2026-08-20 20:17:11 +0800 | fix: remove QR label image + duplicate hero photo from cacao tea PDP gallery (#218)
+52ecd14 | 2026-08-20 19:49:55 +0800 | fix(spec): filter benign Chromium compute-pressure + raw 403 throttle noise (#217)
+beeeccf | 2026-08-20 19:48:59 +0800 | PR7: agl6 special case - retire agroverse:youtube meta-tag + bespoke lazy-load script, replace with media.json + shared loader (#215)
+1598d96 | 2026-08-20 19:46:36 +0800 | PR6: migrate shipment pages agl10, agl13, agl14 to media.json (remove dead Wix video on agl10, fix agl14 heroVideo.play guard) (#214)
+a645559 | 2026-08-20 19:43:17 +0800 | PR5: migrate shipment pages agl5, agl7, agl8 to media.json (distinct farmer slot for agl8) (#212)
+c35c11d | 2026-08-20 19:39:25 +0800 | PR4: Migrate shipment pages agl0, agl1, agl2 to media.json (#210)
+147cec6 | 2026-08-20 19:36:44 +0800 | fix(pdp): correct QR batch label (serial _3 voided, replaced by _101) (#208)
+ea556e3 | 2026-08-20 19:36:39 +0800 | PR3: Migrate farm pages fazenda-sao-jorge-bahia + vivi-jesus-do-deus-itacare to media.json (#207)
+9a73c14 | 2026-08-20 19:33:20 +0800 | PR2: Migrate farm pages fazenda-santa-ana-bahia + paulo-la-do-sitio-para to media.json (#206)
+a510006 | 2026-08-20 19:28:49 +0800 | PR1: migrate shipments/agl4 to media.json (fixes agl14.avif bug + hero-video console error) (#200)
+f6cd051 | 2026-08-20 19:21:03 +0800 | Use product photo on cacao tea cards (category/farm/shipment) (#205)
+faeffaa | 2026-08-20 19:19:23 +0800 | Use v2 cacao tea photo as PDP hero (#204)
+da13e0f | 2026-08-20 19:19:01 +0800 | Add cacao tea hero photo v2 (Oscar's Farm 50g)
+7dfdf26 | 2026-08-20 19:18:46 +0800 | Use real cacao tea product photo as PDP hero (#203)
+3d2fdec | 2026-08-20 19:18:10 +0800 | Add cacao tea product photo (Oscar's Farm 50g)
+2d2be09 | 2026-08-20 19:00:23 +0800 | Fix cacao tea images: use real 50g tea label instead of ceremonial cacao photo (#202)
+7dde445 | 2026-08-20 18:50:27 +0800 | Add Cacao Tea 50g card to retail-packs category page (#201)
+3b86936 | 2026-08-20 18:36:32 +0800 | PR0: farm/shipment media JSON externalization pilot (oscar-bahia) + shared media-gallery.js loader (#196)
+5e2b35a | 2026-08-20 18:32:43 +0800 | Cross-list Cacao Tea 50g on AGL4 shipment page (#199)
+7e50e91 | 2026-08-20 18:32:39 +0800 | Cross-list Cacao Tea 50g on Oscar's Farm page (#198)
+c4564ff | 2026-08-20 18:32:36 +0800 | Add Cacao Tea 50g PDP (Oscar's Farm 2024) — offline QR-scan sales only (#197)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -508,7 +537,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 23:50:33 |
+| 2026-08 | 428.46 | 17339.52386 | 8/20/2026 5:51:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-13`; scanned last **600** data rows)
 
