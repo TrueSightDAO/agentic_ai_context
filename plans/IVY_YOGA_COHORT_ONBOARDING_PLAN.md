@@ -20,7 +20,7 @@ infrastructure now while it's easy to get right.
 
 | Item | Value | Rationale |
 |---|---|---|
-| `program_slug` | `ivy-yoga` | Matches the service account Gary already created (`ivy-yoga@get-data-io.iam.gserviceaccount.com`) — follow the name already in motion rather than invent a new one. |
+| `program_slug` | `ivy-yoga` | Matches the service account Gary already created — follow the name already in motion rather than invent a new one. (Its real email turned out to be `ivy-yoga-get-data-io-iam-gserv@get-data-io.iam.gserviceaccount.com`, not the shorter `ivy-yoga@...` everyone assumed — see §1 update below.) |
 | Subdomain | `ivy-yoga.truesight.me` | `<slug>.truesight.me`, same pattern as `butterfly-effect-club.truesight.me`... adjusted to slug form for consistency with the SA/manifest slug. |
 | GitHub repo | `TrueSightDAO/ivy-yoga-club` | `<slug>-club`, per the template's own fork-name convention (`CREDENTIALING_COHORT_PROGRAM_ONBOARDING.md` §5.2). |
 | Workspace path | `/opt/claude_workspace/ivy_yoga_club` | Underscored, mirrors `butterfly_effects_club/` local convention. |
@@ -155,10 +155,15 @@ merged and live; the only remaining unit is PR3, blocked on Gary's two open deci
 | Unit | PR | Opened | Merged | Deployed/live | Reported |
 |---|---|---|---|---|---|
 | PR0 — this plan | [agentic_ai_context#755](https://github.com/TrueSightDAO/agentic_ai_context/pull/755) | ☑ | ☑ | ✅ plan doc on main | ☑ |
-| PR1 — repo scaffold | [ivy-yoga-club#1](https://github.com/TrueSightDAO/ivy-yoga-club/pull/1) (+ #2, #4) | ☑ | ☑ | ✅ Pages built (cname ivy-yoga.truesight.me) + Route53 CNAME live | ☑ |
-| PR2 — truesight_me_beta manifest + program page | [truesight_me_beta#293](https://github.com/TrueSightDAO/truesight_me_beta/pull/293) | ☑ | ☑ | ✅ manifest live on prod (truesight.me/programs/ivy-yoga/manifest.json) | ☑ |
+| PR1 — repo scaffold | [ivy-yoga-club#1](https://github.com/TrueSightDAO/ivy-yoga-club/pull/1) | ☑ | ☑ | ☑ | ☑ |
+| PR1-fix — panel had `butterfly-effect` hardcoded into the live attestation path (`Program` field, manifest URL, localStorage keys) | [ivy-yoga-club#2](https://github.com/TrueSightDAO/ivy-yoga-club/pull/2) | ☑ | ☑ | ☑ | ☑ |
+| PR1-fix2 — wrong SA email + stale SCHEMA.md column tables | [ivy-yoga-club#4](https://github.com/TrueSightDAO/ivy-yoga-club/pull/4) (supersedes broken #3) | ☑ | ☑ | ☑ | ☑ |
+| GitHub Pages enabled on `ivy-yoga-club` | n/a (repo setting) | — | — | ☑ (`status: built`, HTTPS cert approved) | n/a |
+| Route53 CNAME `ivy-yoga.truesight.me` → `truesightdao.github.io` | n/a (DNS) | — | — | ☑ (`INSYNC`, Explorya zone `Z0032474227N6EQ3Z4QU`) | n/a |
+| PR2 — truesight_me_beta manifest + program page | [truesight_me_beta#293](https://github.com/TrueSightDAO/truesight_me_beta/pull/293) | ☑ | ☑ | ☑ (manifest live on prod `truesight.me/programs/ivy-yoga/manifest.json`) | ☑ |
+| Promote beta → `truesight_me_prod` | n/a (Gary completed manually) | — | ☑ | ☑ (`truesight.me/programs/ivy-yoga/`, CNAME preserved) | n/a |
+| Cohort Roster sheet restructured (tab rename, `Status`→`Teaching Status`, 12 audit columns, `Audit Trail` tab added) | n/a (Sheets API, `ivy-yoga-get-data-io-iam-gserv@...` SA, granted Editor 2026-08-18) | — | — | ☑ (verified: `Cohort Roster` + `Audit Trail` tabs, Shamshad Haider's row intact) | n/a |
 | PR3 — recertification + co-sign | not started | — | — | — | **blocked on Gary** (§5 open decisions) |
-| Promote to prod | n/a | n/a | n/a | n/a | **not requested — do not do** |
 
 **Post-plan session fixes (2026-08-20, all merged + E2E-verified):**
 - lineage-credentials#17 — internal `programs/ivy-yoga/manifest.json` + `fetch-depth: 2` (build was 20–60 min, now ~2.5 min)
@@ -202,21 +207,28 @@ captured in §1 above.
 
 ---
 
-## 6. UAT phase (human-tested, beta stack, sample data only — before any real cert circulates)
+## 6. UAT phase (human-tested, sample data only — before any real cert circulates)
 
-| # | Surface / URL | What to expect | Interaction | Acceptance criterion |
-|---|---|---|---|---|
-| 1 | `https://ivy-yoga.truesight.me/` | Admin console loads, boots from `config.json`, shows IVY branding (not Butterfly Effect leftovers) | Open the URL in a browser | Page renders with IVY name/colors, no console errors |
-| 2 | Same page | Key generation / email registration flow (`create_signature.html` embed) | Click through, register `garyjob@agroverse.shop` (or another sheet-editor email) | Edgar sends a verification email; clicking it binds the pubkey |
-| 3 | Same page, after verification | Reload — should resolve to **admin mode** | Reload the page | UI shows "pending rows" queue, not a locked-out state |
-| 4 | IVY roster sheet | Add one **sample** row (Bilal already said the sheet "will just have a sample name for now") | Add a test instructor name | Row appears in the admin panel's pending queue within the sheet's normal refresh window |
-| 5 | Admin panel | Click "Attest" on the sample row | Single click | `[CREDENTIALING ATTESTATION EVENT]` fires to Edgar; roster row's audit columns back-fill (`pk_hash`, `attestation_tx_id`, `status`, etc.) |
-| 6 | `truesight.me/programs/ivy-yoga/credentials/#<pk-hash>` | Public credential page renders within ~60s of attestation | Visit the URL from the back-filled `profile_url` | Page shows the sample instructor's credential, cert PDF downloadable, QR present |
-| 7 | Roster sheet → `Audit Trail` tab | New row appended | Check the tab after step 5 | Row shows `processed_at`, `action`, `github_commit_sha` populated |
-| 8 | `ivy-yoga.truesight.me` DNS | Resolves correctly, HTTPS valid | `curl -I https://ivy-yoga.truesight.me/` or browser | 200, valid GitHub Pages TLS cert (may take up to ~1h for cert provisioning after CNAME add) |
+| # | Surface / URL | What to expect | Interaction | Acceptance criterion | Status |
+|---|---|---|---|---|---|
+| 1 | `https://ivy-yoga.truesight.me/` | Admin console loads, boots from `config.json`, shows IVY branding | Open the URL in a browser | Page renders with IVY name/colors, no console errors | ✅ **Automated-verified 2026-08-18** — headless check, `#keygenCard` renders, zero console errors, screenshot confirms branding |
+| 2 | Same page | Key generation / email registration flow (`create_signature.html` embed) | Click through, register `garyjob@agroverse.shop` (or another sheet-editor email) | Edgar sends a verification email; clicking it binds the pubkey | ☐ **Human-only** — needs Gary/Bilal/Shahbaz to click through; Claude cannot do this on anyone's behalf (it's an identity-binding step by design) |
+| 3 | Same page, after verification | Reload — should resolve to **admin mode** | Reload the page | UI shows "pending rows" queue, not a locked-out state | ☐ Depends on #2 |
+| 4 | IVY roster sheet (`Cohort Roster` tab) | A sample row exists | n/a — already true | Row visible with empty audit columns | ✅ **Already satisfied** — Shamshad Haider's row (from Shahbaz's original sample) survived the 2026-08-18 restructure untouched |
+| 5 | Admin panel | Click "Attest" on the sample row | Single click | `[CREDENTIALING ATTESTATION EVENT]` fires to Edgar; roster row's audit columns back-fill (`pk_hash`, `attestation_tx_id`, `status`, etc.) | ☐ **Human-only** — needs a signed-in admin (depends on #2/#3) |
+| 6 | `truesight.me/programs/ivy-yoga/credentials/#<pk-hash>` | Public credential page renders within ~60s of attestation | Visit the URL from the back-filled `profile_url` | Page shows the sample instructor's credential, cert PDF downloadable, QR present | ☐ Depends on #5 |
+| 7 | Roster sheet → `Audit Trail` tab | New row appended | Check the tab after step 5 | Row shows `processed_at`, `action`, `github_commit_sha` populated | ☐ Depends on #5 |
+| 8 | `ivy-yoga.truesight.me` + `truesight.me/programs/ivy-yoga/` DNS/Pages | Resolves correctly, HTTPS valid | `curl -I` or browser | 200, valid GitHub Pages TLS cert | ✅ **Verified 2026-08-18** — both live, HTTPS cert approved, prod promotion completed (CNAME preserved) |
 
 **Pass criterion for the whole arc:** all 8 rows pass using the sample row only. Do **not** attest a real instructor
-until Gary has resolved the two open decisions in §5 and Shahbaz has handed off the real cert template (§1.7).
+until Gary has resolved the two open decisions in §5 and Shahbaz has handed off the real cert template (§1.7 —
+**now resolved**, real v1.2 template + fonts are live in the repo).
+
+**What's left is entirely human-in-the-loop.** Steps 2/3/5/6/7 require someone with roster-sheet-editor access
+(Gary, Bilal, Shahbaz, Danesh, or Arshad) to actually click through the sign-in flow and hit "Attest" once —
+that's the whole remaining UAT surface. Suggested next action: visit `https://ivy-yoga.truesight.me/`, sign in
+with any of those emails, verify via the link Edgar sends, then attest Shamshad Haider's row and watch it flow
+through to the public credential page.
 
 ---
 
