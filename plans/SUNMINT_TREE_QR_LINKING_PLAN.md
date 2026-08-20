@@ -238,13 +238,32 @@ for PR6.
 
 ## 4. Resume tracker
 
-> **RESUME HERE → clasp deploy** (tokenomics: `process_qr_code_updates.js` + new
-> `process_tree_planting_link.js` in mirror `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v`,
-> and `qr_code_web_service.js` + `process_tree_planting_telegram_logs.js` in their mirrors — see §2 gate).
-> All 7 code/docs PRs (PR2–PR8) are merged. **Before deploying**, provision the `GOVERNOR_READ_KEY` Script
-> Property (same value) on both the QR-codes mirror and the SunMint Tree Planting mirror — PR3's read
-> endpoints fail closed without it. After deploy: RUN (first live link, ledger-money-movement gate) → UAT
-> (always-stop gate).
+> **RESUME HERE → RUN** (first live link — governor picks one real SOLD+email QR and one real
+> NEW Sunmint submission, confirms via `link_tree_planting.html`, verifies QR row + SunMint row +
+> ledger Transactions row + owner inbox by hand). **Ledger-money-movement gate (§2) — needs an
+> explicit go.** After RUN: UAT (§5, always-stop gate).
+>
+> **All deploys are done (2026-08-19/20).** All 4 live GAS targets pushed, deployed, and verified:
+> QR-codes mirror (`1UrBgqLnnQc6...`, PR4 handler + PR2 stamp), `qr_code_web_service.js`
+> (`1MnAsIQAxc...`, PR2 picker fix + PR3 endpoint), SunMint Tree Planting (`1Jp8qNIBCZaR...`, PR3
+> endpoint), sales-processing (`1dsWecVwbN0d...`, PR2 stamp). `GOVERNOR_READ_KEY` provisioned on
+> both endpoints by Gary; both verified returning real data end-to-end.
+>
+> **Two real incidents hit during deploy, both fixed same-day (tokenomics #393, #394, #395):**
+> (1) `Code.js` — a stale, byte-identical duplicate of `process_qr_code_updates.js` sitting in git
+> but never actually meant to be live — got pushed alongside it and broke the QR-codes webhook with
+> a duplicate top-level `const` SyntaxError; fixed with `.claspignore`, verified restored within
+> minutes. (2) SunMint's live, gitignored `Credentials.js` got deleted by a `clasp push --force` run
+> without it present locally (a known clasp footgun this repo's own `.gitignore` already warned
+> about); the underlying Script Properties turned out to be untouched (separate storage from source
+> files), so nothing was actually lost — just the two functions that read them, which were
+> redeployed as idempotent no-op seeding. **Lesson applied to the 4th target (sales-processing)
+> before touching it:** pulled the actual live source into an isolated read-only copy first and
+> diffed against git — found `manifest.json`'s `source_files` field was wrong (the real live file
+> was `Parse Telegram ChatLogs.js`, not `process_sales_telegram_logs.js`) and a third file
+> (`telegram_webhook_listener.js`) was never deployed at all and would have collided on a top-level
+> `const creds` if pushed — both excluded via `.claspignore` before ever pushing, zero incidents on
+> that target.
 
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
@@ -253,7 +272,7 @@ for PR6.
 | PR2 (Sold Date column + stamping) | ☑ | ☑ (tokenomics #389) | ☐ |
 | PR3 (governor-gated read endpoints ×2) | ☑ | ☑ (tokenomics #390) | ☐ |
 | PR4 (link handler + ledger + email) | ☑ | ☑ (tokenomics #391) | ☐ |
-| ↳ clasp deploy of PR4 | ☐ | — | — |
+| ↳ clasp deploy of PR4 (+ PR2/PR3 deploys, all 4 GAS targets) | ☑ | ☑ (tokenomics #393, #394, #395) | ☐ |
 | PR5 (dispatch.py routing) | ☑ | ☑ (dao_protocol #142) | ☐ |
 | PR6 (CLI module) | ☑ | ☑ (dao_protocol #143) | ☐ |
 | PR7 (dapp link_tree_planting.html + treasury-cache permission) | ☑ | ☑ (dapp_beta #62, treasury-cache #11) | ☐ |
