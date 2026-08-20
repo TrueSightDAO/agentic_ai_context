@@ -2,7 +2,7 @@
 ⚠️ DEPRECATED SNAPSHOT — the live Sunmint whitepaper is now the static page
 truesight_me/sunmint/whitepaper/index.html (https://truesight.me/sunmint/whitepaper/).
 The Google Doc this was captured from is RETIRED; content below may not match
-the live page. Kept for history only. See GOVERNANCE_SOURCES.md §1.
+the live page. Kept for history only. NOTE: the §6 methodology reference below (Verra VM0017) is superseded — the live PDD names Verra VM0047 (ARR), aligned with the Andean Cacao precedent (first large-scale cacao agroforestry project validated & verified under Verra, VM0047 + CCB, 2025). See GOVERNANCE_SOURCES.md §1.
 -->
 
 SunMint Program Design Document (PDD)
@@ -54,7 +54,7 @@ Agroforestry Implementation
 * Install water access and irrigation systems
 * Apply organic, regenerative practices and integrated pest management
 Carbon Credit Development
-* Apply relevant methodologies (e.g., Verra VM0017, ARR)
+* Apply relevant methodologies (e.g., Verra VM0047 (ARR) — supersedes the earlier VM0017 reference)
 * Quantify sequestration via biomass surveys and soil sampling
 * Submit for third-party validation and registry certification
 Cacao Production and Export
