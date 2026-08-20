@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-20T01:58:41Z`
+- Generated (UTC): `2026-08-20T07:22:55Z`
 - Look-back: **7** calendar days (`2026-08-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 14
-- `[EMAIL VERIFICATION EVENT]` × 10
-- `[EMAIL REGISTERED EVENT]` × 8
-- `[PRACTICE EVENT]` × 4
+- `[EMAIL VERIFICATION EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 11
+- `[EMAIL REGISTERED EVENT]` × 9
+- `[PRACTICE EVENT]` × 3
 - `[TREE PLANTING EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260819093556_469` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260819093607_471` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: Wb5BU2mjcTXsh2KpO6xMklfpfhhJ8Mchp9AKA1HVyIM · Email: admin@truesight.me
-- `Edgar_20260819093834_473` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260819093845_475` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OOmV__AwTh-nZC3Qwsqiq4SKICN8ya8jkgwrNiIMKYI · Email: admin@truesight.me
-- `Edgar_20260819093925_477` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OOmV__AwTh-nZC3Qwsqiq4SKICN8ya8jkgwrNiIMKYI · Email: admin@truesight.me
 - `Edgar_20260819101307_479` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20260819133043_481` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T13:30:41.259Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260819133045_483` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-19T13:30:41.266Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -60,6 +55,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260820005638_503` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
 - `Edgar_20260820012624_505` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Gary Teh
 - `Edgar_20260820012630_507` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight
+- `Edgar_20260820065834_001` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260820065845_003` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: cWI3mUD1Qi50OR6BCiKGwMKLxvvZYta-dpQgOUBNasU · Email: admin@truesight.me
+- `Edgar_20260820065916_005` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: cWI3mUD1Qi50OR6BCiKGwMKLxvvZYta-dpQgOUBNasU · Email: admin@truesight.me
+- `Edgar_20260820065922_007` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260820065932_009` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: Uk1Fn9lWr_U07N3R8Jj85AMn3aIXm9Xw54-v8d55qp8 · Email: admin@truesight.me
 
 ---
 
@@ -233,9 +233,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,789.24**
+- USD on hand: **$4,789.13**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.17**
+- USD provisioned for voting-rights cash-out: **$52.28**
 
 ### In-transit freight (1 row)
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-08-13_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+229e051 | 2026-08-20 02:03:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 82ffc2b | 2026-08-19 19:04:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 92fb673 | 2026-08-19 07:22:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -314,6 +315,8 @@ cf50f72 | 2026-08-13 03:10:27 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+379b864 | 2026-08-20 09:59:06 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
+ca6a690 | 2026-08-20 09:59:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
 0c54787 | 2026-08-20 06:24:11 +0800 | Mandate agent registry entry for new sibling instances
 983ab02 | 2026-08-20 03:03:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
 e28c586 | 2026-08-20 03:03:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
@@ -352,8 +355,6 @@ f418f11 | 2026-08-18 01:18:29 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 7a80680 | 2026-08-18 03:08:14 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
 4d8f164 | 2026-08-18 03:08:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
 a6368fd | 2026-08-17 21:21:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
-1727975 | 2026-08-17 21:21:38 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-17 UTC)
-dd1aaac | 2026-08-17 15:32:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-17 UTC)
 … (truncated)
 ```
 
@@ -403,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1cb9039 | 2026-08-20 07:08:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 66f6778 | 2026-08-19 07:07:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 efbaec2 | 2026-08-18 07:06:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 2649f45 | 2026-08-17 07:38:57 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -506,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 18:50:50 |
+| 2026-08 | 428.46 | 17339.52386 | 8/19/2026 23:50:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-13`; scanned last **600** data rows)
 
