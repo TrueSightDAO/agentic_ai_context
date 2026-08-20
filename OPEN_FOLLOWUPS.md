@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Cacao tea 50g QR batch 2024OSCAR_CT_20260820: serial _3 is VOID (replaced by _101)
+**Filed 2026-08-20. Owner: unclaimed (informational).** Mint QA found serial
+`2024OSCAR_CT_20260820_3` undecodable (deterministic generator defect — reproduced on two
+mint runs, raw + compiled, at 1x/2x/4x). Sheet row 1680 status → VOID; replacement serial
+`2024OSCAR_CT_20260820_101` minted (row 1778, MINTED, same landing/ledger/farm/SKU/batch).
+lineage-assets #6 deleted `_3` png+manifest and added `_101` png+manifest; corrected zip v2
+(100 scannable labels) delivered to thread 11578. **Do NOT treat `_3` as a live serial** — any
+lookup/scan of `2024OSCAR_CT_20260820_3` should be answered with the VOID note. Generator
+hardened with a post-mint decodability self-check (lineage-assets #7). Informational only;
+nothing to do.
+
 ### Program onboarding must create BOTH manifests (web + lineage-credentials internal)
 **Filed 2026-08-20. Owner: unclaimed.** The IVY yoga onboarding (2026-08-18/19) created only the web-facing
 `truesight_me/programs/ivy-yoga/manifest.json`; the internal `lineage-credentials/programs/ivy-yoga/manifest.json`
