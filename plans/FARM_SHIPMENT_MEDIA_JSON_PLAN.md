@@ -274,8 +274,8 @@ Every `PRn` below is independently shippable against current `main`, assuming th
 
 | Unit | PR opened | Merged (human) | Contribution reported |
 |---|---|---|---|
-| PR0 — loader + oscar-bahia pilot | ☐ | ☐ | ☐ |
-| PR1 — agl4 pilot + bug fix | ☐ | ☐ | ☐ |
+| PR0 — loader + oscar-bahia pilot | ☑ | ☑ (#196, 2026-08-20) | ☑ |
+| PR1 — agl4 pilot + bug fix | ☑ (#200 open) | ☐ | ☐ |
 | PR2 — santa-ana + paulo | ☐ | ☐ | ☐ |
 | PR3 — sao-jorge + vivi | ☐ | ☐ | ☐ |
 | PR4 — agl0, agl1, agl2 | ☐ | ☐ | ☐ |
@@ -285,7 +285,7 @@ Every `PRn` below is independently shippable against current `main`, assuming th
 | PR8 — conventions doc update | ☐ | ☐ | ☐ |
 | PR9 — UAT on beta | ☐ (n/a, not a PR) | — | — |
 
-**RESUME HERE = PR0.**
+**RESUME HERE = PR2** (after PR1 #200 merges — PR0 merged 2026-08-20).
 
 ---
 
