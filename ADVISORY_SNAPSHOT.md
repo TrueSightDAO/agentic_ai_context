@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-20T13:27:09Z`
+- Generated (UTC): `2026-08-20T19:10:33Z`
 - Look-back: **7** calendar days (`2026-08-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,23 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 13
-- `[EMAIL VERIFICATION EVENT]` × 11
-- `[EMAIL REGISTERED EVENT]` × 7
-- `[CREDENTIALING ATTESTATION EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 14
+- `[EMAIL VERIFICATION EVENT]` × 10
+- `[CREDENTIALING ATTESTATION EVENT]` × 6
+- `[EMAIL REGISTERED EVENT]` × 6
 - `[PRACTICE EVENT]` × 1
 - `[TREE PLANTING LINK EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260820105631_035` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260820105652_037` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: vcXHTi9LjqHs4dpxxgX9xBPMmzS8CxCbQxtAq2bblZk · Email: admin@truesight.me
-- `Edgar_20260820105820_039` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvM6NOL5VZCD2rzwQcUNCH+AW…
-- `Edgar_20260820111706_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: PR0: Farm/Shipment media JSON externalization — js/media-gallery.js loader +…
-- `Edgar_20260820112045_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260820112723_045` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PF_20250505_03 · SunMint Submission Message ID: 6875 · Updated by: Gary Teh (via Sophia, RUN first live link)
-- `Edgar_20260820112859_047` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Sophia Truesight
-- `Edgar_20260820113327_049` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR2: migrated farms/fazenda-santa-ana-bahia (h…
 - `Edgar_20260820113647_051` · **Edgar** · [CONTRIBUTION EVENT] Amount: 35 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR3: migrated farms/fazenda-sao-jorge-bahia (2…
 - `Edgar_20260820113933_053` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR4: migrated shipment pages agl0 (hero-only),…
 - `Edgar_20260820114453_055` · **Edgar** · [CONTRIBUTION EVENT] Amount: 20 · Contributor(s): Sophia Truesight · Description: Farm/Shipment Media JSON plan PR5: investigated agl5/agl7/agl8 migration (he…
@@ -61,6 +53,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260820121707_069` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: b7h59uTtHF-gvNT59HAmQaWa_gvfRRm_fRgrgHeFftQ · Email: admin@truesight.me
 - `Edgar_20260820121739_071` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxv/EBTe1ugv/HCV77zDhkfxE…
 - `Edgar_20260820122210_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
+- `Edgar_20260820132946_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: shahbaz.jamote@gmail.com
+- `Edgar_20260820132953_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Claude (nelanco-claude)
+- `Edgar_20260820132956_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260820133000_081` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: r9AKAhiz_DX6RGNUkChA8m19kKYmipKJeH9Eqm9x_-E · Email: shahbaz.jamote@gmail.com
+- `Edgar_20260820141753_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260820141811_085` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: iRsUsCdpNRO1yu4Q4sOMvxYi9szNpeiO9U3FmesitJs · Email: admin@truesight.me
+- `Edgar_20260820141924_087` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: iRsUsCdpNRO1yu4Q4sOMvxYi9szNpeiO9U3FmesitJs · Email: admin@truesight.me
+- `Edgar_20260820142014_089` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm90FI1FhsF0qU8p38PuugOn+…
 
 ---
 
@@ -277,6 +277,8 @@ _All dated lines on/after 2026-08-13_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+152633b | 2026-08-21 02:05:44 +0800 | SunMint PDD: update methodology to Verra VM0047 (ARR) + Andean Cacao precedent (#294)
+f5a3624 | 2026-08-20 13:28:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
 710a8d7 | 2026-08-20 07:24:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
 229e051 | 2026-08-20 02:03:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
 82ffc2b | 2026-08-19 19:04:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -319,6 +321,9 @@ cf50f72 | 2026-08-13 03:10:27 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fc84a07 | 2026-08-21 02:05:48 +0800 | SunMint snapshot: note VM0047 supersedes VM0017 methodology reference (#779)
+a92cbe7 | 2026-08-20 21:27:32 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
+c1f7f39 | 2026-08-20 21:27:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
 e9a185f | 2026-08-20 19:39:34 +0800 | docs: log cacao tea 50g Oscar Farm QR batch delivery to CONTEXT_UPDATES (#777)
 7edfcc7 | 2026-08-20 19:37:26 +0800 | docs: note cacao tea 50g QR serial _3 VOID (replaced by _101) (#776)
 8291504 | 2026-08-20 19:24:37 +0800 | docs: IVY plan — infra fully live, UAT narrowed to human-only steps (#761)
@@ -356,9 +361,6 @@ f26b02e | 2026-08-19 05:35:51 +0800 | Document Bionpact in PROJECT_INDEX and WOR
 ca71abe | 2026-08-18 20:32:18 +0000 | Resolve SUNMINT_TREE_QR_LINKING_PLAN §7 ledger classification decision
 89fff52 | 2026-08-19 04:19:52 +0800 | Merge pull request #756 from TrueSightDAO/worktree-sunmint-tree-qr-plan
 66cc4c6 | 2026-08-18 20:13:28 +0000 | Add execution roadmap: link Sunmint tree-planting submissions to sold QR codes
-cbcde84 | 2026-08-19 03:55:59 +0800 | docs: IVY (Liv for Yoga) cohort onboarding — plan of record (#755)
-eb8faac | 2026-08-19 03:07:12 +0800 | chore(previews): refresh Beer Hall preview (2026-08-18 UTC)
-3a8dce3 | 2026-08-19 03:07:11 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-18 UTC)
 … (truncated)
 ```
 
@@ -537,7 +539,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/20/2026 5:51:16 |
+| 2026-08 | 428.46 | 17339.52386 | 8/20/2026 11:50:34 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-13`; scanned last **600** data rows)
 
