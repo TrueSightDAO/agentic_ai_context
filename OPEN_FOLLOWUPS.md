@@ -39,6 +39,23 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### TREE PLANTING LINK EVENT: API submissions never reach the GAS handler (ingestion gap)
+**Filed 2026-08-26 (RUN gate hit). Owner: Gary / whoever picks up SUNMINT RUN.** During the first live-link
+RUN attempt for `plans/SUNMINT_TREE_QR_LINKING_PLAN.md`, a `[TREE PLANTING LINK EVENT]` submitted via
+`truesight_dao_client.modules.link_tree_planting` was accepted by Edgar (HTTP 200, `signature_verification:
+success`) but **never processed**: the GAS handler `process_tree_planting_link.gs` (script id
+`1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v`) only consumes rows from the **"Telegram Chat
+Logs" sheet** (`1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`), which is fed by the Telegram bot scraping the
+DAO group — the API/CLI path does **not** write into that sheet, so the event sits nowhere the handler reads.
+Also: the handler's server-side governor check (`isGovernorByName_` on the live `Governors` tab column A)
+excludes sentinels (`ALLOW SENTINELS` E12 = FALSE; governors = Gary Teh, Jacob Nelan, Elizabeth Wong, Kirsten
+Ritschel, Shena Davenport) — Sophia's submission would be silently rejected even if it reached the sheet.
+**Fix options:** (a) make the CLI/API ingestion append the event row into the Telegram Chat Logs sheet (or a
+direct webhook that lands rows there), and/or (b) use Gary's governor identity via the DApp page
+(`dapp.truesight.me/link_tree_planting.html` — currently 404 on prod, 000 on beta; needs dapp_beta →
+dapp_prod promotion). Verified evidence: QR `2024PF_20250505_03` still SOLD, SunMint msg `6875` still NEW in
+live caches + sheets at filing time.
+
 ### Program onboarding must create BOTH manifests (web + lineage-credentials internal)
 **Filed 2026-08-20. Owner: unclaimed.** The IVY yoga onboarding (2026-08-18/19) created only the web-facing
 `truesight_me/programs/ivy-yoga/manifest.json`; the internal `lineage-credentials/programs/ivy-yoga/manifest.json`
