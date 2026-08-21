@@ -241,34 +241,62 @@ for PR6.
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR-FIX1** (fix the two live data-corruption bugs found in the 2026-08-21 audit,
-> §8 — **do this before RUN**, not after; RUN would either write against corrupted state or make
-> the corruption worse). After PR-FIX1/PR-FIX2: RUN (first live link — governor picks one real
-> SOLD+email QR and one real NEW Sunmint submission, confirms via `link_tree_planting.html`,
-> verifies QR row + SunMint row + ledger Transactions row + owner inbox by hand).
-> **Ledger-money-movement gate (§2) — needs an explicit go.** After RUN: UAT (§5, always-stop gate).
+> **RESUME HERE → RUN** (first live link — governor picks one real SOLD+email QR and one real NEW
+> Sunmint submission, confirms via `link_tree_planting.html`, verifies QR row + SunMint row +
+> ledger Transactions row + owner inbox by hand). **Ledger-money-movement gate (§2) — needs an
+> explicit go, not yet given.** After RUN: UAT (§5, always-stop gate).
 >
-> **All deploys are done (2026-08-19/20).** All 4 live GAS targets pushed, deployed, and verified:
-> QR-codes mirror (`1UrBgqLnnQc6...`, PR4 handler + PR2 stamp), `qr_code_web_service.js`
+> **PR-FIX1 (tokenomics #405) and PR-FIX2 (tokenomics #404) are both merged, deployed, and
+> independently re-verified (2026-08-21)** — both live data-corruption bugs from the §8 audit are
+> fixed: `SOLD_DATE_COL` in the sales-processing project and `SOLD_DATE_COL_DEST` in the QR-codes
+> project both now correctly resolve to column AA.
+>
+> **A third incident hit during the PR-FIX1 deploy, fixed same-day:** the sales-processing
+> project's live, gitignored `Credentials.js` (defines `setApiKeys()`/`getCredentials()`, called
+> unconditionally at module load) got deleted by a `clasp push --force` from a folder that never had
+> it locally — the exact same footgun as the earlier SunMint `Credentials.js` incident, this time
+> hitting the **real, live sales webhook** (every function in the project failed with
+> `ReferenceError: setApiKeys is not defined`, not just tree-planting). Caught by independently
+> curling the live `/exec` endpoint rather than trusting the "deployed" self-report. Fixed by
+> restoring `Credentials.js` as idempotent no-op seeding (Script Properties, the actual secret
+> storage, were untouched); the fix was first deployed to a **new** deployment ID by mistake
+> (leaving the real production URL still broken) — caught by independently curling the production
+> URL specifically, corrected by redeploying **in place** to the existing production deployment ID
+> and deleting the stray new one. Both the fix and the correction were independently verified via
+> direct HTTP checks, not from Sophia's self-reports.
+>
+> **tokenomics #403 and dao_protocol #145 (doPost-based idempotency work) — closed 2026-08-21,
+> governor-confirmed.** Per §9/this section's own decision criterion: `DAO_PROTOCOL_WEBHOOK_TREE_PLANTING_LINK`
+> was found unset in `dao_protocol`'s live env (root cause of the perceived gap), has since been
+> set, and the existing `?action=processTreePlantingLinksFromTelegramChatLogs` GET path was
+> re-tested end-to-end — confirmed delivering immediately. The mandated pattern (Sheet write +
+> `doGet` trigger, §9) already works; the payload-carrying `doPost` mechanism was unnecessary.
+> `#403`'s one valid finding (REJECT-event idempotency) remains an open follow-up, to be solved via
+> the existing tracking-tab dedup pattern (keyed on Telegram row / Telegram Update ID), not a new
+> Request-Transaction-ID scheme.
+>
+> **All deploys are done (2026-08-19/21).** All 4 live GAS targets pushed, deployed, and verified:
+> QR-codes mirror (`1UrBgqLnnQc6...`, PR4 handler + PR2 stamp + PR-FIX2), `qr_code_web_service.js`
 > (`1MnAsIQAxc...`, PR2 picker fix + PR3 endpoint), SunMint Tree Planting (`1Jp8qNIBCZaR...`, PR3
-> endpoint), sales-processing (`1dsWecVwbN0d...`, PR2 stamp). `GOVERNOR_READ_KEY` provisioned on
-> both endpoints by Gary; both verified returning real data end-to-end.
+> endpoint), sales-processing (`1dsWecVwbN0d...`, PR2 stamp + PR-FIX1). `GOVERNOR_READ_KEY`
+> provisioned on both endpoints by Gary; both verified returning real data end-to-end.
 >
-> **Two real incidents hit during deploy, both fixed same-day (tokenomics #393, #394, #395):**
+> **Earlier incidents during initial deploy, both fixed same-day (tokenomics #393, #394, #395):**
 > (1) `Code.js` — a stale, byte-identical duplicate of `process_qr_code_updates.js` sitting in git
 > but never actually meant to be live — got pushed alongside it and broke the QR-codes webhook with
 > a duplicate top-level `const` SyntaxError; fixed with `.claspignore`, verified restored within
 > minutes. (2) SunMint's live, gitignored `Credentials.js` got deleted by a `clasp push --force` run
-> without it present locally (a known clasp footgun this repo's own `.gitignore` already warned
-> about); the underlying Script Properties turned out to be untouched (separate storage from source
-> files), so nothing was actually lost — just the two functions that read them, which were
-> redeployed as idempotent no-op seeding. **Lesson applied to the 4th target (sales-processing)
-> before touching it:** pulled the actual live source into an isolated read-only copy first and
-> diffed against git — found `manifest.json`'s `source_files` field was wrong (the real live file
-> was `Parse Telegram ChatLogs.js`, not `process_sales_telegram_logs.js`) and a third file
-> (`telegram_webhook_listener.js`) was never deployed at all and would have collided on a top-level
-> `const creds` if pushed — both excluded via `.claspignore` before ever pushing, zero incidents on
-> that target.
+> without it present locally; the underlying Script Properties turned out to be untouched (separate
+> storage from source files), so nothing was actually lost — just the two functions that read them,
+> which were redeployed as idempotent no-op seeding. **Lesson applied to the 4th target
+> (sales-processing) before touching it initially:** pulled the actual live source into an isolated
+> read-only copy first and diffed against git — found `manifest.json`'s `source_files` field was
+> wrong (the real live file was `Parse Telegram ChatLogs.js`, not `process_sales_telegram_logs.js`)
+> and a third file (`telegram_webhook_listener.js`) was never deployed at all and would have
+> collided on a top-level `const creds` if pushed — both excluded via `.claspignore`. That same
+> lesson was **not** re-applied before the later PR-FIX1 deploy (see the third incident above) —
+> worth hardening the deploy process itself (Sophia's own follow-up recommendation: a
+> "`Credentials.js` presence check" gate before any `clasp push --force`).
 
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
@@ -290,10 +318,14 @@ for PR6.
 | PR14 (dapp: UX-conform + dropdown pickers) | ☑ | ☑ (dapp_beta #63) | ☐ |
 | PR15 (dapp: Mark Invalid control) | ☑ | ☑ (dapp_beta #64) | ☐ |
 | PR16 (dapp: public-cache rewrite, removes settings wall) | ☑ | ☑ (dapp_beta #66; `lineage-assets` cache generator + 30-min cron) | ☐ |
-| **PR-FIX1** (fix sales-processing project still stamping Sold Date to col W — live, active data corruption of an unrelated review workflow) | ☐ | ☐ | ☐ |
-| **PR-FIX2** (fix Sold Date/Notification off-by-one — both currently resolve to col AB, colliding with each other) | ☐ | ☐ | ☐ |
+| **PR-FIX1** (fix sales-processing project still stamping Sold Date to col W — live, active data corruption of an unrelated review workflow) | ☑ | ☑ (tokenomics #405) | ☐ |
+| **PR-FIX2** (fix Sold Date/Notification off-by-one — both currently resolve to col AB, colliding with each other) | ☑ | ☑ (tokenomics #404) | ☐ |
 | RUN (first live link) | ☐ | — | ☐ |
 | UAT | ☐ | — | ☐ |
+
+**tokenomics #403 / dao_protocol #145 (doPost idempotency mechanism) — CLOSED, not merged** (2026-08-21,
+governor-confirmed): superseded by confirming the existing GET-trigger path already works once the
+missing env var was set. See RESUME HERE note above for the full rationale.
 
 ✅ **Pre-flight Completeness (§5d):** no execution unit above required reading a cross-repo file/state not
 captured in §1. The two items deferred to their own PR's first step (§1.4's exact guard-condition text,
