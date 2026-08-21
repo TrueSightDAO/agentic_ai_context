@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-21T07:23:54Z`
+- Generated (UTC): `2026-08-21T13:26:27Z`
 - Look-back: **7** calendar days (`2026-08-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,18 +33,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 16
-- `[EMAIL VERIFICATION EVENT]` × 7
+- `[EMAIL VERIFICATION EVENT]` × 6
 - `[CREDENTIALING ATTESTATION EVENT]` × 4
 - `[EMAIL REGISTERED EVENT]` × 4
-- `[TREE PLANTING LINK EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
-- `[TREE PLANTING REJECT EVENT]` × 1
+- `[TREE PLANTING LINK EVENT]` × 2
+- `[PRACTICE EVENT]` × 2
 - `[INVENTORY MOVEMENT]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260820121707_069` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: b7h59uTtHF-gvNT59HAmQaWa_gvfRRm_fRgrgHeFftQ · Email: admin@truesight.me
 - `Edgar_20260820121739_071` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxv/EBTe1ugv/HCV77zDhkfxE…
 - `Edgar_20260820122210_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
 - `Edgar_20260820132946_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: shahbaz.jamote@gmail.com
@@ -61,9 +59,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260820195343_097` · **Edgar** · [No Text Provided]
 - `Edgar_20260820202541_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-20T20:25:40.076Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260820214028_101` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
-- `469027793` · **Sophia Truesight** · [TREE PLANTING REJECT EVENT] QR Code: 2024OSCAR_CC_20260620_3 · SunMint Submission Message ID: 7021 · Updated by: Sophia Truesight
 - `Edgar_20260820231153_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh, Paloma
 - `Edgar_20260820231604_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
+- `Edgar_20260821082705_107` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-21T08:27:03.788Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260821130119_001` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CC_20260620_1 · SunMint Submission Message ID: 171 · Updated by: Gary Teh
 
 ---
 
@@ -78,7 +77,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-20T10:59:14.227Z`
+- Generated (UTC): `2026-08-21T10:59:14.626Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -88,12 +87,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **741**, follow_up **71**, bulk **0**, unknown **2** (data rows: **814**)
+- **Email Agent Follow Up** — logged sends: warmup **753**, follow_up **71**, bulk **0**, unknown **2** (data rows: **826**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **663**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **675**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -280,6 +279,7 @@ _All dated lines on/after 2026-08-14_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+22a18af | 2026-08-21 07:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1dfa2b6 | 2026-08-21 02:09:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d721f0d | 2026-08-20 19:11:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 152633b | 2026-08-21 02:05:44 +0800 | SunMint PDD: update methodology to Verra VM0047 (ARR) + Andean Cacao precedent (#294)
@@ -322,6 +322,16 @@ dd22aa5 | 2026-08-14 03:08:49 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6990c17 | 2026-08-21 20:09:15 +0800 | Merge pull request #784 from TrueSightDAO/worktree-sunmint-prod-incident-and-pr-closure
+0f1ca35 | 2026-08-21 11:16:31 +0000 | Mark PR-FIX1/PR-FIX2 merged+deployed+verified; document prod Credentials.js incident; close #403/dao_protocol#145
+31c1f8c | 2026-08-21 19:02:35 +0800 | Document nelanco-claude's Telegram bot + direct Sophia channel (#783)
+429f499 | 2026-08-21 18:37:23 +0800 | Merge pull request #782 from TrueSightDAO/worktree-sunmint-architecture-note
+a0dc3f1 | 2026-08-21 10:36:49 +0000 | Merge: resolve conflict, keep both §8 audit findings and §9 architecture pattern
+5f6b79b | 2026-08-21 10:34:15 +0000 | Document required request pattern (Sheet write + doGet trigger); flag #403's doPost may be solving a non-problem
+0285b05 | 2026-08-21 18:10:10 +0800 | Merge pull request #781 from TrueSightDAO/worktree-sunmint-audit-findings
+ae029a2 | 2026-08-21 10:09:36 +0000 | Audit Sophia's post-deploy work: 2 live data-corruption bugs found, must fix before RUN
+5cd5c80 | 2026-08-21 15:24:16 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
+81cfba1 | 2026-08-21 15:24:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 5c50772 | 2026-08-21 10:08:19 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
 a332fc1 | 2026-08-21 10:08:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 77314ed | 2026-08-21 04:40:57 +0800 | docs(credentialing): add end-to-end cohort validation runbook (IVY E2E) (#780)
@@ -352,22 +362,15 @@ aedebc0 | 2026-08-19 21:25:38 +0800 | chore(previews): refresh Beer Hall preview
 b7a07a0 | 2026-08-19 21:25:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
 9985176 | 2026-08-19 18:12:52 +0800 | docs: Black King admin access options decision PDF (for Vini review)
 b0e0f82 | 2026-08-19 15:20:30 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
-1a366cc | 2026-08-19 15:20:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
-5539ca1 | 2026-08-19 15:15:43 +0800 | Add agent registry
-8c6c453 | 2026-08-19 15:14:54 +0800 | Add Agent Handoff Protocol implementation plan (#763)
-7fff494 | 2026-08-19 10:00:49 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
-e26bc6d | 2026-08-19 10:00:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
-d7bf98c | 2026-08-19 09:20:39 +0800 | Merge pull request #762 from TrueSightDAO/auto/advisory-refresh-2026-08-19
-340ba3e | 2026-08-19 01:20:26 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
-33eb80b | 2026-08-19 05:39:39 +0800 | Add Bionpact autopilot execution roadmap (#754)
-f26b02e | 2026-08-19 05:35:51 +0800 | Document Bionpact in PROJECT_INDEX and WORKSPACE_CONTEXT (#760)
-46bbae1 | 2026-08-19 05:11:44 +0800 | Merge pull request #759 from TrueSightDAO/worktree-sunmint-pr8-plan-update
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+d0e5f78 | 2026-08-21 18:48:11 +0800 | Fix SOLD_DATE_COL 22->26 in Parse Telegram ChatLogs.js (stamp to Column AA, not W) (#405)
+81c0181 | 2026-08-21 18:48:07 +0800 | Fix SOLD_DATE_COL_DEST 27->26 in process_qr_code_updates.js (match Column AA comment) (#404)
+3d45ab8 | 2026-08-21 17:26:12 +0800 | fix: admit [TREE PLANTING REJECT EVENT] rows in the scan filter (#402)
 6ef80e2 | 2026-08-21 06:01:47 +0800 | Expose processTreePlantingLinkCron via doGet action for manual/cron trigger (#400)
 95d9f02 | 2026-08-21 05:41:46 +0800 | Add doPost webhook to close TREE PLANTING LINK ingestion gap (#397)
 3490723 | 2026-08-21 04:58:38 +0800 | feat: allow sentinels to link QR codes to trees (governor OR sentinel gate) (#399)
@@ -544,7 +547,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/20/2026 23:51:05 |
+| 2026-08 | 428.46 | 17339.52386 | 8/21/2026 5:51:19 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-14`; scanned last **600** data rows)
 
