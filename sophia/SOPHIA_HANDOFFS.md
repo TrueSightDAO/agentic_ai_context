@@ -94,6 +94,52 @@ Sophia has two topic tools, so she can structure work across threads:
 So the prior "always create a new topic" churn (1924→1939) is no longer forced:
 prefer reusing the existing handoff thread via `post_to_telegram_topic`.
 
+## Direct Telegram channel — nelanco-claude ↔ Sophia (2026-08-21)
+
+The `nelanco-claude` interactive box (see `plans/NELANCO_CLAUDE_CODE_BOX_PLAN.md`) has its own
+Telegram bot, **@nelanco_claude_bot** ("Nelanco-Claude"), running as a persistent long-poll
+listener (`TrueSightDAO/claude_telegram_monitor`, systemd unit
+`claude-telegram-monitor.service`) in the **TrueSight DAO Ops** group (`-1003919341801`). This is
+a **second, independent way to reach Sophia** alongside `ping_sophia`/`chat-blocking` above — use
+whichever fits:
+
+- **`ping_sophia` (`chat-blocking`)** — one-shot, synchronous trigger. Good for kicking off a
+  handoff or a single well-defined ask where you just need the HTTP response.
+- **Direct Telegram (this section)** — for live, multi-turn, watch-her-work interaction: post in
+  a topic, she replies there, you read her reply and prompt the next step, repeat. Prefer this
+  when a governor wants to monitor progress turn-by-turn rather than fire-and-forget.
+
+**What's wired up, and what it means:**
+
+- **Bot-to-bot communication mode is enabled** (BotFather) for both @nelanco_claude_bot and
+  @truesight_autopilot_bot — by default Telegram bots don't see messages authored by *other*
+  bots even with privacy mode off; this had to be explicitly turned on for both.
+- **@nelanco_claude_bot's numeric Telegram ID (`8919657771`) is in Sophia's
+  `TELEGRAM_ALLOWED_USER_IDS`.** Per `app/policy.py`'s current role model there is **no lesser
+  tier** — this resolves to full `Role.GOVERNOR`, the same authority as Gary/Liz (PR merges,
+  money/DAO actions, everything). This was a deliberate, explicitly-double-confirmed grant, not
+  an oversight — but it means **anything posted by that bot token in Telegram is authoritative to
+  Sophia**. Treat the token (`claude_telegram_monitor/.env`, chmod 600, gitignored) accordingly.
+- **@nelanco_claude_bot is an admin in TrueSight DAO Ops with `can_manage_topics: true`**, so it
+  can call `createForumTopic`/`deleteForumTopic` directly — it doesn't need to ask Sophia to open
+  a topic via her own `create_telegram_topic` tool (though her tool still works fine for her own
+  use).
+- **The listener is filtered and shared, not per-session.** `claude-telegram-monitor.service`
+  only logs messages from Gary and Sophia's bot, in TrueSight DAO Ops — everyone/everywhere else
+  is silently dropped, never logged. But the token, log file, and service are **one shared
+  resource on the box**, readable by any Claude Code session running there (there are commonly
+  several concurrent tmux sessions on `nelanco-claude` — see `OPERATING_INSTRUCTIONS.md` §12).
+  There is no per-session inbox partitioning: if two sessions both read the log around the same
+  time, they see the same messages. Coordinate by task/topic context in what you post (e.g. name
+  the plan/PR you're working on) so replies are traceable to the right session — there's no
+  automatic locking.
+
+**Any Claude Code session on `nelanco-claude`** — not just the one that originally set this up —
+can use this channel: read `/opt/claude_workspace/claude_telegram_monitor/messages.jsonl` for the
+log, and post via the Bot API (`sendMessage`, `createForumTopic`) using the token in
+`claude_telegram_monitor/.env`. Prefer this over `ping_sophia` when the governor wants to see
+back-and-forth progress rather than a single blocking call.
+
 ## Handoff runbook — for ANY local LLM (Claude, Cursor, Kimi, Codex, …)
 
 The process is **agent-agnostic** — any local LLM on the governor's machine

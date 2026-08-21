@@ -245,3 +245,25 @@ Acceptance: all 6 pass → the box is a live, phone-drivable, Sophia-parity Clau
   hard 2FA on the Claude account and a documented kill switch (kill the `tmux`/remote-control session /
   rotate the box's fleet key + PAT / terminate the box). Because fleet access here is *the point*, the main
   residual control is treating loss of the phone/Claude-account as a fleet-key rotation event.
+
+---
+
+## 8. Telegram monitoring bot — @nelanco_claude_bot (2026-08-21)
+
+The box runs its own Telegram bot, **@nelanco_claude_bot** ("Nelanco-Claude"), as a persistent
+long-poll listener — code at `TrueSightDAO/claude_telegram_monitor` (private), deployed as
+systemd unit `claude-telegram-monitor.service` (`Restart=always`, runs as `ubuntu`). It's a member
+(and topic-management admin) of the **TrueSight DAO Ops** Telegram group and gives any Claude Code
+session on this box a way to read/post Telegram directly — including two-way, bot-to-bot
+communication with Sophia's own bot (@truesight_autopilot_bot). Full detail on how this connects
+to Sophia — the governor-tier grant, bot-to-bot mode, thread creation, and the "shared, not
+per-session" caveat for the 6+ concurrent `claude` tmux sessions this box typically runs — lives in
+`sophia/SOPHIA_HANDOFFS.md` § "Direct Telegram channel — nelanco-claude ↔ Sophia". Read that
+before using the channel; don't duplicate its content here.
+
+Quick facts, since they're easy to forget between sessions:
+- Runtime files (token, log, offset) live at `/opt/claude_workspace/claude_telegram_monitor/`,
+  gitignored, chmod 600/700.
+- The listener only logs messages from Gary and Sophia's bot, in TrueSight DAO Ops — everyone
+  else, and every other chat, is silently dropped (security restriction, not a bug).
+- Check service health: `sudo systemctl status claude-telegram-monitor.service`.
