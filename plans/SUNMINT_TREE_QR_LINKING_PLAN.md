@@ -1,6 +1,9 @@
 # Sunmint Tree Planting → QR Code Linking — Execution Roadmap
 
-**Status:** All units (PR2–PR8) built and merged. **Owner:** Gary Teh.
+**Status:** PR2–PR8 built and merged; Sophia shipped substantial follow-on work 2026-08-20/21
+(reject/invalid path, sentinel gate, doPost webhook, public-cache DApp rewrite) — **but a
+2026-08-21 audit found two live data-corruption bugs that must be fixed before RUN. See §8.**
+**Owner:** Gary Teh.
 **Requested by:** Gary Teh, 2026-08-18.
 
 **Errata (2026-08-18, same day):** PR1 as originally scoped ("patch the SOLD-only re-sale guard") was
@@ -238,10 +241,12 @@ for PR6.
 
 ## 4. Resume tracker
 
-> **RESUME HERE → RUN** (first live link — governor picks one real SOLD+email QR and one real
-> NEW Sunmint submission, confirms via `link_tree_planting.html`, verifies QR row + SunMint row +
-> ledger Transactions row + owner inbox by hand). **Ledger-money-movement gate (§2) — needs an
-> explicit go.** After RUN: UAT (§5, always-stop gate).
+> **RESUME HERE → PR-FIX1** (fix the two live data-corruption bugs found in the 2026-08-21 audit,
+> §8 — **do this before RUN**, not after; RUN would either write against corrupted state or make
+> the corruption worse). After PR-FIX1/PR-FIX2: RUN (first live link — governor picks one real
+> SOLD+email QR and one real NEW Sunmint submission, confirms via `link_tree_planting.html`,
+> verifies QR row + SunMint row + ledger Transactions row + owner inbox by hand).
+> **Ledger-money-movement gate (§2) — needs an explicit go.** After RUN: UAT (§5, always-stop gate).
 >
 > **All deploys are done (2026-08-19/20).** All 4 live GAS targets pushed, deployed, and verified:
 > QR-codes mirror (`1UrBgqLnnQc6...`, PR4 handler + PR2 stamp), `qr_code_web_service.js`
@@ -277,6 +282,16 @@ for PR6.
 | PR6 (CLI module) | ☑ | ☑ (dao_protocol #143) | ☐ |
 | PR7 (dapp link_tree_planting.html + treasury-cache permission) | ☑ | ☑ (dapp_beta #62, treasury-cache #11) | ☐ |
 | PR8 (docs) | ☑ | ☑ (tokenomics #392, this update) | ☐ |
+| PR9 (reject/invalid path, TREE PLANTING REJECT EVENT) | ☑ | ☑ (tokenomics #396) | ☐ |
+| PR10 (fix Sold Date/Notification column collision — **has its own bug, see §8 PR-FIX1**) | ☑ | ☑ (tokenomics #398) | ☐ |
+| PR11 (sentinel gate — governor OR sentinel) | ☑ | ☑ (tokenomics #399) | ☐ |
+| PR12 (doPost webhook for immediate TREE PLANTING LINK processing) | ☑ | ☑ (tokenomics #397) | ☐ |
+| PR13 (reject-event scan filter fix) | ☑ | ☑ (tokenomics #402) | ☐ |
+| PR14 (dapp: UX-conform + dropdown pickers) | ☑ | ☑ (dapp_beta #63) | ☐ |
+| PR15 (dapp: Mark Invalid control) | ☑ | ☑ (dapp_beta #64) | ☐ |
+| PR16 (dapp: public-cache rewrite, removes settings wall) | ☑ | ☑ (dapp_beta #66; `lineage-assets` cache generator + 30-min cron) | ☐ |
+| **PR-FIX1** (fix sales-processing project still stamping Sold Date to col W — live, active data corruption of an unrelated review workflow) | ☐ | ☐ | ☐ |
+| **PR-FIX2** (fix Sold Date/Notification off-by-one — both currently resolve to col AB, colliding with each other) | ☐ | ☐ | ☐ |
 | RUN (first live link) | ☐ | — | ☐ |
 | UAT | ☐ | — | ☐ |
 
@@ -331,3 +346,77 @@ Per `OPERATING_INSTRUCTIONS.md` §6, report each merged PR via `dao_client` (`tr
 - **Sunmint app video collection.** QR col Q `Planting Video URL` is left blank by this plan (the farmer
   app doesn't collect video). Worth adding to `sunmint_beta` later, or is video out of scope entirely for
   this program?
+
+---
+
+## 8. Post-deploy audit findings (Claude, 2026-08-21) — read before RUN
+
+Sophia shipped substantial follow-on work 2026-08-20/21 (PR9–PR16 above) beyond this plan's original
+scope: a reject/invalid path, sentinel gating, an immediate `doPost` webhook, and a full architecture
+improvement replacing the DApp's key-gated-endpoint settings wall with public GitHub JSON caches (matches
+the `review_queue.html`/`dao_members.json` convention — genuinely better than this plan's original design).
+**All of that is verified live and working.** But auditing it (pulling actual live GAS source into isolated
+read-only copies and diffing against git — same method used for the original 4th deploy target) surfaced
+two live bugs that must be fixed before RUN.
+
+### 8.1 PR-FIX1 (CRITICAL, live, active) — sales-processing project never got the column-collision fix
+
+PR10 (tokenomics #398) moved the `Agroverse QR codes` Sold Date stamp off column W after discovering W is
+actually **"Review Email Sent Date"**, live-owned by an unrelated retailer-review-follow-up workflow
+(`go_to_market` email-agent scripts) — but the fix only touched `process_qr_code_updates.js` (the QR-codes
+project, `1UrBgqLnnQc6...`). **The sales-processing project's live file — confirmed via isolated `clasp
+pull`, not just git —**
+`google_app_scripts/1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/Parse Telegram ChatLogs.js`
+line 205 **still has `const SOLD_DATE_COL = 22; // Column W`.** This is the primary path most real sales go
+through — **every sale processed here is currently overwriting the review workflow's "Review Email Sent
+Date" with today's date, live, right now.** Fix: update `SOLD_DATE_COL` in that file to match wherever
+PR-FIX2 below lands the corrected value, `clasp push` + `clasp deploy` to the confirmed live deployment ID
+`AKfycbzc15gptNmn8Pm726cfeXDnBxbxZ1L31MN6bkfBH7ziiz4gxl87vJXEhAAJJhZ5uAxq` (recorded in `manifest.json`'s
+probe and re-verified live 2026-08-20), verify via a plain GET (expect unchanged `"No valid action
+specified"` default response — same baseline-diff method used throughout this plan's deploy).
+`process_sales_telegram_logs.js` and `telegram_webhook_listener.js` in that same directory are **not**
+live (confirmed via the same isolated pull) — don't bother editing them, they're dead weight in git.
+
+### 8.2 PR-FIX2 (CRITICAL, live) — the fix itself has an off-by-one; Sold Date and Notification-Sent collide
+
+In the QR-codes project (live, confirmed via isolated `clasp pull` diffed byte-identical to git HEAD):
+- `process_qr_code_updates.js`: `const SOLD_DATE_COL_DEST = 27; // Column AA`
+- `process_tree_planting_link.js`: `const TPL_NOTIFICATION_SENT_COL = 27; // Column AB`
+
+Both are **27**. This codebase's own 0-based-index convention (`getRange(row, CONST + 1)`) means index 27
+resolves to **column AB** (1-based column 28), not AA — A=0…Z=25, AA=26, AB=27. So `SOLD_DATE_COL_DEST`'s
+comment is wrong and its value collides with `TPL_NOTIFICATION_SENT_COL`: **Sold Date and Tree Planted
+Notification Sent Date currently silently overwrite each other in the same column (AB).** Fix:
+`SOLD_DATE_COL_DEST` should be **26** (targets AA, matching its own comment and SCHEMA.md's documentation).
+`TPL_NOTIFICATION_SENT_COL = 27` (AB) is correct as-is — leave it. After fixing, `clasp push` +
+`clasp deploy` the QR-codes project (deployment ID
+`AKfycbxMz8cAkJ-MT3FhxRc9SxLZZzm7J83-EZPnv5M7V_9QHKywC3aKUeaR2tqELheq3e7X`), and PR-FIX1 above must use
+the corrected AA value too (both must agree). Update `SCHEMA.md`'s AA row description if it currently
+documents the wrong index. **Do this fix before RUN** — RUN's own notification write would otherwise land
+in the same colliding column, and the UAT acceptance criteria (§5 step 4: "W already had a Sold Date; X
+gets today's date") already refer to stale column letters that need updating to AA/AB throughout §5 too.
+
+### 8.3 Cleanup (not urgent, but flagged — avoid a third incident)
+
+- **`Code.js` in the QR-codes project git checkout is dead** (confirmed not live via isolated pull —
+  doesn't even exist in the live file list) but keeps getting edited as if it were live: PR12's commit
+  (`6ef80e2`) added a `processTreePlantingLinkCron` doGet branch to `Code.js` — that branch will never run.
+  It's also redundant: the live `process_qr_code_updates.js` already exposes the equivalent action
+  (`?action=processTreePlantingLinksFromTelegramChatLogs`, from this plan's original PR4). Recommend
+  **deleting `Code.js` from git entirely** in this directory — it has now caused two incidents (a real
+  production SyntaxError when it got pushed by accident earlier, and this dead-code edit) purely by
+  existing and looking legitimate. Same applies to any other `google_app_scripts/<id>/Code.js` that's
+  confirmed non-live if anyone wants to do a wider sweep, but that's out of scope here.
+- **Chronological ordering regressed.** This plan's original §1.6 wanted the QR picker sorted by Sold Date.
+  The new cache-based picker (`lineage-assets/scripts/sync_pending_caches.py`) sources sold-QR data from
+  `qrs_index.json` instead and doesn't sort by Sold Date at all. Minor, not blocking — flagging so it isn't
+  assumed to already be true.
+- **Native `<select>` vs the established searchable-combobox convention.** `UX_CONVENTIONS.md`'s
+  "Combobox/Searchable Dropdowns" section documents a searchable pattern (`update_qr_code.html`,
+  `report_inventory_movement.html`) specifically for large lists. PR14 used plain `<select id="qr_select">`
+  / `<select id="sunmint_select">` instead — functional, but with **414 sold-QR items** in one unsearchable
+  native dropdown, this is a real usability gap against the documented convention for exactly this
+  scenario. Worth upgrading to the combobox pattern; not blocking RUN/UAT.
+- **Identity-verification transitional state missing.** `UX_CONVENTIONS.md`'s "Verifying your digital
+  signature..." pattern (loading message before the welcome/form reveal) isn't present on
+  `link_tree_planting.html`. Cosmetic.
