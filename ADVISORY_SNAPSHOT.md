@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-21T13:26:27Z`
+- Generated (UTC): `2026-08-21T19:06:42Z`
 - Look-back: **7** calendar days (`2026-08-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,17 +34,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 16
 - `[EMAIL VERIFICATION EVENT]` × 6
-- `[CREDENTIALING ATTESTATION EVENT]` × 4
-- `[EMAIL REGISTERED EVENT]` × 4
+- `[CREDENTIALING ATTESTATION EVENT]` × 3
+- `[EMAIL REGISTERED EVENT]` × 3
 - `[TREE PLANTING LINK EVENT]` × 2
 - `[PRACTICE EVENT]` × 2
+- `[TREE PLANTING EVENT]` × 2
 - `[INVENTORY MOVEMENT]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260820121739_071` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxv/EBTe1ugv/HCV77zDhkfxE…
-- `Edgar_20260820122210_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
 - `Edgar_20260820132946_075` · **Edgar** · [EMAIL REGISTERED EVENT] Email: shahbaz.jamote@gmail.com
 - `Edgar_20260820132953_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Claude (nelanco-claude)
 - `Edgar_20260820132956_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight (autopilot)
@@ -63,6 +62,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260820231604_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
 - `Edgar_20260821082705_107` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-21T08:27:03.788Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260821130119_001` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CC_20260620_1 · SunMint Submission Message ID: 171 · Updated by: Gary Teh
+- `Edgar_20260821172545_003` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260821175134_005` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Bougainvillea
 
 ---
 
@@ -279,6 +280,7 @@ _All dated lines on/after 2026-08-14_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+952544a | 2026-08-21 13:28:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 22a18af | 2026-08-21 07:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1dfa2b6 | 2026-08-21 02:09:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d721f0d | 2026-08-20 19:11:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,6 +324,8 @@ dd22aa5 | 2026-08-14 03:08:49 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+69614a3 | 2026-08-21 21:26:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
+0d2ecbb | 2026-08-21 21:26:55 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 6990c17 | 2026-08-21 20:09:15 +0800 | Merge pull request #784 from TrueSightDAO/worktree-sunmint-prod-incident-and-pr-closure
 0f1ca35 | 2026-08-21 11:16:31 +0000 | Mark PR-FIX1/PR-FIX2 merged+deployed+verified; document prod Credentials.js incident; close #403/dao_protocol#145
 31c1f8c | 2026-08-21 19:02:35 +0800 | Document nelanco-claude's Telegram bot + direct Sophia channel (#783)
@@ -360,8 +364,6 @@ ca6a690 | 2026-08-20 09:59:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 e28c586 | 2026-08-20 03:03:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
 aedebc0 | 2026-08-19 21:25:38 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
 b7a07a0 | 2026-08-19 21:25:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
-9985176 | 2026-08-19 18:12:52 +0800 | docs: Black King admin access options decision PDF (for Vini review)
-b0e0f82 | 2026-08-19 15:20:30 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
 … (truncated)
 ```
 
@@ -547,7 +549,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/21/2026 5:51:19 |
+| 2026-08 | 428.46 | 17339.52386 | 8/21/2026 11:50:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-14`; scanned last **600** data rows)
 
