@@ -420,3 +420,51 @@ gets today's date") already refer to stale column letters that need updating to 
 - **Identity-verification transitional state missing.** `UX_CONVENTIONS.md`'s "Verifying your digital
   signature..." pattern (loading message before the welcome/form reveal) isn't present on
   `link_tree_planting.html`. Cosmetic.
+
+---
+
+## 9. Required request pattern (Gary, 2026-08-21) — verify PR9/PR12/#403 conform
+
+**Mandated pattern:** user clicks (DApp) → `dao_protocol` (Python) → `dao_protocol` writes to the Google
+Sheet → `dao_protocol` sends a **`doGet`** to GAS (a trigger, not a payload carrier) → GAS reads what was
+just written and handles the follow-up business logic.
+
+**This is already what PR5 (this plan, `dao_protocol` #142) implements, and it's still intact and live
+today** — verified by reading `truesight_dao_client/server/routes/dao.py`'s `submit_contribution` handler
+directly (not assuming): it writes **synchronously** to `Telegram Chat Logs` via `sheets/telegram_raw_log.py`
+(comment on that line: "synchronous; user-visible state, no-race rule"), *then* asynchronously
+(`background.add_task`) calls `dispatch.dispatch_event(text)`, which — for every event tag in the
+`ROUTING` table, PR5's `[TREE PLANTING LINK EVENT]` entry included — calls `webhook_trigger.trigger(url,
+action)`: a plain **GET** with `?action=<name>` and no payload (the one exception, `ONBOARDING_INVITATION`,
+adds a few extra query params, never the full event text). GAS's `doGet` handler reads the just-written
+row from `Telegram Chat Logs` itself. This is uniform across every other event type in the dispatcher — PR5
+did not deviate from it.
+
+**PR12 (tokenomics #397) added a *second*, non-standard `doPost` endpoint** on `process_tree_planting_link.js`
+that receives the full signed event text directly (bypassing the sheet-write-then-GET-trigger pattern
+above), and PR9/#403/dao_protocol#145 have been iterating on that `doPost` path's gaps (LINK-marker-only,
+governor-only, non-idempotent). **#403's PR description claims "Rails dispatch GET passes no event text;
+Telegram feed dead since 2024" as the reason a payload-carrying endpoint is needed** — this appears to
+conflate legacy **Rails** (`sentiment_importer`/Perch — a different, mostly-retired codebase for DAO
+purposes since the 2026-05-26 `dao_protocol` cutover, see `WORKSPACE_CONTEXT.md` §6) with the *current*
+`dao_protocol` dispatch mechanism audited above, which is Python/FastAPI, not Rails, and does *not* rely on
+an actual Telegram bot/chat scrape — "Telegram Chat Logs" is just the sheet's legacy name; `dao_protocol`
+writes to it directly via the Sheets API, not through Telegram at all.
+
+**Before building more on the doPost path, check the actually-boring possible explanation first:** is
+`DAO_PROTOCOL_WEBHOOK_TREE_PLANTING_LINK` actually set in `dao_protocol`'s live env? If it's unset,
+`dispatch_event` logs "no webhook URL... GAS cron will process" and silently falls back to the **cron**
+(minutes-scale delay, not broken, just slow) — which would *look* like "the GET path doesn't deliver
+immediately" without there being any architectural problem at all, just a missing config value. If that's
+the actual gap, the fix is setting one env var, not a new ingestion mechanism.
+
+**Action:** before continuing #403/dao_protocol#145, confirm whether `DAO_PROTOCOL_WEBHOOK_TREE_PLANTING_LINK`
+is set. If unset → set it (the deployment URL for the QR-codes project's live deployment,
+`AKfycbxMz8cAkJ-MT3FhxRc9SxLZZzm7J83-EZPnv5M7V_9QHKywC3aKUeaR2tqELheq3e7X`) and re-test the existing
+`?action=processTreePlantingLinksFromTelegramChatLogs` GET path end-to-end before assuming the doPost
+mechanism is necessary at all. If it's already set and the GET path is still confirmed (with evidence, not
+assumption) not delivering immediately, then there may be a real gap worth documenting precisely — but the
+fix should still follow the mandated pattern (Sheet write + `doGet` trigger), not a payload-carrying
+`doPost`. Either way, `[TREE PLANTING REJECT EVENT]`'s idempotency (#403's real, valid finding) belongs in
+the **existing tracking-tab dedup** that every other event type already uses (keyed on Telegram row /
+`Telegram Update ID`), not a new `Request Transaction ID`-based scheme unique to this one path.
