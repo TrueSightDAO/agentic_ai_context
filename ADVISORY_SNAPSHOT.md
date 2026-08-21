@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-21T02:07:57Z`
+- Generated (UTC): `2026-08-21T07:23:54Z`
 - Look-back: **7** calendar days (`2026-08-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -237,9 +237,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,789.13**
+- USD on hand: **$4,789.03**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.28**
+- USD provisioned for voting-rights cash-out: **$52.38**
 
 ### In-transit freight (1 row)
 
@@ -280,6 +280,7 @@ _All dated lines on/after 2026-08-14_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1dfa2b6 | 2026-08-21 02:09:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d721f0d | 2026-08-20 19:11:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 152633b | 2026-08-21 02:05:44 +0800 | SunMint PDD: update methodology to Verra VM0047 (ARR) + Andean Cacao precedent (#294)
 f5a3624 | 2026-08-20 13:28:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -321,6 +322,8 @@ dd22aa5 | 2026-08-14 03:08:49 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5c50772 | 2026-08-21 10:08:19 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
+a332fc1 | 2026-08-21 10:08:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 77314ed | 2026-08-21 04:40:57 +0800 | docs(credentialing): add end-to-end cohort validation runbook (IVY E2E) (#780)
 71e0025 | 2026-08-21 03:10:58 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
 60dc3d3 | 2026-08-21 03:10:57 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
@@ -359,8 +362,6 @@ d7bf98c | 2026-08-19 09:20:39 +0800 | Merge pull request #762 from TrueSightDAO/
 33eb80b | 2026-08-19 05:39:39 +0800 | Add Bionpact autopilot execution roadmap (#754)
 f26b02e | 2026-08-19 05:35:51 +0800 | Document Bionpact in PROJECT_INDEX and WORKSPACE_CONTEXT (#760)
 46bbae1 | 2026-08-19 05:11:44 +0800 | Merge pull request #759 from TrueSightDAO/worktree-sunmint-pr8-plan-update
-0f9e91f | 2026-08-18 21:11:25 +0000 | Mark SUNMINT_TREE_QR_LINKING_PLAN PR2-PR8 built/merged; retire PR1 for real this time
-669f121 | 2026-08-19 04:32:31 +0800 | Merge pull request #758 from TrueSightDAO/worktree-sunmint-ledger-classification-fix
 … (truncated)
 ```
 
@@ -417,6 +418,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d206ab7 | 2026-08-21 07:09:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1fdd50d | 2026-08-20 18:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
 1cb9039 | 2026-08-20 07:08:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 66f6778 | 2026-08-19 07:07:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -542,7 +544,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/20/2026 18:50:31 |
+| 2026-08 | 428.46 | 17339.52386 | 8/20/2026 23:51:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-14`; scanned last **600** data rows)
 
