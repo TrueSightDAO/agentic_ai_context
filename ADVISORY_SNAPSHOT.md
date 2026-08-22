@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-22T01:57:33Z`
+- Generated (UTC): `2026-08-22T07:09:21Z`
 - Look-back: **7** calendar days (`2026-08-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,19 +34,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 18
 - `[EMAIL VERIFICATION EVENT]` × 5
+- `[TREE PLANTING LINK EVENT]` × 4
 - `[EMAIL REGISTERED EVENT]` × 3
-- `[TREE PLANTING LINK EVENT]` × 2
 - `[CREDENTIALING ATTESTATION EVENT]` × 2
 - `[PRACTICE EVENT]` × 2
 - `[TREE PLANTING EVENT]` × 2
 - `[INVENTORY MOVEMENT]` × 1
+- `[SALES EVENT]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260820141753_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
-- `Edgar_20260820141811_085` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: iRsUsCdpNRO1yu4Q4sOMvxYi9szNpeiO9U3FmesitJs · Email: admin@truesight.me
-- `Edgar_20260820141924_087` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: iRsUsCdpNRO1yu4Q4sOMvxYi9szNpeiO9U3FmesitJs · Email: admin@truesight.me
 - `Edgar_20260820142014_089` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm90FI1FhsF0qU8p38PuugOn+…
 - `Edgar_20260820194844_091` · **Edgar** · [No Text Provided]
 - `Edgar_20260820195021_093` · **Edgar** · [No Text Provided]
@@ -64,6 +62,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260821195938_009` · **Edgar** · [CONTRIBUTION EVENT] Amount: 120 · Contributor(s): Gary Teh · Description: 2-hour chat with Cesar and his uncle about cacao from Amazonas. Follow-ups: …
 - `Edgar_20260821200120_011` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh, Matheus · Description: 30-minute session on Black King: (1) new accountant — Vini offered to help f…
 - `Edgar_20260821205140_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh, Paloma, Juliana Melo, Cristian Crispim
+- `E2ETEST_20260822065043_001` · **E2E Test** · [TREE PLANTING LINK EVENT] QR Code: 20260821_E2ETEST_SEF_1 · SunMint Submission Message ID: TEST-001 · Updated by: Sophia Truesight
+- `E2ETEST_20260822065132_001` · **E2E Test** · [TREE PLANTING LINK EVENT] QR Code: 20260821_E2ETEST_SEF_1 · SunMint Submission Message ID: TEST-001 · Updated by: Sophia Truesight
+- `Edgar_20260822065524_015` · **Edgar** · [SALES EVENT] Item: 2026TEST_20260822_1 · Sales price: 0 · Sold by: Gary Teh
 
 ---
 
@@ -237,9 +238,9 @@ _(+26 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,789.03**
+- USD on hand: **$4,788.93**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.38**
+- USD provisioned for voting-rights cash-out: **$52.49**
 
 ### In-transit freight (1 row)
 
@@ -280,6 +281,7 @@ _All dated lines on/after 2026-08-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+741f7f1 | 2026-08-22 02:01:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fdfe771 | 2026-08-21 19:07:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 952544a | 2026-08-21 13:28:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 22a18af | 2026-08-21 07:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -321,6 +323,10 @@ fd8c1b4 | 2026-08-15 01:59:52 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f98cc08 | 2026-08-22 14:52:50 +0800 | Merge pull request #786 from TrueSightDAO/worktree-sunmint-e2e-test-runbook
+04fa141 | 2026-08-22 06:52:28 +0000 | Document reusable end-to-end test procedure for tree-planting-link pipeline (§10)
+f8045fb | 2026-08-22 09:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-22 UTC)
+f2692ac | 2026-08-22 09:57:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
 fec18a7 | 2026-08-22 09:19:47 +0800 | Merge pull request #785 from TrueSightDAO/auto/advisory-refresh-2026-08-22
 683986f | 2026-08-22 01:19:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
 e41ceb1 | 2026-08-22 03:07:05 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
@@ -357,16 +363,13 @@ e9a185f | 2026-08-20 19:39:34 +0800 | docs: log cacao tea 50g Oscar Farm QR batc
 aceaaaa | 2026-08-20 09:05:44 +0000 | Add Farm & Shipment Media JSON plan — hand off to Sophia
 7e9d78a | 2026-08-20 16:47:19 +0800 | docs: SOP — verify root cause before assuming an async flow is just slow (#768)
 852cbd3 | 2026-08-20 15:23:11 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
-c499091 | 2026-08-20 15:23:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
-379b864 | 2026-08-20 09:59:06 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
-ca6a690 | 2026-08-20 09:59:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
-0c54787 | 2026-08-20 06:24:11 +0800 | Mandate agent registry entry for new sibling instances
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+62b57d3 | 2026-08-22 14:45:45 +0800 | fix: route AGL4 tree-planting fulfillment to main DAO ledger offchain tab (#406)
 d0e5f78 | 2026-08-21 18:48:11 +0800 | Fix SOLD_DATE_COL 22->26 in Parse Telegram ChatLogs.js (stamp to Column AA, not W) (#405)
 81c0181 | 2026-08-21 18:48:07 +0800 | Fix SOLD_DATE_COL_DEST 27->26 in process_qr_code_updates.js (match Column AA comment) (#404)
 3d45ab8 | 2026-08-21 17:26:12 +0800 | fix: admit [TREE PLANTING REJECT EVENT] rows in the scan filter (#402)
@@ -420,6 +423,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b12ca39 | 2026-08-22 07:05:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 d206ab7 | 2026-08-21 07:09:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1fdd50d | 2026-08-20 18:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
 1cb9039 | 2026-08-20 07:08:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -545,7 +549,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/21/2026 18:51:34 |
+| 2026-08 | 428.46 | 17339.52386 | 8/21/2026 23:52:04 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-15`; scanned last **600** data rows)
 
@@ -557,6 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_18 | zpFSulJXVklN | — |
 | 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_17 | zpFSulJXVklN | — |
 | 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_16 | zpFSulJXVklN | — |
+| 2026-08-22 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
