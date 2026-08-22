@@ -516,12 +516,18 @@ didn't know that, so it could never actually discharge the real liability for AG
 this bug's regression test and for any future test of the tree-planting-link pipeline — so any LLM (Sophia or
 otherwise) can replicate it without re-deriving the design.**
 
-**Design principle: exercise the real production code paths, not hand-inserted rows.** Earlier attempts to
-pick a "safe" test ledger (PP1, SEF1 — clean ledgers with spare `MINTED` inventory) were rejected in favor of
-using **AGL4 itself**, deliberately, because AGL4 is the ledger with the special-case routing — testing on a
-different ledger would validate nothing about the actual fix. The test QR is clearly test-labeled and the
-sale price is $0, so no real money or real customer is involved, but every other step goes through the same
-code every real transaction goes through.
+**Design principle: exercise the real production code paths where safe, but NEVER submit a real `[SALES
+EVENT]` for a test.** Earlier attempts to pick a "safe" test ledger (PP1, SEF1 — clean ledgers with spare
+`MINTED` inventory) were rejected in favor of using **AGL4 itself**, deliberately, because AGL4 is the ledger
+with the special-case routing — testing on a different ledger would validate nothing about the actual fix.
+**Revised 2026-08-22 (Gary):** the QR's `status` column must be set directly to `SOLD` via a plain sheet
+edit, NOT by submitting a real `[SALES EVENT]` through the sales pipeline (`dao_client` / `report_sales.html`)
+— even at $0, a real sales-event submission is ingested by the same parser/tokenizer that processes real
+revenue and would pollute real sales-figures reporting and treasury accounting. (This *did* surface a real,
+separate bug — the sales parser's `if (qrCode && salePrice)` check treats `salePrice=0` as falsy and silently
+drops $0 sales as `IGNORED`, fixed in tokenomics #407 — but that fix should be evaluated and merged on its
+own merits as a production bug fix, not as a dependency of this test procedure, which no longer needs the
+sales pipeline at all.)
 
 **Procedure:**
 
@@ -534,13 +540,12 @@ code every real transaction goes through.
      generic label for every future test of this pipeline, regardless of which ledger is under test.
    - `status`: `MINTED`.
    - `Owner Email`: a clearly-fake test address, e.g. `test+e2e@truesight.me`.
-2. **Simulate the sale through the real sales pipeline** — submit a real `[SALES EVENT]` via `dao_client`
-   (the same path `dapp.truesight.me/report_sales.html` / the CLI sales module uses), **Sale price: $0**, for
-   the test QR. Because the QR is AGL4-tied, this should exercise
-   `sales_update_main_dao_offchain_ledger.js`'s `processTokenizedTransactions()` exactly as a real sale would,
-   and book the `+1 Cacao Tree To Be Planted` liability onto the **main ledger's `offchain transactions`
-   tab** — confirm this actually happens by re-reading that tab. (Do not hand-insert this row — the point of
-   using AGL4 is to prove the *real* sale-time code path still works, not to assume it does.)
+2. **Set the QR to `SOLD` directly** — edit column D on the test QR's row to `SOLD` (a plain sheet write, not
+   an event submission). **Do NOT submit a `[SALES EVENT]` for this or any future test** — that pipeline
+   feeds real sales-figures reporting and treasury accounting and must never see synthetic data. Because this
+   bypasses `sales_update_main_dao_offchain_ledger.js` entirely, no sale-time liability entry will exist on
+   the main ledger for this test QR — that's expected and fine; this procedure validates the **fulfillment**
+   routing (tokenomics #406), not the sale-time booking.
 3. **Insert a dummy SunMint tree-planting submission** in `SunMint Tree Planting`
    (`1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`): a clearly-test Telegram Message ID (prefix `TEST-`),
    `Status`: `NEW`, dummy latitude/longitude, `Submitted Name`: `E2E Test` (or similar, clearly not a real
@@ -550,21 +555,23 @@ code every real transaction goes through.
    — the same mechanism a real link uses (`dapp.truesight.me/link_tree_planting.html`'s browser flow signs
    and posts the same event).
 5. **Verify by re-reading every affected row** (never trust a self-report — re-read the actual sheets):
-   - QR row: `status` → `ASSIGNED_TO_TREE`, tree-planting date/lat/long/photo populated.
+   - QR row: `status` → `ASSIGNED_TO_TREE` (transient — see step 6), tree-planting date/lat/long/photo
+     populated.
    - SunMint row: `Status` → `LINKED`, `Linked QR Code` / `Linked At` populated.
-   - Main ledger's `offchain transactions` tab: **both** the sale-time `+1` liability (step 2) **and** the
-     fulfillment `-1`/`+1` pair (step 4) are present, with the matching contributor pattern
-     (`SunMint Tree Planting Contract - agl4`) and item names (`Cacao Tree To Be Planted` /
-     `Cacao Tree Planted`).
+   - Main ledger's `offchain transactions` tab: the fulfillment `-1`/`+1` pair from step 4 is present, with
+     contributor `SunMint Tree Planting Contract - agl4` and item names `Cacao Tree To Be Planted` /
+     `Cacao Tree Planted` — this is the actual behavior tokenomics #406 fixed. (No sale-time `+1` liability
+     row will exist for this test QR, per step 2 — that's expected, not a defect.)
    - `Tree Planting Link` tracking tab: outcome `LINKED`/`OK` for the test row.
-6. **Clean up or clearly mark test data** — since this books real (if $0) rows onto the main ledger, leave a
-   clear trail (the `TEST-`/`TEST_AGL4_` prefixes above exist for this reason) rather than deleting silently;
-   confirm with the governor before removing anything from a real ledger tab, per the same rule that applies
-   to any other ledger write.
+6. **Invalidate the test QR once verification is complete** — set column D (`status`) to `INVALIDATED` (added
+   to the status enum in `tokenomics/SCHEMA.md` 2026-08-22 specifically for this purpose). Do not delete the
+   row or the ledger entries — `INVALIDATED` marks the QR as permanently void while preserving the audit
+   trail, and it's excluded from every "available"/"sold" picker and count the same way a real void is. This
+   replaces the earlier, vaguer "clean up or clearly mark" guidance with a concrete terminal state.
 
 **Log of runs** (append a row each time this procedure executes — keep this current so the next LLM knows
 what's already been validated and doesn't need to re-derive step-by-step, per §5d):
 
 | Date | Test QR | Sale price | Result | Notes |
 |------|---------|-----------|--------|-------|
-| _pending_ | _pending_ | $0 | _pending — Sophia executing per this section, 2026-08-22_ | First run of this procedure, validating tokenomics #406 |
+| 2026-08-22 | _pending_ | N/A — status set directly, no sales event | _pending — Sophia re-executing per revised §10, 2026-08-22_ | First run attempted a real $0 sales-event submission per the original design; superseded same-day after Gary flagged that real sales-pipeline submissions must never be used for tests, even at $0. That attempt also surfaced a real, separate production bug (tokenomics #407, $0-price sales silently ignored) — worth fixing independently, no longer a dependency of this procedure. |
