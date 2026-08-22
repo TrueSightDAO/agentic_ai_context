@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-22T07:09:21Z`
+- Generated (UTC): `2026-08-22T13:09:20Z`
 - Look-back: **7** calendar days (`2026-08-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,12 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
+- `[CONTRIBUTION EVENT]` × 15
+- `[TREE PLANTING LINK EVENT]` × 7
 - `[EMAIL VERIFICATION EVENT]` × 5
-- `[TREE PLANTING LINK EVENT]` × 4
-- `[EMAIL REGISTERED EVENT]` × 3
+- `[PRACTICE EVENT]` × 3
 - `[CREDENTIALING ATTESTATION EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 2
 - `[TREE PLANTING EVENT]` × 2
 - `[INVENTORY MOVEMENT]` × 1
 - `[SALES EVENT]` × 1
@@ -45,16 +45,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260820142014_089` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm90FI1FhsF0qU8p38PuugOn+…
-- `Edgar_20260820194844_091` · **Edgar** · [No Text Provided]
-- `Edgar_20260820195021_093` · **Edgar** · [No Text Provided]
-- `Edgar_20260820195031_095` · **Edgar** · [No Text Provided]
-- `Edgar_20260820195343_097` · **Edgar** · [No Text Provided]
-- `Edgar_20260820202541_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-20T20:25:40.076Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260820214028_101` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
-- `Edgar_20260820231153_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh, Paloma
-- `Edgar_20260820231604_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
-- `Edgar_20260821082705_107` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-21T08:27:03.788Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260821130119_001` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CC_20260620_1 · SunMint Submission Message ID: 171 · Updated by: Gary Teh
 - `Edgar_20260821172545_003` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
 - `Edgar_20260821175134_005` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Bougainvillea
@@ -65,6 +55,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `E2ETEST_20260822065043_001` · **E2E Test** · [TREE PLANTING LINK EVENT] QR Code: 20260821_E2ETEST_SEF_1 · SunMint Submission Message ID: TEST-001 · Updated by: Sophia Truesight
 - `E2ETEST_20260822065132_001` · **E2E Test** · [TREE PLANTING LINK EVENT] QR Code: 20260821_E2ETEST_SEF_1 · SunMint Submission Message ID: TEST-001 · Updated by: Sophia Truesight
 - `Edgar_20260822065524_015` · **Edgar** · [SALES EVENT] Item: 2026TEST_20260822_1 · Sales price: 0 · Sold by: Gary Teh
+- `Edgar_20260822084024_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-22T08:40:22.640Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260822092136_019` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2026TEST_20260822_1 · SunMint Submission Message ID: TEST-20260822-1 · Updated by: Sophia Truesight
+- `Edgar_20260822092215_021` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2026TEST_20260822_1 · SunMint Submission Message ID: TEST-20260822-1 · Updated by: Sophia Truesight
+- `Edgar_20260822092342_023` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2026TEST_20260822_1 · SunMint Submission Message ID: TEST-20260822-1 · Updated by: Sophia Truesight
+- `Edgar_20260822093431_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Fix Gmail OAuth token to add Calendar scope, deploy to Sophia. Verified Soph…
+- `Edgar_20260822093439_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: Created a Google Calendar event via garyjob@agroverse.shop (blocked earlier …
+- `Edgar_20260822093446_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Gmail-to-Calendar OAuth scope fix: shared the screenshot of Sophia's credent…
+- `Edgar_20260822114205_031` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek API credit top-up for the Sophia autopilot (resolves 'Insufficient …
+- `Edgar_20260822114540_033` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: FOUNDERHAUS_BOUGAINVILLEA_20260821_1 · SunMint Submission Message ID: Edgar_20260821175134_006 · Updated by: Gary Teh
+- `Edgar_20260822125817_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
 
 ---
 
@@ -79,7 +79,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-21T10:59:14.626Z`
+- Generated (UTC): `2026-08-22T10:59:15.074Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,12 +89,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **753**, follow_up **71**, bulk **0**, unknown **2** (data rows: **826**)
+- **Email Agent Follow Up** — logged sends: warmup **765**, follow_up **71**, bulk **0**, unknown **2** (data rows: **838**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **675**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **687**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -234,7 +234,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 | Tess Walkowski | 2 | 13 | $108.75 |
 
-_(+26 more in JSON snapshot.)_
+_(+27 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
@@ -281,6 +281,10 @@ _All dated lines on/after 2026-08-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+28ee6c1 | 2026-08-22 20:54:14 +0800 | Fix ReferenceError: manifest is not defined in renderLineageTree (use qrId) (#298)
+cb91601 | 2026-08-22 20:44:52 +0800 | Show signed-event reference (signer + update id) in QR page event history (#297)
+f415009 | 2026-08-22 20:20:25 +0800 | Render seedling photo inline on QR provenance page (#296)
+565ea4d | 2026-08-22 07:10:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 741f7f1 | 2026-08-22 02:01:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 fdfe771 | 2026-08-21 19:07:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 952544a | 2026-08-21 13:28:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -323,6 +327,12 @@ fd8c1b4 | 2026-08-15 01:59:52 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a327e32 | 2026-08-22 17:38:51 +0800 | Merge pull request #788 from TrueSightDAO/docs/sunmint-log-of-runs-20260822
+ab68b18 | 2026-08-22 09:24:20 +0000 | docs: log §10 E2E run 2026-08-22 (AGL4 fix verified)
+7e2a264 | 2026-08-22 17:12:54 +0800 | Merge pull request #787 from TrueSightDAO/worktree-sunmint-e2e-revised-no-sales-event
+d037f83 | 2026-08-22 09:12:34 +0000 | Revise §10 E2E test procedure: direct SOLD sheet edit, never a real sales event
+e908e7a | 2026-08-22 15:09:36 +0800 | chore(previews): refresh Beer Hall preview (2026-08-22 UTC)
+6be0a35 | 2026-08-22 15:09:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
 f98cc08 | 2026-08-22 14:52:50 +0800 | Merge pull request #786 from TrueSightDAO/worktree-sunmint-e2e-test-runbook
 04fa141 | 2026-08-22 06:52:28 +0000 | Document reusable end-to-end test procedure for tree-planting-link pipeline (§10)
 f8045fb | 2026-08-22 09:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-22 UTC)
@@ -357,18 +367,17 @@ e9a185f | 2026-08-20 19:39:34 +0800 | docs: log cacao tea 50g Oscar Farm QR batc
 4a0d8f3 | 2026-08-20 19:22:39 +0800 | fix(ivy-plan): refresh §4 tracker — all units merged + E2E verified, PR3 gated on Gary (#774)
 6a3ecb7 | 2026-08-20 18:58:29 +0800 | docs(handoffs): add SUNMINT_TREE_QR_LINKING row for thread 11596 (Sophia-owned) (#772)
 6e9e985 | 2026-08-20 17:50:25 +0800 | future-proof credentialing onboarding: internal lineage-credentials manifest step + backlog entry (#770)
-7ae5ef9 | 2026-08-20 17:28:50 +0800 | Merge pull request #769 from TrueSightDAO/worktree-sunmint-deploy-complete
-4dc3950 | 2026-08-20 09:28:12 +0000 | Mark all 4 GAS deploy targets complete; RESUME HERE -> RUN
-40abbf8 | 2026-08-20 09:07:41 +0000 | Record Sophia's Telegram topic for Farm/Shipment Media JSON handoff
-aceaaaa | 2026-08-20 09:05:44 +0000 | Add Farm & Shipment Media JSON plan — hand off to Sophia
-7e9d78a | 2026-08-20 16:47:19 +0800 | docs: SOP — verify root cause before assuming an async flow is just slow (#768)
-852cbd3 | 2026-08-20 15:23:11 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+d183155 | 2026-08-22 17:44:46 +0800 | fix: generalize AGL4 main-ledger routing to an allow-list (adds sunmint/main) (#409)
+d7a7a79 | 2026-08-22 17:38:53 +0800 | Merge pull request #407 from TrueSightDAO/fix/sales-parser-zero-price
+d8cd51c | 2026-08-22 17:12:51 +0800 | Merge pull request #408 from TrueSightDAO/docs/invalidated-status-enum
+a5139f6 | 2026-08-22 09:11:57 +0000 | docs: add INVALIDATED to Agroverse QR codes status enum
+b306e6c | 2026-08-22 07:00:06 +0000 | fix: sales parser accepts $0 sale price (was rejected as falsy)
 62b57d3 | 2026-08-22 14:45:45 +0800 | fix: route AGL4 tree-planting fulfillment to main DAO ledger offchain tab (#406)
 d0e5f78 | 2026-08-21 18:48:11 +0800 | Fix SOLD_DATE_COL 22->26 in Parse Telegram ChatLogs.js (stamp to Column AA, not W) (#405)
 81c0181 | 2026-08-21 18:48:07 +0800 | Fix SOLD_DATE_COL_DEST 27->26 in process_qr_code_updates.js (match Column AA comment) (#404)
@@ -549,7 +558,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/21/2026 23:52:04 |
+| 2026-08 | 428.46 | 17339.52386 | 8/22/2026 5:51:34 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-15`; scanned last **600** data rows)
 
