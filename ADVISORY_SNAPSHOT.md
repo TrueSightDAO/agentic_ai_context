@@ -20,9 +20,50 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-22T01:19:25Z`
+- Generated (UTC): `2026-08-22T01:57:33Z`
 - Look-back: **7** calendar days (`2026-08-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 18
+- `[EMAIL VERIFICATION EVENT]` × 5
+- `[EMAIL REGISTERED EVENT]` × 3
+- `[TREE PLANTING LINK EVENT]` × 2
+- `[CREDENTIALING ATTESTATION EVENT]` × 2
+- `[PRACTICE EVENT]` × 2
+- `[TREE PLANTING EVENT]` × 2
+- `[INVENTORY MOVEMENT]` × 1
+- _free-form (no bracket tag)_ × 4
+
+### Latest entries
+
+- `Edgar_20260820141753_083` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin@truesight.me
+- `Edgar_20260820141811_085` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: iRsUsCdpNRO1yu4Q4sOMvxYi9szNpeiO9U3FmesitJs · Email: admin@truesight.me
+- `Edgar_20260820141924_087` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: iRsUsCdpNRO1yu4Q4sOMvxYi9szNpeiO9U3FmesitJs · Email: admin@truesight.me
+- `Edgar_20260820142014_089` · **Edgar** · [CREDENTIALING ATTESTATION EVENT] Program: ivy-yoga · Attestation Type: program-completion · Attestor Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm90FI1FhsF0qU8p38PuugOn+…
+- `Edgar_20260820194844_091` · **Edgar** · [No Text Provided]
+- `Edgar_20260820195021_093` · **Edgar** · [No Text Provided]
+- `Edgar_20260820195031_095` · **Edgar** · [No Text Provided]
+- `Edgar_20260820195343_097` · **Edgar** · [No Text Provided]
+- `Edgar_20260820202541_099` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-20T20:25:40.076Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260820214028_101` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
+- `Edgar_20260820231153_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh, Paloma
+- `Edgar_20260820231604_105` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
+- `Edgar_20260821082705_107` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-21T08:27:03.788Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260821130119_001` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CC_20260620_1 · SunMint Submission Message ID: 171 · Updated by: Gary Teh
+- `Edgar_20260821172545_003` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260821175134_005` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Bougainvillea
+- `Edgar_20260821195832_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Gary Teh, Vinny, Paloma
+- `Edgar_20260821195938_009` · **Edgar** · [CONTRIBUTION EVENT] Amount: 120 · Contributor(s): Gary Teh · Description: 2-hour chat with Cesar and his uncle about cacao from Amazonas. Follow-ups: …
+- `Edgar_20260821200120_011` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh, Matheus · Description: 30-minute session on Black King: (1) new accountant — Vini offered to help f…
+- `Edgar_20260821205140_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh, Paloma, Juliana Melo, Cristian Crispim
 
 ---
 
@@ -194,13 +235,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+26 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,789.03**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$52.38**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -276,6 +321,8 @@ fd8c1b4 | 2026-08-15 01:59:52 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fec18a7 | 2026-08-22 09:19:47 +0800 | Merge pull request #785 from TrueSightDAO/auto/advisory-refresh-2026-08-22
+683986f | 2026-08-22 01:19:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
 e41ceb1 | 2026-08-22 03:07:05 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
 4f55d2c | 2026-08-22 03:07:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 69614a3 | 2026-08-21 21:26:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
@@ -314,8 +361,6 @@ c499091 | 2026-08-20 15:23:10 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 379b864 | 2026-08-20 09:59:06 +0800 | chore(previews): refresh Beer Hall preview (2026-08-20 UTC)
 ca6a690 | 2026-08-20 09:59:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
 0c54787 | 2026-08-20 06:24:11 +0800 | Mandate agent registry entry for new sibling instances
-983ab02 | 2026-08-20 03:03:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-19 UTC)
-e28c586 | 2026-08-20 03:03:56 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-19 UTC)
 … (truncated)
 ```
 
@@ -476,6 +521,44 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 428.46 | 17339.52386 | 8/21/2026 18:51:34 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-15`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_21 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_20 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_19 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_18 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_17 | zpFSulJXVklN | — |
+| 2026-08-16 | 11.41 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_16 | zpFSulJXVklN | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
