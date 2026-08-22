@@ -457,7 +457,13 @@ VITEST_VERIFICATION_URL="https://oracle.truesight.me/?em=...&vk=..." VITEST_E2E=
 
 ## 11. Headless browser integration tests
 
-For frontend repos (oracle, capoeira, dapp_beta, butterfly-effect-club, etc.), unit tests alone cannot catch runtime errors that only surface when the page actually loads in a browser — e.g. a CDN script that throws in its constructor, a missing DOM element, or a CSP violation.
+For frontend repos (oracle, capoeira, dapp_beta, butterfly-effect-club, truesight_me, agroverse_shop, and any other page that renders dynamic content via JS, not just the named examples), unit tests alone cannot catch runtime errors that only surface when the page actually loads in a browser — e.g. a CDN script that throws in its constructor, a missing DOM element, a CSP violation, or a variable referenced out of its function scope.
+
+### The `manifest` scope bug (postmortem, 2026-08-22)
+
+`truesight_me`'s `qr/index.html` renders a QR-code provenance page by fetching a per-QR JSON manifest and rendering it client-side. A fix that added an inline tree-photo `<img>` (added inside `renderLineageTree(lineage)`, which only receives the `lineage` sub-object, not the full `manifest`) referenced `manifest.qr_id` in the `alt` text — a variable that doesn't exist in that function's scope. Every `curl` + `grep`/byte-count check during that work returned clean (200 status, expected strings present, correct byte count matching the source branch) because those checks never executed the JS. The bug only surfaced when the governor actually opened the live page on a phone and hit `ReferenceError: Can't find variable: manifest` (Safari's phrasing; `manifest is not defined` in Chrome/V8) — the same *class* of bug as the `base64ToArrayBuffer` postmortem in §10, on a page outside that section's original scope (a plain content page, not a registration/verification flow).
+
+**Lesson:** `curl`-and-`grep` verification (status code, byte count, string presence in the raw HTML/JS source) proves the *file* deployed correctly — it does **not** prove the JS *executes* correctly. Any page-load verification for a change that touches client-side rendering logic must actually execute the JS (headless browser per the Methodology below, or manually loading the page and checking the browser console) before being reported as done, regardless of whether the repo already has a Puppeteer/vitest harness set up. For a repo without existing integration-test infrastructure (e.g. a plain static site like `truesight_me`), a one-off ad-hoc Puppeteer script run manually is an acceptable lightweight substitute — the point is executing the JS at least once, not necessarily wiring up a permanent test suite every time.
 
 ### Methodology
 
