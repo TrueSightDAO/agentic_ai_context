@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-22T13:09:20Z`
+- Generated (UTC): `2026-08-22T18:58:25Z`
 - Look-back: **7** calendar days (`2026-08-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,39 +32,37 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
+- `[CONTRIBUTION EVENT]` × 22
 - `[TREE PLANTING LINK EVENT]` × 7
-- `[EMAIL VERIFICATION EVENT]` × 5
 - `[PRACTICE EVENT]` × 3
-- `[CREDENTIALING ATTESTATION EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 2
 - `[TREE PLANTING EVENT]` × 2
+- `[ASSET RECEIPT EVENT]` × 2
 - `[INVENTORY MOVEMENT]` × 1
 - `[SALES EVENT]` × 1
-- _free-form (no bracket tag)_ × 4
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260821130119_001` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CC_20260620_1 · SunMint Submission Message ID: 171 · Updated by: Gary Teh
-- `Edgar_20260821172545_003` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20260821175134_005` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Bougainvillea
-- `Edgar_20260821195832_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Gary Teh, Vinny, Paloma
-- `Edgar_20260821195938_009` · **Edgar** · [CONTRIBUTION EVENT] Amount: 120 · Contributor(s): Gary Teh · Description: 2-hour chat with Cesar and his uncle about cacao from Amazonas. Follow-ups: …
-- `Edgar_20260821200120_011` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh, Matheus · Description: 30-minute session on Black King: (1) new accountant — Vini offered to help f…
-- `Edgar_20260821205140_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh, Paloma, Juliana Melo, Cristian Crispim
-- `E2ETEST_20260822065043_001` · **E2E Test** · [TREE PLANTING LINK EVENT] QR Code: 20260821_E2ETEST_SEF_1 · SunMint Submission Message ID: TEST-001 · Updated by: Sophia Truesight
-- `E2ETEST_20260822065132_001` · **E2E Test** · [TREE PLANTING LINK EVENT] QR Code: 20260821_E2ETEST_SEF_1 · SunMint Submission Message ID: TEST-001 · Updated by: Sophia Truesight
-- `Edgar_20260822065524_015` · **Edgar** · [SALES EVENT] Item: 2026TEST_20260822_1 · Sales price: 0 · Sold by: Gary Teh
-- `Edgar_20260822084024_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-22T08:40:22.640Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260822092136_019` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2026TEST_20260822_1 · SunMint Submission Message ID: TEST-20260822-1 · Updated by: Sophia Truesight
-- `Edgar_20260822092215_021` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2026TEST_20260822_1 · SunMint Submission Message ID: TEST-20260822-1 · Updated by: Sophia Truesight
-- `Edgar_20260822092342_023` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2026TEST_20260822_1 · SunMint Submission Message ID: TEST-20260822-1 · Updated by: Sophia Truesight
 - `Edgar_20260822093431_025` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Fix Gmail OAuth token to add Calendar scope, deploy to Sophia. Verified Soph…
 - `Edgar_20260822093439_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: Created a Google Calendar event via garyjob@agroverse.shop (blocked earlier …
 - `Edgar_20260822093446_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Gmail-to-Calendar OAuth scope fix: shared the screenshot of Sophia's credent…
 - `Edgar_20260822114205_031` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek API credit top-up for the Sophia autopilot (resolves 'Insufficient …
 - `Edgar_20260822114540_033` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: FOUNDERHAUS_BOUGAINVILLEA_20260821_1 · SunMint Submission Message ID: Edgar_20260821175134_006 · Updated by: Gary Teh
 - `Edgar_20260822125817_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh
+- `Edgar_20260822143445_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260822160921_039` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -13.01 · Description: Paloma purchased 2x 50-unit packs of Saco Stand Up Pouch Papel Zip Kraft C/v…
+- `Edgar_20260822160925_041` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Stand-Up Pouch Kraft w/Zip 10x15cm (per unit) - Brazil · Amount: 100 · Description: 100 units received (2x 50-pack, Cvisor brand) from Paloma's Mercado Livre or…
+- `Edgar_20260822160932_043` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -58.07 · Description: Paloma purchased 1x Bluetooth thermal label printer (Black, 110/240V dual vo…
+- `Edgar_20260822160936_045` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Bluetooth Label Printer w/20 Label Rolls - Brazil · Amount: 1 · Description: 1 unit received from Paloma's Mercado Livre order — pairs with the USD contr…
+- `Edgar_20260822172126_049` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260822173934_053` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 487.50 · Contributor(s): AGL15 (investor profile)
+- `Edgar_20260822174502_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh, Sophia Truesight
+- `Edgar_20260822175050_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Paloma contribution receipt (PDF) + asset-receipt-ingest bug fix
+- `Edgar_20260822175103_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Paloma contribution receipt generation/email + asset-receipt-ingest bug fix
+- `Edgar_20260822175112_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Reviewed and authorized the Paloma contribution receipt + ledger bug-fix arc…
+- `Edgar_20260822185602_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Diagnosed the FounderHaus/Paloma tree-planted-notification email delivery fa…
+- `Edgar_20260822185605_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Investigated the tree-planted-notification email non-delivery for FounderHau…
+- `Edgar_20260822185607_067` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Reviewed diagnostic reports, directed the investigation (merge/deploy/trigge…
 
 ---
 
@@ -234,7 +232,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 | Tess Walkowski | 2 | 13 | $108.75 |
 
-_(+27 more in JSON snapshot.)_
+_(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
@@ -281,6 +279,8 @@ _All dated lines on/after 2026-08-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b803ee7 | 2026-08-22 21:20:04 +0800 | feat(qr): embed OpenStreetMap for tree QRs with real coordinates (#299)
+2d87b42 | 2026-08-22 13:10:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 28ee6c1 | 2026-08-22 20:54:14 +0800 | Fix ReferenceError: manifest is not defined in renderLineageTree (use qrId) (#298)
 cb91601 | 2026-08-22 20:44:52 +0800 | Show signed-event reference (signer + update id) in QR page event history (#297)
 f415009 | 2026-08-22 20:20:25 +0800 | Render seedling photo inline on QR provenance page (#296)
@@ -327,6 +327,10 @@ fd8c1b4 | 2026-08-15 01:59:52 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7732f81 | 2026-08-23 00:25:06 +0800 | Merge pull request #790 from TrueSightDAO/add-paloma-contribution-receipt-2026-08-22
+0a0558e | 2026-08-22 16:23:21 +0000 | Add contribution receipt PDF for Paloma (2026-08-22): pouches $13.01 + printer $58.07
+52938b8 | 2026-08-22 21:09:34 +0800 | chore(previews): refresh Beer Hall preview (2026-08-22 UTC)
+a97cc52 | 2026-08-22 21:09:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
 a327e32 | 2026-08-22 17:38:51 +0800 | Merge pull request #788 from TrueSightDAO/docs/sunmint-log-of-runs-20260822
 ab68b18 | 2026-08-22 09:24:20 +0000 | docs: log §10 E2E run 2026-08-22 (AGL4 fix verified)
 7e2a264 | 2026-08-22 17:12:54 +0800 | Merge pull request #787 from TrueSightDAO/worktree-sunmint-e2e-revised-no-sales-event
@@ -363,16 +367,20 @@ a92cbe7 | 2026-08-20 21:27:32 +0800 | chore(previews): refresh Beer Hall preview
 c1f7f39 | 2026-08-20 21:27:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-20 UTC)
 e9a185f | 2026-08-20 19:39:34 +0800 | docs: log cacao tea 50g Oscar Farm QR batch delivery to CONTEXT_UPDATES (#777)
 7edfcc7 | 2026-08-20 19:37:26 +0800 | docs: note cacao tea 50g QR serial _3 VOID (replaced by _101) (#776)
-8291504 | 2026-08-20 19:24:37 +0800 | docs: IVY plan — infra fully live, UAT narrowed to human-only steps (#761)
-4a0d8f3 | 2026-08-20 19:22:39 +0800 | fix(ivy-plan): refresh §4 tracker — all units merged + E2E verified, PR3 gated on Gary (#774)
-6a3ecb7 | 2026-08-20 18:58:29 +0800 | docs(handoffs): add SUNMINT_TREE_QR_LINKING row for thread 11596 (Sophia-owned) (#772)
-6e9e985 | 2026-08-20 17:50:25 +0800 | future-proof credentialing onboarding: internal lineage-credentials manifest step + backlog entry (#770)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+985d437 | 2026-08-23 02:48:51 +0800 | Add public authorizeMailApp() to trigger MailApp OAuth consent (#418)
+a857fb3 | 2026-08-23 02:10:30 +0800 | Add idempotent hourly trigger self-installer for processBatch (#417)
+fd47587 | 2026-08-23 02:10:27 +0800 | resendTreePlantedNotification_: call MailApp.sendEmail directly (no swallowing wrapper) + report quota (#416)
+e62a8ff | 2026-08-23 01:37:50 +0800 | Merge pull request #413 from TrueSightDAO/fix/resend-tree-planted-notification
+b8dee3b | 2026-08-22 17:34:30 +0000 | fix: add safe standalone re-send for the tree-planted notification email
+73c1f8c | 2026-08-23 00:41:36 +0800 | Merge pull request #411 from TrueSightDAO/fix/asset-receipt-quantity-unit-cost
+acbcdb0 | 2026-08-22 16:38:58 +0000 | Fix asset receipt ingest: Amount maps to Quantity; unit cost from paired USD contribution
+8dadb3c | 2026-08-23 00:26:52 +0800 | Fix processBatch onboarding-email tracking link (query-append + clickable anchor) (#410)
 d183155 | 2026-08-22 17:44:46 +0800 | fix: generalize AGL4 main-ledger routing to an allow-list (adds sunmint/main) (#409)
 d7a7a79 | 2026-08-22 17:38:53 +0800 | Merge pull request #407 from TrueSightDAO/fix/sales-parser-zero-price
 d8cd51c | 2026-08-22 17:12:51 +0800 | Merge pull request #408 from TrueSightDAO/docs/invalidated-status-enum
@@ -558,7 +566,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/22/2026 5:51:34 |
+| 2026-08 | 428.46 | 17339.52386 | 8/22/2026 11:50:36 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-15`; scanned last **600** data rows)
 
