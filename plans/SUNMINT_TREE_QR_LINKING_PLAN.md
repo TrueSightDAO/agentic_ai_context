@@ -539,7 +539,12 @@ sales pipeline at all.)
      existing AGL4 rows), not a product-specific string like `Ceremonial Cacao Kraft Pouch - ...`. Use this
      generic label for every future test of this pipeline, regardless of which ledger is under test.
    - `status`: `MINTED`.
-   - `Owner Email`: a clearly-fake test address, e.g. `test+e2e@truesight.me`.
+   - `Owner Email`: **`garyjob@gmail.com`** — the standard test recipient for every future run of this
+     procedure (Gary, 2026-08-22), not a placeholder/unreachable address like the earlier
+     `test+e2e@truesight.me`. Using a real, checkable inbox is the whole point: it lets the test verify
+     **actual email delivery** (onboarding email + tree-planted notification), not just that the
+     sending code ran without throwing — this is precisely the gap that let the FounderHaus/Paloma
+     notification-email bug go undetected for a full day (§10 log entry below has the postmortem).
 2. **Set the QR to `SOLD` directly** — edit column D on the test QR's row to `SOLD` (a plain sheet write, not
    an event submission). **Do NOT submit a `[SALES EVENT]` for this or any future test** — that pipeline
    feeds real sales-figures reporting and treasury accounting and must never see synthetic data. Because this
