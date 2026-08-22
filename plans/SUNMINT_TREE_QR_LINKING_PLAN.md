@@ -500,3 +500,71 @@ fix should still follow the mandated pattern (Sheet write + `doGet` trigger), no
 `doPost`. Either way, `[TREE PLANTING REJECT EVENT]`'s idempotency (#403's real, valid finding) belongs in
 the **existing tracking-tab dedup** that every other event type already uses (keyed on Telegram row /
 `Telegram Update ID`), not a new `Request Transaction ID`-based scheme unique to this one path.
+
+---
+
+## 10. Reusable end-to-end test procedure (synthetic data) — Gary/Claude, 2026-08-22
+
+**Why this exists.** The first real RUN (2026-08-21, QR `2024OSCAR_CC_20260620_1` / SunMint msg 171) surfaced
+a real bug: AGL4 is the one managed ledger whose sale-time `Cacao Tree To Be Planted` liability is booked on
+the **main DAO ledger's `offchain transactions` tab** (`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`), not on
+its own sub-ledger (`sales_update_main_dao_offchain_ledger.js`'s `processTokenizedTransactions()` special-cases
+`agroverseValue === 'https://agroverse.shop/agl4'`) — but `process_tree_planting_link.js`'s fulfillment write
+didn't know that, so it could never actually discharge the real liability for AGL4 QRs. Fixed in tokenomics
+#406 (merged 2026-08-21) by making `appendTreePlantingLedgerFulfillment_` route AGL4 to the main ledger's
+`offchain transactions` tab instead of its own sub-ledger. **This section is the standard procedure — for
+this bug's regression test and for any future test of the tree-planting-link pipeline — so any LLM (Sophia or
+otherwise) can replicate it without re-deriving the design.**
+
+**Design principle: exercise the real production code paths, not hand-inserted rows.** Earlier attempts to
+pick a "safe" test ledger (PP1, SEF1 — clean ledgers with spare `MINTED` inventory) were rejected in favor of
+using **AGL4 itself**, deliberately, because AGL4 is the ledger with the special-case routing — testing on a
+different ledger would validate nothing about the actual fix. The test QR is clearly test-labeled and the
+sale price is $0, so no real money or real customer is involved, but every other step goes through the same
+code every real transaction goes through.
+
+**Procedure:**
+
+1. **Mint a new test QR code** in `Agroverse QR codes` (`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`):
+   - `qr_code`: a new, clearly-test-labeled value, e.g. `TEST_AGL4_<YYYYMMDD>_<n>` (increment `<n>` if re-run
+     same-day).
+   - `ledger` / `Ledger Name`: `https://agroverse.shop/agl4` / `AGL4`.
+   - `Currency`: `SunMint Tree Planting Pledge - QR Code` — the **generic** label (already used on some
+     existing AGL4 rows), not a product-specific string like `Ceremonial Cacao Kraft Pouch - ...`. Use this
+     generic label for every future test of this pipeline, regardless of which ledger is under test.
+   - `status`: `MINTED`.
+   - `Owner Email`: a clearly-fake test address, e.g. `test+e2e@truesight.me`.
+2. **Simulate the sale through the real sales pipeline** — submit a real `[SALES EVENT]` via `dao_client`
+   (the same path `dapp.truesight.me/report_sales.html` / the CLI sales module uses), **Sale price: $0**, for
+   the test QR. Because the QR is AGL4-tied, this should exercise
+   `sales_update_main_dao_offchain_ledger.js`'s `processTokenizedTransactions()` exactly as a real sale would,
+   and book the `+1 Cacao Tree To Be Planted` liability onto the **main ledger's `offchain transactions`
+   tab** — confirm this actually happens by re-reading that tab. (Do not hand-insert this row — the point of
+   using AGL4 is to prove the *real* sale-time code path still works, not to assume it does.)
+3. **Insert a dummy SunMint tree-planting submission** in `SunMint Tree Planting`
+   (`1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`): a clearly-test Telegram Message ID (prefix `TEST-`),
+   `Status`: `NEW`, dummy latitude/longitude, `Submitted Name`: `E2E Test` (or similar, clearly not a real
+   contributor).
+4. **Execute the `[TREE PLANTING LINK EVENT]`** against the test QR + dummy submission, governor-signed, via
+   `dao_client`'s CLI (`python -m truesight_dao_client.modules.link_tree_planting --qr-code ... --sunmint-submission-message-id ...`)
+   — the same mechanism a real link uses (`dapp.truesight.me/link_tree_planting.html`'s browser flow signs
+   and posts the same event).
+5. **Verify by re-reading every affected row** (never trust a self-report — re-read the actual sheets):
+   - QR row: `status` → `ASSIGNED_TO_TREE`, tree-planting date/lat/long/photo populated.
+   - SunMint row: `Status` → `LINKED`, `Linked QR Code` / `Linked At` populated.
+   - Main ledger's `offchain transactions` tab: **both** the sale-time `+1` liability (step 2) **and** the
+     fulfillment `-1`/`+1` pair (step 4) are present, with the matching contributor pattern
+     (`SunMint Tree Planting Contract - agl4`) and item names (`Cacao Tree To Be Planted` /
+     `Cacao Tree Planted`).
+   - `Tree Planting Link` tracking tab: outcome `LINKED`/`OK` for the test row.
+6. **Clean up or clearly mark test data** — since this books real (if $0) rows onto the main ledger, leave a
+   clear trail (the `TEST-`/`TEST_AGL4_` prefixes above exist for this reason) rather than deleting silently;
+   confirm with the governor before removing anything from a real ledger tab, per the same rule that applies
+   to any other ledger write.
+
+**Log of runs** (append a row each time this procedure executes — keep this current so the next LLM knows
+what's already been validated and doesn't need to re-derive step-by-step, per §5d):
+
+| Date | Test QR | Sale price | Result | Notes |
+|------|---------|-----------|--------|-------|
+| _pending_ | _pending_ | $0 | _pending — Sophia executing per this section, 2026-08-22_ | First run of this procedure, validating tokenomics #406 |
