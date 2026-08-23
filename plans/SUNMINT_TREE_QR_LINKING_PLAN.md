@@ -79,7 +79,7 @@ Spreadsheet `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, gid `472328231`.
 | A | qr_code | |
 | B | landing_page | |
 | C | ledger | |
-| D | status | enum in `process_qr_code_updates.js:499-509`: `SCHEDULED_FOR_MINTING, MINTED, WAREHOUSED, ON CONSIGNMENT, CACAO CIRCLE, LOST, SOLD, EXPENSED, ASSIGNED_TO_TREE, GIFT` — **`ASSIGNED_TO_TREE` already exists**, unused by any writer today. |
+| D | status | enum in `process_qr_code_updates.js:499-509`: `SCHEDULED_FOR_MINTING, MINTED, WAREHOUSED, ON CONSIGNMENT, CACAO CIRCLE, LOST, SOLD, TREE_PLANTING_FUNDS_TRANSFERRED, EXPENSED, ASSIGNED_TO_TREE, GIFT` — **`ASSIGNED_TO_TREE` already exists**, unused by any writer today. |
 | E–H | farm name / state / country / Year | |
 | I | Currency | must match `Currencies!A` |
 | J | QR code creation date | **not** a sale date (see §1.6) |
