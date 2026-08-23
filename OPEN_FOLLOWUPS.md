@@ -39,6 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Correct 2 Paloma asset-receipt rows on 'offchain asset location' (blocked: sheet cell protection)
+**Filed 2026-08-22. Owner: Gary (needs sheet-owner edit or unprotect).** The 2026-08-22
+asset-receipt ingestion bug (amount written as unit-cost, qty hardcoded to 1 — root-caused in
+tokenomics #411, fix DEPLOYED live to asset_receipt_ingest 1o2lzpdTZ…) left 2 rows corrupted on
+the live Main Ledger 'offchain asset location' tab (spreadsheet 1GE7PUq…):
+- Row 26: 'Bluetooth Label Printer w/20 Label Rolls - Brazil' | Paloma | qty 1 | unit cost 1 | total 1
+  → correct to: qty 1 | unit cost 58.07 | total 58.07
+- Row 105: 'Stand-Up Pouch Kraft w/Zip 10x15cm (per unit) - Brazil' | Paloma | qty 1 | unit cost 100 | total 100
+  → correct to: qty 100 | unit cost 0.130088 | total 13.01
+All 6 service accounts on the autopilot box are rejected with "editing a protected cell or object"
+(cypher_defense, agroverse_qr_code_manager, agroverse_market_research, edgar_dapp_listener;
+tdg_scoring + upc_barcode get 403 no-access). **Blocker:** only the sheet owner / scripts running as
+Gary's account can edit. To unblock: (a) Gary edits C26:E26 and C105:E105 directly, (b) Gary grants
+edit on that tab to cypher-defense@get-data-io.iam.gserviceaccount.com, or (c) add a small guarded
+maintenance action to the GAS script (runs as Gary's account) + redeploy. Also flagged (same bug
+family, NOT touched, pending decision): 'offchain transactions' rows 4131-4132 (pouch receipt qty
+logged as 1 not 100) and 'Currencies' tab rows 25/126 (price 1/100 instead of per-unit landed cost
+0.130088 / 58.07).
+
 ### Cacao tea 50g QR batch 2024OSCAR_CT_20260820: serial _3 is VOID (replaced by _101)
 **Filed 2026-08-20. Owner: unclaimed (informational).** Mint QA found serial
 `2024OSCAR_CT_20260820_3` undecodable (deterministic generator defect — reproduced on two
