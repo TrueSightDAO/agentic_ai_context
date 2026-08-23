@@ -238,11 +238,11 @@ a future config change, the same fix applies: confirm Sophia is idle, then resta
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (repo scaffolding) | ☑ | ☑ (PR #1, squash `ea732113`) | ☐ |
-| PR2 (Android platform + smoke test) | ☑ | ☑ (PR #2, squash `e11416ce`) | ☑ 2026-08-23 (APK build; device smoke-test at UAT) |
+| PR1 (repo scaffolding) | ☑ | ☑ ☑ (PR #7, squash 8d0489bb)PR #1, squash `ea732113`) | ☐ |
+| PR2 (Android platform + smoke test) | ☑ | ☑ ☑ (PR #8, squash aeecde4f)PR #2, squash `e11416ce`) | ☑ 2026-08-23 (APK build; device smoke-test at UAT) |
 | PR3 (iOS platform + smoke test) — starts right after PR11, no need to wait for Android UAT (needs Mac) | ☐ | ☐ | — |
-| PR4 (RSA signing byte-compatibility) | ☑ | ☑ (PR #3, squash `4495d574`) | ☑ 2026-08-23 (BYTE-IDENTICAL proven) |
-| PR5 (native camera) | ☑ | ☑ (PR #4, squash `71d66de3`) | ☑ 2026-08-23 (APK builds w/ plugin) |
+| PR4 (RSA signing byte-compatibility) | ☑ | ☑ ☑ (PR #9, squash 602f21be)PR #3, squash `4495d574`) | ☑ 2026-08-23 (BYTE-IDENTICAL proven) |
+| PR5 (native camera) | ☑ | ☑ ☑ (PR #10, squash 313a096d)PR #4, squash `71d66de3`) | ☑ 2026-08-23 (APK builds w/ plugin) |
 | PR6 (native geolocation) | ☐ | ☐ | ☐ |
 | PR7 (native offline queue — SQLite + Filesystem) | ☐ | ☐ | ☐ |
 | PR8 (native secure storage for RSA keypair) | ☐ | ☐ | ☐ |
