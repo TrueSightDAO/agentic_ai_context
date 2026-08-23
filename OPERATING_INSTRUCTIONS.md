@@ -141,6 +141,7 @@ unit lands (see §4 and the per-task tracker-update rule), then the next turn re
 - When filing contributions for Sophia (the autopilot), ALWAYS use `"Sophia Truesight"` as the contributor name — not `"Sophia (Autopilot)"`, `"Sophia"`, or any variant.
 - Edgar will reject submissions that don't match the ledger exactly.
 - When filing contributions that include both Gary Teh and Sophia Truesight, use both names: `"Gary Teh, Sophia Truesight"`.
+- **Envoy TrueSight** (the interactive Claude Code seat on `nelanco-claude`) follows the same exact-name rule for its own contributions — see the "Contributor ledger identity" section in **ENVOY.md**.
 
 ---
 
