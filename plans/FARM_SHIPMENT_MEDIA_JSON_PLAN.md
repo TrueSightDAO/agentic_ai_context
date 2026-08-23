@@ -274,18 +274,18 @@ Every `PRn` below is independently shippable against current `main`, assuming th
 
 | Unit | PR opened | Merged (human) | Contribution reported |
 |---|---|---|---|
-| PR0 — loader + oscar-bahia pilot | ☐ | ☐ | ☐ |
-| PR1 — agl4 pilot + bug fix | ☐ | ☐ | ☐ |
-| PR2 — santa-ana + paulo | ☐ | ☐ | ☐ |
-| PR3 — sao-jorge + vivi | ☐ | ☐ | ☐ |
-| PR4 — agl0, agl1, agl2 | ☐ | ☐ | ☐ |
-| PR5 — agl5, agl7, agl8 | ☐ | ☐ | ☐ |
-| PR6 — agl10, agl13, agl14 | ☐ | ☐ | ☐ |
-| PR7 — agl6 (retire meta-tag pattern) | ☐ | ☐ | ☐ |
-| PR8 — conventions doc update | ☐ | ☐ | ☐ |
-| PR9 — UAT on beta | ☐ (n/a, not a PR) | — | — |
+| PR0 — loader + oscar-bahia pilot | ☑ | ☑ | ☑ |
+| PR1 — agl4 pilot + bug fix | ☑ | ☑ | ☑ |
+| PR2 — santa-ana + paulo | ☑ | ☑ | ☑ |
+| PR3 — sao-jorge + vivi | ☑ | ☑ | ☑ |
+| PR4 — agl0, agl1, agl2 | ☑ | ☑ | ☑ |
+| PR5 — agl5, agl7, agl8 | ☑ | ☑ | ☑ |
+| PR6 — agl10, agl13, agl14 | ☑ | ☑ | ☑ |
+| PR7 — agl6 (retire meta-tag pattern) | ☑ | ☑ | ☑ |
+| PR8 — conventions doc update | ☑ | ☑ | ☑ |
+| PR9 — UAT on beta | ☑ (n/a, not a PR) | — | — |
 
-**RESUME HERE = PR0.**
+**RESUME HERE = Plan complete.** UAT verified on beta.agroverse.shop 2026-08-20 (all 7 criteria pass, Playwright headless vs live beta). Remaining decision: promotion to prod (agroverse_shop_prod) is Gary's separate call, out of plan scope.
 
 ---
 
