@@ -218,21 +218,20 @@ a future config change, the same fix applies: confirm Sophia is idle, then resta
 
 ## 7. Resume tracker
 
-> **RESUME HERE → PR2** (Android platform + smoke test). Governor said "go for it" (2026-08-23) and has
-> since said "keep going until there is a UAT where I can point my Android phone to download the app"
-> (2026-08-23) — **Sophia is authorized to auto-advance through PR2, PR4–PR11 back-to-back, one PR per
-> turn, without waiting for a per-PR "go"**, per §3's Android-first re-sequencing note. PR3/PR12 (iOS) stay
-> deferred. The only mandatory stop is the **Android UAT gate** (§5c) — post the direct-download APK link
-> and STOP there for the governor to test on his own phone.
+> **RESUME HERE → PR6** (native geolocation). PR1 (squash `ea732113`), PR2 (`e11416ce`), PR4/RSA
+> byte-compat (`4495d574`), PR5/native camera (`71d66de3`) all merged 2026-08-23. PR3/PR12 (iOS) stay
+> deferred (Mac). Standing auto-advance (governor 2026-08-23): execute PR6–PR11 back-to-back, one PR per
+> turn, no per-PR check-in. Only mandatory stop: **Android UAT gate** (§5c) — post direct-download APK
+> link and STOP for governor phone testing.
 
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
 | PR1 (repo scaffolding) | ☑ | ☑ (PR #1, squash `ea732113`) | ☐ |
-| PR2 (Android platform + smoke test) | ☐ | ☐ | ☐ |
-| PR3 (iOS platform + smoke test) — **deferred** | ☐ | ☐ | ☐ |
-| PR4 (RSA signing byte-compatibility) | ☐ | ☐ | ☐ |
-| PR5 (native camera) | ☐ | ☐ | ☐ |
+| PR2 (Android platform + smoke test) | ☑ | ☑ (PR #2, squash `e11416ce`) | ☑ 2026-08-23 (APK build; device smoke-test at UAT) |
+| PR3 (iOS platform + smoke test) — **deferred** (needs Mac) | ☐ | ☐ | — |
+| PR4 (RSA signing byte-compatibility) | ☑ | ☑ (PR #3, squash `4495d574`) | ☑ 2026-08-23 (BYTE-IDENTICAL proven) |
+| PR5 (native camera) | ☑ | ☑ (PR #4, squash `71d66de3`) | ☑ 2026-08-23 (APK builds w/ plugin) |
 | PR6 (native geolocation) | ☐ | ☐ | ☐ |
 | PR7 (native offline queue — SQLite + Filesystem) | ☐ | ☐ | ☐ |
 | PR8 (native secure storage for RSA keypair) | ☐ | ☐ | ☐ |
