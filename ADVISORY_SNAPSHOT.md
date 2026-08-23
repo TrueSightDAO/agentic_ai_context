@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-23T07:10:38Z`
+- Generated (UTC): `2026-08-23T13:10:39Z`
 - Look-back: **7** calendar days (`2026-08-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 23
+- `[CONTRIBUTION EVENT]` × 24
 - `[TREE PLANTING LINK EVENT]` × 8
-- `[TREE PLANTING EVENT]` × 2
+- `[PRACTICE EVENT]` × 2
 - `[ASSET RECEIPT EVENT]` × 2
 - `[SALES EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260822160921_039` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -13.01 · Description: Paloma purchased 2x 50-unit packs of Saco Stand Up Pouch Papel Zip Kraft C/v…
-- `Edgar_20260822160925_041` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Stand-Up Pouch Kraft w/Zip 10x15cm (per unit) - Brazil · Amount: 100 · Description: 100 units received (2x 50-pack, Cvisor brand) from Paloma's Mercado Livre or…
 - `Edgar_20260822160932_043` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -58.07 · Description: Paloma purchased 1x Bluetooth thermal label printer (Black, 110/240V dual vo…
 - `Edgar_20260822160936_045` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Bluetooth Label Printer w/20 Label Rolls - Brazil · Amount: 1 · Description: 1 unit received from Paloma's Mercado Livre order — pairs with the USD contr…
 - `Edgar_20260822172126_049` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
@@ -62,6 +59,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260823004757_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Continued FounderHaus/tree-planting email debugging: diagnosed the executeAs…
 - `Edgar_20260823004801_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Executed §10 E2E RUN #2 and RUN #3 (mint/sell/link/verify/invalidate/log cyc…
 - `Edgar_20260823004806_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Performed the interactive Apps Script editor re-deploy that granted the miss…
+- `Edgar_20260823083155_083` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-23T08:31:53.629Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260823094813_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 
 ---
 
@@ -76,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-22T10:59:15.074Z`
+- Generated (UTC): `2026-08-23T10:59:14.150Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -278,6 +277,7 @@ _All dated lines on/after 2026-08-16_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+73c591d | 2026-08-23 07:17:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 97f0a01 | 2026-08-23 02:10:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 686c7bd | 2026-08-22 19:00:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b803ee7 | 2026-08-22 21:20:04 +0800 | feat(qr): embed OpenStreetMap for tree QRs with real coordinates (#299)
@@ -324,6 +324,15 @@ f2b5dde | 2026-08-16 02:07:43 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+86af3c8 | 2026-08-23 20:34:00 +0800 | Merge pull request #799 from TrueSightDAO/handoff/sunmint-mobile-app
+08d3a90 | 2026-08-23 12:33:48 +0000 | Register SunMint Mobile App handoff in HANDOFF_MANIFEST
+358eac5 | 2026-08-23 20:32:46 +0800 | Merge pull request #798 from TrueSightDAO/plan/sunmint-mobile-testflight-decision
+508bed6 | 2026-08-23 12:32:33 +0000 | Resolve SunMint Mobile App iOS distribution decision: TestFlight
+cb80a99 | 2026-08-23 20:25:12 +0800 | Merge pull request #797 from TrueSightDAO/plan/sunmint-mobile-app
+6541b0c | 2026-08-23 12:24:23 +0000 | Add SunMint Mobile App execution roadmap (Android + iOS, Capacitor)
+33509cd | 2026-08-23 17:48:04 +0800 | Add Brazil-China lane Oscar beans briefing (for Elizabeth Wong)
+dd88b41 | 2026-08-23 15:10:59 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
+4505cab | 2026-08-23 15:10:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 c7c6534 | 2026-08-23 10:09:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
 4e2941f | 2026-08-23 10:09:38 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 d75c9bb | 2026-08-23 09:26:15 +0800 | Merge pull request #796 from TrueSightDAO/auto/advisory-refresh-2026-08-23
@@ -355,21 +364,13 @@ e41ceb1 | 2026-08-22 03:07:05 +0800 | chore(previews): refresh Beer Hall preview
 69614a3 | 2026-08-21 21:26:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
 0d2ecbb | 2026-08-21 21:26:55 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 6990c17 | 2026-08-21 20:09:15 +0800 | Merge pull request #784 from TrueSightDAO/worktree-sunmint-prod-incident-and-pr-closure
-0f1ca35 | 2026-08-21 11:16:31 +0000 | Mark PR-FIX1/PR-FIX2 merged+deployed+verified; document prod Credentials.js incident; close #403/dao_protocol#145
-31c1f8c | 2026-08-21 19:02:35 +0800 | Document nelanco-claude's Telegram bot + direct Sophia channel (#783)
-429f499 | 2026-08-21 18:37:23 +0800 | Merge pull request #782 from TrueSightDAO/worktree-sunmint-architecture-note
-a0dc3f1 | 2026-08-21 10:36:49 +0000 | Merge: resolve conflict, keep both §8 audit findings and §9 architecture pattern
-5f6b79b | 2026-08-21 10:34:15 +0000 | Document required request pattern (Sheet write + doGet trigger); flag #403's doPost may be solving a non-problem
-0285b05 | 2026-08-21 18:10:10 +0800 | Merge pull request #781 from TrueSightDAO/worktree-sunmint-audit-findings
-ae029a2 | 2026-08-21 10:09:36 +0000 | Audit Sophia's post-deploy work: 2 live data-corruption bugs found, must fix before RUN
-5cd5c80 | 2026-08-21 15:24:16 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
-81cfba1 | 2026-08-21 15:24:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+7b7fbf4 | 2026-08-23 20:23:06 +0800 | Harden LINK flow: surface tree-planted email failures in tracking outcome (#420)
 b885678 | 2026-08-23 07:32:24 +0800 | fix: declare oauthScopes (incl. script.send_mail) in 1UrBg appsscript.json manifest (#419)
 985d437 | 2026-08-23 02:48:51 +0800 | Add public authorizeMailApp() to trigger MailApp OAuth consent (#418)
 a857fb3 | 2026-08-23 02:10:30 +0800 | Add idempotent hourly trigger self-installer for processBatch (#417)
@@ -564,7 +565,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/22/2026 23:50:58 |
+| 2026-08 | 428.46 | 17339.52386 | 8/23/2026 5:51:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-16`; scanned last **600** data rows)
 
