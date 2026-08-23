@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-23T13:10:39Z`
+- Generated (UTC): `2026-08-23T18:57:16Z`
 - Look-back: **7** calendar days (`2026-08-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,22 +32,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[TREE PLANTING LINK EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 21
+- `[TREE PLANTING LINK EVENT]` × 6
+- `[TREE PLANTING EVENT]` × 3
 - `[PRACTICE EVENT]` × 2
 - `[ASSET RECEIPT EVENT]` × 2
-- `[SALES EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260822160932_043` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -58.07 · Description: Paloma purchased 1x Bluetooth thermal label printer (Black, 110/240V dual vo…
-- `Edgar_20260822160936_045` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Bluetooth Label Printer w/20 Label Rolls - Brazil · Amount: 1 · Description: 1 unit received from Paloma's Mercado Livre order — pairs with the USD contr…
-- `Edgar_20260822172126_049` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260822173934_053` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 487.50 · Contributor(s): AGL15 (investor profile)
-- `Edgar_20260822174502_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh, Sophia Truesight
-- `Edgar_20260822175050_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Paloma contribution receipt (PDF) + asset-receipt-ingest bug fix
-- `Edgar_20260822175103_059` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Paloma contribution receipt generation/email + asset-receipt-ingest bug fix
 - `Edgar_20260822175112_061` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Reviewed and authorized the Paloma contribution receipt + ledger bug-fix arc…
 - `Edgar_20260822185602_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Diagnosed the FounderHaus/Paloma tree-planted-notification email delivery fa…
 - `Edgar_20260822185605_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Investigated the tree-planted-notification email non-delivery for FounderHau…
@@ -61,6 +57,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260823004806_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Performed the interactive Apps Script editor re-deploy that granted the miss…
 - `Edgar_20260823083155_083` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-23T08:31:53.629Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260823094813_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260823150004_087` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+envoy@truesight.me
+- `Edgar_20260823150234_089` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OztX4Lim0mOgV3BkfmKHxzKVYO6Tlg3cWhRQs7e_XSg · Email: admin+envoy@truesight.me
+- `Edgar_20260823150434_091` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Envoy TrueSight · Contributor Email: admin+envoy@truesight.me · Initial Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoUrR+L3uBQ9iZmYxAk…
+- `Edgar_20260823181316_093` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260823181318_095` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260823181319_097` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260823185244_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] sunmint_mobile: iOS build fails on the designated Mac (Xcode 16.…
 
 ---
 
@@ -255,10 +258,12 @@ _Lines in window matching configured names or status keywords:_
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
 - 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
 
-_All dated lines on/after 2026-08-16_ (2):
+_All dated lines on/after 2026-08-16_ (4):
 
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
 - 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
+- 2026-08-23 | claude (envoy) | Named the interactive Claude Code seat on nelanco-claude "Envoy" — see ENVOY.md for the full reasoning.
+- 2026-08-23 | deepseek | DeepSeek Local identity + Telegram setup: added DEEPSEEK_LOCAL.md (identity + thread-confusion rules when speaking with Sophia across Telegram topics). Credentials + long-poll listener at ~/Applications/deepseek_telegram_monitor/ (bot @deepseek_tdg_local_bot, ID 8835920598); boot convention in ~/.claude/CLAUDE.md ("DeepSeek local agent").
 
 ---
 
@@ -277,6 +282,14 @@ _All dated lines on/after 2026-08-16_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1d3729b | 2026-08-24 01:00:50 +0800 | Fix Butterfly Effect logo: repoint to self-hosted asset (#306)
+49b43b9 | 2026-08-24 00:54:18 +0800 | Simplify FounderHaus Farm pill to SunMint initiative (#305)
+e540ef3 | 2026-08-24 00:54:15 +0800 | Retarget FounderHaus Farm primary CTA to batch verification (#304)
+38f3736 | 2026-08-24 00:54:12 +0800 | Support **bold** in program-shell markdown renderer (#303)
+7dbcf26 | 2026-08-24 00:43:01 +0800 | Add FounderHaus Farm Edition brief details to landing page (PDF, photo, QR, economics) (#302)
+dcddbaf | 2026-08-24 00:39:15 +0800 | Brand FounderHaus Farm as SunMint initiative — FounderHaus Farm Edition (#301)
+d5c150b | 2026-08-24 00:37:40 +0800 | Add FounderHaus Farm program page + programs.html card (#300)
+d56bf8c | 2026-08-23 13:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 73c591d | 2026-08-23 07:17:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 97f0a01 | 2026-08-23 02:10:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 686c7bd | 2026-08-22 19:00:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -309,10 +322,7 @@ edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [
 4293736 | 2026-08-17 13:22:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 72d70d8 | 2026-08-17 07:35:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c909c9e | 2026-08-17 02:05:51 +0000 | chore(stats): refresh stats/current.json [skip ci]
-96a5919 | 2026-08-16 18:58:05 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0de21d3 | 2026-08-16 13:11:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e56ceeb | 2026-08-16 07:10:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f2b5dde | 2026-08-16 02:07:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -324,6 +334,20 @@ f2b5dde | 2026-08-16 02:07:43 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b38bcef | 2026-08-24 01:26:13 +0800 | docs: add TREE_PLANTING_FUNDS_TRANSFERRED state to linking plan (#808)
+ca4c84f | 2026-08-24 01:26:00 +0800 | Merge pull request #807 from TrueSightDAO/deepseek-local-telegram-setup
+29d7315 | 2026-08-23 14:25:40 -0300 | Add DEEPSEEK_LOCAL.md: DeepSeek Local identity + Telegram thread-confusion rules
+42d82f8 | 2026-08-24 00:18:38 +0800 | Merge pull request #805 from TrueSightDAO/docs/envoy-sentinel-registered
+189ae97 | 2026-08-23 23:34:43 +0800 | Tracker: PR3 + PR6-PR11 merged
+f7cb66a | 2026-08-23 15:08:41 +0000 | Update ENVOY.md: Envoy TrueSight now registered as Sentinel (row 418, Is Sentinel = TRUE) — no longer "in progress"
+b811c07 | 2026-08-23 23:02:15 +0800 | Decouple iOS start from the Android UAT gate (#804)
+3fff80e | 2026-08-23 23:01:20 +0800 | Add Envoy TrueSight contributor-ledger identity to ENVOY.md + parallel note in OPERATING_INSTRUCTIONS §5b (#803)
+33587b0 | 2026-08-23 22:53:14 +0800 | ENVOY.md — identity doc for the interactive Claude Code seat on nelanco-claude (#801)
+ab26ce0 | 2026-08-23 22:49:25 +0800 | SunMint Mobile tracker: PR1/PR2/PR4/PR5 merged → PR6
+b3d9593 | 2026-08-23 21:26:44 +0800 | Merge pull request #800 from TrueSightDAO/roadmap/android-first-to-uat
+63abe38 | 2026-08-23 13:23:02 +0000 | Sequence SunMint Mobile App roadmap Android-first, authorize auto-advance to UAT
+e1c45b7 | 2026-08-23 21:11:04 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
+486cbec | 2026-08-23 21:11:02 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 86af3c8 | 2026-08-23 20:34:00 +0800 | Merge pull request #799 from TrueSightDAO/handoff/sunmint-mobile-app
 08d3a90 | 2026-08-23 12:33:48 +0000 | Register SunMint Mobile App handoff in HANDOFF_MANIFEST
 358eac5 | 2026-08-23 20:32:46 +0800 | Merge pull request #798 from TrueSightDAO/plan/sunmint-mobile-testflight-decision
@@ -350,26 +374,14 @@ a97cc52 | 2026-08-22 21:09:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a327e32 | 2026-08-22 17:38:51 +0800 | Merge pull request #788 from TrueSightDAO/docs/sunmint-log-of-runs-20260822
 ab68b18 | 2026-08-22 09:24:20 +0000 | docs: log §10 E2E run 2026-08-22 (AGL4 fix verified)
 7e2a264 | 2026-08-22 17:12:54 +0800 | Merge pull request #787 from TrueSightDAO/worktree-sunmint-e2e-revised-no-sales-event
-d037f83 | 2026-08-22 09:12:34 +0000 | Revise §10 E2E test procedure: direct SOLD sheet edit, never a real sales event
-e908e7a | 2026-08-22 15:09:36 +0800 | chore(previews): refresh Beer Hall preview (2026-08-22 UTC)
-6be0a35 | 2026-08-22 15:09:35 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
-f98cc08 | 2026-08-22 14:52:50 +0800 | Merge pull request #786 from TrueSightDAO/worktree-sunmint-e2e-test-runbook
-04fa141 | 2026-08-22 06:52:28 +0000 | Document reusable end-to-end test procedure for tree-planting-link pipeline (§10)
-f8045fb | 2026-08-22 09:57:55 +0800 | chore(previews): refresh Beer Hall preview (2026-08-22 UTC)
-f2692ac | 2026-08-22 09:57:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
-fec18a7 | 2026-08-22 09:19:47 +0800 | Merge pull request #785 from TrueSightDAO/auto/advisory-refresh-2026-08-22
-683986f | 2026-08-22 01:19:33 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
-e41ceb1 | 2026-08-22 03:07:05 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
-4f55d2c | 2026-08-22 03:07:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
-69614a3 | 2026-08-21 21:26:57 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
-0d2ecbb | 2026-08-21 21:26:55 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
-6990c17 | 2026-08-21 20:09:15 +0800 | Merge pull request #784 from TrueSightDAO/worktree-sunmint-prod-incident-and-pr-closure
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+e8b166f | 2026-08-24 01:17:26 +0800 | docs: SCHEMA.md — add TREE_PLANTING_FUNDS_TRANSFERRED to status enum + States tab (#422)
+79671e8 | 2026-08-24 01:11:11 +0800 | feat: add TREE_PLANTING_FUNDS_TRANSFERRED QR state (enum, pickers, list endpoint, link validation, shop counter) (#421)
 7b7fbf4 | 2026-08-23 20:23:06 +0800 | Harden LINK flow: surface tree-planted email failures in tracking outcome (#420)
 b885678 | 2026-08-23 07:32:24 +0800 | fix: declare oauthScopes (incl. script.send_mail) in 1UrBg appsscript.json manifest (#419)
 985d437 | 2026-08-23 02:48:51 +0800 | Add public authorizeMailApp() to trigger MailApp OAuth consent (#418)
@@ -408,8 +420,7 @@ d532ef3 | 2026-08-18 20:44:26 +0000 | Add [TREE PLANTING LINK EVENT] handler: li
 e79c9b6 | 2026-08-18 20:36:10 +0000 | Add governor-gated read endpoints for the tree-planting linking picker
 47c2dc1 | 2026-08-19 04:31:16 +0800 | Merge pull request #389 from TrueSightDAO/feature/qr-sold-date-column
 63c5072 | 2026-08-18 20:30:39 +0000 | Add Sold Date column (W) to Agroverse QR codes; exclude ASSIGNED_TO_TREE from availability pickers
-67373a9 | 2026-08-16 19:28:35 +0800 | feat(1ovx): email notification for subscription renewal payments on ledger (#387)
-29c4898 | 2026-08-16 19:23:17 +0800 | sync(1ovx): commit live agroverse_shop_checkout.js from production clasp pull (#386)
+… (truncated)
 ```
 
 ### `dapp` → `dapp`
@@ -565,7 +576,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/23/2026 5:51:05 |
+| 2026-08 | 428.46 | 17339.52386 | 8/23/2026 11:50:13 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-16`; scanned last **600** data rows)
 
