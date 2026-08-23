@@ -238,20 +238,23 @@ a future config change, the same fix applies: confirm Sophia is idle, then resta
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (repo scaffolding) | ☑ | ☑ ☑ (PR #7, squash 8d0489bb)PR #1, squash `ea732113`) | ☐ |
-| PR2 (Android platform + smoke test) | ☑ | ☑ ☑ (PR #8, squash aeecde4f)PR #2, squash `e11416ce`) | ☑ 2026-08-23 (APK build; device smoke-test at UAT) |
-| PR3 (iOS platform + smoke test) — starts right after PR11, no need to wait for Android UAT (needs Mac) | ☐ | ☐ | — |
-| PR4 (RSA signing byte-compatibility) | ☑ | ☑ ☑ (PR #9, squash 602f21be)PR #3, squash `4495d574`) | ☑ 2026-08-23 (BYTE-IDENTICAL proven) |
-| PR5 (native camera) | ☑ | ☑ ☑ (PR #10, squash 313a096d)PR #4, squash `71d66de3`) | ☑ 2026-08-23 (APK builds w/ plugin) |
-| PR6 (native geolocation) | ☐ | ☐ | ☐ |
-| PR7 (native offline queue — SQLite + Filesystem) | ☐ | ☐ | ☐ |
-| PR8 (native secure storage for RSA keypair) | ☐ | ☐ | ☐ |
-| PR9 (sync triggers) | ☐ | ☐ | ☐ |
-| PR10 (branding) | ☐ | ☐ | ☐ |
-| PR11 (Android release signing) | ☐ | ☐ | ☐ |
-| **Android UAT** | ☐ | — | ☐ |
-| PR12 (iOS distribution — needs Apple Developer account) | ☐ | — | ☐ |
+| PR1 (repo scaffolding) | ☑ | ☑ (PR #1, squash `ea732113`) | ☑ 2026-08-23 |
+| PR2 (Android platform + smoke test) | ☑ | ☑ (PR #2, squash `e11416ce`) | ☑ 2026-08-23 (APK build; device smoke-test at UAT) |
+| PR3 (iOS platform + smoke test) — starts right after PR11, no need to wait for Android UAT (needs Mac) | ☑ | ☑ (PR #11, squash `8a4f3b56`) | ☐ code+config done; **build blocked — needs a Mac (flagged)** |
+| PR4 (RSA signing byte-compatibility) | ☑ | ☑ (PR #3, squash `4495d574`) | ☑ 2026-08-23 (BYTE-IDENTICAL proven) |
+| PR5 (native camera) | ☑ | ☑ (PR #4, squash `71d66de3`) | ☑ 2026-08-23 (APK builds w/ plugin) |
+| PR6 (native geolocation) | ☑ | ☑ (PR #5, squash `eba3e2d7`) | ☑ 2026-08-23 (APK builds w/ plugin) |
+| PR7 (native offline queue — SQLite + Filesystem) | ☑ | ☑ (PR #6, squash `5cdd9c4a`) | ☑ 2026-08-23 (APK builds w/ plugins) |
+| PR8 (native secure storage for RSA keypair) | ☑ | ☑ (PR #7, squash `8d0489bb`) | ☑ 2026-08-23 (APK builds w/ plugin) |
+| PR9 (sync triggers) | ☑ | ☑ (PR #8, squash `aeecde4f`) | ☑ 2026-08-23 (APK builds w/ plugins) |
+| PR10 (branding) | ☑ | ☑ (PR #9, squash `602f21be`) | ☑ 2026-08-23 (icons/splash branded, APK builds) |
+| PR11 (Android release signing) | ☑ | ☑ (PR #10, squash `313a096d`) | ☑ 2026-08-23 (signed release APK, cert verified) |
+| **Android UAT** | ☐ | — | ☐ **gate posted (link + SHA-256 in thread); governor to test** |
+| PR12 (iOS distribution — needs Apple Developer account) | ☐ | — | ☐ needs Apple Developer account (governor) |
 | PR13 (docs) | ☐ | ☐ | ☐ |
+| iOS UAT | ☐ | — | ☐ |
+
+
 | iOS UAT | ☐ | — | ☐ |
 
 ✅ **Pre-flight Completeness (§5d):** every cross-repo fact a unit below would need (Edgar's contract, the
