@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-23T02:09:21Z`
+- Generated (UTC): `2026-08-23T07:10:38Z`
 - Look-back: **7** calendar days (`2026-08-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -235,9 +235,9 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,788.93**
+- USD on hand: **$4,788.82**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.49**
+- USD provisioned for voting-rights cash-out: **$52.59**
 
 ### In-transit freight (1 row)
 
@@ -278,6 +278,7 @@ _All dated lines on/after 2026-08-16_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+97f0a01 | 2026-08-23 02:10:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 686c7bd | 2026-08-22 19:00:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b803ee7 | 2026-08-22 21:20:04 +0800 | feat(qr): embed OpenStreetMap for tree QRs with real coordinates (#299)
 2d87b42 | 2026-08-22 13:10:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -323,6 +324,8 @@ f2b5dde | 2026-08-16 02:07:43 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c7c6534 | 2026-08-23 10:09:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
+4e2941f | 2026-08-23 10:09:38 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 d75c9bb | 2026-08-23 09:26:15 +0800 | Merge pull request #796 from TrueSightDAO/auto/advisory-refresh-2026-08-23
 946bf51 | 2026-08-23 01:26:04 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 128ce2b | 2026-08-23 08:43:28 +0800 | Log §10 E2E run #3 (TEST_AGL4_20260822_3) PASS (#795)
@@ -361,8 +364,6 @@ a0dc3f1 | 2026-08-21 10:36:49 +0000 | Merge: resolve conflict, keep both §8 aud
 ae029a2 | 2026-08-21 10:09:36 +0000 | Audit Sophia's post-deploy work: 2 live data-corruption bugs found, must fix before RUN
 5cd5c80 | 2026-08-21 15:24:16 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
 81cfba1 | 2026-08-21 15:24:14 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
-5c50772 | 2026-08-21 10:08:19 +0800 | chore(previews): refresh Beer Hall preview (2026-08-21 UTC)
-a332fc1 | 2026-08-21 10:08:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-21 UTC)
 … (truncated)
 ```
 
@@ -437,6 +438,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+cb2f486 | 2026-08-23 07:03:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b12ca39 | 2026-08-22 07:05:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 d206ab7 | 2026-08-21 07:09:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 1fdd50d | 2026-08-20 18:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
@@ -562,7 +564,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/22/2026 18:51:17 |
+| 2026-08 | 428.46 | 17339.52386 | 8/22/2026 23:50:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-16`; scanned last **600** data rows)
 
