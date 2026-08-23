@@ -134,12 +134,22 @@ at build time).
 
 ## 3. Sequenced plan — one PR per execution turn (§5a)
 
+**Android-first re-sequencing (Gary, 2026-08-23):** the governor wants an installable Android APK to
+test on his own phone as soon as possible. PR3 (iOS platform) and PR12 (iOS/TestFlight distribution) are
+**deferred until after the Android UAT gate below** — they need a Mac and a provisioned Apple Developer
+account, neither available yet, and blocking the Android track on them serves no purpose. Sophia is
+authorized to **auto-advance through PR2 and PR4–PR11 without waiting for a per-PR "go"** (each is still
+its own feature-branch PR, human-reviewed before merge, per §6) and should **stop at the Android UAT gate**
+with a direct-download APK link/instructions ready — that stop is non-negotiable (§5c). PR13 (docs) may be
+done before or after Android UAT at Sophia's discretion since it's not on the critical path. PR3/PR12 pick
+up again once a Mac + Apple Developer account are available, followed by a second (iOS) UAT pass.
+
 | Unit | Scope | Gate |
 |------|-------|------|
 | **PR0** | This roadmap. | — |
 | **PR1** | Repo scaffolding: `npm init`, install Capacitor core/CLI, `npx cap init` (app id e.g. `me.truesight.sunmint`, app name "Sunmint"), copy `sunmint_beta/index.html`'s content into `www/index.html` **unmodified** as the starting point. Goal: prove the existing web logic can be wrapped at all before changing anything. | — |
 | **PR2** | `npx cap add android`, configure `AndroidManifest.xml` permissions (camera, location, internet), first successful debug APK build. Smoke-test: install on an emulator/device, confirm the *unmodified* web logic (from PR1) runs inside the WebView shell — email link + tree report using the OLD `getUserMedia`/IndexedDB code, just running in a native shell. This isolates "does Capacitor work at all" from "does the native-plugin migration work." | — |
-| **PR3** | `npx cap add ios`, `Info.plist` permissions, first successful build **on a Mac** (this Linux box cannot compile iOS — flag clearly who/where this build step runs; Sophia can write all iOS-side code/config, but the actual `xcodebuild`/simulator run needs a macOS environment outside this fleet). | Needs a Mac available — flag to governor if none is accessible. |
+| **PR3** (deferred) | `npx cap add ios`, `Info.plist` permissions, first successful build **on a Mac** (this Linux box cannot compile iOS — flag clearly who/where this build step runs; Sophia can write all iOS-side code/config, but the actual `xcodebuild`/simulator run needs a macOS environment outside this fleet). | **Deferred until after Android UAT** — needs a Mac available; flag to governor if none is accessible. |
 | **PR4** | Byte-compatible RSA signing verification (the highest-risk item, §2) — before touching camera/geo/storage, confirm the native crypto path (Capacitor plugin or custom native bridge) produces signatures Edgar accepts, using a real (or dry-run) signed event. | — |
 | **PR5** | Integrate `@capacitor/camera` (`CameraSource.Camera`), replace the live-preview `getUserMedia`/canvas flow. Verify captured JPEG quality/dimensions and the photo-naming convention (§1.4) are unchanged. | — |
 | **PR6** | Integrate `@capacitor/geolocation`, replace `navigator.geolocation`. Same optional/non-blocking behavior, same blank-lat/long fallback. | — |
@@ -148,9 +158,10 @@ at build time).
 | **PR9** | Sync-trigger wiring: `@capacitor/network` connectivity-change listener + `@capacitor/app` foreground listener, both calling the same flush function from PR7. | — |
 | **PR10** | Branding: app icon, splash screen, final app name/bundle ID. | — |
 | **PR11** | Android release signing: generate a release keystore, produce a signed release APK. **Keystore file is a credential — never commit it; follow `CREDENTIAL_HANDOFF_PROTOCOL.md` for custody.** | — |
-| **PR12** | iOS distribution via **TestFlight** (§0.3, resolved): governor sets up (or delegates setup of) an Apple Developer Program account, App Store Connect app record, and a first TestFlight build upload; verify the public TestFlight link installs on a real device. | Needs the Apple Developer account provisioned — flag to governor if not yet done; account creation/payment itself is a governor action, not Sophia's to do unattended. |
+| **Android UAT** | Install the signed release APK on the governor's real Android device (direct download — GitHub Release asset or DAO-hosted URL, no Play Store); run through both flows exactly as `sunmint_beta/README.md`'s existing testing notes describe (online submit, offline submit + reconnect flush, retake, "Other" species, email link + verification link click). | **Always-stop gate (§5c).** Sophia posts the download link/instructions in the handoff topic and stops; does not proceed further unattended. |
+| **PR12** (deferred) | iOS distribution via **TestFlight** (§0.3, resolved): governor sets up (or delegates setup of) an Apple Developer Program account, App Store Connect app record, and a first TestFlight build upload; verify the public TestFlight link installs on a real device. | **Deferred until after Android UAT** — needs the Apple Developer account provisioned; account creation/payment itself is a governor action, not Sophia's to do unattended. |
 | **PR13** | Docs: `sunmint_mobile/README.md` covering build/release process for both platforms, how the app relates to `sunmint_beta`/`sunmint_prod` (the web app keeps existing independently — this is an additional client, not a replacement). | — |
-| **UAT** | Install the signed release APK on a real device (governor's or a real farmer test device); run through both flows exactly as `sunmint_beta/README.md`'s existing testing notes describe (online submit, offline submit + reconnect flush, retake, "Other" species, email link + verification link click). Repeat for iOS once a build is available. | **Always-stop gate (§5c).** |
+| **iOS UAT** | Repeat the UAT pass above via the TestFlight build once available. | **Always-stop gate (§5c).** |
 
 ---
 
@@ -190,21 +201,36 @@ at build time).
 | UAT (real-device install + real Edgar submissions) | **Always-stop gate (§5c).** |
 
 ### 6.1 Allow-list fix (done as part of this handoff)
-`truesight_autopilot/app/config.py`'s `allowed_repos` — added `sunmint_mobile`, `sunmint_beta`, `sunmint_prod` (the latter two were missing entirely; only a stale `sunmint_farmer` entry existed). See the companion PR to `truesight_autopilot`.
+`truesight_autopilot/app/config.py`'s `allowed_repos` — added `sunmint_mobile` (PR #309, merged). Note:
+`sunmint_beta`/`sunmint_prod` are still **not** in the list (only a stale `sunmint_farmer` entry exists) —
+that gap was intentionally left unfixed since only the `sunmint_mobile` addition was authorized. It doesn't
+block this roadmap (PR1–PR13 only touch the `sunmint_mobile` repo) but would need separate authorization
+before Sophia can be asked to edit the existing web apps directly.
+
+On 2026-08-23 the running `truesight-autopilot.service` process was found to be holding a **stale in-memory
+copy** of `allowed_repos` from before PR #309 merged (config changes don't hot-reload — they need an actual
+process restart). Claude restarted the service directly via SSH (governor-approved) once Sophia was
+confirmed idle between turns; the reloaded process now reflects the current `config.py`. If this recurs on
+a future config change, the same fix applies: confirm Sophia is idle, then restart
+`truesight-autopilot.service`.
 
 ---
 
 ## 7. Resume tracker
 
-> **RESUME HERE → PR1** (repo scaffolding). Wait for the governor's "go for it" in the handoff Telegram topic
-> before starting — this plan is not marked Auto-start.
+> **RESUME HERE → PR2** (Android platform + smoke test). Governor said "go for it" (2026-08-23) and has
+> since said "keep going until there is a UAT where I can point my Android phone to download the app"
+> (2026-08-23) — **Sophia is authorized to auto-advance through PR2, PR4–PR11 back-to-back, one PR per
+> turn, without waiting for a per-PR "go"**, per §3's Android-first re-sequencing note. PR3/PR12 (iOS) stay
+> deferred. The only mandatory stop is the **Android UAT gate** (§5c) — post the direct-download APK link
+> and STOP there for the governor to test on his own phone.
 
 | Unit | Built | Merged | Contribution reported |
 |------|:----:|:------:|:---------------------:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (repo scaffolding) | ☐ | ☐ | ☐ |
+| PR1 (repo scaffolding) | ☑ | ☑ (PR #1, squash `ea732113`) | ☐ |
 | PR2 (Android platform + smoke test) | ☐ | ☐ | ☐ |
-| PR3 (iOS platform + smoke test) | ☐ | ☐ | ☐ |
+| PR3 (iOS platform + smoke test) — **deferred** | ☐ | ☐ | ☐ |
 | PR4 (RSA signing byte-compatibility) | ☐ | ☐ | ☐ |
 | PR5 (native camera) | ☐ | ☐ | ☐ |
 | PR6 (native geolocation) | ☐ | ☐ | ☐ |
@@ -213,9 +239,10 @@ at build time).
 | PR9 (sync triggers) | ☐ | ☐ | ☐ |
 | PR10 (branding) | ☐ | ☐ | ☐ |
 | PR11 (Android release signing) | ☐ | ☐ | ☐ |
-| PR12 (iOS distribution — gated) | ☐ | — | ☐ |
+| **Android UAT** | ☐ | — | ☐ |
+| PR12 (iOS distribution — gated, deferred) | ☐ | — | ☐ |
 | PR13 (docs) | ☐ | ☐ | ☐ |
-| UAT | ☐ | — | ☐ |
+| iOS UAT (deferred) | ☐ | — | ☐ |
 
 ✅ **Pre-flight Completeness (§5d):** every cross-repo fact a unit below would need (Edgar's contract, the
 photo-naming convention, the allow-list gap) is captured in §5 above.
