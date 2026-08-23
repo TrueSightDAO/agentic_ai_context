@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+```followup
+id: paloma-asset-receipt-rows-correction
+chat_id: -1003919341801
+thread_id: 11590
+title: Correct 2 Paloma asset-receipt rows on 'offchain asset location' (sheet protection)
+created_at: 2026-08-22
+condition:
+  kind: elapsed_days
+  escalate_after_days: 2
+schedule:
+  check: daily
+  on_escalate: ping_thread
+status: open
+description: >
+  Offchain asset location rows 26 + 105 still hold qty=1 with unit cost 1/100.
+  Fixes: row 26 -> C26=1 D26=58.07 E26=58.07; row 105 -> C105=100 D105=0.130088 E105=13.01.
+  Tab is cell-protected vs all service accounts; needs sheet-owner edit (Gary) or
+  unprotect/grant edit to cypher-defense@get-data-io.iam.gserviceaccount.com.
+  Deploy of tokenomics #411 fix is DONE; only the manual row correction remains.
+  Full prose context in OPEN_FOLLOWUPS #791 entry.
+```
+
 ### Cacao tea 50g QR batch 2024OSCAR_CT_20260820: serial _3 is VOID (replaced by _101)
 **Filed 2026-08-20. Owner: unclaimed (informational).** Mint QA found serial
 `2024OSCAR_CT_20260820_3` undecodable (deterministic generator defect — reproduced on two
