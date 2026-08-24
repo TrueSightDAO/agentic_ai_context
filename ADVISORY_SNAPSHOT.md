@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-24T07:36:59Z`
+- Generated (UTC): `2026-08-24T13:30:10Z`
 - Look-back: **7** calendar days (`2026-08-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,11 +32,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
+- `[CONTRIBUTION EVENT]` × 25
 - `[TREE PLANTING EVENT]` × 3
 - `[ASSET RECEIPT EVENT]` × 2
 - `[TREE PLANTING LINK EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
+- `[PRACTICE EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
@@ -44,9 +44,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260823004801_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Executed §10 E2E RUN #2 and RUN #3 (mint/sell/link/verify/invalidate/log cyc…
-- `Edgar_20260823004806_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Performed the interactive Apps Script editor re-deploy that granted the miss…
-- `Edgar_20260823083155_083` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-23T08:31:53.629Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260823094813_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20260823150004_087` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+envoy@truesight.me
 - `Edgar_20260823150234_089` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OztX4Lim0mOgV3BkfmKHxzKVYO6Tlg3cWhRQs7e_XSg · Email: admin+envoy@truesight.me
@@ -64,6 +61,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260823201322_113` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Contributor(s): Gary Teh
 - `Edgar_20260823204920_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SunMint iOS app: UAT + decisions + coordination (Android/iOS simulator testi…
 - `Edgar_20260823204932_117` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SunMint iOS build: CocoaPods + plugin downgrade (Xcode 16 / Intel)
+- `Edgar_20260824082032_119` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-24T08:20:30.836Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260824114415_121` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Follow-up on Brazil export blocker: researched Plátano Digital (Ilhéus) e-CP…
+- `Edgar_20260824114418_123` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow-up on Brazil export blocker: reviewing WhatsApp drafts for Plátano Di…
 
 ---
 
@@ -78,7 +78,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-23T10:59:14.150Z`
+- Generated (UTC): `2026-08-24T10:59:15.194Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -283,6 +283,7 @@ _All dated lines on/after 2026-08-17_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+894fff8 | 2026-08-24 07:40:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 60dc1ba | 2026-08-24 02:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9af86cd | 2026-08-23 18:59:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1d3729b | 2026-08-24 01:00:50 +0800 | Fix Butterfly Effect logo: repoint to self-hosted asset (#306)
@@ -322,7 +323,6 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 08c1a5a | 2026-08-18 07:20:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31daf4d | 2026-08-18 02:01:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
-4293736 | 2026-08-17 13:22:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -335,6 +335,10 @@ edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b353986 | 2026-08-24 19:26:07 +0800 | docs: reflect 2026-08-24 Explorya cleanup, EIP release, nginx chatbot fix (#814)
+c604208 | 2026-08-24 18:18:00 +0800 | Plan: /large_spikes regime gauge Norm/Bollinger window fix + legibility (#813)
+db5477f | 2026-08-24 15:37:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
+81f035e | 2026-08-24 15:37:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 e7bb274 | 2026-08-24 10:07:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 1aeedae | 2026-08-24 10:07:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 ca7b1c4 | 2026-08-24 09:23:22 +0800 | Merge pull request #812 from TrueSightDAO/auto/advisory-refresh-2026-08-24
@@ -371,10 +375,6 @@ cb80a99 | 2026-08-23 20:25:12 +0800 | Merge pull request #797 from TrueSightDAO/
 dd88b41 | 2026-08-23 15:10:59 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
 4505cab | 2026-08-23 15:10:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 c7c6534 | 2026-08-23 10:09:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
-4e2941f | 2026-08-23 10:09:38 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
-d75c9bb | 2026-08-23 09:26:15 +0800 | Merge pull request #796 from TrueSightDAO/auto/advisory-refresh-2026-08-23
-946bf51 | 2026-08-23 01:26:04 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
-128ce2b | 2026-08-23 08:43:28 +0800 | Log §10 E2E run #3 (TEST_AGL4_20260822_3) PASS (#795)
 … (truncated)
 ```
 
@@ -450,6 +450,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 6fea31d | 2026-08-24 07:30:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cb2f486 | 2026-08-23 07:03:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b12ca39 | 2026-08-22 07:05:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -575,7 +576,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/23/2026 23:51:47 |
+| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 5:50:54 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-17`; scanned last **600** data rows)
 
