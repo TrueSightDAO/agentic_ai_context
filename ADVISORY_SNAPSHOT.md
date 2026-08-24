@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-24T13:30:10Z`
+- Generated (UTC): `2026-08-24T19:10:45Z`
 - Look-back: **7** calendar days (`2026-08-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,38 +32,38 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
+- `[CONTRIBUTION EVENT]` × 21
+- `[INVENTORY MOVEMENT]` × 6
+- `[EMAIL VERIFICATION EVENT]` × 3
 - `[TREE PLANTING EVENT]` × 3
-- `[ASSET RECEIPT EVENT]` × 2
-- `[TREE PLANTING LINK EVENT]` × 2
+- `[ASSET RECEIPT EVENT]` × 3
 - `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
+- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260823094813_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260823150004_087` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+envoy@truesight.me
-- `Edgar_20260823150234_089` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OztX4Lim0mOgV3BkfmKHxzKVYO6Tlg3cWhRQs7e_XSg · Email: admin+envoy@truesight.me
-- `Edgar_20260823150434_091` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Envoy TrueSight · Contributor Email: admin+envoy@truesight.me · Initial Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoUrR+L3uBQ9iZmYxAk…
-- `Edgar_20260823181316_093` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20260823181318_095` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20260823181319_097` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20260823185244_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] sunmint_mobile: iOS build fails on the designated Mac (Xcode 16.…
-- `Edgar_20260823185724_101` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] sunmint_mobile: iOS build fails on the designated Mac (Xcode 16.…
-- `Edgar_20260823191133_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] sunmint_mobile: The merged PR #17 for the Capacitor 8.4.2 pin co…
-- `Edgar_20260823192935_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: FounderHaus tree planting (thread 12741) — drove completion: directed Sophia…
-- `Edgar_20260823192945_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: FounderHaus tree planting — monitoring + unblocking coordination (thread 127…
-- `Edgar_20260823193004_109` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight
-- `Edgar_20260823193926_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Add drive.file scope to the shared Gmail OAuth token (garyjob@agroverse.shop…
-- `Edgar_20260823201322_113` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Contributor(s): Gary Teh
-- `Edgar_20260823204920_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SunMint iOS app: UAT + decisions + coordination (Android/iOS simulator testi…
-- `Edgar_20260823204932_117` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SunMint iOS build: CocoaPods + plugin downgrade (Xcode 16 / Intel)
-- `Edgar_20260824082032_119` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-24T08:20:30.836Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260824114415_121` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Follow-up on Brazil export blocker: researched Plátano Digital (Ilhéus) e-CP…
-- `Edgar_20260824114418_123` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow-up on Brazil export blocker: reviewing WhatsApp drafts for Plátano Di…
+- `Edgar_20260824133926_125` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20260824141011_127` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 10 · Description: Receipt of 10 chocolate molds MHC-CL082 from Dongguan MHC Industrial Co., Lt…
+- `Edgar_20260824141707_129` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 20 · Fund Handler: Elizabeth Wong
+- `Edgar_20260824141711_131` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Elizabeth Wong · Recipient Name: Gary Teh · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm)
+- `Edgar_20260824141737_133` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 25.4 · Contributor(s): Elizabeth Wong
+- `Edgar_20260824142434_135` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260824144218_137` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
+- `Edgar_20260824150839_139` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 8CObUge2h1fdI_JA5b0dJHT6vXebaxLPmwP8Wczr8So · Email: admin+sophia@truesight.me
+- `Edgar_20260824152250_141` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 8CObUge2h1fdI_JA5b0dJHT6vXebaxLPmwP8Wczr8So · Email: admin+sophia@truesight.me
+- `Edgar_20260824152322_143` · **Edgar** · [No Text Provided]
+- `Edgar_20260824152351_145` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
+- `Edgar_20260824152518_147` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
+- `Edgar_20260824174417_149` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
+- `Edgar_20260824181346_151` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
+- `Edgar_20260824181822_153` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Sophia Truesight · Recipient Name: Sophia Truesight · Inventory Item: E2E TEST ITEM - Cacao Tea 50g QR label (self-to-self, no real inventory)
+- `Edgar_20260824182852_155` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820) · Amount: 100 · Description: Assembly of 100 units via issue of QR code
+- `Edgar_20260824183852_157` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Autopilot (Sophia Truesight) raw machine execution on 2026-08-20 inventory-m…
+- `Edgar_20260824183951_159` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time on 2026-08-20 inventory-movement unauthorized incident:…
+- `Edgar_20260824183953_161` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Sophia Truesight · Description: Autopilot (Sophia Truesight) raw machine execution on 2026-08-20 inventory-m…
+- `Edgar_20260824183955_163` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Gary Teh direct time on 2026-08-20 inventory-movement unauthorized incident:…
 
 ---
 
@@ -190,12 +190,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 15 SKU lines · 1,339 total units · $1,536.14
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,349 total units · $1,548.84
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 10 | 397 | $884.69 |
+  | (uncategorized) | (unspecified) | 11 | 407 | $897.39 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -212,11 +212,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 27 SKU lines · 13,929.66 total units · $12,336.57
+- Manager record: `Gary Teh` · 28 SKU lines · 13,939.66 total units · $12,349.27
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 13,853.48 | $12,286.59 |
+  | (uncategorized) | (unspecified) | 26 | 13,863.48 | $12,299.29 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -230,8 +230,8 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Aga Marecka | 1 | 20 | $537.46 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
+| Paloma | 3 | 201 | $152.39 |
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
-| Tess Walkowski | 2 | 13 | $108.75 |
 
 _(+28 more in JSON snapshot.)_
 
@@ -283,6 +283,7 @@ _All dated lines on/after 2026-08-17_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7df964c | 2026-08-24 13:32:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 894fff8 | 2026-08-24 07:40:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 60dc1ba | 2026-08-24 02:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9af86cd | 2026-08-23 18:59:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,7 +323,6 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 31dfabc | 2026-08-18 13:24:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 08c1a5a | 2026-08-18 07:20:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31daf4d | 2026-08-18 02:01:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -335,6 +335,9 @@ edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6062b28 | 2026-08-24 15:42:26 -0300 | Docs: Sophia contribution estimates = raw execution + direct time (two separate CONTRIBUTION EVENTS) (#815)
+2e24fb9 | 2026-08-24 21:30:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
+51bac85 | 2026-08-24 21:30:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 b353986 | 2026-08-24 19:26:07 +0800 | docs: reflect 2026-08-24 Explorya cleanup, EIP release, nginx chatbot fix (#814)
 c604208 | 2026-08-24 18:18:00 +0800 | Plan: /large_spikes regime gauge Norm/Bollinger window fix + legibility (#813)
 db5477f | 2026-08-24 15:37:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
@@ -372,15 +375,14 @@ e1c45b7 | 2026-08-23 21:11:04 +0800 | chore(previews): refresh Beer Hall preview
 cb80a99 | 2026-08-23 20:25:12 +0800 | Merge pull request #797 from TrueSightDAO/plan/sunmint-mobile-app
 6541b0c | 2026-08-23 12:24:23 +0000 | Add SunMint Mobile App execution roadmap (Android + iOS, Capacitor)
 33509cd | 2026-08-23 17:48:04 +0800 | Add Brazil-China lane Oscar beans briefing (for Elizabeth Wong)
-dd88b41 | 2026-08-23 15:10:59 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
-4505cab | 2026-08-23 15:10:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
-c7c6534 | 2026-08-23 10:09:39 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+d120f70 | 2026-08-25 01:25:03 +0800 | fix: remove stale Code.js duplicate from inventory movement GAS project (#425)
+8d69388 | 2026-08-24 22:37:21 +0800 | Add admin+sophia@truesight.me to TRUSTED_AGENTS for inventory movement auth (#424)
 e8b166f | 2026-08-24 01:17:26 +0800 | docs: SCHEMA.md — add TREE_PLANTING_FUNDS_TRANSFERRED to status enum + States tab (#422)
 79671e8 | 2026-08-24 01:11:11 +0800 | feat: add TREE_PLANTING_FUNDS_TRANSFERRED QR state (enum, pickers, list endpoint, link validation, shop counter) (#421)
 7b7fbf4 | 2026-08-23 20:23:06 +0800 | Harden LINK flow: surface tree-planted email failures in tracking outcome (#420)
@@ -419,8 +421,7 @@ b319262 | 2026-08-20 09:05:48 +0800 | Merge pull request #394 from TrueSightDAO/
 d532ef3 | 2026-08-18 20:44:26 +0000 | Add [TREE PLANTING LINK EVENT] handler: link Sunmint submissions to sold QR codes
 124c0c2 | 2026-08-19 04:36:38 +0800 | Merge pull request #390 from TrueSightDAO/feature/tree-planting-read-endpoints
 e79c9b6 | 2026-08-18 20:36:10 +0000 | Add governor-gated read endpoints for the tree-planting linking picker
-47c2dc1 | 2026-08-19 04:31:16 +0800 | Merge pull request #389 from TrueSightDAO/feature/qr-sold-date-column
-63c5072 | 2026-08-18 20:30:39 +0000 | Add Sold Date column (W) to Agroverse QR codes; exclude ASSIGNED_TO_TREE from availability pickers
+… (truncated)
 ```
 
 ### `dapp` → `dapp`
@@ -576,7 +577,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 5:50:54 |
+| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 11:51:00 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-17`; scanned last **600** data rows)
 
