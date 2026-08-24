@@ -20,9 +20,50 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-24T01:23:06Z`
+- Generated (UTC): `2026-08-24T02:07:27Z`
 - Look-back: **7** calendar days (`2026-08-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 26
+- `[TREE PLANTING EVENT]` × 3
+- `[ASSET RECEIPT EVENT]` × 2
+- `[TREE PLANTING LINK EVENT]` × 2
+- `[PRACTICE EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- _free-form (no bracket tag)_ × 3
+
+### Latest entries
+
+- `Edgar_20260823004801_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: Executed §10 E2E RUN #2 and RUN #3 (mint/sell/link/verify/invalidate/log cyc…
+- `Edgar_20260823004806_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Performed the interactive Apps Script editor re-deploy that granted the miss…
+- `Edgar_20260823083155_083` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-23T08:31:53.629Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260823094813_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260823150004_087` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+envoy@truesight.me
+- `Edgar_20260823150234_089` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: OztX4Lim0mOgV3BkfmKHxzKVYO6Tlg3cWhRQs7e_XSg · Email: admin+envoy@truesight.me
+- `Edgar_20260823150434_091` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Envoy TrueSight · Contributor Email: admin+envoy@truesight.me · Initial Digital Signature: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoUrR+L3uBQ9iZmYxAk…
+- `Edgar_20260823181316_093` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260823181318_095` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260823181319_097` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20260823185244_099` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] sunmint_mobile: iOS build fails on the designated Mac (Xcode 16.…
+- `Edgar_20260823185724_101` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] sunmint_mobile: iOS build fails on the designated Mac (Xcode 16.…
+- `Edgar_20260823191133_103` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] sunmint_mobile: The merged PR #17 for the Capacitor 8.4.2 pin co…
+- `Edgar_20260823192935_105` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: FounderHaus tree planting (thread 12741) — drove completion: directed Sophia…
+- `Edgar_20260823192945_107` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: FounderHaus tree planting — monitoring + unblocking coordination (thread 127…
+- `Edgar_20260823193004_109` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight
+- `Edgar_20260823193926_111` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Add drive.file scope to the shared Gmail OAuth token (garyjob@agroverse.shop…
+- `Edgar_20260823201322_113` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Contributor(s): Gary Teh
+- `Edgar_20260823204920_115` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SunMint iOS app: UAT + decisions + coordination (Android/iOS simulator testi…
+- `Edgar_20260823204932_117` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SunMint iOS build: CocoaPods + plugin downgrade (Xcode 16 / Intel)
 
 ---
 
@@ -194,13 +235,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+28 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,788.82**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$52.59**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -290,6 +335,8 @@ edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ca7b1c4 | 2026-08-24 09:23:22 +0800 | Merge pull request #812 from TrueSightDAO/auto/advisory-refresh-2026-08-24
+5c81c3e | 2026-08-24 01:23:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 1257ff2 | 2026-08-24 07:20:01 +0800 | Add markdown source for sugarcane environmental report
 49926b3 | 2026-08-24 07:19:54 +0800 | Add environmental deep-dive report: sugarcane and land in Brazil
 f50f2a3 | 2026-08-24 04:06:34 +0800 | docs: consolidate Brazil export lane learnings + SOP reference (#810)
@@ -328,8 +375,6 @@ d75c9bb | 2026-08-23 09:26:15 +0800 | Merge pull request #796 from TrueSightDAO/
 128ce2b | 2026-08-23 08:43:28 +0800 | Log §10 E2E run #3 (TEST_AGL4_20260822_3) PASS (#795)
 017fab4 | 2026-08-23 07:45:47 +0800 | Log §10 E2E run #2 (TEST_AGL4_20260822_2) — PASS (#794)
 0c2e111 | 2026-08-23 03:13:49 +0800 | Merge pull request #793 from TrueSightDAO/docs/e2e-test-recipient-garyjob-gmail
-7dd8b9c | 2026-08-23 02:58:49 +0800 | chore(previews): refresh Beer Hall preview (2026-08-22 UTC)
-40377da | 2026-08-23 02:58:48 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-22 UTC)
 … (truncated)
 ```
 
@@ -505,6 +550,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 428.46 | 17339.52386 | 8/23/2026 18:50:28 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-17`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-08-22 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
