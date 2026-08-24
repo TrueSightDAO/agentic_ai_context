@@ -127,4 +127,22 @@ When selling serialized QR-coded products for cash (not through Stripe):
 |-------|--------------|-----------------|-----|
 | Stripe Session ID | **`(none)`** | `N/A` | GAS normalizes `(none)` to empty and skips the Stripe checkout lookup. `N/A` passes through as a literal string and triggers log noise. |
 | Shipping Provider | `N/A` | — | Local pickup / hand delivery |
-| Tracking number | `N/A
+| Tracking number | `N/A` | — | No shipping label |
+
+For serialized QR products, `[SALES EVENT]` per QR code IS sufficient — the downstream chain (QR Code Sales → offchain transactions → treasury cache) handles inventory depletion. A separate `[INVENTORY MOVEMENT]` is only needed for bulk/non-serialized inventory tracked by weight or count.
+
+**Ledger assignment ≠ physical possession:** A QR code tracked under AGL6 ledger can physically be in Gary Teh's car. The `manager_name` tracks who manages the record, not who holds the bag.
+
+## Related context
+
+- **`tokenomics/SCHEMA.md`** — `Telegram Chat Logs`, **Governor** column **S**, **Inventory Movement**, **Scored Expense Submissions**.
+- **`sentiment_importer`** — **TRADING PLATFORM ONLY**, not the DAO API. DAO submissions go through **`dao_protocol`** (FastAPI, Python). The Rails Edgar app appends to Telegram Chat Logs via the legacy code path; all new DAO traffic routes through dao_protocol.
+- **`WORKSPACE_CONTEXT.md`** § Edgar / tokenomics / DApp relationships.
+
+---
+
+## Anti-patterns
+
+- Submitting without **any** `github.com/TrueSightDAO/.../pull/` (or, for a direct merge with no PR, `.../commit/<sha>`) link when code or docs landed in GitHub.
+- Vague one-line descriptions with no file/PR reference.
+- Using a non–`dao_client` signing path that drifts from DApp canonical formatting.
