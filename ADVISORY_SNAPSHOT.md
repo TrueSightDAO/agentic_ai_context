@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-24T02:07:27Z`
+- Generated (UTC): `2026-08-24T07:36:59Z`
 - Look-back: **7** calendar days (`2026-08-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -237,9 +237,9 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,788.82**
+- USD on hand: **$4,788.72**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.59**
+- USD provisioned for voting-rights cash-out: **$52.70**
 
 ### In-transit freight (1 row)
 
@@ -283,6 +283,7 @@ _All dated lines on/after 2026-08-17_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+60dc1ba | 2026-08-24 02:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9af86cd | 2026-08-23 18:59:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1d3729b | 2026-08-24 01:00:50 +0800 | Fix Butterfly Effect logo: repoint to self-hosted asset (#306)
 49b43b9 | 2026-08-24 00:54:18 +0800 | Simplify FounderHaus Farm pill to SunMint initiative (#305)
@@ -322,7 +323,6 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 31daf4d | 2026-08-18 02:01:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 4293736 | 2026-08-17 13:22:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
-72d70d8 | 2026-08-17 07:35:02 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -335,6 +335,8 @@ edc8f26 | 2026-08-17 19:08:42 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e7bb274 | 2026-08-24 10:07:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
+1aeedae | 2026-08-24 10:07:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 ca7b1c4 | 2026-08-24 09:23:22 +0800 | Merge pull request #812 from TrueSightDAO/auto/advisory-refresh-2026-08-24
 5c81c3e | 2026-08-24 01:23:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 1257ff2 | 2026-08-24 07:20:01 +0800 | Add markdown source for sugarcane environmental report
@@ -373,8 +375,6 @@ c7c6534 | 2026-08-23 10:09:39 +0800 | chore(previews): refresh Beer Hall preview
 d75c9bb | 2026-08-23 09:26:15 +0800 | Merge pull request #796 from TrueSightDAO/auto/advisory-refresh-2026-08-23
 946bf51 | 2026-08-23 01:26:04 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 128ce2b | 2026-08-23 08:43:28 +0800 | Log §10 E2E run #3 (TEST_AGL4_20260822_3) PASS (#795)
-017fab4 | 2026-08-23 07:45:47 +0800 | Log §10 E2E run #2 (TEST_AGL4_20260822_2) — PASS (#794)
-0c2e111 | 2026-08-23 03:13:49 +0800 | Merge pull request #793 from TrueSightDAO/docs/e2e-test-recipient-garyjob-gmail
 … (truncated)
 ```
 
@@ -450,6 +450,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6fea31d | 2026-08-24 07:30:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cb2f486 | 2026-08-23 07:03:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b12ca39 | 2026-08-22 07:05:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 d206ab7 | 2026-08-21 07:09:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -574,7 +575,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/23/2026 18:50:28 |
+| 2026-08 | 428.46 | 17339.52386 | 8/23/2026 23:51:47 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-17`; scanned last **600** data rows)
 
