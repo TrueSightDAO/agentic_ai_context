@@ -1,6 +1,6 @@
 # TESTFLIGHT_RUNBOOK — SunMint iOS (bundle `me.truesight.sunmint`)
 
-Status: **prepped 2026-08-23 — execution BLOCKED on two Gary-side prerequisites.**
+Status: **prepped 2026-08-23; execution under way — Apple Developer Program enrollment SUBMITTED 2026-08-24 (Enrollment ID M9V8VJWK26, TrueTech Inc), status "being processed" — awaiting Apple's verification email. Remaining: complete enrollment + pick an Apple-silicon / Xcode 26 build path (GitHub Actions macos runner recommended).**
 The iOS code track is complete and green (see state recap below); this runbook is what we
 run the moment the blockers clear.
 
@@ -140,3 +140,26 @@ xcodebuild -exportArchive -archivePath build/Sunmint.xcarchive -exportOptionsPli
 - Universal/App Links (`https://…` → app) need `apple-app-site-association` on the
   sunmint web host; `sunmint://` deep links already work (PR14).
 - Update this runbook + the plan once the account is provisioned and the first archive is up.
+## Apple Developer Program — enrollment record (2026-08-24)
+
+Submitted by Gary Teh from the enrollment flow (source PDF `bae8eb7a71a1434cb5b2a92c17d4b851.pdf`, 2 pages, attached in thread 13445).
+
+| Field | Value |
+|---|---|
+| **Enrollment ID (reference \"serial number\")** | **M9V8VJWK26** |
+| Status | Being processed — Apple verifies authority to sign legal agreements, then emails instructions to complete |
+| Legal entity type | Organization |
+| Legal entity name | TrueTech Inc |
+| D-U-N-S® number | 119035208 |
+| Address | 3041 Taraval St, San Francisco, CA 94116-2106, US |
+| Website | https://truesight.me |
+| Phone | +1 (442) 340-5782 |
+| Work email (signature authority) | garyjob@truesight.me |
+| Platforms | iOS, iPadOS, macOS, tvOS, visionOS, watchOS, App Store |
+| Development tools | Swift, SwiftUI, Swift Playground, TestFlight, Xcode, Xcode Cloud, Icon Composer, SF Symbols |
+
+**Next steps:**
+1. Apple calls/emails to verify signature authority — have the Enrollment ID **M9V8VJWK26** handy (it's the reference they'll ask for).
+2. Complete enrollment per Apple's emailed instructions.
+3. Then: create App Store Connect app record (`me.truesight.sunmint`), generate ASC API key, land `testflight.yml` (GitHub Actions macos runner), archive + upload, publish public TestFlight link. See Execution above.
+
