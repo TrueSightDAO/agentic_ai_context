@@ -45,6 +45,28 @@ When an **AI coding assistant** completes work that should appear on the **DAO c
 
 ---
 
+## Sophia (autopilot) time estimates: raw execution vs direct time
+
+**Convention set by Gary 2026-08-24 (thread 14165).** When an estimate is needed for **Sophia's** (the autopilot's) time on a task — e.g. an incident, a fix, a plan unit — the estimate is split into **two separate `[CONTRIBUTION EVENT]`s**, never merged into one:
+
+| Event | Definition | How it is measured | Example attribution |
+|-------|-----------|--------------------|---------------------|
+| **Raw execution** | Machine tool-execution time — actual time the tools/SSH/scripts ran (SSH diagnostics, sheet reads, GAS deploys, webhook fires, PR machinery, key registration, etc.) | Count tool operations per phase; sum their measured/typical durations (e.g. `ssh_run` ~seconds–min; `gas_deploy_project` ~30–60 s; webhook fires ~30–90 s; big sheet pulls ~seconds). Rough wall-clock estimate is acceptable; be explicit that it is raw machine time. | Contributor: `Sophia Truesight` — Description starts **"Raw machine execution…"** |
+| **Direct time** | Sophia's engagement/analysis equivalent — the reasoning, diagnosis, correction cycles, and attention that a human operator would have spent driving the same work | Estimate from turn count, depth of diagnosis, and the human-equivalent time for the analysis performed (the governor may provide or approve the number). Explicitly an **estimate**. | Contributor: `Sophia Truesight` — Description starts **"Direct time (engagement/analysis)…"** |
+
+### Rules
+
+- **Always file two separate events** for Sophia's time (raw execution + direct time) when both are being credited. Never collapse them into one "Sophia" number unless the governor explicitly asks for a single figure.
+- **Governor (human) direct time is a separate event** under the governor's own name (e.g. `Gary Teh`) — e.g. "Gary Teh direct time…" — and is *not* part of Sophia's raw/direct split.
+- **Amounts are informational** — `TDG Issued: 0` unless the governor sets real economics. The split exists so the ledger distinguishes machine cost from human-equivalent attention.
+- **Field format** follows the canonical event: `Type` = `Time (Minutes)`, `Amount` = minutes, `Description` = explicit (start with **"Raw machine execution…"** or **"Direct time (engagement/analysis)…"**), `Contributors` = display name (`Sophia Truesight` / `Gary Teh`). Do not add `TDG Issued` to the attributes unless the governor set an award.
+- **Worked example (2026-08-24, inventory-movement unauthorized incident, thread 14165):**
+  - `Sophia Truesight` / 60 min — "Raw machine execution…" (~200 tool ops: SSH, sheet reads, GAS deploys ×3, webhook fires, key registration/verification, PRs #424/#425/#312)
+  - `Sophia Truesight` / 60 min — "Direct time (engagement/analysis)…" (diagnosis, root-cause analysis, correction cycles)
+  - `Gary Teh` / 60 min — "Gary Teh direct time…" (17 thread messages, sheet checks, directing fixes, approving merges)
+
+---
+
 ## Browser equivalent
 
 Human flow: [DAO Contribution Report](https://dapp.truesight.me/report_contribution.html) (`[CONTRIBUTION EVENT]`). The CLI mirrors that event and attribute names expected by Edgar / scoring.
@@ -69,7 +91,7 @@ When a contributor purchases a **physical item** for DAO inventory (non-serializ
 
 ### Flow
 
-| Step | Event | Module | What it does |
+| Step | Event | Module / DApp page | What it does |
 |------|-------|--------|--------------|
 | 1 | `[CONTRIBUTION EVENT]` — Type: **USD** | `report_contribution.py` | Records cash outflow (`--amount <total>`, `--contributors "Gary Teh"`). Attach the invoice PDF with `--attachment`. Set `--destination-contribution-file-location` to a GitHub blob URL — Edgar uploads the file there. |
 | 2 | `[ASSET RECEIPT EVENT]` | `report_asset_receipt.py` | Records positive inventory leg. `--currency` = exact Currencies!A name, `--amount` = unit count (1 for single items), `--fund-handler` = who holds it, `--description` must include the PDF blob URL and cash-leg row reference. |
