@@ -14,11 +14,11 @@ Two changes landed 2026-07-15. **Where the text below conflicts with this banner
 |---|---|---|
 | Instance | `i-02c699d3d7efbdc82` (**STOPPED** 2026-07-15, kept for rollback) | **`i-05276b8ae82d6b88c`** |
 | Account | Explorya `440626669078` | **Nelanco `767697632458`** |
-| EIP | `52.200.38.206` (`eipalloc-04772e4a20f10c1c4`) | **`3.214.167.219`** (`eipalloc-018e2cad67ecbcd8a`) |
-| VPC / subnet / SG | Explorya `sg-e98f788e` | `vpc-d59748af` / `subnet-de8102b9` / `governor-chatbot-sg` (`sg-0d3b6c10480d83248`, 80/443/22) |
+| EIP | `52.200.38.206` (`eipalloc-04772e4a20f10c1c4`) — **released 2026-08-24** | **`3.214.167.219`** (`eipalloc-018e2cad67ecbcd8a`, Nelanco) |
+| VPC / subnet / SG | Explorya `sg-e98f788e` | `vpc-d59748af` / `subnet-de8102b9` / `governor-chatbot-sg` (`sg-0d3b6c10480d83248`: 80/443/22 open; 8001 from `172.31.26.102/32`) |
 | Type | t3.medium | t3.medium |
 
-`sophia.truesight.me` now → **`3.214.167.219`** (Route53 A, Explorya zone `Z0032474227N6EQ3Z4QU`). All 4 systemd units (`truesight-autopilot`, `-telegram`, `-watchdog`, `truesight-vault`) run on the new box; `DRY_RUN=false`; health `:8001` = 200; nginx serves HTTPS 200. Migration was an **AMI copy** (Explorya `ami-0b05acc998af71d0f` → shared → Nelanco copy `ami-049ff1f01152ef25d`) so the box is a byte-for-byte clone (Edgar identity, Telethon session, code all intact). Weekly AMI backup **retargeted** (Cypher-Defense `snapshot_autopilot_ami`): now Name tag `sophia-nelanco` + `CYPHER_DEFENCE_AWS_*` secrets (Nelanco). **Pending follow-ups:** swap `52.200.38.206`→`3.214.167.219` in fleet SG `dao-protocol-beta-sg` allowlist (SSH); reconcile stale `governor_chatbot`/`chatbot.truesight.me` notes; eventually terminate the stopped Explorya box + prune old Explorya AMIs.
+`sophia.truesight.me` now → **`3.214.167.219`** (Route53 A, Explorya zone `Z0032474227N6EQ3Z4QU`). All 4 systemd units (`truesight-autopilot`, `-telegram`, `-watchdog`, `truesight-vault`) run on the new box; `DRY_RUN=false`; health `:8001` = 200; nginx serves HTTPS 200. Migration was an **AMI copy** (Explorya `ami-0b05acc998af71d0f` → shared → Nelanco copy `ami-049ff1f01152ef25d`) so the box is a byte-for-byte clone (Edgar identity, Telethon session, code all intact). Weekly AMI backup **retargeted** (Cypher-Defense `snapshot_autopilot_ami`): now Name tag `sophia-nelanco` + `CYPHER_DEFENCE_AWS_*` secrets (Nelanco). **Follow-ups — all DONE 2026-08-24:** fleet SG `dao-protocol-beta-sg` SSH allowlist updated to `3.214.167.219`; stale `governor_chatbot`/`chatbot.truesight.me` nginx upstream **fixed** (now `172.31.15.182:8001`, verified HTTP 200); stopped Explorya box + `seni_ror_2026` + `seni_sk_2026` **terminated**; old Explorya AMIs/snapshots/250GB volume **pruned**; EIP `52.200.38.206` **released**. ~$62/mo saved (see §12.2).
 
 **2. New interactive Claude Code box** (`nelanco-claude`): `i-01ad5eca707e4445f`, EIP **`100.57.50.48`**, `claude.truesight.me`, Nelanco `vpc-d59748af`/`subnet-de8102b9`, SG `launch-wizard-1`. Runs Claude Code (driven from the mobile app via `--remote-control`), Sophia-parity env + fleet SSH — **not** autonomous. Plan: `plans/NELANCO_CLAUDE_CODE_BOX_PLAN.md`.
 
@@ -37,13 +37,13 @@ flowchart TB
 
     subgraph Explorya["AWS Account: Explorya (440626669078)"]
         R53["Route53\ntruesight.me zone"]
-        Autopilot["truesight-autopilot\nt3.medium\nsophia.truesight.me"]
-        OldEdgar["seni_ror_2026\nSTOPPED"]
-        OldSK["seni_sk_2026\nSTOPPED"]
+        CF["CloudFront\ncache/cldf distros"]
+        AMI["migration AMI\nami-0b05acc998af71d0f"]
     end
 
     subgraph Nelanco["AWS Account: Nelanco (767697632458)"]
         Nginx["krake_nginx\nt2.micro\n54.226.114.186"]
+        Autopilot["sophia-nelanco\nt3.medium\n3.214.167.219"]
         PerchRails["seni_ror_200250915\nt2.small\nPerch (Rails)"]
         EdgarPython["dao_protocol_nelanco\nt3.small\nFastAPI (Edgar)"]
         Sidekiq["seni_sk_auto\nASG × 2\nSidekiq workers"]
@@ -60,7 +60,7 @@ flowchart TB
     R53 -->|*.truesight.me| GitHub
 
     Nginx -->|:3000| PerchRails
-    Nginx -->|:8000| Autopilot
+    Nginx -->|:8001| Autopilot
 
     PerchRails --> Postgres
     PerchRails --> Redis
@@ -125,7 +125,7 @@ flowchart LR
 
 | Account | Label | Owner ID | Purpose |
 |---------|-------|----------|---------|
-| **Explorya** | `explorya` | `440626669078` | TrueSight DAO / Agroverse production. Contains the autopilot, old Perch instances (stopped), and Route53 DNS for `truesight.me`, `agroverse.shop`. |
+| **Explorya** | `explorya` | `440626669078` | TrueSight DAO / Agroverse **DNS + static assets only**. Route53 zones (`truesight.me`, `agroverse.shop`, `getdata.io`), CloudFront distros, and 1 kept migration AMI (`ami-0b05acc998af71d0f`). All EC2 instances terminated 2026-08-24. |
 | **Nelanco** | `nelanco` | `767697632458` | Krake / GetData.io production + **Perch** (Rails) + **Edgar** (dao_protocol Python). Contains the nginx reverse proxy, ALB, Sidekiq workers, Redis, PostgreSQL, and the new `dao_protocol` FastAPI server. |
 
 **Key insight:** The old `seni_ror_2026` / `seni_sk_2026` instances in Explorya were **stopped 2026-05-28**. Perch was migrated to a fresh host in Nelanco. The autopilot remains in Explorya.
@@ -159,9 +159,9 @@ flowchart LR
 
 | Name | Instance ID | Type | State | Private IP | Public IP | Purpose |
 |------|-------------|------|-------|------------|-----------|---------|
-| ~~**truesight-autopilot**~~ | `i-02c699d3d7efbdc82` | t3.medium | **STOPPED 2026-07-15** | 10.0.0.158 | 52.200.38.206 | **RETIRED — migrated to Nelanco** (`i-05276b8ae82d6b88c`, EIP `3.214.167.219`). Kept stopped for rollback. See top banner. |
-| **seni_ror_2026** | `i-0ac8462aa6bb54986` | t2.small | **stopped** | 10.0.0.162 | — | **Old Perch (Rails).** Stopped 2026-05-28. Replaced by `seni_ror_200250915` in Nelanco. |
-| **seni_sk_2026** | `i-0bb43299c84c5ccd5` | t2.small | **stopped** | 10.0.0.14 | — | **Old Sidekiq.** Stopped 2026-05-28. Replaced by new `seni_sk_auto` in Nelanco. |
+| ~~**truesight-autopilot**~~ | `i-02c699d3d7efbdc82` | t3.medium | **TERMINATED 2026-08-24** | 10.0.0.158 | — (EIP released) | **Retired — migrated to Nelanco** (`i-05276b8ae82d6b88c`, `3.214.167.219`). Terminated after rollback window; see §12.2. |
+| ~~**seni_ror_2026**~~ | `i-0ac8462aa6bb54986` | t2.small | **TERMINATED 2026-08-24** | 10.0.0.162 | — | **Old Perch (Rails).** Replaced by `seni_ror_200250915` in Nelanco. |
+| ~~**seni_sk_2026**~~ | `i-0bb43299c84c5ccd5` | t2.small | **TERMINATED 2026-08-24** | 10.0.0.14 | — | **Old Sidekiq.** Replaced by `seni_sk_auto` in Nelanco. |
 
 ---
 
@@ -175,7 +175,7 @@ flowchart LR
 | `perch.truesight.me` | A | `54.226.114.186` | Points to **krake_nginx** (Nelanco). Proxies to `seni_ror_200250915` (Rails Perch, port 3002). Canonical domain for the Rails `sentiment_importer` (Perch, formerly called "Edgar"). |
 | `beta.edgar.truesight.me` | A | `54.162.175.189` | Points directly to **dao-protocol-beta** (Nelanco). Standalone beta sandbox for Stripe test-mode E2E tests. |
 | `api.truesight.me` | A | `54.226.114.186` | Also krake_nginx. |
-| `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies to `seni_ror_200250915:8000` (governor chatbot / autopilot). |
+| `chatbot.truesight.me` | A | `54.226.114.186` | Also krake_nginx. Proxies via nginx `governor_chatbot` upstream to `172.31.15.182:8001` (sophia-nelanco autopilot). |
 | `sophia.truesight.me` | A | `3.214.167.219` | → **truesight-autopilot in Nelanco** (`i-05276b8ae82d6b88c`); was `52.200.38.206` (Explorya) until the 2026-07-15 migration. |
 | `claude.truesight.me` | A | `100.57.50.48` | → **nelanco-claude** interactive Claude Code box (`i-01ad5eca707e4445f`, Nelanco). Added 2026-07-14. |
 | `dapp.truesight.me` | CNAME | `truesightdao.github.io` | GitHub Pages. |
@@ -191,9 +191,9 @@ Internet → Route53 → krake_nginx (54.226.114.186)
   ├── edgar.truesight.me/ → seni_ror_200250915:3002 (Rails Perch)
   ├── perch.truesight.me/  → seni_ror_200250915:3002 (Rails Perch)
   ├── api.truesight.me/   → redirects to GAS QR checking
-  └── chatbot.truesight.me/ → seni_ror_200250915:8000 (governor chatbot)
+  └── chatbot.truesight.me/ → sophia-nelanco 172.31.15.182:8001 (governor chatbot)
 
-Internet → Route53 → sophia.truesight.me → truesight-autopilot (52.200.38.206:8000)
+Internet → Route53 → sophia.truesight.me → sophia-nelanco (3.214.167.219:8001)
 
 Internet → Route53 → GitHub Pages
   ├── truesight.me
@@ -209,15 +209,15 @@ The nginx reverse proxy on `krake_nginx` (54.226.114.186) terminates HTTPS and r
 |--------|----------|--------|------|
 | `edgar.truesight.me` | `trends_server` | `seni_ror_200250915` (Rails Perch) | 3002 |
 | `perch.truesight.me` | `trends_server` | `seni_ror_200250915` (Rails Perch) | 3002 |
-| `chatbot.truesight.me` | `governor_chatbot` | `100.52.234.163` (old autopilot) | 8001 |
+| `chatbot.truesight.me` | `governor_chatbot` | `172.31.15.182` (sophia-nelanco autopilot) | 8001 |
 | `api.truesight.me` | — | Redirects to GAS QR checking | — |
 | `truesight.me` | `shadi_server` | `50.87.178.128` (deprecated) | 80 |
 
-**Config:** `/etc/nginx/sites-enabled/nginx_krake_ng.conf` on `krake_nginx`.
+**Config:** `/etc/nginx/nginx.conf` on `krake_nginx` (⚠️ `sites-enabled/nginx_krake_ng.conf` is a stale, **non-loaded** copy — `include sites-enabled/*` is commented out; edit `nginx.conf` only).
 
 **Key upstream definitions:**
 - `trends_server` = `54.211.179.126:3002` → `seni_ror_200250915` (Rails Perch/sentiment_importer)
-- `governor_chatbot` = `100.52.234.163:8001` → old autopilot IP (⚠️ needs updating to `52.200.38.206`)
+- `governor_chatbot` = `172.31.15.182:8001` → sophia-nelanco autopilot (fixed 2026-08-24, verified HTTP 200)
 - `edgar` = `18.232.199.204:8081` → `edgar.getdata.io` (Krake legacy)
 
 **SSL certs** live at `/home/ubuntu/ssl_certs/`:
@@ -229,7 +229,7 @@ The nginx reverse proxy on `krake_nginx` (54.226.114.186) terminates HTTPS and r
 
 **Domain routing notes:**
 - Both `edgar.truesight.me` and `perch.truesight.me` currently share the same `trends_server` upstream (Rails Perch). The plan is to eventually repoint `edgar.truesight.me` to the Python `dao_protocol` server on `98.93.94.86:8010`.
-- `chatbot.truesight.me` points to old autopilot IP `100.52.234.163` — should be updated to the current EIP `52.200.38.206`.
+- `chatbot.truesight.me` → sophia-nelanco autopilot `172.31.15.182:8001` (fixed 2026-08-24; was dead `100.52.234.163`).
 - `truesight.me` points to `shadi_server` (50.87.178.128) which appears deprecated/offline.
 - `api.truesight.me` does not proxy — it redirects (302) to the GAS QR checking script.
 
@@ -278,7 +278,7 @@ The `dao_protocol` server is a **Python port** of Perch's core submission + disp
 ### 4.3 Autopilot (Governor Chat + SRE)
 
 ```
-truesight-autopilot (52.200.38.206:8000)
+sophia-nelanco autopilot (3.214.167.219:8001)
   └── POST /chat — governor chat (RSA-signed or JWT)
   └── POST /fix — autonomous fix PR agent
   └── GET /health — health check
@@ -311,23 +311,23 @@ Runs on a **dedicated EC2** separate from Perch (Rails) to protect critical infr
 
 ## 4.5 Autopilot (Sophia) Upgrade & Disaster Recovery — EIP blue-green + AMI
 
-**The autopilot box has an Elastic IP** — `eipalloc-04772e4a20f10c1c4` (`52.200.38.206`) — and
-`sophia.truesight.me` points to it. That stable EIP is the enabler: you can swap the underlying EC2 box
-and **Route53 never changes**. Point Route53 at the EIP **once** (done); thereafter every upgrade/replace
-is just "move the EIP."
+**The autopilot box has a Nelanco Elastic IP** — `3.214.167.219` (`eipalloc-018e2cad67ecbcd8a`, associated to `i-05276b8ae82d6b88c`) — and
+`sophia.truesight.me` (Route53 A record, Explorya zone) points to it. The **old Explorya EIP** `52.200.38.206`
+(`eipalloc-04772e4a20f10c1c4`) was **released 2026-08-24** during the Explorya cleanup. Because the box keeps a
+stable EIP (in Nelanco now), blue-green stays **EIP-based**: launch from AMI → deploy → reassociate `eipalloc-018e2cad67ecbcd8a`; Route53 never changes.
 
 ### Replace / upgrade the box (blue-green, near-zero downtime, rollback-able)
 1. Have a recent **AMI** of the current box (cadence below).
 2. **Launch the new box** at the target size (e.g. `t3.medium`) from the latest AMI — or fresh Ubuntu 22.04 + `scripts/user-data.sh`.
 3. On the new box: `git pull` + `scripts/deploy.sh` (AMIs are point-in-time — always pull latest code), restore `.env`, start services, **health-check** `:8001/health` + Telegram adapter + `dao_protocol :8010` + Monit `:2812`.
-4. **Reassociate the EIP** to the new instance: `aws ec2 associate-address --allocation-id eipalloc-04772e4a20f10c1c4 --instance-id <new-id>` (Explorya creds, `us-east-1`). `sophia.truesight.me` flips instantly; **no Route53 edit needed.**
+4. **Reassociate the Nelanco EIP** to the new instance: `aws ec2 associate-address --allocation-id eipalloc-018e2cad67ecbcd8a --instance-id <new-id>` (Nelanco creds, `us-east-1`). `sophia.truesight.me` flips instantly; **no Route53 edit needed.** (The old Explorya EIP `52.200.38.206` was released 2026-08-24 and must not be used.)
 5. Verify, then **stop** (don't terminate) the old box for a few days as rollback; terminate once confident.
-6. **Rollback** = reassociate the EIP back to the old instance.
+6. **Rollback** = reassociate `eipalloc-018e2cad67ecbcd8a` back to the old instance.
 
 > The Telegram adapter is **outbound-polling**, so it doesn't depend on the inbound IP — the EIP matters for SSH, the web API (`:8001`/`:443`), Monit, and `sophia.truesight.me`.
 
 ### AMI backup cadence (DR + source for step 2)
-- **Weekly AMI — AUTOMATED 2026-06-07** via GitHub Action **`Cypher-Defense/.github/workflows/snapshot_autopilot_ami.yml`** (Sundays 03:00 UTC + `workflow_dispatch`), script **`scripts/aws/snapshot_autopilot_ami.py`**. Resolves the instance by **Name tag `truesight-autopilot`** (not a hardcoded ID — survives resizes / blue-green), `create-image --no-reboot`, tags AMI + snapshots `ManagedBy=snapshot_autopilot_ami`, **retains newest 8 (~2 months)** and prunes older AMIs + their backing snapshots. Repo secrets `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY/SECRET` (account that owns the instance). First validated run: `ami-0dae91c5216989753`.
+- **Weekly AMI — AUTOMATED 2026-06-07** via GitHub Action **`Cypher-Defense/.github/workflows/snapshot_autopilot_ami.yml`** (Sundays 03:00 UTC + `workflow_dispatch`), script **`scripts/aws/snapshot_autopilot_ami.py`**. Resolves the instance by **Name tag `sophia-nelanco`** (retargeted from `truesight-autopilot` during the Nelanco migration; not a hardcoded ID — survives resizes / blue-green), `create-image --no-reboot`, tags AMI + snapshots `ManagedBy=snapshot_autopilot_ami`, **retains newest 8 (~2 months)** and prunes older AMIs + their backing snapshots. Repo secrets `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY/SECRET` (account that owns the instance). First validated run: `ami-0dae91c5216989753`.
 - ⚠️ The AMI contains the on-disk **`.env` (secrets)** → keep it **private** (default in-account); never share cross-account/publicly.
 - AMI ≠ latest code — a new box still runs `deploy.sh` to pull current code.
 
@@ -339,7 +339,7 @@ is just "move the EIP."
 ### Post-cutover verification — run on EVERY resize / new box / EC2 event
 After a stop/start resize, an EIP reassociate, or a fresh box, confirm before walking away (the units auto-start on boot, but given session-duplication stakes, verify explicitly):
 - [ ] `describe-instances` → expected `InstanceType`, `State=running`
-- [ ] `ssh sophia` reachable on the EIP (`52.200.38.206`)
+- [ ] `ssh sophia` reachable on `3.214.167.219`
 - [ ] **All three units active:** `systemctl is-active truesight-autopilot truesight-autopilot-telegram truesight-autopilot-watchdog` → all `active`. **Confirm the watchdog especially** — it must reconnect cleanly.
 - [ ] `free -m` shows expected RAM; `swapon --show` shows the 2 GB swap (re-add on a fresh box)
 - [ ] `curl localhost:8001/health` → `status: ok` (give the heavy app ~10–20 s after a restart)
@@ -356,7 +356,7 @@ After a stop/start resize, an EIP reassociate, or a fresh box, confirm before wa
 
 The old Perch infrastructure in the **Explorya** account was **stopped** on 2026-05-28:
 
-| Old (Explorya — stopped) | New (Nelanco — running) |
+| Old (Explorya — terminated 2026-08-24) | New (Nelanco — running) |
 |--------------------------|--------------------------|
 | `seni_ror_2026` (t2.small) | `seni_ror_200250915` (t2.small) |
 | `seni_sk_2026` (t2.small) | `seni_sk_auto` (t2.small, new ASG) |
@@ -405,7 +405,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 | seni_sk_auto | `seni_sk` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | seni_sql_2026 | `seni_sql` | `GETDATA_IO_PAIR_20201122` | ubuntu |
 | seni_redis_2 | — | `GETDATA_IO_PAIR_20201122` | ubuntu |
-| truesight-autopilot | — | `garyjob_aws` | ubuntu |
+| sophia-nelanco (autopilot) | `autopilot` | `id_ed25519_truesight_autopilot` | ubuntu |
 
 ### 7.1 Reaching Nelanco hosts from a non-allowlisted network — **bastion via Sophia**
 
@@ -414,13 +414,13 @@ laptop / phone-hotspot / café network, even though the key is correct.
 
 **Why:** the Nelanco Security Group allowlists inbound SSH (22) and ICMP to a short
 list of source IPs — it is *allow-only*, so any source not on the list is **silently
-dropped** (hence *timeout*, not *connection refused*). The **autopilot/Sophia Elastic
-IP `52.200.38.206` is on that allowlist**; arbitrary dynamic IPs (e.g. T-Mobile
+dropped** (hence *timeout*, not *connection refused*). The **autopilot/Sophia
+IP `3.214.167.219` is on that allowlist**; arbitrary dynamic IPs (e.g. T-Mobile
 cellular) are not. This is cross-account (Explorya ↔ Nelanco) over the public
 internet, so gating is purely source-IP based — there is no VPC peering.
 
 **Fix — use Sophia as a ProxyJump bastion** (the TCP hop to the target then
-originates from `52.200.38.206`, which *is* allowlisted; auth to the target still
+originates from `3.214.167.219`, which *is* allowlisted; auth to the target still
 uses your **local** Nelanco key):
 
 ```bash
@@ -481,7 +481,7 @@ from AMI, ensure `~/.ssh/config` references all keys and test connectivity.
 | Perch health | `https://edgar.truesight.me/ping` |
 | Edgar (dao_protocol) health | `http://98.93.94.86:8010/healthz` |
 | Beta Edgar health | `https://beta.edgar.truesight.me/ping` |
-| Autopilot health | `http://52.200.38.206:8000/health` |
+| Autopilot health | `https://sophia.truesight.me/health` (`:8001`) |
 | Governor chatbot | `https://chatbot.truesight.me` |
 | Monit (Rails) | `http://54.211.179.126:2812/seni_ror` |
 | Monit (Sidekiq) | `http://3.83.175.151:2812/sidekiq` (old — verify) |
@@ -493,11 +493,11 @@ from AMI, ensure `~/.ssh/config` references all keys and test connectivity.
 | Group | Name | Used By |
 |-------|------|---------|
 | `sg-4314630c` | `default` (Nelanco) | All Nelanco instances. Allows SSH, HTTP/HTTPS, internal traffic. |
-| `sg-e98f788e` | `default` (Explorya) | Autopilot. |
+| `sg-0d3b6c10480d83248` | `governor-chatbot-sg` (Nelanco) | Autopilot (`sophia-nelanco`). Inbound: 8000/443/22 open; **8001 from `172.31.26.102/32` (krake_nginx)** — added 2026-08-24. |
 | `sg-093be54e48c6478e8` | `edgar-2026-05-10` | Old Perch instances (stopped). |
 
 > **SSH/ICMP are source-IP allowlisted, not open.** The Sophia/autopilot EIP
-> `52.200.38.206` is allowlisted; random operator IPs are not — reach these hosts via
+> `3.214.167.219` is allowlisted; random operator IPs are not — reach these hosts via
 > the **Sophia bastion** (§7.1), not by widening the SG. The crown-jewel host is
 > **`dao_protocol`** (`98.93.94.86`) — it holds the DAO submit/dispatch logic and the
 > GAS/Stripe/webhook secrets in `~/dao_protocol/.env`; Perch/`seni_ror` runs only the
@@ -512,7 +512,7 @@ from AMI, ensure `~/.ssh/config` references all keys and test connectivity.
 
 2. **Service topology:** `POST /dao/submit_contribution` is handled exclusively by the Python `dao_protocol` server. The nginx flip was completed in PR8a (2026-06-07) — `edgar.truesight.me` DNS → `seni_ror_new` nginx → `dao_protocol_nelanco:8010`. The Rails Perch (`sentiment_importer`) no longer handles DAO submissions. Legacy `dao_controller.rb` actions still exist in the Rails codebase but are dead code (scheduled for deletion in PR8d).
 
-3. **Old Perch instances are stopped.** `seni_ror_2026` and `seni_sk_2026` in Explorya were stopped 2026-05-28. Do not try to SSH into them or deploy to them.
+3. **Old Explorya instances are terminated (2026-08-24).** `seni_ror_2026`, `seni_sk_2026`, and the old autopilot box were stopped 2026-05-28/07-15 and **terminated 2026-08-24**. Do not try to SSH into them.
 
 4. **Nginx routing:** `edgar.truesight.me` → DNS to `seni_ror_new` (3.90.179.151) → local nginx → `/dao/*` routes go to `dao_protocol_nelanco:8010`, trading routes go to `127.0.0.1:3002` (Rails). The nginx config is on `seni_ror_new`, NOT krake_nginx.
 
@@ -596,14 +596,14 @@ This section documents how each service is deployed. Use this when setting up a 
 
 | Aspect | Detail |
 |--------|--------|
-| **Host** | `truesight-autopilot` (52.200.38.206 — EIP) |
+| **Host** | `sophia-nelanco` (3.214.167.219 — Nelanco EIP `eipalloc-018e2cad67ecbcd8a`) |
 | **Code** | `TrueSightDAO/truesight_autopilot` |
 | **Deploy** | `scripts/deploy.sh` on the box — `git pull`, `pip install -r requirements.txt`, restarts 3 systemd units: `truesight-autopilot`, `truesight-autopilot-telegram`, `truesight-autopilot-watchdog` |
 | **Processes** | 3 systemd units (main API, Telegram adapter, Telegram watchdog) |
 | **Env vars** | `/opt/truesight_autopilot/.env` — LLM API keys, AWS creds, Telegram tokens, Gmail OAuth |
-| **Health** | `http://52.200.38.206:8000/health` |
-| **AMI backup** | Weekly automated via Cypher-Defense GitHub Action (Sundays 03:00 UTC). Retains newest 8. |
-| **Blue-green** | EIP-based: launch new box from AMI → deploy → reassociate EIP. No DNS change. |
+| **Health** | `https://sophia.truesight.me/health` (`:8001`) |
+| **AMI backup** | Weekly automated via Cypher-Defense GitHub Action (Sundays 03:00 UTC, retargeted to Nelanco Name tag `sophia-nelanco`). Retains newest 8. |
+| **Blue-green** | EIP-based (Nelanco `eipalloc-018e2cad67ecbcd8a`): launch new box from AMI → deploy → reassociate EIP. No DNS change. |
 
 ### 11.4 Krake (getdata.io — Rails + Sidekiq)
 
@@ -683,3 +683,15 @@ This section documents how each service is deployed. Use this when setting up a 
 - Old instances terminated
 
 **Savings: ~$38/mo**
+
+### 2026-08-24 — Explorya legacy cleanup (A–E)
+
+Executed with Gary's turn-by-turn sign-off in `TrueSight DAO Ops` (thread 13954):
+- **A:** terminated 3 stopped instances (old autopilot `i-02c699d3d7efbdc82`, `seni_ror_2026`, `seni_sk_2026`) — root vols auto-deleted (DeleteOnTermination verified).
+- **B:** deleted orphaned 250GB gp3 volume `vol-073b0fe6ba359aee5` + snapshot `snap-052ff39e17bf5d38d` (old seni_sql).
+- **C:** deregistered 15 dead AMIs + deleted 16 backing snapshots (~263GB).
+- **D:** deregistered 8 redundant autopilot weekly AMIs + deleted 8 snapshots (9th snapshot preserved — it backs migration AMI `ami-0b05acc998af71d0f`).
+- **E:** released EIP `52.200.38.206` (`eipalloc-04772e4a20f10c1c4`).
+- **Bonus fix:** nginx `governor_chatbot` upstream was pointing at dead `100.52.234.163:8001` → now `172.31.15.182:8001` (+ SG `governor-chatbot-sg` inbound 8001 from `172.31.26.102/32`). `chatbot.truesight.me` verified HTTP 200.
+- **Kept:** migration AMI `ami-0b05acc998af71d0f` + snapshot (rollback anchor).
+- **Savings: ~$62/mo ≈ $745/yr.** Explorya account now holds only Route53 + CloudFront + 1 AMI (no instances, volumes, snapshots, or EIPs).
