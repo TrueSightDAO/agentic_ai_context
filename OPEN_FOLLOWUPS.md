@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Wire deploy-ledger lease pre-check into gas_deploy_project + autopilot deploy flows (DEPLOY_PUSH_SOP Phase 2)
+**Filed 2026-08-25. Owner: unclaimed (sophia natural).** New `agentic_ai_context/sops/DEPLOY_PUSH_SOP.md` (§4) + `ecosystem_change_logs/deploys/` ledger define the cross-agent push/deploy audit trail (append-only records + soft-lock leases, 30-min TTL). Phase 1 = manual logging. **Phase 2 = enforce the lease check in the tools so it blocks, not just reminds:**
+- `tokenomics/scripts/deploy_gas_project.py` — before `clasp push --force`, check `ecosystem_change_logs/deploys/leases/` for an open lease on the scriptId; refuse if a live lease exists; write an in-progress lease when clear.
+- `truesight_autopilot` deploy/sync flows (`deploy_autopilot`, `sync_beta_to_prod` gate) — same lease check + auto-append the ledger record after push.
+- Ledger writer already exists: `ecosystem_change_logs/scripts/append_deploy_record.py` (validates identity/result/target; `--write` commits; `--lease-id` ties to lease).
+
+### OPERATING_INSTRUCTIONS.md: add pointer to DEPLOY_PUSH_SOP
+**Filed 2026-08-25. Owner: Gary (canonical-file approval).** OPERATING_INSTRUCTIONS.md is a canonical file (OPERATING_INSTRUCTIONS §3 — not edited by agents without explicit governor approval). It should gain a one-line pointer to `sops/DEPLOY_PUSH_SOP.md` in its runbook index (next to the other `sops/` entries) so every future instance finds the mandatory push-logging procedure. SOP text itself is already merged (agentic_ai_context#818).
+
 ### Cacao tea 50g QR batch 2024OSCAR_CT_20260820: serial _3 is VOID (replaced by _101)
 **Filed 2026-08-20. Owner: unclaimed (informational).** Mint QA found serial
 `2024OSCAR_CT_20260820_3` undecodable (deterministic generator defect — reproduced on two
