@@ -39,12 +39,6 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Wire deploy-ledger lease pre-check into gas_deploy_project + autopilot deploy flows (DEPLOY_PUSH_SOP Phase 2)
-**Filed 2026-08-25. Owner: unclaimed (sophia natural).** New `agentic_ai_context/sops/DEPLOY_PUSH_SOP.md` (§4) + `ecosystem_change_logs/deploys/` ledger define the cross-agent push/deploy audit trail (append-only records + soft-lock leases, 30-min TTL). Phase 1 = manual logging. **Phase 2 = enforce the lease check in the tools so it blocks, not just reminds:**
-- `tokenomics/scripts/deploy_gas_project.py` — before `clasp push --force`, check `ecosystem_change_logs/deploys/leases/` for an open lease on the scriptId; refuse if a live lease exists; write an in-progress lease when clear.
-- `truesight_autopilot` deploy/sync flows (`deploy_autopilot`, `sync_beta_to_prod` gate) — same lease check + auto-append the ledger record after push.
-- Ledger writer already exists: `ecosystem_change_logs/scripts/append_deploy_record.py` (validates identity/result/target; `--write` commits; `--lease-id` ties to lease).
-
 ### OPERATING_INSTRUCTIONS.md: add pointer to DEPLOY_PUSH_SOP
 **Filed 2026-08-25. Owner: Gary (canonical-file approval).** OPERATING_INSTRUCTIONS.md is a canonical file (OPERATING_INSTRUCTIONS §3 — not edited by agents without explicit governor approval). It should gain a one-line pointer to `sops/DEPLOY_PUSH_SOP.md` in its runbook index (next to the other `sops/` entries) so every future instance finds the mandatory push-logging procedure. SOP text itself is already merged (agentic_ai_context#818).
 
@@ -1559,6 +1553,14 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### DEPLOY_PUSH_SOP Phase 2 — lease+audit enforced in all deploy tools (SHIPPED 2026-08-25)
+**Shipped by sophia.** The deploy-push audit trail is now **enforced in code**, not just documented:
+- `ecosystem_change_logs/deploys/` ledger + `scripts/append_deploy_record.py` (Phase 1, manual logging).
+- `truesight_autopilot#313` — new `app/deploy_ledger.py` (check_lease/acquire_lease/close_lease/append_deploy_record, 30-min TTL, fail-open on errors, hard-block on a live lease) wired into `gas_deploy_project.py` (blocks `--push` on a clasp scriptId with a live lease), `sync_beta_to_prod.py` (lease on prod repo before merge-upstream), and `deploy.py`+`main.py` (ec2/autopilot lease threaded through the two-phase re-exec, closed on fresh boot). 10 new tests; gas-tool tests made hermetic (they were hitting the real API — a stale test lease actually blocked a duplicate push, proving the lock works).
+- `tokenomics#429` — standalone `scripts/deploy_ledger.py` (stdlib-only, for direct LLM checkouts) + `deploy_gas_project.py` lease check/acquire/record/close before any `--push`; `--lease-id` passthrough prevents self-deadlock when the autopilot tool owns the lease.
+- Backfilled ledger record `deploy_20260825T160310Z_truesight-autopilot` for the #313 merge itself.
+- **Remaining (Phase 3):** CI-level validation (a GitHub Action asserting every push records a ledger entry) — not yet built.
 
 ### Telegram attention watchdog — ACTIVATED 2026-06-06
 
