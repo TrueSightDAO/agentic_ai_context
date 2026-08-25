@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-25T02:00:03Z`
+- Generated (UTC): `2026-08-25T07:24:52Z`
 - Look-back: **7** calendar days (`2026-08-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -237,9 +237,9 @@ _(+28 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,788.72**
+- USD on hand: **$4,788.61**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.70**
+- USD provisioned for voting-rights cash-out: **$52.80**
 
 ### In-transit freight (1 row)
 
@@ -283,6 +283,7 @@ _All dated lines on/after 2026-08-18_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 87553fc | 2026-08-24 19:11:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7df964c | 2026-08-24 13:32:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 894fff8 | 2026-08-24 07:40:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,7 +323,6 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 214293a | 2026-08-19 03:58:23 +0800 | feat: add IVY (Liv for Yoga) program page (#293)
 1fa6f07 | 2026-08-18 19:08:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31dfabc | 2026-08-18 13:24:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
-08c1a5a | 2026-08-18 07:20:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -335,6 +335,8 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d8c45b2 | 2026-08-24 23:00:27 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
+fd25e75 | 2026-08-24 23:00:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
 7e9a000 | 2026-08-24 16:11:44 -0300 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 3c2f05d | 2026-08-24 16:11:42 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 6062b28 | 2026-08-24 15:42:26 -0300 | Docs: Sophia contribution estimates = raw execution + direct time (two separate CONTRIBUTION EVENTS) (#815)
@@ -373,8 +375,6 @@ e1c45b7 | 2026-08-23 21:11:04 +0800 | chore(previews): refresh Beer Hall preview
 86af3c8 | 2026-08-23 20:34:00 +0800 | Merge pull request #799 from TrueSightDAO/handoff/sunmint-mobile-app
 08d3a90 | 2026-08-23 12:33:48 +0000 | Register SunMint Mobile App handoff in HANDOFF_MANIFEST
 358eac5 | 2026-08-23 20:32:46 +0800 | Merge pull request #798 from TrueSightDAO/plan/sunmint-mobile-testflight-decision
-508bed6 | 2026-08-23 12:32:33 +0000 | Resolve SunMint Mobile App iOS distribution decision: TestFlight
-cb80a99 | 2026-08-23 20:25:12 +0800 | Merge pull request #797 from TrueSightDAO/plan/sunmint-mobile-app
 … (truncated)
 ```
 
@@ -451,6 +451,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 6fea31d | 2026-08-24 07:30:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cb2f486 | 2026-08-23 07:03:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -575,7 +576,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 18:51:54 |
+| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 23:51:13 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-18`; scanned last **600** data rows)
 
