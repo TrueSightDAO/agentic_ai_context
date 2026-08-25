@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-25T13:28:05Z`
+- Generated (UTC): `2026-08-25T19:08:35Z`
 - Look-back: **7** calendar days (`2026-08-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -35,21 +35,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `[CONTRIBUTION EVENT]` × 17
 - `[INVENTORY MOVEMENT]` × 16
 - `[ASSET RECEIPT EVENT]` × 3
-- `[PRACTICE EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260824174417_149` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
-- `Edgar_20260824181346_151` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
-- `Edgar_20260824181822_153` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Sophia Truesight · Recipient Name: Sophia Truesight · Inventory Item: E2E TEST ITEM - Cacao Tea 50g QR label (self-to-self, no real inventory)
-- `Edgar_20260824182852_155` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820) · Amount: 100 · Description: Assembly of 100 units via issue of QR code
-- `Edgar_20260824183852_157` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Autopilot (Sophia Truesight) raw machine execution on 2026-08-20 inventory-m…
-- `Edgar_20260824183951_159` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time on 2026-08-20 inventory-movement unauthorized incident:…
-- `Edgar_20260824183953_161` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Sophia Truesight · Description: Autopilot (Sophia Truesight) raw machine execution on 2026-08-20 inventory-m…
-- `Edgar_20260824183955_163` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Gary Teh direct time on 2026-08-20 inventory-movement unauthorized incident:…
 - `Edgar_20260825095453_165` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-25T09:54:51.692Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260825104944_167` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260825104949_169` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
@@ -62,6 +54,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260825105015_183` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260825105016_185` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260825105335_187` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Moving chocolate bar inventory to Chives from Kirsten
+- `Edgar_20260825150110_189` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260825150733_191` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Checked whether the Chives Root USPS shipping expense (tracking 923469032499…
+- `Edgar_20260825151239_193` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260825162705_195` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260825162707_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Sophia Truesight
+- `Edgar_20260825163055_199` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
+- `Edgar_20260825163057_201` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260825170935_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 215 · Contributor(s): Sophia Truesight, Gary Teh
 
 ---
 
@@ -281,6 +281,23 @@ _All dated lines on/after 2026-08-18_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+360e8a1 | 2026-08-25 14:35:23 -0300 | SunMint Tree-Growth Monitoring spec v1.3 (GeoJSON tree index, no database)
+84d3042 | 2026-08-25 14:13:08 -0300 | SunMint Tree-Growth Monitoring spec v1.2 (nearby-tree GPS selection)
+202478b | 2026-08-25 14:11:52 -0300 | SunMint Tree-Growth Monitoring spec v1.1 (dual deploy: dapp + sunmint app)
+f9a75fe | 2026-08-25 14:10:04 -0300 | SunMint Tree-Growth Monitoring spec v1 (video + Python worker)
+def2927 | 2026-08-25 13:13:29 -0300 | SunMint consolidated progress report v8
+bbd6276 | 2026-08-25 13:12:19 -0300 | SunMint PDD §12: cacao-sales flywheel funds the carbon-certification pipeline (#311)
+ca6593e | 2026-08-25 13:07:02 -0300 | SunMint PDD: Plan Vivo-first decision, free satellite APIs, PM002 equations, grants, milestones, First Tree proof (#310)
+65d9c78 | 2026-08-25 13:06:03 -0300 | SunMint consolidated progress report v7
+d7e58fe | 2026-08-25 12:55:34 -0300 | SunMint consolidated progress report v6 (PDF) — existing grants map per resource gap
+d4eecce | 2026-08-25 12:52:32 -0300 | SunMint consolidated progress report v5 (PDF) — free satellite APIs section added
+e2a75fa | 2026-08-25 12:51:22 -0300 | SunMint consolidated progress report v4 (PDF) — PM002 methodology + lean stack + resource gaps
+4255d36 | 2026-08-25 12:44:32 -0300 | SunMint PDD: add Community-First MRV section (§7) — decentralized sensing network (#308)
+cd37f7a | 2026-08-25 12:43:32 -0300 | SunMint consolidated progress report v3 (PDF) — with execution gap analysis
+17ce453 | 2026-08-25 12:42:55 -0300 | SunMint consolidated progress report v2 (Markdown)
+aa34c5b | 2026-08-25 12:42:50 -0300 | SunMint consolidated progress report v2 (PDF)
+6c981bf | 2026-08-25 12:35:46 -0300 | SunMint whitepaper: Plan Vivo pilot route + phone-camera MRV precedent (#307)
+bbccb60 | 2026-08-25 13:30:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5d95633 | 2026-08-25 07:26:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 87553fc | 2026-08-24 19:11:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -304,35 +321,23 @@ b803ee7 | 2026-08-22 21:20:04 +0800 | feat(qr): embed OpenStreetMap for tree QRs
 28ee6c1 | 2026-08-22 20:54:14 +0800 | Fix ReferenceError: manifest is not defined in renderLineageTree (use qrId) (#298)
 cb91601 | 2026-08-22 20:44:52 +0800 | Show signed-event reference (signer + update id) in QR page event history (#297)
 f415009 | 2026-08-22 20:20:25 +0800 | Render seedling photo inline on QR provenance page (#296)
-565ea4d | 2026-08-22 07:10:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-741f7f1 | 2026-08-22 02:01:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-fdfe771 | 2026-08-21 19:07:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
-952544a | 2026-08-21 13:28:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
-22a18af | 2026-08-21 07:25:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1dfa2b6 | 2026-08-21 02:09:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d721f0d | 2026-08-20 19:11:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
-152633b | 2026-08-21 02:05:44 +0800 | SunMint PDD: update methodology to Verra VM0047 (ARR) + Andean Cacao precedent (#294)
-f5a3624 | 2026-08-20 13:28:34 +0000 | chore(stats): refresh stats/current.json [skip ci]
-710a8d7 | 2026-08-20 07:24:09 +0000 | chore(stats): refresh stats/current.json [skip ci]
-229e051 | 2026-08-20 02:03:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
-82ffc2b | 2026-08-19 19:04:04 +0000 | chore(stats): refresh stats/current.json [skip ci]
-bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
-92fb673 | 2026-08-19 07:22:27 +0000 | chore(stats): refresh stats/current.json [skip ci]
-186f92b | 2026-08-19 02:04:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
-214293a | 2026-08-19 03:58:23 +0800 | feat: add IVY (Liv for Yoga) program page (#293)
-1fa6f07 | 2026-08-18 19:08:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-0655d78 | 2026-08-18 17:34:59 +0800 | Fix photo orientations (EXIF transpose + portrait-aware layouts) in Evan Bahia deck
+b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-inventory/currencies.json (#173)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b3da125 | 2026-08-25 13:09:56 -0300 | docs: mark DEPLOY_PUSH_SOP Phase 2 as shipped (#820)
+4642646 | 2026-08-25 12:17:07 -0300 | docs(followups): file deploy-ledger Phase 2 + OPERATING_INSTRUCTIONS pointer items (#819)
+9cec10a | 2026-08-25 12:17:03 -0300 | docs(sops): add DEPLOY_PUSH_SOP — cross-agent push/deploy audit procedure (#818)
+286f882 | 2026-08-25 10:28:31 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
+b65ad28 | 2026-08-25 10:28:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
 b69a37d | 2026-08-25 07:54:54 -0300 | docs: plan of record — currency_conversion.html stale currencies.json (#816)
 30d6672 | 2026-08-25 04:25:08 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
 02de9a1 | 2026-08-25 04:25:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
@@ -368,17 +373,13 @@ f7cb66a | 2026-08-23 15:08:41 +0000 | Update ENVOY.md: Envoy TrueSight now regis
 b811c07 | 2026-08-23 23:02:15 +0800 | Decouple iOS start from the Android UAT gate (#804)
 3fff80e | 2026-08-23 23:01:20 +0800 | Add Envoy TrueSight contributor-ledger identity to ENVOY.md + parallel note in OPERATING_INSTRUCTIONS §5b (#803)
 33587b0 | 2026-08-23 22:53:14 +0800 | ENVOY.md — identity doc for the interactive Claude Code seat on nelanco-claude (#801)
-ab26ce0 | 2026-08-23 22:49:25 +0800 | SunMint Mobile tracker: PR1/PR2/PR4/PR5 merged → PR6
-b3d9593 | 2026-08-23 21:26:44 +0800 | Merge pull request #800 from TrueSightDAO/roadmap/android-first-to-uat
-63abe38 | 2026-08-23 13:23:02 +0000 | Sequence SunMint Mobile App roadmap Android-first, authorize auto-advance to UAT
-e1c45b7 | 2026-08-23 21:11:04 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
-486cbec | 2026-08-23 21:11:02 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+54bf0cf | 2026-08-25 13:09:09 -0300 | feat: enforce DEPLOY_PUSH_SOP lease+audit in deploy_gas_project.py (direct-run gap) (#429)
 d120f70 | 2026-08-25 01:25:03 +0800 | fix: remove stale Code.js duplicate from inventory movement GAS project (#425)
 8d69388 | 2026-08-24 22:37:21 +0800 | Add admin+sophia@truesight.me to TRUSTED_AGENTS for inventory movement auth (#424)
 e8b166f | 2026-08-24 01:17:26 +0800 | docs: SCHEMA.md — add TREE_PLANTING_FUNDS_TRANSFERRED to status enum + States tab (#422)
@@ -418,7 +419,6 @@ b319262 | 2026-08-20 09:05:48 +0800 | Merge pull request #394 from TrueSightDAO/
 11de876 | 2026-08-19 04:44:48 +0800 | Merge pull request #391 from TrueSightDAO/feature/tree-planting-link-handler
 d532ef3 | 2026-08-18 20:44:26 +0000 | Add [TREE PLANTING LINK EVENT] handler: link Sunmint submissions to sold QR codes
 124c0c2 | 2026-08-19 04:36:38 +0800 | Merge pull request #390 from TrueSightDAO/feature/tree-planting-read-endpoints
-e79c9b6 | 2026-08-18 20:36:10 +0000 | Add governor-gated read endpoints for the tree-planting linking picker
 … (truncated)
 ```
 
@@ -449,6 +449,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+3fff0fa | 2026-08-25 14:04:18 +0000 | chore: refresh currencies.json [skip ci]
 6f190de | 2026-08-25 10:24:31 -0300 | chore(inventory): refresh currencies.json (repackaging ingest)
 1237c29 | 2026-08-25 08:29:14 -0300 | chore: refresh Agroverse store inventory snapshot
 cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -576,7 +577,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/25/2026 5:52:28 |
+| 2026-08 | 428.46 | 17339.52386 | 8/25/2026 12:05:37 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-18`; scanned last **600** data rows)
 
