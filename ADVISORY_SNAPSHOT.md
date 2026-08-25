@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-25T07:24:52Z`
+- Generated (UTC): `2026-08-25T13:28:05Z`
 - Look-back: **7** calendar days (`2026-08-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,30 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
-- `[INVENTORY MOVEMENT]` × 6
-- `[EMAIL VERIFICATION EVENT]` × 3
-- `[TREE PLANTING EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 17
+- `[INVENTORY MOVEMENT]` × 16
 - `[ASSET RECEIPT EVENT]` × 3
 - `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 2
-- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260824133926_125` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
-- `Edgar_20260824141011_127` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 10 · Description: Receipt of 10 chocolate molds MHC-CL082 from Dongguan MHC Industrial Co., Lt…
-- `Edgar_20260824141707_129` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 20 · Fund Handler: Elizabeth Wong
-- `Edgar_20260824141711_131` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Elizabeth Wong · Recipient Name: Gary Teh · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm)
-- `Edgar_20260824141737_133` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 25.4 · Contributor(s): Elizabeth Wong
-- `Edgar_20260824142434_135` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260824144218_137` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
-- `Edgar_20260824150839_139` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 8CObUge2h1fdI_JA5b0dJHT6vXebaxLPmwP8Wczr8So · Email: admin+sophia@truesight.me
-- `Edgar_20260824152250_141` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: 8CObUge2h1fdI_JA5b0dJHT6vXebaxLPmwP8Wczr8So · Email: admin+sophia@truesight.me
-- `Edgar_20260824152322_143` · **Edgar** · [No Text Provided]
-- `Edgar_20260824152351_145` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
-- `Edgar_20260824152518_147` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
 - `Edgar_20260824174417_149` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
 - `Edgar_20260824181346_151` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Paloma · Inventory Item: Cacao Tea 50g QR code labels (batch 2024OSCAR_CT_20260820)
 - `Edgar_20260824181822_153` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Sophia Truesight · Recipient Name: Sophia Truesight · Inventory Item: E2E TEST ITEM - Cacao Tea 50g QR label (self-to-self, no real inventory)
@@ -64,6 +50,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260824183951_159` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time on 2026-08-20 inventory-movement unauthorized incident:…
 - `Edgar_20260824183953_161` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Sophia Truesight · Description: Autopilot (Sophia Truesight) raw machine execution on 2026-08-20 inventory-m…
 - `Edgar_20260824183955_163` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Gary Teh direct time on 2026-08-20 inventory-movement unauthorized incident:…
+- `Edgar_20260825095453_165` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-25T09:54:51.692Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260825104944_167` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104949_169` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104951_171` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104953_173` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104955_175` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104959_177` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105002_179` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105004_181` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105015_183` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105016_185` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105335_187` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Moving chocolate bar inventory to Chives from Kirsten
 
 ---
 
@@ -78,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-24T10:59:15.194Z`
+- Generated (UTC): `2026-08-25T10:59:14.292Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -88,12 +86,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **765**, follow_up **71**, bulk **0**, unknown **2** (data rows: **838**)
+- **Email Agent Follow Up** — logged sends: warmup **768**, follow_up **71**, bulk **0**, unknown **2** (data rows: **841**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **687**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **690**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -190,12 +188,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,349 total units · $1,548.84
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,339 total units · $1,492.60
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 11 | 407 | $897.39 |
+  | (uncategorized) | (unspecified) | 11 | 397 | $841.15 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -233,7 +231,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Paloma | 3 | 201 | $152.39 |
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
-_(+28 more in JSON snapshot.)_
+_(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
@@ -283,6 +281,7 @@ _All dated lines on/after 2026-08-18_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5d95633 | 2026-08-25 07:26:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 87553fc | 2026-08-24 19:11:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7df964c | 2026-08-24 13:32:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,7 +321,6 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 186f92b | 2026-08-19 02:04:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 214293a | 2026-08-19 03:58:23 +0800 | feat: add IVY (Liv for Yoga) program page (#293)
 1fa6f07 | 2026-08-18 19:08:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
-31dfabc | 2026-08-18 13:24:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -335,6 +333,9 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b69a37d | 2026-08-25 07:54:54 -0300 | docs: plan of record — currency_conversion.html stale currencies.json (#816)
+30d6672 | 2026-08-25 04:25:08 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
+02de9a1 | 2026-08-25 04:25:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
 d8c45b2 | 2026-08-24 23:00:27 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
 fd25e75 | 2026-08-24 23:00:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
 7e9a000 | 2026-08-24 16:11:44 -0300 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
@@ -372,9 +373,6 @@ b3d9593 | 2026-08-23 21:26:44 +0800 | Merge pull request #800 from TrueSightDAO/
 63abe38 | 2026-08-23 13:23:02 +0000 | Sequence SunMint Mobile App roadmap Android-first, authorize auto-advance to UAT
 e1c45b7 | 2026-08-23 21:11:04 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
 486cbec | 2026-08-23 21:11:02 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
-86af3c8 | 2026-08-23 20:34:00 +0800 | Merge pull request #799 from TrueSightDAO/handoff/sunmint-mobile-app
-08d3a90 | 2026-08-23 12:33:48 +0000 | Register SunMint Mobile App handoff in HANDOFF_MANIFEST
-358eac5 | 2026-08-23 20:32:46 +0800 | Merge pull request #798 from TrueSightDAO/plan/sunmint-mobile-testflight-decision
 … (truncated)
 ```
 
@@ -451,6 +449,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6f190de | 2026-08-25 10:24:31 -0300 | chore(inventory): refresh currencies.json (repackaging ingest)
+1237c29 | 2026-08-25 08:29:14 -0300 | chore: refresh Agroverse store inventory snapshot
 cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 6fea31d | 2026-08-24 07:30:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -576,7 +576,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 23:51:13 |
+| 2026-08 | 428.46 | 17339.52386 | 8/25/2026 5:52:28 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-18`; scanned last **600** data rows)
 
