@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-24T19:10:45Z`
-- Look-back: **7** calendar days (`2026-08-17` → today UTC)
+- Generated (UTC): `2026-08-25T02:00:03Z`
+- Look-back: **7** calendar days (`2026-08-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -258,7 +258,7 @@ _Lines in window matching configured names or status keywords:_
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
 - 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
 
-_All dated lines on/after 2026-08-17_ (5):
+_All dated lines on/after 2026-08-18_ (5):
 
 - 2026-08-18 | claude | Sunmint tree-planting -> QR linking (plans/SUNMINT_TREE_QR_LINKING_PLAN.md) shipped PR2-PR8: Agroverse QR codes gained columns W (Sold Date) and X (Tree Planted Notification Sent Date); SunMint Tree Planting gained columns R/S (Linked QR Code/Linked At); new GAS handler process_tree_planting_link.gs (tokenomics, same project as process_qr_code_updates.js) processes governor-only [TREE PLANTING LINK EVENT], the first handler in this codebase with real server-side governor enforcement (existing gates elsewhere are client-side only); new DApp page dapp_beta/link_tree_planting.html + treasury-cache permissions.json action tree_planting.link; dao_client and dao_protocol confirmed to be the same git repository (one local checkout is a legacy-named second clone), not separate forks. RESUME HERE is now the clasp deploy + GOVERNOR_READ_KEY provisioning step, then RUN/UAT (both always-stop gates, not yet done).
 - 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
@@ -283,6 +283,7 @@ _All dated lines on/after 2026-08-17_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+87553fc | 2026-08-24 19:11:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7df964c | 2026-08-24 13:32:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 894fff8 | 2026-08-24 07:40:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 60dc1ba | 2026-08-24 02:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -322,7 +323,6 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 1fa6f07 | 2026-08-18 19:08:12 +0000 | chore(stats): refresh stats/current.json [skip ci]
 31dfabc | 2026-08-18 13:24:53 +0000 | chore(stats): refresh stats/current.json [skip ci]
 08c1a5a | 2026-08-18 07:20:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
-31daf4d | 2026-08-18 02:01:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -335,6 +335,8 @@ bf4507c | 2026-08-19 13:26:36 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7e9a000 | 2026-08-24 16:11:44 -0300 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
+3c2f05d | 2026-08-24 16:11:42 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 6062b28 | 2026-08-24 15:42:26 -0300 | Docs: Sophia contribution estimates = raw execution + direct time (two separate CONTRIBUTION EVENTS) (#815)
 2e24fb9 | 2026-08-24 21:30:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 51bac85 | 2026-08-24 21:30:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
@@ -373,8 +375,6 @@ e1c45b7 | 2026-08-23 21:11:04 +0800 | chore(previews): refresh Beer Hall preview
 358eac5 | 2026-08-23 20:32:46 +0800 | Merge pull request #798 from TrueSightDAO/plan/sunmint-mobile-testflight-decision
 508bed6 | 2026-08-23 12:32:33 +0000 | Resolve SunMint Mobile App iOS distribution decision: TestFlight
 cb80a99 | 2026-08-23 20:25:12 +0800 | Merge pull request #797 from TrueSightDAO/plan/sunmint-mobile-app
-6541b0c | 2026-08-23 12:24:23 +0000 | Add SunMint Mobile App execution roadmap (Android + iOS, Capacitor)
-33509cd | 2026-08-23 17:48:04 +0800 | Add Brazil-China lane Oscar beans briefing (for Elizabeth Wong)
 … (truncated)
 ```
 
@@ -460,8 +460,6 @@ d206ab7 | 2026-08-21 07:09:39 +0000 | chore: refresh store and partner inventory
 1cb9039 | 2026-08-20 07:08:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 66f6778 | 2026-08-19 07:07:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 efbaec2 | 2026-08-18 07:06:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-2649f45 | 2026-08-17 07:38:57 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-af2a122 | 2026-08-17 07:18:29 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -577,9 +575,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 11:51:00 |
+| 2026-08 | 428.46 | 17339.52386 | 8/24/2026 18:51:54 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-17`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-18`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
