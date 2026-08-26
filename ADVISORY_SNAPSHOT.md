@@ -20,9 +20,48 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-26T01:23:18Z`
+- Generated (UTC): `2026-08-26T02:08:43Z`
 - Look-back: **7** calendar days (`2026-08-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 17
+- `[INVENTORY MOVEMENT]` × 16
+- `[ASSET RECEIPT EVENT]` × 3
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20260825095453_165` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-25T09:54:51.692Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260825104944_167` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104949_169` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104951_171` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104953_173` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104955_175` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825104959_177` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105002_179` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105004_181` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105015_183` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105016_185` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
+- `Edgar_20260825105335_187` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Moving chocolate bar inventory to Chives from Kirsten
+- `Edgar_20260825150110_189` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260825150733_191` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Checked whether the Chives Root USPS shipping expense (tracking 923469032499…
+- `Edgar_20260825151239_193` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260825162705_195` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260825162707_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Sophia Truesight
+- `Edgar_20260825163055_199` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
+- `Edgar_20260825163057_201` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260825170935_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 215 · Contributor(s): Sophia Truesight, Gary Teh
 
 ---
 
@@ -194,13 +233,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,788.61**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$52.80**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -288,6 +331,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a377ff7 | 2026-08-25 22:23:35 -0300 | Merge pull request #823 from TrueSightDAO/auto/advisory-refresh-2026-08-26
+250010b | 2026-08-26 01:23:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 17a791b | 2026-08-25 22:19:20 -0300 | Add SUNMINT_TREE_GROWTH_MONITORING_PLAN.md — complete plan capturing 2026-08-26 decisions (#822)
 6094272 | 2026-08-25 16:09:00 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
 f0ea85f | 2026-08-25 16:08:59 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
@@ -326,8 +371,6 @@ b38bcef | 2026-08-24 01:26:13 +0800 | docs: add TREE_PLANTING_FUNDS_TRANSFERRED 
 ca4c84f | 2026-08-24 01:26:00 +0800 | Merge pull request #807 from TrueSightDAO/deepseek-local-telegram-setup
 29d7315 | 2026-08-23 14:25:40 -0300 | Add DEEPSEEK_LOCAL.md: DeepSeek Local identity + Telegram thread-confusion rules
 42d82f8 | 2026-08-24 00:18:38 +0800 | Merge pull request #805 from TrueSightDAO/docs/envoy-sentinel-registered
-189ae97 | 2026-08-23 23:34:43 +0800 | Tracker: PR3 + PR6-PR11 merged
-f7cb66a | 2026-08-23 15:08:41 +0000 | Update ENVOY.md: Envoy TrueSight now registered as Sentinel (row 418, Is Sentinel = TRUE) — no longer "in progress"
 … (truncated)
 ```
 
@@ -501,6 +544,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 428.46 | 17339.52386 | 8/25/2026 18:51:12 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-19`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-08-22 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
