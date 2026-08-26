@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-26T13:33:31Z`
+- Generated (UTC): `2026-08-26T20:33:42Z`
 - Look-back: **7** calendar days (`2026-08-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,25 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
-- `[INVENTORY MOVEMENT]` × 16
-- `[ASSET RECEIPT EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 18
+- `[INVENTORY MOVEMENT]` × 15
 - `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 1
-- _free-form (no bracket tag)_ × 2
+- `[EMAIL VERIFICATION EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+- _free-form (no bracket tag)_ × 5
 
 ### Latest entries
 
-- `Edgar_20260825104944_167` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825104949_169` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825104951_171` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825104953_173` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825104955_175` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825104959_177` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825105002_179` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825105004_181` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
-- `Edgar_20260825105015_183` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260825105016_185` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260825105335_187` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Moving chocolate bar inventory to Chives from Kirsten
 - `Edgar_20260825150110_189` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
@@ -62,6 +52,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260825163057_201` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20260825170935_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 215 · Contributor(s): Sophia Truesight, Gary Teh
 - `Edgar_20260826102741_205` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-26T10:27:38.595Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260826160041_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Syncing up on SABRAE
+- `Edgar_20260826160203_209` · **Edgar** · [No Text Provided]
+- `Edgar_20260826160412_211` · **Edgar** · [No Text Provided]
+- `Edgar_20260826160516_213` · **Edgar** · [No Text Provided]
+- `Edgar_20260826193211_215` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Figuring out how to label printer
+- `Edgar_20260826193454_217` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Packing and bringing the cacao tea and kraft pouches to Startup Summit Brazil
+- `Edgar_20260826193643_219` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: coming over to FounderHaus to help figure out the label printer.
+- `Edgar_20260826193814_221` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussing about working more closely with APEX to discover more companies t…
+- `Edgar_20260826194056_223` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Coordinated the bringing of cacao tea from FounderHaus to startUp summit ven…
 
 ---
 
@@ -279,6 +278,7 @@ _All dated lines on/after 2026-08-19_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5ba59fa | 2026-08-26 13:36:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e6eccf7 | 2026-08-26 07:42:24 -0300 | revert: remove mis-scoped sunmint monitor page from truesight_me_beta (#313)
 f635116 | 2026-08-26 07:28:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d80fab7 | 2026-08-26 02:10:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -318,7 +318,6 @@ dcddbaf | 2026-08-24 00:39:15 +0800 | Brand FounderHaus Farm as SunMint initiati
 d5c150b | 2026-08-24 00:37:40 +0800 | Add FounderHaus Farm program page + programs.html card (#300)
 d56bf8c | 2026-08-23 13:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 73c591d | 2026-08-23 07:17:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
-97f0a01 | 2026-08-23 02:10:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -331,6 +330,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+52a0fca | 2026-08-26 10:33:51 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
+bf1ed87 | 2026-08-26 10:33:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 9e5788b | 2026-08-26 09:18:23 -0300 | Add Perch recurring-themes report methodology runbook (#824)
 6f3c874 | 2026-08-26 04:26:09 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
 2e3248c | 2026-08-26 04:26:08 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
@@ -369,8 +370,6 @@ ca7b1c4 | 2026-08-24 09:23:22 +0800 | Merge pull request #812 from TrueSightDAO/
 49926b3 | 2026-08-24 07:19:54 +0800 | Add environmental deep-dive report: sugarcane and land in Brazil
 f50f2a3 | 2026-08-24 04:06:34 +0800 | docs: consolidate Brazil export lane learnings + SOP reference (#810)
 6fd1bb5 | 2026-08-24 03:24:42 +0800 | Add deep-dive PDF: sugarcane plantation & land impact in Brazil
-ce3e3b5 | 2026-08-24 03:12:02 +0800 | Merge pull request #809 from TrueSightDAO/local-emulator-setup-doc
-22fc3b2 | 2026-08-23 16:11:48 -0300 | Add LOCAL_EMULATOR_SETUP.md: how to spin up local Android emulator + iOS Simulator
 … (truncated)
 ```
 
@@ -572,7 +571,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/26/2026 5:56:31 |
+| 2026-08 | 428.46 | 17339.52386 | 8/26/2026 13:01:39 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-19`; scanned last **600** data rows)
 
