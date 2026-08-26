@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-26T02:08:43Z`
+- Generated (UTC): `2026-08-26T07:25:49Z`
 - Look-back: **7** calendar days (`2026-08-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -235,9 +235,9 @@ _(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,788.61**
+- USD on hand: **$4,788.51**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$52.80**
+- USD provisioned for voting-rights cash-out: **$52.91**
 
 ### In-transit freight (1 row)
 
@@ -279,6 +279,7 @@ _All dated lines on/after 2026-08-19_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d80fab7 | 2026-08-26 02:10:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40edcf8 | 2026-08-25 22:15:49 -0300 | SunMint monitor spec v1.4 (photo-first + event taxonomy)
 9638710 | 2026-08-25 17:53:40 -0300 | feat: add sunmint monitor-tree-growth page (video capture + nearest-tree dropdown + signed PM002 measurement event) (#312)
 5ed6c85 | 2026-08-25 19:09:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -318,7 +319,6 @@ d56bf8c | 2026-08-23 13:13:10 +0000 | chore(stats): refresh stats/current.json [
 97f0a01 | 2026-08-23 02:10:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 686c7bd | 2026-08-22 19:00:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b803ee7 | 2026-08-22 21:20:04 +0800 | feat(qr): embed OpenStreetMap for tree QRs with real coordinates (#299)
-2d87b42 | 2026-08-22 13:10:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -331,6 +331,9 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3f5558e | 2026-08-25 23:29:54 -0300 | Add SUNMINT_MONITOR_TREE_GROWTH_PLAN.md (canonical plan, event taxonomy) (#821)
+213e9cc | 2026-08-25 23:09:02 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
+f7f80f9 | 2026-08-25 23:09:01 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 a377ff7 | 2026-08-25 22:23:35 -0300 | Merge pull request #823 from TrueSightDAO/auto/advisory-refresh-2026-08-26
 250010b | 2026-08-26 01:23:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 17a791b | 2026-08-25 22:19:20 -0300 | Add SUNMINT_TREE_GROWTH_MONITORING_PLAN.md — complete plan capturing 2026-08-26 decisions (#822)
@@ -368,15 +371,14 @@ ce3e3b5 | 2026-08-24 03:12:02 +0800 | Merge pull request #809 from TrueSightDAO/
 35ec17d | 2026-08-24 02:57:37 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
 e48bece | 2026-08-24 02:57:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
 b38bcef | 2026-08-24 01:26:13 +0800 | docs: add TREE_PLANTING_FUNDS_TRANSFERRED state to linking plan (#808)
-ca4c84f | 2026-08-24 01:26:00 +0800 | Merge pull request #807 from TrueSightDAO/deepseek-local-telegram-setup
-29d7315 | 2026-08-23 14:25:40 -0300 | Add DEEPSEEK_LOCAL.md: DeepSeek Local identity + Telegram thread-confusion rules
-42d82f8 | 2026-08-24 00:18:38 +0800 | Merge pull request #805 from TrueSightDAO/docs/envoy-sentinel-registered
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+0d57fba | 2026-08-25 23:30:02 -0300 | Add process_tree_growth_monitoring.gs — [TREE GROWTH MONITORING EVENT] handler (P1d) (#430)
+0d55b11 | 2026-08-25 23:29:37 -0300 | fix(asset-receipt-ingest): anchor event detection + idempotent SKIPPED/ERROR dedup (#427)
 54bf0cf | 2026-08-25 13:09:09 -0300 | feat: enforce DEPLOY_PUSH_SOP lease+audit in deploy_gas_project.py (direct-run gap) (#429)
 d120f70 | 2026-08-25 01:25:03 +0800 | fix: remove stale Code.js duplicate from inventory movement GAS project (#425)
 8d69388 | 2026-08-24 22:37:21 +0800 | Add admin+sophia@truesight.me to TRUSTED_AGENTS for inventory movement auth (#424)
@@ -441,6 +443,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+28f4a7e | 2026-08-26 07:11:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3fff0fa | 2026-08-25 14:04:18 +0000 | chore: refresh currencies.json [skip ci]
 6f190de | 2026-08-25 10:24:31 -0300 | chore(inventory): refresh currencies.json (repackaging ingest)
 1237c29 | 2026-08-25 08:29:14 -0300 | chore: refresh Agroverse store inventory snapshot
@@ -568,7 +571,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/25/2026 18:51:12 |
+| 2026-08 | 428.46 | 17339.52386 | 8/25/2026 23:52:10 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-19`; scanned last **600** data rows)
 
