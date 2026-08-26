@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-26T07:25:49Z`
+- Generated (UTC): `2026-08-26T13:33:31Z`
 - Look-back: **7** calendar days (`2026-08-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 17
+- `[CONTRIBUTION EVENT]` × 16
 - `[INVENTORY MOVEMENT]` × 16
 - `[ASSET RECEIPT EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 2
+- `[PRACTICE EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260825095453_165` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-25T09:54:51.692Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260825104944_167` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260825104949_169` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
 - `Edgar_20260825104951_171` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Melinda Larios · Inventory Item: 81% Dark Chocolate Bar 50g \| Cacao Almonds KG - Organic (Fazenda São Jorg…
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260825163055_199` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
 - `Edgar_20260825163057_201` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20260825170935_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 215 · Contributor(s): Sophia Truesight, Gary Teh
+- `Edgar_20260826102741_205` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-26T10:27:38.595Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-25T10:59:14.292Z`
+- Generated (UTC): `2026-08-26T10:59:14.277Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,12 +86,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **768**, follow_up **71**, bulk **0**, unknown **2** (data rows: **841**)
+- **Email Agent Follow Up** — logged sends: warmup **778**, follow_up **71**, bulk **0**, unknown **2** (data rows: **851**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **690**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **700**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -279,6 +279,8 @@ _All dated lines on/after 2026-08-19_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e6eccf7 | 2026-08-26 07:42:24 -0300 | revert: remove mis-scoped sunmint monitor page from truesight_me_beta (#313)
+f635116 | 2026-08-26 07:28:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 d80fab7 | 2026-08-26 02:10:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40edcf8 | 2026-08-25 22:15:49 -0300 | SunMint monitor spec v1.4 (photo-first + event taxonomy)
 9638710 | 2026-08-25 17:53:40 -0300 | feat: add sunmint monitor-tree-growth page (video capture + nearest-tree dropdown + signed PM002 measurement event) (#312)
@@ -317,8 +319,6 @@ d5c150b | 2026-08-24 00:37:40 +0800 | Add FounderHaus Farm program page + progra
 d56bf8c | 2026-08-23 13:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 73c591d | 2026-08-23 07:17:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 97f0a01 | 2026-08-23 02:10:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
-686c7bd | 2026-08-22 19:00:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b803ee7 | 2026-08-22 21:20:04 +0800 | feat(qr): embed OpenStreetMap for tree QRs with real coordinates (#299)
 … (truncated)
 ```
 
@@ -331,6 +331,9 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9e5788b | 2026-08-26 09:18:23 -0300 | Add Perch recurring-themes report methodology runbook (#824)
+6f3c874 | 2026-08-26 04:26:09 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
+2e3248c | 2026-08-26 04:26:08 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 3f5558e | 2026-08-25 23:29:54 -0300 | Add SUNMINT_MONITOR_TREE_GROWTH_PLAN.md (canonical plan, event taxonomy) (#821)
 213e9cc | 2026-08-25 23:09:02 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
 f7f80f9 | 2026-08-25 23:09:01 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
@@ -368,9 +371,6 @@ f50f2a3 | 2026-08-24 04:06:34 +0800 | docs: consolidate Brazil export lane learn
 6fd1bb5 | 2026-08-24 03:24:42 +0800 | Add deep-dive PDF: sugarcane plantation & land impact in Brazil
 ce3e3b5 | 2026-08-24 03:12:02 +0800 | Merge pull request #809 from TrueSightDAO/local-emulator-setup-doc
 22fc3b2 | 2026-08-23 16:11:48 -0300 | Add LOCAL_EMULATOR_SETUP.md: how to spin up local Android emulator + iOS Simulator
-35ec17d | 2026-08-24 02:57:37 +0800 | chore(previews): refresh Beer Hall preview (2026-08-23 UTC)
-e48bece | 2026-08-24 02:57:36 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-23 UTC)
-b38bcef | 2026-08-24 01:26:13 +0800 | docs: add TREE_PLANTING_FUNDS_TRANSFERRED state to linking plan (#808)
 … (truncated)
 ```
 
@@ -443,6 +443,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+edf8fdb | 2026-08-26 07:31:12 +0000 | chore: refresh currencies.json [skip ci]
 28f4a7e | 2026-08-26 07:11:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3fff0fa | 2026-08-25 14:04:18 +0000 | chore: refresh currencies.json [skip ci]
 6f190de | 2026-08-25 10:24:31 -0300 | chore(inventory): refresh currencies.json (repackaging ingest)
@@ -571,7 +572,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/25/2026 23:52:10 |
+| 2026-08 | 428.46 | 17339.52386 | 8/26/2026 5:56:31 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-19`; scanned last **600** data rows)
 
