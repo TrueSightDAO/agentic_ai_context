@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-27T10:07:32Z`
+- Generated (UTC): `2026-08-27T22:29:07Z`
 - Look-back: **7** calendar days (`2026-08-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,34 +32,35 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 19
-- `[INVENTORY MOVEMENT]` × 14
-- `[ASSET RECEIPT EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 25
+- `[INVENTORY MOVEMENT]` × 4
+- `[ASSET RECEIPT EVENT]` × 4
 - `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 4
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260825150733_191` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Checked whether the Chives Root USPS shipping expense (tracking 923469032499…
-- `Edgar_20260825151239_193` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Contributor(s): Sophia Truesight (autopilot)
-- `Edgar_20260825162705_195` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
-- `Edgar_20260825162707_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Sophia Truesight
-- `Edgar_20260825163055_199` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
-- `Edgar_20260825163057_201` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260825170935_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 215 · Contributor(s): Sophia Truesight, Gary Teh
-- `Edgar_20260826102741_205` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-26T10:27:38.595Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260826160041_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Syncing up on SABRAE
-- `Edgar_20260826160203_209` · **Edgar** · [No Text Provided]
-- `Edgar_20260826160412_211` · **Edgar** · [No Text Provided]
-- `Edgar_20260826160516_213` · **Edgar** · [No Text Provided]
-- `Edgar_20260826193211_215` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Figuring out how to label printer
-- `Edgar_20260826193454_217` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Packing and bringing the cacao tea and kraft pouches to Startup Summit Brazil
-- `Edgar_20260826193643_219` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: coming over to FounderHaus to help figure out the label printer.
-- `Edgar_20260826193814_221` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussing about working more closely with APEX to discover more companies t…
 - `Edgar_20260826194056_223` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Coordinated the bringing of cacao tea from FounderHaus to startUp summit ven…
 - `Edgar_20260826212726_225` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -11.62 · Description: Paloma (via Founder Haus) paid for printing 100 QR code stickers (4x3cm) + 1…
 - `Edgar_20260826212741_227` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Agroverse Sticker 4x3cm (Founder Haus) - Brazil · Amount: 100 · Description: 100 units of Agroverse-branded stickers (4x3cm) received via Founder Haus or…
 - `Edgar_20260826212744_229` · **Edgar** · [ASSET RECEIPT EVENT] Currency: QR Code Sticker 4x3cm (Kraft Pouch) - Brazil · Amount: 100 · Description: 100 units of QR code stickers (4x3cm), for affixing to Kraft pouches, receiv…
+- `Edgar_20260827103158_231` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-27T10:31:55.395Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260827121540_233` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.81 · Contributor(s): Sophia Truesight
+- `Edgar_20260827121546_235` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 100 · Currency: QA Verification Sticker 4x3cm (Test 20260827) · Fund Handler: Sophia Truesight
+- `Edgar_20260827122121_237` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -5.81 · Description: QA verification test 2026-08-27 round 2: paired USD contribution for 100-uni…
+- `Edgar_20260827122127_239` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 100 · Attached Filename: image.png · Currency: QA Verification Sticker 4x3cm Round2 (Test 20260827b)
+- `Edgar_20260827123006_241` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: asset_receipt_ingest fix — detection, escalation, and merge oversight. Spott…
+- `Edgar_20260827123009_243` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: asset_receipt_ingest fix — diagnosis and deployment. Authored #411 (Amount→Q…
+- `Edgar_20260827134339_245` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Investigated DAO open-source stack (GAS in tokenomics, dao protocol/Edgar, A…
+- `Edgar_20260827184003_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Raw machine execution — 2026-08-27 checkout 500 incident (thread 15074): SSH…
+- `Edgar_20260827184007_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Direct time (engagement/analysis) — 2026-08-27 checkout 500 incident: root-c…
+- `Edgar_20260827184010_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — 2026-08-27: directed checkout-500 investigation (thre…
+- `Edgar_20260827184254_007` · **Edgar** · [No Text Provided]
+- `Edgar_20260827184419_009` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 19.37 · Description: AGL15 contribution of R$ 100,00 converted to USD 19.37 (rate 5.1630 BRL/USD,…
+- `Edgar_20260827184503_011` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Layon Costa · Contributor Email: layon@toolsforthecommons.com
+- `Edgar_20260827184604_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Layon Costa (layon@toolsforthecommons.com) — 30 minutes helping pack bags of…
+- `Edgar_20260827184744_015` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 
 ---
 
@@ -74,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-26T10:59:14.277Z`
+- Generated (UTC): `2026-08-27T10:59:14.451Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -84,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **778**, follow_up **71**, bulk **0**, unknown **2** (data rows: **851**)
+- **Email Agent Follow Up** — logged sends: warmup **790**, follow_up **71**, bulk **0**, unknown **2** (data rows: **863**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **700**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **712**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -220,20 +221,20 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
+| Sophia Truesight | 2 | 200 | $10,005.81 |
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
 | Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
-| Paloma | 5 | 203 | $152.50 |
-| Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
+| Paloma | 6 | 432.36 | $195.37 |
 
-_(+29 more in JSON snapshot.)_
+_(+30 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,788.40**
+- USD on hand: **$4,819.76**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
 - USD provisioned for voting-rights cash-out: **$53.01**
 
@@ -277,6 +278,7 @@ _All dated lines on/after 2026-08-20_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7b1b1aa | 2026-08-27 10:26:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e150301 | 2026-08-26 21:02:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5ba59fa | 2026-08-26 13:36:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e6eccf7 | 2026-08-26 07:42:24 -0300 | revert: remove mis-scoped sunmint monitor page from truesight_me_beta (#313)
@@ -316,7 +318,6 @@ e540ef3 | 2026-08-24 00:54:15 +0800 | Retarget FounderHaus Farm primary CTA to b
 7dbcf26 | 2026-08-24 00:43:01 +0800 | Add FounderHaus Farm Edition brief details to landing page (PDF, photo, QR, economics) (#302)
 dcddbaf | 2026-08-24 00:39:15 +0800 | Brand FounderHaus Farm as SunMint initiative — FounderHaus Farm Edition (#301)
 d5c150b | 2026-08-24 00:37:40 +0800 | Add FounderHaus Farm program page + programs.html card (#300)
-d56bf8c | 2026-08-23 13:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -329,6 +330,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3b46255 | 2026-08-27 07:07:53 -0300 | chore(previews): refresh Beer Hall preview (2026-08-27 UTC)
+349b14a | 2026-08-27 07:07:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 b4e9cc6 | 2026-08-27 05:05:12 -0300 | Merge pull request #826 from TrueSightDAO/auto/advisory-refresh-2026-08-27
 dacff59 | 2026-08-27 08:04:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 4dc512b | 2026-08-26 21:27:10 -0300 | Update SUNMINT_TREE_GROWTH_MONITORING_PLAN to reflect corrected hosting + completed units (#825)
@@ -367,14 +370,15 @@ c604208 | 2026-08-24 18:18:00 +0800 | Plan: /large_spikes regime gauge Norm/Boll
 db5477f | 2026-08-24 15:37:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 81f035e | 2026-08-24 15:37:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 e7bb274 | 2026-08-24 10:07:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
-1aeedae | 2026-08-24 10:07:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
-ca7b1c4 | 2026-08-24 09:23:22 +0800 | Merge pull request #812 from TrueSightDAO/auto/advisory-refresh-2026-08-24
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+8e11f91 | 2026-08-27 10:00:12 -0300 | fix(deploy): repoint pinned GAS deployments on push; commit asset_receipt_ingest project (#433)
+f51731c | 2026-08-27 09:59:26 -0300 | Server-side enforcement: proximity gate (200m, operators exempt), INVALID tree block, REJECT allows NEW+LINKED (#432)
+521d02b | 2026-08-27 09:18:51 -0300 | fix(asset-receipt-ingest): match 'Contributor(s)' label in paired-contribution unit cost lookup (#431)
 0d57fba | 2026-08-25 23:30:02 -0300 | Add process_tree_growth_monitoring.gs — [TREE GROWTH MONITORING EVENT] handler (P1d) (#430)
 0d55b11 | 2026-08-25 23:29:37 -0300 | fix(asset-receipt-ingest): anchor event detection + idempotent SKIPPED/ERROR dedup (#427)
 54bf0cf | 2026-08-25 13:09:09 -0300 | feat: enforce DEPLOY_PUSH_SOP lease+audit in deploy_gas_project.py (direct-run gap) (#429)
@@ -439,6 +443,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8e195dd | 2026-08-27 17:53:42 +0000 | chore: refresh currencies.json [skip ci]
+2df3c0b | 2026-08-27 17:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 edf8fdb | 2026-08-26 07:31:12 +0000 | chore: refresh currencies.json [skip ci]
 28f4a7e | 2026-08-26 07:11:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 3fff0fa | 2026-08-25 14:04:18 +0000 | chore: refresh currencies.json [skip ci]
@@ -567,13 +573,20 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 428.46 | 17339.52386 | 8/27/2026 2:51:21 |
+| 2026-08 | 459.82 | 17370.88386 | 8/27/2026 14:51:15 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-20`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
 | 2026-08-22 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_31 | xImcXg3OlVcW | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_65 | qOejcMrlb7jD | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_41 | RPZryhwUa6yZ | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_6 | SpTckuw1GmAj | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_56 | Sl29ybzl22Tp | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_52 | HwU7fM75YFS4 | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
