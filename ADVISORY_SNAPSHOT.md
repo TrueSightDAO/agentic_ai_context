@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-27T08:04:55Z`
+- Generated (UTC): `2026-08-27T10:07:32Z`
 - Look-back: **7** calendar days (`2026-08-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 19
+- `[INVENTORY MOVEMENT]` × 14
+- `[ASSET RECEIPT EVENT]` × 3
+- `[PRACTICE EVENT]` × 2
+- _free-form (no bracket tag)_ × 4
+
+### Latest entries
+
+- `Edgar_20260825150733_191` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Checked whether the Chives Root USPS shipping expense (tracking 923469032499…
+- `Edgar_20260825151239_193` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260825162705_195` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260825162707_197` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Sophia Truesight
+- `Edgar_20260825163055_199` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Contributor(s): Sophia Truesight
+- `Edgar_20260825163057_201` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260825170935_203` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 215 · Contributor(s): Sophia Truesight, Gary Teh
+- `Edgar_20260826102741_205` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-26T10:27:38.595Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260826160041_207` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Syncing up on SABRAE
+- `Edgar_20260826160203_209` · **Edgar** · [No Text Provided]
+- `Edgar_20260826160412_211` · **Edgar** · [No Text Provided]
+- `Edgar_20260826160516_213` · **Edgar** · [No Text Provided]
+- `Edgar_20260826193211_215` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Figuring out how to label printer
+- `Edgar_20260826193454_217` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Packing and bringing the cacao tea and kraft pouches to Startup Summit Brazil
+- `Edgar_20260826193643_219` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: coming over to FounderHaus to help figure out the label printer.
+- `Edgar_20260826193814_221` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussing about working more closely with APEX to discover more companies t…
+- `Edgar_20260826194056_223` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Coordinated the bringing of cacao tea from FounderHaus to startUp summit ven…
+- `Edgar_20260826212726_225` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -11.62 · Description: Paloma (via Founder Haus) paid for printing 100 QR code stickers (4x3cm) + 1…
+- `Edgar_20260826212741_227` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Agroverse Sticker 4x3cm (Founder Haus) - Brazil · Amount: 100 · Description: 100 units of Agroverse-branded stickers (4x3cm) received via Founder Haus or…
+- `Edgar_20260826212744_229` · **Edgar** · [ASSET RECEIPT EVENT] Currency: QR Code Sticker 4x3cm (Kraft Pouch) - Brazil · Amount: 100 · Description: 100 units of QR code stickers (4x3cm), for affixing to Kraft pouches, receiv…
 
 ---
 
@@ -194,13 +231,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,788.40**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$53.01**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -288,6 +329,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b4e9cc6 | 2026-08-27 05:05:12 -0300 | Merge pull request #826 from TrueSightDAO/auto/advisory-refresh-2026-08-27
+dacff59 | 2026-08-27 08:04:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 4dc512b | 2026-08-26 21:27:10 -0300 | Update SUNMINT_TREE_GROWTH_MONITORING_PLAN to reflect corrected hosting + completed units (#825)
 fca6f65 | 2026-08-26 17:34:08 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
 369d64f | 2026-08-26 17:34:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
@@ -326,8 +369,6 @@ db5477f | 2026-08-24 15:37:20 +0800 | chore(previews): refresh Beer Hall preview
 e7bb274 | 2026-08-24 10:07:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 1aeedae | 2026-08-24 10:07:45 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
 ca7b1c4 | 2026-08-24 09:23:22 +0800 | Merge pull request #812 from TrueSightDAO/auto/advisory-refresh-2026-08-24
-5c81c3e | 2026-08-24 01:23:10 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
-1257ff2 | 2026-08-24 07:20:01 +0800 | Add markdown source for sugarcane environmental report
 … (truncated)
 ```
 
@@ -502,6 +543,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 428.46 | 17339.52386 | 8/27/2026 2:51:21 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-20`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-08-22 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
