@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-28T11:38:19Z`
+- Generated (UTC): `2026-08-28T22:31:42Z`
 - Look-back: **7** calendar days (`2026-08-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,35 +32,35 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
+- `[CONTRIBUTION EVENT]` × 26
 - `[ASSET RECEIPT EVENT]` × 4
-- `[INVENTORY MOVEMENT]` × 3
-- `[PRACTICE EVENT]` × 3
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 6
+- `[CONTRIBUTOR ADD EVENT]` × 4
+- `[PRACTICE EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 2
+- _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260826212726_225` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -11.62 · Description: Paloma (via Founder Haus) paid for printing 100 QR code stickers (4x3cm) + 1…
-- `Edgar_20260826212741_227` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Agroverse Sticker 4x3cm (Founder Haus) - Brazil · Amount: 100 · Description: 100 units of Agroverse-branded stickers (4x3cm) received via Founder Haus or…
-- `Edgar_20260826212744_229` · **Edgar** · [ASSET RECEIPT EVENT] Currency: QR Code Sticker 4x3cm (Kraft Pouch) - Brazil · Amount: 100 · Description: 100 units of QR code stickers (4x3cm), for affixing to Kraft pouches, receiv…
-- `Edgar_20260827103158_231` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-27T10:31:55.395Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260827121540_233` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.81 · Contributor(s): Sophia Truesight
-- `Edgar_20260827121546_235` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 100 · Currency: QA Verification Sticker 4x3cm (Test 20260827) · Fund Handler: Sophia Truesight
-- `Edgar_20260827122121_237` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -5.81 · Description: QA verification test 2026-08-27 round 2: paired USD contribution for 100-uni…
-- `Edgar_20260827122127_239` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 100 · Attached Filename: image.png · Currency: QA Verification Sticker 4x3cm Round2 (Test 20260827b)
-- `Edgar_20260827123006_241` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: asset_receipt_ingest fix — detection, escalation, and merge oversight. Spott…
-- `Edgar_20260827123009_243` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: asset_receipt_ingest fix — diagnosis and deployment. Authored #411 (Amount→Q…
-- `Edgar_20260827134339_245` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Investigated DAO open-source stack (GAS in tokenomics, dao protocol/Edgar, A…
-- `Edgar_20260827184003_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Raw machine execution — 2026-08-27 checkout 500 incident (thread 15074): SSH…
-- `Edgar_20260827184007_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Direct time (engagement/analysis) — 2026-08-27 checkout 500 incident: root-c…
-- `Edgar_20260827184010_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — 2026-08-27: directed checkout-500 investigation (thre…
-- `Edgar_20260827184254_007` · **Edgar** · [No Text Provided]
-- `Edgar_20260827184419_009` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 19.37 · Description: AGL15 contribution of R$ 100,00 converted to USD 19.37 (rate 5.1630 BRL/USD,…
 - `Edgar_20260827184503_011` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Layon Costa · Contributor Email: layon@toolsforthecommons.com
 - `Edgar_20260827184604_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Layon Costa (layon@toolsforthecommons.com) — 30 minutes helping pack bags of…
 - `Edgar_20260827184744_015` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260828094625_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-28T09:46:23.650Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260828121511_019` · **Edgar** · [No Text Provided]
+- `Edgar_20260828122534_021` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Alexey Karanyuk · Contributor Email: alexey@karanyuk.com · Submission Source: Telegram (Gary Teh)
+- `Edgar_20260828145606_023` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Juliano Sakai · Contributor Email: Julianosakai@gmail.com · Initial Digital Signature:
+- `Edgar_20260828145610_025` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Email: Julianosakai@gmail.com · Contributor Name: Juliano Sakai
+- `Edgar_20260828151251_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh, Juliano Sakai
+- `Edgar_20260828161608_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260828162139_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Natalia Duque Cesar
+- `Edgar_20260828162235_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Paloma
+- `Edgar_20260828162238_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Nima Kaz
+- `Edgar_20260828162241_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Natalia Duque Cesar
+- `Edgar_20260828162245_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Cristian Crispim
+- `Edgar_20260828162309_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260828162313_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Yuri
+- `Edgar_20260828162538_045` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh · Description: Helped organize and run BitAngels Magic Island Demo Day at Founder Haus (Jur…
+- `Edgar_20260828165557_047` · **Edgar** · [EMAIL REGISTERED EVENT] Email: julianosakai@gmail.com
+- `Edgar_20260828183357_049` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
 
 ---
 
@@ -228,13 +228,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Aga Marecka | 1 | 20 | $537.46 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
-| Paloma | 6 | 432.36 | $195.37 |
+| Paloma | 6 | 441.32 | $204.33 |
 
 _(+30 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,819.59**
+- USD on hand: **$4,828.55**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
 - USD provisioned for voting-rights cash-out: **$53.19**
 
@@ -275,6 +275,8 @@ _All dated lines on/after 2026-08-21_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+bdd9618 | 2026-08-28 09:51:41 -0300 | Link FounderHaus Farm program page to the Cacao Tea 50g product page (#316)
+ded4170 | 2026-08-28 12:05:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
 615e43d | 2026-08-28 08:30:24 -0300 | Embed FounderHaus Farm videos on program page (#315)
 77b62cd | 2026-08-28 08:26:14 -0300 | Add planting-day photo gallery to FounderHaus Farm program page (#314)
 ac537e6 | 2026-08-27 22:31:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -313,8 +315,6 @@ c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [
 9af86cd | 2026-08-23 18:59:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1d3729b | 2026-08-24 01:00:50 +0800 | Fix Butterfly Effect logo: repoint to self-hosted asset (#306)
 49b43b9 | 2026-08-24 00:54:18 +0800 | Simplify FounderHaus Farm pill to SunMint initiative (#305)
-e540ef3 | 2026-08-24 00:54:15 +0800 | Retarget FounderHaus Farm primary CTA to batch verification (#304)
-38f3736 | 2026-08-24 00:54:12 +0800 | Support **bold** in program-shell markdown renderer (#303)
 … (truncated)
 ```
 
@@ -327,6 +327,9 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8f8891c | 2026-08-28 13:27:25 -0300 | Add BitAngels Demo Day contribution record PDF (2026-08-28)
+c92531f | 2026-08-28 08:38:35 -0300 | chore(previews): refresh Beer Hall preview (2026-08-28 UTC)
+18e92e6 | 2026-08-28 08:38:34 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-28 UTC)
 edb102a | 2026-08-27 19:29:23 -0300 | chore(previews): refresh Beer Hall preview (2026-08-27 UTC)
 61f4708 | 2026-08-27 19:29:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 3b46255 | 2026-08-27 07:07:53 -0300 | chore(previews): refresh Beer Hall preview (2026-08-27 UTC)
@@ -364,9 +367,6 @@ fd25e75 | 2026-08-24 23:00:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 6062b28 | 2026-08-24 15:42:26 -0300 | Docs: Sophia contribution estimates = raw execution + direct time (two separate CONTRIBUTION EVENTS) (#815)
 2e24fb9 | 2026-08-24 21:30:35 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 51bac85 | 2026-08-24 21:30:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
-b353986 | 2026-08-24 19:26:07 +0800 | docs: reflect 2026-08-24 Explorya cleanup, EIP release, nginx chatbot fix (#814)
-c604208 | 2026-08-24 18:18:00 +0800 | Plan: /large_spikes regime gauge Norm/Bollinger window fix + legibility (#813)
-db5477f | 2026-08-24 15:37:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 … (truncated)
 ```
 
@@ -431,6 +431,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+232d254 | 2026-08-28 19:00:06 +0000 | chore: refresh currencies.json [skip ci]
+e7ee650 | 2026-08-28 18:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8e195dd | 2026-08-27 17:53:42 +0000 | chore: refresh currencies.json [skip ci]
 2df3c0b | 2026-08-27 17:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 edf8fdb | 2026-08-26 07:31:12 +0000 | chore: refresh currencies.json [skip ci]
@@ -541,7 +543,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 459.82 | 17370.88386 | 8/28/2026 3:51:45 |
+| 2026-08 | 468.78 | 17379.84386 | 8/28/2026 14:58:47 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-21`; scanned last **600** data rows)
 
@@ -555,6 +557,8 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_56 | Sl29ybzl22Tp | Stripe checkout (online) |
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_52 | HwU7fM75YFS4 | Stripe checkout (online) |
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
+| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_36 | 0IJOTgc3JMN9 | Stripe checkout (online) |
+| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_72 | hbMM9Cp19qd1 | Stripe checkout (online) |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
