@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-27T22:29:07Z`
-- Look-back: **7** calendar days (`2026-08-20` → today UTC)
+- Generated (UTC): `2026-08-28T11:38:19Z`
+- Look-back: **7** calendar days (`2026-08-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -33,15 +33,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 25
-- `[INVENTORY MOVEMENT]` × 4
 - `[ASSET RECEIPT EVENT]` × 4
-- `[PRACTICE EVENT]` × 2
+- `[INVENTORY MOVEMENT]` × 3
+- `[PRACTICE EVENT]` × 3
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260826194056_223` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Coordinated the bringing of cacao tea from FounderHaus to startUp summit ven…
 - `Edgar_20260826212726_225` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: -11.62 · Description: Paloma (via Founder Haus) paid for printing 100 QR code stickers (4x3cm) + 1…
 - `Edgar_20260826212741_227` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Agroverse Sticker 4x3cm (Founder Haus) - Brazil · Amount: 100 · Description: 100 units of Agroverse-branded stickers (4x3cm) received via Founder Haus or…
 - `Edgar_20260826212744_229` · **Edgar** · [ASSET RECEIPT EVENT] Currency: QR Code Sticker 4x3cm (Kraft Pouch) - Brazil · Amount: 100 · Description: 100 units of QR code stickers (4x3cm), for affixing to Kraft pouches, receiv…
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260827184503_011` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Layon Costa · Contributor Email: layon@toolsforthecommons.com
 - `Edgar_20260827184604_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Layon Costa (layon@toolsforthecommons.com) — 30 minutes helping pack bags of…
 - `Edgar_20260827184744_015` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260828094625_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-28T09:46:23.650Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-27T10:59:14.451Z`
+- Generated (UTC): `2026-08-28T10:59:14.938Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **790**, follow_up **71**, bulk **0**, unknown **2** (data rows: **863**)
+- **Email Agent Follow Up** — logged sends: warmup **802**, follow_up **71**, bulk **0**, unknown **2** (data rows: **875**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **712**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **725**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -234,9 +234,9 @@ _(+30 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,819.76**
+- USD on hand: **$4,819.59**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$53.01**
+- USD provisioned for voting-rights cash-out: **$53.19**
 
 ### In-transit freight (1 row)
 
@@ -250,13 +250,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 ## CONTEXT_UPDATES (append-only, heuristic highlights)
 
-_Lines in window matching configured names or status keywords:_
+_No lines matched name/keyword heuristics in this window._
 
-- 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
+_All dated lines on/after 2026-08-21_ (3):
 
-_All dated lines on/after 2026-08-20_ (4):
-
-- 2026-08-20 | sophia | Cacao Tea 50g Oscar Farm retail packet (FounderHaus offline QR-scan sales) shipped end-to-end: cost basis $0.683/50g (AGL8 loose-tea basis; Currencies row 131), SKU oscar-bahia-cacao-tea-50g (SKUs row 15, $10 retail), 100 QR codes 2024OSCAR_CT_20260820_1..100 (rows 1678-1777, MINTED; serial _3 found undecodable in mint QA -> VOID row 1680, replacement _101 minted row 1778, landing agroverse.shop/shipments/agl4). Assets: 100 label PNGs + 100 qrs/<id>.json manifests + qrs_index.json -> lineage-assets main (PR #5), corrected zip v2 (100 scannable labels) delivered to thread 11578 (msg 11992). Generator hardened: post-mint decodability self-check aborts batch on dead labels (lineage-assets #7). Shop (agroverse_shop_beta, beta-first): PDP no price/no buy button (offline sales only, embeds Emelin cacao-tea video R4_xqBjKzNs) + cross-list cards on retail-packs category, Oscar farm, AGL4 shipment + hero image swaps to Gary's product photos + QR-batch text correction (PRs #197-205, #208). VOID serial documented in OPEN_FOLLOWUPS (agentic_ai_context #776). STILL BLOCKED (governor-gated): promote to prod via sync_beta_to_prod(agroverse_shop_prod) - awaiting Gary's explicit approval; www.agroverse.shop not yet live.
 - 2026-08-23 | claude (envoy) | Named the interactive Claude Code seat on nelanco-claude "Envoy" — see ENVOY.md for the full reasoning.
 - 2026-08-23 | deepseek | DeepSeek Local identity + Telegram setup: added DEEPSEEK_LOCAL.md (identity + thread-confusion rules when speaking with Sophia across Telegram topics). Credentials + long-poll listener at ~/Applications/deepseek_telegram_monitor/ (bot @deepseek_tdg_local_bot, ID 8835920598); boot convention in ~/.claude/CLAUDE.md ("DeepSeek local agent").
 - 2026-08-23 | deepseek | Added LOCAL_EMULATOR_SETUP.md — how to spin up the local Android emulator (JDK 21 + android-commandlinetools, x86_64 system image, AVD sunmint_test) and iOS Simulator (Xcode 16.2, iPhone 16 Pro) on this Mac for mobile testing. Captures env vars, one-time install, build+install+launch, and gotchas (platform-tools under ANDROID_HOME; Capacitor 8 Node>=22; iOS plugin-Swift incompat blocker). Also registered in OPERATING_INSTRUCTIONS §2.
@@ -278,6 +275,9 @@ _All dated lines on/after 2026-08-20_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+615e43d | 2026-08-28 08:30:24 -0300 | Embed FounderHaus Farm videos on program page (#315)
+77b62cd | 2026-08-28 08:26:14 -0300 | Add planting-day photo gallery to FounderHaus Farm program page (#314)
+ac537e6 | 2026-08-27 22:31:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b1b1aa | 2026-08-27 10:26:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e150301 | 2026-08-26 21:02:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5ba59fa | 2026-08-26 13:36:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -315,9 +315,6 @@ c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [
 49b43b9 | 2026-08-24 00:54:18 +0800 | Simplify FounderHaus Farm pill to SunMint initiative (#305)
 e540ef3 | 2026-08-24 00:54:15 +0800 | Retarget FounderHaus Farm primary CTA to batch verification (#304)
 38f3736 | 2026-08-24 00:54:12 +0800 | Support **bold** in program-shell markdown renderer (#303)
-7dbcf26 | 2026-08-24 00:43:01 +0800 | Add FounderHaus Farm Edition brief details to landing page (PDF, photo, QR, economics) (#302)
-dcddbaf | 2026-08-24 00:39:15 +0800 | Brand FounderHaus Farm as SunMint initiative — FounderHaus Farm Edition (#301)
-d5c150b | 2026-08-24 00:37:40 +0800 | Add FounderHaus Farm program page + programs.html card (#300)
 … (truncated)
 ```
 
@@ -330,6 +327,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+edb102a | 2026-08-27 19:29:23 -0300 | chore(previews): refresh Beer Hall preview (2026-08-27 UTC)
+61f4708 | 2026-08-27 19:29:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 3b46255 | 2026-08-27 07:07:53 -0300 | chore(previews): refresh Beer Hall preview (2026-08-27 UTC)
 349b14a | 2026-08-27 07:07:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 b4e9cc6 | 2026-08-27 05:05:12 -0300 | Merge pull request #826 from TrueSightDAO/auto/advisory-refresh-2026-08-27
@@ -368,8 +367,6 @@ fd25e75 | 2026-08-24 23:00:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b353986 | 2026-08-24 19:26:07 +0800 | docs: reflect 2026-08-24 Explorya cleanup, EIP release, nginx chatbot fix (#814)
 c604208 | 2026-08-24 18:18:00 +0800 | Plan: /large_spikes regime gauge Norm/Bollinger window fix + legibility (#813)
 db5477f | 2026-08-24 15:37:20 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
-81f035e | 2026-08-24 15:37:19 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-24 UTC)
-e7bb274 | 2026-08-24 10:07:46 +0800 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 … (truncated)
 ```
 
@@ -405,15 +402,6 @@ b306e6c | 2026-08-22 07:00:06 +0000 | fix: sales parser accepts $0 sale price (w
 d0e5f78 | 2026-08-21 18:48:11 +0800 | Fix SOLD_DATE_COL 22->26 in Parse Telegram ChatLogs.js (stamp to Column AA, not W) (#405)
 81c0181 | 2026-08-21 18:48:07 +0800 | Fix SOLD_DATE_COL_DEST 27->26 in process_qr_code_updates.js (match Column AA comment) (#404)
 3d45ab8 | 2026-08-21 17:26:12 +0800 | fix: admit [TREE PLANTING REJECT EVENT] rows in the scan filter (#402)
-6ef80e2 | 2026-08-21 06:01:47 +0800 | Expose processTreePlantingLinkCron via doGet action for manual/cron trigger (#400)
-95d9f02 | 2026-08-21 05:41:46 +0800 | Add doPost webhook to close TREE PLANTING LINK ingestion gap (#397)
-3490723 | 2026-08-21 04:58:38 +0800 | feat: allow sentinels to link QR codes to trees (governor OR sentinel gate) (#399)
-0bcc261 | 2026-08-21 03:41:57 +0800 | fix: move Sold Date + Tree Planted Notification to AA/AB (column collision with review workflow), add lat/long to owner email (#398)
-be92958 | 2026-08-20 18:23:14 +0800 | feat(tokenomics): add TREE PLANTING REJECT path — governor marks SunMint submission INVALID (#396)
-3e07028 | 2026-08-20 17:26:17 +0800 | Merge pull request #395 from TrueSightDAO/fix/sales-processing-claspignore
-0276607 | 2026-08-20 09:25:44 +0000 | Add .claspignore for sales-processing GAS project
-b319262 | 2026-08-20 09:05:48 +0800 | Merge pull request #394 from TrueSightDAO/fix/sunmint-claspignore-credentials-sample
-517c1b4 | 2026-08-20 01:05:02 +0000 | Exclude Credentials.sample.js from SunMint's clasp push
 ```
 
 ### `dapp` → `dapp`
@@ -456,35 +444,15 @@ c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot 
 cb2f486 | 2026-08-23 07:03:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b12ca39 | 2026-08-22 07:05:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 d206ab7 | 2026-08-21 07:09:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-1fdd50d | 2026-08-20 18:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
-1cb9039 | 2026-08-20 07:08:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-a44b7ce | 2026-08-20 21:08:44 +0800 | fix: mobile polish for cacao tea PDP (stack detail rows, tighten 480px layout) (#219)
-df6756e | 2026-08-20 20:17:11 +0800 | fix: remove QR label image + duplicate hero photo from cacao tea PDP gallery (#218)
-52ecd14 | 2026-08-20 19:49:55 +0800 | fix(spec): filter benign Chromium compute-pressure + raw 403 throttle noise (#217)
-beeeccf | 2026-08-20 19:48:59 +0800 | PR7: agl6 special case - retire agroverse:youtube meta-tag + bespoke lazy-load script, replace with media.json + shared loader (#215)
-1598d96 | 2026-08-20 19:46:36 +0800 | PR6: migrate shipment pages agl10, agl13, agl14 to media.json (remove dead Wix video on agl10, fix agl14 heroVideo.play guard) (#214)
-a645559 | 2026-08-20 19:43:17 +0800 | PR5: migrate shipment pages agl5, agl7, agl8 to media.json (distinct farmer slot for agl8) (#212)
-c35c11d | 2026-08-20 19:39:25 +0800 | PR4: Migrate shipment pages agl0, agl1, agl2 to media.json (#210)
-147cec6 | 2026-08-20 19:36:44 +0800 | fix(pdp): correct QR batch label (serial _3 voided, replaced by _101) (#208)
-ea556e3 | 2026-08-20 19:36:39 +0800 | PR3: Migrate farm pages fazenda-sao-jorge-bahia + vivi-jesus-do-deus-itacare to media.json (#207)
-9a73c14 | 2026-08-20 19:33:20 +0800 | PR2: Migrate farm pages fazenda-santa-ana-bahia + paulo-la-do-sitio-para to media.json (#206)
-a510006 | 2026-08-20 19:28:49 +0800 | PR1: migrate shipments/agl4 to media.json (fixes agl14.avif bug + hero-video console error) (#200)
-f6cd051 | 2026-08-20 19:21:03 +0800 | Use product photo on cacao tea cards (category/farm/shipment) (#205)
-faeffaa | 2026-08-20 19:19:23 +0800 | Use v2 cacao tea photo as PDP hero (#204)
-da13e0f | 2026-08-20 19:19:01 +0800 | Add cacao tea hero photo v2 (Oscar's Farm 50g)
-7dfdf26 | 2026-08-20 19:18:46 +0800 | Use real cacao tea product photo as PDP hero (#203)
-3d2fdec | 2026-08-20 19:18:10 +0800 | Add cacao tea product photo (Oscar's Farm 50g)
-2d2be09 | 2026-08-20 19:00:23 +0800 | Fix cacao tea images: use real 50g tea label instead of ceremonial cacao photo (#202)
-7dde445 | 2026-08-20 18:50:27 +0800 | Add Cacao Tea 50g card to retail-packs category page (#201)
-3b86936 | 2026-08-20 18:36:32 +0800 | PR0: farm/shipment media JSON externalization pilot (oscar-bahia) + shared media-gallery.js loader (#196)
-5e2b35a | 2026-08-20 18:32:43 +0800 | Cross-list Cacao Tea 50g on AGL4 shipment page (#199)
-7e50e91 | 2026-08-20 18:32:39 +0800 | Cross-list Cacao Tea 50g on Oscar's Farm page (#198)
-c4564ff | 2026-08-20 18:32:36 +0800 | Add Cacao Tea 50g PDP (Oscar's Farm 2024) — offline QR-scan sales only (#197)
+c229526 | 2026-08-28 08:28:55 -0300 | Embed FounderHaus Tools of Common video on cacao tea PDP (#224)
+4225601 | 2026-08-28 08:24:31 -0300 | Migrate cacao tea PDP gallery to media-gallery.js framework (media.json) (#223)
+18afb3f | 2026-08-28 08:22:19 -0300 | Add FounderHaus Farm Edition special-edition callout to cacao tea PDP (#221)
+fe173c1 | 2026-08-28 07:42:18 -0300 | Replace cacao tea 50g hero image with new farm photo (#220)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -573,9 +541,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 459.82 | 17370.88386 | 8/27/2026 14:51:15 |
+| 2026-08 | 459.82 | 17370.88386 | 8/28/2026 3:51:45 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-20`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-21`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
