@@ -285,6 +285,49 @@ step before the first unit.
 
 ---
 
+## 5g. E2E test writes — standing authorization, mandatory self-cleanup (2026-08-29)
+
+**Running an E2E test that writes clearly-marked test data to a live, non-financial system does
+not need a governor go-ahead each time.** This is a standing authorization, not a per-run gate —
+it does not fall under any §5c always-stop trigger (it is not a prod deploy/promote, not a merge to
+a default branch, not TDG/money, not a UAT phase), so an agent pausing to ask permission for it
+is being *more* cautious than the rules require. Proceed and report results, same as any other
+non-gated unit.
+
+**Applies to:** submitting a test event (`[EMAIL REGISTERED EVENT]`, `[INVENTORY MOVEMENT]`,
+`[ASSET RECEIPT EVENT]`, etc.) against a live sheet/ledger, sending a test email, or any other
+write where the payload is unambiguously test data — not real inventory, not real money, not a
+real contributor.
+
+**Does NOT apply to:** anything that actually moves money or issues TDG (still §5c), anything
+that deploys code/infra (still §5c), or a write where it's ambiguous whether the data is real vs.
+test — when in doubt, that ambiguity is itself a reason to stop and ask, same as always.
+
+**The tradeoff for this standing authorization is a hard requirement, not optional cleanup:**
+
+1. **Mark test data unambiguously in every field that ends up in a human-facing view** — a
+   description, an item name, a submission-source tag — so a human skimming the sheet later can
+   immediately tell it's a test row, and so a script can `grep` for it. `(Test <date>)` or
+   `e2e-<slug>-<timestamp>` in the relevant field, same convention already used elsewhere in this
+   workspace, is sufficient.
+2. **Every test write that adds value to a ledger must be reversed in the SAME turn** — an asset
+   receipt gets expensed off, an inventory movement gets moved back, a test contribution gets
+   noted as non-real. Do not leave a positive-value test artifact sitting in a live ledger for a
+   later cleanup pass; there may not be one.
+3. **If step 2 isn't possible for some reason** (e.g. the expense-off mechanism is itself what's
+   being tested and can't safely run in the same turn), stopping and flagging the leftover
+   artifact explicitly to the governor **before ending the turn** is mandatory — silence is not
+   an acceptable outcome.
+
+**Why this exists:** two QA verification test rows (2026-08-27, `offchain transactions`, testing
+truesight_autopilot #411/#427/#431) were never expensed off. One had a data-entry error in its
+unit price ($100 instead of $0.0581), and the pair sat in the Main Ledger for two days, inflating
+the DAO's publicly-displayed treasury balance (truesight.me homepage) by ~$10,000 before Gary
+spotted it. The fix wasn't "ask permission before testing" — the test itself was fine and
+appropriately low-risk. The fix is "never leave test value sitting in a real ledger."
+
+---
+
 ## 6. Contribution reporting — use dao_client (dao_protocol repo)
 
 When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:
