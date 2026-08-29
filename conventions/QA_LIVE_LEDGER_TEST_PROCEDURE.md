@@ -36,7 +36,26 @@ The run was **ad-hoc** — no checked-in script, no cleanup step. This document 
 
 ### 3. Self-clean — IMMEDIATELY after verification completes (same session, before closing the task)
 
+> **The cleanup is PART of the E2E run, not a follow-up task.** See the
+> mandatory run checklist below — the expense-off and row-deletion steps are
+> numbered items in the run itself, and the run is not complete until the
+> treasury figure is verified back at its pre-test value.
+
 For every test item created by the run:
+
+### 3a. Asset-receipt E2E run — mandatory run checklist
+
+Every asset-receipt E2E run (any currency, live or sandbox ledger) executes ALL of the following, in order:
+
+1. **Submit** the test `[ASSET RECEIPT EVENT]` (currency named `… (Test YYYYMMDD)`).
+2. **Verify ingest** — confirm `asset-receipt-ingest` processed it: offchain leg written, audit tab logged the update ID.
+3. **Verify Currencies row** — if the ledger is live, confirm NO rate row was created for the test currency (QA guard fires; log shows `QA GUARD: skipped …`). If a rate row WAS created, that is a test failure — fix before proceeding.
+4. **Expense off** — submit the paired `[EXPENSE EVENT]` / `[DAO Inventory Expense Event]` for the exact qty, so the positive offchain leg nets to zero (or delete the offchain rows, documented in the audit trail).
+5. **Delete the test Currencies row** (if one was created) from the live `Currencies` tab.
+6. **Verify treasury/AUM** returns to its pre-test value (e.g. `tdg_wix_dashboard` recalc; truesight.me/dapp unchanged).
+7. **Record** the run + cleanup in `OPEN_FOLLOWUPS.md` (update IDs, rows deleted, before/after treasury).
+
+Steps 4–7 are **mandatory** — a run that stops after step 3 is incomplete and MUST NOT be reported as passed.
 
 1. **Expense off the inventory**: submit an `[EXPENSE EVENT]` (or `[DAO Inventory Expense Event]`) for the exact quantity received, referencing the same currency, so the positive offchain leg nets to zero — **or** delete the positive offchain rows directly (documented in the audit trail).
 2. **Delete the test Currencies row(s)** from the live `Currencies` tab (exact col-A match, `(Test …)` names only). Never leave a test rate row — it multiplies any lingering quantity into phantom treasury value.
