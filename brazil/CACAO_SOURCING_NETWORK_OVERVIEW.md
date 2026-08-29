@@ -3,7 +3,7 @@
 > **Purpose:** Living reference for the Brazil→China cacao sourcing/export backbone — who, what capability, what constraint, what status — so anyone in the DAO can see the network at a glance.
 > **Prepared:** 29 Aug 2026 | **Prepared by:** Sophia Truesight (TrueSight DAO Autopilot)
 > **Sources:** Gary's WhatsApp export (28–29 Aug 2026, incl. Elizabeth Wong China-side context + annotated map); GACC registration guides (16–17 Jun 2026); `BRAZIL_EXPORT_LANE_LEARNINGS.md` (23 Aug 2026); `briefs/BRAZIL_EXPORT_ENTITY_BRIEF.md` (26 May 2026); `SUPPLY_CHAIN_AND_FREIGHTING.md`.
-> **Map:** `cacao_sourcing_network_map.png` (Gemini-generated; AI labels to be spot-checked).
+> **Map:** `cacao_sourcing_network_map.png` (plotted from real coordinates — lat/lng table below; regenerated via `truesight_autopilot/scripts/plot_cacao_sourcing_network_map.py`).
 
 ---
 
@@ -16,6 +16,18 @@
 | **Bahia (Itabuna)** | **Coopercabruca** — Orlantildes Santos Pereira, PRESIDENT (CNPJ 31.948.811/0001-42) | Conversion + export hub | Has IE + NF-e; **all chocolate factories + the DAO warehouse are here**; roasting can ONLY happen here regardless of source region | Only converts/exports beans from **own members**; does NOT provide warehousing; needs exact spec upfront | 🟢 Active lane |
 | **Bahia (Ilhéus)** | **Black King** — Matheus Reis Pereira (CNPJ 50.042.585/0001-80) | Exporter/trader + warehousing | Ilhéus warehouse; offers Bahia warehousing **in exchange for DAO tokens** (lets DAO stockpile multi-year + sense demand before committing to a conversion/SKU) | CNPJ **INAPTA** (2026-06-08) + expired e-CNPJ + no commerce CNAE → **cannot issue export NF-e** | 🔴 Blocker |
 | **China (Dongguan / HK)** | Elizabeth Wong (China side); Jerrie (research asks) | Destination market | — | SKU spec pending Elizabeth↔Kirsten discussion; chocolate-maker + co-packing/fulfillment searches outstanding (Dr Ye does not handle this) | 🟡 Open asks |
+
+## Map coordinates (lat/lng — source of the map pins)
+
+| Site | Latitude | Longitude |
+|---|---|---|
+| Manicoré (AM) | -5.804618 | -61.289483 |
+| Altamira (PA) | -3.204065 | -52.209961 |
+| Itabuna (BA) | -14.793173 | -39.275034 |
+| Ilhéus (BA) | -14.792599 | -39.045384 |
+| Dongguan (CN) | 23.018357 | 113.745233 |
+
+*Geocoded via OSM Nominatim, 2026-08-29. Regenerate the map with `python3 truesight_autopilot/scripts/plot_cacao_sourcing_network_map.py`.*
 
 ## Warehouse inventory (current, per WhatsApp 28–29 Aug)
 - **274 kg** La Do Sitio cacao beans (2024 harvest)
