@@ -124,11 +124,11 @@ settings. All changes are in `truesight_autopilot`. No new dependencies.
 
 ## 4. Resume tracker
 
-**RESUME HERE = PR2** (after Gary merges PR1)
+**RESUME HERE = PR2**
 
 | Unit | PR opened | Merged (human) | Contribution reported | Deployed |
 |------|-----------|----------------|-----------------------|----------|
-| PR1 — receive reactions | ☑ [#331](https://github.com/TrueSightDAO/truesight_autopilot/pull/331) | ☐ | ☐ | — |
+| PR1 — receive reactions | ☑ [#331](https://github.com/TrueSightDAO/truesight_autopilot/pull/331) | ☑ | ☑ | — |
 | PR2 — resume registry + flag | ☐ | ☐ | ☐ | — |
 | PR3 — reaction → go-signal | ☐ | ☐ | ☐ | — |
 | PR4 — docs | ☐ | ☐ | ☐ | — |
