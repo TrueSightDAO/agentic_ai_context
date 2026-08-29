@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-29T16:50:11Z`
+- Generated (UTC): `2026-08-29T21:04:26Z`
 - Look-back: **7** calendar days (`2026-08-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,24 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 14
-- `[EMAIL REGISTERED EVENT]` × 10
-- `[EMAIL VERIFICATION EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 15
+- `[EMAIL VERIFICATION EVENT]` × 9
+- `[EMAIL REGISTERED EVENT]` × 8
 - `[TREE PLANTING EVENT]` × 3
 - `[ASSET RECEIPT EVENT]` × 2
-- `[SALES EVENT]` × 1
-- `[INVENTORY MOVEMENT]` × 1
 - `[TREE GROWTH MONITORING EVENT]` × 1
-- _free-form (no bracket tag)_ × 2
+- _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260829125358_001` · **Edgar** · [ASSET RECEIPT EVENT] Currency: E2E QA Asset (Test 20260829125356) · Amount: 1 · Description: E2E asset receipt test item - self-cleans, no real inventory
-- `Edgar_20260829125450_003` · **Edgar** · [ASSET RECEIPT EVENT] Currency: E2E QA Asset (Test 20260829125448) · Amount: 1 · Description: E2E asset receipt test item - self-cleans, no real inventory
-- `Edgar_20260829125640_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight
-- `Edgar_20260829130612_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Setup Paloma to become a director of the Prospera entity
-- `Edgar_20260829131749_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: PR1: receive Telegram message_reaction updates + emoji verdict parser
-- `Edgar_20260829132416_011` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
 - `Edgar_20260829133812_001` · **Edgar** · [No Text Provided]
 - `Edgar_20260829133840_003` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+e2e-cutover-20260829@truesight.me
 - `Edgar_20260829134707_005` · **Edgar** · [TREE PLANTING EVENT] Latitude: 44.560058 · Longitude: -123.262181 · Species: Cacao - Criolla
@@ -64,6 +56,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260829152837_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Governor direction for SunMint E2E campaign (Gary) — 2026-08-29
 - `Edgar_20260829152852_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Deploy tool no-op bug after a merge PR's au…
 - `Edgar_20260829153258_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Deploy tool no-op bug: deploy_autopilot() r…
+- `Edgar_20260829185833_009` · **Edgar** · [No Text Provided]
+- `Edgar_20260829185930_011` · **Edgar** · [No Text Provided]
+- `Edgar_20260829204516_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Kirsten Ritschel's cash sale of 3 chocolate bars to Elizabeth Wong (Liz), pl…
+- `Edgar_20260829205208_015` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260829205232_017` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: xdTBtnG5ya5-8HNpa3IpduqRXvf3EbDxDk5-WF4o6_4 · Email: garyjob@gmail.com
+- `Edgar_20260829205308_019` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: xdTBtnG5ya5-8HNpa3IpduqRXvf3EbDxDk5-WF4o6_4 · Email: garyjob@gmail.com
 
 ---
 
@@ -278,6 +276,7 @@ _All dated lines on/after 2026-08-22_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3ed5148 | 2026-08-29 16:51:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ff01355 | 2026-08-29 07:18:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1f19de7 | 2026-08-28 20:05:41 -0300 | Fix mobile overflow on FounderHaus program page QR row (#317)
 280d39e | 2026-08-28 22:34:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,7 +316,6 @@ c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [
 87553fc | 2026-08-24 19:11:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7df964c | 2026-08-24 13:32:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 894fff8 | 2026-08-24 07:40:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
-60dc1ba | 2026-08-24 02:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -330,6 +328,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7de149b | 2026-08-29 13:50:26 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
+d1ef1b1 | 2026-08-29 13:50:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
 ec82962 | 2026-08-29 12:24:37 -0300 | docs: add SUNMINT_E2E_RUNBOOK — full E2E procedure + pipeline map + incident traps (#840)
 eaab724 | 2026-08-29 11:47:05 -0300 | docs: file GAS :run NOT_FOUND quirk + doGet workaround in OPEN_FOLLOWUPS (#839)
 466ab18 | 2026-08-29 10:49:50 -0300 | Tracker: PR2 contribution reported; tick PR2 + PR3 rows; RESUME HERE → PR3 contribution → deploy gate (#837)
@@ -368,8 +368,6 @@ fca6f65 | 2026-08-26 17:34:08 -0300 | chore(previews): refresh Beer Hall preview
 369d64f | 2026-08-26 17:34:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 52a0fca | 2026-08-26 10:33:51 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
 bf1ed87 | 2026-08-26 10:33:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
-9e5788b | 2026-08-26 09:18:23 -0300 | Add Perch recurring-themes report methodology runbook (#824)
-6f3c874 | 2026-08-26 04:26:09 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
 … (truncated)
 ```
 
@@ -559,7 +557,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/29/2026 8:51:42 |
+| 2026-08 | 528.78 | 17439.84386 | 8/29/2026 13:50:57 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-22`; scanned last **600** data rows)
 
@@ -575,6 +573,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
 | 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_36 | 0IJOTgc3JMN9 | Stripe checkout (online) |
 | 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_72 | hbMM9Cp19qd1 | Stripe checkout (online) |
+| 2026-08-29 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 | 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_11 | — | — |
 | 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_22 | — | — |
 | 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_24 | — | — |
