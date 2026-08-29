@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-29T07:16:04Z`
+- Generated (UTC): `2026-08-29T16:50:11Z`
 - Look-back: **7** calendar days (`2026-08-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,35 +32,38 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
-- `[ASSET RECEIPT EVENT]` × 4
-- `[CONTRIBUTOR ADD EVENT]` × 4
-- `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 2
-- _free-form (no bracket tag)_ × 4
+- `[CONTRIBUTION EVENT]` × 14
+- `[EMAIL REGISTERED EVENT]` × 10
+- `[EMAIL VERIFICATION EVENT]` × 8
+- `[TREE PLANTING EVENT]` × 3
+- `[ASSET RECEIPT EVENT]` × 2
+- `[SALES EVENT]` × 1
+- `[INVENTORY MOVEMENT]` × 1
+- `[TREE GROWTH MONITORING EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260827184503_011` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Layon Costa · Contributor Email: layon@toolsforthecommons.com
-- `Edgar_20260827184604_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Layon Costa (layon@toolsforthecommons.com) — 30 minutes helping pack bags of…
-- `Edgar_20260827184744_015` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260828094625_017` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-28T09:46:23.650Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260828121511_019` · **Edgar** · [No Text Provided]
-- `Edgar_20260828122534_021` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Alexey Karanyuk · Contributor Email: alexey@karanyuk.com · Submission Source: Telegram (Gary Teh)
-- `Edgar_20260828145606_023` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Juliano Sakai · Contributor Email: Julianosakai@gmail.com · Initial Digital Signature:
-- `Edgar_20260828145610_025` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Email: Julianosakai@gmail.com · Contributor Name: Juliano Sakai
-- `Edgar_20260828151251_027` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh, Juliano Sakai
-- `Edgar_20260828161608_029` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
-- `Edgar_20260828162139_031` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Natalia Duque Cesar
-- `Edgar_20260828162235_033` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Paloma
-- `Edgar_20260828162238_035` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Nima Kaz
-- `Edgar_20260828162241_037` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Natalia Duque Cesar
-- `Edgar_20260828162245_039` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Cristian Crispim
-- `Edgar_20260828162309_041` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260828162313_043` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Yuri
-- `Edgar_20260828162538_045` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh · Description: Helped organize and run BitAngels Magic Island Demo Day at Founder Haus (Jur…
-- `Edgar_20260828165557_047` · **Edgar** · [EMAIL REGISTERED EVENT] Email: julianosakai@gmail.com
-- `Edgar_20260828183357_049` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260829125358_001` · **Edgar** · [ASSET RECEIPT EVENT] Currency: E2E QA Asset (Test 20260829125356) · Amount: 1 · Description: E2E asset receipt test item - self-cleans, no real inventory
+- `Edgar_20260829125450_003` · **Edgar** · [ASSET RECEIPT EVENT] Currency: E2E QA Asset (Test 20260829125448) · Amount: 1 · Description: E2E asset receipt test item - self-cleans, no real inventory
+- `Edgar_20260829125640_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight
+- `Edgar_20260829130612_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Setup Paloma to become a director of the Prospera entity
+- `Edgar_20260829131749_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: PR1: receive Telegram message_reaction updates + emoji verdict parser
+- `Edgar_20260829132416_011` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+sophia@truesight.me
+- `Edgar_20260829133812_001` · **Edgar** · [No Text Provided]
+- `Edgar_20260829133840_003` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+e2e-cutover-20260829@truesight.me
+- `Edgar_20260829134707_005` · **Edgar** · [TREE PLANTING EVENT] Latitude: 44.560058 · Longitude: -123.262181 · Species: Cacao - Criolla
+- `Edgar_20260829134724_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: PR2: resume-awaiting registry + flag every posted chunk's message_id (emoji …
+- `Edgar_20260829135029_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: PR3: emoji reaction go-signal → resume the parked handoff (wire reaction → t…
+- `Edgar_20260829143953_011` · **Edgar** · [TREE GROWTH MONITORING EVENT] Tree ID: 469027268 · Species: unknown · DBH (cm): 12.5
+- `Edgar_20260829144942_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 330 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20260829150017_001` · **Edgar** · [TREE PLANTING EVENT] Latitude: 44.5601 · Longitude: -123.2622 · Species: Cacao - Criolla
+- `Edgar_20260829150131_001` · **Edgar** · [TREE PLANTING EVENT] Latitude: 44.56015 · Longitude: -123.26225 · Species: Cacao - Criolla
+- `Edgar_20260829150843_003` · **Edgar** · [No Text Provided]
+- `Edgar_20260829152828_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: SunMint E2E campaign + 7 production fixes (Gary + Sophia) — 2026-08-29
+- `Edgar_20260829152837_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Governor direction for SunMint E2E campaign (Gary) — 2026-08-29
+- `Edgar_20260829152852_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Deploy tool no-op bug after a merge PR's au…
+- `Edgar_20260829153258_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Deploy tool no-op bug: deploy_autopilot() r…
 
 ---
 
@@ -75,7 +78,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-28T10:59:14.938Z`
+- Generated (UTC): `2026-08-29T10:59:14.384Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +88,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **802**, follow_up **71**, bulk **0**, unknown **2** (data rows: **875**)
+- **Email Agent Follow Up** — logged sends: warmup **813**, follow_up **71**, bulk **0**, unknown **2** (data rows: **886**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **725**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **736**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -187,12 +190,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,339 total units · $1,492.60
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,336 total units · $1,475.72
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 11 | 397 | $841.15 |
+  | (uncategorized) | (unspecified) | 11 | 394 | $824.28 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -209,11 +212,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 28 SKU lines · 13,939.66 total units · $12,349.27
+- Manager record: `Gary Teh` · 28 SKU lines · 13,969.66 total units · $12,379.27
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 13,863.48 | $12,299.29 |
+  | (uncategorized) | (unspecified) | 26 | 13,893.48 | $12,329.29 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -221,20 +224,20 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
-| Sophia Truesight | 2 | 200 | $10,005.81 |
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
 | Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
-| Paloma | 6 | 441.32 | $204.33 |
+| Paloma | 7 | 661.32 | $247.02 |
+| Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
-_(+30 more in JSON snapshot.)_
+_(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,828.37**
+- USD on hand: **$4,858.37**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
 - USD provisioned for voting-rights cash-out: **$53.37**
 
@@ -275,6 +278,7 @@ _All dated lines on/after 2026-08-22_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ff01355 | 2026-08-29 07:18:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1f19de7 | 2026-08-28 20:05:41 -0300 | Fix mobile overflow on FounderHaus program page QR row (#317)
 280d39e | 2026-08-28 22:34:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bdd9618 | 2026-08-28 09:51:41 -0300 | Link FounderHaus Farm program page to the Cacao Tea 50g product page (#316)
@@ -314,7 +318,6 @@ c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [
 7df964c | 2026-08-24 13:32:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 894fff8 | 2026-08-24 07:40:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 60dc1ba | 2026-08-24 02:08:42 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9af86cd | 2026-08-23 18:59:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +330,26 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ec82962 | 2026-08-29 12:24:37 -0300 | docs: add SUNMINT_E2E_RUNBOOK — full E2E procedure + pipeline map + incident traps (#840)
+eaab724 | 2026-08-29 11:47:05 -0300 | docs: file GAS :run NOT_FOUND quirk + doGet workaround in OPEN_FOLLOWUPS (#839)
+466ab18 | 2026-08-29 10:49:50 -0300 | Tracker: PR2 contribution reported; tick PR2 + PR3 rows; RESUME HERE → PR3 contribution → deploy gate (#837)
+1bc1d32 | 2026-08-29 10:19:42 -0300 | Tracker: PR1 merged + contribution reported (emoji-go plan) (#836)
+bce5025 | 2026-08-29 10:13:11 -0300 | Emoji-reaction GO plan: mark PR1 opened in resume tracker (#835)
+7e80272 | 2026-08-29 09:56:55 -0300 | Fix legend overlap: vertical stack layout (2077x1334)
+17f1fe9 | 2026-08-29 09:56:23 -0300 | Merge pull request #834 from TrueSightDAO/handoff/sophia-emoji-reaction-go
+ac5ad6b | 2026-08-29 09:55:54 -0300 | handoff: Sophia emoji-reaction GO signal (plan + manifest row)
+f5d6e6d | 2026-08-29 09:50:31 -0300 | Side-by-side Brazil|China panels: countries adjacent, export arrow bridging
+58e4037 | 2026-08-29 09:38:47 -0300 | Redesign sourcing map: numbered pins + legend panel, zero label overlap
+7729952 | 2026-08-29 09:33:04 -0300 | Fix map label overlap (wrapped constraints, separated Bahia labels)
+0c2a20a | 2026-08-29 09:33:03 -0300 | Make expense-off cleanup a mandatory step of the asset-receipt E2E run (#833)
+57acc57 | 2026-08-29 09:31:58 -0300 | Update sourcing map: add per-site constraint annotations
+ac60310 | 2026-08-29 09:27:44 -0300 | Update map note: plotted from real coordinates (#832)
+29f1602 | 2026-08-29 09:27:03 -0300 | Replace AI-generated sourcing map with real-coordinate plotted map
+9782d02 | 2026-08-29 09:24:32 -0300 | Add QA live-ledger test procedure convention (self-clean via expense-off) (#831)
+58a2903 | 2026-08-29 08:36:35 -0300 | Add cacao sourcing network overview (living doc) (#830)
+ca471e5 | 2026-08-29 08:19:43 -0300 | Add §5g: standing authorization for E2E test writes, mandatory self-cleanup (#829)
+dd72fa3 | 2026-08-29 04:16:20 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
+59b300b | 2026-08-29 04:16:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
 4808559 | 2026-08-29 03:06:33 -0300 | Merge pull request #828 from TrueSightDAO/auto/advisory-refresh-2026-08-29
 594edad | 2026-08-29 06:06:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
 f0f7fa5 | 2026-08-28 19:32:05 -0300 | chore(previews): refresh Beer Hall preview (2026-08-28 UTC)
@@ -347,32 +370,26 @@ fca6f65 | 2026-08-26 17:34:08 -0300 | chore(previews): refresh Beer Hall preview
 bf1ed87 | 2026-08-26 10:33:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 9e5788b | 2026-08-26 09:18:23 -0300 | Add Perch recurring-themes report methodology runbook (#824)
 6f3c874 | 2026-08-26 04:26:09 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
-2e3248c | 2026-08-26 04:26:08 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
-3f5558e | 2026-08-25 23:29:54 -0300 | Add SUNMINT_MONITOR_TREE_GROWTH_PLAN.md (canonical plan, event taxonomy) (#821)
-213e9cc | 2026-08-25 23:09:02 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
-f7f80f9 | 2026-08-25 23:09:01 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
-a377ff7 | 2026-08-25 22:23:35 -0300 | Merge pull request #823 from TrueSightDAO/auto/advisory-refresh-2026-08-26
-250010b | 2026-08-26 01:23:23 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
-17a791b | 2026-08-25 22:19:20 -0300 | Add SUNMINT_TREE_GROWTH_MONITORING_PLAN.md — complete plan capturing 2026-08-26 decisions (#822)
-6094272 | 2026-08-25 16:09:00 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
-f0ea85f | 2026-08-25 16:08:59 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
-b3da125 | 2026-08-25 13:09:56 -0300 | docs: mark DEPLOY_PUSH_SOP Phase 2 as shipped (#820)
-4642646 | 2026-08-25 12:17:07 -0300 | docs(followups): file deploy-ledger Phase 2 + OPERATING_INSTRUCTIONS pointer items (#819)
-9cec10a | 2026-08-25 12:17:03 -0300 | docs(sops): add DEPLOY_PUSH_SOP — cross-agent push/deploy audit procedure (#818)
-286f882 | 2026-08-25 10:28:31 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
-b65ad28 | 2026-08-25 10:28:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
-b69a37d | 2026-08-25 07:54:54 -0300 | docs: plan of record — currency_conversion.html stale currencies.json (#816)
-30d6672 | 2026-08-25 04:25:08 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
-02de9a1 | 2026-08-25 04:25:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
-d8c45b2 | 2026-08-24 23:00:27 -0300 | chore(previews): refresh Beer Hall preview (2026-08-25 UTC)
-fd25e75 | 2026-08-24 23:00:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-25 UTC)
-7e9a000 | 2026-08-24 16:11:44 -0300 | chore(previews): refresh Beer Hall preview (2026-08-24 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+1e31ee8 | 2026-08-29 12:22:42 -0300 | fix(gas): add Credentials.js to SunMint .claspignore so clasp push can't delete the live secret file (#448)
+77476ab | 2026-08-29 11:47:01 -0300 | fix: add processTreePlantingTelegramLogs action to tree-planting GAS doGet (#447)
+b167e23 | 2026-08-29 11:43:34 -0300 | fix: TGM extractor DBH (cm) label never matches — monitoring records silently skipped (#446)
+637dec8 | 2026-08-29 11:30:40 -0300 | feat(recurring): add webapp manifest block so clasp deploy creates a WEB_APP entry point (#444)
+c74c3d4 | 2026-08-29 11:27:48 -0300 | feat(recurring): add action-gated doGet web trigger for catch-up runs (#443)
+7dc97db | 2026-08-29 11:21:23 -0300 | fix: processTreeGrowthMonitoringFromTelegramChatLogs must return a result object (#442)
+a69a304 | 2026-08-29 11:18:55 -0300 | fix: add processTreeGrowthMonitoringFromTelegramChatLogs webhook action to doGet (#441)
+16a47d5 | 2026-08-29 10:42:45 -0300 | feat(deploy): pre-push collision guardrail for GAS deploys (#440)
+16241e0 | 2026-08-29 10:28:31 -0300 | fix(gas): remove stale Code.js/Version.js duplicates + resolve creds collisions in 12 more projects (#439)
+a6f2180 | 2026-08-29 10:14:50 -0300 | fix(gas): resolve remaining GAS project collisions (Version.* clash + const creds) (#438)
+44cdf96 | 2026-08-29 09:39:29 -0300 | Apply (Test guard to real deployable asset-receipt-ingest project folder (#437)
+0ed19da | 2026-08-29 09:24:35 -0300 | Guard asset-receipt-ingest: skip Currencies rate row for test currencies (#436)
+9cc16d7 | 2026-08-29 07:52:44 -0300 | Add recalculate_treasury doGet endpoint, mirrors recalculate_aum (#435)
+0f3d6c4 | 2026-08-29 07:04:18 -0300 | fix(gas): remove stale Code.js duplicates breaking GAS projects (#434)
 8e11f91 | 2026-08-27 10:00:12 -0300 | fix(deploy): repoint pinned GAS deployments on push; commit asset_receipt_ingest project (#433)
 f51731c | 2026-08-27 09:59:26 -0300 | Server-side enforcement: proximity gate (200m, operators exempt), INVALID tree block, REJECT allows NEW+LINKED (#432)
 521d02b | 2026-08-27 09:18:51 -0300 | fix(asset-receipt-ingest): match 'Contributor(s)' label in paired-contribution unit cost lookup (#431)
@@ -428,6 +445,9 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+7209ecd | 2026-08-29 12:49:53 +0000 | chore: refresh currencies.json [skip ci]
+0cb7b1c | 2026-08-29 12:43:50 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
+da5c29e | 2026-08-29 09:28:41 -0300 | chore: refresh Agroverse store inventory snapshot
 232d254 | 2026-08-28 19:00:06 +0000 | chore: refresh currencies.json [skip ci]
 e7ee650 | 2026-08-28 18:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8e195dd | 2026-08-27 17:53:42 +0000 | chore: refresh currencies.json [skip ci]
@@ -539,7 +559,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 468.78 | 17379.84386 | 8/28/2026 23:50:59 |
+| 2026-08 | 528.78 | 17439.84386 | 8/29/2026 8:51:42 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-22`; scanned last **600** data rows)
 
@@ -555,6 +575,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
 | 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_36 | 0IJOTgc3JMN9 | Stripe checkout (online) |
 | 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_72 | hbMM9Cp19qd1 | Stripe checkout (online) |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_11 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_22 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_24 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
