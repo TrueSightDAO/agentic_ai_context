@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-29T21:04:26Z`
-- Look-back: **7** calendar days (`2026-08-22` → today UTC)
+- Generated (UTC): `2026-08-30T05:39:28Z`
+- Look-back: **7** calendar days (`2026-08-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,36 +32,33 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
-- `[EMAIL VERIFICATION EVENT]` × 9
-- `[EMAIL REGISTERED EVENT]` × 8
-- `[TREE PLANTING EVENT]` × 3
-- `[ASSET RECEIPT EVENT]` × 2
-- `[TREE GROWTH MONITORING EVENT]` × 1
-- _free-form (no bracket tag)_ × 4
+- `[TREE PLANTING REJECT EVENT]` × 36
+- `[EMAIL REGISTERED EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260829133812_001` · **Edgar** · [No Text Provided]
-- `Edgar_20260829133840_003` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+e2e-cutover-20260829@truesight.me
-- `Edgar_20260829134707_005` · **Edgar** · [TREE PLANTING EVENT] Latitude: 44.560058 · Longitude: -123.262181 · Species: Cacao - Criolla
-- `Edgar_20260829134724_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: PR2: resume-awaiting registry + flag every posted chunk's message_id (emoji …
-- `Edgar_20260829135029_009` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: PR3: emoji reaction go-signal → resume the parked handoff (wire reaction → t…
-- `Edgar_20260829143953_011` · **Edgar** · [TREE GROWTH MONITORING EVENT] Tree ID: 469027268 · Species: unknown · DBH (cm): 12.5
-- `Edgar_20260829144942_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 330 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20260829150017_001` · **Edgar** · [TREE PLANTING EVENT] Latitude: 44.5601 · Longitude: -123.2622 · Species: Cacao - Criolla
-- `Edgar_20260829150131_001` · **Edgar** · [TREE PLANTING EVENT] Latitude: 44.56015 · Longitude: -123.26225 · Species: Cacao - Criolla
-- `Edgar_20260829150843_003` · **Edgar** · [No Text Provided]
-- `Edgar_20260829152828_001` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: SunMint E2E campaign + 7 production fixes (Gary + Sophia) — 2026-08-29
-- `Edgar_20260829152837_003` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Governor direction for SunMint E2E campaign (Gary) — 2026-08-29
-- `Edgar_20260829152852_005` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Deploy tool no-op bug after a merge PR's au…
-- `Edgar_20260829153258_007` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Deploy tool no-op bug: deploy_autopilot() r…
-- `Edgar_20260829185833_009` · **Edgar** · [No Text Provided]
-- `Edgar_20260829185930_011` · **Edgar** · [No Text Provided]
-- `Edgar_20260829204516_013` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Kirsten Ritschel's cash sale of 3 chocolate bars to Elizabeth Wong (Liz), pl…
-- `Edgar_20260829205208_015` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
-- `Edgar_20260829205232_017` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: xdTBtnG5ya5-8HNpa3IpduqRXvf3EbDxDk5-WF4o6_4 · Email: garyjob@gmail.com
-- `Edgar_20260829205308_019` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: xdTBtnG5ya5-8HNpa3IpduqRXvf3EbDxDk5-WF4o6_4 · Email: garyjob@gmail.com
+- `Edgar_20260830014255_097` · **Edgar** · [EMAIL VERIFICATION EVENT] Email: garyjob@gmail.com · Verification Key: 1jBBxuBJ2DeZIVd5ts7cLg9XxzaEVpP0jqtJQIi5L6Y · Submission Source: http://localhost:8080/monitor-tree-growth/?em=garyjob%40gmail.com&vk=1…
+- `Edgar_20260830014355_099` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
+- `Edgar_20260830022857_101` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
+- `Edgar_20260830022912_103` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134740_489 · SunMint Submission Message ID: Edgar_20260819134740_489 · Updated by: Gary Teh
+- `Edgar_20260830022923_105` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20250809202528_061 · SunMint Submission Message ID: Edgar_20250809202528_061 · Updated by: Gary Teh
+- `Edgar_20260830022930_107` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20250809012709_025 · SunMint Submission Message ID: Edgar_20250809012709_025 · Updated by: Gary Teh
+- `Edgar_20260830022940_109` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20250809005453_021 · SunMint Submission Message ID: Edgar_20250809005453_021 · Updated by: Gary Teh
+- `Edgar_20260830022943_111` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20250809005453_021 · SunMint Submission Message ID: Edgar_20250809005453_021 · Updated by: Gary Teh
+- `Edgar_20260830022946_113` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: 469027568 · SunMint Submission Message ID: 469027568 · Updated by: Gary Teh
+- `Edgar_20260830022948_115` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: 469027566 · SunMint Submission Message ID: 469027566 · Updated by: Gary Teh
+- `Edgar_20260830022956_117` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: 469027280 · SunMint Submission Message ID: 469027280 · Updated by: Gary Teh
+- `Edgar_20260830023000_119` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: 469027657 · SunMint Submission Message ID: 469027657 · Updated by: Gary Teh
+- `Edgar_20260830023118_121` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
+- `Edgar_20260830024819_123` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20250809202528_061 · Updated by: Sophia Truesight
+- `Edgar_20260830030108_125` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20250809202528_061 · Updated by: Sophia Truesight
+- `Edgar_20260830030634_127` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20250809202528_061 · Updated by: Sophia Truesight
+- `Edgar_20260830032134_129` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Sophia Truesight
+- `Edgar_20260830032436_001` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
+- `Edgar_20260830032443_003` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
+- `Edgar_20260830032451_005` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
 
 ---
 
@@ -235,9 +232,9 @@ _(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,858.37**
+- USD on hand: **$4,858.24**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$53.37**
+- USD provisioned for voting-rights cash-out: **$53.49**
 
 ### In-transit freight (1 row)
 
@@ -253,7 +250,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-08-22_ (3):
+_All dated lines on/after 2026-08-23_ (3):
 
 - 2026-08-23 | claude (envoy) | Named the interactive Claude Code seat on nelanco-claude "Envoy" — see ENVOY.md for the full reasoning.
 - 2026-08-23 | deepseek | DeepSeek Local identity + Telegram setup: added DEEPSEEK_LOCAL.md (identity + thread-confusion rules when speaking with Sophia across Telegram topics). Credentials + long-poll listener at ~/Applications/deepseek_telegram_monitor/ (bot @deepseek_tdg_local_bot, ID 8835920598); boot convention in ~/.claude/CLAUDE.md ("DeepSeek local agent").
@@ -276,6 +273,9 @@ _All dated lines on/after 2026-08-22_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0a7e521 | 2026-08-30 00:13:14 -0300 | SunMint impact map V1 — see our trees from space (Leaflet + Sentinel-2) (#319)
+37ab680 | 2026-08-30 00:13:11 -0300 | SunMint whitepaper: §13 On-Chain Carbon Credit Lifecycle — tree as transaction anchor (#318)
+8b0b815 | 2026-08-29 21:06:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3ed5148 | 2026-08-29 16:51:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ff01355 | 2026-08-29 07:18:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1f19de7 | 2026-08-28 20:05:41 -0300 | Fix mobile overflow on FounderHaus program page QR row (#317)
@@ -313,9 +313,6 @@ aa34c5b | 2026-08-25 12:42:50 -0300 | SunMint consolidated progress report v2 (P
 bbccb60 | 2026-08-25 13:30:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5d95633 | 2026-08-25 07:26:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
-87553fc | 2026-08-24 19:11:29 +0000 | chore(stats): refresh stats/current.json [skip ci]
-7df964c | 2026-08-24 13:32:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
-894fff8 | 2026-08-24 07:40:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -328,6 +325,9 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b0aa785 | 2026-08-30 00:26:48 -0300 | Add CDSE satellite cache follow-up to OPEN_FOLLOWUPS (#841)
+a50e6f8 | 2026-08-29 18:04:45 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
+fa46374 | 2026-08-29 18:04:43 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
 7de149b | 2026-08-29 13:50:26 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
 d1ef1b1 | 2026-08-29 13:50:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
 ec82962 | 2026-08-29 12:24:37 -0300 | docs: add SUNMINT_E2E_RUNBOOK — full E2E procedure + pipeline map + incident traps (#840)
@@ -365,15 +365,14 @@ b4e9cc6 | 2026-08-27 05:05:12 -0300 | Merge pull request #826 from TrueSightDAO/
 dacff59 | 2026-08-27 08:04:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 4dc512b | 2026-08-26 21:27:10 -0300 | Update SUNMINT_TREE_GROWTH_MONITORING_PLAN to reflect corrected hosting + completed units (#825)
 fca6f65 | 2026-08-26 17:34:08 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
-369d64f | 2026-08-26 17:34:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
-52a0fca | 2026-08-26 10:33:51 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
-bf1ed87 | 2026-08-26 10:33:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-26 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+9584835 | 2026-08-29 23:30:32 -0300 | Fire tree-index-rebuild dispatch on tree reject so invalidated trees vanish immediately (#450)
+ffe9acd | 2026-08-29 23:22:23 -0300 | fix(reject path): match SunMint row by col A OR col D so monitor-page rejects actually invalidate (#449)
 1e31ee8 | 2026-08-29 12:22:42 -0300 | fix(gas): add Credentials.js to SunMint .claspignore so clasp push can't delete the live secret file (#448)
 77476ab | 2026-08-29 11:47:01 -0300 | fix: add processTreePlantingTelegramLogs action to tree-planting GAS doGet (#447)
 b167e23 | 2026-08-29 11:43:34 -0300 | fix: TGM extractor DBH (cm) label never matches — monitoring records silently skipped (#446)
@@ -399,21 +398,6 @@ d120f70 | 2026-08-25 01:25:03 +0800 | fix: remove stale Code.js duplicate from i
 e8b166f | 2026-08-24 01:17:26 +0800 | docs: SCHEMA.md — add TREE_PLANTING_FUNDS_TRANSFERRED to status enum + States tab (#422)
 79671e8 | 2026-08-24 01:11:11 +0800 | feat: add TREE_PLANTING_FUNDS_TRANSFERRED QR state (enum, pickers, list endpoint, link validation, shop counter) (#421)
 7b7fbf4 | 2026-08-23 20:23:06 +0800 | Harden LINK flow: surface tree-planted email failures in tracking outcome (#420)
-b885678 | 2026-08-23 07:32:24 +0800 | fix: declare oauthScopes (incl. script.send_mail) in 1UrBg appsscript.json manifest (#419)
-985d437 | 2026-08-23 02:48:51 +0800 | Add public authorizeMailApp() to trigger MailApp OAuth consent (#418)
-a857fb3 | 2026-08-23 02:10:30 +0800 | Add idempotent hourly trigger self-installer for processBatch (#417)
-fd47587 | 2026-08-23 02:10:27 +0800 | resendTreePlantedNotification_: call MailApp.sendEmail directly (no swallowing wrapper) + report quota (#416)
-e62a8ff | 2026-08-23 01:37:50 +0800 | Merge pull request #413 from TrueSightDAO/fix/resend-tree-planted-notification
-b8dee3b | 2026-08-22 17:34:30 +0000 | fix: add safe standalone re-send for the tree-planted notification email
-73c1f8c | 2026-08-23 00:41:36 +0800 | Merge pull request #411 from TrueSightDAO/fix/asset-receipt-quantity-unit-cost
-acbcdb0 | 2026-08-22 16:38:58 +0000 | Fix asset receipt ingest: Amount maps to Quantity; unit cost from paired USD contribution
-8dadb3c | 2026-08-23 00:26:52 +0800 | Fix processBatch onboarding-email tracking link (query-append + clickable anchor) (#410)
-d183155 | 2026-08-22 17:44:46 +0800 | fix: generalize AGL4 main-ledger routing to an allow-list (adds sunmint/main) (#409)
-d7a7a79 | 2026-08-22 17:38:53 +0800 | Merge pull request #407 from TrueSightDAO/fix/sales-parser-zero-price
-d8cd51c | 2026-08-22 17:12:51 +0800 | Merge pull request #408 from TrueSightDAO/docs/invalidated-status-enum
-a5139f6 | 2026-08-22 09:11:57 +0000 | docs: add INVALIDATED to Agroverse QR codes status enum
-b306e6c | 2026-08-22 07:00:06 +0000 | fix: sales parser accepts $0 sale price (was rejected as falsy)
-62b57d3 | 2026-08-22 14:45:45 +0800 | fix: route AGL4 tree-planting fulfillment to main DAO ledger offchain tab (#406)
 ```
 
 ### `dapp` → `dapp`
@@ -459,7 +443,6 @@ cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory
 c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 6fea31d | 2026-08-24 07:30:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cb2f486 | 2026-08-23 07:03:24 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b12ca39 | 2026-08-22 07:05:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -557,13 +540,12 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/29/2026 13:50:57 |
+| 2026-08 | 528.78 | 17439.84386 | 8/29/2026 21:51:09 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-22`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-23`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-08-22 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_31 | xImcXg3OlVcW | Stripe checkout (online) |
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_65 | qOejcMrlb7jD | Stripe checkout (online) |
 | 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_41 | RPZryhwUa6yZ | Stripe checkout (online) |
