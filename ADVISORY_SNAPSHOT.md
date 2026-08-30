@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-30T05:39:28Z`
+- Generated (UTC): `2026-08-30T12:07:33Z`
 - Look-back: **7** calendar days (`2026-08-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-29T10:59:14.384Z`
+- Generated (UTC): `2026-08-30T10:59:13.405Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -273,6 +273,7 @@ _All dated lines on/after 2026-08-23_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+45969f3 | 2026-08-30 05:43:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a7e521 | 2026-08-30 00:13:14 -0300 | SunMint impact map V1 — see our trees from space (Leaflet + Sentinel-2) (#319)
 37ab680 | 2026-08-30 00:13:11 -0300 | SunMint whitepaper: §13 On-Chain Carbon Credit Lifecycle — tree as transaction anchor (#318)
 8b0b815 | 2026-08-29 21:06:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -312,7 +313,6 @@ aa34c5b | 2026-08-25 12:42:50 -0300 | SunMint consolidated progress report v2 (P
 6c981bf | 2026-08-25 12:35:46 -0300 | SunMint whitepaper: Plan Vivo pilot route + phone-camera MRV precedent (#307)
 bbccb60 | 2026-08-25 13:30:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5d95633 | 2026-08-25 07:26:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-c69f62e | 2026-08-25 02:04:54 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -325,6 +325,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+af5feef | 2026-08-30 02:39:45 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
+54e94cb | 2026-08-30 02:39:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
 b0aa785 | 2026-08-30 00:26:48 -0300 | Add CDSE satellite cache follow-up to OPEN_FOLLOWUPS (#841)
 a50e6f8 | 2026-08-29 18:04:45 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
 fa46374 | 2026-08-29 18:04:43 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
@@ -363,8 +365,6 @@ edb102a | 2026-08-27 19:29:23 -0300 | chore(previews): refresh Beer Hall preview
 349b14a | 2026-08-27 07:07:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 b4e9cc6 | 2026-08-27 05:05:12 -0300 | Merge pull request #826 from TrueSightDAO/auto/advisory-refresh-2026-08-27
 dacff59 | 2026-08-27 08:04:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
-4dc512b | 2026-08-26 21:27:10 -0300 | Update SUNMINT_TREE_GROWTH_MONITORING_PLAN to reflect corrected hosting + completed units (#825)
-fca6f65 | 2026-08-26 17:34:08 -0300 | chore(previews): refresh Beer Hall preview (2026-08-26 UTC)
 … (truncated)
 ```
 
@@ -427,6 +427,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+4572f08 | 2026-08-30 11:58:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 7209ecd | 2026-08-29 12:49:53 +0000 | chore: refresh currencies.json [skip ci]
 0cb7b1c | 2026-08-29 12:43:50 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 da5c29e | 2026-08-29 09:28:41 -0300 | chore: refresh Agroverse store inventory snapshot
@@ -540,7 +541,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/29/2026 21:51:09 |
+| 2026-08 | 528.78 | 17439.84386 | 8/30/2026 4:50:56 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-23`; scanned last **600** data rows)
 
