@@ -16,7 +16,7 @@ The records themselves live in the **`fda_fsvp`** repo (not here). This folder d
 
 | # | Category | Example real file(s) in fda_fsvp | Process runbook |
 |---|----------|--------------------------------|-----------------|
-| 1 | Site visit / inspection log | `suppliers/cepotx/20240625_CEPOTX_site_visit_to_paulo_farm.pdf` | `SITE_VISIT_PROCESS.md` |
+| 1 | Site visit / inspection log | `suppliers/cepotx/20240625_CEPOTX_site_visit_to_paulo_farm.pdf` | `SITE_VISIT_PROCESS.md` (video evidence: `VIDEO_EVIDENCE_PROCESS.md`) |
 | 2 | Written assurance letter | `suppliers/cepotx/20240626_CEPOT_cacao_Almonds_Written_assurance_letter.pdf` | `SUPPLIER_ONBOARDING_PROCESS.md` |
 | 3 | Supplier evaluation / declaration | `suppliers/cepotx/20240701_cepotx_supplier_evaluation.pdf` | `SUPPLIER_ONBOARDING_PROCESS.md` |
 | 4 | Identifier records (CNPJ / DUNS / FDA FFR) | `suppliers/cepotx/20240628_cepotx_cpnj_record.pdf`, `20240624_cepotx_duns_number.pdf`, `20250101_fda_registration_cepotx.pdf` | `SUPPLIER_ONBOARDING_PROCESS.md` |
@@ -43,7 +43,7 @@ Date is the event date, not the upload date. If the event date differs from the 
 ## Adding a new supplier / farm / shipment — quick path
 
 1. New **supplier**: `SUPPLIER_ONBOARDING_PROCESS.md`
-2. New **farm under an existing supplier** (e.g. a CEPOTX member farm): site visit per `SITE_VISIT_PROCESS.md`, then add the farm to `suppliers/<name>/entity.json` `source_farms`
+2. New **farm under an existing supplier** (e.g. a CEPOTX member farm): site visit per `SITE_VISIT_PROCESS.md` (incl. `VIDEO_EVIDENCE_PROCESS.md` when a video was recorded), then add the farm to `suppliers/<name>/entity.json` `source_farms`
 3. New **shipment**: `SHIPMENT_DOCUMENTATION_PROCESS.md`
 4. Periodic **verification declaration**: `RECURRING_VERIFICATION_PROCESS.md`
 
