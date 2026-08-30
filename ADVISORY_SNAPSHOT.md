@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-30T16:55:08Z`
+- Generated (UTC): `2026-08-30T21:21:56Z`
 - Look-back: **7** calendar days (`2026-08-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,13 +34,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[TREE PLANTING REJECT EVENT]` × 35
 - `[EMAIL REGISTERED EVENT]` × 3
-- `[CONTRIBUTION EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - `[TREE PLANTING EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260830022857_101` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
 - `Edgar_20260830022912_103` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134740_489 · SunMint Submission Message ID: Edgar_20260819134740_489 · Updated by: Gary Teh
 - `Edgar_20260830022923_105` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20250809202528_061 · SunMint Submission Message ID: Edgar_20250809202528_061 · Updated by: Gary Teh
 - `Edgar_20260830022930_107` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20250809012709_025 · SunMint Submission Message ID: Edgar_20250809012709_025 · Updated by: Gary Teh
@@ -60,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260830032451_005` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: Edgar_20260819134722_487 · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Gary Teh
 - `Edgar_20260830145259_007` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260819134722_487 · Updated by: Sophia Truesight
 - `Edgar_20260830154309_009` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.2960903025061974 · Longitude: -52.58318089232488 · Species: Cacao - Criolla
+- `Edgar_20260830205951_011` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-30T20:59:48.539Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -274,6 +275,7 @@ _All dated lines on/after 2026-08-23_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+40212b4 | 2026-08-30 16:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 45969f3 | 2026-08-30 05:43:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a7e521 | 2026-08-30 00:13:14 -0300 | SunMint impact map V1 — see our trees from space (Leaflet + Sentinel-2) (#319)
@@ -313,7 +315,6 @@ cd37f7a | 2026-08-25 12:43:32 -0300 | SunMint consolidated progress report v3 (P
 17ce453 | 2026-08-25 12:42:55 -0300 | SunMint consolidated progress report v2 (Markdown)
 aa34c5b | 2026-08-25 12:42:50 -0300 | SunMint consolidated progress report v2 (PDF)
 6c981bf | 2026-08-25 12:35:46 -0300 | SunMint whitepaper: Plan Vivo pilot route + phone-camera MRV precedent (#307)
-bbccb60 | 2026-08-25 13:30:08 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +327,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5000341 | 2026-08-30 13:55:30 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
+9ab2d7e | 2026-08-30 13:55:28 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
 4462c4a | 2026-08-30 09:07:49 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
 ec2c6d5 | 2026-08-30 09:07:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
 af5feef | 2026-08-30 02:39:45 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
@@ -364,8 +367,6 @@ c92531f | 2026-08-28 08:38:35 -0300 | chore(previews): refresh Beer Hall preview
 18e92e6 | 2026-08-28 08:38:34 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-28 UTC)
 edb102a | 2026-08-27 19:29:23 -0300 | chore(previews): refresh Beer Hall preview (2026-08-27 UTC)
 61f4708 | 2026-08-27 19:29:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
-3b46255 | 2026-08-27 07:07:53 -0300 | chore(previews): refresh Beer Hall preview (2026-08-27 UTC)
-349b14a | 2026-08-27 07:07:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-27 UTC)
 … (truncated)
 ```
 
@@ -543,7 +544,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/30/2026 8:51:01 |
+| 2026-08 | 528.78 | 17439.84386 | 8/30/2026 13:50:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-23`; scanned last **600** data rows)
 
