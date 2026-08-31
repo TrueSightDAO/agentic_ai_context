@@ -6,6 +6,8 @@ Format: `YYYY-MM-DD | <agent-id> | <short note>`
 
 ---
 
+2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
+
 2026-06-28 | deepseek | Review Queue SOP + auto-review: Created REVIEW_QUEUE_SOP.md with automatable rules (Scenario A: name matching against dao_members.json then lineage-credentials; Scenario B: compute TDG from event Amount, not Grok's estimate; Scenario C: Edgar should enforce TDG server-side). Reviewed ~500 scored chatlogs — 475 approved via Deep Seek RSA key signing [CONTRIBUTION REVIEW EVENT]s to Edgar. 5 remaining edge cases (unrecognized names: X, Gergana, openai, Nora, Edgar-no-contributor).
 
 2026-06-28 | deepseek | dao_members.json expanded to 406 contributors (was 18): DaoMembersCache.js now seeds byName from ALL Contributors contact information sheet entries, not just signature-holders. Enables sentinel section on truesight.me/members.html (6 sentinels: Sophia Truesight, Claude Anthropic, Kimi Moon, Deep Seek, truesight-autopilot, Open Ai).

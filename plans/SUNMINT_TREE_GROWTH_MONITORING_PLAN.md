@@ -48,7 +48,7 @@ The SunMint model requires per-tree growth evidence a VVB can audit. Phone-camer
 **Decision (Gary, 2026-08-26): the signed-event backend leg is IN P1a scope — NOT deferred to P4.** Mirrors the `[TREE PLANTING LINK EVENT]` precedent.
 
 - **dao_protocol:** `[TREE GROWTH MONITORING EVENT]` — events_catalog.json entry + dispatch.py ROUTING row (`TREE_GROWTH_MONITORING` → `processTreeGrowthMonitoringFromTelegramChatLogs`) — **PR #146 MERGED**
-- **GAS handler:** `process_tree_growth_monitoring.gs` (tokenomics, shared agroverse_qr_codes project `1UrBgq…`) — validate sig → mirror photos → read analysis.json → append tracking-tab row (dedup) → per-tree JSON history → Telegram Chat Logs — **PR #430 MERGED, clasp-pushed to version 33 (live via @HEAD webhook)**; `TGM_GITHUB_TOKEN` Script Property still to set
+- **GAS handler:** `process_tree_growth_monitoring.gs` (tokenomics, shared agroverse_qr_codes project `1UrBgq…`) — validate sig → mirror photos → read analysis.json → append tracking-tab row (dedup) → per-tree JSON history → Telegram Chat Logs — **PR #430 MERGED, clasp-pushed to version 33 (live via @HEAD webhook)**; `TGM_GITHUB_TOKEN` Script Property **SET (2026-08-31)** — see `GAS_SCRIPT_PROPERTIES.md` registry; repo-scoped PAT (`.env` `TRUESIGHT_DAO_AUTOPILOT`), proven for `repository_dispatch` (HTTP 204).
 
 ## 5. Tree Growth Measurements tracking-tab schema
 
@@ -101,7 +101,7 @@ Per-tree JSON history additionally written to `sunmint/trees/<tree_id>.json` (me
 - [x] P1c dao_protocol registration — PR #146 merged
 - [x] P1d GAS handler — PR #430 merged + deployed (v33)
 - [x] P3 GeoJSON index (sunmint repo, treasury-cache pattern) — secrets set, workflow tested
-- [ ] TGM_GITHUB_TOKEN Script Property on GAS project
+- [x] TGM_GITHUB_TOKEN Script Property on GAS project (SET 2026-08-31 — see GAS_SCRIPT_PROPERTIES.md)
 - [ ] FounderHaus coords backfill (needs SA Editor grant on sheet)
 - [ ] UAT on beta.sunmint.truesight.me (P4)
 - [ ] Promote to sunmint_prod (sync_beta_to_prod)
