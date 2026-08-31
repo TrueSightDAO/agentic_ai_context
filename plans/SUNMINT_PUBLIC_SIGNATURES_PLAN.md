@@ -1,146 +1,178 @@
-# SunMint Public Signatures Cache — Public Audit Surface for All SunMint RSA Events
+# Public RSA Signature Ledger — Org-wide Auditable GitHub JSON Cache
 
-**Status:** new — awaiting kickoff
+**Status:** in execution — pivoted to org-wide ledger (2026-09-01, Gary) · legacy sunmint path (PR0–PR3) superseded
 **Owner:** Gary Teh
 **Requested by:** Gary Teh, 2026-09-01 (thread 17194)
-**Goal:** Every SunMint-associated RSA-signed event gets a **publicly auditable GitHub JSON cache record** — `TrueSightDAO/sunmint/signatures.json` keyed by event/message ID — plus a **public link-share surface for the Tree Growth Measurements tab**.
+**Goal:** Every RSA-signed DAO event — SunMint today; contribution reporting, sales, inventory movement and future event types tomorrow — gets a **publicly auditable GitHub JSON cache record** in `TrueSightDAO/verify_public_signatures`: **one immutable JSON file per event**, bucketed by event type, plus an org-wide `index.json`. Also: **public link-share surface for the Tree Growth Measurements tab**.
 
 > `OPERATING_INSTRUCTIONS.md` §5 tracked roadmap. Update the resume tracker as units land; report the DAO
 > contribution after each merge (§7). §5a: **one PR per execution turn, then stop.**
 
 ---
 
-## 0. Decisions (Gary — confirm or override)
+## 0. Decisions (Gary — confirmed or override)
 
-| # | Decision | Proposed choice |
-|---|----------|-----------------|
-| 0.1 | Cache location | `TrueSightDAO/sunmint` repo (public), file **`signatures.json`** at repo root — alongside `trees/index.geojson`, `plots/index.geojson`, `images/growth/`. |
-| 0.2 | Event scope | **All SunMint-associated RSA-signed events**: `[EMAIL REGISTERED EVENT]`, `[TREE PLANTING EVENT]`, `[TREE GROWTH MONITORING EVENT]`, `[TREE PLANTING REJECT EVENT]`, `[TREE PLANTING LINK EVENT]`. |
-| 0.3 | PII policy | **No PII.** Public key (already public via `check_digital_signature`), signature, full signed event text, contributor display name (already public on the impact map), tree/geo data already public in the geojson. **No emails, no phones, no private keys.** |
-| 0.4 | Link-share form for Tree Growth Measurements | **Default: public JSON cache `tree_growth_measurements.json`** in the same repo + stable shareable per-measurement raw URL (matches the house pattern; sheet stays private). Fallback if Gary prefers: Google Sheets public link-share of the tab. |
-| 0.5 | Writer | **Autopilot cron** `sync_sunmint_signatures.py` (verbatim mirror of `sync_pending_caches.py` — GITHUB_TOKEN + gspread creds already on the box, 30-min cadence). Alternative: GAS pushes from the webhook (`TGM_GITHUB_TOKEN` set 2026-08-31). Default keeps GitHub writes on the box where they are already proven. |
+| # | Decision | Chosen (final) | Rationale / history |
+|---|----------|---------------|---------------------|
+| 0.1 | Ledger location | **`TrueSightDAO/verify_public_signatures`** (public, currently empty — purpose-built name) | Pivoted 2026-09-01 from `sunmint/signatures.json`: an org-wide ledger needs an org-wide home; `sunmint` is tree-specific |
+| 0.1b | File layout | **One immutable JSON per event**, per-event-type subfolders + `index.json` per folder + root `index.json` | Pivoted 2026-09-01 from single aggregate file: no size ceiling, real per-attestation URL (raw JSON fragments don't deep-link), append-only emission fits emit business logic, matches `lineage-assets` `qrs/<qr-id>.json` convention |
+| 0.2 | Event scope | **All RSA-signed events**, bucketed by type: `tree_planting/`, `tree_growth_monitoring/`, `tree_planting_link/`, `tree_planting_reject/`, `email_registered/` (later: `contribution/`, `sales/`, `inventory_movement/`, …) | EMAIL REGISTERED contains a farmer email in signed_text — redaction breaks verification → excluded until a redaction-preserving design (§5) |
+| 0.3 | PII policy | **No PII.** Public keys, signatures, signed text, display names (already public on the impact map), tree/geo data only. Fail-closed email scan on every build. No emails, phones, private keys. | — |
+| 0.4 | Link-share form (Tree Growth Measurements) | **Public JSON cache** in the ledger: `tree_growth_monitoring/<msg_id>.json` + index; stable per-measurement raw URL. Sheet stays private. | — |
+| 0.5 | Writer | **Primary: dao_protocol emit hook at verify time** (deploy-gated). **Reconciliation: autopilot cron** `sync_sunmint_signatures.py` (existing, retargeted to new repo/layout) | Pivoted 2026-09-01: emit-at-verify = only verified attestations published, instant freshness, single choke point sees every event type; cron heals any emit gap within 30 min |
 
 ---
 
 ## 1. Why
 
-- **Verifiable dMRV:** a VVB or any third party must be able to independently verify that every tree event was RSA-signed by the farmer's key. Today the signature lives only in a private sheet (Telegram Chat Logs col G / tab col F) — not publicly auditable.
-- **Crediting-period evidence:** monitoring data accumulates as evidence over a crediting period (SunMint model, `plans/SUNMINT_TREE_GROWTH_MONITORING_PLAN.md` §3); the public signature ledger is the audit trail a future `[CARBON CREDIT ISSUANCE EVENT]` can cite.
-- **Self-verifying by design:** `signed_text` + `signature` + `public_key` in one public record — anyone can re-verify offline (openssl). No trusted intermediary needed.
-- **Cheap:** static JSON on GitHub raw — zero infra, immutable history, diffable per commit.
+- **Verifiable dMRV:** a VVB or any third party must be able to independently verify that every tree event was RSA-signed by the farmer's key, without trusting us. Today the signature lives only in a private sheet.
+- **Org-wide auditability:** contribution, sales and inventory events are also RSA-signed; one ledger gives every attestation a stable, citable public URL.
+- **Crediting-period evidence:** monitoring data accumulates as evidence over a crediting period; the public signature ledger is the audit trail a future `[CARBON CREDIT ISSUANCE EVENT]` can cite.
+- **Self-verifying by design:** `signed_payload` (exact bytes signed) + `signature` + `public_key` in one public record — anyone re-verifies offline (openssl). No trusted intermediary.
+- **Cheap + scalable:** static per-event JSON on GitHub raw — zero infra, immutable history, per-file git audit trail, no size ceiling.
 
 ---
 
-## 2. Pre-flight — captured facts (§5d: no PR below should need to re-discover any of this)
+## 2. Pre-flight — captured facts
 
 ### 2.1 Signature flow (verified — `SUNMINT_E2E_RUNBOOK.md`)
 
 ```
-Farmer site (sunmint_beta/prod: index.html + monitor-tree-growth/)
+Farmer site (sunmint_beta/prod)
   RSA-2048 sign in-browser (keypair in localStorage)
         v  POST https://edgar.truesight.me/dao/submit_contribution
-Edgar (dao_protocol) verifies signature
-        v  appends FULL SIGNED SUBMISSION TEXT to Telegram Chat Logs (sheet 1qbZZhf-..._pyzASQ)
+Edgar (dao_protocol) verifies signature  ← EMIT HOOK HERE (0.5)
+        v  appends FULL SIGNED SUBMISSION TEXT to Telegram Chat Logs (sheet 1qbZZhf-…_pyzASQ)
 GAS webhooks parse into SunMint Tree Planting / Tree Growth Measurements / Tree Planting Link tabs
+Cron sync_sunmint_signatures.py (reconciliation) reads sheets → per-event files
 ```
 
 ### 2.2 Sheets + schemas
 
-- **Telegram Chat Logs** (sheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`) — col G = Contribution Made = full signed submission text (the raw signature source).
+- **Telegram Chat Logs** (sheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`) — col G = Contribution Made = full signed submission text (raw signature source).
 - **SunMint Tree Planting** tab (gid `176124122`): A=Telegram Update ID, B=Chatroom ID, C=Chatroom Name, **D=Telegram Message ID (stable dedup key)**, E=Contributor Handle, **F=Contribution Made (full signed text)**, G=Status date, H=Telegram File IDs, I=Photo of Tree Planted, J=Submitted Name, K=Lat, L=Lng, M=Status, N=Specie, O=GitHub Commit URL, P=Cost, Q=Tree Planting Time.
 - **Tree Growth Measurements** tab: A=Telegram Update ID, **B=Telegram Message ID (dedup key)**, C=Tree ID (QR Code), D=Species, E=DBH (cm), F=AGB (kg), G=CO2e (kg), H=Lat, I=Lng, J=Measured At, K=Close-up Photo URL, L=Context Photo URL, M=Analysis Commit URL, N=Analysis SHA-256, **O=Farmer Signature**, P=Contributor Name, Q=Status, R=Processed Timestamp.
 
-### 2.3 The proven pattern to copy (key pre-flight fact)
+### 2.3 The proven pattern to copy
 
-`/home/ubuntu/scripts/sync_pending_caches.py` on the autopilot box, cron `*/30 * * * *` with `GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/creds/google_credentials.json` + `GITHUB_TOKEN=<repo-scoped PAT>`: gspread reads the sheet → builds public JSON (`sunmint_pending.json`, `sold_pending_tree.json` in `TrueSightDAO/lineage-assets`) → sha-aware GitHub Contents-API PUT (skips on 422 unchanged) → prints commit sha. **NO PII in caches (owner emails intentionally omitted).** This exact script shape is the template for `sync_sunmint_signatures.py`.
+- `sync_pending_caches.py` on the autopilot box, cron `*/30 * * * *`: gspread → public JSON → sha-aware GitHub Contents-API PUT (skips 422 unchanged). **NO PII.** Template for the retargeted sync script.
+- `lineage-assets` convention: **one JSON per entity** (`qrs/<qr-id>.json`) — "Why JSON-per-QR, not aggregated" (append-only diffs, independently fetchable, git history = audit trail, scales linearly). The per-event ledger mirrors this.
+- **Verification algorithm** (`signature_verifier.rb`): signed payload = text **up to and including the `--------` separator**, joined `\n`, stripped. "My Digital Signature" field = **public key** (SPKI); "Request Transaction ID" field = **signature** (RSASSA-PKCS1-v1_5 + SHA256). Already proven: 73/73 live events re-verify offline.
 
 ### 2.4 Keys / credentials
 
 - SunMint spreadsheet: `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` (Telegram Chat Logs / SunMint Tree Planting / Tree Growth Measurements / Tree Planting Link tabs)
 - GAS webhooks: `1Jp8q…` (planting, @7), `1UrBgq…` (growth @36 + planting-link)
 - GITHUB_TOKEN (repo-scoped PAT) in cron env on autopilot box — proven for Contents-API PUTs
-- `TGM_GITHUB_TOKEN` Script Property set (2026-08-31) — GAS→GitHub viable if decision 0.5 flips
-- Sophia identity: `admin+sophia@truesight.me` (sentinel) — signature events are farmer-keyed, not Sophia's
+- `TGM_GITHUB_TOKEN` Script Property set (2026-08-31) — GAS→GitHub viable if ever needed
+- **`verify_public_signatures` repo exists (public, empty)** — no repo creation needed
+- dao_protocol emit hook needs its own repo-scoped PAT (keep separate from autopilot's) — create at A4
 
 ---
 
 ## 3. Target architecture
 
-### 3.1 `signatures.json` (public, `TrueSightDAO/sunmint` repo root)
+### 3.1 Layout (`TrueSightDAO/verify_public_signatures`)
+
+```
+verify_public_signatures/
+├── README.md                       # purpose, layout, schema, openssl verify how-to
+├── index.json                      # org-wide: event_type → count, subfolder links, latest commit per type
+├── tree_planting/
+│   ├── index.json                  # message_id → url, submitted_at, commit_sha
+│   └── 171.json                    # ONE immutable file per event (message ID = dedup key)
+├── tree_growth_monitoring/
+│   ├── index.json
+│   └── <msg_id>.json
+├── tree_planting_link/ …           # (existing 73 migrate into these folders by event type)
+├── tree_planting_reject/ …
+└── email_registered/ …             # empty until redaction design (0.2/§5)
+```
+
+### 3.2 Record schema (per-event file)
 
 ```json
 {
-  "status": "success",
-  "generated_at": "2026-09-01T00:30:00Z",
   "schema_version": 1,
-  "count": N,
-  "events": {
-    "<telegram_message_id>": {
-      "event_type": "TREE GROWTH MONITORING EVENT",
-      "telegram_message_id": "...",
-      "telegram_update_id": "...",
-      "submitted_at": "...",
-      "contributor_name": "...",
-      "public_key": "...",
-      "signature": "...",
-      "signed_text": "...",
-      "source_tab": "SunMint Tree Planting | Tree Growth Measurements | ...",
-      "linked_tree_id": "..."
-    }
-  }
+  "event_type": "TREE GROWTH MONITORING EVENT",
+  "telegram_message_id": "…",
+  "telegram_update_id": "…",
+  "submitted_at": "…",
+  "contributor_name": "…",
+  "public_key": "…",                 // base64 SPKI
+  "signature": "…",                 // RSASSA-PKCS1-v1_5 over SHA-256 (base64)
+  "signed_payload": "…",            // EXACT bytes signed (text up to & incl. -------- separator) → openssl target
+  "signed_text": "…",               // full signed submission text (context)
+  "source_tab": "SunMint Tree Planting | Tree Growth Measurements | …",
+  "linked_tree_id": "…"
 }
 ```
 
-- **Keyed by event/message ID** (Telegram Message ID — the stable dedup key in both tabs), per Gary's request.
-- `signed_text` = the exact string that was signed (col F of the tabs) → anyone can re-verify `signature` over it with `public_key` via `openssl dgst -sha256 -verify`.
-- `public_key` = base64 SPKI matching `Contributors Digital Signatures` / `check_digital_signature` format.
+- One immutable file per event; **message ID is the stable dedup key**; sha-aware PUT skips unchanged.
+- Test/synthetic + malformed submissions → `test_events/` (or excluded) — public ledger carries only verifiable records.
 
-### 3.2 `tree_growth_measurements.json` (public link-share of Tree Growth Measurements)
+### 3.3 `index.json` (per folder + root)
 
-One entry per measurement row (dedup by col B): Tree ID, Species, DBH, AGB, CO2e, Lat/Lng, Measured At, Close-up + Context photo URLs, Analysis Commit URL, Analysis SHA-256, **Farmer Signature (col O)**, Contributor Name (col P), Status, Processed Timestamp.
+Registry for enumeration: `message_id → url, event_type, submitted_at, commit_sha`. Keeps aggregate reads cheap without a giant file; consumers fan out to per-event URLs.
 
-### 3.3 Public link-share
+### 3.4 Public link-share
 
-- Stable shareable URL per measurement: `https://raw.githubusercontent.com/TrueSightDAO/sunmint/main/tree_growth_measurements.json#<msg_id>` (optionally a future `truesight.me/sunmint` measurement page — P4+, out of scope).
-- If Gary picks the sheet-link fallback (0.4): share the tab via Google Sheets public link instead — no JSON work for that leg.
+- **Per-event URL:** `https://raw.githubusercontent.com/TrueSightDAO/verify_public_signatures/main/tree_planting/171.json`
+- **Per-measurement share URL:** `…/tree_growth_monitoring/<msg_id>.json`
+- (Optional future `truesight.me` measurement page — P4+, out of scope.)
 
 ---
 
 ## 4. Build sequencing (§5a: **ONE PR PER TURN, then stop**)
 
+### Already done (legacy sunmint path — superseded by this pivot)
+
+| Unit | Repo | What | Status |
+|---|---|---|---|
+| PR0 | agentic_ai_context | Original roadmap + manifest row | ✅ merged (`0629a6d`) |
+| PR1 | truesight_autopilot | `sync_sunmint_signatures.py` (73 events, 100% verify) | ✅ merged (PR #354) |
+| PR2 | autopilot box (ops) | cron `*/30` + first live publish + 3/3 re-verify | ✅ live |
+| PR3 | sunmint | README documents `signatures.json` + measurements | ✅ live (`1c49a96`) |
+
+Legacy `sunmint/signatures.json` + `tree_growth_measurements.json` remain live as a **deprecated mirror** through migration; A2 stops writing them after one transition sync.
+
+### Post-pivot sequencing
+
 | Unit | Repo | What | Gate |
 |------|------|------|------|
-| **PR0** | agentic_ai_context | This roadmap + HANDOFF_MANIFEST row (thread 17194) | none — this PR |
-| **PR1** | truesight_autopilot | `scripts/sync_sunmint_signatures.py` — reads Telegram Chat Logs + both SunMint tabs via gspread, builds `signatures.json` + `tree_growth_measurements.json`, sha-aware PUT to `TrueSightDAO/sunmint`. **No cron yet.** Local tests + `--dry-run` | `gate: dry-run diff review with Gary` (JSON shape + PII scan before anything goes public) |
-| **PR2** | autopilot box (ops) | Add crontab `*/30 * * * *` mirroring sync_pending_caches; run once for real; confirm both JSONs live on raw.githubusercontent.com; **offline re-verify 3 sample signatures** (openssl over signed_text) | `gate: 3/3 signature re-verifications pass` |
-| **PR3** | sunmint | Public link-share surface per decision 0.4 (README section + stable URL pattern, or Google-sheet public share if that's the pick) | — |
-| **PR4** | agentic_ai_context | Docs: `SUNMINT_E2E_RUNBOOK.md` §2 pipeline map + §6 update; `GAS_SCRIPT_PROPERTIES.md` if GAS path used; UAT checklist §6 below | **`gate: UAT`** |
+| **A1** | agentic_ai_context | This plan amendment | none — this PR |
+| **A2** | truesight_autopilot + verify_public_signatures | Retarget `sync_sunmint_signatures.py` → per-event files + indexes in `verify_public_signatures`; **migrate 73 live events** (one-time run); init repo (root `index.json`); local tests + `--dry-run` | `gate: dry-run diff review with Gary` (layout + PII scan before any push) |
+| **A3** | verify_public_signatures | README: layout, schema, openssl verify how-to, per-event URL pattern | — |
+| **A4** | dao_protocol | **Post-verify emit hook**: on verified submission, PUT `signatures/<type>/<msg_id>.json` at ingest (idempotent by message ID, PII fail-closed, own repo-scoped PAT). Deploy-gated. | `gate: Gary approves deploy after review` |
+| **A5** | agentic_ai_context | Docs: `SUNMINT_E2E_RUNBOOK.md` §2 pipeline map + §6 update; ledger README links; UAT checklist §6 below | **`gate: UAT`** |
 
-No prod, no money, no default-branch self-merge anywhere in scope. `sunmint` repo = API-only data repo → **single-file Contents-API writes from the script**, never branch-edit PRs.
+No prod (dapp/shop/truesight_me/sunmint sites), no money, no default-branch self-merge anywhere in scope. `verify_public_signatures` = API-only data repo → **single-file Contents-API writes** from script + emit hook, never branch-edit PRs.
 
 ---
 
 ## 5. Security / PII guardrails
 
-- Public repo → **no emails, no phone numbers, no private-key material, no bearer tokens**. Only: public keys (already public), signatures, signed event text, display names (already public on the impact map), public tree/geo data (already public in geojson).
-- **Never trust the sheet's verification column** — the `signed_text` + `signature` + `public_key` triple is self-verifying; Edgar's `check_digital_signature` is the authoritative re-check.
-- Scripts must never log the GITHUB_TOKEN (sync_pending_caches precedent — env-var only, token from cron env).
-- Script runs `--dry-run` by default; `--push` only with explicit env creds (same contract as the template).
+- Public repo → **no emails, no phone numbers, no private-key material, no bearer tokens**. Only public keys, signatures, signed event text, display names, public tree/geo data.
+- **Never trust the sheet's verification column** — `signed_payload` + `signature` + `public_key` triple is self-verifying; Edgar's verifier is the authoritative re-check.
+- **EMAIL REGISTERED** signed_text contains the farmer's email → redaction would break verification. **Excluded from the public ledger until a redaction-preserving scheme exists** (e.g. publish SHA-256 of signed_text + signature only). Tracked as an open item in OPEN_FOLLOWUPS.md.
+- Scripts must never log GITHUB_TOKEN (sync_pending_caches precedent — env-var only).
+- Script runs `--dry-run` by default; `--push` only with explicit env creds.
 
 ---
 
-## 6. UAT checklist
+## 6. UAT checklist (A5)
 
-1. `signatures.json` fetchable via raw.githubusercontent.com (incognito), valid JSON, `count` > 0.
-2. **3 sample events** (≥1 planting, ≥1 growth, plus reject/link if present): offline re-verify signature over `signed_text` with the farmer public key → 3/3 match.
-3. Every event type present maps to exactly one entry keyed by message ID; zero duplicates.
-4. `tree_growth_measurements.json` rows == Tree Growth Measurements tab rows (dedup by col B), incl. Farmer Signature + Analysis SHA-256.
-5. New measurement submission appears in both the tab and the JSON within ≤35 min (cron cadence).
+1. `verify_public_signatures/index.json` + a per-event file fetchable via raw.githubusercontent.com (incognito), valid JSON, `count` > 0.
+2. **3 sample events** (≥1 planting, ≥1 growth, plus reject/link if present): offline re-verify `signature` over `signed_payload` with the farmer public key → 3/3 match.
+3. Every event type maps to exactly one entry keyed by message ID; zero duplicates; per-event file name == message ID.
+4. `tree_growth_monitoring/index.json` rows == Tree Growth Measurements tab rows (dedup by col B), incl. Farmer Signature + Analysis SHA-256.
+5. New measurement submission appears in tab + ledger within ≤35 min (cron cadence; immediate via emit hook once A4 ships).
 6. PII scan: grep both JSONs for `@` email pattern + phone patterns → zero hits.
 7. Public URL shares without auth (incognito window).
+8. Post-migration: `sunmint/signatures.json` no longer updated (deprecated mirror), READMEs point to the ledger.
 
 ---
 
 ## 7. Contribution reporting
 
-After each merge, report the DAO contribution per `OPERATING_INSTRUCTIONS.md` §6 with the PR URL. Sophia reports time as `[CONTRIBUTION EVENT]` (`create_dao_submission`, Time (Minutes)); no TDG auto-issue.
+- DAO contribution via `create_dao_submission` after each merged PR (A1–A5), per OPERATING_INSTRUCTIONS §7.
