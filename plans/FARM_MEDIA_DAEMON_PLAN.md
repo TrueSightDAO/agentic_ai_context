@@ -88,7 +88,7 @@ farm_media_inbox/<farm_id>/
 ## 6. Checklist
 
 ### PR1 — Scaffold + DESIGN.md
-- [ ] Create `TrueSightDAO/farm-media-daemon` (private), description: shared farm video → YouTube upload daemon
+- [ ] Create `TrueSightDAO/farm-media-daemon` (**public** — Gary 2026-09-01: design is transparent, creds stay local/gitignored), description: shared farm video → YouTube upload daemon
 - [ ] `DESIGN.md`: queue contract, sidecar JSON schema, daemon loop, fairness, quota budget, commit model, query patterns
 - [ ] `config.yaml` template: farms/inboxes, daily cap, channel/creds path, priorities
 - [ ] README: how farms register, how videos land, how manifests commit
