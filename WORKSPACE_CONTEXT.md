@@ -329,6 +329,8 @@ Future AIs can **clone** these repos when the workspace path is missing or a fre
 | `treasury-cache/` | https://github.com/TrueSightDAO/treasury-cache | — (public JSON ledgers; consumed by transparency dashboards) |
 | `market_research/` | https://github.com/TrueSightDAO/content_schedule |
 | `agentic_ai_context/` | https://github.com/TrueSightDAO/agentic_ai_context |
+| `sunmint/` | https://github.com/TrueSightDAO/sunmint | — **plot registry is `plots/index.geojson` ONLY** (never `trees/plots.geojson` — dead duplicate; see sunmint README) |
+| `sunmint_beta/` | https://github.com/TrueSightDAO/sunmint_beta | → **sunmint_prod** (fork) → sunmint.truesight.me |
 | `TrueChain/` | https://github.com/TrueSightDAO/TrueChain |
 | `krake_ror/` | https://github.com/KrakeIO/krake_ror | → **getdata.io** (Krake; not Perch) |
 | `sentiment_importer/` | https://github.com/TrueSightDAO/sentiment_importer | → **perch.truesight.me** (Perch — Rails; not getdata.io) |
