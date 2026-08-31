@@ -21,7 +21,7 @@
 | Plot registry | `sunmint/plots/index.geojson` (data repo) |
 | Generator | `sunmint/scripts/build_plots_geojson.py` (mirrors `build_tree_geojson.py`) |
 | Workflow | `.github/workflows/rebuild-plots-index.yml` (mirrors `rebuild-tree-index.yml`) |
-| Source of truth | SunMint Farms sheet tab (gspread via `GOOGLE_SERVICE_ACCOUNT_JSON`) |
+| Source of truth | SunMint Farms sheet tab — **write access: `agroverse_qr_code_manager` SA** (`cypher_defense` / `edgar_dapp_listener` / `tdg_scoring` verified read-only, 403 on write 2026-08-31) |
 | Impact map | `truesight_me_beta/sunmint.html` — draws polygons + clusters tree markers |
 | Satellite | `sunmint/satellite/manifest.json` — grid cells derived from plot centroids |
 | Ledger | geo-located events (TREE PLANTING EVENT at -3.29609,-52.58318 precedent) |
@@ -31,7 +31,10 @@
 
 1. **Capture raw media** — photos + short videos at the plot. iPhone HEIC/MOV
    embed GPS in container metadata; **never decode video frames** to locate a
-   plot (wasteful). `exiftool` reads it instantly.
+   plot (wasteful). `exiftool` reads it instantly. Note: **WhatsApp and Telegram
+   strip EXIF/GPS on photo upload** — for boundary shots from a farmer, have
+   them **email the photos** (attachments preserve EXIF) or send as WhatsApp
+   "Document", or scp/Drive the original files.
 2. **Extract GPS** — one pass over all files:
    ```bash
    exiftool -GPSLatitude -GPSLongitude <files...>
@@ -72,6 +75,8 @@
 
 ## 5. Registry schema (`plots/index.geojson`)
 
+> Canonical schema also lives repo-side: **`sunmint/SCHEMA.md`** (plots + trees registries). Keep both in sync when columns change.
+
 ```jsonc
 {
   "type": "FeatureCollection",
@@ -104,6 +109,25 @@ Note: GeoJSON is `[lng, lat]` order. Polygon rings must close (first == last).
 |---|---|---|---|---|
 | RM-P1 (house) | -3.29610, -52.58316 | 4 HEIC + 3 MOV | planted (TREE PLANTING EVENT at -3.29609,-52.58318) | approx (tight cluster ~35 m) |
 | RM-P2 (family) | walk track -3.2934..-3.2947, -52.5768..-52.5789 | 6 HEIC + 23 MOV | proposed | approx — walk covers ~2.9 ha < 5 ha claimed → get CAR polygon |
+| SA-P1 (compound) | hull -3.291769..-3.292514, -52.571500..-52.572400, centroid -3.292243,-52.572044 | 44 HEIC/MOV | proposed | approx — photo-hull ~0.31 ha < 3 ha claimed → get Jedielcio boundary photos / CAR polygon |
+
+## 5b. Plot popup → farm profile link (impact map)
+
+- `sunmint.html` plot popups show **"View farm profile on Agroverse ↗"** when the
+  feature carries `farm_id`, linking to `https://agroverse.shop/farms/<slug>/`.
+- **Gotcha:** registry `farm_id` is the logical id (e.g. `santa-anna-fazenda`),
+  NOT the agroverse page slug (e.g. `santa-anna-fazenda-para`). The popup keeps a
+  `FARM_SLUG` map (`truesight_me_beta/sunmint.html`) — add new farms there or
+  the link 404s. Fallback: unmapped farm_id is used as-is.
+
+## 5c. Promoting sunmint.html to production (beta → prod)
+
+- `truesight_me_beta` and `truesight_me_prod` **intentionally diverge on `CNAME`**
+  (`beta.truesight.me` vs `truesight.me`). `sync_beta_to_prod` will refuse with a
+  **merge conflict** — this is expected, NOT an error. Do NOT force.
+- Resolution: GitHub UI → prod repo → fork page → **Sync fork** → merge upstream,
+  resolving the CNAME conflict by **keeping `truesight.me`** (prod's value).
+  Then verify the live page serves the new code (Pages deploy lag ~1-5 min).
 
 ## 7. Do / Don't
 
