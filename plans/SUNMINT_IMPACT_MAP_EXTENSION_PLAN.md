@@ -1,10 +1,10 @@
 # SunMint Impact Map Extension — implementation plan, roadmap & checklist
 
-> **Purpose:** extend `beta.truesight.me/sunmint.html` (the SunMint impact map page)
-> so plots/farms are first-class, auditable objects: farms selectable/filterable,
-> plot popups enriched with boundary authority + status + media evidence, and a
-> Farms Registry section aggregating plot data. Beta-first; prod promote only with
-> explicit governor approval (plan §3f rule).
+> **Purpose:** extend the SunMint impact map page (`truesight.me/sunmint.html`, mirrored on
+> `beta.truesight.me/sunmint.html`) so plots/farms are first-class, auditable objects:
+> farms selectable/filterable, plot popups enriched with boundary authority + status +
+> media evidence, and a Farms Registry section aggregating plot data. Beta-first; prod
+> promote only with explicit governor approval (plan §3f rule).
 
 ## 1. Scope
 
@@ -24,13 +24,19 @@
 - Farmer-app boundary capture UI (`sunmint_beta` farmer app — separate plan/thread).
 - `extract_plot_gps.py` GPS→polygon automation (`sunmint` repo — separate PR).
 - Farms registry source-of-truth changes (SunMint Plots sheet stays canonical).
-- Any PRODUCTION repo edits (`truesight_me_prod` untouched; promote via sync only).
+- Any direct PRODUCTION repo edits (`truesight_me_prod` untouched; promote via sync only).
 
 ## 2. Current state (pre-flight facts, 2026-08-31)
 
+> **NOTE (governor correction, 2026-08-31):** the impact map is **already live in prod** —
+> `truesight.me/sunmint.html` is **byte-identical** to `beta.truesight.me/sunmint.html`
+> (md5 match, 40,784 bytes, HTTP 200). The impact map (trees + plots + satellite) ships
+> on both. This plan EXTENDS the existing page — changes are built on `truesight_me_beta`
+> first, then promoted to prod via `sync_beta_to_prod` so the live page updates (prod
+> currently mirrors beta exactly).
+
 ### Page
-- `truesight_me_beta/sunmint.html` (40,784 bytes) — sections: problem, solution,
-  impact registry, highlights, impact-map.
+- `truesight_me_beta/sunmint.html` = `truesight_me_prod/sunmint.html` (40,784 bytes, byte-identical) — sections: problem, solution, impact registry, highlights, impact-map.
 - Impact map: Leaflet, `#impactMap` (480px), trees markers (`trees/index.geojson`),
   plot polygons (`plots/index.geojson`), `#plotSelector` chips, `#viewSelector`,
   satellite overlay toggle (`#satOverlayToggle`), layer buttons (Satellite/Map),
