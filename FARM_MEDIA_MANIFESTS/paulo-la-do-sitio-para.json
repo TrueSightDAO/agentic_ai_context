@@ -1,0 +1,992 @@
+{
+ "farm_id": "paulo-la-do-sitio-para",
+ "plots": [],
+ "source_zips": [
+  "la_do_sitio.zip"
+ ],
+ "generated": "2026-08-31",
+ "processed_by": "FARM_MEDIA_PIPELINE.md",
+ "counts": {
+  "MOV": 72
+ },
+ "gps_coverage": "65/72 files with GPS",
+ "items": [
+  {
+   "file": "IMG_3874.MOV",
+   "size_bytes": 15023880,
+   "sha256": "992a348b0985ad81705b8f67015d1b50d6872d40f7d7f7fd2f0a3f30dfbd02ab",
+   "duration_s": "12.975000",
+   "latitude": -3.3863,
+   "longitude": -51.8514,
+   "objects": [
+    "cacao_pods"
+   ],
+   "yt_id": "3kJJc6FkTok",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3875.MOV",
+   "size_bytes": 3339849,
+   "sha256": "5f32496e96c89da28d1bbdd699f6423c0dd4ba6ad4aabd572e90053577043578",
+   "duration_s": "2.635000",
+   "latitude": -3.3864,
+   "longitude": -51.8513,
+   "objects": [
+    "cacao_pods"
+   ],
+   "yt_id": "qPfG1j3vjME",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3876.MOV",
+   "size_bytes": 24893816,
+   "sha256": "54e7c7f152952f9a99212136ad01e741381cd81c776ad4faa44a0b2182bf7038",
+   "duration_s": "21.951667",
+   "latitude": -3.3863,
+   "longitude": -51.8514,
+   "objects": [
+    "car",
+    "person"
+   ],
+   "yt_id": "5qdSU7pV6zc",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3877.MOV",
+   "size_bytes": 13268991,
+   "sha256": "e1cb78e8e46736b8e7ad0fafc1003e6c2ee4f526905feeed199a53d67d46dbfc",
+   "duration_s": "11.910000",
+   "latitude": -3.3863,
+   "longitude": -51.8514,
+   "objects": [
+    "car",
+    "person"
+   ],
+   "yt_id": "16AupPpn5GE",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3878.MOV",
+   "size_bytes": 2269810,
+   "sha256": "d8cd6274f7c6fa4d0e90c93c350fc77a7a0bc56ced00aaaef04befc0d9727b78",
+   "duration_s": "2.000000",
+   "latitude": -3.3863,
+   "longitude": -51.8514,
+   "objects": [
+    "person",
+    "potted plant"
+   ],
+   "yt_id": "M9-xoh27k3A",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3879.MOV",
+   "size_bytes": 17545530,
+   "sha256": "bbece2f0056ce89c932a6239a768b22fff69649802dc9a140a34cdb9cbb11347",
+   "duration_s": "15.476667",
+   "latitude": -3.3863,
+   "longitude": -51.8514,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "bzsql4g5MgE",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3880.MOV",
+   "size_bytes": 10169830,
+   "sha256": "262c426dbded209e37b8781732e72113b1b911d9370efd99c68e6dd7f679d461",
+   "duration_s": "9.103333",
+   "latitude": -3.3863,
+   "longitude": -51.8513,
+   "objects": [
+    "car",
+    "person"
+   ],
+   "yt_id": "TfWzGyh8E-s",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3881.MOV",
+   "size_bytes": 24753709,
+   "sha256": "62c41057c2912f1fb86d4c1334cf7d11bbe8414134ef69258d39934f3ce766ec",
+   "duration_s": "22.141667",
+   "latitude": -3.3863,
+   "longitude": -51.8513,
+   "objects": [
+    "backpack",
+    "cacao_pods",
+    "car",
+    "person"
+   ],
+   "yt_id": "K54lQEC8uG4",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3882.MOV",
+   "size_bytes": 139161543,
+   "sha256": "b9e196d4e2dd69f82f29812f8a05b695b58586c9f121bd4b08eb222570db1f08",
+   "duration_s": "110.510000",
+   "latitude": -3.3863,
+   "longitude": -51.8514,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "teK6Y8fN9SU",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3888.MOV",
+   "size_bytes": 9825082,
+   "sha256": "7a13076911b7174326c6237d7857cec0f73ae845487c27ff06bdbef84e7b0e58",
+   "duration_s": "9.140000",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "T6OrEXVz_Rk",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3897.MOV",
+   "size_bytes": 9832315,
+   "sha256": "9d1bf6799802c983fc61545d465f3c7e4cd0946484f42dc23ae08b050f4f1347",
+   "duration_s": "8.506667",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "cacao_pods",
+    "bicycle",
+    "person"
+   ],
+   "yt_id": "RbER_LlTghg",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3898.MOV",
+   "size_bytes": 66381415,
+   "sha256": "b5228c0b0b92a79463edc389b157ada627e2a423a211948a079b7557268a9cb4",
+   "duration_s": "60.085000",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "Fuw_z7FtW_c",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3899.MOV",
+   "size_bytes": 6587352,
+   "sha256": "3694e6f09e00bb89eef71275cba48167dbe414f59c7a5f37a6ec2ba834edbc5f",
+   "duration_s": "5.835000",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "xfl9118N5AU",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3900.MOV",
+   "size_bytes": 78163567,
+   "sha256": "db8cd3831a95be7f9b8d2937f1c19d1705d84a4f311ab93f370bf2ffabb6ff60",
+   "duration_s": "71.786667",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "c72Sxq13G1I",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3901.MOV",
+   "size_bytes": 6312354,
+   "sha256": "dc5da4e1c3e03b0ffe3c9f1cd8088603da2a5d0a304f291ad5220b5a8d777342",
+   "duration_s": "5.633333",
+   "latitude": -3.3861,
+   "longitude": -51.8517,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "ARgEJUek63A",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3902.MOV",
+   "size_bytes": 14555564,
+   "sha256": "32d4e4644e2ed9ee6ab7cc5c764196386852f3f36ac04b380c862663f485980d",
+   "duration_s": "12.910000",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "iSI_2IIZAZo",
+   "uploaded_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "file": "IMG_3908.MOV",
+   "size_bytes": 319530523,
+   "sha256": "8a8939d5704e84b26e847d71a3bc2f8628731a4b804d125dfab676f5f81bdf90",
+   "duration_s": "253.878333",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "backpack",
+    "cacao_pods",
+    "cell phone",
+    "person"
+   ],
+   "yt_id": "mgkBuc_Q5IU",
+   "uploaded_at": "2026-08-31T17:35:46Z"
+  },
+  {
+   "file": "IMG_3909.MOV",
+   "size_bytes": 88907066,
+   "sha256": "24bbfc2f43e5a2bd44112a8c97ac90589ebf760a346c7fd7bf64c8eadaa21b7c",
+   "duration_s": "80.801667",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "h91G6c-KtRc",
+   "uploaded_at": "2026-08-31T17:55:53Z"
+  },
+  {
+   "file": "IMG_3910.MOV",
+   "size_bytes": 35034394,
+   "sha256": "dd2f8d9201bf491e45cf07c4b3d28f91ba4712797ee0410d98910eb748fed47b",
+   "duration_s": "31.861667",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "y-iaI4ZjtRE",
+   "uploaded_at": "2026-08-31T18:01:59Z"
+  },
+  {
+   "file": "IMG_3911.MOV",
+   "size_bytes": 72793105,
+   "sha256": "81567e9f5d61c53f5a9b5be4ae4bb485b735f6c5f5db8c76913b1cdd80c5efe1",
+   "duration_s": "65.956667",
+   "latitude": -3.386,
+   "longitude": -51.8517,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "rMZRKXzXs_8",
+   "uploaded_at": "2026-08-31T18:06:04Z"
+  },
+  {
+   "file": "IMG_3912.MOV",
+   "size_bytes": 58244546,
+   "sha256": "730525746ca05f36c8e3895012963d58c2ef797ee085735d42794cc43bd1e9dd",
+   "duration_s": "52.720000",
+   "latitude": -3.3861,
+   "longitude": -51.8516,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "wb41KTdudBs",
+   "uploaded_at": "2026-08-31T18:34:11Z"
+  },
+  {
+   "file": "IMG_3913.MOV",
+   "size_bytes": 31180325,
+   "sha256": "00d8e9af278d4194a7608dc8cb31e239f77031df0ef58ade5ea54ee14a5aae10",
+   "duration_s": "28.490000",
+   "latitude": -3.3865,
+   "longitude": -51.8514,
+   "objects": [
+    "handbag",
+    "person"
+   ],
+   "yt_id": "8lnPv-bNT1Y",
+   "uploaded_at": "2026-08-31T18:36:17Z"
+  },
+  {
+   "file": "IMG_3914.MOV",
+   "size_bytes": 78192914,
+   "sha256": "015e991962858eb21519cfa8fea260efda6a7c7a1030b38b5bc96c86af01bfd2",
+   "duration_s": "70.761667",
+   "latitude": -3.3864,
+   "longitude": -51.8514,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "wm7GB2aPUHY",
+   "uploaded_at": "2026-08-31T18:38:22Z"
+  },
+  {
+   "file": "IMG_3915.MOV",
+   "size_bytes": 27809425,
+   "sha256": "6bf4e249d046da9439a508f2248c653df0294e733166696aa118717b9c05dd70",
+   "duration_s": "25.015000",
+   "latitude": -3.3885,
+   "longitude": -51.8525,
+   "objects": [
+    "person",
+    "umbrella"
+   ],
+   "yt_id": "T8FkSHx6qsU",
+   "uploaded_at": "2026-08-31T18:40:27Z"
+  },
+  {
+   "file": "IMG_3916.MOV",
+   "size_bytes": 40304638,
+   "sha256": "ea3fac7374c111057e9b783d45d78713ea71af9ca07539d50036303b88a9578f",
+   "duration_s": "36.465000",
+   "latitude": -3.3885,
+   "longitude": -51.8526,
+   "objects": [
+    "dog",
+    "person"
+   ],
+   "yt_id": "VPm4lH9jpco",
+   "uploaded_at": "2026-08-31T18:42:32Z"
+  },
+  {
+   "file": "IMG_3917.MOV",
+   "size_bytes": 21214350,
+   "sha256": "2694870ad60f85bda6ad0c3db7019ecd950c46d4f3134322f9ff3b4cfdfdf76d",
+   "duration_s": "19.615000",
+   "latitude": -3.3885,
+   "longitude": -51.8525,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "yifKgnjPyZY",
+   "uploaded_at": "2026-08-31T18:42:37Z"
+  },
+  {
+   "file": "IMG_3918.MOV",
+   "size_bytes": 9814215,
+   "sha256": "ac09d538fcd9c4d0f58fcabcb90af129993c4e5a9e43d8a1fac89a6bc6d6acb9",
+   "duration_s": "8.940000",
+   "latitude": -3.3885,
+   "longitude": -51.8526,
+   "objects": [
+    "airplane",
+    "person"
+   ],
+   "yt_id": "Z3wmPa3v1RY",
+   "uploaded_at": "2026-08-31T18:44:41Z"
+  },
+  {
+   "file": "IMG_3919.MOV",
+   "size_bytes": 5585053,
+   "sha256": "75a42d950d77f4d486d5114fca89159375fd215f5d5b71b634c316c2b1d6432e",
+   "duration_s": "4.970000",
+   "latitude": -3.3885,
+   "longitude": -51.8526,
+   "objects": [],
+   "yt_id": "72cUAVTmTdo",
+   "uploaded_at": "2026-08-31T18:44:46Z"
+  },
+  {
+   "file": "IMG_3920.MOV",
+   "size_bytes": 15808979,
+   "sha256": "975ed18beb31dd2fcc3b1ed62f4221ea18644af07543b1e8c64578bcde2bf3cf",
+   "duration_s": "14.278333",
+   "latitude": -3.3885,
+   "longitude": -51.8526,
+   "objects": [
+    "person",
+    "sink"
+   ],
+   "yt_id": "DyzVOX3SWbU",
+   "uploaded_at": "2026-08-31T18:44:50Z"
+  },
+  {
+   "file": "IMG_3921.MOV",
+   "size_bytes": 37912443,
+   "sha256": "bd0103dc89aeb650dc7c4a41973f5690f9af71dd1f9d94e9ee42c9b546655e1b",
+   "duration_s": "33.651667",
+   "latitude": -3.3885,
+   "longitude": -51.8526,
+   "objects": [
+    "bench",
+    "person"
+   ],
+   "yt_id": "n0vg6xbmh2I",
+   "uploaded_at": "2026-08-31T18:44:55Z"
+  },
+  {
+   "file": "IMG_3922.MOV",
+   "size_bytes": 12318622,
+   "sha256": "3eee7b8951a0ed2efc88673f22e4658458f15003098786d5e4320985c8833f66",
+   "duration_s": "11.008333",
+   "latitude": -3.3886,
+   "longitude": -51.8526,
+   "objects": [
+    "apple",
+    "cat"
+   ],
+   "yt_id": "SbO-Xc22UGc",
+   "uploaded_at": "2026-08-31T18:47:00Z"
+  },
+  {
+   "file": "IMG_3923.MOV",
+   "size_bytes": 21212798,
+   "sha256": "f7055249bf6748952b4f4e5e6e358818217200ca7196747211ca36331e020bdd",
+   "duration_s": "19.145000",
+   "latitude": -3.3886,
+   "longitude": -51.8526,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "h0QnhS6yZCw",
+   "uploaded_at": "2026-08-31T18:47:05Z"
+  },
+  {
+   "file": "IMG_3927.MOV",
+   "size_bytes": 4442279,
+   "sha256": "b9dc9686a0231f40f498682ce47e8f7ed9706fbf6af42000d4c392023c5bed48",
+   "duration_s": "3.136667",
+   "latitude": -3.3887,
+   "longitude": -51.8525,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "3DkPxpZNZEE",
+   "uploaded_at": "2026-08-31T18:47:10Z"
+  },
+  {
+   "file": "IMG_3950.MOV",
+   "size_bytes": 23697735,
+   "sha256": "2cdb1173a015e41587f9f7e9fbe4a6fa0c3d982edfae38e09cfe00d4b83b6a75",
+   "duration_s": "21.085000",
+   "latitude": -3.3887,
+   "longitude": -51.8525,
+   "objects": [
+    "cacao_pods",
+    "bird",
+    "person"
+   ],
+   "yt_id": "utobXH2rrj0",
+   "uploaded_at": "2026-08-31T18:47:14Z"
+  },
+  {
+   "file": "IMG_3951.MOV",
+   "size_bytes": 10694756,
+   "sha256": "3289d32a68706efb6e114c68aae9048ada608c2495e43552815395da01e15277",
+   "duration_s": "9.570000",
+   "latitude": -3.3887,
+   "longitude": -51.8525,
+   "objects": [],
+   "yt_id": "-yCu5HVrQNo",
+   "uploaded_at": "2026-08-31T18:49:19Z"
+  },
+  {
+   "file": "IMG_3953.MOV",
+   "size_bytes": 73730251,
+   "sha256": "266156162986047a1e20f523bc464e5cd53ea808bf7b4d2ac8fcfbf10d1fd2ce",
+   "duration_s": "66.820000",
+   "latitude": -3.3886,
+   "longitude": -51.8525,
+   "objects": [
+    "car",
+    "person",
+    "truck"
+   ],
+   "yt_id": "gR1ZgEy7uek",
+   "uploaded_at": "2026-08-31T18:49:24Z"
+  },
+  {
+   "file": "IMG_3955.MOV",
+   "size_bytes": 5297565,
+   "sha256": "9571336d0bafb05865c7559b2711237310a26e6e0fd603f2210df5d670931249",
+   "duration_s": "4.603333",
+   "latitude": null,
+   "longitude": null,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "khyjNsNjXV0",
+   "uploaded_at": "2026-08-31T18:51:28Z"
+  },
+  {
+   "file": "IMG_3964.MOV",
+   "size_bytes": 30225048,
+   "sha256": "eb14e9a138ffc222908a529edd46a501b8804fdfdb13926b77960cdc19583f2a",
+   "duration_s": "27.520000",
+   "latitude": null,
+   "longitude": null,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "L_VU31SW_bo",
+   "uploaded_at": "2026-08-31T18:51:33Z"
+  },
+  {
+   "file": "IMG_3968.MOV",
+   "size_bytes": 20042245,
+   "sha256": "d2fd27acf0ada9acdfc791945a7bfaa1935d863b72cdaac3142edac17bba9754",
+   "duration_s": "17.415000",
+   "latitude": -3.3896,
+   "longitude": -51.8529,
+   "objects": [
+    "hot dog",
+    "person"
+   ],
+   "yt_id": "Bu3HzIzxqYk",
+   "uploaded_at": "2026-08-31T18:53:40Z"
+  },
+  {
+   "file": "IMG_3969.MOV",
+   "size_bytes": 6838370,
+   "sha256": "9255c8f7fc054e044a871067990cb2ca2a6d2b30b7ef2eca09c868cdd61b2531",
+   "duration_s": "6.471667",
+   "latitude": -3.3896,
+   "longitude": -51.8529,
+   "objects": [
+    "bird",
+    "hot dog",
+    "person"
+   ],
+   "yt_id": "4yKBFSUuaOU",
+   "uploaded_at": "2026-08-31T18:53:44Z"
+  },
+  {
+   "file": "IMG_3970.MOV",
+   "size_bytes": 12575007,
+   "sha256": "b8b90cf9a6220e03c53a3b0a8cc538597b42cefc6ce5508fa80e931b5536f5cd",
+   "duration_s": "8.766667",
+   "latitude": -3.3896,
+   "longitude": -51.8529,
+   "objects": [
+    "cacao_pods",
+    "person"
+   ],
+   "yt_id": "fi72j2SVHmM",
+   "uploaded_at": "2026-08-31T18:53:49Z"
+  },
+  {
+   "file": "IMG_3980.MOV",
+   "size_bytes": 22201126,
+   "sha256": "20ecdd5d09c60c8dfa296ace08bd2f34775b2e7c8dcbdf70a6176d90f85ac65c",
+   "duration_s": "20.150000",
+   "latitude": -3.3897,
+   "longitude": -51.8529,
+   "objects": [
+    "cacao_pods",
+    "donut",
+    "person"
+   ],
+   "yt_id": "lJkwWQlqhvk",
+   "uploaded_at": "2026-08-31T18:53:54Z"
+  },
+  {
+   "file": "IMG_3981.MOV",
+   "size_bytes": 31324612,
+   "sha256": "d064c1c6b204927de4cb11fd78f5181f24ad77e6764fd9e51e41f518ecaf4231",
+   "duration_s": "27.856667",
+   "latitude": -3.3896,
+   "longitude": -51.8528,
+   "objects": [
+    "bird",
+    "person"
+   ],
+   "yt_id": "Yd6_TXCW6W8",
+   "uploaded_at": "2026-08-31T18:55:59Z"
+  },
+  {
+   "file": "IMG_3982.MOV",
+   "size_bytes": 51230175,
+   "sha256": "4b1221c672c135de79eac93a0e9e2680d59052da25eb170cf72b0b01384e2983",
+   "duration_s": "46.505000",
+   "latitude": null,
+   "longitude": null,
+   "objects": [
+    "cacao_pods",
+    "cup",
+    "hot dog",
+    "person"
+   ],
+   "yt_id": "yWbUF4IttUU",
+   "uploaded_at": "2026-08-31T18:56:04Z"
+  },
+  {
+   "file": "IMG_3983.MOV",
+   "size_bytes": 23246095,
+   "sha256": "7368b128753ed69ce4e88704adc6a38a23ec00e7cbf9e9afe5a2b2a254967fed",
+   "duration_s": "20.918333",
+   "latitude": -3.391,
+   "longitude": -51.8523,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "Eh3yOqEdq7w",
+   "uploaded_at": "2026-08-31T18:58:09Z"
+  },
+  {
+   "file": "IMG_3986.MOV",
+   "size_bytes": 6559348,
+   "sha256": "7c05e563e9e610dc2191f19b36baf520f9c403afa58452f2dc372d06994fd007",
+   "duration_s": "5.871667",
+   "latitude": -3.3909,
+   "longitude": -51.8523,
+   "objects": [
+    "apple",
+    "orange",
+    "sandwich"
+   ],
+   "yt_id": "RWFXl5_rOls",
+   "uploaded_at": "2026-08-31T19:00:13Z"
+  },
+  {
+   "file": "IMG_3992.MOV",
+   "size_bytes": 7752455,
+   "sha256": "5d5a898915a8dc7fa6ba4d5fc084e95387912929d249008f61388764a557d024",
+   "duration_s": "6.703333",
+   "latitude": null,
+   "longitude": null,
+   "objects": [],
+   "yt_id": "Ku1D2Ii4ftA",
+   "uploaded_at": "2026-08-31T19:00:18Z"
+  },
+  {
+   "file": "IMG_4004.MOV",
+   "size_bytes": 13801157,
+   "sha256": "970dd059f5950c33199b55f06bf5dd5e4c3f4b47a8df8eb5480dd76a84d0aa1e",
+   "duration_s": "11.408333",
+   "latitude": -3.3906,
+   "longitude": -51.852,
+   "objects": [],
+   "yt_id": "WCc9COVWkLE",
+   "uploaded_at": "2026-08-31T19:00:26Z"
+  },
+  {
+   "file": "IMG_4005.MOV",
+   "size_bytes": 6693245,
+   "sha256": "dd04a09ae2151192ff855122ce26a0690c015abc3a049728f5d63ebe832411ef",
+   "duration_s": "5.336667",
+   "latitude": -3.3906,
+   "longitude": -51.852,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "PpJYJfjw8Ww",
+   "uploaded_at": "2026-08-31T19:00:30Z"
+  },
+  {
+   "file": "IMG_4006.MOV",
+   "size_bytes": 12114491,
+   "sha256": "594d8cf89829d38f2c1105cfde4db722a0298cbddb7a50c43cbb376c0c73dbb9",
+   "duration_s": "10.541667",
+   "latitude": -3.3905,
+   "longitude": -51.8521,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "KLht8_6HRZQ",
+   "uploaded_at": "2026-08-31T19:00:35Z"
+  },
+  {
+   "file": "IMG_4007.MOV",
+   "size_bytes": 26290452,
+   "sha256": "52de90c6ff7dcb96cd46db8dc1005f65cbea04953e6ef4aabe1b67b87afc44de",
+   "duration_s": "24.318333",
+   "latitude": -3.3893,
+   "longitude": -51.8521,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "Hhb2b2atcXs",
+   "uploaded_at": "2026-08-31T19:00:40Z"
+  },
+  {
+   "file": "IMG_4011.MOV",
+   "size_bytes": 27910144,
+   "sha256": "3eb120b3b45545e1c7fc3c047b73061ce9f0c6ef0d548f55b95dc83ef3da9e55",
+   "duration_s": "",
+   "latitude": null,
+   "longitude": null,
+   "objects": []
+  },
+  {
+   "file": "IMG_4012.MOV",
+   "size_bytes": 23550722,
+   "sha256": "7d9604f500eed8071a8bc780f6e567acad7efca666edf27bd99fa4a2aec6b649",
+   "duration_s": "18.515000",
+   "latitude": -3.3887,
+   "longitude": -51.8529,
+   "objects": [
+    "apple",
+    "person"
+   ],
+   "yt_id": "CekmsZSo99Y",
+   "uploaded_at": "2026-08-31T19:02:45Z"
+  },
+  {
+   "file": "IMG_4013.MOV",
+   "size_bytes": 15624730,
+   "sha256": "ada8c2839de5de74937c8b79322379c252887fa56c2b5449480251f819788af9",
+   "duration_s": "13.571667",
+   "latitude": -3.3887,
+   "longitude": -51.8528,
+   "objects": [
+    "cow",
+    "horse",
+    "person",
+    "sheep"
+   ],
+   "yt_id": "DLwE7n93UVQ",
+   "uploaded_at": "2026-08-31T19:02:50Z"
+  },
+  {
+   "file": "IMG_4018.MOV",
+   "size_bytes": 4612203,
+   "sha256": "37117113d67237d44dcca23d7be714c7388727c44c7f95ff3c1e0fcf3e01e46e",
+   "duration_s": "3.731667",
+   "latitude": -3.3887,
+   "longitude": -51.8528,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "wugjLvwtgSM",
+   "uploaded_at": "2026-08-31T19:02:54Z"
+  },
+  {
+   "file": "IMG_4019.MOV",
+   "size_bytes": 8719590,
+   "sha256": "2570f897b890642d081e79b5b5c936af1f85163ef274f0029e359ae60b39a730",
+   "duration_s": "6.871667",
+   "latitude": -3.3887,
+   "longitude": -51.8528,
+   "objects": [
+    "kite",
+    "person"
+   ],
+   "yt_id": "WczMUOuuwiQ",
+   "uploaded_at": "2026-08-31T19:04:59Z"
+  },
+  {
+   "file": "IMG_4020.MOV",
+   "size_bytes": 8003404,
+   "sha256": "559984857c295b0699b7d69f361e8b1d91365576db9b3947f3b59cf3946d8679",
+   "duration_s": "7.005000",
+   "latitude": -3.3888,
+   "longitude": -51.8528,
+   "objects": [
+    "apple"
+   ],
+   "yt_id": "wPopzeR2jAE",
+   "uploaded_at": "2026-08-31T19:05:04Z"
+  },
+  {
+   "file": "IMG_4021.MOV",
+   "size_bytes": 9385808,
+   "sha256": "2fc298e4c9d5262d3ea0dde3bf72083a63868b5d5837266c08391607eeed950e",
+   "duration_s": "8.273333",
+   "latitude": null,
+   "longitude": null,
+   "objects": [
+    "book"
+   ],
+   "yt_id": "X_S5mY4MOFA",
+   "uploaded_at": "2026-08-31T19:05:09Z"
+  },
+  {
+   "file": "IMG_4022.MOV",
+   "size_bytes": 30786711,
+   "sha256": "871f88fa77434830bfea3a420ec85ba5a33363c2f03b964dca1da4c805535a46",
+   "duration_s": "28.088333",
+   "latitude": -3.3885,
+   "longitude": -51.8527,
+   "objects": [
+    "apple",
+    "person"
+   ],
+   "yt_id": "ldGTqTBI3Cw",
+   "uploaded_at": "2026-08-31T19:05:14Z"
+  },
+  {
+   "file": "IMG_4023.MOV",
+   "size_bytes": 25350169,
+   "sha256": "d3044bebc2cef2bd761838100acb12b9be4f0b59a71ccc31b4e8122833e67ea5",
+   "duration_s": "22.783333",
+   "latitude": -3.3887,
+   "longitude": -51.8527,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "Q0pB0FbDZoc",
+   "uploaded_at": "2026-08-31T19:05:18Z"
+  },
+  {
+   "file": "IMG_4024.MOV",
+   "size_bytes": 26711517,
+   "sha256": "066117dc7336ba9d877e9aa74b276eb35294fe463ab68bc6925807dad4e0bce2",
+   "duration_s": "23.951667",
+   "latitude": -3.3884,
+   "longitude": -51.8524,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "VTnUM8n-DYk",
+   "uploaded_at": "2026-08-31T19:07:23Z"
+  },
+  {
+   "file": "IMG_4025.MOV",
+   "size_bytes": 70685566,
+   "sha256": "333a064b9228f2549e2622a1a12e77202ad41e8b685b065325f8a43b30a8e1d6",
+   "duration_s": "65.020000",
+   "latitude": -3.3884,
+   "longitude": -51.8526,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "8XRVLSLHejw",
+   "uploaded_at": "2026-08-31T19:07:28Z"
+  },
+  {
+   "file": "IMG_4026.MOV",
+   "size_bytes": 7252122,
+   "sha256": "0b887b455a819af7afd76aa99e8c41965eaa9039bcf1408b68e090737528d20b",
+   "duration_s": "6.498333",
+   "latitude": -3.3884,
+   "longitude": -51.8525,
+   "objects": [
+    "hot dog",
+    "person"
+   ],
+   "yt_id": "erwluJosAok",
+   "uploaded_at": "2026-08-31T19:11:33Z"
+  },
+  {
+   "file": "IMG_4027.MOV",
+   "size_bytes": 8455512,
+   "sha256": "3b5dc7dec9b8b984776c0f159ed0d1b8c8857a05451bc2961812f98e2fbf8b1e",
+   "duration_s": "7.938333",
+   "latitude": -3.3884,
+   "longitude": -51.8525,
+   "objects": [
+    "cell phone",
+    "person"
+   ],
+   "yt_id": "wl4Z4hcGQOs",
+   "uploaded_at": "2026-08-31T19:11:37Z"
+  },
+  {
+   "file": "IMG_4032.MOV",
+   "size_bytes": 7679646,
+   "sha256": "9b8f0198be178d7a2d9323140bbc2a855b97364c2eb3d5443316bb8df3d44f42",
+   "duration_s": "6.135000",
+   "latitude": -3.3884,
+   "longitude": -51.8526,
+   "objects": [
+    "bench",
+    "person"
+   ],
+   "yt_id": "YhoR5KFBBAg",
+   "uploaded_at": "2026-08-31T19:11:42Z"
+  },
+  {
+   "file": "IMG_4033.MOV",
+   "size_bytes": 14384713,
+   "sha256": "1c14b56c287438661975bf94a8afca9966c4386bcf8abc2c1355c66c2540280d",
+   "duration_s": "12.343333",
+   "latitude": -3.3884,
+   "longitude": -51.8526,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "yzGKBshpYHM",
+   "uploaded_at": "2026-08-31T19:11:46Z"
+  },
+  {
+   "file": "IMG_4034.MOV",
+   "size_bytes": 15062006,
+   "sha256": "d03e6d6fa103446ddac853cfb9bdd23739aadc0b0ac3563fb87dd0072a56c440",
+   "duration_s": "12.410000",
+   "latitude": -3.3884,
+   "longitude": -51.8526,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "FDt_3tscBtk",
+   "uploaded_at": "2026-08-31T19:11:51Z"
+  },
+  {
+   "file": "IMG_4036.MOV",
+   "size_bytes": 15026085,
+   "sha256": "5affec69cc6ce5816acd2f55cecb9610673d02a20267f65a9d49ddb7b88dd3ee",
+   "duration_s": "13.011667",
+   "latitude": null,
+   "longitude": null,
+   "objects": [],
+   "yt_id": "7dwKJCYvNR0",
+   "uploaded_at": "2026-08-31T19:11:55Z"
+  },
+  {
+   "file": "IMG_4037.MOV",
+   "size_bytes": 65788445,
+   "sha256": "53d585433eec8a26c60b00d43118950944fdeec95304c13837452caf77024dd3",
+   "duration_s": "56.176667",
+   "latitude": -3.3868,
+   "longitude": -51.8523,
+   "objects": [
+    "bowl",
+    "person"
+   ],
+   "yt_id": "vnai_a_nZhg",
+   "uploaded_at": "2026-08-31T19:14:00Z"
+  },
+  {
+   "file": "IMG_4038.MOV",
+   "size_bytes": 22919851,
+   "sha256": "7fc901950bd83a39de8f1c093c9d921da82d030e2f4f41109af4c647a3f84416",
+   "duration_s": "19.046667",
+   "latitude": -3.3868,
+   "longitude": -51.8523,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "7kgnPAaWzUw",
+   "uploaded_at": "2026-08-31T19:16:05Z"
+  },
+  {
+   "file": "IMG_4040.MOV",
+   "size_bytes": 19075602,
+   "sha256": "819ef5dafdaf86bfe8123dc69dc1c978bf443d2b6ea710cfcbc62a5d5a90a485",
+   "duration_s": "11.505000",
+   "latitude": -3.3868,
+   "longitude": -51.8523,
+   "objects": [
+    "person"
+   ],
+   "yt_id": "Lw5Ydf7uqDs",
+   "uploaded_at": "2026-08-31T19:16:11Z"
+  },
+  {
+   "file": "IMG_4041.MOV",
+   "size_bytes": 7705666,
+   "sha256": "bade9a16211c82f788f0dade219f05d0fbe5f3605aab7419975d7c4a1f9d603f",
+   "duration_s": "6.771667",
+   "latitude": -3.3863,
+   "longitude": -51.8514,
+   "objects": [
+    "bird",
+    "person"
+   ],
+   "yt_id": "yR9YmlcJICk",
+   "uploaded_at": "2026-08-31T19:18:15Z"
+  }
+ ]
+}
