@@ -1559,6 +1559,12 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+### [DONE] Usage/meta logging in truesight_autopilot_transcript — shipped 2026-09-01
+- **Date:** 2026-08-31
+- **Issue:** The transcript repo AGENTS.md/ROADMAP.md describe `usage.jsonl`, `meta.json`, `messages.jsonl` + `scripts/append_usage.py` + a summarize CLI — but only `transcript.md` is actually written. Consequence: "how much time/tokens did X cost?" cannot be answered exactly (was reconstructed from git merge timestamps for the Rancho Maranta effort, ~15.5h wall-clock / ~360 active min lower bound).
+- **Fix:** implement `scripts/append_usage.py` (token/usage rows per tool call) in the transcript repo + meta.json writer; wire into the autopilot transcript append path; then a `summarize` CLI for cost queries.
+- **Shipped 2026-09-01 by Sophia:** `scripts/append_usage.py`, `scripts/write_meta.py`, `scripts/summarize_usage.py` + `scripts/tests/test_usage_tools.py` landed on truesight_autopilot_transcript@main (commits bcb39c0, 3a6fef8, fe2ac2d, 216264b). Local suite green (compileall + ruff + format + 5 pytest). Smoke-verified append→summarize end-to-end. Wiring into the autopilot runtime's transcript-append path remains (runtime harness, not in a DAO repo — separate follow-up).
+
 ### SunMint satellite cache pipeline: Earth Search STAC (replaces CDSE) — LIVE
 **Shipped 2026-08-31. Owner: Sophia.** The CDSE registration path was dropped (registration broken; CDSE no longer offers anonymous Sentinel-2 WMS — only STAC public, `sh.dataspace` needs auth). Replaced with **Earth Search STAC** (AWS-hosted Sentinel-2 L2A, anonymous, no key): `sunmint/scripts/cache_satellite_scenes.py` queries `https://earth-search.aws.element84.com/v1/search` (POST, explicit RFC3339 datetime — `now` token 400s), downloads the lowest-cloud scene's public preview into `satellite/<lat>_<lng>/<scene-date>.jpg` + `satellite/manifest.json`. Verified live: 9 cells / 36 scenes; FounderHaus + Rancho Maranta cells + plot dirs (RM-P1/RM-P2) committed. Map satellite history strip (truesight_me_beta #322) layers `manifest.json` by date with cloud badges; plot-aware caching reads `plots/index.geojson` — the ONLY plot registry (`trees/plots.geojson` is a dead path, guarded). Remaining: confirm the daily workflow auto-commits (06:30 UTC schedule; box token lacks workflow-dispatch scope — a human can trigger via Actions → workflow_dispatch). **No CDSE registration needed — Gary can drop that task.**
 
@@ -1935,10 +1941,3 @@ relevant)_
 ### Tree growth measurement 'reject' path — CLOSED as by-design
 **Closed 2026-08-31 (no code). Owner: Sophia + Gary.** The earlier-flagged gap ("no manual reject for growth measurements") is by-design: invalid measurements are auto-rejected at submission by the GAS gates (RSA signature, registered identity, tree-exists in registry, 200 m proximity) — failing rows never land. Test evidence: TEST_TREE_E2E measurements (13.6/13.8/14.2) never reached the tracking tab; only the sentinel-signed test row landed (since removed). Measurement rows are monitoring records only — credits mint exclusively via a future [CARBON CREDIT ISSUANCE EVENT] — so a manual reject UI is unnecessary. E2E test cleanup completed 2026-08-31: test row deleted from 'Tree Growth Measurements'; 2 test photos removed from sunmint/images/growth/.
 
-
-## [857] Usage/meta logging in truesight_autopilot_transcript is planned-but-not-implemented
-- **Date:** 2026-08-31
-- **Issue:** The transcript repo AGENTS.md/ROADMAP.md describe `usage.jsonl`, `meta.json`, `messages.jsonl` + `scripts/append_usage.py` + a summarize CLI — but only `transcript.md` is actually written. Consequence: "how much time/tokens did X cost?" cannot be answered exactly (was reconstructed from git merge timestamps for the Rancho Maranta effort, ~15.5h wall-clock / ~360 active min lower bound).
-- **Fix:** implement `scripts/append_usage.py` (token/usage rows per tool call) in the transcript repo + meta.json writer; wire into the autopilot transcript append path; then a `summarize` CLI for cost queries.
-- **Owner:** unclaimed
-- **Status:** Pending
