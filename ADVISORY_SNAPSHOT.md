@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-31T04:18:57Z`
+- Generated (UTC): `2026-08-31T05:54:44Z`
 - Look-back: **7** calendar days (`2026-08-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[TREE PLANTING REJECT EVENT]` × 32
+- `[CONTRIBUTION EVENT]` × 5
+- `[TREE PLANTING EVENT]` × 3
+- `[PRACTICE EVENT]` × 2
+
+### Latest entries
+
+- `Edgar_20260831020853_019` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20250809005453_021 · Updated by: Gary Teh
+- `Edgar_20260831020901_021` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027657 · Updated by: Gary Teh
+- `Edgar_20260831020906_023` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027568 · Updated by: Gary Teh
+- `Edgar_20260831020910_025` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027566 · Updated by: Gary Teh
+- `Edgar_20260831020915_027` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027299 · Updated by: Gary Teh
+- `Edgar_20260831020920_029` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260829150017_001 · Updated by: Gary Teh
+- `Edgar_20260831020925_031` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027280 · Updated by: Gary Teh
+- `Edgar_20260831020933_033` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260829134707_005 · Updated by: Gary Teh
+- `Edgar_20260831020938_035` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260821172545_003 · Updated by: Gary Teh
+- `Edgar_20260831020942_037` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260811093312_375 · Updated by: Gary Teh
+- `Edgar_20260831020947_039` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260823181319_097 · Updated by: Gary Teh
+- `Edgar_20260831020952_041` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260823181318_095 · Updated by: Gary Teh
+- `Edgar_20260831020956_043` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260823181316_093 · Updated by: Gary Teh
+- `Edgar_20260831021002_045` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260829150131_001 · Updated by: Gary Teh
+- `Edgar_20260831021007_047` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027270 · Updated by: Gary Teh
+- `Edgar_20260831022935_049` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260831015152_009 · Updated by: Gary Teh
+- `Edgar_20260831030000_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Raw machine execution — Brazil cacao two-variety analysis report (thread 168…
+- `Edgar_20260831030003_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: SunMint Plots sheet tab — source of truth for plots registry
+- `Edgar_20260831030006_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 18 · Description: Direct time (engagement/analysis) — Brazil cacao two-variety analysis report…
+- `Edgar_20260831031329_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Sophia Truesight
 
 ---
 
@@ -194,13 +230,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,858.12**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$53.61**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -285,6 +325,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+50e9192 | 2026-08-31 01:19:10 -0300 | Merge pull request #849 from TrueSightDAO/auto/advisory-refresh-2026-08-31
+0b507ba | 2026-08-31 04:19:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
 6a00f66 | 2026-08-31 00:10:04 -0300 | OPERATING_INSTRUCTIONS: add GAS_SCRIPT_PROPERTIES.md to context-file index (#848)
 8700cba | 2026-08-31 00:08:10 -0300 | Manifest: SunMint reject/invalid path UAT complete; first real LINK still pending (#847)
 55d58fa | 2026-08-31 00:03:34 -0300 | GAS Script Properties registry + convention (TGM_GITHUB_TOKEN confirmed set) (#846)
@@ -323,8 +365,6 @@ ac60310 | 2026-08-29 09:27:44 -0300 | Update map note: plotted from real coordin
 9782d02 | 2026-08-29 09:24:32 -0300 | Add QA live-ledger test procedure convention (self-clean via expense-off) (#831)
 58a2903 | 2026-08-29 08:36:35 -0300 | Add cacao sourcing network overview (living doc) (#830)
 ca471e5 | 2026-08-29 08:19:43 -0300 | Add §5g: standing authorization for E2E test writes, mandatory self-cleanup (#829)
-dd72fa3 | 2026-08-29 04:16:20 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
-59b300b | 2026-08-29 04:16:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
 … (truncated)
 ```
 
@@ -480,6 +520,51 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/30/2026 22:53:29 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-24`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_31 | xImcXg3OlVcW | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_65 | qOejcMrlb7jD | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_41 | RPZryhwUa6yZ | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_6 | SpTckuw1GmAj | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_56 | Sl29ybzl22Tp | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_52 | HwU7fM75YFS4 | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
+| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_36 | 0IJOTgc3JMN9 | Stripe checkout (online) |
+| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_72 | hbMM9Cp19qd1 | Stripe checkout (online) |
+| 2026-08-29 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_11 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_22 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_24 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
