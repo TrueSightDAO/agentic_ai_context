@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-31T05:54:44Z`
+- Generated (UTC): `2026-08-31T14:16:54Z`
 - Look-back: **7** calendar days (`2026-08-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING REJECT EVENT]` × 32
-- `[CONTRIBUTION EVENT]` × 5
+- `[TREE PLANTING REJECT EVENT]` × 30
+- `[CONTRIBUTION EVENT]` × 6
 - `[TREE PLANTING EVENT]` × 3
-- `[PRACTICE EVENT]` × 2
+- `[PRACTICE EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20260831020853_019` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20250809005453_021 · Updated by: Gary Teh
-- `Edgar_20260831020901_021` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027657 · Updated by: Gary Teh
 - `Edgar_20260831020906_023` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027568 · Updated by: Gary Teh
 - `Edgar_20260831020910_025` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027566 · Updated by: Gary Teh
 - `Edgar_20260831020915_027` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027299 · Updated by: Gary Teh
@@ -59,6 +57,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260831030003_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: SunMint Plots sheet tab — source of truth for plots registry
 - `Edgar_20260831030006_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 18 · Description: Direct time (engagement/analysis) — Brazil cacao two-variety analysis report…
 - `Edgar_20260831031329_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Sophia Truesight
+- `Edgar_20260831130147_059` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-31T13:01:45.374Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260831131810_061` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.20 · Description: DeepSeek credits
 
 ---
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-30T10:59:13.405Z`
+- Generated (UTC): `2026-08-31T10:59:14.195Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -273,6 +273,8 @@ _All dated lines on/after 2026-08-24_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+81ee428 | 2026-08-31 11:09:40 -0300 | Impact map: enriched plot popups + boundary-authority legend (PR1) (#331)
+93a4f32 | 2026-08-31 06:00:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7567fd9 | 2026-08-30 23:47:57 -0300 | Satellite history: nearest-cell logic (full file)
 5423c72 | 2026-08-30 23:44:00 -0300 | Cap impact map maxZoom at 17 (Esri has no Altamira tiles above z17) (#329)
 11ce24d | 2026-08-30 23:35:51 -0300 | Make plot/view pills a single exclusive group on impact map (#328)
@@ -311,8 +313,6 @@ d80fab7 | 2026-08-26 02:10:44 +0000 | chore(stats): refresh stats/current.json [
 5ed6c85 | 2026-08-25 19:09:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
 360e8a1 | 2026-08-25 14:35:23 -0300 | SunMint Tree-Growth Monitoring spec v1.3 (GeoJSON tree index, no database)
 84d3042 | 2026-08-25 14:13:08 -0300 | SunMint Tree-Growth Monitoring spec v1.2 (nearby-tree GPS selection)
-202478b | 2026-08-25 14:11:52 -0300 | SunMint Tree-Growth Monitoring spec v1.1 (dual deploy: dapp + sunmint app)
-f9a75fe | 2026-08-25 14:10:04 -0300 | SunMint Tree-Growth Monitoring spec v1 (video + Python worker)
 … (truncated)
 ```
 
@@ -325,6 +325,11 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+923bf9a | 2026-08-31 11:02:02 -0300 | SunMint Impact Map Extension: implementation plan (PR0) (#853)
+3b967b6 | 2026-08-31 09:29:38 -0300 | OPEN_FOLLOWUPS: SunMint cleanup — CDSE superseded by Earth Search, growth 'reject' closed as by-design (#852)
+180dd27 | 2026-08-31 09:14:32 -0300 | OPEN_FOLLOWUPS: file SEO sheet tooling gap + known-working append path (#850)
+d6cf172 | 2026-08-31 02:55:07 -0300 | chore(previews): refresh Beer Hall preview (2026-08-31 UTC)
+45447ea | 2026-08-31 02:55:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
 50e9192 | 2026-08-31 01:19:10 -0300 | Merge pull request #849 from TrueSightDAO/auto/advisory-refresh-2026-08-31
 0b507ba | 2026-08-31 04:19:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
 6a00f66 | 2026-08-31 00:10:04 -0300 | OPERATING_INSTRUCTIONS: add GAS_SCRIPT_PROPERTIES.md to context-file index (#848)
@@ -360,11 +365,6 @@ f5d6e6d | 2026-08-29 09:50:31 -0300 | Side-by-side Brazil|China panels: countrie
 7729952 | 2026-08-29 09:33:04 -0300 | Fix map label overlap (wrapped constraints, separated Bahia labels)
 0c2a20a | 2026-08-29 09:33:03 -0300 | Make expense-off cleanup a mandatory step of the asset-receipt E2E run (#833)
 57acc57 | 2026-08-29 09:31:58 -0300 | Update sourcing map: add per-site constraint annotations
-ac60310 | 2026-08-29 09:27:44 -0300 | Update map note: plotted from real coordinates (#832)
-29f1602 | 2026-08-29 09:27:03 -0300 | Replace AI-generated sourcing map with real-coordinate plotted map
-9782d02 | 2026-08-29 09:24:32 -0300 | Add QA live-ledger test procedure convention (self-clean via expense-off) (#831)
-58a2903 | 2026-08-29 08:36:35 -0300 | Add cacao sourcing network overview (living doc) (#830)
-ca471e5 | 2026-08-29 08:19:43 -0300 | Add §5g: standing authorization for E2E test writes, mandatory self-cleanup (#829)
 … (truncated)
 ```
 
@@ -425,6 +425,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f377701 | 2026-08-31 13:56:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b245796 | 2026-08-30 12:13:21 +0000 | chore: refresh currencies.json [skip ci]
 4572f08 | 2026-08-30 11:58:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 7209ecd | 2026-08-29 12:49:53 +0000 | chore: refresh currencies.json [skip ci]
@@ -447,6 +448,13 @@ c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+f2f2cda | 2026-08-31 11:00:59 -0300 | Rancho Maranta: warm human header (IMG_7684), family video + 5 photos in gallery, card image sync (#236)
+9af9fe1 | 2026-08-31 10:51:28 -0300 | feat: embed Rancho Maranta Plot 2 boundary-walk video (YouTube) in farm gallery (#235)
+d5936a1 | 2026-08-31 10:07:58 -0300 | feat: embed Rancho Maranta Plot 1 hero video (YouTube) in farm gallery (#234)
+db0a971 | 2026-08-31 09:55:51 -0300 | fix: add Rancho Maranta image to Brazilian Path journey cards (#233)
+d0d4b6d | 2026-08-31 09:26:36 -0300 | Use farmers-with-Jedielcio photo for Santa Anna journey stop (#232)
+8520df8 | 2026-08-31 09:25:20 -0300 | Use farmers-with-Jedielcio photo as Santa Anna farm page hero (#231)
+73b6329 | 2026-08-31 08:03:34 -0300 | Fix missing Santa Anna image on Brazilian Path journey (#230)
 8f0a62b | 2026-08-31 00:11:43 -0300 | feat: add Rancho Maranta farm page + wire into Brazilian Path (#229)
 ad2f42e | 2026-08-31 00:00:24 -0300 | Fix map init JS syntax error on Santa Anna farm page (#228)
 bed47cf | 2026-08-30 23:50:15 -0300 | Add Santa Anna Fazenda site-visit videos (YouTube embeds) (#227)
@@ -544,7 +552,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/30/2026 22:53:29 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 6:51:49 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-24`; scanned last **600** data rows)
 
