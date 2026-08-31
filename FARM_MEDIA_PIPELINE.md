@@ -58,6 +58,9 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 
 ### 7. YouTube upload (public)
 - `/opt/truesight_autopilot/config/youtube/upload_video_to_youtube.py --file --title --description --tags --privacy public`
+- **SHARED QUOTA**: all instances share ONE Google project (`project_number:323153649224`). 'Video Uploads per day' is a hard daily cap (~50-60/day). Batch uploads WILL hit 429 mid-run. **Always** run uploads behind a retry loop: on 429, wait 30 min and retry (quota resets ~midnight PT); skip entries that already have a LIVE yt_id. Never re-upload blindly.
+- **VERIFY LIVE, not just captured**: after upload, the returned ID must be confirmed with `videos().list(part='id')`. A title->ID recovery map against the shared channel's uploads playlist (which can contain deleted/lingering entries) WILL capture stale IDs. Live-sweep every manifest ID before trusting it; dead ID = re-upload.
+- **Corrupt source**: if ffmpeg fails with 'moov atom not found' on the ORIGINAL MOV (zip corruption), mark `error: SOURCE_CORRUPT` in the manifest — do not loop retries.
 - Token: `config/youtube/youtube_token.json` (admin@truesight.me channel); refresh if expired.
 - Title pattern: `"<Farm name> — <basename> (cacao pods, <lat>, <lng>)"`. Description: GPS, objects, date, farm link.
 - Write returned `videoId` back into manifest as `yt_id`.
