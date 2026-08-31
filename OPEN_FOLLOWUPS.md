@@ -1556,6 +1556,12 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Owner.** Unclaimed.
 
+### Itacaré farm visit — Refúgio Olhos D'Água (Rodrigo) + Interbahia follow-up (Bahia leg)
+**Filed 2026-08-27. Owner: Gary.** Bahia sourcing leg (flight Altamira → Ilhéus lands Sep 11):
+- **Itacaré farm visit** — DM'd @refugioolhosdagua (Rodrigo, Diretor): "Let's meet in Itacare to visit your family's farm" → reply "Amazing!" (green light). Calendar block Sep 13–14 created; **confirm with Rodrigo via Instagram DM before traveling** (Itacaré is ~70 km south of Ilhéus). Cacao origin inspection — same pattern as the AMA/Amazonas visits.
+- **Interbahia Imobiliária** — property-search contact (photo shows "Interbahia Imobiliaria ***sem status***"). Calendar reminder Sep 12 09:00 BRT created; follow up on status/viewings/next steps after landing.
+- Screenshot archived to transcript (session afef16b7e556).
+
 ---
 
 ## Recently shipped
