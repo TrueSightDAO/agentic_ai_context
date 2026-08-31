@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-31T14:16:54Z`
+- Generated (UTC): `2026-08-31T22:58:39Z`
 - Look-back: **7** calendar days (`2026-08-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,33 +32,36 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING REJECT EVENT]` × 30
-- `[CONTRIBUTION EVENT]` × 6
-- `[TREE PLANTING EVENT]` × 3
-- `[PRACTICE EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 19
+- `[TREE PLANTING REJECT EVENT]` × 16
+- `[TREE PLANTING EVENT]` × 2
+- `[PRACTICE EVENT]` × 1
+- `[FARM REGISTRATION EVENT]` × 1
+- `[NOTARIZATION EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260831020906_023` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027568 · Updated by: Gary Teh
-- `Edgar_20260831020910_025` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027566 · Updated by: Gary Teh
-- `Edgar_20260831020915_027` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027299 · Updated by: Gary Teh
-- `Edgar_20260831020920_029` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260829150017_001 · Updated by: Gary Teh
-- `Edgar_20260831020925_031` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027280 · Updated by: Gary Teh
-- `Edgar_20260831020933_033` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260829134707_005 · Updated by: Gary Teh
-- `Edgar_20260831020938_035` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260821172545_003 · Updated by: Gary Teh
-- `Edgar_20260831020942_037` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260811093312_375 · Updated by: Gary Teh
-- `Edgar_20260831020947_039` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260823181319_097 · Updated by: Gary Teh
-- `Edgar_20260831020952_041` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260823181318_095 · Updated by: Gary Teh
-- `Edgar_20260831020956_043` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260823181316_093 · Updated by: Gary Teh
-- `Edgar_20260831021002_045` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260829150131_001 · Updated by: Gary Teh
-- `Edgar_20260831021007_047` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: 469027270 · Updated by: Gary Teh
-- `Edgar_20260831022935_049` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260831015152_009 · Updated by: Gary Teh
-- `Edgar_20260831030000_051` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Raw machine execution — Brazil cacao two-variety analysis report (thread 168…
-- `Edgar_20260831030003_053` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: SunMint Plots sheet tab — source of truth for plots registry
-- `Edgar_20260831030006_055` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 18 · Description: Direct time (engagement/analysis) — Brazil cacao two-variety analysis report…
-- `Edgar_20260831031329_057` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Sophia Truesight
-- `Edgar_20260831130147_059` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-08-31T13:01:45.374Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260831131810_061` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.20 · Description: DeepSeek credits
+- `Edgar_20260831143334_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: SunMint Partner Briefing (China partner) - generation
+- `Edgar_20260831143343_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: SunMint Partner Briefing (China partner) - direction and review
+- `Edgar_20260831160900_067` · **Edgar** · [FARM REGISTRATION EVENT] Farm Name: Rancho Maranta · Location: Altamira, Para, Brazil (pilot area -3.294, -52.578) · Owner: Jedielcio (CEPOTX cooperative)
+- `Edgar_20260831161104_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Paulo La do Sitio — SunMint plot registration (LD-P1) + farm↔impact-map cros…
+- `Edgar_20260831162552_071` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.2075414030626623 · Longitude: -52.22216600596255 · Species: Cacao - Criolla
+- `Edgar_20260831164619_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 85 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260831165947_075` · **Edgar** · [CONTRIBUTION EVENT] Amount: 86 · Contributor(s): Sophia Truesight (autopilot) · Description: FINAL exact figure for Santa Anna Fazenda buildout (2026-08-30/31) — 86.05 m…
+- `Edgar_20260831170056_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 165 · Contributor(s): Sophia Truesight (Autopilot)
+- `Edgar_20260831170100_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260831170237_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Rancho Maranta farm page, media production & SEO registration (agroverse_sho…
+- `Edgar_20260831170240_083` · **Edgar** · [CONTRIBUTION EVENT] Amount: 120 · Contributor(s): Gary Teh · Description: Santa Anna Fazenda (Pará, CEPOTX) site-visit engagement 2026-08-30/31 — farm…
+- `Edgar_20260831171039_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sharing about our project with Pavia our host in Altamira whose family owns …
+- `Edgar_20260831193348_087` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Extracted GPS coordinates (-3.208894, -52.215756, Altamira/PA) from EXIF met…
+- `Edgar_20260831194514_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: FARM_MEDIA_PIPELINE processing for Rancho Maranta — GPS re-injection + media…
+- `Edgar_20260831195325_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Usage-logging tooling for truesight_autopilot_transcript (append_usage / wri…
+- `Edgar_20260831195853_002` · **Edgar** · [No Text Provided]
+- `Edgar_20260831195917_004` · **Edgar** · [No Text Provided]
+- `Edgar_20260831195934_006` · **Edgar** · [TREE PLANTING EVENT] Lat 44.56 / Long -123.26 · Tree Species: Cacao · Tree ID: LEDGER-SMOKE-0001
+- `Edgar_20260831201409_008` · **Edgar** · [NOTARIZATION EVENT] Document Hash: 96800393be7980f71435a1335ad9d48d6ed1ee1b9f82eac961efa9b707f5105a · Description: FDA FSVP supplier site visit report — CEPOTX / COOPOXIN / Santa Anna Fazenda… · Witnesses: Jedielcio (CEPOTX agronomist / technical liaison); Gary Teh (site visit)
+- `Edgar_20260831202318_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
 
 ---
 
@@ -273,6 +276,14 @@ _All dated lines on/after 2026-08-24_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e9fd277 | 2026-08-31 16:15:58 -0300 | Impact map: status styling + plot-status legend + media thumbnails (PR4) (#341)
+6daf770 | 2026-08-31 16:11:30 -0300 | Add Farms Registry section to impact map page (PR3) (#340)
+06f140a | 2026-08-31 15:38:58 -0300 | Add farms selector/filter dropdown to impact map (PR2 v3, on freshest main) (#339)
+dc0123f | 2026-08-31 14:05:24 -0300 | Field Signals #8: real photos from the walk — hero + 4 inline frames (#338)
+ad5e522 | 2026-08-31 13:07:54 -0300 | Field Signals #8: Two cacaos, one farm (post + hero + index card) (#337)
+eb732bc | 2026-08-31 11:34:58 -0300 | Fix sunmint plot popup farm link 404 (farm_id to agroverse slug mapping) (#335)
+c5234cb | 2026-08-31 11:24:20 -0300 | Link sunmint plot popups to agroverse farm profiles (#333)
+978ca24 | 2026-08-31 14:20:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
 81ee428 | 2026-08-31 11:09:40 -0300 | Impact map: enriched plot popups + boundary-authority legend (PR1) (#331)
 93a4f32 | 2026-08-31 06:00:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7567fd9 | 2026-08-30 23:47:57 -0300 | Satellite history: nearest-cell logic (full file)
@@ -305,14 +316,6 @@ ac537e6 | 2026-08-27 22:31:37 +0000 | chore(stats): refresh stats/current.json [
 7b1b1aa | 2026-08-27 10:26:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e150301 | 2026-08-26 21:02:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5ba59fa | 2026-08-26 13:36:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e6eccf7 | 2026-08-26 07:42:24 -0300 | revert: remove mis-scoped sunmint monitor page from truesight_me_beta (#313)
-f635116 | 2026-08-26 07:28:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
-d80fab7 | 2026-08-26 02:10:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
-40edcf8 | 2026-08-25 22:15:49 -0300 | SunMint monitor spec v1.4 (photo-first + event taxonomy)
-9638710 | 2026-08-25 17:53:40 -0300 | feat: add sunmint monitor-tree-growth page (video capture + nearest-tree dropdown + signed PM002 measurement event) (#312)
-5ed6c85 | 2026-08-25 19:09:55 +0000 | chore(stats): refresh stats/current.json [skip ci]
-360e8a1 | 2026-08-25 14:35:23 -0300 | SunMint Tree-Growth Monitoring spec v1.3 (GeoJSON tree index, no database)
-84d3042 | 2026-08-25 14:13:08 -0300 | SunMint Tree-Growth Monitoring spec v1.2 (nearby-tree GPS selection)
 … (truncated)
 ```
 
@@ -325,6 +328,24 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3cdf33f | 2026-08-31 19:56:14 -0300 | Mark SUNMINT_BOUNDARY_SUBMISSION_PLAN complete (UAT passed, prod promoted) (#867)
+7ccba57 | 2026-08-31 17:19:40 -0300 | Add farm media manifest index (la-do-sitio v1 live, 3 more farms in flight) (#866)
+429d53b | 2026-08-31 16:59:11 -0300 | Add La do Sitio farm media manifest v1 (53 LIVE / 18 pending quota / 1 SOURCE_CORRUPT)
+4feb665 | 2026-08-31 16:52:59 -0300 | Add YouTube quota + live-ID verification lessons to FARM_MEDIA_PIPELINE.md (#864)
+6f0097c | 2026-08-31 16:52:13 -0300 | docs: mark OPEN_FOLLOWUPS #857 usage-logging as shipped (#865)
+f73d60f | 2026-08-31 16:31:17 -0300 | SunMint boundary-submission pipeline: roadmap + manifest reprioritization (PR0) (#863)
+b3580e4 | 2026-08-31 16:22:36 -0300 | Farm media manifests: La do Sitio (72 items) + Santa Anna (45 items) + index (#862)
+9fe30f7 | 2026-08-31 15:16:32 -0300 | Update Rancho Maranta manifest yt_ids to GPS-tagged uploads (NZThWnbWZE8, CQMPvCXaHfs, BZRo4yPl8us) (#861)
+7a9c8ee | 2026-08-31 14:34:38 -0300 | FARM_MEDIA_MANIFESTS: add rancho-maranta-para.json (52 items, sha256, GPS, yt_ids) per FARM_MEDIA_PIPELINE (#860)
+d89e429 | 2026-08-31 14:22:27 -0300 | Add FARM_MEDIA_PIPELINE.md — standard process for raw farm media intake (videos→YouTube, photos→farm-media-raw, manifest index) (#858)
+1a83042 | 2026-08-31 14:21:43 -0300 | fix: restore OPEN_FOLLOWUPS.md (1,937 lines) deleted by #857 squash — re-append usage-logging entry (#858) (#859)
+ec25176 | 2026-08-31 14:03:15 -0300 | OPEN_FOLLOWUPS: usage.jsonl/meta.json logging is planned-but-not-implemented — file the gap (#857)
+545d901 | 2026-08-31 13:58:08 -0300 | plan: pivot SunMint signatures cache to org-wide verify_public_signatures ledger (per-event files + dao_protocol emit) (#856)
+f876619 | 2026-08-31 13:55:26 -0300 | Add Agroverse farm page conventions doc (hero w/ farmers, GPS, video, gotchas) (#851)
+0629a6d | 2026-08-31 11:49:43 -0300 | PR0: SunMint public signatures cache — roadmap (signatures.json + public link-share of Tree Growth Measurements) (#855)
+c92076f | 2026-08-31 11:47:07 -0300 | SunMint plots runbook: SA-P1 seed data, popup farm-link convention, beta/prod CNAME conflict, sheet SA, SCHEMA.md ref (#854)
+71b68e4 | 2026-08-31 11:17:14 -0300 | chore(previews): refresh Beer Hall preview (2026-08-31 UTC)
+286de2c | 2026-08-31 11:17:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
 923bf9a | 2026-08-31 11:02:02 -0300 | SunMint Impact Map Extension: implementation plan (PR0) (#853)
 3b967b6 | 2026-08-31 09:29:38 -0300 | OPEN_FOLLOWUPS: SunMint cleanup — CDSE superseded by Earth Search, growth 'reject' closed as by-design (#852)
 180dd27 | 2026-08-31 09:14:32 -0300 | OPEN_FOLLOWUPS: file SEO sheet tooling gap + known-working append path (#850)
@@ -347,24 +368,6 @@ fdb85d0 | 2026-08-30 18:22:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 ec2c6d5 | 2026-08-30 09:07:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
 af5feef | 2026-08-30 02:39:45 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
 54e94cb | 2026-08-30 02:39:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
-b0aa785 | 2026-08-30 00:26:48 -0300 | Add CDSE satellite cache follow-up to OPEN_FOLLOWUPS (#841)
-a50e6f8 | 2026-08-29 18:04:45 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
-fa46374 | 2026-08-29 18:04:43 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
-7de149b | 2026-08-29 13:50:26 -0300 | chore(previews): refresh Beer Hall preview (2026-08-29 UTC)
-d1ef1b1 | 2026-08-29 13:50:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-29 UTC)
-ec82962 | 2026-08-29 12:24:37 -0300 | docs: add SUNMINT_E2E_RUNBOOK — full E2E procedure + pipeline map + incident traps (#840)
-eaab724 | 2026-08-29 11:47:05 -0300 | docs: file GAS :run NOT_FOUND quirk + doGet workaround in OPEN_FOLLOWUPS (#839)
-466ab18 | 2026-08-29 10:49:50 -0300 | Tracker: PR2 contribution reported; tick PR2 + PR3 rows; RESUME HERE → PR3 contribution → deploy gate (#837)
-1bc1d32 | 2026-08-29 10:19:42 -0300 | Tracker: PR1 merged + contribution reported (emoji-go plan) (#836)
-bce5025 | 2026-08-29 10:13:11 -0300 | Emoji-reaction GO plan: mark PR1 opened in resume tracker (#835)
-7e80272 | 2026-08-29 09:56:55 -0300 | Fix legend overlap: vertical stack layout (2077x1334)
-17f1fe9 | 2026-08-29 09:56:23 -0300 | Merge pull request #834 from TrueSightDAO/handoff/sophia-emoji-reaction-go
-ac5ad6b | 2026-08-29 09:55:54 -0300 | handoff: Sophia emoji-reaction GO signal (plan + manifest row)
-f5d6e6d | 2026-08-29 09:50:31 -0300 | Side-by-side Brazil|China panels: countries adjacent, export arrow bridging
-58e4037 | 2026-08-29 09:38:47 -0300 | Redesign sourcing map: numbered pins + legend panel, zero label overlap
-7729952 | 2026-08-29 09:33:04 -0300 | Fix map label overlap (wrapped constraints, separated Bahia labels)
-0c2a20a | 2026-08-29 09:33:03 -0300 | Make expense-off cleanup a mandatory step of the asset-receipt E2E run (#833)
-57acc57 | 2026-08-29 09:31:58 -0300 | Update sourcing map: add per-site constraint annotations
 … (truncated)
 ```
 
@@ -425,6 +428,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c392457 | 2026-08-31 14:26:47 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+7da337e | 2026-08-31 14:25:03 +0000 | chore: refresh currencies.json [skip ci]
 f377701 | 2026-08-31 13:56:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b245796 | 2026-08-30 12:13:21 +0000 | chore: refresh currencies.json [skip ci]
 4572f08 | 2026-08-30 11:58:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -448,22 +453,47 @@ c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+31fe9b7 | 2026-08-31 18:46:51 -0300 | Add FSVP site code V-06-29 to Paulo's La do Sitio farm page (#255)
+1ac2db3 | 2026-08-31 17:19:36 -0300 | Add La do Sitio field videos to farm media gallery (#254)
+8dfc0da | 2026-08-31 16:53:16 -0300 | Add COOPOXIN sub-cooperative card to CEPOTX page (#253)
+7486338 | 2026-08-31 16:51:37 -0300 | Rename farm to registered name Ana Lucia Araujo de Sousa (B-06-58, CEPOTX) (#252)
+b8f2e93 | 2026-08-31 16:45:00 -0300 | Farm page: add registered owner Ana Lucia Araujo de Sousa + site code B-06-58 (#251)
+bc27b06 | 2026-08-31 15:15:44 -0300 | Swap Rancho Maranta videos to GPS-tagged uploads (NZThWnbWZE8, BZRo4yPl8us, CQMPvCXaHfs) (#250)
+7ac8ae6 | 2026-08-31 15:14:07 -0300 | Santa Anna farm page: add 5 more site-visit photos (#249)
+45ca327 | 2026-08-31 14:37:43 -0300 | Add IMG_7722 + IMG_7705 video embeds (Santa Anna farm page) (#248)
+338ece9 | 2026-08-31 13:40:53 -0300 | Redirect /farms/fazenda-cleide to /farms/fazenda-cleide-para (#247)
+a013a6c | 2026-08-31 12:34:10 -0300 | Fazenda Cleide: new hero photo (governor) + curated farm-process gallery (#246)
+3d7c7e7 | 2026-08-31 12:04:12 -0300 | Rancho Maranta: remove duplicate IMG_7694 image from gallery (#245)
+2a90fbb | 2026-08-31 12:03:27 -0300 | Link Paulo La do Sitio farm to SunMint: gallery photos, GPS plot polygon, impact-map link (#244)
+abcf359 | 2026-08-31 12:02:56 -0300 | Add SunMint program highlight to Santa Anna farm page (#243)
+23c869a | 2026-08-31 12:01:30 -0300 | Add Paulo La do Sitio field photo IMG_4001 (correct path)
+e995b03 | 2026-08-31 12:01:28 -0300 | Add Paulo La do Sitio field photo IMG_3990 (correct path)
+d5cbd91 | 2026-08-31 12:01:26 -0300 | Add Paulo La do Sitio field photo IMG_3940 (correct path)
+52de669 | 2026-08-31 12:01:25 -0300 | Add Paulo La do Sitio field photo IMG_3932 (correct path)
+d9f0b5b | 2026-08-31 12:01:23 -0300 | Add Paulo La do Sitio field photo IMG_3929 (correct path)
+bed2fb8 | 2026-08-31 12:01:22 -0300 | Add Paulo La do Sitio field photo IMG_3905 (correct path)
+3564e7a | 2026-08-31 12:01:20 -0300 | Add Paulo La do Sitio field photo IMG_3891 (correct path)
+241b461 | 2026-08-31 12:01:19 -0300 | Add Paulo La do Sitio field photo IMG_3884 (correct path)
+424fef8 | 2026-08-31 12:01:07 -0300 | Rancho Maranta: add SunMint Program highlight linking to truesight.me/sunmint.html (#242)
+23afbd2 | 2026-08-31 12:00:38 -0300 | Add Paulo La do Sitio field photo IMG_4001
+efea172 | 2026-08-31 12:00:37 -0300 | Add Paulo La do Sitio field photo IMG_3990
+599f48f | 2026-08-31 12:00:35 -0300 | Add Paulo La do Sitio field photo IMG_3940
+208bb31 | 2026-08-31 12:00:33 -0300 | Add Paulo La do Sitio field photo IMG_3932
+37de31c | 2026-08-31 12:00:32 -0300 | Add Paulo La do Sitio field photo IMG_3929
+33405dc | 2026-08-31 12:00:31 -0300 | Add Paulo La do Sitio field photo IMG_3905
+c49bca5 | 2026-08-31 12:00:29 -0300 | Add Paulo La do Sitio field photo IMG_3891
+c4730a5 | 2026-08-31 12:00:28 -0300 | Add Paulo La do Sitio field photo IMG_3884
+4d76016 | 2026-08-31 11:54:07 -0300 | Add SunMint plot map link to Santa Anna farm page (#241)
+078e992 | 2026-08-31 11:53:14 -0300 | Add Fazenda Cleide farm profile page (Pará, CEPOTX) (#240)
+f689699 | 2026-08-31 11:49:56 -0300 | Santa Anna farm page: add 6 site-visit photos to media gallery (#239)
+a6877fa | 2026-08-31 11:36:27 -0300 | Rancho Maranta header: re-crop with headroom + focal point center 30% so heads are never cut (#238)
+8c51745 | 2026-08-31 11:30:43 -0300 | Rancho Maranta: use IMG_7660 as header (bottom-anchored landscape crop, family visible) (#237)
 f2f2cda | 2026-08-31 11:00:59 -0300 | Rancho Maranta: warm human header (IMG_7684), family video + 5 photos in gallery, card image sync (#236)
 9af9fe1 | 2026-08-31 10:51:28 -0300 | feat: embed Rancho Maranta Plot 2 boundary-walk video (YouTube) in farm gallery (#235)
 d5936a1 | 2026-08-31 10:07:58 -0300 | feat: embed Rancho Maranta Plot 1 hero video (YouTube) in farm gallery (#234)
 db0a971 | 2026-08-31 09:55:51 -0300 | fix: add Rancho Maranta image to Brazilian Path journey cards (#233)
 d0d4b6d | 2026-08-31 09:26:36 -0300 | Use farmers-with-Jedielcio photo for Santa Anna journey stop (#232)
-8520df8 | 2026-08-31 09:25:20 -0300 | Use farmers-with-Jedielcio photo as Santa Anna farm page hero (#231)
-73b6329 | 2026-08-31 08:03:34 -0300 | Fix missing Santa Anna image on Brazilian Path journey (#230)
-8f0a62b | 2026-08-31 00:11:43 -0300 | feat: add Rancho Maranta farm page + wire into Brazilian Path (#229)
-ad2f42e | 2026-08-31 00:00:24 -0300 | Fix map init JS syntax error on Santa Anna farm page (#228)
-bed47cf | 2026-08-30 23:50:15 -0300 | Add Santa Anna Fazenda site-visit videos (YouTube embeds) (#227)
-e7101eb | 2026-08-30 23:38:17 -0300 | Fix corrupted Google Maps URL on Santa Anna farm page (#226)
-a1f44bf | 2026-08-30 23:12:13 -0300 | Add Santa Anna Fazenda farm page + Brazilian Journey stop (#225)
-c229526 | 2026-08-28 08:28:55 -0300 | Embed FounderHaus Tools of Common video on cacao tea PDP (#224)
-4225601 | 2026-08-28 08:24:31 -0300 | Migrate cacao tea PDP gallery to media-gallery.js framework (media.json) (#223)
-18afb3f | 2026-08-28 08:22:19 -0300 | Add FounderHaus Farm Edition special-edition callout to cacao tea PDP (#221)
-fe173c1 | 2026-08-28 07:42:18 -0300 | Replace cacao tea 50g hero image with new farm photo (#220)
+… (truncated)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -552,7 +582,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 6:51:49 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 15:50:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-24`; scanned last **600** data rows)
 
