@@ -105,7 +105,7 @@ Include in the handoff message:
 - [ ] privacy (Gary default: **public**)
 - [ ] plot status decision (proposed vs planted)
 - [ ] region/municipality if known
-- [ ] READ THIS FILE first (FARM_MEDIA_PIPELINE.md)
+- [ ] READ THIS FILE first (MEDIA_ARCHIVE_PIPELINE.md)
 
 ## Anti-patterns / lessons learned
 - ❌ Plain ffmpeg convert → **GPS lost** (pilot video `jM4Y6Wq5fMc` went up without GPS before catch).
