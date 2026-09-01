@@ -13,7 +13,7 @@
 >   `event-media` (community events, future)…
 > - **The queue** — the inbox + sidecars (what's waiting; pending = no `yt_id`)
 > - **The daemon** — the shared uploader (`farm-media-daemon` repo), dumb-on-purpose
-> - **The manifests** — `FARM_MEDIA_MANIFESTS/`, the committed, queryable source of truth
+> - **The manifests** — `farm_media_manifests/` (repo TrueSightDAO/farm_media_manifests), the committed, queryable source of truth
 > - **Distribution ≠ archive** — Instagram/TikTok/shop-page posting are consumers of the
 >   archive, not the pipeline itself
 >
@@ -30,7 +30,7 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 |---|---|---|
 | Videos (MP4) | **YouTube public** (admin@truesight.me channel) | free, unlimited, durable; embed via media-gallery.js `youtube` entries |
 | Photos (HEIC/JPG originals) | GitHub repo **`farm-media-raw`**, `<farm-id>/photos/` | individual files, **Content-API only** (repo can get large; never clone/branch-edit) |
-| Manifest / index | `agentic_ai_context/FARM_MEDIA_MANIFESTS/<farm-id>.json` | the reference layer: sha256, GPS, duration, objects[], yt_id — keyword-searchable via GitHub code search |
+| Manifest / index | `farm_media_manifests/<farm-id>.json` (repo TrueSightDAO/farm_media_manifests) | the reference layer: sha256, GPS, duration, objects[], yt_id — keyword-searchable via GitHub code search |
 | Farm page gallery | `agroverse_shop_beta/farms/<farm-id>/media.json` | curated youtube + image entries |
 | Plot polygon | `sunmint/plots/index.geojson` (+ `SunMint Plots` sheet tab) | only if new farm plot |
 
@@ -96,7 +96,7 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - PR → merge → beta verify → `sync_beta_to_prod` **only on explicit governor go**.
 
 ### 10. Manifest PR to agentic_ai_context
-- `FARM_MEDIA_MANIFESTS/<farm-id>.json` (+ update index). `git_push_changes` (normal repo).
+- `farm_media_manifests/<farm-id>.json` (+ update index). `git_push_changes` on the data repo (TrueSightDAO/farm_media_manifests).
 
 ## Handoff checklist (governor → another Sophia instance)
 Include in the handoff message:
