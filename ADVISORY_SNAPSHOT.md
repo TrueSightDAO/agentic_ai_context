@@ -20,48 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-08-31T22:58:39Z`
-- Look-back: **7** calendar days (`2026-08-24` → today UTC)
+- Generated (UTC): `2026-09-01T04:04:02Z`
+- Look-back: **7** calendar days (`2026-08-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 19
-- `[TREE PLANTING REJECT EVENT]` × 16
-- `[TREE PLANTING EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
-- `[FARM REGISTRATION EVENT]` × 1
-- `[NOTARIZATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 2
-
-### Latest entries
-
-- `Edgar_20260831143334_063` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: SunMint Partner Briefing (China partner) - generation
-- `Edgar_20260831143343_065` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: SunMint Partner Briefing (China partner) - direction and review
-- `Edgar_20260831160900_067` · **Edgar** · [FARM REGISTRATION EVENT] Farm Name: Rancho Maranta · Location: Altamira, Para, Brazil (pilot area -3.294, -52.578) · Owner: Jedielcio (CEPOTX cooperative)
-- `Edgar_20260831161104_069` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Paulo La do Sitio — SunMint plot registration (LD-P1) + farm↔impact-map cros…
-- `Edgar_20260831162552_071` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.2075414030626623 · Longitude: -52.22216600596255 · Species: Cacao - Criolla
-- `Edgar_20260831164619_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 85 · Contributor(s): Sophia Truesight (autopilot)
-- `Edgar_20260831165947_075` · **Edgar** · [CONTRIBUTION EVENT] Amount: 86 · Contributor(s): Sophia Truesight (autopilot) · Description: FINAL exact figure for Santa Anna Fazenda buildout (2026-08-30/31) — 86.05 m…
-- `Edgar_20260831170056_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 165 · Contributor(s): Sophia Truesight (Autopilot)
-- `Edgar_20260831170100_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260831170237_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Rancho Maranta farm page, media production & SEO registration (agroverse_sho…
-- `Edgar_20260831170240_083` · **Edgar** · [CONTRIBUTION EVENT] Amount: 120 · Contributor(s): Gary Teh · Description: Santa Anna Fazenda (Pará, CEPOTX) site-visit engagement 2026-08-30/31 — farm…
-- `Edgar_20260831171039_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sharing about our project with Pavia our host in Altamira whose family owns …
-- `Edgar_20260831193348_087` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Extracted GPS coordinates (-3.208894, -52.215756, Altamira/PA) from EXIF met…
-- `Edgar_20260831194514_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: FARM_MEDIA_PIPELINE processing for Rancho Maranta — GPS re-injection + media…
-- `Edgar_20260831195325_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Usage-logging tooling for truesight_autopilot_transcript (append_usage / wri…
-- `Edgar_20260831195853_002` · **Edgar** · [No Text Provided]
-- `Edgar_20260831195917_004` · **Edgar** · [No Text Provided]
-- `Edgar_20260831195934_006` · **Edgar** · [TREE PLANTING EVENT] Lat 44.56 / Long -123.26 · Tree Species: Cacao · Tree ID: LEDGER-SMOKE-0001
-- `Edgar_20260831201409_008` · **Edgar** · [NOTARIZATION EVENT] Document Hash: 96800393be7980f71435a1335ad9d48d6ed1ee1b9f82eac961efa9b707f5105a · Description: FDA FSVP supplier site visit report — CEPOTX / COOPOXIN / Santa Anna Fazenda… · Witnesses: Jedielcio (CEPOTX agronomist / technical liaison); Gary Teh (site visit)
-- `Edgar_20260831202318_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
 
 ---
 
@@ -233,17 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,858.12**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$53.61**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -255,7 +212,7 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
 
-_All dated lines on/after 2026-08-24_ (1):
+_All dated lines on/after 2026-08-25_ (1):
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
 
@@ -276,6 +233,7 @@ _All dated lines on/after 2026-08-24_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+aa53be4 | 2026-08-31 22:59:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e9fd277 | 2026-08-31 16:15:58 -0300 | Impact map: status styling + plot-status legend + media thumbnails (PR4) (#341)
 6daf770 | 2026-08-31 16:11:30 -0300 | Add Farms Registry section to impact map page (PR3) (#340)
 06f140a | 2026-08-31 15:38:58 -0300 | Add farms selector/filter dropdown to impact map (PR2 v3, on freshest main) (#339)
@@ -315,7 +273,6 @@ ded4170 | 2026-08-28 12:05:38 +0000 | chore(stats): refresh stats/current.json [
 ac537e6 | 2026-08-27 22:31:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b1b1aa | 2026-08-27 10:26:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e150301 | 2026-08-26 21:02:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
-5ba59fa | 2026-08-26 13:36:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -328,6 +285,15 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8a0a5c4 | 2026-09-01 00:57:48 -0300 | Plan: Media Archives Pipeline dashboard at sophia.truesight.me/media-archive-pipeline (PR0) (#874)
+3c58802 | 2026-09-01 00:50:40 -0300 | Rename FARM_MEDIA_PIPELINE.md -> MEDIA_ARCHIVE_PIPELINE.md (MAP terminology) (#873)
+c1c57c0 | 2026-09-01 00:19:10 -0300 | Propagate Media Archives Pipeline (MAP) terminology across context docs (#872)
+b177055 | 2026-08-31 23:52:16 -0300 | A5: mark UAT complete + sunmint mirror decommissioned (#871)
+dbae43e | 2026-08-31 23:47:08 -0300 | Farm Media Daemon: repo is public, not private (design transparency) (#869) (#870)
+da380c2 | 2026-08-31 20:03:23 -0300 | Farm Media Daemon: repo is public, not private (design transparency) (#869)
+00007f3 | 2026-08-31 20:02:22 -0300 | Add Farm Media Daemon plan (PR0): shared video-upload infrastructure (#868)
+f8ad5f4 | 2026-08-31 19:59:05 -0300 | chore(previews): refresh Beer Hall preview (2026-08-31 UTC)
+1c986f7 | 2026-08-31 19:59:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
 3cdf33f | 2026-08-31 19:56:14 -0300 | Mark SUNMINT_BOUNDARY_SUBMISSION_PLAN complete (UAT passed, prod promoted) (#867)
 7ccba57 | 2026-08-31 17:19:40 -0300 | Add farm media manifest index (la-do-sitio v1 live, 3 more farms in flight) (#866)
 429d53b | 2026-08-31 16:59:11 -0300 | Add La do Sitio farm media manifest v1 (53 LIVE / 18 pending quota / 1 SOURCE_CORRUPT)
@@ -359,21 +325,14 @@ d6cf172 | 2026-08-31 02:55:07 -0300 | chore(previews): refresh Beer Hall preview
 3701f38 | 2026-08-30 22:50:43 -0300 | Docs: SunMint plots single-source-of-truth (avoid trees/plots.geojson confusion) (#845)
 04b4f79 | 2026-08-30 20:35:36 -0300 | Add SunMint plots registry runbook (defining + extending plots) (#844)
 99a5f02 | 2026-08-30 20:24:56 -0300 | Add FSVP video evidence analysis process runbook (#843)
-b42b5af | 2026-08-30 20:07:10 -0300 | FSVP documentation process runbooks — new fsvp/ subfolder (#842)
-03d5c6d | 2026-08-30 18:22:12 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
-fdb85d0 | 2026-08-30 18:22:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
-5000341 | 2026-08-30 13:55:30 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
-9ab2d7e | 2026-08-30 13:55:28 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
-4462c4a | 2026-08-30 09:07:49 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
-ec2c6d5 | 2026-08-30 09:07:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
-af5feef | 2026-08-30 02:39:45 -0300 | chore(previews): refresh Beer Hall preview (2026-08-30 UTC)
-54e94cb | 2026-08-30 02:39:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-30 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+b7794ce | 2026-09-01 00:20:53 -0300 | Wire FARM BOUNDARY EVIDENCE webhook doGet case + document hourly fallback trigger (#453)
+c750ac5 | 2026-08-31 23:56:40 -0300 | Add GAS handler for FARM BOUNDARY EVIDENCE EVENT (cron scan + farm upsert + tracking) (#452)
 fc54502 | 2026-08-30 21:09:23 -0300 | Make tree-index-rebuild dispatch failures audible (non-2xx logs + outcome note) (#451)
 9584835 | 2026-08-29 23:30:32 -0300 | Fire tree-index-rebuild dispatch on tree reject so invalidated trees vanish immediately (#450)
 ffe9acd | 2026-08-29 23:22:23 -0300 | fix(reject path): match SunMint row by col A OR col D so monitor-page rejects actually invalidate (#449)
@@ -397,8 +356,6 @@ f51731c | 2026-08-27 09:59:26 -0300 | Server-side enforcement: proximity gate (2
 0d57fba | 2026-08-25 23:30:02 -0300 | Add process_tree_growth_monitoring.gs — [TREE GROWTH MONITORING EVENT] handler (P1d) (#430)
 0d55b11 | 2026-08-25 23:29:37 -0300 | fix(asset-receipt-ingest): anchor event detection + idempotent SKIPPED/ERROR dedup (#427)
 54bf0cf | 2026-08-25 13:09:09 -0300 | feat: enforce DEPLOY_PUSH_SOP lease+audit in deploy_gas_project.py (direct-run gap) (#429)
-d120f70 | 2026-08-25 01:25:03 +0800 | fix: remove stale Code.js duplicate from inventory movement GAS project (#425)
-8d69388 | 2026-08-24 22:37:21 +0800 | Add admin+sophia@truesight.me to TRUSTED_AGENTS for inventory movement auth (#424)
 ```
 
 ### `dapp` → `dapp`
@@ -446,13 +403,16 @@ edf8fdb | 2026-08-26 07:31:12 +0000 | chore: refresh currencies.json [skip ci]
 6f190de | 2026-08-25 10:24:31 -0300 | chore(inventory): refresh currencies.json (repackaging ingest)
 1237c29 | 2026-08-25 08:29:14 -0300 | chore: refresh Agroverse store inventory snapshot
 cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-c166c94 | 2026-08-24 07:45:01 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-6fea31d | 2026-08-24 07:30:47 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+3eb6784 | 2026-08-31 23:38:42 -0300 | Add Santa Anna Fazenda (Pará) annual production (~1.5 tons/yr) (#260)
+2458ab2 | 2026-08-31 22:36:08 -0300 | Add Santa Anna Fazenda (Pará) harvest cycle (~once per year) (#259)
+f7859eb | 2026-08-31 22:35:37 -0300 | Add Santa Anna Fazenda (Pará) tree age (~30 yrs) to farm highlights (#258)
+8e23d10 | 2026-08-31 22:26:52 -0300 | Add Paulo's farm tree age (~40 yrs) and annual production (1.2 tons/yr) (#257)
+ac292aa | 2026-08-31 22:21:48 -0300 | Add Fazenda Cleide annual production (1.5 tons/yr) to farm highlights (#256)
 31fe9b7 | 2026-08-31 18:46:51 -0300 | Add FSVP site code V-06-29 to Paulo's La do Sitio farm page (#255)
 1ac2db3 | 2026-08-31 17:19:36 -0300 | Add La do Sitio field videos to farm media gallery (#254)
 8dfc0da | 2026-08-31 16:53:16 -0300 | Add COOPOXIN sub-cooperative card to CEPOTX page (#253)
@@ -488,11 +448,6 @@ c4730a5 | 2026-08-31 12:00:28 -0300 | Add Paulo La do Sitio field photo IMG_3884
 f689699 | 2026-08-31 11:49:56 -0300 | Santa Anna farm page: add 6 site-visit photos to media gallery (#239)
 a6877fa | 2026-08-31 11:36:27 -0300 | Rancho Maranta header: re-crop with headroom + focal point center 30% so heads are never cut (#238)
 8c51745 | 2026-08-31 11:30:43 -0300 | Rancho Maranta: use IMG_7660 as header (bottom-anchored landscape crop, family visible) (#237)
-f2f2cda | 2026-08-31 11:00:59 -0300 | Rancho Maranta: warm human header (IMG_7684), family video + 5 photos in gallery, card image sync (#236)
-9af9fe1 | 2026-08-31 10:51:28 -0300 | feat: embed Rancho Maranta Plot 2 boundary-walk video (YouTube) in farm gallery (#235)
-d5936a1 | 2026-08-31 10:07:58 -0300 | feat: embed Rancho Maranta Plot 1 hero video (YouTube) in farm gallery (#234)
-db0a971 | 2026-08-31 09:55:51 -0300 | fix: add Rancho Maranta image to Brazilian Path journey cards (#233)
-d0d4b6d | 2026-08-31 09:26:36 -0300 | Use farmers-with-Jedielcio photo for Santa Anna journey stop (#232)
 … (truncated)
 ```
 
@@ -512,6 +467,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-09-01T040402Z_sunmint-map-filters-boundary-webhook-live.md`
+
+- **posted_at_utc:** `2026-09-01T04:04:02Z`  
+- **slug:** `sunmint-map-filters-boundary-webhook-live`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **SunMint Map** — Added a farm selector dropdown and registry section to the impact map, complete with status legends and boundary-authority indicators.
+
 ### `beer-hall_2026-08-31T041857Z_sunmint-impact-map-farm-pages-invalidation-fix.md`
 
 - **posted_at_utc:** `2026-08-31T04:18:57Z`  
@@ -529,15 +493,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **FounderHaus** — Launched the Farm Edition program page with embedded videos, a planting-day photo gallery, and direct links to the Cacao Tea shop.
-
-### `beer-hall_2026-08-27T080454Z_sunmint-monitor-plan-backend-sync.md`
-
-- **posted_at_utc:** `2026-08-27T08:04:54Z`  
-- **slug:** `sunmint-monitor-plan-backend-sync`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **SunMint** — Updated the Tree-Growth Monitoring Plan (v1.4) to reflect corrected hosting priorities and shipped the backend handler for signed PM002 measurement events.
 
 ---
 
@@ -558,51 +513,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-07 | 731 | 8356.87386 | 2025-12-07 19:14:46 |
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 15:50:59 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-24`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_31 | xImcXg3OlVcW | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_65 | qOejcMrlb7jD | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_41 | RPZryhwUa6yZ | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_6 | SpTckuw1GmAj | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_56 | Sl29ybzl22Tp | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_52 | HwU7fM75YFS4 | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
-| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_36 | 0IJOTgc3JMN9 | Stripe checkout (online) |
-| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_72 | hbMM9Cp19qd1 | Stripe checkout (online) |
-| 2026-08-29 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
-| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_11 | — | — |
-| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_22 | — | — |
-| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_24 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
