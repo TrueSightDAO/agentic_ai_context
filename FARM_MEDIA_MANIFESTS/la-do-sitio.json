@@ -6,7 +6,7 @@
  "plot_ids": [
   "LD-P1"
  ],
- "pipeline": "FARM_MEDIA_PIPELINE.md (agentic_ai_context)",
+ "pipeline": "MEDIA_ARCHIVE_PIPELINE.md (agentic_ai_context)",
  "objects_remap": {
   "note": "COCO-80 class 'banana' remapped to 'cacao_pods' (cacao not in COCO-80; YOLOv8n ~77% conf)"
  },

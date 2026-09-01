@@ -13,7 +13,7 @@
 >
 > **Terminology:** this daemon is the **upload stage** of the **Media Archives Pipeline
 > (MAP)** — the umbrella term for the capture → process → archive → manifest → query flow
-> for ALL DAO media (see FARM_MEDIA_PIPELINE.md). Farm media is the first source namespace;
+> for ALL DAO media (see MEDIA_ARCHIVE_PIPELINE.md). Farm media is the first source namespace;
 > community-event media will be a second namespace under the same machinery.
 
 ## 1. Governor design rules (confirmed 2026-09-01, thread 17181)
@@ -136,7 +136,7 @@ farm_media_inbox/<farm_id>/
 - **Don't** create variant plan/backlog files.
 
 ## 8. Related
-- `FARM_MEDIA_PIPELINE.md` — the pipeline runbook this daemon serves (PR #858)
+- `MEDIA_ARCHIVE_PIPELINE.md` — the pipeline runbook this daemon serves (PR #858)
 - `FARM_MEDIA_MANIFESTS/index.json` + `<farm>.json` — committed state the daemon feeds
 - `farm-media-raw` — raw photo blob store (sibling)
 - `config/youtube/upload_video_to_youtube.py` — the upload primitive (local, gitignored)

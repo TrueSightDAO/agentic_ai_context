@@ -1,6 +1,6 @@
 # Farm Media Manifests
 
-Part of the **Media Archives Pipeline (MAP)** — farm media is the first source namespace under the umbrella (see FARM_MEDIA_PIPELINE.md). Searchable index of raw farm media (photos + videos) ingested via FARM_MEDIA_PIPELINE.md. Each manifest is the reference layer: SHA-256, GPS, duration, YOLO objects, YouTube IDs.
+Part of the **Media Archives Pipeline (MAP)** — farm media is the first source namespace under the umbrella (see MEDIA_ARCHIVE_PIPELINE.md). Searchable index of raw farm media (photos + videos) ingested via MEDIA_ARCHIVE_PIPELINE.md. Each manifest is the reference layer: SHA-256, GPS, duration, YOLO objects, YouTube IDs.
 
 | Farm | Farm ID | Manifest | Photos | Videos (YouTube) | Status |
 |---|---|---|---|---|---|
