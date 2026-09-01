@@ -1,6 +1,6 @@
 # Public RSA Signature Ledger — Org-wide Auditable GitHub JSON Cache
 
-**Status:** A1–A5 ✅ complete (2026-09-02) — ledger live & UAT-accepted · next: **A6 historical backfill** · legacy sunmint path (PR0–PR3) superseded
+**Status:** ✅ **COMPLETE (2026-09-02)** — A1–A7 all merged, deployed & verified · 3,964 RSA-signed events live in `verify_public_signatures` (34 event types, PII-clean, 3/3 offline verify) · dashboards live · §7 contributions filed · legacy sunmint path superseded
 **Owner:** Gary Teh
 **Requested by:** Gary Teh, 2026-09-01 (thread 17194)
 **Goal:** Every RSA-signed DAO event — SunMint today; contribution reporting, sales, inventory movement and future event types tomorrow — gets a **publicly auditable GitHub JSON cache record** in `TrueSightDAO/verify_public_signatures`: **one immutable JSON file per event**, bucketed by event type, plus an org-wide `index.json`. Also: **public link-share surface for the Tree Growth Measurements tab**.
