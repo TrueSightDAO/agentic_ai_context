@@ -20,9 +20,48 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-01T04:04:02Z`
+- Generated (UTC): `2026-09-01T05:28:09Z`
 - Look-back: **7** calendar days (`2026-08-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 20
+- `[TREE PLANTING REJECT EVENT]` × 12
+- `[TREE PLANTING EVENT]` × 2
+- `[PRACTICE EVENT]` × 1
+- `[FARM REGISTRATION EVENT]` × 1
+- `[NOTARIZATION EVENT]` × 1
+- _free-form (no bracket tag)_ × 5
+
+### Latest entries
+
+- `Edgar_20260831162552_071` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.2075414030626623 · Longitude: -52.22216600596255 · Species: Cacao - Criolla
+- `Edgar_20260831164619_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 85 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260831165947_075` · **Edgar** · [CONTRIBUTION EVENT] Amount: 86 · Contributor(s): Sophia Truesight (autopilot) · Description: FINAL exact figure for Santa Anna Fazenda buildout (2026-08-30/31) — 86.05 m…
+- `Edgar_20260831170056_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 165 · Contributor(s): Sophia Truesight (Autopilot)
+- `Edgar_20260831170100_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260831170237_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Rancho Maranta farm page, media production & SEO registration (agroverse_sho…
+- `Edgar_20260831170240_083` · **Edgar** · [CONTRIBUTION EVENT] Amount: 120 · Contributor(s): Gary Teh · Description: Santa Anna Fazenda (Pará, CEPOTX) site-visit engagement 2026-08-30/31 — farm…
+- `Edgar_20260831171039_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sharing about our project with Pavia our host in Altamira whose family owns …
+- `Edgar_20260831193348_087` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Extracted GPS coordinates (-3.208894, -52.215756, Altamira/PA) from EXIF met…
+- `Edgar_20260831194514_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: FARM_MEDIA_PIPELINE processing for Rancho Maranta — GPS re-injection + media…
+- `Edgar_20260831195325_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Usage-logging tooling for truesight_autopilot_transcript (append_usage / wri…
+- `Edgar_20260831195853_002` · **Edgar** · [No Text Provided]
+- `Edgar_20260831195917_004` · **Edgar** · [No Text Provided]
+- `Edgar_20260831195934_006` · **Edgar** · [TREE PLANTING EVENT] Lat 44.56 / Long -123.26 · Tree Species: Cacao · Tree ID: LEDGER-SMOKE-0001
+- `Edgar_20260831201409_008` · **Edgar** · [NOTARIZATION EVENT] Document Hash: 96800393be7980f71435a1335ad9d48d6ed1ee1b9f82eac961efa9b707f5105a · Description: FDA FSVP supplier site visit report — CEPOTX / COOPOXIN / Santa Anna Fazenda… · Witnesses: Jedielcio (CEPOTX agronomist / technical liaison); Gary Teh (site visit)
+- `Edgar_20260831202318_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
+- `Edgar_20260901001933_002` · **Edgar** · [No Text Provided]
+- `Edgar_20260901023959_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: SunMint boundary submission pipeline + impact map extension (2026-08-31→09-0…
+- `Edgar_20260901031234_006` · **Edgar** · [No Text Provided]
+- `Edgar_20260901031347_008` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -194,13 +233,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,858.00**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$53.73**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -285,6 +328,8 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+34cbe1e | 2026-09-01 01:04:18 -0300 | Merge pull request #875 from TrueSightDAO/auto/advisory-refresh-2026-09-01
+7e7d1cf | 2026-09-01 04:04:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 8a0a5c4 | 2026-09-01 00:57:48 -0300 | Plan: Media Archives Pipeline dashboard at sophia.truesight.me/media-archive-pipeline (PR0) (#874)
 3c58802 | 2026-09-01 00:50:40 -0300 | Rename FARM_MEDIA_PIPELINE.md -> MEDIA_ARCHIVE_PIPELINE.md (MAP terminology) (#873)
 c1c57c0 | 2026-09-01 00:19:10 -0300 | Propagate Media Archives Pipeline (MAP) terminology across context docs (#872)
@@ -323,8 +368,6 @@ d6cf172 | 2026-08-31 02:55:07 -0300 | chore(previews): refresh Beer Hall preview
 8700cba | 2026-08-31 00:08:10 -0300 | Manifest: SunMint reject/invalid path UAT complete; first real LINK still pending (#847)
 55d58fa | 2026-08-31 00:03:34 -0300 | GAS Script Properties registry + convention (TGM_GITHUB_TOKEN confirmed set) (#846)
 3701f38 | 2026-08-30 22:50:43 -0300 | Docs: SunMint plots single-source-of-truth (avoid trees/plots.geojson confusion) (#845)
-04b4f79 | 2026-08-30 20:35:36 -0300 | Add SunMint plots registry runbook (defining + extending plots) (#844)
-99a5f02 | 2026-08-30 20:24:56 -0300 | Add FSVP video evidence analysis process runbook (#843)
 … (truncated)
 ```
 
@@ -513,6 +556,51 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 0 | 17439.84386 | 8/31/2026 21:51:30 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-25`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_31 | xImcXg3OlVcW | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_65 | qOejcMrlb7jD | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_41 | RPZryhwUa6yZ | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_6 | SpTckuw1GmAj | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_56 | Sl29ybzl22Tp | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_52 | HwU7fM75YFS4 | Stripe checkout (online) |
+| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
+| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_36 | 0IJOTgc3JMN9 | Stripe checkout (online) |
+| 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_72 | hbMM9Cp19qd1 | Stripe checkout (online) |
+| 2026-08-29 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_11 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_22 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_24 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
