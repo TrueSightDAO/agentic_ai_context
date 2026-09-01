@@ -50,7 +50,10 @@ Turn local MP4s into: (1) optional **YouTube** uploads with sensible titles, (2)
    - Set **`AGROVERSE_PUBLIC_ORIGIN`** when building for a host where assets are available (e.g. **`https://beta.agroverse.shop`** if production **`www`** has not yet deployed new **`transcript-thumbs/`** files—crawlers require HTTP **200** on the image URL).  
    - **`generate_video_transcript_blog_posts.py`** also respects **`AGROVERSE_PUBLIC_ORIGIN`** for canonical / Open Graph URLs and always attaches image dimensions when the card path exists under **`assets/`**.
 
-7. **Push title updates to YouTube** (mandatory whenever manifest titles drift)  
+7. **Push title + description updates to YouTube** (mandatory whenever manifest titles or transcripts drift)  
+   - **Descriptions must use the polished transcript, never raw ASR.** `youtube_batch_incoming.py`'s upload-time `description_for_video()` writes the raw Whisper transcript, so after any blog regen (which improves transcript quality via `clean_transcript` + Grok polish) you MUST re-sync live descriptions from the repo's `description` field:  
+     `python3 scripts/youtube_update_video_descriptions.py --dry-run` then `python3 scripts/youtube_update_video_descriptions.py`  
+     (the `description` field is written into **`scripts/youtube_videos.json`** by `scripts/generate_youtube_descriptions.py`).  
    - **`scripts/youtube_videos.json`** is the checked-in source of truth for each uploaded video’s **canonical title** (including ` | Agroverse`, max 100 chars). It is updated when you run **`generate_video_transcript_blog_posts.py`** (`sync_youtube_mapping_titles`) and when you edit titles manually.  
    - **YouTube Studio titles do not auto-sync.** After any change to that JSON—or after regenerating blog posts—run:  
      `python3 scripts/youtube_update_video_titles.py --dry-run` then `python3 scripts/youtube_update_video_titles.py`  
@@ -59,7 +62,7 @@ Turn local MP4s into: (1) optional **YouTube** uploads with sensible titles, (2)
      `rm scripts/youtube_token.json`  
      `python3 scripts/youtube_oauth_reauthorize.py`  
      Sign in as the channel owner (e.g. **`admin@truesight.me`**), then rerun **`youtube_update_video_titles.py`**.  
-   - **`youtube_oauth_reauthorize.py`** lives next to the other YouTube helpers under **`agroverse_shop/scripts/`** (same Desktop client as **`youtube_credentials.json`**). See also **`agroverse_shop/docs/SECURITY.md`**.
+   - **`youtube_oauth_reauthorize.py`** lives next to the other YouTube helpers under **`agroverse_shop/scripts/`** (same Desktop client as **`youtube_credentials.json`**).    - **`youtube_update_video_descriptions.py`** needs the same OAuth scope (`youtube.force-ssl`); run it with `--config-dir <dir>` if the OAuth files live outside the repo (e.g. the autopilot box's `/opt/truesight_autopilot/config/youtube`). See also **`agroverse_shop/docs/SECURITY.md`**.
 
 8. **Legacy intro cleanup** (optional one-off)  
    - `scripts/strip_transcript_boilerplate_intros.py` removes old disclaimer `<p>` blocks from `post/*/index.html`.
@@ -69,7 +72,9 @@ Turn local MP4s into: (1) optional **YouTube** uploads with sensible titles, (2)
 Use this after **upload** and/or **blog regen** so you do not ship stale YouTube titles or broken OAuth:
 
 1. `generate_video_transcript_blog_posts.py` (updates posts, **`youtube_videos.json`**, blog cards; runs **`sync_post_open_graph_images.py`** at the end).  
-2. **`youtube_update_video_titles.py`** — dry-run, then apply — so **YouTube** matches the JSON.  
+2. **`youtube_update_video_titles.py`** — dry-run, then apply — so **YouTube** titles match the JSON.  
+3. **`youtube_update_video_descriptions.py`** — dry-run, then apply — so **YouTube descriptions** match the polished transcript in the JSON (prevents raw-ASR descriptions from shipping).  
+4. If steps 2/3 error on token/scope: **`youtube_oauth_reauthorize.py`**, then repeat steps 2/3.
 3. If step 2 errors on token/scope: **`youtube_oauth_reauthorize.py`**, then repeat step 2.
 
 ### What future agents should not do
@@ -77,6 +82,7 @@ Use this after **upload** and/or **blog regen** so you do not ship stale YouTube
 - Do not commit **`youtube_credentials.json`**, **`youtube_token.json`**, or API keys.  
 - Do not upload rows with **`youtube_upload_recommended: false`** unless the user explicitly overrides.  
 - Do not assume **Grok** ran: without a key, posts still build using local cleanup only.  
+- Do not push raw Whisper ASR text as a YouTube description — always run **`youtube_update_video_descriptions.py`** (or the polish pipeline) so live descriptions match the blog's cleaned transcript.  
 - Raw video in **Downloads** is **not** git-tracked; manifests and small assets in-repo are.
 
 ---
