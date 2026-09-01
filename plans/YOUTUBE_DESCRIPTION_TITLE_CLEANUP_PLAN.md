@@ -1,6 +1,6 @@
 # YouTube Description & Title Cleanup — Execution Roadmap
 
-**Status:** New. Not started.
+**Status:** Complete — all 6 units landed 2026-09-01; live descriptions pushed + verified 73/73 (PRs #263/#266/#267/#881).
 **Owner:** Gary Teh.
 **Requested by:** Gary Teh, 2026-09-01.
 **Repo:** `agroverse_shop` (scripts), `agentic_ai_context` (this plan + SOP update).
@@ -79,16 +79,16 @@ are still placeholder-style (e.g. raw filename fragments like "Export: Full HD 1
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR1.**
+> **STATUS: COMPLETE** — all 6 units landed 2026-09-01. → PR1.**
 
 | Unit | Built | Merged |
 |------|:----:|:------:|
-| PR1 (add description field, local only) | ☐ | ☐ |
-| PR2 (description push script, dry-run only) | ☐ | ☐ |
-| PR3 (sample for governor review) | ☐ | — |
-| PR4 (live description push, post-approval) | ☐ | ☐ |
-| PR5 (title cleanup pass) | ☐ | ☐ |
-| PR6 (SOP update — prevent recurrence) | ☐ | ☐ |
+| PR1 (add description field, local only) | ✅ | ✅ |
+| PR2 (description push script, dry-run only) | ✅ | ✅ |
+| PR3 (sample for governor review) | ✅ | — |
+| PR4 (live description push, post-approval) | ✅ | ✅ |
+| PR5 (title cleanup pass) | ✅ | ✅ |
+| PR6 (SOP update — prevent recurrence) | ✅ | ✅ |
 
 ---
 
