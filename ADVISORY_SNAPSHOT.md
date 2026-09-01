@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-01T11:54:32Z`
+- Generated (UTC): `2026-09-01T16:49:37Z`
 - Look-back: **7** calendar days (`2026-08-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,28 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[TREE PLANTING REJECT EVENT]` × 11
+- `[CONTRIBUTION EVENT]` × 23
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 6
+- `[PRACTICE EVENT]` × 2
+- `[FARM REGISTRATION EVENT]` × 2
 - `[TREE PLANTING EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
-- `[FARM REGISTRATION EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
-- `[FARM BOUNDARY EVIDENCE EVENT]` × 1
-- _free-form (no bracket tag)_ × 5
+- _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260831164619_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 85 · Contributor(s): Sophia Truesight (autopilot)
-- `Edgar_20260831165947_075` · **Edgar** · [CONTRIBUTION EVENT] Amount: 86 · Contributor(s): Sophia Truesight (autopilot) · Description: FINAL exact figure for Santa Anna Fazenda buildout (2026-08-30/31) — 86.05 m…
-- `Edgar_20260831170056_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 165 · Contributor(s): Sophia Truesight (Autopilot)
-- `Edgar_20260831170100_079` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260831170237_081` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Rancho Maranta farm page, media production & SEO registration (agroverse_sho…
-- `Edgar_20260831170240_083` · **Edgar** · [CONTRIBUTION EVENT] Amount: 120 · Contributor(s): Gary Teh · Description: Santa Anna Fazenda (Pará, CEPOTX) site-visit engagement 2026-08-30/31 — farm…
-- `Edgar_20260831171039_085` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Sharing about our project with Pavia our host in Altamira whose family owns …
-- `Edgar_20260831193348_087` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Extracted GPS coordinates (-3.208894, -52.215756, Altamira/PA) from EXIF met…
-- `Edgar_20260831194514_089` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: FARM_MEDIA_PIPELINE processing for Rancho Maranta — GPS re-injection + media…
-- `Edgar_20260831195325_091` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Usage-logging tooling for truesight_autopilot_transcript (append_usage / wri…
-- `Edgar_20260831195853_002` · **Edgar** · [No Text Provided]
 - `Edgar_20260831195917_004` · **Edgar** · [No Text Provided]
 - `Edgar_20260831195934_006` · **Edgar** · [TREE PLANTING EVENT] Lat 44.56 / Long -123.26 · Tree Species: Cacao · Tree ID: LEDGER-SMOKE-0001
 - `Edgar_20260831201409_008` · **Edgar** · [NOTARIZATION EVENT] Document Hash: 96800393be7980f71435a1335ad9d48d6ed1ee1b9f82eac961efa9b707f5105a · Description: FDA FSVP supplier site visit report — CEPOTX / COOPOXIN / Santa Anna Fazenda… · Witnesses: Jedielcio (CEPOTX agronomist / technical liaison); Gary Teh (site visit)
@@ -63,6 +51,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260901031234_006` · **Edgar** · [No Text Provided]
 - `Edgar_20260901031347_008` · **Edgar** · [No Text Provided]
 - `Edgar_20260901104419_002` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: TEST-FARM-E2E-20260901 · Plot ID: TEST-P1 · Boundary Type: gps_walk
+- `Edgar_20260901123414_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-01T12:34:12.550Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260901143121_006` · **Edgar** · [No Text Provided]
+- `Edgar_20260901153131_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 450 · Description: MAP: Cleide media archive pipeline — shared daemon, dashboard, farm-page gal…
+- `Edgar_20260901153228_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Governor direction — Media Archives Pipeline (MAP): daemon, dashboard, CI ga…
+- `Edgar_20260901153904_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: YouTube Description & Title Cleanup (PR1–PR6): 73/73 live descriptions pushe…
+- `Edgar_20260901164208_002` · **Edgar** · [FARM REGISTRATION EVENT] Farm Name: UAT-FARM-20260901 · Location: UAT test location — Amazon, Para (test data, not a real farm) · Owner: Sophia Truesight (UAT)
+- `Edgar_20260901164215_004` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
+- `Edgar_20260901164218_006` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
+- `Edgar_20260901164224_008` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
+- `Edgar_20260901164226_010` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
+- `Edgar_20260901164254_012` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
 
 ---
 
@@ -277,6 +276,11 @@ _All dated lines on/after 2026-08-25_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+84cfa72 | 2026-09-01 11:04:22 -0300 | Remove Field Signals #8/#9 - moved to agroverse.shop Bean to Bliss (#349)
+9ba4184 | 2026-09-01 10:53:36 -0300 | Rephrase the removed-claim section, embed the source clip inline (#348)
+78bce99 | 2026-09-01 10:49:59 -0300 | Fix overclaimed job title for Jedielcio in FS8/FS9 (#347)
+a9c45a9 | 2026-09-01 10:43:15 -0300 | Recreate Field Signals #8, fix #9: correct a real misidentification (#346)
+40df803 | 2026-09-01 11:57:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1f7eba9 | 2026-09-01 08:12:47 -0300 | Swap FS#8 post to approved real-photo set (hero v3, crimson v3, Ponta Verde v2) (#345)
 5556e5e | 2026-09-01 08:11:35 -0300 | Add FS8 Ponta Verde yellow pod v2 (IMG_7672, 4:3)
 f051ba2 | 2026-09-01 08:11:34 -0300 | Add FS8 crimson pod v3 (IMG_7654 t11.5, tight pod close-up)
@@ -312,23 +316,27 @@ bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [
 45969f3 | 2026-08-30 05:43:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a7e521 | 2026-08-30 00:13:14 -0300 | SunMint impact map V1 — see our trees from space (Leaflet + Sentinel-2) (#319)
 37ab680 | 2026-08-30 00:13:11 -0300 | SunMint whitepaper: §13 On-Chain Carbon Credit Lifecycle — tree as transaction anchor (#318)
-8b0b815 | 2026-08-29 21:06:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3ed5148 | 2026-08-29 16:51:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
-ff01355 | 2026-08-29 07:18:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
-1f19de7 | 2026-08-28 20:05:41 -0300 | Fix mobile overflow on FounderHaus program page QR row (#317)
-280d39e | 2026-08-28 22:34:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-inventory/currencies.json (#173)
+4201f03 | 2026-09-01 13:25:51 +0000 | chore: refresh warm-up conversion readout [skip ci]
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1e47549 | 2026-09-01 13:45:24 -0300 | OPEN_FOLLOWUPS: add Media Retraction cron trigger + update FBE entry with UAT findings (#886)
+86c0125 | 2026-09-01 13:09:21 -0300 | SOP: GPS fields are part of the uniform media-cache format (PR #269) (#885)
+d5e5f2c | 2026-09-01 13:03:53 -0300 | docs: media invalidation/retraction design (3-tier) (#884)
+e33ff95 | 2026-09-01 12:59:01 -0300 | SOP: note upload ingress now writes polished descriptions (PR #268) (#883)
+4b478b2 | 2026-09-01 12:39:38 -0300 | Mark YouTube description/title cleanup plan complete (all 6 units landed) (#882)
+89ac41a | 2026-09-01 12:37:25 -0300 | SOP: add description re-sync step (polished transcript) to prevent raw-ASR recurrence (#881)
+30082b6 | 2026-09-01 10:06:30 -0300 | Add execution roadmap for YouTube description/title cleanup (#880)
+71b999d | 2026-09-01 08:54:55 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
+f4e2129 | 2026-09-01 08:54:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 0a771bc | 2026-09-01 07:53:56 -0300 | Wrap up MAP daemon + dashboard plans (all queues drained, dashboard live) (#879)
 d8b5fa5 | 2026-09-01 07:52:05 -0300 | Add Fazenda Cleide media manifest (71 videos, all uploaded) + index entry (#878)
 177e84d | 2026-09-01 07:46:48 -0300 | OPEN_FOLLOWUPS: file FBE hourly cron trigger (GAS UI) for Gary (#877)
@@ -360,21 +368,13 @@ d89e429 | 2026-08-31 14:22:27 -0300 | Add FARM_MEDIA_PIPELINE.md — standard pr
 ec25176 | 2026-08-31 14:03:15 -0300 | OPEN_FOLLOWUPS: usage.jsonl/meta.json logging is planned-but-not-implemented — file the gap (#857)
 545d901 | 2026-08-31 13:58:08 -0300 | plan: pivot SunMint signatures cache to org-wide verify_public_signatures ledger (per-event files + dao_protocol emit) (#856)
 f876619 | 2026-08-31 13:55:26 -0300 | Add Agroverse farm page conventions doc (hero w/ farmers, GPS, video, gotchas) (#851)
-0629a6d | 2026-08-31 11:49:43 -0300 | PR0: SunMint public signatures cache — roadmap (signatures.json + public link-share of Tree Growth Measurements) (#855)
-c92076f | 2026-08-31 11:47:07 -0300 | SunMint plots runbook: SA-P1 seed data, popup farm-link convention, beta/prod CNAME conflict, sheet SA, SCHEMA.md ref (#854)
-71b68e4 | 2026-08-31 11:17:14 -0300 | chore(previews): refresh Beer Hall preview (2026-08-31 UTC)
-286de2c | 2026-08-31 11:17:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
-923bf9a | 2026-08-31 11:02:02 -0300 | SunMint Impact Map Extension: implementation plan (PR0) (#853)
-3b967b6 | 2026-08-31 09:29:38 -0300 | OPEN_FOLLOWUPS: SunMint cleanup — CDSE superseded by Earth Search, growth 'reject' closed as by-design (#852)
-180dd27 | 2026-08-31 09:14:32 -0300 | OPEN_FOLLOWUPS: file SEO sheet tooling gap + known-working append path (#850)
-d6cf172 | 2026-08-31 02:55:07 -0300 | chore(previews): refresh Beer Hall preview (2026-08-31 UTC)
-45447ea | 2026-08-31 02:55:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+f69eedf | 2026-09-01 13:08:14 -0300 | feat: MEDIA RETRACTION GAS handler + doGet case + trigger doc (#454)
 b7794ce | 2026-09-01 00:20:53 -0300 | Wire FARM BOUNDARY EVIDENCE webhook doGet case + document hourly fallback trigger (#453)
 c750ac5 | 2026-08-31 23:56:40 -0300 | Add GAS handler for FARM BOUNDARY EVIDENCE EVENT (cron scan + farm upsert + tracking) (#452)
 fc54502 | 2026-08-30 21:09:23 -0300 | Make tree-index-rebuild dispatch failures audible (non-2xx logs + outcome note) (#451)
@@ -429,6 +429,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+cb22cba | 2026-09-01 12:00:11 +0000 | chore: refresh currencies.json [skip ci]
 5103798 | 2026-09-01 11:42:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c392457 | 2026-08-31 14:26:47 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 7da337e | 2026-08-31 14:25:03 +0000 | chore: refresh currencies.json [skip ci]
@@ -453,6 +454,15 @@ cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+9a7d585 | 2026-09-01 13:08:21 -0300 | GPS in media cache: latitude/longitude/gps_source fields + backfill script (#269)
+a0c1e15 | 2026-09-01 12:58:11 -0300 | Enforce polished descriptions at upload ingress (uniform JSON cache format) (#268)
+97ca127 | 2026-09-01 12:35:10 -0300 | Align 5 YouTube JSON titles to live (drop brand suffix) (#267)
+10a1887 | 2026-09-01 11:51:22 -0300 | Add youtube_update_video_descriptions.py (PR2): push polished descriptions (#266)
+c482fbd | 2026-09-01 11:47:52 -0300 | feat: wire Fazenda Cleide farm-page gallery to 71-video media archive (#265)
+a3b6b5a | 2026-09-01 14:30:43 +0000 | Rename Bean to Bliss ep 13/14 to keyword slugs (SEO)
+fe6a3a1 | 2026-09-01 11:19:47 -0300 | Add polished YouTube descriptions for all 73 videos (PR1) (#263)
+3afaaa6 | 2026-09-01 11:09:15 -0300 | Pin episodes 13-14 to the top of the blog listing (#262)
+7e0f14c | 2026-09-01 11:02:17 -0300 | Add Bean to Bliss episodes 13-14: cacao variety diversity + fermentation (#261)
 3eb6784 | 2026-08-31 23:38:42 -0300 | Add Santa Anna Fazenda (Pará) annual production (~1.5 tons/yr) (#260)
 2458ab2 | 2026-08-31 22:36:08 -0300 | Add Santa Anna Fazenda (Pará) harvest cycle (~once per year) (#259)
 f7859eb | 2026-08-31 22:35:37 -0300 | Add Santa Anna Fazenda (Pará) tree age (~30 yrs) to farm highlights (#258)
@@ -484,15 +494,6 @@ bed2fb8 | 2026-08-31 12:01:22 -0300 | Add Paulo La do Sitio field photo IMG_3905
 efea172 | 2026-08-31 12:00:37 -0300 | Add Paulo La do Sitio field photo IMG_3990
 599f48f | 2026-08-31 12:00:35 -0300 | Add Paulo La do Sitio field photo IMG_3940
 208bb31 | 2026-08-31 12:00:33 -0300 | Add Paulo La do Sitio field photo IMG_3932
-37de31c | 2026-08-31 12:00:32 -0300 | Add Paulo La do Sitio field photo IMG_3929
-33405dc | 2026-08-31 12:00:31 -0300 | Add Paulo La do Sitio field photo IMG_3905
-c49bca5 | 2026-08-31 12:00:29 -0300 | Add Paulo La do Sitio field photo IMG_3891
-c4730a5 | 2026-08-31 12:00:28 -0300 | Add Paulo La do Sitio field photo IMG_3884
-4d76016 | 2026-08-31 11:54:07 -0300 | Add SunMint plot map link to Santa Anna farm page (#241)
-078e992 | 2026-08-31 11:53:14 -0300 | Add Fazenda Cleide farm profile page (Pará, CEPOTX) (#240)
-f689699 | 2026-08-31 11:49:56 -0300 | Santa Anna farm page: add 6 site-visit photos to media gallery (#239)
-a6877fa | 2026-08-31 11:36:27 -0300 | Rancho Maranta header: re-crop with headroom + focal point center 30% so heads are never cut (#238)
-8c51745 | 2026-08-31 11:30:43 -0300 | Rancho Maranta: use IMG_7660 as header (bottom-anchored landscape crop, family visible) (#237)
 … (truncated)
 ```
 
@@ -582,7 +583,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/1/2026 4:51:00 |
+| 2026-09 | 0 | 17439.84386 | 9/1/2026 8:50:46 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-25`; scanned last **600** data rows)
 
