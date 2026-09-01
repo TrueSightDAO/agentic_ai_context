@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-01T16:49:37Z`
+- Generated (UTC): `2026-09-01T21:13:07Z`
 - Look-back: **7** calendar days (`2026-08-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,20 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 23
+- `[CONTRIBUTION EVENT]` × 20
 - `[FARM BOUNDARY EVIDENCE EVENT]` × 6
 - `[PRACTICE EVENT]` × 2
 - `[FARM REGISTRATION EVENT]` × 2
 - `[TREE PLANTING EVENT]` × 2
 - `[NOTARIZATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 6
+- `[FARM REGISTRATION]` × 1
+- _free-form (no bracket tag)_ × 8
 
 ### Latest entries
 
-- `Edgar_20260831195917_004` · **Edgar** · [No Text Provided]
-- `Edgar_20260831195934_006` · **Edgar** · [TREE PLANTING EVENT] Lat 44.56 / Long -123.26 · Tree Species: Cacao · Tree ID: LEDGER-SMOKE-0001
-- `Edgar_20260831201409_008` · **Edgar** · [NOTARIZATION EVENT] Document Hash: 96800393be7980f71435a1335ad9d48d6ed1ee1b9f82eac961efa9b707f5105a · Description: FDA FSVP supplier site visit report — CEPOTX / COOPOXIN / Santa Anna Fazenda… · Witnesses: Jedielcio (CEPOTX agronomist / technical liaison); Gary Teh (site visit)
-- `Edgar_20260831202318_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
 - `Edgar_20260901001933_002` · **Edgar** · [No Text Provided]
 - `Edgar_20260901023959_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: SunMint boundary submission pipeline + impact map extension (2026-08-31→09-0…
 - `Edgar_20260901031234_006` · **Edgar** · [No Text Provided]
@@ -62,6 +59,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260901164224_008` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
 - `Edgar_20260901164226_010` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
 - `Edgar_20260901164254_012` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
+- `Edgar_20260901165254_002` · **Edgar** · [FARM REGISTRATION] Farm Name: Altamira random · Farm Location: · Latitude: -3.209416
+- `Edgar_20260901175619_004` · **Edgar** · undefined
+- `Edgar_20260901175650_006` · **Edgar** · [No Text Provided]
+- `Edgar_20260901180924_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: GPS geo-tagging for media archive: lat/lon in JSON caches, ingress capture, …
 
 ---
 
@@ -276,6 +277,7 @@ _All dated lines on/after 2026-08-25_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+99c1e7f | 2026-09-01 16:51:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 84cfa72 | 2026-09-01 11:04:22 -0300 | Remove Field Signals #8/#9 - moved to agroverse.shop Bean to Bliss (#349)
 9ba4184 | 2026-09-01 10:53:36 -0300 | Rephrase the removed-claim section, embed the source clip inline (#348)
 78bce99 | 2026-09-01 10:49:59 -0300 | Fix overclaimed job title for Jedielcio in FS8/FS9 (#347)
@@ -315,7 +317,6 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 45969f3 | 2026-08-30 05:43:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0a7e521 | 2026-08-30 00:13:14 -0300 | SunMint impact map V1 — see our trees from space (Leaflet + Sentinel-2) (#319)
-37ab680 | 2026-08-30 00:13:11 -0300 | SunMint whitepaper: §13 On-Chain Carbon Credit Lifecycle — tree as transaction anchor (#318)
 … (truncated)
 ```
 
@@ -328,6 +329,10 @@ bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3ca119a | 2026-09-01 14:48:05 -0300 | docs: repoint manifest paths to dedicated farm_media_manifests repo (#888)
+1cd6d2b | 2026-09-01 14:44:04 -0300 | Move farm media manifests to dedicated repo (pointer README) (#887)
+fe531ea | 2026-09-01 13:49:57 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
+f9310dd | 2026-09-01 13:49:56 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 1e47549 | 2026-09-01 13:45:24 -0300 | OPEN_FOLLOWUPS: add Media Retraction cron trigger + update FBE entry with UAT findings (#886)
 86c0125 | 2026-09-01 13:09:21 -0300 | SOP: GPS fields are part of the uniform media-cache format (PR #269) (#885)
 d5e5f2c | 2026-09-01 13:03:53 -0300 | docs: media invalidation/retraction design (3-tier) (#884)
@@ -364,10 +369,6 @@ b3580e4 | 2026-08-31 16:22:36 -0300 | Farm media manifests: La do Sitio (72 item
 9fe30f7 | 2026-08-31 15:16:32 -0300 | Update Rancho Maranta manifest yt_ids to GPS-tagged uploads (NZThWnbWZE8, CQMPvCXaHfs, BZRo4yPl8us) (#861)
 7a9c8ee | 2026-08-31 14:34:38 -0300 | FARM_MEDIA_MANIFESTS: add rancho-maranta-para.json (52 items, sha256, GPS, yt_ids) per FARM_MEDIA_PIPELINE (#860)
 d89e429 | 2026-08-31 14:22:27 -0300 | Add FARM_MEDIA_PIPELINE.md — standard process for raw farm media intake (videos→YouTube, photos→farm-media-raw, manifest index) (#858)
-1a83042 | 2026-08-31 14:21:43 -0300 | fix: restore OPEN_FOLLOWUPS.md (1,937 lines) deleted by #857 squash — re-append usage-logging entry (#858) (#859)
-ec25176 | 2026-08-31 14:03:15 -0300 | OPEN_FOLLOWUPS: usage.jsonl/meta.json logging is planned-but-not-implemented — file the gap (#857)
-545d901 | 2026-08-31 13:58:08 -0300 | plan: pivot SunMint signatures cache to org-wide verify_public_signatures ledger (per-event files + dao_protocol emit) (#856)
-f876619 | 2026-08-31 13:55:26 -0300 | Add Agroverse farm page conventions doc (hero w/ farmers, GPS, video, gotchas) (#851)
 … (truncated)
 ```
 
@@ -454,6 +455,7 @@ cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+04aef42 | 2026-09-01 14:01:13 -0300 | Capture GPS at upload ingress (youtube_batch_incoming + bean episodes) (#270)
 9a7d585 | 2026-09-01 13:08:21 -0300 | GPS in media cache: latitude/longitude/gps_source fields + backfill script (#269)
 a0c1e15 | 2026-09-01 12:58:11 -0300 | Enforce polished descriptions at upload ingress (uniform JSON cache format) (#268)
 97ca127 | 2026-09-01 12:35:10 -0300 | Align 5 YouTube JSON titles to live (drop brand suffix) (#267)
@@ -493,7 +495,6 @@ bed2fb8 | 2026-08-31 12:01:22 -0300 | Add Paulo La do Sitio field photo IMG_3905
 23afbd2 | 2026-08-31 12:00:38 -0300 | Add Paulo La do Sitio field photo IMG_4001
 efea172 | 2026-08-31 12:00:37 -0300 | Add Paulo La do Sitio field photo IMG_3990
 599f48f | 2026-08-31 12:00:35 -0300 | Add Paulo La do Sitio field photo IMG_3940
-208bb31 | 2026-08-31 12:00:33 -0300 | Add Paulo La do Sitio field photo IMG_3932
 … (truncated)
 ```
 
@@ -583,7 +584,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/1/2026 8:50:46 |
+| 2026-09 | 0 | 17439.84386 | 9/1/2026 13:51:02 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-25`; scanned last **600** data rows)
 
