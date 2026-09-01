@@ -1,18 +1,14 @@
-# Farm Media Manifests
+# Farm Media Manifests — moved
 
-Part of the **Media Archives Pipeline (MAP)** — farm media is the first source namespace under the umbrella (see MEDIA_ARCHIVE_PIPELINE.md). Searchable index of raw farm media (photos + videos) ingested via MEDIA_ARCHIVE_PIPELINE.md. Each manifest is the reference layer: SHA-256, GPS, duration, YOLO objects, YouTube IDs.
+> **These manifests now live in the dedicated data repo:**
+> **https://github.com/TrueSightDAO/farm_media_manifests**
 
-| Farm | Farm ID | Manifest | Photos | Videos (YouTube) | Status |
-|---|---|---|---|---|---|
-| La do Sitio (Paulo) | `la-do-sitio` | [la-do-sitio.json](la-do-sitio.json) | 52/52 in `farm-media-raw/la-do-sitio/photos/` | 53/71 LIVE, 18 pending quota, 1 SOURCE_CORRUPT | v1 filed; updating as re-uploads complete |
-| Cleide | `cleide` | — (in flight) | — | — | other instance |
-| Santa Anna | `santa-anna-fazenda-para` | — (in flight) | — | — | other instance |
-| Rancho Maranta | `rancho-maranta` | — (in flight) | — | — | other instance |
+Machine-generated JSON manifests indexing farm media (YouTube videos via `yt_id` + plot/coverage metadata) for TrueSight DAO farms.
 
-## Schema (v1.0)
-- `farm_id`, `region`, `plot_ids`, `pipeline`, `objects_remap` (COCO-80 `banana` → `cacao_pods`)
-- `videos[]`: `file`, `size_bytes`, `sha256`, `duration_s`, `latitude`/`longitude`, `objects[]`, `yt_id`, `status` (LIVE / PENDING_QUOTA_REUPLOAD / SOURCE_CORRUPT)
-- `storage.photos_repo` — where originals live
+- `<farm_id>.json` — per-farm manifest
+- `index.json` — directory across all farms
 
-## Updating
-Manifests are machine-generated; update via Contents-API push (not hand-edit), then bump this index.
+Raw media lives in [`farm-media-raw`](https://github.com/TrueSightDAO/farm-media-raw).
+Upload daemon: [`farm-media-daemon`](https://github.com/TrueSightDAO/farm-media-daemon).
+
+_Moved 2026-09-01 to keep daemon-written data out of the agent-context repo._
