@@ -1,4 +1,6 @@
-# FARM_MEDIA_PIPELINE.md — Raw farm media intake, dedupe & distribution
+# MEDIA_ARCHIVE_PIPELINE.md — Raw media intake, dedupe & distribution (Media Archives Pipeline / MAP)
+
+> **Renamed from `FARM_MEDIA_PIPELINE.md`** (2026-09-01) to match MAP terminology. Older docs/links may still say FARM_MEDIA_PIPELINE.md — same file.
 
 ## Terminology — Media Archives Pipeline (MAP)
 
@@ -7,7 +9,7 @@
 > community events, partner trips…). Farm media is the **first source namespace** under it.
 >
 > - **MAP** — the umbrella: intake → processing → upload/archive → manifest → query
-> - **Source namespace** — which bucket the media came from: `farm-media` (this runbook),
+> - **Source namespace** — which bucket the media came from: `farm-media` (this runbook, formerly FARM_MEDIA_PIPELINE.md),
 >   `event-media` (community events, future)…
 > - **The queue** — the inbox + sidecars (what's waiting; pending = no `yt_id`)
 > - **The daemon** — the shared uploader (`farm-media-daemon` repo), dumb-on-purpose
