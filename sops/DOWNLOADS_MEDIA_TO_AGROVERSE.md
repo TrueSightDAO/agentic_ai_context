@@ -54,6 +54,7 @@ Turn local MP4s into: (1) optional **YouTube** uploads with sensible titles, (2)
    - **Descriptions must use the polished transcript, never raw ASR.** Since **PR #268**, `youtube_batch_incoming.py` builds upload-time descriptions from the polished pipeline (`clean_transcript` + Grok polish via `build_description`) and stores the result in the `description` field of **`scripts/youtube_videos.json`** — so new uploads are clean by default. For existing/live videos, re-sync from the repo's `description` field:  
      `python3 scripts/youtube_update_video_descriptions.py --dry-run` then `python3 scripts/youtube_update_video_descriptions.py`  
      (the `description` field is written into **`scripts/youtube_videos.json`** by `scripts/generate_youtube_descriptions.py`).  
+   - **GPS is part of the uniform media-cache format.** Entries in **`scripts/youtube_videos.json`** carry `latitude` / `longitude` / `gps_source` (exact EXIF from the source file, or the farm-manifest rounded fallback, marked accordingly — PR #269). Backfill via **`python3 scripts/add_gps_to_youtube_videos_json.py`** (dry-run, then `--write`). This lets LLMs search media assets by latitude/longitude.
    - **`scripts/youtube_videos.json`** is the checked-in source of truth for each uploaded video’s **canonical title** (including ` | Agroverse`, max 100 chars). It is updated when you run **`generate_video_transcript_blog_posts.py`** (`sync_youtube_mapping_titles`) and when you edit titles manually.  
    - **YouTube Studio titles do not auto-sync.** After any change to that JSON—or after regenerating blog posts—run:  
      `python3 scripts/youtube_update_video_titles.py --dry-run` then `python3 scripts/youtube_update_video_titles.py`  
@@ -75,7 +76,7 @@ Use this after **upload** and/or **blog regen** so you do not ship stale YouTube
 2. **`youtube_update_video_titles.py`** — dry-run, then apply — so **YouTube** titles match the JSON.  
 3. **`youtube_update_video_descriptions.py`** — dry-run, then apply — so **YouTube descriptions** match the polished transcript in the JSON (prevents raw-ASR descriptions from shipping).  
 4. If steps 2/3 error on token/scope: **`youtube_oauth_reauthorize.py`**, then repeat steps 2/3.
-3. If step 2 errors on token/scope: **`youtube_oauth_reauthorize.py`**, then repeat step 2.
+5. If GPS fields are missing from **`scripts/youtube_videos.json`** entries (latitude/longitude/gps_source), run **`python3 scripts/add_gps_to_youtube_videos_json.py`** (dry-run) then **`--write`** — reads the source file's own embedded GPS via `exiftool -GPSCoordinates`, falling back to the farm manifests. GPS is part of the uniform media-cache format so LLMs can search media assets by latitude/longitude (PR #269).
 
 ### What future agents should not do
 
