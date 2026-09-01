@@ -32,6 +32,7 @@ if it says `SET`, it is set — move on. If `NOT SET`, that's an open item (file
 | GAS Project (script id prefix) | Property | Purpose | Status | Notes / last verified |
 |---|---|---|---|---|
 | `1UrBg…` (agroverse_qr_codes — tree planting / QR / growth) | **`TGM_GITHUB_TOKEN`** | GitHub token for `repository_dispatch` (`tree-index-rebuild`) + photo mirroring | **SET (2026-08-31)** | repo-scoped PAT (the `.env` `TRUESIGHT_DAO_AUTOPILOT` one works — proven HTTP 204). Set by Gary. Do NOT re-check. |
+| `1UrBg…` (agroverse_qr_codes — same project) | **`FBE_GH_PAT`** | GitHub PAT for `repository_dispatch` (`plots-index-rebuild`) from the FBE handler | **SET (2026-09-01)** | repo-scoped PAT; needs **Actions: write** on `TrueSightDAO/sunmint` (same pattern as TGM_GITHUB_TOKEN). Set by Gary at script settings. Do NOT re-check. |
 | `1UrBg…` | `GOOGLE_SERVICE_ACCOUNT_JSON` (via Credentials.js seeding) | sheet/service-account access | SET | seeding-only Credentials.js; actual secrets in Script Properties (2026-08-21 audit) |
 | Shipping Planner (EasyPost) | `ORIGIN_ADDRESS_*` | Kirsten's SF origin for restock shipping | SET | verified in BOTTLENECK_REVIEW_RESTOCK_RECOMMENDER.md |
 | Shipping Planner (EasyPost) | `EASYPOST_API_KEY` | EasyPost credentials | SET | idem |
