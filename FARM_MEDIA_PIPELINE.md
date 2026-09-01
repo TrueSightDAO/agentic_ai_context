@@ -1,5 +1,23 @@
 # FARM_MEDIA_PIPELINE.md — Raw farm media intake, dedupe & distribution
 
+## Terminology — Media Archives Pipeline (MAP)
+
+> **Media Archives Pipeline (MAP)** is the umbrella term for this whole system — the
+> capture → process → archive → manifest → query flow for **any** DAO media (farm visits,
+> community events, partner trips…). Farm media is the **first source namespace** under it.
+>
+> - **MAP** — the umbrella: intake → processing → upload/archive → manifest → query
+> - **Source namespace** — which bucket the media came from: `farm-media` (this runbook),
+>   `event-media` (community events, future)…
+> - **The queue** — the inbox + sidecars (what's waiting; pending = no `yt_id`)
+> - **The daemon** — the shared uploader (`farm-media-daemon` repo), dumb-on-purpose
+> - **The manifests** — `FARM_MEDIA_MANIFESTS/`, the committed, queryable source of truth
+> - **Distribution ≠ archive** — Instagram/TikTok/shop-page posting are consumers of the
+>   archive, not the pipeline itself
+>
+> Legacy filenames keep the `farm-media` prefix (this file, the repo, the manifests dir)
+> as the first namespace; new sources add their own namespace (e.g. `EVENT_MEDIA_MANIFESTS/`).
+
 Standardized pipeline for ingesting raw farm media (HEIC photos + MOV videos zips) from TrueSightDAO partner farms: GPS extraction, plot registration, SHA-256 dedupe, object detection, MOV→MP4 (GPS-preserving), **public** YouTube upload, photo storage in `farm-media-raw` (Contents-API only), farm-page wiring, and a searchable manifest index.
 
 Written so **any Sophia instance** can process a farm end-to-end or pick up a farm handed off by a governor. Governors: hand off a zip + this file's checklist; the receiving instance follows this doc.

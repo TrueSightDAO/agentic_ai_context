@@ -10,6 +10,11 @@
 >
 > Origin: Gary, thread 17181 (2026-09-01), after Cleide's upload chain stalled on the YouTube
 > daily 429 quota (La do Sitio's 71 uploads consumed the day's cap on project 323153649224).
+>
+> **Terminology:** this daemon is the **upload stage** of the **Media Archives Pipeline
+> (MAP)** — the umbrella term for the capture → process → archive → manifest → query flow
+> for ALL DAO media (see FARM_MEDIA_PIPELINE.md). Farm media is the first source namespace;
+> community-event media will be a second namespace under the same machinery.
 
 ## 1. Governor design rules (confirmed 2026-09-01, thread 17181)
 
