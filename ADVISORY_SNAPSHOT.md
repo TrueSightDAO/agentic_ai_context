@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-01T05:28:09Z`
+- Generated (UTC): `2026-09-01T11:54:32Z`
 - Look-back: **7** calendar days (`2026-08-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,16 +33,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 20
-- `[TREE PLANTING REJECT EVENT]` × 12
+- `[TREE PLANTING REJECT EVENT]` × 11
 - `[TREE PLANTING EVENT]` × 2
 - `[PRACTICE EVENT]` × 1
 - `[FARM REGISTRATION EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 1
 - _free-form (no bracket tag)_ × 5
 
 ### Latest entries
 
-- `Edgar_20260831162552_071` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.2075414030626623 · Longitude: -52.22216600596255 · Species: Cacao - Criolla
 - `Edgar_20260831164619_073` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 85 · Contributor(s): Sophia Truesight (autopilot)
 - `Edgar_20260831165947_075` · **Edgar** · [CONTRIBUTION EVENT] Amount: 86 · Contributor(s): Sophia Truesight (autopilot) · Description: FINAL exact figure for Santa Anna Fazenda buildout (2026-08-30/31) — 86.05 m…
 - `Edgar_20260831170056_077` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 165 · Contributor(s): Sophia Truesight (Autopilot)
@@ -62,6 +62,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260901023959_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: SunMint boundary submission pipeline + impact map extension (2026-08-31→09-0…
 - `Edgar_20260901031234_006` · **Edgar** · [No Text Provided]
 - `Edgar_20260901031347_008` · **Edgar** · [No Text Provided]
+- `Edgar_20260901104419_002` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: TEST-FARM-E2E-20260901 · Plot ID: TEST-P1 · Boundary Type: gps_walk
 
 ---
 
@@ -76,7 +77,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-08-31T10:59:14.195Z`
+- Generated (UTC): `2026-09-01T10:59:15.702Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,16 +87,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **813**, follow_up **71**, bulk **0**, unknown **2** (data rows: **886**)
+- **Email Agent Follow Up** — logged sends: warmup **825**, follow_up **71**, bulk **0**, unknown **2** (data rows: **898**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **736**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
-- **Manager Follow-up**: **33** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **17**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **748**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
-- **Follow-up pipeline (combined)**: **35** stores — sum logged **warmup** sends (AU): **24**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **30** / **1** / **4**; follow-up depth (none / once / ≥2): **13** / **5** / **17**
+- **Follow-up pipeline (combined)**: **36** stores — sum logged **warmup** sends (AU): **24**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **4**; follow-up depth (none / once / ≥2): **13** / **5** / **18**
 
 ---
 
@@ -276,6 +277,13 @@ _All dated lines on/after 2026-08-25_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1f7eba9 | 2026-09-01 08:12:47 -0300 | Swap FS#8 post to approved real-photo set (hero v3, crimson v3, Ponta Verde v2) (#345)
+5556e5e | 2026-09-01 08:11:35 -0300 | Add FS8 Ponta Verde yellow pod v2 (IMG_7672, 4:3)
+f051ba2 | 2026-09-01 08:11:34 -0300 | Add FS8 crimson pod v3 (IMG_7654 t11.5, tight pod close-up)
+44a2187 | 2026-09-01 08:11:32 -0300 | Add FS8 hero v3 (IMG_7654 t6.0, pod-only, both varieties)
+fd85a3f | 2026-09-01 07:27:01 -0300 | FS#9: add blog index card (#343)
+7d7b3fb | 2026-09-01 07:24:59 -0300 | Field Signals #9: What floats is better — a field lesson in cacao fermentation (#342)
+4006598 | 2026-09-01 05:33:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 aa53be4 | 2026-08-31 22:59:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e9fd277 | 2026-08-31 16:15:58 -0300 | Impact map: status styling + plot-status legend + media thumbnails (PR4) (#341)
 6daf770 | 2026-08-31 16:11:30 -0300 | Add Farms Registry section to impact map page (PR3) (#340)
@@ -309,13 +317,6 @@ bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [
 ff01355 | 2026-08-29 07:18:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1f19de7 | 2026-08-28 20:05:41 -0300 | Fix mobile overflow on FounderHaus program page QR row (#317)
 280d39e | 2026-08-28 22:34:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
-bdd9618 | 2026-08-28 09:51:41 -0300 | Link FounderHaus Farm program page to the Cacao Tea 50g product page (#316)
-ded4170 | 2026-08-28 12:05:38 +0000 | chore(stats): refresh stats/current.json [skip ci]
-615e43d | 2026-08-28 08:30:24 -0300 | Embed FounderHaus Farm videos on program page (#315)
-77b62cd | 2026-08-28 08:26:14 -0300 | Add planting-day photo gallery to FounderHaus Farm program page (#314)
-ac537e6 | 2026-08-27 22:31:37 +0000 | chore(stats): refresh stats/current.json [skip ci]
-7b1b1aa | 2026-08-27 10:26:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e150301 | 2026-08-26 21:02:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -328,6 +329,12 @@ b495a2a | 2026-08-25 11:02:23 -0300 | feat: scheduled daily sync of agroverse-in
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0a771bc | 2026-09-01 07:53:56 -0300 | Wrap up MAP daemon + dashboard plans (all queues drained, dashboard live) (#879)
+d8b5fa5 | 2026-09-01 07:52:05 -0300 | Add Fazenda Cleide media manifest (71 videos, all uploaded) + index entry (#878)
+177e84d | 2026-09-01 07:46:48 -0300 | OPEN_FOLLOWUPS: file FBE hourly cron trigger (GAS UI) for Gary (#877)
+2e74c22 | 2026-09-01 07:40:53 -0300 | Add ABBREVIATIONS.md glossary (TGM/FBE/TGP + domain acronyms) (#876)
+e705a19 | 2026-09-01 02:28:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
+710a1eb | 2026-09-01 02:28:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 34cbe1e | 2026-09-01 01:04:18 -0300 | Merge pull request #875 from TrueSightDAO/auto/advisory-refresh-2026-09-01
 7e7d1cf | 2026-09-01 04:04:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 8a0a5c4 | 2026-09-01 00:57:48 -0300 | Plan: Media Archives Pipeline dashboard at sophia.truesight.me/media-archive-pipeline (PR0) (#874)
@@ -362,12 +369,6 @@ c92076f | 2026-08-31 11:47:07 -0300 | SunMint plots runbook: SA-P1 seed data, po
 180dd27 | 2026-08-31 09:14:32 -0300 | OPEN_FOLLOWUPS: file SEO sheet tooling gap + known-working append path (#850)
 d6cf172 | 2026-08-31 02:55:07 -0300 | chore(previews): refresh Beer Hall preview (2026-08-31 UTC)
 45447ea | 2026-08-31 02:55:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
-50e9192 | 2026-08-31 01:19:10 -0300 | Merge pull request #849 from TrueSightDAO/auto/advisory-refresh-2026-08-31
-0b507ba | 2026-08-31 04:19:00 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
-6a00f66 | 2026-08-31 00:10:04 -0300 | OPERATING_INSTRUCTIONS: add GAS_SCRIPT_PROPERTIES.md to context-file index (#848)
-8700cba | 2026-08-31 00:08:10 -0300 | Manifest: SunMint reject/invalid path UAT complete; first real LINK still pending (#847)
-55d58fa | 2026-08-31 00:03:34 -0300 | GAS Script Properties registry + convention (TGM_GITHUB_TOKEN confirmed set) (#846)
-3701f38 | 2026-08-30 22:50:43 -0300 | Docs: SunMint plots single-source-of-truth (avoid trees/plots.geojson confusion) (#845)
 … (truncated)
 ```
 
@@ -428,6 +429,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+5103798 | 2026-09-01 11:42:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c392457 | 2026-08-31 14:26:47 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 7da337e | 2026-08-31 14:25:03 +0000 | chore: refresh currencies.json [skip ci]
 f377701 | 2026-08-31 13:56:40 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -580,7 +582,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 8/31/2026 21:51:30 |
+| 2026-09 | 0 | 17439.84386 | 9/1/2026 4:51:00 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-25`; scanned last **600** data rows)
 
