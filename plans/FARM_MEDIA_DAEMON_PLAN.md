@@ -1,5 +1,7 @@
 # Farm Media Daemon — shared YouTube upload pipeline: implementation plan, roadmap & UAT
 
+> **STATUS: ✅ COMPLETE — daemon live, all queues drained (2026-09-01). See §9.**
+
 > **Purpose:** one shared, dumb-on-purpose background daemon that uploads farm videos to
 > YouTube for ALL farms, under one shared daily-quota budget with round-robin fairness, so no
 > single farm (or Sophia instance) can starve the others or blow the quota. Metadata travels
@@ -134,6 +136,26 @@ farm_media_inbox/<farm_id>/
 - **Don't** let two writers touch sidecars (singleton, lockfile).
 - **Don't** put credentials in the repo.
 - **Don't** create variant plan/backlog files.
+
+## 9. Completion status (2026-09-01)
+
+**✅ COMPLETE — the shared daemon is live and all registered queues are drained.**
+
+| Milestone | Result |
+|---|---|
+| Repo | `TrueSightDAO/farm-media-daemon` (public) — DESIGN.md, README, config template, daemon, CLIs, systemd unit (PRs #1–#8) |
+| allowed_repos | `farm-media-daemon` added (truesight_autopilot PR #359) |
+| Daemon code | `farm_media_daemon.py` — sidecar loop, yt_id atomic write-back, PID-lockfile singleton, multi-farm round-robin by priority |
+| Quota model | 6/day default → **500/day** (Gary: "artificially high, let 429 pace") — June-2026 YouTube upload bucket confirmed; **429 → pause+retry** with escalating backoff (PR #8), no more 20h sleeps |
+| Service | `farm-media-daemon.service` (systemd, Restart=always) live on the autopilot box |
+| Config | `media_archive_daemon_config.yaml` (gitignored) + non-secret `.example` committed (truesight_autopilot PR #368) — 4 farms registered (cleide=2, paulo/santa-anna/jedielcio=1) |
+| Inbox | `media_archive_inbox/<source>/<farm_id>/` — 71 cleide + 2 paulo + 8 santa-anna + 4 jedielcio sidecars |
+| **Uploads** | **cleide 71/71, paulo 2/2, santa-anna 8/8, jedielcio 4/4 — ALL QUEUES DRAINED** (2026-09-01 ~10:49 UTC) |
+| Cleide manifest | `FARM_MEDIA_MANIFESTS/cleide.json` (71 items, 63/71 GPS, 71/71 sha256, 71/71 yt_ids) + index entry — agentic_ai_context PR #878 |
+| Ad-hoc uploaders | throttled_uploader PID 105025 **retired**; La do Sitio reupload_retry.sh superseded |
+| Ops lessons | OOM (ffmpeg+YOLO on 4GB) → 2-phase transcode-then-detect; GPS re-inject after ffmpeg (exiftool); config must be git-tracked as template to survive deploys |
+
+**Fresh-Sophia query test:** read `FARM_MEDIA_MANIFESTS/index.json` → cleide entry → manifest → 71 videos with yt_ids + GPS → answers "Cleide has 71 videos, all uploaded" from GitHub alone. ✅
 
 ## 8. Related
 - `MEDIA_ARCHIVE_PIPELINE.md` — the pipeline runbook this daemon serves (PR #858)
