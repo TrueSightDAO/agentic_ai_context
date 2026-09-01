@@ -1,6 +1,6 @@
 # Public RSA Signature Ledger — Org-wide Auditable GitHub JSON Cache
 
-**Status:** in execution — pivoted to org-wide ledger (2026-09-01, Gary) · legacy sunmint path (PR0–PR3) superseded
+**Status:** A1–A5 ✅ complete (2026-09-02) — ledger live & UAT-accepted · next: **A6 historical backfill** · legacy sunmint path (PR0–PR3) superseded
 **Owner:** Gary Teh
 **Requested by:** Gary Teh, 2026-09-01 (thread 17194)
 **Goal:** Every RSA-signed DAO event — SunMint today; contribution reporting, sales, inventory movement and future event types tomorrow — gets a **publicly auditable GitHub JSON cache record** in `TrueSightDAO/verify_public_signatures`: **one immutable JSON file per event**, bucketed by event type, plus an org-wide `index.json`. Also: **public link-share surface for the Tree Growth Measurements tab**.
@@ -145,7 +145,7 @@ Legacy `sunmint/signatures.json` + `tree_growth_measurements.json` remain live a
 | **A3** | verify_public_signatures | README: layout, schema, openssl verify how-to, per-event URL pattern | — |
 | **A4** | dao_protocol | **Post-verify emit hook**: on verified submission, PUT `<type>/<msg_id>.json` at ingest (idempotent by message ID, PII fail-closed, PAT fallback to `github_pat`). Deploy-gated. | ✅ **complete** (merged #151, deployed, smoke-verified live 2026-08-31) |
 | ~~A4.1~~ | dao_protocol | ~~Normalize emit `public_key` to PEM~~ — **dropped**: `verify.verify()` already returns PEM; emit-written files verified identical to cron format. | ✅ dropped (false alarm) |
-| **A5** | agentic_ai_context | Docs: `SUNMINT_E2E_RUNBOOK.md` §2 pipeline map + §6 update; ledger README links; UAT checklist §6 below | **`gate: UAT`** |
+| **A5** | agentic_ai_context | Docs: `SUNMINT_E2E_RUNBOOK.md` §2 pipeline map + §6 update; ledger README links; UAT checklist §6 below | ✅ **complete** (docs merged #870; UAT 7/8 + finding accepted; sunmint mirror decommissioned) |
 
 No prod (dapp/shop/truesight_me/sunmint sites), no money, no default-branch self-merge anywhere in scope. `verify_public_signatures` = API-only data repo → **single-file Contents-API writes** from script + emit hook, never branch-edit PRs.
 
