@@ -38,6 +38,16 @@ SunMint Tree Planting / Tree Growth Measurements tabs (sheet 1qbZZhf-...)
         |
         v
 rebuild-tree-index.yml (GitHub Action) -> trees/index.geojson (public tree index)
+
+PUBLIC ATTESTATION LEDGER (since 2026-08, A1-A4):
+  Edgar (post-verify) -> ledger_emit.emit() (immediate) -> verify_public_signatures/<type>/<msg_id>.json
+  30-min cron (autopilot box, sync_sunmint_signatures.py --push) -> reconciliation, idempotent by message ID
+        |
+        v
+  https://raw.githubusercontent.com/TrueSightDAO/verify_public_signatures/main/index.json
+  https://raw.githubusercontent.com/TrueSightDAO/verify_public_signatures/main/tree_planting/171.json
+  Each file: public_key (PEM) + signature (base64) + signed_payload (exact bytes signed)
+  Verify:  openssl dgst -sha256 -verify pub.pem -signature sig.bin payload.txt
 ```
 
 ---
@@ -139,6 +149,9 @@ rebuild-tree-index.yml (GitHub Action) -> trees/index.geojson (public tree index
   spreadsheets().batchUpdate deleteRows - the Cypher Defense SA is blocked by sheet protection.
 - Ledger rows from real signed test submissions (tree plant/monitor): these are legitimate records
   proving the pipeline - keep them (flag to governor; they carry no monetary value).
+- **Ledger files in verify_public_signatures are immutable public attestations** - emit/cron writes
+  are append-only; test artifacts (e.g. SMOKE-REPRO-*, LEDGER-SMOKE) are flagged to the governor,
+  never auto-deleted.
 - Emails sent are normal artifacts - no cleanup.
 - Test photos uploaded to sunmint/images/: remove via GitHub API if the governor wants them gone.
 

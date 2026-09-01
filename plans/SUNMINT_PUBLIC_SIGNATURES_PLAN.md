@@ -143,7 +143,8 @@ Legacy `sunmint/signatures.json` + `tree_growth_measurements.json` remain live a
 | **A1** | agentic_ai_context | This plan amendment | none — this PR |
 | **A2** | truesight_autopilot + verify_public_signatures | Retarget `sync_sunmint_signatures.py` → per-event files + indexes in `verify_public_signatures`; **migrate 73 live events** (one-time run); init repo (root `index.json`); local tests + `--dry-run` | `gate: dry-run diff review with Gary` (layout + PII scan before any push) |
 | **A3** | verify_public_signatures | README: layout, schema, openssl verify how-to, per-event URL pattern | — |
-| **A4** | dao_protocol | **Post-verify emit hook**: on verified submission, PUT `signatures/<type>/<msg_id>.json` at ingest (idempotent by message ID, PII fail-closed, own repo-scoped PAT). Deploy-gated. | `gate: Gary approves deploy after review` |
+| **A4** | dao_protocol | **Post-verify emit hook**: on verified submission, PUT `<type>/<msg_id>.json` at ingest (idempotent by message ID, PII fail-closed, PAT fallback to `github_pat`). Deploy-gated. | ✅ **complete** (merged #151, deployed, smoke-verified live 2026-08-31) |
+| ~~A4.1~~ | dao_protocol | ~~Normalize emit `public_key` to PEM~~ — **dropped**: `verify.verify()` already returns PEM; emit-written files verified identical to cron format. | ✅ dropped (false alarm) |
 | **A5** | agentic_ai_context | Docs: `SUNMINT_E2E_RUNBOOK.md` §2 pipeline map + §6 update; ledger README links; UAT checklist §6 below | **`gate: UAT`** |
 
 No prod (dapp/shop/truesight_me/sunmint sites), no money, no default-branch self-merge anywhere in scope. `verify_public_signatures` = API-only data repo → **single-file Contents-API writes** from script + emit hook, never branch-edit PRs.
