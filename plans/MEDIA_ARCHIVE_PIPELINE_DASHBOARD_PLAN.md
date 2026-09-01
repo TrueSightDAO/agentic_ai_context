@@ -1,6 +1,6 @@
 # Media Archives Pipeline Dashboard — sophia.truesight.me/media-archive-pipeline
 
-**Status:** new — awaiting kickoff
+**Status:** ✅ executing — PR0–PR3 done + deployed; PR4 signed-out UAT pass; sentinel access merged (#369) + route renamed (#371) live; signed-in UAT optional follow-on
 **Created:** 2026-09-01 | **Owner:** Gary Teh | **Author:** Sophia (autopilot)
 **Convention:** `OPERATING_INSTRUCTIONS.md` §5 / §5a / §5c / §5d.
 **Sibling:** `plans/FARM_MEDIA_DAEMON_PLAN.md` (the daemon this dashboard reports on);
@@ -60,15 +60,27 @@ commits); no admin surface beyond what a governor already has; not public (signe
 
 ## 4. Resume tracker
 
-**➡️ RESUME HERE: PR1** — backend data endpoint (auth-gated) in `truesight_autopilot`.
+**➡️ RESUME HERE: PR4 signed-in UAT (optional) — core goal complete; dashboard live.** (PR1–PR3 done + deployed; see §6 Execution log.)
 
 | Unit | Built | Verified | Deployed | UAT |
 |------|-------|----------|----------|-----|
-| PR1 — data endpoint | ☐ | ☐ | n/a | ☐ |
-| PR2 — dashboard page | ☐ | ☐ | n/a | ☐ |
-| PR3 — wire + restart | ☐ | ☐ | ☐ | ☐ |
-| PR4 — UAT gate | ☐ | ☐ | n/a | ☐ |
+| PR1 — data endpoint | ☑ | ☑ | n/a | ☑ signed-out |
+| PR2 — dashboard page | ☑ | ☑ | n/a | ☑ signed-out |
+| PR3 — wire + restart | ☑ | ☑ | ☑ | ☑ 200/401 |
+| PR4 — UAT gate | ☐ | ☐ | n/a | ☐ optional signed-in |
 | PR5 — docs | ☐ | ☐ | n/a | n/a |
+
+## 6. Execution log (2026-09-01)
+
+| Unit | PR | Result |
+|---|---|---|
+| PR0 | agentic_ai_context #874 | roadmap + manifest row |
+| PR1 | truesight_autopilot #363 | auth-gated `/media-archive-pipeline/data` (module pre-existed on box from a prior partial run — verified, committed, merged) |
+| PR2 | truesight_autopilot #364 | dashboard HTML page (add/add conflict resolved, merged) |
+| PR3 | truesight_autopilot #365 | nav link on landing page |
+| PR3b | deploy | service restarted (Envoy manual) → page live 200, `/data` 401 signed-out |
+| Sentinel | #369 + #371 | `is_sentinel()` + `allow_sentinel` gate + challenge route; renamed to `/media-archive-pipeline/auth/challenge` (nginx `/auth/`→8002 collision) — live (400 w/ body = reachable) |
+| Data | agentic_ai_context #878 | Cleide manifest + index entry (71/71) — dashboard reflects it |
 
 ## 5. Key risks
 
