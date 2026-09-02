@@ -81,7 +81,7 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 | Variable | Required for | Notes |
 |----------|----------------|-------|
-| **`GITHUB_PAT`** | Uploading invoice PDFs to **`TrueSightDAO/.github`** **`assets/`**, or using **`GH_TOKEN`** with **`gh`** with PRs | Grant **Contents** read/write on that repo. See **`WORKSPACE_CONTEXT.md`** §**3c**. **Legacy — limited scope.** |
+| **`GITHUB_PAT`** | Uploading invoice PDFs to **`TrueSightDAO/.github`** **`assets/`**, or using **`GH_TOKEN`** with **`gh`** for PRs | Grant **Contents** read/write on that repo. See **`WORKSPACE_CONTEXT.md`** §**3c**. **Legacy — limited scope.** |
 | **`TRUESIGHT_DAO_AUTOPILOT`** | **Autopilot service** — open PRs, create branches, read workflow logs across all `TrueSightDAO/*` repos | Fine-grained PAT with **Contents: Read + Write** + **Pull requests: Read + Write** on all target repos. **✅ Verified live 2026-05-03 — see `API_CREDENTIALS_DOCUMENTATION.md` §10.2.2.** |
 | **`ANTHROPIC_API_KEY`** | `scripts/draft_beer_hall_digest.py` (Claude Sonnet 4.6 drafter) — also mirrored as a GH Actions secret on `TrueSightDAO/go_to_market` for the daily Beer Hall workflow. | No scope restrictions at the provider level; rotate if leaked. |
 | **`ORACLE_ADVISORY_PUSH_TOKEN`** | GH Actions workflows (`beer-hall-digest-daily.yml`, `advisory-snapshot-refresh.yml`) that push + auto-merge on `ecosystem_change_logs` and `agentic_ai_context`. Local runs of `generate_advisory_snapshot.py --github-api-publish` can also read it. | Fine-grained PAT with **Contents: Read + Write** and **Pull requests: Read + Write** on `TrueSightDAO/ecosystem_change_logs` and `TrueSightDAO/agentic_ai_context`. Add **Contents: Read** on `TrueSightDAO/Cypher-Defense` if that repo is private. |
@@ -138,8 +138,9 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 
 1. **Never commit credential files** — Always check `.gitignore` first
 2. **Prompt during setup** — When cloning or setting up a project, ask the user for required credential files
-3. **Verify protection** — Confirm files are gitignored/tracked appropriately
-4. **Document locations** — Keep canonical docs (`SETUP_REQUIREMENTS.md`, `credentials/API_CREDENTIALS_DOCUMENTATION.md`) in sync when adding new credentials
+3. **Verify protection** — Use `git check-ignore` to confirm files are excluded
+4. **Document requirements** — Update this file when new credential requirements are discovered
+5. **Use environment variables** — Prefer `.env` files over credential JSON files when possible
 
 ---
 
@@ -208,3 +209,10 @@ AGENTIC_CONTEXT_REPO=https://github.com/TrueSightDAO/agentic_ai_context.git
 ---
 
 ## Related Documentation
+
+- `agroverse_shop/docs/SECURITY.md` — Security guidelines and credential management
+- `market_research/README.md` — **`.env`**, **`.env.example`**, **`GITHUB_PAT`**, Google Sheets setup
+- `market_research/SECURITY.md` — Do not commit **`.env`** or **`GITHUB_PAT`**
+- `WORKSPACE_CONTEXT.md` §**3c** — Contribution Ledger invoice → GitHub pattern using **`GITHUB_PAT`**
+- `agentic_ai_api_credentials/API_CREDENTIALS_DOCUMENTATION.md` — Environment variable reference (sibling repo, if cloned)
+- `agentic_ai_api_credentials/env.template` — Template for environment variables (sibling repo, if cloned)
