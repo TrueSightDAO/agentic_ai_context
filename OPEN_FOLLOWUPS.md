@@ -302,7 +302,7 @@ description: >
 id: orlantildes-coopercabruca
 chat_id: -1003919341801
 thread_id: 11042
-title: Orlantildes / Coopercabruca — MAPA + 5 kg cacao butter receipt
+title: Orlantildes / Coopercabruca — cacao butter receipt (5 kg) decision
 created_at: 2026-08-16
 condition:
   kind: elapsed_days
@@ -312,11 +312,12 @@ schedule:
   on_escalate: ping_thread
 status: open
 description: >
-  Two threads under Orlantildes (Coopercabruca): (1) she is working on MAPA
-  (China-gate compliance item); (2) she has delivered cacao butter for 5 kg
-  that Kirsten requested — conceptually an inventory receipt from Orlantildes
-  to Matheus's warehouse, but tentatively tracked here until a formal
-  INVENTORY MOVEMENT is recorded. When this fires, chase MAPA status and
+  [2026-09-02] MAPA leg RESOLVED — Orlantildes/Coopercabruca MAPA
+  registration is COMPLETED (confirmed by Gary, thread 11042). China lane:
+  MAPA done; GACC still pending. Remaining open item: the 5 kg cacao butter
+  Orlantildes delivered (Kirsten's request) — conceptually an inventory
+  receipt from Orlantildes to Matheus's warehouse, but tentatively tracked
+  here until a formal INVENTORY MOVEMENT is recorded. When this fires,
   decide whether to record the cacao butter receipt in the ledger. All pings
   go to thread 11042.
 ```
