@@ -39,7 +39,7 @@
 |---|---|---|
 | **What ships** | Finished SKU direct to China once ready | **Raw beans only** (needs a China-side warehouse) |
 | **Product / brand** | Oscar brand cacao — 500 g bars | La Do Sitio brand — 200 g bars (award-winning in region) |
-| **MAPA / GACC** | MAPA being set up (applying); GACC not yet obtained | MAPA applying; GACC not yet obtained |
+| **MAPA / GACC** | **MAPA ✅ completed (2026-09-02)**; GACC not yet obtained | MAPA applying; GACC not yet obtained |
 | **Export paperwork** | Via cooperative (has IE + NF-e) | Jedielcio has export-paperwork experience |
 | **Payment** | On final SKU at delivery | — |
 | **Warehousing** | ❌ Does NOT provide warehousing | ❌ Needs China-side warehouse for raw beans |
@@ -61,9 +61,9 @@
    - Find **co-packing + storage/fulfillment** service for final packaging (**Dr Ye does not handle this**).
 
 ## Status cross-check (GACC — don't assume)
-- The 17 Jun 2026 guides list **GACC: NOT YET OBTAINED** for Coopercabruca, CEPOTX, and Black King (3–6 mo estimated). **Still accurate as of 23 Aug 2026** per `BRAZIL_EXPORT_LANE_LEARNINGS.md`: Coopercabruca MAPA "being set up"; CEPOTX "applying" — GACC not obtained for any entity.
-- `OPEN_FOLLOWUPS.md` #orlantildes-coopercabruca (filed 2026-08-16) is an **open chase**: confirm MAPA status with Orlantildes + decide on the 5 kg cacao butter inventory receipt. **No confirmation of MAPA/GACC completion anywhere in our records as of 29 Aug 2026.**
-- Note: the "Holds MAPA + GACC" phrasing in learnings §5 describes the producer-cooperative **route model** (China working direct with Coopercabruca), not a confirmed granted registration. Flag for verification.
+- The 17 Jun 2026 guides list **GACC: NOT YET OBTAINED** for Coopercabruca, CEPOTX, and Black King (3–6 mo estimated). **Still accurate as of 23 Aug 2026** per `BRAZIL_EXPORT_LANE_LEARNINGS.md`: Coopercabruca MAPA "being set up"; CEPOTX "applying" — GACC not obtained for any entity. **UPDATE 2026-09-02: Coopercabruca MAPA registration COMPLETED** (confirmed by Gary, thread 11042); GACC still not obtained for any entity.
+- `OPEN_FOLLOWUPS.md` #orlantildes-coopercabruca (filed 2026-08-16) was an **open chase** (MAPA status + 5 kg cacao butter receipt). **MAPA leg closed 2026-09-02 — registration confirmed completed** (per Gary, thread 11042). Remaining open: whether to record the 5 kg cacao butter receipt as a formal INVENTORY MOVEMENT (Orlantildes → Matheus warehouse).
+- Note: the "Holds MAPA + GACC" phrasing in learnings §5 describes the producer-cooperative **route model** (China working direct with Coopercabruca). **Coopercabruca's MAPA registration is now confirmed completed (2026-09-02); GACC remains unconfirmed as granted.** Flag: still verify GACC before relying on the China lane.
 
 ## Related docs (don't duplicate)
 - `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE_COOPERCABRUCA.md` / `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE_CEPOTX.md` / `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md` (Black King)
