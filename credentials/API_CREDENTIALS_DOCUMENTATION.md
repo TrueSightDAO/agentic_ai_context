@@ -232,6 +232,15 @@ Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExp
 
 **Verdict:** ✅ **Ready for sheet access.** No live probe performed (would require API calls), but all are actively used. For GCP billing/monitoring, you need a separate service account with `monitoring.viewer` + `billing.accounts.getSpendingInformation` on the `get-data-io` billing account.
 
+### 10.7 Tencent Cloud Credentials
+
+| Source | Status | Details |
+|---|---|---|
+| `/opt/truesight_autopilot/.env` (`TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY`) | ✅ **Present** | Tencent Cloud API SecretId/SecretKey; on the Sophia autopilot box; chmod 600; gitignored |
+| `/opt/bionpact_autopilot/.env` (`TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY`) | ✅ **Present** | Appended earlier on the Bionpact autopilot host (same pair) |
+
+**Verdict:** ✅ **Documented.** Both known copies are in place. Any future Sophia/Bionpact instance should look for `TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY` in the runtime `.env` (same pattern as AWS credentials). Rotate from the Tencent Cloud console if ever exposed.
+
 ### 10.6 truesight_autopilot EC2 (Dedicated)
 
 | Attribute | Value |
