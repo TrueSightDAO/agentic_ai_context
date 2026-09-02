@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-02T11:35:25Z`
+- Generated (UTC): `2026-09-02T16:47:09Z`
 - Look-back: **7** calendar days (`2026-08-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,37 +32,36 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
-- `[FARM BOUNDARY EVIDENCE EVENT]` × 10
-- `[TREE PLANTING EVENT]` × 1
-- `[NOTARIZATION EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 22
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 9
+- `[PRACTICE EVENT]` × 4
+- `[PLOT INVALIDATION EVENT]` × 2
 - `[FARM REGISTRATION EVENT]` × 1
 - `[FARM REGISTRATION]` × 1
-- _free-form (no bracket tag)_ × 9
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260901164215_004` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
-- `Edgar_20260901164218_006` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
-- `Edgar_20260901164224_008` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
-- `Edgar_20260901164226_010` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
-- `Edgar_20260901164254_012` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
-- `Edgar_20260901165254_002` · **Edgar** · [FARM REGISTRATION] Farm Name: Altamira random · Farm Location: · Latitude: -3.209416
-- `Edgar_20260901175619_004` · **Edgar** · undefined
-- `Edgar_20260901175650_006` · **Edgar** · [No Text Provided]
-- `Edgar_20260901180924_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: GPS geo-tagging for media archive: lat/lon in JSON caches, ingress capture, …
-- `Edgar_20260901213614_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Raw machine execution — CEPOTX engagement: screenshot OCR/enhancement (~10 t…
-- `Edgar_20260901213617_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Direct time (engagement/analysis) — interpreting the low-res CEPOTX logistic…
-- `Edgar_20260901213621_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Gary Teh direct time — reviewing the CEPOTX screenshot analysis and combined…
-- `Edgar_20260901213915_016` · **Edgar** · [No Text Provided]
-- `Edgar_20260901214024_002` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: test-dispatch-verify-20260901 · Plot ID: TDP1 · Boundary Type: pillar-and-log walk
-- `Edgar_20260901222042_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: SunMint Public Signatures Plan A1–A7 — raw machine execution (ledger + backf…
-- `Edgar_20260901222044_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: SunMint Public Signatures Plan A1–A7 — direct time (engagement/analysis)
-- `Edgar_20260901223756_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Had a chat with Jedielcio today
-- `Edgar_20260901224254_010` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Boundary Type: gps_walk · Farm Name: Lote Teste E2E Plotfirst · Media URLs: e2e-test-plotfirst-20260901.jpg
-- `Edgar_20260901224935_012` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Lote E2E v40 PlotFirst · Media URLs: e2e-v40-plotfirst-20260901.jpg · Boundary Type: gps_walk
-- `Edgar_20260901225220_014` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Boundary Type: gps_walk · Farm Name: Lote E2E v40b PlotFirst · Media URLs: e2e-v40b-plotfirst-20260901.jpg
+- `Edgar_20260902115105_002` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: TEST-P1 · Reason: UAT test resubmission #2 - dispatch verification after dao_protocol code pull (En… · Retractor Email: admin+claude@truesight.me
+- `Edgar_20260902115915_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: SunMint plot-invalidation pipeline: GAS handler (PR #456), dao_protocol disp…
+- `Edgar_20260902115918_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Supervised Sophia's SunMint plot-invalidation follow-on to completion: verif…
+- `Edgar_20260902115921_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 8 · Description: Directed and reviewed the SunMint plot-invalidation UAT: clarified scope, de…
+- `Edgar_20260902133908_010` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T13:39:06.439Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260902142006_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Distribute Tencent Cloud credentials (Sophia/Envoy/Onaya) + Onaya SSH & Elas…
+- `Edgar_20260902144923_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T14:49:22.848Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260902152844_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Telegram adapter misreports brain outages a…
+- `Edgar_20260902152956_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Contributor(s): Sophia Truesight
+- `Edgar_20260902152959_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Envoy TrueSight
+- `Edgar_20260902153001_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20260902153111_024` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T15:31:10.441Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260902153129_026` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T15:31:29.139Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260902153203_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: SunMint Android v1.4 — sync sunmint_prod + build/publish APK
+- `Edgar_20260902153212_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Telegram adapter misreports brain outages a…
+- `Edgar_20260902153411_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
+- `Edgar_20260902153413_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260902153512_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: fix(roda): Start/End Roda Session now control audio
+- `Edgar_20260902160617_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: SunMint Android release keystore — vault backup + rotation refresh
+- `Edgar_20260902160628_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Supervision and review of the SunMint Android release-keystore backup across…
 
 ---
 
@@ -278,6 +277,7 @@ _All dated lines on/after 2026-08-26_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+58934fb | 2026-09-02 11:39:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 700e75e | 2026-09-02 04:58:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 37610a7 | 2026-09-01 21:16:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 99c1e7f | 2026-09-01 16:51:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,7 +317,6 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 8f31216 | 2026-08-30 19:20:47 -0300 | Fix impact map: ESRI satellite basemap instead of key-requiring Sentinel-2 WMS (#320)
 806f050 | 2026-08-30 21:27:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40212b4 | 2026-08-30 16:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -330,6 +329,12 @@ bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6ac3e44 | 2026-09-02 13:45:49 -0300 | Documentation: Bean-to-Bar Equipment Inventory (Agroverse) (#899)
+bcad91a | 2026-09-02 13:00:21 -0300 | docs(followups): file open_fix_pr 'no running event loop' harness defect (#897)
+3869ac7 | 2026-09-02 11:19:09 -0300 | Merge pull request #896 from TrueSightDAO/docs/tencent-cloud-credentials
+e5f7450 | 2026-09-02 11:18:44 -0300 | docs: document Tencent Cloud credentials (TENCENT_SECRET_ID/KEY)
+8c82ce9 | 2026-09-02 08:35:50 -0300 | chore(previews): refresh Beer Hall preview (2026-09-02 UTC)
+e6ea685 | 2026-09-02 08:35:49 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-02 UTC)
 9604f11 | 2026-09-02 08:32:06 -0300 | Document redeploy-diagnosis rule for all Envoy instances (#895)
 822402a | 2026-09-01 21:06:16 -0300 | docs: document Tencent Cloud credential locations (AWS-style) (#893)
 a05ed7f | 2026-09-01 19:35:18 -0300 | Record FBE_GH_PAT as SET in GAS Script Properties registry (#892)
@@ -364,18 +369,13 @@ e705a19 | 2026-09-01 02:28:33 -0300 | chore(previews): refresh Beer Hall preview
 c1c57c0 | 2026-09-01 00:19:10 -0300 | Propagate Media Archives Pipeline (MAP) terminology across context docs (#872)
 b177055 | 2026-08-31 23:52:16 -0300 | A5: mark UAT complete + sunmint mirror decommissioned (#871)
 dbae43e | 2026-08-31 23:47:08 -0300 | Farm Media Daemon: repo is public, not private (design transparency) (#869) (#870)
-da380c2 | 2026-08-31 20:03:23 -0300 | Farm Media Daemon: repo is public, not private (design transparency) (#869)
-00007f3 | 2026-08-31 20:02:22 -0300 | Add Farm Media Daemon plan (PR0): shared video-upload infrastructure (#868)
-f8ad5f4 | 2026-08-31 19:59:05 -0300 | chore(previews): refresh Beer Hall preview (2026-08-31 UTC)
-1c986f7 | 2026-08-31 19:59:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
-3cdf33f | 2026-08-31 19:56:14 -0300 | Mark SUNMINT_BOUNDARY_SUBMISSION_PLAN complete (UAT passed, prod promoted) (#867)
-7ccba57 | 2026-08-31 17:19:40 -0300 | Add farm media manifest index (la-do-sitio v1 live, 3 more farms in flight) (#866)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+7d25974 | 2026-09-02 08:35:38 -0300 | feat: auto-derive governor/sentinel allowlist from dao_members.json (#457)
 16e14b6 | 2026-09-02 08:18:09 -0300 | feat: PLOT INVALIDATION EVENT GAS handler + router case (governor/sentinel gate) (#456)
 6aecf94 | 2026-09-01 19:10:59 -0300 | Plot-first FBE handler: auto Plot ID, Farm ID empty, index-rebuild ping (#455)
 500a52d | 2026-09-01 19:10:27 -0300 | Plot-first FBE handler: auto Plot ID, Farm ID empty, index-rebuild ping
@@ -433,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b9f4405 | 2026-09-02 11:43:17 +0000 | chore: refresh currencies.json [skip ci]
 c541531 | 2026-09-02 11:22:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cb22cba | 2026-09-01 12:00:11 +0000 | chore: refresh currencies.json [skip ci]
 5103798 | 2026-09-01 11:42:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -584,7 +585,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/2/2026 3:52:38 |
+| 2026-09 | 0 | 17439.84386 | 9/2/2026 8:53:06 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-26`; scanned last **600** data rows)
 
