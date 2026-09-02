@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-01T21:13:07Z`
-- Look-back: **7** calendar days (`2026-08-25` → today UTC)
+- Generated (UTC): `2026-09-02T11:35:25Z`
+- Look-back: **7** calendar days (`2026-08-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,28 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[FARM BOUNDARY EVIDENCE EVENT]` × 6
-- `[PRACTICE EVENT]` × 2
-- `[FARM REGISTRATION EVENT]` × 2
-- `[TREE PLANTING EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 18
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 10
+- `[TREE PLANTING EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
+- `[FARM REGISTRATION EVENT]` × 1
 - `[FARM REGISTRATION]` × 1
-- _free-form (no bracket tag)_ × 8
+- _free-form (no bracket tag)_ × 9
 
 ### Latest entries
 
-- `Edgar_20260901001933_002` · **Edgar** · [No Text Provided]
-- `Edgar_20260901023959_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: SunMint boundary submission pipeline + impact map extension (2026-08-31→09-0…
-- `Edgar_20260901031234_006` · **Edgar** · [No Text Provided]
-- `Edgar_20260901031347_008` · **Edgar** · [No Text Provided]
-- `Edgar_20260901104419_002` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: TEST-FARM-E2E-20260901 · Plot ID: TEST-P1 · Boundary Type: gps_walk
-- `Edgar_20260901123414_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-01T12:34:12.550Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260901143121_006` · **Edgar** · [No Text Provided]
-- `Edgar_20260901153131_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 450 · Description: MAP: Cleide media archive pipeline — shared daemon, dashboard, farm-page gal…
-- `Edgar_20260901153228_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Governor direction — Media Archives Pipeline (MAP): daemon, dashboard, CI ga…
-- `Edgar_20260901153904_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: YouTube Description & Title Cleanup (PR1–PR6): 73/73 live descriptions pushe…
-- `Edgar_20260901164208_002` · **Edgar** · [FARM REGISTRATION EVENT] Farm Name: UAT-FARM-20260901 · Location: UAT test location — Amazon, Para (test data, not a real farm) · Owner: Sophia Truesight (UAT)
 - `Edgar_20260901164215_004` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
 - `Edgar_20260901164218_006` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
 - `Edgar_20260901164224_008` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: UAT-FARM-20260901 · Plot ID: UAT-PLOT-1 · Boundary Type: approx
@@ -63,6 +52,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260901175619_004` · **Edgar** · undefined
 - `Edgar_20260901175650_006` · **Edgar** · [No Text Provided]
 - `Edgar_20260901180924_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: GPS geo-tagging for media archive: lat/lon in JSON caches, ingress capture, …
+- `Edgar_20260901213614_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Raw machine execution — CEPOTX engagement: screenshot OCR/enhancement (~10 t…
+- `Edgar_20260901213617_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Direct time (engagement/analysis) — interpreting the low-res CEPOTX logistic…
+- `Edgar_20260901213621_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Gary Teh direct time — reviewing the CEPOTX screenshot analysis and combined…
+- `Edgar_20260901213915_016` · **Edgar** · [No Text Provided]
+- `Edgar_20260901214024_002` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: test-dispatch-verify-20260901 · Plot ID: TDP1 · Boundary Type: pillar-and-log walk
+- `Edgar_20260901222042_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: SunMint Public Signatures Plan A1–A7 — raw machine execution (ledger + backf…
+- `Edgar_20260901222044_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: SunMint Public Signatures Plan A1–A7 — direct time (engagement/analysis)
+- `Edgar_20260901223756_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Had a chat with Jedielcio today
+- `Edgar_20260901224254_010` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Boundary Type: gps_walk · Farm Name: Lote Teste E2E Plotfirst · Media URLs: e2e-test-plotfirst-20260901.jpg
+- `Edgar_20260901224935_012` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Lote E2E v40 PlotFirst · Media URLs: e2e-v40-plotfirst-20260901.jpg · Boundary Type: gps_walk
+- `Edgar_20260901225220_014` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Boundary Type: gps_walk · Farm Name: Lote E2E v40b PlotFirst · Media URLs: e2e-v40b-plotfirst-20260901.jpg
 
 ---
 
@@ -236,9 +236,9 @@ _(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,858.00**
+- USD on hand: **$4,857.87**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$53.73**
+- USD provisioned for voting-rights cash-out: **$53.86**
 
 ### In-transit freight (1 row)
 
@@ -256,9 +256,10 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
 
-_All dated lines on/after 2026-08-25_ (1):
+_All dated lines on/after 2026-08-26_ (2):
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
+- 2026-09-01 | sophia | FBE_GH_PAT set in GAS Script Properties (project 1UrBg…, by Gary) for `repository_dispatch` `plots-index-rebuild` from the FBE handler — recorded in GAS_SCRIPT_PROPERTIES.md. Needs Actions:write on TrueSightDAO/sunmint.
 
 ---
 
@@ -277,6 +278,8 @@ _All dated lines on/after 2026-08-25_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+700e75e | 2026-09-02 04:58:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
+37610a7 | 2026-09-01 21:16:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 99c1e7f | 2026-09-01 16:51:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 84cfa72 | 2026-09-01 11:04:22 -0300 | Remove Field Signals #8/#9 - moved to agroverse.shop Bean to Bliss (#349)
 9ba4184 | 2026-09-01 10:53:36 -0300 | Rephrase the removed-claim section, embed the source clip inline (#348)
@@ -315,8 +318,6 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 806f050 | 2026-08-30 21:27:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 40212b4 | 2026-08-30 16:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
-45969f3 | 2026-08-30 05:43:13 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0a7e521 | 2026-08-30 00:13:14 -0300 | SunMint impact map V1 — see our trees from space (Leaflet + Sentinel-2) (#319)
 … (truncated)
 ```
 
@@ -329,6 +330,14 @@ bd8faf6 | 2026-08-30 12:10:14 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9604f11 | 2026-09-02 08:32:06 -0300 | Document redeploy-diagnosis rule for all Envoy instances (#895)
+822402a | 2026-09-01 21:06:16 -0300 | docs: document Tencent Cloud credential locations (AWS-style) (#893)
+a05ed7f | 2026-09-01 19:35:18 -0300 | Record FBE_GH_PAT as SET in GAS Script Properties registry (#892)
+8336154 | 2026-09-01 19:21:00 -0300 | plan: SUNMINT_PUBLIC_SIGNATURES_PLAN — A6/A7/§7 complete, plan closed (#891)
+8ae9fcf | 2026-09-01 19:13:56 -0300 | docs: add verify_public_signatures to PROJECT_INDEX (#890)
+f32b850 | 2026-09-01 19:08:28 -0300 | Document plot-first boundary model + GAS/GA change analysis (#889)
+106475a | 2026-09-01 18:13:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
+b978864 | 2026-09-01 18:13:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 3ca119a | 2026-09-01 14:48:05 -0300 | docs: repoint manifest paths to dedicated farm_media_manifests repo (#888)
 1cd6d2b | 2026-09-01 14:44:04 -0300 | Move farm media manifests to dedicated repo (pointer README) (#887)
 fe531ea | 2026-09-01 13:49:57 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
@@ -361,20 +370,15 @@ f8ad5f4 | 2026-08-31 19:59:05 -0300 | chore(previews): refresh Beer Hall preview
 1c986f7 | 2026-08-31 19:59:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-08-31 UTC)
 3cdf33f | 2026-08-31 19:56:14 -0300 | Mark SUNMINT_BOUNDARY_SUBMISSION_PLAN complete (UAT passed, prod promoted) (#867)
 7ccba57 | 2026-08-31 17:19:40 -0300 | Add farm media manifest index (la-do-sitio v1 live, 3 more farms in flight) (#866)
-429d53b | 2026-08-31 16:59:11 -0300 | Add La do Sitio farm media manifest v1 (53 LIVE / 18 pending quota / 1 SOURCE_CORRUPT)
-4feb665 | 2026-08-31 16:52:59 -0300 | Add YouTube quota + live-ID verification lessons to FARM_MEDIA_PIPELINE.md (#864)
-6f0097c | 2026-08-31 16:52:13 -0300 | docs: mark OPEN_FOLLOWUPS #857 usage-logging as shipped (#865)
-f73d60f | 2026-08-31 16:31:17 -0300 | SunMint boundary-submission pipeline: roadmap + manifest reprioritization (PR0) (#863)
-b3580e4 | 2026-08-31 16:22:36 -0300 | Farm media manifests: La do Sitio (72 items) + Santa Anna (45 items) + index (#862)
-9fe30f7 | 2026-08-31 15:16:32 -0300 | Update Rancho Maranta manifest yt_ids to GPS-tagged uploads (NZThWnbWZE8, CQMPvCXaHfs, BZRo4yPl8us) (#861)
-7a9c8ee | 2026-08-31 14:34:38 -0300 | FARM_MEDIA_MANIFESTS: add rancho-maranta-para.json (52 items, sha256, GPS, yt_ids) per FARM_MEDIA_PIPELINE (#860)
-d89e429 | 2026-08-31 14:22:27 -0300 | Add FARM_MEDIA_PIPELINE.md — standard process for raw farm media intake (videos→YouTube, photos→farm-media-raw, manifest index) (#858)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+16e14b6 | 2026-09-02 08:18:09 -0300 | feat: PLOT INVALIDATION EVENT GAS handler + router case (governor/sentinel gate) (#456)
+6aecf94 | 2026-09-01 19:10:59 -0300 | Plot-first FBE handler: auto Plot ID, Farm ID empty, index-rebuild ping (#455)
+500a52d | 2026-09-01 19:10:27 -0300 | Plot-first FBE handler: auto Plot ID, Farm ID empty, index-rebuild ping
 f69eedf | 2026-09-01 13:08:14 -0300 | feat: MEDIA RETRACTION GAS handler + doGet case + trigger doc (#454)
 b7794ce | 2026-09-01 00:20:53 -0300 | Wire FARM BOUNDARY EVIDENCE webhook doGet case + document hourly fallback trigger (#453)
 c750ac5 | 2026-08-31 23:56:40 -0300 | Add GAS handler for FARM BOUNDARY EVIDENCE EVENT (cron scan + farm upsert + tracking) (#452)
@@ -400,7 +404,6 @@ f51731c | 2026-08-27 09:59:26 -0300 | Server-side enforcement: proximity gate (2
 521d02b | 2026-08-27 09:18:51 -0300 | fix(asset-receipt-ingest): match 'Contributor(s)' label in paired-contribution unit cost lookup (#431)
 0d57fba | 2026-08-25 23:30:02 -0300 | Add process_tree_growth_monitoring.gs — [TREE GROWTH MONITORING EVENT] handler (P1d) (#430)
 0d55b11 | 2026-08-25 23:29:37 -0300 | fix(asset-receipt-ingest): anchor event detection + idempotent SKIPPED/ERROR dedup (#427)
-54bf0cf | 2026-08-25 13:09:09 -0300 | feat: enforce DEPLOY_PUSH_SOP lease+audit in deploy_gas_project.py (direct-run gap) (#429)
 ```
 
 ### `dapp` → `dapp`
@@ -430,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c541531 | 2026-09-02 11:22:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cb22cba | 2026-09-01 12:00:11 +0000 | chore: refresh currencies.json [skip ci]
 5103798 | 2026-09-01 11:42:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 c392457 | 2026-08-31 14:26:47 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -446,10 +450,6 @@ e7ee650 | 2026-08-28 18:46:14 +0000 | chore: refresh store and partner inventory
 2df3c0b | 2026-08-27 17:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 edf8fdb | 2026-08-26 07:31:12 +0000 | chore: refresh currencies.json [skip ci]
 28f4a7e | 2026-08-26 07:11:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-3fff0fa | 2026-08-25 14:04:18 +0000 | chore: refresh currencies.json [skip ci]
-6f190de | 2026-08-25 10:24:31 -0300 | chore(inventory): refresh currencies.json (repackaging ingest)
-1237c29 | 2026-08-25 08:29:14 -0300 | chore: refresh Agroverse store inventory snapshot
-cec3015 | 2026-08-25 07:10:42 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -584,9 +584,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/1/2026 13:51:02 |
+| 2026-09 | 0 | 17439.84386 | 9/2/2026 3:52:38 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-25`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-26`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
