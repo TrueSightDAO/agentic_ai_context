@@ -260,4 +260,15 @@ Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExp
 
 ---
 
+## 11. Tencent Cloud
+
+| Variable | What it is | Use case | Where / scenario |
+|----------|------------|----------|------------------|
+| **TENCENT_SECRET_ID** | Tencent Cloud SecretId | Authenticate Tencent Cloud SDK APIs (COS, SMS, ASR, etc.) | Workspace-root `~/Applications/.env`; per-agent `.env` files — Sophia: `truesight_autopilot/.env` (live `/opt/truesight_autopilot/.env`), Envoy: `/opt/claude_workspace/{.env,truesight_autopilot/.env}`, Onaya (Bionpact): `/opt/bionpact_autopilot/.env` |
+| **TENCENT_SECRET_KEY** | Tencent Cloud SecretKey | Paired with SecretId for request signing | Same locations |
+
+*Source: `~/Applications/tmp/tencent_keys.txt` (SecretId / SecretKey). Added 2026-09-01 for Sophia, Envoy, and Onaya (Bionpact) access.*
+
+---
+
 *Last updated from workspace scan. Credentials were not moved; only variable names and documentation were collected here.*
