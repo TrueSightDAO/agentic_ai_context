@@ -165,6 +165,7 @@ Operators and AI agents use **`market_research/.env`** for secrets that must **n
 | GitHub PAT | ✅ Ready | `TRUESIGHT_DAO_AUTOPILOT` from `market_research/.env`; fine-grained PAT with Contents+PR write on `TrueSightDAO/*` |
 | DeepSeek API | ✅ Ready | `DEEPSEEK_SDK` from local `.env`; ~30× cheaper than Claude |
 | AWS credentials | ✅ Ready | `TRUESIGHT_DAO_AUTOPILOT_AWS_KEY` / `_SECRET` from `cypher_def/.env` copied to EC2 as `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` |
+| Tencent Cloud | ✅ Present | `TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY` in `/opt/truesight_autopilot/.env` (also appended to `/opt/bionpact_autopilot/.env` on the Bionpact host) |
 | EC2 host | ✅ Ready | Dedicated t3.small in `us-east-1d`; launched via `scripts/launch_ec2.sh` |
 
 ### Remaining blockers
@@ -190,6 +191,11 @@ DEEPSEEK_BASE_URL=https://api.deepseek.com
 AWS_ACCESS_KEY_ID=<from cypher_def/.env TRUESIGHT_DAO_AUTOPILOT_AWS_KEY>
 AWS_SECRET_ACCESS_KEY=<from cypher_def/.env TRUESIGHT_DAO_AUTOPILOT_AWS_SECRET>
 AWS_REGION=us-east-1
+
+# Tencent Cloud (COS / SMS / other Tencent services)
+# Locations: /opt/truesight_autopilot/.env and /opt/bionpact_autopilot/.env
+TENCENT_SECRET_ID=<Tencent Cloud API SecretId>
+TENCENT_SECRET_KEY=<Tencent Cloud API SecretKey>
 
 # Edgar (automation identity — NOT personal keys)
 EMAIL=autopilot@agroverse.shop

@@ -248,6 +248,15 @@ Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExp
 | **Background tasks** | Gmail poller (5 min), AWS monitor (5 min), cost check (daily) |
 
 **Verdict:** ✅ **Deployed and running.** Health endpoint: `http://100.52.234.163:8001/health`.
+### 10.7 Tencent Cloud Credentials
+
+| Source | Status | Details |
+|---|---|---|
+| `/opt/truesight_autopilot/.env` (`TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY`) | ✅ **Present** | Tencent Cloud API SecretId/SecretKey; on the Sophia autopilot box; chmod 600; gitignored |
+| `/opt/bionpact_autopilot/.env` (`TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY`) | ✅ **Present** | Appended earlier on the Bionpact autopilot host (same pair) |
+
+**Verdict:** ✅ **Documented.** Both known copies are in place. Any future Sophia/Bionpact instance should look for `TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY` in the runtime `.env` (same pattern as AWS credentials). Rotate from the Tencent Cloud console if ever exposed.
+
 
 ---
 
