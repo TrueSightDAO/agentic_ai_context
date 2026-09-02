@@ -192,6 +192,18 @@ Live probe results for credentials used by automation. **Future AIs:** consult t
 
 **Status:** ✅ **Ready for autopilot.**
 
+#### 10.2.3 Autopilot read-only PAT (`GITHUB_READ_PAT`)
+
+| Attribute | Value |
+|---|---|
+| **Type** | Fine-grained personal access token, read-only |
+| **Purpose** | Read paths only (`read_repo_file` / `search_codebase`) so read traffic doesn't consume the write PAT's rate limit |
+| **Env var** | `GITHUB_READ_PAT` (read by `settings.github_read_pat`) |
+| **Where stored** | `~/Applications/.env`, `~/Applications/truesight_autopilot/.env`, Sophia box `/opt/truesight_autopilot/.env`, Envoy box `/opt/claude_workspace/{.env,truesight_autopilot/.env}` |
+| **Verified** | GET `/user` → 200 · read repo file → 200 · write (PUT) → 403 |
+
+`_github_headers()` prefers this token and falls back to `TRUESIGHT_DAO_AUTOPILOT` when unset.
+
 ### 10.3 AWS Credentials
 
 | Source | Status | Details |
