@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-02T16:47:09Z`
+- Generated (UTC): `2026-09-02T21:12:15Z`
 - Look-back: **7** calendar days (`2026-08-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,22 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 22
-- `[FARM BOUNDARY EVIDENCE EVENT]` × 9
+- `[CONTRIBUTION EVENT]` × 26
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 4
 - `[PRACTICE EVENT]` × 4
 - `[PLOT INVALIDATION EVENT]` × 2
-- `[FARM REGISTRATION EVENT]` × 1
 - `[FARM REGISTRATION]` × 1
+- `[TREE PLANTING EVENT]` × 1
+- `[TREE GROWTH MONITORING EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260902115105_002` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: TEST-P1 · Reason: UAT test resubmission #2 - dispatch verification after dao_protocol code pull (En… · Retractor Email: admin+claude@truesight.me
-- `Edgar_20260902115915_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Description: SunMint plot-invalidation pipeline: GAS handler (PR #456), dao_protocol disp…
-- `Edgar_20260902115918_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: Supervised Sophia's SunMint plot-invalidation follow-on to completion: verif…
-- `Edgar_20260902115921_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 8 · Description: Directed and reviewed the SunMint plot-invalidation UAT: clarified scope, de…
-- `Edgar_20260902133908_010` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T13:39:06.439Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260902142006_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Distribute Tencent Cloud credentials (Sophia/Envoy/Onaya) + Onaya SSH & Elas…
 - `Edgar_20260902144923_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T14:49:22.848Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260902152844_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Telegram adapter misreports brain outages a…
 - `Edgar_20260902152956_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Contributor(s): Sophia Truesight
@@ -62,6 +57,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260902153512_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: fix(roda): Start/End Roda Session now control audio
 - `Edgar_20260902160617_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: SunMint Android release keystore — vault backup + rotation refresh
 - `Edgar_20260902160628_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Supervision and review of the SunMint Android release-keystore backup across…
+- `Edgar_20260902173339_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Sophia Truesight
+- `Edgar_20260902173345_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 45 · Contributor(s): Sophia Truesight · Description: Direct time (engagement/analysis) — thread 19615 'surface real error instead…
+- `Edgar_20260902173351_046` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Gary Teh direct time — thread 19615 'surface real error instead of generic r…
+- `Edgar_20260902184009_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Diagnosed and fixed Sophia (truesight_autopilot) unresponsive/wedged state: …
+- `Edgar_20260902202927_050` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.0943902572347484 · Longitude: -52.095931341572005 · Species: Cacao - Criolla
+- `Edgar_20260902203058_052` · **Edgar** · [TREE GROWTH MONITORING EVENT] Tree ID: Edgar_20260831195934_006 · Species: Unknown · DBH (cm): 20
 
 ---
 
@@ -277,6 +278,7 @@ _All dated lines on/after 2026-08-26_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 58934fb | 2026-09-02 11:39:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 700e75e | 2026-09-02 04:58:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 37610a7 | 2026-09-01 21:16:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -316,7 +318,6 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 318802d | 2026-08-30 20:04:30 -0300 | Widen impact map default zoom to regional view (#321)
 8f31216 | 2026-08-30 19:20:47 -0300 | Fix impact map: ESRI satellite basemap instead of key-requiring Sentinel-2 WMS (#320)
 806f050 | 2026-08-30 21:27:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
-40212b4 | 2026-08-30 16:56:14 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -329,6 +330,11 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5ff97c2 | 2026-09-02 15:36:00 -0300 | Merge pull request #902 from TrueSightDAO/docs/github-read-pat
+5f18a5a | 2026-09-02 15:35:44 -0300 | docs(credentials): document GITHUB_READ_PAT read-only token
+710fb1e | 2026-09-02 14:45:28 -0300 | docs(handoff): add OSCAR_BAHIA_MEDIA_TASK_PLAN roadmap (thread 19891) (#901)
+42cf752 | 2026-09-02 13:47:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-02 UTC)
+1931b11 | 2026-09-02 13:47:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-02 UTC)
 6ac3e44 | 2026-09-02 13:45:49 -0300 | Documentation: Bean-to-Bar Equipment Inventory (Agroverse) (#899)
 bcad91a | 2026-09-02 13:00:21 -0300 | docs(followups): file open_fix_pr 'no running event loop' harness defect (#897)
 3869ac7 | 2026-09-02 11:19:09 -0300 | Merge pull request #896 from TrueSightDAO/docs/tencent-cloud-credentials
@@ -364,11 +370,6 @@ e705a19 | 2026-09-01 02:28:33 -0300 | chore(previews): refresh Beer Hall preview
 710a1eb | 2026-09-01 02:28:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 34cbe1e | 2026-09-01 01:04:18 -0300 | Merge pull request #875 from TrueSightDAO/auto/advisory-refresh-2026-09-01
 7e7d1cf | 2026-09-01 04:04:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
-8a0a5c4 | 2026-09-01 00:57:48 -0300 | Plan: Media Archives Pipeline dashboard at sophia.truesight.me/media-archive-pipeline (PR0) (#874)
-3c58802 | 2026-09-01 00:50:40 -0300 | Rename FARM_MEDIA_PIPELINE.md -> MEDIA_ARCHIVE_PIPELINE.md (MAP terminology) (#873)
-c1c57c0 | 2026-09-01 00:19:10 -0300 | Propagate Media Archives Pipeline (MAP) terminology across context docs (#872)
-b177055 | 2026-08-31 23:52:16 -0300 | A5: mark UAT complete + sunmint mirror decommissioned (#871)
-dbae43e | 2026-08-31 23:47:08 -0300 | Farm Media Daemon: repo is public, not private (design transparency) (#869) (#870)
 … (truncated)
 ```
 
@@ -585,7 +586,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/2/2026 8:53:06 |
+| 2026-09 | 0 | 17439.84386 | 9/2/2026 13:50:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-26`; scanned last **600** data rows)
 
