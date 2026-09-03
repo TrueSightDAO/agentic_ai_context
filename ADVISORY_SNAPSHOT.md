@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-03T11:31:04Z`
+- Generated (UTC): `2026-09-03T16:36:50Z`
 - Look-back: **7** calendar days (`2026-08-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -278,6 +278,7 @@ _All dated lines on/after 2026-08-27_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0d450dc | 2026-09-03 04:55:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b7395c | 2026-09-02 21:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,7 +318,6 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 202984e | 2026-08-30 20:30:11 -0300 | Add plot selector + polygon rendering to impact map (#324)
 05317db | 2026-08-30 20:25:47 -0300 | Add §3.1 Geospatial Data Model to SunMint whitepaper (#323)
 1351eba | 2026-08-30 20:10:37 -0300 | Add satellite history strip + overlay to impact map (#322)
-318802d | 2026-08-30 20:04:30 -0300 | Widen impact map default zoom to regional view (#321)
 … (truncated)
 ```
 
@@ -330,6 +330,8 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8c1924f | 2026-09-03 08:31:21 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
+2d65abf | 2026-09-03 08:31:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-03 UTC)
 3779360 | 2026-09-03 06:13:11 -0300 | docs(credentials): document PUBLIC_SIGNATURES READ/WRITE PATs (vault refs, no values) (#906)
 26fbbfa | 2026-09-03 05:48:31 -0300 | docs: update vision pipeline diagram — HEIC conversion now uses pillow_heif, not macOS sips (#905)
 ccb5d2a | 2026-09-03 05:02:46 -0300 | Add SunMint tree/boundary photo-processing runbook (distinct-tree + corner heuristics, submission contracts) (#904)
@@ -368,8 +370,6 @@ e33ff95 | 2026-09-01 12:59:01 -0300 | SOP: note upload ingress now writes polish
 89ac41a | 2026-09-01 12:37:25 -0300 | SOP: add description re-sync step (polished transcript) to prevent raw-ASR recurrence (#881)
 30082b6 | 2026-09-01 10:06:30 -0300 | Add execution roadmap for YouTube description/title cleanup (#880)
 71b999d | 2026-09-01 08:54:55 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
-f4e2129 | 2026-09-01 08:54:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
-0a771bc | 2026-09-01 07:53:56 -0300 | Wrap up MAP daemon + dashboard plans (all queues drained, dashboard live) (#879)
 … (truncated)
 ```
 
@@ -433,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f597a45 | 2026-09-03 11:42:51 +0000 | chore: refresh currencies.json [skip ci]
 546abfc | 2026-09-03 11:19:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b9f4405 | 2026-09-02 11:43:17 +0000 | chore: refresh currencies.json [skip ci]
 c541531 | 2026-09-02 11:22:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -584,7 +585,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/3/2026 3:51:01 |
+| 2026-09 | 0 | 17439.84386 | 9/3/2026 8:59:11 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-27`; scanned last **600** data rows)
 
