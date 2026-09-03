@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-02T21:12:15Z`
-- Look-back: **7** calendar days (`2026-08-26` → today UTC)
+- Generated (UTC): `2026-09-03T04:52:59Z`
+- Look-back: **7** calendar days (`2026-08-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,28 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
-- `[FARM BOUNDARY EVIDENCE EVENT]` × 4
+- `[CONTRIBUTION EVENT]` × 20
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 5
+- `[PLOT INVALIDATION EVENT]` × 4
 - `[PRACTICE EVENT]` × 4
-- `[PLOT INVALIDATION EVENT]` × 2
-- `[FARM REGISTRATION]` × 1
 - `[TREE PLANTING EVENT]` × 1
 - `[TREE GROWTH MONITORING EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
+- _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260902144923_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T14:49:22.848Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260902152844_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Telegram adapter misreports brain outages a…
-- `Edgar_20260902152956_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Contributor(s): Sophia Truesight
-- `Edgar_20260902152959_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Envoy TrueSight
-- `Edgar_20260902153001_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
-- `Edgar_20260902153111_024` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T15:31:10.441Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260902153129_026` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-02T15:31:29.139Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20260902153203_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Description: SunMint Android v1.4 — sync sunmint_prod + build/publish APK
-- `Edgar_20260902153212_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Telegram adapter misreports brain outages a…
-- `Edgar_20260902153411_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
-- `Edgar_20260902153413_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20260902153512_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: fix(roda): Start/End Roda Session now control audio
 - `Edgar_20260902160617_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: SunMint Android release keystore — vault backup + rotation refresh
 - `Edgar_20260902160628_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Supervision and review of the SunMint Android release-keystore backup across…
@@ -63,6 +51,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260902184009_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Diagnosed and fixed Sophia (truesight_autopilot) unresponsive/wedged state: …
 - `Edgar_20260902202927_050` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.0943902572347484 · Longitude: -52.095931341572005 · Species: Cacao - Criolla
 - `Edgar_20260902203058_052` · **Edgar** · [TREE GROWTH MONITORING EVENT] Tree ID: Edgar_20260831195934_006 · Species: Unknown · DBH (cm): 20
+- `Edgar_20260902220317_054` · **Edgar** · [No Text Provided]
+- `Edgar_20260903024410_056` · **Edgar** · [No Text Provided]
+- `Edgar_20260903024411_058` · **Edgar** · [No Text Provided]
+- `Edgar_20260903024411_060` · **Edgar** · [No Text Provided]
+- `Edgar_20260903024413_062` · **Edgar** · [No Text Provided]
+- `Edgar_20260903024414_064` · **Edgar** · [No Text Provided]
+- `Edgar_20260903024414_066` · **Edgar** · [No Text Provided]
+- `Edgar_20260903024631_068` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Bom Sucesso · Plot ID: · Boundary Type: approx
+- `Edgar_20260903025329_070` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Bom Sucesso · Boundary Type: approx · Media URLs: https://raw.githubusercontent.com/TrueSightDAO/sunmint/main/images/boundaries…
+- `Edgar_20260903030205_072` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: - Boundary Type: approx · Reason: Mangled row: empty '- Plot ID:' line in original FARM BOUNDARY EVIDENCE EVENT sub… · Retractor Email: admin+sophia@truesight.me
+- `Edgar_20260903030207_074` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: - Submission Source: e2e-uat · Reason: Test artifact row corrupted by empty '- Plot ID:' line (Edgar_20260901224254_010)… · Retractor Email: admin+sophia@truesight.me
 
 ---
 
@@ -236,9 +235,9 @@ _(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,857.87**
+- USD on hand: **$4,857.75**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$53.86**
+- USD provisioned for voting-rights cash-out: **$53.98**
 
 ### In-transit freight (1 row)
 
@@ -256,7 +255,7 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
 
-_All dated lines on/after 2026-08-26_ (2):
+_All dated lines on/after 2026-08-27_ (2):
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
 - 2026-09-01 | sophia | FBE_GH_PAT set in GAS Script Properties (project 1UrBg…, by Gary) for `repository_dispatch` `plots-index-rebuild` from the FBE handler — recorded in GAS_SCRIPT_PROPERTIES.md. Needs Actions:write on TrueSightDAO/sunmint.
@@ -278,6 +277,7 @@ _All dated lines on/after 2026-08-26_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2b7395c | 2026-09-02 21:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 58934fb | 2026-09-02 11:39:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
 700e75e | 2026-09-02 04:58:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,7 +317,6 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 1351eba | 2026-08-30 20:10:37 -0300 | Add satellite history strip + overlay to impact map (#322)
 318802d | 2026-08-30 20:04:30 -0300 | Widen impact map default zoom to regional view (#321)
 8f31216 | 2026-08-30 19:20:47 -0300 | Fix impact map: ESRI satellite basemap instead of key-requiring Sentinel-2 WMS (#320)
-806f050 | 2026-08-30 21:27:43 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -330,6 +329,8 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f8fdd03 | 2026-09-02 18:12:42 -0300 | chore(previews): refresh Beer Hall preview (2026-09-02 UTC)
+0525ba0 | 2026-09-02 18:12:40 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-02 UTC)
 5ff97c2 | 2026-09-02 15:36:00 -0300 | Merge pull request #902 from TrueSightDAO/docs/github-read-pat
 5f18a5a | 2026-09-02 15:35:44 -0300 | docs(credentials): document GITHUB_READ_PAT read-only token
 710fb1e | 2026-09-02 14:45:28 -0300 | docs(handoff): add OSCAR_BAHIA_MEDIA_TASK_PLAN roadmap (thread 19891) (#901)
@@ -368,14 +369,13 @@ d8b5fa5 | 2026-09-01 07:52:05 -0300 | Add Fazenda Cleide media manifest (71 vide
 2e74c22 | 2026-09-01 07:40:53 -0300 | Add ABBREVIATIONS.md glossary (TGM/FBE/TGP + domain acronyms) (#876)
 e705a19 | 2026-09-01 02:28:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
 710a1eb | 2026-09-01 02:28:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
-34cbe1e | 2026-09-01 01:04:18 -0300 | Merge pull request #875 from TrueSightDAO/auto/advisory-refresh-2026-09-01
-7e7d1cf | 2026-09-01 04:04:07 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+7f767af | 2026-09-02 23:55:32 -0300 | fix(fbe): stop empty-field line-bleed in boundary evidence parser (#458)
 7d25974 | 2026-09-02 08:35:38 -0300 | feat: auto-derive governor/sentinel allowlist from dao_members.json (#457)
 16e14b6 | 2026-09-02 08:18:09 -0300 | feat: PLOT INVALIDATION EVENT GAS handler + router case (governor/sentinel gate) (#456)
 6aecf94 | 2026-09-01 19:10:59 -0300 | Plot-first FBE handler: auto Plot ID, Farm ID empty, index-rebuild ping (#455)
@@ -403,8 +403,6 @@ a6f2180 | 2026-08-29 10:14:50 -0300 | fix(gas): resolve remaining GAS project co
 8e11f91 | 2026-08-27 10:00:12 -0300 | fix(deploy): repoint pinned GAS deployments on push; commit asset_receipt_ingest project (#433)
 f51731c | 2026-08-27 09:59:26 -0300 | Server-side enforcement: proximity gate (200m, operators exempt), INVALID tree block, REJECT allows NEW+LINKED (#432)
 521d02b | 2026-08-27 09:18:51 -0300 | fix(asset-receipt-ingest): match 'Contributor(s)' label in paired-contribution unit cost lookup (#431)
-0d57fba | 2026-08-25 23:30:02 -0300 | Add process_tree_growth_monitoring.gs — [TREE GROWTH MONITORING EVENT] handler (P1d) (#430)
-0d55b11 | 2026-08-25 23:29:37 -0300 | fix(asset-receipt-ingest): anchor event detection + idempotent SKIPPED/ERROR dedup (#427)
 ```
 
 ### `dapp` → `dapp`
@@ -450,8 +448,6 @@ da5c29e | 2026-08-29 09:28:41 -0300 | chore: refresh Agroverse store inventory s
 e7ee650 | 2026-08-28 18:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 8e195dd | 2026-08-27 17:53:42 +0000 | chore: refresh currencies.json [skip ci]
 2df3c0b | 2026-08-27 17:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-edf8fdb | 2026-08-26 07:31:12 +0000 | chore: refresh currencies.json [skip ci]
-28f4a7e | 2026-08-26 07:11:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -569,26 +565,20 @@ _(no commits on origin/master in window)_
 
 _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
 
-### `Monthly Statistics` (last **14** non-empty rows)
+### `Monthly Statistics` _(read failed: APIError: [-1]: <!DOCTYPE html>
+<html lang=en>
+  <meta charset=utf-8>
+  <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
+  <title>Error 502 (Server Error)!!1</title>
+  <style>
+    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 22px;overflow:hidden}ins{color:#777;text-decoration:none}a img{border:0}@media screen and (max-width:772px){body{background:none;margin-top:0;max-width:none;padding-right:0}}#logo{background:url(//www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png) no-repeat;margin-left:-5px}@media only screen and (min-resolution:192dpi){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat 0% 0%/100% 100%;-moz-border-image:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) 0}}@media only screen and (-webkit-min-device-pixel-ratio:2){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat;-webkit-background-size:100% 100%}}#logo{display:inline-block;height:54px;width:150px}
+  </style>
+  <a href=//www.google.com/><span id=logo aria-label=Google></span></a>
+  <p><b>502.</b> <ins>That’s an error.</ins>
+  <p>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.  <ins>That’s all we know.</ins>
+)_
 
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/2/2026 13:50:58 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-26`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-27`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
@@ -605,6 +595,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_11 | — | — |
 | 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_22 | — | — |
 | 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_24 | — | — |
+| 2026-09-02 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | — | 2024OSCAR_20260121_9 | QPfMC9gGq18K | Stripe checkout (online) |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
