@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-03T16:36:50Z`
+- Generated (UTC): `2026-09-03T21:13:13Z`
 - Look-back: **7** calendar days (`2026-08-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -278,6 +278,7 @@ _All dated lines on/after 2026-08-27_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7b3ca6b | 2026-09-03 16:38:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0d450dc | 2026-09-03 04:55:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b7395c | 2026-09-02 21:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,7 +318,6 @@ abd73b3 | 2026-08-30 21:43:35 -0300 | Add view switcher to SunMint impact map (A
 d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry + fix pilot center to Altamira (#325)
 202984e | 2026-08-30 20:30:11 -0300 | Add plot selector + polygon rendering to impact map (#324)
 05317db | 2026-08-30 20:25:47 -0300 | Add §3.1 Geospatial Data Model to SunMint whitepaper (#323)
-1351eba | 2026-08-30 20:10:37 -0300 | Add satellite history strip + overlay to impact map (#322)
 … (truncated)
 ```
 
@@ -330,6 +330,8 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5b15a69 | 2026-09-03 13:37:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
+b6f67d0 | 2026-09-03 13:37:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-03 UTC)
 8c1924f | 2026-09-03 08:31:21 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
 2d65abf | 2026-09-03 08:31:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-03 UTC)
 3779360 | 2026-09-03 06:13:11 -0300 | docs(credentials): document PUBLIC_SIGNATURES READ/WRITE PATs (vault refs, no values) (#906)
@@ -368,8 +370,6 @@ d5e5f2c | 2026-09-01 13:03:53 -0300 | docs: media invalidation/retraction design
 e33ff95 | 2026-09-01 12:59:01 -0300 | SOP: note upload ingress now writes polished descriptions (PR #268) (#883)
 4b478b2 | 2026-09-01 12:39:38 -0300 | Mark YouTube description/title cleanup plan complete (all 6 units landed) (#882)
 89ac41a | 2026-09-01 12:37:25 -0300 | SOP: add description re-sync step (polished transcript) to prevent raw-ASR recurrence (#881)
-30082b6 | 2026-09-01 10:06:30 -0300 | Add execution roadmap for YouTube description/title cleanup (#880)
-71b999d | 2026-09-01 08:54:55 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
 … (truncated)
 ```
 
@@ -585,7 +585,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/3/2026 8:59:11 |
+| 2026-09 | 0 | 17439.84386 | 9/3/2026 13:50:50 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-27`; scanned last **600** data rows)
 
