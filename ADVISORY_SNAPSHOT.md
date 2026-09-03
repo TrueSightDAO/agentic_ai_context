@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-03T04:52:59Z`
+- Generated (UTC): `2026-09-03T11:31:04Z`
 - Look-back: **7** calendar days (`2026-08-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,36 +32,37 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[FARM BOUNDARY EVIDENCE EVENT]` × 5
-- `[PLOT INVALIDATION EVENT]` × 4
-- `[PRACTICE EVENT]` × 4
-- `[TREE PLANTING EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 14
+- `[CONTRIBUTION EVENT]` × 9
+- `[TREE PLANTING REJECT EVENT]` × 6
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 2
+- `[PLOT INVALIDATION EVENT]` × 2
 - `[TREE GROWTH MONITORING EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260902153512_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: fix(roda): Start/End Roda Session now control audio
-- `Edgar_20260902160617_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: SunMint Android release keystore — vault backup + rotation refresh
-- `Edgar_20260902160628_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Supervision and review of the SunMint Android release-keystore backup across…
-- `Edgar_20260902173339_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Sophia Truesight
-- `Edgar_20260902173345_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 45 · Contributor(s): Sophia Truesight · Description: Direct time (engagement/analysis) — thread 19615 'surface real error instead…
-- `Edgar_20260902173351_046` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Gary Teh direct time — thread 19615 'surface real error instead of generic r…
-- `Edgar_20260902184009_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Diagnosed and fixed Sophia (truesight_autopilot) unresponsive/wedged state: …
-- `Edgar_20260902202927_050` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.0943902572347484 · Longitude: -52.095931341572005 · Species: Cacao - Criolla
-- `Edgar_20260902203058_052` · **Edgar** · [TREE GROWTH MONITORING EVENT] Tree ID: Edgar_20260831195934_006 · Species: Unknown · DBH (cm): 20
-- `Edgar_20260902220317_054` · **Edgar** · [No Text Provided]
-- `Edgar_20260903024410_056` · **Edgar** · [No Text Provided]
-- `Edgar_20260903024411_058` · **Edgar** · [No Text Provided]
-- `Edgar_20260903024411_060` · **Edgar** · [No Text Provided]
-- `Edgar_20260903024413_062` · **Edgar** · [No Text Provided]
-- `Edgar_20260903024414_064` · **Edgar** · [No Text Provided]
-- `Edgar_20260903024414_066` · **Edgar** · [No Text Provided]
-- `Edgar_20260903024631_068` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Bom Sucesso · Plot ID: · Boundary Type: approx
-- `Edgar_20260903025329_070` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Bom Sucesso · Boundary Type: approx · Media URLs: https://raw.githubusercontent.com/TrueSightDAO/sunmint/main/images/boundaries…
-- `Edgar_20260903030205_072` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: - Boundary Type: approx · Reason: Mangled row: empty '- Plot ID:' line in original FARM BOUNDARY EVIDENCE EVENT sub… · Retractor Email: admin+sophia@truesight.me
-- `Edgar_20260903030207_074` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: - Submission Source: e2e-uat · Reason: Test artifact row corrupted by empty '- Plot ID:' line (Edgar_20260901224254_010)… · Retractor Email: admin+sophia@truesight.me
+- `Edgar_20260903083411_002` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.094431, -52.095225 · Latitude: -3.094431
+- `Edgar_20260903083523_004` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094461 · Location: -3.094461, -52.095119 · Longitude: -52.095119
+- `Edgar_20260903083528_006` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094517 · Location: -3.094517, -52.094956 · Longitude: -52.094956
+- `Edgar_20260903083532_008` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094581 · Location: -3.094581, -52.094964 · Longitude: -52.094964
+- `Edgar_20260903083536_010` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.09445 · Location: -3.09445, -52.095222 · Longitude: -52.095222
+- `Edgar_20260903083540_012` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094183 · Location: -3.094183, -52.095136 · Longitude: -52.095136
+- `Edgar_20260903083544_014` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094217 · Location: -3.094217, -52.094983 · Longitude: -52.094983
+- `Edgar_20260903083548_016` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094178 · Location: -3.094178, -52.095142 · Longitude: -52.095142
+- `Edgar_20260903083551_018` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094333 · Location: -3.094333, -52.096053 · Longitude: -52.096053
+- `Edgar_20260903083555_020` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094528 · Location: -3.094528, -52.095314 · Longitude: -52.095314
+- `Edgar_20260903085649_022` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.12 · Description: Deep seek credits
+- `Edgar_20260903085723_024` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.20 · Description: Deep Seek credit
+- `Edgar_20260903091437_026` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260831162552_071 · Updated by: Gary Teh
+- `Edgar_20260903091501_028` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260902202927_050 · Updated by: Gary Teh
+- `Edgar_20260903091541_030` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260831195934_006 · Updated by: Gary Teh
+- `Edgar_20260903091546_032` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903071844_076 · Updated by: Gary Teh
+- `Edgar_20260903091551_034` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Gary Teh
+- `Edgar_20260903091558_036` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903082307_082 · Updated by: Gary Teh
+- `Edgar_20260903091708_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260903091710_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 
 ---
 
@@ -76,7 +77,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-01T10:59:15.702Z`
+- Generated (UTC): `2026-09-03T10:59:16.356Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,12 +87,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **825**, follow_up **71**, bulk **0**, unknown **2** (data rows: **898**)
+- **Email Agent Follow Up** — logged sends: warmup **837**, follow_up **71**, bulk **0**, unknown **2** (data rows: **910**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **748**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **760**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -277,6 +278,7 @@ _All dated lines on/after 2026-08-27_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0d450dc | 2026-09-03 04:55:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b7395c | 2026-09-02 21:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 58934fb | 2026-09-02 11:39:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -316,7 +318,6 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 05317db | 2026-08-30 20:25:47 -0300 | Add §3.1 Geospatial Data Model to SunMint whitepaper (#323)
 1351eba | 2026-08-30 20:10:37 -0300 | Add satellite history strip + overlay to impact map (#322)
 318802d | 2026-08-30 20:04:30 -0300 | Widen impact map default zoom to regional view (#321)
-8f31216 | 2026-08-30 19:20:47 -0300 | Fix impact map: ESRI satellite basemap instead of key-requiring Sentinel-2 WMS (#320)
 … (truncated)
 ```
 
@@ -329,6 +330,11 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3779360 | 2026-09-03 06:13:11 -0300 | docs(credentials): document PUBLIC_SIGNATURES READ/WRITE PATs (vault refs, no values) (#906)
+26fbbfa | 2026-09-03 05:48:31 -0300 | docs: update vision pipeline diagram — HEIC conversion now uses pillow_heif, not macOS sips (#905)
+ccb5d2a | 2026-09-03 05:02:46 -0300 | Add SunMint tree/boundary photo-processing runbook (distinct-tree + corner heuristics, submission contracts) (#904)
+125c7e8 | 2026-09-03 01:53:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
+0722dd6 | 2026-09-03 01:53:16 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-03 UTC)
 f8fdd03 | 2026-09-02 18:12:42 -0300 | chore(previews): refresh Beer Hall preview (2026-09-02 UTC)
 0525ba0 | 2026-09-02 18:12:40 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-02 UTC)
 5ff97c2 | 2026-09-02 15:36:00 -0300 | Merge pull request #902 from TrueSightDAO/docs/github-read-pat
@@ -364,11 +370,6 @@ e33ff95 | 2026-09-01 12:59:01 -0300 | SOP: note upload ingress now writes polish
 71b999d | 2026-09-01 08:54:55 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
 f4e2129 | 2026-09-01 08:54:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 0a771bc | 2026-09-01 07:53:56 -0300 | Wrap up MAP daemon + dashboard plans (all queues drained, dashboard live) (#879)
-d8b5fa5 | 2026-09-01 07:52:05 -0300 | Add Fazenda Cleide media manifest (71 videos, all uploaded) + index entry (#878)
-177e84d | 2026-09-01 07:46:48 -0300 | OPEN_FOLLOWUPS: file FBE hourly cron trigger (GAS UI) for Gary (#877)
-2e74c22 | 2026-09-01 07:40:53 -0300 | Add ABBREVIATIONS.md glossary (TGM/FBE/TGP + domain acronyms) (#876)
-e705a19 | 2026-09-01 02:28:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
-710a1eb | 2026-09-01 02:28:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 … (truncated)
 ```
 
@@ -432,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+546abfc | 2026-09-03 11:19:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b9f4405 | 2026-09-02 11:43:17 +0000 | chore: refresh currencies.json [skip ci]
 c541531 | 2026-09-02 11:22:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 cb22cba | 2026-09-01 12:00:11 +0000 | chore: refresh currencies.json [skip ci]
@@ -565,18 +567,24 @@ _(no commits on origin/master in window)_
 
 _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
 
-### `Monthly Statistics` _(read failed: APIError: [-1]: <!DOCTYPE html>
-<html lang=en>
-  <meta charset=utf-8>
-  <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
-  <title>Error 502 (Server Error)!!1</title>
-  <style>
-    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 22px;overflow:hidden}ins{color:#777;text-decoration:none}a img{border:0}@media screen and (max-width:772px){body{background:none;margin-top:0;max-width:none;padding-right:0}}#logo{background:url(//www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png) no-repeat;margin-left:-5px}@media only screen and (min-resolution:192dpi){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat 0% 0%/100% 100%;-moz-border-image:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) 0}}@media only screen and (-webkit-min-device-pixel-ratio:2){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat;-webkit-background-size:100% 100%}}#logo{display:inline-block;height:54px;width:150px}
-  </style>
-  <a href=//www.google.com/><span id=logo aria-label=Google></span></a>
-  <p><b>502.</b> <ins>That’s an error.</ins>
-  <p>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.  <ins>That’s all we know.</ins>
-)_
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 0 | 17439.84386 | 9/3/2026 3:51:01 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-27`; scanned last **600** data rows)
 
