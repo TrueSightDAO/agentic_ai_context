@@ -29,6 +29,8 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 | Artifact | Destination | Notes |
 |---|---|---|
 | Videos (MP4) | **YouTube public** (admin@truesight.me channel) | free, unlimited, durable; embed via media-gallery.js `youtube` entries |
+| Raw video originals (MOV) | **S3 bucket `media.agroverse.shop`** (Nelanco 767697632458), `raw/<farm>/<file>` | public-read; lifecycle STANDARD_IA@30d → DEEP_ARCHIVE@180d; URL `https://s3.us-east-1.amazonaws.com/media.agroverse.shop/raw/<farm>/<file>`; too large for GitHub (>100MB files, 16GB corpus) |
+| Frame previews (JPG) | GitHub repo **`farm-media-raw`**, `<farm-id>/previews/<basename>.jpg` | 1 ffmpeg frame per video; the manifest `preview` field references it; keeps archive self-previewing (timeline/map explorer ready) |
 | Photos (HEIC/JPG originals) | GitHub repo **`farm-media-raw`**, `<farm-id>/photos/` | individual files, **Content-API only** (repo can get large; never clone/branch-edit) |
 | Manifest / index | `farm_media_manifests/<farm-id>.json` (repo TrueSightDAO/farm_media_manifests) | the reference layer: sha256, GPS, duration, objects[], yt_id — keyword-searchable via GitHub code search |
 | Farm page gallery | `agroverse_shop_beta/farms/<farm-id>/media.json` | curated youtube + image entries |
@@ -87,7 +89,7 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
   its `.mp4` AND its `<name>.mp4.json` sidecar sit TOGETHER in the inbox dir (sidecar alone
   or mp4 alone = silently skipped — RG lost ~8 min to this).
 - **Sidecar JSON:** farm_id, title, description, latitude, longitude, captured_at, sha256,
-  duration_s, privacy. Daemon passes title/description verbatim to YouTube.
+  duration_s, privacy, raw_url, preview. Daemon passes title/description verbatim to YouTube.
 - **New farm = append an inbox entry to the config yaml + `systemctl restart
   farm-media-daemon`.** Verify active: `systemctl is-active farm-media-daemon`.
 - **Pacing:** ~1 video per inbox per pass (~30 s apart); other farms queue ahead (Cleide had
