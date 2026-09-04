@@ -77,6 +77,24 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - Batch: `nohup` loop with progress file (`/tmp/mp4_progress.txt`), ~35–60 s/video on t3.medium.
 
 ### 7. YouTube upload (public)
+
+### 7a. LIVE DAEMON — the current reality (read this before uploading)
+
+- The one-shot script below is the LEGACY path. Since 2026-09 the live uploader is the
+  **farm-media daemon** (systemd `farm-media-daemon`, config
+  `/opt/truesight_autopilot/media_archive_daemon_config.yaml`).
+- **Inbox:** `~/media_archive_inbox/farm-media/<farm_id>/`. A video is only processable when
+  its `.mp4` AND its `<name>.mp4.json` sidecar sit TOGETHER in the inbox dir (sidecar alone
+  or mp4 alone = silently skipped — RG lost ~8 min to this).
+- **Sidecar JSON:** farm_id, title, description, latitude, longitude, captured_at, sha256,
+  duration_s, privacy. Daemon passes title/description verbatim to YouTube.
+- **New farm = append an inbox entry to the config yaml + `systemctl restart
+  farm-media-daemon`.** Verify active: `systemctl is-active farm-media-daemon`.
+- **Pacing:** ~1 video per inbox per pass (~30 s apart); other farms queue ahead (Cleide had
+  71 queued) — a new farm's uploads trickle, they don't burst.
+- **Logs:** `/tmp/farm_media_daemon.log` (NOT journald — systemd does not capture stdout).
+  Verify uploads by `rc=0` lines + `yt_id` written back into the sidecar.
+- MOV GPS read: `Keys:GPSCoordinates` (exiftool `-s -s -GPSCoordinates`).
 - `/opt/truesight_autopilot/config/youtube/upload_video_to_youtube.py --file --title --description --tags --privacy public`
 - **SHARED QUOTA**: all instances share ONE Google project (`project_number:323153649224`). 'Video Uploads per day' is a hard daily cap (~50-60/day). Batch uploads WILL hit 429 mid-run. **Always** run uploads behind a retry loop: on 429, wait 30 min and retry (quota resets ~midnight PT); skip entries that already have a LIVE yt_id. Never re-upload blindly.
 - **VERIFY LIVE, not just captured**: after upload, the returned ID must be confirmed with `videos().list(part='id')`. A title->ID recovery map against the shared channel's uploads playlist (which can contain deleted/lingering entries) WILL capture stale IDs. Live-sweep every manifest ID before trusting it; dead ID = re-upload.
@@ -90,7 +108,7 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - **Never** `git_push_changes` to `farm-media-raw` (api-only repo).
 
 ### 9. Farm page wiring (beta-first)
-- `agroverse_shop_beta/farms/<farm-id>/media.json`: gallery entries `{type: youtube, id: yt_id}` + `{type: image, src: /assets/images/farms/IMG_x.jpg}`.
+- `agroverse_shop_beta/farms/<farm-id>/media.json`: gallery entries `{type: youtube, videoId, title, caption}` + `{type: image, src: /assets/images/farms/IMG_x.jpg}`. (Schema verified 2026-09-04 on the RG build — youtube entries need `videoId` + `title`, NOT `id`; media-gallery.js ignores bare `id` entries.)
 - Upload web-optimized JPEGs to `agroverse_shop_beta/assets/images/farms/` (**repo-root** path — site serves from root; og:image + rancho-maranta precedent).
 - `index.html` Farm Location: Leaflet pin → GPS centroid, add `L.polygon` overlay (plot ring), add SunMint impact-map link.
 - PR → merge → beta verify → `sync_beta_to_prod` **only on explicit governor go**.

@@ -39,6 +39,9 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### search_context / search_code return 0 matches for existing docs (index staleness)
+**Filed 2026-09-04. Owner: unclaimed.** `search_context("MEDIA_ARCHIVE_PIPELINE")`, `search_context("farm profile agroverse shop new farm onboarding")`, and several other queries against existing docs return **0 matches** even though the files exist in agentic_ai_context and literally contain those strings (repo file listing confirms presence). Suspect a stale/partial content index of the repo (new/renamed docs not re-indexed). Workaround: use `read_context_file` / repo-listing to inventory docs, or full `search_code` (GitHub). To fix: re-index agentic_ai_context and/or verify the search tool's index-update hook fires on PR merge.
+
 ### open_fix_pr tool throws "no running event loop" — use git_push_changes for autopilot PRs
 **Filed 2026-09-02. Owner: unclaimed (autopilot self-improvement).** The `open_fix_pr` tool fails **reproducibly** (2/2 attempts, 2026-09-02, thread-19615 — "Fix: surface real error instead of generic restart msg") with `tool_execution_error: no running event loop` **before reaching GitHub**: no branch, no PR, no commit. Root cause suspected: the tool's agentic loop needs a running asyncio event loop that isn't available in the autopilot's execution context (async tool invoked from a sync turn). **Workaround that ships:** use `git_push_changes` (shallow-clone → feature branch → PR) for `truesight_autopilot` PRs — verified working the same day (truesight_autopilot PR #392 merged). **To fix:** make `open_fix_pr` fall back to the non-async `git_push_changes` path when no event loop is running (or spawn a fresh loop / pre-flight check with a clear error instead of the cryptic traceback).
 
