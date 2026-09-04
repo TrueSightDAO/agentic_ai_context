@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-03T21:13:13Z`
-- Look-back: **7** calendar days (`2026-08-27` → today UTC)
+- Generated (UTC): `2026-09-04T04:54:45Z`
+- Look-back: **7** calendar days (`2026-08-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -33,17 +33,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[TREE PLANTING EVENT]` × 14
-- `[CONTRIBUTION EVENT]` × 9
+- `[CONTRIBUTION EVENT]` × 8
 - `[TREE PLANTING REJECT EVENT]` × 6
 - `[FARM BOUNDARY EVIDENCE EVENT]` × 2
 - `[PLOT INVALIDATION EVENT]` × 2
 - `[TREE GROWTH MONITORING EVENT]` × 1
 - `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 7
+- _free-form (no bracket tag)_ × 8
 
 ### Latest entries
 
-- `Edgar_20260903083411_002` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.094431, -52.095225 · Latitude: -3.094431
 - `Edgar_20260903083523_004` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094461 · Location: -3.094461, -52.095119 · Longitude: -52.095119
 - `Edgar_20260903083528_006` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094517 · Location: -3.094517, -52.094956 · Longitude: -52.094956
 - `Edgar_20260903083532_008` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.094581 · Location: -3.094581, -52.094964 · Longitude: -52.094964
@@ -63,6 +62,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260903091558_036` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903082307_082 · Updated by: Gary Teh
 - `Edgar_20260903091708_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight (autopilot)
 - `Edgar_20260903091710_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
+- `Edgar_20260904025346_042` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -236,9 +236,9 @@ _(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,857.75**
+- USD on hand: **$4,857.63**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$53.98**
+- USD provisioned for voting-rights cash-out: **$54.10**
 
 ### In-transit freight (1 row)
 
@@ -256,7 +256,7 @@ _Lines in window matching configured names or status keywords:_
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
 
-_All dated lines on/after 2026-08-27_ (2):
+_All dated lines on/after 2026-08-28_ (2):
 
 - 2026-08-31 | sophia | GAS Script Properties convention + registry: created GAS_SCRIPT_PROPERTIES.md (canonical list of every GAS Script Property + deployment/webhook URLs, with SET/NOT SET status so future sessions never re-check). TGM_GITHUB_TOKEN on GAS project 1UrBg… confirmed SET (2026-08-31, repo-scoped, Gary) — closes the last manual step in the SunMint invalidation loop (reject → INVALID → auto rebuild). Updated SUNMINT_TREE_GROWTH_MONITORING_PLAN.md lines accordingly.
 - 2026-09-01 | sophia | FBE_GH_PAT set in GAS Script Properties (project 1UrBg…, by Gary) for `repository_dispatch` `plots-index-rebuild` from the FBE handler — recorded in GAS_SCRIPT_PROPERTIES.md. Needs Actions:write on TrueSightDAO/sunmint.
@@ -278,6 +278,8 @@ _All dated lines on/after 2026-08-27_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1de47fe | 2026-09-03 19:55:28 -0300 | feat: impact map — URL-synced pills, moved higher, QR profile links (#350)
+41fb9d7 | 2026-09-03 21:16:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b3ca6b | 2026-09-03 16:38:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0d450dc | 2026-09-03 04:55:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -316,8 +318,6 @@ c5234cb | 2026-08-31 11:24:20 -0300 | Link sunmint plot popups to agroverse farm
 651bd5e | 2026-08-30 22:07:52 -0300 | Fix Florianopolis label: real plantings, not a demo (#327)
 abd73b3 | 2026-08-30 21:43:35 -0300 | Add view switcher to SunMint impact map (Altamira / Florianopolis / All) (#326)
 d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry + fix pilot center to Altamira (#325)
-202984e | 2026-08-30 20:30:11 -0300 | Add plot selector + polygon rendering to impact map (#324)
-05317db | 2026-08-30 20:25:47 -0300 | Add §3.1 Geospatial Data Model to SunMint whitepaper (#323)
 … (truncated)
 ```
 
@@ -330,6 +330,8 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2024ae4 | 2026-09-03 18:13:34 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
+6a8a348 | 2026-09-03 18:13:33 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-03 UTC)
 5b15a69 | 2026-09-03 13:37:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
 b6f67d0 | 2026-09-03 13:37:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-03 UTC)
 8c1924f | 2026-09-03 08:31:21 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
@@ -368,8 +370,6 @@ f9310dd | 2026-09-01 13:49:56 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 86c0125 | 2026-09-01 13:09:21 -0300 | SOP: GPS fields are part of the uniform media-cache format (PR #269) (#885)
 d5e5f2c | 2026-09-01 13:03:53 -0300 | docs: media invalidation/retraction design (3-tier) (#884)
 e33ff95 | 2026-09-01 12:59:01 -0300 | SOP: note upload ingress now writes polished descriptions (PR #268) (#883)
-4b478b2 | 2026-09-01 12:39:38 -0300 | Mark YouTube description/title cleanup plan complete (all 6 units landed) (#882)
-89ac41a | 2026-09-01 12:37:25 -0300 | SOP: add description re-sync step (polished transcript) to prevent raw-ASR recurrence (#881)
 … (truncated)
 ```
 
@@ -401,9 +401,6 @@ a6f2180 | 2026-08-29 10:14:50 -0300 | fix(gas): resolve remaining GAS project co
 0ed19da | 2026-08-29 09:24:35 -0300 | Guard asset-receipt-ingest: skip Currencies rate row for test currencies (#436)
 9cc16d7 | 2026-08-29 07:52:44 -0300 | Add recalculate_treasury doGet endpoint, mirrors recalculate_aum (#435)
 0f3d6c4 | 2026-08-29 07:04:18 -0300 | fix(gas): remove stale Code.js duplicates breaking GAS projects (#434)
-8e11f91 | 2026-08-27 10:00:12 -0300 | fix(deploy): repoint pinned GAS deployments on push; commit asset_receipt_ingest project (#433)
-f51731c | 2026-08-27 09:59:26 -0300 | Server-side enforcement: proximity gate (200m, operators exempt), INVALID tree block, REJECT allows NEW+LINKED (#432)
-521d02b | 2026-08-27 09:18:51 -0300 | fix(asset-receipt-ingest): match 'Contributor(s)' label in paired-contribution unit cost lookup (#431)
 ```
 
 ### `dapp` → `dapp`
@@ -449,8 +446,6 @@ b245796 | 2026-08-30 12:13:21 +0000 | chore: refresh currencies.json [skip ci]
 da5c29e | 2026-08-29 09:28:41 -0300 | chore: refresh Agroverse store inventory snapshot
 232d254 | 2026-08-28 19:00:06 +0000 | chore: refresh currencies.json [skip ci]
 e7ee650 | 2026-08-28 18:46:14 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-8e195dd | 2026-08-27 17:53:42 +0000 | chore: refresh currencies.json [skip ci]
-2df3c0b | 2026-08-27 17:40:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -585,19 +580,12 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/3/2026 13:50:50 |
+| 2026-09 | 0 | 17439.84386 | 9/3/2026 21:51:04 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-27`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-28`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_31 | xImcXg3OlVcW | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_65 | qOejcMrlb7jD | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_41 | RPZryhwUa6yZ | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_6 | SpTckuw1GmAj | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_56 | Sl29ybzl22Tp | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_52 | HwU7fM75YFS4 | Stripe checkout (online) |
-| 2026-08-27 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_92 | 9QW6MeqNiUL5 | Stripe checkout (online) |
 | 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_36 | 0IJOTgc3JMN9 | Stripe checkout (online) |
 | 2026-08-28 | 4.48 | FounderHaus Tree Planting Pledge - QR C… | TOKENIZED | 2024OSCAR_CT_20260820_72 | hbMM9Cp19qd1 | Stripe checkout (online) |
 | 2026-08-29 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
