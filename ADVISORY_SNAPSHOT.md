@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-04T04:54:45Z`
+- Generated (UTC): `2026-09-04T11:34:14Z`
 - Look-back: **7** calendar days (`2026-08-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -77,7 +77,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-03T10:59:16.356Z`
+- Generated (UTC): `2026-09-04T10:59:14.901Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -87,12 +87,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **837**, follow_up **71**, bulk **0**, unknown **2** (data rows: **910**)
+- **Email Agent Follow Up** — logged sends: warmup **849**, follow_up **71**, bulk **0**, unknown **2** (data rows: **922**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **760**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **772**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -278,6 +278,7 @@ _All dated lines on/after 2026-08-28_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b47113c | 2026-09-04 05:00:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 1de47fe | 2026-09-03 19:55:28 -0300 | feat: impact map — URL-synced pills, moved higher, QR profile links (#350)
 41fb9d7 | 2026-09-03 21:16:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b3ca6b | 2026-09-03 16:38:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -317,7 +318,6 @@ c5234cb | 2026-08-31 11:24:20 -0300 | Link sunmint plot popups to agroverse farm
 11ce24d | 2026-08-30 23:35:51 -0300 | Make plot/view pills a single exclusive group on impact map (#328)
 651bd5e | 2026-08-30 22:07:52 -0300 | Fix Florianopolis label: real plantings, not a demo (#327)
 abd73b3 | 2026-08-30 21:43:35 -0300 | Add view switcher to SunMint impact map (Altamira / Florianopolis / All) (#326)
-d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry + fix pilot center to Altamira (#325)
 … (truncated)
 ```
 
@@ -330,6 +330,8 @@ d49456c | 2026-08-30 21:02:51 -0300 | Wire SunMint impact map to plots registry 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f9dd17e | 2026-09-04 01:55:02 -0300 | chore(previews): refresh Beer Hall preview (2026-09-04 UTC)
+d8c5d0f | 2026-09-04 01:55:01 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-04 UTC)
 2024ae4 | 2026-09-03 18:13:34 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
 6a8a348 | 2026-09-03 18:13:33 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-03 UTC)
 5b15a69 | 2026-09-03 13:37:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-03 UTC)
@@ -368,8 +370,6 @@ fe531ea | 2026-09-01 13:49:57 -0300 | chore(previews): refresh Beer Hall preview
 f9310dd | 2026-09-01 13:49:56 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
 1e47549 | 2026-09-01 13:45:24 -0300 | OPEN_FOLLOWUPS: add Media Retraction cron trigger + update FBE entry with UAT findings (#886)
 86c0125 | 2026-09-01 13:09:21 -0300 | SOP: GPS fields are part of the uniform media-cache format (PR #269) (#885)
-d5e5f2c | 2026-09-01 13:03:53 -0300 | docs: media invalidation/retraction design (3-tier) (#884)
-e33ff95 | 2026-09-01 12:59:01 -0300 | SOP: note upload ingress now writes polished descriptions (PR #268) (#883)
 … (truncated)
 ```
 
@@ -430,6 +430,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1d3a534 | 2026-09-04 11:22:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 f597a45 | 2026-09-03 11:42:51 +0000 | chore: refresh currencies.json [skip ci]
 546abfc | 2026-09-03 11:19:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b9f4405 | 2026-09-02 11:43:17 +0000 | chore: refresh currencies.json [skip ci]
@@ -580,7 +581,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/3/2026 21:51:04 |
+| 2026-09 | 0 | 17439.84386 | 9/4/2026 3:50:54 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-28`; scanned last **600** data rows)
 
