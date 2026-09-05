@@ -45,6 +45,15 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 
 ## Pipeline (per farm)
 
+> ### ⚠️ ZIP HANDLING RULE (ALL Sophia instances — governor directive 2026-09-05)
+> A zip is a **transport container, never an archive unit**. When archiving media that arrived inside a zip:
+> 1. **NEVER upload/archive the zip itself as one blob.** S3/GitHub objects must mirror the archive **one object per original file** — a zip blob is useless to a future timeline/map/query explorer.
+> 2. **Open the zip and iterate its entries**; extract each real media file (MOV/MP4/HEIC/JPG) **individually**, streaming to temp — never extract the whole zip at once (disk is shared with the live pipeline).
+> 3. **Skip junk**: `__MACOSX/` paths and `._` AppleDouble resource forks are never archived.
+> 4. Per file, run the standard archive pass: sha256 → `captured_at` (read from the original's QuickTime/EXIF) → 1 ffmpeg preview frame → raw → `media.agroverse.shop/raw/<farm>/<file>` → preview (hot tier) → `previews/<farm>/<file>.jpg` → write a resume-safe `<file>.raw.json` marker.
+> 5. Delete originals/zips only **after** S3 + committed manifest verify, and only with the governor's explicit go.
+> 6. Reference implementation: `farm-media-daemon/farm_media_archive.py` (extracted-dir roots live; **zip-root streaming** is its in-progress extension — route ALL future zips through the same per-file path).
+
 ### 1. Intake
 - Unzip to `/home/ubuntu/<farm>_work/` (La do Sitio pattern: `/home/ubuntu/la_do_sitio_work/la do sitio/`).
 - Count: `ls *.HEIC | wc -l; ls *.MOV | wc -l` (La do Sitio: 52 HEIC + 72 MOV).
