@@ -1,16 +1,16 @@
-# CEPOTX network — producer rosters & site-code registry (agent-facing reference)
+# CEPOTX network — producer rosters & site-code registry (reference)
 
-> **Purpose:** durable, agent-retrievable lookup for mapping a producer name or CEPOTX
-> site code (`X-06-NN`) to the right sub-cooperative, and for checking whether a code
-> is already assigned when new partner farms come online. Consult this BEFORE
-> registering a new farm plot or assigning a plot_id, so codes are never invented or
-> re-assigned.
->
-> **Retrieval:** this file lives in agentic_ai_context on purpose — it is findable via
-> `search_context` (try "COOPOXIN", "Lista de Produtores", "site code", "B-06-108") and
-> readable via `read_context_file("CEPOTX_SITE_CODE_REGISTRY.md")`. Mirror of
-> `fda_fsvp/suppliers/cepotx/site_codes.md` (FSVP supplier-folder copy) — keep the two
-> in sync when new rosters arrive.
+> **Purpose:** durable lookup for mapping a producer name or CEPOTX site code
+> (`X-06-NN`) to the right sub-cooperative, and for checking whether a code is
+> already assigned when new partner farms come online. Consult this BEFORE
+> registering a new farm plot or assigning a plot_id, so codes are never
+> invented or re-assigned.
+
+## Canonical scheme (governor decision 2026-09-05, thread 21005/22082)
+
+**plot_id = CEPOTX site code.** Never invent or re-assign codes. Legacy mnemonic
+plot ids (SA-P1, CL-P1, LD-P1, SR-P1, RG-P1) are retired aliases — see the
+anchors table below; each row lists the legacy id only as historical context.
 
 ## Status & provenance
 
@@ -43,14 +43,14 @@ N-06-43/47.
 
 ## Anchors — site codes tied to DAO-registered farms
 
-| Site code | Farm / plot | Registered owner | Coop | Source of DAO record |
-|---|---|---|---|---|
-| B-06-58 | Santa Anna Fazenda (SA-P1) | Ana Lucia Araujo de Sousa | COOPOXIN | 2026-08-30 site-visit PDF; fda_fsvp cepotx entity; shop PRs #251/#252 |
-| B-06-108 | Fazenda Cleide (CL-P1) | Cleide Maris Suk | COOPOXIN | roster row 22 + fda_fsvp + 2024-07-02 site-visit PDF |
-| U-06-06 | Fazenda Santa Rosa (SR-P1) | Antônio & Graça | COPOPS | governor-provided translation screenshot (2026-09-05); sunmint plots/index.geojson; shop PRs #288/#289 |
-| U-06-07 | Sítio Raimundo & Geniza (RG-P1) | Raimundo Silva (COPOPS Presidente) | COPOPS | governor-provided site-app screenshot; fda_fsvp copops entity; shop PR #285 |
-| V-06-29 | La do Sítio | Paulo | ? | AGROVERSE_SUNMINT_FARM_LISTING §6 |
-| N-06-37 | (member property) | Jader Adriano da Silva Santos — CEPOTX President per Rota do Cacau | COOPCAO | roster + public record |
+| Site code | Farm / plot | Registered owner | Coop | Legacy plot id (retired) | Source of DAO record |
+|---|---|---|---|---|---|
+| B-06-58 | Santa Anna Fazenda | Ana Lucia Araujo de Sousa | COOPOXIN | SA-P1 | 2026-08-30 site-visit PDF; fda_fsvp cepotx entity; shop PRs #251/#252 |
+| B-06-108 | Fazenda Cleide | Cleide Maris Suk | COOPOXIN | CL-P1 | roster row 22 + fda_fsvp + 2024-07-02 site-visit PDF |
+| U-06-06 | Fazenda Santa Rosa | Antônio & Graça | COPOPS | SR-P1 | governor-provided translation screenshot (2026-09-05); sunmint plots/index.geojson; shop PRs #288/#289 |
+| U-06-07 | Sítio Raimundo & Geniza | Raimundo Silva (COPOPS Presidente) | COPOPS | RG-P1 | governor-provided site-app screenshot; fda_fsvp copops entity; shop PR #285 |
+| V-06-29 | La do Sítio | Paulo | ? | LD-P1 | AGROVERSE_SUNMINT_FARM_LISTING §6 |
+| N-06-37 | (member property) | Jader Adriano da Silva Santos — CEPOTX President per Rota do Cacau | COOPCAO | — | roster + public record |
 
 ## ⚠️ Open discrepancy — B-06-56 vs B-06-58 (Ana Lucia Araujo)
 
@@ -61,6 +61,9 @@ N-06-43/47.
   plausible (common in low-res video/scan). **Do not change records on this
   evidence alone; verify with CEPOTX/Jedielcio at next contact**, then fix the
   wrong side. (B-06-58 does not appear anywhere in the visible COOPOXIN rows.)
+- The standardization in this thread keeps the DAO-record code **B-06-58**
+  (matching fda_fsvp entity + shop pages + Santa Anna site-visit PDF) until
+  CEPOTX confirms which side is correct.
 
 ## Rosters
 
@@ -123,58 +126,3 @@ N-06-43/47.
 | 54 | B-06-149 | Douglas Ferreira da Silva |
 | 55 | B-06-150 | Edivaldo Ferreira do Nascimento |
 | 56 | B-06-151 | José Geraldo Torres da Silva |
-
-*(row 28 not visible in capture; numbering continues 29–56)*
-
-### COPOPS — "Lista de Produtores COPOPS" (U-06 family; rows 17–33 visible)
-
-| Nº | Código | Nome Produtor |
-|---|---|---|
-| 17 | U-06-62 | Jurande Viana dos Santos |
-| 18 | U-06-63 | Francisca Barbosa da Silva |
-| 19 | U-06-64 | Antonio Francisco da Silva |
-| 20 | U-06-65 | Maria Gracineide Sales |
-| 21 | U-06-66 | Ihumarque de Oliveira Pereira |
-| 22 | U-06-67 | Fernando Kaio de Oliveira Pereira |
-| 23 | U-06-68 | Camila Cavalcante de Oliveira |
-| 24 | U-06-69 | Almir Leite dos Anjos Junior |
-| 25 | U-06-70 | Wilton Pantoja de Oliveira |
-| 26 | U-06-71 | Adão Almeida Ferreira |
-| 27 | U-06-72 | Adevan Barbosa de Oliveira |
-| 28 | U-06-73 | Joel Evangelista |
-| 29 | U-06-74 | Dilmar Santos Viana |
-| 30 | U-06-75 | Darcizio Vronski |
-| 31 | U-06-76 | Magno Bernardo de Lima |
-| 32 | U-06-77 | Maria Pinella Barreto |
-| 33 | U-06-78 | Antonio Carlos de Silva Araujo |
-
-*(rows 1–16 not visible in capture; U-06-06 Fazenda Santa Rosa and U-06-07
-Raimundo & Geniza are separate lower codes confirmed from governor-provided
-screenshots (2026-09-05) — do not assume roster numbering maps to code order)*
-
-### COOPCAO — "Lista de Produtores COOPCAO" (N-06 family; rows 1–16)
-
-| Nº | Código | Nome Produtor |
-|---|---|---|
-| 1 | N-06-02 | Antonio do Nascimento Soares |
-| 2 | N-06-07 | Edinaldo Dias |
-| 3 | N-06-10 | Manoel José Leite |
-| 4 | N-06-27 | Eugênio Eduardo Rocha |
-| 5 | N-06-28 | Valmir Feitosa Dias |
-| 6 | N-06-35 | Manoel Veloso Neto |
-| 7 | N-06-37 | Jader Adriano da Silva Santos |
-| 8 | N-06-43 | Ana Cláudia Oliveira Rocha |
-| 9 | N-06-42 | Temistio Francisco Santos |
-| 10 | N-06-44 | Vanderley Feitosa Dias |
-| 11 | N-06-47 | Ana Cláudia Oliveira Rocha |
-| 12 | N-06-48 | José Augusto Corinia |
-| 13 | N-06-49 | José Paulo Cruz Oliveira |
-| 14 | N-06-50 | Juliano Cruz Oliveira |
-| 15 | N-06-51 | Janilson Cruz Oliveira |
-| 16 | N-06-52 | Erivaldo Moreira de Sousa |
-
-## Related
-
-- `AGROVERSE_SUNMINT_FARM_LISTING.md` §6 (site-code policy: never derive, record source + status)
-- `fda_fsvp/suppliers/cepotx/site_codes.md` (FSVP supplier-folder mirror) + `suppliers/cepotx/entity.json`
-- `OPEN_FOLLOWUPS.md` — Fazenda Dona Rosa (COOPOXIN, Medicilândia) pending listing; site-code assignment must come from CEPOTX
