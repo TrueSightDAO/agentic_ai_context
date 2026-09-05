@@ -40,10 +40,10 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 
 | Farm | farm_id slug | SunMint plot | media repo subfolder |
 |---|---|---|---|
-| La do Sitio (Paulo) | `paulo-la-do-sitio-para` | LD-P1 | `la-do-sitio/` |
-| Santa Anna Fazenda | `santa-anna-fazenda-para` | SA-P1 | `santa-anna-fazenda-para/` |
+| La do Sitio (Paulo) | `paulo-la-do-sitio-para` | V-06-29 (legacy LD-P1) | `la-do-sitio/` |
+| Santa Anna Fazenda | `santa-anna-fazenda-para` | B-06-58 (legacy SA-P1) | `santa-anna-fazenda-para/` |
 | Rancho Maranta | `rancho-maranta-para` | RM-P1 / RM-P2 | `rancho-maranta/` |
-| Cleide | `cleide` | CL-P1 | `cleide/` |
+| Cleide | `cleide` | B-06-108 (legacy CL-P1) | `cleide/` |
 
 ## Pipeline (per farm)
 

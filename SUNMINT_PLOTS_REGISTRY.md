@@ -109,7 +109,7 @@ Note: GeoJSON is `[lng, lat]` order. Polygon rings must close (first == last).
 |---|---|---|---|---|
 | RM-P1 (house) | -3.29610, -52.58316 | 4 HEIC + 3 MOV | planted (TREE PLANTING EVENT at -3.29609,-52.58318) | approx (tight cluster ~35 m) |
 | RM-P2 (family) | walk track -3.2934..-3.2947, -52.5768..-52.5789 | 6 HEIC + 23 MOV | proposed | approx — walk covers ~2.9 ha < 5 ha claimed → get CAR polygon |
-| SA-P1 (compound) | hull -3.291769..-3.292514, -52.571500..-52.572400, centroid -3.292243,-52.572044 | 44 HEIC/MOV | proposed | approx — photo-hull ~0.31 ha < 3 ha claimed → get Jedielcio boundary photos / CAR polygon |
+| B-06-58 (compound; legacy SA-P1) | hull -3.291769..-3.292514, -52.571500..-52.572400, centroid -3.292243,-52.572044 | 44 HEIC/MOV | proposed | approx — photo-hull ~0.31 ha < 3 ha claimed → get Jedielcio boundary photos / CAR polygon |
 
 ## 5b. Plot popup → farm profile link (impact map)
 
