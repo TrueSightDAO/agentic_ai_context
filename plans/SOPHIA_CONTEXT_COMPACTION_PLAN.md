@@ -1,6 +1,6 @@
 # Sophia Session Context Compaction — Execution Roadmap
 
-**Status as of 2026-09-05:** not started — pre-flight research done, ready for Unit 1.
+**Status as of 2026-09-05: COMPLETE** — PR0→PR3 merged (#401–#404), deployed live at `e1fc54f`, verified folding real sessions in production (see §9 tracker).
 **Repo under change:** `truesight_autopilot` (Sophia)
 **Owner:** Gary Teh · **Driver:** Sophia (self-executed, Envoy supervising via Telegram)
 **Reference incident:** 2026-09-05 — multiple long-running Telegram threads (mention-gate fix,
@@ -127,16 +127,16 @@ context stops growing without bound.*
 
 ## 4. Pre-flight checklist
 
-- [ ] Confirm `litellm.token_counter` gives sane numbers against `deepseek-v4-flash` on the actual
+- [x] Confirm `litellm.token_counter` gives sane numbers against `deepseek-v4-flash` on the actual
       box (spot-check against the journalctl `tokens=N` figures already logged for the same calls).
-- [ ] Confirm the exact JSON shape of 2-3 real bloated session files (`/opt/truesight_autopilot/sessions/*.json`)
+- [x] Confirm the exact JSON shape of 2-3 real bloated session files (`/opt/truesight_autopilot/sessions/*.json`)
       matches the assumed `full_history`/`recent_messages` schema before writing compaction code
       against it.
-- [ ] Confirm `_sanitise_tool_messages` behavior at the exact compaction boundary — write a test that
+- [x] Confirm `_sanitise_tool_messages` behavior at the exact compaction boundary — write a test that
       compacts a real captured `tool_calls`/`tool` sequence and asserts the sanitiser sees zero
       dangling messages afterward.
-- [ ] Local `.venv` runs the existing pytest suite green before starting.
-- [ ] Confirm deploy mechanism unchanged from prior fixes this week (git-pull + service restart via
+- [x] Local `.venv` runs the existing pytest suite green before starting.
+- [x] Confirm deploy mechanism unchanged from prior fixes this week (git-pull + service restart via
       `deploy_autopilot`, preserving uncommitted runtime-state files — same caution as the
       mention-gate deploy).
 
@@ -215,10 +215,12 @@ context stops growing without bound.*
 
 | Unit | Code | Merged | Deployed | Real-data validated | DAO contribution reported |
 |------|------|--------|----------|----------------------|---------------------------|
-| Commit this plan | ☐ | n/a | n/a | n/a | ☐ |
-| PR0 — Compaction library + tests | ☐ | ☐ | ☐ | n/a (no wiring yet) | ☐ |
-| PR1 — Manual trigger tool | ☐ | ☐ | ☐ | ☐ | ☐ |
-| PR2 — Automatic wiring | ☐ | ☐ | ☐ | ☐ (post-deploy watch) | ☐ |
+| Commit this plan | ✓ | n/a | n/a | n/a | ☐ |
+| PR0 — Compaction library + tests | ✓ (#401) | ✓ | ✓ | n/a (no wiring yet) | ☐ |
+| PR1 — Manual trigger tool | ✓ (#402) | ✓ | ✓ | ✓ (§1d: `361e612c0b6b` 84,009→16,597 tok; `22f8f538dedd` 66,247→12,533 tok; tails byte-identical, 0 dangling) | ☐ |
+| PR2 — Automatic wiring | ✓ (#403, `2a05df1`) | ✓ | ✓ | ✓ (post-deploy watch: live folds `489bd3d72796` 141→120, 142→99 + `d6a0767ddfc8` 75→68; backups + summaries verified) | ☐ |
+| PR3 — per-round re-check (rollout fix) | ✓ (#404, `e1fc54f`) | ✓ | ✓ | ✓ (live at `e1fc54f`; health 200; 4 call sites incl. `_run_tool_round_loop`) | ☐ |
 
-**RESUME HERE:** Unit 0 — commit this plan to `agentic_ai_context/plans/SOPHIA_CONTEXT_COMPACTION_PLAN.md`
-on `main`, then start PR0.
+**RESUME HERE:** none — **COMPLETE (2026-09-05).** Deployed and verified live; compaction re-checks at turn
+start and after every tool round; kill-switch `CONTEXT_COMPACTION_AUTO` (default on) for instant rollback.
+Optional follow-up: file DAO contribution(s) for PR0–PR3.
