@@ -20,9 +20,49 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-05T03:27:47Z`
+- Generated (UTC): `2026-09-05T15:26:48Z`
 - Look-back: **7** calendar days (`2026-08-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 14
+- `[TREE PLANTING EVENT]` × 13
+- `[TREE PLANTING REJECT EVENT]` × 6
+- `[PRACTICE EVENT]` × 3
+- `[PLOT INVALIDATION EVENT]` × 2
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 1
+- `[NOTARIZATION EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20260903091546_032` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903071844_076 · Updated by: Gary Teh
+- `Edgar_20260903091551_034` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Gary Teh
+- `Edgar_20260903091558_036` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903082307_082 · Updated by: Gary Teh
+- `Edgar_20260903091708_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight (autopilot)
+- `Edgar_20260903091710_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
+- `Edgar_20260904025346_042` · **Edgar** · [No Text Provided]
+- `Edgar_20260904130746_044` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-04T13:07:44.261Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260904134026_046` · **Edgar** · [No Text Provided]
+- `Edgar_20260904145505_048` · **Edgar** · [NOTARIZATION EVENT] Document Hash: c554c0475d70761ca7c604c6922e737da14f2a2933c6f3806db9bf21a684507a · Description: SunMint-CEPOTX Tree Planting Support Agreement (EN/PT bilingual), 3,000 tree… · Witnesses: Gary Teh (President, TrueTech Inc); Jedielcio Oliveira (CEPOTX representative)
+- `Edgar_20260904151802_050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh; Sophia Truesight
+- `Edgar_20260905133952_052` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-05T13:39:50.408Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260905135438_054` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Sítio Raimundo & Geniza onboarding — raw machine execution (Sophia)
+- `Edgar_20260905135447_056` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 100 · Description: Sítio Raimundo & Geniza onboarding — direct time (Sophia)
+- `Edgar_20260905135453_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sítio Raimundo & Geniza onboarding — Gary Teh direct time
+- `Edgar_20260905140224_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: HEIC/GPS extraction fix — diagnose, implement, merge, live-verify (Sep 3–5)
+- `Edgar_20260905143134_062` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Sophia Truesight
+- `Edgar_20260905143137_064` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Sophia Truesight
+- `Edgar_20260905143140_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260905145759_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Clarifying how things are supposed to be structured with Elizabeth.
+- `Edgar_20260905152026_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Sophia Truesight
 
 ---
 
@@ -194,13 +234,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,857.51**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$54.23**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -234,6 +278,8 @@ _All dated lines on/after 2026-08-29_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+acc2098 | 2026-09-05 10:52:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
+acdfb4e | 2026-09-05 04:52:46 +0000 | chore(stats): refresh stats/current.json [skip ci]
 576b5c0 | 2026-09-04 20:58:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 694a25a | 2026-09-04 14:23:32 -0300 | feat: deep-link a specific tree on the SunMint map, and link to it from the QR profile page (#352)
 44f6c0a | 2026-09-04 16:33:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -272,8 +318,6 @@ ad5e522 | 2026-08-31 13:07:54 -0300 | Field Signals #8: Two cacaos, one farm (po
 eb732bc | 2026-08-31 11:34:58 -0300 | Fix sunmint plot popup farm link 404 (farm_id to agroverse slug mapping) (#335)
 c5234cb | 2026-08-31 11:24:20 -0300 | Link sunmint plot popups to agroverse farm profiles (#333)
 978ca24 | 2026-08-31 14:20:45 +0000 | chore(stats): refresh stats/current.json [skip ci]
-81ee428 | 2026-08-31 11:09:40 -0300 | Impact map: enriched plot popups + boundary-authority legend (PR1) (#331)
-93a4f32 | 2026-08-31 06:00:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -286,6 +330,9 @@ c5234cb | 2026-08-31 11:24:20 -0300 | Link sunmint plot popups to agroverse farm
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a5dc87a | 2026-09-05 12:15:30 -0300 | Add execution roadmap for Sophia session context compaction (#910)
+c438c3f | 2026-09-05 00:28:04 -0300 | Merge pull request #909 from TrueSightDAO/auto/advisory-refresh-2026-09-05
+4c2222c | 2026-09-05 03:27:52 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-05 UTC)
 b39b10c | 2026-09-04 16:40:45 -0300 | Docs: end-to-end farm-listing SOP + MAP daemon reality + page gotchas (#907)
 20c8723 | 2026-09-04 13:32:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-04 UTC)
 93f49dd | 2026-09-04 13:32:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-04 UTC)
@@ -323,9 +370,6 @@ a05ed7f | 2026-09-01 19:35:18 -0300 | Record FBE_GH_PAT as SET in GAS Script Pro
 8336154 | 2026-09-01 19:21:00 -0300 | plan: SUNMINT_PUBLIC_SIGNATURES_PLAN — A6/A7/§7 complete, plan closed (#891)
 8ae9fcf | 2026-09-01 19:13:56 -0300 | docs: add verify_public_signatures to PROJECT_INDEX (#890)
 f32b850 | 2026-09-01 19:08:28 -0300 | Document plot-first boundary model + GAS/GA change analysis (#889)
-106475a | 2026-09-01 18:13:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-01 UTC)
-b978864 | 2026-09-01 18:13:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-01 UTC)
-3ca119a | 2026-09-01 14:48:05 -0300 | docs: repoint manifest paths to dedicated farm_media_manifests repo (#888)
 … (truncated)
 ```
 
@@ -407,6 +451,7 @@ da5c29e | 2026-08-29 09:28:41 -0300 | chore: refresh Agroverse store inventory s
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+c197e20 | 2026-09-05 10:54:35 -0300 | feat: embed Paulo's curated interview videos in fazenda-bom-sucesso media gallery (#283)
 200bea4 | 2026-09-04 16:09:38 -0300 | Add COPOPS affiliation to Sítio Raimundo & Geniza profile; fix canonical URL + stale highlight (#282)
 5045b47 | 2026-09-04 14:23:29 -0300 | feat: farm profile SunMint links deep-link to the farms specific plot (#278)
 59d4007 | 2026-09-04 12:19:02 -0300 | feat(farms): add media.json gallery for fazenda-bom-sucesso (10 planting-day photos) (#281)
@@ -446,7 +491,6 @@ bc27b06 | 2026-08-31 15:15:44 -0300 | Swap Rancho Maranta videos to GPS-tagged u
 a013a6c | 2026-08-31 12:34:10 -0300 | Fazenda Cleide: new hero photo (governor) + curated farm-process gallery (#246)
 3d7c7e7 | 2026-08-31 12:04:12 -0300 | Rancho Maranta: remove duplicate IMG_7694 image from gallery (#245)
 2a90fbb | 2026-08-31 12:03:27 -0300 | Link Paulo La do Sitio farm to SunMint: gallery photos, GPS plot polygon, impact-map link (#244)
-abcf359 | 2026-08-31 12:02:56 -0300 | Add SunMint program highlight to Santa Anna farm page (#243)
 … (truncated)
 ```
 
@@ -512,6 +556,43 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 0 | 17439.84386 | 9/5/2026 7:50:48 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-29`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-08-29 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_11 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_22 | — | — |
+| 2026-08-29 | 10 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_24 | — | — |
+| 2026-09-02 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | — | 2024OSCAR_20260121_9 | QPfMC9gGq18K | Stripe checkout (online) |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
