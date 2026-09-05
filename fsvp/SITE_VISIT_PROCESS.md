@@ -36,6 +36,8 @@ Remarks should describe the actual observed practice (harvesting method, ferment
 
 Page 7 — signature: composite the **official signature image** from `TrueSightDAO/signature_assets` (`gary_teh/gary_teh_signature_transparent.png` — transparent PNG, ink-only; read with the narrow-scope `GITHUB_READ_PAT`; NEVER copy into a public repo / public PR / shared Telegram group) between *Sincerely,* and the typed block: *Zhiwen Teh, President, TrueTech Inc (EIN: 88-3411514), admin@truesight.me, +1 415 300 0019*. A plain typed name is NOT acceptable on a site-visit PDF — always stamp the real ink signature asset (rule adopted 2026-09-05, Fazenda Dona Rosa site visit).
 
+**Left-alignment (2026-09-05):** composite the signature image with `hAlign='LEFT'` so it sits FLUSH-LEFT directly above the "Zhiwen Teh" name header — reportlab `Image` flowables default to CENTER, which misaligns the ink signature over the left-aligned typed name block. Verify visually that the signature's left edge lines up with the name/paragraph text below it.
+
 ## Photo / video evidence workflow
 
 1. **Photos**: run OCR first (`ocr_image`) — usually no text on farm photos; if none, use Grok vision (`app/grok_client.py grok_analyze_images`) to get a per-photo scene description (crops, buildings, people, equipment).
@@ -56,6 +58,6 @@ Page 7 — signature: composite the **official signature image** from `TrueSight
 - [ ] All 8 standard observation rows present across the 3 facilities
 - [ ] Geo location fields filled (not placeholder)
 - [ ] Photos / frames embedded or referenced with captions
-- [ ] Signed with the official signature image (`signature_assets/gary_teh/gary_teh_signature_transparent.png`) + the TrueTech typed block
+- [ ] Signed with the official signature image (`signature_assets/gary_teh/gary_teh_signature_transparent.png`), LEFT-aligned (`hAlign='LEFT'`) directly above the TrueTech typed block
 - [ ] `entity.json` `source_farms` + `source_documents` updated
 - [ ] No PIN/CPF/private identifiers in the PDF
