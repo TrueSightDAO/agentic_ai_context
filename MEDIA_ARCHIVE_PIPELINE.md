@@ -30,7 +30,7 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 |---|---|---|
 | Videos (MP4) | **YouTube public** (admin@truesight.me channel) | free, unlimited, durable; embed via media-gallery.js `youtube` entries |
 | Raw video originals (MOV) | **S3 bucket `media.agroverse.shop`** (Nelanco 767697632458), `raw/<farm>/<file>` | public-read; lifecycle STANDARD_IA@30d → DEEP_ARCHIVE@180d; URL `https://s3.us-east-1.amazonaws.com/media.agroverse.shop/raw/<farm>/<file>`; too large for GitHub (>100MB files, 16GB corpus) |
-| Frame previews (JPG) | GitHub repo **`farm-media-raw`**, `<farm-id>/previews/<basename>.jpg` | 1 ffmpeg frame per video; the manifest `preview` field references it; keeps archive self-previewing (timeline/map explorer ready) |
+| Frame previews (JPG) | **S3 `media.agroverse.shop`**, `previews/<farm-id>/<basename>.jpg` (HOT — Standard, no lifecycle) | 1 ffmpeg frame per video; manifest `preview` field references the S3 URL; hot tier keeps timeline/map explorer fast |
 | Photos (HEIC/JPG originals) | GitHub repo **`farm-media-raw`**, `<farm-id>/photos/` | individual files, **Content-API only** (repo can get large; never clone/branch-edit) |
 | Manifest / index | `farm_media_manifests/<farm-id>.json` (repo TrueSightDAO/farm_media_manifests) | the reference layer: sha256, GPS, duration, objects[], yt_id — keyword-searchable via GitHub code search |
 | Farm page gallery | `agroverse_shop_beta/farms/<farm-id>/media.json` | curated youtube + image entries |
