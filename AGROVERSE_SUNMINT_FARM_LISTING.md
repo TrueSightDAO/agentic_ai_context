@@ -4,7 +4,7 @@
 > live Agroverse profile + SunMint plot + FSVP records. Consolidates
 > `SUNMINT_TREE_PHOTO_PROCESSING.md`, `SUNMINT_PLOTS_REGISTRY.md`, `MEDIA_ARCHIVE_PIPELINE.md`,
 > `agroverse/AGROVERSE_FARM_PAGE_CONVENTIONS.md`, `fsvp/SUPPLIER_ONBOARDING_PROCESS.md`.
-> Worked example: **Sítio Raimundo & Geniza (RG-P1)** — 2026-09-02→04 build.
+> Worked example: **Sítio Raimundo & Geniza (U-06-07)** — 2026-09-02→04 build.
 
 ---
 
@@ -44,7 +44,7 @@ GPS batch to Fazenda Bom Sucesso, an already-registered plot).
 - Convex-hull the unique GPS points → polygon (ring closed, `[lng, lat]` order,
   `boundary_authority: approx` until CAR/INCRA/walk).
 - Add row to **SunMint Plots sheet tab** (write access: `agroverse_qr_code_manager` SA):
-  `plot_id` `<PREFIX>-P1` (RG-P1), `farm_id` slug `<name>-<region>` (`raimundo-geniza-para`),
+  `plot_id` = CEPOTX site code `X-06-NN` where issued (U-06-07), else `<PREFIX>-P1`; `farm_id` slug `<name>-<region>` (`raimundo-geniza-para`),
   owner, centroid, ring, hectares, status `proposed`.
 - Regenerate `sunmint/plots/index.geojson` (`build_plots_geojson.py`, needs `sunmint_work`
   checkout + SA key at `/opt/truesight_autopilot/config/google/`) and
@@ -106,6 +106,7 @@ GPS batch to Fazenda Bom Sucesso, an already-registered plot).
 | 09-04 | Profile PRs (#273 page, #274 youtube gallery, #276 hero-404 fix, #279 hero swap, #282 COPOPS + canonical) | `agroverse_shop_beta/farms/raimundo-geniza-para/` |
 | 09-04 | Prod sync (explicit go) | `agroverse.shop/farms/raimundo-geniza-para/` live; deploy ledger 2026-09-04T193131Z |
 | 09-04 | COPOPS entity + U-06-07 + CEPOTX update | fda_fsvp PR #11 |
+| 09-05 | Governor: plot id = CEPOTX site code; RG-P1 → U-06-07 across registries + pages | sunmint plots geojson, shop PR #285, fda_fsvp PR #12 |
 
 ---
 
