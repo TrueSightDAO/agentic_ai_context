@@ -95,6 +95,10 @@ GPS batch to Fazenda Bom Sucesso, an already-registered plot).
   COOPOXIN), U-06-07 (Raimundo & Geniza / COPOPS — governor-provided, status: reported).
   Letter-prefix meaning is NOT yet documented — do not decode/derive; record the source
   (governor screenshot vs public record) + status, and never write codes from guesses.
+- **Look up existing codes first:** before assigning a plot_id to a new CEPOTX-area
+  farm, check `fda_fsvp/suppliers/cepotx/site_codes.md` — the 2026-09-05 producer
+  rosters (COOPOXIN B-06, COPOPS U-06, COOPCAO N-06). A producer may already hold a
+  site code on another property, and codes must come from CEPOTX, not be re-derived.
 
 ## 7. Worked example — Sítio Raimundo & Geniza (2026-09-02→04)
 
