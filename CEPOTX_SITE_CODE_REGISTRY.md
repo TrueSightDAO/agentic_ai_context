@@ -31,7 +31,7 @@ are observed from rosters + known farms and are a lookup hint, not a rule.
 | Prefix | Cooperative | Observed range | Known member examples |
 |---|---|---|---|
 | B-06-NN | COOPOXIN | B-06-27 … B-06-151 | Fazenda Cleide B-06-108; Santa Anna (see discrepancy note) |
-| U-06-NN | COPOPS | U-06-62 … U-06-78 (plus U-06-07) | Sítio Raimundo & Geniza U-06-07 |
+| U-06-NN | COPOPS | U-06-62 … U-06-78 (plus U-06-06, U-06-07) | Sítio Raimundo & Geniza U-06-07; Fazenda Santa Rosa U-06-06 |
 | N-06-NN | COOPCAO | N-06-02 … N-06-52 | Jader Adriano da Silva Santos N-06-37 (CEPOTX President) |
 | V-06-NN | ? (not determined) | V-06-29 | Paulo / La do Sítio (V-06-29) |
 
@@ -47,6 +47,7 @@ N-06-43/47.
 |---|---|---|---|---|
 | B-06-58 | Santa Anna Fazenda (SA-P1) | Ana Lucia Araujo de Sousa | COOPOXIN | 2026-08-30 site-visit PDF; fda_fsvp cepotx entity; shop PRs #251/#252 |
 | B-06-108 | Fazenda Cleide (CL-P1) | Cleide Maris Suk | COOPOXIN | roster row 22 + fda_fsvp + 2024-07-02 site-visit PDF |
+| U-06-06 | Fazenda Santa Rosa (SR-P1) | Antônio & Graça | COPOPS | governor-provided translation screenshot (2026-09-05); sunmint plots/index.geojson; shop PRs #288/#289 |
 | U-06-07 | Sítio Raimundo & Geniza (RG-P1) | Raimundo Silva (COPOPS Presidente) | COPOPS | governor-provided site-app screenshot; fda_fsvp copops entity; shop PR #285 |
 | V-06-29 | La do Sítio | Paulo | ? | AGROVERSE_SUNMINT_FARM_LISTING §6 |
 | N-06-37 | (member property) | Jader Adriano da Silva Santos — CEPOTX President per Rota do Cacau | COOPCAO | roster + public record |
@@ -147,9 +148,9 @@ N-06-43/47.
 | 32 | U-06-77 | Maria Pinella Barreto |
 | 33 | U-06-78 | Antonio Carlos de Silva Araujo |
 
-*(rows 1–16 not visible in capture; U-06-07 Raimundo & Geniza is a separate,
-lower code confirmed from the governor's site-app screenshot — do not assume
-roster numbering maps to code order)*
+*(rows 1–16 not visible in capture; U-06-06 Fazenda Santa Rosa and U-06-07
+Raimundo & Geniza are separate lower codes confirmed from governor-provided
+screenshots (2026-09-05) — do not assume roster numbering maps to code order)*
 
 ### COOPCAO — "Lista de Produtores COOPCAO" (N-06 family; rows 1–16)
 
