@@ -149,7 +149,7 @@ flowchart LR
 | ~~krake_sk_webhook~~ | ~~i-02599e3b3a03e38e4~~ | ~~t2.small~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
 | ~~krake_sk_crawler~~ | ~~i-06fc0dd44fa9cdbf2~~ | ~~t2.small~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
 | ~~krake_sk_scaler~~ | ~~i-03224db5f5a49709c~~ | ~~t2.micro~~ | **stopped** | — | — | Replaced by krake_sk_consolidated. |
-| **krake_data** | `i-07c76510b231d787f` | t3.medium | running | 172.31.19.2 | 52.5.179.48 | Krake data processing. |
+| **krake_data** | `i-07c76510b231d787f` | t3.medium | running | 172.31.19.2 | 52.5.179.48 | Krake data processing. Root 7.7G — hit **100% / ENOSPC 2026-09-06** (46 old kernel sets never purged, 316d uptime; rsyslog ENOSPC since 2026-06-04); remediated → 30% / 5.4G free. Postgres 9.5 `dev_panel` (serves krake_ror + krake_sk_consolidated) on **separate 50G vol** `/krake_data_cache` (`/dev/nvme1n1`, 51%). Remote df alert from autopilot cron (`df-alert-remote-krakedata.sh`, 30-min, ≥85/93%). See OPEN_FOLLOWUPS Recently shipped. |
 | **GETDATA_REDIS** | `i-030c1452b197c920a` | t3a.small | running | 172.31.19.183 | 52.1.162.134 | Redis for Krake. |
 | **GETDATA_CACHE** | `i-0d63b472d8a8893f8` | t2.micro | running | 172.31.19.80 | 98.84.169.188 | Krake cache worker. |
 | **seni_sql_2026** | `i-08ebe96afbc649a95` | t2.small | running | 172.31.20.143 | 44.193.55.205 | PostgreSQL database for Perch (sentiment_importer). |
