@@ -12,6 +12,28 @@
 plot ids (SA-P1, CL-P1, LD-P1, SR-P1, RG-P1) are retired aliases — see the
 anchors table below; each row lists the legacy id only as historical context.
 
+### Alias tombstone — 2026-09-05 renames (canonical data)
+
+The three CEPOTX-family DAO plots were renamed from mnemonic ids to their
+CEPOTX site codes (SunMint Plots sheet + rebuild; thread 22082). Canonical data
+carries **no 'invalid' tombstones** — the plot rows were *renamed*, not retired:
+
+| Legacy id (retired alias) | Canonical id (since 2026-09-05) | Farm / owner | Canonical commits (TrueSightDAO/sunmint) |
+|---|---|---|---|
+| SA-P1 | B-06-58 | Santa Anna Fazenda — Ana Lucia Araujo de Sousa (COOPOXIN) | plots+farms rebuild `e7af93f` (23:36Z) → clean 9-plot rebuild `3713caa` (23:53Z) → satellite regen `804f359` (23:55Z) |
+| CL-P1 | B-06-108 | Fazenda Cleide — Cleide Maris Suk (COOPOXIN) | same three commits |
+| LD-P1 | V-06-29 | La do Sítio — Paulo | same three commits |
+
+> **Derived artifacts that still carry legacy ids** — `sunmint/satellite/plot_SA-P1|CL-P1|LD-P1/`
+> scene dirs and `sunmint/plots/by-plot/{SA-P1,CL-P1,LD-P1}.geojson` — are
+> **intentionally retained as inert residue** (governor decision 2026-09-05,
+> thread 22082): nothing consumes them, the satellite manifest + plots index are
+> authoritative and already carry only canonical ids, and git holds the full
+> rename history. Resolve any legacy-id sighting via this table; do **not**
+> "fix" by deleting or by flipping a status to invalid (canonical data says the
+> plot never was SA-P1 — it is B-06-58, renamed). See OPEN_FOLLOWUPS.md entry
+> (filed 2026-09-05) for the optional workflow-prune / SCHEMA.md-example refresh.
+
 ## Status & provenance
 
 | Field | Value |
