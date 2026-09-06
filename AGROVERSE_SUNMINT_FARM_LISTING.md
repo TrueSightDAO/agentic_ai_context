@@ -111,6 +111,7 @@ GPS batch to Fazenda Bom Sucesso, an already-registered plot).
 | 09-04 | Prod sync (explicit go) | `agroverse.shop/farms/raimundo-geniza-para/` live; deploy ledger 2026-09-04T193131Z |
 | 09-04 | COPOPS entity + U-06-07 + CEPOTX update | fda_fsvp PR #11 |
 | 09-05 | Governor: plot id = CEPOTX site code; RG-P1 → U-06-07 across registries + pages | sunmint plots geojson, shop PR #285, fda_fsvp PR #12 |
+| 09-06 | Fazenda Clara (Fernando Soller Gimenez & Clara, Itacaré/BA — Black King supplier, site visit 2024-09-10): 58 media (24 HEIC + 34 MOV, dir-based not zip), whisper transcriptions 29/34 PT, plot FC-P1 (1.75 ha approx, 7-pt hull from geotagged media), profile page PR #301, two-way SunMint link PR #303, prod deploy 2026-09-06T015316Z | `farms/fazenda-clara-bahia/`, sunmint FC-P1, farm_media_manifests/fazenda-clara-bahia.json (v2) |
 
 ---
 

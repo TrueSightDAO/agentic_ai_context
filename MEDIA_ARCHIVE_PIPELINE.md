@@ -44,6 +44,12 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 | Santa Anna Fazenda | `santa-anna-fazenda-para` | B-06-58 (legacy SA-P1) | `santa-anna-fazenda-para/` |
 | Rancho Maranta | `rancho-maranta-para` | RM-P1 / RM-P2 | `rancho-maranta/` |
 | Cleide | `cleide` | B-06-108 (legacy CL-P1) | `cleide/` |
+| Oscar Bahia | `oscar-bahia` | — (AGL14 pledge page, no plot) | — |
+| Raimundo & Geniza | `raimundo-geniza-para` | U-06-07 | — (photos not yet in farm-media-raw) |
+| Dona Rosa | `fazenda-dona-rosa` | DR-P1 | `fazenda-dona-rosa/` |
+| Santa Ana (Bahia) | `fazenda-santa-ana-bahia` | FSA-P1 (geojson pending — Santa Ana thread 19965) | — |
+| São Jorge (Bahia) | `fazenda-sao-jorge-bahia` | SJ-P1 | `fazenda-sao-jorge-bahia/` |
+| Fazenda Clara (Bahia) | `fazenda-clara-bahia` | FC-P1 | `fazenda-clara-bahia/` |
 
 ## Pipeline (per farm)
 
@@ -87,6 +93,14 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - **ffmpeg DROPS Apple QuickTime GPS.** `-map_metadata 0` does NOT carry it. Always re-inject via exiftool, then verify.
 - Batch: `nohup` loop with progress file (`/tmp/mp4_progress.txt`), ~35–60 s/video on t3.medium.
 
+### 6b. Transcription (faster-whisper) — feeds YouTube titles & manifest v2
+
+- Run locally on the MP4 audio track (PT language for Brazil; use `faster-whisper` small/base CPU — `whisper` CLI alt). Skip/nil audio → leave empty, don't block upload.
+- **Transcription happens BEFORE sidecar/YouTube titles** (daemon passes title/description verbatim) and is stored in the manifest v2 fields: `creation_date` (captured_at date), `transcription` (text), `transcription_status` (`pending`|`done`|empty).
+- Titles become informative ("Fazenda Clara — drying cacao on the terrace…") instead of bare GPS — better discovery + gallery captions.
+- Verified precedent: Fazenda Clara build (2026-09-06) — 29/34 videos transcribed (PT) into `farm_media_manifests/fazenda-clara-bahia.json` (58 items, v2).
+- Manifest v2 schema (no new change needed for new farms): add `creation_date`, `transcription`, `transcription_status` alongside sha256/GPS/duration/yt_id.
+
 ### 7. YouTube upload (public)
 
 ### 7a. LIVE DAEMON — the current reality (read this before uploading)
@@ -122,10 +136,11 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - `agroverse_shop_beta/farms/<farm-id>/media.json`: gallery entries `{type: youtube, videoId, title, caption}` + `{type: image, src: /assets/images/farms/IMG_x.jpg}`. (Schema verified 2026-09-04 on the RG build — youtube entries need `videoId` + `title`, NOT `id`; media-gallery.js ignores bare `id` entries.)
 - Upload web-optimized JPEGs to `agroverse_shop_beta/assets/images/farms/` (**repo-root** path — site serves from root; og:image + rancho-maranta precedent).
 - `index.html` Farm Location: Leaflet pin → GPS centroid, add `L.polygon` overlay (plot ring), add SunMint impact-map link.
+- **Two-way SunMint link — verify BOTH directions (FC lesson, PR #303):** (a) farm page → map: the plot highlight must be a REAL `<a href="https://truesight.me/sunmint.html?plot=<PLOT-ID>" target="_blank" rel="noopener noreferrer">` hyperlink — a text-only highlight is a broken link (santa-ana-bahia FSA-P1 + fazenda-clara-bahia FC-P1 patterns). Use the PROD truesight.me URL only after prod sync; beta URL before. (b) map → farm page: sunmint.html resolves `FARM_SLUG[farm_id] || farm_id` — with NO FARM_SLUG entry when the plot's `farm_id` EQUALS the page slug (`fazenda-clara-bahia` == FC-P1 farm_id; `fazenda-sao-jorge-bahia` == SJ-P1). Add a FARM_SLUG entry only when they differ (rancho-maranta → rancho-maranta-para).
 - PR → merge → beta verify → `sync_beta_to_prod` **only on explicit governor go**.
 
 ### 10. Manifest PR to agentic_ai_context
-- `farm_media_manifests/<farm-id>.json` (+ update index). `git_push_changes` on the data repo (TrueSightDAO/farm_media_manifests).
+- `farm_media_manifests/<farm-id>.json` (+ update index). `git_push_changes` on the data repo (TrueSightDAO/farm_media_manifests). Include v2 fields when transcription ran: `creation_date`, `transcription`, `transcription_status`.
 
 ## Handoff checklist (governor → another Sophia instance)
 Include in the handoff message:
