@@ -150,7 +150,6 @@ Include in the handoff message:
 - [ ] plot status decision (proposed vs planted)
 - [ ] region/municipality if known
 - [ ] READ THIS FILE first (MEDIA_ARCHIVE_PIPELINE.md)
-
 ## Anti-patterns / lessons learned
 - ❌ Plain ffmpeg convert → **GPS lost** (pilot video `jM4Y6Wq5fMc` went up without GPS before catch).
 - ❌ Raw MOV/HEIC in git repos (2 files > 100 MB hard cap; repo bloat).
