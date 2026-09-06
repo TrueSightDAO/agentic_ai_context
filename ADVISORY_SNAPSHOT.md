@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-06T11:13:47Z`
+- Generated (UTC): `2026-09-06T20:39:12Z`
 - Look-back: **7** calendar days (`2026-08-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 31
-- `[NOTARIZATION EVENT]` × 4
+- `[CONTRIBUTION EVENT]` × 32
+- `[NOTARIZATION EVENT]` × 3
 - `[FARM BOUNDARY EVIDENCE EVENT]` × 2
 - `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260905213517_090` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Contributor(s): Sophia Truesight
-- `Edgar_20260905213519_092` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260905230010_094` · **Edgar** · [NOTARIZATION EVENT] Document Hash: 2e735ec1dce87943edbaf45dccbe0c656d64b2bcd1378b7c072c1bad7868b32c · Description: CEPOTX supplier site visit 2026-09-03 — Fazenda Santa Rosa (site code U-06-0… · Witnesses: Gary Teh (President, TrueTech Inc)
 - `Edgar_20260905231404_096` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: -3.4892 · Longitude: -52.9670
 - `Edgar_20260905232128_098` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Contributor(s): Sophia Truesight
 - `Edgar_20260905232130_100` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Gary Teh
@@ -60,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260906013105_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 7.0 · Contributor(s): Gary Teh
 - `Edgar_20260906021452_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Fazenda Clara (Fernando & Carla, Itacaré/BA) — full media + farm profile + p…
 - `Edgar_20260906024247_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: feat: proactive WRAP-UP offer — contribution report + close/delete topic whe…
+- `Edgar_20260906130515_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 110 · Description: SunMint impact map: pill URL-sync, plot-pill bugfix, tree/QR deep-linking, f…
+- `Edgar_20260906165138_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: AGL expense-processor recovery: agent-rule auth fix, Credentials.gs restore …
+- `Edgar_20260906171319_028` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -208,11 +208,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 28 SKU lines · 13,969.66 total units · $12,379.27
+- Manager record: `Gary Teh` · 28 SKU lines · 13,950.29 total units · $12,359.90
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 13,893.48 | $12,329.29 |
+  | (uncategorized) | (unspecified) | 26 | 13,874.11 | $12,309.92 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -275,6 +275,8 @@ _All dated lines on/after 2026-08-30_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+59b1e5f | 2026-09-06 15:42:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
+06f8bbf | 2026-09-06 11:16:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 84db22e | 2026-09-06 05:00:22 +0000 | chore(stats): refresh stats/current.json [skip ci]
 52fa3fc | 2026-09-05 22:23:11 -0300 | AGL6 pledge page ↔ Fazenda São Jorge farm profile cross-links (#356)
 621891e | 2026-09-05 21:43:14 -0300 | AGL14 pledge page ↔ Oscar farm profile cross-links (#354)
@@ -313,8 +315,6 @@ fd85a3f | 2026-09-01 07:27:01 -0300 | FS#9: add blog index card (#343)
 7d7b3fb | 2026-09-01 07:24:59 -0300 | Field Signals #9: What floats is better — a field lesson in cacao fermentation (#342)
 4006598 | 2026-09-01 05:33:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 aa53be4 | 2026-08-31 22:59:41 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e9fd277 | 2026-08-31 16:15:58 -0300 | Impact map: status styling + plot-status legend + media thumbnails (PR4) (#341)
-6daf770 | 2026-08-31 16:11:30 -0300 | Add Farms Registry section to impact map page (PR3) (#340)
 … (truncated)
 ```
 
@@ -327,6 +327,10 @@ e9fd277 | 2026-08-31 16:15:58 -0300 | Impact map: status styling + plot-status l
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+101bdf7 | 2026-09-06 12:18:13 -0300 | docs: file sibling GAS credentials-secrets cleanup in OPEN_FOLLOWUPS (#943)
+97555d8 | 2026-09-06 09:40:34 -0300 | Docs: MAP handoff checklist — instantiate FARM_MEDIA_TASK_PLAN_TEMPLATE first (#942)
+55e6976 | 2026-09-06 08:14:04 -0300 | chore(previews): refresh Beer Hall preview (2026-09-06 UTC)
+a7c49dd | 2026-09-06 08:14:03 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-06 UTC)
 f50437f | 2026-09-06 01:27:47 -0300 | Docs: add reusable FARM_MEDIA_TASK_PLAN_TEMPLATE so future farm builds start from a plan (#941)
 e831a21 | 2026-09-06 00:42:20 -0300 | docs: krake_data disk-full (ENOSPC since Jun 4) resolved 2026-09-06 (#939)
 9edfea7 | 2026-09-06 00:17:43 -0300 | Docs: extend MAP runbook for end-to-end farm builds (FC/SJ farms, transcription step, two-way SunMint link rule) (#940)
@@ -363,16 +367,13 @@ ab5f257 | 2026-09-05 13:17:25 -0300 | MAP: add universal ZIP HANDLING RULE — n
 b90f840 | 2026-09-05 12:30:03 -0300 | Add Fazenda Dona Rosa / COOPOXIN farm-listing follow-up (#911)
 19f9e70 | 2026-09-05 12:27:13 -0300 | chore(previews): refresh Beer Hall preview (2026-09-05 UTC)
 1d0c3a2 | 2026-09-05 12:27:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-05 UTC)
-a5dc87a | 2026-09-05 12:15:30 -0300 | Add execution roadmap for Sophia session context compaction (#910)
-c438c3f | 2026-09-05 00:28:04 -0300 | Merge pull request #909 from TrueSightDAO/auto/advisory-refresh-2026-09-05
-4c2222c | 2026-09-05 03:27:52 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-05 UTC)
-b39b10c | 2026-09-04 16:40:45 -0300 | Docs: end-to-end farm-listing SOP + MAP daemon reality + page gotchas (#907)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+5416bf5 | 2026-09-06 12:18:09 -0300 | fix(gas): guard AGL expense processor (19Wag9x) credentials from clasp push deletion (#460)
 08f8060 | 2026-09-06 01:01:11 -0300 | fix(gas): authorize DAO-agent (autopilot) expense filings for governors (#459)
 7f767af | 2026-09-02 23:55:32 -0300 | fix(fbe): stop empty-field line-bleed in boundary evidence parser (#458)
 7d25974 | 2026-09-02 08:35:38 -0300 | feat: auto-derive governor/sentinel allowlist from dao_members.json (#457)
@@ -414,6 +415,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ab627df | 2026-09-06 11:20:30 +0000 | chore: refresh currencies.json [skip ci]
 0175b1c | 2026-09-06 11:01:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b74cebf | 2026-09-04 11:44:22 +0000 | chore: refresh currencies.json [skip ci]
 1d3a534 | 2026-09-04 11:22:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -433,6 +435,8 @@ b245796 | 2026-08-30 12:13:21 +0000 | chore: refresh currencies.json [skip ci]
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+a3931db | 2026-09-06 15:10:56 -0300 | fix(fazenda-bom-sucesso): point .farm-hero CSS at real sunmint hero, drop stale rancho-maranta template token (#306)
+513b935 | 2026-09-06 12:16:19 -0300 | Add Fazenda Bom Sucesso to Brazilian Drift journey (#305)
 d9aca71 | 2026-09-05 23:15:53 -0300 | Re-apply Fix JS SyntaxError breaking Santa Ana farm map (was reverted by Track A rollout) (#304)
 d89bf9d | 2026-09-05 22:51:41 -0300 | Fazenda Clara: make SunMint plot highlight a real two-way link (FC-P1) (#303)
 2457f94 | 2026-09-05 22:18:27 -0300 | Track A rollout: add Verified & Traceable FSVP blocks to 12 farm pages (#302)
@@ -471,8 +475,6 @@ c197e20 | 2026-09-05 10:54:35 -0300 | feat: embed Paulo's curated interview vide
 98379b7 | 2026-09-04 12:10:17 -0300 | Swap Sítio Raimundo & Geniza hero to Gary's new plot photo (#279)
 cf15416 | 2026-09-04 12:09:48 -0300 | Add Sítio Raimundo & Geniza hero image (1280x960 landscape)
 0f3d8ea | 2026-09-04 11:58:23 -0300 | fix(fazenda-bom-sucesso): restore footer + mobile-chrome CSS missing from page style block (#277)
-f6fffe5 | 2026-09-04 11:54:37 -0300 | Fix Sítio Raimundo & Geniza hero image reference (404 → real file) (#276)
-fcb1407 | 2026-09-04 11:50:44 -0300 | test: add fazenda-bom-sucesso to header/footer consistency suite (#275)
 … (truncated)
 ```
 
@@ -562,7 +564,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/6/2026 3:51:01 |
+| 2026-09 | 0 | 17439.84386 | 9/6/2026 12:51:00 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-30`; scanned last **600** data rows)
 
