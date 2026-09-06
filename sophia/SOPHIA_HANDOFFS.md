@@ -76,9 +76,9 @@ truesight-dao-ping-sophia \
   --message "Post in thread <thread_id>: where are we on <plan>? Summarize progress + blockers."
 ```
 
-## Thread management — Sophia's two moves (truesight_autopilot#135)
+## Thread management — Sophia's three moves (truesight_autopilot#135)
 
-Sophia has two topic tools, so she can structure work across threads:
+Sophia has three topic tools, so she can structure work across threads and close it out cleanly:
 
 - **`create_telegram_topic`** — open a NEW topic (+ optional kickoff). Use for a
   new handoff, or to **shard a sub-scope into its own thread**: open a topic, post
@@ -90,6 +90,25 @@ Sophia has two topic tools, so she can structure work across threads:
   Use to **rejoin** a parked handoff, **report cross-thread** ("sandbox is ready,
   you can test"), or cross-link a sharded sub-thread back to its parent — without
   spawning a duplicate topic.
+- **`close_telegram_topic`** — close/delete a FINISHED topic (Bot API
+  `deleteForumTopic`). Use when the governor says **"close this case"**,
+  **"close thread and delete it"**, or **"we're done here"** and the work is
+  complete. ⚠️ **Deletes ONLY the Telegram chat surface — NEVER the
+  transcript/session history** (that lives in `truesight_autopilot_transcript`
+  and is always preserved).
+
+### Close convention (Gary, 2026-09) — "close this case" always means the same thing
+
+When the governor says **"close this case / close the thread / we're done here"**
+(since we're done), it means, for EVERY Sophia instance:
+
+1. **`close_telegram_topic(thread_id)`** — delete the forum topic from the group
+   (Bot API `deleteForumTopic`).
+2. **Keep the transcript** — do NOT delete the session history / transcript
+   repo entries; `close_telegram_topic` never touches them, and neither should
+   you. "Delete the topic" ≠ "delete the record".
+3. If the topic is a **registered handoff**, update its `HANDOFF_MANIFEST.md`
+   row to a closed/finished status so no other instance tries to resume it.
 
 So the prior "always create a new topic" churn (1924→1939) is no longer forced:
 prefer reusing the existing handoff thread via `post_to_telegram_topic`.

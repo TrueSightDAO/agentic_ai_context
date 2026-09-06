@@ -176,7 +176,7 @@ When a governor uploads images via `/chat/upload`:
 ```
 User uploads HEIC image
         │
-        ├── 1. HEIC → JPEG conversion (macOS sips)
+        ├── 1. HEIC → JPEG conversion (pillow_heif, cross-platform, preserves GPS EXIF)
         ├── 2. pyzbar: authoritative barcode scan (QR, EAN13, UPC, CODE128, etc.)
         │         Returns exact decoded values. Multi-scale (full res + 50%).
         │

@@ -29,6 +29,8 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 | Artifact | Destination | Notes |
 |---|---|---|
 | Videos (MP4) | **YouTube public** (admin@truesight.me channel) | free, unlimited, durable; embed via media-gallery.js `youtube` entries |
+| Raw video originals (MOV) | **S3 bucket `media.agroverse.shop`** (Nelanco 767697632458), `raw/<farm>/<file>` | public-read; lifecycle STANDARD_IA@30d → DEEP_ARCHIVE@180d; URL `https://s3.us-east-1.amazonaws.com/media.agroverse.shop/raw/<farm>/<file>`; too large for GitHub (>100MB files, 16GB corpus) |
+| Frame previews (JPG) | **S3 `media.agroverse.shop`**, `previews/<farm-id>/<basename>.jpg` (HOT — Standard, no lifecycle) | 1 ffmpeg frame per video; manifest `preview` field references the S3 URL; hot tier keeps timeline/map explorer fast |
 | Photos (HEIC/JPG originals) | GitHub repo **`farm-media-raw`**, `<farm-id>/photos/` | individual files, **Content-API only** (repo can get large; never clone/branch-edit) |
 | Manifest / index | `farm_media_manifests/<farm-id>.json` (repo TrueSightDAO/farm_media_manifests) | the reference layer: sha256, GPS, duration, objects[], yt_id — keyword-searchable via GitHub code search |
 | Farm page gallery | `agroverse_shop_beta/farms/<farm-id>/media.json` | curated youtube + image entries |
@@ -38,12 +40,21 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 
 | Farm | farm_id slug | SunMint plot | media repo subfolder |
 |---|---|---|---|
-| La do Sitio (Paulo) | `paulo-la-do-sitio-para` | LD-P1 | `la-do-sitio/` |
-| Santa Anna Fazenda | `santa-anna-fazenda-para` | SA-P1 | `santa-anna-fazenda-para/` |
+| La do Sitio (Paulo) | `paulo-la-do-sitio-para` | V-06-29 (legacy LD-P1) | `la-do-sitio/` |
+| Santa Anna Fazenda | `santa-anna-fazenda-para` | B-06-58 (legacy SA-P1) | `santa-anna-fazenda-para/` |
 | Rancho Maranta | `rancho-maranta-para` | RM-P1 / RM-P2 | `rancho-maranta/` |
-| Cleide | `cleide` | CL-P1 | `cleide/` |
+| Cleide | `cleide` | B-06-108 (legacy CL-P1) | `cleide/` |
 
 ## Pipeline (per farm)
+
+> ### ⚠️ ZIP HANDLING RULE (ALL Sophia instances — governor directive 2026-09-05)
+> A zip is a **transport container, never an archive unit**. When archiving media that arrived inside a zip:
+> 1. **NEVER upload/archive the zip itself as one blob.** S3/GitHub objects must mirror the archive **one object per original file** — a zip blob is useless to a future timeline/map/query explorer.
+> 2. **Open the zip and iterate its entries**; extract each real media file (MOV/MP4/HEIC/JPG) **individually**, streaming to temp — never extract the whole zip at once (disk is shared with the live pipeline).
+> 3. **Skip junk**: `__MACOSX/` paths and `._` AppleDouble resource forks are never archived.
+> 4. Per file, run the standard archive pass: sha256 → `captured_at` (read from the original's QuickTime/EXIF) → 1 ffmpeg preview frame → raw → `media.agroverse.shop/raw/<farm>/<file>` → preview (hot tier) → `previews/<farm>/<file>.jpg` → write a resume-safe `<file>.raw.json` marker.
+> 5. Delete originals/zips only **after** S3 + committed manifest verify, and only with the governor's explicit go.
+> 6. Reference implementation: `farm-media-daemon/farm_media_archive.py` (extracted-dir roots live; **zip-root streaming** is its in-progress extension — route ALL future zips through the same per-file path).
 
 ### 1. Intake
 - Unzip to `/home/ubuntu/<farm>_work/` (La do Sitio pattern: `/home/ubuntu/la_do_sitio_work/la do sitio/`).
@@ -77,6 +88,24 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - Batch: `nohup` loop with progress file (`/tmp/mp4_progress.txt`), ~35–60 s/video on t3.medium.
 
 ### 7. YouTube upload (public)
+
+### 7a. LIVE DAEMON — the current reality (read this before uploading)
+
+- The one-shot script below is the LEGACY path. Since 2026-09 the live uploader is the
+  **farm-media daemon** (systemd `farm-media-daemon`, config
+  `/opt/truesight_autopilot/media_archive_daemon_config.yaml`).
+- **Inbox:** `~/media_archive_inbox/farm-media/<farm_id>/`. A video is only processable when
+  its `.mp4` AND its `<name>.mp4.json` sidecar sit TOGETHER in the inbox dir (sidecar alone
+  or mp4 alone = silently skipped — RG lost ~8 min to this).
+- **Sidecar JSON:** farm_id, title, description, latitude, longitude, captured_at, sha256,
+  duration_s, privacy, raw_url, preview. Daemon passes title/description verbatim to YouTube.
+- **New farm = append an inbox entry to the config yaml + `systemctl restart
+  farm-media-daemon`.** Verify active: `systemctl is-active farm-media-daemon`.
+- **Pacing:** ~1 video per inbox per pass (~30 s apart); other farms queue ahead (Cleide had
+  71 queued) — a new farm's uploads trickle, they don't burst.
+- **Logs:** `/tmp/farm_media_daemon.log` (NOT journald — systemd does not capture stdout).
+  Verify uploads by `rc=0` lines + `yt_id` written back into the sidecar.
+- MOV GPS read: `Keys:GPSCoordinates` (exiftool `-s -s -GPSCoordinates`).
 - `/opt/truesight_autopilot/config/youtube/upload_video_to_youtube.py --file --title --description --tags --privacy public`
 - **SHARED QUOTA**: all instances share ONE Google project (`project_number:323153649224`). 'Video Uploads per day' is a hard daily cap (~50-60/day). Batch uploads WILL hit 429 mid-run. **Always** run uploads behind a retry loop: on 429, wait 30 min and retry (quota resets ~midnight PT); skip entries that already have a LIVE yt_id. Never re-upload blindly.
 - **VERIFY LIVE, not just captured**: after upload, the returned ID must be confirmed with `videos().list(part='id')`. A title->ID recovery map against the shared channel's uploads playlist (which can contain deleted/lingering entries) WILL capture stale IDs. Live-sweep every manifest ID before trusting it; dead ID = re-upload.
@@ -90,7 +119,7 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - **Never** `git_push_changes` to `farm-media-raw` (api-only repo).
 
 ### 9. Farm page wiring (beta-first)
-- `agroverse_shop_beta/farms/<farm-id>/media.json`: gallery entries `{type: youtube, id: yt_id}` + `{type: image, src: /assets/images/farms/IMG_x.jpg}`.
+- `agroverse_shop_beta/farms/<farm-id>/media.json`: gallery entries `{type: youtube, videoId, title, caption}` + `{type: image, src: /assets/images/farms/IMG_x.jpg}`. (Schema verified 2026-09-04 on the RG build — youtube entries need `videoId` + `title`, NOT `id`; media-gallery.js ignores bare `id` entries.)
 - Upload web-optimized JPEGs to `agroverse_shop_beta/assets/images/farms/` (**repo-root** path — site serves from root; og:image + rancho-maranta precedent).
 - `index.html` Farm Location: Leaflet pin → GPS centroid, add `L.polygon` overlay (plot ring), add SunMint impact-map link.
 - PR → merge → beta verify → `sync_beta_to_prod` **only on explicit governor go**.

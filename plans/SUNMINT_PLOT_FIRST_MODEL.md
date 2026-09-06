@@ -2,7 +2,7 @@
 
 > **Status:** governor-confirmed 2026-09-01 (thread 11074). Supersedes the farm-first
 > interpretation of `SUNMINT_BOUNDARY_SUBMISSION_PLAN.md` rule 4 for NEW submissions.
-> The 5 existing governance-defined plots (RM-P1, RM-P2, SA-P1, CL-P1, LD-P1) keep their
+> The 5 existing governance-defined plots (RM-P1, RM-P2, B-06-58 [legacy SA-P1], B-06-108 [legacy CL-P1], V-06-29 [legacy LD-P1]) keep their
 > farm associations; only NEW farmer submissions flow plot-first.
 
 ## 1. The model

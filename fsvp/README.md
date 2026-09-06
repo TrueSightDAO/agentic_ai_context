@@ -50,7 +50,7 @@ Date is the event date, not the upload date. If the event date differs from the 
 ## Key identity anchors (do not guess these)
 
 - TrueTech Inc — EIN 88-3411514 · CBP importer-of-record 88-341151400 · FDA FFR 12202640780 · DUNS 119035208
-- Signature block on all site-visit PDFs: Zhiwen Teh, President, TrueTech Inc, admin@truesight.me, +1 415 300 0019
+- Signature block on all site-visit PDFs: **official ink signature image** `TrueSightDAO/signature_assets/gary_teh/gary_teh_signature_transparent.png` (private, narrow-scope read; never copy into public repos) composited above the typed block: Zhiwen Teh, President, TrueTech Inc, admin@truesight.me, +1 415 300 0019
 - See `fda_fsvp/truetech_inc.entity.json` for the full profile (payment details, service providers, addresses).
 
 ## Privacy rule

@@ -55,6 +55,9 @@
 5. **Media.json uses literal UTF-8** — search/replace must use the literal accented char, not `\u00e1` escape.
 6. **Telegram attachment filenames are UUIDs** — original names are lost; scp originals preserve names + EXIF.
 7. **Same-named farms**: always include region in slug + page copy to avoid collision (Santa Ana Bahia vs Santa Anna Pará).
+8. **Post-clone token grep (MANDATORY)**: after cloning a farm page from a template, grep the new files for the source farm's name, CEPOTX/coop strings, and `header-<name>.jpg` filenames. Leftover template tokens produce a 404 hero (RG build referenced a nonexistent `raimundo-geniza-para-header-7660.jpg` — fixed PR #276) and wrong story copy ("Fermentation" highlight on a restoration plot — fixed PR #282).
+9. **Canonical/og:url/twitter:url double-suffix**: building the slug by concatenation double-appends the region suffix (`raimundo-geniza-para-para`). Canonical must be `https://www.agroverse.shop/farms/<slug>` exactly once (fixed PR #282).
+10. **media.json youtube entries**: use `{type: youtube, videoId, title, caption}` — an `id`-only entry is NOT rendered by media-gallery.js.
 
 ## 6. Related runbooks
 
@@ -65,4 +68,4 @@
 
 ---
 
-*Last updated: 2026-08-31 (Santa Anna Fazenda build — beta #225/#226/#228/#230/#231, prod sync 2026-08-31)*
+*Last updated: 2026-09-04 (RG build post-mortem — gotchas 8–10, beta #273–#282, prod sync 2026-09-04)*

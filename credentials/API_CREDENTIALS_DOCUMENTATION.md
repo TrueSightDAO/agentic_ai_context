@@ -280,6 +280,27 @@ Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExp
 | **TENCENT_SECRET_KEY** | Tencent Cloud SecretKey | Paired with SecretId for request signing | Same locations |
 
 *Source: `~/Applications/tmp/tencent_keys.txt` (SecretId / SecretKey). Added 2026-09-01 for Sophia, Envoy, and Onaya (Bionpact) access.*
+### 10.8 Public-Signatures PATs (`verify_public_signatures`)
+
+Two fine-grained GitHub PATs scoped **only** to `TrueSightDAO/verify_public_signatures` (public signatures ledger). Provisioned 2026-09-03; swapped into the sync cron + vaulted same day. **No values in this repo** — names/locations only.
+
+| Credential | What it is | Use case | Where / scenario | Code location |
+|---|---|---|---|---|
+| **PUBLIC_SIGNATURES_READ_PAT** | GitHub fine-grained PAT (read-only) | Read-only access to `verify_public_signatures` (tree/raw reads) | Read/verify paths of the signature ledger pipeline | `truesight_autopilot` `app/signature_ledger_pipeline.py` (`LEDGER_REPO = "TrueSightDAO/verify_public_signatures"`); read-only GETs |
+| **PUBLIC_SIGNATURES_WRITE_PAT** | GitHub fine-grained PAT (`Contents: write`) | Contents-API writes to `verify_public_signatures` (index refresh + event JSON) | `sync_sunmint_signatures.py --push` cron (autopilot box); dao_protocol post-verify emit hook | `truesight_autopilot` `scripts/sync_sunmint_signatures.py`; dao_protocol emit hook on dao_protocol host |
+
+**Storage (names only, values never committed):**
+
+| Location | What |
+|---|---|
+| `/opt/truesight_autopilot/vault/vault.json.enc` | Fernet-encrypted vault — entries `PUBLIC_SIGNATURES_READ_PAT` (v1) + `PUBLIC_SIGNATURES_WRITE_PAT` (v1), each with scopes + purpose |
+| `~/PUBLIC_SIGNATURES_READ_PAT`, `~/PUBLIC_SIGNATURES_WRITE_PAT` (autopilot box, chmod 600) | Plaintext PAT files the cron reads at runtime via `$(cat …)` |
+| Cron | `sync_sunmint_signatures.py` uses `GITHUB_TOKEN="$(cat ~/PUBLIC_SIGNATURES_WRITE_PAT)"` (swapped off the broad shared token 2026-09-03) |
+
+**Security notes:**
+- Fine-grained, repo-scoped to `verify_public_signatures` only — **not** the operator key, **not** the broad autopilot token.
+- READ PAT suits read-only paths; WRITE PAT reserved for Contents-API writers. GitHub has no append-only permission, so rotation is the mitigation if either leaks.
+- Rotate from the GitHub token settings when needed; update vault (new version) + local files + cron env together.
 
 ---
 
