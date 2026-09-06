@@ -50,14 +50,6 @@ cross-session** items that would otherwise rot in chat transcripts.
 ### Fazenda Dona Rosa (Medicilândia, PA) — farm listing, affiliation confirmed COOPOXIN
 **Filed 2026-09-05. Owner: unclaimed. Governor: Gary (thread-21167).** New partner-farm lead from `~/fazenda_dona_rosa.zip` (763 MB; 61 real files = 35 HEIC + 19 MOV + 7 PNG, all GPS-bearing, iPhone 12 Pro Max, shot 2026-09-04 21:22–22:28 local — single continuous session; sha256-clean, no dupes). GPS cloud **−3.4892…−3.4894 / −52.9665…−52.9673** (~75×22 m) reverse-geocodes to **Medicilândia municipality, Pará** — **zero overlap** with registered plots (nearest: Fazenda Cleide CL-P1 ~38 km, Santa Anna SA-P1 ~49 km; RG-P1 ~78 km). Governor **confirmed 2026-09-05**: producer belongs to **COOPOXIN** — the same sub-cooperative as the closest CEPOTX farm, Fazenda Cleide (site code **B-06-108**, same B-06 family as Santa Anna B-06-58 which is explicitly COOPOXIN in `fda_fsvp/suppliers/cepotx/entity.json` + the 2026-08-30 Santa Anna site-visit PDF). Public identity lead: Rosa Wronscki / Dona Rosa Chocolates (@donarosachocolate), "a primeira mulher produtora de cacau" de Medicilândia; WhatsApp +55 93 9923-98968; Chocolat Bahia 2026. ⚠️ PNG screenshots in the zip are a **mixed bag** (translation prompts, cupuaçu note, arnaldoamorim_ DM, Belamazonia IG profile) — **Belamazonia IMG_8564 is NOT associated** (governor correction); only the HEIC/MOV site-visit media is attributable. **Next steps (per AGROVERSE_SUNMINT_FARM_LISTING.md SOP):** (1) get legal name + CNPJ + written confirmation from Rosa/CEPOTX liaison Jedielcio; (2) register plot `DR-P1` (farms index + plots geojson, status `proposed`); (3) 19 MOV→MP4 → farm-media daemon inbox (sidecar incl. GPS re-inject); (4) build farm profile page clone (farms/raimundo-geniza-para/ or rancho-maranta-para template) → beta → prod on explicit go; (5) optionally extend CEPOTX entity/FSVP records (site code assignment must come from CEPOTX, not derived).
 
-### sunmint (api-only data repo): prune stale plot_*/by-plot artifacts after CEPOTX rename; cache_satellite_scenes.py null-geom guard
-**Filed 2026-09-05. Owner: unclaimed. Governor: Gary (thread-22082).** During the CEPOTX plot_id standardization (SunMint Plots sheet SA-P1→B-06-58, CL-P1→B-06-108, LD-P1→V-06-29; rebuilt plots/index.geojson + farms/index.json landed as commits e7af93f/3713caa, satellite manifest regenerated 804f359 2026-09-05 23:55 UTC), stale derived artifacts were left behind because **sunmint is in `api_only_repos`** (truesight_autopilot app/config.py: "never clone, never branch-edit; git_push_changes and open_fix_pr refuse these") and the rebuild workflows only add, never prune:
-1. `satellite/plot_SA-P1/`, `satellite/plot_CL-P1/`, `satellite/plot_LD-P1/` — orphan old-id scene dirs; superseded by `plot_B-06-58/plot_B-06-108/plot_V-06-29`. `satellite/manifest.json` `plots` keys are already correct (9 canonical ids, 0 stale).
-2. `plots/by-plot/{SA-P1,CL-P1,LD-P1}.geojson` — stale per-plot files (RM-P1/RM-P2 current). No workflow runs `emit_per_plot` (build_plots_geojson.py --by-plot-dir, default plots/by-plot); by-plot has **no consumer** (sunmint.html fetches only plots/index.geojson + satellite/manifest.json + trees index).
-3. `scripts/cache_satellite_scenes.py` (~line 155) crash: `geom = feat.get("geometry", {})` returns None on explicit `"geometry": null` → `AttributeError: 'NoneType' object has no attribute 'get'` at `geom.get("type")`. Crashed every satellite run until the sheet's null-geom test rows (UAT-PLOT-1/TDP1/PL-001 + 4 E2E fragment rows, deleted 2026-09-05) were removed. Trees loop (~line 188) is already null-safe (`if geom and …`). Fix: `geom = feat.get("geometry") or {}`.
-Also benign doc/test references to old ids remain: `SCHEMA.md` examples, `scripts/extract_plot_gps.py` help text, unit tests (`test_build_plots_by_plot.py`, `test_build_plots_skip_invalid.py`). `images/LD-P1/` media paths in V-06-29 properties are content-addressed archive paths (files live) — leave.
-**Resolution (governor 2026-09-05, thread 22082):** option (c) — retain as inert residue; the 2026-09-05 renames are recorded as an alias tombstone in CEPOTX_SITE_CODE_REGISTRY.md ("Alias tombstone — 2026-09-05 renames", agentic_ai_context PR #925). Do NOT delete the stale dirs/files and do NOT flip them to `invalid` — canonical data says the plots were *renamed*, not retired. **Still actionable:** ship the `cache_satellite_scenes.py` null-geometry guard (`geom = feat.get("geometry") or {}`, ~line 155) via Contents-API upload to `sunmint/scripts/cache_satellite_scenes.py`; optionally refresh SCHEMA.md worked-example + legacy-id references to canonical ids.
-
 ### search_context / search_code return 0 matches for existing docs (index staleness)
 **Filed 2026-09-04. Owner: unclaimed.** `search_context("MEDIA_ARCHIVE_PIPELINE")`, `search_context("farm profile agroverse shop new farm onboarding")`, and several other queries against existing docs return **0 matches** even though the files exist in agentic_ai_context and literally contain those strings (repo file listing confirms presence). Suspect a stale/partial content index of the repo (new/renamed docs not re-indexed). Workaround: use `read_context_file` / repo-listing to inventory docs, or full `search_code` (GitHub). To fix: re-index agentic_ai_context and/or verify the search tool's index-update hook fires on PR merge.
 
@@ -413,7 +405,6 @@ topics: 1955 = `tg:-1003919341801:1955`, 1939 = `tg:-1003919341801:1939`.
 **Trigger to act.** ~2026-09-01 (before the ~2026-09-06 expiry), or sooner if a publish run 401s.
 
 **Owner.** Gary (token generation is account-owner only).
-
 
 ### Sophia-drafted Telegram replies — watchdog v2 (revisit ~2026-07-06)
 
@@ -1593,6 +1584,13 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ### krake_ror disk-full durability — RESOLVED 2026-09-06 via AMI bake + ASG roll (sophia, thread 22224)
 **Shipped 2026-09-06.** Durable fix landed after the 2026-09-06 ENOSPC incident (Bugsnag `Errno::ENOSPC`, getdata.io) per governor direction: baked custom AMI **`ami-0933e020a3e613189`** (`krake_ror_20260906`) from the fixed host — captures `/etc/logrotate.d/krake_ror` (daily + size 200M, rotate 5, copytruncate, delaycompress, `su ubuntu ubuntu`); created LT `lt-085100be44b6079cc` **v4** → new AMI, set `$Default` (v3 = rollback); rolled ASG zero-downtime (scale to 2, validated new instance: HTTP 200 / logrotate present / disk 53%, drain old, terminate). Running instance now `i-0f7f3490dc465136b` (54.224.186.212). Any future recycle boots with logrotate → recurrence closed. Volume growth explicitly NOT done (governor 2026-09-06: 8G root fine with logrotate capping logs). Optional residual: `df /` ≥ 85% alert.
+
+### [SHIPPED] sunmint cache_satellite_scenes.py null-geometry guard (CEPOTX rename follow-up)
+- **Date:** 2026-09-05
+- **Issue:** `scripts/cache_satellite_scenes.py` plots loop crashed on explicit `"geometry": null` — `geom = feat.get("geometry", {})` returns None, then `geom.get("type")` raises `AttributeError: 'NoneType' object has no attribute 'get'`. Crashed every satellite run until the sheet's null-geom test rows were removed (2026-09-05). Trees loop was already null-safe.
+- **Resolution context:** stale `satellite/plot_{SA-P1,CL-P1,LD-P1}/` dirs + `plots/by-plot/{SA-P1,CL-P1,LD-P1}.geojson` retained as inert residue per governor resolution 2026-09-05 (option c — renames recorded as alias tombstone, agentic_ai_context PR #925). NOT deleted.
+- **Shipped 2026-09-06 by Sophia:** one-line guard `geom = feat.get("geometry") or {}` at `scripts/cache_satellite_scenes.py:156` — uploaded via Contents API to sunmint@main (commit 90eaa4c). UAT: pristine original crashes on a null-geom fixture (`AttributeError` line 157, rc=1); fixed script exits 0, caches the real polygon (OK-PLOT: 4 scenes), skips the null feature (manifest plots = [OK-PLOT]). Syntax + py_compile clean.
+- **Link:** https://github.com/TrueSightDAO/sunmint/commit/90eaa4c30f957e561ca25b172661ae9d982eb386
 ### [DONE] Usage/meta logging in truesight_autopilot_transcript — shipped 2026-09-01
 - **Date:** 2026-08-31
 - **Issue:** The transcript repo AGENTS.md/ROADMAP.md describe `usage.jsonl`, `meta.json`, `messages.jsonl` + `scripts/append_usage.py` + a summarize CLI — but only `transcript.md` is actually written. Consequence: "how much time/tokens did X cost?" cannot be answered exactly (was reconstructed from git merge timestamps for the Rancho Maranta effort, ~15.5h wall-clock / ~360 active min lower bound).
@@ -1601,8 +1599,6 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ### SunMint satellite cache pipeline: Earth Search STAC (replaces CDSE) — LIVE
 **Shipped 2026-08-31. Owner: Sophia.** The CDSE registration path was dropped (registration broken; CDSE no longer offers anonymous Sentinel-2 WMS — only STAC public, `sh.dataspace` needs auth). Replaced with **Earth Search STAC** (AWS-hosted Sentinel-2 L2A, anonymous, no key): `sunmint/scripts/cache_satellite_scenes.py` queries `https://earth-search.aws.element84.com/v1/search` (POST, explicit RFC3339 datetime — `now` token 400s), downloads the lowest-cloud scene's public preview into `satellite/<lat>_<lng>/<scene-date>.jpg` + `satellite/manifest.json`. Verified live: 9 cells / 36 scenes; FounderHaus + Rancho Maranta cells + plot dirs (RM-P1/RM-P2) committed. Map satellite history strip (truesight_me_beta #322) layers `manifest.json` by date with cloud badges; plot-aware caching reads `plots/index.geojson` — the ONLY plot registry (`trees/plots.geojson` is a dead path, guarded). Remaining: confirm the daily workflow auto-commits (06:30 UTC schedule; box token lacks workflow-dispatch scope — a human can trigger via Actions → workflow_dispatch). **No CDSE registration needed — Gary can drop that task.**
-
-
 
 ### DEPLOY_PUSH_SOP Phase 2 — lease+audit enforced in all deploy tools (SHIPPED 2026-08-25)
 **Shipped by sophia.** The deploy-push audit trail is now **enforced in code**, not just documented:
@@ -1621,7 +1617,6 @@ The June-12 failure mode is now guarded. Possible v2s parked: Sophia-drafted
 Telegram replies (the user-session already permits sending), Gmail-leg digest
 unification.
 
-
 ### Telegram attention watchdog — minimal v0 (SHIPPED 2026-06-05, activation pending operator login)
 
 Shipped as [truesight_autopilot#102](https://github.com/TrueSightDAO/truesight_autopilot/pull/102)
@@ -1632,7 +1627,6 @@ watcher (`app/attention_watchdog.py`), Saved-Messages nudges (4 h / 2 h dated)
 (`scripts/telethon_login.py` after adding `TELEGRAM_API_ID/HASH` to the box
 `.env`). Originally filed 2026-06-06 after the June 12 cacao-serving
 coordination miss. Gmail-leg unification remains a possible future follow-up.
-
 
 ### Autopilot tooling gaps ×4 (migrated from the duplicate `OPEN_FOLLOW_UPS.md`) — resolved by 2026-06-03 capability uplift
 
