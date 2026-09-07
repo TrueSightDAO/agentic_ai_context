@@ -21,7 +21,7 @@
 | Plot registry | `sunmint/plots/index.geojson` (data repo) |
 | Generator | `sunmint/scripts/build_plots_geojson.py` (mirrors `build_tree_geojson.py`) |
 | Workflow | `.github/workflows/rebuild-plots-index.yml` (mirrors `rebuild-tree-index.yml`) |
-| Source of truth | SunMint Farms sheet tab — **write access: `agroverse_qr_code_manager` SA** (`cypher_defense` / `edgar_dapp_listener` / `tdg_scoring` verified read-only, 403 on write 2026-08-31) |
+| Source of truth | SunMint Plots sheet tab (SunMint ledger `1qbZZhf-…`) — **write access: `agroverse_qr_code_manager` + `edgar_dapp_listener` SAs** (`cypher_defense` / `tdg_scoring` verified read-only; `edgar_dapp_listener` 403 on write was 2026-08-31 only — write confirmed working 2026-09-06 for FSA-P1 row via that SA) |
 | Impact map | `truesight_me_beta/sunmint.html` — draws polygons + clusters tree markers |
 | Satellite | `sunmint/satellite/manifest.json` — grid cells derived from plot centroids |
 | Ledger | geo-located events (TREE PLANTING EVENT at -3.29609,-52.58318 precedent) |
