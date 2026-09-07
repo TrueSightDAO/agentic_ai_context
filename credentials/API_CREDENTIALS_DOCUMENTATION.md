@@ -241,6 +241,7 @@ Recommended IAM policy for EC2 monitoring: `CloudWatchReadOnlyAccess` + `CostExp
 | `tdg-scoring-peer-reviewer@get-data-io.iam.gserviceaccount.com` | `sentiment_importer/config/tdg_scoring_gdrive_key.json` | `get-data-io` | Assumed |
 | `upc-barcode@get-data-io.iam.gserviceaccount.com` | `sentiment_importer/config/upc_barcode_gdrive_key.json` | `get-data-io` | Assumed |
 | `truesightme-whitepapers@get-data-io.iam.gserviceaccount.com` | `truesight_me/credentials/whitepaper-google-sa.json` | `get-data-io` | Assumed (Viewer on whitepaper docs) |
+| `onaya-bionpack@get-data-io.iam.gserviceaccount.com` | `/home/ubuntu/onaya_bionpack_google_sa_key.json` (Onaya/Bionpact host) | `get-data-io` | ✅ Confirmed Reader on Main Ledger (granted 2026-09-07) |
 
 **Verdict:** ✅ **Ready for sheet access.** No live probe performed (would require API calls), but all are actively used. For GCP billing/monitoring, you need a separate service account with `monitoring.viewer` + `billing.accounts.getSpendingInformation` on the `get-data-io` billing account.
 

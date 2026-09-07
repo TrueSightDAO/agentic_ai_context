@@ -62,6 +62,14 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 - **Project ID**: `get-data-io`
 - **Used For**: Reading TrueSight whitepaper Google Docs via the Docs API (e.g. `agentic_ai_context/scripts/fetch_whitepaper.py` with `GOOGLE_APPLICATION_CREDENTIALS` or `--credentials`). Grant **Viewer** on each whitepaper doc to this service account.
 
+### 7. **Onaya (Bionpact) Service Account**
+- **File**: `/home/ubuntu/onaya_bionpack_google_sa_key.json` (held on the Onaya/Bionpact host — **never commit**)
+- **Service Account Email**: `onaya-bionpack@get-data-io.iam.gserviceaccount.com`
+- **Client ID**: `105141800593905800991`
+- **Project ID**: `get-data-io`
+- **Used For**: Read queries against the Main Ledger (CIC payment records, heavy-metal testing costs) and other DAO Google Sheets
+- **Access**: **Reader** on Main Ledger (granted 2026-09-07 by Sophia via edgar-dapp-listener SA)
+
 ---
 
 ## 📁 Google Drive folders (Agroverse artifacts)
