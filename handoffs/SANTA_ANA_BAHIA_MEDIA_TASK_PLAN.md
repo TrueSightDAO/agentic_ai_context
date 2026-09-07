@@ -1,7 +1,7 @@
 # Santa Ana (Bahia) Media + Plot Task — execution plan (thread 19965)
 
 **Created:** 2026-09-02 (Sophia) at Gary's request · **Handoff:** 👍 GO on resume-awaiting (thread 19965)
-**Status:** executing — PR1–PR5 core delivered 2026-09-06; media-archive long pole + loose ends remain
+**Status:** executing — PR1–PR5 core delivered 2026-09-06; media-archive long pole + loose ends remain (daemon pipeline registered 2026-09-07)
 
 ## Goal
 1. Establish/refresh the farm page for https://agroverse.shop/farms/fazenda-santa-ana-bahia/index.html — media gallery from the new zip + SunMint plot.
@@ -49,7 +49,7 @@
 - **Key lesson applied:** plots/index.geojson is machine-generated from the SunMint Plots sheet tab — direct geojson commits get clobbered by the generator every ~30 min; durable adds go in the SHEET (see OPEN_FOLLOWUPS #938 + geojson race entry).
 
 ## RESUME HERE (remaining — media long pole + loose ends)
-1. **Media-archive long pole:** curated transcode (~15–25 of 151 MOV → H.264 MP4) + sidecars (sha256, GPS, duration_s, creation_date, transcription) → stage `/home/ubuntu/media_archive_inbox/farm-media/fazenda-santa-ana-bahia/` → daemon upload (~6/day budget) → update manifest after yt_ids land.
+1. **Media-archive long pole:** curated transcode (~15–25 of 151 MOV → H.264 MP4) + sidecars (sha256, GPS, duration_s, creation_date, transcription) → stage `/home/ubuntu/media_archive_inbox/farm-media/fazenda-santa-ana-bahia/` → daemon upload (~6/day budget) → update manifest after yt_ids land. **2026-09-07 segment done:** daemon pipeline registered — inbox `farm-media/fazenda-santa-ana-bahia` created + added to daemon config (watched); stale `santa-ana-fazenda-bahia` zip archive-root removed (was error-looping every ~90s on deleted zip); both daemons restarted clean (archive worker no longer errors; YouTube worker active). Raws already S3-archived (151 `.raw.json` markers w/ sha256 + captured_at + preview). Next: curated transcode (~15–25) + sidecars → stage into inbox.
 2. Per-plot `by-plot/FSA-P1.geojson` absent — consistent w/ all 2026 plots (SJ/OB/FC/DR); deployed workflow doesn't emit them. Pre-existing; optional follow-up.
 3. SUNMINT_PLOTS_REGISTRY.md §2 doc mismatch: sheet write succeeded via `edgar_dapp_listener` (doc says `agroverse_qr_code_manager` only). Reconcile doc.
 4. Farm page `sunmint.html?plot=FSA-P1` link is relative → 404 on agroverse.shop; target lives at truesight_me. Consider absolute URL.
