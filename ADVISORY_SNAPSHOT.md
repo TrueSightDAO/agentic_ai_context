@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-07T03:27:14Z`
+- Generated (UTC): `2026-09-07T05:02:49Z`
 - Look-back: **7** calendar days (`2026-08-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 32
+- `[NOTARIZATION EVENT]` × 3
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 2
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 4
+
+### Latest entries
+
+- `Edgar_20260905232128_098` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Contributor(s): Sophia Truesight
+- `Edgar_20260905232130_100` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Gary Teh
+- `Edgar_20260905232625_102` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Sophia Truesight (raw execution)
+- `Edgar_20260905232627_104` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight (direct/analysis)
+- `Edgar_20260905232629_106` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh (direct time)
+- `Edgar_20260905232748_002` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260906001915_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Sophia Truesight
+- `Edgar_20260906005543_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Durable close/delete Telegram topic tools (easy-tool saga) — #406 #407 #409 …
+- `Edgar_20260906011259_008` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260906012253_010` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260906012330_012` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Oscar Fazenda · Is New Farm: yes · Boundary Type: approx
+- `Edgar_20260906013100_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45.5 · Contributor(s): Sophia Truesight
+- `Edgar_20260906013103_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 175.5 · Contributor(s): Sophia Truesight
+- `Edgar_20260906013105_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 7.0 · Contributor(s): Gary Teh
+- `Edgar_20260906021452_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Fazenda Clara (Fernando & Carla, Itacaré/BA) — full media + farm profile + p…
+- `Edgar_20260906024247_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: feat: proactive WRAP-UP offer — contribution report + close/delete topic whe…
+- `Edgar_20260906130515_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 110 · Description: SunMint impact map: pill URL-sync, plot-pill bugfix, tree/QR deep-linking, f…
+- `Edgar_20260906165138_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: AGL expense-processor recovery: agent-rule auth fix, Credentials.gs restore …
+- `Edgar_20260906171319_028` · **Edgar** · [No Text Provided]
+- `Edgar_20260907035148_030` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-07T03:51:47.552Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -194,13 +231,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,857.26**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$54.47**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -286,6 +327,10 @@ fd85a3f | 2026-09-01 07:27:01 -0300 | FS#9: add blog index card (#343)
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+98233aa | 2026-09-07 01:06:57 -0300 | Santa Ana: record daemon pipeline registration segment (inbox + error-loop fix) (#948)
+eb1e862 | 2026-09-07 01:03:58 -0300 | HANDOFF_MANIFEST: Santa Ana row done-state + fix rate-limit row validator error (#947)
+1f1d01a | 2026-09-07 00:27:29 -0300 | Merge pull request #945 from TrueSightDAO/auto/advisory-refresh-2026-09-07
+934fb2c | 2026-09-07 03:27:18 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-07 UTC)
 99075e7 | 2026-09-06 18:35:24 -0300 | Santa Ana (Bahia): mark PR1-PR5 done-state, update manifest + RESUME HERE (#944)
 8175adc | 2026-09-06 17:39:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-06 UTC)
 4708b75 | 2026-09-06 17:39:32 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-06 UTC)
@@ -322,10 +367,6 @@ e043864 | 2026-09-05 17:35:43 -0300 | chore(previews): refresh Beer Hall preview
 cdbda29 | 2026-09-05 17:11:26 -0300 | Mirror CEPOTX site-code registry into agentic_ai_context for agent retrieval (#917)
 d3e7e2f | 2026-09-05 17:09:02 -0300 | Point site-code lookup at CEPOTX producer roster registry (#916)
 99553f8 | 2026-09-05 16:40:00 -0300 | docs: close SOPHIA_CONTEXT_COMPACTION_PLAN — all units merged, deployed, live-verified (#915)
-39f0be2 | 2026-09-05 16:16:36 -0300 | docs: Raimundo & Geniza plot id RG-P1 -> site code U-06-07 (#914)
-f57271d | 2026-09-05 13:38:28 -0300 | MAP: raw blobs -> S3 media.agroverse.shop; add previews + captured_at to schema docs (#908)
-ab5f257 | 2026-09-05 13:17:25 -0300 | MAP: add universal ZIP HANDLING RULE — never archive a zip as one blob; unpack and archive contents individually (#913)
-9aa5ff8 | 2026-09-05 12:34:48 -0300 | Document close_telegram_topic + "close this case" convention for all Sophia instances (#912)
 … (truncated)
 ```
 
@@ -495,6 +536,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 0 | 17439.84386 | 9/6/2026 21:51:20 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-31`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-02 | 23.97 | Ceremonial Cacao Kraft Pouch - Alibaba:… | — | 2024OSCAR_20260121_9 | QPfMC9gGq18K | Stripe checkout (online) |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
