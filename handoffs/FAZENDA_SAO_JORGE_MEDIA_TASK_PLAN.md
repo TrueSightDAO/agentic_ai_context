@@ -1,7 +1,7 @@
 # Fazenda São Jorge Media Task — execution plan (thread 19930)
 
 **Created:** 2026-09-06 (Sophia) at Gary's request · **Handoff:** 👍 GO on resume-awaiting (thread 19930)
-**Status:** executing
+**Status:** executing — PR1–PR6 delivered; **UAT gate open** (beta review → prod sync on Gary GO)
 
 ## Goal
 1. Establish the plot for https://agroverse.shop/farms/fazenda-sao-jorge-bahia/index.html on truesight.me's SunMint page (impact map) — cross-link BOTH ways (farm page ↔ sunmint).
@@ -51,4 +51,6 @@ farm_id == agroverse slug → popup farm link works without FARM_SLUG edit (fall
 - YouTube quota ~6/day unverified → pace expectations; do NOT hammer.
 
 ## RESUME HERE
-PR2: farm_media_manifests — commit `fazenda-sao-jorge-bahia.json` (v2, 103 items) + index.json entry (git_push_changes, deliberate commit). Then PR3 sheet row + geojson, PR4 farm page, PR5 sunmint cross-links, PR6 raw photos + inbox + transcode/daemon. UAT gate before any prod sync.
+**PR1–PR6 all delivered (2026-09-07/08).** Manifest v2 + index ✓ (PR2); SJ-P1 plot in source sheet + geojson ✓ (PR3); farm page gallery + cross-link ✓ (PR4); AGL6 ↔ sunmint wiring ✓ (PR5); media long pole complete ✓ (PR6): 67/67 MP4 uploaded w/ yt_ids merged to main (farm_media_manifests#2, sha 5ae619a9), 36 HEIC archived to farm-media-raw/photos (36), inbox sidecars in place. Manifest on main = 103 items (67 PUBLISHED w/ yt_id, 36 PENDING photos).
+
+**UAT GATE OPEN — next action is Gary:** review beta surfaces (beta.agroverse.shop farms/fazenda-sao-jorge-bahia gallery incl. 36 photos + Leaflet map; beta.truesight.me AGL6 pledge page ↔ farm page cross-links; sunmint SJ-P1 plot on impact map), then explicit GO → sync_beta_to_prod.
