@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-07T05:02:49Z`
+- Generated (UTC): `2026-09-07T12:55:04Z`
 - Look-back: **7** calendar days (`2026-08-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 32
+- `[CONTRIBUTION EVENT]` × 29
+- `[PRACTICE EVENT]` × 4
 - `[NOTARIZATION EVENT]` × 3
 - `[FARM BOUNDARY EVIDENCE EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 4
 
 ### Latest entries
 
-- `Edgar_20260905232128_098` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Contributor(s): Sophia Truesight
-- `Edgar_20260905232130_100` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Gary Teh
-- `Edgar_20260905232625_102` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Sophia Truesight (raw execution)
-- `Edgar_20260905232627_104` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight (direct/analysis)
 - `Edgar_20260905232629_106` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh (direct time)
 - `Edgar_20260905232748_002` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260906001915_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Sophia Truesight
@@ -60,6 +56,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260906165138_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: AGL expense-processor recovery: agent-rule auth fix, Credentials.gs restore …
 - `Edgar_20260906171319_028` · **Edgar** · [No Text Provided]
 - `Edgar_20260907035148_030` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-07T03:51:47.552Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260907101428_032` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-07T10:14:25.741Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260907110653_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Wire Fazenda Bom Sucesso into Brazilian Drift journey + farm-page CSS cleanu…
+- `Edgar_20260907123650_036` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-07T12:36:49.850Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260907123652_038` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-07T12:36:50.190Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-06T10:59:13.882Z`
+- Generated (UTC): `2026-09-07T10:59:14.298Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -275,6 +275,7 @@ _All dated lines on/after 2026-08-31_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a2dae19 | 2026-09-07 05:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 59b1e5f | 2026-09-06 15:42:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 06f8bbf | 2026-09-06 11:16:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -314,7 +315,6 @@ f051ba2 | 2026-09-01 08:11:34 -0300 | Add FS8 crimson pod v3 (IMG_7654 t11.5, ti
 44a2187 | 2026-09-01 08:11:32 -0300 | Add FS8 hero v3 (IMG_7654 t6.0, pod-only, both varieties)
 fd85a3f | 2026-09-01 07:27:01 -0300 | FS#9: add blog index card (#343)
 7d7b3fb | 2026-09-01 07:24:59 -0300 | Field Signals #9: What floats is better — a field lesson in cacao fermentation (#342)
-4006598 | 2026-09-01 05:33:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +327,10 @@ fd85a3f | 2026-09-01 07:27:01 -0300 | FS#9: add blog index card (#343)
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ed1ab82 | 2026-09-07 08:01:45 -0300 | docs: rename bionpact agent display name to Onaya (#950)
+c48e0d8 | 2026-09-07 08:01:40 -0300 | docs: register onaya-bionpack service account in credentials registry (#949)
+fa8325a | 2026-09-07 02:03:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-07 UTC)
+452caf3 | 2026-09-07 02:03:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-07 UTC)
 98233aa | 2026-09-07 01:06:57 -0300 | Santa Ana: record daemon pipeline registration segment (inbox + error-loop fix) (#948)
 eb1e862 | 2026-09-07 01:03:58 -0300 | HANDOFF_MANIFEST: Santa Ana row done-state + fix rate-limit row validator error (#947)
 1f1d01a | 2026-09-07 00:27:29 -0300 | Merge pull request #945 from TrueSightDAO/auto/advisory-refresh-2026-09-07
@@ -363,10 +367,6 @@ c83271f | 2026-09-05 21:08:51 -0300 | docs: correct krake_ror inventory row + fi
 7c0683e | 2026-09-05 19:57:24 -0300 | SOP: site-visit PDFs must use official signature asset from signature_assets (#919)
 3811f3e | 2026-09-05 17:53:06 -0300 | Add U-06-06 Fazenda Santa Rosa anchor to CEPOTX registry (#918)
 e043864 | 2026-09-05 17:35:43 -0300 | chore(previews): refresh Beer Hall preview (2026-09-05 UTC)
-640875c | 2026-09-05 17:35:42 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-05 UTC)
-cdbda29 | 2026-09-05 17:11:26 -0300 | Mirror CEPOTX site-code registry into agentic_ai_context for agent retrieval (#917)
-d3e7e2f | 2026-09-05 17:09:02 -0300 | Point site-code lookup at CEPOTX producer roster registry (#916)
-99553f8 | 2026-09-05 16:40:00 -0300 | docs: close SOPHIA_CONTEXT_COMPACTION_PLAN — all units merged, deployed, live-verified (#915)
 … (truncated)
 ```
 
@@ -413,6 +413,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+be4578f | 2026-09-07 12:38:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ab627df | 2026-09-06 11:20:30 +0000 | chore: refresh currencies.json [skip ci]
 0175b1c | 2026-09-06 11:01:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b74cebf | 2026-09-04 11:44:22 +0000 | chore: refresh currencies.json [skip ci]
@@ -560,7 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/6/2026 21:51:20 |
+| 2026-09 | 0 | 17439.84386 | 9/7/2026 5:51:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-08-31`; scanned last **600** data rows)
 
