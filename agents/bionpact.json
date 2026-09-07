@@ -1,6 +1,6 @@
 {
   "name": "bionpact",
-  "display_name": "Bionpact",
+  "display_name": "Onaya",
   "purpose": "Locked-down, private sibling autopilot instance for the Ops team (Gary Teh + Elizabeth Wong). Same codebase as Sophia, different .env: Telegram-only, no public HTTP surface, no DAO signing identity, no AWS/Gmail/fleet-SSH. Reads all public TrueSightDAO repos + public Edgar GETs; writes only to her own three private repos. See PROJECT_INDEX.md.",
   "codebase": "https://github.com/TrueSightDAO/truesight_autopilot",
   "transcript_repo": "bionpact_autopilot_transcription",
