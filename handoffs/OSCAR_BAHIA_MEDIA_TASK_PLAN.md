@@ -29,7 +29,7 @@
 1. MOV→MP4 (H.264) transcode ~45 files (15 min total video ≈ 30–45 min CPU on t3.medium).
 2. Stills: convert the 5 HEICs → JPEG; frame-extract a few key scenes from MOVs for the gallery.
 3. Build sidecars per farm-media-daemon schema: farm_id=oscar-bahia, sha256, gps, duration_s, creation_date, title/description (faster-whisper transcription → polish).
-4. Place in `/home/ubuntu/media_archive_inbox/farm-media/oscar-bahia/` → daemon uploads at ~6/day budget (≈7–8 days for 45 vids).
+4. Place in `/media/media_archive_inbox/farm-media/oscar-bahia/` → daemon uploads at ~6/day budget (≈7–8 days for 45 vids).
 5. Manifest commit after first yt_ids land (repo farm_media_manifests).
 6. photos → `farm-media-raw/oscar-bahia/` (GitHub) for durable photo storage.
 

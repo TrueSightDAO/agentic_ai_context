@@ -11,7 +11,7 @@
 
 ## Source media (verified)
 - `~/santa_anna_farzenda_bahia.zip` (3.6 GB) = **151 MOV + 91 HEIC + 1 JPG**, all shot **2023-09-18** at Fazenda Santa Ana (Bahia) — Morbeck / Chocolate Morbeck / Coopercabruca estate, Uruçuca region (~14.3227°S, 39.10°W). GPS on all MOVs + HEICs (to be confirmed by sweep).
-- Extracted at `/home/ubuntu/santa_ana_bahia_work/` (verified counts 151/91/1; source zip removed after extraction for disk).
+- Extracted at `/media/santa_ana_bahia_work/` (verified counts 151/91/1; source zip removed after extraction for disk).
 - NOTE: distinct from Pará "Santa Anna Fazenda" (Ana Lucia, santa-anna-fazenda-para) — do not conflate.
 
 ## Targets & state (verified 2026-09-02)
@@ -22,7 +22,7 @@
 | `sunmint/plots/index.geojson` | sunmint | 9 features — all Pará/test; NO Bahia plot (oscar-bahia OB-P1 also still missing). |
 | `farm_media_manifests` | farm_media_manifests | v2 schema EXISTS (oscar-bahia.json: lat/lon + creation_date + transcription_status/transcription). 10 manifests incl. oscar-bahia. |
 | `farm-media-raw/` | farm-media-raw | cleide, la-do-sitio, rancho-maranta, santa-anna-fazenda-para — no fazenda-santa-ana-bahia yet. |
-| Media daemon | running (pid live) | inbox `/home/ubuntu/media_archive_inbox/farm-media/{cleide,fazenda-dona-rosa,fazenda-santa-rosa,jedielcio,paulo-la-do-sitio,raimundo-geniza-para,santa-anna-fazenda}`. |
+| Media daemon | running (pid live) | inbox `/media/media_archive_inbox/farm-media/{cleide,fazenda-dona-rosa,fazenda-santa-rosa,jedielcio,paulo-la-do-sitio,raimundo-geniza-para,santa-anna-fazenda}`. |
 
 ## Execution order (ONE PR PER TURN)
 - **PR1** (this plan, agentic_ai_context) → **PR2** farm_media_manifests: `fazenda-santa-ana-bahia.json` manifest (v2 schema) + index.json entry → **PR3** agroverse_shop_beta: farm page media gallery + SunMint cross-link + plot overlay → **PR4** truesight_me_beta: sunmint.html ↔ farm page cross-link (both ways) → **PR5** sunmint: FSA-P1 plot proposal in plots/index.geojson → **UAT gate** (Gary reviews beta, then prod sync on explicit GO).
@@ -34,7 +34,7 @@
 4. MOV→MP4 (H.264) transcode CURATED subset (~15–25 best) + full set if quota/disk allows; GPS re-inject via exiftool + verify.
 5. Transcribe (faster-whisper) → polish → titles/descriptions.
 6. Build sidecars per farm-media-daemon schema: farm_id=fazenda-santa-ana-bahia, sha256, gps, duration_s, creation_date, title/description, transcription.
-7. Place in `/home/ubuntu/media_archive_inbox/farm-media/fazenda-santa-ana-bahia/` → daemon uploads at ~6/day budget (151 vids ≈ weeks — stage curated subset first for gallery).
+7. Place in `/media/media_archive_inbox/farm-media/fazenda-santa-ana-bahia/` → daemon uploads at ~6/day budget (151 vids ≈ weeks — stage curated subset first for gallery).
 8. Manifest commit after first yt_ids land (repo farm_media_manifests).
 
 ## Gates
@@ -42,14 +42,14 @@
 - v2 schema already exists (oscar-bahia) — reuse, don't extend further unless needed.
 - Daemon sidecar writes only; GitHub commit is deliberate (manifest-commit CLI).
 - YouTube quota ~6/day unverified → pace expectations; do NOT hammer.
-- Disk is tight (91% after cleanup) — transcode in waves, delete mp4s post-upload.
+- Disk: media lives on `/media` (250G EBS, vol-01b643f5629987b61 — 2026-09-08 migration); root disk no longer tight. Transcode in waves as before; delete mp4s post-upload to keep the working set lean.
 
 ## Status 2026-09-06 (thread 19965) — PR1–PR5 delivered
 - **PR1** plan ✅ · **PR2** farm_media_manifests manifest ✅ (fazenda-santa-ana-bahia.json + index.json entry) · **PR3** farm page gallery (11 items) + SunMint cross-link + Leaflet map ✅ (PR #300→#304, prod sync deploy_20260906T022903Z, verified live w/ node --check) · **PR4** sunmint.html↔farm cross-link ✅ (FARM_SLUG fallback resolves: farm_id `fazenda-santa-ana-bahia` == agroverse slug) · **PR5** FSA-P1 plot ✅ **durably** in source-of-truth sheet (row 14) + live in plots/index.geojson (13 features, blob 5d9253d7).
 - **Key lesson applied:** plots/index.geojson is machine-generated from the SunMint Plots sheet tab — direct geojson commits get clobbered by the generator every ~30 min; durable adds go in the SHEET (see OPEN_FOLLOWUPS #938 + geojson race entry).
 
 ## RESUME HERE (remaining — media long pole + loose ends)
-1. **Media-archive long pole:** curated transcode (~15–25 of 151 MOV → H.264 MP4) + sidecars (sha256, GPS, duration_s, creation_date, transcription) → stage `/home/ubuntu/media_archive_inbox/farm-media/fazenda-santa-ana-bahia/` → daemon upload (~6/day budget) → update manifest after yt_ids land. **2026-09-07 segment done:** daemon pipeline registered — inbox `farm-media/fazenda-santa-ana-bahia` created + added to daemon config (watched); stale `santa-ana-fazenda-bahia` zip archive-root removed (was error-looping every ~90s on deleted zip); both daemons restarted clean (archive worker no longer errors; YouTube worker active). Raws already S3-archived (151 `.raw.json` markers w/ sha256 + captured_at + preview). **Wave-1 transcription done 2026-09-07:** faster-whisper base (PT) transcribed all 16 uploaded MP4s (0 fail, 80–654 chars ea — farm history interview in IMG_8055, field/radio audio in others); backfilled `transcription_status: done` + `transcription` text + `transcribed_at_utc` + `transcription_model` into the 16 canonical manifest items (farm_media_manifests @ 2093d5a, note_2026_09_07b; first transcribed batch in the repo — oscar-bahia still all pending). 135 videos remain PENDING (future waves) + 91 photos. Loose-end status 2026-09-07: #2 skip-by-decision · #3 FIXED (PR #953 e14e3eaa) · #4 verified already-resolved (absolute links, beta+prod+live) · #5 PENDING (Gary visual confirm) → then wrap-up menu (contribution report + close).
+1. **Media-archive long pole:** curated transcode (~15–25 of 151 MOV → H.264 MP4) + sidecars (sha256, GPS, duration_s, creation_date, transcription) → stage `/media/media_archive_inbox/farm-media/fazenda-santa-ana-bahia/` → daemon upload (~6/day budget) → update manifest after yt_ids land. **2026-09-07 segment done:** daemon pipeline registered — inbox `farm-media/fazenda-santa-ana-bahia` created + added to daemon config (watched); stale `santa-ana-fazenda-bahia` zip archive-root removed (was error-looping every ~90s on deleted zip); both daemons restarted clean (archive worker no longer errors; YouTube worker active). Raws already S3-archived (151 `.raw.json` markers w/ sha256 + captured_at + preview). **Wave-1 transcription done 2026-09-07:** faster-whisper base (PT) transcribed all 16 uploaded MP4s (0 fail, 80–654 chars ea — farm history interview in IMG_8055, field/radio audio in others); backfilled `transcription_status: done` + `transcription` text + `transcribed_at_utc` + `transcription_model` into the 16 canonical manifest items (farm_media_manifests @ 2093d5a, note_2026_09_07b; first transcribed batch in the repo — oscar-bahia still all pending). 135 videos remain PENDING (future waves) + 91 photos. Loose-end status 2026-09-07: #2 skip-by-decision · #3 FIXED (PR #953 e14e3eaa) · #4 verified already-resolved (absolute links, beta+prod+live) · #5 PENDING (Gary visual confirm) → then wrap-up menu (contribution report + close).
 2. ✅ **CLOSED by decision 2026-09-07:** per-plot `by-plot/FSA-P1.geojson` stays absent — consistent w/ all 2026 plots (SJ/OB/FC/DR); deployed workflow doesn't emit them. Optional future follow-up.
 3. ✅ **FIXED 2026-09-07 (PR #953, sha e14e3eaa):** SUNMINT_PLOTS_REGISTRY.md §2 source-of-truth row now lists `agroverse_qr_code_manager` **+ `edgar_dapp_listener`** as write-capable; the 2026-08-31 403 correctly dated as a one-off.
 4. ✅ **VERIFIED ALREADY-RESOLVED 2026-09-07:** all farm-page `sunmint.html?plot=FSA-P1` links are absolute (`https://truesight.me/sunmint.html?plot=FSA-P1`) on agroverse_shop beta + prod main and live agroverse.shop (4/4 hrefs) — no 404. No change needed.

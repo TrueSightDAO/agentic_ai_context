@@ -27,12 +27,12 @@ Per `AGROVERSE_SUNMINT_FARM_LISTING.md` §0 — the mistakes here cost ~15 tool 
 5. Verify coop/community claims against public sources before writing them into records.
 
 ## Source media
-- Zip/upload path on box: `/home/ubuntu/<farm>.zip` or new upload (dir-based ok — Clara was dir-based, not zip).
+- Zip/upload path on box: `/media/upload_zips/<farm>.zip` or new upload (dir-based ok — Clara was dir-based, not zip).
 - **`<# HEIC>` + `<# MOV>` = `<#>` files**, **`<#%>` GPS coverage**, `<#>` duplicates, `<#>` unique geotagged points.
 - Visits: **YYYY-MM-DD** (`<# HEIC + # MOV>`), **YYYY-MM-DD** (`<# HEIC + # MOV>`)…
 - Location: **<Municipality / region, State>** (<coop> cooperative, if any) — NOT Pará unless it is.
 - Extent: lat `<min>…<max>`, lon `<min>…<max>` → convex hull ~`<#>` ha, centroid `<lat>, <lon>`.
-- Extract at `/home/ubuntu/<farm>_work/extracted/`; metadata rows `/tmp/<farm>_rows.json`.
+- Extract at `/media/<farm>_work/extracted/`; metadata rows `/tmp/<farm>_rows.json`.
 
 ## Targets & state (verified YYYY-MM-DD)
 | Target | Repo | State |
@@ -44,7 +44,7 @@ Per `AGROVERSE_SUNMINT_FARM_LISTING.md` §0 — the mistakes here cost ~15 tool 
 | `SunMint Plots` tab | sheet 1qbZZhf-… | write via agroverse_qr_code_manager SA |
 | `farm_media_manifests/<farm_id>.json` | farm_media_manifests | v2 schema: creation_date + transcription_status |
 | `farm-media-raw/` | farm-media-raw (api-only) | `<farm_id>/photos/` (Contents-API only) |
-| `~/media_archive_inbox/farm-media/` | box | `<farm_id>/` dir + daemon config entry created? |
+| `/media/media_archive_inbox/farm-media/` | box | `<farm_id>/` dir + daemon config entry created? |
 | FSVP / entity | fda_fsvp | only if supplier onboarding needed |
 
 ## Execution order (ONE PR PER TURN)

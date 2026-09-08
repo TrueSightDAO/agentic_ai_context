@@ -55,7 +55,7 @@ GPS batch to Fazenda Bom Sucesso, an already-registered plot).
 
 - MOV→MP4 with ffmpeg, **GPS re-inject** via exiftool (`-GPSCoordinates`), verify.
 - **Stage .mp4 AND its `<name>.mp4.json` sidecar together** in the daemon inbox
-  `~/media_archive_inbox/farm-media/<farm_id>/` (sidecar alone = silently skipped).
+  `/media/media_archive_inbox/farm-media/<farm_id>/` (sidecar alone = silently skipped).
 - Sidecar fields: farm_id, title, description, latitude, longitude, captured_at, sha256,
   duration_s, privacy `public`. Daemon passes title/description verbatim to YouTube.
 - **New farm = append inbox entry to daemon config yaml + `systemctl restart farm-media-daemon`.**
