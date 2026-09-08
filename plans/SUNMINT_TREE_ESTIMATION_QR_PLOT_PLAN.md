@@ -1,10 +1,11 @@
 # SunMint: Plot-Estimation + QR↔Plot Association (evolution beyond per-tree photography)
 
-> **Status:** proposal — raised by Governor Gary 2026-09-07 (thread 23226) after the La do Sitio
-> field batch exposed that per-tree photography doesn't scale (phone overheated mid-run;
-> 103 photos → ~88 unique trees = hours of walking for ONE plot). Builds on the
-> **governor-confirmed SUNMINT_PLOT_FIRST_MODEL.md (2026-09-01)**. This doc extends it; it does not
-> replace it.
+> **Status:** active — governor decisions filed 2026-09-08 (density rule, D1=88 trees, plot
+> association rule); W1 tree-batch registration in progress. Raised by Governor Gary 2026-09-07
+> (thread 23226) after the La do Sitio field batch exposed that per-tree photography doesn't
+> scale (phone overheated mid-run; 103 photos → ~88 unique trees = hours of walking for ONE
+> plot). Builds on the **governor-confirmed SUNMINT_PLOT_FIRST_MODEL.md (2026-09-01)**. This doc
+> extends it; it does not replace it.
 
 ## 1. The problem (field evidence)
 
@@ -63,6 +64,36 @@ Farmers submit videos/photos of the plot with GPS → auto-classified to plot
 
 > Caveat: this batch is **planted agroforestry rows** (tight spacing). Reforestation density may
 > differ — the estimator needs per-context calibration, never a single hardcoded constant.
+
+## 4b. Tree-density estimation rule (governor decision, 2026-09-08)
+
+Governor Gary set the estimation convention for NEW plots (filed 2026-09-08, thread 23226):
+
+> **Default tree-count for a new plot = plot_hectares × 1,100 (~3 m spacing), used ONLY when
+> the polygon represents planted extent and the stand is young/planted rows.** Otherwise the
+> farmer-reported count is primary and the spacing model is a cross-check; when
+> |farmer_report ÷ spacing_model| is outside ~0.5–2× the plot is flagged for a transect sample.
+> Mature / cabruca / native / explicitly-numbered plots are never auto-estimated.
+> Label tier: `spacing-estimate` | `farmer-reported` | `sampled` | `counted`.
+
+Field evidence behind the constant (2026-09-07 La do Sitio batch):
+- Farmers interviewed so far space planted trees ~3 m apart (Gary field observation; median
+  nearest-neighbor of photographed trees in plot_1 = 2.1 m → 2–3 m rows, i.e. ~1,100–2,300/ha local).
+- Gary confirmed the La do Sitio trees are **neatly aligned planted rows** — the 103-photo walk
+  captured only ~88 unique trees of a ~0.67 ha pocket that at 3 m spacing holds far more (~700+);
+  photography stopped because the **phone camera overheated**, not because the stand ended.
+
+Guardrail (from the batch numbers): polygon area ≠ planted area. Running area × 1,100 on a
+boundary-walk hull that includes buffer/gaps over-estimates (La do Sitio plot_1: 0.67 ha × 1,100
+≈ 740 vs 63 trees actually walked & photographed — much of the walked hull is unplanted gaps).
+Mature cabruca is the opposite failure (50–150 trees/ha real). Hence the rule applies to
+**planted extent**, is cross-checked against the farmer report, and mature stands are excluded.
+
+**Decision log 2026-09-08 (thread 23226):**
+- D1 → **88** evidenced trees (strict dedup) registered for La do Sitio; each carries its photoset.
+- D2 → accepted: new plots carry tiered `estimated` counts; `counted` only via a full walk.
+- Tree→plot association rule (Gary): containment plot_1 → plot_2 → parent V-06-29;
+  hull-edge stragglers fall back to nearest polygon (CSV `method` column documents this).
 
 ## 5. Open decisions (D1-D7)
 
