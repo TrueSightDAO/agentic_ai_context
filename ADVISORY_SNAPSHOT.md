@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-08T16:47:51Z`
+- Generated (UTC): `2026-09-08T21:19:34Z`
 - Look-back: **7** calendar days (`2026-09-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 39
-- `[CONTRIBUTION EVENT]` × 2
+- `[TREE PLANTING EVENT]` × 37
+- `[CONTRIBUTION EVENT]` × 3
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260908011322_216` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3898750, -51.8512389 · Latitude: -3.3898750
-- `Edgar_20260908011326_218` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3898917, -51.8514333 · Latitude: -3.3898917
-- `Edgar_20260908011330_220` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3899389, -51.8513917 · Latitude: -3.3899389
 - `Edgar_20260908011335_222` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3899583, -51.8513750 · Latitude: -3.3899583
 - `Edgar_20260908011342_224` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3900972, -51.8514167 · Latitude: -3.3900972
 - `Edgar_20260908011346_226` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3901278, -51.8514556 · Latitude: -3.3901278
@@ -58,6 +56,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260908012447_250` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: FSVP Farmer & Plot Onboarding Guide (EN/PT) — build v1–v6, file for retrieva…
 - `Edgar_20260908122808_252` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: La do Sitio (V-06-29): 88 cacao tree registration, duplicate cleanup & tree-…
 - `Edgar_20260908125702_254` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260908173216_256` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Farm media architecture redesign + 250GB EBS storage migration
+- `Edgar_20260908185506_258` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Cleide · Is New Farm: no · Media URLs: 86f5d7b0b5534f81b2f78faef0fd7820.HEIC; c3cb648459f74f2eae55185ef0967719.HEIC;…
+- `Edgar_20260908192852_260` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.413931, -52.634933 · Latitude: -3.413931
 
 ---
 
@@ -270,6 +271,7 @@ _All dated lines on/after 2026-09-01_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a50e683 | 2026-09-08 16:48:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3236758 | 2026-09-08 11:40:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 93aea68 | 2026-09-08 05:06:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5648f14 | 2026-09-07 22:26:01 -0300 | SunMint map: m.removeLayer -> map.removeLayer (fixes plot/farm select crashing handler before flyToBounds) (#362)
@@ -309,7 +311,6 @@ ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [
 37610a7 | 2026-09-01 21:16:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
 99c1e7f | 2026-09-01 16:51:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 84cfa72 | 2026-09-01 11:04:22 -0300 | Remove Field Signals #8/#9 - moved to agroverse.shop Bean to Bliss (#349)
-9ba4184 | 2026-09-01 10:53:36 -0300 | Rephrase the removed-claim section, embed the source clip inline (#348)
 … (truncated)
 ```
 
@@ -322,6 +323,10 @@ ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c012b60 | 2026-09-08 15:46:59 -0300 | docs: sweep forward-facing /home/ubuntu + ~/media_archive_inbox media refs to /media (#967)
+36de8f1 | 2026-09-08 14:41:48 -0300 | docs: document autopilot box /media disk layout (250GB EBS migration) in MEDIA_ARCHIVE_PIPELINE (#966)
+b3fb292 | 2026-09-08 13:48:12 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
+3874085 | 2026-09-08 13:48:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
 bc49737 | 2026-09-08 09:26:17 -0300 | docs(handoff): mark São Jorge media long-pole complete (PR6) — UAT gate open (#955)
 b8df1ac | 2026-09-08 08:35:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
 4a45f24 | 2026-09-08 08:35:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
@@ -358,10 +363,6 @@ eb1e862 | 2026-09-07 01:03:58 -0300 | HANDOFF_MANIFEST: Santa Ana row done-state
 4708b75 | 2026-09-06 17:39:32 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-06 UTC)
 101bdf7 | 2026-09-06 12:18:13 -0300 | docs: file sibling GAS credentials-secrets cleanup in OPEN_FOLLOWUPS (#943)
 97555d8 | 2026-09-06 09:40:34 -0300 | Docs: MAP handoff checklist — instantiate FARM_MEDIA_TASK_PLAN_TEMPLATE first (#942)
-55e6976 | 2026-09-06 08:14:04 -0300 | chore(previews): refresh Beer Hall preview (2026-09-06 UTC)
-a7c49dd | 2026-09-06 08:14:03 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-06 UTC)
-f50437f | 2026-09-06 01:27:47 -0300 | Docs: add reusable FARM_MEDIA_TASK_PLAN_TEMPLATE so future farm builds start from a plan (#941)
-e831a21 | 2026-09-06 00:42:20 -0300 | docs: krake_data disk-full (ENOSPC since Jun 4) resolved 2026-09-06 (#939)
 … (truncated)
 ```
 
@@ -556,7 +557,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/8/2026 8:51:34 |
+| 2026-09 | 0 | 17439.84386 | 9/8/2026 13:51:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-01`; scanned last **600** data rows)
 
