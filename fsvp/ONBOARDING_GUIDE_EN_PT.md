@@ -7,6 +7,12 @@
 - Generator: `/home/ubuntu/deliverables/gen_guide_compact.py` (reportlab; reruns to recreate)
 - Verified captions: `/home/ubuntu/deliverables/photo_captions_verified.json`
 
+## File naming policy (v2, 2026-09-07 — Gary)
+**The farmer NEVER renames photos on the phone.** Phones produce IMG_xxxx; nobody hand-renames
+40+ files on a phone. The rule `FARMCODE_YYYYMMDD_n` (e.g. LASITIO_20260907_01 · RM_20260815_02)
+and "each farm in its own folder" is OUR back-office step, applied AFTER photos arrive. The guide
+tells the farmer: "send the photos as they are / envie as fotos como estão". Keep this framing.
+
 ## Content (mirrors governor Gary's checklist)
 
 ### A · Onboarding a new farmer / Cadastro de novo produtor(a)
