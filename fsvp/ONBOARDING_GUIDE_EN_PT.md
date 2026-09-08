@@ -1,5 +1,8 @@
 # Farmer & Plot Onboarding Guide — FDA FSVP (EN/PT)
 
+## Delivery record
+- **2026-09-08 — v6 PDF sent to Jedielcio** (CEPOTX liaison; signs as Jedielcio Oliveira, Técnico, Diretoria da CEPOTX) from Gary's mailbox (garyjob@agroverse.shop) to **cepotx.organicos@gmail.com**, thread id 1a07e9c6cfcfa994. Bilingual cover note (PT lead, EN follow). Uses his established business channel (written-assurance + almonds correspondence 2024–2025).
+
 > **RETRIEVAL (for future LLMs / Sophias):** The canonical bilingual guide PDF is committed to
 > this repo — **`fsvp/FSVP_Onboarding_Guide_EN_PT.pdf`** (v6, 9 pp). It is also mirrored on the
 > autopilot box at `/home/ubuntu/deliverables/FSVP_Onboarding_Guide_EN_PT.pdf` and can be
