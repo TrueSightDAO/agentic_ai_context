@@ -24,6 +24,25 @@ Standardized pipeline for ingesting raw farm media (HEIC photos + MOV videos zip
 
 Written so **any Sophia instance** can process a farm end-to-end or pick up a farm handed off by a governor. Governors: hand off a zip + this file's checklist; the receiving instance follows this doc.
 
+## Autopilot box disk layout (2026-09-08 — storage migration)
+
+> The pipeline runs on the **autopilot EC2 box** (t3.medium, `i-05276b8ae82d6b88c`). Since 2026-09-08 the media pipeline lives on a **dedicated 250GB gp3 EBS volume mounted at `/media`** — NOT on the root disk (root was 97% full; a flood risk as more farms upload).
+
+| Area | Path on the box | Notes |
+|---|---|---|
+| Root disk (78G, ~47% used) | `/` | system + autopilot code (`/opt/truesight_autopilot`); keep media OFF it |
+| **Media disk (250G gp3, vol `vol-01b643f5629987b61`)** | **`/media`** (ext4, fstab `nofail`) | all media pipeline trees below |
+| Live daemon inbox | `/media/media_archive_inbox/farm-media/<farm_id>/` | watched by `farm-media-daemon.service` (YouTube uploader) |
+| Extraction / archive roots | `/media/<farm>_work/` (e.g. `/media/santa_ana_bahia_work/`) | where zips are unzipped; S3 archive worker pulls from these |
+| Source upload zips | `/media/upload_zips/` | Gary's raw farm zips (`*.zip`); archive worker streams per-file |
+| Other moved trees | `/media/paulo_interview/`, `/media/plot1/`, `/media/cvp/`, `/media/raimundo_geniza/` | moved with the migration |
+
+- **Compat symlinks:** the old `/home/ubuntu/<dir>` paths (e.g. `/home/ubuntu/media_archive_inbox`, `/home/ubuntu/oscar_work`) still exist as **symlinks → `/media/<dir>`**. Code that hardcodes the old path keeps working, but the **config is the real pointer** — read it before assuming a path.
+- **Config:** `/opt/truesight_autopilot/media_archive_daemon_config.yaml` lists every inbox + archive root + zip the two workers scan (36 path refs migrated to `/media`). Pre-migration backup: `media_archive_daemon_config.yaml.bak-20260908-premigrate`.
+- **Services (systemd):** `farm-media-daemon.service` (YouTube uploader) and `farm-media-archive.service` (S3 raw archive) — both read that one config. Logs: `journalctl -u <unit>` (archive worker also `--log-file /tmp/farm_media_archive.log`).
+- **Permissions gotcha:** the archive worker runs as `ubuntu` and writes `.archive.json` state files NEXT to zips in `/media/upload_zips/` — the tree must stay `ubuntu:ubuntu`. A `sudo mv` / `sudo rsync` re-roots it; if you see `[Errno 13] Permission denied` on a zip, re-`chown -R ubuntu:ubuntu /media/upload_zips`.
+- **Durability:** originals are in S3 `media.agroverse.shop` (`raw/<farm>/`), so local trees are a *working set* — safe to prune once archived + manifest-verified.
+
 ## Where things land (end state)
 
 | Artifact | Destination | Notes |
@@ -63,7 +82,7 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 > 6. Reference implementation: `farm-media-daemon/farm_media_archive.py` (extracted-dir roots live; **zip-root streaming** is its in-progress extension — route ALL future zips through the same per-file path).
 
 ### 1. Intake
-- Unzip to `/home/ubuntu/<farm>_work/` (La do Sitio pattern: `/home/ubuntu/la_do_sitio_work/la do sitio/`).
+- Unzip to `/media/<farm>_work/` (La do Sitio pattern: `/media/la_do_sitio_work/la do sitio/`). Old `/home/ubuntu/<farm>_work` is a symlink → `/media/<farm>_work` (see disk layout above).
 - Count: `ls *.HEIC | wc -l; ls *.MOV | wc -l` (La do Sitio: 52 HEIC + 72 MOV).
 
 ### 2. GPS sweep
