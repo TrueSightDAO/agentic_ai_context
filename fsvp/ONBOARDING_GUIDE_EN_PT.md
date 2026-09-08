@@ -71,14 +71,15 @@ tells the farmer: "send the photos as they are / envie as fotos como estão". Ke
 **Not used:** founderhaus_group_planting.jpg (not farmer-owner portrait); plot2_IMG_7660.jpg (damaged
 sapling); pdfpage1_img0.png (equipment-PDF extract = chocolate bar on mold, NOT a melanger).
 
-## Melanger gap
-No real melanger photo exists anywhere \u2014 confirmed 2026-09-07: the La do Sitio bean-to-bar unit is at
-Stage 1 (roast \u2192 crack & winnow installed & photographed). The CEPOTX site-visit report states the
-melanger (grind/refine) is NOT yet installed \u2014 it is the NEXT build-out stage. The Kingma melanger is
-on the \u201cto acquire\u201d list (BEAN_TO_BAR_EQUIPMENT_INVENTORY.md). So the guide (v3) does NOT use a
-stock/product photo (misleading for FSVP evidence); it explains the item and says \u201ccapture when a farm
-reaches Stage 2\u201d. When the first real melanger photo exists, drop it into
-the PDF and regenerate with `gen_guide_compact.py`.
+## Melanger photo (v5, 2026-09-08 — Gary supplied)
+Real melanger photo now embedded (item 10c). Gary sent a photo; staged at
+`/tmp/guide_assets/small/melanger.jpg` (1280×960, downscaled q70) and the generator's
+placeholder panel was replaced with a `photo_block`. PDF rebuilt: page 5 shows
+"Example: melanger (grind/refine) — supplied photo / Exemplo: melanger (moagem/refino) — foto fornecida."
+Background context: previously no farm in our network had a melanger installed (La do Sitio at
+Stage 1, roast → crack & winnow; Kingma melanger on the 'to acquire' list per
+BEAN_TO_BAR_EQUIPMENT_INVENTORY.md and the 2026-09-07 CEPOTX site-visit report). The supplied
+photo resolves the evidence gap; the Stage-2 caveat no longer appears in the PDF.
 
 ## Regenerate
 ```
