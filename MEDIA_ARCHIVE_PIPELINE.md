@@ -127,7 +127,7 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - The one-shot script below is the LEGACY path. Since 2026-09 the live uploader is the
   **farm-media daemon** (systemd `farm-media-daemon`, config
   `/opt/truesight_autopilot/media_archive_daemon_config.yaml`).
-- **Inbox:** `~/media_archive_inbox/farm-media/<farm_id>/`. A video is only processable when
+- **Inbox:** `/media/media_archive_inbox/farm-media/<farm_id>/`. A video is only processable when
   its `.mp4` AND its `<name>.mp4.json` sidecar sit TOGETHER in the inbox dir (sidecar alone
   or mp4 alone = silently skipped — RG lost ~8 min to this).
 - **Sidecar JSON:** farm_id, title, description, latitude, longitude, captured_at, sha256,
@@ -163,7 +163,7 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 
 ## Handoff checklist (governor → another Sophia instance)
 Include in the handoff message:
-- [ ] zip path on box (`/home/ubuntu/<farm>.zip`) or new upload
+- [ ] zip path on box (`/media/upload_zips/<farm>.zip`) or new upload
 - [ ] farm_id slug + SunMint plot id (or "new plot needed")
 - [ ] privacy (Gary default: **public**)
 - [ ] plot status decision (proposed vs planted)

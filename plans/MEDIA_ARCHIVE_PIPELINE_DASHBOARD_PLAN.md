@@ -33,7 +33,7 @@ commits); no admin surface beyond what a governor already has; not public (signe
   `app/auth_routes.py`; `verify_jwt(request)` raises 401 without a valid token; the DApp
   chat already uses it). The page is gated the same way: 401 → login prompt.
 - **Data (all local to the box, no new infra):**
-  - live queue: `/home/ubuntu/media_archive_inbox/<source>/<farm_id>/*.mp4.json` sidecars
+  - live queue: `/media/media_archive_inbox/<source>/<farm_id>/*.mp4.json` sidecars
     (`yt_id` present = uploaded; missing = pending; `error` = failed; missing fields =
     needs_metadata).
   - upload events: `/tmp/farm_media_uploads.log` (daemon append-only).
