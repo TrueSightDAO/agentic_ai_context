@@ -1,5 +1,14 @@
 # Farmer & Plot Onboarding Guide — FDA FSVP (EN/PT)
 
+> **RETRIEVAL (for future LLMs / Sophias):** The canonical bilingual guide PDF is committed to
+> this repo — **`fsvp/FSVP_Onboarding_Guide_EN_PT.pdf`** (v6, 9 pp). It is also mirrored on the
+> autopilot box at `/home/ubuntu/deliverables/FSVP_Onboarding_Guide_EN_PT.pdf` and can be
+> regenerated any time with `python3 /home/ubuntu/deliverables/gen_guide_compact.py`.
+> Search terms that should surface this file: **FSVP, onboarding guide, Jedielcio, melanger,
+> WhatsApp photo protocol, farm onboarding, reforestation plot, CEPOTX site code**. This is the
+> operating runbook for the deliverable; photo assets (incl. the supplied melanger photo) live in
+> `fsvp/assets/`.
+
 **Deliverable (2026-09-07, thread 23261):** bilingual illustrated PDF guide for Jedielcio
 (facilitator for future FDA FSVP site inspections). PDF + generator on the autopilot box:
 
@@ -36,7 +45,7 @@ tells the farmer: "send the photos as they are / envie as fotos como estão". Ke
 10. Bean-to-bar only (farms with that capability):
     a. Roaster (+ lat/long) — Torrador
     b. Cracker & winnower (+ lat/long) — Quebrador/ventilador
-    c. Melanger (+ lat/long) — **placeholder (no real example photo yet)**
+    c. Melanger (+ lat/long) — real example photo: `fsvp/assets/melanger_supplied_photo_20260908.jpg` (Gary-supplied 2026-09-08; see v5 note)
     d. Chocolate mold (+ lat/long) — Forma de chocolate
     e. Fridge (+ lat/long) — Refrigerador/câmara fria
 
@@ -62,6 +71,7 @@ tells the farmer: "send the photos as they are / envie as fotos como estão". Ke
 | Roaster | roasting_station.jpg | La do Sitio FSVP set | Stainless roaster |
 | Cracker & winnower | cracking_and_winnowing.jpg | La do Sitio FSVP set | Blue tabletop unit |
 | Chocolate mold | cabrellon-mold.png | agentic_ai_context assets | Clear plastic bar mold |
+| **Melanger (10c)** | **melanger_supplied_photo_20260908.jpg** | **Gary-supplied (2026-09-08)** | **Melanger / grind-refine unit** |
 | Fridge | fridge_for_making_bar.jpg | La do Sitio FSVP set | Upright freezer |
 | Plot corners (4) | corner_IMG_7624–7627.jpg | Rancho Maranta p1 | Young cacao in field |
 | Plot walk | plot2_IMG_7657/7658.jpg | Rancho Maranta p2 | Two men walking in grove |
@@ -70,6 +80,14 @@ tells the farmer: "send the photos as they are / envie as fotos como estão". Ke
 
 **Not used:** founderhaus_group_planting.jpg (not farmer-owner portrait); plot2_IMG_7660.jpg (damaged
 sapling); pdfpage1_img0.png (equipment-PDF extract = chocolate bar on mold, NOT a melanger).
+
+## Retrieval & archive (v6, 2026-09-08 — Gary "file this away")
+The deliverable is now permanently retrievable by future LLMs/Sophias:
+- **PDF committed:** `fsvp/FSVP_Onboarding_Guide_EN_PT.pdf` (in THIS repo — GitHub content search + `search_context` both reach it)
+- **Runbook:** this file, `fsvp/ONBOARDING_GUIDE_EN_PT.md` (searchable via `search_context`)
+- **Supplied melanger photo archived:** `fsvp/assets/melanger_supplied_photo_20260908.jpg`
+- **Generator + captions on box:** `/home/ubuntu/deliverables/gen_guide_compact.py`, `photo_captions_verified.json`
+- Source farm photos remain in farm repos (La do Sítio FSVP set 2026-09-07, Rancho Maranta media, agroverse_shop_beta farm assets)
 
 ## Layout guard (v6, 2026-09-08 — Gary)
 Each numbered item's heading and its example photo are wrapped in `KeepTogether` so the photo
