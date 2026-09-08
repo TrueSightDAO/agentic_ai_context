@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-08T05:00:02Z`
+- Generated (UTC): `2026-09-08T11:34:50Z`
 - Look-back: **7** calendar days (`2026-09-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -71,7 +71,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-07T10:59:14.298Z`
+- Generated (UTC): `2026-09-08T10:59:14.276Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -81,12 +81,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **861**, follow_up **71**, bulk **0**, unknown **2** (data rows: **934**)
+- **Email Agent Follow Up** — logged sends: warmup **873**, follow_up **71**, bulk **0**, unknown **2** (data rows: **946**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **785**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **797**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -269,6 +269,7 @@ _All dated lines on/after 2026-09-01_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+93aea68 | 2026-09-08 05:06:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5648f14 | 2026-09-07 22:26:01 -0300 | SunMint map: m.removeLayer -> map.removeLayer (fixes plot/farm select crashing handler before flyToBounds) (#362)
 c9ebe7a | 2026-09-07 22:17:28 -0300 | SunMint map: unwrap nested Polygon rings before flyToBounds (fixes plot/farm dropdown not moving map) (#361)
 f124247 | 2026-09-07 22:10:37 -0300 | SunMint map: View chips fly to their actual trees, not a hardcoded center (fixes empty ?view=altamira) (#360)
@@ -308,7 +309,6 @@ ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [
 84cfa72 | 2026-09-01 11:04:22 -0300 | Remove Field Signals #8/#9 - moved to agroverse.shop Bean to Bliss (#349)
 9ba4184 | 2026-09-01 10:53:36 -0300 | Rephrase the removed-claim section, embed the source clip inline (#348)
 78bce99 | 2026-09-01 10:49:59 -0300 | Fix overclaimed job title for Jedielcio in FS8/FS9 (#347)
-a9c45a9 | 2026-09-01 10:43:15 -0300 | Recreate Field Signals #8, fix #9: correct a real misidentification (#346)
 … (truncated)
 ```
 
@@ -321,6 +321,8 @@ a9c45a9 | 2026-09-01 10:43:15 -0300 | Recreate Field Signals #8, fix #9: correct
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bf62d9d | 2026-09-08 02:00:20 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
+2c85886 | 2026-09-08 02:00:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
 249697a | 2026-09-07 22:23:17 -0300 | FSVP guide runbook: record 2026-09-08 delivery to Jedielcio (cepotx.organicos) (#965)
 ab04c1a | 2026-09-07 22:11:35 -0300 | FSVP guide runbook: retrieval header + fix stale 10c placeholder note (#964)
 d395fd2 | 2026-09-07 22:11:15 -0300 | Archive Gary-supplied melanger photo (used as 10c example in FSVP guide v5+)
@@ -359,8 +361,6 @@ e831a21 | 2026-09-06 00:42:20 -0300 | docs: krake_data disk-full (ENOSPC since J
 9edfea7 | 2026-09-06 00:17:43 -0300 | Docs: extend MAP runbook for end-to-end farm builds (FC/SJ farms, transcription step, two-way SunMint link rule) (#940)
 8e21059 | 2026-09-06 00:08:53 -0300 | Follow-up: code-repo variant of multi-writer clobber (Track A reverted Santa Ana map fix) (#938)
 de5c68b | 2026-09-06 00:00:56 -0300 | krake_ror: record upstart-log rotate follow-on (LT v5, AMI 20260906b) (#937)
-24e6cdd | 2026-09-05 22:05:13 -0300 | OPEN_FOLLOWUPS: file autopilot box disk-hygiene entry (root hit 100%, 41G farm-work staging) (#935)
-640210f | 2026-09-05 22:04:47 -0300 | Move sunmint null-geom guard follow-up to Recently shipped (#932)
 … (truncated)
 ```
 
@@ -406,6 +406,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+44d8995 | 2026-09-08 11:23:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 4cfaac0 | 2026-09-07 13:02:24 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 8af7d0c | 2026-09-07 13:00:40 +0000 | chore: refresh currencies.json [skip ci]
 be4578f | 2026-09-07 12:38:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -553,7 +554,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/7/2026 21:50:52 |
+| 2026-09 | 0 | 17439.84386 | 9/8/2026 3:51:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-01`; scanned last **600** data rows)
 
