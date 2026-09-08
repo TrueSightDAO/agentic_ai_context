@@ -7,6 +7,14 @@
 - Generator: `/home/ubuntu/deliverables/gen_guide_compact.py` (reportlab; reruns to recreate)
 - Verified captions: `/home/ubuntu/deliverables/photo_captions_verified.json`
 
+## WhatsApp send protocol (v4, 2026-09-07 — Gary)
+Before photos, the farmer opens the WhatsApp message with **Farm Name + CEPOTX site code**
+(e.g. La do Sítio — V-06-29) so every photo is tied to the right property. Then each photo is
+sent as a **document (attach / anexar), NOT as an image message** — WhatsApp strips
+GPS/EXIF location data from image messages, while documents keep the original file with its
+coordinates intact. Renaming + per-farm folders stay back-office (see v2 policy). The guide
+carries this on p1 (how-to) and p8 (GPS quick note).
+
 ## File naming policy (v2, 2026-09-07 — Gary)
 **The farmer NEVER renames photos on the phone.** Phones produce IMG_xxxx; nobody hand-renames
 40+ files on a phone. The rule `FARMCODE_YYYYMMDD_n` (e.g. LASITIO_20260907_01 · RM_20260815_02)
