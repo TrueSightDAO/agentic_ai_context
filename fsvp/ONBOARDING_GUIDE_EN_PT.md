@@ -64,9 +64,13 @@ tells the farmer: "send the photos as they are / envie as fotos como estão". Ke
 sapling); pdfpage1_img0.png (equipment-PDF extract = chocolate bar on mold, NOT a melanger).
 
 ## Melanger gap
-No real melanger photo exists on the box or in repo assets yet. The PDF carries an honest
-placeholder asking to capture it at the first farm with a melanger. Add one when available and
-regenerate with `gen_guide_compact.py`.
+No real melanger photo exists anywhere \u2014 confirmed 2026-09-07: the La do Sitio bean-to-bar unit is at
+Stage 1 (roast \u2192 crack & winnow installed & photographed). The CEPOTX site-visit report states the
+melanger (grind/refine) is NOT yet installed \u2014 it is the NEXT build-out stage. The Kingma melanger is
+on the \u201cto acquire\u201d list (BEAN_TO_BAR_EQUIPMENT_INVENTORY.md). So the guide (v3) does NOT use a
+stock/product photo (misleading for FSVP evidence); it explains the item and says \u201ccapture when a farm
+reaches Stage 2\u201d. When the first real melanger photo exists, drop it into
+the PDF and regenerate with `gen_guide_compact.py`.
 
 ## Regenerate
 ```
