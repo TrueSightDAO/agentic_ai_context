@@ -71,6 +71,16 @@ tells the farmer: "send the photos as they are / envie as fotos como estão". Ke
 **Not used:** founderhaus_group_planting.jpg (not farmer-owner portrait); plot2_IMG_7660.jpg (damaged
 sapling); pdfpage1_img0.png (equipment-PDF extract = chocolate bar on mold, NOT a melanger).
 
+## Layout guard (v6, 2026-09-08 — Gary)
+Each numbered item's heading and its example photo are wrapped in `KeepTogether` so the photo
+can never be pushed to the next page away from its heading (Gary's requirement: the melanger
+photo must appear immediately after the '10c · Photo of the melanger (+ GPS)' heading).
+Generator now imports KeepTogether and wraps 10b and 10c (heading + photo_block). Verified on
+printed page 6: 10c heading y≈298 → melanger photo y≈318–497, nothing between. Rebuild with:
+```
+python3 /home/ubuntu/deliverables/gen_guide_compact.py
+```
+
 ## Melanger photo (v5, 2026-09-08 — Gary supplied)
 Real melanger photo now embedded (item 10c). Gary sent a photo; staged at
 `/tmp/guide_assets/small/melanger.jpg` (1280×960, downscaled q70) and the generator's
