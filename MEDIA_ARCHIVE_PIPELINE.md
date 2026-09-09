@@ -55,6 +55,27 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 | Farm page gallery | `agroverse_shop_beta/farms/<farm-id>/media.json` | curated youtube + image entries |
 | Plot polygon | `sunmint/plots/index.geojson` (+ `SunMint Plots` sheet tab) | only if new farm plot |
 
+## Cacao-variety media — `cacao-varieties` namespace (decision 2026-09-09, thread 23018)
+
+Cacao **variety** (e.g. grafted CCN-51 "Ponta Verde" vs common/traditional in Pará) is a
+**farm-attested** label, never a vision-model guess — pod morphology is not reliably
+diagnostic. The field-verified reference for the Pará pair is
+`agroverse/CACAO_VARIETIES_PARA_DOSSIER.md`, sourced from the Rancho Maranta plot-2 clips
+IMG_7654/7669/7672/7673 (farmer-led walkthrough, verbatim PT+EN quotes in the dossier).
+
+- **Variety labels on media derive from what the farmer/co-op says** (SunMint species
+  column, CEPOTX roster, the farmer quotes in the clips). Record `variety:` with
+  `attested_by` + `confidence` (`farmer-verbatim` / `reported-unverified`).
+- The four source clips are **already indexed in-place** in `rancho-maranta-para.json`
+  (plot2, GPS ≈ -3.294/-52.578); the dossier adds the label layer — **reference, don't
+  duplicate**.
+- Media may show **process stage** (visually verifiable) even when variety is not — stage
+  vocab (`pods_on_tree`, `breaking`, `sorting`, `drying`…) complements the equipment list.
+- Source zips: `to analyze.zip` (the " 2" dups of the four clips, S3 `raw/to-analyze/`),
+  `cacao_variety_parap.zip` + `sorting.zip` (S3 `raw/cacao-variety-parap/`, `raw/sorting/`)
+  — the latter two hold an unindexed CEPOTX-office-area (Altamira) cluster; see dossier
+  roadmap for the `cepotx-office-altamira` manifest follow-up.
+
 ## Equipment & supply-chain media — `equipment-media` namespace (decision 2026-09-09, thread 23018)
 
 Equipment photos/screenshots (roaster, cracker/winnower, melanger, molds, fermentation
