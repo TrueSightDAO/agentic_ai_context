@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-09T11:42:39Z`
+- Generated (UTC): `2026-09-09T16:50:07Z`
 - Look-back: **7** calendar days (`2026-09-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 22
+- `[TREE PLANTING EVENT]` × 18
 - `[CONTRIBUTION EVENT]` × 9
 - `[PRACTICE EVENT]` × 2
 - `[FARM BOUNDARY EVIDENCE EVENT]` × 1
 - `[NOTARIZATION]` × 1
 - `[NOTARIZATION EVENT]` × 1
 - `[SALES EVENT]` × 1
-- _free-form (no bracket tag)_ × 5
+- _free-form (no bracket tag)_ × 9
 
 ### Latest entries
 
-- `Edgar_20260908122808_252` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: La do Sitio (V-06-29): 88 cacao tree registration, duplicate cleanup & tree-…
-- `Edgar_20260908125702_254` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260908173216_256` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Farm media architecture redesign + 250GB EBS storage migration
-- `Edgar_20260908185506_258` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Cleide · Is New Farm: no · Media URLs: 86f5d7b0b5534f81b2f78faef0fd7820.HEIC; c3cb648459f74f2eae55185ef0967719.HEIC;…
 - `Edgar_20260908192852_260` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.413931, -52.634933 · Latitude: -3.413931
 - `Edgar_20260908215851_262` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20260908225023_264` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-08T22:50:21.929Z · Program: capoeira-tribo-mirim · Practice Type: training-session
@@ -63,6 +59,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260909083456_286` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260909104732_288` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260909105522_290` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124013_292` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124016_294` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124019_296` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124022_298` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 
 ---
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9018e0c | 2026-09-09 11:46:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e37b0bd | 2026-09-09 05:05:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox + ?plot= opens popup (parity with Tree box) (#367)
 46f211b | 2026-09-08 22:42:58 -0300 | test: add SunMint impact-map runtime smoke spec (#365)
@@ -312,7 +313,6 @@ b47113c | 2026-09-04 05:00:48 +0000 | chore(stats): refresh stats/current.json [
 7b3ca6b | 2026-09-03 16:38:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
 0d450dc | 2026-09-03 04:55:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
-2b7395c | 2026-09-02 21:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -325,6 +325,8 @@ c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a0ee3d8 | 2026-09-09 08:43:28 -0300 | chore(previews): refresh Beer Hall preview (2026-09-09 UTC)
+f7e162d | 2026-09-09 08:43:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-09 UTC)
 711b638 | 2026-09-09 05:47:05 -0300 | docs: record SunMint map runtime smoke gate (sunmint-map.spec.ts) — mandatory green before beta→prod promote (#974)
 e99ed6b | 2026-09-09 04:54:32 -0300 | docs: krake_ror recycled to v5 instance 98.81.159.70 + consolidated fleet df-alert (#973)
 2ca9967 | 2026-09-09 04:41:20 -0300 | docs: mandatory machine self-UAT before any human UAT handoff (all Sophia instances) (#972)
@@ -363,8 +365,6 @@ e14e3ea | 2026-09-07 12:56:59 -0300 | SunMint registry: reconcile SA write-acces
 a7d7a67 | 2026-09-07 12:44:06 -0300 | Santa Ana: record wave-1 16 curated videos delivered (uploaded to YouTube, manifest committed) (#951)
 fc24812 | 2026-09-07 09:55:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-07 UTC)
 e73f012 | 2026-09-07 09:55:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-07 UTC)
-ed1ab82 | 2026-09-07 08:01:45 -0300 | docs: rename bionpact agent display name to Onaya (#950)
-c48e0d8 | 2026-09-07 08:01:40 -0300 | docs: register onaya-bionpack service account in credentials registry (#949)
 … (truncated)
 ```
 
@@ -406,6 +406,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+04a91e9 | 2026-09-09 11:50:32 +0000 | chore: refresh currencies.json [skip ci]
 91875ca | 2026-09-09 11:27:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b670bdc | 2026-09-09 07:29:12 -0300 | chore: refresh Agroverse store inventory snapshot
 62fe5ed | 2026-09-08 11:44:02 +0000 | chore: refresh currencies.json [skip ci]
@@ -555,7 +556,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 53.7 | 17493.54386 | 9/9/2026 3:51:37 |
+| 2026-09 | 53.7 | 17493.54386 | 9/9/2026 8:51:37 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-02`; scanned last **600** data rows)
 
