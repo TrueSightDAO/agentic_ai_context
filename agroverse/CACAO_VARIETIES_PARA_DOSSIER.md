@@ -46,28 +46,29 @@
 | Propagation | Grafted clone (enxertia de duas plantas) | Seed-planted (traditional / forastero-type) |
 | Farmer's words | "sempre vai ter frutos… durante todo o ano" | "um período que não tem fruto nenhum" |
 
-## Where the media lives (MAP)
+## Where the media lives (MAP) + roadmap status (2026-09-09)
 
 | Asset | Location | Indexed? |
 |---|---|---|
-| Source MOVs IMG_7654/7669/7672/7673 | Rancho Maranta plot 2 (`rancho_maranta_plot_2.zip`); S3 `raw/`; **already in `rancho-maranta-para.json`** (plot2 entries, GPS ≈ -3.294/-52.578, no yt_id yet) | ✅ in-place |
+| Source MOVs IMG_7654/7669/7672/7673 | Rancho Maranta plot 2 (`rancho_maranta_plot_2.zip`); S3 `raw/`; in `rancho-maranta-para.json` plot2 entries, GPS ≈ -3.294/-52.578 | ✅ in-place + **variety-labelled** (commit 8927a2b) |
 | Same clips (" 2" dups) | `to analyze.zip` → S3 `raw/to-analyze/` | dup set, flagged |
 | Audio (16 kHz WAV ×4) | `~/to_analyze/audio/` | ❌ local only |
 | Frames (lo + hi-res) | `~/to_analyze/frames/`, `~/to_analyze/hi_frames/` | ❌ local only |
 | Farmer transcript | `~/to_analyze/BRAZIL_FARMERS_ANALYSIS.md` | ❌ local only |
-| Dossier PDFs v1–v6 + annotated frames | `~/to_analyze/pdf/` (+ `img/annotated_v6/`, `fs8_contrast_both_varieties.jpg`, `fs8-hero-variety-row.jpg`) | ❌ local only |
+| **Guide assets (badges, annotated frames, montage, hero, v6 PDF)** | **`farm-media-raw/rancho-maranta-para/photos/`** (2026-09-09) | ✅ **archived** |
+| Dossier PDF v1–v5 | `~/to_analyze/pdf/` | superseded by v6 |
 
 ## Manifest-build roadmap (thread 23018) — RESUME HERE
 
-1. **Durable archive** (this PR): dossier + MAP namespace note → `agentic_ai_context`. ✅
-2. **Blob archive**: upload annotated_v6 frames + montage + dossier PDF v6 → `farm-media-raw`
-   (`rancho-maranta-para/photos/` — farm-tied, per the MAP equipment decision).
-3. **Variety manifest**: add `variety`/`attested_by`/`confidence` label layer referencing the
-   in-place plot-2 clips (Contents-API single-file writes to `farm_media_manifests`;
-   `cacao-varieties-para` entry + `index.json`), or extend `rancho-maranta-para.json`.
+1. **Durable archive**: dossier + MAP namespace note → `agentic_ai_context`. ✅ (PR #970)
+2. **Blob archive**: guide assets (annotated frames, badges, montage, hero, v6 PDF) →
+   `farm-media-raw/rancho-maranta-para/photos/`. ✅ (2026-09-09, 10 files)
+3. **Variety manifest**: `rancho-maranta-para.json` cacao_varieties block + per-item
+   variety labels on the 4 plot-2 clips (farmer-verbatim). ✅ (commit 8927a2b)
 4. **CEPOTX-office-area (Altamira) cluster**: `cacao_variety_parap.zip` IMG_7830–7848 +
    `sorting.zip` IMG_7807–7829 (S3 `raw/cacao-variety-parap/`, `raw/sorting/`) — unindexed
    orphans; frame-captioned already (process stage, not variety); propose a
-   `cepotx-office-altamira` manifest.
+   `cepotx-office-altamira` manifest. ← NEXT
 5. **Loose end**: `IMG_7830 2` (sorting) is byte-identical to `IMG_7830` (variety) — flag,
    don't double-index.
+6. **Optional**: yt_id backfill for the 4 labelled plot-2 clips (no yt_id yet).
