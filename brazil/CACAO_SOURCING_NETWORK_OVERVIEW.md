@@ -2,6 +2,7 @@
 
 > **Purpose:** Living reference for the Brazil→China cacao sourcing/export backbone — who, what capability, what constraint, what status — so anyone in the DAO can see the network at a glance.
 > **Prepared:** 29 Aug 2026 | **Prepared by:** Sophia Truesight (TrueSight DAO Autopilot)
+> **Updated:** 09 Sep 2026 — Pará/CEPOTX lane gains in-network bean-to-bar conversion (Fazenda Cleide factory, visited 2026-09-08; La do Sítio stage-1, visited 2026-09-07) — see `fda_fsvp/suppliers/cepotx/` records
 > **Sources:** Gary's WhatsApp export (28–29 Aug 2026, incl. Elizabeth Wong China-side context + annotated map); GACC registration guides (16–17 Jun 2026); `BRAZIL_EXPORT_LANE_LEARNINGS.md` (23 Aug 2026); `briefs/BRAZIL_EXPORT_ENTITY_BRIEF.md` (26 May 2026); `SUPPLY_CHAIN_AND_FREIGHTING.md`.
 > **Map:** `cacao_sourcing_network_map.png` (plotted from real coordinates — lat/lng table below; regenerated via `truesight_autopilot/scripts/plot_cacao_sourcing_network_map.py`).
 
@@ -12,7 +13,7 @@
 | Region | Partner / contact | Role | Capability | Constraint | Status |
 |---|---|---|---|---|---|
 | **Manicore (AM)** | — (indigenous community; no known cooperative) | Exploratory source | Likely wild criolla by default | Gary hasn't visited; logistics / fermentation / drying / freight infrastructure all unknown | 🟡 **EXPLORATORY** — not actionable yet |
-| **Pará (Altamira)** | **CEPOTX** — Jedielcio's network (CNPJ 22.568.369/0001-38) | Beans-only supplier | Organic almonds; already exporting; sends beans to Matheus for processing | **No conversion capability** — beans ship to Bahia for conversion; raw-bean lane needs a China-side warehouse | 🟢 Active lane |
+| **Pará (Altamira)** | **CEPOTX** — Jedielcio's network (CNPJ 22.568.369/0001-38) | Beans + in-network bean-to-bar conversion | Organic almonds; already exporting; **in-network conversion now exists** — Fazenda Cleide factory (fermentation → roast → winnow → melanger → press → mould → cold-hold) visited 2026-09-08; La do Sítio stage-1 (roast/winnow/cold-hold) visited 2026-09-07 | Export-scale conversion unproven + raw-bean lane needs a China-side warehouse; Bahia remains the conversion/export hub for now | 🟢 Active lane |
 | **Bahia (Itabuna)** | **Coopercabruca** — Orlantildes Santos Pereira, PRESIDENT (CNPJ 31.948.811/0001-42) | Conversion + export hub | Has IE + NF-e; **all chocolate factories + the DAO warehouse are here**; roasting can ONLY happen here regardless of source region | Only converts/exports beans from **own members**; does NOT provide warehousing; needs exact spec upfront | 🟢 Active lane |
 | **Bahia (Ilhéus)** | **Black King** — Matheus Reis Pereira (CNPJ 50.042.585/0001-80) | Exporter/trader + warehousing | Ilhéus warehouse; offers Bahia warehousing **in exchange for DAO tokens** (lets DAO stockpile multi-year + sense demand before committing to a conversion/SKU) | CNPJ **INAPTA** (2026-06-08) + expired e-CNPJ + no commerce CNAE → **cannot issue export NF-e** | 🔴 Blocker |
 | **China (Dongguan / HK)** | Elizabeth Wong (China side); Jerrie (research asks) | Destination market | — | SKU spec pending Elizabeth↔Kirsten discussion; chocolate-maker + co-packing/fulfillment searches outstanding (Dr Ye does not handle this) | 🟡 Open asks |
@@ -43,7 +44,7 @@
 | **Export paperwork** | Via cooperative (has IE + NF-e) | Jedielcio has export-paperwork experience |
 | **Payment** | On final SKU at delivery | — |
 | **Warehousing** | ❌ Does NOT provide warehousing | ❌ Needs China-side warehouse for raw beans |
-| **Spec** | Needs exact spec upfront | Beans only — conversion happens in Bahia |
+| **Spec** | Needs exact spec upfront | Beans only today — in-network conversion emerging (Cleide factory 2026-09-08); Bahia still the conversion/export hub for scale |
 | **Timing** | — | Harvest available Jan; conversion + shipping → ~Mar; **market-ready ~Jun next year** |
 | **Notes** | MAPA success = head start on the China lane | Jedielcio was in Bahia (Ilhéus cacao convention) meeting Matheus to help solve export/customs blockers |
 
