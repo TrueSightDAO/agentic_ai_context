@@ -66,7 +66,11 @@ small; 25–100 L Kingma is commercial-class.
 ## Media / provenance
 
 - Equipment photos live in the session transcript (thread 19718) and the compiled
-PDF `BEAN_TO_BAR_EQUIPMENT_INVENTORY.pdf` in this folder.
+  PDF `BEAN_TO_BAR_EQUIPMENT_INVENTORY.pdf` in this folder. **Media home (decision
+  2026-09-09):** equipment photos/screenshots are MAP media — see the `equipment-media`
+  namespace section in `MEDIA_ARCHIVE_PIPELINE.md`. Farm-tied shots live in
+  `farm-media-raw/<farm-id>/photos/`; non-farm shots in `farm-media-raw/equipment/photos/`;
+  indexed by `farm_media_manifests/equipment.json` (build pending).
 - Compiled by Sophia Truesight (TrueSight DAO autopilot) 2026-09-02.
 
 ---

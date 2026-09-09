@@ -55,6 +55,42 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 | Farm page gallery | `agroverse_shop_beta/farms/<farm-id>/media.json` | curated youtube + image entries |
 | Plot polygon | `sunmint/plots/index.geojson` (+ `SunMint Plots` sheet tab) | only if new farm plot |
 
+## Equipment & supply-chain media — `equipment-media` namespace (decision 2026-09-09, thread 23018)
+
+Equipment photos/screenshots (roaster, cracker/winnower, melanger, molds, fermentation
+boxes, drying racks…) are **media assets** and flow through MAP like farm media — they
+are **not** warehouse stock. Governor decision (Gary Teh, thread 23018):
+
+- **`agroverse-inventory` is NOT the home.** It is a machine-generated store/partner stock
+  snapshot (`store-inventory.json` = SKU id → count). Never hand-add photos/curated media
+  there — it's API-only and the automation regenerates it.
+- **No S3 for still photos.** Equipment images are small → live in **GitHub** repos, same as
+  farm photos. S3 (`media.agroverse.shop`) stays reserved for >100 MB MOV originals + hot
+  preview frames.
+- **Blob home — hybrid (farm folder + central fallback):**
+  - Equipment photographed **at a farm** stays in that farm's existing folder:
+    `farm-media-raw/<farm-id>/photos/` (e.g. the blue cracker/winnower + melanger shots
+    from the 2026-09-07 La do Sitio FSVP visit → `la-do-sitio/photos/`).
+  - Equipment **not tied to one farm** (product/research screenshots: Alibaba/Amazon
+    listings, WhatsApp mold orders, the 2026-09-02 FATOMAQ + Kingma + molds set) → central
+    `farm-media-raw/equipment/photos/` (new top-level folder, sibling to the farm folders).
+- **Manifest spans both** — `farm_media_manifests/equipment.json` (new, alongside
+  `<farm-id>.json`) **references in-place paths** (no duplication — same principle as
+  videos: manifests point at `yt_id`, they don't copy blobs). Also add to `index.json`.
+- **Label vocab (controlled — what makes cross-reference queries return hits):**
+  `cracker_winnower`, `melanger`, `roaster`, `mold`, `temperer`, `fermentation_box`,
+  `drying_rack`, `packaging`. Each entry carries: `equipment` labels, `source_farm`,
+  `source_thread`, `status` (`owned` / `to-acquire`), `source_url` (listing, if a research
+  shot), `inventory_row` link to `agroverse/BEAN_TO_BAR_EQUIPMENT_INVENTORY.md`.
+- **Why:** equipment photos used to live only in session transcripts + `/tmp` → tmp purges
+  destroyed originals; the compiled PDF (agentic_ai_context PR #899) was the only durable
+  copy. Future Sophias: **archive equipment/supply-chain media through MAP, never leave it
+  only in `/tmp` or transcripts**, and answer "show me every <machine> photo" from the
+  manifest, not from memory.
+
+Pending build (OPEN_FOLLOWUPS candidate): upload the 5 recovered images per the above +
+write `equipment.json` + index entry + link BEAN_TO_BAR rows.
+
 ## Farm IDs (keyed everywhere by these slugs)
 
 | Farm | farm_id slug | SunMint plot | media repo subfolder |
