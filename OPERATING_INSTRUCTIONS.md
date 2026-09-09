@@ -101,6 +101,8 @@ A compliant roadmap includes:
 
 **Self-UAT before human UAT — MANDATORY (Gary 2026-09-09).** Before requesting that a human (governor/operator) perform UAT on any change with a human-facing surface, the implementing agent MUST first run its own end-to-end verification of the same acceptance criteria against the live **beta** staging surface (or, where unavoidable, a locally served equivalent — say so explicitly), and report the machine-observed evidence (pass/fail per criterion, screenshots/console-error output where relevant) in the handoff. Only after the agent's own self-UAT passes should the human be asked to click-test. This applies to every Sophia instance and every agent operating in this workspace — a human UAT request must never be the *first* time the change is exercised end-to-end. If the change cannot be self-UATed by the agent at all, state that gap explicitly in the handoff rather than silently skipping it.
 
+**Concrete exemplar — SunMint impact map:** the map runtime smoke spec (`truesight_me` repo `tests/sunmint-map.spec.ts`) must be **3/3 green against live beta before any beta → prod promote of `truesight_me`** that touches `sunmint.html` (run + evidence format recorded in `SUNMINT_E2E_RUNBOOK.md` §4.7, Gary 2026-09-09).
+
 Keep the roadmap **tracked and current**: update the resume tracker as each unit lands. Per the contribution convention, after each unit merges, **report the DAO contribution before starting the next** (see `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`).
 
 **Reference example:** `EDGAR_DAO_EXTRACTION_PLAN.md` (Edgar → `dao_protocol` extraction).
