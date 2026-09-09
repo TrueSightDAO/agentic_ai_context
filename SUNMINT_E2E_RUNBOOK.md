@@ -118,6 +118,41 @@ PUBLIC ATTESTATION LEDGER (since 2026-08, A1-A4):
 2. Check SunMint Tree Planting tab grew; check Tree Growth Measurements tab has the row
 3. Trigger rebuild-tree-index.yml; confirm trees/index.geojson count grew
 
+### 4.7 Map UI runtime smoke gate — MANDATORY green before beta → prod promote (Gary 2026-09-09)
+
+The SunMint **impact map** (`sunmint.html`) has its own runtime smoke spec that
+catches silent render regressions (the #363 `esc is not defined` bug killed the
+whole map render — plot dropdown, view chips, tree lookup, satellite history —
+with no visible error; it was caught only by manual headless console capture).
+
+**Spec:** `truesight_me` repo → `tests/sunmint-map.spec.ts` (added in PR #365;
+extended in #367). It asserts, version-agnostic:
+
+1. **Zero uncaught page errors + zero JS console errors**, map tiles render, controls
+   (`#plotSelector`/`#farmSelector`/`#plotFilterInput`) become **visible + populated**,
+   `.impact-map-note` updated, satellite history thumbnails shown.
+2. Deep-linked **`?tree=<id>`** opens its popup; any photo shown is **not broken**.
+3. **Plots combobox filters by type** and deep-linked **`?plot=<id>`** opens the plot popup.
+
+**Canonical run (from a machine with the truesight_me checkout + Chrome):**
+
+```
+cd <truesight_me checkout>   # or the scratch dir where sunmint-map.spec.ts + playwright config live
+PLAYWRIGHT_BASE_URL=https://beta.truesight.me npx playwright test tests/sunmint-map.spec.ts
+```
+
+**RULE — before ANY `sync_beta_to_prod` on `truesight_me`** for a change that touches
+`sunmint.html` / the map: the spec MUST be **3/3 green against live beta**, and the
+passing run (command + result line) recorded as evidence in the promote handoff.
+The spec auto-runs in `visual-consistency.yml` CI post-deploy, but a manual fork-sync
+promote can bypass that — so the agent runs it explicitly before promoting. Do not
+ask the governor to human-UAT (or to authorize promote) on evidence less than this.
+
+**Recorded baseline:** 2026-09-09 — after #367 merged (`ce5624c`), beta md5
+`953d8eed…` = merged main, `PLAYWRIGHT_BASE_URL=https://beta.truesight.me npx
+playwright test tests/sunmint-map.spec.ts` → **`3 passed (18.5s)`** (loads/controls
+4.6s; `?tree=` popup 3.8s; combobox + `?plot=` popup 4.6s). Thread 23455.
+
 ---
 
 ## 5. Incident traps (each cost real time - do not repeat)
