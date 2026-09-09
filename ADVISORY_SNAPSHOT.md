@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-09T16:50:07Z`
+- Generated (UTC): `2026-09-09T21:04:39Z`
 - Look-back: **7** calendar days (`2026-09-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+22bc114 | 2026-09-09 16:51:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9018e0c | 2026-09-09 11:46:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e37b0bd | 2026-09-09 05:05:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox + ?plot= opens popup (parity with Tree box) (#367)
@@ -312,7 +313,6 @@ b47113c | 2026-09-04 05:00:48 +0000 | chore(stats): refresh stats/current.json [
 41fb9d7 | 2026-09-03 21:16:21 +0000 | chore(stats): refresh stats/current.json [skip ci]
 7b3ca6b | 2026-09-03 16:38:25 +0000 | chore(stats): refresh stats/current.json [skip ci]
 c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0d450dc | 2026-09-03 04:55:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -325,6 +325,10 @@ c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f3d7dc2 | 2026-09-09 15:16:02 -0300 | plan: add mandatory security policy to email-inbox-watch plan (#976)
+bd6e5eb | 2026-09-09 15:08:51 -0300 | plan: hourly admin+sophia@truesight.me inbox watch (#975)
+a3a6205 | 2026-09-09 13:50:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-09 UTC)
+d8dfc19 | 2026-09-09 13:50:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-09 UTC)
 a0ee3d8 | 2026-09-09 08:43:28 -0300 | chore(previews): refresh Beer Hall preview (2026-09-09 UTC)
 f7e162d | 2026-09-09 08:43:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-09 UTC)
 711b638 | 2026-09-09 05:47:05 -0300 | docs: record SunMint map runtime smoke gate (sunmint-map.spec.ts) — mandatory green before beta→prod promote (#974)
@@ -361,10 +365,6 @@ d4cd300 | 2026-09-07 21:51:09 -0300 | Add tree-density estimation rule + decisio
 98b1d52 | 2026-09-07 21:35:26 -0300 | Plan: SunMint plot-estimation + QR-to-plot association (beyond per-tree photos) (#956)
 316ade4 | 2026-09-07 13:57:52 -0300 | Santa Ana plan: close out loose ends #2-#4, leave #5 visual confirm pending (#954)
 e14e3ea | 2026-09-07 12:56:59 -0300 | SunMint registry: reconcile SA write-access doc (edgar_dapp_listener confirmed) (#953)
-138cd9a | 2026-09-07 12:53:53 -0300 | Santa Ana: record wave-1 transcription done (16/16 faster-whisper PT, manifest committed) (#952)
-a7d7a67 | 2026-09-07 12:44:06 -0300 | Santa Ana: record wave-1 16 curated videos delivered (uploaded to YouTube, manifest committed) (#951)
-fc24812 | 2026-09-07 09:55:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-07 UTC)
-e73f012 | 2026-09-07 09:55:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-07 UTC)
 … (truncated)
 ```
 
@@ -556,7 +556,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 53.7 | 17493.54386 | 9/9/2026 8:51:37 |
+| 2026-09 | 53.7 | 17493.54386 | 9/9/2026 13:52:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-02`; scanned last **600** data rows)
 
