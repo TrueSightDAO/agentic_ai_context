@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-08T21:19:34Z`
-- Look-back: **7** calendar days (`2026-09-01` → today UTC)
+- Generated (UTC): `2026-09-09T04:59:35Z`
+- Look-back: **7** calendar days (`2026-09-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,20 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 37
-- `[CONTRIBUTION EVENT]` × 3
+- `[TREE PLANTING EVENT]` × 30
+- `[CONTRIBUTION EVENT]` × 7
 - `[FARM BOUNDARY EVIDENCE EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
+- `[NOTARIZATION]` × 1
+- `[NOTARIZATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260908011335_222` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3899583, -51.8513750 · Latitude: -3.3899583
-- `Edgar_20260908011342_224` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3900972, -51.8514167 · Latitude: -3.3900972
-- `Edgar_20260908011346_226` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3901278, -51.8514556 · Latitude: -3.3901278
-- `Edgar_20260908011350_228` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3899583, -51.8517111 · Latitude: -3.3899583
-- `Edgar_20260908011355_230` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3902000, -51.8527222 · Latitude: -3.3902000
-- `Edgar_20260908011359_232` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3899778, -51.8525583 · Latitude: -3.3899778
-- `Edgar_20260908011404_234` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3900028, -51.8525694 · Latitude: -3.3900028
 - `Edgar_20260908011408_236` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3898639, -51.8523722 · Latitude: -3.3898639
 - `Edgar_20260908011412_238` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3897139, -51.8525194 · Latitude: -3.3897139
 - `Edgar_20260908011416_240` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.3898667, -51.8526694 · Latitude: -3.3898667
@@ -59,6 +55,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260908173216_256` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Farm media architecture redesign + 250GB EBS storage migration
 - `Edgar_20260908185506_258` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Cleide · Is New Farm: no · Media URLs: 86f5d7b0b5534f81b2f78faef0fd7820.HEIC; c3cb648459f74f2eae55185ef0967719.HEIC;…
 - `Edgar_20260908192852_260` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.413931, -52.634933 · Latitude: -3.413931
+- `Edgar_20260908215851_262` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260908225023_264` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-08T22:50:21.929Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260909003437_266` · **Edgar** · [NOTARIZATION] Document Hash: 24237af9446428e64d0e7832db73412e5b0258915570c890284470aaf0f707f8 · Witnesses: Gary Teh (site visit); Zhiwen Teh (signatory) · Submitter: Gary Teh
+- `Edgar_20260909003829_268` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: -3.4140667 · Longitude: -52.6346889
+- `Edgar_20260909004439_270` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: CEPOTX Cleide factory FSVP site inspection — PDF + RSA notarization
+- `Edgar_20260909004629_272` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Gary Teh — 15 min: Elizabeth chocolate-molds request (China → Brazil)
+- `Edgar_20260909005813_274` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_me_beta: CRITICAL REGRESSION (introduced by PR #363 "S…
 
 ---
 
@@ -232,9 +235,9 @@ _(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,857.14**
+- USD on hand: **$4,857.02**
 - Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$54.59**
+- USD provisioned for voting-rights cash-out: **$54.72**
 
 ### In-transit freight (1 row)
 
@@ -250,9 +253,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-01_ (1):
-
-- 2026-09-01 | sophia | FBE_GH_PAT set in GAS Script Properties (project 1UrBg…, by Gary) for `repository_dispatch` `plots-index-rebuild` from the FBE handler — recorded in GAS_SCRIPT_PROPERTIES.md. Needs Actions:write on TrueSightDAO/sunmint.
+_(No `YYYY-MM-DD |` lines on/after 2026-09-02 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -271,6 +272,11 @@ _All dated lines on/after 2026-09-01_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox + ?plot= opens popup (parity with Tree box) (#367)
+46f211b | 2026-09-08 22:42:58 -0300 | test: add SunMint impact-map runtime smoke spec (#365)
+77fa0fc | 2026-09-08 22:37:41 -0300 | fix: hoist esc() to IIFE scope (kills the silent map-render regression class) (#366)
+0a86c8a | 2026-09-08 21:44:45 -0300 | Show tree photo in SunMint impact-map tree popup (#363)
+f52ee46 | 2026-09-08 21:21:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a50e683 | 2026-09-08 16:48:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 3236758 | 2026-09-08 11:40:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 93aea68 | 2026-09-08 05:06:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
@@ -306,11 +312,6 @@ c8d7a8d | 2026-09-03 11:38:35 +0000 | chore(stats): refresh stats/current.json [
 0d450dc | 2026-09-03 04:55:44 +0000 | chore(stats): refresh stats/current.json [skip ci]
 2b7395c | 2026-09-02 21:13:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
-58934fb | 2026-09-02 11:39:30 +0000 | chore(stats): refresh stats/current.json [skip ci]
-700e75e | 2026-09-02 04:58:11 +0000 | chore(stats): refresh stats/current.json [skip ci]
-37610a7 | 2026-09-01 21:16:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
-99c1e7f | 2026-09-01 16:51:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
-84cfa72 | 2026-09-01 11:04:22 -0300 | Remove Field Signals #8/#9 - moved to agroverse.shop Bean to Bliss (#349)
 … (truncated)
 ```
 
@@ -323,6 +324,12 @@ ce42515 | 2026-09-02 16:49:16 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6fd786f | 2026-09-08 22:40:27 -0300 | docs: mark cacao-varieties roadmap units 2–3 done (blob archive + manifest label layer) (#971)
+7dcf21d | 2026-09-08 22:29:26 -0300 | docs: cacao-varieties namespace + attested field dossier (CCN-51 Ponta Verde vs common, Pará) (#970)
+77c5c73 | 2026-09-08 21:49:43 -0300 | Sourcing network: Pará/CEPOTX lane gains in-network bean-to-bar conversion (#969)
+6c70f02 | 2026-09-08 21:45:07 -0300 | docs: codify equipment-media MAP namespace decision (thread 23018) (#968)
+4f08dde | 2026-09-08 18:19:56 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
+b0f31a9 | 2026-09-08 18:19:54 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
 c012b60 | 2026-09-08 15:46:59 -0300 | docs: sweep forward-facing /home/ubuntu + ~/media_archive_inbox media refs to /media (#967)
 36de8f1 | 2026-09-08 14:41:48 -0300 | docs: document autopilot box /media disk layout (250GB EBS migration) in MEDIA_ARCHIVE_PIPELINE (#966)
 b3fb292 | 2026-09-08 13:48:12 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
@@ -357,12 +364,6 @@ fa8325a | 2026-09-07 02:03:14 -0300 | chore(previews): refresh Beer Hall preview
 98233aa | 2026-09-07 01:06:57 -0300 | Santa Ana: record daemon pipeline registration segment (inbox + error-loop fix) (#948)
 eb1e862 | 2026-09-07 01:03:58 -0300 | HANDOFF_MANIFEST: Santa Ana row done-state + fix rate-limit row validator error (#947)
 1f1d01a | 2026-09-07 00:27:29 -0300 | Merge pull request #945 from TrueSightDAO/auto/advisory-refresh-2026-09-07
-934fb2c | 2026-09-07 03:27:18 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-07 UTC)
-99075e7 | 2026-09-06 18:35:24 -0300 | Santa Ana (Bahia): mark PR1-PR5 done-state, update manifest + RESUME HERE (#944)
-8175adc | 2026-09-06 17:39:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-06 UTC)
-4708b75 | 2026-09-06 17:39:32 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-06 UTC)
-101bdf7 | 2026-09-06 12:18:13 -0300 | docs: file sibling GAS credentials-secrets cleanup in OPEN_FOLLOWUPS (#943)
-97555d8 | 2026-09-06 09:40:34 -0300 | Docs: MAP handoff checklist — instantiate FARM_MEDIA_TASK_PLAN_TEMPLATE first (#942)
 … (truncated)
 ```
 
@@ -374,11 +375,6 @@ eb1e862 | 2026-09-07 01:03:58 -0300 | HANDOFF_MANIFEST: Santa Ana row done-state
 7f767af | 2026-09-02 23:55:32 -0300 | fix(fbe): stop empty-field line-bleed in boundary evidence parser (#458)
 7d25974 | 2026-09-02 08:35:38 -0300 | feat: auto-derive governor/sentinel allowlist from dao_members.json (#457)
 16e14b6 | 2026-09-02 08:18:09 -0300 | feat: PLOT INVALIDATION EVENT GAS handler + router case (governor/sentinel gate) (#456)
-6aecf94 | 2026-09-01 19:10:59 -0300 | Plot-first FBE handler: auto Plot ID, Farm ID empty, index-rebuild ping (#455)
-500a52d | 2026-09-01 19:10:27 -0300 | Plot-first FBE handler: auto Plot ID, Farm ID empty, index-rebuild ping
-f69eedf | 2026-09-01 13:08:14 -0300 | feat: MEDIA RETRACTION GAS handler + doGet case + trigger doc (#454)
-b7794ce | 2026-09-01 00:20:53 -0300 | Wire FARM BOUNDARY EVIDENCE webhook doGet case + document hourly fallback trigger (#453)
-c750ac5 | 2026-08-31 23:56:40 -0300 | Add GAS handler for FARM BOUNDARY EVIDENCE EVENT (cron scan + farm upsert + tracking) (#452)
 ```
 
 ### `dapp` → `dapp`
@@ -421,8 +417,6 @@ f597a45 | 2026-09-03 11:42:51 +0000 | chore: refresh currencies.json [skip ci]
 546abfc | 2026-09-03 11:19:06 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b9f4405 | 2026-09-02 11:43:17 +0000 | chore: refresh currencies.json [skip ci]
 c541531 | 2026-09-02 11:22:59 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-cb22cba | 2026-09-01 12:00:11 +0000 | chore: refresh currencies.json [skip ci]
-5103798 | 2026-09-01 11:42:49 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -557,9 +551,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 0 | 17439.84386 | 9/8/2026 13:51:41 |
+| 2026-09 | 0 | 17439.84386 | 9/8/2026 20:51:04 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-01`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-02`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
