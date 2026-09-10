@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-10T16:36:12Z`
+- Generated (UTC): `2026-09-10T21:03:55Z`
 - Look-back: **7** calendar days (`2026-09-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,38 +32,37 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
+- `[CONTRIBUTION EVENT]` × 19
 - `[FARM BOUNDARY EVIDENCE EVENT]` × 5
-- `[PRACTICE EVENT]` × 3
 - `[TREE PLANTING REJECT EVENT]` × 3
 - `[PLOT INVALIDATION EVENT]` × 3
-- `[NOTARIZATION]` × 1
-- `[NOTARIZATION EVENT]` × 1
-- `[SALES EVENT]` × 1
-- _free-form (no bracket tag)_ × 9
+- `[NOTARIZATION EVENT]` × 2
+- `[PRACTICE EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 1
+- _free-form (no bracket tag)_ × 8
 
 ### Latest entries
 
-- `Edgar_20260909220929_306` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Direct agent time: david maher sale wrap-up, evidence archival, contribution…
-- `Edgar_20260910000102_308` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Responding to Win on his document
-- `Edgar_20260910000140_310` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
-- `Edgar_20260910031019_312` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: ZZ_TEST_SOPHIA_PLOTTYPE_E2E · Plot Type: maturing · Is New Farm: yes
-- `Edgar_20260910031042_314` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: ZZ_TEST_SOPHIA_DRY · Plot Type: maturing · Is New Farm: yes
-- `Edgar_20260910031550_316` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: PL-003 · Reason: ZZ_TEST junk row — unintentional production write from Sophia E2E dry-run (beta p… · Retractor Email: admin+sophia@truesight.me
-- `Edgar_20260910031552_318` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: PL-004 · Reason: ZZ_TEST junk row — unintentional production write from Sophia E2E dry-run (beta p… · Retractor Email: admin+sophia@truesight.me
-- `Edgar_20260910033437_320` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
-- `Edgar_20260910034314_322` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
-- `Edgar_20260910035642_324` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Site Cristo Rei (Cristo Rei Pacaje Para) · Is New Farm: no · Boundary Type: approx
-- `Edgar_20260910102015_326` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SunMint tree-planting reject saga — B1/B2/B3 live + GAS pinned-deployment re…
-- `Edgar_20260910102346_328` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Sítio Torres (Pacajá) · Boundary Type: approx · Plot Type: enrichment
-- `Edgar_20260910102527_330` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: PL-006 · Reason: Duplicate plot row auto-created 2026-09-10 by a [FARM BOUNDARY EVIDENCE EVENT] fo… · Retractor Email: admin+sophia@truesight.me
-- `Edgar_20260910104903_332` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Security incident response — transcript repo privacy, fine-grained PAT redac…
 - `Edgar_20260910123503_334` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-10T12:35:00.748Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260910133941_336` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Fazenda Cleide · Plot Type: research · Boundary Type: approx
 - `Edgar_20260910141948_338` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sítio Torres (Pacajá) farm page, journey stop & CEPOTX card + loc3 MAP plan
 - `Edgar_20260910141951_340` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sítio Torres (Pacajá) loc3 — analysis, verification & MAP planning
 - `Edgar_20260910144626_342` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Sítio Cristo Rei (Pacajá, PA) — farm listing, media pipeline, SunMint recipr…
 - `Edgar_20260910145224_344` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: CORRECTION — Sítio Cristo Rei (Pacajá, PA) farm listing, media pipeline & Su…
+- `Edgar_20260910164652_346` · **Edgar** · [No Text Provided]
+- `Edgar_20260910165854_348` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260910170018_350` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: -3.609300 · Longitude: -51.033700
+- `Edgar_20260910170542_352` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: -3.609300 · Longitude: -51.033700
+- `Edgar_20260910171200_354` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: -3.557308, -51.103183 · Latitude: -3.557308
+- `Edgar_20260910172900_356` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Cacau na Veia (CEPOTX) site visit — FSVP record merged + notarized via DApp
+- `Edgar_20260910172956_358` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Build &amp; finalize Sítio Torres (N-06-66) FDA FSVP site-visit record + reu…
+- `Edgar_20260910173213_360` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: CORRECTION — Sítio Torres (N-06-66) FDA FSVP site-visit record + EXIF-safe P…
+- `Edgar_20260910194606_362` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Sítio Torres (loc3) PR6 — media pipeline (raw machine execution)
+- `Edgar_20260910194607_364` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Sítio Torres (loc3) PR6 — media pipeline (direct time)
+- `Edgar_20260910194728_366` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: https://lowtoxgear.com/pages/the-2026-data-driven-guide-to-heavy-metals-in-d…
+- `Edgar_20260910194845_368` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Sítio Torres (loc3) PR6 — media pipeline (raw machine execution)
+- `Edgar_20260910194847_370` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Sítio Torres (loc3) PR6 — media pipeline (direct time)
+- `Edgar_20260910200810_372` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Perhaps to help reduce the friction we should go mint an additional pair of …
 
 ---
 
@@ -274,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a01b33a | 2026-09-10 16:38:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 5335493 | 2026-09-10 11:44:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 163418c | 2026-09-10 05:08:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 8e8054d | 2026-09-09 23:34:43 -0300 | fix(ci): stage the whole stats/ dir so new indexes can't be dropped (#370)
@@ -313,7 +313,6 @@ acdfb4e | 2026-09-05 04:52:46 +0000 | chore(stats): refresh stats/current.json [
 576b5c0 | 2026-09-04 20:58:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
 694a25a | 2026-09-04 14:23:32 -0300 | feat: deep-link a specific tree on the SunMint map, and link to it from the QR profile page (#352)
 44f6c0a | 2026-09-04 16:33:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
-f0b0dd6 | 2026-09-04 11:50:58 -0300 | fix: plot pills silently vanished — two use-before-declare bugs in render() (#351)
 … (truncated)
 ```
 
@@ -326,6 +325,19 @@ f0b0dd6 | 2026-09-04 11:50:58 -0300 | fix: plot pills silently vanished — two 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1db2fb7 | 2026-09-10 17:05:10 -0300 | Add Agroverse cacao HS/HTS/NCM classification sheet (PDF)
+632f85a | 2026-09-10 16:58:29 -0300 | followups: .env quoted-key defect + Telegram Chat Logs audit result (#1011)
+8a3b7a4 | 2026-09-10 16:55:02 -0300 | plan(sitio-torres): PR6 COMPLETE + gallery wired (35 videos on beta) (#1010)
+f3fc355 | 2026-09-10 16:44:03 -0300 | Sítio Torres plan: PR6 DONE — media archived end-to-end; UAT gate next (#1009)
+feb1187 | 2026-09-10 16:30:00 -0300 | Backlog: Telegram-log lock deploy gap, zombie leases, double ledger record (#1008)
+5df09b4 | 2026-09-10 14:37:50 -0300 | CEPOTX registry: record N-06-66 as governor-confirmed (#1007)
+55bf09f | 2026-09-10 14:33:01 -0300 | OPEN_FOLLOWUPS: file tdg_issued=0 default root cause (contribution scoring) (#1006)
+9703644 | 2026-09-10 14:19:54 -0300 | OPEN_FOLLOWUPS: file stale Document Notarizations mirror gap (#1005)
+37bc5bd | 2026-09-10 14:08:27 -0300 | OPEN_FOLLOWUPS: plots media bare-HEIC fix + B-06-108_20260908_1 missing photos (#1004)
+fc9f078 | 2026-09-10 13:51:25 -0300 | SITIO_TORRES plan: both gates RESOLVED, PR6 executing (#1003)
+cc157bd | 2026-09-10 13:38:57 -0300 | SITIO_TORRES plan: PR2-PR5 done, gate (b) provenance RESOLVED (#1002)
+ffe17dd | 2026-09-10 13:36:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-10 UTC)
+2a3a1a3 | 2026-09-10 13:36:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
 ec02762 | 2026-09-10 11:45:27 -0300 | Open follow-ups: journeyOrder drift, video-only manifest, PL-005 orphan (thread 24440) (#1001)
 7a43aaa | 2026-09-10 11:21:16 -0300 | docs: CLI auto-computed TDG takes precedence over the 0-default rule (#1000)
 1c4c872 | 2026-09-10 11:19:12 -0300 | Add SITIO_TORRES_MEDIA_TASK_PLAN.md (loc3 MAP) + register handoff row (#999)
@@ -353,25 +365,13 @@ dceeb7d | 2026-09-09 22:28:10 -0300 | docs(OPEN_FOLLOWUPS): add workflow-dispatc
 91bc6e9 | 2026-09-09 22:25:42 -0300 | docs(OPEN_FOLLOWUPS): plot_type live in index; file workflow-dispatch 403 gap (#979)
 5562872 | 2026-09-09 22:21:32 -0300 | docs(OPEN_FOLLOWUPS): Plot Type header landed at col G — verified end-to-end, backfill is the remainder (#978)
 b0f8bc0 | 2026-09-09 22:13:12 -0300 | SUNMINT_PLOTS_REGISTRY: document the plot_type (plot role) column + file the sheet backfill follow-up (#977)
-fa1648a | 2026-09-09 18:05:01 -0300 | chore(previews): refresh Beer Hall preview (2026-09-09 UTC)
-dea0220 | 2026-09-09 18:05:00 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-09 UTC)
-f3d7dc2 | 2026-09-09 15:16:02 -0300 | plan: add mandatory security policy to email-inbox-watch plan (#976)
-bd6e5eb | 2026-09-09 15:08:51 -0300 | plan: hourly admin+sophia@truesight.me inbox watch (#975)
-a3a6205 | 2026-09-09 13:50:33 -0300 | chore(previews): refresh Beer Hall preview (2026-09-09 UTC)
-d8dfc19 | 2026-09-09 13:50:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-09 UTC)
-a0ee3d8 | 2026-09-09 08:43:28 -0300 | chore(previews): refresh Beer Hall preview (2026-09-09 UTC)
-f7e162d | 2026-09-09 08:43:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-09 UTC)
-711b638 | 2026-09-09 05:47:05 -0300 | docs: record SunMint map runtime smoke gate (sunmint-map.spec.ts) — mandatory green before beta→prod promote (#974)
-e99ed6b | 2026-09-09 04:54:32 -0300 | docs: krake_ror recycled to v5 instance 98.81.159.70 + consolidated fleet df-alert (#973)
-2ca9967 | 2026-09-09 04:41:20 -0300 | docs: mandatory machine self-UAT before any human UAT handoff (all Sophia instances) (#972)
-d922245 | 2026-09-09 02:00:03 -0300 | chore(previews): refresh Beer Hall preview (2026-09-09 UTC)
-379e136 | 2026-09-09 02:00:02 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-09 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+0100cd4 | 2026-09-10 16:30:37 -0300 | feat(tree-planting): optional Plot ID column (T) on SunMint Tree Planting (#474)
 c9e7d18 | 2026-09-10 07:48:34 -0300 | Add regression guard: Telegram-log processors must take the script lock (#473)
 765ae53 | 2026-09-10 00:48:00 -0300 | Serialize media-retraction + tree-growth processors with LockService (completes #469/#471 family) (#472)
 33965af | 2026-09-10 00:45:06 -0300 | Serialize farm-boundary-evidence processor with LockService (same race as #469) (#471)
@@ -438,6 +438,7 @@ f597a45 | 2026-09-03 11:42:51 +0000 | chore: refresh currencies.json [skip ci]
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+604c4e5 | 2026-09-10 16:52:25 -0300 | farm(sitio-torres-pacaja-para): surface 35 site-visit videos in gallery (#319)
 7c0b0cd | 2026-09-10 11:40:22 -0300 | Cristo Rei: deep-link SunMint highlight to plot CR-PA-P2 (reciprocity) (#318)
 fa0586a | 2026-09-10 11:18:02 -0300 | fix(brazilian-path): list Sítio Cristo Rei in journeyOrder (#317)
 9120e3d | 2026-09-10 10:47:03 -0300 | fix(farms): Cristo Rei hero → humans-first shot (IMG_9563) + map marker image (#316)
@@ -477,7 +478,6 @@ cbe8af5 | 2026-09-05 21:43:15 -0300 | Update paulo prose plot id LD-P1 to canoni
 ad73887 | 2026-09-05 21:42:37 -0300 | Add Fazenda Santa Ana drying terrace photo IMG_8224 (18 Sep 2023 farm visit)
 4fd4a6e | 2026-09-05 21:42:36 -0300 | Add Fazenda Santa Ana harvest crew photo IMG_8181 (18 Sep 2023 farm visit)
 96c45bf | 2026-09-05 21:42:34 -0300 | Add Fazenda Santa Ana fermentation room photo IMG_8117 (18 Sep 2023 farm visit)
-96dad84 | 2026-09-05 21:42:33 -0300 | Add Fazenda Santa Ana fermentation photo IMG_8103 (18 Sep 2023 farm visit)
 … (truncated)
 ```
 
@@ -567,7 +567,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 53.7 | 17493.54386 | 9/10/2026 8:51:13 |
+| 2026-09 | 53.7 | 17493.54386 | 9/10/2026 13:53:21 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-03`; scanned last **600** data rows)
 
