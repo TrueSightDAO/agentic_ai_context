@@ -41,6 +41,43 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### AGL expense processor (19Wag9x) `Credentials.js` has no existence guard — clean checkout + `clasp push` still yields `ReferenceError: setApiKeys is not defined`
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 23408).**
+
+**Context (2026-09-10).** A `clasp push` of the AGL expense processor
+(`google_app_scripts/19Wag9x-sjbLVgIsPh2vj90ZG7Rgq2iGaVOomAeAvtg6CdZKJHLZ9AJrC`) shipped a
+`Code.js` whose top two lines call `setApiKeys()` / `getCredentials()`, but **no file in the
+live HEAD defined either function** — every entry point died with
+`ReferenceError: setApiKeys is not defined` at load time. This is the *second* such outage: the
+2026-09-06 one deleted `Credentials.gs` and was mitigated by the `.claspignore` guard (tokenomics
+PR #460). Recovered in-session by re-writing `Credentials` into live HEAD via the Apps Script API
+(`projects.updateContent`, byte-identical preservation of the other 5 files), creating version 12,
+and repointing the production deployment `AKfycbwYBlFig…` @10 → @12. Double-fire idempotency
+regression then passed on the live URL (SES 218→218→218, AGL16 9→9→9).
+
+**The residual gap (what this entry is about).** Three facts together leave a single point of
+failure that no current guard covers:
+1. `.claspignore` (tracked) only stops `clasp push` from *deleting* the live `Credentials.js` — it
+does **nothing** to *create* it.
+2. `Credentials.js` is **gitignored** (`.gitignore:25 google_app_scripts/**/Credentials.js`), so it
+is **absent from every fresh checkout** — only the tracked `Credentials.sample.js` travels.
+3. Nothing checks. `scripts/deploy_gas_project.py` runs `clasp push --force` + deployment repoint
+and **never verifies `Credentials.js` exists** before pushing.
+
+Net: a clean clone + push (or a fresh `scripts/deploy_gas_project.py --push`) reproduces the
+outage exactly. The fix that made v12 work was re-adding the file — but nothing prevents the file
+from going missing again (e.g. Apps Script project rebuild, a hand edit, or growing the project
+beyond the current shape).
+
+**Proposed fix (small, ~30 min).** Add a pre-push existence guard in `deploy_gas_project.py`:
+before `clasp push`, if the project's `.js` sources reference `setApiKeys` / `getCredentials` and
+no file in the project dir *defines* them, **fail fast** with a message pointing at
+`Credentials.sample.js` (mirroring the existing `validate_project_files()` warning pass).
+Alternative: auto-seed the editor-only `Credentials.js` from `Credentials.sample.js` on first
+push. Either turns a production 500 into a caught pre-flight error.
+Blocker: none. Severity: low-medium (recurrence risk; the last two occurrences each cost a prod
+outage + manual rollback).
+
 ### SunMint `plot_type` — backfill existing rows in the live sheet (header landed; generator verified)
 **Filed 2026-09-09. Owner: unclaimed. Governor: Gary (thread 24326).**
 
