@@ -41,6 +41,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### `Document Notarizations` tab mirror is stale — Edgar-direct `[NOTARIZATION EVENT]` rows never reach it (last row 2026-07-08)
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25148).**
+
+**Symptom.** The ops-sheet tab `Document Notarizations` (spreadsheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`, gid 520413576 — the target of the public `truesight.me/notarizations` redirect) holds **46 data rows, the newest dated 2026-07-08**. Known notarizations since then are absent from it: Sophia's Cleide-factory notarization (2026-09-09, `Telegram Chat Logs` rows 12274/12275) and the Cacau na Veia site visit (2026-09-10, `Telegram Chat Logs` rows 12315/12316). Those rows DO exist in `Telegram Chat Logs` (the authoritative Edgar intake) and the files ARE committed to the `notarizations` repo — only the derived mirror tab is missing them.
+
+**Root cause (hypothesis).** The mirror is produced by the agentic GAS `process_notarization_telegram_logs.js` (`tokenomics/google_app_scripts/1vC3p_WfKQT-fl5tHZ9-E3aotYon3gQdOiFVLmyVElMqB-hi_FT3rcB8W/`), which scans `Telegram Chat Logs` col G for `[NOTARIZATION EVENT]` and appends to `Document Notarizations`. Either (a) the WebhookTriggerWorker no longer fires it, or (b) the GAS runs but errors. Note the scanner matches `startsWith("[NOTARIZATION EVENT]")`, while at least one recent row (`Telegram Chat Logs` row 12273, 2026-09-09) uses the distinct hash-form `[NOTARIZATION]` — a second, unmirrored event variant.
+
+**Impact.** `truesight.me/notarizations` (the public audit surface) silently stops showing new notarizations even though the underlying files + signatures are present and valid — a compliance-relevant document looks "not notarized".
+
+**Proposed fix (~30-45 min).** (1) Check the GAS trigger / WebhookTriggerWorker wiring for `process_notarization_telegram_logs`. (2) Confirm whether the GAS errors on the hash-form `[NOTARIZATION]` variant and extend the matcher if so. (3) Backfill the missing rows (Cleide 2026-09-09, Cacau na Veia 2026-09-10) or document the tab as best-effort. Blocker: none.
+
+
 ### `B-06-108_20260908_1` boundary photos are missing everywhere — media cleared, needs re-upload
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24441).**
 
