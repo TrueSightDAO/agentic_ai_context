@@ -5,7 +5,7 @@
 > half of a two-plot property; the **restoration** plot is a separate, later handoff.
 
 **Created:** 2026-09-10 (Sophia) at Gary's request · **Handoff:** 👍 GO on resume-awaiting (thread 24441)
-**Status:** executing — PR1–PR3 done (PR3 = sheet rows + geojson/farms published 2026-09-10)
+**Status:** executing — PR1–PR4 done (PR4 = farm page live on beta `beta.agroverse.shop/farms/cacau-na-veia-pacaje/`, PR #310 merged `4662efc8`); **PR5 verified NO-OP** (`farm_id` == page slug)
 
 ## Goal
 1. Establish plot **N-06-37** (mature cacao agroforest) on https://agroverse.shop/farms/cacau-na-veia-pacaje/ and on truesight.me's SunMint impact map — cross-link BOTH ways.
@@ -82,7 +82,9 @@ GeoJSON rings (lng,lat, closed):
 ## RESUME HERE
 PR1 ✅ this plan. PR2 ✅ manifest `cacau-na-veia-pacaje.json` (64 items: 49 mature + 15 restoration) + index entry.
 **PR3 ✅ DONE 2026-09-10.** Sheet rows written to `SunMint Plots` (`N-06-37` mature 30 ha + `N-06-37_20260909_restoration_1` restoration 0.74 ha, farm `cacau-na-veia-pacaje`, no dups) → `plots/index.geojson` **22 features** (blob `8d3434c3`) + `farms/index.json` **15 farms** (blob `10ad6004`) published via Contents API, both ours present with closed 9-vertex rings.
-Next: **PR4** shop page `farms/cacau-na-veia-pacaje/` (gallery + cross-link) → **PR5** cross-links if needed → **PR6** raw photos + inbox + transcode/daemon. UAT gate before any prod sync.
+**PR4 ✅ DONE 2026-09-10** (PR #310 merged `4662efc8`): shop page `farms/cacau-na-veia-pacaje/index.html` (27.8 KB) + `media.json` (hero `IMG_9499` + 12-image gallery) + 12 web JPEGs (5.9 MB) in `assets/images/farms/`; token-grep clean; live on beta (page 200, hero/gallery/media.json 200, both plot ids present, cross-link ×3).
+**PR5 ✅ VERIFIED NO-OP 2026-09-10** — published `plots/index.geojson` carries `farm_id: "cacau-na-veia-pacaje"` == page slug, so `sunmint.html` line 862 (`FARM_SLUG[fid] || fid`) emits `agroverse.shop/farms/cacau-na-veia-pacaje/` with no `truesight_me_beta` edit. No PR needed.
+Next: **PR6** raw photos + inbox sidecars + MOV→MP4 transcode + daemon upload. UAT gate before any prod sync.
 
 > **Write-path (corrected 2026-09-10 — the previous 'READ-ONLY SAs' note was WRONG):**
 the SunMint Plots sheet is the durable source of truth, and there ARE write-capable SAs
