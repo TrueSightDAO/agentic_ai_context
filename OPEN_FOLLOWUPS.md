@@ -84,9 +84,30 @@ Data-hygiene noticed while reading the live tab (geometry unaffected — the gen
 (`-52.572044 Registered owner per CEPOTX: …`) rather than a bare number; (b) the reactive
 `repository_dispatch: plots-index-rebuild` trigger advertised in `sunmint`
 `.github/workflows/rebuild-plots-index.yml` is **not wired** — no GAS calls it (grep of the tokenomics
-GAS tree finds no `plots-index-rebuild`), so the daily 06:05 UTC cron is the only automatic rebuild;
-use `workflow_dispatch` for an immediate refresh.
+GAS tree finds no `plots-index-rebuild`), so the daily 06:05 UTC cron is the only automatic rebuild.
+*(A `workflow_dispatch` was the intended immediate-refresh escape hatch — but no autopilot box token
+can fire it either; see the next entry. Rebuild instead by regenerating locally + Contents API.)*
 Blocker: none.
+
+### Autopilot GitHub tokens lack `workflow` scope — no workflow dispatch possible (blocks reactive rebuilds)
+**Filed 2026-09-09. Owner: unclaimed. Governor: Gary (thread 24326).** While trying to force an
+immediate `sunmint` plots-index rebuild (rather than wait on the delayed daily cron), **both**
+dispatch routes returned **HTTP 403**: `gh workflow run rebuild-plots-index.yml -R TrueSightDAO/sunmint`
+(`Resource not accessible by personal access token` on `/actions/workflows/<id>/dispatches`) and
+`gh api --method POST repos/TrueSightDAO/sunmint/dispatches -f event_type=plots-index-rebuild` (same
+403). No credential on the autopilot box carries the **`workflow`** scope: `GITHUB_READ_PAT` /
+`GITHUB_TRANSCRIPT_PAT` are read-only, and `gh` is authenticated as `garyjob` with a scope-limited
+token. **Consequence beyond this task:** any design that expects an autopilot to fire a
+`workflow_dispatch` or `repository_dispatch` **cannot work** — notably the reactive path advertised in
+`sunmint/.github/workflows/rebuild-plots-index.yml` ("GAS handler pings this after a new plot/farm
+event") is doubly dead: the GAS side isn't wired (see sibling `plot_type` entry) **and** no box token
+could dispatch it anyway. **Workaround used 2026-09-09:** reproduce the workflow's action locally —
+run `scripts/build_plots_geojson.py` + `scripts/build_farms_index.py` against the live sheet, then
+publish the two outputs via the Contents API (the sanctioned write path for this `api_only` repo);
+verified live (`plots/index.geojson` blob `370a2f35`). **Proper fix:** issue a fine-grained PAT (or
+install a GitHub App) with `actions:write` for the relevant repos, store it in the vault, and teach a
+helper to prefer it for dispatch calls. Severity: low-medium — only blocks *immediate* reactive
+rebuilds; the daily cron still fires (though observed running ~5h late).
 
 ### Sibling GAS project 1wONDeDwZ has LIVE Wix/Telegram secrets in a plaintext Credentials.js on shared disk — verify not committed, rotate
 **Filed 2026-09-06. Owner: unclaimed. Governor: Gary (thread 21628).** During the AGL expense-processor recovery (19Wag9x `Credentials.gs` deleted by `clasp push`, see tokenomics PR #459 + .claspignore guard PR), Envoy found `google_app_scripts/1wONDeDwZ_fXNapDKpstWrBION3aV3r7NXwq7PCdqbW1LvI5ceaykQNbR/Credentials.js` holds **live literal secrets** — a Wix API key (`IST.<jwt>`, the Agroverse Wix headless token, same class leaked historically in PR #369 / f8b38a8) and a Telegram bot token (`7095843169:…`) — as hardcoded strings on the autopilot box. A second copy exists at `/opt/truesight_autopilot/tokenomics/clasp_mirrors/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/Credentials.js` (getCredentials-only, Wix/QuickNode keys). The paths sit under `.gitignore` (`google_app_scripts/**/Credentials.js`), so `git status` shows them **ignored, not committed** — but: (1) Envoy copied the literal values into a scratch dir mid-recovery (deleted after, never written to the target project), so the secrets moved between sessions/hosts; (2) parts of the file content were echoed in session tool output/transcript; (3) the files predate `.claspignore` hardening and a future force-add or mirror copy could expose them. **To do:** (1) confirm via `git ls-files` (both box checkouts) + GitHub code search that no Credentials.js literal from 1wONDeDwZ / 1MnAsIQA is committed anywhere; (2) **rotate** the Telegram bot token (BotFather) and the Wix IST token, then update Script Properties in the live 1wONDeDwZ project; (3) convert that project's Credentials.js to the secret-free Script-Properties-read pattern + add a `.claspignore` (same as the 19Wag9x fix). Severity: medium-high — not confirmed public, but duplicated outside its home project with leak history.
