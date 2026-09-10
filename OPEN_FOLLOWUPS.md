@@ -135,43 +135,6 @@ stale-serve into a visible, actionable step.
 Blocker: none. Severity: medium (silent production staleness; has cost two multi-turn
 firefights).
 
-### AGL expense processor (19Wag9x) `Credentials.js` has no existence guard — clean checkout + `clasp push` still yields `ReferenceError: setApiKeys is not defined`
-**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 23408).**
-
-**Context (2026-09-10).** A `clasp push` of the AGL expense processor
-(`google_app_scripts/19Wag9x-sjbLVgIsPh2vj90ZG7Rgq2iGaVOomAeAvtg6CdZKJHLZ9AJrC`) shipped a
-`Code.js` whose top two lines call `setApiKeys()` / `getCredentials()`, but **no file in the
-live HEAD defined either function** — every entry point died with
-`ReferenceError: setApiKeys is not defined` at load time. This is the *second* such outage: the
-2026-09-06 one deleted `Credentials.gs` and was mitigated by the `.claspignore` guard (tokenomics
-PR #460). Recovered in-session by re-writing `Credentials` into live HEAD via the Apps Script API
-(`projects.updateContent`, byte-identical preservation of the other 5 files), creating version 12,
-and repointing the production deployment `AKfycbwYBlFig…` @10 → @12. Double-fire idempotency
-regression then passed on the live URL (SES 218→218→218, AGL16 9→9→9).
-
-**The residual gap (what this entry is about).** Three facts together leave a single point of
-failure that no current guard covers:
-1. `.claspignore` (tracked) only stops `clasp push` from *deleting* the live `Credentials.js` — it
-does **nothing** to *create* it.
-2. `Credentials.js` is **gitignored** (`.gitignore:25 google_app_scripts/**/Credentials.js`), so it
-is **absent from every fresh checkout** — only the tracked `Credentials.sample.js` travels.
-3. Nothing checks. `scripts/deploy_gas_project.py` runs `clasp push --force` + deployment repoint
-and **never verifies `Credentials.js` exists** before pushing.
-
-Net: a clean clone + push (or a fresh `scripts/deploy_gas_project.py --push`) reproduces the
-outage exactly. The fix that made v12 work was re-adding the file — but nothing prevents the file
-from going missing again (e.g. Apps Script project rebuild, a hand edit, or growing the project
-beyond the current shape).
-
-**Proposed fix (small, ~30 min).** Add a pre-push existence guard in `deploy_gas_project.py`:
-before `clasp push`, if the project's `.js` sources reference `setApiKeys` / `getCredentials` and
-no file in the project dir *defines* them, **fail fast** with a message pointing at
-`Credentials.sample.js` (mirroring the existing `validate_project_files()` warning pass).
-Alternative: auto-seed the editor-only `Credentials.js` from `Credentials.sample.js` on first
-push. Either turns a production 500 into a caught pre-flight error.
-Blocker: none. Severity: low-medium (recurrence risk; the last two occurrences each cost a prod
-outage + manual rollback).
-
 ### SunMint `plot_type` — backfill existing rows in the live sheet (header landed; generator verified)
 **Filed 2026-09-09. Owner: unclaimed. Governor: Gary (thread 24326).**
 
@@ -1790,6 +1753,9 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### AGL expense processor (19Wag9x) `Credentials.js` guard — SHIPPED as a live-accessor survivability check
+**Shipped 2026-09-10 ([tokenomics#470](https://github.com/TrueSightDAO/tokenomics/pull/470)).** `scripts/deploy_gas_project.py` now runs a pre-push **live-accessor survivability guard** (also in dry-run): it derives the accessor contract from the tracked `Credentials.sample.js` (`setApiKeys`/`getCredentials`), short-circuits when the accessor is defined in the local sources being pushed, and otherwise fetches the **live** project (`script.projects.getContent`) and models the post-push file set — local sources **plus** live-only files protected by `.claspignore` — refusing the push if a required accessor would end up `undefined`. **Fails open** on any live-fetch error (a network blip never blocks a healthy deploy); `--skip-accessor-guard` overrides. 8 focused unit tests (`scripts/test_accessor_guard.py`) + end-to-end verification against the live `19Wag9x` project (returns `([], '')` — no false positive on the healthy state; the reproduced outage is caught). No deploy, no ledger write.
 
 ### `farm_media_manifest` couldn't parse DMS GPS — every Apple-media item got `latitude: null`
 **Shipped 2026-09-10 ([farm-media-daemon#24](https://github.com/TrueSightDAO/farm-media-daemon/pull/24)).** `farm_media_manifest._parse_gps` handled only decimal (`float(split(","))`), so exiftool DMS strings (`3 deg 33' 25.20" S, …`) raised `ValueError` → `None`; `gps_coverage` read `0/N` and `paulo-la-do-sitio-para.json` needed a hand-written `_remediation` block. Now delegates to the daemon's own DMS-aware `farm_media_geo.parse_gps` (one shared parser) + 4 unit tests (decimal, exact DMS sidecar string, equality vs `farm_media_geo`, none/junk). Verified end-to-end on Cristo Rei: `GPS 0/13 → 12/13` (the 13th lacks GPS on the original).
