@@ -41,6 +41,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### CLI `.env` key values wrapped in literal quotes silently break signature verification (logged-but-not-dispatched)
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
+
+**Symptom.** `/opt/truesight_autopilot/.env` had `PUBLIC_KEY` / `PRIVATE_KEY` wrapped in **literal single quotes**. The CLI embeds the public key into the signed `share_text`; Edgar's verifier then raises on PEM load (`InvalidByte(0, 39)` = `'`), so `signature_verification = "error"`. Because `dispatch_event` is gated on `signature_verification == "success"` (`dao_client/server/routes/dao.py:~337`), the submission is **appended to `Telegram Chat Logs` but never dispatched to the ledger** — a silent, user-invisible drop. Two Sítio Torres contribution events were lost this way before it was caught. Fixed on this box 2026-09-10 (backup `.env.bak.20260910194840`); local sign→verify round-trip now `True`.
+
+**Audit (2026-09-10) — did it silently drop OTHER past submissions?** Swept all **12,324** rows of `Telegram Chat Logs` (`1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`), column P = Edgar Signature Verification: **5684 success / 6512 blank (column predates 2025-09) / 97 no_signature_format / 28 error / 2 failed**. **No evidence of a long silent-drop history from this box** — monthly `success` dominates the CLI era (2199 successful `[CONTRIBUTION EVENT]`s vs 2 errored = today's, already resubmitted); Sophia-attributed rows 322/327 success. Historic `error` rows trace to other causes (proposal votes, email-registration variants, malformed test payloads). Two caveats: (1) `Edgar Direct` is the *shared* CLI default chatroom, so rows can't be attributed to one host; (2) **rows 9769/9770 (2026-06-15, `[EMAIL REGISTERED EVENT]`)** are the only earlier rows carrying the quoted-PEM signature — eyeball manually, do **not** blind-backfill.
+
+**Impact.** A signed submission that merely *looks* fine in the chat log is silently never recorded on the ledger; no error surfaces to the operator.
+
+**Proposed fix (~20 min).** (1) In the CLI env loader (`truesight_dao_client`), defensively `strip()` surrounding whitespace/quotes from `PUBLIC_KEY`/`PRIVATE_KEY` before use. (2) Have the submit path WARN loudly (Telegram + log) whenever `signature_verification != "success"`, so a future drop is never silent. (3) Check peer boxes for the same quoted-key `.env` shape. Blocker: none.
+
 ### Contribution submission defaults `TDG Issued` to 0 — agents silently file zero-TDG events, then need a `CORRECTION`
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25149).**
 
