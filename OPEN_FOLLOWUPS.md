@@ -41,7 +41,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
-### `Document Notarizations` tab mirror is stale — Edgar-direct `[NOTARIZATION EVENT]` rows never reach it (last row 2026-07-08)
+### Contribution submission defaults `TDG Issued` to 0 — agents silently file zero-TDG events, then need a `CORRECTION`
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25149).**
+
+**Symptom.** On 2026-09-10 two contribution reports were filed with `TDG Issued = 0`: the Sítio Cristo Rei farm/media report (`Edgar_20260910144626_342`) and the Sítio Torres (N-06-66) FDA FSVP record report. Both had to be re-filed as a second `[CONTRIBUTION EVENT]` titled `CORRECTION — …` carrying the auto-computed value (Cristo Rei correction `Edgar_20260910145224_344`; Sítio Torres correction filed same day, 240 min → 400 TDG). Gary's standing rule is that TDG must always be the auto-computed rubric value, never 0 (`dao/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md` §5, standing rule of 2026-09-10, thread 24442 — which superseded the older "`0` unless the operator sets real economics" wording).
+
+**Root cause.** The `create_dao_submission` autopilot tool defaults its `tdg_issued` argument to the **string `"0"`** and always emits a `TDG Issued` attribute in the payload. An agent that does not explicitly pass a value therefore silently files a zero-TDG `[CONTRIBUTION EVENT]` — the default *is* the wrong answer, and it fails silently (no warning, no error). Note this is the **agent-tool** path only: the sanctioned CLI (`dao_client/modules/report_contribution.py` → `rubric.tdg_for`, `TDG = minutes / 60 * 100`) recomputes TDG from `Type` + `Amount` and explicitly ignores/overrides any caller-supplied value, so CLI-filed contributions are unaffected.
+
+**Impact.** Every contribution filed through the tool by an agent that doesn't override `tdg_issued` lands with `TDG Issued = 0`, under-crediting the contributor and leaving a misleading ledger row that later needs a correction entry. Silent-wrong-default is the worst failure shape: nothing surfaces until a human notices the ledger line.
+
+**Proposed fix (~15-20 min).** In the `create_dao_submission` tool, either (a) drop the `tdg_issued` default and **omit** the `TDG Issued` attribute from the payload when the caller didn't set it (let Edgar/rubric compute it — mirrors the CLI), or (b) default it to the rubric value derived from `Type` + `Amount`. Whichever is chosen, do **not** default to `0`.
+
+**Reassigned.** The actual code fix is owned by **thread 24441** — this entry is backlog hygiene so the root cause is documented and the tool's silent-wrong-default doesn't get re-diagnosed from scratch next time. Blocker: none.
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25148).**
 
 **Symptom.** The ops-sheet tab `Document Notarizations` (spreadsheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`, gid 520413576 — the target of the public `truesight.me/notarizations` redirect) holds **46 data rows, the newest dated 2026-07-08**. Known notarizations since then are absent from it: Sophia's Cleide-factory notarization (2026-09-09, `Telegram Chat Logs` rows 12274/12275) and the Cacau na Veia site visit (2026-09-10, `Telegram Chat Logs` rows 12315/12316). Those rows DO exist in `Telegram Chat Logs` (the authoritative Edgar intake) and the files ARE committed to the `notarizations` repo — only the derived mirror tab is missing them.
