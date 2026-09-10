@@ -49,7 +49,8 @@
    - `approx` — hull of photo/video GPS points only (quick sketch; label clearly).
 4. **Add the farm** to the SunMint Farms sheet tab (farm name, family/owner,
    hectares, region). Add the plot row: plot_id, farm_id, centroid, boundary
-   points, hectares, status, **plot_type** (see §4b).
+   points, hectares, status, **plot_type** (see §4b); name the
+   `plot_id` per §4c (`<SITE_CODE>_<YYYYMMDD>_<purpose>_<N>` for sub-plots).
 5. **Regenerate** `plots/index.geojson` (local script or the workflow) and
    commit — same flow as the trees index.
 6. **Render** — the impact map reads the new polygon automatically after the
@@ -123,6 +124,10 @@ Rules:
   off-vocabulary token. Programmatic writes (GAS `setValue`, DApp submissions)
   are **not** blocked by validation — the GAS off-vocab warning is the guard on
   that path.
+- **Live on the sheet (2026-09-10):** the `SunMint Plots` `Plot Type` header sits
+  at column **G** with its `ONE_OF_LIST` dropdown intact (rows 2+), and values are
+  populated for every plot. The first `research`-typed sub-plot is
+  `B-06-108_20260908_research_1` (thread 24321).
 - **Write paths:** the sheet column **`Plot Type`** (header named to avoid a
   `farm`/`plot` prefix collision with `farm_id`/`plot_id` in the generator's
   column matcher), the FBE GAS handler
@@ -131,6 +136,44 @@ Rules:
   --plot-type` CLI, and the farmer DApp
   (`sunmint_beta/limites-da-fazenda/`, `Plot Type` selector). Registries:
   `sunmint/SCHEMA.md` §Plot-type conventions (keep in sync).
+
+## 4c. Sub-plot naming (`plot_id`) — sibling plots on one property
+
+`plot_id` is **not** free text: §3 step 4 derives it from the **CEPOTX site
+code** (see `CEPOTX_SITE_CODE_REGISTRY.md`), and a site code is issued **per
+property, not per parcel**. So when a property hosts more than one plot, the site
+code alone is ambiguous and the sub-plot needs a suffix.
+
+**Canonical sub-plot rule (governor decision 2026-09-10, thread 24321):**
+
+```
+<SITE_CODE>_<YYYYMMDD>_<purpose>_<N>
+```
+
+- `<SITE_CODE>` — the real CEPOTX code; never invented or re-derived.
+- `<YYYYMMDD>` — the date the **evidence was captured** (the photo/visit date),
+  not the date the row was filed.
+- `<purpose>` — short lowercase token for the plot's role, chosen from the §4b
+  `plot_type` vocabulary (`restoration` / `research` / `enrichment` / `nursery` /
+  `infrastructure`), so the id reads as its own type.
+- `<N>` — 1-based sequence among same-day, same-purpose plots.
+
+Live examples in the registry: `B-06-108_20260908_research_1` (the first
+`research`-typed sub-plot), `B-06-108_20260908_1`, and
+`N-06-37_20260909_restoration_1`.
+
+Gotchas:
+
+- **Include `<purpose>` whenever the property already has a same-day row** —
+  otherwise a research plot collides with e.g. `B-06-108_20260908_1`.
+- The site code stays the **prefix**, so the sub-plot still groups with its
+  parent property in the sheet, the impact map, and `farms/index.json`.
+- **Pre-existing ids are not retro-renamed.** Two older styles remain on purpose:
+  `B-06-108_20260908_1` (bare `_N`) and
+  `V-06-29-reforestation_20260907_plot_1` (`-purpose_…_plot_N`). New rows follow
+  the canonical rule above; **do not invent a third style.**
+- `plot_type` (column) remains the **source of truth** for role — the `<purpose>`
+  token in `plot_id` is a human-readable convenience, not a substitute.
 
 ## 5. Registry schema (`plots/index.geojson`)
 
@@ -193,6 +236,7 @@ Note: GeoJSON is `[lng, lat]` order. Polygon rings must close (first == last).
 
 - **Do** read GPS from container metadata (exiftool), never frame-decode videos.
 - **Do** keep the plot registry machine-generated from the sheet (treasury-cache pattern).
+- **Do** name sub-plots `<SITE_CODE>_<YYYYMMDD>_<purpose>_<N>` (§4c) — never invent a new suffix style.
 - **Do** store raw videos outside git; commit only compressed photos / thumbnails.
 - **Don't** invent a polygon from a photo cluster and label it authoritative.
 - **Don't** create variant backlog files — use OPEN_FOLLOWUPS.md for gaps.
