@@ -20,9 +20,51 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-10T03:36:38Z`
+- Generated (UTC): `2026-09-10T05:02:50Z`
 - Look-back: **7** calendar days (`2026-09-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 13
+- `[TREE PLANTING EVENT]` × 5
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 4
+- `[TREE PLANTING REJECT EVENT]` × 3
+- `[PRACTICE EVENT]` × 2
+- `[PLOT INVALIDATION EVENT]` × 2
+- `[NOTARIZATION]` × 1
+- `[NOTARIZATION EVENT]` × 1
+- `[SALES EVENT]` × 1
+- _free-form (no bracket tag)_ × 10
+
+### Latest entries
+
+- `Edgar_20260909083456_286` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909104732_288` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909105522_290` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124013_292` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124016_294` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124019_296` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909124022_298` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909214639_300` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260909220630_302` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: La do Sítio tree-planting photo backfill → SunMint map live (photos, index, …
+- `Edgar_20260909220926_304` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Raw machine execution: agroverse.shop nibs sale 2026OSCAR_20250711_NIBS_21 (…
+- `Edgar_20260909220929_306` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Direct agent time: david maher sale wrap-up, evidence archival, contribution…
+- `Edgar_20260910000102_308` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Responding to Win on his document
+- `Edgar_20260910000140_310` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
+- `Edgar_20260910031019_312` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: ZZ_TEST_SOPHIA_PLOTTYPE_E2E · Plot Type: maturing · Is New Farm: yes
+- `Edgar_20260910031042_314` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: ZZ_TEST_SOPHIA_DRY · Plot Type: maturing · Is New Farm: yes
+- `Edgar_20260910031550_316` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: PL-003 · Reason: ZZ_TEST junk row — unintentional production write from Sophia E2E dry-run (beta p… · Retractor Email: admin+sophia@truesight.me
+- `Edgar_20260910031552_318` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: PL-004 · Reason: ZZ_TEST junk row — unintentional production write from Sophia E2E dry-run (beta p… · Retractor Email: admin+sophia@truesight.me
+- `Edgar_20260910033437_320` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
+- `Edgar_20260910034314_322` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
+- `Edgar_20260910035642_324` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Site Cristo Rei (Cristo Rei Pacaje Para) · Is New Farm: no · Boundary Type: approx
 
 ---
 
@@ -194,13 +236,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,910.61**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$54.82**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -281,6 +327,12 @@ b47113c | 2026-09-04 05:00:48 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+33b95ff | 2026-09-10 00:50:03 -0300 | File follow-up: CoopCao site code N-06-66 assumed, unverified (#990)
+b3a70bc | 2026-09-10 00:44:50 -0300 | File stale-GAS pinned-deployment follow-up; update deploy registry (@44/@8) (#989)
+2b04c1e | 2026-09-10 00:44:14 -0300 | Cacau na Veia: confirm restoration plot_id N-06-37_20260909_restoration_1 (two plots) (#988)
+08d234e | 2026-09-10 00:41:36 -0300 | Register handoff: GAS deploy accessor guard (tokenomics #470, thread 24846) (#987)
+d068e22 | 2026-09-10 00:36:53 -0300 | Merge pull request #986 from TrueSightDAO/auto/advisory-refresh-2026-09-10
+950dbb5 | 2026-09-10 03:36:42 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
 75fae46 | 2026-09-10 00:30:58 -0300 | Add Cacau na Veia (Pacaje) media task plan — N-06-37 (#984)
 cba635e | 2026-09-10 00:30:57 -0300 | docs(followups): file AGL 19Wag9x Credentials.js existence-guard gap (#985)
 3c0c9de | 2026-09-09 23:37:08 -0300 | docs: register sunmint_index.json in LLM discovery surface table (#981)
@@ -315,18 +367,15 @@ b3fb292 | 2026-09-08 13:48:12 -0300 | chore(previews): refresh Beer Hall preview
 3874085 | 2026-09-08 13:48:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
 bc49737 | 2026-09-08 09:26:17 -0300 | docs(handoff): mark São Jorge media long-pole complete (PR6) — UAT gate open (#955)
 b8df1ac | 2026-09-08 08:35:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
-4a45f24 | 2026-09-08 08:35:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
-bf62d9d | 2026-09-08 02:00:20 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
-2c85886 | 2026-09-08 02:00:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
-249697a | 2026-09-07 22:23:17 -0300 | FSVP guide runbook: record 2026-09-08 delivery to Jedielcio (cepotx.organicos) (#965)
-ab04c1a | 2026-09-07 22:11:35 -0300 | FSVP guide runbook: retrieval header + fix stale 10c placeholder note (#964)
-d395fd2 | 2026-09-07 22:11:15 -0300 | Archive Gary-supplied melanger photo (used as 10c example in FSVP guide v5+)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+765ae53 | 2026-09-10 00:48:00 -0300 | Serialize media-retraction + tree-growth processors with LockService (completes #469/#471 family) (#472)
+33965af | 2026-09-10 00:45:06 -0300 | Serialize farm-boundary-evidence processor with LockService (same race as #469) (#471)
+4946fd9 | 2026-09-10 00:40:03 -0300 | fix(gas): pre-push guard against missing live Credentials accessor (#470)
 45b1acf | 2026-09-10 00:31:35 -0300 | Serialize plot-invalidation processor with LockService to stop duplicate tracking rows (#469)
 aaab424 | 2026-09-09 23:37:29 -0300 | FBE GAS: harden .claspignore against Credentials deletion (#468)
 2387315 | 2026-09-09 23:35:29 -0300 | FBE GAS: warn on missing required Plot Type (#467)
@@ -387,6 +436,19 @@ f597a45 | 2026-09-03 11:42:51 +0000 | chore: refresh currencies.json [skip ci]
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+424b4d8 | 2026-09-10 00:47:26 -0300 | Add Sítio Dois (Pacajá) farm profile — plot N-06-66 (#308)
+7843b36 | 2026-09-10 00:46:08 -0300 | Add sitio-2-pacaja-para photo IMG_9692
+b83ba40 | 2026-09-10 00:46:07 -0300 | Add sitio-2-pacaja-para photo IMG_9689
+96086b8 | 2026-09-10 00:46:06 -0300 | Add sitio-2-pacaja-para photo IMG_9688
+cd95983 | 2026-09-10 00:46:04 -0300 | Add sitio-2-pacaja-para photo IMG_9687
+a51dd95 | 2026-09-10 00:46:03 -0300 | Add sitio-2-pacaja-para photo IMG_9682
+b21f763 | 2026-09-10 00:46:02 -0300 | Add sitio-2-pacaja-para photo IMG_9676
+57f903f | 2026-09-10 00:46:01 -0300 | Add sitio-2-pacaja-para photo IMG_9673
+84ace90 | 2026-09-10 00:45:59 -0300 | Add sitio-2-pacaja-para photo IMG_9666
+81e86fb | 2026-09-10 00:45:58 -0300 | Add sitio-2-pacaja-para photo IMG_9662
+6bcb851 | 2026-09-10 00:45:56 -0300 | Add sitio-2-pacaja-para photo IMG_9659
+4a9070a | 2026-09-10 00:45:55 -0300 | Add sitio-2-pacaja-para photo IMG_9642
+fe967cc | 2026-09-10 00:45:53 -0300 | Add sitio-2-pacaja-para photo IMG_9622
 290b6e7 | 2026-09-09 05:30:39 -0300 | Add /agl15 + /agl16 legacy redirects to Google Sheets (#307)
 a3931db | 2026-09-06 15:10:56 -0300 | fix(fazenda-bom-sucesso): point .farm-hero CSS at real sunmint hero, drop stale rancho-maranta template token (#306)
 513b935 | 2026-09-06 12:16:19 -0300 | Add Fazenda Bom Sucesso to Brazilian Drift journey (#305)
@@ -414,19 +476,6 @@ c22ecae | 2026-09-05 21:00:54 -0300 | Add CEPOTX/COPOPS member farms as journey 
 4af08f9 | 2026-09-05 18:18:16 -0300 | Add Fazenda Santa Rosa IMG_8328 fermentation station photo to gallery (#291)
 58f4784 | 2026-09-05 18:16:17 -0300 | Add Fazenda Santa Rosa IMG_8327 drying station photo to gallery (#290)
 b66639c | 2026-09-05 17:32:34 -0300 | Fix IMG_8316 video ID (stale lVHN5OZ9HCY → GURyK-f94xA) (#289)
-493eda2 | 2026-09-05 17:18:58 -0300 | Add Fazenda Santa Rosa YouTube video gallery (31 clips) (#288)
-1056c45 | 2026-09-05 16:52:53 -0300 | Add Fazenda Santa Rosa farm profile (Antônio & Graça, U-06-06, Uruará) (#287)
-a84e8b0 | 2026-09-05 16:42:15 -0300 | Sítio Raimundo & Geniza: IMG_8277 is drying station + fermentation station (#286)
-8c5b608 | 2026-09-05 16:16:26 -0300 | Sítio Raimundo & Geniza: plot id RG-P1 -> CEPOTX site code U-06-07 (#285)
-3e75bff | 2026-09-05 15:30:33 -0300 | Swap Fazenda Dona Rosa hero to governor-supplied photo (3 people)
-7f712be | 2026-09-05 15:19:57 -0300 | Add Fazenda Dona Rosa (Pará) farm profile page — Rosa Wronscki, Medicilândia (#284)
-c197e20 | 2026-09-05 10:54:35 -0300 | feat: embed Paulo's curated interview videos in fazenda-bom-sucesso media gallery (#283)
-200bea4 | 2026-09-04 16:09:38 -0300 | Add COPOPS affiliation to Sítio Raimundo & Geniza profile; fix canonical URL + stale highlight (#282)
-5045b47 | 2026-09-04 14:23:29 -0300 | feat: farm profile SunMint links deep-link to the farms specific plot (#278)
-59d4007 | 2026-09-04 12:19:02 -0300 | feat(farms): add media.json gallery for fazenda-bom-sucesso (10 planting-day photos) (#281)
-47006c7 | 2026-09-04 12:11:00 -0300 | fix(js): add missing comma after raimundo-geniza-para entry in brazilian-path-data.js (#280)
-98379b7 | 2026-09-04 12:10:17 -0300 | Swap Sítio Raimundo & Geniza hero to Gary's new plot photo (#279)
-cf15416 | 2026-09-04 12:09:48 -0300 | Add Sítio Raimundo & Geniza hero image (1280x960 landscape)
 … (truncated)
 ```
 
@@ -492,6 +541,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 53.7 | 17493.54386 | 9/9/2026 21:51:13 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-03`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
