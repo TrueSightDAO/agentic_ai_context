@@ -54,7 +54,7 @@ are observed from rosters + known farms and are a lookup hint, not a rule.
 |---|---|---|---|
 | B-06-NN | COOPOXIN | B-06-27 … B-06-151 | Fazenda Cleide B-06-108; Santa Anna (see discrepancy note) |
 | U-06-NN | COPOPS | U-06-62 … U-06-78 (plus U-06-06, U-06-07) | Sítio Raimundo & Geniza U-06-07; Fazenda Santa Rosa U-06-06 |
-| N-06-NN | COOPCAO | N-06-02 … N-06-52 | Jader Adriano da Silva Santos N-06-37 (CEPOTX President) |
+| N-06-NN | COOPCAO | N-06-02 … N-06-52 (captured roster) + N-06-66 (governor-confirmed 2026-09-10, outside the captured roster) | Jader Adriano da Silva Santos N-06-37 (CEPOTX President); Sítio Torres (Pacajá) N-06-66 |
 | V-06-NN | ? (not determined) | V-06-29 | Paulo / La do Sítio (V-06-29) |
 
 **One code per property, not per person.** The same producer legitimately holds
@@ -73,6 +73,7 @@ N-06-43/47.
 | U-06-07 | Sítio Raimundo & Geniza | Raimundo Silva (COPOPS Presidente) | COPOPS | RG-P1 | governor-provided site-app screenshot; fda_fsvp copops entity; shop PR #285 |
 | V-06-29 | La do Sítio | Paulo | ? | LD-P1 | AGROVERSE_SUNMINT_FARM_LISTING §6 |
 | N-06-37 | (member property) | Jader Adriano da Silva Santos — CEPOTX President per Rota do Cacau | COOPCAO | — | roster + public record |
+| N-06-66 | Sítio Torres (Pacajá) Plot 1 (cacao enrichment) | Alexandre (CoopCao director-coordinator) | COOPCAO | — | **governor-confirmed 2026-09-10** (Gary, thread 24442); SunMint Plots row 23; `sunmint/plots/index.geojson`; agroverse_shop `farms/sitio-torres-pacaja-para/` (PRs #308/#309); fda_fsvp CEPOTX `N-06-66` anchor |
 
 ## ⚠️ Open discrepancy — B-06-56 vs B-06-58 (Ana Lucia Araujo)
 
