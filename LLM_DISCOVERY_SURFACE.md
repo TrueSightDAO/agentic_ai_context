@@ -17,7 +17,8 @@ Shipped 2026-05-18 to fix that. Established by:
 - `truesight_me_beta` PRs #119 (llms.txt + stats/current.json), #120 (Beer
   Hall recents), #122 (Beer Hall archive), #123 (repos index), #124 (programs +
   partners + deploy targets + treasury per-ledger), #125 (landing-page tile
-  expanders).
+  expanders), #368 (SunMint trees/plots/farms + MAP media rollup; also fixed
+  `stats-refresh.yml` to stage every generated index, not just `current.json`).
 
 ## Live URLs
 
@@ -29,6 +30,7 @@ Shipped 2026-05-18 to fix that. Established by:
 | https://truesight.me/stats/repos_index.json | 6h cron | Every public, non-archived, non-fork TrueSightDAO repo with description, primary language, topics, README URL, tree URL, and **deploy_target** (which production URL the repo deploys to). For "where is X implemented / what does Y do" queries. |
 | https://truesight.me/stats/programs_index.json | 6h cron | Every credentialing program in `lineage-credentials/programs/` with lineage root, authorized attestors, practice / attestation type catalog, source-page URLs. For "what programs does the DAO credential / what's the lineage for X" queries. |
 | https://truesight.me/stats/partners_index.json | 6h cron | Active Agroverse partner storage points with SKU count, total inventory units, top-3 products. For "who's carrying inventory / where can I buy product X" queries. |
+| https://truesight.me/stats/sunmint_index.json | 6h cron | SunMint impact layer + Media Archives Pipeline (MAP) rollup: trees (count + status/species), plots (count + planted/proposed + hectares + region), farms (count + hectares + per-farm list), a `north_star` block (hectares vs 10,000), and per-farm `media` footage totals (items/videos/photos/published_youtube/transcribed). For "how many trees/plots/hectares", "which farms / where", "how much rainforest are you restoring", and "what farm footage exists" queries. Added by PR #368. |
 
 ## The cron + the builder
 
