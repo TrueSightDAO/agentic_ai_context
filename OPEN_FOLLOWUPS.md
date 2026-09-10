@@ -41,12 +41,43 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### Edgar drops `- Plot ID:` (and `- Area (ha):`) from stored FBE messages — silently mints duplicate plot rows
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
+
+**Symptom.** A `[FARM BOUNDARY EVIDENCE EVENT]` submission that included `Plot ID: N-06-66` created a **duplicate** SunMint Plots row (`PL-006`, no Farm ID) instead of upserting the canonical `N-06-66` row (row 22).
+
+**Root cause.** The message Edgar stored in Telegram Chat Logs **omits the `- Plot ID:` line entirely** — it also drops `- Area (ha):`. The GAS parser `extractFarmBoundaryEvidenceInfo_` (`tokenomics` `process_farm_boundary_evidence.gs`) runs `grab('Plot ID')` → returns `''` → `fbeUpsertFarm_` finds no plot match and auto-assigns the next `PL-<seq>` under the plot-first model. Everything else (Farm Name, Boundary Type, Plot Type, Media URLs, Extracted GPS, Is New Farm, Submission Source) round-tripped intact — only the two lines were dropped.
+
+**Impact.** Any boundary submission that (a) targets an EXISTING plot and (b) relies on the `Plot ID` line will instead mint a junk duplicate plot. Silent — no error surfaces to the submitter; the duplicate then pollutes the impact map + farm dropdown until invalidated.
+
+**Related evidence.** The pinned GAS deployment @36 (`1UrBgq…`) also does not expose `?action=processPlotInvalidationFromTelegramChatLogs` (returns "No valid action specified") — same pinned-deployment staleness class as the deploy_gas_project entry below; the manual invalidation had to be recovered by direct sheet write.
+
+**Proposed fix.** (i) Make the Edgar renderer pass every supplied field through verbatim — a field the submitter sent must not vanish server-side. (ii) Harden the parser: if the supplied `Plot ID` is absent from the stored message, that is an Edgar-side bug worth a server log line. (iii) Add an E2E assertion that a submitted `Plot ID` round-trips into `extractFarmBoundaryEvidenceInfo_`.
+
+### `fbeFarmSlug_` ASCII-strips accented farm names — the Farm-ID fallback dedup can never match
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
+
+**Symptom.** The SECOND dedup key in `fbeUpsertFarm_` (match on Farm-ID slug, used when Plot ID does not resolve) failed for `Sítio Torres (Pacajá)`, so the row was appended rather than upserted.
+
+**Root cause.** `fbeFarmSlug_` does `s.replace(/[^a-z0-9\-]/g,'')`, which strips non-ASCII characters instead of transliterating them: `"Sítio Torres (Pacajá)"` → `stio-torres-pacaj`, which is not equal to the stored `sitio-torres-pacaja-para`. Both dedup levels (Plot ID, then Farm-ID slug) therefore missed.
+
+**Proposed fix.** Decompose with Unicode NFD and strip combining marks (or use an explicit í→i / á→a map) BEFORE removing non-`[a-z0-9-]` chars; unit-test the result against the row-22 slug `sitio-torres-pacaja-para`. Consider a third fallback matching the `Plot Name` prefix.
+
+### Farm Boundary Evidence header drift (missing `Plot Type`) shifted every appended row one column — no header-vs-append guard
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
+
+**Symptom.** The `Farm Boundary Evidence` tab header row carried **14** columns with **no `Plot Type`**; `FBE_TRACKING_HEADERS` in the handler defines **15** (`Plot Type` at index 5). `appendRow` therefore wrote 15 values beneath a 14-column header, shifting every appended row one column right — `enrichment` landed in the *Media URLs* slot, the media URLs in *Extracted GPS*, and so on.
+
+**Fix shipped this thread.** Header row rewritten to the canonical 15 columns (`A1:O1`). The already-appended mis-shifted data rows were left in place (they are the audit trail).
+
+**Still open.** The drift itself is unguarded — the header is seeded once when the tab is created and never re-validated against `FBE_TRACKING_HEADERS`, so any future column addition re-introduces the shift silently. Proposed fix: on handler start, assert the live header equals `FBE_TRACKING_HEADERS`; if it differs, extend the header in place or log loudly rather than appending into a mismatched width. Mirror the guard for the Plot Invalidation and Tree Growth tracking tabs.
+
 ### CEPOTX/CoopCao site code `N-06-66` (Sítio Dois, Pacajá) is outside the observed roster range — assumed, needs registry confirmation
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
 
 **Context.** On the 2026-09-09 Pacajá site visit (loc3 — "Sítio Dois", producer **Alexandre**, a CoopCao director), the plot's CEPOTX site code was read as **N-06-66** from a phone-translator screenshot (IMG_9694: "O código dele é N0666"). But `CEPOTX_SITE_CODE_REGISTRY.md` lists the **COOPCAO** family as **N-06-02 … N-06-52** — `N-06-66` falls **outside** that observed range. The registry is itself marked "reported / unverified — read from video, not an official CEPOTX register," and only captured COOPCAO rows 1–16, so no name-match to a producer row was possible. Registered as `N-06-66` **per Gary's explicit instruction to assume it**.
 
-**Impact.** The code is now on public surfaces: the SunMint Plots sheet row (row 22), `sunmint/plots/index.geojson`, and the Agroverse farm profile page `farms/sitio-2-pacaja-para/` (copy + map popup). A plausible 6↔5/4 digit misread would put a wrong site code on a public page.
+**Impact.** The code is now on public surfaces: the SunMint Plots sheet row (row 22), `sunmint/plots/index.geojson`, and the Agroverse farm profile page `farms/sitio-torres-pacaja-para/` (renamed to Sítio Torres 2026-09-10, thread 24442; copy + map popup). A plausible 6↔5/4 digit misread would put a wrong site code on a public page.
 
 **Proposed fix (~20 min).** Confirm the code with CEPOTX / Jedielcio (or the CoopCao branch at Pacajá); if it differs, correct (a) the SunMint Plots sheet row(s), (b) regenerate `plots/index.geojson`, (c) the farm-page copy + Leaflet popup. Cheap corroboration first: re-OCR IMG_9694/9695 at higher zoom, and re-run the two clips where the code is spoken (`/media/pacaje_work/loc3_tx/audio/*.wav`).
 Blocker: none to file; needs an authoritative CEPOTX source to resolve.
