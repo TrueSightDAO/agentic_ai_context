@@ -41,6 +41,35 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### `deploy_gas_project.py --push` silently skips the pinned-deployment repoint — webhooks keep serving stale code (bitten twice)
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24269).**
+
+**Symptom.** A code fix is `clasp push`ed and reports success, but the anonymous `/exec`
+webhook keeps executing the OLD logic. Root cause: web-app `/exec` URLs are pinned to a
+**numbered deployment version** (e.g. `@41`), while `clasp push` only updates **`@HEAD`**.
+`deploy_gas_project.py` only repoints when `--deployment-id <id>` is passed, and **prints
+nothing when it is omitted** (`main()` guards `if args.deployment_id:` — a silent skip). So
+the default `--push` path leaves every pinned webhook serving stale code.
+
+**Incidents.** (1) 2026-08-30 SunMint reject saga — anonymous webhook ran stale v32 while
+HEAD had the fix (documented in `GAS_SCRIPT_PROPERTIES.md` §1.3). (2) 2026-09-10 (this
+thread): the reject webhook at `@41` ran the old first-match-by-tree-id code — the reject
+matched row 34 (already `INVALID`), `break`ed, and never invalidated row 35 (the live `NEW`
+duplicate). Two `--push`es appeared to succeed while changing nothing live. Recovered by
+passing `--deployment-id …` (repoint reject `@41`→`@44`, planting `@7`→`@8`), then
+re-submitting a **fresh** reject event — the first was consumed by the stale code (a reject
+is one-shot per submitted event).
+
+**Proposed fix (small, ~30 min).** In `deploy_gas_project.py`, after a successful push with
+no `--deployment-id`: if the project's `appsscript.json` declares a `webapp` block **or**
+`clasp deployments` lists a non-`@HEAD` pinned deployment, print a **loud warning** naming
+the pinned deployment id(s) and the URL to repoint. Optionally read a per-project
+`pinned_deployment_id` from the manifest and repoint it by default. Either turns a silent
+stale-serve into a visible, actionable step.
+
+Blocker: none. Severity: medium (silent production staleness; has cost two multi-turn
+firefights).
+
 ### AGL expense processor (19Wag9x) `Credentials.js` has no existence guard — clean checkout + `clasp push` still yields `ReferenceError: setApiKeys is not defined`
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 23408).**
 
