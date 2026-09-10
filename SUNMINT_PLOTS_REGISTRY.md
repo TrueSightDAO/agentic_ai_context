@@ -86,6 +86,7 @@ approx → gps_walk → car → incra) — a separate column, not an overload of
 |---|---|
 | `restoration` | net-new planting on a prior **non-forest** baseline (pasture / cleared land). Carries the additionality case. |
 | `mature` | established cacao/agroforest the farmer already had (incl. cabruca, century-old groves). |
+| `maturing` | an established-but-still-growing stand — canopy filling in / bearing, not yet a closed old grove (the walk-observed **middle stage**). |
 | `enrichment` | **additional** trees planted into an existing stand. |
 | `research` | research / trial plot — excluded from headline sequestration & 10,000-ha counts. |
 | `nursery` | seedling production. |
@@ -97,6 +98,13 @@ Rules:
 - **Never auto-default.** A blank cell stays blank — guessing a plot's role is
   how you end up claiming a baseline you never established (the "nothing
   asserted until evidenced" credentialing-lineage principle).
+- **ONE column, seven values — never split stage into a second column.** A
+  walk-observed growth *stage* (`establishing`/`maturing`/`established`) was
+  prototyped as a sibling `plot_stage` column and **dropped** (2026-09, thread
+  24326): the authoritative `SunMint Plots` sheet uses a **single** `Plot Type`
+  column and `maturing` is already typed there. Conform code to the sheet, not
+  the reverse. In particular **do not** re-introduce a `plot_stage` axis — the
+  test `TestSingleColumnVocabulary.test_no_separate_stage_axis` guards this.
 - **`plot_type` is current-state and mutable** — a `restoration` plot becomes
   `mature` in ~15 yr. Update it when the ground truth changes.
 - The *immutable* "was this land forest before?" fact (additionality baseline)
@@ -109,12 +117,20 @@ Rules:
   `sunmint/scripts/build_plots_geojson.py`. The generator **warns** (does not
   reject) on an unrecognized token and on any schema field whose sheet header is
   missing — so a tag cannot silently vanish from the registry.
+- **The sheet column is a dropdown.** `SunMint Plots!G` carries a strict
+  `ONE_OF_LIST` data-validation rule listing the seven values above (added
+  2026-09, thread 24326), so a hand-edit in the sheet cannot introduce an
+  off-vocabulary token. Programmatic writes (GAS `setValue`, DApp submissions)
+  are **not** blocked by validation — the GAS off-vocab warning is the guard on
+  that path.
 - **Write paths:** the sheet column **`Plot Type`** (header named to avoid a
   `farm`/`plot` prefix collision with `farm_id`/`plot_id` in the generator's
   column matcher), the FBE GAS handler
-  (`tokenomics` `process_farm_boundary_evidence.gs`, `- Plot Type:` line), and the
-  `extract_plot_gps.py --plot-type` CLI. Registries: `sunmint/SCHEMA.md` §Plot-type
-  conventions (keep in sync).
+  (`tokenomics` `process_farm_boundary_evidence.gs`, `- Plot Type:` line, plus a
+  non-fatal warning on an off-vocabulary value), the `extract_plot_gps.py
+  --plot-type` CLI, and the farmer DApp
+  (`sunmint_beta/limites-da-fazenda/`, `Plot Type` selector). Registries:
+  `sunmint/SCHEMA.md` §Plot-type conventions (keep in sync).
 
 ## 5. Registry schema (`plots/index.geojson`)
 
@@ -131,7 +147,7 @@ Rules:
       "name": "Rancho Maranta Plot 1 (house)",
       "hectares": 0.5,
       "status": "planted",          // proposed | planted | verified
-      "plot_type": "infrastructure", // restoration | mature | enrichment | research | nursery | infrastructure (blank = unclassified; see §4b)
+      "plot_type": "infrastructure", // restoration | mature | maturing | enrichment | research | nursery | infrastructure (blank = unclassified; see §4b)
       "boundary_authority": "gps_walk", // approx | gps_walk | car | incra
       "verified_at": null,
       "media": ["images/RM-P1/img_7624.jpg"],
