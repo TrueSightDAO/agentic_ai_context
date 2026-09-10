@@ -5,7 +5,7 @@
 > (`handoffs/CACAU_NA_VEIA_MEDIA_TASK_PLAN.md`). This is the **loc3 "Sítio 2"** visit (2026-09-09).
 
 **Created:** 2026-09-10 (Sophia) at Gary's/envoy's request · **Handoff:** 👍 GO (thread 24442)
-**Status:** executing — PR1 this plan; **PR2 + PR6 are the real remaining work**
+**Status:** executing — PR1–PR5 done; **PR6 is the only real remaining work** (UAT gate after)
 
 ## Goal
 1. Confirm the plot behind https://agroverse.shop/farms/sitio-torres-pacaja-para/ is durably
@@ -36,15 +36,25 @@
    **N-06-66 sits outside the observed roster range**. The plot row *exists* in the registry;
    whether `N-06-66` is the **correct issued** code needs **CEPOTX registry confirmation**.
    If disconfirmed: `[PLOT INVALIDATION EVENT]` + re-register (not re-derive).
-6. **⚠️ Provenance mismatch — OUTSTANDING GATE.** Work dir `/media/pacaje_work/loc3/` holds
-   `IMG_9622–IMG_9705`. The zip `20260909_pacaje_location_2_nursery.zip` holds
-   `IMG_9562–IMG_9620` — a **disjoint** set (59 files, 118 entries incl. `__MACOSX/`).
-   **So that zip is NOT loc3's source.** Whether `loc3` ≡ "location 2", and where loc3's files
-   actually came from, needs governor confirmation before archiving (wrong provenance = wrong
-   media attached to a farm).
+6. **✅ Provenance — RESOLVED 2026-09-10 (was flagged as a gate; it was a plan-authored error).**
+   The loc3 source zip **does exist on the box**:
+   `/home/ubuntu/20260909_pacaje_location_3_farm_alessandro_director_coopcao.zip` (2.15 GB,
+   `IMG_9622–IMG_9705`). Its 81 members (38 HEIC / 35 MOV / 8 PNG) are an **exact set match** to
+   `/media/pacaje_work/loc3/` (`comm` diff **empty both ways**); zip mtime 01:54, dir created 01:55
+   → extracted straight from it. The zip name resolves the owner: **Alexandre, CoopCao director**.
+   The three Pacajá zips are **disjoint contiguous phone-roll ranges** — loc1 `IMG_9493–9557` (63),
+   loc2-nursery `IMG_9562–9620` (59), loc3 `IMG_9622–9705` (81). The earlier assertion that
+   `..._location_2_nursery.zip` was loc3's source was simply **wrong**; the manifest
+   `source_zips`/`source_zip_note` has been corrected (commit `b792eb0d`).
 7. **Claimed vs walked extent (flag):** claimed **4.5 ha**; walk hull **19.14 ha** (walk covered
    nursery + mature blocks, not just the plotted area). Boundary authority stays **approx** —
    needs CAR/INCRA or a boundary walk.
+
+## Progress log (newest last)
+- 2026-09-10 · **PR1** ✅ plan landed (`agentic_ai_context` #999)
+- 2026-09-10 · **PR2** ✅ manifest + index committed to `farm_media_manifests@main` (`6fa21fff`, `80b0711d`); provenance corrected (`b792eb0d`)
+- 2026-09-10 · **PR3 / PR4 / PR5** ✅ verified — all **NO-OP** (sheet row present; beta page + 12 assets live; farm in sunmint farms index)
+- **NEXT → PR6** (build: HEIC → farm-media-raw, MOV → MP4 + GPS re-inject, commit transcripts, inbox sidecars w/ explicit `extensions`, daemon upload) → **UAT gate**
 
 ## Source media
 - Dir on box: `/media/pacaje_work/loc3/` (`IMG_9622–IMG_9705`).
@@ -68,8 +78,8 @@
 |---|---|---|
 | `farms/sitio-torres-pacaja-para/` | agroverse_shop_beta | **EXISTS + live** (beta & prod). `index.html` + `media.json` (schemaVersion 1: hero + **12** gallery entries; loads via `js/media-gallery.js`) |
 | `sunmint/plots/index.geojson` | sunmint (api-only) | **`N-06-66` ALREADY PRESENT** (22 features), bbox = walk bbox → PR3 verify-only |
-| `SunMint Plots` tab | sheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` | **verify** the durable sheet row exists for `N-06-66` (daily geojson rebuild source) |
-| `farm_media_manifests/sitio-torres-pacaja-para.json` | farm_media_manifests | **404 — MISSING** → **PR2** (peer layout: root-level `<farm_id>.json` + `index.json` entry) |
+| `SunMint Plots` tab | sheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` | **✅ VERIFIED (PR3)** — row 23 = `N-06-66` / `sitio-torres-pacaja-para`; `sunmint/farms/index.json` also carries the farm (plot_count 1, 19.01 ha). No drift → geojson NO-OP |
+| `farm_media_manifests/sitio-torres-pacaja-para.json` | farm_media_manifests | **✅ CREATED (PR2)** — 81 items, root-level `<farm_id>.json` + `index.json` entry (12→13) |
 | `farm-media-raw/sitio-torres-pacaja-para/photos/` | farm-media-raw (api-only) | **MISSING** (10 peer dirs, not this one) → **PR6** |
 | `/media/media_archive_inbox/farm-media/sitio-torres-pacaja-para/` | box | **no dir, no daemon config entry** → **PR6** |
 | `raw/sitio-torres-*/` in `media.agroverse.shop` | S3 | **absent** → PR6 (daemon upload leg) |
@@ -77,13 +87,12 @@
 
 ## Execution order (ONE PR PER TURN)
 - **PR1** this plan (agentic_ai_context) ✅
-- **PR2** farm_media_manifests: `sitio-torres-pacaja-para.json` (v2 schema: sha256/GPS/duration/
-  objects[]/creation_date/transcription{,_status}/yt_id) + `index.json` entry
-- **PR3** SunMint Plots **sheet row** verify for `N-06-66` (+ regenerate `sunmint/plots/index.geojson`
-  only if sheet drift implies it) — **expected NO-OP on the geojson**
-- **PR4** agroverse_shop_beta — **expected NO-OP**: page + `media.json` gallery already live
-- **PR5** truesight_me_beta wiring — **NO-OP expected**: `farm_id` == page slug
-  (`sitio-torres-pacaja-para`)
+- **PR2** ✅ farm_media_manifests: `sitio-torres-pacaja-para.json` + `index.json` entry — committed at
+  the **real peer schema** (`cacau-na-veia-pacaje.json` carries NO sha256/objects[]/yt_id), plus a
+  `role` field (photo/video/screenshot) to keep the 8 PNG screenshots out of the public gallery
+- **PR3** ✅ SunMint Plots sheet row verified (`N-06-66` @ row 23) — geojson **NO-OP confirmed**
+- **PR4** ✅ agroverse_shop_beta — **NO-OP confirmed**: page + 12-entry `media.json` gallery live, all 12 image assets HTTP 200
+- **PR5** ✅ truesight_me_beta wiring — **NO-OP confirmed**: `farm_id` == slug; farm present in `sunmint/farms/index.json`
 - **PR6** photos (38 HEIC → web JPEGs + full-res originals →
   `farm-media-raw/sitio-torres-pacaja-para/photos/`, Contents-API only) + MOV→MP4 transcode
   (ffmpeg, GPS re-inject via exiftool — **VERIFY `Keys:GPSCoordinates` after**) + inbox sidecars
