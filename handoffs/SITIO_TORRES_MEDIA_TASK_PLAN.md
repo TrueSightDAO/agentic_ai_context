@@ -52,6 +52,12 @@
    needs CAR/INCRA or a boundary walk.
 
 ## Progress log (newest last)
+- 2026-09-10 · **PR6** ✅ **COMPLETE + VERIFIED** — photos 38/38 → `farm-media-raw`; MOV→MP4 35/35 with **GPS assertion 35/35** (source-vs-output 0 mismatches); 35 transcripts + 105 inbox files staged; daemon YouTube upload **35/35, 0 errors** (`daily_budget: 500`, not ~6/day — stale assumption) + `yt_id` backfill; S3 raw **73** + previews **35** (PNG screenshots excluded); manifest v2 **35/35 `yt_id`/`sha256`/`description`** (`421f172e`). PR #1009.
+- 2026-09-10 · **Gallery wiring** ✅ — PR6 published the media but the page gallery still showed **images only** (0 videos). Added **35 `type:"youtube"` entries** to `farms/sitio-torres-pacaja-para/media.json` (47 total) matching the `cristo-rei-pacaje-para` peer. `agroverse_shop_beta` **#319** merged (`604c4e5e`). **Verified live on beta:** 35/35 videoIds embeddable, 12/12 images 200.
+- 2026-09-10 · **Box defect fixed** ✅ — `.env` wrapped `PUBLIC_KEY`/`PRIVATE_KEY` in literal single quotes → Edgar verifier raised on PEM load → **every** CLI contribution was logged but **not dispatched** (`dispatch_event` gated on `signature_verification == "success"`). Quotes stripped (backup `.env.bak.20260910194840`); round-trip verifies `True`.
+- 2026-09-10 · **Contribution events** ✅ — raw execution 180 min → **300 TDG**; direct time 150 min → **250 TDG** (Sophia Truesight, CLI auto-compute per standing rule; both `signature_verification: success`).
+- **NEXT → UAT gate** — governor/envoy reviews beta (`beta.agroverse.shop/farms/sitio-torres-pacaja-para/`) → prod sync ONLY on explicit GO
+
 - 2026-09-10 · **PR1** ✅ plan landed (`agentic_ai_context` #999)
 - 2026-09-10 · **PR2** ✅ manifest + index committed to `farm_media_manifests@main` (`6fa21fff`, `80b0711d`); provenance corrected (`b792eb0d`)
 - 2026-09-10 · **PR3 / PR4 / PR5** ✅ verified — all **NO-OP** (sheet row present; beta page + 12 assets live; farm in sunmint farms index)
