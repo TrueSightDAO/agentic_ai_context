@@ -41,6 +41,24 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### FBE `Plot ID` canonical-label gap — a supplied Plot ID is silently dropped, so the GAS upsert clobbers the wrong plot row
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24321).**
+
+**Symptom.** A `[FARM BOUNDARY EVIDENCE EVENT]` submitted with `Plot ID: B-06-108_20260908_research_1` (Fazenda Cleide research sub-plot, repo `sunmint`) landed on the **wrong** plot row. The GAS handler `fbeUpsertFarm_` matched by **farm slug** (not plot id), hit the first `fazenda-cleide` row — row 5, `plot_id = B-06-108`, the 114 ha whole-farm plot — and its update path **overwrote row 5's `plot_type`: `maturing → research`**. The FBE tracking row (21) recorded `Plot ID = B-06-108`, *not* the value submitted, proving the Plot ID never survived normalization. The intended target row 18 (`..._research_1`) was left untouched (already correct from an earlier direct sheet write). Row 5 was restored and the `sunmint` registry (`plots/index.geojson`, `farms/index.json`) regenerated same-thread. Same failure class as the earlier Sítio Torres duplicate `PL-006` (invalidated via a `[PLOT INVALIDATION EVENT]`, `Telegram Chat Logs` row 12305).
+
+**Root cause (two independent gaps, both confirmed live on the box 2026-09-10).**
+1. **Catalog omission (Edgar / `dao_protocol`).** In `truesight_dao_client/server/data/events_catalog.json` (live catalog v5, 40 events) the `FARM BOUNDARY EVIDENCE EVENT` entry's `canonical_labels` **omits `"Plot ID"`**, even though the same entry's description documents a `- Plot ID:` line (“omit Plot ID when unknown… NEVER send an empty '- Plot ID:' line”). Neighbouring `MEDIA RETRACTION EVENT` *does* list `"Plot ID"` in both `canonical_labels` and `required_fields`, so the omission is an oversight, not intent.
+2. **Silent drop in the autopilot normalizer (`truesight_autopilot/app/main.py`).** The active path (`CATALOG_NORMALIZE=False` default → legacy branch of `_normalize_submission_labels`, ~line 1770) drops any attribute key not in the event's `canonical_labels`:
+   ```python
+   if canonical_set and canonical_key not in canonical_set:
+       continue          # silent drop
+   ```
+   So a governor-supplied `Plot ID` is stripped **before signing** and never reaches Edgar/GAS. (Edgar's `edgar_client.build_payload` renders *all* attributes — it does not filter — which is why every other label rendered fine.) The GAS handler then falls through to its `farmSlug` fallback and clobbers the wrong row.
+
+**Impact.** Any FBE carrying a Plot ID (a documented, intended field) silently mis-targets the upsert — overwriting a valid sibling plot's `plot_type`/`boundary_type`, or (on an unmatched slug) creating a duplicate row in the `PL-006` shape. A silent wrong-row write from a machine path is the worst failure shape: nothing surfaces until the derived registry is regenerated with corrupt data.
+
+**Proposed fix (~20–30 min, two small PRs).** (1) **`dao_protocol`:** add `"Plot ID"` to `FARM BOUNDARY EVIDENCE EVENT.canonical_labels` in `events_catalog.json`, and ideally to the FBE module's `canonical_labels` too (belt-and-suspenders — the catalog is the live source). (2) **`truesight_autopilot`:** stop silently dropping non-canonical keys — at minimum log a loud WARNING naming the dropped key + event, and ideally union a small `_DAO_GUARANTEED_LABELS` set (currently `FBE → ["Plot ID"]`) into the catalog labels at merge, so a catalog omission can never drop a documented DAO field again. (3) Optional hardening: make `fbeUpsertFarm_`'s slug fallback **refuse** to write `plot_type` when >1 row shares the slug (fail safe instead of clobber). Blocker: none. *(A working, locally-gated fix for gap (2) — `app/main.py` + a regression test — was built on branch `fix/fbe-plot-id-normalization` but **not pushed**: the governor judged this a narrow edge case, so the code fix is deferred and only this backlog entry is filed.)*
+
 ### CLI `.env` key values wrapped in literal quotes silently break signature verification (logged-but-not-dispatched)
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
 
