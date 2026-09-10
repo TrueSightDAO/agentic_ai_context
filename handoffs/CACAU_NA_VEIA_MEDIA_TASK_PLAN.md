@@ -48,11 +48,23 @@
 - **PR6** photos → farm-media-raw + inbox sidecars + MOV→MP4 transcode (GPS re-inject) + transcription → daemon upload (~6/day quota) → yt_ids backfilled
 - **UAT gate** → governor reviews beta → prod sync ONLY on explicit GO.
 
-## Plot feature (N-06-37, for PR3)
+## Plot features (TWO plots, for PR3)
+
+Governor confirmed 2026-09-10 (thread 24441) there are **two plots**: the MATURE
+plot (`N-06-37`) and a RESTORATION plot in front/behind it, named
+**`N-06-37_20260909_restoration_1`** — following the established sub-plot suffix
+convention `<sitecode>_<YYYYMMDD>_<purpose>_<seq>` (cf. live sheet rows
+`B-06-108_20260908_research_1`, `B-06-108_20260908_1`,
+`V-06-29-reforestation_20260907_plot_1`). Only the BASE code `N-06-37` is issued
+by CEPOTX; suffixing it for a sub-plot does not invent a code.
+
 ```json
-{"plot_id":"N-06-37","farm_id":"cacau-na-veia-pacaje","name":"Sítio Cacau na Veia Plot 1 (mature cacao agroforest)","hectares":30,"status":"proposed","plot_type":"mature","boundary_authority":"approx","owner":"Jader Adriano da Silva Santos (CEPOTX) & wife","region":"Pacajá, Pará","verified_at":"2026-09-09","notes":"Hull of 61 geotagged media (31 MOV + 30 HEIC, visit 2026-09-09): lat -3.60980..-3.60850, lng -51.03630..-51.03240. 35+yr hybrid cacao agroforest (SAF). Claimed 30 ha (8 forest + 22 cacao, ~22k plants, IMG_9514/9546); approx hull 3.02 ha < claimed -> needs CAR/INCRA or boundary walk. Companion RESTORATION plot (in front/behind) pending governor media."}
+{"plot_id":"N-06-37","farm_id":"cacau-na-veia-pacaje","name":"Sítio Cacau na Veia Plot 1 (mature cacao agroforest)","hectares":30,"status":"proposed","plot_type":"mature","boundary_authority":"approx","owner":"Jader Adriano da Silva Santos (CEPOTX) & wife","region":"Pacajá, Pará","verified_at":"2026-09-09","notes":"Mature-plot segment of a 2026-09-09 walk: 47 geotagged files, hull 2.52 ha; lat -3.60980..-3.60850, lng -51.03630..-51.03240. 35+yr hybrid cacao agroforest (SAF). Claimed 30 ha (8 forest + 22 cacao, ~22k plants, IMG_9514/9546); hull < claimed -> needs CAR/INCRA or boundary walk."}
+{"plot_id":"N-06-37_20260909_restoration_1","farm_id":"cacau-na-veia-pacaje","name":"Sítio Cacau na Veia Restoration Plot 1 (2026-09-09)","hectares":0.74,"status":"proposed","plot_type":"restoration","boundary_authority":"approx","owner":"Jader Adriano da Silva Santos (CEPOTX) & wife","region":"Pacajá, Pará","verified_at":"2026-09-09","notes":"Failed reforestation patch (IMG_9533: cacao+forest species planted, lost to drought, to be replanted). Hull 0.74 ha from the 15-photo restoration set (governor-supplied zip 20260909_president_restoration_plot.zip); lat -3.609697..-3.608539, lng -51.034236..-51.033394. Adjacent to (and hull-overlapping) the mature plot N-06-37 - same-day walk crossed both; needs walk/CAR to separate."}
 ```
-GeoJSON ring (lng,lat, closed): `[[-51.0363,-3.6098],[-51.0359,-3.6098],[-51.0341,-3.6097],[-51.033864,-3.609617],[-51.032403,-3.608553],[-51.0324,-3.6085],[-51.034022,-3.608539],[-51.0363,-3.6097],[-51.0363,-3.6098]]`
+GeoJSON rings (lng,lat, closed):
+- N-06-37 (mature): `[[-51.0363,-3.6098],[-51.0359,-3.6098],[-51.0341,-3.6097],[-51.0336,-3.6094],[-51.032403,-3.608553],[-51.0324,-3.6085],[-51.0336,-3.6086],[-51.0363,-3.6097],[-51.0363,-3.6098]]`
+- N-06-37_20260909_restoration_1: `[[-51.034236,-3.609258],[-51.034211,-3.609697],[-51.033864,-3.609617],[-51.033578,-3.609242],[-51.033394,-3.608928],[-51.034022,-3.608539],[-51.034169,-3.60875],[-51.034231,-3.609192],[-51.034236,-3.609258]]`
 
 ## Media pipeline notes
 1. Photos (30 HEIC) → web JPEGs for gallery + full-res originals → `farm-media-raw/cacau-na-veia-pacaje/photos/` (Contents-API only).
@@ -68,4 +80,12 @@ GeoJSON ring (lng,lat, closed): `[[-51.0363,-3.6098],[-51.0359,-3.6098],[-51.034
 - HECTARES: flagged — hull 3.02 ha vs claimed 30 ha. Registered as 30 (claimed) with `approx` authority + reconciliation note (RM-P2 precedent).
 
 ## RESUME HERE
-PR1 ✅ this plan. Next: **PR2** manifest `cacau-na-veia-pacaje.json` + index entry → **PR3** SunMint Plots sheet row N-06-37 + regenerate geojson → **PR4** shop page (gallery + cross-link) → **PR5** cross-links if needed → **PR6** raw photos + inbox + transcode/daemon. UAT gate before any prod sync. Companion RESTORATION plot = separate later handoff (governor to supply media).
+PR1 ✅ this plan. PR2 ✅ manifest `cacau-na-veia-pacaje.json` (64 items: 49 mature + 15 restoration) + index entry.
+Next: **PR3** SunMint Plots sheet rows (BOTH — `N-06-37` mature 30 ha + `N-06-37_20260909_restoration_1` restoration 0.74 ha) + regenerate `plots/index.geojson` + `farms/index.json` → **PR4** shop page (gallery + cross-link) → **PR5** cross-links if needed → **PR6** raw photos + inbox + transcode/daemon. UAT gate before any prod sync.
+
+> **PR3 write-path note:** the SunMint Plots sheet is the durable source of truth and
+the only writer tools available to Sophia are READ-ONLY SAs. Sheet rows must be written
+via the FBE GAS handler (`tokenomics` `process_farm_boundary_evidence.gs`) or a
+`sunmint_work` checkout with `edgar_dapp_listener_key.json`.
+
+Status: restoration zip received (15 HEIC, 0 MOV, 14 dups of loc1, 1 new) — **no new transcription needed**. Governor confirmed plot naming.
