@@ -5,7 +5,7 @@
 > (`handoffs/CACAU_NA_VEIA_MEDIA_TASK_PLAN.md`). This is the **loc3 "Sítio 2"** visit (2026-09-09).
 
 **Created:** 2026-09-10 (Sophia) at Gary's/envoy's request · **Handoff:** 👍 GO (thread 24442)
-**Status:** executing — **PR1–PR5 done, PR6 in progress**; UAT gate after PR6
+**Status:** executing — **PR1–PR6 DONE**; **UAT gate** — governor reviews the beta page, then prod sync ONLY on explicit GO
 
 ## Goal
 1. Confirm the plot behind https://agroverse.shop/farms/sitio-torres-pacaja-para/ is durably
@@ -58,6 +58,8 @@
 - **NEXT → PR6** (build: HEIC → farm-media-raw, MOV → MP4 + GPS re-inject, commit transcripts, inbox sidecars w/ explicit `extensions`, daemon upload) → **UAT gate**
 - 2026-09-10 · **both gates RESOLVED** — (a) `N-06-66` governor-verified; (b) provenance = `..._location_3_farm_alessandro_director_coopcao.zip` (exact set-match). Manifest `site_code_status` → VERIFIED (`93e69e26`)
 - 2026-09-10 · **PR6 STARTED** — MOV→MP4 transcode + GPS re-inject running in background (`/media/pacaje_work/loc3_pr6/`); photos + sidecars + transcripts next
+- 2026-09-10 · **PR6 DONE** ✅ — 38 HEIC → `farm-media-raw/photos/`; 35 MOV → MP4 (+GPS re-inject, **35/35 verified**); 105 inbox files (35 mp4/json/vtt) with explicit `extensions`; daemon uploaded **35/35 (0 errors)** → yt_ids backfilled; S3 `raw/` = **73** (38 HEIC + 35 MOV) + 35 previews (PNGs excluded); manifest **v2** (`421f172e`). **NEXT → UAT gate.**
+  - *Correction:* the PR2 note that peer `cacau-na-veia-pacaje.json` carries "NO sha256/objects[]/yt_id" is **stale** — the live peer manifest DOES carry them; loc3 manifest upgraded to match.
 
 ## Source media
 - Dir on box: `/media/pacaje_work/loc3/` (`IMG_9622–IMG_9705`).
@@ -83,9 +85,9 @@
 | `sunmint/plots/index.geojson` | sunmint (api-only) | **`N-06-66` ALREADY PRESENT** (22 features), bbox = walk bbox → PR3 verify-only |
 | `SunMint Plots` tab | sheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` | **✅ VERIFIED (PR3)** — row 23 = `N-06-66` / `sitio-torres-pacaja-para`; `sunmint/farms/index.json` also carries the farm (plot_count 1, 19.01 ha). No drift → geojson NO-OP |
 | `farm_media_manifests/sitio-torres-pacaja-para.json` | farm_media_manifests | **✅ CREATED (PR2)** — 81 items, root-level `<farm_id>.json` + `index.json` entry (12→13) |
-| `farm-media-raw/sitio-torres-pacaja-para/photos/` | farm-media-raw (api-only) | **MISSING** (10 peer dirs, not this one) → **PR6 (in progress)** |
-| `/media/media_archive_inbox/farm-media/sitio-torres-pacaja-para/` | box | **no dir, no daemon config entry** → **PR6** |
-| `raw/sitio-torres-*/` in `media.agroverse.shop` | S3 | **absent** → PR6 (daemon upload leg) |
+| `farm-media-raw/sitio-torres-pacaja-para/photos/` | farm-media-raw (api-only) | **✅ DONE (PR6)** — 38 HEIC uploaded (verified 38 via Contents API) |
+| `/media/media_archive_inbox/farm-media/sitio-torres-pacaja-para/` | box | **✅ DONE (PR6)** — 35 mp4 + 35 json + 35 vtt; daemon config entry added (box-local); **35/35 uploaded, 0 errors** |
+| `raw/sitio-torres-*/` in `media.agroverse.shop` | S3 | **✅ DONE (PR6)** — `raw/` = **73** (38 HEIC + 35 MOV), `previews/` = 35; PNGs excluded |
 | FSVP / entity | fda_fsvp | already covered by CEPOTX `N-06-66` anchor; no new entity |
 
 ## Execution order (ONE PR PER TURN)
