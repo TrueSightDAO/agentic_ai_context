@@ -169,16 +169,6 @@ while len(ws.row_values(r + 1)) < ci + 1:
 
 **Still open.** The drift itself is unguarded — the header is seeded once when the tab is created and never re-validated against `FBE_TRACKING_HEADERS`, so any future column addition re-introduces the shift silently. Proposed fix: on handler start, assert the live header equals `FBE_TRACKING_HEADERS`; if it differs, extend the header in place or log loudly rather than appending into a mismatched width. Mirror the guard for the Plot Invalidation and Tree Growth tracking tabs.
 
-### CEPOTX/CoopCao site code `N-06-66` (Sítio Dois, Pacajá) is outside the observed roster range — assumed, needs registry confirmation
-**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
-
-**Context.** On the 2026-09-09 Pacajá site visit (loc3 — "Sítio Dois", producer **Alexandre**, a CoopCao director), the plot's CEPOTX site code was read as **N-06-66** from a phone-translator screenshot (IMG_9694: "O código dele é N0666"). But `CEPOTX_SITE_CODE_REGISTRY.md` lists the **COOPCAO** family as **N-06-02 … N-06-52** — `N-06-66` falls **outside** that observed range. The registry is itself marked "reported / unverified — read from video, not an official CEPOTX register," and only captured COOPCAO rows 1–16, so no name-match to a producer row was possible. Registered as `N-06-66` **per Gary's explicit instruction to assume it**.
-
-**Impact.** The code is now on public surfaces: the SunMint Plots sheet row (row 22), `sunmint/plots/index.geojson`, and the Agroverse farm profile page `farms/sitio-torres-pacaja-para/` (renamed to Sítio Torres 2026-09-10, thread 24442; copy + map popup). A plausible 6↔5/4 digit misread would put a wrong site code on a public page.
-
-**Proposed fix (~20 min).** Confirm the code with CEPOTX / Jedielcio (or the CoopCao branch at Pacajá); if it differs, correct (a) the SunMint Plots sheet row(s), (b) regenerate `plots/index.geojson`, (c) the farm-page copy + Leaflet popup. Cheap corroboration first: re-OCR IMG_9694/9695 at higher zoom, and re-run the two clips where the code is spoken (`/media/pacaje_work/loc3_tx/audio/*.wav`).
-Blocker: none to file; needs an authoritative CEPOTX source to resolve.
-
 ### `deploy_gas_project.py --push` silently skips the pinned-deployment repoint — webhooks keep serving stale code (bitten twice)
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24269).**
 
@@ -1863,6 +1853,11 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### CEPOTX/CoopCao site code `N-06-66` (Sítio Torres, Pacajá) — RESOLVED 2026-09-10 (governor-confirmed; registry updated)
+**Shipped 2026-09-10 (Sophia, thread 25149).** Governor (Gary, thread 24442) **confirmed `N-06-66` is the correct issued CEPOTX site code** for the Sítio Torres (Pacajá) plot — the property of **Alexandre**, a CoopCao director-coordinator — superseding the earlier "outside the observed roster range" concern. `CEPOTX_SITE_CODE_REGISTRY.md` updated in the same PR: the COOPCAO observed range is annotated with `N-06-66` as governor-confirmed, and an anchors-table row was added (`N-06-66` / Sítio Torres (Pacajá) Plot 1 / Alexandre / COOPCAO), tying to the SunMint Plots sheet row 23, `sunmint/plots/index.geojson`, and the agroverse_shop farm page (PRs #308/#309). The follow-up's corroboration steps (re-OCR IMG_9694/9695, re-run the spoken-code clips) are no longer blocking — the code is treated as issued and authoritative.
+
+**Original Pending entry (retained for history).** *Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).* Context: on the 2026-09-09 Pacajá site visit (loc3 — "Sítio Dois", producer **Alexandre**, a CoopCao director), the plot's CEPOTX site code was read as **N-06-66** from a phone-translator screenshot (IMG_9694: "O código dele é N0666"). `CEPOTX_SITE_CODE_REGISTRY.md` listed the **COOPCAO** family as **N-06-02 … N-06-52** — `N-06-66` fell outside that observed range, and the registry is marked "reported / unverified," so no name-match was possible; the code was registered on Gary's assumption. Impact: the code is on public surfaces (SunMint Plots sheet, `plots/index.geojson`, agroverse_shop farm page). Resolution: governor confirmed the code as issued (thread 24442), closing the registry-range question.
 
 ### `farm_media_manifest` couldn't parse DMS GPS — every Apple-media item got `latitude: null`
 **Shipped 2026-09-10 ([farm-media-daemon#24](https://github.com/TrueSightDAO/farm-media-daemon/pull/24)).** `farm_media_manifest._parse_gps` handled only decimal (`float(split(","))`), so exiftool DMS strings (`3 deg 33' 25.20" S, …`) raised `ValueError` → `None`; `gps_coverage` read `0/N` and `paulo-la-do-sitio-para.json` needed a hand-written `_remediation` block. Now delegates to the daemon's own DMS-aware `farm_media_geo.parse_gps` (one shared parser) + 4 unit tests (decimal, exact DMS sidecar string, equality vs `farm_media_geo`, none/junk). Verified end-to-end on Cristo Rei: `GPS 0/13 → 12/13` (the 13th lacks GPS on the original).
