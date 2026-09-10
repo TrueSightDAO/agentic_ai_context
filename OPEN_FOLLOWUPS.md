@@ -41,23 +41,39 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
-### SunMint `plot_type` — add the `Plot Type` header to the live sheet + backfill existing rows
-**Filed 2026-09-09. Owner: unclaimed. Governor: Gary (thread 24326).** The `plot_type` column
-(see `SUNMINT_PLOTS_REGISTRY.md` §4b) shipped in code — generator (`sunmint`), FBE GAS handler +
-`SCHEMA.md` docs (`tokenomics` #465, `sunmint` PR), and the registry runbook — but the **live
-`SunMint Plots` sheet tab still has no `Plot Type` header**, so the generator emits no `plot_type`
-for any existing plot (and should WARN "no column matches 'plot_type'"). **To do:** (1) add the
-`Plot Type` **header** at column O (after `Longitude`) on the `SunMint Plots` tab — a
-**non-destructive empty-header insertion** (write via `agroverse_qr_code_manager` SA; the
-`edgar_dapp_listener` SA also writes there); (2) re-run `build_plots_geojson.py` and confirm the
-`plot_type` WARN disappears and each feature carries `plot_type`; (3) **backfill** the existing
-rows from the 2026-09 governor walk — **provisional**, reconcile the exact plot_id list against the
-live tab first: `infrastructure` → RM-P1, B-06-58, DR-P1, PL-002; `restoration` → U-06-07,
-V-06-29-reforestation_plot_1/2, B-06-108_20260908_1; `mature` → SJ-P1, FC-P1, OB-P1, FSA-P1,
-B-06-108, U-06-06; `enrichment` → V-06-29; `research` → none yet. **Leave ambiguous rows blank**
-(unclassified) — never guess. Do the header + backfill in **one** write session to avoid the
-documented multi-writer race on the sheet + `plots/index.geojson` (see the two entries below).
-Blocker: none — needs a governor go for the sheet write.
+### SunMint `plot_type` — backfill existing rows in the live sheet (header landed; generator verified)
+**Filed 2026-09-09. Owner: unclaimed. Governor: Gary (thread 24326).**
+
+**Update 2026-09-09 (verified in-session):** the `plot_type` column (see `SUNMINT_PLOTS_REGISTRY.md`
+§4b) shipped in code — generator (`sunmint`), FBE GAS handler + `SCHEMA.md` (`tokenomics` #465,
+`sunmint` commits) — and the **`Plot Type` header now exists on the live `SunMint Plots` tab**, at
+**column G** (between `Boundary Authority` and `Owner`), **not column O** as this entry originally
+said — A–O were already occupied (the header ran through `Invalidated By` at O, with
+`Invalidated At`/`Reason` at Q/R; P is an empty gap). Header now spans A–S.
+
+**Why an interior insert is safe:** `build_plots_geojson.py` resolves every column **by header name**
+via `idx()`, never by position — so `plot_type` is found at index 6 and `boundary_authority`/`owner`
+still resolve. **Verified end-to-end:** running `build_plots_geojson.py` against the live sheet emits
+`plot_type: "research"` for the one row typed so far (`B-06-108_20260908_research_1`) and leaves the
+other 16 rows blank/absent (unclassified, no WARN). The WARN "no column matches 'plot_type'" is gone.
+
+**Remaining — backfill only.** Assign types to the unclassified rows from the 2026-09 governor walk
+(**provisional**; reconcile plot_ids against the live tab first):
+`infrastructure` → RM-P1, B-06-58, DR-P1, PL-002; `restoration` → U-06-07,
+V-06-29-reforestation_20260907_plot_1/2, B-06-108_20260908_1; `mature` → SJ-P1, FC-P1, OB-P1,
+FSA-P1, B-06-108, U-06-06; `enrichment` → V-06-29; `research` → B-06-108_20260908_research_1 (done).
+**Leave ambiguous rows blank** (unclassified) — never guess; `RM-P2` in particular has no obvious
+type yet, and the `infrastructure` rows are an **accounting** call (tag + exclude from sequestration
+area, or leave blank) that is the governor's to make.
+
+Data-hygiene noticed while reading the live tab (geometry unaffected — the generator reads
+`Coordinates`): (a) the `B-06-58` row's `Longitude` cell carries a concatenated owner note
+(`-52.572044 Registered owner per CEPOTX: …`) rather than a bare number; (b) the reactive
+`repository_dispatch: plots-index-rebuild` trigger advertised in `sunmint`
+`.github/workflows/rebuild-plots-index.yml` is **not wired** — no GAS calls it (grep of the tokenomics
+GAS tree finds no `plots-index-rebuild`), so the daily 06:05 UTC cron is the only automatic rebuild;
+use `workflow_dispatch` for an immediate refresh.
+Blocker: none.
 
 ### Sibling GAS project 1wONDeDwZ has LIVE Wix/Telegram secrets in a plaintext Credentials.js on shared disk — verify not committed, rotate
 **Filed 2026-09-06. Owner: unclaimed. Governor: Gary (thread 21628).** During the AGL expense-processor recovery (19Wag9x `Credentials.gs` deleted by `clasp push`, see tokenomics PR #459 + .claspignore guard PR), Envoy found `google_app_scripts/1wONDeDwZ_fXNapDKpstWrBION3aV3r7NXwq7PCdqbW1LvI5ceaykQNbR/Credentials.js` holds **live literal secrets** — a Wix API key (`IST.<jwt>`, the Agroverse Wix headless token, same class leaked historically in PR #369 / f8b38a8) and a Telegram bot token (`7095843169:…`) — as hardcoded strings on the autopilot box. A second copy exists at `/opt/truesight_autopilot/tokenomics/clasp_mirrors/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/Credentials.js` (getCredentials-only, Wix/QuickNode keys). The paths sit under `.gitignore` (`google_app_scripts/**/Credentials.js`), so `git status` shows them **ignored, not committed** — but: (1) Envoy copied the literal values into a scratch dir mid-recovery (deleted after, never written to the target project), so the secrets moved between sessions/hosts; (2) parts of the file content were echoed in session tool output/transcript; (3) the files predate `.claspignore` hardening and a future force-add or mirror copy could expose them. **To do:** (1) confirm via `git ls-files` (both box checkouts) + GitHub code search that no Credentials.js literal from 1wONDeDwZ / 1MnAsIQA is committed anywhere; (2) **rotate** the Telegram bot token (BotFather) and the Wix IST token, then update Script Properties in the live 1wONDeDwZ project; (3) convert that project's Credentials.js to the secret-free Script-Properties-read pattern + add a `.claspignore` (same as the 19Wag9x fix). Severity: medium-high — not confirmed public, but duplicated outside its home project with leak history.
