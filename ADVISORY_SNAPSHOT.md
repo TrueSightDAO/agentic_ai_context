@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-10T05:02:50Z`
+- Generated (UTC): `2026-09-10T11:39:59Z`
 - Look-back: **7** calendar days (`2026-09-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,12 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 13
-- `[TREE PLANTING EVENT]` × 5
-- `[FARM BOUNDARY EVIDENCE EVENT]` × 4
+- `[CONTRIBUTION EVENT]` × 15
+- `[FARM BOUNDARY EVIDENCE EVENT]` × 5
 - `[TREE PLANTING REJECT EVENT]` × 3
+- `[PLOT INVALIDATION EVENT]` × 3
 - `[PRACTICE EVENT]` × 2
-- `[PLOT INVALIDATION EVENT]` × 2
+- `[TREE PLANTING EVENT]` × 1
 - `[NOTARIZATION]` × 1
 - `[NOTARIZATION EVENT]` × 1
 - `[SALES EVENT]` × 1
@@ -45,10 +45,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260909083456_286` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260909104732_288` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260909105522_290` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260909124013_292` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260909124016_294` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260909124019_296` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260909124022_298` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
@@ -65,6 +61,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260910033437_320` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
 - `Edgar_20260910034314_322` · **Edgar** · [TREE PLANTING REJECT EVENT] QR Code: (unlinked) · SunMint Submission Message ID: Edgar_20260903072613_078 · Updated by: Sophia Truesight
 - `Edgar_20260910035642_324` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Site Cristo Rei (Cristo Rei Pacaje Para) · Is New Farm: no · Boundary Type: approx
+- `Edgar_20260910102015_326` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SunMint tree-planting reject saga — B1/B2/B3 live + GAS pinned-deployment re…
+- `Edgar_20260910102346_328` · **Edgar** · [FARM BOUNDARY EVIDENCE EVENT] Farm Name: Sítio Torres (Pacajá) · Boundary Type: approx · Plot Type: enrichment
+- `Edgar_20260910102527_330` · **Edgar** · [PLOT INVALIDATION EVENT] Plot ID: PL-006 · Reason: Duplicate plot row auto-created 2026-09-10 by a [FARM BOUNDARY EVIDENCE EVENT] fo… · Retractor Email: admin+sophia@truesight.me
+- `Edgar_20260910104903_332` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Security incident response — transcript repo privacy, fine-grained PAT redac…
 
 ---
 
@@ -79,7 +79,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-09T10:59:14.445Z`
+- Generated (UTC): `2026-09-10T10:59:13.906Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,12 +89,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **885**, follow_up **71**, bulk **0**, unknown **2** (data rows: **958**)
+- **Email Agent Follow Up** — logged sends: warmup **888**, follow_up **71**, bulk **0**, unknown **2** (data rows: **961**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **809**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **812**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -275,6 +275,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+163418c | 2026-09-10 05:08:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 8e8054d | 2026-09-09 23:34:43 -0300 | fix(ci): stage the whole stats/ dir so new indexes can't be dropped (#370)
 e2d6ccd | 2026-09-09 23:30:58 -0300 | Expose SunMint trees/plots/farms + MAP media archive to LLM discovery (#368)
 c270bc6 | 2026-09-09 23:21:39 -0300 | SunMint impact map: show Plot Type in the plot popup (#369)
@@ -314,7 +315,6 @@ acdfb4e | 2026-09-05 04:52:46 +0000 | chore(stats): refresh stats/current.json [
 44f6c0a | 2026-09-04 16:33:36 +0000 | chore(stats): refresh stats/current.json [skip ci]
 f0b0dd6 | 2026-09-04 11:50:58 -0300 | fix: plot pills silently vanished — two use-before-declare bugs in render() (#351)
 f0baf95 | 2026-09-04 11:39:35 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b47113c | 2026-09-04 05:00:48 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +327,13 @@ b47113c | 2026-09-04 05:00:48 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3036c3b | 2026-09-10 07:54:04 -0300 | docs(sunmint): canonize sub-plot naming + Plot Type live-state note (#996)
+b12e34c | 2026-09-10 07:47:14 -0300 | docs(OPEN_FOLLOWUPS): file archive-root extension default gap + extract_plot_gps set_cell loop; note manifest GPS parser fix (#994)
+1cbd954 | 2026-09-10 07:39:46 -0300 | OPEN_FOLLOWUPS: file 3 FBE-boundary defects (dropped Plot ID, accent slug, header drift) (#993)
+0164a7e | 2026-09-10 07:34:23 -0300 | Cacau na Veia: record PR4 done + PR5 no-op, register handoff row (thread 24441) (#992)
+07bf00d | 2026-09-10 02:03:26 -0300 | Cacau na Veia plan: PR3 done + correct the FBE write-path note (#991)
+1bfa294 | 2026-09-10 02:03:06 -0300 | chore(previews): refresh Beer Hall preview (2026-09-10 UTC)
+46f62bd | 2026-09-10 02:03:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
 33b95ff | 2026-09-10 00:50:03 -0300 | File follow-up: CoopCao site code N-06-66 assumed, unverified (#990)
 b3a70bc | 2026-09-10 00:44:50 -0300 | File stale-GAS pinned-deployment follow-up; update deploy registry (@44/@8) (#989)
 2b04c1e | 2026-09-10 00:44:14 -0300 | Cacau na Veia: confirm restoration plot_id N-06-37_20260909_restoration_1 (two plots) (#988)
@@ -360,19 +367,13 @@ d922245 | 2026-09-09 02:00:03 -0300 | chore(previews): refresh Beer Hall preview
 77c5c73 | 2026-09-08 21:49:43 -0300 | Sourcing network: Pará/CEPOTX lane gains in-network bean-to-bar conversion (#969)
 6c70f02 | 2026-09-08 21:45:07 -0300 | docs: codify equipment-media MAP namespace decision (thread 23018) (#968)
 4f08dde | 2026-09-08 18:19:56 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
-b0f31a9 | 2026-09-08 18:19:54 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
-c012b60 | 2026-09-08 15:46:59 -0300 | docs: sweep forward-facing /home/ubuntu + ~/media_archive_inbox media refs to /media (#967)
-36de8f1 | 2026-09-08 14:41:48 -0300 | docs: document autopilot box /media disk layout (250GB EBS migration) in MEDIA_ARCHIVE_PIPELINE (#966)
-b3fb292 | 2026-09-08 13:48:12 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
-3874085 | 2026-09-08 13:48:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-08 UTC)
-bc49737 | 2026-09-08 09:26:17 -0300 | docs(handoff): mark São Jorge media long-pole complete (PR6) — UAT gate open (#955)
-b8df1ac | 2026-09-08 08:35:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-08 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+c9e7d18 | 2026-09-10 07:48:34 -0300 | Add regression guard: Telegram-log processors must take the script lock (#473)
 765ae53 | 2026-09-10 00:48:00 -0300 | Serialize media-retraction + tree-growth processors with LockService (completes #469/#471 family) (#472)
 33965af | 2026-09-10 00:45:06 -0300 | Serialize farm-boundary-evidence processor with LockService (same race as #469) (#471)
 4946fd9 | 2026-09-10 00:40:03 -0300 | fix(gas): pre-push guard against missing live Credentials accessor (#470)
@@ -417,6 +418,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+fdb2e9f | 2026-09-10 11:24:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 04a91e9 | 2026-09-09 11:50:32 +0000 | chore: refresh currencies.json [skip ci]
 91875ca | 2026-09-09 11:27:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b670bdc | 2026-09-09 07:29:12 -0300 | chore: refresh Agroverse store inventory snapshot
@@ -436,6 +438,13 @@ f597a45 | 2026-09-03 11:42:51 +0000 | chore: refresh currencies.json [skip ci]
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+83445a6 | 2026-09-10 07:56:55 -0300 | Add Sítio Cacau na Veia (Pacajá) to cacao-journeys (#315)
+5911c34 | 2026-09-10 07:50:35 -0300 | Align Sítio Torres CEPOTX card wording with peer farm pages (#314)
+0703929 | 2026-09-10 07:50:30 -0300 | feat(farms): add Sítio Cristo Rei (Pacajá) farm page + nav card (#313)
+af0bd9e | 2026-09-10 07:49:22 -0300 | Add dedicated CEPOTX highlight card to Sítio Torres farm page (#312)
+328949e | 2026-09-10 07:48:09 -0300 | Add Sítio Torres (Pacajá) as a stop on the Brazilian cacao journey (#311)
+4662efc | 2026-09-10 07:28:16 -0300 | Add Sítio Cacau na Veia (Pacajá) farm page — plots N-06-37 + restoration_1 (#310)
+869c38a | 2026-09-10 07:19:29 -0300 | Rename Sitio Dois -> Sitio Torres (Pacaja, Para); plot N-06-66 (#309)
 424b4d8 | 2026-09-10 00:47:26 -0300 | Add Sítio Dois (Pacajá) farm profile — plot N-06-66 (#308)
 7843b36 | 2026-09-10 00:46:08 -0300 | Add sitio-2-pacaja-para photo IMG_9692
 b83ba40 | 2026-09-10 00:46:07 -0300 | Add sitio-2-pacaja-para photo IMG_9689
@@ -469,13 +478,6 @@ ad73887 | 2026-09-05 21:42:37 -0300 | Add Fazenda Santa Ana drying terrace photo
 d2d21b8 | 2026-09-05 21:42:32 -0300 | Add Fazenda Santa Ana cacao pod photo IMG_8137 (18 Sep 2023 farm visit)
 505abb9 | 2026-09-05 21:42:31 -0300 | Add Fazenda Santa Ana harvest photo IMG_8135 (18 Sep 2023 farm visit)
 39e454a | 2026-09-05 21:35:02 -0300 | Oscar Bahia: add farm-visit photo gallery + SunMint AGL14 cross-link (#296)
-c32c223 | 2026-09-05 21:27:08 -0300 | Swap legacy plot-id deep links (SA-P1/CL-P1/LD-P1/RG-P1) to canonical CEPOTX codes (#295)
-f0dc50d | 2026-09-05 21:00:56 -0300 | Add Verified & Traceable FSVP block to Santa Anna + Cleide farm pages (#294)
-c22ecae | 2026-09-05 21:00:54 -0300 | Add CEPOTX/COPOPS member farms as journey stops + hub stats update (#293)
-0e00d84 | 2026-09-05 18:23:25 -0300 | Add Fazenda Santa Rosa IMG_8322 fruit harvesting photo (video frame) to gallery (#292)
-4af08f9 | 2026-09-05 18:18:16 -0300 | Add Fazenda Santa Rosa IMG_8328 fermentation station photo to gallery (#291)
-58f4784 | 2026-09-05 18:16:17 -0300 | Add Fazenda Santa Rosa IMG_8327 drying station photo to gallery (#290)
-b66639c | 2026-09-05 17:32:34 -0300 | Fix IMG_8316 video ID (stale lVHN5OZ9HCY → GURyK-f94xA) (#289)
 … (truncated)
 ```
 
@@ -565,7 +567,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 53.7 | 17493.54386 | 9/9/2026 21:51:13 |
+| 2026-09 | 53.7 | 17493.54386 | 9/10/2026 3:51:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-03`; scanned last **600** data rows)
 
