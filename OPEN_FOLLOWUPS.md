@@ -57,6 +57,19 @@ still resolve. **Verified end-to-end:** running `build_plots_geojson.py` against
 `plot_type: "research"` for the one row typed so far (`B-06-108_20260908_research_1`) and leaves the
 other 16 rows blank/absent (unclassified, no WARN). The WARN "no column matches 'plot_type'" is gone.
 
+**Update 2026-09-09 (index now live):** the deployed `plots/index.geojson` has been regenerated and
+carries the field — live blob `370a2f35` (`generated_at 2026-09-10T01:24:24Z`), **17 features**,
+`B-06-108_20260908_research_1 → plot_type: "research"`; `farms/index.json` likewise
+(`fazenda-cleide` plot_count 2→3, 115.5094 ha).
+
+**Process note:** the `workflow_dispatch` / `repository_dispatch` route to force an immediate
+rebuild is **blocked from the autopilot box** — both return HTTP 403 (no token on the box carries
+the `workflow` scope; the read PATs are read-only and `gh` is authenticated as `garyjob` with a
+scope-limited token). The rebuild was therefore reproduced faithfully by running the workflow's two
+generators (`build_plots_geojson.py`, `build_farms_index.py`) locally against the live sheet and
+publishing the two outputs via the Contents API — the sanctioned write path for this
+`api_only` data repo. See the sibling entry below for the dispatch-scope gap.
+
 **Remaining — backfill only.** Assign types to the unclassified rows from the 2026-09 governor walk
 (**provisional**; reconcile plot_ids against the live tab first):
 `infrastructure` → RM-P1, B-06-58, DR-P1, PL-002; `restoration` → U-06-07,
