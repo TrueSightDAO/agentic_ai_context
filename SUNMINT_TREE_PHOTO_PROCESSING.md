@@ -102,12 +102,18 @@ Used by the `limites-da-fazenda` page. **Two traps that bit us — do not repeat
    invalidated later). **Omit Plot ID entirely** when unknown → the backend auto-assigns `PL-###`.
    (Parser fixed in tokenomics #458 — `\s*` → `[ \t]*` — so empty fields now parse as `""`.)
 2. **`Media URLs` are joined with `; `** (semicolon-space), not commas.
+3. **`Plot Type` is REQUIRED** (thread 24326) — a single controlled-vocabulary column
+   (`restoration|mature|maturing|enrichment|research|nursery|infrastructure`). Blank means
+   *unclassified* and is only tolerated on legacy rows; new submissions must carry it. The
+   farmer DApp gates on it, and the autopilot hard-requires it via the Edgar catalog.
+   **Never split stage into a second column** — one column, seven values.
 
 Canonical field order (match the live UI):
 ```
 [FARM BOUNDARY EVIDENCE EVENT]
 - Farm Name: <name>
 - Is New Farm: yes|no
+- Plot Type: <REQUIRED: restoration|mature|maturing|enrichment|research|nursery|infrastructure>
 - Media URLs: <file1; file2; ...>        (raw github URLs or names, '; ' joined)
 - Media Count: <n>
 - Captured At: <ISO timestamp>
