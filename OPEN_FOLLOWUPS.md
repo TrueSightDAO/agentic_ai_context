@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Edgar reports `fileUploadedToGithub: false` on binary-upload failure but still returns a success shape - clients cannot tell "event recorded" from "photo stored"
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25181).**
+
+**Symptom.** On 2026-09-10 21:31:11-21:32:39 UTC a single burst of 24 `[TREE PLANTING EVENT]` submissions from the SunMint farmer app (`sunmint.truesight.me`) recorded a `Photo URL` in the ledger but never committed the image to `TrueSightDAO/sunmint` `images/`. All 24 photo URLs 404 on raw.githubusercontent.com: `Edgar_20260910213111_376` .. `Edgar_20260910213239_422`. One tree just outside the window (`Edgar_20260910171200_354`, 17:12:00 UTC) loads fine - so it is isolated to that burst, consistent with a GitHub secondary rate limit on 24 commits in ~88 s (the same rate-limit response was reproduced twice while investigating).
+
+**The server-side defect.** Edgar reports the binary upload separately as `fileUploadedToGithub` in an otherwise-normal success body - `tokenomics/API_ENDPOINTS.md` shows `{"status":"success","fileUploadedToGithub":false,...}` as a *documented* success shape. So "the event was recorded but the photo was NOT stored" is indistinguishable, at the status-code level, from full success. Any client that checks `resp.ok` alone will treat a dropped photo as done.
+
+**Client side already fixed.** `sunmint_beta` PR #83 guards on `fileUploadedToGithub === false` -> keeps the record queued and preserves the blob. But that only protects clients that adopt the guard; the API contract itself is the gap.
+
+**Proposed fix (~30 min).** In `dao_protocol`/Edgar's submit path: (a) retry the GitHub binary write with backoff so a transient rate limit self-heals; (b) when the binary upload ultimately fails, return a distinct status (or a `photo_stored: false` flag) so clients can distinguish "event recorded" from "photo stored" without parsing a success body. Blocker: none. Note: the 24 already-lost photos are not recoverable server-side - the signed event text carries only the destination path; the blobs existed solely in the client's IndexedDB (evicted on the 200).
+
+**On-box note.** `ssh dao_protocol` is key-denied from the autopilot box, so the server journal for 21:31-21:33 UTC could not be read to convict the rate limit vs. another transient - verify there when picking this up.
+
 ### Autopilot's hardcoded `TREE PLANTING EVENT` labels are stale **and** the committed `events_catalog_snapshot.json` crashes its own reader - box freezes on stale labels during an Edgar outage
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25178).**
 
