@@ -41,6 +41,20 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### `B-06-108_20260908_1` boundary photos are missing everywhere — media cleared, needs re-upload
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24441).**
+
+**Symptom.** Gary reported broken popup thumbnails on `truesight.me/sunmint.html` (plot `N-06-37` + others). Root cause is deeper than the file: `sunmint/plots/index.geojson` is **generated daily** (`rebuild-plots-index.yml`, 06:05 UTC + dispatch) from the `SunMint Plots` sheet (§K `Media` = `build_plots_geojson.py`), so a direct geojson edit is overwritten within 24 h — the **sheet cell is the durable source**.
+
+**Audit (22 plots) found 6 affected, not the 4 first reported:** `PL-002`, `CR-PA-P2` (missed originally), `N-06-37`, `N-06-37_20260909_restoration_1` held **bare `IMG_9xxx.HEIC` / `.MOV`** filenames (no directory → resolves against the repo root → 404), and `N-06-66` held **absolute `.HEIC` URLs** (resolved, but HEIC does not render in `<img>` in any mainstream browser).
+
+**Shipped this session.** Converted HEIC→JPG (heif-convert → 1600px → q80), uploaded **22 JPGs** to `sunmint/images/boundaries/<plot_id>/` (registry §4 convention); rewrote the sheet `Media` cells for 5 plots via the `agroverse_qr_code_manager` SA and regenerated the geojson (now 0 HEIC/MOV, 0 bare filenames); hardened `build_plots_geojson.py` to **WARN** on any media entry that is HEIC/MOV/MP4 or has no directory component (mirrors the existing `plot_type` loud-not-silent warning). Commits `3eea1009` (geojson) + `f1da53c6` (generator).
+
+**Still open.** `B-06-108_20260908_1` (Fazenda Cleide reforestation, 2026-09-08) references 5 boundary photos by **bare uuid-HASH filename** (`86f5d7b0….HEIC` etc.) that exist in **neither** `sunmint` nor `farm-media-raw` — verified by full recursive git-tree listing + a box scan. Its media cell was **cleared** rather than left pointing at 404s, and the sheet Notes column annotated. It needs the 2026-09-08 Cleide reforestation boundary set re-uploaded and re-pointed to `images/boundaries/B-06-108_20260908_1/`.
+
+**Proposed fix (~30 min).** Locate the 5 originals (likely the governor's 2026-09-08 Cleide submission zip), convert + upload, write the sheet cell. Blocker: **source files not currently available** — needs the governor to supply the batch or confirm it can be dropped.
+
+
 ### Brazilian Journey farms can be present in `BRAZILIAN_PATH_DATA` yet render nowhere — `journeyOrder` has no drift guard
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24440).**
 
