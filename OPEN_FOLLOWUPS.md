@@ -41,7 +41,31 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
-### Edgar drops `- Plot ID:` (and `- Area (ha):`) from stored FBE messages — silently mints duplicate plot rows
+### Archive roots without an `extensions` key silently default to `.MOV/.mov` — no warning; cost a multi-turn media cleanup
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24440).**
+
+**Symptom.** During the Cristo Rei (Pacajá) MAP run, the 46 still photos (`IMG_*.HEIC`) in the farm's archive root were not being picked up, with no error and no log line. The root had **no `extensions` key**, so the loader silently fell back to `DEFAULT_EXTENSIONS = (".MOV", ".mov")` (`farm_media_daemon/farm_media_archive.py:41`, used at `:334`). The operator (Sophia) then mis-diagnosed it as "HEIC not enabled" and *added* `.HEIC` to the root — which mis-routed all 46 stills into S3, against the explicit design rule **"No S3 for still photos"** (`MEDIA_ARCHIVE_PIPELINE.md`). Undoing that (S3 delete + re-upload to `farm-media-raw`) took multiple turns.
+
+**Root cause.** A missing `extensions` key is treated as "video-only, `.MOV`/`.mov` only" with **no warning**, driving two independent silent behaviours:
+1. `farm_media_archive.py:334` — `tuple(root.get("extensions") or list(DEFAULT_EXTENSIONS))`: any video whose extension is not literally `.MOV`/`.mov` (e.g. `.mp4`, `.MP4`, `.MOV` variants) is silently skipped from the S3 raw archive.
+2. `farm_media_photo_enrich.py:267` — `tuple(str(e).lower() for e in (root.get("extensions") or []))`: an absent key yields `[]`, so **photo enrichment runs on nothing** and silently no-ops.
+
+The config's other archive roots (`santa-ana-fazenda-bahia`, `sao-jorge`, `oscar-bahia`, `fernando-carla`, `paulo-interview`, `bomsucesso`, …) all omit the key, so they all inherit the same silent MOV-only behaviour.
+
+**Proposed fix (~30 min).** (i) Emit a LOUD startup log line when a root has no `extensions` key, naming the `farm_id` and the effective default. (ii) Make the still-vs-video split explicit rather than inferred — e.g. separate `video_extensions` / `photo_extensions` (or a `skip_extensions`) so "photos → GitHub, videos → S3" is encoded in the config, not left to a default that also drives enrichment. (iii) On startup, compare each root's `extensions` against the actual file types present and warn on any file that would be silently ignored. Blocker: none.
+
+### `extract_plot_gps.py::set_cell` can spin forever — writing `""` never extends `row_values`
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24440).**
+
+**Symptom.** `sunmint/scripts/extract_plot_gps.py` can hang and hammer the Google Sheets API. The `set_cell` helper in `main()` pads a row before writing:
+```python
+while len(ws.row_values(r + 1)) < ci + 1:
+    ws.update_cell(r + 1, len(ws.row_values(r + 1)) + 1, "")
+```
+
+**Root cause.** Writing `""` into an empty cell does **not** lengthen the row as returned by gspread's `row_values()` — it trims trailing empty cells. The loop condition therefore never becomes false: it issues `update_cell` calls (each preceded by a fresh `row_values()` GET) forever against the live spreadsheet. It triggers whenever a target column index `ci` is beyond the current row width — exactly the case the pad loop exists for.
+
+**Proposed fix (~15 min).** Replace the pad-then-write with a single bounded write — e.g. `ws.update(range_name, [[value]])` (a coordinate write can target an empty cell directly), or compute the required width once and `append_row`/`update` the whole row in one call. Never loop on a value that does not change the observed row length. Add a regression test with a mocked worksheet whose `row_values` trims trailing empties. Blocker: none.
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
 
 **Symptom.** A `[FARM BOUNDARY EVIDENCE EVENT]` submission that included `Plot ID: N-06-66` created a **duplicate** SunMint Plots row (`PL-006`, no Farm ID) instead of upserting the canonical `N-06-66` row (row 22).
@@ -1766,6 +1790,10 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### `farm_media_manifest` couldn't parse DMS GPS — every Apple-media item got `latitude: null`
+**Shipped 2026-09-10 ([farm-media-daemon#24](https://github.com/TrueSightDAO/farm-media-daemon/pull/24)).** `farm_media_manifest._parse_gps` handled only decimal (`float(split(","))`), so exiftool DMS strings (`3 deg 33' 25.20" S, …`) raised `ValueError` → `None`; `gps_coverage` read `0/N` and `paulo-la-do-sitio-para.json` needed a hand-written `_remediation` block. Now delegates to the daemon's own DMS-aware `farm_media_geo.parse_gps` (one shared parser) + 4 unit tests (decimal, exact DMS sidecar string, equality vs `farm_media_geo`, none/junk). Verified end-to-end on Cristo Rei: `GPS 0/13 → 12/13` (the 13th lacks GPS on the original).
+
 
 ### krake_ror disk-full durability — RESOLVED 2026-09-06 via AMI bake + ASG roll (sophia, thread 22224)
 **Shipped 2026-09-06.** Durable fix landed after the 2026-09-06 ENOSPC incident (Bugsnag `Errno::ENOSPC`, getdata.io) per governor direction: baked custom AMI **`ami-0933e020a3e613189`** (`krake_ror_20260906`) from the fixed host — captures `/etc/logrotate.d/krake_ror` (daily + size 200M, rotate 5, copytruncate, delaycompress, `su ubuntu ubuntu`); created LT `lt-085100be44b6079cc` **v4** → new AMI, set `$Default` (v3 = rollback); rolled ASG zero-downtime (scale to 2, validated new instance: HTTP 200 / logrotate present / disk 53%, drain old, terminate). Running instance now `i-0f7f3490dc465136b` (54.224.186.212). Any future recycle boots with logrotate → recurrence closed. Volume growth explicitly NOT done (governor 2026-09-06: 8G root fine with logrotate capping logs). Optional residual: `df /` ≥ 85% alert.
