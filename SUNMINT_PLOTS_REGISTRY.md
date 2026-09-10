@@ -49,7 +49,7 @@
    - `approx` — hull of photo/video GPS points only (quick sketch; label clearly).
 4. **Add the farm** to the SunMint Farms sheet tab (farm name, family/owner,
    hectares, region). Add the plot row: plot_id, farm_id, centroid, boundary
-   points, hectares, status.
+   points, hectares, status, **plot_type** (see §4b).
 5. **Regenerate** `plots/index.geojson` (local script or the workflow) and
    commit — same flow as the trees index.
 6. **Render** — the impact map reads the new polygon automatically after the
@@ -73,6 +73,49 @@
   Plot 2 walk ≈ 2.9 ha vs 5 ha claimed), flag it; ask the farmer for the CAR
   polygon before trusting the number.
 
+## 4b. Plot type (`plot_type`) — controlled vocabulary
+
+`plot_type` records a plot's **role in the program** (governor decision
+2026-09, thread 24326). It is the axis the impact map filters on and the axis
+the tree-count estimator keys on (mature / enrichment / research plots are
+**never** auto-estimated). It is **orthogonal** to `status` (lifecycle:
+proposed → planted → verified) and to `boundary_authority` (evidence grade:
+approx → gps_walk → car → incra) — a separate column, not an overload of either.
+
+| value | meaning |
+|---|---|
+| `restoration` | net-new planting on a prior **non-forest** baseline (pasture / cleared land). Carries the additionality case. |
+| `mature` | established cacao/agroforest the farmer already had (incl. cabruca, century-old groves). |
+| `enrichment` | **additional** trees planted into an existing stand. |
+| `research` | research / trial plot — excluded from headline sequestration & 10,000-ha counts. |
+| `nursery` | seedling production. |
+| `infrastructure` | non-crop built area (processing yard, drying terrace, fermentary, house/compound). |
+| *(blank)* | **not yet classified.** Never auto-defaulted by the generator or any writer. |
+
+Rules:
+
+- **Never auto-default.** A blank cell stays blank — guessing a plot's role is
+  how you end up claiming a baseline you never established (the "nothing
+  asserted until evidenced" credentialing-lineage principle).
+- **`plot_type` is current-state and mutable** — a `restoration` plot becomes
+  `mature` in ~15 yr. Update it when the ground truth changes.
+- The *immutable* "was this land forest before?" fact (additionality baseline)
+  does **not** live here. A sibling `baseline_land_use` axis was considered and
+  **dropped** (2026-09): it is not walk-observable (the walk pass could not
+  distinguish prior pasture from cleared forest), and `restoration` already
+  encodes the non-forest-baseline claim. If formal additionality is needed later
+  it belongs to a **CAR / satellite-fed credit annex**, not a plot-walk field.
+- **Single canonical enum in code:** `VALID_PLOT_TYPES` in
+  `sunmint/scripts/build_plots_geojson.py`. The generator **warns** (does not
+  reject) on an unrecognized token and on any schema field whose sheet header is
+  missing — so a tag cannot silently vanish from the registry.
+- **Write paths:** the sheet column **`Plot Type`** (header named to avoid a
+  `farm`/`plot` prefix collision with `farm_id`/`plot_id` in the generator's
+  column matcher), the FBE GAS handler
+  (`tokenomics` `process_farm_boundary_evidence.gs`, `- Plot Type:` line), and the
+  `extract_plot_gps.py --plot-type` CLI. Registries: `sunmint/SCHEMA.md` §Plot-type
+  conventions (keep in sync).
+
 ## 5. Registry schema (`plots/index.geojson`)
 
 > Canonical schema also lives repo-side: **`sunmint/SCHEMA.md`** (plots + trees registries). Keep both in sync when columns change.
@@ -88,6 +131,7 @@
       "name": "Rancho Maranta Plot 1 (house)",
       "hectares": 0.5,
       "status": "planted",          // proposed | planted | verified
+      "plot_type": "infrastructure", // restoration | mature | enrichment | research | nursery | infrastructure (blank = unclassified; see §4b)
       "boundary_authority": "gps_walk", // approx | gps_walk | car | incra
       "verified_at": null,
       "media": ["images/RM-P1/img_7624.jpg"],
