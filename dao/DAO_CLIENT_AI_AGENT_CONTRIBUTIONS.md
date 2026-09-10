@@ -32,7 +32,9 @@ When an **AI coding assistant** completes work that should appear on the **DAO c
 
 4. **`Type` field** must be one of the canonical rubric entries: `"Time (Minutes)"`, `"USD"`, `"USDT sent"`, `"USDT received"`, or `"AI Agent (software & documentation)"`. The module validates this against `VALID_CONTRIBUTION_TYPES` from `report_contribution.py` and rejects invalid values.
 
-5. **`Amount` / `TDG Issued`** default to **`0`** unless the operator sets real economics for the session.
+5. **`Amount` / `TDG Issued`** — **let the CLI auto-compute.** The module derives the rubric value from `Type` + `Amount` (e.g. 100 TDG per `Time (Minutes)` hour) and that auto-computed value is the number to use. **This overrides the older "`0` unless the operator sets real economics" guidance** (see rule 6 below): the more specific rubric wins.
+
+   > **Standing rule (Gary, 2026-09-10, thread 24442):** always default to the CLI's auto-computed `TDG Issued`, not `0`. The `0`-unless-governor-sets-economics wording is superseded. Do **not** zero the award by hand; do **not** add a `TDG Issued` attribute unless a governor has explicitly set a non-rubric economics figure. This is a standing rule, not a per-session exception — it exists so this conflict does not resurface for the next agent.
 
 6. **`Contributor(s)`** defaults to `"Gary Teh"` (derived from `EMAIL` in `.env`). Override with `--contributors "Display Name"` when the human sponsor should be credited instead. Do NOT use "Garyjob" or "garyjob@gmail.com" — always "Gary Teh".
 
@@ -58,8 +60,7 @@ When an **AI coding assistant** completes work that should appear on the **DAO c
 
 - **Always file two separate events** for Sophia's time (raw execution + direct time) when both are being credited. Never collapse them into one "Sophia" number unless the governor explicitly asks for a single figure.
 - **Governor (human) direct time is a separate event** under the governor's own name (e.g. `Gary Teh`) — e.g. "Gary Teh direct time…" — and is *not* part of Sophia's raw/direct split.
-- **Amounts are informational** — `TDG Issued: 0` unless the governor sets real economics. The split exists so the ledger distinguishes machine cost from human-equivalent attention.
-- **Field format** follows the canonical event: `Type` = `Time (Minutes)`, `Amount` = minutes, `Description` = explicit (start with **"Raw machine execution…"** or **"Direct time (engagement/analysis)…"**), `Contributors` = display name (`Sophia Truesight` / `Gary Teh`). Do not add `TDG Issued` to the attributes unless the governor set an award.
+- **Amounts & `TDG Issued`** — the CLI's **auto-computed rubric value is the default and takes precedence** (e.g. 100 TDG per `Time (Minutes)` hour). The older "`TDG Issued: 0` unless the governor sets real economics" wording is **superseded** by Gary's standing rule of **2026-09-10 (thread 24442)** — do not zero it by hand. The split still serves its purpose: it keeps machine cost and human-equivalent attention distinguishable in the ledger. **Field format** follows the canonical event: `Type` = `Time (Minutes)`, `Amount` = minutes, `Description` = explicit (start with **"Raw machine execution…"** or **"Direct time (engagement/analysis)…"**), `Contributors` = display name (`Sophia Truesight` / `Gary Teh`). Do not add a `TDG Issued` attribute unless the governor set the figure explicitly.
 - **Worked example (2026-08-24, inventory-movement unauthorized incident, thread 14165):**
   - `Sophia Truesight` / 60 min — "Raw machine execution…" (~200 tool ops: SSH, sheet reads, GAS deploys ×3, webhook fires, key registration/verification, PRs #424/#425/#312)
   - `Sophia Truesight` / 60 min — "Direct time (engagement/analysis)…" (diagnosis, root-cause analysis, correction cycles)
