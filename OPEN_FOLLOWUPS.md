@@ -41,6 +41,16 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### CEPOTX/CoopCao site code `N-06-66` (Sítio Dois, Pacajá) is outside the observed roster range — assumed, needs registry confirmation
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24442).**
+
+**Context.** On the 2026-09-09 Pacajá site visit (loc3 — "Sítio Dois", producer **Alexandre**, a CoopCao director), the plot's CEPOTX site code was read as **N-06-66** from a phone-translator screenshot (IMG_9694: "O código dele é N0666"). But `CEPOTX_SITE_CODE_REGISTRY.md` lists the **COOPCAO** family as **N-06-02 … N-06-52** — `N-06-66` falls **outside** that observed range. The registry is itself marked "reported / unverified — read from video, not an official CEPOTX register," and only captured COOPCAO rows 1–16, so no name-match to a producer row was possible. Registered as `N-06-66` **per Gary's explicit instruction to assume it**.
+
+**Impact.** The code is now on public surfaces: the SunMint Plots sheet row (row 22), `sunmint/plots/index.geojson`, and the Agroverse farm profile page `farms/sitio-2-pacaja-para/` (copy + map popup). A plausible 6↔5/4 digit misread would put a wrong site code on a public page.
+
+**Proposed fix (~20 min).** Confirm the code with CEPOTX / Jedielcio (or the CoopCao branch at Pacajá); if it differs, correct (a) the SunMint Plots sheet row(s), (b) regenerate `plots/index.geojson`, (c) the farm-page copy + Leaflet popup. Cheap corroboration first: re-OCR IMG_9694/9695 at higher zoom, and re-run the two clips where the code is spoken (`/media/pacaje_work/loc3_tx/audio/*.wav`).
+Blocker: none to file; needs an authoritative CEPOTX source to resolve.
+
 ### `deploy_gas_project.py --push` silently skips the pinned-deployment repoint — webhooks keep serving stale code (bitten twice)
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24269).**
 
