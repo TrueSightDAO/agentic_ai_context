@@ -4,7 +4,7 @@
 **Repo:** `TrueSightDAO/tokenomics` (scripts only — Sophia opens PRs, human merges; no deploy).
 **Convention:** OPERATING_INSTRUCTIONS.md §5 / §5a / §5c / §5d / §5e.
 
-> ## ▶ RESUME HERE: land the ruff-format polish onto the PR branch, then merge PR #470
+> ## ✅ COMPLETE 2026-09-10 — PR #470 merged (sha `4946fd9`); both units done, no further work.
 
 ## Context
 
@@ -52,7 +52,7 @@ pre-push (and in dry-run):
 | Unit | PR opened | Merged | Deployed | Contribution reported |
 |------|-----------|--------|----------|-----------------------|
 | PR1 — accessor survivability guard | ☑ (#470) | ☐ | n/a (scripts) | ☐ |
-| PR2 — polish + merge | ☐ | ☐ | n/a | ☐ |
+| PR2 — polish + merge | ☑ (#470) | ☑ (4946fd9) | n/a | ☐ |
 
 ## UAT
 
