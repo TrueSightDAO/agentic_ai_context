@@ -19,6 +19,11 @@ if it says `SET`, it is set — move on. If `NOT SET`, that's an open item (file
 3. **Web-app deployment URLs are pinned to numbered versions** (e.g. `@37`), not `@HEAD` — `@HEAD` is login-walled
    even with `ANYONE_ANONYMOUS`. After clasp-pushing code, create a new version + deployment and update the env/URL
    that references it (see the SunMint reject saga 2026-08-30: anonymous webhook ran stale v32 while HEAD had the fix).
+   **Bitten a 2nd time 2026-09-10 (thread 24269):** the reject webhook was pinned at `@41`; `clasp push` updated
+   `@HEAD` only, so the reject silently ran the OLD first-match code. The repoint is ONLY done when
+   `deploy_gas_project.py` is given `--deployment-id <id>` — without it the repoint is **silently skipped** (see
+   OPEN_FOLLOWUPS.md "silently skips the pinned-deployment repoint"). Always pass `--deployment-id`; a reject is
+   one-shot per submitted event, so a consumed-by-stale-code reject needs a **fresh** event to re-fire.
 4. **How to set a property:** GAS script editor → Project Settings (gear) → **Script properties** → Add script property.
    Project settings URL pattern: `https://script.google.com/home/projects/<SCRIPT_ID>/settings`.
 5. **Where the local `.env` / vault lives:** autopilot box `/opt/truesight_autopilot/.env` (`TRUESIGHT_DAO_AUTOPILOT`
@@ -53,8 +58,8 @@ if it says `SET`, it is set — move on. If `NOT SET`, that's an open item (file
 
 | Purpose | Deployment URL (suffix) | Version | Runs code incl. | Notes |
 |---|---|---|---|---|
-| SunMint planting webhook (`processTreePlantingTelegramLogs`) | `AKfycbyLQjTlM8nzAP…/exec` | @7 | planting handler | fired by dao_protocol `TREE_PLANTING_PROCESSING` env; also `/a/macros/agroverse.shop/`-prefixed twin |
-| Tree-planting-links webhook (`processTreePlantingLinksFromTelegramChatLogs`) — LINK + REJECT | `AKfycbyoFCTzIdC1g69ZX3AK894h2siQOKoNSEiuyLDtZJTtarQPHHa5Zl8rjot0vPFUquV2/exec` | **@37** | #449 (col A OR col D reject match) + #450 (rebuild dispatch) | anonymous; pinned version — do NOT run pre-#449 logic on it |
+| SunMint planting webhook (`processTreePlantingTelegramLogs`) | `AKfycbyLQjTlM8nzAP…/exec` | **@8** (was @7) | planting handler + ingestion evidence gate (#464) | fired by dao_protocol `TREE_PLANTING_PROCESSING` env; also `/a/macros/agroverse.shop/`-prefixed twin. Repointed 2026-09-10. |
+| Tree-planting-links webhook (`processTreePlantingLinksFromTelegramChatLogs`) — LINK + REJECT | `AKfycbyoFCTzIdC1g69ZX3AK894h2siQOKoNSEiuyLDtZJTtarQPHHa5Zl8rjot0vPFUquV2/exec` | **@44** (was @41/@37) | #449 (col A OR col D reject match) + #450 (rebuild dispatch) + #463 (reject invalidates ALL rows sharing tree id) | anonymous; pinned version — do NOT run pre-#449 logic on it. Repointed @41→@44 on 2026-09-10 (thread 24269). |
 | Growth-monitoring webhook (`processTreeGrowthMonitoringFromTelegramChatLogs`) | `…/exec?action=…` (@HEAD) | @HEAD | #430 | login-walled at @HEAD; timer-driven path is primary |
 
 **dao_protocol box env keys** (provisioned in `/home/ubuntu/dao_protocol/.env`):
