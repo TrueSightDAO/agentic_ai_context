@@ -1863,40 +1863,18 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ---
 
-### ⚑ Telegram-log processor locks are live only in `@HEAD` — the pinned webhook deployments (`@44`/`@36`) still serve pre-fix code
-**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24326).**
+### Deploy lease machinery effectively inert — 14 open leases on the GAS script, and `close_lease()` misreports success as failure
+**Filed 2026-09-10. Updated 2026-09-10 (Sophia, thread 24326). Owner: unclaimed. Governor: Gary.**
 
-**Symptom.** The read-then-append dedup race (two concurrent fires each append a tracking row for the same Telegram Message ID) was fixed in code for four handlers — `process_plot_invalidation.gs` (tokenomics #469), `process_farm_boundary_evidence.gs` / `process_media_retraction.gs` / `process_tree_growth_monitoring.gs` (#471/#472) — each now wrapping its entry point in `LockService.getScriptLock()`. Those commits are merged to `main` and were pushed to the GAS project `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v` via `clasp push --force`. **But `clasp push` only updates `@HEAD`.** The project's `/exec` webhook runs a **pinned** deployment, and `@HEAD` is login-walled even with `ANYONE_ANONYMOUS` — so webhook callers never see `@HEAD`.
-
-**Verified via the Apps Script API (read-only, 2026-09-10).** Live content of each version:
-
-| Live version | plot-invalidation lock | FBE lock | MR lock | TGM lock |
-|---|---|---|---|---|
-| `@HEAD` | ✅ | ✅ | ✅ | ✅ |
-| `@44` (newest pinned) | ✅ | ❌ | ❌ | ❌ |
-| `@36` (TGM webhook, registered) | ❌ | ❌ | ❌ | ❌ |
-| `@32` | ❌ | ❌ | ❌ | ❌ |
-
-`@44`'s description is `#463` but its content *includes* the #469 plot-invalidation lock, consistent with it being created 2026-09-10 after #469 merged — the repoint made for the reject fix coincidentally carried that one lock. So for **FBE / MR / TGM the race is still open on the production webhook path**; only time-driven triggers (which run `@HEAD`) are protected.
-
-**Compounding.** `## Pending` already notes that the **hourly cron fallback was never set** for FBE and MR (needs a manual GAS-UI trigger). For those two the webhook is the *only* live path, so the lock currently protects nothing in production.
-
-**Relationship to the existing repoint-gap entry.** This is the **consequence** of the `clasp push --force` / pinned-deployment gap already filed in this section — *not* a re-file of it. That entry owns the root cause; this entry records that the lock fix is therefore **not actually live**, so it isn't mistaken for done.
-
-**Proposed fix.** `clasp version` to cut a new version from `@HEAD`, then `clasp deploy --deploymentId <@44>` (and `@36`) to repoint the live webhooks; log the push per `DEPLOY_PUSH_SOP`. This is a **production GAS deploy** — requires explicit governor go, do not do it autonomously.
-
-**Blocker / priority.** Not blocked. Needs a governor go-signal for the deploy. Also note: a direct webhook-path read was not possible from the autopilot box (SSH to `dao_protocol` denied), so the `@44`→FBE/MR dispatch mapping is a strong inference from "newest pinned + registered webhook", not a directly observed binding.
-
----
-
-### Zombie deploy leases on GAS script `1UrBgqLnn…` left `status: open` — lease ceremony silently fail-opened past them
-**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24326).**
-
-**Symptom.** Two leases on scriptId `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v` are still `status: open` 9 days after creation: `L-20260901-06` and `L-20260902-01`. The house TTL is **30 minutes**, so both are long expired and were abandoned mid-ceremony (the pushing session died before closing them).
+**Symptom.** Not two leases — **fourteen** lease files are still `status: open` on scriptId `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v`, accumulated since 2026-08-26: `L-20260826-01`, `L-20260828-02`…`-05`, `L-20260901-06`, `L-20260901-08`, `L-20260901-095538`, `L-20260902-01`, `L-20260905-10`, `L-20260906-01`, `L-20260907-01`, `L-20260909-01`, `L-20260910-01`. The house TTL is **30 minutes**, so all are long expired; each was abandoned mid-ceremony (the pushing session died before closing it). A 14-deep graveyard means the ceremony is not merely occasionally-skipped — it is **effectively not enforcing anything**.
 
 **Impact.** `DEPLOY_PUSH_SOP` §6 treats a zombie lease as an incident. Worse, the deploy tool **fail-opens past** an existing lease rather than refusing, so a zombie provides no protection *and* no alarm — the next deploy proceeds as if the lease were free. Mutex-by-convention is silently degraded to no-mutex whenever a session crashes mid-push.
 
-**Proposed fix.** Close the two zombies (append close records, don't delete). Then decide the policy: prefer **fail-closed** (refuse a new push while any non-expired-or-expired-but-open lease exists, and surface it) or at minimum, have the deploy tool **log loudly** when it fail-opens past a stale lease so the zombie leaves a trail instead of passing silently.
+**Second bug — `close_lease()` reports success as failure.** `deploy_ledger.close_lease()` decides success with `"content" not in res`, but GitHub's DELETE response is `{"commit":…, "content": null}` — the `content` key *is* always present, so the function returns `status: error` **even when the delete worked**. Observed live: two closes returned `error` while the lease files were in fact gone. Impact: a session that trusts the return value will try to "re-close" and **manufacture new zombies**, and a genuine close failure is indistinguishable from the false alarm. Fix: treat a DELETE that returns a `commit` (or HTTP 2xx) as success, or re-`GET` the file to confirm absence.
+
+**Third bug — the deploy ledger fail-opens silently.** `deploy_gas_project.py` resolves its PAT from `$DEPLOY_LEDGER_PAT`, then `$GITHUB_TOKEN`, then `$TRUESIGHT_DAO_AUTOPILOT`. Run from a bare shell that hasn't sourced `/opt/truesight_autopilot/.env`, none is set, so the ledger is **skipped with a one-line warning** while the deploy still proceeds — i.e. a production change can land with **no audit record**. Observed live on the 2026-09-10 repoints: both printed `! deploy ledger unavailable (fail-open)` and were backfilled afterwards by hand. Fix: either make the ledger **fail-closed** for a deploy, or have the deploy wrapper export the PAT itself rather than depending on the caller's shell. Related footgun: `/opt/truesight_autopilot/.env` is not shell-safe (a bare `set -a; . .env` executes a line and errors) — parse it, don't source it.
+
+**Proposed fix.** Close the fourteen zombies (append close records, don't delete). Then fix the two bugs above, and decide the policy: prefer **fail-closed** (refuse a new push while any non-expired-or-expired-but-open lease exists, and surface it) or at minimum, have the deploy tool **log loudly** when it fail-opens past a stale lease so the zombie leaves a trail instead of passing silently.
 
 **Blocker / priority.** Not blocked. Ready for a maintainer with write access to the lease records.
 
@@ -1930,6 +1908,24 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### ✅ Telegram-log processor locks are now LIVE on the pinned webhook deployments (`@45`/`@46`) — RESOLVED 2026-09-10
+**Shipped 2026-09-10 (Sophia, thread 24326; governor go from Gary). Supersedes the `## Pending` entry filed earlier the same day that read "locks are live only in `@HEAD`".**
+
+**What changed.** The two pinned deployments that serve the affected webhooks were repointed to fresh versions cut from `@HEAD`:
+
+| Deployment | Webhooks it serves | Repointed to | Locks before | Locks after |
+|---|---|---|---|---|
+| `@44` `AKfycbyoFCTz…` | FARM_BOUNDARY_EVIDENCE · MEDIA_RETRACTION · PLOT_INVALIDATION · TREE_PLANTING_REJECT | **`@45`** | plot-inval ✅ · FBE ❌ · MR ❌ | ✅ ✅ ✅ |
+| `@36` `AKfycbwm9TZ…` | TREE_GROWTH_MONITORING | **`@46`** | ❌ | ✅ |
+
+`@32` (serves only QR_CODE_UPDATE + TREE_PLANTING_LINK) was deliberately **left alone** — both its files are the intentionally-unlocked ones, so a repoint there would be pointless risk.
+
+**Verified, not assumed.** Read the *live version content* via the Apps Script API (`projects.getContent?versionNumber=`) — v45 and v46 both show `LockService.getScriptLock` in `process_farm_boundary_evidence`, `process_media_retraction`, `process_plot_invalidation`, and `process_tree_growth_monitoring`; `process_qr_code_updates` and `process_tree_planting_link` correctly read 0. Deployment→webhook bindings were confirmed by reading the live `dao_protocol` env (the earlier `@44`→FBE/MR mapping was an inference there; it is now observed).
+
+**Caveat.** The underlying `clasp push` / pinned-deployment gap is a *class* of failure that will recur on the next `clasp push` — the root-cause entry in `## Pending` still stands and should own the durable fix (auto-repoint on push, or a post-push deploy hook). This entry only records that the *specific* lock fix is now live.
+
+---
 
 ### CEPOTX/CoopCao site code `N-06-66` (Sítio Torres, Pacajá) — RESOLVED 2026-09-10 (governor-confirmed; registry updated)
 **Shipped 2026-09-10 (Sophia, thread 25149).** Governor (Gary, thread 24442) **confirmed `N-06-66` is the correct issued CEPOTX site code** for the Sítio Torres (Pacajá) plot — the property of **Alexandre**, a CoopCao director-coordinator — superseding the earlier "outside the observed roster range" concern. `CEPOTX_SITE_CODE_REGISTRY.md` updated in the same PR: the COOPCAO observed range is annotated with `N-06-66` as governor-confirmed, and an anchors-table row was added (`N-06-66` / Sítio Torres (Pacajá) Plot 1 / Alexandre / COOPCAO), tying to the SunMint Plots sheet row 23, `sunmint/plots/index.geojson`, and the agroverse_shop farm page (PRs #308/#309). The follow-up's corroboration steps (re-OCR IMG_9694/9695, re-run the spoken-code clips) are no longer blocking — the code is treated as issued and authoritative.
