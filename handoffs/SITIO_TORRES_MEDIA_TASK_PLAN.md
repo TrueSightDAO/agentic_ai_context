@@ -5,7 +5,7 @@
 > (`handoffs/CACAU_NA_VEIA_MEDIA_TASK_PLAN.md`). This is the **loc3 "Sítio 2"** visit (2026-09-09).
 
 **Created:** 2026-09-10 (Sophia) at Gary's/envoy's request · **Handoff:** 👍 GO (thread 24442)
-**Status:** executing — PR1–PR5 done; **PR6 is the only real remaining work** (UAT gate after)
+**Status:** executing — **PR1–PR5 done, PR6 in progress**; UAT gate after PR6
 
 ## Goal
 1. Confirm the plot behind https://agroverse.shop/farms/sitio-torres-pacaja-para/ is durably
@@ -30,12 +30,13 @@
    Nearest-other centroid ~111 m away. → **PR3 is verify-only**; do **not** add a second plot.
 4. **Duplicates — ✅ CLEAN.** 0 intra-set duplicate HEIC hashes; 0 identical hashes vs loc1
    (`cacau-na-veia-pacaje`); 0 filename collisions. All 81 loc3 files are distinct from loc1.
-5. **⚠️ Site code `N-06-66` — OUTSTANDING GATE.** Read as **N-06-66** from a phone-translator
-   screenshot (`loc3/IMG_9694.PNG`: *"O código dele é N0666"*), but
-   `CEPOTX_SITE_CODE_REGISTRY.md` lists the **COOPCAO** family beginning **N-06-02**, i.e.
-   **N-06-66 sits outside the observed roster range**. The plot row *exists* in the registry;
-   whether `N-06-66` is the **correct issued** code needs **CEPOTX registry confirmation**.
-   If disconfirmed: `[PLOT INVALIDATION EVENT]` + re-register (not re-derive).
+5. **✅ Site code `N-06-66` — RESOLVED 2026-09-10.** Governor (Gary, thread 24442) **confirmed
+   `N-06-66` is the correct issued CEPOTX site code**. The plot row (sheet `SunMint Plots` row 23)
+   is authoritative: `N-06-66` / `sitio-torres-pacaja-para` / *Sítio Torres (Pacajá) Plot 1 (cacao
+   enrichment)* / **19.01 ha** / `proposed` / `approx` / owner **Alexandre (CoopCao / CEPOTX)**.
+   The concern that it sat outside the observed `N-06-02..N-06-52` roster no longer blocks — the
+   governor's confirmation supersedes the roster-range inference. Manifest `site_code_status`
+   updated to **VERIFIED** (`93e69e26`). No `[PLOT INVALIDATION EVENT]` needed.
 6. **✅ Provenance — RESOLVED 2026-09-10 (was flagged as a gate; it was a plan-authored error).**
    The loc3 source zip **does exist on the box**:
    `/home/ubuntu/20260909_pacaje_location_3_farm_alessandro_director_coopcao.zip` (2.15 GB,
@@ -55,6 +56,8 @@
 - 2026-09-10 · **PR2** ✅ manifest + index committed to `farm_media_manifests@main` (`6fa21fff`, `80b0711d`); provenance corrected (`b792eb0d`)
 - 2026-09-10 · **PR3 / PR4 / PR5** ✅ verified — all **NO-OP** (sheet row present; beta page + 12 assets live; farm in sunmint farms index)
 - **NEXT → PR6** (build: HEIC → farm-media-raw, MOV → MP4 + GPS re-inject, commit transcripts, inbox sidecars w/ explicit `extensions`, daemon upload) → **UAT gate**
+- 2026-09-10 · **both gates RESOLVED** — (a) `N-06-66` governor-verified; (b) provenance = `..._location_3_farm_alessandro_director_coopcao.zip` (exact set-match). Manifest `site_code_status` → VERIFIED (`93e69e26`)
+- 2026-09-10 · **PR6 STARTED** — MOV→MP4 transcode + GPS re-inject running in background (`/media/pacaje_work/loc3_pr6/`); photos + sidecars + transcripts next
 
 ## Source media
 - Dir on box: `/media/pacaje_work/loc3/` (`IMG_9622–IMG_9705`).
@@ -80,7 +83,7 @@
 | `sunmint/plots/index.geojson` | sunmint (api-only) | **`N-06-66` ALREADY PRESENT** (22 features), bbox = walk bbox → PR3 verify-only |
 | `SunMint Plots` tab | sheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` | **✅ VERIFIED (PR3)** — row 23 = `N-06-66` / `sitio-torres-pacaja-para`; `sunmint/farms/index.json` also carries the farm (plot_count 1, 19.01 ha). No drift → geojson NO-OP |
 | `farm_media_manifests/sitio-torres-pacaja-para.json` | farm_media_manifests | **✅ CREATED (PR2)** — 81 items, root-level `<farm_id>.json` + `index.json` entry (12→13) |
-| `farm-media-raw/sitio-torres-pacaja-para/photos/` | farm-media-raw (api-only) | **MISSING** (10 peer dirs, not this one) → **PR6** |
+| `farm-media-raw/sitio-torres-pacaja-para/photos/` | farm-media-raw (api-only) | **MISSING** (10 peer dirs, not this one) → **PR6 (in progress)** |
 | `/media/media_archive_inbox/farm-media/sitio-torres-pacaja-para/` | box | **no dir, no daemon config entry** → **PR6** |
 | `raw/sitio-torres-*/` in `media.agroverse.shop` | S3 | **absent** → PR6 (daemon upload leg) |
 | FSVP / entity | fda_fsvp | already covered by CEPOTX `N-06-66` anchor; no new entity |
