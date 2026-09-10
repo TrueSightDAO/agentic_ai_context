@@ -39,6 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot's hardcoded `TREE PLANTING EVENT` labels are stale **and** the committed `events_catalog_snapshot.json` crashes its own reader - box freezes on stale labels during an Edgar outage
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25178).**
+
+**Symptom.** Two defects in `truesight_autopilot`'s events-catalog layer, found while filing 25 tree-planting events (thread 25178):
+
+**(a) Stale hardcoded fallback.** `app/main.py::_CANONICAL_LABELS["TREE PLANTING EVENT"]` = `["Number of trees planted", "Species", "Location", "Attached Filename", "Submission Source"]`. The live Edgar catalog (**v5**, `GET https://edgar.truesight.me/events-catalog`) carries `["Tree Count", "Location", "Latitude", "Longitude", "Plot ID", "Species", "Planter", "Planting Time", "Photo URL", "Attached Filename", "Submission Source"]`. Missing from the fallback: **Tree Count, Latitude, Longitude, Plot ID, Photo URL** - and the tree count is even under a different name (`Number of trees planted` vs `Tree Count`).
+
+**(b) Snapshot/reader shape mismatch.** The committed fallback snapshot `app/data/events_catalog_snapshot.json` is shaped `{"events": [ {event_name, category, description, canonical_labels, required_fields, dapp_page}, ... ]}` - **`events` is a LIST**. But its reader `_refresh_events_catalog()` does `events = catalog.get("events", {})` then `events.items()` - expecting a **DICT**. Feeding the committed snapshot through the reader raises `AttributeError: 'list' object has no attribute 'items'` (reproduced on-box 2026-09-10).
+
+**Impact.**
+- (a) is latent: on stale labels the box still *accepts* a submission using the old key `Number of trees planted`, but the SunMint GAS sheet ingestion grabs `Tree Count` -> gets empty -> the PL-006-class duplicate/auto-assign bug (see the `SunMint Plots` row 26 `PL-006` incident, same thread 25178). NOT a validation failure: `TREE PLANTING EVENT` has **no entry** in `_VALIDATE_REQUIRED_FIELDS`, so `_validate_required_fields` returns `[]` and nothing is marked INVALID; `_normalize_via_catalog` step 5 also **keeps** unmatched keys rather than dropping them.
+- (b) is the sharper one: at startup (line ~452) the call is wrapped in `try/except` -> boot survives on hardcoded labels. In **`_catalog_refresh_loop`** (line ~489) it is **NOT** wrapped -> the `AttributeError` propagates and **kills the 12-hour refresh task permanently**. So an Edgar outage that drops into the snapshot branch freezes the box on stale labels until a process restart, even after Edgar recovers.
+
+**Proposed fix (~30-45 min, two independent PRs).** (1) Refresh `_CANONICAL_LABELS["TREE PLANTING EVENT"]` (+ any other stale entries) against catalog v5, and add a test asserting the hardcoded fallbacks are a **subset** of the live catalog's labels for every shared event type. (2) Make the snapshot reader shape-tolerant: accept both a list and a dict under `events` (normalize list -> `{event_name: entry}`), and wrap the `_catalog_refresh_loop` call in `try/except` so a failed refresh can never kill the loop. Regenerate the snapshot from the live catalog so its shape matches the reader. Owner: unclaimed (autopilot self-improvement candidate).
+
+**On-box drift.** `events_catalog_snapshot.json` currently shows as deleted in the autopilot checkout (`git status: D`) and HEAD `2e055b3` is behind origin `659e5d6` - cosmetic, but worth a pull.
+
+**Related, NOT duplicated:** thread 24846 / `handoffs/GAS_DEPLOY_ACCESSOR_GUARD_PLAN.md` (the clasp/Credentials `setApiKeys` guard) is a separate issue.
+
 
 
 ### CLI `.env` key values wrapped in literal quotes silently break signature verification (logged-but-not-dispatched)
