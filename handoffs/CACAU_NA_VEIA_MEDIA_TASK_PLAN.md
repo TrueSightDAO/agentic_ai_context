@@ -5,7 +5,7 @@
 > half of a two-plot property; the **restoration** plot is a separate, later handoff.
 
 **Created:** 2026-09-10 (Sophia) at Gary's request · **Handoff:** 👍 GO on resume-awaiting (thread 24441)
-**Status:** executing — PR1 (this plan)
+**Status:** executing — PR1–PR3 done (PR3 = sheet rows + geojson/farms published 2026-09-10)
 
 ## Goal
 1. Establish plot **N-06-37** (mature cacao agroforest) on https://agroverse.shop/farms/cacau-na-veia-pacaje/ and on truesight.me's SunMint impact map — cross-link BOTH ways.
@@ -63,7 +63,7 @@ by CEPOTX; suffixing it for a sub-plot does not invent a code.
 {"plot_id":"N-06-37_20260909_restoration_1","farm_id":"cacau-na-veia-pacaje","name":"Sítio Cacau na Veia Restoration Plot 1 (2026-09-09)","hectares":0.74,"status":"proposed","plot_type":"restoration","boundary_authority":"approx","owner":"Jader Adriano da Silva Santos (CEPOTX) & wife","region":"Pacajá, Pará","verified_at":"2026-09-09","notes":"Failed reforestation patch (IMG_9533: cacao+forest species planted, lost to drought, to be replanted). Hull 0.74 ha from the 15-photo restoration set (governor-supplied zip 20260909_president_restoration_plot.zip); lat -3.609697..-3.608539, lng -51.034236..-51.033394. Adjacent to (and hull-overlapping) the mature plot N-06-37 - same-day walk crossed both; needs walk/CAR to separate."}
 ```
 GeoJSON rings (lng,lat, closed):
-- N-06-37 (mature): `[[-51.0363,-3.6098],[-51.0359,-3.6098],[-51.0341,-3.6097],[-51.0336,-3.6094],[-51.032403,-3.608553],[-51.0324,-3.6085],[-51.0336,-3.6086],[-51.0363,-3.6097],[-51.0363,-3.6098]]`
+- N-06-37 (mature): `[[-51.0363,-3.6098],[-51.0363,-3.6097],[-51.034022,-3.608539],[-51.0324,-3.6085],[-51.032403,-3.608553],[-51.033864,-3.609617],[-51.0341,-3.6097],[-51.0359,-3.6098],[-51.0363,-3.6098]]`  (as published, blob `8d3434c3`)
 - N-06-37_20260909_restoration_1: `[[-51.034236,-3.609258],[-51.034211,-3.609697],[-51.033864,-3.609617],[-51.033578,-3.609242],[-51.033394,-3.608928],[-51.034022,-3.608539],[-51.034169,-3.60875],[-51.034231,-3.609192],[-51.034236,-3.609258]]`
 
 ## Media pipeline notes
@@ -81,11 +81,16 @@ GeoJSON rings (lng,lat, closed):
 
 ## RESUME HERE
 PR1 ✅ this plan. PR2 ✅ manifest `cacau-na-veia-pacaje.json` (64 items: 49 mature + 15 restoration) + index entry.
-Next: **PR3** SunMint Plots sheet rows (BOTH — `N-06-37` mature 30 ha + `N-06-37_20260909_restoration_1` restoration 0.74 ha) + regenerate `plots/index.geojson` + `farms/index.json` → **PR4** shop page (gallery + cross-link) → **PR5** cross-links if needed → **PR6** raw photos + inbox + transcode/daemon. UAT gate before any prod sync.
+**PR3 ✅ DONE 2026-09-10.** Sheet rows written to `SunMint Plots` (`N-06-37` mature 30 ha + `N-06-37_20260909_restoration_1` restoration 0.74 ha, farm `cacau-na-veia-pacaje`, no dups) → `plots/index.geojson` **22 features** (blob `8d3434c3`) + `farms/index.json` **15 farms** (blob `10ad6004`) published via Contents API, both ours present with closed 9-vertex rings.
+Next: **PR4** shop page `farms/cacau-na-veia-pacaje/` (gallery + cross-link) → **PR5** cross-links if needed → **PR6** raw photos + inbox + transcode/daemon. UAT gate before any prod sync.
 
-> **PR3 write-path note:** the SunMint Plots sheet is the durable source of truth and
-the only writer tools available to Sophia are READ-ONLY SAs. Sheet rows must be written
-via the FBE GAS handler (`tokenomics` `process_farm_boundary_evidence.gs`) or a
-`sunmint_work` checkout with `edgar_dapp_listener_key.json`.
+> **Write-path (corrected 2026-09-10 — the previous 'READ-ONLY SAs' note was WRONG):**
+the SunMint Plots sheet is the durable source of truth, and there ARE write-capable SAs
+on this box — `agroverse_qr_code_manager` and `edgar_dapp_listener` both verified by live
+no-op writes. The two halves of the FBE pipeline:
+> 1. **Capture/audit** — `limites-da-fazenda` → `[FARM BOUNDARY EVIDENCE EVENT]` → Edgar → `process_farm_boundary_evidence.gs` (plot-first row + media mirror + tracking tab).
+> 2. **Enrichment/geometry** — `sunmint/scripts/extract_plot_gps.py` (photo/video GPS → convex hull → `Coordinates`/Media/hectares/plot_type). Purpose-built for this; `--dry-run` first, then atomic `append_rows`/`batch_update` (its per-cell loop times out at 300 s).
+> NOTE: the hourly FBE cron trigger is still unset (OPEN_FOLLOWUPS); a second writer touched the sheet concurrently this session (created `PL-005`) — always re-read before writing.
+
 
 Status: restoration zip received (15 HEIC, 0 MOV, 14 dups of loc1, 1 new) — **no new transcription needed**. Governor confirmed plot naming.
