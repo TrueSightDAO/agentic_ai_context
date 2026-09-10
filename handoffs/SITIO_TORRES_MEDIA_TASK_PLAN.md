@@ -5,7 +5,7 @@
 > (`handoffs/CACAU_NA_VEIA_MEDIA_TASK_PLAN.md`). This is the **loc3 "Sítio 2"** visit (2026-09-09).
 
 **Created:** 2026-09-10 (Sophia) at Gary's/envoy's request · **Handoff:** 👍 GO (thread 24442)
-**Status:** executing — **PR1–PR6 DONE**; **UAT gate** — governor reviews the beta page, then prod sync ONLY on explicit GO
+**Status:** ✅ **COMPLETE** (2026-09-10) — PR1–PR6 + gallery wiring + **prod deploy** shipped and verified. Live: https://agroverse.shop/farms/sitio-torres-pacaja-para/ (47 gallery entries = 12 images + 35 videos).
 
 ## Goal
 1. Confirm the plot behind https://agroverse.shop/farms/sitio-torres-pacaja-para/ is durably
@@ -52,11 +52,12 @@
    needs CAR/INCRA or a boundary walk.
 
 ## Progress log (newest last)
+- 2026-09-10 · **PROD DEPLOY** ✅ — governor GO (👍, thread 24442) → `sync_beta_to_prod("agroverse_shop_prod")` merge-upstream, **no force**, deploy ledger `deploy_20260910T213209Z` (merge commit `bc84be405`). Pages build completed 21:33:20Z. **Verified live on agroverse.shop:** page HTTP 200, gallery **47 entries** (12 image + 35 youtube), 35/35 videoIds oembed-embeddable, 12/12 images 200, prod≡beta (compare API: 0 diverging files). The 2026-09-09 loc3 site visit is now publicly live.
 - 2026-09-10 · **PR6** ✅ **COMPLETE + VERIFIED** — photos 38/38 → `farm-media-raw`; MOV→MP4 35/35 with **GPS assertion 35/35** (source-vs-output 0 mismatches); 35 transcripts + 105 inbox files staged; daemon YouTube upload **35/35, 0 errors** (`daily_budget: 500`, not ~6/day — stale assumption) + `yt_id` backfill; S3 raw **73** + previews **35** (PNG screenshots excluded); manifest v2 **35/35 `yt_id`/`sha256`/`description`** (`421f172e`). PR #1009.
 - 2026-09-10 · **Gallery wiring** ✅ — PR6 published the media but the page gallery still showed **images only** (0 videos). Added **35 `type:"youtube"` entries** to `farms/sitio-torres-pacaja-para/media.json` (47 total) matching the `cristo-rei-pacaje-para` peer. `agroverse_shop_beta` **#319** merged (`604c4e5e`). **Verified live on beta:** 35/35 videoIds embeddable, 12/12 images 200.
 - 2026-09-10 · **Box defect fixed** ✅ — `.env` wrapped `PUBLIC_KEY`/`PRIVATE_KEY` in literal single quotes → Edgar verifier raised on PEM load → **every** CLI contribution was logged but **not dispatched** (`dispatch_event` gated on `signature_verification == "success"`). Quotes stripped (backup `.env.bak.20260910194840`); round-trip verifies `True`.
 - 2026-09-10 · **Contribution events** ✅ — raw execution 180 min → **300 TDG**; direct time 150 min → **250 TDG** (Sophia Truesight, CLI auto-compute per standing rule; both `signature_verification: success`).
-- **NEXT → UAT gate** — governor/envoy reviews beta (`beta.agroverse.shop/farms/sitio-torres-pacaja-para/`) → prod sync ONLY on explicit GO
+- **UAT gate — PASSED** ✅ — governor/envoy verified beta (47/47) → **prod sync executed on explicit GO** (👍 thread 24442). Plan COMPLETE.
 
 - 2026-09-10 · **PR1** ✅ plan landed (`agentic_ai_context` #999)
 - 2026-09-10 · **PR2** ✅ manifest + index committed to `farm_media_manifests@main` (`6fa21fff`, `80b0711d`); provenance corrected (`b792eb0d`)
@@ -148,10 +149,16 @@ Walk ring (lng,lat, convex hull of 59 unique points — audit trail):
 - No TDG/money movement anywhere in this plan. Standard AI-agent `[CONTRIBUTION EVENT]` time
   reporting after merged PRs (§6, `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`) — routine, not a gate.
 
-## RESUME HERE
-PR1 done (this plan + manifest row). **Next = PR2**: commit
-`farm_media_manifests/sitio-torres-pacaja-para.json` (v2) + `index.json` entry.
-Then PR3 (verify `N-06-66` sheet row) → PR6 (HEIC → farm-media-raw, MOV→MP4 + GPS re-inject,
-commit the 35 existing transcripts, inbox sidecars, daemon upload) → UAT gate before any prod sync.
-Open questions for the governor: (a) confirm `N-06-66` is the issued CEPOTX code; (b) confirm
-loc3's true source (the `..._location_2_nursery.zip` is disjoint from the loc3 files).
+## RESUME HERE — ✅ COMPLETE (2026-09-10)
+All units shipped: **PR1** plan · **PR2** manifest v2 + index entry · **PR3/PR4/PR5** verified NO-OP ·
+**PR6** media archived end-to-end (38 HEIC → `farm-media-raw`; 35 MOV→MP4 + GPS re-inject 35/35;
+transcripts + inbox sidecars; daemon upload 35/35 → `yt_id` backfill; S3 raw 73 + previews 35;
+manifest v2 `421f172e`) · **gallery wiring** (`agroverse_shop_beta` #319) · **prod deploy**
+(`deploy_20260910T213209Z`, merge `bc84be405`) — **live and verified** (47 gallery entries).
+
+Both former gates resolved: (a) `N-06-66` governor-verified CEPOTX code; (b) provenance =
+`..._location_3_farm_alessandro_director_coopcao.zip` (exact set-match).
+No open questions. Nothing left to execute; thread 24442 may close.
+
+*Residual (non-blocking, outside this plan):* claimed 4.5 ha vs walked 19.14 ha hull — boundary stays
+`approx`, needs CAR/INCRA or a boundary walk.
