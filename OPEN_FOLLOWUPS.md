@@ -1852,6 +1852,72 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ---
 
+### ⚑ Telegram-log processor locks are live only in `@HEAD` — the pinned webhook deployments (`@44`/`@36`) still serve pre-fix code
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24326).**
+
+**Symptom.** The read-then-append dedup race (two concurrent fires each append a tracking row for the same Telegram Message ID) was fixed in code for four handlers — `process_plot_invalidation.gs` (tokenomics #469), `process_farm_boundary_evidence.gs` / `process_media_retraction.gs` / `process_tree_growth_monitoring.gs` (#471/#472) — each now wrapping its entry point in `LockService.getScriptLock()`. Those commits are merged to `main` and were pushed to the GAS project `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v` via `clasp push --force`. **But `clasp push` only updates `@HEAD`.** The project's `/exec` webhook runs a **pinned** deployment, and `@HEAD` is login-walled even with `ANYONE_ANONYMOUS` — so webhook callers never see `@HEAD`.
+
+**Verified via the Apps Script API (read-only, 2026-09-10).** Live content of each version:
+
+| Live version | plot-invalidation lock | FBE lock | MR lock | TGM lock |
+|---|---|---|---|---|
+| `@HEAD` | ✅ | ✅ | ✅ | ✅ |
+| `@44` (newest pinned) | ✅ | ❌ | ❌ | ❌ |
+| `@36` (TGM webhook, registered) | ❌ | ❌ | ❌ | ❌ |
+| `@32` | ❌ | ❌ | ❌ | ❌ |
+
+`@44`'s description is `#463` but its content *includes* the #469 plot-invalidation lock, consistent with it being created 2026-09-10 after #469 merged — the repoint made for the reject fix coincidentally carried that one lock. So for **FBE / MR / TGM the race is still open on the production webhook path**; only time-driven triggers (which run `@HEAD`) are protected.
+
+**Compounding.** `## Pending` already notes that the **hourly cron fallback was never set** for FBE and MR (needs a manual GAS-UI trigger). For those two the webhook is the *only* live path, so the lock currently protects nothing in production.
+
+**Relationship to the existing repoint-gap entry.** This is the **consequence** of the `clasp push --force` / pinned-deployment gap already filed in this section — *not* a re-file of it. That entry owns the root cause; this entry records that the lock fix is therefore **not actually live**, so it isn't mistaken for done.
+
+**Proposed fix.** `clasp version` to cut a new version from `@HEAD`, then `clasp deploy --deploymentId <@44>` (and `@36`) to repoint the live webhooks; log the push per `DEPLOY_PUSH_SOP`. This is a **production GAS deploy** — requires explicit governor go, do not do it autonomously.
+
+**Blocker / priority.** Not blocked. Needs a governor go-signal for the deploy. Also note: a direct webhook-path read was not possible from the autopilot box (SSH to `dao_protocol` denied), so the `@44`→FBE/MR dispatch mapping is a strong inference from "newest pinned + registered webhook", not a directly observed binding.
+
+---
+
+### Zombie deploy leases on GAS script `1UrBgqLnn…` left `status: open` — lease ceremony silently fail-opened past them
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24326).**
+
+**Symptom.** Two leases on scriptId `1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v` are still `status: open` 9 days after creation: `L-20260901-06` and `L-20260902-01`. The house TTL is **30 minutes**, so both are long expired and were abandoned mid-ceremony (the pushing session died before closing them).
+
+**Impact.** `DEPLOY_PUSH_SOP` §6 treats a zombie lease as an incident. Worse, the deploy tool **fail-opens past** an existing lease rather than refusing, so a zombie provides no protection *and* no alarm — the next deploy proceeds as if the lease were free. Mutex-by-convention is silently degraded to no-mutex whenever a session crashes mid-push.
+
+**Proposed fix.** Close the two zombies (append close records, don't delete). Then decide the policy: prefer **fail-closed** (refuse a new push while any non-expired-or-expired-but-open lease exists, and surface it) or at minimum, have the deploy tool **log loudly** when it fail-opens past a stale lease so the zombie leaves a trail instead of passing silently.
+
+**Blocker / priority.** Not blocked. Ready for a maintainer with write access to the lease records.
+
+---
+
+### One `clasp push` produced two deploy-ledger records (deploy script *and* the autopilot tool each append)
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24326).**
+
+**Symptom.** The 2026-09-10 push of script `1UrBgqLnnQc6PV4-…` appended **two** records to `ecosystem_change_logs` for a single logical deploy — one written by `tokenomics/scripts/deploy_gas_project.py` and one by the autopilot's `gas_deploy_project` tool wrapper around it. Both are appended to the same append-only ledger.
+
+**Impact.** The deploy ledger is read for audit ("what changed in production, when, by whom"). Duplicate rows for one deploy make the count of deploys wrong and force a reader to detect-and-merge twins. Same class as the duplicate tracking-row quirk in the invalidation tab — a read-then-append with no idempotency key. Severity low (append-only, both records correct), but it erodes trust in an audit surface.
+
+**Proposed fix.** Give each push a single idempotency key (e.g. the lease id, or `<scriptId>:<version>:<sha>`) and have whichever layer writes second detect-and-skip the existing record — rather than both layers writing unconditionally.
+
+**Blocker / priority.** Not blocked. Low severity; file-and-forget until the ledger is next touched.
+
+---
+
+### Intentional: `process_qr_code_updates.js` and `process_tree_planting_link.js` must NOT take the script lock
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24326).**
+
+**Context.** The 2026-09-10 lock work added `LockService.getScriptLock()` to four Telegram-log processors; a regression guard (tokenomics #473, `scripts/test_telegram_log_processor_lock.py`) now asserts that every handler owning a read-then-append dedup set takes the lock. Two files in the same project are **deliberately** lock-free and must stay that way:
+
+- `process_qr_code_updates.js` — the `doGet` router. It **dispatches** to the child processors. GAS script locks are **not reentrant**, so a router that held the lock would deadlock its own children.
+- `process_tree_planting_link.js` — holds **no** `getProcessed*MessageIds_` dedup state (verified: it appends rows but has no read-then-append window), so there is no race to close.
+
+**Why filed.** So a future reader or agent doesn't "fix" the inconsistency by adding a lock to the router (deadlock) or assume the guard test is failing open. The guard test pins this: it fails if either file ever *grows* a dedup helper, forcing the author to add the lock **and** re-reason about the router deadlock note.
+
+**Blocker / priority.** Informational — no action. Revisit only if either file gains dedup state.
+
+---
+
 ## Recently shipped
 
 ### CEPOTX/CoopCao site code `N-06-66` (Sítio Torres, Pacajá) — RESOLVED 2026-09-10 (governor-confirmed; registry updated)
