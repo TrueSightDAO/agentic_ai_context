@@ -41,6 +41,42 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 
 
+### Brazilian Journey farms can be present in `BRAZILIAN_PATH_DATA` yet render nowhere — `journeyOrder` has no drift guard
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24440).**
+
+**Symptom.** After Sítio Cristo Rei's farm page + nav card shipped (agroverse_shop_beta PR #313), the farm was still invisible on `agroverse.shop/cacao-journeys/brazilian-path/` — no stop card, no map marker — while every other farm rendered.
+
+**Root cause.** The page carries two structures: `BRAZILIAN_PATH_DATA` (a slug→data map) and `journeyOrder` (the array the renderer maps over: `journeyOrder.map(k => DATA[k]).filter(Boolean)`). #313 added the data entry but not the `journeyOrder` entry, so the farm was silently filtered out. No error, no warning — a farm present in one list but not the other simply vanishes.
+
+**Impact.** Any future farm add hits the same trap. A cross-check at fix time showed Cristo Rei was the only orphan (26 data keys vs 25 order entries), but nothing prevents recurrence.
+
+**Resolution this session.** Fixed by PR #317 (one line added to `journeyOrder`; promoted to prod).
+
+**Proposed hardening (~20 min).** Add a build/dev guard that fails or warns loudly when a `BRAZILIAN_PATH_DATA` key is absent from `journeyOrder` (and flags reverse orphans), or derive `journeyOrder` from the data map (insertion order / an explicit `order` field) so the two cannot drift. Blocker: none.
+
+
+### `farm_media_manifests` generator is video-only (inbox-scoped) — photo items need a separate merge
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24440).**
+
+**Symptom.** `farm_media_manifests/cristo-rei-pacaje-para.json` held **13 items (MOV only)**, while the sibling convention includes stills as items — e.g. `cacau-na-veia-pacaje.json` = 64 items (33 MOV + 31 HEIC), each with real `latitude`/`longitude`.
+
+**Root cause.** The generator (`farm_media_daemon/farm_media_manifest.py`) reads only the daemon **inbox** (mp4 + sidecars), which never contains the HEIC stills — those live in `farm-media-raw/<farm_id>/photos/`. So a manifest regenerated from the daemon can never include photos, and the farm's manifest silently diverges from the sibling schema.
+
+**Resolution this session.** Rebuilt the file by merging the 13 committed video items + 46 photo items (EXIF lat/lon via `exiftool -n`, `creation_date`) → **59 items, 58/59 GPS**, matching the sibling schema `{file, creation_date, plot_id, latitude, longitude}` (commit 7f219748). The single null is a genuinely GPS-less source (`IMG_9609.MOV`).
+
+**Proposed fix (~45 min).** Teach the manifest build to merge **both** sources — the daemon's video items + a photo pass over `farm-media-raw/<farm_id>/photos/` (EXIF GPS + `creation_date`) — so one command emits the full item set. Blocker: none.
+
+
+### SunMint geojson orphan plot `PL-005` (Cristo Rei) duplicates `CR-PA-P2` — no `farm_id`, popup can't link back
+**Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24440).**
+
+**Symptom.** `sunmint/plots/index.geojson` contains two Cristo Rei features: the canonical **`CR-PA-P2`** (`farm_id: cristo-rei-pacaje-para`, 0.956 ha, full props, real hull) and an orphan **`PL-005`** ("Site Cristo Rei (Cristo Rei Pacaje Para)", `status: proposed`) with **no `farm_id`**.
+
+**Impact.** The orphan renders as a separate plot on `truesight.me/sunmint.html`; its popup cannot build the "View farm profile on Agroverse" link (the map computes `FARM_SLUG[farm_id] || farm_id`, and `farm_id` is empty). Same class as the `PL-006` / `N-06-66` duplicate (see the Farm Boundary Evidence Plot-ID-drop entry) — an auto-assigned `PL-<seq>` minted because the boundary submission's `Plot ID` line was dropped server-side.
+
+**Proposed fix (~20 min).** Invalidate/remove the `PL-005` row, leaving `CR-PA-P2` as the single Cristo Rei plot. Fix the **SunMint Plots sheet row** (the durable source — the geojson regenerates daily from the tab); a direct geojson edit alone gets overwritten. Blocker: none.
+
+
 ### Archive roots without an `extensions` key silently default to `.MOV/.mov` — no warning; cost a multi-turn media cleanup
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 24440).**
 
