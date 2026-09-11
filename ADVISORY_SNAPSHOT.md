@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-11T04:59:59Z`
+- Generated (UTC): `2026-09-11T11:40:50Z`
 - Look-back: **7** calendar days (`2026-09-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,9 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260910213204_404` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539358, -51.145286" · Latitude: -3.539358
-- `Edgar_20260910213208_406` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539158, -51.145336" · Latitude: -3.539158
-- `Edgar_20260910213212_408` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539186, -51.145467" · Latitude: -3.539186
 - `Edgar_20260910213216_410` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539325, -51.145503" · Latitude: -3.539325
 - `Edgar_20260910213220_412` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539478, -51.145542" · Latitude: -3.539478
 - `Edgar_20260910213224_414` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539433, -51.145469" · Latitude: -3.539433
@@ -58,6 +55,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260911012556_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20260911012711_440` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Security incident response & risk-acceptance decision — fine-grained PAT exp…
 - `Edgar_20260911024310_442` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
+- `Edgar_20260911101431_444` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: BionPact INV-20260911-BP — invoice inspection, Stripe checkout link, PDF rev…
+- `Edgar_20260911101433_446` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: BionPact INV-20260911-BP — governor direction & review
+- `Edgar_20260911102103_448` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Research: satellite resolution/cadence cost + sponsor financing report
 
 ---
 
@@ -268,6 +268,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0523fbe | 2026-09-11 06:24:46 -0300 | Fix literal unicode escapes in crf-anapu pages (#374)
+e5237ea | 2026-09-11 05:06:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 cd13355 | 2026-09-10 23:44:14 -0300 | Add CRF Anapu program credentialing surface (#373)
 3b19b0f | 2026-09-10 22:54:19 -0300 | sunmint.html: show newest trees first in the Tree/QR dropdown (was capped at 20 rows) (#372)
 010d259 | 2026-09-10 19:35:51 -0300 | sunmint.html: list plot's trees in the plot popup (join on plot_id) (#371)
@@ -306,8 +308,6 @@ b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [
 621891e | 2026-09-05 21:43:14 -0300 | AGL14 pledge page ↔ Oscar farm profile cross-links (#354)
 5c8853d | 2026-09-05 21:29:11 -0300 | AGL16 — public ledger detail page (Wholesale Purchase Agreement, terms TBD) (#353)
 26cb016 | 2026-09-05 20:40:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
-0de4969 | 2026-09-05 15:29:01 +0000 | chore(stats): refresh stats/current.json [skip ci]
-acc2098 | 2026-09-05 10:52:15 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -320,6 +320,13 @@ acc2098 | 2026-09-05 10:52:15 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1cd8e6d | 2026-09-11 07:18:07 -0300 | Add satellite resolution/cadence cost research report (#1026)
+46c3852 | 2026-09-11 07:17:44 -0300 | Add satellite resolution/cadence cost report (sponsor financing)
+b000736 | 2026-09-11 07:01:33 -0300 | CRF Anapu plan: record governor decisions (program entity type, galleries, Jedielcio index) (#1025)
+34e621a | 2026-09-11 06:54:26 -0300 | Register CRF Anapu media handoff row in HANDOFF_MANIFEST (#1024)
+845d8d7 | 2026-09-11 06:54:22 -0300 | Add CRF Anapu media task plan + handoff row (#1023)
+084083c | 2026-09-11 02:00:18 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
+f279ef2 | 2026-09-11 02:00:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 6e4d951 | 2026-09-11 00:35:44 -0300 | Merge pull request #1022 from TrueSightDAO/auto/advisory-refresh-2026-09-11
 57649b1 | 2026-09-11 03:35:31 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 839b0c4 | 2026-09-10 22:13:38 -0300 | File follow-up: Edgar photo-upload gap (fileUploadedToGithub) (#1020)
@@ -353,13 +360,6 @@ ec02762 | 2026-09-10 11:45:27 -0300 | Open follow-ups: journeyOrder drift, video
 abada3e | 2026-09-10 08:40:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
 3036c3b | 2026-09-10 07:54:04 -0300 | docs(sunmint): canonize sub-plot naming + Plot Type live-state note (#996)
 b12e34c | 2026-09-10 07:47:14 -0300 | docs(OPEN_FOLLOWUPS): file archive-root extension default gap + extract_plot_gps set_cell loop; note manifest GPS parser fix (#994)
-1cbd954 | 2026-09-10 07:39:46 -0300 | OPEN_FOLLOWUPS: file 3 FBE-boundary defects (dropped Plot ID, accent slug, header drift) (#993)
-0164a7e | 2026-09-10 07:34:23 -0300 | Cacau na Veia: record PR4 done + PR5 no-op, register handoff row (thread 24441) (#992)
-07bf00d | 2026-09-10 02:03:26 -0300 | Cacau na Veia plan: PR3 done + correct the FBE write-path note (#991)
-1bfa294 | 2026-09-10 02:03:06 -0300 | chore(previews): refresh Beer Hall preview (2026-09-10 UTC)
-46f62bd | 2026-09-10 02:03:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
-33b95ff | 2026-09-10 00:50:03 -0300 | File follow-up: CoopCao site code N-06-66 assumed, unverified (#990)
-b3a70bc | 2026-09-10 00:44:50 -0300 | File stale-GAS pinned-deployment follow-up; update deploy registry (@44/@8) (#989)
 … (truncated)
 ```
 
@@ -411,6 +411,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1112f40 | 2026-09-11 11:26:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bea3cc9 | 2026-09-10 11:49:07 +0000 | chore: refresh currencies.json [skip ci]
 fdb2e9f | 2026-09-10 11:24:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 04a91e9 | 2026-09-09 11:50:32 +0000 | chore: refresh currencies.json [skip ci]
@@ -559,7 +560,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 53.7 | 17493.54386 | 9/10/2026 21:50:44 |
+| 2026-09 | 53.7 | 17493.54386 | 9/11/2026 3:50:46 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-04`; scanned last **600** data rows)
 
