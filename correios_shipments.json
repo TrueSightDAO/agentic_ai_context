@@ -93,6 +93,8 @@
     {
       "tracking": "CP340993237BR",
       "destination_inferred": "Poland",
+      "origin_currency": "BRL",
+      "destination_currency": "PLN",
       "currency_lines": [
         "Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + CP340993237BR Poland"
       ],
@@ -103,6 +105,8 @@
     {
       "tracking": "CP340993268BR",
       "destination_inferred": "Switzerland",
+      "origin_currency": "BRL",
+      "destination_currency": "CHF",
       "currency_lines": ["8 Ounce Package Kraft Pouch CP340993268BR - Switzerland"],
       "holders": ["Shuar Design Boutique (24)"],
       "fda_evidence": [],
@@ -111,6 +115,8 @@
     {
       "tracking": "CP340993271BR",
       "destination_inferred": "Poland",
+      "origin_currency": "BRL",
+      "destination_currency": "PLN",
       "currency_lines": [
         "8 Ounce Package Kraft Pouch CP340993271BR - Poland",
         "Cacao Mass Bar (500grams) - CP340993271BR - Poland"
@@ -135,6 +141,8 @@
     {
       "tracking": "CP340993838BR",
       "destination_inferred": "Zurich, Switzerland",
+      "origin_currency": "BRL",
+      "destination_currency": "CHF",
       "currency_lines": [
         "8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + CP340993838BR - Zurich",
         "Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + CP340993838BR - Zurich",
@@ -173,6 +181,8 @@
     {
       "tracking": "QN226716310BR",
       "destination_inferred": "FounderHaus Brazil",
+      "origin_currency": "BRL",
+      "destination_currency": null,
       "currency_lines": ["8 Ounce Package Kraft Pouch QN226716310BR - FounderHaus Brazil"],
       "holders": ["Nima Kaz (3)"],
       "fda_evidence": [],

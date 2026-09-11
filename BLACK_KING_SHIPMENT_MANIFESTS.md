@@ -58,6 +58,16 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > open question is **closed** — the Shipment-13 caramelized lot (5 kg) **never shipped as physical
 > stock**. No totals change (Shipment 13 remains excluded): **182.67 kg · USD 4,884.60**.
 
+> **Revision 9 (2026-09-11, thread 26215): corridor widened beyond the US — non-US consignments + multi-currency presentation.**
+> At the governor's request (for Matheus's Brazilian tax accountant) this manifest now also records the
+> **non-US** consignments from the same corridor (Matheus / Black King, Ilhéus BA) — the **Europe** lanes
+> (**Poland**, **Switzerland/Zurich**) and the **FounderHaus (Brazil-domestic)** lane. **The currency is
+> stated explicitly on every row:** *origin* values are led in the **Brazil-origin local currency (BRL)**,
+> the **destination-local** currency (**PLN** for Poland, **CHF** for Switzerland) is shown as a clearly
+> labelled *indicative* reference, and **USD** is retained for continuity. See §*Non-US destination
+> consignments* and §*Non-Correios lanes* below, and the FX box. **US-lane totals are unchanged
+> (182.67 kg · USD 4,884.60).**
+
 ---
 
 ## Origin unit-cost reference (USD, pre-export / ex-works Ilhéus)
@@ -336,6 +346,60 @@ Commercial invoice (declared values, USD):
 governor note that *a ceremonial-cacao shipment from AGL8 did not pass through* is pending
 confirmation of the exact manifest line before a row is flagged.
 
+> **Note:** the totals above cover the **US FDA-lane** shipments only. The corridor's **non-US**
+> consignments (Europe + Brazil-domestic) are itemised separately below, each with its own currency.
+
+---
+
+## Non-US destination consignments (Europe & Brazil-domestic)
+
+The rows above are the **US** FDA-gated imports. The rows below are the **non-US** consignments from
+the same corridor (Matheus / Black King, Ilhéus BA). Non-US lanes require **no FDA prior notice**, so
+there is no PN side; quantities and status come from the **arrival register** (`offchain assets in
+_transit` tab, gid `1888711771` → `in_transit_register.json`).
+
+**Currency convention (stated per row):** the *origin* value is led in **BRL** — the **Brazil-origin
+local currency** (the currency Matheus's Brazilian accountant files in); the **destination-local
+currency** (**PLN**, **CHF**) is shown as a clearly-labelled **indicative reference**; **USD** is kept
+for continuity. FX is set out in the box at the end of this section.
+
+| Lane | Tracking | Contents | Recipient | Status | Origin value (BRL) | Origin (USD) | Destination-local (indicative) |
+|---|---|---|---|---|---|---|---|
+| 🇵🇱 **Poland** (export) | `CP340993237BR` | Cacao Mass Bar 500 g × 10 | Aga Marecka | ✅ Arrived (reg. 469/470) | **R$ 808.83** | USD 156.95 | **zł ≈582.75** |
+| 🇵🇱 **Poland** (export) | `CP340993271BR` | 8 oz kraft pouches; Cacao Mass Bar 500 g | — | ⛔ **REJECTED** by Brazilian customs (2025-02-28 → 2025-03-01); never left | *n/a — no quantity on file* | *n/a* | *n/a* |
+| 🇨🇭 **Switzerland** (export) | `CP340993268BR` | 8 oz kraft pouch × 25 | Shuar Design Boutique | ✅ Arrived (reg. 313/364) | **R$ 855.45** | USD 166.00 | **CHF ≈134.91** |
+| 🇨🇭 **Zurich** (export) | `CP340993838BR` | 500 g mass bar × 10 + 8 oz pouch × 25 | Andrea C. Falcon Rios de Pabst (+ Yasmin) | ✅ Arrived (reg. 357/452, 359/454) | **R$ 1,664.28** | USD 322.95 | **CHF ≈262.46** |
+| 🇧🇷 **FounderHaus** (Brazil-**domestic**) | `QN226716310BR` | 8 oz kraft pouch × 50 | Nima Kaz | ✅ Arrived (reg. 248/316) | **R$ 1,710.90** | USD 332.00 | *n/a — domestic (BRL)* |
+
+**Non-US subtotal (arrived, quantifiable):** **R$ 5,039.46** · USD ≈977.90.
+**Rejected / excluded:** Poland `CP340993271BR` (never exported; no arrival-register row).
+
+> **FounderHaus is Brazil-domestic, not an export.** `QN226716310BR` lands at FounderHaus,
+> Av. dos Merlins 156, Jurerê (Florianópolis, SC) — the **domestic** Brazil partner (the party the
+> *Brazil Export Entity Brief* was prepared for). It is shown here for completeness but carries
+> **no export/customs event**; its value is BRL only.
+
+**FX (stated):**
+- **Origin:** ledger rate **1 BRL = 0.19405 USD** (⇒ 1 USD = 5.1534 BRL) — Main Ledger `Currencies` row `BRL`. The origin BRL figures above = USD ÷ 0.19405.
+- **Destination reference (indicative, live 2026-09-11):** **1 USD = 3.7129 PLN** (Poland) · **1 USD = 0.8127 CHF** (Switzerland). Mid-market; informational only — **not** a booked rate.
+
+---
+
+## Non-Correios lanes (index)
+
+Not every consignment moves by Correios. For completeness (the values are already counted under the
+numbered shipments above):
+
+| Lane | Carrier | Batches | Notes |
+|---|---|---|---|
+| Bulk freight (air/ocean) | Omega / Mega Services | AGL4 (300 kg), AGL8 (330 kg), AGL13 (Santos), AGL14 | — |
+| FedEx | FedEx | AGL5 (30 bottles cacao molasses) | = Shipment 1 |
+| Hand-carried across border | n/a | AGL0, AGL1 | earlier hand-carried batches |
+| Correios | Correios (Brazil Post) | the `CP…BR` / `QN…BR` parcels | indexed in `CORREIOS_SHIPMENTS.md` |
+
+> Note: Shipment 14 (2025-10-09) was also **hand-carried** (governor, Avianca AV560) and is recorded
+> as manifest Shipment 14 above.
+
 ---
 
 ## Known gaps
@@ -357,4 +421,5 @@ confirmation of the exact manifest line before a row is flagged.
 
 - FDA FSVP records: `TrueSightDAO/fda_fsvp/suppliers/black_king/` (11 prior notices + invoices/notas fiscais, read 2026-09-11).
 - Ledger: Main Ledger `1GE7PUq-…` — `Currencies` col B, `offchain asset location` col D (read 2026-09-11).
-- FX: ledger rate **1 BRL = 0.19405 USD** (`Currencies` row `BRL`).
+- FX: ledger rate **1 BRL = 0.19405 USD** (⇒ 1 USD = 5.1534 BRL) — `Currencies` row `BRL`.
+- FX (destination reference, *indicative*, live 2026-09-11): **1 USD = 3.7129 PLN** (Poland) · **1 USD = 0.8127 CHF** (Switzerland). Mid-market; informational only.
