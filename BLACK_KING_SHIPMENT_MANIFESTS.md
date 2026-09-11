@@ -46,8 +46,17 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > against this manifest: **Shipments 8 and 13 have no row in the arrival register** (no tracking
 > number was ever assigned) — independent corroboration of the Rev-6 *never-shipped* finding.
 > The landed caramelized unit cost cited under Shipment 13 is **re-homed to the AGL10
-> consignment** (`CP340993299BR`), which *did* arrive — see the note on the cost-reference table.
+> consignment** (`CP340993299BR`), which *did* arrive (governor-confirmed; no caramelized line) — see the note on the cost-reference table.
 > Index: `CORREIOS_SHIPMENTS.md` §*Arrival register*; machine mirror `in_transit_register.json`.
+
+> **Revision 8 (2026-09-11, thread 26215): AGL10 caramelized question resolved (governor-confirmed).**
+> The governor confirmed the AGL10 parcel **`CP340993299BR` arrived** (booked to Kirsten Ritschel;
+> ledger lines 734/735) and carried **no caramelized line** — the arrival register lists 40 × 500 g
+> mass bars only. The ledger currency line `Caramelized Cacao Beans (KG) + CP340993299BR San Francisco
+> AGL10` is therefore a **costing reference only** for the *landed* caramelized unit cost: **no
+> caramelized stock physically moved on that parcel**, and none belongs to Shipment 13. The Rev-7
+> open question is **closed** — the Shipment-13 caramelized lot (5 kg) **never shipped as physical
+> stock**. No totals change (Shipment 13 remains excluded): **182.67 kg · USD 4,884.60**.
 
 ---
 
@@ -70,7 +79,7 @@ converted at the ledger rate **1 BRL = 0.19405 USD**.
 
 > ⚠️ **Re-homed (Rev-7):** this landed unit cost is drawn from the **AGL10** ledger line
 > (`CP340993299BR`, San Francisco AGL10). It therefore belongs to the **AGL10 consignment**
-> (40 × 500 g mass bars, ledger lines 734/735 — **arrived**, per the arrival register), **not** to
+> (40 × 500 g mass bars, ledger lines 734/735 — **arrived**; governor-confirmed — register lists mass bars only, no caramelized line), **not** to
 > Shipment 13. The manifest had used it to value the Shipment-13 caramelized lot — a mis-join.
 
 > ⚠️ **`landed` = not a pre-export cost.** Only the caramelized-beans line carries a
@@ -270,16 +279,17 @@ as a data gap.
 | # | Item | Qty | Origin unit cost (USD) | Extended (USD) |
 |---|---|---|---|---|
 | 1 | 500 g ceremonial cacao bar | 40 (20 kg ÷ 0.5 kg) | 15.6951006 /bar | 627.80 |
-| 2 | Caramelized Cacao Almond Beans | 5 kg | 36.7492 /kg **(landed)** ⚠️ *mis-joined — this unit cost is the **AGL10** ledger line, not a Shipment-13 cost (see Rev-7 note)* | 183.75 |
+| 2 | Caramelized Cacao Almond Beans | 5 kg | 36.7492 /kg **(landed)** ⚠️ *mis-joined — this unit cost is the **AGL10** ledger line, not a Shipment-13 cost (see Rev-7/8 note)* | 183.75 |
 
 **Shipment total: USD 811.55 — ⛔ EXCLUDED (never shipped).** (USD 183.75 of this was a *landed*
 figure, not pre-export; origin caramelized value ≈ R$725 = USD 140.69.)
 
 > ⚠️ **Rev-7 re-home:** the `36.7492/kg` landed figure is the **AGL10** value
 > (`CP340993299BR`), which **arrived** — it does not belong to this never-shipped lot and is
-> **excluded** along with the rest of Shipment 13. **Open question (governor):** did the 5 kg
-> caramelized lot in fact move on the AGL10 parcel? The arrival register lists mass bars (not
-> caramelized) for `CP340993299BR`; flagged, not asserted.
+> **excluded** along with the rest of Shipment 13. **Open question — RESOLVED (Rev-8, governor-confirmed 2026-09-11; answer: NO):** the 5 kg
+> caramelized lot did **NOT** physically move on the AGL10 parcel. The arrival register lists mass
+> bars only (no caramelized line), so the AGL10 ledger line is a *costing reference only*; the
+> Shipment-13 caramelized stock never shipped.
 
 ---
 

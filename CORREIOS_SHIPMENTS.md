@@ -63,9 +63,12 @@ Machine mirror: `in_transit_register.json`. Every row below reads **"Arrived at 
 | Kirsten Ritschel | 22 Litres Insulated Box | 1 | Correios | `CP340993869BR` | 638 | Arrived at Destination |
 | Kirsten Ritschel | Cacao Mass Bar 500 g (AGL10) | 40 | Correios | `CP340993299BR` | 734, 735 | Arrived at Destination |
 
-> **Note (2026-09-11):** `CP340993299BR` is the **AGL10** parcel. The ledger currency line
+> **Note (2026-09-11, governor-corrected):** `CP340993299BR` is the **AGL10** parcel and
+> **ARRIVED** — booked to Kirsten Ritschel (ledger lines 734/735). The register lists **mass bars
+> only — no caramelized line.** The ledger currency line
 > `Caramelized Cacao Beans (KG) + CP340993299BR San Francisco AGL10` attaches the *landed*
-> caramelized unit cost to **this** parcel — not to a Black King manifest shipment.
+> caramelized unit cost to **this** parcel as a **costing reference only** — no caramelized stock
+> physically moved on it, and none belongs to any Black King manifest shipment.
 
 ## FDA FSVP records for Black King (Matheus)
 
