@@ -24,11 +24,48 @@ Use the **truesight.me** color palette (not the old green `#2d5a27`):
 - **Margins:** `0.75\"` all sides
 - **Font:** Helvetica (default ReportLab)
 
+### Issuing entity (MANDATORY)
+
+The invoice is issued **by a legal entity**, not by the brand alone. Every Agroverse
+invoice MUST carry an issuer block naming the entity, its legal form, its address, and
+its **EIN**.
+
+Default issuer (confirm with the governor if the deal is unusual):
+
+| Field | Value |
+|---|---|
+| Legal name | **TrueTech Inc** |
+| Legal form | Delaware C-Corporation |
+| Address | 1968 South Coast Highway #4616, Laguna Beach, CA 92651, USA |
+| EIN | **88-3411514** |
+| CBP importer of record | 88-341151400 |
+| Signatory | Zhiwen Teh (Gary Teh), President |
+
+Render as a `From:` block directly under the title:
+
+```
+From:  TrueTech Inc — a Delaware C-Corporation
+       Agroverse / SunMint · TrueSight DAO
+       1968 South Coast Highway #4616, Laguna Beach, CA 92651, USA
+       EIN: 88-3411514
+```
+
+Repeat the legal name + EIN + address in the page footer, and sign with the
+**officer's name and title** (not just the brand name).
+
+> **Gap being closed (2026-09-11):** the three historical invoices on file
+> (`green-gulch`, `melinda-larios`, `chives-root`) were issued under the *brand*
+> with no entity or EIN — a US buyer cannot use those for their own books. For any
+> invoicing purpose beyond a friendly retail sale, use an entity that has an EIN
+> (a sole-proprietor cheque to a personal name gives the buyer nothing to deduct).
+> Where payment is collected via Venmo/personal rail, still state which **entity**
+> the sale is booked under so the books tie out.
+
 ### Header
 
-- **Title:** `AGROVERSE CACAO` in bold, 22pt, gold (`#d38900`)
-- **Subtitle:** `Invoice` in 9pt, muted
-- **Invoice # and Date** in a two-column table below
+- **Title:** issuer legal name (e.g. `TRUETECH INC`) in bold, 22pt, gold (`#d38900`)
+- **Subtitle:** `Invoice — Agroverse Cacao` in 9pt, muted
+- **Issuer block (`From:`)**, then **Invoice # / Date / Signed by** in a two-column table below
 
 ### Bill To section
 
