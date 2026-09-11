@@ -20,9 +20,44 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-11T03:35:24Z`
+- Generated (UTC): `2026-09-11T04:59:59Z`
 - Look-back: **7** calendar days (`2026-09-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[TREE PLANTING EVENT]` × 25
+- `[CONTRIBUTION EVENT]` × 16
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20260910213204_404` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539358, -51.145286" · Latitude: -3.539358
+- `Edgar_20260910213208_406` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539158, -51.145336" · Latitude: -3.539158
+- `Edgar_20260910213212_408` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539186, -51.145467" · Latitude: -3.539186
+- `Edgar_20260910213216_410` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539325, -51.145503" · Latitude: -3.539325
+- `Edgar_20260910213220_412` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539478, -51.145542" · Latitude: -3.539478
+- `Edgar_20260910213224_414` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539433, -51.145469" · Latitude: -3.539433
+- `Edgar_20260910213228_416` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539647, -51.145469" · Latitude: -3.539647
+- `Edgar_20260910213232_418` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539972, -51.145011" · Latitude: -3.539972
+- `Edgar_20260910213235_420` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539456, -51.144553" · Latitude: -3.539456
+- `Edgar_20260910213239_422` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.529844, -51.145114" · Latitude: -3.529844
+- `Edgar_20260910222159_424` · **Edgar** · [No Text Provided]
+- `Edgar_20260910223120_426` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Thread 24321 — FBE research sub-plot: submit, diagnose Plot-ID drop, repair …
+- `Edgar_20260910225129_428` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: deep seek credit 9th Sep
+- `Edgar_20260910225158_430` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek credits 10th October
+- `Edgar_20260910225436_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Sítio Torres (Pacajá loc3) media task — prod deploy, .env silent-drop audit,…
+- `Edgar_20260910225630_434` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Expose SunMint trees/plots/farms + MAP media in the LLM discovery surface (b…
+- `Edgar_20260911011333_436` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Agroverse invoice hardening — TrueTech Inc issuer stamp + Wise pay link (INV…
+- `Edgar_20260911012556_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260911012711_440` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Security incident response & risk-acceptance decision — fine-grained PAT exp…
+- `Edgar_20260911024310_442` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
 
 ---
 
@@ -194,13 +229,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,910.50**
+- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD provisioned for voting-rights cash-out: **$54.93**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -281,6 +320,8 @@ acc2098 | 2026-09-05 10:52:15 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6e4d951 | 2026-09-11 00:35:44 -0300 | Merge pull request #1022 from TrueSightDAO/auto/advisory-refresh-2026-09-11
+57649b1 | 2026-09-11 03:35:31 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 839b0c4 | 2026-09-10 22:13:38 -0300 | File follow-up: Edgar photo-upload gap (fileUploadedToGithub) (#1020)
 b43305d | 2026-09-10 21:56:00 -0300 | Invoice convention: require issuer entity block + EIN (#1021)
 c2ddf7b | 2026-09-10 20:53:56 -0300 | Add bilingual CRF de Anapu ("Dorothy Stang") tree planting support agreement + PDF builder (#1019)
@@ -319,8 +360,6 @@ b12e34c | 2026-09-10 07:47:14 -0300 | docs(OPEN_FOLLOWUPS): file archive-root ex
 46f62bd | 2026-09-10 02:03:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
 33b95ff | 2026-09-10 00:50:03 -0300 | File follow-up: CoopCao site code N-06-66 assumed, unverified (#990)
 b3a70bc | 2026-09-10 00:44:50 -0300 | File stale-GAS pinned-deployment follow-up; update deploy registry (@44/@8) (#989)
-2b04c1e | 2026-09-10 00:44:14 -0300 | Cacau na Veia: confirm restoration plot_id N-06-37_20260909_restoration_1 (two plots) (#988)
-08d234e | 2026-09-10 00:41:36 -0300 | Register handoff: GAS deploy accessor guard (tokenomics #470, thread 24846) (#987)
 … (truncated)
 ```
 
@@ -496,6 +535,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 53.7 | 17493.54386 | 9/10/2026 21:50:44 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-04`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
