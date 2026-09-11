@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-11T16:41:02Z`
+- Generated (UTC): `2026-09-11T21:08:31Z`
 - Look-back: **7** calendar days (`2026-09-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 25
-- `[CONTRIBUTION EVENT]` × 16
-- _free-form (no bracket tag)_ × 1
+- `[TREE PLANTING EVENT]` × 23
+- `[CONTRIBUTION EVENT]` × 15
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260910213220_412` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539478, -51.145542" · Latitude: -3.539478
-- `Edgar_20260910213224_414` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539433, -51.145469" · Latitude: -3.539433
-- `Edgar_20260910213228_416` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539647, -51.145469" · Latitude: -3.539647
-- `Edgar_20260910213232_418` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539972, -51.145011" · Latitude: -3.539972
-- `Edgar_20260910213235_420` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539456, -51.144553" · Latitude: -3.539456
 - `Edgar_20260910213239_422` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.529844, -51.145114" · Latitude: -3.529844
 - `Edgar_20260910222159_424` · **Edgar** · [No Text Provided]
 - `Edgar_20260910223120_426` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Thread 24321 — FBE research sub-plot: submit, diagnose Plot-ID drop, repair …
@@ -58,6 +54,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260911101433_446` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: BionPact INV-20260911-BP — governor direction & review
 - `Edgar_20260911102103_448` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Research: satellite resolution/cadence cost + sponsor financing report
 - `Edgar_20260911153502_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Cacau na Veia (Pacajá loc1, CEPOTX) farm media — 45-item gallery + 33 PT tra…
+- `Edgar_20260911180824_452` · **Edgar** · [No Text Provided]
+- `Edgar_20260911181000_454` · **Edgar** · [No Text Provided]
+- `Edgar_20260911185106_456` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: AGL14 serialization + QR-sheet header-contract guard (thread 25671)
+- `Edgar_20260911191255_458` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260911202327_460` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-11T20:23:25.803Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -268,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+80355de | 2026-09-11 16:43:03 +0000 | chore(stats): refresh stats indexes [skip ci]
 b64dd83 | 2026-09-11 11:47:05 -0300 | Fix blank-basemap zoom wall: upscale z17 imagery instead of requesting missing z18 tiles (#376)
 14272f6 | 2026-09-11 10:43:28 -0300 | Add CRF Anapu program media gallery (program-page gallery convention) (#375)
 f74382b | 2026-09-11 11:44:21 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -307,7 +309,6 @@ b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [
 59b1e5f | 2026-09-06 15:42:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 06f8bbf | 2026-09-06 11:16:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 84db22e | 2026-09-06 05:00:22 +0000 | chore(stats): refresh stats/current.json [skip ci]
-52fa3fc | 2026-09-05 22:23:11 -0300 | AGL6 pledge page ↔ Fazenda São Jorge farm profile cross-links (#356)
 … (truncated)
 ```
 
@@ -320,6 +321,13 @@ b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+be0df1d | 2026-09-11 16:11:07 -0300 | Black King manifest Rev-9: non-US lanes (Poland/Switzerland/FounderHaus) + explicit multi-currency (#1047)
+af21104 | 2026-09-11 15:58:42 -0300 | Black King Rev-8: AGL10 arrival governor-confirmed; caramelized line = costing reference only (no physical stock) (#1046)
+d61498f | 2026-09-11 15:43:07 -0300 | File 3 follow-ups from AGL14 serialization (thread 25671) (#1045)
+e744945 | 2026-09-11 15:40:57 -0300 | Black King: arrival register join (offchain assets in transit) + Rev-7 cross-check (#1044)
+90fab89 | 2026-09-11 15:34:16 -0300 | Black King manifests: strike Shipments 8 & 13 (never shipped) — Rev 6 (#1043)
+f9b8ad1 | 2026-09-11 13:41:19 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
+628e939 | 2026-09-11 13:41:18 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 d3ad8d6 | 2026-09-11 12:40:17 -0300 | Media Gallery Publisher PR2: mark write-path blocker superseded (verified) — RESUME HERE → PR3 (#1042)
 ce558a5 | 2026-09-11 12:35:08 -0300 | CRF Anapu: record standalone subdomain cfr.truesight.me LIVE (plan §7 + manifest row) (#1041)
 9b23f17 | 2026-09-11 12:31:53 -0300 | BK manifests: add EO-14324 post-de-minimis import-gate context (thread 26215) (#1040)
@@ -353,13 +361,6 @@ f279ef2 | 2026-09-11 02:00:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b43305d | 2026-09-10 21:56:00 -0300 | Invoice convention: require issuer entity block + EIN (#1021)
 c2ddf7b | 2026-09-10 20:53:56 -0300 | Add bilingual CRF de Anapu ("Dorothy Stang") tree planting support agreement + PDF builder (#1019)
 9ad3632 | 2026-09-10 20:31:22 -0300 | handoff(sitio-torres): mark row terminal (completed) so topic closes cleanly (#1018)
-1f7cef9 | 2026-09-10 19:55:45 -0300 | Move FBE Plot-ID entry to Recently shipped (fix #425) (#1017)
-795a34a | 2026-09-10 19:35:46 -0300 | followups: file stale TREE PLANTING labels + snapshot reader crash (#1014)
-fbf5c59 | 2026-09-10 19:35:31 -0300 | plan(sitio-torres): COMPLETE — prod deployed & verified (47 gallery entries) (#1013)
-b90b719 | 2026-09-10 19:31:17 -0300 | File OPEN_FOLLOWUPS: FBE Plot ID canonical-label gap (#1015)
-ed334d1 | 2026-09-10 18:34:30 -0300 | followups: locks shipped live (@45/@46); upgrade lease entry (14 zombies + close_lease bug) (#1012)
-418699e | 2026-09-10 18:04:11 -0300 | chore(previews): refresh Beer Hall preview (2026-09-10 UTC)
-2858ba8 | 2026-09-10 18:04:10 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
 … (truncated)
 ```
 
@@ -561,7 +562,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/11/2026 8:53:24 |
+| 2026-09 | 853.7 | 18293.54386 | 9/11/2026 13:50:46 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-04`; scanned last **600** data rows)
 
