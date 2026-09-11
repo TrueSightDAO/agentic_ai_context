@@ -1,0 +1,209 @@
+{
+  "generatedAt": "2026-09-11T12:31:09Z",
+  "generatedBy": "Sophia Truesight (autopilot)",
+  "description": "Canonical index of Correios (Brazil Post) shipments, primarily the Matheus Reis / Black King (Ilheus, BA) export corridor. Correios tracking numbers are embedded in Currencies-tab product names; FDA FSVP records live in fda_fsvp/suppliers/black_king/. Also see CORREIOS_SHIPMENTS.md.",
+  "sources": {
+    "ledger_currencies": {
+      "spreadsheet_id": "1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU",
+      "tabs": ["Currencies", "offchain asset location"]
+    },
+    "fda_fsvp": "TrueSightDAO/fda_fsvp/suppliers/black_king/",
+    "inventory_mirror": "TrueSightDAO/agroverse-inventory/currencies.json"
+  },
+  "correios_prefixes": ["CP", "QN"],
+  "origin": "Matheus Reis / Black King (MATHEUS REIS PEREIRA), Ilheus, BA, Brazil",
+  "shipments": [
+    {
+      "tracking": "CP327946643BR",
+      "destination_inferred": "United States (AGL2 / AGL6 era)",
+      "currency_lines": [
+        "Cacao Mass Bar (40grams) CP327946643BR",
+        "Cacao Mass Bar (500grams) CP327946643BR",
+        "Cacao Mass Bar (loose grams) CP327946643BR",
+        "Cacao Nibs (8 ounce kraft pouches) CP327946643BR",
+        "Ceremonial Cacao Kraft Pouch - 20250219006 + Cacao Mass Bar CP327946643BR - AGL6"
+      ],
+      "holders": ["AGL2", "AGL6"],
+      "fda_evidence": [],
+      "notes": "Earliest Correios parcel set; predates the filed FSVP receipt set."
+    },
+    {
+      "tracking": "CP340992130BR",
+      "destination_inferred": "United States",
+      "currency_lines": ["8 Ounce Package Kraft Pouch  CP340992130BR"],
+      "holders": [],
+      "fda_evidence": [],
+      "notes": ""
+    },
+    {
+      "tracking": "CP340992687BR",
+      "destination_inferred": "San Francisco, US",
+      "currency_lines": [
+        "8 Ounce Package Kraft Pouch CP340992687BR",
+        "Cacao Mass Bar CP340992687BR (500grams)",
+        "Cacao Mass Bar CP340992687BR (50grams)",
+        "Cacao Mass Bar CP340992687BR (loose grams)",
+        "Ceremonial Cacao Kraft Pouch - 20250219006 + Cacao Mass Bar CP340992687BR"
+      ],
+      "holders": ["Miss Tomato - Asad (10)", "Shannon Barlow - Ponderosa (1)"],
+      "fda_evidence": [
+        "20241111_shipping_CP340992687BR.jpeg",
+        "20241111_shipping_CP340992687BR_payment_receipt.jpeg"
+      ],
+      "notes": "Correios shipping receipt dated 2024-11-11."
+    },
+    {
+      "tracking": "CP340992695BR",
+      "destination_inferred": "United States",
+      "currency_lines": [
+        "8 Ounce Package Kraft Pouch - CP340992695BR + v2 bags",
+        "Cacao Nibs CP340992695BR (KG)"
+      ],
+      "holders": ["Edge and Node (3)", "Tess Walkowski (4)"],
+      "fda_evidence": [
+        "20241111_shipping_CP340992695BR.jpeg",
+        "20241111_shipping_CP340992695BR_payment_receipt.jpeg"
+      ],
+      "notes": "Correios shipping receipt dated 2024-11-11."
+    },
+    {
+      "tracking": "CP340992735BR",
+      "destination_inferred": "San Francisco, US",
+      "currency_lines": [
+        "8 Ounce Package Kraft Pouch  CP340992735BR",
+        "Agroverse 81% Cacao Chocolate Bar 50g | 8 Ounce Nibs CP340992735BR | Kirsten 20260620 | San Francisco - AGL4",
+        "Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Package Kraft Pouch CP340992735BR | Kirsten 20260121",
+        "Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + 8 Ounce Package Kraft Pouch CP340992735BR | Kirsten 20260330"
+      ],
+      "holders": ["Edge and Node (2)", "Elinor Janelle (1)", "Kirsten Ritschel (2)", "Rune Shields (3)", "Shannon Barlow - Ponderosa (5)"],
+      "fda_evidence": [],
+      "notes": "Heavily reused in repackaged ceremonial + 81% bar lines; tokenized batch 2024OSCAR_20250711_NIBS_21 (ADVISORY_SNAPSHOT.md)."
+    },
+    {
+      "tracking": "CP340992761BR",
+      "destination_inferred": "San Francisco, US",
+      "currency_lines": [
+        "Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + CP340992761BR  San Francisco",
+        "Ceremonial Cacao Kraft Pouch - 20250219006 + Cacao Mass Bar CP340992761BR  San Francisco"
+      ],
+      "holders": [],
+      "fda_evidence": [],
+      "notes": ""
+    },
+    {
+      "tracking": "CP340993237BR",
+      "destination_inferred": "Poland",
+      "currency_lines": [
+        "Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + CP340993237BR Poland"
+      ],
+      "holders": ["Aga Marecka (20)"],
+      "fda_evidence": [],
+      "notes": "Non-US lane (no FDA prior notice required)."
+    },
+    {
+      "tracking": "CP340993268BR",
+      "destination_inferred": "Switzerland",
+      "currency_lines": ["8 Ounce Package Kraft Pouch CP340993268BR - Switzerland"],
+      "holders": ["Shuar Design Boutique (24)"],
+      "fda_evidence": [],
+      "notes": "Non-US lane."
+    },
+    {
+      "tracking": "CP340993271BR",
+      "destination_inferred": "Poland",
+      "currency_lines": [
+        "8 Ounce Package Kraft Pouch CP340993271BR - Poland",
+        "Cacao Mass Bar (500grams) - CP340993271BR - Poland"
+      ],
+      "holders": [],
+      "fda_evidence": [],
+      "notes": "Non-US lane."
+    },
+    {
+      "tracking": "CP340993299BR",
+      "destination_inferred": "San Francisco, US (AGL10)",
+      "currency_lines": [
+        "Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + CP340993299BR - San Francisco",
+        "Caramelized Cacao Beans (KG) + CP340993299BR San Francisco AGL10",
+        "Ceremonial Cacao Kraft Pouch - 20250219006 + Cacao Mass Bar CP340993299BR  San Francisco",
+        "Ceremonial Cacao Kraft Pouch - Alibaba:269035810001023771 + Cacao Mass Bar CP340993299BR  San Francisco"
+      ],
+      "holders": ["HackerDojo (5)", "iChakras (5)", "Kelly Springer (1)", "Queen Hippie Gypsy - Lily (8)", "Rune Shields (2)", "Secrets of the Garden - Kirstin (2)", "The Enchanted Forest Boutique (10)", "The Whole Body Repair Clinic (5)"],
+      "fda_evidence": ["20250623_fda_prior_notice_20kg_ceremonial_cacao_5kg_caramelized_cacao.pdf (inferred: caramelized cacao line)"],
+      "notes": "AGL10 caramelized/ceremonial batch."
+    },
+    {
+      "tracking": "CP340993838BR",
+      "destination_inferred": "Zurich, Switzerland",
+      "currency_lines": [
+        "8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + CP340993838BR - Zurich",
+        "Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + CP340993838BR - Zurich",
+        "Cacao Mass Bar (loose grams) - Ilheus, Brazil 2024 + CP340993838BR - Zurich"
+      ],
+      "holders": ["Andrea Catalina Falcon Rios De Pabst (16 + 7 + 200 g)", "Yasmin (40 g)"],
+      "fda_evidence": [],
+      "notes": "Non-US lane."
+    },
+    {
+      "tracking": "CP340993869BR",
+      "destination_inferred": "San Francisco, US (AGL8)",
+      "currency_lines": [
+        "Cacao Mass Bar (40grams) CP340993869BR - AGL8",
+        "Cacao Tea (loose grams) CP340993869BR - AGL8",
+        "Ceremonial Cacao Kraft Pouch - 20250219006 + Cacao Mass Bar CP340993869BR San Francisco - AGL8"
+      ],
+      "holders": ["AGL8"],
+      "fda_evidence": [],
+      "notes": "AGL8 batch."
+    },
+    {
+      "tracking": "CP340993988BR",
+      "destination_inferred": "San Francisco, US (Oscar 2024 batch)",
+      "currency_lines": [
+        "Cacao Husk (loose grams) - Ilheus, Brazil 2024 + CP340993988BR San Francisco",
+        "Cacao Mass (KG) - Ilheus, Brazil 2024 + CP340993988BR San Francisco",
+        "Cacao Nibs (KG) - Ilheus, Brazil 2024 + CP340993988BR San Francisco",
+        "81% Dark Chocolate Bar 50grams - Oscar Fazenda, Brazil 2024 + CP340993988BR San Francisco",
+        "Ceremonial Cacao Kraft Pouch - 20250219006 | Cacao Mass | 200 grams | Oscar 2024 | CP340993988BR San Francisco | Kirsten 20251107\u2026"
+      ],
+      "holders": ["Kirsten Ritschel (20251107 / 20251124 / 20251211)"],
+      "fda_evidence": [],
+      "notes": "Oscar 2024 cacao mass/husk/nibs batch entering SF via AGL4 / AGL8."
+    },
+    {
+      "tracking": "QN226716310BR",
+      "destination_inferred": "FounderHaus Brazil",
+      "currency_lines": ["8 Ounce Package Kraft Pouch QN226716310BR - FounderHaus Brazil"],
+      "holders": ["Nima Kaz (3)"],
+      "fda_evidence": [],
+      "notes": "QN-prefix Correios packet; domestic Brazil lane."
+    }
+  ],
+  "non_correios_lanes": [
+    {"lane": "Bulk freight (air/ocean)", "batches": ["AGL4 (300 kg)", "AGL8 (330 kg)", "AGL13 (Santos)", "AGL14"], "carrier": "Omega / Mega Services"},
+    {"lane": "FedEx", "batches": ["AGL5 (30 bottles cacao molasses)"], "carrier": "FedEx"},
+    {"lane": "Hand-carried across border", "batches": ["AGL0", "AGL1"], "carrier": "n/a"}
+  ],
+  "fda_fsvp_prior_notices": [
+    "20240924_fda_prior_notice_30_bottles_cacao_molasses.pdf",
+    "20241003_30kg_cacao_nibs_webentry_prior_notice.pdf",
+    "20241031_fda_fsvp_20kg_cacao_nibs_prior_notice.pdf",
+    "20241031_fda_fsvp_23kg_cacao_liquor_prior_notice.pdf",
+    "20241031_fda_fsvp_88bags_cacao_nibs_prior_notice.pdf",
+    "20250228_fda_prior_notice_10_bars_ceremonial_cacao_500grams.pdf",
+    "20250309_fda_prior_notice_20_bottles_of_cacao_molasses.pdf",
+    "20250602_fda_prior_notice_cacao_husk_and_ceremonial_bars.pdf",
+    "20250623_fda_prior_notice_20kg_ceremonial_cacao_5kg_caramelized_cacao.pdf",
+    "20251008_fda_prior_notice.pdf"
+  ],
+  "fda_fsvp_shipping_receipts": [
+    "20240925_fedex_shipping.jpeg",
+    "20241004_emelin_30kg_carreois_transport_receipt.jpeg",
+    "20241004_emelin_30kg_carreois_transport_receipt_english.jpeg",
+    "20241111_shipping_CP340992687BR.jpeg",
+    "20241111_shipping_CP340992687BR_payment_receipt.jpeg",
+    "20241111_shipping_CP340992695BR.jpeg",
+    "20241111_shipping_CP340992695BR_payment_receipt.jpeg"
+  ],
+  "known_gap": "FDA prior notices are keyed by date + weight + product, not by Correios tracking number. The CP-number -> prior-notice join is inferred, not explicit."
+}
