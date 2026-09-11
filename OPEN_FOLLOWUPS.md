@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### media.agroverse.shop does not serve valid HTTPS (CNAME → S3 website endpoint, TLS cert mismatch)
+**Filed 2026-09-11. Owner: unclaimed. Governor: Gary (thread 26438).**
+
+**Symptom.** `curl https://media.agroverse.shop/` fails TLS: `SSL: no alternative certificate subject name matches target host name`. `openssl s_client` shows `subject=CN=s3.amazonaws.com`, SAN `*.s3.amazonaws.com` — i.e. the host is a **CNAME to `media.agroverse.shop.s3.amazonaws.com`** (S3 website endpoint, `s3-1-w.amazonaws.com` → `16.15.230.213`), so S3 serves the generic `*.s3.amazonaws.com` certificate, which matches neither the S3 hostname nor the custom domain.
+
+**Impact.** The MAP bucket (`s3://media.agroverse.shop/` — the archive worker writes `raw/` + `previews/`) is reachable over **http** (S3 website endpoint) but **not https with verification**. Any browser/consumer using `https://media.agroverse.shop/...` hits a cert error; this also blocks the bucket as the gallery-JSON origin (see `handoffs/MEDIA_GALLERY_PUBLISHER_PLAN.md`, hosting caution).
+
+**Proposed fix (~30 min, infra).** (a) Front the bucket with CloudFront + an ACM cert for `media.agroverse.shop` (recommended — https + caching + a stable CORS origin), point the CNAME at the distribution; or (b) drop the custom domain and use the S3 REST endpoint. Blocker: none — needs an AWS + DNS change (governor).
+
 ### Program/partner media needs its own MAP entity type + a program-page gallery convention (first instance: CRF Anapu)
 **Filed 2026-09-11. Owner: unclaimed. Governor: Gary (thread 25181).**
 
