@@ -151,8 +151,29 @@ set -a && . ~/Applications/<slug>_dao_identity/.env && set +a
 |---|---|---|---|
 | `Claude Anthropic` | `admin+claude@truesight.me` | `~/Applications/claude_dao_identity/.env` | active (renamed from `Claude` 2026-06-16) |
 | `Deep Seek` | `admin+deepseek@truesight.me` | `~/Applications/deepseek_dao_identity/.env` | active (registered 2026-06-19) |
+| `Envoy TrueSight` | `admin+envoy@truesight.me` | (nelanco-claude box) | active (registered 2026-08-23, row 418) |
+| `Sophia Truesight` | `admin+sophia@truesight.me` | (autopilot box) | active (autonomous; identity block in `agents/sophia.json`) |
 
-When you register a new interactive agent, add a row here.
+### Full sentinel roster (from the Main Ledger `Contributors contact information` tab, Is Sentinel = TRUE)
+
+Seven sentinel identities are currently on the ledger. Their **own** email addresses — which each
+agent should know and send outbound mail from when asked — are:
+
+| Ledger name | Email | Registry file |
+|---|---|---|
+| `Sophia Truesight` | `admin+sophia@truesight.me` | `agents/sophia.json` |
+| `Envoy TrueSight` | `admin+envoy@truesight.me` | `agents/envoy.json` |
+| `Deep Seek` | `admin+deepseek@truesight.me` | `agents/deepseek.json` |
+| `Claude Anthropic` | `admin+claude@truesight.me` | _(not yet filed)_ |
+| `Kimi Moon` | `admin+kimi@truesight.me` | _(not yet filed)_ |
+| `Open Ai` | `admin+open+ai@truesight.me` | _(not yet filed)_ |
+| `truesight-autopilot` | `admin@truesight.me` | _(service identity)_ |
+
+All `+aliases` route into the single operator-controlled `admin@truesight.me` inbox, so
+"your own email address" means the `+alias`, not a separate mailbox.
+
+When you register a new interactive agent, add a row here **and** (for agents that run an
+autopilot instance) an `identity` block in `agents/<name>.json`.
 
 ---
 
