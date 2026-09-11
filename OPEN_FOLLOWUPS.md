@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot box root filesystem (`/`) fills to 100% — disposable repo clones land on `/tmp`, while the 246G `/media` volume sits at 25%
+**Filed 2026-09-11. Owner: unclaimed. Governor: Gary (thread 24441).**
+
+**Symptom.** On 2026-09-11 during the Cacau na Veia prod-completion, `git_push_changes` failed with `fatal: write error: No space left on device` / `fetch-pack: invalid index-pack output`. `df -h /` showed `/dev/root` (78G) at **100% — 5.5M free**, while the dedicated data volume **`/media` (`/dev/nvme1n1`, 246G) was at 25% (175G free)**.
+
+**Cause.** `/` is only 78G yet carries both the large `/home/ubuntu` working sets (uncompressed site-visit zips: `la_do_sitio_2026.zip` 3.8G, the three pacaje location zips 1.2–2.1G each) **and** `/tmp`, where the autopilot's own tooling clones a full repo on every `git_push_changes` / `open_fix_pr` (`/tmp/sophia-git-*`, plus session-ad-hoc clones ~840M each). Nothing prunes these between sessions — `systemd-tmpfiles-clean.timer` is active but its default `/tmp` age policy (10d) does not cover named working dirs, and there is no autopilot gc script.
+
+**Immediate remediation (done 2026-09-11).** Removed ~9 disposable clones (~9G) → `/` back to **89% (9.0G free)**. Unblocked the push.
+
+**Residual risk (biggest consumers still on `/`).** `/tmp/gh_assets` 4.1G, `/tmp/pac` 3.8G, `/tmp/farm-media-raw` + `/tmp/fmr` 3.6G, `/tmp/fda_fsvp` 752M, `/tmp/tg_attachments` 851M; `/home/ubuntu/*.zip` ≈ 8.3G total.
+
+**Proposed fix (~60 min).** (1) Point the tooling's scratch/clone root at `/media` (env `TMPDIR` or the clone-tempdir constant in `truesight_autopilot`) so large checkouts land on the 246G volume; (2) move the long-lived working sets (`/home/ubuntu/*_work`, media-archive stagers) onto `/media`, keeping `/home/ubuntu` for code + zips only; (3) add a small gc that prunes `/tmp/sophia-git-*` older than N hours plus orphaned `magick-*` scratch (boot or post-job); (4) add a disk-headroom guard alerting at ≥90% on `/`. Blocker: none — (1)+(3) are `truesight_autopilot` code (normal PR), (2)+(4) are box/host config.
+
+**Evidence.** `df -h /` before/after; the failed-`git_push_changes` stderr (`No space left on device`); `du -sh /tmp/*` rollup.
+
 ### media.agroverse.shop does not serve valid HTTPS (CNAME → S3 website endpoint, TLS cert mismatch)
 **Filed 2026-09-11. Owner: unclaimed. Governor: Gary (thread 26438).**
 
