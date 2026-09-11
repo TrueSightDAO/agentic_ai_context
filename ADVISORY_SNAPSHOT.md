@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-11T11:40:50Z`
+- Generated (UTC): `2026-09-11T16:41:02Z`
 - Look-back: **7** calendar days (`2026-09-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,7 +38,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260910213216_410` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539325, -51.145503" · Latitude: -3.539325
 - `Edgar_20260910213220_412` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539478, -51.145542" · Latitude: -3.539478
 - `Edgar_20260910213224_414` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539433, -51.145469" · Latitude: -3.539433
 - `Edgar_20260910213228_416` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.539647, -51.145469" · Latitude: -3.539647
@@ -58,6 +57,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260911101431_444` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: BionPact INV-20260911-BP — invoice inspection, Stripe checkout link, PDF rev…
 - `Edgar_20260911101433_446` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: BionPact INV-20260911-BP — governor direction & review
 - `Edgar_20260911102103_448` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Research: satellite resolution/cadence cost + sponsor financing report
+- `Edgar_20260911153502_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Cacau na Veia (Pacajá loc1, CEPOTX) farm media — 45-item gallery + 33 PT tra…
 
 ---
 
@@ -206,11 +206,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 28 SKU lines · 13,980.02 total units · $12,389.63
+- Manager record: `Gary Teh` · 29 SKU lines · 14,744.52 total units · $13,154.13
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 13,903.84 | $12,339.65 |
+  | (uncategorized) | (unspecified) | 27 | 14,668.34 | $13,104.15 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -268,6 +268,9 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b64dd83 | 2026-09-11 11:47:05 -0300 | Fix blank-basemap zoom wall: upscale z17 imagery instead of requesting missing z18 tiles (#376)
+14272f6 | 2026-09-11 10:43:28 -0300 | Add CRF Anapu program media gallery (program-page gallery convention) (#375)
+f74382b | 2026-09-11 11:44:21 +0000 | chore(stats): refresh stats indexes [skip ci]
 0523fbe | 2026-09-11 06:24:46 -0300 | Fix literal unicode escapes in crf-anapu pages (#374)
 e5237ea | 2026-09-11 05:06:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 cd13355 | 2026-09-10 23:44:14 -0300 | Add CRF Anapu program credentialing surface (#373)
@@ -305,9 +308,6 @@ b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [
 06f8bbf | 2026-09-06 11:16:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
 84db22e | 2026-09-06 05:00:22 +0000 | chore(stats): refresh stats/current.json [skip ci]
 52fa3fc | 2026-09-05 22:23:11 -0300 | AGL6 pledge page ↔ Fazenda São Jorge farm profile cross-links (#356)
-621891e | 2026-09-05 21:43:14 -0300 | AGL14 pledge page ↔ Oscar farm profile cross-links (#354)
-5c8853d | 2026-09-05 21:29:11 -0300 | AGL16 — public ledger detail page (Wholesale Purchase Agreement, terms TBD) (#353)
-26cb016 | 2026-09-05 20:40:03 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -320,6 +320,26 @@ b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d3ad8d6 | 2026-09-11 12:40:17 -0300 | Media Gallery Publisher PR2: mark write-path blocker superseded (verified) — RESUME HERE → PR3 (#1042)
+ce558a5 | 2026-09-11 12:35:08 -0300 | CRF Anapu: record standalone subdomain cfr.truesight.me LIVE (plan §7 + manifest row) (#1041)
+9b23f17 | 2026-09-11 12:31:53 -0300 | BK manifests: add EO-14324 post-de-minimis import-gate context (thread 26215) (#1040)
+b94fcc9 | 2026-09-11 12:31:34 -0300 | followups: box root disk fills to 100% (scratch clones on /tmp vs 246G /media) (#1039)
+9a08022 | 2026-09-11 11:56:50 -0300 | handoff: CACAU_NA_VEIA_MEDIA_TASK_PLAN — mark COMPLETED (prod deployed & verified) (#1038)
+5c7277c | 2026-09-11 11:45:47 -0300 | handoff: Media Gallery Publisher plan + manifest row + media.agroverse.shop TLS follow-up (#1036)
+64e3ac1 | 2026-09-11 11:45:25 -0300 | scratch: github update-path check (v2 update)
+4fee8b2 | 2026-09-11 11:45:19 -0300 | scratch: github update-path check (v1, will be removed)
+28223c0 | 2026-09-11 11:41:42 -0300 | Black King: revert AGL7 did-not-pass error (#9 passed through) (#1037)
+0cab5e4 | 2026-09-11 11:36:42 -0300 | Black King shipments: add weights, mark AGL7 #9 did-not-pass, drop #14 (#1035)
+d3468ed | 2026-09-11 11:33:44 -0300 | Repoint repo-access-denylist manifest row to exec thread 26410 (#1034)
+5762088 | 2026-09-11 11:31:32 -0300 | Add Sophia repo-access denylist design plan (§5a PR1) (#1033)
+25ced26 | 2026-09-11 10:51:53 -0300 | CRF Anapu plan: sync status (PR2, PR4 shipped; PR5 in flight) (#1032)
+cd79034 | 2026-09-11 10:41:57 -0300 | Register Claude/Kimi/OpenAI identities; complete sentinel roster (#1031)
+eb54652 | 2026-09-11 10:35:05 -0300 | Register Envoy + DeepSeek identities in the agent registry (#1030)
+ead0464 | 2026-09-11 10:30:55 -0300 | Record Sophia's canonical email in the agent registry (#1029)
+c695014 | 2026-09-11 10:30:11 -0300 | Add Black King per-shipment manifests + origin unit costs (#1028)
+12faffb | 2026-09-11 09:31:55 -0300 | Add Correios shipments index (Currencies ledger + FDA FSVP) (#1027)
+e7d223a | 2026-09-11 08:41:15 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
+61695e0 | 2026-09-11 08:41:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 1cd8e6d | 2026-09-11 07:18:07 -0300 | Add satellite resolution/cadence cost research report (#1026)
 46c3852 | 2026-09-11 07:17:44 -0300 | Add satellite resolution/cadence cost report (sponsor financing)
 b000736 | 2026-09-11 07:01:33 -0300 | CRF Anapu plan: record governor decisions (program entity type, galleries, Jedielcio index) (#1025)
@@ -340,26 +360,6 @@ b90b719 | 2026-09-10 19:31:17 -0300 | File OPEN_FOLLOWUPS: FBE Plot ID canonical
 ed334d1 | 2026-09-10 18:34:30 -0300 | followups: locks shipped live (@45/@46); upgrade lease entry (14 zombies + close_lease bug) (#1012)
 418699e | 2026-09-10 18:04:11 -0300 | chore(previews): refresh Beer Hall preview (2026-09-10 UTC)
 2858ba8 | 2026-09-10 18:04:10 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
-1db2fb7 | 2026-09-10 17:05:10 -0300 | Add Agroverse cacao HS/HTS/NCM classification sheet (PDF)
-632f85a | 2026-09-10 16:58:29 -0300 | followups: .env quoted-key defect + Telegram Chat Logs audit result (#1011)
-8a3b7a4 | 2026-09-10 16:55:02 -0300 | plan(sitio-torres): PR6 COMPLETE + gallery wired (35 videos on beta) (#1010)
-f3fc355 | 2026-09-10 16:44:03 -0300 | Sítio Torres plan: PR6 DONE — media archived end-to-end; UAT gate next (#1009)
-feb1187 | 2026-09-10 16:30:00 -0300 | Backlog: Telegram-log lock deploy gap, zombie leases, double ledger record (#1008)
-5df09b4 | 2026-09-10 14:37:50 -0300 | CEPOTX registry: record N-06-66 as governor-confirmed (#1007)
-55bf09f | 2026-09-10 14:33:01 -0300 | OPEN_FOLLOWUPS: file tdg_issued=0 default root cause (contribution scoring) (#1006)
-9703644 | 2026-09-10 14:19:54 -0300 | OPEN_FOLLOWUPS: file stale Document Notarizations mirror gap (#1005)
-37bc5bd | 2026-09-10 14:08:27 -0300 | OPEN_FOLLOWUPS: plots media bare-HEIC fix + B-06-108_20260908_1 missing photos (#1004)
-fc9f078 | 2026-09-10 13:51:25 -0300 | SITIO_TORRES plan: both gates RESOLVED, PR6 executing (#1003)
-cc157bd | 2026-09-10 13:38:57 -0300 | SITIO_TORRES plan: PR2-PR5 done, gate (b) provenance RESOLVED (#1002)
-ffe17dd | 2026-09-10 13:36:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-10 UTC)
-2a3a1a3 | 2026-09-10 13:36:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
-ec02762 | 2026-09-10 11:45:27 -0300 | Open follow-ups: journeyOrder drift, video-only manifest, PL-005 orphan (thread 24440) (#1001)
-7a43aaa | 2026-09-10 11:21:16 -0300 | docs: CLI auto-computed TDG takes precedence over the 0-default rule (#1000)
-1c4c872 | 2026-09-10 11:19:12 -0300 | Add SITIO_TORRES_MEDIA_TASK_PLAN.md (loc3 MAP) + register handoff row (#999)
-5adba48 | 2026-09-10 08:40:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-10 UTC)
-abada3e | 2026-09-10 08:40:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-10 UTC)
-3036c3b | 2026-09-10 07:54:04 -0300 | docs(sunmint): canonize sub-plot naming + Plot Type live-state note (#996)
-b12e34c | 2026-09-10 07:47:14 -0300 | docs(OPEN_FOLLOWUPS): file archive-root extension default gap + extract_plot_gps set_cell loop; note manifest GPS parser fix (#994)
 … (truncated)
 ```
 
@@ -411,6 +411,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+bc37849 | 2026-09-11 11:48:14 +0000 | chore: refresh currencies.json [skip ci]
 1112f40 | 2026-09-11 11:26:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bea3cc9 | 2026-09-10 11:49:07 +0000 | chore: refresh currencies.json [skip ci]
 fdb2e9f | 2026-09-10 11:24:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -431,6 +432,8 @@ b74cebf | 2026-09-04 11:44:22 +0000 | chore: refresh currencies.json [skip ci]
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+2cdd03f | 2026-09-11 11:48:47 -0300 | brazilian-path: smooth south→north→west route, no backtracking (#321)
+931df0a | 2026-09-11 11:31:34 -0300 | cacau-na-veia-pacaje: publish 33 site-visit videos in the farm page gallery (PR6) (#320)
 604c4e5 | 2026-09-10 16:52:25 -0300 | farm(sitio-torres-pacaja-para): surface 35 site-visit videos in gallery (#319)
 7c0b0cd | 2026-09-10 11:40:22 -0300 | Cristo Rei: deep-link SunMint highlight to plot CR-PA-P2 (reciprocity) (#318)
 fa0586a | 2026-09-10 11:18:02 -0300 | fix(brazilian-path): list Sítio Cristo Rei in journeyOrder (#317)
@@ -469,8 +472,6 @@ cbe8af5 | 2026-09-05 21:43:15 -0300 | Update paulo prose plot id LD-P1 to canoni
 723f30d | 2026-09-05 21:42:39 -0300 | Add Fazenda Santa Ana family photo IMG_8261 (18 Sep 2023 farm visit)
 3018c61 | 2026-09-05 21:42:38 -0300 | Add Fazenda Santa Ana drying check photo IMG_8247 (18 Sep 2023 farm visit)
 ad73887 | 2026-09-05 21:42:37 -0300 | Add Fazenda Santa Ana drying terrace photo IMG_8224 (18 Sep 2023 farm visit)
-4fd4a6e | 2026-09-05 21:42:36 -0300 | Add Fazenda Santa Ana harvest crew photo IMG_8181 (18 Sep 2023 farm visit)
-96c45bf | 2026-09-05 21:42:34 -0300 | Add Fazenda Santa Ana fermentation room photo IMG_8117 (18 Sep 2023 farm visit)
 … (truncated)
 ```
 
@@ -560,7 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 53.7 | 17493.54386 | 9/11/2026 3:50:46 |
+| 2026-09 | 853.7 | 18293.54386 | 9/11/2026 8:53:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-04`; scanned last **600** data rows)
 
