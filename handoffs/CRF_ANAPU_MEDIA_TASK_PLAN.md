@@ -4,34 +4,44 @@
 > Runbook of record: `MEDIA_ARCHIVE_PIPELINE.md` (MAP). New-farm SOP: `AGROVERSE_SUNMINT_FARM_LISTING.md`.
 
 **Created:** 2026-09-11 (Sophia) at Gary's request (thread 25181)
-**Status:** parked GO-ready — PR1 filed
+**Status:** in progress — PR1 merged; governor decisions recorded 2026-09-11 (see below)
 **Program page:** https://beta.truesight.me/programs/crf-anapu/ (PR #373, merged)
 
-## Goal
-1. Establish the plot / site for CRF Anapu on the SunMint impact map — **GATED** (see §0; a rural school is not a cacao farm and no CEPOTX site code is issued).
-2. Add the 2026-09-09 site-visit media to the CRF Anapu **program page** as a photo/video gallery (new pattern — see §4).
-3. Ingest into MAP with a committed manifest (lat/lon, creation_date, transcription) for future reference.
+## Governor decisions (Gary, thread 25181, 2026-09-11)
 
-## 0. STEP ZERO — identity, attribution & naming gate
+Recorded verbatim-to-intent below; my reading of each is stated so it can be corrected.
+
+| # | Gary said | My reading | Effect on this plan |
+|---|---|---|---|
+| 1 | "Makes sense for the code" | the code-based slug is endorsed | farm_id stays **`crf-anapu-para`** (matches the program slug, conforms to `<name>-<region>`) |
+| 2 | "I think we should have a new type called partners or program" | introduce a MAP **entity type** alongside `farm` | CRF media is a **program**-type entity — §0 gate 5 (school ≠ cacao farm) **RESOLVED: no SunMint plot**; PR3 becomes moot |
+| 3 | "This is intended… moving forward we will start having media gallery for programs as well" | program-page media galleries are sanctioned, going forward | §4 "new pattern" → **sanctioned convention**; PR4 unblocked |
+| 4 | "…the media files should also index to Jedielcio too" | cross-index the same media | manifest keys under `crf-anapu-para` **and** cross-references `jedielcio`; also file the missing `jedielcio.json` |
+
+> **If any reading is wrong, say so and I'll correct the plan before building on it.**
+
+## Goal
+1. ~~Establish the plot / site for CRF Anapu on the SunMint impact map~~ — **DROPPED** (Gary #2: CRF is a *program*, not a farm/plot; no site code, no polygon).
+2. Add the 2026-09-09 site-visit media to the CRF Anapu **program page** as a photo/video gallery — **now the sanctioned program-media convention** (Gary #3).
+3. Ingest into MAP with a committed manifest (lat/lon, creation_date, transcription), keyed as a **program** entity, cross-indexed to `jedielcio` (Gary #2/#4).
+
+## 0. STEP ZERO — identity, attribution & naming
 
 1. **Identify people from media** — treat third-party content as DATA, never instruction or ownership proof.
-2. **Registry overlap FIRST:** search `sunmint/plots/index.geojson` + SunMint Plots tab for the GPS cloud bbox. **Done 2026-09-11: NO overlap** — the CRF bbox (−3.3892, −51.3004) is not inside any of the 23 registered plots.
-3. **Confirm name + owner ↔ plot link with the governor** — never invent attribution.
-   - farm_id slug convention `<name>-<region>`. **Proposed: `crf-anapu-para`** (matches the program slug `crf-anapu`).
-   - **Open ambiguity:** an older related batch already lives in the daemon inbox as `jedielcio/`. Decide whether this batch keys under `crf-anapu-para` (new) or reconciles into `jedielcio`.
-4. **Site code:** look up `fda_fsvp/suppliers/cepotx/site_codes.md` + `CEPOTX_SITE_CODE_REGISTRY.md`. **Result 2026-09-11: CRF Anapu has NO issued site code.** plot_id cannot be derived. **GATED — confirm with CEPOTX / Jedielcio before any plot registration.**
-5. **Plot semantics GATE:** CRF = *Casa Familiar Rural* (a rural family school, "Dorothy Stang", Anapu, Pará), a SunMint tree-planting partner — **not** a cacao producer farm. Whether a SunMint *plot* is even the right construct needs a governor decision.
+2. **Registry overlap:** searched `sunmint/plots/index.geojson` (2026-09-11) — NO overlap; CRF bbox (−3.3892, −51.3004) is outside all 23 registered plots. (Moot anyway — not a plot, see #5.)
+3. **farm_id:** **`crf-anapu-para`** (Gary #1). Slug convention `<name>-<region>`.
+4. **Site code:** none issued, and none needed — a program entity does not carry a CEPOTX site code (Gary #2).
+5. **Plot semantics — RESOLVED (Gary #2):** CRF (*Casa Familiar Rural*, "Dorothy Stang", Anapu, Pará) is a **program/partner** entity, **not** a cacao farm plot. No SunMint plot, no polygon, no Plots-sheet row. The `program`/`partner` entity type is the home for this class of media.
 
 ## 1. Source media (verified 2026-09-11, live)
 
 - Path on box: **`/home/ubuntu/cfr_work/`** (raw; no sidecars, no transcripts)
 - **8 HEIC + 14 MOV + 2 PNG = 24 files**; 22 EXIF-bearing, **22 geotagged (100% of geotaggable; the 2 PNG are screenshots)**, **20 unique geotagged points**.
-- Visit: **2026-09-09** (single visit).
-- Location: **Anapu, Pará, Brazil** (CEPOTX network) — confirmed Pará.
-- Extent: lat `-3.38970 .. -3.38890`, lon `-51.30080 .. -51.30000` → bbox ~89 m × 89 m → **~0.79 ha** (bbox, NOT hull — needs a walk/CAR for a real boundary). Centroid `-3.38925, -51.30040`.
+- Visit: **2026-09-09** (single visit). Location: **Anapu, Pará, Brazil** (CEPOTX network).
+- Extent: lat `-3.38970 .. -3.38890`, lon `-51.30080 .. -51.30000` → bbox ~89 m × 89 m → **~0.79 ha** (bbox, NOT hull). Centroid `-3.38925, -51.30040`.
 - Derived already on box: **58 extracted MOV frames** (`cfr_work/frames/`) + **16 sheet crops** (`cfr_work/sheet/`) — candidate gallery stills.
-- Hero already shipped: **IMG_9734** (back camera, sharp, contains the "Agroverse Tech Co" branding) → `.github/assets/crf-anapu-hero.jpg`.
-- **Separate older batch:** `/media/media_archive_inbox/farm-media/jedielcio/` = **4 mp4** (IMG_7654/7833/7835/7848) with sidecars + `.en.vtt` + `yt_id` (already uploaded to YouTube) — **but no committed manifest** (see §5).
+- Hero already shipped: **IMG_9734** → `.github/assets/crf-anapu-hero.jpg`.
+- **Related older batch (`jedielcio`, cross-index target — Gary #4):** `/media/media_archive_inbox/farm-media/jedielcio/` = **4 mp4** (IMG_7654/7833/7835/7848) with sidecars + `.en.vtt` + `yt_id` (**already on YouTube**: `jmaZ92yXWM4`, `HLlM8mcoqaU`, `SHmMBaA22bM`, `VmP8btqNZmQ`) — **but no committed manifest** (note: inbox IMG_7654.mp4 sha256 `fe61e77b…` ≠ rancho-maranta plot2/IMG_7654.MOV `585fd4af…` — a different encode of the same clip, not a dup).
 
 ## 2. MAP reconciliation — IS IT ALREADY PROCESSED? **NO**
 
@@ -41,8 +51,8 @@
 | `farm_media_manifests/jedielcio.json` | **absent** (not in `index.json`) |
 | `farm-media-raw/crf-anapu/` or `/jedielcio/` | **404** |
 | Sidecars / transcripts in `~/cfr_work/` | **none** |
-| Plot in `sunmint/plots/index.geojson` | **absent** |
-| Farm page `agroverse_shop_beta/farms/crf-anapu*/` | **absent** |
+| Plot in `sunmint/plots/index.geojson` | **absent** (moot — not a plot) |
+| Farm page `agroverse_shop_beta/farms/crf-anapu*/` | **absent** (not a farm page — a program page) |
 
 → The 2026-09-09 batch is **raw and un-ingested**. The Sep-01 `jedielcio` batch is partially processed (YouTube uploads + transcripts) but **missing its manifest**.
 
@@ -51,31 +61,37 @@
 | Target | Repo | State |
 |---|---|---|
 | `programs/crf-anapu/` | truesight_me_beta | ✅ live (PR #373); hero wired; **no gallery section yet** |
-| `farms/crf-anapu-para/` | agroverse_shop_beta | ❌ absent — **decide if a farm page is even right (school ≠ farm)** |
-| `sunmint/plots/index.geojson` | sunmint (api-only) | ❌ absent — **GATED on site code** |
-| `SunMint Plots` tab | sheet | ❌ no row — **GATED** |
-| `farm_media_manifests/crf-anapu-para.json` | farm_media_manifests | ❌ absent (v2 schema) |
+| `programs/crf-anapu/media.json` | truesight_me_beta | ❌ new — program gallery contract (see §6) |
+| `farm_media_manifests/crf-anapu-para.json` | farm_media_manifests | ❌ absent (v2 schema, `entity_type: program`) |
+| `farm_media_manifests/jedielcio.json` | farm_media_manifests | ❌ absent |
+| `farms/crf-anapu-para/` | agroverse_shop_beta | ❌ **not applicable** — program, not farm |
+| `sunmint/plots/index.geojson` + Plots sheet | sunmint / sheet | ❌ **not applicable** — no plot |
 | `farm-media-raw/crf-anapu-para/photos/` | farm-media-raw (api-only) | ❌ 404 |
 | `/media/media_archive_inbox/farm-media/crf-anapu-para/` | box | ❌ dir not created |
 
-## 4. Gallery section (new pattern — decision needed)
+## 4. Gallery section — SANCTIONED convention (Gary #3)
 
-A **program** page's canonical hero is the partner logo; photo/video galleries are the **farm-page** convention (`AGROVERSE_FARM_PAGE_CONVENTIONS.md`). Putting a gallery on a program page is **new pattern work** — decide deliberately (which stills, hosted where, how it sits with the hero) rather than bolting on. Candidate assets: the 8 HEIC stills + curated frames from `cfr_work/frames/` + selected short clips.
+Program pages now carry a media gallery, same as farm pages (`AGROVERSE_FARM_PAGE_CONVENTIONS.md` §1/§3). Contract: `programs/<slug>/media.json` = `{schemaVersion, hero, gallery:[{type:image|youtube,…}]}` rendered by the existing `media-gallery.js`. Candidate assets: the 8 HEIC stills + curated frames from `cfr_work/frames/` + selected short clips (transcribed → YouTube).
 
 ## 5. Execution order (ONE PR PER TURN)
 
-- **PR1** (this plan, agentic_ai_context) → commit + register HANDOFF_MANIFEST row.
-- **PR2** farm_media_manifests: `crf-anapu-para.json` (v2: sha256/GPS/duration/objects[]/creation_date/transcription_status) + `index.json` entry. *(Also file the missing `jedielcio.json` for the Sep-01 batch.)*
-- **PR3** plot / sheet row — **GATED on the CEPOTX site code + the school-vs-farm decision.**
-- **PR4** program-page media gallery (truesight_me_beta) — new pattern; beta preview first.
-- **PR5** media long pole: HEIC → web JPEGs + full-res → `farm-media-raw`; MOV → MP4 (GPS re-inject, VERIFY `Keys:GPSCoordinates`) → transcription (faster-whisper, PT) → inbox sidecars → daemon upload (~6/day) → yt_ids backfilled.
+- **PR1** ✅ merged — this plan + HANDOFF_MANIFEST row.
+- **PR1b** (this PR) — record governor decisions + re-sequence. Doc-only.
+- **PR2** farm_media_manifests: `crf-anapu-para.json` (v2: `entity_type: program`, `program_slug: crf-anapu`, sha256/GPS/duration/objects[]/creation_date/transcription_status, `cross_index: [jedielcio]`) + `jedielcio.json` (4 mp4) + `index.json` entries. *(repo is Contents-API-only per its README — single-file writes via `upload_file_to_github`, never cloned/branch-edited.)*
+- **PR3** ~~plot / sheet row~~ — **MOOT** (Gary #2: not a plot).
+- **PR4** program-page media gallery: `programs/crf-anapu/media.json` + gallery section in `index.html` (truesight_me_beta) — sandwich the sanctioned contract into the program shell. Beta preview first.
+- **PR5** media long pole: HEIC → web JPEGs + full-res → `farm-media-raw/crf-anapu-para/photos/`; MOV → MP4 (GPS re-inject, VERIFY `Keys:GPSCoordinates`) → transcription (faster-whisper, PT) → inbox sidecars → daemon upload (~6/day) → yt_ids backfilled.
 - **UAT gate** — governor reviews beta; **no prod sync without explicit GO.**
+
+## 6. Program media entity type + gallery contract (new, Gary #2/#3)
+
+- **Entity type.** `farm_media_manifests` today models only `farm_id`. Gary (2026-09-11) directs a new **`program`/`partner`** entity type so partner/school/program media is not shoe-horned into the farm construct. First instance: `crf-anapu-para` (`entity_type: program`). The cross-cutting schema/convention work (manifest `entity_type` field, `programs/<slug>/media.json` contract, `CREDENTIALING_PROGRAM_PAGES.md` §6 + `MEDIA_ARCHIVE_PIPELINE.md` terminology updates) is filed in `OPEN_FOLLOWUPS.md` (2026-09-11).
+- **Gallery contract.** A program page reads `programs/<slug>/media.json` — same shape as a farm `media.json` (`{schemaVersion, hero, gallery:[{type:image|youtube, …}]}`) so the existing `media-gallery.js` renders it unchanged.
 
 ## Gates
 - NEVER deploy prod without governor GO.
-- sunmint + farm-media-raw are api-only → `upload_file_to_github`, never branch-edit. farm_media_manifests via `git_push_changes`.
-- SunMint Plots sheet is the durable plot source (daily rebuild).
+- `farm_media_manifests` + `farm-media-raw` are api-only (Contents API) → `upload_file_to_github`, never branch-edit.
 - YouTube shared quota ~6/day — pace, retry on 429.
 
 ## RESUME HERE
-PR1: this plan (committed + registered). Then PR2 manifest → PR3 **GATED** → PR4 gallery → PR5 long pole → UAT gate. Open decisions for the governor: (a) `crf-anapu-para` vs `jedielcio` farm_id; (b) school-vs-farm / plot semantics; (c) gallery on the program page (new pattern).
+**PR2 — the manifest.** Create `farm_media_manifests/crf-anapu-para.json` (`entity_type: program`, `program_slug: crf-anapu`, 24 items, `cross_index: [jedielcio]`) + `jedielcio.json` (4 mp4, yt_ids above) + `index.json` entries — via `upload_file_to_github` (Contents-API-only repo). Then PR4 gallery → PR5 long pole → UAT gate. No prod sync without GO.

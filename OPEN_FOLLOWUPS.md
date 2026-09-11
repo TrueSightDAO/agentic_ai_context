@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Program/partner media needs its own MAP entity type + a program-page gallery convention (first instance: CRF Anapu)
+**Filed 2026-09-11. Owner: unclaimed. Governor: Gary (thread 25181).**
+
+Governor decision 2026-09-11 (thread 25181): (a) program pages should carry media galleries going forward — previously a farm-page-only convention (`AGROVERSE_FARM_PAGE_CONVENTIONS.md` §1/§3); (b) introduce a new MAP **entity type** (`program` / `partner`) alongside `farm`, so media from a partner/school/program is not shoe-horned into the farm construct.
+
+Today `farm_media_manifests/` models only `farm_id`; `truesight_me/programs/<slug>/manifest.json` (`CREDENTIALING_PROGRAM_PAGES.md` §6) has **no media field**; galleries are read only from `agroverse_shop_beta/farms/<slug>/media.json`.
+
+**Work (~60 min):** (1) add `entity_type` (`farm` | `program` | …) to the manifest schema + the `farm_media_manifests/index.json` entries; (2) document a `programs/<slug>/media.json` gallery contract mirroring the farm `media.json` (`{schemaVersion, hero, gallery:[…]}`) and wire the program shell to render it via `media-gallery.js`; (3) update `CREDENTIALING_PROGRAM_PAGES.md` §6 (manifest schema) + `MEDIA_ARCHIVE_PIPELINE.md` terminology (add the `program-media` source namespace). First instance: `crf-anapu` — see `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`. Blocker: none (governor-directed).
+
 ### Edgar reports `fileUploadedToGithub: false` on binary-upload failure but still returns a success shape - clients cannot tell "event recorded" from "photo stored"
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25181).**
 
