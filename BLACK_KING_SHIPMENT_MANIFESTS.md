@@ -9,14 +9,12 @@ in USD** (from the Main Ledger `Currencies`/`offchain asset location` tabs, join
 
 Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CORREIOS_SHIPMENTS.md`.
 
-> **Revision 3 (2026-09-11, governor-directed, thread 26215):** (a) **Shipment 9**
-> (2025-03-14, 20 × 250 g molasses, PN `250541039416` / AGL7) is marked **DID NOT PASS
-> THROUGH** and excluded from all totals — evidence: 2025-04-07 ledger note *"swap of the 20x
-> bottles of cacao molasses sitting in his warehouse for a new batch so as to buffer for the
-> customs delay"*, and the AGL7 ledger still reads FREIGHTING IN PROGRESS; (b) **Shipment 14**
-> (2025-10-09 hand-carried) excluded per governor instruction; (c) **weight columns added**
-> (unit weight / sub-line weight / shipment total). Totals are now **207.68 kg · USD 5,426.47**
-> origin value (excl. #9, #12 [no qty], #14).
+> **Revision 4 (2026-09-11, governor-corrected, thread 26215):** **Reverted the Revision-3
+> error** — **Shipment 9 (AGL7 molasses) DID pass through**; restored to the totals. **Shipment 14**
+> (2025-10-09 hand-carried) remains excluded per governor instruction. Weight columns retained.
+> Totals: **212.67 kg · USD 5,669.35** origin value (excl. #12 [no qty], #14). **Open:** a
+> governor note that *a ceremonial-cacao shipment from AGL8 did not pass through* is **pending
+> confirmation of the exact manifest line** before any row is flagged.
 
 ---
 
@@ -155,10 +153,9 @@ converted at the ledger rate **1 BRL = 0.19405 USD**.
 
 ---
 
-## Shipment 9 — 2025-03-14 · Cacao Molasses, 20 × 250 g bottles — ⛔ DID NOT PASS THROUGH
+## Shipment 9 — 2025-03-14 · Cacao Molasses, 20 × 250 g bottles
 
-- **Carrier:** Correios (Entry Type *Mail (Commercial)*) — AGL7 lane
-- **⛔ DID NOT PASS THROUGH.** 2025-04-07 ledger note: *"swap of the 20x bottles of cacao molasses sitting in his warehouse for a new batch so as to buffer for the customs delay"*. The AGL7 managed-ledger status is still **FREIGHTING IN PROGRESS** (never completed). This batch is **excluded from all totals**.
+- **Carrier:** Correios (Entry Type *Mail (Commercial)*) — AGL7 lane. **Passed through** (governor-corrected 2026-09-11).
 - **FDA PN:** confirmation `250541039416`, Envelope `F25X25832010`, submitted 2025-03-09, anticipated 2025-03-14; product *250 grams cacao molasses*
 - **Evidence:** `20250309_fda_prior_notice_20_bottles_of_cacao_molasses.pdf`, `20250315_20x_cacao_molasses.pdf` (NF-e: 20 L melaço de cacau, R$300)
 
@@ -167,7 +164,7 @@ converted at the ledger rate **1 BRL = 0.19405 USD**.
 | 1 | Cacao Molasses 250 ml bottle | 20 | 250 g | 5.00 kg | 12.143 *(landed)* | 242.86 |
 | — | *origin molasses only (raw)* | 20 L | — | — | 2.911 /L | 58.22 *(R$300 nota fiscal)* |
 
-**Would have been: 5.00 kg · USD 242.86 — ⛔ EXCLUDED (did not pass through).**
+**Shipment total: 5.00 kg · USD 242.86.** Origin raw-material value: USD 58.22.
 
 ---
 
@@ -262,15 +259,17 @@ Commercial invoice (declared values, USD):
 | 6 | 2025-01-24 | Correios | 120 × 8 oz nibs pouches | 796.80 |
 | 7 | 2025-01-24 | Correios | 20 kg cacao tea | 273.20 |
 | 8 | 2025-02-28 | Correios | 10 × 500 g ceremonial bars | 156.95 |
-| ~~9~~ | ~~2025-03-14~~ | ~~Correios~~ | ~~20 × 250 g molasses~~ — **⛔ DID NOT PASS THROUGH** | ~~242.86~~ |
+| 9 | 2025-03-14 | Correios | 20 × 250 g molasses | 242.86 |
 | 10 | 2025-04-14 | Correios | 10 kg cacao husk | 177.85 |
 | 11 | 2025-04-14 | Correios | 20 kg nibs | 492.37 |
 | 12 | 2025-06-06 | Correios | ceremonial cacao + husk/tea | *(no qty on PN)* |
 | 13 | 2025-06-27 | Correios | ceremonial bars + caramelized | 627.80 *(+183.75 landed)* |
 | ~~14~~ | ~~2025-10-09~~ | ~~hand-carried~~ | ~~10 × 200 g ceremonial~~ — **excluded per governor** | ~~50.00~~ |
 
-**Total measurable origin value: ≈ USD 5,426.47** across the shipments with quantifiable line items
-(excluding **#9 did-not-pass**, #12 [no qty], and **#14 hand-carried**). Total weight ≈ **207.68 kg**.
+**Total measurable origin value: ≈ USD 5,669.35** across the shipments with quantifiable line items
+(excluding #12 [no qty] and **#14 hand-carried**). Total weight ≈ **212.67 kg**. **Open:** a
+governor note that *a ceremonial-cacao shipment from AGL8 did not pass through* is pending
+confirmation of the exact manifest line before a row is flagged.
 
 ---
 
