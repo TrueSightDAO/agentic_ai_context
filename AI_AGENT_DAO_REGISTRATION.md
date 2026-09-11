@@ -153,6 +153,7 @@ set -a && . ~/Applications/<slug>_dao_identity/.env && set +a
 | `Deep Seek` | `admin+deepseek@truesight.me` | `~/Applications/deepseek_dao_identity/.env` | active (registered 2026-06-19) |
 | `Envoy TrueSight` | `admin+envoy@truesight.me` | (nelanco-claude box) | active (registered 2026-08-23, row 418) |
 | `Sophia Truesight` | `admin+sophia@truesight.me` | (autopilot box) | active (autonomous; identity block in `agents/sophia.json`) |
+| `Kimi Moon` | `admin+kimi@truesight.me` | (registered by 2026-06-28) |
 
 ### Full sentinel roster (from the Main Ledger `Contributors contact information` tab, Is Sentinel = TRUE)
 
@@ -164,9 +165,9 @@ agent should know and send outbound mail from when asked — are:
 | `Sophia Truesight` | `admin+sophia@truesight.me` | `agents/sophia.json` |
 | `Envoy TrueSight` | `admin+envoy@truesight.me` | `agents/envoy.json` |
 | `Deep Seek` | `admin+deepseek@truesight.me` | `agents/deepseek.json` |
-| `Claude Anthropic` | `admin+claude@truesight.me` | _(not yet filed)_ |
-| `Kimi Moon` | `admin+kimi@truesight.me` | _(not yet filed)_ |
-| `Open Ai` | `admin+open+ai@truesight.me` | _(not yet filed)_ |
+| `Claude Anthropic` | `admin+claude@truesight.me` | `agents/claude.json` |
+| `Kimi Moon` | `admin+kimi@truesight.me` | `agents/kimi.json` |
+| `Open Ai` | `admin+open+ai@truesight.me` | `agents/openai.json` |
 | `truesight-autopilot` | `admin@truesight.me` | _(service identity)_ |
 
 All `+aliases` route into the single operator-controlled `admin@truesight.me` inbox, so
