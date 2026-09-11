@@ -40,6 +40,15 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > **withdrawn by the governor as too broad**; **Shipment 9 (AGL7, Correios) is retained**
 > (pass-through). **Updated totals: 182.67 kg · USD 4,884.60** origin value.
 
+> **Revision 7 (2026-09-11, thread 26215): arrival-register cross-check.** The Main Ledger
+> **`offchain assets in transit`** tab (gid `1888711771`) is the **arrival register** — every
+> delivered parcel, with its tracking number joined to a ledger line and a status. Cross-checked
+> against this manifest: **Shipments 8 and 13 have no row in the arrival register** (no tracking
+> number was ever assigned) — independent corroboration of the Rev-6 *never-shipped* finding.
+> The landed caramelized unit cost cited under Shipment 13 is **re-homed to the AGL10
+> consignment** (`CP340993299BR`), which *did* arrive — see the note on the cost-reference table.
+> Index: `CORREIOS_SHIPMENTS.md` §*Arrival register*; machine mirror `in_transit_register.json`.
+
 ---
 
 ## Origin unit-cost reference (USD, pre-export / ex-works Ilhéus)
@@ -58,6 +67,11 @@ converted at the ledger rate **1 BRL = 0.19405 USD**.
 | Cacao Molasses (raw, from Luana Pinto Leite) | 2.911 | per litre | Nota fiscal R$15.00/L (2024-09-24 & 2025-03-15) |
 | Cacao Almonds (raw, from Oscar) | 19.405 | per kg | Nota fiscal R$100.00/kg, 100 kg / R$10 000 (2025-02-18) |
 | Caramelized Cacao Beans | 36.7492 **(landed)** | per kg | Ledger: `Caramelized Cacao Beans (KG) + CP340993299BR San Francisco AGL10` — *includes US freight* |
+
+> ⚠️ **Re-homed (Rev-7):** this landed unit cost is drawn from the **AGL10** ledger line
+> (`CP340993299BR`, San Francisco AGL10). It therefore belongs to the **AGL10 consignment**
+> (40 × 500 g mass bars, ledger lines 734/735 — **arrived**, per the arrival register), **not** to
+> Shipment 13. The manifest had used it to value the Shipment-13 caramelized lot — a mis-join.
 
 > ⚠️ **`landed` = not a pre-export cost.** Only the caramelized-beans line carries a
 > freight-inclusive figure in the ledger; treated separately below.
@@ -167,6 +181,8 @@ converted at the ledger rate **1 BRL = 0.19405 USD**.
 
 > **Excluded per governor (thread 26215, 2026-09-11):** Black King (Matheus) missed the export
 > deadlines — this lot **never shipped**. Retained as a documentary record; **struck from totals.**
+> **Corroborated (Rev-7):** this lot has **no row in the `offchain assets in transit` arrival
+> register** — no tracking number was ever assigned, consistent with never-shipped.
 
 - **Carrier:** Correios (Entry Type *Mail (Commercial)*)
 - **FDA PN:** confirmation `250540041942`, submitted 2025-02-28; product *Amazonian Regenerative Ceremonial Cacao 500 grams*
@@ -244,6 +260,8 @@ as a data gap.
 
 > **Excluded per governor (thread 26215, 2026-09-11):** Black King (Matheus) missed the export
 > deadlines — this lot **never shipped**. Retained as a documentary record; **struck from totals.**
+> **Corroborated (Rev-7):** this lot has **no row in the `offchain assets in transit` arrival
+> register** — no tracking number was ever assigned, consistent with never-shipped.
 
 - **Carrier:** Correios (Entry Type *Mail (Commercial)*)
 - **FDA PN:** Envelope `F25X26465487`, confirmations `250554762813` (500 g ceremonial cacao bar) and `250554762824` (Caramelized Cacao Almond Beans), submitted 2025-06-23, anticipated 2025-06-27
@@ -252,10 +270,16 @@ as a data gap.
 | # | Item | Qty | Origin unit cost (USD) | Extended (USD) |
 |---|---|---|---|---|
 | 1 | 500 g ceremonial cacao bar | 40 (20 kg ÷ 0.5 kg) | 15.6951006 /bar | 627.80 |
-| 2 | Caramelized Cacao Almond Beans | 5 kg | 36.7492 /kg **(landed)** | 183.75 |
+| 2 | Caramelized Cacao Almond Beans | 5 kg | 36.7492 /kg **(landed)** ⚠️ *mis-joined — this unit cost is the **AGL10** ledger line, not a Shipment-13 cost (see Rev-7 note)* | 183.75 |
 
 **Shipment total: USD 811.55 — ⛔ EXCLUDED (never shipped).** (USD 183.75 of this was a *landed*
 figure, not pre-export; origin caramelized value ≈ R$725 = USD 140.69.)
+
+> ⚠️ **Rev-7 re-home:** the `36.7492/kg` landed figure is the **AGL10** value
+> (`CP340993299BR`), which **arrived** — it does not belong to this never-shipped lot and is
+> **excluded** along with the rest of Shipment 13. **Open question (governor):** did the 5 kg
+> caramelized lot in fact move on the AGL10 parcel? The arrival register lists mass bars (not
+> caramelized) for `CP340993299BR`; flagged, not asserted.
 
 ---
 
