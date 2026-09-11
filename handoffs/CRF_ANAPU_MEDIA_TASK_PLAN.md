@@ -4,7 +4,7 @@
 > Runbook of record: `MEDIA_ARCHIVE_PIPELINE.md` (MAP). New-farm SOP: `AGROVERSE_SUNMINT_FARM_LISTING.md`.
 
 **Created:** 2026-09-11 (Sophia) at Gary's request (thread 25181)
-**Status:** in progress — PR1 merged; governor decisions recorded 2026-09-11 (see below)
+**Status:** in progress — PR1/PR1b/PR2/PR4 merged; **PR5 (media long pole) in flight** 2026-09-11; governor decisions recorded (see below)
 **Program page:** https://beta.truesight.me/programs/crf-anapu/ (PR #373, merged)
 
 ## Governor decisions (Gary, thread 25181, 2026-09-11)
@@ -60,14 +60,14 @@ Recorded verbatim-to-intent below; my reading of each is stated so it can be cor
 
 | Target | Repo | State |
 |---|---|---|
-| `programs/crf-anapu/` | truesight_me_beta | ✅ live (PR #373); hero wired; **no gallery section yet** |
-| `programs/crf-anapu/media.json` | truesight_me_beta | ❌ new — program gallery contract (see §6) |
-| `farm_media_manifests/crf-anapu-para.json` | farm_media_manifests | ❌ absent (v2 schema, `entity_type: program`) |
-| `farm_media_manifests/jedielcio.json` | farm_media_manifests | ❌ absent |
+| `programs/crf-anapu/` | truesight_me_beta | ✅ live (PR #373); hero wired; **gallery section live** (commit `14272f60`) |
+| `programs/crf-anapu/media.json` | truesight_me_beta | ✅ live — hero + 7 stills (`14272f60`) |
+| `farm_media_manifests/crf-anapu-para.json` | farm_media_manifests | ✅ live (PR2; v2 schema, `entity_type: program`) |
+| `farm_media_manifests/jedielcio.json` | farm_media_manifests | ✅ live (PR2) |
 | `farms/crf-anapu-para/` | agroverse_shop_beta | ❌ **not applicable** — program, not farm |
 | `sunmint/plots/index.geojson` + Plots sheet | sunmint / sheet | ❌ **not applicable** — no plot |
-| `farm-media-raw/crf-anapu-para/photos/` | farm-media-raw (api-only) | ❌ 404 |
-| `/media/media_archive_inbox/farm-media/crf-anapu-para/` | box | ❌ dir not created |
+| `farm-media-raw/crf-anapu-para/photos/` | farm-media-raw (api-only) | ✅ live — 8 HEIC originals uploaded (PR5) |
+| `/media/media_archive_inbox/farm-media/crf-anapu-para/` | box | ⏳ pending (PR5: sidecars + inbox entry) |
 
 ## 4. Gallery section — SANCTIONED convention (Gary #3)
 
@@ -88,10 +88,15 @@ Program pages now carry a media gallery, same as farm pages (`AGROVERSE_FARM_PAG
 - **Entity type.** `farm_media_manifests` today models only `farm_id`. Gary (2026-09-11) directs a new **`program`/`partner`** entity type so partner/school/program media is not shoe-horned into the farm construct. First instance: `crf-anapu-para` (`entity_type: program`). The cross-cutting schema/convention work (manifest `entity_type` field, `programs/<slug>/media.json` contract, `CREDENTIALING_PROGRAM_PAGES.md` §6 + `MEDIA_ARCHIVE_PIPELINE.md` terminology updates) is filed in `OPEN_FOLLOWUPS.md` (2026-09-11).
 - **Gallery contract.** A program page reads `programs/<slug>/media.json` — same shape as a farm `media.json` (`{schemaVersion, hero, gallery:[{type:image|youtube, …}]}`) so the existing `media-gallery.js` renders it unchanged.
 
+## Progress log
+- **2026-09-11** — PR1 plan merged; PR1b governor-decisions merged; **PR2** manifests shipped (`crf-anapu-para.json`, `jedielcio.json`, `index.json`); **PR4** program-page gallery shipped & live on beta (commit `14272f60`); **PR5** started: 14 MOV→MP4 conversion with GPS re-inject+verify (batch running on the box, `/media/cfr_anapu_work/`), PT transcription (faster-whisper `base`), 8 HEIC originals uploaded to `farm-media-raw/crf-anapu-para/photos/`.
+
 ## Gates
 - NEVER deploy prod without governor GO.
 - `farm_media_manifests` + `farm-media-raw` are api-only (Contents API) → `upload_file_to_github`, never branch-edit.
 - YouTube shared quota ~6/day — pace, retry on 429.
 
 ## RESUME HERE
-**PR2 — the manifest.** Create `farm_media_manifests/crf-anapu-para.json` (`entity_type: program`, `program_slug: crf-anapu`, 24 items, `cross_index: [jedielcio]`) + `jedielcio.json` (4 mp4, yt_ids above) + `index.json` entries — via `upload_file_to_github` (Contents-API-only repo). Then PR4 gallery → PR5 long pole → UAT gate. No prod sync without GO.
+**PR5 — media long pole (in flight).** MOV→MP4 (GPS re-inject + VERIFY `Keys:GPSCoordinates`) → PT transcription (faster-whisper) → inbox sidecars under `/media/media_archive_inbox/farm-media/crf-anapu-para/` + config inbox entry + `systemctl restart farm-media-daemon` → daemon YouTube upload (paced ~1/pass; shared quota) → `yt_id` backfill into `media.json` (adds the video half of the gallery) + manifest. Then **UAT gate**: governor reviews beta; **no prod sync without GO.**
+
+> Note on YouTube pacing: the shared channel quota is the long pole — 14 videos may take several passes/days. Sidecars + config entry are the durable hand-off: once queued, the daemon drains them unattended.
