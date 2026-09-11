@@ -1,6 +1,6 @@
 # Media Gallery Publisher — execution plan
 
-**Created:** 2026-09-11 (Sophia) at Gary's request · **Handoff:** thread 26438 · **Status:** PR1 filed — executing
+**Created:** 2026-09-11 (Sophia) at Gary's request · **Handoff:** thread 26438 · **Status:** PR1 ✅ merged (#1036); PR2 ✅ superseded (write path already works) — executing PR3
 **Origin:** spun out of the Cacau na Veia (N-06-37) PR6 near-miss — 33 site-visit videos were fully transcoded + uploaded to YouTube (sidecars carried `yt_id`), yet `farms/cacau-na-veia-pacaje/media.json` stayed photos-only. Nothing reconciled "uploaded" against "published". See `handoffs/CACAU_NA_VEIA_MEDIA_TASK_PLAN.md`.
 
 ## Goal
@@ -34,8 +34,8 @@ site media-gallery.js:   fetch that JSON  (fallback ./media.json)
 ```
 
 ## PR sequence (ONE PR PER TURN)
-- **PR1** ✅ this plan + HANDOFF_MANIFEST row (thread 26438).
-- **PR2 ⛔ BLOCKER** — fix the box's GitHub write path so it can **UPDATE an existing file**. Today `upload_file_to_github` / `upload_local_file_to_github` both fail on updates: GitHub `422 "sha wasn't supplied"` (they never fetch the current blob sha). Any publisher that rewrites `index.json`/the gallery breaks on run 2. (PR6 workaround: the box SSH deploy key — `garyjob` — did a direct `git push`; fine for a one-shot, but a *publisher* needs a supported path.) Decide: fix the tool to fetch+pass `sha`, or standardise an SSH-key push helper.
+- **PR1** ✅ merged (agentic_ai_context #1036) — this plan + HANDOFF_MANIFEST row (thread 26438).
+- **PR2 ✅ SUPERSEDED — the blocker was stale.** The premise ("both fail on updates: GitHub `422 \"sha wasn't supplied\"`") is false: `app/tools/upload_file_to_github.py` fetches the existing blob `sha` and adds it to the PUT, so the call updates in place — in place since **truesight_autopilot #87 (2026-06-03)**, three months *before* this plan was written (the PR6 SSH-deploy-key `git push` was habit, not necessity). **Verified 2026-09-11** with a create→update probe in `agentic_ai_context`: write 1 → `action:"created"` (commit `4fee8b2`); write 2 to the same path → `action:"updated"` (commit `64e3ac1`), **no 422**. Work items: (a) re-confirm on an *update* to `farm_media_manifests/index.json` during PR4 (the real target — GitHub Pages origin, cross-repo); (b) if confirmed, close out. No code change needed.
 - **PR3** — `farm_media_gallery.py`: sidecars/manifest → gallery block. Idempotent, stable order (capture time), `aspect` from ffprobe, captions from transcript/VTT + **QA guard** (drop Whisper hallucinations e.g. "Legendas pela comunidade de Amara.org"; boilerplate fallback on empty transcripts).
 - **PR4** — `farm-media-manifest commit --with-gallery <collection>`; backfill `yt_id` (replaces the hand-authoring PR6 needed). Parity check: `sidecars-with-yt_id == media.json youtube count == manifest yt_id`.
 - **PR5** — publisher + systemd timer wired as an idempotent reconcile.
@@ -48,4 +48,4 @@ site media-gallery.js:   fetch that JSON  (fallback ./media.json)
 - No prod sync without governor GO.
 
 ## RESUME HERE
-PR2 (the update-existing-file write-path blocker) — without it the publisher cannot run twice. Then PR3→PR7.
+**PR3** — `farm_media_gallery.py`: sidecars/manifest → gallery block. (PR2 ✅ resolved-superseded 2026-09-11: `upload_file_to_github` has fetched+passed the blob `sha` since truesight_autopilot #87 — the "422 sha wasn't supplied" blocker was stale, disproven by a create→update probe. Re-confirm on the real cross-repo target during PR4.) Then PR4→PR7.

@@ -2065,7 +2065,7 @@ coordination miss. Gmail-leg unification remains a possible future follow-up.
 
 Sophia filed four items in a separately-created `OPEN_FOLLOW_UPS.md` on
 2026-05-31 (large-file updates via GitHub API; SSH key + git client on her box;
-`open_fix_pr` repo enum too narrow; `upload_file_to_github` lacking `sha`
+`open_fix_pr` repo enum too narrow (still open); `upload_file_to_github` lacking `sha` — ✅ RESOLVED (truesight_autopilot #87, 2026-06-03; re-verified 2026-09-11 by a create→update probe on `agentic_ai_context` → `created` then `updated`, no 422). See `handoffs/MEDIA_GALLERY_PUBLISHER_PLAN.md` PR2.
 update support). All four were resolved by the `SOPHIA_CAPABILITY_UPLIFT_PLAN.md`
 PRs — verified present 2026-06-06: `app/tools/git_tools.py` (native git
 branch+PR with search/replace semantics, no file-size limit),
