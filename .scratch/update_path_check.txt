@@ -1,1 +1,1 @@
-v1 — created to test the Contents-API update path. Safe to delete.
+v2 — second write to the SAME path. If this returns action:"updated", the update path works.
