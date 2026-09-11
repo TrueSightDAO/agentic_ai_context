@@ -8,6 +8,7 @@
     "fda_fsvp": "TrueSightDAO/fda_fsvp/suppliers/black_king/",
     "ledger": {"spreadsheet_id": "1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU", "tabs": ["Currencies", "offchain asset location"]}
   },
+  "regulatory_context": {"eo": "Executive Order 14324 - Suspending Duty-Free De Minimis Treatment for All Countries", "signed": "2025-07-30", "effective": "2025-08-29", "effect": "All de-minimis entries (previously duty-free under USD 800) rejected; every commercial import required formal entry.", "corridor_effect": "Only FDA prior notice filed on/after 2025-08-29 is shipment 14 (hand-carried). Other post-cutoff consignments have no prior notice on file - the documentary signature of blocked / never-shipped cargo.", "blocked_lot_note": "Governor (thread 26215): the large blocked lot is DAO inventory carried on the Main Ledger (offchain asset location tab), not a Black King manifest line. Row-level flagging pending governor confirmation of the exact ledger line."},
   "origin_unit_costs_usd": {
     "Cacao Nibs (bulk, kg)": {"unit_cost_usd": 24.61847089, "unit": "kg", "ledger_line": "Cacao Nibs (KG) - Ilheus, Brazil 2024", "basis": "origin"},
     "Cacao Mass Bar 500g": {"unit_cost_usd": 15.6951006, "unit": "bar", "ledger_line": "Cacao Mass Bar (500grams) - Ilheus, Brazil 2024", "basis": "origin"},

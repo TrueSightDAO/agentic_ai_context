@@ -16,6 +16,20 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > governor note that *a ceremonial-cacao shipment from AGL8 did not pass through* is **pending
 > confirmation of the exact manifest line** before any row is flagged.
 
+> **Revision 5 (2026-09-11, thread 26215): post-EO (de-minimis) import-gate context.**
+> **Executive Order 14324** ("Suspending Duty-Free De Minimis Treatment for All Countries") was
+> **signed 2025-07-30** and **effective 2025-08-29** — from that date CBP rejected all de-minimis
+> entries and every commercial import required formal entry. On this corridor the **only FDA prior
+> notice filed on/after 2025-08-29 is Shipment 14** (2025-10-08/09, hand-carried, Avianca AV560) —
+> the cargo the governor carried across the border himself. **Every other post-cutoff consignment
+> has no prior notice on file** — the documentary signature of **blocked / never-shipped** cargo
+> (nothing was filed to clear it). Per the governor (thread 26215), the large blocked lot is
+> **DAO inventory carried on the Main Ledger** (`offchain asset location` tab) rather than a line in
+> this Black King manifest; candidate lots still held in Brazil include the **AGL8 ceremonial cacao**
+> (Santos/Martinus-produced; ledger line *"Ceremonial Cacao Kraft Pouch - 20250219006"*, held by
+> *Matheus Reis*) and the **Poland package** (500 g bars, rejected). **Row-level flagging remains
+> pending governor confirmation of the exact ledger line.**
+
 ---
 
 ## Origin unit-cost reference (USD, pre-export / ex-works Ilhéus)
