@@ -12,7 +12,7 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > **Revision 4 (2026-09-11, governor-corrected, thread 26215):** **Reverted the Revision-3
 > error** — **Shipment 9 (AGL7 molasses) DID pass through**; restored to the totals. **Shipment 14**
 > (2025-10-09 hand-carried) remains excluded per governor instruction. Weight columns retained.
-> Totals: **212.67 kg · USD 5,669.35** origin value (excl. #12 [no qty], #14). **Open:** a
+> Totals (per Rev-4; superseded by Rev-6): **212.67 kg · USD 5,669.35** origin value (excl. #12 [no qty], #14). **Open:** a
 > governor note that *a ceremonial-cacao shipment from AGL8 did not pass through* is **pending
 > confirmation of the exact manifest line** before any row is flagged.
 
@@ -29,6 +29,16 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > (Santos/Martinus-produced; ledger line *"Ceremonial Cacao Kraft Pouch - 20250219006"*, held by
 > *Matheus Reis*) and the **Poland package** (500 g bars, rejected). **Row-level flagging remains
 > pending governor confirmation of the exact ledger line.**
+
+---
+
+> **Revision 6 (2026-09-11, thread 26215): governor-confirmed exclusions.** Per the governor,
+> **Shipment 8 (2025-02-28, 10 × 500 g ceremonial bars) and Shipment 13 (2025-06-27, ceremonial
+> bars + caramelized) NEVER SHIPPED** — Black King (Matheus) repeatedly missed the export
+> deadlines — so both are **struck from this manifest and excluded from all totals** (origin
+> **-USD 784.75**, weight **-30 kg**). An earlier broader rule ("all 2025 Correios lanes out") was
+> **withdrawn by the governor as too broad**; **Shipment 9 (AGL7, Correios) is retained**
+> (pass-through). **Updated totals: 182.67 kg · USD 4,884.60** origin value.
 
 ---
 
@@ -153,7 +163,10 @@ converted at the ledger rate **1 BRL = 0.19405 USD**.
 
 ---
 
-## Shipment 8 — 2025-02-28 · Ceremonial Cacao 500 g, 10 bars
+## Shipment 8 — 2025-02-28 · Ceremonial Cacao 500 g, 10 bars — ⛔ **NEVER SHIPPED (excluded)**
+
+> **Excluded per governor (thread 26215, 2026-09-11):** Black King (Matheus) missed the export
+> deadlines — this lot **never shipped**. Retained as a documentary record; **struck from totals.**
 
 - **Carrier:** Correios (Entry Type *Mail (Commercial)*)
 - **FDA PN:** confirmation `250540041942`, submitted 2025-02-28; product *Amazonian Regenerative Ceremonial Cacao 500 grams*
@@ -163,7 +176,7 @@ converted at the ledger rate **1 BRL = 0.19405 USD**.
 |---|---|---|---|---|
 | 1 | Ceremonial Cacao 500 g bar | 10 | 15.6951006 /bar | 156.95 |
 
-**Shipment total: USD 156.95.**
+**Shipment total: USD 156.95 — ⛔ EXCLUDED (never shipped).**
 
 ---
 
@@ -227,7 +240,10 @@ as a data gap.
 
 ---
 
-## Shipment 13 — 2025-06-27 · Ceremonial Cacao Bars + Caramelized Cacao
+## Shipment 13 — 2025-06-27 · Ceremonial Cacao Bars + Caramelized Cacao — ⛔ **NEVER SHIPPED (excluded)**
+
+> **Excluded per governor (thread 26215, 2026-09-11):** Black King (Matheus) missed the export
+> deadlines — this lot **never shipped**. Retained as a documentary record; **struck from totals.**
 
 - **Carrier:** Correios (Entry Type *Mail (Commercial)*)
 - **FDA PN:** Envelope `F25X26465487`, confirmations `250554762813` (500 g ceremonial cacao bar) and `250554762824` (Caramelized Cacao Almond Beans), submitted 2025-06-23, anticipated 2025-06-27
@@ -238,8 +254,8 @@ as a data gap.
 | 1 | 500 g ceremonial cacao bar | 40 (20 kg ÷ 0.5 kg) | 15.6951006 /bar | 627.80 |
 | 2 | Caramelized Cacao Almond Beans | 5 kg | 36.7492 /kg **(landed)** | 183.75 |
 
-**Shipment total: USD 811.55** (of which USD 183.75 is a *landed* figure, not pre-export).
-Origin caramelized value ≈ R$725 = USD 140.69.
+**Shipment total: USD 811.55 — ⛔ EXCLUDED (never shipped).** (USD 183.75 of this was a *landed*
+figure, not pre-export; origin caramelized value ≈ R$725 = USD 140.69.)
 
 ---
 
@@ -272,16 +288,17 @@ Commercial invoice (declared values, USD):
 | 5 | 2024-11-01 | Correios | 88 × 8 oz nibs pouches | 584.32 |
 | 6 | 2025-01-24 | Correios | 120 × 8 oz nibs pouches | 796.80 |
 | 7 | 2025-01-24 | Correios | 20 kg cacao tea | 273.20 |
-| 8 | 2025-02-28 | Correios | 10 × 500 g ceremonial bars | 156.95 |
+| ~~8~~ | ~~2025-02-28~~ | ~~Correios~~ | ~~10 × 500 g ceremonial bars~~ — **never shipped, excluded per governor** | ~~156.95~~ |
 | 9 | 2025-03-14 | Correios | 20 × 250 g molasses | 242.86 |
 | 10 | 2025-04-14 | Correios | 10 kg cacao husk | 177.85 |
 | 11 | 2025-04-14 | Correios | 20 kg nibs | 492.37 |
 | 12 | 2025-06-06 | Correios | ceremonial cacao + husk/tea | *(no qty on PN)* |
-| 13 | 2025-06-27 | Correios | ceremonial bars + caramelized | 627.80 *(+183.75 landed)* |
+| ~~13~~ | ~~2025-06-27~~ | ~~Correios~~ | ~~ceremonial bars + caramelized~~ — **never shipped, excluded per governor** | ~~627.80~~ |
 | ~~14~~ | ~~2025-10-09~~ | ~~hand-carried~~ | ~~10 × 200 g ceremonial~~ — **excluded per governor** | ~~50.00~~ |
 
-**Total measurable origin value: ≈ USD 5,669.35** across the shipments with quantifiable line items
-(excluding #12 [no qty] and **#14 hand-carried**). Total weight ≈ **212.67 kg**. **Open:** a
+**Total measurable origin value: ≈ USD 4,884.60** across the shipments with quantifiable line items
+(excluding #12 [no qty], **#14 hand-carried**, and **#8 / #13 [never shipped]**). Total weight
+≈ **182.67 kg**. **Open:** a
 governor note that *a ceremonial-cacao shipment from AGL8 did not pass through* is pending
 confirmation of the exact manifest line before a row is flagged.
 
@@ -298,6 +315,9 @@ confirmation of the exact manifest line before a row is flagged.
    figures; the true origin (pre-export) cost is shown separately from the Brazilian notas fiscais.
 4. Prior notices for shipments 3–5 (all 2024-10-31) were filed as three separate PNs against a
    single 2024-11-01 ship date; treat them as one physical mailing.
+5. **Shipments 8 and 13 (2025-02-28, 2025-06-27) never shipped** — Black King (Matheus) missed the
+   export deadlines; retained as documentary records but **excluded from every total** (governor,
+   thread 26215, 2026-09-11).
 
 ## Provenance
 
