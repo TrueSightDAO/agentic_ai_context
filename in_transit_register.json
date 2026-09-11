@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-09-11T19:15:00Z",
+  "generatedBy": "Sophia Truesight (autopilot)",
+  "subject": "Arrival register - Main Ledger 'offchain assets in transit' tab (gid 1888711771)",
+  "description": "Per-parcel ARRIVAL register for the Black King (Matheus Reis, Ilheus BA) export corridor. Each row joins a tracking number to its destination DAO member, ledger line number(s), and delivery status. This is the arrival-side counterpart to CORREIOS_SHIPMENTS.md (which indexes tracking numbers embedded in the Currencies tab); it is the join key between a tracking number and its ledger line, and the authoritative record of which parcels actually arrived. A parcel with NO row here never landed.",
+  "sources": {
+    "ledger_tab": {
+      "spreadsheet_id": "1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU",
+      "tab": "offchain assets in transit",
+      "gid": "1888711771"
+    },
+    "md": "TrueSightDAO/agentic_ai_context/CORREIOS_SHIPMENTS.md",
+    "manifest": "TrueSightDAO/agentic_ai_context/BLACK_KING_SHIPMENT_MANIFESTS.md"
+  },
+  "readAt": "2026-09-11",
+  "status_legend": {
+    "Arrived at Destination": "parcel recorded as delivered to the destination member"
+  },
+  "rows": [
+    {"destination_member": "Val Lapidus", "origin_asset": "8 Ounce Package Kraft Pouch CP340992735BR", "qty": 120, "courier": "correios.com.br", "tracking": "CP340992735BR", "expected_arrival": "20250221", "destination_address": "3041 Taraval St, San Francisco, California", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["296"], "status": "Arrived at Destination"},
+    {"destination_member": "Nima Kaz", "origin_asset": "8 Ounce Package Kraft Pouch QN226716310BR", "qty": 50, "courier": "correios.com.br", "tracking": "QN226716310BR", "expected_arrival": null, "destination_address": "FounderHaus, Av. dos Merlins 156, Jurerê", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["248", "316"], "status": "Arrived at Destination"},
+    {"destination_member": "Hans Martin Heierling", "origin_asset": "8 Ounce Package Kraft Pouch - Ilheus, Brazil", "qty": 25, "courier": "correios.com.br", "tracking": "CP340993268BR", "expected_arrival": "20250219", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["313", "364"], "status": "Arrived at Destination"},
+    {"destination_member": "Andrea Catalina Falcon Rios De Pabst", "origin_asset": "Cacao Mass Bar (500grams) - Ilheus, Brazil", "qty": 10, "courier": "correios.com.br", "tracking": "CP340993838BR", "expected_arrival": "20250311", "destination_address": "Zurich (tax ID 756.9201.0009.89)", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["357", "452"], "status": "Arrived at Destination"},
+    {"destination_member": "Andrea Catalina Falcon Rios De Pabst", "origin_asset": "8 Ounce Package Kraft Pouch - Ilheus, Brazil", "qty": 25, "courier": "correios.com.br", "tracking": "CP340993838BR", "expected_arrival": "20250311", "destination_address": "Zurich (tax ID 756.9201.0009.89)", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["359", "454"], "status": "Arrived at Destination"},
+    {"destination_member": "Val Lapidus", "origin_asset": "Cacao Mass Bar (500grams) - Ilheus, Brazil", "qty": 19, "courier": "correios.com.br", "tracking": "CP340992761BR", "expected_arrival": null, "destination_address": "3041 Taraval St, San Francisco, California", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["462", "463"], "status": "Arrived at Destination"},
+    {"destination_member": "Val Lapidus", "origin_asset": "Cacao Molasses 250ml", "qty": 20, "courier": "DHL", "tracking": "74 4476 6210", "expected_arrival": null, "destination_address": "3041 Taraval St, San Francisco, California", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["484"], "status": "Arrived at Destination"},
+    {"destination_member": "Aga Marecka", "origin_asset": "Cacao Mass Bar (500grams) - Ilheus, Brazil", "qty": 10, "courier": "correios.com.br", "tracking": "CP340993237BR", "expected_arrival": null, "destination_address": "Poland (NIP PL1231104361)", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["469", "470"], "status": "Arrived at Destination", "note": "2nd Poland parcel (the one that ARRIVED). The 1st parcel, CP340993271BR, was rejected by Brazilian customs and has no row in this register."},
+    {"destination_member": "Kirsten Ritschel", "origin_asset": "Cacao Nibs (KG) - Ilheus, Brazil 2024", "qty": 20, "courier": "correios.com.br", "tracking": "CP340993988BR", "expected_arrival": null, "destination_address": "TrueTech Inc, 1423 Hayes St, San Francisco, California 94117", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["505"], "status": "Arrived at Destination"},
+    {"destination_member": "Kirsten Ritschel", "origin_asset": "Cacao Mass Bar (40grams) 20250530 - Martinus AGL8 Brazil", "qty": 115, "courier": "correios.com.br", "tracking": "CP340993869BR", "expected_arrival": null, "destination_address": "TrueTech Inc, 1423 Hayes St, San Francisco, California 94117", "ledger_location": "https://agroverse.shop/agl8", "ledger_lines": [], "status": "Arrived at Destination"},
+    {"destination_member": "Kirsten Ritschel", "origin_asset": "Cacao Husk (loose grams) 20250530 - Martinus AGL8 Brazil", "qty": 1.343, "courier": "correios.com.br", "tracking": "CP340993869BR", "expected_arrival": null, "destination_address": "TrueTech Inc, 1423 Hayes St, San Francisco, California 94117", "ledger_location": "https://agroverse.shop/agl8", "ledger_lines": [], "status": "Arrived at Destination"},
+    {"destination_member": "Kirsten Ritschel", "origin_asset": "22 Litres Insulated Box", "qty": 1, "courier": "correios.com.br", "tracking": "CP340993869BR", "expected_arrival": null, "destination_address": "TrueTech Inc, 1423 Hayes St, San Francisco, California 94117", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["638"], "status": "Arrived at Destination"},
+    {"destination_member": "Kirsten Ritschel", "origin_asset": "Cacao Mass Bar (500grams) - Ilheus, Brazil", "qty": 40, "courier": "correios.com.br", "tracking": "CP340993299BR", "expected_arrival": null, "destination_address": "TrueTech Inc, 1423 Hayes St, San Francisco, California 94117", "ledger_location": "https://truesight.me/physical-transactions", "ledger_lines": ["734", "735"], "status": "Arrived at Destination", "note": "AGL10 parcel. Ledger currency line 'Caramelized Cacao Beans (KG) + CP340993299BR San Francisco AGL10' attaches the landed caramelized unit cost to THIS parcel."}
+  ],
+  "distinct_tracking_numbers": ["CP340992735BR", "QN226716310BR", "CP340993268BR", "CP340993838BR", "CP340992761BR", "74 4476 6210", "CP340993237BR", "CP340993988BR", "CP340993869BR", "CP340993299BR"],
+  "findings": {
+    "parcels_with_no_transit_row": [
+      "Shipment 8 (2025-02-28) - no tracking ever assigned; never shipped",
+      "Shipment 13 (2025-06-27) - no tracking ever assigned; never shipped"
+    ],
+    "poland": {
+      "first_parcel": {"tracking": "CP340993271BR", "status": "rejected by Brazilian customs (2025-02-28 -> 2025-03-01); NEVER arrived; no row in this register", "source": "governor (thread 26215) + Ledger History entries 2025-02-28/2025-03-01"},
+      "second_parcel": {"tracking": "CP340993237BR", "status": "Arrived at Destination", "destination": "Aga Marecka (Poland)", "ledger_lines": ["469", "470"]}
+    },
+    "caramelized_agl10": {
+      "tracking": "CP340993299BR",
+      "note": "The landed caramelized unit cost (36.7492 USD/kg, 'Caramelized Cacao Beans (KG) + CP340993299BR San Francisco AGL10') attaches to this AGL10 parcel (40 x 500 g mass bars; ledger 734/735; arrived). The Black King manifest had used that landed figure to value the Shipment-13 caramelized lot - a mis-join; re-homed in Rev-7."
+    }
+  }
+}
