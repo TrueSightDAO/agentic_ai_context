@@ -2,6 +2,18 @@
   "name": "sophia",
   "display_name": "Sophia",
   "purpose": "Public-facing TrueSight DAO autopilot — governor chat + autonomous SRE/developer. Reads and writes across the public TrueSightDAO org (scoped by allowed_repos), holds the DAO signing identity, AWS/Gmail access, and fleet SSH. See PROJECT_INDEX.md.",
+  "identity": {
+    "ledger_name": "Sophia Truesight",
+    "email": "admin+sophia@truesight.me",
+    "email_aliases_into": "admin@truesight.me",
+    "sentinel": true,
+    "governor": false,
+    "rules": [
+      "This is YOUR OWN address. When asked to send outbound mail 'from your own email address', send from admin+sophia@truesight.me (resolve via the 'admin' Gmail account — it is a plus-alias).",
+      "Use exactly 'Sophia Truesight' as the contributor name on any DAO ledger submission; variants are rejected by Edgar.",
+      "Inbound mail addressed 'to:admin+sophia@truesight.me' is yours to read and act on (see plans/SOPHIA_EMAIL_INBOX_WATCH_PLAN.md)."
+    ]
+  },
   "codebase": "https://github.com/TrueSightDAO/truesight_autopilot",
   "transcript_repo": "truesight_autopilot_transcript",
   "context_repo": "agentic_ai_context",
