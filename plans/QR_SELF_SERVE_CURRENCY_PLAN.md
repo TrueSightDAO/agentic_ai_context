@@ -3,6 +3,8 @@
 **Handoff:** local LLM (Claude) → Sophia (autopilot)
 **Created:** 2026-06-23
 **Status:** GO-ready (parked in Telegram topic — see HANDOFF_MANIFEST.md / SOPHIA_HANDOFFS.md)
+
+**Execution status (2026-09-12):** PR1 and PR2 are MERGED on `origin/main` (PR1 `dao_protocol` #131 `f6825d0`; PR2 `tokenomics` #376 `f3fdfa4`). Running in Telegram topic **27015** (the manifest row's original parking thread `7611` is not the execution thread). Scope was **extended** in 27015: the `Currencies` tab column **M is already headed `SKU Product ID`, so it is not a new column** — PR1's label set was extended to 13 labels to carry it (#159), the GAS definition handler was extended to parse/write col M + infer `Serializable` from SKU stock (#476), and the existing `update_store_inventory` GAS now also emits `agroverse-inventory/skus.json` (#477) so the page can populate a SKU dropdown. RESUME HERE is therefore **PR3** (deploy + wire), not PR1.
 **Repos touched:** `dao_protocol` (CLI + Edgar dispatch), `tokenomics` (GAS 1N6o00 + deploy), `agentic_ai_context` (docs)
 **Scope discipline:** §5a ONE PR PER TURN — on GO run **PR1 ONLY then STOP**; next turn resumes the next unit. Cross-repo PRs: **open PRs only, a human merges** (no self-merge). Advance markers in §5.
 
@@ -131,12 +133,12 @@ GAS. *(Pre-flight: confirm on the live sheet.)*
 
 ## 5. Resume tracker (§5c Advance markers)
 
-**RESUME HERE → PR1**
+**RESUME HERE → PR3**
 
 | Unit | Advance | PR opened | Merged (human) | Deployed | Contribution reported |
 |------|---------|-----------|----------------|----------|----------------------|
-| PR1 — CLI + dispatch (`dao_protocol`) | `auto` | ☐ | ☐ | n/a | ☐ |
-| PR2 — GAS handler (`tokenomics`) | `auto` | ☐ | ☐ | n/a | ☐ |
+| PR1 — CLI + dispatch (`dao_protocol`) | `auto` | ☑ | ☑ | n/a | ☑ |
+| PR2 — GAS handler (`tokenomics`) | `auto` | ☑ | ☑ | n/a | ☑ |
 | PR3 — deploy + wire env (**OPERATOR-run**: clasp + prod ssh; Sophia writes the runbook only — see §8) | `gate: operator runs clasp + Edgar env change` | ☐ | ☐ | ☐ | ☐ |
 | PR4 — auto-define (optional) | `gate: confirm operator wants it` | ☐ | ☐ | ☐ | ☐ |
 | PR5 — docs | `auto` | ☐ | ☐ | n/a | ☐ |
