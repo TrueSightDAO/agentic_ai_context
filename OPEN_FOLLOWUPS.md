@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Two writers to `agroverse-inventory/skus.json` — the GAS `update_store_inventory` project and the Python/GHA job both publish it (retire one)
+**Filed 2026-09-12. Owner: unclaimed. Governor: Gary (thread 27015).**
+
+**Context.** `skus.json` (the public SKU catalog consumed by DApp `define_currency.html`) is now emitted by `go_to_market` `scripts/sync_agroverse_store_inventory.py` via `.github/workflows/publish-agroverse-inventory-snapshot.yml` (daily `15 6 * * *`). **But the GAS project `update_store_inventory` (`1P0Mg33i_dD9x9IeoHYvtKrf0xFcmUznpqAswyC_KXR3VJZu-0C-UOP0v`) also has a SKU-catalog publisher** — `readSkuCatalogFromSheet_` / `publishSkuCatalogToGitHub_` / the `doGet` `publishSkuCatalog` action (deployed to `@HEAD` 2026-09-12) — which pushes the same file via the Contents API using `AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT`.
+
+**Why it matters.** The two emit **otherwise-identical** content but stamp a different `source` field — Python/GHA: `sync_agroverse_store_inventory`; GAS: `update_store_inventory`. If both run, they flap the file on every pass (and a consumer that keys on `source` sees it toggle). Discovered 2026-09-12: Gary manually ran the GAS publisher at 23:28:34Z (`source: update_store_inventory`), then the GHA job ran at 23:56:32Z (`source: sync_agroverse_store_inventory`) — the file flapped within 30 min.
+
+**Good news:** the GAS path is **not on a trigger** (no `newTrigger`/`ScriptApp` in `Code.js`, git or live), so flapping only occurs on manual runs — the GHA cron is the only *scheduled* writer.
+
+**Proposed work (~30 min).** Retire the redundant GAS SKU path: remove the `publishSkuCatalog` `doGet` action + `publishSkuCatalogToGitHub_`/`readSkuCatalogFromSheet_`/`skuCatalogKey_` helpers (and the `skusCatalog` target), leaving the Python/GHA job as the single writer. Same reasoning likely applies to `store-inventory.json` (GAS `updateStoreInventory` vs the Python job) — audit both while in there. Blocker: none.
+
+**Evidence.** The GAS helper functions in `tokenomics/google_app_scripts/1P0Mg33i…/Code.js`; `agroverse-inventory` commits `de8a58b` (Gary, 23:28:34Z, `update_store_inventory`) and `cf5d0c6` (github-actions[bot], 23:56:32Z, `sync_agroverse_store_inventory`); runbook `AGROVERSE_INVENTORY_PUBLISHERS.md` §8.
+
 ### GAS `parseAndProcessTelegramLogs` runs with the script lock TEMP-DISABLED — re-enable after root-causing the >30s lock contention
 **Filed 2026-09-12. Owner: unclaimed. Governor: Gary (thread 26845, closed).**
 
