@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-12T11:05:08Z`
+- Generated (UTC): `2026-09-12T15:43:43Z`
 - Look-back: **7** calendar days (`2026-09-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 23
+- `[TREE PLANTING EVENT]` × 20
 - `[CONTRIBUTION EVENT]` × 15
-- `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
+- `[PRACTICE EVENT]` × 2
+- _free-form (no bracket tag)_ × 5
 
 ### Latest entries
 
-- `Edgar_20260910213239_422` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.529844, -51.145114" · Latitude: -3.529844
-- `Edgar_20260910222159_424` · **Edgar** · [No Text Provided]
-- `Edgar_20260910223120_426` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Thread 24321 — FBE research sub-plot: submit, diagnose Plot-ID drop, repair …
 - `Edgar_20260910225129_428` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: deep seek credit 9th Sep
 - `Edgar_20260910225158_430` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek credits 10th October
 - `Edgar_20260910225436_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Sítio Torres (Pacajá loc3) media task — prod deploy, .env silent-drop audit,…
@@ -59,6 +56,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260911185106_456` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: AGL14 serialization + QR-sheet header-contract guard (thread 25671)
 - `Edgar_20260911191255_458` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20260911202327_460` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-11T20:23:25.803Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260912111222_462` · **Edgar** · [No Text Provided]
+- `Edgar_20260912112723_464` · **Edgar** · [No Text Provided]
+- `Edgar_20260912130639_466` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-12T13:06:37.975Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -269,6 +269,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1a22e76 | 2026-09-12 08:22:56 -0300 | crf-anapu: add 14 site-visit videos to program gallery (#377)
+3c2897a | 2026-09-12 11:11:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 6bee84b | 2026-09-12 04:55:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 ccaed47 | 2026-09-11 21:12:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 80355de | 2026-09-11 16:43:03 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -307,8 +309,6 @@ adf89f2 | 2026-09-07 21:54:07 -0300 | SunMint impact map: grouped Plots dropdown
 0fa87db | 2026-09-07 21:44:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9b01cf7 | 2026-09-07 12:57:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 a2dae19 | 2026-09-07 05:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
-b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
-59b1e5f | 2026-09-06 15:42:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -321,6 +321,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+79a8ee0 | 2026-09-12 08:20:55 -0300 | Add RESERVATION EVENT spec v0 (reservations/deposits on the ladder) (#1049)
+3877d75 | 2026-09-12 08:05:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
+84a37bf | 2026-09-12 08:05:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
 bb44fd1 | 2026-09-12 01:52:05 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
 d389410 | 2026-09-12 01:52:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
 0a790b3 | 2026-09-12 00:39:51 -0300 | Merge pull request #1048 from TrueSightDAO/auto/advisory-refresh-2026-09-12
@@ -358,9 +361,6 @@ e7d223a | 2026-09-11 08:41:15 -0300 | chore(previews): refresh Beer Hall preview
 46c3852 | 2026-09-11 07:17:44 -0300 | Add satellite resolution/cadence cost report (sponsor financing)
 b000736 | 2026-09-11 07:01:33 -0300 | CRF Anapu plan: record governor decisions (program entity type, galleries, Jedielcio index) (#1025)
 34e621a | 2026-09-11 06:54:26 -0300 | Register CRF Anapu media handoff row in HANDOFF_MANIFEST (#1024)
-845d8d7 | 2026-09-11 06:54:22 -0300 | Add CRF Anapu media task plan + handoff row (#1023)
-084083c | 2026-09-11 02:00:18 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
-f279ef2 | 2026-09-11 02:00:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 … (truncated)
 ```
 
@@ -412,6 +412,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+0220cc5 | 2026-09-12 11:14:55 +0000 | chore: refresh currencies.json [skip ci]
 bc1bb68 | 2026-09-12 10:51:36 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bc37849 | 2026-09-11 11:48:14 +0000 | chore: refresh currencies.json [skip ci]
 1112f40 | 2026-09-11 11:26:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
@@ -561,7 +562,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/12/2026 3:50:51 |
+| 2026-09 | 853.7 | 18293.54386 | 9/12/2026 7:50:45 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-05`; scanned last **600** data rows)
 
