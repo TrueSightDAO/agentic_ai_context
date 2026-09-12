@@ -20,45 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-11T21:08:31Z`
-- Look-back: **7** calendar days (`2026-09-04` → today UTC)
+- Generated (UTC): `2026-09-12T03:39:33Z`
+- Look-back: **7** calendar days (`2026-09-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[TREE PLANTING EVENT]` × 23
-- `[CONTRIBUTION EVENT]` × 15
-- `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
-
-### Latest entries
-
-- `Edgar_20260910213239_422` · **Edgar** · [TREE PLANTING EVENT] Tree Count: 1 · Location: "-3.529844, -51.145114" · Latitude: -3.529844
-- `Edgar_20260910222159_424` · **Edgar** · [No Text Provided]
-- `Edgar_20260910223120_426` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Thread 24321 — FBE research sub-plot: submit, diagnose Plot-ID drop, repair …
-- `Edgar_20260910225129_428` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: deep seek credit 9th Sep
-- `Edgar_20260910225158_430` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek credits 10th October
-- `Edgar_20260910225436_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Sítio Torres (Pacajá loc3) media task — prod deploy, .env silent-drop audit,…
-- `Edgar_20260910225630_434` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Expose SunMint trees/plots/farms + MAP media in the LLM discovery surface (b…
-- `Edgar_20260911011333_436` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Agroverse invoice hardening — TrueTech Inc issuer stamp + Wise pay link (INV…
-- `Edgar_20260911012556_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260911012711_440` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Security incident response & risk-acceptance decision — fine-grained PAT exp…
-- `Edgar_20260911024310_442` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
-- `Edgar_20260911101431_444` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: BionPact INV-20260911-BP — invoice inspection, Stripe checkout link, PDF rev…
-- `Edgar_20260911101433_446` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: BionPact INV-20260911-BP — governor direction & review
-- `Edgar_20260911102103_448` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Research: satellite resolution/cadence cost + sponsor financing report
-- `Edgar_20260911153502_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Cacau na Veia (Pacajá loc1, CEPOTX) farm media — 45-item gallery + 33 PT tra…
-- `Edgar_20260911180824_452` · **Edgar** · [No Text Provided]
-- `Edgar_20260911181000_454` · **Edgar** · [No Text Provided]
-- `Edgar_20260911185106_456` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: AGL14 serialization + QR-sheet header-contract guard (thread 25671)
-- `Edgar_20260911191255_458` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260911202327_460` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-11T20:23:25.803Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -230,17 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,910.50**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
-- USD provisioned for voting-rights cash-out: **$54.93**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -250,7 +210,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-09-04 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-09-05 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -258,7 +218,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-04 in CONTEXT_UPDATES.md.)_
 
 | Pipeline | Mapped clone | Activity in window |
 |----------|----------------|----------------------|
-| `go_to_market` | `market_research` | **yes** |
+| `go_to_market` | `market_research` | **no** |
 | `TrueChain` | `TrueChain` | **no** |
 | `oracle` | `iching_oracle` | **no** |
 
@@ -269,6 +229,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ccaed47 | 2026-09-11 21:12:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 80355de | 2026-09-11 16:43:03 +0000 | chore(stats): refresh stats indexes [skip ci]
 b64dd83 | 2026-09-11 11:47:05 -0300 | Fix blank-basemap zoom wall: upscale z17 imagery instead of requesting missing z18 tiles (#376)
 14272f6 | 2026-09-11 10:43:28 -0300 | Add CRF Anapu program media gallery (program-page gallery convention) (#375)
@@ -308,19 +269,20 @@ a2dae19 | 2026-09-07 05:08:18 +0000 | chore(stats): refresh stats/current.json [
 b8a3dc2 | 2026-09-06 20:45:16 +0000 | chore(stats): refresh stats/current.json [skip ci]
 59b1e5f | 2026-09-06 15:42:23 +0000 | chore(stats): refresh stats/current.json [skip ci]
 06f8bbf | 2026-09-06 11:16:59 +0000 | chore(stats): refresh stats/current.json [skip ci]
-84db22e | 2026-09-06 05:00:22 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-445a5d7 | 2026-09-04 11:47:18 -0300 | Add bilingual EN-PT SunMint CEPOTX agreement (v2: Laguna Beach address, supported species, ISO-7810 card detail)
+_(no commits on origin/main in window)_
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+636ec71 | 2026-09-11 18:08:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
+7040e8a | 2026-09-11 18:08:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 be0df1d | 2026-09-11 16:11:07 -0300 | Black King manifest Rev-9: non-US lanes (Poland/Switzerland/FounderHaus) + explicit multi-currency (#1047)
 af21104 | 2026-09-11 15:58:42 -0300 | Black King Rev-8: AGL10 arrival governor-confirmed; caramelized line = costing reference only (no physical stock) (#1046)
 d61498f | 2026-09-11 15:43:07 -0300 | File 3 follow-ups from AGL14 serialization (thread 25671) (#1045)
@@ -359,8 +321,6 @@ f279ef2 | 2026-09-11 02:00:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 57649b1 | 2026-09-11 03:35:31 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 839b0c4 | 2026-09-10 22:13:38 -0300 | File follow-up: Edgar photo-upload gap (fileUploadedToGithub) (#1020)
 b43305d | 2026-09-10 21:56:00 -0300 | Invoice convention: require issuer entity block + EIN (#1021)
-c2ddf7b | 2026-09-10 20:53:56 -0300 | Add bilingual CRF de Anapu ("Dorothy Stang") tree planting support agreement + PDF builder (#1019)
-9ad3632 | 2026-09-10 20:31:22 -0300 | handoff(sitio-torres): mark row terminal (completed) so topic closes cleanly (#1018)
 … (truncated)
 ```
 
@@ -426,8 +386,6 @@ b670bdc | 2026-09-09 07:29:12 -0300 | chore: refresh Agroverse store inventory s
 be4578f | 2026-09-07 12:38:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ab627df | 2026-09-06 11:20:30 +0000 | chore: refresh currencies.json [skip ci]
 0175b1c | 2026-09-06 11:01:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b74cebf | 2026-09-04 11:44:22 +0000 | chore: refresh currencies.json [skip ci]
-1d3a534 | 2026-09-04 11:22:16 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -492,6 +450,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-09-12T033932Z_crf-anapu-gallery-and-black-king-update.md`
+
+- **posted_at_utc:** `2026-09-12T03:39:32Z`  
+- **slug:** `crf-anapu-gallery-and-black-king-update`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Cacau na Veia** — Published 33 site-visit videos and transcripts to the farm page gallery.
+
 ### `beer-hall_2026-09-11T033523Z_sitio-cristo-rei-cacau-na-veia-launch-map-tree-listing.md`
 
 - **posted_at_utc:** `2026-09-11T03:35:23Z`  
@@ -509,15 +476,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **SunMint Map** — Added plot type filters and clickable dropdowns for Trees and Plots to improve map navigation; popups now display Plot Type and tree photos.
-
-### `beer-hall_2026-09-07T032714Z_fsvp-blocks-fazenda-clara-ledger.md`
-
-- **posted_at_utc:** `2026-09-07T03:27:14Z`  
-- **slug:** `fsvp-blocks-fazenda-clara-ledger`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Compliance** — Added "Verified & Traceable" FSVP compliance blocks to 12 farm profiles, including Santa Ana, Cleide, and Oscar.
 
 ---
 
@@ -538,39 +496,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/11/2026 13:50:46 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-04`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
