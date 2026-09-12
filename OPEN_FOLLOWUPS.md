@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### GAS `parseAndProcessTelegramLogs` runs with the script lock TEMP-DISABLED — re-enable after root-causing the >30s lock contention
+**Filed 2026-09-12. Owner: unclaimed. Governor: Gary (thread 26845, closed).**
+
+**Context.** The governor hit `parseAndProcessTelegramLogs: could not acquire script lock within 30s; aborting to avoid double-processing` in the GAS editor. Root cause narrowed to: the function acquires `LockService.getScriptLock().waitLock(30000)` (Code.js ~line 1050 — idempotency guard 1, added 2026-09-09 after the `Edgar_20260909124022_298` double-booking) and **another execution held the lock >30s**. Two compounding defects made it worse:
+1. **False success:** on lock failure the function did a bare `return;` and `doGet` still printed `"✅ Telegram logs processed successfully…"` — so a *skip* was indistinguishable from a *completed run*. Edgar's Sidekiq caller therefore never retried, and pending expense submissions were silently stranded (scored sheet sat at row 218; on 2026-09-12 three authorized expenses — `Edgar_20260912162828_478`, `…163238_482`, `…163341_484` — had never scored).
+2. The lock serializes by *time*, not by *work*, so overlapping invocations (Edgar webhook + editor manual Run) race and one aborts.
+
+**What shipped (temporary mitigation, 2026-09-12).**
+- **tokenomics PR #475** (merged, `054f700`): adds `const _DISABLE_PROC_LOCK = true` → the `waitLock(30000)` acquire is skipped (revert = flip to `false`); the skip path now returns `{status:'skipped_lock_contention'}` and `doGet` returns `⚠️ Skipped…` instead of a false `✅`.
+- **Pushed to GAS HEAD** and **redeployed the wired deployment in place**: `clasp update-deployment AKfycbwYBlFigSSPJKkI-F2T3dSsdLnvvBi2SCGF1z2y1k95YzA5HBrJVyMo6InTA9Fud2bOEw -V 13` → deployment **v12 → v13, same URL** (`…/macros/s/AKfycbwYBlFigS…/exec`), so Edgar's `telegram_webhook_listener.js:203` wiring is untouched. Verified: one live `/exec` fire returned ✅ in 43s, no lock error, and the 3 stuck expenses scored `authorized` (offchain ledger #4261–4263).
+
+**Why this is still open.** The lock is **disabled in production** — this reintroduces the vulnerability class guard 1 was added to close (currently backstopped only by the lock-free hash guard 2, the fresh col-K re-read, which is weaker than a real mutex). The **root cause of the >30s hold is still unnamed**: the lock is always released in `finally`, so something must be overlapping or running long.
+
+**Proposed work (~60 min).** (1) Inspect the GAS editor **Executions** page (and, if a GCP project is linked, Cloud Logging / `clasp tail-logs`) for overlapping or long-running `parseAndProcessTelegramLogs` invocations around the failure — name the holder. (2) If it is *backlog overlap*, confirm the queue is drained and **flip `_DISABLE_PROC_LOCK` back to `false`** (revert PR #475). (3) If it is *long single runs*, replace the coarse script lock with a **shorter, work-scoped** guard (e.g. a last-processed-key watermark that is idempotent), so overlap is safe without a 30s block. (4) Add a regression test asserting a lock skip is **never** reported as success. Blocker: (1) needs the editor Executions view (governor) or a linked GCP project.
+
+**Evidence.** `Code.js` lines ~1050–1056 + `doGet` wrapper (repo `main` and live HEAD byte-identical); PR #475; deployment list showing `AKfycbwYBlFigS… @13` updateTime `2026-09-12T17:33:28Z`; scored sheet rows 219–221 (today's 3 expenses, `authorized`).
+
+### `google_app_scripts/<scriptId>/` repo folder is NOT a clean clasp mirror — pushing from the repo folder would break the live GAS project
+**Filed 2026-09-12. Owner: unclaimed. Governor: Gary (thread 26845).**
+
+The repo folder `tokenomics/google_app_scripts/19Wag9x-sjbLVgIsPh2vj90ZG7Rgq2iGaVOomAeAvtg6CdZKJHLZ9AJrC/` carries `Version.gs`, `Credentials.sample.js`, `manifest.json`; the live GAS project has `Version.js`, `Credentials.js`, `appsscript.json`. A blind `clasp push` from the repo folder would **add duplicate top-level files → duplicate function definitions (`getClaspMirrorDeployInfo`, credential accessors) and break the project**. (Same scriptId — `.clasp.json` in the repo points at the live project.) Deploys must push from an exact `clasp clone` of live, not from the repo path.
+
+**Proposed work (~30 min).** Either (a) make the mirror explicitly one-way + label it: rename the repo copies (`Version.mirror.txt`, `Credentials.sample.js` kept as the contract), add a `README` warning, and add a preflight check to `deploy_gas_project` that **refuses a push whose file set differs from live HEAD**; or (b) reconcile the filenames so repo == live. Blocker: none.
+
+**Evidence.** `ls` of both trees; `.clasp.json` scriptId match; `clasp clone` output (6 files, live) vs repo folder file list.
+
 ### Autopilot box root filesystem (`/`) fills to 100% — disposable repo clones land on `/tmp`, while the 246G `/media` volume sits at 25%
 **Filed 2026-09-11. Owner: unclaimed. Governor: Gary (thread 24441).**
 
