@@ -1,141 +1,168 @@
-# RESERVATION EVENT — Specification v1
+# RESERVATION EVENT — Specification v2
 
-**Status:** v1 — governor rulings folded in (2026-09-12). Supersedes v0.
+**Status:** v2 — two-event hold model (Gary's Model B, 2026-09-12). Supersedes v1.
 **Owner:** Sophia Truesight (admin+sophia@truesight.me).
 **Origin:** AGL14 / Telegram thread 25671 (the Flow-4 stray-row case study).
-**Design thread:** Telegram topic 26819 — *"Design: reservations & deposits"*.
-**Terminology note:** the topic title says "on the ladder" — Gary has confirmed (2026-09-12) that he said **"on our ledger"**; "ladder" was a voice mis-transcription. There is no "ladder" concept. All references corrected.
+**Design thread:** Telegram topic 26819.
 
 ---
 
-## 1. Purpose
+## 0. The scenario (in one paragraph)
 
-A **RESERVATION EVENT** is a single signed event that lets a governor:
-
-1. **report an amount set aside** (money placed to hold something), and
-2. **name the target item on a ledger** (which item, on which ledger, and how many units), and
-3. **record who passed the money** (the payer).
-
-It exists so that the join *"this money is for these items"* is written **once**, by a signed event — instead of being reconstructed later by inference.
-
-**What a reservation deliberately does NOT do (Gary, 2026-09-12):** it does **not** name individual **QR codes**, and it does **not** change any QR's status. The money↔bags join is written only when the transaction **closes** — i.e. when the reserver **takes possession** of the inventory — which is the `SALES EVENT`, where the QRs are named and flip to `SOLD`.
+A buyer **pays us cash for goods we have not yet handed over.** The money is in the pocket of the DAO member who took it. The goods are still physically with us/our holder. We need a signed record that (a) the money landed, (b) *what* the money is holding, and (c) who is holding the cash — and then a second record when the buyer actually **takes possession**.
 
 ---
 
-## 2. Motivation — the AGL14 failure mode
+## 1. The model — two events
 
-AGL14 (thread 25671) produced a recurring **unsigned** bare ledger row.
+| # | Event | Trigger | QR status | Ledger |
+|---|-------|---------|-----------|--------|
+| 1 | **`RESERVATION EVENT`** | money lands; goods NOT yet handed over | mint if needed → **`Reserved`** | `Assets +Amount USD` · `Liability +N <Target Inventory Currency>` |
+| 2 | **`RESERVATION CLOSE EVENT`** | buyer takes possession (we deliver) | **`Reserved` → `SOLD`** | `Liability −N <Target Inventory Currency>` · `Assets −N <Target Inventory Currency>` (inventory relieved) |
 
-- 40 QR codes (`2024OSCAR_AGL14_20260911_1..40`) were marked **SOLD**.
-- The $800 Stripe checkout arrived via the **Stripe → managed-ledger router** (Flow 4, `STRIPE_LEDGER_ROUTING.md`), which hand-writes a bare, unsigned row (`Type=Sale`).
-- Nothing bound the money to the item. The relationship lived in **two places** and was never joined, so the system reconstructed it twice — slightly differently.
+### Why the QRs are named at Event 1 (reversal of v1)
 
-The root cause was **a missing abstraction, not a bad line of code**. (Gary's ruling: the router is NOT to be modified; the stray stemmed from how that particular Stripe checkout was generated.)
+v1 said *"don't name the QRs until close."* Gary's ruling (2026-09-12): **you cannot hold what you cannot name** — the reservation must name the bags, or the liability has nothing to point at. So Event 1 names the QR codes (minting them if the goods have none) and flags them `Reserved`.
 
-A RESERVATION fixes this structurally, in two parts:
+### Why "liability in terms of inventory" is correct (Gary's Model B)
 
-1. **Signed money → item binding.** The reservation writes a *signed* join from the payment to `(Target Ledger, Target Item, Quantity)` — so an unsigned stray row for that money becomes impossible.
-2. **QR named only at close.** Bags are named on the **`SALES EVENT`** at possession, never earlier — so a bag can never be marked `SOLD` before the money landed.
+Gary: *"Liability goes up in terms of inventory. Otherwise we won't know what the money is used to reserve for."*
+
+This is **idiomatic for this DAO**. The managed-AGL sale path (`sales_update_managed_agl_ledgers.js`) already books a **Liability denominated in non-money units** — `+1 "Cacao Tree To Be Planted"` under `Liability` per sale. So a liability carried in inventory units is an existing pattern, not a new one.
+
+The liability is **temporary**: it goes up by `N` at Event 1 and down by `N` at Event 2, netting to zero once the goods are delivered. While the reservation is open it is the visible marker of *"N bags are committed to a paid buyer and must not be sold to anyone else."*
 
 ---
 
-## 3. Event definition
+## 2. Event 1 — `RESERVATION EVENT`
 
-**Event name:** `RESERVATION EVENT`
+### Fields
 
 | # | Field | Required | Meaning | Example |
 |---|-------|----------|---------|---------|
-| 1 | `Reservation ID` | yes | Idempotency key (see §6) | `RSV-20260911-AGL14-001` |
-| 2 | `Amount` | yes | The amount set aside | `800.00` |
+| 1 | `Reservation ID` | yes | Idempotency key (§6) | `RSV-20260911-AGL14-001` |
+| 2 | `Amount` | yes | Cash received | `800.00` |
 | 3 | `Currency` | yes | Unit of `Amount` | `USD` |
-| 4 | `Target Ledger` | yes | Ledger ID holding the item | `AGL14` |
-| 5 | `Target Item` | yes | The item being held | `Cacao Almonds KG from Oscar's farm - AGL14` |
-| 6 | `Quantity` | yes | Units held | `10` |
-| 7 | `Paid By` | yes | **Who passed the money** | `BionPact Pte Ltd` |
-| 8 | `Paid By Email` | yes | Contact for the payer | (never invented — omit if unknown) |
-| 9 | `Beneficiary` | no | Who the reservation is held *for*, if ≠ payer. **Semantics OPEN** (see §9) | `—` |
-| 10 | `Reservation Type` | yes | `Refundable Deposit` \| `Prepayment` | `Prepayment` |
-| 11 | `Expires On` | no | TTL hint — when the hold lapses. Informational only; no sweep yet (§9) | `2026-12-31` |
-| 12 | `Release Path` | no | Intended settlement. Informational only; release mechanics deferred (§9) | `Convert to Sale` |
-| 13 | `Notes` | no | Free-text context | `50% deposit per purchase agreement` |
+| 4 | `Cash Custodian` | yes | DAO member who took the cash (money is "under their management") | `Gary Teh` |
+| 5 | `Cash Custodian Email` | recommended | Contact for the custodian | `gary@truesight.me` |
+| 6 | `Paid By` | yes | Who passed the money | `BionPact Pte Ltd` |
+| 7 | `Paid By Email` | yes | Contact for the payer (never invented) | — |
+| 8 | `Target Ledger` | yes | Ledger ID holding the goods | `AGL14` |
+| 9 | `Target Inventory Currency` | yes | The inventory `Currency` string being held | `Cacao Almonds KG from Oscar's farm - AGL14` |
+| 10 | `Quantity` | yes | Units held (`== len(QR Codes)`) | `10` |
+| 11 | `QR Codes` | yes | The **named** codes held aside (mint first if needed, §5) | `2024OSCAR_AGL14_20260911_1 .. _10` |
+| 12 | `Reservation Date` | yes | When the money landed | `2026-09-11` |
+| 13 | `Reservation Type` | yes | `Refundable Deposit` \| `Prepayment` | `Prepayment` |
+| 14 | `Notes` | no | Free-text context | `collect at SF warehouse` |
 
-**Deliberately absent:** no `QR Codes` field. QR codes are named at **close**, on the `SALES EVENT` (see §1, §5).
+### Ledger effect
 
----
+- `Assets +<Amount> <Currency>` — cash received (under `Cash Custodian`).
+- `Liability +<Quantity> <Target Inventory Currency>` — the goods we owe the buyer.
+- **Never** `Type = Sale`. The valid `Type` enum on managed ledgers is `Assets | Equity | Liability | Loan` only.
 
-## 4. Accounting shape — why it is a Liability, never revenue
+### QR effect
 
-Money "placed to keep something aside" is **not** revenue. On reserve:
-
-- `Assets +<Amount> <Currency>` (cash received), **and**
-- `Liability +<Amount> <Currency>` (obligation owed back to the payer).
-
-**Never** `Equity`. **Never** `Type = Sale`.
-
-The valid `Type` enum on managed ledgers is **`Assets | Equity | Liability | Loan`** only — there is no `Sale`/`Expenses` type.
-
-Only at **close** (Convert to Sale) does the Liability retire and the sale book. Until then the money is *owed back*, not *earned*.
-
-**Upstream precedent:** purchase agreements are **50% due on signing / 50% on arrival** (`PURCHASE_AGREEMENT_PDFS.md`). A customer-side reservation is the retail *mirror* of that existing practice. *(The settlement half of that mirror — the release/convert events — is deferred; see §9.)*
+- Named QRs → status **`Reserved`** (§4).
+- Manager of the reserved QRs set to `Cash Custodian` (they hold both the cash and, physically, the goods).
 
 ---
 
-## 5. QR state model — REVISED (Gary, 2026-09-12)
+## 3. Event 2 — `RESERVATION CLOSE EVENT`
 
-- A reservation does **not** name and does **not** mark individual QR codes.
-- **No `Reserved` QR status is introduced.** The QR-manager status enum is left untouched (this resolves v0 open question #1 in the *simplest* direction: reservations are simply not QR-scoped).
-- The QR ↔ bag association is written **only at close**, when the reserver **takes possession** of the inventory — i.e. on the **`SALES EVENT`**, where the QRs are named and flip to `SOLD`.
-- **The AGL14 rule is non-negotiable and preserved:** a bag is **never** marked `SOLD` before the money lands. The signed reservation is the evidence the money landed; the sale then names the bags.
+Triggered when the buyer **takes possession** — the sale actually happens.
 
----
+### Fields
 
-## 6. Idempotency — the col-P lesson (re-keyed off QR codes)
+| # | Field | Required | Meaning |
+|---|-------|----------|---------|
+| 1 | `Reservation ID` | yes | Links back to Event 1 |
+| 2 | `Closed On` | yes | Date of pickup |
+| 3 | `QR Codes` | yes | Must match the reserved set |
+| 4 | `Sold By` | yes | Inventory holder (see `SALES EVENT`) |
+| 5 | `Cash proceeds collected by` | yes | Confirms the custodian (see `SALES EVENT`) |
 
-v0 planned to key idempotency partly on QR codes. With QR association deferred to close (§5), the key is reworked:
+### Ledger effect
 
-- **Primary idempotency key:** `Reservation ID` (unique on the money side). Re-firing the same `Reservation ID` — or re-running the pipeline — must be a **no-op**, not a second row.
-- **Resolvable pointer (not a uniqueness constraint):** `(Target Ledger, Target Item, Quantity)`. Multiple reservations may legitimately point at the same item (the quantities sum); only a duplicate `Reservation ID` is rejected.
+- `Liability −<Quantity> <Target Inventory Currency>` — the hold is discharged (retires the Event-1 liability).
+- `Assets −<Quantity> <Target Inventory Currency>` — inventory relieved (same shape the existing sale path uses: one `-1` inventory-unit line per QR).
+- Plus whatever the standard `SALES EVENT` books (e.g. the SunMint tree-planting obligation).
 
-The Flow-4 router's guard lived on **one** side (Stripe-tab col P `LedgerRouted`); the reservation's key is written on the **money** side and its target is asserted on the **item** side, so both sides carry the check.
+### QR effect
 
----
+- `Reserved` → **`SOLD`**.
 
-## 7. Target-item resolution
+### ⚠️ Open decision — Event 2 identity
 
-"Target item on a ledger" must resolve to a **canonical pointer**, not free text — otherwise we rebuild the two-roads problem. Candidate key:
+Is Event 2 a **distinct event** (`RESERVATION CLOSE EVENT`), or **the existing `SALES EVENT`** carrying a `Reservation ID`?
 
-```
-(Target Ledger, Target Item)
-  asserted with Quantity >= 1
-```
-
-No QR codes participate in the pointer (they arrive at close).
-
----
-
-## 8. Release paths — NOT IMPLEMENTED (deferred)
-
-Gary (2026-09-12): *"Let's not go that far for now, since this scenario doesn't happen very often yet."*
-
-The table below is retained as the **intended design**, for when release is built. No release event, status write, or expiry behaviour ships in v1:
-
-| Release Path | Ledger effect | QR effect (at close) |
-|--------------|---------------|----------------------|
-| Convert to Sale | Liability retires; sale books | QRs named, `→ SOLD` |
-| Refund | `Assets -Amount`; Liability retires | QRs never named; stay `In Inventory` |
-| Expire | Liability retires (no cash movement) | QRs never named; stay `In Inventory` |
+- **Leaning: reuse `SALES EVENT`.** It already flips QR → `SOLD` and books the sale; adding a `Reservation ID` field lets it *also* retire the Event-1 liability, with one sale-booking path instead of two. **Pending Gary's call.**
 
 ---
 
-## 9. Decision log (governor, 2026-09-12)
+## 4. QR state model — the `Reserved` status
 
-| # | Question (v0) | Ruling |
-|---|---------------|--------|
-| 1 | State model — new `Reserved` status, or a QR-keyed reservations table with derived status? | **RESOLVED — neither.** A reservation does not associate with QR codes at all; the QR is associated only at **close**. No new QR status, no QR-keyed table. |
-| 2 | Release authority — who may release, and is it its own signed event? | **DEFERRED** — not building yet (rare). |
-| 3 | Expiry sweep — cron to lapse dead reservations? | **DEFERRED** — not building yet (rare). |
-| 4 | Beneficiary ≠ payer (gift / third-party) | **OPEN** — Gary did not rule. Field kept optional (§3 #9); no semantics assumed. |
-| 5 | Terminology — "ladder" | **RESOLVED** — Gary meant **"on our ledger"**. Corrected throughout. |
+- New enum value **`Reserved`** — held, money received, goods not handed over.
+- **Non-negotiable (AGL14):** a bag is never `SOLD` before the money lands. `SOLD` means *delivered*.
+- **Guards this forces:**
+  - `Reserved` bags MUST be **excluded from FIFO selection** (`conventions/FIFO_QR_SELECTION_RULE.md`) — otherwise the next consignment sale picks a held bag and double-sells it.
+  - `Reserved` bags MUST be **excluded from shop availability**.
+  - The new value ripples to the GAS sales + movement processors and the QR DApp pages — a deliberate, enumerated change, not a silent one.
+- Event 2 flips `Reserved → SOLD`.
+
+---
+
+## 5. Minting QRs at reservation
+
+If the goods being held do not yet have a QR code (bulk lot, un-serialized stock):
+
+1. **Mint first** — via the existing `BATCH QR CODE REQUEST` / `QR CODE EVENT` path (`AGROVERSE_QR_CODE_BATCH_GENERATION.md` naming).
+2. **Then** name those new codes on the `RESERVATION EVENT` and set them `Reserved`.
+
+A reservation never refers to un-serialized goods by free text — the whole point is a nameable target.
+
+---
+
+## 6. Idempotency
+
+- **Primary key:** `Reservation ID` — unique on the money side. Re-firing the same `Reservation ID`, or re-running the pipeline, MUST be a **no-op**, not a second row.
+- **Secondary:** the named `QR Codes` — a code already `Reserved` cannot be reserved again.
+- Lesson from Flow-4 col-P: the guard must live on **both** sides (money *and* goods), not one.
+
+---
+
+## 7. Motivation — the AGL14 failure mode
+
+AGL14 (thread 25671): 40 QRs marked `SOLD` while the $800 Stripe checkout arrived via the Flow-4 router as an **unsigned** bare `Type=Sale` row. Nothing bound the money to the goods; the join was reconstructed twice. Root cause: **a missing abstraction.** (Gary's ruling: the router is NOT to be modified.)
+
+The reservation fixes it: a hold cannot exist without naming its goods — so an unsigned stray becomes impossible, and `SOLD` can no longer precede the money.
+
+---
+
+## 8. Release paths — deferred
+
+Gary (2026-09-12): refund/expire don't happen often enough yet to build. Retained for later:
+
+| Path | Ledger | QR |
+|------|--------|-----|
+| Refund | `Assets −Amount USD`; `Liability −N <inv curr>`; cash back | `Reserved → In Inventory` |
+| Expire | `Liability −N <inv curr>` (no cash move) | `Reserved → In Inventory` |
+
+No release event, status write, or expiry sweep ships in v2.
+
+---
+
+## 9. Decision log
+
+| # | Question | Ruling |
+|---|----------|--------|
+| 1 | State model | **RESOLVED** — QRs named at reservation; new `Reserved` status; `Reserved → SOLD` at close. |
+| 2 | Release authority | **DEFERRED** — not building yet (rare). |
+| 3 | Expiry sweep | **DEFERRED** — not building yet (rare). |
+| 4 | Beneficiary ≠ payer | **OPEN** — not ruled; field not assumed. |
+| 5 | Terminology "ladder" | **RESOLVED** — Gary meant **"on our ledger"**. |
+| 6 | Accounting model | **RESOLVED — Model B.** Liability denominated in **inventory units**; internal precedent is the "Cacao Tree To Be Planted" liability line. |
+| 7 | Event 2 identity (distinct vs `SALES EVENT`) | **OPEN** — leaning reuse `SALES EVENT` + `Reservation ID`. |
 
 ---
 
@@ -143,15 +170,18 @@ The table below is retained as the **intended design**, for when release is buil
 
 | Related | Relationship |
 |---------|--------------|
-| `SALES EVENT` | The **close**. Names the QRs and flips them to `SOLD`. A reservation is the signed money-side evidence that precedes it. |
-| `INVENTORY MOVEMENT` | Custody transfer between known holders; QR stays IN INVENTORY. Orthogonal — a reservation moves no custody. |
-| Flow 4 router | RESERVATION is the signed ingress a managed-ledger inflow *should* use. **Router itself is NOT to be modified** (Gary's ruling). |
+| `SALES EVENT` | The likely **close** (Event 2). Names QRs `SOLD`, books the sale, retires the hold. |
+| `INVENTORY MOVEMENT` | Custody transfer between known holders; QR stays IN INVENTORY. Orthogonal. |
+| `BATCH QR CODE REQUEST` / `QR CODE EVENT` | Mint path for un-serialized goods (§5). |
+| Flow 4 router | NOT to be modified (Gary's ruling). |
 
 ---
 
 ## 11. References
 
-- `STRIPE_LEDGER_ROUTING.md` §Flow 4 — the router that produced the stray row.
+- `sales_update_managed_agl_ledgers.js` — current sale booking (3 rows); precedent for a non-money-unit `Liability`.
+- `conventions/FIFO_QR_SELECTION_RULE.md` — must exclude `Reserved`.
+- `AGROVERSE_QR_CODE_BATCH_GENERATION.md` — QR naming + mint path.
+- `STRIPE_LEDGER_ROUTING.md` §Flow 4 — the router that produced the AGL14 stray row.
 - `PURCHASE_AGREEMENT_PDFS.md` — upstream 50/50 deposit precedent.
-- `CONSIGNMENT_OPTIMAL_QUANTITY_PROPOSAL.md` — inventory/quantity model.
 - AGL14 / Telegram thread 25671 — case study.
