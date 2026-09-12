@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-12T15:43:43Z`
+- Generated (UTC): `2026-09-12T20:47:16Z`
 - Look-back: **7** calendar days (`2026-09-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,33 +32,34 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 20
-- `[CONTRIBUTION EVENT]` × 15
+- `[CONTRIBUTION EVENT]` × 20
+- `[ASSET RECEIPT EVENT]` × 7
+- `[TREE PLANTING EVENT]` × 2
 - `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 5
+- _free-form (no bracket tag)_ × 10
 
 ### Latest entries
 
-- `Edgar_20260910225129_428` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: deep seek credit 9th Sep
-- `Edgar_20260910225158_430` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek credits 10th October
-- `Edgar_20260910225436_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Sítio Torres (Pacajá loc3) media task — prod deploy, .env silent-drop audit,…
-- `Edgar_20260910225630_434` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Expose SunMint trees/plots/farms + MAP media in the LLM discovery surface (b…
-- `Edgar_20260911011333_436` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Agroverse invoice hardening — TrueTech Inc issuer stamp + Wise pay link (INV…
-- `Edgar_20260911012556_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260911012711_440` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Security incident response & risk-acceptance decision — fine-grained PAT exp…
-- `Edgar_20260911024310_442` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
-- `Edgar_20260911101431_444` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: BionPact INV-20260911-BP — invoice inspection, Stripe checkout link, PDF rev…
-- `Edgar_20260911101433_446` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: BionPact INV-20260911-BP — governor direction & review
-- `Edgar_20260911102103_448` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Research: satellite resolution/cadence cost + sponsor financing report
-- `Edgar_20260911153502_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Cacau na Veia (Pacajá loc1, CEPOTX) farm media — 45-item gallery + 33 PT tra…
-- `Edgar_20260911180824_452` · **Edgar** · [No Text Provided]
-- `Edgar_20260911181000_454` · **Edgar** · [No Text Provided]
-- `Edgar_20260911185106_456` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: AGL14 serialization + QR-sheet header-contract guard (thread 25671)
-- `Edgar_20260911191255_458` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260911202327_460` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-11T20:23:25.803Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260912111222_462` · **Edgar** · [No Text Provided]
 - `Edgar_20260912112723_464` · **Edgar** · [No Text Provided]
 - `Edgar_20260912130639_466` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-12T13:06:37.975Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260912155204_468` · **Edgar** · [No Text Provided]
+- `Edgar_20260912162125_470` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Keys to Ilheus warehouse (outer door and inner door) · Amount: 1 · Description: Receipt of 1 pair of keys to open the outer and inner doors of our warehouse…
+- `Edgar_20260912162135_472` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Keys to Ilheus warehouse (outer door and inner door) · Amount: 1 · Description: Receipt of 1 pair of keys to open the outer and inner doors of our warehouse…
+- `Edgar_20260912162254_474` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Plastic Bag 12cm X 25cm - 500 grams capacity · Amount: 100 · Description: 1 bag of 100 units of these bags bought from the nearby store
+- `Edgar_20260912162407_476` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Plastic Bag 40cm X 60cm - 10 kilograms capacity · Amount: 100 · Description: 100 of these 10kilogram capacity plastic bags bought from the nearby store
+- `Edgar_20260912162828_478` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260912163238_482` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260912163341_484` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260912173237_486` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Mercado Libre shipping address — form field mapping, CEP verification, and a…
+- `Edgar_20260912173428_488` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Reinforced Cardboard Boxes - Size 40x30x30 · Amount: 25 · Description: Purchase of 25 of these on mercado libre
+- `Edgar_20260912173545_490` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Digital Kitchen Scale, 10kg Capacity · Amount: 1 · Description: Purchase of one of these from Mercado Libre
+- `Edgar_20260912173650_492` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Steel Tape Measure 5m x 19mm Self-Locking Vonder Plus · Amount: 1 · Description: Purchase of measuring tape from Mercado libre
+- `Edgar_20260912173930_494` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260912174010_496` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20260912174156_498` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fix GAS parseAndProcessTelegramLogs lock stall (temp-disable + false-success…
+- `Edgar_20260912174239_500` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20260912174630_502` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Shopping for supplies to use for shipping our stuff to China and USA from Il…
 
 ---
 
@@ -194,24 +195,24 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 22 SKU lines · 2,012.72 total units · $8,345.85
+- Manager record: `Matheus Reis` · 27 SKU lines · 2,239.72 total units · $8,422.80
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
+  | (uncategorized) | (unspecified) | 14 | 329.13 | $896.30 |
   | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Tea | Bulk | 5 | 156.50 | $1,587.77 |
   | Cacao Nib | Retail Ready | 1 | 137 | $909.68 |
-  | (uncategorized) | (unspecified) | 9 | 102.13 | $819.35 |
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 14,744.52 total units · $13,154.13
+- Manager record: `Gary Teh` · 30 SKU lines · 14,570.55 total units · $13,060.83
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 14,668.34 | $13,104.15 |
+  | (uncategorized) | (unspecified) | 28 | 14,494.37 | $13,010.85 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -232,8 +233,8 @@ _(+29 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,910.46**
-- Brazilian Reis: R$1,729.09 · rate `0.2323` USD/BRL → ≈ **$401.67**
+- USD on hand: **$4,833.97**
+- Brazilian Reis: R$1,629.61 · rate `0.2323` USD/BRL → ≈ **$378.56**
 - USD provisioned for voting-rights cash-out: **$54.98**
 
 ### In-transit freight (1 row)
@@ -269,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e5edb34 | 2026-09-12 15:46:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 1a22e76 | 2026-09-12 08:22:56 -0300 | crf-anapu: add 14 site-visit videos to program gallery (#377)
 3c2897a | 2026-09-12 11:11:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 6bee84b | 2026-09-12 04:55:43 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -308,7 +310,6 @@ ebfd282 | 2026-09-07 22:01:42 -0300 | SunMint map: Tree/QR control is now a clic
 adf89f2 | 2026-09-07 21:54:07 -0300 | SunMint impact map: grouped Plots dropdown (kills Farm select) + Tree/QR lookup box (#358)
 0fa87db | 2026-09-07 21:44:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9b01cf7 | 2026-09-07 12:57:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a2dae19 | 2026-09-07 05:08:18 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -321,6 +322,10 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7e574ff | 2026-09-12 14:41:39 -0300 | followups: file GAS parseAndProcessTelegramLogs lock temp-disable + repo-mirror push trap (#1051)
+48650e0 | 2026-09-12 14:28:55 -0300 | Add shipping addresses reference (Ilhéus BR recipient for Mercado Libre) (#1050)
+c91a933 | 2026-09-12 12:44:09 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
+5265fdf | 2026-09-12 12:44:08 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
 79a8ee0 | 2026-09-12 08:20:55 -0300 | Add RESERVATION EVENT spec v0 (reservations/deposits on the ladder) (#1049)
 3877d75 | 2026-09-12 08:05:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
 84a37bf | 2026-09-12 08:05:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
@@ -357,16 +362,13 @@ c695014 | 2026-09-11 10:30:11 -0300 | Add Black King per-shipment manifests + or
 12faffb | 2026-09-11 09:31:55 -0300 | Add Correios shipments index (Currencies ledger + FDA FSVP) (#1027)
 e7d223a | 2026-09-11 08:41:15 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
 61695e0 | 2026-09-11 08:41:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
-1cd8e6d | 2026-09-11 07:18:07 -0300 | Add satellite resolution/cadence cost research report (#1026)
-46c3852 | 2026-09-11 07:17:44 -0300 | Add satellite resolution/cadence cost report (sponsor financing)
-b000736 | 2026-09-11 07:01:33 -0300 | CRF Anapu plan: record governor decisions (program entity type, galleries, Jedielcio index) (#1025)
-34e621a | 2026-09-11 06:54:26 -0300 | Register CRF Anapu media handoff row in HANDOFF_MANIFEST (#1024)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+054f700 | 2026-09-12 14:32:10 -0300 | fix(expense): disable proc script lock (contention stalled all runs) + stop false success (#475)
 0100cd4 | 2026-09-10 16:30:37 -0300 | feat(tree-planting): optional Plot ID column (T) on SunMint Tree Planting (#474)
 c9e7d18 | 2026-09-10 07:48:34 -0300 | Add regression guard: Telegram-log processors must take the script lock (#473)
 765ae53 | 2026-09-10 00:48:00 -0300 | Serialize media-retraction + tree-growth processors with LockService (completes #469/#471 family) (#472)
@@ -412,6 +414,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f9425a2 | 2026-09-12 14:21:54 -0300 | chore: refresh currencies.json [skip ci]
+8ef82e7 | 2026-09-12 13:13:59 -0300 | chore(currencies): sync Currencies tab @ 2026-09-12T16:13:10.000Z (141)
 0220cc5 | 2026-09-12 11:14:55 +0000 | chore: refresh currencies.json [skip ci]
 bc1bb68 | 2026-09-12 10:51:36 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bc37849 | 2026-09-11 11:48:14 +0000 | chore: refresh currencies.json [skip ci]
@@ -562,7 +566,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/12/2026 7:50:45 |
+| 2026-09 | 853.7 | 18293.54386 | 9/12/2026 12:57:00 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-05`; scanned last **600** data rows)
 
