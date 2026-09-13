@@ -298,7 +298,7 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 
 | # | NCM | Description | Qty | Unit | Unit Value (USD) | Total (USD) |
 |---|---|---|---|---|---|---|
-| 1 | 1801.00.00 | Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024 | 137 | UN | $6.64 | $909.68 |
+| 1 | 1801.00.00 | Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024 | 129 | UN | $6.64 | $856.56 |
 | 2 | 1803.10.00 | Cacao Husk (KG) — Ilhéus, Brazil | 20 | KG | $17.79 | $355.71 |
 | 3 | 1803.10.00 | Cacao Mass Bar 500g — Ilhéus 2024 | 37 | UN | $15.70 | $580.90 |
 | 4 | 1801.00.00 | Cacao Nibs (KG) — Ilhéus 2024 | 80 | KG | $24.62 | $1,969.48 |
@@ -306,11 +306,13 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 | 6 | 2106.90.00 | Cacao Tea (KG) — AGL8 | 12 | KG | $0.01* | $0.12 |
 | 7 | 1803.10.00 | Ceremonial Cacao Pouch 200g — AGL8 | 169 | UN | $10.37 | $1,752.53 |
 | 8 | 1801.00.00 | Cacao Almonds (KG) — AGL13 | 15 | KG | $7.87 | $118.05 |
-| 9 | 1801.00.00 | Cacao Nibs (KG) — AGL13 | 100 | KG | $10.18 | $1,018.23 |
+| 9 | 1801.00.00 | Cacao Nibs (KG) — AGL13 | 99.5 | KG | $10.18 | $1,012.91 |
 | 10 | 2106.90.00 | Cacao Tea (KG) — AGL13 | 21 | KG | $10.18 | $213.83 |
 | 11 | 1804.00.00 | Coopercabruca Cacao Butter (KG) | 5 | KG | TBD | TBD |
 
 > **Rev 8 note:** the former line 11 (*Cacao Almonds (KG) — AGL14*, 10 KG, $114.12) was **removed from the shipment** at the governor's instruction (thread 10800) and the cacao-butter line renumbered from 12 to 11.
+
+> **Rev 9 note (thread 10800):** line 1 *Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024* reduced **137 → 129 UN** (−8 bags); line 9 *Cacao Nibs (KG) — AGL13* reduced **100 → 99.5 KG** (−500 g). Subtotal $6,918.63 → **$6,860.19**.
 
 > *Items 5 and 6 (AGL8 almonds and tea) have $0 cost basis. If the system requires a nominal value, use $0.01. If $0 is accepted, use $0.00.
 
@@ -319,14 +321,14 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 | Field | Value |
 |-------|-------|
 | Incoterms | **FOB** (freight paid by buyer) |
-| Total Invoice Value | **$6,918.63** (USD) — lines 1–10 (Rev 8; excl. cacao butter, TBD) |
+| Total Invoice Value | **$6,860.19** (USD) — lines 1–10 (Rev 9; excl. cacao butter, TBD) |
 | Currency | Dólar Americano (USD) |
 | Freight Value | **$0.00** (buyer pays separately) |
 | Transport Mode | Aéreo |
 | Airport of Departure | SSA (Salvador) |
 | Airport of Destination | SFO (San Francisco) |
-| Total Gross Weight | ~322.3 kg |
-| Total Net Weight | ~302.3 kg |
+| Total Gross Weight | ~320.0 kg |
+| Total Net Weight | ~300.0 kg |
 
 #### A.2.6 — Tax Configuration
 
