@@ -5,6 +5,10 @@
 **Status:** GO-ready (parked in Telegram topic — see HANDOFF_MANIFEST.md / SOPHIA_HANDOFFS.md)
 
 **Execution status (2026-09-12):** PR1 and PR2 are MERGED on `origin/main` (PR1 `dao_protocol` #131 `f6825d0`; PR2 `tokenomics` #376 `f3fdfa4`). Running in Telegram topic **27015** (the manifest row's original parking thread `7611` is not the execution thread). Scope was **extended** in 27015: the `Currencies` tab column **M is already headed `SKU Product ID`, so it is not a new column** — PR1's label set was extended to 13 labels to carry it (#159), the GAS definition handler was extended to parse/write col M + infer `Serializable` from SKU stock (#476), and the existing `update_store_inventory` GAS now also emits `agroverse-inventory/skus.json` (#477) so the page can populate a SKU dropdown. RESUME HERE is therefore **PR3** (deploy + wire), not PR1.
+
+**Execution status (2026-09-13):** **PR3 is DONE — verified live** (see §5). `DAO_PROTOCOL_WEBHOOK_CURRENCY_DEFINITION` is present in the *running* `truesight-dao-protocol.service` process env (31 `DAO_PROTOCOL_WEBHOOK_*` keys, up from 30) on the `dao_protocol` box, pointing at deployment `AKfycbxn3siu2Qrz…`. Acceptance probe `…/exec?action=processCurrencyDefinitionsFromTelegramChatLogs` returns **HTTP 200 / `application/json`** with `{"status":"success","message":"processCurrencyDefinitionsFromTelegramChatLogs executed"}`.
+The end-to-end flow was also exercised in 27015: two `[CURRENCY DEFINITION EVENT]` rows (Telegram Chat Logs 12409/12410) were re-fired and both landed `Successfully Completed` with the currencies appearing in the `Currencies` tab. Four blocking bugs were fixed en route (#482 dup `doGet`, #483 PROCESSING gate, #479 scorer-stamping, #484 missing `findContributorByDigitalSignature()`), so a fifth (parser regex leaking empty fields) remains open on `tokenomics`.
+**RESUME HERE is therefore PR4 (optional) / PR5 (docs), then UAT.**
 **Repos touched:** `dao_protocol` (CLI + Edgar dispatch), `tokenomics` (GAS 1N6o00 + deploy), `agentic_ai_context` (docs)
 **Scope discipline:** §5a ONE PR PER TURN — on GO run **PR1 ONLY then STOP**; next turn resumes the next unit. Cross-repo PRs: **open PRs only, a human merges** (no self-merge). Advance markers in §5.
 
@@ -133,13 +137,13 @@ GAS. *(Pre-flight: confirm on the live sheet.)*
 
 ## 5. Resume tracker (§5c Advance markers)
 
-**RESUME HERE → PR3**
+**RESUME HERE → PR5** (docs). PR1–PR3 are all merged and PR3 is verified live (2026-09-13); PR4 is optional and still gated on the operator saying they want it.
 
 | Unit | Advance | PR opened | Merged (human) | Deployed | Contribution reported |
 |------|---------|-----------|----------------|----------|----------------------|
 | PR1 — CLI + dispatch (`dao_protocol`) | `auto` | ☑ | ☑ | n/a | ☑ |
 | PR2 — GAS handler (`tokenomics`) | `auto` | ☑ | ☑ | n/a | ☑ |
-| PR3 — deploy + wire env (**OPERATOR-run**: clasp + prod ssh; Sophia writes the runbook only — see §8) | `gate: operator runs clasp + Edgar env change` | ☐ | ☐ | ☐ | ☐ |
+| PR3 — deploy + wire env (**OPERATOR-run**: clasp + prod ssh; Sophia writes the runbook only — see §8) | `gate: operator runs clasp + Edgar env change` | ☑ | ☑ | ☑ | ☑ |
 | PR4 — auto-define (optional) | `gate: confirm operator wants it` | ☐ | ☐ | ☐ | ☐ |
 | PR5 — docs | `auto` | ☐ | ☐ | n/a | ☐ |
 | UAT — human, beta/sandbox | `gate: human-run completion gate` | ☐ | ☐ | ☐ | ☐ |
