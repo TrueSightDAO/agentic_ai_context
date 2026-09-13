@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Add a JSON snapshot (daily GHA) for `define_currency.html`'s ledger + currency-field catalogs — retire the live GAS round-trips
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
+
+**Context.** `define_currency.html` loads three catalogs on every page open. Two have **no JSON cache** and round-trip to the DAO Forms GAS web app (`AKfycbztpV3TUIRn…`): the **ledger dropdown** (`?ledgers=true`) and the **Farm/State/Country seed lists** (`?currency_fields=true`). Measured from the autopilot box (3 runs each, 2026-09-13): `skus.json` raw-CDN **57–100 ms** (JSON cache, `cache-control: max-age=300`, ETag) vs GAS `?ledgers=true` **1.9–2.6 s** and `?currency_fields=true` **1.5–1.8 s** — i.e. ~4.5–5 s of "Loading catalogs…" per visit. The GAS handler (`tokenomics/google_app_scripts/1QtK-InsH…/web_app.js`) does a live `SpreadsheetApp.openById()` + `getRange().getValues()` read per call, so each pays container cold-start plus sheet I/O; it is **not** a client-side caching problem.
+
+**Why it matters.** The `skus.json` precedent already solved exactly this for the SKU catalog — a daily GHA snapshot published to `agroverse-inventory`, consumed from `raw.githubusercontent.com`. The other two catalogs are *better* snapshot candidates than SKUs: ledgers change rarely, and the farm/state/country lists only change when a new value is first defined (low-frequency, append-mostly).
+
+**Proposed work (mirror `publish-agroverse-inventory-snapshot.yml`).** Extend the daily `go_to_market` snapshot job (or add a sibling) to emit **`agroverse-inventory/ledgers.json`** and **`agroverse-inventory/currency-fields.json`** from the same sources the GAS reads, then repoint `define_currency.html`'s `loadLedgers()` / `loadCurrencyFieldOptions()` at the raw-CDN URLs, keeping the GAS path as a graceful fallback (same shape as the SKU loader's degrade-to-empty). Expected: all three catalogs ≈60 ms → init ~4.7 s → **~0.2 s**.
+
+**Interim stopgap (shipped).** The parallel-load + drop-500 ms-`setTimeout` PR to `dapp_beta` (thread 27015) cuts ~4.7 s → ~2.6 s with no new infra; this entry is the durable fix that removes the GAS round-trips entirely.
+
+**Evidence.** `define_currency.html` L228 (`SKUS_JSON_URL`), L283 (`loadSkus`), L379 (`?ledgers=true`), L415 (`?currency_fields=true`); `tokenomics/google_app_scripts/1QtK-InsHH6SBtxoxc33-y4vQvuNkbhlkUi_9S1X-AaEgIlSlygM1iZtP/web_app.js` (live-sheet read); `agroverse-inventory` tree (has `skus.json`, no `ledgers.json`/`currency-fields.json`); timing runs 2026-09-13; thread 27015.
+
 ### `define_currency.html` performs no cryptographic signature verification before accepting a currency definition
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
 
