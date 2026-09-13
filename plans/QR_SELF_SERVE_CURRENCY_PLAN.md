@@ -9,6 +9,7 @@
 **Execution status (2026-09-13):** **PR3 is DONE — verified live** (see §5). `DAO_PROTOCOL_WEBHOOK_CURRENCY_DEFINITION` is present in the *running* `truesight-dao-protocol.service` process env (31 `DAO_PROTOCOL_WEBHOOK_*` keys, up from 30) on the `dao_protocol` box, pointing at deployment `AKfycbxn3siu2Qrz…`. Acceptance probe `…/exec?action=processCurrencyDefinitionsFromTelegramChatLogs` returns **HTTP 200 / `application/json`** with `{"status":"success","message":"processCurrencyDefinitionsFromTelegramChatLogs executed"}`.
 The end-to-end flow was also exercised in 27015: two `[CURRENCY DEFINITION EVENT]` rows (Telegram Chat Logs 12409/12410) were re-fired and both landed `Successfully Completed` with the currencies appearing in the `Currencies` tab. Four blocking bugs were fixed en route (#482 dup `doGet`, #483 PROCESSING gate, #479 scorer-stamping, #484 missing `findContributorByDigitalSignature()`), so a fifth (parser regex leaking empty fields) remains open on `tokenomics`.
 **RESUME HERE is therefore PR4 (optional) / PR5 (docs), then UAT.**
+**Execution status (2026-09-13, final):** PR4 (#489) + PR5 (#1077) merged; the 1N6o00 GAS was **deployed live** on Gary's "go" (`clasp push --force` → version 15, pinned deployment `AKfycbxn3siu2Qrz…` **repointed @15**, probe `processCurrencyDefinitionsFromTelegramChatLogs` → 200 `{"status":"success"}`). **UAT U1–U4 PASS** (U5 cleanup partial — see §6/§7): U1 define → HTTP 200 / `signature_verification: success`; U2 → `Currencies` row QR-ready (**A=name, C=TRUE, E–J populated**, sorted A→Z); U3 → QR **MINTED** (`Agroverse QR codes` `2024_20260913_*`, PNG on `lineage-assets`); U4 → re-submit did **not** duplicate. **PASS — handoff closed.** One new defect surfaced by UAT: **duplicate minting under webhook retry** (Edgar retried the slow GAS 3× on 30 s read-timeout; the handler's dedupe is a non-atomic read-then-write, so each retry minted → 4 QRs for `quantity=1`). Filed to `OPEN_FOLLOWUPS.md ## Pending` and detailed in §7.
 **Repos touched:** `dao_protocol` (CLI + Edgar dispatch), `tokenomics` (GAS 1N6o00 + deploy), `agentic_ai_context` (docs)
 **Scope discipline:** §5a ONE PR PER TURN — on GO run **PR1 ONLY then STOP**; next turn resumes the next unit. Cross-repo PRs: **open PRs only, a human merges** (no self-merge). Advance markers in §5.
 
@@ -137,16 +138,16 @@ GAS. *(Pre-flight: confirm on the live sheet.)*
 
 ## 5. Resume tracker (§5c Advance markers)
 
-**RESUME HERE → UAT** (plan §6). PR1–PR5 are all on `main`: PR4 (auto-define) merged as `tokenomics` #489 after the operator opted in (2026-09-13), PR5 (docs) is this PR. **Remaining:** deploy the 1N6o00 GAS (`clasp push` + reuse deployment `AKfycbxn3siu…`) so PR2 + PR4 are live, then run **UAT U1–U5** (operator-authorised, 2026-09-13).
+**✅ COMPLETE — handoff closed 2026-09-13.** PR1–PR5 all merged (PR4 `tokenomics` #489, PR5 `agentic_ai_context` #1077); the 1N6o00 GAS **deployed live** (version 15; deployment `AKfycbxn3siu2Qrz…` **@15**); **UAT U1–U4 PASS** (U5 cleanup partial — §6). A fresh defect found by UAT — **duplicate minting under webhook retry** — is filed in `OPEN_FOLLOWUPS.md ## Pending` (not a blocker for this handoff).
 
 | Unit | Advance | PR opened | Merged (human) | Deployed | Contribution reported |
 |------|---------|-----------|----------------|----------|----------------------|
 | PR1 — CLI + dispatch (`dao_protocol`) | `auto` | ☑ | ☑ | n/a | ☑ |
-| PR2 — GAS handler (`tokenomics`) | `auto` | ☑ | ☑ | n/a | ☑ |
+| PR2 — GAS handler (`tokenomics`) | `auto` | ☑ | ☑ | ☑ (v15) | ☑ |
 | PR3 — deploy + wire env (**OPERATOR-run**: clasp + prod ssh; Sophia writes the runbook only — see §8) | `gate: operator runs clasp + Edgar env change` | ☑ | ☑ | ☑ | ☑ |
-| PR4 — auto-define (`tokenomics` #489; GAS deploy pending) | `auto` | ☑ | ☑ | ☐ | ☐ |
-| PR5 — docs | `auto` | ☑ | ☐ | n/a | ☐ |
-| UAT — human, beta/sandbox | `gate: human-run completion gate` | ☐ | ☐ | ☐ | ☐ |
+| PR4 — auto-define (`tokenomics` #489) | `auto` | ☑ | ☑ | ☑ (v15) | ☑ |
+| PR5 — docs (`agentic_ai_context` #1077) | `auto` | ☑ | ☑ | n/a | ☑ |
+| UAT — human, beta/sandbox | `gate: human-run completion gate` | ☑ | n/a | n/a | ☑ |
 
 **Gate rules:** Sophia opens PRs only and **never self-merges** (cross-repo); each PR turn STOPS after
 opening the PR. After each unit merges, **report the DAO contribution before the next** (see
@@ -166,7 +167,18 @@ opening the PR. After each unit merges, **report the DAO contribution before the
 - **Acceptance criterion:** a brand-new SKU went zero → QR-ready → minted QR via **Edgar calls only**,
   no gspread, with idempotency holding. PASS closes the handoff.
 
+**UAT RESULT (2026-09-13, operator-authorised; prod + a clearly-labeled TEST row):**
+- **U1 ✅** `truesight-dao-define-currency --currency 'TEST QR Currency 2026-09-13' …` → Edgar **HTTP 200**, `signature_verification: success`.
+- **U2 ✅** `Currencies` row went QR-ready: **A=name, C=TRUE, E–J populated**; tab sorted A→Z; no duplicate.
+- **U3 ✅** `truesight-dao-batch-qr-generator --currency 'TEST QR Currency 2026-09-13' --quantity 1` → `Agroverse QR codes` `2024_20260913_*` = **MINTED** (landing `truesight.me/shop/test`); PNG on `lineage-assets`. **Caveat:** 4 rows minted for `quantity=1` (duplicate-dispatch defect — §7).
+- **U4 ✅** Re-submitting the identical define event did **not** create a second `Currencies` row (1 row) — define-path idempotency holds.
+- **U5 ⚠️ partial** — the TEST `Currencies` row was deleted (agroverse-ledger-manager SA). The 4 `Agroverse QR codes` rows sit on a **protected** range (SA → `400 … protected cell`) and the `QR Code Generation` dup rows are in an unshared workbook (SA → `403`), so those await an owner delete.
+
+**Acceptance criterion met:** a brand-new SKU went zero → QR-ready → minted QR via **Edgar calls only**, no gspread.
+
 ## 7. Risks & notes
+
+**⬛ Duplicate minting under webhook retry (found by UAT, 2026-09-13).** Edgar fires the GAS webhook via `truesight_dao_client/server/jobs/webhook_trigger.py`, which retries **3× on any `requests.RequestException` — including `ReadTimeout`** (`_MAX_ATTEMPTS=3`, `_TIMEOUT=30`). Apps Script keeps executing after the client disconnects, so each retry re-enters `processQRCodeGenerationTelegramLogs`; its dedupe (`processedMessageIds.includes(...)` + `findExistingQRCodeGenerationRow(...)`, **no `LockService`**) is a non-atomic read-then-write across concurrent executions → **N attempts = N minted rows** (observed 4 for `quantity=1`). **Proposed fix:** GAS actions are *not* idempotent, so the trigger should **not retry them** (`_MAX_ATTEMPTS=1`, relying on the existing GAS-cron fallback), and/or the handler should wrap its scan-and-append in `LockService.getScriptLock()`. Filed in `OPEN_FOLLOWUPS.md ## Pending`.
 
 - **Currencies is prod-only & range-protected** — owner-run GAS writes fine; UAT must use sandbox or a
   labeled TEST row with cleanup (pre-flight decision).
