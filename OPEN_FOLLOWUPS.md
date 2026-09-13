@@ -39,6 +39,41 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot box: native `git push` broken by `~/.gitconfig` credential-helper shadowing
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 28504).**
+
+**Context.** While landing `dao_protocol#164`/`#165`, native `git push` from the autopilot box failed with `fatal: could not read Username for 'https://github.com': No such device or address`. Root cause: `~/.gitconfig` carried a `[credential "https://github.com"]` section (`helper = !/usr/bin/gh auth git-credential`) **plus** a bare empty `credential.helper` *reset* line, which together **shadow** the canonical helper that `scripts/deploy.sh` provisions (`credential.helper = /opt/truesight_autopilot/scripts/git-credential-sophia.sh` — reads the PAT from `/opt/truesight_autopilot/.env` at call time, so PAT rotation is safe). `gh`'s helper returns **nothing** when git invokes it (gh here is logged in as `garyjob`, not the DAO automation identity), so git fell through to an interactive prompt → ENOENT.
+
+**Why it matters.** Any autopilot instance doing native git (clone/commit/push, `open_fix_pr`, deploy tooling) silently cannot push, and the failure reads like a *missing credential* rather than a *config shadow*. Confirmed 2026-09-13: forcing `git -c credential.helper=<sophia-script> push --dry-run` → `* [new branch]` (OK), while the default config → `fatal:`. `git ls-remote` still *appeared* to work only because `dao_protocol` is a **public** repo (anonymous read) — so the bug can hide behind read-only smoke tests.
+
+**Immediate fix applied (box-local, 2026-09-13 18:58Z).** Removed `[credential "https://github.com"]` and the empty reset lines; set `credential.helper = /opt/truesight_autopilot/scripts/git-credential-sophia.sh`. Backup at `~/.gitconfig.bak.20260913T185802Z`. Verified: `git credential fill` → `username=x-access-token`; `git push --dry-run` with **no** overrides → OK.
+
+**Durable fix (NOT yet shipped).** `scripts/deploy.sh` §"Provisioning git identity + credential helper" should **idempotently** run `git config --global --remove-section 'credential.https://github.com'` and `git config --global --unset-all credential.helper` *before* writing the canonical helper — otherwise a future `gh auth setup-git` (or a hand edit) re-introduces the shadow on the next deploy and the box silently loses push again. **Do not run `gh auth setup-git` on the autopilot box.**
+
+**Evidence.** `~/.gitconfig` (before/after); `/opt/truesight_autopilot/scripts/git-credential-sophia.sh`; `scripts/deploy.sh` L204–213; thread 28504.
+
+### `dao_protocol` (Edgar) has no CD — prod silently runs stale code after a merge
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 28504).**
+
+**Context.** Merges to `dao_protocol` `main` do **not** reach production on their own. Prod Edgar (`edgar.truesight.me`, box `dao-protocol`) is updated only by a human/agent SSHing in and running `cd /home/ubuntu/dao_protocol && git pull --ff-only origin main && sudo systemctl restart truesight-dao-protocol`. The install is **editable** (`.pth` → repo), so a `git pull` alone updates code *except* when a **route function body** changed — the running process already imported it, so a **service restart is required**; a change to a mtime-cached JSON data file needs no restart (cf. the 2026-09-10 events-catalog deploy entry, which correctly noted "no restart").
+
+**Why it matters.** In thread 28504, prod Edgar was found at `3b42488` (#162) — **2 commits behind** `main` (`3bb3853`) — i.e. merged-and-green code was not live, with **no alert**. Staleness is invisible unless you know to check: `curl -s https://edgar.truesight.me/ping` returns `{"service":"dao_protocol","version":"<sha>"}` — the *running* sha. Nothing compares it to `origin/main`.
+
+**Proposed work (small).** Cheapest first: add a `/ping`-vs-`origin/main` drift check to the daily oracle/watchdog that posts when the deployed `version` lags `main` (turns silent staleness into a visible signal). Heavier option: a GitHub Actions workflow on `dao_protocol` main → SSM `send-command` (pull + restart), mirroring the manual `sync_beta_to_prod` posture.
+
+**Doc landmine (worth a one-liner in `infrastructure/AWS_DIGITAL_INFRASTRUCTURE.md` §7).** The fleet SSH alias is `dao-protocol` (**hyphen**), defined in `~/.ssh/config`; `ssh dao_protocol` (**underscore**) is *not* an alias and fails `Permission denied (publickey)`. The service name is `truesight-dao-protocol.service` (hyphen) while the *host* label is `dao_protocol` — easy to conflate.
+
+**Evidence.** `dao_protocol` box `git log` (`3b42488` → `3bb3853`); `/ping` on prod; `~/.ssh/config` (`Host dao-protocol` → `98.93.94.86`); `AWS_DIGITAL_INFRASTRUCTURE.md` §7; `sops/DEPLOY_PUSH_SOP.md`; thread 28504.
+
+### Deploy-ledger: use `append_deploy_record.py`, not a raw file upload (skips the feed rebuild)
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 28504).**
+
+**Context.** Logging a deploy by `upload_file_to_github`-ing the `.md`/`.json` straight into `deploys/entries/` **skips the `deploys/feed/manifest.json` rebuild** that `scripts/append_deploy_record.py` performs — so the record exists but is absent from the feed index (up to ~200 of 238 records indexed). Also note `sops/DEPLOY_PUSH_SOP.md` §4 prescribes a **lease** pre-check before pushing; the ledger is append-only and mandatory per §1 (`ec2` deploys included).
+
+**Proposed work.** Small: have the autopilot `deploy_ledger` helper always call `rebuild_feed()` (the API-based `app/deploy_ledger.py::rebuild_feed` did work and indexed the record). Bigger: surface a lint (CI or a `--check`) that fails when an entry exists in `deploys/entries/` but not in the feed manifest. Consider also flagging deploys logged with an empty `lease_id`, since §4 says acquire-then-close.
+
+**Evidence.** `ecosystem_change_logs/scripts/append_deploy_record.py` (`rebuild_feed`, L125–144); `deploys/feed/manifest.json` (238 on disk vs 200 published); `app/deploy_ledger.py` (`check_lease`/`acquire_lease`/`rebuild_feed`); `sops/DEPLOY_PUSH_SOP.md` §4; thread 28504.
+
 ### Duplicate minting in the batch-QR pipeline when Edgar's GAS webhook times out and retries
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
 
