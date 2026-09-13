@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-13T12:12:03Z`
+- Generated (UTC): `2026-09-13T16:33:02Z`
 - Look-back: **7** calendar days (`2026-09-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,24 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 17
-- `[ASSET RECEIPT EVENT]` × 7
-- `[PRACTICE EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 23
+- `[ASSET RECEIPT EVENT]` × 4
 - `[CURRENCY DEFINITION EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 11
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 9
 
 ### Latest entries
 
-- `Edgar_20260912214454_504` · **Edgar** · [No Text Provided]
-- `Edgar_20260912214948_506` · **Edgar** · [No Text Provided]
-- `Edgar_20260912215456_508` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Reorganizing the warehouse.
-- `Edgar_20260912215800_510` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Debugging this DApp on mobile
-- `Edgar_20260912215840_512` · **Edgar** · [No Text Provided]
-- `Edgar_20260912221227_514` · **Edgar** · [No Text Provided]
-- `Edgar_20260912221655_516` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
-- `Edgar_20260912221727_518` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: GBYWR4EaKdypmfbbOu23USdUdawNMNzQUZv74QkFkQw · Email: garyjob@gmail.com
 - `Edgar_20260912221917_520` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Testing to ensure that beta submits cleanly
 - `Edgar_20260913000005_522` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 900 · Description: Visit to pacaje
 - `Edgar_20260913000445_524` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Visit to chocolate SUk to pick up samples and to plot the restoration plots
@@ -62,6 +54,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260913010858_538` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: zz-uat-currency-test-1789261732881 · Price in USD: 1.23 · Serializable: TRUE
 - `Edgar_20260913011517_540` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: zz-uat-test-currency-1789262098013 · Price in USD: 1.23 · Serializable: TRUE
 - `Edgar_20260913030129_542` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Media Gallery Publisher — plan complete (PR1–PR7, prod deployed)
+- `Edgar_20260913124509_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Media Gallery Publisher — raw machine execution
+- `Edgar_20260913124511_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Media Gallery Publisher — direct time (engagement/analysis)
+- `Edgar_20260913124514_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — scoping, directing, and approving the Media Gallery P…
+- `Edgar_20260913125203_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
+- `Edgar_20260913125205_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Sophia Truesight
+- `Edgar_20260913125208_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260913143439_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-13T14:34:38.101Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260913161251_016` · **Edgar** · [No Text Provided]
 
 ---
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-06_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7c2d1d3 | 2026-09-13 12:14:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 eae16a7 | 2026-09-12 20:52:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 e5edb34 | 2026-09-12 15:46:15 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ a50e683 | 2026-09-08 16:48:57 +0000 | chore(stats): refresh stats/current.json [
 c9ebe7a | 2026-09-07 22:17:28 -0300 | SunMint map: unwrap nested Polygon rings before flyToBounds (fixes plot/farm dropdown not moving map) (#361)
 f124247 | 2026-09-07 22:10:37 -0300 | SunMint map: View chips fly to their actual trees, not a hardcoded center (fixes empty ?view=altamira) (#360)
 ebfd282 | 2026-09-07 22:01:42 -0300 | SunMint map: Tree/QR control is now a click-to-open dropdown with type-to-filter (#359)
-adf89f2 | 2026-09-07 21:54:07 -0300 | SunMint impact map: grouped Plots dropdown (kills Farm select) + Tree/QR lookup box (#358)
 … (truncated)
 ```
 
@@ -326,6 +326,12 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+949aee3 | 2026-09-13 13:05:18 -0300 | docs: fold ledger-dropdown/currency-fields delta into the stale-currencies plan of record; fix QR_SELF_SERVE_CURRENCY manifest row (7611->27015, resume->PR3) (#1074)
+552c3f1 | 2026-09-13 13:01:46 -0300 | docs(followups): correct #1072 entry — ledger cache exists but is an unautomated laptop script, not a missing cache (#1073)
+0a02e5f | 2026-09-13 12:43:33 -0300 | docs(OPEN_FOLLOWUPS): file ledgers/currency-fields JSON snapshot follow-up (#1072)
+a230522 | 2026-09-13 10:02:07 -0300 | docs(OPEN_FOLLOWUPS): file 3 DApp-convention follow-ups (signature check, dead #welcome, git_push_changes gap) (#1071)
+7f97c8d | 2026-09-13 09:12:20 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
+5da086e | 2026-09-13 09:12:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
 a647697 | 2026-09-13 02:10:59 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
 1fac6e6 | 2026-09-13 02:10:57 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
 82640b5 | 2026-09-13 00:45:35 -0300 | Merge pull request #1070 from TrueSightDAO/auto/advisory-refresh-2026-09-13
@@ -360,18 +366,14 @@ c91a933 | 2026-09-12 12:44:09 -0300 | chore(previews): refresh Beer Hall preview
 84a37bf | 2026-09-12 08:05:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
 bb44fd1 | 2026-09-12 01:52:05 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
 d389410 | 2026-09-12 01:52:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
-0a790b3 | 2026-09-12 00:39:51 -0300 | Merge pull request #1048 from TrueSightDAO/auto/advisory-refresh-2026-09-12
-031fcc9 | 2026-09-12 03:39:39 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
-636ec71 | 2026-09-11 18:08:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
-7040e8a | 2026-09-11 18:08:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
-be0df1d | 2026-09-11 16:11:07 -0300 | Black King manifest Rev-9: non-US lanes (Poland/Switzerland/FounderHaus) + explicit multi-currency (#1047)
-af21104 | 2026-09-11 15:58:42 -0300 | Black King Rev-8: AGL10 arrival governor-confirmed; caramelized line = costing reference only (no physical stock) (#1046)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+3eb0156 | 2026-09-13 13:19:20 -0300 | fix(gas): repair sales project 1dsWecVwb HEAD drift (rename parser to live name, sync SOLD_DATE_COL, un-ignore) (#487)
+a58b256 | 2026-09-13 09:46:32 -0300 | chore(gas): track secret-free Credentials.js for sales project + bump Version (#486)
 d9f620b | 2026-09-13 01:22:18 -0300 | fix(1N6o00): currency-def parser must not leak next line on empty fields (#485)
 5c6e948 | 2026-09-13 01:19:16 -0300 | fix(1N6o00): define missing findContributorByDigitalSignature() in currency-def handler (#484)
 dc9ef29 | 2026-09-13 01:12:08 -0300 | fix(1N6o00): currency-def handler accepts Pending + writes terminal status (#483)
@@ -427,6 +429,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f273dbc | 2026-09-13 12:16:38 +0000 | chore: refresh currencies.json [skip ci]
 d5451d4 | 2026-09-13 11:57:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 cf5d0c6 | 2026-09-12 23:56:32 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 de8a58b | 2026-09-12 20:28:34 -0300 | chore: refresh Agroverse SKU catalog snapshot
@@ -582,7 +585,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 4:50:34 |
+| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 8:50:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-06`; scanned last **600** data rows)
 
