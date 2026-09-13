@@ -68,6 +68,7 @@
 
 ## Related docs (don't duplicate)
 - `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE_COOPERCABRUCA.md` / `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE_CEPOTX.md` / `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md` (Black King)
+- `BRAZIL_TO_HONG_KONG_IMPORT_SOP.md` — **Hong Kong** import lane (HK is a *separate* customs territory from Mainland; FEHD food-importer registration + HK Customs declaration + CEPA re-export note — GACC does **not** apply to an HK-only import)
 - `briefs/BRAZIL_EXPORT_ENTITY_BRIEF.md` — why Black King's personal CNPJ doesn't scale; DAO-owned export entity (Próspera / UNA-DUNA)
 - `BRAZIL_EXPORT_LANE_LEARNINGS.md` — Jun–Aug 2026 consolidated learnings (Black King 7 issues, MAPA, GACC/CIFER rules, trader-vs-producer)
 - `SUPPLY_CHAIN_AND_FREIGHTING.md` — Matheus warehouse (Ilhéus), Kirsten warehouse (SF), freight cost logic
