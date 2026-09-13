@@ -60,6 +60,55 @@ Full rationale + the subscription use case: `CHOCOLATE_SUBSCRIPTION_PLAN.md` (De
 
 ---
 
+## 2b. New currency → QR-ready → minted (Edgar-only — no gspread)
+
+**This is the self-serve path** (added 2026-09-13, `plans/QR_SELF_SERVE_CURRENCY_PLAN.md`). A brand-new SKU goes **zero → QR-ready `Currencies` row → minted QR** with Edgar calls only — no manual gspread fill.
+
+### Step 1 — define the QR-ready currency: `[CURRENCY DEFINITION EVENT]`
+
+```bash
+truesight-dao-define-currency \
+  --currency 'Ceremonial Cacao (250g)' \
+  --price-in-usd 25.00 \
+  --serializable TRUE \
+  --landing-page 'https://truesight.me/shop/ceremonial-cacao' \
+  --ledger AGROVERSE \
+  --farm-name 'Fazenda Rendimento' \
+  --state Bahia --country Brazil --year 2026 \
+  --unit-weight-grams 250 \
+  --sku-product-id oscar-bahia-ceremonial-cacao-250g \
+  --dry-run      # drop --dry-run to submit
+```
+
+Edgar (`dao_protocol`) routes it (`DAO_PROTOCOL_WEBHOOK_CURRENCY_DEFINITION`) to the **1N6o00** GAS handler, which appends a row to the **`Currencies`** tab (cols A–M), infers `Serializable` from the SKU's real stock (`Agroverse SKUs` col I), and sorts A→Z. Idempotent on the currency name.
+
+**QR-ready field set** (all required before a QR row can be generated):
+
+| Col | Field | Note |
+|-----|-------|------|
+| A | Currency | the name (must be unique on the tab) |
+| C | Serializable | must be `TRUE` |
+| E | Landing Page | |
+| F | Ledger | |
+| G | Farm Name | prints on the label |
+| H | State | prints on the label |
+| I | Country | prints on the label |
+| J | Year | |
+
+B (Price in USD), D (Product Image), K (Unit Weight grams), L (Unit Weight ounces), M (SKU Product ID) are recommended but optional. **K/L: supply exactly one** — the CLI writes only the unit you choose (grams → K, oz → L); **no conversion is applied**. `--attr 'Label=Value'` carries any extra label; `--dry-run` prints the signed payload without submitting.
+
+### Step 2 — mint: `[BATCH QR CODE REQUEST]`
+
+```bash
+truesight-dao-batch-qr-generator --currency '<exact Currencies!A name>' --quantity 10
+```
+
+Edgar routes it (`DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION`) to the same **1N6o00** deployment, which writes the `Agroverse QR codes` rows (see §2) and fires the GitHub render webhook.
+
+**Auto-define (PR4):** if the batch request itself carries the define-fields above and the currency is unknown, the processor **defines the QR-ready row first, then mints** — a never-seen SKU becomes a single call. Underspecified requests still fail with `Currency not found` (nothing is silently created).
+
+---
+
 ## 3. Operator workflow (manual)
 
 1. Pick **product line** (**CC** vs **CT**) and an **existing template row** (same **B/C/I** / ledger family) — e.g. prior **Austin** **`SAMPLE`** rows for that line.

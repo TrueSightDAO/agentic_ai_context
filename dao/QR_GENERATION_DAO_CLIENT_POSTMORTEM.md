@@ -175,3 +175,9 @@ Verified via `workflow_dispatch` on row 1611: target now resolves to `TrueSightD
 Final `workflow_dispatch` on row 1611 = **SUCCESS**; both `lineage-assets/pngs/2024_20260622_22.png` and the batch zip return HTTP 200. No operator action required. **Caveat (OPEN_FOLLOWUPS hardening):** reusing `ORACLE_ADVISORY_PUSH_TOKEN` couples QR generation to the oracle-advisory token — rotating it would silently break QR uploads; mint a dedicated scoped PAT when convenient.
 
 **Separate follow-up:** the workflow emits only the PNG — not `qrs/<id>.json` + a `qrs_index.json` rebuild — so workflow-generated QRs won't appear on `truesight.me/physical-assets/serialized` until that's added (or generation unifies on `batch_compiler.py`). Filed in `OPEN_FOLLOWUPS.md`.
+
+---
+
+## RESOLUTION (2) — new-SKU gap now closeable via Edgar (2026-09-13)
+
+The "**still open** upstream data-quality" gap noted above — repackaging currency rows missing col C `isSerializable` + cols E–J, so generation fails with `Currency not found` and a manual gspread fill was required — is now **closeable with Edgar calls only**. A new `[CURRENCY DEFINITION EVENT]` (CLI `truesight-dao-define-currency`; PR1–PR3 of `plans/QR_SELF_SERVE_CURRENCY_PLAN.md`, live 2026-09-13) defines a **QR-ready** `Currencies` row end-to-end (writes A–M incl. col C + E–J, sorts A→Z), and **PR4** (`tokenomics` #489) auto-defines it inline from a batch request that carries the fields. So a brand-new SKU goes **zero → QR-ready row → minted QR** with no gspread. See `agroverse/AGROVERSE_QR_CODE_BATCH_GENERATION.md` §2b for the field list + commands. (The manual path above remains valid for back-filling existing rows.)
