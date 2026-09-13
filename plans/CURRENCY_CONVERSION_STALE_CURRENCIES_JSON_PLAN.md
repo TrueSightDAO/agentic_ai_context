@@ -4,6 +4,8 @@
 Gary driving). Full diagnosis complete; **implementation/execution handed to Sophia** — this seat does not
 mutate shared repos/services directly (see `agentic_ai_context/ENVOY.md`).
 
+**Status update (2026-09-13):** PR1–PR3 below are **shipped** (verified live — see §4). Scope **extended** in **§7** to cover the *sibling* stale caches on the currency-definition form (`dapp_beta/define_currency.html`): the ledger dropdown and the farm/state/country seed lists. Folded here per Gary (thread 27015) so the whole cache-freshness fix lives in **one place** (`OPEN_FOLLOWUPS.md` now carries only a pointer).
+
 **Trigger:** Gary noticed `https://dapp.truesight.me/currency_conversion.html`'s currency picker doesn't
 offer entries that are genuinely recorded in the `Currencies` tab (`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`,
 gid `1552160318`), citing row 97 as a reference point.
@@ -139,13 +141,16 @@ build tier 3 unless PR1+PR2 turn out not to be enough.**
 
 ## 4. Resume tracker
 
-**RESUME HERE → PR1.**
+**RESUME HERE → PR4** (the §7 extension — automate the ledger snapshot + add the currency-fields catalog).
+PR1–PR3 are shipped (verified live 2026-09-13).
 
 | Unit | PR | Opened | Merged | Deployed/live | Reported |
 |---|---|---|---|---|---|
-| PR1 — immediate catch-up republish | not started | ☐ | ☐ | ☐ | ☐ |
-| PR2 — scheduled regeneration workflow | not started | ☐ | ☐ | ☐ | ☐ |
-| PR3 — UI freshness caption | not started | ☐ | ☐ | ☐ | ☐ |
+| PR1 — immediate catch-up republish | ✅ superseded by PR2 | ☑ | ☑ | ✅ `currencies.json` fresh (146 rows, daily) | ☑ |
+| PR2 — scheduled regeneration workflow | `go_to_market` `.github/workflows/publish-agroverse-currencies.yml` | ☑ | ☑ | ✅ live — cron `45 6 * * *` (daily 06:45 UTC) | ☑ |
+| PR3 — UI freshness caption | `dapp_beta` `currency_conversion.html` | ☑ | ☑ | ✅ `renderCurrencyListFreshness()` + `#currencyListFreshness` live (L311 / L498–506) | ☑ |
+| **PR4 — automate ledger snapshot (§7)** | not started | ☐ | ☐ | ☐ | ☐ |
+| **PR5 — `currency-fields.json` (§7)** | not started | ☐ | ☐ | ☐ | ☐ |
 
 ✅ **Pre-flight Completeness (§5d):** §1 captures the full root-cause trace, the exact missing/drifted
 entries, the working sibling pattern to copy for PR2, and where credentials for `agroverse-inventory`
@@ -171,3 +176,51 @@ writes already live. No execution unit should need to re-derive the diagnosis fr
 - `go_to_market` `.github/workflows/publish-agroverse-inventory-snapshot.yml` +
   `scripts/sync_agroverse_store_inventory.py` — the working pattern PR2 should mirror
 - `dapp_beta` `currency_conversion.html` — the form itself, PR3's target
+
+---
+
+## 7. Extension (2026-09-13) — the *other* two stale catalogs on the currency-definition form
+
+**Folded in from `OPEN_FOLLOWUPS.md` per Gary (thread 27015)** so the whole cache-freshness fix lives in one plan. `dapp_beta/define_currency.html` loads **three** catalogs on every page open; §1–§5 fixed the currency *list* (`currencies.json`), but two siblings still round-trip to the DAO Forms GAS web app (`AKfycbztpV3TUIRn…`) and suffer **exactly** the failure mode this plan names.
+
+### 7.1 Measured (3 runs each, autopilot box, 2026-09-13)
+
+| Catalog | Source today | Cost / call |
+|---|---|---|
+| SKU list | `agroverse-inventory/skus.json` (raw CDN, JSON cache) | **57–100 ms** |
+| Ledger dropdown (`?ledgers=true`) | live GAS → `SpreadsheetApp.openById()` + `getRange()` | **1.9–2.6 s** |
+| Farm/State/Country seeds (`?currency_fields=true`) | live GAS, same handler (`tokenomics/google_app_scripts/1QtK-InsH…/web_app.js`) | **1.5–1.8 s** |
+
+Total ≈ **4.5–5 s** of "Loading catalogs…" per visit. **Not** a client-caching problem — the handler does a live sheet read per call (container cold-start + sheet I/O), same shape as §1.2.
+
+### 7.2 Root cause is the *same* pattern, not a missing cache
+
+The ledger cache **already exists** — `treasury-cache/managed-ledgers/_index.json` (+ per-ledger `<ID>.json`), built by `tokenomics/python_scripts/tdg_asset_management/snapshot_managed_ledgers.py`, reading the **same** "Shipment Ledger Listing" sheet the GAS reads. But it is an **unautomated manual laptop script**:
+
+- `OUTPUT_DIR=~/Applications/treasury-cache/managed-ledgers`, creds from `~/Applications/sentiment_importer/config/cypher_defense_gdrive_key.json` — a home-dir path on one machine.
+- **No** GHA/Apps-Script cron invokes it (tokenomics workflows are only daily-buyback, edgar-billing, hourly-tdg-usdc, 2 QR webhooks).
+- Last generated **2026-06-02** (~3 months stale); holds **13 ledgers vs 19 live**; it also `SKIP_STATUSES={'COMPLETED','SUSPENDED'}`.
+
+So the ledger feed went dark because a hand-run script **stopped being run** — the identical "only syncs from paths someone remembered to wire up" failure mode §1.2 diagnoses for `currencies.json`. Contrast: the *rest* of `treasury-cache` **is** automated (`dao_offchain_treasury.json` / `dao_members.json` via a GAS publisher + 30-min safety-net cron + event triggers); the managed-ledgers files are the only piece still living on a laptop.
+
+The **Farm/State/Country** seeds are the one genuinely **missing** artifact — no JSON cache holds them anywhere. (`agroverse-inventory/currencies.json` = 146 rows, daily cron, fresh, but carries currency **names** only (col A), not the G/H/I lists.)
+
+### 7.3 Plan (reuse, don't invent)
+
+| Unit | What | Repo(s) |
+|---|---|---|
+| **PR4 — automate the ledger snapshot** | Give `snapshot_managed_ledgers.py` the **same GAS-publisher-plus-cron treatment the rest of `treasury-cache` already uses** (time-triggered publisher, or a daily GHA job mirroring `publish-agroverse-inventory-snapshot.yml`; the GHA route must move creds out of `~/Applications/…` into repo secrets). **Reuse the existing `managed-ledgers/_index.json` shape** (`schema_version`, `generated_at`, `source`, `ledgers[]` with `ledger_id`/`ledger_url`/`summary`) — do **not** mint a new schema. Resolve the 13-vs-19 gap (decide whether `SUSPENDED` ledgers belong in the dropdown). Then **repoint `define_currency.html`'s `loadLedgers()`** at the raw-CDN `_index.json`, GAS path as graceful fallback. | `tokenomics` (+ `go_to_market` if GHA) + `dapp_beta` |
+| **PR5 — add the currency-fields catalog** | Emit **`currency-fields.json`** (distinct non-empty Currencies cols G/H/I) from the same snapshot job; repoint `loadCurrencyFieldOptions()` at it, GAS fallback (same degrade-to-empty shape as the SKU loader). | `go_to_market` + `agroverse-inventory` + `dapp_beta` |
+| **PR6 — freshness caption (optional)** | Same tier-1 signal as §3/PR3, for the ledger + currency-fields catalogs. | `dapp_beta` |
+
+Both catalogs are *better* snapshot candidates than SKUs: ledgers change rarely, and the farm/state/country lists only change when a value is first defined (append-mostly). Expected once PR4+PR5 land: all three catalogs ≈60 ms → init **~4.7 s → ~0.2 s**.
+
+**Interim stopgap (already shipped).** `dapp_beta#94` parallelises the three loads and drops a 500 ms `setTimeout` → ~4.7 s → ~2.6 s, no new infra. §7 is the durable fix that removes the GAS round-trips entirely.
+
+### 7.4 Evidence
+
+- `dapp_beta/define_currency.html` — `loadLedgers()` (`?ledgers=true`), `loadCurrencyFieldOptions()` (`?currency_fields=true`); line nos. pre-`dapp_beta#94`.
+- `tokenomics/google_app_scripts/1QtK-InsHH6SBtxoxc33-y4vQvuNkbhlkUi_9S1X-AaEgIlSlygM1iZtP/web_app.js` — live-sheet read.
+- Existing ledger cache: `treasury-cache/managed-ledgers/_index.json` (`generated_at 2026-06-02T20:30:03Z`, 13 ledgers) vs GAS `?ledgers=true` returning **19**; producer `tokenomics/python_scripts/tdg_asset_management/snapshot_managed_ledgers.py`.
+- `treasury-cache/README.md` — other caches auto-published via GAS publisher + 30-min cron.
+- Timing runs 2026-09-13; thread 27015.
