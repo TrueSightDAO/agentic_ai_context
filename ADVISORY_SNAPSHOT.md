@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-13T05:10:34Z`
+- Generated (UTC): `2026-09-13T12:12:03Z`
 - Look-back: **7** calendar days (`2026-09-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-12T10:59:13.285Z`
+- Generated (UTC): `2026-09-13T10:59:14.596Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-06_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 eae16a7 | 2026-09-12 20:52:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 e5edb34 | 2026-09-12 15:46:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 1a22e76 | 2026-09-12 08:22:56 -0300 | crf-anapu: add 14 site-visit videos to program gallery (#377)
@@ -313,7 +314,6 @@ c9ebe7a | 2026-09-07 22:17:28 -0300 | SunMint map: unwrap nested Polygon rings b
 f124247 | 2026-09-07 22:10:37 -0300 | SunMint map: View chips fly to their actual trees, not a hardcoded center (fixes empty ?view=altamira) (#360)
 ebfd282 | 2026-09-07 22:01:42 -0300 | SunMint map: Tree/QR control is now a click-to-open dropdown with type-to-filter (#359)
 adf89f2 | 2026-09-07 21:54:07 -0300 | SunMint impact map: grouped Plots dropdown (kills Farm select) + Tree/QR lookup box (#358)
-0fa87db | 2026-09-07 21:44:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a647697 | 2026-09-13 02:10:59 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
+1fac6e6 | 2026-09-13 02:10:57 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
 82640b5 | 2026-09-13 00:45:35 -0300 | Merge pull request #1070 from TrueSightDAO/auto/advisory-refresh-2026-09-13
 4a03006 | 2026-09-13 03:45:25 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
 0a5919a | 2026-09-12 23:40:40 -0300 | OPEN_FOLLOWUPS: file stale GAS manifest.json (missing @10 currency web app) (#1069)
@@ -364,8 +366,6 @@ d389410 | 2026-09-12 01:52:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 7040e8a | 2026-09-11 18:08:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 be0df1d | 2026-09-11 16:11:07 -0300 | Black King manifest Rev-9: non-US lanes (Poland/Switzerland/FounderHaus) + explicit multi-currency (#1047)
 af21104 | 2026-09-11 15:58:42 -0300 | Black King Rev-8: AGL10 arrival governor-confirmed; caramelized line = costing reference only (no physical stock) (#1046)
-d61498f | 2026-09-11 15:43:07 -0300 | File 3 follow-ups from AGL14 serialization (thread 25671) (#1045)
-e744945 | 2026-09-11 15:40:57 -0300 | Black King: arrival register join (offchain assets in transit) + Rev-7 cross-check (#1044)
 … (truncated)
 ```
 
@@ -427,6 +427,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d5451d4 | 2026-09-13 11:57:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 cf5d0c6 | 2026-09-12 23:56:32 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 de8a58b | 2026-09-12 20:28:34 -0300 | chore: refresh Agroverse SKU catalog snapshot
 f9425a2 | 2026-09-12 14:21:54 -0300 | chore: refresh currencies.json [skip ci]
@@ -581,7 +582,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/12/2026 21:50:46 |
+| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 4:50:34 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-06`; scanned last **600** data rows)
 
