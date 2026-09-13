@@ -80,7 +80,7 @@
 - **Current blocker:** Phase 0 — NF-e cannot be issued (the 7 issues above).
 - **Omega quotation (May 2026):** road transport BRL 6,615 + 0.15% ad-valorem; palletization BRL 195 (excluded — pallets on hand); fumigation BRL 500; export docs $95; air freight $3.20–3.50/kg tiered; Brazil airport $0.30/kg (min $250); US terminal $212.50; US handling $125; clearance $150; FDA $100; MPF 0.3464%; bond max($100, $6/$1k).
 - **Freight-only total (internal transfer, excl. payload):** ≈ **US$ 3,550** (Brazil ≈ $1,319 @ 5.40 FX + air/export ≈ $1,722 + US ≈ $509).
-- **Shipment docs:** INV-2026-0611-001 **Rev 8** FOB $6,918.63 + PL-2026-0611-001 **Rev 8** (PDFs in exports/). AGL14 almonds line removed (thread 10800); 2 × plastic HDPE pallets (20 kg tare); gross ~322.3 kg.
+- **Shipment docs:** INV-2026-0611-001 **Rev 9** FOB $6,860.19 + PL-2026-0611-001 **Rev 9** (PDFs in exports/). AGL14 almonds line removed (Rev 8) + Cacao Nibs AGL13 −500 g & 8oz Kraft Pouch −8 bags (Rev 9), thread 10800; 2 × plastic HDPE pallets (20 kg tare); gross ~320.0 kg.
 
 ---
 

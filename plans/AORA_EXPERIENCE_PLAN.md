@@ -249,7 +249,7 @@ Shipping manifest dated 4/6/2026, managed by Matheus Reis:
 
 | Line Item | Qty | Unit Wt (kg) | Total Wt (kg) |
 |-----------|-----|-------------|---------------|
-| 8 oz Cacao Nibs Kraft Pouch [Main Inventory] | 137 | 0.227 | 31.07 |
+| 8 oz Cacao Nibs Kraft Pouch [Main Inventory] | 129 | 0.227 | 29.28 |
 | Cacao Husk (KG) [Main Inventory] | 20 | 1.000 | 20.00 |
 | Cacao Mass Bar (500g) [Main Inventory] | 38 | 0.500 | 19.00 |
 | Cacao Nibs (KG) [Main Inventory] | 80 | 1.000 | 80.00 |
@@ -257,12 +257,14 @@ Shipping manifest dated 4/6/2026, managed by Matheus Reis:
 | Cacao Tea (KG) [AGL8] | 12 | 0.001 | 0.01 |
 | Ceremonial Cacao Pouch 200g (Paulo) [AGL8] | 170 | 0.200 | 34.00 |
 | Cacao Almonds KG (Vivi's farm) [AGL13] | 15 | 1.000 | 15.00 |
-| Cacao Nibs (KG) Santos [AGL13] | 100 | 1.000 | 100.00 |
+| Cacao Nibs (KG) Santos [AGL13] | 99.5 | 1.000 | 99.50 |
 | Cacao Tea (KG) Santos [AGL13] | 21 | 1.000 | 21.00 |
 | Pallet packaging (2 × plastic HDPE, 10 kg each) | 2 | 10.000 | 20.00 |
-| **TOTAL** | **603** | | **350.08 kg** |
+| **TOTAL** | **595** | | **347.79 kg** |
 
 > **Rev note (thread 10800, 2026-09-13):** removed *Cacao Almonds KG (Oscar's farm) [AGL14]* (10 kg — **sold to a third party**, not on this shipment); pallet row updated to **2 × plastic HDPE (10 kg each) = 20 kg** tare (was 1 × 35 kg wood). Total weight 375.08 → **350.08 kg**. Air-freight cost is weight-tier based (this still sits in the ~300 kg tier) and is expected to hold — revalidate with Graziela.
+
+> **Rev 9 (thread 10800, 2026-09-13):** *8oz Cacao Nibs Kraft Pouch* 137 → **129 UN** (−8 bags); *Cacao Nibs (KG) Santos [AGL13]* 100 → **99.5 KG** (−500 g). Total → **595 / 347.79 kg**.
 
 **Freight cost:** $2,825.09 (see Cash Position section for full breakdown)
 
