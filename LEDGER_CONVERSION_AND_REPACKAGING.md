@@ -70,6 +70,12 @@ Older rows may use a **short** composite such as `Ceremonial … Alibaba:… + 8
 
 ---
 
+## Defining new output currencies (QR-ready)
+
+Repackaging emits **new `Currency` lines**. To make them immediately QR-able, define them with the **`[CURRENCY DEFINITION EVENT]`** (Edgar CLI `truesight-dao-define-currency`) — see `agroverse/AGROVERSE_QR_CODE_BATCH_GENERATION.md` §2b. It writes the full QR-ready field set (col C `Serializable=TRUE` + cols E–J farm/ledger/landing/year) and sorts the tab A→Z. This **replaces the manual gspread fill** that repackaging batches used to require before QR generation would succeed.
+
+---
+
 ## Repackaging planner flow (`dapp/repackaging_planner.html`)
 
 **Single-sitting, Edgar-routed submit** — same shape as every other DApp page.

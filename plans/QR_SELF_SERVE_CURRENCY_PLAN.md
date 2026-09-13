@@ -137,15 +137,15 @@ GAS. *(Pre-flight: confirm on the live sheet.)*
 
 ## 5. Resume tracker (§5c Advance markers)
 
-**RESUME HERE → PR5** (docs). PR1–PR3 are all merged and PR3 is verified live (2026-09-13); PR4 is optional and still gated on the operator saying they want it.
+**RESUME HERE → UAT** (plan §6). PR1–PR5 are all on `main`: PR4 (auto-define) merged as `tokenomics` #489 after the operator opted in (2026-09-13), PR5 (docs) is this PR. **Remaining:** deploy the 1N6o00 GAS (`clasp push` + reuse deployment `AKfycbxn3siu…`) so PR2 + PR4 are live, then run **UAT U1–U5** (operator-authorised, 2026-09-13).
 
 | Unit | Advance | PR opened | Merged (human) | Deployed | Contribution reported |
 |------|---------|-----------|----------------|----------|----------------------|
 | PR1 — CLI + dispatch (`dao_protocol`) | `auto` | ☑ | ☑ | n/a | ☑ |
 | PR2 — GAS handler (`tokenomics`) | `auto` | ☑ | ☑ | n/a | ☑ |
 | PR3 — deploy + wire env (**OPERATOR-run**: clasp + prod ssh; Sophia writes the runbook only — see §8) | `gate: operator runs clasp + Edgar env change` | ☑ | ☑ | ☑ | ☑ |
-| PR4 — auto-define (optional) | `gate: confirm operator wants it` | ☐ | ☐ | ☐ | ☐ |
-| PR5 — docs | `auto` | ☐ | ☐ | n/a | ☐ |
+| PR4 — auto-define (`tokenomics` #489; GAS deploy pending) | `auto` | ☑ | ☑ | ☐ | ☐ |
+| PR5 — docs | `auto` | ☑ | ☐ | n/a | ☐ |
 | UAT — human, beta/sandbox | `gate: human-run completion gate` | ☐ | ☐ | ☐ | ☐ |
 
 **Gate rules:** Sophia opens PRs only and **never self-merges** (cross-repo); each PR turn STOPS after
