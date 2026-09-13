@@ -308,7 +308,9 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 | 8 | 1801.00.00 | Cacao Almonds (KG) — AGL13 | 15 | KG | $7.87 | $118.05 |
 | 9 | 1801.00.00 | Cacao Nibs (KG) — AGL13 | 100 | KG | $10.18 | $1,018.23 |
 | 10 | 2106.90.00 | Cacao Tea (KG) — AGL13 | 21 | KG | $10.18 | $213.83 |
-| 11 | 1801.00.00 | Cacao Almonds (KG) — AGL14 | 10 | KG | $11.41 | $114.12 |
+| 11 | 1804.00.00 | Coopercabruca Cacao Butter (KG) | 5 | KG | TBD | TBD |
+
+> **Rev 8 note:** the former line 11 (*Cacao Almonds (KG) — AGL14*, 10 KG, $114.12) was **removed from the shipment** at the governor's instruction (thread 10800) and the cacao-butter line renumbered from 12 to 11.
 
 > *Items 5 and 6 (AGL8 almonds and tea) have $0 cost basis. If the system requires a nominal value, use $0.01. If $0 is accepted, use $0.00.
 
@@ -317,14 +319,14 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 | Field | Value |
 |-------|-------|
 | Incoterms | **FOB** (freight paid by buyer) |
-| Total Invoice Value | **$7,032.53** (USD) |
+| Total Invoice Value | **$6,918.63** (USD) — lines 1–10 (Rev 8; excl. cacao butter, TBD) |
 | Currency | Dólar Americano (USD) |
 | Freight Value | **$0.00** (buyer pays separately) |
 | Transport Mode | Aéreo |
 | Airport of Departure | SSA (Salvador) |
 | Airport of Destination | SFO (San Francisco) |
-| Total Gross Weight | ~342.3 kg |
-| Total Net Weight | ~307.3 kg |
+| Total Gross Weight | ~322.3 kg |
+| Total Net Weight | ~302.3 kg |
 
 #### A.2.6 — Tax Configuration
 
