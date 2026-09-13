@@ -1,10 +1,24 @@
-# Discord Adapter — Implementation Plan (DRAFT for governor review)
+# Discord Adapter — Implementation Plan
 
-> **Status:** draft, scoping + design. Not ratified. The channel→tier mapping is a
-> **policy call for the governor** and is presented as a *proposal* below.
+> **Status:** ✅ **RATIFIED + BUILT.** The governor locked the four policy decisions on
+> 2026-09-12 (§0); the adapter is **merged** (`truesight_autopilot` #428 —
+> `app/discord_adapter.py`, systemd unit, 18 tests) and **inert by default**. Remaining
+> work is **deploy-dark → UAT → activate** (§8).
 > **Owner:** Sophia Truesight · **Opened:** 2026-09-12 · **Guild:** TrueSight DAO `923008087315587072`
+> **Canonical pattern doc:** `AUTOPILOT_CHANNEL_INTEGRATIONS.md` (venue contract + add-a-venue checklist)
 > **Related:** `OPERATING_INSTRUCTIONS.md`, `AI_AGENT_DAO_REGISTRATION.md`,
 > `app/telegram_adapter.py`, `app/identity_binding.py`, `app/policy.py`, `app/roles.py`
+
+---
+
+## 0. Locked decisions (governor, 2026-09-12)
+
+| # | Decision | Implication |
+|---|---|---|
+| 1 | **Full throttle** — Sophia *posts*; not read-only-first | `DISCORD_DRY_RUN` is a first-deploy safety, **not** a permanent posture. |
+| 2 | **Sophia has full rights** — same authority as on Telegram | The tier map (§5) is a *response posture*, **not** a capability restriction for governors. |
+| 3 | **Identity SSOT = the sheet** — Main Ledger → *Contributors contact information* → **col G "Discord ID"** | No parallel store, **no `/verify` DM flow**. Governor-maintained; the adapter reads + caches it. |
+| 4 | **Fixed persona** — one Sophia voice everywhere | No per-channel persona menu; `roles.py` persona selection is **not** wired for Discord. |
 
 ---
 
@@ -35,8 +49,10 @@ is a staged build (see §8).
 | Intents enabled | **Message Content** ✅ · **Server Members** ✅ (Presence off) |
 | Governor id | `garyjob` = `849324553221832794` |
 
-**Adapter code: does not exist yet.** `grep -rln "discord" app/ systemd/` → no hits; no
-`truesight-autopilot-discord` unit; no process. Clean slate.
+**Adapter code: MERGED (2026-09-12).** `app/discord_adapter.py` (gateway client, governor
+gate, dry-run default), `systemd/truesight-autopilot-discord.service`, and
+`tests/test_discord_adapter.py` landed in `truesight_autopilot` PR **#428**. It is **inert**
+(`DISCORD_ADAPTER_ENABLED=false`); no process is running yet — deploy is §8.
 
 **Secret hygiene note.** The *first* token was pasted into a group chat; the governor
 **reset** it, which killed the leaked copy (all calls 401'd), and the *replacement* was
@@ -90,10 +106,12 @@ Keep these separate: a **Discord tier** decides *whether/how Sophia responds*; a
 
 ---
 
-## 5. Channel → access-tier proposal  **(GOVERNOR POLICY CALL)**
+## 5. Channel posting posture  **(RESOLVED — decision #1/#2: full throttle)**
 
-Ground the gate on the guild's **existing contributor-tier roles** (Appendix B). Proposed
-tiers — **adjust freely**:
+**Authority is the governor gate, not the Discord role string** (§3 invariant #2). The tiers
+below describe Sophia's *response posture* by audience; they do **not** restrict governor
+capability — a resolved governor has full rights in any whitelisted channel (decision #2).
+Values are operational config, adjustable without a re-plan:
 
 | Tier | Who | Discord role(s) | Behaviour |
 |---|---|---|---|
@@ -125,45 +143,62 @@ tiers — **adjust freely**:
 | intro / launchpad / stories… | `935750239728590918` / `1021467682735919115` / `990825275107442688` | T1 | ❌ |
 | regional (singapore/NA/SA/europe/japan/KR) | Appendix A | T1 | ❌ |
 
-**Default safe posture for the first cut: read-only.** Enable posting one channel at a time
-(§8 PR3), starting with `engineering` + `general`.
+**First deploy = dry-run, then full posting (decision #1).** `DISCORD_DRY_RUN=true` composes
+replies without sending so the governor can eyeball them; on explicit "go" it flips to `false`
+and posting is live — start with **one channel** (`general` or `engineering`), then widen.
 
 ---
 
 ## 6. Identity binding (Discord user id → DAO contributor)
 
-Extend `app/identity_binding.py` (currently Telegram) with a Discord resolver:
+**SSOT (decision #3):** Main Ledger **`Contributors contact information`** tab, column
+**G "Discord ID"** (`COL_DISCORD_ID = 6`), spreadsheet
+`1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`. **Governor-maintained** — humans seed ids;
+the adapter only reads (+ a short TTL cache so the hot path never double-hits the Sheets API).
+No `/verify` flow, no parallel store (supersedes the earlier proposal).
 
-- **Source of truth:** the DAO ledger's contributor rows (email ↔ identity). Discord ids
-  are a *new column*; seed from a governor-provided map + a one-time `/verify` flow
-  (governor links `discord_user_id` → registered email/identity, signed).
-- **Authority = ledger-resolved governor**, never the Discord role string.
-- **Bootstrapping:** `garyjob` = `849324553221832794` → Gary Teh (seed row).
-- **Fail-closed:** unknown author → treated as T0/unverified → informational only.
+- Discord binding is read inline in `app/discord_adapter.py` (mirrors
+  `identity_binding.py`, which holds the Telegram binding at `COL_TELEGRAM_ID = 23`).
+- **Authority = ledger/Governors-cache-resolved governor**, never the Discord role string.
+- Id in **col G** + present in the **Governors** cache ⇒ role GOVERNOR.
+- **Bootstrapping:** `DISCORD_ALLOWED_USER_IDS` env allowlist covers the gap until col G is
+  seeded (`garyjob` = `849324553221832794` → Gary Teh is the first row).
+- **Fail-closed:** unknown author ⇒ not a governor ⇒ handled per §3 (data, not instructions).
 
 ---
 
 ## 7. Config surface
 
+Actual merged fields (`app/config.py`):
+
 | Key | Where | Purpose |
 |---|---|---|
-| `DISCORD_BOT_TOKEN` | vault (v2) | gateway auth |
-| `DISCORD_GUILD_ID` | `.env` | `923008087315587072` |
-| `DISCORD_CHANNEL_TIERS` | `.env` / JSON | channel-id → tier map (§5) |
-| `DISCORD_ADAPTER_ENABLED` | `.env` | feature flag, default **off** |
-| `DISCORD_DRY_RUN` | `.env` | default **true** for first deploy |
+| `DISCORD_BOT_TOKEN` | **vault** (`app/vault.py`) | gateway auth — never env, never logged |
+| `DISCORD_GUILD_ID` | `.env` → `discord_guild_id` | `923008087315587072` |
+| `DISCORD_ALLOWED_USER_IDS` | `.env` → `discord_allowed_user_ids` | comma-separated snowflakes; empty ⇒ sheet-only |
+| `DISCORD_GOVERNOR_NAME` | `.env` → `discord_governor_name` | identity the bot speaks as (default `Gary Teh`) |
+| `DISCORD_ADAPTER_ENABLED` | `.env` → `discord_adapter_enabled` | feature flag, default **False** |
+| `DISCORD_DRY_RUN` | `.env` → `discord_dry_run` | compose-but-don't-send, default **True** |
+
+*(The earlier `DISCORD_CHANNEL_TIERS` map was **not** implemented — channel routing is by
+session id `dc:{guild}:{channel}` in the adapter; per-channel *posting* control is via the
+Discord-side channel whitelist / bot permissions.)*
 
 ---
 
 ## 8. Milestones
 
-| PR | Scope | Gate |
+The staged read-only PR1–PR3 sketch was **collapsed into one build PR** because decision #1
+(full throttle) made a separate read-only stage unnecessary — the dry-run flag is the
+read-only stage.
+
+| Step | Scope | Status / Gate |
 |---|---|---|
-| **PR1** | Docs + config scaffolding; `DISCORD_ADAPTER_ENABLED=false`; channel/tier map as data; no live connection | — |
-| **PR2** | Read-only gateway client: connect, receive `MESSAGE_CREATE`, log to a session transcript, **no replies**. `DRY_RUN=true`. | governor UAT: bot sees messages |
-| **PR3** | Reply in **one** whitelisted channel (`engineering`) for **T3 only**, behind policy+identity binding | governor UAT: talk to Sophia in Discord |
-| **PR4** | Widen tiers/channels per §5; persona selection per channel (reuse `roles.py`) | governor review of map |
-| **PR5** | systemd unit + deploy ledger entry + monitoring surface (mirror Telegram's) | — |
+| **#428** | `app/discord_adapter.py` + config + systemd unit + tests (gate merges before any brain call; dry-run default) | ✅ **merged** (`truesight_autopilot`) |
+| **#429** | README self-doc (service table / diagram / layout) | ✅ **merged** |
+| **#1057** | Canonical `AUTOPILOT_CHANNEL_INTEGRATIONS.md` | ✅ **merged** |
+| **Deploy-dark** | `deploy_autopilot`; install + start `truesight-autopilot-discord.service` with `ENABLED=true` + `DRY_RUN=true`; watch journal for composed-but-unposted replies | governor UAT |
+| **Activate** | flip `DISCORD_DRY_RUN=false` (live posting, one channel first) | **explicit governor go** |
 
 Each PR: local test suite green before push (compileall / ruff check / ruff format --check / pytest).
 
@@ -181,15 +216,19 @@ Each PR: local test suite green before push (compileall / ruff check / ruff form
 
 ---
 
-## 10. Open questions for the governor
+## 10. Resolved questions
 
-1. **Read-only or post?** Confirm starting posture (proposal: read-only first).
-2. **Channel→tier map** (§5) — confirm or edit; which channels may Sophia *post* into?
-3. **Identity binding source** — ledger contributor rows are the SSOT; do we seed the
-  Discord-id map from a governor-maintained sheet, or a `/verify` DM flow?
-4. **Persona per channel** — reuse the Telegram topic→persona menu, or a fixed persona?
-5. **Library choice** — `discord.py` (gateway + ergonomics) vs raw REST (fewer deps).
-   Recommendation: `discord.py` given reconnect handling.
+| Question | Answer (2026-09-12) |
+|---|---|
+| Read-only or post? | **Post — full throttle** (§0 #1). |
+| Identity-binding source | **Sheet, col G** — the *Contributors contact information* tab (§0 #3, §6). |
+| Persona | **Fixed** — no per-channel menu (§0 #4). |
+| Library | **Raw REST + gateway** (no `discord.py` dependency); see `app/discord_adapter.py`. |
+
+**Still open (operational, non-blocking):**
+1. **Seed col G** — currently 1 row (`garyjob`); the env allowlist covers the gap meanwhile.
+2. **Channel posting whitelist** — confirm which channels Sophia may post into first
+  (proposal: `general` + `engineering`), then widen (§5).
 
 ---
 
