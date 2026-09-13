@@ -100,6 +100,29 @@ DAO convention: **module names ≠ event names** — "Sales Reporter" emits a `S
 3. **Beneficiary ≠ payer** — unruled.
 4. **Email path** — confirm/reuse the existing sale-confirmation sender.
 
+## Definition of Done (completion checklist)
+
+Nothing in this feature counts as **done** until **all** of these ship. The last item is the one
+easiest to forget — it lives in a *different repo* from the DApp and the ledger.
+
+1. **DApp** — `report_reservation.html` + `report_reservation_settlement.html`, menu entries
+   (section: *Retail & field activity*), and the `menu.js?v=` cache-buster bumped **in every HTML page
+   and `service-worker.js`**.
+2. **Ledger** — Edgar handlers for `RESERVATION EVENT` + `RESERVATION SETTLEMENT EVENT`; new QR status
+   enum **`Reserved`**; `Reserved` excluded from FIFO selection and shop availability.
+3. **Event-lookup tool updated** — `truesight_autopilot/app/tools/lookup_event_docs.py`.
+   The tool fetches the *catalog* live from `edgar.truesight.me/events-catalog` (SSOT — no hardcoded
+   event list), **but it does carry three hardcoded side-structures that must be extended**:
+   - register both events in **Edgar's live events catalog** (`dao_protocol`);
+   - add both to **`_INTENT_GUIDANCE`**, e.g. *"reserve item" / "buyer paid, not collected" →
+     `RESERVATION EVENT`*, and *"collect reserved item" / "settle reservation" / "redeem reservation"
+     → `RESERVATION SETTLEMENT EVENT`*;
+   - add both to **`_IMPORTANT_FIELDS`** — Event 1: `Buyer`, `Buyer Email`, `QR Code`,
+     `Payment Collected By`, `Sale Price`, `Proof`; Event 2: `QR Code`, `Buyer Email`;
+   - add **`_FALLBACK_DOCS`** entries so the tool still resolves them when Edgar is unreachable.
+   - Note the existing guard: `submit_contribution` requires a prior **in-session `lookup_event_docs`**
+     (`SOPHIA_DAPP_EVENT_ALIGNMENT_PLAN.md`), so the two events must resolve *before* they can be submitted.
+
 ## Evidence / grounding
 
 - `offchain asset location` already carries **negative** manager rows (e.g. `… Gary Teh … → −2`),
