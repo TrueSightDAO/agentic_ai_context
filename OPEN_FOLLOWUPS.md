@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Stale `manifest.json` in the QR/currency GAS mirror tree (`tokenomics/google_app_scripts/1N6o00…`) — names only the `@8` QR deployment, omits the live `@10` currency web app
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
+
+**Context.** The tokenomics GAS mirror project `1N6o00N9VtRK_L3e0NQXEsmC6QME1KObZdmdbJgo0Tbgj_7P-ElNL5THn` hosts **two** handlers — `process_qr_code_generation_telegram_logs.js` (QR) and the newer `process_currency_definitions_telegram_logs.js` (currency definitions → Currencies tab, invoked by sentiment_importer #1135). Its checked-in `manifest.json` still declares a **single** deployment — `web_app: @8` (`/exec?action=processQRCodeGenerationTelegramLogs | registerSingleQRCode`) — and its `source_files` lists only `Version.js` + `process_qr_code_generation_telegram_logs.js`.
+
+**Why it matters.** Live `clasp deployments` (read-only, 2026-09-13) shows **two** anonymous versioned deployments: `@8` (QR) **and** `@10` "Currency definition handler" (`/exec?action=processCurrencyDefinitionsFromTelegramChatLogs`, URL `AKfycbxn3siu2QrzCGdcsipt5FRxxMGY6gVPN1Z_tQdbfJY1GABsL1pZUlWpUbpdE_OymvIO`). The manifest therefore **understates the project's web-app surface** and omits the currency handler's source file. Anyone wiring a webhook (e.g. `CURRENCY_DEFINITION_PROCESSING_WEBHOOK_URL`) who reads this manifest would conclude no currency web app exists and risk a duplicate web-app or a wrong `@HEAD` assumption (@HEAD is login-walled; only versioned deployments are anonymous).
+
+**Proposed work (~10 min).** Update `manifest.json`: add the `@10` "Currency definition handler" deployment + its `/exec` URL, keep the `webapp` note that ANYONE_ANONYMOUS `/exec` applies to versioned deployments only, and extend `source_files` to include `process_currency_definitions_telegram_logs.js`. Blocker: none.
+
+**Evidence.** tokenomics `google_app_scripts/1N6o00…/manifest.json` L7–9; live `clasp deployments` (`@8` + `@10`); thread 27015.
+
 ### Defect class: filenames built with `Date.now()` at multiple call sites drift apart (first instance: `define_currency.html`)
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
 
