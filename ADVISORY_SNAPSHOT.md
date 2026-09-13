@@ -20,9 +20,48 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-13T03:45:20Z`
+- Generated (UTC): `2026-09-13T05:10:34Z`
 - Look-back: **7** calendar days (`2026-09-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 17
+- `[ASSET RECEIPT EVENT]` × 7
+- `[PRACTICE EVENT]` × 2
+- `[CURRENCY DEFINITION EVENT]` × 2
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- _free-form (no bracket tag)_ × 11
+
+### Latest entries
+
+- `Edgar_20260912214454_504` · **Edgar** · [No Text Provided]
+- `Edgar_20260912214948_506` · **Edgar** · [No Text Provided]
+- `Edgar_20260912215456_508` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Reorganizing the warehouse.
+- `Edgar_20260912215800_510` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Debugging this DApp on mobile
+- `Edgar_20260912215840_512` · **Edgar** · [No Text Provided]
+- `Edgar_20260912221227_514` · **Edgar** · [No Text Provided]
+- `Edgar_20260912221655_516` · **Edgar** · [EMAIL REGISTERED EVENT] Email: garyjob@gmail.com
+- `Edgar_20260912221727_518` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: GBYWR4EaKdypmfbbOu23USdUdawNMNzQUZv74QkFkQw · Email: garyjob@gmail.com
+- `Edgar_20260912221917_520` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Testing to ensure that beta submits cleanly
+- `Edgar_20260913000005_522` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 900 · Description: Visit to pacaje
+- `Edgar_20260913000445_524` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Visit to chocolate SUk to pick up samples and to plot the restoration plots
+- `Edgar_20260913000737_526` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Visit the Paulo’s farm to pick up the cacao samples and to plot the restorat…
+- `Edgar_20260913001221_528` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Visiting Fazenda Dona Rosa
+- `Edgar_20260913001921_530` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1080 · Description: Visiting Uruará
+- `Edgar_20260913001923_532` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1080 · Description: Visiting Uruará
+- `Edgar_20260913002446_534` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Site inspection of the factory that CEPOTX is constructing
+- `Edgar_20260913002915_536` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 660 · Description: Plot inspection or rancho maranata for restoration
+- `Edgar_20260913010858_538` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: zz-uat-currency-test-1789261732881 · Price in USD: 1.23 · Serializable: TRUE
+- `Edgar_20260913011517_540` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: zz-uat-test-currency-1789262098013 · Price in USD: 1.23 · Serializable: TRUE
+- `Edgar_20260913030129_542` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Media Gallery Publisher — plan complete (PR1–PR7, prod deployed)
 
 ---
 
@@ -194,13 +233,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,833.92**
+- Brazilian Reis: R$1,629.61 · rate `0.2323` USD/BRL → ≈ **$378.56**
+- USD provisioned for voting-rights cash-out: **$55.02**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -283,6 +326,8 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+82640b5 | 2026-09-13 00:45:35 -0300 | Merge pull request #1070 from TrueSightDAO/auto/advisory-refresh-2026-09-13
+4a03006 | 2026-09-13 03:45:25 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
 0a5919a | 2026-09-12 23:40:40 -0300 | OPEN_FOLLOWUPS: file stale GAS manifest.json (missing @10 currency web app) (#1069)
 ea43d8d | 2026-09-12 23:11:56 -0300 | HANDOFF_MANIFEST: mark Media Gallery Publisher (26438) complete (#1068)
 0475799 | 2026-09-12 23:11:42 -0300 | Media Gallery Publisher: PR7 prod promote done — plan complete (#1067)
@@ -321,14 +366,16 @@ be0df1d | 2026-09-11 16:11:07 -0300 | Black King manifest Rev-9: non-US lanes (P
 af21104 | 2026-09-11 15:58:42 -0300 | Black King Rev-8: AGL10 arrival governor-confirmed; caramelized line = costing reference only (no physical stock) (#1046)
 d61498f | 2026-09-11 15:43:07 -0300 | File 3 follow-ups from AGL14 serialization (thread 25671) (#1045)
 e744945 | 2026-09-11 15:40:57 -0300 | Black King: arrival register join (offchain assets in transit) + Rev-7 cross-check (#1044)
-90fab89 | 2026-09-11 15:34:16 -0300 | Black King manifests: strike Shipments 8 & 13 (never shipped) — Rev 6 (#1043)
-f9b8ad1 | 2026-09-11 13:41:19 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+d9f620b | 2026-09-13 01:22:18 -0300 | fix(1N6o00): currency-def parser must not leak next line on empty fields (#485)
+5c6e948 | 2026-09-13 01:19:16 -0300 | fix(1N6o00): define missing findContributorByDigitalSignature() in currency-def handler (#484)
+dc9ef29 | 2026-09-13 01:12:08 -0300 | fix(1N6o00): currency-def handler accepts Pending + writes terminal status (#483)
+71dcfd2 | 2026-09-13 01:05:06 -0300 | fix(1N6o00): merge currency-definition action into the single doGet (duplicate doGet shadowed it) (#482)
 18050d1 | 2026-09-13 00:21:37 -0300 | Add RESERVED QR status enum + exclude from availability pickers (#481)
 3c92587 | 2026-09-12 22:40:05 -0300 | fix(scoring): stop grok scorer falsely stamping non-[CONTRIBUTION EVENT] rows as Successfully Completed (#479)
 53f3075 | 2026-09-12 22:02:07 -0300 | dao_forms: add ?currency_fields action (farm/state/country distinct values) (#478)
@@ -510,6 +557,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 853.7 | 18293.54386 | 9/12/2026 21:50:46 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-06`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
