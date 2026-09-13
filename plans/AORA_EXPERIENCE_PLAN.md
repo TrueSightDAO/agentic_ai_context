@@ -259,9 +259,10 @@ Shipping manifest dated 4/6/2026, managed by Matheus Reis:
 | Cacao Almonds KG (Vivi's farm) [AGL13] | 15 | 1.000 | 15.00 |
 | Cacao Nibs (KG) Santos [AGL13] | 100 | 1.000 | 100.00 |
 | Cacao Tea (KG) Santos [AGL13] | 21 | 1.000 | 21.00 |
-| Cacao Almonds KG (Oscar's farm) [AGL14] | 10 | 1.000 | 10.00 |
-| Pallet packaging | 1 | 35.000 | 35.00 |
-| **TOTAL** | **613** | | **375.08 kg** |
+| Pallet packaging (2 × plastic HDPE, 10 kg each) | 2 | 10.000 | 20.00 |
+| **TOTAL** | **603** | | **350.08 kg** |
+
+> **Rev note (thread 10800, 2026-09-13):** removed *Cacao Almonds KG (Oscar's farm) [AGL14]* (10 kg — **sold to a third party**, not on this shipment); pallet row updated to **2 × plastic HDPE (10 kg each) = 20 kg** tare (was 1 × 35 kg wood). Total weight 375.08 → **350.08 kg**. Air-freight cost is weight-tier based (this still sits in the ~300 kg tier) and is expected to hold — revalidate with Graziela.
 
 **Freight cost:** $2,825.09 (see Cash Position section for full breakdown)
 
