@@ -9,8 +9,9 @@ A buyer pays cash for a **specific, QR-coded item** but has **not yet collected 
 Money has changed hands; the goods have not. This is neither a sale (no possession
 change) nor a plain inventory movement (money moved). It is a **reservation**.
 
-Because money changed hands *before* the goods, revenue must **not** be recognised at
-reservation — it books when the buyer collects.
+**Correction (verified 2026-09-12):** the DAO's ledgers are **cash-basis** — revenue is
+recognised wherever the **positive-USD cash leg** lands, which is **Event 1 (reservation)**, not
+settlement. See Ruled #3. Settlement books only the *non-revenue* legs (inventory −1, tree liability +1).
 
 ## Two events
 
@@ -89,13 +90,30 @@ DAO convention: **module names ≠ event names** — "Sales Reporter" emits a `S
    liability line; the reservation hold is marked solely by the QR `Reserved` status. Rationale: a tree
    is planted per **delivered** bag, so the obligation accrues when the buyer takes possession.
 
+3. **Revenue-recognition timing (RULED, verified against the aggregators):** the DAO ledger is
+   **cash-basis** — every revenue aggregator keys off the **positive-USD cash leg**, so revenue is
+   recognised at **`RESERVATION EVENT` (T1)**, the moment cash is booked.
+   `RESERVATION SETTLEMENT EVENT` (T2) books **only the non-revenue legs** (inventory −1 = leg 1;
+   `Cacao Tree To Be Planted` liability +1 = leg 3), which are **not** USD-positive and are therefore
+   **never** counted as revenue.
+   - **No double-count (verified).** `treasury-cache` `snapshot_managed_ledgers.py` writes **per-ledger**
+     JSON summing only **positive** rows (`total_amount = sum(amount for amount if amount > 0)`) — no
+     cross-ledger netting, no period logic. `backfill_monthly_statistics.py` and
+     `irs_tax_compilation/irs_tax_compiler.py` both select revenue as **row-level**
+     `currency == 'USD' AND amount > 0` (plus an `Is Revenue` flag / sale-keyword fallback). Splitting the
+     cash leg (T1) from the goods legs (T2) still yields **exactly one** positive-USD revenue row per sale.
+   - **Implementation guard (important):** the settlement rows (legs 1 + 3) must **not** set
+     `Is Revenue = TRUE` and must **not** carry a sale keyword (`sale` / `sales` / `sold` / `purchase` /
+     `payment`) in their description — otherwise a future positive-USD settlement adjustment could be
+     double-counted. The **reservation cash row is the one that carries revenue**; settlement rows do not.
+
 ## Open decisions (not yet ruled)
 
-1. **Residual (partly resolved):** leg-3 liability timing is now **RULED** (fires at settlement —
-   Ruled #2), so Event 1 carries **no** liability line and the QR `Reserved` status is the sole marker of a
-   hold. Remaining question: whether the **treasury-cache / P&L aggregation** splits the legs correctly
-   (leg 2 at T1; legs 1+3 at T2) across two reporting periods, or double-counts. Needs a tokenomics schema
-   check before asserting.
+1. ~~Treasury-cache / P&L aggregation: double-count across two periods?~~ — **RESOLVED (verified
+   2026-09-12): no double-count.** See **Ruled #3**. Residual nits (not blockers):
+   (a) confirm the ongoing treasury-cache publisher (`dao_offchain_treasury.json` / `SNAPSHOT.md`)
+   does not add a *second* revenue surface; (b) confirm whether `Monthly Statistics` is refreshed by an
+   ongoing job (the `backfill_monthly_statistics.py` script is labelled one-time).
 2. **Refund / expiry** — what happens if the buyer never collects? (deferred)
 3. **Beneficiary ≠ payer** — unruled.
 4. **Email path** — confirm/reuse the existing sale-confirmation sender.
