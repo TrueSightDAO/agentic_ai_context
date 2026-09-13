@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-13T16:33:02Z`
+- Generated (UTC): `2026-09-13T21:01:26Z`
 - Look-back: **7** calendar days (`2026-09-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,36 +32,37 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 23
-- `[ASSET RECEIPT EVENT]` × 4
-- `[CURRENCY DEFINITION EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 24
+- `[CURRENCY DEFINITION EVENT]` × 6
+- `[CURRENCY DEFINITION]` × 2
 - `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 9
+- `[ASSET RECEIPT EVENT]` × 1
+- `[BATCH QR CODE REQUEST]` × 1
+- `[SMOKE TEST]` × 1
+- _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260912221917_520` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Testing to ensure that beta submits cleanly
-- `Edgar_20260913000005_522` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 900 · Description: Visit to pacaje
-- `Edgar_20260913000445_524` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Visit to chocolate SUk to pick up samples and to plot the restoration plots
-- `Edgar_20260913000737_526` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Visit the Paulo’s farm to pick up the cacao samples and to plot the restorat…
-- `Edgar_20260913001221_528` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Visiting Fazenda Dona Rosa
-- `Edgar_20260913001921_530` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1080 · Description: Visiting Uruará
-- `Edgar_20260913001923_532` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1080 · Description: Visiting Uruará
-- `Edgar_20260913002446_534` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Site inspection of the factory that CEPOTX is constructing
-- `Edgar_20260913002915_536` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 660 · Description: Plot inspection or rancho maranata for restoration
-- `Edgar_20260913010858_538` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: zz-uat-currency-test-1789261732881 · Price in USD: 1.23 · Serializable: TRUE
-- `Edgar_20260913011517_540` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: zz-uat-test-currency-1789262098013 · Price in USD: 1.23 · Serializable: TRUE
-- `Edgar_20260913030129_542` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Media Gallery Publisher — plan complete (PR1–PR7, prod deployed)
-- `Edgar_20260913124509_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Media Gallery Publisher — raw machine execution
-- `Edgar_20260913124511_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Media Gallery Publisher — direct time (engagement/analysis)
-- `Edgar_20260913124514_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — scoping, directing, and approving the Media Gallery P…
-- `Edgar_20260913125203_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
-- `Edgar_20260913125205_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Sophia Truesight
-- `Edgar_20260913125208_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260913143439_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-13T14:34:38.101Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260913161251_016` · **Edgar** · [No Text Provided]
+- `Edgar_20260913181448_014` · **Edgar** · [BATCH QR CODE REQUEST] Currency: TEST QR Currency 2026-09-13 · Quantity: 1
+- `Edgar_20260913181535_016` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Coopercabruca Cacao Butter (KG) · Serializable: TRUE · Destination Inventory File Location:
+- `Edgar_20260913181848_018` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260913181851_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260913181929_022` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: TEST QR Currency 2026-09-13 · Price in USD: 25 · Serializable: TRUE
+- `Edgar_20260913182840_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Self-serve currency definition — raw machine execution (GAS deploy @15, UAT …
+- `Edgar_20260913182842_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Self-serve currency definition — direct time (engagement/analysis, root-caus…
+- `Edgar_20260913183026_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — governance/oversight on QR self-serve currency unit (…
+- `Edgar_20260913184140_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Raw machine execution — thread 27015 close-out: validate diagnosis + docs-co…
+- `Edgar_20260913184142_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Direct time (engagement/analysis) — thread 27015 close-out: validate pending…
+- `Edgar_20260913184144_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Gary Teh direct time — thread 27015 close-out: go-signal, contribution repor…
+- `Edgar_20260913185307_002` · **Edgar** · [SMOKE TEST] (no body)
+- `Edgar_20260913185933_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight
+- `Edgar_20260913195242_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia raw machine execution — Brazil→SF freight Rev 8 (AGL14 removal) + shi…
+- `Edgar_20260913195245_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia direct time (engagement/analysis) — Brazil→SF freight Rev 8 (AGL14 re…
+- `Edgar_20260913195721_010` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20260913195821_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20260913200154_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL13
+- `Edgar_20260913201703_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Raw machine execution — Brazil→SF freight Rev 9 (nibs reductions)
+- `Edgar_20260913201705_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Direct time (analysis/engagement) — Brazil→SF freight Rev 9 (nibs reductions)
 
 ---
 
@@ -197,24 +198,24 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 27 SKU lines · 2,239.72 total units · $8,422.80
+- Manager record: `Matheus Reis` · 28 SKU lines · 2,239.72 total units · $8,455.62
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
-  | (uncategorized) | (unspecified) | 14 | 329.13 | $896.30 |
+  | (uncategorized) | (unspecified) | 15 | 332.13 | $952.58 |
   | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
-  | Cacao Tea | Bulk | 5 | 156.50 | $1,587.77 |
-  | Cacao Nib | Retail Ready | 1 | 137 | $909.68 |
+  | Cacao Tea | Bulk | 5 | 155.50 | $1,577.59 |
+  | Cacao Nib | Retail Ready | 1 | 135 | $896.40 |
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 14,570.55 total units · $13,060.83
+- Manager record: `Gary Teh` · 30 SKU lines · 14,280.55 total units · $12,993.47
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 14,494.37 | $13,010.85 |
+  | (uncategorized) | (unspecified) | 28 | 14,204.37 | $12,943.48 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -236,7 +237,7 @@ _(+29 more in JSON snapshot.)_
 ### Cash float (`off chain asset balance`)
 
 - USD on hand: **$4,833.92**
-- Brazilian Reis: R$1,629.61 · rate `0.2323` USD/BRL → ≈ **$378.56**
+- Brazilian Reis: R$1,339.61 · rate `0.2323` USD/BRL → ≈ **$311.19**
 - USD provisioned for voting-rights cash-out: **$55.02**
 
 ### In-transit freight (1 row)
@@ -274,6 +275,7 @@ _All dated lines on/after 2026-09-06_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1809777 | 2026-09-13 16:35:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 7c2d1d3 | 2026-09-13 12:14:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 eae16a7 | 2026-09-12 20:52:19 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +315,6 @@ a50e683 | 2026-09-08 16:48:57 +0000 | chore(stats): refresh stats/current.json [
 5648f14 | 2026-09-07 22:26:01 -0300 | SunMint map: m.removeLayer -> map.removeLayer (fixes plot/farm select crashing handler before flyToBounds) (#362)
 c9ebe7a | 2026-09-07 22:17:28 -0300 | SunMint map: unwrap nested Polygon rings before flyToBounds (fixes plot/farm dropdown not moving map) (#361)
 f124247 | 2026-09-07 22:10:37 -0300 | SunMint map: View chips fly to their actual trees, not a hardcoded center (fixes empty ?view=altamira) (#360)
-ebfd282 | 2026-09-07 22:01:42 -0300 | SunMint map: Tree/QR control is now a click-to-open dropdown with type-to-filter (#359)
 … (truncated)
 ```
 
@@ -326,6 +327,18 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+38643e0 | 2026-09-13 17:22:00 -0300 | Add SOP: Brazil → Hong Kong cacao import (HK is a separate customs territory) (#1085)
+ffb0598 | 2026-09-13 17:02:33 -0300 | Freight Rev 9 — Cacao Nibs AGL13 −500 g, 8oz Kraft Pouch −8 bags (docs + exports) (#1084)
+96c8957 | 2026-09-13 15:59:56 -0300 | AORA plan §2a: drop AGL14 line, update pallet weight to 2×plastic (350.08 kg) (#1083)
+6f1c1e1 | 2026-09-13 15:58:45 -0300 | OPEN_FOLLOWUPS: file autopilot git-auth shadowing + dao_protocol no-CD gaps (#1082)
+82aa76d | 2026-09-13 15:46:01 -0300 | Update invoice &amp; packing list PDFs to Rev 8 (AGL14 line removed) (#1081)
+603469e | 2026-09-13 15:45:56 -0300 | Freight checklist: remove Cacao Almonds (KG) — AGL14 from INV-2026-0611-001 line items (Rev 8) (#1080)
+a2ed54b | 2026-09-13 15:36:12 -0300 | docs: correct stale "U5 partial" → U5 complete in QR currency plan + manifest (#1079)
+d414635 | 2026-09-13 15:24:24 -0300 | docs: close out QR_SELF_SERVE_CURRENCY_PLAN (UAT PASS) + file duplicate-mint defect (#1078)
+ba98187 | 2026-09-13 15:02:18 -0300 | docs(pr5): self-serve currency definition — zero -> QR-ready -> minted via Edgar (#1077)
+060feeb | 2026-09-13 14:06:19 -0300 | docs: fold verified PR3 (deploy+wire) into QR_SELF_SERVE_CURRENCY_PLAN §5 + manifest row; RESUME -> PR4/PR5 (#1075)
+ff3acdc | 2026-09-13 13:33:19 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
+f465ccc | 2026-09-13 13:33:18 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
 949aee3 | 2026-09-13 13:05:18 -0300 | docs: fold ledger-dropdown/currency-fields delta into the stale-currencies plan of record; fix QR_SELF_SERVE_CURRENCY manifest row (7611->27015, resume->PR3) (#1074)
 552c3f1 | 2026-09-13 13:01:46 -0300 | docs(followups): correct #1072 entry — ledger cache exists but is an unautomated laptop script, not a missing cache (#1073)
 0a02e5f | 2026-09-13 12:43:33 -0300 | docs(OPEN_FOLLOWUPS): file ledgers/currency-fields JSON snapshot follow-up (#1072)
@@ -354,24 +367,16 @@ fc44784 | 2026-09-12 20:47:29 -0300 | docs: RESERVATION EVENT spec v3 — two ev
 6601f15 | 2026-09-12 19:44:44 -0300 | RESERVATION EVENT spec v2 - two-event hold model (Gary Model B) (#1054)
 5b7bc0b | 2026-09-12 19:38:35 -0300 | Add incident report: Edgar placeholder submissions (71 empty-body rows)
 e4e7fdc | 2026-09-12 19:24:20 -0300 | test: pin currency dispatch routing; mark PR1/PR2 done, RESUME HERE→PR3 (#1053)
-420acfc | 2026-09-12 19:08:48 -0300 | RESERVATION EVENT spec v1 — fold in 2026-09-12 governor rulings (#1052)
-7558269 | 2026-09-12 17:47:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
-fbe4d05 | 2026-09-12 17:47:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
-7e574ff | 2026-09-12 14:41:39 -0300 | followups: file GAS parseAndProcessTelegramLogs lock temp-disable + repo-mirror push trap (#1051)
-48650e0 | 2026-09-12 14:28:55 -0300 | Add shipping addresses reference (Ilhéus BR recipient for Mercado Libre) (#1050)
-c91a933 | 2026-09-12 12:44:09 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
-5265fdf | 2026-09-12 12:44:08 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
-79a8ee0 | 2026-09-12 08:20:55 -0300 | Add RESERVATION EVENT spec v0 (reservations/deposits on the ladder) (#1049)
-3877d75 | 2026-09-12 08:05:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
-84a37bf | 2026-09-12 08:05:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
-bb44fd1 | 2026-09-12 01:52:05 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
-d389410 | 2026-09-12 01:52:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+bd12393 | 2026-09-13 15:21:13 -0300 | asset_receipt_ingest: fill empty Currencies D/E from Product Image / Landing Page labels (#491)
+df418a0 | 2026-09-13 15:08:24 -0300 | docs(schema): add CNPJ + Physical Address cols to Agroverse Cacao Processing Cost (#490)
+d9af5b9 | 2026-09-13 14:58:42 -0300 | feat(qr-gen): PR4 auto-define QR-ready currency from a batch QR request (thread 27015) (#489)
+8e05cc3 | 2026-09-13 14:45:55 -0300 | feat(gas): RESERVATION + RESERVATION SETTLEMENT processors (unit 3) (#488)
 3eb0156 | 2026-09-13 13:19:20 -0300 | fix(gas): repair sales project 1dsWecVwb HEAD drift (rename parser to live name, sync SOLD_DATE_COL, un-ignore) (#487)
 a58b256 | 2026-09-13 09:46:32 -0300 | chore(gas): track secret-free Credentials.js for sales project + bump Version (#486)
 d9f620b | 2026-09-13 01:22:18 -0300 | fix(1N6o00): currency-def parser must not leak next line on empty fields (#485)
@@ -585,7 +590,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 8:50:43 |
+| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 13:50:31 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-06`; scanned last **600** data rows)
 
