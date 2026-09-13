@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-12T20:47:16Z`
-- Look-back: **7** calendar days (`2026-09-05` → today UTC)
+- Generated (UTC): `2026-09-13T03:45:20Z`
+- Look-back: **7** calendar days (`2026-09-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 20
-- `[ASSET RECEIPT EVENT]` × 7
-- `[TREE PLANTING EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 10
-
-### Latest entries
-
-- `Edgar_20260912111222_462` · **Edgar** · [No Text Provided]
-- `Edgar_20260912112723_464` · **Edgar** · [No Text Provided]
-- `Edgar_20260912130639_466` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-12T13:06:37.975Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260912155204_468` · **Edgar** · [No Text Provided]
-- `Edgar_20260912162125_470` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Keys to Ilheus warehouse (outer door and inner door) · Amount: 1 · Description: Receipt of 1 pair of keys to open the outer and inner doors of our warehouse…
-- `Edgar_20260912162135_472` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Keys to Ilheus warehouse (outer door and inner door) · Amount: 1 · Description: Receipt of 1 pair of keys to open the outer and inner doors of our warehouse…
-- `Edgar_20260912162254_474` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Plastic Bag 12cm X 25cm - 500 grams capacity · Amount: 100 · Description: 1 bag of 100 units of these bags bought from the nearby store
-- `Edgar_20260912162407_476` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Plastic Bag 40cm X 60cm - 10 kilograms capacity · Amount: 100 · Description: 100 of these 10kilogram capacity plastic bags bought from the nearby store
-- `Edgar_20260912162828_478` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260912163238_482` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260912163341_484` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260912173237_486` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Mercado Libre shipping address — form field mapping, CEP verification, and a…
-- `Edgar_20260912173428_488` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Reinforced Cardboard Boxes - Size 40x30x30 · Amount: 25 · Description: Purchase of 25 of these on mercado libre
-- `Edgar_20260912173545_490` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Digital Kitchen Scale, 10kg Capacity · Amount: 1 · Description: Purchase of one of these from Mercado Libre
-- `Edgar_20260912173650_492` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Steel Tape Measure 5m x 19mm Self-Locking Vonder Plus · Amount: 1 · Description: Purchase of measuring tape from Mercado libre
-- `Edgar_20260912173930_494` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260912174010_496` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20260912174156_498` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fix GAS parseAndProcessTelegramLogs lock stall (temp-disable + false-success…
-- `Edgar_20260912174239_500` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
-- `Edgar_20260912174630_502` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Shopping for supplies to use for shipping our stuff to China and USA from Il…
 
 ---
 
@@ -231,17 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,833.97**
-- Brazilian Reis: R$1,629.61 · rate `0.2323` USD/BRL → ≈ **$378.56**
-- USD provisioned for voting-rights cash-out: **$54.98**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -251,7 +210,9 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-09-05 in CONTEXT_UPDATES.md.)_
+_All dated lines on/after 2026-09-06_ (1):
+
+- 2026-09-12 | sophia | `skus.json` SKU catalog now published by the `go_to_market` Python/GHA job (`sync_agroverse_store_inventory.py` + `publish-agroverse-inventory-snapshot.yml`, daily `15 6 * * *`) — PRs go_to_market #174 (emit A–I of the Agroverse SKUs tab) + #175 (`UNFORMATTED_VALUE` read so `priceUsd` is `25`, not `$25.00`; the DApp `define_currency.html` inputs `priceUsd` into a `type="number"` field). Verified live: commit `cf5d0c6` by `github-actions[bot]` 2026-09-12T23:56:32Z, `source = sync_agroverse_store_inventory`, 14 rows, `priceUsd = "25"`. New runbook `AGROVERSE_INVENTORY_PUBLISHERS.md` maps all four caches → publishers → crons → force-a-run; `OPEN_FOLLOWUPS.md` files the GAS-vs-Python two-writer hazard.
 
 ---
 
@@ -259,7 +220,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-05 in CONTEXT_UPDATES.md.)_
 
 | Pipeline | Mapped clone | Activity in window |
 |----------|----------------|----------------------|
-| `go_to_market` | `market_research` | **no** |
+| `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
 | `oracle` | `iching_oracle` | **no** |
 
@@ -270,6 +231,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+eae16a7 | 2026-09-12 20:52:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 e5edb34 | 2026-09-12 15:46:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 1a22e76 | 2026-09-12 08:22:56 -0300 | crf-anapu: add 14 site-visit videos to program gallery (#377)
 3c2897a | 2026-09-12 11:11:35 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -309,19 +271,39 @@ f124247 | 2026-09-07 22:10:37 -0300 | SunMint map: View chips fly to their actua
 ebfd282 | 2026-09-07 22:01:42 -0300 | SunMint map: Tree/QR control is now a click-to-open dropdown with type-to-filter (#359)
 adf89f2 | 2026-09-07 21:54:07 -0300 | SunMint impact map: grouped Plots dropdown (kills Farm select) + Tree/QR lookup box (#358)
 0fa87db | 2026-09-07 21:44:39 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9b01cf7 | 2026-09-07 12:57:40 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-_(no commits on origin/main in window)_
+bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells unformatted so priceUsd matches the GAS/dapp contract (#175)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0a5919a | 2026-09-12 23:40:40 -0300 | OPEN_FOLLOWUPS: file stale GAS manifest.json (missing @10 currency web app) (#1069)
+ea43d8d | 2026-09-12 23:11:56 -0300 | HANDOFF_MANIFEST: mark Media Gallery Publisher (26438) complete (#1068)
+0475799 | 2026-09-12 23:11:42 -0300 | Media Gallery Publisher: PR7 prod promote done — plan complete (#1067)
+4cdeb65 | 2026-09-12 22:57:14 -0300 | media-gallery-publisher: PR5+PR6 merged, timer installed, UAT passed; PR7 gated (#1066)
+0ab0e97 | 2026-09-12 22:36:50 -0300 | docs: reservation spec — rule open #2/#3/#4 (no expiry, free-text note, reuse email sender) (#1065)
+e74bd4e | 2026-09-12 22:09:25 -0300 | Media Gallery Publisher: PR3+PR4 merged, PR2 closed (sha re-confirmed), RESUME HERE -> PR5 (#1064)
+9602603 | 2026-09-12 22:01:46 -0300 | open-followups: file timestamp-in-filename defect class (#1063)
+862d112 | 2026-09-12 21:59:07 -0300 | docs: reservation spec — resolve open #1 (no double-count; revenue is cash-basis at T1) (#1062)
+a5f79c1 | 2026-09-12 21:49:32 -0300 | docs: reservation spec — add Definition of Done incl. event-lookup tool update (#1061)
+63ce013 | 2026-09-12 21:46:56 -0300 | docs: reservation spec — tree-planting liability ruled to fire at SETTLEMENT (#1060)
+d12504e | 2026-09-12 21:43:59 -0300 | Draft plan: Discord adapter for Sophia (channel→tier policy, identity binding, milestones) (#1055)
+a4e7449 | 2026-09-12 21:43:45 -0300 | docs: reservation spec — inventory drop ruled at SETTLEMENT; leg-split mechanic (#1059)
+fce5fe0 | 2026-09-12 20:58:50 -0300 | docs: add AGROVERSE_INVENTORY_PUBLISHERS runbook; file two-writer follow-up (#1058)
+66b277a | 2026-09-12 20:53:29 -0300 | docs: canonical AUTOPILOT_CHANNEL_INTEGRATIONS.md (venue pattern + add-a-venue guide) (#1057)
+fc44784 | 2026-09-12 20:47:29 -0300 | docs: RESERVATION EVENT spec v3 — two events, reserved QR, settlement (#1056)
+6601f15 | 2026-09-12 19:44:44 -0300 | RESERVATION EVENT spec v2 - two-event hold model (Gary Model B) (#1054)
+5b7bc0b | 2026-09-12 19:38:35 -0300 | Add incident report: Edgar placeholder submissions (71 empty-body rows)
+e4e7fdc | 2026-09-12 19:24:20 -0300 | test: pin currency dispatch routing; mark PR1/PR2 done, RESUME HERE→PR3 (#1053)
+420acfc | 2026-09-12 19:08:48 -0300 | RESERVATION EVENT spec v1 — fold in 2026-09-12 governor rulings (#1052)
+7558269 | 2026-09-12 17:47:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
+fbe4d05 | 2026-09-12 17:47:31 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-12 UTC)
 7e574ff | 2026-09-12 14:41:39 -0300 | followups: file GAS parseAndProcessTelegramLogs lock temp-disable + repo-mirror push trap (#1051)
 48650e0 | 2026-09-12 14:28:55 -0300 | Add shipping addresses reference (Ilhéus BR recipient for Mercado Libre) (#1050)
 c91a933 | 2026-09-12 12:44:09 -0300 | chore(previews): refresh Beer Hall preview (2026-09-12 UTC)
@@ -341,33 +323,17 @@ d61498f | 2026-09-11 15:43:07 -0300 | File 3 follow-ups from AGL14 serialization
 e744945 | 2026-09-11 15:40:57 -0300 | Black King: arrival register join (offchain assets in transit) + Rev-7 cross-check (#1044)
 90fab89 | 2026-09-11 15:34:16 -0300 | Black King manifests: strike Shipments 8 & 13 (never shipped) — Rev 6 (#1043)
 f9b8ad1 | 2026-09-11 13:41:19 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
-628e939 | 2026-09-11 13:41:18 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
-d3ad8d6 | 2026-09-11 12:40:17 -0300 | Media Gallery Publisher PR2: mark write-path blocker superseded (verified) — RESUME HERE → PR3 (#1042)
-ce558a5 | 2026-09-11 12:35:08 -0300 | CRF Anapu: record standalone subdomain cfr.truesight.me LIVE (plan §7 + manifest row) (#1041)
-9b23f17 | 2026-09-11 12:31:53 -0300 | BK manifests: add EO-14324 post-de-minimis import-gate context (thread 26215) (#1040)
-b94fcc9 | 2026-09-11 12:31:34 -0300 | followups: box root disk fills to 100% (scratch clones on /tmp vs 246G /media) (#1039)
-9a08022 | 2026-09-11 11:56:50 -0300 | handoff: CACAU_NA_VEIA_MEDIA_TASK_PLAN — mark COMPLETED (prod deployed & verified) (#1038)
-5c7277c | 2026-09-11 11:45:47 -0300 | handoff: Media Gallery Publisher plan + manifest row + media.agroverse.shop TLS follow-up (#1036)
-64e3ac1 | 2026-09-11 11:45:25 -0300 | scratch: github update-path check (v2 update)
-4fee8b2 | 2026-09-11 11:45:19 -0300 | scratch: github update-path check (v1, will be removed)
-28223c0 | 2026-09-11 11:41:42 -0300 | Black King: revert AGL7 did-not-pass error (#9 passed through) (#1037)
-0cab5e4 | 2026-09-11 11:36:42 -0300 | Black King shipments: add weights, mark AGL7 #9 did-not-pass, drop #14 (#1035)
-d3468ed | 2026-09-11 11:33:44 -0300 | Repoint repo-access-denylist manifest row to exec thread 26410 (#1034)
-5762088 | 2026-09-11 11:31:32 -0300 | Add Sophia repo-access denylist design plan (§5a PR1) (#1033)
-25ced26 | 2026-09-11 10:51:53 -0300 | CRF Anapu plan: sync status (PR2, PR4 shipped; PR5 in flight) (#1032)
-cd79034 | 2026-09-11 10:41:57 -0300 | Register Claude/Kimi/OpenAI identities; complete sentinel roster (#1031)
-eb54652 | 2026-09-11 10:35:05 -0300 | Register Envoy + DeepSeek identities in the agent registry (#1030)
-ead0464 | 2026-09-11 10:30:55 -0300 | Record Sophia's canonical email in the agent registry (#1029)
-c695014 | 2026-09-11 10:30:11 -0300 | Add Black King per-shipment manifests + origin unit costs (#1028)
-12faffb | 2026-09-11 09:31:55 -0300 | Add Correios shipments index (Currencies ledger + FDA FSVP) (#1027)
-e7d223a | 2026-09-11 08:41:15 -0300 | chore(previews): refresh Beer Hall preview (2026-09-11 UTC)
-61695e0 | 2026-09-11 08:41:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-11 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+18050d1 | 2026-09-13 00:21:37 -0300 | Add RESERVED QR status enum + exclude from availability pickers (#481)
+3c92587 | 2026-09-12 22:40:05 -0300 | fix(scoring): stop grok scorer falsely stamping non-[CONTRIBUTION EVENT] rows as Successfully Completed (#479)
+53f3075 | 2026-09-12 22:02:07 -0300 | dao_forms: add ?currency_fields action (farm/state/country distinct values) (#478)
+afeaf42 | 2026-09-12 19:20:47 -0300 | update_store_inventory: emit agroverse-inventory/skus.json (SKU catalog cache) (#477)
+2f411a0 | 2026-09-12 19:16:46 -0300 | currency definition GAS: write SKU Product ID (col M) + infer Serializable from SKU stock; fix A:L sort (#476)
 054f700 | 2026-09-12 14:32:10 -0300 | fix(expense): disable proc script lock (contention stalled all runs) + stop false success (#475)
 0100cd4 | 2026-09-10 16:30:37 -0300 | feat(tree-planting): optional Plot ID column (T) on SunMint Tree Planting (#474)
 c9e7d18 | 2026-09-10 07:48:34 -0300 | Add regression guard: Telegram-log processors must take the script lock (#473)
@@ -414,6 +380,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+cf5d0c6 | 2026-09-12 23:56:32 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+de8a58b | 2026-09-12 20:28:34 -0300 | chore: refresh Agroverse SKU catalog snapshot
 f9425a2 | 2026-09-12 14:21:54 -0300 | chore: refresh currencies.json [skip ci]
 8ef82e7 | 2026-09-12 13:13:59 -0300 | chore(currencies): sync Currencies tab @ 2026-09-12T16:13:10.000Z (141)
 0220cc5 | 2026-09-12 11:14:55 +0000 | chore: refresh currencies.json [skip ci]
@@ -437,6 +405,7 @@ ab627df | 2026-09-06 11:20:30 +0000 | chore: refresh currencies.json [skip ci]
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+1390844 | 2026-09-12 22:33:13 -0300 | media-gallery: fetch-first published gallery with local fallback + curation merge (PR6) (#322)
 2cdd03f | 2026-09-11 11:48:47 -0300 | brazilian-path: smooth south→north→west route, no backtracking (#321)
 931df0a | 2026-09-11 11:31:34 -0300 | cacau-na-veia-pacaje: publish 33 site-visit videos in the farm page gallery (PR6) (#320)
 604c4e5 | 2026-09-10 16:52:25 -0300 | farm(sitio-torres-pacaja-para): surface 35 site-visit videos in gallery (#319)
@@ -476,7 +445,6 @@ ad9c54e | 2026-09-05 22:05:18 -0300 | Fix JS SyntaxError breaking Santa Ana farm
 cbe8af5 | 2026-09-05 21:43:15 -0300 | Update paulo prose plot id LD-P1 to canonical V-06-29 (#298)
 723f30d | 2026-09-05 21:42:39 -0300 | Add Fazenda Santa Ana family photo IMG_8261 (18 Sep 2023 farm visit)
 3018c61 | 2026-09-05 21:42:38 -0300 | Add Fazenda Santa Ana drying check photo IMG_8247 (18 Sep 2023 farm visit)
-ad73887 | 2026-09-05 21:42:37 -0300 | Add Fazenda Santa Ana drying terrace photo IMG_8224 (18 Sep 2023 farm visit)
 … (truncated)
 ```
 
@@ -496,6 +464,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-09-13T034519Z_media-gallery-complete-and-reserved-qr-status.md`
+
+- **posted_at_utc:** `2026-09-13T03:45:19Z`  
+- **slug:** `media-gallery-complete-and-reserved-qr-status`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Media Gallery Publisher** — Plan completed (PR1–PR7) and fetch-first gallery logic merged to production.
+
 ### `beer-hall_2026-09-12T033932Z_crf-anapu-gallery-and-black-king-update.md`
 
 - **posted_at_utc:** `2026-09-12T03:39:32Z`  
@@ -513,15 +490,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **New Farms** — Published Sítio Cristo Rei and Sítio Cacau na Veia (Pacajá) profiles with SunMint plot linking and Brazilian journey integration.
-
-### `beer-hall_2026-09-10T033637Z_sunmint-map-upgrades-plot-validation.md`
-
-- **posted_at_utc:** `2026-09-10T03:36:37Z`  
-- **slug:** `sunmint-map-upgrades-plot-validation`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **SunMint Map** — Added plot type filters and clickable dropdowns for Trees and Plots to improve map navigation; popups now display Plot Type and tree photos.
 
 ---
 
@@ -542,39 +510,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/12/2026 12:57:00 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-05`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
