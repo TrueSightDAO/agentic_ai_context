@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Defect class: filenames built with `Date.now()` at multiple call sites drift apart (first instance: `define_currency.html`)
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
+
+**Context.** On `dapp_beta/define_currency.html`, `generateImageFileName()` embedded `Date.now()` and was called at three separate points — UI display (`updateImageInfo`), the signed payload (`buildPayloadText`), and the actual upload (`submitDefinition`). Each call minted a fresh timestamp, so the `Product Image:` value in the signed payload did **not** match the uploaded attachment's filename → broken image link for any currency defined via file-upload without an explicit Product Image URL. Caught in UAT by Envoy.
+
+**Fixed.** `dapp_beta` PR #90 (merged, `39fffe64`): generate the filename once at file-selection time into `attachedImageGeneratedName`, reuse everywhere; `generateImageFileName()` dropped from 4 call sites to 2.
+
+**Why filed as a class, not a one-off.** The bug is a *pattern*: any "generate a timestamped name at N consumption sites" helper drifts the same way. Audit other pages/repos for `Date.now()` / `new Date().getTime()` feeding a filename that is (a) shown to the user, (b) embedded in a signed payload, and (c) used as the upload name — collapse to a single generate-once-cache result. Cheap static check: grep for a filename-builder invoked more than once in the same page/flow.
+
+**Evidence.** `dapp_beta` PR #90; UAT thread 27015.
+
 ### Two writers to `agroverse-inventory/skus.json` — the GAS `update_store_inventory` project and the Python/GHA job both publish it (retire one)
 **Filed 2026-09-12. Owner: unclaimed. Governor: Gary (thread 27015).**
 
