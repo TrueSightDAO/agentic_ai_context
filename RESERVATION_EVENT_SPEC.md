@@ -26,7 +26,7 @@ reservation — it books when the buyer collects.
 | `Proof` (image/PDF) | evidence money actually changed hands |
 
 **Effects:** QR status → **`Reserved`** · cash booked under `Payment Collected By` (this is **leg 2**
-of a normal sale — see mapping below). **No inventory row moves.**
+of a normal sale — see mapping below). **No inventory row moves. No liability line books.**
 
 ### Event 2 — `RESERVATION SETTLEMENT EVENT` (goods collected)
 
@@ -36,7 +36,7 @@ of a normal sale — see mapping below). **No inventory row moves.**
 | `Buyer Email` | recipient of the confirmation email |
 
 **Effects:** QR status → **`SOLD`** · inventory count **reduced** (this is **leg 1** of a normal sale) ·
-buyer emailed.
+**the `Cacao Tree To Be Planted` liability books here (leg 3)** · buyer emailed.
 
 ### How this maps onto the existing sale booking (verified)
 
@@ -51,8 +51,11 @@ buyer emailed.
 A retail sale books **legs 1 + 2 together** (money and goods move at once). A reservation simply
 **splits those legs across two events**:
 
-- **Event 1** books **leg 2 only** (+USD to `Payment Collected By`) + sets QR `Reserved`.
-- **Event 2** books **leg 1 only** (−1 `<inventory type>`) off the QR's **current holder**, sets QR `SOLD`, emails the buyer.
+- **Event 1** books **leg 2 only** (+USD to `Payment Collected By`) + sets QR `Reserved`. **No inventory row, no liability row.**
+- **Event 2** books **legs 1 + 3** (−1 `<inventory type>` off the QR's **current holder**; +1 `Cacao Tree To Be Planted` Liability), sets QR `SOLD`, emails the buyer.
+
+So the **tree-planting liability rides with the goods, not the cash** — it accrues only once the buyer
+actually takes possession (settlement), matching the real-world trigger (a tree is planted per delivered bag).
 
 No new booking machinery — the reservation flow reuses the same row shape, **one leg at a time**.
 
@@ -81,11 +84,18 @@ DAO convention: **module names ≠ event names** — "Sales Reporter" emits a `S
    marked **solely by the QR status `Reserved`**; no inventory position moves. The drop lands on the
    QR's **current holder**. (This retires the earlier Model B / Model C "negative position" ideas.)
 
+2. **Tree-to-be-planted liability timing (RULED):** the `+1 Cacao Tree To Be Planted` Liability line
+   (leg 3) fires at **`RESERVATION SETTLEMENT EVENT` only** — never at reservation. Event 1 books **no**
+   liability line; the reservation hold is marked solely by the QR `Reserved` status. Rationale: a tree
+   is planted per **delivered** bag, so the obligation accrues when the buyer takes possession.
+
 ## Open decisions (not yet ruled)
 
-1. **Revenue / P&L timing** — the DAO ledger books per-contributor **Assets/Liability positions**, not a P&L.
-   Confirm whether a reservation needs a **deferred-goods Liability line**, or whether the QR `Reserved`
-   status alone is the marker. (Needs a tokenomics schema check before asserting "revenue defers".)
+1. **Residual (partly resolved):** leg-3 liability timing is now **RULED** (fires at settlement —
+   Ruled #2), so Event 1 carries **no** liability line and the QR `Reserved` status is the sole marker of a
+   hold. Remaining question: whether the **treasury-cache / P&L aggregation** splits the legs correctly
+   (leg 2 at T1; legs 1+3 at T2) across two reporting periods, or double-counts. Needs a tokenomics schema
+   check before asserting.
 2. **Refund / expiry** — what happens if the buyer never collects? (deferred)
 3. **Beneficiary ≠ payer** — unruled.
 4. **Email path** — confirm/reuse the existing sale-confirmation sender.
