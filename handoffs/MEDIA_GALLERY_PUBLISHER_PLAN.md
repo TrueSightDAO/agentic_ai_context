@@ -1,6 +1,6 @@
 # Media Gallery Publisher — execution plan
 
-**Created:** 2026-09-11 (Sophia) at Gary's request · **Handoff:** thread 26438 · **Status:** PR1 ✅ merged (#1036); PR2 ✅ closed (write path re-confirmed on the real cross-repo target); PR3 ✅ merged (#25); PR4 ✅ merged (#26); PR5 ✅ merged (#27 + #28; **timer installed on the box 2026-09-13**); PR6 ✅ merged (agroverse_shop_beta #322; **UAT PASSED**) — **PR7 awaits explicit governor GO**
+**Created:** 2026-09-11 (Sophia) at Gary's request · **Handoff:** thread 26438 · **Status:** PR1 ✅ merged (#1036); PR2 ✅ closed (write path re-confirmed on the real cross-repo target); PR3 ✅ merged (#25); PR4 ✅ merged (#26); PR5 ✅ merged (#27 + #28; **timer installed on the box 2026-09-13**); PR6 ✅ merged (agroverse_shop_beta #322; **UAT PASSED**); **PR7 ✅ merged + deployed to prod (2026-09-13) — plan complete**
 **Origin:** spun out of the Cacau na Veia (N-06-37) PR6 near-miss — 33 site-visit videos were fully transcoded + uploaded to YouTube (sidecars carried `yt_id`), yet `farms/cacau-na-veia-pacaje/media.json` stayed photos-only. Nothing reconciled "uploaded" against "published". See `handoffs/CACAU_NA_VEIA_MEDIA_TASK_PLAN.md`.
 
 ## Goal
@@ -40,7 +40,7 @@ site media-gallery.js:   fetch that JSON  (fallback ./media.json)
 - **PR4** — `farm-media-manifest commit --with-gallery <collection>`; backfill `yt_id` (replaces the hand-authoring PR6 needed). Parity check: `sidecars-with-yt_id == media.json youtube count == manifest yt_id`. ✅ **merged 2026-09-11 (farm-media-daemon #26)** — `--with-gallery` emits the gallery block at commit time; `parity()` exits 2 on drift; byte-exact verified; 46 tests pass.
 - **PR5** ✅ **merged 2026-09-13 (farm-media-daemon #27 + #28)** — `farm_media_publisher.py` does an idempotent reconcile (read sidecars/manifest → emit ordered gallery JSON → write `galleries/<collection>.json` into `farm_media_manifests`); `#28` gates image entries on site-repo assets (Option A). systemd unit + timer shipped in-repo and **installed + enabled on the box 2026-09-13** (15-min cadence, `Persistent=true`). First run exit 0; reconciled 16 collections → 15 gallery files, `cacau-na-veia-pacaje` unchanged.
 - **PR6** ✅ **merged 2026-09-13 (agroverse_shop_beta #322)** — site `js/media-gallery.js` fetches the published gallery first, falls back to `./media.json`, and merges curated local fields by id/src. **UAT passed** (see Completion log).
-- **PR7** — promote beta→prod on **explicit GO** (prod currently serves the old `media.json`-only script; delta = the fetch-first `media-gallery.js`).
+- **PR7** ✅ **merged + deployed 2026-09-13** — promote beta→prod on explicit GO. `sync_beta_to_prod("agroverse_shop_prod")` (merge-upstream, no force); prod `main` now carries the fetch-first `js/media-gallery.js` (md5 `d6cf69f8…`, identical to beta). Pages build completed; live prod asset verified.
 
 ## Gates / cautions
 - Never write the site repo from the daemon. The publisher may write the data repo without a PR (machine-owned); the *site* change (PR6) is PR-reviewed and beta-first.
@@ -48,9 +48,9 @@ site media-gallery.js:   fetch that JSON  (fallback ./media.json)
 - No prod sync without governor GO.
 
 ## RESUME HERE
-**PR7 only.** Publisher (PR5) and site wiring (PR6) are both merged and the UAT gate has passed. The sole remaining unit is the **prod promote** (`agroverse_shop_beta` → `agroverse_shop_prod`), which the plan gates on an **explicit governor GO** — a generic "go" resumes the plan but does not clear that gate. On an explicit GO, `sync_beta_to_prod("agroverse_shop_prod")` (merge-upstream, no force), then re-verify the live farm page.
+**None — plan complete.** All units PR1–PR7 merged; PR7 (prod) deployed and verified on 2026-09-13 following explicit governor GO.
 
-**Progress:** PR1 ✅ (#1036) · PR2 ✅ closed (write path re-confirmed on the real cross-repo target, commit `818766d`, no 422) · PR3 ✅ (#25) · PR4 ✅ (#26) · **PR5 ✅ (#27 + #28, timer installed on the box)** · **PR6 ✅ (agroverse_shop_beta #322, UAT passed)**. Remaining: **PR7 (prod — explicit GO)**.
+**Progress:** PR1 ✅ (#1036) · PR2 ✅ closed (write path re-confirmed on the real cross-repo target, commit `818766d`, no 422) · PR3 ✅ (#25) · PR4 ✅ (#26) · **PR5 ✅ (#27 + #28, timer installed on the box)** · **PR6 ✅ (agroverse_shop_beta #322, UAT passed)** · **PR7 ✅ (prod promote, deployed + verified)**. **COMPLETE.**
 
 ## Completion log
 
@@ -62,3 +62,8 @@ site media-gallery.js:   fetch that JSON  (fallback ./media.json)
 ### PR6 — site fetch-first + UAT (2026-09-13)
 - `agroverse_shop_beta #322` merged: `js/media-gallery.js` now tries `farm_media_manifests/galleries/<slug>.json` first (published membership wins), then falls back to `./media.json`, merging curated local fields (caption/alt/aspect/section) by id/src. Hero + farmer stay local-first.
 - **UAT — `cacau-na-veia-pacaje`, beta:** published gallery = **33 videos + 12 images**; 12/12 image URLs HTTP 200; headless render = **12 `<img>` + 33 YouTube iframes**; page HTTP 200. Publisher re-run = `unchanged (33 videos, 45 entries)` → no commit churn.
+
+### PR7 — prod promote (2026-09-13)
+- Explicit governor GO in thread 26438 ("Go prod") → `sync_beta_to_prod("agroverse_shop_prod")` (merge-upstream, no force). Deploy ledger `deploy_20260913T020855Z_agroverse-shop-prod`.
+- Prod repo `main` = fetch-first `js/media-gallery.js` (7355 B, md5 `d6cf69f8…`, byte-identical to beta), commit `ed3c3b34b`. First live probe still served the stale 4605 B asset while GitHub's Pages build was `in_progress`; it flipped to the new asset ~2 min later.
+- **Verified live (prod):** `https://agroverse.shop/js/media-gallery.js` serves the fetch-first script (contains `farm_media_manifests`); farm page HTTP 200; headless render = **12 `<img>` + 33 YouTube iframes**; published gallery = 45 entries (33 video + 12 image).
