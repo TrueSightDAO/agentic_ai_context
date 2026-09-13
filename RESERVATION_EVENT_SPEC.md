@@ -1,6 +1,6 @@
 # RESERVATION EVENT — Design Spec (v3)
 
-**Status:** design only — no implementation yet. Supersedes v2 (2026-09-12).
+**Status:** design **fully ruled** (v3.1) — implementation starting. Supersedes v2 (2026-09-12).
 **Owner:** Gary Teh · **Drafted by:** Sophia Truesight
 
 ## Scenario
@@ -107,16 +107,26 @@ DAO convention: **module names ≠ event names** — "Sales Reporter" emits a `S
      `payment`) in their description — otherwise a future positive-USD settlement adjustment could be
      double-counted. The **reservation cash row is the one that carries revenue**; settlement rows do not.
 
-## Open decisions (not yet ruled)
+4. **Refund / expiry (RULED 2026-09-12):** if the buyer never collects, the QR **stays `Reserved`
+   indefinitely**. **No** reversal, **no** cancellation event, **no** auto-expiry. Consistent with
+   cash-basis revenue (Ruled #3): the cash is booked, the goods simply remain held. `Reserved` is a
+   *terminal-until-collected* state, **not** a timeout state — nothing sweeps it.
 
-1. ~~Treasury-cache / P&L aggregation: double-count across two periods?~~ — **RESOLVED (verified
-   2026-09-12): no double-count.** See **Ruled #3**. Residual nits (not blockers):
-   (a) confirm the ongoing treasury-cache publisher (`dao_offchain_treasury.json` / `SNAPSHOT.md`)
-   does not add a *second* revenue surface; (b) confirm whether `Monthly Statistics` is refreshed by an
-   ongoing job (the `backfill_monthly_statistics.py` script is labelled one-time).
-2. **Refund / expiry** — what happens if the buyer never collects? (deferred)
-3. **Beneficiary ≠ payer** — unruled.
-4. **Email path** — confirm/reuse the existing sale-confirmation sender.
+5. **Beneficiary ≠ payer (RULED 2026-09-12):** a **free-text note** on the reservation event is
+   sufficient to record who the item is for when that differs from the payer. **No** distinct
+   beneficiary field is added to the ledger schema.
+
+6. **Email path (RULED 2026-09-12):** the settlement confirmation email **reuses the existing
+   sale-confirmation sender** — GAS `sendTransactionCompletionNotification(qrCode, contributorName)`
+   (already called by the `sales_update_*` processors at sale completion). **No** new mail transport.
+
+## Open decisions
+
+**None — the design is fully ruled.** The three former open items (#2–#4) were ruled by the governor on
+2026-09-12 and are recorded below as **Ruled #4–#6**. Two residual *verification nits* (not decisions)
+remain on Ruled #3: (a) confirm the ongoing treasury-cache publisher (`dao_offchain_treasury.json` /
+`SNAPSHOT.md`) adds no *second* revenue surface; (b) confirm whether `Monthly Statistics` is refreshed by
+an ongoing job (`backfill_monthly_statistics.py` is labelled one-time).
 
 ## Definition of Done (completion checklist)
 
