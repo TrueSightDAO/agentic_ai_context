@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Duplicate minting in the batch-QR pipeline when Edgar's GAS webhook times out and retries
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
+
+**Context.** During the UAT for `plans/QR_SELF_SERVE_CURRENCY_PLAN.md` a `[BATCH QR CODE REQUEST]` for **`quantity=1`** minted **4** `Agroverse QR codes` rows and wrote **4** `QR Code Generation` rows (all the same Telegram message id). Edgar's `truesight_dao_client/server/jobs/webhook_trigger.py` fires the GAS webhook with `_MAX_ATTEMPTS=3`, retrying on **any `requests.RequestException`, including `ReadTimeout`** (`_TIMEOUT=30`); the journal shows `webhook attempt 1/3 … 2/3 … 3/3 failed: processQRCodeGenerationTelegramLogs — Read timed out` at 18:15–18:16 on 2026-09-13. Apps Script **keeps running after the client gives up**, and the handler's dedupe (`processedMessageIds.includes(messageId)` + `findExistingQRCodeGenerationRow(messageId)`, **no `LockService`**) is a non-atomic read-then-write → each retry passes the check before any append lands, so **every attempt mints another row**. Same signature as the historical blank duplicate rows in `QR Code Generation` (rows 12/15/16).
+
+**Why it matters.** Any GAS webhook action slower than 30 s silently **duplicates side effects** proportional to the retry count — batch-QR minting, currency-definition rows, tree-planting, etc. Fast actions aren't retried (they return 200), so the bug only bites the slow ones — exactly the ones doing row-creating work.
+
+**Proposed work (two-sided, small).** (1) `dao_protocol` `truesight_dao_client/server/jobs/webhook_trigger.py`: GAS `/exec?action=` calls are **non-idempotent** — do **not** retry them (`_MAX_ATTEMPTS=1`), relying on the existing GAS-cron fallback; log the timeout so the cron pickup is visible. (2) Defence in depth in the GAS handler: wrap the scan-and-append critical section in `LockService.getScriptLock()` so concurrent executions serialise and the dedupe read sees prior appends.
+
+**Evidence.** `dao_protocol` `truesight_dao_client/server/jobs/webhook_trigger.py` (`_MAX_ATTEMPTS=3`, retry-on-`RequestException`); journal `truesight-dao-protocol.service` 2026-09-13 18:15–18:16; `tokenomics` `google_app_scripts/1N6o00…/process_qr_code_generation_telegram_logs.js` (dedupe ~L298–386, no lock; `getProcessedMessageIds`, `findExistingQRCodeGenerationRow`); thread 27015.
+
 ### `define_currency.html` catalog caches (ledger dropdown + farm/state/country) — tracked in the stale-currencies plan of record
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
 
