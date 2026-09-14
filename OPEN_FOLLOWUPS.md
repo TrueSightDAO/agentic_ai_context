@@ -996,7 +996,7 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: blocked
 description: >
   [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] No progress
   evidence in our records. Unlike sibling "unidentifiable" items, THIS track
@@ -1007,7 +1007,13 @@ description: >
   `pdfs/aora-module-supply-chain.en.pdf` (EN only; zh-CN exists as
   `modules/*/index.zh-CN.md` with NO zh-CN PDF). A third module (Market
   Sensitivity & Design Thinking) is authored by Mr Cao and is NOT in the
-  repo. Dependency chain to chase: Jerrie's PDF→PPT → Mr Liu certification
+  repo. [Sophia 2026-09-14] UPDATE — the agent-side work is DONE: a first-pass
+  EN deck now exists at PR TrueSightDAO/aora#3 (25 slides, built from the
+  canonical modules/ sources). Awaiting Gary's content review plus scope
+  confirmation (audience; EN vs zh-CN; Mr Liu's certification questions). Note
+  still NO Jerrie/"Mr Liu"/"Mobile UN" correspondence in either mailbox, so it
+  is unconfirmed whether the ask was ever sent to Jerrie or whether we own it.
+  Parked as `blocked` (gated on Gary's review); flip back to `open` on request. Dependency chain to chase: Jerrie's PDF→PPT → Mr Liu certification
   (via Evan) → Cao distribution. No Jerrie/"Mr Liu"/"Mobile UN"
   correspondence exists in either mailbox (admin@ / gary@), and
   `plans/AORA_EXPERIENCE_PLAN.md` contains no PDF→PPT unit. NOTE the sibling
@@ -1028,7 +1034,7 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: blocked
 description: >
   [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] KEY FINDING:
   we ALREADY generated this deck in-house — on 2026-07-26 admin@truesight.me
@@ -1042,7 +1048,14 @@ description: >
   is unidentified — zero context/code/mail hits (only substring false
   positives like shop.tiktok.com "win big"). Sibling block
   `jerrie-mobile-un-aora-ppt` (same batch) covers the Aora modules; the two
-  share one ask to Jerrie. Confirm scope with Gary before re-doing work.
+  share one ask to Jerrie. Confirm scope with Gary before re-doing work. [Sophia 2026-09-14] UPDATE —
+  the ceremonial-cacao half now has a first-pass EN deck at PR
+  TrueSightDAO/go_to_market#176 (11 slides, compiled from in-house
+  ceremonial_cacao_seo/ research + product/provenance facts). The TEA half
+  remains already-delivered to Elizabeth Wong 2026-07-26. Awaiting Gary's
+  review plus market/audience decision (China vs general) and who "Win" is.
+  Parked as `blocked` (gated on Gary's review); flip back to `open` on
+  request.
   All pings go to thread 11042.
 ```
 
