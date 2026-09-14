@@ -1086,7 +1086,7 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: blocked
 description: >
   [2026-09-02] MAPA leg RESOLVED — Orlantildes/Coopercabruca MAPA
   registration is COMPLETED (confirmed by Gary, thread 11042). China lane:
@@ -1096,6 +1096,22 @@ description: >
   here until a formal INVENTORY MOVEMENT is recorded. When this fires,
   decide whether to record the cacao butter receipt in the ledger. All pings
   go to thread 11042.
+  [Sophia 2026-09-14] DECISION PENDING (Gary). Verified findings: (1) the
+  mechanism IS appropriate -- DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md:133 says a
+  separate [INVENTORY MOVEMENT] is needed for "bulk/non-serialized inventory
+  tracked by weight or count", which is exactly 5 kg of butter; lookup_event_docs
+  confirms only Manager+Recipient are required, so no QR code is needed. (2) No
+  cacao-butter SKU or currency exists anywhere in the ledger or context (every
+  "butter" hit is the Butterfly Effect Club). (3) No mail (admin@/gary@) or
+  transcript evidence of the delivery itself -- the 2024 Coopercabruca Pix rows
+  are bean purchases, not butter. (4) The butter is line 11 on export invoice
+  INV-2026-0611-001 (Coopercabruca Cacao Butter, 5 KG, value TBD), i.e. an
+  UNPRICED export line. Blocked on ONE input only: the exact destination
+  inventory file location (Matheus's warehouse ledger name) -- undocumented in
+  context. On that name: submit [INVENTORY MOVEMENT] Manager=Orlantildes /
+  Recipient=Matheus Reis / Inventory Item=Coopercabruca Cacao Butter /
+  Quantity=5 / Destination=<ledger>. Parked as blocked so it stops the weekly
+  re-nag while awaiting the decision.
 ```
 
 ### Public-key lookup → content-addressed per-key cache (governor vault scaling)
