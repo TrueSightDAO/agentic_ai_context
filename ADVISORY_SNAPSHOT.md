@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-14T05:17:21Z`
+- Generated (UTC): `2026-09-14T13:11:22Z`
 - Look-back: **7** calendar days (`2026-09-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,25 +32,19 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[CURRENCY DEFINITION EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 21
+- `[CURRENCY DEFINITION EVENT]` × 4
+- `[PRACTICE EVENT]` × 3
 - `[CURRENCY DEFINITION]` × 2
-- `[PRACTICE EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
 - `[SMOKE TEST]` × 1
-- _free-form (no bracket tag)_ × 6
+- `[QR CODE UPDATE EVENT]` × 1
+- `[INVENTORY MOVEMENT]` × 1
+- _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260913181848_018` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260913181851_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260913181929_022` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: TEST QR Currency 2026-09-13 · Price in USD: 25 · Serializable: TRUE
-- `Edgar_20260913182840_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Self-serve currency definition — raw machine execution (GAS deploy @15, UAT …
-- `Edgar_20260913182842_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Self-serve currency definition — direct time (engagement/analysis, root-caus…
-- `Edgar_20260913183026_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — governance/oversight on QR self-serve currency unit (…
-- `Edgar_20260913184140_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Raw machine execution — thread 27015 close-out: validate diagnosis + docs-co…
-- `Edgar_20260913184142_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Direct time (engagement/analysis) — thread 27015 close-out: validate pending…
 - `Edgar_20260913184144_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Gary Teh direct time — thread 27015 close-out: go-signal, contribution repor…
 - `Edgar_20260913185307_002` · **Edgar** · [SMOKE TEST] (no body)
 - `Edgar_20260913185933_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight
@@ -63,6 +57,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260913201705_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Direct time (analysis/engagement) — Brazil→SF freight Rev 9 (nibs reductions)
 - `Edgar_20260914021327_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: BUG: Discord → DAO contributor identity bin…
 - `Edgar_20260914041351_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Alignment session with Matheus and Gary
+- `Edgar_20260914053916_006` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-14T05:39:14.348Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260914104556_008` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-14T10:45:54.447Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260914120758_010` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CT_20260820_68 · New Status: EXPENSED
+- `Edgar_20260914120800_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260914123130_014` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Paloma · Recipient Name: Matheus Reis · Inventory Item: FounderHaus Tree Planting Pledge - QR Code
+- `Edgar_20260914123717_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix Discord per-channel memory loss + parity guard (thread 29235)
+- `Edgar_20260914124101_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Cacao tea bag custody movement — Paloma → Matheus Reis (2024OSCAR_CT_2026082…
+- `Edgar_20260914125531_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Follow-up loop re-fires the same strike hou…
 
 ---
 
@@ -77,7 +79,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-13T10:59:14.596Z`
+- Generated (UTC): `2026-09-14T10:59:14.328Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -275,6 +277,7 @@ _All dated lines on/after 2026-09-07_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+159e9bd | 2026-09-14 05:21:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 f9f4f2c | 2026-09-13 21:05:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 1809777 | 2026-09-13 16:35:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 7c2d1d3 | 2026-09-13 12:14:24 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,7 +317,6 @@ a50e683 | 2026-09-08 16:48:57 +0000 | chore(stats): refresh stats/current.json [
 3236758 | 2026-09-08 11:40:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
 93aea68 | 2026-09-08 05:06:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5648f14 | 2026-09-07 22:26:01 -0300 | SunMint map: m.removeLayer -> map.removeLayer (fixes plot/farm select crashing handler before flyToBounds) (#362)
-c9ebe7a | 2026-09-07 22:17:28 -0300 | SunMint map: unwrap nested Polygon rings before flyToBounds (fixes plot/farm dropdown not moving map) (#361)
 … (truncated)
 ```
 
@@ -327,6 +329,25 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+350ed30 | 2026-09-14 09:58:32 -0300 | jerrie-cacao-ceremonial-tea-ppt: escalate — deck already built in-house 26 Jul (#1103)
+9bcfcf5 | 2026-09-14 09:58:14 -0300 | jerrie-mobile-un-aora-ppt: escalate with source-of-truth pointers + ask (#1102)
+b743dfd | 2026-09-14 09:57:16 -0300 | ling-mobile-capsule: escalate — no record of Ling or the capsule found (#1101)
+f64cf1c | 2026-09-14 09:56:54 -0300 | gianluca-farmers-tech-followup: escalate — nothing captured; link the EU 5.2 signal (#1100)
+5cc0a31 | 2026-09-14 09:56:37 -0300 | podream-tech-followup: escalate — still unidentified after full search (#1099)
+c854367 | 2026-09-14 09:56:16 -0300 | Update matheus-nota-fiscal follow-up: 2026-08-26 plan pivot (Matheus issues NF, no trading co) (#1098)
+547fc2d | 2026-09-14 09:52:40 -0300 | OPEN_FOLLOWUPS: file upload_local_file_to_github sha-422 regression + merge_pr restart papercut (#1108)
+829a7c4 | 2026-09-14 12:51:32 +0000 | Rev 6 - add action item: every Black King NF-e to Gary via WhatsApp
+1bdd039 | 2026-09-14 12:32:20 +0000 | Rev 5 - add company-tier upgrade + e-CAC Procuracao action items
+55770bd | 2026-09-14 09:21:51 -0300 | OPEN_FOLLOWUPS: file Black King state (SEFAZ-BA) tax records gap (#1105)
+bd3556f | 2026-09-14 09:21:14 -0300 | Update Black King corridor report to Rev 4 — federal verified, state/ICMS flagged as open item
+d305dbb | 2026-09-14 09:17:26 -0300 | Update Black King corridor report to Rev 3 — month-by-month split vs 2024-09-21 cutoff
+b25958f | 2026-09-14 09:13:27 -0300 | Add Black King corridor report (EN/PT) — shipments, tax tabulation, 50/50 split, forward plan
+8c60506 | 2026-09-14 08:52:40 -0300 | Mark Coopercabruca MAPA complete (2026-09-02); re-scope orlantildes follow-up to cacao butter receipt (#900)
+b4a7fbd | 2026-09-14 06:21:44 -0300 | docs(followups): file chat-blocking persistence parity gap (thread 29235) (#1097)
+e5d6ded | 2026-09-14 06:11:55 -0300 | Correct MAP YouTube reconcile entry: 2 real gaps, not 4 (both now shipped) (#1096)
+77dae7a | 2026-09-14 06:00:35 -0300 | docs: Discord col G binding caveats &amp; seed gap (snowflake vs USER_ENTERED) (#1094)
+c89ddb3 | 2026-09-14 02:17:37 -0300 | chore(previews): refresh Beer Hall preview (2026-09-14 UTC)
+22eb1c5 | 2026-09-14 02:17:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
 f02a8c3 | 2026-09-14 01:46:10 -0300 | docs: file MAP YouTube↔manifest reconciliation follow-up (#1095)
 6cfae8c | 2026-09-14 01:20:02 -0300 | plan: in-turn context compaction, extends the completed compaction plan (#1093)
 97046da | 2026-09-14 00:55:50 -0300 | plan: Discord adapter parity gaps vs Telegram, prioritized (#1092)
@@ -348,25 +369,6 @@ a2ed54b | 2026-09-13 15:36:12 -0300 | docs: correct stale "U5 partial" → U5 co
 d414635 | 2026-09-13 15:24:24 -0300 | docs: close out QR_SELF_SERVE_CURRENCY_PLAN (UAT PASS) + file duplicate-mint defect (#1078)
 ba98187 | 2026-09-13 15:02:18 -0300 | docs(pr5): self-serve currency definition — zero -> QR-ready -> minted via Edgar (#1077)
 060feeb | 2026-09-13 14:06:19 -0300 | docs: fold verified PR3 (deploy+wire) into QR_SELF_SERVE_CURRENCY_PLAN §5 + manifest row; RESUME -> PR4/PR5 (#1075)
-ff3acdc | 2026-09-13 13:33:19 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
-f465ccc | 2026-09-13 13:33:18 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
-949aee3 | 2026-09-13 13:05:18 -0300 | docs: fold ledger-dropdown/currency-fields delta into the stale-currencies plan of record; fix QR_SELF_SERVE_CURRENCY manifest row (7611->27015, resume->PR3) (#1074)
-552c3f1 | 2026-09-13 13:01:46 -0300 | docs(followups): correct #1072 entry — ledger cache exists but is an unautomated laptop script, not a missing cache (#1073)
-0a02e5f | 2026-09-13 12:43:33 -0300 | docs(OPEN_FOLLOWUPS): file ledgers/currency-fields JSON snapshot follow-up (#1072)
-a230522 | 2026-09-13 10:02:07 -0300 | docs(OPEN_FOLLOWUPS): file 3 DApp-convention follow-ups (signature check, dead #welcome, git_push_changes gap) (#1071)
-7f97c8d | 2026-09-13 09:12:20 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
-5da086e | 2026-09-13 09:12:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
-a647697 | 2026-09-13 02:10:59 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
-1fac6e6 | 2026-09-13 02:10:57 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
-82640b5 | 2026-09-13 00:45:35 -0300 | Merge pull request #1070 from TrueSightDAO/auto/advisory-refresh-2026-09-13
-4a03006 | 2026-09-13 03:45:25 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
-0a5919a | 2026-09-12 23:40:40 -0300 | OPEN_FOLLOWUPS: file stale GAS manifest.json (missing @10 currency web app) (#1069)
-ea43d8d | 2026-09-12 23:11:56 -0300 | HANDOFF_MANIFEST: mark Media Gallery Publisher (26438) complete (#1068)
-0475799 | 2026-09-12 23:11:42 -0300 | Media Gallery Publisher: PR7 prod promote done — plan complete (#1067)
-4cdeb65 | 2026-09-12 22:57:14 -0300 | media-gallery-publisher: PR5+PR6 merged, timer installed, UAT passed; PR7 gated (#1066)
-0ab0e97 | 2026-09-12 22:36:50 -0300 | docs: reservation spec — rule open #2/#3/#4 (no expiry, free-text note, reuse email sender) (#1065)
-e74bd4e | 2026-09-12 22:09:25 -0300 | Media Gallery Publisher: PR3+PR4 merged, PR2 closed (sha re-confirmed), RESUME HERE -> PR5 (#1064)
-9602603 | 2026-09-12 22:01:46 -0300 | open-followups: file timestamp-in-filename defect class (#1063)
 … (truncated)
 ```
 
@@ -573,7 +575,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 21:50:58 |
+| 2026-09 | 853.7 | 18293.54386 | 9/14/2026 5:57:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-07`; scanned last **600** data rows)
 
