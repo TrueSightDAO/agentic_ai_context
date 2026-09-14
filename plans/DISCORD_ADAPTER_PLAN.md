@@ -1,9 +1,10 @@
 # Discord Adapter — Implementation Plan
 
-> **Status:** ✅ **RATIFIED + BUILT.** The governor locked the four policy decisions on
-> 2026-09-12 (§0); the adapter is **merged** (`truesight_autopilot` #428 —
-> `app/discord_adapter.py`, systemd unit, 18 tests) and **inert by default**. Remaining
-> work is **deploy-dark → UAT → activate** (§8).
+> **Status:** ✅ **LIVE** (activated 2026-09-14). The governor locked the four policy
+> decisions on 2026-09-12 (§0); the adapter is **merged** (`truesight_autopilot` #428 —
+> `app/discord_adapter.py`, systemd unit, 18 tests) and **running** on the autopilot box
+> (`DISCORD_ADAPTER_ENABLED=true` + `DISCORD_DRY_RUN=false`). The **`MEMBER` tier** landed
+> 2026-09-14 (#440): a verified non-governor now resolves to `member`, not `guest`.
 > **Owner:** Sophia Truesight · **Opened:** 2026-09-12 · **Guild:** TrueSight DAO `923008087315587072`
 > **Canonical pattern doc:** `AUTOPILOT_CHANNEL_INTEGRATIONS.md` (venue contract + add-a-venue checklist)
 > **Related:** `OPERATING_INSTRUCTIONS.md`, `AI_AGENT_DAO_REGISTRATION.md`,
@@ -49,10 +50,12 @@ is a staged build (see §8).
 | Intents enabled | **Message Content** ✅ · **Server Members** ✅ (Presence off) |
 | Governor id | `garyjob` = `849324553221832794` |
 
-**Adapter code: MERGED (2026-09-12).** `app/discord_adapter.py` (gateway client, governor
-gate, dry-run default), `systemd/truesight-autopilot-discord.service`, and
-`tests/test_discord_adapter.py` landed in `truesight_autopilot` PR **#428**. It is **inert**
-(`DISCORD_ADAPTER_ENABLED=false`); no process is running yet — deploy is §8.
+**Adapter code: MERGED & LIVE.** `app/discord_adapter.py` (gateway client, governor gate,
+dry-run default), `systemd/truesight-autopilot-discord.service`, and
+`tests/test_discord_adapter.py` landed in `truesight_autopilot` PR **#428** (2026-09-12);
+the `MEMBER` tier + a dead sheet-credential-path fix followed in PR **#440** (2026-09-14).
+The unit is **running** on the autopilot box (`DISCORD_ADAPTER_ENABLED=true`,
+`DISCORD_DRY_RUN=false`) since 2026-09-14 03:17Z — deploy / UAT / activate (§8) are complete.
 
 **Secret hygiene note.** The *first* token was pasted into a group chat; the governor
 **reset** it, which killed the leaked copy (all calls 401'd), and the *replacement* was
@@ -113,6 +116,12 @@ below describe Sophia's *response posture* by audience; they do **not** restrict
 capability — a resolved governor has full rights in any whitelisted channel (decision #2).
 Values are operational config, adjustable without a re-plan:
 
+> **Implemented role mapping (2026-09-14).** The code resolves a sender to one of three
+> `policy.Role` values — `GOVERNOR` (sheet-bound **and** in the Governors cache), `MEMBER`
+> (sheet-bound, verified, **not** a governor), or `GUEST` (unverified — dropped). The T1–T3
+> table below is the *planned response posture*; only `GOVERNOR` currently carries instruction
+> authority — `MEMBER` is recognised and logged as context, not obeyed.
+
 | Tier | Who | Discord role(s) | Behaviour |
 |---|---|---|---|
 | **T3 — Governor** | DAO governors | `Governors` | Full: Sophia may act, incl. code/inventory submissions (still behind the same submission gates). |
@@ -147,6 +156,8 @@ Values are operational config, adjustable without a re-plan:
 replies without sending so the governor can eyeball them; on explicit "go" it flips to `false`
 and posting is live — start with **one channel** (`general` or `engineering`), then widen.
 
+**Status 2026-09-14: `DISCORD_DRY_RUN=false` — posting is live.**
+
 ---
 
 ## 6. Identity binding (Discord user id → DAO contributor)
@@ -161,6 +172,8 @@ No `/verify` flow, no parallel store (supersedes the earlier proposal).
   `identity_binding.py`, which holds the Telegram binding at `COL_TELEGRAM_ID = 23`).
 - **Authority = ledger/Governors-cache-resolved governor**, never the Discord role string.
 - Id in **col G** + present in the **Governors** cache ⇒ role GOVERNOR.
+- Id in **col G** but **absent** from the Governors cache ⇒ role **MEMBER** (verified,
+  recognisable, **no** instruction authority). `app/policy.py` `Role.MEMBER` (#440).
 - **Bootstrapping:** `DISCORD_ALLOWED_USER_IDS` env allowlist covers the gap until col G is
   seeded (`garyjob` = `849324553221832794` → Gary Teh is the first row).
 - **Fail-closed:** unknown author ⇒ not a governor ⇒ handled per §3 (data, not instructions).
@@ -176,6 +189,7 @@ Actual merged fields (`app/config.py`):
 | `DISCORD_BOT_TOKEN` | **vault** (`app/vault.py`) | gateway auth — never env, never logged |
 | `DISCORD_GUILD_ID` | `.env` → `discord_guild_id` | `923008087315587072` |
 | `DISCORD_ALLOWED_USER_IDS` | `.env` → `discord_allowed_user_ids` | comma-separated snowflakes; empty ⇒ sheet-only |
+| `DISCORD_MEMBER_USER_IDS` | `.env` → `discord_member_user_ids` | added #440; snowflakes that resolve to `MEMBER` (bootstrap for the sheet path). **Currently unset** — member recognition rides the sheet binding. |
 | `DISCORD_GOVERNOR_NAME` | `.env` → `discord_governor_name` | identity the bot speaks as (default `Gary Teh`) |
 | `DISCORD_ADAPTER_ENABLED` | `.env` → `discord_adapter_enabled` | feature flag, default **False** |
 | `DISCORD_DRY_RUN` | `.env` → `discord_dry_run` | compose-but-don't-send, default **True** |
@@ -197,8 +211,9 @@ read-only stage.
 | **#428** | `app/discord_adapter.py` + config + systemd unit + tests (gate merges before any brain call; dry-run default) | ✅ **merged** (`truesight_autopilot`) |
 | **#429** | README self-doc (service table / diagram / layout) | ✅ **merged** |
 | **#1057** | Canonical `AUTOPILOT_CHANNEL_INTEGRATIONS.md` | ✅ **merged** |
-| **Deploy-dark** | `deploy_autopilot`; install + start `truesight-autopilot-discord.service` with `ENABLED=true` + `DRY_RUN=true`; watch journal for composed-but-unposted replies | governor UAT |
-| **Activate** | flip `DISCORD_DRY_RUN=false` (live posting, one channel first) | **explicit governor go** |
+| **#440** | `MEMBER` tier (`Role.MEMBER` between GUEST and GOVERNOR) + dead sheet-credential-path fix in `discord_adapter.py` / `identity_binding.py`; `DISCORD_MEMBER_USER_IDS` config | ✅ **merged** (2026-09-14) |
+| **Deploy-dark** | `deploy_autopilot`; install + start `truesight-autopilot-discord.service` with `ENABLED=true` + `DRY_RUN=true`; watch journal for composed-but-unposted replies | ✅ **done** |
+| **Activate** | flip `DISCORD_DRY_RUN=false` (live posting, one channel first) | ✅ **done** (2026-09-14; running on `66717f3`/`f5f7001`) |
 
 Each PR: local test suite green before push (compileall / ruff check / ruff format --check / pytest).
 
@@ -226,7 +241,10 @@ Each PR: local test suite green before push (compileall / ruff check / ruff form
 | Library | **Raw REST + gateway** (no `discord.py` dependency); see `app/discord_adapter.py`. |
 
 **Still open (operational, non-blocking):**
-1. **Seed col G** — currently 1 row (`garyjob`); the env allowlist covers the gap meanwhile.
+1. **Seed col G** — the env allowlist covers the gap meanwhile. **Update 2026-09-14:** a
+   sheet-bound non-governor now resolves to `MEMBER` instead of `GUEST`, but no member
+   message has exercised the live path yet (last non-governor traffic `kingmike7` predates
+   #440) — member resolution is live-but-*unproven* until a bound member next posts.
 2. **Channel posting whitelist** — confirm which channels Sophia may post into first
   (proposal: `general` + `engineering`), then widen (§5).
 
