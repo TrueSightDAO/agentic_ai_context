@@ -39,7 +39,7 @@ Each adapter is its own **systemd unit**, `Restart=always`.
 | Venue | Adapter module | systemd unit | Status | Notes |
 |---|---|---|---|---|
 | **Telegram** | `app/telegram_adapter.py` | `truesight-autopilot-telegram` | **LIVE** | long-poll; forum-topic → role/session dispatch; voice notes via `voice.py`; MTProto attention watchdog is separate (`attention_watchdog.py`). |
-| **Discord** | `app/discord_adapter.py` | `truesight-autopilot-discord` | **MERGED, INERT** (2026-09-12) | gateway client; `DISCORD_ADAPTER_ENABLED=false` + `DISCORD_DRY_RUN=true` by default. See `plans/DISCORD_ADAPTER_PLAN.md`. |
+| **Discord** | `app/discord_adapter.py` | `truesight-autopilot-discord` | **LIVE** (activated 2026-09-14) | gateway client; governor gate + three-valued role (`governor`/`member`/`guest`) via the `MEMBER` tier (`app/policy.py`). Running `DISCORD_ADAPTER_ENABLED=true` + `DISCORD_DRY_RUN=false`. See `plans/DISCORD_ADAPTER_PLAN.md`. |
 | **DApp** | *(none — the brain)* | `truesight-autopilot` | **LIVE** | `dapp/chat.html` talks to `/chat` directly; the off-Telegram `/chat` handoff trigger can open a Telegram topic via `create_telegram_topic`. |
 | *future* | — | — | — | WhatsApp / Signal / Slack / a new site. **Use §5.** |
 
@@ -56,6 +56,7 @@ discord_adapter_enabled: bool  = Field(default=False, validation_alias="DISCORD_
 discord_dry_run:        bool  = Field(default=True,  validation_alias="DISCORD_DRY_RUN")
 discord_guild_id:       str   = Field(default="",    validation_alias="DISCORD_GUILD_ID")
 discord_allowed_user_ids: str = Field(default="",    validation_alias="DISCORD_ALLOWED_USER_IDS")
+discord_member_user_ids:  str = Field(default="",    validation_alias="DISCORD_MEMBER_USER_IDS")
 discord_governor_name:  str   = Field(default="Gary Teh", validation_alias="DISCORD_GOVERNOR_NAME")
 ```
 
@@ -84,6 +85,10 @@ humans seed the ids; the adapter only reads it.
   with a short TTL cache so the per-message hot path never hits the Sheets API twice.
 - A venue id that resolves here + appears in the **Governors** cache ⇒ role **GOVERNOR**,
   even if the id was never added to the env allowlist.
+- A venue id that resolves here but is **absent from the Governors cache** ⇒ role
+  **MEMBER** (a *recognisable* verified contributor, distinct from an anonymous guest).
+  The `*_MEMBER_USER_IDS` env list is the bootstrap half of this tier, mirroring
+  `*_ALLOWED_USER_IDS` for governors.
 
 > **Seed the column before you rely on it.** The env allowlist
 > (`*_ALLOWED_USER_IDS`) is the bootstrap path; the sheet column is the durable one.
@@ -112,9 +117,12 @@ snapshot for heartbeat messaging.
 > **Enforce at the tool layer, never the prompt.** The gate is code that runs *before* any
 > write/admin tool executes — not an instruction the model is asked to honour.
 
-`app/policy.py` resolves `(identity, action-class)` → `{guest, governor}` and the adapter
-drops any message from a user who does not resolve to a **verified governor**. Everyone else
-is ignored. See `_sender_is_governor` in both adapters.
+`app/policy.py` resolves `(identity, action-class)` → `{guest, member, governor}`
+(`Role.GUEST < Role.MEMBER < Role.GOVERNOR`): a binding that verifies but is absent from the
+**Governors** cache resolves to **MEMBER**, everything unverified stays **GUEST**. The adapter
+drops any message that does not resolve to a **verified governor** — members are recognised
+(logged as context) but still carry **no** instruction authority. See `_sender_is_governor`
+in both adapters.
 
 ### 3e. The data/instruction boundary (security invariant #2)
 
