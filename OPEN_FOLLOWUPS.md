@@ -805,7 +805,7 @@ title: Revisit Chocolate Subscription Phase 2 (fulfillment automation)
 created_at: 2026-06-11
 condition:
   kind: elapsed_days
-  escalate_after_days: 60
+  escalate_after_days: 120
 schedule:
   check: weekly
   on_escalate: ping_thread
@@ -823,6 +823,13 @@ description: >
   until Phase 2 is live, but Gary decided to let Linda subscribe first and
   revisit Phase 2 after 2 successful shipments to validate the model before
   building the automation.
+
+  Re-armed 2026-09-14: timer had re-fired repeatedly at 60d (95.6d elapsed).
+  escalate_after_days 60 -> 120 (next check ~2026-10-09). Evidence at re-arm:
+  Linda subscribed 2026-06-12 ($70.80/mo x6); still an active subscriber as of her
+  2026-08-10 email; first subscription shipment confirmed shipped 2026-08-16 (USPS
+  ...2612). 2nd shipment NOT verifiable from the ledger (the invoice.paid handler
+  is Phase 2 itself). Subscribe page live on prod. Phase 2 go/no-go still awaits Gary.
 ```
 
 ```followup
