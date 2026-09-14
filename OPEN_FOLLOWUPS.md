@@ -39,6 +39,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Discord: enable member *replies* — requires the brain to be tier-aware
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (Discord adapter thread).**
+
+**Context.** `truesight_autopilot#440` shipped the three-valued Discord author role — `app/discord_adapter.py::author_role()` returns `governor` / `member` / `guest`, and `app/policy.py` gained `Role.MEMBER` (between `Role.GUEST` and `Role.GOVERNOR`). A **member** — a contributor bound to a real identity in the Main Ledger *Contributors contact information* sheet (col G Discord ID) who is **not** in the key-based Governors cache — is now *recognised and attributed* instead of collapsing to an anonymous guest.
+
+**What is still off.** The adapter resolves the role but treats every non-governor turn as **data-only**. In `handle_message()`:
+
+```python
+role = author_role(user_id, allowed)
+if role != "governor":
+    logger.info("Discord message from %s %s (%s) in %s -- logging as context only", ...)
+    if public_key:
+        log_observed_message(text, session_id, public_key, username)
+    return
+```
+
+So a member's message is logged as captured context and **never dispatched** — Sophia sees members but does not reply to them. Members are a *read* tier today, not an interactive one.
+
+**Why it is off (what unblocks it).** The adapter authenticates a turn by minting a short-lived JWT **for the governor's public key** (`resolve_governor_public_key()` → registry). If a member turn reused that JWT, the brain (`/chat-blocking`) would treat it as the governor and the member would **inherit governor authority** — a privilege-escalation hole. Correctly enabling member replies therefore requires the **brain to be tier-aware**: it must receive the author's resolved role (or a member-scoped credential) and apply the `{guest < member < governor}` policy to Discord-originated turns itself, rather than assuming "arrived on the governor key ⇒ governor".
+
+**Proposed work (small→medium).**
+1. Pick the transport for member identity: (a) add a `role`/`author` field to the `/chat-blocking` payload and have the brain gate on it, **or** (b) mint a distinct member-scoped token/keypair so the brain can distinguish a member turn cryptographically.
+2. Add the brain-side branch: member turns may **converse / research / draft** but may not issue instructions or authorize actions (mirror the Telegram tiers in `app/policy.py`).
+3. Then flip the adapter's `if role != "governor"` guard to also dispatch the read-only "ask/research" class to members, keeping governors the sole instruction source.
+
+**Evidence.** `app/discord_adapter.py` (`handle_message`, the `role != "governor"` guard + its comment); `app/policy.py` L194–250 (`Role.MEMBER`); PR `truesight_autopilot#440`. Verified live on the autopilot box 2026-09-14 (real handler, side-effects mocked): id `578258537957031951` (sheet-bound) logs `Discord message from member <user> ... -- logging as context only`, an unbound id logs `from guest`, and the governor id dispatches a turn.
+
 ### Phase 2: narrow the autopilot git credential so the repo-class list is load-bearing
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 26410).**
 
