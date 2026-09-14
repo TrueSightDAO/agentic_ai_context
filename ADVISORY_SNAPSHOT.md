@@ -20,9 +20,49 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-14T03:54:47Z`
+- Generated (UTC): `2026-09-14T05:17:21Z`
 - Look-back: **7** calendar days (`2026-09-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 24
+- `[CURRENCY DEFINITION EVENT]` × 6
+- `[CURRENCY DEFINITION]` × 2
+- `[PRACTICE EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+- `[BATCH QR CODE REQUEST]` × 1
+- `[SMOKE TEST]` × 1
+- _free-form (no bracket tag)_ × 6
+
+### Latest entries
+
+- `Edgar_20260913181848_018` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260913181851_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260913181929_022` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: TEST QR Currency 2026-09-13 · Price in USD: 25 · Serializable: TRUE
+- `Edgar_20260913182840_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Self-serve currency definition — raw machine execution (GAS deploy @15, UAT …
+- `Edgar_20260913182842_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Self-serve currency definition — direct time (engagement/analysis, root-caus…
+- `Edgar_20260913183026_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — governance/oversight on QR self-serve currency unit (…
+- `Edgar_20260913184140_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Raw machine execution — thread 27015 close-out: validate diagnosis + docs-co…
+- `Edgar_20260913184142_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Direct time (engagement/analysis) — thread 27015 close-out: validate pending…
+- `Edgar_20260913184144_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Gary Teh direct time — thread 27015 close-out: go-signal, contribution repor…
+- `Edgar_20260913185307_002` · **Edgar** · [SMOKE TEST] (no body)
+- `Edgar_20260913185933_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight
+- `Edgar_20260913195242_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia raw machine execution — Brazil→SF freight Rev 8 (AGL14 removal) + shi…
+- `Edgar_20260913195245_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia direct time (engagement/analysis) — Brazil→SF freight Rev 8 (AGL14 re…
+- `Edgar_20260913195721_010` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20260913195821_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20260913200154_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL13
+- `Edgar_20260913201703_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Raw machine execution — Brazil→SF freight Rev 9 (nibs reductions)
+- `Edgar_20260913201705_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Direct time (analysis/engagement) — Brazil→SF freight Rev 9 (nibs reductions)
+- `Edgar_20260914021327_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: BUG: Discord → DAO contributor identity bin…
+- `Edgar_20260914041351_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Alignment session with Matheus and Gary
 
 ---
 
@@ -194,13 +234,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,833.87**
+- Brazilian Reis: R$1,339.61 · rate `0.2323` USD/BRL → ≈ **$311.19**
+- USD provisioned for voting-rights cash-out: **$55.07**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -283,6 +327,11 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f02a8c3 | 2026-09-14 01:46:10 -0300 | docs: file MAP YouTube↔manifest reconciliation follow-up (#1095)
+6cfae8c | 2026-09-14 01:20:02 -0300 | plan: in-turn context compaction, extends the completed compaction plan (#1093)
+97046da | 2026-09-14 00:55:50 -0300 | plan: Discord adapter parity gaps vs Telegram, prioritized (#1092)
+a1fd9ad | 2026-09-14 00:55:02 -0300 | Merge pull request #1091 from TrueSightDAO/auto/advisory-refresh-2026-09-14
+cdd8ca9 | 2026-09-14 03:54:51 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
 562037c | 2026-09-14 00:23:46 -0300 | docs(followups): file Discord member-reply tier-awareness gap (#1090)
 a7fafdb | 2026-09-14 00:20:08 -0300 | docs(discord): de-drift adapter docs to LIVE + MEMBER tier (#1089)
 4645709 | 2026-09-14 00:15:17 -0300 | docs: mark cacao-varieties roadmap units 4-5 done (full dossier preserved) (#1088)
@@ -318,11 +367,6 @@ ea43d8d | 2026-09-12 23:11:56 -0300 | HANDOFF_MANIFEST: mark Media Gallery Publi
 0ab0e97 | 2026-09-12 22:36:50 -0300 | docs: reservation spec — rule open #2/#3/#4 (no expiry, free-text note, reuse email sender) (#1065)
 e74bd4e | 2026-09-12 22:09:25 -0300 | Media Gallery Publisher: PR3+PR4 merged, PR2 closed (sha re-confirmed), RESUME HERE -> PR5 (#1064)
 9602603 | 2026-09-12 22:01:46 -0300 | open-followups: file timestamp-in-filename defect class (#1063)
-862d112 | 2026-09-12 21:59:07 -0300 | docs: reservation spec — resolve open #1 (no double-count; revenue is cash-basis at T1) (#1062)
-a5f79c1 | 2026-09-12 21:49:32 -0300 | docs: reservation spec — add Definition of Done incl. event-lookup tool update (#1061)
-63ce013 | 2026-09-12 21:46:56 -0300 | docs: reservation spec — tree-planting liability ruled to fire at SETTLEMENT (#1060)
-d12504e | 2026-09-12 21:43:59 -0300 | Draft plan: Discord adapter for Sophia (channel→tier policy, identity binding, milestones) (#1055)
-a4e7449 | 2026-09-12 21:43:45 -0300 | docs: reservation spec — inventory drop ruled at SETTLEMENT; leg-split mechanic (#1059)
 … (truncated)
 ```
 
@@ -505,6 +549,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 21:50:58 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-07`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
