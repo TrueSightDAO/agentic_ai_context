@@ -860,9 +860,16 @@ schedule:
   on_escalate: ping_thread
 status: open
 description: >
-  Gary needs to follow up with PODream on their technology. Not yet
-  documented in DAO context — treat as a new partner/tech contact; when this
-  fires, remind Gary to chase PODream's tech status and capture details.
+  [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] Still
+  UNIDENTIFIED. Content search across all of agentic_ai_context, org-wide
+  GitHub code search, both mailboxes (admin@ + gary@truesight.me), and the
+  attachment transcript all return ZERO hits for "PODream". The name exists
+  only in this block — no tech details were ever captured.
+  BLOCKED ON GARY: need (a) who/what PODream is (company? person? — possibly
+  a mis-transcription of the "Pipedream" integration platform?), (b) what
+  their tech does, (c) the intended follow-up action. Until that lands this
+  item can only nudge, not act. When the details arrive, replace this note
+  with the captured facts (who they are, tech summary, next action).
   All pings go to thread 11042.
 ```
 
