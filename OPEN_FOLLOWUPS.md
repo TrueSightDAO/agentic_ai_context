@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Phase 2: narrow the autopilot git credential so the repo-class list is load-bearing
+**Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 26410).**
+
+**Context.** PR1–PR5 of `plans/SOPHIA_REPO_ACCESS_DENYLIST_PLAN.md` inverted the write model to **default-allow** (any repo the credential reaches is writable; two protected classes — `settings.api_only_repos`, `settings.prod_repos` — sit on top; `create_repo` is pattern-gated on `create_repo_patterns`). That is a *policy* layer only: the real boundary is the credential, which is **org-wide** — the SSH key `id_ed25519_truesight_autopilot` is authorised as `garyjob`, and the PAT `TRUESIGHT_DAO_AUTOPILOT` carries org-wide Contents:RW + PRs:RW. Widening `allowed_repos` never widened the true blast radius.
+
+**Why it matters.** Under default-allow the master list no longer limits *which* repos an agent can write; only the two protected classes and the (now-audited) write log do. If an agent is ever compromised, or hallucinates a repo name that matches a real org repo, the credential permits the write.
+
+**Durable fix (Phase 2, needs its own governor go).** Replace the org-wide credential with per-repo scoping: a **GitHub App** installed only on the repos the autopilot should touch (per-repo installation tokens), or **per-repo deploy keys**. Then the class list becomes load-bearing instead of advisory. Bigger change (credential plumbing + deploy flow) — design it as its own plan.
+
+**Also related.** The own-repo self-merge rule is still **prompt-only, not code-enforced** — a candidate for the next hardening pass.
+
+**Evidence.** `plans/SOPHIA_REPO_ACCESS_DENYLIST_PLAN.md` (Design + Risks); `references/GITHUB_AGENTIC_AI_SSH.md` §"Repo access model — default-allow".
+
 ### Autopilot box: native `git push` broken by `~/.gitconfig` credential-helper shadowing
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 28504).**
 

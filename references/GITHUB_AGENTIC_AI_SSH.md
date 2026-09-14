@@ -132,9 +132,11 @@ Do **NOT** push changes directly to production repos. Production repos are:
 This applies to ALL changes — code, config, assets, workflows. No exceptions.
 
 **Enforcement (Sophia / truesight_autopilot, since 2026-06-06):**
-`settings.prod_repos` — `git_push_changes`, `open_fix_pr`, and `merge_pr`
-refuse the `*_prod` repos in code; promotion only via `sync_beta_to_prod`
-after explicit governor approval.
+`settings.prod_repos` (the `protected_repos` class in the 2026-09 model) —
+`git_push_changes`, `open_fix_pr`, and `merge_pr` refuse the `*_prod` repos in
+code, **checked first so the rule holds in both allowlist and default-allow
+modes**; promotion only via `sync_beta_to_prod` after explicit governor
+approval.
 
 See `WORKSPACE_CONTEXT.md §3f` for the full deployment convention.
 
@@ -168,14 +170,45 @@ Classification from the full org audit (2026-06-06):
 | `agroverse-inventory` | Workflow-pushed inventory JSON snapshots | CI workflows |
 
 **Enforcement (Sophia):** `settings.api_only_repos` — `git_push_changes`,
-`open_fix_pr`, and `merge_pr` refuse these in code. Other LLMs: this section
-is the convention — about to `git clone` one of these? Use the raw URL or
-Contents API instead.
+`open_fix_pr`, and `merge_pr` refuse these in code (**checked first, so the
+class holds in default-allow mode too**). Other LLMs: this section is the
+convention — about to `git clone` one of these? Use the raw URL or Contents
+API instead.
 
-**Everything else** in the org (dapp_beta, tokenomics, truesight_me_beta,
-capoeira, aora, oracle, dao_client, go_to_market, sentiment_importer, …) is a
-normal code repo: clone, branch, PR per the workflow below. Deprecated repos
-(`dapp`, `governor_chatbot_service`) should not be touched at all.
+**Everything else** in the org is **default-allow** (see the model section
+below): clone, branch, PR, and merge your own feature PRs. A new subdomain or
+repo no longer needs a code change — just a name that matches a blessed
+`create_repo_patterns` glob. Deprecated repos (`dapp`,
+`governor_chatbot_service`) should not be touched at all.
+
+## Repo access model — default-allow + two protected classes (2026-09)
+
+**The master `allowed_repos` allowlist is retired as the gate.** As of 2026-09
+(plan `SOPHIA_REPO_ACCESS_DENYLIST_PLAN.md`, PR1–PR5), the write model is
+**default-allow**:
+
+- **Default-allow:** *any* repo your credential can reach is writable —
+  `git_push_changes`, `open_fix_pr`, `merge_pr`, `upload_file_to_github`, and
+  `create_repo`. There is no master list to be "on". This removes the per-repo
+  code edit + PR + deploy that used to gate every new subdomain.
+- **Creating a NEW repo is pattern-gated** (`settings.create_repo_patterns`):
+  the name must match a governor-blessed glob (`*-site`, `*-beta`, `*-prod`,
+  `cfr-*`, `*-program`, `*-cache`, `*-raw`). An unblessed name is refused;
+  adding a naming family is a one-line config change, not a code change.
+- **Two protected classes hold in BOTH modes** (checked first, so default-allow
+  never widens them):
+  - `settings.api_only_repos` — machine-owned data repos (Contents API only).
+  - `settings.prod_repos` — production forks (promote via `sync_beta_to_prod`).
+- **Fail-safe strict mode:** set the `ALLOWED_REPOS` env var and the listed
+  repos become an explicit allowlist again (the old behaviour). Unset =
+  default-allow. A governor can re-tighten any time without a code change.
+- **Audit log:** every default-allowed write appends a record to
+  `ecosystem_change_logs/repo_access/` (repo, action, result, strict vs
+  default-allow mode) — restoring the observability the allowlist gave for free.
+
+**Phase 2 (separate governor go):** narrow the *credential* — a GitHub App
+installed per-repo, or per-repo deploy keys — so the class list becomes
+load-bearing rather than advisory. Tracked in `OPEN_FOLLOWUPS.md`.
 
 ## Sophia git operations — SSH, not PAT
 
