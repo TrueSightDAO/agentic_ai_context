@@ -4,7 +4,7 @@
 **Convention:** `OPERATING_INSTRUCTIONS.md` §5 / §5a / §5d / §5e.
 **Repos:** code change in `truesight_autopilot` (**own-repo gate — opens PRs only, governor merges**); this plan + manifest row in `agentic_ai_context`.
 
-> ## RESUME HERE: PR1 (this plan + manifest row) — governor GO received 2026-09-11; awaiting PR1 merge to advance to PR2.
+> ## RESUME HERE: PR6 (docs) — DONE. PR1–PR5 all merged (#1033, #432, #434, #435, #436). Last mandatory unit; PR7 (Phase-2 credential narrowing) is optional and needs its own governor go. Deploy (`deploy_autopilot`) still pending — PR3–PR5 are merged but not deployed.
 
 ## Context
 
