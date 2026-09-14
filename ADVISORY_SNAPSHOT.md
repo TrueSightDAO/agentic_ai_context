@@ -20,49 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-13T21:01:26Z`
-- Look-back: **7** calendar days (`2026-09-06` → today UTC)
+- Generated (UTC): `2026-09-14T03:54:47Z`
+- Look-back: **7** calendar days (`2026-09-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 24
-- `[CURRENCY DEFINITION EVENT]` × 6
-- `[CURRENCY DEFINITION]` × 2
-- `[PRACTICE EVENT]` × 1
-- `[ASSET RECEIPT EVENT]` × 1
-- `[BATCH QR CODE REQUEST]` × 1
-- `[SMOKE TEST]` × 1
-- _free-form (no bracket tag)_ × 6
-
-### Latest entries
-
-- `Edgar_20260913181448_014` · **Edgar** · [BATCH QR CODE REQUEST] Currency: TEST QR Currency 2026-09-13 · Quantity: 1
-- `Edgar_20260913181535_016` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Coopercabruca Cacao Butter (KG) · Serializable: TRUE · Destination Inventory File Location:
-- `Edgar_20260913181848_018` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260913181851_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260913181929_022` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: TEST QR Currency 2026-09-13 · Price in USD: 25 · Serializable: TRUE
-- `Edgar_20260913182840_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Self-serve currency definition — raw machine execution (GAS deploy @15, UAT …
-- `Edgar_20260913182842_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Self-serve currency definition — direct time (engagement/analysis, root-caus…
-- `Edgar_20260913183026_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Gary Teh direct time — governance/oversight on QR self-serve currency unit (…
-- `Edgar_20260913184140_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Raw machine execution — thread 27015 close-out: validate diagnosis + docs-co…
-- `Edgar_20260913184142_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Direct time (engagement/analysis) — thread 27015 close-out: validate pending…
-- `Edgar_20260913184144_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Gary Teh direct time — thread 27015 close-out: go-signal, contribution repor…
-- `Edgar_20260913185307_002` · **Edgar** · [SMOKE TEST] (no body)
-- `Edgar_20260913185933_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight
-- `Edgar_20260913195242_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia raw machine execution — Brazil→SF freight Rev 8 (AGL14 removal) + shi…
-- `Edgar_20260913195245_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia direct time (engagement/analysis) — Brazil→SF freight Rev 8 (AGL14 re…
-- `Edgar_20260913195721_010` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20260913195821_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20260913200154_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL13
-- `Edgar_20260913201703_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 35 · Description: Raw machine execution — Brazil→SF freight Rev 9 (nibs reductions)
-- `Edgar_20260913201705_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Direct time (analysis/engagement) — Brazil→SF freight Rev 9 (nibs reductions)
 
 ---
 
@@ -234,17 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+29 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,833.92**
-- Brazilian Reis: R$1,339.61 · rate `0.2323` USD/BRL → ≈ **$311.19**
-- USD provisioned for voting-rights cash-out: **$55.02**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -254,7 +210,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-06_ (1):
+_All dated lines on/after 2026-09-07_ (1):
 
 - 2026-09-12 | sophia | `skus.json` SKU catalog now published by the `go_to_market` Python/GHA job (`sync_agroverse_store_inventory.py` + `publish-agroverse-inventory-snapshot.yml`, daily `15 6 * * *`) — PRs go_to_market #174 (emit A–I of the Agroverse SKUs tab) + #175 (`UNFORMATTED_VALUE` read so `priceUsd` is `25`, not `$25.00`; the DApp `define_currency.html` inputs `priceUsd` into a `type="number"` field). Verified live: commit `cf5d0c6` by `github-actions[bot]` 2026-09-12T23:56:32Z, `source = sync_agroverse_store_inventory`, 14 rows, `priceUsd = "25"`. New runbook `AGROVERSE_INVENTORY_PUBLISHERS.md` maps all four caches → publishers → crons → force-a-run; `OPEN_FOLLOWUPS.md` files the GAS-vs-Python two-writer hazard.
 
@@ -275,6 +231,7 @@ _All dated lines on/after 2026-09-06_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f9f4f2c | 2026-09-13 21:05:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 1809777 | 2026-09-13 16:35:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 7c2d1d3 | 2026-09-13 12:14:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,7 +271,6 @@ a50e683 | 2026-09-08 16:48:57 +0000 | chore(stats): refresh stats/current.json [
 93aea68 | 2026-09-08 05:06:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 5648f14 | 2026-09-07 22:26:01 -0300 | SunMint map: m.removeLayer -> map.removeLayer (fixes plot/farm select crashing handler before flyToBounds) (#362)
 c9ebe7a | 2026-09-07 22:17:28 -0300 | SunMint map: unwrap nested Polygon rings before flyToBounds (fixes plot/farm dropdown not moving map) (#361)
-f124247 | 2026-09-07 22:10:37 -0300 | SunMint map: View chips fly to their actual trees, not a hardcoded center (fixes empty ?view=altamira) (#360)
 … (truncated)
 ```
 
@@ -327,6 +283,12 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+562037c | 2026-09-14 00:23:46 -0300 | docs(followups): file Discord member-reply tier-awareness gap (#1090)
+a7fafdb | 2026-09-14 00:20:08 -0300 | docs(discord): de-drift adapter docs to LIVE + MEMBER tier (#1089)
+4645709 | 2026-09-14 00:15:17 -0300 | docs: mark cacao-varieties roadmap units 4-5 done (full dossier preserved) (#1088)
+5c8a6db | 2026-09-13 22:15:54 -0300 | docs(repo-access): document default-allow model in GITHUB_AGENTIC_AI_SSH.md (PR6) (#1086)
+9f7a7f6 | 2026-09-13 18:01:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-13 UTC)
+2c3ab6d | 2026-09-13 18:01:49 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-13 UTC)
 38643e0 | 2026-09-13 17:22:00 -0300 | Add SOP: Brazil → Hong Kong cacao import (HK is a separate customs territory) (#1085)
 ffb0598 | 2026-09-13 17:02:33 -0300 | Freight Rev 9 — Cacao Nibs AGL13 −500 g, 8oz Kraft Pouch −8 bags (docs + exports) (#1084)
 96c8957 | 2026-09-13 15:59:56 -0300 | AORA plan §2a: drop AGL14 line, update pallet weight to 2×plastic (350.08 kg) (#1083)
@@ -361,12 +323,6 @@ a5f79c1 | 2026-09-12 21:49:32 -0300 | docs: reservation spec — add Definition 
 63ce013 | 2026-09-12 21:46:56 -0300 | docs: reservation spec — tree-planting liability ruled to fire at SETTLEMENT (#1060)
 d12504e | 2026-09-12 21:43:59 -0300 | Draft plan: Discord adapter for Sophia (channel→tier policy, identity binding, milestones) (#1055)
 a4e7449 | 2026-09-12 21:43:45 -0300 | docs: reservation spec — inventory drop ruled at SETTLEMENT; leg-split mechanic (#1059)
-fce5fe0 | 2026-09-12 20:58:50 -0300 | docs: add AGROVERSE_INVENTORY_PUBLISHERS runbook; file two-writer follow-up (#1058)
-66b277a | 2026-09-12 20:53:29 -0300 | docs: canonical AUTOPILOT_CHANNEL_INTEGRATIONS.md (venue pattern + add-a-venue guide) (#1057)
-fc44784 | 2026-09-12 20:47:29 -0300 | docs: RESERVATION EVENT spec v3 — two events, reserved QR, settlement (#1056)
-6601f15 | 2026-09-12 19:44:44 -0300 | RESERVATION EVENT spec v2 - two-event hold model (Gary Model B) (#1054)
-5b7bc0b | 2026-09-12 19:38:35 -0300 | Add incident report: Edgar placeholder submissions (71 empty-body rows)
-e4e7fdc | 2026-09-12 19:24:20 -0300 | test: pin currency dispatch routing; mark PR1/PR2 done, RESUME HERE→PR3 (#1053)
 … (truncated)
 ```
 
@@ -403,8 +359,6 @@ ca9ce8f | 2026-09-09 21:44:24 -0300 | SunMint ingestion: rows without lat/lng/ph
 fed9cac | 2026-09-09 21:44:20 -0300 | SunMint reject: invalidate ALL rows matching the tree id, not just first match (#463)
 67dd81a | 2026-09-09 18:05:19 -0300 | fix(expenses): serialize + re-verify hash before scoring to stop double-booking (#462)
 27aea41 | 2026-09-09 05:47:54 -0300 | fix(gas): authorize expenses by registry Sentinel role, not hardcoded name (#461)
-5416bf5 | 2026-09-06 12:18:09 -0300 | fix(gas): guard AGL expense processor (19Wag9x) credentials from clasp push deletion (#460)
-08f8060 | 2026-09-06 01:01:11 -0300 | fix(gas): authorize DAO-agent (autopilot) expense filings for governors (#459)
 ```
 
 ### `dapp` → `dapp`
@@ -454,8 +408,6 @@ b670bdc | 2026-09-09 07:29:12 -0300 | chore: refresh Agroverse store inventory s
 4cfaac0 | 2026-09-07 13:02:24 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 8af7d0c | 2026-09-07 13:00:40 +0000 | chore: refresh currencies.json [skip ci]
 be4578f | 2026-09-07 12:38:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-ab627df | 2026-09-06 11:20:30 +0000 | chore: refresh currencies.json [skip ci]
-0175b1c | 2026-09-06 11:01:33 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -489,19 +441,6 @@ b21f763 | 2026-09-10 00:46:02 -0300 | Add sitio-2-pacaja-para photo IMG_9676
 4a9070a | 2026-09-10 00:45:55 -0300 | Add sitio-2-pacaja-para photo IMG_9642
 fe967cc | 2026-09-10 00:45:53 -0300 | Add sitio-2-pacaja-para photo IMG_9622
 290b6e7 | 2026-09-09 05:30:39 -0300 | Add /agl15 + /agl16 legacy redirects to Google Sheets (#307)
-a3931db | 2026-09-06 15:10:56 -0300 | fix(fazenda-bom-sucesso): point .farm-hero CSS at real sunmint hero, drop stale rancho-maranta template token (#306)
-513b935 | 2026-09-06 12:16:19 -0300 | Add Fazenda Bom Sucesso to Brazilian Drift journey (#305)
-d9aca71 | 2026-09-05 23:15:53 -0300 | Re-apply Fix JS SyntaxError breaking Santa Ana farm map (was reverted by Track A rollout) (#304)
-d89bf9d | 2026-09-05 22:51:41 -0300 | Fazenda Clara: make SunMint plot highlight a real two-way link (FC-P1) (#303)
-2457f94 | 2026-09-05 22:18:27 -0300 | Track A rollout: add Verified & Traceable FSVP blocks to 12 farm pages (#302)
-0ad286a | 2026-09-05 22:12:09 -0300 | Add Fazenda Clara farm profile (Itacaré, Bahia) — Fernando & Clara, Black King supplier (#301)
-ad9c54e | 2026-09-05 22:05:18 -0300 | Fix JS SyntaxError breaking Santa Ana farm map (stray semicolon before .openPopup) (#300)
-7348115 | 2026-09-05 21:48:31 -0300 | Fazenda São Jorge: farm-visit photo gallery + SunMint plot SJ-P1 cross-link (#297)
-5422ee6 | 2026-09-05 21:43:52 -0300 | Fazenda Santa Ana (Bahia): add farm-visit photo gallery + SunMint FSA-P1 cross-link (#299)
-cbe8af5 | 2026-09-05 21:43:15 -0300 | Update paulo prose plot id LD-P1 to canonical V-06-29 (#298)
-723f30d | 2026-09-05 21:42:39 -0300 | Add Fazenda Santa Ana family photo IMG_8261 (18 Sep 2023 farm visit)
-3018c61 | 2026-09-05 21:42:38 -0300 | Add Fazenda Santa Ana drying check photo IMG_8247 (18 Sep 2023 farm visit)
-… (truncated)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -520,6 +459,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-09-14T035447Z_sunmint-ux-reservation-logic-and-logistics.md`
+
+- **posted_at_utc:** `2026-09-14T03:54:47Z`  
+- **slug:** `sunmint-ux-reservation-logic-and-logistics`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **SunMint UX** — Added plot-specific tree lists to popups and sorted tree dropdowns by newest first.
+
 ### `beer-hall_2026-09-13T034519Z_media-gallery-complete-and-reserved-qr-status.md`
 
 - **posted_at_utc:** `2026-09-13T03:45:19Z`  
@@ -537,15 +485,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Cacau na Veia** — Published 33 site-visit videos and transcripts to the farm page gallery.
-
-### `beer-hall_2026-09-11T033523Z_sitio-cristo-rei-cacau-na-veia-launch-map-tree-listing.md`
-
-- **posted_at_utc:** `2026-09-11T03:35:23Z`  
-- **slug:** `sitio-cristo-rei-cacau-na-veia-launch-map-tree-listing`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **New Farms** — Published Sítio Cristo Rei and Sítio Cacau na Veia (Pacajá) profiles with SunMint plot linking and Brazilian journey integration.
 
 ---
 
@@ -566,39 +505,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/13/2026 13:50:31 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-06`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
