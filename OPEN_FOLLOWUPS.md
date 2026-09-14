@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `upload_local_file_to_github` / `upload_file_to_github` 422 "sha wasn't supplied" on the UPDATE path — 2026-09-14
+**Filed 2026-09-14. Owner: unclaimed (autopilot self-improvement). Governor: Gary (thread 26215).**
+
+**Symptom.** Updating an **already-existing** file via `upload_local_file_to_github` returned `GitHub API error 422: {"message":"Invalid request.\n\n\"sha\" wasn't supplied."}` **4+ times in a row** (thread 26215, 2026-09-14, updating `agentic_ai_context/brazil/2026-09-14_black_king_corridor_report_EN_PT.pdf` Rev 4 → Rev 5). The base64 variant `upload_file_to_github` failed **identically** on the same update. **Creating** a new path succeeds; only the **update** path is affected — i.e. the tool detects the file exists but does not fetch+pass the existing blob `sha` in the PUT body.
+
+**Relation to prior work.** This is the *same class* as the older `upload_file_to_github`-lacking-`sha` entry (backlog line ~2397, ✅ RESOLVED #87, re-verified 2026-09-11 by a create→update probe). So either the #87 regression returned, **or** `upload_local_file_to_github` is a **separate tool** that was never wired to the #87 auto-sha fetch. This entry covers the still-affected tool; it is **not** a duplicate of the resolved one.
+
+**Impact.** Every in-place doc update stalls; the agent burns tool rounds retrying a call that cannot succeed and may wrongly report a stale file as current — **raw.githubusercontent.com lagged ~2 min and still showed the old blob after a successful fallback push**, so verify via the contents API `sha`/`size`, never raw.
+
+**Verified workaround.** Land the binary through the autopilot's own git credential helper rather than the Contents API: `printf "protocol=https\nhost=github.com\n\n" | sudo /opt/truesight_autopilot/scripts/git-credential-sophia.sh get` → `git clone https://x-access-token:<PAT>@github.com/...` → `git add/commit/push origin main` (landed Rev 5 as commit `1bdd039`). Also valid: `git_push_changes` (carries any content), or delete-existing-then-create via Contents API (sidesteps the update-sha requirement entirely).
+
+**To fix.** In `upload_local_file_to_github` / `upload_file_to_github`, on the existing-file path GET the current contents `sha` and include it in the PUT body (mirror #87), and add a unit test for the create→update transition.
+
+**Evidence.** thread 26215; Rev 4 = `bd3556f` (uploaded pre-failure) vs Rev 5 = `1bdd039` (landed only via the git-push fallback); 4 identical 422s logged in-session.
+
 ### Black King state (SEFAZ-BA) tax records gap — the corridor split is federal-only until pulled
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 26215).**
 
