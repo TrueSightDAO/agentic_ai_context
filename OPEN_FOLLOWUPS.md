@@ -864,11 +864,20 @@ schedule:
   on_escalate: ping_thread
 status: open
 description: >
-  Matheus is still stuck on the nota fiscal exportação (Brazil NF-e export
-  gate). Chase status with Matheus. Context lives in TRACK_MAP.md (GACC /
-  Brazil compliance track) and BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md;
-  goal is to get the NF-e issued so Brazil→SF freight can proceed. All pings
-  go to thread 11042 (Gary's ops/task tracking).
+  [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] Still OPEN: no
+  confirmation the export NF-e has actually been issued. Material update from
+  the Seacos/Omega freight thread (Graziela, 2026-08-26): the plan PIVOTED —
+  Matheus will issue the Nota Fiscal himself (heat-treated pallets sourced;
+  no trading company needed; export customs clearance agreed directly with
+  Omega). This drops the trading-company fee (16% over invoice + ~4.2% local
+  taxes), but the underlying gate is unchanged: Black King (CNPJ
+  50.042.585/0001-80) must exit "Inapto" (clear debts + late declarations),
+  renew the expired e-CNPJ, and add a commerce CNAE → IE at SEFAZ-BA before
+  any NF-e model 55 can issue. Step-by-step guidance was sent to Matheus
+  2026-08-19 (e-CAC pendências → REGULARIZE → Certidão Conjunta). Next action:
+  chase Matheus for (a) e-CAC pendências PDF, (b) REGULARIZE débitos list,
+  (c) Certidão Conjunta status. Context: BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md
+  (Phase 0) + TRACK_MAP.md #black-king-cnae-ie-nf-e. All pings go to thread 11042.
 ```
 
 ```followup

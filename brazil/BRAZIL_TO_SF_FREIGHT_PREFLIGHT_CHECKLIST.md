@@ -35,6 +35,7 @@
   - No MAPA (Ministry of Agriculture) clearance needed — confirmed by Omega
   - Also applies: 1803.10.00 (cacao mass/husk), 2106.90.00 (cacao tea)
 - [ ] **Fiscal Nota (NF-e) issued** ⚠️ **CRITICAL BLOCKER**
+  - **[2026-09-14 update — plan pivot]** Per Seacos/Graziela (2026-08-26): Matheus will **issue the Nota Fiscal himself** — heat-treated pallets sourced and **no trading company** needed; export customs clearance agreed directly with Omega. Saves the trading-company fee (16% over invoice + ~4.2% local taxes). Gate unchanged: Black King's CNPJ must be regularized (exit "Inapto" + renew e-CNPJ + commerce CNAE → IE at SEFAZ-BA) before NF-e model 55 can issue. **Still no confirmation the NF-e has been issued.**
   - **Black King currently CANNOT issue NF-e.** THREE concurrent root causes (confirmed Jul 2026 by Matheus + former accountant):
     (1) **Missing commerce CNAE** — CNPJ has only service CNAEs (82.30-0-01, events/fairs) → no Inscrição Estadual (IE) → no NF-e credentialing at SEFAZ-BA;
     (2) **e-CNPJ digital certificate EXPIRED early June 2026** — blocks all gov portals;
