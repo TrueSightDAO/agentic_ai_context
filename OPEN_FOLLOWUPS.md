@@ -39,6 +39,27 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Discord binding: col G needs the bare numeric snowflake, and the column is effectively unseeded
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138).**
+
+**Context.** Discord→DAO identity binding reads **col G** ("Discord ID", `COL_DISCORD_ID = 6`) of the Main Ledger *Contributors contact information* tab via `app/discord_adapter.py::_fetch_discord_id_email()`. Two properties surfaced while seeding a row on 2026-09-14:
+
+1. **The match is exact string equality on the bare snowflake.** `want = str(discord_id).strip()` then `(row[6] or "").strip() == want`. A **legacy `username#discriminator` handle therefore never binds** — e.g. Gary's own row (145) holds `garyjob#4037`, which can never equal his numeric id `849324553221832794`. The column must be re-seeded with numeric snowflakes.
+2. **Snowflakes exceed float64's safe-integer range.** Discord ids are 19-digit (≈ 1.5e18) values, past 2^53 ≈ 9.0e15. Writing one with `valueInputOption="USER_ENTERED"` (as `app/identity_binding.py::_update_sheet_cell()` does) coerces it to a float and **silently rounds the last digits**, breaking the exact-match binding. Col G must be written with `valueInputOption="RAW"`.
+
+**Impact today.** Every col-G row holds a `user#discrim` handle or is blank, so the **sheet half of the gate is inert** — all Discord bindings fall through to the env bootstrap lists (`DISCORD_ALLOWED_USER_IDS` / `DISCORD_MEMBER_USER_IDS`). Only Gary (env allowlist) currently resolves as governor.
+
+**Severity note (contained).** A col-G binding alone resolves to **MEMBER**, never GOVERNOR — governor still requires the email in the key-based **Governors** cache. A malformed/forged col-G value cannot grant instruction authority.
+
+**Proposed work (small).**
+1. `discord_adapter.py`: normalize the comparison — accept a bare numeric tail (strip a trailing `#discrim`) so both formats bind.
+2. `identity_binding.py`: give `_update_sheet_cell()` a `RAW` path for identifier columns (venue ids), reserving `USER_ENTERED` for human prose.
+3. Re-seed col G for humans who matter (governor(s) + active members) with bare snowflakes — Gary first (row 145).
+
+**Seeded 2026-09-14 (this thread).** Row 418 `Envoy TrueSight` (admin+envoy@truesight.me) → `G418 = 1548902290344255600`, written `RAW`, read back exact, resolves to **member**. NB: `envoy_truesight` is a **bot** and the adapter ignores bot authors by design, so this binding is inert until/unless a non-bot path uses it.
+
+**Evidence.** `app/discord_adapter.py` (`COL_DISCORD_ID = 6`, `_fetch_discord_id_email`, L220–222); `app/identity_binding.py` (`_update_sheet_cell`, `valueInputOption="USER_ENTERED"`); sheet row 145 `garyjob#4037`; `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §3b; thread 27138.
+
 ### Discord: enable member *replies* — requires the brain to be tier-aware
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (Discord adapter thread).**
 
