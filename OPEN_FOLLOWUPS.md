@@ -39,6 +39,30 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Follow-up status changes never persist: `set_status()` edits the checkout, `list_open()` reads the reset `.md`, so resolutions evaporate and blocks re-fire forever
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 11042).**
+
+**Symptom.** Follow-up blocks keep re-firing on schedule (weekly) long after the agent has actioned or resolved them, and `main` never reflects the status the box set. Observed 2026-09-14: repeated weekly re-fires of `jerrie-mobile-un-aora-ppt`, `jerrie-cacao-ceremonial-tea-ppt`, `matheus-nota-fiscal-exportacao`.
+
+**Root cause (verified in `app/followups.py`).** Status is *dual-written, but only the copy that gets thrown away is ever read*:
+- `set_status(id, s)` rewrites the block's `status:` in the local `OPEN_FOLLOWUPS.md` via `_write_md()` (L275-361) — a bare file write, **no git commit/push** (no `subprocess`/`git` anywhere in the module).
+- It *also* calls `upsert_state(id, status=s)` (L364) → `followups/state.json`.
+- But `list_open()` = `[f for f in parse_all() if f.get("status") == "open"]` (L237-239) reads status from **`parse_all()`, i.e. the `.md`**. `state.json`'s `status` is written but **never read for firing** (its consumed fields are only `last_checked`/`next_check`/`attempts`/`last_pinged`).
+- Meanwhile `app/context.py` periodically `git reset --hard`s the context checkout, discarding any `.md` edit.
+
+Net: `set_status('resolved')` reports success, is written to a file the next reset erases, and the read path consults the un-edited `.md` — so the block reverts to `open` and re-fires. The sidecar's `status` field is effectively dead data.
+
+**Evidence.** On 2026-09-14 the box's checkout carried unpushed `status: resolved` on `jerrie-mobile-un-aora-ppt`, `matheus-nota-fiscal-exportacao`, and `warmup-conversion-30day-readout` while `main` showed all three `open`; a forced `refresh_context_repos()` (git reset --hard) reverted them (diff preserved at `/tmp/local_open_followups.diff` on the box). Code refs: `app/followups.py` L237-239 (`list_open`), L275-361 (`set_status`), L364 (`upsert_state`); `app/context.py` reset path. Thread 11042.
+
+**Design note.** `plans/SOPHIA_FOLLOWUP_MONITOR_PLAN.md` L34 says status "lives in a cheap sidecar `followups/state.json` the loop owns" — so the read path **should** prefer the sidecar; it currently does not. This is an implementation/design mismatch, not merely a missing push.
+
+**Proposed fix (pick one — needs a governor call).**
+(a) Make `parse_all()`/`list_open()` **merge** `status` from `state.json` (sidecar authoritative for status) so resolutions persist without pushing the `.md`. Smallest change; matches the documented design.
+(b) `set_status()` commits+pushes the `.md` (directly or via PR) so the SSOT stays the `.md`, at the cost of a commit per status flip.
+(c) Take `OPEN_FOLLOWUPS.md` out of the hard-reset path (reconcile instead of `git reset --hard`).
+
+**Question for Gary.** Which model — sidecar-authoritative (a) or `.md`-authoritative (b)? This determines whether the fix is a small read-path change or a write-path change.
+
 ### `followups/state.json` is machine-owned inside the deploy tree — breaks any `git stash`/`checkout` in a scratch clone
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138).**
 
