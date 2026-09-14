@@ -30,8 +30,17 @@ function-by-function on 2026-09-14. Discord already has: mention-gate, governor 
 6. **Reaction-based go-signal** — `reaction_emoji_verdict`, `_reaction_reactor_authorized`,
    `handle_message_reaction`, `_maybe_resume_from_reaction`. Discord supports reactions natively
    (same gateway event shape as Telegram's), should be a fairly direct port.
-7. **`/verify` binding flow** — `_maybe_handle_verification`, so a new Discord user can bind
-   their account without a governor manually seeding a sheet row.
+7. ~~**`/verify` binding flow**~~ — **SUPERSEDED (2026-09-14); do NOT build.** Governor-locked
+   decision #3 of `plans/DISCORD_ADAPTER_PLAN.md` §0 reads, verbatim: *"Identity SSOT = the
+   sheet … No parallel store, **no `/verify` DM flow**. Governor-maintained; the adapter reads
+   + caches it."* and §6 states this *supersedes the earlier proposal*. A `/verify` DM flow
+   (`_maybe_handle_verification` + a parallel pending-verification store) is exactly the
+   parallel-store / DM-verify pattern the governor rejected, so this item is **closed as
+   won't-build**. The *actual* blocker behind Discord account binding is the **col-G
+   numeric-seeding gap** — every col-G row holds a legacy `user#discrim` handle (or is blank),
+   so the exact-string match `row[6].strip() == str(user_id)` never fires; already filed under
+   `## Pending` in `OPEN_FOLLOWUPS.md` ("Discord/Telegram binding: col G & col X need bare
+   numeric snowflakes"). Governor (Gary) approved this reconciliation on thread 27138.
 
 ## Tier 3 — lower priority / evaluate need before building
 
