@@ -950,9 +950,18 @@ schedule:
   on_escalate: ping_thread
 status: open
 description: >
-  Ling is working on the mobile space capsule details. Per Gary this is a
-  follow-up track, NOT part of the Aora plan. When this fires, get status /
-  details from Ling on the mobile capsule. All pings go to thread 11042.
+  [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] Still
+  unidentifiable. Searches across all of agentic_ai_context, org-wide GitHub
+  code, both mailboxes, and the attachment transcript find NO record of "Ling"
+  or of a "mobile space capsule". Every "Ling" mail hit is a false positive
+  (Ling Xin / SCMP newsletter; Thai-Ling Maltez marketing mail); every "Ling"
+  context hit is a substring (sib-ling, fai-ling, hand-ling). The adjacent,
+  well-documented China track is Aora (Mr Cao's GO/Nucleus network, led by
+  Elizabeth Wong) — but per Gary the capsule is explicitly NOT the Aora plan.
+  BLOCKED ON GARY — need (a) who Ling is / which org, (b) what the "mobile
+  space capsule" is (a physical installation? a product? shipped hardware?),
+  (c) the intended follow-up action. Until then this can only nudge.
+  All pings go to thread 11042.
 ```
 
 ```followup
