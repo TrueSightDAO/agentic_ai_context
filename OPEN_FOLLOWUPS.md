@@ -939,9 +939,20 @@ schedule:
   on_escalate: ping_thread
 status: open
 description: >
-  Jerrie is still translating Gary's PDF for cacao ceremonial and cacao tea
-  to PPT for discussion with Win. Follow up on progress. All pings go to
-  thread 11042.
+  [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] KEY FINDING:
+  we ALREADY generated this deck in-house — on 2026-07-26 admin@truesight.me
+  sent Elizabeth Wong (ewong@gogreatop.com) the "Cacao Tea China Opportunity"
+  PPT deck plus a full English reference PDF (EN + CN both delivered; subject
+  "Cacao Tea China Opportunity — Deck PDFs (EN/CN)", threads 19fa12fe34/19fa18a8).
+  The reference PDF contains the white-space/competitor pricing, epicatechin
+  science, TCM formulas, P&L model, DHL BR→CN freight rates, La Dio Sitio
+  supply constraints. So Jerrie's "translate PDF→PPT" may be REDUNDANT unless
+  it is the ceremonial-cacao (not tea) half, or a CN-localised rewrite. "Win"
+  is unidentified — zero context/code/mail hits (only substring false
+  positives like shop.tiktok.com "win big"). Sibling block
+  `jerrie-mobile-un-aora-ppt` (same batch) covers the Aora modules; the two
+  share one ask to Jerrie. Confirm scope with Gary before re-doing work.
+  All pings go to thread 11042.
 ```
 
 ```followup
