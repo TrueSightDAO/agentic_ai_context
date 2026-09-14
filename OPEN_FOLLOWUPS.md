@@ -39,6 +39,24 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Chat ingress paths: keep the two conversation-history writers in parity (persist-on-write guard)
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29235).**
+
+**Context.** The autopilot exposes two assistant chat endpoints and they had **drifted on history persistence**:
+
+- `POST /chat` (SSE, `_stream_chat`) — used by Telegram's normal message path — persists every turn to disk via `_log_session(session_id, history)`.
+- `POST /chat-blocking` (`_chat_blocking_turn`) — used by the **Discord** adapter — its **terminal branch never called `_log_session`**; it set `_sessions[session_id]` in RAM and returned. Only the early role-selection branches persisted.
+
+Session *keying* was already per-conversation (`dc:{guild}:{channel}` vs `tg:{chat}:{thread}`), so the bug was **not** keying. Because the blocking path held the turn in memory only, a Discord channel's on-disk transcript stayed at `message_count: 1` (the `[ROLE: general]` system line) and any worker reload / process restart reloaded an effectively empty history → "missing memory between messages in the same channel."
+
+**What shipped.** truesight_autopilot#442 (merged, deployed 2026-09-14): `_chat_blocking_turn` now calls `_log_session` **after each tool round** and on the **terminal branch** — parity with `_stream_chat`. Live-verified: Discord channel `1548885989412573235` session file went **1 → 66 messages** (8 user turns retained) post-fix.
+
+**Proposed follow-up (small — the guard, not the fix).** The fix is in; what's missing is protection against the **class** regressing. Add a test asserting **both** history-writing endpoints persist a completed turn:
+1. New/extended regression test (model on `tests/test_chat_blocking_persistence.py`) that drives `/chat-blocking` *and* `/chat` and asserts each writes `message_count > 1` to its session file (or that a fresh `_load_or_create_session` reconstructs the turns) — so a future refactor that drops a `_log_session` call fails CI, not production.
+2. Optional: a short comment/constant pointing both writers at a single `_persist_turn(session_id, history)` helper so "persist the turn" can't be half-implemented on one path again.
+
+**Evidence.** `app/main.py` `_chat_blocking_turn` (terminal branch ~L4791–4796; tool-round write ~L4717–4726) vs `_stream_chat` (~L4260); `app/discord_adapter.py` builds `dc:{guild}:{channel}`; `app/telegram_adapter.py` normal path uses the `/chat` SSE call; thread 29235; PR truesight_autopilot#442.
+
 ### Discord/Telegram binding: col G & col X need bare numeric snowflakes, and the columns are effectively unseeded
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138).**
 
