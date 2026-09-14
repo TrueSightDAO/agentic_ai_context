@@ -893,11 +893,11 @@ description: >
   taxes), but the underlying gate is unchanged: Black King (CNPJ
   50.042.585/0001-80) must exit "Inapto" (clear debts + late declarations),
   renew the expired e-CNPJ, and add a commerce CNAE → IE at SEFAZ-BA before
-  any NF-e model 55 can issue. Step-by-step guidance was sent to Matheus
+  any NF-e model 55 can issue. Step-by-step guidance was DRAFTED for Matheus
   2026-08-19 (e-CAC pendências → REGULARIZE → Certidão Conjunta). Next action:
   chase Matheus for (a) e-CAC pendências PDF, (b) REGULARIZE débitos list,
   (c) Certidão Conjunta status. Context: BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md
-  (Phase 0) + TRACK_MAP.md #black-king-cnae-ie-nf-e. All pings go to thread 11042.
+  (Phase 0) + TRACK_MAP.md #black-king-cnae-ie-nf-e. [Sophia 2026-09-14] DELIVERY UNCONFIRMED: the only artifact is an UNSENT Gmail draft (admin@, id 1a01941bfcd8ba96, created 2026-08-19, still labelled DRAFT); no sent copy exists in admin@ or gary@ (in:sent checked). If it never reached Matheus (e.g. via WhatsApp), chasing him for the 3 documents is futile and the real next action is to SEND the guidance. Confirm delivery channel with Gary. All pings go to thread 11042.
 ```
 
 ```followup
