@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Black King state (SEFAZ-BA) tax records gap — the corridor split is federal-only until pulled
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 26215).**
+
+**Context.** The Black King (Matheus Reis Pereira, CNPJ 50.042.585/0001-80) cost-share analysis in `brazil/2026-09-14_black_king_corridor_report_EN_PT.pdf` covers **federal** owing only. The source zip (`black_king_taxation_owing.zip`, 8 HEIC = IMG_0026–0033) is **entirely federal** — Receita Federal DARF + PGFN "Informações de Apoio para Emissão de Certidão" (SIEF). A content scan for state markers (ICMS, SEFAZ, CDA estadual, DETRAN, IPVA, GNRE) returned **zero** hits; no state-side document was ever in the package. Report §2b marks the split **PROVISIONAL** accordingly.
+
+**Work.** Obtain the state + municipal position for the CNPJ: SEFAZ-BA **Certidão de Regularidade Fiscal / CND**, **Dívida Ativa Estadual / CDA**, **CCICMS (Inscrição Estadual status)**; and Ilhéus **ISS** at municipal level. Then apply report §3's extension rule (month-by-month vs the 2024-09-21 DAO-start cutoff: pre-cutoff 100% Matheus, post-cutoff 50/50) and finalize.
+
+**Blocker.** Requires Black King's **valid e-CNPJ** on the SEFAZ-BA / gov.br portals — the certificate was expired as of June 2026 (same renewal is a prereq of the NF-e export enablement work). Cannot be done without the governor / Matheus. Note: as a Simples Nacional optant, ICMS/ISS are normally inside the monthly DAS (already captured federally) and cacao exports are ICMS-exempt — so a large standalone state debt is *unlikely* but **unverified**.
+
+**Evidence.** Report §2b/§3; thread 26215; `BRAZIL_EXPORT_LANE_LEARNINGS.md` (e-CNPJ expired); TRACK_MAP.md §"Black King CNAE / IE / NF-e".
+
 ### Chat ingress paths: keep the two conversation-history writers in parity (persist-on-write guard)
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29235).**
 
