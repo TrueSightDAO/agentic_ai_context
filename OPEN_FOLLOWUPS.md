@@ -62,6 +62,52 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Same trap on the Telegram side (col X).** The Telegram path binds via `app/identity_binding.py` (`COL_TELEGRAM_ID = 23`, col X "Telegram ID (numeric)") + `app/policy.py::_resolve_binding()`; its writer `_update_sheet_cell()` also uses `USER_ENTERED`. Telegram ids are 9–10 digits (currently inside float64's safe range, so no rounding today), but the writer should still use `RAW` to stay correct; and col X was **empty for every contributor** on 2026-09-14 (the sheet half of the Telegram gate was inert — roles rested on the env allowlist + a display-name bridge). **Seeded 2026-09-14:** `X145 = 2102593402` (Gary Teh), `RAW`, read back exact → `_resolve_binding` → `garyjob@gmail.com` → `_binding_is_governor` True → GOVERNOR.
 
+### MAP: YouTube ↔ manifest reconciliation sweep (+ 4 farms with no committed manifest)
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 23018).**
+
+**Context.** A governor asked "are all our media already on YouTube?" The honest answer required
+diffing the **live channel** against the **manifests**, which nothing did — `farm_media_manifests`
+record a `yt_id` per uploaded video (the pipeline's "done" primitive) but no one reconciles
+"uploaded" against "recorded", so drift is invisible. A read-only reconciler was written to check
+(`~/.flow`-style throwaway at `/tmp/yt_reconcile.py`, using the existing
+`config/youtube/youtube_token.json` — scopes already include `youtube.force-ssl`).
+
+**What the sweep found (2026-09-14).** Channel `UCjzpsu2NPLqMTGX4pa-668w` ("TrueSight DAO") =
+**710 videos**; 17 manifests = **671 video items, 463 with `yt_id`** (69%).
+- **453** manifest `yt_id`s confirmed live on the channel ✅.
+- **10** manifest `yt_id`s are *not* in the channel's uploads playlist yet `videos().list` reports them
+  `public`/`processed`/`embeddable` on the same channel — benign, but the uploads-playlist sweep
+  alone misses them; verify manually (ids: `yuWJRhFyMoc`, `5AxBWQtImDo`, `GV4rxxQ4ugY`, `6TWK1uKk6qA`,
+  `xO7Srt7-0JA`, `Xe8bgsSl_GM`, `Qptt10C097k`, `xBeMtmIYGkY`, `-6bUEInoZ08`, `XR96lbXhY8U`).
+- **257** channel videos have **no** manifest `yt_id` — mixed: farm clips needing backfill
+  (**Fazenda Santa Rosa 30**, **Fazenda Bom Sucesso 17**, Santa Anna Fazenda 8, Rancho Maranta 3,
+  Cleide 1 TEST), non-farm content (Bean to Bliss 13, capoeira/SOHA/events), and **26 "Deleted video"**
+  private/deleted placeholders.
+- **4 farms have completed inbox sidecars (all `yt_id` set) but NO committed manifest**:
+  `fazenda-santa-rosa` (31), `fernando-carla` (34), `paulo-la-do-sitio` (4), `santa-anna-fazenda` (8).
+  Their videos are on YouTube but absent from `farm_media_manifests` — so site galleries and the
+  manifest index are blind to them.
+
+**Why it matters.** Without a reconcile step the "pending" signal (no `yt_id`) and the real channel
+can silently diverge — a video can be live but unmapped, or recorded but removed. The 4 manifest-less
+farms already demonstrate the drift. This is the missing half of the MAP "done" primitive
+(`MEDIA_ARCHIVE_PIPELINE.md` §Verify).
+
+**Proposed work (small→medium).**
+1. Productize the reconciler: a `farm-media-daemon` subcommand (e.g. `farm-media-queue reconcile`)
+   that enumerates the channel's uploads playlist + `videos().list` status for stragglers, diffs vs
+   every manifest, and emits three lists: `confirmed`, `manifest-only` (recorded, not live),
+   `channel-only` (live, unmapped). Read-only; a `--write-back` mode could propose yt_id backfills.
+2. **Author the 4 missing manifests** (`fazenda-santa-rosa`, `fernando-carla`, `paulo-la-do-sitio`,
+   `santa-anna-fazenda`) from their completed inbox sidecars — same shape as the existing farm manifests.
+3. **Caveat for any backfill:** `IMG_` numbers **collide across farms** (e.g. `IMG_8281.MOV` appears in
+   both the Santa Rosa and Santa Ana trees) — stem-matches MUST be farm-scoped, never global, or you
+   will attach the wrong `yt_id`.
+
+**Evidence.** `/tmp/yt_reconcile*.py` (read-only; channel `UCjzpsu2NPLqMTGX4pa-668w`);
+`config/youtube/youtube_token.json` scopes; `MEDIA_ARCHIVE_PIPELINE.md` §Verify; inbox sidecar scan on
+`i-05276b8ae82d6b88c` (0 pending in every inbox → the uploader is *caught up*, not stalled).
+
 ### Discord: enable member *replies* — requires the brain to be tier-aware
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (Discord adapter thread).**
 
