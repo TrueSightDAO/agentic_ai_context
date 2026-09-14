@@ -66,9 +66,13 @@ been committed since your clone was last refreshed (`SOPHIA_HANDOFFS.md` §"Pull
   completion **before** selecting the next. Never broadcast `go` to every unfinished thread.
 - **Priority order** when selecting: `paused_at_gate` (cheap unblock) > `failed` (diagnose) >
   `executing` (monitor) > `awaiting_kickoff` (dispatch). Prefer the most-advanced thread.
-- **One outstanding directive per thread, max.** Before prompting, check the thread's last
-  message: if Sophia already has an unanswered `go` or is mid-turn, **do not re-ping** — re-pinging
-  a running turn stalls or duplicates work.
+- **One outstanding directive per thread, max — across ALL concurrent supervisors, not just your
+  own loop.** Before prompting, check the thread's last message: if Sophia already has an
+  unanswered `go` or is mid-turn (from *any* supervisor — another Envoy tmux session, DeepSeek
+  Local, or a prior iteration of your own loop), **do not re-ping** — re-pinging a running turn
+  stalls or duplicates work. Multiple Envoy tmux sessions on `nelanco-claude` commonly run this
+  loop at once (see `ENVOY.md` point 7); read live state before selecting a thread rather than
+  assuming you're the only supervisor watching it.
 - **Respect Sophia's own guards** — she already has per-thread `_thread_dispatch_locks`
   (Telegram) / `_channel_dispatch_lock` (Discord, #456) and `AUTO_ADVANCE_MAX_TURNS=8`. The WIP
   limit is *on top of* those: it caps Sophia's **total concurrent load** (and the GitHub write PAT,
@@ -94,9 +98,11 @@ automated tests)" and go straight to `human_uat_ready`.
 
 ## 5. Authority envelope — what the supervisor may do autonomously
 
-> ⚠️ **The two `⚠️` rows below are DEFAULTS and need the governor's sign-off.** A supervisor must
-> NOT exceed this envelope, and must NOT re-interpret it on the fly (§5e of
-> `OPERATING_INSTRUCTIONS.md`: batch the scoping decision once, don't re-ask per occurrence).
+> **Governor decision 2026-09-14:** the supervisor MAY clear the prod-merge and beta→prod promote
+> rows autonomously (see the two "Autonomous (governor 2026-09-14)" rows below), but **only after**
+> CI is green and first-round UAT has passed. A supervisor must NOT exceed this envelope, and must
+> NOT re-interpret it on the fly (§5e of `OPERATING_INSTRUCTIONS.md`: batch the scoping decision
+> once, don't re-ask per occurrence).
 
 | Action | Default | Basis |
 |---|---|---|
@@ -104,15 +110,15 @@ automated tests)" and go straight to `human_uat_ready`.
 | Diagnose + retry a `failed` turn (once) | **Autonomous** | §5c — non-convergence halts, but the supervisor may re-drive |
 | First-round UAT on beta/scratch | **Autonomous** | §4 |
 | Merge a PR to a **non-prod** repo / feature branch (CI green + first-round UAT pass) | **Autonomous** | beta repos are not outward-facing |
-| Merge a PR to a **prod-consumed** repo / default branch | ⚠️ **Escalate (default)** | §5c "merge to default branch" |
-| Beta→prod promote (`sync_beta_to_prod`) | ⚠️ **Escalate (default)** | §5c "prod deploy/promote" |
+| Merge a PR to a **prod-consumed** repo / default branch | **Autonomous (governor 2026-09-14)** | after CI green + first-round UAT pass |
+| Beta→prod promote (`sync_beta_to_prod`) | **Autonomous (governor 2026-09-14)** | after first-round UAT pass; post a promote report to the thread |
 | TDG / money movement (issuing, payouts, treasury, capital injection, batch contributions) | **Human (always)** | §5c — non-negotiable |
 | Account-only actions (secrets, tokens, npm publish, org/SSO, domain/DNS) | **Human (always)** | §5c — non-negotiable |
 | Final human UAT sign-off | **Human (always)** | §4 |
 
 **Overrides:** a plan may tighten this (an explicit `gate: human` marker always wins) but may not
-loosen it. The governor may relax a `⚠️` row globally or per-plan with an explicit instruction;
-until then the default holds.
+loosen it. A plan with an explicit `gate: human` on its prod/deploy/merge unit still stops and
+escalates even under this envelope — always-stop markers win over the standing autonomy here.
 
 ---
 
