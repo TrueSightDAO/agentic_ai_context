@@ -39,6 +39,23 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Test isolation: `Settings()` reads the box `.env` — two config tests fail locally and one leaks a live `github_pat_…` into assertion output
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29384).**
+
+**Symptom.** On the autopilot box, `pytest` reports 2 failures that are *not* code defects (both reproduce identically on a pristine `main` checkout):
+
+- `tests/test_config_own_data_repos.py::test_defaults_match_sophias_existing_hardcoded_repos` — asserts `Settings().github_read_pat == ""`, but the box `.env` exports a real `GITHUB_READ_PAT` (`github_pat_…`), so `Settings()` picks it up and the pytest `assert` diff **prints the live token** (`assert 'github_pat_…' == ''`).
+- `tests/test_email_inbox_watch.py::test_email_watch_enabled_defaults_false` — asserts the default is `False`, but the box `.env` sets `EMAIL_WATCH_ENABLED=true`, so `Settings()` returns `True`.
+
+**Root cause.** Both tests instantiate `Settings()` directly. pydantic-settings loads the ambient environment *and* the cwd `.env` with no isolation, so any key present on the host leaks into the object under test — and, for the first test, into test output / CI logs / the session transcript.
+
+**Proposed fix (~30 min).**
+1. Make the two tests hermetic: `Settings(_env_file=None)` **and** monkeypatch the relevant env vars to their defaults (or `monkeypatch.delenv`), so the assertion exercises the *code default*, not the host env.
+2. Broaden: a `conftest.py` fixture (opt-in marker) that neutralises `.env` loading for unit tests asserting on defaults.
+3. **Secret hygiene:** redact `github_pat_…`-shaped strings from pytest output (a `pytest_runtest_makereport` / terminal-summary scrubber), so a live PAT can never land in logs or transcripts again.
+
+**Evidence.** `f5f0e6a`, local `pytest -q`: 1083 passed / 2 failed; both failures reproduced on pristine `main`. `tests/test_config_own_data_repos.py:22`, `tests/test_email_inbox_watch.py:398`.
+
 ### Chat ingress paths: keep the two conversation-history writers in parity (persist-on-write guard)
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29235).**
 
