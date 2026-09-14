@@ -80,6 +80,14 @@ humans seed the ids; the adapter only reads it.
 | R | 17 | Digital Signature (DAO public key) |
 | X | 23 | Telegram ID (numeric) |
 
+> **Col G format caveats (learned 2026-09-14):** (1) col G must hold the **bare numeric snowflake**
+> — `discord_adapter.py` matches by *exact string equality* (`(row[6] or "").strip() == str(user_id)`),
+> so a legacy `username#discrim` handle never binds. (2) Discord snowflakes are 19-digit values
+> **beyond float64's safe-integer range** (2^53 ≈ 9.0e15) — write them with
+> `valueInputOption="RAW"`, **never** `USER_ENTERED`, or the last digits silently round and the
+> exact-match binding breaks. (3) A col-G binding alone yields role **MEMBER**, never GOVERNOR —
+> governor still requires the email in the key-based **Governors** cache.
+
 - Telegram binding lives in `app/identity_binding.py` (`COL_TELEGRAM_ID = 23`).
 - Discord binding is read inline in `app/discord_adapter.py` (`COL_DISCORD_ID = 6`),
   with a short TTL cache so the per-message hot path never hits the Sheets API twice.
