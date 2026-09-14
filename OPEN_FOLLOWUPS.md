@@ -912,7 +912,7 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: blocked
 description: >
   [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] Still
   UNIDENTIFIED. Content search across all of agentic_ai_context, org-wide
@@ -939,7 +939,7 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: blocked
 description: >
   [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] Still not
   documented. Searches across all of agentic_ai_context, org-wide GitHub code,
@@ -968,7 +968,7 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: blocked
 description: >
   [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] Still
   unidentifiable. Searches across all of agentic_ai_context, org-wide GitHub
