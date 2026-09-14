@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Discord adapter: progress-edit 429 storm — no client-side rate-limit awareness
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138, Discord adapter).**
+
+**Symptom.** During a real governor turn (guild `923008087315587072`, channel `1548885989412573235`, 2026-09-14 17:34:21–17:36:00 UTC) the adapter's edit-in-place progress updates hit Discord **429 ten times in ~40 s against the SAME message** — `PATCH /channels/1548885989412573235/messages/1549111078015729807` (`app/discord_adapter.py::edit_message_text` → `_api`). Evidence: `journalctl -u truesight-autopilot-discord --since '2026-09-14 17:34'`.
+
+**Root cause (two parts).**
+1. **Edit spam with no bucket awareness.** All 10 log lines read `attempt 1/3` — proof each is the *first* attempt of a *distinct* `_api()` call, not an internal retry (a real retry would log `2/3`, then `3/3`). The progress loop calls `_edit()` on several unconditional paths (`call_chat_with_progress`: L704, L754, L790, L823, L828, L833), so edits fire far faster than Discord's per-message/per-channel bucket allows.
+2. **429 handling is per-call and blind.** `_api()` retries only 3× within a single call using the body's `retry_after` but ignores the `X-RateLimit-Remaining` / `X-RateLimit-Reset-After` headers; the caller also ignores the `None` return, so a fully-429'd edit is **silently dropped**.
+
+**Impact.** Degrades Tier-1 parity #1 "live progress visibility" (the progress message stops updating mid-turn) and risks Discord temporarily banning the bot on that channel. Cosmetic today, but it is a live governor-facing path.
+
+**Proposed fix (~small).** In `app/discord_adapter.py`: (a) coalesce progress edits — single-flight with a global min-interval (≥1.5 s) and skip-if-unchanged; (b) honor `X-RateLimit-*` / `Retry-After` headers by tracking a module-level per-route bucket before the next send; (c) when an edit ultimately fails, log at WARNING with the message id so a dropped progress update is visible. Local suite must stay green (compileall / ruff check / ruff format --check / pytest).
+
+**Evidence.** `app/discord_adapter.py` (`_api` L381–420, `edit_message_text` L837, `call_chat_with_progress` L669–833); `journalctl -u truesight-autopilot-discord --since '2026-09-14 17:34'`; thread 27138.
+
 ### `followups/state.json` is machine-owned inside the deploy tree — breaks any `git stash`/`checkout` in a scratch clone
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138).**
 
