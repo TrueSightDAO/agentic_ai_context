@@ -897,7 +897,7 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: blocked
 description: >
   [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] Still OPEN: no
   confirmation the export NF-e has actually been issued. Material update from
@@ -912,7 +912,7 @@ description: >
   2026-08-19 (e-CAC pendências → REGULARIZE → Certidão Conjunta). Next action:
   chase Matheus for (a) e-CAC pendências PDF, (b) REGULARIZE débitos list,
   (c) Certidão Conjunta status. Context: BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md
-  (Phase 0) + TRACK_MAP.md #black-king-cnae-ie-nf-e. [Sophia 2026-09-14] DELIVERY UNCONFIRMED: the only artifact is an UNSENT Gmail draft (admin@, id 1a01941bfcd8ba96, created 2026-08-19, still labelled DRAFT); no sent copy exists in admin@ or gary@ (in:sent checked). If it never reached Matheus (e.g. via WhatsApp), chasing him for the 3 documents is futile and the real next action is to SEND the guidance. Confirm delivery channel with Gary. All pings go to thread 11042.
+  (Phase 0) + TRACK_MAP.md #black-king-cnae-ie-nf-e. [Sophia 2026-09-14] DELIVERY UNCONFIRMED: the only artifact is an UNSENT Gmail draft (admin@, id 1a01941bfcd8ba96, created 2026-08-19, still labelled DRAFT); no sent copy exists in admin@ or gary@ (in:sent checked). If it never reached Matheus (e.g. via WhatsApp), chasing him for the 3 documents is futile and the real next action is to SEND the guidance. Confirm delivery channel with Gary. [Sophia 2026-09-14] PARKED BLOCKED on Gary -- third identical weekly re-fire, no state change: draft 1a01941bfcd8ba96 STILL labelled DRAFT (re-confirmed), no sent copy in admin@ or gary@. The block's stated next action (chase Matheus for the 3 documents) cannot progress until the guidance is actually delivered, and delivering it is a governor action. Per followups.py doctrine (blocked = "genuinely waiting on a governor decision... stops re-nagging weekly while remaining on the record"), classified blocked to stop the duplicate weekly work while staying visible on the record. BLOCKED ON (one line flips it): Gary -- send draft 1a01941bfcd8ba96, or confirm it went out via WhatsApp. All pings go to thread 11042.
 ```
 
 ```followup
