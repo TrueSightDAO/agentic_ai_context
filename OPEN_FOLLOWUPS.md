@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `followups/state.json` is machine-owned inside the deploy tree — breaks any `git stash`/`checkout` in a scratch clone
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138).**
+
+**Context.** `followups/state.json` (the follow-up monitor loop's sidecar — see `plans/SOPHIA_FOLLOWUP_MONITOR_PLAN.md`) is committed under the deployed repo and is **rewritten by the running loop** on the live box, so the working tree is permanently dirty (` M followups/state.json`).
+
+**Impact.** Any `git stash` / `git stash pop` / `git checkout <ref>` in a scratch clone aborts on a conflict in this file whenever the loop touched it between the stash and the pop. This cost a manual recovery step **twice in two consecutive turns** during the Discord parity work (2026-09-14): the pop aborted and the patch had to be recovered with `git checkout -- followups/state.json` then a re-pop. Any agent doing a stash-based baseline comparison must also remember to exclude this file.
+
+**Proposed fix (small).** Either (a) `.gitignore` `followups/state.json` and have the loop persist it to a non-deploy state dir (it is runtime state, not source), or (b) make it regenerate-on-read / conflict-tolerant so a stash pop cannot abort on it. (a) is preferred — machine-owned runtime state should not live in the tracked tree.
+
+**Evidence.** `git status --porcelain` → ` M followups/state.json` on the live box; two aborted `git stash pop` recoveries on 2026-09-14 (thread 27138); `plans/SOPHIA_FOLLOWUP_MONITOR_PLAN.md` L34/L107 describe it as the loop's private sidecar.
+
 ### Autopilot tooling: `upload_local_file_to_github` sha-less 422 regression (update path) + `merge_pr` self-restart disruption
 
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 26215).**
@@ -50,6 +61,8 @@ cross-session** items that would otherwise rot in chat transcripts.
 **Working workarounds (confirmed on 2026-09-14):** (a) commit the file under a **new filename** (create path is fine — only update 422s); or (b) **direct `git push`** using `/opt/truesight_autopilot/scripts/git-credential-sophia.sh` (shell it for the PAT via `… | sudo …/git-credential-sophia.sh get`). Both landed the byte-identical blob (43,874 B verified on `raw.githubusercontent.com`). **Fix:** have the tool `GET` the blob's current `sha` before the `PUT`, or adopt the create-path/new-filename flow internally.
 
 **Symptom 2 — `merge_pr` interrupted by an unrelated `deploy_autopilot` restart.** While `merge_pr` was waiting on GitHub rate-limit backoff, a `deploy_autopilot` triggered from a different thread restarted the autopilot box mid-call and cut the merge call off (observed 2026-09-14 12:43:08; also recorded in Telegram message 29509). Mitigation used: after restart, **verify whether the PR actually merged on GitHub's side** (via `git merge-base --is-ancestor <sha> HEAD`) before retrying, to avoid a duplicate merge attempt. **Fix:** serialize/queue a deploy so it does not abort an in-flight tool call, or make `merge_pr` resumable/idempotent.
+
+**Root cause identified + verified mitigation (2026-09-14, thread 27138).** The mechanism behind Symptom 2 is now pinned precisely: in `app/tools/deploy.py`, `deploy_autopilot()`'s idle-drain guard calls `_other_threads_busy(caller_session)`, which filters `sid != caller_session` — it deliberately **excludes the deployer's own session**, so the guard that exists to avoid severing in-flight turns structurally **cannot** protect the turn that invoked the deploy. The restart itself is a fire-and-forget child of the brain's own process tree (`subprocess.Popen([... "systemctl", "restart", *_restart_units])`, `truesight-autopilot` last), so the kill tears down its own parent tree mid-command. The `ssh_run` escape hatch is blocked (`_SELF_RESTART_RE`, `app/tools/ssh_tools.py:43`), and there is no deploy timer/watcher on the box. **Verified mitigation (not a root fix):** schedule the *same sanctioned* `deploy_autopilot()` from a transient systemd unit in its own cgroup, delayed past the turn boundary — `sudo systemd-run --collect --unit=sophia-detached-deploy --on-active=60 --working-directory=/opt/truesight_autopilot --uid=ubuntu /bin/bash -lc '...'`. Confirmed 2026-09-14: deploy landed (`f5f0e6a` → `76304fd`, 5/5 services `active`, `NRestarts=0`, marker consumed) **and the invoking turn was not severed** — the opposite of the inline call, which froze two turns that day. **Cleanest root fix:** make `deploy_autopilot` always detach its own restart into a transient unit / own cgroup, so no caller can ever be its own kill target. See also thread 29509.
 
 **Note on the rate limit.** The account-wide GitHub REST limit hit 0/5000 during this episode; `git` protocol operations (clone/fetch) do not consume it, so status checks should prefer `git` when the REST limit is exhausted rather than retrying in a tight loop.
 
