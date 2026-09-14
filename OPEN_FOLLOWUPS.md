@@ -39,6 +39,50 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+```followup
+id: circles-host-sameday-review-tracker
+chat_id: -1003919341801
+thread_id: 9346
+title: Build tracker for Hosts Circles same-day review turnaround
+created_at: 2026-09-14
+condition:
+  kind: elapsed_days
+  escalate_after_days: 30
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Successor to warmup-conversion-30day-readout §7 target #2. The warm-up
+  improvement plan requires "Hosts Circles=Yes same-day review turnaround",
+  but no tracker/measure exists — the 2026-09-01 readout could not measure it.
+  Honest answer: build the tracker, don't do more activity on an unmeasured
+  surface. Compute, for Hosts Circles=Yes warm-up emails, the share reviewed
+  same-day, and surface it in the next readout.
+```
+
+```followup
+id: dapp-remarks-dupe-audit
+chat_id: -1003919341801
+thread_id: 9346
+title: Audit DApp Remarks duplicate rows attributed to auto-reply detection
+created_at: 2026-09-14
+condition:
+  kind: elapsed_days
+  escalate_after_days: 30
+schedule:
+  check: weekly
+  on_escalate: ping_thread
+status: open
+description: >
+  Successor to warmup-conversion-30day-readout §7 target #3 ("zero new DApp
+  Remarks duplicate rows from auto-reply detection"). Independent check found
+  44 duplicate shop-name rows among 184 DApp Remarks since 2026-07-21 (e.g.
+  Miss Anne's Maypop x7, Casa de Luz x4). Determine whether these trace to the
+  auto-reply detection path or are legitimate distinct submissions, then fix or
+  document accordingly.
+```
+
 ### Discord adapter: progress-edit 429 storm — no client-side rate-limit awareness
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138, Discord adapter).**
 
@@ -872,9 +916,12 @@ condition:
 schedule:
   check: weekly
   on_escalate: ping_thread
-status: open
+status: resolved
 description: >
-  Pull go_to_market main, read reports/warmup_conversion_readout_latest.md,
+  [RESOLVED 2026-09-14 — readout delivered in thread 9346: 3.7% overall
+  engaged (22/589) vs 1.1% baseline; circles_host 5.6% (7/125). Two §7
+  targets unmet → filed as successors circles-host-sameday-review-tracker and
+  dapp-remarks-dupe-audit.] Pull go_to_market main, read reports/warmup_conversion_readout_latest.md,
   and compare against agentic_ai_context/plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md
   section 7 targets: genuine reply rate >= 2% for the general (non-circles_host)
   cohort, Hosts Circles=Yes same-day review turnaround, zero new DApp Remarks
