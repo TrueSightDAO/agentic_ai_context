@@ -39,6 +39,23 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### dao_protocol: server-side guard — reject empty body / missing signature format on signed-report submissions
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29826).**
+
+**Context.** The iOS WebKit empty-body upload bug on the DApp's signed-report forms was fixed **client-side** in dapp_beta PR #98 (`report_inventory_movement.html`; the one form PR #88 had missed). But the fix is only on the client. The server still accepts an empty body as a *success*: Edgar answers **HTTP 200** and the ledger records a `[No Text Provided]` row with `signature_verification: no_signature_format` and no attachment. This is the server-side half of the same defect, explicitly deferred from PR #88.
+
+**Symptom.** A signed-report submission whose POST body arrives empty is recorded as a real event instead of being rejected. Any client (a future page, a flaky device, a misbehaving script) can therefore silently pollute the ledger with empty `no_signature_format` rows.
+
+**Proposed fix (~small).** In `dao_protocol`'s `submit_contribution` handler, validate before persisting and return **HTTP 400** when either:
+- the submission text is empty or the literal sentinel `[No Text Provided]`; or
+- `signature_verification` resolves to `no_signature_format` (i.e. no signature block was parsed from the payload).
+
+Return a machine-readable error body (e.g. `{"error": "empty_body", "detail": "..."}`) so clients can distinguish a rejected empty body from a genuine server fault. Keep any legitimate non-signed event types working — scope the guard to submissions that *require* a signature (the signed-report forms: contribution / DAO expenses / asset receipt / inventory movement).
+
+**Why it matters.** Client-side fixes regress silently (this is the second time: #88 missed a form). A server-side guard makes the empty-body failure impossible to record, regardless of client.
+
+**Evidence.** dapp_beta PR #98 (client fix, merged 2026-09-14, commit `7c0c48e`); prior dapp PR #88 (2026-09-12) which deferred this guard; ledger rows with `signature_verification: no_signature_format` + `[No Text Provided]` (module = Inventory Movement); thread 29826.
+
 ### Discord adapter: progress-edit 429 storm — no client-side rate-limit awareness
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138, Discord adapter).**
 
