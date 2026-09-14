@@ -39,7 +39,7 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Discord binding: col G needs the bare numeric snowflake, and the column is effectively unseeded
+### Discord/Telegram binding: col G & col X need bare numeric snowflakes, and the columns are effectively unseeded
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138).**
 
 **Context.** Discord→DAO identity binding reads **col G** ("Discord ID", `COL_DISCORD_ID = 6`) of the Main Ledger *Contributors contact information* tab via `app/discord_adapter.py::_fetch_discord_id_email()`. Two properties surfaced while seeding a row on 2026-09-14:
@@ -59,6 +59,8 @@ cross-session** items that would otherwise rot in chat transcripts.
 **Seeded 2026-09-14 (this thread).** Row 418 `Envoy TrueSight` (admin+envoy@truesight.me) → `G418 = 1548902290344255600`, written `RAW`, read back exact, resolves to **member**. NB: `envoy_truesight` is a **bot** and the adapter ignores bot authors by design, so this binding is inert until/unless a non-bot path uses it.
 
 **Evidence.** `app/discord_adapter.py` (`COL_DISCORD_ID = 6`, `_fetch_discord_id_email`, L220–222); `app/identity_binding.py` (`_update_sheet_cell`, `valueInputOption="USER_ENTERED"`); sheet row 145 `garyjob#4037`; `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §3b; thread 27138.
+
+**Same trap on the Telegram side (col X).** The Telegram path binds via `app/identity_binding.py` (`COL_TELEGRAM_ID = 23`, col X "Telegram ID (numeric)") + `app/policy.py::_resolve_binding()`; its writer `_update_sheet_cell()` also uses `USER_ENTERED`. Telegram ids are 9–10 digits (currently inside float64's safe range, so no rounding today), but the writer should still use `RAW` to stay correct; and col X was **empty for every contributor** on 2026-09-14 (the sheet half of the Telegram gate was inert — roles rested on the env allowlist + a display-name bridge). **Seeded 2026-09-14:** `X145 = 2102593402` (Gary Teh), `RAW`, read back exact → `_resolve_binding` → `garyjob@gmail.com` → `_binding_is_governor` True → GOVERNOR.
 
 ### Discord: enable member *replies* — requires the brain to be tier-aware
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (Discord adapter thread).**
