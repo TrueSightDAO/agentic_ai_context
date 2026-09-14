@@ -978,10 +978,22 @@ schedule:
   on_escalate: ping_thread
 status: open
 description: >
-  Jerrie is still translating Gary's PDF for Mobile UN Aora modules to PPT,
-  so it can first be presented to Mr Liu via Evan's for certification, and
-  then to Cao for distribution. Follow-up on progress. All pings go to
-  thread 11042.
+  [Escalation ping 2026-09-14 — 29.5d elapsed, threshold 14d] No progress
+  evidence in our records. Unlike sibling "unidentifiable" items, THIS track
+  is well documented — the gap is that the PDF→PPT deliverable itself is not
+  tracked anywhere. Known source of truth: repo `TrueSightDAO/aora` holds the
+  module curriculum as Markdown (canonical) + generated PDFs —
+  `pdfs/aora-module-agroforestry.en.pdf` and
+  `pdfs/aora-module-supply-chain.en.pdf` (EN only; zh-CN exists as
+  `modules/*/index.zh-CN.md` with NO zh-CN PDF). A third module (Market
+  Sensitivity & Design Thinking) is authored by Mr Cao and is NOT in the
+  repo. Dependency chain to chase: Jerrie's PDF→PPT → Mr Liu certification
+  (via Evan) → Cao distribution. No Jerrie/"Mr Liu"/"Mobile UN"
+  correspondence exists in either mailbox (admin@ / gary@), and
+  `plans/AORA_EXPERIENCE_PLAN.md` contains no PDF→PPT unit. NOTE the sibling
+  block `jerrie-cacao-ceremonial-tea-ppt` (same 2026-08-16 batch, same
+  pattern) — likely to fire next; the two share one ask to Jerrie.
+  All pings go to thread 11042.
 ```
 
 ```followup
