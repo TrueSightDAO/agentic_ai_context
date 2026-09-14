@@ -39,6 +39,20 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot tooling: `upload_local_file_to_github` sha-less 422 regression (update path) + `merge_pr` self-restart disruption
+
+**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 26215).**
+
+**Symptom 1 — upload-tool sha 422 (REGRESSION).** `upload_local_file_to_github` and `upload_file_to_github` fail on the **update** path (overwriting an existing file) with `422 {"message":"Invalid request.\n\n\"sha\" wasn't supplied."}`. The tool does not fetch the current blob sha before issuing the Contents-API `PUT`. This reproduced **≥5 consecutive times** on 2026-09-14 while updating `brazil/2026-09-14_black_king_corridor_report_EN_PT.pdf` (~44 KB PDF). Prepending the correct `sha` by hand did **not** help — the tool re-fetches its own (empty) sha. Read-back confirmed the remote was still the prior revision while every call returned 422.
+
+**This is a regression, not a new gap.** The same item is recorded as ✅ RESOLVED higher in this file (truesight_autopilot #87, 2026-06-03; "re-verified 2026-09-11 by a create→update probe … no 422"). It is 422-ing again as of 2026-09-14, so #87 has regressed.
+
+**Working workarounds (confirmed on 2026-09-14):** (a) commit the file under a **new filename** (create path is fine — only update 422s); or (b) **direct `git push`** using `/opt/truesight_autopilot/scripts/git-credential-sophia.sh` (shell it for the PAT via `… | sudo …/git-credential-sophia.sh get`). Both landed the byte-identical blob (43,874 B verified on `raw.githubusercontent.com`). **Fix:** have the tool `GET` the blob's current `sha` before the `PUT`, or adopt the create-path/new-filename flow internally.
+
+**Symptom 2 — `merge_pr` interrupted by an unrelated `deploy_autopilot` restart.** While `merge_pr` was waiting on GitHub rate-limit backoff, a `deploy_autopilot` triggered from a different thread restarted the autopilot box mid-call and cut the merge call off (observed 2026-09-14 12:43:08; also recorded in Telegram message 29509). Mitigation used: after restart, **verify whether the PR actually merged on GitHub's side** (via `git merge-base --is-ancestor <sha> HEAD`) before retrying, to avoid a duplicate merge attempt. **Fix:** serialize/queue a deploy so it does not abort an in-flight tool call, or make `merge_pr` resumable/idempotent.
+
+**Note on the rate limit.** The account-wide GitHub REST limit hit 0/5000 during this episode; `git` protocol operations (clone/fetch) do not consume it, so status checks should prefer `git` when the REST limit is exhausted rather than retrying in a tight loop.
+
 ### Black King state (SEFAZ-BA) tax records gap — the corridor split is federal-only until pulled
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 26215).**
 
