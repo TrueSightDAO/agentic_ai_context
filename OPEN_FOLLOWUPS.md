@@ -62,7 +62,7 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Same trap on the Telegram side (col X).** The Telegram path binds via `app/identity_binding.py` (`COL_TELEGRAM_ID = 23`, col X "Telegram ID (numeric)") + `app/policy.py::_resolve_binding()`; its writer `_update_sheet_cell()` also uses `USER_ENTERED`. Telegram ids are 9–10 digits (currently inside float64's safe range, so no rounding today), but the writer should still use `RAW` to stay correct; and col X was **empty for every contributor** on 2026-09-14 (the sheet half of the Telegram gate was inert — roles rested on the env allowlist + a display-name bridge). **Seeded 2026-09-14:** `X145 = 2102593402` (Gary Teh), `RAW`, read back exact → `_resolve_binding` → `garyjob@gmail.com` → `_binding_is_governor` True → GOVERNOR.
 
-### MAP: YouTube ↔ manifest reconciliation sweep (+ 4 farms with no committed manifest)
+### MAP: YouTube ↔ manifest reconciliation sweep (+ 2 manifest gaps, both shipped 2026-09-14)
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 23018).**
 
 **Context.** A governor asked "are all our media already on YouTube?" The honest answer required
@@ -83,14 +83,23 @@ record a `yt_id` per uploaded video (the pipeline's "done" primitive) but no one
   (**Fazenda Santa Rosa 30**, **Fazenda Bom Sucesso 17**, Santa Anna Fazenda 8, Rancho Maranta 3,
   Cleide 1 TEST), non-farm content (Bean to Bliss 13, capoeira/SOHA/events), and **26 "Deleted video"**
   private/deleted placeholders.
-- **4 farms have completed inbox sidecars (all `yt_id` set) but NO committed manifest**:
-  `fazenda-santa-rosa` (31), `fernando-carla` (34), `paulo-la-do-sitio` (4), `santa-anna-fazenda` (8).
-  Their videos are on YouTube but absent from `farm_media_manifests` — so site galleries and the
-  manifest index are blind to them.
+- **2 genuine manifest gaps** (CORRECTED 2026-09-14 — an earlier "4 farms" count was a name-match
+  false positive; manifests use a `-para` suffix and some live in `farms/`, so exact-dirname matching
+  missed them):
+  - `fazenda-santa-rosa` — **no manifest** despite 31 live videos (+ a gallery). ✅ **Shipped**: authored
+    `fazenda-santa-rosa.json` (49 items: 31 MOV all with `yt_id`+GPS, 18 HEIC), v2.0 schema.
+  - `farms/fazenda-bom-sucesso.json` — **non-conforming pre-v2.0 stub** (`farm`/`videos[]` with
+    `youtube_id`/`source_file`), so the index + publisher ignored its 17 live videos. ✅ **Shipped**:
+    normalized to v2.0 `items[]`, titles + `curated` flags preserved. Both registered in `index.json`.
+  - FALSE POSITIVES (no action needed): `paulo-la-do-sitio` → has `paulo-la-do-sitio-para.json` (4/4
+    match); `santa-anna-fazenda` → has `santa-anna-fazenda-para.json` (8/8 match); `fernando-carla`
+    inbox → its 34 clips ARE Fazenda Clara, already covered by `fazenda-clara-bahia.json` (34/34
+    stem+`yt_id` identical — a dir-name alias, not a gap).
 
 **Why it matters.** Without a reconcile step the "pending" signal (no `yt_id`) and the real channel
-can silently diverge — a video can be live but unmapped, or recorded but removed. The 4 manifest-less
-farms already demonstrate the drift. This is the missing half of the MAP "done" primitive
+can silently diverge — a video can be live but unmapped, or recorded but removed. The 2 manifest
+gaps already demonstrated the drift (one missing manifest, one non-conforming stub). This is the
+missing half of the MAP "done" primitive
 (`MEDIA_ARCHIVE_PIPELINE.md` §Verify).
 
 **Proposed work (small→medium).**
@@ -98,8 +107,9 @@ farms already demonstrate the drift. This is the missing half of the MAP "done" 
    that enumerates the channel's uploads playlist + `videos().list` status for stragglers, diffs vs
    every manifest, and emits three lists: `confirmed`, `manifest-only` (recorded, not live),
    `channel-only` (live, unmapped). Read-only; a `--write-back` mode could propose yt_id backfills.
-2. **Author the 4 missing manifests** (`fazenda-santa-rosa`, `fernando-carla`, `paulo-la-do-sitio`,
-   `santa-anna-fazenda`) from their completed inbox sidecars — same shape as the existing farm manifests.
+2. ~~Author the missing manifests~~ ✅ **DONE 2026-09-14** — `fazenda-santa-rosa` authored +
+   `farms/fazenda-bom-sucesso.json` normalized to v2.0 (see above). Remaining: a **schema-conformance
+   check** so a pre-v2.0 stub like bom-sucesso's can't silently sit outside the index again.
 3. **Caveat for any backfill:** `IMG_` numbers **collide across farms** (e.g. `IMG_8281.MOV` appears in
    both the Santa Rosa and Santa Ana trees) — stem-matches MUST be farm-scoped, never global, or you
    will attach the wrong `yt_id`.
