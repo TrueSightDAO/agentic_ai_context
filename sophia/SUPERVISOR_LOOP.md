@@ -46,7 +46,7 @@ doesn't exist yet). Every unfinished handoff has a **state** from this enum:
 | `prod_merge` | Human gave thumbs-up; execute the prod merge | Merge to prod (§4/§5) |
 | `blocked_on_human` | Needs a human-only action (money/secret/org) | **Escalate** |
 | `failed` | Turn errored / no PR opened | Diagnose → retry once → escalate |
-| `done` | All units merged, contribution reported | Confirm closure (§6) |
+| `done` | All units merged, contribution reported, channel closed | Confirm closure (§6a) |
 | `stale` | No activity in N hours (default 24) | Flag; do **not** auto-ping |
 
 **How to read a thread's live state (Telegram + Discord):**
@@ -136,6 +136,47 @@ escalates even under this envelope — always-stop markers win over the standing
 - **Ambiguity fails closed.** If you can't tell *where* the thread is, stop and ask the governor —
   don't guess and send `go`.
 - **Money/identity gates are never clearable** by a supervisor regardless of any other wording.
+
+---
+
+## 6a. Close-out — deleting a task-scoped channel (governor directive, 2026-09-14)
+
+**A chat surface created for one specific piece of work — a Telegram forum topic or a Discord
+channel opened to run a single handoff — gets deleted once that work is truly finished.** A
+supervisor's responsibility for a thread does **not** end at "units merged" or even at "human
+UAT thumbs-up" — it ends only after this close-out sequence completes, in order:
+
+1. **Prod merge / promote lands** (§4 Prod merge row) and is confirmed healthy.
+2. **The DAO contribution report is filed** (`truesight-dao-report-ai-agent-contribution`,
+   `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`) — **never skip or defer this step.** It's the durable
+   record of the work; the channel is not.
+3. **Only then** does Sophia close and delete the channel/topic.
+
+**Never delete before step 2.** If the channel disappears before the contribution is filed, the
+supervisor loses the PR links and context needed to file it correctly — don't create that gap.
+
+**Mechanics differ by venue:**
+
+- **Telegram:** Sophia has `close_telegram_topic_checked` (preferred — verifies the handoff's
+  registered state first) / `close_telegram_topic` (`app/tools/telegram_topic.py`). This deletes
+  **only** the Telegram chat surface — it never deletes the underlying session transcript/history,
+  which stays queryable. See `sophia/SOPHIA_HANDOFFS.md`.
+- **Discord:** **no deletion (or archive) tool exists yet** — `app/discord_adapter.py` has no
+  channel-management capability today (tracked gap: `plans/DISCORD_TELEGRAM_PARITY_GAPS.md`,
+  `OPEN_FOLLOWUPS.md`). Until it's built, Sophia **cannot** self-serve this on Discord: a
+  supervisor hitting step 3 on a Discord-native thread must escalate to a human (or an LLM seat
+  holding Discord admin/`MANAGE_CHANNELS` in the guild) to delete the channel manually, quoting
+  the finished handoff and confirming step 2 already happened. Flag it, don't silently leave the
+  channel sitting there as "done in spirit."
+
+**Mandatory: name the channel before it's gone.** The final closing message — posted in the
+parent chat/log, not just the doomed channel itself — must explicitly name the channel/topic
+being deleted, so there's a durable record of what existed even after the surface is gone. If
+Sophia's close-out message doesn't include the name, the supervisor asks for it before letting
+the deletion stand as complete.
+
+**Applies only to task-scoped surfaces** (one handoff, one channel) — not to standing/general
+channels (e.g. a team's always-on Discord channel), which are never auto-deleted by this rule.
 
 ---
 
