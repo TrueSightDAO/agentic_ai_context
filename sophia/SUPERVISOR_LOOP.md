@@ -17,14 +17,15 @@ thread rules) see `sophia/SOPHIA_HANDOFFS.md`; for the big-picture actor map see
 refresh context (git pull agentic_ai_context) → read the unfinished-work index (§2)
   → select the next thread(s) within the WIP limit (§3)
   → for each selected thread, supervise to a stop (§4/§5):
-        read state → act (prompt / clear gate / escalate) → verify (first-round UAT)
-        → repeat until the thread is human-UAT-ready, done, or escalated
+        read state → act (prompt / clear gate / escalate) → verify (R1/R2 UAT)
+        → repeat until the thread is human-UAT-thumbs-up → prod merged → done, or escalated
   → checkpoint your own position (§7)
   → loop
 ```
 
-A supervisor's job is to **drive threads toward `human_uat_ready`** (or `done`), never to spin
-idly on a thread that is running, and never to fan out to every thread at once.
+A supervisor's job is to **drive threads through R1/R2 UAT to `human_uat_ready`**, then through the
+human thumbs-up to `prod_merge` and `done` — never to spin idly on a thread that is running, and
+never to fan out to every thread at once.
 
 ---
 
@@ -39,8 +40,10 @@ doesn't exist yet). Every unfinished handoff has a **state** from this enum:
 | `awaiting_kickoff` | Plan written + row registered; not yet triggered | Dispatch (§5) |
 | `executing` | Sophia is running a turn | **Wait** (poll; do not re-ping) |
 | `paused_at_gate` | Sophia stopped at a gate | Clear it (if autonomous) or escalate (§5) |
-| `first_round_uat` | Sophia delivered the work; needs LLM verification | Run §4 verification |
-| `human_uat_ready` | First-round UAT passed; only human sign-off left | **Escalate** to governor |
+| `sophia_uat` | R1 — Sophia verifying her own work on beta | Drive to pass (§4) |
+| `envoy_uat` | R2 — Envoy independently verifying on beta | Ask Envoy, drive to pass (§4) |
+| `human_uat_ready` | R1+R2 green; request human UAT | **Request human UAT** (§4) |
+| `prod_merge` | Human gave thumbs-up; execute the prod merge | Merge to prod (§4/§5) |
 | `blocked_on_human` | Needs a human-only action (money/secret/org) | **Escalate** |
 | `failed` | Turn errored / no PR opened | Diagnose → retry once → escalate |
 | `done` | All units merged, contribution reported | Confirm closure (§6) |
@@ -80,38 +83,40 @@ been committed since your clone was last refreshed (`SOPHIA_HANDOFFS.md` §"Pull
 
 ---
 
-## 4. First-round UAT vs human UAT (the split)
+## 4. UAT — three rounds, then prod merge
 
-"UAT" is **not one phase**. It splits into two:
+UAT is **three rounds**, all in the **beta** environment, then prod:
 
 | Round | Who | What | Loop behavior |
 |---|---|---|---|
-| **First-round UAT** | Supervisor + Sophia | Run the plan's U1–Un acceptance steps against **beta / scratch**; verify each pass/fail; fix and re-verify until green | **Autonomous** — loops, no human |
-| **Human UAT** | Governor | Final sign-off on the acceptance criteria (eyes on the real surface) | **Always-stop** — escalate |
+| **R1 — Sophia UAT** | Sophia (autopilot) | Run the plan's U1–Un acceptance steps on **beta**; verify each pass/fail; fix and re-verify until green | **Autonomous** — supervisor drives |
+| **R2 — Envoy UAT** | Envoy (independent Claude seat) | Independently re-run the acceptance steps on **beta**; report pass/fail | **Autonomous** — supervisor asks Envoy |
+| **R3 — Human UAT** | Governor | Final sign-off on the acceptance criteria (eyes on the real surface) | **Always-stop** — supervisor requests |
+| **Prod merge** | Supervisor / Sophia | After human UAT **thumbs-up**, execute the merge to prod (`sync_beta_to_prod` / default-branch merge) | **Authorized by human thumbs-up** |
 
-The loop's exit condition is reaching `human_uat_ready` — i.e. **first-round UAT green** — then
-posting a concise "ready for your UAT" summary with the URLs and what was verified. A pure
-backend/library change with no human-facing surface may state "first-round UAT: n/a (covered by
-automated tests)" and go straight to `human_uat_ready`.
+The loop's exit is the human **thumbs-up**, then the prod merge. Each round posts a short pass/fail
+summary to the thread so the next round starts from a verified baseline. A pure backend/library
+change with no human-facing surface may skip R1/R2 (state "covered by automated tests") but **still
+waits for human UAT before prod**.
 
 ---
 
 ## 5. Authority envelope — what the supervisor may do autonomously
 
-> **Governor decision 2026-09-14:** the supervisor MAY clear the prod-merge and beta→prod promote
-> rows autonomously (see the two "Autonomous (governor 2026-09-14)" rows below), but **only after**
-> CI is green and first-round UAT has passed. A supervisor must NOT exceed this envelope, and must
-> NOT re-interpret it on the fly (§5e of `OPERATING_INSTRUCTIONS.md`: batch the scoping decision
-> once, don't re-ask per occurrence).
+> **Governor decision 2026-09-14 (3-round UAT):** prod merge/promote is **not** autonomous on its
+> own — it is **authorized by the human UAT thumbs-up** (§4 R3). The supervisor executes the merge
+> only after that thumbs-up. A supervisor must NOT exceed this envelope, and must NOT re-interpret
+> it on the fly (§5e of `OPERATING_INSTRUCTIONS.md`: batch the scoping decision once, don't re-ask
+> per occurrence).
 
 | Action | Default | Basis |
 |---|---|---|
 | Send `go` for a non-irreversible unit | **Autonomous** | §5c — safe units auto-advance |
 | Diagnose + retry a `failed` turn (once) | **Autonomous** | §5c — non-convergence halts, but the supervisor may re-drive |
-| First-round UAT on beta/scratch | **Autonomous** | §4 |
-| Merge a PR to a **non-prod** repo / feature branch (CI green + first-round UAT pass) | **Autonomous** | beta repos are not outward-facing |
-| Merge a PR to a **prod-consumed** repo / default branch | **Autonomous (governor 2026-09-14)** | after CI green + first-round UAT pass |
-| Beta→prod promote (`sync_beta_to_prod`) | **Autonomous (governor 2026-09-14)** | after first-round UAT pass; post a promote report to the thread |
+| R1 (Sophia) + R2 (Envoy) UAT on beta | **Autonomous** | §4 |
+| Merge a PR to a **non-prod** repo / feature branch (CI green + R1/R2 UAT pass) | **Autonomous** | beta repos are not outward-facing |
+| Merge a PR to a **prod-consumed** repo / default branch | **Gated on human UAT thumbs-up** | supervisor executes after §4 R3 thumbs-up |
+| Beta→prod promote (`sync_beta_to_prod`) | **Gated on human UAT thumbs-up** | supervisor executes after §4 R3 thumbs-up |
 | TDG / money movement (issuing, payouts, treasury, capital injection, batch contributions) | **Human (always)** | §5c — non-negotiable |
 | Account-only actions (secrets, tokens, npm publish, org/SSO, domain/DNS) | **Human (always)** | §5c — non-negotiable |
 | Final human UAT sign-off | **Human (always)** | §4 |
