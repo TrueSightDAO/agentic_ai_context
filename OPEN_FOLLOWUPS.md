@@ -65,23 +65,51 @@ and these three keep the "stale ungoverned on-disk credential" risk the vault ex
 resolves vault-first, then include their bare files in the Unit 6 archive.
 
 
+### treasury-cache: per-key emitter SILENTLY DROPPED by the 2026-06-16 migration — per-key store frozen since 2026-06-18 (U5 FAIL)
+
+**Filed 2026-09-15. Owner: UNCLAIMED. Governor: Gary (thread 30471). Fix PR: TrueSightDAO/tokenomics#494 (open, unmerged — GAS deploy is gate:human).**
+
+**Context (found during UAT U5 of PUBLIC_KEY_LOOKUP_CACHE_PLAN).** PR1 (tokenomics#359) + PR2 (#361) merged 2026-06-16 to make
+`dao_members_cache_publisher.gs` emit **per-key files** `public_keys/<sha256>.json` + `public_keys/_manifest.json`, written atomically with
+`dao_members.json`. A later commit the SAME EVENING — `50999ec` "migrate: flatten clasp_mirrors/ into google_app_scripts/<scriptId>/ folders"
+(2026-06-16 23:23 −0700) — **deleted that file with no rename destination** and re-added the folder "from manifests", i.e. it rewrote the repo
+to match the **then-deployed GAS state (the pre-PR1 script)**. The per-key emitter therefore existed only in git for ~1 hour and **never ran in production**.
+
+**Evidence (all verified 2026-09-15).**
+- Last `public_keys/` commit = **2026-06-18**; every `dao_members.json` refresh since (through 2026-09-15) touches **0** per-key files.
+- Current `DaoMembersCache.js` has **no** per-key logic (`git log -S "public_keys/"` on it = empty; 0 hits for `_manifest`/`createTree`/`createBlob`/`REVOKED`).
+- Org-wide code search for a per-key emitter: **0 hits** — it was never re-homed elsewhere.
+- Pre-migration blob (`296c41aa`) still contains the lost code: `computeSha256_`, `fetchCurrentManifest_`, `commitMultipleFilesToGithubViaTreeApi_` + the build block.
+
+**Impact.** *(a)* The `dapp_beta` `permissions.js` per-key lookup (PR5) and the governor vault (PR4) resolve keys via the per-key file — with
+generation frozen, **every key registered since 2026-06-18 and every role change since then is invisible to the per-key store**. *(b)* Keys with **no**
+per-key file (all 12 of Gary's newer keys + every post-June key) fall back to the **TTL-cached monolith** (`load_governors`, `GOVERNORS_CACHE_TTL=300`),
+so the **~5‑min first-sign-in lag PR4 retired returns for exactly those keys**, and the O(1) goal silently degrades to O(n). *(c)* It is the shared
+root cause of the Elizabeth Wong drift entry below.
+
+**Fix.** Restore the three helper functions + per-key/manifest build block into the flattened `DaoMembersCache.js` (+ a tree-SHA no-op guard so cron
+re-pings don't spam empty commits). **Done: tokenomics#494 (open).** Then GAS `clasp push` + `publishDaoMembersCacheNow()` smoke test — **gate:human**
+(do not auto-deploy GAS). After deploy, confirm a fresh `public_keys/` commit lands and coverage reaches 100% of ACTIVE keys.
+
+**Verification note.** tokenomics PR #494 drafted by Sophia from the pre-migration blob; `node --check` passes on all 8 project `.js` files.
+
 ### dapp / treasury-cache: Elizabeth Wong per-key `roles` drift — BLOCKS `dapp_prod` promotion of the per-key lookup cache
 
 **Filed 2026-09-15. Owner: UNCLAIMED — root cause routed to Gary (real person's governor-role data). Governor: Gary (thread 30471).**
 
 **Context.** Found during PR5 step-3/UAT U1 verification. PR5 step 2 makes the DApp `permissions.js` resolve a signed-in RSA via
 `treasury-cache/public_keys/<sha256(base64pubkey)>.json` and treat that file's `roles[]` as authoritative when `status=ACTIVE`.
-Diffing all 79 ACTIVE per-key files against the monolith `dao_members.json`: **exactly one mismatch — Elizabeth Wong.** Her file says
+Diffing every ACTIVE per-key file against the monolith `dao_members.json`: **exactly one role mismatch — Elizabeth Wong.** Her file says
 `roles: ["member"]`; the monolith says `roles: ["governor","member"]`.
 
 **Symptom.** With step 2 live, a governor signing in with her key would be **denied governor-gated DApp actions** — the same *class* of
 stale-cache bug this whole plan exists to retire, now on the generator side. **This must be resolved before `dapp_prod` promotion.**
 
-**Root-cause question for Gary (a real person's role data — do not auto-decide).** Is the per-key file stale (never regenerated after her
-governor election) or a one-off manual edit? Forensics: per-key file `generated_at = 2026-06-18`, monolith `generated_at = 2026-09-15`;
-78/79 other per-key files from ~June still match the monolith. Hypothesis (UNVERIFIED): role changes may not trigger a per-key refresh.
-The per-key **writer** is not in the `tokenomics` mirror (only the `DaoMembersCache.js` emitter is; org code-search finds no `public_keys/`
-blob writer) — it likely lives in `treasury-cache/gas/treasury-cache-publisher`. Verify there before concluding.
+**Root cause — RESOLVED 2026-09-15 (was flagged UNVERIFIED; now confirmed systemic, NOT a one-off).** Her stale file is a *symptom*
+of a generator regression: the **per-key emitter was dropped by migration commit `50999ec`** ("flatten clasp_mirrors/ …", 2026-06-16 23:23 −0700),
+merged ~1h *after* PR1 (tokenomics#359) + PR2 (#361) added it. That commit rewrote the repo to match the then-deployed GAS state (the pre-PR1
+script), so per-key generation has been **frozen since 2026-06-18**. See the dedicated regression entry below. **Fix = restore the emitter**
+(tokenomics PR #494) — after which her file regenerates correctly and the data half closes itself; only the true-roles confirmation stays human.
 
 **Proposed fix (2 parts, ~small).** (a) DATA: confirm the true current roles for Elizabeth Wong, then either regenerate her per-key file or
 correct the source sheet — a human decision. (b) CODE: make governor/member role changes (re)publish the affected per-key file(s), so the
