@@ -311,4 +311,4 @@ items are code-only reads, not decisions.
 
 Per the pattern established for every other roadmap this session: **park in a new Telegram topic** for
 a supervisor (Envoy or Sophia) to pick up and drive per `sophia/SUPERVISOR_LOOP.md`, rather than
-executing in this session. RESUME HERE (§4) = PR1a.
+executing in this session. RESUME HERE (§4) = PR5 (PR0–PR4 shipped 2026-09-15; PR5 = UAT on the live board).
