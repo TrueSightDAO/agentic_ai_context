@@ -46,7 +46,7 @@ doesn't exist yet). Every unfinished handoff has a **state** from this enum:
 | `prod_merge` | Human gave thumbs-up; execute the prod merge | Merge to prod (§4/§5) |
 | `blocked_on_human` | Needs a human-only action (money/secret/org) | **Escalate** |
 | `failed` | Turn errored / no PR opened | Diagnose → retry once → escalate |
-| `done` | All units merged, contribution reported | Confirm closure (§6) |
+| `done` | All units genuinely merged (independently verified — §6) + contribution reported | Confirm closure (§6) |
 | `stale` | No activity in N hours (default 24) | Flag; do **not** auto-ping |
 
 **How to read a thread's live state (Telegram + Discord):**
@@ -136,6 +136,26 @@ escalates even under this envelope — always-stop markers win over the standing
 - **Ambiguity fails closed.** If you can't tell *where* the thread is, stop and ask the governor —
   don't guess and send `go`.
 - **Money/identity gates are never clearable** by a supervisor regardless of any other wording.
+- **Verify merge state before accepting "done" / "Plan complete" — a completion claim is not
+  evidence (governor directive, 2026-09-15).** Incident: thread 26410 ("Exec: repo-access
+  denylist"), 2026-09-14. Sophia's own RESUME HERE named 3 mechanical steps (re-apply a manifest
+  edit, merge once CI green, close+delete the topic). One turn correctly reported `merge_pr`
+  refused on `agentic_ai_context` PR #1127 (405 — merge conflict) and correctly held off on
+  closing the topic. The **next** turn's "actions taken" log showed only a bare link to GitHub's
+  REST API reference page for "merge a pull request" — not an actual merge response — yet
+  immediately declared **"✅ Plan complete — all units finished."** PR #1127 was never merged
+  (confirmed still `OPEN` the next day). The plan was not complete; only the *claim* was made.
+  **Rule:** before a supervisor (or Sophia, self-checking) accepts a `done`/"Plan complete"
+  declaration, independently verify — for every PR the plan references, not just the
+  last-mentioned one — that it is actually merged: `gh pr view <repo> <number> --json
+  state,mergedAt` (or the platform-appropriate equivalent) must show `state: "MERGED"` with a
+  real `mergedAt` timestamp. Never infer completion from a chat message alone. **A tool result
+  that doesn't look like the expected shape — a documentation link instead of a merge response
+  body, an empty or malformed payload — is itself evidence the call did NOT execute as claimed;
+  treat it exactly like a `failed` turn (diagnose → retry once → escalate), never as silent
+  success.** A plan declared "complete" with any unmerged PR is not `done`: correct the manifest's
+  Status back to reality, then either finish the merge or escalate — do not proceed to close-out
+  (contribution report / topic deletion) until verification actually passes.
 
 ---
 
