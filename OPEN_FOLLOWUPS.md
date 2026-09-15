@@ -39,6 +39,53 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight_autopilot: the autopilot box silently runs stale code — deployed `/opt/truesight_autopilot` lags `origin/main`
+
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30083).**
+
+**Context.** Found during PR5 UAT (sprint board). The running `truesight-autopilot` service (`uvicorn app.main:app`, port 8001, `WorkingDirectory=/opt/truesight_autopilot`) was **2 commits behind `origin/main`** — `0a3d1a1` (#467 progress-query classifier) and `45e15cb` (#466 PR4c(a) auto-claim/release, which adds `app/supervision.py`) were merged but **absent from the running tree**. `git ls-tree origin/main app/supervision.py` → blob present; the deployed tree lacks the file and `main.py` has no `claim_for_turn` call — so merged auto-claim behaviour is **dark in production**. Autopilot-box analog of the `dao_protocol` no-CD entry.
+
+**Symptom.** A merged PR's behaviour cannot be observed live — the box runs the previous SHA with no alert. UAT of any autopilot-side feature can spuriously "fail" against code that was never deployed.
+
+**Proposed fix (~small).** (a) Have the deploy path record the deployed SHA prominently (a deploy ledger exists); (b) expose the running SHA (e.g. a `/version` endpoint, like `edgar.truesight.me/ping`'s `version`) and compare it to `origin/main` so "merged but not deployed" is visible rather than silent.
+
+**Evidence.** `git -C /opt/truesight_autopilot rev-list --left-right --count HEAD...origin/main` → `0  2`; deployed tree has no `app/supervision.py`; thread 30083 (PR5 UAT U7); same root cause reported for thread 30475.
+
+### sprint-site: board reads jsdelivr before raw — lags `index.json` by the CDN TTL
+
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30083).**
+
+**Context.** `app.js`'s `SOURCES` lists `cdn.jsdelivr.net/gh/TrueSightDAO/agentic_ai_context@main/handoffs/index.json` **before** the `raw.githubusercontent.com` fallback, and `fetchFirst` returns the first source that responds — so the board renders jsdelivr's **cached** copy, lagging `index.json` on `main` by the jsdelivr TTL (observed: board meta `updated 15:43:37Z` vs raw `16:56:54Z`, ~1h).
+
+**Symptom.** After merging an `index.json` change, the live board shows stale data until the CDN expires — reliably confuses UAT (the board appears to "disagree" with the repo).
+
+**Proposed fix (~small).** Reorder `SOURCES` to put `raw.githubusercontent.com` first (always fresh), or keep jsdelivr and purge it at deploy (`https://purge.jsdelivr.net/gh/<repo>@main/handoffs/index.json`), or cache-bust with `?t=<ts>`.
+
+**Evidence.** `sprint-site/app.js` `SOURCES` + `fetchFirst`; live-vs-raw `updated` differ ~1h; thread 30083.
+
+### sprint-site: add a browser-safe smoke test (computed visibility), not just byte greps
+
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30083).**
+
+**Context.** PR5 UAT used headless Chrome (`--dump-dom`) to prove view-tab behaviour — e.g. `?view=board` / `?view=sup` render **exactly one** section. A byte/grep-level check cannot catch this board's real bug class: the view-tab `[hidden]` fix, where attribute/class combinations left sections both visible or both hidden. `--dump-dom` returns the restructured DOM but **not** applied computed `display`, so it too is only a proxy.
+
+**Symptom.** A regression that breaks tab/section visibility ships green because the gate only counts feature references in served bytes.
+
+**Proposed fix (~small).** Add a smoke test that loads the deployed board, asserts each view shows exactly one `<section>`, and checks element **computed style** (`getComputedStyle(el).display`) where feasible (headless Chromium evaluate, or playwright/puppeteer in CI).
+
+**Evidence.** PR5 UAT method (headless `--dump-dom`); `sprint-site/app.js` view-tab logic; the agroverse_shop_beta "UAT must execute the JS, not grep-count" lesson; thread 30083.
+
+### sprint-site: header "N supervising" counts stale claims while the lane excludes them
+
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30083).**
+
+**Context.** The board header meta computes `… · N supervising` as `handoffs.filter(h => h.supervised_by).length`, which **includes** stale claims (`supervised_by.stale === true`). The 👀 supervised **lane** correctly excludes stale claims. So a stale-only claim inflates the header count while the lane shows nothing.
+
+**Symptom.** Header count and lane disagree; "2 supervising" can mean "2 active" or "1 active + 1 stale" indistinguishably.
+
+**Proposed fix (~small).** Count **fresh** claims only (`supervised_by && !supervised_by.stale`), or split the label (`N active · M stale`).
+
+**Evidence.** PR5 UAT U5 (doctored-stale index: badge `stale (95 min)`, lane excluded it, meta still counted it); `sprint-site/app.js` meta computation; thread 30083.
 ### truesight_autopilot: `find_resume_here()` matches a bare `RESUME HERE` substring anywhere — incidental prose breaks the auto-advance parser
 
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30083).**
