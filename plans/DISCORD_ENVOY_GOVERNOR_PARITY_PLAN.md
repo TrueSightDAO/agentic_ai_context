@@ -161,9 +161,10 @@ this plan should be additive-only for his own identity.
 
 ## Rollout
 
-Per Gary's standing instruction this session: **once this plan is defined and committed, park it
-as a new Telegram topic** (not executed in this Envoy session) so another Envoy thread can decide
-whether to pick it up, then supervise Sophia through PR0→PR3 to completion — following
+**Parked 2026-09-15** in Telegram topic [Exec: Discord Envoy governor parity](https://t.me/c/3919341801/29970)
+(`message_thread_id` 29970, TrueSight DAO Ops supergroup) and registered in
+`handoffs/HANDOFF_MANIFEST.md`, per Gary's standing instruction this session — not executed in
+this Envoy session. Whichever Envoy/Sophia supervisor thread picks it up drives PR0→PR3 per
 `sophia/SUPERVISOR_LOOP.md` end to end, including its §6a close-out (contribution report filed,
 then the parking topic itself closed) once PR3's UAT is green and Gary has signed off on the
 Option A/B call in PR0.
