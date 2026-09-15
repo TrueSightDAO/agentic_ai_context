@@ -39,6 +39,51 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### dapp / treasury-cache: Elizabeth Wong per-key `roles` drift — BLOCKS `dapp_prod` promotion of the per-key lookup cache
+
+**Filed 2026-09-15. Owner: UNCLAIMED — root cause routed to Gary (real person's governor-role data). Governor: Gary (thread 30471).**
+
+**Context.** Found during PR5 step-3/UAT U1 verification. PR5 step 2 makes the DApp `permissions.js` resolve a signed-in RSA via
+`treasury-cache/public_keys/<sha256(base64pubkey)>.json` and treat that file's `roles[]` as authoritative when `status=ACTIVE`.
+Diffing all 79 ACTIVE per-key files against the monolith `dao_members.json`: **exactly one mismatch — Elizabeth Wong.** Her file says
+`roles: ["member"]`; the monolith says `roles: ["governor","member"]`.
+
+**Symptom.** With step 2 live, a governor signing in with her key would be **denied governor-gated DApp actions** — the same *class* of
+stale-cache bug this whole plan exists to retire, now on the generator side. **This must be resolved before `dapp_prod` promotion.**
+
+**Root-cause question for Gary (a real person's role data — do not auto-decide).** Is the per-key file stale (never regenerated after her
+governor election) or a one-off manual edit? Forensics: per-key file `generated_at = 2026-06-18`, monolith `generated_at = 2026-09-15`;
+78/79 other per-key files from ~June still match the monolith. Hypothesis (UNVERIFIED): role changes may not trigger a per-key refresh.
+The per-key **writer** is not in the `tokenomics` mirror (only the `DaoMembersCache.js` emitter is; org code-search finds no `public_keys/`
+blob writer) — it likely lives in `treasury-cache/gas/treasury-cache-publisher`. Verify there before concluding.
+
+**Proposed fix (2 parts, ~small).** (a) DATA: confirm the true current roles for Elizabeth Wong, then either regenerate her per-key file or
+correct the source sheet — a human decision. (b) CODE: make governor/member role changes (re)publish the affected per-key file(s), so the
+per-key store cannot silently lag the monolith.
+
+**Evidence.** `treasury-cache/public_keys/<sha256(wong_key)>.json` → `roles: ["member"]`, `generated_at 2026-06-18`; `dao_members.json` →
+`roles: ["governor","member"]`, `generated_at 2026-09-15`; 79-key diff = 1 mismatch; thread 30471.
+
+### truesight_autopilot: auto-advance directive repeatedly quotes a STALE unit (“one behind” the live `RESUME HERE` marker)
+
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30471).**
+
+**Context.** Across a single execution session the injected `[AUTO-ADVANCE]` directive named a unit **one behind** the live plan marker **5–6 times**
+(e.g. it kept quoting “PR4 ✅ MERGED” while the live `RESUME HERE` had advanced to PR5 step 1/2/3). Each time, re-reading the plan file from
+`agentic_ai_context@main` showed the marker already advanced — so the directive text was sourced from a **pre-tracker-PR snapshot** (the manifest/§5 row
+as it read *before* that turn's tracker PR merged), not re-read at dispatch time. Only manual re-verification against the live file prevented re-running
+an already-shipped unit (duplicate-PR risk).
+
+**Symptom.** The auto-advance gate can dispatch a unit that was already completed, or skip the real next one — silent, and it erodes trust in the
+directive (the operator must hand-verify every turn).
+
+**Proposed fix (~small).** Have the auto-advance **re-read the plan's live `RESUME HERE` at dispatch time** (fetch `agentic_ai_context@main` fresh, or
+read the raw file) rather than embedding a cached manifest snapshot; alternatively, inject the **raw marker line verbatim** and require the agent to
+re-verify it against the live file before acting (the practice that worked). Related: the `find_resume_here()` substring bug filed above (same gate).
+
+**Evidence.** 5–6 misfires in thread 30471; each directive text matched the *previous* unit while `git show origin/main:plans/...` showed the advanced
+marker; cf. `app/auto_advance.py`, the “bare `RESUME HERE` substring” entry above.
+
 ### truesight_autopilot: the autopilot box silently runs stale code — deployed `/opt/truesight_autopilot` lags `origin/main`
 
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30083).**
