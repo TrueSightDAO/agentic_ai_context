@@ -319,6 +319,8 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 
 > **Rev 11 note (thread 10800):** line 11 re-priced at the **official BACEN PTAX** rate (14/09/2026, venda **5.1696**) per the governor's instruction to use the official rate rather than the ledger `Brazilian Reis` proxy: **R$ 89.60 ÷ 5.1696 = $17.33/KG = $86.66** (was $20.81 / $104.07 @ 0.2323). Total Invoice Value $6,964.26 → **$6,946.85** (lines 1–11).
 
+> **Rev 12 note (thread 10800):** line 11's SKU index row in the Main Ledger `Currencies` tab (row 108, "Coopercabruca Cacao Butter (KG)", gid 1552160318) had an **empty `HS Code` (col S)** — now set to **`1804`** (text), per the NF-e's own NCM **1804.00.00** (cocoa butter, fat & oil — a distinct chapter-18 heading, vs. `1801` beans / `1803.1` mass / `1806.32` bars / `2106.9` tea). `Currencies` header runs **A–S** (P Inventory Type, Q Sale Type, R GTIN, **S HS Code**); col **T is empty** — the natural home for a future `Source Documents` link column.
+
 > *Items 5 and 6 (AGL8 almonds and tea) have $0 cost basis. If the system requires a nominal value, use $0.01. If $0 is accepted, use $0.00.
 
 #### A.2.5 — Financial & Transport Info
