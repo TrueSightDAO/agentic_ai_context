@@ -211,6 +211,67 @@ as canonical, not just remembered from this conversation.
 - Sophia's/Envoy's own execution authority (§5 of `SUPERVISOR_LOOP.md`) is untouched — this board adds
   visibility, nothing else.
 
+### 2.6 Active-supervision visibility (added 2026-09-15, Gary — same-day extension)
+
+*"I am thinking in the handoff JSON supervisor should clearly indicate which threads are being
+actively monitored and supervised and it should show up in the sprint dashboard... that way it
+becomes easy if we want to override existing focus with something of higher priority."*
+
+**The gap this closes.** `SUPERVISOR_LOOP.md` §3 already has a rule — *"before prompting, check the
+thread's last message: if Sophia already has an unanswered `go` or is mid-turn (from **any**
+supervisor)... don't re-ping"* — but today the only way to check that is reading a thread's chat
+history and inferring. Nothing records it structurally. Gary's ask makes it a real field instead of a
+guess, and — the actual point — **makes an informed override possible**: seeing "Envoy is on thread X
+right now" is what lets a human deliberately say "drop that, thread Y matters more" with full
+information, rather than overriding blind or not realizing a redirect is even needed.
+
+**Why this can't just be another `HANDOFF_MANIFEST.md` column.** Everything else in the manifest is a
+durable, occasionally-updated historical record — git-committed, reviewed-ish, fine to change a few
+times a day. "Who's actively watching this thread right now" is the opposite: it changes every time a
+supervisor picks up or drops a thread, potentially many times an hour across multiple concurrent Envoy
+sessions (`ENVOY.md` point 7) plus DeepSeek Local plus Sophia self-checking. Routing that through the
+big manifest would make every claim/release a heavyweight PR against the same file everything else
+touches — exactly the kind of contention that caused the PR #1127 merge-conflict incident earlier
+today.
+
+**Design — a small, separate, frequently-written file:**
+
+```json
+// handoffs/active_supervision.json — NOT generated; supervisors write this directly
+{
+  "schema_version": 1,
+  "claims": [
+    {
+      "plan_file": "plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md",
+      "supervisor": "envoy",
+      "claimed_at": "2026-09-15T13:00:00Z",
+      "note": "optional short context, e.g. 'driving PR5 UAT'"
+    }
+  ]
+}
+```
+
+- A supervisor **claims** a thread (adds/updates its entry) when it starts actively driving it, and
+  **releases** it (removes the entry) when it stops — a small, targeted, self-mergeable docs-only PR
+  each time, not a heavyweight manifest edit. This is the same checkpoint `SUPERVISOR_LOOP.md` §7
+  already asks supervisors to keep privately (`notes/supervisor_loop_<date>.md`) — this just makes it
+  shared and structured instead of personal and freeform.
+- **`build_handoff_index.py` reads this file too**, alongside the manifest, and merges a
+  `supervised_by` field into each handoff's `index.json` entry: `null` if unclaimed, else
+  `{supervisor, claimed_at}`.
+- **Staleness matters — a claim isn't trusted forever.** Mirrors `SUPERVISOR_LOOP.md` §2a's
+  "verify before trusting a prolonged state" discipline: if `claimed_at` is older than a threshold
+  (recommend ~60 min, matching the existing supervision check-cadence conventions) and hasn't been
+  refreshed, the generator emits it as stale (`supervised_by.stale: true`) rather than silently trusting
+  an abandoned claim — the same failure shape as the manifest Status column drifting from reality,
+  avoided this time by design.
+- **The board renders it directly** — no new fetch, `index.json` already carries everything the board
+  reads. A card shows "👀 Envoy — active" / "👀 Sophia — stale (44 min)" / nothing (unclaimed).
+- **No new authority is created.** An override is still just a chat message to the supervisor
+  currently holding the claim (or directly to Sophia) — exactly how instructions already work. This
+  field only makes the *current allocation* visible so that message is an informed one instead of a
+  guess.
+
 ---
 
 ## 3. Pre-flight — verify before PR1 (§5d completeness gate)
@@ -276,10 +337,12 @@ surfaced, folded into PR1a below. One **gate before PR2**: the repo name `sprint
 | **PR2** | ✅ **DONE — 2026-09-15.** Repo created as `TrueSightDAO/sprint-site` (bare `sprint` matches no blessed `create_repo_patterns` glob; `*-site` does). Board merged (PR #1). **Original scope:** New `TrueSightDAO/sprint` repo scaffold: static page, fetches `index.json`, renders the §2.3 Kanban columns + cards (spec link, Telegram/Discord deep link, resume-tracker one-liner), **defaulting to the "Needs You" view** with the full board one click away. Fully read-only, no auth. Deploy dark (Pages not yet DNS-mapped). | auto |
 | **PR3** | ✅ **DONE — 2026-09-15** (CNAME live, HTTP 200; HTTPS cert auto-issuing at close). **Original scope:** Route53 CNAME `sprint.truesight.me`; verify live, 200, valid cert (same steps already proven for `cfr.truesight.me`). | auto |
 | **PR4** | ✅ **DONE — merged with this same edit.** `sophia/SUPERVISOR_LOOP.md`: add the advisory-only boundary (§2.4) as a canonical rule, referencing `sprint.truesight.me` by name — a chat-message priority signal is context for the supervisor's judgment, never an automatic override. Docs-only, self-mergeable per this repo's own convention. | auto |
-| **PR5** | UAT (§5) on the live board. | auto |
+| **PR4b** | Active-supervision visibility (§2.6, added 2026-09-15 — Gary, same-day extension). New `handoffs/active_supervision.json` (supervisor-written directly, not generated); extend `build_handoff_index.py` to merge a `supervised_by` field (with staleness handling, ~60 min threshold) into each `index.json` entry; extend `sprint-site`'s card rendering to show it. No auth change — still fully public read; claim/release writes are small self-mergeable docs-only PRs, same convention as everything else in this repo. | auto |
+| **PR5** | UAT (§5) on the live board, including PR4b's supervision badges. | auto |
 | **PR6** | Repoint `truesight_me_prod` + `_beta`'s `quests/index.html` **and** `quests/join/index.html` (both, identically — §0 point 10) from Trello to `sprint.truesight.me`. | **`gate: human`** — touches a live, indexed, public-facing prod URL; gated on PR5's UAT passing |
 
-**RESUME HERE: PR5 — UAT on the live board.** (PR0–PR4 done — see §3.1–§3.2; PR4 = the §3a addition to `sophia/SUPERVISOR_LOOP.md`, merged in this same edit.)
+**RESUME HERE: PR4b — active-supervision visibility.** (PR0–PR4 done — see §3.1–§3.2; PR4b added
+2026-09-15 after PR4 landed, ahead of PR5's UAT so the UAT pass covers the finished feature set.)
 
 ---
 
@@ -295,6 +358,9 @@ surfaced, folded into PR1a below. One **gate before PR2**: the repo name `sprint
   correct live conversation.
 - **U4** — After PR6: confirm `truesight.me/quests/` and `/quests/join/` both land on the new board,
   and the old Trello links are gone from both prod and beta.
+- **U5** — Claim a test thread in `active_supervision.json`; confirm the card shows the active badge.
+  Backdate (or wait out) the claim past the staleness threshold; confirm it renders as stale, not as
+  still-active. Release the claim; confirm the badge disappears.
 
 ---
 
