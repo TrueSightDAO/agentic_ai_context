@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T20:58:35Z",
+  "generated_at": "2026-09-15T21:19:44Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "0531ab217289f17a8e91f4997d991b7b310857b38620cd299c284209e420a091",
+  "source_sha256": "7a885862f31a49d5012057ce2cbc404b5665005e9e676d3ae237b054acd219ae",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,7 +19,7 @@
   "handoff_count": 60,
   "counts_by_state": {
     "awaiting_kickoff": 15,
-    "executing": 15,
+    "executing": 14,
     "paused_at_gate": 4,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -27,7 +27,7 @@
     "prod_merge": 0,
     "blocked_on_human": 9,
     "failed": 0,
-    "done": 14,
+    "done": 15,
     "stale": 1,
     "unknown": 0
   },
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Deploy landed 20:53:43 UTC (1254da2), deploy-blocker cleared. Elizabeth Wong data-integrity bug still flagged to Gary directly -- root-cause call still his, not deploy-related. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2).",
         "stale": true,
-        "age_minutes": 107
+        "age_minutes": 128
       }
     },
     {
@@ -585,15 +585,15 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Deploy landed 20:53:43 UTC (1254da2), Unit F's UAT gate can now run. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2).",
         "stale": true,
-        "age_minutes": 107
+        "age_minutes": 128
       }
     },
     {
       "plan_file": "`plans/SOPHIA_LIVE_PROGRESS_PLAN.md`",
       "title": "Live Progress Introspection (report what the executing turn is doing when Gary asks mid-turn, instead of a canned queued ack)",
       "handoff_date": "2026-06-11",
-      "state": "executing",
-      "status_raw": "executing — deploy landed 2026-09-15 20:53:43 UTC (`1254da2`, includes #467); UAT resuming",
+      "state": "done",
+      "status_raw": "**COMPLETE — UAT U1–U5 ✅ passed on deployed HEAD `1254da2` (2026-09-15)**",
       "telegram_thread_id": "30475",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "executing -- Gary deployed 2026-09-15 20:53:43 UTC (confirmed live at 1254da2, includes #467). Nudged to proceed with UAT/verification.",
         "stale": true,
-        "age_minutes": 107
+        "age_minutes": 128
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 107
+        "age_minutes": 128
       }
     },
     {
@@ -892,7 +892,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 107
+        "age_minutes": 128
       }
     },
     {
@@ -915,7 +915,7 @@
         "claimed_at": "2026-09-15T19:28:30Z",
         "note": "executing -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Gary deployed 20:53:43 UTC, confirmed live at 1254da2. PR3 cleared. Nudged to proceed with PR4 (UAT), then PR5 (docs).",
         "stale": true,
-        "age_minutes": 90
+        "age_minutes": 111
       }
     },
     {
