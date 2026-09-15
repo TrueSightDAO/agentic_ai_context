@@ -315,6 +315,6 @@ executing in this session. **RESUME HERE: PR5 — UAT on the live board** (PR0�
 
 > **Marker format note.** `app/auto_advance.py` captures everything after the resume marker
 > and reduces it to a unit key by splitting on the first `—`/`–`/` - `. Write the unit
-> label **immediately** after the marker (`RESUME HERE: PR5 — …`). Do **not** use a
+> label **immediately** after the marker (`… : PR5 — …`). Do **not** use a
 > leading arrow (`→ PR5`) or a parenthesis before the label — both leave junk in the key
 > (`→ pr5.`, `(§4) = pr5 (pr0`) so `find_unit_row` misses and the gate misfires.
