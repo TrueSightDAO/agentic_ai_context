@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T15:17:45Z",
+  "generated_at": "2026-09-15T15:26:16Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "3daa47ed116505b6133a53c167206c5827c78c30b2c2c4ca001b9ad78e109d12",
+  "source_sha256": "e9a64b46e89aac36a157e29433710ae606929a9e63f568d08e29951feeaae2b7",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -339,7 +339,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`LARGE_SPIKES_CARD_FIX_AND_CHART_LEGIBILITY_PLAN.md` (in agentic_ai_context — synced to Sophia's context mirror)",
+      "plan_file": "`plans/LARGE_SPIKES_CARD_FIX_AND_CHART_LEGIBILITY_PLAN.md`",
       "title": "`/large_spikes` — disappearing company cards fix + breakout-gauge legibility (follow-up hardening of the LARGE_SPIKE_INDEX build)",
       "handoff_date": "2026-07-05",
       "state": "done",
@@ -373,7 +373,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`MEMBERS_PAGE_SINGLE_SOURCE_PLAN.md`",
+      "plan_file": "`plans/MEMBERS_PAGE_SINGLE_SOURCE_PLAN.md`",
       "title": "Members page reliability + single-source consolidation (stop `index.json` staleness; make it the single source for Governors + Members + Sentinels so members.html reads one file)",
       "handoff_date": "2026-07-01",
       "state": "awaiting_kickoff",
@@ -390,7 +390,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`POST_REPACKAGING_CLEANUP_PLAN.md`",
+      "plan_file": "`plans/POST_REPACKAGING_CLEANUP_PLAN.md`",
       "title": "Post-Repackaging Cleanup: Auto-populate Currencies + offchain after repackaging GAS",
       "handoff_date": "2026-06-28",
       "state": "awaiting_kickoff",
@@ -407,7 +407,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`GOVERNOR_SHEET_PERMISSION_SYNC_PLAN.md`",
+      "plan_file": "`plans/GOVERNOR_SHEET_PERMISSION_SYNC_PLAN.md`",
       "title": "Governor Sheet-Permission Sync (auto-sync Main Ledger editor list from governor roster)",
       "handoff_date": "2026-06-28",
       "state": "done",
@@ -424,7 +424,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`REVIEW_QUEUE_SOP.md`",
+      "plan_file": "`sops/REVIEW_QUEUE_SOP.md`",
       "title": "Review Queue Standard Operating Procedure (automatable rules for LLM/Sophia review)",
       "handoff_date": "2026-06-28",
       "state": "awaiting_kickoff",
@@ -441,7 +441,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md`",
+      "plan_file": "`plans/SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md`",
       "title": "Sophia Durable Journal + Checkpoint-Resume Loop (let long work resume in bounded chunks across turns; adds journal+resume on top of existing compaction)",
       "handoff_date": "2026-06-23",
       "state": "blocked_on_human",
@@ -475,7 +475,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SOPHIA_CONTRIBUTION_SCORING_PLAN.md`",
+      "plan_file": "`plans/SOPHIA_CONTRIBUTION_SCORING_PLAN.md`",
       "title": "Score the contribution review backlog (906 rows / ~90.7k TDG)",
       "handoff_date": "2026-06-23",
       "state": "executing",
@@ -492,7 +492,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SCORING_REVIEW_QUEUE_PLAN.md`",
+      "plan_file": "`plans/SCORING_REVIEW_QUEUE_PLAN.md`",
       "title": "Scoring Review Queue (cache generator, Edgar endpoint, DApp review UI)",
       "handoff_date": "2026-06-18",
       "state": "done",
@@ -509,7 +509,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SOPHIA_DAPP_EVENT_ALIGNMENT_PLAN.md`",
+      "plan_file": "`plans/SOPHIA_DAPP_EVENT_ALIGNMENT_PLAN.md`",
       "title": "Sophia↔DApp Event Alignment (all event types)",
       "handoff_date": "2026-06-18",
       "state": "awaiting_kickoff",
@@ -526,7 +526,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`CLI_SALES_EVENT_ALIGNMENT_PLAN.md`",
+      "plan_file": "`plans/CLI_SALES_EVENT_ALIGNMENT_PLAN.md`",
       "title": "CLI Sales Event Audit & Alignment with DApp",
       "handoff_date": "2026-06-17",
       "state": "executing",
@@ -543,7 +543,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`PUBLIC_KEY_LOOKUP_CACHE_PLAN.md`",
+      "plan_file": "`plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md`",
       "title": "Public-Key Lookup Cache (content-addressed per-key governor store; retires the 5-min vault cache-lag bug)",
       "handoff_date": "2026-06-16",
       "state": "paused_at_gate",
@@ -560,7 +560,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`",
+      "plan_file": "`plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`",
       "title": "Vault Initialization & Credential Migration (migrate /home/ubuntu/ bare credentials into encrypted vault)",
       "handoff_date": "2026-06-14",
       "state": "paused_at_gate",
@@ -577,7 +577,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SOPHIA_LIVE_PROGRESS_PLAN.md`",
+      "plan_file": "`plans/SOPHIA_LIVE_PROGRESS_PLAN.md`",
       "title": "Live Progress Introspection (report what the executing turn is doing when Gary asks mid-turn, instead of a canned queued ack)",
       "handoff_date": "2026-06-11",
       "state": "paused_at_gate",
@@ -594,7 +594,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md`",
+      "plan_file": "`plans/SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md`",
       "title": "Sophia Multi-Tenant Governance, Identity & Vault — **PHASE 0 only** (policy layer + tool-layer auth + data-vs-instruction boundary + guest-default)",
       "handoff_date": "2026-06-11",
       "state": "paused_at_gate",
@@ -611,7 +611,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SOPHIA_FOLLOWUP_MONITOR_PLAN.md`",
+      "plan_file": "`plans/SOPHIA_FOLLOWUP_MONITOR_PLAN.md`",
       "title": "Durable Follow-up Monitor (thread-bound, multi-day; gmail_reply + elapsed_days; on strike spins a Sophia turn in the thread)",
       "handoff_date": "2026-06-11",
       "state": "executing",
@@ -628,7 +628,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`AUTOPILOT_HARDENING_PLAN.md`",
+      "plan_file": "`plans/AUTOPILOT_HARDENING_PLAN.md`",
       "title": "Autopilot Hardening (Sophia's own codebase)",
       "handoff_date": "2026-06-10",
       "state": "paused_at_gate",
@@ -645,7 +645,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`BETA_SANDBOX_ENDPOINT_PLAN.md`",
+      "plan_file": "`plans/BETA_SANDBOX_ENDPOINT_PLAN.md`",
       "title": "Beta Sandbox Endpoint (beta.edgar.truesight.me)",
       "handoff_date": "2026-06-09",
       "state": "paused_at_gate",
@@ -662,7 +662,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`CHOCOLATE_SUBSCRIPTION_PLAN.md`",
+      "plan_file": "`plans/CHOCOLATE_SUBSCRIPTION_PLAN.md`",
       "title": "Agroverse Chocolate Subscriptions — Phase 1",
       "handoff_date": "2026-06-09",
       "state": "paused_at_gate",
@@ -679,7 +679,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`RESEND_VERIFICATION_PLAN.md`",
+      "plan_file": "`plans/RESEND_VERIFICATION_PLAN.md`",
       "title": "Resend verification email",
       "handoff_date": "2026-06-08",
       "state": "executing",
@@ -696,7 +696,7 @@
       "supervised_by": null
     },
     {
-      "plan_file": "`SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md`",
+      "plan_file": "`handoffs/SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md`",
       "title": "THEOBROMA-1 (cacao brew demo)",
       "handoff_date": "2026-06-07",
       "state": "awaiting_kickoff",
@@ -868,7 +868,7 @@
         "claimed_at": "2026-09-15T15:09:57Z",
         "note": "Gary is live in this thread giving direct UX feedback (per-supervisor board lane, deep-linkable spec pills, copy-URL). Monitoring, not nudging, while he's engaged. HTTPS cert confirmed genuinely stalled on GitHub's side (not config) -- non-blocking, awaiting provisioning.",
         "stale": false,
-        "age_minutes": 7
+        "age_minutes": 16
       }
     },
     {
@@ -976,7 +976,7 @@
         "claimed_at": "2026-09-15T15:09:57Z",
         "note": "PR3 (23734) landed, sweep believed complete -- authorized final gap re-check (Option A) before declaring done.",
         "stale": false,
-        "age_minutes": 7
+        "age_minutes": 16
       }
     },
     {

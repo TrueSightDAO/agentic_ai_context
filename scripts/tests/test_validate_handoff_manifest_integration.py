@@ -50,3 +50,18 @@ def test_real_manifest_has_auto_start_column_defaulted_to_no():
     result = validate(text)
     assert result.ok, result.errors
     assert "| Auto-start |" in text
+
+
+def test_real_manifest_plan_files_all_resolve():
+    """Every Plan file must resolve to a real repo path.
+
+    Regression guard for the 2026-09-15 bug where ~20 rows (all pre-`plans/`
+    convention) pointed at bare filenames, so the spec viewer 404'd on every one.
+    """
+    manifest_path = default_manifest_path()
+    text = manifest_path.read_text(encoding="utf-8")
+    result = validate(text, repo_root=manifest_path.resolve().parent.parent)
+    assert result.ok, (
+        "handoffs/HANDOFF_MANIFEST.md has Plan file values that do not resolve:\n"
+        + "\n".join(result.errors)
+    )
