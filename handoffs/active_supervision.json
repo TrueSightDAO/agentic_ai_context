@@ -5,14 +5,14 @@
     {
       "plan_file": "plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T15:43:27Z",
-      "note": "Gary directly driving with live UX requests; now also working PR4c (compliance enforcement -- validate_handoff_manifest.py --check-supervision). HTTPS cert still GitHub-side pending, non-blocking."
+      "claimed_at": "2026-09-15T16:20:52Z",
+      "note": "PR #466 (auto-claim wiring, part a) landed CI-green, awaiting Gary's merge (own-repo gate). Sophia continuing with dao_client half + plan-file plumbing. Two deploy-caused restarts survived (15:46, 16:00) via re-nudge; HTTPS cert still GitHub-side pending, non-blocking."
     },
     {
       "plan_file": "plans/SOPHIA_LIVE_PROGRESS_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T15:43:27Z",
-      "note": "Build already merged+deployed (fix #241, 2026-06-17); dispatched UAT U1-U5 as the completion gate. Fresh topic 30475 reopened from dead thread 2799 via the stale-backlog audit."
+      "claimed_at": "2026-09-15T16:20:52Z",
+      "note": "UAT found a real bug (progress-query classifier fed decorated text, always >80 chars in handoff topics -- dead code). Fix verified locally, PR pending (own-repo gate, Gary merges). Two deploy-caused restarts survived via re-nudge."
     }
   ]
 }
