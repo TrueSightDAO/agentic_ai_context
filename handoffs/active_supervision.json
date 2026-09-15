@@ -37,6 +37,12 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:28:30Z",
       "note": "blocked_on_human -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Sophia confirmed and self-stopped: PR3 (deploy) is gate:human, PR4 (UAT) waits on the deploy, PR5 is docs-only. Now waiting on the same Gary deploy authorization as threads 30475/30471/30473. All six supervised threads are now blocked_on_human."
+    },
+    {
+      "plan_file": "plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md",
+      "supervisor": "Sophia (autopilot, self)",
+      "claimed_at": "2026-09-15T20:54:11Z",
+      "note": "auto-claim (turn-dispatch)"
     }
   ]
 }
