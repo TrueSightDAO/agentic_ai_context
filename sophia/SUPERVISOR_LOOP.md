@@ -151,6 +151,35 @@ waits for human UAT before prod**.
 
 ## 5. Authority envelope — what the supervisor may do autonomously
 
+### 5.0 The standing principle (Gary, 2026-09-15 — this should be read as general, not a one-off)
+
+*"Since Sophia now has a supervisor, [merging] shouldn't be human gated... this should be global."*
+Gary confirmed this is a **principle**, not a scope expansion to more repos — the table below's
+prod-repo merge behavior is unchanged (still gated on human UAT thumbs-up, not on a separate merge
+ask) — write it once, apply it consistently to future cases, rather than re-litigating "does
+supervision cover this?" from scratch each time:
+
+- **Supervision substitutes for a human gate on actions that are reversible and verifiable after
+  the fact.** A bad merge can be reverted, re-diagnosed, and fixed in a later turn — a supervisor
+  (Envoy, DeepSeek Local, or Sophia's own R1 self-check) catching a mistake days or minutes later
+  still fully closes the loop. That's why merging — to `truesight_autopilot` or any non-prod
+  repo — no longer needs a human specifically: the supervisor *is* the check.
+- **Supervision does NOT substitute for a human gate on actions that are irreversible, carry
+  external/financial/legal weight, or require a judgment only a human can make.** A supervisor
+  catching a mistake *after* a TDG issuance, a domain/DNS change, a GAS deploy that broke a live
+  spreadsheet integration, or a prod website merge that shipped a broken checkout to real
+  customers — doesn't undo the mistake, and in the prod-website case specifically, human UAT isn't
+  really a check on *Sophia's code quality* (which supervision does cover) so much as it's a human
+  confirming the actual *customer-facing outcome* is right, a class of judgment supervision cannot
+  stand in for. That's why GAS deployment, human UAT, TDG/money movement, account-only actions,
+  and (per §5e below) prod-website merge/promote (which is gated *by* UAT, not separately) all stay
+  human-always regardless of how good supervision gets.
+- **Apply this test to any future case, not just the ones already enumerated below**: is the
+  action reversible and will a supervisor's after-the-fact review genuinely catch and fix a
+  mistake? Then it can be autonomous. Does getting it wrong cause external/irreversible harm, or
+  require a judgment call only a human is positioned to make? Then it stays gated, no matter how
+  much supervision exists.
+
 > **Governor decision 2026-09-14 (3-round UAT):** prod merge/promote is **not** autonomous on its
 > own — it is **authorized by the human UAT thumbs-up** (§4 R3). The supervisor executes the merge
 > only after that thumbs-up. A supervisor must NOT exceed this envelope, and must NOT re-interpret
