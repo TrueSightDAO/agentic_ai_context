@@ -39,6 +39,29 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight_autopilot: `find_resume_here()` matches a bare `RESUME HERE` substring anywhere — incidental prose breaks the auto-advance parser
+
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30083).**
+
+**Symptom (2nd occurrence of this class).** `plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md` line 393 carried
+the descriptive phrase "so both `RESUME HERE` occurrences agree" — a *prose* mention of the token, not a marker.
+`app/auto_advance.py:find_resume_here()` takes the **last** match of
+`_RESUME_RE = RESUME\s+HERE\s*[:=]?\s*(.*)` in the whole file, so it latched onto line 393 (which sits *after*
+the real marker on line 391) and captured garbage ("occurrences agree,") → the auto-advance gate misfired.
+Line 393 was reworded to "both resume markers above agree" to unblock immediately.
+
+**First occurrence.** An earlier break was a leading arrow character (`→ PR5`) leaking into the unit key.
+
+**Why it is not a quick one-liner.** The marker format across `plans/*.md` is highly variable: bold
+(`**RESUME HERE → PR3**`), heading (`## RESUME HERE`, `> ## ▶ RESUME HERE`), quoted, — and critically — often
+**mid-line after prose** (this very plan's *real* marker is `executing in this session. **RESUME HERE: PR5 …`).
+Several plans ALSO carry bold **prose** mentions of the token that are not markers
+(`GETDATA_IO_MCP_AGENT_MARKETPLACE_PLAN.md:57`, `FARM_SHIPMENT_MEDIA_JSON_PLAN.md:290`, `GETDATA_IO_MCP…:179`).
+So neither "require line-start" nor "require bold" is safe without a migration pass over every plan.
+
+**Proposed fix.** Define a canonical marker grammar (e.g. token followed by `:`/`=` and a unit label matching
+`PR\d+` / `Unit \d+` / `none` / `complete`, and not preceded by an opening backtick), migrate the plans in one
+sweep, then add golden-file regression tests for the prose-mention cases listed above. Owner: unclaimed.
 ### MAP: Medicilandia farmers-convention 2024 — finish the media-archive pipeline (open the manifest PR + add the photo content layer)
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 23734).**
 
