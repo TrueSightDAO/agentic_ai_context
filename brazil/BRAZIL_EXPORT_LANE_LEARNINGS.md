@@ -80,7 +80,7 @@
 - **Current blocker:** Phase 0 — NF-e cannot be issued (the 7 issues above).
 - **Omega quotation (May 2026):** road transport BRL 6,615 + 0.15% ad-valorem; palletization BRL 195 (excluded — pallets on hand); fumigation BRL 500; export docs $95; air freight $3.20–3.50/kg tiered; Brazil airport $0.30/kg (min $250); US terminal $212.50; US handling $125; clearance $150; FDA $100; MPF 0.3464%; bond max($100, $6/$1k).
 - **Freight-only total (internal transfer, excl. payload):** ≈ **US$ 3,550** (Brazil ≈ $1,319 @ 5.40 FX + air/export ≈ $1,722 + US ≈ $509).
-- **Shipment docs:** INV-2026-0611-001 **Rev 9** FOB $6,860.19 + PL-2026-0611-001 **Rev 9** (PDFs in exports/). AGL14 almonds line removed (Rev 8) + Cacao Nibs AGL13 −500 g & 8oz Kraft Pouch −8 bags (Rev 9), thread 10800; 2 × plastic HDPE pallets (20 kg tare); gross ~320.0 kg.
+- **Shipment docs:** INV-2026-0611-001 **Rev 10** FOB $6,964.26 + PL-2026-0611-001 **Rev 10** (PDFs in exports/). AGL14 almonds line removed (Rev 8); Cacao Nibs AGL13 −500 g & 8oz Kraft Pouch −8 bags (Rev 9); Coopercabruca cacao butter (5 KG) priced at $104.07 / $20.81 per KG from its 26/08/2026 purchase NF-e (BRL 448 @ Brazilian Reis 0.2323) — Rev 10, thread 10800; 2 × plastic HDPE pallets (20 kg tare); gross ~320.0 kg.
 
 ---
 
