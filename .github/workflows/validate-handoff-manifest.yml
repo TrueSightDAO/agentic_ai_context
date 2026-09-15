@@ -35,5 +35,7 @@ jobs:
         run: python3 scripts/validate_handoff_manifest.py
       - name: Check handoffs/index.json is in sync with the manifest
         run: python3 scripts/validate_handoff_manifest.py --check-index
+      - name: Cross-check active_supervision.json against the manifest
+        run: python3 scripts/validate_handoff_manifest.py --check-supervision
       - name: Run unit + integration tests
         run: python3 -m pytest scripts/tests/ -v
