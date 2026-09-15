@@ -1266,6 +1266,16 @@ description: >
   (offchain row 4288, Fund Handler "Matheus Reis", Is Revenue = N) values $0 -> $86.65.
   Still open: whether to record the 5 kg receipt
   as a formal [INVENTORY MOVEMENT] (blocked on destination ledger name).
+  [Sophia 2026-09-15] LEDGER INDEX COMPLETED: `Currencies!S108` (HS Code)
+  set to **1804** (text) via the same ledger-manager SA path -- the row was
+  missing its HS code (NF-e NCM 1804.00.00 / HS 1804, cocoa butter fat & oil).
+  Follow-up (open, not yet built): LINK THE NF-e TO THE SKU -- `Currencies`
+  currently has NO source-document column (header ends at col S HS Code).
+  Recommended: add col **T `Source Documents`** (URL list, mirroring the existing
+  col O `Composition JSON` URL pattern) rather than renaming col A (the live
+  Correios precedent embeds tracking refs in the name, but a rename breaks any
+  VLOOKUP keyed on the exact SKU). Needs a schema-doc PR + writer; ledger write
+  via ledger-manager SA on governor go.
 ```
 
 ### Public-key lookup → content-addressed per-key cache (governor vault scaling)
