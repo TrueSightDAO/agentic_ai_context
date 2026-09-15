@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T21:19:53Z",
+  "generated_at": "2026-09-15T21:20:51Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "12b11532165bc5aa80ba5930e8d59b656a3ebf14327b039c5e2ba907fb01d3d0",
+  "source_sha256": "cdd1d7faa6441e37a7392846349c8b2d2c2008460f0377ea61b640a453b3062f",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,7 +19,7 @@
   "handoff_count": 60,
   "counts_by_state": {
     "awaiting_kickoff": 15,
-    "executing": 15,
+    "executing": 14,
     "paused_at_gate": 4,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -27,7 +27,7 @@
     "prod_merge": 0,
     "blocked_on_human": 9,
     "failed": 0,
-    "done": 14,
+    "done": 15,
     "stale": 1,
     "unknown": 0
   },
@@ -592,8 +592,8 @@
       "plan_file": "`plans/SOPHIA_LIVE_PROGRESS_PLAN.md`",
       "title": "Live Progress Introspection (report what the executing turn is doing when Gary asks mid-turn, instead of a canned queued ack)",
       "handoff_date": "2026-06-11",
-      "state": "executing",
-      "status_raw": "executing — deploy landed 2026-09-15 20:53:43 UTC (`1254da2`, includes #467); UAT resuming",
+      "state": "done",
+      "status_raw": "**COMPLETE — UAT U1–U5 ✅ passed on deployed HEAD `1254da2` (2026-09-15)**",
       "telegram_thread_id": "30475",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -915,7 +915,7 @@
         "claimed_at": "2026-09-15T19:28:30Z",
         "note": "executing -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Gary deployed 20:53:43 UTC, confirmed live at 1254da2. PR3 cleared. Nudged to proceed with PR4 (UAT), then PR5 (docs).",
         "stale": true,
-        "age_minutes": 111
+        "age_minutes": 112
       }
     },
     {

@@ -7,7 +7,7 @@
 > ⛔ **Own-repo gate:** open PRs only, **NEVER self-merge** `truesight_autopilot` PRs (a human
 > reviews + merges). `Generated-by: Sophia (TrueSight Autopilot)` trailer on every commit.
 
-> **RESUME HERE:** PR1 — the `_live_progress` record + richer busy-ack.
+> **RESUME HERE:** ✅ COMPLETE (2026-09-15) — all units merged + deployed; UAT U1–U5 passed on HEAD `1254da2`. Nothing left to execute.
 
 ---
 
@@ -79,9 +79,10 @@ restart `truesight-autopilot`, run U1–U5.
 ## 6. Resume tracker
 | Unit | PR opened | Merged (human) | Deployed | UAT |
 |------|-----------|----------------|----------|-----|
-| PR1 — live-progress record + richer ack | ☑ [#160](https://github.com/TrueSightDAO/truesight_autopilot/pull/160) | ☑ | ☑ | ⚠️ broke (see below) |
-| PR2 — progress-query immediate answer | ☑ [#161](https://github.com/TrueSightDAO/truesight_autopilot/pull/161) + hotfix [#163](https://github.com/TrueSightDAO/truesight_autopilot/pull/163) | ☑ | ☑ | ⚠️ broke (see below) |
-| Cross-process fix | ☑ [#241](https://github.com/TrueSightDAO/truesight_autopilot/pull/241) | ☑ merged 2026-06-17 | ☑ deployed 2026-06-17 (HEAD f0be109, /health ok) | ⏳ U1–U5 |
+| PR1 — live-progress record + richer ack | ☑ [#160](https://github.com/TrueSightDAO/truesight_autopilot/pull/160) | ☑ | ☑ | ☑ (resolved by #241 + #467) |
+| PR2 — progress-query immediate answer | ☑ [#161](https://github.com/TrueSightDAO/truesight_autopilot/pull/161) + hotfix [#163](https://github.com/TrueSightDAO/truesight_autopilot/pull/163) | ☑ | ☑ | ☑ (resolved by #241 + #467) |
+| Cross-process fix | ☑ [#241](https://github.com/TrueSightDAO/truesight_autopilot/pull/241) | ☑ merged 2026-06-17 | ☑ deployed 2026-06-17 | ☑ U1–U5 (2026-09-15) |
+| UAT-turn fix — progress classifier on raw text | ☑ [#467](https://github.com/TrueSightDAO/truesight_autopilot/pull/467) | ☑ merged 2026-09-15 | ☑ deployed 2026-09-15 (HEAD `1254da2`) | ☑ U1–U5 (2026-09-15) |
 
 > **⚠️ Postmortem (2026-06-17):** PR1/PR2 merged + deployed but **never worked** — Gary still
 > got the generic ack. Two cross-process bugs (the adapter is a SEPARATE process from the brain):
@@ -90,9 +91,13 @@ restart `truesight-autopilot`, run U1–U5.
 > Fixed in **#241** (`fix/live-progress-cross-process`): adapter fetches over HTTP; `/chat/progress`
 > accepts the JWT and keys the session like `/chat`.
 
-> **RESUME HERE:** #241 merged + **deployed** 2026-06-17 (box on `f0be109`, `/health` ok). Now run UAT
-> U1–U5 in Telegram: while a turn runs, send another message → the ack should carry a live snapshot; and
-> ask "how's progress?" → should get the templated snapshot (no longer the generic ack).
+**✅ RESOLVED (2026-09-15).** UAT U1–U5 passed against the deployed build (HEAD `1254da2`):
+> while a turn runs, a second message's ack carries a live snapshot (U1); "how's progress?" returns the
+> templated snapshot immediately, not the generic queued ack (U2); a real instruction during a busy turn
+> is still queued (U3); a progress query with nothing running → graceful "nothing running right now" (U4);
+> the introspection never blocks the running turn (U5). A residual PR2 gap — the status classifier was fed
+> the decorated `dispatch_text` (handoff prefix > 80-char cap), so status pings never classified in
+> handoff-registered topics — was fixed in **#467** (classify on the raw user text). Plan is complete.
 
 ## 7. Dependency notes
 Builds directly on the shipped per-topic concurrency work (the dispatch lock + `_ack_queued_if_busy`
