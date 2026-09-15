@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### HANDOFF_MANIFEST.md: the handoff table is split into segments — `find_table` only ever sees the first 3 rows
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30065).**
+
+**Context.** `scripts/validate_handoff_manifest.py::find_table` reads the *first contiguous* markdown table whose header contains `Plan file`, and stops at the first line that does not start with `|`. `handoffs/HANDOFF_MANIFEST.md` is no longer one contiguous table — it is broken into segments by (a) an **orphan row fragment at line 27** (its leading `|` is missing, so it renders inside the previous row), (b) a **blank line at line 64**, and (c) a **ragged row at line 25** (10 cells from an unescaped `|` in prose). Because of the split, `find_table` returns **3 rows out of 43** — i.e. the validator has been silently validating ~7% of the manifest. Any consumer that trusts "validator passed" (CI included) is validating almost nothing.
+
+**Symptom.** `python3 scripts/validate_handoff_manifest.py` prints OK while ~40 handoff rows — including duplicate `message_thread_id` reuse and unknown statuses — go unexamined. `scripts/build_handoff_index.py` (added in PR #1143) works around it: it gathers handoff-shaped rows across **all** segments and reports the raggedness as `warnings[]`, but the underlying manifest is still malformed.
+
+**Proposed fix (~small).** Repair `handoffs/HANDOFF_MANIFEST.md`: rejoin the split table (escape the `|` in the line-25 prose; add the missing leading `|` to the line-27 fragment; remove the line-64 blank line). Then make `find_table` **tolerant** — skip blank lines and stray text inside the row region (as `build_handoff_index.collect_handoff_rows` already does) instead of terminating the table — and add a **coverage assertion** test so a future split cannot silently shrink the row count below the manifest's labelled count. Once fixed, the ordinary validator + the new `--check-index` gate both cover the full table.
+
+**Evidence.** `scripts/validate_handoff_manifest.py::find_table` (stops on first non-`|` line); `scripts/build_handoff_index.py::collect_handoff_rows` (tolerant reader + `warnings[]`); warnings `line 25: ragged row has 10 cells, expected 9`, `line 27: stray text inside the handoff table (missing leading '|' — malformed row fragment)`, `line 64: blank line splits the handoff table`; PR #1143 (index builder); thread 30065.
+
+### autopilot box: no token can *create* a PR — only Contents-API writes (403 `Resource not accessible by personal access token`)
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30065).**
+
+**Context.** While shipping PR #1143 (handoff index), every PR-*create* attempt from the autopilot box failed with **403 `Resource not accessible by personal access token`**: `gh pr create`, and `POST /repos/TrueSightDAO/<repo>/pulls` using `GITHUB_TRANSCRIPT_PAT`, `GITHUB_READ_PAT`, `KRAKE_IO_PAT`, and `KRAKEIO_LLM_PLAYGROUND_PAT` **all** 403'd. The box's PATs are fine-grained with **Contents: write only — no Pull requests scope**. The workaround was to open the PR with the autopilot service's own tool credential, then fast-forward the box-authored commits onto that PR branch. Related but distinct from the existing `workflow`-scope gap (that entry is about `workflow_dispatch` / `actions:write`; this is about `pull_requests:write`).
+
+**Impact.** Any script that wants to open a PR **on the box** (rather than via the autopilot's own tooling) cannot. It forces the tool-mediated path, and cost extra turns here (first PR-create attempt created no PR; the branch had to be reconciled onto a tool-created PR). Low severity for the agent path (the tool works), but it is a real capability gap for box-side tooling and for any future design that expects a script to self-open PRs.
+
+**Proposed fix (~small).** Issue a fine-grained PAT (or install a GitHub App) with **Pull requests: write** (+ Metadata: read) for `TrueSightDAO/*`, store it in the vault, and have the box's git helper prefer it for PR creation; document the required scopes next to the other PATs. Alternatively, standardise on "the autopilot tool opens PRs; the box only pushes branches" and record that as the sanctioned flow.
+
+**Evidence.** 403 responses (no secret values printed) for `POST /repos/TrueSightDAO/agentic_ai_context/pulls` from `GITHUB_TRANSCRIPT_PAT` / `GITHUB_READ_PAT` / `KRAKE_IO_PAT` / `KRAKEIO_LLM_PLAYGROUND_PAT`; `gh auth token` (username `garyjob`, scope-limited); PR #1143 (created via the autopilot tool instead); thread 30065.
+
 ### dao_protocol: server-side guard — reject empty body / missing signature format on signed-report submissions
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29826).**
 

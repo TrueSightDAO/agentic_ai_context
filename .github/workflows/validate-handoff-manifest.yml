@@ -4,15 +4,20 @@ on:
   pull_request:
     paths:
       - "handoffs/HANDOFF_MANIFEST.md"
+      - "handoffs/index.json"
       - "scripts/validate_handoff_manifest.py"
+      - "scripts/build_handoff_index.py"
       - "scripts/tests/test_validate_handoff_manifest*.py"
+      - "scripts/tests/test_build_handoff_index.py"
       - ".github/workflows/validate-handoff-manifest.yml"
   push:
     branches:
       - main
     paths:
       - "handoffs/HANDOFF_MANIFEST.md"
+      - "handoffs/index.json"
       - "scripts/validate_handoff_manifest.py"
+      - "scripts/build_handoff_index.py"
 
 jobs:
   validate:
@@ -26,5 +31,7 @@ jobs:
         run: pip install pytest
       - name: Run validator against the committed manifest
         run: python3 scripts/validate_handoff_manifest.py
+      - name: Check handoffs/index.json is in sync with the manifest
+        run: python3 scripts/validate_handoff_manifest.py --check-index
       - name: Run unit + integration tests
         run: python3 -m pytest scripts/tests/ -v
