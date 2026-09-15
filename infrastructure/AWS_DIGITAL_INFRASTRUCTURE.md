@@ -448,29 +448,56 @@ ssh -J sophia -i "$KEY" ubuntu@98.93.94.86 \
 
 ### 7.2 SSH Keys on the Autopilot Box (Sophia @ sophia.truesight.me)
 
-Sophia's `~/.ssh/` holds all fleet SSH keys. PEM keys are staged at `/home/ubuntu/`
-(AMI-survivable, outside `/opt/truesight_autopilot/`). Future blue-green rebuilds:
-copy from `/home/ubuntu/` to `~/.ssh/` if missing. `~/.ssh/config` maps each host
-alias to the correct key via `IdentityFile`.
+**Vault is the source of truth (updated 2026-09-15).** The fleet SSH private keys now
+live in the **encrypted credential vault** at `/opt/truesight_autopilot/vault/`
+(`vault.json.enc`, Fernet-encrypted at rest). `ssh_run` and the df-alert cron
+probes resolve a host's key from the vault **vault-first**, with the equivalent
+`~/.ssh/` PEM used only as a fallback when the vault is unavailable (a fresh box
+before `deploy.sh` seeds it). Sophia's tools never see a key value — only a
+`CredentialRef`.
 
-| Key file | Type | Covers | Host aliases |
-|----------|------|--------|-------------|
-| `id_ed25519_truesight_autopilot` | ed25519 | DAO fleet | `krake-nginx`, `seni-ror`, `dao-protocol`, `seni-sk`, `seni-sql`, `seni-redis` |
-| `NELANCO_aws_20201122.pem` | RSA (PEM) | Krake/Seni fleet (16 hosts) | `krake_redis`, `krake_sk`, `krake_sk_2`, `krake_sk_3`, `krake_sk_crawler`, `krake_crawler`, `krake_sk_webhook`, `krake_scaler`, `krake_ng`, `seni_ror_nelanco`, `seni_redis`, `seni_redis_2`, `seni_data`, `seni_sk`, `seni_sk_nelanco`, `dao_protocol_nelanco` |
-| `server_us.pem` | RSA (PEM) | Krake core hosts (3 hosts) | `krake_ror`, `krake_data`, `krake_data_2` |
-| `NELANCO_california_20260213.pem` | RSA (PEM) | California proxy (1 host) | `californian_proxy` |
+Each host declares *which* vault credential it trusts via
+`FLEET[host]["vault_key"]` in `app/tools/ssh_tools.py`, so the old bug where every
+host was handed `server_us` (→ `Permission denied (publickey)` on the Nelanco-key
+hosts) cannot recur. Host ip/user/port/keys are defined **only** in that registry —
+shell tooling (e.g. `scripts/fleet_probe.py`, used by the df-alert crons) calls it
+rather than carrying its own host list.
 
-**Verification:** After key provisioning, test one host per key:
+The bare PEMs remain on disk at `/home/ubuntu/` and `~/.ssh/` as the fallback path
+until the migration's UAT passes; they are then archived (not deleted) to
+`/home/ubuntu/.migrated_to_vault/` — see `SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`
+Unit 6.
+
+| Vault credential (canonical) | Legacy PEM file (fallback) | Type | Covers |
+|------------------------------|------------------------------|------|--------|
+| `ssh_key_nelanco_aws` | `NELANCO_aws_20201122.pem` | RSA | Krake/Seni Nelanco fleet — `seni_sk`, `seni_sql`, `seni_redis`, `krake_sk`, `krake_sk_webhook`, `krake_sk_crawler`, `krake_sk_scaler`, `getdata_redis`, `getdata_cache` |
+| `ssh_key_server_us` | `server_us.pem` | RSA | Krake core US-East — `krake_ror`, `krake_data` |
+| `ssh_key_nelanco_california` | `NELANCO_california_20260213.pem` | RSA | `californian_proxy` |
+| `ssh_key_sophia_infra` | `~/.ssh/sophia_infra` | ed25519 | Box-local pins: `autopilot` (self, loopback), `dao_protocol` |
+
+Unpinned hosts (`krake_nginx`, `seni_ror`) fall back to the vault-first default
+order (`server_us` → nelanco → california), preserving their pre-migration
+behaviour. The canonical roster with live ip/user/port is
+`app/tools/ssh_tools.py::FLEET` (the table above is orientation, not authority).
+
+**Verification:** test one host per vault credential, resolving the key the way
+the tools do (no hardcoded path):
 ```bash
-ssh -i ~/.ssh/NELANCO_aws_20201122.pem -o StrictHostKeyChecking=no ubuntu@krake_ng -p 2202 hostname
-ssh -i ~/.ssh/server_us.pem -o StrictHostKeyChecking=no ubuntu@krake_ror hostname
-ssh -i ~/.ssh/NELANCO_california_20260213.pem -o StrictHostKeyChecking=no ubuntu@californian_proxy hostname
+# From the autopilot box -- resolves the vault credential for each host:
+python3 scripts/fleet_probe.py --host seni_redis    --command hostname   # ssh_key_nelanco_aws
+python3 scripts/fleet_probe.py --host krake_data    --command hostname   # ssh_key_server_us
+python3 scripts/fleet_probe.py --host dao_protocol  --command hostname   # ssh_key_sophia_infra (pinned)
+
+# Via Sophia's ssh_run tool (same resolution path):
+#   ssh_run(host="seni_redis", command="hostname")
 ```
 
-**On AMI-based rebuild:** `/home/ubuntu/` is captured by the weekly AMI snapshot
+**On AMI-based rebuild:** the vault (`/opt/truesight_autopilot/vault/`) **and**
+`/home/ubuntu/` are captured by the weekly AMI snapshot
 (`Cypher-Defense/.github/workflows/snapshot_autopilot_ami.yml`). After launching
-from AMI, ensure `~/.ssh/config` references all keys and test connectivity.
-`deploy.sh` does NOT wipe `/home/ubuntu/`.
+from AMI, test connectivity with the `fleet_probe.py` commands above.
+`deploy.sh` does NOT wipe `/home/ubuntu/`; it does install the vault-native
+df-alert cron scripts to `/usr/local/bin/`.
 
 ---
 

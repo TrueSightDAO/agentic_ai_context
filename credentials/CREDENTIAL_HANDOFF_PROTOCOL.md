@@ -35,6 +35,15 @@ box's specific keypair — you usually don't.
 4. **Stage OUTSIDE the git repo.** Put staged secrets under **`/home/ubuntu/`** on
    the autopilot box — **NOT** under `/opt/truesight_autopilot/` (its `deploy.sh`
    runs `git reset --hard && git clean -fd`, which deletes untracked files there).
+   **Preferred for secrets that autopilot tooling reads at runtime:** the
+   **encrypted vault** (`/opt/truesight_autopilot/vault/`, see `CREDENTIAL_VAULT.md`).
+   A vault credential is encrypted at rest and fetched *by name* through `app.vault`,
+   so no tool depends on a fragile on-disk path that a rebuild or `git clean` can
+   remove. Bare files under `/home/ubuntu/` are the **fallback / legacy** path.
+   Worked example — the fleet SSH keys: vault entries `ssh_key_nelanco_aws`,
+   `ssh_key_server_us`, `ssh_key_nelanco_california`, resolved **vault-first** by
+   `app/tools/ssh_tools.py` with the `/home/ubuntu/*.pem` file as fallback
+   (`SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`).
 5. **Prefer sourcing an existing secret** over asking the operator to re-fetch —
    e.g. a Stripe **test** key already lives in `sentiment_importer/config/environments/development.rb`
    (`config.stripe_secret`). Reuse it; don't make a human dig in a dashboard.
