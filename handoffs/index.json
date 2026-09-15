@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T18:40:18Z",
+  "generated_at": "2026-09-15T19:11:10Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "7299dc0e0a8107715404f2911420ddf071f8fb269c1541f2bc2b0e05ac72d0a7",
   "state_enum": [
@@ -559,10 +559,10 @@
       "last_updated": "2026-09-15",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-        "claimed_at": "2026-09-15T18:17:47Z",
-        "note": "PR1-PR4 all shipped and merged (PR4 = truesight_autopilot#469, vault force-fresh-on-deny, personally reviewed by Envoy). Tracker/manifest closed out (agentic_ai_context#1194). RESUME HERE = PR5 (UAT), blocked on the same deploy as the other threads.",
+        "claimed_at": "2026-09-15T19:10:52Z",
+        "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Elizabeth Wong data-integrity bug found in UAT, flagged to Gary directly. Awaiting deploy + Gary's root-cause call.",
         "stale": false,
-        "age_minutes": 22
+        "age_minutes": 0
       }
     },
     {
@@ -582,10 +582,10 @@
       "last_updated": "2026-09-15",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-        "claimed_at": "2026-09-15T18:17:47Z",
-        "note": "Picked up while the other three supervised threads wait on Gary. Vault already initialized with 42 creds; dispatched a read-only assessment for migrating the 3 remaining bare .pem files -- no credential moves without explicit review, given this touches real private keys.",
+        "claimed_at": "2026-09-15T19:10:52Z",
+        "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Only Unit F (archive bare .pem files) remains, hard-gated on UAT which needs the deploy.",
         "stale": false,
-        "age_minutes": 22
+        "age_minutes": 0
       }
     },
     {
@@ -605,10 +605,10 @@
       "last_updated": "2026-09-15",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-        "claimed_at": "2026-09-15T17:26:27Z",
-        "note": "blocked_on_human -- fix merged (#467) but not deployed to the live box; deploying truesight_autopilot's own service is a genuine always-stop gate, awaiting Gary.",
-        "stale": true,
-        "age_minutes": 73
+        "claimed_at": "2026-09-15T19:10:52Z",
+        "note": "blocked_on_human -- fix merged (#467) but not deployed; awaiting Gary's deploy authorization.",
+        "stale": false,
+        "age_minutes": 0
       }
     },
     {
@@ -694,7 +694,13 @@
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
-      "supervised_by": null
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-09-15T19:10:52Z",
+        "note": "Picked up while the other four supervised threads wait on Gary. Phase 1 already live on agroverse_shop_beta. Dispatched a read-only assessment for Phase-2 webhook-to-fulfillment E2E -- no code touching real charges/fulfillment without explicit review, this is payment-adjacent.",
+        "stale": false,
+        "age_minutes": 0
+      }
     },
     {
       "plan_file": "`plans/RESEND_VERIFICATION_PLAN.md`",
@@ -883,10 +889,10 @@
       "last_updated": "2026-09-15",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-        "claimed_at": "2026-09-15T17:26:27Z",
-        "note": "blocked_on_human -- PR6 beta half shipped (truesight_me_beta #380 merged, quests/ redirected to sprint.truesight.me), correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS now confirmed live.",
-        "stale": true,
-        "age_minutes": 73
+        "claimed_at": "2026-09-15T19:10:52Z",
+        "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
+        "stale": false,
+        "age_minutes": 0
       }
     },
     {
