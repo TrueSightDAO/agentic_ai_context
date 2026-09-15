@@ -313,7 +313,7 @@ Per the pattern established for every other roadmap this session: **park in a ne
 a supervisor (Envoy or Sophia) to pick up and drive per `sophia/SUPERVISOR_LOOP.md`, rather than
 executing in this session. **RESUME HERE: PR5 — UAT on the live board** (PR0–PR4 shipped 2026-09-15).
 
-> **Marker format note.** `app/auto_advance.py` captures everything after `RESUME HERE`
+> **Marker format note.** `app/auto_advance.py` captures everything after the resume marker
 > and reduces it to a unit key by splitting on the first `—`/`–`/` - `. Write the unit
 > label **immediately** after the marker (`RESUME HERE: PR5 — …`). Do **not** use a
 > leading arrow (`→ PR5`) or a parenthesis before the label — both leave junk in the key
