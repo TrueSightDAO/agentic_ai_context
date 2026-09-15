@@ -20,9 +20,48 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-15T03:54:25Z`
+- Generated (UTC): `2026-09-15T05:08:47Z`
 - Look-back: **7** calendar days (`2026-09-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 24
+- `[INVENTORY MOVEMENT]` × 3
+- `[PRACTICE EVENT]` × 2
+- `[SMOKE TEST]` × 1
+- `[QR CODE UPDATE EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+- _free-form (no bracket tag)_ × 10
+
+### Latest entries
+
+- `Edgar_20260914123717_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix Discord per-channel memory loss + parity guard (thread 29235)
+- `Edgar_20260914124101_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Cacao tea bag custody movement — Paloma → Matheus Reis (2024OSCAR_CT_2026082…
+- `Edgar_20260914125531_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Follow-up loop re-fires the same strike hou…
+- `Edgar_20260914203259_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Visiting the Araujo certificadora account and and getting an additional pair…
+- `Edgar_20260914203429_024` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260914203528_026` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Keys to Ilheus warehouse (outer door and inner door) · Amount: 1 · Description: Key for inner door to Ilheus warehouse for Matheus
+- `Edgar_20260914203738_028` · **Edgar** · [No Text Provided]
+- `Edgar_20260914204114_030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Santos José Carlos · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
+- `Edgar_20260914204401_032` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Matheus Reis · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
+- `Edgar_20260914204728_034` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260914204830_036` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.14 · Description: Transport expense to go visit Santos Factory
+- `Edgar_20260914205246_038` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260914205315_040` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.93 · Description: Transport from Santos Factory to Coopercabruca for meetings
+- `Edgar_20260914205430_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Visiting Santos factory and Coopercabruca
+- `Edgar_20260914215007_044` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.48 · Description: Extension of stay in Brazil for business meeting with Chinese partners.
+- `Edgar_20260914215106_046` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260914230214_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix iOS empty-body Edgar upload on report_inventory_movement.html (dapp)
+- `Edgar_20260914230401_050` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260914230456_052` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 30
+- `Edgar_20260915000728_054` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Sophia Repo-Access Denylist — retire master allowlist for default-allow + tw…
 
 ---
 
@@ -194,13 +233,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+30 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,833.82**
+- Brazilian Reis: R$1,329.61 · rate `0.2323` USD/BRL → ≈ **$308.87**
+- USD provisioned for voting-rights cash-out: **$55.12**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -284,6 +327,8 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bc32104 | 2026-09-15 00:54:43 -0300 | Merge pull request #1138 from TrueSightDAO/auto/advisory-refresh-2026-09-15
+e624fe0 | 2026-09-15 03:54:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
 69fb3a2 | 2026-09-14 22:08:01 -0300 | chore(handoffs): mark thread 26410 (Repo-Access Denylist) row terminal — plan COMPLETE (#1134)
 f391350 | 2026-09-14 22:05:56 -0300 | proposal: CRF Anapu x SunMint tree-submission cohort (#1137)
 2a4e2d3 | 2026-09-14 22:04:15 -0300 | docs(plan): tick PR8 merged in FARM_SHIPMENT_MEDIA_JSON tracker; RESUME HERE -> PR9 only (#1136)
@@ -322,8 +367,6 @@ b743dfd | 2026-09-14 09:57:16 -0300 | ling-mobile-capsule: escalate — no recor
 f64cf1c | 2026-09-14 09:56:54 -0300 | gianluca-farmers-tech-followup: escalate — nothing captured; link the EU 5.2 signal (#1100)
 5cc0a31 | 2026-09-14 09:56:37 -0300 | podream-tech-followup: escalate — still unidentified after full search (#1099)
 c854367 | 2026-09-14 09:56:16 -0300 | Update matheus-nota-fiscal follow-up: 2026-08-26 plan pivot (Matheus issues NF, no trading co) (#1098)
-547fc2d | 2026-09-14 09:52:40 -0300 | OPEN_FOLLOWUPS: file upload_local_file_to_github sha-422 regression + merge_pr restart papercut (#1108)
-829a7c4 | 2026-09-14 12:51:32 +0000 | Rev 6 - add action item: every Black King NF-e to Gary via WhatsApp
 … (truncated)
 ```
 
@@ -506,6 +549,39 @@ _(no commits on origin/main in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 853.7 | 18293.54386 | 9/14/2026 21:54:51 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-08`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
