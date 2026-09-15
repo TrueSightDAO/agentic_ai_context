@@ -299,7 +299,7 @@ PR1.
 | **PR4** | UAT (§5) on a scratch handoff thread with a throwaway plan containing at least one deliberately PR-less unit. | auto (post-deploy) |
 | **PR5** | Docs: note the fix in `SOPHIA_AUTO_ADVANCE_PLAN.md`'s own history (append, don't rewrite its resume tracker) and in `SUPERVISOR_LOOP.md` if the state-reading guidance references the old behavior anywhere. | auto |
 
-**RESUME HERE:** PR5 — docs (prose-label cleanup + verified-outcome append). PR0–PR4 ✅ done: PR1 truesight_autopilot#473, PR2 truesight_autopilot#474, PR3 deployed live `1254da2` 2026-09-15 20:53 UTC, PR4 UAT 5/5 legs green against the deployed build.
+**RESUME HERE:** COMPLETE — PR0–PR5 ✅ all done (PR5 docs merged `agentic_ai_context#1209`). Was: PR5 — docs; PR0–PR4 done: PR1 truesight_autopilot#473, PR2 truesight_autopilot#474, PR3 deployed live `1254da2` 2026-09-15 20:53 UTC, PR4 UAT 5/5 legs green against the deployed build.
 
 ---
 
@@ -342,7 +342,7 @@ Per the pattern established for every other roadmap this session: **park in a ne
 a supervisor to pick up. **Merging PR1/PR2 no longer needs a human** (2026-09-15 update, top of this
 doc) — Sophia self-merges directly, same as a docs-only `agentic_ai_context` PR. **PR3 (deploy —
 restarting the live service) remains an explicit always-stop regardless** — that's a separate action
-from merging. RESUME HERE: PR5 — docs.
+from merging. RESUME HERE: COMPLETE — PR0–PR5 all done.
 
 ---
 
