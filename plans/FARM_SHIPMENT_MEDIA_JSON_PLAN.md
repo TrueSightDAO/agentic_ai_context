@@ -282,7 +282,7 @@ Every `PRn` below is independently shippable against current `main`, assuming th
 | PR5 — agl5, agl7, agl8 | ✅ | ✅ | ☐ |
 | PR6 — agl10, agl13, agl14 | ✅ | ✅ | ☐ |
 | PR7 — agl6 (retire meta-tag pattern) | ✅ | ✅ | ☐ |
-| PR8 — conventions doc update | ✅ | ☐ | ☐ |
+| PR8 — conventions doc update | ✅ | ✅ | ☐ |
 | PR9 — UAT on beta | ☐ (n/a, not a PR) | — | — |
 
 > **STATUS NOTE (2026-09-15):** PR0–PR7 were already executed on `agroverse_shop_beta` main well before
@@ -301,7 +301,12 @@ Every `PRn` below is independently shippable against current `main`, assuming th
 > **PR #322**. Coverage is now 27 pages (16 farms + 11 shipments) against this plan's original 7 + 11. The
 > schema documented in PR8 reflects the current loader, not the v1 shape sketched in §1–§2 above.
 >
-> **RESUME HERE = PR8 (this doc update), then PR9 (UAT on beta).**
+> **RESUME HERE = PR9 (UAT on beta — `gate: UAT`, always-stop per §5c).**
+>
+> **PR8 ✅ MERGED:** `agentic_ai_context` **#1132** (squash, sha `a0c79961`) — added §8 to
+> `conventions/AGROVERSE_SHOP_PAGE_CONVENTIONS.md` documenting the *current* fetch-first loader schema
+> (not the v1 shape sketched in §1–§2 above), plus §6 cross-reference rows, plus the tracker correction
+> below. Nothing else in PR8 remains open.
 
 ---
 
