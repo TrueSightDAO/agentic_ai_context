@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-15T05:08:47Z`
+- Generated (UTC): `2026-09-15T11:59:07Z`
 - Look-back: **7** calendar days (`2026-09-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,23 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
+- `[CONTRIBUTION EVENT]` × 20
+- `[PRACTICE EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 3
-- `[PRACTICE EVENT]` × 2
-- `[SMOKE TEST]` × 1
 - `[QR CODE UPDATE EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
-- _free-form (no bracket tag)_ × 10
+- _free-form (no bracket tag)_ × 14
 
 ### Latest entries
 
-- `Edgar_20260914123717_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix Discord per-channel memory loss + parity guard (thread 29235)
-- `Edgar_20260914124101_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Cacao tea bag custody movement — Paloma → Matheus Reis (2024OSCAR_CT_2026082…
-- `Edgar_20260914125531_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Follow-up loop re-fires the same strike hou…
-- `Edgar_20260914203259_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Visiting the Araujo certificadora account and and getting an additional pair…
-- `Edgar_20260914203429_024` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260914203528_026` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Keys to Ilheus warehouse (outer door and inner door) · Amount: 1 · Description: Key for inner door to Ilheus warehouse for Matheus
-- `Edgar_20260914203738_028` · **Edgar** · [No Text Provided]
 - `Edgar_20260914204114_030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Santos José Carlos · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
 - `Edgar_20260914204401_032` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Matheus Reis · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
 - `Edgar_20260914204728_034` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
@@ -62,6 +54,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260914230401_050` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260914230456_052` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 30
 - `Edgar_20260915000728_054` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Sophia Repo-Access Denylist — retire master allowlist for default-allow + tw…
+- `Edgar_20260915053007_056` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL8
+- `Edgar_20260915082150_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Multi-attachment ordered pairing (contract A) — dao_protocol #164/#165 + pro…
+- `Edgar_20260915084237_060` · **Edgar** · [No Text Provided]
+- `Edgar_20260915102913_062` · **Edgar** · [No Text Provided]
+- `Edgar_20260915102929_002` · **Edgar** · deploy verification probe, no signature, please ignore 1789468169
+- `Edgar_20260915110010_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-15T11:00:08.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260915115328_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Deploy no longer severs the calling turn: caller-thread deploy notice + cros…
 
 ---
 
@@ -76,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-14T10:59:14.328Z`
+- Generated (UTC): `2026-09-15T10:59:13.658Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **909**, follow_up **71**, bulk **0**, unknown **2** (data rows: **982**)
+- **Email Agent Follow Up** — logged sends: warmup **921**, follow_up **71**, bulk **0**, unknown **2** (data rows: **994**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **833**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **846**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -197,13 +196,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 31 SKU lines · 2,250.72 total units · $8,471.70
+- Manager record: `Matheus Reis` · 31 SKU lines · 2,250.22 total units · $8,471.70
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
   | (uncategorized) | (unspecified) | 18 | 343.13 | $968.66 |
-  | Cacao Bean | Bulk | 3 | 329.09 | $574.54 |
+  | Cacao Bean | Bulk | 3 | 328.59 | $574.54 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Tea | Bulk | 5 | 155.50 | $1,577.59 |
   | Cacao Nib | Retail Ready | 1 | 135 | $896.40 |
@@ -275,6 +274,7 @@ _All dated lines on/after 2026-09-08_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5719914 | 2026-09-15 05:13:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube iframes to fix perceived-missing videos on load (#379)
 55f1371 | 2026-09-14 21:27:55 -0300 | fix(crf-anapu): responsive 16:9 video/image boxes, fix squished YouTube embeds (#378)
 5cf632f | 2026-09-14 21:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,7 +314,6 @@ ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox
 46f211b | 2026-09-08 22:42:58 -0300 | test: add SunMint impact-map runtime smoke spec (#365)
 77fa0fc | 2026-09-08 22:37:41 -0300 | fix: hoist esc() to IIFE scope (kills the silent map-render regression class) (#366)
 0a86c8a | 2026-09-08 21:44:45 -0300 | Show tree photo in SunMint impact-map tree popup (#363)
-f52ee46 | 2026-09-08 21:21:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +326,24 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f6a86d3 | 2026-09-15 08:58:48 -0300 | docs(sprint): PR0 pre-flight complete — rebase RESUME HERE to PR1a (#1153)
+ce6c5cc | 2026-09-15 08:57:49 -0300 | CRF Anapu: PR0b — architecture decided = Option B (vendored copy) (#1152)
+acb5400 | 2026-09-15 08:38:09 -0300 | OPEN_FOLLOWUPS: append 2026-09-15 evidence to git_push_changes branch-amend entry (#1151)
+cd6cc99 | 2026-09-15 07:38:39 -0300 | CRF Anapu proposal: PR0 pre-flight complete (§7 items 1-4 resolved, 2 rectifications) (#1150)
+6b4db98 | 2026-09-15 07:30:36 -0300 | docs(open-followups): mark dao_protocol empty-body guard shipped (#166) + file test_dao.py collection breakage (#1149)
+8f86c48 | 2026-09-15 07:29:36 -0300 | register: sync sprint.truesight.me manifest row to the simplified design (#1148)
+b389d8c | 2026-09-15 07:28:46 -0300 | proposal: simplify sprint.truesight.me -- drop signed voting, resolve quests/join (#1147)
+6267efd | 2026-09-15 05:28:52 -0300 | docs: QR self-serve currency — PR3 deploy done (catalog v7/46 served on edgar); RESUME HERE = PR4/UAT (#1076)
+00e7c08 | 2026-09-15 05:06:16 -0300 | OPEN_FOLLOWUPS: file 5 Black King warehouse/FSVP follow-ups (thread 29093) (#1146)
+404ca4d | 2026-09-15 04:04:30 -0300 | feat(handoffs): validator --check-index gate + generator tests + CI wire + followups (SUPERVISOR_LOOP §8 item 2) (#1145)
+230bff5 | 2026-09-15 03:53:05 -0300 | docs(handoffs): refresh CRF Anapu manifest row — build complete, awaiting UAT (#1144)
+501d6a3 | 2026-09-15 03:41:02 -0300 | feat(handoffs): build_handoff_index.py + generated handoffs/index.json (SUPERVISOR_LOOP §8) (#1143)
+c9d8ffb | 2026-09-15 03:32:01 -0300 | register: sprint.truesight.me handoff (thread 30083) (#1142)
+a607238 | 2026-09-15 03:31:02 -0300 | proposal: sprint.truesight.me -- public Kanban board over Sophia's handoff pipeline (#1141)
+44880aa | 2026-09-15 02:57:57 -0300 | proposal: CRF Anapu SunMint cohort -- CEPOTX sign-off, mark approved + register handoff (#1140)
+cae443e | 2026-09-15 02:54:08 -0300 | proposal: incorporate Gary's clarification (submission-only membership + itemized click-through) (#1139)
+3747ca1 | 2026-09-15 02:09:08 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
+1434505 | 2026-09-15 02:09:06 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
 bc32104 | 2026-09-15 00:54:43 -0300 | Merge pull request #1138 from TrueSightDAO/auto/advisory-refresh-2026-09-15
 e624fe0 | 2026-09-15 03:54:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
 69fb3a2 | 2026-09-14 22:08:01 -0300 | chore(handoffs): mark thread 26410 (Repo-Access Denylist) row terminal — plan COMPLETE (#1134)
@@ -349,24 +366,6 @@ e11d27c | 2026-09-14 20:29:25 -0300 | docs(supervisor-loop): prod-merge + beta->
 cc993d5 | 2026-09-14 20:04:01 -0300 | File OPEN_FOLLOWUPS: dao_protocol server-side empty-body / missing-signature guard (#1121)
 a49f795 | 2026-09-14 18:57:38 -0300 | chore(previews): refresh Beer Hall preview (2026-09-14 UTC)
 c00400d | 2026-09-14 18:57:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
-3413afa | 2026-09-14 15:05:04 -0300 | Reconcile Discord Tier-2 #7 (/verify) as SUPERSEDED by locked decision #3 (#1119)
-9a00777 | 2026-09-14 14:47:49 -0300 | followup(orlantildes): pin butter-receipt decision; park blocked on destination-ledger name (#1116)
-79fba2c | 2026-09-14 14:47:23 -0300 | followup(matheus): park blocked on Gary's send decision (stops weekly re-nag) (#1117)
-6c1845d | 2026-09-14 14:44:07 -0300 | Discord adapter: record deploy landed + file progress-edit 429 storm follow-up (#1115)
-6b3f0d1 | 2026-09-14 14:39:59 -0300 | followup(jerrie): record decks now exist (aora#3, go_to_market#176); park as blocked pending review (#1113)
-076b3a0 | 2026-09-14 14:38:05 -0300 | followup(matheus): flag guidance delivery as UNCONFIRMED (email draft never sent) (#1112)
-2254f59 | 2026-09-14 14:32:12 -0300 | handoffs: register Discord Adapter row (thread 27138) (#1111)
-5f5a3ed | 2026-09-14 11:09:53 -0300 | followups: mark 3 unidentifiable governor-gated blocks as `blocked` (stop weekly re-fire) (#1110)
-ad15179 | 2026-09-14 11:04:46 -0300 | docs(OPEN_FOLLOWUPS): file followups/state.json stash collision + fold deploy self-disruption root cause into existing entry (#1107)
-e8f15f4 | 2026-09-14 11:03:42 -0300 | Re-arm chocolate-subscription-phase2 follow-up (extend timer 60d -> 120d) (#1109)
-4b05d87 | 2026-09-14 10:11:47 -0300 | chore(previews): refresh Beer Hall preview (2026-09-14 UTC)
-0e63578 | 2026-09-14 10:11:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
-350ed30 | 2026-09-14 09:58:32 -0300 | jerrie-cacao-ceremonial-tea-ppt: escalate — deck already built in-house 26 Jul (#1103)
-9bcfcf5 | 2026-09-14 09:58:14 -0300 | jerrie-mobile-un-aora-ppt: escalate with source-of-truth pointers + ask (#1102)
-b743dfd | 2026-09-14 09:57:16 -0300 | ling-mobile-capsule: escalate — no record of Ling or the capsule found (#1101)
-f64cf1c | 2026-09-14 09:56:54 -0300 | gianluca-farmers-tech-followup: escalate — nothing captured; link the EU 5.2 signal (#1100)
-5cc0a31 | 2026-09-14 09:56:37 -0300 | podream-tech-followup: escalate — still unidentified after full search (#1099)
-c854367 | 2026-09-14 09:56:16 -0300 | Update matheus-nota-fiscal follow-up: 2026-08-26 plan pivot (Matheus issues NF, no trading co) (#1098)
 … (truncated)
 ```
 
@@ -433,6 +432,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c5e911c | 2026-09-15 11:48:24 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 f6f2108 | 2026-09-14 13:22:27 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 75f6c32 | 2026-09-14 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 f273dbc | 2026-09-13 12:16:38 +0000 | chore: refresh currencies.json [skip ci]
@@ -573,7 +573,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/14/2026 21:54:51 |
+| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 4:50:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-08`; scanned last **600** data rows)
 
