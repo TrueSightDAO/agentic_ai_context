@@ -102,6 +102,7 @@ Stand the CRF Anapu program up as its **own subdomain** (separate from the beta 
 ## Progress log
 - **2026-09-11** — PR1 plan merged; PR1b governor-decisions merged; **PR2** manifests shipped (`crf-anapu-para.json`, `jedielcio.json`, `index.json`); **PR4** program-page gallery shipped & live on beta (commit `14272f60`); **PR5** started: 14 MOV→MP4 conversion with GPS re-inject+verify (batch running on the box, `/media/cfr_anapu_work/`), PT transcription (faster-whisper `base`), 8 HEIC originals uploaded to `farm-media-raw/crf-anapu-para/photos/`.
 - **2026-09-11 (later)** — **standalone subdomain `cfr.truesight.me` LIVE** (§7): repo `cfr-anapu` was pre-existing + already allowlisted, so the real blocker was **Pages auto-enable** — solved by pushing a `gh-pages` branch (no UI/admin step). Site 200 with a valid Let's Encrypt cert. Independent of the PR5 media long pole, which remains in flight.
+- **2026-09-12** — **PR5 media long pole DONE**: all 14 CRF videos uploaded, 14/14 sidecars carry `yt_id` + `description_uploaded=True`, caption backfill done (13 tracks; `IMG_9726` skipped as silent by design), `truesight_me_beta` PR #377 (merge `1a22e76`) landed the gallery update. Thread 25181 then paused on a stale `RESUME HERE` pointer (this section hadn't been updated to reflect PR5's completion) — fixed in this edit. Only remaining unit is the UAT gate.
 
 ## Gates
 - NEVER deploy prod without governor GO.
@@ -111,6 +112,8 @@ Stand the CRF Anapu program up as its **own subdomain** (separate from the beta 
 ## RESUME HERE
 **Subdomain `cfr.truesight.me` — DONE (§7, 2026-09-11):** live, 200, valid cert. No further action unless the site content needs changes.
 
-**PR5 — media long pole (in flight).** MOV→MP4 (GPS re-inject + VERIFY `Keys:GPSCoordinates`) → PT transcription (faster-whisper) → inbox sidecars under `/media/media_archive_inbox/farm-media/crf-anapu-para/` + config inbox entry + `systemctl restart farm-media-daemon` → daemon YouTube upload (paced ~1/pass; shared quota) → `yt_id` backfill into `media.json` (adds the video half of the gallery) + manifest. Then **UAT gate**: governor reviews beta; **no prod sync without GO.**
+**PR5 — media long pole — DONE.** All 14 CRF videos uploaded and on the growing program gallery; 14/14 sidecars carry `yt_id` + `description_uploaded=True`; caption backfill done (13 caption tracks — `IMG_9726` correctly skipped as a silent clip, by design); PR #377 (`truesight_me_beta`, merge `1a22e76`) landed the gallery update. No further media-pipeline units remain.
 
-> Note on YouTube pacing: the shared channel quota is the long pole — 14 videos may take several passes/days. Sidecars + config entry are the durable hand-off: once queued, the daemon drains them unattended.
+**RESUME HERE = UAT gate (the only remaining unit).** Governor reviews the CRF Anapu gallery on beta (`beta.truesight.me/programs/crf-anapu/` and/or `cfr.truesight.me`) — confirm hero + 14 videos + captions render correctly. **No prod sync without explicit GO.** Once UAT passes and GO is given: promote `truesight_me_beta` → `truesight_me_prod` for this page, then the plan is complete — file the DAO contribution report and close/delete thread 25181.
+
+> Note on YouTube pacing: the shared channel quota was the long pole for this plan — all videos are through it now (2026-09-14/15), so no further quota pacing is needed for CRF Anapu specifically.
