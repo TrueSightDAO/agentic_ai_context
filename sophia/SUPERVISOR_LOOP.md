@@ -161,13 +161,13 @@ supervisor loses the PR links and context needed to file it correctly — don't 
   registered state first) / `close_telegram_topic` (`app/tools/telegram_topic.py`). This deletes
   **only** the Telegram chat surface — it never deletes the underlying session transcript/history,
   which stays queryable. See `sophia/SOPHIA_HANDOFFS.md`.
-- **Discord:** **no deletion (or archive) tool exists yet** — `app/discord_adapter.py` has no
-  channel-management capability today (tracked gap: `plans/DISCORD_TELEGRAM_PARITY_GAPS.md`,
-  `OPEN_FOLLOWUPS.md`). Until it's built, Sophia **cannot** self-serve this on Discord: a
-  supervisor hitting step 3 on a Discord-native thread must escalate to a human (or an LLM seat
-  holding Discord admin/`MANAGE_CHANNELS` in the guild) to delete the channel manually, quoting
-  the finished handoff and confirming step 2 already happened. Flag it, don't silently leave the
-  channel sitting there as "done in spirit."
+- **Discord:** Sophia has `delete_discord_channel` (`app/tools/discord_admin.py`) — governor-only
+  (`default_roles={"governor"}`), requires **both** `dry_run=false` **and** `confirm=true` (two
+  deliberate flags for an irreversible action). Prefer a dry-run first to confirm the target
+  channel id via `list_discord_channels`. The tool's own docstring nudges toward
+  `update_discord_channel` (rename + move to an archive category) as the reversible alternative —
+  but per this directive, a genuinely finished task-scoped channel gets hard-deleted, not archived,
+  once steps 1–2 above are done.
 
 **Mandatory: name the channel before it's gone.** The final closing message — posted in the
 parent chat/log, not just the doomed channel itself — must explicitly name the channel/topic

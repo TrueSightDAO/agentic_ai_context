@@ -58,18 +58,6 @@ function-by-function on 2026-09-14. Discord already has: mention-gate, governor 
     markdown is closer to standard, but worth a pass for edge cases (tables, etc. render
     differently).
 
-## Tier 1 addendum (2026-09-14) — added after the original audit, numbering continues from 12
-
-13. **Channel deletion/archive tool — no Telegram-equivalent at all.** Telegram has
-    `close_telegram_topic` / `close_telegram_topic_checked`; Discord has nothing (no
-    `DELETE /channels/{id}` call anywhere in `app/discord_adapter.py`). This was missed by the
-    original audit above because Discord launch didn't need it yet — it does now:
-    `sophia/SUPERVISOR_LOOP.md` §6a makes task-scoped channel close-out (after contribution
-    reporting) a mandatory step of finishing a handoff, and that can't be self-served on Discord
-    without this tool. Treat as **Tier 1** despite the append-only numbering — it now blocks a
-    standing governor directive, not just UX polish. Full spec: `OPEN_FOLLOWUPS.md` §"Discord
-    adapter: no channel deletion/archive tool — blocks close-out directive".
-
 ## Process note
 
 One PR per turn, same convention as every other roadmap this session — work down the list in

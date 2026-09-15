@@ -39,39 +39,6 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Discord adapter: no channel deletion/archive tool — blocks close-out directive
-**Filed 2026-09-14. Owner: unclaimed. Governor: Gary.**
-
-**Context.** `sophia/SUPERVISOR_LOOP.md` §6a (added 2026-09-14, same PR as this entry) makes
-task-scoped channel close-out mandatory: once a handoff's work is merged and the DAO contribution
-report is filed, the channel it ran in gets closed/deleted. On Telegram this already works —
-`close_telegram_topic` / `close_telegram_topic_checked` (`app/tools/telegram_topic.py`) delete the
-forum topic (never the underlying transcript). **Discord has no equivalent.**
-`app/discord_adapter.py` has no channel-management capability at all today — confirmed by grep
-against the parity-gaps audit (`plans/DISCORD_TELEGRAM_PARITY_GAPS.md`), which doesn't even list
-it as a known gap yet.
-
-**Symptom.** A supervisor (Envoy, DeepSeek Local) driving a Discord-native handoff to close-out
-hits step 3 of §6a with no tool to call — the channel can only be deleted by a human (or another
-Discord-admin-holding LLM seat) doing it manually in the Discord client, which the directive
-treats as an escalation, not the default path.
-
-**Proposed fix (~small–medium).** Add a `close_discord_channel` tool mirroring the Telegram
-shape: Discord REST `DELETE /channels/{channel.id}` (bot needs `MANAGE_CHANNELS` in the guild),
-gated the same way as `close_telegram_topic` (governor-only, and ideally a `_checked` variant
-that verifies the handoff's registered state in `HANDOFF_MANIFEST.md`/`index.json` before
-deleting — same rationale as the Telegram checked variant: don't delete a channel that's actually
-still in-flight). Register it in `app/policy.py` alongside the Telegram equivalents so the
-governor-gate applies. Add to `plans/DISCORD_TELEGRAM_PARITY_GAPS.md`'s tier list too.
-
-**Why it matters.** Without it, the §6a close-out directive can't be self-served on Discord at
-all — every Discord handoff's close-out silently degrades to a manual human step, which is exactly
-the kind of per-occurrence governor round-trip §5e of `OPERATING_INSTRUCTIONS.md` says to avoid.
-
-**Evidence.** `sophia/SUPERVISOR_LOOP.md` §6a; `app/tools/telegram_topic.py` (Telegram reference
-implementation); grep of `app/tools/` and `app/discord_adapter.py` for `discord` + `delete`/`close`
-turned up nothing (2026-09-14).
-
 ### dao_protocol: server-side guard — reject empty body / missing signature format on signed-report submissions
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29826).**
 
