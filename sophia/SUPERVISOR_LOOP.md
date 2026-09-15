@@ -203,19 +203,53 @@ position so a fresh supervisor session resumes without re-reading every thread:
 
 ---
 
-## 8. Enabling work (not yet shipped)
+## 8. Enabling work
 
-The loop is followable today against `HANDOFF_MANIFEST.md`, but two pieces make it clean:
-
-1. **`handoffs/index.json`** — a generated, machine-readable mirror of the manifest with the §2
-   state enum, both Telegram `thread_id` **and** Discord channel/thread id, and a `last_updated`
-   timestamp. Emit/validate it by extending `scripts/validate_handoff_manifest.py`.
+1. **`handoffs/index.json`** — ✅ **SHIPPED 2026-09-15** (PR #1143 + #1145). A generated,
+   machine-readable mirror of the manifest: the §2 state enum, counts by state, both Telegram
+   `thread_id` **and** Discord `channel_id`/`thread_id` (columns added to the manifest itself —
+   option (a) from the design discussion, not a sidecar file, so the manifest stays the single
+   source of truth), and a `last_updated` timestamp. Built by `scripts/build_handoff_index.py`;
+   `scripts/validate_handoff_manifest.py --check-index` gates CI so the index can't silently
+   drift from the manifest.
 2. **A read-order reference** — add this file to the `OPERATING_INSTRUCTIONS.md` §2 table so
    every supervisor LLM finds it (canonical file — raise as a suggested update, don't edit it).
+   Still open.
 
-These are follow-on work items, not prerequisites to supervising with this directive today.
+## 9. Keep `handoffs/index.json` current — mandatory, not optional (Gary, 2026-09-15)
+
+Shipping the index once doesn't fix the drift problem — it only fixes it if every supervisor
+keeps feeding it. Two standing obligations, both part of the core loop (§1), not a separate task:
+
+1. **Whenever a thread advances to a materially new stage** — whether the supervisor drove it or
+   just observed Sophia do it (a PR opens/merges, a deploy lands, a gate clears, UAT starts, a
+   thread closes) — update that row's `Status` / `Resume tracker state` / `Last manifest update`
+   cells in `HANDOFF_MANIFEST.md` in the same sitting, not as a batched cleanup later. If the
+   thread has no row yet (see #2), add one first.
+2. **Periodically reconcile the manifest against Sophia's live registry**, not just against what
+   a human happened to write a plan for. Sophia's `sessions/_resume_awaiting.json` (Telegram) and
+   `_discord_resume_awaiting.json` (Discord) are the ground truth of what she considers open —
+   ask her for the current thread/channel IDs directly (a supervisor has no filesystem access to
+   her box) and diff against `handoffs/index.json`'s covered set. For each gap: if it's a real,
+   still-open unit of work, give it a manifest row (even a minimal one — a `Plan file` cell just
+   needs to *contain* `.md` somewhere for `build_handoff_index.py` to count it as handoff-shaped;
+   if no real plan doc exists, point it at an existing doc plus an anchor, e.g.
+   `OPEN_FOLLOWUPS.md#short-slug`, rather than a bare `—`, which the builder silently excludes);
+   if it's already resolved/closed noise, it needs no row. Do not let "no plan file was written"
+   be a reason to leave a live, open thread invisible to every other agent.
+3. **After any manifest edit, regenerate the index before committing**
+   (`python3 scripts/build_handoff_index.py`) — CI's `--check-index` gate will reject a manifest
+   change that doesn't, but don't rely on that catching it; run it yourself so the PR is clean on
+   the first pass. Also sanity-check the `Status` cell phrasing against the state-rule keywords in
+   `build_handoff_index.py` (`STATE_RULES`) — a status like "not yet deployed" can accidentally
+   match the `deployed` → `done` rule via substring, so state a still-open gate as
+   **"blocked on human — ..."** rather than describing what's *not* done yet.
+
+This closes the loop the rest of this document assumes: §2's "read the unfinished-work index" is
+only as good as this upkeep. An index that's accurate once and then drifts is worse than no index
+— it tells every future supervisor a confident, wrong story.
 
 ---
 
-*Last updated 2026-09-14. If the authority envelope or WIP limit changes, update this file
+*Last updated 2026-09-15. If the authority envelope or WIP limit changes, update this file
 directly — it is not on the do-not-edit list in `OPERATING_INSTRUCTIONS.md` §3.*
