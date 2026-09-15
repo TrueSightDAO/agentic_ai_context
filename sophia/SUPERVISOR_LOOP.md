@@ -38,7 +38,7 @@ doesn't exist yet). Every unfinished handoff has a **state** from this enum:
 | State | Meaning | Supervisor action |
 |---|---|---|
 | `awaiting_kickoff` | Plan written + row registered; not yet triggered | Dispatch (§5) |
-| `executing` | Sophia is running a turn | **Wait** (poll; do not re-ping) |
+| `executing` | Sophia is running a turn | **Wait** (poll; do not re-ping) — but see §2a if the wait is prolonged |
 | `paused_at_gate` | Sophia stopped at a gate | Clear it (if autonomous) or escalate (§5) |
 | `sophia_uat` | R1 — Sophia verifying her own work on beta | Drive to pass (§4) |
 | `envoy_uat` | R2 — Envoy independently verifying on beta | Ask Envoy, drive to pass (§4) |
@@ -48,6 +48,35 @@ doesn't exist yet). Every unfinished handoff has a **state** from this enum:
 | `failed` | Turn errored / no PR opened | Diagnose → retry once → escalate |
 | `done` | All units merged, contribution reported | Confirm closure (§6) |
 | `stale` | No activity in N hours (default 24) | Flag; do **not** auto-ping |
+
+### 2a. Long `executing` stalls — verify the process is actually alive (governor directive, 2026-09-15)
+
+A thread reading `executing` for far longer than a turn should reasonably take is **not
+automatically "just slow."** Per `WORKSPACE_CONTEXT.md` §"When a flow appears stuck," most of
+this workspace's async chains are legitimately slow at some leg — but a *prolonged* `executing`
+read, well past the 45-second evidence-based check cadence (`supervision_requires_reading_not_pinging`
+pattern — chat + logs, not a blind timer), earns a deeper check than "wait some more":
+
+1. **Check whether Sophia's process is actually running**, not just whether the manifest/log
+   still *says* `executing`: `systemctl status truesight-autopilot` (the brain — turns run here)
+   and the relevant adapter unit (`truesight-autopilot-telegram` / `truesight-autopilot-discord`).
+   Look at `journalctl -u truesight-autopilot --since <turn start time>` for whether rounds/tool
+   calls are still landing, or whether the process **restarted** since this turn began.
+2. **The specific failure mode to check for: deploy self-disruption.** Any `deploy_autopilot`
+   call — from *any* thread, not just this one — restarts the single shared brain process and
+   **silently kills every in-flight turn, including this thread's.** The tell: `NRestarts`
+   incremented, or the unit's start time is *newer* than this turn's dispatch time, or a
+   `Tool ... cancelled by user`-shaped line in the log around the restart. If confirmed, this
+   thread will **never resume on its own** — its turn is dead, not slow.
+3. **If the process is alive and producing rounds/tool calls for this session**, this is not a
+   stall — leave it alone exactly as §3 says: do not re-ping a turn that's actually running.
+4. **If a restart killed this thread's turn, the supervisor SHOULD nudge again** — this is a
+   deliberate, evidence-backed exception to §3's "do not re-ping a running turn" rule, justified
+   specifically because there's concrete proof the original turn is dead, not because time merely
+   passed. Nudge with the **grounded context of what was interrupted** (which unit/step, what the
+   last completed action was), not a generic "are you stuck?" — and check every other thread you
+   or a co-supervisor were tracking for the same restart-shaped gap before assuming only this one
+   thread was hit (a shared-process restart interrupts everyone at once).
 
 **How to read a thread's live state (Telegram + Discord):**
 
@@ -75,7 +104,10 @@ been committed since your clone was last refreshed (`SOPHIA_HANDOFFS.md` §"Pull
   Local, or a prior iteration of your own loop), **do not re-ping** — re-pinging a running turn
   stalls or duplicates work. Multiple Envoy tmux sessions on `nelanco-claude` commonly run this
   loop at once (see `ENVOY.md` point 7); read live state before selecting a thread rather than
-  assuming you're the only supervisor watching it.
+  assuming you're the only supervisor watching it. **Exception:** §2a — a prolonged `executing`
+  read backed by process-level evidence that the turn actually died (a deploy restart, most
+  commonly) is not "a running turn," and re-pinging it is the correct action, not a violation of
+  this rule.
 - **Respect Sophia's own guards** — she already has per-thread `_thread_dispatch_locks`
   (Telegram) / `_channel_dispatch_lock` (Discord, #456) and `AUTO_ADVANCE_MAX_TURNS=8`. The WIP
   limit is *on top of* those: it caps Sophia's **total concurrent load** (and the GitHub write PAT,
