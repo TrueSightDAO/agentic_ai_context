@@ -217,9 +217,14 @@ def check_index(manifest_text: str, index_path: Path) -> ValidationResult:
         result.errors.append(f"{index_path} is not valid JSON: {exc}")
         return result
 
-    fresh = builder.build_index(manifest_text, str(index_path))
-    fresh.pop("generated_at", None)
-    committed = {k: v for k, v in committed.items() if k != "generated_at"}
+    supervision = builder.load_supervision(
+        index_path.resolve().parent / builder.SUPERVISION_FILENAME
+    )
+    fresh = builder.build_index(manifest_text, str(index_path), supervision)
+    # _strip_volatile drops generated_at and the clock-derived supervision fields
+    # (stale / age_minutes) so this gate compares *content*, not the passage of time.
+    fresh = builder._strip_volatile(fresh)
+    committed = builder._strip_volatile(committed)
 
     fresh_plans = [h.get("plan_file") for h in fresh.get("handoffs", [])]
     committed_plans = [h.get("plan_file") for h in committed.get("handoffs", [])]
