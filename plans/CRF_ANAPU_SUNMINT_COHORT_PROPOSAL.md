@@ -1,9 +1,12 @@
 # CRF Anapu × SunMint — tree-submission cohort proposal & execution roadmap
 
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification.
-**Status: ✅ APPROVED 2026-09-15** — all §6 open decisions resolved (Options confirmed, submission-only
-membership confirmed, CEPOTX/Jedielcio privacy sign-off obtained). **Ready for PR0.** Not yet started
-in this session — parked for a supervisor thread to pick up and drive per `sophia/SUPERVISOR_LOOP.md`.
+**Status: ✅ APPROVED 2026-09-15** · **PR0 COMPLETE 2026-09-15** — all §6 open decisions resolved,
+and all four code-only §7 pre-flight items resolved by live repo reads. **RESUME HERE = PR1.**
+
+> **PR0 result (Sophia, 2026-09-15):** two pre-flight items **rectified this document** — the plot
+> flow *is* shipped but hardcodes its origin (§1.3b), and `program_assets/registry.json` does not
+> exist (§1.4). Read §7 before starting PR1.
 
 ---
 
@@ -131,15 +134,33 @@ types.** The origin tracking Gary asked for already exists; what's missing is (a
 reach those forms from `cfr.truesight.me`, and (b) a pipeline that turns that field into a members.html
 roster.
 
-**The third event type — plot/boundary — is NOT confirmed shipped in the farmer-facing app.**
-`SUNMINT_BOUNDARY_SUBMISSION_PLAN.md` records the event as **`FARM BOUNDARY EVIDENCE EVENT`** and its
-own manifest row claims "complete — UAT passed 2026-09-01," but a direct grep of `sunmint_beta/`'s two
-live pages for `FARM BOUNDARY` / `Limites da Fazenda` (the module's Portuguese name in that plan)
-**turns up nothing** — it isn't in either shipped page. This needs a live pre-flight check (§6) before
-PR1 — either the module shipped somewhere I haven't found (a `dapp` report page, most likely, given
-that repo hosts most one-off signed-event forms), or the plan's "complete" status is itself stale in
-the same way the merge-verification incident from earlier today showed self-reported completion can't
-be trusted without a direct check.
+> **🔧 PR0 rectification (2026-09-15):** the "zero app-code change" headline holds for planting +
+> monitoring but **NOT for the plot/boundary flow** (see §1.3b). And under **Option A** (the redirect),
+> `Submission Source: window.location.href` records the **post-redirect** host
+> (`sunmint.truesight.me`), *not* `cfr.truesight.me` — so origin attribution must ride on the explicit
+> **`Program:` field** (§3.1), not on `href`. Treat `Program:` as **required in all options and all
+> three flows**, not as an Option-A add-on.
+
+### 1.3b The third event type — plot/boundary — IS shipped (✅ PR0-resolved; this section rectified)
+
+> **PR0 (Sophia, 2026-09-15):** this section originally claimed the boundary module was *not* shipped
+> in the farmer-facing app and required a live pre-flight check. **That check is done and the claim
+> was wrong** — the module ships, it was simply not in the two pages a static scan looked at.
+
+The `[FARM BOUNDARY EVIDENCE EVENT]` lives at **`sunmint_beta/limites-da-fazenda/index.html`** —
+reached only through the app's page-nav dropdown (`onNavChange` → `:884`), which is why scanning only
+`index.html` + `monitor-tree-growth/` missed it. That page emits the full plot lifecycle:
+
+- `[FARM BOUNDARY EVIDENCE EVENT]` (`:754`) — the plot submission,
+- `[PLOT INVALIDATION EVENT]` (`:615`),
+- `[MEDIA RETRACTION EVENT]` (`:682`).
+
+**The relevant gotcha:** this page carries `Submission Source`, but as a **hardcoded slug**
+(`'sunmint-limites-da-fazenda'`) — *not* `window.location.href` — and it has **no `Program` field** at
+all. So the §1.3 headline ("zero app-code change required") is **true for planting + monitoring and
+false for plots**: plot origin attribution needs an app-code change in *every* option. This is the
+single reason the `Program:` field (§3.1) must be added to **all three flows** rather than only as an
+Option-A affordance — see the rectification note in §1.3.
 
 ### 1.4 The `lineage-credentials` data model — the mechanism to reuse, not reinvent
 
@@ -150,10 +171,9 @@ used everywhere else in this DAO). For each `pk-<hash>`, it aggregates the `prac
 files into `practice_count` / `total_practice_minutes`, and `primary_program` is computed by
 `_program_activity_score` — whichever program has the most practice activity for that pk-hash wins.
 This is **entirely capoeira-shaped today**: the folder is literally named `practice`, and the
-aggregation fields (`total_practice_minutes`) are capoeira-specific. A `program_assets/registry.json`
-already handles data-slug ↔ URL-slug divergence (e.g. data-side `capoeira-tribo-mirim` vs URL-side
-`tribomirim`) — the exact mechanism a `crf-anapu` (URL) ↔ some SunMint-side identifier (data) mapping
-would reuse if the two ever diverge.
+aggregation fields (`total_practice_minutes`) are capoeira-specific. > **🔧 PR0 rectification (2026-09-15):** the original text cited a `program_assets/registry.json` as an
+existing data-slug ↔ URL-slug divergence mechanism. **That file does not exist** (`lineage-engine`
+`scripts/program_assets/` is an empty directory) — the citation is withdrawn.
 
 **This is the integration point.** Making SunMint submissions "count" toward `members.html` does not
 require inventing a new membership system — it requires teaching this *existing* pipeline about a
@@ -356,6 +376,12 @@ line has to be drawn at *what each item shows*, not *whether items show at all*:
    itemized rows (type/species/date) on click-through, **linking to** each tree's already-public
    Impact Map/QR entry rather than duplicating GPS/photo on the credential page. **CEPOTX/Jedielcio
    have already signed off on this posture** — no further partner confirmation needed on this point.
+
+   > **🔧 PR0 rectification (2026-09-15):** the sign-off is obtained, but name the *actual* new exposure
+   > precisely when re-confirming: it is **not** "counts vs rows" (aggregation), it is the **linkage** —
+   > a *named* (minor) student → a *public* GPS coordinate, where today the tree is public and the
+   > profile is private but the two are **not joined**. The CRF Anapu plot centroid (−3.38925/−51.30040)
+   > is a school. The sign-off should be recorded as covering that correlation, not merely itemization.
 4. **`program_mode` as a single value vs. an array** (§2.2 point 5) — a single new value
    (`"sunmint_cohort"`, replacing `"cohort_credentialing"` for CRF Anapu) is simpler to ship first; an
    array (`program_modes: [...]`) is the more correct long-term shape if a program can be *both* at
@@ -376,27 +402,34 @@ line has to be drawn at *what each item shows*, not *whether items show at all*:
 These are things this proposal **could not verify from static reading alone** and that PR1 must not
 have to discover mid-turn:
 
-1. **`FARM BOUNDARY EVIDENCE EVENT`'s actual shipped location** (§1.3) — confirmed as a catalog entry
-   and claimed "UAT passed" in `SUNMINT_BOUNDARY_SUBMISSION_PLAN.md`, but not found in either live
-   `sunmint_beta` page. Find it (likely a `dapp` report page) or confirm it was never actually shipped
-   to a farmer-facing surface, and whether it already carries `Submission Source`.
-2. **`verify_public_signatures`'s actual `tree_*` bucket schema** — this proposal assumes it's the
-   right read source for the sync job (§2.2.2) based on `PROJECT_INDEX.md`'s description alone; the
-   repo isn't cloned in this workspace and wasn't read directly this session. Confirm bucket names,
-   per-file schema, and whether `Submission Source` / a future `Program` field survives into the
-   attestation JSON (vs. being stripped during ingestion).
-3. **The capoeira practice-event sync trigger mechanism** (§1.4, §6 open decision #5) — confirm
-   whether it's a cron, a webhook, or a manual script, so the new SunMint sync job's trigger can follow
-   the same operational pattern rather than inventing a third one.
-4. **`sunmint_beta`'s exact query-param reading convention**, if any already exists for something else
-   in that app (to match existing style rather than introduce a new one for `?program=`).
+1. **`FARM BOUNDARY EVIDENCE EVENT`'s shipped location** — ✅ **RESOLVED (PR0, 2026-09-15).** It **is**
+   shipped, at `sunmint_beta/limites-da-fazenda/index.html`, reached via the page-nav dropdown (not
+   the two pages a static scan looked at). Emits `[FARM BOUNDARY EVIDENCE EVENT]` (`:754`) +
+   `[PLOT INVALIDATION EVENT]` (`:615`) + `[MEDIA RETRACTION EVENT]` (`:682`). It **carries
+   `Submission Source`, but hardcoded** as `'sunmint-limites-da-fazenda'` — **not**
+   `window.location.href`, and **no `Program` field**. → see §1.3b; drives the §1.3/§3.1 correction.
+2. **`verify_public_signatures`'s `tree_*` bucket schema** — ✅ **RESOLVED (PR0, 2026-09-15).**
+   Confirmed a **valid** read source for the sync job. Buckets: `tree_planting` (167),
+   `farm_boundary_evidence_event` (6), `tree_growth_monitoring` (2); root `index.json` carries
+   `total_count` 4360 with per-type `index_url`. **`Submission Source` survives** into each attestation
+   inside `signed_payload` (verified on the latest planting record) — it is **not** stripped during
+   ingestion. A future `Program` field will survive the same way.
+3. **The capoeira practice-event sync trigger mechanism** — ✅ **RESOLVED (PR0, 2026-09-15).** There is
+   **no cron and no webhook** for practice events: `programs/<slug>/pk-<hash>/practice/*.json` are
+   committed **by hand** (git author `Gary Teh`, message `practice event: capoeira-tribo-mirim pk-…`),
+   and aggregation is the standalone `lineage-engine/scripts/build_cv_cache.py`. The **only** automated
+   precedent on the autopilot box is the **every-30-min `sync_sunmint_signatures.py` cron** — PR3's new
+   sync job should follow **that** pattern, not invent a third.
+4. **`sunmint_beta`'s exact query-param reading convention** — ✅ **RESOLVED (PR0, 2026-09-15).** The
+   planting page already reads query params via `URLSearchParams` (`searchParams.get('vk'/'em')`), so
+   `?program=` matches the app's existing style — no new idiom introduced.
 5. ~~**CEPOTX/Jedielcio's actual consent posture**~~ — **✅ RESOLVED (Gary, 2026-09-15): already
    signed off.** No longer a pre-flight blocker.
 
-✅ **Pre-flight Completeness (partial):** items 1–4 above are code/repo reads any executing agent can
-resolve directly, at low cost, as **PR0** below — captured here so PR1 doesn't have to discover them
-mid-turn. Item 5 is resolved (was the only human/partnership item; all remaining pre-flight items are
-code-only).
+✅ **Pre-flight COMPLETE (PR0, 2026-09-15):** items 1–4 resolved by live repo reads — **no open
+pre-flight items remain**. Two resolved items **rectified this document** (§1.3b boundary flow is
+shipped-but-hardcoded; §1.4 `registry.json` citation withdrawn). Item 5 resolved earlier by Gary.
+PR1 may start.
 
 ---
 
@@ -404,7 +437,7 @@ code-only).
 
 | Unit | Scope | Advance |
 |---|---|---|
-| **PR0** | Pre-flight completion: resolve §7 items 1–4 (live repo reads only); update this doc's open decisions (§6) with governor + CEPOTX answers where received. No code. | auto |
+| **PR0** | ✅ **DONE 2026-09-15** — §7 items 1–4 resolved (live repo reads); §6 updated. Rectified §1.3/§1.3b/§1.4/§6 #3. No code. | auto |
 | **PR1** | `sunmint_beta`: read `?program=` query param; append `Program: <slug>` field to `[TREE PLANTING EVENT]` and `[TREE GROWTH MONITORING EVENT]` bodies when present; render the `cobrand-strip` banner (reusing existing CSS/JS from the credentialing pages) when `?program=` resolves to a known program via a small fetched/vendored `manifest.json`-equivalent. Unit tests: param present/absent, unknown program slug (banner omitted, field still appended — never block a submission over an unrecognized tag), field ordering doesn't break existing event-catalog parsing (`canonical_labels` audit). | auto |
 | **PR2** | `cfr-anapu` repo: add the two thin redirect pages (`plant-a-tree/index.html`, `monitor-tree-growth/index.html`) pointing at `sunmint.truesight.me/?program=crf-anapu` (Option A) — or the vendored-copy equivalent if Open Decision #1 lands on Option B. Wire a CTA from the existing `programs/crf-anapu/index.html` (both beta and the `cfr-anapu` mirror) to the new surface. | auto (beta); prod mirror gated same as any `truesight_me_*` prod touch |
 | **PR3** | `lineage-engine`: new `sync_sunmint_program_activity.py` reading the confirmed source (§7 item 2), writing `programs/<slug>/pk-<hash>/sunmint/*.json` into `lineage-credentials`. Dry-run flag default, per this workspace's standing convention for any new write script. | auto |
@@ -413,8 +446,10 @@ code-only).
 | **PR6** | First real sync run (dry-run then live) against real CRF Anapu submissions (needs at least one real submission to exist first — may require a CEPOTX/Jedielcio coordination step outside any PR). Verify `members.html` populates. | **`gate: human`** — first live write into `lineage-credentials` from a new activity kind |
 | **PR7** | Docs: update `CREDENTIALING_PROGRAM_PAGES.md` with the new `sunmint_cohort` mode (it's the canonical spec, editable per its own convention — this is documentation of a shipped feature, not a forecast); update `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`'s status; UAT. | auto |
 
-**RESUME HERE → PR0** (once this proposal is confirmed/corrected by Gary — see Rollout below; do not
-start PR0 before that confirmation per the governor-decisions convention this doc follows).
+**RESUME HERE → PR1** (PR0 complete 2026-09-15 — all §7 pre-flight items resolved, no open
+governor decisions remain). PR1 = `sunmint_beta` reads `?program=`, appends the `Program:` field to the
+planting + monitoring **and plot** event bodies, renders the co-brand banner. Beta-first; prod
+gated on UAT. **PR6 remains the only `gate: human`.**
 
 ---
 
@@ -441,9 +476,10 @@ start PR0 before that confirmation per the governor-decisions convention this do
 
 ## 10. Rollout
 
-**Approved, not yet started.** Reviewed in the Telegram topic **"CFR partnership - figure out how to
-present"**. All §6 open decisions are resolved as of 2026-09-15 (Gary confirmed Option A, submission-only
-membership, and reported CEPOTX/Jedielcio's sign-off on the privacy posture). **RESUME HERE (§8) =
-PR0**, ready for a supervisor (Envoy or Sophia, per `sophia/SUPERVISOR_LOOP.md`) to pick up and drive
-through the roadmap — remaining pre-flight items (§7 #1–4) are code-only reads, not further human
-decisions.
+**Approved; PR0 complete; PR1 is next.** Reviewed in the Telegram topic **"CFR partnership - figure
+out how to present"**. All §6 open decisions are resolved (Gary confirmed Option A, submission-only
+membership, and reported CEPOTX/Jedielcio's sign-off on the privacy posture). **PR0 completed
+2026-09-15 (Sophia)** — all §7 pre-flight items resolved by live repo reads and folded back into this
+doc (§1.3/§1.3b/§1.4/§6 #3). **RESUME HERE (§8) = PR1**, driven by a supervisor (Envoy or Sophia, per
+`sophia/SUPERVISOR_LOOP.md`). **PR6 is the only `gate: human`** and no prod promotion happens before the
+UAT gate (§9).
