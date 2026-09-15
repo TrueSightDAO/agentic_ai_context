@@ -5,14 +5,14 @@
     {
       "plan_file": "plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T14:42:20Z",
-      "note": "Driving PR5 UAT after fixing the resume-marker parser bug (PR #1163)."
+      "claimed_at": "2026-09-15T15:09:57Z",
+      "note": "Gary is live in this thread giving direct UX feedback (per-supervisor board lane, deep-linkable spec pills, copy-URL). Monitoring, not nudging, while he's engaged. HTTPS cert confirmed genuinely stalled on GitHub's side (not config) -- non-blocking, awaiting provisioning."
     },
     {
       "plan_file": "OPEN_FOLLOWUPS.md#handoff-index-reconciliation",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T14:42:20Z",
-      "note": "Driving PR2 row batch (19930 landed); next batch or wrap-up."
+      "claimed_at": "2026-09-15T15:09:57Z",
+      "note": "PR3 (23734) landed, sweep believed complete -- authorized final gap re-check (Option A) before declaring done."
     }
   ]
 }
