@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T17:13:44Z",
+  "generated_at": "2026-09-15T17:26:45Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "a23fb7ff559f876341006d9a87221e766d35e2adc814d509da361d880f77ed30",
   "state_enum": [
@@ -557,7 +557,13 @@
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
-      "supervised_by": null
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-09-15T17:26:27Z",
+        "note": "Picked up while the other two supervised threads wait on Gary. PR1/PR2 already shipped; dispatched PR3 (migrate point-lookup consumers off the monolith/audit).",
+        "stale": false,
+        "age_minutes": 0
+      }
     },
     {
       "plan_file": "`plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`",
@@ -593,10 +599,10 @@
       "last_updated": "2026-09-15",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-        "claimed_at": "2026-09-15T16:20:52Z",
-        "note": "UAT found a real bug (progress-query classifier fed decorated text, always >80 chars in handoff topics -- dead code). Fix verified locally, PR pending (own-repo gate, Gary merges). Two deploy-caused restarts survived via re-nudge.",
+        "claimed_at": "2026-09-15T17:26:27Z",
+        "note": "blocked_on_human -- fix merged (#467) but not deployed to the live box; deploying truesight_autopilot's own service is a genuine always-stop gate, awaiting Gary.",
         "stale": false,
-        "age_minutes": 52
+        "age_minutes": 0
       }
     },
     {
@@ -871,10 +877,10 @@
       "last_updated": "2026-09-15",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-        "claimed_at": "2026-09-15T16:20:52Z",
-        "note": "PR #466 (auto-claim wiring, part a) landed CI-green, awaiting Gary's merge (own-repo gate). Sophia continuing with dao_client half + plan-file plumbing. Two deploy-caused restarts survived (15:46, 16:00) via re-nudge; HTTPS cert still GitHub-side pending, non-blocking.",
+        "claimed_at": "2026-09-15T17:26:27Z",
+        "note": "blocked_on_human -- PR6 beta half shipped (truesight_me_beta #380 merged, quests/ redirected to sprint.truesight.me), correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS now confirmed live.",
         "stale": false,
-        "age_minutes": 52
+        "age_minutes": 0
       }
     },
     {
