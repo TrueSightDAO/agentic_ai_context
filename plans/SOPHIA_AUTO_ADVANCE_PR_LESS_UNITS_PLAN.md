@@ -189,20 +189,117 @@ PR sequence; filed as its own `OPEN_FOLLOWUPS.md` entry** (§7) so this plan sta
 ✅ **Pre-flight Completeness:** all three items are code-only reads any executing agent resolves
 directly. No human decisions block PR1.
 
+### 3.1 Results — PR0 complete (2026-09-15, Sophia)
+
+**Item 1 — incident #2 repro: ✅ CAPTURED, and the stated root cause is CORRECTED.**
+
+Exact repro (from `SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md`, revisions `b389d8c` / `f6a86d3` /
+`6bff303`): the plan carries two `RESUME HERE` markers whose tails differ **by convention**, not by
+staleness:
+
+- top-of-file hint: `> **RESUME HERE → PR1a.**` → tail `→ PR1a.`
+- tracker trailer: `… RESUME HERE (§4) = PR1a.` → tail `(§4) = PR1a.`
+
+`find_resume_here()` ("last wins") returns the trailer's `(§4) = PR1a.`; `_unit_key()` has no rule
+for the `(§4) = ` prefix, so it yields the literal key `(§4) = pr1a.`, which matches no tracker row →
+the gate `unit '(§4) = PR1a.' not found in resume tracker`.
+
+Run across **every** revision, the two markers never once agreed as raw keys — so this is **not**
+"an edit updated only one occurrence"; it is a **format mismatch between the two marker conventions**
+(`→ PRn.` vs `(§N) = PRn.`), present in every revision:
+
+| revision | markers (raw keys) | last-wins key | row match |
+|---|---|---|---|
+| `a607238` / `b389d8c` | `(§4) = pr0.` · `→ pr0.` | `(§4) = pr0.` | ❌ |
+| `f6a86d3` / `6bff303` | `(§4) = pr1a.` · `→ pr1a.` | `(§4) = pr1a.` | ❌ |
+| `ebcd7c5` | `(§4) = pr5 (pr0` · `→ pr5.** (pr0–pr4 done` | `(§4) = pr5 (pr0` | ❌ |
+| `b51a0c7` / `6e6bfba` / `9faf972` | `occurrences agree,` · `pr5`/`pr4c`/`pr4b` | `occurrences agree,` | ❌ |
+| `e72f138` / `85db07c` | `pr4b` · `pr5` | `pr5` | ✅ (by luck) |
+| `2b11884` / `a3030fa` / `3d6fd74` | agree | `pr5` | ✅ |
+
+Two distinct defects, both visible above:
+
+- **D1 — un-keyable marker prefix (the incident #2 string).** `_unit_key()` strips only em-dash /
+en-dash / `" - "`; it has no rule for the `(§N) = ` / `→` decoration this repo's plan convention uses
+in its trailer marker, so a *correct, agreeing* marker fails key-lookup and gates with an opaque
+"unit not found". Present in **every** revision above.
+- **D2 — `_RESUME_RE` over-matches prose** (the `b51a0c7` family). `re.compile(r"RESUME\s+HERE…")`
+matches any line *mentioning* `RESUME HERE`, including this plan's own §2.3 prose ("…occurrences
+agree…"); when such a line is the last match, last-wins returns prose and key-lookup fails. **Live in
+this very plan** — lines 36/94/100/144/150/200/229 all match; harmless today only because they precede
+the authoritative marker.
+
+Genuine drift (a marker left pointing at a different unit than its sibling) is real but rarer —
+`e72f138`/`85db07c` (`pr4b` vs `pr5`) is the only such case, and it happened to resolve. §2.3's
+detector is still worth building, **but it must compare *normalized unit keys*, not raw tails** —
+otherwise it flags the (semantically agreeing) `(§4) = pr1a.` / `→ pr1a.` pair on every plan in the
+repo, converting today's silent false-gate into a loud false-gate.
+
+**Recommended fix order for PR2:** (a) teach `_unit_key()` to strip leading `(§N) =` / `→` / `=`
+decoration — fixes D1, makes last-wins resolve, and alone would have averted incident #2; (b) restrict
+`_RESUME_RE` to marker-shaped lines — fixes D2; (c) *then* add the disagreeing-markers detector on
+normalized keys.
+
+**⚠ New finding — this plan carries the same latent D1 bug.** Its own trailer reads
+`RESUME HERE (§4) = PR0.` → key `(§4) = pr0.` → **no row match**. Absent a fix, PR0's next turn gates
+with `unit '(§4) = PR0.' not found in resume tracker`. PR0 therefore rebases both markers of this plan
+to a key-able, agreeing form (below), exactly as the sprint plan's own PR0 did in #1153.
+
+**Item 2 — `app/policy.py::classify_action` as the `made_progress` proxy: ⚠ NOT CLEAN — use with an
+explicit exclusion list.**
+
+WRITE set (read in full, 2026-09-15): `aws_query, tencent_query, submit_contribution, open_fix_pr,
+git_push_changes, merge_pr, mark_pr_ready_for_review, upload_file_to_github,
+upload_local_file_to_github, deploy_autopilot, gmail_send, gmail_create_draft, gmail_apply_label,
+create_dao_submission, create_telegram_topic, post_to_telegram_topic, close_telegram_topic,
+delete_telegram_topic, create_discord_channel, update_discord_channel, delete_discord_channel,
+ssh_run, register_identity, gas_deploy_project, sync_beta_to_prod, generate_pdf,
+push_to_personal_repo, compact_session_manual` (`secret_tools` is empty).
+
+Why it is a poor proxy on its own:
+
+- **False positives — reads classified WRITE.** `ssh_run` (WRITE) is mostly read-only diagnostics
+  (`journalctl`, `df`, `git log`); `aws_query` / `tencent_query` are WRITE regardless of whether the
+  operation is a `Describe*` read or a `Create*` write — the classifier never sees the operation.
+  Counting these as progress would let a pure-diagnostics turn auto-advance, reintroducing the
+  cross-thread-bleed failure the 2026-08-21 fix closed.
+- **False negative — a real side effect classified READ.** `append_to_transcript` is a genuine repo
+  write (it is in `main.py`'s `_SIDE_EFFECT_TOOLS`) but is **not** in the WRITE set.
+
+**Recommendation for PR1:** derive `made_progress` from `main.py`'s existing `_SIDE_EFFECT_TOOLS` (the
+set `_build_turn_report` already uses for "actions taken") **minus** the read-capable members
+`{ssh_run, run_command, aws_query, tencent_query}` **plus** `{git_push_changes}` (absent from both) —
+and treat `classify_action == WRITE` as a corroborating signal only, never the sole one.
+
+**Item 3 — `tests/test_auto_advance.py` read in full: 31 tests.** `next_action()` is called at **7**
+sites — lines 222, 225, 234, 239, 245, 251, 260 — so a signature change touches all 7, not just the
+one obvious test. The deliberately invalidated test is `test_next_action_gate_when_no_pr_opened`
+(line 238, asserts `"did not open a PR" in d.gate_reason`) → becomes
+`test_next_action_gate_when_no_progress_at_all`, plus a new
+`test_next_action_auto_when_made_progress_no_pr`. The fixture `PLAN` (lines 16–31) already uses the
+**em-dash** marker form (`**RESUME HERE:** PR2 — the brain signal.`) and therefore *does* key-match —
+which is exactly why the suite is green while live plans (trailer form) fail: **the tests never
+exercise the `(§N) = ` convention**, the gap D1 hides in. PR2's regression test must use the literal
+incident string.
+
+✅ **Pre-flight complete.** All three §3 items resolved; two code defects (D1/D2) characterized against
+a real repro and a third (this plan's own un-keyable marker) fixed in-place. No human decision blocks
+PR1.
+
 ---
 
 ## 4. Sequenced execution roadmap (one PR per turn — §5a)
 
 | Unit | Scope | Advance |
 |---|---|---|
-| **PR0** | Pre-flight completion: resolve §3 items 1–3. No code. | auto |
+| **PR0** | ✅ **DONE (2026-09-15)** — §3 items 1–3 resolved (§3.1); incident #2 root cause corrected (D1/D2); this plan's own markers rebased off the un-keyable `(§4) = ` form. No code. | — |
 | **PR1** | `app/auto_advance.py` + `app/main.py`: implement §2.1's `made_progress` signal and the updated `next_action()` signature. Update `test_next_action_gate_when_no_pr_opened` to reflect the new behavior (keep a `test_next_action_gate_when_no_progress_at_all` case for the still-gated true-failure path) + add tests for the `made_progress`-but-no-PR case. | auto |
 | **PR2** | `app/auto_advance.py`: implement §2.3 option 1 (detect + gate-with-clear-reason on disagreeing multiple `RESUME HERE` markers), with a regression test using the literal incident string (§3 item 1). Option 2 (drop the duplicate-marker convention entirely) is deferred to §6 — not this PR unless Gary picks it. | auto |
 | **PR3** | Deploy to the box (PR1/PR2 are self-merged directly, no human step — see the 2026-09-15 update above; deploy itself follows the existing "verify healthy after restart, not just that the command ran" discipline). | **`gate: human`** — merging PR1/PR2 no longer needs a human, but **restarting the live service still does**: that's the deploy action, a separate thing from merging, per the same 2026-09-15 decision |
 | **PR4** | UAT (§5) on a scratch handoff thread with a throwaway plan containing at least one deliberately PR-less unit. | auto (post-deploy) |
 | **PR5** | Docs: note the fix in `SOPHIA_AUTO_ADVANCE_PLAN.md`'s own history (append, don't rewrite its resume tracker) and in `SUPERVISOR_LOOP.md` if the state-reading guidance references the old behavior anywhere. | auto |
 
-**RESUME HERE → PR0.**
+**RESUME HERE:** PR1 — made_progress signal + next_action() signature.
 
 ---
 
@@ -245,4 +342,4 @@ Per the pattern established for every other roadmap this session: **park in a ne
 a supervisor to pick up. **Merging PR1/PR2 no longer needs a human** (2026-09-15 update, top of this
 doc) — Sophia self-merges directly, same as a docs-only `agentic_ai_context` PR. **PR3 (deploy —
 restarting the live service) remains an explicit always-stop regardless** — that's a separate action
-from merging. RESUME HERE (§4) = PR0.
+from merging. RESUME HERE: PR1 — made_progress signal + next_action() signature.
