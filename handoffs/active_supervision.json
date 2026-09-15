@@ -12,13 +12,13 @@
       "plan_file": "plans/SOPHIA_LIVE_PROGRESS_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
-      "note": "blocked_on_human -- fresh re-verification against advanced deploy found a REAL U3 regression (progress-classifier bare-word regex silently dropped real instructions containing trigger words). Fix PR truesight_autopilot#475 reviewed + merged (5738db7). Close-out RETRACTED -- awaiting a second deploy before U3 can be re-verified and topic closed."
+      "note": "blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7), awaiting deploy. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Pre-validated #475 against the merged artifact on a clone (27/27) before deploy. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py)."
     },
     {
       "plan_file": "plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
-      "note": "executing -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Deploy landed 20:53:43 UTC (1254da2). Nudged to proceed with UAT U2 (new-key-on-deny) and remaining UAT legs. Elizabeth Wong data-integrity bug still flagged to Gary directly -- root-cause call his, held separate."
+      "note": "executing -- MAJOR FINDING: UAT U5 FAILS, root-caused to a real 3-month regression. tokenomics PR1/PR2 (#359/#361, merged 2026-06-16) added the per-key emitter to google_app_scripts/tdg_identity_management/dao_members_cache_publisher.gs; commit 50999ec (~1hr later, same day) flattened clasp_mirrors/ into scriptId folders and the migration silently dropped the emitter -- the new DaoMembersCache.js never got it. Per-key store frozen since 2026-06-18; every dao_members.json refresh since (through 2026-09-15) touches 0 per-key files. This REFRAMES Elizabeth Wong from a one-off into a symptom: any governor/key change since June is invisible to the per-key store, and PR4's force-fresh fix silently degrades back to the cached-monolith 5-min-lag bug for any key lacking a per-key file. Authorized: file the regression + reframe, open (not merge) a tokenomics fix PR, verify the fallback-chain hypothesis, file contribution report. GAS deploy to publish the restored emitter stays gate:human."
     },
     {
       "plan_file": "plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md",
@@ -31,12 +31,6 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
       "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk."
-    },
-    {
-      "plan_file": "plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md",
-      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T19:28:30Z",
-      "note": "wrapping up -- PR0-PR5 ALL MERGED (#473, #474, agentic_ai_context#1209). UAT 5/5 legs green + live scratch e2e spin green. Plan complete. DAO contribution report + topic close authorized, awaiting her confirmation."
     }
   ]
 }
