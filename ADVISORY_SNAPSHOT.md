@@ -20,49 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-14T21:57:17Z`
-- Look-back: **7** calendar days (`2026-09-07` → today UTC)
+- Generated (UTC): `2026-09-15T03:54:25Z`
+- Look-back: **7** calendar days (`2026-09-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 21
-- `[INVENTORY MOVEMENT]` × 3
-- `[CURRENCY DEFINITION EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
-- `[SMOKE TEST]` × 1
-- `[QR CODE UPDATE EVENT]` × 1
-- `[ASSET RECEIPT EVENT]` × 1
-- _free-form (no bracket tag)_ × 11
-
-### Latest entries
-
-- `Edgar_20260914104556_008` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-14T10:45:54.447Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260914120758_010` · **Edgar** · [QR CODE UPDATE EVENT] QR Code: 2024OSCAR_CT_20260820_68 · New Status: EXPENSED
-- `Edgar_20260914120800_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260914123130_014` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Paloma · Recipient Name: Matheus Reis · Inventory Item: FounderHaus Tree Planting Pledge - QR Code
-- `Edgar_20260914123717_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix Discord per-channel memory loss + parity guard (thread 29235)
-- `Edgar_20260914124101_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Cacao tea bag custody movement — Paloma → Matheus Reis (2024OSCAR_CT_2026082…
-- `Edgar_20260914125531_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] truesight_autopilot: Follow-up loop re-fires the same strike hou…
-- `Edgar_20260914203259_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Visiting the Araujo certificadora account and and getting an additional pair…
-- `Edgar_20260914203429_024` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260914203528_026` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Keys to Ilheus warehouse (outer door and inner door) · Amount: 1 · Description: Key for inner door to Ilheus warehouse for Matheus
-- `Edgar_20260914203738_028` · **Edgar** · [No Text Provided]
-- `Edgar_20260914204114_030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Santos José Carlos · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
-- `Edgar_20260914204401_032` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Matheus Reis · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
-- `Edgar_20260914204728_034` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260914204830_036` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.14 · Description: Transport expense to go visit Santos Factory
-- `Edgar_20260914205246_038` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260914205315_040` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.93 · Description: Transport from Santos Factory to Coopercabruca for meetings
-- `Edgar_20260914205430_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Visiting Santos factory and Coopercabruca
-- `Edgar_20260914215007_044` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.48 · Description: Extension of stay in Brazil for business meeting with Chinese partners.
-- `Edgar_20260914215106_046` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 
 ---
 
@@ -234,17 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+30 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,833.87**
-- Brazilian Reis: R$1,329.61 · rate `0.2323` USD/BRL → ≈ **$308.87**
-- USD provisioned for voting-rights cash-out: **$55.07**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -254,9 +210,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-07_ (1):
+_All dated lines on/after 2026-09-08_ (2):
 
 - 2026-09-12 | sophia | `skus.json` SKU catalog now published by the `go_to_market` Python/GHA job (`sync_agroverse_store_inventory.py` + `publish-agroverse-inventory-snapshot.yml`, daily `15 6 * * *`) — PRs go_to_market #174 (emit A–I of the Agroverse SKUs tab) + #175 (`UNFORMATTED_VALUE` read so `priceUsd` is `25`, not `$25.00`; the DApp `define_currency.html` inputs `priceUsd` into a `type="number"` field). Verified live: commit `cf5d0c6` by `github-actions[bot]` 2026-09-12T23:56:32Z, `source = sync_agroverse_store_inventory`, 14 rows, `priceUsd = "25"`. New runbook `AGROVERSE_INVENTORY_PUBLISHERS.md` maps all four caches → publishers → crons → force-a-run; `OPEN_FOLLOWUPS.md` files the GAS-vs-Python two-writer hazard.
+- 2026-09-14 | deepseek | Added `sophia/SUPERVISOR_LOOP.md` — directive for LLMs supervising Sophia: a bounded-WIP supervise loop (read the unfinished-work index → drive ≤2 threads at a time → first-round UAT → escalate only human gates), plus a first-round-UAT-vs-human-UAT split and a DEFAULT authority envelope (autonomous: go/retry/first-round-UAT/beta merges; human-only: TDG/money, account-only, final human UAT). **Governor decision 2026-09-14:** UAT is THREE rounds — R1 Sophia on beta → R2 Envoy on beta → R3 human UAT — and prod merge/promote executes ONLY after the human UAT thumbs-up (supervisor executes the merge, human authorizes via thumbs-up). SUGGESTED (canonical, not edited): add SUPERVIOR_LOOP.md to OPERATING_INSTRUCTIONS §2 read-order; add a machine-readable `handoffs/index.json` mirror (state enum + Telegram thread_id + Discord channel/thread id + last_updated).
 
 ---
 
@@ -275,6 +232,9 @@ _All dated lines on/after 2026-09-07_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube iframes to fix perceived-missing videos on load (#379)
+55f1371 | 2026-09-14 21:27:55 -0300 | fix(crf-anapu): responsive 16:9 video/image boxes, fix squished YouTube embeds (#378)
+5cf632f | 2026-09-14 21:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 d9f30e0 | 2026-09-14 13:15:42 +0000 | chore(stats): refresh stats indexes [skip ci]
 159e9bd | 2026-09-14 05:21:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 f9f4f2c | 2026-09-13 21:05:17 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -312,9 +272,6 @@ ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox
 77fa0fc | 2026-09-08 22:37:41 -0300 | fix: hoist esc() to IIFE scope (kills the silent map-render regression class) (#366)
 0a86c8a | 2026-09-08 21:44:45 -0300 | Show tree photo in SunMint impact-map tree popup (#363)
 f52ee46 | 2026-09-08 21:21:19 +0000 | chore(stats): refresh stats/current.json [skip ci]
-a50e683 | 2026-09-08 16:48:57 +0000 | chore(stats): refresh stats/current.json [skip ci]
-3236758 | 2026-09-08 11:40:00 +0000 | chore(stats): refresh stats/current.json [skip ci]
-93aea68 | 2026-09-08 05:06:33 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +284,26 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+69fb3a2 | 2026-09-14 22:08:01 -0300 | chore(handoffs): mark thread 26410 (Repo-Access Denylist) row terminal — plan COMPLETE (#1134)
+f391350 | 2026-09-14 22:05:56 -0300 | proposal: CRF Anapu x SunMint tree-submission cohort (#1137)
+2a4e2d3 | 2026-09-14 22:04:15 -0300 | docs(plan): tick PR8 merged in FARM_SHIPMENT_MEDIA_JSON tracker; RESUME HERE -> PR9 only (#1136)
+e13c4f9 | 2026-09-14 22:02:33 -0300 | fix(handoffs): restore FARM_SHIPMENT_MEDIA_JSON row glued onto SUNMINT row (thread 11590 mis-inject) (#1135)
+a0c7996 | 2026-09-14 21:55:41 -0300 | docs: AGROVERSE_SHOP_PAGE_CONVENTIONS §8 farm/shipment media + total_value tracker correction (PR8) (#1132)
+71a93ce | 2026-09-14 21:47:45 -0300 | sophia: require independent merge verification before accepting "done" (#1133)
+8ce59aa | 2026-09-14 21:44:01 -0300 | sophia: add deploy-stall verification to the supervisor directive (#1130)
+bf3e91e | 2026-09-14 21:34:59 -0300 | plan: record Gary's confirmation of Option A (full governor parity) (#1129)
+c2b2c9e | 2026-09-14 21:28:58 -0300 | plan: Sophia<->Envoy governor parity on Discord (#1128)
+28d329b | 2026-09-14 21:13:34 -0300 | docs(glossary): define Thread (Telegram) vs Channel (Discord) as the per-platform unit of open work (#1125)
+efe60c9 | 2026-09-14 21:08:13 -0300 | docs(crf-anapu): update RESUME HERE — PR5 media long pole done, only UAT gate remains (#1126)
+dcf5462 | 2026-09-14 20:39:07 -0300 | docs(envoy): make proactive supervision (SUPERVISOR_LOOP.md) an explicit Envoy duty (#1123)
+cbe0282 | 2026-09-14 20:37:38 -0300 | Merge pull request #1122 from TrueSightDAO/docs/supervisor-loop-directive
+0443d4a | 2026-09-14 20:33:23 -0300 | docs(supervisor-loop): 3-round UAT (Sophia -> Envoy -> human) + prod merge after thumbs-up
+e11d27c | 2026-09-14 20:29:25 -0300 | docs(supervisor-loop): prod-merge + beta->prod promote autonomous per governor decision
+4868e49 | 2026-09-14 20:28:01 -0300 | docs: add Supervisor Loop directive for LLMs supervising Sophia
+4416b5b | 2026-09-14 20:06:37 -0300 | followups: extend deploy self-restart item with coalescing/debounce gap (thread 29509 scope) (#1120)
+cc993d5 | 2026-09-14 20:04:01 -0300 | File OPEN_FOLLOWUPS: dao_protocol server-side empty-body / missing-signature guard (#1121)
+a49f795 | 2026-09-14 18:57:38 -0300 | chore(previews): refresh Beer Hall preview (2026-09-14 UTC)
+c00400d | 2026-09-14 18:57:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
 3413afa | 2026-09-14 15:05:04 -0300 | Reconcile Discord Tier-2 #7 (/verify) as SUPERSEDED by locked decision #3 (#1119)
 9a00777 | 2026-09-14 14:47:49 -0300 | followup(orlantildes): pin butter-receipt decision; park blocked on destination-ledger name (#1116)
 79fba2c | 2026-09-14 14:47:23 -0300 | followup(matheus): park blocked on Gary's send decision (stops weekly re-nag) (#1117)
@@ -347,32 +324,13 @@ f64cf1c | 2026-09-14 09:56:54 -0300 | gianluca-farmers-tech-followup: escalate �
 c854367 | 2026-09-14 09:56:16 -0300 | Update matheus-nota-fiscal follow-up: 2026-08-26 plan pivot (Matheus issues NF, no trading co) (#1098)
 547fc2d | 2026-09-14 09:52:40 -0300 | OPEN_FOLLOWUPS: file upload_local_file_to_github sha-422 regression + merge_pr restart papercut (#1108)
 829a7c4 | 2026-09-14 12:51:32 +0000 | Rev 6 - add action item: every Black King NF-e to Gary via WhatsApp
-1bdd039 | 2026-09-14 12:32:20 +0000 | Rev 5 - add company-tier upgrade + e-CAC Procuracao action items
-55770bd | 2026-09-14 09:21:51 -0300 | OPEN_FOLLOWUPS: file Black King state (SEFAZ-BA) tax records gap (#1105)
-bd3556f | 2026-09-14 09:21:14 -0300 | Update Black King corridor report to Rev 4 — federal verified, state/ICMS flagged as open item
-d305dbb | 2026-09-14 09:17:26 -0300 | Update Black King corridor report to Rev 3 — month-by-month split vs 2024-09-21 cutoff
-b25958f | 2026-09-14 09:13:27 -0300 | Add Black King corridor report (EN/PT) — shipments, tax tabulation, 50/50 split, forward plan
-8c60506 | 2026-09-14 08:52:40 -0300 | Mark Coopercabruca MAPA complete (2026-09-02); re-scope orlantildes follow-up to cacao butter receipt (#900)
-b4a7fbd | 2026-09-14 06:21:44 -0300 | docs(followups): file chat-blocking persistence parity gap (thread 29235) (#1097)
-e5d6ded | 2026-09-14 06:11:55 -0300 | Correct MAP YouTube reconcile entry: 2 real gaps, not 4 (both now shipped) (#1096)
-77dae7a | 2026-09-14 06:00:35 -0300 | docs: Discord col G binding caveats &amp; seed gap (snowflake vs USER_ENTERED) (#1094)
-c89ddb3 | 2026-09-14 02:17:37 -0300 | chore(previews): refresh Beer Hall preview (2026-09-14 UTC)
-22eb1c5 | 2026-09-14 02:17:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
-f02a8c3 | 2026-09-14 01:46:10 -0300 | docs: file MAP YouTube↔manifest reconciliation follow-up (#1095)
-6cfae8c | 2026-09-14 01:20:02 -0300 | plan: in-turn context compaction, extends the completed compaction plan (#1093)
-97046da | 2026-09-14 00:55:50 -0300 | plan: Discord adapter parity gaps vs Telegram, prioritized (#1092)
-a1fd9ad | 2026-09-14 00:55:02 -0300 | Merge pull request #1091 from TrueSightDAO/auto/advisory-refresh-2026-09-14
-cdd8ca9 | 2026-09-14 03:54:51 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
-562037c | 2026-09-14 00:23:46 -0300 | docs(followups): file Discord member-reply tier-awareness gap (#1090)
-a7fafdb | 2026-09-14 00:20:08 -0300 | docs(discord): de-drift adapter docs to LIVE + MEMBER tier (#1089)
-4645709 | 2026-09-14 00:15:17 -0300 | docs: mark cacao-varieties roadmap units 4-5 done (full dossier preserved) (#1088)
-5c8a6db | 2026-09-13 22:15:54 -0300 | docs(repo-access): document default-allow model in GITHUB_AGENTIC_AI_SSH.md (PR6) (#1086)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+cd2648f | 2026-09-14 20:19:49 -0300 | fix(expenses): strip [ledger] prefix from Inventory Type before Column E write (#492)
 bd12393 | 2026-09-13 15:21:13 -0300 | asset_receipt_ingest: fill empty Currencies D/E from Product Image / Landing Page labels (#491)
 df418a0 | 2026-09-13 15:08:24 -0300 | docs(schema): add CNPJ + Physical Address cols to Agroverse Cacao Processing Cost (#490)
 d9af5b9 | 2026-09-13 14:58:42 -0300 | feat(qr-gen): PR4 auto-define QR-ready currency from a batch QR request (thread 27015) (#489)
@@ -451,9 +409,6 @@ fdb2e9f | 2026-09-10 11:24:18 +0000 | chore: refresh store and partner inventory
 b670bdc | 2026-09-09 07:29:12 -0300 | chore: refresh Agroverse store inventory snapshot
 62fe5ed | 2026-09-08 11:44:02 +0000 | chore: refresh currencies.json [skip ci]
 44d8995 | 2026-09-08 11:23:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-4cfaac0 | 2026-09-07 13:02:24 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-8af7d0c | 2026-09-07 13:00:40 +0000 | chore: refresh currencies.json [skip ci]
-be4578f | 2026-09-07 12:38:54 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -498,12 +453,21 @@ _(no commits on origin/main in window)_
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
-_(no commits on origin/master in window)_
+0659ac2 | 2026-09-14 20:08:35 -0300 | Add weekly AMI backup for the nelanco-claude interactive Claude Code box (#42)
 ```
 
 ---
 
 ## Recent Beer Hall archives (newest entries)
+
+### `beer-hall_2026-09-15T035424Z_youtube-fix-repo-access-denylist-complete.md`
+
+- **posted_at_utc:** `2026-09-15T03:54:24Z`  
+- **slug:** `youtube-fix-repo-access-denylist-complete`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Media Performance** — Fixed squished YouTube embeds and implemented lazy-loading to resolve missing-video glitches on load.
 
 ### `beer-hall_2026-09-14T035447Z_sunmint-ux-reservation-logic-and-logistics.md`
 
@@ -522,15 +486,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Media Gallery Publisher** — Plan completed (PR1–PR7) and fetch-first gallery logic merged to production.
-
-### `beer-hall_2026-09-12T033932Z_crf-anapu-gallery-and-black-king-update.md`
-
-- **posted_at_utc:** `2026-09-12T03:39:32Z`  
-- **slug:** `crf-anapu-gallery-and-black-king-update`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Cacau na Veia** — Published 33 site-visit videos and transcripts to the farm page gallery.
 
 ---
 
@@ -551,39 +506,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/14/2026 14:50:49 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-07`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
