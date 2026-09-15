@@ -1,12 +1,12 @@
 # Public-Key Lookup Cache — Content-Addressed Per-Key Store — Execution Roadmap
 
-**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **PR4 ✅ merged** — vault force-fresh-on-deny [autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469) (deploy-gated). **PR5 step 1 ✅ merged** — point-lookup consumers [autopilot#470](https://github.com/TrueSightDAO/truesight_autopilot/pull/470). **RESUME HERE = PR5 step 2.**
+**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **PR4 ✅ merged** — vault force-fresh-on-deny [autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469) (deploy-gated). **PR5 step 1 ✅ merged** — point-lookup consumers [autopilot#470](https://github.com/TrueSightDAO/truesight_autopilot/pull/470). **PR5 step 2 ✅ merged** — DApp `permissions.js` per-key resolve [dapp_beta#99](https://github.com/TrueSightDAO/dapp_beta/pull/99). **PR5 step 3 = evaluated, NOT NEEDED** (no UI needs cheap governor enumeration). **RESUME HERE = PR5 COMPLETE — awaiting UAT U1–U5 on beta + the blocking Elizabeth Wong per-key role fix.**
 **Repos under change:** `tokenomics` (generator GAS), `treasury-cache` (data surface),
 `truesight_autopilot` (reader), `dapp` (later consumer).
 **Designed by:** Gary Teh + Claude · **Implemented by:** TBD (open PRs; `truesight_autopilot`
 is own-repo / human-merge gated).
 
-> **RESUME HERE:** PR5 step 2 — DApp `permissions.js` resolves signed-in RSA via per-key file (PR1–PR4 + PR5.1 merged; PR4 awaits deploy)
+> **RESUME HERE:** PR5 steps 1–2 merged + step 3 evaluated (not needed) — PR1–PR5 SHIPPED on beta. Open: UAT U1–U5 on beta; **blocking:** Elizabeth Wong per-key `roles` mismatch before `dapp_prod` promotion; PR4 awaits deploy (U2).
 >
 > **⚠️ ONE PR PER TURN (mandatory — `OPERATING_INSTRUCTIONS.md §5a`):** an execution turn does
 > **exactly the single `RESUME HERE` PR, opens it, reports the contribution, ticks the tracker,
@@ -187,17 +187,25 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 
 ## 5. Resume tracker
 
-> **RESUME HERE (2026-09-15):** **PR5 step 1 ✅ MERGED** — migrate point-lookup consumers
-> (key→name helpers `main._gov_name_for_key` + `daily_briefing._gov_name_for_key`) to `resolve_key`
-> ([autopilot#470](https://github.com/TrueSightDAO/truesight_autopilot/pull/470), merge sha `5f7b941`;
-> reviewed + merged by Gary). Point-lookup-first with monolith fallback on miss; governor-only semantics
-> preserved. **§3 consumer audit recorded in PR #470** (point-lookup: vault/PR4, `is_governor`/`is_sentinel`/PR3,
-> the two key→name helpers/PR5.1; enumeration stays on the monolith: `/governors`, `/health`,
-> `resolve_governor_public_key` (by name), `_email_is_governor`). **Next: PR5 step 2 = DApp `permissions.js`
-> resolves the signed-in RSA via the per-key file.** PR4 remains **MERGED but NOT DEPLOYED** — deploying
-> `truesight_autopilot` is an always-stop gate, so **UAT U2 is pending Gary's deploy**. **One PR per turn:**
-> next turn picks up **PR5 step 2**. **PR1–PR5.1 are SHIPPED — do NOT re-run (duplicate-PR risk).** Never run
-> multiple PRs in a single turn (`OPERATING_INSTRUCTIONS.md` §5a).
+> **RESUME HERE (2026-09-15):** **PR5 step 2 ✅ MERGED** — DApp `permissions.js` resolves the
+> signed-in RSA via the per-key file `treasury-cache/public_keys/<sha256(base64pubkey)>.json`
+> ([dapp_beta#99](https://github.com/TrueSightDAO/dapp_beta/pull/99), merge sha `345c416`, reviewed +
+> merged by Gary). Point-lookup-first (one O(1) fetch); non-ACTIVE per-key status = **authoritative
+> deny, no fallback**; 404 / network / WebCrypto error → monolith fallback. 6 new unit tests
+> (`tests/permissions-perkey.test.js`), full unit suite green. **PR5 step 3 = evaluated, NOT NEEDED:**
+> a §3-style audit of every DApp page touching the members cache found **no UI needs cheap governor
+> enumeration** — 33 pages use point-lookup, 5 use `fetchSnapshot` for display, and the only
+> enumerating page (`governor_permissions.html`) is governor-only and already loads the full monolith
+> (it needs role+name, which a slim index wouldn't carry). Building `governors_index.json` would be
+> unused code, so the verdict is recorded, not implemented (re-open if a "list governors" UI lands).
+> **PR5 IS COMPLETE on beta. Remaining are GATES, not code:** (a) **UAT U1–U5 on beta** (human);
+> (b) **BLOCKING — Elizabeth Wong per-key `roles` mismatch:** her per-key file says `["member"]`
+> while `dao_members.json` says `["governor","member"]`; step 2 trusts the per-key file, so her key
+> would be **denied governor actions — DO NOT promote to `dapp_prod` until resolved** (root cause
+> queued to Gary in OPEN_FOLLOWUPS); (c) **PR4 remains MERGED but NOT DEPLOYED** — deploying
+> `truesight_autopilot` is an always-stop gate, so **UAT U2 is pending Gary's deploy**. **One PR per
+> turn:** next turn picks up the UAT/blocker resolution. **PR1–PR5 are SHIPPED — do NOT re-run
+> (duplicate-PR risk).** Never run multiple PRs in a single turn (`OPERATING_INSTRUCTIONS.md` §5a).
 
 | Unit | PR opened | Merged | Deployed | Contribution reported | UAT |
 |------|-----------|--------|----------|-----------------------|-----|
@@ -206,8 +214,8 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 | PR3 — reader `resolve_key` | ☑ autopilot#230 (+#468 tests) | ☑ 2026-09-15 | — | ☑ | (automated ✅ 8 tests) |
 | PR4 — vault auth + force-fresh-on-deny | ☑ autopilot#469 | ☑ 2026-09-15 | ☐ (deploy-gated) | ☑ | U2 (pending deploy) |
 | PR5 step 1 — migrate key→name point-lookup consumers | ☑ autopilot#470 | ☑ 2026-09-15 | — | ☑ | (automated ✅ 6 tests) |
-| PR5 step 2 — DApp `permissions.js` per-key resolve | ☐ | ☐ | ☐ | ☐ | U4 |
-| PR5 step 3 — slim `governors_index.json` (only if a UI needs it) | ☐ | ☐ | ☐ | ☐ | U4 |
+| PR5 step 2 — DApp `permissions.js` per-key resolve | ☑ dapp_beta#99 | ☑ 2026-09-15 | ☑ (beta only) | ☐ | U4 (beta) |
+| PR5 step 3 — slim `governors_index.json` (only if a UI needs it) | — (condition unmet) | — | — | ☑ (verdict recorded) | — |
 
 ---
 
