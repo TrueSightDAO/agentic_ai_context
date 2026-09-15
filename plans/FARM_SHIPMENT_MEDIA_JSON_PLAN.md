@@ -274,18 +274,34 @@ Every `PRn` below is independently shippable against current `main`, assuming th
 
 | Unit | PR opened | Merged (human) | Contribution reported |
 |---|---|---|---|
-| PR0 — loader + oscar-bahia pilot | ☐ | ☐ | ☐ |
-| PR1 — agl4 pilot + bug fix | ☐ | ☐ | ☐ |
-| PR2 — santa-ana + paulo | ☐ | ☐ | ☐ |
-| PR3 — sao-jorge + vivi | ☐ | ☐ | ☐ |
-| PR4 — agl0, agl1, agl2 | ☐ | ☐ | ☐ |
-| PR5 — agl5, agl7, agl8 | ☐ | ☐ | ☐ |
-| PR6 — agl10, agl13, agl14 | ☐ | ☐ | ☐ |
-| PR7 — agl6 (retire meta-tag pattern) | ☐ | ☐ | ☐ |
-| PR8 — conventions doc update | ☐ | ☐ | ☐ |
+| PR0 — loader + oscar-bahia pilot | ✅ | ✅ | ☐ |
+| PR1 — agl4 pilot + bug fix | ✅ | ✅ | ☐ |
+| PR2 — santa-ana + paulo | ✅ | ✅ | ☐ |
+| PR3 — sao-jorge + vivi | ✅ | ✅ | ☐ |
+| PR4 — agl0, agl1, agl2 | ✅ | ✅ | ☐ |
+| PR5 — agl5, agl7, agl8 | ✅ | ✅ | ☐ |
+| PR6 — agl10, agl13, agl14 | ✅ | ✅ | ☐ |
+| PR7 — agl6 (retire meta-tag pattern) | ✅ | ✅ | ☐ |
+| PR8 — conventions doc update | ✅ | ☐ | ☐ |
 | PR9 — UAT on beta | ☐ (n/a, not a PR) | — | — |
 
-**RESUME HERE = PR0.**
+> **STATUS NOTE (2026-09-15):** PR0–PR7 were already executed on `agroverse_shop_beta` main well before
+> this tracker was read again — the rows were never ticked as the work landed, which made the plan keep
+> advertising "RESUME HERE = PR0" to every supervisor loop.
+>
+> Verified against `agroverse_shop_beta` main: `js/media-gallery.js` exists; all 27 farm/shipment pages have
+> both a `media.json` and a loader `<script>` (exact 1:1 — no loader-without-JSON page); `farms/oscar-bahia`
+> uses `id="media-gallery"`; the `agl14.avif` farmer-photo bug on `/shipments/agl4` is gone; and `agl6`'s
+> `agroverse:youtube:` meta tag plus its bespoke inline lazy-load script are both retired.
+>
+> **Superseded/extended:** the system has since outgrown this plan's original v1 schema. The publishing half
+> moved to **`plans/FARM_MEDIA_DAEMON_PLAN.md`** (✅ COMPLETE — daemon live, all queues drained, 2026-09-01),
+> and `js/media-gallery.js` became a **fetch-first published gallery** reader (published
+> `farm_media_manifests/galleries/<slug>.json` first, local `./media.json` fallback, curation merge) in
+> **PR #322**. Coverage is now 27 pages (16 farms + 11 shipments) against this plan's original 7 + 11. The
+> schema documented in PR8 reflects the current loader, not the v1 shape sketched in §1–§2 above.
+>
+> **RESUME HERE = PR8 (this doc update), then PR9 (UAT on beta).**
 
 ---
 

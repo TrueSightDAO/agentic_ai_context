@@ -119,6 +119,8 @@ Before 2026-07, the footer was duplicated inline across pages with multiple vari
 | DApp conventions | `agentic_ai_context/DAPP_PAGE_CONVENTIONS.md` |
 | Site voice / tone | `agentic_ai_context/EDITORIAL_TONE.md` §2 (agroverse.shop) |
 | Shared chrome source | `agroverse_shop/js/shared-chrome.js` |
+| Farm/shipment story media | `agroverse_shop/js/media-gallery.js` + per-page `media.json` (see §8) |
+| Published farm media manifests | `TrueSightDAO/farm_media_manifests` → `galleries/<slug>.json` (see §8) |
 | Navigation behavior | `agroverse_shop/js/navigation.js` |
 | Cart + order history injection | `agroverse_shop/js/universal-nav.js` |
 | New SKU checklist | `agentic_ai_context/AGROVERSE_SHOP_NEW_SKU_WEB_CHECKLIST.md` |
@@ -141,3 +143,88 @@ The nav and footer use this pattern:
 5. External links use absolute URLs where applicable
 
 **When adding or changing nav/footer links:** Edit `js/shared-chrome.js` only. Do NOT edit individual HTML pages.
+
+---
+
+## 8. Farm / shipment story media (JSON-driven)
+
+Farm and shipment pages do **not** hardcode their photos and YouTube embeds in HTML. Each page keeps a
+`media.json` next to its `index.html`, and the shared loader `js/media-gallery.js` builds the gallery at
+page-load time. Adding a photo or video becomes "upload the asset, add one JSON entry" — no HTML edit.
+
+Plan of record: `agentic_ai_context/plans/FARM_SHIPMENT_MEDIA_JSON_PLAN.md`.
+
+### Source resolution — published-first, local fallback
+
+The loader resolves media in two layers (same fetch-first idiom as `js/inventory-service.js`):
+
+1. **Published** — `https://raw.githubusercontent.com/TrueSightDAO/farm_media_manifests/main/galleries/<slug>.json`
+   (machine-published by the farm-media daemon; the raw host is CORS-open). `<slug>` is the page's last path segment.
+2. **Local** — the hand-authored `./media.json` beside the page.
+
+The published file wins on **membership** (so "uploaded ⇒ published" holds by construction). Each published
+entry is then enriched with the local curation fields — `caption`, `section`, `alt`, `fallback`, `aspect` —
+matched by id/`src`. `hero` and `farmer` stay **local-first**: the publisher emits no farmer slot and only a
+filename-only hero `alt`, so the human-authored values are authoritative for those two.
+
+If neither file is available the loader does nothing (no error). A malformed entry is skipped rather than
+failing the whole gallery, and a bad image `src` falls back to `fallback` (default
+`../../assets/images/hero/cacao-circles-alt.jpg`).
+
+### Placeholder conventions
+
+| Placeholder | Where | Fills |
+|---|---|---|
+| `data-media-slot="hero"` | each hero `<img>` (`.shipment-image`, `.farmer-photo`, banner) | `hero.src` + `hero.alt`; sets `onerror` → `hero.fallback` |
+| `data-media-slot="farmer"` | a farmer profile `<img>` **distinct** from the hero (agl8 pattern) | `farmer.src` + `farmer.alt`; only filled if `farmer` exists in JSON |
+| `id="media-gallery"` | the gallery container | **every** item in `gallery` (single-container / legacy style) |
+| `data-media-gallery="<section>"` | each gallery container on a multi-section page | only items whose `section` equals that value |
+
+Every `data-media-slot="hero"` element on the page is filled from the one `hero` entry — that is what
+replaced the old copy-paste-per-slot duplication. A page that has none of these placeholders is a no-op
+(the loader returns immediately), so the script is safe to leave on any page.
+
+### `media.json` schema
+
+```json
+{
+  "schemaVersion": 1,
+  "hero":   { "type": "image", "src": "<url or ../../relative>", "fallback": "../../assets/images/hero/cacao-circles-alt.jpg", "alt": "AGL4 - Oscar's Farm" },
+  "farmer": { "type": "image", "src": "<url or ../../relative>", "alt": "..." },
+  "gallery": [
+    { "type": "youtube", "videoId": "sLNS9pZUBVw", "title": "...", "caption": "...", "section": "story-videos", "aspect": "portrait" },
+    { "type": "image",   "src": "../../assets/images/farms/sao-jorge-IMG_1616.jpg", "alt": "...", "title": "...", "caption": "...", "section": "photos" }
+  ]
+}
+```
+
+Per-item keys:
+
+- `type` — `youtube` or `image` (required; anything else is skipped)
+- `videoId` — YouTube id for `youtube` items (embedded as `https://www.youtube.com/embed/<id>?rel=0`)
+- `src` — image URL or depth-relative path for `image` items
+- `alt` — image alt text (accessibility; always set it for images)
+- `title` — optional `<h3>` heading above the media
+- `caption` — optional paragraph below the media
+- `fallback` — image shown on load error (defaults to `cacao-circles-alt.jpg`)
+- `section` — routes the item to the matching `data-media-gallery="<section>"` container
+- `aspect` — `"portrait"` gives the centered 420px 9:16 frame used for vertical videos; omit for landscape
+
+The `farmer` block and the `section`/`aspect` keys are optional; `hero` and `gallery` are the common case.
+
+### Wiring a page
+
+1. Add `data-media-slot="hero"` to the hero `<img>` and remove its hardcoded `src`/`alt`.
+2. Replace the gallery's existing child content with an empty container — `id="media-gallery"` (all items) or
+   `data-media-gallery="<section>"` (per-section).
+3. Add `<script src="../../js/media-gallery.js"></script>` with the other page-specific scripts at the end of
+   `<body>` — **depth-relative** (like `navigation.js`/`cart.js`), not root-relative like `shared-chrome.js`,
+   because this loader is not site-wide.
+4. Add `media.json` beside `index.html`.
+
+**Failure mode to watch:** a page with a `#media-gallery` container but no `media.json` (and no published
+collection) renders an **empty** gallery — silently, with no console error. If a gallery looks blank, check
+that the JSON file exists and is valid before debugging the script.
+
+**When adding/changing farm or shipment story media:** edit `media.json` (and upload the asset) — do NOT
+hardcode `<img>`/`<iframe>` into the page HTML.
