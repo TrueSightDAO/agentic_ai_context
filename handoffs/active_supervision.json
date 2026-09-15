@@ -17,8 +17,14 @@
     {
       "plan_file": "plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T17:26:27Z",
-      "note": "Picked up while the other two supervised threads wait on Gary. PR1/PR2 already shipped; dispatched PR3 (migrate point-lookup consumers off the monolith/audit)."
+      "claimed_at": "2026-09-15T18:17:47Z",
+      "note": "PR1-PR4 all shipped and merged (PR4 = truesight_autopilot#469, vault force-fresh-on-deny, personally reviewed by Envoy). Tracker/manifest closed out (agentic_ai_context#1194). RESUME HERE = PR5 (UAT), blocked on the same deploy as the other threads."
+    },
+    {
+      "plan_file": "plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-09-15T18:17:47Z",
+      "note": "Picked up while the other three supervised threads wait on Gary. Vault already initialized with 42 creds; dispatched a read-only assessment for migrating the 3 remaining bare .pem files -- no credential moves without explicit review, given this touches real private keys."
     }
   ]
 }
