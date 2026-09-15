@@ -39,6 +39,51 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Black King (Matheus Reis Pereira) — FSVP CAPA for the 2026-09-12 Ilhéus warehouse GMP finding
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 29093).**
+
+**Context.** During the governor's 12–13 Sep 2026 visit to the Black King warehouse in Ilhéus/BA (used to store Agroverse cacao destined for US FDA lanes), a pre-cleanup visual walk-through found conditions that would have failed a US FDA (FSVP / GMP) inspection: live cockroaches and dead lizards near the bathroom area, insects entering via a wide-open bathroom window, mortar bags stored in the restroom, no mop/vacuum on site, and no pest-control cadence. Governor's own words in the WhatsApp thread (`_chat.txt`, 9/13/26 9:56 AM): "If the FDA inspector had came and inspected the warehouse yesterday before the clean up, the inspection would have failed and Black King would have been put on the USA government black list." Governor performed an ad-hoc cleanup + reorg; no documented corrective-action record exists.
+
+**Proposed fix (~small, doc-only).** Create a CAPA (Corrective And Preventive Action) record under `fda_fsvp/suppliers/black_king/` capturing: observation (with photo-log references), immediate correction taken (cleanup + reorg 12–13 Sep), root cause (no assigned owner of facility hygiene / no SOP), preventive action (see the warehouse-ownership follow-up below), and verification plan (scheduled re-walk with photo evidence). Follow the naming used by the other Black King FSVP artifacts (`YYYYMMDD_Black King_<doctype>.pdf`).
+
+**Evidence.** WhatsApp export `Matheus Reis - Bahia Coop` — `_chat.txt` 9/12/26 4:43–4:44 PM (cockroaches/dead lizards, open bathroom window), 9/13/26 9:56 AM (inspection-would-have-failed), 9/12/26 9:40–10:35 PM (pallets + vacuum/mop); photo `00000295-PHOTO-2026-09-12-16-43-56.jpg` (open bathroom window). FSVP file: `TrueSightDAO/fda_fsvp/suppliers/black_king/` (four product-level written assurance letters; no CAPA).
+
+### Black King — warehouse-maintenance & pest-control written assurance addendum (FSVP gap)
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 29093).**
+
+**Context.** The four Black King written-assurance letters on file (`20240909` nibs, `20240923` molasses, `20241016` mass, `20250602` tea) address **equipment** maintenance and storage-area hygiene only as hazard-table lines. None affirms a **facility** maintenance schedule, pest-control cadence, or storage-cleaning SOP for the actual Ilhéus storage facility. Under 21 CFR 1.511 a written assurance must address the hazard requiring a control (here: filth/pest and moisture→mycotoxin during storage). The only warehouse-specific artifacts are a TrueTech-signed storage site visit (`20241013_Black_King_site_visit_storage_warehouse.pdf`, whose Visual Observation table is blank) and a bare Brazilian fumigation NFS-e (`20250610_warehouse_fumigation.pdf`, ASTRA SUL BAHIA, R$300, dedetização), which is not cited by any assurance. Two storage addresses appear (FDA FFR/entity.json: Av. Tancredo Neves 4900; site visit: Rua Coronel Paiva 46) with no stated linkage.
+
+**Proposed fix (~small, doc-only).** Draft a Black King–signed **warehouse maintenance & pest-control addendum** covering: storage facility address(es) and their linkage, scheduled cleaning SOP, pest-control/fumigation cadence (referencing the ASTRA fumigation vendor), drying/humidity control against mycotoxin, and the inspection-readiness checklist. Register the fumigation NFS-e and the storage-location address(es) in `entity.json`.
+
+**Evidence.** `fda_fsvp/suppliers/black_king/*` (four letters; site visit; fumigation NFS-e); thread 29093.
+
+### Black King CNPJ is INAPTO + e-CNPJ expired — export NF-e lane blocked (reinstatement plan)
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 29093).**
+
+**Context.** Black King (`MATHEUS REIS PEREIRA`, CNPJ 50.042.585/0001-80, Ilhéus/BA) shows **SITUAÇÃO CADASTRAL: INAPTO since 08/06/2026**, motivo **"Omissão de Declarações"** (unfiled returns) on the Receita Federal comprovante (`00000165-Black King Certificate CNPJ.pdf`; address/CNAE fields suppressed). Separately the company's **digital certificate expired early June 2026**. Both block issuance of the NF-e export invoice, which in turn blocks the export lane (`BlackKing_Export_NFe_Enablement.pdf` documents the self-service path: add commerce CNAE → request IE at SEFAZ-BA → NF-e credentialing, ~8 days). A tax-support PDF (`00000285-PHOTO-2026-09-12-15-57-29.jpg`, "Informações de apoio para emissão de certidão", 01/09/2026) is in the thread.
+
+**Proposed fix (~small, doc-only).** A reinstatement runbook: (1) file the omitted declarations (via the accountant / e-CAC) to return the CNPJ to ATIVA; (2) renew the e-CNPJ; (3) add the commerce CNAE; (4) request Inscrição Estadual + NF-e credentialing at SEFAZ-BA; (5) issue the export NF-e. Track as an export-readiness gate. Related: the governor holds (or is being granted) e-CAC power of attorney on the CNPJ + SISCOMEX representante registration.
+
+**Evidence.** `00000165-Black King Certificate CNPJ.pdf`; `_chat.txt` 7/31/26 (cert expired, CNPJ "Inapto") and 8/19–8/21/26 (POA/SISCOMEX); `00000095-BlackKing_Export_NFe_Enablement.pdf`; thread 29093.
+
+### SECURITY: rotate gov.br / Receita Federal credential leaked in plaintext in the Matheus WhatsApp thread
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 29093).**
+
+**Context.** In the `Matheus Reis - Bahia Coop` WhatsApp export (`_chat.txt`, 8/17/26 3:51 PM) a **live Brazilian government (Receita Federal / gov.br) login credential — CNPJ 50042585000180 + a plaintext password — was transmitted in the chat**. This is a real credential exposure on a messaging channel (not a DAO secret), and the CNPJ is the same one currently INAPTO / being reinstated, so the account is an active target. **Do not reproduce the value in any artifact.**
+
+**Proposed fix (~small).** Rotate the credential immediately (change the gov.br / Receita Federal password), enable 2FA on the gov.br account, and re-issue any stored copy rather than reusing the leaked one. Move future credential exchange out of WhatsApp (vault / the DAO vault). No repo change required beyond this tracking entry — action is owner-side.
+
+**Evidence.** `_chat.txt` 8/17/26 3:51:10 PM (value redacted here deliberately); thread 29093.
+
+### Black King Ilhéus warehouse: assign an owner for hygiene / pest-control / inspection-readiness cadence
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 29093).**
+
+**Context.** The root cause of the 2026-09-12 warehouse finding is that **no one owns the facility's hygiene and pest-control cadence**. The governor discussed hiring a part-time office/warehouse administrator to "verify and ensure everything is in order, so that the warehouse is not failed in US government inspections" (`00000321-PHOTO-2026-09-13-11-13-30.jpg`, Portuguese) — the candidate **declined** ("I'm working with my mother and want to prioritise that"). Net: the gap is unowned. This is the highest-leverage fix — without an owner, any written assurance (above) is unverifiable.
+
+**Proposed fix (~small, decision + checklist).** Decide the ownership model — paid stipend to a local part-timer, a duty rotation among existing Bahia staff, or fold it explicitly into Matheus's scope — and pair it with a simple weekly checklist + photo log (cleaning, pest cadence, closed windows, no non-food storage in restroom, drying/humidity readings) that feeds the CAPA verification.
+
+**Evidence.** `_chat.txt` 9/12–9/13/26 (cleanup, pallets, mop/vacuum, "still waiting on you", non-food mortar in restroom); `00000321-PHOTO-2026-09-13-11-13-30.jpg` (administrator discussion + decline); thread 29093.
+
 ### HANDOFF_MANIFEST.md: the handoff table is split into segments — `find_table` only ever sees the first 3 rows
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30065).**
 
