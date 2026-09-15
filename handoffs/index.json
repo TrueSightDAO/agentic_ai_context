@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T06:33:05Z",
+  "generated_at": "2026-09-15T06:40:54Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "b32f874d054d3583929ea71073e99d7e65e4e1f2de4d54ce196d69abd416da9b",
+  "source_sha256": "6e5ab6bffd2246dd233df29ab649007c23f36521f18feafdce3c1714cb967442",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,9 +16,9 @@
     "done",
     "stale"
   ],
-  "handoff_count": 42,
+  "handoff_count": 43,
   "counts_by_state": {
-    "awaiting_kickoff": 14,
+    "awaiting_kickoff": 15,
     "executing": 6,
     "paused_at_gate": 8,
     "sophia_uat": 0,
@@ -683,6 +683,22 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "[CFR partnership - figure out how to present](https://t.me/c/3919341801/30026)",
       "telegram_topic_url": "https://t.me/c/3919341801/30026",
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15"
+    },
+    {
+      "plan_file": "`plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md`",
+      "title": "**`sprint.truesight.me` — Kanban board over Sophia's handoff pipeline** — a public board so Gary can see at a glance what actually needs his attention across Telegram/Discord, without opening each thread. DAO-standard client-side RSA auth (read is public; signing is only needed to cast an advisory priority vote); Kanban columns are a direct rendering of `SUPERVISOR_LOOP.md` §2's state enum; final step repoints `truesight.me`'s dead Trello link to the new board.",
+      "handoff_date": "2026-09-15",
+      "state": "awaiting_kickoff",
+      "status_raw": "**new — awaiting kickoff (RESUME HERE = PR0)**",
+      "telegram_thread_id": "30083",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "[Exec: sprint.truesight.me Kanban board](https://t.me/c/3919341801/30083)",
+      "telegram_topic_url": "https://t.me/c/3919341801/30083",
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
