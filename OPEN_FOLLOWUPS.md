@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### dao_protocol: `tests/test_dao.py` fails to collect on `main` — imports removed `dedup` module
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 26992).**
+
+**Symptom.** `pytest tests/test_dao.py` errors at collection on `main` (HEAD `d12406f`): `ImportError: cannot import name 'dedup' from 'truesight_dao_client.server'` — `tests/test_dao.py:8` does `from truesight_dao_client.server import dedup, dispatch`, and line 27 `monkeypatch.setattr(dedup, "is_duplicate", ...)`. The `dedup` module no longer exists in the package, so the whole file fails to collect. The rest of the suite is fine (e.g. `tests/test_empty_body_guard.py` → 8/8 pass), and dao_protocol has **no CI test workflow** (only npm/pypi publish), so nothing catches this on merge.
+
+**Proposed fix (~small).** Remove or repoint the `dedup` references: drop the `dedup` import + the `is_duplicate` monkeypatch if de-duplication moved elsewhere, or update the import to the module's new location. Then confirm `pytest -q` collects and passes.
+
+**Why it matters.** A dead test file gives false confidence and blocks anyone running the suite locally before a push.
+
+**Evidence.** `pytest tests/test_dao.py -q` → `ERROR tests/test_dao.py ... Interrupted: 1 error during collection`; `tests/test_dao.py:8,27`; dao_protocol HEAD `d12406f`; thread 26992.
+
 ### Black King (Matheus Reis Pereira) — FSVP CAPA for the 2026-09-12 Ilhéus warehouse GMP finding
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 29093).**
 
@@ -105,23 +116,6 @@ cross-session** items that would otherwise rot in chat transcripts.
 **Proposed fix (~small).** Issue a fine-grained PAT (or install a GitHub App) with **Pull requests: write** (+ Metadata: read) for `TrueSightDAO/*`, store it in the vault, and have the box's git helper prefer it for PR creation; document the required scopes next to the other PATs. Alternatively, standardise on "the autopilot tool opens PRs; the box only pushes branches" and record that as the sanctioned flow.
 
 **Evidence.** 403 responses (no secret values printed) for `POST /repos/TrueSightDAO/agentic_ai_context/pulls` from `GITHUB_TRANSCRIPT_PAT` / `GITHUB_READ_PAT` / `KRAKE_IO_PAT` / `KRAKEIO_LLM_PLAYGROUND_PAT`; `gh auth token` (username `garyjob`, scope-limited); PR #1143 (created via the autopilot tool instead); thread 30065.
-
-### dao_protocol: server-side guard — reject empty body / missing signature format on signed-report submissions
-**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 29826).**
-
-**Context.** The iOS WebKit empty-body upload bug on the DApp's signed-report forms was fixed **client-side** in dapp_beta PR #98 (`report_inventory_movement.html`; the one form PR #88 had missed). But the fix is only on the client. The server still accepts an empty body as a *success*: Edgar answers **HTTP 200** and the ledger records a `[No Text Provided]` row with `signature_verification: no_signature_format` and no attachment. This is the server-side half of the same defect, explicitly deferred from PR #88.
-
-**Symptom.** A signed-report submission whose POST body arrives empty is recorded as a real event instead of being rejected. Any client (a future page, a flaky device, a misbehaving script) can therefore silently pollute the ledger with empty `no_signature_format` rows.
-
-**Proposed fix (~small).** In `dao_protocol`'s `submit_contribution` handler, validate before persisting and return **HTTP 400** when either:
-- the submission text is empty or the literal sentinel `[No Text Provided]`; or
-- `signature_verification` resolves to `no_signature_format` (i.e. no signature block was parsed from the payload).
-
-Return a machine-readable error body (e.g. `{"error": "empty_body", "detail": "..."}`) so clients can distinguish a rejected empty body from a genuine server fault. Keep any legitimate non-signed event types working — scope the guard to submissions that *require* a signature (the signed-report forms: contribution / DAO expenses / asset receipt / inventory movement).
-
-**Why it matters.** Client-side fixes regress silently (this is the second time: #88 missed a form). A server-side guard makes the empty-body failure impossible to record, regardless of client.
-
-**Evidence.** dapp_beta PR #98 (client fix, merged 2026-09-14, commit `7c0c48e`); prior dapp PR #88 (2026-09-12) which deferred this guard; ledger rows with `signature_verification: no_signature_format` + `[No Text Provided]` (module = Inventory Movement); thread 29826.
 
 ### Discord adapter: progress-edit 429 storm — no client-side rate-limit awareness
 **Filed 2026-09-14. Owner: unclaimed. Governor: Gary (thread 27138, Discord adapter).**
@@ -2523,6 +2517,17 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### dao_protocol: server-side guard — reject empty body / missing signature format — SHIPPED 2026-09-15 (dao_protocol#166, deployed)
+**Shipped 2026-09-14 (PR #166, Gary); deployed 2026-09-15 (Sophia, governor go from Gary, thread 26992).**
+
+**What shipped.** `submit_contribution` (`truesight_dao_client/server/routes/dao.py`) now rejects *before* persisting: (a) an empty body or the literal `[No Text Provided]` sentinel → `{"error":"empty_body",...}` HTTP 400; and (b) a signed-report submission whose text carries a signature-requiring event marker but no parseable signature block → `{"error":"missing_signature_format",...}` HTTP 400. Non-empty, non-signed event types (e.g. email onboarding) are unaffected. Regression test: `tests/test_empty_body_guard.py` (8 tests).
+
+**Deploy + verification (2026-09-15, thread 26992).** Host `dao_protocol_nelanco` (98.93.94.86), service `truesight-dao-protocol`, HEAD `3bb3853` → `d12406f`. Before: empty body → HTTP 200 `no_signature_format`. After: empty / whitespace-only / `[No Text Provided]` → HTTP 400 `empty_body`; non-empty non-signed regression → still HTTP 200. `GET /healthz` → `{"version":"d12406f","environment":"production"}`. Verified both direct on `:8010` and through the public `edgar.truesight.me` path.
+
+**Why it mattered.** 71 `[No Text Provided]` / `no_signature_format` rows had accumulated on the Telegram Chat Logs tab (2026-05-31 → 2026-09-12); the guard makes that failure class impossible to record regardless of client (client-side fixes regress silently — #88 missed a form, #98 fixed it).
+
+**Evidence.** dao_protocol PR #166 (`d12406f`); dapp_beta PR #98 (`7c0c48e`); dapp PR #88; threads 26992 + 29826.
 
 ### FBE `Plot ID` canonical-label gap — RESOLVED 2026-09-10 (autopilot guard shipped, [truesight_autopilot#425](https://github.com/TrueSightDAO/truesight_autopilot/pull/425))
 **Shipped 2026-09-10 (Sophia, thread 24321; governor go from Gary).** The autopilot no longer silently drops a non-canonical attribute key: `_DAO_GUARANTEED_LABELS` (`FBE → ["Plot ID"]`) is unioned into the catalog `canonical_labels` at merge (`_merge_catalog_labels`), and the legacy normalizer's bare `continue` was replaced with a loud `logger.warning` naming the dropped key + event. Regression test `tests/test_fbe_plot_id_normalization.py`. This makes the Edgar catalog's missing `"Plot ID"` label (gap 1) safe without touching `dao_protocol` (governor deferred that belt-and-suspenders PR).
