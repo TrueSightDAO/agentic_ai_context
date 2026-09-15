@@ -194,10 +194,10 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 
 | Unit | PR opened | Merged | Deployed | Contribution reported | UAT |
 |------|-----------|--------|----------|-----------------------|-----|
-| PR1 — generator emits per-key files | ☐ | ☐ | ☐ | ☐ | U1 |
-| PR2 — incremental / revocation | ☐ | ☐ | ☐ | ☐ | U3, U5 |
-| PR3 — reader `resolve_key` | ☐ | ☐ | ☐ | ☐ | (automated) |
-| PR4 — vault auth + force-fresh-on-deny | ☐ | ☐ | ☐ | ☐ | U2 |
+| PR1 — generator emits per-key files | ☑ tokenomics#359 | ☑ 2026-06-16 | ☑ 97 keys live | ☑ | U1 |
+| PR2 — incremental / revocation | ☑ tokenomics#361 | ☑ 2026-06-16 | ☑ | ☑ | U3, U5 |
+| PR3 — reader `resolve_key` | ☑ autopilot#230 (+#468 tests) | ☑ 2026-09-15 | — | ☑ | (automated ✅ 8 tests) |
+| PR4 — vault auth + force-fresh-on-deny | ☐ step 2 only (step 1 done) | ☐ | ☐ | ☐ | U2 |
 | PR5 — other consumers + DApp | ☐ | ☐ | ☐ | ☐ | U4 |
 
 ---
