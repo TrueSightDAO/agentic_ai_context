@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T14:26:02Z",
+  "generated_at": "2026-09-15T14:42:27Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "5c78c2f228da7bab22be687e6d295eb79d4dd8e33c6638cd664e3e199a3121e1",
   "state_enum": [
@@ -846,7 +846,13 @@
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
-      "supervised_by": null
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-09-15T14:42:20Z",
+        "note": "Driving PR5 UAT after fixing the resume-marker parser bug (PR #1163).",
+        "stale": false,
+        "age_minutes": 0
+      }
     },
     {
       "plan_file": "`plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`",
@@ -948,7 +954,13 @@
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
-      "supervised_by": null
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-09-15T14:42:20Z",
+        "note": "Driving PR2 row batch (19930 landed); next batch or wrap-up.",
+        "stale": false,
+        "age_minutes": 0
+      }
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#warmup-conversion-delivery-bug`",

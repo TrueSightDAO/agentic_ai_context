@@ -1,5 +1,18 @@
 {
   "schema_version": 1,
   "_comment": "Supervisor-written, NOT generated. Claim a thread by adding an entry to 'claims'; release it by removing that entry. plan_file is the path as it appears in HANDOFF_MANIFEST.md (backticks optional); claimed_at is ISO-8601 UTC. Claims older than ~60 min are surfaced as stale by scripts/build_handoff_index.py so an abandoned claim is never silently trusted.",
-  "claims": []
+  "claims": [
+    {
+      "plan_file": "plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-09-15T14:42:20Z",
+      "note": "Driving PR5 UAT after fixing the resume-marker parser bug (PR #1163)."
+    },
+    {
+      "plan_file": "OPEN_FOLLOWUPS.md#handoff-index-reconciliation",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-09-15T14:42:20Z",
+      "note": "Driving PR2 row batch (19930 landed); next batch or wrap-up."
+    }
+  ]
 }
