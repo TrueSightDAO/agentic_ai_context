@@ -1,8 +1,10 @@
 # `sprint.truesight.me` — a public Kanban board over Sophia's handoff pipeline
 
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, converged over a multi-turn
-design conversation this session. **Status: executing** — PR0–PR4 shipped 2026-09-15; PR5 (UAT) next; PR6 (prod repoint) `gate: human`. — every open fork raised
-during the conversation is resolved below (§0); nothing is executed yet.
+design conversation this session. **Status: executing** — PR0–PR4 shipped 2026-09-15; PR4b
+(active-supervision visibility) in progress; PR4c (compliance enforcement) queued after it; PR5 (UAT)
+next; PR6 (prod repoint) `gate: human`. Every open fork raised during the conversation is resolved
+below (§0).
 
 **The actual problem this solves, in Gary's words:** *"Right now I don't know what actually needs my
 attention when I go into Telegram or Discord."* Every design choice below is in service of that one
@@ -338,11 +340,13 @@ surfaced, folded into PR1a below. One **gate before PR2**: the repo name `sprint
 | **PR3** | ✅ **DONE — 2026-09-15** (CNAME live, HTTP 200; HTTPS cert auto-issuing at close). **Original scope:** Route53 CNAME `sprint.truesight.me`; verify live, 200, valid cert (same steps already proven for `cfr.truesight.me`). | auto |
 | **PR4** | ✅ **DONE — merged with this same edit.** `sophia/SUPERVISOR_LOOP.md`: add the advisory-only boundary (§2.4) as a canonical rule, referencing `sprint.truesight.me` by name — a chat-message priority signal is context for the supervisor's judgment, never an automatic override. Docs-only, self-mergeable per this repo's own convention. | auto |
 | **PR4b** | Active-supervision visibility (§2.6, added 2026-09-15 — Gary, same-day extension). New `handoffs/active_supervision.json` (supervisor-written directly, not generated); extend `build_handoff_index.py` to merge a `supervised_by` field (with staleness handling, ~60 min threshold) into each `index.json` entry; extend `sprint-site`'s card rendering to show it. **Also update `sophia/SUPERVISOR_LOOP.md` itself** — §3's "check whether another supervisor already has this thread" rule currently says to read chat history; point it at `active_supervision.json` as the primary check instead (cheaper, structural, not inferred). §7's "Checkpoint & resume" currently asks supervisors to keep a *private* `notes/supervisor_loop_<date>.md` — update it to say claim/release in the new *shared* file is now the mechanism, and the private notes file becomes optional supplementary context (free-text reasoning), not the checkpoint of record. Without this, the directive doc lies about which mechanism supervisors actually use. No auth change — still fully public read; claim/release writes are small self-mergeable docs-only PRs, same convention as everything else in this repo. | auto |
-| **PR5** | UAT (§5) on the live board, including PR4b's supervision badges. | auto |
+| **PR4c** | Supervision-compliance enforcement (added 2026-09-15 — Gary: *"How do we ensure that supervisor followed this new directive"*). A written directive alone doesn't guarantee compliance — two parts, spanning three repos: **(a) auto-claim wiring**, so claiming/releasing is a side-effect of tooling that already runs, not a separate manual step: `dao_client`'s `truesight-dao-ping-sophia` (`modules/ping_sophia.py`) writes/refreshes a claim when Envoy pings a thread; `truesight_autopilot`'s own turn-dispatch (own-repo gate, human-merge) refreshes Sophia's own claim at turn start and releases it at natural turn completion. **(b) a drift check**, same pattern as `validate_handoff_manifest.py --check-index`: cross-reference threads with recent activity (Telegram/Discord message timestamps) against `active_supervision.json`'s claims, flag "active thread, no/stale claim" as an anomaly rather than silently trusting either source — this is the backstop for whatever slips through manual chat interventions that don't go through a tool. The board itself is also a free audit surface once PR4b ships — an unclaimed-but-active card is visibly anomalous to anyone glancing at it. | auto |
+| **PR5** | UAT (§5) on the live board, including PR4b's supervision badges and PR4c's auto-claim wiring. | auto |
 | **PR6** | Repoint `truesight_me_prod` + `_beta`'s `quests/index.html` **and** `quests/join/index.html` (both, identically — §0 point 10) from Trello to `sprint.truesight.me`. | **`gate: human`** — touches a live, indexed, public-facing prod URL; gated on PR5's UAT passing |
 
 **RESUME HERE: PR4b — active-supervision visibility.** (PR0–PR4 done — see §3.1–§3.2; PR4b added
-2026-09-15 after PR4 landed, ahead of PR5's UAT so the UAT pass covers the finished feature set.)
+2026-09-15 after PR4 landed, ahead of PR5's UAT so the UAT pass covers the finished feature set. PR4c
+added same day, sequenced after PR4b, before PR5.)
 
 ---
 
@@ -364,6 +368,10 @@ surfaced, folded into PR1a below. One **gate before PR2**: the repo name `sprint
 - **U6** — Confirm `sophia/SUPERVISOR_LOOP.md` §3 and §7 actually reference `active_supervision.json`
   as the checkpoint mechanism (not just the code shipping silently while the directive doc still
   describes the old private-notes-file convention).
+- **U7** — Ping Sophia via `truesight-dao-ping-sophia` on a real thread; confirm a claim appears in
+  `active_supervision.json` **without** manually writing one. Let her finish naturally; confirm the
+  claim is released (or ages into `stale`, not left claiming forever). Run the drift check against a
+  thread with real recent activity and a deliberately-missing claim; confirm it's flagged.
 
 ---
 
@@ -380,7 +388,10 @@ items are code-only reads, not decisions.
 
 Per the pattern established for every other roadmap this session: **park in a new Telegram topic** for
 a supervisor (Envoy or Sophia) to pick up and drive per `sophia/SUPERVISOR_LOOP.md`, rather than
-executing in this session. **RESUME HERE: PR5 — UAT on the live board** (PR0–PR4 shipped 2026-09-15).
+executing in this session. **RESUME HERE: PR4b — active-supervision visibility** (PR0–PR4 shipped
+2026-09-15; this pointer was found stale — still reading "PR5" while §4's table showed PR4b
+unfinished — and corrected in the same edit that added PR4c, so both `RESUME HERE` occurrences agree,
+per the duplicate-marker lesson in `plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`).
 
 > **Marker format note.** `app/auto_advance.py` captures everything after the resume marker
 > and reduces it to a unit key by splitting on the first `—`/`–`/` - `. Write the unit
