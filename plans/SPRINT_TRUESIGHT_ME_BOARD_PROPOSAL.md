@@ -51,6 +51,10 @@ Gary, over several turns today:
 10. On `quests/join/index.html` specifically (a Trello *invite* link today): **"Not invite concept."**
    The new board has no join/invite flow to mirror — resolved, both files repoint the same way, no
    special-case needed (§1.4, §3).
+11. **Confirmed, same day, once Sophia's PR0 found the Discord ids were null for all 43 rows:**
+   *"Can we ensure the hand off also tracks discord channels??"* — not optional, not something to skip
+   because the manifest happens not to carry the columns yet. Elevated to its own unit, **PR1b** (§4),
+   ahead of the board itself.
 
 Every one of these is treated as **resolved design input** below, not re-opened for debate — this doc
 exists to turn a converged conversation into a buildable, corrigible plan (§5e of
@@ -254,6 +258,7 @@ surfaced, folded into PR1a below. One **gate before PR2**: the repo name `sprint
 | **PR0** | ✅ **DONE (2026-09-15)** — pre-flight resolved (§3.1). No code. | — |
 | **PR1** | ✅ **ALREADY SHIPPED** — `handoffs/index.json` + `build_handoff_index.py` (#1143) + `--check-index` drift gate (#1145) are live on `main`; the board's data source already exists. | — |
 | **PR1a** | `agentic_ai_context`: fix `build_handoff_index.py` `STATE_RULES` ordering so `human uat` / `governor uat` / `ready for human` are tested **before** `complete`/`done`, and widen `HUMAN_GATE_KEYWORDS` (add `governor`, `approval`, `thumbs`) so genuinely human-gated rows land in `blocked_on_human`. Regenerate `index.json` (drift gate) + correct the manifest row. **Prerequisite for PR2** — without it the default "Needs You" view is wrong. | auto |
+| **PR1b** | `agentic_ai_context`: Gary confirmed Discord tracking is required, not optional (2026-09-15). Add the **`Discord channel id`** / **`Discord thread id`** columns `build_handoff_index.py` already anticipates by name (its own docstring: "those columns do not exist yet") to `HANDOFF_MANIFEST.md`'s header row, populate them for every row that actually runs in a Discord channel today (at minimum `DISCORD_ADAPTER_PLAN.md` and `DISCORD_ENVOY_GOVERNOR_PARITY_PLAN.md` — cross-reference `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §2's venue registry for the real channel ids rather than guessing), leave blank for Telegram-only rows, regenerate `index.json` (drift gate), and add a line to the manifest's own "How to update" section so future handoffs populate it when relevant. **Prerequisite for PR2's Discord deep-link cards** — without it every card's Discord link is null, same failure shape PR1a just fixed for state. Can be folded into PR1a's turn if already touching this file/schema, or run as its own turn — supervisor's call. | auto |
 | **PR2** | New `TrueSightDAO/sprint` repo scaffold: static page, fetches `index.json`, renders the §2.3 Kanban columns + cards (spec link, Telegram/Discord deep link, resume-tracker one-liner), **defaulting to the "Needs You" view** with the full board one click away. Fully read-only, no auth. Deploy dark (Pages not yet DNS-mapped). | auto |
 | **PR3** | Route53 CNAME `sprint.truesight.me`; verify live, 200, valid cert (same steps already proven for `cfr.truesight.me`). | auto |
 | **PR4** | `sophia/SUPERVISOR_LOOP.md`: add the advisory-only boundary (§2.4) as a canonical rule, referencing `sprint.truesight.me` by name — a chat-message priority signal is context for the supervisor's judgment, never an automatic override. Docs-only, self-mergeable per this repo's own convention. | auto |
