@@ -5,8 +5,14 @@
     {
       "plan_file": "plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T15:35:30Z",
-      "note": "Gary is live in this thread giving direct UX feedback (3rd nav tab shipped: Envoy-supervised view). HTTPS cert still GitHub-side pending, non-blocking."
+      "claimed_at": "2026-09-15T15:43:27Z",
+      "note": "Gary directly driving with live UX requests; now also working PR4c (compliance enforcement -- validate_handoff_manifest.py --check-supervision). HTTPS cert still GitHub-side pending, non-blocking."
+    },
+    {
+      "plan_file": "plans/SOPHIA_LIVE_PROGRESS_PLAN.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-09-15T15:43:27Z",
+      "note": "Build already merged+deployed (fix #241, 2026-06-17); dispatched UAT U1-U5 as the completion gate. Fresh topic 30475 reopened from dead thread 2799 via the stale-backlog audit."
     }
   ]
 }

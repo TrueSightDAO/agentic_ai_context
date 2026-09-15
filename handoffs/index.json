@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T15:40:17Z",
+  "generated_at": "2026-09-15T15:43:37Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "a8bd12fe5a3824df0b7010fb74368e8a6206e9644900917fb5797a945b97f35f",
   "state_enum": [
@@ -591,7 +591,13 @@
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
-      "supervised_by": null
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-09-15T15:43:27Z",
+        "note": "Build already merged+deployed (fix #241, 2026-06-17); dispatched UAT U1-U5 as the completion gate. Fresh topic 30475 reopened from dead thread 2799 via the stale-backlog audit.",
+        "stale": false,
+        "age_minutes": 0
+      }
     },
     {
       "plan_file": "`plans/SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md`",
@@ -865,10 +871,10 @@
       "last_updated": "2026-09-15",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-        "claimed_at": "2026-09-15T15:35:30Z",
-        "note": "Gary is live in this thread giving direct UX feedback (3rd nav tab shipped: Envoy-supervised view). HTTPS cert still GitHub-side pending, non-blocking.",
+        "claimed_at": "2026-09-15T15:43:27Z",
+        "note": "Gary directly driving with live UX requests; now also working PR4c (compliance enforcement -- validate_handoff_manifest.py --check-supervision). HTTPS cert still GitHub-side pending, non-blocking.",
         "stale": false,
-        "age_minutes": 4
+        "age_minutes": 0
       }
     },
     {
