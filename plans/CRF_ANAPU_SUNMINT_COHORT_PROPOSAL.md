@@ -39,6 +39,34 @@ the governor-decisions table in `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`):
 > can be corrected in one pass rather than discovered wrong mid-build (§5e of
 > `OPERATING_INSTRUCTIONS.md`).
 
+### 0.1 Gary's follow-up clarification (2026-09-15, same day) — resolves two of the rows above
+
+*"So basically when a student registers a tree or monitors a tree or registers a plot it should be
+the same as how it currently behaves on sunmint.truesight.me but the profile of the student should
+show up here too [`programs/crf-anapu/members.html`] — and then clicking in should associate the
+tree or the monitoring or the plot associated with the student who performed the effort."*
+
+Two things this resolves:
+
+1. **Confirms Open Decision #2 (§6) = YES.** Submission alone — no DAO credential required — is
+   sufficient to earn a listing on `members.html`. Row 3 above was already read at High confidence;
+   this removes any doubt.
+2. **The submission UX itself is explicitly confirmed unchanged** — "the same as how it currently
+   behaves on sunmint.truesight.me." This endorses **Option A** (§2.1, thin redirect into the
+   canonical app) over Option B (vendored copy): a vendored copy risks behavioral drift from the
+   canonical app over time, which is exactly what "the same as it currently behaves" rules out.
+3. **New, more specific requirement than §2.2 point 3 originally captured:** clicking through from a
+   member's card must show the **itemized** trees / monitoring events / plots that student
+   specifically submitted — not merely an aggregate count badge. This maps directly onto a mechanism
+   that already exists and didn't need inventing: `cv.programs[<program-slug>].recent_events[]` inside
+   each member's CV JSON (§1.2 §5 of `CREDENTIALING_PROGRAM_PAGES.md` — already used to list a
+   capoeira practitioner's practice sessions on their credential page). The click-through target is
+   the **existing** `programs/crf-anapu/credentials/index.html` wrapper — extended to render SunMint
+   event entries in `recent_events[]` alongside (or instead of) practice-session entries, using the
+   same per-pk-hash `sunmint/*.json` files already proposed in §3.2. This does not require a new page
+   type; it requires the existing CV renderer to know a second `recent_events` shape. See §2.2 and §4
+   for the updated design and the privacy tension this introduces.
+
 ---
 
 ## 1. Current-state architecture audit (read directly from the live repos, 2026-09-15)
@@ -202,6 +230,16 @@ confirmation before PR1 — pick one, once, rather than discover a preference mi
    in §6) so `program-shell.js` knows to render SunMint activity badges (🌳 trees planted, 📍 plot
    registered, 🌱 last monitored) on `members.html` cards, alongside or instead of the existing
    governor/practitioner badges.
+6. **Itemized click-through (confirmed requirement, §0.1) — extend the CV renderer, don't build a new
+   page.** `members.html` cards already link to `programs/crf-anapu/credentials/#<slug>`
+   (§1.2/`CREDENTIALING_PROGRAM_PAGES.md` §3). That page already renders
+   `cv.programs[<program-slug>].recent_events[]` for capoeira practitioners. Extend it so, when
+   `cv.programs['crf-anapu'].sunmint_events[]` is present (populated from the same `sunmint/*.json`
+   files as point 3, read alongside `practice_events`), the page lists each specific tree planting /
+   monitoring visit / plot the student submitted — one row per event, not an aggregate. Each row: event
+   type, species/date, and a link to that item's **already-public** record (the tree's entry on
+   `truesight.me/sunmint.html`'s Impact Map, or its QR profile page) rather than re-rendering raw
+   GPS/photo on the credential page itself — see §4 for why.
 
 ### 2.3 What does NOT change
 
@@ -266,11 +304,24 @@ the manifest is the programme-wide hint. CRF Anapu's manifest already sets
 
 **This proposal must inherit that posture for the SunMint side, not create a looser one.** A tree
 submission is tied to GPS coordinates and (often) a planting photo with EXIF — arguably *more*
-sensitive than a bare name-on-a-cohort-list. Recommendation: `members.html`'s SunMint activity badges
-show **aggregate counts only** (🌳 3 trees · 📍 1 plot · last active 2026-09-10) next to whatever name
-display the existing `public_listable` gate already allows — never expose raw GPS or the planting
-photo on the public cohort page regardless of visibility setting. This needs explicit governor
-confirmation (§6) since it's a genuine privacy-scope decision, not purely technical.
+sensitive than a bare name-on-a-cohort-list. Gary's 2026-09-15 clarification (§0.1) confirms the
+click-through **must** show itemized trees/monitoring/plots, not just a badge count — so the privacy
+line has to be drawn at *what each item shows*, not *whether items show at all*:
+
+- **`members.html` card (list view):** aggregate counts only (🌳 3 trees · 📍 1 plot · last active
+  2026-09-10) — unchanged from the original recommendation, next to whatever name display the
+  existing `public_listable` gate already allows.
+- **`credentials/#<slug>` (click-through, per §2.2 point 6):** itemized rows — event type, species,
+  planting/monitoring date — **linking out to that item's already-public record** (the tree's own
+  entry on `truesight.me/sunmint.html`'s Impact Map or QR profile page, which is where raw GPS and
+  the planting photo already legitimately live today, independent of this proposal) rather than
+  re-rendering GPS/photo a second time on the credential page. This isn't a privacy compromise: the
+  Impact Map is already public for every planted tree regardless of program, so linking to it exposes
+  nothing that isn't already exposed; what stays off the credential page is the *aggregation* of "all
+  of this specific minor's locations in one place," which is a materially different privacy surface
+  than any single tree's already-public pin.
+- Still needs explicit governor + CEPOTX confirmation (§6) — the *link-out-rather-than-duplicate*
+  design is this proposal's recommendation, not yet a confirmed decision.
 
 ---
 
@@ -289,19 +340,20 @@ confirmation (§6) since it's a genuine privacy-scope decision, not purely techn
 ## 6. Open decisions — batch these once (§5e), don't re-ask per PR
 
 1. **Option A (redirect + co-brand banner) vs. Option B (vendored copy)** for `cfr.truesight.me`'s
-   planting/monitoring pages — §2.1. **Recommend A.**
-2. **Is a tree-submission-only contributor (no credential) allowed to appear on `members.html` at
-   all**, or does CRF Anapu want cohort membership to still require the credential, with SunMint
-   activity shown only as an enrichment on top of an existing credentialed member's card? Re-read
-   requirement #3 in §0 as "yes, submission alone is sufficient" — confirm.
+   planting/monitoring pages — §2.1. **Recommend A. ✅ Effectively confirmed by §0.1** ("the same as
+   how it currently behaves on sunmint.truesight.me") — treating as resolved unless corrected.
+2. **✅ RESOLVED (§0.1, 2026-09-15):** a tree-submission-only contributor (no credential) IS allowed
+   to appear on `members.html` — "the profile of the student should show up here too." No further
+   confirmation needed on this point.
 2b. **If yes to #2** — should a tree/plot submitted through `sunmint.truesight.me` directly (no
    `?program=` param — the generic, unbranded surface) ever retroactively count toward a program's
    cohort if the submitter later turns out to be a CRF Anapu student? Recommend **no** — origin
    attribution should be at submission time only, exactly as literally requested ("submissions via
    that route"), not inferred after the fact from identity.
-3. **Privacy scope** (§4) — aggregate counts only on the public cohort card, never raw GPS/photo.
-   Confirm this matches CEPOTX's actual consent posture; may need CEPOTX/Jedielcio input, not just
-   Gary's.
+3. **Privacy scope** (§4, updated) — aggregate counts on the cohort card, itemized rows (type/species/
+   date) on click-through, **linking to** each tree's already-public Impact Map/QR entry rather than
+   duplicating GPS/photo on the credential page. Confirm this matches CEPOTX's actual consent posture;
+   may need CEPOTX/Jedielcio input, not just Gary's.
 4. **`program_mode` as a single value vs. an array** (§2.2 point 5) — a single new value
    (`"sunmint_cohort"`, replacing `"cohort_credentialing"` for CRF Anapu) is simpler to ship first; an
    array (`program_modes: [...]`) is the more correct long-term shape if a program can be *both* at
@@ -355,7 +407,7 @@ rather than silently assumed.
 | **PR2** | `cfr-anapu` repo: add the two thin redirect pages (`plant-a-tree/index.html`, `monitor-tree-growth/index.html`) pointing at `sunmint.truesight.me/?program=crf-anapu` (Option A) — or the vendored-copy equivalent if Open Decision #1 lands on Option B. Wire a CTA from the existing `programs/crf-anapu/index.html` (both beta and the `cfr-anapu` mirror) to the new surface. | auto (beta); prod mirror gated same as any `truesight_me_*` prod touch |
 | **PR3** | `lineage-engine`: new `sync_sunmint_program_activity.py` reading the confirmed source (§7 item 2), writing `programs/<slug>/pk-<hash>/sunmint/*.json` into `lineage-credentials`. Dry-run flag default, per this workspace's standing convention for any new write script. | auto |
 | **PR4** | `lineage-engine`: extend `collect_practitioners()` + `_program_activity_score()` in `build_cv_cache.py` for the new `sunmint/` activity kind (§2.2 points 3–4); extend `manifest.json` schema for `program_modes` array (§6 decision #4). | auto |
-| **PR5** | `truesight_me_beta` (+ `cfr-anapu` mirror): `program-shell.js` renders SunMint activity badges on `members.html` cards per §2.2 point 5 and §4's aggregate-only privacy rule; update `programs/crf-anapu/manifest.json` to the new `program_modes` shape. | auto (beta); prod gated on UAT |
+| **PR5** | `truesight_me_beta` (+ `cfr-anapu` mirror): `program-shell.js` renders SunMint activity badges on `members.html` cards (§2.2 point 5, aggregate-only per §4) **and** extends the `credentials/index.html` CV renderer to list itemized `sunmint_events[]` rows on click-through, each linking to the tree's public Impact Map/QR entry rather than duplicating GPS/photo (§2.2 point 6, §4). Update `programs/crf-anapu/manifest.json` to the new `program_modes` shape. | auto (beta); prod gated on UAT |
 | **PR6** | First real sync run (dry-run then live) against real CRF Anapu submissions (needs at least one real submission to exist first — may require a CEPOTX/Jedielcio coordination step outside any PR). Verify `members.html` populates. | **`gate: human`** — first live write into `lineage-credentials` from a new activity kind |
 | **PR7** | Docs: update `CREDENTIALING_PROGRAM_PAGES.md` with the new `sunmint_cohort` mode (it's the canonical spec, editable per its own convention — this is documentation of a shipped feature, not a forecast); update `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`'s status; UAT. | auto |
 
@@ -375,6 +427,9 @@ start PR0 before that confirmation per the governor-decisions convention this do
 - **U4** — Load `https://beta.truesight.me/programs/crf-anapu/members.html` (then, after prod
   promotion, `https://cfr.truesight.me/members.html` and `https://truesight.me/programs/crf-anapu/members.html`)
   and confirm the submitter's card shows the correct activity badge, with no raw GPS/photo exposed.
+- **U4b** — Click through from that card to `credentials/#<slug>` and confirm the specific tree
+  planting appears as an itemized row (type, species, date) with a working link to its public Impact
+  Map/QR entry — and confirm the credential page itself still shows no raw GPS/photo (§4).
 - **U5** — Confirm a submission with **no** `?program=` param (plain `sunmint.truesight.me`) is
   completely unaffected — no `Program` field, no banner, no change to existing behavior.
 - **U6** — Confirm test data cleanup per §5g (test rows removed / clearly marked, no leftover value in
