@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T20:28:52Z",
+  "generated_at": "2026-09-15T20:37:46Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "7299dc0e0a8107715404f2911420ddf071f8fb269c1541f2bc2b0e05ac72d0a7",
+  "source_sha256": "c132b54b852363fe41c21788dfcaf48b75b393ed7b58e6f1aef517773c38f462",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -18,14 +18,14 @@
   ],
   "handoff_count": 60,
   "counts_by_state": {
-    "awaiting_kickoff": 16,
+    "awaiting_kickoff": 15,
     "executing": 13,
     "paused_at_gate": 5,
     "sophia_uat": 0,
     "envoy_uat": 0,
     "human_uat_ready": 2,
     "prod_merge": 0,
-    "blocked_on_human": 9,
+    "blocked_on_human": 10,
     "failed": 0,
     "done": 14,
     "stale": 1,
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Elizabeth Wong data-integrity bug found in UAT, flagged to Gary directly. Awaiting deploy + Gary's root-cause call.",
         "stale": true,
-        "age_minutes": 78
+        "age_minutes": 86
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Only Unit F (archive bare .pem files) remains, hard-gated on UAT which needs the deploy.",
         "stale": true,
-        "age_minutes": 78
+        "age_minutes": 86
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- fix merged (#467) but not deployed; awaiting Gary's deploy authorization.",
         "stale": true,
-        "age_minutes": 78
+        "age_minutes": 86
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 78
+        "age_minutes": 86
       }
     },
     {
@@ -892,15 +892,15 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 78
+        "age_minutes": 86
       }
     },
     {
       "plan_file": "`plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`",
       "title": "**Stop gating auto-advance on PR-less units** — `app/auto_advance.py::next_action()` treats \"no PR opened this turn\" as non-convergence, but a correctly-completed unit that isn't PR-shaped (DNS verification, pre-flight/docs-only) can never satisfy that — forcing an unnecessary human \"go\" every time. Also fixes a confirmed-live root cause of a related halt: a stale duplicate `RESUME HERE` marker. `truesight_autopilot` own-repo — human-merge only.",
       "handoff_date": "2026-09-15",
-      "state": "awaiting_kickoff",
-      "status_raw": "**new — awaiting kickoff (RESUME HERE = PR0)**",
+      "state": "blocked_on_human",
+      "status_raw": "**blocked_on_human — PR0/PR1/PR2 merged (#473, #474); PR3 (deploy) `gate: human`, awaiting Gary**",
       "telegram_thread_id": "30279",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -913,9 +913,9 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:28:30Z",
-        "note": "Picked up while all five other supervised threads wait on Gary. This is the meta-bug behind the recurring PR-less-unit false gate hit 7+ times this session. PR0 (pre-flight) merged. PR1 (pr_opened/made_progress split) merged (#473). PR2 (marker drift fix, corpus-verified against all 60 plan docs, 0 regressions) reviewed personally and merged (#474 -> 1254da2). PR3 is deploy, correctly gate:human -- won't clear that myself, will escalate to Gary. Next: PR4 (UAT) or confirm it also waits on the deploy.",
-        "stale": false,
-        "age_minutes": 60
+        "note": "blocked_on_human -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Sophia confirmed and self-stopped: PR3 (deploy) is gate:human, PR4 (UAT) waits on the deploy, PR5 is docs-only. Now waiting on the same Gary deploy authorization as threads 30475/30471/30473. All six supervised threads are now blocked_on_human.",
+        "stale": true,
+        "age_minutes": 69
       }
     },
     {

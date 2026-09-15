@@ -36,7 +36,7 @@
       "plan_file": "plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:28:30Z",
-      "note": "Picked up while all five other supervised threads wait on Gary. This is the meta-bug behind the recurring PR-less-unit false gate hit 7+ times this session. PR0 (pre-flight) merged. PR1 (pr_opened/made_progress split) merged (#473). PR2 (marker drift fix, corpus-verified against all 60 plan docs, 0 regressions) reviewed personally and merged (#474 -> 1254da2). PR3 is deploy, correctly gate:human -- won't clear that myself, will escalate to Gary. Next: PR4 (UAT) or confirm it also waits on the deploy."
+      "note": "blocked_on_human -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Sophia confirmed and self-stopped: PR3 (deploy) is gate:human, PR4 (UAT) waits on the deploy, PR5 is docs-only. Now waiting on the same Gary deploy authorization as threads 30475/30471/30473. All six supervised threads are now blocked_on_human."
     }
   ]
 }
