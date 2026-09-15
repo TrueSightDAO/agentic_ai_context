@@ -1,12 +1,12 @@
 # Public-Key Lookup Cache — Content-Addressed Per-Key Store — Execution Roadmap
 
-**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **PR4 ✅ merged** — vault force-fresh-on-deny [autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469) (deploy-gated). **RESUME HERE = PR5.**
+**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **PR4 ✅ merged** — vault force-fresh-on-deny [autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469) (deploy-gated). **PR5 step 1 ✅ merged** — point-lookup consumers [autopilot#470](https://github.com/TrueSightDAO/truesight_autopilot/pull/470). **RESUME HERE = PR5 step 2.**
 **Repos under change:** `tokenomics` (generator GAS), `treasury-cache` (data surface),
 `truesight_autopilot` (reader), `dapp` (later consumer).
 **Designed by:** Gary Teh + Claude · **Implemented by:** TBD (open PRs; `truesight_autopilot`
 is own-repo / human-merge gated).
 
-> **RESUME HERE:** PR5 — other consumers + DApp (PR1–PR4 all merged; PR4 awaits deploy)
+> **RESUME HERE:** PR5 step 2 — DApp `permissions.js` resolves signed-in RSA via per-key file (PR1–PR4 + PR5.1 merged; PR4 awaits deploy)
 >
 > **⚠️ ONE PR PER TURN (mandatory — `OPERATING_INSTRUCTIONS.md §5a`):** an execution turn does
 > **exactly the single `RESUME HERE` PR, opens it, reports the contribution, ticks the tracker,
@@ -187,13 +187,17 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 
 ## 5. Resume tracker
 
-> **RESUME HERE (2026-09-15):** **PR4 ✅ MERGED** — vault force-fresh-on-deny
-> ([autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469), merge sha `23266c0`;
-> reviewed + merged by Gary). `resolve_key_fresh()` reads the per-key file via the authenticated
-> contents API; an interactive sign-in does ONE fresh lookup on deny before refusing. **Merged but
-> NOT deployed** — deploying `truesight_autopilot` is an always-stop gate, so **UAT U2 is pending
-> Gary's deploy**. **One PR per turn:** next turn picks up **PR5**. **PR1–PR4 are SHIPPED — do NOT
-> re-run (duplicate-PR risk).** Never run multiple PRs in a single turn (`OPERATING_INSTRUCTIONS.md §5a`).
+> **RESUME HERE (2026-09-15):** **PR5 step 1 ✅ MERGED** — migrate point-lookup consumers
+> (key→name helpers `main._gov_name_for_key` + `daily_briefing._gov_name_for_key`) to `resolve_key`
+> ([autopilot#470](https://github.com/TrueSightDAO/truesight_autopilot/pull/470), merge sha `5f7b941`;
+> reviewed + merged by Gary). Point-lookup-first with monolith fallback on miss; governor-only semantics
+> preserved. **§3 consumer audit recorded in PR #470** (point-lookup: vault/PR4, `is_governor`/`is_sentinel`/PR3,
+> the two key→name helpers/PR5.1; enumeration stays on the monolith: `/governors`, `/health`,
+> `resolve_governor_public_key` (by name), `_email_is_governor`). **Next: PR5 step 2 = DApp `permissions.js`
+> resolves the signed-in RSA via the per-key file.** PR4 remains **MERGED but NOT DEPLOYED** — deploying
+> `truesight_autopilot` is an always-stop gate, so **UAT U2 is pending Gary's deploy**. **One PR per turn:**
+> next turn picks up **PR5 step 2**. **PR1–PR5.1 are SHIPPED — do NOT re-run (duplicate-PR risk).** Never run
+> multiple PRs in a single turn (`OPERATING_INSTRUCTIONS.md` §5a).
 
 | Unit | PR opened | Merged | Deployed | Contribution reported | UAT |
 |------|-----------|--------|----------|-----------------------|-----|
@@ -201,7 +205,9 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 | PR2 — incremental / revocation | ☑ tokenomics#361 | ☑ 2026-06-16 | ☑ | ☑ | U3, U5 |
 | PR3 — reader `resolve_key` | ☑ autopilot#230 (+#468 tests) | ☑ 2026-09-15 | — | ☑ | (automated ✅ 8 tests) |
 | PR4 — vault auth + force-fresh-on-deny | ☑ autopilot#469 | ☑ 2026-09-15 | ☐ (deploy-gated) | ☑ | U2 (pending deploy) |
-| PR5 — other consumers + DApp | ☐ | ☐ | ☐ | ☐ | U4 |
+| PR5 step 1 — migrate key→name point-lookup consumers | ☑ autopilot#470 | ☑ 2026-09-15 | — | ☑ | (automated ✅ 6 tests) |
+| PR5 step 2 — DApp `permissions.js` per-key resolve | ☐ | ☐ | ☐ | ☐ | U4 |
+| PR5 step 3 — slim `governors_index.json` (only if a UI needs it) | ☐ | ☐ | ☐ | ☐ | U4 |
 
 ---
 
