@@ -299,7 +299,7 @@ PR1.
 | **PR4** | UAT (§5) on a scratch handoff thread with a throwaway plan containing at least one deliberately PR-less unit. | auto (post-deploy) |
 | **PR5** | Docs: note the fix in `SOPHIA_AUTO_ADVANCE_PLAN.md`'s own history (append, don't rewrite its resume tracker) and in `SUPERVISOR_LOOP.md` if the state-reading guidance references the old behavior anywhere. | auto |
 
-**RESUME HERE:** PR1 — made_progress signal + next_action() signature.
+**RESUME HERE:** PR5 — docs (prose-label cleanup + verified-outcome append). PR0–PR4 ✅ done: PR1 truesight_autopilot#473, PR2 truesight_autopilot#474, PR3 deployed live `1254da2` 2026-09-15 20:53 UTC, PR4 UAT 5/5 legs green against the deployed build.
 
 ---
 
@@ -342,4 +342,36 @@ Per the pattern established for every other roadmap this session: **park in a ne
 a supervisor to pick up. **Merging PR1/PR2 no longer needs a human** (2026-09-15 update, top of this
 doc) — Sophia self-merges directly, same as a docs-only `agentic_ai_context` PR. **PR3 (deploy —
 restarting the live service) remains an explicit always-stop regardless** — that's a separate action
-from merging. RESUME HERE: PR1 — made_progress signal + next_action() signature.
+from merging. RESUME HERE: PR5 — docs.
+
+---
+
+## 8. Verified outcome (2026-09-15 — PR1/PR2 shipped, PR3 deployed, PR4 UAT green)
+
+**PR1** (truesight_autopilot#473) and **PR2** (truesight_autopilot#474) merged. **PR3 (deploy)** cleared:
+the box was restarted 2026-09-15 20:53:43 UTC and verified live at `1254da2` — PR2 present in the
+deployed `app/auto_advance.py`, all four services running, `/health` ok. **PR4 (UAT)** run against the
+deployed build — all five legs green, driven through the production entry point
+`app/main.py::_compute_advance_signal()`:
+
+- **U1** — a PR-less unit that performs a genuine side-effecting action auto-advances
+  (`made_progress=True, pr_opened=False` → `auto`).
+- **U2** — a turn with no side-effecting action still **gates** ("turn made no progress — no PR opened
+  and no side-effecting action"), so the broken-turn backstop is intact.
+- **U3** — a real PR still hits the one-PR-per-turn `pr_boundary` in `turn_convergence.py` (untouched).
+- **U4** — the exact incident #2 marker pair (top-of-file `→ PR1a.` + tracker `(§4) = PR1a.`) now
+  resolves to row 0 with **no** drift; a genuinely disagreeing trailer (`PR9`) gates with a clear reason
+  instead of the old opaque `unit '…' not found`.
+- **U5** — `tests/test_auto_advance*.py` green (56 passed): no behavior change outside §2.1/§2.3's scope.
+
+**Two findings surfaced during UAT, filed separately in `OPEN_FOLLOWUPS.md` (not fixed here):**
+
+1. §2.1 names a third `made_progress` path — an explicit self-report of success in the final message —
+   that `_compute_advance_signal()` does not implement (it keys on tool names only). A verify-only unit
+   ending without a repo write still gates.
+2. The connector-required regex closes the *reported* incident, but a **prose** mention carrying a
+   connector (e.g. `"RESUME HERE = PR0"` inside a quoted sentence) still matches; currently benign only
+   because last-wins selects the real downstream marker.
+
+**Open decision §6 (unchanged, non-blocking):** whether to drop the top-of-file `RESUME HERE` hint
+convention entirely — deferred until PR2's drift-detection has run a while.
