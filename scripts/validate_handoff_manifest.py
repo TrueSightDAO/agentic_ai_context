@@ -16,6 +16,12 @@ the same plan's status (see plans/HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md):
 Usage:
     python3 scripts/validate_handoff_manifest.py [path/to/HANDOFF_MANIFEST.md]
     python3 scripts/validate_handoff_manifest.py --check-index   # also gate handoffs/index.json drift
+    python3 scripts/validate_handoff_manifest.py --check-supervision  # also cross-check active_supervision.json
+
+Checked rules include the supervision drift gate (§2.6): a claim in
+``handoffs/active_supervision.json`` that names a plan absent from the manifest is an
+ERROR (an orphan, author-fixable); active-but-unclaimed rows and stale claims are
+WARNINGS (they need a supervisor to act, not the PR author).
 """
 
 from __future__ import annotations
@@ -248,6 +254,96 @@ def validate(text: str, repo_root: Path | None = None) -> ValidationResult:
     return result
 
 
+# Supervisor states where an unclaimed row is a drift signal (SUPERVISOR_LOOP.md §2.6):
+# someone should be actively supervising. Terminal/idle states (done, stale,
+# awaiting_kickoff) legitimately carry no claim, and a row briefly between supervisors
+# is normal.
+ACTIVE_SUPERVISION_STATES = frozenset(
+    {
+        "executing",
+        "paused_at_gate",
+        "sophia_uat",
+        "envoy_uat",
+        "human_uat_ready",
+        "blocked_on_human",
+        "prod_merge",
+    }
+)
+
+
+def check_supervision(
+    manifest_text: str,
+    supervision_path: "Path",
+    now=None,
+) -> "ValidationResult":
+    """Cross-reference the manifest against handoffs/active_supervision.json (§2.6).
+
+    A supervisor's claim should line up with a real, active handoff. Three drift shapes,
+    exactly one of which is a hard CI error:
+
+      - **orphan claim** -- a claim naming a plan that is NOT in the manifest: a broken
+        reference the author can fix in-repo, so it is an *error*.
+      - **active row without a claim** -- reported as a single aggregate *warning* (the
+        normal steady state for most plans; failing CI on it would fail every PR, and it
+        needs a supervisor to act, not the PR author).
+      - **stale claim** -- a claim older than ``SUPERVISION_STALE_MINUTES``: the board
+        already paints it stale; refreshing needs a supervisor, so also a *warning*.
+
+    Only the orphan is an objectively-broken, author-fixable condition, so only it gates.
+    """
+    result = ValidationResult()
+    if supervision_path is None or not Path(supervision_path).exists():
+        # No claims file -> nothing to cross-reference. Matches load_supervision's
+        # fail-soft contract: a missing file means "no active claims", not an error.
+        return result
+
+    try:
+        import build_handoff_index as builder
+    except ImportError as exc:  # pragma: no cover - import-layout failure
+        result.errors.append(f"cannot import build_handoff_index: {exc}")
+        return result
+
+    _header, rows, _warnings = builder.collect_handoff_rows(manifest_text)
+    claims = builder.load_supervision(Path(supervision_path))
+
+    manifest_states: dict[str, str] = {}
+    for row in rows:
+        plan = row.get("Plan file")
+        if not plan or is_empty(plan):
+            continue
+        state, _note = builder.derive_state(row.get("Status"))
+        manifest_states[builder._norm_plan_key(plan)] = state
+
+    # (i) A claim that names a plan absent from the manifest is an orphan -> hard error.
+    for plan in sorted(claims):
+        if plan not in manifest_states:
+            result.errors.append(
+                "active_supervision.json claims a plan not in the manifest: "
+                f"{plan!r} (orphan claim -- fix plan_file or drop the claim)"
+            )
+
+    # (ii) + (iii) are advisories: they need a supervisor to act, not the PR author.
+    unclaimed: list[str] = []
+    for plan, state in sorted(manifest_states.items()):
+        if state not in ACTIVE_SUPERVISION_STATES:
+            continue
+        entry = builder.supervision_entry(plan, claims, now)
+        if entry is None:
+            unclaimed.append(plan)
+        elif entry.get("stale"):
+            result.warnings.append(
+                f"active handoff {plan!r} (state={state}) has a STALE supervisor claim "
+                f"({entry.get('claimed_at')!r}) -- refresh or release it"
+            )
+    if unclaimed:
+        shown = ", ".join(unclaimed[:5])
+        more = f" (+{len(unclaimed) - 5} more)" if len(unclaimed) > 5 else ""
+        result.warnings.append(
+            f"{len(unclaimed)} active handoff(s) have no supervisor claim: {shown}{more}"
+        )
+    return result
+
+
 def check_index(manifest_text: str, index_path: Path) -> ValidationResult:
     """Verify a committed handoffs/index.json is an up-to-date mirror of the manifest.
 
@@ -326,6 +422,12 @@ def main(argv: list[str] | None = None) -> int:
         help="Also verify the committed handoffs/index.json mirrors the manifest "
         "(the build_handoff_index.py drift gate).",
     )
+    parser.add_argument(
+        "--check-supervision",
+        action="store_true",
+        help="Also cross-check handoffs/active_supervision.json against the manifest: "
+        "orphan claims are errors; active-but-unclaimed / stale claims are warnings.",
+    )
     args = parser.parse_args(argv)
 
     manifest_path = Path(args.manifest)
@@ -336,6 +438,13 @@ def main(argv: list[str] | None = None) -> int:
         index_result = check_index(text, manifest_path.resolve().parent / "index.json")
         result.errors.extend(index_result.errors)
         result.warnings.extend(index_result.warnings)
+
+    if args.check_supervision:
+        sup_result = check_supervision(
+            text, manifest_path.resolve().parent / "active_supervision.json"
+        )
+        result.errors.extend(sup_result.errors)
+        result.warnings.extend(sup_result.warnings)
 
     for warning in result.warnings:
         print(f"WARNING: {warning}")
