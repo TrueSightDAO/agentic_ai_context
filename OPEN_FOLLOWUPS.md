@@ -39,6 +39,36 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight_autopilot: `merge_pr` refuses a docs-only PR when CI is legitimately path-filtered, not actually pending
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (sprint-board thread 30083).**
+
+**Context.** Sophia opened `agentic_ai_context` PR #1158 (docs-only: `sophia/SUPERVISOR_LOOP.md` +
+`plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md`, no `handoffs/**` or `scripts/**` touched). The `merge_pr`
+tool refused it, reading CI status as "pending." The actual workflow,
+`validate-handoff-manifest.yml`, is `paths:`-filtered to `handoffs/**` + `scripts/**` — it was never
+going to run for this PR's changed files, so `gh pr checks` correctly reports "no checks reported" /
+combined status `pending/total 0`. `merge_pr` apparently treats "zero checks reported" the same as
+"checks running, not done yet," rather than "no checks configured for these paths — nothing to wait
+for."
+
+**Symptom.** Any docs-only PR whose changed files fall entirely outside a path-filtered workflow's
+trigger paths cannot be merged via `merge_pr` without a human manually running `gh pr merge` from the
+box instead — an unnecessary human round-trip for a PR that's actually ready.
+
+**Proposed fix (~small).** In whatever tool code backs `merge_pr`, distinguish "0 checks reported
+because none are configured for these paths" (safe to merge) from "checks reported but still running"
+(genuinely pending) — likely by cross-referencing the PR's changed-files list against each workflow's
+`on.pull_request.paths` trigger, or simply treating `total: 0` from `gh pr checks`/the checks API as
+mergeable rather than blocking.
+
+**Why it matters.** Same root pattern as `plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md` (filed same
+day, same thread): a correct, converged outcome getting misread as unfinished, forcing an unnecessary
+human intervention. Different code path (the merge gate, not the auto-advance gate) — kept as its own
+entry rather than folded into that plan's scope.
+
+**Evidence.** `agentic_ai_context` PR #1158; `validate-handoff-manifest.yml`'s `paths:` trigger;
+sprint-board thread 30083, 2026-09-15.
+
 ### dao_protocol: `tests/test_dao.py` fails to collect on `main` — imports removed `dedup` module
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 26992).**
 
