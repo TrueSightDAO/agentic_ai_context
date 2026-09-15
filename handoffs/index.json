@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T16:21:28Z",
+  "generated_at": "2026-09-15T16:41:58Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "a8bd12fe5a3824df0b7010fb74368e8a6206e9644900917fb5797a945b97f35f",
+  "source_sha256": "a23fb7ff559f876341006d9a87221e766d35e2adc814d509da361d880f77ed30",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -596,7 +596,7 @@
         "claimed_at": "2026-09-15T16:20:52Z",
         "note": "UAT found a real bug (progress-query classifier fed decorated text, always >80 chars in handoff topics -- dead code). Fix verified locally, PR pending (own-repo gate, Gary merges). Two deploy-caused restarts survived via re-nudge.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 21
       }
     },
     {
@@ -757,7 +757,7 @@
       "title": "**Discord ↔ Telegram parity gaps** — bring the Discord adapter to feature parity with the Telegram adapter. Tracked in Discord **#discord-parity** (`1549079137480605736`).",
       "handoff_date": "2026-09-15",
       "state": "executing",
-      "status_raw": "**in progress** — Tier-1 ✅ (#450/#447); #6 reaction go-signal ✅ (#454); #5 per-channel always-respond ✅ already built; #7 `/verify` closed won't-build; #4 voice I/O = one open PR (#459).",
+      "status_raw": "**in progress — code done, live UAT outstanding** — Tier-1 ✅ (#450/#447); #6 reaction go-signal ✅ (#454); #5 per-channel always-respond ✅ already built; #7 `/verify` closed won't-build; #4 voice I/O — **✅ MERGED** (`truesight_autopilot` #459, 2026-09-15 13:13:56, both directions: transcribe-in + spoken-reply-out) — **⚠️ Gary reported live voice attachments not sending, filed as a follow-up 2026-09-15**; verified the merged code is on-disk on the box and the Discord adapter service restarted onto that exact HEAD at 16:39:01 UTC, but this was observed, not deliberately deployed-and-verified — needs an actual live UAT pass (send a voice note, confirm a spoken-reply attachment actually lands), not just a timestamp coincidence trusted at face value.",
       "telegram_thread_id": null,
       "telegram_thread_id_source": null,
       "telegram_thread_id_needs_verification": false,
@@ -874,7 +874,7 @@
         "claimed_at": "2026-09-15T16:20:52Z",
         "note": "PR #466 (auto-claim wiring, part a) landed CI-green, awaiting Gary's merge (own-repo gate). Sophia continuing with dao_client half + plan-file plumbing. Two deploy-caused restarts survived (15:46, 16:00) via re-nudge; HTTPS cert still GitHub-side pending, non-blocking.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 21
       }
     },
     {
