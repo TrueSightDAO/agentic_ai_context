@@ -5,6 +5,7 @@ on:
     paths:
       - "handoffs/HANDOFF_MANIFEST.md"
       - "handoffs/index.json"
+      - "handoffs/active_supervision.json"
       - "scripts/validate_handoff_manifest.py"
       - "scripts/build_handoff_index.py"
       - "scripts/tests/test_validate_handoff_manifest*.py"
@@ -16,6 +17,7 @@ on:
     paths:
       - "handoffs/HANDOFF_MANIFEST.md"
       - "handoffs/index.json"
+      - "handoffs/active_supervision.json"
       - "scripts/validate_handoff_manifest.py"
       - "scripts/build_handoff_index.py"
 

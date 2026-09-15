@@ -99,7 +99,7 @@ been committed since your clone was last refreshed (`SOPHIA_HANDOFFS.md` §"Pull
 - **Priority order** when selecting: `paused_at_gate` (cheap unblock) > `failed` (diagnose) >
   `executing` (monitor) > `awaiting_kickoff` (dispatch). Prefer the most-advanced thread.
 - **One outstanding directive per thread, max — across ALL concurrent supervisors, not just your
-  own loop.** Before prompting, check the thread's last message: if Sophia already has an
+  own loop.** The **primary check is structural, not inferred** — read `handoffs/active_supervision.json` (shown as the 👀 badge on `sprint.truesight.me`), where every supervisor records a live claim the moment it starts driving a thread. If another supervisor holds a **fresh** claim on it, the thread is already being driven — **do not re-ping**. Only fall back to the weaker inference below when there is no claim. Before prompting, check the thread's last message: if Sophia already has an
   unanswered `go` or is mid-turn (from *any* supervisor — another Envoy tmux session, DeepSeek
   Local, or a prior iteration of your own loop), **do not re-ping** — re-pinging a running turn
   stalls or duplicates work. Multiple Envoy tmux sessions on `nelanco-claude` commonly run this
@@ -212,8 +212,17 @@ escalates even under this envelope — always-stop markers win over the standing
 A supervisor is itself session-scoped and can be interrupted. Between threads, persist your
 position so a fresh supervisor session resumes without re-reading every thread:
 
-- Write a short `notes/supervisor_loop_<date>.md` (or update the supervisor's own row in the
-  index) recording: which thread(s) you're supervising, their state, and your next action.
+- **Mechanism of record (PR4b, 2026-09-15): the shared `handoffs/active_supervision.json`.**
+  **Claim** a thread by adding an entry (`plan_file`, `supervisor`, `claimed_at`, optional
+  `note`) when you start driving it, and **release** it by removing that entry when you stop —
+  a small, self-mergeable docs-only PR. It is merged into `handoffs/index.json`'s `supervised_by`
+  field and rendered on `sprint.truesight.me`, so a fresh session (or a *different* supervisor)
+  sees what's live **before** re-reading any thread. A claim older than ~60 min is surfaced as
+  **stale** (`.stale = true`), so an abandoned claim is never silently trusted (mirrors §2a).
+- The private notes file is now **optional supplementary context, not the checkpoint of
+  record** — keep a short `notes/supervisor_loop_<date>.md` (or the supervisor's own row in the
+  index) only for free-text reasoning that doesn't fit the claim's one-line `note` field,
+  recording: which thread(s) you're supervising, their state, and your next action.
 - Keep it tiny — a line per thread. This is the supervisor's analogue of Sophia's context
   compaction: bound your own context, don't re-derive the world each session.
 
