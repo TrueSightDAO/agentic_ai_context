@@ -71,29 +71,59 @@ STATE_ENUM = [
 
 # Ordered (regex, state) rules; first match wins. Matched against the lower-cased
 # Status cell ONLY (never the whole row), so prose in other columns cannot leak in.
+#
+# Ordering is load-bearing and is NOT the §2 enum order: a Status cell narrates
+# history, so a *terminal* word ("complete", "done", "deployed") frequently describes
+# a finished sub-step inside an in-flight or human-gated row. The generic terminal
+# words therefore sit LAST and the specific stage markers are tested first. Real cases:
+#   "build complete — awaiting governor UAT"   -> human_uat_ready (not done)
+#   "executing — PR1–PR3 done + deployed"       -> executing       (not done)
+#   "deployed — Tier-1 parity gaps in progress" -> executing       (not done)
 # ``deployed`` -> done and ``draft`` / ``demo`` -> awaiting_kickoff mirror the
 # validator's KNOWN_STATUS_KEYWORDS so every status it accepts also maps to a state.
 STATE_RULES: list[tuple[str, str]] = [
+    # -- explicit terminal override (beats any history it narrates) --
     (r"\bsuperseded\b", "done"),
-    (r"\bdeployed\b", "done"),
-    (r"\bcomplet(?:e|ed)\b", "done"),
-    (r"\bdone\b", "done"),
+    # -- non-terminal health markers --
     (r"\bstale\b", "stale"),
     (r"\bfailed\b|\berrored\b", "failed"),
+    # -- human-gated stages (must precede the generic terminal words) --
+    (r"human uat|governor uat|human_uat_ready|ready for human", "human_uat_ready"),
+    (r"sophia uat", "sophia_uat"),
+    (r"envoy uat", "envoy_uat"),
+    # A cell naming the human as the blocker is blocked_on_human, not paused_at_gate;
+    # 'governor'/'gary' are this DAO's human-gate vocabulary.
+    (
+        r"await(?:ing)? (?:gary|governor|human)\b|pending (?:gary|governor|human)\b",
+        "blocked_on_human",
+    ),
+    # -- prod-merge stage (pre-done) --
+    # 'prod deploy' is deliberately absent: it is a history phrase inside done rows
+    # ("... prod deployed + verified"), whereas these three are forward-looking.
+    (r"prod merge|merged to prod|promote to prod", "prod_merge"),
+    # -- not-yet-started --
     (
         r"await(?:ing)? kickoff|not yet triggered|go[- ]ready|\bnew\b|\bdraft\b|\bdemo\b",
         "awaiting_kickoff",
     ),
-    (r"sophia uat", "sophia_uat"),
-    (r"envoy uat", "envoy_uat"),
-    (r"human uat|ready for human|human_uat_ready", "human_uat_ready"),
-    (r"prod merge|merged to prod|prod deploy|promote to prod", "prod_merge"),
-    (r"in progress|in flight|executing|\bwip\b|underway", "executing"),
+    # -- active work (precedes terminal words; see the ordering note above) --
+    (r"in progress|in flight|\bexecuting\b|\bwip\b|underway", "executing"),
+    # -- generic terminal words (lowest priority) --
+    (r"\bdeployed\b", "done"),
+    (r"\bcomplet(?:e|ed)\b", "done"),
+    (r"\bdone\b", "done"),
 ]
 
 # Keywords that mark a "blocked" cell as human-only (never supervisor-clearable).
+# 'governor'/'gary'/'approval'/'thumbs' are included because this DAO's human gates are
+# most often phrased that way ("blocked on Gate D — Gary must ssh in"), not with the
+# literal word "human".
 HUMAN_GATE_KEYWORDS = (
     "human",
+    "governor",
+    "gary",
+    "approval",
+    "thumbs",
     "money",
     "secret",
     "treasury",
