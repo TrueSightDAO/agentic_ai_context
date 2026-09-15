@@ -1,6 +1,6 @@
 # Public-Key Lookup Cache — Content-Addressed Per-Key Store — Execution Roadmap
 
-**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361).
+**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **RESUME HERE = PR4.**
 **Repos under change:** `tokenomics` (generator GAS), `treasury-cache` (data surface),
 `truesight_autopilot` (reader), `dapp` (later consumer).
 **Designed by:** Gary Teh + Claude · **Implemented by:** TBD (open PRs; `truesight_autopilot`
@@ -187,9 +187,10 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 
 ## 5. Resume tracker
 
-> **RESUME HERE:** PR1 — generator emits `public_keys/<sha256>.json` (additive). Open PRs;
-> human-merge `truesight_autopilot`. Report the DAO contribution after each unit before the next.
-> **One PR per turn:** do PR1 and STOP; the next turn picks up PR2. Never run multiple PRs in a
+> **RESUME HERE (2026-09-15):** **PR4** — vault auth force-fresh-on-deny. `vault_routes.py` is
+> **already wired** to `resolve_key` (step 1 done); remaining gap = **step 2** (one fresh lookup
+> before denying a sign-in). The old `track_registry` hold is **VACATED** (no open PR references it).
+> **One PR per turn:** do PR4 and STOP; the next turn picks up PR5. **PR1–PR3 are SHIPPED — do NOT re-run (duplicate-PR risk).** Never run multiple PRs in a
 > single turn (`OPERATING_INSTRUCTIONS.md §5a`).
 
 | Unit | PR opened | Merged | Deployed | Contribution reported | UAT |
