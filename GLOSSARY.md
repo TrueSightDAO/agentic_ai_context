@@ -47,3 +47,25 @@ beta staging environment over spinning up local instances.
 > When an agent asks a human to UAT, it MUST already have run its own **self-UAT**
 > (stage 1 above) and reported the evidence — the human UAT is a second, independent
 > confirmation, never the first exercise of the change.
+
+---
+
+## Thread vs. Channel — the unit of "one piece of open work" per platform
+
+A single piece of handed-off work (a plan, a bug, a one-off request) is tracked as a
+different container depending on which platform it lives in:
+
+- **Telegram:** the unit is a **thread** — a forum **topic** inside the single
+  TrueSight DAO Ops supergroup (`chat_id -1003919341801`), identified by its
+  `message_thread_id` (e.g. thread `27138`). Telegram threads are how the vast
+  majority of Sophia handoffs are parked/executed (see `sophia/SOPHIA_HANDOFFS.md`).
+- **Discord:** the unit is a **channel** — a distinct channel in the TrueSight DAO
+  guild (e.g. `#discord-parity`, `#adapter-bugs`), not a Discord *thread* object.
+  As of 2026-09-14 the guild has no active Discord threads (`GET
+  /guilds/{id}/threads/active` returns empty) — Sophia's Discord adapter opens a new
+  **channel** per work item instead (see `plans/DISCORD_ADAPTER_PLAN.md`).
+
+**Why this matters for a supervisor (`sophia/SUPERVISOR_LOOP.md`) or anyone auditing
+open work:** "check the threads" only covers Telegram. A full sweep of open/unfinished
+work must separately enumerate Discord **channels** (`GET /guilds/{guild_id}/channels`)
+— there is no single API call that returns "all open units" across both platforms.
