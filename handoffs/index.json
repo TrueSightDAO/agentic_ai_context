@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T06:40:54Z",
+  "generated_at": "2026-09-15T06:55:43Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "6e5ab6bffd2246dd233df29ab649007c23f36521f18feafdce3c1714cb967442",
+  "source_sha256": "ad9647f98e6c7fbcf73ef51e8a18654e338c074b90f985b68ce73cd42ca0f3fe",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,7 +19,7 @@
   "handoff_count": 43,
   "counts_by_state": {
     "awaiting_kickoff": 15,
-    "executing": 6,
+    "executing": 5,
     "paused_at_gate": 8,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -27,7 +27,7 @@
     "prod_merge": 0,
     "blocked_on_human": 0,
     "failed": 0,
-    "done": 14,
+    "done": 15,
     "stale": 0,
     "unknown": 0
   },
@@ -52,8 +52,8 @@
       "plan_file": "`handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`",
       "title": "**CRF Anapu Media Task Plan** — ingest the 2026-09-09 CRF Anapu site-visit media (8 HEIC + 14 MOV + 2 PNG, 24 files, 22 geotagged) into MAP + add a photo/video gallery to the live program page https://beta.truesight.me/programs/crf-anapu/.",
       "handoff_date": "2026-09-11",
-      "state": "executing",
-      "status_raw": "in progress — PR1/PR1b/PR2/PR4 merged; PR5 (media long pole) in flight; **standalone subdomain `cfr.truesight.me` LIVE 2026-09-11**",
+      "state": "done",
+      "status_raw": "**build complete — awaiting governor UAT** (PR1–PR5 all merged/done; video-embed sizing bug found + fixed on both `beta.truesight.me/programs/crf-anapu/` and `cfr.truesight.me` 2026-09-15)",
       "telegram_thread_id": "25181",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -62,7 +62,7 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "jedielcio` **404**, no sidecars/transcripts in `~/cfr_work/`, no plot in `sunmint/plots/index.geojson` — **the batch is RAW, not MAP-processed**. Media: `/home/ubuntu/cfr_work/` = 8 HEIC + 14 MOV + 2 PNG, single visit 2026-09-09, Anapu/Pará, bbox −3.38970..−3.38890 × −51.30080..−51.30000 (~0.79 ha, centroid −3.38925/−51.30040); 58 frames + 16 sheet crops derived. Separate older `jedielcio` inbox batch = 4 mp4 (yt_ids set) but **no manifest**. §5a ONE PR PER TURN: PR1 (this plan + row) ✅ → PR2 manifest v2 (+ file missing `jedielcio.json`) → PR3 plot/sheet **GATED** (CRF has NO CEPOTX site code; school ≠ cacao farm) → PR4 program-page gallery (**new pattern**) → PR5 raw photos + MOV→MP4 + transcription + daemon → UAT gate. **Open decisions:** (a) farm_id `crf-anapu-para` vs `jedielcio`; (b) school-vs-farm plot semantics; (c) gallery on a *program* page (normally a farm-page convention). No prod sync without GO. **2026-09-11 (later): standalone subdomain `cfr.truesight.me` stood up & LIVE** — repo `cfr-anapu` was pre-existing + already in `allowed_repos`, so the real blocker was **Pages auto-enable** (PAT lacks the Pages scope; `configure-pages enablement:true` 403'd) — **solved by pushing a `gh-pages` branch**; Route53 CNAME → `truesightdao.github.io`; site 200 with valid Let's Encrypt cert. **Independent of the MAP media long pole (PR5), which remains in flight.**"
+      "last_updated": "jedielcio` **404**, no sidecars/transcripts in `~/cfr_work/`, no plot in `sunmint/plots/index.geojson` — **the batch is RAW, not MAP-processed**. Media: `/home/ubuntu/cfr_work/` = 8 HEIC + 14 MOV + 2 PNG, single visit 2026-09-09, Anapu/Pará, bbox −3.38970..−3.38890 × −51.30080..−51.30000 (~0.79 ha, centroid −3.38925/−51.30040); 58 frames + 16 sheet crops derived. Separate older `jedielcio` inbox batch = 4 mp4 (yt_ids set) but **no manifest**. §5a ONE PR PER TURN: PR1 (this plan + row) ✅ → PR2 manifest v2 (+ file missing `jedielcio.json`) → PR3 plot/sheet **GATED** (CRF has NO CEPOTX site code; school ≠ cacao farm) → PR4 program-page gallery (**new pattern**) → PR5 raw photos + MOV→MP4 + transcription + daemon → UAT gate. **Open decisions:** (a) farm_id `crf-anapu-para` vs `jedielcio`; (b) school-vs-farm plot semantics; (c) gallery on a *program* page (normally a farm-page convention). No prod sync without GO. **2026-09-11 (later): standalone subdomain `cfr.truesight.me` stood up & LIVE** — repo `cfr-anapu` was pre-existing + already in `allowed_repos`, so the real blocker was **Pages auto-enable** (PAT lacks the Pages scope; `configure-pages enablement:true` 403'd) — **solved by pushing a `gh-pages` branch**; Route53 CNAME → `truesightdao.github.io`; site 200 with valid Let's Encrypt cert. **Independent of the MAP media long pole (PR5), which remains in flight.** **2026-09-12: PR5 media long pole DONE** — all 14 videos uploaded, 14/14 sidecars carry `yt_id`, caption backfill done, `truesight_me_beta` PR #377 landed the gallery update. **2026-09-15:** RESUME HERE pointer was stale (still said PR5 in flight) — fixed via agentic_ai_context PR #1126. UAT surfaced a real bug: YouTube embeds rendered squished on both `beta.truesight.me/programs/crf-anapu/` and `cfr.truesight.me` (`.farm-video{height:auto}` has no effect on an `<iframe>`, no intrinsic aspect ratio) — fixed + merged: `truesight_me_beta` #378 (16:9 box) + #379 (lazy-load), `cfr-anapu` #3 (ported fix, synced `main`→`gh-pages`). Both surfaces verified live. **RESUME HERE = governor UAT** on `beta.truesight.me/programs/crf-anapu/` and `cfr.truesight.me`; no prod sync without explicit GO."
     },
     {
       "plan_file": "`handoffs/SITIO_TORRES_MEDIA_TASK_PLAN.md`",
