@@ -24,7 +24,7 @@
       "plan_file": "plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
-      "note": "executing -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Deploy landed 20:53:43 UTC (1254da2). Nudged to proceed with UAT U1-U7 (completion gate). Actual .pem archiving only after UAT passes."
+      "note": "blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net). krake_nginx pre-existing vault-pin gap found + fixed (truesight_autopilot#476, host-local ed25519 pin, merged), NOT yet deployed. Reviewed and independently verified all diffs before merging."
     },
     {
       "plan_file": "plans/CHOCOLATE_SUBSCRIPTION_PLAN.md",
