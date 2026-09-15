@@ -1,7 +1,9 @@
 # CRF Anapu × SunMint — tree-submission cohort proposal & execution roadmap
 
-**Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification —
-not yet executed. **Status: proposal, awaiting governor correction.**
+**Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification.
+**Status: ✅ APPROVED 2026-09-15** — all §6 open decisions resolved (Options confirmed, submission-only
+membership confirmed, CEPOTX/Jedielcio privacy sign-off obtained). **Ready for PR0.** Not yet started
+in this session — parked for a supervisor thread to pick up and drive per `sophia/SUPERVISOR_LOOP.md`.
 
 ---
 
@@ -320,8 +322,8 @@ line has to be drawn at *what each item shows*, not *whether items show at all*:
   nothing that isn't already exposed; what stays off the credential page is the *aggregation* of "all
   of this specific minor's locations in one place," which is a materially different privacy surface
   than any single tree's already-public pin.
-- Still needs explicit governor + CEPOTX confirmation (§6) — the *link-out-rather-than-duplicate*
-  design is this proposal's recommendation, not yet a confirmed decision.
+- **✅ RESOLVED (Gary, 2026-09-15): CEPOTX/Jedielcio already signed off** on this privacy posture —
+  the link-out-rather-than-duplicate design is confirmed, not just recommended.
 
 ---
 
@@ -350,10 +352,10 @@ line has to be drawn at *what each item shows*, not *whether items show at all*:
    cohort if the submitter later turns out to be a CRF Anapu student? Recommend **no** — origin
    attribution should be at submission time only, exactly as literally requested ("submissions via
    that route"), not inferred after the fact from identity.
-3. **Privacy scope** (§4, updated) — aggregate counts on the cohort card, itemized rows (type/species/
-   date) on click-through, **linking to** each tree's already-public Impact Map/QR entry rather than
-   duplicating GPS/photo on the credential page. Confirm this matches CEPOTX's actual consent posture;
-   may need CEPOTX/Jedielcio input, not just Gary's.
+3. **✅ RESOLVED (Gary, 2026-09-15).** Privacy scope (§4) — aggregate counts on the cohort card,
+   itemized rows (type/species/date) on click-through, **linking to** each tree's already-public
+   Impact Map/QR entry rather than duplicating GPS/photo on the credential page. **CEPOTX/Jedielcio
+   have already signed off on this posture** — no further partner confirmation needed on this point.
 4. **`program_mode` as a single value vs. an array** (§2.2 point 5) — a single new value
    (`"sunmint_cohort"`, replacing `"cohort_credentialing"` for CRF Anapu) is simpler to ship first; an
    array (`program_modes: [...]`) is the more correct long-term shape if a program can be *both* at
@@ -388,13 +390,13 @@ have to discover mid-turn:
    the same operational pattern rather than inventing a third one.
 4. **`sunmint_beta`'s exact query-param reading convention**, if any already exists for something else
    in that app (to match existing style rather than introduce a new one for `?program=`).
-5. **CEPOTX/Jedielcio's actual consent posture** (§4, open decision #3) — not a code question, a
-   partnership question; needs a real conversation, not an assumption.
+5. ~~**CEPOTX/Jedielcio's actual consent posture**~~ — **✅ RESOLVED (Gary, 2026-09-15): already
+   signed off.** No longer a pre-flight blocker.
 
 ✅ **Pre-flight Completeness (partial):** items 1–4 above are code/repo reads any executing agent can
 resolve directly, at low cost, as **PR0** below — captured here so PR1 doesn't have to discover them
-mid-turn. Item 5 is a human/partnership question outside any PR's scope and is called out explicitly
-rather than silently assumed.
+mid-turn. Item 5 is resolved (was the only human/partnership item; all remaining pre-flight items are
+code-only).
 
 ---
 
@@ -439,6 +441,9 @@ start PR0 before that confirmation per the governor-decisions convention this do
 
 ## 10. Rollout
 
-**Not started.** Per Gary's instruction, this proposal is being sent to a new Telegram topic —
-**"CFR partnership - figure out how to present"** — for review and correction before any PR begins.
-RESUME HERE (§8) stays at PR0 until that review lands and this doc's §0/§6 open items are resolved.
+**Approved, not yet started.** Reviewed in the Telegram topic **"CFR partnership - figure out how to
+present"**. All §6 open decisions are resolved as of 2026-09-15 (Gary confirmed Option A, submission-only
+membership, and reported CEPOTX/Jedielcio's sign-off on the privacy posture). **RESUME HERE (§8) =
+PR0**, ready for a supervisor (Envoy or Sophia, per `sophia/SUPERVISOR_LOOP.md`) to pick up and drive
+through the roadmap — remaining pre-flight items (§7 #1–4) are code-only reads, not further human
+decisions.
