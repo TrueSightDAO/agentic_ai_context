@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### 3 credential-vault gaps left by the SSH-key migration (clasp / stripe / cypher-defence PAT)
+
+**Filed 2026-09-15 by Sophia. Owner: UNCLAIMED (separate thread). Governor: Gary (thread 30473).**
+
+**Context.** `plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md` Unit 2 listed 7 credentials to
+migrate. The 3 **SSH keys** (2b/2c/2d) are migrated and their consumers repointed
+(`truesight_autopilot#471`, `#472`). The remaining three are **still bare files** — code
+falls back to the on-disk path:
+
+| Plan unit | Vault name (intended) | Bare file still on disk | Consumer that still falls back |
+|-----------|------------------------|--------------------|-------------------------------|
+| 2e | `clasp_oauth_gary` | `/home/ubuntu/.clasprc-gary.json` | `gas_deploy_project` (clasp OAuth) |
+| 2f | `stripe_test_key` | `/home/ubuntu/stripe_test_key` | beta-sandbox Stripe tooling |
+| 2g | `github_cypher_defence_pat` | `/home/ubuntu/CYPHER_DEFENCE_OPS_PAT` | Cypher-Defense repo ops |
+
+**Why it matters.** Until migrated, Unit 6 (archiving the bare files) cannot be fully closed,
+and these three keep the "stale ungoverned on-disk credential" risk the vault exists to remove.
+
+**To fix.** Same pattern as the SSH keys: `vault.add(...)` each value, confirm each consumer
+resolves vault-first, then include their bare files in the Unit 6 archive.
+
+
 ### dapp / treasury-cache: Elizabeth Wong per-key `roles` drift — BLOCKS `dapp_prod` promotion of the per-key lookup cache
 
 **Filed 2026-09-15. Owner: UNCLAIMED — root cause routed to Gary (real person's governor-role data). Governor: Gary (thread 30471).**

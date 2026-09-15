@@ -8,15 +8,29 @@ encrypted vault, then verify Sophia's tools can access them.
 **Related plan:** `SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md` (broader governance,
 Phase 3 = vault).
 
-> ## ▶ RESUME HERE
+> ## ▶ RESUME HERE  (updated 2026-09-15)
 >
-> **▶ ACTIVE: Pre-flight.** Nothing built yet (plan written 2026-06-14).
-> Start at the **Pre-flight checklist**, then Unit 1.
+> **▶ ACTIVE: deploy-gated.** As of 2026-09-15 the vault is **live with 42
+> credentials** and the SSH keys are migrated:
+> - **Unit 1 ☑** vault initialized 2026-06-15.
+> - **Unit 2 ☑ (SSH keys)** — `ssh_key_nelanco_aws`, `ssh_key_server_us`,
+>   `ssh_key_nelanco_california` are in the vault, **byte-identical** to the
+>   bare PEMs (verified by pubkey fingerprint). ⚠️ Names differ from this
+>   plan's original 2b/2c/2d (`ssh_key_nelanco`/`ssh_key_california`); the
+>   **code** was repointed to the existing names rather than renaming entries.
+> - **Unit 3 ☑** — `ssh_run` is vault-native + **host-aware**
+>   (`FLEET[host]["vault_key"]`, PR **truesight_autopilot#471**); df-alert cron
+>   scripts repointed to `scripts/fleet_probe.py` (PR **#472**).
+> - **Unit 5 ◐** — `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2 +
+>   `CREDENTIAL_HANDOFF_PROTOCOL.md` updated (this PR).
+> - **Unit 4 🛑 UAT — BLOCKED** on the governor deploying #471/#472 (merged ≠ live).
+> - **Unit 6 🛑 archive bare PEMs — BLOCKED** on UAT passing.
 >
-> **🛑 Where to STOP (operator gates):** Sophia initializes the vault + adds
-> credentials via her existing tool set; the only gate is **UAT** (Unit 4) —
-> the governor verifies each credential can be accessed. Sophia opens PRs
-> only, never self-merges own-repo PRs.
+> **Out of scope / separate thread:** `clasp_oauth_gary`, `stripe_test_key`,
+> `github_cypher_defence_pat` were NOT migrated — filed in `OPEN_FOLLOWUPS.md`.
+>
+> **🛑 Where to STOP (operator gates):** the only gate is **UAT** (Unit 4) —
+> the governor verifies each credential can be accessed. Deploys are governor-run.
 
 **Companion docs:** `SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md`, `CREDENTIAL_HANDOFF_PROTOCOL.md`,
 `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2.
@@ -89,8 +103,8 @@ Legend: ☐ todo · ⧗ in progress · ☑ done · 🛑 operator gate
 | Unit | Scope | Repo / target | Status |
 |------|-------|---------------|--------|
 | **0** | This plan (the baton) | `agentic_ai_context` | ☑ |
-| **1** | **Initialize vault** — `vault.initialize()` via Sophia's own tool or a one-shot script. Creates `/opt/truesight_autopilot/vault/`, generates `vault.key` (chmod 600), creates empty `vault.json.enc`. Verify via `vault.is_initialized()` → true. | On-box | ☐ |
-| **2** | **Add credentials to vault.** For each staged file at `/home/ubuntu/`, read the value, call `vault.add(name, value, purpose, scopes, "Gary Teh")`. Credentials to migrate: | | |
+| **1 ☑** | **Initialize vault** — `vault.initialize()` via Sophia's own tool or a one-shot script. Creates `/opt/truesight_autopilot/vault/`, generates `vault.key` (chmod 600), creates empty `vault.json.enc`. Verify via `vault.is_initialized()` → true. | On-box | ☐ |
+| **2 ◐** | **Add credentials to vault.** (SSH keys ☑ done; 2e–2g NOT migrated — see OPEN_FOLLOWUPS) For each staged file at `/home/ubuntu/`, read the value, call `vault.add(name, value, purpose, scopes, "Gary Teh")`. Credentials to migrate: | | |
 | | 2a: `github_krake_pat` — value from `/home/ubuntu/KRAKE_IO_PAT`, purpose "GitHub PAT for all Gary's repos", scopes `["github", "git_push", "gh_cli"]` | On-box | ☐ |
 | | 2b: `ssh_key_nelanco` — value from `/home/ubuntu/NELANCO_aws_20201122.pem`, purpose "SSH key for 16 Nelanco fleet hosts", scopes `["ssh", "infrastructure"]` | On-box | ☐ |
 | | 2c: `ssh_key_server_us` — value from `/home/ubuntu/server_us.pem`, purpose "SSH key for 3 US-East Krake hosts", scopes `["ssh", "infrastructure"]` | On-box | ☐ |
@@ -98,7 +112,7 @@ Legend: ☐ todo · ⧗ in progress · ☑ done · 🛑 operator gate
 | | 2e: `clasp_oauth_gary` — value from `/home/ubuntu/.clasprc-gary.json`, purpose "Clasp OAuth token for garyjob@agroverse.shop GAS deploys", scopes `["google_apps_script", "clasp"]` | On-box | ☐ |
 | | 2f: `stripe_test_key` — value from `/home/ubuntu/stripe_test_key`, purpose "Stripe test-mode secret key for beta sandbox", scopes `["stripe", "payments", "test"]` | On-box | ☐ |
 | | 2g: `github_cypher_defence_pat` — value from `/home/ubuntu/CYPHER_DEFENCE_OPS_PAT`, purpose "GitHub PAT for Cypher-Defense repo ops", scopes `["github"]` | On-box | ☐ |
-| **3** | **Update Sophia's tools to use vault.** Update `ssh_run` and any GitHub/clasp tooling to resolve credentials from the vault via `vault.get_value(name)` instead of hardcoded `/home/ubuntu/` paths. **Note:** If the tools already support vault resolution (Phase 3.5/3.6), this unit is verify-only. | `truesight_autopilot` | ☐ |
+| **3 ☑** | **Update Sophia's tools to use vault.** PR#471 (ssh_run vault-native + host-aware), PR#472 (df-alert → `scripts/fleet_probe.py`) Update `ssh_run` and any GitHub/clasp tooling to resolve credentials from the vault via `vault.get_value(name)` instead of hardcoded `/home/ubuntu/` paths. **Note:** If the tools already support vault resolution (Phase 3.5/3.6), this unit is verify-only. | `truesight_autopilot` | ☐ |
 | **4 🛑** | **UAT — governor verification.** For each credential, verify Sophia can access it: | | |
 | | 4a: Ask Sophia "do you have the `github_krake_pat` credential?" → she calls `check_credential("github_krake_pat")` → returns metadata (not value) | Telegram | ☐ |
 | | 4b: Ask Sophia to push a test branch to a Krake-owned repo → she resolves `github_krake_pat` from vault → push succeeds | Telegram | ☐ |
@@ -106,8 +120,8 @@ Legend: ☐ todo · ⧗ in progress · ☑ done · 🛑 operator gate
 | | 4d: Ask Sophia to SSH into `krake_redis` using `ssh_key_nelanco` → SSH succeeds | Telegram | ☐ |
 | | 4e: Ask Sophia to `clasp status` on the shopping cart GAS project using `clasp_oauth_gary` → works | Telegram | ☐ |
 | | 4f: Ask Sophia to verify the `stripe_test_key` exists in vault (metadata only) | Telegram | ☐ |
-| **5** | **Update documentation.** Update `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2 to note credentials are now in the encrypted vault at `/opt/truesight_autopilot/vault/` (not bare files at `/home/ubuntu/`). Update `CREDENTIAL_HANDOFF_PROTOCOL.md` to reference vault as the preferred credential staging method going forward. | `agentic_ai_context` | ☐ |
-| **6** | **Clean up bare files.** Once UAT confirms all credentials work from the vault, archive (don't delete) the bare files at `/home/ubuntu/`: move them to `/home/ubuntu/.migrated_to_vault/` with a README noting migration date. This prevents accidental use of stale ungoverned credentials. | On-box | ☐ |
+| **5 ◐** | **Update documentation.** (this PR) Update `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2 to note credentials are now in the encrypted vault at `/opt/truesight_autopilot/vault/` (not bare files at `/home/ubuntu/`). Update `CREDENTIAL_HANDOFF_PROTOCOL.md` to reference vault as the preferred credential staging method going forward. | `agentic_ai_context` | ☐ |
+| **6 🛑** | **Clean up bare files.** Once UAT confirms all credentials work from the vault, archive (don't delete) the bare files at `/home/ubuntu/`: move them to `/home/ubuntu/.migrated_to_vault/` with a README noting migration date. This prevents accidental use of stale ungoverned credentials. | On-box | ☐ |
 
 ---
 
