@@ -1,12 +1,12 @@
 # Public-Key Lookup Cache — Content-Addressed Per-Key Store — Execution Roadmap
 
-**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **RESUME HERE = PR4.**
+**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **PR4 ✅ merged** — vault force-fresh-on-deny [autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469) (deploy-gated). **RESUME HERE = PR5.**
 **Repos under change:** `tokenomics` (generator GAS), `treasury-cache` (data surface),
 `truesight_autopilot` (reader), `dapp` (later consumer).
 **Designed by:** Gary Teh + Claude · **Implemented by:** TBD (open PRs; `truesight_autopilot`
 is own-repo / human-merge gated).
 
-> **RESUME HERE:** PR3 — reader point-lookup · `truesight_autopilot/app/governor_registry.py`
+> **RESUME HERE:** PR5 — other consumers + DApp (PR1–PR4 all merged; PR4 awaits deploy)
 >
 > **⚠️ ONE PR PER TURN (mandatory — `OPERATING_INSTRUCTIONS.md §5a`):** an execution turn does
 > **exactly the single `RESUME HERE` PR, opens it, reports the contribution, ticks the tracker,
@@ -187,18 +187,20 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 
 ## 5. Resume tracker
 
-> **RESUME HERE (2026-09-15):** **PR4** — vault auth force-fresh-on-deny. `vault_routes.py` is
-> **already wired** to `resolve_key` (step 1 done); remaining gap = **step 2** (one fresh lookup
-> before denying a sign-in). The old `track_registry` hold is **VACATED** (no open PR references it).
-> **One PR per turn:** do PR4 and STOP; the next turn picks up PR5. **PR1–PR3 are SHIPPED — do NOT re-run (duplicate-PR risk).** Never run multiple PRs in a
-> single turn (`OPERATING_INSTRUCTIONS.md §5a`).
+> **RESUME HERE (2026-09-15):** **PR4 ✅ MERGED** — vault force-fresh-on-deny
+> ([autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469), merge sha `23266c0`;
+> reviewed + merged by Gary). `resolve_key_fresh()` reads the per-key file via the authenticated
+> contents API; an interactive sign-in does ONE fresh lookup on deny before refusing. **Merged but
+> NOT deployed** — deploying `truesight_autopilot` is an always-stop gate, so **UAT U2 is pending
+> Gary's deploy**. **One PR per turn:** next turn picks up **PR5**. **PR1–PR4 are SHIPPED — do NOT
+> re-run (duplicate-PR risk).** Never run multiple PRs in a single turn (`OPERATING_INSTRUCTIONS.md §5a`).
 
 | Unit | PR opened | Merged | Deployed | Contribution reported | UAT |
 |------|-----------|--------|----------|-----------------------|-----|
 | PR1 — generator emits per-key files | ☑ tokenomics#359 | ☑ 2026-06-16 | ☑ 97 keys live | ☑ | U1 |
 | PR2 — incremental / revocation | ☑ tokenomics#361 | ☑ 2026-06-16 | ☑ | ☑ | U3, U5 |
 | PR3 — reader `resolve_key` | ☑ autopilot#230 (+#468 tests) | ☑ 2026-09-15 | — | ☑ | (automated ✅ 8 tests) |
-| PR4 — vault auth + force-fresh-on-deny | ☐ step 2 only (step 1 done) | ☐ | ☐ | ☐ | U2 |
+| PR4 — vault auth + force-fresh-on-deny | ☑ autopilot#469 | ☑ 2026-09-15 | ☐ (deploy-gated) | ☑ | U2 (pending deploy) |
 | PR5 — other consumers + DApp | ☐ | ☐ | ☐ | ☐ | U4 |
 
 ---
