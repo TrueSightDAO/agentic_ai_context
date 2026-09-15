@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T18:17:56Z",
+  "generated_at": "2026-09-15T18:25:49Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "eb44f0e5890216c91eaf1c414bb42cfcb19fe448c4eb3ff01771acb236159c35",
+  "source_sha256": "5210a7b3fc86fb0d7e10b91cddd8b70df24fde02c16f62d662cefbec879dd844",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T18:17:47Z",
         "note": "PR1-PR4 all shipped and merged (PR4 = truesight_autopilot#469, vault force-fresh-on-deny, personally reviewed by Envoy). Tracker/manifest closed out (agentic_ai_context#1194). RESUME HERE = PR5 (UAT), blocked on the same deploy as the other threads.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 8
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T18:17:47Z",
         "note": "Picked up while the other three supervised threads wait on Gary. Vault already initialized with 42 creds; dispatched a read-only assessment for migrating the 3 remaining bare .pem files -- no credential moves without explicit review, given this touches real private keys.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 8
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T17:26:27Z",
         "note": "blocked_on_human -- fix merged (#467) but not deployed to the live box; deploying truesight_autopilot's own service is a genuine always-stop gate, awaiting Gary.",
         "stale": false,
-        "age_minutes": 51
+        "age_minutes": 59
       }
     },
     {
@@ -886,7 +886,7 @@
         "claimed_at": "2026-09-15T17:26:27Z",
         "note": "blocked_on_human -- PR6 beta half shipped (truesight_me_beta #380 merged, quests/ redirected to sprint.truesight.me), correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS now confirmed live.",
         "stale": false,
-        "age_minutes": 51
+        "age_minutes": 59
       }
     },
     {
