@@ -1,12 +1,12 @@
 # Public-Key Lookup Cache — Content-Addressed Per-Key Store — Execution Roadmap
 
-**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **PR4 ✅ merged** — vault force-fresh-on-deny [autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469) (deploy-gated). **PR5 step 1 ✅ merged** — point-lookup consumers [autopilot#470](https://github.com/TrueSightDAO/truesight_autopilot/pull/470). **PR5 step 2 ✅ merged** — DApp `permissions.js` per-key resolve [dapp_beta#99](https://github.com/TrueSightDAO/dapp_beta/pull/99). **PR5 step 3 = evaluated, NOT NEEDED** (no UI needs cheap governor enumeration). **RESUME HERE = PR5 COMPLETE — awaiting UAT U1–U5 on beta + the blocking Elizabeth Wong per-key role fix.**
+**Status as of 2026-06-16:** design approved (Gary + Claude); **PR1 ✅ done** — see [tokenomics#359](https://github.com/TrueSightDAO/tokenomics/pull/359). **PR2 ✅ done** — see [tokenomics#361](https://github.com/TrueSightDAO/tokenomics/pull/361). **PR3 ✅ done** — reader `resolve_key` [autopilot#230](https://github.com/TrueSightDAO/truesight_autopilot/pull/230) + tests [autopilot#468](https://github.com/TrueSightDAO/truesight_autopilot/pull/468). **PR4 ✅ merged** — vault force-fresh-on-deny [autopilot#469](https://github.com/TrueSightDAO/truesight_autopilot/pull/469) (deploy-gated). **PR5 step 1 ✅ merged** — point-lookup consumers [autopilot#470](https://github.com/TrueSightDAO/truesight_autopilot/pull/470). **PR5 step 2 ✅ merged** — DApp `permissions.js` per-key resolve [dapp_beta#99](https://github.com/TrueSightDAO/dapp_beta/pull/99). **PR5 step 3 = evaluated, NOT NEEDED** (no UI needs cheap governor enumeration). **UAT RAN 2026-09-15 against deployed `truesight_autopilot` `1254da2`: U1 ⚠️ (pass w/ coverage gap), U2 ✅, U3 ✅, U4 ✅, U5 ❌ FAIL.** U5 uncovered a real regression — the per-key emitter was **dropped by the 2026-06-16 migration** and the store has been **frozen since 2026-06-18** (fix: tokenomics#494, open). **RESUME HERE = fix + deploy the restored emitter (tokenomics#494), then re-run U5/U1.**
 **Repos under change:** `tokenomics` (generator GAS), `treasury-cache` (data surface),
 `truesight_autopilot` (reader), `dapp` (later consumer).
 **Designed by:** Gary Teh + Claude · **Implemented by:** TBD (open PRs; `truesight_autopilot`
 is own-repo / human-merge gated).
 
-> **RESUME HERE:** PR5 steps 1–2 merged + step 3 evaluated (not needed) — PR1–PR5 SHIPPED on beta. Open: UAT U1–U5 on beta; **blocking:** Elizabeth Wong per-key `roles` mismatch before `dapp_prod` promotion; PR4 awaits deploy (U2).
+> **RESUME HERE:** PR1–PR5 SHIPPED on beta; **UAT ran 2026-09-15 (U1 ⚠️ / U2 ✅ / U3 ✅ / U4 ✅ / U5 ❌)**. **U5 FAIL = per-key emitter dropped in the 2026-06-16 migration, store frozen since 2026-06-18** — fix open as **tokenomics#494** (GAS deploy is `gate:human`). Elizabeth Wong drift is now a *symptom* of that regression, not a one-off. After the emitter is restored + deployed, re-run U5 + U1. **`dapp_prod` promotion still blocked** until the store is fresh.
 >
 > **⚠️ ONE PR PER TURN (mandatory — `OPERATING_INSTRUCTIONS.md §5a`):** an execution turn does
 > **exactly the single `RESUME HERE` PR, opens it, reports the contribution, ticks the tracker,
@@ -187,35 +187,41 @@ full (not the bottleneck); the *commit churn* — the part that grows — become
 
 ## 5. Resume tracker
 
-> **RESUME HERE (2026-09-15):** **PR5 step 2 ✅ MERGED** — DApp `permissions.js` resolves the
-> signed-in RSA via the per-key file `treasury-cache/public_keys/<sha256(base64pubkey)>.json`
-> ([dapp_beta#99](https://github.com/TrueSightDAO/dapp_beta/pull/99), merge sha `345c416`, reviewed +
-> merged by Gary). Point-lookup-first (one O(1) fetch); non-ACTIVE per-key status = **authoritative
-> deny, no fallback**; 404 / network / WebCrypto error → monolith fallback. 6 new unit tests
-> (`tests/permissions-perkey.test.js`), full unit suite green. **PR5 step 3 = evaluated, NOT NEEDED:**
-> a §3-style audit of every DApp page touching the members cache found **no UI needs cheap governor
-> enumeration** — 33 pages use point-lookup, 5 use `fetchSnapshot` for display, and the only
-> enumerating page (`governor_permissions.html`) is governor-only and already loads the full monolith
-> (it needs role+name, which a slim index wouldn't carry). Building `governors_index.json` would be
-> unused code, so the verdict is recorded, not implemented (re-open if a "list governors" UI lands).
-> **PR5 IS COMPLETE on beta. Remaining are GATES, not code:** (a) **UAT U1–U5 on beta** (human);
-> (b) **BLOCKING — Elizabeth Wong per-key `roles` mismatch:** her per-key file says `["member"]`
-> while `dao_members.json` says `["governor","member"]`; step 2 trusts the per-key file, so her key
-> would be **denied governor actions — DO NOT promote to `dapp_prod` until resolved** (root cause
-> queued to Gary in OPEN_FOLLOWUPS); (c) **PR4 remains MERGED but NOT DEPLOYED** — deploying
-> `truesight_autopilot` is an always-stop gate, so **UAT U2 is pending Gary's deploy**. **One PR per
-> turn:** next turn picks up the UAT/blocker resolution. **PR1–PR5 are SHIPPED — do NOT re-run
-> (duplicate-PR risk).** Never run multiple PRs in a single turn (`OPERATING_INSTRUCTIONS.md` §5a).
+> **RESUME HERE (2026-09-15, post-UAT):** **PR1–PR5 SHIPPED on beta. UAT U1–U5 RAN 2026-09-15**
+> against deployed `truesight_autopilot` **`1254da2`** (PR4 confirmed live in the deploy):
+>
+> | UAT | Result | Evidence |
+> |-----|--------|----------|
+> | **U1** per-key file exists & correct | ⚠️ **PASS w/ coverage gap** | Files correct for sampled governors, but **84% coverage (63/75 governor keys)** — Gary has 12 ACTIVE keys with no file; all post-June keys missing. |
+> | **U2** new key recognised immediately | ✅ **PASS (code-path)** | Exercised deployed `resolve_key_fresh` directly: recovers a poisoned-cache key; unknown key → clean `None`. *(Literal human beta sign-in still worth one confirmation.)* |
+> | **U3** revoked key denied | ✅ **PASS** | 9 non-ACTIVE (`VERIFYING`) per-key files present → deny path exercised. |
+> | **U4** enumeration intact | ✅ **PASS** | `load_governors()` → 73 governor keys, `updated_at 2026-09-15`, monolith path unchanged. |
+> | **U5** generation no longer grows with unchanged keys | ❌ **FAIL** | Per-key generation **frozen since 2026-06-18** (see regression below). |
+>
+> **❌ U5 FAIL — root-caused to a real regression (not cosmetics).** PR1 (tokenomics#359) + PR2 (#361) added the per-key
+> emitter on 2026-06-16; migration commit **`50999ec`** ("flatten clasp_mirrors/ …", 2026-06-16 23:23 −0700) **deleted it** and rewrote the
+> repo to match the **then-deployed GAS state (pre-PR1)**, so it **never ran in production**. Last `public_keys/` commit = **2026-06-18**; every
+> `dao_members.json` refresh since (through 2026-09-15) touches **0** per-key files; org-wide search finds no re-homed emitter. **Fix: restore the
+> emitter** — drafted as **tokenomics#494** (open, unmerged; GAS `clasp push` is `gate:human`). **This is the shared root cause of the Elizabeth
+> Wong drift** (now reframed in OPEN_FOLLOWUPS from one-off → systemic symptom).
+>
+> **Files updated this turn:** `OPEN_FOLLOWUPS.md` (new regression entry + Elizabeth Wong reframe), this plan §5/§6, `handoffs/index.json`.
+>
+> **Remaining are GATES / follow-ups, not new plan code:** (a) **tokenomics#494** — merge + GAS deploy (`gate:human`), then re-run U5/U1 (expect
+> coverage → 100% and a fresh `public_keys/` commit); (b) confirm Elizabeth Wong's true roles (human) — likely self-heals once the emitter reruns;
+> (c) the literal human U2 beta sign-in; (d) once the store is fresh, **`dapp_prod` promotion** (still blocked until then). **PR1–PR5 are SHIPPED
+> — do NOT re-run (duplicate-PR risk).** One PR per turn (`OPERATING_INSTRUCTIONS.md` §5a).
 
 | Unit | PR opened | Merged | Deployed | Contribution reported | UAT |
 |------|-----------|--------|----------|-----------------------|-----|
-| PR1 — generator emits per-key files | ☑ tokenomics#359 | ☑ 2026-06-16 | ☑ 97 keys live | ☑ | U1 |
-| PR2 — incremental / revocation | ☑ tokenomics#361 | ☑ 2026-06-16 | ☑ | ☑ | U3, U5 |
-| PR3 — reader `resolve_key` | ☑ autopilot#230 (+#468 tests) | ☑ 2026-09-15 | — | ☑ | (automated ✅ 8 tests) |
-| PR4 — vault auth + force-fresh-on-deny | ☑ autopilot#469 | ☑ 2026-09-15 | ☐ (deploy-gated) | ☑ | U2 (pending deploy) |
+| PR1 — generator emits per-key files | ☑ tokenomics#359 | ☑ 2026-06-16 | ⚠️ **superseded — emitter dropped by `50999ec`** | ☑ | U1 ⚠️ (84% coverage) |
+| PR2 — incremental / revocation | ☑ tokenomics#361 | ☑ 2026-06-16 | ⚠️ **same — frozen since 2026-06-18** | ☑ | U3 ✅ / **U5 ❌** |
+| PR3 — reader `resolve_key` | ☑ autopilot#230 (+#468 tests) | ☑ 2026-09-15 | — | ☑ | U4 ✅ (automated ✅ 8 tests) |
+| PR4 — vault auth + force-fresh-on-deny | ☑ autopilot#469 | ☑ 2026-09-15 | ☑ 2026-09-15 (`1254da2`) | ☑ | U2 ✅ (code-path) |
 | PR5 step 1 — migrate key→name point-lookup consumers | ☑ autopilot#470 | ☑ 2026-09-15 | — | ☑ | (automated ✅ 6 tests) |
-| PR5 step 2 — DApp `permissions.js` per-key resolve | ☑ dapp_beta#99 | ☑ 2026-09-15 | ☑ (beta only) | ☐ | U4 (beta) |
+| PR5 step 2 — DApp `permissions.js` per-key resolve | ☑ dapp_beta#99 | ☑ 2026-09-15 | ☑ (beta only) | ☐ | U4 ✅ (beta) |
 | PR5 step 3 — slim `governors_index.json` (only if a UI needs it) | — (condition unmet) | — | — | ☑ (verdict recorded) | — |
+| FIX — restore per-key emitter (U5 fail) | ☑ tokenomics#494 | ☐ (awaiting Gary) | ☐ (GAS `gate:human`) | ☑ (this thread) | U5/U1 — re-run post-deploy |
 
 ---
 
@@ -229,30 +235,40 @@ grant-logic UAT (U2/U3) must use the **beta vault**, not prod.
   Surface: `https://raw.githubusercontent.com/TrueSightDAO/treasury-cache/main/public_keys/<sha256-of-a-known-governor-key>.json`.
   Expect: JSON with the right `contributor`, `roles` incl. `governor`, `status:"ACTIVE"`.
   Acceptance: fields match `dao_members.json` for that key. ✅/❌
+  **Result 2026-09-15: ⚠️ PASS w/ gap** — sampled files correct, but only **84% of governor keys have a per-key file**
+  (63/75; Gary missing 12). Root cause = U5 regression. Re-run after #494 deploys.
 
 - **U2 — new key recognised immediately (the bug).**
   Interaction: register a **new** device key on beta, then **immediately** sign in at the
   beta `/vault/login` with it.
   Expect: governor vault UI loads on the **first** attempt — no 5-min wait, no worker restart.
   Acceptance: access granted < ~10 s after registration. ✅/❌
+  **Result 2026-09-15: ✅ PASS (code-path)** — deployed `resolve_key_fresh` (contents-API bypass) recovered a poisoned-cache key;
+  unknown key → clean `None`. A literal human beta sign-in is still worth one confirmation.
+  **⚠️ Caveat (verified):** for a key with **no** per-key file, force-fresh 404s on the same path → falls back to the **TTL-cached**
+  monolith (`GOVERNORS_CACHE_TTL=300`) — i.e. the 5-min lag returns for exactly the keys the plan targets. Resolved only when #494 restores coverage.
 
 - **U3 — revoked key denied.**
   Interaction: revoke a test key; re-run the publisher; attempt beta vault sign-in with it.
   Expect: per-key file shows `status:"REVOKED"` (or gone); vault denies with the
   contribution-nudge page. Acceptance: denied. ✅/❌
+  **Result 2026-09-15: ✅ PASS** — 9 non-ACTIVE (`VERIFYING`) per-key files present; deny path exercised.
 
 - **U4 — enumeration intact.**
   Surface: any "list governors" path (e.g. daily briefing, DApp governor gating).
   Expect: full governor set still resolves (monolith path unchanged).
   Acceptance: no regression vs pre-change. ✅/❌
+  **Result 2026-09-15: ✅ PASS** — `load_governors()` → 73 governor keys, `updated_at 2026-09-15`.
 
 - **U5 — generation no longer grows with unchanged keys.**
   Surface: Apps Script execution log for `publishDaoMembersCacheNow()` run twice with no
   key changes between runs.
   Expect: 2nd run is a near no-op (diff-empty tree); exec time flat, not scaling with total key count.
   Acceptance: 2nd-run commit touches only changed files. ✅/❌
+  **Result 2026-09-15: ❌ FAIL** — per-key generation **frozen since 2026-06-18** (emitter dropped by migration `50999ec`).
+  Fix = tokenomics#494; re-run after GAS deploy.
 
-**Completion gate:** PR1–PR4 merged + deployed; U1–U5 pass; contributions reported per unit.
+**Completion gate:** PR1–PR4 merged + deployed; **U1–U5 pass** — **U5 currently FAILS** (emitter regression, fix = tokenomics#494); contributions reported per unit.
 
 ---
 
