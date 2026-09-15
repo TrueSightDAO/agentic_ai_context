@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T22:02:39Z",
+  "generated_at": "2026-09-15T22:04:21Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "dec7facab2370da1173b8e098a6e38e7d2b9168e907f96635421b6c6120c21d5",
   "state_enum": [
@@ -560,9 +560,9 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "blocked_on_human (partial) -- MAJOR FINDING confirmed: UAT U5 FAILS, per-key generator dropped by tokenomics migration 50999ec (2026-06-16), frozen since 2026-06-18, DAO-wide governor-auth-freshness impact (not just Elizabeth Wong). Fallback-chain hypothesis CONFIRMED: keys with no per-key file degrade to the cached monolith, reviving the exact 5-min lag PR4 was built to retire. Fix PR tokenomics#494 opened (not merged), reviewed carefully by Envoy (sound), but the merge itself was classifier-blocked (new repo this session, DAO governor-identity infra) -- flagged to Gary for his own merge, not retried. GAS deploy to publish stays gate:human regardless. In progress: item #1 (context PR: plan §5 UAT + OPEN_FOLLOWUPS reframe) + item #4 (contribution report), both independent of #494's merge timing.",
+        "note": "blocked_on_human -- ALL 4 authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- flagged to Gary, (3) fallback-chain hypothesis CONFIRMED from deployed source, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN (not closed) pending Gary's merge of #494 + GAS deploy + live U5/U1 re-verification -- same pattern as 30475.",
         "stale": true,
-        "age_minutes": 171
+        "age_minutes": 173
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "executing -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Deploy landed 20:53:43 UTC (1254da2). Nudged to proceed with UAT U1-U7 (completion gate). Actual .pem archiving only after UAT passes.",
         "stale": true,
-        "age_minutes": 171
+        "age_minutes": 173
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7), awaiting deploy. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Pre-validated #475 against the merged artifact on a clone (27/27) before deploy. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 171
+        "age_minutes": 173
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 171
+        "age_minutes": 173
       }
     },
     {
@@ -892,7 +892,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 171
+        "age_minutes": 173
       }
     },
     {
