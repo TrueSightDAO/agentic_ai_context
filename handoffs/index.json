@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T12:10:46Z",
+  "generated_at": "2026-09-15T12:58:44Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "45d8d22a01e0a3ccc7b77ec11569ac9b534044c330fdd4f9ad5766c67925f839",
+  "source_sha256": "b135edf9afb55fea6b67695c91d76662b4ad41b98b7a4e3acdba10ca7253b1aa",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,9 +16,9 @@
     "done",
     "stale"
   ],
-  "handoff_count": 48,
+  "handoff_count": 49,
   "counts_by_state": {
-    "awaiting_kickoff": 14,
+    "awaiting_kickoff": 15,
     "executing": 8,
     "paused_at_gate": 7,
     "sophia_uat": 0,
@@ -721,6 +721,22 @@
       "last_updated": "2026-09-15"
     },
     {
+      "plan_file": "`plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`",
+      "title": "**Stop gating auto-advance on PR-less units** — `app/auto_advance.py::next_action()` treats \"no PR opened this turn\" as non-convergence, but a correctly-completed unit that isn't PR-shaped (DNS verification, pre-flight/docs-only) can never satisfy that — forcing an unnecessary human \"go\" every time. Also fixes a confirmed-live root cause of a related halt: a stale duplicate `RESUME HERE` marker. `truesight_autopilot` own-repo — human-merge only.",
+      "handoff_date": "2026-09-15",
+      "state": "awaiting_kickoff",
+      "status_raw": "**new — awaiting kickoff (RESUME HERE = PR0)**",
+      "telegram_thread_id": "30279",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "[Exec: auto-advance PR-less units fix](https://t.me/c/3919341801/30279)",
+      "telegram_topic_url": "https://t.me/c/3919341801/30279",
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15"
+    },
+    {
       "plan_file": "`plans/SOPHIA_REPO_ACCESS_DENYLIST_PLAN.md`",
       "title": "**Sophia Repo-Access Denylist** — retire the master `allowed_repos` allowlist in favour of default-allow + two protected classes (`contents_api_only_repos`, `protected_repos`) + pattern-gated `create_repo`, so new subdomains/repos stop needing a code change. Triggered by the recurring subdomain-creation friction.",
       "handoff_date": "2026-09-11",
@@ -802,6 +818,7 @@
     }
   ],
   "warnings": [
+    "line 68: ragged row has 9 cells, expected 11 — padded/truncated",
     "line 64: blank line splits the handoff table"
   ]
 }
