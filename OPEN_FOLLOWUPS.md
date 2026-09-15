@@ -1257,7 +1257,14 @@ description: >
   BRL 448.00 -> USD $86.66 ($17.33/KG) at the official BACEN PTAX rate
   (14/09/2026, venda 5.1696) per the governor's instruction to use the official
   rate. Line 11 of INV/PL-2026-0611-001 now carries this
-  value (Rev 11, thread 10800). Still open: whether to record the 5 kg receipt
+  value (Rev 11, thread 10800).
+  [Sophia 2026-09-15] LEDGER PRICE WRITTEN: `Currencies!B108`
+  ("Coopercabruca Cacao Butter (KG)", gid 1552160318) set to **17.33** via the
+  `agroverse-ledger-manager` SA (the protected range's effective editor) on the
+  governor's go -- no Edgar event back-fills col B on an existing row (asset-receipt
+  fills only D/E; currency-definition skips on name match). The SKU's 5 kg receipt
+  (offchain row 4288, Fund Handler "Matheus Reis", Is Revenue = N) values $0 -> $86.65.
+  Still open: whether to record the 5 kg receipt
   as a formal [INVENTORY MOVEMENT] (blocked on destination ledger name).
 ```
 
