@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T21:23:13Z",
+  "generated_at": "2026-09-15T21:27:23Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "879f52f7e71bd7d45e25310ce06c0038508b58e79b302eeebea2bb931ad341be",
+  "source_sha256": "6c1eb5c9c731d8b8956e36e68b370bfa62bf8050b118ed6d552ec4048f317e4a",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,15 +19,15 @@
   "handoff_count": 60,
   "counts_by_state": {
     "awaiting_kickoff": 15,
-    "executing": 13,
-    "paused_at_gate": 4,
+    "executing": 15,
+    "paused_at_gate": 2,
     "sophia_uat": 0,
     "envoy_uat": 0,
     "human_uat_ready": 2,
     "prod_merge": 0,
-    "blocked_on_human": 9,
+    "blocked_on_human": 10,
     "failed": 0,
-    "done": 16,
+    "done": 15,
     "stale": 1,
     "unknown": 0
   },
@@ -546,8 +546,8 @@
       "plan_file": "`plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md`",
       "title": "Public-Key Lookup Cache (content-addressed per-key governor store; retires the 5-min vault cache-lag bug)",
       "handoff_date": "2026-06-16",
-      "state": "paused_at_gate",
-      "status_raw": "blocked",
+      "state": "executing",
+      "status_raw": "executing — deploy landed 2026-09-15 20:53:43 UTC (`1254da2`, includes PR4 #469); UAT resuming",
       "telegram_thread_id": "30471",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -560,17 +560,17 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Deploy landed 20:53:43 UTC (1254da2), deploy-blocker cleared. Elizabeth Wong data-integrity bug still flagged to Gary directly -- root-cause call still his, not deploy-related. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2).",
+        "note": "executing -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Deploy landed 20:53:43 UTC (1254da2). Nudged to proceed with UAT U2 (new-key-on-deny) and remaining UAT legs. Elizabeth Wong data-integrity bug still flagged to Gary directly -- root-cause call his, held separate.",
         "stale": true,
-        "age_minutes": 132
+        "age_minutes": 136
       }
     },
     {
       "plan_file": "`plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`",
       "title": "Vault Initialization & Credential Migration (migrate /home/ubuntu/ bare credentials into encrypted vault)",
       "handoff_date": "2026-06-14",
-      "state": "paused_at_gate",
-      "status_raw": "blocked",
+      "state": "executing",
+      "status_raw": "executing — deploy landed 2026-09-15 20:53:43 UTC (`1254da2`); UAT U1-U7 resuming",
       "telegram_thread_id": "30473",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -583,32 +583,32 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Deploy landed 20:53:43 UTC (1254da2), Unit F's UAT gate can now run. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2).",
+        "note": "executing -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Deploy landed 20:53:43 UTC (1254da2). Nudged to proceed with UAT U1-U7 (completion gate). Actual .pem archiving only after UAT passes.",
         "stale": true,
-        "age_minutes": 132
+        "age_minutes": 136
       }
     },
     {
       "plan_file": "`plans/SOPHIA_LIVE_PROGRESS_PLAN.md`",
       "title": "Live Progress Introspection (report what the executing turn is doing when Gary asks mid-turn, instead of a canned queued ack)",
       "handoff_date": "2026-06-11",
-      "state": "done",
-      "status_raw": "**COMPLETE — UAT U1–U5 ✅ passed on deployed HEAD `1254da2` (2026-09-15)**",
+      "state": "blocked_on_human",
+      "status_raw": "**blocked_on_human — U3 regression found on re-verification (fix `truesight_autopilot#475` merged `5738db7`); awaiting a second deploy**",
       "telegram_thread_id": "30475",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "[Live Progress Introspection](https://t.me/c/3919341801/30475)",
       "telegram_topic_url": "https://t.me/c/3919341801/30475",
-      "discord_channel_id": null,
-      "discord_thread_id": null,
+      "discord_channel_id": "update)` alternation matched any short message merely containing those words, silently dropping real instructions sent during a busy turn (e.g. \"please also update the README…\"). Fix **`truesight_autopilot#475`** (anchor regex to the whole message; 23 new tests) reviewed personally by Envoy and merged (`5738db7`) — **not yet deployed**. RESUME HERE = **deploy, then re-verify U3**, then close out. **own-repo gate honoured: PRs only, never self-merged.**",
+      "discord_thread_id": "2026-09-15",
       "auto_start": "no",
-      "last_updated": "2026-09-15",
+      "last_updated": "status",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "executing -- Gary deployed 2026-09-15 20:53:43 UTC (confirmed live at 1254da2, includes #467). Nudged to proceed with UAT/verification.",
+        "note": "blocked_on_human -- fresh re-verification against advanced deploy found a REAL U3 regression (progress-classifier bare-word regex silently dropped real instructions containing trigger words). Fix PR truesight_autopilot#475 reviewed + merged (5738db7). Close-out RETRACTED -- awaiting a second deploy before U3 can be re-verified and topic closed.",
         "stale": true,
-        "age_minutes": 132
+        "age_minutes": 136
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 132
+        "age_minutes": 136
       }
     },
     {
@@ -892,7 +892,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 132
+        "age_minutes": 136
       }
     },
     {
@@ -913,9 +913,9 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:28:30Z",
-        "note": "executing -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Gary deployed 20:53:43 UTC, confirmed live at 1254da2. PR3 cleared. Nudged to proceed with PR4 (UAT), then PR5 (docs).",
+        "note": "wrapping up -- PR0-PR5 ALL MERGED (#473, #474, agentic_ai_context#1209). UAT 5/5 legs green + live scratch e2e spin green. Plan complete. DAO contribution report + topic close authorized, awaiting her confirmation.",
         "stale": true,
-        "age_minutes": 114
+        "age_minutes": 118
       }
     },
     {
@@ -1090,6 +1090,7 @@
     }
   ],
   "warnings": [
+    "line 56: ragged row has 13 cells, expected 11 — padded/truncated",
     "line 74: ragged row has 9 cells, expected 11 — padded/truncated",
     "line 70: blank line splits the handoff table"
   ]
