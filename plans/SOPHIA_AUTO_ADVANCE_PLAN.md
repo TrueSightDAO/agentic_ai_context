@@ -78,7 +78,7 @@ turn = one PR  (do the RESUME-HERE unit: make change → open PR → report cont
         auto  AND under the consecutive-turn cap  → dispatch the next "continue" turn (loop)
         gate                                      → post pause report (reason + PR links + "reply go") and STOP
         done  (no more units)                     → post final summary and STOP
-        failed (turn errored / no PR opened)      → post halt report and STOP
+        failed (turn errored / no progress at all) → post halt report and STOP
 ```
 
 ### 2c. Reporting (so the governor is never in the dark)
@@ -233,3 +233,7 @@ lock, `_message_queues` drain, `_build_turn_report`) and the context-management 
 (`SOPHIA_CONTEXT_MANAGEMENT_PLAN.md`: compaction keeps the multi-turn thread bounded — the
 precondition that makes auto-advance safe now). Pairs with `SOPHIA_LIVE_PROGRESS_PLAN.md` for the
 inside-a-PR "what's happening now" view.
+
+---
+
+**2026-09-15 — PR-less-units follow-up shipped (PR1 truesight_autopilot#473, PR2 truesight_autopilot#474) and verified.** The "did this turn converge" signal now separates `pr_opened` (one of the three PR tools fired — still gates the one-PR-per-turn boundary) from `made_progress` (a genuine side-effecting action, PR-less units included), and the resume-tracker parser now **requires** a connector after `RESUME HERE` and gates with a clear reason on genuine duplicate-marker drift. Deployed live (`1254da2`) and UAT-verified 5/5. The state-label references to the old "no PR opened" wording above were corrected to "no progress at all". Full detail: `SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md` §8.

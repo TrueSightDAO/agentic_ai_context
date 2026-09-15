@@ -45,7 +45,7 @@ doesn't exist yet). Every unfinished handoff has a **state** from this enum:
 | `human_uat_ready` | R1+R2 green; request human UAT | **Request human UAT** (§4) |
 | `prod_merge` | Human gave thumbs-up; execute the prod merge | Merge to prod (§4/§5) |
 | `blocked_on_human` | Needs a human-only action (money/secret/org) | **Escalate** |
-| `failed` | Turn errored / no PR opened | Diagnose → retry once → escalate |
+| `failed` | Turn errored, or no progress at all (no PR opened **and** no side-effecting action) | Diagnose → retry once → escalate |
 | `done` | All units genuinely merged (independently verified — §6) + contribution reported | Confirm closure (§6) |
 | `stale` | No activity in N hours (default 24) | Flag; do **not** auto-ping |
 

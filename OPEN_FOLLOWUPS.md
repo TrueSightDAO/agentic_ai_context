@@ -39,6 +39,10 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight_autopilot: `_compute_advance_signal()` omits §2.1's "explicit self-report" `made_progress` path
+
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30279).** `plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md` §2.1 defines `made_progress` as a turn with **either** a side-effecting tool call, **or** a direct repo commit, **or** "an explicit self-report of success the turn itself asserts (the final-message convergence text, already parsed elsewhere for the '✅ Done this turn' report)". The shipped implementation (`app/main.py::_compute_advance_signal`) keys `made_progress` on **tool names only** (`_MAKE_PROGRESS_TOOLS` + `_UAT_PROGRESS_TOOLS`) — the self-report path is not implemented. Surface: PR4 UAT — a verify-only unit that performs a real check purely via read-capable tools (`ssh_run`, `read_*`) and ends with a "✅ Done this turn" self-report still **gates** ("turn made no progress…"). **Impact:** a genuinely-completed verify-only unit (the class this plan exists to un-gate) can still force a human `go` if it happens not to perform a repo write. **Proposed fix (~small):** either wire the final-message convergence text into `made_progress` per §2.1, or amend §2.1 to drop path (c) and require a tracked side-effect (e.g. a tracker self-update) for a PR-less unit to count as progress. Decide intent first.
+
 ### 3 credential-vault gaps left by the SSH-key migration (clasp / stripe / cypher-defence PAT)
 
 **Filed 2026-09-15 by Sophia. Owner: UNCLAIMED (separate thread). Governor: Gary (thread 30473).**
@@ -176,6 +180,8 @@ So neither "require line-start" nor "require bold" is safe without a migration p
 **Proposed fix.** Define a canonical marker grammar (e.g. token followed by `:`/`=` and a unit label matching
 `PR\d+` / `Unit \d+` / `none` / `complete`, and not preceded by an opening backtick), migrate the plans in one
 sweep, then add golden-file regression tests for the prose-mention cases listed above. Owner: unclaimed.
+
+**2026-09-15 update (PR4 UAT).** PR2 (truesight_autopilot#474, merged `1254da2`) shipped the canonical marker grammar this entry proposed: `_RESUME_RE` now **requires** a connector (`:`/`=`/`→`), so it can no longer latch onto a bare prose mention like line 393's "occurrences agree" — the reported `SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md` case is fixed (corpus-verified: 0 regressions across all 60 plan docs; that plan now resolves its real marker). **Residual not closed:** a *prose* mention that carries a connector still matches (`FARM_SHIPMENT_MEDIA_JSON_PLAN.md:290`, a quoted `"RESUME HERE = PR0"`) — currently benign only because last-wins selects the real downstream marker. A future pass could require line-start or a unit-like tail.
 ### MAP: Medicilandia farmers-convention 2024 — finish the media-archive pipeline (open the manifest PR + add the photo content layer)
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 23734).**
 
