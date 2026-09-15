@@ -23,14 +23,27 @@ Phase 3 = vault).
 >   scripts repointed to `scripts/fleet_probe.py` (PR **#472**).
 > - **Unit 5 ◐** — `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2 +
 >   `CREDENTIAL_HANDOFF_PROTOCOL.md` updated (this PR).
-> - **Unit 4 🛑 UAT — BLOCKED** on the governor deploying #471/#472 (merged ≠ live).
-> - **Unit 6 🛑 archive bare PEMs — BLOCKED** on UAT passing.
+> - **Unit 4 ☑ UAT — PASSED 2026-09-15** (deployed `1254da2`). SSH keys
+>   resolve **from the vault** and fingerprint-match the on-box PEMs; every
+>   reachable fleet host returns rc=0. ⚠️ U2: vault name is
+>   **`krake_io_pat`**, not `github_krake_pat` (live `GET /user` → `garyjob`).
+>   ⚠️ `krake_ror`/`krake_redis` UAT hosts are network-unreachable
+>   (SG/timeout — NOT auth); proven via `krake_data` (server_us) +
+>   `seni_redis` (nelanco) instead.
+> - **Unit 6 ◐ PARTIAL** — top-level `/home/ubuntu/*.pem` **dups archived**
+>   2026-09-15 (unreferenced by any live code). ⏸️ **HELD, governor→Gary:**
+>   archiving `~/.ssh/*.pem` breaks ~21 live `~/.ssh/config` aliases + drops the
+>   `_VAULT_KEY_FILE_FALLBACK` safety net — an operational tradeoff, not Sophia's.
+> - **krake_nginx pin** — pre-existing gap found in UAT (trusts the box ed25519
+>   key, NOT server_us as its comment claimed); fixed in PR **#476**.
 >
 > **Out of scope / separate thread:** `clasp_oauth_gary`, `stripe_test_key`,
-> `github_cypher_defence_pat` were NOT migrated — filed in `OPEN_FOLLOWUPS.md`.
+> `github_cypher_defence_pat` were NOT migrated — filed in `OPEN_FOLLOWUPS.md`
+> (UAT U6/U7 = not-in-vault).
 >
-> **🛑 Where to STOP (operator gates):** the only gate is **UAT** (Unit 4) —
-> the governor verifies each credential can be accessed. Deploys are governor-run.
+> **🛑 Where to STOP (operator gates):** UAT **PASSED**; the only remaining
+> gate is the governor/Gary decision on archiving `~/.ssh/*.pem` (Unit 6).
+> Deploys are governor-run.
 
 **Companion docs:** `SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md`, `CREDENTIAL_HANDOFF_PROTOCOL.md`,
 `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2.
@@ -113,15 +126,15 @@ Legend: ☐ todo · ⧗ in progress · ☑ done · 🛑 operator gate
 | | 2f: `stripe_test_key` — value from `/home/ubuntu/stripe_test_key`, purpose "Stripe test-mode secret key for beta sandbox", scopes `["stripe", "payments", "test"]` | On-box | ☐ |
 | | 2g: `github_cypher_defence_pat` — value from `/home/ubuntu/CYPHER_DEFENCE_OPS_PAT`, purpose "GitHub PAT for Cypher-Defense repo ops", scopes `["github"]` | On-box | ☐ |
 | **3 ☑** | **Update Sophia's tools to use vault.** PR#471 (ssh_run vault-native + host-aware), PR#472 (df-alert → `scripts/fleet_probe.py`) Update `ssh_run` and any GitHub/clasp tooling to resolve credentials from the vault via `vault.get_value(name)` instead of hardcoded `/home/ubuntu/` paths. **Note:** If the tools already support vault resolution (Phase 3.5/3.6), this unit is verify-only. | `truesight_autopilot` | ☐ |
-| **4 🛑** | **UAT — governor verification.** For each credential, verify Sophia can access it: | | |
-| | 4a: Ask Sophia "do you have the `github_krake_pat` credential?" → she calls `check_credential("github_krake_pat")` → returns metadata (not value) | Telegram | ☐ |
-| | 4b: Ask Sophia to push a test branch to a Krake-owned repo → she resolves `github_krake_pat` from vault → push succeeds | Telegram | ☐ |
-| | 4c: Ask Sophia to SSH into `krake_ror` using `ssh_key_server_us` → she resolves from vault → SSH succeeds | Telegram | ☐ |
-| | 4d: Ask Sophia to SSH into `krake_redis` using `ssh_key_nelanco` → SSH succeeds | Telegram | ☐ |
-| | 4e: Ask Sophia to `clasp status` on the shopping cart GAS project using `clasp_oauth_gary` → works | Telegram | ☐ |
-| | 4f: Ask Sophia to verify the `stripe_test_key` exists in vault (metadata only) | Telegram | ☐ |
-| **5 ◐** | **Update documentation.** (this PR) Update `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2 to note credentials are now in the encrypted vault at `/opt/truesight_autopilot/vault/` (not bare files at `/home/ubuntu/`). Update `CREDENTIAL_HANDOFF_PROTOCOL.md` to reference vault as the preferred credential staging method going forward. | `agentic_ai_context` | ☐ |
-| **6 🛑** | **Clean up bare files.** Once UAT confirms all credentials work from the vault, archive (don't delete) the bare files at `/home/ubuntu/`: move them to `/home/ubuntu/.migrated_to_vault/` with a README noting migration date. This prevents accidental use of stale ungoverned credentials. | On-box | ☐ |
+| **4 ☑** | **UAT — PASSED 2026-09-15** (deployed `1254da2`). In-scope (SSH) verified live; per-item results below. | | |
+| | 4a: ⚠️ vault name is **`krake_io_pat`** — `check_credential("github_krake_pat")`→found:false; `check_credential("krake_io_pat")`→**found:true** | Telegram | ☑ |
+| | 4b: vault PAT resolves + authenticates (live non-mutating `GET /user` → **`garyjob`**) | Telegram | ☑ |
+| | 4c: ⚠️ `krake_ror` network-unreachable (TCP22 timeout); `ssh_key_server_us` proven via `krake_data` → **`ip-172-31-19-2`** | Telegram | ☑ |
+| | 4d: `krake_redis` is a config alias, not a FLEET host; `ssh_key_nelanco_aws` proven via `seni_redis` → **`ip-172-31-56-185`** | Telegram | ☑ |
+| | 4e: ❌ OUT OF SCOPE — `clasp_oauth_gary` NOT in vault (filed) | Telegram | — |
+| | 4f: ❌ OUT OF SCOPE — `stripe_test_key` NOT in vault (filed) | Telegram | — |
+| **5 ☑** | **Update documentation.** (PR #1198) Update `AWS_DIGITAL_INFRASTRUCTURE.md` §7.2 to note credentials are now in the encrypted vault at `/opt/truesight_autopilot/vault/` (not bare files at `/home/ubuntu/`). Update `CREDENTIAL_HANDOFF_PROTOCOL.md` to reference vault as the preferred credential staging method going forward. | `agentic_ai_context` | ☐ |
+| **6 🛑** | **Clean up bare files.** Once UAT confirms all credentials work from the vault, archive (don't delete) the bare files at `/home/ubuntu/`: move them to `/home/ubuntu/.migrated_to_vault/` with a README noting migration date. This prevents accidental use of stale ungoverned credentials. Top-level dups archived 2026-09-15; `~/.ssh/*.pem` HELD pending governor/Gary decision (21 config aliases + fallback safety net). | On-box | ◐ |
 
 ---
 
@@ -149,7 +162,18 @@ U6. "Sophia, run clasp status on the shopping cart GAS project"
 U7. "Sophia, do you have the stripe_test_key?"
      → check_credential("stripe_test_key") → metadata only
 
-All U1–U7 pass → vault migration complete ✅
+RESULTS — run 2026-09-15 on deployed `1254da2`:
+U1 ✅ vault initialized, 42 credentials
+U2 ⚠️ name is `krake_io_pat` (not `github_krake_pat`) — found:true
+U3 ✅ vault PAT authenticates (live GET /user → garyjob)
+U4 ✅ ssh_key_server_us from vault (via krake_data; krake_ror network-unreachable)
+U5 ✅ ssh_key_nelanco_aws from vault (seni_redis → ip-172-31-56-185)
+U6 ❌ out of scope — clasp_oauth_gary not in vault (filed)
+U7 ❌ out of scope — stripe_test_key not in vault (filed)
+
+In-scope (the 3 SSH keys): ALL PASS ✅ → vault migration complete for the
+SSH-key scope. krake_nginx pin gap found + fixed (PR #476). Unit 6 partial
+(top-level dups archived; `~/.ssh/*.pem` held).
 ```
 
 ---
