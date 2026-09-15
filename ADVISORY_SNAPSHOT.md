@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-15T11:59:07Z`
+- Generated (UTC): `2026-09-15T17:11:59Z`
 - Look-back: **7** calendar days (`2026-09-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -35,17 +35,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `[CONTRIBUTION EVENT]` × 20
 - `[PRACTICE EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 3
+- `[ASSET RECEIPT EVENT]` × 2
 - `[QR CODE UPDATE EVENT]` × 1
-- `[ASSET RECEIPT EVENT]` × 1
-- _free-form (no bracket tag)_ × 14
+- _free-form (no bracket tag)_ × 13
 
 ### Latest entries
 
-- `Edgar_20260914204114_030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Santos José Carlos · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
-- `Edgar_20260914204401_032` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Gary Teh · Recipient Name: Matheus Reis · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
-- `Edgar_20260914204728_034` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260914204830_036` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.14 · Description: Transport expense to go visit Santos Factory
-- `Edgar_20260914205246_038` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260914205315_040` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.93 · Description: Transport from Santos Factory to Coopercabruca for meetings
 - `Edgar_20260914205430_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Visiting Santos factory and Coopercabruca
 - `Edgar_20260914215007_044` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.48 · Description: Extension of stay in Brazil for business meeting with Chinese partners.
@@ -61,6 +56,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260915102929_002` · **Edgar** · deploy verification probe, no signature, please ignore 1789468169
 - `Edgar_20260915110010_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-15T11:00:08.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260915115328_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Deploy no longer severs the calling turn: caller-thread deploy notice + cros…
+- `Edgar_20260915141946_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord #dapp-chat-approval-leak — §6a close-out (stale "needs approval — op…
+- `Edgar_20260915143743_010` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Coopercabruca Cacao Butter (KG) · Amount: 5 · Description: Placed in warehouse, delivered by Gary. For shipment to USA. The black box
+- `Edgar_20260915144012_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260915152518_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Handoff-index reconciliation sweep — row 16 untracked threads, close the gap…
+- `Edgar_20260915154323_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Stale handoff-topic audit: repair 6 dead-topic manifest rows (4 reopened, 2 …
 
 ---
 
@@ -196,12 +196,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 31 SKU lines · 2,250.22 total units · $8,471.70
+- Manager record: `Matheus Reis` · 32 SKU lines · 2,255.22 total units · $8,558.35
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
-  | (uncategorized) | (unspecified) | 18 | 343.13 | $968.66 |
+  | (uncategorized) | (unspecified) | 19 | 348.13 | $1,055.31 |
   | Cacao Bean | Bulk | 3 | 328.59 | $574.54 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Tea | Bulk | 5 | 155.50 | $1,577.59 |
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-08_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 5719914 | 2026-09-15 05:13:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube iframes to fix perceived-missing videos on load (#379)
 55f1371 | 2026-09-14 21:27:55 -0300 | fix(crf-anapu): responsive 16:9 video/image boxes, fix squished YouTube embeds (#378)
@@ -313,7 +314,6 @@ e37b0bd | 2026-09-09 05:05:24 +0000 | chore(stats): refresh stats/current.json [
 ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox + ?plot= opens popup (parity with Tree box) (#367)
 46f211b | 2026-09-08 22:42:58 -0300 | test: add SunMint impact-map runtime smoke spec (#365)
 77fa0fc | 2026-09-08 22:37:41 -0300 | fix: hoist esc() to IIFE scope (kills the silent map-render regression class) (#366)
-0a86c8a | 2026-09-08 21:44:45 -0300 | Show tree photo in SunMint impact-map tree popup (#363)
 … (truncated)
 ```
 
@@ -326,52 +326,53 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a3030fa | 2026-09-15 14:06:22 -0300 | fix(auto-advance): reword prose 'RESUME HERE' mention so the parser stops latching onto it (#1188)
+18d7fbf | 2026-09-15 14:01:01 -0300 | fix(board): strip backticks from Discord id cells so deep links aren't broken (#1187)
+b51a0c7 | 2026-09-15 13:57:56 -0300 | PR4c close-out: mark DONE (#1181+#167+#466), advance RESUME markers to PR5 (#1186)
+7cb5f8d | 2026-09-15 13:42:38 -0300 | register: Discord voice-attachment follow-up on the parity-gaps row (#1185)
+af829a5 | 2026-09-15 13:23:14 -0300 | handoffs: refresh active supervision claims with current status (#1183)
+ed18097 | 2026-09-15 13:23:13 -0300 | sophia: state the supervision-substitutes-for-gating principle generally (#1184)
+30a8146 | 2026-09-15 13:16:53 -0300 | sophia: retire own-repo "never self-merge" rule for truesight_autopilot (#1182)
+1ca8833 | 2026-09-15 12:46:22 -0300 | PR4c(b): supervision drift gate in validate_handoff_manifest.py (#1181)
+6424a10 | 2026-09-15 12:43:55 -0300 | handoffs: claim 30475 (Live Progress UAT), refresh 30083 (#1180)
+d801f71 | 2026-09-15 12:42:00 -0300 | fix(handoffs): repair 6 dead-topic rows from stale-backlog audit + file 2 follow-ups (#1179)
+6e6bfba | 2026-09-15 12:30:16 -0300 | plan(sprint-board): mark PR4b DONE, advance RESUME HERE to PR4c (#1178)
+4e8572c | 2026-09-15 12:29:05 -0300 | handoffs: release 30244 claim (sweep done), refresh 30083 (#1177)
+cfa5c76 | 2026-09-15 12:27:33 -0300 | fix(manifest): add missing plans//sops//handoffs/ prefixes to 20 Plan file rows + gate unresolvable Plan paths (#1176)
+038df88 | 2026-09-15 12:18:22 -0300 | handoff(manifest): final gap re-check — row 29305 (in-turn compaction), close 30244 (sweep complete) — PR4 (#1173)
+9faf972 | 2026-09-15 12:14:51 -0300 | proposal: PR4c -- compliance enforcement for the active-supervision directive (#1175)
+1ed982a | 2026-09-15 12:14:38 -0300 | docs: record butter HS Code 1804 write + propose Source Documents column T (#1174)
+0384bcc | 2026-09-15 12:10:31 -0300 | handoffs: refresh Envoy's active supervision claims (#1172)
+fed45fc | 2026-09-15 12:10:05 -0300 | Docs: record Currencies!B108=17.33 price write for Coopercabruca Cacao Butter (thread 10800) (#1171)
+aa4c3ac | 2026-09-15 12:04:39 -0300 | Freight Rev 10 — price Coopercabruca cacao butter (BRL 448 → $104.07) (#1170)
+8ad99e3 | 2026-09-15 11:47:07 -0300 | handoff(manifest): file OPEN_FOLLOWUPS entry + row for 23734 (Medicilandia MAP media archive) — PR3 of index reconciliation (#1169)
+eed87fd | 2026-09-15 11:42:46 -0300 | handoffs: claim active supervision on the two in-flight threads (#1168)
+5011069 | 2026-09-15 11:42:09 -0300 | PR4b: active-supervision visibility (§2.6) + fix corrupted manifest separator (#1166)
+e72f138 | 2026-09-15 11:28:34 -0300 | proposal: PR4b must also update SUPERVISOR_LOOP.md itself, not just the code (#1167)
+85db07c | 2026-09-15 11:23:03 -0300 | proposal: add active-supervision visibility to the sprint board (PR4b) (#1165)
+c353b19 | 2026-09-15 11:17:48 -0300 | handoff(manifest): add untracked row for 19930 (Fazenda São Jorge media) — PR2 of index reconciliation (#1164)
+2b11884 | 2026-09-15 10:50:55 -0300 | fix(plan): make RESUME HERE markers parseable — the `→` arrow broke the auto_advance gate (#1163)
+3b13e46 | 2026-09-15 10:46:53 -0300 | docs(handoffs): sync sprint.truesight.me manifest row to real progress (#1162)
+34ebb80 | 2026-09-15 10:19:58 -0300 | docs(handoffs): give each surviving Discord work-item channel its own manifest row + index entry (#1161)
+ebcd7c5 | 2026-09-15 10:04:10 -0300 | docs(sprint): PR4 — canonical advisory-only boundary for the sprint board + plan status (#1158)
+ec2b499 | 2026-09-15 10:02:03 -0300 | handoffs: register 4 untracked open threads found by the index-reconciliation sweep (PR1) (#1157)
+512fe8b | 2026-09-15 09:59:46 -0300 | register: Sophia auto-advance handoff (thread 30279) + regenerate index.json (#1160)
+66b368e | 2026-09-15 09:58:00 -0300 | plan: stop gating Sophia's auto-advance on PR-less units (#1159)
+76bc9b3 | 2026-09-15 09:13:20 -0300 | fix(handoffs): correct state mapping + add Discord channel tracking to index (#1156)
+6bff303 | 2026-09-15 09:07:43 -0300 | proposal: elevate Discord channel tracking to its own PR1b (#1155)
+04c4bfb | 2026-09-15 09:07:25 -0300 | docs(handoffs): register 4 untracked threads found by this session's sweep + codify index upkeep (#1154)
+825c087 | 2026-09-15 08:59:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
+1f8bc12 | 2026-09-15 08:59:28 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
 f6a86d3 | 2026-09-15 08:58:48 -0300 | docs(sprint): PR0 pre-flight complete — rebase RESUME HERE to PR1a (#1153)
 ce6c5cc | 2026-09-15 08:57:49 -0300 | CRF Anapu: PR0b — architecture decided = Option B (vendored copy) (#1152)
 acb5400 | 2026-09-15 08:38:09 -0300 | OPEN_FOLLOWUPS: append 2026-09-15 evidence to git_push_changes branch-amend entry (#1151)
-cd6cc99 | 2026-09-15 07:38:39 -0300 | CRF Anapu proposal: PR0 pre-flight complete (§7 items 1-4 resolved, 2 rectifications) (#1150)
-6b4db98 | 2026-09-15 07:30:36 -0300 | docs(open-followups): mark dao_protocol empty-body guard shipped (#166) + file test_dao.py collection breakage (#1149)
-8f86c48 | 2026-09-15 07:29:36 -0300 | register: sync sprint.truesight.me manifest row to the simplified design (#1148)
-b389d8c | 2026-09-15 07:28:46 -0300 | proposal: simplify sprint.truesight.me -- drop signed voting, resolve quests/join (#1147)
-6267efd | 2026-09-15 05:28:52 -0300 | docs: QR self-serve currency — PR3 deploy done (catalog v7/46 served on edgar); RESUME HERE = PR4/UAT (#1076)
-00e7c08 | 2026-09-15 05:06:16 -0300 | OPEN_FOLLOWUPS: file 5 Black King warehouse/FSVP follow-ups (thread 29093) (#1146)
-404ca4d | 2026-09-15 04:04:30 -0300 | feat(handoffs): validator --check-index gate + generator tests + CI wire + followups (SUPERVISOR_LOOP §8 item 2) (#1145)
-230bff5 | 2026-09-15 03:53:05 -0300 | docs(handoffs): refresh CRF Anapu manifest row — build complete, awaiting UAT (#1144)
-501d6a3 | 2026-09-15 03:41:02 -0300 | feat(handoffs): build_handoff_index.py + generated handoffs/index.json (SUPERVISOR_LOOP §8) (#1143)
-c9d8ffb | 2026-09-15 03:32:01 -0300 | register: sprint.truesight.me handoff (thread 30083) (#1142)
-a607238 | 2026-09-15 03:31:02 -0300 | proposal: sprint.truesight.me -- public Kanban board over Sophia's handoff pipeline (#1141)
-44880aa | 2026-09-15 02:57:57 -0300 | proposal: CRF Anapu SunMint cohort -- CEPOTX sign-off, mark approved + register handoff (#1140)
-cae443e | 2026-09-15 02:54:08 -0300 | proposal: incorporate Gary's clarification (submission-only membership + itemized click-through) (#1139)
-3747ca1 | 2026-09-15 02:09:08 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
-1434505 | 2026-09-15 02:09:06 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
-bc32104 | 2026-09-15 00:54:43 -0300 | Merge pull request #1138 from TrueSightDAO/auto/advisory-refresh-2026-09-15
-e624fe0 | 2026-09-15 03:54:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
-69fb3a2 | 2026-09-14 22:08:01 -0300 | chore(handoffs): mark thread 26410 (Repo-Access Denylist) row terminal — plan COMPLETE (#1134)
-f391350 | 2026-09-14 22:05:56 -0300 | proposal: CRF Anapu x SunMint tree-submission cohort (#1137)
-2a4e2d3 | 2026-09-14 22:04:15 -0300 | docs(plan): tick PR8 merged in FARM_SHIPMENT_MEDIA_JSON tracker; RESUME HERE -> PR9 only (#1136)
-e13c4f9 | 2026-09-14 22:02:33 -0300 | fix(handoffs): restore FARM_SHIPMENT_MEDIA_JSON row glued onto SUNMINT row (thread 11590 mis-inject) (#1135)
-a0c7996 | 2026-09-14 21:55:41 -0300 | docs: AGROVERSE_SHOP_PAGE_CONVENTIONS §8 farm/shipment media + total_value tracker correction (PR8) (#1132)
-71a93ce | 2026-09-14 21:47:45 -0300 | sophia: require independent merge verification before accepting "done" (#1133)
-8ce59aa | 2026-09-14 21:44:01 -0300 | sophia: add deploy-stall verification to the supervisor directive (#1130)
-bf3e91e | 2026-09-14 21:34:59 -0300 | plan: record Gary's confirmation of Option A (full governor parity) (#1129)
-c2b2c9e | 2026-09-14 21:28:58 -0300 | plan: Sophia<->Envoy governor parity on Discord (#1128)
-28d329b | 2026-09-14 21:13:34 -0300 | docs(glossary): define Thread (Telegram) vs Channel (Discord) as the per-platform unit of open work (#1125)
-efe60c9 | 2026-09-14 21:08:13 -0300 | docs(crf-anapu): update RESUME HERE — PR5 media long pole done, only UAT gate remains (#1126)
-dcf5462 | 2026-09-14 20:39:07 -0300 | docs(envoy): make proactive supervision (SUPERVISOR_LOOP.md) an explicit Envoy duty (#1123)
-cbe0282 | 2026-09-14 20:37:38 -0300 | Merge pull request #1122 from TrueSightDAO/docs/supervisor-loop-directive
-0443d4a | 2026-09-14 20:33:23 -0300 | docs(supervisor-loop): 3-round UAT (Sophia -> Envoy -> human) + prod merge after thumbs-up
-e11d27c | 2026-09-14 20:29:25 -0300 | docs(supervisor-loop): prod-merge + beta->prod promote autonomous per governor decision
-4868e49 | 2026-09-14 20:28:01 -0300 | docs: add Supervisor Loop directive for LLMs supervising Sophia
-4416b5b | 2026-09-14 20:06:37 -0300 | followups: extend deploy self-restart item with coalescing/debounce gap (thread 29509 scope) (#1120)
-cc993d5 | 2026-09-14 20:04:01 -0300 | File OPEN_FOLLOWUPS: dao_protocol server-side empty-body / missing-signature guard (#1121)
-a49f795 | 2026-09-14 18:57:38 -0300 | chore(previews): refresh Beer Hall preview (2026-09-14 UTC)
-c00400d | 2026-09-14 18:57:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-14 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+9f2a248 | 2026-09-15 12:19:40 -0300 | docs(schema): document Currencies cols P-S + add T Source Documents (#493)
 cd2648f | 2026-09-14 20:19:49 -0300 | fix(expenses): strip [ledger] prefix from Inventory Type before Column E write (#492)
 bd12393 | 2026-09-13 15:21:13 -0300 | asset_receipt_ingest: fill empty Currencies D/E from Product Image / Landing Page labels (#491)
 df418a0 | 2026-09-13 15:08:24 -0300 | docs(schema): add CNPJ + Physical Address cols to Agroverse Cacao Processing Cost (#490)
@@ -432,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+dcfef2e | 2026-09-15 12:07:30 +0000 | chore: refresh currencies.json [skip ci]
 c5e911c | 2026-09-15 11:48:24 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 f6f2108 | 2026-09-14 13:22:27 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 75f6c32 | 2026-09-14 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
@@ -573,7 +575,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 4:50:43 |
+| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 9:51:01 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-08`; scanned last **600** data rows)
 
