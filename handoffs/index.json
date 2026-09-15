@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T06:55:43Z",
+  "generated_at": "2026-09-15T08:27:49Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "ad9647f98e6c7fbcf73ef51e8a18654e338c074b90f985b68ce73cd42ca0f3fe",
+  "source_sha256": "e2cd9a5eedb54adf125ebf6cd32b561763847798fc1beb40241b9e5f7edc0b85",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
