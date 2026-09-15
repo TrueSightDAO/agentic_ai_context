@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-15T17:11:59Z`
+- Generated (UTC): `2026-09-15T21:37:48Z`
 - Look-back: **7** calendar days (`2026-09-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
+- `[CONTRIBUTION EVENT]` × 21
 - `[PRACTICE EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 3
 - `[ASSET RECEIPT EVENT]` × 2
 - `[QR CODE UPDATE EVENT]` × 1
-- _free-form (no bracket tag)_ × 13
+- _free-form (no bracket tag)_ × 12
 
 ### Latest entries
 
-- `Edgar_20260914205315_040` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.93 · Description: Transport from Santos Factory to Coopercabruca for meetings
-- `Edgar_20260914205430_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Visiting Santos factory and Coopercabruca
-- `Edgar_20260914215007_044` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.48 · Description: Extension of stay in Brazil for business meeting with Chinese partners.
 - `Edgar_20260914215106_046` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260914230214_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix iOS empty-body Edgar upload on report_inventory_movement.html (dapp)
 - `Edgar_20260914230401_050` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
@@ -61,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260915144012_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260915152518_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Handoff-index reconciliation sweep — row 16 untracked threads, close the gap…
 - `Edgar_20260915154323_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Stale handoff-topic audit: repair 6 dead-topic manifest rows (4 reopened, 2 …
+- `Edgar_20260915211100_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Live-progress introspection UAT (U1-U5) + #467 raw-text classifier fix
+- `Edgar_20260915212258_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 77.4 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (raw machine exec…
+- `Edgar_20260915212301_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 292.5 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (direct time / an…
 
 ---
 
@@ -274,6 +274,8 @@ _All dated lines on/after 2026-09-08_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
+f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip ci]
 4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 5719914 | 2026-09-15 05:13:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube iframes to fix perceived-missing videos on load (#379)
@@ -312,8 +314,6 @@ cd8af38 | 2026-09-09 21:07:07 +0000 | chore(stats): refresh stats/current.json [
 9018e0c | 2026-09-09 11:46:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e37b0bd | 2026-09-09 05:05:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox + ?plot= opens popup (parity with Tree box) (#367)
-46f211b | 2026-09-08 22:42:58 -0300 | test: add SunMint impact-map runtime smoke spec (#365)
-77fa0fc | 2026-09-08 22:37:41 -0300 | fix: hoist esc() to IIFE scope (kills the silent map-render regression class) (#366)
 … (truncated)
 ```
 
@@ -326,6 +326,31 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a8a296c | 2026-09-15 18:31:06 -0300 | handoffs: 30471 finds 3-month per-key-generator regression; 30279 closed (#1213)
+a20698d | 2026-09-15 18:28:26 -0300 | auto-advance close-out: mark plan COMPLETE (PR0–PR5); manifest row completed + index regen (#1211)
+36f69b1 | 2026-09-15 18:26:40 -0300 | handoffs: 30475 U3 regression found + fixed, close-out retracted (#1212)
+2d5e1c1 | 2026-09-15 18:24:28 -0300 | handoffs: 30279/30475 wrapping up, activate 30471/30473 (#1210)
+767948c | 2026-09-15 18:21:29 -0300 | docs(auto-advance): PR5 — verified outcome, stale label fixes, tracker close-out (#1209)
+71d1aed | 2026-09-15 18:20:19 -0300 | handoffs: SOPHIA_LIVE_PROGRESS_PLAN complete — UAT U1-U5 passed on deployed 1254da2 (#1208)
+2a0d6f7 | 2026-09-15 18:00:40 -0300 | handoffs: deploy landed (1254da2) — activate 30279/30475, queue 30471/30473 (#1205)
+7871229 | 2026-09-15 17:55:12 -0300 | handoffs: release plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
+8a46697 | 2026-09-15 17:54:12 -0300 | handoffs: claim plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
+ea7e673 | 2026-09-15 17:39:40 -0300 | handoffs: thread 30279 status corrected — blocked_on_human (#1204)
+c2724de | 2026-09-15 17:29:14 -0300 | handoffs: thread 30279 PR2 merged (#474) — auto-advance marker drift fix (#1202)
+21b6ef6 | 2026-09-15 16:32:59 -0300 | docs(auto-advance): PR0 pre-flight complete — capture incident #2 repro, correct root cause, rebase RESUME HERE (#1201)
+c356142 | 2026-09-15 16:29:00 -0300 | handoffs: claim 30279, mark 30477 blocked_on_human (#1200)
+8aa156d | 2026-09-15 16:11:28 -0300 | handoffs: claim 30477, refresh all active claims to current state (#1199)
+f0bbf59 | 2026-09-15 16:10:26 -0300 | docs(vault): SSH credentials are vault-native; update plan RESUME + file 3 remaining gaps (#1198)
+8a968ac | 2026-09-15 15:41:13 -0300 | PR5 step2 tracker: mark merged (#99) + step3 verdict (not needed) + Elizabeth Wong blocker + stale-directive meta-bug (#1197)
+8281ef1 | 2026-09-15 15:27:01 -0300 | PR5 step1 tracker: mark merged (#470), RESUME HERE = PR5 step 2 (#1196)
+e8612dd | 2026-09-15 15:18:16 -0300 | handoffs: claim 30473, refresh 30471 to PR5/blocked (#1195)
+4672a1c | 2026-09-15 15:14:33 -0300 | chore(handoff): PR4 merged — tick tracker, RESUME HERE=PR5, regen index (#1194)
+c1eefcb | 2026-09-15 14:49:10 -0300 | fix(plans+handoffs): tracker un-desync — RESUME=PR4, manifest in progress, regen index.json (#1193)
+9fc1cb2 | 2026-09-15 14:45:30 -0300 | fix(plans): un-desync PUBLIC_KEY_LOOKUP_CACHE tracker (PR1–PR3 done; RESUME=PR4) (#1191)
+a89d0ac | 2026-09-15 14:27:04 -0300 | handoffs: claim 30471, mark 30083/30475 blocked_on_human (#1190)
+3d6fd74 | 2026-09-15 14:14:26 -0300 | PR5 close-out: UAT U1-U6 done (U3 bug fixed #1187), U7 blocked on deploy; RESUME\u2192PR6; +4 follow-ups (#1189)
+cf66430 | 2026-09-15 14:12:26 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
+5fc3a8c | 2026-09-15 14:12:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
 a3030fa | 2026-09-15 14:06:22 -0300 | fix(auto-advance): reword prose 'RESUME HERE' mention so the parser stops latching onto it (#1188)
 18d7fbf | 2026-09-15 14:01:01 -0300 | fix(board): strip backticks from Discord id cells so deep links aren't broken (#1187)
 b51a0c7 | 2026-09-15 13:57:56 -0300 | PR4c close-out: mark DONE (#1181+#167+#466), advance RESUME markers to PR5 (#1186)
@@ -341,31 +366,6 @@ d801f71 | 2026-09-15 12:42:00 -0300 | fix(handoffs): repair 6 dead-topic rows fr
 cfa5c76 | 2026-09-15 12:27:33 -0300 | fix(manifest): add missing plans//sops//handoffs/ prefixes to 20 Plan file rows + gate unresolvable Plan paths (#1176)
 038df88 | 2026-09-15 12:18:22 -0300 | handoff(manifest): final gap re-check — row 29305 (in-turn compaction), close 30244 (sweep complete) — PR4 (#1173)
 9faf972 | 2026-09-15 12:14:51 -0300 | proposal: PR4c -- compliance enforcement for the active-supervision directive (#1175)
-1ed982a | 2026-09-15 12:14:38 -0300 | docs: record butter HS Code 1804 write + propose Source Documents column T (#1174)
-0384bcc | 2026-09-15 12:10:31 -0300 | handoffs: refresh Envoy's active supervision claims (#1172)
-fed45fc | 2026-09-15 12:10:05 -0300 | Docs: record Currencies!B108=17.33 price write for Coopercabruca Cacao Butter (thread 10800) (#1171)
-aa4c3ac | 2026-09-15 12:04:39 -0300 | Freight Rev 10 — price Coopercabruca cacao butter (BRL 448 → $104.07) (#1170)
-8ad99e3 | 2026-09-15 11:47:07 -0300 | handoff(manifest): file OPEN_FOLLOWUPS entry + row for 23734 (Medicilandia MAP media archive) — PR3 of index reconciliation (#1169)
-eed87fd | 2026-09-15 11:42:46 -0300 | handoffs: claim active supervision on the two in-flight threads (#1168)
-5011069 | 2026-09-15 11:42:09 -0300 | PR4b: active-supervision visibility (§2.6) + fix corrupted manifest separator (#1166)
-e72f138 | 2026-09-15 11:28:34 -0300 | proposal: PR4b must also update SUPERVISOR_LOOP.md itself, not just the code (#1167)
-85db07c | 2026-09-15 11:23:03 -0300 | proposal: add active-supervision visibility to the sprint board (PR4b) (#1165)
-c353b19 | 2026-09-15 11:17:48 -0300 | handoff(manifest): add untracked row for 19930 (Fazenda São Jorge media) — PR2 of index reconciliation (#1164)
-2b11884 | 2026-09-15 10:50:55 -0300 | fix(plan): make RESUME HERE markers parseable — the `→` arrow broke the auto_advance gate (#1163)
-3b13e46 | 2026-09-15 10:46:53 -0300 | docs(handoffs): sync sprint.truesight.me manifest row to real progress (#1162)
-34ebb80 | 2026-09-15 10:19:58 -0300 | docs(handoffs): give each surviving Discord work-item channel its own manifest row + index entry (#1161)
-ebcd7c5 | 2026-09-15 10:04:10 -0300 | docs(sprint): PR4 — canonical advisory-only boundary for the sprint board + plan status (#1158)
-ec2b499 | 2026-09-15 10:02:03 -0300 | handoffs: register 4 untracked open threads found by the index-reconciliation sweep (PR1) (#1157)
-512fe8b | 2026-09-15 09:59:46 -0300 | register: Sophia auto-advance handoff (thread 30279) + regenerate index.json (#1160)
-66b368e | 2026-09-15 09:58:00 -0300 | plan: stop gating Sophia's auto-advance on PR-less units (#1159)
-76bc9b3 | 2026-09-15 09:13:20 -0300 | fix(handoffs): correct state mapping + add Discord channel tracking to index (#1156)
-6bff303 | 2026-09-15 09:07:43 -0300 | proposal: elevate Discord channel tracking to its own PR1b (#1155)
-04c4bfb | 2026-09-15 09:07:25 -0300 | docs(handoffs): register 4 untracked threads found by this session's sweep + codify index upkeep (#1154)
-825c087 | 2026-09-15 08:59:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
-1f8bc12 | 2026-09-15 08:59:28 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
-f6a86d3 | 2026-09-15 08:58:48 -0300 | docs(sprint): PR0 pre-flight complete — rebase RESUME HERE to PR1a (#1153)
-ce6c5cc | 2026-09-15 08:57:49 -0300 | CRF Anapu: PR0b — architecture decided = Option B (vendored copy) (#1152)
-acb5400 | 2026-09-15 08:38:09 -0300 | OPEN_FOLLOWUPS: append 2026-09-15 evidence to git_push_changes branch-amend entry (#1151)
 … (truncated)
 ```
 
@@ -575,7 +575,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 9:51:01 |
+| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 13:51:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-08`; scanned last **600** data rows)
 
