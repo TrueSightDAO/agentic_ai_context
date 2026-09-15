@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T15:10:11Z",
+  "generated_at": "2026-09-15T15:17:45Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "9b10fccb0c5e2d83bf59cf227c7a526e2df13566fe2705cd67455d03a4b19d5b",
+  "source_sha256": "3daa47ed116505b6133a53c167206c5827c78c30b2c2c4ca001b9ad78e109d12",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,7 +16,7 @@
     "done",
     "stale"
   ],
-  "handoff_count": 59,
+  "handoff_count": 60,
   "counts_by_state": {
     "awaiting_kickoff": 16,
     "executing": 13,
@@ -27,7 +27,7 @@
     "prod_merge": 0,
     "blocked_on_human": 9,
     "failed": 0,
-    "done": 11,
+    "done": 12,
     "stale": 1,
     "unknown": 0
   },
@@ -148,6 +148,23 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
+      "last_updated": "2026-09-15",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md`",
+      "title": "**Exec: in-turn context compaction** — compact a single in-progress turn that needs many tool rounds (measured live: 94,264 and 72,391+ token turns), so investigation-heavy turns stop blowing the context window. Extends the now-COMPLETE inter-turn compaction system (`plans/SOPHIA_CONTEXT_COMPACTION_PLAN.md`).",
+      "handoff_date": "2026-09-15",
+      "state": "executing",
+      "status_raw": "in progress — plan created (PR #1093, 2026-09-14); **Unit 0 not yet started**",
+      "telegram_thread_id": "29305",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "[Exec: In-turn context compaction](https://t.me/c/3919341801/29305)",
+      "telegram_topic_url": "https://t.me/c/3919341801/29305",
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
       "last_updated": "2026-09-15",
       "supervised_by": null
     },
@@ -851,7 +868,7 @@
         "claimed_at": "2026-09-15T15:09:57Z",
         "note": "Gary is live in this thread giving direct UX feedback (per-supervisor board lane, deep-linkable spec pills, copy-URL). Monitoring, not nudging, while he's engaged. HTTPS cert confirmed genuinely stalled on GitHub's side (not config) -- non-blocking, awaiting provisioning.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 7
       }
     },
     {
@@ -943,23 +960,23 @@
       "plan_file": "`OPEN_FOLLOWUPS.md#handoff-index-reconciliation`",
       "title": "**Exec: full handoff-index reconciliation** — diff Sophia's live registries (`sessions/_resume_awaiting.json` + `_discord_resume_awaiting.json`) against `handoffs/index.json`; give every genuinely-open untracked thread/channel a manifest row, leave resolved noise row-less.",
       "handoff_date": "2026-09-15",
-      "state": "executing",
-      "status_raw": "in progress — sweep underway; corrections verified (26410 done, 29872 deployed-live); adding rows for open threads in staged PRs",
+      "state": "done",
+      "status_raw": "**completed — sweep closed 2026-09-15**; re-diffed the live registries against the 59-row index and rowed the verified-open untracked threads (PR1 #1157, PR2 #1164, PR3 #1169, plus 29305); resolved/answered threads left row-less",
       "telegram_thread_id": "30244",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "(this thread 30244)",
       "telegram_topic_url": null,
-      "discord_channel_id": null,
+      "discord_channel_id": "2026-09-15",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15",
+      "last_updated": "**CLOSED 2026-09-15.** Sweep complete: headless-audited `sessions/_resume_awaiting.json` (76 live TG threads) + `_discord_resume_awaiting.json` (4 channels) against `handoffs/index.json`. All 34 candidates triaged — 33 concluded/answered/incidental; **one genuine residual found and rowed: 29305** (in-turn context-compaction plan, `RESUME HERE: Unit 0`, unexecuted). Discord: 2 channels already tracked, 1 archived, 1 (`#server-administration`) deliberately row-less per governor ruling. **RESUME HERE = none — sweep complete.**",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T15:09:57Z",
         "note": "PR3 (23734) landed, sweep believed complete -- authorized final gap re-check (Option A) before declaring done.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 7
       }
     },
     {
@@ -1049,7 +1066,7 @@
     }
   ],
   "warnings": [
-    "line 73: ragged row has 9 cells, expected 11 — padded/truncated",
-    "line 69: blank line splits the handoff table"
+    "line 74: ragged row has 9 cells, expected 11 — padded/truncated",
+    "line 70: blank line splits the handoff table"
   ]
 }
