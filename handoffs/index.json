@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T22:17:22Z",
+  "generated_at": "2026-09-15T23:13:37Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "9554cf09a6294a4e894dc652097ba0cb7dffd60ce244eba4aa2f3f8c5921a32a",
+  "source_sha256": "0a5aaf9759dffe834a9106454ec68bb7743a7e89015b7f49e741eaad37ec2ef8",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,7 +16,7 @@
     "done",
     "stale"
   ],
-  "handoff_count": 60,
+  "handoff_count": 61,
   "counts_by_state": {
     "awaiting_kickoff": 15,
     "executing": 13,
@@ -25,7 +25,7 @@
     "envoy_uat": 0,
     "human_uat_ready": 2,
     "prod_merge": 0,
-    "blocked_on_human": 12,
+    "blocked_on_human": 13,
     "failed": 0,
     "done": 15,
     "stale": 1,
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- ALL 4 authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- flagged to Gary, (3) fallback-chain hypothesis CONFIRMED from deployed source, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN (not closed) pending Gary's merge of #494 + GAS deploy + live U5/U1 re-verification -- same pattern as 30475. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests). NOT yet deployed -- a THIRD thing now needing Gary's deploy alongside #475.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 242
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net). krake_nginx pre-existing vault-pin gap found + fixed (truesight_autopilot#476, host-local ed25519 pin, merged), NOT yet deployed. Reviewed and independently verified all diffs before merging.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 242
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7), awaiting deploy. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Pre-validated #475 against the merged artifact on a clone (27/27) before deploy. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 242
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 242
       }
     },
     {
@@ -892,7 +892,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 242
       }
     },
     {
@@ -1076,6 +1076,23 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "[Medicilandia farmers convention 2024 - Media Archive Pipeline](https://t.me/c/3919341801/23734)",
       "telegram_topic_url": "https://t.me/c/3919341801/23734",
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`handoffs/PROD_SALES_RECONCILIATION_PLAN.md`",
+      "title": "**Prod sales reconciliation — 20260710 Sao Jorge bar batch** — the six \"81% Dark Chocolate Bar 50g (Fazenda Sao Jorge)\" units (QR `2024_20260710_12` / `_13` / `_14` / `_37` / `_38` / `_39`, AGL4) shipped under UPS `1Z0C39140337625102`: confirm the net sale price per unit and record the sale (MINTED → SOLD).",
+      "handoff_date": "2026-09-15",
+      "state": "blocked_on_human",
+      "status_raw": "blocked — awaiting governor confirmation that these 6 codes are Linda Ford's Sept subscription units",
+      "telegram_thread_id": "30870",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "[20260710 Sao Jorge bars — net sale price](https://t.me/c/3919341801/30870)",
+      "telegram_topic_url": "https://t.me/c/3919341801/30870",
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
