@@ -39,6 +39,34 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### MAP: Medicilandia farmers-convention 2024 — finish the media-archive pipeline (open the manifest PR + add the photo content layer)
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 23734).**
+
+**Context.** Thread 23734 archives the Medicilandia farmers-convention 2024 site-visit media
+(186 files: 72 MOV + 114 HEIC) into the Media Archive Pipeline (MAP) so the Portuguese
+content becomes retrievable by English search. Done so far, all on-branch (nothing merged):
+
+- **v2 manifest** — 186 items (258 KB, `medicilandia-convention-2024.json`), committed
+  `738eda1` on branch `medicilandia-convention-manifest` in `farm_media_manifests`; **the PR
+  was never opened** (`gh pr create` fails — the push PAT lacks the `createPullRequest` scope).
+- **Videos enriched** — 72/72 MOVs transcribed (54 with speech → English title/description +
+  burned `.vtt`; 18 silent), driver `/tmp/medic_video_enrich.py`, 829 s, 0 failures.
+- **S3 archive** — resume-safe raw + preview-frame upload to `media.agroverse.shop`
+  (`raw|previews/medicilandia-convention-2024/`); config `farm_id: medicilandia-convention-2024`
+  registered; last observed mid-pass at ~149/186 raw.
+
+**Still needed.** (1) **Open + merge the manifest PR** for `medicilandia-convention-manifest` —
+until merged, the 186-item archive is invisible to GitHub code search (the retrieval layer).
+(2) **Confirm the S3 pass reached 186/186** raw + previews. (3) **Build the per-photo
+content-extraction layer** — photos currently get *no* OCR and *no* object detection (both are
+video-only); the technical slides in this batch (e.g. `IMG_4460` fermentation stages, `IMG_4420`
+cacao strategies) need `ocr_text_pt`/`ocr_text_en` + `objects[]`/scene tags in the manifest, or
+English queries like "photos of the fermentation talk" won't resolve. Design confirmed in-thread;
+not yet implemented.
+
+**Evidence.** Thread 23734; manifest commit `738eda1` (branch `medicilandia-convention-manifest`);
+driver `/tmp/medic_video_enrich.py` (72/72); `MEDIA_ARCHIVE_PIPELINE.md`.
+
 ### truesight_autopilot: `merge_pr` refuses a docs-only PR when CI is legitimately path-filtered, not actually pending
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (sprint-board thread 30083).**
 

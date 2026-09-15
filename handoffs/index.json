@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T14:42:27Z",
+  "generated_at": "2026-09-15T14:46:20Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "5c78c2f228da7bab22be687e6d295eb79d4dd8e33c6638cd664e3e199a3121e1",
+  "source_sha256": "9b10fccb0c5e2d83bf59cf227c7a526e2df13566fe2705cd67455d03a4b19d5b",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,10 +16,10 @@
     "done",
     "stale"
   ],
-  "handoff_count": 58,
+  "handoff_count": 59,
   "counts_by_state": {
     "awaiting_kickoff": 16,
-    "executing": 12,
+    "executing": 13,
     "paused_at_gate": 7,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -851,7 +851,7 @@
         "claimed_at": "2026-09-15T14:42:20Z",
         "note": "Driving PR5 UAT after fixing the resume-marker parser bug (PR #1163).",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 4
       }
     },
     {
@@ -959,7 +959,7 @@
         "claimed_at": "2026-09-15T14:42:20Z",
         "note": "Driving PR2 row batch (19930 landed); next batch or wrap-up.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 4
       }
     },
     {
@@ -1024,6 +1024,23 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "[AGL16 expenses](https://t.me/c/3919341801/23408)",
       "telegram_topic_url": "https://t.me/c/3919341801/23408",
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`OPEN_FOLLOWUPS.md#medicilandia-map-media-archive`",
+      "title": "**Medicilandia farmers-convention 2024 — finish the MAP media archive** — archive the 2024 site-visit media (186 files: 72 MOV + 114 HEIC) into the Media Archive Pipeline so the Portuguese content becomes retrievable by English search: merge the 186-item v2 manifest, confirm the S3 raw+preview pass, and add the missing per-photo OCR + vision layer.",
+      "handoff_date": "2026-09-15",
+      "state": "executing",
+      "status_raw": "in progress — v2 manifest built + validated on branch `medicilandia-convention-manifest` (PR never opened — push PAT lacks `createPullRequest`); 72/72 MOVs enriched (54 speech + 18 silent); S3 archive pass caught mid-flight (~149/186 raw); photo content-extraction layer not yet built",
+      "telegram_thread_id": "23734",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "[Medicilandia farmers convention 2024 - Media Archive Pipeline](https://t.me/c/3919341801/23734)",
+      "telegram_topic_url": "https://t.me/c/3919341801/23734",
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
