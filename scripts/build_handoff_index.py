@@ -170,6 +170,20 @@ def _norm_plan_key(plan: str) -> str:
     return plan.strip().strip("`").strip()
 
 
+def _clean_id(value: str | None) -> str | None:
+    """Normalize an optional linkage id cell for use as a URL path segment.
+
+    The Manifest sometimes wraps channel/thread ids in backticks (e.g.
+    `` `1548896014868676608` ``). Left raw, those backticks are emitted into the
+    board's deep-link hrefs and produce a 404-looking broken link. Strip the
+    backticks and surrounding whitespace; an empty/None cell stays None.
+    """
+    if value is None:
+        return None
+    cleaned = value.strip().strip("`").strip()
+    return cleaned or None
+
+
 def load_supervision(path: Path | None) -> dict[str, dict[str, Any]]:
     """Load ``handoffs/active_supervision.json`` -> {normalized plan: claim}.
 
@@ -408,8 +422,12 @@ def build_index(
                 "telegram_thread_id_needs_verification": needs_verification,
                 "telegram_topic": topic_cell or None,
                 "telegram_topic_url": url_match.group(0) if url_match else None,
-                "discord_channel_id": _first_cell(row, DISCORD_CHANNEL_COLUMNS),
-                "discord_thread_id": _first_cell(row, DISCORD_THREAD_COLUMNS),
+                "discord_channel_id": _clean_id(
+                    _first_cell(row, DISCORD_CHANNEL_COLUMNS)
+                ),
+                "discord_thread_id": _clean_id(
+                    _first_cell(row, DISCORD_THREAD_COLUMNS)
+                ),
                 "auto_start": row.get("Auto-start").lower() or None,
                 "last_updated": row.get("Last manifest update"),
                 "supervised_by": supervision_entry(plan, supervision or {}),
