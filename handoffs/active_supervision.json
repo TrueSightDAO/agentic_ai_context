@@ -5,26 +5,32 @@
     {
       "plan_file": "plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T17:26:27Z",
-      "note": "blocked_on_human -- PR6 beta half shipped (truesight_me_beta #380 merged, quests/ redirected to sprint.truesight.me), correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS now confirmed live."
+      "claimed_at": "2026-09-15T19:10:52Z",
+      "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live."
     },
     {
       "plan_file": "plans/SOPHIA_LIVE_PROGRESS_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T17:26:27Z",
-      "note": "blocked_on_human -- fix merged (#467) but not deployed to the live box; deploying truesight_autopilot's own service is a genuine always-stop gate, awaiting Gary."
+      "claimed_at": "2026-09-15T19:10:52Z",
+      "note": "blocked_on_human -- fix merged (#467) but not deployed; awaiting Gary's deploy authorization."
     },
     {
       "plan_file": "plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T18:17:47Z",
-      "note": "PR1-PR4 all shipped and merged (PR4 = truesight_autopilot#469, vault force-fresh-on-deny, personally reviewed by Envoy). Tracker/manifest closed out (agentic_ai_context#1194). RESUME HERE = PR5 (UAT), blocked on the same deploy as the other threads."
+      "claimed_at": "2026-09-15T19:10:52Z",
+      "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Elizabeth Wong data-integrity bug found in UAT, flagged to Gary directly. Awaiting deploy + Gary's root-cause call."
     },
     {
       "plan_file": "plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-09-15T18:17:47Z",
-      "note": "Picked up while the other three supervised threads wait on Gary. Vault already initialized with 42 creds; dispatched a read-only assessment for migrating the 3 remaining bare .pem files -- no credential moves without explicit review, given this touches real private keys."
+      "claimed_at": "2026-09-15T19:10:52Z",
+      "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Only Unit F (archive bare .pem files) remains, hard-gated on UAT which needs the deploy."
+    },
+    {
+      "plan_file": "plans/CHOCOLATE_SUBSCRIPTION_PLAN.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-09-15T19:10:52Z",
+      "note": "Picked up while the other four supervised threads wait on Gary. Phase 1 already live on agroverse_shop_beta. Dispatched a read-only assessment for Phase-2 webhook-to-fulfillment E2E -- no code touching real charges/fulfillment without explicit review, this is payment-adjacent."
     }
   ]
 }
