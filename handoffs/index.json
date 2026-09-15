@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T13:19:11Z",
+  "generated_at": "2026-09-15T13:46:07Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "78c62417c3c2b737c3fe5f1132eb627f62200c552d2ca352aeb82c9e66ad91b6",
+  "source_sha256": "8d617a93e66c0acde32b30fa1cc379e8a86b07859a7f05ec1a3394e31130e37a",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -18,8 +18,8 @@
   ],
   "handoff_count": 57,
   "counts_by_state": {
-    "awaiting_kickoff": 17,
-    "executing": 11,
+    "awaiting_kickoff": 16,
+    "executing": 12,
     "paused_at_gate": 7,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -772,8 +772,8 @@
       "plan_file": "`plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md`",
       "title": "**`sprint.truesight.me` — Kanban board over Sophia's handoff pipeline** — a public, fully read-only board so Gary can see at a glance what actually needs his attention across Telegram/Discord, without opening each thread. No auth, no write path — Kanban columns are a direct rendering of `SUPERVISOR_LOOP.md` §2's state enum, defaulting to a \"Needs You\" view; final step repoints `truesight.me`'s dead Trello link to the new board.",
       "handoff_date": "2026-09-15",
-      "state": "awaiting_kickoff",
-      "status_raw": "**new — awaiting kickoff (RESUME HERE = PR0)**",
+      "state": "executing",
+      "status_raw": "**in progress — live at sprint.truesight.me (HTTP 200, HTTPS cert auto-provisioning); PR0–PR4 + logo/styling shipped; next: PR5 UAT**",
       "telegram_thread_id": "30083",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
