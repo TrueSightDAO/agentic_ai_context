@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T14:16:41Z",
+  "generated_at": "2026-09-15T14:26:02Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "ce9e64829fac02ca92747c85a94d50c88e8ab29886220512cbccd47cd212676d",
+  "source_sha256": "5c78c2f228da7bab22be687e6d295eb79d4dd8e33c6638cd664e3e199a3121e1",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -46,7 +46,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-13"
+      "last_updated": "2026-09-13",
+      "supervised_by": null
     },
     {
       "plan_file": "`handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`",
@@ -62,7 +63,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`handoffs/SITIO_TORRES_MEDIA_TASK_PLAN.md`",
@@ -78,7 +80,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-10"
+      "last_updated": "2026-09-10",
+      "supervised_by": null
     },
     {
       "plan_file": "`handoffs/GAS_DEPLOY_ACCESSOR_GUARD_PLAN.md`",
@@ -94,7 +97,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-10"
+      "last_updated": "2026-09-10",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SOPHIA_GITHUB_RATE_LIMIT_GOVERNOR_PLAN.md`",
@@ -110,7 +114,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-05"
+      "last_updated": "2026-09-05",
+      "supervised_by": null
     },
     {
       "plan_file": "`handoffs/SANTA_ANA_BAHIA_MEDIA_TASK_PLAN.md`",
@@ -126,7 +131,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-07"
+      "last_updated": "2026-09-07",
+      "supervised_by": null
     },
     {
       "plan_file": "`handoffs/FAZENDA_SAO_JORGE_MEDIA_TASK_PLAN.md`",
@@ -142,7 +148,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/FARM_MEDIA_DAEMON_PLAN.md`",
@@ -158,7 +165,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-01"
+      "last_updated": "2026-09-01",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/MEDIA_ARCHIVE_PIPELINE_DASHBOARD_PLAN.md`",
@@ -174,7 +182,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-01"
+      "last_updated": "2026-09-01",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SOPHIA_EMOJI_REACTION_GO_PLAN.md`",
@@ -190,7 +199,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-08-29"
+      "last_updated": "2026-08-29",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SUNMINT_PUBLIC_SIGNATURES_PLAN.md`",
@@ -206,7 +216,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-01"
+      "last_updated": "2026-09-01",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SUNMINT_MOBILE_APP_PLAN.md`",
@@ -222,7 +233,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-08-23"
+      "last_updated": "2026-08-23",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SUNMINT_IMPACT_MAP_EXTENSION_PLAN.md`",
@@ -238,7 +250,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-08-31"
+      "last_updated": "2026-08-31",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SUNMINT_BOUNDARY_SUBMISSION_PLAN.md`",
@@ -254,7 +267,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-01"
+      "last_updated": "2026-09-01",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SUNMINT_TREE_QR_LINKING_PLAN.md`",
@@ -270,7 +284,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-08-31"
+      "last_updated": "2026-08-31",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/FARM_SHIPMENT_MEDIA_JSON_PLAN.md`",
@@ -286,7 +301,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/WHITE_LABEL_IMPLEMENTATION_PLAN.md`",
@@ -302,7 +318,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-07-15"
+      "last_updated": "2026-07-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`LARGE_SPIKES_CARD_FIX_AND_CHART_LEGIBILITY_PLAN.md` (in agentic_ai_context — synced to Sophia's context mirror)",
@@ -318,7 +335,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-07-18"
+      "last_updated": "2026-07-18",
+      "supervised_by": null
     },
     {
       "plan_file": "`sentiment_importer/LARGE_SPIKE_INDEX_EXECUTION_ROADMAP.md` (repo: **TrueSightDAO/sentiment_importer** — read via `read_repo_file`, NOT in the agentic_ai_context context-sync mirror)",
@@ -334,7 +352,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-07-02"
+      "last_updated": "2026-07-02",
+      "supervised_by": null
     },
     {
       "plan_file": "`MEMBERS_PAGE_SINGLE_SOURCE_PLAN.md`",
@@ -350,7 +369,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-07-01"
+      "last_updated": "2026-07-01",
+      "supervised_by": null
     },
     {
       "plan_file": "`POST_REPACKAGING_CLEANUP_PLAN.md`",
@@ -366,7 +386,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-07-18"
+      "last_updated": "2026-07-18",
+      "supervised_by": null
     },
     {
       "plan_file": "`GOVERNOR_SHEET_PERMISSION_SYNC_PLAN.md`",
@@ -382,7 +403,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-28"
+      "last_updated": "2026-06-28",
+      "supervised_by": null
     },
     {
       "plan_file": "`REVIEW_QUEUE_SOP.md`",
@@ -398,7 +420,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-28"
+      "last_updated": "2026-06-28",
+      "supervised_by": null
     },
     {
       "plan_file": "`SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md`",
@@ -414,7 +437,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-23"
+      "last_updated": "2026-06-23",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/QR_SELF_SERVE_CURRENCY_PLAN.md`",
@@ -430,7 +454,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-13"
+      "last_updated": "2026-09-13",
+      "supervised_by": null
     },
     {
       "plan_file": "`SOPHIA_CONTRIBUTION_SCORING_PLAN.md`",
@@ -446,7 +471,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-07-18"
+      "last_updated": "2026-07-18",
+      "supervised_by": null
     },
     {
       "plan_file": "`SCORING_REVIEW_QUEUE_PLAN.md`",
@@ -462,7 +488,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-28"
+      "last_updated": "2026-06-28",
+      "supervised_by": null
     },
     {
       "plan_file": "`SOPHIA_DAPP_EVENT_ALIGNMENT_PLAN.md`",
@@ -478,7 +505,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-18"
+      "last_updated": "2026-06-18",
+      "supervised_by": null
     },
     {
       "plan_file": "`CLI_SALES_EVENT_ALIGNMENT_PLAN.md`",
@@ -494,7 +522,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-17"
+      "last_updated": "2026-06-17",
+      "supervised_by": null
     },
     {
       "plan_file": "`PUBLIC_KEY_LOOKUP_CACHE_PLAN.md`",
@@ -510,7 +539,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-16"
+      "last_updated": "2026-06-16",
+      "supervised_by": null
     },
     {
       "plan_file": "`SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`",
@@ -526,7 +556,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-14"
+      "last_updated": "2026-06-14",
+      "supervised_by": null
     },
     {
       "plan_file": "`SOPHIA_LIVE_PROGRESS_PLAN.md`",
@@ -542,7 +573,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-11"
+      "last_updated": "2026-06-11",
+      "supervised_by": null
     },
     {
       "plan_file": "`SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md`",
@@ -558,7 +590,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-11"
+      "last_updated": "2026-06-11",
+      "supervised_by": null
     },
     {
       "plan_file": "`SOPHIA_FOLLOWUP_MONITOR_PLAN.md`",
@@ -574,7 +607,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-11"
+      "last_updated": "2026-06-11",
+      "supervised_by": null
     },
     {
       "plan_file": "`AUTOPILOT_HARDENING_PLAN.md`",
@@ -590,7 +624,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-10"
+      "last_updated": "2026-06-10",
+      "supervised_by": null
     },
     {
       "plan_file": "`BETA_SANDBOX_ENDPOINT_PLAN.md`",
@@ -606,7 +641,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-09"
+      "last_updated": "2026-06-09",
+      "supervised_by": null
     },
     {
       "plan_file": "`CHOCOLATE_SUBSCRIPTION_PLAN.md`",
@@ -622,7 +658,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-09"
+      "last_updated": "2026-06-09",
+      "supervised_by": null
     },
     {
       "plan_file": "`RESEND_VERIFICATION_PLAN.md`",
@@ -638,7 +675,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-06-08"
+      "last_updated": "2026-06-08",
+      "supervised_by": null
     },
     {
       "plan_file": "`SANDBOX_THEOBROMA_1_HANDOFF_DEMO.md`",
@@ -654,7 +692,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-07-18"
+      "last_updated": "2026-07-18",
+      "supervised_by": null
     },
     {
       "plan_file": "`handoffs/CACAU_NA_VEIA_MEDIA_TASK_PLAN.md`",
@@ -670,7 +709,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "yes",
-      "last_updated": "2026-09-11"
+      "last_updated": "2026-09-11",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/DISCORD_ADAPTER_PLAN.md`",
@@ -686,7 +726,8 @@
       "discord_channel_id": "923012941937250375",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-14"
+      "last_updated": "2026-09-14",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/DISCORD_TELEGRAM_PARITY_GAPS.md`",
@@ -702,7 +743,8 @@
       "discord_channel_id": "`1549079137480605736`",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/DISCORD_SHOW_TYPING.md`",
@@ -718,7 +760,8 @@
       "discord_channel_id": "`1548896014868676608`",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/DISCORD_ADAPTER_BUGS.md`",
@@ -734,7 +777,8 @@
       "discord_channel_id": "`1549118558955634819`",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/DISCORD_MEMBER_TIER.md`",
@@ -750,7 +794,8 @@
       "discord_channel_id": "`962081045044424774`",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/DISCORD_ENVOY_GOVERNOR_PARITY_PLAN.md`",
@@ -766,7 +811,8 @@
       "discord_channel_id": "923012941937250375",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/CRF_ANAPU_SUNMINT_COHORT_PROPOSAL.md`",
@@ -782,7 +828,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md`",
@@ -798,7 +845,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`",
@@ -814,7 +862,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`plans/SOPHIA_REPO_ACCESS_DENYLIST_PLAN.md`",
@@ -830,7 +879,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#orlantildes-coopercabruca`",
@@ -846,7 +896,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#sophia-email-inbox-watch`",
@@ -862,7 +913,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#claude-telegram-monitor-box`",
@@ -878,7 +930,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#handoff-index-reconciliation`",
@@ -894,7 +947,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#warmup-conversion-delivery-bug`",
@@ -910,7 +964,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#followup-state-deploy-tree-wipe`",
@@ -926,7 +981,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#reservations-settlement-double-booking`",
@@ -942,7 +998,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     },
     {
       "plan_file": "`OPEN_FOLLOWUPS.md#agl16-currency-leak`",
@@ -958,7 +1015,8 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-15",
+      "supervised_by": null
     }
   ],
   "warnings": [

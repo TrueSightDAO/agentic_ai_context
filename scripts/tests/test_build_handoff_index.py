@@ -6,7 +6,9 @@ One focused test per behaviour: state mapping (the §2 enum), tolerant table rea
 
 from __future__ import annotations
 
+import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -274,3 +276,169 @@ def test_discord_columns_absent_do_not_break_build():
     h = idx["handoffs"][0]
     assert h["discord_channel_id"] in ("", None)
     assert h["telegram_thread_id"] == "1111"
+
+
+# --- PR4b: active-supervision visibility (plan §2.6) ------------------------
+
+
+def _sup(**claims):
+    """Build a supervision map keyed by normalized plan path."""
+    return {
+        plan: {
+            "supervisor": c.get("supervisor"),
+            "claimed_at": c.get("claimed_at"),
+            "note": c.get("note"),
+        }
+        for plan, c in claims.items()
+    }
+
+
+def test_unclaimed_handoff_emits_null_supervised_by():
+    idx = b.build_index(manifest(row()), "x", {})
+    assert idx["handoffs"][0]["supervised_by"] is None
+
+
+def test_no_supervision_arg_defaults_to_unclaimed():
+    idx = b.build_index(manifest(row()), "x")
+    assert idx["handoffs"][0]["supervised_by"] is None
+
+
+def test_claim_attaches_active_supervision_badge():
+    sup = _sup(
+        **{
+            "plans/PLAN_A.md": {
+                "supervisor": "envoy",
+                "claimed_at": "2026-09-15T13:00:00Z",
+                "note": "driving PR5 UAT",
+            }
+        }
+    )
+    now = datetime(2026, 9, 15, 13, 30, tzinfo=timezone.utc)
+    entry = b.supervision_entry("`plans/PLAN_A.md`", sup, now)
+    assert entry["supervisor"] == "envoy"
+    assert entry["stale"] is False
+    assert entry["age_minutes"] == 30
+    assert entry["note"] == "driving PR5 UAT"
+
+
+def test_claim_goes_stale_past_threshold():
+    sup = _sup(
+        **{
+            "plans/PLAN_A.md": {
+                "supervisor": "sophia",
+                "claimed_at": "2026-09-15T13:00:00Z",
+            }
+        }
+    )
+    now = datetime(2026, 9, 15, 14, 5, tzinfo=timezone.utc)  # 65 min later
+    entry = b.supervision_entry("plans/PLAN_A.md", sup, now)
+    assert entry["stale"] is True
+    assert entry["age_minutes"] == 65
+
+
+def test_threshold_boundary_is_not_stale():
+    sup = _sup(
+        **{
+            "plans/PLAN_A.md": {
+                "supervisor": "envoy",
+                "claimed_at": "2026-09-15T13:00:00Z",
+            }
+        }
+    )
+    now = datetime(2026, 9, 15, 14, 0, tzinfo=timezone.utc)  # exactly 60 min
+    assert b.supervision_entry("plans/PLAN_A.md", sup, now)["stale"] is False
+
+
+def test_unparseable_claimed_at_is_stale_not_trusted():
+    sup = _sup(
+        **{"plans/PLAN_A.md": {"supervisor": "envoy", "claimed_at": "not-a-date"}}
+    )
+    entry = b.supervision_entry("plans/PLAN_A.md", sup)
+    assert entry["stale"] is True
+    assert entry["age_minutes"] is None
+
+
+def test_load_supervision_missing_file_is_empty(tmp_path):
+    assert b.load_supervision(tmp_path / "nope.json") == {}
+
+
+def test_load_supervision_none_path_is_empty():
+    assert b.load_supervision(None) == {}
+
+
+def test_load_supervision_malformed_is_empty(tmp_path):
+    p = tmp_path / "active_supervision.json"
+    p.write_text("{not valid json", encoding="utf-8")
+    assert b.load_supervision(p) == {}
+
+
+def test_load_supervision_normalizes_backticks(tmp_path):
+    p = tmp_path / "active_supervision.json"
+    p.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "claims": [
+                    {
+                        "plan_file": "`plans/PLAN_A.md`",
+                        "supervisor": "envoy",
+                        "claimed_at": "2026-09-15T13:00:00Z",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    sup = b.load_supervision(p)
+    assert sup["plans/PLAN_A.md"]["supervisor"] == "envoy"
+
+
+def test_strip_volatile_ignores_computed_supervision_fields():
+    def idx(gen, stale, age):
+        return {
+            "generated_at": gen,
+            "handoffs": [
+                {
+                    "plan_file": "`plans/A.md`",
+                    "supervised_by": {
+                        "supervisor": "envoy",
+                        "claimed_at": "2026-09-15T13:00:00Z",
+                        "note": None,
+                        "stale": stale,
+                        "age_minutes": age,
+                    },
+                }
+            ],
+        }
+
+    assert b._strip_volatile(idx("T1", False, 5)) == b._strip_volatile(
+        idx("T2", True, 90)
+    )
+
+
+def test_drift_gate_passes_when_only_clock_derived_fields_differ(tmp_path):
+    # A committed index must not read as drift when rebuilt later, even though
+    # supervised_by.stale flipped with the clock — the gate compares content.
+    (tmp_path / "handoffs").mkdir()
+    sup_path = tmp_path / "handoffs" / "active_supervision.json"
+    sup_path.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "claims": [
+                    {
+                        "plan_file": "plans/PLAN_A.md",
+                        "supervisor": "envoy",
+                        "claimed_at": "2026-09-15T13:00:00Z",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    text = manifest(row())
+    idx = b.build_index(text, "x", b.load_supervision(sup_path))
+    assert idx["handoffs"][0]["supervised_by"]["supervisor"] == "envoy"
+    (tmp_path / "handoffs" / "index.json").write_text(b.render(idx), encoding="utf-8")
+    result = v.check_index(text, tmp_path / "handoffs" / "index.json")
+    assert result.ok, result.errors

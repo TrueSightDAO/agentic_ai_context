@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "_comment": "Supervisor-written, NOT generated. Claim a thread by adding an entry to 'claims'; release it by removing that entry. plan_file is the path as it appears in HANDOFF_MANIFEST.md (backticks optional); claimed_at is ISO-8601 UTC. Claims older than ~60 min are surfaced as stale by scripts/build_handoff_index.py so an abandoned claim is never silently trusted.",
+  "claims": []
+}

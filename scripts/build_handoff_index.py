@@ -54,6 +54,18 @@ from validate_handoff_manifest import (  # noqa: E402
 
 SCHEMA_VERSION = 1
 
+# Active-supervision (§2.6): a supervisor's claim on a thread is trusted for at most this
+# long. Beyond it the generator emits ``supervised_by.stale = true`` rather than silently
+# trusting an abandoned claim — the same failure shape as the manifest's Status column
+# drifting from reality, avoided here by design. Mirrors SUPERVISOR_LOOP.md §2a's
+# "verify before trusting a prolonged state" discipline; matches the existing check cadence.
+SUPERVISION_STALE_MINUTES = 60
+
+# The supervisor-written claims file. NOT generated — supervisors write it directly so a
+# claim/release is a small, self-mergeable docs-only PR, not a heavyweight edit against
+# HANDOFF_MANIFEST.md (the contention that caused the PR #1127 merge-conflict incident).
+SUPERVISION_FILENAME = "active_supervision.json"
+
 # The §2 supervisor state enum, in the order SUPERVISOR_LOOP.md lists it.
 STATE_ENUM = [
     "awaiting_kickoff",
@@ -143,6 +155,103 @@ DISCORD_THREAD_COLUMNS = ["Discord thread id", "Discord thread", "discord_thread
 
 URL_RE = re.compile(r"https?://[^\s)]+")
 DIGITS_RE = re.compile(r"\d+")
+
+
+def default_supervision_path() -> Path:
+    return Path(__file__).resolve().parent.parent / "handoffs" / SUPERVISION_FILENAME
+
+
+def _norm_plan_key(plan: str) -> str:
+    """Normalize a plan-file cell/id for supervision matching.
+
+    The manifest wraps plan files in backticks (`` `plans/X.md` ``); a supervisor's
+    claims file may not. Compare on the bare path so the two always line up.
+    """
+    return plan.strip().strip("`").strip()
+
+
+def load_supervision(path: Path | None) -> dict[str, dict[str, Any]]:
+    """Load ``handoffs/active_supervision.json`` -> {normalized plan: claim}.
+
+    The file is supervisor-written, not generated. A missing or malformed file means
+    "no active claims" — the board must degrade to "unclaimed", never error. On a
+    duplicate claim for one plan, the last entry wins.
+    """
+    if path is None:
+        return {}
+    try:
+        path = Path(path)
+        if not path.exists():
+            return {}
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(raw, dict):
+        return {}
+    claims = raw.get("claims")
+    if not isinstance(claims, list):
+        return {}
+    out: dict[str, dict[str, Any]] = {}
+    for claim in claims:
+        if not isinstance(claim, dict):
+            continue
+        plan = claim.get("plan_file")
+        if not isinstance(plan, str) or not plan.strip():
+            continue
+        out[_norm_plan_key(plan)] = {
+            "supervisor": claim.get("supervisor"),
+            "claimed_at": claim.get("claimed_at"),
+            "note": claim.get("note"),
+        }
+    return out
+
+
+def _parse_iso(value: Any) -> datetime | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    text = value.strip()
+    if text.endswith("Z"):
+        text = text[:-1] + "+00:00"
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
+
+
+def supervision_entry(
+    plan: str,
+    supervision: dict[str, dict[str, Any]],
+    now: datetime | None = None,
+) -> dict[str, Any] | None:
+    """Resolve a plan's ``supervised_by`` block, or ``None`` if unclaimed.
+
+    A claim older than ``SUPERVISION_STALE_MINUTES`` — or one whose ``claimed_at``
+    cannot be parsed — is emitted with ``stale = true``, so an abandoned claim is
+    surfaced, never silently trusted.
+    """
+    claim = supervision.get(_norm_plan_key(plan)) if supervision else None
+    if not claim:
+        return None
+    claimed_at = claim.get("claimed_at")
+    parsed = _parse_iso(claimed_at)
+    stale = False
+    age_minutes: int | None = None
+    if parsed is None:
+        stale = True
+    else:
+        now = now or datetime.now(timezone.utc)
+        age_minutes = max(0, int((now - parsed).total_seconds() // 60))
+        stale = age_minutes > SUPERVISION_STALE_MINUTES
+    return {
+        "supervisor": claim.get("supervisor"),
+        "claimed_at": claimed_at,
+        "note": claim.get("note"),
+        "stale": stale,
+        "age_minutes": age_minutes,
+    }
 
 
 def derive_state(status_raw: str) -> tuple[str, str]:
@@ -259,8 +368,16 @@ def _utcnow() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def build_index(text: str, source: str) -> dict[str, Any]:
-    """Build the index dict from the manifest's raw markdown text."""
+def build_index(
+    text: str,
+    source: str,
+    supervision: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Build the index dict from the manifest's raw markdown text.
+
+    ``supervision`` maps a normalized plan path to its active claim (§2.6); when
+    omitted, every handoff is emitted as unclaimed (``supervised_by = null``).
+    """
     _header, rows, warnings = collect_handoff_rows(text)
     handoffs: list[dict[str, Any]] = []
 
@@ -295,6 +412,7 @@ def build_index(text: str, source: str) -> dict[str, Any]:
                 "discord_thread_id": _first_cell(row, DISCORD_THREAD_COLUMNS),
                 "auto_start": row.get("Auto-start").lower() or None,
                 "last_updated": row.get("Last manifest update"),
+                "supervised_by": supervision_entry(plan, supervision or {}),
             }
         )
 
@@ -320,8 +438,38 @@ def render(index: dict[str, Any]) -> str:
     return json.dumps(index, indent=2, ensure_ascii=False) + "\n"
 
 
+# Clock-derived fields: two builds of the SAME manifest legitimately differ here, so the
+# drift gate must ignore them or it would fail on every run with no real change.
+SUPERVISION_VOLATILE_KEYS = ("stale", "age_minutes")
+
+
 def _strip_volatile(index: dict[str, Any]) -> dict[str, Any]:
-    return {key: value for key, value in index.items() if key != "generated_at"}
+    """Drop fields that legitimately differ between two builds of the same manifest.
+
+    ``generated_at`` is a timestamp; ``supervised_by.stale`` / ``age_minutes`` are
+    derived from ``claimed_at`` vs. the wall clock. None are content, so they must not
+    read as drift.
+    """
+    stripped: dict[str, Any] = {}
+    for key, value in index.items():
+        if key == "generated_at":
+            continue
+        if key == "handoffs" and isinstance(value, list):
+            rows: list[Any] = []
+            for handoff in value:
+                row = dict(handoff)
+                claim = row.get("supervised_by")
+                if isinstance(claim, dict):
+                    row["supervised_by"] = {
+                        k: v
+                        for k, v in claim.items()
+                        if k not in SUPERVISION_VOLATILE_KEYS
+                    }
+                rows.append(row)
+            stripped[key] = rows
+            continue
+        stripped[key] = value
+    return stripped
 
 
 def _source_label(manifest_path: Path) -> str:
@@ -347,6 +495,14 @@ def main(argv: list[str] | None = None) -> int:
         help="Output path (default: index.json beside the manifest)",
     )
     parser.add_argument(
+        "--supervision",
+        default=None,
+        help=(
+            "Path to active_supervision.json "
+            f"(default: {SUPERVISION_FILENAME} beside the manifest)"
+        ),
+    )
+    parser.add_argument(
         "--stdout", action="store_true", help="Print the index instead of writing it"
     )
     parser.add_argument(
@@ -367,8 +523,15 @@ def main(argv: list[str] | None = None) -> int:
         else manifest_path.resolve().parent / "index.json"
     )
 
+    supervision = load_supervision(
+        Path(args.supervision)
+        if args.supervision
+        else manifest_path.resolve().parent / SUPERVISION_FILENAME
+    )
     index = build_index(
-        manifest_path.read_text(encoding="utf-8"), _source_label(manifest_path)
+        manifest_path.read_text(encoding="utf-8"),
+        _source_label(manifest_path),
+        supervision,
     )
     rendered = render(index)
 
