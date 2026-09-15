@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T19:11:10Z",
+  "generated_at": "2026-09-15T19:28:41Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "7299dc0e0a8107715404f2911420ddf071f8fb269c1541f2bc2b0e05ac72d0a7",
   "state_enum": [
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Elizabeth Wong data-integrity bug found in UAT, flagged to Gary directly. Awaiting deploy + Gary's root-cause call.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 17
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Only Unit F (archive bare .pem files) remains, hard-gated on UAT which needs the deploy.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 17
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- fix merged (#467) but not deployed; awaiting Gary's deploy authorization.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 17
       }
     },
     {
@@ -697,9 +697,9 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "Picked up while the other four supervised threads wait on Gary. Phase 1 already live on agroverse_shop_beta. Dispatched a read-only assessment for Phase-2 webhook-to-fulfillment E2E -- no code touching real charges/fulfillment without explicit review, this is payment-adjacent.",
+        "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 17
       }
     },
     {
@@ -892,7 +892,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 17
       }
     },
     {
@@ -910,7 +910,13 @@
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
-      "supervised_by": null
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-09-15T19:28:30Z",
+        "note": "Picked up while all five other supervised threads wait on Gary. This is the meta-bug behind the recurring PR-less-unit false gate hit 7+ times this session. Dispatched PR0 (pre-flight). PR3 (deploy) correctly gate:human -- won't clear that myself.",
+        "stale": false,
+        "age_minutes": 0
+      }
     },
     {
       "plan_file": "`plans/SOPHIA_REPO_ACCESS_DENYLIST_PLAN.md`",
