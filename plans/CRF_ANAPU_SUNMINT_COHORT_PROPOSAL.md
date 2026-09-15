@@ -1,8 +1,7 @@
 # CRF Anapu × SunMint — tree-submission cohort proposal & execution roadmap
 
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification.
-**Status: ✅ APPROVED 2026-09-15** · **PR0 COMPLETE 2026-09-15** — all §6 open decisions resolved,
-and all four code-only §7 pre-flight items resolved by live repo reads. **RESUME HERE = PR1.**
+**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b COMPLETE** — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). **RESUME HERE = PR1.**
 
 > **PR0 result (Sophia, 2026-09-15):** two pre-flight items **rectified this document** — the plot
 > flow *is* shipped but hardcodes its origin (§1.3b), and `program_assets/registry.json` does not
@@ -185,9 +184,11 @@ read (with a new, non-`practice`, appropriately-named subfolder — see §3).
 
 ## 2. Target architecture
 
-### 2.1 `cfr.truesight.me`'s tree-submission surface — two options
+### 2.1 `cfr.truesight.me`'s tree-submission surface — **DECIDED: Option B (vendored copy)**
 
-**Option A — thin branded redirect into the canonical app (recommended).**
+> **✅ GOVERNOR DECISION (Gary, 2026-09-15, thread 30026): Option B — vendor a full copy of the SunMint app into the `cfr-anapu` repo.** Rationale: the parameterized-redirect (Option A) required persisting the slug across in-app navigation (the `?program=` param is silently dropped when the app moves from `/` to `/monitor-tree-growth/`), which Gary judged *"too complicated."* A vendored copy keeps the URL bar on `cfr.truesight.me` throughout and — because both live submission flows already stamp `Submission Source: ${window.location.href}` — needs **zero** app-code change for attribution. Option A is retained below for the record.
+
+**Option A — thin branded redirect into the canonical app (REJECTED — retained for the record).**
 `cfr.truesight.me`'s planting/monitoring pages are small static pages that immediately
 `window.location.replace('https://sunmint.truesight.me/?program=crf-anapu')` (and the equivalent for
 `monitor-tree-growth/`). The **one real app code change**: `sunmint_beta` reads an optional
@@ -211,9 +212,15 @@ maintained to do it automatically.
   conventions elsewhere (`AUTOPILOT_CHANNEL_INTEGRATIONS.md`'s adapter-pattern, the single-canonical-app
   principle behind `truesight_autopilot`) steer away from.
 
-**Recommendation: Option A.** It is less code, has no drift risk, and reuses the co-brand pattern that
-already exists for exactly this purpose. This is one of the decisions batched in §6 for governor
-confirmation before PR1 — pick one, once, rather than discover a preference mid-build.
+**Decision: Option B (Gary, 2026-09-15).** Option A was rejected not on drift grounds but on **UX complexity** — the `?program=` param is dropped the moment the app navigates internally, so the redirect required stashing + re-applying the slug on every submit page.
+
+**Option B build spec (authoritative for PR1/PR2):**
+- **Attribution needs no `Program:` field.** Both live flows already stamp `Submission Source: ${window.location.href}`; served from `cfr.truesight.me` that becomes `https://cfr.truesight.me/…` automatically. The **only** app fix is `limites-da-fazenda/`'s hardcoded `'sunmint-limites-da-fazenda'` literal (PR1).
+- **Program mapping is by origin.** The derive/sync pipeline (PR3/PR4) maps a submission's `Submission Source` host → program slug via each program's `manifest.json`.
+- **Layout on `cfr-anapu` `gh-pages`** (Pages serves *this* branch, not `main`): `/index.html` = vendored app (planting); `/monitor-tree-growth/`, `/limites-da-fazenda/`, `/instrucoes/` = vendored; the credentialing page moves to **`/program/`** (asset refs rewritten to `../`); **`members.html` stays at root** so existing links keep resolving. **Never vendor the app's `CNAME`.**
+- **Sync is scripted, not manual** — `sync_sunmint_app.py` (dry-run default, opens a PR). A hand-copy of a repo with this many branches *will* drift.
+
+**⚠️ No beta environment exists for `cfr-anapu`.** `cfr.truesight.me` is a live public Pages site, so merging to `gh-pages` deploys instantly. PR2 therefore ends with an immediate live smoke-check instead of a beta UAT.
 
 ### 2.2 Membership derivation — extend the existing pipeline, don't fork it
 
@@ -361,14 +368,12 @@ line has to be drawn at *what each item shows*, not *whether items show at all*:
 
 ## 6. Open decisions — batch these once (§5e), don't re-ask per PR
 
-1. **Option A (redirect + co-brand banner) vs. Option B (vendored copy)** for `cfr.truesight.me`'s
-   planting/monitoring pages — §2.1. **Recommend A. ✅ Effectively confirmed by §0.1** ("the same as
-   how it currently behaves on sunmint.truesight.me") — treating as resolved unless corrected.
+1. **✅ RESOLVED — Option B (vendored copy).** Gary, 2026-09-15 (thread 30026): *"instead of parameterized approach, a vendored approach is better"* — the param-drop-on-navigation problem made A "too complicated." Supersedes the earlier A-lean; see §2.1 for the build spec.
 2. **✅ RESOLVED (§0.1, 2026-09-15):** a tree-submission-only contributor (no credential) IS allowed
    to appear on `members.html` — "the profile of the student should show up here too." No further
    confirmation needed on this point.
-2b. **If yes to #2** — should a tree/plot submitted through `sunmint.truesight.me` directly (no
-   `?program=` param — the generic, unbranded surface) ever retroactively count toward a program's
+2b. **If yes to #2** — should a tree/plot submitted through `sunmint.truesight.me` directly
+   (i.e. `Submission Source` host `sunmint.truesight.me` — the generic, unbranded surface) ever retroactively count toward a program's
    cohort if the submitter later turns out to be a CRF Anapu student? Recommend **no** — origin
    attribution should be at submission time only, exactly as literally requested ("submissions via
    that route"), not inferred after the fact from identity.
@@ -438,25 +443,23 @@ PR1 may start.
 | Unit | Scope | Advance |
 |---|---|---|
 | **PR0** | ✅ **DONE 2026-09-15** — §7 items 1–4 resolved (live repo reads); §6 updated. Rectified §1.3/§1.3b/§1.4/§6 #3. No code. | auto |
-| **PR1** | `sunmint_beta`: read `?program=` query param; append `Program: <slug>` field to `[TREE PLANTING EVENT]` and `[TREE GROWTH MONITORING EVENT]` bodies when present; render the `cobrand-strip` banner (reusing existing CSS/JS from the credentialing pages) when `?program=` resolves to a known program via a small fetched/vendored `manifest.json`-equivalent. Unit tests: param present/absent, unknown program slug (banner omitted, field still appended — never block a submission over an unrecognized tag), field ordering doesn't break existing event-catalog parsing (`canonical_labels` audit). | auto |
-| **PR2** | `cfr-anapu` repo: add the two thin redirect pages (`plant-a-tree/index.html`, `monitor-tree-growth/index.html`) pointing at `sunmint.truesight.me/?program=crf-anapu` (Option A) — or the vendored-copy equivalent if Open Decision #1 lands on Option B. Wire a CTA from the existing `programs/crf-anapu/index.html` (both beta and the `cfr-anapu` mirror) to the new surface. | auto (beta); prod mirror gated same as any `truesight_me_*` prod touch |
+| **PR0b** | ✅ **DONE 2026-09-15** — **architecture re-pointed to Option B (vendored copy)** per Gary (thread 30026); §2.1 rewritten with the Option B build spec; §6 #1 resolved; PR1/PR2 redefined; §8/§9 updated. No code. | auto |
+| **PR1** | `sunmint_beta`: **vendor-readiness only (Option B)** — (a) un-hardcode `limites-da-fazenda/index.html`'s `Submission Source` from the literal `'sunmint-limites-da-fazenda'` to `${window.location.href}` so a vendored copy self-attributes to `cfr.truesight.me`; (b) audit all three flows + `instrucoes/` for absolute `sunmint.truesight.me` self-refs and non-relative asset refs (vendor-copy safety), and confirm `service-worker.js` cache names/paths can't collide cross-origin; (c) **no `Program:` field added** — attribution is by `Submission Source` origin (§2.1). Tests: submission body reflects the running origin; no absolute self-refs remain in the three flows. | auto |
+| **PR2** | `cfr-anapu` repo (**push to `gh-pages`** — Pages serves that branch; `main` alone will 404): **vendor the SunMint app** — copy `index.html`, `monitor-tree-growth/`, `limites-da-fazenda/`, `instrucoes/` (+ `instrucoes/send-as-file-tip.png`) and `service-worker.js` from `sunmint_beta@main`; **do NOT copy `CNAME`** (keep `cfr.truesight.me`). Relocate the credentialing page `index.html` → `program/index.html` (asset refs → `../styles/`, `../js/`; `View cohort` → `../members.html`); **keep `members.html` at root**. Add `sync_sunmint_app.py` (dry-run default, opens a PR) + `vendor.json` manifest so future app changes re-vendor by PR, never by hand. **⚠️ `cfr.truesight.me` is live — merge == deploy; end with an immediate smoke-check.** | auto (no beta env — see §2.1) |
 | **PR3** | `lineage-engine`: new `sync_sunmint_program_activity.py` reading the confirmed source (§7 item 2), writing `programs/<slug>/pk-<hash>/sunmint/*.json` into `lineage-credentials`. Dry-run flag default, per this workspace's standing convention for any new write script. | auto |
 | **PR4** | `lineage-engine`: extend `collect_practitioners()` + `_program_activity_score()` in `build_cv_cache.py` for the new `sunmint/` activity kind (§2.2 points 3–4); extend `manifest.json` schema for `program_modes` array (§6 decision #4). | auto |
 | **PR5** | `truesight_me_beta` (+ `cfr-anapu` mirror): `program-shell.js` renders SunMint activity badges on `members.html` cards (§2.2 point 5, aggregate-only per §4) **and** extends the `credentials/index.html` CV renderer to list itemized `sunmint_events[]` rows on click-through, each linking to the tree's public Impact Map/QR entry rather than duplicating GPS/photo (§2.2 point 6, §4). Update `programs/crf-anapu/manifest.json` to the new `program_modes` shape. | auto (beta); prod gated on UAT |
 | **PR6** | First real sync run (dry-run then live) against real CRF Anapu submissions (needs at least one real submission to exist first — may require a CEPOTX/Jedielcio coordination step outside any PR). Verify `members.html` populates. | **`gate: human`** — first live write into `lineage-credentials` from a new activity kind |
 | **PR7** | Docs: update `CREDENTIALING_PROGRAM_PAGES.md` with the new `sunmint_cohort` mode (it's the canonical spec, editable per its own convention — this is documentation of a shipped feature, not a forecast); update `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`'s status; UAT. | auto |
 
-**RESUME HERE → PR1** (PR0 complete 2026-09-15 — all §7 pre-flight items resolved, no open
-governor decisions remain). PR1 = `sunmint_beta` reads `?program=`, appends the `Program:` field to the
-planting + monitoring **and plot** event bodies, renders the co-brand banner. Beta-first; prod
-gated on UAT. **PR6 remains the only `gate: human`.**
+**RESUME HERE → PR1** (PR0 + PR0b complete 2026-09-15 — §7 pre-flight resolved; architecture = **Option B**, the only remaining governor decision). PR1 = `sunmint_beta` vendor-readiness: un-hardcode `limites-da-fazenda/`'s `Submission Source`, audit for absolute self-refs. **Then PR2 = the vendor PR into `cfr-anapu` `gh-pages`.** **PR6 remains the only `gate: human`.**
 
 ---
 
 ## 9. UAT
 
 - **U1** — Submit a real (or clearly test-tagged, per §5g standing E2E authorization) tree planting via
-  the new `cfr.truesight.me` surface. Confirm the ledger event carries `Program: crf-anapu`.
+  the vendored `cfr.truesight.me` surface. Confirm the ledger event carries `Submission Source: https://cfr.truesight.me/…` and is attributed to `crf-anapu`.
 - **U2** — Confirm the sync job (PR3) picks up that event and writes the expected
   `lineage-credentials/programs/crf-anapu/pk-<hash>/sunmint/*.json` file.
 - **U3** — Confirm `build_cv_cache.py` (PR4) correctly aggregates it and the pk-hash appears (or is
@@ -467,8 +470,7 @@ gated on UAT. **PR6 remains the only `gate: human`.**
 - **U4b** — Click through from that card to `credentials/#<slug>` and confirm the specific tree
   planting appears as an itemized row (type, species, date) with a working link to its public Impact
   Map/QR entry — and confirm the credential page itself still shows no raw GPS/photo (§4).
-- **U5** — Confirm a submission with **no** `?program=` param (plain `sunmint.truesight.me`) is
-  completely unaffected — no `Program` field, no banner, no change to existing behavior.
+- **U5** — Confirm a submission via plain `sunmint.truesight.me` is completely unaffected — it stamps `Submission Source: https://sunmint.truesight.me/…` and is **not** attributed to any partner program.
 - **U6** — Confirm test data cleanup per §5g (test rows removed / clearly marked, no leftover value in
   a real ledger).
 
