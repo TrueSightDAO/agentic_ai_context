@@ -157,14 +157,34 @@ waits for human UAT before prod**.
 > it on the fly (§5e of `OPERATING_INSTRUCTIONS.md`: batch the scoping decision once, don't re-ask
 > per occurrence).
 
+> **Governor decision 2026-09-15 (merge is not a gate):** *"I don't think merging should be human
+> gated. Only deployment of GAS and human UAT. Merge should just be handled by Sophia."* This
+> **retires the `truesight_autopilot` own-repo "never self-merge" rule** that had been carried as
+> convention text in individual plan-doc headers (`SOPHIA_AUTO_ADVANCE_PLAN.md`,
+> `SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`, and others) rather than centralized here — Sophia may
+> now self-merge PRs to her own codebase, same as any other non-prod repo. **Scoped narrowly, not a
+> blanket loosening:** only the git-level *merge* action moves to autonomous.
+> - **GAS deployment** (`clasp push`/`deploy`) — still an always-stop, unchanged (§5c).
+> - **Human UAT (R3)** — still an always-stop, unchanged (§4).
+> - **TDG/money, account-only actions** — untouched; this decision was about merging, not those.
+> - **Restarting/deploying `truesight_autopilot`'s own live service** (as opposed to merely merging
+>   code to its default branch) is treated here as **still gated**, matching the general
+>   deploy/promote always-stop category GAS deploy is one instance of — merging and deploying are
+>   different actions, and Gary's statement named deployment (GAS) as a thing that stays gated. This
+>   is Envoy's conservative reading of an otherwise-unstated case, not something Gary said
+>   explicitly either way — correct it if you intended autopilot's own deploy to be freed too.
+
 | Action | Default | Basis |
 |---|---|---|
 | Send `go` for a non-irreversible unit | **Autonomous** | §5c — safe units auto-advance |
 | Diagnose + retry a `failed` turn (once) | **Autonomous** | §5c — non-convergence halts, but the supervisor may re-drive |
 | R1 (Sophia) + R2 (Envoy) UAT on beta | **Autonomous** | §4 |
 | Merge a PR to a **non-prod** repo / feature branch (CI green + R1/R2 UAT pass) | **Autonomous** | beta repos are not outward-facing |
-| Merge a PR to a **prod-consumed** repo / default branch | **Gated on human UAT thumbs-up** | supervisor executes after §4 R3 thumbs-up |
+| Merge a PR to **`truesight_autopilot`** (Sophia's own codebase) | **Autonomous** (revised 2026-09-15 — previously human-merge-only) | CI green + tests pass; git-level merge only, not a live restart |
+| Merge a PR to a **prod-consumed** repo / default branch (e.g. `truesight_me_prod`, `agroverse_shop_prod`, `dapp_prod`) | **Gated on human UAT thumbs-up** | supervisor executes after §4 R3 thumbs-up |
 | Beta→prod promote (`sync_beta_to_prod`) | **Gated on human UAT thumbs-up** | supervisor executes after §4 R3 thumbs-up |
+| GAS deploy (`clasp push`/`deploy`) | **Human (always)** | §5c — non-negotiable, explicitly reaffirmed 2026-09-15 |
+| Restart/deploy `truesight_autopilot`'s own live service | **Gated** (Envoy's conservative default — see callout above) | distinct from merging; verify healthy after, not just that the command ran |
 | TDG / money movement (issuing, payouts, treasury, capital injection, batch contributions) | **Human (always)** | §5c — non-negotiable |
 | Account-only actions (secrets, tokens, npm publish, org/SSO, domain/DNS) | **Human (always)** | §5c — non-negotiable |
 | Final human UAT sign-off | **Human (always)** | §4 |

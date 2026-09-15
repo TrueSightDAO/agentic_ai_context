@@ -3,9 +3,16 @@
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request. **Repo under change:**
 `truesight_autopilot` (Sophia's own codebase). **Status: proposal, ready for review.**
 
-> ⛔ **Own-repo gate carries over from the parent plan:** open PRs only, **never self-merge**
+> ✅ **Updated 2026-09-15 — own-repo merge gate retired.** Gary: *"I don't think merging should be
+> human gated. Only deployment of GAS and human UAT. Merge should just be handled by Sophia."*
+> (`sophia/SUPERVISOR_LOOP.md` §5, governor decision 2026-09-15.) PRs to `truesight_autopilot` may
+> now be self-merged (CI green + tests pass), same as any other non-prod repo — the line below is
+> kept only as historical record of what PR3 originally assumed.
+>
+> ~~⛔ Own-repo gate carries over from the parent plan: open PRs only, never self-merge
 > `truesight_autopilot` PRs — a human reviews + merges (unlike the docs-only self-merge convention
-> used elsewhere in `agentic_ai_context`).
+> used elsewhere in `agentic_ai_context`).~~ **Superseded.** PR3 (deploy) below is still gated —
+> restarting the live service is a separate action from merging code, per the same governor decision.
 
 ---
 
@@ -191,7 +198,7 @@ directly. No human decisions block PR1.
 | **PR0** | Pre-flight completion: resolve §3 items 1–3. No code. | auto |
 | **PR1** | `app/auto_advance.py` + `app/main.py`: implement §2.1's `made_progress` signal and the updated `next_action()` signature. Update `test_next_action_gate_when_no_pr_opened` to reflect the new behavior (keep a `test_next_action_gate_when_no_progress_at_all` case for the still-gated true-failure path) + add tests for the `made_progress`-but-no-PR case. | auto |
 | **PR2** | `app/auto_advance.py`: implement §2.3 option 1 (detect + gate-with-clear-reason on disagreeing multiple `RESUME HERE` markers), with a regression test using the literal incident string (§3 item 1). Option 2 (drop the duplicate-marker convention entirely) is deferred to §6 — not this PR unless Gary picks it. | auto |
-| **PR3** | Deploy to the box (own-repo gate — human merges both PRs above first; deploy itself follows the existing "verify healthy after restart, not just that the command ran" discipline). | **`gate: human`** — own-repo PRs need a human merge before this can even start, and a live-process restart is itself deploy-shaped |
+| **PR3** | Deploy to the box (PR1/PR2 are self-merged directly, no human step — see the 2026-09-15 update above; deploy itself follows the existing "verify healthy after restart, not just that the command ran" discipline). | **`gate: human`** — merging PR1/PR2 no longer needs a human, but **restarting the live service still does**: that's the deploy action, a separate thing from merging, per the same 2026-09-15 decision |
 | **PR4** | UAT (§5) on a scratch handoff thread with a throwaway plan containing at least one deliberately PR-less unit. | auto (post-deploy) |
 | **PR5** | Docs: note the fix in `SOPHIA_AUTO_ADVANCE_PLAN.md`'s own history (append, don't rewrite its resume tracker) and in `SUPERVISOR_LOOP.md` if the state-reading guidance references the old behavior anywhere. | auto |
 
@@ -235,7 +242,7 @@ hold for a class of units (PR-less) the original implementation didn't anticipat
 ## 7. Rollout
 
 Per the pattern established for every other roadmap this session: **park in a new Telegram topic** for
-a supervisor to pick up. **Note the own-repo gate (top of this doc) applies throughout** — this is
-different from the docs-only `agentic_ai_context` proposals parked earlier today; every PR here needs
-Gary (or another human) to actually merge it, and PR3 (deploy) is an explicit always-stop regardless.
-RESUME HERE (§4) = PR0.
+a supervisor to pick up. **Merging PR1/PR2 no longer needs a human** (2026-09-15 update, top of this
+doc) — Sophia self-merges directly, same as a docs-only `agentic_ai_context` PR. **PR3 (deploy —
+restarting the live service) remains an explicit always-stop regardless** — that's a separate action
+from merging. RESUME HERE (§4) = PR0.
