@@ -395,6 +395,8 @@ So a member's message is logged as captured context and **never dispatched** —
 
 **Evidence.** `truesight_autopilot` tool `git_push_changes` (main-based rebase); failed pushes to `fix/define-currency-dapp-conventions` 2026-09-13 (all-hunks `search string not found`); successful Contents-API fallback (commit `298f950a`, dapp_beta#92); thread 27015.
 
+**Addendum 2026-09-15 (thread 29509, PR `truesight_autopilot#464`).** Two further symptoms confirmed, both variants of the same root cause (each call rebuilds from `main`): (1) passing `base_branch=<the already-pushed feature branch>` does **not** work around it — the tool treats the supplied base as a *default branch* and **refuses the push** under the default-branch guard, so there is no CLI way to target an existing feature branch; (2) a second push to a branch that already exists on the remote fails with a raw non-fast-forward (`! [rejected] … (fetch first)`) for the same reason — the rebuilt branch diverges from the pushed one. The same `edit`-mode call also failed earlier in the run with `edit target not found` when the file only existed on the branch, not on `main`. **Working workaround that shipped:** plain `git` in a local clone (`git add -A && git commit && git push origin <branch>`, using `scripts/git-credential-sophia.sh`), falling back to single-file `upload_file_to_github(branch=…)` for follow-ups. A real fix would still be the `base_branch`/target-branch clone + `insert_after` support already proposed above.
+
 ### Stale `manifest.json` in the QR/currency GAS mirror tree (`tokenomics/google_app_scripts/1N6o00…`) — names only the `@8` QR deployment, omits the live `@10` currency web app
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 27015).**
 
