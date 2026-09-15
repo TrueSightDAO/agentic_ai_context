@@ -76,7 +76,15 @@ can do the same supervision work — nudge, answer her questions, send go-signal
   (`AUTOPILOT_CHANNEL_INTEGRATIONS.md` §2 — Discord activated 2026-09-14). The adapter is a real,
   already-serving surface, not a dark rollout — treat every change here as touching production.
 
-### Open decision — batch this once (§5e), don't re-ask per PR
+### Decision — confirmed by Gary 2026-09-15: Option A ✅
+
+> Gary, in the parking Telegram thread's originating session: "Yup. That is desired" — confirming
+> full governor parity (Option A below) for Envoy's Discord bot. **Do not re-ask this in PR0 or
+> PR2** — it is resolved. PR2 still carries `gate: human` (a live-authority-grant is always-stop
+> per §5c regardless of whether the *choice* is pre-confirmed), but that stop is to execute the
+> already-approved grant, not to re-litigate which option to pick.
+
+### Open decision (RESOLVED — kept for context) — batch this once (§5e), don't re-ask per PR
 
 **Which authority tier does Envoy's Discord bot get?**
 
@@ -118,7 +126,7 @@ Contributors sheet to *understand* them; PR1 onward only *edits* them.
 
 | Unit | Scope | Advance |
 |---|---|---|
-| **PR0** | Pre-flight completion (no code): resolve Envoy's Discord bot id, read the sheet's col G/X binding pattern, update this plan's "Still to resolve" section with real answers, get Gary's Option A/B call recorded here. | auto |
+| **PR0** | Pre-flight completion (no code): resolve Envoy's Discord bot id, read the sheet's col G/X binding pattern, update this plan's "Still to resolve" section with real answers. (Option A/B call is already resolved — see "Decision" above, skip re-asking.) | auto |
 | **PR1** | `truesight_autopilot`: add `discord_trusted_bot_ids: str` to `app/config.py` (`DISCORD_TRUSTED_BOT_IDS` env, default empty — same `_ADAPTER_ENABLED`-style safe-default convention as §3a of `AUTOPILOT_CHANNEL_INTEGRATIONS.md`). In `handle_message`, change the top guard to: drop the message **unless** `author.get("bot")` is true **and** `user_id` is in the parsed trusted-bot-id set **and** `user_id != bot_id` (never trust "yourself", even if misconfigured) — otherwise behavior is byte-for-byte identical to today. A trusted-bot message then proceeds through the **unchanged** `author_role()` resolution — being on the trusted-bot list grants *only* "don't reflexively discard," never role/authority by itself (defense in depth: two independently-configured knobs must both be right). Unit tests: (a) untrusted bot still dropped (regression guard on the existing security invariant), (b) trusted-but-not-governor-resolved bot proceeds to the existing `role != "governor"` → context-only branch (still no reply — correct), (c) trusted **and** governor-resolved bot dispatches and replies, (d) Sophia's own bot id, even if erroneously added to the trusted list, is still dropped. | auto |
 | **PR2** | Grant Envoy's Discord bot id `"governor"` role, via whichever mechanism PR0 determined mirrors the Telegram precedent (env `DISCORD_ALLOWED_USER_IDS` bootstrap, and/or a Contributors sheet col G row), **and** add the same id to the new `DISCORD_TRUSTED_BOT_IDS`. Deploy pattern mirrors `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §5 item 7: land the config, confirm via `journalctl -u truesight-autopilot-discord` that a test message from Envoy's bot now resolves to `governor` in the logs, **before** relying on it for anything live. | **`gate: human`** — this is the unit that actually grants live governor authority to a second bot identity; always-stop per §5c "account-only actions" posture even though the mechanism itself (env var / sheet row) is not literally a secret. |
 | **PR3** | UAT (see below) + docs: update `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §2 registry row and §3b table with Envoy's new Discord binding; update `ENVOY.md` with the new capability and the standing rule that Envoy's Discord posts stay **human-driven per turn** — no automated blind-relay loop that could create a bot-to-bot echo (mirrors the existing Telegram "one outstanding directive per thread, max" rule in `SUPERVISOR_LOOP.md` §3, restated here for the new venue). | auto (docs-only, but blocked on PR2's UAT passing first) |
@@ -166,5 +174,6 @@ this plan should be additive-only for his own identity.
 `handoffs/HANDOFF_MANIFEST.md`, per Gary's standing instruction this session — not executed in
 this Envoy session. Whichever Envoy/Sophia supervisor thread picks it up drives PR0→PR3 per
 `sophia/SUPERVISOR_LOOP.md` end to end, including its §6a close-out (contribution report filed,
-then the parking topic itself closed) once PR3's UAT is green and Gary has signed off on the
-Option A/B call in PR0.
+then the parking topic itself closed) once PR3's UAT is green. **2026-09-15: Gary confirmed
+Option A** (full governor parity) in the originating session — PR0/PR2 need no further
+authority-tier confirmation, only PR2's standard `gate: human` execution stop.
