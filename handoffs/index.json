@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T16:56:54Z",
+  "generated_at": "2026-09-15T17:00:09Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "a23fb7ff559f876341006d9a87221e766d35e2adc814d509da361d880f77ed30",
   "state_enum": [
@@ -596,7 +596,7 @@
         "claimed_at": "2026-09-15T16:20:52Z",
         "note": "UAT found a real bug (progress-query classifier fed decorated text, always >80 chars in handoff topics -- dead code). Fix verified locally, PR pending (own-repo gate, Gary merges). Two deploy-caused restarts survived via re-nudge.",
         "stale": false,
-        "age_minutes": 36
+        "age_minutes": 39
       }
     },
     {
@@ -763,7 +763,7 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "—",
       "telegram_topic_url": null,
-      "discord_channel_id": "`1549079137480605736`",
+      "discord_channel_id": "1549079137480605736",
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
@@ -780,7 +780,7 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "—",
       "telegram_topic_url": null,
-      "discord_channel_id": "`1548896014868676608`",
+      "discord_channel_id": "1548896014868676608",
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
@@ -797,7 +797,7 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "—",
       "telegram_topic_url": null,
-      "discord_channel_id": "`1549118558955634819`",
+      "discord_channel_id": "1549118558955634819",
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
@@ -814,7 +814,7 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "—",
       "telegram_topic_url": null,
-      "discord_channel_id": "`962081045044424774`",
+      "discord_channel_id": "962081045044424774",
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15",
@@ -874,7 +874,7 @@
         "claimed_at": "2026-09-15T16:20:52Z",
         "note": "PR #466 (auto-claim wiring, part a) landed CI-green, awaiting Gary's merge (own-repo gate). Sophia continuing with dao_client half + plan-file plumbing. Two deploy-caused restarts survived (15:46, 16:00) via re-nudge; HTTPS cert still GitHub-side pending, non-blocking.",
         "stale": false,
-        "age_minutes": 36
+        "age_minutes": 39
       }
     },
     {

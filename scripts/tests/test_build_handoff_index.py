@@ -278,6 +278,27 @@ def test_discord_columns_absent_do_not_break_build():
     assert h["telegram_thread_id"] == "1111"
 
 
+def test_discord_ids_strip_backticks_so_deep_links_are_valid():
+    """Manifest cells often wrap channel ids in backticks; those must not leak
+    into the board's deep-link hrefs (they 404). Regression for the broken
+    discord.com/channels links seen in PR5 UAT."""
+    hdr = (
+        "| Plan file | Handoff title | Handoff date | Status | Telegram topic | "
+        "message_thread_id | Auto-start | Resume tracker state | Last manifest update | "
+        "Discord channel id | Discord thread id |"
+    )
+    sep = "|---|---|---|---|---|---|---|---|---|---|---|"
+    body = (
+        "| `plans/D.md` | Title D | 2026-09-15 | in progress | [D](https://t.me/c/1/1) | 1 | "
+        "no | RESUME = PR1 | 2026-09-15 | `1548896014868676608` | `962081045044424774` |"
+    )
+    idx = b.build_index("\n".join([hdr, sep, body]) + "\n", "x")
+    h = idx["handoffs"][0]
+    assert h["discord_channel_id"] == "1548896014868676608"
+    assert h["discord_thread_id"] == "962081045044424774"
+    assert "`" not in h["discord_channel_id"]
+
+
 # --- PR4b: active-supervision visibility (plan §2.6) ------------------------
 
 
