@@ -12,7 +12,7 @@
       "plan_file": "plans/SOPHIA_LIVE_PROGRESS_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
-      "note": "wrapping up -- UAT U1-U5 all passed (agentic_ai_context#1208 merged: tracker closed, RESUME HERE cleared). DAO contribution report + topic close authorized, awaiting her confirmation."
+      "note": "blocked_on_human -- fresh re-verification against advanced deploy found a REAL U3 regression (progress-classifier bare-word regex silently dropped real instructions containing trigger words). Fix PR truesight_autopilot#475 reviewed + merged (5738db7). Close-out RETRACTED -- awaiting a second deploy before U3 can be re-verified and topic closed."
     },
     {
       "plan_file": "plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md",
