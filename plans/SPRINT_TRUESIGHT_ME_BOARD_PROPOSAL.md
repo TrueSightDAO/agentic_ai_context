@@ -279,7 +279,7 @@ surfaced, folded into PR1a below. One **gate before PR2**: the repo name `sprint
 | **PR5** | UAT (§5) on the live board. | auto |
 | **PR6** | Repoint `truesight_me_prod` + `_beta`'s `quests/index.html` **and** `quests/join/index.html` (both, identically — §0 point 10) from Trello to `sprint.truesight.me`. | **`gate: human`** — touches a live, indexed, public-facing prod URL; gated on PR5's UAT passing |
 
-**RESUME HERE → PR5.** (PR0–PR4 done — see §3.1–§3.2; PR4 = the §3a addition to `sophia/SUPERVISOR_LOOP.md`, merged in this same edit.)
+**RESUME HERE: PR5 — UAT on the live board.** (PR0–PR4 done — see §3.1–§3.2; PR4 = the §3a addition to `sophia/SUPERVISOR_LOOP.md`, merged in this same edit.)
 
 ---
 
@@ -311,4 +311,10 @@ items are code-only reads, not decisions.
 
 Per the pattern established for every other roadmap this session: **park in a new Telegram topic** for
 a supervisor (Envoy or Sophia) to pick up and drive per `sophia/SUPERVISOR_LOOP.md`, rather than
-executing in this session. RESUME HERE (§4) = PR5 (PR0–PR4 shipped 2026-09-15; PR5 = UAT on the live board).
+executing in this session. **RESUME HERE: PR5 — UAT on the live board** (PR0–PR4 shipped 2026-09-15).
+
+> **Marker format note.** `app/auto_advance.py` captures everything after the resume marker
+> and reduces it to a unit key by splitting on the first `—`/`–`/` - `. Write the unit
+> label **immediately** after the marker (`… : PR5 — …`). Do **not** use a
+> leading arrow (`→ PR5`) or a parenthesis before the label — both leave junk in the key
+> (`→ pr5.`, `(§4) = pr5 (pr0`) so `find_unit_row` misses and the gate misfires.
