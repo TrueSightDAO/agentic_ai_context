@@ -1254,9 +1254,10 @@ description: >
   re-nag while awaiting the decision.
   [Sophia 2026-09-15] PRICING RESOLVED: the 5 kg butter is now priced from the
   Coopercabruca purchase NF-e (issued 26/08/2026): 5.00 KG @ BRL 89.60 =
-  BRL 448.00 -> USD $104.07 ($20.81/KG) at the DAO `Brazilian Reis` rate 0.2323
-  (WORKSPACE_CONTEXT §3c). Line 11 of INV/PL-2026-0611-001 now carries this
-  value (Rev 10, thread 10800). Still open: whether to record the 5 kg receipt
+  BRL 448.00 -> USD $86.66 ($17.33/KG) at the official BACEN PTAX rate
+  (14/09/2026, venda 5.1696) per the governor's instruction to use the official
+  rate. Line 11 of INV/PL-2026-0611-001 now carries this
+  value (Rev 11, thread 10800). Still open: whether to record the 5 kg receipt
   as a formal [INVENTORY MOVEMENT] (blocked on destination ledger name).
 ```
 

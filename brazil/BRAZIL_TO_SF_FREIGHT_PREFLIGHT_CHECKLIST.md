@@ -309,13 +309,15 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 | 8 | 1801.00.00 | Cacao Almonds (KG) — AGL13 | 15 | KG | $7.87 | $118.05 |
 | 9 | 1801.00.00 | Cacao Nibs (KG) — AGL13 | 99.5 | KG | $10.18 | $1,012.91 |
 | 10 | 2106.90.00 | Cacao Tea (KG) — AGL13 | 21 | KG | $10.18 | $213.83 |
-| 11 | 1804.00.00 | Coopercabruca Cacao Butter (KG) | 5 | KG | $20.81 | $104.07 |
+| 11 | 1804.00.00 | Coopercabruca Cacao Butter (KG) | 5 | KG | $17.33 | $86.66 |
 
 > **Rev 8 note:** the former line 11 (*Cacao Almonds (KG) — AGL14*, 10 KG, $114.12) was **removed from the shipment** at the governor's instruction (thread 10800) and the cacao-butter line renumbered from 12 to 11.
 
 > **Rev 9 note (thread 10800):** line 1 *Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024* reduced **137 → 129 UN** (−8 bags); line 9 *Cacao Nibs (KG) — AGL13* reduced **100 → 99.5 KG** (−500 g). Subtotal $6,918.63 → **$6,860.19**.
 
-> **Rev 10 note (thread 10800):** line 11 *Coopercabruca Cacao Butter (KG)* priced (was TBD) from the Coopercabruca purchase NF-e dated 26/08/2026: **5.00 KG @ BRL 89.60 = BRL 448.00** → **$20.81/KG = $104.07** at the DAO `Brazilian Reis` rate (0.2323 USD/BRL, WORKSPACE_CONTEXT §3c). Total Invoice Value $6,860.19 → **$6,964.26** (lines 1–11).
+> **Rev 10 note (thread 10800):** line 11 *Coopercabruca Cacao Butter (KG)* priced (was TBD) from the Coopercabruca purchase NF-e dated 26/08/2026: **5.00 KG @ BRL 89.60 = BRL 448.00**.
+
+> **Rev 11 note (thread 10800):** line 11 re-priced at the **official BACEN PTAX** rate (14/09/2026, venda **5.1696**) per the governor's instruction to use the official rate rather than the ledger `Brazilian Reis` proxy: **R$ 89.60 ÷ 5.1696 = $17.33/KG = $86.66** (was $20.81 / $104.07 @ 0.2323). Total Invoice Value $6,964.26 → **$6,946.85** (lines 1–11).
 
 > *Items 5 and 6 (AGL8 almonds and tea) have $0 cost basis. If the system requires a nominal value, use $0.01. If $0 is accepted, use $0.00.
 
@@ -324,7 +326,7 @@ Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
 | Field | Value |
 |-------|-------|
 | Incoterms | **FOB** (freight paid by buyer) |
-| Total Invoice Value | **$6,964.26** (USD) — lines 1–11 (Rev 10; cacao butter priced) |
+| Total Invoice Value | **$6,946.85** (USD) — lines 1–11 (Rev 11; cacao butter priced at BACEN PTAX) |
 | Currency | Dólar Americano (USD) |
 | Freight Value | **$0.00** (buyer pays separately) |
 | Transport Mode | Aéreo |
