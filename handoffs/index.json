@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T13:01:29Z",
+  "generated_at": "2026-09-15T13:19:11Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "aed98eceecb5b43ee3cd989e8a5360a38842fdeb1e21e0438ec29a654c1f1b7a",
+  "source_sha256": "78c62417c3c2b737c3fe5f1132eb627f62200c552d2ca352aeb82c9e66ad91b6",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,10 +16,10 @@
     "done",
     "stale"
   ],
-  "handoff_count": 53,
+  "handoff_count": 57,
   "counts_by_state": {
-    "awaiting_kickoff": 15,
-    "executing": 10,
+    "awaiting_kickoff": 17,
+    "executing": 11,
     "paused_at_gate": 7,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -28,7 +28,7 @@
     "blocked_on_human": 9,
     "failed": 0,
     "done": 11,
-    "stale": 0,
+    "stale": 1,
     "unknown": 0
   },
   "handoffs": [
@@ -673,6 +673,70 @@
       "last_updated": "2026-09-14"
     },
     {
+      "plan_file": "`plans/DISCORD_TELEGRAM_PARITY_GAPS.md`",
+      "title": "**Discord ↔ Telegram parity gaps** — bring the Discord adapter to feature parity with the Telegram adapter. Tracked in Discord **#discord-parity** (`1549079137480605736`).",
+      "handoff_date": "2026-09-15",
+      "state": "executing",
+      "status_raw": "**in progress** — Tier-1 ✅ (#450/#447); #6 reaction go-signal ✅ (#454); #5 per-channel always-respond ✅ already built; #7 `/verify` closed won't-build; #4 voice I/O = one open PR (#459).",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "`1549079137480605736`",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15"
+    },
+    {
+      "plan_file": "`plans/DISCORD_SHOW_TYPING.md`",
+      "title": "**Discord adapter — typing indicator** — add a background typing loop to `app/discord_adapter.py` mirroring the Telegram adapter (keep the channel's typing state fresh before `call_chat`, stop on reply). Tracked in Discord **#show-typing**.",
+      "handoff_date": "2026-09-15",
+      "state": "awaiting_kickoff",
+      "status_raw": "**go-ready** — finding filed 2026-09-14 (Discord adapter has no typing indicator); idea confirmed. Not started.",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "`1548896014868676608`",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15"
+    },
+    {
+      "plan_file": "`plans/DISCORD_ADAPTER_BUGS.md`",
+      "title": "**Discord adapter — bug supervision** — standing channel for Discord-adapter (and cross-adapter) bug findings + fixes. Tracked in Discord **#adapter-bugs**.",
+      "handoff_date": "2026-09-15",
+      "state": "stale",
+      "status_raw": "**in progress** — stale \"...needs approval — open the DApp...\" prompt string fixed in prod (2026-09-14); open: Discord resume-registry rewrite; chat-blocking timeout / 429 storm (re-referenced here from #member-tier).",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "`1549118558955634819`",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15"
+    },
+    {
+      "plan_file": "`plans/DISCORD_MEMBER_TIER.md`",
+      "title": "**Discord adapter — MEMBER-tier interaction** — let a resolved MEMBER-role sender get a reply (`app/policy.py` has `Role.MEMBER`; `discord_adapter.handle_message` replies only to GOVERNOR today). Tracked in Discord **#member-tier**.",
+      "handoff_date": "2026-09-15",
+      "state": "awaiting_kickoff",
+      "status_raw": "**go-ready** — scoped by Gary 2026-09-15; design + implement the MEMBER reply path (one PR), then UAT.",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "`962081045044424774`",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-15"
+    },
+    {
       "plan_file": "`plans/DISCORD_ENVOY_GOVERNOR_PARITY_PLAN.md`",
       "title": "**Sophia ↔ Envoy governor parity on Discord** — Sophia's Discord adapter drops every bot-authored message (incl. Envoy's own Discord bot) before any role check runs, so she never replies to Envoy on Discord though the equivalent works on Telegram; this carves a narrow, governor-gated exception so Envoy can reach the same authority tier it already has on Telegram, unblocking Discord-native supervision (nudges, go-signals, gate-clearing).",
       "handoff_date": "2026-09-15",
@@ -882,7 +946,7 @@
     }
   ],
   "warnings": [
-    "line 68: ragged row has 9 cells, expected 11 — padded/truncated",
-    "line 64: blank line splits the handoff table"
+    "line 72: ragged row has 9 cells, expected 11 — padded/truncated",
+    "line 68: blank line splits the handoff table"
   ]
 }
