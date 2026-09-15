@@ -115,6 +115,22 @@ been committed since your clone was last refreshed (`SOPHIA_HANDOFFS.md` §"Pull
 
 ---
 
+### 3a. Board priority signals are advisory — never an automatic override (Gary, 2026-09-15)
+
+`sprint.truesight.me` — the public Kanban board over `handoffs/index.json` — is a **read-only view**:
+no write action, and no priority data structure of any kind. A visitor who thinks a ticket deserves
+attention clicks through to its live Telegram/Discord thread and says so *in the conversation*, the same
+way every other instruction reaches Sophia/Envoy today.
+
+That chat message is **context to weigh** alongside everything §3 already considers when selecting the
+next thread — it is **not** a queue reorder, a state change, or an override of the priority order above.
+Clicking "this matters" on the board changes nothing mechanically; it just gives the supervisor one more
+input for its own judgment. Recorded here as canonical (per `plans/SPRINT_TRUESIGHT_ME_BOARD_PROPOSAL.md`
+§2.4) so "a chat message isn't an automatic override" is a documented rule, not just remembered from the
+conversation that produced the board.
+
+---
+
 ## 4. UAT — three rounds, then prod merge
 
 UAT is **three rounds**, all in the **beta** environment, then prod:
