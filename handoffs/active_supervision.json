@@ -12,19 +12,19 @@
       "plan_file": "plans/SOPHIA_LIVE_PROGRESS_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
-      "note": "blocked_on_human -- fix merged (#467) but not deployed; awaiting Gary's deploy authorization."
+      "note": "executing -- Gary deployed 2026-09-15 20:53:43 UTC (confirmed live at 1254da2, includes #467). Nudged to proceed with UAT/verification."
     },
     {
       "plan_file": "plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
-      "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Elizabeth Wong data-integrity bug found in UAT, flagged to Gary directly. Awaiting deploy + Gary's root-cause call."
+      "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Deploy landed 20:53:43 UTC (1254da2), deploy-blocker cleared. Elizabeth Wong data-integrity bug still flagged to Gary directly -- root-cause call still his, not deploy-related. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2)."
     },
     {
       "plan_file": "plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
-      "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Only Unit F (archive bare .pem files) remains, hard-gated on UAT which needs the deploy."
+      "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Deploy landed 20:53:43 UTC (1254da2), Unit F's UAT gate can now run. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2)."
     },
     {
       "plan_file": "plans/CHOCOLATE_SUBSCRIPTION_PLAN.md",
@@ -36,7 +36,7 @@
       "plan_file": "plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:28:30Z",
-      "note": "blocked_on_human -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Sophia confirmed and self-stopped: PR3 (deploy) is gate:human, PR4 (UAT) waits on the deploy, PR5 is docs-only. Now waiting on the same Gary deploy authorization as threads 30475/30471/30473. All six supervised threads are now blocked_on_human."
+      "note": "executing -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Gary deployed 20:53:43 UTC, confirmed live at 1254da2. PR3 cleared. Nudged to proceed with PR4 (UAT), then PR5 (docs)."
     }
   ]
 }
