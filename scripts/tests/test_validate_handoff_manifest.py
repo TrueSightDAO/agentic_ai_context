@@ -167,3 +167,61 @@ def test_auto_start_bad_value_is_error():
     result = validate(text)
     assert not result.ok
     assert any("Auto-start" in e and "sure" in e for e in result.errors)
+
+
+def test_plan_path_that_does_not_resolve_is_flagged(tmp_path):
+    """A Plan file whose path can't be found 404s in the spec viewer -> error."""
+    text = make_table(
+        [row(plan="`plans/GONE.md`", thread_id="1", topic="[A](https://t.me/x/1)")]
+    )
+    result = validate(text, repo_root=tmp_path)
+    assert not result.ok
+    assert any("does not resolve" in e for e in result.errors), result.errors
+
+
+def test_plan_path_that_resolves_passes(tmp_path):
+    (tmp_path / "plans").mkdir()
+    (tmp_path / "plans" / "HERE.md").write_text("x")
+    text = make_table(
+        [row(plan="`plans/HERE.md`", thread_id="1", topic="[A](https://t.me/x/1)")]
+    )
+    result = validate(text, repo_root=tmp_path)
+    assert result.ok, result.errors
+
+
+def test_plan_path_check_skipped_without_repo_root():
+    """Bare validate(text) keeps working for synthetic fixtures (no disk access)."""
+    result = validate(
+        make_table(
+            [row(plan="`plans/NOPE.md`", thread_id="1", topic="[A](https://t.me/x/1)")]
+        )
+    )
+    assert result.ok, result.errors
+
+
+def test_plan_path_anchor_fragment_is_stripped(tmp_path):
+    """`OPEN_FOLLOWUPS.md#anchor` resolves against the file, ignoring the fragment."""
+    (tmp_path / "OPEN_FOLLOWUPS.md").write_text("x")
+    text = make_table(
+        [
+            row(
+                plan="`OPEN_FOLLOWUPS.md#some-anchor`",
+                thread_id="1",
+                topic="[A](https://t.me/x/1)",
+            )
+        ]
+    )
+    result = validate(text, repo_root=tmp_path)
+    assert result.ok, result.errors
+
+
+def test_cross_repo_plan_path_is_warned_not_errored(tmp_path):
+    """A cell naming its owning repo is a valid cross-repo ref -> warning, not error."""
+    cell = (
+        "`sentiment_importer/ROADMAP.md` (repo: **TrueSightDAO/sentiment_importer** "
+        "— read via read_repo_file)"
+    )
+    text = make_table([row(plan=cell, thread_id="1", topic="[A](https://t.me/x/1)")])
+    result = validate(text, repo_root=tmp_path)
+    assert result.ok, result.errors
+    assert any("cross-repo" in w for w in result.warnings), result.warnings

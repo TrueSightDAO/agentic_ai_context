@@ -10,6 +10,8 @@ the same plan's status (see plans/HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md):
   - a `Telegram topic` without a `message_thread_id` (or vice versa)
   - a `message_thread_id` reused across more than one `Plan file`
   - an `Auto-start` cell that isn't exactly `yes` or `no`
+  - a `Plan file` whose value does not resolve to a real repo path (the
+    spec-viewer 404 class: a missing `plans/` prefix etc.)
 
 Usage:
     python3 scripts/validate_handoff_manifest.py [path/to/HANDOFF_MANIFEST.md]
@@ -118,7 +120,59 @@ def find_table(text: str) -> tuple[list[str], list[Row]]:
     return header, rows
 
 
-def validate(text: str) -> ValidationResult:
+def plan_path_target(cell: str) -> str:
+    """Extract the repo-relative path a 'Plan file' cell points at.
+
+    Cells are backtick-wrapped and may carry a trailing note or an ``#anchor``
+    fragment (e.g. `` `OPEN_FOLLOWUPS.md#warmup-conversion-delivery-bug` ``).
+    Returns ``""`` when no path-like token is present.
+    """
+    s = (cell or "").strip()
+    m = re.search(r"`([^`]+)`", s)
+    if m:
+        s = m.group(1)
+    s = s.strip().strip("`").strip()
+    s = s.split("#", 1)[0].strip()
+    return s
+
+
+CROSS_REPO_RE = re.compile(r"\(repo:\s*\**\s*([\w.\-]+/[\w.\-]+)")
+
+
+def check_plan_paths(rows: list[Row], repo_root: Path) -> "ValidationResult":
+    """Flag any 'Plan file' cell that does not resolve to a real file.
+
+    The board fetches each handoff's plan *verbatim* from
+    ``raw.githubusercontent.com/<repo>/<ref>/<plan_file>`` (the sprint site's
+    ``SPEC_SOURCES``), so a cell missing its directory prefix (a bare
+    ``SOPHIA_X.md`` instead of ``plans/SOPHIA_X.md``) 404s and the spec viewer
+    shows nothing. This gate makes that class of bug impossible to land silently.
+    """
+    result = ValidationResult()
+    for row in rows:
+        cell = row.get("Plan file")
+        target = plan_path_target(cell)
+        if not target:
+            continue
+        cross = CROSS_REPO_RE.search(cell or "")
+        if cross:
+            # Legitimate cross-repo reference (the cell names the owning repo in a
+            # `(repo: **owner/name** ...)` note). It lives in another repo, not this
+            # checkout, so we can't resolve it on disk -- warn, don't fail.
+            result.warnings.append(
+                f"'Plan file' {cell!r} -> {target!r} is a cross-repo reference "
+                f"({cross.group(1)}); not verified against this checkout"
+            )
+            continue
+        if not (repo_root / target).exists():
+            result.errors.append(
+                "'Plan file' does not resolve to a real path: "
+                f"{row.get('Plan file')!r} -> {target!r} (line {row.line_no})"
+            )
+    return result
+
+
+def validate(text: str, repo_root: Path | None = None) -> ValidationResult:
     result = ValidationResult()
     try:
         header, rows = find_table(text)
@@ -185,6 +239,11 @@ def validate(text: str) -> ValidationResult:
             result.errors.append(
                 f"message_thread_id {thread_id!r} is reused across multiple plans: {plans}"
             )
+
+    if repo_root is not None:
+        path_result = check_plan_paths(rows, repo_root)
+        result.errors.extend(path_result.errors)
+        result.warnings.extend(path_result.warnings)
 
     return result
 
@@ -271,7 +330,7 @@ def main(argv: list[str] | None = None) -> int:
 
     manifest_path = Path(args.manifest)
     text = manifest_path.read_text(encoding="utf-8")
-    result = validate(text)
+    result = validate(text, repo_root=manifest_path.resolve().parent.parent)
 
     if args.check_index:
         index_result = check_index(text, manifest_path.resolve().parent / "index.json")
