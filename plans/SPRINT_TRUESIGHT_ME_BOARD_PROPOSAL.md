@@ -390,7 +390,7 @@ Per the pattern established for every other roadmap this session: **park in a ne
 a supervisor (Envoy or Sophia) to pick up and drive per `sophia/SUPERVISOR_LOOP.md`, rather than
 executing in this session. **RESUME HERE: PR5 — UAT on the live board** (PR0–PR4c shipped
 2026-09-15; this pointer was found stale — still reading "PR5" while §4's table showed PR4b
-unfinished — and corrected in the same edit that added PR4c, so both `RESUME HERE` occurrences agree,
+unfinished — and corrected in the same edit that added PR4c, so both resume markers above agree,
 per the duplicate-marker lesson in `plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`).
 
 > **Marker format note.** `app/auto_advance.py` captures everything after the resume marker
