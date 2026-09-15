@@ -97,6 +97,28 @@ entry rather than folded into that plan's scope.
 **Evidence.** `agentic_ai_context` PR #1158; `validate-handoff-manifest.yml`'s `paths:` trigger;
 sprint-board thread 30083, 2026-09-15.
 
+### HANDOFF_MANIFEST validator: send-probe each `message_thread_id` for liveness (dead-topic class)
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (stale-topic audit, thread 30445).**
+
+**Context.** A governor "go"-ping into a parked handoff's topic can silently vanish if that topic was **deleted** — the ping is dropped and the plan sits GO-ready forever with no signal. Found live during the 2026-09-15 stale-backlog audit: **6 of 7** parked handoff rows (threads 5712, 3981, 2799, 2317, 1955, 1939) pointed at Telegram topics that no longer existed. `scripts/validate_handoff_manifest.py` passed clean throughout — it checks manifest **structure** (columns, duplicate `message_thread_id`, status keywords, `--check-index` drift) but **never whether the thread actually exists**. The name cache (`sessions/_topic_names.json`) is not authoritative either — it still held stale names for 3981/5712.
+
+**Proposed fix (~small).** Add an opt-in liveness pass to `validate_handoff_manifest.py` (e.g. `--probe-threads`): for each row's `message_thread_id`, send a self-cleaning `sendMessage` probe (post, then immediately `deleteMessage`), treating a non-`ok` response — specifically `Bad Request: message thread not found` — as DEAD. Keep it behind a flag + bot token so the default structural run stays offline (CI-safe); emit a list of dead/missing threads. **Implementation note:** `sendChatAction` does NOT validate the thread (it returns OK for a dead thread) — must use `sendMessage`.
+
+**Why it matters.** This is the exact failure mode that strands a parked plan with no operator signal; a cheap preventive keeps the manifest honest about which handoff topics are still reachable. Pairs with the fresh-topic re-links done in the 2026-09-15 audit (all 6 rows re-pointed or marked superseded).
+
+**Evidence.** 2026-09-15 stale-backlog audit (thread 30445); send-probe results — 5712/3981/2799/2317/1955/1939 all "message thread not found", control 2744 alive; `scripts/validate_handoff_manifest.py`; `sessions/_topic_names.json`.
+
+### truesight_autopilot: add `mypy` to CI (last remainder of AUTOPILOT_HARDENING Phase 1)
+**Filed 2026-09-15. Owner: unclaimed. Governor: Gary (stale-topic audit, thread 30445).**
+
+**Context.** `plans/AUTOPILOT_HARDENING_PLAN.md` (thread 2317) is **superseded** as a handoff — its topic was deleted and Phase-1 PR-A + PR-B already landed: CI now runs `compileall` + `ruff` (lint+format) + the **full** pytest suite with the 3 `--deselect` flags removed (`smoke.yml`). The only piece never shipped is **PR-C: `mypy`**. `mypy` appears **nowhere** in `requirements-dev.txt`, `pyproject.toml`, or `.github/workflows/`. Historical note: mypy was **unsatisfiable in this environment at plan-writing time** (2026-06) — the pinned toolchain required a `pydantic-core` that failed to build — so it was deferred; re-verify that constraint first.
+
+**Proposed fix (~small).** Add `mypy` to `requirements-dev.txt` + a `[tool.mypy]` config in `pyproject.toml` (lenient: `ignore_missing_imports = true`, non-`--strict`), establish a passing baseline, and wire a mypy step into `smoke.yml`. Tighten incrementally later. `truesight_autopilot` own-repo gate — opens PRs only, never self-merges.
+
+**Why it matters.** Types catch the "wrong attr / half-pasted snippet" class of LLM-authored bugs that `compileall` (syntax only) misses — the stated reason PR-C was in the hardening plan.
+
+**Evidence.** `smoke.yml` (compileall + ruff + pytest present; no mypy); `grep -rn mypy requirements-dev.txt pyproject.toml .github/workflows/` -> empty; `plans/AUTOPILOT_HARDENING_PLAN.md` Phase 1 (PR-A done, PR-B done, PR-C todo); 2026-09-15 audit.
+
 ### dao_protocol: `tests/test_dao.py` fails to collect on `main` — imports removed `dedup` module
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 26992).**
 
