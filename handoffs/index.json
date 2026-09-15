@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T12:06:52Z",
+  "generated_at": "2026-09-15T12:10:46Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "501c745edf8a004747659035e03d953fc481e070a035750aae71b643935ffab2",
+  "source_sha256": "45d8d22a01e0a3ccc7b77ec11569ac9b534044c330fdd4f9ad5766c67925f839",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,18 +16,18 @@
     "done",
     "stale"
   ],
-  "handoff_count": 47,
+  "handoff_count": 48,
   "counts_by_state": {
-    "awaiting_kickoff": 15,
-    "executing": 5,
-    "paused_at_gate": 8,
+    "awaiting_kickoff": 14,
+    "executing": 8,
+    "paused_at_gate": 7,
     "sophia_uat": 0,
     "envoy_uat": 0,
-    "human_uat_ready": 0,
+    "human_uat_ready": 1,
     "prod_merge": 0,
-    "blocked_on_human": 4,
+    "blocked_on_human": 7,
     "failed": 0,
-    "done": 15,
+    "done": 11,
     "stale": 0,
     "unknown": 0
   },
@@ -52,7 +52,7 @@
       "plan_file": "`handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`",
       "title": "**CRF Anapu Media Task Plan** — ingest the 2026-09-09 CRF Anapu site-visit media (8 HEIC + 14 MOV + 2 PNG, 24 files, 22 geotagged) into MAP + add a photo/video gallery to the live program page https://beta.truesight.me/programs/crf-anapu/.",
       "handoff_date": "2026-09-11",
-      "state": "done",
+      "state": "human_uat_ready",
       "status_raw": "**build complete — awaiting governor UAT** (PR1–PR5 all merged/done; video-embed sizing bug found + fixed on both `beta.truesight.me/programs/crf-anapu/` and `cfr.truesight.me` 2026-09-15)",
       "telegram_thread_id": "25181",
       "telegram_thread_id_source": "message_thread_id",
@@ -62,7 +62,7 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "jedielcio` **404**, no sidecars/transcripts in `~/cfr_work/`, no plot in `sunmint/plots/index.geojson` — **the batch is RAW, not MAP-processed**. Media: `/home/ubuntu/cfr_work/` = 8 HEIC + 14 MOV + 2 PNG, single visit 2026-09-09, Anapu/Pará, bbox −3.38970..−3.38890 × −51.30080..−51.30000 (~0.79 ha, centroid −3.38925/−51.30040); 58 frames + 16 sheet crops derived. Separate older `jedielcio` inbox batch = 4 mp4 (yt_ids set) but **no manifest**. §5a ONE PR PER TURN: PR1 (this plan + row) ✅ → PR2 manifest v2 (+ file missing `jedielcio.json`) → PR3 plot/sheet **GATED** (CRF has NO CEPOTX site code; school ≠ cacao farm) → PR4 program-page gallery (**new pattern**) → PR5 raw photos + MOV→MP4 + transcription + daemon → UAT gate. **Open decisions:** (a) farm_id `crf-anapu-para` vs `jedielcio`; (b) school-vs-farm plot semantics; (c) gallery on a *program* page (normally a farm-page convention). No prod sync without GO. **2026-09-11 (later): standalone subdomain `cfr.truesight.me` stood up & LIVE** — repo `cfr-anapu` was pre-existing + already in `allowed_repos`, so the real blocker was **Pages auto-enable** (PAT lacks the Pages scope; `configure-pages enablement:true` 403'd) — **solved by pushing a `gh-pages` branch**; Route53 CNAME → `truesightdao.github.io`; site 200 with valid Let's Encrypt cert. **Independent of the MAP media long pole (PR5), which remains in flight.** **2026-09-12: PR5 media long pole DONE** — all 14 videos uploaded, 14/14 sidecars carry `yt_id`, caption backfill done, `truesight_me_beta` PR #377 landed the gallery update. **2026-09-15:** RESUME HERE pointer was stale (still said PR5 in flight) — fixed via agentic_ai_context PR #1126. UAT surfaced a real bug: YouTube embeds rendered squished on both `beta.truesight.me/programs/crf-anapu/` and `cfr.truesight.me` (`.farm-video{height:auto}` has no effect on an `<iframe>`, no intrinsic aspect ratio) — fixed + merged: `truesight_me_beta` #378 (16:9 box) + #379 (lazy-load), `cfr-anapu` #3 (ported fix, synced `main`→`gh-pages`). Both surfaces verified live. **RESUME HERE = governor UAT** on `beta.truesight.me/programs/crf-anapu/` and `cfr.truesight.me`; no prod sync without explicit GO."
+      "last_updated": "2026-09-15"
     },
     {
       "plan_file": "`handoffs/SITIO_TORRES_MEDIA_TASK_PLAN.md`",
@@ -78,6 +78,22 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
+      "last_updated": "2026-09-10"
+    },
+    {
+      "plan_file": "`handoffs/GAS_DEPLOY_ACCESSOR_GUARD_PLAN.md`",
+      "title": "**GAS Deploy Accessor Guard** — pre-push survivability check so a `clasp push` can never leave a required secret accessor (`setApiKeys`/`getCredentials`, contract derived from the tracked `Credentials.sample.js`) undefined in the live GAS project.",
+      "handoff_date": "2026-09-10",
+      "state": "executing",
+      "status_raw": "**in progress** — PR #470 open + verified (8/8 unit tests, no false positive vs live `19Wag9x`); cosmetic ruff-format polish + merge remain.",
+      "telegram_thread_id": "24846",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "[GAS accessor guard](https://t.me/c/3919341801/24846)",
+      "telegram_topic_url": "https://t.me/c/3919341801/24846",
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "yes",
       "last_updated": "2026-09-10"
     },
     {
@@ -132,7 +148,7 @@
       "plan_file": "`plans/MEDIA_ARCHIVE_PIPELINE_DASHBOARD_PLAN.md`",
       "title": "**Media Archives Pipeline dashboard** — read-only, signed-in-governor view at sophia.truesight.me/media-archive-pipeline: per-farm queue status (uploaded/pending/needs_metadata/error), upload events, committed-vs-live manifest state.",
       "handoff_date": "2026-09-01",
-      "state": "done",
+      "state": "executing",
       "status_raw": "**executing — PR1–PR3 done + deployed, sentinel access live; signed-in UAT optional**",
       "telegram_thread_id": "17181",
       "telegram_thread_id_source": "message_thread_id",
@@ -228,7 +244,7 @@
       "plan_file": "`plans/SUNMINT_TREE_QR_LINKING_PLAN.md`",
       "title": "**SunMint \\u2192 QR tree-link** \\u2014 dapp `link_tree_planting.html` links a sold cacao QR to a SunMint tree submission (RSA-signed `[TREE PLANTING LINK EVENT]`), plus the reject/invalid path (`[TREE PLANTING REJECT EVENT]`).",
       "handoff_date": "2026-08-18",
-      "state": "done",
+      "state": "blocked_on_human",
       "status_raw": "**active \\u2014 reject/invalid UAT done (2026-08-31); first real LINK pending Gary go**",
       "telegram_thread_id": "11596",
       "telegram_thread_id_source": "message_thread_id",
@@ -260,7 +276,7 @@
       "plan_file": "`plans/WHITE_LABEL_IMPLEMENTATION_PLAN.md`",
       "title": "**White-label corporate gifting — Phase 2** (state repair + visual placement). **⚠️ Runner = the `nelanco-claude` interactive box, NOT Sophia** — this row is an index entry, not a Sophia parking.",
       "handoff_date": "2026-07-15",
-      "state": "paused_at_gate",
+      "state": "blocked_on_human",
       "status_raw": "**GO-ready — blocked on Gate D** (`NELANCO_CLAUDE_CODE_BOX_PLAN.md`: Gary must `ssh nelanco-claude` → `tmux` → `claude` login → `/remote-control`; only he can).",
       "telegram_thread_id": null,
       "telegram_thread_id_source": null,
@@ -372,7 +388,7 @@
       "plan_file": "`SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md`",
       "title": "Sophia Durable Journal + Checkpoint-Resume Loop (let long work resume in bounded chunks across turns; adds journal+resume on top of existing compaction)",
       "handoff_date": "2026-06-23",
-      "state": "awaiting_kickoff",
+      "state": "blocked_on_human",
       "status_raw": "draft — awaiting governor review",
       "telegram_thread_id": null,
       "telegram_thread_id_source": null,
@@ -644,14 +660,14 @@
       "plan_file": "`plans/DISCORD_ADAPTER_PLAN.md`",
       "title": "**Discord Adapter** — Sophia speaks natively in the TrueSight DAO guild as its own process (`truesight-autopilot-discord.service`); identity SSOT = Main Ledger → *Contributors contact information* → col G \"Discord ID\"; fixed persona; governor allowlist.",
       "handoff_date": "2026-09-12",
-      "state": "done",
+      "state": "executing",
       "status_raw": "deployed — Tier‑2 parity gaps in progress",
       "telegram_thread_id": "27138",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "[Discord Adapter](https://t.me/c/3919341801/27138)",
       "telegram_topic_url": "https://t.me/c/3919341801/27138",
-      "discord_channel_id": null,
+      "discord_channel_id": "923012941937250375",
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-14"
@@ -667,7 +683,7 @@
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "[Exec: Discord Envoy governor parity](https://t.me/c/3919341801/29970)",
       "telegram_topic_url": "https://t.me/c/3919341801/29970",
-      "discord_channel_id": null,
+      "discord_channel_id": "923012941937250375",
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-15"
@@ -786,8 +802,6 @@
     }
   ],
   "warnings": [
-    "line 25: ragged row has 10 cells, expected 9 — padded/truncated",
-    "line 27: stray text inside the handoff table (missing leading '|' — malformed row fragment)",
     "line 64: blank line splits the handoff table"
   ]
 }

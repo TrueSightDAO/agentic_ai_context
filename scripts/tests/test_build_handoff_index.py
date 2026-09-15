@@ -201,3 +201,76 @@ def test_committed_index_matches_real_manifest():
     )
     result = v.check_index(manifest_text, root / "handoffs" / "index.json")
     assert result.ok, result.errors
+
+
+# --- PR1a: status->state ordering (the "false all-clear" fix) ---------------
+
+
+def test_human_uat_beats_complete():
+    state, note = b.derive_state(
+        "**build complete \u2014 awaiting governor UAT** (PR1\u2013PR5 merged/done)"
+    )
+    assert state == "human_uat_ready" and note == ""
+
+
+def test_in_flight_marker_beats_terminal_words():
+    assert (
+        b.derive_state("**executing \u2014 PR1\u2013PR3 done + deployed**")[0]
+        == "executing"
+    )
+    assert (
+        b.derive_state("deployed \u2014 Tier-1 parity gaps in progress")[0]
+        == "executing"
+    )
+
+
+def test_governor_uat_alias_maps_to_human_uat_ready():
+    assert b.derive_state("awaiting governor UAT")[0] == "human_uat_ready"
+
+
+def test_governor_named_blocker_is_human_gated():
+    assert (
+        b.derive_state("draft \u2014 awaiting governor review")[0] == "blocked_on_human"
+    )
+    assert (
+        b.derive_state("active \u2014 first LINK pending Gary go")[0]
+        == "blocked_on_human"
+    )
+    assert (
+        b.derive_state("**GO-ready \u2014 blocked on Gate D** (Gary must `ssh` in)")[0]
+        == "blocked_on_human"
+    )
+
+
+def test_prod_deploy_history_is_done_not_prod_merge():
+    state, _ = b.derive_state(
+        "**COMPLETE \u2014 PR1\u2013PR7 merged; PR7 prod deployed**"
+    )
+    assert state == "done"
+
+
+# --- PR1b: Discord channel/thread linkage columns ---------------------------
+
+
+def test_discord_columns_are_read_when_present():
+    hdr = (
+        "| Plan file | Handoff title | Handoff date | Status | Telegram topic | "
+        "message_thread_id | Auto-start | Resume tracker state | Last manifest update | "
+        "Discord channel id | Discord thread id |"
+    )
+    sep = "|---|---|---|---|---|---|---|---|---|---|---|"
+    body = (
+        "| `plans/D.md` | Title D | 2026-09-15 | in progress | [D](https://t.me/c/1/1) | 1 | "
+        "no | RESUME = PR1 | 2026-09-15 | 923012941937250375 | |"
+    )
+    idx = b.build_index("\n".join([hdr, sep, body]) + "\n", "x")
+    h = idx["handoffs"][0]
+    assert h["discord_channel_id"] == "923012941937250375"
+    assert h["discord_thread_id"] in ("", None)
+
+
+def test_discord_columns_absent_do_not_break_build():
+    idx = b.build_index(manifest(row(thread_id="1111")), "x")
+    h = idx["handoffs"][0]
+    assert h["discord_channel_id"] in ("", None)
+    assert h["telegram_thread_id"] == "1111"
