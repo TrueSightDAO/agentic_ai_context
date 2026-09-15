@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T17:26:45Z",
+  "generated_at": "2026-09-15T18:13:47Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "f70846050b63aafe56581feef77cdc52fbb225fd005248589ccfe54d28a6b6b3",
+  "source_sha256": "eb44f0e5890216c91eaf1c414bb42cfcb19fe448c4eb3ff01771acb236159c35",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,8 +19,8 @@
   "handoff_count": 60,
   "counts_by_state": {
     "awaiting_kickoff": 16,
-    "executing": 14,
-    "paused_at_gate": 4,
+    "executing": 13,
+    "paused_at_gate": 5,
     "sophia_uat": 0,
     "envoy_uat": 0,
     "human_uat_ready": 2,
@@ -546,8 +546,8 @@
       "plan_file": "`plans/PUBLIC_KEY_LOOKUP_CACHE_PLAN.md`",
       "title": "Public-Key Lookup Cache (content-addressed per-key governor store; retires the 5-min vault cache-lag bug)",
       "handoff_date": "2026-06-16",
-      "state": "executing",
-      "status_raw": "in progress",
+      "state": "paused_at_gate",
+      "status_raw": "blocked",
       "telegram_thread_id": "30471",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T17:26:27Z",
         "note": "Picked up while the other two supervised threads wait on Gary. PR1/PR2 already shipped; dispatched PR3 (migrate point-lookup consumers off the monolith/audit).",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 47
       }
     },
     {
@@ -602,7 +602,7 @@
         "claimed_at": "2026-09-15T17:26:27Z",
         "note": "blocked_on_human -- fix merged (#467) but not deployed to the live box; deploying truesight_autopilot's own service is a genuine always-stop gate, awaiting Gary.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 47
       }
     },
     {
@@ -880,7 +880,7 @@
         "claimed_at": "2026-09-15T17:26:27Z",
         "note": "blocked_on_human -- PR6 beta half shipped (truesight_me_beta #380 merged, quests/ redirected to sprint.truesight.me), correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS now confirmed live.",
         "stale": false,
-        "age_minutes": 0
+        "age_minutes": 47
       }
     },
     {
