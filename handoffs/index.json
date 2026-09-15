@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T21:20:51Z",
+  "generated_at": "2026-09-15T21:23:13Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "cdd1d7faa6441e37a7392846349c8b2d2c2008460f0377ea61b640a453b3062f",
+  "source_sha256": "879f52f7e71bd7d45e25310ce06c0038508b58e79b302eeebea2bb931ad341be",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,7 +19,7 @@
   "handoff_count": 60,
   "counts_by_state": {
     "awaiting_kickoff": 15,
-    "executing": 14,
+    "executing": 13,
     "paused_at_gate": 4,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -27,7 +27,7 @@
     "prod_merge": 0,
     "blocked_on_human": 9,
     "failed": 0,
-    "done": 15,
+    "done": 16,
     "stale": 1,
     "unknown": 0
   },
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR1-PR5 code complete (PR4=#469, PR5 step1+2=#470/dapp_beta#99, step3 verdict recorded). Deploy landed 20:53:43 UTC (1254da2), deploy-blocker cleared. Elizabeth Wong data-integrity bug still flagged to Gary directly -- root-cause call still his, not deploy-related. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2).",
         "stale": true,
-        "age_minutes": 129
+        "age_minutes": 132
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- Units B/C/5 all merged (#471, #472, agentic_ai_context#1198). Deploy landed 20:53:43 UTC (1254da2), Unit F's UAT gate can now run. Queued for next WIP slot (queue behind 30279/30475, WIP limit 2).",
         "stale": true,
-        "age_minutes": 129
+        "age_minutes": 132
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "executing -- Gary deployed 2026-09-15 20:53:43 UTC (confirmed live at 1254da2, includes #467). Nudged to proceed with UAT/verification.",
         "stale": true,
-        "age_minutes": 129
+        "age_minutes": 132
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 129
+        "age_minutes": 132
       }
     },
     {
@@ -892,15 +892,15 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 129
+        "age_minutes": 132
       }
     },
     {
       "plan_file": "`plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md`",
       "title": "**Stop gating auto-advance on PR-less units** — `app/auto_advance.py::next_action()` treats \"no PR opened this turn\" as non-convergence, but a correctly-completed unit that isn't PR-shaped (DNS verification, pre-flight/docs-only) can never satisfy that — forcing an unnecessary human \"go\" every time. Also fixes a confirmed-live root cause of a related halt: a stale duplicate `RESUME HERE` marker. `truesight_autopilot` own-repo — human-merge only.",
       "handoff_date": "2026-09-15",
-      "state": "executing",
-      "status_raw": "**executing — PR4 (UAT) done 2026-09-15 (all 5 UAT legs green against the deployed `1254da2`); PR5 (docs) in progress**",
+      "state": "done",
+      "status_raw": "**completed — PR0–PR5 done 2026-09-15; PR5 docs merged (agentic_ai_context#1209); UAT U1–U5 green; deploy live `1254da2`**",
       "telegram_thread_id": "30279",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -915,7 +915,7 @@
         "claimed_at": "2026-09-15T19:28:30Z",
         "note": "executing -- PR0/PR1(#473)/PR2(#474, 1254da2) all merged. Gary deployed 20:53:43 UTC, confirmed live at 1254da2. PR3 cleared. Nudged to proceed with PR4 (UAT), then PR5 (docs).",
         "stale": true,
-        "age_minutes": 112
+        "age_minutes": 114
       }
     },
     {
