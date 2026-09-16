@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-16T03:53:13Z`
+- Generated (UTC): `2026-09-16T05:04:12Z`
 - Look-back: **7** calendar days (`2026-09-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 21
+- `[PRACTICE EVENT]` × 3
+- `[INVENTORY MOVEMENT]` × 3
+- `[ASSET RECEIPT EVENT]` × 2
+- `[QR CODE UPDATE EVENT]` × 1
+- _free-form (no bracket tag)_ × 12
+
+### Latest entries
+
+- `Edgar_20260914230214_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix iOS empty-body Edgar upload on report_inventory_movement.html (dapp)
+- `Edgar_20260914230401_050` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20260914230456_052` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 30
+- `Edgar_20260915000728_054` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Sophia Repo-Access Denylist — retire master allowlist for default-allow + tw…
+- `Edgar_20260915053007_056` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL8
+- `Edgar_20260915082150_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Multi-attachment ordered pairing (contract A) — dao_protocol #164/#165 + pro…
+- `Edgar_20260915084237_060` · **Edgar** · [No Text Provided]
+- `Edgar_20260915102913_062` · **Edgar** · [No Text Provided]
+- `Edgar_20260915102929_002` · **Edgar** · deploy verification probe, no signature, please ignore 1789468169
+- `Edgar_20260915110010_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-15T11:00:08.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260915115328_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Deploy no longer severs the calling turn: caller-thread deploy notice + cros…
+- `Edgar_20260915141946_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord #dapp-chat-approval-leak — §6a close-out (stale "needs approval — op…
+- `Edgar_20260915143743_010` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Coopercabruca Cacao Butter (KG) · Amount: 5 · Description: Placed in warehouse, delivered by Gary. For shipment to USA. The black box
+- `Edgar_20260915144012_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260915152518_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Handoff-index reconciliation sweep — row 16 untracked threads, close the gap…
+- `Edgar_20260915154323_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Stale handoff-topic audit: repair 6 dead-topic manifest rows (4 reopened, 2 …
+- `Edgar_20260915211100_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Live-progress introspection UAT (U1-U5) + #467 raw-text classifier fix
+- `Edgar_20260915212258_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 77.4 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (raw machine exec…
+- `Edgar_20260915212301_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 292.5 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (direct time / an…
+- `Edgar_20260915220121_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Public-Key Lookup Cache — UAT (U1–U5) + per-key-emitter regression root-caus…
 
 ---
 
@@ -194,13 +232,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+30 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,833.78**
+- Brazilian Reis: R$1,329.61 · rate `0.2323` USD/BRL → ≈ **$308.87**
+- USD provisioned for voting-rights cash-out: **$55.17**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -284,6 +326,8 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ff7cb52 | 2026-09-16 00:53:31 -0300 | Merge pull request #1221 from TrueSightDAO/auto/advisory-refresh-2026-09-16
+85c9a01 | 2026-09-16 03:53:20 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
 24ff59c | 2026-09-15 19:18:02 -0300 | handoffs: 30473 UAT passed, krake_nginx fix merged, held for Gary (#1219)
 b475e55 | 2026-09-15 19:16:58 -0300 | docs(vault): record UAT results (U1-U7) on deployed 1254da2 (#1217)
 96676b2 | 2026-09-15 19:16:00 -0300 | handoffs: 30471 self-fixed a real stale-auto-advance-directive bug (#1218)
@@ -322,8 +366,6 @@ a3030fa | 2026-09-15 14:06:22 -0300 | fix(auto-advance): reword prose 'RESUME HE
 b51a0c7 | 2026-09-15 13:57:56 -0300 | PR4c close-out: mark DONE (#1181+#167+#466), advance RESUME markers to PR5 (#1186)
 7cb5f8d | 2026-09-15 13:42:38 -0300 | register: Discord voice-attachment follow-up on the parity-gaps row (#1185)
 af829a5 | 2026-09-15 13:23:14 -0300 | handoffs: refresh active supervision claims with current status (#1183)
-ed18097 | 2026-09-15 13:23:13 -0300 | sophia: state the supervision-substitutes-for-gating principle generally (#1184)
-30a8146 | 2026-09-15 13:16:53 -0300 | sophia: retire own-repo "never self-merge" rule for truesight_autopilot (#1182)
 … (truncated)
 ```
 
@@ -507,6 +549,39 @@ _(no commits on origin/main in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 21:50:55 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-09`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
