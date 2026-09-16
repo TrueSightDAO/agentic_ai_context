@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-16T11:55:55Z`
+- Generated (UTC): `2026-09-16T17:12:42Z`
 - Look-back: **7** calendar days (`2026-09-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-09_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+001069c | 2026-09-16 11:58:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
 dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
@@ -313,7 +314,6 @@ e2d6ccd | 2026-09-09 23:30:58 -0300 | Expose SunMint trees/plots/farms + MAP med
 c270bc6 | 2026-09-09 23:21:39 -0300 | SunMint impact map: show Plot Type in the plot popup (#369)
 cd8af38 | 2026-09-09 21:07:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 22bc114 | 2026-09-09 16:51:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
-9018e0c | 2026-09-09 11:46:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,9 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ba4f9c5 | 2026-09-16 09:44:32 -0300 | handoffs: register BRAIN_TIER_AWARENESS plan + #brain-tier-awareness Discord channel (#1222)
+8450ae9 | 2026-09-16 08:56:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
+4f05fd9 | 2026-09-16 08:56:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
 0825e07 | 2026-09-16 02:04:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
 7810f90 | 2026-09-16 02:04:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
 ff7cb52 | 2026-09-16 00:53:31 -0300 | Merge pull request #1221 from TrueSightDAO/auto/advisory-refresh-2026-09-16
@@ -363,9 +366,6 @@ a89d0ac | 2026-09-15 14:27:04 -0300 | handoffs: claim 30471, mark 30083/30475 bl
 3d6fd74 | 2026-09-15 14:14:26 -0300 | PR5 close-out: UAT U1-U6 done (U3 bug fixed #1187), U7 blocked on deploy; RESUME\u2192PR6; +4 follow-ups (#1189)
 cf66430 | 2026-09-15 14:12:26 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
 5fc3a8c | 2026-09-15 14:12:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
-a3030fa | 2026-09-15 14:06:22 -0300 | fix(auto-advance): reword prose 'RESUME HERE' mention so the parser stops latching onto it (#1188)
-18d7fbf | 2026-09-15 14:01:01 -0300 | fix(board): strip backticks from Discord id cells so deep links aren't broken (#1187)
-b51a0c7 | 2026-09-15 13:57:56 -0300 | PR4c close-out: mark DONE (#1181+#167+#466), advance RESUME markers to PR5 (#1186)
 … (truncated)
 ```
 
@@ -433,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+361d5e5 | 2026-09-16 12:02:45 +0000 | chore: refresh currencies.json [skip ci]
 a3ccc49 | 2026-09-16 11:39:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 dcfef2e | 2026-09-15 12:07:30 +0000 | chore: refresh currencies.json [skip ci]
 c5e911c | 2026-09-15 11:48:24 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -574,7 +575,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/16/2026 4:52:05 |
+| 2026-09 | 853.7 | 18293.54386 | 9/16/2026 9:58:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-09`; scanned last **600** data rows)
 
