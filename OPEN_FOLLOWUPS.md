@@ -39,6 +39,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight_autopilot: automate Stripe subscription-renewal → per-bar `[SALES EVENT]` reconciliation
+
+**Filed 2026-09-16. Owner: unclaimed. Governor: Gary (thread 30870).**
+
+**Context.** Linda Ford's Sept-2026 chocolate-bar subscription renewal was reconciled by hand. The
+recipe is now written up in `plans/SOPHIA_SUBSCRIPTION_SALES_PLAN.md` ("the standard SOP"): given a
+set of QR codes → (1) check `qr_status` (`SOLD` ⇒ already accounted for, skip; `MINTED` ⇒ reconcile);
+(2) pull the Stripe invoice (`billing_reason=subscription_cycle`); (3) take the fee from the charge's
+`balance_transaction`; (4) `net_per_bar = (amount_charged − stripe_fee) ÷ number_of_bars`;
+(5) submit **one `[SALES EVENT]` per QR code**. Phase-2 fulfillment automation
+(`CHOCOLATE_SUBSCRIPTION_PLAN.md`) is **deferred/blocked**, so nothing performs this automatically today.
+
+**Why it matters.** Every month a human (or Sophia, hand-rolling) must notice the renewal, find the
+invoice, and fan out N events — error-prone (thread 30870's first pass divided by bars+shipping, ÷7,
+and got net/bar wrong).
+
+**To fix.** Add `scripts/reconcile_subscription_sales.py` to `truesight_autopilot`: flags
+`--invoice in_…` **or** `--qr-codes …`; reads `stripe_live_key` from the vault (`app/vault.py`; the
+value is never printed); computes the formula above; **dry-run by default**, `--submit` to fire;
+**idempotent** via the `qr_status` preflight. Optionally a monthly detector (Surface 5 / scheduled
+probe) that flags any `subscription_cycle` invoice in the last 30 days with un-recorded QR codes and
+notifies the operator.
+
+**Related security note.** The `stripe_live_key` was found **hardcoded in plaintext** in
+`sentiment_importer/config/environments/production.rb` (alongside other live secrets). Rotation + move
+to `ENV.fetch` / secret-manager + git-history scrub is recommended and tracked separately.
+
 ### truesight_autopilot: `_compute_advance_signal()` omits §2.1's "explicit self-report" `made_progress` path
 
 **Filed 2026-09-15. Owner: unclaimed. Governor: Gary (thread 30279).** `plans/SOPHIA_AUTO_ADVANCE_PR_LESS_UNITS_PLAN.md` §2.1 defines `made_progress` as a turn with **either** a side-effecting tool call, **or** a direct repo commit, **or** "an explicit self-report of success the turn itself asserts (the final-message convergence text, already parsed elsewhere for the '✅ Done this turn' report)". The shipped implementation (`app/main.py::_compute_advance_signal`) keys `made_progress` on **tool names only** (`_MAKE_PROGRESS_TOOLS` + `_UAT_PROGRESS_TOOLS`) — the self-report path is not implemented. Surface: PR4 UAT — a verify-only unit that performs a real check purely via read-capable tools (`ssh_run`, `read_*`) and ends with a "✅ Done this turn" self-report still **gates** ("turn made no progress…"). **Impact:** a genuinely-completed verify-only unit (the class this plan exists to un-gate) can still force a human `go` if it happens not to perform a repo write. **Proposed fix (~small):** either wire the final-message convergence text into `made_progress` per §2.1, or amend §2.1 to drop path (c) and require a tracked side-effect (e.g. a tracker self-update) for a PR-less unit to count as progress. Decide intent first.
