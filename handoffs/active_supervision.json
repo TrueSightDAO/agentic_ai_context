@@ -43,12 +43,6 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-16T21:38:00Z",
       "note": "executing -- CORRECTION 2026-09-16T22:04Z: Envoy's original dispatch (\"RESUME HERE = PR0 ... never dispatched\") was a GHOST RE-DISPATCH based on a stale HANDOFF_MANIFEST.md row -- Sophia's PR0 turn discovered PR0 + PR0b were ALREADY merged before Envoy ever pinged the thread (agentic_ai_context#1150 sha cd6cc998, #1152 sha ce6c5cc7; plan header on main already read \"PR0+PR0b COMPLETE, RESUME HERE=PR1\"). Envoy's evidence for \"never dispatched\" was chat/journal silence only -- did NOT check the actual plan-doc/PR state first. LESSON: verify real repo/plan state before dispatching an awaiting_kickoff claim, not just chat activity. Sophia re-verified all 3 PR0 items live this turn anyway (not carried over): (1) FARM BOUNDARY EVIDENCE EVENT ships from sunmint_beta/limites-da-fazenda/index.html (HTTP 200), hardcodes Submission Source; (2) verify_public_signatures tree_* buckets live in the TrueSightDAO/verify_public_signatures repo (tree_planting 167, farm_boundary_evidence_event 19, tree_growth_monitoring 2); (3) capoeira sync = hand-committed files, only automated precedent is the 30-min sync_sunmint_signatures.py cron. Opened PR0c (agentic_ai_context#1233, sha adb1bbe8) to fix the stale manifest row -- merge REFUSED, CI not green (validate failing/pending), root cause not yet diagnosed (likely a markdown/table-pipe lint issue in the plan-doc edit). Correctly reported honestly, did not force through. Also hit + recovered from the same ~17min service-wide GitHub rate-limit stall as thread 30892 (see that claim's note) -- resumed cleanly once cleared. Now actively working PR1 (sunmint_beta ?program= un-hardcode) in a follow-up turn. RESUME HERE (topic 30026): diagnose + fix PR0c's CI failure and merge it (corrects the manifest's stale RESUME HERE pointer), then continue/land PR1. Envoy has NOT yet updated this manifest row to match verified reality -- holding until PR0c lands to avoid a conflicting edit on the same line she's actively fixing."
-    },
-    {
-      "plan_file": "plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md",
-      "supervisor": "Sophia (autopilot, self)",
-      "claimed_at": "2026-09-16T22:39:01Z",
-      "note": "auto-claim (turn-dispatch)"
     }
   ]
 }
