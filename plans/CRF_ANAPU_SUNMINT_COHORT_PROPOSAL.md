@@ -414,11 +414,14 @@ have to discover mid-turn:
    `Submission Source`, but hardcoded** as `'sunmint-limites-da-fazenda'` — **not**
    `window.location.href`, and **no `Program` field**. → see §1.3b; drives the §1.3/§3.1 correction.
 2. **`verify_public_signatures`'s `tree_*` bucket schema** — ✅ **RESOLVED (PR0, 2026-09-15).**
-   Confirmed a **valid** read source for the sync job. Buckets: `tree_planting` (167),
-   `farm_boundary_evidence_event` (6), `tree_growth_monitoring` (2); root `index.json` carries
-   `total_count` 4360 with per-type `index_url`. **`Submission Source` survives** into each attestation
-   inside `signed_payload` (verified on the latest planting record) — it is **not** stripped during
-   ingestion. A future `Program` field will survive the same way.
+   Confirmed a **valid** read source for the sync job — the GitHub repo
+   `TrueSightDAO/verify_public_signatures` (a Contents-API store, **not** a `dapp.truesight.me` URL).
+   Buckets (live re-verified 2026-09-15): `tree_planting` (167), `farm_boundary_evidence_event`
+   (19 — *was 6 at PR0; grows continuously*), `tree_growth_monitoring` (2); each bucket's
+   `index.json` carries `{status, schema_version, generated_at, event_type, count, events}` with
+   `events` = `msg_id → {url, event_type, submitted_at, contributor_name}`. **`Submission Source`
+   survives** into each attestation inside `signed_payload` (verified on the latest planting record)
+   — it is **not** stripped during ingestion. A future field would survive the same way.
 3. **The capoeira practice-event sync trigger mechanism** — ✅ **RESOLVED (PR0, 2026-09-15).** There is
    **no cron and no webhook** for practice events: `programs/<slug>/pk-<hash>/practice/*.json` are
    committed **by hand** (git author `Gary Teh`, message `practice event: capoeira-tribo-mirim pk-…`),
