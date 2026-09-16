@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T21:17:07Z",
+  "generated_at": "2026-09-16T21:19:51Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "dfcc5d664a21b782ac718a9ef526695c917d269c7fe14a564081dbe01e39d0a7",
+  "source_sha256": "ae22281d87151c4f1071d5ce80db69eea63bf483f6d90bbe36fa632937b7f3ef",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -560,9 +560,9 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "blocked_on_human -- ALL 4 authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- flagged to Gary, (3) fallback-chain hypothesis CONFIRMED from deployed source, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN (not closed) pending Gary's merge of #494 + GAS deploy + live U5/U1 re-verification -- same pattern as 30475. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests). NOT yet deployed -- a THIRD thing now needing Gary's deploy alongside #475.",
+        "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/context.py::get_context_file_fresh() is present and deployed. Live functional re-verification of the actual auto-advance behavior (U5/U1) still pending -- source presence confirmed, not yet re-tested end-to-end against a real stale-vs-fresh plan scenario. blocked_on_human -- 3 of 4 originally-authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- STILL flagged to Gary, unresolved, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN pending Gary's merge of #494 + GAS deploy. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests).",
         "stale": true,
-        "age_minutes": 1566
+        "age_minutes": 1568
       }
     },
     {
@@ -570,7 +570,7 @@
       "title": "Vault Initialization & Credential Migration (migrate /home/ubuntu/ bare credentials into encrypted vault)",
       "handoff_date": "2026-06-14",
       "state": "blocked_on_human",
-      "status_raw": "blocked_on_human — UAT U1-U7 passed (3 in-scope SSH keys); Unit 6 partial, `~/.ssh/*.pem` archiving held for Gary's call",
+      "status_raw": "blocked_on_human — UAT U1-U7 passed (3 in-scope SSH keys); krake_nginx pin fix deployed 2026-09-16; Unit 6 partial, `~/.ssh/*.pem` archiving held for Gary's call",
       "telegram_thread_id": "30473",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -583,9 +583,9 @@
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net). krake_nginx pre-existing vault-pin gap found + fixed (truesight_autopilot#476, host-local ed25519 pin, merged), NOT yet deployed. Reviewed and independently verified all diffs before merging.",
+        "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/tools/ssh_tools.py's krake_nginx FLEET entry carries the id_ed25519_truesight_autopilot host-local key pin. blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net) -- STILL OPEN, unaffected by the deploy. 2026-09-16T21:08Z: Gary said \"wrap up\" directly in-thread; Sophia filed a legitimate contribution report (240 min, PRs #476/#1198/#1217, all genuinely completed work) and correctly self-paused (\"no RESUME HERE pointer in plan\") rather than proceeding on the still-open pem decision -- not a sec6 violation, the report covers only merged work. Thread paused awaiting Gary's pem-archiving call; do not send 'go' until he decides.",
         "stale": true,
-        "age_minutes": 1566
+        "age_minutes": 1568
       }
     },
     {
@@ -593,22 +593,22 @@
       "title": "Live Progress Introspection (report what the executing turn is doing when Gary asks mid-turn, instead of a canned queued ack)",
       "handoff_date": "2026-06-11",
       "state": "blocked_on_human",
-      "status_raw": "**blocked_on_human — U3 regression found on re-verification (fix `truesight_autopilot#475` merged `5738db7`); awaiting a second deploy**",
+      "status_raw": "**blocked_on_human — U3 fix `truesight_autopilot#475` deployed 2026-09-16 (commit 9551ed2); live functional re-verification of U3 still pending**",
       "telegram_thread_id": "30475",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "[Live Progress Introspection](https://t.me/c/3919341801/30475)",
       "telegram_topic_url": "https://t.me/c/3919341801/30475",
-      "discord_channel_id": "update)` alternation matched any short message merely containing those words, silently dropping real instructions sent during a busy turn (e.g. \"please also update the README…\"). Fix **`truesight_autopilot#475`** (anchor regex to the whole message; 23 new tests) reviewed personally by Envoy and merged (`5738db7`) — **not yet deployed**. RESUME HERE = **deploy, then re-verify U3**, then close out. **own-repo gate honoured: PRs only, never self-merged.**",
+      "discord_channel_id": "update)` alternation matched any short message merely containing those words, silently dropping real instructions sent during a busy turn (e.g. \"please also update the README…\"). Fix **`truesight_autopilot#475`** (anchor regex to the whole message; 23 new tests) reviewed personally by Envoy and merged (`5738db7`). **DEPLOY LANDED 2026-09-16T21:12:44Z** (commit `9551ed2`) — the anchored `_PROGRESS_QUERY_RE` confirmed present in deployed `app/telegram_adapter.py` (source-level, not yet a live functional re-test). RESUME HERE = **re-verify U3 live** (a real instruction sent mid-turn must not be misclassified as a status ping), then close out. **own-repo gate honoured: PRs only, never self-merged.**",
       "discord_thread_id": "2026-09-15",
       "auto_start": "no",
       "last_updated": "status",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-15T19:10:52Z",
-        "note": "blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7), awaiting deploy. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Pre-validated #475 against the merged artifact on a clone (27/27) before deploy. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
+        "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/telegram_adapter.py's _PROGRESS_QUERY_RE is the anchored (fixed) version, not the old bare-alternation bug. blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7). Live functional re-verification (an actual Telegram round-trip proving a real instruction sent mid-turn is no longer misclassified as a status ping) still pending -- source presence confirmed, behavior not yet re-tested end-to-end. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 1566
+        "age_minutes": 1568
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 1566
+        "age_minutes": 1568
       }
     },
     {
@@ -858,7 +858,7 @@
         "claimed_at": "2026-09-16T20:52:00Z",
         "note": "executing -- MOVED FROM DISCORD TO TELEGRAM thread 30892 (2026-09-16T20:52Z, governor-signed kickoff via truesight-dao-ping-sophia). Reason: on Discord, Envoy's non-governor-identity messages were only logged as observed, never dispatched -- author_role() gates non-governor senders, the exact gap this plan closes -- so a D4 gap in PR2 sat unacknowledged for a full turn (no evidence she ever read it). Telegram (Envoy's @truesight_autopilot_bot-mention channel) has reliably dispatched all session; moving there to finish. PR1 (transport) shipped truesight_autopilot#478 sha 9551ed2. D4 locked (sentinel = distinct identity tier, governor-equivalent RIGHTS, never relabeled as governor in logs/attribution) agentic_ai_context#1223 sha 187f39d. Kickoff turn on topic 30892 CONFIRMED PR2 sitting uncommitted at /tmp/tap_pr1 (branch feat/brain-tier-pr2-brain-gate, not pushed, without D4) and surfaced a SECOND wrinkle beyond D4's own text: the adapter mints the JWT for the governor's public key and _gov_name_for_key() accepts only governor keys, so a sentinel turn's governor_name would currently resolve to the human governor's name -- an attribution hazard that must be fixed alongside D4, not just a new enum value. RESUME HERE (topic 30892): fold D4 + the governor_name fix into /tmp/tap_pr1's PR2 -> gates+tests -> commit/push/PR/merge (autonomous, CI green) -> PR3 (adapter dispatch) -> R1/R2/R3 UAT live in topic 30892. Gate: identity/authority core -- no prod deploy without Gary's explicit GO. Discord #brain-tier-awareness (1549762040518672419) kept only as historical log, no longer the active channel. Earlier self-correction (2026-09-16T20:35Z, still valid): 2 Discord messages were sent mid-turn, violating SUPERVISOR_LOOP.md §3 'do not re-ping a running turn' -- corrected before the channel move, and the move itself further reduces mid-turn-ping risk since Telegram dispatch has been reliable all session.",
         "stale": false,
-        "age_minutes": 25
+        "age_minutes": 27
       }
     },
     {
@@ -915,7 +915,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 1566
+        "age_minutes": 1568
       }
     },
     {
