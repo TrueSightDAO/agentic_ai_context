@@ -96,12 +96,28 @@ a member attempt at a write-class action is refused; a governor turn is unchange
 
 ## 8. Execution (ONE PR PER TURN)
 
-- PR1 - transport (D1) + trusted-setter wiring.
+- PR1 - transport (D1) + trusted-setter wiring. **MERGED #478** (signed `author_role` claim on JWT).
 - PR2 - brain gate (`{guest < member < governor}`, plus `sentinel` at governor-equivalent rights) + tests.
   **Must include D4**: a distinct `sentinel` role (author_role() sentinel check, evaluated before the
   member fallback) authorized at governor-tier RIGHTS but never relabeled/attributed as `governor`.
+  **MERGED #480** (2026-09-16, squash `08ea0973`): `Role.SENTINEL` (distinct, not aliased) +
+  `has_governor_rights()`; `author_role()` sentinel check after governor / before member;
+  `_run_tool_sync` WRITE/ADMIN gate accepts `("governor","sentinel")` and forces the asserted tier
+  onto the resolved identity; `[GOVERNOR_IDENTITY:]` injected only for a true governor; sentinel turn
+  attributed by its own name.
 - PR3 - adapter dispatch of the read-only class + tests.
 - Then UAT in #brain-tier-awareness.
+
+## RESUME HERE
+
+**Next unit: PR3** - flip the adapter's `if role != "governor": log_observed_message(); return` guard in
+`app/discord_adapter.py::handle_message()` so a resolved **member** turn is dispatched to the brain
+(read-only ask/research class) instead of only being observed. Governor + sentinel turns keep full
+authority; member turns must be denied every WRITE/ADMIN tool by the PR2 gate. Add tests + integration
+handler test with side-effects mocked. Open PR + merge (no prod deploy); then UAT in #brain-tier-awareness.
+
+PR2 note for PR3: a sentinel/member turn already carries `author_role` + `author_name` through the
+`/chat-blocking` + `/chat` paths (PR2), so PR3 only needs to stop dropping non-governor turns.
 
 **Gate:** this touches the identity/authority core. Open PRs only; **no production deploy** without an
 explicit governor GO.
