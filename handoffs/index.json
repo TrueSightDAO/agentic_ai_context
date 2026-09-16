@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T22:17:22Z",
+  "generated_at": "2026-09-16T12:43:34Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "9554cf09a6294a4e894dc652097ba0cb7dffd60ce244eba4aa2f3f8c5921a32a",
+  "source_sha256": "4b1ed45b0f34c59a8f36f29cf97ea5c15bba0aa0ed751d74f17525c27e783dd2",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,9 +16,9 @@
     "done",
     "stale"
   ],
-  "handoff_count": 60,
+  "handoff_count": 61,
   "counts_by_state": {
-    "awaiting_kickoff": 15,
+    "awaiting_kickoff": 16,
     "executing": 13,
     "paused_at_gate": 2,
     "sophia_uat": 0,
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- ALL 4 authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- flagged to Gary, (3) fallback-chain hypothesis CONFIRMED from deployed source, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN (not closed) pending Gary's merge of #494 + GAS deploy + live U5/U1 re-verification -- same pattern as 30475. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests). NOT yet deployed -- a THIRD thing now needing Gary's deploy alongside #475.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 1052
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net). krake_nginx pre-existing vault-pin gap found + fixed (truesight_autopilot#476, host-local ed25519 pin, merged), NOT yet deployed. Reviewed and independently verified all diffs before merging.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 1052
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7), awaiting deploy. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Pre-validated #475 against the merged artifact on a clone (27/27) before deploy. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 1052
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 1052
       }
     },
     {
@@ -839,6 +839,23 @@
       "supervised_by": null
     },
     {
+      "plan_file": "`plans/BRAIN_TIER_AWARENESS.md`",
+      "title": "**Brain tier-awareness** — make the brain (`/chat-blocking`) receive the Discord author's resolved role and apply `{guest<member<governor}` itself, so a MEMBER can get a reply without inheriting governor authority. Child of `plans/DISCORD_MEMBER_TIER.md`. Tracked in Discord **#brain-tier-awareness** (`1549762040518672419`).",
+      "handoff_date": "2026-09-16",
+      "state": "awaiting_kickoff",
+      "status_raw": "**go-ready** — design phase; §0 locked decisions to confirm with governor",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "1549762040518672419",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-16",
+      "supervised_by": null
+    },
+    {
       "plan_file": "`plans/DISCORD_ENVOY_GOVERNOR_PARITY_PLAN.md`",
       "title": "**Sophia ↔ Envoy governor parity on Discord** — Sophia's Discord adapter drops every bot-authored message (incl. Envoy's own Discord bot) before any role check runs, so she never replies to Envoy on Discord though the equivalent works on Telegram; this carves a narrow, governor-gated exception so Envoy can reach the same authority tier it already has on Telegram, unblocking Discord-native supervision (nudges, go-signals, gate-clearing).",
       "handoff_date": "2026-09-15",
@@ -892,7 +909,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 186
+        "age_minutes": 1052
       }
     },
     {
@@ -1085,7 +1102,7 @@
   ],
   "warnings": [
     "line 56: ragged row has 13 cells, expected 11 — padded/truncated",
-    "line 74: ragged row has 9 cells, expected 11 — padded/truncated",
-    "line 70: blank line splits the handoff table"
+    "line 75: ragged row has 9 cells, expected 11 — padded/truncated",
+    "line 71: blank line splits the handoff table"
   ]
 }
