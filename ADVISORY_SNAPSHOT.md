@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-15T21:37:48Z`
-- Look-back: **7** calendar days (`2026-09-08` → today UTC)
+- Generated (UTC): `2026-09-16T03:53:13Z`
+- Look-back: **7** calendar days (`2026-09-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 21
-- `[PRACTICE EVENT]` × 3
-- `[INVENTORY MOVEMENT]` × 3
-- `[ASSET RECEIPT EVENT]` × 2
-- `[QR CODE UPDATE EVENT]` × 1
-- _free-form (no bracket tag)_ × 12
-
-### Latest entries
-
-- `Edgar_20260914215106_046` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260914230214_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix iOS empty-body Edgar upload on report_inventory_movement.html (dapp)
-- `Edgar_20260914230401_050` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260914230456_052` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 30
-- `Edgar_20260915000728_054` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Sophia Repo-Access Denylist — retire master allowlist for default-allow + tw…
-- `Edgar_20260915053007_056` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL8
-- `Edgar_20260915082150_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Multi-attachment ordered pairing (contract A) — dao_protocol #164/#165 + pro…
-- `Edgar_20260915084237_060` · **Edgar** · [No Text Provided]
-- `Edgar_20260915102913_062` · **Edgar** · [No Text Provided]
-- `Edgar_20260915102929_002` · **Edgar** · deploy verification probe, no signature, please ignore 1789468169
-- `Edgar_20260915110010_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-15T11:00:08.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260915115328_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Deploy no longer severs the calling turn: caller-thread deploy notice + cros…
-- `Edgar_20260915141946_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord #dapp-chat-approval-leak — §6a close-out (stale "needs approval — op…
-- `Edgar_20260915143743_010` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Coopercabruca Cacao Butter (KG) · Amount: 5 · Description: Placed in warehouse, delivered by Gary. For shipment to USA. The black box
-- `Edgar_20260915144012_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260915152518_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Handoff-index reconciliation sweep — row 16 untracked threads, close the gap…
-- `Edgar_20260915154323_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Stale handoff-topic audit: repair 6 dead-topic manifest rows (4 reopened, 2 …
-- `Edgar_20260915211100_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Live-progress introspection UAT (U1-U5) + #467 raw-text classifier fix
-- `Edgar_20260915212258_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 77.4 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (raw machine exec…
-- `Edgar_20260915212301_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 292.5 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (direct time / an…
 
 ---
 
@@ -232,17 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+30 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,833.82**
-- Brazilian Reis: R$1,329.61 · rate `0.2323` USD/BRL → ≈ **$308.87**
-- USD provisioned for voting-rights cash-out: **$55.12**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (1 row)
+### In-transit freight
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -252,7 +210,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-08_ (2):
+_All dated lines on/after 2026-09-09_ (2):
 
 - 2026-09-12 | sophia | `skus.json` SKU catalog now published by the `go_to_market` Python/GHA job (`sync_agroverse_store_inventory.py` + `publish-agroverse-inventory-snapshot.yml`, daily `15 6 * * *`) — PRs go_to_market #174 (emit A–I of the Agroverse SKUs tab) + #175 (`UNFORMATTED_VALUE` read so `priceUsd` is `25`, not `$25.00`; the DApp `define_currency.html` inputs `priceUsd` into a `type="number"` field). Verified live: commit `cf5d0c6` by `github-actions[bot]` 2026-09-12T23:56:32Z, `source = sync_agroverse_store_inventory`, 14 rows, `priceUsd = "25"`. New runbook `AGROVERSE_INVENTORY_PUBLISHERS.md` maps all four caches → publishers → crons → force-a-run; `OPEN_FOLLOWUPS.md` files the GAS-vs-Python two-writer hazard.
 - 2026-09-14 | deepseek | Added `sophia/SUPERVISOR_LOOP.md` — directive for LLMs supervising Sophia: a bounded-WIP supervise loop (read the unfinished-work index → drive ≤2 threads at a time → first-round UAT → escalate only human gates), plus a first-round-UAT-vs-human-UAT split and a DEFAULT authority envelope (autonomous: go/retry/first-round-UAT/beta merges; human-only: TDG/money, account-only, final human UAT). **Governor decision 2026-09-14:** UAT is THREE rounds — R1 Sophia on beta → R2 Envoy on beta → R3 human UAT — and prod merge/promote executes ONLY after the human UAT thumbs-up (supervisor executes the merge, human authorizes via thumbs-up). SUGGESTED (canonical, not edited): add SUPERVIOR_LOOP.md to OPERATING_INSTRUCTIONS §2 read-order; add a machine-readable `handoffs/index.json` mirror (state enum + Telegram thread_id + Discord channel/thread id + last_updated).
@@ -274,6 +232,7 @@ _All dated lines on/after 2026-09-08_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
 dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
 f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip ci]
 4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +272,6 @@ cd8af38 | 2026-09-09 21:07:07 +0000 | chore(stats): refresh stats/current.json [
 22bc114 | 2026-09-09 16:51:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9018e0c | 2026-09-09 11:46:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
 e37b0bd | 2026-09-09 05:05:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
-ce5624c | 2026-09-08 22:54:18 -0300 | SunMint map: Plots type-to-filter combobox + ?plot= opens popup (parity with Tree box) (#367)
 … (truncated)
 ```
 
@@ -326,6 +284,14 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+24ff59c | 2026-09-15 19:18:02 -0300 | handoffs: 30473 UAT passed, krake_nginx fix merged, held for Gary (#1219)
+b475e55 | 2026-09-15 19:16:58 -0300 | docs(vault): record UAT results (U1-U7) on deployed 1254da2 (#1217)
+96676b2 | 2026-09-15 19:16:00 -0300 | handoffs: 30471 self-fixed a real stale-auto-advance-directive bug (#1218)
+bf4c549 | 2026-09-15 19:05:00 -0300 | handoffs: 30471 all 4 authorized items complete, held open pending Gary (#1216)
+bb922d0 | 2026-09-15 19:03:51 -0300 | handoffs: 30471 tokenomics fix reviewed, merge classifier-blocked (#1215)
+8901726 | 2026-09-15 19:00:24 -0300 | docs(uat): record UAT U1-U5 results + U5 per-key-emitter regression (frozen since 2026-06-18) (#1214)
+5362c79 | 2026-09-15 18:38:12 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
+3b38ff2 | 2026-09-15 18:38:10 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
 a8a296c | 2026-09-15 18:31:06 -0300 | handoffs: 30471 finds 3-month per-key-generator regression; 30279 closed (#1213)
 a20698d | 2026-09-15 18:28:26 -0300 | auto-advance close-out: mark plan COMPLETE (PR0–PR5); manifest row completed + index regen (#1211)
 36f69b1 | 2026-09-15 18:26:40 -0300 | handoffs: 30475 U3 regression found + fixed, close-out retracted (#1212)
@@ -358,14 +324,6 @@ b51a0c7 | 2026-09-15 13:57:56 -0300 | PR4c close-out: mark DONE (#1181+#167+#466
 af829a5 | 2026-09-15 13:23:14 -0300 | handoffs: refresh active supervision claims with current status (#1183)
 ed18097 | 2026-09-15 13:23:13 -0300 | sophia: state the supervision-substitutes-for-gating principle generally (#1184)
 30a8146 | 2026-09-15 13:16:53 -0300 | sophia: retire own-repo "never self-merge" rule for truesight_autopilot (#1182)
-1ca8833 | 2026-09-15 12:46:22 -0300 | PR4c(b): supervision drift gate in validate_handoff_manifest.py (#1181)
-6424a10 | 2026-09-15 12:43:55 -0300 | handoffs: claim 30475 (Live Progress UAT), refresh 30083 (#1180)
-d801f71 | 2026-09-15 12:42:00 -0300 | fix(handoffs): repair 6 dead-topic rows from stale-backlog audit + file 2 follow-ups (#1179)
-6e6bfba | 2026-09-15 12:30:16 -0300 | plan(sprint-board): mark PR4b DONE, advance RESUME HERE to PR4c (#1178)
-4e8572c | 2026-09-15 12:29:05 -0300 | handoffs: release 30244 claim (sweep done), refresh 30083 (#1177)
-cfa5c76 | 2026-09-15 12:27:33 -0300 | fix(manifest): add missing plans//sops//handoffs/ prefixes to 20 Plan file rows + gate unresolvable Plan paths (#1176)
-038df88 | 2026-09-15 12:18:22 -0300 | handoff(manifest): final gap re-check — row 29305 (in-turn compaction), close 30244 (sweep complete) — PR4 (#1173)
-9faf972 | 2026-09-15 12:14:51 -0300 | proposal: PR4c -- compliance enforcement for the active-supervision directive (#1175)
 … (truncated)
 ```
 
@@ -452,8 +410,6 @@ fdb2e9f | 2026-09-10 11:24:18 +0000 | chore: refresh store and partner inventory
 04a91e9 | 2026-09-09 11:50:32 +0000 | chore: refresh currencies.json [skip ci]
 91875ca | 2026-09-09 11:27:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 b670bdc | 2026-09-09 07:29:12 -0300 | chore: refresh Agroverse store inventory snapshot
-62fe5ed | 2026-09-08 11:44:02 +0000 | chore: refresh currencies.json [skip ci]
-44d8995 | 2026-09-08 11:23:39 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -505,6 +461,15 @@ _(no commits on origin/main in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-09-16T035312Z_reservation-settlement-and-cacau-na-veia.md`
+
+- **posted_at_utc:** `2026-09-16T03:53:12Z`  
+- **slug:** `reservation-settlement-and-cacau-na-veia`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Sales Logic** — Shipped RESERVATION + RESERVATION SETTLEMENT GAS processors (Unit 3) to support two-event sales models.
+
 ### `beer-hall_2026-09-15T035424Z_youtube-fix-repo-access-denylist-complete.md`
 
 - **posted_at_utc:** `2026-09-15T03:54:24Z`  
@@ -522,15 +487,6 @@ _(no commits on origin/main in window)_
 
   Automated daily digest of the DAO
   - **SunMint UX** — Added plot-specific tree lists to popups and sorted tree dropdowns by newest first.
-
-### `beer-hall_2026-09-13T034519Z_media-gallery-complete-and-reserved-qr-status.md`
-
-- **posted_at_utc:** `2026-09-13T03:45:19Z`  
-- **slug:** `media-gallery-complete-and-reserved-qr-status`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Media Gallery Publisher** — Plan completed (PR1–PR7) and fetch-first gallery logic merged to production.
 
 ---
 
@@ -551,39 +507,6 @@ _(no commits on origin/main in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 13:51:51 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-08`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
