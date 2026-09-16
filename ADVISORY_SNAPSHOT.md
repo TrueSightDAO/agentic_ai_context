@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-16T05:04:12Z`
+- Generated (UTC): `2026-09-16T11:55:55Z`
 - Look-back: **7** calendar days (`2026-09-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-15T10:59:13.658Z`
+- Generated (UTC): `2026-09-16T10:59:15.292Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **921**, follow_up **71**, bulk **0**, unknown **2** (data rows: **994**)
+- **Email Agent Follow Up** — logged sends: warmup **932**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1005**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **846**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **857**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-09_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
 dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
 f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ c270bc6 | 2026-09-09 23:21:39 -0300 | SunMint impact map: show Plot Type in the 
 cd8af38 | 2026-09-09 21:07:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 22bc114 | 2026-09-09 16:51:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 9018e0c | 2026-09-09 11:46:10 +0000 | chore(stats): refresh stats/current.json [skip ci]
-e37b0bd | 2026-09-09 05:05:24 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0825e07 | 2026-09-16 02:04:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
+7810f90 | 2026-09-16 02:04:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
 ff7cb52 | 2026-09-16 00:53:31 -0300 | Merge pull request #1221 from TrueSightDAO/auto/advisory-refresh-2026-09-16
 85c9a01 | 2026-09-16 03:53:20 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
 24ff59c | 2026-09-15 19:18:02 -0300 | handoffs: 30473 UAT passed, krake_nginx fix merged, held for Gary (#1219)
@@ -364,8 +366,6 @@ cf66430 | 2026-09-15 14:12:26 -0300 | chore(previews): refresh Beer Hall preview
 a3030fa | 2026-09-15 14:06:22 -0300 | fix(auto-advance): reword prose 'RESUME HERE' mention so the parser stops latching onto it (#1188)
 18d7fbf | 2026-09-15 14:01:01 -0300 | fix(board): strip backticks from Discord id cells so deep links aren't broken (#1187)
 b51a0c7 | 2026-09-15 13:57:56 -0300 | PR4c close-out: mark DONE (#1181+#167+#466), advance RESUME markers to PR5 (#1186)
-7cb5f8d | 2026-09-15 13:42:38 -0300 | register: Discord voice-attachment follow-up on the parity-gaps row (#1185)
-af829a5 | 2026-09-15 13:23:14 -0300 | handoffs: refresh active supervision claims with current status (#1183)
 … (truncated)
 ```
 
@@ -433,6 +433,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a3ccc49 | 2026-09-16 11:39:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 dcfef2e | 2026-09-15 12:07:30 +0000 | chore: refresh currencies.json [skip ci]
 c5e911c | 2026-09-15 11:48:24 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 f6f2108 | 2026-09-14 13:22:27 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -573,7 +574,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/15/2026 21:50:55 |
+| 2026-09 | 853.7 | 18293.54386 | 9/16/2026 4:52:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-09`; scanned last **600** data rows)
 
