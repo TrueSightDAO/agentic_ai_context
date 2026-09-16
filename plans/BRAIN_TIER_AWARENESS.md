@@ -12,6 +12,16 @@ Filed from `OPEN_FOLLOWUPS.md` -> "Discord: enable member *replies* - requires t
 - **D2** - Member capability = read-only "ask / research / draft". Members never issue instructions
   and never authorize WRITE/ADMIN actions.
 - **D3** - Governors remain the sole instruction source; no behavioural change for governor turns.
+- **D4** (added 2026-09-16, governor direction) - **Sentinel accounts resolve to governor tier**, not
+  member/guest, for this gate. Sentinels are the DAO's AI-agent contributors (`Is Sentinel`=TRUE in
+  "Contributors contact information" col W - e.g. Claude Anthropic, Deep Seek, Kimi, Sophia herself);
+  they already carry elevated standing elsewhere (editor access independent of formal governorship, per
+  `GOVERNOR_SHEET_PERMISSION_SYNC_PLAN.md`). `author_role()` currently has **no sentinel check at all**
+  (verified 2026-09-16, see §2) - a sentinel's Discord account would silently resolve to member or guest,
+  not governor. PR2 must add an explicit sentinel check (e.g. a col-W lookup analogous to the existing
+  col-G governor lookup, or a `DISCORD_SENTINEL_USER_IDS` env allowlist analogous to
+  `DISCORD_MEMBER_USER_IDS`) evaluated **before** the member fallback, so a sentinel's Discord identity
+  classifies as governor rather than being silently downgraded.
 
 ## 1. Purpose
 
@@ -36,6 +46,10 @@ inheriting governor authority**. Today MEMBER is a read tier: recognised and att
   riding the governor JWT would be treated as the governor -> **privilege escalation**.
 - `app/policy.py`: `Role.MEMBER` exists between GUEST and GOVERNOR; `evaluate()` = READ open to all,
   WRITE/ADMIN governor-only.
+- **Gap (drives D4):** `author_role()` has no notion of "sentinel" at all - it only checks the env
+  governor allowlist, the col-G->Governors-cache binding, and the member fallback. A sentinel's Discord
+  account, if not separately on `DISCORD_ALLOWED_USER_IDS` or bound to a governor email, would resolve to
+  `member` (bound + real email) or `guest` (unbound) - never `governor`. Must be closed in PR2.
 
 ## 3. Transport options (D1)
 
@@ -59,6 +73,7 @@ keeping governors the sole instruction source.
 ## 6. Tests
 
 - Unit: role resolution (governor / member / guest) incl. the col-G-with-blank-email -> guest edge.
+- Unit: a sentinel-flagged Discord account resolves to **governor**, not member/guest (D4).
 - Unit: brain gate - a member-role turn is denied every WRITE/ADMIN tool and allowed READ tools.
 - Unit: a member turn can never be minted on the governor credential.
 - Integration: real handler with side-effects mocked - member turn dispatches a reply; governor unaffected.
@@ -71,7 +86,8 @@ a member attempt at a write-class action is refused; a governor turn is unchange
 ## 8. Execution (ONE PR PER TURN)
 
 - PR1 - transport (D1) + trusted-setter wiring.
-- PR2 - brain gate (`{guest < member < governor}`) + tests.
+- PR2 - brain gate (`{guest < member < governor}`) + tests. **Must include D4**: sentinel accounts
+  resolve to governor tier (author_role() sentinel check, evaluated before the member fallback).
 - PR3 - adapter dispatch of the read-only class + tests.
 - Then UAT in #brain-tier-awareness.
 
