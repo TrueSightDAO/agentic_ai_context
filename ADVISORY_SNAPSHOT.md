@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-16T17:12:42Z`
+- Generated (UTC): `2026-09-16T21:32:14Z`
 - Look-back: **7** calendar days (`2026-09-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,26 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
-- `[PRACTICE EVENT]` × 3
-- `[INVENTORY MOVEMENT]` × 3
+- `[CONTRIBUTION EVENT]` × 20
+- `[SALES EVENT]` × 6
 - `[ASSET RECEIPT EVENT]` × 2
-- `[QR CODE UPDATE EVENT]` × 1
-- _free-form (no bracket tag)_ × 12
+- `[INVENTORY MOVEMENT]` × 2
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 11
 
 ### Latest entries
 
-- `Edgar_20260914230214_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Fix iOS empty-body Edgar upload on report_inventory_movement.html (dapp)
-- `Edgar_20260914230401_050` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260914230456_052` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 30
-- `Edgar_20260915000728_054` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Sophia Repo-Access Denylist — retire master allowlist for default-allow + tw…
-- `Edgar_20260915053007_056` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL8
-- `Edgar_20260915082150_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Multi-attachment ordered pairing (contract A) — dao_protocol #164/#165 + pro…
-- `Edgar_20260915084237_060` · **Edgar** · [No Text Provided]
-- `Edgar_20260915102913_062` · **Edgar** · [No Text Provided]
-- `Edgar_20260915102929_002` · **Edgar** · deploy verification probe, no signature, please ignore 1789468169
-- `Edgar_20260915110010_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-15T11:00:08.312Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260915115328_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Deploy no longer severs the calling turn: caller-thread deploy notice + cros…
 - `Edgar_20260915141946_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord #dapp-chat-approval-leak — §6a close-out (stale "needs approval — op…
 - `Edgar_20260915143743_010` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Coopercabruca Cacao Butter (KG) · Amount: 5 · Description: Placed in warehouse, delivered by Gary. For shipment to USA. The black box
 - `Edgar_20260915144012_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
@@ -61,6 +50,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260915212258_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 77.4 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (raw machine exec…
 - `Edgar_20260915212301_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 292.5 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (direct time / an…
 - `Edgar_20260915220121_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Public-Key Lookup Cache — UAT (U1–U5) + per-key-emitter regression root-caus…
+- `Edgar_20260916201524_026` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260916210340_028` · **Edgar** · [SALES EVENT] Item: 2024_20260710_12 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260916210345_030` · **Edgar** · [SALES EVENT] Item: 2024_20260710_13 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260916210350_032` · **Edgar** · [SALES EVENT] Item: 2024_20260710_14 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260916210404_034` · **Edgar** · [SALES EVENT] Item: 2024_20260710_37 · Sales price: 11.80 · Sold by: Gary Teh
+- `Edgar_20260916210408_036` · **Edgar** · [SALES EVENT] Item: 2024_20260710_38 · Sales price: 11.80 · Sold by: Gary Teh
+- `Edgar_20260916210415_038` · **Edgar** · [SALES EVENT] Item: 2024_20260710_39 · Sales price: 11.80 · Sold by: Gary Teh
+- `Edgar_20260916210830_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia Vault Credential Migration — UAT (U1–U7), krake_nginx pin fix, docs +…
+- `Edgar_20260916211413_042` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Deep Seek API credits
+- `Edgar_20260916212952_044` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Prod sales reconciliation — Linda Ford Sept subscription (6 bars) + terminal…
+- `Edgar_20260916213024_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Prod sales reconciliation — Linda Ford Sept subscription: direction, algorit…
 
 ---
 
@@ -187,12 +187,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,335 total units · $1,467.21
+- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,332 total units · $1,450.34
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 11 | 393 | $815.77 |
+  | (uncategorized) | (unspecified) | 11 | 390 | $798.89 |
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -209,11 +209,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 14,193.52 total units · $12,911.41
+- Manager record: `Gary Teh` · 29 SKU lines · 14,264.32 total units · $12,982.21
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 14,117.34 | $12,861.43 |
+  | (uncategorized) | (unspecified) | 27 | 14,188.14 | $12,932.23 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -234,7 +234,7 @@ _(+30 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,833.78**
+- USD on hand: **$4,904.58**
 - Brazilian Reis: R$1,329.61 · rate `0.2323` USD/BRL → ≈ **$308.87**
 - USD provisioned for voting-rights cash-out: **$55.17**
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-09_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 001069c | 2026-09-16 11:58:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ a01b33a | 2026-09-10 16:38:38 +0000 | chore(stats): refresh stats indexes [skip 
 e2d6ccd | 2026-09-09 23:30:58 -0300 | Expose SunMint trees/plots/farms + MAP media archive to LLM discovery (#368)
 c270bc6 | 2026-09-09 23:21:39 -0300 | SunMint impact map: show Plot Type in the plot popup (#369)
 cd8af38 | 2026-09-09 21:07:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
-22bc114 | 2026-09-09 16:51:32 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,19 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3aa6769 | 2026-09-16 18:28:23 -0300 | handoffs: new plan + row — terminal-status marker consolidation (thread 30954) (#1231)
+c4bf667 | 2026-09-16 18:20:22 -0300 | handoffs: verify #475/#476/#477 live on the 2026-09-16T21:12:44Z deploy (#1230)
+a3ef94f | 2026-09-16 18:18:06 -0300 | handoffs: mark 30870 row terminal (completed) + regen index (#1229)
+f5f5545 | 2026-09-16 18:16:11 -0300 | handoffs: release plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
+361dd05 | 2026-09-16 18:13:04 -0300 | handoffs: claim plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
+c1ad05a | 2026-09-16 18:11:07 -0300 | handoffs: 30870 prod sales reconciliation COMPLETE (rebuilt off main) (#1220)
+01e6d1e | 2026-09-16 18:09:53 -0300 | followups: automate subscription-renewal sales reconciliation (#1228)
+bb85878 | 2026-09-16 18:09:45 -0300 | plans: add SOP for recording Stripe subscription renewal sales as [SALES EVENT]s (#1227)
+631f805 | 2026-09-16 17:45:54 -0300 | handoffs: brain-tier-awareness moved from Discord to Telegram (topic 30892) (#1226)
+ede5568 | 2026-09-16 17:36:48 -0300 | handoffs: claim brain-tier-awareness; self-correct a mid-turn re-ping (#1224)
+187f39d | 2026-09-16 17:27:34 -0300 | plans(brain-tier-awareness): lock D4 -- sentinel accounts resolve to governor tier (#1223)
+24334ba | 2026-09-16 14:13:00 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
+172a0ea | 2026-09-16 14:12:59 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
 ba4f9c5 | 2026-09-16 09:44:32 -0300 | handoffs: register BRAIN_TIER_AWARENESS plan + #brain-tier-awareness Discord channel (#1222)
 8450ae9 | 2026-09-16 08:56:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
 4f05fd9 | 2026-09-16 08:56:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
@@ -353,19 +366,6 @@ a20698d | 2026-09-15 18:28:26 -0300 | auto-advance close-out: mark plan COMPLETE
 ea7e673 | 2026-09-15 17:39:40 -0300 | handoffs: thread 30279 status corrected — blocked_on_human (#1204)
 c2724de | 2026-09-15 17:29:14 -0300 | handoffs: thread 30279 PR2 merged (#474) — auto-advance marker drift fix (#1202)
 21b6ef6 | 2026-09-15 16:32:59 -0300 | docs(auto-advance): PR0 pre-flight complete — capture incident #2 repro, correct root cause, rebase RESUME HERE (#1201)
-c356142 | 2026-09-15 16:29:00 -0300 | handoffs: claim 30279, mark 30477 blocked_on_human (#1200)
-8aa156d | 2026-09-15 16:11:28 -0300 | handoffs: claim 30477, refresh all active claims to current state (#1199)
-f0bbf59 | 2026-09-15 16:10:26 -0300 | docs(vault): SSH credentials are vault-native; update plan RESUME + file 3 remaining gaps (#1198)
-8a968ac | 2026-09-15 15:41:13 -0300 | PR5 step2 tracker: mark merged (#99) + step3 verdict (not needed) + Elizabeth Wong blocker + stale-directive meta-bug (#1197)
-8281ef1 | 2026-09-15 15:27:01 -0300 | PR5 step1 tracker: mark merged (#470), RESUME HERE = PR5 step 2 (#1196)
-e8612dd | 2026-09-15 15:18:16 -0300 | handoffs: claim 30473, refresh 30471 to PR5/blocked (#1195)
-4672a1c | 2026-09-15 15:14:33 -0300 | chore(handoff): PR4 merged — tick tracker, RESUME HERE=PR5, regen index (#1194)
-c1eefcb | 2026-09-15 14:49:10 -0300 | fix(plans+handoffs): tracker un-desync — RESUME=PR4, manifest in progress, regen index.json (#1193)
-9fc1cb2 | 2026-09-15 14:45:30 -0300 | fix(plans): un-desync PUBLIC_KEY_LOOKUP_CACHE tracker (PR1–PR3 done; RESUME=PR4) (#1191)
-a89d0ac | 2026-09-15 14:27:04 -0300 | handoffs: claim 30471, mark 30083/30475 blocked_on_human (#1190)
-3d6fd74 | 2026-09-15 14:14:26 -0300 | PR5 close-out: UAT U1-U6 done (U3 bug fixed #1187), U7 blocked on deploy; RESUME\u2192PR6; +4 follow-ups (#1189)
-cf66430 | 2026-09-15 14:12:26 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
-5fc3a8c | 2026-09-15 14:12:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
 … (truncated)
 ```
 
@@ -433,6 +433,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+584edc7 | 2026-09-16 18:28:38 -0300 | chore: refresh Agroverse SKU catalog snapshot
+387a108 | 2026-09-16 18:28:36 -0300 | chore: refresh Agroverse store inventory snapshot
 361d5e5 | 2026-09-16 12:02:45 +0000 | chore: refresh currencies.json [skip ci]
 a3ccc49 | 2026-09-16 11:39:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 dcfef2e | 2026-09-15 12:07:30 +0000 | chore: refresh currencies.json [skip ci]
@@ -575,13 +577,21 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/16/2026 9:58:41 |
+| 2026-09 | 853.7 | 18293.54386 | 9/16/2026 13:51:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-09`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
 | 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
+| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
+| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_39 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_38 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_37 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_14 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_13 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_12 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
