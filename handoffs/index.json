@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T12:43:34Z",
+  "generated_at": "2026-09-16T20:36:22Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
   "source_sha256": "4b1ed45b0f34c59a8f36f29cf97ea5c15bba0aa0ed751d74f17525c27e783dd2",
   "state_enum": [
@@ -562,7 +562,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- ALL 4 authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- flagged to Gary, (3) fallback-chain hypothesis CONFIRMED from deployed source, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN (not closed) pending Gary's merge of #494 + GAS deploy + live U5/U1 re-verification -- same pattern as 30475. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests). NOT yet deployed -- a THIRD thing now needing Gary's deploy alongside #475.",
         "stale": true,
-        "age_minutes": 1052
+        "age_minutes": 1525
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net). krake_nginx pre-existing vault-pin gap found + fixed (truesight_autopilot#476, host-local ed25519 pin, merged), NOT yet deployed. Reviewed and independently verified all diffs before merging.",
         "stale": true,
-        "age_minutes": 1052
+        "age_minutes": 1525
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7), awaiting deploy. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Pre-validated #475 against the merged artifact on a clone (27/27) before deploy. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 1052
+        "age_minutes": 1525
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 1052
+        "age_minutes": 1525
       }
     },
     {
@@ -853,7 +853,13 @@
       "discord_thread_id": null,
       "auto_start": "no",
       "last_updated": "2026-09-16",
-      "supervised_by": null
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-09-16T20:35:00Z",
+        "note": "executing -- Gary driving PR2 (brain gate) directly in Discord #brain-tier-awareness, turn-by-turn. PR1 (transport) shipped truesight_autopilot#478 sha 9551ed2. D4 locked (sentinel = distinct identity tier, governor-equivalent RIGHTS, never relabeled as governor in logs/attribution) agentic_ai_context#1223 sha 187f39d, relayed into the Discord channel. RESUME HERE: PR2 must include D4 -> PR3 (adapter dispatch) -> R1/R2/R3 UAT live in #brain-tier-awareness. Gate: touches identity/authority core -- no prod deploy without Gary's explicit GO. Self-correction 2026-09-16T20:35Z: sent 2 Discord messages (D4 note + a poke) while her turn was actively executing (round 7, pytest running) -- violates SUPERVISOR_LOOP.md §3 'do not re-ping a running turn' (no §2a evidence the turn had died -- rounds were actively landing). Corrected: monitoring passively now, will confirm D4 landed from her own next-turn report rather than demanding an ack mid-turn.",
+        "stale": false,
+        "age_minutes": 1
+      }
     },
     {
       "plan_file": "`plans/DISCORD_ENVOY_GOVERNOR_PARITY_PLAN.md`",
@@ -909,7 +915,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 1052
+        "age_minutes": 1525
       }
     },
     {
