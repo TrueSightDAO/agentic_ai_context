@@ -31,6 +31,12 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-15T19:10:52Z",
       "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk."
+    },
+    {
+      "plan_file": "plans/BRAIN_TIER_AWARENESS.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-09-16T20:35:00Z",
+      "note": "executing -- Gary driving PR2 (brain gate) directly in Discord #brain-tier-awareness, turn-by-turn. PR1 (transport) shipped truesight_autopilot#478 sha 9551ed2. D4 locked (sentinel = distinct identity tier, governor-equivalent RIGHTS, never relabeled as governor in logs/attribution) agentic_ai_context#1223 sha 187f39d, relayed into the Discord channel. RESUME HERE: PR2 must include D4 -> PR3 (adapter dispatch) -> R1/R2/R3 UAT live in #brain-tier-awareness. Gate: touches identity/authority core -- no prod deploy without Gary's explicit GO. Self-correction 2026-09-16T20:35Z: sent 2 Discord messages (D4 note + a poke) while her turn was actively executing (round 7, pytest running) -- violates SUPERVISOR_LOOP.md §3 'do not re-ping a running turn' (no §2a evidence the turn had died -- rounds were actively landing). Corrected: monitoring passively now, will confirm D4 landed from her own next-turn report rather than demanding an ack mid-turn."
     }
   ]
 }
