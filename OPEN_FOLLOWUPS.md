@@ -39,6 +39,38 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### ACL privatisation of the `Telegram Chat Logs` workbook broke two public surfaces (`/notarizations`, `/submissions/raw-telegram-chatlogs`)
+**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 30026).**
+
+**Context.** On 2026-09-18 the `anyone reader` grant on the `Telegram Chat Logs`
+workbook `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` was removed (to satisfy
+"only folks with explicit access rights" / CRF_ANAPU plan §11). Verified after:
+no `anyone`/`link`/`domain` grants, no publish-to-web revision, and anonymous
+`gviz`/`edit`/`export` all return **401**. The fix is correct for PII, but two
+public surfaces were served by a **302 redirect straight to the raw sheet** and
+so now bounce anonymous visitors into a Google **login wall**:
+- `https://truesight.me/notarizations` → `.../edit?gid=520413576` → **401**
+- `https://truesight.me/submissions/raw-telegram-chatlogs` → `.../edit?gid=0` (Telegram Chat Logs tab) → **401**
+
+**Impact.** `/notarizations` was a live public document-verification tool — the
+CRF_ANAPU plans doc §11 cites it as *the* reason a raw PIX may never be written
+to col G. It is now dark (redirects to a login wall, not merely empty). The
+underlying notarization **files are NOT lost**: they live in the public
+`TrueSightDAO/notarizations` repo (repo API 200; real PDFs/images present).
+
+**Fix (~small).** Repoint `/notarizations` at a public-safe projection instead
+of the raw sheet: either (a) a GAS WebApp that reads the `Document Notarizations`
+tab via its SA and serves only those columns, or (b) a static index generated
+from the public `TrueSightDAO/notarizations` repo. Separately decide whether
+`/submissions/raw-telegram-chatlogs` should be retired or repointed. Confirm the
+mirror GAS `process_notarization_telegram_logs.js` (reads `Telegram Chat Logs`
+col G → appends to `Document Notarizations`) still runs post-ACL — it runs as
+the script owner/SA, so expected OK.
+
+**Distinct from** the pre-existing "Document Notarizations tab stale" entry
+(mirror GAS not firing) — that is the tab not updating; this is the public view
+now being auth-walled.
+
 ### Autopilot `merge_pr`: false refusal (`ci-unavailable` 403) on repos with NO CI workflows
 **Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 31187).**
 
