@@ -624,3 +624,37 @@ same GAS `doGet` also appends a row to the private `cfr program` tabs (`tree pla
 | **P3** | Rewrite the sink to the `cfr program` sheet + 4-tab schema; drop `pix_key_cipher`; flip the privacy-guard test from *"refuse raw key"* → *"allow raw PII only in the private sheet, never on a public surface"* | `tokenomics` | auto |
 | **P4** | Repoint `payout_registration.html` from direct-POST to the Edgar route (§11.6) | `dapp_beta` / `cfr-anapu` | auto (beta); prod gated on UAT |
 | **P5** | Provisioning (§11.8) + first live submission UAT | — | **`gate: human`** |
+
+### 11.10 ⏳ Proposed — PII Event Envelope (Gary, 2026-09-18) — *open, forks P4*
+
+Gary proposed extending the emitter for **events with PII**: encrypt them, and write them so we can
+**verify afterwards that such events were submitted without knowing the details** (thread **31842**).
+
+This is exactly the *deferred* at-rest protection flagged in **§11.7** — *"If stronger at-rest protection
+is later wanted, a **DAO-held symmetric key** restores it without the governor's private key — deferred,
+not decided."* It is **not** a reinstatement of the rejected §11.2 governor-private-key cipher: the new
+property is **commitment + selective disclosure**, not confidentiality alone.
+
+**Design (see `plans/PII_EVENT_ENVELOPE.md`):** hybrid envelope — a random AES-256-GCM data key,
+wrapped to an operator/DAO RSA-OAEP key; cleartext non-PII metadata (`pk_hash`, `program_slug`,
+`pix_key_type`, `pix_key_masked`, `envelope_version`, `alg`, `iv`, `wrapped_key`) + `commitment =
+SHA-256(salt ‖ canonical_json)`. *Verify-without-knowing* = three separable properties: **existence**
+(ledger row + signature), **integrity** (hash + signature), **selective disclosure** (later reveal of
+`(value, salt)` checks against the commitment).
+
+**Impact on P4 (§11.6):** if adopted, `payout_registration.html` submits **ciphertext + commitment**,
+not the plaintext `pix_key`. Therefore **P4 (`cfr-anapu#11`) is HELD unmerged** pending the option pick;
+its Edgar-route plumbing (RSA block, `EDGAR_SUBMIT_URL`, `submit()` rewrite, provenance-last) is retained
+— only the *payload builder* changes.
+
+**Open decision:** does the envelope **REPLACE** the raw-PIX-to-private-sheet transport (§11.6) or sit
+**alongside**? **Recommendation:** replace — the sink decrypts with the operator key so the private
+`cfr program` sheet still receives plaintext (an operator must be able to actually pay), while the
+ciphertext + commitment are retained for audit. Either way §11.2's "load-bearing consequence" (the
+intake *must* stay private) is **defused** — the payload becomes safe even on a public surface.
+
+**Hard parts (must be solved before code — this is where the earlier §11.2 cipher died):** key custody
+(NOT browser localStorage — Fernet vault vs. AWS KMS), escrow/recovery on key loss, multi-recipient
+(2-of-3 governors), and key separation (signing ≠ encryption).
+
+**Gate:** design → Gary's option pick → build. **No code yet.**
