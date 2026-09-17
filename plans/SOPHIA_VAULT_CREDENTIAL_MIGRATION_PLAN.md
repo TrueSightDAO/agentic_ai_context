@@ -8,7 +8,7 @@ encrypted vault, then verify Sophia's tools can access them.
 **Related plan:** `SOPHIA_MULTI_TENANT_GOVERNANCE_PLAN.md` (broader governance,
 Phase 3 = vault).
 
-> ## ▶ RESUME HERE  (updated 2026-09-15)
+> ## ▶ RESUME HERE  (updated 2026-09-16)
 >
 > **▶ ACTIVE: deploy-gated.** As of 2026-09-15 the vault is **live with 42
 > credentials** and the SSH keys are migrated:
@@ -30,10 +30,16 @@ Phase 3 = vault).
 >   ⚠️ `krake_ror`/`krake_redis` UAT hosts are network-unreachable
 >   (SG/timeout — NOT auth); proven via `krake_data` (server_us) +
 >   `seni_redis` (nelanco) instead.
-> - **Unit 6 ◐ PARTIAL** — top-level `/home/ubuntu/*.pem` **dups archived**
->   2026-09-15 (unreferenced by any live code). ⏸️ **HELD, governor→Gary:**
->   archiving `~/.ssh/*.pem` breaks ~21 live `~/.ssh/config` aliases + drops the
->   `_VAULT_KEY_FILE_FALLBACK` safety net — an operational tradeoff, not Sophia's.
+> - **Unit 6 ✅ CLOSED — WILL NOT ARCHIVE (Gary, 2026-09-16).** Gary's explicit
+>   decision: **do NOT archive any bare `*.pem`** — “You will mess up your ability
+>   to enter into boxes as well as GitHub ssh.” Both `~/.ssh/*.pem` AND the
+>   top-level `/home/ubuntu/*.pem` stay **in place**. The 3 top-level dups
+>   archived on 2026-09-15 as step (a) were **restored** the same day. Rationale:
+>   the bare PEMs are the load-bearing identity for box entry + the
+>   `~/.ssh/config` aliases; the vault is an ADDITIONAL resolution path, not a
+>   replacement. The migration's value is already banked (vault + vault-native
+>   tools); archiving the originals only removes the safety net. ⚠️ **Future
+>   instances: do NOT re-attempt this archive.**
 > - **krake_nginx pin** — pre-existing gap found in UAT (trusts the box ed25519
 >   key, NOT server_us as its comment claimed); fixed in PR **#476**.
 >
