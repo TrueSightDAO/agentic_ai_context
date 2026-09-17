@@ -737,9 +737,12 @@ program-level / general disbursement — allowed, but flagged `unlinked`.
 
 - **Receipt source:** does the bank provide a **structured** feed (CNAB/OFX/CSV/API) or a **PDF**?
   Structured → ingest + auto-emit; PDF → OCR then emit. This decides daemon vs manual.
-- **Emitting client:** a **payout-run script** (batch, `dao_client` → Edgar) or hand-entry?
-- **Granularity:** one row **per transfer** or **per tree**? A single PIX transfer may cover N trees
-  → `tree_planting_id` as a list, or one row per tree sharing a `bank_ref`.
+- **Emitting client:** ✅ **RESOLVED (§12.8, Gary 2026-09-18)** — a **governor DApp module**
+  (`report_payout_event.html` in `dapp_beta`), not a batch `dao_client` script or raw hand-entry.
+  Structured-feed auto-ingest remains possible **later** as a *second* page (§12.8 point 1).
+- **Granularity:** ✅ **RESOLVED (§12.8, Gary 2026-09-18)** — **one row per transfer**, with
+  `tree_planting_id` carried as a **list** (a single PIX transfer may cover N trees); the alternate
+  one-row-per-tree shape is rejected because it would duplicate the `bank_ref` and the amount.
 - **Currency:** BRL (PIX) — confirm `currency` column + whether USD conversion is needed.
 - **Receipt artifact:** where does the PDF live? (private Drive + `receipt_url`, and/or a §11.10
   envelope commitment so it is verifiable-without-disclosure).
@@ -753,3 +756,78 @@ program-level / general disbursement — allowed, but flagged `unlinked`.
 | **Q3** | Sink: `[PAYOUT EVENT]` branch + Tier-1 `payouts` write | `tokenomics` | auto (after Q2) |
 | **Q4** | Tier-2 conditional CFR write (`payout events`) | `tokenomics` | auto |
 | **Q5** | Provision 2 tabs + Edgar webhook wiring (per §11.8) | — | **`gate: human`** |
+
+---
+
+## 12.8 ✅ Decision — the governor payout-entry module lives in **`dapp_beta`** (Gary, 2026-09-18)
+
+**Gary (2026-09-18, thread 30026):** *"tree linking should be in a new DApp module which the governor
+submits for each payout … Where do you think this module should live — in CFR, Sunmint or Dapp?"* →
+**DApp**, and then *"go for it, get it implemented, all the way until UAT."*
+
+### 12.8.1 Placement — and why not the other two
+
+| Candidate | Verdict | Why |
+|---|---|---|
+| **`cfr-anapu`** | ❌ | It is a **vendored mirror** of `sunmint_beta` (`vendor.json` + `sync_sunmint_app.py`, a `files[]` copy-list and `never_copy`); a code search for governor tooling there returns **0 hits**. A governor tool would be clobbered by the next vendor sync or become permanent drift — and it is a **public, unauthenticated** surface, wrong for a page that reads the **governor-only** `cfr program` sheet. |
+| **`sunmint_beta`** | ❌ | It is the **farmer/student-facing** app. A governor-auth + private-sheet module inverts the trust boundary. |
+| **`dapp_beta`** | ✅ | The **governor console**, with a `Governor only` menu section and the sibling `link_tree_planting.html` (a governor-only "join two records" page). This workstream's **other half**, `payout_registration.html` (§11 / P4, ✅ live), **already ships from here** — the pair must co-locate. |
+
+**Placement ≠ coupling.** The **pinned scope note stands**: `withdraw_voting_rights.html` and its
+settlement sibling stay **out** of the payout/CFR workstream (no Edgar endpoint, no `program_slug`). This
+is a **new, separate** CFR-scoped file — do **not** refactor those pages while adding it.
+
+### 12.8.2 What the module does
+
+**File:** `dapp_beta/report_payout_event.html` — follows the **`report_*`** ledger-event convention
+(`report_sales`, `report_contribution`, `report_tree_planting`), because a payout **is a ledger event**,
+not merely a join of two pre-existing records. Inputs:
+
+1. **Bank-feed row** — `amount`, **`bank_ref`** (the E2E-ID, e.g. `E6890081…`), `paid_at`, recipient display.
+2. **Recipient → `recipient_pk_hash`** — resolved against §11.3's `payout registrations` (the PIX private sheet).
+3. **Tree picker** — attach tree(s) from §11.5's `tree planting` tab.
+
+→ emits **one signed `[PAYOUT EVENT]`** via Edgar carrying `amount · currency · bank_ref_type · bank_ref ·
+paid_at · tree_planting_id[] · program_slug · submission_source`, exactly the §12.3/Tier-1 payload. It is
+the **linker and the emitter in one screen** — which is precisely Gary's "governor submits for each payout."
+
+### 12.8.3 The three forks (recorded explicitly)
+
+1. **Emitter vs. attacher.** If the bank feed later becomes **structured** (CNAB/OFX/API) and auto-emits,
+   a **second** page (`link_payout_tree.html`) is needed to *attach* trees to an already-recorded payout.
+   If the feed is **PDF/manual**, `report_payout_event.html` alone suffices. → **Gate: §12.6 "structured
+   vs PDF" (still open).** Until answered, build the **manual** path; the structured path is additive.
+2. **Recipient → `pk_hash` match location.** The module must **not** read the governor-only PIX sheet
+   directly from the browser. Matching is done **sink-side** (§12.2): the module consumes rows already
+   carrying `recipient_pk_hash`, or a **governor-pick** list. The page never receives the raw PIX.
+3. **Do not conflate the two linkers.** `link_tree_planting.html` joins *bag → tree* (**traceability**);
+   this module joins *money → tree* (**compensation**). Same family, **different join** — no QR semantics reuse.
+
+### 12.8.4 Menu / cache wiring
+
+- Add to **`menu.js`** under a **new `CRF Anapu Payouts`** section (governor-only) — *not* folded into
+  `Sunmint Tree Planting Program`, since payouts are not a planting action.
+- Add the page to **`service-worker.js`**'s precache list.
+- Flow: **beta-first** (`dapp_beta` → review → `sync_beta_to_prod`), per the prod guardrail.
+
+### 12.8.5 What this resolves
+
+- **§12.6 #2 (emitting client)** → a **DApp governor module**, not a batch script.
+- **§12.6 #3 (granularity)** → **one row per transfer**, `tree_planting_id` as a **list**.
+- **§12.4** narrows: the link is made **at emit time**, so an `unlinked` payout becomes the *exception*.
+
+---
+
+## 12.9 Sequenced execution — the payout-entry module (one PR per turn — §5a)
+
+| Unit | Change | Repo | Gate |
+|---|---|---|---|
+| **M1** | This §12.8 (docs, contract) | `agentic_ai_context` | auto |
+| **M2** | `report_payout_event.html` (manual path) + `menu.js` `CRF Anapu Payouts` section + `service-worker.js` precache | `dapp_beta` | auto (beta) |
+| **M3** | `link_payout_tree.html` (attacher — **only if** §12.6 structured-feed answer is "structured") | `dapp_beta` | auto (beta) |
+| **M4** | Page-level tests + beta smoke-check | `dapp_beta` | auto |
+| **M5** | Promote `dapp_beta` → `dapp_prod` | — | **`gate: human`** (UAT) |
+
+> **M2 does not depend on Q2/Q3** (that is the *server* side, §12.7). The page can be built and smoke-checked
+> against a signed payload rendered in the `#submissionResult` panel; the live emit lands with Q2/Q3.
+> **PR6 (§8) remains the only `gate: human`** on the cohort track; **M5** is the payout track's UAT gate.
