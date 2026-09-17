@@ -115,6 +115,7 @@ Fetch path uses the **jsDelivr-primary, raw.githubusercontent-fallback** pattern
   },
   "credential_visibility_default": "public",
   "issuer_lineage_root": "Butterfly Effect",
+  "program_modes": ["cohort_credentialing"],
   "status": "onboarding",
   "last_reviewed": "2026-05-16"
 }
@@ -124,6 +125,10 @@ Fetch path uses the **jsDelivr-primary, raw.githubusercontent-fallback** pattern
 
 - `program_slug` MUST equal the directory name under `programs/`.
 - `membership_filter.primary_program` is the value the `members.html` page matches against `lineage-credentials/_cache/index.json[].primary_program`.
+- `program_modes` is the **non-exclusive** mode array (added 2026-09-17, Phase 5 — `sunmint_cohort`). A program can be MORE than one kind of cohort at once. Accepts:
+  - `"cohort_credentialing"` — the classic lineage-credentialing cohort (practice/CV credentials), i.e. the behaviour every program in this doc had before.
+  - `"sunmint_cohort"` — the program also runs SunMint tree-planting activity: its members' cards render SunMint activity badges from `_cache/index.json[].sunmint_trees_planted` / `sunmint_plots_registered` / `sunmint_last_activity_at` (`js/program-shell.js`), and the itemized click-through rows come from each member CV's `sunmint_events[]`.
+  - The reader `lineage-engine/scripts/build_cv_cache.py::_program_modes()` tolerates **both** this array and the legacy single `program_mode` string (returns a list either way) — so existing manifests need no change to keep working. First `sunmint_cohort` instance: `programs/crf-anapu/manifest.json` (`["cohort_credentialing", "sunmint_cohort"]`).
 - `co_brand.partner_logo_url` is loaded into the landing + members + credentials wrapper. Hosting in `TrueSightDAO/.github/assets/` keeps the URL stable and CDN-friendly.
 - `credential_visibility_default` accepts `"public"` (default for adult cohorts and certificate recipients) or `"private"` (for programs serving minors without parental release). The members.html page filters on a future `public_listable` flag on the member record; until that flag exists in `lineage-credentials`, treat this as advisory.
 - `status` controls how the parent `programs.html` index renders the program card. Accepts:
@@ -207,6 +212,7 @@ Phase 4 must not start before Phases 1 + 2 are live and verified — printed QR 
 2026-05-16 — Phase 0 doc + Phase 1 implementation + Phase 1 nav/status follow-ups all shipped.
 **2026-05-17 — §15 Phase 3a added (per-credential QR + PDF, per surface).**
 **2026-05-17 — §16 Onboarding a new program — file-by-file playbook added.**
+**2026-09-17 — §6 `program_modes` array documented (Phase 5 / `sunmint_cohort`; CRF Anapu is the first instance, `plans/CRF_ANAPU_SUNMINT_COHORT_PROPOSAL.md`).**
 
 ---
 
