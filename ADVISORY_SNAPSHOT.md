@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-16T21:32:14Z`
-- Look-back: **7** calendar days (`2026-09-09` → today UTC)
+- Generated (UTC): `2026-09-17T05:07:47Z`
+- Look-back: **7** calendar days (`2026-09-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -234,9 +234,9 @@ _(+30 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,904.58**
+- USD on hand: **$4,904.53**
 - Brazilian Reis: R$1,329.61 · rate `0.2323` USD/BRL → ≈ **$308.87**
-- USD provisioned for voting-rights cash-out: **$55.17**
+- USD provisioned for voting-rights cash-out: **$55.21**
 
 ### In-transit freight (1 row)
 
@@ -252,7 +252,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-09_ (2):
+_All dated lines on/after 2026-09-10_ (2):
 
 - 2026-09-12 | sophia | `skus.json` SKU catalog now published by the `go_to_market` Python/GHA job (`sync_agroverse_store_inventory.py` + `publish-agroverse-inventory-snapshot.yml`, daily `15 6 * * *`) — PRs go_to_market #174 (emit A–I of the Agroverse SKUs tab) + #175 (`UNFORMATTED_VALUE` read so `priceUsd` is `25`, not `$25.00`; the DApp `define_currency.html` inputs `priceUsd` into a `type="number"` field). Verified live: commit `cf5d0c6` by `github-actions[bot]` 2026-09-12T23:56:32Z, `source = sync_agroverse_store_inventory`, 14 rows, `priceUsd = "25"`. New runbook `AGROVERSE_INVENTORY_PUBLISHERS.md` maps all four caches → publishers → crons → force-a-run; `OPEN_FOLLOWUPS.md` files the GAS-vs-Python two-writer hazard.
 - 2026-09-14 | deepseek | Added `sophia/SUPERVISOR_LOOP.md` — directive for LLMs supervising Sophia: a bounded-WIP supervise loop (read the unfinished-work index → drive ≤2 threads at a time → first-round UAT → escalate only human gates), plus a first-round-UAT-vs-human-UAT split and a DEFAULT authority envelope (autonomous: go/retry/first-round-UAT/beta merges; human-only: TDG/money, account-only, final human UAT). **Governor decision 2026-09-14:** UAT is THREE rounds — R1 Sophia on beta → R2 Envoy on beta → R3 human UAT — and prod merge/promote executes ONLY after the human UAT thumbs-up (supervisor executes the merge, human authorizes via thumbs-up). SUGGESTED (canonical, not edited): add SUPERVIOR_LOOP.md to OPERATING_INSTRUCTIONS §2 read-order; add a machine-readable `handoffs/index.json` mirror (state enum + Telegram thread_id + Discord channel/thread id + last_updated).
@@ -274,6 +274,8 @@ _All dated lines on/after 2026-09-09_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
+e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 001069c | 2026-09-16 11:58:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -312,8 +314,6 @@ a01b33a | 2026-09-10 16:38:38 +0000 | chore(stats): refresh stats indexes [skip 
 163418c | 2026-09-10 05:08:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 8e8054d | 2026-09-09 23:34:43 -0300 | fix(ci): stage the whole stats/ dir so new indexes can't be dropped (#370)
 e2d6ccd | 2026-09-09 23:30:58 -0300 | Expose SunMint trees/plots/farms + MAP media archive to LLM discovery (#368)
-c270bc6 | 2026-09-09 23:21:39 -0300 | SunMint impact map: show Plot Type in the plot popup (#369)
-cd8af38 | 2026-09-09 21:07:07 +0000 | chore(stats): refresh stats/current.json [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,20 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5921482 | 2026-09-17 00:23:29 -0300 | CRF plan tracker: mark PR5 complete, RESUME HERE -> PR6 (#1242)
+a6f37b2 | 2026-09-17 00:02:13 -0300 | docs: pin `gh` CLI to canonical PAT — document stray-token 403 + file structural fix (#1241)
+6acced6 | 2026-09-16 23:45:40 -0300 | File OPEN_FOLLOWUPS: nelanco-claude recurring reachability failure (#1240)
+9088bf1 | 2026-09-16 22:50:40 -0300 | CRF Anapu tracker: tick PR4 shipped; RESUME HERE -> PR5 (#1239)
+0b14f9e | 2026-09-16 22:40:42 -0300 | chore(crf): tick tracker PR2->PR3 (lineage-engine #23 shipped); RESUME HERE = PR4 (#1238)
+65a045e | 2026-09-16 22:28:48 -0300 | handoffs: tick CRF Anapu tracker to PR3 (PR2 deployed live); refresh supervisor claim (#1237)
+34837f8 | 2026-09-16 22:09:18 -0300 | handoffs: tick CRF tracker PR1→PR2 (Option B reconcile); fix stale row 73 (#1236)
+a98983b | 2026-09-16 19:39:23 -0300 | handoffs: release plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
+94ffbfa | 2026-09-16 19:39:03 -0300 | handoffs: claim plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
+a680528 | 2026-09-16 19:07:05 -0300 | handoffs: verify brain-tier PR2 merged; correct CRF ghost-re-dispatch (#1235)
+87b5d61 | 2026-09-16 19:00:49 -0300 | docs(plan): mark BRAIN_TIER_AWARENESS PR1/PR2 merged, resume at PR3 (#1234)
+6e2cca7 | 2026-09-16 18:35:22 -0300 | handoffs: claim + dispatch CRF Anapu x SunMint cohort proposal (thread 30026) (#1232)
+93be324 | 2026-09-16 18:32:31 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
+995c512 | 2026-09-16 18:32:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
 3aa6769 | 2026-09-16 18:28:23 -0300 | handoffs: new plan + row — terminal-status marker consolidation (thread 30954) (#1231)
 c4bf667 | 2026-09-16 18:20:22 -0300 | handoffs: verify #475/#476/#477 live on the 2026-09-16T21:12:44Z deploy (#1230)
 a3ef94f | 2026-09-16 18:18:06 -0300 | handoffs: mark 30870 row terminal (completed) + regen index (#1229)
@@ -352,26 +366,15 @@ b475e55 | 2026-09-15 19:16:58 -0300 | docs(vault): record UAT results (U1-U7) on
 bf4c549 | 2026-09-15 19:05:00 -0300 | handoffs: 30471 all 4 authorized items complete, held open pending Gary (#1216)
 bb922d0 | 2026-09-15 19:03:51 -0300 | handoffs: 30471 tokenomics fix reviewed, merge classifier-blocked (#1215)
 8901726 | 2026-09-15 19:00:24 -0300 | docs(uat): record UAT U1-U5 results + U5 per-key-emitter regression (frozen since 2026-06-18) (#1214)
-5362c79 | 2026-09-15 18:38:12 -0300 | chore(previews): refresh Beer Hall preview (2026-09-15 UTC)
-3b38ff2 | 2026-09-15 18:38:10 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-15 UTC)
-a8a296c | 2026-09-15 18:31:06 -0300 | handoffs: 30471 finds 3-month per-key-generator regression; 30279 closed (#1213)
-a20698d | 2026-09-15 18:28:26 -0300 | auto-advance close-out: mark plan COMPLETE (PR0–PR5); manifest row completed + index regen (#1211)
-36f69b1 | 2026-09-15 18:26:40 -0300 | handoffs: 30475 U3 regression found + fixed, close-out retracted (#1212)
-2d5e1c1 | 2026-09-15 18:24:28 -0300 | handoffs: 30279/30475 wrapping up, activate 30471/30473 (#1210)
-767948c | 2026-09-15 18:21:29 -0300 | docs(auto-advance): PR5 — verified outcome, stale label fixes, tracker close-out (#1209)
-71d1aed | 2026-09-15 18:20:19 -0300 | handoffs: SOPHIA_LIVE_PROGRESS_PLAN complete — UAT U1-U5 passed on deployed 1254da2 (#1208)
-2a0d6f7 | 2026-09-15 18:00:40 -0300 | handoffs: deploy landed (1254da2) — activate 30279/30475, queue 30471/30473 (#1205)
-7871229 | 2026-09-15 17:55:12 -0300 | handoffs: release plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
-8a46697 | 2026-09-15 17:54:12 -0300 | handoffs: claim plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
-ea7e673 | 2026-09-15 17:39:40 -0300 | handoffs: thread 30279 status corrected — blocked_on_human (#1204)
-c2724de | 2026-09-15 17:29:14 -0300 | handoffs: thread 30279 PR2 merged (#474) — auto-advance marker drift fix (#1202)
-21b6ef6 | 2026-09-15 16:32:59 -0300 | docs(auto-advance): PR0 pre-flight complete — capture incident #2 repro, correct root cause, rebase RESUME HERE (#1201)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+66089d6 | 2026-09-17 00:18:06 -0300 | Payout registration sink: private PIX ledger with dedup + fail-closed PII guard (#499)
+c82616f | 2026-09-16 23:54:32 -0300 | chore(gas): preserve-then-drop the 4 Tier-4 orphan folders (resolves dispositions 4/6/18)
+60eb3a2 | 2026-09-16 23:15:59 -0300 | feat(dao-members-cache): emit discord_id / telegram_id / telegram_handle (schema v4) (#495)
 9f2a248 | 2026-09-15 12:19:40 -0300 | docs(schema): document Currencies cols P-S + add T Source Documents (#493)
 cd2648f | 2026-09-14 20:19:49 -0300 | fix(expenses): strip [ledger] prefix from Inventory Type before Column E write (#492)
 bd12393 | 2026-09-13 15:21:13 -0300 | asset_receipt_ingest: fill empty Currencies D/E from Product Image / Landing Page labels (#491)
@@ -402,8 +405,6 @@ aaab424 | 2026-09-09 23:37:29 -0300 | FBE GAS: harden .claspignore against Crede
 00a7616 | 2026-09-09 22:13:07 -0300 | FBE handler: capture Plot Type + stop dropping submitted Boundary Type on farmer plots (#465)
 ca9ce8f | 2026-09-09 21:44:24 -0300 | SunMint ingestion: rows without lat/lng/photo start INVALID, never NEW (#464)
 fed9cac | 2026-09-09 21:44:20 -0300 | SunMint reject: invalidate ALL rows matching the tree id, not just first match (#463)
-67dd81a | 2026-09-09 18:05:19 -0300 | fix(expenses): serialize + re-verify hash before scoring to stop double-booking (#462)
-27aea41 | 2026-09-09 05:47:54 -0300 | fix(gas): authorize expenses by registry Sentinel role, not hardcoded name (#461)
 ```
 
 ### `dapp` → `dapp`
@@ -453,9 +454,6 @@ bc37849 | 2026-09-11 11:48:14 +0000 | chore: refresh currencies.json [skip ci]
 1112f40 | 2026-09-11 11:26:20 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
 bea3cc9 | 2026-09-10 11:49:07 +0000 | chore: refresh currencies.json [skip ci]
 fdb2e9f | 2026-09-10 11:24:18 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-04a91e9 | 2026-09-09 11:50:32 +0000 | chore: refresh currencies.json [skip ci]
-91875ca | 2026-09-09 11:27:51 +0000 | chore: refresh store and partner inventory snapshots [skip ci]
-b670bdc | 2026-09-09 07:29:12 -0300 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -488,7 +486,6 @@ b21f763 | 2026-09-10 00:46:02 -0300 | Add sitio-2-pacaja-para photo IMG_9676
 6bcb851 | 2026-09-10 00:45:56 -0300 | Add sitio-2-pacaja-para photo IMG_9659
 4a9070a | 2026-09-10 00:45:55 -0300 | Add sitio-2-pacaja-para photo IMG_9642
 fe967cc | 2026-09-10 00:45:53 -0300 | Add sitio-2-pacaja-para photo IMG_9622
-290b6e7 | 2026-09-09 05:30:39 -0300 | Add /agl15 + /agl16 legacy redirects to Google Sheets (#307)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -577,13 +574,12 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 853.7 | 18293.54386 | 9/16/2026 13:51:03 |
+| 2026-09 | 924.5 | 18364.34386 | 9/16/2026 22:02:51 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-09`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-10`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-09 | 29.73 | 8 Ounce Package Kraft Pouch  CP34099273… | TOKENIZED | 2024OSCAR_20250711_NIBS_21 | 7pOBQcKr4yjg | — |
 | 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
 | 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
 | 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_39 | — | — |
