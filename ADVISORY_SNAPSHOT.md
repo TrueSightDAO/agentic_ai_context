@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-17T11:58:45Z`
+- Generated (UTC): `2026-09-17T17:12:12Z`
 - Look-back: **7** calendar days (`2026-09-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
+- `[CONTRIBUTION EVENT]` × 24
 - `[SALES EVENT]` × 6
-- `[ASSET RECEIPT EVENT]` × 2
-- `[INVENTORY MOVEMENT]` × 2
-- `[PRACTICE EVENT]` × 1
-- _free-form (no bracket tag)_ × 11
+- `[PRACTICE EVENT]` × 2
+- `[ASSET RECEIPT EVENT]` × 1
+- _free-form (no bracket tag)_ × 9
 
 ### Latest entries
 
-- `Edgar_20260915141946_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord #dapp-chat-approval-leak — §6a close-out (stale "needs approval — op…
-- `Edgar_20260915143743_010` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Coopercabruca Cacao Butter (KG) · Amount: 5 · Description: Placed in warehouse, delivered by Gary. For shipment to USA. The black box
-- `Edgar_20260915144012_012` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260915152518_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Handoff-index reconciliation sweep — row 16 untracked threads, close the gap…
-- `Edgar_20260915154323_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Stale handoff-topic audit: repair 6 dead-topic manifest rows (4 reopened, 2 …
-- `Edgar_20260915211100_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Live-progress introspection UAT (U1-U5) + #467 raw-text classifier fix
 - `Edgar_20260915212258_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 77.4 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (raw machine exec…
 - `Edgar_20260915212301_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 292.5 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (direct time / an…
 - `Edgar_20260915220121_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Public-Key Lookup Cache — UAT (U1–U5) + per-key-emitter regression root-caus…
@@ -61,6 +54,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260916211413_042` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Deep Seek API credits
 - `Edgar_20260916212952_044` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Prod sales reconciliation — Linda Ford Sept subscription (6 bars) + terminal…
 - `Edgar_20260916213024_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Prod sales reconciliation — Linda Ford Sept subscription: direction, algorit…
+- `Edgar_20260917122431_048` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-17T12:24:29.453Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260917125026_050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Vault Credential Migration — UAT, krake_nginx pin fix, and Unit 6 close (bar…
+- `Edgar_20260917125245_052` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
+- `Edgar_20260917135450_056` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fix: derived signal flags wiped on EODHD price reimport (sentiment_importer)…
+- `Edgar_20260917144016_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
+- `Edgar_20260917150202_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: BRAIN_TIER_AWARENESS — Discord member tier-awareness (PR1–PR3 + UAT + deploy)
 
 ---
 
@@ -252,10 +251,11 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-10_ (2):
+_All dated lines on/after 2026-09-10_ (3):
 
 - 2026-09-12 | sophia | `skus.json` SKU catalog now published by the `go_to_market` Python/GHA job (`sync_agroverse_store_inventory.py` + `publish-agroverse-inventory-snapshot.yml`, daily `15 6 * * *`) — PRs go_to_market #174 (emit A–I of the Agroverse SKUs tab) + #175 (`UNFORMATTED_VALUE` read so `priceUsd` is `25`, not `$25.00`; the DApp `define_currency.html` inputs `priceUsd` into a `type="number"` field). Verified live: commit `cf5d0c6` by `github-actions[bot]` 2026-09-12T23:56:32Z, `source = sync_agroverse_store_inventory`, 14 rows, `priceUsd = "25"`. New runbook `AGROVERSE_INVENTORY_PUBLISHERS.md` maps all four caches → publishers → crons → force-a-run; `OPEN_FOLLOWUPS.md` files the GAS-vs-Python two-writer hazard.
 - 2026-09-14 | deepseek | Added `sophia/SUPERVISOR_LOOP.md` — directive for LLMs supervising Sophia: a bounded-WIP supervise loop (read the unfinished-work index → drive ≤2 threads at a time → first-round UAT → escalate only human gates), plus a first-round-UAT-vs-human-UAT split and a DEFAULT authority envelope (autonomous: go/retry/first-round-UAT/beta merges; human-only: TDG/money, account-only, final human UAT). **Governor decision 2026-09-14:** UAT is THREE rounds — R1 Sophia on beta → R2 Envoy on beta → R3 human UAT — and prod merge/promote executes ONLY after the human UAT thumbs-up (supervisor executes the merge, human authorizes via thumbs-up). SUGGESTED (canonical, not edited): add SUPERVIOR_LOOP.md to OPERATING_INSTRUCTIONS §2 read-order; add a machine-readable `handoffs/index.json` mirror (state enum + Telegram thread_id + Discord channel/thread id + last_updated).
+- 2026-09-17 | sophia | Design record added: plans/MEMBER_WORKSPACE_PLAN.md — a non-authoritative quarantine repo for member-tier SOP *candidates*, outside the context read path. Promotion into agentic_ai_context/sops/ (governor PR) is the ONLY act that makes candidate text directive. Blocks on Governor Decision D1 (bless a create_repo_pattern naming family: `member-*` or `*-candidates`).
 
 ---
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-10_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9558428 | 2026-09-17 11:59:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
 e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,19 +314,35 @@ b9d4e16 | 2026-09-10 21:07:52 +0000 | chore(stats): refresh stats indexes [skip 
 a01b33a | 2026-09-10 16:38:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 5335493 | 2026-09-10 11:44:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 163418c | 2026-09-10 05:08:04 +0000 | chore(stats): refresh stats indexes [skip ci]
-8e8054d | 2026-09-09 23:34:43 -0300 | fix(ci): stage the whole stats/ dir so new indexes can't be dropped (#370)
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells unformatted so priceUsd matches the GAS/dapp contract (#175)
+03885ff | 2026-09-17 14:05:13 -0300 | P2c: exclude [PAYOUT REGISTRATION] bodies from the public ADVISORY_SNAPSHOT (#177)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8ab43a2 | 2026-09-17 14:03:45 -0300 | docs: Envoy Discord parity COMPLETE (path i + autopilot #494); cache bug left as non-blocking residual (#1257)
+ce91c18 | 2026-09-17 13:08:10 -0300 | OPEN_FOLLOWUPS: reframe Finding A — prefer ID-native Discord sentinel resolution over tokenomics GAS fix (#1256)
+405dddf | 2026-09-17 13:06:24 -0300 | OPEN_FOLLOWUPS: point Finding A cache-email-null entry at #sentinel-cache-email-bug (#1255)
+4c4c2e9 | 2026-09-17 12:32:29 -0300 | OPEN_FOLLOWUPS: file dao_members.json sentinel email:null blocker (Envoy parity PR2 path ii) (#1254)
+63acbc1 | 2026-09-17 12:19:36 -0300 | CRF plan §11 — payout-registration sink → governor-only `cfr program` sheet (#1253)
+a6b42dc | 2026-09-17 12:16:22 -0300 | PR0 — Envoy Discord parity: resolve bot id + sheet binding, correct target to SENTINEL (#1252)
+eff1545 | 2026-09-17 12:09:50 -0300 | handoffs: mark BRAIN_TIER_AWARENESS COMPLETE (PR3 #481 merged, deployed, UAT §7 passed) (#1251)
+7dfb40f | 2026-09-17 12:01:26 -0300 | OPEN_FOLLOWUPS: merge_pr 403s on Checks API for repos with no workflows (#1249)
+4652de2 | 2026-09-17 12:01:07 -0300 | docs: file brain-tier resolve_identity sentinel follow-up + mark UAT §7 complete (#1250)
+555e63e | 2026-09-17 11:36:11 -0300 | docs: lock member-workspace privacy as a hard gate (D6) (#1248)
+3398a36 | 2026-09-17 11:26:47 -0300 | plan: member workspace + SOP promotion gate (quarantine repo) (#1247)
+06ea9e1 | 2026-09-17 10:15:22 -0300 | docs(followups): flag two source-guide QC discrepancies (HK import guide #2, GCC/Mideast guide) (#1246)
+3188a86 | 2026-09-17 10:09:42 -0300 | docs(brazil): add GCC/Middle East import SOP + refresh HK SOP (labelling, CEPA transit, timing) (#1245)
+4e27d2c | 2026-09-17 09:50:04 -0300 | vault-migration: Unit 6 CLOSED — Gary rules NOT to archive bare PEMs (restore dups) (#1244)
+3c58579 | 2026-09-17 09:49:25 -0300 | CRF PR7 docs: document program_modes/sunmint_cohort; record PR6 blocked (#1243)
+5fbf1eb | 2026-09-17 08:59:04 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
+11634ed | 2026-09-17 08:59:03 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
 663695b | 2026-09-17 02:08:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
 56cf71c | 2026-09-17 02:08:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
 5921482 | 2026-09-17 00:23:29 -0300 | CRF plan tracker: mark PR5 complete, RESUME HERE -> PR6 (#1242)
@@ -349,29 +366,14 @@ f5f5545 | 2026-09-16 18:16:11 -0300 | handoffs: release plans/WARMUP_CONVERSION_
 361dd05 | 2026-09-16 18:13:04 -0300 | handoffs: claim plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
 c1ad05a | 2026-09-16 18:11:07 -0300 | handoffs: 30870 prod sales reconciliation COMPLETE (rebuilt off main) (#1220)
 01e6d1e | 2026-09-16 18:09:53 -0300 | followups: automate subscription-renewal sales reconciliation (#1228)
-bb85878 | 2026-09-16 18:09:45 -0300 | plans: add SOP for recording Stripe subscription renewal sales as [SALES EVENT]s (#1227)
-631f805 | 2026-09-16 17:45:54 -0300 | handoffs: brain-tier-awareness moved from Discord to Telegram (topic 30892) (#1226)
-ede5568 | 2026-09-16 17:36:48 -0300 | handoffs: claim brain-tier-awareness; self-correct a mid-turn re-ping (#1224)
-187f39d | 2026-09-16 17:27:34 -0300 | plans(brain-tier-awareness): lock D4 -- sentinel accounts resolve to governor tier (#1223)
-24334ba | 2026-09-16 14:13:00 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
-172a0ea | 2026-09-16 14:12:59 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
-ba4f9c5 | 2026-09-16 09:44:32 -0300 | handoffs: register BRAIN_TIER_AWARENESS plan + #brain-tier-awareness Discord channel (#1222)
-8450ae9 | 2026-09-16 08:56:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
-4f05fd9 | 2026-09-16 08:56:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
-0825e07 | 2026-09-16 02:04:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
-7810f90 | 2026-09-16 02:04:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
-ff7cb52 | 2026-09-16 00:53:31 -0300 | Merge pull request #1221 from TrueSightDAO/auto/advisory-refresh-2026-09-16
-85c9a01 | 2026-09-16 03:53:20 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
-24ff59c | 2026-09-15 19:18:02 -0300 | handoffs: 30473 UAT passed, krake_nginx fix merged, held for Gary (#1219)
-b475e55 | 2026-09-15 19:16:58 -0300 | docs(vault): record UAT results (U1-U7) on deployed 1254da2 (#1217)
-96676b2 | 2026-09-15 19:16:00 -0300 | handoffs: 30471 self-fixed a real stale-auto-advance-directive bug (#1218)
-bf4c549 | 2026-09-15 19:05:00 -0300 | handoffs: 30471 all 4 authorized items complete, held open pending Gary (#1216)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+e5dc642 | 2026-09-17 14:01:07 -0300 | P3: rewrite payout sink to private cfr program sheet; drop RSA cipher (#501)
+dc9f1e3 | 2026-09-17 13:17:30 -0300 | Add idempotent `cfr program` sheet provisioner + schema tests (CRF §11.3/§11.8) (#500)
 66089d6 | 2026-09-17 00:18:06 -0300 | Payout registration sink: private PIX ledger with dedup + fail-closed PII guard (#499)
 c82616f | 2026-09-16 23:54:32 -0300 | chore(gas): preserve-then-drop the 4 Tier-4 orphan folders (resolves dispositions 4/6/18)
 60eb3a2 | 2026-09-16 23:15:59 -0300 | feat(dao-members-cache): emit discord_id / telegram_id / telegram_handle (schema v4) (#495)
@@ -434,6 +436,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+56fa1f5 | 2026-09-17 12:05:02 +0000 | chore: refresh currencies.json [skip ci]
 24d75f0 | 2026-09-17 11:46:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 584edc7 | 2026-09-16 18:28:38 -0300 | chore: refresh Agroverse SKU catalog snapshot
 387a108 | 2026-09-16 18:28:36 -0300 | chore: refresh Agroverse store inventory snapshot
@@ -575,7 +578,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/17/2026 4:51:17 |
+| 2026-09 | 924.5 | 18364.34386 | 9/17/2026 9:51:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-10`; scanned last **600** data rows)
 
