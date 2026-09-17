@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-17T17:12:12Z`
+- Generated (UTC): `2026-09-17T21:36:09Z`
 - Look-back: **7** calendar days (`2026-09-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
+- `[CONTRIBUTION EVENT]` × 25
 - `[SALES EVENT]` × 6
 - `[PRACTICE EVENT]` × 2
 - `[ASSET RECEIPT EVENT]` × 1
-- _free-form (no bracket tag)_ × 9
+- _free-form (no bracket tag)_ × 8
 
 ### Latest entries
 
-- `Edgar_20260915212258_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 77.4 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (raw machine exec…
-- `Edgar_20260915212301_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 292.5 · Description: Auto-advance: stop gating on PR-less units — PR0–PR5 + UAT (direct time / an…
-- `Edgar_20260915220121_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Public-Key Lookup Cache — UAT (U1–U5) + per-key-emitter regression root-caus…
-- `Edgar_20260916201524_026` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260916210340_028` · **Edgar** · [SALES EVENT] Item: 2024_20260710_12 · Sales price: 11.80 · Sold by: Kirsten Ritschel
 - `Edgar_20260916210345_030` · **Edgar** · [SALES EVENT] Item: 2024_20260710_13 · Sales price: 11.80 · Sold by: Kirsten Ritschel
 - `Edgar_20260916210350_032` · **Edgar** · [SALES EVENT] Item: 2024_20260710_14 · Sales price: 11.80 · Sold by: Kirsten Ritschel
@@ -60,6 +56,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260917135450_056` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fix: derived signal flags wiped on EODHD price reimport (sentiment_importer)…
 - `Edgar_20260917144016_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
 - `Edgar_20260917150202_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: BRAIN_TIER_AWARENESS — Discord member tier-awareness (PR1–PR3 + UAT + deploy)
+- `Edgar_20260917171455_062` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Discord Envoy governor parity — Sophia raw machine execution
+- `Edgar_20260917171458_064` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord Envoy governor parity — Sophia direct time (engagement/analysis)
+- `Edgar_20260917171500_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord Envoy governor parity — PR0 (bot id + sheet binding) and plan author…
+- `Edgar_20260917171503_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh direct time — Envoy Discord parity direction, reframe, and UAT
 
 ---
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-10_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+67538b4 | 2026-09-17 17:13:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 9558428 | 2026-09-17 11:59:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
@@ -313,7 +314,6 @@ cd13355 | 2026-09-10 23:44:14 -0300 | Add CRF Anapu program credentialing surfac
 b9d4e16 | 2026-09-10 21:07:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 a01b33a | 2026-09-10 16:38:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 5335493 | 2026-09-10 11:44:20 +0000 | chore(stats): refresh stats indexes [skip ci]
-163418c | 2026-09-10 05:08:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,16 @@ a01b33a | 2026-09-10 16:38:38 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7a6855b | 2026-09-17 18:03:50 -0300 | CFR §12.10.4: the funding leg IS on chain — payout completes a double-entry, not starts one (#1266)
+148e545 | 2026-09-17 18:01:12 -0300 | CFR §12.10: backfill subsection — the Paulo payout (first real [PAYOUT EVENT]) + count reconciliation (#1265)
+9bf4c0d | 2026-09-17 17:52:38 -0300 | CFR §12.8: payout module is a Sunmint program capability (CFR = first executor); fix menu placement (#1264)
+5500ab7 | 2026-09-17 17:49:10 -0300 | CFR §12.8/§12.9: spec report_payout_event.html (DApp) + resolve §12.6 #2/#3 (#1263)
+4d7d7b1 | 2026-09-17 16:15:40 -0300 | handoffs: fix stale active_supervision.json (sprint.truesight.me?view=sup) (#1261)
+eb01106 | 2026-09-17 16:08:30 -0300 | Plan §12: [PAYOUT EVENT] dual-write (Ops `payouts` tab + conditional CFR `payout events`) (#1260)
+e537bce | 2026-09-17 15:52:27 -0300 | Plan §11.10 + manifest: PII Event Envelope workstream forks P4 (§11.6) (#1259)
+2d3dd55 | 2026-09-17 14:42:45 -0300 | File follow-up: ACL privatisation broke 2 public redirect surfaces (#1258)
+81959c2 | 2026-09-17 14:12:38 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
+2eab0a2 | 2026-09-17 14:12:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
 8ab43a2 | 2026-09-17 14:03:45 -0300 | docs: Envoy Discord parity COMPLETE (path i + autopilot #494); cache bug left as non-blocking residual (#1257)
 ce91c18 | 2026-09-17 13:08:10 -0300 | OPEN_FOLLOWUPS: reframe Finding A — prefer ID-native Discord sentinel resolution over tokenomics GAS fix (#1256)
 405dddf | 2026-09-17 13:06:24 -0300 | OPEN_FOLLOWUPS: point Finding A cache-email-null entry at #sentinel-cache-email-bug (#1255)
@@ -356,16 +366,6 @@ a98983b | 2026-09-16 19:39:23 -0300 | handoffs: release plans/WARMUP_CONVERSION_
 94ffbfa | 2026-09-16 19:39:03 -0300 | handoffs: claim plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
 a680528 | 2026-09-16 19:07:05 -0300 | handoffs: verify brain-tier PR2 merged; correct CRF ghost-re-dispatch (#1235)
 87b5d61 | 2026-09-16 19:00:49 -0300 | docs(plan): mark BRAIN_TIER_AWARENESS PR1/PR2 merged, resume at PR3 (#1234)
-6e2cca7 | 2026-09-16 18:35:22 -0300 | handoffs: claim + dispatch CRF Anapu x SunMint cohort proposal (thread 30026) (#1232)
-93be324 | 2026-09-16 18:32:31 -0300 | chore(previews): refresh Beer Hall preview (2026-09-16 UTC)
-995c512 | 2026-09-16 18:32:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-16 UTC)
-3aa6769 | 2026-09-16 18:28:23 -0300 | handoffs: new plan + row — terminal-status marker consolidation (thread 30954) (#1231)
-c4bf667 | 2026-09-16 18:20:22 -0300 | handoffs: verify #475/#476/#477 live on the 2026-09-16T21:12:44Z deploy (#1230)
-a3ef94f | 2026-09-16 18:18:06 -0300 | handoffs: mark 30870 row terminal (completed) + regen index (#1229)
-f5f5545 | 2026-09-16 18:16:11 -0300 | handoffs: release plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
-361dd05 | 2026-09-16 18:13:04 -0300 | handoffs: claim plans/WARMUP_CONVERSION_IMPROVEMENT_PLAN.md (Sophia (autopilot, self))
-c1ad05a | 2026-09-16 18:11:07 -0300 | handoffs: 30870 prod sales reconciliation COMPLETE (rebuilt off main) (#1220)
-01e6d1e | 2026-09-16 18:09:53 -0300 | followups: automate subscription-renewal sales reconciliation (#1228)
 … (truncated)
 ```
 
@@ -578,7 +578,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/17/2026 9:51:20 |
+| 2026-09 | 924.5 | 18364.34386 | 9/17/2026 13:50:46 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-10`; scanned last **600** data rows)
 
