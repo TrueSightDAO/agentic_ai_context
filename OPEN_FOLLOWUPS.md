@@ -39,6 +39,34 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot `merge_pr`: false refusal (`ci-unavailable` 403) on repos with NO CI workflows
+**Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 31187).**
+
+**Symptom.** `merge_pr` refused to merge `sentiment_importer` PR #1136 with
+`CI not green (ci-unavailable: Resource not accessible by personal access token: 403 ... list-check-runs)`
+plus an `(unnamed)` pending check — despite the repo having **no** `.github/workflows` at all.
+`gh pr view 1136` showed `mergeable: MERGEABLE`, `mergeStateStatus: CLEAN`, `statusCheckRollup: null`.
+The PR was clean; the *tool* produced a false negative and the PR had to be landed via `gh pr merge`.
+
+**Root cause (proven 2026-09-17).** In `truesight_autopilot` `app/github_client.py`, `_ci_status()`
+calls `commit.get_check_runs()` **and** `commit.get_combined_status()`; when either raises, the
+exception branch sets `reason = "ci-unavailable: ...403..."` and returns **`green=False`** -> `merge_pr`
+refuses. The upstream `403 Resource not accessible by personal access token` means the resolving PAT
+lacks the **Checks (read)** permission on that repo (fine-grained PAT). The existing `no-ci`
+fast-path only triggers on **zero check rows**, which never happens when the call *errors* instead.
+
+**Why it matters.** A permission quirk on a repo with no CI is misinterpreted as "CI is red".
+On `truesight_autopilot` itself the same gate correctly refuses (it *has* `smoke`/`test` workflows) —
+so the behaviour is inconsistent across repos purely because of token scope. (This false refusal is
+what sent the autopilot off-course on thread 31187.)
+
+**Proposed fix (~small, autopilot codebase).** On `ci-unavailable`, don't hard-refuse — probe
+`.github/workflows` via the **Contents API** (the token *can* read contents): absent => treat as
+`no-ci` (warn + allow merge); present => keep refusing (never merge a repo whose real CI is merely
+unreadable); unknown error => conservative default (assume CI exists). A draft was built on
+thread 31187 (autopilot PR #487) then closed as out-of-scope for that thread — re-open as its own
+unit. Add unit tests on `_ci_status()` for the three branches.
+
 ### Source-guide QC: HK import guide #2 carries two unverified figures
 **Filed 2026-09-17. Owner: unclaimed. Governor: Gary (this thread).**
 
