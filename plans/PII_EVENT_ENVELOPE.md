@@ -5,6 +5,15 @@
 
 ---
 
+> **Refined 2026-09-18 (thread 30026): the envelope applies at the PUBLIC-JSON boundary, not the browser.**
+> Gary: *"I meant stuff written into telegram chat logs would be unencrypted. But stuff written into the
+> json github repo should be encrypted if it contains PII for later verification purposes."*
+> → The intake (col G) and the private `cfr program` sheet stay **plaintext**; the **public JSON repos**
+> (`verify_public_signatures/**`, ADVISORY snapshots) carry **ciphertext + commitment**. Encryption runs
+> **server-side at the JSON emitter** — so there is **no browser key custody**, and **P4 is NOT forked**
+> (§11.6 proceeds; the envelope is a separate JSON-layer unit). §5 below is kept for the record of the
+> first framing but is **superseded by this refinement**.
+
 ## 1. Goal (Gary, 2026-09-18)
 
 > *"Extend the emitter for events with PII … encrypt it and then write it such that we could

@@ -625,36 +625,38 @@ same GAS `doGet` also appends a row to the private `cfr program` tabs (`tree pla
 | **P4** | Repoint `payout_registration.html` from direct-POST to the Edgar route (§11.6) | `dapp_beta` / `cfr-anapu` | auto (beta); prod gated on UAT |
 | **P5** | Provisioning (§11.8) + first live submission UAT | — | **`gate: human`** |
 
-### 11.10 ⏳ Proposed — PII Event Envelope (Gary, 2026-09-18) — *open, forks P4*
+### 11.10 ⏳ Proposed — PII Event Envelope at the *public-JSON boundary* (Gary, 2026-09-18)
 
-Gary proposed extending the emitter for **events with PII**: encrypt them, and write them so we can
-**verify afterwards that such events were submitted without knowing the details** (thread **31842**).
+**Refined by Gary 2026-09-18 (thread 30026):** *"I meant stuff written into telegram chat logs would be
+unencrypted. But stuff written into the json github repo should be encrypted if it contains PII for
+later verification purposes."*
 
-This is exactly the *deferred* at-rest protection flagged in **§11.7** — *"If stronger at-rest protection
-is later wanted, a **DAO-held symmetric key** restores it without the governor's private key — deferred,
-not decided."* It is **not** a reinstatement of the rejected §11.2 governor-private-key cipher: the new
-property is **commitment + selective disclosure**, not confidentiality alone.
+So the envelope is applied **at the publication boundary, not the emitter**:
 
-**Design (see `plans/PII_EVENT_ENVELOPE.md`):** hybrid envelope — a random AES-256-GCM data key,
-wrapped to an operator/DAO RSA-OAEP key; cleartext non-PII metadata (`pk_hash`, `program_slug`,
-`pix_key_type`, `pix_key_masked`, `envelope_version`, `alg`, `iv`, `wrapped_key`) + `commitment =
-SHA-256(salt ‖ canonical_json)`. *Verify-without-knowing* = three separable properties: **existence**
-(ledger row + signature), **integrity** (hash + signature), **selective disclosure** (later reveal of
-`(value, salt)` checks against the commitment).
+| Surface | Visibility | PII treatment |
+|---|---|---|
+| `Telegram Chat Logs` col G (the intake) | private (post-ACL) | **plaintext — unchanged** |
+| `cfr program` `payout registrations` (private sheet) | governor-only | **plaintext — unchanged** (an operator must be able to pay) |
+| **JSON GitHub repos** (`verify_public_signatures/**`, ADVISORY snapshots, etc.) | **PUBLIC** | **encrypted if it carries PII** + cleartext SHA-256 commitment |
 
-**Impact on P4 (§11.6):** if adopted, `payout_registration.html` submits **ciphertext + commitment**,
-not the plaintext `pix_key`. Therefore **P4 (`cfr-anapu#11`) is HELD unmerged** pending the option pick;
-its Edgar-route plumbing (RSA block, `EDGAR_SUBMIT_URL`, `submit()` rewrite, provenance-last) is retained
-— only the *payload builder* changes.
+**Why this is strictly better than the first framing (§11.2's "privacy by location"):** §11.4 *excluded*
+`[PAYOUT REGISTRATION]` from every public JSON cache. The envelope offers a **superset** — instead of
+only omitting the event, it can be **published in encrypted form with a commitment**, which is exactly
+what makes it *verifiable later without disclosure*. Open sub-decision: for the payout event, **exclude**
+(as §11.4 today) or **encrypt-and-publish** (new option the envelope unlocks)?
 
-**Open decision:** does the envelope **REPLACE** the raw-PIX-to-private-sheet transport (§11.6) or sit
-**alongside**? **Recommendation:** replace — the sink decrypts with the operator key so the private
-`cfr program` sheet still receives plaintext (an operator must be able to actually pay), while the
-ciphertext + commitment are retained for audit. Either way §11.2's "load-bearing consequence" (the
-intake *must* stay private) is **defused** — the payload becomes safe even on a public surface.
+**Consequences:**
+- **No browser key custody.** Encryption runs server-side at the JSON emitter
+  (`sync_sunmint_signatures.py` / `ledger_emit.py`), so the key lives where KMS/vault belongs. This
+  removes the single hardest part of the earlier design.
+- **P4 is NOT forked.** §11.6 stands: the page submits a plaintext `[PAYOUT REGISTRATION]` via Edgar →
+  col G → private sheet. The envelope is a **separate, later unit** at the JSON layer, so
+  **`cfr-anapu#11` proceeds** (its provenance-last ordering already keeps any signature residue off
+  `pix_key`).
 
-**Hard parts (must be solved before code — this is where the earlier §11.2 cipher died):** key custody
-(NOT browser localStorage — Fernet vault vs. AWS KMS), escrow/recovery on key loss, multi-recipient
-(2-of-3 governors), and key separation (signing ≠ encryption).
+**Design (see `plans/PII_EVENT_ENVELOPE.md`):** hybrid envelope — random AES-256-GCM data key wrapped to
+an operator/DAO key (AWS KMS); cleartext non-PII metadata + `commitment = SHA-256(salt ‖ canonical_json)`.
+*Verify-without-knowing* = **existence** (ledger row + signature) · **integrity** (hash + signature) ·
+**selective disclosure** (later reveal of `(value, salt)` checks against the commitment).
 
-**Gate:** design → Gary's option pick → build. **No code yet.**
+**Gate:** design review → build. **No code yet.**
