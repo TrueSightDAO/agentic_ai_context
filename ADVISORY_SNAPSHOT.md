@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-17T05:07:47Z`
+- Generated (UTC): `2026-09-17T11:58:45Z`
 - Look-back: **7** calendar days (`2026-09-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-16T10:59:15.292Z`
+- Generated (UTC): `2026-09-17T10:59:14.436Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **932**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1005**)
+- **Email Agent Follow Up** — logged sends: warmup **944**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1017**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **857**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **869**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-10_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
 e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ a01b33a | 2026-09-10 16:38:38 +0000 | chore(stats): refresh stats indexes [skip 
 5335493 | 2026-09-10 11:44:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 163418c | 2026-09-10 05:08:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 8e8054d | 2026-09-09 23:34:43 -0300 | fix(ci): stage the whole stats/ dir so new indexes can't be dropped (#370)
-e2d6ccd | 2026-09-09 23:30:58 -0300 | Expose SunMint trees/plots/farms + MAP media archive to LLM discovery (#368)
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ bed242c | 2026-09-12 20:47:55 -0300 | fix(go_to_market): read skus.json cells un
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+663695b | 2026-09-17 02:08:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
+56cf71c | 2026-09-17 02:08:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
 5921482 | 2026-09-17 00:23:29 -0300 | CRF plan tracker: mark PR5 complete, RESUME HERE -> PR6 (#1242)
 a6f37b2 | 2026-09-17 00:02:13 -0300 | docs: pin `gh` CLI to canonical PAT — document stray-token 403 + file structural fix (#1241)
 6acced6 | 2026-09-16 23:45:40 -0300 | File OPEN_FOLLOWUPS: nelanco-claude recurring reachability failure (#1240)
@@ -364,8 +366,6 @@ ff7cb52 | 2026-09-16 00:53:31 -0300 | Merge pull request #1221 from TrueSightDAO
 b475e55 | 2026-09-15 19:16:58 -0300 | docs(vault): record UAT results (U1-U7) on deployed 1254da2 (#1217)
 96676b2 | 2026-09-15 19:16:00 -0300 | handoffs: 30471 self-fixed a real stale-auto-advance-directive bug (#1218)
 bf4c549 | 2026-09-15 19:05:00 -0300 | handoffs: 30471 all 4 authorized items complete, held open pending Gary (#1216)
-bb922d0 | 2026-09-15 19:03:51 -0300 | handoffs: 30471 tokenomics fix reviewed, merge classifier-blocked (#1215)
-8901726 | 2026-09-15 19:00:24 -0300 | docs(uat): record UAT U1-U5 results + U5 per-key-emitter regression (frozen since 2026-06-18) (#1214)
 … (truncated)
 ```
 
@@ -434,6 +434,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+24d75f0 | 2026-09-17 11:46:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 584edc7 | 2026-09-16 18:28:38 -0300 | chore: refresh Agroverse SKU catalog snapshot
 387a108 | 2026-09-16 18:28:36 -0300 | chore: refresh Agroverse store inventory snapshot
 361d5e5 | 2026-09-16 12:02:45 +0000 | chore: refresh currencies.json [skip ci]
@@ -574,7 +575,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/16/2026 22:02:51 |
+| 2026-09 | 924.5 | 18364.34386 | 9/17/2026 4:51:17 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-10`; scanned last **600** data rows)
 
