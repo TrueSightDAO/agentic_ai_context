@@ -856,6 +856,15 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 | **M4** | Page-level tests + beta smoke-check | `dapp_beta` | auto |
 | **M5** | Promote `dapp_beta` → `dapp_prod` | — | **`gate: human`** (UAT) |
 
+**§12.9 progress (2026-09-18, thread 30026):**
+
+- **M1 ✅** — §12.8 docs/contract shipped (`agentic_ai_context` #1265, sha `148e545f`).
+- **M2 ✅** — `report_payout_event.html` (governor-gated manual path) + `menu.js` `Sunmint Tree Planting Program` entry + `service-worker.js` precache shipped (`dapp_beta` #101, sha `f693b6c6`); **live on beta**.
+- **M4 ✅** — page-level Playwright tests + **live-beta smoke-check green 5/5** (`dapp_beta` #102, sha `1b3cc740`). M4 also **caught a real bug in M2**: a duplicate `id="status"` (the provenance `<select>` vs the status-message `<div>`) meant `getElementById` returned the select, so `setStatus()` wrote into it — wiping its options and silently swallowing every validation message. Fixed by renaming the select to `payoutStatus` (matching all four sibling pages).
+- **M5 ⏳ `gate: human`** — prod promotion awaits Gary's UAT. The page renders + signs a `[PAYOUT EVENT]` payload today; the live emit still lands with Q2/Q3 (the event type is not yet in Edgar's catalog).
+- **M0** — parked at Gary's request (2026-09-18, thread 30026): *"Don't bother with the resolution of Paulo's transaction in this scope."* The page retains backfill **capability** (`status=backfill`, past-dated `paid_at`, `bank_ref`); the Paulo instance is out of scope.
+- **M3** — still gated on the §12.6 structured-vs-PDF feed answer.
+
 > **M2 does not depend on Q2/Q3** (that is the *server* side, §12.7). The page can be built and smoke-checked
 > against a signed payload rendered in the `#submissionResult` panel; the live emit lands with Q2/Q3.
 > **PR6 (§8) remains the only `gate: human`** on the cohort track; **M5** is the payout track's UAT gate.
