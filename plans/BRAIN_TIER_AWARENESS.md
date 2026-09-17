@@ -89,10 +89,25 @@ keeping governors the sole instruction source.
 - Unit: a member turn can never be minted on the governor credential.
 - Integration: real handler with side-effects mocked - member turn dispatches a reply; governor unaffected.
 
-## 7. UAT
+## 7. UAT — ✅ PASSED 2026-09-17
 
 Live pass in **#brain-tier-awareness**: a bound member sends a message and receives a read-only reply;
 a member attempt at a write-class action is refused; a governor turn is unchanged.
+
+**Result (2026-09-17, on deployed `8686762` — PR1+PR2+PR3 all live; all 5 truesight services restarted
+13:36 UTC on that SHA):**
+
+| Arm | Method | Result |
+|---|---|---|
+| Member @-mentions bot → read-only reply | real `handle_message()` + live HTTP `/chat-blocking` | ✅ dispatched; HTTP 200 with a real answer; every WRITE denied |
+| Member WITHOUT @-mention → observed only | real `handle_message()` | ✅ not dispatched, logged `author_role=member` |
+| Member WRITE attempt → refused | deployed `_run_tool_sync` | ✅ `submit_contribution` → **blocked**; `ssh_run` → **blocked** |
+| Governor turn unchanged | same gate | ✅ allowed; no behaviour change |
+| Guest | same gate | ✅ observed only; WRITE **blocked** |
+| Sentinel (D4) | same gate | ✅ WRITE allowed, kept its own label (never relabeled governor) |
+
+Role resolution confirmed live: **Peter Da → `member`** (Discord ID `…468692` on his row with email
+`chaodac28@gmail.com`), Gary → governor, unbound → guest.
 
 ## 8. Execution (ONE PR PER TURN)
 
@@ -108,16 +123,19 @@ a member attempt at a write-class action is refused; a governor turn is unchange
 - PR3 - adapter dispatch of the read-only class + tests.
 - Then UAT in #brain-tier-awareness.
 
-## RESUME HERE
+## RESUME HERE — ✅ PLAN COMPLETE (2026-09-17)
 
-**Next unit: PR3** - flip the adapter's `if role != "governor": log_observed_message(); return` guard in
-`app/discord_adapter.py::handle_message()` so a resolved **member** turn is dispatched to the brain
-(read-only ask/research class) instead of only being observed. Governor + sentinel turns keep full
-authority; member turns must be denied every WRITE/ADMIN tool by the PR2 gate. Add tests + integration
-handler test with side-effects mocked. Open PR + merge (no prod deploy); then UAT in #brain-tier-awareness.
+All units shipped and UAT passed:
 
-PR2 note for PR3: a sentinel/member turn already carries `author_role` + `author_name` through the
-`/chat-blocking` + `/chat` paths (PR2), so PR3 only needs to stop dropping non-governor turns.
+- **PR1** transport — MERGED #478.
+- **PR2** brain gate (`{guest < member < governor}` + sentinel at governor-equivalent rights, D4) — MERGED #480 (`08ea0973`).
+- **PR3** adapter dispatch of the read-only class — MERGED #481 (`8686762`).
+- **Deploy** — governor GO received 2026-09-17; all 5 truesight services live on `8686762` (restarted 13:36 UTC).
+- **UAT §7** — ✅ PASSED 2026-09-17 (see §7 for the arm-by-arm evidence).
 
-**Gate:** this touches the identity/authority core. Open PRs only; **no production deploy** without an
-explicit governor GO.
+**Residual follow-up filed** in `OPEN_FOLLOWUPS.md` → *"Brain tier-awareness: `policy.resolve_identity()`
+has no SENTINEL branch"* (the brain gate passes sentinel turns only via the JWT-asserted `author_role`;
+a name-only `resolve_identity()` call degrades a sentinel to `guest`).
+
+If a **new** tier behaviour is desired (e.g. member-initiated drafts that persist, or member-scoped
+credentials per D1 option (b)), open a fresh plan — this one is done.
