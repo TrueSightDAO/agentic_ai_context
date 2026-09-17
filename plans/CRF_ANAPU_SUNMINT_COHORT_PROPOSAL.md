@@ -873,6 +873,7 @@ backfill is *reconstruction* — every field must be sourced, and none of it may
 | Object | On chain? | Evidence |
 |---|---|---|
 | **Tree planting** (Paulo) | ✅ **yes** | **52** `[TREE PLANTING EVENT]`s, all `Planter: Paulo (CEPOTX)`, `submitted_at 2026-09-08`, planting time `2026-09-07`, signed by `Sophia Truesight`, `Submission Source: autopilot-sophia` — `verify_public_signatures/tree_planting/Edgar_20260908*.json` |
+| **Tree pledge purchase** (funding → program) | ✅ **yes** | Managed-ledger Transactions tabs **SEF1** / **PP1** / **BEC** (`program: sunmint`) carry `[SALES EVENT]`s booking `SunMint Tree Planting Pledge - QR Code` sales + a `SunMint Tree Planting Contract` liability (`Currency: CACAO TREE TO BE PLANTED`) — the **funding leg**; see §12.10.4 |
 | **Payout** (money → Paulo) | ❌ **no** | No `[PAYOUT EVENT]` anywhere — **and the type is not yet in Edgar's catalogue** (`PAYOUT EVENT: not found`; cf. `TREE PLANTING EVENT` ✅ present). No `payouts` / `payout events` tab exists either. |
 | **Recipient registration** | ❌ **no** | Paulo is a **farmer** (`La do Sítio`, site code `V-06-29` / legacy `LD-P1`), *not* a registered student — no `[PAYOUT REGISTRATION]` (`§11.3`) is on file, so **no `pk_hash` to key the payout by**. |
 
@@ -913,3 +914,31 @@ a blocker. **M0 asks Gary for the tree_ids; it does not guess them.**
 > **Net:** the backfill is the payout track's **first UAT case** — it forces every open question (§12.10.2's
 > tree mapping, §12.10.3(a)-vs-(b), Q2's event type) to be answered against a real, already-paid disbursement
 > rather than a hypothetical. That is a feature: building against a concrete case is exactly what §12 asks for.
+
+#### 12.10.4 ✅ The funding side IS on chain — the "tree purchase" checkout records (Gary, 2026-09-18)
+
+> **Gary (thread 30026, 2026-09-18):** *"We did capture the tree purchase portion check out records."*
+
+Correct — and it changes the *shape* of the backfill. The payout is only **one leg** of a double-entry the
+ledger already models. The **funding** leg — a supporter *buying* tree pledges — is captured today:
+
+| Leg | What it records | Where it lives | On chain? |
+|---|---|---|---|
+| **Funding (in)** — *tree purchase / checkout* | A supporter buys `SunMint Tree Planting Pledge - QR Code`; a `[SALES EVENT]` books the sale and raises a **`SunMint Tree Planting Contract`** liability (`Currency: CACAO TREE TO BE PLANTED`) | Managed-ledger Transactions tabs — **SEF1**, **PP1**, **BEC** (`program: sunmint`), via `Stripe Social Media Checkout ID` → `stripe_sales_sync.gs` / `process_sales_telegram_logs.gs` | ✅ **yes** *(e.g. SEF1 txn: `[SALES EVENT] Item: 20250716_SEF_3 … SunMint Tree Planting Contract - sef1`)* |
+| **Fulfilment** — *tree planted* | The tree that discharges the liability | `verify_public_signatures/tree_planting/*` (the 52 Paulo rows) | ✅ **yes** |
+| **Disbursement (out)** — *payout to planter* | The support payment to the student/farmer who planted | — | ❌ **no** — this is what §12 adds |
+
+**Consequence — the payout *completes* a cycle, it does not start one.** The pledge sold creates a
+`CACAO TREE TO BE PLANTED` **liability**; the payout **discharges** it. So `[PAYOUT EVENT]` (§12.3) is the
+missing **third leg** of a cycle whose first two legs already post. That is why §12.2's dual-write is a
+*ledger* write and not a scratch log: it closes a liability the funding leg already opened.
+
+**What this does *not* do:** it does **not** put Paulo on chain and does **not** supply his `tree_id`s or
+E2E-ID. The **CFR cohort** is funded by the *agreement* (R$5/tree), not (yet) by retail pledge sales — so
+§12.10.2's mapping question and §12.10.3's `unlinked_recipient` decision **both still stand**. What it fixes
+is the *frame*: the backfill is a **liability discharge**, and the reconciliation target is **the pledge
+liability opened by the purchase leg**, matched to Paulo's 52 planting rows.
+
+**Amends §12.10.1:** its "Payout ❌ no" row read too narrowly. It is right that *no payout* is on chain, but
+wrong to imply nothing on the payment side is captured — the **inbound** half is; only the **outbound**
+half is missing.
