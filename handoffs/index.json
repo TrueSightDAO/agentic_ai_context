@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-09-16T22:05:53Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "7b9567a2181662e3bb511afa6c04d40734d8ce3b56f87908b5a216f48abcc5f4",
+  "source_sha256": "ee0b68d34aee127e388c959fa571b6587bf47d2711fb6cab4ded256f1490c65a",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -18,8 +18,8 @@
   ],
   "handoff_count": 63,
   "counts_by_state": {
-    "awaiting_kickoff": 16,
-    "executing": 14,
+    "awaiting_kickoff": 15,
+    "executing": 15,
     "paused_at_gate": 2,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -880,10 +880,10 @@
     },
     {
       "plan_file": "`plans/CRF_ANAPU_SUNMINT_COHORT_PROPOSAL.md`",
-      "title": "**CRF Anapu × SunMint tree-submission cohort** — `cfr.truesight.me` was built as a static credentialing-cohort mirror (wrong template); this makes it a thin `?program=`-tagged redirect into the canonical `sunmint_beta` app so tree plantings/monitoring/plots submitted via it are traceable and populate `programs/crf-anapu/members.html`, with itemized per-student click-through.",
+      "title": "**CRF Anapu × SunMint tree-submission cohort** — `cfr.truesight.me` was built as a static credentialing-cohort mirror (wrong template); this vendors the canonical `sunmint_beta` app into `cfr-anapu` (Option B, Gary 2026-09-15) so tree plantings/monitoring/plots submitted via it are traceable and populate `programs/crf-anapu/members.html`, with itemized per-student click-through.",
       "handoff_date": "2026-09-15",
-      "state": "awaiting_kickoff",
-      "status_raw": "**✅ approved — awaiting kickoff (RESUME HERE = PR0)**",
+      "state": "executing",
+      "status_raw": "**in progress** — PR0 + PR0b + PR1 complete; RESUME HERE = PR2",
       "telegram_thread_id": "30026",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -892,7 +892,7 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-16",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-16T21:38:00Z",
