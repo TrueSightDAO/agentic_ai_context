@@ -2939,6 +2939,8 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 30892).**
 
+**STATUS 2026-09-17 — Envoy parity ACHIEVED + LIVE; this entry is now the non-blocking RESIDUAL.** Parity shipped via **path (i)**, not the fixes proposed below: both env vars are live in the running discord adapter — `DISCORD_SENTINEL_USER_IDS=1548902290344255600` + `DISCORD_TRUSTED_BOT_IDS=1548902290344255600` (appended 2026-09-17, live from the 16:23:04 restart; `author_role("1548902290344255600")` → `sentinel` verified on-box, and Gary confirmed a real Discord reply). A **durable infrastructure fix** also landed: `truesight_autopilot` **#494** (`_env_mtime` — a newer `.env` now counts as process staleness, so an env-only change actually triggers a deploy restart; previously the no-op guard scanned only `.py` mtimes, so the new var went live only via an unrelated-restart fluke, and the hand-restart that would have loaded it is blocked by the self-restart guard). **What remains unfixed is the underlying bug below** — `sentinel_emails()` is still email-keyed and still silently omits any *sheet-only* sentinel whose cache row has `email:null` (Envoy, `Open Ai`) — but it no longer blocks Discord parity. The *Preferred fix* (ID-native, adapter-only) is the recommended way to clear the residual.
+
 **Tracking home:** Discord channel **#sentinel-cache-email-bug** (id `1550171805812129954`, under *DAO Build and Ops*) — Gary posted the full Finding A writeup there, and the reframe below was posted there too. Route discussion + progress updates to that channel.
 
 > **✦ REFRAMED 2026-09-17 (Gary's architectural point — PREFERRED FIX).** Member/governor
@@ -2974,7 +2976,7 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Fallback (historical "path (ii)", superseded as preferred).** In `DaoMembersCache.js`, when seeding/merging a contact-sheet contributor flagged sentinel (col W TRUE) with no signature-derived email, populate `email` from the contact sheet's **own** email column (col D) rather than leaving `null`. Kept only if we later want the cache itself to carry a usable email for *non-Discord* email-keyed consumers.
 
-**Blocker.** None technical. Preferred fix is a plain `truesight_autopilot` code PR (no GAS). Fallback would need a `tokenomics` GAS change + deploy + governor GO.
+**Blocker.** None technical, and **parity itself is already unblocked** (shipped via path (i), see STATUS above). The residual fix is a plain `truesight_autopilot` code PR (no GAS) — *Preferred fix*. Fallback would need a `tokenomics` GAS change + deploy + governor GO.
 
 ---
 
