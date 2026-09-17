@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Source-guide QC: HK import guide #2 carries two unverified figures
+**Filed 2026-09-17. Owner: unclaimed. Governor: Gary (this thread).**
+
+**Context.** While verifying the governor-supplied 11-page *"Market Access Requirements … to Hong Kong"* guide (Brazil→HK raw cacao) against primary sources, two checkable figures failed verification. The **corrected** values are already in `brazil/BRAZIL_TO_HONG_KONG_IMPORT_SOP.md` §2.4; this entry exists so the **upstream guide** (likely AI-generated) gets flagged and the errors don't propagate.
+
+**The two errors.**
+1. ❌ Guide: *"The fee for a 3-year registration is HK$180."* → Per FEHD/CFS, the **new** 3-year registration fee is **HK$195**; **HK$180 is the renewal fee**. (Notably, the *first* governor-supplied HK guide — a 3-page one — had this right.)
+2. ❌ Guide: *"Late submission will incur penalties (typically starting from HK$2,000 for a first offence)."* → **Unsupported.** The Import and Export (Registration) Regulations provide a **HK$1,000** fine **+ HK$100/day** for failure to declare, with a late-lodgement *penalty* of **HK$20–$200** (doubled if value > HK$20,000). **No HK$2,000 figure exists** in the regulations.
+
+**Action (small).** If the guide's source/generator is known, feed these two corrections back. No DAO doc change needed — SOP already corrected.
+
+### Source-guide QC: GCC/Middle East guide — ECAS conflation + superseded FASEH framing
+**Filed 2026-09-17. Owner: unclaimed. Governor: Gary (this thread).**
+
+**Context.** While verifying the governor-supplied 2-page *"Market Access Requirements … to Qatar, UAE (Dubai) and Saudi Arabia"* guide, two claims were flagged. The **corrections** are already in `brazil/BRAZIL_TO_GCC_MIDEAST_IMPORT_SOP.md` §4–5.
+
+**The two issues.**
+1. ⚠️ Guide: *"Certain food categories require an ECAS Certificate of Conformity"* (UAE). Likely an **ECAS/FIRS conflation**: **ECAS** (Emirates Conformity Assessment Scheme, **MoIAT**) covers **non-food** regulated products (electrical, tyres, …). Food conformity in Dubai runs through **FIRS / Dubai Municipality**. Confirm with the importer / Dubai Municipality before budgeting for an ECAS CoC.
+2. ⚠️ Guide: *"as of April 1, 2026, certain Brazilian products (e.g. poultry) have been added to the mandatory CoC list … confirm the latest status for raw cacao beans."* → **Superseded.** Per the SFDA circular, effective **30 August 2026** the **FASEH platform is mandatory for ALL food-shipment Certificates of Conformity** — CoCs issued outside FASEH are no longer accepted. It is **not** category-specific; every food shipment (cacao included) now needs a FASEH-issued CoC.
+
+**Action (small).** Flag to the guide's source/generator; re-confirm both points at booking time (already listed in the GCC SOP §12 open questions).
+
 ### Autopilot: pin the `gh` CLI to the canonical PAT (stray under-scoped token → 403 createPullRequest)
 **Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 31220).**
 
