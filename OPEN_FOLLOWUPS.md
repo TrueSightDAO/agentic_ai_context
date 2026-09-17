@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot: pin the `gh` CLI to the canonical PAT (stray under-scoped token → 403 createPullRequest)
+**Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 31220).**
+
+**Symptom.** GitHub PR/branch operations intermittently fail with `403 Resource not accessible by personal access token` / `createPullRequest denied`, even though the app's own tools (`git_push_changes` / `open_fix_pr` / `merge_pr`) work fine.
+
+**Root cause (proven 2026-09-17).** Four PATs resolve to the same identity (`garyjob`): `TRUESIGHT_DAO_AUTOPILOT` (fine-grained; PR-create probe → **422 = authorized** ✅), `GITHUB_READ_PAT` (read-only → 403), `KRAKE_IO_PAT` (Krake-scoped → 403), and the token stored by the `gh` CLI in `~/.config/gh/hosts.yml` — a **fourth, separate fine-grained PAT that was under-scoped** (→ 403). Because all four are the same user, `gh auth status` looks correct while writes fail; the discriminator is *which* token, not *who*.
+
+**Interim fix applied on the Sophia box (manual).** (a) re-authed `gh` with the canonical PAT (`printf '%s\n' "$TRUESIGHT_DAO_AUTOPILOT" | gh auth login --with-token --hostname github.com`; backup at `~/.config/gh/hosts.yml.bak.*`); (b) appended a guarded `export GH_TOKEN="$TRUESIGHT_DAO_AUTOPILOT"` block to `~/.bashrc`. Documented in `credentials/API_CREDENTIALS_DOCUMENTATION.md` §10.2.2.
+
+**Proper fix (small, autopilot codebase).** Make it structural so a fresh box self-corrects — pick one: (1) at service start (`app/main.py` lifespan) reconcile `~/.config/gh/hosts.yml` / `GH_TOKEN` to the canonical PAT; (2) have `config.load_dotenv` also export `GH_TOKEN = settings.github_pat` into the process env so any `gh` subprocess inherits it; (3) add a `create_pr` tool that shells nothing out and reuses `git_tools`/`github_client` (the app's sanctioned path). Add a startup assertion that flags a mismatch. Removes the "which token did `gh` grab" trap for every sibling instance (Bionpact, Envoy, …), which today must otherwise be fixed by hand per box.
+
 ### `nelanco-claude` (Envoy's box) — recurring instance-reachability failure, root cause unknown
 **Filed 2026-09-16. Owner: unclaimed. Governor: Gary.**
 
