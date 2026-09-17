@@ -849,6 +849,7 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 
 | Unit | Change | Repo | Gate |
 |---|---|---|---|
+| **M0** | **Backfill the Paulo payout** (§12.10) — governor supplies the E2E-ID + **which `tree_id`s the 10-tree payment maps to** | `cfr program` + Ops `payouts` (via Q2/Q3) | **`gate: human`** (Gary supplies receipt + tree_ids) |
 | **M1** | This §12.8 (docs, contract) | `agentic_ai_context` | auto |
 | **M2** | `report_payout_event.html` (manual path) + `menu.js` `Sunmint Tree Planting Program` entry + `service-worker.js` precache | `dapp_beta` | auto (beta) |
 | **M3** | `link_payout_tree.html` (attacher — **only if** §12.6 structured-feed answer is "structured") | `dapp_beta` | auto (beta) |
@@ -858,3 +859,57 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 > **M2 does not depend on Q2/Q3** (that is the *server* side, §12.7). The page can be built and smoke-checked
 > against a signed payload rendered in the `#submissionResult` panel; the live emit lands with Q2/Q3.
 > **PR6 (§8) remains the only `gate: human`** on the cohort track; **M5** is the payout track's UAT gate.
+
+### 12.10 ⏳ Backfill — the Paulo payout, and the first place the design meets reality (Gary, 2026-09-18)
+
+> **Gary (thread 30026, 2026-09-18):** *"Actually we did already do a payout to Paulo priorly for planting
+> 10 trees. We just haven't captured it on chain yet."*
+
+The **first real `[PAYOUT EVENT]` is a backfill**, not a forward-going event. That matters because a
+backfill is *reconstruction* — every field must be sourced, and none of it may be invented.
+
+#### 12.10.1 What is on chain today (verified 2026-09-18 against `verify_public_signatures`)
+
+| Object | On chain? | Evidence |
+|---|---|---|
+| **Tree planting** (Paulo) | ✅ **yes** | **52** `[TREE PLANTING EVENT]`s, all `Planter: Paulo (CEPOTX)`, `submitted_at 2026-09-08`, planting time `2026-09-07`, signed by `Sophia Truesight`, `Submission Source: autopilot-sophia` — `verify_public_signatures/tree_planting/Edgar_20260908*.json` |
+| **Payout** (money → Paulo) | ❌ **no** | No `[PAYOUT EVENT]` anywhere — **and the type is not yet in Edgar's catalogue** (`PAYOUT EVENT: not found`; cf. `TREE PLANTING EVENT` ✅ present). No `payouts` / `payout events` tab exists either. |
+| **Recipient registration** | ❌ **no** | Paulo is a **farmer** (`La do Sítio`, site code `V-06-29` / legacy `LD-P1`), *not* a registered student — no `[PAYOUT REGISTRATION]` (`§11.3`) is on file, so **no `pk_hash` to key the payout by**. |
+
+**So the planting half is already published; only the compensation half is missing.** The backfill joins the
+two — which is exactly §12.4's *planting → verification → payout* loop, executed for the first time.
+
+#### 12.10.2 ⚠️ Count reconciliation — do **not** assume "10" maps 1:1
+
+Gary said **10 trees**; there are **52** on-chain Paulo planting events. These are **not** necessarily the same
+set. Candidate readings, none of which we may pick without Gary:
+
+- **10 = a first tranche** (10 of 52 paid; 42 outstanding), or
+- **10 = one plot's trees** (the plot boundary regs, §11.3) within the 52, or
+- **52 = all Paulo plantings across the period**, and the payout covers a **different, smaller** batch, or
+- **the "10" is approximate** and the intent was "the 2026-09 Paulo planting round".
+
+**Resolution rule:** the backfill must enumerate the **specific `tree_id`s** the payment covers. This is the
+first concrete instance of §12.4's `tree_planting_id` link — and the reconciliation is the deliverable, not
+a blocker. **M0 asks Gary for the tree_ids; it does not guess them.**
+
+#### 12.10.3 Backfill-specific requirements (gaps the forward path does not have)
+
+1. **Past-dated `paid_at`.** The row carries the **actual bank-transfer date**, distinct from `created_at_utc`
+   (the entry date). `§12.3`'s schema already has both — this is the case that makes the distinction load-bearing.
+2. **`bank_ref` (E2E-ID) is the anchor.** The **publishable receipt block** (type · E2E-ID · date · amount,
+   per the crop already verified in this thread) is the evidence; the full receipt (name/CPF/PIX key) stays private.
+3. **`status` must distinguish reconstruction from capture.** Add a provenance value to `§12.3`'s `status`
+   enum: **`live` | `backfill` | `superseded`** — so an auditor can always tell a reconstructed row from a
+   captured-live one. *(Schema change → belongs with Q2.)*
+4. **Recipient without a `[PAYOUT REGISTRATION]`.** §12.1 keys the payout by `recipient_pk_hash`; Paulo has
+   none. Two options, **decision needed (candidate Q4)**:
+   - **(a)** create the registration first (Paulo registers a PIX key) — clean, but requires Paulo's action; or
+   - **(b)** allow `recipient_pk_hash = null` + a `recipient_ref` (name/institution) and `status = unlinked_recipient`
+     — captures the facts now, links later.
+5. **Dependency:** the backfill **cannot be submitted until Q2 registers `[PAYOUT EVENT]` in Edgar** — there
+   is no event type to sign against today. M0 is therefore gated on Q2 as well as on Gary's inputs.
+
+> **Net:** the backfill is the payout track's **first UAT case** — it forces every open question (§12.10.2's
+> tree mapping, §12.10.3(a)-vs-(b), Q2's event type) to be answered against a real, already-paid disbursement
+> rather than a hypothetical. That is a feature: building against a concrete case is exactly what §12 asks for.
