@@ -624,3 +624,39 @@ same GAS `doGet` also appends a row to the private `cfr program` tabs (`tree pla
 | **P3** | Rewrite the sink to the `cfr program` sheet + 4-tab schema; drop `pix_key_cipher`; flip the privacy-guard test from *"refuse raw key"* → *"allow raw PII only in the private sheet, never on a public surface"* | `tokenomics` | auto |
 | **P4** | Repoint `payout_registration.html` from direct-POST to the Edgar route (§11.6) | `dapp_beta` / `cfr-anapu` | auto (beta); prod gated on UAT |
 | **P5** | Provisioning (§11.8) + first live submission UAT | — | **`gate: human`** |
+
+### 11.10 ⏳ Proposed — PII Event Envelope at the *public-JSON boundary* (Gary, 2026-09-18)
+
+**Refined by Gary 2026-09-18 (thread 30026):** *"I meant stuff written into telegram chat logs would be
+unencrypted. But stuff written into the json github repo should be encrypted if it contains PII for
+later verification purposes."*
+
+So the envelope is applied **at the publication boundary, not the emitter**:
+
+| Surface | Visibility | PII treatment |
+|---|---|---|
+| `Telegram Chat Logs` col G (the intake) | private (post-ACL) | **plaintext — unchanged** |
+| `cfr program` `payout registrations` (private sheet) | governor-only | **plaintext — unchanged** (an operator must be able to pay) |
+| **JSON GitHub repos** (`verify_public_signatures/**`, ADVISORY snapshots, etc.) | **PUBLIC** | **encrypted if it carries PII** + cleartext SHA-256 commitment |
+
+**Why this is strictly better than the first framing (§11.2's "privacy by location"):** §11.4 *excluded*
+`[PAYOUT REGISTRATION]` from every public JSON cache. The envelope offers a **superset** — instead of
+only omitting the event, it can be **published in encrypted form with a commitment**, which is exactly
+what makes it *verifiable later without disclosure*. Open sub-decision: for the payout event, **exclude**
+(as §11.4 today) or **encrypt-and-publish** (new option the envelope unlocks)?
+
+**Consequences:**
+- **No browser key custody.** Encryption runs server-side at the JSON emitter
+  (`sync_sunmint_signatures.py` / `ledger_emit.py`), so the key lives where KMS/vault belongs. This
+  removes the single hardest part of the earlier design.
+- **P4 is NOT forked.** §11.6 stands: the page submits a plaintext `[PAYOUT REGISTRATION]` via Edgar →
+  col G → private sheet. The envelope is a **separate, later unit** at the JSON layer, so
+  **`cfr-anapu#11` proceeds** (its provenance-last ordering already keeps any signature residue off
+  `pix_key`).
+
+**Design (see `plans/PII_EVENT_ENVELOPE.md`):** hybrid envelope — random AES-256-GCM data key wrapped to
+an operator/DAO key (AWS KMS); cleartext non-PII metadata + `commitment = SHA-256(salt ‖ canonical_json)`.
+*Verify-without-knowing* = **existence** (ledger row + signature) · **integrity** (hash + signature) ·
+**selective disclosure** (later reveal of `(value, salt)` checks against the commitment).
+
+**Gate:** design review → build. **No code yet.**
