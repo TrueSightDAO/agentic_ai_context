@@ -41,8 +41,8 @@
         {
             "plan_file": "plans/CRF_ANAPU_SUNMINT_COHORT_PROPOSAL.md",
             "supervisor": "Sophia (truesight_autopilot, topic 30026)",
-            "claimed_at": "2026-09-17T02:05:00Z",
-            "note": "executing \u2014 PR3 (lineage-engine #23, sha 81e61956) MERGED: SunMint program-activity sync job reads verify_public_signatures tree_*/boundary buckets \u2192 writes programs/<slug>/pk-<hash>/sunmint/<msg_id>.json into lineage-credentials (dry-run default; 0 attributable today, nothing written). Tracker ticked to RESUME HERE = PR4 (extend build_cv_cache.py collect_practitioners()/_program_activity_score() for the sunmint/ kind + manifest.json program_modes). PR6 remains the only gate:human (first live write into lineage-credentials)."
+            "claimed_at": "2026-09-17T02:40:00Z",
+            "note": "executing — PR4 (lineage-engine #24, sha 07486ae0) MERGED: build_cv_cache.py now folds the new sunmint/ activity kind (trees_planted_count/monitoring_events_count/plots_registered_count/sunmint_event_count/last_sunmint_activity_at + itemized sunmint_events[]), tolerant _program_modes (array OR legacy string), SunMint-inclusive program_activity_score (tree-only contributor still resolves primary_program), and a render_markdown guard killing the '0 minutes' hazard. 6 new tests, suite 25 passed. Tracker ticked to RESUME HERE = PR5 (program-shell.js badges + itemized click-through, beta-only). PR6 remains the only gate:human (first live write into lineage-credentials)."
         }
     ]
 }
