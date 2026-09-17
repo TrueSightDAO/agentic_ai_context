@@ -2890,6 +2890,21 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Proposed fix (~60–90 min).** Add a `[SERIALIZATION EVENT]` (or extend `QR CODE REGISTRATION` with a bulk mode) that records: source QR/bulk lot, `split_quantity`, the generated `qr_id` range, target status, manager/custodian, and an explicit `no_financial_posting: true` flag — so the audit trail covers serialization without implying a sale. Until then, serialization remains reconstructable only from the sheet + the manifests it seeds. Blocker: none; needs an event-schema decision by a governor.
 
+### Brain tier-awareness: `policy.resolve_identity()` has no SENTINEL branch — sentinel rights reach the gate only via the JWT-asserted role
+**Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 30892).**
+
+**Symptom.** After the DISCORD_MEMBER_TIER / BRAIN_TIER_AWARENESS work (PR1 #478, PR2 #480, PR3 #481), the brain correctly authorizes a **sentinel** turn for WRITE/ADMIN — but only because the adapter mints the turn's `author_role` into the JWT and `app/main.py::_run_tool_sync` **force-stamps** that asserted role onto the resolved identity. The lower-level resolver `app/policy.py::resolve_identity()` itself has **no sentinel branch**: it knows only the env governor allowlist, the Governors cache, and the member fallback.
+
+**Evidence (deployed box, 2026-09-17).** `resolve_identity(display_name=…)` →
+- `'Gary Teh'` → **governor**
+- `'Claude Anthropic'` → **guest** ❌ (should be `sentinel`)
+- `'Sophia Truesight'` → **guest** ❌ (should be `sentinel`)
+- `'Peter Da'` → guest
+
+`grep` on `app/policy.py::resolve_identity` shows no `SENTINEL`/`sentinel` return path — the `SENTINEL` member exists on `Role` and is consumed by `has_governor_rights()` and the gate, but `resolve_identity()` never produces it. A sentinel Discord account therefore reaches sentinel rights only via `author_role()` (adapter, col-W) → JWT claim → force-stamp. Any future caller that trusts `resolve_identity()` alone (a new transport, a CLI path, a test harness) would silently degrade a sentinel to `guest` and lose governor-tier rights — fail-closed, but a latent attribution/authorization gap.
+
+**Proposed fix (~30–60 min).** Mirror the adapter's sentinel check inside `policy.resolve_identity()`: add a col-W (`Is Sentinel`=TRUE) / `governor_registry.sentinel_emails()` branch returning `Role.SENTINEL`, evaluated after the governor branch and before the member fallback (same ordering as `author_role()` per plan D4). Unit-test the four names above plus the "never relabeled governor" invariant. Blocker: none; needs a governor to confirm the col-W lookup source (the adapter already uses `governor_registry.sentinel_emails()`).
+
 ---
 
 ## Recently shipped
