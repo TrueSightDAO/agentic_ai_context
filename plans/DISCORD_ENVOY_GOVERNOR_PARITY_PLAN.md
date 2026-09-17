@@ -76,44 +76,60 @@ can do the same supervision work — nudge, answer her questions, send go-signal
   (`AUTOPILOT_CHANNEL_INTEGRATIONS.md` §2 — Discord activated 2026-09-14). The adapter is a real,
   already-serving surface, not a dark rollout — treat every change here as touching production.
 
-### Decision — confirmed by Gary 2026-09-15: Option A ✅
+### Decision — ✅ RESOLVED 2026-09-17: target tier is SENTINEL (2026-09-15 "Option A" withdrawn)
 
-> Gary, in the parking Telegram thread's originating session: "Yup. That is desired" — confirming
-> full governor parity (Option A below) for Envoy's Discord bot. **Do not re-ask this in PR0 or
-> PR2** — it is resolved. PR2 still carries `gate: human` (a live-authority-grant is always-stop
-> per §5c regardless of whether the *choice* is pre-confirmed), but that stop is to execute the
-> already-approved grant, not to re-litigate which option to pick.
+> **2026-09-17 (Gary, exec thread):** "*correction — Gary says Envoy should get SENTINEL role,
+> not governor … route my Discord bot id through the SAME D4 sentinel mechanism you already
+> built.*" Envoy's Discord bot is to resolve to `"sentinel"` — the DAO's AI-agent contributor
+> tier (same as Claude / DeepSeek / Kimi / Sophia / the autopilot) — **no governor grant, no
+> `DISCORD_ALLOWED_USER_IDS` entry.** Sentinels already carry governor-tier RIGHTS under the
+> brain's WRITE/ADMIN gate (plan D4), so this still delivers full *supervision* parity.
+>
+> *Historical (superseded):* Gary, 2026-09-15 — "Yup. That is desired" (full governor parity).
+> PR2's `gate: human` now covers only a live-config change, not a governor grant.
 
-### Open decision (RESOLVED — kept for context) — batch this once (§5e), don't re-ask per PR
+### Open decision — SUPERSEDED authority-tier question; the live question is the (i)/(ii) mechanism (gates PR2, not PR1)
 
-**Which authority tier does Envoy's Discord bot get?**
+**Which authority tier does Envoy's Discord bot get?** — **SUPERSEDED 2026-09-17: tier is fixed at `sentinel`** (see Decision). The live question is *how* Envoy's id resolves to sentinel: **(i)** add `1548902290344255600` to env `DISCORD_SENTINEL_USER_IDS` (recommended — mirrors his `TELEGRAM_ALLOWED_USER_IDS` precedent; already supported at `author_role` line 453; no cache/GAS dependency) **or (ii)** fix Finding A's `email:null` cache row so the existing col-W flag flows through `sentinel_emails()` (blocked behind a tokenomics GAS change). The Option A/B table below is retained for history only.
 
 | Option | What it means | Risk | Recommendation |
 |---|---|---|---|
 | **A — Full governor parity (recommended)** | Envoy's Discord bot resolves to `"governor"`, identical in capability to Envoy's Telegram bot today: can converse, nudge, send go-signals, and (subject to the *existing* §5c process gates) trigger any write/admin tool. | Matches a risk profile Gary has already accepted for Telegram — not new in kind, only in venue. `DISCORD_BOT_TOKEN` (Envoy's) becomes a governor-authority-bearing secret from this point on; rotate immediately if ever exposed. | This is what actually satisfies "she can respond to your inputs" in the way Envoy needs for supervision (nudging, unblocking, go-signals) — a lesser tier would leave Discord supervision non-functional even though messages stop being silently dropped. |
 | B — Member-tier chat only | Requires an *additional* code change (`handle_message` doesn't reply to MEMBER today — see pre-flight) to let Sophia converse with Envoy without granting instruction authority. | Lower risk, but doesn't unblock the actual supervision use case (go-signals, gate-clearing) that prompted this request — Envoy could chat but not drive. | Only pick this if Gary wants a strictly narrower rollout first; treat as a possible **PR0.5** stepping stone, not the end state, if chosen. |
 
-**Recommendation: Option A.** Confirm with Gary once, here in the plan (or in the parking
-Telegram thread — see Rollout below), before PR2 executes — PR2 is the unit that actually grants
-live authority, so it carries a `gate: human` marker below regardless of which option is picked.
+**Recommendation:** tier is settled at **sentinel**; the only open call is the **(i)/(ii) mechanism**
+above — **(i) recommended**. PR2 keeps its `gate: human` marker (it is the live-config change).
 
-### Still to resolve before PR1 can execute (do this as PR0 — a pre-flight-completion turn, not
-implementation — so PR1 onward needs no further discovery, per §5d)
+### Resolved in PR0 (2026-09-17) — do NOT re-discover (§5d)
 
-1. **Resolve Envoy's Discord bot's numeric user id.** `claude_telegram_monitor/.env` holds
-   `DISCORD_BOT_TOKEN` for Envoy's bot; call Discord's `GET /users/@me` with that token once to
-   get the bot's own snowflake id. Record it in PR0's update to this plan (not a secret — a
-   Discord user id is not sensitive the way a token is, but still don't paste the *token*
-   anywhere in this repo).
-2. **Read the Contributors sheet's current col G / col X state** (`WORKSPACE_CONTEXT.md` §3c
-   ledger — `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, tab `Contributors contact
-   information`) to see how Envoy's existing Telegram binding (col X) is actually set up — bound
-   to which contributor/email, and whether that email is in the Governors cache directly or
-   whether Envoy's Telegram authority instead comes from the `TELEGRAM_ALLOWED_USER_IDS` env
-   bootstrap. Mirror whichever mechanism is actually in effect for col G (Discord ID), rather
-   than assuming — this is exactly the kind of cross-file state §5d requires be captured before
-   PR1, not discovered mid-PR.
-3. Update this plan's resume tracker with the two answers above before starting PR1.
+**1 — Envoy's Discord bot id = `1548902290344255600`** (bot name `envoy_truesight`), via Discord
+`GET /users/@me`. 📌 Token path corrected: the live token is at
+**`/opt/claude_workspace/claude_telegram_monitor/.env`** on `nelanco-claude` (the original
+`claude_telegram_monitor/.env` was stale). A Discord user id is NOT a secret; the **token is** —
+never paste it.
+
+**2 — Sheet col G / col X state** (row 418, tab `Contributors contact information`): Name
+`Envoy TrueSight`; **col G (Discord ID) = `1548902290344255600` — already bound ✅**; col W
+`Is Sentinel` = `TRUE` ✅; col D email = `admin+envoy@truesight.me`; col X (Telegram ID) **blank**
+(Telegram authority comes from `TELEGRAM_ALLOWED_USER_IDS` env bootstrap — the env precedent (i)
+mirrors). **No sheet edit needed.**
+
+**3 — Three findings that reshape PR1–PR2:**
+
+- **Finding A — the D4 chain is blocked by an `email:null` cache row, not just the bot-filter.**
+  Live `dao_members.json` row: `{"name":"Envoy TrueSight","email":null,"roles":["member","sentinel"]}`.
+  Roles correctly has `sentinel`, **but `email` is `null`** and `sentinel_emails()` keys on **email**
+  → returns `{claude, deepseek, kimi, sophia, admin@}`, Envoy **absent** → `author_role(1548902290344255600)`
+  → **`member`** (verified live). Root cause: cache builder (`tokenomics …/DaoMembersCache.js`)
+  sources `email` only from "Contributors Digital Signatures" col F; contact-only names seed with
+  `email:null`. (`Open Ai` shares the latent null-email sentinel row.)
+- **Finding B — the dispatch premise is STALE.** Old pre-flight says "only `governor` gets a reply".
+  No longer true: BRAIN_TIER_AWARENESS PR3 (merged 2026-09-17) set
+  `is_instructive = role in ("governor", "sentinel")` — **sentinels are already dispatched.** So
+  once Envoy *resolves* to sentinel, only the bot-filter carve-out is needed.
+- **Finding C — deployed cache is schema v3, not v4.** `DaoMembersCache.js` declares
+  `SCHEMA_VERSION = 4` (adds `discord_id`/`telegram_id`) but the live cache is `schema_version: 3`
+  with **0 rows carrying `discord_id`** — the v4 builder exists but is not what is publishing.
 
 ✅ **Pre-flight Completeness:** every fact needed to design PR1–PR4 below is either already
 captured above (code paths, line-level behavior, live config state) or is explicitly scoped as
@@ -126,12 +142,12 @@ Contributors sheet to *understand* them; PR1 onward only *edits* them.
 
 | Unit | Scope | Advance |
 |---|---|---|
-| **PR0** | Pre-flight completion (no code): resolve Envoy's Discord bot id, read the sheet's col G/X binding pattern, update this plan's "Still to resolve" section with real answers. (Option A/B call is already resolved — see "Decision" above, skip re-asking.) | auto |
-| **PR1** | `truesight_autopilot`: add `discord_trusted_bot_ids: str` to `app/config.py` (`DISCORD_TRUSTED_BOT_IDS` env, default empty — same `_ADAPTER_ENABLED`-style safe-default convention as §3a of `AUTOPILOT_CHANNEL_INTEGRATIONS.md`). In `handle_message`, change the top guard to: drop the message **unless** `author.get("bot")` is true **and** `user_id` is in the parsed trusted-bot-id set **and** `user_id != bot_id` (never trust "yourself", even if misconfigured) — otherwise behavior is byte-for-byte identical to today. A trusted-bot message then proceeds through the **unchanged** `author_role()` resolution — being on the trusted-bot list grants *only* "don't reflexively discard," never role/authority by itself (defense in depth: two independently-configured knobs must both be right). Unit tests: (a) untrusted bot still dropped (regression guard on the existing security invariant), (b) trusted-but-not-governor-resolved bot proceeds to the existing `role != "governor"` → context-only branch (still no reply — correct), (c) trusted **and** governor-resolved bot dispatches and replies, (d) Sophia's own bot id, even if erroneously added to the trusted list, is still dropped. | auto |
-| **PR2** | Grant Envoy's Discord bot id `"governor"` role, via whichever mechanism PR0 determined mirrors the Telegram precedent (env `DISCORD_ALLOWED_USER_IDS` bootstrap, and/or a Contributors sheet col G row), **and** add the same id to the new `DISCORD_TRUSTED_BOT_IDS`. Deploy pattern mirrors `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §5 item 7: land the config, confirm via `journalctl -u truesight-autopilot-discord` that a test message from Envoy's bot now resolves to `governor` in the logs, **before** relying on it for anything live. | **`gate: human`** — this is the unit that actually grants live governor authority to a second bot identity; always-stop per §5c "account-only actions" posture even though the mechanism itself (env var / sheet row) is not literally a secret. |
+| **PR0** | ✅ **DONE 2026-09-17.** Resolved Envoy's Discord bot id (`1548902290344255600`) + read the sheet col G/X binding (col G already bound, col W=TRUE); surfaced Findings A/B/C above. No code changed. | — |
+| **PR1** | `truesight_autopilot`: add `discord_trusted_bot_ids: str` to `app/config.py` (`DISCORD_TRUSTED_BOT_IDS` env, default empty — same `_ADAPTER_ENABLED`-style safe-default convention as §3a of `AUTOPILOT_CHANNEL_INTEGRATIONS.md`). In `handle_message`, change the top guard to: drop the message **unless** `author.get("bot")` is true **and** `user_id` is in the parsed trusted-bot-id set **and** `user_id != bot_id` (never trust "yourself", even if misconfigured) — otherwise behavior is byte-for-byte identical to today. A trusted-bot message then proceeds through the **unchanged** `author_role()` resolution — being on the trusted-bot list grants *only* "don't reflexively discard," never role/authority by itself (defense in depth: two independently-configured knobs must both be right). Unit tests: (a) untrusted bot still dropped (regression guard on the existing security invariant), (b) trusted-but-**not-sentinel**-resolved bot proceeds to the `observed` (context-only) branch — still no dispatch/reply, (c) trusted **and sentinel-resolved** bot dispatches (the target end state), (d) Sophia's own bot id, even if erroneously added to the trusted list, is still dropped. | auto |
+| **PR2** | Get Envoy's Discord bot id (`1548902290344255600`) to **resolve to `"sentinel"`** via the mechanism Gary picks in PR0's open decision — **(i)** env `DISCORD_SENTINEL_USER_IDS` (recommended) **or (ii)** fix Finding A's `email:null` cache row so the col-W sentinel flag flows through `sentinel_emails()`. **No governor grant.** Also add the id to the new `DISCORD_TRUSTED_BOT_IDS`. Deploy pattern mirrors `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §5 item 7: land the config, confirm via `journalctl -u truesight-autopilot-discord` that a test message from Envoy's bot now resolves to `governor` in the logs, **before** relying on it for anything live. | **`gate: human`** — live-config change granting a second bot identity sentinel-tier dispatch rights (NOT a governor grant); always-stop per §5c even though the mechanism itself (env var / sheet row) is not literally a secret. |
 | **PR3** | UAT (see below) + docs: update `AUTOPILOT_CHANNEL_INTEGRATIONS.md` §2 registry row and §3b table with Envoy's new Discord binding; update `ENVOY.md` with the new capability and the standing rule that Envoy's Discord posts stay **human-driven per turn** — no automated blind-relay loop that could create a bot-to-bot echo (mirrors the existing Telegram "one outstanding directive per thread, max" rule in `SUPERVISOR_LOOP.md` §3, restated here for the new venue). | auto (docs-only, but blocked on PR2's UAT passing first) |
 
-**RESUME HERE → PR0.**
+**RESUME HERE → PR1** (bot-filter carve-out; `truesight_autopilot`). PR0 ✅ done 2026-09-17.
 
 ---
 
