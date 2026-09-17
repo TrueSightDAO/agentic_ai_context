@@ -2939,6 +2939,8 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 30892).**
 
+**Tracking home:** Discord channel **#sentinel-cache-email-bug** (id `1550171805812129954`, under *DAO Build and Ops*) — Gary posted the full Finding A / path-(ii) writeup there. Route discussion + progress updates to that channel.
+
 **Symptom.** `app/governor_registry.py::sentinel_emails()` keys on **email** — `if "sentinel" in (c.get("roles") or []) and (em := (c.get("email") or "").strip().lower())`. But the `dao_members.json` cache builder (`tokenomics`, GAS `DaoMembersCache.js` → `publishDaoMembersCacheToGithub_`) hoists `email` **only** from the *Contributors Digital Signatures* sheet col F, and seeds every **contact-sheet-only** contributor with `email: null` (the `Object.keys(contactAllNames).forEach` merge: `byName[key] = { name, email: null, public_keys: [] }`). A contributor whose sentinel flag comes solely from *Contributors contact information* col W (`Is Sentinel=TRUE`) therefore lands in the cache as `roles: ["member","sentinel"]` with `email: null` — and `sentinel_emails()` **silently omits** it, so `discord_adapter.author_role()` → `_email_is_sentinel()` falls through to `member`.
 
 **Evidence (live cache, 2026-09-17).** Envoy's row in `treasury-cache/dao_members.json`:
