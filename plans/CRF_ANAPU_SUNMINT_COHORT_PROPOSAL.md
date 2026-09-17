@@ -737,9 +737,12 @@ program-level / general disbursement — allowed, but flagged `unlinked`.
 
 - **Receipt source:** does the bank provide a **structured** feed (CNAB/OFX/CSV/API) or a **PDF**?
   Structured → ingest + auto-emit; PDF → OCR then emit. This decides daemon vs manual.
-- **Emitting client:** a **payout-run script** (batch, `dao_client` → Edgar) or hand-entry?
-- **Granularity:** one row **per transfer** or **per tree**? A single PIX transfer may cover N trees
-  → `tree_planting_id` as a list, or one row per tree sharing a `bank_ref`.
+- **Emitting client:** ✅ **RESOLVED (§12.8, Gary 2026-09-18)** — a **governor DApp module**
+  (`report_payout_event.html` in `dapp_beta`), not a batch `dao_client` script or raw hand-entry.
+  Structured-feed auto-ingest remains possible **later** as a *second* page (§12.8 point 1).
+- **Granularity:** ✅ **RESOLVED (§12.8, Gary 2026-09-18)** — **one row per transfer**, with
+  `tree_planting_id` carried as a **list** (a single PIX transfer may cover N trees); the alternate
+  one-row-per-tree shape is rejected because it would duplicate the `bank_ref` and the amount.
 - **Currency:** BRL (PIX) — confirm `currency` column + whether USD conversion is needed.
 - **Receipt artifact:** where does the PDF live? (private Drive + `receipt_url`, and/or a §11.10
   envelope commitment so it is verifiable-without-disclosure).
