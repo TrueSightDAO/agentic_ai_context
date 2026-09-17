@@ -17,6 +17,7 @@
 | **Bahia (Itabuna)** | **Coopercabruca** — Orlantildes Santos Pereira, PRESIDENT (CNPJ 31.948.811/0001-42) | Conversion + export hub | Has IE + NF-e; **all chocolate factories + the DAO warehouse are here**; roasting can ONLY happen here regardless of source region | Only converts/exports beans from **own members**; does NOT provide warehousing; needs exact spec upfront | 🟢 Active lane |
 | **Bahia (Ilhéus)** | **Black King** — Matheus Reis Pereira (CNPJ 50.042.585/0001-80) | Exporter/trader + warehousing | Ilhéus warehouse; offers Bahia warehousing **in exchange for DAO tokens** (lets DAO stockpile multi-year + sense demand before committing to a conversion/SKU) | CNPJ **INAPTA** (2026-06-08) + expired e-CNPJ + no commerce CNAE → **cannot issue export NF-e** | 🔴 Blocker |
 | **China (Dongguan / HK)** | Elizabeth Wong (China side); Jerrie (research asks) | Destination market | — | SKU spec pending Elizabeth↔Kirsten discussion; chocolate-maker + co-packing/fulfillment searches outstanding (Dr Ye does not handle this) | 🟡 Open asks |
+| **Middle East (GCC)** — Qatar / UAE (Dubai) / Saudi Arabia | Buyer TBD (via Gary Teh) | Destination market (parallel lane) | **No GACC needed** (GCC ≠ China); each market needs local importer registration + per-shipment CoC — Qatar **WATHEQ**, Dubai **FIRS**, Saudi **Ghad/FASEH** | Arabic labelling mandatory; per-SKU registration; Saudi **VAT 15%** vs Qatar 0% | 🟡 **EXPLORATORY** — SOP drafted 2026-09-17 (`BRAZIL_TO_GCC_MIDEAST_IMPORT_SOP.md`) |
 
 ## Map coordinates (lat/lng — source of the map pins)
 
@@ -69,6 +70,7 @@
 ## Related docs (don't duplicate)
 - `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE_COOPERCABRUCA.md` / `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE_CEPOTX.md` / `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md` (Black King)
 - `BRAZIL_TO_HONG_KONG_IMPORT_SOP.md` — **Hong Kong** import lane (HK is a *separate* customs territory from Mainland; FEHD food-importer registration + HK Customs declaration + CEPA re-export note — GACC does **not** apply to an HK-only import)
+- `BRAZIL_TO_GCC_MIDEAST_IMPORT_SOP.md` — **GCC / Middle East** import lane (Qatar WATHEQ · UAE FIRS · Saudi Ghad/FASEH; **no GACC needed**; Arabic labelling; Saudi VAT 15%)
 - `briefs/BRAZIL_EXPORT_ENTITY_BRIEF.md` — why Black King's personal CNPJ doesn't scale; DAO-owned export entity (Próspera / UNA-DUNA)
 - `BRAZIL_EXPORT_LANE_LEARNINGS.md` — Jun–Aug 2026 consolidated learnings (Black King 7 issues, MAPA, GACC/CIFER rules, trader-vs-producer)
 - `SUPPLY_CHAIN_AND_FREIGHTING.md` — Matheus warehouse (Ilhéus), Kirsten warehouse (SF), freight cost logic

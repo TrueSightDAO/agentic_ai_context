@@ -40,6 +40,33 @@
 - **Fee:** flat **HK$0.2 per declaration** for food products, regardless of value.
 - **Channel:** electronic declarations via designated service providers (e.g. **TradeLink**).
 
+### 2.3 Prepackaged-food labelling (Cap. 132W) — *added 2026-09-17*
+
+A second governor-supplied guide (11-page *"Market Access Requirements … to Hong Kong"*) surfaced the **labelling** dimension, which this SOP previously omitted:
+
+- **Legislation:** Food and Drugs (Composition and Labelling) Regulations (**Cap. 132W**, Schedule 3).
+- **Language:** the label may be in **English or Chinese**; if **both** are used, the **food name and the ingredient list must appear in both languages**.
+- **Mandatory items:** food name; ingredient list (descending by weight/volume); allergen declaration; additives (functional class + international code); "best before"/"use by" date; special storage conditions / instructions for use; name & address of manufacturer/packer; quantity/weight/volume. *(The source guide listed "8 items"; the official Schedule 3 also treats a **nutrition label** as a required element — include it.)*
+- ⚠️ **Pre-review labels** with the HK consignee / FEHD before shipment to avoid on-site rectification on arrival.
+
+### 2.4 Source-guide corrections — *added 2026-09-17*
+
+The second guide contained two figures that **do not survive verification** — do not quote them:
+
+- ❌ "*Fee for a 3-year registration is HK$180*" → **wrong**. Per FEHD/CFS: **new** registration = **HK$195**; **HK$180 is the renewal fee**. (Matches §2.1 above.)
+- ❌ "*Late submission … starting from HK$2,000 for a first offence*" → **unsupported**. The Import and Export (Registration) Regulations provide a **HK$1,000** fine **+ HK$100/day** for failure to declare, with a late-lodgement *penalty* of **HK$20–$200** (doubled if value > HK$20,000). **No HK$2,000 figure exists.**
+
+### 2.5 Indicative processing times & validity periods
+
+| Requirement | Processing time | Validity |
+|---|---|---|
+| FEHD food-importer registration | ~1 month (7 working days post-grace) | 3 years *(renew HK$180)* |
+| Health Certificate (MAPA, Brazil) | ~2–3 working days | ~12 months |
+| Phytosanitary Certificate (MAPA, Brazil — if applicable) | ~9 working days | ~21 days from quarantine completion |
+| Certificate of Origin (Brazil) | — | see CEPA note (§5) if re-exporting |
+| CEPA Certificate of Origin (HK → Mainland) | ~1.5–3 working days | **120 days** |
+| HK Customs import declaration | lodge **within 14 days** of import | — |
+
 ---
 
 ## 3. Phytosanitary requirements — generally exempt (verify)
@@ -75,6 +102,7 @@ Prepare for customs inspection regardless of exemption status:
 ### CEPA note — onward re-export to Mainland China
 - The **CEPA Certificate of Origin is valid for 120 days** from issuance — **shorter than the typical 1-year validity** under other FTAs.
 - ⚠️ If the plan is **HK → Mainland China re-export** (e.g. the Aora / China events route transiting via HK), factor this **120-day clock** into timing, and confirm CEPA eligibility + the correct issuing authority **before** shipping.
+- 🚫 **CEPA does NOT apply to simple transit or repacking.** Merely transiting or repacking Brazilian raw beans in HK does **not** satisfy CEPA rules of origin and **cannot** be used to circumvent Mainland GACC registration and tariffs. *(Added 2026-09-17 from the second governor-supplied guide — an important commercial caveat.)*
 - If goods ultimately enter **Mainland** China, **GACC registration applies after all** — see `BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE*.md`.
 
 ---
