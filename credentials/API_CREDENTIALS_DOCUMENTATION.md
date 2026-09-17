@@ -192,6 +192,14 @@ Live probe results for credentials used by automation. **Future AIs:** consult t
 
 **Status:** ✅ **Ready for autopilot.**
 
+**⚠️ `gh` CLI gotcha (2026-09-17, thread 31220).** The `gh` CLI does **not** read this env var — it authenticates from `~/.config/gh/hosts.yml`, which on the Sophia box held a **fourth, separate fine-grained PAT** that was under-scoped, producing `403 Resource not accessible by personal access token` / `createPullRequest denied` even though `TRUESIGHT_DAO_AUTOPILOT` itself works. All PATs on the box authenticate as the same identity (`garyjob`), so identity is *not* the discriminator — the token used is. Rules:
+
+1. For any PR / branch / Contents-API **write**, use **`TRUESIGHT_DAO_AUTOPILOT`** (the value of `settings.github_pat`). `GITHUB_READ_PAT` (read-only) and `KRAKE_IO_PAT` (Krake-scoped) will `403` on writes.
+2. Before calling `gh`, either `export GH_TOKEN="$TRUESIGHT_DAO_AUTOPILOT"` (`GH_TOKEN` takes precedence over `hosts.yml`) or re-run `printf '%s\n' "$TRUESIGHT_DAO_AUTOPILOT" | gh auth login --with-token --hostname github.com`.
+3. Capability probe: `gh api -X POST repos/TrueSightDAO/<repo>/pulls -f title=x -f head=__nonexistent__ -f base=main` → **422** = authorized · **403** = wrong/under-scoped token.
+
+See `OPEN_FOLLOWUPS.md` → *"pin the `gh` CLI to the canonical PAT"* for the structural (code-level) fix.
+
 #### 10.2.3 Autopilot read-only PAT (`GITHUB_READ_PAT`)
 
 | Attribute | Value |
