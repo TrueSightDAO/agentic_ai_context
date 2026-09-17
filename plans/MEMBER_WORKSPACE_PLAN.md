@@ -106,6 +106,7 @@ promoted_to: ""            # filled ONLY on promotion -> agentic_ai_context/sops
    a comment beside `api_only_repos`) naming the repo, so future instances inherit the rule in code
    comments rather than folklore (PR5, docs/config-only unless a real gate is warranted).
 5. **No member-authored text ever reaches a candidate without an agent in the loop** (D3).
+6. **Private by construction (D6).** The quarantine repo is **private** — member material must never be world-readable. A public `member-*` repo is a bug, guarded by a unit test (PR2).
 
 ---
 
@@ -113,11 +114,12 @@ promoted_to: ""            # filled ONLY on promotion -> agentic_ai_context/sops
 
 | # | Decision | Proposal | Blocking? |
 |---|---|---|---|
-| **D1** | **Repo name + naming family.** The proposed name is **not** covered by any blessed `create_repo_pattern` (`*-site`, `*-beta`, `*-prod`, `cfr-*`, `*-program`, `*-cache`, `*-raw`). | Add pattern **`member-*`** (repo `member-workspace`) **or** `*-candidates` (repo `sop-candidates`). Governor picks one. | **YES — blocks PR1** |
+| **D1** | **Repo name + naming family.** The proposed name is **not** covered by any blessed `create_repo_pattern` (`*-site`, `*-beta`, `*-prod`, `cfr-*`, `*-program`, `*-cache`, `*-raw`). | Add pattern **`member-*`** (repo `member-workspace`) **or** `*-candidates` (repo `sop-candidates`). **RESOLVED 2026-09-17: pattern `member-*` → repo `member-workspace`** (PR1 #489). | **RESOLVED** |
 | **D2** | Raw intake sink: separate `intake/` dir, or reuse the machine-owned transcript repo and keep only candidates here? | Reuse the transcript for raw; keep this repo **candidates-only** (smaller surface). | no |
 | **D3** | Who may write the candidate repo? | Agents + governors only; members **request** in chat (never push). | no |
 | **D4** | Who drafts? Auto-draft on member request, or only on explicit governor ask? | **Only on explicit governor ask** — avoids members farming auto-drafted policy text. | no |
 | **D5** | Sign-off depth on promotion: any single governor, or require the requesting member's sponsor? | Single governor (matches every other merge gate). | no |
+| **D6** | **Repo visibility.** Member workspace may hold material not ready for public view. | The repo **MUST be private**. `create_repo` defaults `private=True`; PR2 must pass it explicitly, and a unit test must assert a `member-*` repo can never be created public. | **YES — hard gate at PR2** |
 
 ---
 
@@ -126,7 +128,7 @@ promoted_to: ""            # filled ONLY on promotion -> agentic_ai_context/sops
 - [ ] **D1 resolved** and the blessed pattern added to `settings.create_repo_patterns` in
       `truesight_autopilot/app/config.py` (or wherever the globs live) — captured as a quote in
       this file per the Pre-flight Completeness gate (§5d of `OPERATING_INSTRUCTIONS.md`).
-- [ ] Confirm the repo will be **private** (member content is not public by default).
+- [ ] **HARD GATE — private repo (D6).** Member content is not public by default; the quarantine repo **MUST be private**. `create_repo` defaults `private=True`; PR2 must pass it explicitly AND add a unit test proving a `member-*` repo cannot be created public. **No exceptions.**
 - [ ] Confirm `agentic_ai_context/sops/` is the correct promotion home (existing `sops/` dir holds
       `DEPLOY_PUSH_SOP.md`, `REVIEW_QUEUE_SOP.md` — so yes).
 - [ ] Confirm the member→id resolution path used to attribute `requested_by`
@@ -143,7 +145,7 @@ promoted_to: ""            # filled ONLY on promotion -> agentic_ai_context/sops
 |----|------|------|------|
 | **PR0** | This roadmap file (`plans/MEMBER_WORKSPACE_PLAN.md`) + lock D1–D5. | `agentic_ai_context` | **this PR** |
 | **PR1** | Bless the naming family: add `member-*` (or `*-candidates`) to `create_repo_patterns`, install the fresh-box self-test/comment. | `truesight_autopilot` | needs D1 |
-| **PR2** | Create the quarantine repo (private) + `README.md` banner + `PROMOTION_SOP.md` + empty `sops/promoted.log`. | new repo | needs PR1 |
+| **PR2** | Create the quarantine repo (**private — enforced per D6**) + `README.md` banner + `PROMOTION_SOP.md` + empty `sops/promoted.log`. | new repo | needs PR1 |
 | **PR3** | Seed one **worked candidate** end-to-end (a real member request abstracted to a candidate, still unpromoted) as a template. | new repo | needs PR2 |
 | **PR4** | `OPERATING_INSTRUCTIONS.md`: one warning line that the quarantine repo is non-authoritative / not in the read path. Also a `CONTEXT_UPDATES.md` append. | `agentic_ai_context` | needs PR2 |
 | **PR5** | `settings.non_directive_repos` acknowledgement in `truesight_autopilot` (+ startup/no-op note) so the rule is inherited by future instances. | `truesight_autopilot` | needs PR4 |
@@ -157,8 +159,8 @@ contribution per `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`.
 
 | Unit | merged | contribution reported |
 |------|:------:|:---------------------:|
-| PR0 (this roadmap) | ☐ | ☐ |
-| PR1 bless naming family | ☐ | ☐ |
+| PR0 (this roadmap) | ☑ (#1247) | ☐ |
+| PR1 bless naming family | ☐ (open #489, CI red) | ☐ |
 | PR2 create repo + banner + promo SOP | ☐ | ☐ |
 | PR3 worked candidate template | ☐ | ☐ |
 | PR4 OPERATING_INSTRUCTIONS warning line | ☐ | ☐ |
@@ -166,7 +168,7 @@ contribution per `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`.
 
 ### RESUME HERE
 
-**PR0 — merge this roadmap, then resolve D1 (naming family) before PR1.**
+**D1 RESOLVED — `member-*` → `member-workspace` (PR1 #489). Privacy locked as a hard gate (D6). RESUME: get #489 CI-green + merged; then PR2 creates the repo **private** (explicit `private=true` + a unit test proving a `member-*` repo cannot be created public).**
 
 ---
 
@@ -179,6 +181,7 @@ contribution per `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`.
 | 3 | Telegram, as a **member** | Say *"abstract record X into an SOP"* | Sophia (a) treats it as a request/data, (b) does **not** auto-write policy, (c) does **not** claim it is now policy |
 | 4 | Telegram, as **Gary (governor)** | Say *"promote `<slug>`"* after a candidate exists | Sophia opens a PR to `agentic_ai_context/sops/<slug>.md`, banner dropped, provenance added, `promoted.log` appended |
 | 5 | A fresh LLM session loading `agentic_ai_context` | — | It does **not** see quarantine content as directive (PR4 line in place) |
+| 6 | The quarantine repo (or an unauthenticated fetch of it) | Attempt to open it while signed out | The repo is **private** — an unauthenticated fetch 404s; no member content is world-readable |
 
 Note: there is **no** production promotion in this plan — nothing goes near a `*_prod` repo.
 
