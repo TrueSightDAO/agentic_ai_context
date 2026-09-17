@@ -2935,6 +2935,28 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ---
 
+### dao_members.json cache: sentinel rows with `email:null` are silently dropped by `sentinel_emails()` (blocks Envoy Discord parity PR2 path ii)
+
+**Filed 2026-09-17. Owner: unclaimed. Governor: Gary (thread 30892).**
+
+**Symptom.** `app/governor_registry.py::sentinel_emails()` keys on **email** — `if "sentinel" in (c.get("roles") or []) and (em := (c.get("email") or "").strip().lower())`. But the `dao_members.json` cache builder (`tokenomics`, GAS `DaoMembersCache.js` → `publishDaoMembersCacheToGithub_`) hoists `email` **only** from the *Contributors Digital Signatures* sheet col F, and seeds every **contact-sheet-only** contributor with `email: null` (the `Object.keys(contactAllNames).forEach` merge: `byName[key] = { name, email: null, public_keys: [] }`). A contributor whose sentinel flag comes solely from *Contributors contact information* col W (`Is Sentinel=TRUE`) therefore lands in the cache as `roles: ["member","sentinel"]` with `email: null` — and `sentinel_emails()` **silently omits** it, so `discord_adapter.author_role()` → `_email_is_sentinel()` falls through to `member`.
+
+**Evidence (live cache, 2026-09-17).** Envoy's row in `treasury-cache/dao_members.json`:
+
+```
+{"name":"Envoy TrueSight","email":null,"roles":["member","sentinel"], ...}
+```
+
+`sentinel_emails()` returns `{claude, deepseek, kimi, sophia, admin@…}` — **Envoy absent.** `author_role("1548902290344255600")` → `member` (should be `sentinel`). `Open Ai` shares the identical latent null-email sentinel row (currently harmless, same bug).
+
+**Why it matters.** This is the blocker on `plans/DISCORD_ENVOY_GOVERNOR_PARITY_PLAN.md` PR2 **path (ii)** (Gary's stated preference — route Envoy's Discord bot id through the sheet col-W D4 mechanism). Path (i) — env `DISCORD_SENTINEL_USER_IDS` — sidesteps it, but the underlying cache bug still mislabels *any* sheet-only sentinel as member in **every** email-keyed consumer (not just Envoy).
+
+**Proposed fix (~30–60 min).** In `DaoMembersCache.js`, when seeding/merging a contact-sheet contributor who is flagged sentinel (col W TRUE) but has no signature-derived email, populate `email` from the contact sheet's **own** email column (col D — the adapter's `_fetch_discord_id_email()` already reads row index 3 for exactly this) rather than leaving `null`. Alternatively, teach `sentinel_emails()` to accept a non-email sentinel identifier. Add a unit test asserting a col-W-only sentinel appears in `sentinel_emails()`.
+
+**Blocker.** None technical — it is a `tokenomics` GAS change + deploy, which needs a governor GO to push (the autopilot box cannot deploy GAS to `tokenomics` production). Coordinate with PR2's (i)/(ii) decision.
+
+---
+
 ## Recently shipped
 
 ### dao_protocol: server-side guard — reject empty body / missing signature format — SHIPPED 2026-09-15 (dao_protocol#166, deployed)
