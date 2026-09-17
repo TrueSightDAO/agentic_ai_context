@@ -660,3 +660,96 @@ an operator/DAO key (AWS KMS); cleartext non-PII metadata + `commitment = SHA-25
 **selective disclosure** (later reveal of `(value, salt)` checks against the commitment).
 
 **Gate:** design review → build. **No code yet.**
+
+---
+
+## 12. `[PAYOUT EVENT]` — dual-write payout tracking (Gary, 2026-09-18)
+
+**Added 2026-09-18 (thread 30026), at Gary's direction.** Gary asked whether the payout event is
+defined yet — **it is not** — and directed how it should be tracked.
+
+> "I think the payout event. Regardless of the source should also be recorded and tracked in a new tab
+> on the Google sheet that the telegram chat log is. If it is a CFR source submission then it should
+> be tracking also in the CFR program Google sheet."
+
+and on the event's shape:
+
+> "My sense is the payout event is going to be simply a receipt from a PIX transfer issued by the bank
+> we are using. Then we indicate for which tree planting ID as well as the amount?"
+
+### 12.1 The missing object — `[PAYOUT REGISTRATION]` ≠ `[PAYOUT EVENT]`
+
+§11 defines a **registration** (student declares a PIX key). A **payout event** is a different object:
+
+| | `[PAYOUT REGISTRATION]` (§11, P4 ✅ live) | `[PAYOUT EVENT]` (this section, ⏳ undefined) |
+|---|---|---|
+| Direction | student → DAO (*who to pay*) | DAO/bank → student (*what was paid*) |
+| Trigger | student registers a PIX key | a PIX transfer **actually occurred** |
+| Carries | `pk_hash, program_slug, pix_key_type, pix_key, submission_source` | **`amount`, `tree_planting_id`, `bank_ref` (E2E-ID/TXID), `paid_at`, `receipt_url`** |
+| PII | **yes** (raw PIX) — public-JSON-excluded (§11.4) | **no** — references recipient by `pk_hash`; safe to publish |
+
+The payout **receipt** is therefore a **new event shape**. Because it carries no raw PII, it is **not**
+added to `excluded_pii_events` (unlike §11.4) — it may publish to the public ledger normally.
+
+### 12.2 Dual-write destination (Gary's directive)
+
+```
+[PAYOUT EVENT] (any source)
+   → Edgar (RSA route) → col G (Telegram Chat Logs, Ops workbook 1qbZZhf…)
+         → GAS sink doGet
+              ├─ TIER 1 (universal): append row to NEW tab `payouts`
+              │     on Ops workbook 1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ
+              └─ TIER 2 (conditional): IF source is CFR
+                    (program_slug = crf-anapu  OR  Submission Source host = cfr.truesight.me)
+                    → ALSO append row to `payout events` tab on the `cfr program` sheet
+```
+
+Tier 1 makes every payout traceable in **one** place regardless of program; Tier 2 gives CFR its
+program-scoped view. **This mirrors §11.5's pattern** (SunMint route unchanged; private CFR tab added).
+
+### 12.3 Schemas
+
+**Tier 1 — Ops workbook, new tab `payouts`** (universal, any source):
+`created_at_utc · telegram_update_id · program_slug · submission_source · recipient_pk_hash · amount ·
+currency · tree_planting_id · bank_ref_type · bank_ref · paid_at · receipt_url · status ·
+supersedes_row · error_message`
+
+**Tier 2 — `cfr program`, new tab `payout events`** (CFR only): the Tier-1 columns **+** `cohort` /
+`student_ref`, joining back to §11.3's `payout registrations` by `recipient_pk_hash`.
+
+Follow the §11.3 dedup convention: sink dedups via the Ops col R gate (`PROCESSED:PAYOUT_EVENT`).
+
+### 12.4 Linkage to tree planting
+
+`tree_planting_id` joins Tier 1/Tier 2 rows → §11.5's `tree planting` tab (`tree_id`), closing the loop
+**planting → verification → payout**. A `[PAYOUT EVENT]` with **no** `tree_planting_id` is a
+program-level / general disbursement — allowed, but flagged `unlinked`.
+
+### 12.5 Prerequisites (gates)
+
+1. **Edgar event registration** — `[PAYOUT EVENT]` is **NOT in Edgar's catalog today** (verified
+   2026-09-18 via `lookup_event_docs`). It must be registered before the sink can parse it.
+2. **Two new tabs** provisioned: `payouts` (Ops workbook) + `payout events` (`cfr program`).
+3. **Sink extension** — the GAS `doGet` gains a `[PAYOUT EVENT]` branch + the conditional Tier-2 write.
+4. **No PII exclusion** — this event is **not** added to `excluded_pii_events` (it carries no raw PII).
+
+### 12.6 Open questions (for Gary)
+
+- **Receipt source:** does the bank provide a **structured** feed (CNAB/OFX/CSV/API) or a **PDF**?
+  Structured → ingest + auto-emit; PDF → OCR then emit. This decides daemon vs manual.
+- **Emitting client:** a **payout-run script** (batch, `dao_client` → Edgar) or hand-entry?
+- **Granularity:** one row **per transfer** or **per tree**? A single PIX transfer may cover N trees
+  → `tree_planting_id` as a list, or one row per tree sharing a `bank_ref`.
+- **Currency:** BRL (PIX) — confirm `currency` column + whether USD conversion is needed.
+- **Receipt artifact:** where does the PDF live? (private Drive + `receipt_url`, and/or a §11.10
+  envelope commitment so it is verifiable-without-disclosure).
+
+### 12.7 Sequenced execution
+
+| Unit | Change | Repo | Gate |
+|---|---|---|---|
+| **Q1** | This §12 (docs) | `agentic_ai_context` | auto |
+| **Q2** | Register `[PAYOUT EVENT]` in the Edgar catalog | Edgar / `sentiment_importer` | **`gate: human`** |
+| **Q3** | Sink: `[PAYOUT EVENT]` branch + Tier-1 `payouts` write | `tokenomics` | auto (after Q2) |
+| **Q4** | Tier-2 conditional CFR write (`payout events`) | `tokenomics` | auto |
+| **Q5** | Provision 2 tabs + Edgar webhook wiring (per §11.8) | — | **`gate: human`** |
