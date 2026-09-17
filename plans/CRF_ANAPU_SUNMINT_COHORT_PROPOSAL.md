@@ -1,7 +1,7 @@
 # CRF Anapu × SunMint — tree-submission cohort proposal & execution roadmap
 
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification.
-**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b COMPLETE** — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). **RESUME HERE = PR1.**
+**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b + PR1 COMPLETE** — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). PR1 (vendor-readiness) shipped `sunmint_beta` #84 (2026-09-16, sha 3732e2a4). **RESUME HERE = PR2.**
 
 > **PR0 result (Sophia, 2026-09-15):** two pre-flight items **rectified this document** — the plot
 > flow *is* shipped but hardcodes its origin (§1.3b), and `program_assets/registry.json` does not
@@ -444,7 +444,7 @@ PR1 may start.
 |---|---|---|
 | **PR0** | ✅ **DONE 2026-09-15** — §7 items 1–4 resolved (live repo reads); §6 updated. Rectified §1.3/§1.3b/§1.4/§6 #3. No code. | auto |
 | **PR0b** | ✅ **DONE 2026-09-15** — **architecture re-pointed to Option B (vendored copy)** per Gary (thread 30026); §2.1 rewritten with the Option B build spec; §6 #1 resolved; PR1/PR2 redefined; §8/§9 updated. No code. | auto |
-| **PR1** | `sunmint_beta`: **vendor-readiness only (Option B)** — (a) un-hardcode `limites-da-fazenda/index.html`'s `Submission Source` from the literal `'sunmint-limites-da-fazenda'` to `${window.location.href}` so a vendored copy self-attributes to `cfr.truesight.me`; (b) audit all three flows + `instrucoes/` for absolute `sunmint.truesight.me` self-refs and non-relative asset refs (vendor-copy safety), and confirm `service-worker.js` cache names/paths can't collide cross-origin; (c) **no `Program:` field added** — attribution is by `Submission Source` origin (§2.1). Tests: submission body reflects the running origin; no absolute self-refs remain in the three flows. | auto |
+| **PR1** | ✅ **DONE 2026-09-16** (`sunmint_beta` #84, sha 3732e2a4) — (a) un-hardcoded `limites-da-fazenda/index.html`'s `Submission Source` literal → `window.location.href` (the only flow that pinned an origin); (b) vendor-readiness audit landed as `VENDOR_READINESS.md` (PR2 rewrite list; canonical edgar/dapp endpoints; per-origin SW cache — no collision); (c) no `Program:` field — attribution is by origin. Tests: `tests/test_submission_source_origin.py` (4 cases); full suite 17 passed. | auto |
 | **PR2** | `cfr-anapu` repo (**push to `gh-pages`** — Pages serves that branch; `main` alone will 404): **vendor the SunMint app** — copy `index.html`, `monitor-tree-growth/`, `limites-da-fazenda/`, `instrucoes/` (+ `instrucoes/send-as-file-tip.png`) and `service-worker.js` from `sunmint_beta@main`; **do NOT copy `CNAME`** (keep `cfr.truesight.me`). Relocate the credentialing page `index.html` → `program/index.html` (asset refs → `../styles/`, `../js/`; `View cohort` → `../members.html`); **keep `members.html` at root**. Add `sync_sunmint_app.py` (dry-run default, opens a PR) + `vendor.json` manifest so future app changes re-vendor by PR, never by hand. **⚠️ `cfr.truesight.me` is live — merge == deploy; end with an immediate smoke-check.** | auto (no beta env — see §2.1) |
 | **PR3** | `lineage-engine`: new `sync_sunmint_program_activity.py` reading the confirmed source (§7 item 2), writing `programs/<slug>/pk-<hash>/sunmint/*.json` into `lineage-credentials`. Dry-run flag default, per this workspace's standing convention for any new write script. | auto |
 | **PR4** | `lineage-engine`: extend `collect_practitioners()` + `_program_activity_score()` in `build_cv_cache.py` for the new `sunmint/` activity kind (§2.2 points 3–4); extend `manifest.json` schema for `program_modes` array (§6 decision #4). | auto |
@@ -452,7 +452,7 @@ PR1 may start.
 | **PR6** | First real sync run (dry-run then live) against real CRF Anapu submissions (needs at least one real submission to exist first — may require a CEPOTX/Jedielcio coordination step outside any PR). Verify `members.html` populates. | **`gate: human`** — first live write into `lineage-credentials` from a new activity kind |
 | **PR7** | Docs: update `CREDENTIALING_PROGRAM_PAGES.md` with the new `sunmint_cohort` mode (it's the canonical spec, editable per its own convention — this is documentation of a shipped feature, not a forecast); update `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`'s status; UAT. | auto |
 
-**RESUME HERE → PR1** (PR0 + PR0b complete 2026-09-15 — §7 pre-flight resolved; architecture = **Option B**, the only remaining governor decision). PR1 = `sunmint_beta` vendor-readiness: un-hardcode `limites-da-fazenda/`'s `Submission Source`, audit for absolute self-refs. **Then PR2 = the vendor PR into `cfr-anapu` `gh-pages`.** **PR6 remains the only `gate: human`.**
+**RESUME HERE → PR2** (PR0 + PR0b + PR1 complete 2026-09-15 — §7 pre-flight resolved; architecture = **Option B**, the only remaining governor decision). PR1 = `sunmint_beta` vendor-readiness: un-hardcode `limites-da-fazenda/`'s `Submission Source`, audit for absolute self-refs. **PR2 = the vendor PR into `cfr-anapu` `gh-pages`** (copy the app + `service-worker.js`; do NOT copy `CNAME`; credentialing page → `program/`; `members.html` stays at root; `add sync_sunmint_app.py` + `vendor.json`; ⚠️ live — merge == deploy, end with a smoke-check). **PR6 remains the only `gate: human`.**
 
 ---
 
@@ -478,10 +478,10 @@ PR1 may start.
 
 ## 10. Rollout
 
-**Approved; PR0 complete; PR1 is next.** Reviewed in the Telegram topic **"CFR partnership - figure
+**Approved; PR0 + PR0b + PR1 complete; PR2 is next.** Reviewed in the Telegram topic **"CFR partnership - figure
 out how to present"**. All §6 open decisions are resolved (Gary confirmed Option A, submission-only
 membership, and reported CEPOTX/Jedielcio's sign-off on the privacy posture). **PR0 completed
 2026-09-15 (Sophia)** — all §7 pre-flight items resolved by live repo reads and folded back into this
-doc (§1.3/§1.3b/§1.4/§6 #3). **RESUME HERE (§8) = PR1**, driven by a supervisor (Envoy or Sophia, per
+doc (§1.3/§1.3b/§1.4/§6 #3). **RESUME HERE (§8) = PR2**, driven by a supervisor (Envoy or Sophia, per
 `sophia/SUPERVISOR_LOOP.md`). **PR6 is the only `gate: human`** and no prod promotion happens before the
 UAT gate (§9).
