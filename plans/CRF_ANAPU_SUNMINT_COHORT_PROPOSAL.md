@@ -1,7 +1,7 @@
 # CRF Anapu × SunMint — tree-submission cohort proposal & execution roadmap
 
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification.
-**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b + PR1 + PR2 + PR3 + PR4 + PR5 + PR7 COMPLETE** (PR6 blocked — see its row) — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). PR1 (vendor-readiness) shipped `sunmint_beta` #84 (2026-09-16, sha 3732e2a4). PR2 (vendor into `cfr-anapu` `gh-pages`) shipped `cfr-anapu` #5 (2026-09-17, sha f0ffdbda) and is **live on `cfr.truesight.me`** (5-path smoke-check green). PR3 (the SunMint program-activity sync job) shipped `lineage-engine` #23 (2026-09-17, sha 81e61956). PR4 (the `sunmint/` activity kind in `build_cv_cache.py` + `program_modes`) shipped `lineage-engine` #24 (2026-09-17, sha 07486ae0). PR5 (SunMint activity badges + itemized click-through) shipped `truesight_me_beta` #381 (badges + `credentials/index.html` click-through; `crf-anapu` mirror byte-identical) **plus** the `lineage-engine` #25 (2026-09-17, sha `df5b0ba`) flat `sunmint_*` aggregate emission on `_cache/index.json` that feeds the renderer. **RESUME HERE = PR6 (`gate: human`) — blocked on the first real `cfr.truesight.me` submission; PR7 docs done.**
+**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b + PR1 + PR2 + PR3 + PR4 + PR5 + PR7 COMPLETE** (PR6 blocked — see its row) — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). PR1 (vendor-readiness) shipped `sunmint_beta` #84 (2026-09-16, sha 3732e2a4). PR2 (vendor into `cfr-anapu` `gh-pages`) shipped `cfr-anapu` #5 (2026-09-17, sha f0ffdbda) and is **live on `cfr.truesight.me`** (5-path smoke-check green). PR3 (the SunMint program-activity sync job) shipped `lineage-engine` #23 (2026-09-17, sha 81e61956). PR4 (the `sunmint/` activity kind in `build_cv_cache.py` + `program_modes`) shipped `lineage-engine` #24 (2026-09-17, sha 07486ae0). PR5 (SunMint activity badges + itemized click-through) shipped `truesight_me_beta` #381 (badges + `credentials/index.html` click-through; `crf-anapu` mirror byte-identical) **plus** the `lineage-engine` #25 (2026-09-17, sha `df5b0ba`) flat `sunmint_*` aggregate emission on `_cache/index.json` that feeds the renderer. **RESUME HERE = PR6 (`gate: human`) — blocked on the first real `cfr.truesight.me` submission; PR7 docs done.** **§11 (payout-registration sink → governor-only `cfr program` sheet) added 2026-09-17 — see §11.**
 
 > **PR0 result (Sophia, 2026-09-15):** two pre-flight items **rectified this document** — the plot
 > flow *is* shipped but hardcodes its origin (§1.3b), and `program_assets/registry.json` does not
@@ -485,3 +485,142 @@ membership, and reported CEPOTX/Jedielcio's sign-off on the privacy posture). **
 doc (§1.3/§1.3b/§1.4/§6 #3). **RESUME HERE (§8) = PR6**, driven by a supervisor (Envoy or Sophia, per
 `sophia/SUPERVISOR_LOOP.md`). **PR6 is the only `gate: human`** and no prod promotion happens before the
 UAT gate (§9).
+
+> **Note (2026-09-17, thread 30026):** §11 below adds a **separate, additive workstream** — the
+> payout-registration sink. It does not change PR1–PR7. Its own sequencing (P1–P4) is listed in §11.9.
+
+---
+
+## 11. Payout-registration sink — `[PAYOUT REGISTRATION]` → governor-only `cfr program` sheet
+
+**Added 2026-09-17 (thread 30026), at Gary's direction. Supersedes the earlier RSA-cipher design**
+(the merged `tokenomics` #499 sink, commit `66089d6`, which encrypted the PIX with the governor's
+RSA public key into a `pix_key_cipher` column). This section is authoritative and resolves the
+**dangling "§11" citation** in `payout_registration.html` (that page's comment references a §11 that,
+until now, did not exist — this doc ended at §10).
+
+### 11.1 The linkage we need
+
+Each self-serve submission binds a student's **public key** to their **PIX key**, so a future payout
+run can answer *"which PIX account belongs to the public key that submitted these trees?"*:
+
+```
+pk_hash  ↔  pix_key (+ pix_key_type, display-safe mask)
+```
+
+This is the payout-side counterpart of §3.2's `sunmint/` activity kind: same `pk-hash` primitive,
+same program slug (`crf-anapu`), same per-student keying.
+
+### 11.2 ✅ Decision — privacy by **location**, not encryption (Gary, 2026-09-17)
+
+*"I don't think we should be encrypting the PIX with the governor's private key. Instead ... the GAS
+processes the submission to a separate Google sheet — let's call it `cfr program` — with a tab that
+links the public key to the PIX."*
+
+- **No RSA-OAEP cipher.** Drop the `pix_key_cipher` column and the governor-private-key decrypt
+  step entirely. There is no key material to lose, rotate, or mis-handle.
+- **The PIX is stored plaintext** — but **only** in a private, **governor-only** spreadsheet that is
+  **never publicly republished**. The raw key simply never reaches a public surface, so it needs no
+  encryption.
+- **`pix_key_masked`** (e.g. `***.***.***-35`) stays as a display-safe echo for any surface that
+  must render *something* without exposing the key.
+
+> **⚠️ Load-bearing consequence:** privacy now depends on the intake transport staying private. The
+> canonical `Telegram Chat Logs` workbook (`1qbZZhf…`) **is** publicly republished (ADVISORY_SNAPSHOT +
+> the `truesight.me/notarizations` redirect), so a raw PIX may **never** be written there. This is why
+> §11.4 excludes the event from every public JSON cache.
+
+### 11.3 ✅ Decision — new standalone `cfr program` spreadsheet (Gary, 2026-09-17)
+
+A **new, standalone** spreadsheet named **`cfr program`** (governor-shared only — no public
+link-share, no `publish to web`), with four tabs:
+
+| Tab (lowercase) | Records | Key columns |
+|---|---|---|
+| `payout registrations` | **public key ↔ PIX** linkage | `created_at_utc · telegram_update_id · pk_hash · program_slug · pix_key_type · pix_key` (**plaintext**) `· pix_key_masked · submission_source · status · supersedes_row · error_message` |
+| `tree planting` | CRF tree-planting submissions | `created_at_utc · telegram_update_id · pk_hash · tree_id · species · lat · lng · photo_url · capture_source · status` |
+| `tree monitoring` | CRF growth-monitoring submissions | `created_at_utc · telegram_update_id · tree_id(QR) · species · dbh_cm · co2e_kg · measured_at · photo_url · status` |
+| `plot registrations` | CRF plot/boundary submissions | `created_at_utc · telegram_update_id · pk_hash · plot_ref · geometry_ref · captured_at · status` |
+
+- **Dedup key:** `telegram_update_id` (col A on the intake, as in the existing scanners) — one row at
+  most once per Telegram update; `pk_hash` on `payout registrations` additionally **supersedes**
+  (a later correction for the same student replaces rather than duplicates).
+- **Access:** governors + the one provisioning service account
+  (`agroverse-ledger-manager@get-data-io.iam.gserviceaccount.com`), per the existing pattern.
+- **File id** is a governor-gated provisioning value (§11.8) — not hardcoded until created.
+
+### 11.4 ✅ Decision — route stays **via Edgar**; the *JSON caches* must exclude it (Gary, 2026-09-17)
+
+*"Still via the Edgar. Just make sure the script that generated the JSON caches for submissions don't
+emit these category of submissions."*
+
+So the transport is unchanged from every other submission:
+
+```
+form → signed [PAYOUT REGISTRATION] event → Edgar (RSA route) → writes payload into Telegram Chat Logs col G
+                                                                 → GAS doGet sink reads + appends to `cfr program`
+```
+
+**The only change is at the PUBLIC JSON-cache generators — they must never emit `[PAYOUT REGISTRATION]`:**
+
+| Generator | Repo | What it does today | Required change |
+|---|---|---|---|
+| `sync_sunmint_signatures.py` (autopilot reconciliation cron, `--push` every 30 min) | `truesight_autopilot` | Mirrors every verified RSA event into `verify_public_signatures/<event_type>/<msg_id>.json` | **Exclude `[PAYOUT REGISTRATION]`** — add it to the existing fail-closed `excluded_pii_events` bucket (governor decision 2026-09-02) so it never lands as a public per-event file |
+| `ledger_emit.py` (`ledger_emit.emit()`, ingest-time) | `dao_protocol` | Emits verified events to `verify_public_signatures` at verify time | Skip `[PAYOUT REGISTRATION]` (same shared exclusion) |
+| `generate_advisory_snapshot.py` | `go_to_market` | Compiles `ADVISORY_SNAPSHOT.md` from workspace sources | Ensure the payout event body never enters a snapshot |
+
+> This reuses an **existing** mechanism (the `excluded_pii_events` / `excluded_pii_count` bucket) rather
+> than inventing a new one — payout registration joins the email-bearing events already excluded.
+
+### 11.5 ✅ Decision — CFR tree/monitoring/plot: same SunMint route, plus the private sheet (Gary, 2026-09-17)
+
+*"CFR submissions should still follow the same route as SunMint.truesight submission routes. It is
+just that the DoGet triggered needs to also populate the private governor's accessible only sheet."*
+
+So §2.2 / PR3's existing pipeline is **unchanged** — SunMint tree/monitoring/plot events still land in
+`verify_public_signatures` (they are **not** PII) and still sync to
+`lineage-credentials/programs/crf-anapu/pk-<hash>/sunmint/*.json`. The **only** addition is that the
+same GAS `doGet` also appends a row to the private `cfr program` tabs (`tree planting` /
+`tree monitoring` / `plot registrations`), attributed by `Submission Source` host = `cfr.truesight.me`
+(i.e. `Program: crf-anapu`).
+
+### 11.6 ✅ Decision — the page must submit **via Edgar** (from §11.4)
+
+`payout_registration.html` **today POSTs directly** to a `PAYOUT_SINK_URL` GAS `/exec` and sends a raw
+`pix_key` field — that is the pre-§11 design and is **superseded**. Under §11 the page:
+
+1. Builds a signed `[PAYOUT REGISTRATION]` event with fields: `pk_hash` (derived live from the device's
+   `localStorage['publicKey']`, as PR-D already does), `program_slug` (`crf-anapu`), `pix_key_type`,
+   `pix_key`, `submission_source` (`${window.location.href}`).
+2. Submits it **to Edgar** (the same RSA route every other event uses) — **not** to a direct GAS POST.
+3. `PAYOUT_SINK_URL` is **retired** as a direct-submit target.
+
+### 11.7 Privacy posture (delta vs. §4)
+
+- §4 (cohort card / click-through) is **unchanged** — no PIX is ever involved there.
+- New surface: the `cfr program` sheet's `payout registrations` tab. It is **governor-only** and never
+  republished; the raw PIX lives only there.
+- **Residual risk, stated once:** a plaintext PIX in a Sheet is visible to anyone the sheet is shared
+  with and persists in Sheets **revision history**. Mitigation without encryption: governor-only share,
+  no link-sharing, and `pix_key_masked` for anything ever read out. If stronger at-rest protection is
+  later wanted, a **DAO-held symmetric key** restores it without the governor's private key — deferred,
+  not decided.
+
+### 11.8 Governor-gated provisioning (cannot be done in a PR)
+
+1. Create the standalone **`cfr program`** spreadsheet; add the four tabs + headers (§11.3).
+2. Share with `agroverse-ledger-manager@get-data-io.iam.gserviceaccount.com` (writer) + governors only.
+3. Set the sheet id constant in the sink (and the hourly-trigger safety net).
+4. Wire Edgar's post-verify webhook to the sink's `?action=processPayoutRegistrationsFromTelegramChatLogs`.
+5. Confirm the `excluded_pii_events` change is live in **both** cache generators (§11.4) **before** the
+   first real submission.
+
+### 11.9 Sequenced execution (one PR per turn — §5a)
+
+| Unit | Change | Repo | Gate |
+|---|---|---|---|
+| **P1** | This §11 (docs) | `agentic_ai_context` | auto |
+| **P2** | Add `[PAYOUT REGISTRATION]` to `excluded_pii_events` in the cache generators (§11.4) | `truesight_autopilot` + `dao_protocol` | auto |
+| **P3** | Rewrite the sink to the `cfr program` sheet + 4-tab schema; drop `pix_key_cipher`; flip the privacy-guard test from *"refuse raw key"* → *"allow raw PII only in the private sheet, never on a public surface"* | `tokenomics` | auto |
+| **P4** | Repoint `payout_registration.html` from direct-POST to the Edgar route (§11.6) | `dapp_beta` / `cfr-anapu` | auto (beta); prod gated on UAT |
+| **P5** | Provisioning (§11.8) + first live submission UAT | — | **`gate: human`** |
