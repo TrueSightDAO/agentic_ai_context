@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-17T22:05:04Z",
+  "generated_at": "2026-09-17T22:37:40Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "3b1537dc547af918b5524e7a077d97ec920c1a16bd392e70b6b36ec106b759e0",
+  "source_sha256": "500bc1a972f215a8f4111bbfde34fe9487d549c76203afa11725678a3b352280",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -52,7 +52,7 @@
         "claimed_at": "2026-09-17T19:15:00Z",
         "note": "draft -- spun out of thread 30026 this session when Gary asked for encrypt+commitment verifiability for PII events. Sophia proposed a browser-emitter envelope (AES-256-GCM + RSA-OAEP wrap + SHA-256 commitment); Gary then refined the boundary (2026-09-17): encryption applies at the public-JSON-repo publication layer only, not the browser emitter or the now-private Telegram Chat Logs sheet -- this un-forks P4 (cfr-anapu#11 proceeds independently, already merged+live, see the CRF_ANAPU claim). Recorded in plan SS11.10 + plans/PII_EVENT_ENVELOPE.md (agentic_ai_context#1259, merged). Open: key custody (Fernet vault vs AWS KMS -- Sophia leans KMS), escrow/recovery (multi-recipient wrap), and how this interacts with the just-defined SS12 [PAYOUT EVENT] exclude-vs-encrypt choice.",
         "stale": true,
-        "age_minutes": 170
+        "age_minutes": 202
       }
     },
     {
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/context.py::get_context_file_fresh() is present and deployed. Live functional re-verification of the actual auto-advance behavior (U5/U1) still pending -- source presence confirmed, not yet re-tested end-to-end against a real stale-vs-fresh plan scenario. blocked_on_human -- 3 of 4 originally-authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- STILL flagged to Gary, unresolved, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN pending Gary's merge of #494 + GAS deploy. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests).",
         "stale": true,
-        "age_minutes": 3054
+        "age_minutes": 3086
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/tools/ssh_tools.py's krake_nginx FLEET entry carries the id_ed25519_truesight_autopilot host-local key pin. blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net) -- STILL OPEN, unaffected by the deploy. 2026-09-16T21:08Z: Gary said \"wrap up\" directly in-thread; Sophia filed a legitimate contribution report (240 min, PRs #476/#1198/#1217, all genuinely completed work) and correctly self-paused (\"no RESUME HERE pointer in plan\") rather than proceeding on the still-open pem decision -- not a sec6 violation, the report covers only merged work. Thread paused awaiting Gary's pem-archiving call; do not send 'go' until he decides.",
         "stale": true,
-        "age_minutes": 3054
+        "age_minutes": 3086
       }
     },
     {
@@ -631,7 +631,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/telegram_adapter.py's _PROGRESS_QUERY_RE is the anchored (fixed) version, not the old bare-alternation bug. blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7). Live functional re-verification (an actual Telegram round-trip proving a real instruction sent mid-turn is no longer misclassified as a status ping) still pending -- source presence confirmed, behavior not yet re-tested end-to-end. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 3054
+        "age_minutes": 3086
       }
     },
     {
@@ -722,7 +722,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 3054
+        "age_minutes": 3086
       }
     },
     {
@@ -900,7 +900,7 @@
       "title": "**CRF Anapu × SunMint tree-submission cohort** — `cfr.truesight.me` was built as a static credentialing-cohort mirror (wrong template); this vendors the canonical `sunmint_beta` app into `cfr-anapu` (Option B, Gary 2026-09-15) so tree plantings/monitoring/plots submitted via it are traceable and populate `programs/crf-anapu/members.html`, with itemized per-student click-through.",
       "handoff_date": "2026-09-15",
       "state": "executing",
-      "status_raw": "**in progress** — PR0 + PR0b + PR1 + PR2 + PR3 + PR4 complete; RESUME HERE = PR5",
+      "status_raw": "**in progress** — cohort track: PR0 + PR0b + PR1 + PR2 + PR3 + PR4 + PR5 + PR7 complete, RESUME HERE = PR6 (`gate: human`); payout M-track M1–M5 ✅ (2026-09-18, thread 30026)",
       "telegram_thread_id": "30026",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -915,7 +915,7 @@
         "claimed_at": "2026-09-17T19:15:00Z",
         "note": "executing -- two sub-tracks live under this one plan file, which is why chat sometimes echoes a stale-looking PR6 gate. (A) Original vendoring track (PR0-PR4 merged, RESUME HERE = PR5 program-shell.js badges, PR6 = gate:human first live lineage-credentials write) -- UNTOUCHED this session, still parked at PR5; the recurring 'Paused before PR6' message in topic 30026 is this track's stale fallback status, not a new stall. (B) NEW today: plan SS11 payout-registration sink -- P2a/P2b/P2c (public-JSON [PAYOUT REGISTRATION] exclusion) shipped truesight_autopilot#492, dao_protocol#168, go_to_market#177 (all independently verified merged; P2a+deploy confirmed live on Sophia's box, P2b deployed code is 2 commits behind origin but incidentally safe -- marker not in _FOLDER_BY_MARKER, P2c live-cron path not yet independently confirmed by Envoy). P3 (tokenomics#501) rewrote sink to private cfr program sheet. Gary found + fixed a real live PII leak himself (removed anyone:reader ACL from the public Telegram Chat Logs workbook, verified 401 anonymous post-fix) after Sophia twice refused to ship P4 on the literal instruction. P4 (cfr-anapu#11) merged + LIVE on cfr.truesight.me -- independently verified by Envoy (merge sha + live page byte-check). SS12 [PAYOUT EVENT] receipt object defined + merged (agentic_ai_context#1260). Open: payout-event tracking tabs on both sheets (Gary's new ask), share cfr program sheet with Jedielcio, P5 sheet-provisioning gate:human, PII Event Envelope (see separate claim) interaction with SS11.4's exclude-vs-encrypt choice (Gary picked encrypt-and-publish over exclude).",
         "stale": true,
-        "age_minutes": 170
+        "age_minutes": 202
       }
     },
     {
@@ -938,7 +938,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 3054
+        "age_minutes": 3086
       }
     },
     {
