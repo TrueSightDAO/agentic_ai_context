@@ -39,6 +39,45 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `nelanco-claude` (Envoy's box) — recurring instance-reachability failure, root cause unknown
+**Filed 2026-09-16. Owner: unclaimed. Governor: Gary.**
+
+**Symptom.** `i-01ad5eca707e4445f` (`nelanco-claude`, `100.57.50.48`) has gone fully unreachable
+**twice in 3 days**:
+1. **2026-09-14** — Gary tried to `stop-instances` and it sat in `stopping` for an extended time
+   (it did eventually reach `stopped` cleanly; root cause never determined).
+2. **2026-09-16/17** — found `running` per the AWS control plane with `SystemStatus: ok` but
+   **`InstanceStatus: impaired`** (`reachability: failed`, `ImpairedSince: 2026-09-17T01:31:00Z`);
+   SSH and ICMP both timed out. A soft `reboot-instances` did **not** restore reachability after
+   ~3 min of polling; `stop-instances` → `start-instances` (the known-working fix from incident 1)
+   was used again.
+
+**What this means.** Stop/start (which migrates the instance to different underlying hardware)
+resolves the symptom both times, which points at either a **host-level AWS hardware fault**
+(recurring on the same physical host would explain both) or a **guest-OS-level hang** (kernel/
+network-stack lockup, possibly triggered by something running on the box — it commonly hosts
+several concurrent `tmux`/`claude` sessions, faster-whisper transcription jobs, etc. per
+`ENVOY.md`/`sophia/SUPERVISOR_LOOP.md`). Neither has been confirmed; `get-console-output` only
+captures boot-time serial output, not a live tail, so it showed nothing past the last successful
+boot in both incidents.
+
+**Impact.** Envoy's interactive Claude Code box — and, since 2026-09-14, the box the proactive
+Sophia-supervisor loop (`sophia/SUPERVISOR_LOOP.md`) is meant to run on — going dark with no
+alert means unfinished Sophia handoffs sit un-supervised until a human happens to notice the box
+is unresponsive, which is exactly the gap the supervisor loop was built to close.
+
+**Proposed fix (~small, monitoring only).** Add a CloudWatch alarm on
+`StatusCheckFailed_Instance` (and/or `StatusCheckFailed_System`) for `i-01ad5eca707e4445f`,
+notifying via the existing Telegram/Discord alert path (see `AWS_DIGITAL_INFRASTRUCTURE.md` §8
+Monitoring for the pattern already used elsewhere) so a third recurrence pages someone instead of
+waiting to be noticed. If it recurs a third time, also pull EC2 host-level info
+(`describe-instances` `Placement`/`HostId` if using a dedicated host, or open an AWS support case)
+to rule in/out a bad physical host — two data points isn't enough to conclude that yet.
+
+**Evidence.** `aws ec2 describe-instance-status --instance-ids i-01ad5eca707e4445f` (impaired,
+2026-09-17T01:31:00Z); `aws ec2 get-console-output` (clean boot log ending 2026-09-14T23:24:41Z,
+nothing after); this session's remediation (reboot attempt → no recovery → stop/start → recovered).
+
 ### truesight_autopilot: automate Stripe subscription-renewal → per-bar `[SALES EVENT]` reconciliation
 
 **Filed 2026-09-16. Owner: unclaimed. Governor: Gary (thread 30870).**
