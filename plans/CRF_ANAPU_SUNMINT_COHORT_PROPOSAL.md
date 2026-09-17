@@ -775,7 +775,31 @@ submits for each payout … Where do you think this module should live — in CF
 
 **Placement ≠ coupling.** The **pinned scope note stands**: `withdraw_voting_rights.html` and its
 settlement sibling stay **out** of the payout/CFR workstream (no Edgar endpoint, no `program_slug`). This
-is a **new, separate** CFR-scoped file — do **not** refactor those pages while adding it.
+is a **new, separate** file — do **not** refactor those pages while adding it.
+
+### 12.8.1b ⚠️ Correction (Gary, 2026-09-18) — the payout leg is a **Sunmint program capability**
+
+**Gary (thread 30026, 2026-09-18):** *"Actually Payout is also associated with Sunmint. It is just that
+we haven't started executing on the payouts yet."*
+
+This corrects an over-narrow framing in the first cut of this section. The payout leg belongs to the
+**Sunmint tree-planting program** — it is the **compensation half** of *plant → verify → pay* — and
+**`crf-anapu` is merely the first program that will *execute* it**, not the thing that defines it. The
+placement decision in §12.8.1 is **unaffected** (still `dapp_beta`, still the governor console); what
+changes is **program scope** and **menu taxonomy**:
+
+| | Before (narrow) | **Corrected** |
+|---|---|---|
+| Program association | CFR Anapu | **Sunmint program capability** (CRF = first executor) |
+| `program_slug` at emit | hard-wired `crf-anapu` | **whatever program the tree/plot belongs to** — CRF today, others later |
+| Menu section | a CFR-only section | **`Sunmint Tree Planting Program`** (§12.8.4) |
+| Tier-2 CFR write | CFR only | **conditional on `program_slug`** (§12.2) — already correct |
+
+**Not-yet-executing is a status, not a scope boundary.** The plan's §12.2 Tier-1/Tier-2 split already
+anticipates this (Tier 1 = universal, Tier 2 = *if* the source is CFR) — that design is **confirmed** by
+Gary's correction, not contradicted by it. Generalising the module to any Sunmint program is therefore
+**design-consistent**: the page emits the program's own `program_slug`, and only CFR programs get the
+extra Tier-2 row.
 
 ### 12.8.2 What the module does
 
@@ -805,10 +829,13 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 
 ### 12.8.4 Menu / cache wiring
 
-- Add to **`menu.js`** under a **new `CRF Anapu Payouts`** section (governor-only) — *not* folded into
-  `Sunmint Tree Planting Program`, since payouts are not a planting action.
-- Add the page to **`service-worker.js`**'s precache list.
+- Add to **`menu.js`** under the **`Sunmint Tree Planting Program`** section — **corrected per §12.8.1b**:
+  payouts are the *compensation half* of the Sunmint program, so they sit **with** `Register Your Farm`,
+  `Report Tree Planting`, and `Link Tree to QR`, not in a CFR-only section. Proposed title: **`Report Payout`**.
+- Add the page to **`service-worker.js`**'s precache list (and bump the `menu.js?v=` query per the file header).
 - Flow: **beta-first** (`dapp_beta` → review → `sync_beta_to_prod`), per the prod guardrail.
+- **Access:** governor-gated (like `Link Tree to QR` / the other governor pages), since the page writes a
+  ledger event and resolves recipients — even though it lives in the program section a student also uses.
 
 ### 12.8.5 What this resolves
 
@@ -823,7 +850,7 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 | Unit | Change | Repo | Gate |
 |---|---|---|---|
 | **M1** | This §12.8 (docs, contract) | `agentic_ai_context` | auto |
-| **M2** | `report_payout_event.html` (manual path) + `menu.js` `CRF Anapu Payouts` section + `service-worker.js` precache | `dapp_beta` | auto (beta) |
+| **M2** | `report_payout_event.html` (manual path) + `menu.js` `Sunmint Tree Planting Program` entry + `service-worker.js` precache | `dapp_beta` | auto (beta) |
 | **M3** | `link_payout_tree.html` (attacher — **only if** §12.6 structured-feed answer is "structured") | `dapp_beta` | auto (beta) |
 | **M4** | Page-level tests + beta smoke-check | `dapp_beta` | auto |
 | **M5** | Promote `dapp_beta` → `dapp_prod` | — | **`gate: human`** (UAT) |
