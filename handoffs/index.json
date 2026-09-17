@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-17T01:49:45Z",
+  "generated_at": "2026-09-17T15:08:31Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "8c1559820d29c3518112611331add680a68f898a8ebb360b0b4523fb8e72a15d",
+  "source_sha256": "b197e4d7ca9e2b3806de2c15992d2e29bd644b0cc274fd58616fb53068cc9572",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,15 +19,15 @@
   "handoff_count": 63,
   "counts_by_state": {
     "awaiting_kickoff": 15,
-    "executing": 15,
+    "executing": 14,
     "paused_at_gate": 2,
     "sophia_uat": 0,
     "envoy_uat": 0,
     "human_uat_ready": 2,
     "prod_merge": 0,
-    "blocked_on_human": 12,
+    "blocked_on_human": 11,
     "failed": 0,
-    "done": 16,
+    "done": 18,
     "stale": 1,
     "unknown": 0
   },
@@ -562,15 +562,15 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/context.py::get_context_file_fresh() is present and deployed. Live functional re-verification of the actual auto-advance behavior (U5/U1) still pending -- source presence confirmed, not yet re-tested end-to-end against a real stale-vs-fresh plan scenario. blocked_on_human -- 3 of 4 originally-authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- STILL flagged to Gary, unresolved, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN pending Gary's merge of #494 + GAS deploy. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests).",
         "stale": true,
-        "age_minutes": 1838
+        "age_minutes": 2637
       }
     },
     {
       "plan_file": "`plans/SOPHIA_VAULT_CREDENTIAL_MIGRATION_PLAN.md`",
       "title": "Vault Initialization & Credential Migration (migrate /home/ubuntu/ bare credentials into encrypted vault)",
       "handoff_date": "2026-06-14",
-      "state": "blocked_on_human",
-      "status_raw": "blocked_on_human — UAT U1-U7 passed (3 in-scope SSH keys); krake_nginx pin fix deployed 2026-09-16; Unit 6 partial, `~/.ssh/*.pem` archiving held for Gary's call",
+      "state": "done",
+      "status_raw": "completed — UAT U1-U7 passed (3 in-scope SSH keys); krake_nginx pin fix deployed 2026-09-16; Unit 6 CLOSED — Gary ruled NOT to archive any bare *.pem (box entry + GitHub SSH depend on them); all PEMs left in place",
       "telegram_thread_id": "30473",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -585,7 +585,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/tools/ssh_tools.py's krake_nginx FLEET entry carries the id_ed25519_truesight_autopilot host-local key pin. blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net) -- STILL OPEN, unaffected by the deploy. 2026-09-16T21:08Z: Gary said \"wrap up\" directly in-thread; Sophia filed a legitimate contribution report (240 min, PRs #476/#1198/#1217, all genuinely completed work) and correctly self-paused (\"no RESUME HERE pointer in plan\") rather than proceeding on the still-open pem decision -- not a sec6 violation, the report covers only merged work. Thread paused awaiting Gary's pem-archiving call; do not send 'go' until he decides.",
         "stale": true,
-        "age_minutes": 1838
+        "age_minutes": 2637
       }
     },
     {
@@ -608,7 +608,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/telegram_adapter.py's _PROGRESS_QUERY_RE is the anchored (fixed) version, not the old bare-alternation bug. blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7). Live functional re-verification (an actual Telegram round-trip proving a real instruction sent mid-turn is no longer misclassified as a status ping) still pending -- source presence confirmed, behavior not yet re-tested end-to-end. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 1838
+        "age_minutes": 2637
       }
     },
     {
@@ -699,7 +699,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 1838
+        "age_minutes": 2637
       }
     },
     {
@@ -842,8 +842,8 @@
       "plan_file": "`plans/BRAIN_TIER_AWARENESS.md`",
       "title": "**Brain tier-awareness** — make the brain (`/chat-blocking`) receive the Discord author's resolved role and apply `{guest<member<governor}` itself, so a MEMBER can get a reply without inheriting governor authority. Child of `plans/DISCORD_MEMBER_TIER.md`. Moved to Telegram (see note) — Discord **#brain-tier-awareness** (`1549762040518672419`) kept only as historical log.",
       "handoff_date": "2026-09-16",
-      "state": "executing",
-      "status_raw": "**executing** — PR1+PR2 merged (D4 sentinel tier + attribution fix live); PR3 code complete, push pending",
+      "state": "done",
+      "status_raw": "**COMPLETE — PR1–PR3 merged + deployed; UAT §7 PASSED 2026-09-17**",
       "telegram_thread_id": "30892",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -852,13 +852,13 @@
       "discord_channel_id": "1549762040518672419",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-17",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-09-16T20:52:00Z",
         "note": "executing -- PR2 (#480) MERGED 2026-09-16T21:43:16Z, sha 08ea0973 -- INDEPENDENTLY VERIFIED by Envoy via gh pr view (state=closed, merged=true), not just trusted from her chat report, per SUPERVISOR_LOOP.md sec6. D4 fully landed: Role.SENTINEL distinct (not aliased to Role.GOVERNOR), has_governor_rights() grants WRITE/ADMIN to governor-or-sentinel, author_name claim fixes the governor_name attribution hazard. Gates + 19+42 relevant tests pass; 3 full-suite failures confirmed pre-existing (reproduce on stashed main). Credential note: the box's HTTPS/PAT auth can't reach the org (403 as garyjob) -- fix was pushing over SSH (~/.ssh/id_ed25519_truesight_autopilot, authorized as garyjob) instead; git_push_changes's SSH path works but was undocumented (Sophia flagged a runbook follow-up, not yet filed). Also hit + correctly navigated a ~17min service-wide GitHub-rate-limit stall (PyGithub blocking backoff on a 403 froze the single-worker process for ALL threads, not just this one) -- Envoy diagnosed the root cause from the raw journal (\"Setting next backoff to 1019.475345s\"), deliberately did NOT restart (would kill queued work without fixing the rate limit), waited it out; both frozen turns (this one + CRF cohort 30026) resumed cleanly once it cleared at ~22:00:45Z. PR3 (adapter dispatch): code complete + gates green, push still pending (next turn). RESUME HERE (topic 30892): push/PR/merge PR3 (flip discord_adapter.py::handle_message()'s `if role != \"governor\"` guard so a resolved member is dispatched read-only) -> R1/R2/R3 UAT live in topic 30892. Gate: identity/authority core -- no prod deploy without Gary's explicit GO.",
         "stale": true,
-        "age_minutes": 297
+        "age_minutes": 1096
       }
     },
     {
@@ -897,8 +897,8 @@
         "supervisor": "Sophia (truesight_autopilot, topic 30026)",
         "claimed_at": "2026-09-17T02:40:00Z",
         "note": "executing — PR4 (lineage-engine #24, sha 07486ae0) MERGED: build_cv_cache.py now folds the new sunmint/ activity kind (trees_planted_count/monitoring_events_count/plots_registered_count/sunmint_event_count/last_sunmint_activity_at + itemized sunmint_events[]), tolerant _program_modes (array OR legacy string), SunMint-inclusive program_activity_score (tree-only contributor still resolves primary_program), and a render_markdown guard killing the '0 minutes' hazard. 6 new tests, suite 25 passed. Tracker ticked to RESUME HERE = PR5 (program-shell.js badges + itemized click-through, beta-only). PR6 remains the only gate:human (first live write into lineage-credentials).",
-        "stale": false,
-        "age_minutes": 0
+        "stale": true,
+        "age_minutes": 748
       }
     },
     {
@@ -921,7 +921,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 1838
+        "age_minutes": 2637
       }
     },
     {
