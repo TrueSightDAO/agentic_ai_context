@@ -165,9 +165,16 @@ def _norm_plan_key(plan: str) -> str:
     """Normalize a plan-file cell/id for supervision matching.
 
     The manifest wraps plan files in backticks (`` `plans/X.md` ``); a supervisor's
-    claims file may not. Compare on the bare path so the two always line up.
+    claims file may not. Compare on the bare path so the two always line up. A
+    cross-repo plan-file cell may also carry a trailing ``(repo: ...)`` note after
+    the closing backtick -- strip that too, or the note becomes part of the key and
+    an otherwise-correct claim shows up as an orphan.
     """
-    return plan.strip().strip("`").strip()
+    s = plan or ""
+    i = s.find("(repo:")
+    if i != -1:
+        s = s[:i]
+    return s.strip().strip("`").strip()
 
 
 def _clean_id(value: str | None) -> str | None:
