@@ -58,6 +58,7 @@ if it says `SET`, it is set — move on. If `NOT SET`, that's an open item (file
 | inventory publish GAS | `AGROVERSE_INVENTORY_GIT_REPO_UPDATE_PAT` | inventory snapshot publish | SET | EDGAR_DAO_EXTRACTION_PLAN.md (no `…_PUBLISH_SECRET`) |
 | Wix-token GAS (deprecated) | Wix tokens | wix integration | N/A (deprecated) | NOTES_tokenomics.md — never commit secrets; Script Properties only |
 | TrueChain GAS | RPC URL | "View on TrueChain" | SET | TRUECHAIN.md — RPC URL kept private |
+| `1MnAsIQA…` (QR web service + telegram-log processors) | **`CFR_PROGRAM_SPREADSHEET_ID`** | private `cfr program` sheet id for the payout sinks (§11.8 step 3) | **NOT SET** | Sheet provisioned 2026-09-17 (`17KwmxYOpTVR89ybRlOkDXoN9PF3UcaNu3REg2wNa83w`, "20260917 - CFR ANAPU PROGRAM"). Set via GAS editor UI → Project Settings. **Blocks Tier-2 CFR writes only; Tier‑1 `payouts` writes are unaffected.** Verified unset 2026-09-18 (registration sink returns the SS11.8 not-set error). |
 
 > **TGM_GITHUB_TOKEN is SET (2026-08-31).** This closes the last manual step in the SunMint invalidation loop:
 > reject → INVALID → dispatch → auto rebuild → tree gone, fully automatic. If a future dispatch still fails,
@@ -72,11 +73,13 @@ if it says `SET`, it is set — move on. If `NOT SET`, that's an open item (file
 | SunMint planting webhook (`processTreePlantingTelegramLogs`) | `AKfycbyLQjTlM8nzAP…/exec` | **@8** (was @7) | planting handler + ingestion evidence gate (#464) | fired by dao_protocol `TREE_PLANTING_PROCESSING` env; also `/a/macros/agroverse.shop/`-prefixed twin. Repointed 2026-09-10. |
 | Tree-planting-links webhook (`processTreePlantingLinksFromTelegramChatLogs`) — LINK + REJECT | `AKfycbyoFCTzIdC1g69ZX3AK894h2siQOKoNSEiuyLDtZJTtarQPHHa5Zl8rjot0vPFUquV2/exec` | **@44** (was @41/@37) | #449 (col A OR col D reject match) + #450 (rebuild dispatch) + #463 (reject invalidates ALL rows sharing tree id) | anonymous; pinned version — do NOT run pre-#449 logic on it. Repointed @41→@44 on 2026-09-10 (thread 24269). |
 | Growth-monitoring webhook (`processTreeGrowthMonitoringFromTelegramChatLogs`) | `…/exec?action=…` (@HEAD) | @HEAD | #430 | login-walled at @HEAD; timer-driven path is primary |
+| **Payout processing webhook** (`processPayoutEventsFromTelegramChatLogs`, `processPayoutRegistrationsFromTelegramChatLogs`) | `AKfycbxQDdGnwS7G6iJhNj9japW-9sFA7EUvrnznmJCu44S5ZHqOoIks2be4FXbIVpuaOHVW/exec` | **@30** (new, 2026-09-18) | §12.7 Q3b payout-event sink (#504 + #513 trigger fix) + §11.8 payout-registration sink + both router branches | anonymous (ANYONE_ANONYMOUS); smoke 2026-09-18: `?action=getPayoutEvents` → `{"status":"success","data":{"count":0,"items":[]}}`, `?action=processPayoutEventsFromTelegramChatLogs` → `{"success":true,"recorded":0,...}`. **Created because @HEAD is login-walled** — do not point an anonymous webhook at @HEAD. |
 
 **dao_protocol box env keys** (provisioned in `/home/ubuntu/dao_protocol/.env`):
 - `DAO_PROTOCOL_WEBHOOK_TREE_PLANTING_REJECT` → the `AKfycbyoFCTz…/exec` URL above (SET, loaded in process 2026-08-31)
 - `DAO_PROTOCOL_WEBHOOK_TREE_PLANTING_PROCESSING` → the planting `AKfycbyLQjTl…/exec` URL (SET)
 - `DAO_PROTOCOL_WEBHOOK_TREE_GROWTH_MONITORING` → growth URL (verify when growth UAT starts)
+- `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING` → the payout `AKfycbxQDdGnw…/exec` URL (@30) — **NOT SET** as of 2026-09-18; the GAS hourly cron (installed by the sink, #513) is the operative path until wired. Verified: `dao_protocol:/home/ubuntu/dao_protocol/.env` has no `…_PAYOUT_*` key.
 
 **Routing entries (dao_protocol `dispatch.py` ROUTING):** `[TREE PLANTING EVENT]` (#149), `[TREE PLANTING REJECT EVENT]` (#150),
 `[TREE PLANTING LINK EVENT]`, `[TREE GROWTH MONITORING EVENT]` — all dispatch to the GAS webhooks above.
