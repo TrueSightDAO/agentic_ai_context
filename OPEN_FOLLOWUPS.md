@@ -47,25 +47,17 @@ parcels appear in `CORREIOS_SHIPMENTS.md` with shipping receipts, but the arriva
 (`offchain assets in transit`, gid 1888711771) has **no row** for them. The register is missing
 3 of the 14 Correios trackings (`CP340992130BR`, `CP340992687BR`, `CP340992695BR`).
 
-**Per the destination rule** (NF-e destinatario "Taraval St" ⟹ Val Lapidus), both land at
-**Val Lapidus**.
+**Destination:** the NF-e Taraval destinatario is the TrueTech **fiscal/billing** address only
+(governor ruling, 2026-09-18) - it does not by itself fix the physical recipient.
 
-**Fix:** add the two register rows (Val Lapidus), or record an explicit exemption. Source:
-`BLACK_KING_NFE_TRANSIT_CROSSWALK.md` State B.
+**Governor leaned "perhaps ignore" (2026-09-18):** no register rows are being added for NF1/NF2.
+Left open pending a definitive call. Source: `BLACK_KING_NFE_TRANSIT_CROSSWALK.md` State B.
 
-### Black King corridor: NF11/NF12/NF14 NF-e destinatario (Taraval ⟹ Val Lapidus) conflicts with their register destination (Kirsten / 1423 Hayes St)
-**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31905).**
+### Black King corridor: NF11/NF12/NF14 destination - RESOLVED 2026-09-18 → see "Recently shipped"
+**Filed 2026-09-18; resolved 2026-09-18. Governor: Gary (thread 31905).**
 
-NF11 (`CP340993988BR`), NF12 (`CP340993869BR`) and NF14 (`CP340993299BR`) each carry the **Taraval**
-destinatario, which by the governor-confirmed destination rule ⟹ **Val Lapidus**. But the arrival
-register routes those same trackings to **Kirsten Ritschel / 1423 Hayes St**.
-
-Either (a) the register destination member is mislabelled, or (b) the parcels physically went to
-Hayes despite a Taraval NF-e (Taraval being only the fiscal/billing address). **Unresolved.**
-
-**Fix:** governor to confirm the physical recipient for these three parcels, then align the
-register (and, if needed, the crosswalk). Do **not** silently rewrite - ambiguous. Source:
-`BLACK_KING_NFE_TRANSIT_CROSSWALK.md` Rev 3 (⚠️ Destination conflict box).
+Governor ruling: **keep Kirsten Ritschel / 1423 Hayes St**; the NF-e Taraval destinatario is the
+**fiscal/billing** address only. Crosswalk annotated (Rev 4); no register rows changed.
 
 ### ACL privatisation of the `Telegram Chat Logs` workbook broke two public surfaces (`/notarizations`, `/submissions/raw-telegram-chatlogs`)
 **Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 30026).**
@@ -3041,6 +3033,15 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### Black King corridor: NF11/NF12/NF14 destination conflict - RESOLVED (keep Kirsten; Taraval = fiscal/billing only)
+**Filed 2026-09-18; resolved 2026-09-18. Governor: Gary (thread 31905). PR: agentic_ai_context (Rev 4 crosswalk).**
+
+Governor ruling: keep the register's **Kirsten Ritschel / 1423 Hayes St** attribution for NF11
+(`CP340993988BR`), NF12 (`CP340993869BR`) and NF14 (`CP340993299BR`); the NF-e **Taraval**
+destinatario is the TrueTech **fiscal/billing** address only and does not by itself assert the
+physical recipient. Crosswalk re-scoped (Rev 4) and the conflict box marked resolved; **no
+register rows changed**.
 
 ### dao_protocol: server-side guard — reject empty body / missing signature format — SHIPPED 2026-09-15 (dao_protocol#166, deployed)
 **Shipped 2026-09-14 (PR #166, Gary); deployed 2026-09-15 (Sophia, governor go from Gary, thread 26992).**

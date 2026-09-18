@@ -1,6 +1,7 @@
 # Black King (Matheus Reis Pereira) - NF-e / transit-register crosswalk
 
 **Generated:** 2026-09-18 - Sophia Truesight (autopilot) - thread 31905
+**Revision 4** (2026-09-18): per governor ruling, the Taraval destinatario is the TrueTech **fiscal/billing** address (not, by itself, the physical recipient) - the arrival register governs; **NF11/NF12/NF14 resolved: keep Kirsten Ritschel / 1423 Hayes St**.
 **Revision 3** (2026-09-18): added the **Taraval Street destination rule** (NF-e destino
 `TRUETECH INC - TARAVAL ST, 3041` ⟹ physical recipient **Val Lapidus**) and flagged the
 NF11/NF12/NF14 register-vs-NF-e destination conflict. Revision 2 corrected cardinality to 1:N
@@ -37,10 +38,17 @@ blank on the register side = *tracking not recorded*.
 
 ---
 
-## Destination rule - "Taraval Street" in an NF-e = Val Lapidus
+## Destination rule - "Taraval Street" in an NF-e (fiscal/billing vs. physical recipient)
 
 **Governor-confirmed (Gary Teh, thread 31905, stated twice):** *"If anything is to Taraval
 street in the Nota fiscal it is actually landing at Val Lapidus location."*
+
+> **Governor ruling (2026-09-18, same thread) - NF11/NF12/NF14:** *"Keep Kirsten; the Taraval
+destinatario is fiscal/billing only, and those parcels really went to Hayes."* So for these
+three the `TARAVAL ST` destinatario is the **fiscal/billing** address and the **arrival
+register governs** the physical recipient (Kirsten Ritschel / 1423 Hayes St). The register was
+**not** changed. Whether the fiscal/billing reading should also apply to the other
+Taraval-destinatario NF-e is **open** (see `OPEN_FOLLOWUPS.md`).
 
 The DANFE *DESTINATARIO* on this corridor almost always reads the **TrueTech Inc fiscal
 address** `TRUETECH INC - TARAVAL ST, , 3041 SAO FRANCISCO EXTERIOR-EX` - **verified in 13 of
@@ -87,15 +95,18 @@ Val Lapidus (3041 Taraval St, San Francisco, CA 94116)** - not at a generic "Tru
 > The register is **missing 3 of the 14 Correios trackings**: `CP340992130BR`, `CP340992687BR`
 > (NF2), `CP340992695BR` (NF1). **The register is not a superset of the shipping index.**
 >
-> **Destination per the rule:** both carry the Taraval destinatario, so by the destination rule
-> they land at **Val Lapidus**. Their register rows are missing (see `OPEN_FOLLOWUPS.md`).
+> **Destination:** both carry the Taraval destinatario, which is the **fiscal/billing** address
+> (governor ruling, 2026-09-18) - it does not by itself fix the physical recipient. Their
+> register rows are missing; the governor leaned *"perhaps ignore"* (no rows added) - see
+> `OPEN_FOLLOWUPS.md`.
 
-> **⚠️ Destination conflict - NF11 / NF12 / NF14.** These three NF-e carry the **Taraval**
-> destinatario (⟹ **Val Lapidus** by the rule above), **but** the arrival register routes their
-> trackings (`CP340993988BR`, `CP340993869BR`, `CP340993299BR`) to **Kirsten Ritschel /
-> 1423 Hayes St**. Either the register destination member is mislabelled, or those parcels went
-> physically to Hayes despite a Taraval NF-e. **Unresolved - needs governor confirmation before
-> the register is rewritten** (no silent data mutation). Filed in `OPEN_FOLLOWUPS.md`.
+> **✅ Resolved (governor, 2026-09-18) - NF11 / NF12 / NF14 keep Kirsten Ritschel / 1423 Hayes St.**
+> These three NF-e carry the **Taraval** destinatario, but the arrival register routes their
+> trackings (`CP340993988BR`, `CP340993869BR`, `CP340993299BR`) to **Kirsten Ritschel / 1423
+> Hayes St**. **Governor ruling:** *keep Kirsten; the Taraval destinatario is the fiscal/billing
+> address only, and the parcels physically went to Hayes.* **No register rows were changed.** The
+> Taraval-destinatario ⟹ Val Lapidus reading above is therefore **not** applied to these three;
+> it holds only where the register itself carries `3041 Taraval St`.
 
 ## Table 2 - arrival register -> NF-e (all 19 rows)
 
@@ -189,6 +200,15 @@ issued or an exemption noted.
 ---
 
 ## CHANGELOG
+
+**Rev 4 (2026-09-18)** - governor ruling on the NF11/NF12/NF14 conflict (thread 31905):
+1. **NF11 / NF12 / NF14 resolved: keep Kirsten Ritschel / 1423 Hayes St.** The Taraval
+   destinatario on those three NF-e is the **fiscal/billing** address only; the parcels
+   physically went to Hayes. **No register rows changed.**
+2. **Destination rule re-scoped.** Taraval-destinatario ⟹ Val Lapidus holds only where the
+   arrival register itself carries `3041 Taraval St`; whether the fiscal/billing reading should
+   apply to all Taraval NF-e is left open in `OPEN_FOLLOWUPS.md`.
+3. **NF1 / NF2** annotated: governor leaned *"perhaps ignore"* (no register rows added).
 
 **Rev 3 (2026-09-18)** - destination rule added after governor input (thread 31905):
 1. **"Taraval St" NF-e destination rule.** Encoded the governor-confirmed rule that an NF-e
