@@ -39,6 +39,36 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SECURITY: Agroverse Wix token is still retrievable from PUBLIC `tokenomics` git history (committed `63f441e`)
+**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31220).**
+
+**Context.** The orphan/`clasp_mirrors` flatten landed secret-bearing Wix GAS source in the
+`tokenomics` repo **before** the Wix retirement. The token was **redacted in the working tree**
+(`google_app_scripts/deprecated/tdg_rate_sync_to_wix.gs` now reads `// REDACTED 2026-09-17`),
+and the current tree is clean — `git grep "IST.eyJ"` on `origin/main` → **0 hits**. But the
+**original blob is still in history**:
+
+```
+git show 63f441e:google_app_scripts/1zAXSdLe_vigsygxqX41w_evQb3KfrtzUc4rFI3AxwdUjp8E-h3nIvgDG/Code.js
+# -> var wixAccessToken = "IST.eyJraWQiOiJQb3pIX2FDMiI..."   (721-char Wix JWT)
+```
+
+- `63f441e` (2026-06-16, “remove redundant .gs files already migrated to project folders”) — **token present, 1 occurrence**.
+- Redacted only later: `bb016ff` / `c82616f` (2026-09-16/17) — **0 occurrences**.
+- Total commits whose diff contains the token string: **3**. Fingerprint `2aaefd55359b` appears in **1**.
+- **`TrueSightDAO/tokenomics` is PUBLIC** (verified: anonymous `git ls-remote` succeeds) → the token is retrievable by anyone via `git show 63f441e:<path>`.
+
+**The live project is gone, so deleting it does not help.** `1zAXSdLe…` ("TDG USDT exchange rate update") is **deleted, not merely inaccessible**: Apps Script API → `404 Requested entity was not found`; Drive `files.get` → `404 File not found` while a control live scriptId resolves fine. So the token can only be neutralised by **revoking it in Wix** (the project no longer exists to delete).
+
+**Why this entry exists.** The `## Pending` entry *“Sibling GAS project 1wONDeDwZ … rotate”* covers the **live-only** copies and notes the *class* of leak (“PR #369 / f8b38a8”), and other scrub items are tracked separately — but **no entry tracks that this specific Wix token is committed in public history**. Filing it so the scrub does not silently rot.
+
+**To do (governor decision first).**
+1. **Revoke the Wix token in the Wix admin** — the only hard fix; Wix is retired, so no flow should break.
+2. **Decide whether a history rewrite is warranted.** Scrubbing requires `git filter-repo`/BFG + **force-push to a public, multi-contributor repo** — invasive and itself irreversible-ish (rewrites every SHA downstream). Given Wix is retired and the token will be revoked, revocation alone may suffice; the rewrite buys defence-in-depth only. Do **not** force-push without an explicit governor go and a coordination plan.
+3. If scrubbing is declined, record that decision here and close.
+
+**Distinct from** the live-only `Credentials.js` rotations already shipped this session (PRs #507/#510/#512/#514/#515) — those cleaned the working tree and the live projects; none of them touch **git history**.
+
 ### Black King corridor: NF1/NF2 have a tracking number but no arrival-register row (register gap)
 **Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31905).**
 
