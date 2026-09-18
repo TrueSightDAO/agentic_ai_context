@@ -1,7 +1,7 @@
 # CRF Anapu × SunMint — tree-submission cohort proposal & execution roadmap
 
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification.
-**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b + PR1 + PR2 + PR3 + PR4 + PR5 + PR7 COMPLETE** (PR6 blocked — see its row) — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). PR1 (vendor-readiness) shipped `sunmint_beta` #84 (2026-09-16, sha 3732e2a4). PR2 (vendor into `cfr-anapu` `gh-pages`) shipped `cfr-anapu` #5 (2026-09-17, sha f0ffdbda) and is **live on `cfr.truesight.me`** (5-path smoke-check green). PR3 (the SunMint program-activity sync job) shipped `lineage-engine` #23 (2026-09-17, sha 81e61956). PR4 (the `sunmint/` activity kind in `build_cv_cache.py` + `program_modes`) shipped `lineage-engine` #24 (2026-09-17, sha 07486ae0). PR5 (SunMint activity badges + itemized click-through) shipped `truesight_me_beta` #381 (badges + `credentials/index.html` click-through; `crf-anapu` mirror byte-identical) **plus** the `lineage-engine` #25 (2026-09-17, sha `df5b0ba`) flat `sunmint_*` aggregate emission on `_cache/index.json` that feeds the renderer. **RESUME HERE = PR6 (`gate: human`) — blocked on the first real `cfr.truesight.me` submission; PR7 docs done.** **§11 (payout-registration sink → governor-only `cfr program` sheet) added 2026-09-17 — see §11.**
+**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b + PR1 + PR2 + PR3 + PR4 + PR5 + PR7 COMPLETE** (PR6 blocked — see its row) — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). PR1 (vendor-readiness) shipped `sunmint_beta` #84 (2026-09-16, sha 3732e2a4). PR2 (vendor into `cfr-anapu` `gh-pages`) shipped `cfr-anapu` #5 (2026-09-17, sha f0ffdbda) and is **live on `cfr.truesight.me`** (5-path smoke-check green). PR3 (the SunMint program-activity sync job) shipped `lineage-engine` #23 (2026-09-17, sha 81e61956). PR4 (the `sunmint/` activity kind in `build_cv_cache.py` + `program_modes`) shipped `lineage-engine` #24 (2026-09-17, sha 07486ae0). PR5 (SunMint activity badges + itemized click-through) shipped `truesight_me_beta` #381 (badges + `credentials/index.html` click-through; `crf-anapu` mirror byte-identical) **plus** the `lineage-engine` #25 (2026-09-17, sha `df5b0ba`) flat `sunmint_*` aggregate emission on `_cache/index.json` that feeds the renderer. **RESUME HERE = PR6 (`gate: human`) — blocked on the first real `cfr.truesight.me` submission; PR7 docs done.** **§11 (payout-registration sink → governor-only `cfr program` sheet) added 2026-09-17 — see §11.** **§12.6 answered 2026-09-18 (Gary, thread 30026): payout receipt feed = MANUAL until volume justifies a daemon → M3 (attacher) DEFERRED, not cancelled; §12.9 M-track = M1–M2 + M4–M5 done, M0 parked, M3 deferred.**
 
 > **PR0 result (Sophia, 2026-09-15):** two pre-flight items **rectified this document** — the plot
 > flow *is* shipped but hardcodes its origin (§1.3b), and `program_assets/registry.json` does not
@@ -735,8 +735,12 @@ program-level / general disbursement — allowed, but flagged `unlinked`.
 
 ### 12.6 Open questions (for Gary)
 
-- **Receipt source:** does the bank provide a **structured** feed (CNAB/OFX/CSV/API) or a **PDF**?
-  Structured → ingest + auto-emit; PDF → OCR then emit. This decides daemon vs manual.
+- **Receipt source:** ✅ **RESOLVED (Gary, 2026-09-18, thread 30026)** — **manual** for now: *"hold
+  off on Structured feed (CNAB/OFX/CSV/API) … Right now it is just manual until volume gets really
+  large."* The governor enters each payout through the DApp module (M2) and attaches the receipt by
+  hand. A structured feed (CNAB/OFX/CSV/API) with auto-ingest is **deferred until volume justifies a
+  daemon** — and it is *additive*, not a rework (§12.8.3 pt 1): it would add a second page
+  (`link_payout_tree.html`, M3), never change M2.
 - **Emitting client:** ✅ **RESOLVED (§12.8, Gary 2026-09-18)** — a **governor DApp module**
   (`report_payout_event.html` in `dapp_beta`), not a batch `dao_client` script or raw hand-entry.
   Structured-feed auto-ingest remains possible **later** as a *second* page (§12.8 point 1).
@@ -820,7 +824,9 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 1. **Emitter vs. attacher.** If the bank feed later becomes **structured** (CNAB/OFX/API) and auto-emits,
    a **second** page (`link_payout_tree.html`) is needed to *attach* trees to an already-recorded payout.
    If the feed is **PDF/manual**, `report_payout_event.html` alone suffices. → **Gate: §12.6 "structured
-   vs PDF" (still open).** Until answered, build the **manual** path; the structured path is additive.
+   vs PDF" — ✅ ANSWERED = manual (Gary, 2026-09-18, thread 30026).** *"Right now it is just manual
+   until volume gets really large."* So the **manual** path is the build, and the structured path
+   (hence M3) is **deferred, not cancelled** — it stays additive.
 2. **Recipient → `pk_hash` match location.** The module must **not** read the governor-only PIX sheet
    directly from the browser. Matching is done **sink-side** (§12.2): the module consumes rows already
    carrying `recipient_pk_hash`, or a **governor-pick** list. The page never receives the raw PIX.
@@ -852,7 +858,7 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 | **M0** | **Backfill the Paulo payout** (§12.10) — governor supplies the E2E-ID + **which `tree_id`s the 10-tree payment maps to** | `cfr program` + Ops `payouts` (via Q2/Q3) | **`gate: human`** (Gary supplies receipt + tree_ids) |
 | **M1** | This §12.8 (docs, contract) | `agentic_ai_context` | auto |
 | **M2** | `report_payout_event.html` (manual path) + `menu.js` `Sunmint Tree Planting Program` entry + `service-worker.js` precache | `dapp_beta` | auto (beta) |
-| **M3** | `link_payout_tree.html` (attacher — **only if** §12.6 structured-feed answer is "structured") | `dapp_beta` | auto (beta) |
+| **M3** | `link_payout_tree.html` (attacher) — ⏸ **DEFERRED**: §12.6 answered "manual"; build only if/when a structured feed lands | `dapp_beta` | auto (beta) — **not scheduled** |
 | **M4** | Page-level tests + beta smoke-check | `dapp_beta` | auto |
 | **M5** | Promote `dapp_beta` → `dapp_prod` | — | **`gate: human`** (UAT) |
 
@@ -863,7 +869,11 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
 - **M4 ✅** — page-level Playwright tests + **live-beta smoke-check green 5/5** (`dapp_beta` #102, sha `1b3cc740`). M4 also **caught a real bug in M2**: a duplicate `id="status"` (the provenance `<select>` vs the status-message `<div>`) meant `getElementById` returned the select, so `setStatus()` wrote into it — wiping its options and silently swallowing every validation message. Fixed by renaming the select to `payoutStatus` (matching all four sibling pages).
 - **M5 ✅** — prod promotion executed 2026-09-18 (thread 30026) after Gary's UAT go: `sync_beta_to_prod(dapp_prod)` merged clean (no conflict); prod head `89ac500`; deploy ledger `deploy_20260917T223550Z_dapp-prod`. **Live-prod smoke 5/5 green** on `dapp.truesight.me/report_payout_event.html`. The promotion is fork-level, so it carried **4 commits** (`dapp_prod` was 3 days behind beta): #99 `permissions.js` per-key RSA, #100 PIX payout-registration page, #101 Report Payout (M2), #102 id-fix + M4 tests. Verified safe pre-sync: no prod-only work lost (every prod commit is an ancestor of beta), no promoted commit touches `CNAME` (prod domain `dapp.truesight.me` intact; beta stays `beta.dapp.truesight.me`), and `withdraw_voting_rights.html` changed only by the permitted mechanical `menu.js?v` cache-bust. The page renders + signs a `[PAYOUT EVENT]` payload today; the live emit still lands with Q2/Q3 (the event type is not yet in Edgar's catalog).
 - **M0** — parked at Gary's request (2026-09-18, thread 30026): *"Don't bother with the resolution of Paulo's transaction in this scope."* The page retains backfill **capability** (`status=backfill`, past-dated `paid_at`, `bank_ref`); the Paulo instance is out of scope.
-- **M3** — still gated on the §12.6 structured-vs-PDF feed answer.
+- **M3** — ⏸ **DEFERRED (Gary, 2026-09-18, thread 30026).** §12.6 is now answered: **manual** until
+  *"volume gets really large"*. The attacher page only earns its keep once a daemon auto-emits payout
+  rows *before* tree-linking is known; today **M2 captures the money→tree link at entry time**, so an
+  unattached row is the exception-by-construction. **M3 is not needed for go-live** and is struck from
+  the critical path — it blocks neither UAT (M5) nor PR6. ✅ Additive if ever needed (§12.8.3 pt 1).
 
 > **M2 does not depend on Q2/Q3** (that is the *server* side, §12.7). The page can be built and smoke-checked
 > against a signed payload rendered in the `#submissionResult` panel; the live emit lands with Q2/Q3.
