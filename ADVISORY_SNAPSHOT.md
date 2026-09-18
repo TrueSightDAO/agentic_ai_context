@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-18T11:37:24Z`
+- Generated (UTC): `2026-09-18T16:37:49Z`
 - Look-back: **7** calendar days (`2026-09-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
+- `[CONTRIBUTION EVENT]` × 24
 - `[SALES EVENT]` × 6
 - `[PRACTICE EVENT]` × 3
 - `[ASSET RECEIPT EVENT]` × 1
-- _free-form (no bracket tag)_ × 7
+- `[NOTARIZATION EVENT]` × 1
+- `[PROPOSAL CREATION]` × 1
+- _free-form (no bracket tag)_ × 6
 
 ### Latest entries
 
-- `Edgar_20260916210350_032` · **Edgar** · [SALES EVENT] Item: 2024_20260710_14 · Sales price: 11.80 · Sold by: Kirsten Ritschel
-- `Edgar_20260916210404_034` · **Edgar** · [SALES EVENT] Item: 2024_20260710_37 · Sales price: 11.80 · Sold by: Gary Teh
 - `Edgar_20260916210408_036` · **Edgar** · [SALES EVENT] Item: 2024_20260710_38 · Sales price: 11.80 · Sold by: Gary Teh
 - `Edgar_20260916210415_038` · **Edgar** · [SALES EVENT] Item: 2024_20260710_39 · Sales price: 11.80 · Sold by: Gary Teh
 - `Edgar_20260916210830_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia Vault Credential Migration — UAT (U1–U7), krake_nginx pin fix, docs +…
@@ -60,6 +60,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260917171503_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh direct time — Envoy Discord parity direction, reframe, and UAT
 - `Edgar_20260917223651_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: AGL16 — verify + evidence the CIC lab-test payment (R$2,880.00), safely asso…
 - `Edgar_20260918110526_002` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-18T11:05:24.290Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260918121913_004` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: NA · Longitude: NA
+- `Edgar_20260918123321_006` · **Edgar** · [PROPOSAL CREATION] Type: vendor · Title: Retain Bis Contabilidade e Negocios Ltda for Black King accounting services · Content: **Vendor:** Bis Contabilidade e Negócios Ltda - CNPJ 11.766.341/0001-99
 
 ---
 
@@ -275,6 +277,7 @@ _All dated lines on/after 2026-09-11_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b06be2a | 2026-09-18 11:41:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 0559b87 | 2026-09-18 05:05:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 67538b4 | 2026-09-17 17:13:26 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -324,6 +327,13 @@ cd13355 | 2026-09-10 23:44:14 -0300 | Add CRF Anapu program credentialing surfac
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7689ec8 | 2026-09-18 09:04:19 -0300 | Add bilingual declaration keyed by 44-digit chave de acesso
+466b809 | 2026-09-18 09:02:21 -0300 | Add bilingual (EN+PT) signed Black King NF-e declaration
+075cb00 | 2026-09-18 08:59:05 -0300 | Add signed Black King NF-e declaration (DAO logo + Gary signature)
+4a02151 | 2026-09-18 08:57:41 -0300 | Add Black King NF-e declaration & audit PDF (thread 31905)
+5ce7a78 | 2026-09-18 08:51:05 -0300 | handoffs: refresh sprint dashboard (3 actively-supervised threads) (#1278)
+c5382cf | 2026-09-18 08:37:45 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
+c6d8a22 | 2026-09-18 08:37:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 28e0ea3 | 2026-09-18 02:00:29 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
 9b761fc | 2026-09-18 02:00:28 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 23cf197 | 2026-09-18 00:44:15 -0300 | Merge pull request #1277 from TrueSightDAO/auto/advisory-refresh-2026-09-18
@@ -357,19 +367,15 @@ ce91c18 | 2026-09-17 13:08:10 -0300 | OPEN_FOLLOWUPS: reframe Finding A — pref
 63acbc1 | 2026-09-17 12:19:36 -0300 | CRF plan §11 — payout-registration sink → governor-only `cfr program` sheet (#1253)
 a6b42dc | 2026-09-17 12:16:22 -0300 | PR0 — Envoy Discord parity: resolve bot id + sheet binding, correct target to SENTINEL (#1252)
 eff1545 | 2026-09-17 12:09:50 -0300 | handoffs: mark BRAIN_TIER_AWARENESS COMPLETE (PR3 #481 merged, deployed, UAT §7 passed) (#1251)
-7dfb40f | 2026-09-17 12:01:26 -0300 | OPEN_FOLLOWUPS: merge_pr 403s on Checks API for repos with no workflows (#1249)
-4652de2 | 2026-09-17 12:01:07 -0300 | docs: file brain-tier resolve_identity sentinel follow-up + mark UAT §7 complete (#1250)
-555e63e | 2026-09-17 11:36:11 -0300 | docs: lock member-workspace privacy as a hard gate (D6) (#1248)
-3398a36 | 2026-09-17 11:26:47 -0300 | plan: member workspace + SOP promotion gate (quarantine repo) (#1247)
-06ea9e1 | 2026-09-17 10:15:22 -0300 | docs(followups): flag two source-guide QC discrepancies (HK import guide #2, GCC/Mideast guide) (#1246)
-3188a86 | 2026-09-17 10:09:42 -0300 | docs(brazil): add GCC/Middle East import SOP + refresh HK SOP (labelling, CEPA transit, timing) (#1245)
-4e27d2c | 2026-09-17 09:50:04 -0300 | vault-migration: Unit 6 CLOSED — Gary rules NOT to archive bare PEMs (restore dups) (#1244)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+c824166 | 2026-09-18 09:30:30 -0300 | feat(gas): selective pull-first — materialise remote-only files so push can't delete them (#521)
+c352772 | 2026-09-18 09:29:21 -0300 | fix(gas): adopt live->git for 4 live-ahead files (Tier-1 drift) (#522)
+9383c74 | 2026-09-18 09:19:47 -0300 | fix(gas): pre-push guard — refuse a clasp push that would delete remote-only files (#520)
 c9f5b80 | 2026-09-17 22:56:43 -0300 | chore(security): scrub leaked token literals from tracked GAS sources (#519)
 5866909 | 2026-09-17 22:48:41 -0300 | SS12.7 Q3b: declare oauthScopes so trigger installers are authorized (#518)
 1574239 | 2026-09-17 22:38:54 -0300 | SS12.7 Q3b: make the payout-event hourly trigger verifiable from the action response (#517)
@@ -407,8 +413,7 @@ dc9ef29 | 2026-09-13 01:12:08 -0300 | fix(1N6o00): currency-def handler accepts 
 3c92587 | 2026-09-12 22:40:05 -0300 | fix(scoring): stop grok scorer falsely stamping non-[CONTRIBUTION EVENT] rows as Successfully Completed (#479)
 53f3075 | 2026-09-12 22:02:07 -0300 | dao_forms: add ?currency_fields action (farm/state/country distinct values) (#478)
 afeaf42 | 2026-09-12 19:20:47 -0300 | update_store_inventory: emit agroverse-inventory/skus.json (SKU catalog cache) (#477)
-2f411a0 | 2026-09-12 19:16:46 -0300 | currency definition GAS: write SKU Product ID (col M) + infer Serializable from SKU stock; fix A:L sort (#476)
-054f700 | 2026-09-12 14:32:10 -0300 | fix(expense): disable proc script lock (contention stalled all runs) + stop false success (#475)
+… (truncated)
 ```
 
 ### `dapp` → `dapp`
@@ -438,6 +443,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
 b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 56fa1f5 | 2026-09-17 12:05:02 +0000 | chore: refresh currencies.json [skip ci]
 24d75f0 | 2026-09-17 11:46:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -555,7 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/18/2026 3:51:05 |
+| 2026-09 | 924.5 | 18364.34386 | 9/18/2026 8:51:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-11`; scanned last **600** data rows)
 
