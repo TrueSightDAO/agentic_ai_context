@@ -67,7 +67,7 @@ PUBLIC ATTESTATION LEDGER (since 2026-08, A1-A4):
 | service | truesight-dao-protocol.service ; env /home/ubuntu/dao_protocol/.env |
 | env keys | DAO_PROTOCOL_WEBHOOK_TREE_PLANTING_LINK / TREE_PLANTING_PROCESSING / TREE_GROWTH_MONITORING |
 | Sophia identity | admin+sophia@truesight.me (sentinel=true, governor=false) |
-| Sophia keys | /tmp/sophia_keys_clean.env (PUBLIC_KEY/PRIVATE_KEY raw base64 SPKI/PKCS8) |
+| Sophia keys | `/opt/truesight_autopilot/.env` — `EMAIL` / `PUBLIC_KEY` / `PRIVATE_KEY` (raw base64 SPKI/PKCS8). Legacy `/tmp/sophia_keys_clean.env` is **gone** from the box (removed 2026-09-18). |
 | Tree index | TrueSightDAO/sunmint main trees/index.geojson |
 | Write-capable SA | /opt/truesight_autopilot/config/google/edgar_dapp_listener_key.json |
 
@@ -77,7 +77,7 @@ PUBLIC ATTESTATION LEDGER (since 2026-08, A1-A4):
 
 ### 4.0 Prereqs
 - Playwright: cd /home/ubuntu/dapp_beta && NODE_PATH=/home/ubuntu/dapp_beta/node_modules node <script>.js
-- Sophia keypair: source /tmp/sophia_keys_clean.env (strip the single-quote wrappers from .env values first)
+- Sophia keypair: source /opt/truesight_autopilot/.env (strip the single-quote wrappers from .env values first). **The old `/tmp/sophia_keys_clean.env` no longer exists on the autopilot box** (verified 2026-09-18).
 - Keys are raw base64 SPKI/PKCS8 (NO PEM armor) - exactly what the site's localStorage expects
 
 ### 4.1 Email link
