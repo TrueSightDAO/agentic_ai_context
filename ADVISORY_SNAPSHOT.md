@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-18T03:43:58Z`
+- Generated (UTC): `2026-09-18T05:00:12Z`
 - Look-back: **7** calendar days (`2026-09-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 26
+- `[SALES EVENT]` × 6
+- `[PRACTICE EVENT]` × 2
+- `[ASSET RECEIPT EVENT]` × 1
+- _free-form (no bracket tag)_ × 7
+
+### Latest entries
+
+- `Edgar_20260916210345_030` · **Edgar** · [SALES EVENT] Item: 2024_20260710_13 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260916210350_032` · **Edgar** · [SALES EVENT] Item: 2024_20260710_14 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20260916210404_034` · **Edgar** · [SALES EVENT] Item: 2024_20260710_37 · Sales price: 11.80 · Sold by: Gary Teh
+- `Edgar_20260916210408_036` · **Edgar** · [SALES EVENT] Item: 2024_20260710_38 · Sales price: 11.80 · Sold by: Gary Teh
+- `Edgar_20260916210415_038` · **Edgar** · [SALES EVENT] Item: 2024_20260710_39 · Sales price: 11.80 · Sold by: Gary Teh
+- `Edgar_20260916210830_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia Vault Credential Migration — UAT (U1–U7), krake_nginx pin fix, docs +…
+- `Edgar_20260916211413_042` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Deep Seek API credits
+- `Edgar_20260916212952_044` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Prod sales reconciliation — Linda Ford Sept subscription (6 bars) + terminal…
+- `Edgar_20260916213024_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Prod sales reconciliation — Linda Ford Sept subscription: direction, algorit…
+- `Edgar_20260917122431_048` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-17T12:24:29.453Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260917125026_050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Vault Credential Migration — UAT, krake_nginx pin fix, and Unit 6 close (bar…
+- `Edgar_20260917125245_052` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
+- `Edgar_20260917135450_056` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fix: derived signal flags wiped on EODHD price reimport (sentiment_importer)…
+- `Edgar_20260917144016_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
+- `Edgar_20260917150202_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: BRAIN_TIER_AWARENESS — Discord member tier-awareness (PR1–PR3 + UAT + deploy)
+- `Edgar_20260917171455_062` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Discord Envoy governor parity — Sophia raw machine execution
+- `Edgar_20260917171458_064` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord Envoy governor parity — Sophia direct time (engagement/analysis)
+- `Edgar_20260917171500_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord Envoy governor parity — PR0 (bot id + sheet binding) and plan author…
+- `Edgar_20260917171503_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh direct time — Envoy Discord parity direction, reframe, and UAT
+- `Edgar_20260917223651_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: AGL16 — verify + evidence the CIC lab-test payment (R$2,880.00), safely asso…
 
 ---
 
@@ -194,13 +231,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+30 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,904.48**
+- Brazilian Reis: R$856.71 · rate `0.2323` USD/BRL → ≈ **$199.01**
+- USD provisioned for voting-rights cash-out: **$55.26**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -282,6 +323,8 @@ cd13355 | 2026-09-10 23:44:14 -0300 | Add CRF Anapu program credentialing surfac
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+23cf197 | 2026-09-18 00:44:15 -0300 | Merge pull request #1277 from TrueSightDAO/auto/advisory-refresh-2026-09-18
+2b901cc | 2026-09-18 03:44:02 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 39bef90 | 2026-09-17 23:06:09 -0300 | Rev 5: AGL6/CP327946643BR billed by Coopercabruca NF-e set (not Black King) (#1276)
 4c888bb | 2026-09-17 23:01:13 -0300 | followups: file unfiled gap — Agroverse Wix token is in PUBLIC tokenomics git history (63f441e) (#1273)
 c595f16 | 2026-09-17 22:42:43 -0300 | Black King: resolve NF11/12/14 -> keep Kirsten; Taraval = fiscal/billing only (#1275)
@@ -320,8 +363,6 @@ eff1545 | 2026-09-17 12:09:50 -0300 | handoffs: mark BRAIN_TIER_AWARENESS COMPLE
 4e27d2c | 2026-09-17 09:50:04 -0300 | vault-migration: Unit 6 CLOSED — Gary rules NOT to archive bare PEMs (restore dups) (#1244)
 3c58579 | 2026-09-17 09:49:25 -0300 | CRF PR7 docs: document program_modes/sunmint_cohort; record PR6 blocked (#1243)
 5fbf1eb | 2026-09-17 08:59:04 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
-11634ed | 2026-09-17 08:59:03 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
-663695b | 2026-09-17 02:08:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
 … (truncated)
 ```
 
@@ -488,6 +529,46 @@ _(no commits on origin/main in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 924.5 | 18364.34386 | 9/17/2026 21:50:54 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-11`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
+| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_39 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_38 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_37 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_14 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_13 | — | — |
+| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_12 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
