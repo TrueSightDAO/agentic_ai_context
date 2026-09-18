@@ -39,8 +39,61 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Deploy + legacy-label cleanup for the CurrencyConversion.js canonicalize/idempotency fix (PR #525)
-**Filed 2026-09-18. Owner: Sophia (awaiting governor deploy go). Governor: Gary (thread 31905).**
+### RESOLVED-INCIDENT: GAS project `1orWgdGckts55…` was load-broken by a top-level `getCredentials()` ReferenceError
+**Filed 2026-09-18. Owner: Sophia. Governor: Gary (thread 31905). Status: FIXED+DEPLOYED (tokenomics PR #527, v10).**
+
+**Symptom.** Every function in the project threw at load time:
+`ReferenceError: getCredentials is not defined (line 16, file "capital_injection_processing")`.
+Because the call was **top-level**, ALL entry points (`doGet`, `parseAndProcessCurrencyConversionLogs`,
+`parseAndProcessCapitalInjectionLogs`) were dead — so the PR #525 currency fix could not execute.
+
+**Root cause.** `capital_injection_processing.js` had `const creds = getCredentials();` +
+`const WIX_ACCESS_TOKEN = creds.WIX_API_KEY;`, but the project has **no `Credentials` file**
+(live project = 4 files: appsscript, capital_injection_processing, CurrencyConversion, Version).
+`WIX_ACCESS_TOKEN` was dead code (grep = 1 hit = its own definition); `getLedgerConfigsFromWix()`
+reads the Google Sheets `Shipment Ledger Listing` tab, never the Wix API.
+
+**Fix (per governor directive: "we can disable the code that uses WIX API Key").** Removed both
+lines (tokenomics PR #527, merged `673b00e2`). No `Credentials.js` and no `WIX_API_KEY` Script
+Property needed. Deployed: `clasp push` → version 10 → anonymous deployment
+`AKfycbzTWe1EnX8oXX1RDOOXcS1e0GmkX_SusWhT18FQ7zqs3RMTRlYcpZlWLOIaSLzoViA0`.
+Smoke-tested anonymously: `?action=listTriggers` → valid JSON (both CLOCK triggers);
+`?action=parseAndProcessCurrencyConversionLogs` → `✅ Currency conversion logs processed successfully`;
+ledger tail shows a single conversion pair (no duplicate append). Interim broken v9 deployment deleted.
+
+**Blame: NOT this session's push (evidence).** The deploy script's remote-only-file guard (refuses a
+push that would delete a live file) ran clean at push time → the accessor was already absent.
+`Credentials` was never git-tracked, so an earlier pre-guard push caused it. *(Inference from guard
+behaviour, not a logged deletion event.)*
+
+**Security note.** The frozen `@8` snapshot's `Credentials` file carries hardcoded live secrets
+(Wix key + XAI + OpenAI). Masked on read. The Wix key now survives only in that snapshot and should
+be revoked/rotated in Wix (same token already tracked under the "Wix token in public history" entry).
+
+### Systemic: 9 GAS projects call `getCredentials()`/`setApiKeys()` but have no tracked accessor file
+**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31905).**
+
+Repo-wide scan found **9** `google_app_scripts/*/` projects that call a credential accessor they do
+not define locally and have no tracked `Credentials.js`:
+`15qbfLN3…, 1MnAsIQA…, 1Q5HfGR_…, 1QKqUTyl…, 1_3D4o2R…, 1m2sQONd…, 1orWgdGckts55… (fixed), 1vC3p_Wf…, 1zKgMwd6…`.
+`1orWgdGckts55…` was **missed** by the 2026-09-18 `.gitignore` negation remediation (which covered
+10 *other* projects). Any of these can hit the same load-time `ReferenceError` the moment the
+accessor is absent — and `clasp push --force` will **delete** an untracked live file.
+**To do:** per project, either (a) add a secret-free Script-Properties-backed accessor +
+`.gitignore` negation, or (b) if the credential is genuinely unused (as here), delete the call.
+Verify each; do not batch-assume.
+
+### Autopilot box `/tmp` reached 100% disk (41 G of stale session clones) — add a janitor
+**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31905).**
+
+`git_push_changes` failed with `No space left on device`; `df` showed `/` at **78G/78G (100%)**.
+`/tmp` held **41 G** of stale clone dirs from prior sessions (~16 000 dirs). Cleared by hand
+(kept today's attachments + the local tokenomics checkout) → 11 G free.
+**To do:** add a periodic `/tmp` janitor (delete clone dirs older than N hours) so a full disk
+can't silently break a push again.
+
+### CurrencyConversion.js canonicalize/idempotency fix (PR #525) — DEPLOYED as v10
+**Filed 2026-09-18. Owner: Sophia (DEPLOYED 2026-09-18 + verified end-to-end). Governor: Gary (thread 31905).**
 
 **Context.** Two defects in `tokenomics/google_app_scripts/1orWgdGckts55owiYOysR_y4sde52T_eUmrtDGAEkb4YV5DlUfJ0JZC5J/CurrencyConversion.js`
 are fixed in **PR #525** (code only — NOT deployed):
@@ -54,14 +107,17 @@ are fixed in **PR #525** (code only — NOT deployed):
    lock + `NEW -> PROCESSING` claim-before-append + a Request-Transaction-ID idempotency scan.
 
 **To do (governor decision first).**
-1. **`clasp push` the fix** to the GAS project above (deploy is deliberately NOT in PR #525).
-   After deploy, re-run `?action=parseAndProcessCurrencyConversionLogs` once and sanity-check the tail.
+1. ~~**`clasp push` the fix**~~ ✅ **DONE 2026-09-18** — pushed, version 10 cut, deployed +
+   smoke-tested anonymously (blocked until PR #527 restored loadability; see the incident entry above).
 2. **Legacy label cleanup.** The Main Ledger still carries the historical mangled labels
    (`BRAZILIAN RE` on intake row `Edgar_20260511022114_011`; the old `BRAZILIAN REIS` balance row has
    already been hand-fixed by Gary). Decide whether to normalise the historical intake/summary rows;
    the new code only self-heals *future* resubmissions, it does not rewrite existing rows.
-3. **`manifest.json` "deployments.head" is still `TBC`** for this scriptId — record the `/exec` URL so the
-   next agent doesn't have to re-probe 24 candidates (this cost real time on 2026-09-18).
+3. **`manifest.json` "deployments.head" is still `TBC`** for this scriptId. Deployment ids found
+   2026-09-18: `@HEAD AKfycbwMY0PfO7dnMszwUilr6DZBY5eeBGh86QEgshO7cgY` (login-walled — NOT anon-callable);
+   `@10 AKfycbzTWe1EnX8oXX1RDOOXcS1e0GmkX_SusWhT18FQ7zqs3RMTRlYcpZlWLOIaSLzoViA0` (current, anon);
+   `@8 AKfycby8bOb0iEfJh-Io90fK-NQRpC6BlLC66e6MCr3JvyOEi-UDH-TkwYSsdeXKuhkpsU4` (superseded, anon).
+   Record the @10 URL as `deployments.head`; note `@HEAD` is login-walled even with `ANYONE_ANONYMOUS`.
 
 ### SECURITY: Agroverse Wix token is still retrievable from PUBLIC `tokenomics` git history (committed `63f441e`)
 **Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31220).**
