@@ -69,3 +69,4 @@ These already live elsewhere in the workspace; listed here so a future lookup la
 | Brazil warehouse (canonical, used in scripts) | R. Cel. Paiva, 46 — Centro, Ilhéus - BA, 45653-310 | `PURCHASE_AGREEMENT_PDFS.md`, `plans/AORA_EXPERIENCE_PLAN.md` |
 | Brazil export entity (Sertão/cargo docs) | Av. Tancredo Neves, 4900, Qd H, Cs 9, Nossa Senhora da Vitória, Ilhéus, BA, 45655-650 | `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`, `brazil/BRAZIL_TO_CHINA_GACC_REGISTRATION_GUIDE.md` |
 | US ship-to (vendor billing/shipping) | 1423 Hayes St, San Francisco, CA 94117 (TrueTech Inc / Kirsten Ritschel) | `WORKSPACE_CONTEXT.md` §3c |
+| US ship-to (NF-e fiscal destinatário "Taraval St") | 3041 Taraval St, San Francisco, CA 94116 — **Val Lapidus** | `BLACK_KING_NFE_TRANSIT_CROSSWALK.md` (destination rule), `in_transit_register.json` |
