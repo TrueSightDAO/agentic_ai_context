@@ -30,6 +30,17 @@ if it says `SET`, it is set — move on. If `NOT SET`, that's an open item (file
    PAT is the org/repo-scoped PAT used for `repository_dispatch` and workflow_dispatch; identity keys are
    `EMAIL`/`PUBLIC_KEY`/`PRIVATE_KEY`). Canonical Sophia key copy: `/tmp/sophia_keys_clean.env`.
 
+6. **The secret accessor (`Credentials.js`) is TRACKED and PUSHED — never `.claspignore`d or gitignored.**
+   `clasp push` = `projects.updateContent` = **REPLACES** the project's remote file set: any file *not* in the
+   pushed set is **DELETED** live. So `.claspignore`-ing `Credentials.js` is exactly what *caused* a push to
+   delete the live accessor — incidents **2026-08-21** and **2026-09-06** (`ReferenceError: setApiKeys is not
+   defined` on `@HEAD`, project `19Wag9x…`), and `1BHAGZd_…` had no accessor on `@HEAD` at all.
+   **Rule (Gary, 2026-09-18):** keep a **secret-free** `Credentials.js` whose `setApiKeys()` is a no-op and whose
+   `getCredentials()` reads Script Properties; **track it** (add a `.gitignore` negation) and **push it** like any
+   other source. Model: `google_app_scripts/1dsWecVwbN0dOvilIz9r8DNt7LD3Ay13V8G9qliow4tZtF5LHsvQOFpF7/Credentials.js`.
+   A `Credentials.js` that still holds real secrets must have them moved to Script Properties **first**, then the
+   file is sanitised to the pointer form and tracked. Do NOT add `Credentials.js` to `.claspignore`.
+
 ---
 
 ## 2. Registry — known Script Properties
