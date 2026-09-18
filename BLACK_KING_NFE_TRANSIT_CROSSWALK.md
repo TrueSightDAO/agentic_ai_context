@@ -1,6 +1,7 @@
 # Black King (Matheus Reis Pereira) - NF-e / transit-register crosswalk
 
 **Generated:** 2026-09-18 - Sophia Truesight (autopilot) - thread 31905
+**Revision 5** (2026-09-18): rows 3-5 (`CP327946643BR`, AGL6) are billed by a **different emitter's** NF-e set - **Coopercabruca NF-e No. 888** (CNPJ 31.948.811/0001-42), *not* a Black King NF-e. Corrects the Rev-2/Rev-3 claim that the parcel "predates the NF-e set". See section F.
 **Revision 4** (2026-09-18): per governor ruling, the Taraval destinatario is the TrueTech **fiscal/billing** address (not, by itself, the physical recipient) - the arrival register governs; **NF11/NF12/NF14 resolved: keep Kirsten Ritschel / 1423 Hayes St**.
 **Revision 3** (2026-09-18): added the **Taraval Street destination rule** (NF-e destino
 `TRUETECH INC - TARAVAL ST, 3041` ⟹ physical recipient **Val Lapidus**) and flagged the
@@ -162,7 +163,7 @@ shipping receipt.
 R$4,250 is duplicated, **not** lost cargo.
 
 ### E. Register rows with NO NF-e (8 rows / 5 parcels)
-- **`CP327946643BR`** - AGL2/AGL6-era SF parcel (rows 3-5). Predates the NF-e set.
+- **`CP327946643BR`** - AGL6-era SF parcel (rows 3-5, dest **Val Lapidus / 3041 Taraval St**). **Not a gap - a different emitter.** Billed by **Coopercabruca NF-e No. 888** (serie 1, emissao 21/11/2024, R$3.348; emitter CNPJ 31.948.811/0001-42) - a **separate NF-e set** from the 15 Black King NF-e. See section F.
 - **`QN226716310BR`** - FounderHaus **Brazil-domestic** (Nima Kaz) (row 6).
 - **`CP340993268BR`** - **Switzerland** (Hans Martin Heierling) (row 7).
 - **`CP340993271BR`** - **Poland**, **Rejected** by Brazilian customs (rows 8-9).
@@ -172,6 +173,25 @@ R$4,250 is duplicated, **not** lost cargo.
 > **NF9** (Aga Marecka, PL) both exist. So the Europe parcels above are a **genuine documentation
 > gap**, not 'no NF-e by design'. `CP340993271BR` is the **rejected 1st Poland parcel** - its
 > sibling (2nd Poland parcel `CP340993237BR`) *is* covered by NF9.
+
+### F. Rows 3-5 / `CP327946643BR` - the Coopercabruca (non-Black-King) NF-e set
+
+Rows 3-5 are **one parcel** (tracking `CP327946643BR`, expected arrival `20250211`, dest
+**Val Lapidus / 3041 Taraval St**, ledger `agroverse.shop/agl6`, register origin member
+**`Coopercabruca`**). They resolve to **one consignment - AGL6** (`Shipment Ledger Listing` row 3,
+shipment 11/20/2024), whose description matches rows 3-5 exactly: *10 bars 500 g cacao mass -
+**125** bars 40 g cacao mass - **44** bags 8 oz cacao nibs kraft pouches*.
+
+AGL6's linked `Invoice URL` points to **Coopercabruca NF-e No. 888**, a **different emitter**
+(CNPJ 31.948.811/0001-42, Itabuna-BA) with its **own** NF-e numbering (workspace holds No. 365,
+401, 888). This is why `CP327946643BR` carries **no Black King NF-e - by design, not by omission.**
+
+**Detail looseness (governor note, 2026-09-18).** NF No. 888 declares **bulk** (100 kg nibs +
+100 kg cacao mass), whereas AGL6 shipped **retail-packed** (~10x500 g + 125x40 g + 44x8 oz,
+~20 kg). The register's expected-arrival `20250211` also postdates the 2024-11-21 NF-e. Governor
+reading: *"the Matheus or the lawyer just went easy on the details"* - i.e. a bulk invoice drawn
+loosely against a repacked consignment, with a rough register date. Treated as **known looseness**,
+not a missing document. Reconcile the date if the accountant wants precision (see `OPEN_FOLLOWUPS.md`).
 
 ---
 
@@ -200,6 +220,14 @@ issued or an exemption noted.
 ---
 
 ## CHANGELOG
+
+**Rev 5 (2026-09-18)** - resolved the AGL6 / `CP327946643BR` question (thread 31905):
+1. Rows 3-5 are billed by **Coopercabruca NF-e No. 888** - a **different emitter's** NF-e set
+   (CNPJ 31.948.811/0001-42), not a Black King NF-e. Added **section F**.
+2. Corrected **State E**: `CP327946643BR` is **not** "predating" the NF-e set - it belongs to the
+   Coopercabruca set, so it has no Black King NF-e by design.
+3. Recorded the governor's "went easy on the details" reading of the bulk-vs-retail unit gap and
+   the stale register date; filed for optional reconciliation.
 
 **Rev 4 (2026-09-18)** - governor ruling on the NF11/NF12/NF14 conflict (thread 31905):
 1. **NF11 / NF12 / NF14 resolved: keep Kirsten Ritschel / 1423 Hayes St.** The Taraval

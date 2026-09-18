@@ -83,6 +83,21 @@ parcels appear in `CORREIOS_SHIPMENTS.md` with shipping receipts, but the arriva
 **Governor leaned "perhaps ignore" (2026-09-18):** no register rows are being added for NF1/NF2.
 Left open pending a definitive call. Source: `BLACK_KING_NFE_TRANSIT_CROSSWALK.md` State B.
 
+### Black King corridor: reconcile AGL6 / `CP327946643BR` NF-e detail looseness (optional, low priority)
+**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31905).**
+
+Rows 3-5 of the arrival register (`offchain assets in transit`) = parcel `CP327946643BR` = consignment
+**AGL6**, billed by **Coopercabruca NF-e No. 888** (CNPJ 31.948.811/0001-42) - a **different emitter's**
+NF-e set from the 15 Black King NF-e (see `BLACK_KING_NFE_TRANSIT_CROSSWALK.md` section F). Two
+declared-vs-shipped mismatches remain:
+1. **Unit:** NF 888 declares bulk (100 kg nibs + 100 kg cacao mass); AGL6 shipped ~20 kg retail-packed.
+2. **Date:** register expected-arrival `20250211` postdates the 2024-11-21 NF-e.
+
+Governor reading (2026-09-18): *"the Matheus or the lawyer just went easy on the details"* - a bulk
+invoice drawn loosely against a repacked consignment. **Low priority.** Action only if precision is
+wanted: confirm with the accountant whether a Feb-2025 Coopercabruca NF-e exists, else reconcile the
+register date.
+
 ### Black King corridor: NF11/NF12/NF14 destination - RESOLVED 2026-09-18 → see "Recently shipped"
 **Filed 2026-09-18; resolved 2026-09-18. Governor: Gary (thread 31905).**
 
