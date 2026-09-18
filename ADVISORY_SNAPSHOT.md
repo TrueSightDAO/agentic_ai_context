@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-18T16:37:49Z`
+- Generated (UTC): `2026-09-18T21:07:05Z`
 - Look-back: **7** calendar days (`2026-09-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,27 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
+- `[CONTRIBUTION EVENT]` × 26
 - `[SALES EVENT]` × 6
-- `[PRACTICE EVENT]` × 3
-- `[ASSET RECEIPT EVENT]` × 1
+- `[PROPOSAL VOTE]` × 3
+- `[PRACTICE EVENT]` × 2
 - `[NOTARIZATION EVENT]` × 1
 - `[PROPOSAL CREATION]` × 1
-- _free-form (no bracket tag)_ × 6
+- `[CURRENCY CONVERSION EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260916210408_036` · **Edgar** · [SALES EVENT] Item: 2024_20260710_38 · Sales price: 11.80 · Sold by: Gary Teh
-- `Edgar_20260916210415_038` · **Edgar** · [SALES EVENT] Item: 2024_20260710_39 · Sales price: 11.80 · Sold by: Gary Teh
-- `Edgar_20260916210830_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Sophia Vault Credential Migration — UAT (U1–U7), krake_nginx pin fix, docs +…
-- `Edgar_20260916211413_042` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Deep Seek API credits
-- `Edgar_20260916212952_044` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Prod sales reconciliation — Linda Ford Sept subscription (6 bars) + terminal…
-- `Edgar_20260916213024_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Prod sales reconciliation — Linda Ford Sept subscription: direction, algorit…
-- `Edgar_20260917122431_048` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-17T12:24:29.453Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260917125026_050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Vault Credential Migration — UAT, krake_nginx pin fix, and Unit 6 close (bar…
-- `Edgar_20260917125245_052` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
-- `Edgar_20260917135450_056` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Fix: derived signal flags wiped on EODHD price reimport (sentiment_importer)…
-- `Edgar_20260917144016_058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
 - `Edgar_20260917150202_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: BRAIN_TIER_AWARENESS — Discord member tier-awareness (PR1–PR3 + UAT + deploy)
 - `Edgar_20260917171455_062` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Discord Envoy governor parity — Sophia raw machine execution
 - `Edgar_20260917171458_064` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord Envoy governor parity — Sophia direct time (engagement/analysis)
@@ -62,6 +52,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260918110526_002` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-18T11:05:24.290Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260918121913_004` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: NA · Longitude: NA
 - `Edgar_20260918123321_006` · **Edgar** · [PROPOSAL CREATION] Type: vendor · Title: Retain Bis Contabilidade e Negocios Ltda for Black King accounting services · Content: **Vendor:** Bis Contabilidade e Negócios Ltda - CNPJ 11.766.341/0001-99
+- `Edgar_20260918170130_008` · **Edgar** · [PROPOSAL VOTE] Proposal: retain-bis-contabilidade-e-negocios-ltda-for-black-king-accounting-services · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/19 · Vote: YES
+- `Edgar_20260918170136_010` · **Edgar** · [PROPOSAL VOTE] Proposal: retain-bis-contabilidade-e-negocios-ltda-for-black-king-accounting-services · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/19 · Vote: YES
+- `Edgar_20260918170147_012` · **Edgar** · [PROPOSAL VOTE] Proposal: retain-bis-contabilidade-e-negocios-ltda-for-black-king-accounting-services · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/19 · Vote: YES
+- `Edgar_20260918173040_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20260918173535_016` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Warehouse Manager: Gary Teh · Source Currency: USD
+- `Edgar_20260918180953_008` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: Deep Seek API Credit
+- `Edgar_20260918194110_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 86 · Contributor(s): Sophia Truesight
+- `Edgar_20260918194113_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20260918194115_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 86 · Contributor(s): Envoy TrueSight
+- `Edgar_20260918194342_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
+- `Edgar_20260918194345_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
 
 ---
 
@@ -210,11 +211,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 13,791.42 total units · $12,872.36
+- Manager record: `Gary Teh` · 29 SKU lines · 13,385.88 total units · $12,658.74
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 13,715.24 | $12,822.38 |
+  | (uncategorized) | (unspecified) | 27 | 13,309.70 | $12,608.76 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -235,8 +236,8 @@ _(+30 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,904.48**
-- Brazilian Reis: R$856.71 · rate `0.2323` USD/BRL → ≈ **$199.01**
+- USD on hand: **$4,748.94**
+- Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
 - USD provisioned for voting-rights cash-out: **$55.26**
 
 ### In-transit freight (1 row)
@@ -277,6 +278,7 @@ _All dated lines on/after 2026-09-11_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+61bec1a | 2026-09-18 16:40:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 b06be2a | 2026-09-18 11:41:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 0559b87 | 2026-09-18 05:05:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -327,6 +329,12 @@ cd13355 | 2026-09-10 23:44:14 -0300 | Add CRF Anapu program credentialing surfac
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+da26446 | 2026-09-18 16:21:15 -0300 | followups: GAS load-time ReferenceError incident, 9-project scan, /tmp janitor (#1282)
+7b92055 | 2026-09-18 15:10:34 -0300 | followups: track clasp push + legacy-label cleanup for CurrencyConversion.js fix (#1281)
+3f587be | 2026-09-18 14:42:16 -0300 | §12: Q2–Q5 (server side) COMPLETE — Edgar webhook wired, catalog live, dedup gate verified (#1280)
+de159e1 | 2026-09-18 14:27:02 -0300 | CRF §12.6 answered: manual payout feed → M3 deferred; fix stale GAS/runbook docs (#1279)
+785347c | 2026-09-18 13:38:08 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
+098e0f0 | 2026-09-18 13:38:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 7689ec8 | 2026-09-18 09:04:19 -0300 | Add bilingual declaration keyed by 44-digit chave de acesso
 466b809 | 2026-09-18 09:02:21 -0300 | Add bilingual (EN+PT) signed Black King NF-e declaration
 075cb00 | 2026-09-18 08:59:05 -0300 | Add signed Black King NF-e declaration (DAO logo + Gary signature)
@@ -361,18 +369,18 @@ e537bce | 2026-09-17 15:52:27 -0300 | Plan §11.10 + manifest: PII Event Envelop
 81959c2 | 2026-09-17 14:12:38 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
 2eab0a2 | 2026-09-17 14:12:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
 8ab43a2 | 2026-09-17 14:03:45 -0300 | docs: Envoy Discord parity COMPLETE (path i + autopilot #494); cache bug left as non-blocking residual (#1257)
-ce91c18 | 2026-09-17 13:08:10 -0300 | OPEN_FOLLOWUPS: reframe Finding A — prefer ID-native Discord sentinel resolution over tokenomics GAS fix (#1256)
-405dddf | 2026-09-17 13:06:24 -0300 | OPEN_FOLLOWUPS: point Finding A cache-email-null entry at #sentinel-cache-email-bug (#1255)
-4c4c2e9 | 2026-09-17 12:32:29 -0300 | OPEN_FOLLOWUPS: file dao_members.json sentinel email:null blocker (Envoy parity PR2 path ii) (#1254)
-63acbc1 | 2026-09-17 12:19:36 -0300 | CRF plan §11 — payout-registration sink → governor-only `cfr program` sheet (#1253)
-a6b42dc | 2026-09-17 12:16:22 -0300 | PR0 — Envoy Discord parity: resolve bot id + sheet binding, correct target to SENTINEL (#1252)
-eff1545 | 2026-09-17 12:09:50 -0300 | handoffs: mark BRAIN_TIER_AWARENESS COMPLETE (PR3 #481 merged, deployed, UAT §7 passed) (#1251)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+9c5ec86 | 2026-09-18 16:27:24 -0300 | manifest: record real deployments for 1orWgdGckts55 (kill TBC) (#528)
+673b00e | 2026-09-18 16:03:32 -0300 | fix(gas): remove top-level getCredentials() call breaking all entry points (#527)
+3cbb4cd | 2026-09-18 16:01:35 -0300 | harden(gas): fail CLOSED on unverifiable pushes; fix misleading accessor message (#526)
+cd61e6e | 2026-09-18 15:10:27 -0300 | fix(currency-conversion): canonicalize currency labels + make ledger append atomic/idempotent (#525)
+269ff42 | 2026-09-18 14:53:04 -0300 | fix(gas): classify POST-only endpoints + disposition 3 smoke-test anomalies (#524)
+fa792da | 2026-09-18 14:42:36 -0300 | test(gas): add endpoint smoke-test harness for all registered /exec URLs (#523)
 c824166 | 2026-09-18 09:30:30 -0300 | feat(gas): selective pull-first — materialise remote-only files so push can't delete them (#521)
 c352772 | 2026-09-18 09:29:21 -0300 | fix(gas): adopt live->git for 4 live-ahead files (Tier-1 drift) (#522)
 9383c74 | 2026-09-18 09:19:47 -0300 | fix(gas): pre-push guard — refuse a clasp push that would delete remote-only files (#520)
@@ -407,12 +415,6 @@ d9af5b9 | 2026-09-13 14:58:42 -0300 | feat(qr-gen): PR4 auto-define QR-ready cur
 a58b256 | 2026-09-13 09:46:32 -0300 | chore(gas): track secret-free Credentials.js for sales project + bump Version (#486)
 d9f620b | 2026-09-13 01:22:18 -0300 | fix(1N6o00): currency-def parser must not leak next line on empty fields (#485)
 5c6e948 | 2026-09-13 01:19:16 -0300 | fix(1N6o00): define missing findContributorByDigitalSignature() in currency-def handler (#484)
-dc9ef29 | 2026-09-13 01:12:08 -0300 | fix(1N6o00): currency-def handler accepts Pending + writes terminal status (#483)
-71dcfd2 | 2026-09-13 01:05:06 -0300 | fix(1N6o00): merge currency-definition action into the single doGet (duplicate doGet shadowed it) (#482)
-18050d1 | 2026-09-13 00:21:37 -0300 | Add RESERVED QR status enum + exclude from availability pickers (#481)
-3c92587 | 2026-09-12 22:40:05 -0300 | fix(scoring): stop grok scorer falsely stamping non-[CONTRIBUTION EVENT] rows as Successfully Completed (#479)
-53f3075 | 2026-09-12 22:02:07 -0300 | dao_forms: add ?currency_fields action (farm/state/country distinct values) (#478)
-afeaf42 | 2026-09-12 19:20:47 -0300 | update_store_inventory: emit agroverse-inventory/skus.json (SKU catalog cache) (#477)
 … (truncated)
 ```
 
@@ -437,7 +439,8 @@ _(no commits on origin/main in window)_
 ### `proposals` → `proposals`
 
 ```
-_(no commits on origin/main in window)_
+7a14709 | 2026-09-18 14:03:49 -0300 | Add bilingual EN+PT proposal PDF (logo header) for Bis Contabilidade retention (Black King)
+e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade retention proposal (Black King)
 ```
 
 ### `agroverse-inventory` → `agroverse-inventory`
@@ -561,7 +564,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/18/2026 8:51:16 |
+| 2026-09 | 924.5 | 18364.34386 | 9/18/2026 13:50:53 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-11`; scanned last **600** data rows)
 
