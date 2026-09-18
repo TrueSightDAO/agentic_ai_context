@@ -1,7 +1,7 @@
 # CRF Anapu × SunMint — tree-submission cohort proposal & execution roadmap
 
 **Filed:** 2026-09-15, by Claude Anthropic (Envoy), at Gary's request, for review and rectification.
-**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b + PR1 + PR2 + PR3 + PR4 + PR5 + PR7 COMPLETE** (PR6 blocked — see its row) — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). PR1 (vendor-readiness) shipped `sunmint_beta` #84 (2026-09-16, sha 3732e2a4). PR2 (vendor into `cfr-anapu` `gh-pages`) shipped `cfr-anapu` #5 (2026-09-17, sha f0ffdbda) and is **live on `cfr.truesight.me`** (5-path smoke-check green). PR3 (the SunMint program-activity sync job) shipped `lineage-engine` #23 (2026-09-17, sha 81e61956). PR4 (the `sunmint/` activity kind in `build_cv_cache.py` + `program_modes`) shipped `lineage-engine` #24 (2026-09-17, sha 07486ae0). PR5 (SunMint activity badges + itemized click-through) shipped `truesight_me_beta` #381 (badges + `credentials/index.html` click-through; `crf-anapu` mirror byte-identical) **plus** the `lineage-engine` #25 (2026-09-17, sha `df5b0ba`) flat `sunmint_*` aggregate emission on `_cache/index.json` that feeds the renderer. **RESUME HERE = PR6 (`gate: human`) — blocked on the first real `cfr.truesight.me` submission; PR7 docs done.** **§11 (payout-registration sink → governor-only `cfr program` sheet) added 2026-09-17 — see §11.** **§12.6 answered 2026-09-18 (Gary, thread 30026): payout receipt feed = MANUAL until volume justifies a daemon → M3 (attacher) DEFERRED, not cancelled; §12.9 M-track = M1–M2 + M4–M5 done, M0 parked, M3 deferred.**
+**Status: ✅ APPROVED 2026-09-15 · ARCHITECTURE DECIDED = OPTION B (vendored copy)** · **PR0 + PR0b + PR1 + PR2 + PR3 + PR4 + PR5 + PR7 COMPLETE** (PR6 blocked — see its row) — all §6 open decisions resolved; §7 pre-flight complete; §2.1 re-pointed to Option B per Gary (2026-09-15, thread 30026). PR1 (vendor-readiness) shipped `sunmint_beta` #84 (2026-09-16, sha 3732e2a4). PR2 (vendor into `cfr-anapu` `gh-pages`) shipped `cfr-anapu` #5 (2026-09-17, sha f0ffdbda) and is **live on `cfr.truesight.me`** (5-path smoke-check green). PR3 (the SunMint program-activity sync job) shipped `lineage-engine` #23 (2026-09-17, sha 81e61956). PR4 (the `sunmint/` activity kind in `build_cv_cache.py` + `program_modes`) shipped `lineage-engine` #24 (2026-09-17, sha 07486ae0). PR5 (SunMint activity badges + itemized click-through) shipped `truesight_me_beta` #381 (badges + `credentials/index.html` click-through; `crf-anapu` mirror byte-identical) **plus** the `lineage-engine` #25 (2026-09-17, sha `df5b0ba`) flat `sunmint_*` aggregate emission on `_cache/index.json` that feeds the renderer. **RESUME HERE = live UAT of the payout track (first real `[PAYOUT EVENT]` through `report_payout_event.html`) → then PR6 (`gate: human`), blocked on the first real `cfr.truesight.me` submission; PR7 docs done.** **§11 (payout-registration sink → governor-only `cfr program` sheet) added 2026-09-17 — see §11.** **§12.6 answered 2026-09-18 (Gary, thread 30026): payout receipt feed = MANUAL until volume justifies a daemon → M3 (attacher) DEFERRED, not cancelled; §12.9 M-track = M1–M2 + M4–M5 done, M0 parked, M3 deferred.** **§12.7 Q2–Q5 (server side) COMPLETE 2026-09-18 — `[PAYOUT EVENT]` live in Edgar's catalog, sink Tier-1/Tier-2 live, both tabs provisioned, Edgar webhook wired (see §12.9); next = live UAT.**
 
 > **PR0 result (Sophia, 2026-09-15):** two pre-flight items **rectified this document** — the plot
 > flow *is* shipped but hardcodes its origin (§1.3b), and `program_assets/registry.json` does not
@@ -727,8 +727,7 @@ program-level / general disbursement — allowed, but flagged `unlinked`.
 
 ### 12.5 Prerequisites (gates)
 
-1. **Edgar event registration** — `[PAYOUT EVENT]` is **NOT in Edgar's catalog today** (verified
-   2026-09-18 via `lookup_event_docs`). It must be registered before the sink can parse it.
+1. ✅ **Edgar event registration** — `[PAYOUT EVENT]` **IS in Edgar's catalog** (verified 2026-09-18 via `lookup_event_docs`, `source: edgar-catalog (live)`). **DONE.**
 2. **Two new tabs** provisioned: `payouts` (Ops workbook) + `payout events` (`cfr program`).
 3. **Sink extension** — the GAS `doGet` gains a `[PAYOUT EVENT]` branch + the conditional Tier-2 write.
 4. **No PII exclusion** — this event is **not** added to `excluded_pii_events` (it carries no raw PII).
@@ -759,7 +758,7 @@ program-level / general disbursement — allowed, but flagged `unlinked`.
 | **Q2** | Register `[PAYOUT EVENT]` in the Edgar catalog | Edgar / `sentiment_importer` | **`gate: human`** |
 | **Q3** | Sink: `[PAYOUT EVENT]` branch + Tier-1 `payouts` write | `tokenomics` | auto (after Q2) |
 | **Q4** | Tier-2 conditional CFR write (`payout events`) | `tokenomics` | auto |
-| **Q5** | Provision 2 tabs + Edgar webhook wiring (per §11.8) | — | **`gate: human`** |
+| **Q5** | Provision 2 tabs + Edgar webhook wiring (per §11.8) | — | ✅ **COMPLETE 2026-09-18** (tabs provisioned + `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING` wired; see §12.9) |
 
 ---
 
@@ -875,8 +874,17 @@ the **linker and the emitter in one screen** — which is precisely Gary's "gove
   unattached row is the exception-by-construction. **M3 is not needed for go-live** and is struck from
   the critical path — it blocks neither UAT (M5) nor PR6. ✅ Additive if ever needed (§12.8.3 pt 1).
 
-> **M2 does not depend on Q2/Q3** (that is the *server* side, §12.7). The page can be built and smoke-checked
-> against a signed payload rendered in the `#submissionResult` panel; the live emit lands with Q2/Q3.
+- **Q2 ✅ / Q3 ✅ / Q4 ✅ / Q5 ✅ — the *server* side is COMPLETE (2026-09-18, thread 30026).** With the sink
+  branch, both tabs, the catalog entry and the Edgar webhook all in place, a `[PAYOUT EVENT]` now books
+  end-to-end on submit rather than waiting for the hourly cron.
+  - **Q2 ✅** — `[PAYOUT EVENT]` confirmed **live in Edgar's catalog** (`lookup_event_docs` → `source: edgar-catalog (live)`).
+  - **Q3 ✅ / Q4 ✅** — sink branch live: deployment **@32** (`AKfycbxQDdGnw…`, desc *"§12.7 Q3b oauthScopes (#518)"*); Tier-1 → Ops `payouts`, Tier-2 → `cfr program` `payout events`, the latter conditional on `program_slug = crf-anapu` **OR** Submission Source host `cfr.truesight.me`.
+  - **Q5 ✅** — both tabs provisioned + headers verified (Ops `payouts` 15 cols; CFR `payout events` 17 cols incl. `cohort`/`student_ref`), **and** the Edgar webhook wired 2026-09-18: `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING` added to the `dao_protocol` `.env` (webhook key count 33 → 34) pointing at @32, then `systemctl restart truesight-dao-protocol` (backup `.env.bak.payout-webhook-20260918T174104Z`). The live process env and a dispatch-unit probe both confirm `_webhook_url('PAYOUT_PROCESSING')` resolves non-empty — **the "no webhook URL … GAS cron will process" warning is gone.**
+  - **§12.3 dedup gate verified implemented** — the col-R `PROCESSED:PAYOUT_EVENT` gate was flagged as a **Q3b acceptance criterion** (because `report_payout_event.html` reuses one RSA signature across up to 3 retries — the lost-confirmation case). Confirmed live in the sink: `PAYOUT_EVENT_TC_DEDUP_COL = 17` (col R), `PAYOUT_EVENT_PROCESSED_MARKER = 'PROCESSED:PAYOUT_EVENT'`, and `markPayoutEventProcessed_` **appends** rather than stomping another processor's marker. **A retry cannot double-log a payout row.**
+
+> **M2 does not depend on Q2/Q3** (that is the *server* side, §12.7) — it shipped first and was smoke-checked
+> against a signed payload rendered in the `#submissionResult` panel. **Q2/Q3 have since landed**, so the live
+> emit now books through the wired webhook.
 > **PR6 (§8) remains the only `gate: human`** on the cohort track; **M5** is the payout track's UAT gate.
 
 ### 12.10 ⏳ Backfill — the Paulo payout, and the first place the design meets reality (Gary, 2026-09-18)
