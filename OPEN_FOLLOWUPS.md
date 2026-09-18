@@ -39,6 +39,30 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Deploy + legacy-label cleanup for the CurrencyConversion.js canonicalize/idempotency fix (PR #525)
+**Filed 2026-09-18. Owner: Sophia (awaiting governor deploy go). Governor: Gary (thread 31905).**
+
+**Context.** Two defects in `tokenomics/google_app_scripts/1orWgdGckts55owiYOysR_y4sde52T_eUmrtDGAEkb4YV5DlUfJ0JZC5J/CurrencyConversion.js`
+are fixed in **PR #525** (code only — NOT deployed):
+1. `parseCurrencyConversionMessage()` forced `.toUpperCase()` on source/target currency -> `Brazilian Reis`
+   written as `BRAZILIAN REIS`, which the case-sensitive `off chain asset balance` rollup bucketed
+   separately (three co-existing rows). Fixed with `canonicalizeCurrency_()` resolving against
+   `agroverse-inventory/currencies.json`.
+2. `processNewCurrencyConversions()` appended the debit+credit pair before flipping Status, with no
+   lock and no append-level idempotency -> two overlapping runners (Edgar webhook + 10-min cron)
+   could each post a pair (observed: `offchain transactions` rows 4315-4318). Fixed with a script
+   lock + `NEW -> PROCESSING` claim-before-append + a Request-Transaction-ID idempotency scan.
+
+**To do (governor decision first).**
+1. **`clasp push` the fix** to the GAS project above (deploy is deliberately NOT in PR #525).
+   After deploy, re-run `?action=parseAndProcessCurrencyConversionLogs` once and sanity-check the tail.
+2. **Legacy label cleanup.** The Main Ledger still carries the historical mangled labels
+   (`BRAZILIAN RE` on intake row `Edgar_20260511022114_011`; the old `BRAZILIAN REIS` balance row has
+   already been hand-fixed by Gary). Decide whether to normalise the historical intake/summary rows;
+   the new code only self-heals *future* resubmissions, it does not rewrite existing rows.
+3. **`manifest.json` "deployments.head" is still `TBC`** for this scriptId — record the `/exec` URL so the
+   next agent doesn't have to re-probe 24 candidates (this cost real time on 2026-09-18).
+
 ### SECURITY: Agroverse Wix token is still retrievable from PUBLIC `tokenomics` git history (committed `63f441e`)
 **Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31220).**
 
