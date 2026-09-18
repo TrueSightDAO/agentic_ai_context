@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-18T05:00:12Z`
+- Generated (UTC): `2026-09-18T11:37:24Z`
 - Look-back: **7** calendar days (`2026-09-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
+- `[CONTRIBUTION EVENT]` × 25
 - `[SALES EVENT]` × 6
-- `[PRACTICE EVENT]` × 2
+- `[PRACTICE EVENT]` × 3
 - `[ASSET RECEIPT EVENT]` × 1
 - _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20260916210345_030` · **Edgar** · [SALES EVENT] Item: 2024_20260710_13 · Sales price: 11.80 · Sold by: Kirsten Ritschel
 - `Edgar_20260916210350_032` · **Edgar** · [SALES EVENT] Item: 2024_20260710_14 · Sales price: 11.80 · Sold by: Kirsten Ritschel
 - `Edgar_20260916210404_034` · **Edgar** · [SALES EVENT] Item: 2024_20260710_37 · Sales price: 11.80 · Sold by: Gary Teh
 - `Edgar_20260916210408_036` · **Edgar** · [SALES EVENT] Item: 2024_20260710_38 · Sales price: 11.80 · Sold by: Gary Teh
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260917171500_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord Envoy governor parity — PR0 (bot id + sheet binding) and plan author…
 - `Edgar_20260917171503_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh direct time — Envoy Discord parity direction, reframe, and UAT
 - `Edgar_20260917223651_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: AGL16 — verify + evidence the CIC lab-test payment (R$2,880.00), safely asso…
+- `Edgar_20260918110526_002` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-18T11:05:24.290Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-17T10:59:14.436Z`
+- Generated (UTC): `2026-09-18T10:59:13.799Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -84,12 +84,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **944**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1017**)
+- **Email Agent Follow Up** — logged sends: warmup **948**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1021**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **869**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **873**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -275,6 +275,7 @@ _All dated lines on/after 2026-09-11_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0559b87 | 2026-09-18 05:05:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 67538b4 | 2026-09-17 17:13:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 9558428 | 2026-09-17 11:59:33 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -323,6 +324,8 @@ cd13355 | 2026-09-10 23:44:14 -0300 | Add CRF Anapu program credentialing surfac
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+28e0ea3 | 2026-09-18 02:00:29 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
+9b761fc | 2026-09-18 02:00:28 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 23cf197 | 2026-09-18 00:44:15 -0300 | Merge pull request #1277 from TrueSightDAO/auto/advisory-refresh-2026-09-18
 2b901cc | 2026-09-18 03:44:02 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 39bef90 | 2026-09-17 23:06:09 -0300 | Rev 5: AGL6/CP327946643BR billed by Coopercabruca NF-e set (not Black King) (#1276)
@@ -361,8 +364,6 @@ eff1545 | 2026-09-17 12:09:50 -0300 | handoffs: mark BRAIN_TIER_AWARENESS COMPLE
 06ea9e1 | 2026-09-17 10:15:22 -0300 | docs(followups): flag two source-guide QC discrepancies (HK import guide #2, GCC/Mideast guide) (#1246)
 3188a86 | 2026-09-17 10:09:42 -0300 | docs(brazil): add GCC/Middle East import SOP + refresh HK SOP (labelling, CEPA transit, timing) (#1245)
 4e27d2c | 2026-09-17 09:50:04 -0300 | vault-migration: Unit 6 CLOSED — Gary rules NOT to archive bare PEMs (restore dups) (#1244)
-3c58579 | 2026-09-17 09:49:25 -0300 | CRF PR7 docs: document program_modes/sunmint_cohort; record PR6 blocked (#1243)
-5fbf1eb | 2026-09-17 08:59:04 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
 … (truncated)
 ```
 
@@ -437,6 +438,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 56fa1f5 | 2026-09-17 12:05:02 +0000 | chore: refresh currencies.json [skip ci]
 24d75f0 | 2026-09-17 11:46:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 584edc7 | 2026-09-16 18:28:38 -0300 | chore: refresh Agroverse SKU catalog snapshot
@@ -553,7 +555,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/17/2026 21:50:54 |
+| 2026-09 | 924.5 | 18364.34386 | 9/18/2026 3:51:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-11`; scanned last **600** data rows)
 
