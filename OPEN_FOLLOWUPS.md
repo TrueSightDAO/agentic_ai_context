@@ -39,6 +39,34 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Black King corridor: NF1/NF2 have a tracking number but no arrival-register row (register gap)
+**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31905).**
+
+NF1 (`CP340992695BR`) and NF2 (`CP340992687BR`) are both `Autorizada` in `shipment_nfe`, and both
+parcels appear in `CORREIOS_SHIPMENTS.md` with shipping receipts, but the arrival register
+(`offchain assets in transit`, gid 1888711771) has **no row** for them. The register is missing
+3 of the 14 Correios trackings (`CP340992130BR`, `CP340992687BR`, `CP340992695BR`).
+
+**Per the destination rule** (NF-e destinatario "Taraval St" ⟹ Val Lapidus), both land at
+**Val Lapidus**.
+
+**Fix:** add the two register rows (Val Lapidus), or record an explicit exemption. Source:
+`BLACK_KING_NFE_TRANSIT_CROSSWALK.md` State B.
+
+### Black King corridor: NF11/NF12/NF14 NF-e destinatario (Taraval ⟹ Val Lapidus) conflicts with their register destination (Kirsten / 1423 Hayes St)
+**Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 31905).**
+
+NF11 (`CP340993988BR`), NF12 (`CP340993869BR`) and NF14 (`CP340993299BR`) each carry the **Taraval**
+destinatario, which by the governor-confirmed destination rule ⟹ **Val Lapidus**. But the arrival
+register routes those same trackings to **Kirsten Ritschel / 1423 Hayes St**.
+
+Either (a) the register destination member is mislabelled, or (b) the parcels physically went to
+Hayes despite a Taraval NF-e (Taraval being only the fiscal/billing address). **Unresolved.**
+
+**Fix:** governor to confirm the physical recipient for these three parcels, then align the
+register (and, if needed, the crosswalk). Do **not** silently rewrite - ambiguous. Source:
+`BLACK_KING_NFE_TRANSIT_CROSSWALK.md` Rev 3 (⚠️ Destination conflict box).
+
 ### ACL privatisation of the `Telegram Chat Logs` workbook broke two public surfaces (`/notarizations`, `/submissions/raw-telegram-chatlogs`)
 **Filed 2026-09-18. Owner: unclaimed. Governor: Gary (thread 30026).**
 

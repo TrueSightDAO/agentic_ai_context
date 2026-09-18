@@ -1,8 +1,11 @@
 # Black King (Matheus Reis Pereira) - NF-e / transit-register crosswalk
 
 **Generated:** 2026-09-18 - Sophia Truesight (autopilot) - thread 31905
-**Revision 2** (2026-09-18): corrected cardinality to 1:N and removed an empty-key join artifact.
-See `` CHANGELOG `` at the foot for the Rev-1 errors.
+**Revision 3** (2026-09-18): added the **Taraval Street destination rule** (NF-e destino
+`TRUETECH INC - TARAVAL ST, 3041` ⟹ physical recipient **Val Lapidus**) and flagged the
+NF11/NF12/NF14 register-vs-NF-e destination conflict. Revision 2 corrected cardinality to 1:N
+and removed an empty-key join artifact.
+See `` CHANGELOG `` at the foot.
 
 **Purpose:** the authoritative join between the **15 SEFAZ-issued NF-e** (keyed by
 44-digit *chave*) and the **arrival register** (keyed by *tracking number*). The two source
@@ -34,6 +37,30 @@ blank on the register side = *tracking not recorded*.
 
 ---
 
+## Destination rule - "Taraval Street" in an NF-e = Val Lapidus
+
+**Governor-confirmed (Gary Teh, thread 31905, stated twice):** *"If anything is to Taraval
+street in the Nota fiscal it is actually landing at Val Lapidus location."*
+
+The DANFE *DESTINATARIO* on this corridor almost always reads the **TrueTech Inc fiscal
+address** `TRUETECH INC - TARAVAL ST, , 3041 SAO FRANCISCO EXTERIOR-EX` - **verified in 13 of
+the 15 DANFE PDFs** (`black-king-nota-fiscal-raw/nfe/`, PyMuPDF grep of the destinatario
+block). So an NF-e reading "Taraval St" means the goods are **physically landing at
+Val Lapidus (3041 Taraval St, San Francisco, CA 94116)** - not at a generic "TrueTech" site.
+
+| NF-e destinatario text | Physical recipient |
+|---|---|
+| `TRUETECH INC - TARAVAL ST, 3041 SAO FRANCISCO EXTERIOR-EX` | **Val Lapidus** (3041 Taraval St, SF 94116) |
+| `ANDREA CATALINA FALCON RIOS DE PABST - RUA LINDENGUT, 10 GLARUS` | Andrea Catalina (CH) - NF5 |
+| `AGNIESKA MARECKA - UL. KOSCIUSZKI 10 LOK, 1 POLONIA` | Aga Marecka (PL) - NF9 |
+
+> **Corollary - Taraval != Hayes.** **1423 Hayes St** (the other TrueTech address,
+> `WORKSPACE_CONTEXT.md` Sec 3c) is a **different** physical site, held by **Kirsten
+> Ritschel**. Do not conflate the two TrueTech addresses. See
+> `references/SHIPPING_ADDRESSES_REFERENCE.md`.
+
+---
+
 ## Table 1 - NF-e -> register lines (all 15; 1:N)
 
 | NF-e | Date | Value (R$) | Recipient | SEFAZ | Tracking | Register rows | State |
@@ -59,6 +86,16 @@ blank on the register side = *tracking not recorded*.
 > the arrival register**. They are therefore a **register gap**, not a verified register link.
 > The register is **missing 3 of the 14 Correios trackings**: `CP340992130BR`, `CP340992687BR`
 > (NF2), `CP340992695BR` (NF1). **The register is not a superset of the shipping index.**
+>
+> **Destination per the rule:** both carry the Taraval destinatario, so by the destination rule
+> they land at **Val Lapidus**. Their register rows are missing (see `OPEN_FOLLOWUPS.md`).
+
+> **⚠️ Destination conflict - NF11 / NF12 / NF14.** These three NF-e carry the **Taraval**
+> destinatario (⟹ **Val Lapidus** by the rule above), **but** the arrival register routes their
+> trackings (`CP340993988BR`, `CP340993869BR`, `CP340993299BR`) to **Kirsten Ritschel /
+> 1423 Hayes St**. Either the register destination member is mislabelled, or those parcels went
+> physically to Hayes despite a Taraval NF-e. **Unresolved - needs governor confirmation before
+> the register is rewritten** (no silent data mutation). Filed in `OPEN_FOLLOWUPS.md`.
 
 ## Table 2 - arrival register -> NF-e (all 19 rows)
 
@@ -152,6 +189,14 @@ issued or an exemption noted.
 ---
 
 ## CHANGELOG
+
+**Rev 3 (2026-09-18)** - destination rule added after governor input (thread 31905):
+1. **"Taraval St" NF-e destination rule.** Encoded the governor-confirmed rule that an NF-e
+   whose destinatario reads `TRUETECH INC - TARAVAL ST, 3041` lands physically at **Val Lapidus**
+   (3041 Taraval St, SF 94116). Verified 13/15 DANFE PDFs carry that destinatario.
+2. **NF11 / NF12 / NF14 destination conflict flagged** (Taraval NF-e vs Hayes register rows) -
+   left unresolved pending governor confirmation; no register rows changed.
+3. **NF1 / NF2** annotated with their rule-derived destination (Val Lapidus) pending register rows.
 
 **Rev 2 (2026-09-18)** - corrections after governor review:
 1. **Cardinality fixed to 1:N.** Rev 1 listed each NF-e once; NF5 (2 rows) and NF12 (3 rows) were
