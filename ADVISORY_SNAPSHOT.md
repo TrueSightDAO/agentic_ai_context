@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-19T04:52:51Z`
+- Generated (UTC): `2026-09-19T11:20:30Z`
 - Look-back: **7** calendar days (`2026-09-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -77,7 +77,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-18T10:59:13.799Z`
+- Generated (UTC): `2026-09-19T10:59:14.145Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -87,12 +87,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **948**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1021**)
+- **Email Agent Follow Up** — logged sends: warmup **957**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1030**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **873**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **882**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -278,6 +278,7 @@ _All dated lines on/after 2026-09-12_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+02df644 | 2026-09-19 04:56:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 cae9181 | 2026-09-18 21:10:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 61bec1a | 2026-09-18 16:40:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 b06be2a | 2026-09-18 11:41:58 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -321,6 +322,8 @@ e5edb34 | 2026-09-12 15:46:15 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+25eaab1 | 2026-09-19 01:53:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
+617efbf | 2026-09-19 01:53:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
 011d229 | 2026-09-19 00:40:08 -0300 | Merge pull request #1283 from TrueSightDAO/auto/advisory-refresh-2026-09-19
 f234e05 | 2026-09-19 03:39:56 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
 ffcb98b | 2026-09-18 18:07:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
@@ -359,8 +362,6 @@ cf5e132 | 2026-09-18 00:58:15 +0000 | docs(gas): add the Credentials.js rule (1.
 9bf4c0d | 2026-09-17 17:52:38 -0300 | CFR §12.8: payout module is a Sunmint program capability (CFR = first executor); fix menu placement (#1264)
 5500ab7 | 2026-09-17 17:49:10 -0300 | CFR §12.8/§12.9: spec report_payout_event.html (DApp) + resolve §12.6 #2/#3 (#1263)
 4d7d7b1 | 2026-09-17 16:15:40 -0300 | handoffs: fix stale active_supervision.json (sprint.truesight.me?view=sup) (#1261)
-eb01106 | 2026-09-17 16:08:30 -0300 | Plan §12: [PAYOUT EVENT] dual-write (Ops `payouts` tab + conditional CFR `payout events`) (#1260)
-e537bce | 2026-09-17 15:52:27 -0300 | Plan §11.10 + manifest: PII Event Envelope workstream forks P4 (§11.6) (#1259)
 … (truncated)
 ```
 
@@ -438,6 +439,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
 b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 56fa1f5 | 2026-09-17 12:05:02 +0000 | chore: refresh currencies.json [skip ci]
@@ -552,7 +554,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/18/2026 21:50:47 |
+| 2026-09 | 924.5 | 18364.34386 | 9/19/2026 3:51:48 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-12`; scanned last **600** data rows)
 
