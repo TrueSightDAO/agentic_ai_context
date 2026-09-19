@@ -3,6 +3,11 @@
 ## Overview
 This document lists all Google API credentials, service account IDs, and OAuth client IDs available in the codebase for accessing Google Docs and Google Sheets.
 
+> **Which SA can write to which sheet tab?** See the canonical, empirically-probed
+> **[`GOOGLE_SHEET_SA_ACCESS_MATRIX.md`](GOOGLE_SHEET_SA_ACCESS_MATRIX.md)**
+> (machine-readable: `google_sheet_sa_access_matrix.json`). Use it *before* picking an
+> SA for a write. Refresh with `scripts/probe_sheet_sa_access.py`.
+
 ---
 
 ## 🔐 Service Account Credentials (For Google Sheets/Docs API)
