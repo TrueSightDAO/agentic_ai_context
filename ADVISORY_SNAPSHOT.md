@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-19T11:20:30Z`
+- Generated (UTC): `2026-09-19T16:00:20Z`
 - Look-back: **7** calendar days (`2026-09-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,10 +32,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
+- `[CONTRIBUTION EVENT]` × 25
 - `[SALES EVENT]` × 6
+- `[PRACTICE EVENT]` × 3
 - `[PROPOSAL VOTE]` × 3
-- `[PRACTICE EVENT]` × 2
 - `[NOTARIZATION EVENT]` × 1
 - `[PROPOSAL CREATION]` × 1
 - `[CURRENCY CONVERSION EVENT]` × 1
@@ -43,9 +43,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260917171500_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Discord Envoy governor parity — PR0 (bot id + sheet binding) and plan author…
-- `Edgar_20260917171503_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh direct time — Envoy Discord parity direction, reframe, and UAT
-- `Edgar_20260917223651_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: AGL16 — verify + evidence the CIC lab-test payment (R$2,880.00), safely asso…
 - `Edgar_20260918110526_002` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-18T11:05:24.290Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260918121913_004` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: NA · Longitude: NA
 - `Edgar_20260918123321_006` · **Edgar** · [PROPOSAL CREATION] Type: vendor · Title: Retain Bis Contabilidade e Negocios Ltda for Black King accounting services · Content: **Vendor:** Bis Contabilidade e Negócios Ltda - CNPJ 11.766.341/0001-99
@@ -63,6 +60,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260918214437_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 400.6 · Description: CRF Anapu — Sophia execution (payout pipeline, catalog, E2E, intake fix)
 - `Edgar_20260918214441_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 301.8 · Description: CRF Anapu — governor direct time (payout pipeline direction + UAT)
 - `Edgar_20260918235852_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Media Archive Pipeline verification + farm video curation for Soulful PDX ou…
+- `Edgar_20260919124458_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with accountant to get nota fiscal issued
+- `Edgar_20260919125839_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with cacao innovation center regarding the 6 samples we dropped of…
+- `Edgar_20260919143437_030` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-19T14:34:35.777Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -278,6 +278,7 @@ _All dated lines on/after 2026-09-12_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cbdc173 | 2026-09-19 11:24:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 02df644 | 2026-09-19 04:56:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 cae9181 | 2026-09-18 21:10:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 61bec1a | 2026-09-18 16:40:22 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -322,6 +323,11 @@ e5edb34 | 2026-09-12 15:46:15 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bf82b2e | 2026-09-19 09:38:40 -0300 | docs: bilingual (EN/PT) invoice convention for Brazil/NF-e (#1284)
+bafb065 | 2026-09-19 09:38:13 -0300 | Add bilingual (EN/PT) Rev 11 packing list for accountant/NF-e
+3717783 | 2026-09-19 09:38:09 -0300 | Add bilingual (EN/PT) Rev 11 commercial invoice for accountant/NF-e
+c58e217 | 2026-09-19 08:20:48 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
+1ed9693 | 2026-09-19 08:20:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
 25eaab1 | 2026-09-19 01:53:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
 617efbf | 2026-09-19 01:53:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
 011d229 | 2026-09-19 00:40:08 -0300 | Merge pull request #1283 from TrueSightDAO/auto/advisory-refresh-2026-09-19
@@ -357,11 +363,6 @@ cf5e132 | 2026-09-18 00:58:15 +0000 | docs(gas): add the Credentials.js rule (1.
 62a7516 | 2026-09-17 19:06:01 -0300 | docs(crf): record §12.9 payout-module progress (M1/M2/M4 ✅, M5 gated) + reconcile manifest row (#1267)
 3da5f12 | 2026-09-17 18:36:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
 7e69e83 | 2026-09-17 18:36:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
-7a6855b | 2026-09-17 18:03:50 -0300 | CFR §12.10.4: the funding leg IS on chain — payout completes a double-entry, not starts one (#1266)
-148e545 | 2026-09-17 18:01:12 -0300 | CFR §12.10: backfill subsection — the Paulo payout (first real [PAYOUT EVENT]) + count reconciliation (#1265)
-9bf4c0d | 2026-09-17 17:52:38 -0300 | CFR §12.8: payout module is a Sunmint program capability (CFR = first executor); fix menu placement (#1264)
-5500ab7 | 2026-09-17 17:49:10 -0300 | CFR §12.8/§12.9: spec report_payout_event.html (DApp) + resolve §12.6 #2/#3 (#1263)
-4d7d7b1 | 2026-09-17 16:15:40 -0300 | handoffs: fix stale active_supervision.json (sprint.truesight.me?view=sup) (#1261)
 … (truncated)
 ```
 
@@ -439,6 +440,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+277d073 | 2026-09-19 11:32:00 +0000 | chore: refresh currencies.json [skip ci]
 60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
 b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -554,7 +556,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/19/2026 3:51:48 |
+| 2026-09 | 924.5 | 18364.34386 | 9/19/2026 8:51:00 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-12`; scanned last **600** data rows)
 
