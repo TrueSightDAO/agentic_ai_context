@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Standing rule: consult `GOOGLE_SHEET_SA_ACCESS_MATRIX.md` before probing service-account access
+**Filed 2026-09-19. Owner: Sophia. Governor: Gary (thread 33265). Status: matrix SHIPPED (PR #1289); this entry is the habit pointer.**
+
+**Rule.** Before picking a service account to **write** to a Google Sheet tab — or before declaring a tab "unwritable" — read `credentials/GOOGLE_SHEET_SA_ACCESS_MATRIX.md` (machine-readable: `credentials/google_sheet_sa_access_matrix.json`). It is the canonical, empirically-probed per-tab truth for the Main Ledger and Cypher Defense Ledger.
+
+**Why it exists.** Repeated sessions stumbled on "which SA for which sheet/tab": info was scattered across `GOOGLE_API_CREDENTIALS.md`, `GOVERNOR_SHEET_PERMISSION_SYNC_SOP.md`, `AUTOPILOT_GOOGLE_ACCESS_PLAN.md`, and per-project code, with nothing stating the per-tab truth in one place. On 2026-09-19 a session probed the `Contributors contact information` tab with a **wrong key path** (`FileNotFoundError`), mis-read the resulting protection metadata as "no SA can ever write this", and escalated a false blocker. The governor corrected it: `agroverse-ledger-manager` writes the tab fine.
+
+**Don't repeat:**
+1. A `FileNotFoundError` on a credential JSON is a **path** bug, not an access verdict. Confirm the key file exists first.
+2. A protected-range object with **no editor emails** does not mean owner-only. Spreadsheet-level editors can still write. Protection metadata is **not** a write test.
+3. **Test the write** (e.g. empty string to the bottom grid row, read back) before concluding anything about access.
+4. A tab that is genuinely owner-protected to every SA (e.g. `Governors`) is a **sheet-permission** ask to a human — never a credentials fault.
+
+**Refresh:** `scripts/probe_sheet_sa_access.py` regenerates the matrix after any permission change, governor rotation, or new SA.
+
 ### RESOLVED-INCIDENT: GAS project `1orWgdGckts55…` was load-broken by a top-level `getCredentials()` ReferenceError
 **Filed 2026-09-18. Owner: Sophia. Governor: Gary (thread 31905). Status: FIXED+DEPLOYED (tokenomics PR #527, v10).**
 
