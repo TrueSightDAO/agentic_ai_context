@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-19T16:00:20Z`
+- Generated (UTC): `2026-09-19T20:54:45Z`
 - Look-back: **7** calendar days (`2026-09-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,22 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
-- `[SALES EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 30
 - `[PRACTICE EVENT]` × 3
 - `[PROPOSAL VOTE]` × 3
+- `[SALES EVENT]` × 2
 - `[NOTARIZATION EVENT]` × 1
 - `[PROPOSAL CREATION]` × 1
 - `[CURRENCY CONVERSION EVENT]` × 1
-- _free-form (no bracket tag)_ × 2
+- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260918110526_002` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-18T11:05:24.290Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260918121913_004` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: NA · Longitude: NA
-- `Edgar_20260918123321_006` · **Edgar** · [PROPOSAL CREATION] Type: vendor · Title: Retain Bis Contabilidade e Negocios Ltda for Black King accounting services · Content: **Vendor:** Bis Contabilidade e Negócios Ltda - CNPJ 11.766.341/0001-99
-- `Edgar_20260918170130_008` · **Edgar** · [PROPOSAL VOTE] Proposal: retain-bis-contabilidade-e-negocios-ltda-for-black-king-accounting-services · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/19 · Vote: YES
-- `Edgar_20260918170136_010` · **Edgar** · [PROPOSAL VOTE] Proposal: retain-bis-contabilidade-e-negocios-ltda-for-black-king-accounting-services · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/19 · Vote: YES
 - `Edgar_20260918170147_012` · **Edgar** · [PROPOSAL VOTE] Proposal: retain-bis-contabilidade-e-negocios-ltda-for-black-king-accounting-services · Proposal URL: https://github.com/TrueSightDAO/proposals/pull/19 · Vote: YES
 - `Edgar_20260918173040_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260918173535_016` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Warehouse Manager: Gary Teh · Source Currency: USD
@@ -63,6 +58,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260919124458_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with accountant to get nota fiscal issued
 - `Edgar_20260919125839_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with cacao innovation center regarding the 6 samples we dropped of…
 - `Edgar_20260919143437_030` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-19T14:34:35.777Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260919163514_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reaching out to Oscar to make arrangements to visit his farm while Liz is he…
+- `Edgar_20260919163702_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Asking Fatima to check how long it would take for Santos to roast the cacao …
+- `Edgar_20260919163945_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion regarding conversation with Santos about processing the 40kg caca…
+- `Edgar_20260919175015_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Pre-filling FDA prior notice for Liz's 40 kilogram of Oscar's cacao passing …
+- `Edgar_20260919180408_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussion on schedule of Chinese partner's arrival
 
 ---
 
@@ -278,6 +278,7 @@ _All dated lines on/after 2026-09-12_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d84e7f1 | 2026-09-19 16:01:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 cbdc173 | 2026-09-19 11:24:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 02df644 | 2026-09-19 04:56:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 cae9181 | 2026-09-18 21:10:35 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -323,6 +324,8 @@ e5edb34 | 2026-09-12 15:46:15 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3fcc5de | 2026-09-19 13:00:46 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
+e0180f6 | 2026-09-19 13:00:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
 bf82b2e | 2026-09-19 09:38:40 -0300 | docs: bilingual (EN/PT) invoice convention for Brazil/NF-e (#1284)
 bafb065 | 2026-09-19 09:38:13 -0300 | Add bilingual (EN/PT) Rev 11 packing list for accountant/NF-e
 3717783 | 2026-09-19 09:38:09 -0300 | Add bilingual (EN/PT) Rev 11 commercial invoice for accountant/NF-e
@@ -361,8 +364,6 @@ cf5e132 | 2026-09-18 00:58:15 +0000 | docs(gas): add the Credentials.js rule (1.
 3d9a62c | 2026-09-17 21:29:13 -0300 | Add Black King NFe / transit-register crosswalk (#1269)
 6c1be68 | 2026-09-17 19:38:20 -0300 | docs(crf): M5 prod promotion recorded (live-prod smoke 5/5) + reconcile manifest row (#1268)
 62a7516 | 2026-09-17 19:06:01 -0300 | docs(crf): record §12.9 payout-module progress (M1/M2/M4 ✅, M5 gated) + reconcile manifest row (#1267)
-3da5f12 | 2026-09-17 18:36:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-17 UTC)
-7e69e83 | 2026-09-17 18:36:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-17 UTC)
 … (truncated)
 ```
 
@@ -467,6 +468,8 @@ bc1bb68 | 2026-09-12 10:51:36 +0000 | chore: refresh store and partner inventory
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Clara on the partner page (#324)
+1bcc0b0 | 2026-09-19 17:48:50 -0300 | Santos Chocolate Factory page: add verified legal-entity details (CNPJ) (#323)
 1390844 | 2026-09-12 22:33:13 -0300 | media-gallery: fetch-first published gallery with local fallback + curation merge (PR6) (#322)
 ```
 
@@ -556,7 +559,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/19/2026 8:51:00 |
+| 2026-09 | 924.5 | 18364.34386 | 9/19/2026 13:51:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-12`; scanned last **600** data rows)
 
