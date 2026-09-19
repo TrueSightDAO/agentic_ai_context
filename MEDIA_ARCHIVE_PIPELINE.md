@@ -53,7 +53,7 @@ Written so **any Sophia instance** can process a farm end-to-end or pick up a fa
 | Photos (HEIC/JPG originals) | GitHub repo **`farm-media-raw`**, `<farm-id>/photos/` | individual files, **Content-API only** (repo can get large; never clone/branch-edit) |
 | Manifest / index | `farm_media_manifests/<farm-id>.json` (repo TrueSightDAO/farm_media_manifests) | the reference layer: sha256, GPS, duration, objects[], yt_id — keyword-searchable via GitHub code search |
 | Farm page gallery | `agroverse_shop_beta/farms/<farm-id>/media.json` | curated youtube + image entries |
-| Plot polygon | `sunmint/plots/index.geojson` (+ `SunMint Plots` sheet tab) | only if new farm plot |
+| Plot polygon | `sunmint/plots/index.geojson` (+ `SunMint Plots` sheet tab) | only if new farm plot; also the join target for media GPS (§4 nearest-location) |
 
 ## Cacao-variety media — `cacao-varieties` namespace (decision 2026-09-09, thread 23018)
 
@@ -146,6 +146,7 @@ write `equipment.json` + index entry + link BEAN_TO_BAR rows.
 - `exiftool -s -s -GPSCoordinates -GPSLatitude -GPSLongitude <file>` on every file.
 - MOV stores GPS under QuickTime key **`GPSCoordinates`** as `3°23'10.68"S, 51°51'5.04"W, 134.4m` — parse DMS; **S/W = negative**.
 - Coverage ~115/124; interior shots often lack GPS.
+- **Nearest known location** — associate every GPS point with the closest plot/tree in our network via `farm_media_locations.py` (see §4). A point >2 km from every known location is flagged `nearest_location_ok: false` — the automated mis-attribution check (the "Bom Sucesso trap"). Run `python3 farm_media_locations.py refresh` to (re)build the index from the live `sunmint/plots/index.geojson` + `sunmint/trees/index.geojson` layers.
 - **New farm?** convex-hull the unique points → plot polygon → add row to `SunMint Plots` sheet tab (plot_id, farm_id, status `proposed`/`planted`, `boundary_authority: approx`, media, notes) → run `build_plots_geojson.py` (needs `sunmint_work` checkout + `agroverse_qr_code_manager` SA key at `/opt/truesight_autopilot/config/google/`) → push `plots/index.geojson` via `upload_file_to_github` (sunmint is api-only).
 
 ### 3. SHA-256 dedupe (mandatory)
@@ -153,6 +154,7 @@ write `equipment.json` + index entry + link BEAN_TO_BAR rows.
 
 ### 4. Manifest build
 - JSON per video: `file, size_bytes, sha256, duration_s, latitude, longitude, objects[]`.
+- **Nearest-location join** (`farm_media_locations.py`): each GPS item is stamped `nearest_location_id` / `_name` / `_type` / `_farm_id` / `nearest_distance_m` / `nearest_location_ok`, and the manifest carries a top-level `nearest_location_coverage` summary (e.g. `65/65 GPS items within 2 km of a known location`). The join is **annotative** — it never blocks upload/publish, and a missing index degrades to a no-op. Ship: [farm-media-daemon#30](https://github.com/TrueSightDAO/farm-media-daemon/pull/30).
 - Pilot (La do Sitio, 72 videos): `/tmp/la_do_manifest_full.json`.
 
 ### 5. Object detection (local, governor-approved if accurate)
@@ -216,7 +218,7 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 - PR → merge → beta verify → `sync_beta_to_prod` **only on explicit governor go**.
 
 ### 10. Manifest PR to agentic_ai_context
-- `farm_media_manifests/<farm-id>.json` (+ update index). `git_push_changes` on the data repo (TrueSightDAO/farm_media_manifests). Include v2 fields when transcription ran: `creation_date`, `transcription`, `transcription_status`.
+- `farm_media_manifests/<farm-id>.json` (+ update index). `git_push_changes` on the data repo (TrueSightDAO/farm_media_manifests). Include v2 fields when transcription ran: `creation_date`, `transcription`, `transcription_status`. The nearest-location fields (§4) ride along in the same file.
 
 ## Handoff checklist (governor → another Sophia instance)
 Include in the handoff message:

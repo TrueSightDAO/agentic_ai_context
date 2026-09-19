@@ -1046,6 +1046,13 @@ Today `farm_media_manifests/` models only `farm_id`; `truesight_me/programs/<slu
 
 **Work (~60 min):** (1) add `entity_type` (`farm` | `program` | …) to the manifest schema + the `farm_media_manifests/index.json` entries; (2) document a `programs/<slug>/media.json` gallery contract mirroring the farm `media.json` (`{schemaVersion, hero, gallery:[…]}`) and wire the program shell to render it via `media-gallery.js`; (3) update `CREDENTIALING_PROGRAM_PAGES.md` §6 (manifest schema) + `MEDIA_ARCHIVE_PIPELINE.md` terminology (add the `program-media` source namespace). First instance: `crf-anapu` — see `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md`. Blocker: none (governor-directed).
 
+### MAP: surface the nearest-location join on farm pages (per-plot media galleries)
+**Filed 2026-09-19. Owner: Sophia. Governor: Gary (thread 19892).**
+
+The media→location join **shipped** in [farm-media-daemon#30](https://github.com/TrueSightDAO/farm-media-daemon/pull/30): `farm_media_manifest.build_manifest()` now stamps each GPS-bearing item with `nearest_location_id` / `_name` / `_type` / `_farm_id` / `nearest_distance_m` / `nearest_location_ok`, plus a top-level `nearest_location_coverage` summary. The new `farm_media_locations.py` joins against the generated `sunmint/plots/index.geojson` (plot centroids) + `sunmint/trees/index.geojson` (tree points) — 147 locations as of 2026-09-19.
+
+**Remaining (the "per-plot gallery" half):** (1) carry `nearest_location_id` through into the gallery doc (`farm_media_gallery.build_gallery`) and grow the `media.json` contract to expose it; (2) let a farm page **filter/tab its gallery by plot** (today galleries are farm-keyed only); (3) set a **refresh cadence** for `locations_cache.json` (currently a manual `farm_media_locations.py refresh`, while the plots layer regenerates daily); (4) decide the **canonical location-id** for human-facing labels — `plot_id` vs `tree_id` vs a journey-stop slug — per `AGROVERSE_SUNMINT_FARM_LISTING.md` §6 (never write codes from guesses). First instance: `paulo-la-do-sitio` (3 plots). Related: the `entity_type` (`farm`|`program`) manifest follow-up above. No prod sync without GO.
+
 ### Edgar reports `fileUploadedToGithub: false` on binary-upload failure but still returns a success shape - clients cannot tell "event recorded" from "photo stored"
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25181).**
 
