@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T09:25:01Z",
+  "generated_at": "2026-09-19T22:45:53Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "869c0cf600dd65af48d201d3cff1db943d48bcdfad0a9f2565629ec5bec53632",
+  "source_sha256": "08951f99c8da5c3e5d9d24cd4be0817b78c51504e58d2c835ab5b3e30b7bea5e",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,9 +16,9 @@
     "done",
     "stale"
   ],
-  "handoff_count": 66,
+  "handoff_count": 67,
   "counts_by_state": {
-    "awaiting_kickoff": 14,
+    "awaiting_kickoff": 15,
     "executing": 14,
     "paused_at_gate": 2,
     "sophia_uat": 0,
@@ -32,6 +32,23 @@
     "unknown": 0
   },
   "handoffs": [
+    {
+      "plan_file": "`plans/SUNMINT_PLOT_EXPLORER_PLAN.md`",
+      "title": "**SunMint Plot Explorer** — a dedicated full-viewport exploration surface for SunMint plots/trees/media (`/sunmint/plots/`) instead of crowding the `truesight.me/sunmint` marketing page; the page's in-page map shrinks to a teaser linking through. Includes a **mandatory refresh-on-ingest** requirement for the prebuilt per-plot media index.",
+      "handoff_date": "2026-09-19",
+      "state": "awaiting_kickoff",
+      "status_raw": "**draft — awaiting kickoff**",
+      "telegram_thread_id": "33323",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "(this thread 33323)",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-19",
+      "supervised_by": null
+    },
     {
       "plan_file": "`plans/PII_EVENT_ENVELOPE.md`",
       "title": "**PII Event Envelope** — encrypt PII-bearing events at the emitter (to an operator/DAO public key) + emit a SHA-256 commitment in the clear, so submission is *verifiable without disclosure*; defuses §11.2's \"privacy by location\" load-bearing consequence.",
@@ -579,7 +596,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/context.py::get_context_file_fresh() is present and deployed. Live functional re-verification of the actual auto-advance behavior (U5/U1) still pending -- source presence confirmed, not yet re-tested end-to-end against a real stale-vs-fresh plan scenario. blocked_on_human -- 3 of 4 originally-authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- STILL flagged to Gary, unresolved, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN pending Gary's merge of #494 + GAS deploy. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests).",
         "stale": true,
-        "age_minutes": 3734
+        "age_minutes": 5975
       }
     },
     {
@@ -602,7 +619,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/tools/ssh_tools.py's krake_nginx FLEET entry carries the id_ed25519_truesight_autopilot host-local key pin. blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net) -- STILL OPEN, unaffected by the deploy. 2026-09-16T21:08Z: Gary said \"wrap up\" directly in-thread; Sophia filed a legitimate contribution report (240 min, PRs #476/#1198/#1217, all genuinely completed work) and correctly self-paused (\"no RESUME HERE pointer in plan\") rather than proceeding on the still-open pem decision -- not a sec6 violation, the report covers only merged work. Thread paused awaiting Gary's pem-archiving call; do not send 'go' until he decides.",
         "stale": true,
-        "age_minutes": 3734
+        "age_minutes": 5975
       }
     },
     {
@@ -625,7 +642,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/telegram_adapter.py's _PROGRESS_QUERY_RE is the anchored (fixed) version, not the old bare-alternation bug. blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7). Live functional re-verification (an actual Telegram round-trip proving a real instruction sent mid-turn is no longer misclassified as a status ping) still pending -- source presence confirmed, behavior not yet re-tested end-to-end. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 3734
+        "age_minutes": 5975
       }
     },
     {
@@ -716,7 +733,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 3734
+        "age_minutes": 5975
       }
     },
     {
@@ -909,7 +926,7 @@
         "claimed_at": "2026-09-18T02:00:00Z",
         "note": "blocked_on_human -- three sub-tracks live under this one plan file. (A) Original vendoring track: untouched, still parked at PR5 (program-shell.js badges); PR6 = gate:human first live lineage-credentials write -- the recurring 'Paused before PR6' chat message is this track's stale fallback status, not a new stall. (B) SS11 payout-registration sink: P2a/P2b/P2c public-JSON exclusion all independently verified live (truesight_autopilot#492, dao_protocol#168+deploy, go_to_market#177+its GH Actions cron confirmed running the fixed commit). P3 rewrote the sink to the private cfr program sheet (tokenomics#501). Gary found + fixed a real live PII leak himself (removed anyone:reader ACL from the public Telegram Chat Logs workbook, verified 401 anonymous post-fix) after Sophia twice refused to ship P4 (cfr-anapu#11) on the literal instruction -- P4 is now merged + LIVE on cfr.truesight.me, independently verified (merge sha + live page byte-check). PII Event Envelope (thread 31842) resolved same-day: Gary scoped encryption to the public-JSON-publication layer only, un-forking P4; recorded in SS11.10 + plans/PII_EVENT_ENVELOPE.md (agentic_ai_context#1259, merged) -- no longer a separate open claim. (C) SS12/§12.9 payout-event Q-track (new 2026-09-18): SS12 [PAYOUT EVENT] receipt object defined (agentic_ai_context#1260); Edgar catalog Q2 (dao_protocol#169) + routing Q3a (dao_protocol#170) merged + DEPLOYED live (Edgar v8, verified via events-catalog + lookup_event_docs both independently confirmed by Envoy); Q5 tabs provisioned on Gary's cfr program sheet (tokenomics#500/#502/#503, a real idempotency bug found + fixed); Q3b sink shipped (tokenomics#504, dual-write Tier-1/Tier-2 + retry-dedup) and DEPLOYED live to the GAS webapp (version @30->@32) -- independently verified via the payouts tab materializing on the live Ops workbook with the exact 15 headers. Sophia's own instrumentation caught two real production bugs before Paulo's first submission: the hourly-cron trigger installer was silently swallowed by a try/catch (tokenomics#513/#517, fixed), then found to be categorically unauthorized -- appsscript.json declared no script.scriptapp OAuth scope (tokenomics#518, deployed @32). RESUME HERE = blocked on a genuinely human-only step: the OAuth re-consent click in the Apps Script editor (clasp run / Execution API confirmed unusable -- no GCP project linked, no automatable path exists). SS12.6 answered by Gary: receipt source = manual/PDF, currency = BRL-only, receipt artifact = private governor-only Drive + receipt_url. SS12.8 module placement (report_payout_event.html in dapp_beta) shipped through M1-M5, live on both beta and prod (sync_beta_to_prod verified, prod head 89ac500). M0 (Paulo backfill, the first real payout) parked pending the consent click.",
         "stale": true,
-        "age_minutes": 445
+        "age_minutes": 2685
       }
     },
     {
@@ -932,7 +949,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 3734
+        "age_minutes": 5975
       }
     },
     {
@@ -1176,7 +1193,7 @@
         "claimed_at": "2026-09-18T02:00:00Z",
         "note": "executing -- ad-hoc governor-directed reconciliation, thread 31905. 12/15 Black King NF-e resolved (10 tracking-matched via DANFE weight/content evidence, 2 correctly excluded as cancelled/superseded). 3 genuinely unshippable (NF4/NF7/NF15) -- Gary's Aug-2025 tariff-disruption theory corroborated by 4 independent evidence legs (no tracking, no arrival-register row, no post-06-23 FDA shipping doc in the supplier folder, no export paperwork in the Sept file set); documented, not a data gap. Coopercabruca-emitter rows (a different supplier, same courier) correctly scoped out after a real cardinality-modeling error was caught and corrected (Rev 1 -> Rev 2 -> Rev 5, each an independently-verified merged PR). One governor-directed write + revert already exercised cleanly: Sophia re-attributed rows 16-20 (Kirsten -> Val Lapidus) on real evidence, Gary reviewed and said keep the original, she reverted to a byte-identical pre-change snapshot and reconciled the already-merged docs rather than leaving them stale. RESUME HERE = awaiting the 2025 Exporta Facil AWBs from Matheus (the only remaining deterministic key for NF4/NF7, if they exist) -- otherwise the 3-item gap stands as the final, documented answer for the accountant.",
         "stale": true,
-        "age_minutes": 445
+        "age_minutes": 2685
       }
     },
     {
@@ -1199,13 +1216,13 @@
         "claimed_at": "2026-09-18T02:00:00Z",
         "note": "executing -- pre-existing thread 31220, picked up by Envoy 2026-09-17. Real security finding, independently verified: a live Wix access token (IST.eyJ..., fingerprint 2aaefd55359b) survives in tokenomics' PUBLIC git history (commit 63f441e, 2026-06-16) despite being redacted from the working tree -- confirmed via an anonymous, unauthenticated clone. Filed as agentic_ai_context#1273 (merged, PR open->merged verified) with the governor decision explicitly NOT taken unilaterally: revoke-in-Wix vs. history force-push rewrite. Sophia's own analysis (sound, endorsed) recommends revoke-only -- a force-push on a public multi-contributor default branch would be the single most destructive action available on this box, wouldn't even fully neutralise the exposure (GitHub retains the blob by SHA absent a Support purge; the repo's 1 fork keeps it regardless), and 22 open PRs would be invalidated for a token that's cheap to just revoke. RESUME HERE = governor call on revoke vs. rewrite, still outstanding. Separately, real hygiene work shipped: hardcoded secrets scrubbed from all live GAS accessors + comment literals (tokenomics#515/#519, verified 0 real-secret hits in the current tree); a 4-project clasp push batch healed 2 accessors that were broken at @HEAD (ReferenceError incidents); found + fixed a genuine data-loss footgun in the deploy tooling itself -- clasp push --force silently deletes remote-only files that .claspignore does NOT protect (backed by Google's own projects.updateContent docs) -- guard shipped (tokenomics#520, merged); a selective pull-first companion is open (tokenomics#521), engineered around a real hazard in naive clasp pull (it blindly overwrites the whole local tree, discovered before shipping rather than after). No history rewrite, no unauthorized force-push, no GAS deploy without governor go -- all held to that line this session.",
         "stale": true,
-        "age_minutes": 445
+        "age_minutes": 2685
       }
     }
   ],
   "warnings": [
-    "line 57: ragged row has 13 cells, expected 11 — padded/truncated",
-    "line 76: ragged row has 9 cells, expected 11 — padded/truncated",
-    "line 72: blank line splits the handoff table"
+    "line 58: ragged row has 13 cells, expected 11 — padded/truncated",
+    "line 77: ragged row has 9 cells, expected 11 — padded/truncated",
+    "line 73: blank line splits the handoff table"
   ]
 }
