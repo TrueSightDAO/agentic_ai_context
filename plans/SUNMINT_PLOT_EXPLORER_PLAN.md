@@ -106,12 +106,63 @@ cleaning the registry.
 - **Data stays machine-generated** — never hand-edit `plots/index.geojson` or the per-plot index.
 - **Don't create variant plan/backlog files.**
 
+## 6a. Freshness — the index MUST refresh on ingest (governor directive, 2026-09-19)
+
+> **Governor directive:** *"Make sure that pre-built is updated whenever a new item is
+> added to its underlying data source, otherwise it will get outdated."*
+
+A **stale prebuilt index is worse than no index** — it silently under-reports media and makes
+"uploaded but not published" (the Cacau na Veia PR6 near-miss) possible again, just one layer
+deeper. So freshness is a **hard requirement of PR1**, not a follow-up.
+
+### Mechanism — reuse the PROVEN publisher pattern, do not invent one
+
+The `farm-media-publisher` already solves exactly this shape (verified live on the box
+2026-09-19: `farm-media-publisher.timer` **active**, last run 22:32 UTC, every collection
+reported `unchanged` → idempotency proven):
+
+```
+manifests / sidecars  →  idempotent reconcile (systemd timer, 15 min, Persistent=true)  →  emitted JSON
+```
+
+The per-plot index is a **second, derived stage in that same reconcile**: it reads the very
+manifests the publisher just reconciled, so it **cannot lag the manifest by construction**.
+Concretely, PR1 must ship:
+
+1. **Idempotent reconcile** — regeneration writes only when content actually changes (no empty
+   commits; the publisher's `unchanged` output is the reference behaviour).
+2. **Timer-swept, not event-plumbed** — a periodic full reconcile is cheaper and crash-safe vs. a
+   webhook chain; a missed event can't strand the index. Same 15-min cadence + `Persistent=true`.
+3. **Reconcile over the FULL input set, not just manifests.** Attribution depends on plot
+   geometry, so a **new/renamed plot changes attribution with no new media at all**. Inputs =
+   `farm_media_manifests/*` ∪ `sunmint/plots/index.geojson` ∪ the nearest-location cache.
+   A drifted `plots/index.geojson` must therefore also re-trigger the index.
+4. **Freshness stamp in the artifact** — `generated_at` at index level, plus per-plot `updated`
+   and the source manifest revision (sha). The explorer renders "media as of <timestamp>" so
+   staleness is *visible to the user*, not just to us.
+5. **Staleness monitor** — a check that alerts when index age exceeds 2× the cadence (same shape
+   as the existing `df-alert.sh` / `map_drain_monitor.py` cron entries). Silent-failure is the
+   enemy: a dead timer must page, not rot.
+6. **CI/UAT assertion** — the PR7 UAT gate asserts index `generated_at` is newer than the newest
+   input `updated`; a stale index fails UAT.
+
+### Explicitly rejected alternatives
+- **Regenerate on page load** — no: couples page latency to GitHub API, rate-limits, and can't
+  be cached. A prebuilt artifact is right; it just has to be *kept* fresh.
+- **Hand-refresh** — no: hand-authored link is precisely the failure mode the publisher plan
+  killed on farm pages. Don't reintroduce it one layer down.
+- **Webhook per daemon completion** — workable but strictly worse here; one cadence-swept
+  reconciler covers manifest changes *and* plot-geometry changes that emit no media event.
+
+> **Same argument applies to `sunmint/plots/index.geojson` itself** — if the geojson is stale, the
+> explorer is stale regardless of index freshness. Its generator cadence is in scope for PR1.
+
 ## 7. Roadmap (ONE PR PER TURN)
 
 | # | Deliverable | Repo | Depends on |
 |---|---|---|---|
 | **PR0** | This roadmap + handoff-manifest row | agentic_ai_context | — |
-| **PR1** | Per-plot media index generator + generator WARN on un-attributable media | sunmint | PR0 |
+| **PR1** | Per-plot media index generator + WARN on un-attributable media + **idempotent systemd-timer reconcile (§6a)** + freshness stamp + staleness monitor | sunmint | PR0 |
 | **PR2** | Explorer shell on `/sunmint/plots/` — map + left rail + detail panel, plots only | truesight_me_beta | PR1 |
 | **PR3** | Filters (farm / plot type / status / boundary authority) + counts + "unclassified" states | truesight_me_beta | PR2 |
 | **PR4** | Detail-panel media gallery + tree list + provenance out-links | truesight_me_beta | PR3 |
@@ -126,6 +177,11 @@ cleaning the registry.
 - [ ] Read `farm_media_manifests/*` schema + the `nearest_location_id` join fields
 - [ ] Generator: join manifest items → plots via nearest-location / plot_id → `sunmint/plots/media.json`
 - [ ] WARN loudly on any media item that cannot be attributed to a plot (mirror existing loud-not-silent warnings)
+- [ ] **§6a:** emit `generated_at` + per-plot `updated` + source manifest sha (freshness stamp)
+- [ ] **§6a:** ship + install the systemd service/timer (idempotent reconcile, 15 min, `Persistent=true`)
+- [ ] **§6a:** reconcile over the full input set (manifests ∪ plots geojson ∪ nearest-location cache)
+- [ ] **§6a:** prove idempotency (second run reports `unchanged`, no new commit)
+- [ ] **§6a:** staleness monitor that alerts when index age > 2× cadence
 - [ ] Run local suite; open PR, report URL
 
 ### PR2 — explorer shell
@@ -159,6 +215,8 @@ cleaning the registry.
 - [ ] Gallery + tree list populate for a plot with media; empty state is explicit
 - [ ] Deep-links restore the right view
 - [ ] Marketing teaser links through correctly
+- [ ] **§6a freshness:** index `generated_at` is newer than the newest input `updated` (stale index FAILS UAT)
+- [ ] **§6a freshness:** explorer displays the "media as of <timestamp>" stamp
 - [ ] No console errors
 
 ## 9. Do / Don't
