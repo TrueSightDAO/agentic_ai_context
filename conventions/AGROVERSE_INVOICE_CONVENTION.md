@@ -144,6 +144,19 @@ If attachment tooling is unavailable, inform the governor and ask them to attach
 
 ---
 
+## Bilingual (EN / PT) variant — for Brazil / accountant / NF-e
+
+When the invoice must be handed to a **Brazilian accountant to mint the Nota Fiscal (NF-e)**, generate a **bilingual EN/PT** copy in addition to the English original.
+
+- **Every label is paired** `English / Português` (e.g. `Line Items / Itens da Fatura`, `Description / Descrição`, `Qty / Qtd`, `Unit Value (USD) / Valor Unit. (USD)`).
+- **Product descriptors** carry both languages in the same cell (e.g. `Cacao Butter (KG) / Manteiga de Cacau (KG)`).
+- **Legal identifiers stay verbatim** — CNPJ, EIN, NCM, INCOTERMS, addresses — do not translate them.
+- **Fiscal treatment in PT** — `Isento`, `Suspensão (regime de exportação)`, `ICMS/IPI/PIS/COFINS`.
+- **Use proper Portuguese accents.** ReportLab's default Helvetica + WinAnsi encoding renders Latin-1 accents (á é í ó ú ã õ ç â ê ô) correctly — verify by extracting the finished PDF text back and checking `Ilhéus`, `Aéreo`, `Descrição`, `Suspensão`, `Fumigação`, `Revisão` come through intact.
+- **Naming:** append `_EN_PT` before `.pdf` (e.g. `..._rev11_EN_PT.pdf`). Archive alongside the English original in `agentic_ai_context/exports/`.
+
+Worked example: `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev11_EN_PT.pdf` + `exports/2026-06-11_packing_list_black_king_to_truetech_rev11_EN_PT.pdf` (Black King → TrueTech, INV/PL-2026-0611-001 Rev 11).
+
 ## Related
 
 - `PURCHASE_AGREEMENT_PDFS.md` — for purchase agreements (different format, for import/wholesale contracts)
