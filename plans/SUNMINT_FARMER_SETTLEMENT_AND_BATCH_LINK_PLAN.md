@@ -243,9 +243,15 @@ convention as `Cacao Tree To Be Planted` — no `Currencies` row, no dedicated t
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR1** (SCHEMA.md updates + the two real new columns, §1.9). Fresh roadmap, reverted
-> same-day to real ledger items after the draft-2 simplification proved to drop real accrual
-> information — nothing has started.
+> **RESUME HERE → PR2** (`clasp pull` the `asset_receipt_ingest` project and verify `Currency Name`
+> isn't allowlist-restricted; docs-only if open-ended, else add the three literals to the allowlist,
+> plus a `dispatch.py` routing entry for latency). **PR1 shipped 2026-09-20 — `tokenomics` #529
+> (`e8bdc2a`):** §1.9's five doc items done (three ledger literals under a new *Tree-Planting Ledger
+> Literals* section, `Linked Plot ID` AC on `Agroverse QR codes`, `Payment Event Ref` U on `SunMint
+> Tree Planting`, and first-ever sections for `SunMint Plots` / `Asset Receipts` / `payouts`). Note: the
+> plan's claim that `SunMint Tree Planting` was undocumented was **stale** — it was already documented
+> A–S; only `Plot ID` was missing, added here. (The `clasp pull` in PR2 is a read, not a deploy — it
+> does not hit the GAS always-stop gate, which applies to `clasp push`.)
 >
 > **Open before certain units:** PR2 and PR4 each start with a `clasp pull` verification step (§1.10,
 > §0.9/§0.10) — neither project is locally mirrored today, so the exact scope of "generalize existing
@@ -255,8 +261,8 @@ convention as `Cacao Tree To Be Planted` — no `Currencies` row, no dedicated t
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
-| PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (SCHEMA.md updates + Linked Plot ID + Payment Event Ref columns) | ☐ | ☐ | ☐ |
+| PR0 (this roadmap) | ☑ | ☑ | ☑ |
+| PR1 (SCHEMA.md updates + Linked Plot ID + Payment Event Ref columns) | ☑ | ☑ | ☑ |
 | PR2 (verify/extend `asset_receipt_ingest`; `[TREE PURCHASE EVENT]` + routing) | ☐ | ☐ | ☐ |
 | PR3 (reconciliation match in `process_tree_planting_telegram_logs.gs`, system-signed) | ☐ | ☐ | ☐ |
 | PR4 (verify/generalize `payouts` handler; `[FARMER PAYMENT EVENT]`) | ☐ | ☐ | ☐ |
