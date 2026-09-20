@@ -164,6 +164,24 @@ gate still exists — only its **holder widens**: from *governor only* to *gover
 2. **Precondition — verification, not a wave-through.** Envoy gives the go **only after** verifying the
    change end-to-end on beta **and** visually, **pixel by pixel**, that the rendered surface is correct
    (layout, assets, data, links; no clipped, blank, or broken regions).
+2a. **The verifier loads the surface itself — never grades a relayed screenshot (Gary, 2026-09-20).**
+   The verification in point 2 is performed by **the verifying agent driving the beta surface
+directly** — opening it in a real browser (headless is fine) or an equivalent direct render, and
+   forming **its own** judgement on what it sees. The verifier MUST **not** delegate the visual read
+   to the executor by asking Sophia (or anyone) to *send screenshots*. *"Pixel by pixel" means the
+   verifier's own pixels.* Two consequences:
+   - **Framing independence.** A relayed screenshot is the executor's framing of what matters; the
+     verifier's job is to decide what to look at. Relaying re-introduces exactly the trust gap §4a
+     exists to close.
+   - **Channel-independence.** A verifier whose own channel cannot render images (e.g. a text-only
+     monitor log) MUST still load the surface itself via another path — it is a tooling gap to fix,
+     not a licence to grade a text description.
+
+   **Evidence artifacts supplement, never replace.** The executor may *additionally* publish
+   screenshot artifacts (e.g. `assets/<feature>-uat/` in this repo) for the audit trail — but a
+   published artifact is supporting material, not a substitute for the verifier's own load, and the
+   verifier must not *depend on the executor volunteering one*.
+
 3. **Evidence is mandatory.** Envoy must post its verification result in the thread *before* the go
    (what was checked, how, pass/fail), so the sign-off is auditable. A bare "go" with no verification
    evidence is **not** a valid §4a authorization — Sophia should ask for the evidence rather than promote.
