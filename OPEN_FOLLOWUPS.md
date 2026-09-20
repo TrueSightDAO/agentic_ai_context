@@ -48,6 +48,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Related, parked (design only — not code).** `plans/PII_EVENT_ENVELOPE.md` (design doc) + CRF plan §11.10 define the lasting fix: encrypt PII-bearing events at the **public-JSON boundary** (AES-256-GCM + RSA-OAEP-wrapped data key) and emit a SHA-256 commitment in the clear, so submission is *verifiable without disclosure*. Rollout E1–E5, where E5 (operator key provisioning: KMS CMK + IAM + escrow) is `gate: human`. **Open decisions awaiting the governor's option pick** (plan §9): replace vs alongside the raw-PIX transport; KMS vs Fernet vault for custody; 2-of-3 governor escrow wrap; generic vs payout-only scope. Thread 31842 was closed + archived 2026-09-20 on the basis that nothing further was scoped to *that thread* — the remaining work lives in CRF §11.10 / §11.4.
 
+### dao_protocol `webhook_trigger.py` treats any HTTP 2xx as success — GAS load-crash error pages slip through
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 31905). Status: fix drafted, not yet pushed.**
+
+`truesight_dao_client/server/jobs/webhook_trigger.py` — both `trigger()` and `trigger_with_params()` return `True` on `resp.ok` (any 2xx) with **no body inspection**. Google Apps Script serves top-level load-time crashes (e.g. the `getCredentials()` ReferenceError that broke project `1orWgdGckts55…`) as an **HTML error page at HTTP 200**, so dao_protocol logged `"webhook ok"` while the handler never ran. Confirmed root cause of a missing expense record (Scored Expense Submissions row 240, R$1,050 Brazilian Reis, target `offchain`): the EXPENSE_PROCESSING webhook pointed at the load-broken 19Wag9x deployment; repointed by `tokenomics#524`, and the row was later processed by the hourly cron fallback (offchain line 4317, hash `b9744dcb939a486d`, no duplicate).
+
+**Blast radius:** all ~33 wired `DAO_PROTOCOL_WEBHOOK_*` actions share this client.
+
+**To do:** add `_is_gas_html_error()` (match the `<title>Error</title>` GAS signature only, so an intentional HTML web app isn't misclassified) and gate both trigger fns on `resp.ok and not _is_gas_html_error(resp)`; a GAS error page logs a distinct *"handler crashed; NOT retried"* warning and returns `False`. **Do NOT retry** — a crashed handler doesn't self-heal and `/exec` calls are non-idempotent. Add `tests/test_webhook_trigger.py` (2xx + `<title>Error</title>` ⇒ False/no-retry; 2xx JSON/plaintext ⇒ True; non-2xx ⇒ False).
+
 ### Standing rule: consult `GOOGLE_SHEET_SA_ACCESS_MATRIX.md` before probing service-account access
 **Filed 2026-09-19. Owner: Sophia. Governor: Gary (thread 33265). Status: matrix SHIPPED (PR #1289); this entry is the habit pointer.**
 
