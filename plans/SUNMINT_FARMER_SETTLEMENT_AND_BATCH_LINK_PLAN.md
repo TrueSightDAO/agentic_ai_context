@@ -64,6 +64,12 @@ ledger-booking step at link time changes.
   rows on that item — matching FIFO consumption is a ledger-balance query, the same pattern already
   used elsewhere in this ledger (per-contributor, per-currency balances). PR3's reconciliation reads
   that balance directly; nothing separate to maintain.
+- **Verified live 2026-09-20 — real, uncleaned test-data residue already exists**, directly relevant
+  to this plan's UAT hygiene (§5): main ledger `offchain transactions` rows 4133/4134 and 4135/4136
+  (from the parent plan's 2026-08-22 `TEST_AGL4_20260822_2`/`_3` runs) booked real `-1`/`+1`
+  `Cacao Tree To Be Planted`/`Cacao Tree Planted` pairs that were never reversed — only the QRs
+  themselves got `INVALIDATED`. The main ledger's `Cacao Tree Planted` balance is overstated by +2
+  units right now. Remediation proposed, not executed, in §5.10.
 
 ### 1.2 The four-item model, end to end
 
@@ -272,22 +278,180 @@ don't block starting PR1, but PR2/PR4 each begin with that check rather than ass
 
 ---
 
-## 5. UAT — synthetic data first, then the real Paulo backfill
+## 5. UAT — comprehensive per-scenario test cases, with mandatory cleanup
 
-Same principle as the parent plan's §10: exercise real code paths, never submit a real `[SALES
-EVENT]` for a test, use a clearly-test-labeled QR, invalidate it afterward.
+### 5.0 Test-data hygiene — read before running anything below
 
-| Step | Surface | What to expect | Acceptance criterion |
-|---|---|---|---|
-| 1 | `[TREE PURCHASE EVENT]` for a test farmer/ledger, N=5 | `-cash` + `+5 Purchased-Not-Planted` booked | Correct amounts, correct ledger |
-| 2 | Test `[TREE PLANTING EVENT]` for the same farmer | Matches → `-1 Purchased-Not-Planted / +1 Planted-Unassigned`, no new cash | Reclass correct, system-signed event present |
-| 3 | A 6th test confirmation (purchase balance exhausted) | No match → `+1 Cacao Tree - To Be Paid For` on main | Liability booked correctly on main regardless of farmer's usual ledger |
-| 4 | Link a test `SOLD` QR against the unpaid unit from step 3 | `-1 Cacao Tree To Be Planted` only; SunMint row's `Linked QR Code`/`Linked At` now populated (the commitment signal) | QR shows linked; `To Be Paid For` liability still open on main |
-| 5 | `[FARMER PAYMENT EVENT]` against that same committed unit | Pays from the linked QR's own ledger; `-1 To Be Paid For` only, no new pool entry | No phantom pool unit created; correct paying ledger |
-| 6 | Link a test QR against a `Planted-Unassigned` pool unit funded by a **different** ledger than the QR's own | `-1 Cacao Tree To Be Planted` / `-1 Planted-Unassigned` + reimbursement transfer fires | Both ledgers show correct legs, governor-signed |
-| 7 | Plot-level link (PR6) against a repeat-email test QR | QR gets a plot id + representative image, not a single tree photo | Correct plot reference + image |
-| 8 | Batch tool (PR7) dry-run against real (not test) data | Proposed pairing list, no execution | Governor reviews before any real link fires |
-| 9 | **Real RUN**: Paulo's 10-tree payout backfilled via PR2+PR4 | Ledger shows the real historical expense | Matches Gary's own account of what was actually paid |
+**This is not optional cleanup — it's a hard requirement, per `OPERATING_INSTRUCTIONS.md` §5g** ("E2E
+test writes — standing authorization, mandatory self-cleanup"): test writes to live sheets/ledgers are
+pre-authorized without a per-run governor ask, **on the condition that** (1) every field that ends up
+in a human-facing view is unambiguously marked as test data, and (2) every test write that adds value
+to a ledger is reversed in the **same turn** it's created — never left for a "later cleanup pass."
+
+**Why this matters here specifically, verified live 2026-09-20 (not hypothetical):** the parent
+plan's own 2026-08-22 test runs violated exactly this rule. Ledger rows 4133/4134 (`TEST_AGL4_
+20260822_2`) and 4135/4136 (`TEST_AGL4_20260822_3`) on the main ledger's `offchain transactions` tab
+each booked a real `-1 Cacao Tree To Be Planted` / `+1 Cacao Tree Planted` pair that was **never
+reversed** — only the QR itself got `INVALIDATED`. Right now, today, the main ledger's `Cacao Tree
+Planted` balance is overstated by +2 units and `Cacao Tree To Be Planted` is understated by -2, purely
+from leftover test data. (One other run, rows 4127/4128, happened to book `0.00000000` and washed out
+harmlessly — not by design, by luck.) **§5.6 below proposes the remediation; it is not executed by this
+plan without a separate explicit go, since it means editing the live main ledger.**
+
+**Rules for every test case below:**
+1. **Tag everything.** QR codes: `TEST_<scenario>_<YYYYMMDD>_<n>`. SunMint submissions: `TEST-
+   <scenario>-<YYYYMMDD>-<n>`. Farmer/cooperative name on `[TREE PURCHASE EVENT]`/`[FARMER PAYMENT
+   EVENT]`: a clearly fake name, e.g. `Test Farmer <n>`, never a real farmer's name even at $0.01.
+2. **Never submit a real `[SALES EVENT]`** to get a test QR to `SOLD` — set the `status` column
+   directly via a sheet edit, per the parent plan's own §10 rule (a real sales-pipeline submission
+   pollutes real revenue reporting even at $0/$0.01).
+3. **Trivial nominal amounts only for cash-moving test events** (`[TREE PURCHASE EVENT]`, `[FARMER
+   PAYMENT EVENT]`, the reimbursement transfer) — **$0.01**, not $0 (a $0 sales amount was found to be
+   silently dropped as `IGNORED` by a different parser, tokenomics #407 — don't assume $0 is safe
+   anywhere in this stack without checking first). These are still real cash-adjacent, governor-signed
+   events under this plan's own §2 always-stop gate — run them with Gary present, not unattended.
+4. **Reverse every ledger row in the same turn**, immediately after the test case's acceptance
+   criterion is confirmed — not "later," not "at the end of the session." Each test case below states
+   its own reversing entry explicitly.
+5. **Never delete a signed event or a ledger row.** Reverse with an equal-and-opposite entry
+   (referencing the original in its description, same convention every existing reversal in this
+   workspace uses); invalidate/void a *status*, don't erase a *record*. The audit trail is the point.
+6. **Log every run** in §5.7's table — this is what let the 2026-08-22 leftovers be found and named
+   precisely just now, instead of being invisible.
+
+### 5.1 TC1 — Path A: purchase, then a matching confirmation (§1.2, Scenario 2)
+
+- **Setup:** none beyond a test farmer name.
+- **Steps:** (a) Submit `[TREE PURCHASE EVENT]` (or `[ASSET RECEIPT EVENT]` per §0.9), `Currency =
+  "Cacao Tree Purchased - Not Planted"`, `Amount = 1`, `Fund Handler = Test Farmer TC1`, on a test
+  managed ledger if one is designated, else main. (b) Submit a test `[TREE PLANTING EVENT]` with
+  `Contributor Name = Test Farmer TC1` (must match exactly — §1.7 confirmed this is the reconciliation
+  match key).
+- **Expected:** (a) books `+1 Cacao Tree Purchased - Not Planted`. (b) PR3's reconciliation matches it
+  → `-1 Purchased-Not-Planted / +1 Planted-Unassigned`, no new cash, a system-signed reconciliation
+  event is emitted, and the SunMint row's `Payment Event Ref` points at (a)'s event.
+- **Cleanup (same turn):** reverse the pool entry with `-1 Planted-Unassigned` (referencing this test
+  in its description). Mark the SunMint test row's `Status` via `[TREE PLANTING REJECT EVENT]` (the
+  existing, already-proven reject/invalidate mechanism — HANDOFF_MANIFEST's 2026-08-31 note confirms
+  "plant → live → invalidate → gone" is fully proven end-to-end) rather than leaving it dangling
+  `LINKED`/confirmed forever, unlike the 2026-08-22 precedent.
+
+### 5.2 TC2 — Path B: confirmation with no open purchase balance (§1.2, Scenario 3 step 1)
+
+- **Setup:** a test farmer name with **no** open `Purchased - Not Planted` balance.
+- **Steps:** submit a test `[TREE PLANTING EVENT]`, `Contributor Name = Test Farmer TC2`.
+- **Expected:** PR3 finds no match → `+1 Cacao Tree - To Be Paid For` booked on **main ledger**
+  (regardless of any ledger this farmer might otherwise be associated with — §0.3).
+- **Cleanup (same turn):** reverse with `-1 Cacao Tree - To Be Paid For` on main. Invalidate the
+  SunMint test row via `[TREE PLANTING REJECT EVENT]`.
+
+### 5.3 TC3 — Link against an unpaid confirmed tree (§1.4, "committed" variant)
+
+- **Setup:** one open `Cacao Tree - To Be Paid For` unit (reuse TC2's mechanics, or a fresh one — don't
+  clean up TC2's liability until after this test consumes it, since this test needs it to still exist).
+- **Steps:** create a test QR, set `status = SOLD` directly (never a real `[SALES EVENT]`, rule 2).
+  Submit `[TREE PLANTING LINK EVENT]` linking that QR to the unpaid SunMint row.
+- **Expected:** `-1 Cacao Tree To Be Planted` only. `To Be Paid For` liability **stays open**. SunMint
+  row's `Linked QR Code`/`Linked At` populated (the commitment signal, §1.4) — verify this is the
+  **only** change to that liability; nothing else moved.
+- **Cleanup (same turn):** reverse the `-1 Cacao Tree To Be Planted` write with `+1` (referencing this
+  test). Set the QR to `INVALIDATED` (existing convention — never delete). The still-open `To Be Paid
+  For` liability carries into TC4 below (that's the point of this pairing) — clean it up there, not
+  here, to avoid a double-reversal.
+
+### 5.4 TC4 — Farmer payment against an already-committed unit (§1.2, Scenario 3 step 3, second branch)
+
+- **Setup:** TC3's committed `To Be Paid For` unit (still open at the end of TC3, by design).
+- **Steps:** submit `[FARMER PAYMENT EVENT]` against that unit, $0.01 nominal (rule 3), governor-signed,
+  Gary present.
+- **Expected:** checks the SunMint row's `Linked QR Code` (still populated from TC3, even though that
+  QR is now `INVALIDATED` — confirm the payment handler doesn't choke on an invalidated-but-linked QR)
+  → pays **directly from that QR's own ledger** → `-1 To Be Paid For` only, **no** new `Planted -
+  Unassigned` entry created (verify this explicitly — a phantom pool unit here is the exact bug this
+  test exists to catch).
+- **Cleanup (same turn):** reverse the $0.01 cash leg (equal-and-opposite on the same ledger) and
+  `+1 Cacao Tree - To Be Paid For` (undoing the discharge). This fully closes out both TC3 and TC4's
+  chain — confirm no residual balance remains anywhere for `Test Farmer TC3`/its QR.
+
+### 5.5 TC5 — Link against the settled pool, same ledger (§1.4, pool variant, no transfer)
+
+- **Setup:** a confirmed, paid `Planted - Unassigned` unit already funded on the **same** ledger a
+  test QR will belong to (chain TC1's pool entry before its own cleanup, or mint a fresh one on the
+  same ledger).
+- **Steps:** create a test QR on that same ledger, `status = SOLD` directly. Submit `[TREE PLANTING
+  LINK EVENT]` against the pool unit.
+- **Expected:** `-1 Cacao Tree To Be Planted` / `-1 Planted - Unassigned`. **No** reimbursement transfer
+  fires (same ledger throughout) — explicitly verify no transfer event was emitted.
+- **Cleanup (same turn):** reverse both legs (`+1` each, referencing this test). QR → `INVALIDATED`.
+
+### 5.6 TC6 — Link against the settled pool, cross-ledger (§1.4, pool variant, transfer fires)
+
+- **Setup:** a confirmed, paid `Planted - Unassigned` unit funded on ledger A (e.g. main, or a test
+  managed ledger). A test QR belonging to a **different** ledger B, `status = SOLD` directly.
+- **Steps:** submit `[TREE PLANTING LINK EVENT]` linking ledger B's QR to ledger A's pool unit.
+- **Expected:** `-1 Cacao Tree To Be Planted` (ledger B) / `-1 Planted - Unassigned` (ledger A) **+ the
+  reimbursement transfer**: `-$0.01` (nominal, rule 3) on ledger B, `+$0.01` on ledger A, governor-
+  signed. Verify both ledgers' legs independently — this is the highest-risk case to get wrong (real
+  cash crossing ledgers) and the one most worth a second pair of eyes before confirming pass.
+- **Cleanup (same turn):** reverse all four legs (two unit legs, two cash legs) with equal-and-opposite
+  entries on their respective ledgers. QR → `INVALIDATED`.
+
+### 5.7 TC7 — Plot-level link (PR6)
+
+- **Setup:** a test QR with a **repeat email** (reuse an email already on another test QR) or **no
+  email at all**, `status = SOLD` directly. A test plot id in `SunMint Plots` (or reuse an existing
+  real plot — read-only reference, no write needed to the plot registry itself).
+- **Steps:** submit the plot-fallback variant of `[TREE PLANTING LINK EVENT]` with a plot id instead of
+  a SunMint submission id.
+- **Expected:** QR gets "Linked Plot ID" populated + a representative image from that plot's media
+  collection (not a single tree's photo). Ledger effect follows §1.4 same as a tree-level link, sourced
+  from whatever pool/liability unit PR6's consumption accounting resolves for that plot.
+- **Cleanup (same turn):** reverse whatever ledger legs fired (per whichever source variant applied,
+  same as TC5/TC6's cleanup shape). QR → `INVALIDATED`. No write to `SunMint Plots` itself to clean up
+  if it was read-only.
+
+### 5.8 TC8 — Batch tool dry-run (PR7)
+
+- **Setup:** none — this reads real (not test) data by design.
+- **Steps:** run the batch allocator in dry-run mode against the real backlog of `SOLD`-unlinked QRs
+  and eligible confirmed units.
+- **Expected:** a proposed pairing list is produced. **No link event fires, no ledger write occurs.**
+- **Cleanup:** none needed — nothing was written. If the tool has no dry-run mode yet, this test case
+  is the reason to build one before PR7 is considered done, not a workaround for its absence.
+
+### 5.9 TC9 — Real RUN: Paulo's 10-tree payout backfill (§1.1)
+
+- **Setup:** this is **not a test** — it's the first real production use, backfilling Gary's own
+  already-known unbooked payout. No `TEST_` labeling, no cleanup step, because nothing here should be
+  reversed — it's real.
+- **Steps:** submit the real `[TREE PURCHASE EVENT]`/`[FARMER PAYMENT EVENT]` for Paulo's 10 trees at
+  their real historical amount, under the ledger-money gate (§2), governor present.
+- **Expected:** ledger shows the real historical expense, matching Gary's own account. This is the
+  plan's actual deliverable, not a rehearsal.
+- **No cleanup** — verify instead: re-read the booked rows back and confirm they match what Gary
+  actually recalls paying, same as every other "never trust a self-report" verification pattern used
+  throughout this workspace.
+
+### 5.10 Historical residue — proposed remediation, not executed here
+
+Per §5.0's finding: rows 4133/4134 and 4135/4136 on the main ledger's `offchain transactions` tab
+(from the parent plan's 2026-08-22 test runs, QRs `TEST_AGL4_20260822_2`/`_3`, both already
+`INVALIDATED`) were never reversed. **Proposed fix, pending Gary's go** (editing the live main ledger
+is not something this plan does unprompted): append one reversing pair per leftover test —
+`+1 Cacao Tree To Be Planted` / `-1 Cacao Tree Planted`, each referencing the original row number and
+this plan's remediation note in its description, contributor `SunMint Tree Planting Contract - agl4`
+to match the originals. This is a small, standalone unit — can run before PR1 or any time after,
+independent of the rest of this roadmap's sequencing.
+
+### 5.11 Log of runs
+
+Append one row per test case executed, same convention as the parent plan's §10 — so the next person
+(or LLM) doesn't have to re-derive what's already been validated, and so a future audit can see every
+test's cleanup was actually confirmed, not just planned.
+
+| Date | Test case | Ledger rows touched | Cleanup confirmed? | Notes |
+|---|---|---|---|---|
+| — | — | — | — | (none run yet — this plan hasn't started, §4) |
 
 ---
 
