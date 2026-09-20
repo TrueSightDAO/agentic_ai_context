@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### PII-in-public-JSON safety: confirm the CRF plan §11.4 `excluded_pii_events` exclusion is actually deployed
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 31842, spun from thread 30026). Status: UNVERIFIED — needs confirmation, not assumption.**
+
+**The hazard.** `cfr-anapu#11` (P4, plan §11.6) is **merged and live** on `cfr.truesight.me`, so `payout_registration.html` can now submit a `[PAYOUT REGISTRATION]` carrying a **plaintext PIX key**. §11.4 (P2) requires `[PAYOUT REGISTRATION]` be listed in `excluded_pii_events` in the **public JSON-cache generators** (`sync_sunmint_signatures.py`, `ledger_emit.py`). **If that exclusion is not deployed, a raw PIX key can reach public `verify_public_signatures/**`.**
+
+**To close this entry:** verify the exclusion is present in the deployed generators (grep for `PAYOUT REGISTRATION` in the exclusion list + confirm the public JSON output for a payout-registration row is redacted), then move this entry to `## Recently shipped`.
+
+**Related, parked (design only — not code).** `plans/PII_EVENT_ENVELOPE.md` (design doc) + CRF plan §11.10 define the lasting fix: encrypt PII-bearing events at the **public-JSON boundary** (AES-256-GCM + RSA-OAEP-wrapped data key) and emit a SHA-256 commitment in the clear, so submission is *verifiable without disclosure*. Rollout E1–E5, where E5 (operator key provisioning: KMS CMK + IAM + escrow) is `gate: human`. **Open decisions awaiting the governor's option pick** (plan §9): replace vs alongside the raw-PIX transport; KMS vs Fernet vault for custody; 2-of-3 governor escrow wrap; generic vs payout-only scope. Thread 31842 was closed + archived 2026-09-20 on the basis that nothing further was scoped to *that thread* — the remaining work lives in CRF §11.10 / §11.4.
+
 ### Standing rule: consult `GOOGLE_SHEET_SA_ACCESS_MATRIX.md` before probing service-account access
 **Filed 2026-09-19. Owner: Sophia. Governor: Gary (thread 33265). Status: matrix SHIPPED (PR #1289); this entry is the habit pointer.**
 
