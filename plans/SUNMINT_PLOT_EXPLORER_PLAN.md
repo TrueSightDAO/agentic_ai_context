@@ -201,23 +201,48 @@ first low-cloud 2017-07-11) is reachable **only by changing the generator** — 
 `DAYS_BACK`, raise/lift `MAX_SCENES_PER_CELL`, and paginate the STAC query. PR8 is therefore
 **not purely a UI task**: it takes a small `sunmint` pipeline change as its data dependency.
 
-### Open decisions for the governor (before PR8 is built)
+### Resolved decisions (governor, 2026-09-20 — via Envoy thread 33323)
 
-- **Storage:** the current `satellite/` tree is 1305 jpgs / 55 MB *for a 45-day window*. A
-  full 2017→ backfill is far larger. Do we (a) commit every low-cloud scene's thumbnail,
-  (b) commit a curated subset (e.g. one per month / per dry season), or (c) point the `<img>`
-  at the S3 `asset_url` on demand? Note `sentinel-cogs` previews return **no
-  `Access-Control-Allow-Origin`** — fine for `<img src>`, but blocks canvas/WebGL use.
-- **`asset_url` vs committed `file`:** the manifest carries both a live S3 `asset_url` (may
-  age out) and a committed relative `file`. Which is the render source of truth?
+- **Storage → commit the images into our own repo, low-cloud subset.** The governor's
+  rationale is legitimacy/permanence: an external third-party bucket (`sentinel-cogs`) is
+  not something we control long-term, and the whole point of pulling maximum historical
+  depth is **durable evidence** — so the pixels must live in `sunmint/satellite/plot_<id>/`,
+  not just be a live pointer to someone else's infrastructure. We commit the
+  **cloud<20% subset**, not every scene (see the size arithmetic below).
+- **`asset_url` vs committed `file` → committed local copy wins.** Today the marketing page
+  reads `sc.asset_url || (raw.githubusercontent…/satellite/…)` (`sunmint.html:814`) — i.e.
+  **external S3 first, local only as fallback**, the *inverse* of what we want. PR8's fetch
+  logic must **prefer the committed `raw.githubusercontent.com` copy** (CORS confirmed
+  `access-control-allow-origin: *`) and treat `asset_url` as an optional degraded fallback,
+  if used at all.
 - **Per-plot tiles:** archive start varies by Sentinel-2 tile; Envoy's 2017-01-27 is
   **RM-P1-specific**. Backfill must verify per-plot, not assume one global start date.
+
+### Size arithmetic (measured 2026-09-20 — pins the storage choice)
+
+Direct earth-search STAC query for RM-P1's bbox over the full 2015→now window, projected
+across 21 plots at the repo's measured ~41 KB/image:
+
+| scope | scenes/plot | × 21 plots | projected committed size |
+|---|---|---|---|
+| **cloud < 20%** (the usable set) | **140** | **2,940** | **~125 MB** ✅ |
+| **ALL scenes** (incl. cloudy) | 1,881 | 39,501 | ~1.67 GB ❌ |
+
+Committing every scene (~1.7 GB) exceeds GitHub's recommended repo ceiling and is ~96%
+cloudy frames nobody would step to. **The low-cloud subset (~125 MB) is the choice** — ~140
+usable dates/plot spanning 2017→2026 (≈15/year, dry-season-dominated, as expected for Amazon
+cloud cover). Note the *current* `satellite/` tree is already 1305 jpgs / 55 MB for a mere
+45-day window, so ~125 MB for the full decade is modest.
 
 ### PR8 scope (as specified by the governor)
 
 - Data source: `sunmint/satellite/manifest.json`'s **`plots`** key (plot-keyed, per-plot
   `bbox` + `scenes[{date, cloud_cover, asset_url, file}]`). Do **not** re-derive cell proximity.
 - Full available range per plot (see the data caveat above — requires the generator change).
+- **Archive the pixels, not just links:** backfill the **cloud<20% subset** of the full range
+  into `sunmint/satellite/plot_<id>/` (committed), and make the manifest/PR8 fetch prefer the
+  **committed local copy** over the external `sentinel-cogs` `asset_url` (see resolved
+  decisions above).
 - **Genuine change-over-time mechanism** (explicit requirement): a **slider or prev/next date
   stepper** that swaps the displayed image, with **date + cloud-cover shown**, so a user can
   step through and *see* change. A static thumbnail grid is **not** acceptable.
@@ -281,7 +306,8 @@ first low-cloud 2017-07-11) is reachable **only by changing the generator** — 
 
 ### PR8 — per-plot satellite history date-picker
 - [ ] (data) `sunmint` generator: backfill full per-plot archive (raise `DAYS_BACK`/`MAX_SCENES_PER_CELL`, paginate STAC); verify per-plot start date
-- [ ] Resolve the storage / `asset_url`-vs-`file` / per-plot-tile decisions above with the governor
+- [ ] (data) **Commit the cloud<20% images into `sunmint/satellite/plot_<id>/`** (not links) — one-time backfill run; keep it to the low-cloud subset (~125 MB, not ~1.7 GB)
+- [ ] (data) Manifest + PR8 fetch: **prefer committed `raw.githubusercontent.com` copy**, demote `asset_url` to fallback (fixes the `sunmint.html:814` inversion)
 - [ ] Detail-panel control: slider + prev/next date stepper that swaps the image, showing date + cloud cover
 - [ ] Scoped to the selected plot's own bbox (no cell approximation)
 - [ ] Open PR, report URL
