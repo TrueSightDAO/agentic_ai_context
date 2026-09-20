@@ -39,6 +39,8 @@ ledger-booking step at link time changes.
 | 0.6 | **Every ledger write and every row mutation is a signed event** | Ruled — six events enumerated in §1.5, including the reconciliation match (now a real ledger reclassification, not just a column write, which makes this requirement even more clearly correct than in draft 2). |
 | 0.7 (OPEN) | **Does the reconciliation match need a governor click, or fire automatically and just be system-signed?** | Proposed default: automatic + system-signed — a governor click per match would reintroduce the one-at-a-time bottleneck. Flagged, not confirmed. |
 | 0.8 (OPEN) | **Aging policy for stalled prepayments or unpaid confirmed trees** | Not yet chosen between active nudging and a passive report. Default: passive report (§3, PR8), non-blocking. |
+| 0.9 | **`[TREE PURCHASE EVENT]` reuses the existing `[ASSET RECEIPT EVENT]` mechanism** | Verified live 2026-09-20 (§1.10): the `Asset Receipts` tab + `asset_receipt_ingest` GAS project + `dao_client`'s existing `report_asset_receipt.py` CLI already do exactly this shape (pay cash, book an offchain asset row). No new event, no new CLI needed for v1 — submit with `Currency = "Cacao Tree Purchased - Not Planted"`. **Caveat, not yet resolved:** this existing pipeline books only onto the **main** ledger's offchain transactions tab — it has no way to target a specific managed ledger (AGL8, etc.) directly. So until/unless that's extended, every purchase defaults to main-ledger funding (§0.3's "self-funded by a specific managed ledger" path is a phase-2 enhancement, not v1). |
+| 0.10 (OPEN) | **`[FARMER PAYMENT EVENT]` generalizes the existing CFR `payouts` mechanism, pending a source-level check** | The live `payouts` tab (§1.7) already has the right shape (`tree_planting_id`, `bank_ref`, `receipt_url`, `program_slug`) and its Tier-1 writes are confirmed unaffected by the CFR-specific Tier-2 blocker. **Not yet confirmed:** whether its GAS handler currently books real ledger legs (`-cash`/`-Liability`/`+Asset`) or only logs to the tracking tab — needs a `clasp pull` check on the `qr_code_web_service.js` project (§1.10) before PR4 starts, since that determines how much of PR4 is "generalize" vs. "build from scratch alongside an existing tracking tab." |
 
 ---
 
@@ -121,7 +123,82 @@ above.
 - **Plot-level link (net-new, PR6):** resolve a representative image from the target plot's media
   collection (`farm_media_manifests`, same source plots already use for their boundary hull — see
   `AGROVERSE_SUNMINT_FARM_LISTING.md`'s Fazenda Clara precedent), written to the QR row alongside a
-  new "Linked Plot ID" column (PR1).
+  new "Linked Plot ID" column (PR1). The live `SunMint Plots` tab (§1.7) is the plot registry to join
+  against — it already carries `Plot ID`, `Farm ID`, `Media`, `Coordinates`.
+
+### 1.7 Tab inventory — `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` (verified live 2026-09-20)
+
+This is the spreadsheet Gary linked — the same one every `[…EVENT]` type's Telegram-log-fallback
+lands on (tab `Telegram Chat Logs`, gid `0`), plus one dedicated tab per event type. Full list (37
+tabs) pulled live via the Sheets API (`market_research/google_credentials.json` service account):
+
+`Telegram Chat Logs`, `Plot Invalidation`, `Media Retraction`, `Farm Boundary Evidence`, `SunMint
+Plots`, `SunMint Registered Farms`, `Tree Growth Measurements`, `SunMint Tree Planting`, `Tree
+Planting Link`, `Inventory Movement`, `Program Registrations`, `Credentialing Attestation Events`,
+`Credentialing Events`, `Asset Receipts`, `New Contributor`, `Warmup Sends`, `Dapp Permission
+Changes`, `Stores Visits Field Reports`, `Store Adds`, `Capital Injection`, `Proposal Submissions`,
+`QR Code Generation`, `QR Code Sales`, `Donation Pledge`, `QR Code Update`, `Voting Rights Cash-Outs`,
+`Scored Expense Submissions`, `Document Notarizations`, `States`, `OpenClaw Beer Hall updates`,
+`SeaCoast Logistic Email Message Log`, `Currency Creation`, `Currency Conversion`, `Partner
+Check-ins`, `Repackaging Settlement`, `payouts`.
+
+**The six relevant to this plan, with their live current headers:**
+
+| Tab | Live columns (2026-09-20) | Relevance |
+|---|---|---|
+| `SunMint Tree Planting` (gid `176124122`) | Telegram Update ID, Telegram Chatroom ID, Telegram Chatroom Name, Telegram Message ID, **Contributor Name**, Contribution Made, Status date, Telegram File IDs, Photo of Tree Planted, Submitted Name, Latitude, Longitude, Status, Specie, GitHub Commit URL, Cost of Tree, Tree Planting Time, **Linked QR Code**, **Linked At**, **Plot ID** | Already has `Linked QR Code`/`Linked At` (the reused "committed" signal) and a `Plot ID` column — confirms plots are already tracked per-submission today, upstream of this plan. **`Contributor Name`** (verified DAO identity), not `Submitted Name` (free text), is the correct match key for PR3's farmer-balance lookup. No `Ledger`/`AGL` column at all — confirms ledger attribution genuinely isn't knowable at confirmation time (§0.3). |
+| `Tree Planting Link` (gid `1868446525`) | Row Number, Telegram Update ID, QR Code, SunMint Submission Message ID, Outcome, Reason, Processed Timestamp, Updated By | Existing dedup/outcome tracking tab from the parent plan's PR4 — unchanged by this plan. |
+| `Asset Receipts` (gid `77510441`) | Telegram Update ID, Processed At (ISO), **Currency Name**, Amount, Fund Handler, **Offchain Row**, Status | The reuse target for `[TREE PURCHASE EVENT]` (§0.9). `Offchain Row` confirms it targets one canonical (main) offchain tab, not a chosen managed ledger. |
+| `payouts` (gid `606329241`) | created_at_utc, telegram_update_id, program_slug, submission_source, recipient_pk_hash, amount, currency, **tree_planting_id**, bank_ref_type, bank_ref, paid_at, receipt_url, status, supersedes_row, error_message | The reuse target for `[FARMER PAYMENT EVENT]` (§0.10) — `tree_planting_id` is already exactly the join key PR4 needs. No ledger/offchain-row reference field, unlike `Asset Receipts` — supports the §0.10 caveat that this may currently be log-only. |
+| `SunMint Plots` (gid `526449180`) | Plot ID, Farm ID, Plot Name, Hectares, Status, Boundary Authority, Plot Type, Owner, Region, Verified At, Media, Notes, Coordinates, Latitude, Longitude, Invalidated By, (blank), Invalidated At, Invalidated Reason | Plot registry PR6 joins against for the plot-fallback link and its representative image. |
+| `SunMint Registered Farms` (gid `2011737890`) | Telegram Update ID, Telegram Chatroom ID, Telegram Chatroom Name, Telegram Message ID, Contributor Name, Contribution Made, Status date, Telegram File IDs | Farm registry — potentially useful later for mapping a farm to "its own" managed ledger (§0.3's self-funded path), not required for v1 (§0.9's caveat). |
+
+### 1.8 New tabs and columns actually needed
+
+**No new tabs.** Every event this plan introduces reuses an existing tab (§1.7) or an existing
+ledger `Transactions`/`offchain transactions` tab (for the three new literal-string items, same
+convention as `Cacao Tree To Be Planted` — no `Currencies` row, no dedicated tab).
+
+**New columns:**
+
+| Sheet | New column | Purpose |
+|---|---|---|
+| `Agroverse QR codes` (tokenomics ledger `1GE7PUq…`) | **Linked Plot ID** | PR6's plot-fallback link target — no equivalent column exists today (checked against the full A–AB schema in `SUNMINT_TREE_QR_LINKING_PLAN.md` §1.2 and `tokenomics/SCHEMA.md`). |
+| `SunMint Tree Planting` | **Payment Event Ref** | Records which `[TREE PURCHASE EVENT]`/`[FARMER PAYMENT EVENT]` (its `Telegram Update ID` or `Asset Receipts`/`payouts` row reference) funded this specific confirmed tree — the traceability link Decision 0.6 in the earlier conversation asked for. Nothing existing plays this role; `Cost of Tree` (col P) records an amount, not a reference. |
+
+**No new columns needed on:** `Asset Receipts`, `payouts`, `Tree Planting Link`, `SunMint Plots`,
+`Agroverse QR codes`'s existing tree-evidence columns (N/O/P/R), or `SunMint Tree Planting`'s
+`Linked QR Code`/`Linked At` (already do the job, §1.4).
+
+### 1.9 `tokenomics/SCHEMA.md` updates needed (PR1 + PR9)
+
+1. Document the three new literal-string ledger items (`Cacao Tree Purchased - Not Planted`,
+   `Cacao Tree - To Be Paid For`, `Cacao Tree Planted - Unassigned`) next to the existing `Cacao Tree
+   To Be Planted` entry, same "not a `Currencies` row" convention note.
+2. `Agroverse QR codes` sheet section — add column **"Linked Plot ID"** to the table (next available
+   column after the parent plan's additions).
+3. `SunMint Tree Planting` sheet section — this tab isn't documented in `SCHEMA.md` at all yet (only
+   in `SUNMINT_TREE_QR_LINKING_PLAN.md` §1.1, which is a plan doc, not the schema reference). **Add a
+   proper `SCHEMA.md` section for it** (it's a live, 20-column, actively-written sheet) — full current
+   header row, including the already-live `Linked QR Code`/`Linked At`/`Plot ID` (never formally
+   schema'd) and the new `Payment Event Ref`.
+4. New `SCHEMA.md` sections, similarly missing today, for **`Asset Receipts`**, **`payouts`**, and
+   **`SunMint Plots`** — all three are live, actively-written tabs with zero `SCHEMA.md` presence.
+   Document their current real headers (§1.7) verbatim.
+5. `tokenomics/API.md` / `API_ENDPOINTS.md` — register `[TREE PURCHASE EVENT]` (or note it's an
+   `[ASSET RECEIPT EVENT]` variant, §0.9) and `[FARMER PAYMENT EVENT]` (or note it generalizes the
+   existing payout mechanism, §0.10) and the reconciliation match's system-signed event.
+
+### 1.10 GAS projects — what's missing, and where
+
+| Project (script id) | File(s) | What's missing for this plan |
+|---|---|---|
+| `asset_receipt_ingest` (`1o2lzpdTZBYTTFdXzWJoATxznbqL959b_O7_no2Gd-OV4ryOPZOsqxtpU`), file `Code.gs`. Deployed: `.../AKfycbzcXBXYKmKiYg-tS2cqf60gWVm0ro17ndWVMnxNkc0dimaGUW3CYoi4b8nMZzVbENaw/exec`. | `Code.gs` | **Likely nothing for v1** (§0.9) — verify `Currency Name` isn't allowlist-restricted to existing values; if it is, add the three new literal strings to that allowlist. **Not locally mirrored** (`tokenomics/clasp_mirrors/` has no directory for this script id) — needs a `clasp pull` before this verification, flagged as PR2's first step rather than assumed. |
+| QR-codes project (`1UrBgqLnnQc6PV4-gMIDh2SYwWu62wTdSrV30xk9q_eVr2UdoxdzXN38v`) | `process_tree_planting_link.gs` | PR5: remove the old `+1 "Cacao Tree Planted"` write; add the two-source-variant logic (§1.4), the reimbursement transfer, and the plot-fallback branch (PR6). |
+| SunMint Tree Planting project (`1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF`) | `process_tree_planting_telegram_logs.gs` | PR3: new reconciliation function — on each new `NEW` row, query the `Cacao Tree Purchased - Not Planted` ledger balance for that farmer (`Contributor Name`, §1.7), match or book the liability, write `Payment Event Ref`, emit the system-signed reconciliation event. |
+| `qr_code_web_service.js` project (`1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT`) — **same project that already implements** `processPayoutEventsFromTelegramChatLogs` (per `GAS_SCRIPT_PROPERTIES.md`) | `qr_code_web_service.js` (+ wherever the payout handler's own file is — not yet identified locally, needs a `clasp pull`) | PR4: §0.10's source-level check first (does it book real ledger legs today?), then either generalize the existing handler or add the missing booking logic alongside the existing `payouts` tracking write. Also add the "already-linked → pay from that QR's ledger" branch (§1.2, Path B second branch), which nothing existing does today. |
+| `dao_protocol` (`truesight_dao_client/server/dispatch.py`) | `dispatch.py` | **Verified live 2026-09-20, a real discrepancy found:** despite `GAS_SCRIPT_PROPERTIES.md` claiming `[TREE PLANTING EVENT]` / `[TREE PLANTING REJECT EVENT]` / payout routing entries exist ("#149/#150"), the live `ROUTING` table has **none of them** — only `[TREE PLANTING LINK EVENT]` and `[ASSET RECEIPT EVENT]` are actually routed. All three others rely solely on their GAS cron fallback (minutes-scale delay) today. Add routing entries for `[TREE PURCHASE EVENT]`/`[FARMER PAYMENT EVENT]` (PR2/PR4, latency optimization, same pattern as every other row) — and flag the stale-doc discrepancy for a docs fix (PR9), separately from this plan's own scope. |
+| `dao_client` (`truesight_dao_client/modules/`) | `report_asset_receipt.py` (exists) · no `report_payout_event.py` (CLI gap — only a DApp page, `dapp_beta/report_payout_event.html`, exists today) | Confirmed: `[ASSET RECEIPT EVENT]`'s CLI already exists, reusable as-is for `[TREE PURCHASE EVENT]` (§0.9) — **no new CLI needed for PR2**. A CLI wrapper for the payout/farmer-payment side doesn't exist yet — worth adding in PR4 if a CLI (not just the DApp page) is wanted for governor use. |
 
 ---
 
@@ -144,15 +221,15 @@ above.
 | Unit | Scope | Repo |
 |---|---|---|
 | **PR0** | This roadmap. | `agentic_ai_context` |
-| **PR1** | Register the three new literal-string ledger items in `tokenomics/SCHEMA.md` (docs only, confirms exact spelling before code depends on it). Add "Linked Plot ID" column to `Agroverse QR codes` (needed by PR6). Document that the "committed" signal reuses the existing `SunMint Tree Planting` `Linked QR Code`/`Linked At` columns — no new column there. | `tokenomics` (docs + one schema column) |
-| **PR2** | `[TREE PURCHASE EVENT]` handler: books `-cash` + `+N Cacao Tree Purchased - Not Planted` on the funding ledger (or main, if generic/undesignated per §0.3). `dao_client` CLI module + `dispatch.py` routing. | `tokenomics` + `dao_protocol` |
-| **PR3** | Extend `[TREE PLANTING EVENT]` ingestion: on each new confirmed submission, query the farmer's `Purchased - Not Planted` ledger balance (FIFO by farmer). Match found → `-1 Purchased-Not-Planted / +1 Planted-Unassigned`, **emit the system-signed reconciliation event**. No match → `+1 Cacao Tree - To Be Paid For` on main ledger. | `tokenomics` |
-| **PR4** | `[FARMER PAYMENT EVENT]` handler: governor picks a confirmed-unpaid SunMint row for a farmer. Checks `Linked QR Code`: populated → pay from that QR's own ledger, `-1 To Be Paid For` only. Empty → pay from funding/main ledger, `-1 To Be Paid For / +1 Planted-Unassigned`. **First real use, once built, is the Paulo backfill (§1.1) — under the ledger-money gate (§2).** | `tokenomics` + `dao_protocol` |
+| **PR1** | `tokenomics/SCHEMA.md` updates per §1.9 (five items: three ledger literals, `Agroverse QR codes`'s new "Linked Plot ID" column, first-ever `SCHEMA.md` sections for `SunMint Tree Planting`/`Asset Receipts`/`payouts`/`SunMint Plots`). Add "Linked Plot ID" to `Agroverse QR codes` and "Payment Event Ref" to `SunMint Tree Planting` (§1.8) — the only two real schema changes; everything else in §1.9 is documenting sheets that already exist live but were never written up. | `tokenomics` (docs + two schema columns) |
+| **PR2** | `clasp pull` the `asset_receipt_ingest` project (§1.10, not yet locally mirrored) and verify `Currency Name` isn't allowlist-restricted. If it's open-ended: **no code change** — `[TREE PURCHASE EVENT]` ships as documentation (submit via the existing `report_asset_receipt.py` CLI with `Currency = "Cacao Tree Purchased - Not Planted"`) plus a `dispatch.py` routing entry for latency (§1.10). If restricted: add the three new literal strings to the allowlist. | `tokenomics` (+ `dao_protocol` for routing) |
+| **PR3** | Extend `process_tree_planting_telegram_logs.gs` (SunMint Tree Planting project, §1.10): on each new confirmed submission, query the `Cacao Tree Purchased - Not Planted` ledger balance for that farmer (`Contributor Name`, §1.7 — FIFO). Match found → `-1 Purchased-Not-Planted / +1 Planted-Unassigned`, write `Payment Event Ref`, **emit the system-signed reconciliation event**. No match → `+1 Cacao Tree - To Be Paid For` on main ledger. | `tokenomics` |
+| **PR4** | First, `clasp pull` the `qr_code_web_service.js` project (§1.10) and confirm §0.10: does the existing payout handler book real ledger legs today, or only log to `payouts`? Then either generalize it or add the missing booking. New/generalized `[FARMER PAYMENT EVENT]` handler: governor picks a confirmed-unpaid SunMint row for a farmer. Checks `Linked QR Code`: populated → pay from that QR's own ledger, `-1 To Be Paid For` only. Empty → pay from funding/main ledger, `-1 To Be Paid For / +1 Planted-Unassigned`. **First real use, once built, is the Paulo backfill (§1.1) — under the ledger-money gate (§2).** | `tokenomics` + `dao_protocol` |
 | **PR5** | Revise `process_tree_planting_link.gs` per §1.3/§1.4: independent `-1 Cacao Tree To Be Planted` write (new code path, sales handler untouched) always fires; source-dependent effect (pool vs. unpaid-liability) as specified; reimbursement transfer fires only in the cross-ledger pool case. Everything else in the handler (DApp gate, email, reject path) untouched. | `tokenomics` |
 | **PR6** | Plot-level link path: accept a plot id (from `sunmint/plots/index.geojson`) as an alternative to a SunMint submission row for the batch tool's repeat/no-email case. Writes "Linked Plot ID" + a representative image per §1.6. Needs its own consumption accounting (a plot represents many trees' worth of pool supply, not one) — small design pass at PR6 start. | `tokenomics` + `dapp_beta` |
 | **PR7** | Batch allocation tool: given all `SOLD`-unlinked QRs and all eligible confirmed units (`Planted-Unassigned` pool **and** `To Be Paid For` confirmed-unpaid rows, per §0.4), compute the pairing per Decision 0.5 and drive PR5/PR6's link event once per pair — governor-confirmed dry-run before real execution. | `dao_client` (CLI/script) |
 | **PR8** | Aging report for stalled `Purchased - Not Planted` balances and `To Be Paid For` liabilities — per Decision 0.8's default (passive report). Non-blocking, can slip. | `dao_client` or `truesight_autopilot` |
-| **PR9** | Docs: `tokenomics/SCHEMA.md` finalize, `tokenomics/API.md` new events, this plan's resume tracker, `CONTEXT_UPDATES.md` entry. | `tokenomics` / `agentic_ai_context` |
+| **PR9** | Docs: finalize `tokenomics/SCHEMA.md` (§1.9), `tokenomics/API.md` new events, this plan's resume tracker, `CONTEXT_UPDATES.md` entry, and a `GAS_SCRIPT_PROPERTIES.md` correction for the routing-table discrepancy found in §1.10 (the doc claims `[TREE PLANTING EVENT]`/`[TREE PLANTING REJECT EVENT]`/payout routing exists; live `dispatch.py` has none of them). | `tokenomics` / `agentic_ai_context` |
 | **RUN** | (a) Backfill Paulo's known payout via PR2+PR4 (§1.1). (b) First real batch-link run via PR7. **Ledger-money + batch-execution gate (§2) — needs explicit `go`.** | — |
 | **UAT** | See §5. **Always-stop gate.** | — |
 
@@ -160,32 +237,38 @@ above.
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR1** (register the three literal-string ledger items, add "Linked Plot ID"). Fresh
-> roadmap, reverted same-day to real ledger items after the draft-2 simplification proved to drop
-> real accrual information — nothing has started.
+> **RESUME HERE → PR1** (SCHEMA.md updates + the two real new columns, §1.9). Fresh roadmap, reverted
+> same-day to real ledger items after the draft-2 simplification proved to drop real accrual
+> information — nothing has started.
 >
-> **Open before certain units:** PR3 needs Decision 0.7 confirmed (proposed default stated, doesn't
-> block starting). PR8 needs Decision 0.8 confirmed — non-blocking, can slip past RUN.
+> **Open before certain units:** PR2 and PR4 each start with a `clasp pull` verification step (§1.10,
+> §0.9/§0.10) — neither project is locally mirrored today, so the exact scope of "generalize existing
+> handler" vs. "add new booking logic" isn't fully known until that pull happens. PR3 needs Decision
+> 0.7 confirmed (proposed default stated, doesn't block starting). PR8 needs Decision 0.8 confirmed —
+> non-blocking, can slip past RUN.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (register ledger items + Linked Plot ID column) | ☐ | ☐ | ☐ |
-| PR2 (`[TREE PURCHASE EVENT]` handler + CLI + routing) | ☐ | ☐ | ☐ |
-| PR3 (reconciliation match, system-signed) | ☐ | ☐ | ☐ |
-| PR4 (`[FARMER PAYMENT EVENT]` handler) | ☐ | ☐ | ☐ |
+| PR1 (SCHEMA.md updates + Linked Plot ID + Payment Event Ref columns) | ☐ | ☐ | ☐ |
+| PR2 (verify/extend `asset_receipt_ingest`; `[TREE PURCHASE EVENT]` + routing) | ☐ | ☐ | ☐ |
+| PR3 (reconciliation match in `process_tree_planting_telegram_logs.gs`, system-signed) | ☐ | ☐ | ☐ |
+| PR4 (verify/generalize `payouts` handler; `[FARMER PAYMENT EVENT]`) | ☐ | ☐ | ☐ |
 | PR5 (revise `process_tree_planting_link.gs`) | ☐ | ☐ | ☐ |
 | PR6 (plot-level link path + image resolution) | ☐ | ☐ | ☐ |
 | PR7 (batch allocation tool) | ☐ | ☐ | ☐ |
 | PR8 (aging report — pending Decision 0.8; non-blocking) | ☐ | ☐ | ☐ |
-| PR9 (docs) | ☐ | ☐ | ☐ |
+| PR9 (docs, incl. the GAS_SCRIPT_PROPERTIES.md routing-table correction) | ☐ | ☐ | ☐ |
 | RUN (Paulo backfill + first real batch link) | ☐ | — | ☐ |
 | UAT | ☐ | — | ☐ |
 
 ✅ **Pre-flight Completeness (§5d):** current QR/link status counts, the existing handler's exact
 behavior, the existing sale-time booking's exact behavior (and why it's left alone), the ledger
-literal-string convention, and the full four-item model are all captured in §1. Decisions 0.7 and 0.8
-are genuine open governor calls, not undiscovered facts, and don't block PR1.
+literal-string convention, the full four-item model, the live tab inventory (§1.7), the new-columns
+list (§1.8), the SCHEMA.md gap list (§1.9), and the GAS-project map (§1.10) are all captured in §1.
+Decisions 0.7 and 0.8 are genuine open governor calls, not undiscovered facts. The `clasp pull`
+verifications flagged for PR2/PR4 are genuine unknowns (the projects aren't locally mirrored) — they
+don't block starting PR1, but PR2/PR4 each begin with that check rather than assuming the answer.
 
 ---
 
@@ -223,3 +306,11 @@ Per `OPERATING_INSTRUCTIONS.md` §6, report each merged PR via `dao_client`
   own small design pass when PR6 starts.
 - Whether the reconciliation match's "system identity" should be a dedicated identity or reuse an
   existing one (e.g. the autopilot's own DAO signing identity) — pick at PR3, not a blocking unknown.
+- §0.9's caveat: `asset_receipt_ingest` only books onto the main ledger today — self-funded-by-a-
+  specific-managed-ledger purchases (§0.3's other path) are a phase-2 enhancement, not v1, unless PR2
+  decides to extend it.
+- §0.10's open question (does the existing `payouts` handler book real ledger legs or only log) is
+  the single biggest unknown left in this plan — resolve it first thing in PR4, before scoping the
+  rest of that PR.
+- A CLI wrapper for the farmer-payment side (`dao_client`, mirroring `report_asset_receipt.py`)
+  doesn't exist yet — only the DApp page does. Worth adding in PR4 if governor CLI use is wanted.
