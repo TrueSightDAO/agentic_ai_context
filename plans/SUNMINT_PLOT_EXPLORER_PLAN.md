@@ -217,6 +217,16 @@ first low-cloud 2017-07-11) is reachable **only by changing the generator** — 
   if used at all.
 - **Per-plot tiles:** archive start varies by Sentinel-2 tile; Envoy's 2017-01-27 is
   **RM-P1-specific**. Backfill must verify per-plot, not assume one global start date.
+- **Backfill execution → a self-driving catch-up daemon, NOT a manually-dispatched one-shot
+  (governor, 2026-09-20).** Instead of a human/Envoy-run `workflow_dispatch`, extend the
+  **existing** cron script (`scripts/cache_satellite_scenes.py`, run by
+  `.github/workflows/cache-satellite-scenes.yml`) so each run detects it has not yet reached
+  full history, pulls **one rate-limited batch** toward the archive floor, and **merges** it
+  into the committed `satellite/manifest.json` + `satellite/plot_<id>/`; once caught up it
+  settles into the **steady-state rolling-window + merge** mode. No human trigger at any
+  point — it is the existing daily-cron pattern plus a bounded catch-up phase. (This changes
+  *what gets written*, not *who writes it* — initial code authorship is still gated by the
+  `sunmint` `api_only_repos` restriction, below.)
 
 ### Size arithmetic (measured 2026-09-20 — pins the storage choice)
 
@@ -233,6 +243,29 @@ cloudy frames nobody would step to. **The low-cloud subset (~125 MB) is the choi
 usable dates/plot spanning 2017→2026 (≈15/year, dry-season-dominated, as expected for Amazon
 cloud cover). Note the *current* `satellite/` tree is already 1305 jpgs / 55 MB for a mere
 45-day window, so ~125 MB for the full decade is modest.
+
+### PR8a design — self-driving catch-up daemon (governor, 2026-09-20)
+
+PR8a is the `sunmint` data dependency. **Design (verified against the repo on the box):**
+
+- The workflow that runs the cache is **already** a daily cron `30 6 * * *` that commits with
+  `secrets.GH_PAT_TOKEN` (`git add satellite && git commit && git push`) — so a self-driving
+  catch-up needs **no new triggering mechanism**, just a changed script body.
+- **State/cursor:** `satellite/manifest.json` already carries top-level `generated_at`,
+  `source`, `cells`, `plots` — a per-plot (or global) `backfill_cursor` / `archive_floor`
+  field can ride there so each run knows where it left off and when it has caught up.
+- **Each run:** (1) if not yet at the archive floor, run a **bounded** paginated STAC query
+  (`cloud_cover < 20`) reaching **backward** from the current earliest recorded date for up to
+  N new scenes / M requests per plot (respect STAC + rate limits); (2) download + commit those
+  jpgs into `satellite/plot_<id>/`; (3) **merge** into the manifest by date (accumulate, never
+  truncate); (4) advance the cursor. Net effect: it walks back to ~2017 over successive daily
+  runs, then switches to steady-state rolling-window + merge.
+- **Why merge, not rebuild:** today's script **rebuilds** `manifest.json` from a `DAYS_BACK=45`
+  window each run, which is exactly why history never accumulates. The catch-up requires an
+  **incremental merge** path (and a `MAX_SCENES_PER_CELL` that can exceed 4).
+- **Bounded and self-terminating:** the catch-up phase is finite (reaches the per-plot archive
+  floor and sets a `caught_up` marker); mismatched/tile-varying floors are expected, so
+  "caught up" is evaluated **per plot**.
 
 ### PR8 scope (as specified by the governor)
 
@@ -305,7 +338,8 @@ cloud cover). Note the *current* `satellite/` tree is already 1305 jpgs / 55 MB 
 - [ ] No console errors
 
 ### PR8 — per-plot satellite history date-picker
-- [ ] (data) `sunmint` generator: backfill full per-plot archive (raise `DAYS_BACK`/`MAX_SCENES_PER_CELL`, paginate STAC); verify per-plot start date
+- [ ] (data) `sunmint` generator: convert to a **self-driving catch-up daemon** — per-run bounded paginated STAC (`cloud<20`) walking back to the per-plot archive floor, **merge** into `manifest.json` (never rebuild), commit jpgs via the existing daily cron + `GH_PAT_TOKEN`; settle into steady-state rolling+merge once caught up; verify per-plot start date
+- [ ] (data) PR8a authorship path — `sunmint` is in `api_only_repos` (`config.py:353`): `git_push_changes`/`open_fix_pr` refuse it. Options: (1) governor authorizes a single-file Contents-API write + a dispatch to kick the first run; (2) a cloner (Envoy) opens the `sunmint` PR; (3) governor reclassifies `sunmint`'s code out of `api_only_repos`. **Awaiting governor decision.**
 - [ ] (data) **Commit the cloud<20% images into `sunmint/satellite/plot_<id>/`** (not links) — one-time backfill run; keep it to the low-cloud subset (~125 MB, not ~1.7 GB)
 - [ ] (data) Manifest + PR8 fetch: **prefer committed `raw.githubusercontent.com` copy**, demote `asset_url` to fallback (fixes the `sunmint.html:814` inversion)
 - [ ] Detail-panel control: slider + prev/next date stepper that swaps the image, showing date + cloud cover
