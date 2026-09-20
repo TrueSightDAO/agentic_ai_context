@@ -3,7 +3,7 @@
 > **Purpose:** give the SunMint plot/tree/media data a **dedicated exploration surface** — a
 > full-viewport instrument for visualising and exploring plots, trees, boundary evidence and
 > media galleries — instead of crowding the `truesight.me/sunmint` marketing page.
-> Beta-first; prod promote only with explicit governor approval.
+> Beta-first; prod promote only after the R3 sign-off — governor, or Envoy's verified go-ahead per `sophia/SUPERVISOR_LOOP.md` §4a.
 >
 > **Origin:** governor request, thread 33323 (2026-09-19): *"perhaps we should have a
 > dedicated surface somewhere that actually allows the visualization, exploration of the
@@ -66,7 +66,7 @@ pan; single-instance; small).
 - Backend event schemas / sheet source-of-truth changes (SunMint Plots sheet stays canonical).
 - New repos / new domains / new DNS.
 - Any direct PRODUCTION repo edits (`truesight_me_prod` untouched; promote via `sync_beta_to_prod`
-  only, on governor GO).
+  only, on the R3 sign-off — governor, or Envoy's verified go-ahead per `sophia/SUPERVISOR_LOOP.md` §4a).
 
 ## 4. Data contract (all sources live)
 
@@ -98,7 +98,7 @@ cleaning the registry.
 
 ## 6. Constraints (rules)
 
-- **Beta-first:** all changes to `truesight_me_beta`; prod promote only after governor approval
+- **Beta-first:** all changes to `truesight_me_beta`; prod promote only after the R3 sign-off (governor, or Envoy's verified go-ahead per `sophia/SUPERVISOR_LOOP.md` §4a)
   via `sync_beta_to_prod`. UAT gate before promote.
 - **ONE PR PER TURN** — execute one PR, report, stop; next unit in a fresh turn.
 - **Local test suite** before pushing (compile, ruff lint, ruff format, pytest). Static HTML/JS:
