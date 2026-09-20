@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-09-20T18:13:16Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "caa85e50818dcededddab8b3260dc0f434941736ba732a7c982733a56b88ee0e",
+  "source_sha256": "6bd042c8a201ed0da0cfb530b912a89507a375f692d02fb7926918bc8f99ae8a",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -19,7 +19,7 @@
   "handoff_count": 68,
   "counts_by_state": {
     "awaiting_kickoff": 15,
-    "executing": 14,
+    "executing": 15,
     "paused_at_gate": 2,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -29,7 +29,7 @@
     "failed": 0,
     "done": 21,
     "stale": 1,
-    "unknown": 1
+    "unknown": 0
   },
   "handoffs": [
     {
@@ -331,8 +331,8 @@
       "plan_file": "`plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`",
       "title": "**SunMint farmer settlement + batch QR-tree linking** \\u2014 four-item accrual ledger model (customer liability, farmer-side prepaid-asset/accrued-liability paths, settled pool) for the cash the DAO actually pays farmers/cooperatives to plant trees, plus a batch allocator (distinct-email \\u2192 tree, repeat/no-email \\u2192 plot) for the 520 sold QRs sitting unlinked today, plus a cross-ledger reimbursement mechanic. Supersedes the ledger-booking step of the parent plan below (\\u00a77).",
       "handoff_date": "2026-09-20",
-      "state": "unknown",
-      "status_raw": "**design ruled (two same-day revisions \\u2014 see plan file's revision history); no code yet. RESUME HERE = PR1**",
+      "state": "executing",
+      "status_raw": "**in progress 2026-09-20 — PR1–PR4 merged (tokenomics #529–#535, dao_protocol #174); RESUME HERE = PR5**",
       "telegram_thread_id": "33541",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -1252,7 +1252,6 @@
   "warnings": [
     "line 59: ragged row has 13 cells, expected 11 — padded/truncated",
     "line 78: ragged row has 9 cells, expected 11 — padded/truncated",
-    "line 74: blank line splits the handoff table",
-    "`plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`: Status \"**design ruled (two same-day revisions \\\\u2014 see plan file's revision history); no code yet. RESUME HERE = PR1**\" matched no state rule"
+    "line 74: blank line splits the handoff table"
   ]
 }
