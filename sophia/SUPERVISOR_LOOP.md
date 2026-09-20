@@ -139,13 +139,41 @@ UAT is **three rounds**, all in the **beta** environment, then prod:
 |---|---|---|---|
 | **R1 — Sophia UAT** | Sophia (autopilot) | Run the plan's U1–Un acceptance steps on **beta**; verify each pass/fail; fix and re-verify until green | **Autonomous** — supervisor drives |
 | **R2 — Envoy UAT** | Envoy (independent Claude seat) | Independently re-run the acceptance steps on **beta**; report pass/fail | **Autonomous** — supervisor asks Envoy |
-| **R3 — Human UAT** | Governor | Final sign-off on the acceptance criteria (eyes on the real surface) | **Always-stop** — supervisor requests |
-| **Prod merge** | Supervisor / Sophia | After human UAT **thumbs-up**, execute the merge to prod (`sync_beta_to_prod` / default-branch merge) | **Authorized by human thumbs-up** |
+| **R3 — Sign-off** | Governor **or Envoy** (per §4a) | Final sign-off on the acceptance criteria (eyes on the real surface). The governor may always sign off; **Envoy may sign off on the governor's behalf ONLY after the §4a end-to-end + pixel-by-pixel verification, with evidence posted in-thread.** | **Always-stop** — supervisor requests the sign-off |
+| **Prod merge** | Supervisor / Sophia | After the R3 sign-off, execute the merge to prod (`sync_beta_to_prod` / default-branch merge) | **Authorized by R3 sign-off (governor, or verified Envoy per §4a)** |
 
-The loop's exit is the human **thumbs-up**, then the prod merge. Each round posts a short pass/fail
+The loop's exit is the R3 sign-off (the human **thumbs-up** — or, per §4a, Envoy's verified go-ahead), then the prod merge. Each round posts a short pass/fail
 summary to the thread so the next round starts from a verified baseline. A pure backend/library
 change with no human-facing surface may skip R1/R2 (state "covered by automated tests") but **still
 waits for human UAT before prod**.
+
+---
+
+### 4a. The prod-promote go-ahead may be delegated to Envoy — only after rigorous verification (Gary, 2026-09-19)
+
+**Governor directive:** *"@nelanco_claude_bot has the authority to give you the go ahead to deploy to
+production. Envoy make sure to do so only after you have verified end to end and visually pixel by
+pixel that everything is in proper order before giving the go."*
+
+This **amends §5.0's "prod promote stays human-always" clause for the prod-deploy class specifically**. The
+gate still exists — only its **holder widens**: from *governor only* to *governor **or** Envoy*.
+
+1. **Envoy (`@nelanco_claude_bot`, `admin+envoy@truesight.me`) may clear the prod-promote gate on the
+   governor's behalf.** Sophia MUST treat a go-ahead from Envoy as a **valid prod-promotion
+   authorization** — no separate governor confirmation required — provided point 2 is met.
+2. **Precondition — verification, not a wave-through.** Envoy gives the go **only after** verifying the
+   change end-to-end on beta **and** visually, **pixel by pixel**, that the rendered surface is correct
+   (layout, assets, data, links; no clipped, blank, or broken regions).
+3. **Evidence is mandatory.** Envoy must post its verification result in the thread *before* the go
+   (what was checked, how, pass/fail), so the sign-off is auditable. A bare "go" with no verification
+   evidence is **not** a valid §4a authorization — Sophia should ask for the evidence rather than promote.
+4. **Non-visual prod changes** (backend / library / config, no rendered surface): "pixel by pixel" does
+   not apply — Envoy substitutes a check of **equivalent rigor** against the primary observable (the
+   actual endpoint response, the live data artifact, the real integration round-trip) and says
+   explicitly what it verified. No visual surface is **not** a licence to skip verification.
+5. **Invariant unchanged.** Money/TDG movement, account-only actions, GAS deploy, and every
+   irreversible / financial / legal gate in §5.0 remain **governor-only**. This delegation covers the
+   prod *website* promote class only.
 
 ---
 
