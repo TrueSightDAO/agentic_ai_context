@@ -171,6 +171,66 @@ Concretely, PR1 must ship:
 | **PR7** | **`gate: UAT`** — checklist on `beta.truesight.me/sunmint/plots/` + marketing teaser | truesight_me_beta | PR6 |
 | *(post-UAT)* | Promote to prod (`sync_beta_to_prod truesight_me_prod`) **only with governor approval** | — | UAT pass |
 
+## 7b. Phase 2 — per-plot satellite history (PR8–PR9)
+
+> **Origin:** governor scope via Envoy, thread 33323 (2026-09-20). Build-then-cleanup order,
+> so the capability is not lost mid-transition.
+
+| # | Deliverable | Repo | Depends on |
+|---|---|---|---|
+| **PR8** | **Satellite history date-picker** in the plot detail panel — a slider / prev-next date stepper that swaps the displayed image for the selected plot, showing date + cloud cover | truesight_me_beta (+ `sunmint` data) | PR4 |
+| **PR9** | Retire the now-redundant satellite-history widget from `sunmint.html` (marketing page) | truesight_me_beta | PR8 |
+| *(post-PR9)* | Re-run UAT + promote (`sync_beta_to_prod`) on the R3 sign-off (governor, or Envoy's verified go-ahead per §4a) | — | PR9 |
+
+### Data-source reality check (verified 2026-09-20 — constrains PR8's stated range)
+
+Envoy's brief assumes `sunmint/satellite/manifest.json`'s `plots` key already carries the
+**full historical range** per plot. **It does not, today.** Verified on the box:
+
+- `plots` exists and **is plot-keyed** (21 plots), each with its own `bbox` + `scenes[]` —
+  so PR8 can drop the marketing page's ~1° cell approximation. ✅
+- BUT the generator (`sunmint/scripts/cache_satellite_scenes.py`) hard-codes
+  **`DAYS_BACK = 45`** and **`MAX_SCENES_PER_CELL = 4`**, with a STAC query at
+  `limit: 20` over a rolling 45-day window (cron: daily 06:30 UTC). Result: **every plot
+  carries exactly 4 scenes, spanning ~2026-08-13..2026-09-18** — a rolling recent window,
+  *not* the 2017→ archive Envoy measured by querying STAC directly.
+
+**Consequence:** a date-picker built against the current manifest would step through **4
+recent dates**, not "years of change". The range Envoy verified (RM-P1 earliest 2017-01-27;
+first low-cloud 2017-07-11) is reachable **only by changing the generator** — raise/remove
+`DAYS_BACK`, raise/lift `MAX_SCENES_PER_CELL`, and paginate the STAC query. PR8 is therefore
+**not purely a UI task**: it takes a small `sunmint` pipeline change as its data dependency.
+
+### Open decisions for the governor (before PR8 is built)
+
+- **Storage:** the current `satellite/` tree is 1305 jpgs / 55 MB *for a 45-day window*. A
+  full 2017→ backfill is far larger. Do we (a) commit every low-cloud scene's thumbnail,
+  (b) commit a curated subset (e.g. one per month / per dry season), or (c) point the `<img>`
+  at the S3 `asset_url` on demand? Note `sentinel-cogs` previews return **no
+  `Access-Control-Allow-Origin`** — fine for `<img src>`, but blocks canvas/WebGL use.
+- **`asset_url` vs committed `file`:** the manifest carries both a live S3 `asset_url` (may
+  age out) and a committed relative `file`. Which is the render source of truth?
+- **Per-plot tiles:** archive start varies by Sentinel-2 tile; Envoy's 2017-01-27 is
+  **RM-P1-specific**. Backfill must verify per-plot, not assume one global start date.
+
+### PR8 scope (as specified by the governor)
+
+- Data source: `sunmint/satellite/manifest.json`'s **`plots`** key (plot-keyed, per-plot
+  `bbox` + `scenes[{date, cloud_cover, asset_url, file}]`). Do **not** re-derive cell proximity.
+- Full available range per plot (see the data caveat above — requires the generator change).
+- **Genuine change-over-time mechanism** (explicit requirement): a **slider or prev/next date
+  stepper** that swaps the displayed image, with **date + cloud-cover shown**, so a user can
+  step through and *see* change. A static thumbnail grid is **not** acceptable.
+- Scoped tightly to the single selected plot's own bbox (reuse the marketing page's
+  `toggleOverlay` / thumbnail-click logic, but not its cell approximation).
+
+### PR9 scope
+
+- Remove the satellite-history widget from `sunmint.html` once PR8 ships the real per-plot
+  version. Traced: it is **not literally broken** (click updates a hidden panel + a map
+  overlay), but the overlay is a ~1°-cell tile on an all-plots map — visually imperceptible
+  at that zoom, so it reads as non-functional. Retire it rather than maintain two versions.
+
 ## 8. Checklist
 
 ### PR1 — per-plot media index
@@ -218,6 +278,22 @@ Concretely, PR1 must ship:
 - [ ] **§6a freshness:** index `generated_at` is newer than the newest input `updated` (stale index FAILS UAT)
 - [ ] **§6a freshness:** explorer displays the "media as of <timestamp>" stamp
 - [ ] No console errors
+
+### PR8 — per-plot satellite history date-picker
+- [ ] (data) `sunmint` generator: backfill full per-plot archive (raise `DAYS_BACK`/`MAX_SCENES_PER_CELL`, paginate STAC); verify per-plot start date
+- [ ] Resolve the storage / `asset_url`-vs-`file` / per-plot-tile decisions above with the governor
+- [ ] Detail-panel control: slider + prev/next date stepper that swaps the image, showing date + cloud cover
+- [ ] Scoped to the selected plot's own bbox (no cell approximation)
+- [ ] Open PR, report URL
+
+### PR9 — retire marketing-page satellite widget
+- [ ] Remove the redundant widget from `sunmint.html` (marketing page otherwise intact)
+- [ ] Confirm the explorer's PR8 stepper is the single home for satellite history
+- [ ] Open PR, report URL
+
+### PR8/PR9 — post-merge gate
+- [ ] Re-run UAT on `beta.truesight.me/sunmint/plots/` (stepper works; retired widget gone)
+- [ ] Promote on the R3 sign-off (governor, or Envoy's verified go-ahead per §4a)
 
 ## 9. Do / Don't
 - **Do** keep data machine-generated; never hand-edit geojson or the per-plot index.
