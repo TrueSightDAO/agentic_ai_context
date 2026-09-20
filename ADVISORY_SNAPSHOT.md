@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-20T11:42:11Z`
+- Generated (UTC): `2026-09-20T16:22:25Z`
 - Look-back: **7** calendar days (`2026-09-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,8 +32,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 32
-- `[PRACTICE EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 30
+- `[PRACTICE EVENT]` × 5
 - `[PROPOSAL VOTE]` × 3
 - `[NOTARIZATION EVENT]` × 1
 - `[PROPOSAL CREATION]` × 1
@@ -42,9 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260918194113_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260918194115_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 86 · Contributor(s): Envoy TrueSight
-- `Edgar_20260918194342_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
 - `Edgar_20260918194345_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
 - `Edgar_20260918214437_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 400.6 · Description: CRF Anapu — Sophia execution (payout pipeline, catalog, E2E, intake fix)
 - `Edgar_20260918214441_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 301.8 · Description: CRF Anapu — governor direct time (payout pipeline direction + UAT)
@@ -62,6 +59,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260920032745_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 394 · Description: Envoy supervision of Sophia's CRF/payout track, thread 30026 (17-18 Sep wind…
 - `Edgar_20260920034143_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: PII Event Envelope — design doc, CRF plan §11.10 cross-ref, + handoff regist…
 - `Edgar_20260920044219_050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Black King NF-e ↔ in-transit reconciliation + Brazil export-lane GAS fixes (…
+- `Edgar_20260920124350_052` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T12:43:48.873Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260920143555_054` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T14:35:54.491Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20260920150455_056` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T15:04:54.363Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 
 ---
 
@@ -276,6 +276,8 @@ _All dated lines on/after 2026-09-13_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1d1a938 | 2026-09-20 10:08:07 -0300 | fix(sunmint/plots): remove stale "arrive in later units" banner copy (#388)
+2b33635 | 2026-09-20 11:45:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the shared nav is styled (UAT fix) (#387)
 00831c0 | 2026-09-20 06:38:08 -0300 | sunmint marketing: map teaser + 'Explore all plots' CTA (PR6) (#386)
 1baf6fb | 2026-09-20 05:39:53 -0300 | sunmint plots: deep-links (?plot=/?farm=/?tree=/?qr=) + share (PR5) (#385)
@@ -325,6 +327,16 @@ b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f977200 | 2026-09-20 13:22:14 -0300 | SUNMINT_PLOT_EXPLORER_PLAN: resolve PR8 storage decision (commit low-cloud pixels; prefer local over S3) (#1302)
+9abd9eb | 2026-09-20 13:18:59 -0300 | Refresh SunMint Plot Explorer supervision claim (PR7 UAT + prod-sync block) (#1301)
+6d88cd7 | 2026-09-20 13:17:05 -0300 | SUNMINT_PLOT_EXPLORER_PLAN: add PR8 (per-plot satellite date-picker) + PR9 (retire marketing widget), with data-source caveat (#1299)
+1468ab7 | 2026-09-20 09:58:15 -0300 | Verification directive: verifier must load the beta surface itself (Gary, 2026-09-20) (#1298)
+30b738a | 2026-09-20 08:43:46 -0300 | UAT evidence: plot explorer mobile full page (390px viewport)
+a775a28 | 2026-09-20 08:43:43 -0300 | UAT evidence: plot explorer deep-link ?plot=CR-PA-P2 selected
+199293c | 2026-09-20 08:43:37 -0300 | UAT evidence: plot explorer desktop full page (900px = no vertical scroll)
+0e89f37 | 2026-09-20 08:43:34 -0300 | UAT evidence: plot explorer desktop viewport (1440x900)
+4007b33 | 2026-09-20 08:42:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
+20083ac | 2026-09-20 08:42:27 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
 56da83c | 2026-09-20 02:12:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
 9ca9a6d | 2026-09-20 02:12:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
 deebae1 | 2026-09-20 01:45:15 -0300 | handoffs: close out thread 31905 (Black King NF-e crosswalk) + file webhook-2xx harden follow-up (#1297)
@@ -355,16 +367,6 @@ f234e05 | 2026-09-19 03:39:56 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 ffcb98b | 2026-09-18 18:07:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
 6991df8 | 2026-09-18 18:07:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 da26446 | 2026-09-18 16:21:15 -0300 | followups: GAS load-time ReferenceError incident, 9-project scan, /tmp janitor (#1282)
-7b92055 | 2026-09-18 15:10:34 -0300 | followups: track clasp push + legacy-label cleanup for CurrencyConversion.js fix (#1281)
-3f587be | 2026-09-18 14:42:16 -0300 | §12: Q2–Q5 (server side) COMPLETE — Edgar webhook wired, catalog live, dedup gate verified (#1280)
-de159e1 | 2026-09-18 14:27:02 -0300 | CRF §12.6 answered: manual payout feed → M3 deferred; fix stale GAS/runbook docs (#1279)
-785347c | 2026-09-18 13:38:08 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
-098e0f0 | 2026-09-18 13:38:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
-7689ec8 | 2026-09-18 09:04:19 -0300 | Add bilingual declaration keyed by 44-digit chave de acesso
-466b809 | 2026-09-18 09:02:21 -0300 | Add bilingual (EN+PT) signed Black King NF-e declaration
-075cb00 | 2026-09-18 08:59:05 -0300 | Add signed Black King NF-e declaration (DAO logo + Gary signature)
-4a02151 | 2026-09-18 08:57:41 -0300 | Add Black King NF-e declaration & audit PDF (thread 31905)
-5ce7a78 | 2026-09-18 08:51:05 -0300 | handoffs: refresh sprint dashboard (3 actively-supervised threads) (#1278)
 … (truncated)
 ```
 
@@ -442,6 +444,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+497d497 | 2026-09-20 11:48:08 +0000 | chore: refresh currencies.json [skip ci]
 5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 277d073 | 2026-09-19 11:32:00 +0000 | chore: refresh currencies.json [skip ci]
 60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -555,7 +558,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/20/2026 3:51:14 |
+| 2026-09 | 924.5 | 18364.34386 | 9/20/2026 8:51:10 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-13`; scanned last **600** data rows)
 
