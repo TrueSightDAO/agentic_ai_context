@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-20T16:22:25Z`
+- Generated (UTC): `2026-09-20T20:59:04Z`
 - Look-back: **7** calendar days (`2026-09-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -276,6 +276,8 @@ _All dated lines on/after 2026-09-13_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9708f63 | 2026-09-20 13:41:57 -0300 | sunmint plots: per-plot satellite history stepper (PR8b) (#389)
+52ecbc7 | 2026-09-20 16:26:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 1d1a938 | 2026-09-20 10:08:07 -0300 | fix(sunmint/plots): remove stale "arrive in later units" banner copy (#388)
 2b33635 | 2026-09-20 11:45:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the shared nav is styled (UAT fix) (#387)
@@ -314,8 +316,7 @@ d9f30e0 | 2026-09-14 13:15:42 +0000 | chore(stats): refresh stats indexes [skip 
 159e9bd | 2026-09-14 05:21:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 f9f4f2c | 2026-09-13 21:05:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 1809777 | 2026-09-13 16:35:16 +0000 | chore(stats): refresh stats indexes [skip ci]
-7c2d1d3 | 2026-09-13 12:14:24 +0000 | chore(stats): refresh stats indexes [skip ci]
-b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip ci]
+… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -327,6 +328,17 @@ b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fedee95 | 2026-09-20 17:52:41 -0300 | docs(sunmint): close out PR5 in resume tracker, tick tracker row, add TC12 (#1311)
+77f9f6f | 2026-09-20 17:40:11 -0300 | docs(sunmint): close out PR4 in resume tracker, tick tracker row, add TC11, correct §1.7/§1.10 (#1310)
+e4cca34 | 2026-09-20 16:57:51 -0300 | SunMint plan: resolve §0.10 (log-only) + rule §0.11 (cross-ledger transfer) + Envoy TC (#1309)
+0915106 | 2026-09-20 15:40:09 -0300 | docs(sunmint): close out PR3 in resume tracker, advance to PR4 (#1308)
+be313d7 | 2026-09-20 15:25:49 -0300 | docs(plan): close out PR2, advance RESUME HERE to PR3, correct stale §1.10 routing claim (#1307)
+375e872 | 2026-09-20 15:17:53 -0300 | docs(plan): close PR1 (merged #529), advance RESUME HERE to PR2 (#1306)
+99b25b3 | 2026-09-20 15:14:13 -0300 | Claim SunMint farmer-settlement plan + refresh Plot Explorer note (#1305)
+78c1749 | 2026-09-20 15:12:09 -0300 | Add SunMint farmer-settlement + batch QR-tree-linking roadmap (#1296)
+dd6d12e | 2026-09-20 13:44:12 -0300 | plan: PR8a as a self-driving catch-up daemon (governor design call) (#1304)
+a02aa4b | 2026-09-20 13:22:47 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
+ddb8ece | 2026-09-20 13:22:45 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
 f977200 | 2026-09-20 13:22:14 -0300 | SUNMINT_PLOT_EXPLORER_PLAN: resolve PR8 storage decision (commit low-cloud pixels; prefer local over S3) (#1302)
 9abd9eb | 2026-09-20 13:18:59 -0300 | Refresh SunMint Plot Explorer supervision claim (PR7 UAT + prod-sync block) (#1301)
 6d88cd7 | 2026-09-20 13:17:05 -0300 | SUNMINT_PLOT_EXPLORER_PLAN: add PR8 (per-plot satellite date-picker) + PR9 (retire marketing widget), with data-source caveat (#1299)
@@ -356,23 +368,20 @@ cdf55f1 | 2026-09-19 19:19:50 -0300 | docs(MAP): document nearest-location join 
 3fcc5de | 2026-09-19 13:00:46 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
 e0180f6 | 2026-09-19 13:00:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
 bf82b2e | 2026-09-19 09:38:40 -0300 | docs: bilingual (EN/PT) invoice convention for Brazil/NF-e (#1284)
-bafb065 | 2026-09-19 09:38:13 -0300 | Add bilingual (EN/PT) Rev 11 packing list for accountant/NF-e
-3717783 | 2026-09-19 09:38:09 -0300 | Add bilingual (EN/PT) Rev 11 commercial invoice for accountant/NF-e
-c58e217 | 2026-09-19 08:20:48 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
-1ed9693 | 2026-09-19 08:20:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-25eaab1 | 2026-09-19 01:53:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
-617efbf | 2026-09-19 01:53:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-011d229 | 2026-09-19 00:40:08 -0300 | Merge pull request #1283 from TrueSightDAO/auto/advisory-refresh-2026-09-19
-f234e05 | 2026-09-19 03:39:56 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-ffcb98b | 2026-09-18 18:07:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
-6991df8 | 2026-09-18 18:07:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
-da26446 | 2026-09-18 16:21:15 -0300 | followups: GAS load-time ReferenceError incident, 9-project scan, /tmp janitor (#1282)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+458729e | 2026-09-20 17:50:25 -0300 | PR5: link-time ledger source variants (pool vs committed) + reimbursement transfer (#536)
+96207b0 | 2026-09-20 17:27:02 -0300 | PR4: add explicit partial-write coverage (mid-write leg failure) (#535)
+2dacfaf | 2026-09-20 17:21:10 -0300 | PR4 step 2: wire SunMint settlement ledger booking into the payout sink (#534)
+376dc3a | 2026-09-20 17:18:43 -0300 | PR4 step 1: pure SunMint settlement leg computation (#533)
+49e362f | 2026-09-20 15:43:19 -0300 | fix(gas): idempotency guard for reconcileTreePlanting_ (PR3 follow-up) (#532)
+4a6b5c0 | 2026-09-20 15:38:37 -0300 | feat(gas): SunMint farmer-settlement reconciliation (plan PR3) (#531)
+6149616 | 2026-09-20 15:22:24 -0300 | docs(API): document [TREE PURCHASE EVENT] as an ASSET RECEIPT variant (plan PR2) (#530)
+e8bdc2a | 2026-09-20 15:16:30 -0300 | docs(SCHEMA): SunMint farmer-settlement items, 2 new columns, 4 tab sections (plan PR1) (#529)
 9c5ec86 | 2026-09-18 16:27:24 -0300 | manifest: record real deployments for 1orWgdGckts55 (kill TBC) (#528)
 673b00e | 2026-09-18 16:03:32 -0300 | fix(gas): remove top-level getCredentials() call breaking all entry points (#527)
 3cbb4cd | 2026-09-18 16:01:35 -0300 | harden(gas): fail CLOSED on unverifiable pushes; fix misleading accessor message (#526)
@@ -405,14 +414,6 @@ c82616f | 2026-09-16 23:54:32 -0300 | chore(gas): preserve-then-drop the 4 Tier-
 60eb3a2 | 2026-09-16 23:15:59 -0300 | feat(dao-members-cache): emit discord_id / telegram_id / telegram_handle (schema v4) (#495)
 9f2a248 | 2026-09-15 12:19:40 -0300 | docs(schema): document Currencies cols P-S + add T Source Documents (#493)
 cd2648f | 2026-09-14 20:19:49 -0300 | fix(expenses): strip [ledger] prefix from Inventory Type before Column E write (#492)
-bd12393 | 2026-09-13 15:21:13 -0300 | asset_receipt_ingest: fill empty Currencies D/E from Product Image / Landing Page labels (#491)
-df418a0 | 2026-09-13 15:08:24 -0300 | docs(schema): add CNPJ + Physical Address cols to Agroverse Cacao Processing Cost (#490)
-d9af5b9 | 2026-09-13 14:58:42 -0300 | feat(qr-gen): PR4 auto-define QR-ready currency from a batch QR request (thread 27015) (#489)
-8e05cc3 | 2026-09-13 14:45:55 -0300 | feat(gas): RESERVATION + RESERVATION SETTLEMENT processors (unit 3) (#488)
-3eb0156 | 2026-09-13 13:19:20 -0300 | fix(gas): repair sales project 1dsWecVwb HEAD drift (rename parser to live name, sync SOLD_DATE_COL, un-ignore) (#487)
-a58b256 | 2026-09-13 09:46:32 -0300 | chore(gas): track secret-free Credentials.js for sales project + bump Version (#486)
-d9f620b | 2026-09-13 01:22:18 -0300 | fix(1N6o00): currency-def parser must not leak next line on empty fields (#485)
-5c6e948 | 2026-09-13 01:19:16 -0300 | fix(1N6o00): define missing findContributorByDigitalSignature() in currency-def handler (#484)
 … (truncated)
 ```
 
@@ -558,7 +559,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/20/2026 8:51:10 |
+| 2026-09 | 924.5 | 18364.34386 | 9/20/2026 13:50:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-13`; scanned last **600** data rows)
 
