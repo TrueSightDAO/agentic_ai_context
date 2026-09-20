@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-09-20T20:51:42Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "51f11881d4609ca401bf71a27ebd8a15d2c2075e83e20b46b996d01e27f9def0",
+  "source_sha256": "a4bbfc40c2e49f44aba20c2c1d1f74714ebbcd1c7d38457c3f605cf08ae7ecc2",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -332,7 +332,7 @@
       "title": "**SunMint farmer settlement + batch QR-tree linking** \\u2014 four-item accrual ledger model (customer liability, farmer-side prepaid-asset/accrued-liability paths, settled pool) for the cash the DAO actually pays farmers/cooperatives to plant trees, plus a batch allocator (distinct-email \\u2192 tree, repeat/no-email \\u2192 plot) for the 520 sold QRs sitting unlinked today, plus a cross-ledger reimbursement mechanic. Supersedes the ledger-booking step of the parent plan below (\\u00a77).",
       "handoff_date": "2026-09-20",
       "state": "executing",
-      "status_raw": "**in progress 2026-09-20 — PR1–PR5 merged (tokenomics #529–#536, dao_protocol #174); RESUME HERE = PR6**",
+      "status_raw": "**in progress 2026-09-20 — PR1–PR6 merged (tokenomics #529–#537, dao_protocol #174, dapp_beta #103); RESUME HERE = PR7**",
       "telegram_thread_id": "33541",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
