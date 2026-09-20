@@ -39,6 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint plot → farmer mapping: derive `SunMint Plots`.`Contributor Name` by geographic proximity (scope + open questions)
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541, plan `SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`). Status: scoped, NOT built — blocked on prerequisites + governor answers.**
+
+**Context.** The plan's PR6/PR7 plot-level link path resolves the farmer from `SunMint Plots` **col T `Contributor Name`**, and **fails closed** when it is blank. All 22 existing plots have col T empty, so plot links all fail closed today — the reason the PR7 live dry-run allocated **0 plots** (and 51 of 60 QRs went unallocated for lack of a target). Originally framed as a manual field-data backfill; **Gary (2026-09-20): “I think the plot is linked to the farm by proximity”** — i.e. derive the farmer by nearest registered farm rather than typing names by hand.
+
+**This changes HOW the col-T backfill is done, not WHETHER it needs prerequisites — and the prerequisites do not exist yet.**
+
+**🚩 Open questions (answer before building):**
+1. **Farm registry first.** `SunMint Registered Farms` is **headers-only / empty**. Who populates farm **lat/long + owner**, and when? Proximity is impossible without it.
+2. **Plot coordinates.** `SunMint Plots` holds only Plot ID + name — **no lat/long**. Where do *plot* coordinates come from so a distance can be computed?
+3. **Match rule.** What distance = “by proximity” — a fixed radius, or nearest-farm-wins with no threshold?
+4. **Ambiguity.** Plot equidistant to two farms, or nearer a farm than any registry entry — fail closed, or pick nearest?
+5. **Persistence.** Compute once as a col-T backfill, or derive live at each link event?
+6. **Cardinality.** Is a plot bound to exactly one farm (and hence one `Contributor Name`)?
+
+**My read:** items **1–2 are hard prerequisites** — the backfill cannot run until *both* the farm registry (locations + owners) and plot geocoding exist. Deliverable once unblocked: a proximity allocator that, per plot, finds the nearest registered farm and writes its owner into col T, with the same fail-closed discipline as the link path (never guess a farmer identity for a money-discharging link).
+
+**Related:** plan §1.6 (plot link path), §5.9e TC13, PR6 note (⚠️ SunMint Plots col-T backfill), PR7b dry-run finding (0 eligible plots).
+
 ### PII-in-public-JSON safety: confirm the CRF plan §11.4 `excluded_pii_events` exclusion is actually deployed
 **Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 31842, spun from thread 30026). Status: UNVERIFIED — needs confirmation, not assumption.**
 
