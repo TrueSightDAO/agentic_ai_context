@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-20T05:12:05Z`
+- Generated (UTC): `2026-09-20T11:42:11Z`
 - Look-back: **7** calendar days (`2026-09-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-19T10:59:14.145Z`
+- Generated (UTC): `2026-09-20T10:59:14.534Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -276,6 +276,11 @@ _All dated lines on/after 2026-09-13_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the shared nav is styled (UAT fix) (#387)
+00831c0 | 2026-09-20 06:38:08 -0300 | sunmint marketing: map teaser + 'Explore all plots' CTA (PR6) (#386)
+1baf6fb | 2026-09-20 05:39:53 -0300 | sunmint plots: deep-links (?plot=/?farm=/?tree=/?qr=) + share (PR5) (#385)
+7edc394 | 2026-09-20 04:39:51 -0300 | sunmint plots: detail panel media gallery + trees + provenance (PR4) (#384)
+703269d | 2026-09-20 05:19:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 ab79af7 | 2026-09-20 01:37:22 -0300 | Explorer PR3: faceted filters + counts + data-quality states (#383)
 321b68e | 2026-09-20 00:29:26 -0300 | SunMint Plot Explorer shell at /sunmint/plots/ (PR2) (#382)
 12299b4 | 2026-09-19 20:56:20 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -320,6 +325,8 @@ b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+56da83c | 2026-09-20 02:12:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
+9ca9a6d | 2026-09-20 02:12:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
 deebae1 | 2026-09-20 01:45:15 -0300 | handoffs: close out thread 31905 (Black King NF-e crosswalk) + file webhook-2xx harden follow-up (#1297)
 fae9904 | 2026-09-20 00:56:58 -0300 | Merge pull request #1295 from TrueSightDAO/auto/advisory-refresh-2026-09-20
 5df110e | 2026-09-20 03:56:44 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
@@ -358,8 +365,6 @@ de159e1 | 2026-09-18 14:27:02 -0300 | CRF §12.6 answered: manual payout feed �
 075cb00 | 2026-09-18 08:59:05 -0300 | Add signed Black King NF-e declaration (DAO logo + Gary signature)
 4a02151 | 2026-09-18 08:57:41 -0300 | Add Black King NF-e declaration & audit PDF (thread 31905)
 5ce7a78 | 2026-09-18 08:51:05 -0300 | handoffs: refresh sprint dashboard (3 actively-supervised threads) (#1278)
-c5382cf | 2026-09-18 08:37:45 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
-c6d8a22 | 2026-09-18 08:37:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
 … (truncated)
 ```
 
@@ -437,6 +442,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 277d073 | 2026-09-19 11:32:00 +0000 | chore: refresh currencies.json [skip ci]
 60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
@@ -549,7 +555,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/19/2026 21:50:59 |
+| 2026-09 | 924.5 | 18364.34386 | 9/20/2026 3:51:14 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-13`; scanned last **600** data rows)
 
