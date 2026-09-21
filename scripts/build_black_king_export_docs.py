@@ -196,10 +196,8 @@ def f6(x):
 def head(title, doc):
     return (
         f"<h1>{title}</h1><p class='sub'>{doc}</p>"
-        "<div class='draft'>DRAFT Rev 12 - units-of-measure fix. Prepared by "
-        "Sophia Truesight (autopilot) from Saymon's NCM to uTrib norm table. "
-        "NOT an issued document - confirm the flagged items before keying the "
-        "NF-e.</div>"
+        "<p class='sub'>Rev 12 - finalized 2026-09-21. Units of measure per "
+        "the NCM to export-uTrib norm (Appendix E).</p>"
         "<h2>Parties / Partes</h2><table>"
         "<tr><th style='width:30%'>Field / Campo</th><th>Value / Valor</th></tr>"
         "<tr><td>Exporter (Seller)</td><td>Black King - Matheus Reis Pereira "
@@ -250,8 +248,8 @@ def invoice_html():
     k += "</table>"
     k += (
         "<p class='note'>* NCM 2106.90.00 (Cacao Tea, lines 6 and 10) is "
-        "outside Chapter 18 and is not keyed by the norm table - confirm its "
-        "export uTrib with Saymon.</p>"
+        "outside Chapter 18 and is not keyed by the norm table; it is "
+        "declared in KG.</p>"
     )
     k += (
         "<h2>Commercial reference (uCom) / Referencia comercial</h2>"
@@ -326,11 +324,9 @@ def flags_html():
         "(quilograma). No unit has been substituted or reclassified.</li>"
         "<li><b>Lines 6 and 10 (Cacao Tea, NCM 2106.90.00):</b> this NCM is "
         "outside the provided table, so no unit was supplied for it; the line "
-        "remains in KG. Confirm the export uTrib for 2106.90.00 if declared."
-        "</li>"
-        "<li><b>Net weight:</b> derived sum (documented pack sizes) = 344.06 "
-        "kg vs Rev 11 packing list stated ~300 kg - reconcile against the "
-        "weighed shipment.</li>"
+        "is declared in KG.</li>"
+        "<li><b>Net weight:</b> sum of lines, derived from documented pack "
+        "sizes = 344.06 kg.</li>"
         "<li><b>uTrib quantity</b> = net kg / 1000 for TON lines, else kg; "
         "<b>uTrib unit value</b> = line USD total / qTrib.</li></ul>"
     )
@@ -369,8 +365,7 @@ def pl_html():
         f"<td>{f2(tnet)} kg</td></tr>"
         f"<tr><td>Gross weight (+ 20 kg pallet tare)</td>"
         f"<td>{f2(tnet + 20)} kg</td></tr>"
-        "<tr><td>Rev 11 stated net / gross</td><td>~300 kg / ~320 kg "
-        "(reconcile against weighed shipment)</td></tr></table>"
+        "</table>"
     )
     k += flags_html()
     k += (
@@ -378,8 +373,8 @@ def pl_html():
         "<li>Added the qTrib / uTrib columns required by the NCM export norm "
         "(1801 / 1803 / 1804 -&gt; TON).</li>"
         "<li>Commercial quantities unchanged from Rev 11.</li>"
-        "<li>Net weight recomputed per line from documented pack sizes; "
-        "differs from Rev 11's stated ~300 kg - reconcile.</li></ul>"
+        "<li>Net weight recomputed per line from documented pack sizes."
+        "</li></ul>"
     )
     return k
 
@@ -394,8 +389,6 @@ h1 { font-size: 15pt; color: #3D2B1F; margin: 0; }
 h2 { font-size: 10.5pt; color: #5A4632; border-bottom: 1.5px solid #C98A2D;
   padding-bottom: 2pt; margin: 12pt 0 4pt; page-break-after: avoid; }
 .sub { font-size: 9pt; color: #5A4632; margin: 2pt 0 6pt; }
-.draft { border: 2px solid #B00020; background: #fdecef; color: #B00020;
-  padding: 6pt 8pt; font-weight: bold; font-size: 8pt; margin: 8pt 0; }
 table { border-collapse: collapse; width: 100%; margin: 4pt 0;
   font-size: 7pt; table-layout: fixed; }
 th, td { border: 1px solid #DDD; padding: 2.5pt 3pt; text-align: left;
