@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-21T13:09:39Z`
+- Generated (UTC): `2026-09-21T22:07:01Z`
 - Look-back: **7** calendar days (`2026-09-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,30 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
+- `[CONTRIBUTION EVENT]` × 33
 - `[PRACTICE EVENT]` × 5
-- `[PROPOSAL VOTE]` × 3
-- `[NOTARIZATION EVENT]` × 1
-- `[PROPOSAL CREATION]` × 1
-- `[CURRENCY CONVERSION EVENT]` × 1
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260919163514_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reaching out to Oscar to make arrangements to visit his farm while Liz is he…
-- `Edgar_20260919163702_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Asking Fatima to check how long it would take for Santos to roast the cacao …
-- `Edgar_20260919163945_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion regarding conversation with Santos about processing the 40kg caca…
-- `Edgar_20260919175015_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Pre-filling FDA prior notice for Liz's 40 kilogram of Oscar's cacao passing …
-- `Edgar_20260919180408_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussion on schedule of Chinese partner's arrival
-- `Edgar_20260920025442_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Discussing about visit the farms in Itacare area
-- `Edgar_20260920031755_044` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Fábrica Santa Clara partner page + Santos contact ledger row + SA→sheet acce…
-- `Edgar_20260920032745_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 394 · Description: Envoy supervision of Sophia's CRF/payout track, thread 30026 (17-18 Sep wind…
-- `Edgar_20260920034143_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: PII Event Envelope — design doc, CRF plan §11.10 cross-ref, + handoff regist…
-- `Edgar_20260920044219_050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Black King NF-e ↔ in-transit reconciliation + Brazil export-lane GAS fixes (…
 - `Edgar_20260920124350_052` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T12:43:48.873Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260920143555_054` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T14:35:54.491Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260920150455_056` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T15:04:54.363Z · Program: capoeira-tribo-mirim · Practice Type: training-session
@@ -66,6 +51,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260921113249_066` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 119.15 · Description: For the purchase of 10 chocolate molds
 - `Edgar_20260921113513_068` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 10 · Description: Received 10 chocolate molds
 - `Edgar_20260921120335_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with CIC to request for recipet
+- `Edgar_20260921133353_072` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-21T13:33:50.834Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260921140044_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Ānāpāna/Vipassanā practice PDF — diacritic font fix + TrueSight DAO logo hea…
+- `Edgar_20260921141306_076` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Sophia Truesight
+- `Edgar_20260921141309_078` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
+- `Edgar_20260921145948_080` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Brazil→SF freight lane — end-to-end SOP runbook (2026-09-21)
+- `Edgar_20260921201313_082` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Sophia — raw machine execution: "Agroverse Cacao Adventures — Autumn Solstic…
+- `Edgar_20260921201317_084` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia — direct time (engagement/analysis): deck re-brand + de-personalizati…
+- `Edgar_20260921201319_086` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh — direct time: directing the Autumn Solstice 2026 deck (thread 3415…
+- `Edgar_20260921202650_088` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Black King → TrueTech Rev 12 export docs: unit regen, finalize, and runbook/…
+- `Edgar_20260921203347_090` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
 
 ---
 
@@ -280,6 +275,7 @@ _All dated lines on/after 2026-09-14_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+de27731 | 2026-09-21 13:14:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 a5620b5 | 2026-09-21 10:05:29 -0300 | PR11c: scroll the detail rail into view on mobile after a ?plot= deep link (#393)
 1799657 | 2026-09-21 09:20:24 -0300 | PR11b: default satellite slider to the newest scene that can be drawn on the map (#392)
 1e6b8fd | 2026-09-21 05:21:50 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -319,7 +315,6 @@ dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to s
 f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip ci]
 4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 5719914 | 2026-09-15 05:13:09 +0000 | chore(stats): refresh stats indexes [skip ci]
-edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube iframes to fix perceived-missing videos on load (#379)
 … (truncated)
 ```
 
@@ -332,52 +327,54 @@ edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube ifr
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
-a1d7f0a | 2026-09-21 09:28:38 -0300 | docs(sunmint): tick PR8 + resolve Decision 0.8 (passive report) (#1326)
-d9d304e | 2026-09-21 02:17:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-21 UTC)
-7c5adab | 2026-09-21 02:17:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-21 UTC)
-ab3ee67 | 2026-09-21 00:35:43 -0300 | PR10c (plan half): Decisions 0.14-0.16 + PR10c tracker row + park marker (#1324)
-f699a1a | 2026-09-21 00:31:53 -0300 | OPEN_FOLLOWUPS: file PLOT FINANCING doc gap + note catalog-staleness instance (#1323)
-8faff49 | 2026-09-21 00:26:58 -0300 | PR9 close-out: fix RESUME marker head to PR9, tick PR9 tracker row (#1322)
-ef571a8 | 2026-09-21 00:23:25 -0300 | docs(sunmint): tick PR6.2 tracker + re-point RESUME marker to PR9 (#1321)
-2370235 | 2026-09-21 00:18:54 -0300 | SunMint: tick PR5.3a/b, re-point RESUME marker to PR6.2 (#1320)
-54b4370 | 2026-09-21 00:03:17 -0300 | docs(sunmint): re-point RESUME marker to PR5.3a/b; file snapshot .upper() bug (#1319)
-fb8782e | 2026-09-21 00:01:35 -0300 | docs(sunmint): reverse Decision 0.13 — literal is constant, PR5.2 withdrawn; file snapshot .upper() bug (#1318)
-c8b5353 | 2026-09-20 21:37:52 -0300 | docs(sunmint): clarify retraction -- caveat on 0.9 REINSTATED, not retracted (#1317)
-2b9e832 | 2026-09-20 21:24:17 -0300 | docs(sunmint): retract Decision 0.12 (purchases stay main-only); withdraw PR2b/PR3.2; keep PR5.2 (#1316)
-660b08e | 2026-09-20 21:20:09 -0300 | docs(sunmint): Decisions 0.12 + 0.13 — any-ledger purchase + per-ledger liability currency literal ($8 impact assessment) (#1315)
-c55fc59 | 2026-09-20 19:43:53 -0300 | SunMint PR7b bookkeeping: tracker + TC14 + manifest; file proximity follow-up (#1314)
-0eb9cc0 | 2026-09-20 18:16:56 -0300 | PR7 bookkeeping: tracker + RESUME=+RUN, manifest status, TC14 (#1313)
-4d3a964 | 2026-09-20 18:06:51 -0300 | PR6 bookkeeping: tick tracker, RESUME -> PR7, TC13, manifest status (#1312)
-ffac87a | 2026-09-20 17:59:24 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
-f494e54 | 2026-09-20 17:59:23 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
-fedee95 | 2026-09-20 17:52:41 -0300 | docs(sunmint): close out PR5 in resume tracker, tick tracker row, add TC12 (#1311)
-77f9f6f | 2026-09-20 17:40:11 -0300 | docs(sunmint): close out PR4 in resume tracker, tick tracker row, add TC11, correct §1.7/§1.10 (#1310)
-e4cca34 | 2026-09-20 16:57:51 -0300 | SunMint plan: resolve §0.10 (log-only) + rule §0.11 (cross-ledger transfer) + Envoy TC (#1309)
-0915106 | 2026-09-20 15:40:09 -0300 | docs(sunmint): close out PR3 in resume tracker, advance to PR4 (#1308)
-be313d7 | 2026-09-20 15:25:49 -0300 | docs(plan): close out PR2, advance RESUME HERE to PR3, correct stale §1.10 routing claim (#1307)
-375e872 | 2026-09-20 15:17:53 -0300 | docs(plan): close PR1 (merged #529), advance RESUME HERE to PR2 (#1306)
-99b25b3 | 2026-09-20 15:14:13 -0300 | Claim SunMint farmer-settlement plan + refresh Plot Explorer note (#1305)
-78c1749 | 2026-09-20 15:12:09 -0300 | Add SunMint farmer-settlement + batch QR-tree-linking roadmap (#1296)
-dd6d12e | 2026-09-20 13:44:12 -0300 | plan: PR8a as a self-driving catch-up daemon (governor design call) (#1304)
-a02aa4b | 2026-09-20 13:22:47 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
-ddb8ece | 2026-09-20 13:22:45 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
-f977200 | 2026-09-20 13:22:14 -0300 | SUNMINT_PLOT_EXPLORER_PLAN: resolve PR8 storage decision (commit low-cloud pixels; prefer local over S3) (#1302)
-9abd9eb | 2026-09-20 13:18:59 -0300 | Refresh SunMint Plot Explorer supervision claim (PR7 UAT + prod-sync block) (#1301)
-6d88cd7 | 2026-09-20 13:17:05 -0300 | SUNMINT_PLOT_EXPLORER_PLAN: add PR8 (per-plot satellite date-picker) + PR9 (retire marketing widget), with data-source caveat (#1299)
-1468ab7 | 2026-09-20 09:58:15 -0300 | Verification directive: verifier must load the beta surface itself (Gary, 2026-09-20) (#1298)
-30b738a | 2026-09-20 08:43:46 -0300 | UAT evidence: plot explorer mobile full page (390px viewport)
-a775a28 | 2026-09-20 08:43:43 -0300 | UAT evidence: plot explorer deep-link ?plot=CR-PA-P2 selected
-199293c | 2026-09-20 08:43:37 -0300 | UAT evidence: plot explorer desktop full page (900px = no vertical scroll)
-0e89f37 | 2026-09-20 08:43:34 -0300 | UAT evidence: plot explorer desktop viewport (1440x900)
-4007b33 | 2026-09-20 08:42:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
-20083ac | 2026-09-20 08:42:27 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
-56da83c | 2026-09-20 02:12:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
+d0dcbed | 2026-09-21 18:07:33 -0300 | Deck v15 changelog — venue location fix
+fca8ac5 | 2026-09-21 18:07:23 -0300 | Deck v15 — venue fix: Mon forró at Pousada Ilha Verde
+bfd9859 | 2026-09-21 17:24:04 -0300 | Runbook: Saymon/Jussileide are NOT on Telegram — artifacts relayed via Gary (WhatsApp) (#1337)
+6e9d464 | 2026-09-21 17:18:53 -0300 | Log Rev 12 finalize (#1335) + attribute PL-norm confirmation to Envoy (not Gary) (#1336)
+f7acdff | 2026-09-21 17:14:19 -0300 | Finalize Rev 12 export docs: remove DRAFT banner, drop hedge language (#1335)
+65a2e54 | 2026-09-21 17:12:37 -0300 | Add v14 note — recipient name removed from footers; pixel-verified
+b16f50b | 2026-09-21 17:12:30 -0300 | Agroverse Cacao Adventures — Autumn Solstice 2026 deck v14 (name fully removed)
+73afd1d | 2026-09-21 17:12:01 -0300 | Rev 12 status: §5.1 pointer -> Rev 12, Rev 11 superseded; manifest RESUME HERE advanced (#1334)
+c3ac61a | 2026-09-21 17:02:48 -0300 | Rev 12 export docs: apply Saymon's NCM->uTrib export unit norm (#1333)
+f067d80 | 2026-09-21 16:51:20 -0300 | Agroverse Cacao Adventures — Autumn Solstice 2026 deck v13 (Liz removed)
+3015427 | 2026-09-21 16:51:15 -0300 | Add v13 note — Liz mentions removed, deck now reader-neutral
+08f021a | 2026-09-21 16:51:14 -0300 | SOP: record NCM→export uTrib norm table (Appendix E) + Rev-12 unit remap (#1332)
+164419b | 2026-09-21 16:49:34 -0300 | Add v12 note — deck renamed to Agroverse Cacao Adventures — Autumn Solstice 2026
+9b820d1 | 2026-09-21 16:49:27 -0300 | Agroverse Cacao Adventures — Autumn Solstice 2026 deck v12
+fd9a115 | 2026-09-21 16:48:42 -0300 | Brazil lane: NF-e rejected on unidades de medida → Rev 12 invoice required (#1331)
+42aa717 | 2026-09-21 16:47:17 -0300 | Add v11 note — deck renamed to Autumn Solstice 2026
+ec830a0 | 2026-09-21 16:47:11 -0300 | Autumn Solstice 2026 deck v11 (renamed from LIZ_BAHIA_ORIGIN_TOUR)
+993c712 | 2026-09-21 16:37:51 -0300 | liz_bahia_deck: v10 version note
+7eec598 | 2026-09-21 16:37:44 -0300 | liz_bahia_deck: archive v10 PDF (Autumn Solstice 2026 branding)
+040cdda | 2026-09-21 16:32:15 -0300 | liz_bahia_deck: v9 version note
+46c0f5b | 2026-09-21 16:32:09 -0300 | liz_bahia_deck: archive v9 PDF (Bico Duro hero + waterfall photo)
+a09de0b | 2026-09-21 16:15:48 -0300 | Archive deck v7 note
+1773375 | 2026-09-21 16:15:39 -0300 | Update bilingual deck v7 (add Tribo Bahia venue)
+f47c127 | 2026-09-21 13:31:52 -0300 | Update bilingual deck v6 (ceremony in itinerary)
+ebae7a2 | 2026-09-21 13:31:48 -0300 | Archive deck v6
+fa10de7 | 2026-09-21 13:30:45 -0300 | Archive Resende cacao ceremony flyer
+0874753 | 2026-09-21 13:30:39 -0300 | Update bilingual deck v5 (add cacao ceremony page)
+d5d288c | 2026-09-21 13:09:49 -0300 | Add PT-only Liz itinerary PDF
+bbcca1b | 2026-09-21 13:09:43 -0300 | Add bilingual EN+PT Liz itinerary PDF
+897e3d8 | 2026-09-21 13:09:38 -0300 | Add PT-BR Liz deck generator source
+071a251 | 2026-09-21 12:57:20 -0300 | Update Liz itinerary deck v3 (fix Santos photo + fill dead space)
+b759cd8 | 2026-09-21 12:57:12 -0300 | Add Liz deck photo assets (zip)
+536300b | 2026-09-21 12:57:08 -0300 | Add Liz deck image fetch script
+8988c7c | 2026-09-21 12:57:03 -0300 | Add Liz deck build script
+073d639 | 2026-09-21 12:56:59 -0300 | Add Liz Bahia deck generator README
+d57ae25 | 2026-09-21 12:56:55 -0300 | Add Liz Bahia deck generator source (HTML)
+65d1222 | 2026-09-21 12:49:44 -0300 | Update Liz itinerary deck: add Food Notes + weekly venue schedules (14pp)
+6fb0da3 | 2026-09-21 12:10:36 -0300 | File 2 governor-sync bugs in OPEN_FOLLOWUPS: cron never fired + stale SOP §3 (#1330)
+1abebb8 | 2026-09-21 12:10:31 -0300 | Add Liz Bahia Origin Tour itinerary deck (Evan-style photo deck, 12pp)
+2dc0d8b | 2026-09-21 12:04:41 -0300 | Update Liz Bahia visit itinerary (v2): add 30 Sep Ilheus/Itabuna circuit
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+60b3c8c | 2026-09-21 17:42:41 -0300 | fix(gas): fail closed on RESOLVE FAILED rows in transfer (dead guard) (#545)
+3a8fb91 | 2026-09-21 17:38:19 -0300 | fix(gas): repair transfer web app — drop duplicate fns, robust doGet, canonical Ledger write (#544)
 26a96d5 | 2026-09-21 00:33:59 -0300 | PR10c: document [PLOT FINANCING EVENT] in SCHEMA.md + API.md (#543)
 3c86bf2 | 2026-09-21 00:25:51 -0300 | PR9 docs: SCHEMA col U Tree Charge + SunMint Plots col T + literal correction; API.md Plot ID variant (#542)
 bf28f93 | 2026-09-21 00:22:05 -0300 | PR6.2: plot links book the col-U tree transfer + invalidated-plot filter (#541)
@@ -416,8 +413,6 @@ b3aa6c8 | 2026-09-17 21:59:26 -0300 | fix(gas): tracked secret-free Credentials.
 6285a5c | 2026-09-17 21:58:00 -0300 | fix(gas): track secret-free Credentials.js — stop .claspignore-ing the accessor (#505)
 55ad27c | 2026-09-17 21:33:03 -0300 | SS12.7 Q3b: [PAYOUT EVENT] sink (Tier-1 payouts + Tier-2 payout events) (#504)
 2ec1cee | 2026-09-17 21:15:53 -0300 | Fix provisioner two-run bug: write headers for freshly-created tabs in the same pass (#503)
-d7db1c3 | 2026-09-17 20:21:24 -0300 | Q5: add payouts + payout events tabs to the CFR provisioner (#502)
-e5dc642 | 2026-09-17 14:01:07 -0300 | P3: rewrite payout sink to private cfr program sheet; drop RSA cipher (#501)
 … (truncated)
 ```
 
@@ -449,6 +444,8 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+baad3ff | 2026-09-21 13:22:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 08874ff | 2026-09-21 12:53:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 497d497 | 2026-09-20 11:48:08 +0000 | chore: refresh currencies.json [skip ci]
 5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -471,6 +468,8 @@ f6f2108 | 2026-09-14 13:22:27 +0000 | chore: refresh partners-velocity snapshot 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+365e476 | 2026-09-21 17:16:19 -0300 | Enrich Itacaré Cultural Immersion page: story, community videos, events (#326)
+610db36 | 2026-09-21 16:44:58 -0300 | Itacaré experience page: swap in Cachoeira do Cleandro photo (#325)
 c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Clara on the partner page (#324)
 1bcc0b0 | 2026-09-19 17:48:50 -0300 | Santos Chocolate Factory page: add verified legal-entity details (CNPJ) (#323)
 ```
@@ -561,7 +560,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/21/2026 5:50:50 |
+| 2026-09 | 924.5 | 18364.34386 | 9/21/2026 14:50:49 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-14`; scanned last **600** data rows)
 
