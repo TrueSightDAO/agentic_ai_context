@@ -39,6 +39,23 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `[PLOT FINANCING EVENT]` (PR10a/PR10b) shipped with zero documentation footprint
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541). Status: docs gap, not yet written.**
+
+**Context.** The `[PLOT FINANCING EVENT]` vertical — a cash **advance** from the DAO that finances N trees on a plot (OPPOSITE direction to `[PAYOUT EVENT]`) — shipped as **code** in two PRs: `dao_protocol` **#177** (`c68718a`, PR10a: catalog entry + `dispatch.py` route `PLOT_FINANCING_PROCESSING` → `processPlotFinancingEventsFromTelegramChatLogs` + regression test) and `tokenomics` **#538** (`1beabd0`, PR10b: GAS sink `process_plot_financing_event_telegram_logs.js` + `plot_financing_harness.mjs` + `test_plot_financing_guard.py`, source-only). Envoy independently verified both merges 2026-09-20.
+
+**But the vertical has NO documentation footprint** — verified against `origin/main` 2026-09-20:
+- `agentic_ai_context/plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` — `grep -i financ` = **0 hits**; the plan's §0 Decisions stop at **0.13**, so the rulings that produced this event (the Q4 per-plot financing model, Q5 the N-tree declaration event, plus the `Currencies` col-U charge decisions 0.14–0.16) are **not recorded there**.
+- `tokenomics/SCHEMA.md` — **no `Plot Financing` tracking-tab section**, and the literals table does not cross-reference the financing advance.
+- `tokenomics/API.md` — **no `[PLOT FINANCING EVENT]` section** (unlike §9's `[TREE PLANTING LINK EVENT]`).
+- `OPEN_FOLLOWUPS.md` — nothing.
+
+**Why it matters.** This is a **money-path** event (it books `-amount` + `+N 'Cacao Tree Planted - Unassigned'` on main and seeds `SunMint Plots` col T). A money-writing event with no schema/API/decision record is exactly the class the plan's own §1.9 discipline was meant to prevent — the deliverable was scoped but never given a unit number (the plan's own **PR8** is the unrelated aging report; the financing work became **PR10** and skipped the docs pass).
+
+**Proposed work (~small, docs-only).** (1) Add **Decisions 0.14–0.16** to the plan's §0 (per-plot financing, the N-tree declaration event, the col-U infra-charge resolution). (2) Add a `SCHEMA.md` section for the **`Plot Financing`** tracking tab (`PF_TRACKING_TAB`; cols in `process_plot_financing_event_telegram_logs.js`) and cross-reference the three literals. (3) Add an **`API.md`** section for `[PLOT FINANCING EVENT]` (labels: `Plot ID`, `Tree Count`, `Amount`, … — mirror the catalog entry). (4) Add a **PR10** row to the plan's §4 tracker. No code change; the event itself is already registered and tested.
+
+**Evidence.** `dao_protocol` `c68718a`; `tokenomics` `1beabd0`; `truesight_dao_client/server/data/events_catalog.json` (`PLOT FINANCING EVENT`); `google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/process_plot_financing_event_telegram_logs.js`; plan §0 (stops at 0.13); thread 33541.
+
 ### `snapshot_managed_ledgers.py` uppercases currency keys — managed-ledger snapshots do not match `Currencies`-tab keys
 **Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541). Status: confirmed bug, not yet fixed.**
 
@@ -962,6 +979,8 @@ So a member's message is logged as captured context and **never dispatched** —
 **Doc landmine (worth a one-liner in `infrastructure/AWS_DIGITAL_INFRASTRUCTURE.md` §7).** The fleet SSH alias is `dao-protocol` (**hyphen**), defined in `~/.ssh/config`; `ssh dao_protocol` (**underscore**) is *not* an alias and fails `Permission denied (publickey)`. The service name is `truesight-dao-protocol.service` (hyphen) while the *host* label is `dao_protocol` — easy to conflate.
 
 **Evidence.** `dao_protocol` box `git log` (`3b42488` → `3bb3853`); `/ping` on prod; `~/.ssh/config` (`Host dao-protocol` → `98.93.94.86`); `AWS_DIGITAL_INFRASTRUCTURE.md` §7; `sops/DEPLOY_PUSH_SOP.md`; thread 28504.
+
+**Concrete instance 2026-09-20 (thread 33541) — hits the events catalog.** Found while independently verifying the SunMint farmer-settlement build. Live `GET https://edgar.truesight.me/events-catalog` serves **version 8** (47 events), while `dao_protocol` `main` is at **version 10** — the deployed process is stale by two catalog versions. Concretely missing/gappy on prod: `[PLOT FINANCING EVENT]` (**absent** — PR10a #177) and `[TREE PLANTING LINK EVENT]` carries only its **4 original labels** (no `Plot ID` — PR7 #175; so `lookup_event_docs` under-reports the live contract). Deployed box checkout sits at `85bafd3` (#172). This is the *same* root cause as the 2026-09-13 instance (no CD), now concretely visible in the `events-catalog.json` mtime-cached data file (a `git pull` alone would refresh it; no restart needed for a pure data change). **Not self-deployable** — dao_protocol prod is a deploy gate; the `/ping`-vs-`origin/main` drift check proposed above would have surfaced this silently.
 
 ### Deploy-ledger: use `append_deploy_record.py`, not a raw file upload (skips the feed rebuild)
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 28504).**
