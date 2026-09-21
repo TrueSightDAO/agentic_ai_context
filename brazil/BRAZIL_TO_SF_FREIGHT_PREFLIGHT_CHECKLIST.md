@@ -33,8 +33,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | **e-CNPJ certificate** | ✅ works | Matheus | cert usable via gov.br (no longer the blocker) |
 | **Commerce CNAE / IE / SEFAZ-BA** | 🔴 blocked | Saymon | needs **Junta Comercial** contract amendment → Prefeitura update |
 | **Municipal licence (licença comercial)** | 🔴 pending | Saymon/Jussileide | needed for the cacao business; not in old doc |
-| **NF-e draft** | 🟠 **errored** | Saymon | draft attempted 2026-09-21 → emitter rejected: **incorrect unidades de medida** for NCM 1801/1803/1804 on export (norm table: **Appendix E**) → re-express those lines in **TON** for Rev 12 (§5.1a) |
-| **NF-e issued** | 🔴 **not yet** | Saymon | blocked on a corrected invoice (**Rev 12**) with NCM-required export units + values — unit remap in §5.1a; norm source **Appendix E** |
+| **NF-e draft** | 🟠 **errored** | Saymon | draft attempted 2026-09-21 → emitter rejected: **incorrect unidades de medida** for NCM 1801/1803/1804 on export (norm table: **Appendix E**). **Fixed:** Rev 12 invoice + packing list regenerated in the mandated units (PR #1333) → awaiting Saymon re-key |
+| **NF-e issued** | 🔴 **not yet** | Saymon | corrected invoice (**Rev 12**) now merged (§5.1) — Saymon re-keys emitter units per §5.1a, then issues; issuance itself gated on Gary's approval |
 | DU-E (Notificação de Exportação Fiscal) | ⬜ not started | Omega | blocked on NF-e |
 | Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
 | Air freight | ⬜ | Graziela/Omega | rates only |
@@ -133,7 +133,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 ### Phase 6 — Air freight (SSA → SFO)
 - [ ] Air freight booked. Tiered: 200 kg ≈ $3.50/kg · 300 kg ≈ $3.40 · 500 kg ≈ $3.30 · 750 kg ≈ $3.30 · 1000 kg ≈ $3.20.
 - [ ] Brazil airport charges: ≈ $0.30/kg (min $250). US airline terminal ≈ $212.50.
-- [ ] Gross ≈ 320 kg / net ≈ 300 kg (per Rev 11 packing list).
+- [ ] Net **344.06 kg** / gross **364.06 kg** (Rev 12 packing list, derived from documented pack sizes) — Rev 11 stated ≈ 300 / 320 kg; **reconcile against the weighed shipment**.
 
 ### Phase 7 — US import, customs & final delivery
 - [ ] US import handling ≈ $125. US customs clearance ≈ $150. FDA processing ≈ $100 (if required).
@@ -146,7 +146,8 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] Update this runbook's status snapshot (§1).
 
 #### 5.1 Current commercial revision
-- **Invoice INV-2026-0611-001 Rev 11 (+BRL)**, dated 2026-09-21, **$6,946.85 USD / R$ 35,828.38 BRL** @ PTAX 5.1575 (18/09/2026). Files: `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev11_EN_PT_BRL.pdf` (and the dated `inv_rev11_brl_dated.pdf`). Packing list `PL-2026-0611-001 Rev 11`.
+- **Invoice INV-2026-0611-001 Rev 12 (+BRL)**, dated 2026-09-21, **$6,946.85 USD / R$ 35,828.38 BRL** @ PTAX 5.1575 (18/09/2026) — *values unchanged from Rev 11; only the declared units of measure changed.* Files: `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev12_EN_PT_BRL.pdf`; packing list `exports/2026-06-11_packing_list_black_king_to_truetech_rev12_EN_PT.pdf`. Generated reproducibly by `scripts/build_black_king_export_docs.py` (merged `agentic_ai_context` #1333, `c3ac61a`). **Rev 11 is superseded** (its mixed UN/KG units are what the emitter rejected).
+- **Superseded:** Rev 11 — `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev11_EN_PT_BRL.pdf` (and `inv_rev11_brl_dated.pdf`).
 - **Line items (Rev 11):**
 
 | # | NCM | Description | Qty | Unit | USD |
@@ -165,7 +166,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 
 *Nominal $0.01/unit values used to satisfy emitter validation.
 
-> ⚠️ **Rev 12 required (2026-09-21).** The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → regenerate the commercial invoice with the **correct units + values** before the NF-e can be issued. Rev 11's mixed **UN / KG** units must be re-mapped to what each NCM requires.
+> ✅ **Rev 12 regenerated + merged (2026-09-21).** Applied The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → the commercial invoice + packing list were regenerated in the NCM-mandated export units (PR #1333, `c3ac61a`); see the merged PDFs in `exports/`.
 
 #### 5.1a Rev 12 — required export units (NCM remap)
 
@@ -174,20 +175,20 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 | # | NCM | Rev-11 qty | Rev-11 unit | Rev-12 required unit | Rev-12 qty (≈ t, see caveat) |
 |---|-----|-----------|-------------|----------------------|------------------------------|
 | 1 | 1801.00.00 | 129 | UN | **TON** | ≈ 0.0293 |
-| 2 | 1803.10.00 | 20 | KG | **TON** *(or 1802→KG — confirm)* | 0.0200 |
+| 2 | 1803.10.00 | 20 | KG | **TON** | 0.0200 |
 | 3 | 1803.10.00 | 37 | UN | **TON** | ≈ 0.0185 |
 | 4 | 1801.00.00 | 80 | KG | **TON** | 0.0800 |
 | 5 | 1801.00.00 | 10 | KG | **TON** | 0.0100 |
-| 6 | 2106.90.00 | 12 | KG | *(confirm — not Ch.18)* | — |
+| 6 | 2106.90.00 | 12 | KG | KG *(not in norm table)* | — |
 | 7 | 1803.10.00 | 169 | UN | **TON** | ≈ 0.0338 |
 | 8 | 1801.00.00 | 15 | KG | **TON** | 0.0150 |
 | 9 | 1801.00.00 | 99.5 | KG | **TON** | 0.0995 |
-| 10 | 2106.90.00 | 21 | KG | *(confirm — not Ch.18)* | — |
+| 10 | 2106.90.00 | 21 | KG | KG *(not in norm table)* | — |
 | 11 | 1804.00.00 | 5 | KG | **TON** | 0.0050 |
 
-> ⚠️ The ≈ t column is a **mechanical kg→t / unit-weight conversion only** (8 oz pouch = 0.2268 kg; 500 g = 0.5 kg; 200 g = 0.2 kg) and is **illustrative** — Saymon to confirm the actually-declared quantities and the values on Rev 12.
-> ⚠️ **Flag (line #2):** "Cacao Husk" is normally NCM **1802.00.00** (uTrib **KG**), not 1803.10.00 (uTrib TON). If it truly is 1802 it stays KG — confirm the correct NCM with Saymon rather than blanket-converting.
-> ⚠️ **Flag (#6/#10):** NCM **2106.90.00** (Cacao Tea) is outside Chapter 18 and is **not keyed** by this table — confirm its export uTrib independently.
+> The ≈ t column is a **mechanical kg→t / unit-weight conversion** (8 oz pouch = 0.2268 kg; 500 g = 0.5 kg; 200 g = 0.2 kg), now applied on the merged Rev 12 PDFs — Saymon to confirm the declared quantities match the weighed shipment.
+> **Applied as provided:** every line is declared in the exact uTrib the norm table gives for its NCM — no unit substituted or reclassified. Line #2 stays under 1803.10.00 → **TON** as listed.
+> ℹ️ **Not in the table:** NCM **2106.90.00** (Cacao Tea, #6/#10) is outside Chapter 18 and is not keyed by this norm, so no unit was supplied for it; those lines remain **KG** as declared on the invoice.
 
 #### 5.2 Sebrae emitter — master-data sequence (in order)
 1. **Register the company as emitente** (Saymon, in progress). Black King **already had an account** (Matheus used it before). Login: `https://emissornfe.sebrae.com.br/` → **gov.br** → *Seu Certificado Digital* → Black King cert (shows as Matheus) → select Black King.
@@ -308,6 +309,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | Date | Change |
 |------|--------|
 | 2026-09-21 | Full rewrite into end-to-end operator runbook (agent + Envoy contract). Corrected stale Phase 0 (e-CNPJ now works; CNAE path superseded by Junta/Prefeitura chain; Inapto has DARF mechanics). Added: municipal-licence chain, Gary NF-e approval gate, BRL/PTAX rule, Sebrae master-data sequence, treasury/audit rule, Saymon & Jussileide contacts, Phases 0–8, failure modes. Source notes: `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`. |
+| 2026-09-21 | **Rev 12 regenerated + merged** (PR #1333): commercial invoice + packing list re-expressed in the NCM-mandated export units (1801/1803/1804/1805 → TON; 1802/1806 → KG), USD/BRL values unchanged; reproducible generator `scripts/build_black_king_export_docs.py` added. §5.1 current-revision pointer moved to Rev 12; Rev 11 marked superseded. |
 | 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |
 
 ---
