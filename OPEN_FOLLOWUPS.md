@@ -39,6 +39,27 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `snapshot_managed_ledgers.py` uppercases currency keys — managed-ledger snapshots do not match `Currencies`-tab keys
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541). Status: confirmed bug, not yet fixed.**
+
+`python_scripts/tdg_asset_management/snapshot_managed_ledgers.py` **L91** does
+`currency = (row[TX_COL_CURRENCY].strip() or 'USD').upper()`, so every currency key in the
+`treasury-cache` `managed-ledgers/*.json` snapshots is force-uppercased on read
+(`Kraft Pouches` → `KRAFT POUCHES`, `Cacao Mass Bar (500grams)` → `CACAO MASS BAR (500GRAMS)`).
+
+**Consequence.** Any consumer that keys off a snapshot's currency string silently misses the
+matching `Currencies`-tab row — exactly how **AUM valuation** (`tdg_wix_dashboard.js` converts
+every AGL balance to USD via `Currencies!B`) and **first-seen** resolution look up prices.
+Found while refuting Decision 0.13: the snapshot's uppercase `CACAO TREE TO BE PLANTED` was
+mistaken for a *live per-ledger literal*, when the raw sheets hold mixed case on every ledger.
+
+**To do.** Either (a) drop the `.upper()` and snapshot currency verbatim (then fix downstream
+code that relied on the uppercasing), or (b) keep it but also emit the raw value (e.g.
+`currency_raw`). Pick with the governor; a case-insensitive lookup on the consumer side is the
+minimum safe fix. Add a test that a mixed-case literal survives the snapshot round-trip.
+
+**Related.** `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` §8.5 (Decision 0.13 — REVERSED 2026-09-20).
+
 ### SunMint plot → farmer mapping: derive `SunMint Plots`.`Contributor Name` by geographic proximity (scope + open questions)
 **Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541, plan `SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`). Status: scoped, NOT built — blocked on prerequisites + governor answers.**
 
