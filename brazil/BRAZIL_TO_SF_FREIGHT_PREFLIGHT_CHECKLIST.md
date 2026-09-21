@@ -61,6 +61,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | US importer of record | TrueTech Inc | — | EIN 88-3411514 · 1423 Hayes St, San Francisco, CA 94117 |
 
 > **Note:** the old doc said "bypass the accountant; 8 days". **Accountants have now been hired (Saymon + Jussileide)** and the lane is still not through — the bottleneck is the **structural (Junta/Prefeitura)** chain and the **master-data setup**, not the accountant's responsiveness.
+>
+> **⚠️ Delivery channel — Saymon & Jussileide are NOT on Telegram.** They are contractors on the WhatsApp group **“Black King - Contab”** and have **no access to this Telegram thread (10800)**. Any artifact meant for them (invoices, packing lists, the Rev 12 PDFs, emitter instructions) must be **relayed by Gary into that WhatsApp group** — posting a file in thread 10800 does **not** reach them. Likewise, Saymon's replies arrive in WhatsApp and must be transcribed into the runbook/source-notes by whoever holds that channel. OpenClaw's verified JID list contains **only** The Beer Hall + Prompt Haus — `“Black King - Contab”` is **not** a verified OpenClaw target, so there is currently no automated delivery path to Saymon.
 
 ---
 
@@ -109,7 +111,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] Current revision pointer pinned below (see §5.1). Evidence: PDFs in `exports/`.
 
 ### Phase 2 — NF-e draft & Gary-approval gate
-- [ ] **Draft NF-e prepared** in the Sebrae emitter (master data see §5.2). Owner: Saymon.
+- [ ] **Draft NF-e prepared** in the Sebrae emitter (master data see §5.2). Owner: Saymon. *(Saymon works in WhatsApp “Black King - Contab”, not Telegram — Gary relays.)*
 - [ ] **🛑 Gary approves the draft** (hard gate §0.2). Evidence: approval message in thread 10800.
 - [ ] **NF-e issued** (modelo 55, CFOP 7.101/7.102, exportação). Evidence: XML + DANFE.
 - [ ] XML + DANFE sent to Graziela/Omega; Omega PIX details to Gary.
@@ -312,6 +314,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-21 | **Rev 12 regenerated + merged** (PR #1333): commercial invoice + packing list re-expressed in the NCM-mandated export units (1801/1803/1804/1805 → TON; 1802/1806 → KG), USD/BRL values unchanged; reproducible generator `scripts/build_black_king_export_docs.py` added. §5.1 current-revision pointer moved to Rev 12; Rev 11 marked superseded. |
 | 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |
 | 2026-09-21 | **Rev 12 finalized** (PR #1335, `f7acdff`): removed the red DRAFT banner + all draft/hedge wording from both PDFs; generator + both PDFs merged. Units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation — that the PL already follows Saymon's norm by construction (same generator, shared `LINES`/`UTRIB` table) — came from **Envoy**, not governor Gary Teh, and is **not** a governor authorization.* |
+| 2026-09-21 | **Saymon/Jussileide are NOT on Telegram** — they are contractors on WhatsApp “Black King - Contab”. Added a delivery-channel warning to §2 so no agent assumes a thread-10800 post reaches them; artifacts for the accountant are relayed by Gary. No automated path (“Black King - Contab” is not in OpenClaw's verified JID list). |
 
 ---
 
