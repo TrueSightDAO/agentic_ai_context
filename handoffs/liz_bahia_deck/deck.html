@@ -1,0 +1,394 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<style>
+@page { size: 13.333in 7.5in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Helvetica, Arial, sans-serif; color: #1a1a1a; }
+.slide { width: 13.333in; height: 7.5in; page-break-after: always; position: relative; overflow: hidden; background: #fff; }
+.band { padding: 0.5in 0.65in 0 0.65in; }
+.title { font-size: 34pt; font-weight: bold; color: #3d2b1f; line-height: 1.05; }
+.sub { font-size: 12pt; color: #b5651d; font-weight: bold; margin-top: 6px; letter-spacing: .5px; }
+.foot { position: absolute; bottom: 0.28in; left: 0.65in; right: 0.65in; font-size: 8pt; color: #999; border-top: 1px solid #eee; padding-top: 6px; display:flex; justify-content:space-between; }
+.body { padding: 0.3in 0.65in 0; display: flex; gap: 0.4in; }
+.col-l { flex: 1.05; }
+.col-r { flex: 1; }
+ul { list-style: none; }
+li { font-size: 13pt; line-height: 1.5; margin-bottom: 11px; padding-left: 20px; position: relative; }
+li:before { content: "\25CF"; color: #e08b34; position: absolute; left: 0; font-size: 9pt; top: 2px; }
+li b { color: #3d2b1f; }
+.photo { width: 100%; object-fit: cover; border-radius: 6px; display:block; }
+.cap { font-size: 8.5pt; color: #888; font-style: italic; margin-top: 4px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.h-photo { width: 100%; height: 2.4in; object-fit: cover; }
+/* cover */
+.cover { background: #1c2b1a; color: #fff; }
+.cover .cwrap { position:absolute; inset:0; }
+.cover .cimg { width:100%; height:100%; object-fit:cover; }
+.cover .cwrap:after { content:""; position:absolute; inset:0;
+  background: linear-gradient(105deg, rgba(12,22,12,.92) 0%, rgba(12,22,12,.80) 45%, rgba(12,22,12,.45) 100%); }
+.cover .cbox { position:absolute; left:0.9in; top:1.5in; right:0.9in; }
+.cover .ct { font-size: 52pt; font-weight:bold; color:#fff; line-height:1; }
+.cover .cs { font-size: 17pt; color:#f0b76a; margin-top:14px; font-weight:bold;}
+.cover .clist { margin-top: 30px; font-size: 13.5pt; color:#e8e8e8; line-height:1.9; }
+.cover .clist span { color:#fff; font-weight:bold; }
+.aglance td { font-size: 11.5pt; padding: 7px 10px; vertical-align: top; border-bottom:1px solid #eee;}
+.aglance td.d { font-weight:bold; color:#b5651d; width: 1.5in; white-space:nowrap;}
+.aglance td.h { font-weight:bold; color:#3d2b1f; width: 1.6in;}
+table.fl { width:100%; border-collapse:collapse; }
+table.fl th { background:#3d2b1f; color:#fff; font-size:10pt; padding:7px 9px; text-align:left;}
+table.fl td { font-size:10.5pt; padding:6px 9px; border-bottom:1px solid #eee;}
+table.fl tr:nth-child(even) td { background:#faf6f1; }
+.h2 { font-size:15pt; font-weight:bold; color:#3d2b1f; margin: 6px 0 10px 0;}
+.note { font-size:9.5pt; color:#777; font-style:italic; margin-top:10px;}
+
+.sched { width:100%; border-collapse:collapse; margin-bottom:4px; }
+.sched td { font-size:9.5pt; padding:3px 7px; border-bottom:1px solid #f0e8df; vertical-align:top; }
+.sched td.day { font-weight:bold; color:#b5651d; width:1.15in; white-space:nowrap;}
+.venueh { font-size:12pt; font-weight:bold; color:#3d2b1f; margin:0 0 4px 0; }
+.foodtbl { width:100%; border-collapse:collapse; }
+.foodtbl td { font-size:10pt; padding:5px 8px; border-bottom:1px solid #f0e8df; vertical-align:top;}
+.foodtbl td.n { font-weight:bold; color:#3d2b1f; width:2.1in;}
+.badge { display:inline-block; font-size:8pt; background:#eef6ea; color:#3d6b2f; border-radius:8px; padding:1px 7px; margin-left:5px;}
+
+/* stop-slide layout: fill the frame, no dead space */
+.stop .body { align-items: stretch; }
+.stop .col-l { display:flex; flex-direction:column; justify-content:center; }
+.stop .col-l ul { margin-bottom: 0; }
+.stop li { font-size: 15pt; line-height: 1.55; margin-bottom: 20px; }
+.stop li:before { font-size: 10pt; top: 3px; }
+.stop .highlight { margin-top: 8px; background:#fdf6ee; border-left:5px solid #e08b34; border-radius:6px; padding:12px 15px; font-size:11pt; color:#6b4a2f; line-height:1.45; }
+.stop .highlight b { color:#3d2b1f; }
+.stop .col-r { display:flex; flex-direction:column; justify-content:center; }
+</style></head><body>
+
+<!-- 1 COVER -->
+<div class="slide cover">
+  <div class="cwrap"><img class="cimg" src="img/cover.jpg"></div>
+  <div class="cbox">
+    <div class="ct">Welcome to Bahia, Liz</div>
+    <div class="cs">Agroverse Origin Tour &nbsp;&middot;&nbsp; 29 September &ndash; 8 October 2026</div>
+    <div class="clist">
+      <span>CIC Cacao Innovation Center</span> &mdash; Ilh&eacute;us (29 Sep)<br>
+      <span>Black King Warehouse</span> &middot; <span>Santos Chocolate Factory</span> &middot; <span>Coopercabruca</span> &mdash; Ilh&eacute;us / Itabuna (30 Sep)<br>
+      <span>Oscar's Farm</span> &mdash; cabruca agroforestry (3 Oct)<br>
+      <span>Itacar&eacute;</span> &mdash; farms, forr&oacute;, capoeira &amp; the cacao coast
+    </div>
+  </div>
+</div>
+
+<!-- 2 AT A GLANCE -->
+<div class="slide">
+  <div class="band"><div class="title">Your Bahia Itinerary at a Glance</div><div class="sub">AGROVERSE ORIGIN TOUR &nbsp;&middot;&nbsp; 29 SEP &ndash; 8 OCT 2026</div></div>
+  <div class="body">
+    <div class="col-l">
+      <table class="aglance">
+        <tr><td class="d">Day 1 &middot; 29 Sep</td><td><b>CIC &mdash; Centro de Inova&ccedil;&atilde;o do Cacau.</b> Arrive Ilh&eacute;us 09:20. Lab analysis, quality &amp; traceability with Cristiano Villela Dias.</td></tr>
+        <tr><td class="d">Day 2 &middot; 30 Sep</td><td><b>Ilh&eacute;us / Itabuna circuit.</b> Black King Warehouse (Matheus Reis) &middot; Santos Chocolate Factory &mdash; bean-to-bar &middot; Coopercabruca co-op.</td></tr>
+        <tr><td class="d">Day 4&ndash;5 &middot; 1&ndash;2 Oct</td><td><b>Itacar&eacute;.</b> Cabruca farms and the cacao coast; evenings of forr&oacute; &amp; capoeira.</td></tr>
+        <tr><td class="d">Day 6 &middot; 3 Oct</td><td><b>Oscar's Farm.</b> Three-generation cabruca agroforestry, fermentation &amp; sun-drying.</td></tr>
+        <tr><td class="d">Day 7&ndash;10 &middot; 4&ndash;8 Oct</td><td><b>Culture &amp; rest.</b> Forr&oacute;, capoeira, Vipassana; final logistics; depart 8 Oct 17:55.</td></tr>
+      </table>
+      <div class="note">Confirmed: CIC (29 Sep) &amp; Oscar's Farm (3 Oct). The 30 Sep circuit and remaining days are proposed and to be confirmed.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/oscar1.jpg">
+      <div class="cap">Cabruca cacao grove, Bahia</div>
+      <img class="photo h-photo" src="img/capo1.jpg" style="margin-top:10px">
+      <div class="cap">Bahia coast &mdash; capoeira &amp; sunset</div>
+    </div>
+  </div>
+  <div class="foot"><span>Prepared for Elizabeth Wong &middot; Agroverse / TrueSight DAO</span><span>www.agroverse.shop</span></div>
+</div>
+
+<!-- 3 FLIGHTS -->
+<div class="slide">
+  <div class="band"><div class="title">Getting to Bahia &mdash; Flights</div><div class="sub">BOOKING 1658115660403049 &nbsp;&middot;&nbsp; ALL TIMES LOCAL</div></div>
+  <div class="body" style="display:block">
+    <div class="h2">Outbound &mdash; Hong Kong to Ilh&eacute;us (31h 35m)</div>
+    <table class="fl"><tr><th>Date</th><th>Depart</th><th>Flight</th><th>Arrive</th></tr>
+      <tr><td>28 Sep</td><td>12:45 &mdash; HKG T1</td><td>Cathay Pacific CX884</td><td>10:45 &mdash; LAX (B)</td></tr>
+      <tr><td>28 Sep</td><td>13:55 &mdash; LAX T2</td><td>LATAM LA8087</td><td>29 Sep 05:30 &mdash; GRU (T3)</td></tr>
+      <tr><td>29 Sep</td><td>07:20 &mdash; GRU T2</td><td>LATAM LA3254</td><td>29 Sep 09:20 &mdash; IOS Ilh&eacute;us</td></tr>
+    </table>
+    <div class="h2" style="margin-top:16px">Return &mdash; Ilh&eacute;us to Hong Kong (38h)</div>
+    <table class="fl"><tr><th>Date</th><th>Depart</th><th>Flight</th><th>Arrive</th></tr>
+      <tr><td>8 Oct</td><td>17:55 &mdash; IOS</td><td>LATAM LA4603</td><td>8 Oct 20:10 &mdash; GRU (T2)</td></tr>
+      <tr><td>8 Oct</td><td>23:15 &mdash; GRU T3</td><td>LATAM LA8086</td><td>9 Oct 07:40 &mdash; LAX (B)</td></tr>
+      <tr><td>9 Oct</td><td>12:25 &mdash; LAX (B)</td><td>Cathay Pacific CX885</td><td>10 Oct 18:55 &mdash; HKG T1</td></tr>
+    </table>
+    <div class="note">Ground window: arrive Ilh&eacute;us 09:20 on 29 Sep &rarr; depart 17:55 on 8 Oct &mdash; roughly 9&frac12; days. Ilh&eacute;us (IOS) to Itacar&eacute; is ~70 km, 1h 20m&ndash;2h by car (BA-001).</div>
+  </div>
+  <div class="foot"><span>Prepared for Elizabeth Wong &middot; Agroverse / TrueSight DAO</span><span>Page 3</span></div>
+</div>
+
+<!-- 4 CIC -->
+<div class="slide stop">
+  <div class="band"><div class="title">Stop 1 &mdash; CIC Cacao Innovation Center</div><div class="sub">ILH&Eacute;US &nbsp;&middot;&nbsp; TUESDAY 29 SEPTEMBER &nbsp;&middot;&nbsp; CONFIRMED</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Meet <b>Cristiano Villela Dias</b>, scientific director of the CIC (Centro de Inova&ccedil;&atilde;o do Cacau).</li>
+        <li>Physical-chemical lab analysis of almonds: quality, fermentation index, traceability.</li>
+        <li>Part of <b>PCTSul</b> &mdash; the science park driving the new professional cacao economy of southern Bahia.</li>
+        <li>The lab behind Agroverse's quality certifications and origin claims.</li>
+      </ul>
+      <div class="highlight"><b>Why it matters:</b> the CIC lab reports are the scientific spine of Agroverse's origin and quality claims — this is where the cacao is graded.</div>
+      <ul style="display:none">
+      </ul>
+      <div class="note">On the UESC campus, Rodovia Jorge Amado km 16, Ilh&eacute;us &mdash; about 5 km from the airport.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/cic3.jpg">
+      <div class="cap">Cristiano (CIC), Orlantildes &amp; Gary</div>
+      <img class="photo h-photo" src="img/cic1.jpg" style="margin-top:10px">
+      <div class="cap">Cacao tasting wheel</div>
+    </div>
+  </div>
+  <div class="foot"><span>Stop 1 of 5 &middot; CIC Cacao Innovation Center</span><span>agroverse.shop/partners/cic-cacao-innovation-center</span></div>
+</div>
+
+<!-- 5 WAREHOUSE -->
+<div class="slide stop">
+  <div class="band"><div class="title">Stop 2 &mdash; Black King Warehouse</div><div class="sub">ILH&Eacute;US &nbsp;&middot;&nbsp; WEDNESDAY 30 SEPTEMBER &nbsp;&middot;&nbsp; PROPOSED</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Managed by <b>Matheus Reis</b> &mdash; our export &amp; warehouse partner on the ground.</li>
+        <li>Holds the Agroverse ceremonial cacao inventory: <b>QR-coded bags</b>, batch-tracked on the ledger.</li>
+        <li>See how cacao moves: farm &rarr; warehouse &rarr; bagging &rarr; QR registration &rarr; shipment.</li>
+        <li>Meet the team behind every order &mdash; Matheus, Emelin, Clara &amp; Fernando.</li>
+      </ul>
+      <div class="highlight"><b>Why it matters:</b> this is the physical hand-off point — farm → warehouse → QR-tagged bag → shipment to your market.</div>
+      <ul style="display:none">
+      </ul>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/wh.jpg">
+      <div class="cap">Black King warehouse, Ilh&eacute;us</div>
+      <img class="photo h-photo" src="img/wh2.jpg" style="margin-top:10px">
+      <div class="cap">QR printing for bag traceability</div>
+    </div>
+  </div>
+  <div class="foot"><span>Stop 2 of 5 &middot; Black King Warehouse</span><span>agroverse.shop/partners/black-king-ilheus</span></div>
+</div>
+
+<!-- 6 SANTOS -->
+<div class="slide stop">
+  <div class="band"><div class="title">Stop 3 &mdash; Santos Chocolate Factory</div><div class="sub">ITABUNA &nbsp;&middot;&nbsp; WEDNESDAY 30 SEPTEMBER &nbsp;&middot;&nbsp; PROPOSED</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Bean-to-bar craft processing with <b>Jos&eacute; Carlos (Santos)</b>, a 40+ year veteran of the Bahian cacao industry.</li>
+        <li>Turns Agroverse almonds into nibs, liquor and finished bars &mdash; at origin.</li>
+        <li>Watch roasting, winnowing, cracking and melanging &mdash; the full craft process.</li>
+        <li>This is the facility at the centre of our current <b>40 kg Oscar cacao</b> processing conversation.</li>
+      </ul>
+      <div class="highlight"><b>Why it matters:</b> the <b>40 kg of Oscar's cacao</b> now in the ledger passes through this room — grow (Oscar) → convert (Santos) → consolidate (warehouse) → export.</div>
+      <ul style="display:none">
+      </ul>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/santos_hero.jpg">
+      <div class="cap">Santos Chocolate Factory, Itabuna</div>
+      <img class="photo h-photo" src="img/santos2.jpg" style="margin-top:10px">
+      <div class="cap">Processing the beans</div>
+    </div>
+  </div>
+  <div class="foot"><span>Stop 3 of 5 &middot; Santos Chocolate Factory</span><span>agroverse.shop/partners/santos-chocolate-factory</span></div>
+</div>
+
+<!-- 7 COOPERCABRUCA -->
+<div class="slide stop">
+  <div class="band"><div class="title">Stop 4 &mdash; Coopercabruca</div><div class="sub">ITABUNA &nbsp;&middot;&nbsp; WEDNESDAY 30 SEPTEMBER &nbsp;&middot;&nbsp; QUICK VISIT</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>A producer cooperative (Cooperativa dos Cacauicultores do Sul da Bahia) whose member farms supply cabruca cacao.</li>
+        <li>Meet <b>Orlantildes Santos Pereira</b>, the cooperative's president.</li>
+        <li>Holds the <b>IE and NF-e</b> credentials behind our export paperwork and MAPA/GACC registration.</li>
+        <li>Cabruca means cacao grown in the shade of the native Atlantic Forest &mdash; the growing model behind our beans.</li>
+      </ul>
+      <div class="highlight"><b>Why it matters:</b> the co-op holds the IE / NF-e and MAPA/GACC credentials that make each export shipment legal.</div>
+      <ul style="display:none">
+      </ul>
+      <div class="note">Itabuna, about 25 km from Ilh&eacute;us &mdash; the same short drive as the warehouse and the factory.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/coop_h.jpg">
+      <div class="cap">Coopercabruca &mdash; southern Bahia</div>
+      <img class="photo h-photo" src="img/wh3.jpg" style="margin-top:10px">
+      <div class="cap">The team at the farm</div>
+    </div>
+  </div>
+  <div class="foot"><span>Stop 4 of 5 &middot; Coopercabruca</span><span>agroverse.shop</span></div>
+</div>
+
+<!-- 8 OSCAR -->
+<div class="slide stop">
+  <div class="band"><div class="title">Stop 5 &mdash; Oscar's Farm &middot; Cabruca Agroforestry</div><div class="sub">SOUTHERN BAHIA &nbsp;&middot;&nbsp; SATURDAY 3 OCTOBER &nbsp;&middot;&nbsp; CONFIRMED</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Three generations of farming; the land has grown cacao for over a century.</li>
+        <li>Old <b>Criolla trees</b> (~80 years) shaded by native Atlantic Forest &mdash; true cabruca.</li>
+        <li>Harvest, pod-breaking, fermentation troughs and sun-drying on the <i>terreiro</i>.</li>
+        <li>Meet <b>Oscar</b> (Oscar Martins da Silva Miranda) &mdash; the grower behind our current export.</li>
+      </ul>
+      <div class="highlight"><b>Why it matters:</b> regenerated cabruca cacao like Oscar’s restores the Atlantic Forest — the on-the-ground arm of our 10,000-hectare mission.</div>
+      <ul style="display:none">
+      </ul>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/oscar3.jpg">
+      <div class="cap">Sun-drying on the terreiro &mdash; Oscar's farm</div>
+      <img class="photo h-photo" src="img/oscar2.jpg" style="margin-top:10px">
+      <div class="cap">Oscar, our farmer partner</div>
+    </div>
+  </div>
+  <div class="foot"><span>Stop 5 of 5 &middot; Oscar's Farm</span><span>agroverse.shop/farms/oscar-bahia</span></div>
+</div>
+
+<!-- 9 DAY BY DAY -->
+<div class="slide">
+  <div class="band"><div class="title">Day by Day</div><div class="sub">29 SEPTEMBER &ndash; 8 OCTOBER 2026</div></div>
+  <div class="body" style="display:block;padding-top:0.15in">
+    <table class="fl">
+      <tr><th>Date</th><th>Day</th><th>Plan</th></tr>
+      <tr><td>29 Sep</td><td>Tue</td><td>Arrive Ilh&eacute;us 09:20. <b>CIC</b> (Cacao Innovation Center). Overnight in Ilh&eacute;us.</td></tr>
+      <tr><td>30 Sep</td><td>Wed</td><td>Ilh&eacute;us / Itabuna circuit &mdash; <b>Black King Warehouse, Santos Factory, Coopercabruca</b>. Transfer toward Itacar&eacute;.</td></tr>
+      <tr><td>1 Oct</td><td>Thu</td><td>Itacar&eacute; &mdash; farm immersion (proposed: Fazenda Clara, Vivi's "Jesus do Deus"). Evening: forr&oacute; or capoeira.</td></tr>
+      <tr><td>2 Oct</td><td>Fri</td><td>Flexible day, positioning toward Oscar's region. Evening: LahSelva's "Wild Forr&oacute;".</td></tr>
+      <tr><td>3 Oct</td><td>Sat</td><td><b>Oscar's Farm</b> &mdash; full-day visit: harvest, fermentation, sun-drying.</td></tr>
+      <tr><td>4 Oct</td><td>Sun</td><td>Rest and reflection. Optional: Vipassana (11:00), family constellation (17:00).</td></tr>
+      <tr><td>5 Oct</td><td>Mon</td><td>Cultural day in and around Itacar&eacute;. Evening: Casa Mar&eacute; forr&oacute; (18:00).</td></tr>
+      <tr><td>6 Oct</td><td>Tue</td><td>Flex day &mdash; follow-ups and media capture. Evening: capoeira (18:00).</td></tr>
+      <tr><td>7 Oct</td><td>Wed</td><td>Transfer to Ilh&eacute;us. Final logistics and media.</td></tr>
+      <tr><td>8 Oct</td><td>Thu</td><td>Final visits in Ilh&eacute;us. <b>Depart 17:55</b> for Hong Kong.</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>Prepared for Elizabeth Wong &middot; Agroverse / TrueSight DAO</span><span>Page 9</span></div>
+</div>
+
+<!-- 10 FARM TO DOOR -->
+<div class="slide">
+  <div class="band"><div class="title">From Farm to Your Door &mdash; Proof on the Ledger</div><div class="sub">TRACEABILITY, END TO END</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Every Agroverse shipment (AGL series) is photographed and logged end-to-end.</li>
+        <li><b>QR-coded bags</b> link each unit to the farmer, the fermentation batch and the buyer.</li>
+        <li>Blockchain + Google Sheets ledger = full traceability from tree to table.</li>
+        <li>The 40 kg of Oscar's cacao travelling this season is one of many export runs to our partners.</li>
+      </ul>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/wh2.jpg">
+      <div class="cap">QR-coded bags &mdash; ready to travel</div>
+      <img class="photo h-photo" src="img/santos1.jpg" style="margin-top:10px">
+      <div class="cap">Seeing the beans for the first time</div>
+    </div>
+  </div>
+  <div class="foot"><span>Traceability</span><span>truesight.me/agroverse-shipments</span></div>
+</div>
+
+<!-- 11 CULTURE -->
+<div class="slide">
+  <div class="band"><div class="title">Itacar&eacute; &mdash; Culture &amp; the Cacao Coast</div><div class="sub">FORR&Oacute; &middot; CAPOEIRA &middot; YOGA &middot; THE ATLANTIC FOREST</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li><b>Forr&oacute; &amp; capoeira</b> through the week &mdash; LahSelva (Tue/Thu 18:00; Fri "Wild Forr&oacute;" 21:00), Casa Mar&eacute; forr&oacute; (Mon 18:00).</li>
+        <li><b>Sunday calm</b> &mdash; Casa Fluir Vipassana (11:00), family constellation (17:00).</li>
+        <li>Rivers, waterfalls and rainforest between farm days &mdash; a natural place to rest.</li>
+        <li>Capoeira + cacao: the same circle of culture, health and community we bring to the USA.</li>
+      </ul>
+      <div class="note">Evening programme only &mdash; daylight hours stay free for farm visits.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/capo1.jpg">
+      <div class="cap">Sunset roda on the beach, Itacar&eacute;</div>
+      <img class="photo h-photo" src="img/oscar1.jpg" style="margin-top:10px">
+      <div class="cap">Cacao country &mdash; Atlantic Forest hills</div>
+    </div>
+  </div>
+  <div class="foot"><span>Itacar&eacute;, Bahia</span><span>capoeira.agroverse.shop</span></div>
+</div>
+
+
+<!-- FOOD -->
+<div class="slide">
+  <div class="band"><div class="title">Where to Eat &mdash; Itacar&eacute; &amp; the Cacao Coast</div><div class="sub">FOOD NOTES &nbsp;&middot;&nbsp; BAHIAN KITCHEN, FRESH FROM THE SEA</div></div>
+  <div class="body">
+    <div class="col-l">
+      <div class="h2">The dish to try first</div>
+      <table class="foodtbl">
+        <tr><td class="n">Moqueca</td><td>Bahia's signature seafood stew &mdash; fish or shrimp, dend&ecirc; (palm) oil, coconut milk, tomato &amp; coriander.</td></tr>
+        <tr><td class="n">Acaraj&eacute;</td><td>Black-eyed-pea fritter fried in dend&ecirc; oil, split and filled with vatap&aacute;, shrimp &amp; salad. Street food, best at sunset.</td></tr>
+        <tr><td class="n">Vatap&aacute; &amp; Caruru</td><td>Rich Afro-Brazilian stews of shrimp, nuts and dend&ecirc; &mdash; the heart of Bahian cooking.</td></tr>
+        <tr><td class="n">P&atilde;o de queijo</td><td>Warm cheese bread &mdash; perfect with the morning cacao.</td></tr>
+        <tr><td class="n">Açaí &amp; fresh fruit</td><td>The coast is bursting with tropical fruit, juices and açaí bowls.</td></tr>
+      </table>
+    </div>
+    <div class="col-r">
+      <div class="h2">Places to eat</div>
+      <table class="foodtbl">
+        <tr><td class="n">Restaurante Tia Deth</td><td>Itacar&eacute; &mdash; the "queen of moquecas"; watch the river go by.</td></tr>
+        <tr><td class="n">Restaurante Sabores da Terra</td><td>Itacar&eacute; &mdash; generous regional cooking and a celebrated moqueca.</td></tr>
+        <tr><td class="n">Cabana da Ximbica / Aloha</td><td>Beach shacks at Tiririca &mdash; moqueca, seafood &amp; a sunset view.</td></tr>
+        <tr><td class="n">Sarav&aacute; Sarav&aacute;</td><td>Modern Brazilian cooking; relaxed, stylish.</td></tr>
+        <tr><td class="n">Street acaraj&eacute; stands</td><td>Evening stalls in town &mdash; cheap, fresh, unforgettable.</td></tr>
+      </table>
+      <div class="note">Vegetarian and vegan: plentiful. Ask for "sem dend&ecirc;", or the "moqueca de banana-da-terra" (plantain). Juice bars and açaí are everywhere.</div>
+    </div>
+  </div>
+  <div class="foot"><span>Food &amp; Dining &middot; Itacar&eacute;, Bahia</span><span>Page 11</span></div>
+</div>
+
+<!-- VENUE SCHEDULES -->
+<div class="slide">
+  <div class="band"><div class="title">Culture &mdash; Weekly Venue Schedules</div><div class="sub">FORR&Oacute; &middot; CAPOEIRA &middot; YOGA &middot; MEDITATION &mdash; WHAT'S ON EACH DAY</div></div>
+  <div class="body" style="padding-top:0.05in">
+    <div class="col-l">
+      <div class="venueh">LahSelva <span class="badge">@lahselva_</span></div>
+      <table class="sched">
+        <tr><td class="day">Mon</td><td>10:00 Gypsy Dance &middot; 12:00 Tribal Belly Dance &middot; 18:30 Book Club</td></tr>
+        <tr><td class="day">Tue</td><td>07:30 Hatha Yoga &middot; 10:00/11:00 Jazz &middot; <b>18:00 Capoeira</b> &middot; 19:30 Pandeiro</td></tr>
+        <tr><td class="day">Wed</td><td>09:00 Country Women's Fair &middot; <b>18:30 Forr&oacute;</b> &middot; 19:30 Adv. Forr&oacute;</td></tr>
+        <tr><td class="day">Thu</td><td>07:30 Yoga &middot; 15:00 Belly Dance &middot; <b>18:00 Capoeira</b> &middot; 19:30 Pandeiro &middot; 20:30 Samba</td></tr>
+        <tr><td class="day">Fri</td><td><b>18:30 Forr&oacute; &middot; 19:30 Adv. Forr&oacute; &middot; 21:00 Wild Forr&oacute;</b> &#11088;</td></tr>
+        <tr><td class="day">Sat</td><td>18:30 Salsa</td></tr>
+        <tr><td class="day">Sun</td><td>&mdash; no public activities &mdash;</td></tr>
+      </table>
+      <div class="note">Sliding-scale community spots (vagas sociais) available.</div>
+    </div>
+    <div class="col-r">
+      <div class="venueh">Casa Fluir <span class="badge">@casafluir</span></div>
+      <table class="sched">
+        <tr><td class="day">Mon</td><td>06:30 &amp; 08:30 Yoga &middot; 17:00 Tribal Fusion Dance</td></tr>
+        <tr><td class="day">Tue</td><td>08:00 &amp; 18:15 Yoga &middot; 16:00 Belly Dance &middot; <b>19:30 Forr&oacute;</b></td></tr>
+        <tr><td class="day">Wed</td><td>&mdash; none listed &mdash;</td></tr>
+        <tr><td class="day">Thu</td><td>08:00 &amp; 18:15 Yoga &middot; 17:00&ndash;19:00 Café Natural Pharmacy &middot; <b>19:30 Forr&oacute;</b></td></tr>
+        <tr><td class="day">Fri</td><td>08:30 Yoga &middot; 16:30 Pandeiro (Samba/Forr&oacute;)</td></tr>
+        <tr><td class="day">Sat</td><td>&mdash; none listed &mdash;</td></tr>
+        <tr><td class="day">Sun</td><td><b>11:00 Vipassana Meditation</b> &middot; 17:00 Family Constellation</td></tr>
+      </table>
+      <div class="venueh" style="margin-top:10px">Casa Mar&eacute; <span class="badge">@casadaculturamare</span></div>
+      <table class="sched">
+        <tr><td class="day">Mon</td><td><b>18:00 Forr&oacute; for beginners</b> &mdash; free for the community, limited spots (73) 99917-1676</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span>Evening programme only &mdash; daylight hours stay free for farm visits</span><span>Page 12</span></div>
+</div>
+
+<!-- 12 WHY -->
+<div class="slide cover">
+  <div class="cwrap"><img class="cimg" src="img/oscar3.jpg"></div>
+  <div class="cbox" style="top:2.2in">
+    <div class="ct" style="font-size:40pt">Why This Matters</div>
+    <div class="cs" style="font-size:15pt;color:#f0b76a;max-width:9in">Regenerative cabruca cacao restores the Atlantic Forest while our mission drives <b>10,000 hectares of Amazon rainforest</b> regeneration. Every bag you see on this tour is a step toward that goal.</div>
+    <div class="cs" style="margin-top:26px">See you in Bahia, Liz &mdash; 29 September &ndash; 8 October 2026.</div>
+    <div class="clist" style="font-size:12pt;margin-top:20px">agroverse.shop &nbsp;&middot;&nbsp; truesight.me &nbsp;&middot;&nbsp; capoeira.agroverse.shop</div>
+  </div>
+</div>
+
+</body></html>
