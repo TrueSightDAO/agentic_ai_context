@@ -39,6 +39,30 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `installGovernorSyncTrigger()` daily 04:00-UTC cron has never fired — governor sheet-permission sync is silently manual
+**Filed 2026-09-21. Owner: Sophia. Governor: Gary (thread 34264). Status: confirmed bug, not yet fixed.**
+
+**Symptom.** Governor→spreadsheet editor reconciliation (`tokenomics/google_app_scripts/1m8IZPs1vFN99cuu-39kbC-OGXggRVtJtXq5rfSB0M1sCQjMdolEUDuGU/GovernorSheetPermissionSync.js`) is designed to run **daily at 04:00 UTC** via `installGovernorSyncTrigger()` (L87–95: `ScriptApp.newTrigger('syncGovernorEditorsCron_').timeBased().everyDays(1).atHour(4).inTimezone('UTC')`) and to write a **`Governor Sync Log`** tab (`SYNC_LOG_SHEET`, auto-created via `ss.insertSheet` at L270–272) on every run.
+
+**Evidence it has never run.** Main Ledger tab list read 2026-09-21 (SA `edgar_dapp_listener`, `spreadsheets.get`): **no `Governor Sync Log` tab exists** among the 40 tabs — yet the GAS auto-creates it on every invocation. Consequence: rotation has been manual, which is why governor **Aga Marecka** (`agnieszkamarecka@gmail.com`) currently holds **no editor access** to the Main Ledger or the Intiatives/Scoring Rubric sheet, and 5 sentinel agents (`admin+sophia@`, `admin+kimi@`, `admin+deepseek@`, `admin+open+ai@`, `admin+envoy@truesight.me`) are also missing — exactly the drift the sync was built to prevent.
+
+**Likely causes to check (owner to confirm).** (1) Trigger never installed (fresh deploy / `installGovernorSyncTrigger()` never called); (2) installed but the project's `appsscript.json` lacks the `https://www.googleapis.com/auth/script.scriptapp` scope; (3) `syncGovernorEditorsCron_` throwing early. Check `appsscript.json` for the `script.scriptapp` + Sheets scopes.
+
+**Proposed fix (~small).** Verify `appsscript.json` scopes; call `installGovernorSyncTrigger()` (owner-run) and confirm a `Governor Sync Log` row appears and the trigger shows in `ScriptApp.getProjectTriggers()`; add a staleness monitor (alert if no log row in >48h), mirroring the proven `farm-media-publisher` freshness pattern. No change to the sync logic itself.
+
+**Evidence.** Main Ledger tabs list (no `Governor Sync Log`, 2026-09-21); `GovernorSheetPermissionSync.js` L36, L87–95, L270–272; thread 34264.
+
+### `GOVERNOR_SHEET_PERMISSION_SYNC_SOP.md` §3 script is stale — revoke loop would strip sentinel `admin@truesight.me`
+**Filed 2026-09-21. Owner: Sophia. Governor: Gary (thread 34264). Status: confirmed doc bug, not yet fixed.**
+
+**Problem.** The SOP's inline Python (§3 "manual run") predates the deployed GAS v5 eligibility rule. Its revoke loop keys off the *governor name list only*, so it treats sentinel `admin@truesight.me` (Contributors contact sheet col W `Is Sentinel=TRUE`) as a non-governor and would **remove its editor access**. The deployed `GovernorSheetPermissionSync.js` uses the correct rule — **eligible = governor OR sentinel AND has email**; removals only apply to editors *present in the Contact sheet* that are *neither*; the owner, GCP SAs, and external collaborators are **never touched**.
+
+**Risk.** A future operator following the SOP by hand would revoke a DAO sentinel's access, and would also diverge from the GAS by never *adding* the sentinel agents.
+
+**Proposed fix (~small, docs-only).** Rewrite SOP §3 to either (a) point at the GAS (`doGet(?action=sync_governor_editors&secret=…)` / `syncGovernorEditorsNow()`) as the ONLY sanctioned path, or (b) restate the **governor OR sentinel** rule + "never touch owner / SAs / external collaborators" and drop the name-list-only revoke loop. No code change.
+
+**Evidence.** `sops/GOVERNOR_SHEET_PERMISSION_SYNC_SOP.md` §3; `GovernorSheetPermissionSync.js` header rule + L107–L128; live permissions read 2026-09-21; thread 34264.
+
 ### SunMint Plot Explorer — filter panel should be collapsible (eats vertical space on the plot list)
 **Filed 2026-09-21. Owner: Sophia. Governor: Gary (thread 33323). Status: queued by Envoy — low priority, pick up after threads 34264/10800 settle. Not yet started.**
 
