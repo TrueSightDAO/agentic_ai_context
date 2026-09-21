@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-21T05:17:04Z`
+- Generated (UTC): `2026-09-21T13:09:39Z`
 - Look-back: **7** calendar days (`2026-09-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,7 +32,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 27
+- `[CONTRIBUTION EVENT]` × 26
 - `[PRACTICE EVENT]` × 5
 - `[PROPOSAL VOTE]` × 3
 - `[NOTARIZATION EVENT]` × 1
@@ -41,13 +41,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260919124458_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with accountant to get nota fiscal issued
-- `Edgar_20260919125839_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with cacao innovation center regarding the 6 samples we dropped of…
-- `Edgar_20260919143437_030` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-19T14:34:35.777Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260919163514_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reaching out to Oscar to make arrangements to visit his farm while Liz is he…
 - `Edgar_20260919163702_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Asking Fatima to check how long it would take for Santos to roast the cacao …
 - `Edgar_20260919163945_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion regarding conversation with Santos about processing the 40kg caca…
@@ -65,6 +63,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260920224635_060` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: TLaOshKLy0Z6AHTaCuB8oj_D6BOCMd18v0_whJIgUYU · Email: davajhabib@outlook.com
 - `Edgar_20260920224937_062` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Júlio Almeida · Contributor Email: davajhabib@outlook.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
 - `Edgar_20260921040401_064` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 840 · Description: SunMint Plot Explorer — plot-anchored 10m Sentinel-2 clips (PR10) + slider-d…
+- `Edgar_20260921113249_066` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 119.15 · Description: For the purchase of 10 chocolate molds
+- `Edgar_20260921113513_068` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 10 · Description: Received 10 chocolate molds
+- `Edgar_20260921120335_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with CIC to request for recipet
 
 ---
 
@@ -79,7 +80,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-20T10:59:14.534Z`
+- Generated (UTC): `2026-09-21T10:59:14.555Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -234,7 +235,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Paloma | 7 | 661.32 | $247.02 |
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
-_(+30 more in JSON snapshot.)_
+_(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
@@ -279,6 +280,9 @@ _All dated lines on/after 2026-09-14_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a5620b5 | 2026-09-21 10:05:29 -0300 | PR11c: scroll the detail rail into view on mobile after a ?plot= deep link (#393)
+1799657 | 2026-09-21 09:20:24 -0300 | PR11b: default satellite slider to the newest scene that can be drawn on the map (#392)
+1e6b8fd | 2026-09-21 05:21:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 e588492 | 2026-09-20 23:43:46 -0300 | PR11: plot-anchored satellite overlay driven by the history slider (#391)
 d762fdb | 2026-09-20 21:09:25 -0300 | PR9: retire redundant satellite-history widget from sunmint.html (#390)
 efe698b | 2026-09-20 21:01:02 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -316,9 +320,6 @@ f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip 
 4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 5719914 | 2026-09-15 05:13:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube iframes to fix perceived-missing videos on load (#379)
-55f1371 | 2026-09-14 21:27:55 -0300 | fix(crf-anapu): responsive 16:9 video/image boxes, fix squished YouTube embeds (#378)
-5cf632f | 2026-09-14 21:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-d9f30e0 | 2026-09-14 13:15:42 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -331,6 +332,9 @@ d9f30e0 | 2026-09-14 13:15:42 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a1d7f0a | 2026-09-21 09:28:38 -0300 | docs(sunmint): tick PR8 + resolve Decision 0.8 (passive report) (#1326)
+d9d304e | 2026-09-21 02:17:32 -0300 | chore(previews): refresh Beer Hall preview (2026-09-21 UTC)
+7c5adab | 2026-09-21 02:17:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-21 UTC)
 ab3ee67 | 2026-09-21 00:35:43 -0300 | PR10c (plan half): Decisions 0.14-0.16 + PR10c tracker row + park marker (#1324)
 f699a1a | 2026-09-21 00:31:53 -0300 | OPEN_FOLLOWUPS: file PLOT FINANCING doc gap + note catalog-staleness instance (#1323)
 8faff49 | 2026-09-21 00:26:58 -0300 | PR9 close-out: fix RESUME marker head to PR9, tick PR9 tracker row (#1322)
@@ -368,9 +372,6 @@ a775a28 | 2026-09-20 08:43:43 -0300 | UAT evidence: plot explorer deep-link ?plo
 4007b33 | 2026-09-20 08:42:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
 20083ac | 2026-09-20 08:42:27 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
 56da83c | 2026-09-20 02:12:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
-9ca9a6d | 2026-09-20 02:12:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
-deebae1 | 2026-09-20 01:45:15 -0300 | handoffs: close out thread 31905 (Black King NF-e crosswalk) + file webhook-2xx harden follow-up (#1297)
-fae9904 | 2026-09-20 00:56:58 -0300 | Merge pull request #1295 from TrueSightDAO/auto/advisory-refresh-2026-09-20
 … (truncated)
 ```
 
@@ -448,6 +449,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+08874ff | 2026-09-21 12:53:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 497d497 | 2026-09-20 11:48:08 +0000 | chore: refresh currencies.json [skip ci]
 5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 277d073 | 2026-09-19 11:32:00 +0000 | chore: refresh currencies.json [skip ci]
@@ -559,7 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/20/2026 20:50:35 |
+| 2026-09 | 924.5 | 18364.34386 | 9/21/2026 5:50:50 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-14`; scanned last **600** data rows)
 
