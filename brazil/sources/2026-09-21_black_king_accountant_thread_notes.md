@@ -41,3 +41,10 @@
 - Verbatim: *“existe um norma técnica que especifica a utilização de unidades de medidas para alguns NCMs em caso de Exportação.”*
 - Verbatim: *“eu acredito que deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”*
 - Action: **regenerate the commercial invoice (Rev 12)** with the NCM-required units of measure and correct values; then re-key the emitter products and re-issue the NF-e draft (still gated on Gary's approval).
+
+## 8. NCM → export uTrib norm table (Gary, 2026-09-21)
+- Gary supplied the NCM/uTrib export unit-of-measure table (PDF, 2026-09-21) — the *norma técnica* Saymon cited.
+- Chapter 18: **1801.00.00 → TON**, **1802.00.00 → KG**, **1803.10.00 / 1803.20.00 → TON**, **1804.00.00 → TON**, **1805.00.00 → TON**, **1806.*** → **KG**.
+- Rev-11 lines under 1801/1803/1804 were declared in UN/KG → must be re-expressed in **TON** for Rev 12 (runbook Appendix E + §5.1a).
+- 2106.90.00 (Cacao Tea, lines #6/#10) is outside Chapter 18 → not keyed by this table; confirm its uTrib.
+- Flag: "Cacao Husk" (#2) NCM 1803.10.00 is likely wrong (→ 1802.00.00, uTrib KG) — confirm with Saymon.

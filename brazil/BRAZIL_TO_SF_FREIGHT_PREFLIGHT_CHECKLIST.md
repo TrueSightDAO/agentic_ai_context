@@ -33,8 +33,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | **e-CNPJ certificate** | ✅ works | Matheus | cert usable via gov.br (no longer the blocker) |
 | **Commerce CNAE / IE / SEFAZ-BA** | 🔴 blocked | Saymon | needs **Junta Comercial** contract amendment → Prefeitura update |
 | **Municipal licence (licença comercial)** | 🔴 pending | Saymon/Jussileide | needed for the cacao business; not in old doc |
-| **NF-e draft** | 🟠 **errored** | Saymon | draft attempted 2026-09-21 → emitter rejected: **incorrect unidades de medida** for some NCMs on export |
-| **NF-e issued** | 🔴 **not yet** | Saymon | blocked on a corrected invoice (**Rev 12**) with NCM-required units + values |
+| **NF-e draft** | 🟠 **errored** | Saymon | draft attempted 2026-09-21 → emitter rejected: **incorrect unidades de medida** for NCM 1801/1803/1804 on export (norm table: **Appendix E**) → re-express those lines in **TON** for Rev 12 (§5.1a) |
+| **NF-e issued** | 🔴 **not yet** | Saymon | blocked on a corrected invoice (**Rev 12**) with NCM-required export units + values — unit remap in §5.1a; norm source **Appendix E** |
 | DU-E (Notificação de Exportação Fiscal) | ⬜ not started | Omega | blocked on NF-e |
 | Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
 | Air freight | ⬜ | Graziela/Omega | rates only |
@@ -167,6 +167,28 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 
 > ⚠️ **Rev 12 required (2026-09-21).** The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → regenerate the commercial invoice with the **correct units + values** before the NF-e can be issued. Rev 11's mixed **UN / KG** units must be re-mapped to what each NCM requires.
 
+#### 5.1a Rev 12 — required export units (NCM remap)
+
+> Source: NCM→uTrib export-unit norm table supplied by Gary 2026-09-21 (**Appendix E**). Chapter-18 raw/intermediate forms (**1801 beans/nibs, 1803 paste/mass, 1804 butter/fat**) must be declared in **TON** (tonelada métrica líquida); 1802 (husks) and finished 1806* use **KG**. Rev 11 declared the 1801/1803/1804 lines in **UN / KG** → this is the rejection.
+
+| # | NCM | Rev-11 qty | Rev-11 unit | Rev-12 required unit | Rev-12 qty (≈ t, see caveat) |
+|---|-----|-----------|-------------|----------------------|------------------------------|
+| 1 | 1801.00.00 | 129 | UN | **TON** | ≈ 0.0293 |
+| 2 | 1803.10.00 | 20 | KG | **TON** *(or 1802→KG — confirm)* | 0.0200 |
+| 3 | 1803.10.00 | 37 | UN | **TON** | ≈ 0.0185 |
+| 4 | 1801.00.00 | 80 | KG | **TON** | 0.0800 |
+| 5 | 1801.00.00 | 10 | KG | **TON** | 0.0100 |
+| 6 | 2106.90.00 | 12 | KG | *(confirm — not Ch.18)* | — |
+| 7 | 1803.10.00 | 169 | UN | **TON** | ≈ 0.0338 |
+| 8 | 1801.00.00 | 15 | KG | **TON** | 0.0150 |
+| 9 | 1801.00.00 | 99.5 | KG | **TON** | 0.0995 |
+| 10 | 2106.90.00 | 21 | KG | *(confirm — not Ch.18)* | — |
+| 11 | 1804.00.00 | 5 | KG | **TON** | 0.0050 |
+
+> ⚠️ The ≈ t column is a **mechanical kg→t / unit-weight conversion only** (8 oz pouch = 0.2268 kg; 500 g = 0.5 kg; 200 g = 0.2 kg) and is **illustrative** — Saymon to confirm the actually-declared quantities and the values on Rev 12.
+> ⚠️ **Flag (line #2):** "Cacao Husk" is normally NCM **1802.00.00** (uTrib **KG**), not 1803.10.00 (uTrib TON). If it truly is 1802 it stays KG — confirm the correct NCM with Saymon rather than blanket-converting.
+> ⚠️ **Flag (#6/#10):** NCM **2106.90.00** (Cacao Tea) is outside Chapter 18 and is **not keyed** by this table — confirm its export uTrib independently.
+
 #### 5.2 Sebrae emitter — master-data sequence (in order)
 1. **Register the company as emitente** (Saymon, in progress). Black King **already had an account** (Matheus used it before). Login: `https://emissornfe.sebrae.com.br/` → **gov.br** → *Seu Certificado Digital* → Black King cert (shows as Matheus) → select Black King.
 2. **Register products.**
@@ -218,7 +240,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 | Foreign buyer not found | not registered | add **TrueTech Inc** with **Exterior** flag (already done) |
 | DARF for **all** debits can't be future-dated | system limitation | regenerate the DARF on the payment day |
 | Matheus can't make outbound calls | number flagged | use WhatsApp; Rebecca for warehouse |
-| NF-e rejected: **unidades de medida** | NCM technical norm requires specific units on export | regenerate the invoice (Rev 12) with correct units + values; re-key emitter products |
+| NF-e rejected: **unidades de medida** | NCM technical norm requires specific units on export (NCM 1801/1803/1804 → **TON**; 1802/1806 → KG — **Appendix E**) | regenerate the invoice (Rev 12) with NCM-required units (§5.1a) + correct values; re-key emitter products |
 
 ---
 
@@ -286,6 +308,29 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | Date | Change |
 |------|--------|
 | 2026-09-21 | Full rewrite into end-to-end operator runbook (agent + Envoy contract). Corrected stale Phase 0 (e-CNPJ now works; CNAE path superseded by Junta/Prefeitura chain; Inapto has DARF mechanics). Added: municipal-licence chain, Gary NF-e approval gate, BRL/PTAX rule, Sebrae master-data sequence, treasury/audit rule, Saymon & Jussileide contacts, Phases 0–8, failure modes. Source notes: `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`. |
+| 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |
+
+---
+
+## Appendix E — NCM → export unit of measure (uTrib) reference
+
+> Source: NCM/uTrib norm table supplied by Gary **2026-09-21** (transcribed to `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md` §8). This is the *norma técnica* Saymon cited as the cause of the Rev 11 NF-e rejection. Applies to **Chapter 18 (cocoa)** headings on **export** operations. Raw/intermediate forms → **TON**; husks + finished preparations → **KG**.
+
+| NCM | uTrib (export) | Description | Rev-11 lines |
+|-----|----------------|-------------|-------------|
+| 1801.00.00 | **TON** | Tonelada Métrica Líquida | #1, #4, #5, #8, #9 |
+| 1802.00.00 | **KG** | Quilograma | — (see #2 flag) |
+| 1803.10.00 | **TON** | Tonelada Métrica Líquida | #2, #3, #7 |
+| 1803.20.00 | **TON** | Tonelada Métrica Líquida | — |
+| 1804.00.00 | **TON** | Tonelada Métrica Líquida | #11 |
+| 1805.00.00 | **TON** | Tonelada Métrica Líquida | — |
+| 1806.10.00 | **KG** | Quilograma | — |
+| 1806.20.00 | **KG** | Quilograma | — |
+| 1806.31.10 / 1806.31.20 | **KG** | Quilograma | — |
+| 1806.32.10 / 1806.32.20 | **KG** | Quilograma | — |
+| 1806.90.00 | **KG** | Quilograma | — |
+
+**Not covered by this table (confirm with Saymon):** NCM **2106.90.00** (Rev-11 lines #6, #10 — Cacao Tea) is outside Chapter 18; confirm its export uTrib independently.
 
 ---
 
