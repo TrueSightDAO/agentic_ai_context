@@ -33,7 +33,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | **e-CNPJ certificate** | ✅ works | Matheus | cert usable via gov.br (no longer the blocker) |
 | **Commerce CNAE / IE / SEFAZ-BA** | 🔴 blocked | Saymon | needs **Junta Comercial** contract amendment → Prefeitura update |
 | **Municipal licence (licença comercial)** | 🔴 pending | Saymon/Jussileide | needed for the cacao business; not in old doc |
-| **NF-e issued** | 🔴 **not yet** | Saymon | Sebrae emitter registration underway |
+| **NF-e draft** | 🟠 **errored** | Saymon | draft attempted 2026-09-21 → emitter rejected: **incorrect unidades de medida** for some NCMs on export |
+| **NF-e issued** | 🔴 **not yet** | Saymon | blocked on a corrected invoice (**Rev 12**) with NCM-required units + values |
 | DU-E (Notificação de Exportação Fiscal) | ⬜ not started | Omega | blocked on NF-e |
 | Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
 | Air freight | ⬜ | Graziela/Omega | rates only |
@@ -164,6 +165,8 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 
 *Nominal $0.01/unit values used to satisfy emitter validation.
 
+> ⚠️ **Rev 12 required (2026-09-21).** The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → regenerate the commercial invoice with the **correct units + values** before the NF-e can be issued. Rev 11's mixed **UN / KG** units must be re-mapped to what each NCM requires.
+
 #### 5.2 Sebrae emitter — master-data sequence (in order)
 1. **Register the company as emitente** (Saymon, in progress). Black King **already had an account** (Matheus used it before). Login: `https://emissornfe.sebrae.com.br/` → **gov.br** → *Seu Certificado Digital* → Black King cert (shows as Matheus) → select Black King.
 2. **Register products.**
@@ -215,6 +218,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 | Foreign buyer not found | not registered | add **TrueTech Inc** with **Exterior** flag (already done) |
 | DARF for **all** debits can't be future-dated | system limitation | regenerate the DARF on the payment day |
 | Matheus can't make outbound calls | number flagged | use WhatsApp; Rebecca for warehouse |
+| NF-e rejected: **unidades de medida** | NCM technical norm requires specific units on export | regenerate the invoice (Rev 12) with correct units + values; re-key emitter products |
 
 ---
 

@@ -35,3 +35,9 @@
 ## 6. Timeline pressure
 - China partners arrive **2026-09-29**; Gary asked to resolve before then.
 - Commercial invoice dated **2026-09-21**, quoted in BRL, sent to Saymon (small difference vs. Saymon's own calculation noted).
+
+## 7. NF-e units-of-measure rejection (2026-09-21)
+- Saymon (WhatsApp, 2026-09-21 4:38–4:39 PM): the **erro na nota** is due to the **unidades de medida** used.
+- Verbatim: *“existe um norma técnica que especifica a utilização de unidades de medidas para alguns NCMs em caso de Exportação.”*
+- Verbatim: *“eu acredito que deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”*
+- Action: **regenerate the commercial invoice (Rev 12)** with the NCM-required units of measure and correct values; then re-key the emitter products and re-issue the NF-e draft (still gated on Gary's approval).
