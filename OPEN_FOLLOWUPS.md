@@ -39,6 +39,41 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint Plot Explorer — filter panel should be collapsible (eats vertical space on the plot list)
+**Filed 2026-09-21. Owner: Sophia. Governor: Gary (thread 33323). Status: queued by Envoy — low priority, pick up after threads 34264/10800 settle. Not yet started.**
+
+**Ask (Gary).** The `#filters` block in `sunmint/plots/index.html` (Farm / Plot type / Status /
+Boundary authority / Data quality) is always expanded and consumes a large share of the
+left rail, leaving little room for the plot list itself. Gary wants it **collapsible** so the
+list gets more space.
+
+**Measured on live beta 2026-09-21** (headless, `beta.truesight.me/sunmint/plots/`):
+
+| viewport | filters height | list viewport | plots fully visible | after collapsing filters |
+|---|---|---|---|---|
+| desktop 1440×900 | **319 px** (~44% of rail) | 350 px | **4 of 21** | list → **670 px**, **7 visible** (+75%) |
+| mobile 390×844 | **303 px** | 388 px (46vh cap) | 5 of 21 | list height unchanged (capped) but **303 px of pre-list scroll removed** |
+
+Not purely cosmetic: on desktop the filter block pushes the list down so only ~4 of 21 rows
+are reachable without scrolling; collapsing nearly doubles the visible list. On mobile it
+compounds the PR11c pain (304 px of dead scroll before the list/filters).
+
+**Proposed work (~small, UI-only, one file).** Add a collapse toggle in `.rail-head`:
+(1) toggle button ("Filters ▾") that hides/shows `#filters`;
+(2) **collapsed-state summary** — show `Filters (N active)` + active facet chips inline so a
+filtered list is never unexplained (respects the page's own **§5** invariant: counts reconcile,
+gaps visible);
+(3) persist state in `localStorage`, default **expanded on desktop / collapsed on mobile**;
+(4) add a **Clear all** affordance in the expanded panel (today you must click each active chip).
+No data/logic change.
+
+**Open product decision for the governor.** Default **collapsed** (maximise list space) vs
+**expanded with toggle available** (discoverable). Sophia leans *expanded-by-default on
+desktop, auto-collapsed on mobile*.
+
+**Evidence.** `sunmint/plots/index.html` (`#filters`, `.facet`, `renderFilters()`; mobile media
+query ≤820px); live-beta headless measurement 2026-09-21; thread 33323.
+
 ### `[PLOT FINANCING EVENT]` (PR10a/PR10b) shipped with zero documentation footprint
 **Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541). Status: docs gap, not yet written.**
 
