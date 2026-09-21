@@ -166,7 +166,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 
 *Nominal $0.01/unit values used to satisfy emitter validation.
 
-> ✅ **Rev 12 regenerated + merged (2026-09-21).** Applied The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → the commercial invoice + packing list were regenerated in the NCM-mandated export units (PR #1333, `c3ac61a`); see the merged PDFs in `exports/`.
+> ✅ **Rev 12 regenerated + merged (2026-09-21).** Applied The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → the commercial invoice + packing list were regenerated in the NCM-mandated export units (PR #1333, `c3ac61a`); see the merged PDFs in `exports/`. **Finalized 2026-09-21 (PR #1335, `f7acdff`):** the red DRAFT banner and all draft/hedge wording were removed from both PDFs; units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation (PL follows Saymon's norm by construction — same generator, shared `LINES`/`UTRIB` table) came from **Envoy**, not governor Gary Teh, and is **not** an authorization.*
 
 #### 5.1a Rev 12 — required export units (NCM remap)
 
@@ -311,6 +311,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-21 | Full rewrite into end-to-end operator runbook (agent + Envoy contract). Corrected stale Phase 0 (e-CNPJ now works; CNAE path superseded by Junta/Prefeitura chain; Inapto has DARF mechanics). Added: municipal-licence chain, Gary NF-e approval gate, BRL/PTAX rule, Sebrae master-data sequence, treasury/audit rule, Saymon & Jussileide contacts, Phases 0–8, failure modes. Source notes: `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`. |
 | 2026-09-21 | **Rev 12 regenerated + merged** (PR #1333): commercial invoice + packing list re-expressed in the NCM-mandated export units (1801/1803/1804/1805 → TON; 1802/1806 → KG), USD/BRL values unchanged; reproducible generator `scripts/build_black_king_export_docs.py` added. §5.1 current-revision pointer moved to Rev 12; Rev 11 marked superseded. |
 | 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |
+| 2026-09-21 | **Rev 12 finalized** (PR #1335, `f7acdff`): removed the red DRAFT banner + all draft/hedge wording from both PDFs; generator + both PDFs merged. Units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation — that the PL already follows Saymon's norm by construction (same generator, shared `LINES`/`UTRIB` table) — came from **Envoy**, not governor Gary Teh, and is **not** a governor authorization.* |
 
 ---
 
