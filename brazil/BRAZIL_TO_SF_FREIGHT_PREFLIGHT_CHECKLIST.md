@@ -194,6 +194,8 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 > **Applied as provided:** every line is declared in the exact uTrib the norm table gives for its NCM — no unit substituted or reclassified. Line #2 stays under 1803.10.00 → **TON** as listed.
 > ℹ️ **Not in the table:** NCM **2106.90.00** (Cacao Tea, #6/#10) is outside Chapter 18 and is not keyed by this norm, so no unit was supplied for it; those lines remain **KG** as declared on the invoice.
 
+> 📎 **Operator manual archived (2026-09-22):** `brazil/sources/2026-06_sebrae_emissor_nfe_manual_v10_PT.pdf` — *SEBRAE NF-e Emitter User Manual v10, Jun 2026, 270 pp (PT-BR)* — with distilled notes at `brazil/sources/2026-06_sebrae_emissor_nfe_manual_notes.md`. Authoritative click-by-click for every step below (certificate A1/A3, product fiscal fields incl. **UNIDADE**, Matriz Fiscal/CFOP/CST-CSOSN, export NF-e, rejeições).
+
 #### 5.2 Sebrae emitter — master-data sequence (in order)
 1. **Register the company as emitente** (Saymon, in progress). Black King **already had an account** (Matheus used it before). Login: `https://emissornfe.sebrae.com.br/` → **gov.br** → *Seu Certificado Digital* → Black King cert (shows as Matheus) → select Black King.
 2. **Register products.**
