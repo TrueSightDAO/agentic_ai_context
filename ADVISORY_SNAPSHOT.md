@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-21T22:07:01Z`
-- Look-back: **7** calendar days (`2026-09-14` → today UTC)
+- Generated (UTC): `2026-09-22T05:15:32Z`
+- Look-back: **7** calendar days (`2026-09-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -41,7 +41,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260920124350_052` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T12:43:48.873Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260920143555_054` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T14:35:54.491Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260920150455_056` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-20T15:04:54.363Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20260920224333_058` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
@@ -61,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260921201319_086` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh — direct time: directing the Autumn Solstice 2026 deck (thread 3415…
 - `Edgar_20260921202650_088` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Black King → TrueTech Rev 12 export docs: unit regen, finalize, and runbook/…
 - `Edgar_20260921203347_090` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20260921224241_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Contact for different cacao fazenda in Itacare region
 
 ---
 
@@ -234,9 +234,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,748.80**
+- USD on hand: **$4,748.75**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.40**
+- USD provisioned for voting-rights cash-out: **$55.45**
 
 ### In-transit freight (1 row)
 
@@ -252,9 +252,8 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-14_ (3):
+_All dated lines on/after 2026-09-15_ (2):
 
-- 2026-09-14 | deepseek | Added `sophia/SUPERVISOR_LOOP.md` — directive for LLMs supervising Sophia: a bounded-WIP supervise loop (read the unfinished-work index → drive ≤2 threads at a time → first-round UAT → escalate only human gates), plus a first-round-UAT-vs-human-UAT split and a DEFAULT authority envelope (autonomous: go/retry/first-round-UAT/beta merges; human-only: TDG/money, account-only, final human UAT). **Governor decision 2026-09-14:** UAT is THREE rounds — R1 Sophia on beta → R2 Envoy on beta → R3 human UAT — and prod merge/promote executes ONLY after the human UAT thumbs-up (supervisor executes the merge, human authorizes via thumbs-up). SUGGESTED (canonical, not edited): add SUPERVIOR_LOOP.md to OPERATING_INSTRUCTIONS §2 read-order; add a machine-readable `handoffs/index.json` mirror (state enum + Telegram thread_id + Discord channel/thread id + last_updated).
 - 2026-09-17 | sophia | Design record added: plans/MEMBER_WORKSPACE_PLAN.md — a non-authoritative quarantine repo for member-tier SOP *candidates*, outside the context read path. Promotion into agentic_ai_context/sops/ (governor PR) is the ONLY act that makes candidate text directive. Blocks on Governor Decision D1 (bless a create_repo_pattern naming family: `member-*` or `*-candidates`).
 - 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
 
@@ -275,6 +274,7 @@ _All dated lines on/after 2026-09-14_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3d908b8 | 2026-09-21 22:08:41 +0000 | chore(stats): refresh stats indexes [skip ci]
 de27731 | 2026-09-21 13:14:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 a5620b5 | 2026-09-21 10:05:29 -0300 | PR11c: scroll the detail rail into view on mobile after a ?plot= deep link (#393)
 1799657 | 2026-09-21 09:20:24 -0300 | PR11b: default satellite slider to the newest scene that can be drawn on the map (#392)
@@ -314,7 +314,6 @@ c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip 
 dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
 f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip ci]
 4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
-5719914 | 2026-09-15 05:13:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +326,11 @@ f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+054a07b | 2026-09-22 00:56:13 -0300 | docs(provenance): record the DAO's 2017-12-31 origin line + four-phase growth arc (#1338)
+2886536 | 2026-09-21 19:44:39 -0300 | Deck v16 changelog — revert to Casa Mare
+dcb489f | 2026-09-21 19:44:30 -0300 | Deck v16 — revert venue to Casa Mare (community project)
+a20fe90 | 2026-09-21 19:07:22 -0300 | chore(previews): refresh Beer Hall preview (2026-09-21 UTC)
+cb6b17c | 2026-09-21 19:07:20 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-21 UTC)
 d0dcbed | 2026-09-21 18:07:33 -0300 | Deck v15 changelog — venue location fix
 fca8ac5 | 2026-09-21 18:07:23 -0300 | Deck v15 — venue fix: Mon forró at Pousada Ilha Verde
 bfd9859 | 2026-09-21 17:24:04 -0300 | Runbook: Saymon/Jussileide are NOT on Telegram — artifacts relayed via Gary (WhatsApp) (#1337)
@@ -362,11 +366,6 @@ b759cd8 | 2026-09-21 12:57:12 -0300 | Add Liz deck photo assets (zip)
 536300b | 2026-09-21 12:57:08 -0300 | Add Liz deck image fetch script
 8988c7c | 2026-09-21 12:57:03 -0300 | Add Liz deck build script
 073d639 | 2026-09-21 12:56:59 -0300 | Add Liz Bahia deck generator README
-d57ae25 | 2026-09-21 12:56:55 -0300 | Add Liz Bahia deck generator source (HTML)
-65d1222 | 2026-09-21 12:49:44 -0300 | Update Liz itinerary deck: add Food Notes + weekly venue schedules (14pp)
-6fb0da3 | 2026-09-21 12:10:36 -0300 | File 2 governor-sync bugs in OPEN_FOLLOWUPS: cron never fired + stale SOP §3 (#1330)
-1abebb8 | 2026-09-21 12:10:31 -0300 | Add Liz Bahia Origin Tour itinerary deck (Evan-style photo deck, 12pp)
-2dc0d8b | 2026-09-21 12:04:41 -0300 | Update Liz Bahia visit itinerary (v2): add 30 Sep Ilheus/Itabuna circuit
 … (truncated)
 ```
 
@@ -461,8 +460,6 @@ b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, a
 a3ccc49 | 2026-09-16 11:39:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 dcfef2e | 2026-09-15 12:07:30 +0000 | chore: refresh currencies.json [skip ci]
 c5e911c | 2026-09-15 11:48:24 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-f6f2108 | 2026-09-14 13:22:27 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-75f6c32 | 2026-09-14 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -483,7 +480,7 @@ _(no commits on origin/main in window)_
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
-0659ac2 | 2026-09-14 20:08:35 -0300 | Add weekly AMI backup for the nelanco-claude interactive Claude Code box (#42)
+_(no commits on origin/master in window)_
 ```
 
 ---
@@ -560,9 +557,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/21/2026 14:50:49 |
+| 2026-09 | 924.5 | 18364.34386 | 9/21/2026 21:51:03 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-14`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-15`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
