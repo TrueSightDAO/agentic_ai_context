@@ -4,7 +4,7 @@
 > **Canonical file.** If any other document disagrees with this one, **this file wins** — fix the other doc in the same PR.
 > **Lane:** Ilhéus, BA (Matheus / Gateway.fy warehouse) → road → Salvador (SSA) → air → San Francisco (SFO) → Kirsten's SF warehouse.
 > **Commercial basis:** Brazil exporter (Black King, or fallback Coopercabruca) → **TrueTech Inc** (US importer of record, EIN 88-3411514).
-> **Last verified:** 2026-09-21. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`.
+> **Last verified:** 2026-09-22. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`.
 
 ---
 
@@ -26,8 +26,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 
 | Gate | Status | Owner | Notes |
 |------|--------|-------|-------|
-| SISCOMEX / RADAR (brokers registered) | ✅ done (Jun 2026) | Matheus | 3 Omega brokers registered |
-| Omega PoA signed | ✅ done (Jun 2026) | Matheus | Omega can act on the export |
+| SISCOMEX / RADAR (brokers registered) | ✅ done (Jun 2026) | Matheus | 3 Omega brokers registered — primary source: `brazil/sources/2026-05-18_omega_siscomex_representante_tutorial_notes.md` |
+| Omega PoA signed | ✅ done (Jun 2026) | Matheus | Omega (forwarder) can act on the export — **distinct** from the e-CAC/cartório procuração in §5 Phase 0 |
 | NCM 1801.00.00 confirmed | ✅ | Omega | no MAPA needed for US |
 | **CNPJ regularization (exit Inapto)** | 🟡 in progress | Saymon/Jussileide + Gary | DARF **NOV.2024–JUL.2026** issued & DAO portion paid; **2023 MEI-era guia** pending |
 | **e-CNPJ certificate** | ✅ works | Matheus | cert usable via gov.br (no longer the blocker) |
@@ -40,6 +40,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | Air freight | ⬜ | Graziela/Omega | rates only |
 | Deadline pressure | — | — | **China partners arrive 2026-09-29** (Gary asked to resolve before then) |
 
+> 📎 **Source (SISCOMEX/RADAR representante registration):** Omega's original step-by-step tutorial is archived at `brazil/sources/2026-05-18_omega_siscomex_representante_tutorial_notes.md` (+ the PDF alongside). Primary source for the "3 Omega brokers registered" row above.
+>
 > ⚠️ **Correction vs. the old doc:** the previous "THREE root causes" (expired e-CNPJ, missing-commerce-CNAE-via-e-CAC, CNPJ Inapto) are **partly stale**. e-CNPJ now works; the CNAE route is superseded by a **Junta Comercial → Prefeitura** chain; the Inapto path now has concrete DARF mechanics.
 
 ---
@@ -104,7 +106,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] **IE at SEFAZ-BA** obtained (needs the commerce CNAE first). Evidence: Consulta de Inscrição Estadual.
 - [ ] **e-CNPJ certificate valid.** ✅ (verified working — Matheus logs in via gov.br).
 - [ ] **SEFAZ NF-e credentialing** (modelo 55) approved.
-- [ ] **PoA / procuração.** Note: Jussileide (2026-09-18) says the **carta de procuração is to be done at the cartório** directly.
+- [ ] **PoA / procuração (Governor admin access) — e-CAC / cartório.** ⚠️ **Distinct from the §1 Omega forwarder PoA (✅ Jun 2026, done).** This is the procuração granting the Governor admin access to Black King's *federal* affairs; Jussileide (2026-09-18) says the **carta de procuração is to be done at the cartório** directly. It does **not** cover SEFAZ-BA / NF-e. For the *forwarder* PoA + SISCOMEX representante registration (a different instrument, already done), see the §1 SISCOMEX/RADAR row and `brazil/sources/2026-05-18_omega_siscomex_representante_tutorial_notes.md`.
 
 ### Phase 1 — FX & commercial documents
 - [ ] Commercial invoice + packing list present, **dual USD+BRL**, dated, with **declared PTAX date**.
