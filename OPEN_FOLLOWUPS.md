@@ -39,6 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Residual ledger duplicates: 3 strict-identical "GetData Inc" pairs (166.66 TDG) survived both dedup passes
+**Filed 2026-09-22. Owner: Sophia. Governor: Gary (thread 34264). Status: confirmed finding, NOT remediated (money-adjacent — needs go).**
+
+**Finding.** Two dedup passes ran on `Ledger history` (1GE7PUq\u2026) on 2026-09-22: dedup-#1 (88 rows, same-body re-appends) and dedup-#2 (166 groups / 358 rows, strict name+byte-identical body+amount+date). A third, independent re-scan (UNFORMATTED_VALUE, strict key = name + md5(body) + col G amount + col H date) finds **3 groups / 3 excess rows / 166.66 TDG** still present:
+
+| Rows | Gap | Name | Amount | Date |
+|---|---|---|---|---|
+| 4600 / 4699 | 99 | GetData Inc | 150 | 2024-04-22 |
+| 6135 / 7356 | 1221 | GetData Inc | 8.33 | 2024-12-13 |
+| 6793 / 7273 | 480 | GetData Inc | 8.33 | 2024-12-13 |
+
+**Why dedup-#2 missed them (root cause).** These are **not** the tight-cluster batch-re-append signature (that had a median within-group row span of ~45). Their spans are 99 / 480 / 1221 rows — consistent with **older, unrelated manual double-entry**, a different duplication source. Concretely they slipped dedup-#2 because:
+- **Pairs 6135/7356 and 6793/7273:** col **E** (`TDGs Provisioned`) differs (`0.08` vs `8.33`) while col **G** (`TDGs Issued`) matches — if the pass keyed on E (or a body that embedded the provisioned figure) the group didn't form.
+- **Pair 4600/4699:** col E renders `150` vs `150.00` — a numeric-vs-string format artifact that defeats a formatted-value comparison.
+
+**Small relative to the ledger** (166.66 TDG vs E1 = 2,500,759.27) and **not urgent**, but it is genuine excess and the "strict de-dup is complete" claim is therefore only true for the keys each pass used.
+
+**Action if pursued:** requires a governor go (money-adjacent, irreversible). Would delete the later row of each pair (keep earliest: 4600, 6135, 6793) via a write-capable SA (cypher-defense), backup first, then re-reconcile E1 and re-check the origin `Scored Chatlogs` col-L pointers below the deleted rows. Also worth deciding whether the **dedup criterion should normalise col E numerically** (and treat E=0.08 vs 8.33 as the same event) before the next pass.
+
 ### `installGovernorSyncTrigger()` daily 04:00-UTC cron has never fired — governor sheet-permission sync is silently manual
 **Filed 2026-09-21. Owner: Sophia. Governor: Gary (thread 34264). Status: confirmed bug, not yet fixed.**
 
