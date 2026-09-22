@@ -1,11 +1,47 @@
 # Governor Sheet Permission Sync — SOP
 
 **Purpose.** After each solstice/equinox governor rotation, ensure that Google Sheet
-editing rights reflect the current governor roster: revoke non-governors, grant
-new governors, and never touch service accounts or the owner.
+editing rights reflect the current governor roster: grant new governors, revoke
+those who left the roster, and never touch service accounts, external collaborators,
+or the owner.
 
 **Audience.** Sophia (autopilot) and any LLM operating on behalf of the DAO.
 Run at least once per season; run immediately if a governor reports they can't edit.
+
+**Cadence.** Season boundaries are the equinoxes/solstices (Governors tab → column D
+"Transition Dates": 20 Mar / 20 Jun / 22 Sep / 22 Dec). The roster is the trailing
+180-day contribution leaderboard, which **keeps moving until the ledger for the season
+is final** — so the sync must run *after* the roster is frozen (see §3.1).
+
+---
+
+## 0. TL;DR — the sanctioned path (do this, not a hand-rolled script)
+
+The **ONLY** sanctioned way to reconcile governor sheet permissions is the deployed
+Apps Script **`GovernorSheetPermissionSync.js`**, which encodes the correct eligibility
+rule and never touches owner / service accounts / external collaborators:
+
+- **Manual / on-demand:** run `syncGovernorEditorsNow()` in the GAS project
+  (`1m8IZPs1vFN99cuu-39kbC-OGXggRVtJtXq5rfSB0M1sCQjMdolEUDuGU`).
+- **Edgar-triggered:** `doGet(?action=sync_governor_editors&secret=…)`.
+- **Daily cron (intended):** `installGovernorSyncTrigger()` at 04:00 UTC — see §6; this
+  trigger has **never fired** (open follow-up), so treat manual as the real path today.
+
+**The eligibility rule the GAS enforces (do not paraphrase it away):**
+
+```
+Eligible editor = in "Contributors contact information", has email,
+                  AND is EITHER a governor OR a sentinel.
+ADD:    eligible contributors not currently editors
+REMOVE: only editors who ARE in the Contact sheet but NEITHER governor nor sentinel
+        (ex-governors who left the roster)
+KEEP:   everyone NOT in the Contact sheet (GCP SAs, external collaborators) — untouched
+NEVER:  the spreadsheet owner and sentinels
+```
+
+> The Contact sheet is the boundary. Only people *in* the Contact sheet are subject to
+> removal. Service accounts (`@*.iam.gserviceaccount.com`), bots, and manually-shared
+> humans are **never** touched, because they are not in the Contact sheet.
 
 ---
 
@@ -13,28 +49,26 @@ Run at least once per season; run immediately if a governor reports they can't e
 
 | Sheet | ID | Notes |
 |-------|-----|-------|
-| Main Ledger | `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU` | Source of truth for governors list |
+| Main Ledger | `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU` | Source of truth for the governors list |
 | Scoring Rubric | `1s4mnUFMhR37AElVBDGQ653pJ5ODp4bcr2N8eMLpMuxw` | Governor-editable rubric |
-
-To add a sheet: append its ID to the `FILES` dict in the audit script below.
 
 ---
 
 ## 2. Pre-requisites
 
-### 2.1 Service account with Drive admin access
+### 2.1 Service account with Drive access (for the read-only audit in §4)
 
 Use the **edgar-dapp-listener** service account:
 - **Email:** `edgar-dapp-listener@get-data-io.iam.gserviceaccount.com`
 - **Key file (operator Mac):** `~/Applications/truesight_autopilot/config/google/edgar_dapp_listener_key.json`
 - **Key file (Sophia EC2):** `/opt/truesight_autopilot/config/google/edgar_dapp_listener_key.json`
-- **Required scopes:** `drive` (read-write on permissions), `spreadsheets.readonly` (read governor list)
+- **Required scopes:** `drive` (read permissions), `spreadsheets.readonly` (read governor list)
 
-This SA must have **writer or owner** access on every sheet in scope.
-If the audit script returns `insufficientFilePermissions`, an operator must
-share the sheet with this SA before retrying.
+The **write** path is the GAS, which runs as the sheet owner — not this SA. The SA is only
+for the non-destructive audit. If the audit returns `insufficientFilePermissions`, an
+operator must share the sheet with this SA before retrying.
 
-### 2.2 Python environment
+### 2.2 Python environment (audit only)
 
 The `dao_client` venv already has `google-auth` and `google-api-python-client`:
 ```bash
@@ -43,206 +77,143 @@ cd ~/Applications/dao_client && source .venv/bin/activate
 
 ---
 
-## 3. Audit + remediation (one script)
+## 3. Season rotation runbook (gated)
 
-Run this Python script. It does three things: (a) reads current governors,
-(b) lists each sheet's permissions, (c) revokes non-governor writers and
-grants missing governors.
+### 3.1 Pre-flight — resolve every governor to an email, and FREEZE the roster first
+
+1. **Freeze the roster first.** Do not run the sync while the ledger/leaderboard for the
+   season is still changing (e.g. while a ledger dedup or a transfer drain is in flight).
+   The 2026-09-22 rotation fired 10 minutes *before* the ledger dedup completed, so the
+   roster it read was stale — an ex-governor was granted, then dropped minutes later.
+   Confirm the season's numbers are final in the Governor Sync Log / ledger before starting.
+2. **Resolve governor → email.** Read the governors list from the `Governors` tab
+   (col A, rows 11+) and map each name to an email via `Contributors contact information`
+   col D (fall back to `Contributors Digital Signatures`). **Any governor with a blank
+   email CANNOT be granted** — surface this list *before* running the sync so the operator
+   can fill the gaps in the Contact sheet first. (2026-09-22: AGL15, June Jo, Ken Nim,
+   Philip Lee were all blank.)
+3. **Check for stale seats.** Compare the current editor list against the new roster and
+   flag ex-governors who still hold editor access — they are the REVOKE set (§3.5).
+
+Run the read-only audit snippet in §4 to get all three lists without writing anything.
+
+### 3.2 The go-gate
+
+- **All Drive permission changes require the governor's DIRECT go.** An agent relaying
+  "Gary says go" is *not* authorization; the request must come from the governor in-thread.
+- **ADD-only grants** (adding a new governor/sentinel) are roster-independent — they do
+  not touch Ledger history and are safe to run at any time.
+- **REVOKE of an ex-governor must run AFTER the season's TDG window settles** (§3.5) —
+  never in the same breath as the ADD pass, because the roster can still move.
+
+### 3.3 Run the sanctioned sync
+
+Preferred: run `syncGovernorEditorsNow()` in the GAS project, or fire
+`doGet(?action=sync_governor_editors&secret=…)` from Edgar. Both invoke the same
+`syncGovernorEditors_()` core, take a script lock, and append a row per action to the
+**`Governor Sync Log`** tab.
+
+### 3.4 Verify
+
+1. **`Governor Sync Log`** — confirm an `ADD`/`REMOVE`/`SKIP` row for every intended change,
+   with a reason string. (`SKIP` rows are expected for alias emails — e.g. `admin+x@`
+   aliases of a member who already has access — and are not failures.)
+2. **Re-read permissions** (the §4 snippet) and confirm the final editor list matches the
+   intended roster.
+3. Record the live permission count + a backup of the pre-change list before/after.
+
+### 3.5 Deferred revoke (after the TDG window settles)
+
+Once the season's TDG figures are final, re-run the sync (or a targeted REVOKE) so
+**ex-governors who dropped off the leaderboard lose their seat**. Confirm each revoked
+email was *in the Contact sheet* and is now *neither governor nor sentinel* — the GAS
+rule guarantees it never touches anyone else.
+
+---
+
+## 4. Read-only audit snippet (NO writes)
+
+Use this to produce the three lists §3.1 asks for — current editors, intended ADD set, and
+candidate REVOKE set — **without changing anything**. It deliberately performs no
+`permissions().create()` / `.delete()` calls.
 
 ```python
-"""Governor sheet permission sync — audit + remediate in one pass."""
-import os, sys
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = (
-    os.path.expanduser(
-        '~/Applications/truesight_autopilot/config/google/edgar_dapp_listener_key.json'
-    )
-)
-
+"""Governor sheet permission AUDIT (read-only) — no writes."""
+import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-# ---------------------------------------------------------------------------
-# Config
-# ---------------------------------------------------------------------------
+KEY = '/opt/truesight_autopilot/config/google/edgar_dapp_listener_key.json'
 MAIN_LEDGER_ID = '1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU'
-GOVERNORS_RANGE = "'Governors'!A11:A25"
-CONTACT_RANGE = "'Contributors contact information'!A4:D200"
-SIGS_RANGE = "'Contributors Digital Signatures'!A2:F2000"
 
-FILES = {
-    'Main Ledger': MAIN_LEDGER_ID,
-    'Scoring Rubric': '1s4mnUFMhR37AElVBDGQ653pJ5ODp4bcr2N8eMLpMuxw',
-}
+sheets = build('sheets', 'v4', credentials=service_account.Credentials.from_service_account_file(
+    KEY, scopes=['https://www.googleapis.com/auth/spreadsheets.readonly']))
+drive = build('drive', 'v3', credentials=service_account.Credentials.from_service_account_file(
+    KEY, scopes=['https://www.googleapis.com/auth/drive.readonly']))
 
-# Known email mappings for governors whose sheet display names don't match.
-# Keep this updated when a governor's email changes.
-KNOWN_EMAILS = {
-    'jacob nelan': 'jakenelan@gmail.com',
-    'kirsten ritschel': 'kirsten@kikiscocoa.com',
-    'gary teh': 'garyjob@agroverse.shop',
-}
+# 1. Current governors (col A, rows 11+)
+gov = sheets.spreadsheets().values().get(
+    spreadsheetId=MAIN_LEDGER_ID, range="'Governors'!A11:A30",
+).execute().get('values', [])
+governor_names = {r[0].strip().lower() for r in gov if r and r[0].strip()}
 
-# ---------------------------------------------------------------------------
-# Step 1 — Fetch current governor names
-# ---------------------------------------------------------------------------
-drive_creds = service_account.Credentials.from_service_account_file(
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'],
-    scopes=['https://www.googleapis.com/auth/drive'],
-)
-sheets_creds = service_account.Credentials.from_service_account_file(
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'],
-    scopes=['https://www.googleapis.com/auth/spreadsheets.readonly'],
-)
-drive = build('drive', 'v3', credentials=drive_creds)
-sheets = build('sheets', 'v4', credentials=sheets_creds)
+# 2. Contact sheet: name(A), email(D), Is Sentinel(W)
+contact = sheets.spreadsheets().values().get(
+    spreadsheetId=MAIN_LEDGER_ID,
+    range="'Contributors contact information'!A4:W900",
+).execute().get('values', [])
+gov_emails, sentinel_emails, all_contact = {}, {}, {}
+for row in contact:
+    name = (row[0] if len(row) > 0 else '').strip()
+    email = (row[3] if len(row) > 3 else '').strip().lower()
+    is_sentinel = (row[22] if len(row) > 22 else '').strip().upper() == 'TRUE'
+    if name and email:
+        all_contact[email] = name
+        if name.lower() in governor_names:
+            gov_emails[name.lower()] = email
+        if is_sentinel:
+            sentinel_emails[email] = name
 
-gov_result = sheets.spreadsheets().values().get(
-    spreadsheetId=MAIN_LEDGER_ID, range=GOVERNORS_RANGE,
-).execute()
+missing = [n for n in sorted(governor_names) if n not in gov_emails]
+print('Governors with NO email (cannot be granted):', missing)
 
-governor_names_lower = set()
-for row in gov_result.get('values', []):
-    name = row[0].strip().lower() if row else ''
-    if name and name != 'governor':
-        governor_names_lower.add(name)
+# 3. Live permissions
+perms = drive.permissions().list(
+    fileId=MAIN_LEDGER_ID,
+    fields='permissions(emailAddress,displayName,role,type)',
+).execute().get('permissions', [])
+eargons = {p.get('emailAddress', '').lower(): p for p in perms if p.get('emailAddress')}
 
-print(f'Governors ({len(governor_names_lower)}): {sorted(governor_names_lower)}')
-
-# ---------------------------------------------------------------------------
-# Step 2 — Resolve governor emails
-# ---------------------------------------------------------------------------
-def resolve_emails():
-    """Merge emails from contact info, signatures, and KNOWN_EMAILS."""
-    emails = dict(KNOWN_EMAILS)
-
-    # Contributors contact information (col A=name, col D=email)
-    contact = sheets.spreadsheets().values().get(
-        spreadsheetId=MAIN_LEDGER_ID, range=CONTACT_RANGE,
-    ).execute()
-    for row in contact.get('values', []):
-        name = row[0].strip().lower() if len(row) > 0 and row[0] else ''
-        email = row[3].strip().lower() if len(row) > 3 and row[3] else ''
-        if name and email:
-            emails[name] = email
-
-    # Contributors Digital Signatures (col A=name, col F=email)
-    sigs = sheets.spreadsheets().values().get(
-        spreadsheetId=MAIN_LEDGER_ID, range=SIGS_RANGE,
-    ).execute()
-    for row in sigs.get('values', []):
-        name = row[0].strip().lower() if len(row) > 0 and row[0] else ''
-        email = row[5].strip().lower() if len(row) > 5 and row[5] else ''
-        if name and email:
-            emails[name] = email
-
-    return emails
-
-governor_emails = resolve_emails()
-
-missing_emails = [n for n in sorted(governor_names_lower) if n not in governor_emails]
-if missing_emails:
-    print(f'\n⚠ Governors with NO known email — cannot grant access:')
-    for n in missing_emails:
-        print(f'  - {n}')
-
-# ---------------------------------------------------------------------------
-# Step 3 — Audit + remediate each file
-# ---------------------------------------------------------------------------
-for label, file_id in FILES.items():
-    print(f'\n=== {label} ===')
-
-    perms = drive.permissions().list(
-        fileId=file_id,
-        fields='permissions(id,emailAddress,displayName,role,type)',
-    ).execute()
-
-    existing_emails = {}  # email → role
-    for p in perms.get('permissions', []):
-        email = p.get('emailAddress', '').lower()
-        existing_emails[email] = {
-            'id': p['id'],
-            'role': p.get('role', ''),
-            'type': p.get('type', ''),
-            'name': p.get('displayName', ''),
-        }
-
-    # --- Revoke non-governor writers ---
-    for email, info in existing_emails.items():
-        role = info['role']
-        ptype = info['type']
-        is_sa = 'gserviceaccount.com' in email
-        is_owner = role == 'owner'
-
-        if role not in ('writer', 'owner'):
-            continue
-        if is_owner or is_sa:
-            continue
-
-        # Check if this email belongs to a current governor
-        name_match = info['name'].lower()
-        is_gov = (
-            name_match in governor_names_lower
-            or any(ge == email for ge in governor_emails.values())
-        )
-        if not is_gov:
-            print(f'  REVOKE: {info["name"]} ({email})')
-            drive.permissions().delete(
-                fileId=file_id, permissionId=info['id']
-            ).execute()
-            print(f'    ✓ Revoked')
-
-    # --- Grant missing governors ---
-    for gov_name in sorted(governor_names_lower):
-        email = governor_emails.get(gov_name, '')
-        if not email or '@' not in email:
-            continue
-        if email.lower() in existing_emails:
-            continue  # already has access
-
-        print(f'  GRANT: {gov_name} ({email})')
-        body = {
-            'role': 'writer',
-            'type': 'user',
-            'emailAddress': email,
-        }
-        drive.permissions().create(
-            fileId=file_id, body=body, sendNotificationEmail=False,
-        ).execute()
-        print(f'    ✓ Granted')
-
-    # --- Final summary ---
-    perms = drive.permissions().list(
-        fileId=file_id,
-        fields='permissions(emailAddress,displayName,role,type)',
-    ).execute()
-    writers = [
-        p for p in perms.get('permissions', [])
-        if p['role'] in ('writer', 'owner')
-        and not ('gserviceaccount.com' in p.get('emailAddress', ''))
-        and p['role'] != 'owner'
-    ]
-    print(f'  Remaining non-SA writers: {len(writers)}')
-
-print('\n✅ Sync complete.')
+eligible = set(gov_emails.values()) | set(sentinel_emails)
+add    = sorted(eligible - set(eargons))
+remove = sorted(e for e in eargons
+                if e in all_contact and e not in eligible)   # in Contact sheet, not eligible
+print('ADD (eligible, missing):', add)
+print('REVOKE candidates (in Contact sheet, no longer eligible):', remove)
+print('(owner, service accounts, and non-Contact-sheet collaborators are never touched)')
 ```
 
 ---
 
-## 4. Edge cases
+## 5. Edge cases
 
 | Situation | Handling |
 |-----------|----------|
-| Governor has no email on file | Printed as ⚠ warning; operator must add email to `Contributors contact information` col D, then re-run |
-| Governor's Google display name differs from sheet name | `KNOWN_EMAILS` dict bridges the gap; update it when a new mismatch appears |
-| AGL15 or other ledger code appears as governor | Skip — not a person; no email to grant |
-| Service account missing from a sheet | Script fails with `insufficientFilePermissions`; operator shares the sheet with the SA email listed above |
-| Sophia calls the script | She sources her venv: `source .venv/bin/activate` from `~/Applications/dao_client`, adjusts the creds path to `/opt/truesight_autopilot/config/google/edgar_dapp_listener_key.json`, and runs |
+| Governor has no email on file | Surfaced by §3.1 / §4 as a blocker; operator must add the email to `Contributors contact information` col D, then re-run |
+| Governor's Google display name differs from sheet name | Resolve by Contact-sheet email; the GAS matches on the Contact-sheet name, so keep the Contact name aligned to the Governors-tab name |
+| `AGL15` or another ledger code appears as governor | Skip — not a person; no email to grant |
+| Service account missing from a sheet | Audit returns `insufficientFilePermissions`; operator shares the sheet with the SA email in §2.1 |
+| `SKIP … addEditor failed` for an `admin+x@` alias | Expected — it is a plus-alias of an existing member Google refuses to re-add; access is already present, nothing lost |
+| Roster still changing when the sync runs | STOP — freeze the roster first (§3.1); re-run after the season's numbers are final |
 
 ---
 
-## 5. Trigger
+## 6. Triggers & automations
 
-- **On schedule:** within 48 hours of each solstice/equinox (governor rotation dates)
-- **On demand:** when a governor reports they can't edit a sheet
-- **Sophia/fix-agent:** `fix_agent.py` can invoke this as a tool using `ssh_run` with the python command above
+- **On schedule:** within 48 hours of each solstice/equinox, and again after the season's
+  TDG window settles for the deferred REVOKE (§3.5).
+- **On demand:** when a governor reports they can't edit a sheet.
+- **Intended daily safety-net:** `installGovernorSyncTrigger()` (04:00 UTC). **This cron has
+  never fired** — the `Governor Sync Log` tab did not exist until it was created by hand on
+  2026-09-22, meaning rotation has been manual. See the open follow-up on
+  `installGovernorSyncTrigger()`. Until that is fixed, treat the manual §3.3 path as the real one.
