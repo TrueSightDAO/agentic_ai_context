@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-22T17:08:39Z`
+- Generated (UTC): `2026-09-22T21:33:52Z`
 - Look-back: **7** calendar days (`2026-09-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -41,9 +41,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260920224333_058` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
-- `Edgar_20260920224635_060` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: TLaOshKLy0Z6AHTaCuB8oj_D6BOCMd18v0_whJIgUYU · Email: davajhabib@outlook.com
-- `Edgar_20260920224937_062` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Júlio Almeida · Contributor Email: davajhabib@outlook.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
 - `Edgar_20260921040401_064` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 840 · Description: SunMint Plot Explorer — plot-anchored 10m Sentinel-2 clips (PR10) + slider-d…
 - `Edgar_20260921113249_066` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 119.15 · Description: For the purchase of 10 chocolate molds
 - `Edgar_20260921113513_068` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 10 · Description: Received 10 chocolate molds
@@ -61,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260921224241_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Contact for different cacao fazenda in Itacare region
 - `Edgar_20260922123422_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-22T12:34:19.444Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260922130123_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Coordinating the freight forwarding to USA
+- `Edgar_20260922174100_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: China packaging review for Bion 3000 (China market) - analyzed Liz's competi…
+- `Edgar_20260922194338_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Transfer GAS hardening + ledger dedup + Scoring Hash Key column P + Governor…
+- `Edgar_20260922201008_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: I-Ching Oracle corpus: Walker → hybrid (Walker description+lines + Wilhelm/B…
 
 ---
 
@@ -265,7 +265,7 @@ _All dated lines on/after 2026-09-15_ (2):
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **no** |
+| `oracle` | `iching_oracle` | **yes** |
 
 ---
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c55dbff | 2026-09-22 17:12:32 +0000 | chore(stats): refresh stats indexes [skip ci]
 07d368d | 2026-09-22 12:00:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 a2905be | 2026-09-22 05:18:21 +0000 | chore(stats): refresh stats indexes [skip ci]
 3d908b8 | 2026-09-21 22:08:41 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip 
 001069c | 2026-09-16 11:58:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
-dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
 … (truncated)
 ```
 
@@ -326,6 +326,11 @@ dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2618376 | 2026-09-22 16:54:41 -0300 | File residual ledger dup finding (3 GetData Inc pairs, 166.66 TDG) (#1343)
+3508b3d | 2026-09-22 16:47:26 -0300 | docs(followups): retire stale-SOP entry (shipped), update trigger entry (#1342)
+7e5bdfb | 2026-09-22 16:47:18 -0300 | docs(sop): make governor rotation a gated, GAS-sanctioned runbook; kill stale revoke script (#1341)
+6a82f2f | 2026-09-22 14:08:58 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
+14eca10 | 2026-09-22 14:08:57 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
 508aec0 | 2026-09-22 13:33:59 -0300 | Archive: SEBRAE NF-e Emitter User Manual v10 (Jun 2026) + source notes (#1340)
 1ec7c79 | 2026-09-22 10:10:04 -0300 | Archive the original Omega SISCOMEX/RADAR representante tutorial as a cited artifact (#1339)
 c6c54f3 | 2026-09-22 08:57:19 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
@@ -361,17 +366,13 @@ ec830a0 | 2026-09-21 16:47:11 -0300 | Autumn Solstice 2026 deck v11 (renamed fro
 a09de0b | 2026-09-21 16:15:48 -0300 | Archive deck v7 note
 1773375 | 2026-09-21 16:15:39 -0300 | Update bilingual deck v7 (add Tribo Bahia venue)
 f47c127 | 2026-09-21 13:31:52 -0300 | Update bilingual deck v6 (ceremony in itinerary)
-ebae7a2 | 2026-09-21 13:31:48 -0300 | Archive deck v6
-fa10de7 | 2026-09-21 13:30:45 -0300 | Archive Resende cacao ceremony flyer
-0874753 | 2026-09-21 13:30:39 -0300 | Update bilingual deck v5 (add cacao ceremony page)
-d5d288c | 2026-09-21 13:09:49 -0300 | Add PT-only Liz itinerary PDF
-bbcca1b | 2026-09-21 13:09:43 -0300 | Add bilingual EN+PT Liz itinerary PDF
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+aaf8ef0 | 2026-09-22 15:01:13 -0300 | fix(transfer GAS): persist durable Scoring Hash Key in ledger column P + script lock (#548)
 5a69685 | 2026-09-22 10:50:04 -0300 | fix(gas): enforce transfer duplicate guard (was dead code) (#547)
 3864627 | 2026-09-22 08:31:02 -0300 | Fix transfer abort: valid ERROR_STATUS + per-row try/catch (#546)
 60b3c8c | 2026-09-21 17:42:41 -0300 | fix(gas): fail closed on RESOLVE FAILED rows in transfer (dead guard) (#545)
@@ -411,7 +412,6 @@ e133299 | 2026-09-17 22:21:05 -0300 | SS12.7 Q3b fix: actually install the payou
 b6c7500 | 2026-09-17 22:11:50 -0300 | schema: add offchain assets in transit col Q (NF-e Chave) (#509)
 5d97a15 | 2026-09-17 22:07:11 -0300 | fix(gas): secret-free tracked Credentials.js for 1K1wcXFAop (TDG Email Identity Mgmt) (#507)
 b3aa6c8 | 2026-09-17 21:59:26 -0300 | fix(gas): tracked secret-free Credentials.js for 1DYSZKFYM (HelloCash) (#506)
-6285a5c | 2026-09-17 21:58:00 -0300 | fix(gas): track secret-free Credentials.js — stop .claspignore-ing the accessor (#505)
 … (truncated)
 ```
 
@@ -476,7 +476,9 @@ c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Cla
 ### `iching_oracle` → `oracle`
 
 ```
-_(no commits on origin/main in window)_
+e867765 | 2026-09-22 17:57:52 -0300 | fix: include full hexagram text in print/PDF output (#68)
+c33cf16 | 2026-09-22 16:46:12 -0300 | feat: hybrid I Ching corpus as default (Walker description+lines + Wilhelm judgment/image) (#67)
+a24636b | 2026-09-22 16:16:21 -0300 | Point oracle site at Brian Browne Walker corpus (Wilhelm/Baynes kept as backup) (#66)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -559,7 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/22/2026 9:51:31 |
+| 2026-09 | 924.5 | 18364.34386 | 9/22/2026 13:50:55 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-15`; scanned last **600** data rows)
 
