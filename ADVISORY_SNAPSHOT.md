@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-22T05:15:32Z`
+- Generated (UTC): `2026-09-22T11:56:53Z`
 - Look-back: **7** calendar days (`2026-09-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-21T10:59:14.555Z`
+- Generated (UTC): `2026-09-22T10:59:14.101Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **957**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1030**)
+- **Email Agent Follow Up** — logged sends: warmup **969**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1042**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **882**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **894**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a2905be | 2026-09-22 05:18:21 +0000 | chore(stats): refresh stats indexes [skip ci]
 3d908b8 | 2026-09-21 22:08:41 +0000 | chore(stats): refresh stats indexes [skip ci]
 de27731 | 2026-09-21 13:14:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 a5620b5 | 2026-09-21 10:05:29 -0300 | PR11c: scroll the detail rail into view on mobile after a ?plot= deep link (#393)
@@ -313,7 +314,6 @@ d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip 
 c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
 dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
 f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip ci]
-4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+690b27f | 2026-09-22 02:15:54 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
+76e1422 | 2026-09-22 02:15:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
 054a07b | 2026-09-22 00:56:13 -0300 | docs(provenance): record the DAO's 2017-12-31 origin line + four-phase growth arc (#1338)
 2886536 | 2026-09-21 19:44:39 -0300 | Deck v16 changelog — revert to Casa Mare
 dcb489f | 2026-09-21 19:44:30 -0300 | Deck v16 — revert venue to Casa Mare (community project)
@@ -364,14 +366,13 @@ bbcca1b | 2026-09-21 13:09:43 -0300 | Add bilingual EN+PT Liz itinerary PDF
 071a251 | 2026-09-21 12:57:20 -0300 | Update Liz itinerary deck v3 (fix Santos photo + fill dead space)
 b759cd8 | 2026-09-21 12:57:12 -0300 | Add Liz deck photo assets (zip)
 536300b | 2026-09-21 12:57:08 -0300 | Add Liz deck image fetch script
-8988c7c | 2026-09-21 12:57:03 -0300 | Add Liz deck build script
-073d639 | 2026-09-21 12:56:59 -0300 | Add Liz Bahia deck generator README
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+3864627 | 2026-09-22 08:31:02 -0300 | Fix transfer abort: valid ERROR_STATUS + per-row try/catch (#546)
 60b3c8c | 2026-09-21 17:42:41 -0300 | fix(gas): fail closed on RESOLVE FAILED rows in transfer (dead guard) (#545)
 3a8fb91 | 2026-09-21 17:38:19 -0300 | fix(gas): repair transfer web app — drop duplicate fns, robust doGet, canonical Ledger write (#544)
 26a96d5 | 2026-09-21 00:33:59 -0300 | PR10c: document [PLOT FINANCING EVENT] in SCHEMA.md + API.md (#543)
@@ -411,7 +412,6 @@ b6c7500 | 2026-09-17 22:11:50 -0300 | schema: add offchain assets in transit col
 b3aa6c8 | 2026-09-17 21:59:26 -0300 | fix(gas): tracked secret-free Credentials.js for 1DYSZKFYM (HelloCash) (#506)
 6285a5c | 2026-09-17 21:58:00 -0300 | fix(gas): track secret-free Credentials.js — stop .claspignore-ing the accessor (#505)
 55ad27c | 2026-09-17 21:33:03 -0300 | SS12.7 Q3b: [PAYOUT EVENT] sink (Tier-1 payouts + Tier-2 payout events) (#504)
-2ec1cee | 2026-09-17 21:15:53 -0300 | Fix provisioner two-run bug: write headers for freshly-created tabs in the same pass (#503)
 … (truncated)
 ```
 
@@ -443,6 +443,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+9db53c4 | 2026-09-22 11:43:29 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 baad3ff | 2026-09-21 13:22:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 08874ff | 2026-09-21 12:53:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -557,7 +558,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/21/2026 21:51:03 |
+| 2026-09 | 924.5 | 18364.34386 | 9/22/2026 4:51:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-15`; scanned last **600** data rows)
 
