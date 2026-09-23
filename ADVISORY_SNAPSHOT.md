@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-23T17:22:06Z`
+- Generated (UTC): `2026-09-23T21:39:32Z`
 - Look-back: **7** calendar days (`2026-09-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -42,7 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20260921133353_072` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-21T13:33:50.834Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260921140044_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Ānāpāna/Vipassanā practice PDF — diacritic font fix + TrueSight DAO logo hea…
 - `Edgar_20260921141306_076` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Sophia Truesight
 - `Edgar_20260921141309_078` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260923145450_016` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
 - `Edgar_20260923145757_018` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
 - `Edgar_20260923145855_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260923191138_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Checking of chocolate mold between Brazil and USA
 
 ---
 
@@ -275,6 +275,7 @@ _All dated lines on/after 2026-09-16_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ef02bae | 2026-09-23 17:24:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 6290482 | 2026-09-23 12:01:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 380d188 | 2026-09-23 05:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 15200eb | 2026-09-22 21:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,7 +315,6 @@ e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip 
 b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
 e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
-d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +327,8 @@ d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+31bdd26 | 2026-09-23 14:22:26 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
+02038f7 | 2026-09-23 14:22:24 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
 5ed121c | 2026-09-23 08:57:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
 5930307 | 2026-09-23 08:57:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
 a2802db | 2026-09-22 18:34:18 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
@@ -365,8 +367,6 @@ fd9a115 | 2026-09-21 16:48:42 -0300 | Brazil lane: NF-e rejected on unidades de 
 42aa717 | 2026-09-21 16:47:17 -0300 | Add v11 note — deck renamed to Autumn Solstice 2026
 ec830a0 | 2026-09-21 16:47:11 -0300 | Autumn Solstice 2026 deck v11 (renamed from LIZ_BAHIA_ORIGIN_TOUR)
 993c712 | 2026-09-21 16:37:51 -0300 | liz_bahia_deck: v10 version note
-7eec598 | 2026-09-21 16:37:44 -0300 | liz_bahia_deck: archive v10 PDF (Autumn Solstice 2026 branding)
-040cdda | 2026-09-21 16:32:15 -0300 | liz_bahia_deck: v9 version note
 … (truncated)
 ```
 
@@ -477,6 +477,7 @@ c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Cla
 ### `iching_oracle` → `oracle`
 
 ```
+6c48cd2 | 2026-09-23 18:20:00 -0300 | Fix hexagram intro rendering: preserve paragraphs + clean residual OCR artifacts (#69)
 e867765 | 2026-09-22 17:57:52 -0300 | fix: include full hexagram text in print/PDF output (#68)
 c33cf16 | 2026-09-22 16:46:12 -0300 | feat: hybrid I Ching corpus as default (Walker description+lines + Wilhelm judgment/image) (#67)
 a24636b | 2026-09-22 16:16:21 -0300 | Point oracle site at Brian Browne Walker corpus (Wilhelm/Baynes kept as backup) (#66)
@@ -562,7 +563,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 9:51:41 |
+| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 13:57:33 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-16`; scanned last **600** data rows)
 
