@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Tree-planting photo supersession has no sanctioned path — an in-place image swap leaves a signed attestation pointing at new bytes
+**Filed 2026-09-23. Owner: unclaimed. Governor: Gary (thread 35189). Status: gap identified; one swap already performed manually with a documented note.**
+
+**Context.** Tree photos live at `sunmint/images/<name>.jpg` and their URL is written into two places: (a) the `SunMint Tree Planting` sheet col I (source of truth → regenerated into `trees/index.geojson`), and (b) the **RSA-signed, append-only** attestation in `verify_public_signatures/tree_planting/<id>.json` (`signed_payload` line `- Photo URL: …`). The signature covers the **URL string, not the image bytes**. So overwriting the file in place keeps every signature green while silently changing the photo a signed attestation points to — the classic "silent-wrong" shape.
+
+**Precedent.** 2026-09-23: canonical photo for tree `Edgar_20260903083523_004` (PL-002, Fazenda Bom Sucesso) was overwritten in place with a better frame from the same dig event (Gary's 18:47:11 -03:00 shot); superseded blob `aff60dd2` / sha256 `bd7ed5af…` retained in git history; swap recorded in CONTEXT_UPDATES. The signature still verifies (URL unchanged).
+
+**Ask.** Decide + implement ONE of: (1) **content-addressed filenames** (`images/tree02_<sha8>.jpg`) so a photo change = a NEW filename, never an in-place overwrite, and `signed_payload` records the immutable hash; (2) a **`[MEDIA RETRACTION/SUPERSESSION EVENT]`** type (the repo already has `media_retraction` + `tree_planting_reject` folders) that records `old_url → new_url` + reason, referenced from the tree's sheet row, so the supersession is itself signed/append-only; (3) a **sheet col-A breadcrumb** convention (append a dated note line to the tree_id cell when its photo is superseded). Until then, any photo correction is a manual, note-only operation — easy to do silently.
+
+**Evidence.** `sunmint/SCHEMA.md` Trees schema (photo_url ← sheet col I); `verify_public_signatures/tree_planting/Edgar_20260903083523_003.json` (`signed_payload` embeds the URL); commit `b332512` (sunmint); thread 35189.
+
 ### Residual ledger duplicates: 3 strict-identical "GetData Inc" pairs (166.66 TDG) survived both dedup passes
 **Filed 2026-09-22. Owner: Sophia. Governor: Gary (thread 34264). Status: confirmed finding, NOT remediated (money-adjacent — needs go).**
 
