@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-22T21:33:52Z`
-- Look-back: **7** calendar days (`2026-09-15` → today UTC)
+- Generated (UTC): `2026-09-23T11:56:58Z`
+- Look-back: **7** calendar days (`2026-09-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-22T10:59:14.101Z`
+- Generated (UTC): `2026-09-23T10:59:14.885Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **969**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1042**)
+- **Email Agent Follow Up** — logged sends: warmup **981**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1054**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **894**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **907**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -234,9 +234,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,748.75**
+- USD on hand: **$4,748.71**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.45**
+- USD provisioned for voting-rights cash-out: **$55.50**
 
 ### In-transit freight (1 row)
 
@@ -252,7 +252,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-15_ (2):
+_All dated lines on/after 2026-09-16_ (2):
 
 - 2026-09-17 | sophia | Design record added: plans/MEMBER_WORKSPACE_PLAN.md — a non-authoritative quarantine repo for member-tier SOP *candidates*, outside the context read path. Promotion into agentic_ai_context/sops/ (governor PR) is the ONLY act that makes candidate text directive. Blocks on Governor Decision D1 (bless a create_repo_pattern naming family: `member-*` or `*-candidates`).
 - 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
@@ -274,6 +274,8 @@ _All dated lines on/after 2026-09-15_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+380d188 | 2026-09-23 05:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
+15200eb | 2026-09-22 21:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 c55dbff | 2026-09-22 17:12:32 +0000 | chore(stats): refresh stats indexes [skip ci]
 07d368d | 2026-09-22 12:00:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 a2905be | 2026-09-22 05:18:21 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -312,8 +314,6 @@ b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip 
 e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 001069c | 2026-09-16 11:58:01 +0000 | chore(stats): refresh stats indexes [skip ci]
-d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip ci]
-c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a2802db | 2026-09-22 18:34:18 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
+da77291 | 2026-09-22 18:34:17 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
 2618376 | 2026-09-22 16:54:41 -0300 | File residual ledger dup finding (3 GetData Inc pairs, 166.66 TDG) (#1343)
 3508b3d | 2026-09-22 16:47:26 -0300 | docs(followups): retire stale-SOP entry (shipped), update trigger entry (#1342)
 7e5bdfb | 2026-09-22 16:47:18 -0300 | docs(sop): make governor rotation a gated, GAS-sanctioned runbook; kill stale revoke script (#1341)
@@ -364,8 +366,6 @@ ec830a0 | 2026-09-21 16:47:11 -0300 | Autumn Solstice 2026 deck v11 (renamed fro
 040cdda | 2026-09-21 16:32:15 -0300 | liz_bahia_deck: v9 version note
 46c0f5b | 2026-09-21 16:32:09 -0300 | liz_bahia_deck: archive v9 PDF (Bico Duro hero + waterfall photo)
 a09de0b | 2026-09-21 16:15:48 -0300 | Archive deck v7 note
-1773375 | 2026-09-21 16:15:39 -0300 | Update bilingual deck v7 (add Tribo Bahia venue)
-f47c127 | 2026-09-21 13:31:52 -0300 | Update bilingual deck v6 (ceremony in itinerary)
 … (truncated)
 ```
 
@@ -443,6 +443,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+9860b82 | 2026-09-23 11:42:16 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 3d79684 | 2026-09-22 12:02:21 +0000 | chore: refresh currencies.json [skip ci]
 9db53c4 | 2026-09-22 11:43:29 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 baad3ff | 2026-09-21 13:22:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -460,8 +461,6 @@ b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, a
 387a108 | 2026-09-16 18:28:36 -0300 | chore: refresh Agroverse store inventory snapshot
 361d5e5 | 2026-09-16 12:02:45 +0000 | chore: refresh currencies.json [skip ci]
 a3ccc49 | 2026-09-16 11:39:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-dcfef2e | 2026-09-15 12:07:30 +0000 | chore: refresh currencies.json [skip ci]
-c5e911c | 2026-09-15 11:48:24 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -561,9 +560,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/22/2026 13:50:55 |
+| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 4:50:43 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-15`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-16`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
