@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-23T11:56:58Z`
+- Generated (UTC): `2026-09-23T17:22:06Z`
 - Look-back: **7** calendar days (`2026-09-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 32
-- `[PRACTICE EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 30
+- `[PRACTICE EVENT]` × 7
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260921040401_064` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 840 · Description: SunMint Plot Explorer — plot-anchored 10m Sentinel-2 clips (PR10) + slider-d…
-- `Edgar_20260921113249_066` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 119.15 · Description: For the purchase of 10 chocolate molds
-- `Edgar_20260921113513_068` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 10 · Description: Received 10 chocolate molds
-- `Edgar_20260921120335_070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Following up with CIC to request for recipet
 - `Edgar_20260921133353_072` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-21T13:33:50.834Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260921140044_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Ānāpāna/Vipassanā practice PDF — diacritic font fix + TrueSight DAO logo hea…
 - `Edgar_20260921141306_076` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Sophia Truesight
@@ -61,6 +58,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260922174100_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: China packaging review for Bion 3000 (China market) - analyzed Liz's competi…
 - `Edgar_20260922194338_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Transfer GAS hardening + ledger dedup + Scoring Hash Key column P + Governor…
 - `Edgar_20260922201008_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: I-Ching Oracle corpus: Walker → hybrid (Walker description+lines + Wilhelm/B…
+- `Edgar_20260923143952_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-23T14:39:48.694Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260923145450_016` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
+- `Edgar_20260923145757_018` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
+- `Edgar_20260923145855_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 
 ---
 
@@ -274,6 +275,7 @@ _All dated lines on/after 2026-09-16_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6290482 | 2026-09-23 12:01:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 380d188 | 2026-09-23 05:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 15200eb | 2026-09-22 21:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 c55dbff | 2026-09-22 17:12:32 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +315,6 @@ b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip 
 0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
 e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip ci]
-001069c | 2026-09-16 11:58:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +327,8 @@ d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5ed121c | 2026-09-23 08:57:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
+5930307 | 2026-09-23 08:57:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
 a2802db | 2026-09-22 18:34:18 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
 da77291 | 2026-09-22 18:34:17 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
 2618376 | 2026-09-22 16:54:41 -0300 | File residual ledger dup finding (3 GetData Inc pairs, 166.66 TDG) (#1343)
@@ -364,8 +367,6 @@ ec830a0 | 2026-09-21 16:47:11 -0300 | Autumn Solstice 2026 deck v11 (renamed fro
 993c712 | 2026-09-21 16:37:51 -0300 | liz_bahia_deck: v10 version note
 7eec598 | 2026-09-21 16:37:44 -0300 | liz_bahia_deck: archive v10 PDF (Autumn Solstice 2026 branding)
 040cdda | 2026-09-21 16:32:15 -0300 | liz_bahia_deck: v9 version note
-46c0f5b | 2026-09-21 16:32:09 -0300 | liz_bahia_deck: archive v9 PDF (Bico Duro hero + waterfall photo)
-a09de0b | 2026-09-21 16:15:48 -0300 | Archive deck v7 note
 … (truncated)
 ```
 
@@ -443,6 +444,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+da84e1e | 2026-09-23 12:09:25 +0000 | chore: refresh currencies.json [skip ci]
 9860b82 | 2026-09-23 11:42:16 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 3d79684 | 2026-09-22 12:02:21 +0000 | chore: refresh currencies.json [skip ci]
 9db53c4 | 2026-09-22 11:43:29 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -560,7 +562,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 4:50:43 |
+| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 9:51:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-16`; scanned last **600** data rows)
 
