@@ -39,39 +39,6 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### SunMint plots/farms generators fail SILENTLY green — a sheet read error must exit non-zero, not "preserve the existing registry"
-**Filed 2026-09-24 — root cause verified from the workflow logs. Governor: Gary (thread 35189). ✅ The incident itself is RESOLVED (2026-09-24): the CI credential was restored by Gary (new SA `sunmint-ledger-manager@get-data-io.iam.gserviceaccount.com`, secret `GOOGLE_SERVICE_ACCOUNT_JSON` replaced) and all three indexes were re-dispatched and refreshed — see `## Recently shipped`. What remains OPEN is item (b): the silent-green anti-pattern.**
-
-**Ask (remaining).** Stop `build_plots_geojson.py` / `build_farms_index.py` from reporting green when they cannot read the sheet — a generator that cannot read its source must exit non-zero.
-
-**Symptom.** `trees/index.geojson` (`generated_at` 2026-09-17, 126 features), `plots/index.geojson` (09-17, 22 features) and `farms/index.json` (09-17) are **all frozen at 2026-09-17** — 7 days stale — so the SunMint plots page and every `plot_id`/`tree_id`-based join serve week-old data. `Rebuild Tree Index` failed on every scheduled run 09-18→09-24 (7 consecutive, last success **2026-09-17T10:44:40Z**), but `Rebuild Plots Index` and `Rebuild Farms Index` have reported **success every day** throughout.
-
-**Verified root cause (from the failed run log — run `35989682276`, step 5 “Run tree index builder”).**
-```
-gspread.exceptions.APIError: APIError: [403]: The caller does not have permission
-  File "scripts/build_tree_geojson.py", line 49, in get_sheet
-    return gc.open_by_key(SHEET_ID).worksheet(SHEET_TAB)
-  → PermissionError → exit 1
-```
-The workflow's `GOOGLE_SERVICE_ACCOUNT_JSON` secret (last updated **2026-08-26T19:51:13Z**, unchanged) can no longer open spreadsheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` (tab `SunMint Tree Planting`). The 403 is raised at `open_by_key` — i.e. the SA cannot open the spreadsheet at all (sharing revoked / SA rotated), **not** a renamed-tab error (that would surface as `WorksheetNotFound`).
-
-**The telling detail — why the sibling “successes” are false green (verified, run `35993899764`).** All three workflows use the **same** secret and the **same** `SHEET_ID` (only the tab differs). `build_tree_geojson.py` has no read-error handling → it raises and the job fails. `build_plots_geojson.py` swallows it:
-```
-WARN: could not read 'SunMint Plots' tab (); preserving existing registry
-preserved 22 features at plots/index.geojson
-No changes to commit.
-```
-So the daily "success" is a **no-op that rewrites the previous file**. The warning starts **exactly on 2026-09-18** in the plots runs too (`warn_hits=0` on 09-17 and earlier, `=2` on 09-18 onward) — the same cutoff as the tree failures. **That is the proof the change was on the sheet-sharing side, not a secret rotation:** the secret is unchanged since 08-26, one shared credential lost access on 09-18, and one workflow surfaced it while two masked it. Other SAs still read this same spreadsheet fine (verified 2026-09-24 via the `agroverse_qr_code_manager` / `cypher_defense` credentials), so the spreadsheet itself is healthy — it is specifically the **SunMint CI SA's** access that is gone.
-
-**Also relevant.** The merged `tree_id` col-D fix (`21428ba6`, 2026-09-24, #3) is on `main` but **unshipped** — the job dies at the credential step before reaching the code, so the stale published index still carries the old off-by-one ids.
-
-**Suggested scope.**
-- Re-share the SunMint spreadsheet with the CI service-account email, **or** replace `GOOGLE_SERVICE_ACCOUNT_JSON` with a fresh key that has access; then re-dispatch all three workflows so the indexes catch up (this also publishes the pending `tree_id` fix).
-- **Make the failure loud:** in `build_plots_geojson.py` / `build_farms_index.py`, exit non-zero when the sheet read fails instead of “preserving existing registry” — a silent-green generator hid a 7-day outage on a public data surface.
-- Confirm no *other* consumer shares this credential (the `cache-satellite-scenes` / `rebuild-plot-media-index` workflows do not use it — they read no sheet).
-
-**Evidence.** Failed run `35989682276` step 5 full log (`build_tree_geojson.py` L49); passing-but-empty run `35993899764` (`WARN: could not read 'SunMint Plots' tab`; `preserved 22 features`; `No changes to commit.`); `scripts/build_tree_geojson.py` L18–L19, L49; `scripts/build_plots_geojson.py` L21–L22, L80, L305 (the swallow); workflow `rebuild-tree-index.yml` L36, L38; secret `GOOGLE_SERVICE_ACCOUNT_JSON` `updated_at` 2026-08-26; published indexes all `generated_at` 2026-09-17.
-
 ### `[PAYOUT REGISTRATION]` sink never auto-ingests — no dispatch route, and the self-installing hourly cron never fired
 **Filed 2026-09-24 — root cause verified; a manual backfill was already applied live. Governor: Gary (thread 35944). Money-adjacent (a planter's PIX never reaches the review surface).**
 
@@ -4016,6 +3983,40 @@ It works, but it's pragmatic rather than clean.
 
 _(empty — move entries here with a one-line reason when they're no longer
 relevant)_
+
+### SunMint plots/farms generators fail SILENTLY green — a sheet read error must exit non-zero, not "preserve the existing registry"
+**✅ SHIPPED 2026-09-24** — `sunmint` (`scripts/build_plots_geojson.py`, `scripts/build_farms_index.py`) now `sys.exit()` non-zero via a shared `sheet_read_failure()` helper on ANY read error (raised exception **or** an empty response), instead of swallowing it and "preserving the existing registry"; the previously-published file is left byte-for-byte untouched. Regression test `tests/test_build_index_loud_failure.py` pins the contract (it FAILS on the pre-fix code). Landed via the Contents API because `sunmint` is an api-only machine-owned repo (single-file atomic commits, no PR): `927c66a` (plots), `0bd0f86` (farms), `2c0e25f` (test). `build_tree_geojson.py` already failed loudly (no swallowing), so it needed no change.
+**Filed 2026-09-24 — root cause verified from the workflow logs. Governor: Gary (thread 35189). ✅ The incident itself is RESOLVED (2026-09-24): the CI credential was restored by Gary (new SA `sunmint-ledger-manager@get-data-io.iam.gserviceaccount.com`, secret `GOOGLE_SERVICE_ACCOUNT_JSON` replaced) and all three indexes were re-dispatched and refreshed — see `## Recently shipped`. What remains OPEN is item (b): the silent-green anti-pattern.**
+
+**Ask (remaining).** Stop `build_plots_geojson.py` / `build_farms_index.py` from reporting green when they cannot read the sheet — a generator that cannot read its source must exit non-zero.
+
+**Symptom.** `trees/index.geojson` (`generated_at` 2026-09-17, 126 features), `plots/index.geojson` (09-17, 22 features) and `farms/index.json` (09-17) are **all frozen at 2026-09-17** — 7 days stale — so the SunMint plots page and every `plot_id`/`tree_id`-based join serve week-old data. `Rebuild Tree Index` failed on every scheduled run 09-18→09-24 (7 consecutive, last success **2026-09-17T10:44:40Z**), but `Rebuild Plots Index` and `Rebuild Farms Index` have reported **success every day** throughout.
+
+**Verified root cause (from the failed run log — run `35989682276`, step 5 “Run tree index builder”).**
+```
+gspread.exceptions.APIError: APIError: [403]: The caller does not have permission
+  File "scripts/build_tree_geojson.py", line 49, in get_sheet
+    return gc.open_by_key(SHEET_ID).worksheet(SHEET_TAB)
+  → PermissionError → exit 1
+```
+The workflow's `GOOGLE_SERVICE_ACCOUNT_JSON` secret (last updated **2026-08-26T19:51:13Z**, unchanged) can no longer open spreadsheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` (tab `SunMint Tree Planting`). The 403 is raised at `open_by_key` — i.e. the SA cannot open the spreadsheet at all (sharing revoked / SA rotated), **not** a renamed-tab error (that would surface as `WorksheetNotFound`).
+
+**The telling detail — why the sibling “successes” are false green (verified, run `35993899764`).** All three workflows use the **same** secret and the **same** `SHEET_ID` (only the tab differs). `build_tree_geojson.py` has no read-error handling → it raises and the job fails. `build_plots_geojson.py` swallows it:
+```
+WARN: could not read 'SunMint Plots' tab (); preserving existing registry
+preserved 22 features at plots/index.geojson
+No changes to commit.
+```
+So the daily "success" is a **no-op that rewrites the previous file**. The warning starts **exactly on 2026-09-18** in the plots runs too (`warn_hits=0` on 09-17 and earlier, `=2` on 09-18 onward) — the same cutoff as the tree failures. **That is the proof the change was on the sheet-sharing side, not a secret rotation:** the secret is unchanged since 08-26, one shared credential lost access on 09-18, and one workflow surfaced it while two masked it. Other SAs still read this same spreadsheet fine (verified 2026-09-24 via the `agroverse_qr_code_manager` / `cypher_defense` credentials), so the spreadsheet itself is healthy — it is specifically the **SunMint CI SA's** access that is gone.
+
+**Also relevant.** The merged `tree_id` col-D fix (`21428ba6`, 2026-09-24, #3) is on `main` but **unshipped** — the job dies at the credential step before reaching the code, so the stale published index still carries the old off-by-one ids.
+
+**Suggested scope.**
+- Re-share the SunMint spreadsheet with the CI service-account email, **or** replace `GOOGLE_SERVICE_ACCOUNT_JSON` with a fresh key that has access; then re-dispatch all three workflows so the indexes catch up (this also publishes the pending `tree_id` fix).
+- **Make the failure loud:** in `build_plots_geojson.py` / `build_farms_index.py`, exit non-zero when the sheet read fails instead of “preserving existing registry” — a silent-green generator hid a 7-day outage on a public data surface.
+- Confirm no *other* consumer shares this credential (the `cache-satellite-scenes` / `rebuild-plot-media-index` workflows do not use it — they read no sheet).
+
+**Evidence.** Failed run `35989682276` step 5 full log (`build_tree_geojson.py` L49); passing-but-empty run `35993899764` (`WARN: could not read 'SunMint Plots' tab`; `preserved 22 features`; `No changes to commit.`); `scripts/build_tree_geojson.py` L18–L19, L49; `scripts/build_plots_geojson.py` L21–L22, L80, L305 (the swallow); workflow `rebuild-tree-index.yml` L36, L38; secret `GOOGLE_SERVICE_ACCOUNT_JSON` `updated_at` 2026-08-26; published indexes all `generated_at` 2026-09-17.
 
 ## Closed without shipping
 ### Tree growth measurement 'reject' path — CLOSED as by-design
