@@ -39,6 +39,24 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint: generated certs are not downloadable from the QR provenance page (`truesight.me/qr/?id=<qr_id>`)
+**Filed 2026-09-24 — verified feature request, not started. Governor: Gary (thread 35189). Non-urgent; does NOT block the cert layout work.**
+
+**Ask.** Once a SunMint certificate has been generated for a tree / QR, the cert should be downloadable from that asset's own provenance page — `https://truesight.me/qr/?id=<qr_id>` — via a **"Download certificate"** button, mirroring the credentialing precedent.
+
+**Verified precedent (credentialing).** The butterfly-effect credential pages (`truesight.me/programs/butterfly-effect/credentials/`) do exactly this:
+- cert PDFs are **pre-generated and cached** in `TrueSightDAO/lineage-credentials` at `_cache/cv/<slug>__<program>__cert.pdf` — built by `.github/workflows/build-cv-cache.yml` → `lineage-engine/scripts/build_cv_cache.py`, and only built once `locked_at` is set;
+- served over the **jsDelivr CDN** (the workflow purges jsDelivr on rebuild);
+- the page carries a "⏬ Certificate PDF" button + a "View the tree & its provenance →" link pointing at the same `truesight.me/qr/?id=…` scheme the SunMint QR pages use.
+
+**Why it does NOT transfer 1:1 — the real design work.**
+1. **Keying differs.** Credential certs are keyed by *person-slug × program* (`<slug>__<program>__cert.pdf`). A SunMint cert is per *tree-planting / qr_id* (guardian + tree details), so the filename scheme needs its own authority — e.g. `qrs/<qr_id>__cert.pdf`. Pick the canonical key.
+2. **Host repo differs.** The credential cache lives in `lineage-credentials/_cache/` — an **API-only, machine-owned DATA repo** (no clone / no branch-edit; single-file writes via the Contents API only) which has grown to **~10 GB** (a CI checkout there took **21 m 44 s**; see WORKSPACE_CONTEXT.md L234–236). The SunMint cert *renderer* lives in `agentic_ai_context/templates/sunmint_certificate/`. Decide where SunMint cert PDFs are cached, and how that repo grows.
+3. **No rebuild trigger exists.** Today a SunMint cert is produced by running `render_sunmint_certificate.py` + a config by hand. A cached-serving model needs an auto-rebuild trigger analogous to `build-cv-cache.yml` (e.g. on cert-issue / `[TREE PLANTING]`), or the cached PDF silently goes stale relative to the signed attestation.
+4. **Page change is program-agnostic + beta-first.** `truesight_me_beta/qr/index.html` is pure static HTML/JS that dispatches on `asset_type` (fetches `lineage-assets/qrs/<qr_id>.json`). The button must appear **only when a cert genuinely exists** for that `qr_id` — probe the URL, or add a `cert_url` field to the manifest. Promote to prod only after beta review (two-repo flow; governor-approved).
+
+**Evidence.** `credentials/CREDENTIALING_PROGRAM_PAGES.md` L612 / L749 / L757; `credentials/CREDENTIALING_E2E_VALIDATION.md` L111 / L124; `CONTEXT_UPDATES.md` L162; `truesight_me_beta/qr/index.html`; `agentic_ai_context/templates/sunmint_certificate/render_sunmint_certificate.py`; thread 35189.
+
 ### Tree-planting photo supersession has no sanctioned path — an in-place image swap leaves a signed attestation pointing at new bytes
 **Filed 2026-09-23. Owner: unclaimed. Governor: Gary (thread 35189). Status: gap identified; one swap already performed manually with a documented note.**
 
