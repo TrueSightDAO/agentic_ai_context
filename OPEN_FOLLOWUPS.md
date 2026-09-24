@@ -39,10 +39,10 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### SunMint index rebuilds are frozen at 2026-09-17 — the shared CI service account lost sheet access on 09-18; **trees FAILS loudly, plots/farms fail SILENTLY green**
-**Filed 2026-09-24 — root cause verified from the workflow logs. Governor: Gary (thread 35189). LIVE INCIDENT: all three public SunMint indexes have been frozen at 2026-09-17 for 7 days, and two of the three workflows are still reporting SUCCESS.**
+### SunMint plots/farms generators fail SILENTLY green — a sheet read error must exit non-zero, not "preserve the existing registry"
+**Filed 2026-09-24 — root cause verified from the workflow logs. Governor: Gary (thread 35189). ✅ The incident itself is RESOLVED (2026-09-24): the CI credential was restored by Gary (new SA `sunmint-ledger-manager@get-data-io.iam.gserviceaccount.com`, secret `GOOGLE_SERVICE_ACCOUNT_JSON` replaced) and all three indexes were re-dispatched and refreshed — see `## Recently shipped`. What remains OPEN is item (b): the silent-green anti-pattern.**
 
-**Ask.** (a) Restore the CI credential's access so the daily rebuilds resume; (b) stop the plots/farms generators from silently reporting green when they cannot read the sheet.
+**Ask (remaining).** Stop `build_plots_geojson.py` / `build_farms_index.py` from reporting green when they cannot read the sheet — a generator that cannot read its source must exit non-zero.
 
 **Symptom.** `trees/index.geojson` (`generated_at` 2026-09-17, 126 features), `plots/index.geojson` (09-17, 22 features) and `farms/index.json` (09-17) are **all frozen at 2026-09-17** — 7 days stale — so the SunMint plots page and every `plot_id`/`tree_id`-based join serve week-old data. `Rebuild Tree Index` failed on every scheduled run 09-18→09-24 (7 consecutive, last success **2026-09-17T10:44:40Z**), but `Rebuild Plots Index` and `Rebuild Farms Index` have reported **success every day** throughout.
 
