@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-24T17:27:18Z`
+- Generated (UTC): `2026-09-24T21:41:56Z`
 - Look-back: **7** calendar days (`2026-09-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 25
-- `[CONTRIBUTION EVENT]` × 11
+- `[TREE PLANTING EVENT]` × 24
+- `[CONTRIBUTION EVENT]` × 8
+- `[TREE PLANTING LINK EVENT]` × 4
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260924131403_080` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Capoeira EN/PT toggle — plan authoring + supervision (Envoy TrueSight)
-- `Edgar_20260924131406_082` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Capoeira i18n — raw machine execution, engine + 6 pages (Sophia Truesight)
-- `Edgar_20260924131409_084` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Capoeira i18n — direct time / engagement &amp; analysis (Sophia Truesight)
-- `Edgar_20260924132202_090` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
-- `Edgar_20260924132231_092` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
 - `Edgar_20260924132244_094` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
 - `Edgar_20260924132306_096` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
 - `Edgar_20260924132318_098` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
@@ -60,6 +56,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260924132850_118` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
 - `Edgar_20260924143221_120` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-24T14:32:19.342Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260924163216_122` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: CRF Anapu açaí copy update — PR1 (beta manifest description_md)
+- `Edgar_20260924172949_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: CFR Anapu açaí dropdown option — shipped to cfr.truesight.me + beta/prod Sun…
+- `Edgar_20260924191305_004` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2023SA_81PB_20260412_1 · SunMint Submission Message ID: Edgar_20260903083555_019 · Updated by: Sophia Truesight
+- `Edgar_20260924191312_006` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_3 · SunMint Submission Message ID: Edgar_20260903083411_001 · Updated by: Sophia Truesight
+- `Edgar_20260924194040_008` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PF_20250505_28 · SunMint Submission Message ID: Edgar_20260903083528_005 · Updated by: Sophia Truesight
+- `Edgar_20260924200801_010` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PAULO_20250804_20 · SunMint Submission Message ID: Edgar_20260908011432_245 · Updated by: Sophia Truesight
 
 ---
 
@@ -229,11 +230,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Paloma | 7 | 661.32 | $247.02 |
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
-_(+31 more in JSON snapshot.)_
+_(+32 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,748.66**
+- USD on hand: **$4,753.66**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
 - USD provisioned for voting-rights cash-out: **$55.54**
 
@@ -275,6 +276,8 @@ _All dated lines on/after 2026-09-17_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ff42044 | 2026-09-24 14:32:34 -0300 | qr page: deep-link ANY tree-linked QR (incl. cacao bags) to SunMint map (#396)
+268f965 | 2026-09-24 17:30:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 ec876b3 | 2026-09-24 13:31:22 -0300 | CRF Anapu: name açaí in description_md (beta source of truth) (#395)
 a1059d5 | 2026-09-24 12:07:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 753221d | 2026-09-24 07:50:14 -0300 | qr page: add SunMint cert download button (URL-probe route) (#394)
@@ -313,8 +316,6 @@ cbdc173 | 2026-09-19 11:24:58 +0000 | chore(stats): refresh stats indexes [skip 
 cae9181 | 2026-09-18 21:10:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 61bec1a | 2026-09-18 16:40:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 b06be2a | 2026-09-18 11:41:58 +0000 | chore(stats): refresh stats indexes [skip ci]
-0559b87 | 2026-09-18 05:05:53 +0000 | chore(stats): refresh stats indexes [skip ci]
-e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +328,17 @@ e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b6c71ba | 2026-09-24 16:49:23 -0300 | sunmint cert: cv2 fallback when pyzbar fails at every scale (#1400)
+60ecb48 | 2026-09-24 16:25:35 -0300 | Add SunMint link+issue-cert runbook; fix cert SOP §3 (overlay) + template pyzbar retry (#1399)
+ad7568f | 2026-09-24 15:30:54 -0300 | docs: resolve SunMint SOP §7 conflict framing + file seeder-daemon answer (#1398)
+9308086 | 2026-09-24 15:12:51 -0300 | docs: cross-link GAS scanner convention + file deploy-identity, processBatch, per-user-trigger follow-ups (#1397)
+73201fb | 2026-09-24 14:37:37 -0300 | docs(handoff): mark Plan A (SunMint loud-failure) complete (#1396)
+448a640 | 2026-09-24 14:36:07 -0300 | docs(followups): tick SunMint silent-green fix to Recently shipped (#1395)
+8479672 | 2026-09-24 14:30:31 -0300 | docs(cfr-plan): mark açaí dropdown contribution reported (PR4/PR4-b) (#1394)
+ff64d75 | 2026-09-24 14:27:51 -0300 | docs(handoffs): register SunMint loud-failure fix (Plan A) -> thread 36213 (#1392)
+3d191b0 | 2026-09-24 14:27:46 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
+63bb490 | 2026-09-24 14:27:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
+0b693a9 | 2026-09-24 14:27:35 -0300 | docs(cfr-plan): record açaí dropdown prod promotion (sunmint_prod) (#1393)
 03cc31c | 2026-09-24 14:25:03 -0300 | docs(cfr-plan): tick §4 item 1 — açaí dropdown shipped, plan COMPLETE (#1391)
 ff013cd | 2026-09-24 14:24:47 -0300 | OPEN_FOLLOWUPS: §11.5 — env var set (a); add GAS-deploy gate (b) + Edgar restart (c); CFR tree-planting tab empty evidence (#1390)
 01c20cb | 2026-09-24 14:20:32 -0300 | docs(followups): SunMint index freeze RESOLVED (indexes refreshed) — narrow entry to the still-open silent-green fix (#1386)
@@ -356,23 +368,14 @@ d4559cb | 2026-09-24 07:02:37 -0300 | Add Schwab portfolio integration plan (rea
 28bd478 | 2026-09-24 06:56:38 -0300 | Telegram reply-context: tick PR1 tracker + refresh manifest row (#1362)
 260ac6d | 2026-09-24 06:17:30 -0300 | Add plan: temporarily swap Sophia to Onaya's Claude token (DeepSeek exhausted) (#1361)
 49a394c | 2026-09-24 03:14:59 -0300 | OPEN_FOLLOWUPS: file SunMint cert QR print-floor (k>=4) enforcement gap (#1360)
-4fb6ea4 | 2026-09-24 02:57:36 -0300 | OPEN_FOLLOWUPS: QR manifest never refreshed after link — dedicated sync_tree_links.py exists (+ status-clobber bug) (#1359)
-55369b4 | 2026-09-24 02:53:08 -0300 | OPEN_FOLLOWUPS: SunMint cert download — flag manifest-field landmine (cert_url dropped on re-seed) (#1358)
-e5dabb3 | 2026-09-24 02:52:28 -0300 | Update TELEGRAM_REPLY_CONTEXT_FIX_PLAN manifest row with Telegram topic + trigger note (#1357)
-9e70a04 | 2026-09-24 02:49:05 -0300 | followups: file SunMint QR-page cert download request (verified) (#1356)
-440120b | 2026-09-24 02:47:32 -0300 | cert: restore print-safe k=4 QR (was regressed to k=3) + pair QR to photo (#1355)
-b7eea37 | 2026-09-24 02:40:23 -0300 | Reduce SunMint cert QR tile to k=4 (196px) — still print-safe (#1354)
-cae1b19 | 2026-09-24 02:30:48 -0300 | Add plan: fix Telegram reply-to context loss (root-caused) (#1353)
-5b63cba | 2026-09-24 02:26:23 -0300 | sunmint cert: restore Agroverse logo in QR centre (stop thresholding it into speckle) (#1352)
-463df36 | 2026-09-24 02:10:49 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
-d7e84da | 2026-09-24 02:10:48 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
-3eb6f2a | 2026-09-24 02:06:42 -0300 | Enlarge cert QR tile to survive 150-dpi printing (#1350)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+e32d3b9 | 2026-09-24 15:15:37 -0300 | GAS: add documents OAuth scope (fixes processBatch) + correct deploy-identity convention (#553)
+657de6f | 2026-09-24 14:32:02 -0300 | GAS: read-only ?action=getInstalledScannerTriggers to verify trigger state over HTTP (#552)
 5a3b3d2 | 2026-09-24 14:23:33 -0300 | GAS convention: every scanner exposed via doGet (+ processBatch branch, bulk installer, guard) (#551)
 ef25709 | 2026-09-24 13:46:02 -0300 | Add CFR-program submission sink + fix payout parser terminator bug (#550)
 fa84522 | 2026-09-23 19:09:26 -0300 | fix(gas): serialize tree-planting ingestion + live dedup sets to stop duplicate rows (#549)
@@ -411,8 +414,6 @@ c9f5b80 | 2026-09-17 22:56:43 -0300 | chore(security): scrub leaked token litera
 779d0b8 | 2026-09-17 22:22:34 -0300 | fix(gas): restore missing Credentials.js for 1wmgYPwf + scrub leaked token literal (#514)
 e133299 | 2026-09-17 22:21:05 -0300 | SS12.7 Q3b fix: actually install the payout-event hourly trigger (#513)
 87d646e | 2026-09-17 22:20:31 -0300 | fix(gas): secret-free tracked Credentials.js for 1wONDeDwZ + no-op setApiKeys (#512)
-842018d | 2026-09-17 22:17:36 -0300 | fix(gas): restore missing Credentials.js accessor for 1duQFfTO + drop token literal from comment (#511)
-399f680 | 2026-09-17 22:11:55 -0300 | fix(gas): 1XmwyzzauO Code.js reads all config from Credentials.js; drop hardcoded token (#510)
 … (truncated)
 ```
 
@@ -562,7 +563,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/24/2026 9:50:35 |
+| 2026-09 | 924.5 | 18364.34386 | 9/24/2026 13:50:59 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-17`; scanned last **600** data rows)
 
