@@ -3399,6 +3399,19 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ## Recently shipped
 
+### Telegram reply-to context silently dropped before reaching the LLM (found live 2026-09-24, second occurrence, never written down)
+**Filed 2026-09-24; shipped 2026-09-24. Governor: Gary (thread 35622). PRs: `truesight_autopilot` #500 (`30291c97`) + `agentic_ai_context` #1362, #1363.**
+
+**The gap.** Telegram hands the bot the replied-to message's full content in `reply_to_message`. `truesight_autopilot/app/telegram_adapter.py` read it in exactly **two** places — and neither forwarded its content: line ~615 (`_bot_was_mentioned()`) reads `reply_to.get("from").username` **only** to decide the group mention-gate bypass; line ~1972 reads `reply_to_message.get("forum_topic_created")` for an unrelated topic-creation check. So when a governor replied to a specific message (e.g. a photo), Telegram supplied the content and the bot simply never looked it up — the reply relationship was dropped before the LLM ever saw it. Found **live** ("second occurrence"), but — verified by direct reading, not assumed — **neither occurrence was ever written down** in `OPEN_FOLLOWUPS.md`, `CONTEXT_UPDATES.md`, or `handoffs/active_supervision.json`. That tracking gap is why this entry exists: a third occurrence should not repeat un-tracked.
+
+**The fix (PR1, `truesight_autopilot` #500, sha `30291c97`).** At the existing `dispatch_text` construction site (alongside the `[Telegram context: ...]` prefix — same convention as `[GOVERNOR_IDENTITY: ...]`), three new pure helpers `_format_reply_time` / `_describe_media` / `_reply_context_prefix` build a `[Replying to <who>, sent <when>: "<snippet>"]` bracketed prefix. Captioned/text reply → quoted snippet (400-char cap); uncaptioned photo/document → an **honest marker** that a reply to that media happened, from whom and when. Returns `""` when not a reply, so `dispatch_text` stays **byte-identical** for the overwhelming majority of messages that aren't replies (two exact-string regression guards pin this). 11 tests added; 109 passed locally; ruff 0-new vs `main`; CI green (`smoke` + `test`×2).
+
+**Scope note (deliberate).** Actually re-fetching the replied-to **photo** and passing it to the LLM as a vision input is **out of scope** — verified no `image_url` content-block handling exists anywhere in the current LLM call path (`app/llm/litellm_provider.py`; `download_telegram_file()` is used only for voice notes today). Adding real vision is a materially bigger, separate feature. In scope: surface *that* a reply happened, to what, and from whom — turning "total silence" into "she knows the relationship exists and can ask a clarifying question."
+
+**Live verification (PR2, thread 35622).** Deployed and restarted 2026-09-24; `ActiveEnterTimestamp` 10:20:40 UTC, HEAD `30291c9`; `_reply_context_prefix` present at lines 658 + 2329. UAT: a governor reply to a prior message produced a `CHAT REQ` line in `journalctl` reading `... [Replying to an uncaptioned message from Envoy TrueSight (@nelanco_claude_bot), sent 2026-...]` — the prefix reached the dispatcher — **and** the reply demonstrably acted on the relationship (not merely that the prefix was present). Pre-deploy logs contained 0 such lines.
+
+**Evidence.** `truesight_autopilot/app/telegram_adapter.py` L658, L2329; PR #500 (`30291c97`); plan `plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md`; tracker + manifest PR #1362 (`28bd4783`); thread 35622.
+
 ### Governor sheet-permission SOP rewritten into a gated season-rotation runbook (kills the sentinel-stripping revoke script)
 **Filed 2026-09-21; shipped 2026-09-22. Governor: Gary (thread 34264). PR: agentic_ai_context #1341.**
 
