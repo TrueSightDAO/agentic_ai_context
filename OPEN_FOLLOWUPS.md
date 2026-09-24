@@ -190,6 +190,12 @@ So this is **systematic, not a one-off**: the public `trees/index.geojson` is of
 ### QR manifest JSON goes stale after a [TREE PLANTING LINK EVENT] — nothing regenerates it, and the one dedicated script for the job has a status-clobber bug
 **Filed 2026-09-24 — verified, not started. Governor: Gary (thread 35189). Non-urgent; money-adjacent to wire (spans GAS + Python repos).**
 
+**⚙️ UPDATE 2026-09-24 (seeder read-path shipped; daemon question answered).**
+- **The read-path divergence is FIXED.** `lineage-assets` #12 (seeder joins the SunMint link at seed time) + #13 (append-only `merge_preserve_events` — history no longer rewritten) + #14 (the scoped data run) mean `qrs/2024OSCAR_CB_20260620_1.json` now carries `lineage.linked_tree=Edgar_20260903083523_003`, `status: ASSIGNED_TO_TREE`, and **retains** `['minted','sold','planted']`. The manifest no longer needs a hand-edit — a re-seed materialises the link from the sheet.
+- **What remains is CADENCE, not correctness.** Nothing schedules the seeder, so the *rest* of the cache is stale vs the sheet (a full `--execute` diffs ~1369 files: ~1358 pure `www.`-strip URL churn + ~7 substantive). One full catch-up run makes the repo consistent; thereafter runs are no-ops (idempotent — 2nd execute = 0 changes).
+- **Daemon precedent ALREADY EXISTS on the autopilot box.** The Ubuntu crontab runs `sync_pending_caches.py --push` **every 30 min** (gspread → sha-aware Contents-API PUT → `lineage-assets`). The same shape works for the seeder: a 30-min cron/systemd-timer running `seed_from_sheet.py --execute && build_index.py`, then commit **only when `git status` is non-empty** (no churn on a no-op). The link handler's `repository_dispatch` (L816) remains the event-driven alternative for immediate per-QR refresh.
+- **`sync_tree_links.py` clobber STILL LIVE** — `_base_wrapper` (L104) still hard-codes `status:"MINTED"`; fix before invoking it. The seeder path above does NOT use it, so the daemon recommendation sidesteps the clobber.
+
 **Ask.** After a `[TREE PLANTING LINK EVENT]` fires, the target QR's `lineage-assets/qrs/<qr_id>.json` manifest should be regenerated so its `status` / `lineage` / `events` reflect the link (`ASSIGNED_TO_TREE`). Today nothing does this, so the manifest silently diverges from the authoritative state Edgar serves.
 
 **Verified (2026-09-24).**

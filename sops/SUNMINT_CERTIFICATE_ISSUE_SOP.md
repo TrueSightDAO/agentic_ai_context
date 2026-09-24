@@ -3,7 +3,7 @@
 **Owner:** Sophia Truesight (autopilot). **Governor:** Gary.
 **Origin:** thread 35189, 2026-09-24 — *“Make sure we have an SOP in place for future
 issues of SunMint certificate… You can always find it in our registry.”*
-**Revision:** rev2 (2026-09-24) — corrects the QR-embedding method (§3, §11).
+**Revision:** rev3 (2026-09-24) — §7 conflict framing RESOLVED per governor ruling; canonical tree id pinned to col D; planted date from EXIF. (rev2 corrected the QR-embedding method.)
 
 ---
 
@@ -97,13 +97,28 @@ When a field disagrees across surfaces, prefer:
 2. **`SunMint Tree Planting` sheet** — the operational record.
 3. **`lineage-assets` manifest** — metadata.
 
-Known open conflict for `2024OSCAR_CB_20260620_1`: manifest says `SOLD`; sheet + live
-QR say `ASSIGNED_TO_TREE`. **Ask the governor** which framing the cert should carry;
-do not silently pick one.
+**Conflict framing — RESOLVED (governor ruling, 2026-09-24).** A bag QR that has been
+linked to a planted tree is framed **`ASSIGNED_TO_TREE`**. The `sold` event is *history*
+(the bag was sold, financing the tree); the **current state** is tree-linked. The
+manifest previously said `SOLD` only because it was seeded before the link existed — the
+seeder now joins the link at seed time and history is append-only
+(`lineage-assets` #12/#13/#14), so the manifest carries `status: ASSIGNED_TO_TREE`
+**and** retains the `sold` event. If a manifest still disagrees with the live resolve,
+**re-seed — never hand-edit** (hand-added top-level fields are still dropped on re-seed;
+see the `OPEN_FOLLOWUPS.md` entry on `merge_preserve_events`).
+
+### Canonical tree id (the +1 trap)
+The canonical `tree_id` is the SunMint sheet **col D** Telegram Message ID
+(e.g. `Edgar_20260903083523_003`) and equals the tree's `ledger_ref`. `sunmint/trees/
+index.geojson` keys on col A, so its `tree_id` is **+1** (`…_004`). **Canonical = col D
+(`…_003`).** Do not "fix" the cert config to match the geojson; the geojson is the wrong
+side (tracked at `OPEN_FOLLOWUPS.md` → "tree_id is keyed on the sheet's col A").
 
 ### Date
-Derive the planted date from the ledger event; flag to the governor if the sheet
-column disagrees (observed 2026-09-02 vs 2026-09-03).
+Derive the planted date from the image EXIF / ledger, not the sheet's col G. Resolved for
+`2024OSCAR_CB_20260620_1`: the seedling photo's EXIF is `2026:09:02 18:47:11` →
+**2026-09-02** (`date_display="2 September 2026"`); the sheet's `20260903` is the *logging*
+date. Flag to the governor only on a genuine disagreement.
 
 ## 8. Template
 
@@ -152,3 +167,7 @@ It emits, per variant, `<outdir>/certificate_<variant>.png` and `.pdf` (300 dpi)
   gate changed from %-module-match to **payload equality** (§4); added §5 photo
   supersession caveat, §8 template pointer. The rev1 error is retained here on purpose
   — it is exactly the failure mode this SOP exists to prevent.
+- **rev3 (2026-09-24):** §7 governor conflict-framing resolved (`ASSIGNED_TO_TREE`, with
+  `sold` retained as history); canonical tree id pinned to col D (the `index.geojson` +1
+  trap); planted date = EXIF, not sheet col G. Seeder read-path fixed (#12/#13/#14) so the
+  manifest no longer needs a hand-edit.
