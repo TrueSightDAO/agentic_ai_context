@@ -261,32 +261,53 @@ def render_qr(
     # Digital decode() is NOT a print-safety gate -- #1354 shipped k=3 and
     # survived decode but was below the floor. Never round below 4.
     k = max(4, round(px / modules))  # integer pixels per module
-    tile = _paste_overlay(
-        registry_qr.resize((modules * k, modules * k), Image.NEAREST),
-        k,
-        logo_src,
-        logo_box,
-    )
-    if not decode(tile):
-        for k2 in (k + 1, k + 2, max(4, k - 1)):
-            t2 = _paste_overlay(
-                registry_qr.resize((modules * k2, modules * k2), Image.NEAREST),
-                k2,
+    base_tile = registry_qr.resize((modules * k, modules * k), Image.NEAREST)
+
+    # Preferred: overlay at the intended scale. If the centre mark pushes the
+    # tile past pyzbar's error-correction budget (a native-res overlay pasted
+    # over the symbol centre and heavily downscaled -- e.g. the 2024PAULO_*
+    # bag QRs), FIRST shrink the overlay inward a few modules. That keeps BOTH
+    # the centre mark AND the requested tile size / k, so the tile never grows
+    # out of its layout box (the old behaviour escalated k, which silently
+    # enlarged the tile + its box ~25% and overlapped the border art).
+    tile = _paste_overlay(base_tile, k, logo_src, logo_box)
+    if decode(tile):
+        return tile
+    if logo_src is not None and logo_box is not None:
+        lx0, ly0, lx1, ly1 = (int(v) for v in logo_box)
+        for shrink in (1, 2, 3, 4, 5):
+            if (lx1 - lx0) - 2 * shrink < 2 or (ly1 - ly0) - 2 * shrink < 2:
+                break
+            t = _paste_overlay(
+                base_tile,
+                k,
                 logo_src,
-                logo_box,
+                (lx0 + shrink, ly0 + shrink, lx1 - shrink, ly1 - shrink),
             )
-            if decode(t2):
-                return t2
-        # never ship a non-decoding QR: fall back to the plain crisp tile
-        plain = registry_qr.resize((modules * k, modules * k), Image.NEAREST)
-        if logo_src is not None and decode(plain):
-            print(
-                "  WARNING: overlay QR did not decode; shipping crisp tile "
-                "without the centre overlay"
-            )
-            return plain
-        raise SystemExit("could not integer-scale the registry QR to a scannable tile")
-    return tile
+            if decode(t):
+                print(
+                    f"  registry QR overlay: shrunk {shrink} module(s)/side to "
+                    f"stay within the error-correction budget at k={k}"
+                )
+                return t
+    # Last resort only: escalate k (grows the tile -> may overflow the layout box).
+    for k2 in (k + 1, k + 2, max(4, k - 1)):
+        t2 = _paste_overlay(
+            registry_qr.resize((modules * k2, modules * k2), Image.NEAREST),
+            k2,
+            logo_src,
+            logo_box,
+        )
+        if decode(t2):
+            return t2
+    # never ship a non-decoding QR: fall back to the plain crisp tile
+    if logo_src is not None and decode(base_tile):
+        print(
+            "  WARNING: overlay QR did not decode; shipping crisp tile "
+            "without the centre overlay"
+        )
+        return base_tile
+    raise SystemExit("could not integer-scale the registry QR to a scannable tile")
 
 
 def rounded(im: Image.Image, rad: int) -> Image.Image:
