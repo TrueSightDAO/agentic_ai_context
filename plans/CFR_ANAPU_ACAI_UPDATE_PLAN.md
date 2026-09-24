@@ -1,7 +1,7 @@
 # CFR Anapu (cfr.truesight.me) — açaí content update
 
 **Filed:** 2026-09-24, by Claude Anthropic (Envoy/planner), at Gary's request.
-**Status:** drafted, not yet triggered.
+**Status:** in progress — PR1 merged 2026-09-24 (sha `ec876b3`); PR2 (live publish) pending governor go.
 **Trigger:** Gary: *"Some students are planting açaí. https://cfr.truesight.me/ Can we update this?"*
 
 > `OPERATING_INSTRUCTIONS.md` §5 tracked roadmap. §5a: **one PR per execution turn, then stop.**
@@ -79,7 +79,7 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 | Unit | Scope | Repo |
 |---|---|---|
 | **PR0** | This roadmap. | `agentic_ai_context` |
-| **PR1** | Update `programs/crf-anapu/manifest.json`'s `description_md`: name açaí explicitly alongside cacao — e.g. *"Cacao-based agroforestry, with native shade and timber trees, is expressly supported — açaí, a native Amazonian fruit palm, is also being planted by students as of September 2026."* (exact wording open — see §5). Bump `last_reviewed`. | `truesight_me_beta` |
+| **PR1** | Update `programs/crf-anapu/manifest.json`'s `description_md`: name açaí explicitly alongside cacao — e.g. *"Cacao-based agroforestry, with native shade and timber trees, is expressly supported — açaí, a native Amazonian fruit palm, is also being planted by students as of September 2026."* (exact wording open — see §5). Bump `last_reviewed`. **Shipped 2026-09-24, Option A:** appended only *"Students are also planting **açaí**, a native Amazonian fruit palm."* — no date, no intercropping claim. | `truesight_me_beta` |
 | **PR2** | Re-vendor the updated `manifest.json` into `cfr-anapu` (`gh-pages`), same pass, also catch up `program_mode` → `program_modes: [cohort_credentialing, sunmint_cohort]` to close the drift found in §1.1. Live-check `https://cfr.truesight.me/` after push (§5c — this push *is* the prod deploy for this domain). | `cfr-anapu` |
 | **PR3 (parked, not triggered)** | Once real açaí-planting photos/details exist: ingest via the established MAP pipeline (`farm_media_manifests`, `entity_type: program`, cross-indexed) → add to `programs/crf-anapu/media.json` gallery → re-vendor into `cfr-anapu`, same two-repo pattern as PR1/PR2 — see `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md` §4/§5 for the exact precedent (that's how the original site-visit photos were added). **No photos exist yet** (checked, §0 row 3) — this unit stays parked until Gary or the CEPOTX contact supplies media. | `farm_media_manifests`, `truesight_me_beta`, `cfr-anapu` |
 
@@ -94,15 +94,19 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 
 ## 5. Resume tracker
 
-> **RESUME HERE → PR1.** Open item before PR1 can be worded precisely: **exact açaí copy is not yet
-> confirmed with Gary** — the sentence drafted in PR1's row above is a reasonable first pass, not a
-> quote from him. Confirm wording (or let Sophia draft-and-show before merging) rather than
-> shipping invented specifics as fact.
+> **RESUME HERE → PR2.** PR1 is complete (2026-09-24): Gary selected **Option A** in thread 35888 —
+> açaí named additively, no unsourced date, and the "intercropped" phrasing deliberately withheld
+> (still an open factual question). PR1 merged, sha `ec876b3`, contribution reported.
+>
+> PR2 is the **live publish** step: re-vendor the updated `manifest.json` into `cfr-anapu@gh-pages`
+> and catch up the `program_mode` → `program_modes` drift (§1.1) in the same pass. For this domain
+> the push *is* the prod deploy, so run the §6 UAT live check (`https://cfr.truesight.me/`, page 200
+> + açaí sentence visible) immediately after.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
-| PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (beta copy edit) | ☐ | ☐ | ☐ |
+| PR0 (this roadmap) | ☑ | ☑ | ☐ |
+| PR1 (beta copy edit) | ☑ | ☑ | ☑ |
 | PR2 (re-vendor to cfr-anapu, live) | ☐ | — | ☐ |
 | PR3 (photo ingestion) | parked | — | — |
 
