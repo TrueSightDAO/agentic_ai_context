@@ -39,6 +39,31 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `rebuild-tree-index.yml` has failed daily since 2026-09-18 — the workflow's Google service account lost access to the SunMint sheet (403 on `open_by_key`)
+**Filed 2026-09-24 — root cause verified from the workflow log. Governor: Gary (thread 35189). LIVE INCIDENT: the public `sunmint/trees/index.geojson` has been frozen at 2026-09-17 for 7 days.**
+
+**Ask.** Restore the CI credential's access so the daily rebuild resumes. The build code is fine — this is a permissions failure and must be fixed on the Google-Sharing / GitHub-secret side, not in the script.
+
+**Symptom.** `Rebuild Tree Index` failed on every scheduled run from 2026-09-18 through 2026-09-24 (7 consecutive). Last success **2026-09-17T10:44:40Z**. Effect: `sunmint/trees/index.geojson` still reports `generated_at` 2026-09-17 / 126 features — **7 days stale**, so the SunMint plots page and every `tree_id`-based join serve week-old data.
+
+**Verified root cause (from the failed run log — run `35989682276`, step 5 “Run tree index builder”).**
+```
+gspread.exceptions.APIError: APIError: [403]: The caller does not have permission
+  File "scripts/build_tree_geojson.py", line 49, in get_sheet
+    return gc.open_by_key(SHEET_ID).worksheet(SHEET_TAB)
+  → PermissionError → exit 1
+```
+The workflow's `GOOGLE_SERVICE_ACCOUNT_JSON` secret (last updated **2026-08-26T19:51:13Z**, unchanged) can no longer open spreadsheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` (tab `SunMint Tree Planting`). The 403 is raised at `open_by_key` — i.e. the SA cannot open the spreadsheet at all (sharing revoked / SA rotated), **not** a renamed-tab error (that would surface as `WorksheetNotFound`).
+
+**Why it started 09-18 (not on a secret rotation).** The secret has not changed since 08-26, so the change was on the **sheet-sharing** side. Note other SAs still read this same spreadsheet fine (verified 2026-09-24 via the `agroverse_qr_code_manager` / `cypher_defense` credentials), so the spreadsheet itself is healthy — it is specifically the **SunMint CI SA's** access that is gone.
+
+**Suggested scope.**
+- Re-share the SunMint sheet (tab `SunMint Tree Planting`) with the SunMint CI service-account email, **or** replace the `GOOGLE_SERVICE_ACCOUNT_JSON` secret with a fresh key that has access.
+- Then re-dispatch the workflow so the index catches up — that will also publish the merged `tree_id` col-D fix (`21428ba6`) currently stuck on `main`.
+- Check the sibling generators (`rebuild-plots-index.yml`, `rebuild-farms-index.yml`, `rebuild-plot-media-index.yml`) — if they share the same secret they are likely failing too.
+
+**Evidence.** Actions run `35989682276` (`.github/workflows/rebuild-tree-index.yml`, step 5) full log; `sunmint/scripts/build_tree_geojson.py` L18 (`SHEET_ID`), L19 (`SHEET_TAB`), L49; workflow L36 (`GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}`), L38; secret `GOOGLE_SERVICE_ACCOUNT_JSON` `updated_at` 2026-08-26.
+
 ### `[PAYOUT REGISTRATION]` sink never auto-ingests — no dispatch route, and the self-installing hourly cron never fired
 **Filed 2026-09-24 — root cause verified; a manual backfill was already applied live. Governor: Gary (thread 35944). Money-adjacent (a planter's PIX never reaches the review surface).**
 
