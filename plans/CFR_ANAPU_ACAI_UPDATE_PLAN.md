@@ -1,7 +1,7 @@
 # CFR Anapu (cfr.truesight.me) — açaí content update
 
 **Filed:** 2026-09-24, by Claude Anthropic (Envoy/planner), at Gary's request.
-**Status:** PR1 merged 2026-09-24 (sha `ec876b3`). **PR2 BLOCKED (2026-09-24, Sophia): premise invalid + production gate — see §1.1 correction. Awaiting Gary's re-scope.**
+**Status:** ✅ **COMPLETE 2026-09-24.** PR1 (`ec876b3`), PR2 (`24ae6d6`), PR2-b (prod promotion, `5de3114`), and the follow-on **açaí dropdown option** (§4 item 1 — PRs `sunmint_beta#86` + `cfr-anapu#14`) all merged, UAT-passed. See §5.
 **Trigger:** Gary: *"Some students are planting açaí. https://cfr.truesight.me/ Can we update this?"*
 
 > `OPERATING_INSTRUCTIONS.md` §5 tracked roadmap. §5a: **one PR per execution turn, then stop.**
@@ -125,7 +125,7 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 
 ## 4. Flagged, out of scope for this plan
 
-1. **SunMint species dropdown has no dedicated "Açaí" option** (§1.3) — students can already log it via "Other," so nothing is broken; a first-class option would just be cleaner. Cross-program (`sunmint_beta`) change, needs its own scoping if Gary wants it.
+1. **✅ SHIPPED 2026-09-24 — SunMint species dropdown now has a first-class "Açaí" option** (§1.3). Gary asked for it explicitly ("We need to have Acai as an option in the dropdown on this page https://cfr.truesight.me/"). Landed as a **3-line additive change** (new `<option value="Açaí" data-i18n="speciesAcai">` + `speciesAcai` in both `pt` and `en` i18n blocks) in **both** repos: source of truth `sunmint_beta` (#86, sha `1b1c10b` — also live on `beta.sunmint.truesight.me`) **and** the served vendor copy `cfr-anapu@main` (#14, sha `f68785e`) — kept in sync so the next `sync_sunmint_app.py` re-vendor is a no-op. Safe/additive: downstream species capture is free text (`process_tree_planting_telegram_logs.js` → `extractSpecies()` = `/- Species: (.+)$/m`, no allowlist). UAT ✅: `https://cfr.truesight.me/` serves 5 options with Açaí 4th + `speciesAcai` in both languages. **Note:** `cfr.truesight.me/` root is a vendored copy of `sunmint_beta/index.html` (only `og:url` differs) — and, like the manifest, `vendor.json` names the wrong target branch (`gh-pages`); the served branch is `main`.
 2. **Hardcoded "A cacao tree was issued…" credential text** (§1.4) — wrong for any non-cacao species, across every program using `js/program-shell.js`, not CRF-specific. Worth fixing (e.g. read species from the tree's own record and vary the sentence, or genericize the wording), but it's shared code with a wider blast radius than this plan's scope.
 
 ---
@@ -153,6 +153,7 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 | PR2 (re-vendor to cfr-anapu, live) | ☑ | ☑ | ☑ |
 | PR2-b (beta→prod promotion) | ☑ | ☑ | ☑ |
 | PR3 (photo ingestion) | parked | — | — |
+| PR4 (§4 item 1 — açaí dropdown option) | ☑ | ☑ | ☐ |
 
 ---
 
