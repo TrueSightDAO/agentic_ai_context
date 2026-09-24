@@ -1,470 +1,355 @@
-# Brazil → San Francisco Freight Pre-Flight Checklist
+# Brazil → San Francisco Freight Lane — End-to-End Runbook
 
-> **Purpose:** Single reference for AI assistants (and human operators) to manage the end-to-end process of freighting cacao from Ilhéus, Brazil to San Francisco, USA. Extracted from the email thread "Re: Quote Gary / Exportação = NCM 1801.00.00" (May–June 2026) involving Gary Teh, Graziela Vedana (Seacos Logistic), Ana Barros & Isis Ribeiro (Omega Services), and Matheus Reis (Gateway.fy).
-
----
-
-## Key Contacts
-
-| Role | Name | Company | Email | Phone |
-|------|------|---------|-------|-------|
-| Freight Forwarder / Coordinator | Graziela Vedana | Seacos Logistic | Graziela@5cl.rs | — |
-| Export Operations | Isis Ribeiro | Omega Services | isis.ribeiro@omegaservicos.com.br | — |
-| Export Analyst / Pricing | Ana Barros | Omega Services | ana.barros@omegaservicos.com.br | — |
-| SISCOMEX / Customs | Iolanda Santos | Omega Services | iolanda.santos@omegaservicos.com.br | — |
-| Export Analyst (Desembaraço) | Gerson Argolo | Omega Services | gerson.argolo@omegaservicos.com.br | — |
-| Warehouse / Cargo Origin | Matheus Reis | Gateway.fy | theus.reis.ssa@gmail.com | +55 11 9 91413-5328 (WhatsApp) / +55 73 99109-0002 |
-| Warehouse Contact (Ilhéus) | Rebecca | — | — | +55 73 99108-2946 |
-| Commercial / Management | Helesson Bastos | Omega Services | helesson.bastos@omegaservicos.com.br | — |
+> **Audience:** AI agents (Sophia / any autopilot instance), LLMs, and human **Envoys** operating the DAO's Brazil export lane.
+> **Canonical file.** If any other document disagrees with this one, **this file wins** — fix the other doc in the same PR.
+> **Lane:** Ilhéus, BA (Matheus / Gateway.fy warehouse) → road → Salvador (SSA) → air → San Francisco (SFO) → Kirsten's SF warehouse.
+> **Commercial basis:** Brazil exporter (Black King, or fallback Coopercabruca) → **TrueTech Inc** (US importer of record, EIN 88-3411514).
+> **Last verified:** 2026-09-22. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`.
 
 ---
 
-## Pre-Flight Checklist
+## 0. Read-me-first — operating contract for agents & Envoys
 
-### Phase 0: Regulatory & System Setup
+If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", obey this contract:
 
-- [x] **SISCOMEX / RADAR registration confirmed** (done Jun 2026)
-  - Omega's 3 customs brokers registered in RADAR by Matheus via [Portal Único Siscomex](https://portalunico.siscomex.gov.br/portal/):
-    1. Valéria Requião Barretto — CPF: 420.749.165-15
-    2. Lazaro Barbosa Reis — CPF: 237.915.355-87
-    3. Mauricio Costa Bezerra — CPF: 374.003.555-20
-- [x] **Power of Attorney (PoA) signed and submitted** (done Jun 2026)
-  - Omega can officially act on the export process
-- [x] **NCM code confirmed: 1801.00.00 (cocoa beans, raw)**
-  - No special treatment required for USA destination
-  - No MAPA (Ministry of Agriculture) clearance needed — confirmed by Omega
-  - Also applies: 1803.10.00 (cacao mass/husk), 2106.90.00 (cacao tea)
-- [ ] **Fiscal Nota (NF-e) issued** ⚠️ **CRITICAL BLOCKER**
-  - **[2026-09-14 update — plan pivot]** Per Seacos/Graziela (2026-08-26): Matheus will **issue the Nota Fiscal himself** — heat-treated pallets sourced and **no trading company** needed; export customs clearance agreed directly with Omega. Saves the trading-company fee (16% over invoice + ~4.2% local taxes). Gate unchanged: Black King's CNPJ must be regularized (exit "Inapto" + renew e-CNPJ + commerce CNAE → IE at SEFAZ-BA) before NF-e model 55 can issue. **Still no confirmation the NF-e has been issued.**
-  - **Black King currently CANNOT issue NF-e.** THREE concurrent root causes (confirmed Jul 2026 by Matheus + former accountant):
-    (1) **Missing commerce CNAE** — CNPJ has only service CNAEs (82.30-0-01, events/fairs) → no Inscrição Estadual (IE) → no NF-e credentialing at SEFAZ-BA;
-    (2) **e-CNPJ digital certificate EXPIRED early June 2026** — blocks all gov portals;
-    (3) **CNPJ flagged "Inapto" (ineligible)** by Receita Federal due to unpaid invoices over the past year — clearance expected Friday→Monday after settling pending invoices.
-  - **PRE-FLIGHT CHECK (new, for ALL future Brazil shipments):** Before booking any cargo, verify (a) e-CNPJ certificate is valid/unexpired, (b) CNPJ status is NOT "Inapto" (check at https://solucoes.receita.fazenda.gov.br/Servicos/ConsCnpjCpf/ConsultaCnpjCpf.asp or e-CAC). An "Inapto" status silently blocks ALL issuance. Fix = settle pending invoices + accountant confirms status update.
-  - **NFA-e (Nota Fiscal Avulsa) is NOT accepted for DU-E registration.** DU-E/Siscomex requires NF-e model 55, which needs IE. Confirmed via online research of Siscomex documentation — the DU-E pulls data directly from NF-e XML; no NFA-e integration exists.
-  - **Sebrae NF-e Emitter (FREE, recommended post-IE):** Sebrae offers a free, web-based NF-e emitter at **https://emissornfe.sebrae.com.br** (350k+ users, 4M+ documents). Supports export NF-e (CFOP 7.101/7.102) — exportação is a Natureza de Operação variation of standard NF-e. Also handles NFS-e, CT-e, NFC-e, and stock control. Requires: Conta Sebrae (free account), ICP-Brasil digital certificate (A1/A3), **IE + SEFAZ credentialing (same prerequisites as any NF-e emitter).** See Appendix A.1.4 for setup steps.
-  - **Self-service enablement path (no accountant needed):** See **Appendix A** for the complete step-by-step guide. Summary: (1) Add commerce CNAE to CNPJ via e-CAC, (2) Request IE at SEFAZ-BA, (3) Credential for NF-e emission, (4) Issue the export NF-e.
-  - **Bilingual self-service guide (PDF):** A polished 10-page bilingual (EN/PT) guide was sent to Matheus on 16 Jun 2026 and is saved at:
-    `agentic_ai_context/exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf`
-    Covers everything from SEFAZ password setup through issuing the DANFE, plus the Coopercabruca fallback.
-  - **Estimated timeline:** 8 days self-service vs. 1–2 months if routed through Matheus's accountant.
-  - **Fallback:** Coopercabruca (CNPJ 31.948.811/0001-42, Itabuna BA) already has IE and NF-e capability — see **Appendix B**.
-  - Once NF-e issued, share XML + DANFE with Omega/Graziela + PIX details for Gary's payment.
-
-### Phase 1: Cargo Preparation at Origin (Ilhéus)
-
-- [ ] **Cargo photos taken and shared**
-  - Matheus sends photos of the approximate load to the thread
-- [ ] **Pallet compliance verified**
-  - All wooden pallets must meet ISPM#15 standards:
-    - Fumigated or heat-treated
-    - IPPC stamp clearly marked on all sides (100% legible)
-    - Original Phytosanitary Certificate to accompany shipping documents
-  - If existing pallets lack IPPC stamps, acquire compliant pallets or use Omega's pallet supply + packing service
-- [ ] **Palletization arranged**
-  - Omega can supply pallets (BRL 195 for 3 pallets) and perform fumigation (BRL 500 for 3 pallets)
-  - Palletization done in Salvador (after road transport from Ilhéus)
-  - Alternatively, check if repacking at the airport is possible to reduce charges
-- [ ] **Packing at Matheus's warehouse**
-  - Coordinate with Matheus to pack the cargo at his warehouse in Ilhéus
-  - Omega to call Matheus to arrange packing and collection
-
-### Phase 2: Inland Transport (Ilhéus → Salvador)
-
-- [ ] **Road transport booked**
-  - From Ilhéus to Salvador
-  - Cost: BRL 6,615.00 + 0.15% ad-valorem (with palletization in Salvador)
-  - Alternative (without palletization in Salvador): BRL 7,290.00 + 0.15% ad-valorem
-- [ ] **Collection scheduled**
-  - Omega's international team coordinates pickup from Matheus's warehouse in Ilhéus
-  - Cargo moves down to Salvador for palletization and airport processing
-
-### Phase 3: Airport & Export Processing (Salvador)
-
-- [ ] **Palletization at Salvador** (if not done at origin)
-  - 3 pallets: BRL 195.00
-  - Fumigation: BRL 500.00
-  - Total pallet cost: BRL 695.00
-- [ ] **Booking confirmed with airline**
-  - Omega awaits confirmation of reservation, scheduling, and Booking
-- [ ] **Airline revalidates quote**
-  - Graziela (Seacos) coordinates with the airline for final rates
-- [ ] **Export documentation prepared**
-  - Air Waybill (AWB)
-  - Commercial Invoice
-  - Packing List
-  - Phytosanitary Certificate (for wooden pallets)
-  - IPPC stamp details on Bill of Lading
-- [ ] **Desembaraço de exportação (export customs clearance)**
-  - Handled by Gerson Argolo (Omega export analyst)
-
-### Phase 4: Air Freight (Brazil → USA)
-
-- [ ] **Air freight booked**
-  - Airport-to-airport (Salvador → San Francisco)
-  - Rate per kg (tiered by weight):
-    - 200 kg: ~$3.50/kg
-    - 300 kg: ~$3.40/kg
-    - 500 kg: ~$3.30/kg
-    - 750 kg: ~$3.30/kg
-    - 1000 kg: ~$3.20/kg
-- [ ] **Brazil airport charges paid**
-  - ~$0.30/kg, minimum $250
-- [ ] **US airline terminal fee**
-  - ~$212.50
-
-### Phase 5: US Import & Customs (San Francisco)
-
-- [ ] **US import handling**
-  - Import handling fee: ~$125.00
-- [ ] **US customs clearance**
-  - Customs clearance fee: ~$150.00
-- [ ] **FDA processing** (if required for cacao)
-  - ~$100.00
-- [ ] **Bond (single-entry)** (if required)
-  - Max($100, $6 per $1,000 of cargo value + duty)
-- [ ] **MPF (Merchandise Processing Fee)**
-  - 0.3464% of cargo value (min $33.58, max $651.50)
-- [ ] **Duty payment** (if applicable)
-  - cargo_value × (duty_percent / 100)
-- [ ] **Customs exam** (if randomly selected)
-  - ~$250 per exam
-
-### Phase 6: Final Delivery
-
-- [ ] **Cargo arrives at San Francisco airport**
-- [ ] **Delivery to Kirsten's warehouse arranged**
-  - Coordinate final-mile delivery from SFO airport to Kirsten's San Francisco warehouse
+1. **Read this file top to bottom before acting.** Never guess how a step works; if this doc is wrong, fix it (same PR) before proceeding.
+2. **NF-e APPROVAL GATE — never issue, and never let anyone issue, a nota fiscal without Gary Teh's explicit approval first.** Gary, 2026-09-18: *"toda vez que for emitir uma nota fiscal ... todas as notas fiscais ... precisam ser submetidas à minha aprovação antes de sua emissão."* Draft → **Gary approves** → then issue.
+3. **MONEY RULE — DAO funds cover ONLY Black King obligations from Nov 2024 onward.** Any payment record (comprovante/DARF) driven by DAO money **must not show anything before Nov 2024** (audit requirement). Never move money without an explicit governor command.
+4. **CURRENCY RULE — the NF-e is issued in BRL.** State the **PTAX reference date** explicitly and use the official **BACEN PTAX** rate for that date (https://www.bcb.gov.br/conversao). Commercial invoices from now on are **dual USD + BRL** (or BRL) so the NF-e can be issued without re-deriving values. See §3.
+5. **Evidence:** every completed step gets an artifact (PDF / XML / screenshot / ledger event) filed under `agentic_ai_context/exports/` (or the relevant repo) and linked in the checklist row.
+6. **Ledger events:** use `lookup_event_docs` → `submit_contribution` for inventory movements, sales, and contributions. A signed submission IS the authorization — there is no DApp approval gate.
+7. **Say what you verified vs. assumed.** Update this file whenever reality diverges from it.
 
 ---
 
-## Cost Summary (as of June 2026)
+## 1. Status snapshot (2026-09-21)
 
-| Item | Amount (BRL) | Amount (USD est.) |
-|------|-------------|-------------------|
-| Road Transport (Ilhéus → Salvador) | 6,615.00 + 0.15% ad-valorem | — |
-| 3 Pallets | 195.00 | — |
+| Gate | Status | Owner | Notes |
+|------|--------|-------|-------|
+| SISCOMEX / RADAR (brokers registered) | ✅ done (Jun 2026) | Matheus | 3 Omega brokers registered — primary source: `brazil/sources/2026-05-18_omega_siscomex_representante_tutorial_notes.md` |
+| Omega PoA signed | ✅ done (Jun 2026) | Matheus | Omega (forwarder) can act on the export — **distinct** from the e-CAC/cartório procuração in §5 Phase 0 |
+| NCM 1801.00.00 confirmed | ✅ | Omega | no MAPA needed for US |
+| **CNPJ regularization (exit Inapto)** | 🟡 in progress | Saymon/Jussileide + Gary | DARF **NOV.2024–JUL.2026** issued & DAO portion paid; **2023 MEI-era guia** pending |
+| **e-CNPJ certificate** | ✅ works | Matheus | cert usable via gov.br (no longer the blocker) |
+| **Commerce CNAE / IE / SEFAZ-BA** | 🔴 blocked | Saymon | needs **Junta Comercial** contract amendment → Prefeitura update |
+| **Municipal licence (licença comercial)** | 🔴 pending | Saymon/Jussileide | needed for the cacao business; not in old doc |
+| **NF-e draft** | 🟠 **errored** | Saymon | draft attempted 2026-09-21 → emitter rejected: **incorrect unidades de medida** for NCM 1801/1803/1804 on export (norm table: **Appendix E**). **Fixed:** Rev 12 invoice + packing list regenerated in the mandated units (PR #1333) → awaiting Saymon re-key |
+| **NF-e issued** | 🔴 **not yet** | Saymon | corrected invoice (**Rev 12**) now merged (§5.1) — Saymon re-keys emitter units per §5.1a, then issues; issuance itself gated on Gary's approval |
+| DU-E (Notificação de Exportação Fiscal) | ⬜ not started | Omega | blocked on NF-e |
+| Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
+| Air freight | ⬜ | Graziela/Omega | rates only |
+| Deadline pressure | — | — | **China partners arrive 2026-09-29** (Gary asked to resolve before then) |
+
+> 📎 **Source (SISCOMEX/RADAR representante registration):** Omega's original step-by-step tutorial is archived at `brazil/sources/2026-05-18_omega_siscomex_representante_tutorial_notes.md` (+ the PDF alongside). Primary source for the "3 Omega brokers registered" row above.
+>
+> ⚠️ **Correction vs. the old doc:** the previous "THREE root causes" (expired e-CNPJ, missing-commerce-CNAE-via-e-CAC, CNPJ Inapto) are **partly stale**. e-CNPJ now works; the CNAE route is superseded by a **Junta Comercial → Prefeitura** chain; the Inapto path now has concrete DARF mechanics.
+
+---
+
+## 2. Roles & contacts
+
+| Role | Name | Company | Contact |
+|------|------|---------|---------|
+| Freight forwarder / coordinator | Graziela Vedana | Seacos Logistic | Graziela@5cl.rs · WhatsApp +1 603-560-0588 |
+| Export operations | Isis Ribeiro | Omega Services | isis.ribeiro@omegaservicos.com.br |
+| Export pricing | Ana Barros | Omega Services | ana.barros@omegaservicos.com.br |
+| SISCOMEX / customs | Iolanda Santos | Omega Services | iolanda.santos@omegaservicos.com.br |
+| Desembaraço (export clearance) | Gerson Argolo | Omega Services | gerson.argolo@omegaservicos.com.br |
+| Commercial / management | Helesson Bastos | Omega Services | helesson.bastos@omegaservicos.com.br |
+| Origin warehouse / cargo | Matheus Reis (Black King, EI) | Gateway.fy | theus.reis.ssa@gmail.com · WA +55 11 91413-5328 · +55 73 99109-0002 |
+| Ilhéus warehouse (physical) | Rebecca | — | +55 73 99108-2946 |
+| **NF-e specialist (hired)** | **Saymon** | (contractor) | WhatsApp group "Black King - Contab" |
+| **Accountant (hired)** | **Jussileide** | (contractor) | WhatsApp group "Black King - Contab" |
+| US importer of record | TrueTech Inc | — | EIN 88-3411514 · 1423 Hayes St, San Francisco, CA 94117 |
+
+> **Note:** the old doc said "bypass the accountant; 8 days". **Accountants have now been hired (Saymon + Jussileide)** and the lane is still not through — the bottleneck is the **structural (Junta/Prefeitura)** chain and the **master-data setup**, not the accountant's responsiveness.
+>
+> **⚠️ Delivery channel — Saymon & Jussileide are NOT on Telegram.** They are contractors on the WhatsApp group **“Black King - Contab”** and have **no access to this Telegram thread (10800)**. Any artifact meant for them (invoices, packing lists, the Rev 12 PDFs, emitter instructions) must be **relayed by Gary into that WhatsApp group** — posting a file in thread 10800 does **not** reach them. Likewise, Saymon's replies arrive in WhatsApp and must be transcribed into the runbook/source-notes by whoever holds that channel. OpenClaw's verified JID list contains **only** The Beer Hall + Prompt Haus — `“Black King - Contab”` is **not** a verified OpenClaw target, so there is currently no automated delivery path to Saymon.
+
+---
+
+## 3. Currency & FX rule (BRL / PTAX)
+
+- The **NF-e must be issued in BRL**. The commercial invoice may be USD (or dual USD+BRL).
+- **Declare the PTAX reference date** on the invoice and NF-e. Use the **official BACEN PTAX** rate for that date: https://www.bcb.gov.br/conversao.
+- **Sebrae emitter does NOT auto-update FX.** Saymon, 2026-09-21: *"toda vez que for emitir uma nota fiscal, será necessário alterar o valor de todos os produtos."* → **re-key every product value on every issuance.**
+- **Convention (Gary, 2026-09-21):** going forward, commercial invoices are quoted in **BRL (dual USD+BRL)** to simplify NF-e issuance.
+- **Worked example (Rev 11, dated 2026-09-21):** total **$6,946.85 USD = R$ 35,828.38 BRL** @ PTAX venda **5.1575 (18/09/2026)**. (No PTAX is published on weekends → nearest business day.)
+
+---
+
+## 4. Documentation model — three layers (do not conflate)
+
+See **Appendix C**. Summary:
+
+- **Brazilian customs** sees: **Black King → TrueTech Inc** (NF-e + DU-E + customs commercial invoice all match).
+- **Tax / transfer pricing** sees: **Black King → TrueSight DAO LLC (Próspera) → TrueTech Inc**.
+- **FDA** sees: **Black King (facility) → TrueTech Inc (importer)**. Próspera never registers (not a food facility).
+
+**Never put Próspera on the NF-e, DU-E, or customs invoice.**
+
+---
+
+## 5. Lane state machine — Phases 0–8
+
+Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
+
+### Phase 0 — Entity, tax & regulatory readiness  ← *current blocker*
+- [ ] **CNPJ regularized (exit Inapto).** Owner: Saymon/Jussileide. Evidence: CNPJ status page (`solucoes.receita.fazenda.gov.br` / e-CAC) shows **Ativa**.
+  - DARF **NOV.2024–JUL.2026** generated & paid (DAO portion = Nov 2024+).
+  - Separate **2023 MEI-era guia** handled separately (can be future-dated; no discount).
+  - ⚠️ The full-debits DARF can only be generated **for the current day** — regenerate on the payment day.
+- [ ] **Company contract amended at Junta Comercial.** Owner: Saymon. (`alteração do contrato social`)
+- [ ] **Prefeitura updated → municipal licence (licença/alvará comercial) for the cacao business.** Owner: Saymon/Jussileide. — *missing from the old doc; currently the key unknown.*
+- [ ] **Tax guides (guias de tributos) generated.** Owner: Jussileide.
+- [ ] **Commerce CNAE active** (46.23-1/04 *comércio atacadista de cacau*). ⚠️ **Open question:** the old doc's "10-min e-CAC CNAE" path is contradicted by Saymon's Junta-Comercial route — confirm with Saymon whether Black King is an Empresário Individual or an Ltda, and which path actually applies. **Do not assume.**
+- [ ] **IE at SEFAZ-BA** obtained (needs the commerce CNAE first). Evidence: Consulta de Inscrição Estadual.
+- [ ] **e-CNPJ certificate valid.** ✅ (verified working — Matheus logs in via gov.br).
+- [ ] **SEFAZ NF-e credentialing** (modelo 55) approved.
+- [ ] **PoA / procuração (Governor admin access) — e-CAC / cartório.** ⚠️ **Distinct from the §1 Omega forwarder PoA (✅ Jun 2026, done).** This is the procuração granting the Governor admin access to Black King's *federal* affairs; Jussileide (2026-09-18) says the **carta de procuração is to be done at the cartório** directly. It does **not** cover SEFAZ-BA / NF-e. For the *forwarder* PoA + SISCOMEX representante registration (a different instrument, already done), see the §1 SISCOMEX/RADAR row and `brazil/sources/2026-05-18_omega_siscomex_representante_tutorial_notes.md`.
+
+### Phase 1 — FX & commercial documents
+- [ ] Commercial invoice + packing list present, **dual USD+BRL**, dated, with **declared PTAX date**.
+- [ ] Current revision pointer pinned below (see §5.1). Evidence: PDFs in `exports/`.
+
+### Phase 2 — NF-e draft & Gary-approval gate
+- [ ] **Draft NF-e prepared** in the Sebrae emitter (master data see §5.2). Owner: Saymon. *(Saymon works in WhatsApp “Black King - Contab”, not Telegram — Gary relays.)*
+- [ ] **🛑 Gary approves the draft** (hard gate §0.2). Evidence: approval message in thread 10800.
+- [ ] **NF-e issued** (modelo 55, CFOP 7.101/7.102, exportação). Evidence: XML + DANFE.
+- [ ] XML + DANFE sent to Graziela/Omega; Omega PIX details to Gary.
+
+### Phase 3 — Cargo prep at origin (Ilhéus)
+- [ ] Cargo photos shared. Owner: Matheus.
+- [ ] **ISPM#15 pallet compliance:** fumigated or heat-treated, **IPPC stamp legible on all sides**, original Phytosanitary Certificate to accompany docs.
+- [ ] Packing arranged at Matheus's Ilhéus warehouse.
+
+### Phase 4 — Inland transport (Ilhéus → Salvador)
+- [ ] Road transport booked. Cost: **BRL 6,615.00 + 0.15% ad-valorem** (with Salvador palletization); **BRL 7,290.00 + 0.15%** without.
+- [ ] Collection scheduled by Omega (pickup at Matheus's warehouse).
+
+### Phase 5 — Airport & export processing (Salvador)
+- [ ] Palletization + fumigation at Salvador (if not at origin): **BRL 195 (3 pallets) + BRL 500 (fumigation) = BRL 695**.
+- [ ] Airline booking confirmed + quote revalidated (Graziela).
+- [ ] **Export docs:** AWB, Commercial Invoice, Packing List, Phytosanitary Cert (pallets), IPPC details.
+- [ ] **DU-E registered** (Notificação de Exportação Fiscal). Owner: Omega.
+- [ ] **Desembaraço de exportação** (Gerson Argolo).
+
+### Phase 6 — Air freight (SSA → SFO)
+- [ ] Air freight booked. Tiered: 200 kg ≈ $3.50/kg · 300 kg ≈ $3.40 · 500 kg ≈ $3.30 · 750 kg ≈ $3.30 · 1000 kg ≈ $3.20.
+- [ ] Brazil airport charges: ≈ $0.30/kg (min $250). US airline terminal ≈ $212.50.
+- [ ] Net **344.06 kg** / gross **364.06 kg** (Rev 12 packing list, derived from documented pack sizes) — Rev 11 stated ≈ 300 / 320 kg; **reconcile against the weighed shipment**.
+
+### Phase 7 — US import, customs & final delivery
+- [ ] US import handling ≈ $125. US customs clearance ≈ $150. FDA processing ≈ $100 (if required).
+- [ ] Bond (single-entry, if req.): max($100, $6 per $1,000 of value+duty). MPF 0.3464% (min $33.58, max $651.50). Duty if applicable. Customs exam ≈ $250 (random).
+- [ ] Delivery SFO → **Kirsten's SF warehouse**.
+
+### Phase 8 — Ledger & reporting (DAO)
+- [ ] Record the **`[INVENTORY MOVEMENT]`** for the shipment once the destination ledger name is confirmed.
+- [ ] File the **contribution event(s)** for the round (with PR/evidence links).
+- [ ] Update this runbook's status snapshot (§1).
+
+#### 5.1 Current commercial revision
+- **Invoice INV-2026-0611-001 Rev 12 (+BRL)**, dated 2026-09-21, **$6,946.85 USD / R$ 35,828.38 BRL** @ PTAX 5.1575 (18/09/2026) — *values unchanged from Rev 11; only the declared units of measure changed.* Files: `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev12_EN_PT_BRL.pdf`; packing list `exports/2026-06-11_packing_list_black_king_to_truetech_rev12_EN_PT.pdf`. Generated reproducibly by `scripts/build_black_king_export_docs.py` (merged `agentic_ai_context` #1333, `c3ac61a`). **Rev 11 is superseded** (its mixed UN/KG units are what the emitter rejected).
+- **Superseded:** Rev 11 — `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev11_EN_PT_BRL.pdf` (and `inv_rev11_brl_dated.pdf`).
+- **Line items (Rev 11):**
+
+| # | NCM | Description | Qty | Unit | USD |
+|---|-----|-------------|-----|------|-----|
+| 1 | 1801.00.00 | Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024 | 129 | UN | $856.56 |
+| 2 | 1803.10.00 | Cacao Husk (KG) — Ilhéus | 20 | KG | $355.71 |
+| 3 | 1803.10.00 | Cacao Mass Bar 500g — Ilhéus 2024 | 37 | UN | $580.90 |
+| 4 | 1801.00.00 | Cacao Nibs (KG) — Ilhéus 2024 | 80 | KG | $1,969.48 |
+| 5 | 1801.00.00 | Cacao Almonds (KG) — AGL8 | 10 | KG | $0.10* |
+| 6 | 2106.90.00 | Cacao Tea (KG) — AGL8 | 12 | KG | $0.12* |
+| 7 | 1803.10.00 | Ceremonial Cacao Pouch 200g — AGL8 | 169 | UN | $1,752.53 |
+| 8 | 1801.00.00 | Cacao Almonds (KG) — AGL13 | 15 | KG | $118.05 |
+| 9 | 1801.00.00 | Cacao Nibs (KG) — AGL13 | 99.5 | KG | $1,012.91 |
+| 10 | 2106.90.00 | Cacao Tea (KG) — AGL13 | 21 | KG | $213.83 |
+| 11 | 1804.00.00 | Coopercabruca Cacao Butter (KG) | 5 | KG | $86.66 |
+
+*Nominal $0.01/unit values used to satisfy emitter validation.
+
+> ✅ **Rev 12 regenerated + merged (2026-09-21).** Applied The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → the commercial invoice + packing list were regenerated in the NCM-mandated export units (PR #1333, `c3ac61a`); see the merged PDFs in `exports/`. **Finalized 2026-09-21 (PR #1335, `f7acdff`):** the red DRAFT banner and all draft/hedge wording were removed from both PDFs; units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation (PL follows Saymon's norm by construction — same generator, shared `LINES`/`UTRIB` table) came from **Envoy**, not governor Gary Teh, and is **not** an authorization.*
+
+#### 5.1a Rev 12 — required export units (NCM remap)
+
+> Source: NCM→uTrib export-unit norm table supplied by Gary 2026-09-21 (**Appendix E**). Chapter-18 raw/intermediate forms (**1801 beans/nibs, 1803 paste/mass, 1804 butter/fat**) must be declared in **TON** (tonelada métrica líquida); 1802 (husks) and finished 1806* use **KG**. Rev 11 declared the 1801/1803/1804 lines in **UN / KG** → this is the rejection.
+
+| # | NCM | Rev-11 qty | Rev-11 unit | Rev-12 required unit | Rev-12 qty (≈ t, see caveat) |
+|---|-----|-----------|-------------|----------------------|------------------------------|
+| 1 | 1801.00.00 | 129 | UN | **TON** | ≈ 0.0293 |
+| 2 | 1803.10.00 | 20 | KG | **TON** | 0.0200 |
+| 3 | 1803.10.00 | 37 | UN | **TON** | ≈ 0.0185 |
+| 4 | 1801.00.00 | 80 | KG | **TON** | 0.0800 |
+| 5 | 1801.00.00 | 10 | KG | **TON** | 0.0100 |
+| 6 | 2106.90.00 | 12 | KG | KG *(not in norm table)* | — |
+| 7 | 1803.10.00 | 169 | UN | **TON** | ≈ 0.0338 |
+| 8 | 1801.00.00 | 15 | KG | **TON** | 0.0150 |
+| 9 | 1801.00.00 | 99.5 | KG | **TON** | 0.0995 |
+| 10 | 2106.90.00 | 21 | KG | KG *(not in norm table)* | — |
+| 11 | 1804.00.00 | 5 | KG | **TON** | 0.0050 |
+
+> The ≈ t column is a **mechanical kg→t / unit-weight conversion** (8 oz pouch = 0.2268 kg; 500 g = 0.5 kg; 200 g = 0.2 kg), now applied on the merged Rev 12 PDFs — Saymon to confirm the declared quantities match the weighed shipment.
+> **Applied as provided:** every line is declared in the exact uTrib the norm table gives for its NCM — no unit substituted or reclassified. Line #2 stays under 1803.10.00 → **TON** as listed.
+> ℹ️ **Not in the table:** NCM **2106.90.00** (Cacao Tea, #6/#10) is outside Chapter 18 and is not keyed by this norm, so no unit was supplied for it; those lines remain **KG** as declared on the invoice.
+
+> 📎 **Operator manual archived (2026-09-22):** `brazil/sources/2026-06_sebrae_emissor_nfe_manual_v10_PT.pdf` — *SEBRAE NF-e Emitter User Manual v10, Jun 2026, 270 pp (PT-BR)* — with distilled notes at `brazil/sources/2026-06_sebrae_emissor_nfe_manual_notes.md`. Authoritative click-by-click for every step below (certificate A1/A3, product fiscal fields incl. **UNIDADE**, Matriz Fiscal/CFOP/CST-CSOSN, export NF-e, rejeições).
+
+#### 5.2 Sebrae emitter — master-data sequence (in order)
+1. **Register the company as emitente** (Saymon, in progress). Black King **already had an account** (Matheus used it before). Login: `https://emissornfe.sebrae.com.br/` → **gov.br** → *Seu Certificado Digital* → Black King cert (shows as Matheus) → select Black King.
+2. **Register products.**
+3. **Register clients** — **TrueTech Inc already registered.**
+4. **Register suppliers (fornecedores).**
+5. **Then issue** the export NF-e (CFOP 7.101/7.102).
+- Emitter alternatives if needed: SEFAZ-BA web emitter (free); national free emitter for BA.
+
+---
+
+## 6. Hard rules & approval gates (checklist)
+
+- [ ] **No NF-e issuance without Gary's explicit approval.**
+- [ ] **DAO money = Nov-2024 obligations only**; comprovantes must not show pre-Nov-2024.
+- [ ] **NF-e in BRL**; PTAX date declared; official BACEN rate.
+- [ ] **Do not issue until CNPJ is Ativa, IE active, SEFAZ NF-e credentialed.**
+- [ ] **Never put Próspera on the customs-layer documents.**
+- [ ] **No production deploys / no money moves without an explicit governor command.**
+
+---
+
+## 7. Cost model (June 2026 quote — verify before booking)
+
+| Item | BRL | USD est. |
+|------|-----|----------|
+| Road Ilhéus → Salvador | 6,615.00 + 0.15% ad-valorem | — |
+| 3 pallets | 195.00 | — |
 | Fumigation (3 pallets) | 500.00 | — |
-| **Subtotal (Brazil inland + pallets)** | **7,310.00 + 0.15%** | — |
-| Air Freight (per kg, tiered) | — | $3.20–3.50/kg |
-| Export Documentation | — | $95.00 |
-| Brazil Airport Charges | — | $0.30/kg (min $250) |
-| US Airline Terminal Fee | — | $212.50 |
-| US Import Handling | — | $125.00 |
-| US Customs Clearance | — | $150.00 |
-| FDA Processing (if req.) | — | $100.00 |
-| MPF (0.3464% of value) | — | $33.58–651.50 |
+| Air freight (tiered) | — | $3.20–3.50/kg |
+| Export documentation | — | $95.00 |
+| Brazil airport charges | — | $0.30/kg (min $250) |
+| US airline terminal | — | $212.50 |
+| US import handling | — | $125.00 |
+| US customs clearance | — | $150.00 |
+| FDA processing (if req.) | — | $100.00 |
+| MPF (0.3464%) | — | $33.58–651.50 |
+| Freight-only total (approx, excl. payload) | — | ≈ **$3,550** |
 
 ---
 
-## Notes & Gotchas
+## 8. Failure modes & troubleshooting
 
-- **Matheus's phone issues:** His number was flagged for a scam attempt — he can receive calls but cannot make outgoing calls. WhatsApp works. Rebecca (at the Ilhéus warehouse, +55 73 99108-2946) can be called for physical warehouse matters.
-- **Timing:** Matheus is usually available between 12pm–1pm Brazil time.
-- **Accountant delays:** Matheus's accountant historically takes 1–2 months for paperwork. **Matheus can bypass the accountant entirely for all steps in this document.** As an Empresário Individual (sole proprietor), he is the legal representative of Black King and can access all government portals directly with his e-CNPJ certificate. See Appendix A for self-service instructions.
-- **NF-e enablement is self-service:** Adding a CNAE (e-CAC), requesting IE (SEFAZ-BA), and credentialing for NF-e (SEFAZ-BA) are all done directly by Matheus with his e-CNPJ certificate. No accountant delegation required. Fastest path: 8 days.
-- **NFA-e is a dead end for exports:** Research confirmed that DU-E/Siscomex requires NF-e model 55. The NFA-e (Nota Fiscal Avulsa) is for occasional domestic operations and has no integration with the DU-E system. Black King must obtain IE and NF-e credentialing.
-- **Airline & rates:** Airline confirmed rates and space as of June 11, 2026 (Graziela). Consolidated pricing still pending — Graziela said she would send "shortly" on June 5 but hasn't delivered yet.
-- **Payment:** Gary oversees payment processing via PIX once the fiscal nota is issued. Omega's PIX details needed at that point.
-- **WhatsApp:** Graziela's WhatsApp is +1 603-560-0588 (shared June 11). Preferred for faster communication.
-- **Commercial Invoice & Packing List:** Already generated and sent to Graziela on June 11, 2026 (INV-2026-0611-001, PL-2026-0611-001).
-- **Coopercabruca as fallback:** If the NF-e enablement timeline is too long, Coopercabruca (Itabuna, BA) already has IE and NF-e. They shipped 100kg cacao via the same SSA→SFO route with Omega in November 2023. See Appendix B for contact details and exportação indireta mechanism.
-
----
-
-## Appendix A: Export NF-e Enablement & Issuance SOP
-
-> **📄 Bilingual companion guide (EN/PT):** A polished 10-page PDF was sent to Matheus on 16 Jun 2026 and is saved in the repo at:
-> [`exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf`](https://github.com/TrueSightDAO/agentic_ai_context/blob/main/exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf)
-> It covers all steps below plus: SEFAZ password/DTE setup, IE request procedure, NF-e credentialing, exchange rate (BACEN), CFOP codes, troubleshooting per step, and the Coopercabruca fallback route.
-
-> **Purpose:** This appendix covers the COMPLETE journey — from enabling NF-e capability on Black King's CNPJ (which currently lacks IE and commerce CNAE) to issuing the final export NF-e. All steps are self-service by Matheus using his e-CNPJ certificate. No accountant needed.
-> **Reference:** Commercial Invoice INV-2026-0611-001 (Rev 2, FOB), Packing List PL-2026-0611-001
-> **Situation:** Black King is an Empresário Individual (CNPJ 50.042.585/0001-80) with only service CNAEs (82.30-0-01). It has no Inscrição Estadual and cannot issue NF-e. The NFA-e (Nota Fiscal Avulsa) path is not viable for DU-E registration — NF-e model 55 is required.
-> **Estimated time:** 8 days self-service (fastest) vs. 1–2 months via accountant.
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| CNPJ shows **Inapto** | missed declarations | settle DARF; verify status; blocks ALL issuance |
+| NF-e emitter rejects product value | FX not updated | re-key BRL values for the current PTAX date (no auto-FX) |
+| "Exportação" missing in operation type | first-time exporter | call SEFAZ-BA support (they enable the export profile) |
+| "IE não encontrada" | IE propagation delay | wait up to 24h |
+| Foreign buyer not found | not registered | add **TrueTech Inc** with **Exterior** flag (already done) |
+| DARF for **all** debits can't be future-dated | system limitation | regenerate the DARF on the payment day |
+| Matheus can't make outbound calls | number flagged | use WhatsApp; Rebecca for warehouse |
+| NF-e rejected: **unidades de medida** | NCM technical norm requires specific units on export (NCM 1801/1803/1804 → **TON**; 1802/1806 → KG — **Appendix E**) | regenerate the invoice (Rev 12) with NCM-required units (§5.1a) + correct values; re-key emitter products |
 
 ---
 
-### Part A.1 — Enable NF-e Capability (CNAE → IE → Credentialing)
+## Appendix A — Export NF-e enablement & issuance SOP
 
-> **Critical note:** Black King is an Empresário Individual — Matheus IS the legal representative. His e-CNPJ certificate grants full authority to make CNPJ changes, request IE, and credential for NF-e. The accountant is an advisor, not a gatekeeper.
+> **Situation:** Black King (CNPJ 50.042.585/0001-80, Ilhéus BA) needs modelo-55 NF-e for export (DU-E requires it; **NFA-e is not accepted**). NF-e needs an **IE**, which needs a **commerce CNAE** — and per Saymon (2026-09-18) the route now runs through a **Junta Comercial contract amendment** and a **Prefeitura update/municipal licence** before the IE/tax guides. **Confirm the exact path with Saymon** (see §5 Phase 0 open question) rather than assuming the old e-CAC-only path.
+>
+> **Bilingual self-service guide (older):** `exports/2026-06-16_export_nfe_enablement_black_king_self_service_guide.pdf`.
 
-#### A.1.1 — Prerequisites (verify you have these)
+**NF-e emission basics (once enabled):**
 
-| Item | Status |
-|------|--------|
-| e-CNPJ digital certificate (ICP-Brasil A1/A3) | ✓ Already used for RADAR/Siscomex |
-| **e-CNPJ certificate VALID (not expired)** | ⚠️ **EXPIRED early June 2026 — RENEW BEFORE SHIPPING** |
-| **CNPJ status NOT "Inapto"** | ⚠️ **WAS "Inapto" (unpaid invoices) — verify cleared at solucoes.receita.fazenda.gov.br** |
-| SEFAZ Services password | Obtain at sefaz.ba.gov.br if not yet |
-| DTE (Domicílio Tributário Eletrônico) adhesion | Required for export ops; do at sefaz.ba.gov.br |
-| Computer with internet | Any browser works |
+| Field | Value |
+|-------|-------|
+| Operation type | Exportação (código 6.501) |
+| Model | **55** |
+| CFOP | **7.101** (produção própria) / **7.102** (revenda) |
+| Emitente | Black King — CNPJ 50.042.585/0001-80; IE **[assigned in Phase 0]**; Av. Tancredo Neves, 4900, Qd H, Cs 9, Ilhéus, BA, 45655-650 |
+| Destinatário | **TrueTech Inc** — Exterior; país EUA (2496); EIN 88-3411514; 1423 Hayes St, San Francisco, CA 94117 |
+| ICMS / IPI | **Isento** |
+| PIS/COFINS | **Suspensão** (export regime) |
+| Currency | **BRL** @ declared PTAX date |
 
-#### A.1.2 — Step 1: Add Commerce CNAE to CNPJ (Day 1)
-
-**WHO:** Matheus. **WHERE:** e-CAC (Receita Federal). **TIME:** ~10 minutes + 24h processing.
-
-1. Go to **https://cav.receita.fazenda.gov.br**
-2. Login: "Entrar com GOV.BR" → "Certificado Digital" → select **e-CNPJ** certificate (NOT e-CPF)
-3. In dashboard: **Alteração de Dados Cadastrais** or **Atualização Cadastral**
-4. Under "Atividades Econômicas" / "CNAE": click **"Incluir"** to add a SECONDARY CNAE
-5. Enter ONE of these commerce CNAE codes:
-   - **46.23-1/04** — Comércio atacadista de cacau (BEST MATCH)
-   - 46.32-0/01 — Comércio atacadista de cereais e leguminosas
-   - 46.39-7/99 — Comércio atacadista de produtos alimentícios em geral
-6. Set as **SECONDARY** activity — do NOT replace the primary CNAE (82.30-0-01)
-7. Click **"Enviar"**. Save the protocol number.
-8. Processing: 1–24 hours. Check CNPJ card at solucoes.receita.fazenda.gov.br
-
-> **Why this works without an accountant:** As Empresário Individual, Matheus is the sole owner/administrator of Black King. The e-CNPJ certificate grants full authority to modify CNPJ registration data. The accountant uses this exact same portal. Adding a secondary CNAE does NOT affect Simples Nacional status.
-
-#### A.1.3 — Step 2: Request Inscrição Estadual (IE) at SEFAZ-BA (Day 2)
-
-**WHO:** Matheus. **WHERE:** sefaz.ba.gov.br. **TIME:** 3–10 business days.
-
-**Prerequisite:** The new commerce CNAE must be visible on the CNPJ card BEFORE proceeding. SEFAZ-BA checks the CNPJ registry automatically and will reject if only service CNAEs are found.
-
-1. Go to **sefaz.ba.gov.br**, login with **e-CNPJ certificate**
-2. Navigate: **Carta de Serviços → Cadastros → Inscrição Estadual**
-3. Select: **"Solicitação de Inscrição no Cadastro de Contribuintes do ICMS"**
-4. System auto-fills from CNPJ. Verify:
-   - CNPJ: 50.042.585/0001-80
-   - Razão Social: MATHEUS REIS PEREIRA
-   - Nome Fantasia: BLACK KING
-   - Endereço: Av. Tancredo Neves, 4900, Qd H, Cs 9, Ilhéus, BA, 45655-650
-5. Set primary economic activity to the new commerce CNAE for ICMS purposes
-6. Upload documents if requested: updated CNPJ card (PDF), proof of address (IPTU or lease), RG and CPF
-7. Submit. Save protocol number. Track on same portal.
-8. If SEFAZ requests more documents via DTE/email, respond promptly — delays here are the main bottleneck.
-
-#### A.1.4 — Step 3: NF-e Emission Credentialing (Day 6–7)
-
-**WHO:** Matheus. **WHERE:** sefaz.ba.gov.br. **TIME:** 24–48 hours.
-
-**Prerequisite:** IE must be active. Verify at sefaz.ba.gov.br → Consulta de Inscrição Estadual.
-
-1. Log into **sefaz.ba.gov.br** with e-CNPJ
-2. Navigate: **Carta de Serviços → Notas Fiscais → Credenciamento NF-e**
-3. Request: **"Autorização para Emissão de NF-e" (modelo 55)**
-4. Processing: 24–48 hours. "Emissão de NF-e" appears in SEFAZ menu.
-
-**NF-e emitter options (all work without accountant):**
-- **Option A (FREE, RECOMMENDED): Sebrae NF-e Emitter** at https://emissornfe.sebrae.com.br — web-based, no installation, 350k+ users. Supports export NF-e (Natureza de Operação "Exportação" with CFOP 7.101/7.102), plus NFS-e, CT-e, NFC-e, and stock control. Login with Conta Sebrae (free account at amei.sebrae.com.br). After first login: complete company profile in Ajustes → Configurações da Empresa, configure Naturezas de Operação (export CFOPs), register products/clients, upload ICP-Brasil certificate (Ajustes → Configuração Fiscal). See full manual at https://sebrae.com.br/subsites/emissor-nf-e
-- **Option B (FREE):** SEFAZ-BA web emitter — login to SEFAZ-BA → Emissão de NF-e. Built-in, no installation. BA-specific.
-- **Option C (FREE):** National NF-e portal at nfe.fazenda.gov.br — download free emitter for BA.
-- **Option D (PAID):** Commercial software. Only worth it for high-volume NF-e issuance.
-
-> **If NF-e menu doesn't appear after approval:** Call SEFAZ-BA support. Sometimes manual profile activation is needed. This is a known first-time issue — they resolve it on the same call.
+**Deliver:** XML + DANFE to Graziela (Graziela@5cl.rs), Isis, Ana, Iolanda; Omega PIX details to Gary.
 
 ---
 
-### Part A.2 — Issue the Export NF-e (Day 8)
-
-> **Once NF-e credentialing is approved,** use any of the emitter options above. All data from Commercial Invoice INV-2026-0611-001.
-
-#### A.2.1 — NF-e Header
+## Appendix B — Coopercabruca fallback route
 
 | Field | Value |
 |-------|-------|
-| Operation type | **Exportação** (código 6.501) |
-| Nature of operation | Exportação definitiva de mercadorias |
-| Model | **55** (NF-e padrão) |
-| CFOP | **7.101** (venda de produção própria) or **7.102** (revenda de terceiros) |
-
-#### A.2.2 — Seller (Emitente) — Black King
-
-| Field | Value |
-|-------|-------|
-| CNPJ | 50.042.585/0001-80 |
-| IE | **[NEW IE NUMBER — will be assigned in Part A.1 Step 2]** |
-| Razão Social | MATHEUS REIS PEREIRA |
-| Nome Fantasia | BLACK KING |
-| Endereço | Av. Tancredo Neves, 4900, Qd H, Cs 9, Ilhéus, BA, 45655-650 |
-
-#### A.2.3 — Buyer (Destinatário) — TrueTech Inc
-
-Select **"Exterior"** as destination type. No Brazilian CNPJ/CPF needed.
-
-| Field | Value |
-|-------|-------|
-| Nome | TrueTech Inc |
-| País | Estados Unidos (código 2496) |
-| ID Exterior | EIN 88-3411514 |
-| Endereço | 1423 Hayes St |
-| Cidade/Estado/CEP | San Francisco, CA, 94117 |
-
-> **First-time:** If TrueTech Inc is not in the system, use "Adicionar Destinatário" / "Novo Cliente" → select "Exterior" type.
-
-#### A.2.4 — Line Items (from Invoice INV-2026-0611-001)
-
-| # | NCM | Description | Qty | Unit | Unit Value (USD) | Total (USD) |
-|---|---|---|---|---|---|---|
-| 1 | 1801.00.00 | Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024 | 129 | UN | $6.64 | $856.56 |
-| 2 | 1803.10.00 | Cacao Husk (KG) — Ilhéus, Brazil | 20 | KG | $17.79 | $355.71 |
-| 3 | 1803.10.00 | Cacao Mass Bar 500g — Ilhéus 2024 | 37 | UN | $15.70 | $580.90 |
-| 4 | 1801.00.00 | Cacao Nibs (KG) — Ilhéus 2024 | 80 | KG | $24.62 | $1,969.48 |
-| 5 | 1801.00.00 | Cacao Almonds (KG) — AGL8 | 10 | KG | $0.01* | $0.10 |
-| 6 | 2106.90.00 | Cacao Tea (KG) — AGL8 | 12 | KG | $0.01* | $0.12 |
-| 7 | 1803.10.00 | Ceremonial Cacao Pouch 200g — AGL8 | 169 | UN | $10.37 | $1,752.53 |
-| 8 | 1801.00.00 | Cacao Almonds (KG) — AGL13 | 15 | KG | $7.87 | $118.05 |
-| 9 | 1801.00.00 | Cacao Nibs (KG) — AGL13 | 99.5 | KG | $10.18 | $1,012.91 |
-| 10 | 2106.90.00 | Cacao Tea (KG) — AGL13 | 21 | KG | $10.18 | $213.83 |
-| 11 | 1804.00.00 | Coopercabruca Cacao Butter (KG) | 5 | KG | $17.33 | $86.66 |
-
-> **Rev 8 note:** the former line 11 (*Cacao Almonds (KG) — AGL14*, 10 KG, $114.12) was **removed from the shipment** at the governor's instruction (thread 10800) and the cacao-butter line renumbered from 12 to 11.
-
-> **Rev 9 note (thread 10800):** line 1 *Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024* reduced **137 → 129 UN** (−8 bags); line 9 *Cacao Nibs (KG) — AGL13* reduced **100 → 99.5 KG** (−500 g). Subtotal $6,918.63 → **$6,860.19**.
-
-> **Rev 10 note (thread 10800):** line 11 *Coopercabruca Cacao Butter (KG)* priced (was TBD) from the Coopercabruca purchase NF-e dated 26/08/2026: **5.00 KG @ BRL 89.60 = BRL 448.00**.
-
-> **Rev 11 note (thread 10800):** line 11 re-priced at the **official BACEN PTAX** rate (14/09/2026, venda **5.1696**) per the governor's instruction to use the official rate rather than the ledger `Brazilian Reis` proxy: **R$ 89.60 ÷ 5.1696 = $17.33/KG = $86.66** (was $20.81 / $104.07 @ 0.2323). Total Invoice Value $6,964.26 → **$6,946.85** (lines 1–11).
-
-> **Rev 12 note (thread 10800):** line 11's SKU index row in the Main Ledger `Currencies` tab (row 108, "Coopercabruca Cacao Butter (KG)", gid 1552160318) had an **empty `HS Code` (col S)** — now set to **`1804`** (text), per the NF-e's own NCM **1804.00.00** (cocoa butter, fat & oil — a distinct chapter-18 heading, vs. `1801` beans / `1803.1` mass / `1806.32` bars / `2106.9` tea). `Currencies` header runs **A–S** (P Inventory Type, Q Sale Type, R GTIN, **S HS Code**); col **T is empty** — the natural home for a future `Source Documents` link column.
-
-> *Items 5 and 6 (AGL8 almonds and tea) have $0 cost basis. If the system requires a nominal value, use $0.01. If $0 is accepted, use $0.00.
-
-#### A.2.5 — Financial & Transport Info
-
-| Field | Value |
-|-------|-------|
-| Incoterms | **FOB** (freight paid by buyer) |
-| Total Invoice Value | **$6,946.85** (USD) — lines 1–11 (Rev 11; cacao butter priced at BACEN PTAX) |
-| Currency | Dólar Americano (USD) |
-| Freight Value | **$0.00** (buyer pays separately) |
-| Transport Mode | Aéreo |
-| Airport of Departure | SSA (Salvador) |
-| Airport of Destination | SFO (San Francisco) |
-| Total Gross Weight | ~320.0 kg |
-| Total Net Weight | ~300.0 kg |
-
-#### A.2.6 — Tax Configuration
-
-| Tax | Setting |
-|-----|---------|
-| **ICMS** | **Isento** (export immunity under Brazilian law) |
-| **IPI** | Isento |
-| **PIS/COFINS** | Suspensão (export suspension regime) |
-
-> **Exchange rate:** If the NF-e system asks for the USD/BRL rate, use the official BACEN rate for the issue date: **https://www.bcb.gov.br/conversao**
-
-#### A.2.7 — Issue and Deliver
-
-1. Click **"Emitir"** / **"Transmitir"** in the NF-e emitter
-2. System validates with SEFAZ. Wait for **"Autorização de Uso"** response (usually seconds)
-3. If approved: **XML file** (official electronic NF-e) + protocol number. If rejected: read error, fix, retry.
-4. Print/save the **DANFE** (Documento Auxiliar da NF-e)
-5. **Email XML + DANFE to:**
-   - Graziela Vedana: **Graziela@5cl.rs**
-   - Isis Ribeiro (Omega Export Ops): **isis.ribeiro@omegaservicos.com.br**
-   - Ana Barros (Omega Pricing): **ana.barros@omegaservicos.com.br**
-   - Iolanda Santos (Omega Siscomex): **iolanda.santos@omegaservicos.com.br**
-6. Also send Omega's PIX details to Gary for payment processing
-
-#### A.2.8 — Troubleshooting: Common First-Time Issues
-
-| Issue | Solution |
-|-------|----------|
-| "Exportação" not in operation type dropdown | Call SEFAZ-BA support — they enable export profile on the phone. This is common for first-time exporters. Do NOT wait for accountant. |
-| "IE não encontrada" error | Wait a few hours for IE to propagate across SEFAZ systems. New IEs may take up to 24h to become available in the NF-e module. |
-| Foreign buyer not in system | Add TrueTech Inc manually with **"Exterior"** flag — no CNPJ needed |
-| System asks for exchange rate | Use official USD/BRL rate from BACEN for the issue date |
-| $0 value items rejected | Enter a nominal value like $0.01 |
-| NF-e menu doesn't appear after credentialing approved | Call SEFAZ-BA support for manual profile activation |
-
----
-
-## Appendix B: Coopercabruca Fallback Route
-
-> **If the NF-e enablement timeline (8+ days) is too long,** use this alternative. Coopercabruca already has IE, NF-e capability, and FDA FSVP (FFR 17660066140, VALID). They shipped 100kg cacao via the same SSA→SFO air freight route with Omega in November 2023.
-
-| Field | Value |
-|-------|-------|
-| Entity | COOPERATIVA DOS CACAUICULTORES DO SUL DA BAHIA - COOPERCABRUCA |
+| Entity | COOPERATIVA DOS CACAUICULTORES DO SUL DA BAHIA — COOPERCABRUCA |
 | CNPJ | 31.948.811/0001-42 |
-| CNAE | 10.93-7-01 (Fabricação de produtos derivados do cacau) |
+| CNAE | 10.93-7-01 |
 | Location | Travessa Belo Horizonte, 166, Pontalzinho, Itabuna, BA, 45603-070 |
-| Contact | coopercabruca@gmail.com / +55 73 9138-8884 |
+| Contact | coopercabruca@gmail.com · +55 73 9138-8884 |
 | FDA FSVP | VALID — FDA FFR 17660066140 |
-| Previous export | 100kg cacao SSA→SFO, November 2023 (Omega handled this shipment) |
+| Prior export | 100 kg cacao SSA→SFO, Nov 2023 (Omega) |
 
-**Mechanism: Exportação Indireta (Indirect Export)**
-
-1. Black King issues a simple **domestic NF-e** to Coopercabruca with CFOP 5501/6501 ("remessa com fim específico de exportação"). No IE needed for domestic operations.
-2. Coopercabruca issues the **export NF-e** to TrueTech Inc with CFOP 7101/7102, referencing Black King's domestic NF-e.
-3. Coopercabruca handles DU-E registration and export despacho with Omega.
-4. Goods ship from Itabuna (same region as Ilhéus, minimal additional inland transport).
-
-**Key consideration:** This adds one intermediary and Coopercabruca would need their margin on the transaction. The export NF-e would carry Coopercabruca's CNPJ, not Black King's. Commercial invoice would be from Coopercabruca to TrueTech Inc.
+**Mechanism — exportação indireta:** (1) Black King domestic NF-e to Coopercabruca (CFOP 5501/6501, "remessa com fim específico de exportação"); (2) Coopercabruca issues the export NF-e to TrueTech (CFOP 7101/7102); (3) Coopercabruca handles DU-E + despacho; (4) ship from Itabuna. Edge: adds an intermediary + margin; export NF-e carries Coopercabruca's CNPJ.
 
 ---
 
-## Appendix C: Triangular Trade Documentation (Two-Layer Invoice Flow)
+## Appendix C — Triangular trade documentation (two-layer flow)
 
-> **Context:** Under the Próspera ZEDE structure (see `BRAZIL_EXPORT_ENTITY_BRIEF.md` and `PROSPERA_ENTITY_OPERATING_AGREEMENT.md`), the trade flow is: Brazilian Export Partner → TrueSight DAO LLC (Próspera) → TrueTech Inc (US) → retailers. This creates two separate documentation layers — one for Brazilian customs, one for tax/transfer pricing.
+> Context: Próspera ZEDE structure — Brazilian Export Partner → TrueSight DAO LLC (Próspera) → TrueTech Inc (US) → retailers.
 
-### C.1 — Two Documentation Layers
+**Layer 1 — Brazilian customs (NF-e + DU-E + customs commercial invoice).** All show the physical destination: **Black King → TrueTech Inc**. The Próspera intermediary is invisible to Brazilian customs.
 
-**Layer 1: Brazilian customs (NF-e + DU-E + customs Commercial Invoice)**
-
-These documents go to Receita Federal/Siscomex and the freight forwarder. They all show the **physical destination**:
-
-| Document | Exporter | Buyer/Destination |
-|----------|----------|-------------------|
-| NF-e (model 55, CFOP 7.101/7.102) | Black King (or Coopercabruca) | TrueTech Inc (US, EIN 88-3411514) |
-| DU-E (Declaração Única de Exportação) | Black King | TrueTech Inc |
-| Commercial Invoice (customs-facing) | Black King | TrueTech Inc |
-
-Brazilian customs only cares about where the goods physically go (US). The NF-e and customs invoice must match — both show TrueTech Inc as the buyer. The Próspera intermediary is invisible to Brazilian customs.
-
-**Layer 2: Tax/transfer pricing (commercial invoices for corporate tax)**
-
-These are separate invoices for the respective tax jurisdictions, documenting where profit is booked:
-
+**Layer 2 — Tax/transfer pricing.**
 ```
-Black King (BR) → TrueSight DAO LLC (Próspera, HN)
-    Invoice: at cost + small margin (arm's-length)
-    Purpose: Black King's Brazilian tax filing; Próspera's purchase basis
-
-TrueSight DAO LLC (Próspera) → TrueTech Inc (US)
-    Invoice: at wholesale price
-    Purpose: TrueTech's COGS (reduces US taxable income); Próspera's revenue
-
-TrueTech Inc → Retailers
-    Invoice: at wholesale/retail price
-    Purpose: US sales reporting
+Black King (BR)      → TrueSight DAO LLC (Próspera, HN)   cost + small margin (arm's-length)
+TrueSight DAO LLC    → TrueTech Inc (US)                  wholesale price
+TrueTech Inc         → Retailers                          wholesale/retail
 ```
+Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 
-Profit is booked at the Próspera layer at **1% flat tax** (Próspera ZEDE regime). Tax authorities see arm's-length transactions between independent entities.
+**FDA/FSVP:** Black King / Coopercabruca / CEPOTX = food facilities (FFR + DUNS); TrueTech Inc = US FSVP + CBP importer of record; **Próspera = none** (never touches product).
 
-### C.2 — FDA/FSVP: Próspera Does NOT Register
-
-| Role | Who | Requirement |
-|------|-----|-------------|
-| Foreign suppliers (food facilities) | Black King, Coopercabruca, CEPOTX, etc. | FDA Food Facility Registration + DUNS (VALID, exp 2026-12-31) |
-| US FSVP + CBP importer of record | TrueTech Inc | FDA FFR 12202640780, DUNS 119035208, FSVP small-importer program |
-| Intermediary (coordination/bookkeeping) | TrueSight DAO LLC (Próspera) | **None.** Does not manufacture, process, hold food, or import into US. Not a food facility. |
-
-The Operating Agreement §11.4 explicitly preserves this: *"TrueTech Inc remains the U.S. FDA-FSVP and Customs importer of record."* FDA only cares about the actual food facility (origin) and the US importer — the intermediary that never touches the product is out of scope.
-
-### C.3 — Key Principle
-
-> **Brazilian customs sees: Black King → TrueTech Inc.**
-> **Tax authorities see: Black King → Próspera → TrueTech Inc.**
-> **FDA sees: Black King (facility) → TrueTech Inc (importer).**
-
-Do NOT put Próspera on the NF-e, DU-E, or customs Commercial Invoice. Those documents reflect the physical export, and the goods physically ship from Brazil to the US.
+**Key principle:** Brazil customs sees *Black King → TrueTech*; tax authorities see *Black King → Próspera → TrueTech*; FDA sees *Black King (facility) → TrueTech (importer)*. **Never put Próspera on the customs-layer docs.**
 
 ---
 
-## Related Documents
+## Appendix D — Change log
 
-- **SUPPLY_CHAIN_AND_FREIGHTING.md** — Freight cost logic, unit economics
-- **CONSIGNMENT_OPTIMAL_QUANTITY_PROPOSAL.md** — Bag quantities and inventory
-- **LEDGER_CONVERSION_AND_REPACKAGING.md** — Repackaging and bag conversion
-- **BRAZIL_EXPORT_ENTITY_BRIEF.md** — Legal structuring brief (Próspera LLC vs Wyoming UNA/DUNA)
-- **PROSPERA_ENTITY_OPERATING_AGREEMENT.md** — Próspera ZEDE operating agreement (Article XI — triangular trade, §11.4 — FSVP continuity)
-- **fda_fsvp/suppliers/black_king/entity.json** — Black King entity profile (CNPJ, DUNS, FDA FFR, FSVP status)
-- **fda_fsvp/suppliers/coopercabruca/entity.json** — Coopercabruca entity profile (fallback exporter)
-- **fda_fsvp/truetech_inc.entity.json** — TrueTech Inc importer of record (EIN, CBP, FDA FFR, DUNS)
-- **~/Applications/tmp/BlackKing_Export_NFe_Enablement.pdf** — Printable self-service guide (generated 16 Jun 2026)
-- **~/Applications/tmp/Instrucoes_Exportacao_Cacau_BlackKing.pdf** — Original bilingual export instructions (16 Jun 2026)
+| Date | Change |
+|------|--------|
+| 2026-09-21 | Full rewrite into end-to-end operator runbook (agent + Envoy contract). Corrected stale Phase 0 (e-CNPJ now works; CNAE path superseded by Junta/Prefeitura chain; Inapto has DARF mechanics). Added: municipal-licence chain, Gary NF-e approval gate, BRL/PTAX rule, Sebrae master-data sequence, treasury/audit rule, Saymon & Jussileide contacts, Phases 0–8, failure modes. Source notes: `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`. |
+| 2026-09-21 | **Rev 12 regenerated + merged** (PR #1333): commercial invoice + packing list re-expressed in the NCM-mandated export units (1801/1803/1804/1805 → TON; 1802/1806 → KG), USD/BRL values unchanged; reproducible generator `scripts/build_black_king_export_docs.py` added. §5.1 current-revision pointer moved to Rev 12; Rev 11 marked superseded. |
+| 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |
+| 2026-09-21 | **Rev 12 finalized** (PR #1335, `f7acdff`): removed the red DRAFT banner + all draft/hedge wording from both PDFs; generator + both PDFs merged. Units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation — that the PL already follows Saymon's norm by construction (same generator, shared `LINES`/`UTRIB` table) — came from **Envoy**, not governor Gary Teh, and is **not** a governor authorization.* |
+| 2026-09-21 | **Saymon/Jussileide are NOT on Telegram** — they are contractors on WhatsApp “Black King - Contab”. Added a delivery-channel warning to §2 so no agent assumes a thread-10800 post reaches them; artifacts for the accountant are relayed by Gary. No automated path (“Black King - Contab” is not in OpenClaw's verified JID list). |
+
+---
+
+## Appendix E — NCM → export unit of measure (uTrib) reference
+
+> Source: NCM/uTrib norm table supplied by Gary **2026-09-21** (transcribed to `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md` §8). This is the *norma técnica* Saymon cited as the cause of the Rev 11 NF-e rejection. Applies to **Chapter 18 (cocoa)** headings on **export** operations. Raw/intermediate forms → **TON**; husks + finished preparations → **KG**.
+
+| NCM | uTrib (export) | Description | Rev-11 lines |
+|-----|----------------|-------------|-------------|
+| 1801.00.00 | **TON** | Tonelada Métrica Líquida | #1, #4, #5, #8, #9 |
+| 1802.00.00 | **KG** | Quilograma | — (see #2 flag) |
+| 1803.10.00 | **TON** | Tonelada Métrica Líquida | #2, #3, #7 |
+| 1803.20.00 | **TON** | Tonelada Métrica Líquida | — |
+| 1804.00.00 | **TON** | Tonelada Métrica Líquida | #11 |
+| 1805.00.00 | **TON** | Tonelada Métrica Líquida | — |
+| 1806.10.00 | **KG** | Quilograma | — |
+| 1806.20.00 | **KG** | Quilograma | — |
+| 1806.31.10 / 1806.31.20 | **KG** | Quilograma | — |
+| 1806.32.10 / 1806.32.20 | **KG** | Quilograma | — |
+| 1806.90.00 | **KG** | Quilograma | — |
+
+**Not covered by this table (confirm with Saymon):** NCM **2106.90.00** (Rev-11 lines #6, #10 — Cacao Tea) is outside Chapter 18; confirm its export uTrib independently.
+
+---
+
+## Related documents
+
+- `SUPPLY_CHAIN_AND_FREIGHTING.md` — freight cost logic, unit economics
+- `CONSIGNMENT_OPTIMAL_QUANTITY_PROPOSAL.md` — bag quantities / inventory
+- `LEDGER_CONVERSION_AND_REPACKAGING.md` — repackaging / bag conversion
+- `brazil/BRAZIL_EXPORT_LANE_LEARNINGS.md` — consolidated Jun–Aug 2026 learnings
+- `brazil/BRAZIL_EXPORT_ENTITY_BRIEF.md` — legal structuring (Próspera LLC)
+- `PROSPERA_ENTITY_OPERATING_AGREEMENT.md` — Próspera ZEDE operating agreement (Art. XI)
+- `fda_fsvp/suppliers/black_king/entity.json`, `fda_fsvp/suppliers/coopercabruca/entity.json`, `fda_fsvp/truetech_inc.entity.json`

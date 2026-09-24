@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@page { size: 13.333in 7.5in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Helvetica, Arial, sans-serif; color: #1a1a1a; }
+.slide { width: 13.333in; height: 7.5in; page-break-after: always; position: relative; overflow: hidden; background: #fff; }
+.band { padding: 0.5in 0.65in 0 0.65in; }
+.title { font-size: 34pt; font-weight: bold; color: #3d2b1f; line-height: 1.05; }
+.sub { font-size: 12pt; color: #b5651d; font-weight: bold; margin-top: 6px; letter-spacing: .5px; }
+.foot { position: absolute; bottom: 0.28in; left: 0.65in; right: 0.65in; font-size: 8pt; color: #999; border-top: 1px solid #eee; padding-top: 6px; display:flex; justify-content:space-between; }
+.body { padding: 0.3in 0.65in 0; display: flex; gap: 0.4in; }
+.col-l { flex: 1.05; }
+.col-r { flex: 1; }
+ul { list-style: none; }
+li { font-size: 13pt; line-height: 1.5; margin-bottom: 11px; padding-left: 20px; position: relative; }
+li:before { content: "\25CF"; color: #e08b34; position: absolute; left: 0; font-size: 9pt; top: 2px; }
+li b { color: #3d2b1f; }
+.photo { width: 100%; object-fit: cover; border-radius: 6px; display:block; }
+.cap { font-size: 8.5pt; color: #888; font-style: italic; margin-top: 4px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.h-photo { width: 100%; height: 2.4in; object-fit: cover; }
+.cover { background: #1c2b1a; color: #fff; }
+.cover .cwrap { position:absolute; inset:0; }
+.cover .cimg { width:100%; height:100%; object-fit:cover; }
+.cover .cwrap:after { content:""; position:absolute; inset:0;
+  background: linear-gradient(105deg, rgba(12,22,12,.92) 0%, rgba(12,22,12,.80) 45%, rgba(12,22,12,.45) 100%); }
+.cover .cbox { position:absolute; left:0.9in; top:1.5in; right:0.9in; }
+.cover .ct { font-size: 52pt; font-weight:bold; color:#fff; line-height:1; }
+.cover .cs { font-size: 17pt; color:#f0b76a; margin-top:14px; font-weight:bold;}
+.cover .clist { margin-top: 30px; font-size: 13.5pt; color:#e8e8e8; line-height:1.9; }
+.cover .clist span { color:#fff; font-weight:bold; }
+.aglance td { font-size: 11.5pt; padding: 7px 10px; vertical-align: top; border-bottom:1px solid #eee;}
+.aglance td.d { font-weight:bold; color:#b5651d; width: 1.7in; white-space:nowrap;}
+.aglance td.h { font-weight:bold; color:#3d2b1f; width: 1.6in;}
+table.fl { width:100%; border-collapse:collapse; }
+table.fl th { background:#3d2b1f; color:#fff; font-size:10pt; padding:7px 9px; text-align:left;}
+table.fl td { font-size:10.5pt; padding:6px 9px; border-bottom:1px solid #eee;}
+table.fl tr:nth-child(even) td { background:#faf6f1; }
+.h2 { font-size:15pt; font-weight:bold; color:#3d2b1f; margin: 6px 0 10px 0;}
+.note { font-size:9.5pt; color:#777; font-style:italic; margin-top:10px;}
+.sched { width:100%; border-collapse:collapse; margin-bottom:4px; }
+.sched td { font-size:9.5pt; padding:3px 7px; border-bottom:1px solid #f0e8df; vertical-align:top; }
+.sched td.day { font-weight:bold; color:#b5651d; width:1.15in; white-space:nowrap;}
+.venueh { font-size:12pt; font-weight:bold; color:#3d2b1f; margin:0 0 4px 0; }
+.foodtbl { width:100%; border-collapse:collapse; }
+.foodtbl td { font-size:10pt; padding:5px 8px; border-bottom:1px solid #f0e8df; vertical-align:top;}
+.foodtbl td.n { font-weight:bold; color:#3d2b1f; width:2.1in;}
+.badge { display:inline-block; font-size:8pt; background:#eef6ea; color:#3d6b2f; border-radius:8px; padding:1px 7px; margin-left:5px;}
+.stop .body { align-items: stretch; }
+.stop .col-l { display:flex; flex-direction:column; justify-content:center; }
+.stop .col-l ul { margin-bottom: 0; }
+.stop li { font-size: 15pt; line-height: 1.55; margin-bottom: 20px; }
+.stop li:before { font-size: 10pt; top: 3px; }
+.stop .highlight { margin-top: 8px; background:#fdf6ee; border-left:5px solid #e08b34; border-radius:6px; padding:12px 15px; font-size:11pt; color:#6b4a2f; line-height:1.45; }
+.stop .highlight b { color:#3d2b1f; }
+.stop .col-r { display:flex; flex-direction:column; justify-content:center; }
+</style></head><body>
+
+<!-- 1 CAPA -->
+<div class="slide cover">
+  <div class="cwrap"><img class="cimg" src="img/cover.jpg"></div>
+  <div class="cbox">
+    <div class="ct">Bem-vinda à Bahia, Liz</div>
+    <div class="cs">Tour de Origem Agroverse &nbsp;&middot;&nbsp; 29 de setembro &ndash; 8 de outubro de 2026</div>
+    <div class="clist">
+      <span>CIC Centro de Inovação do Cacau</span> &mdash; Ilhéus (29 set)<br>
+      <span>Armazém Black King</span> &middot; <span>Fábrica de Chocolate Santos</span> &middot; <span>Coopercabruca</span> &mdash; Ilhéus / Itabuna (30 set)<br>
+      <span>Fazenda do Oscar</span> &mdash; agrofloresta de cabruca (3 out)<br>
+      <span>Itacaré</span> &mdash; fazendas, forró, capoeira e o litoral do cacau
+    </div>
+  </div>
+</div>
+
+<!-- 2 RELANCE -->
+<div class="slide">
+  <div class="band"><div class="title">Seu Roteiro na Bahia em um Relance</div><div class="sub">TOUR DE ORIGEM AGROVERSE &nbsp;&middot;&nbsp; 29 SET &ndash; 8 OUT 2026</div></div>
+  <div class="body">
+    <div class="col-l">
+      <table class="aglance">
+        <tr><td class="d">Dia 1 &middot; 29 set</td><td><b>CIC &mdash; Centro de Inovação do Cacau.</b> Chegada a Ilhéus 09:20. Análise laboratorial, qualidade e rastreabilidade com Cristiano Villela Dias.</td></tr>
+        <tr><td class="d">Dia 2 &middot; 30 set</td><td><b>Circuito Ilhéus / Itabuna.</b> Armazém Black King (Matheus Reis) &middot; Fábrica de Chocolate Santos &mdash; bean-to-bar &middot; cooperativa Coopercabruca.</td></tr>
+        <tr><td class="d">Dias 4&ndash;5 &middot; 1&ndash;2 out</td><td><b>Itacaré.</b> Fazendas de cabruca e o litoral do cacau; noites de forró e capoeira.</td></tr>
+        <tr><td class="d">Dia 6 &middot; 3 out</td><td><b>Fazenda do Oscar.</b> Agrofloresta de cabruca de três gerações, fermentação e secagem ao sol.</td></tr>
+        <tr><td class="d">Dias 7&ndash;10 &middot; 4&ndash;8 out</td><td><b>Cultura e descanso.</b> Forró, capoeira, Vipassana; logística final; partida 8 out 17:55.</td></tr>
+      </table>
+      <div class="note">Confirmado: CIC (29 set) e Fazenda do Oscar (3 out). O circuito de 30 set e os demais dias são propostas a confirmar.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/oscar1.jpg">
+      <div class="cap">Cacaual de cabruca, Bahia</div>
+      <img class="photo h-photo" src="img/capo1.jpg" style="margin-top:10px">
+      <div class="cap">Litoral da Bahia &mdash; capoeira e pôr do sol</div>
+    </div>
+  </div>
+  <div class="foot"><span>Preparado para Elizabeth Wong &middot; Agroverse / TrueSight DAO</span><span>www.agroverse.shop</span></div>
+</div>
+
+<!-- 3 VOOS -->
+<div class="slide">
+  <div class="band"><div class="title">Chegando à Bahia &mdash; Voos</div><div class="sub">RESERVA 1658115660403049 &nbsp;&middot;&nbsp; TODOS OS HORÁRIOS LOCAIS</div></div>
+  <div class="body" style="display:block">
+    <div class="h2">Ida &mdash; Hong Kong a Ilhéus (31h 35m)</div>
+    <table class="fl"><tr><th>Data</th><th>Partida</th><th>Voo</th><th>Chegada</th></tr>
+      <tr><td>28 set</td><td>12:45 &mdash; HKG T1</td><td>Cathay Pacific CX884</td><td>10:45 &mdash; LAX (B)</td></tr>
+      <tr><td>28 set</td><td>13:55 &mdash; LAX T2</td><td>LATAM LA8087</td><td>29 set 05:30 &mdash; GRU (T3)</td></tr>
+      <tr><td>29 set</td><td>07:20 &mdash; GRU T2</td><td>LATAM LA3254</td><td>29 set 09:20 &mdash; IOS Ilhéus</td></tr>
+    </table>
+    <div class="h2" style="margin-top:16px">Volta &mdash; Ilhéus a Hong Kong (38h)</div>
+    <table class="fl"><tr><th>Data</th><th>Partida</th><th>Voo</th><th>Chegada</th></tr>
+      <tr><td>8 out</td><td>17:55 &mdash; IOS</td><td>LATAM LA4603</td><td>8 out 20:10 &mdash; GRU (T2)</td></tr>
+      <tr><td>8 out</td><td>23:15 &mdash; GRU T3</td><td>LATAM LA8086</td><td>9 out 07:40 &mdash; LAX (B)</td></tr>
+      <tr><td>9 out</td><td>12:25 &mdash; LAX (B)</td><td>Cathay Pacific CX885</td><td>10 out 18:55 &mdash; HKG T1</td></tr>
+    </table>
+    <div class="note">Janela em terra: chegada a Ilhéus 09:20 em 29 set &rarr; partida 17:55 em 8 out &mdash; cerca de 9&frac12; dias. Ilhéus (IOS) a Itacaré são ~70 km, 1h20&ndash;2h de carro (BA-001).</div>
+  </div>
+  <div class="foot"><span>Preparado para Elizabeth Wong &middot; Agroverse / TrueSight DAO</span><span>Página 3</span></div>
+</div>
+
+<!-- 4 CIC -->
+<div class="slide stop">
+  <div class="band"><div class="title">Parada 1 &mdash; CIC Centro de Inovação do Cacau</div><div class="sub">ILHÉUS &nbsp;&middot;&nbsp; TERÇA-FEIRA, 29 DE SETEMBRO &nbsp;&middot;&nbsp; CONFIRMADO</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Conheça <b>Cristiano Villela Dias</b>, diretor científico do CIC (Centro de Inovação do Cacau).</li>
+        <li>Análise físico-química das amêndoas: qualidade, índice de fermentação e rastreabilidade.</li>
+        <li>Parte do <b>PCTSul</b> &mdash; o parque científico que impulsiona a nova economia profissional do cacau no sul da Bahia.</li>
+        <li>O laboratório por trás das certificações de qualidade e das alegações de origem da Agroverse.</li>
+      </ul>
+      <div class="highlight"><b>Por que importa:</b> os laudos do CIC são a espinha científica da origem e da qualidade da Agroverse &mdash; é aqui que o cacau é classificado.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/cic3.jpg">
+      <div class="cap">Cristiano (CIC), Orlantildes e Gary</div>
+      <img class="photo h-photo" src="img/cic1.jpg" style="margin-top:10px">
+      <div class="cap">Roda de sabores do cacau</div>
+    </div>
+  </div>
+  <div class="foot"><span>Parada 1 de 5 &middot; CIC Centro de Inovação do Cacau</span><span>agroverse.shop/partners/cic-cacao-innovation-center</span></div>
+</div>
+
+<!-- 5 ARMAZÉM -->
+<div class="slide stop">
+  <div class="band"><div class="title">Parada 2 &mdash; Armazém Black King</div><div class="sub">ILHÉUS &nbsp;&middot;&nbsp; QUARTA-FEIRA, 30 DE SETEMBRO &nbsp;&middot;&nbsp; PROPOSTO</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Administrado por <b>Matheus Reis</b> &mdash; nosso parceiro de exportação e armazenagem local.</li>
+        <li>Guarda o estoque de cacau cerimonial da Agroverse: <b>sacos com QR</b>, rastreados por lote no ledger.</li>
+        <li>Veja como o cacau circula: fazenda &rarr; armazém &rarr; ensacamento &rarr; registro de QR &rarr; embarque.</li>
+        <li>Conheça a equipe por trás de cada pedido &mdash; Matheus, Emelin, Clara e Fernando.</li>
+      </ul>
+      <div class="highlight"><b>Por que importa:</b> este é o ponto físico de transferência &mdash; fazenda &rarr; armazém &rarr; saco com QR &rarr; embarque para o seu mercado.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/wh.jpg">
+      <div class="cap">Armazém Black King, Ilhéus</div>
+      <img class="photo h-photo" src="img/wh2.jpg" style="margin-top:10px">
+      <div class="cap">Impressão de QR para rastreabilidade dos sacos</div>
+    </div>
+  </div>
+  <div class="foot"><span>Parada 2 de 5 &middot; Armazém Black King</span><span>agroverse.shop/partners/black-king-ilheus</span></div>
+</div>
+
+<!-- 6 SANTOS -->
+<div class="slide stop">
+  <div class="band"><div class="title">Parada 3 &mdash; Fábrica de Chocolate Santos</div><div class="sub">ITABUNA &nbsp;&middot;&nbsp; QUARTA-FEIRA, 30 DE SETEMBRO &nbsp;&middot;&nbsp; PROPOSTO</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Processamento artesanal bean-to-bar com <b>José Carlos (Santos)</b>, veterano de mais de 40 anos da indústria cacaueira da Bahia.</li>
+        <li>Transforma as amêndoas da Agroverse em nibs, licor e barras acabadas &mdash; na origem.</li>
+        <li>Acompanhe a torra, a descascagem, a quebra e a melange &mdash; todo o processo artesanal.</li>
+        <li>Esta é a fábrica no centro da nossa atual conversa sobre o processamento dos <b>40 kg de cacau do Oscar</b>.</li>
+      </ul>
+      <div class="highlight"><b>Por que importa:</b> os <b>40 kg do cacau do Oscar</b> já lançados no ledger passam por esta sala &mdash; cultivar (Oscar) &rarr; transformar (Santos) &rarr; consolidar (armazém) &rarr; exportar.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/santos_hero.jpg">
+      <div class="cap">Fábrica de Chocolate Santos, Itabuna</div>
+      <img class="photo h-photo" src="img/santos2.jpg" style="margin-top:10px">
+      <div class="cap">Processando as amêndoas</div>
+    </div>
+  </div>
+  <div class="foot"><span>Parada 3 de 5 &middot; Fábrica de Chocolate Santos</span><span>agroverse.shop/partners/santos-chocolate-factory</span></div>
+</div>
+
+<!-- 7 COOPERCABRUCA -->
+<div class="slide stop">
+  <div class="band"><div class="title">Parada 4 &mdash; Coopercabruca</div><div class="sub">ITABUNA &nbsp;&middot;&nbsp; QUARTA-FEIRA, 30 DE SETEMBRO &nbsp;&middot;&nbsp; VISITA RÁPIDA</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Uma cooperativa de produtores (Cooperativa dos Cacauicultores do Sul da Bahia) cujas fazendas associadas fornecem cacau de cabruca.</li>
+        <li>Conheça <b>Orlantildes Santos Pereira</b>, presidente da cooperativa.</li>
+        <li>Detém as credenciais de <b>IE e NF-e</b> por trás da nossa papelada de exportação e do registro MAPA/GACC.</li>
+        <li>Cabruca significa cacau cultivado à sombra da Mata Atlântica nativa &mdash; o modelo de cultivo por trás das nossas amêndoas.</li>
+      </ul>
+      <div class="highlight"><b>Por que importa:</b> a cooperativa detém as credenciais de IE / NF-e e MAPA/GACC que tornam cada embarque legal.</div>
+      <div class="note">Itabuna, cerca de 25 km de Ilhéus &mdash; o mesmo trajeto curto do armazém e da fábrica.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/coop_h.jpg">
+      <div class="cap">Coopercabruca &mdash; sul da Bahia</div>
+      <img class="photo h-photo" src="img/wh3.jpg" style="margin-top:10px">
+      <div class="cap">A equipe na fazenda</div>
+    </div>
+  </div>
+  <div class="foot"><span>Parada 4 de 5 &middot; Coopercabruca</span><span>agroverse.shop</span></div>
+</div>
+
+<!-- 8 OSCAR -->
+<div class="slide stop">
+  <div class="band"><div class="title">Parada 5 &mdash; Fazenda do Oscar &middot; Agrofloresta de Cabruca</div><div class="sub">SUL DA BAHIA &nbsp;&middot;&nbsp; SÁBADO, 3 DE OUTUBRO &nbsp;&middot;&nbsp; CONFIRMADO</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Três gerações de agricultura; a terra cultiva cacau há mais de um século.</li>
+        <li>Cacaueiros <b>Criollo</b> antigos (~80 anos) à sombra da Mata Atlântica nativa &mdash; verdadeira cabruca.</li>
+        <li>Colheita, quebra dos frutos, tanques de fermentação e secagem ao sol no <i>terreiro</i>.</li>
+        <li>Conheça <b>Oscar</b> (Oscar Martins da Silva Miranda) &mdash; o produtor por trás da nossa exportação atual.</li>
+      </ul>
+      <div class="highlight"><b>Por que importa:</b> o cacau de cabruca regenerado como o do Oscar restaura a Mata Atlântica &mdash; o braço no território da nossa missão de 10.000 hectares.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/oscar3.jpg">
+      <div class="cap">Secagem ao sol no terreiro &mdash; Fazenda do Oscar</div>
+      <img class="photo h-photo" src="img/oscar2.jpg" style="margin-top:10px">
+      <div class="cap">Oscar, nosso produtor parceiro</div>
+    </div>
+  </div>
+  <div class="foot"><span>Parada 5 de 5 &middot; Fazenda do Oscar</span><span>agroverse.shop/farms/oscar-bahia</span></div>
+</div>
+
+<!-- 9 DIA A DIA -->
+<div class="slide">
+  <div class="band"><div class="title">Dia a Dia</div><div class="sub">29 DE SETEMBRO &ndash; 8 DE OUTUBRO DE 2026</div></div>
+  <div class="body" style="display:block;padding-top:0.15in">
+    <table class="fl">
+      <tr><th>Data</th><th>Dia</th><th>Plano</th></tr>
+      <tr><td>29 set</td><td>Ter</td><td>Chegada a Ilhéus 09:20. <b>CIC</b> (Centro de Inovação do Cacau). Pernoite em Ilhéus.</td></tr>
+      <tr><td>30 set</td><td>Qua</td><td>Circuito Ilhéus / Itabuna &mdash; <b>Armazém Black King, Fábrica Santos, Coopercabruca</b>. Deslocamento rumo a Itacaré.</td></tr>
+      <tr><td>1 out</td><td>Qui</td><td>Itacaré &mdash; imersão em fazendas (proposto: Fazenda Clara, "Jesus do Deus" da Vivi). Noite: forró ou capoeira.</td></tr>
+      <tr><td>2 out</td><td>Sex</td><td>Dia flexível, posicionando rumo à região do Oscar. Noite: "Wild Forró" da LahSelva.</td></tr>
+      <tr><td>3 out</td><td>Sáb</td><td><b>Fazenda do Oscar</b> &mdash; visita de dia inteiro: colheita, fermentação, secagem ao sol.</td></tr>
+      <tr><td>4 out</td><td>Dom</td><td>Descanso e reflexão. Opcional: Vipassana (11:00), constelação familiar (17:00).</td></tr>
+      <tr><td>5 out</td><td>Seg</td><td>Dia cultural em Itacaré e arredores. Noite: forró na Casa Maré (18:00).</td></tr>
+      <tr><td>6 out</td><td>Ter</td><td>Dia livre &mdash; desdobramentos e captação de mídia. Noite: capoeira (18:00).</td></tr>
+      <tr><td>7 out</td><td>Qua</td><td>Deslocamento para Ilhéus. Logística final e mídia.</td></tr>
+      <tr><td>8 out</td><td>Qui</td><td>Visitas finais em Ilhéus. <b>Partida às 17:55</b> para Hong Kong.</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>Preparado para Elizabeth Wong &middot; Agroverse / TrueSight DAO</span><span>Página 9</span></div>
+</div>
+
+<!-- 10 RASTREABILIDADE -->
+<div class="slide">
+  <div class="band"><div class="title">Da Fazenda à Sua Porta &mdash; Prova no Ledger</div><div class="sub">RASTREABILIDADE, DE PONTA A PONTA</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li>Cada embarque da Agroverse (série AGL) é fotografado e registrado de ponta a ponta.</li>
+        <li><b>Sacos com QR</b> ligam cada unidade ao produtor, ao lote de fermentação e ao comprador.</li>
+        <li>Blockchain + ledger no Google Sheets = rastreabilidade total da árvore à mesa.</li>
+        <li>Os 40 kg do cacau do Oscar que viajam nesta safra são um entre muitos embarques para nossos parceiros.</li>
+      </ul>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/wh2.jpg">
+      <div class="cap">Sacos com QR &mdash; prontos para viajar</div>
+      <img class="photo h-photo" src="img/santos1.jpg" style="margin-top:10px">
+      <div class="cap">Vendo as amêndoas pela primeira vez</div>
+    </div>
+  </div>
+  <div class="foot"><span>Rastreabilidade</span><span>truesight.me/agroverse-shipments</span></div>
+</div>
+
+<!-- 11 CULTURA -->
+<div class="slide">
+  <div class="band"><div class="title">Itacaré &mdash; Cultura e o Litoral do Cacau</div><div class="sub">FORRÓ &middot; CAPOEIRA &middot; YOGA &middot; A MATA ATLÂNTICA</div></div>
+  <div class="body">
+    <div class="col-l">
+      <ul>
+        <li><b>Forró e capoeira</b> durante a semana &mdash; LahSelva (ter/qui 18:00; sex "Wild Forró" 21:00), forró na Casa Maré (seg 18:00).</li>
+        <li><b>Domingo de calma</b> &mdash; Vipassana na Casa Fluir (11:00), constelação familiar (17:00).</li>
+        <li>Rios, cachoeiras e floresta entre os dias de fazenda &mdash; um lugar natural para descansar.</li>
+        <li>Capoeira + cacau: o mesmo círculo de cultura, saúde e comunidade que levamos aos EUA.</li>
+      </ul>
+      <div class="note">Programação apenas noturna &mdash; o dia fica livre para as visitas às fazendas.</div>
+    </div>
+    <div class="col-r">
+      <img class="photo h-photo" src="img/capo1.jpg">
+      <div class="cap">Roda ao pôr do sol na praia, Itacaré</div>
+      <img class="photo h-photo" src="img/oscar1.jpg" style="margin-top:10px">
+      <div class="cap">Terra de cacau &mdash; colinas da Mata Atlântica</div>
+    </div>
+  </div>
+  <div class="foot"><span>Itacaré, Bahia</span><span>capoeira.agroverse.shop</span></div>
+</div>
+
+<!-- 12 COMIDA -->
+<div class="slide">
+  <div class="band"><div class="title">Onde Comer &mdash; Itacaré e o Litoral do Cacau</div><div class="sub">NOTAS DE COMIDA &nbsp;&middot;&nbsp; COZINHA BAIANA, FRESCA DO MAR</div></div>
+  <div class="body">
+    <div class="col-l">
+      <div class="h2">O prato para provar primeiro</div>
+      <table class="foodtbl">
+        <tr><td class="n">Moqueca</td><td>Prato-símbolo da Bahia &mdash; ensopado de peixe ou camarão com azeite de dendê, leite de coco, tomate e coentro.</td></tr>
+        <tr><td class="n">Acarajé</td><td>Bolinho de feijão-fradinho frito no dendê, aberto e recheado com vatapá, camarão e salada. Comida de rua, melhor ao pôr do sol.</td></tr>
+        <tr><td class="n">Vatapá e Caruru</td><td>Ensopados afro-brasileiros ricos de camarão, castanhas e dendê &mdash; o coração da cozinha baiana.</td></tr>
+        <tr><td class="n">Pão de queijo</td><td>Pãozinho de queijo quentinho &mdash; perfeito com o cacau da manhã.</td></tr>
+        <tr><td class="n">Açaí e frutas frescas</td><td>O litoral é farto de frutas tropicais, sucos e tigelas de açaí.</td></tr>
+      </table>
+    </div>
+    <div class="col-r">
+      <div class="h2">Onde comer</div>
+      <table class="foodtbl">
+        <tr><td class="n">Restaurante Tia Deth</td><td>Itacaré &mdash; a "rainha das moquecas"; veja o rio passar.</td></tr>
+        <tr><td class="n">Restaurante Sabores da Terra</td><td>Itacaré &mdash; cozinha regional generosa e uma moqueca celebrada.</td></tr>
+        <tr><td class="n">Cabana da Ximbica / Aloha</td><td>Barracas de praia na Tiririca &mdash; moqueca, frutos do mar e vista do pôr do sol.</td></tr>
+        <tr><td class="n">Saravá Saravá</td><td>Cozinha brasileira moderna; descontraída e elegante.</td></tr>
+        <tr><td class="n">Barracas de acarajé na rua</td><td>Barracas noturnas na cidade &mdash; baratas, frescas, inesquecíveis.</td></tr>
+      </table>
+      <div class="note">Vegetariano e vegano: fartura. Peça "sem dendê", ou a "moqueca de banana-da-terra". Casas de suco e açaí por toda parte.</div>
+    </div>
+  </div>
+  <div class="foot"><span>Comida e Gastronomia &middot; Itacaré, Bahia</span><span>Página 12</span></div>
+</div>
+
+<!-- 13 HORÁRIOS -->
+<div class="slide">
+  <div class="band"><div class="title">Cultura &mdash; Horários Semanais das Casas</div><div class="sub">FORRÓ &middot; CAPOEIRA &middot; YOGA &middot; MEDITAÇÃO &mdash; O QUE ACONTECE A CADA DIA</div></div>
+  <div class="body" style="padding-top:0.05in">
+    <div class="col-l">
+      <div class="venueh">LahSelva <span class="badge">@lahselva_</span></div>
+      <table class="sched">
+        <tr><td class="day">Seg</td><td>10:00 Dança Cigana &middot; 12:00 Dança Tribal do Ventre &middot; 18:30 Clube do Livro</td></tr>
+        <tr><td class="day">Ter</td><td>07:30 Yoga Hatha &middot; 10:00/11:00 Jazz &middot; <b>18:00 Capoeira</b> &middot; 19:30 Pandeiro</td></tr>
+        <tr><td class="day">Qua</td><td>09:00 Feira das Mulheres do Campo &middot; <b>18:30 Forró</b> &middot; 19:30 Forró Avançado</td></tr>
+        <tr><td class="day">Qui</td><td>07:30 Yoga &middot; 15:00 Dança do Ventre &middot; <b>18:00 Capoeira</b> &middot; 19:30 Pandeiro &middot; 20:30 Samba</td></tr>
+        <tr><td class="day">Sex</td><td><b>18:30 Forró &middot; 19:30 Forró Avançado &middot; 21:00 Wild Forró</b> &#11088;</td></tr>
+        <tr><td class="day">Sáb</td><td>18:30 Salsa</td></tr>
+        <tr><td class="day">Dom</td><td>&mdash; sem atividades públicas &mdash;</td></tr>
+      </table>
+      <div class="note">Vagas sociais com valor reduzido disponíveis.</div>
+    </div>
+    <div class="col-r">
+      <div class="venueh">Casa Fluir <span class="badge">@casafluir</span></div>
+      <table class="sched">
+        <tr><td class="day">Seg</td><td>06:30 e 08:30 Yoga &middot; 17:00 Dança Tribal Fusion</td></tr>
+        <tr><td class="day">Ter</td><td>08:00 e 18:15 Yoga &middot; 16:00 Dança do Ventre &middot; <b>19:30 Forró</b></td></tr>
+        <tr><td class="day">Qua</td><td>&mdash; nada listado &mdash;</td></tr>
+        <tr><td class="day">Qui</td><td>08:00 e 18:15 Yoga &middot; 17:00&ndash;19:00 Farmácia Natural do Café &middot; <b>19:30 Forró</b></td></tr>
+        <tr><td class="day">Sex</td><td>08:30 Yoga &middot; 16:30 Pandeiro (Samba/Forró)</td></tr>
+        <tr><td class="day">Sáb</td><td>&mdash; nada listado &mdash;</td></tr>
+        <tr><td class="day">Dom</td><td><b>11:00 Meditação Vipassana</b> &middot; 17:00 Constelação Familiar</td></tr>
+      </table>
+      <div class="venueh" style="margin-top:10px">Casa Maré <span class="badge">@casadaculturamare</span></div>
+      <table class="sched">
+        <tr><td class="day">Seg</td><td><b>18:00 Forró para iniciantes</b> &mdash; grátis para a comunidade, vagas limitadas (73) 99917-1676</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span>Programação apenas noturna &mdash; o dia fica livre para as visitas às fazendas</span><span>Página 13</span></div>
+</div>
+
+<!-- 14 POR QUE -->
+<div class="slide cover">
+  <div class="cwrap"><img class="cimg" src="img/oscar3.jpg"></div>
+  <div class="cbox" style="top:2.2in">
+    <div class="ct" style="font-size:40pt">Por Que Isso Importa</div>
+    <div class="cs" style="font-size:15pt;color:#f0b76a;max-width:9in">O cacau de cabruca regenerativo restaura a Mata Atlântica enquanto nossa missão impulsiona a regeneração de <b>10.000 hectares da floresta amazônica</b>. Cada saco que você vê neste tour é um passo rumo a esse objetivo.</div>
+    <div class="cs" style="margin-top:26px">Até a Bahia, Liz &mdash; 29 de setembro &ndash; 8 de outubro de 2026.</div>
+    <div class="clist" style="font-size:12pt;margin-top:20px">agroverse.shop &nbsp;&middot;&nbsp; truesight.me &nbsp;&middot;&nbsp; capoeira.agroverse.shop</div>
+  </div>
+</div>
+
+</body></html>

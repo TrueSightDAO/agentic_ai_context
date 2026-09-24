@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-20T11:42:11Z`
-- Look-back: **7** calendar days (`2026-09-13` → today UTC)
+- Generated (UTC): `2026-09-24T05:10:32Z`
+- Look-back: **7** calendar days (`2026-09-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,36 +32,38 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 32
-- `[PRACTICE EVENT]` × 3
-- `[PROPOSAL VOTE]` × 3
-- `[NOTARIZATION EVENT]` × 1
-- `[PROPOSAL CREATION]` × 1
-- `[CURRENCY CONVERSION EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 24
+- `[PRACTICE EVENT]` × 6
+- `[EMAIL VERIFICATION EVENT]` × 4
+- `[EMAIL REGISTERED EVENT]` × 2
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 1
+- `[TREE PLANTING LINK EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260918194113_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20260918194115_014` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 86 · Contributor(s): Envoy TrueSight
-- `Edgar_20260918194342_016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
-- `Edgar_20260918194345_018` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
-- `Edgar_20260918214437_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 400.6 · Description: CRF Anapu — Sophia execution (payout pipeline, catalog, E2E, intake fix)
-- `Edgar_20260918214441_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 301.8 · Description: CRF Anapu — governor direct time (payout pipeline direction + UAT)
-- `Edgar_20260918235852_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Media Archive Pipeline verification + farm video curation for Soulful PDX ou…
-- `Edgar_20260919124458_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with accountant to get nota fiscal issued
-- `Edgar_20260919125839_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Follow up with cacao innovation center regarding the 6 samples we dropped of…
-- `Edgar_20260919143437_030` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-19T14:34:35.777Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260919163514_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Reaching out to Oscar to make arrangements to visit his farm while Liz is he…
-- `Edgar_20260919163702_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Asking Fatima to check how long it would take for Santos to roast the cacao …
-- `Edgar_20260919163945_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Discussion regarding conversation with Santos about processing the 40kg caca…
-- `Edgar_20260919175015_038` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Pre-filling FDA prior notice for Liz's 40 kilogram of Oscar's cacao passing …
-- `Edgar_20260919180408_040` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Discussion on schedule of Chinese partner's arrival
-- `Edgar_20260920025442_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Discussing about visit the farms in Itacare area
-- `Edgar_20260920031755_044` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Fábrica Santa Clara partner page + Santos contact ledger row + SA→sheet acce…
-- `Edgar_20260920032745_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 394 · Description: Envoy supervision of Sophia's CRF/payout track, thread 30026 (17-18 Sep wind…
-- `Edgar_20260920034143_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: PII Event Envelope — design doc, CRF plan §11.10 cross-ref, + handoff regist…
-- `Edgar_20260920044219_050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Black King NF-e ↔ in-transit reconciliation + Brazil export-lane GAS fixes (…
+- `Edgar_20260921201319_086` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh — direct time: directing the Autumn Solstice 2026 deck (thread 3415…
+- `Edgar_20260921202650_088` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Black King → TrueTech Rev 12 export docs: unit regen, finalize, and runbook/…
+- `Edgar_20260921203347_090` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20260921224241_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Contact for different cacao fazenda in Itacare region
+- `Edgar_20260922123422_004` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-22T12:34:19.444Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260922130123_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Coordinating the freight forwarding to USA
+- `Edgar_20260922174100_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: China packaging review for Bion 3000 (China market) - analyzed Liz's competi…
+- `Edgar_20260922194338_010` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Transfer GAS hardening + ledger dedup + Scoring Hash Key column P + Governor…
+- `Edgar_20260922201008_012` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: I-Ching Oracle corpus: Walker → hybrid (Walker description+lines + Wilhelm/B…
+- `Edgar_20260923143952_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-23T14:39:48.694Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260923145450_016` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
+- `Edgar_20260923145757_018` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
+- `Edgar_20260923145855_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
+- `Edgar_20260923191138_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Checking of chocolate mold between Brazil and USA
+- `Edgar_20260924003104_024` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229198 · Longitude: -51.5749711 · Species: Cacao - Criolla
+- `Edgar_20260924003148_026` · **Edgar** · [EMAIL REGISTERED EVENT] Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924003210_028` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924003238_030` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924003637_032` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924024855_036` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CB_20260620_1 · SunMint Submission Message ID: Edgar_20260903083523_003 · Updated by: Sophia Truesight
 
 ---
 
@@ -76,7 +78,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-20T10:59:14.534Z`
+- Generated (UTC): `2026-09-23T10:59:14.885Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,12 +88,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **957**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1030**)
+- **Email Agent Follow Up** — logged sends: warmup **981**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1054**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **882**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **907**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -231,13 +233,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Paloma | 7 | 661.32 | $247.02 |
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
-_(+30 more in JSON snapshot.)_
+_(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,748.85**
+- USD on hand: **$4,748.66**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.36**
+- USD provisioned for voting-rights cash-out: **$55.54**
 
 ### In-transit freight (1 row)
 
@@ -253,11 +255,11 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-13_ (3):
+_All dated lines on/after 2026-09-17_ (3):
 
-- 2026-09-14 | deepseek | Added `sophia/SUPERVISOR_LOOP.md` — directive for LLMs supervising Sophia: a bounded-WIP supervise loop (read the unfinished-work index → drive ≤2 threads at a time → first-round UAT → escalate only human gates), plus a first-round-UAT-vs-human-UAT split and a DEFAULT authority envelope (autonomous: go/retry/first-round-UAT/beta merges; human-only: TDG/money, account-only, final human UAT). **Governor decision 2026-09-14:** UAT is THREE rounds — R1 Sophia on beta → R2 Envoy on beta → R3 human UAT — and prod merge/promote executes ONLY after the human UAT thumbs-up (supervisor executes the merge, human authorizes via thumbs-up). SUGGESTED (canonical, not edited): add SUPERVIOR_LOOP.md to OPERATING_INSTRUCTIONS §2 read-order; add a machine-readable `handoffs/index.json` mirror (state enum + Telegram thread_id + Discord channel/thread id + last_updated).
 - 2026-09-17 | sophia | Design record added: plans/MEMBER_WORKSPACE_PLAN.md — a non-authoritative quarantine repo for member-tier SOP *candidates*, outside the context read path. Promotion into agentic_ai_context/sops/ (governor PR) is the ONLY act that makes candidate text directive. Blocks on Governor Decision D1 (bless a create_repo_pattern naming family: `member-*` or `*-candidates`).
 - 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
+- 2026-09-23 | sophia | SunMint tree-photo supersession (thread 35189; governor go from Gary): the canonical photo for tree `Edgar_20260903083523_004` (plot PL-002, Fazenda Bom Sucesso) was overwritten in place — `sunmint/images/20260902_bomsucesso_tree02.jpg` now holds Gary's frame captured 2026-09-02 18:47:11 -03:00 (commit `b332512`, new blob `793132cb`, sha256 `2a15e9a1…`), superseding blob `aff60dd2` / sha256 `bd7ed5af…` which remains recoverable in git history. Integrity note: the photo URL is embedded in the RSA-signed, append-only attestation `verify_public_signatures/tree_planting/Edgar_20260903083523_003.json` (`signed_payload`), and the signature covers that URL string (not the image bytes), so verification still passes — the supersession is recorded here for transparency. Gap filed in OPEN_FOLLOWUPS: photo supersessions have no sanctioned/signed path.
 
 ---
 
@@ -267,7 +269,7 @@ _All dated lines on/after 2026-09-13_ (3):
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **no** |
+| `oracle` | `iching_oracle` | **yes** |
 
 ---
 
@@ -276,6 +278,26 @@ _All dated lines on/after 2026-09-13_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8e46fda | 2026-09-23 21:42:44 +0000 | chore(stats): refresh stats indexes [skip ci]
+ef02bae | 2026-09-23 17:24:52 +0000 | chore(stats): refresh stats indexes [skip ci]
+6290482 | 2026-09-23 12:01:58 +0000 | chore(stats): refresh stats indexes [skip ci]
+380d188 | 2026-09-23 05:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
+15200eb | 2026-09-22 21:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
+c55dbff | 2026-09-22 17:12:32 +0000 | chore(stats): refresh stats indexes [skip ci]
+07d368d | 2026-09-22 12:00:07 +0000 | chore(stats): refresh stats indexes [skip ci]
+a2905be | 2026-09-22 05:18:21 +0000 | chore(stats): refresh stats indexes [skip ci]
+3d908b8 | 2026-09-21 22:08:41 +0000 | chore(stats): refresh stats indexes [skip ci]
+de27731 | 2026-09-21 13:14:53 +0000 | chore(stats): refresh stats indexes [skip ci]
+a5620b5 | 2026-09-21 10:05:29 -0300 | PR11c: scroll the detail rail into view on mobile after a ?plot= deep link (#393)
+1799657 | 2026-09-21 09:20:24 -0300 | PR11b: default satellite slider to the newest scene that can be drawn on the map (#392)
+1e6b8fd | 2026-09-21 05:21:50 +0000 | chore(stats): refresh stats indexes [skip ci]
+e588492 | 2026-09-20 23:43:46 -0300 | PR11: plot-anchored satellite overlay driven by the history slider (#391)
+d762fdb | 2026-09-20 21:09:25 -0300 | PR9: retire redundant satellite-history widget from sunmint.html (#390)
+efe698b | 2026-09-20 21:01:02 +0000 | chore(stats): refresh stats indexes [skip ci]
+9708f63 | 2026-09-20 13:41:57 -0300 | sunmint plots: per-plot satellite history stepper (PR8b) (#389)
+52ecbc7 | 2026-09-20 16:26:01 +0000 | chore(stats): refresh stats indexes [skip ci]
+1d1a938 | 2026-09-20 10:08:07 -0300 | fix(sunmint/plots): remove stale "arrive in later units" banner copy (#388)
+2b33635 | 2026-09-20 11:45:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the shared nav is styled (UAT fix) (#387)
 00831c0 | 2026-09-20 06:38:08 -0300 | sunmint marketing: map teaser + 'Explore all plots' CTA (PR6) (#386)
 1baf6fb | 2026-09-20 05:39:53 -0300 | sunmint plots: deep-links (?plot=/?farm=/?tree=/?qr=) + share (PR5) (#385)
@@ -296,24 +318,6 @@ e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip 
 9558428 | 2026-09-17 11:59:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
-e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
-d596435 | 2026-09-16 17:14:22 +0000 | chore(stats): refresh stats indexes [skip ci]
-001069c | 2026-09-16 11:58:01 +0000 | chore(stats): refresh stats indexes [skip ci]
-d7392e6 | 2026-09-16 05:08:15 +0000 | chore(stats): refresh stats indexes [skip ci]
-c64b3ae | 2026-09-15 21:41:49 +0000 | chore(stats): refresh stats indexes [skip ci]
-dab6722 | 2026-09-15 14:17:43 -0300 | PR6: repoint quests/ Trello redirects to sprint.truesight.me (4 layers x 2 files) (#380)
-f1f3a9d | 2026-09-15 17:13:42 +0000 | chore(stats): refresh stats indexes [skip ci]
-4d1bef9 | 2026-09-15 12:02:35 +0000 | chore(stats): refresh stats indexes [skip ci]
-5719914 | 2026-09-15 05:13:09 +0000 | chore(stats): refresh stats indexes [skip ci]
-edcd99b | 2026-09-14 21:37:26 -0300 | perf(media-gallery): lazy-load YouTube iframes to fix perceived-missing videos on load (#379)
-55f1371 | 2026-09-14 21:27:55 -0300 | fix(crf-anapu): responsive 16:9 video/image boxes, fix squished YouTube embeds (#378)
-5cf632f | 2026-09-14 21:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-d9f30e0 | 2026-09-14 13:15:42 +0000 | chore(stats): refresh stats indexes [skip ci]
-159e9bd | 2026-09-14 05:21:26 +0000 | chore(stats): refresh stats indexes [skip ci]
-f9f4f2c | 2026-09-13 21:05:17 +0000 | chore(stats): refresh stats indexes [skip ci]
-1809777 | 2026-09-13 16:35:16 +0000 | chore(stats): refresh stats indexes [skip ci]
-7c2d1d3 | 2026-09-13 12:14:24 +0000 | chore(stats): refresh stats indexes [skip ci]
-b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -325,52 +329,72 @@ b80534f | 2026-09-13 05:17:47 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
-56da83c | 2026-09-20 02:12:30 -0300 | chore(previews): refresh Beer Hall preview (2026-09-20 UTC)
-9ca9a6d | 2026-09-20 02:12:29 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
-deebae1 | 2026-09-20 01:45:15 -0300 | handoffs: close out thread 31905 (Black King NF-e crosswalk) + file webhook-2xx harden follow-up (#1297)
-fae9904 | 2026-09-20 00:56:58 -0300 | Merge pull request #1295 from TrueSightDAO/auto/advisory-refresh-2026-09-20
-5df110e | 2026-09-20 03:56:44 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-20 UTC)
-efe2579 | 2026-09-20 00:47:38 -0300 | handoffs: mark PII Event Envelope row completed (thread 31842 closeout) (#1294)
-175a3b3 | 2026-09-20 00:45:24 -0300 | PII Event Envelope: file §11.4 safety follow-up + close out thread 31842 (#1293)
-9fb1a28 | 2026-09-20 00:24:29 -0300 | Delegate prod-promote go-ahead to Envoy, conditioned on end-to-end + pixel-by-pixel verification (Gary, 2026-09-19) (#1292)
-7566619 | 2026-09-19 20:02:23 -0300 | OPEN_FOLLOWUPS: point sessions at GOOGLE_SHEET_SA_ACCESS_MATRIX.md before probing SA access (#1290)
-770475d | 2026-09-19 20:01:51 -0300 | Add SunMint Plot Explorer supervision claim (thread 33323) (#1291)
-24366e4 | 2026-09-19 19:47:00 -0300 | Plot Explorer: mandate refresh-on-ingest (timer) + register manifest row (#1288)
-b7fd614 | 2026-09-19 19:45:36 -0300 | Add canonical Google Sheet -> service-account access matrix (empirically probed) (#1289)
-cfc70a3 | 2026-09-19 19:36:05 -0300 | Add SUNMINT_PLOT_EXPLORER_PLAN.md (PR0) + handoff manifest row (#1286)
-cdf55f1 | 2026-09-19 19:19:50 -0300 | docs(MAP): document nearest-location join + file per-plot gallery follow-up (#1285)
-7eedcbc | 2026-09-19 17:55:06 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
-9251819 | 2026-09-19 17:55:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-3fcc5de | 2026-09-19 13:00:46 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
-e0180f6 | 2026-09-19 13:00:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-bf82b2e | 2026-09-19 09:38:40 -0300 | docs: bilingual (EN/PT) invoice convention for Brazil/NF-e (#1284)
-bafb065 | 2026-09-19 09:38:13 -0300 | Add bilingual (EN/PT) Rev 11 packing list for accountant/NF-e
-3717783 | 2026-09-19 09:38:09 -0300 | Add bilingual (EN/PT) Rev 11 commercial invoice for accountant/NF-e
-c58e217 | 2026-09-19 08:20:48 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
-1ed9693 | 2026-09-19 08:20:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-25eaab1 | 2026-09-19 01:53:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-19 UTC)
-617efbf | 2026-09-19 01:53:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-011d229 | 2026-09-19 00:40:08 -0300 | Merge pull request #1283 from TrueSightDAO/auto/advisory-refresh-2026-09-19
-f234e05 | 2026-09-19 03:39:56 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-19 UTC)
-ffcb98b | 2026-09-18 18:07:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
-6991df8 | 2026-09-18 18:07:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
-da26446 | 2026-09-18 16:21:15 -0300 | followups: GAS load-time ReferenceError incident, 9-project scan, /tmp janitor (#1282)
-7b92055 | 2026-09-18 15:10:34 -0300 | followups: track clasp push + legacy-label cleanup for CurrencyConversion.js fix (#1281)
-3f587be | 2026-09-18 14:42:16 -0300 | §12: Q2–Q5 (server side) COMPLETE — Edgar webhook wired, catalog live, dedup gate verified (#1280)
-de159e1 | 2026-09-18 14:27:02 -0300 | CRF §12.6 answered: manual payout feed → M3 deferred; fix stale GAS/runbook docs (#1279)
-785347c | 2026-09-18 13:38:08 -0300 | chore(previews): refresh Beer Hall preview (2026-09-18 UTC)
-098e0f0 | 2026-09-18 13:38:07 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-18 UTC)
-7689ec8 | 2026-09-18 09:04:19 -0300 | Add bilingual declaration keyed by 44-digit chave de acesso
-466b809 | 2026-09-18 09:02:21 -0300 | Add bilingual (EN+PT) signed Black King NF-e declaration
-075cb00 | 2026-09-18 08:59:05 -0300 | Add signed Black King NF-e declaration (DAO logo + Gary signature)
-4a02151 | 2026-09-18 08:57:41 -0300 | Add Black King NF-e declaration & audit PDF (thread 31905)
-5ce7a78 | 2026-09-18 08:51:05 -0300 | handoffs: refresh sprint dashboard (3 actively-supervised threads) (#1278)
+3eb6f2a | 2026-09-24 02:06:42 -0300 | Enlarge cert QR tile to survive 150-dpi printing (#1350)
+14440e2 | 2026-09-24 02:06:35 -0300 | SunMint cert: shift photo + left column to x=0.135w (fix cramped left margin) (#1351)
+db28ca3 | 2026-09-24 01:50:06 -0300 | Add SunMint certificate template (registry-sourced, crisp integer-scale QR) (#1349)
+448bf90 | 2026-09-24 01:45:12 -0300 | SOP(rev2): SunMint certificate — registry-pixel QR crop + template (#1348)
+d415ee6 | 2026-09-24 01:21:11 -0300 | Update CAPOEIRA_I18N_PLAN manifest row with Telegram topic + trigger note (#1346)
+795b967 | 2026-09-24 01:19:12 -0300 | Add plan: capoeira site English/Portuguese toggle with persistence (#1345)
+3bd4814 | 2026-09-23 18:46:49 -0300 | Record SunMint tree02 photo supersession + file media-supersession gap (#1344)
+22d431c | 2026-09-23 18:39:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
+cd88f93 | 2026-09-23 18:39:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
+31bdd26 | 2026-09-23 14:22:26 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
+02038f7 | 2026-09-23 14:22:24 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
+5ed121c | 2026-09-23 08:57:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
+5930307 | 2026-09-23 08:57:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
+a2802db | 2026-09-22 18:34:18 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
+da77291 | 2026-09-22 18:34:17 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
+2618376 | 2026-09-22 16:54:41 -0300 | File residual ledger dup finding (3 GetData Inc pairs, 166.66 TDG) (#1343)
+3508b3d | 2026-09-22 16:47:26 -0300 | docs(followups): retire stale-SOP entry (shipped), update trigger entry (#1342)
+7e5bdfb | 2026-09-22 16:47:18 -0300 | docs(sop): make governor rotation a gated, GAS-sanctioned runbook; kill stale revoke script (#1341)
+6a82f2f | 2026-09-22 14:08:58 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
+14eca10 | 2026-09-22 14:08:57 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
+508aec0 | 2026-09-22 13:33:59 -0300 | Archive: SEBRAE NF-e Emitter User Manual v10 (Jun 2026) + source notes (#1340)
+1ec7c79 | 2026-09-22 10:10:04 -0300 | Archive the original Omega SISCOMEX/RADAR representante tutorial as a cited artifact (#1339)
+c6c54f3 | 2026-09-22 08:57:19 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
+ab17c31 | 2026-09-22 08:57:17 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
+690b27f | 2026-09-22 02:15:54 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
+76e1422 | 2026-09-22 02:15:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
+054a07b | 2026-09-22 00:56:13 -0300 | docs(provenance): record the DAO's 2017-12-31 origin line + four-phase growth arc (#1338)
+2886536 | 2026-09-21 19:44:39 -0300 | Deck v16 changelog — revert to Casa Mare
+dcb489f | 2026-09-21 19:44:30 -0300 | Deck v16 — revert venue to Casa Mare (community project)
+a20fe90 | 2026-09-21 19:07:22 -0300 | chore(previews): refresh Beer Hall preview (2026-09-21 UTC)
+cb6b17c | 2026-09-21 19:07:20 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-21 UTC)
+d0dcbed | 2026-09-21 18:07:33 -0300 | Deck v15 changelog — venue location fix
+fca8ac5 | 2026-09-21 18:07:23 -0300 | Deck v15 — venue fix: Mon forró at Pousada Ilha Verde
+bfd9859 | 2026-09-21 17:24:04 -0300 | Runbook: Saymon/Jussileide are NOT on Telegram — artifacts relayed via Gary (WhatsApp) (#1337)
+6e9d464 | 2026-09-21 17:18:53 -0300 | Log Rev 12 finalize (#1335) + attribute PL-norm confirmation to Envoy (not Gary) (#1336)
+f7acdff | 2026-09-21 17:14:19 -0300 | Finalize Rev 12 export docs: remove DRAFT banner, drop hedge language (#1335)
+65a2e54 | 2026-09-21 17:12:37 -0300 | Add v14 note — recipient name removed from footers; pixel-verified
+b16f50b | 2026-09-21 17:12:30 -0300 | Agroverse Cacao Adventures — Autumn Solstice 2026 deck v14 (name fully removed)
+73afd1d | 2026-09-21 17:12:01 -0300 | Rev 12 status: §5.1 pointer -> Rev 12, Rev 11 superseded; manifest RESUME HERE advanced (#1334)
+c3ac61a | 2026-09-21 17:02:48 -0300 | Rev 12 export docs: apply Saymon's NCM->uTrib export unit norm (#1333)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+fa84522 | 2026-09-23 19:09:26 -0300 | fix(gas): serialize tree-planting ingestion + live dedup sets to stop duplicate rows (#549)
+aaf8ef0 | 2026-09-22 15:01:13 -0300 | fix(transfer GAS): persist durable Scoring Hash Key in ledger column P + script lock (#548)
+5a69685 | 2026-09-22 10:50:04 -0300 | fix(gas): enforce transfer duplicate guard (was dead code) (#547)
+3864627 | 2026-09-22 08:31:02 -0300 | Fix transfer abort: valid ERROR_STATUS + per-row try/catch (#546)
+60b3c8c | 2026-09-21 17:42:41 -0300 | fix(gas): fail closed on RESOLVE FAILED rows in transfer (dead guard) (#545)
+3a8fb91 | 2026-09-21 17:38:19 -0300 | fix(gas): repair transfer web app — drop duplicate fns, robust doGet, canonical Ledger write (#544)
+26a96d5 | 2026-09-21 00:33:59 -0300 | PR10c: document [PLOT FINANCING EVENT] in SCHEMA.md + API.md (#543)
+3c86bf2 | 2026-09-21 00:25:51 -0300 | PR9 docs: SCHEMA col U Tree Charge + SunMint Plots col T + literal correction; API.md Plot ID variant (#542)
+bf28f93 | 2026-09-21 00:22:05 -0300 | PR6.2: plot links book the col-U tree transfer + invalidated-plot filter (#541)
+77db46a | 2026-09-21 00:17:06 -0300 | PR5.3a/b: link-time tree transfer amount = Currencies col U (Tree Charge), normalize + fail closed (#539)
+1beabd0 | 2026-09-20 23:55:17 -0300 | PR10b: [PLOT FINANCING EVENT] sink (GAS source-only) + router action + harness + guard (#538)
+50db284 | 2026-09-20 18:04:15 -0300 | PR6: plot-level link path + plot-image resolution (plan 1.6) (#537)
+458729e | 2026-09-20 17:50:25 -0300 | PR5: link-time ledger source variants (pool vs committed) + reimbursement transfer (#536)
+96207b0 | 2026-09-20 17:27:02 -0300 | PR4: add explicit partial-write coverage (mid-write leg failure) (#535)
+2dacfaf | 2026-09-20 17:21:10 -0300 | PR4 step 2: wire SunMint settlement ledger booking into the payout sink (#534)
+376dc3a | 2026-09-20 17:18:43 -0300 | PR4 step 1: pure SunMint settlement leg computation (#533)
+49e362f | 2026-09-20 15:43:19 -0300 | fix(gas): idempotency guard for reconcileTreePlanting_ (PR3 follow-up) (#532)
+4a6b5c0 | 2026-09-20 15:38:37 -0300 | feat(gas): SunMint farmer-settlement reconciliation (plan PR3) (#531)
+6149616 | 2026-09-20 15:22:24 -0300 | docs(API): document [TREE PURCHASE EVENT] as an ASSET RECEIPT variant (plan PR2) (#530)
+e8bdc2a | 2026-09-20 15:16:30 -0300 | docs(SCHEMA): SunMint farmer-settlement items, 2 new columns, 4 tab sections (plan PR1) (#529)
 9c5ec86 | 2026-09-18 16:27:24 -0300 | manifest: record real deployments for 1orWgdGckts55 (kill TBC) (#528)
 673b00e | 2026-09-18 16:03:32 -0300 | fix(gas): remove top-level getCredentials() call breaking all entry points (#527)
 3cbb4cd | 2026-09-18 16:01:35 -0300 | harden(gas): fail CLOSED on unverifiable pushes; fix misleading accessor message (#526)
@@ -391,26 +415,6 @@ e133299 | 2026-09-17 22:21:05 -0300 | SS12.7 Q3b fix: actually install the payou
 399f680 | 2026-09-17 22:11:55 -0300 | fix(gas): 1XmwyzzauO Code.js reads all config from Credentials.js; drop hardcoded token (#510)
 b6c7500 | 2026-09-17 22:11:50 -0300 | schema: add offchain assets in transit col Q (NF-e Chave) (#509)
 5d97a15 | 2026-09-17 22:07:11 -0300 | fix(gas): secret-free tracked Credentials.js for 1K1wcXFAop (TDG Email Identity Mgmt) (#507)
-b3aa6c8 | 2026-09-17 21:59:26 -0300 | fix(gas): tracked secret-free Credentials.js for 1DYSZKFYM (HelloCash) (#506)
-6285a5c | 2026-09-17 21:58:00 -0300 | fix(gas): track secret-free Credentials.js — stop .claspignore-ing the accessor (#505)
-55ad27c | 2026-09-17 21:33:03 -0300 | SS12.7 Q3b: [PAYOUT EVENT] sink (Tier-1 payouts + Tier-2 payout events) (#504)
-2ec1cee | 2026-09-17 21:15:53 -0300 | Fix provisioner two-run bug: write headers for freshly-created tabs in the same pass (#503)
-d7db1c3 | 2026-09-17 20:21:24 -0300 | Q5: add payouts + payout events tabs to the CFR provisioner (#502)
-e5dc642 | 2026-09-17 14:01:07 -0300 | P3: rewrite payout sink to private cfr program sheet; drop RSA cipher (#501)
-dc9f1e3 | 2026-09-17 13:17:30 -0300 | Add idempotent `cfr program` sheet provisioner + schema tests (CRF §11.3/§11.8) (#500)
-66089d6 | 2026-09-17 00:18:06 -0300 | Payout registration sink: private PIX ledger with dedup + fail-closed PII guard (#499)
-c82616f | 2026-09-16 23:54:32 -0300 | chore(gas): preserve-then-drop the 4 Tier-4 orphan folders (resolves dispositions 4/6/18)
-60eb3a2 | 2026-09-16 23:15:59 -0300 | feat(dao-members-cache): emit discord_id / telegram_id / telegram_handle (schema v4) (#495)
-9f2a248 | 2026-09-15 12:19:40 -0300 | docs(schema): document Currencies cols P-S + add T Source Documents (#493)
-cd2648f | 2026-09-14 20:19:49 -0300 | fix(expenses): strip [ledger] prefix from Inventory Type before Column E write (#492)
-bd12393 | 2026-09-13 15:21:13 -0300 | asset_receipt_ingest: fill empty Currencies D/E from Product Image / Landing Page labels (#491)
-df418a0 | 2026-09-13 15:08:24 -0300 | docs(schema): add CNPJ + Physical Address cols to Agroverse Cacao Processing Cost (#490)
-d9af5b9 | 2026-09-13 14:58:42 -0300 | feat(qr-gen): PR4 auto-define QR-ready currency from a batch QR request (thread 27015) (#489)
-8e05cc3 | 2026-09-13 14:45:55 -0300 | feat(gas): RESERVATION + RESERVATION SETTLEMENT processors (unit 3) (#488)
-3eb0156 | 2026-09-13 13:19:20 -0300 | fix(gas): repair sales project 1dsWecVwb HEAD drift (rename parser to live name, sync SOLD_DATE_COL, un-ignore) (#487)
-a58b256 | 2026-09-13 09:46:32 -0300 | chore(gas): track secret-free Credentials.js for sales project + bump Version (#486)
-d9f620b | 2026-09-13 01:22:18 -0300 | fix(1N6o00): currency-def parser must not leak next line on empty fields (#485)
-5c6e948 | 2026-09-13 01:19:16 -0300 | fix(1N6o00): define missing findContributorByDigitalSignature() in currency-def handler (#484)
 … (truncated)
 ```
 
@@ -442,6 +446,14 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+da84e1e | 2026-09-23 12:09:25 +0000 | chore: refresh currencies.json [skip ci]
+9860b82 | 2026-09-23 11:42:16 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+3d79684 | 2026-09-22 12:02:21 +0000 | chore: refresh currencies.json [skip ci]
+9db53c4 | 2026-09-22 11:43:29 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+baad3ff | 2026-09-21 13:22:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
+08874ff | 2026-09-21 12:53:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+497d497 | 2026-09-20 11:48:08 +0000 | chore: refresh currencies.json [skip ci]
 5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 277d073 | 2026-09-19 11:32:00 +0000 | chore: refresh currencies.json [skip ci]
 60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -449,36 +461,30 @@ c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
 b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 56fa1f5 | 2026-09-17 12:05:02 +0000 | chore: refresh currencies.json [skip ci]
 24d75f0 | 2026-09-17 11:46:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-584edc7 | 2026-09-16 18:28:38 -0300 | chore: refresh Agroverse SKU catalog snapshot
-387a108 | 2026-09-16 18:28:36 -0300 | chore: refresh Agroverse store inventory snapshot
-361d5e5 | 2026-09-16 12:02:45 +0000 | chore: refresh currencies.json [skip ci]
-a3ccc49 | 2026-09-16 11:39:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-dcfef2e | 2026-09-15 12:07:30 +0000 | chore: refresh currencies.json [skip ci]
-c5e911c | 2026-09-15 11:48:24 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-f6f2108 | 2026-09-14 13:22:27 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-75f6c32 | 2026-09-14 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
-f273dbc | 2026-09-13 12:16:38 +0000 | chore: refresh currencies.json [skip ci]
-d5451d4 | 2026-09-13 11:57:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+365e476 | 2026-09-21 17:16:19 -0300 | Enrich Itacaré Cultural Immersion page: story, community videos, events (#326)
+610db36 | 2026-09-21 16:44:58 -0300 | Itacaré experience page: swap in Cachoeira do Cleandro photo (#325)
 c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Clara on the partner page (#324)
 1bcc0b0 | 2026-09-19 17:48:50 -0300 | Santos Chocolate Factory page: add verified legal-entity details (CNPJ) (#323)
-1390844 | 2026-09-12 22:33:13 -0300 | media-gallery: fetch-first published gallery with local fallback + curation merge (PR6) (#322)
 ```
 
 ### `iching_oracle` → `oracle`
 
 ```
-_(no commits on origin/main in window)_
+6c48cd2 | 2026-09-23 18:20:00 -0300 | Fix hexagram intro rendering: preserve paragraphs + clean residual OCR artifacts (#69)
+e867765 | 2026-09-22 17:57:52 -0300 | fix: include full hexagram text in print/PDF output (#68)
+c33cf16 | 2026-09-22 16:46:12 -0300 | feat: hybrid I Ching corpus as default (Walker description+lines + Wilhelm judgment/image) (#67)
+a24636b | 2026-09-22 16:16:21 -0300 | Point oracle site at Brian Browne Walker corpus (Wilhelm/Baynes kept as backup) (#66)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
 
 ```
-0659ac2 | 2026-09-14 20:08:35 -0300 | Add weekly AMI backup for the nelanco-claude interactive Claude Code box (#42)
+_(no commits on origin/master in window)_
 ```
 
 ---
@@ -555,20 +561,13 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/20/2026 3:51:14 |
+| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 21:51:26 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-13`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-17`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
-| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_39 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_38 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_37 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_14 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_13 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_12 | — | — |
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 

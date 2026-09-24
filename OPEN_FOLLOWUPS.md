@@ -39,6 +39,204 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint cert: the QR print-safety floor (`k >= 4`) is documented but UNENFORCED — and the obvious clamp is unsafe
+**Filed 2026-09-24 — verified, not started. Governor: Gary (thread 35189). Non-urgent; regression guard for the cert renderer.**
+
+**Ask.** `templates/sunmint_certificate/render_sunmint_certificate.py` states a hard requirement — `k MUST stay >= 4` (4px == 0.339mm/module) to survive 150-dpi printing; `k=3` (0.254mm/module) does NOT — but nothing in the code enforces it.
+
+**Verified (2026-09-24).**
+1. **The floor is prose, not a guard.** `render_qr` does `modules = registry_qr.width` then `k = max(2, round(px / modules))`. The ONLY guard is `if not decode(tile):` — a *digital* decode check. Digital decode != print-safe; a 171px tile decodes on screen but is below the print floor. So the documented constraint has no teeth.
+2. **It already shipped broken once.** #1354 (merged `b7eea37ad63f`, 2026-09-24T05:40:24Z) set `qpx=196` while the quiet zone was still `q=4` -> `modules = 49 + 2*4 = 57` -> `round(196/57) = 3` -> tile `57*3 = 171px` (k=3, BELOW floor). That reached `main` and was live until #1355 (`440120bd`, 05:47:33Z) fixed it to `qpx=212` with `q=2` (`modules=53` -> k=4 -> 212px). Note #1354's own title said *"196px (k=4)"* — the intent and the realised value disagreed.
+3. **The realised value depends on BOTH `qpx` and `q`.** Reproduced locally (the renderer's own arithmetic):
+   - `q=4` (modules=57): `qpx=196` -> k=3 -> **171px**; `qpx=212` -> k=4 -> 228px
+   - `q=2` (modules=53): `qpx=196` -> k=4 -> 212px; `qpx=212` -> k=4 -> 212px
+   So a `qpx` that is safe at one `q` is unsafe at another — a caller cannot reason about safety from `qpx` alone.
+
+**Why the naive fix is UNSAFE (the non-obvious part).** A bare `assert k >= 4` (or clamping `k`) is NOT sufficient. The white rounded-rectangle box is drawn at `[qx-9, qy-9, qx+qpx+9, qy+qpx+9]` and the vertical centering is `qy = photo_box[0] + (photo_box[1] - qpx)//2` — **both use `qpx` (the *requested* px), while the pasted tile is `modules*k`.** At q=4/qpx=212 that is 228px tile inside a box sized for 212px. Clamping `k` without also recomputing the box and `qy` from the *realised* `modules*k` desyncs the box + center lines from the actual QR. The fix must derive size from the realised tile (e.g. have `render_qr` return its tile size, or resolve `k`/tile-size in the caller and lay out from that), not from `qpx`.
+
+**Suggested scope.** Resolve `k` (and the resulting tile px) in one place for a given `q`, fail loudly (not silently) if the chosen size maps below `k=4`, and lay the box + `qy` out from the realised tile size so the three can never disagree.
+
+**Evidence.** `templates/sunmint_certificate/render_sunmint_certificate.py` L229-231 (`k = max(2, round(px / modules))`), L232-255 (`decode()` guard), L406-424 (floor comment, `qpx`/`qy`/box); PR #1354 (`b7eea37ad63f`) vs #1355 (`440120bd`); thread 35189.
+
+### SunMint: generated certs are not downloadable from the QR provenance page (`truesight.me/qr/?id=<qr_id>`)
+**Filed 2026-09-24 — verified feature request, not started. Governor: Gary (thread 35189). Non-urgent; does NOT block the cert layout work.**
+
+**Ask.** Once a SunMint certificate has been generated for a tree / QR, the cert should be downloadable from that asset's own provenance page — `https://truesight.me/qr/?id=<qr_id>` — via a **"Download certificate"** button, mirroring the credentialing precedent.
+
+**Verified precedent (credentialing).** The butterfly-effect credential pages (`truesight.me/programs/butterfly-effect/credentials/`) do exactly this:
+- cert PDFs are **pre-generated and cached** in `TrueSightDAO/lineage-credentials` at `_cache/cv/<slug>__<program>__cert.pdf` — built by `.github/workflows/build-cv-cache.yml` → `lineage-engine/scripts/build_cv_cache.py`, and only built once `locked_at` is set;
+- served over the **jsDelivr CDN** (the workflow purges jsDelivr on rebuild);
+- the page carries a "⏬ Certificate PDF" button + a "View the tree & its provenance →" link pointing at the same `truesight.me/qr/?id=…` scheme the SunMint QR pages use.
+
+**Why it does NOT transfer 1:1 — the real design work.**
+1. **Keying differs.** Credential certs are keyed by *person-slug × program* (`<slug>__<program>__cert.pdf`). A SunMint cert is per *tree-planting / qr_id* (guardian + tree details), so the filename scheme needs its own authority — e.g. `qrs/<qr_id>__cert.pdf`. Pick the canonical key.
+2. **Host repo differs.** The credential cache lives in `lineage-credentials/_cache/` — an **API-only, machine-owned DATA repo** (no clone / no branch-edit; single-file writes via the Contents API only) which has grown to **~10 GB** (a CI checkout there took **21 m 44 s**; see WORKSPACE_CONTEXT.md L234–236). The SunMint cert *renderer* lives in `agentic_ai_context/templates/sunmint_certificate/`. Decide where SunMint cert PDFs are cached, and how that repo grows.
+3. **No rebuild trigger exists.** Today a SunMint cert is produced by running `render_sunmint_certificate.py` + a config by hand. A cached-serving model needs an auto-rebuild trigger analogous to `build-cv-cache.yml` (e.g. on cert-issue / `[TREE PLANTING]`), or the cached PDF silently goes stale relative to the signed attestation.
+4. **Page change is program-agnostic + beta-first.** `truesight_me_beta/qr/index.html` is pure static HTML/JS that dispatches on `asset_type` (fetches `lineage-assets/qrs/<qr_id>.json`; **verified 2026-09-24** — `render()` reads `manifest.qr_image_url`, `.status`, `.edgar_resolve_url`, `.current_landing_page`, `.lineage`; there is **no cert branch** today). The button must appear **only when a cert genuinely exists** for that `qr_id` — probe the URL, or add a `cert_url` field to the manifest. Promote to prod only after beta review (two-repo flow; governor-approved).
+
+   ⚠️ **LANDMINE if you take the `cert_url`-in-manifest route (verified + reproduced 2026-09-24).** `lineage-assets/scripts/lib/manifest.py → merge_preserve_events()` preserves **only `events`** (custom events whose type is not a seed event) and then does `merged = dict(fresh)` — so **every other top-level key is rebuilt from the sheet on each re-seed**. A hand-added (or cert-flow-added) `cert_url` is therefore **silently DROPPED** the next time `seed_from_sheet.py --execute` runs. Reproduced locally: add `certificate_url` + a custom event → re-run `write_manifest(fresh)` → `certificate_url` gone, custom event kept. **So the manifest-field route is NOT a one-line page change:** you must also teach `build_manifest()`/`merge_preserve_events()` to carry the cert field (and have the cert-issuance flow write it), or the seeder will wipe it. The **URL-probe route** (page HEADs the cached cert URL) sidesteps this entirely and is the lower-risk option.
+
+   ℹ️ Also note: `qr/index.html`'s status CSS enum has **no `ASSIGNED_TO_TREE`** badge (MINTED / CONSIGNMENT / SOLD / SAMPLE / GIFT / EXPENSED / RETIRED only), so a QR in that state renders the grey default badge. Minor, but the download feature is a natural moment to add it.
+
+**Related, already-tracked (do NOT re-file):** the certificate's *content* framing — `2024OSCAR_CB_20260620_1`'s manifest says `SOLD` (seeded 2026-07-10) while the live Edgar resolve returns `ASSIGNED_TO_TREE` (and `qrs_index.json` still says `SOLD`) — is **already a parked governor decision** at `sops/SUNMINT_CERTIFICATE_ISSUE_SOP.md` §7 ("Ask the governor which framing the cert should carry; do not silently pick one"). Not a new finding; it does not block the download feature.
+
+**Evidence.** `credentials/CREDENTIALING_PROGRAM_PAGES.md` L612 / L749 / L757; `credentials/CREDENTIALING_E2E_VALIDATION.md` L111 / L124; `CONTEXT_UPDATES.md` L162; `truesight_me_beta/qr/index.html`; `lineage-assets/scripts/lib/manifest.py` (`merge_preserve_events`); `lineage-assets/scripts/seed_from_sheet.py`; `agentic_ai_context/templates/sunmint_certificate/render_sunmint_certificate.py`; thread 35189.
+
+### QR manifest JSON goes stale after a [TREE PLANTING LINK EVENT] — nothing regenerates it, and the one dedicated script for the job has a status-clobber bug
+**Filed 2026-09-24 — verified, not started. Governor: Gary (thread 35189). Non-urgent; money-adjacent to wire (spans GAS + Python repos).**
+
+**Ask.** After a `[TREE PLANTING LINK EVENT]` fires, the target QR's `lineage-assets/qrs/<qr_id>.json` manifest should be regenerated so its `status` / `lineage` / `events` reflect the link (`ASSIGNED_TO_TREE`). Today nothing does this, so the manifest silently diverges from the authoritative state Edgar serves.
+
+**Verified (2026-09-24).**
+1. **Confirmed divergence.** `qrs/2024OSCAR_CB_20260620_1.json` says `status: SOLD` (`_seeded_at 2026-07-10T21:40:24Z`, `_source seed_from_sheet.py`), and `qrs_index.json` (generated 2026-09-11) also says `SOLD` — while live `https://edgar.truesight.me/agroverse/qr-code-check?qr_code=2024OSCAR_CB_20260620_1` returns `ASSIGNED_TO_TREE`. The public mirror is stale relative to the source of truth.
+2. **The link handler never touches the manifest.** `tokenomics/…/process_tree_planting_link.js` writes only to Google Sheets columns + ledger tabs + email; grep for `lineage-assets` / `manifest` / `seed_from_sheet` / `qrs_index` = **0 hits**. Its only outbound HTTP is the plots-media fetch and a `repository_dispatch` for the *tree-index* rebuild (L816) — precedent for how a refresh *could* be fired.
+3. **Per-row primitives do exist** — `scripts/lib/manifest.py` `build_manifest(row, source)` + `write_manifest(out_dir, manifest)` both operate on a single row/manifest; `seed_from_sheet.py` just loops them over the whole sheet.
+
+**⚠️ Correction to the obvious fix ("just call the existing functions from the link flow"):**
+- **A *dedicated* script already exists and is ALSO never invoked:** `lineage-assets/scripts/sync_tree_links.py` (253 lines) — *"Mirror LINKED SunMint tree-planting rows into lineage-assets JSON and cross-link QR <-> tree"*; it mints `qrs/pk-<msgid>.json` (tree) and patches the QR record with `lineage.linked_tree` + an `assigned_to_tree` event. **This is the intended primitive for exactly this job — reuse it, don't build new.**
+- **But it has a status-clobber bug that must be fixed FIRST.** `build_qr_patch()` builds from `_base_wrapper(linked_qr, "cacao_bag")`, which hard-codes `status: "MINTED"`, and never resets it. `_merge()` then does `merged.update({k:v for k,v in fresh.items() if v is not None and v != ""})` → **`merged["status"]` becomes `MINTED`, overwriting the QR's real `SOLD`/`ASSIGNED_TO_TREE`.** Reproduced: `merged status = MINTED`. Wiring it in as-is would corrupt the QR status field, not merely leave it stale. Fix `build_qr_patch` to set `status: "ASSIGNED_TO_TREE"` (it already emits the matching event) before anyone invokes it.
+- **Cross-runtime boundary — not a function call.** The link handler is **Google Apps Script (JS, Google cloud)**; `sync_tree_links.py` / `seed_from_sheet.py` are **Python in the `lineage-assets` repo**. GAS cannot import Python. So "add a refresh call to the post-write step" means a **`repository_dispatch` to a GitHub Action** (reuse the link handler's existing dispatch precedent at L816 / `TGM_GITHUB_TOKEN`) — or a scheduled job. Nothing schedules the seeder today (no `.github/workflows` in `lineage-assets`; no cron found), so the data repo is not self-healing.
+- **Two source tabs, two schemas.** `build_manifest` reads **Agroverse QR codes** (col D = status) on `1GE7PUq…`; `sync_tree_links.py` reads the **SunMint Tree Planting** tab on `1qbZZhf…`. Pick the right source per field; don't assume one refresh covers both.
+
+**Suggested shape (~small, after the clobber fix).** Add a `repository_dispatch` (type e.g. `qr-manifest-refresh`, `client_payload.qr_id`) to the link handler's success path — reuse the existing `TGM_GITHUB_TOKEN` dispatch block — and a thin Action in `lineage-assets` that runs `sync_tree_links.py --execute` (single-QR via a new `--qr` filter) + `build_index.py`, then commits. Best-effort/non-fatal, exactly like the tree-index dispatch.
+
+**Evidence.** `tokenomics/google_app_scripts/1UrBgqLnnQ…/process_tree_planting_link.js` (no manifest refs; L816 dispatch precedent); `lineage-assets/scripts/sync_tree_links.py` (`_base_wrapper` L104 `status:MINTED`, `_merge` L118, `build_qr_patch` L183); `lineage-assets/scripts/seed_from_sheet.py` (SHEET_ID L33, `--dry-run/--execute/--limit` only, no single-QR flag); `lineage-assets/scripts/lib/manifest.py` (`build_manifest` L158, `merge_preserve_events` L194, `normalize_status` passes `ASSIGNED_TO_TREE` through); `lineage-assets/qrs/2024OSCAR_CB_20260620_1.json`; thread 35189.
+
+### Tree-planting photo supersession has no sanctioned path — an in-place image swap leaves a signed attestation pointing at new bytes
+**Filed 2026-09-23. Owner: unclaimed. Governor: Gary (thread 35189). Status: gap identified; one swap already performed manually with a documented note.**
+
+**Context.** Tree photos live at `sunmint/images/<name>.jpg` and their URL is written into two places: (a) the `SunMint Tree Planting` sheet col I (source of truth → regenerated into `trees/index.geojson`), and (b) the **RSA-signed, append-only** attestation in `verify_public_signatures/tree_planting/<id>.json` (`signed_payload` line `- Photo URL: …`). The signature covers the **URL string, not the image bytes**. So overwriting the file in place keeps every signature green while silently changing the photo a signed attestation points to — the classic "silent-wrong" shape.
+
+**Precedent.** 2026-09-23: canonical photo for tree `Edgar_20260903083523_004` (PL-002, Fazenda Bom Sucesso) was overwritten in place with a better frame from the same dig event (Gary's 18:47:11 -03:00 shot); superseded blob `aff60dd2` / sha256 `bd7ed5af…` retained in git history; swap recorded in CONTEXT_UPDATES. The signature still verifies (URL unchanged).
+
+**Ask.** Decide + implement ONE of: (1) **content-addressed filenames** (`images/tree02_<sha8>.jpg`) so a photo change = a NEW filename, never an in-place overwrite, and `signed_payload` records the immutable hash; (2) a **`[MEDIA RETRACTION/SUPERSESSION EVENT]`** type (the repo already has `media_retraction` + `tree_planting_reject` folders) that records `old_url → new_url` + reason, referenced from the tree's sheet row, so the supersession is itself signed/append-only; (3) a **sheet col-A breadcrumb** convention (append a dated note line to the tree_id cell when its photo is superseded). Until then, any photo correction is a manual, note-only operation — easy to do silently.
+
+**Evidence.** `sunmint/SCHEMA.md` Trees schema (photo_url ← sheet col I); `verify_public_signatures/tree_planting/Edgar_20260903083523_003.json` (`signed_payload` embeds the URL); commit `b332512` (sunmint); thread 35189.
+
+### Residual ledger duplicates: 3 strict-identical "GetData Inc" pairs (166.66 TDG) survived both dedup passes
+**Filed 2026-09-22. Owner: Sophia. Governor: Gary (thread 34264). Status: confirmed finding, NOT remediated (money-adjacent — needs go).**
+
+**Finding.** Two dedup passes ran on `Ledger history` (1GE7PUq\u2026) on 2026-09-22: dedup-#1 (88 rows, same-body re-appends) and dedup-#2 (166 groups / 358 rows, strict name+byte-identical body+amount+date). A third, independent re-scan (UNFORMATTED_VALUE, strict key = name + md5(body) + col G amount + col H date) finds **3 groups / 3 excess rows / 166.66 TDG** still present:
+
+| Rows | Gap | Name | Amount | Date |
+|---|---|---|---|---|
+| 4600 / 4699 | 99 | GetData Inc | 150 | 2024-04-22 |
+| 6135 / 7356 | 1221 | GetData Inc | 8.33 | 2024-12-13 |
+| 6793 / 7273 | 480 | GetData Inc | 8.33 | 2024-12-13 |
+
+**Why dedup-#2 missed them (root cause).** These are **not** the tight-cluster batch-re-append signature (that had a median within-group row span of ~45). Their spans are 99 / 480 / 1221 rows — consistent with **older, unrelated manual double-entry**, a different duplication source. Concretely they slipped dedup-#2 because:
+- **Pairs 6135/7356 and 6793/7273:** col **E** (`TDGs Provisioned`) differs (`0.08` vs `8.33`) while col **G** (`TDGs Issued`) matches — if the pass keyed on E (or a body that embedded the provisioned figure) the group didn't form.
+- **Pair 4600/4699:** col E renders `150` vs `150.00` — a numeric-vs-string format artifact that defeats a formatted-value comparison.
+
+**Small relative to the ledger** (166.66 TDG vs E1 = 2,500,759.27) and **not urgent**, but it is genuine excess and the "strict de-dup is complete" claim is therefore only true for the keys each pass used.
+
+**Action if pursued:** requires a governor go (money-adjacent, irreversible). Would delete the later row of each pair (keep earliest: 4600, 6135, 6793) via a write-capable SA (cypher-defense), backup first, then re-reconcile E1 and re-check the origin `Scored Chatlogs` col-L pointers below the deleted rows. Also worth deciding whether the **dedup criterion should normalise col E numerically** (and treat E=0.08 vs 8.33 as the same event) before the next pass.
+
+### `installGovernorSyncTrigger()` daily 04:00-UTC cron has never fired — governor sheet-permission sync is silently manual
+**Filed 2026-09-21. Owner: Sophia. Governor: Gary (thread 34264). Status: confirmed bug, not yet fixed.**
+
+**Symptom.** Governor→spreadsheet editor reconciliation (`tokenomics/google_app_scripts/1m8IZPs1vFN99cuu-39kbC-OGXggRVtJtXq5rfSB0M1sCQjMdolEUDuGU/GovernorSheetPermissionSync.js`) is designed to run **daily at 04:00 UTC** via `installGovernorSyncTrigger()` (L87–95: `ScriptApp.newTrigger('syncGovernorEditorsCron_').timeBased().everyDays(1).atHour(4).inTimezone('UTC')`) and to write a **`Governor Sync Log`** tab (`SYNC_LOG_SHEET`, auto-created via `ss.insertSheet` at L270–272) on every run.
+
+**Evidence it has never run.** Main Ledger tab list read 2026-09-21 (SA `edgar_dapp_listener`, `spreadsheets.get`): **no `Governor Sync Log` tab exists** among the 40 tabs — yet the GAS auto-creates it on every invocation. Consequence: rotation has been manual, which is why governor **Aga Marecka** (`agnieszkamarecka@gmail.com`) currently holds **no editor access** to the Main Ledger or the Intiatives/Scoring Rubric sheet, and 5 sentinel agents (`admin+sophia@`, `admin+kimi@`, `admin+deepseek@`, `admin+open+ai@`, `admin+envoy@truesight.me`) are also missing — exactly the drift the sync was built to prevent.
+
+**Likely causes to check (owner to confirm).** (1) Trigger never installed (fresh deploy / `installGovernorSyncTrigger()` never called); (2) installed but the project's `appsscript.json` lacks the `https://www.googleapis.com/auth/script.scriptapp` scope; (3) `syncGovernorEditorsCron_` throwing early. Check `appsscript.json` for the `script.scriptapp` + Sheets scopes.
+
+**Proposed fix (~small).** Verify `appsscript.json` scopes; call `installGovernorSyncTrigger()` (owner-run) and confirm a `Governor Sync Log` row appears and the trigger shows in `ScriptApp.getProjectTriggers()`; add a staleness monitor (alert if no log row in >48h), mirroring the proven `farm-media-publisher` freshness pattern. No change to the sync logic itself.
+
+**Evidence.** Main Ledger tabs list (no `Governor Sync Log`, 2026-09-21); `GovernorSheetPermissionSync.js` L36, L87–95, L270–272; thread 34264.
+
+### SunMint Plot Explorer — filter panel should be collapsible (eats vertical space on the plot list)
+**Filed 2026-09-21. Owner: Sophia. Governor: Gary (thread 33323). Status: queued by Envoy — low priority, pick up after threads 34264/10800 settle. Not yet started.**
+
+**Ask (Gary).** The `#filters` block in `sunmint/plots/index.html` (Farm / Plot type / Status /
+Boundary authority / Data quality) is always expanded and consumes a large share of the
+left rail, leaving little room for the plot list itself. Gary wants it **collapsible** so the
+list gets more space.
+
+**Measured on live beta 2026-09-21** (headless, `beta.truesight.me/sunmint/plots/`):
+
+| viewport | filters height | list viewport | plots fully visible | after collapsing filters |
+|---|---|---|---|---|
+| desktop 1440×900 | **319 px** (~44% of rail) | 350 px | **4 of 21** | list → **670 px**, **7 visible** (+75%) |
+| mobile 390×844 | **303 px** | 388 px (46vh cap) | 5 of 21 | list height unchanged (capped) but **303 px of pre-list scroll removed** |
+
+Not purely cosmetic: on desktop the filter block pushes the list down so only ~4 of 21 rows
+are reachable without scrolling; collapsing nearly doubles the visible list. On mobile it
+compounds the PR11c pain (304 px of dead scroll before the list/filters).
+
+**Proposed work (~small, UI-only, one file).** Add a collapse toggle in `.rail-head`:
+(1) toggle button ("Filters ▾") that hides/shows `#filters`;
+(2) **collapsed-state summary** — show `Filters (N active)` + active facet chips inline so a
+filtered list is never unexplained (respects the page's own **§5** invariant: counts reconcile,
+gaps visible);
+(3) persist state in `localStorage`, default **expanded on desktop / collapsed on mobile**;
+(4) add a **Clear all** affordance in the expanded panel (today you must click each active chip).
+No data/logic change.
+
+**Open product decision for the governor.** Default **collapsed** (maximise list space) vs
+**expanded with toggle available** (discoverable). Sophia leans *expanded-by-default on
+desktop, auto-collapsed on mobile*.
+
+**Evidence.** `sunmint/plots/index.html` (`#filters`, `.facet`, `renderFilters()`; mobile media
+query ≤820px); live-beta headless measurement 2026-09-21; thread 33323.
+
+### `[PLOT FINANCING EVENT]` (PR10a/PR10b) shipped with zero documentation footprint
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541). Status: docs gap, not yet written.**
+
+**Context.** The `[PLOT FINANCING EVENT]` vertical — a cash **advance** from the DAO that finances N trees on a plot (OPPOSITE direction to `[PAYOUT EVENT]`) — shipped as **code** in two PRs: `dao_protocol` **#177** (`c68718a`, PR10a: catalog entry + `dispatch.py` route `PLOT_FINANCING_PROCESSING` → `processPlotFinancingEventsFromTelegramChatLogs` + regression test) and `tokenomics` **#538** (`1beabd0`, PR10b: GAS sink `process_plot_financing_event_telegram_logs.js` + `plot_financing_harness.mjs` + `test_plot_financing_guard.py`, source-only). Envoy independently verified both merges 2026-09-20.
+
+**But the vertical has NO documentation footprint** — verified against `origin/main` 2026-09-20:
+- `agentic_ai_context/plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` — `grep -i financ` = **0 hits**; the plan's §0 Decisions stop at **0.13**, so the rulings that produced this event (the Q4 per-plot financing model, Q5 the N-tree declaration event, plus the `Currencies` col-U charge decisions 0.14–0.16) are **not recorded there**.
+- `tokenomics/SCHEMA.md` — **no `Plot Financing` tracking-tab section**, and the literals table does not cross-reference the financing advance.
+- `tokenomics/API.md` — **no `[PLOT FINANCING EVENT]` section** (unlike §9's `[TREE PLANTING LINK EVENT]`).
+- `OPEN_FOLLOWUPS.md` — nothing.
+
+**Why it matters.** This is a **money-path** event (it books `-amount` + `+N 'Cacao Tree Planted - Unassigned'` on main and seeds `SunMint Plots` col T). A money-writing event with no schema/API/decision record is exactly the class the plan's own §1.9 discipline was meant to prevent — the deliverable was scoped but never given a unit number (the plan's own **PR8** is the unrelated aging report; the financing work became **PR10** and skipped the docs pass).
+
+**Proposed work (~small, docs-only).** (1) Add **Decisions 0.14–0.16** to the plan's §0 (per-plot financing, the N-tree declaration event, the col-U infra-charge resolution). (2) Add a `SCHEMA.md` section for the **`Plot Financing`** tracking tab (`PF_TRACKING_TAB`; cols in `process_plot_financing_event_telegram_logs.js`) and cross-reference the three literals. (3) Add an **`API.md`** section for `[PLOT FINANCING EVENT]` (labels: `Plot ID`, `Tree Count`, `Amount`, … — mirror the catalog entry). (4) Add a **PR10** row to the plan's §4 tracker. No code change; the event itself is already registered and tested.
+
+**Evidence.** `dao_protocol` `c68718a`; `tokenomics` `1beabd0`; `truesight_dao_client/server/data/events_catalog.json` (`PLOT FINANCING EVENT`); `google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/process_plot_financing_event_telegram_logs.js`; plan §0 (stops at 0.13); thread 33541.
+
+### `snapshot_managed_ledgers.py` uppercases currency keys — managed-ledger snapshots do not match `Currencies`-tab keys
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541). Status: confirmed bug, not yet fixed.**
+
+`python_scripts/tdg_asset_management/snapshot_managed_ledgers.py` **L91** does
+`currency = (row[TX_COL_CURRENCY].strip() or 'USD').upper()`, so every currency key in the
+`treasury-cache` `managed-ledgers/*.json` snapshots is force-uppercased on read
+(`Kraft Pouches` → `KRAFT POUCHES`, `Cacao Mass Bar (500grams)` → `CACAO MASS BAR (500GRAMS)`).
+
+**Consequence.** Any consumer that keys off a snapshot's currency string silently misses the
+matching `Currencies`-tab row — exactly how **AUM valuation** (`tdg_wix_dashboard.js` converts
+every AGL balance to USD via `Currencies!B`) and **first-seen** resolution look up prices.
+Found while refuting Decision 0.13: the snapshot's uppercase `CACAO TREE TO BE PLANTED` was
+mistaken for a *live per-ledger literal*, when the raw sheets hold mixed case on every ledger.
+
+**To do.** Either (a) drop the `.upper()` and snapshot currency verbatim (then fix downstream
+code that relied on the uppercasing), or (b) keep it but also emit the raw value (e.g.
+`currency_raw`). Pick with the governor; a case-insensitive lookup on the consumer side is the
+minimum safe fix. Add a test that a mixed-case literal survives the snapshot round-trip.
+
+**Related.** `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` §8.5 (Decision 0.13 — REVERSED 2026-09-20).
+
+### SunMint plot → farmer mapping: derive `SunMint Plots`.`Contributor Name` by geographic proximity (scope + open questions)
+**Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 33541, plan `SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`). Status: scoped, NOT built — blocked on prerequisites + governor answers.**
+
+**Context.** The plan's PR6/PR7 plot-level link path resolves the farmer from `SunMint Plots` **col T `Contributor Name`**, and **fails closed** when it is blank. All 22 existing plots have col T empty, so plot links all fail closed today — the reason the PR7 live dry-run allocated **0 plots** (and 51 of 60 QRs went unallocated for lack of a target). Originally framed as a manual field-data backfill; **Gary (2026-09-20): “I think the plot is linked to the farm by proximity”** — i.e. derive the farmer by nearest registered farm rather than typing names by hand.
+
+**This changes HOW the col-T backfill is done, not WHETHER it needs prerequisites — and the prerequisites do not exist yet.**
+
+**🚩 Open questions (answer before building):**
+1. **Farm registry first.** `SunMint Registered Farms` is **headers-only / empty**. Who populates farm **lat/long + owner**, and when? Proximity is impossible without it.
+2. **Plot coordinates.** `SunMint Plots` holds only Plot ID + name — **no lat/long**. Where do *plot* coordinates come from so a distance can be computed?
+3. **Match rule.** What distance = “by proximity” — a fixed radius, or nearest-farm-wins with no threshold?
+4. **Ambiguity.** Plot equidistant to two farms, or nearer a farm than any registry entry — fail closed, or pick nearest?
+5. **Persistence.** Compute once as a col-T backfill, or derive live at each link event?
+6. **Cardinality.** Is a plot bound to exactly one farm (and hence one `Contributor Name`)?
+
+**My read:** items **1–2 are hard prerequisites** — the backfill cannot run until *both* the farm registry (locations + owners) and plot geocoding exist. Deliverable once unblocked: a proximity allocator that, per plot, finds the nearest registered farm and writes its owner into col T, with the same fail-closed discipline as the link path (never guess a farmer identity for a money-discharging link).
+
+**Related:** plan §1.6 (plot link path), §5.9e TC13, PR6 note (⚠️ SunMint Plots col-T backfill), PR7b dry-run finding (0 eligible plots).
+
 ### PII-in-public-JSON safety: confirm the CRF plan §11.4 `excluded_pii_events` exclusion is actually deployed
 **Filed 2026-09-20. Owner: Sophia. Governor: Gary (thread 31842, spun from thread 30026). Status: UNVERIFIED — needs confirmation, not assumption.**
 
@@ -922,6 +1120,8 @@ So a member's message is logged as captured context and **never dispatched** —
 **Doc landmine (worth a one-liner in `infrastructure/AWS_DIGITAL_INFRASTRUCTURE.md` §7).** The fleet SSH alias is `dao-protocol` (**hyphen**), defined in `~/.ssh/config`; `ssh dao_protocol` (**underscore**) is *not* an alias and fails `Permission denied (publickey)`. The service name is `truesight-dao-protocol.service` (hyphen) while the *host* label is `dao_protocol` — easy to conflate.
 
 **Evidence.** `dao_protocol` box `git log` (`3b42488` → `3bb3853`); `/ping` on prod; `~/.ssh/config` (`Host dao-protocol` → `98.93.94.86`); `AWS_DIGITAL_INFRASTRUCTURE.md` §7; `sops/DEPLOY_PUSH_SOP.md`; thread 28504.
+
+**Concrete instance 2026-09-20 (thread 33541) — hits the events catalog.** Found while independently verifying the SunMint farmer-settlement build. Live `GET https://edgar.truesight.me/events-catalog` serves **version 8** (47 events), while `dao_protocol` `main` is at **version 10** — the deployed process is stale by two catalog versions. Concretely missing/gappy on prod: `[PLOT FINANCING EVENT]` (**absent** — PR10a #177) and `[TREE PLANTING LINK EVENT]` carries only its **4 original labels** (no `Plot ID` — PR7 #175; so `lookup_event_docs` under-reports the live contract). Deployed box checkout sits at `85bafd3` (#172). This is the *same* root cause as the 2026-09-13 instance (no CD), now concretely visible in the `events-catalog.json` mtime-cached data file (a `git pull` alone would refresh it; no restart needed for a pure data change). **Not self-deployable** — dao_protocol prod is a deploy gate; the `/ping`-vs-`origin/main` drift check proposed above would have surfaced this silently.
 
 ### Deploy-ledger: use `append_deploy_record.py`, not a raw file upload (skips the feed rebuild)
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 28504).**
@@ -3198,6 +3398,26 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### Governor sheet-permission SOP rewritten into a gated season-rotation runbook (kills the sentinel-stripping revoke script)
+**Filed 2026-09-21; shipped 2026-09-22. Governor: Gary (thread 34264). PR: agentic_ai_context #1341.**
+
+The stale §3 inline Python (revoke loop keyed off the governor name list only → would have stripped
+sentinel `admin@truesight.me`) is gone. `sops/GOVERNOR_SHEET_PERMISSION_SYNC_SOP.md` now:
+- points at the deployed `GovernorSheetPermissionSync.js` as the **only sanctioned write path**
+  (`syncGovernorEditorsNow()` / `doGet(?action=sync_governor_editors)`);
+- states the **governor OR sentinel** eligibility rule + "never touch owner / SAs / external collaborators";
+- demotes the old script to a **read-only audit snippet** (no `permissions().create/delete`);
+- adds a **gated runbook**: pre-flight (resolve gov→email, **freeze the roster first**), the go-gate
+  (Drive changes = governor's DIRECT go; REVOKE deferred until the TDG window settles), verify via
+  the `Governor Sync Log`, then the deferred-revoke step.
+
+The "freeze the roster first" step comes from this session's miss: the 2026-09-22 sync fired 16:40Z,
+10 min *before* the ledger dedup finished (16:50Z), so it read a stale leaderboard (Val Lapidus granted
+while still a governor, reclassified minutes later). Also surfaced: four current governors (AGL15,
+June Jo, Ken Nim, Philip Lee) have **blank emails** in `Contributors contact information` col D and so
+cannot be granted at all — the runbook now pre-flights this.
+
 
 ### Black King corridor: NF11/NF12/NF14 destination conflict - RESOLVED (keep Kirsten; Taraval = fiscal/billing only)
 **Filed 2026-09-18; resolved 2026-09-18. Governor: Gary (thread 31905). PR: agentic_ai_context (Rev 4 crosswalk).**
