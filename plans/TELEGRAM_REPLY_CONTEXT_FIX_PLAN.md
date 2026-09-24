@@ -110,20 +110,21 @@ assumed — read the file's test style before writing new ones in PR1).
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR2** (deploy + live verification) — the §2 always-stop gate. PR1 is merged
-> (`truesight_autopilot` #500, sha `30291c97`) and its contribution reported; the deployed box still
-> runs the OLD adapter, so the fix is not live until PR2. **Do NOT restart the live service without
-> Gary's explicit `go`** (affects every in-flight thread).
+> **RESUME HERE → ✅ PLAN COMPLETE.** All three units shipped and verified: PR1 = `truesight_autopilot`
+> #500 (`30291c97`, merged, CI green); PR2 = deployed + live-verified 2026-09-24 (`ActiveEnterTimestamp`
+> 10:20:40 UTC, HEAD `30291c9`; UAT — a real reply produced a `[Replying to ...]` prefix in the live
+> `journalctl` `CHAT REQ` line and the reply acted on it; pre-deploy logs: 0 such lines); PR3 = root
+> cause filed in `OPEN_FOLLOWUPS.md` + `CONTEXT_UPDATES.md` (`agentic_ai_context` #1365).
 >
-> No open governor decisions block PR2 — it is a standing, expected gate for any `truesight_autopilot`
-> change, not something specific to this fix.
+> Nothing further to execute. The deploy gate (§2) was cleared by Gary's explicit `go` in thread 35622.
+> Close thread 35622 when the governor is satisfied.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
 | PR1 (fix + tests) | ☑ | ☑ | ☑ |
 | PR2 (deploy + live verification) | ☐ | — | ☐ |
-| PR3 (file the gap so it's tracked) | ☐ | ☐ | ☐ |
+| PR3 (file the gap so it's tracked) | ☑ | ☑ | ☐ |
 
 ✅ **Pre-flight Completeness (§5d):** the exact two existing `reply_to_message` read-sites, the exact
 insertion point for the fix (with surrounding code quoted), why the emoji-reaction code path is *not*
