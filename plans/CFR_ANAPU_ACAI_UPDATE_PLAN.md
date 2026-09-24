@@ -1,7 +1,7 @@
 # CFR Anapu (cfr.truesight.me) — açaí content update
 
 **Filed:** 2026-09-24, by Claude Anthropic (Envoy/planner), at Gary's request.
-**Status:** in progress — PR1 merged 2026-09-24 (sha `ec876b3`); PR2 (live publish) pending governor go.
+**Status:** PR1 merged 2026-09-24 (sha `ec876b3`). **PR2 BLOCKED (2026-09-24, Sophia): premise invalid + production gate — see §1.1 correction. Awaiting Gary's re-scope.**
 **Trigger:** Gary: *"Some students are planting açaí. https://cfr.truesight.me/ Can we update this?"*
 
 > `OPERATING_INSTRUCTIONS.md` §5 tracked roadmap. §5a: **one PR per execution turn, then stop.**
@@ -36,6 +36,34 @@ then re-vendors into `cfr-anapu`** — same two-step pattern as the original CRF
 opportunistically catches up the `program_mode(s)` drift in the same re-vendor pass, since it's
 the same mechanical step and already known-stale.
 
+> ⚠ **Correction (Sophia, live re-read 2026-09-24) — PR2 as written cannot achieve its own §6 UAT.**
+> Re-verified against both live sites and both repos. Four premises in §1.1/§6 do not hold:
+>
+> 1. **The `program_mode`→`program_modes` drift is already closed.** `cfr-anapu@gh-pages`'s root
+>    `manifest.json` *already* carries `program_modes: ["cohort_credentialing", "sunmint_cohort"]`
+>    (commit `3bfe7af`, "CRF Anapu PR5 mirror (#6)", 2026-09-17). PR2's drift clause is a no-op.
+> 2. **`cfr.truesight.me/` (root) is the SunMint farmer *app*** ("Sunmint - TrueSight DAO"; nav =
+>    Registrar Plantio / Monitorar Árvore / …) — it has **no description section at all**. The plan's
+>    §6 UAT ("açaí sentence visible at `cfr.truesight.me/`") targets a page that never renders
+>    `description_md`.
+> 3. **The cfr program landing page (`/program/`) cannot load any manifest.** `program/index.html`
+>    calls `TrueSightProgramShell.init({ manifestPath: './manifest.json' })` → fetches
+>    `/program/manifest.json`, which **404s** (that path has never existed in the repo; confirmed via
+>    `git log --all -- program/manifest.json`). So re-vendoring the root `manifest.json` would **not**
+>    surface the açaí copy at `cfr.truesight.me/program/` — the page needs its `manifestPath` changed
+>    to `../manifest.json` (as `credentials/index.html` already does) *or* its own
+>    `program/manifest.json`.
+> 4. **The real, working CRF Anapu program page is `https://truesight.me/programs/crf-anapu/`**,
+>    served by **`truesight_me_prod`** (CNAME `truesight.me`; live manifest sha `fb5972584742` ==
+>    prod `main`). It renders `description_md` correctly. Prod is still **pre-PR1** (no açaí,
+>    `last_reviewed` 2026-09-11); beta `main` has PR1 (`9bd6198`, `last_reviewed` 2026-09-24).
+>    Publishing there is a **beta→prod promotion** — a production gate needing explicit governor
+>    approval, not a `*_beta` self-merge.
+>
+> **Net:** no single "re-vendor the root `manifest.json` into `cfr-anapu`" step makes the açaí copy
+> appear on any governor-facing page. PR2 must be re-scoped with Gary before execution — see the
+> revised §2 envelope and §3 units.
+
 ### 1.2 What the page currently says about species
 
 `manifest.json`'s `description_md` (both repos, identical): *"Cacao-based agroforestry, with
@@ -69,7 +97,8 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 | Surface | Envelope |
 |---|---|
 | `truesight_me_beta/programs/crf-anapu/manifest.json` copy edit | Pre-authorized by this request — beta repo, feature branch + PR, self-mergeable per standing `*_beta` authority. |
-| Re-vendoring into `cfr-anapu` (`gh-pages`, live prod subdomain) | Pre-authorized — this domain has no separate prod/beta split (per §1.1, it *is* the live site); treat the re-vendor push itself as the deploy step and do a live URL check immediately after (§5). |
+| Re-vendoring into `cfr-anapu` (`gh-pages`, live `cfr.truesight.me`) | **GATE — needs explicit governor sign-off (revised 2026-09-24).** Any `gh-pages` push *is* a live production-subdomain deploy. Per the §1.1 correction a root-manifest re-vendor also does **not** surface the copy at `/program/` (manifest-path 404), so the step is both gated and, as originally scoped, ineffective. |
+| Promoting `truesight_me_beta` → `truesight_me_prod` (`truesight.me/programs/crf-anapu/`) | **GATE — production promotion, explicit approval required** (`sync_beta_to_prod`). This is where `description_md` actually renders publicly. |
 | §4's two flagged, out-of-scope items | **Not authorized here** — informational only, needs Gary's go before either gets its own plan. |
 
 ---
@@ -80,7 +109,8 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 |---|---|---|
 | **PR0** | This roadmap. | `agentic_ai_context` |
 | **PR1** | Update `programs/crf-anapu/manifest.json`'s `description_md`: name açaí explicitly alongside cacao — e.g. *"Cacao-based agroforestry, with native shade and timber trees, is expressly supported — açaí, a native Amazonian fruit palm, is also being planted by students as of September 2026."* (exact wording open — see §5). Bump `last_reviewed`. **Shipped 2026-09-24, Option A:** appended only *"Students are also planting **açaí**, a native Amazonian fruit palm."* — no date, no intercropping claim. | `truesight_me_beta` |
-| **PR2** | Re-vendor the updated `manifest.json` into `cfr-anapu` (`gh-pages`), same pass, also catch up `program_mode` → `program_modes: [cohort_credentialing, sunmint_cohort]` to close the drift found in §1.1. Live-check `https://cfr.truesight.me/` after push (§5c — this push *is* the prod deploy for this domain). | `cfr-anapu` |
+| **PR2 (BLOCKED — re-scope with Gary)** | Re-vendor root `manifest.json` into `cfr-anapu@gh-pages` **and** fix `program/index.html`'s `manifestPath` (`./` → `../`, or add `program/manifest.json`) so the copy actually renders at `cfr.truesight.me/program/`. Drift clause dropped (already closed, §1.1 correction). **Live deploy — governor gate.** | `cfr-anapu` |
+| **PR2-b (alternative, BLOCKED)** | Promote `truesight_me_beta` → `truesight_me_prod` so the açaí copy reaches the working public page `https://truesight.me/programs/crf-anapu/`. **Production promotion — explicit approval required.** | `truesight_me_prod` |
 | **PR3 (parked, not triggered)** | Once real açaí-planting photos/details exist: ingest via the established MAP pipeline (`farm_media_manifests`, `entity_type: program`, cross-indexed) → add to `programs/crf-anapu/media.json` gallery → re-vendor into `cfr-anapu`, same two-repo pattern as PR1/PR2 — see `handoffs/CRF_ANAPU_MEDIA_TASK_PLAN.md` §4/§5 for the exact precedent (that's how the original site-visit photos were added). **No photos exist yet** (checked, §0 row 3) — this unit stays parked until Gary or the CEPOTX contact supplies media. | `farm_media_manifests`, `truesight_me_beta`, `cfr-anapu` |
 
 ---
@@ -94,14 +124,19 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 
 ## 5. Resume tracker
 
-> **RESUME HERE → PR2.** PR1 is complete (2026-09-24): Gary selected **Option A** in thread 35888 —
-> açaí named additively, no unsourced date, and the "intercropped" phrasing deliberately withheld
-> (still an open factual question). PR1 merged, sha `ec876b3`, contribution reported.
+> **RESUME HERE → awaiting Gary: re-scope PR2.** PR1 is complete (2026-09-24): Option A shipped in
+> thread 35888 (sha `ec876b3`, reported). **Do NOT execute PR2 as written** — the live re-read above
+> (§1.1 correction) shows it is both a production deploy *and* ineffective: it would not make the
+> açaí copy visible on any governor-facing page.
 >
-> PR2 is the **live publish** step: re-vendor the updated `manifest.json` into `cfr-anapu@gh-pages`
-> and catch up the `program_mode` → `program_modes` drift (§1.1) in the same pass. For this domain
-> the push *is* the prod deploy, so run the §6 UAT live check (`https://cfr.truesight.me/`, page 200
-> + açaí sentence visible) immediately after.
+> **Decision needed from Gary — pick the target:**
+> - **Option 1 — `cfr.truesight.me/program/`** (the CRF subdomain Gary linked): re-vendor the copy
+>   **and** fix the `manifestPath` 404. Live subdomain deploy.
+> - **Option 2 — `truesight.me/programs/crf-anapu/`** (the canonical public program page that
+>   actually renders the description): promote beta→prod. Production promotion.
+> - **Option 3 — both.**
+>
+> Either path is a production gate; nothing publishes until Gary names the target.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
@@ -116,8 +151,9 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 
 | Step | What to expect | Acceptance criterion |
 |---|---|---|
-| 1 | `https://cfr.truesight.me/` after PR2 | Page loads 200, new açaí sentence visible in the description section |
-| 2 | Cross-check `truesight_me_beta/programs/crf-anapu/` beta preview | Same copy, confirms source-of-truth and vendored copy match again (closes the §1.1 drift too) |
+| 1 | `https://truesight.me/programs/crf-anapu/` after prod promotion | Page loads 200, açaí sentence visible in the description section — **this is the working public page** (Option 2) |
+| 2 | `https://cfr.truesight.me/program/` after the cfr fix | Page loads 200, açaí sentence visible — **requires the `manifestPath` fix, not just a manifest re-vendor** (Option 1) |
+| 3 | Cross-check `truesight_me_beta` (`main`) vs the published copy | Same copy, confirms source-of-truth and published copy match (`last_reviewed` 2026-09-24) |
 
 ---
 
