@@ -624,6 +624,7 @@ same GAS `doGet` also appends a row to the private `cfr program` tabs (`tree pla
 | **P3** | Rewrite the sink to the `cfr program` sheet + 4-tab schema; drop `pix_key_cipher`; flip the privacy-guard test from *"refuse raw key"* → *"allow raw PII only in the private sheet, never on a public surface"* | `tokenomics` | auto |
 | **P4** | Repoint `payout_registration.html` from direct-POST to the Edgar route (§11.6) | `dapp_beta` / `cfr-anapu` | auto (beta); prod gated on UAT |
 | **P5** | Provisioning (§11.8) + first live submission UAT | — | **`gate: human`** |
+| **P6** | §11.5 CFR tree/monitoring/plot mirror — **writers + Edgar wiring MERGED in source** (`tokenomics` #550 writers; `dao_protocol` #179 additive routing). Remaining: set `DAO_PROTOCOL_WEBHOOK_CFR_PROGRAM_REGISTRATION_PROCESSING` + restart Edgar | `tokenomics` + `dao_protocol` | **`gate: human`** (deploy/env) |
 
 ### 11.10 ⏳ Proposed — PII Event Envelope at the *public-JSON boundary* (Gary, 2026-09-18)
 
