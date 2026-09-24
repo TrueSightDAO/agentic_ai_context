@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-21T20:22:39Z",
+  "generated_at": "2026-09-24T10:02:12Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "022b8afb2ff2f9ffc43f948aed7e3da8f41c671bf76f6479cae674de2eafdb99",
+  "source_sha256": "7bea9a4fb207760a00d0c10c1220451bd2c96bba8db9a6f27065cfbffcefee71",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,10 +16,10 @@
     "done",
     "stale"
   ],
-  "handoff_count": 69,
+  "handoff_count": 73,
   "counts_by_state": {
-    "awaiting_kickoff": 15,
-    "executing": 16,
+    "awaiting_kickoff": 17,
+    "executing": 17,
     "paused_at_gate": 2,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -29,9 +29,43 @@
     "failed": 0,
     "done": 21,
     "stale": 1,
-    "unknown": 0
+    "unknown": 1
   },
   "handoffs": [
+    {
+      "plan_file": "`plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md`",
+      "title": "**Telegram reply-to context loss** — when a governor replies to a specific prior Telegram message (e.g. a photo), the reply relationship and content are silently dropped before reaching the LLM; root-caused to two narrow `reply_to_message` reads in `telegram_adapter.py`, neither of which forwards content.",
+      "handoff_date": "2026-09-24",
+      "state": "unknown",
+      "status_raw": "**triggered — PR1 merged; PR2 (deploy) awaiting go**",
+      "telegram_thread_id": "35622",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "Exec: Telegram reply-context fix",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-24",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`plans/CAPOEIRA_I18N_PLAN.md`",
+      "title": "**Capoeira site — English/Portuguese toggle with persisted preference** — matches the existing `sunmint.truesight.me` mechanism (localStorage + `data-i18n` markup), rolled out across all 8 pages of `capoeira.agroverse.shop`, one PR per page, with a native-Portuguese-reader UAT gate before/shortly after going live.",
+      "handoff_date": "2026-09-24",
+      "state": "executing",
+      "status_raw": "**triggered — PR1 in progress**",
+      "telegram_thread_id": "35336",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "Exec: Capoeira i18n",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-24",
+      "supervised_by": null
+    },
     {
       "plan_file": "`plans/SUNMINT_PLOT_EXPLORER_PLAN.md`",
       "title": "**SunMint Plot Explorer** — a dedicated full-viewport exploration surface for SunMint plots/trees/media (`/sunmint/plots/`) instead of crowding the `truesight.me/sunmint` marketing page; the page's in-page map shrinks to a teaser linking through. Includes a **mandatory refresh-on-ingest** requirement for the prebuilt per-plot media index.",
@@ -52,7 +86,7 @@
         "claimed_at": "2026-09-20T13:00:00Z",
         "note": "thread 33323. PR1-PR6 all independently verified merged (sunmint#2, truesight_me_beta#382/#383/#384/#385/#386/#387/#388). PR7 UAT: Sophia's own R1 pass caught + fixed a real layout bug (unstyled shared nav eating 623px, PR#387); Envoy's independent R2 pass (own puppeteer script via SSH, own screenshots, own click-test -- not Sophia's relayed captures, per the now-canonical SUPERVISOR_LOOP.md §4a point 2a this episode produced) found + required a fix for a real stale-copy defect (PR#388) before signing off. Envoy gave the §4a R3 GO (first real exercise of that delegated authority) -- sync_beta_to_prod(\"truesight_me_prod\") hit a genuine merge-conflict refusal, root-caused via Sophia's rigorous merge-base diff to ONLY the 6 machine-generated stats/*.json files (proven byte-level benign: timestamp/ordering churn only, same cron generator both sides) -- CNAME and the new file were single-sided, not real conflicts. Per SUNMINT_E2E_RUNBOOK.md §5c the documented remedy is a MANUAL GitHub-UI fork-sync (prod repo fork page -> Sync fork -> merge upstream, keep prod's CNAME) -- sync_beta_to_prod has no programmatic resolve path. RESUME HERE = awaiting Gary's manual fork-sync click, then Sophia re-runs sync_beta_to_prod. Gary also confirmed a standing directive: future beta->prod conflicts that are SOLELY the known CNAME divergence, Sophia should fix+proceed without waiting for governor go (see cname_only_sync_conflict_autoresolve memory) -- but the manual-fork-sync mechanical limitation still applies regardless of authorization when the tool truly has no resolve mode. NEW SCOPE 2026-09-20 (agentic_ai_context#1299, merged): PR8 (per-plot satellite history date-picker in the detail panel, using satellite/manifest.json's plot-keyed scenes, full historical range back to ~2017 API floor, genuine date-slider/stepper UX not a static grid) + PR9 (retire the now-redundant ~1-degree-cell satellite widget on sunmint.html marketing page, build-then-cleanup order). PR8b (the explorer stepper UI) shipped + verified merged (truesight_me_beta#389) -- reads the manifest, degrades gracefully to today's 4-scene window, lights up fully once PR8a lands. PR8a (the data backfill) blocked: sunmint is policy-walled as machine-owned/API-only in Sophia's own config.py (api_only_repos), so she mechanically cannot open a PR there -- she designed a sound self-driving-daemon approach (agentic_ai_context#1304, merged) per Gary's direction (extend the existing daily cron to catch up one rate-limited batch per run until full 2017-> history, then settle into steady-state rolling+merge -- no manual trigger ever needed). RESUME HERE = Gary deciding who writes the actual 8a code into sunmint (Envoy's own git credentials aren't bound by Sophia's api_only_repos restriction, so Envoy doing it directly is one live option; Gary loosening the config so Sophia can PR it herself is another) -- still awaiting his call as of last check.",
         "stale": true,
-        "age_minutes": 1882
+        "age_minutes": 5582
       }
     },
     {
@@ -347,7 +381,7 @@
         "claimed_at": "2026-09-20T16:10:00Z",
         "note": "thread 33541. Handed off from the planner session (verified independently before accepting -- PR#1296 state, manifest absence, and topic existence all re-checked directly, not taken on the planner's word alone). Supersedes only the ledger-booking step of the parent SUNMINT_TREE_QR_LINKING_PLAN.md §7. Four-item accrual model (Cacao Tree Purchased-Not Planted / Cacao Tree-To Be Paid For / Cacao Tree Planted-Unassigned, alongside the existing To Be Planted liability), batch allocator for 520 sold-unlinked QRs, nine UAT test cases (TC1-TC9) each with mandatory same-turn cleanup per Gary's explicit instruction (real data already sits in these tabs). PR#1296 (the plan doc itself) opened + hit real merge conflicts on the derived handoffs/index.json (unrelated PRs had moved main in the meantime) -- Sophia correctly resolved by regenerating from the manifest source of truth rather than hand-merging JSON; merged (sha 78c17494), independently verified. Real pre-existing data-integrity finding surfaced in the plan (not yet remediated, proposed only): two unreversed 2026-08-22 test runs (TEST_AGL4_20260822_2/_3) left live main-ledger rows overstating 'Cacao Tree Planted' by +2 units -- plan's §5.10 proposes but does not execute the fix. RESUME HERE = PR1. Two open governor decisions flagged for before PR3/PR4 (§0.7 reconciliation-match automation, §0.8 aging policy / whether the existing CFR payouts handler books real ledger legs or only logs) -- not blocking PR1, worth surfacing to Gary before those units are scoped precisely.",
         "stale": true,
-        "age_minutes": 1692
+        "age_minutes": 5392
       }
     },
     {
@@ -625,7 +659,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/context.py::get_context_file_fresh() is present and deployed. Live functional re-verification of the actual auto-advance behavior (U5/U1) still pending -- source presence confirmed, not yet re-tested end-to-end against a real stale-vs-fresh plan scenario. blocked_on_human -- 3 of 4 originally-authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- STILL flagged to Gary, unresolved, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN pending Gary's merge of #494 + GAS deploy. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests).",
         "stale": true,
-        "age_minutes": 8711
+        "age_minutes": 12411
       }
     },
     {
@@ -648,7 +682,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/tools/ssh_tools.py's krake_nginx FLEET entry carries the id_ed25519_truesight_autopilot host-local key pin. blocked_on_human -- UAT U1-U7 PASSED (3 in-scope SSH keys, agentic_ai_context#1217 merged). Unit 6 partial: top-level /home/ubuntu/*.pem dups archived (safe, unreferenced); ~/.ssh/*.pem HELD for Gary (breaks 21 live config aliases + drops fallback safety net) -- STILL OPEN, unaffected by the deploy. 2026-09-16T21:08Z: Gary said \"wrap up\" directly in-thread; Sophia filed a legitimate contribution report (240 min, PRs #476/#1198/#1217, all genuinely completed work) and correctly self-paused (\"no RESUME HERE pointer in plan\") rather than proceeding on the still-open pem decision -- not a sec6 violation, the report covers only merged work. Thread paused awaiting Gary's pem-archiving call; do not send 'go' until he decides.",
         "stale": true,
-        "age_minutes": 8711
+        "age_minutes": 12411
       }
     },
     {
@@ -671,7 +705,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/telegram_adapter.py's _PROGRESS_QUERY_RE is the anchored (fixed) version, not the old bare-alternation bug. blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7). Live functional re-verification (an actual Telegram round-trip proving a real instruction sent mid-turn is no longer misclassified as a status ping) still pending -- source presence confirmed, behavior not yet re-tested end-to-end. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 8711
+        "age_minutes": 12411
       }
     },
     {
@@ -762,7 +796,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 8711
+        "age_minutes": 12411
       }
     },
     {
@@ -955,7 +989,7 @@
         "claimed_at": "2026-09-18T02:00:00Z",
         "note": "blocked_on_human -- three sub-tracks live under this one plan file. (A) Original vendoring track: untouched, still parked at PR5 (program-shell.js badges); PR6 = gate:human first live lineage-credentials write -- the recurring 'Paused before PR6' chat message is this track's stale fallback status, not a new stall. (B) SS11 payout-registration sink: P2a/P2b/P2c public-JSON exclusion all independently verified live (truesight_autopilot#492, dao_protocol#168+deploy, go_to_market#177+its GH Actions cron confirmed running the fixed commit). P3 rewrote the sink to the private cfr program sheet (tokenomics#501). Gary found + fixed a real live PII leak himself (removed anyone:reader ACL from the public Telegram Chat Logs workbook, verified 401 anonymous post-fix) after Sophia twice refused to ship P4 (cfr-anapu#11) on the literal instruction -- P4 is now merged + LIVE on cfr.truesight.me, independently verified (merge sha + live page byte-check). PII Event Envelope (thread 31842) resolved same-day: Gary scoped encryption to the public-JSON-publication layer only, un-forking P4; recorded in SS11.10 + plans/PII_EVENT_ENVELOPE.md (agentic_ai_context#1259, merged) -- no longer a separate open claim. (C) SS12/§12.9 payout-event Q-track (new 2026-09-18): SS12 [PAYOUT EVENT] receipt object defined (agentic_ai_context#1260); Edgar catalog Q2 (dao_protocol#169) + routing Q3a (dao_protocol#170) merged + DEPLOYED live (Edgar v8, verified via events-catalog + lookup_event_docs both independently confirmed by Envoy); Q5 tabs provisioned on Gary's cfr program sheet (tokenomics#500/#502/#503, a real idempotency bug found + fixed); Q3b sink shipped (tokenomics#504, dual-write Tier-1/Tier-2 + retry-dedup) and DEPLOYED live to the GAS webapp (version @30->@32) -- independently verified via the payouts tab materializing on the live Ops workbook with the exact 15 headers. Sophia's own instrumentation caught two real production bugs before Paulo's first submission: the hourly-cron trigger installer was silently swallowed by a try/catch (tokenomics#513/#517, fixed), then found to be categorically unauthorized -- appsscript.json declared no script.scriptapp OAuth scope (tokenomics#518, deployed @32). RESUME HERE = blocked on a genuinely human-only step: the OAuth re-consent click in the Apps Script editor (clasp run / Execution API confirmed unusable -- no GCP project linked, no automatable path exists). SS12.6 answered by Gary: receipt source = manual/PDF, currency = BRL-only, receipt artifact = private governor-only Drive + receipt_url. SS12.8 module placement (report_payout_event.html in dapp_beta) shipped through M1-M5, live on both beta and prod (sync_beta_to_prod verified, prod head 89ac500). M0 (Paulo backfill, the first real payout) parked pending the consent click.",
         "stale": true,
-        "age_minutes": 5422
+        "age_minutes": 9122
       }
     },
     {
@@ -978,7 +1012,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 8711
+        "age_minutes": 12411
       }
     },
     {
@@ -1222,7 +1256,7 @@
         "claimed_at": "2026-09-18T02:00:00Z",
         "note": "executing -- ad-hoc governor-directed reconciliation, thread 31905. 12/15 Black King NF-e resolved (10 tracking-matched via DANFE weight/content evidence, 2 correctly excluded as cancelled/superseded). 3 genuinely unshippable (NF4/NF7/NF15) -- Gary's Aug-2025 tariff-disruption theory corroborated by 4 independent evidence legs (no tracking, no arrival-register row, no post-06-23 FDA shipping doc in the supplier folder, no export paperwork in the Sept file set); documented, not a data gap. Coopercabruca-emitter rows (a different supplier, same courier) correctly scoped out after a real cardinality-modeling error was caught and corrected (Rev 1 -> Rev 2 -> Rev 5, each an independently-verified merged PR). One governor-directed write + revert already exercised cleanly: Sophia re-attributed rows 16-20 (Kirsten -> Val Lapidus) on real evidence, Gary reviewed and said keep the original, she reverted to a byte-identical pre-change snapshot and reconciled the already-merged docs rather than leaving them stale. RESUME HERE = awaiting the 2025 Exporta Facil AWBs from Matheus (the only remaining deterministic key for NF4/NF7, if they exist) -- otherwise the 3-item gap stands as the final, documented answer for the accountant.",
         "stale": true,
-        "age_minutes": 5422
+        "age_minutes": 9122
       }
     },
     {
@@ -1245,8 +1279,25 @@
         "claimed_at": "2026-09-18T02:00:00Z",
         "note": "executing -- pre-existing thread 31220. Real security finding, independently verified: a live Wix access token survives in tokenomics' PUBLIC git history despite being redacted from the working tree. Filed agentic_ai_context#1273 (merged) with the governor decision explicitly NOT taken unilaterally: revoke-in-Wix vs. history force-push rewrite. 2026-09-19: Gary explicitly resolved the earlier 'approve 2' bundle-ambiguity Envoy flagged -- confirmed PDF item 2 (governor-gated bundle incl. Wix) and his own list item 2 (deploy the git-ahead set) were different things; instructed 'just ignore WIX' (leave untouched, no revoke, no rewrite, deferred) and 'repoint to updated one' (proceed with the deploy). Sophia then executed a real 7-project GAS deploy batch (tokenomics#523 harness + live pushes, dry-run-then---push guarded, identity-matched) -- independently verified none of the 7 deployed scriptIds touch the Wix project (1Y8sJ22); Wix genuinely untouched. Also shipped tokenomics#524 (fixed a stale-pinned-deployment ReferenceError on 19Wag9x, the same project backing the EXPENSE_PROCESSING webhook -- this incidentally explains a missing-expense-record bug surfaced in the Black King thread, see that claim). RESUME HERE = Wix revoke-vs-rewrite still explicitly deferred by Gary, not resolved -- do not treat 'ignore Wix' as closing the question, only as postponing it.",
         "stale": true,
-        "age_minutes": 5422
+        "age_minutes": 9122
       }
+    },
+    {
+      "plan_file": "`plans/SCHWAB_PORTFOLIO_INTEGRATION_PLAN.md`",
+      "title": "**Schwab portfolio integration (read-only)** — link Gary's real Charles Schwab brokerage account into `sentiment_importer` (Perch) so his live positions/account value can be pulled for personal portfolio-management discussions. **Hard scope: read-only** — no order placement, no `auto_buy` wiring; enforced by a PR1 spec, not just by omission.",
+      "handoff_date": "2026-09-20",
+      "state": "awaiting_kickoff",
+      "status_raw": "**draft — awaiting kickoff**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "(pending — Sophia to create on trigger)",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-20",
+      "supervised_by": null
     },
     {
       "plan_file": "`brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`",
@@ -1264,11 +1315,29 @@
       "auto_start": "no",
       "last_updated": "2026-09-21",
       "supervised_by": null
+    },
+    {
+      "plan_file": "`plans/SOPHIA_ONAYA_LLM_SWAP_PLAN.md`",
+      "title": "**Sophia → temporarily run on Onaya's Claude (Haiku 4.5) token** — DeepSeek balance is exhausted (2026-09-24); swap Sophia's LLM backend to litellm/`anthropic/claude-haiku-4-5` using Onaya (Bionpact)'s existing, currently-underutilized `ANTHROPIC_API_KEY`, as a monitored trial until DeepSeek is topped up. Sophia's `config.py` already supports this path (`LLM_PROVIDER=litellm`); the swap is config-only, no code change.",
+      "handoff_date": "2026-09-24",
+      "state": "awaiting_kickoff",
+      "status_raw": "**draft — not yet triggered. Urgent: DeepSeek balance exhausted, Sophia likely non-functional. RESUME HERE = PR1 (`.env` swap)**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "*(not yet created — supervisor to open on trigger)*",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-09-24",
+      "supervised_by": null
     }
   ],
   "warnings": [
-    "line 59: ragged row has 13 cells, expected 11 — padded/truncated",
-    "line 78: ragged row has 9 cells, expected 11 — padded/truncated",
-    "line 74: blank line splits the handoff table"
+    "line 61: ragged row has 13 cells, expected 11 — padded/truncated",
+    "line 80: ragged row has 9 cells, expected 11 — padded/truncated",
+    "line 76: blank line splits the handoff table",
+    "`plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md`: Status '**triggered — PR1 merged; PR2 (deploy) awaiting go**' matched no state rule"
   ]
 }
