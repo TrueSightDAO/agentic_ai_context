@@ -80,9 +80,16 @@ if it says `SET`, it is set — move on. If `NOT SET`, that's an open item (file
 - `DAO_PROTOCOL_WEBHOOK_TREE_PLANTING_PROCESSING` → the planting `AKfycbyLQjTl…/exec` URL (SET)
 - `DAO_PROTOCOL_WEBHOOK_TREE_GROWTH_MONITORING` → growth URL (verify when growth UAT starts)
 - `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING` → the payout `AKfycbxQDdGnw…/exec` URL (@30) — **NOT SET** as of 2026-09-18; the GAS hourly cron (installed by the sink, #513) is the operative path until wired. Verified: `dao_protocol:/home/ubuntu/dao_protocol/.env` has no `…_PAYOUT_*` key.
+- `DAO_PROTOCOL_WEBHOOK_CFR_PROGRAM_REGISTRATION_PROCESSING` → the CFR program-submission `AKfycbxQDdGnw…/exec` URL (same deployment as `…_PAYOUT_PROCESSING`) — **NOT SET** as of 2026-09-24. Wired in `dispatch.py` (dao_protocol #179) as a **2nd** target on the tree/monitoring/boundary routes (additive — the SunMint targets are untouched). Missing key → logged + skipped (SunMint unaffected); the CFR sink stays inert until this is set **and** Edgar restarts. See OPEN_FOLLOWUPS.md 2026-09-24.
 
 **Routing entries (dao_protocol `dispatch.py` ROUTING):** `[TREE PLANTING EVENT]` (#149), `[TREE PLANTING REJECT EVENT]` (#150),
 `[TREE PLANTING LINK EVENT]`, `[TREE GROWTH MONITORING EVENT]` — all dispatch to the GAS webhooks above.
+
+**CFR mirror (additive, dao_protocol #179, 2026-09-24):** `[TREE PLANTING EVENT]`, `[TREE GROWTH MONITORING EVENT]`
+and `[FARM BOUNDARY EVIDENCE EVENT]` each carry a **second** target `("CFR_PROGRAM_REGISTRATION_PROCESSING",
+"processCfrProgramSubmissionsFromTelegramChatLogs")` (§11.5). ADDITIVE ONLY — `dispatch_event` fires every target
+of a matched entry, so the SunMint targets above must never be replaced (else the public `SunMint Tree Planting`
+tab goes dark). Guarded by `tests/test_cfr_program_dispatch_routing.py`.
 
 ---
 
