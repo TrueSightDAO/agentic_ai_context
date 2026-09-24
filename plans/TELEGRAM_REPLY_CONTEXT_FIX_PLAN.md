@@ -110,16 +110,18 @@ assumed — read the file's test style before writing new ones in PR1).
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR1** (the fix + tests). Fresh roadmap — nothing has started.
+> **RESUME HERE → PR2** (deploy + live verification) — the §2 always-stop gate. PR1 is merged
+> (`truesight_autopilot` #500, sha `30291c97`) and its contribution reported; the deployed box still
+> runs the OLD adapter, so the fix is not live until PR2. **Do NOT restart the live service without
+> Gary's explicit `go`** (affects every in-flight thread).
 >
-> No open governor decisions block this — the fix is narrowly scoped and the root cause is fully
-> captured in §1. The only gate is PR2's deploy step (§2), which is a standing, expected gate for any
-> `truesight_autopilot` change, not something specific to this fix.
+> No open governor decisions block PR2 — it is a standing, expected gate for any `truesight_autopilot`
+> change, not something specific to this fix.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (fix + tests) | ☐ | ☐ | ☐ |
+| PR1 (fix + tests) | ☑ | ☑ | ☑ |
 | PR2 (deploy + live verification) | ☐ | — | ☐ |
 | PR3 (file the gap so it's tracked) | ☐ | ☐ | ☐ |
 
