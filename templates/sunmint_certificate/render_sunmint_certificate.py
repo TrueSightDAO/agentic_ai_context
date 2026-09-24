@@ -277,7 +277,9 @@ def build(
             outline=(255, 255, 255, 255),
             width=max(1, int(2 * s)),
         )
-        photo_holder = (card, ((w - tw) // 2, box_top + (avail_h - th) // 2))
+        # left-align the photo with the text column (Gary: "more to the left")
+        photo_x = int(0.165 * w)
+        photo_holder = (card, (photo_x, box_top + (avail_h - th) // 2))
         print(
             f"  [{variant}] info_end={info_end / h:.3f}H "
             f"photo={tw}x{th} @y={photo_holder[1][1] / h:.3f}H"
