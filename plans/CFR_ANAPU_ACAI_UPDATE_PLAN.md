@@ -144,7 +144,7 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 >   merge `5de3114`, ledger `deploy_20260924T170044Z_truesight-me-prod`, no conflict, CNAME `truesight.me`
 >   preserved. UAT ✅: prod manifest serves the açaí sentence; page 200; apex 200.
 >
-> **No remaining units.** PR3 (photo ingestion) stays parked until real açaí media exists.
+> **No remaining units.** PR3 (photo ingestion) stays parked until real açaí media exists. Contribution reported 2026-09-24 (contributors: **Gary Teh, Sophia Truesight**; evidence `sunmint_beta#86`, `cfr-anapu#14`, `agentic_ai_context#1391`/`#1393`, prod sync `4a627694`).
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
@@ -153,8 +153,8 @@ shared-code fix with a blast radius beyond CRF Anapu — flagged in §4, not in 
 | PR2 (re-vendor to cfr-anapu, live) | ☑ | ☑ | ☑ |
 | PR2-b (beta→prod promotion) | ☑ | ☑ | ☑ |
 | PR3 (photo ingestion) | parked | — | — |
-| PR4 (§4 item 1 — açaí dropdown option) | ☑ | ☑ | ☐ |
-| PR4-b (§4 item 1 — promote to `sunmint_prod`) | ☑ | ☑ | ☐ |
+| PR4 (§4 item 1 — açaí dropdown option) | ☑ | ☑ | ☑ |
+| PR4-b (§4 item 1 — promote to `sunmint_prod`) | ☑ | ☑ | ☑ |
 
 ---
 
