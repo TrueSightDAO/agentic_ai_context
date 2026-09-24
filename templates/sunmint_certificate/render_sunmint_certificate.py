@@ -313,7 +313,8 @@ def build(
         (int(0.138 * w), int(0.941 * h)), cfg["issuer_role"], font=f_seri_13, fill=GREY
     )
 
-    qpx, qx, qy = 171, int(0.678 * w), int(0.686 * h)
+    # 228px = 57 modules x 4 px/module: survives 150-dpi printing (171 -> 3px/module did not)
+    qpx, qx, qy = 228, int(0.60 * w), int(0.686 * h)
     d.rounded_rectangle(
         [qx - 9, qy - 9, qx + qpx + 9, qy + qpx + 9],
         radius=9,
