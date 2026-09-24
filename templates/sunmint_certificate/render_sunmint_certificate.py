@@ -278,7 +278,7 @@ def build(
             width=max(1, int(2 * s)),
         )
         # left-align the photo with the text column (Gary: "more to the left")
-        photo_x = int(0.165 * w)
+        photo_x = int(0.135 * w)
         photo_holder = (card, (photo_x, box_top + (avail_h - th) // 2))
         print(
             f"  [{variant}] info_end={info_end / h:.3f}H "
@@ -287,18 +287,18 @@ def build(
 
     sy = int(0.782 * h)
     d.line(
-        [(int(0.165 * w), sy), (int(0.49 * w), sy)],
+        [(int(0.135 * w), sy), (int(0.46 * w), sy)],
         fill=CACAO,
         width=max(1, int(1.1 * s)),
     )
     d.text(
-        (int(0.165 * w), sy + int(0.009 * h)),
+        (int(0.135 * w), sy + int(0.009 * h)),
         cfg["org_byline"],
         font=f_seri_24,
         fill=CACAO,
     )
     d.text(
-        (int(0.165 * w), sy + int(0.035 * h)),
+        (int(0.135 * w), sy + int(0.044 * h)),
         cfg["issuing_authority"],
         font=f_seri_15,
         fill=GREY,
@@ -307,10 +307,10 @@ def build(
     mk = mark.convert("RGBA")
     mw = int(0.205 * w)
     mk = mk.resize((mw, int(mk.height * (mw / mk.width))))
-    mk_x, mk_y = int(0.165 * w), int(0.828 * h)
-    d.text((int(0.168 * w), int(0.900 * h)), cfg["issuer_name"], font=f_sig, fill=INK)
+    mk_x, mk_y = int(0.135 * w), int(0.828 * h)
+    d.text((int(0.138 * w), int(0.900 * h)), cfg["issuer_name"], font=f_sig, fill=INK)
     d.text(
-        (int(0.168 * w), int(0.941 * h)), cfg["issuer_role"], font=f_seri_13, fill=GREY
+        (int(0.138 * w), int(0.941 * h)), cfg["issuer_role"], font=f_seri_13, fill=GREY
     )
 
     qpx, qx, qy = 171, int(0.678 * w), int(0.686 * h)
