@@ -143,7 +143,12 @@ def load_registry_qr(qr_id: str, registry_base: str):
                 a[int((j + 0.5) * a.shape[0] / N), int((i + 0.5) * a.shape[1] / N)]
                 < 128
             )
-    q = 4  # quiet zone, in modules
+    # Quiet zone in modules. The spec wants >=4 light modules around the symbol;
+    # the renderer ALSO draws a white rounded box (fill=255) with 9px padding, so
+    # 2 baked modules (8px @ k=4) + 9px box padding == 17px ~= 4.25 modules -> still
+    # spec-compliant, while letting the tile shrink. (q=4 forced every k>=4 tile to
+    # be >=228px, which read as oversized vs the surrounding elements.)
+    q = 2  # quiet zone, in modules (the white box supplies the remainder)
     full = np.zeros((N + 2 * q, N + 2 * q), bool)  # False = white
     full[q : q + N, q : q + N] = grid
     clean = Image.fromarray(np.where(full, 0, 255).astype("uint8"), "L").convert("RGB")
@@ -347,6 +352,7 @@ def build(
     info_end = y
 
     photo_holder = None
+    photo_box = None
     if cfg.get("with_photo", True) and photo is not None:
         box_top, box_bot = info_end + int(0.014 * h), int(0.775 * h)
         avail_h = box_bot - box_top
@@ -363,6 +369,7 @@ def build(
         # left-align the photo with the text column (Gary: "more to the left")
         photo_x = int(0.135 * w)
         photo_holder = (card, (photo_x, box_top + (avail_h - th) // 2))
+        photo_box = (photo_holder[1][1], th)  # (top_y, height) of the placed photo
         print(
             f"  [{variant}] info_end={info_end / h:.3f}H "
             f"photo={tw}x{th} @y={photo_holder[1][1] / h:.3f}H"
@@ -396,11 +403,23 @@ def build(
         (int(0.138 * w), int(0.941 * h)), cfg["issuer_role"], font=f_seri_13, fill=GREY
     )
 
-    # QR tile = 49 modules x integer k. k=4 -> 196px (16.6mm on this 2.88in-wide card,
-    # 0.34mm/module): the smallest tile that stays above the ~0.33mm/module scanner
-    # floor. k=5 (245px) read as oversized vs the surrounding elements; k=3 (147px,
-    # 0.25mm/module) drops BELOW the floor and will not scan reliably in print.
-    qpx, qx, qy = 196, int(0.60 * w), int(0.686 * h)
+    # QR tile = (modules) x integer k, where modules = 49 symbol + 2*q quiet-zone
+    # (57 at q=4, 53 at q=2). k MUST stay >= 4 (4px == 0.339mm/module on this
+    # 2.88in-wide card) to survive 150-dpi printing; k=3 (3px == 0.254mm/module,
+    # the 171px tile) does NOT -- the #1350 comment '171 -> 3px/module did not' was
+    # RIGHT. With q=2: 212px -> k=4 -> 212px, ~7% smaller than the 228px q=4 tile
+    # and still print-safe. (Do NOT set qpx near 196: 196/53 rounds to k=3 -> 159px,
+    # and at q=4 196/57 -> k=3 -> 171px, BOTH below the floor.)
+    qpx, qx = 212, int(0.60 * w)
+    # Vertical-centre the QR against the photo it sits beside, so the two read as
+    # ONE paired block rather than two floating elements. qy must derive from the
+    # photo's ACTUAL placement: a hardcoded constant can only line up by coincidence,
+    # because the photo's y depends on info_end, which varies with text length --
+    # brittle for a reusable template. Fall back to the old constant with no photo.
+    if photo_box:
+        qy = photo_box[0] + (photo_box[1] - qpx) // 2
+    else:
+        qy = int(0.686 * h)
     d.rounded_rectangle(
         [qx - 9, qy - 9, qx + qpx + 9, qy + qpx + 9],
         radius=9,
