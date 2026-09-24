@@ -395,12 +395,20 @@ def build(
     )
 
     mk = mark.convert("RGBA")
-    mw = int(0.205 * w)
+    mw = int(0.150 * w)
     mk = mk.resize((mw, int(mk.height * (mw / mk.width))))
-    mk_x, mk_y = int(0.135 * w), int(0.828 * h)
-    d.text((int(0.138 * w), int(0.900 * h)), cfg["issuer_name"], font=f_sig, fill=INK)
+    mk_x, mk_y = int(0.135 * w), int(0.812 * h)
     d.text(
-        (int(0.138 * w), int(0.941 * h)), cfg["issuer_role"], font=f_seri_13, fill=GREY
+        (int(0.135 * w) + int(0.168 * w), int(0.808 * h)),
+        cfg["issuer_name"],
+        font=f_sig,
+        fill=INK,
+    )
+    d.text(
+        (int(0.135 * w) + int(0.168 * w), int(0.842 * h)),
+        cfg["issuer_role"],
+        font=f_seri_13,
+        fill=GREY,
     )
 
     # QR tile = (modules) x integer k, where modules = 49 symbol + 2*q quiet-zone
