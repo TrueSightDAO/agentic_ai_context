@@ -19,7 +19,28 @@ The credential half is DONE: the CI SA access was restored and the indexes were
 re-dispatched / refreshed (see agentic_ai_context #1386 / #1387). Only the
 loud-failure half remains.
 
-## RESUME HERE = PR1 (repo `TrueSightDAO/sunmint`)
+## STATUS: COMPLETE (2026-09-24)
+
+PR1 shipped and verified. **No further units — this plan is done.**
+
+**What shipped:** `sunmint/scripts/build_plots_geojson.py` and
+`sunmint/scripts/build_farms_index.py` now `sys.exit()` non-zero (shared
+`sheet_read_failure()` helper) on ANY sheet-read error — a raised exception **or** an
+empty response — naming the tab and hinting at `GOOGLE_SERVICE_ACCOUNT_JSON` when unset;
+the previously-published index file is left byte-for-byte untouched on the fail path.
+Regression test `sunmint/tests/test_build_index_loud_failure.py` pins the contract
+(it FAILS on the pre-fix code). `build_tree_geojson.py` already failed loudly — unchanged.
+
+**Landed on `sunmint` main via the Contents API** (repo is api-only machine-owned, no PR
+path): `927c66a` (plots), `0bd0f86` (farms), `2c0e25f` (test).
+
+**Step 4 done:** `OPEN_FOLLOWUPS.md` entry moved `## Pending` -> `## Recently shipped`
+(agentic_ai_context **PR #1395**, merged `448a640`).
+
+**Scope honored:** the two plots/farms generators only; `cache-satellite-scenes` and
+`rebuild-plot-media-index` untouched (read no sheet).
+
+### Original unit spec (for the record) = PR1 (repo `TrueSightDAO/sunmint`)
 
 1. In `build_plots_geojson.py` (~L21-22, L80, L305) and `build_farms_index.py`,
    replace the swallow-and-preserve branch with a **loud failure**: `sys.exit(1)`
