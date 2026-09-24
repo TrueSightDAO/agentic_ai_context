@@ -39,10 +39,10 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### SunMint index rebuilds are frozen at 2026-09-17 — the shared CI service account lost sheet access on 09-18; **trees FAILS loudly, plots/farms fail SILENTLY green**
-**Filed 2026-09-24 — root cause verified from the workflow logs. Governor: Gary (thread 35189). LIVE INCIDENT: all three public SunMint indexes have been frozen at 2026-09-17 for 7 days, and two of the three workflows are still reporting SUCCESS.**
+### SunMint plots/farms generators fail SILENTLY green — a sheet read error must exit non-zero, not "preserve the existing registry"
+**Filed 2026-09-24 — root cause verified from the workflow logs. Governor: Gary (thread 35189). ✅ The incident itself is RESOLVED (2026-09-24): the CI credential was restored by Gary (new SA `sunmint-ledger-manager@get-data-io.iam.gserviceaccount.com`, secret `GOOGLE_SERVICE_ACCOUNT_JSON` replaced) and all three indexes were re-dispatched and refreshed — see `## Recently shipped`. What remains OPEN is item (b): the silent-green anti-pattern.**
 
-**Ask.** (a) Restore the CI credential's access so the daily rebuilds resume; (b) stop the plots/farms generators from silently reporting green when they cannot read the sheet.
+**Ask (remaining).** Stop `build_plots_geojson.py` / `build_farms_index.py` from reporting green when they cannot read the sheet — a generator that cannot read its source must exit non-zero.
 
 **Symptom.** `trees/index.geojson` (`generated_at` 2026-09-17, 126 features), `plots/index.geojson` (09-17, 22 features) and `farms/index.json` (09-17) are **all frozen at 2026-09-17** — 7 days stale — so the SunMint plots page and every `plot_id`/`tree_id`-based join serve week-old data. `Rebuild Tree Index` failed on every scheduled run 09-18→09-24 (7 consecutive, last success **2026-09-17T10:44:40Z**), but `Rebuild Plots Index` and `Rebuild Farms Index` have reported **success every day** throughout.
 
@@ -3513,6 +3513,25 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### SunMint index freeze (all 3 indexes stale 2026-09-17 → 09-24) — RESOLVED: CI credential restored, indexes refreshed
+**Shipped 2026-09-24. Governor: Gary (thread 35189). Credential fix by Gary; verified + re-dispatched by Sophia.**
+
+**What happened.** `trees/index.geojson`, `plots/index.geojson` and `farms/index.json` were all frozen at **2026-09-17** for 7 days (trees failed loudly 09-18→09-24; plots/farms reported **false-green** — see the Pending entry for the silent-green swallow). Root cause: the sunmint CI service account in the `GOOGLE_SERVICE_ACCOUNT_JSON` secret lost read access to the SunMint sheet.
+
+**Fix.** Gary created a new SA `sunmint-ledger-manager@get-data-io.iam.gserviceaccount.com`, granted it the Main Ledger + SunMint sheet, and **replaced the `GOOGLE_SERVICE_ACCOUNT_JSON` repo secret** (`updated_at` 2026-08-26T19:51:13Z → 2026-09-24T17:07:17Z). Sophia stored the key at `config/google/sunmint_ledger_manager_gdrive_key.json` (mode 0600) and in the **vault** as `google_sa_sunmint_ledger_manager_gdrive_key`, then probed it live: reads Main Ledger, `SunMint Tree Planting` (266 rows), `SunMint Plots` (26 rows) and all farm tabs ✅.
+
+**Verification (live, 2026-09-24 17:11–17:14 UTC).** Re-dispatched all three workflows sequentially (dispatch → success):
+
+| workflow | run | result | published output |
+|---|---|---|---|
+| Rebuild Tree Index | `36032527988` | ✅ success | `trees/index.geojson` `generated_at` 17:11:29Z, **152 features** (was 126) |
+| Rebuild Plots Index | `36032653996` | ✅ success | `plots/index.geojson` 17:12:32Z, 22 features |
+| Rebuild Farms Index | `36032746905` | ✅ success | `farms/index.json` 17:13:57Z, 15 farms |
+
+**Bonus — the stuck `tree_id` col-D fix (`21428ba6`) is now SHIPPED.** All 152 tree ids are `Edgar_*` (previously mixed off-by-one ids). The Oscar bag cross-link is now live in the published index: `Edgar_20260903083523_003 → 2024OSCAR_CB_20260620_1` carries its `qr_code` (2 of 152 trees now carry one, was 1).
+
+**Note.** First dispatch attempt saw plots fail with `! [rejected] main -> main (fetch first)` — a **push race** between concurrent workflow runs, not a credential issue; resolved by dispatching sequentially. A concurrency group on the three workflows would prevent recurrence.
 
 ### Telegram reply-to context silently dropped before reaching the LLM (found live 2026-09-24, second occurrence, never written down)
 **Filed 2026-09-24; shipped 2026-09-24. Governor: Gary (thread 35622). PRs: `truesight_autopilot` #500 (`30291c97`) + `agentic_ai_context` #1362, #1365.**
