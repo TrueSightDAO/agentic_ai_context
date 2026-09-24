@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-24T12:04:43Z`
+- Generated (UTC): `2026-09-24T17:27:18Z`
 - Look-back: **7** calendar days (`2026-09-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,38 +32,34 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
-- `[TREE PLANTING EVENT]` × 5
-- `[PRACTICE EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 3
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- `[ASSET RECEIPT EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 25
+- `[CONTRIBUTION EVENT]` × 11
 - `[EMAIL REGISTERED EVENT]` × 1
-- `[TREE PLANTING LINK EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260923143952_014` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-23T14:39:48.694Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260923145450_016` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
-- `Edgar_20260923145757_018` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
-- `Edgar_20260923145855_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
-- `Edgar_20260923191138_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Checking of chocolate mold between Brazil and USA
-- `Edgar_20260924003104_024` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229198 · Longitude: -51.5749711 · Species: Cacao - Criolla
-- `Edgar_20260924003148_026` · **Edgar** · [EMAIL REGISTERED EVENT] Email: jhordanoliveira11@gmail.com
-- `Edgar_20260924003210_028` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
-- `Edgar_20260924003238_030` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
-- `Edgar_20260924003637_032` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
-- `Edgar_20260924024855_036` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CB_20260620_1 · SunMint Submission Message ID: Edgar_20260903083523_003 · Updated by: Sophia Truesight
-- `Edgar_20260924095127_038` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.12 · Description: DeepSeek billing
-- `Edgar_20260924095153_040` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek billing
-- `Edgar_20260924095508_042` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Telegram reply-to context loss — PR1: fix + tests
-- `Edgar_20260924102705_044` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Telegram reply-to context loss — PR2: deploy + live UAT verification
-- `Edgar_20260924102707_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Telegram reply-to context loss — PR3: file the untracked gap
-- `Edgar_20260924115448_048` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20260924115503_050` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20260924115509_052` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20260924115515_054` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20260924131403_080` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Capoeira EN/PT toggle — plan authoring + supervision (Envoy TrueSight)
+- `Edgar_20260924131406_082` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Capoeira i18n — raw machine execution, engine + 6 pages (Sophia Truesight)
+- `Edgar_20260924131409_084` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Capoeira i18n — direct time / engagement &amp; analysis (Sophia Truesight)
+- `Edgar_20260924132202_090` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
+- `Edgar_20260924132231_092` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
+- `Edgar_20260924132244_094` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
+- `Edgar_20260924132306_096` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
+- `Edgar_20260924132318_098` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
+- `Edgar_20260924132334_100` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
+- `Edgar_20260924132409_102` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924132440_104` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924132457_106` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
+- `Edgar_20260924132618_108` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924132701_110` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924132734_112` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924132801_114` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924132821_116` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924132850_118` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20260924143221_120` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-24T14:32:19.342Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260924163216_122` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: CRF Anapu açaí copy update — PR1 (beta manifest description_md)
 
 ---
 
@@ -279,6 +275,8 @@ _All dated lines on/after 2026-09-17_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ec876b3 | 2026-09-24 13:31:22 -0300 | CRF Anapu: name açaí in description_md (beta source of truth) (#395)
+a1059d5 | 2026-09-24 12:07:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 753221d | 2026-09-24 07:50:14 -0300 | qr page: add SunMint cert download button (URL-probe route) (#394)
 c481961 | 2026-09-24 05:16:03 +0000 | chore(stats): refresh stats indexes [skip ci]
 8e46fda | 2026-09-23 21:42:44 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -317,8 +315,6 @@ cae9181 | 2026-09-18 21:10:35 +0000 | chore(stats): refresh stats indexes [skip 
 b06be2a | 2026-09-18 11:41:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 0559b87 | 2026-09-18 05:05:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip ci]
-67538b4 | 2026-09-17 17:13:26 +0000 | chore(stats): refresh stats indexes [skip ci]
-9558428 | 2026-09-17 11:59:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -331,6 +327,26 @@ e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+03cc31c | 2026-09-24 14:25:03 -0300 | docs(cfr-plan): tick §4 item 1 — açaí dropdown shipped, plan COMPLETE (#1391)
+ff013cd | 2026-09-24 14:24:47 -0300 | OPEN_FOLLOWUPS: §11.5 — env var set (a); add GAS-deploy gate (b) + Edgar restart (c); CFR tree-planting tab empty evidence (#1390)
+01c20cb | 2026-09-24 14:20:32 -0300 | docs(followups): SunMint index freeze RESOLVED (indexes refreshed) — narrow entry to the still-open silent-green fix (#1386)
+b18c018 | 2026-09-24 14:19:34 -0300 | docs(credentials): document sunmint-ledger-manager SA as canonical for SunMint sheets (#1388)
+9b82a2d | 2026-09-24 14:12:45 -0300 | docs: §11.9 P6 — CFR sink writers+wiring merged (source); deploy gated (#1385)
+857bb30 | 2026-09-24 14:12:38 -0300 | docs: registry rows for the merged additive CFR routing target (#1384)
+c188999 | 2026-09-24 14:12:30 -0300 | docs: §11.5 CFR sink shipped in source; file remaining deploy/env gates (#1382)
+6d7dc97 | 2026-09-24 14:03:17 -0300 | cfr-anapu acai: PR2+PR2-b complete (both surfaces live); record Pages=main correction (#1383)
+582d12e | 2026-09-24 13:56:27 -0300 | File live incident: sunmint rebuild-tree-index fails daily (403 credential) (#1380)
+b0150b0 | 2026-09-24 13:51:09 -0300 | followups: read_context_file serves stale local clone (deploy-only refresh) (#1379)
+e85e318 | 2026-09-24 13:47:53 -0300 | cfr-anapu acai: PR2 blocked — live re-read invalidates premise (#1378)
+2314f99 | 2026-09-24 13:37:14 -0300 | cfr-anapu acai: PR1 done — tick tracker, point RESUME HERE at PR2 (#1377)
+470ac46 | 2026-09-24 13:18:43 -0300 | Register CFR Anapu açaí handoff → topic 35888 + regenerate index.json (#1376)
+00fc26f | 2026-09-24 13:16:20 -0300 | File: [PAYOUT REGISTRATION] sink never auto-ingests + parser pollution (#1375)
+3bba16f | 2026-09-24 12:04:08 -0300 | followups: file sunmint trees/index.geojson tree_id off-by-one (col A vs col D) (#1373)
+a6ed1d7 | 2026-09-24 11:51:10 -0300 | fix(cert): move issuing_authority caption off the signature mark (#1372)
+948afa4 | 2026-09-24 11:49:13 -0300 | Plan: CFR Anapu (cfr.truesight.me) acai content update (#1371)
+b7ae8af | 2026-09-24 10:08:56 -0300 | Handoff manifest: mark Telegram reply-context handoff completed (thread 35622) (#1370)
+841fd8a | 2026-09-24 09:05:10 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
+832c1bb | 2026-09-24 09:05:08 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
 c854e85 | 2026-09-24 07:37:02 -0300 | cert: enforce documented QR print floor (k>=4) + derive box/centring from actual tile (#1369)
 a849595 | 2026-09-24 07:32:57 -0300 | cert: move issuer name+role off dark border ornament (Gary-approved) (#1368)
 8a3db07 | 2026-09-24 07:28:01 -0300 | Telegram reply-context: tick PR2+PR3 contribution cells (plan complete) (#1367)
@@ -351,32 +367,14 @@ cae1b19 | 2026-09-24 02:30:48 -0300 | Add plan: fix Telegram reply-to context lo
 463df36 | 2026-09-24 02:10:49 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
 d7e84da | 2026-09-24 02:10:48 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
 3eb6f2a | 2026-09-24 02:06:42 -0300 | Enlarge cert QR tile to survive 150-dpi printing (#1350)
-14440e2 | 2026-09-24 02:06:35 -0300 | SunMint cert: shift photo + left column to x=0.135w (fix cramped left margin) (#1351)
-db28ca3 | 2026-09-24 01:50:06 -0300 | Add SunMint certificate template (registry-sourced, crisp integer-scale QR) (#1349)
-448bf90 | 2026-09-24 01:45:12 -0300 | SOP(rev2): SunMint certificate — registry-pixel QR crop + template (#1348)
-d415ee6 | 2026-09-24 01:21:11 -0300 | Update CAPOEIRA_I18N_PLAN manifest row with Telegram topic + trigger note (#1346)
-795b967 | 2026-09-24 01:19:12 -0300 | Add plan: capoeira site English/Portuguese toggle with persistence (#1345)
-3bd4814 | 2026-09-23 18:46:49 -0300 | Record SunMint tree02 photo supersession + file media-supersession gap (#1344)
-22d431c | 2026-09-23 18:39:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
-cd88f93 | 2026-09-23 18:39:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
-31bdd26 | 2026-09-23 14:22:26 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
-02038f7 | 2026-09-23 14:22:24 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
-5ed121c | 2026-09-23 08:57:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
-5930307 | 2026-09-23 08:57:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
-a2802db | 2026-09-22 18:34:18 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
-da77291 | 2026-09-22 18:34:17 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
-2618376 | 2026-09-22 16:54:41 -0300 | File residual ledger dup finding (3 GetData Inc pairs, 166.66 TDG) (#1343)
-3508b3d | 2026-09-22 16:47:26 -0300 | docs(followups): retire stale-SOP entry (shipped), update trigger entry (#1342)
-7e5bdfb | 2026-09-22 16:47:18 -0300 | docs(sop): make governor rotation a gated, GAS-sanctioned runbook; kill stale revoke script (#1341)
-6a82f2f | 2026-09-22 14:08:58 -0300 | chore(previews): refresh Beer Hall preview (2026-09-22 UTC)
-14eca10 | 2026-09-22 14:08:57 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-22 UTC)
-508aec0 | 2026-09-22 13:33:59 -0300 | Archive: SEBRAE NF-e Emitter User Manual v10 (Jun 2026) + source notes (#1340)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+5a3b3d2 | 2026-09-24 14:23:33 -0300 | GAS convention: every scanner exposed via doGet (+ processBatch branch, bulk installer, guard) (#551)
+ef25709 | 2026-09-24 13:46:02 -0300 | Add CFR-program submission sink + fix payout parser terminator bug (#550)
 fa84522 | 2026-09-23 19:09:26 -0300 | fix(gas): serialize tree-planting ingestion + live dedup sets to stop duplicate rows (#549)
 aaf8ef0 | 2026-09-22 15:01:13 -0300 | fix(transfer GAS): persist durable Scoring Hash Key in ledger column P + script lock (#548)
 5a69685 | 2026-09-22 10:50:04 -0300 | fix(gas): enforce transfer duplicate guard (was dead code) (#547)
@@ -415,8 +413,6 @@ e133299 | 2026-09-17 22:21:05 -0300 | SS12.7 Q3b fix: actually install the payou
 87d646e | 2026-09-17 22:20:31 -0300 | fix(gas): secret-free tracked Credentials.js for 1wONDeDwZ + no-op setApiKeys (#512)
 842018d | 2026-09-17 22:17:36 -0300 | fix(gas): restore missing Credentials.js accessor for 1duQFfTO + drop token literal from comment (#511)
 399f680 | 2026-09-17 22:11:55 -0300 | fix(gas): 1XmwyzzauO Code.js reads all config from Credentials.js; drop hardcoded token (#510)
-b6c7500 | 2026-09-17 22:11:50 -0300 | schema: add offchain assets in transit col Q (NF-e Chave) (#509)
-5d97a15 | 2026-09-17 22:07:11 -0300 | fix(gas): secret-free tracked Credentials.js for 1K1wcXFAop (TDG Email Identity Mgmt) (#507)
 … (truncated)
 ```
 
@@ -448,6 +444,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8fbf7a8 | 2026-09-24 12:11:42 +0000 | chore: refresh currencies.json [skip ci]
 bd31932 | 2026-09-24 11:50:48 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 da84e1e | 2026-09-23 12:09:25 +0000 | chore: refresh currencies.json [skip ci]
 9860b82 | 2026-09-23 11:42:16 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -478,6 +475,7 @@ c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Cla
 ### `iching_oracle` → `oracle`
 
 ```
+a060f12 | 2026-09-24 11:44:22 -0300 | Fix corrupted hexagram corpus JS breaking every I Ching reading (#70)
 6c48cd2 | 2026-09-23 18:20:00 -0300 | Fix hexagram intro rendering: preserve paragraphs + clean residual OCR artifacts (#69)
 e867765 | 2026-09-22 17:57:52 -0300 | fix: include full hexagram text in print/PDF output (#68)
 c33cf16 | 2026-09-22 16:46:12 -0300 | feat: hybrid I Ching corpus as default (Walker description+lines + Wilhelm judgment/image) (#67)
@@ -564,7 +562,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/24/2026 4:50:47 |
+| 2026-09 | 924.5 | 18364.34386 | 9/24/2026 9:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-17`; scanned last **600** data rows)
 
