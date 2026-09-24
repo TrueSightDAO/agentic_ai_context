@@ -39,6 +39,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `processBatch` fails on every run — `appsscript.json` is missing the `documents` OAuth scope
+**Filed 2026-09-24 — reproduced live. Governor: Gary (thread 35944). Not money-adjacent, but silently breaks the onboarding batch email.**
+
+**Symptom.** `?action=processBatch` (via the `1MnAsIQA…` router `doGet`) returns, deterministically, on both the live @36 deployment and a fresh deploy: `{"success":false,"scanner":"processBatch","error":"Specified permissions are not sufficient to call DocumentApp.openById. Required permissions: https://www.googleapis.com/auth/documents"}`.
+
+**Root cause.** The project manifest (`appsscript.json`) declares only `spreadsheets`, `script.external_request`, `script.scriptapp`, `script.send_mail` (`script.scriptapp`) — **no `https://www.googleapis.com/auth/documents`**. `processBatch` opens a Google Doc via `DocumentApp.openById`, so the call is rejected for lack of scope. This is a manifest/code bug, **independent of the trigger** — the `processBatch` hourly trigger installs and fires fine; the run fails at the Doc open.
+
+**Fix.** Add the `documents` scope to `appsscript.json` for `1MnAsIQA…`, re-deploy (new version + repoint the deployments), and re-run the action to confirm `success:true`. Note: a scope change forces re-authorization of the web app for the executing identity.
+
+**Evidence (no PII).** live `/exec?action=processBatch` error string; `appsscript.json` `oauthScopes` in `tokenomics/google_app_scripts/1MnAsIQA…/`.
+
+### Web-app executing identity = the DEPLOYER, not the script owner (deploy-identity trap)
+**Filed 2026-09-24 — incident resolved live by a governor grant; the AGENTS.md §2/§3 correction is still OPEN. Governor: Gary (thread 35944). Money-adjacent (a planter's PIX stopped reaching the review surface).**
+
+**Symptom.** The 3 live deployments for `1MnAsIQA…` were repointed to @36; the two private-sheet sinks (`processPayoutRegistrationsFromTelegramChatLogs`, `processCfrProgramSubmissionsFromTelegramChatLogs`) and the read `getPendingPayoutRegistrations` then returned Google's *"You do not have permission to access the requested document"* HTML to Edgar's **anonymous GET** — while 4 other actions on the **same deployment** returned JSON.
+
+**Root cause (controlled experiment).** `appsscript.json` sets `webapp.executeAs = USER_DEPLOYING`, so the web app executes as the account that **deployed** it (the clasp identity that ran `clasp push` / `clasp version` / created the deployment) — **NOT** necessarily the script `owner_email`. Identical v36 code, only the deployer differing: a deployment created as `garyjob@agroverse.shop` served the payout-registration sink ✅ (`{"success":true,…}`); one created as `admin@truesight.me` returned PERMISSION_DENIED ❌ — `admin` lacked access to the private `cfr program` sheet (`17KwmxYOpTVR89ybRlOkDXoN9PF3UcaNu3REg2wNa83w`).
+
+**Resolution (live).** Governor granted `admin@truesight.me` access to the sheet; the live deployments served JSON again the same session (payout-reg `{"success":true,"recorded":0,…}`; cfr `{"success":true,"recorded":0,"skipped":8,"errors":0}`).
+
+**Still open.** `tokenomics/AGENTS.md` §2 ("owner-identity pinned") and §3 ("provided the identity is `admin@truesight.me` (owner)") currently give the **wrong** deploy guidance and must be corrected to: *deploy as the account that can open **every** target sheet, because `USER_DEPLOYING` is the runtime identity.* Also decide the canonical deploy identity for `1MnAsIQA…`.
+
+### Apps Script triggers are PER-EXECUTING-IDENTITY — the scanner-trigger count depends on who deployed/checks
+**Filed 2026-09-24 — observed. Governor: Gary (thread 35944). Affects how the "7/7 triggers installed" claim reads.**
+
+`?action=getInstalledScannerTriggers` returned **count=7** on the admin-deployed live deployments, but **count=4** on a fresh gary-deployed v36 of the same code. Apps Script time-driven triggers are owned by the identity that created them and `ScriptApp.getProjectTriggers()` returns only the **calling** identity's triggers — so the count reflects the deploying/executing identity, not a project-wide total. **Implication:** a scan re-armed by Sophia-as-admin will not appear in Gary's trigger list (and vice-versa). Decide the canonical owner identity for re-arming and re-arm once under it; do not treat a single identity's count as authoritative.
+
 ### `[PAYOUT REGISTRATION]` sink never auto-ingests — no dispatch route, and the self-installing hourly cron never fired
 **Filed 2026-09-24 — root cause verified; a manual backfill was already applied live. Governor: Gary (thread 35944). Money-adjacent (a planter's PIX never reaches the review surface).**
 
@@ -3487,6 +3514,11 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### GAS scanner-exposure convention + `1MnAsIQA…` deployed to v36 (all 7 scanners HTTP-reachable + trigger read-back) — RESOLVED
+**Shipped 2026-09-24. Governor: Gary (thread 35944). PRs: `tokenomics` #551 (convention + guard), #552 (read-back action).**
+
+The `[PAYOUT REGISTRATION]` silent-failure class is closed. `tokenomics/AGENTS.md` §1 now mandates every scanner carry a `doGet ?action=` branch, an idempotent in-run hourly self-installer, and a registry entry — locked by `scripts/test_gas_scanner_exposure.py` (**7/7**). Deployed `1MnAsIQA…` to **v36** (pushed + versioned as `admin@truesight.me`; repointed deployments `AKfycbxQDdGnw…`, `AKfycbyGD0CD…`, `AKfycbyxwkIp6…`). Live-verified: `?action=installAllScannerHourlyTriggers` (idempotent — 2nd call flips `installed`→`present`) and the new read-only `?action=getInstalledScannerTriggers` (**7/7 installed, `missing:[]`**). The 7 scanners: `processBatch`, donation-mint, program-reg, payout-event, payout-registration, plot-financing, cfr-program-submissions. See the deploy-identity-trap + per-user-trigger entries under **Pending** for the two follow-ups this surfaced.
 
 ### SunMint index freeze (all 3 indexes stale 2026-09-17 → 09-24) — RESOLVED: CI credential restored, indexes refreshed
 **Shipped 2026-09-24. Governor: Gary (thread 35189). Credential fix by Gary; verified + re-dispatched by Sophia.**
