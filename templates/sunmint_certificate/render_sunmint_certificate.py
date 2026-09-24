@@ -396,8 +396,11 @@ def build(
         (int(0.138 * w), int(0.941 * h)), cfg["issuer_role"], font=f_seri_13, fill=GREY
     )
 
-    # 228px = 57 modules x 4 px/module: survives 150-dpi printing (171 -> 3px/module did not)
-    qpx, qx, qy = 228, int(0.60 * w), int(0.686 * h)
+    # QR tile = 49 modules x integer k. k=4 -> 196px (16.6mm on this 2.88in-wide card,
+    # 0.34mm/module): the smallest tile that stays above the ~0.33mm/module scanner
+    # floor. k=5 (245px) read as oversized vs the surrounding elements; k=3 (147px,
+    # 0.25mm/module) drops BELOW the floor and will not scan reliably in print.
+    qpx, qx, qy = 196, int(0.60 * w), int(0.686 * h)
     d.rounded_rectangle(
         [qx - 9, qy - 9, qx + qpx + 9, qy + qpx + 9],
         radius=9,
