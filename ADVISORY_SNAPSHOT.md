@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-23T21:39:32Z`
-- Look-back: **7** calendar days (`2026-09-16` → today UTC)
+- Generated (UTC): `2026-09-24T05:10:32Z`
+- Look-back: **7** calendar days (`2026-09-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,22 +32,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 30
-- `[PRACTICE EVENT]` × 7
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 24
+- `[PRACTICE EVENT]` × 6
+- `[EMAIL VERIFICATION EVENT]` × 4
+- `[EMAIL REGISTERED EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 1
+- `[TREE PLANTING LINK EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20260921140044_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Ānāpāna/Vipassanā practice PDF — diacritic font fix + TrueSight DAO logo hea…
-- `Edgar_20260921141306_076` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Sophia Truesight
-- `Edgar_20260921141309_078` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
-- `Edgar_20260921145948_080` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Brazil→SF freight lane — end-to-end SOP runbook (2026-09-21)
-- `Edgar_20260921201313_082` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Sophia — raw machine execution: "Agroverse Cacao Adventures — Autumn Solstic…
-- `Edgar_20260921201317_084` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Sophia — direct time (engagement/analysis): deck re-brand + de-personalizati…
 - `Edgar_20260921201319_086` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Gary Teh — direct time: directing the Autumn Solstice 2026 deck (thread 3415…
 - `Edgar_20260921202650_088` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Black King → TrueTech Rev 12 export docs: unit regen, finalize, and runbook/…
 - `Edgar_20260921203347_090` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
@@ -62,6 +58,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260923145757_018` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 172.33 · Description: Flight from Ilheus to São Paulo
 - `Edgar_20260923145855_020` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL15
 - `Edgar_20260923191138_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Checking of chocolate mold between Brazil and USA
+- `Edgar_20260924003104_024` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229198 · Longitude: -51.5749711 · Species: Cacao - Criolla
+- `Edgar_20260924003148_026` · **Edgar** · [EMAIL REGISTERED EVENT] Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924003210_028` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924003238_030` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924003637_032` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: x6Fb3i1_GpsyAQnGmW6-51_v6NdzhbYE2UgsYid-6jU · Email: jhordanoliveira11@gmail.com
+- `Edgar_20260924024855_036` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_CB_20260620_1 · SunMint Submission Message ID: Edgar_20260903083523_003 · Updated by: Sophia Truesight
 
 ---
 
@@ -235,9 +237,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,748.71**
+- USD on hand: **$4,748.66**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.50**
+- USD provisioned for voting-rights cash-out: **$55.54**
 
 ### In-transit freight (1 row)
 
@@ -253,10 +255,11 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-16_ (2):
+_All dated lines on/after 2026-09-17_ (3):
 
 - 2026-09-17 | sophia | Design record added: plans/MEMBER_WORKSPACE_PLAN.md — a non-authoritative quarantine repo for member-tier SOP *candidates*, outside the context read path. Promotion into agentic_ai_context/sops/ (governor PR) is the ONLY act that makes candidate text directive. Blocks on Governor Decision D1 (bless a create_repo_pattern naming family: `member-*` or `*-candidates`).
 - 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
+- 2026-09-23 | sophia | SunMint tree-photo supersession (thread 35189; governor go from Gary): the canonical photo for tree `Edgar_20260903083523_004` (plot PL-002, Fazenda Bom Sucesso) was overwritten in place — `sunmint/images/20260902_bomsucesso_tree02.jpg` now holds Gary's frame captured 2026-09-02 18:47:11 -03:00 (commit `b332512`, new blob `793132cb`, sha256 `2a15e9a1…`), superseding blob `aff60dd2` / sha256 `bd7ed5af…` which remains recoverable in git history. Integrity note: the photo URL is embedded in the RSA-signed, append-only attestation `verify_public_signatures/tree_planting/Edgar_20260903083523_003.json` (`signed_payload`), and the signature covers that URL string (not the image bytes), so verification still passes — the supersession is recorded here for transparency. Gap filed in OPEN_FOLLOWUPS: photo supersessions have no sanctioned/signed path.
 
 ---
 
@@ -275,6 +278,7 @@ _All dated lines on/after 2026-09-16_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8e46fda | 2026-09-23 21:42:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 ef02bae | 2026-09-23 17:24:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 6290482 | 2026-09-23 12:01:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 380d188 | 2026-09-23 05:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,8 +318,6 @@ e0d5297 | 2026-09-17 21:40:07 +0000 | chore(stats): refresh stats indexes [skip 
 9558428 | 2026-09-17 11:59:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9427f0 | 2026-09-17 05:14:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 0709215 | 2026-09-16 22:56:47 -0300 | program-shell: SunMint activity badges + itemized click-through (CRF Anapu PR5) (#381)
-e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
-… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -327,6 +329,15 @@ e431302 | 2026-09-16 21:37:40 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3eb6f2a | 2026-09-24 02:06:42 -0300 | Enlarge cert QR tile to survive 150-dpi printing (#1350)
+14440e2 | 2026-09-24 02:06:35 -0300 | SunMint cert: shift photo + left column to x=0.135w (fix cramped left margin) (#1351)
+db28ca3 | 2026-09-24 01:50:06 -0300 | Add SunMint certificate template (registry-sourced, crisp integer-scale QR) (#1349)
+448bf90 | 2026-09-24 01:45:12 -0300 | SOP(rev2): SunMint certificate — registry-pixel QR crop + template (#1348)
+d415ee6 | 2026-09-24 01:21:11 -0300 | Update CAPOEIRA_I18N_PLAN manifest row with Telegram topic + trigger note (#1346)
+795b967 | 2026-09-24 01:19:12 -0300 | Add plan: capoeira site English/Portuguese toggle with persistence (#1345)
+3bd4814 | 2026-09-23 18:46:49 -0300 | Record SunMint tree02 photo supersession + file media-supersession gap (#1344)
+22d431c | 2026-09-23 18:39:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
+cd88f93 | 2026-09-23 18:39:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
 31bdd26 | 2026-09-23 14:22:26 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
 02038f7 | 2026-09-23 14:22:24 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-23 UTC)
 5ed121c | 2026-09-23 08:57:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-23 UTC)
@@ -358,21 +369,13 @@ f7acdff | 2026-09-21 17:14:19 -0300 | Finalize Rev 12 export docs: remove DRAFT 
 b16f50b | 2026-09-21 17:12:30 -0300 | Agroverse Cacao Adventures — Autumn Solstice 2026 deck v14 (name fully removed)
 73afd1d | 2026-09-21 17:12:01 -0300 | Rev 12 status: §5.1 pointer -> Rev 12, Rev 11 superseded; manifest RESUME HERE advanced (#1334)
 c3ac61a | 2026-09-21 17:02:48 -0300 | Rev 12 export docs: apply Saymon's NCM->uTrib export unit norm (#1333)
-f067d80 | 2026-09-21 16:51:20 -0300 | Agroverse Cacao Adventures — Autumn Solstice 2026 deck v13 (Liz removed)
-3015427 | 2026-09-21 16:51:15 -0300 | Add v13 note — Liz mentions removed, deck now reader-neutral
-08f021a | 2026-09-21 16:51:14 -0300 | SOP: record NCM→export uTrib norm table (Appendix E) + Rev-12 unit remap (#1332)
-164419b | 2026-09-21 16:49:34 -0300 | Add v12 note — deck renamed to Agroverse Cacao Adventures — Autumn Solstice 2026
-9b820d1 | 2026-09-21 16:49:27 -0300 | Agroverse Cacao Adventures — Autumn Solstice 2026 deck v12
-fd9a115 | 2026-09-21 16:48:42 -0300 | Brazil lane: NF-e rejected on unidades de medida → Rev 12 invoice required (#1331)
-42aa717 | 2026-09-21 16:47:17 -0300 | Add v11 note — deck renamed to Autumn Solstice 2026
-ec830a0 | 2026-09-21 16:47:11 -0300 | Autumn Solstice 2026 deck v11 (renamed from LIZ_BAHIA_ORIGIN_TOUR)
-993c712 | 2026-09-21 16:37:51 -0300 | liz_bahia_deck: v10 version note
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+fa84522 | 2026-09-23 19:09:26 -0300 | fix(gas): serialize tree-planting ingestion + live dedup sets to stop duplicate rows (#549)
 aaf8ef0 | 2026-09-22 15:01:13 -0300 | fix(transfer GAS): persist durable Scoring Hash Key in ledger column P + script lock (#548)
 5a69685 | 2026-09-22 10:50:04 -0300 | fix(gas): enforce transfer duplicate guard (was dead code) (#547)
 3864627 | 2026-09-22 08:31:02 -0300 | Fix transfer abort: valid ERROR_STATUS + per-row try/catch (#546)
@@ -412,7 +415,6 @@ e133299 | 2026-09-17 22:21:05 -0300 | SS12.7 Q3b fix: actually install the payou
 399f680 | 2026-09-17 22:11:55 -0300 | fix(gas): 1XmwyzzauO Code.js reads all config from Credentials.js; drop hardcoded token (#510)
 b6c7500 | 2026-09-17 22:11:50 -0300 | schema: add offchain assets in transit col Q (NF-e Chave) (#509)
 5d97a15 | 2026-09-17 22:07:11 -0300 | fix(gas): secret-free tracked Credentials.js for 1K1wcXFAop (TDG Email Identity Mgmt) (#507)
-b3aa6c8 | 2026-09-17 21:59:26 -0300 | fix(gas): tracked secret-free Credentials.js for 1DYSZKFYM (HelloCash) (#506)
 … (truncated)
 ```
 
@@ -459,10 +461,6 @@ c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
 b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 56fa1f5 | 2026-09-17 12:05:02 +0000 | chore: refresh currencies.json [skip ci]
 24d75f0 | 2026-09-17 11:46:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-584edc7 | 2026-09-16 18:28:38 -0300 | chore: refresh Agroverse SKU catalog snapshot
-387a108 | 2026-09-16 18:28:36 -0300 | chore: refresh Agroverse store inventory snapshot
-361d5e5 | 2026-09-16 12:02:45 +0000 | chore: refresh currencies.json [skip ci]
-a3ccc49 | 2026-09-16 11:39:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -563,20 +561,13 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 13:57:33 |
+| 2026-09 | 924.5 | 18364.34386 | 9/23/2026 21:51:26 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-16`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-17`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
-| 2026-09-16 | — | — | IGNORED | — | — | IGNORED: Grok returned a QR already on QR Code Sales. |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_39 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_38 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_37 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_14 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_13 | — | — |
-| 2026-09-16 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_12 | — | — |
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
