@@ -39,6 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint cert: the QR print-safety floor (`k >= 4`) is documented but UNENFORCED — and the obvious clamp is unsafe
+**Filed 2026-09-24 — verified, not started. Governor: Gary (thread 35189). Non-urgent; regression guard for the cert renderer.**
+
+**Ask.** `templates/sunmint_certificate/render_sunmint_certificate.py` states a hard requirement — `k MUST stay >= 4` (4px == 0.339mm/module) to survive 150-dpi printing; `k=3` (0.254mm/module) does NOT — but nothing in the code enforces it.
+
+**Verified (2026-09-24).**
+1. **The floor is prose, not a guard.** `render_qr` does `modules = registry_qr.width` then `k = max(2, round(px / modules))`. The ONLY guard is `if not decode(tile):` — a *digital* decode check. Digital decode != print-safe; a 171px tile decodes on screen but is below the print floor. So the documented constraint has no teeth.
+2. **It already shipped broken once.** #1354 (merged `b7eea37ad63f`, 2026-09-24T05:40:24Z) set `qpx=196` while the quiet zone was still `q=4` -> `modules = 49 + 2*4 = 57` -> `round(196/57) = 3` -> tile `57*3 = 171px` (k=3, BELOW floor). That reached `main` and was live until #1355 (`440120bd`, 05:47:33Z) fixed it to `qpx=212` with `q=2` (`modules=53` -> k=4 -> 212px). Note #1354's own title said *"196px (k=4)"* — the intent and the realised value disagreed.
+3. **The realised value depends on BOTH `qpx` and `q`.** Reproduced locally (the renderer's own arithmetic):
+   - `q=4` (modules=57): `qpx=196` -> k=3 -> **171px**; `qpx=212` -> k=4 -> 228px
+   - `q=2` (modules=53): `qpx=196` -> k=4 -> 212px; `qpx=212` -> k=4 -> 212px
+   So a `qpx` that is safe at one `q` is unsafe at another — a caller cannot reason about safety from `qpx` alone.
+
+**Why the naive fix is UNSAFE (the non-obvious part).** A bare `assert k >= 4` (or clamping `k`) is NOT sufficient. The white rounded-rectangle box is drawn at `[qx-9, qy-9, qx+qpx+9, qy+qpx+9]` and the vertical centering is `qy = photo_box[0] + (photo_box[1] - qpx)//2` — **both use `qpx` (the *requested* px), while the pasted tile is `modules*k`.** At q=4/qpx=212 that is 228px tile inside a box sized for 212px. Clamping `k` without also recomputing the box and `qy` from the *realised* `modules*k` desyncs the box + center lines from the actual QR. The fix must derive size from the realised tile (e.g. have `render_qr` return its tile size, or resolve `k`/tile-size in the caller and lay out from that), not from `qpx`.
+
+**Suggested scope.** Resolve `k` (and the resulting tile px) in one place for a given `q`, fail loudly (not silently) if the chosen size maps below `k=4`, and lay the box + `qy` out from the realised tile size so the three can never disagree.
+
+**Evidence.** `templates/sunmint_certificate/render_sunmint_certificate.py` L229-231 (`k = max(2, round(px / modules))`), L232-255 (`decode()` guard), L406-424 (floor comment, `qpx`/`qy`/box); PR #1354 (`b7eea37ad63f`) vs #1355 (`440120bd`); thread 35189.
+
 ### SunMint: generated certs are not downloadable from the QR provenance page (`truesight.me/qr/?id=<qr_id>`)
 **Filed 2026-09-24 — verified feature request, not started. Governor: Gary (thread 35189). Non-urgent; does NOT block the cert layout work.**
 
