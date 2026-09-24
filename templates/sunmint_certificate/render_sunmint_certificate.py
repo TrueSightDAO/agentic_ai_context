@@ -227,7 +227,10 @@ def render_qr(
     from pyzbar.pyzbar import decode
 
     modules = registry_qr.width  # N + 2*quiet
-    k = max(2, round(px / modules))  # integer pixels per module
+    # HARD PRINT FLOOR: k >= 4 (4px == 0.339mm/module on this 2.88in card).
+    # Digital decode() is NOT a print-safety gate -- #1354 shipped k=3 and
+    # survived decode but was below the floor. Never round below 4.
+    k = max(4, round(px / modules))  # integer pixels per module
     tile = _paste_overlay(
         registry_qr.resize((modules * k, modules * k), Image.NEAREST),
         k,
@@ -235,7 +238,7 @@ def render_qr(
         logo_box,
     )
     if not decode(tile):
-        for k2 in (k + 1, k - 1 if k > 2 else 3, 3, 4):
+        for k2 in (k + 1, k + 2, max(4, k - 1)):
             t2 = _paste_overlay(
                 registry_qr.resize((modules * k2, modules * k2), Image.NEAREST),
                 k2,
@@ -418,7 +421,14 @@ def build(
     # RIGHT. With q=2: 212px -> k=4 -> 212px, ~7% smaller than the 228px q=4 tile
     # and still print-safe. (Do NOT set qpx near 196: 196/53 rounds to k=3 -> 159px,
     # and at q=4 196/57 -> k=3 -> 171px, BOTH below the floor.)
-    qpx, qx = 212, int(0.60 * w)
+    qr_px, qx = 212, int(0.60 * w)
+    qr_tile = render_qr(
+        registry_qr, qr_px, cfg.get("_qr_logo"), cfg.get("_qr_logo_box")
+    )
+    # Use the tile's ACTUAL width (modules x k, k>=4) for the box, vertical
+    # centring and caption. Sizing those from the *requested* px desyncs them
+    # from the pasted tile when round() lands off (the #1354 bug).
+    qpx = qr_tile.width
     # Vertical-centre the QR against the photo it sits beside, so the two read as
     # ONE paired block rather than two floating elements. qy must derive from the
     # photo's ACTUAL placement: a hardcoded constant can only line up by coincidence,
@@ -442,7 +452,7 @@ def build(
     out.paste(mk, (mk_x, mk_y), mk)
     out = out.convert("RGB")
     out.paste(
-        render_qr(registry_qr, qpx, cfg.get("_qr_logo"), cfg.get("_qr_logo_box")),
+        qr_tile,
         (qx, qy),
     )
 
