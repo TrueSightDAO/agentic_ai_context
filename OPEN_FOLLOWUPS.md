@@ -39,6 +39,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `[PAYOUT REGISTRATION]` sink never auto-ingests — no dispatch route, and the self-installing hourly cron never fired
+**Filed 2026-09-24 — root cause verified; a manual backfill was already applied live. Governor: Gary (thread 35944). Money-adjacent (a planter's PIX never reaches the review surface).**
+
+**Ask.** Make the `[PAYOUT REGISTRATION]` sink self-healing: (a) add a routing entry so Edgar's post-verify dispatch actually fires the GAS scanner, and (b) make the GAS hourly safety-net cron install reliably (today it only self-installs *from inside a scan run* — a chicken-and-egg when the fire path never fires).
+
+**Symptom (reported by Gary).** `[PAYOUT REGISTRATION]` rows land in Telegram Chat Logs (e.g. `G12603`) with col P signature verification = `success`, but the private `cfr program` → `payout registrations` tab stayed **empty (`count:0`) after ~a day of live submissions** — nothing reached the review surface an operator must pay from.
+
+**Verified root cause (2026-09-24).**
+1. **No dispatch route.** `dao_protocol/truesight_dao_client/server/dispatch.py` `ROUTING` has `[PAYOUT EVENT] → ("PAYOUT_PROCESSING", "processPayoutEventsFromTelegramChatLogs")` (L291) but **no `[PAYOUT REGISTRATION]` entry**. This is intentional per `tests/test_payout_event_dispatch_routing.py` docstring: *"the `[PAYOUT REGISTRATION]` sibling (P4) is deliberately NOT routed here — it relies on its GAS hourly-trigger safety net."* There is **no dedicated env key** (`DAO_PROTOCOL_WEBHOOK_PAYOUT_REGISTRATION_PROCESSING` is absent from `dao_protocol` `.env`).
+2. **The safety net never installed.** `tokenomics/google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/process_payout_registration_telegram_logs.js` installs its own hourly trigger inside `ensurePayoutRegHourlyTriggerInstalled_()`, but that is called **only from within `processPayoutRegistrationsFromTelegramChatLogs()`** — which itself only runs when invoked by the (non-existent) webhook or the (never-installed) trigger. So the piece never runs at all.
+3. **Manual backfill.** Invoking the scanner action directly (`?action=processPayoutRegistrationsFromTelegramChatLogs`) returned `{recorded:1, updated:3, rejected:0, errors:0}` and populated the tab (a ~15h backlog, update ids `Edgar_20260924003904_034` → `Edgar_20260924131424_088`). That call also installs the hourly trigger as a side effect — but only because a human triggered it.
+
+**Suggested scope.**
+- `dao_protocol`: add `[PAYOUT REGISTRATION] → ("PAYOUT_PROCESSING", "processPayoutRegistrationsFromTelegramChatLogs")`. **Watch the env-key collision:** the existing `PAYOUT_PROCESSING` value already points at the same GAS deployment (tail `…be4FXbIVpuaOHVW/exec`) which serves *both* actions, so either introduce a distinct key or confirm the dispatcher passes an `action` param. Revisit `test_payout_event_dispatch_routing.py` (its `test_payout_event_does_not_match_payout_registration_text` pin assumes registration is unrouted).
+- `tokenomics`: decouple trigger installation from a scan run — e.g. create the time-driven trigger at deploy (the other scanners' pattern) or from a separate installer entry point.
+
+**Evidence (no PII).** `dao_protocol dispatch.py` L291; `tests/test_payout_event_dispatch_routing.py` docstring L12–15; `process_payout_registration_telegram_logs.js` (`ensurePayoutRegHourlyTriggerInstalled_`); Telegram Chat Logs `1qbZZhf-…` row 12603 (tag + col P `success`; col G body carries no PIX key); private `cfr program` `payout registrations` tab (post-backfill = 4 rows, masked `***.***.***-19`).
+
+### `[PAYOUT REGISTRATION]` scanner: `submission_source` captures the trailing signature + boilerplate
+**Filed 2026-09-24 — verified. Governor: Gary (thread 35944). Cosmetic; private sheet only.**
+
+**Ask.** `parsePayoutRegistrationEventText_()` appends every line after a key onto that key's value (the `else if (lastKey)` continuation branch). For the signed payload, everything after `- Submission Source:` — the `--------` separator, `My Digital Signature: …`, `Request Transaction ID: …`, the "generated using"/"Verify submission here" lines — is concatenated into the `submission_source` cell. Observed live on all 4 backfilled rows.
+
+**Fix.** Stop the continuation at the `--------` separator (or first blank-after-separator), or bound `submission_source` to the first token/line. Also drops a large base64 blob from every row.
+
+**Evidence.** Private `payout registrations` rows 2–5 `submission_source` (begins with the URL, then the full signature); `process_payout_registration_telegram_logs.js` `parsePayoutRegistrationEventText_` continuation branch.
+
 ### `sunmint/trees/index.geojson` `tree_id` is keyed on the sheet's col A, but the canonical id is col D — every Edgar-direct tree id is **+1** (verified on tree02: `…_004` vs canonical `…_003`)
 **Filed 2026-09-24 — verified, not started. Governor: Gary (thread 35189). Non-urgent, but it silently breaks every `tree_id`-based join for Edgar-direct trees.**
 
