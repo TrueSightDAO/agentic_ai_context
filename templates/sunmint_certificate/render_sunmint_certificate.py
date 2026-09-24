@@ -109,6 +109,14 @@ def load_registry_qr(qr_id: str, registry_base: str):
     im = Image.open(io.BytesIO(fetch_bytes(url))).convert("RGB")
     hits = decode(im)
     if not hits:
+        # Some registry PNGs embed the QR small enough that pyzbar fails at native
+        # size though the image decodes fine at 2-3x (cv2 and real scanners read it).
+        # This affects the whole 2023SA... (Santa Anna) family -> every such cert was
+        # previously un-renderable. Retry on an upscale before giving up; keep the
+        # upscaled image so the crop and the overlay stay at (higher) native res.
+        im = im.resize((im.width * 3, im.height * 3), Image.LANCZOS)
+        hits = decode(im)
+    if not hits:
         raise SystemExit(f"registry PNG does not decode: {url}")
     payload = hits[0].data.decode()
     if qr_id not in payload:
