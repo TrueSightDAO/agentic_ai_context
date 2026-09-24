@@ -39,6 +39,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `sunmint/trees/index.geojson` `tree_id` is keyed on the sheet's col A, but the canonical id is col D — every Edgar-direct tree id is **+1** (verified on tree02: `…_004` vs canonical `…_003`)
+**Filed 2026-09-24 — verified, not started. Governor: Gary (thread 35189). Non-urgent, but it silently breaks every `tree_id`-based join for Edgar-direct trees.**
+
+**Ask.** The governor ruled (thread 35189, 2026-09-24) that the canonical tree id for tree02 is `Edgar_20260903083523_003`. `sunmint/trees/index.geojson` carries `…_004`. Fix the generator so the public index keys on the canonical id.
+
+**Verified root cause (2026-09-24).** `sunmint/scripts/build_tree_geojson.py` L86:
+```
+c_id = idx(header, "telegram update id", "tree id")
+```
+It derives `tree_id` (emitted at L162 `"tree_id": t["id"]`) from the sheet's **col A "Telegram Update ID"** — but the canonical id (what Edgar, the `[TREE PLANTING EVENT]`, the certificate's `ledger_ref`, and the signed attestation all key on) is the sheet's **col D "Telegram Message ID"**. On the `SunMint Tree Planting` tab (spreadsheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`) the two columns differ by **exactly +1 on every Edgar-direct row**:
+- row 38 (tree02): col A = `Edgar_20260903083523_004`, col D = `Edgar_20260903083523_003` ← the canonical / cert / Edgar id
+- row 37 (tree01): A = `…_002`, D = `…_001`
+- row 39 (tree03): A = `…_006`, D = `…_005`
+- also `…_082/…_081`, `…_375/…_376`, `…_022/…_021`, `…_026/…_025`, `…_062/…_061`
+
+So this is **systematic, not a one-off**: the public `trees/index.geojson` is off-by-one for EVERY Edgar-direct tree — its whole Bomsucesso family (`…_002, _004, _006 … _020`) is even, i.e. always col D + 1. The generator computes no offset itself; it reads col A verbatim, so the bug is the **column choice**, not arithmetic.
+
+**Why it matters.** `tree_id` is the join key for the map popup, the monitor page `?tree=<id>` deep link, the growth-monitoring tabs, and the certificate's `ledger_ref`. Keying the *public index* on a column that is systematically +1 vs the *canonical attestation id* means every `tree_id`-based join mismatches silently.
+
+**⚠️ Care needed before changing the column (do NOT do a blunt `c_id = col D`).**
+1. **Col D is not always an `Edgar_*` id.** On the sheet's older Telegram-native rows, col A holds the numeric update id and col D holds a *numeric* message id (`171`, `6411`, …) — neither is an `Edgar_*` id. So the fix must **prefer the `Edgar_*`-shaped value across A/D** (e.g. pick whichever of col A / col D matches `^Edgar_`), not blindly prefer col D.
+2. **The tree02 row is duplicated** (sheet rows 38 **and** 40, identical col A/D — one `LINKED`, one `NEW`). The generator's dedupe keeps one, but the duplicate should be cleaned at source.
+
+**Suggested scope.** In `build_tree_geojson.py`, resolve the id as "the `Edgar_*`-shaped value among {col A, col D}, falling back to col A" and add a unit test over the Bomsucesso rows asserting `tree_id == col D` for Edgar-direct rows. (`sunmint` is an API-only data repo — no clone/branch-edit; land via Contents-API single-file write or a PR on the generator's own home if/when it graduates out of the data repo.)
+
+**Evidence.** `sunmint/scripts/build_tree_geojson.py` L86 (`c_id`) + L162 (`"tree_id": t["id"]`); sheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` → `SunMint Tree Planting` cols A/D rows 37–40 (tree02 row 38: A=`…_004`, D=`…_003`); `sunmint/trees/index.geojson` (tree02 feature `tree_id: Edgar_20260903083523_004`); governor ruling thread 35189; `sops/SUNMINT_CERTIFICATE_ISSUE_SOP.md` §7.
+
 ### SunMint cert: the QR print-safety floor (`k >= 4`) is documented but UNENFORCED — and the obvious clamp is unsafe
 **Filed 2026-09-24 — verified, not started. Governor: Gary (thread 35189). Non-urgent; regression guard for the cert renderer.**
 
