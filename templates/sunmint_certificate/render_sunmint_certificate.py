@@ -114,8 +114,16 @@ def load_registry_qr(qr_id: str, registry_base: str):
         # This affects the whole 2023SA... (Santa Anna) family -> every such cert was
         # previously un-renderable. Retry on an upscale before giving up; keep the
         # upscaled image so the crop and the overlay stay at (higher) native res.
+        # NOTE: each retry must resize from the ORIGINAL image, never chain onto
+        # the previous upscale -- chaining (2x then 3x then 5x) compounds to a
+        # ~13500px image and the cv2 fallback below (another 5x) then allocates
+        # >10 GB and gets OOM-killed. The whole 2023SA... (Santa Anna) family
+        # (~450px PNGs) hit this: the cert was un-renderable on a small box.
+        _native = im
         for _scale in (2, 3, 5):
-            im = im.resize((im.width * _scale, im.height * _scale), Image.LANCZOS)
+            im = _native.resize(
+                (_native.width * _scale, _native.height * _scale), Image.LANCZOS
+            )
             hits = decode(im)
             if hits:
                 break
@@ -127,7 +135,7 @@ def load_registry_qr(qr_id: str, registry_base: str):
 
         import cv2
 
-        im = im.resize((im.width * 5, im.height * 5), Image.LANCZOS)
+        im = _native.resize((_native.width * 5, _native.height * 5), Image.LANCZOS)
         _txt, _pts, _ = cv2.QRCodeDetector().detectAndDecode(np.array(im.convert("L")))
         if _txt:
             _xs, _ys = _pts[0][:, 0], _pts[0][:, 1]
