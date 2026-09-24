@@ -123,8 +123,8 @@ assumed — read the file's test style before writing new ones in PR1).
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
 | PR1 (fix + tests) | ☑ | ☑ | ☑ |
-| PR2 (deploy + live verification) | ☐ | — | ☐ |
-| PR3 (file the gap so it's tracked) | ☑ | ☑ | ☐ |
+| PR2 (deploy + live verification) | ☑ | — | ☑ |
+| PR3 (file the gap so it's tracked) | ☑ | ☑ | ☑ |
 
 ✅ **Pre-flight Completeness (§5d):** the exact two existing `reply_to_message` read-sites, the exact
 insertion point for the fix (with surrounding code quoted), why the emoji-reaction code path is *not*
