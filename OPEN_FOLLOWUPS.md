@@ -3400,7 +3400,7 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ## Recently shipped
 
 ### Telegram reply-to context silently dropped before reaching the LLM (found live 2026-09-24, second occurrence, never written down)
-**Filed 2026-09-24; shipped 2026-09-24. Governor: Gary (thread 35622). PRs: `truesight_autopilot` #500 (`30291c97`) + `agentic_ai_context` #1362, #1363.**
+**Filed 2026-09-24; shipped 2026-09-24. Governor: Gary (thread 35622). PRs: `truesight_autopilot` #500 (`30291c97`) + `agentic_ai_context` #1362, #1365.**
 
 **The gap.** Telegram hands the bot the replied-to message's full content in `reply_to_message`. `truesight_autopilot/app/telegram_adapter.py` read it in exactly **two** places — and neither forwarded its content: line ~615 (`_bot_was_mentioned()`) reads `reply_to.get("from").username` **only** to decide the group mention-gate bypass; line ~1972 reads `reply_to_message.get("forum_topic_created")` for an unrelated topic-creation check. So when a governor replied to a specific message (e.g. a photo), Telegram supplied the content and the bot simply never looked it up — the reply relationship was dropped before the LLM ever saw it. Found **live** ("second occurrence"), but — verified by direct reading, not assumed — **neither occurrence was ever written down** in `OPEN_FOLLOWUPS.md`, `CONTEXT_UPDATES.md`, or `handoffs/active_supervision.json`. That tracking gap is why this entry exists: a third occurrence should not repeat un-tracked.
 
