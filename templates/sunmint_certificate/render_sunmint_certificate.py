@@ -390,8 +390,16 @@ def build(
         font=f_seri_24,
         fill=CACAO,
     )
+    # issuing_authority is a HEADER caption ("Issuing authority . SunMint
+    # reforestation"), so it belongs on the byline row -- not at x=0.135w below
+    # the rule, where it collided with the signature mark pasted at
+    # (0.135w, 0.812h). The overlap produced the "two signatures" garbling Gary
+    # flagged (2026-09-24).
+    # Right-align to the content margin (mirror of the 0.135w left margin) so the
+    # byline row reads as a balanced pair: "TrueSight DAO" left, authority right.
+    bb_ia = d.textbbox((0, 0), cfg["issuing_authority"], font=f_seri_15)
     d.text(
-        (int(0.135 * w), sy + int(0.044 * h)),
+        (int(0.865 * w) - (bb_ia[2] - bb_ia[0]), sy + int(0.009 * h)),
         cfg["issuing_authority"],
         font=f_seri_15,
         fill=GREY,
