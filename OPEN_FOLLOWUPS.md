@@ -39,6 +39,52 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint tree-planting LINK path matches rows first-match-only — a duplicate row leaves a stale `NEW` twin
+**Filed 2026-09-24 — reproduced live (thread 35189). Not money-adjacent, but it silently re-opens a planted tree.**
+
+**Symptom.** Link a QR to a tree that has **two identical `NEW` rows**, and only the
+**first** row flips to `LINKED`; the twin stays `NEW`, so the tree re-appears as
+plantable on the next load. Observed on tree10 (`Edgar_20260903083555_019`) — two twin
+rows; and tree02 (`Edgar_20260903083523_003`) already carries a lingering `NEW` twin
+today.
+
+**Root cause.** In `tokenomics/google_app_scripts/1UrBgq…/process_tree_planting_link.js`,
+the LINK branch finds the SunMint row, stores its index, and **`break`s on the first
+match** (first-match-only). The **REJECT** branch was already fixed for exactly this
+(_"No break: invalidate EVERY row … first-match-only let the NEW copy survive"_, ~L783–785),
+but LINK never received the same fix.
+
+**Fix.** Port the REJECT branch's all-rows loop into LINK: when a QR/tree matches, flip
+**every** matching `NEW` row, not just the first. Add a regression test with a
+duplicated row.
+
+**Workaround (until fixed).** De-dup the target tree's rows **before** linking (back up
+the tab first; delete twins bottom-up; see `sops/SUNMINT_LINK_AND_CERTIFY_RUNBOOK.md` §2).
+
+**Evidence.** `process_tree_planting_link.js` LINK branch (first-match + `break`) vs
+REJECT branch (all-rows loop); thread 35189.
+
+### pyzbar fails on `2023SA…` (Santa Anna) registry PNGs at native size — any tool that decodes at native resolution mis-handles them
+**Filed 2026-09-24 — reproduced (thread 35189). The cert template is fixed here; other pyzbar consumers may not be.**
+
+**Symptom.** `pyzbar.decode()` returns nothing for `lineage-assets/pngs/2023SA*.png` at
+**native** size, though the same image decodes fine at 2–3× (LANCZOS) and `cv2` decodes
+it at native size. Real scanners read the same codes fine. Result before the fix: **every
+Santa Anna certificate was un-renderable** (`registry PNG does not decode`).
+
+**Root cause.** These PNGs embed the QR at a smaller module pixel-size than pyzbar's
+detector tolerates at native resolution (the `2023SA…` family is affected as a group).
+
+**Fix (shipped here).** `templates/sunmint_certificate/render_sunmint_certificate.py`
+`load_registry_qr()` now retries `decode()` on a 3× LANCZOS upscale before aborting.
+
+**Still open.** Audit **other** pyzbar consumers for the same native-size assumption
+(e.g. `app/tools/qr_scanner.py` in `truesight_autopilot`) and apply the same upscale-retry
+(or upscale-all-then-decode) where the input may be a small-module registry PNG.
+
+**Evidence.** `decode()` empty at native vs non-empty at 3× for `2023SA_81PB_20260412_1.png`;
+`cv2.QRCodeDetector` returns the payload at native size; thread 35189.
+
 ### `processBatch` fails on every run — `appsscript.json` is missing the `documents` OAuth scope
 **Filed 2026-09-24 — reproduced live. Governor: Gary (thread 35944). Not money-adjacent, but silently breaks the onboarding batch email.**
 

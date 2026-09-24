@@ -3,7 +3,7 @@
 **Owner:** Sophia Truesight (autopilot). **Governor:** Gary.
 **Origin:** thread 35189, 2026-09-24 — *“Make sure we have an SOP in place for future
 issues of SunMint certificate… You can always find it in our registry.”*
-**Revision:** rev3 (2026-09-24) — §7 conflict framing RESOLVED per governor ruling; canonical tree id pinned to col D; planted date from EXIF. (rev2 corrected the QR-embedding method.)
+**Revision:** rev4 (2026-09-24) — §3 corrected to the method the canonical template ACTUALLY implements (grid + native-resolution centre-overlay re-paste); added the pyzbar-at-native-size gotcha and the canonical-template-path warning. (rev3: §7 conflict framing resolved, canonical tree id = col D, planted date from EXIF.)
 
 ---
 
@@ -42,18 +42,31 @@ the image can be derived for **any** id without a search.
 
 1. Fetch the registry PNG.
 2. Decode it (`pyzbar`) and confirm the payload contains the expected `qr_id`. **Abort if not.**
+   - ⚠️ **pyzbar-at-native-size gotcha.** Some registry PNGs embed the QR small enough
+     that pyzbar fails at native size even though the image decodes fine at 2–3× (cv2 and
+     real scanners read it). This affects **the whole `2023SA…` (Santa Anna) family** —
+     every one of them fails pyzbar at native resolution, so **every Santa Anna cert is
+     un-renderable** unless you retry on an upscale. Retry on a 2–3× LANCZOS upscale
+     before aborting; the §8 template now does this automatically.
 3. Crop the **detector's own bounding rect**, **unchanged**. Do **not** pad or nudge it —
    a 1-px shift changes the module phase and breaks decoding.
 4. Add a synthetic **quiet zone** ≥ 4 modules (white border) around the crop.
 5. Re-confirm the quiet-zoned crop decodes.
-6. Resize that crop to the tile size the layout needs, trying resamplers in order
-   `LANCZOS → BOX → NEAREST`, and **accept the first tile that decodes**.
+6. Render the recovered grid at an **INTEGER scale `k ≥ 4`** via **NEAREST** (a
+   non-integer NEAREST resize smears modules and kills scanning; `k ≥ 4` is a hard
+   print floor), then **re-composite the registry's own centre overlay (if any) at
+   native resolution** on top of the crisp grid (see the note below).
 
-> **Why not reconstruct a module grid?** Sampling the registry image to its true
-> 49×49 module grid (~4.92 px/module) mis-samples a handful of modules (≈99.5%
-> match) — and that is **enough to make barcode decoding fail outright**. It also
-> looks “more correct” while being more fragile. Resampling the registry's **own
-> pixels** is both simpler and robust.
+> **What the canonical template actually does (and why reconstruction is now OK).**
+> The §8 template **does** reconstruct a module grid — and that is deliberate. rev1
+> forbade it because a *naive* grid (no overlay paste, non-integer scale) mis-sampled a
+> few modules and failed to decode. The canonical approach **reconciles both facts**:
+> recover the true module grid (smallest N that re-decodes), render it at an **integer**
+> scale `k ≥ 4` via NEAREST for crispness, and then **re-paste the registry's own
+> centre-overlay pixels at native resolution**. Reconstruction is safe *iff* it is
+> integer-scaled, overlay-preserving, and decode-gated — which is exactly what §8
+> enforces. Skipping the overlay re-paste is the 2026-09-24 thread-35189 defect (the
+> Agroverse centre logo gets thresholded into speckle).
 
 ## 4. Acceptance gate (do not skip)
 
@@ -140,11 +153,19 @@ python3 render_sunmint_certificate.py \
 It emits, per variant, `<outdir>/certificate_<variant>.png` and `.pdf` (300 dpi) and
 **refuses to finish unless the QR payload-equality gate passes**.
 
+> ⚠️ **Render from the canonical path ONLY — never a `/tmp` copy.** On 2026-09-24 a
+> certificate was rendered from a stale untracked `/tmp` WIP snapshot (a pre-#1352 copy,
+> **403 lines vs the canonical 540**) that had **no overlay logic** — the Agroverse centre
+> logo was silently thresholded away in the delivered PDFs. Always resolve the template via
+> `read_repo_file`/raw URL from `agentic_ai_context`, and optionally assert its `md5`
+> against `main` before rendering.
+
 ## 9. Do NOT
 
 - Do **not** generate or re-encode a QR.
 - Do **not** use the stale `qr_codes/*.png` path.
-- Do **not** reconstruct a module grid (see §3).
+- Do **not** reconstruct a module grid **without re-pasting the centre overlay at native
+  resolution** (see §3, step 6 — the Agroverse-logo defect).
 - Do **not** pad/nudge the detector rect.
 - Do **not** trust the sheet over a live registry resolve without asking.
 - Do **not** commit the signature mark with the template.
@@ -171,3 +192,9 @@ It emits, per variant, `<outdir>/certificate_<variant>.png` and `.pdf` (300 dpi)
   `sold` retained as history); canonical tree id pinned to col D (the `index.geojson` +1
   trap); planted date = EXIF, not sheet col G. Seeder read-path fixed (#12/#13/#14) so the
   manifest no longer needs a hand-edit.
+- **rev4 (2026-09-24):** §3 rewritten to the method the canonical template ACTUALLY
+  implements — recover the true module grid, integer-scale at k≥4, **and re-composite the
+  registry's centre overlay at native resolution** (the missing step that garbled the
+  Agroverse logo, thread 35189). Added the **pyzbar-at-native-size gotcha** (`2023SA…`
+  family) and the **canonical-template-path warning** (never render from a `/tmp` copy).
+  Template now retries pyzbar on a 3× upscale.
