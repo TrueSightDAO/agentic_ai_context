@@ -90,6 +90,23 @@ So the daily "success" is a **no-op that rewrites the previous file**. The warni
 
 **Evidence (no PII).** `dao_protocol dispatch.py` L291; `tests/test_payout_event_dispatch_routing.py` docstring L12–15; `process_payout_registration_telegram_logs.js` (`ensurePayoutRegHourlyTriggerInstalled_`); Telegram Chat Logs `1qbZZhf-…` row 12603 (tag + col P `success`; col G body carries no PIX key); private `cfr program` `payout registrations` tab (post-backfill = 4 rows, masked `***.***.***-19`).
 
+### §11.5 CFR tree/monitoring/plot mirror: **writers + Edgar wiring MERGED in source, but inert** pending an env var + an Edgar restart (governor gates)
+**Filed 2026-09-24 \u2014 code shipped; NOT live. Governor: Gary (thread 35947). Source-complete; the last mile is two explicit governor gates.**
+
+**Ask.** Land the two gates that make the merged \u00a711.5 mirror actually fire \u2014 (a) set the `DAO_PROTOCOL_WEBHOOK_CFR_PROGRAM_REGISTRATION_PROCESSING` key in `/home/ubuntu/dao_protocol/.env`, and (b) restart the Edgar (`dao_protocol`) service so the new ROUTING entries load. Everything upstream of those two is now merged.
+
+**What is shipped (source).**
+- `tokenomics` **#550** (`ef25709a`): the missing \u00a711.5 writer `process_cfr_program_submission_telegram_logs.js` \u2014 mirrors `cfr.truesight.me`-origin tree / monitoring / plot submissions into the **private** `cfr program` tabs (`tree planting` / `tree monitoring` / `plot registrations`), plus the `?action=processCfrProgramSubmissionsFromTelegramChatLogs` branch in `qr_code_web_service.js`, a 19-check harness and a 14-test pytest. Source-only \u2014 **not** `clasp`-deployed.
+- `dao_protocol` **#179** (`63c726bb`): **additive** routing \u2014 `("CFR_PROGRAM_REGISTRATION_PROCESSING", "processCfrProgramSubmissionsFromTelegramChatLogs")` appended as a **second** target on `[TREE PLANTING EVENT]`, `[TREE GROWTH MONITORING EVENT]` and `[FARM BOUNDARY EVIDENCE EVENT]`, backed by `tests/test_cfr_program_dispatch_routing.py` (6 tests). `dispatch_event` fires **every** target of a matched entry, so the pre-existing SunMint targets are untouched \u2014 i.e. the public **`SunMint Tree Planting`** tab keeps populating. Replacing rather than appending would silently darken it; the new test fails loudly if anyone does.
+
+**Why it is inert (verified 2026-09-24).** `dispatch.py` resolves each target as `os.environ.get("DAO_PROTOCOL_WEBHOOK_<key>")`; a missing key is **logged and skipped** (L365\u2013384). `DAO_PROTOCOL_WEBHOOK_CFR_PROGRAM_REGISTRATION_PROCESSING` is **not** in the box `.env` (the box has 33 `DAO_PROTOCOL_WEBHOOK_*` keys, none CFR). So with current code the CFR target no-ops and \u2014 correctly \u2014 SunMint still fires. And because the routing change only takes effect on process load, even after the env var is set the sink stays dead until Edgar restarts.
+
+**Secondary (same surface).**
+- `GAS_SCRIPT_PROPERTIES.md` \u00a72/\u00a73 still records `CFR_PROGRAM_SPREADSHEET_ID` as **NOT SET**, yet the 2026-09-24 payout-registration backfill wrote 4 rows into the private `cfr program` sheet \u2014 so the id resolves in practice somehow. Reconcile the registry row (or confirm the sink's Script-Property/constant fallback) so the next run is not misled.
+- The payout-parser terminator fix (tokenomics #550) stops future rows capturing the trailing signature blob; the **4 already-written `payout registrations` rows** still carry the polluted `submission_source` \u2014 decide whether to backfill them.
+
+**Evidence.** `dao_protocol dispatch.py` L365\u2013384 (env-key resolution + skip), `ROUTING` entries for the 3 event tags; `tests/test_cfr_program_dispatch_routing.py`; PRs tokenomics#550 + dao_protocol#179; `GAS_SCRIPT_PROPERTIES.md` L61, L82; private `cfr program` `payout registrations` tab (4 rows).
+
 ### `[PAYOUT REGISTRATION]` scanner: `submission_source` captures the trailing signature + boilerplate
 **Filed 2026-09-24 — verified. Governor: Gary (thread 35944). Cosmetic; private sheet only.**
 
