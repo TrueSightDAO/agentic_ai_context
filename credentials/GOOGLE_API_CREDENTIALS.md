@@ -7,6 +7,10 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 > **[`GOOGLE_SHEET_SA_ACCESS_MATRIX.md`](GOOGLE_SHEET_SA_ACCESS_MATRIX.md)**
 > (machine-readable: `google_sheet_sa_access_matrix.json`). Use it *before* picking an
 > SA for a write. Refresh with `scripts/probe_sheet_sa_access.py`.
+>
+> **SunMint work → `sunmint-ledger-manager@get-data-io.iam.gserviceaccount.com`** (entry 8 below).
+> Do **not** attach a random Main-Ledger SA to a SunMint job, and do not assume a
+> Main-Ledger SA can read the SunMint sheet — its sharing list is separate.
 
 ---
 
@@ -74,6 +78,17 @@ This document lists all Google API credentials, service account IDs, and OAuth c
 - **Project ID**: `get-data-io`
 - **Used For**: Read queries against the Main Ledger (CIC payment records, heavy-metal testing costs) and other DAO Google Sheets
 - **Access**: **Reader** on Main Ledger (granted 2026-09-07 by Sophia via edgar-dapp-listener SA)
+
+### 8. **SunMint Ledger Manager Service Account** (canonical for **SunMint** sheets)
+- **Vault name**: `google_sa_sunmint_ledger_manager_gdrive_key` (see `CREDENTIAL_VAULT.md`)
+- **File (autopilot box)**: `/opt/truesight_autopilot/config/google/sunmint_ledger_manager_gdrive_key.json` — **never commit**
+- **Service Account Email**: `sunmint-ledger-manager@get-data-io.iam.gserviceaccount.com`
+- **Client ID**: `102651062934860822459`
+- **Private Key ID**: `5c91ecb41aee7b4a8ac1347cd1e9c350af24b965`
+- **Project ID**: `get-data-io`
+- **Used For**: **SunMint tree-planting, plot, and farm index rebuilds** — the `sunmint` repo's scheduled GitHub Actions (`rebuild-tree-index.yml`, `rebuild-plots-index.yml`, `rebuild-farms-index.yml`) read it from the repo secret **`GOOGLE_SERVICE_ACCOUNT_JSON`**.
+- **Access** (probed 2026-09-24, see `GOOGLE_SHEET_SA_ACCESS_MATRIX.md` §2b): full **write** on the SunMint sheet (all tabs) and the Main Ledger tabs listed there.
+- **Rotation**: created 2026-09-24 by Gary to replace a prior CI SA whose sheet access had been revoked (see `OPEN_FOLLOWUPS.md` → SunMint index freeze entry). **When rotating, both** the `sunmint` repo secret **and** the vault entry / key file must be updated.
 
 ---
 
