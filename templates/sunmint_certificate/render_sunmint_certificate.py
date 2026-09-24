@@ -96,6 +96,11 @@ def load_registry_qr(qr_id: str, registry_base: str):
     only threshold + integer-scale so the embedded tile is visually crisp (a
     LANCZOS downscale decodes but leaves ~20% mid-grey pixels -- it looks
     'garbled' even though scanners cope).
+
+    If the registry PNG carries a smooth centre overlay (e.g. the Agroverse
+    mark), thresholding would shatter it into speckle, so we ALSO return the
+    overlay's native-resolution pixels + module box for render_qr() to paste back
+    on top of the crisp tile. Returns (clean, payload, logo_src, logo_box).
     """
     from pyzbar.pyzbar import decode
     import numpy as np
@@ -144,26 +149,104 @@ def load_registry_qr(qr_id: str, registry_base: str):
     clean = Image.fromarray(np.where(full, 0, 255).astype("uint8"), "L").convert("RGB")
     if not decode(clean.resize((clean.width * 8, clean.height * 8), Image.NEAREST)):
         raise SystemExit(f"quiet-zoned module grid does not decode: {url}")
+
+    # The registry PNG may carry a smooth overlay (e.g. the Agroverse mark) in its
+    # centre. Thresholding every module to pure black/white shatters that overlay
+    # into speckle -- it *looks* garbled even though the QR still scans. Detect the
+    # overlay as the block of modules whose source pixels are anti-aliased
+    # (mid-grey), keep the source pixels at native resolution, and hand them back so
+    # render_qr() can paste the original overlay back on top of the crisp grid.
+    logo_src, logo_box = None, None
+    mid = np.zeros((N, N), float)
+    for j in range(N):
+        for i in range(N):
+            y0, y1 = int(j * a.shape[0] / N), int((j + 1) * a.shape[0] / N)
+            x0, x1 = int(i * a.shape[1] / N), int((i + 1) * a.shape[1] / N)
+            hh, ww = y1 - y0, x1 - x0
+            # interior-only window: ignore module-boundary anti-aliasing
+            sub = a[y0 + hh // 4 : y1 - hh // 4, x0 + ww // 4 : x1 - ww // 4]
+            if sub.size:
+                mid[j, i] = ((sub > 45) & (sub < 215)).mean()
+    ys, xs = np.where(mid > 0.7)
+    # grow ~2 modules so the whole overlay is covered, not just its solid core
+    if len(ys) >= 4:  # a real overlay spans several modules
+        pad = 2
+        ly0 = max(0, ys.min() - pad)
+        ly1 = min(N, ys.max() + 1 + pad)
+        lx0 = max(0, xs.min() - pad)
+        lx1 = min(N, xs.max() + 1 + pad)
+        logo_src = crop.crop(
+            (
+                int(lx0 * a.shape[1] / N),
+                int(ly0 * a.shape[0] / N),
+                int(lx1 * a.shape[1] / N),
+                int(ly1 * a.shape[0] / N),
+            )
+        )
+        logo_box = (lx0 + q, ly0 + q, lx1 + q, ly1 + q)  # modules, incl. quiet zone
+        print(
+            f"  registry QR overlay: {logo_src.size}px at modules "
+            f"x{lx0}-{lx1} y{ly0}-{ly1} (restored at native resolution)"
+        )
+
     print(
         f"  registry QR: {crop.size} native -> {N}x{N} modules "
         f"({crop.width / N:.3f} px/module), payload ok"
     )
-    return clean, payload
+    return clean, payload, logo_src, logo_box
 
 
-def render_qr(registry_qr: Image.Image, px: int) -> Image.Image:
+def _paste_overlay(tile: Image.Image, k: int, logo_src, logo_box) -> Image.Image:
+    """Paste the registry's native-resolution overlay pixels back onto the crisp,
+    integer-scaled module grid, so a centre mark (e.g. the Agroverse logo) renders
+    smooth instead of being shattered into speckle by the module threshold."""
+    if logo_src is None or logo_box is None:
+        return tile
+    lx0, ly0, lx1, ly1 = logo_box
+    dest = (lx0 * k, ly0 * k, lx1 * k, ly1 * k)
+    w, h = dest[2] - dest[0], dest[3] - dest[1]
+    if w <= 0 or h <= 0:
+        return tile
+    out = tile.copy()
+    out.paste(logo_src.resize((w, h), Image.LANCZOS), (dest[0], dest[1]))
+    return out
+
+
+def render_qr(
+    registry_qr: Image.Image, px: int, logo_src=None, logo_box=None
+) -> Image.Image:
     """Integer-scale the clean module image to ~px, using NEAREST so every pixel
-    is pure black or white (module size = whole pixels -> crisp, never garbled)."""
+    is pure black or white (module size = whole pixels -> crisp, never garbled);
+    then re-composite the registry's own overlay pixels (if any) at native
+    resolution so a centre logo stays smooth and recognisable."""
     from pyzbar.pyzbar import decode
 
     modules = registry_qr.width  # N + 2*quiet
     k = max(2, round(px / modules))  # integer pixels per module
-    tile = registry_qr.resize((modules * k, modules * k), Image.NEAREST)
+    tile = _paste_overlay(
+        registry_qr.resize((modules * k, modules * k), Image.NEAREST),
+        k,
+        logo_src,
+        logo_box,
+    )
     if not decode(tile):
         for k2 in (k + 1, k - 1 if k > 2 else 3, 3, 4):
-            t2 = registry_qr.resize((modules * k2, modules * k2), Image.NEAREST)
+            t2 = _paste_overlay(
+                registry_qr.resize((modules * k2, modules * k2), Image.NEAREST),
+                k2,
+                logo_src,
+                logo_box,
+            )
             if decode(t2):
                 return t2
+        # never ship a non-decoding QR: fall back to the plain crisp tile
+        plain = registry_qr.resize((modules * k, modules * k), Image.NEAREST)
+        if logo_src is not None and decode(plain):
+            print(
+                "  WARNING: overlay QR did not decode; shipping crisp tile "
+                "without the centre overlay"
+            )
+            return plain
         raise SystemExit("could not integer-scale the registry QR to a scannable tile")
     return tile
 
@@ -328,7 +411,10 @@ def build(
         out.paste(photo_holder[0], photo_holder[1], photo_holder[0])
     out.paste(mk, (mk_x, mk_y), mk)
     out = out.convert("RGB")
-    out.paste(render_qr(registry_qr, qpx), (qx, qy))
+    out.paste(
+        render_qr(registry_qr, qpx, cfg.get("_qr_logo"), cfg.get("_qr_logo_box")),
+        (qx, qy),
+    )
 
     d2 = ImageDraw.Draw(out)
     for i, cap in enumerate(cfg["qr_caption"]):
@@ -386,7 +472,10 @@ def main(argv=None):
         cfg["with_photo"] = False
 
     print(f"fetching registry QR for {cfg['qr_id']} ...")
-    registry_qr, payload = load_registry_qr(cfg["qr_id"], cfg["registry_base"])
+    registry_qr, payload, qr_logo, qr_logo_box = load_registry_qr(
+        cfg["qr_id"], cfg["registry_base"]
+    )
+    cfg["_qr_logo"], cfg["_qr_logo_box"] = qr_logo, qr_logo_box
 
     photo = None
     if cfg.get("photo_url"):
