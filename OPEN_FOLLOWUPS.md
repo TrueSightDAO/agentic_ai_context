@@ -85,17 +85,6 @@ detector tolerates at native resolution (the `2023SA…` family is affected as a
 **Evidence.** `decode()` empty at native vs non-empty at 3× for `2023SA_81PB_20260412_1.png`;
 `cv2.QRCodeDetector` returns the payload at native size; thread 35189.
 
-### `processBatch` fails on every run — `appsscript.json` is missing the `documents` OAuth scope
-**Filed 2026-09-24 — reproduced live. Governor: Gary (thread 35944). Not money-adjacent, but silently breaks the onboarding batch email.**
-
-**Symptom.** `?action=processBatch` (via the `1MnAsIQA…` router `doGet`) returns, deterministically, on both the live @36 deployment and a fresh deploy: `{"success":false,"scanner":"processBatch","error":"Specified permissions are not sufficient to call DocumentApp.openById. Required permissions: https://www.googleapis.com/auth/documents"}`.
-
-**Root cause.** The project manifest (`appsscript.json`) declares only `spreadsheets`, `script.external_request`, `script.scriptapp`, `script.send_mail` (`script.scriptapp`) — **no `https://www.googleapis.com/auth/documents`**. `processBatch` opens a Google Doc via `DocumentApp.openById`, so the call is rejected for lack of scope. This is a manifest/code bug, **independent of the trigger** — the `processBatch` hourly trigger installs and fires fine; the run fails at the Doc open.
-
-**Fix.** Add the `documents` scope to `appsscript.json` for `1MnAsIQA…`, re-deploy (new version + repoint the deployments), and re-run the action to confirm `success:true`. Note: a scope change forces re-authorization of the web app for the executing identity.
-
-**Evidence (no PII).** live `/exec?action=processBatch` error string; `appsscript.json` `oauthScopes` in `tokenomics/google_app_scripts/1MnAsIQA…/`.
-
 ### Web-app executing identity = the DEPLOYER, not the script owner (deploy-identity trap)
 **Filed 2026-09-24 — incident resolved live by a governor grant; the AGENTS.md §2/§3 correction is still OPEN. Governor: Gary (thread 35944). Money-adjacent (a planter's PIX stopped reaching the review surface).**
 
@@ -105,12 +94,12 @@ detector tolerates at native resolution (the `2023SA…` family is affected as a
 
 **Resolution (live).** Governor granted `admin@truesight.me` access to the sheet; the live deployments served JSON again the same session (payout-reg `{"success":true,"recorded":0,…}`; cfr `{"success":true,"recorded":0,"skipped":8,"errors":0}`).
 
-**Still open.** `tokenomics/AGENTS.md` §2 ("owner-identity pinned") and §3 ("provided the identity is `admin@truesight.me` (owner)") currently give the **wrong** deploy guidance and must be corrected to: *deploy as the account that can open **every** target sheet, because `USER_DEPLOYING` is the runtime identity.* Also decide the canonical deploy identity for `1MnAsIQA…`.
+**Resolved (2026-09-24, `tokenomics` #553).** `AGENTS.md` §2/§3 corrected — §2 retitled to *"the DEPLOY identity IS the RUNTIME identity"* and §3 rewritten to *deploy as the account that can open **every** target sheet* (with `USER_DEPLOYING` named). **Canonical deploy identity for `1MnAsIQA…` = `admin@truesight.me`** (script owner; granted the private `cfr program` sheet 2026-09-24). Re-confirmed live on the v37 deploy: repointing as admin left both private sinks serving JSON.
 
 ### Apps Script triggers are PER-EXECUTING-IDENTITY — the scanner-trigger count depends on who deployed/checks
 **Filed 2026-09-24 — observed. Governor: Gary (thread 35944). Affects how the "7/7 triggers installed" claim reads.**
 
-`?action=getInstalledScannerTriggers` returned **count=7** on the admin-deployed live deployments, but **count=4** on a fresh gary-deployed v36 of the same code. Apps Script time-driven triggers are owned by the identity that created them and `ScriptApp.getProjectTriggers()` returns only the **calling** identity's triggers — so the count reflects the deploying/executing identity, not a project-wide total. **Implication:** a scan re-armed by Sophia-as-admin will not appear in Gary's trigger list (and vice-versa). Decide the canonical owner identity for re-arming and re-arm once under it; do not treat a single identity's count as authoritative.
+`?action=getInstalledScannerTriggers` returned **count=7** on the admin-deployed live deployments, but **count=4** on a fresh gary-deployed v36 of the same code. Apps Script time-driven triggers are owned by the identity that created them and `ScriptApp.getProjectTriggers()` returns only the **calling** identity's triggers — so the count reflects the deploying/executing identity, not a project-wide total. **Implication:** a scan re-armed by Sophia-as-admin will not appear in Gary's trigger list (and vice-versa). Decide the canonical owner identity for re-arming and re-arm once under it; do not treat a single identity's count as authoritative. **Decided (2026-09-24): canonical identity = `admin@truesight.me`** (same as the deploy identity, #553); re-arm under it (live v37 deploy shows `count=7` under admin).
 
 ### `[PAYOUT REGISTRATION]` sink never auto-ingests — no dispatch route, and the self-installing hourly cron never fired
 **Filed 2026-09-24 — root cause verified; a manual backfill was already applied live. Governor: Gary (thread 35944). Money-adjacent (a planter's PIX never reaches the review surface).**
@@ -3568,6 +3557,10 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ## Recently shipped
 
+### `processBatch` OAuth-scope fix + deploy-identity convention — RESOLVED
+**Shipped 2026-09-24/25. Governor: Gary (thread 35944). PR: `tokenomics` #553; GAS deploy v37.**
+
+Added `https://www.googleapis.com/auth/documents` to `1MnAsIQA…/appsscript.json` (fixes `processBatch`'s `DocumentApp.openById`, which had failed on every run), corrected `AGENTS.md` §2/§3 deploy-identity guidance, and added a companion scope-guard test (`scripts/test_payout_event_guard.py`). Deployed GAS **v37** and repointed the 3 webapp deployments (`AKfycbxQDdGnw…`, `AKfycbyGD0CD…`, `AKfycbyxwkIp6…`, all confirmed `@37`). **Live UAT:** `?action=processBatch` → `{"success":true,"scanner":"processBatch"}`; both private CFR sinks and `getInstalledScannerTriggers` (count=7) still JSON. **Note:** the added scope required a one-time OAuth **re-consent** by the executing identity (`admin@truesight.me`) in the script editor — a new scope cannot be silently widened.
 ### Inline-button resume options — Telegram + Discord parity — ✅ SHIPPED 2026-09-25 (tap→resume UAT passed LIVE)
 **Shipped 2026-09-25. Governor: Gary (thread 36518). PRs: [truesight_autopilot#502](https://github.com/TrueSightDAO/truesight_autopilot/pull/502) (Telegram build), [#503](https://github.com/TrueSightDAO/truesight_autopilot/pull/503) (wording polish), [#504](https://github.com/TrueSightDAO/truesight_autopilot/pull/504) (Discord parity). Deployed 2026-09-25 14:08:28 UTC @ `3fc7943`.**
 
