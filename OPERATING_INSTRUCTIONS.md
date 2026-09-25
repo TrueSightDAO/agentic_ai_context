@@ -17,6 +17,7 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | 1 | **OPERATING_INSTRUCTIONS.md** (this file) | Rules for reading and contributing; read first. |
 | 2 | **WORKSPACE_CONTEXT.md** | Overview of the workspace: project groups, conventions, cross-repo relationships. |
 | 3 | **PROJECT_INDEX.md** | Per-project summary: purpose, stack, entry points, credentials reference. |
+| — | **GLOSSARY.md** | **Shared term definitions for LLMs, Sophia & operators** — e.g. "provenance page", "UAT", "thread vs channel". When a governor uses a term you don't recognize, resolve it here (or via `search_context`) before guessing. |
 | 4 | **agentic_ai_api_credentials** (sibling folder) | Env var names and credential docs only; no secrets. Use when you need to know which env vars a project expects. |
 | — | **ENVOY.md** | **Who Envoy is (the interactive Claude Code seat on `nelanco-claude`) and why it defers repo/service mutations to Sophia.** Read once per session, not situational like the other rows below. |
 | — | **DEEPSEEK_LOCAL.md** | **Who DeepSeek Local is (the interactive DeepSeek CLI seat on Gary's Mac, `@deepseek_tdg_local_bot`) and the thread-confusion rules when it speaks with Sophia across Telegram topics.** Read once per session, not situational like the other rows below. |

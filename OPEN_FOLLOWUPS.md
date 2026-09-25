@@ -209,7 +209,7 @@ So this is **systematic, not a one-off**: the public `trees/index.geojson` is of
 
 **Evidence.** `templates/sunmint_certificate/render_sunmint_certificate.py` L229-231 (`k = max(2, round(px / modules))`), L232-255 (`decode()` guard), L406-424 (floor comment, `qpx`/`qy`/box); PR #1354 (`b7eea37ad63f`) vs #1355 (`440120bd`); thread 35189.
 
-### SunMint: generated certs are not downloadable from the QR provenance page (`truesight.me/qr/?id=<qr_id>`)
+### SunMint: generated certs are not downloadable from the QR provenance page (`truesight.me/qr/?id=<qr_id>`) — ✅ SHIPPED 2026-09-25 (URL-probe route; see `## Recently shipped`)
 **Filed 2026-09-24 — verified feature request, not started. Governor: Gary (thread 35189). Non-urgent; does NOT block the cert layout work.**
 
 **Ask.** Once a SunMint certificate has been generated for a tree / QR, the cert should be downloadable from that asset's own provenance page — `https://truesight.me/qr/?id=<qr_id>` — via a **"Download certificate"** button, mirroring the credentialing precedent.
@@ -3566,6 +3566,14 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### SunMint certificate downloadable from the QR provenance page — SHIPPED (URL-probe route)
+**Shipped 2026-09-25. Governor: Gary (thread 35189).** The cert-download feature requested 2026-09-24 is live, via the lower-risk **URL-probe route** recommended in the Pending entry (not the manifest-field route — so the `merge_preserve_events` cert-wipe landmine is sidestepped entirely).
+
+- **Page:** `truesight_me_beta/qr/index.html` carries the `probeCertificate(qrId)` + `CERT_BASE` branch; `⬇️ Download SunMint certificate (PDF)` renders **only when** `HEAD lineage-assets/certs/<qr_id>__cert.pdf` returns 200. Verified by **headless-Chromium render** of `https://truesight.me/qr/?id=2024SA_20251227_35` → button present, `href=…/certs/2024SA_20251227_35__cert.pdf`.
+- **Canonical cert key:** `lineage-assets/certs/<qr_id>__cert.pdf` (public repo; published via Contents API). 8 certs live as of 2026-09-25.
+- **Prod:** `truesight_me_prod` carries the page (synced 2026-09-24). ⚠️ the per-asset URL parameter is **`?id=`**, not `?q=` (see `GLOSSARY.md` → "Provenance page").
+- **Open sub-items (not yet built):** no auto-rebuild trigger (a cached cert can go stale vs. its signed attestation); `qr/index.html` has no `ASSIGNED_TO_TREE` badge CSS (renders the grey default badge).
 
 ### GAS scanner-exposure convention + `1MnAsIQA…` deployed to v36 (all 7 scanners HTTP-reachable + trigger read-back) — RESOLVED
 **Shipped 2026-09-24. Governor: Gary (thread 35944). PRs: `tokenomics` #551 (convention + guard), #552 (read-back action).**
