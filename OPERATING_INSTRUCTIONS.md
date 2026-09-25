@@ -40,6 +40,7 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 | — | **sophia/SUPERVISOR_LOOP.md** | **Directive for any LLM supervising Sophia** (Envoy, DeepSeek Local, a fresh local LLM) — the loop that reads `HANDOFF_MANIFEST.md`, drives a bounded number of unfinished threads toward `human_uat_ready` without waiting for a human prompt per step, and the authority envelope for what it may clear autonomously vs. must escalate. Read before running any supervision session over Sophia's handoffs. |
 | — | **GAS_SCRIPT_PROPERTIES.md** | **GAS Script Properties registry + convention.** Secrets live in GAS Script Properties (never committed), read at execution time; web-app deployments pinned to numbered versions (not @HEAD). `TGM_GITHUB_TOKEN` SET 2026-08-31 — do NOT re-check; see registry for the full property list + webhook/deployment URL table. Read when touching any Google Apps Script project. |
 | — | **tokenomics/AGENTS.md** | **Google Apps Script conventions (STANDING — repo `TrueSightDAO/tokenomics`).** Every GAS scanner MUST be exposed via a `doGet ?action=` branch, carry an idempotent in-run hourly self-installer, and appear in the router registry (`scannerFunctions_` / `scannerTriggerInstallers_`); guarded by `scripts/test_gas_scanner_exposure.py`. Deploy via `scripts/deploy_gas_project.py`. Two traps documented there: §2 — `appsscript.json` sets `webapp.executeAs = USER_DEPLOYING`, so the deployed web app runs as the **deployer** (clasp account), NOT the script owner ⇒ deploy as the account with access to **every** target sheet; §3 — source↔prod reconciliation (source is a superset). Read **before** touching or deploying any GAS project. |
+| — | **§14 GAS manual-trigger convention** (below) | **Handing a human a GAS run to perform.** When any agent must ask a human to run a Google Apps Script function by hand (the box's `clasp` identity ≠ the project owner ⇒ `scripts.run` 403, anonymous `/exec` permission page), it MUST surface **four fields**: account to use · editor URL · file name · **public** method name. Never hand over a bare function name, and never surface a private `_`-suffixed helper. Read §14 for the exact rule + worked example. |
 | — | **PERSONAL_CONTRIBUTOR_BACKLOGS.md** | **Personal, non-DAO work logging.** When a contributor explicitly flags something as personal work they want logged (market/trading analysis, or another task they call out as personal), check this registry for their private backlog repo and log a dated entry there — but only for that specific trigger, never other requests. Opt-in per contributor; results live in their own private repo, never in this one. Credential custody for pushing to non-DAO repos is an open item — see the doc's "Credential custody" section before assuming a vault credential is wired up. |
 | — | **AGENT_HANDOFF_PROTOCOL_PLAN.md** + **`agents/*.json`** | **Agent-to-agent handoffs.** How Sophia, Bionpact, and any future sibling autopilot instance pass information to each other (`send_handoff`/`check_handoffs` tools, shared `TrueSightDAO/agent_handoffs` mailbox repo). **§13 below is MANDATORY when standing up any new sibling instance** — it must get an `agents/<name>.json` registry entry as part of setup. |
 
@@ -762,5 +763,47 @@ for a later cleanup pass.
 ```json
 {"name": "<name>", "purpose": "<one paragraph>", "inbox_repo": "agent_handoffs"}
 ```
+
+## 14. Handing a human a GAS run — surface FOUR fields (STANDING, Gary 2026-09-24)
+
+Some Google Apps Script (GAS) entry points **cannot be invoked by an agent's own box**: the
+project owner (`owner_email` in `google_app_scripts/<scriptId>/manifest.json`, e.g.
+`admin@truesight.me`) differs from the box's `clasp` account, so `scripts.run` returns
+`403 PERMISSION_DENIED` and the anonymous `/exec` web-app path returns Google's *"You do not have
+permission to access the requested document"* page. The scanner then has **never run** — often
+because its hourly trigger self-installs *from inside* the function (chicken/egg). The only way
+to break the deadlock is for a **human to run the function once by hand** in the Apps Script editor.
+
+**When any LLM asks a human to trigger a GAS function, it MUST surface exactly these four fields —
+nothing less, in this order:**
+
+1. **Account to use** — the Google account that owns the project (the `owner_email` in
+   `google_app_scripts/<scriptId>/manifest.json`). The run must be done as *that* account.
+2. **Editor URL** — `https://script.google.com/home/projects/<scriptId>/edit`.
+3. **File name** — the `.gs`/`.js` file in the editor's left pane holding the function
+   (clasp shows it without the extension).
+4. **Method name to trigger** — the **public** entry point: a top-level `function name()` with
+   **no trailing underscore**. A trailing `_` marks a private helper that does **not** appear in
+   the ▶ Run dropdown — never surface an `ensure*TriggerInstalled_` helper as the thing to run.
+
+Then add a one-line "what this run does + how to verify" note. **Never hand over a bare function name.**
+
+**Worked example — CFR tree-planting sink (2026-09-24):**
+
+| Field | Value |
+|---|---|
+| **Account** | `admin@truesight.me` |
+| **Editor URL** | https://script.google.com/home/projects/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/edit |
+| **File** | `process_cfr_program_submission_telegram_logs.gs` |
+| **Method** | `processCfrProgramSubmissionsFromTelegramChatLogs` |
+
+One manual Run recorded **18 rows** into the `cfr program` → `tree planting` tab and
+self-installed the hourly trigger (the public entry point calls
+`ensureCfrSubHourlyTriggerInstalled_()` on entry), so the cron keeps it fresh thereafter.
+
+Related: `sophia/SOPHIA_HANDOFFS.md` § "GAS manual-trigger instructions" (Sophia-scoped copy)
+and `tokenomics/AGENTS.md` (GAS deploy/scanner conventions).
+
+---
 
 Following these rules keeps the shared context consistent and allows other agents to read and use it reliably.
