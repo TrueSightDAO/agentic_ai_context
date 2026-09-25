@@ -108,6 +108,7 @@ def load_registry_qr(qr_id: str, registry_base: str):
     url = f"{registry_base}/pngs/{qr_id}.png"
     im = Image.open(io.BytesIO(fetch_bytes(url))).convert("RGB")
     hits = decode(im)
+    _native = im  # keep the original for the cv2 fallback (avoid compounding)
     if not hits:
         # Some registry PNGs embed the QR small enough that pyzbar fails at native
         # size though the image decodes fine at 2-3x (cv2 and real scanners read it).
@@ -127,7 +128,7 @@ def load_registry_qr(qr_id: str, registry_base: str):
 
         import cv2
 
-        im = im.resize((im.width * 5, im.height * 5), Image.LANCZOS)
+        im = _native.resize((_native.width * 5, _native.height * 5), Image.LANCZOS)
         _txt, _pts, _ = cv2.QRCodeDetector().detectAndDecode(np.array(im.convert("L")))
         if _txt:
             _xs, _ys = _pts[0][:, 0], _pts[0][:, 1]
