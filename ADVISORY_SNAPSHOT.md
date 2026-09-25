@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-25T17:25:47Z`
+- Generated (UTC): `2026-09-25T21:45:16Z`
 - Look-back: **7** calendar days (`2026-09-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,16 +33,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[TREE PLANTING EVENT]` × 15
-- `[CONTRIBUTION EVENT]` × 14
-- `[TREE PLANTING LINK EVENT]` × 9
+- `[TREE PLANTING LINK EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 10
 - `[PRACTICE EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260924143221_120` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-24T14:32:19.342Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20260924163216_122` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: CRF Anapu açaí copy update — PR1 (beta manifest description_md)
-- `Edgar_20260924172949_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: CFR Anapu açaí dropdown option — shipped to cfr.truesight.me + beta/prod Sun…
-- `Edgar_20260924191305_004` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2023SA_81PB_20260412_1 · SunMint Submission Message ID: Edgar_20260903083555_019 · Updated by: Sophia Truesight
 - `Edgar_20260924191312_006` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_3 · SunMint Submission Message ID: Edgar_20260903083411_001 · Updated by: Sophia Truesight
 - `Edgar_20260924194040_008` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PF_20250505_28 · SunMint Submission Message ID: Edgar_20260903083528_005 · Updated by: Sophia Truesight
 - `Edgar_20260924200801_010` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PAULO_20250804_20 · SunMint Submission Message ID: Edgar_20260908011432_245 · Updated by: Sophia Truesight
@@ -59,6 +55,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260925164539_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Direct time (engagement/analysis) (thread 35947) — diagnosed the executionAp…
 - `Edgar_20260925164542_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Gary Teh direct time (thread 35947) — direction on the executionApi decision…
 - `Edgar_20260925172438_036` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20251011_2 · SunMint Submission Message ID: Edgar_20260924132334_099 · Updated by: Sophia Truesight
+- `Edgar_20260925182426_038` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20250711_NIBS_2 · SunMint Submission Message ID: Edgar_20260908005838_047 · Plot ID:
+- `Edgar_20260925192859_040` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20251020_11 · SunMint Submission Message ID: Edgar_20260908005843_049 · Updated by: Sophia Truesight
+- `Edgar_20260925194639_042` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20251124_13 · SunMint Submission Message ID: Edgar_20260908010203_053 · Plot ID:
+- `Edgar_20260925213927_044` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20250711_NIBS_19 · SunMint Submission Message ID: Edgar_20260908010207_055 · Updated by: Sophia Truesight
 
 ---
 
@@ -250,8 +250,9 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-18_ (4):
+_All dated lines on/after 2026-09-18_ (5):
 
+- 2026-09-25 | sophia | **PROJECT_INDEX.md capoeira row is STALE — needs refresh.** It lists 4 pages (index/library/practice/transparency); the live site now has **8** (adds roda, berimbau, community, roots) and a full EN/PT i18n layer (`assets/js/i18n.js` + `assets/js/i18n/common.js`, per-page `window.I18N_PAGE`, storage key `capoeira_lang`). Flagged, **not** hand-edited (canonical-file rule — see plans/CAPOEIRA_I18N_PLAN.md §3). Capoeira repo is also **no-beta**: merge to `main` = live deploy at capoeira.agroverse.shop. Engineering complete via PR1–PR10; remaining gate = native-PT-reader UAT review.
 - 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
 - 2026-09-25 | sophia | Inline-button resume options shipped for BOTH transports — Telegram (#502/#503) + Discord parity (#504), deployed and UAT-verified live (thread 36518). Option labels server-side in `app/resume_registry.py` / `app/discord_resume_registry.py` (opaque token, consume-on-read, single-fire); transport carries `ro:<token>:<i>`. Discord taps = `INTERACTION_CREATE` type-3, deferred-ACKed (type 6) within 3s THEN dispatched on the same synthesized-go path as the emoji-go reaction. Filed `## Recently shipped` in OPEN_FOLLOWUPS.md.
 - 2026-09-24 | sophia | Telegram reply-to context loss FIXED + filed: `truesight_autopilot` #500 (`30291c97`) forwards the replied-to message's sender + text/caption (or an honest "replying to an uncaptioned photo/document from X" marker) as a `[Replying to ...]` prefix at the `dispatch_text` construction site — same convention as `[Telegram context: ...]`; byte-identical when not a reply. Deployed + live-verified (thread 35622): `journalctl` `CHAT REQ` line now shows the prefix, and the reply acted on it. Root cause (two narrow `reply_to_message` reads that never forwarded content) filed in OPEN_FOLLOWUPS + plan `plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md` so a third occurrence doesn't repeat un-tracked.
@@ -274,6 +275,7 @@ _All dated lines on/after 2026-09-18_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8aabd3c | 2026-09-25 17:29:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 16dfa7d | 2026-09-25 12:07:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 ceea3bd | 2026-09-25 05:16:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 4c8514a | 2026-09-24 21:44:10 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +315,6 @@ ab79af7 | 2026-09-20 01:37:22 -0300 | Explorer PR3: faceted filters + counts + d
 12299b4 | 2026-09-19 20:56:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 d84e7f1 | 2026-09-19 16:01:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 cbdc173 | 2026-09-19 11:24:58 +0000 | chore(stats): refresh stats indexes [skip ci]
-02df644 | 2026-09-19 04:56:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +327,12 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+982ac4d | 2026-09-25 17:35:26 -0300 | docs(handoff): reconcile CAPOEIRA_I18N manifest row — engineering complete (PR1–PR10 merged), awaiting UAT gate (#1414)
+cf16a0c | 2026-09-25 17:32:15 -0300 | docs(i18n): reconcile PR tracker (PR1–PR10 merged), move RESUME HERE to UAT, flag stale PROJECT_INDEX row (PR10b) (#1413)
+af829a4 | 2026-09-25 15:08:17 -0300 | OPEN_FOLLOWUPS: file lineage-assets seed half is unscheduled (index goes stale) (#1412)
+562d2a3 | 2026-09-25 14:47:45 -0300 | Roadmap: Sophia goal-anchored thread loop + durable resume + Claude brain (3 tracks) (#1411)
+b244305 | 2026-09-25 14:26:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-25 UTC)
+f01a743 | 2026-09-25 14:26:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-25 UTC)
 2cc53e5 | 2026-09-25 11:56:31 -0300 | followups: file GAS deploy-from-stale-checkout hazard + secret-returning callable functions (#1410)
 c1514db | 2026-09-25 11:39:44 -0300 | docs: thread 35944 — close processBatch scope follow-up (v37 shipped), resolve deploy-identity (#1405)
 0fe1410 | 2026-09-25 11:37:19 -0300 | Correct false ASSIGNED_TO_TREE badge claim; log reproduced stale-manifest finding (#1406)
@@ -360,12 +367,6 @@ c188999 | 2026-09-24 14:12:30 -0300 | docs: §11.5 CFR sink shipped in source; f
 6d7dc97 | 2026-09-24 14:03:17 -0300 | cfr-anapu acai: PR2+PR2-b complete (both surfaces live); record Pages=main correction (#1383)
 582d12e | 2026-09-24 13:56:27 -0300 | File live incident: sunmint rebuild-tree-index fails daily (403 credential) (#1380)
 b0150b0 | 2026-09-24 13:51:09 -0300 | followups: read_context_file serves stale local clone (deploy-only refresh) (#1379)
-e85e318 | 2026-09-24 13:47:53 -0300 | cfr-anapu acai: PR2 blocked — live re-read invalidates premise (#1378)
-2314f99 | 2026-09-24 13:37:14 -0300 | cfr-anapu acai: PR1 done — tick tracker, point RESUME HERE at PR2 (#1377)
-470ac46 | 2026-09-24 13:18:43 -0300 | Register CFR Anapu açaí handoff → topic 35888 + regenerate index.json (#1376)
-00fc26f | 2026-09-24 13:16:20 -0300 | File: [PAYOUT REGISTRATION] sink never auto-ingests + parser pollution (#1375)
-3bba16f | 2026-09-24 12:04:08 -0300 | followups: file sunmint trees/index.geojson tree_id off-by-one (col A vs col D) (#1373)
-a6ed1d7 | 2026-09-24 11:51:10 -0300 | fix(cert): move issuing_authority caption off the signature mark (#1372)
 … (truncated)
 ```
 
@@ -562,7 +563,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/25/2026 9:51:07 |
+| 2026-09 | 924.5 | 18364.34386 | 9/25/2026 13:50:45 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-18`; scanned last **600** data rows)
 
