@@ -39,6 +39,74 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `deploy_gas_project.py` pushes from a working checkout with NO auto-refresh — a stale `tokenomics` tree silently REVERTS live (guards #520 / pull-first #521 do not catch it)
+**Filed 2026-09-25 — reproduced live, deploy halted. Governor: Gary (thread 35947). Production-regression class.**
+
+**Symptom.** A governor-ordered `clasp push` from the autopilot's GAS working checkout
+(`/home/ubuntu/tokenomics`) would have **reverted live production**: that tree was **7 commits
+behind `origin/main`**, parked on a stale feature branch (`feat/cfr-program-submission-sink` @
+`b06beb8`), while live + `origin/main` were at `4cf8a0d`. Nothing in the toolchain refused it —
+it was caught only by manually diffing live ↔ checkout before pushing.
+
+**Root cause — two `tokenomics` checkouts, only one is refreshed.**
+- `/opt/truesight_autopilot/context/tokenomics` — the read-only **context mirror**; hard-reset
+  to `origin/main` every ~5 min by `_context_sync_loop` (`app/context.py` `refresh_context_repos`,
+  `_CONTEXT_SYNC_REPOS = ("agentic_ai_context", "tokenomics", …)`).
+- `/home/ubuntu/tokenomics` — the **working checkout** the deploy tool runs from and `clasp push`
+  targets. It is **NOT** in `_CONTEXT_SYNC_REPOS`, has no cron/systemd refresh, and was last
+  touched 2026-08-21 (reflog) — so it silently drifts.
+
+**Why the two shipped guards do NOT catch a stale tree (the precise hole).**
+- Remote-only-file guard (`tokenomics` **#520**) refuses a push that would **delete** a live file
+  with no local counterpart. A stale local file that **differs** is a *modification*, not a
+  remote-only deletion → the guard **passes**. (Here it would have emptied the 121-line scanner
+  registry in `qr_code_web_service.js` and dropped the `documents` OAuth scope.)
+- Selective pull-first (`tokenomics` **#521**, `--pull-first`) only **materialises remote-only
+  files; it never overwrites local files** (per its own `--help`). A stale local file is never
+  corrected either.
+- The identity guard only compares owner vs clasp identity — unrelated.
+
+**Fix options (pick one).**
+1. Refuse drift fail-closed: in `deploy_gas_project.py`, `git fetch` then refuse `--push` when
+   `git rev-list --count HEAD..origin/main > 0` (or HEAD is off the default branch), unless
+   `--allow-behind-origin`. Smallest change that closes the class.
+2. Add `/home/ubuntu/tokenomics` to a periodic refresh (same pattern as the context mirror).
+3. Make `--pull-first` the default **and** have it hard-reset tracked files to `origin/main`
+   (not merely add remote-only ones).
+
+Recommend **1** (combine with **2** for belt-and-braces).
+
+**Evidence.** reflog `/home/ubuntu/tokenomics` HEAD `b06beb8` (2026-08-21) vs `origin/main`
+`4cf8a0d`; `git rev-list --count HEAD..origin/main` = 7; live ↔ checkout diff:
+`qr_code_web_service.js` +0/-121, `appsscript.json` +1/-2; `app/context.py` L395
+`_CONTEXT_SYNC_REPOS` + L423 `refresh_context_repos`; `scripts/deploy_gas_project.py` L536–620
+(remote-only guard), L623–655 (`materialize_remote_only_files`, "never overwrites local files").
+
+### Top-level GAS functions returning a secret are callable **by name** over the Apps Script API (keep `getGitHubToken()` off the callable surface)
+**Filed 2026-09-25 — static inspection. Governor: Gary (thread 35947). Low-likelihood / high-impact; hardening only.**
+
+**Finding.** `qr_code_web_service.js` `getGitHubToken()` returns the **raw** `GITHUB_TOKEN`
+Script Property (`var token = scriptProperties.getProperty('GITHUB_TOKEN'); if (token) return
+ token;`). Apps Script has **no private-function visibility** — every top-level `function` is
+invocable by name via `scripts.run` when the project's `executionApi.access` is enabled, and the
+call executes **as the owner** with the owner's scopes. The function **names** are public (repo
+`TrueSightDAO/tokenomics` is public), so only the `executionApi` gate stands between a caller and
+the token.
+
+**Context — exercised 2026-09-25.** An `executionApi: {access: ANYONE}` block was trialled in
+this project's manifest to unblock `clasp run`; it conferred **nothing** (it was never live;
+`scripts.run` returned 403 for the separate **owner ≠ clasp-identity** reason) and was removed
+(governor call: **C**). **Live and `origin/main` both carry no `executionApi` block** — verified
+via the Apps Script API and a source-tree diff (`DIFFERING: none`).
+
+**Ask (hardening, not urgent).** Stop returning secrets from top-level functions: make
+`getGitHubToken()` return a **boolean**/scoped handle, or move the read behind the existing
+`GOVERNOR_READ_KEY` gate. Then a future `executionApi` enablement can't be turned into a
+token-exfil path by function-name guessing.
+
+**Evidence.** `qr_code_web_service.js` `getGitHubToken()` (`return token`); repo visibility
+public; `appsscript.json` `executionApi` absent in live + `origin/main`.
+
 ### SunMint tree-planting LINK path matches rows first-match-only — a duplicate row leaves a stale `NEW` twin
 **Filed 2026-09-24 — reproduced live (thread 35189). Not money-adjacent, but it silently re-opens a planted tree.**
 
