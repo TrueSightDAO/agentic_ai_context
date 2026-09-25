@@ -1,6 +1,6 @@
 # Capoeira Site — English/Portuguese Toggle with Persisted Preference
 
-**Status:** plan drafted, not yet triggered. No code yet.
+**Status:** ✅ **Engineering complete** (PR1–PR10 merged) — ⬛ **awaiting UAT**: the §0.2 native-Portuguese-reader review. All 8 pages carry the EN/PT toggle with cross-page preference persistence (verified, `test/i18n-crosspage.test.ts`).
 **Owner:** Gary Teh · **Drafted by:** Claude Anthropic (Envoy), 2026-09-24, from live repo inspection.
 **Requested by:** Gary Teh, 2026-09-24 — "the site is starting to gain more exposure, right now it
 is all in English... every single page should allow the user to flip between English and Portuguese
@@ -139,27 +139,36 @@ invite key collisions as content grows. **Proposed shape:**
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR1** (build the shared i18n engine + wire up `index.html` as the reference
-> implementation). Fresh roadmap — nothing has started.
+> **RESUME HERE → UAT (the §0.2 native-Portuguese-reader review).** All engineering units PR0–PR10
+> are built and merged — **there is no further code unit to run.** The only remaining item is the
+> human review gate: a native PT reader reads every PT string in context and flags machine-translation-
+> awkward or culturally-off phrasing. **PT strings are currently an AI first-draft and are NOT
+> reviewed.** Do not re-run PR1 — it (and PR2–PR10) are already merged; the tracker below is
+> reconciled 2026-09-25.
 >
-> **Open before certain units:** §0.1 (default language) and §0.2 (who reviews the PT translations)
-> are real governor decisions, not blocking PR1's *engineering* work, but §0.2's reviewer should be
-> lined up before PR1's translations are considered done, not after all 8 pages are built.
+> **Open governor decisions (still standalone, §0.1/§0.2):** §0.1 (default language = `en` per §0.1's
+> proposal) and §0.2 (who the PT reviewer is — Gary himself or someone in the Bahia / Bico Duro
+> community). §0.2 is the UAT gate.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
-| PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (i18n engine + common dict + `index.html` reference) | ☐ | ☐ | ☐ |
-| PR2 (`practice.html`) | ☐ | ☐ | ☐ |
-| PR3 (`roda.html`) | ☐ | ☐ | ☐ |
-| PR4 (`library.html`) | ☐ | ☐ | ☐ |
-| PR5 (`transparency.html`) | ☐ | ☐ | ☐ |
-| PR6 (`berimbau.html`) | ☐ | ☐ | ☐ |
-| PR7 (`community.html`) | ☐ | ☐ | ☐ |
-| PR8 (`roots.html`) | ☐ | ☐ | ☐ |
-| PR9 (cross-page persistence QA) | ☐ | ☐ | ☐ |
-| PR10 (docs) | ☐ | ☐ | ☐ |
+| PR0 (this roadmap) | ☑ | ☑ | ☐ |
+| PR1 (i18n engine + common dict + `index.html` reference) | ☑ | ☑ | ☐ |
+| PR2 (`practice.html`) | ☑ | ☑ | ☐ |
+| PR3 (`roda.html`) | ☑ | ☑ | ☐ |
+| PR4 (`library.html`) | ☑ | ☑ | ☐ |
+| PR5 (`transparency.html`) | ☑ | ☑ | ☐ |
+| PR6 (`berimbau.html`) | ☑ | ☑ | ☐ |
+| PR7 (`community.html`) | ☑ | ☑ | ☐ |
+| PR8 (`roots.html`) | ☑ | ☑ | ☐ |
+| PR9 (cross-page persistence QA) | ☑ | ☑ | ☐ |
+| PR10 (docs — capoeira README/contract + `CONTEXT_UPDATES` flag) | ☑ | ☑ | ☐ |
 | UAT (native-PT-reader review) | ☐ | — | ☐ |
+
+*Reconciled 2026-09-25 by Sophia Truesight. PR10 shipped as two PRs (capoeira #51 for the README +
+`i18n.js` contract note; this repo for the tracker + `CONTEXT_UPDATES.md` flag). Contribution-reported
+column intentionally left ☐ — TDG issuance is a separate explicit-go step. UAT row stays ☐/— and is
+the live RESUME HERE target.*
 
 ✅ **Pre-flight Completeness (§5d):** SunMint's exact mechanism (file/line refs), capoeira's real
 current page list/sizes/shared-JS convention (verified live, not from the stale `PROJECT_INDEX.md`
