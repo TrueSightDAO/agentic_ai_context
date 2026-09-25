@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-25T05:13:01Z`
+- Generated (UTC): `2026-09-25T17:25:47Z`
 - Look-back: **7** calendar days (`2026-09-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,25 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 21
-- `[CONTRIBUTION EVENT]` × 8
-- `[TREE PLANTING LINK EVENT]` × 7
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 15
+- `[CONTRIBUTION EVENT]` × 14
+- `[TREE PLANTING LINK EVENT]` × 9
+- `[PRACTICE EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260924132334_100` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
-- `Edgar_20260924132409_102` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20260924132440_104` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20260924132457_106` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
-- `Edgar_20260924132618_108` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20260924132701_110` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20260924132734_112` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20260924132801_114` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20260924132821_116` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20260924132850_118` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
 - `Edgar_20260924143221_120` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-24T14:32:19.342Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260924163216_122` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: CRF Anapu açaí copy update — PR1 (beta manifest description_md)
 - `Edgar_20260924172949_002` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: CFR Anapu açaí dropdown option — shipped to cfr.truesight.me + beta/prod Sun…
@@ -61,6 +49,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260924222337_012` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_4 · SunMint Submission Message ID: Edgar_20260903083540_011 · Updated by: Sophia Truesight
 - `Edgar_20260925013034_014` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_33 · SunMint Submission Message ID: Edgar_20260903083536_009 · Updated by: Sophia Truesight
 - `Edgar_20260925035017_016` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_35 · SunMint Submission Message ID: Edgar_20260908005833_045 · Updated by: Sophia Truesight
+- `Edgar_20260925132229_018` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-25T13:22:26.664Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260925140744_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 135 · Description: Oracle: classical Chinese hexagram names (卦名) + advisory-failure root-cause …
+- `Edgar_20260925141201_022` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Inline-button resume options — Telegram + Discord (#502/#503/#504)
+- `Edgar_20260925141206_024` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Directed inline-button resume options — Telegram + Discord (#502/#503/#504)
+- `Edgar_20260925143105_026` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Oracle: fix "hexagramChinese is not a function" regression + live verificati…
+- `Edgar_20260925151302_028` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20260121_1 · SunMint Submission Message ID: Edgar_20260910213126_383 · Updated by: Sophia Truesight
+- `Edgar_20260925164535_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Raw machine execution (thread 35947, CFR/SunMint sink + GAS deploy incident)…
+- `Edgar_20260925164539_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Direct time (engagement/analysis) (thread 35947) — diagnosed the executionAp…
+- `Edgar_20260925164542_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Gary Teh direct time (thread 35947) — direction on the executionApi decision…
+- `Edgar_20260925172438_036` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20251011_2 · SunMint Submission Message ID: Edgar_20260924132334_099 · Updated by: Sophia Truesight
 
 ---
 
@@ -75,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-24T10:59:14.182Z`
+- Generated (UTC): `2026-09-25T10:59:17.613Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +83,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **992**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1065**)
+- **Email Agent Follow Up** — logged sends: warmup **1004**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1077**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **918**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **930**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -252,9 +250,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-18_ (3):
+_All dated lines on/after 2026-09-18_ (4):
 
 - 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
+- 2026-09-25 | sophia | Inline-button resume options shipped for BOTH transports — Telegram (#502/#503) + Discord parity (#504), deployed and UAT-verified live (thread 36518). Option labels server-side in `app/resume_registry.py` / `app/discord_resume_registry.py` (opaque token, consume-on-read, single-fire); transport carries `ro:<token>:<i>`. Discord taps = `INTERACTION_CREATE` type-3, deferred-ACKed (type 6) within 3s THEN dispatched on the same synthesized-go path as the emoji-go reaction. Filed `## Recently shipped` in OPEN_FOLLOWUPS.md.
 - 2026-09-24 | sophia | Telegram reply-to context loss FIXED + filed: `truesight_autopilot` #500 (`30291c97`) forwards the replied-to message's sender + text/caption (or an honest "replying to an uncaptioned photo/document from X" marker) as a `[Replying to ...]` prefix at the `dispatch_text` construction site — same convention as `[Telegram context: ...]`; byte-identical when not a reply. Deployed + live-verified (thread 35622): `journalctl` `CHAT REQ` line now shows the prefix, and the reply acted on it. Root cause (two narrow `reply_to_message` reads that never forwarded content) filed in OPEN_FOLLOWUPS + plan `plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md` so a third occurrence doesn't repeat un-tracked.
 - 2026-09-23 | sophia | SunMint tree-photo supersession (thread 35189; governor go from Gary): the canonical photo for tree `Edgar_20260903083523_004` (plot PL-002, Fazenda Bom Sucesso) was overwritten in place — `sunmint/images/20260902_bomsucesso_tree02.jpg` now holds Gary's frame captured 2026-09-02 18:47:11 -03:00 (commit `b332512`, new blob `793132cb`, sha256 `2a15e9a1…`), superseding blob `aff60dd2` / sha256 `bd7ed5af…` which remains recoverable in git history. Integrity note: the photo URL is embedded in the RSA-signed, append-only attestation `verify_public_signatures/tree_planting/Edgar_20260903083523_003.json` (`signed_payload`), and the signature covers that URL string (not the image bytes), so verification still passes — the supersession is recorded here for transparency. Gap filed in OPEN_FOLLOWUPS: photo supersessions have no sanctioned/signed path.
 
@@ -275,6 +274,8 @@ _All dated lines on/after 2026-09-18_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+16dfa7d | 2026-09-25 12:07:05 +0000 | chore(stats): refresh stats indexes [skip ci]
+ceea3bd | 2026-09-25 05:16:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 4c8514a | 2026-09-24 21:44:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 ff42044 | 2026-09-24 14:32:34 -0300 | qr page: deep-link ANY tree-linked QR (incl. cacao bags) to SunMint map (#396)
 268f965 | 2026-09-24 17:30:05 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,8 +314,6 @@ ab79af7 | 2026-09-20 01:37:22 -0300 | Explorer PR3: faceted filters + counts + d
 d84e7f1 | 2026-09-19 16:01:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 cbdc173 | 2026-09-19 11:24:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 02df644 | 2026-09-19 04:56:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-cae9181 | 2026-09-18 21:10:35 +0000 | chore(stats): refresh stats indexes [skip ci]
-61bec1a | 2026-09-18 16:40:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +326,15 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2cc53e5 | 2026-09-25 11:56:31 -0300 | followups: file GAS deploy-from-stale-checkout hazard + secret-returning callable functions (#1410)
+c1514db | 2026-09-25 11:39:44 -0300 | docs: thread 35944 — close processBatch scope follow-up (v37 shipped), resolve deploy-identity (#1405)
+0fe1410 | 2026-09-25 11:37:19 -0300 | Correct false ASSIGNED_TO_TREE badge claim; log reproduced stale-manifest finding (#1406)
+954dc05 | 2026-09-25 11:30:06 -0300 | docs: GAS manual-trigger convention — make it standing for ALL LLMs (§14 + §2 index) (#1409)
+b267327 | 2026-09-25 11:28:58 -0300 | docs(followups): file inline-button resume options (Telegram+Discord) as shipped (#1408)
+9a4ea90 | 2026-09-25 11:28:48 -0300 | docs: GAS manual-trigger instruction convention — surface 4 fields (Gary 2026-09-24) (#1407)
+46e2cad | 2026-09-25 10:47:09 -0300 | Define "provenance page" in GLOSSARY; mark SunMint cert-download follow-up SHIPPED (#1404)
+95bdf6d | 2026-09-25 02:13:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-25 UTC)
+24bc853 | 2026-09-25 02:13:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-25 UTC)
 a845048 | 2026-09-24 22:33:52 -0300 | SunMint cert: correct registry-QR resize fix (supersedes #1402) (#1403)
 b84c58f | 2026-09-24 18:51:33 -0300 | SunMint cert: shrink overlay to keep tile size (stop silent k-grow overflow) (#1401)
 f94f20f | 2026-09-24 18:42:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
@@ -358,21 +366,14 @@ e85e318 | 2026-09-24 13:47:53 -0300 | cfr-anapu acai: PR2 blocked — live re-re
 00fc26f | 2026-09-24 13:16:20 -0300 | File: [PAYOUT REGISTRATION] sink never auto-ingests + parser pollution (#1375)
 3bba16f | 2026-09-24 12:04:08 -0300 | followups: file sunmint trees/index.geojson tree_id off-by-one (col A vs col D) (#1373)
 a6ed1d7 | 2026-09-24 11:51:10 -0300 | fix(cert): move issuing_authority caption off the signature mark (#1372)
-948afa4 | 2026-09-24 11:49:13 -0300 | Plan: CFR Anapu (cfr.truesight.me) acai content update (#1371)
-b7ae8af | 2026-09-24 10:08:56 -0300 | Handoff manifest: mark Telegram reply-context handoff completed (thread 35622) (#1370)
-841fd8a | 2026-09-24 09:05:10 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
-832c1bb | 2026-09-24 09:05:08 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
-c854e85 | 2026-09-24 07:37:02 -0300 | cert: enforce documented QR print floor (k>=4) + derive box/centring from actual tile (#1369)
-a849595 | 2026-09-24 07:32:57 -0300 | cert: move issuer name+role off dark border ornament (Gary-approved) (#1368)
-8a3db07 | 2026-09-24 07:28:01 -0300 | Telegram reply-context: tick PR2+PR3 contribution cells (plan complete) (#1367)
-8094486 | 2026-09-24 07:25:51 -0300 | Telegram reply-to context loss: file root cause in OPEN_FOLLOWUPS + CONTEXT_UPDATES (PR3) (#1365)
-9971bbf | 2026-09-24 07:04:38 -0300 | Record Schwab handoff Telegram topic (thread 35765) in manifest (#1363)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+857bed4 | 2026-09-25 12:28:49 -0300 | feat(gas): surface product context in list_sold_pending_tree (thread 35944) (#555)
+4cf8a0d | 2026-09-25 11:32:55 -0300 | docs(gas): §4 — top-level functions sorted ascending alphabetical (STANDING, Gary 2026-09-24) (#554)
 e32d3b9 | 2026-09-24 15:15:37 -0300 | GAS: add documents OAuth scope (fixes processBatch) + correct deploy-identity convention (#553)
 657de6f | 2026-09-24 14:32:02 -0300 | GAS: read-only ?action=getInstalledScannerTriggers to verify trigger state over HTTP (#552)
 5a3b3d2 | 2026-09-24 14:23:33 -0300 | GAS convention: every scanner exposed via doGet (+ processBatch branch, bulk installer, guard) (#551)
@@ -411,8 +412,6 @@ c9f5b80 | 2026-09-17 22:56:43 -0300 | chore(security): scrub leaked token litera
 1574239 | 2026-09-17 22:38:54 -0300 | SS12.7 Q3b: make the payout-event hourly trigger verifiable from the action response (#517)
 4c89302 | 2026-09-17 22:25:32 -0300 | fix(gas): secret-free Credentials.js for 1y6JVYwqdr + remove stale duplicate web_app.js (#515)
 779d0b8 | 2026-09-17 22:22:34 -0300 | fix(gas): restore missing Credentials.js for 1wmgYPwf + scrub leaked token literal (#514)
-e133299 | 2026-09-17 22:21:05 -0300 | SS12.7 Q3b fix: actually install the payout-event hourly trigger (#513)
-87d646e | 2026-09-17 22:20:31 -0300 | fix(gas): secret-free tracked Credentials.js for 1wONDeDwZ + no-op setApiKeys (#512)
 … (truncated)
 ```
 
@@ -444,6 +443,7 @@ e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade ret
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+014b973 | 2026-09-25 11:55:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 8fbf7a8 | 2026-09-24 12:11:42 +0000 | chore: refresh currencies.json [skip ci]
 bd31932 | 2026-09-24 11:50:48 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 da84e1e | 2026-09-23 12:09:25 +0000 | chore: refresh currencies.json [skip ci]
@@ -473,6 +473,8 @@ c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Cla
 ### `iching_oracle` → `oracle`
 
 ```
+4363873 | 2026-09-25 11:28:49 -0300 | Fix "hexagramChinese is not a function" — rename map global to avoid clobbering the helper (#72)
+9a86af2 | 2026-09-25 10:42:54 -0300 | Show the classical Chinese hexagram character (卦名) in the draw (#71)
 a060f12 | 2026-09-24 11:44:22 -0300 | Fix corrupted hexagram corpus JS breaking every I Ching reading (#70)
 6c48cd2 | 2026-09-23 18:20:00 -0300 | Fix hexagram intro rendering: preserve paragraphs + clean residual OCR artifacts (#69)
 e867765 | 2026-09-22 17:57:52 -0300 | fix: include full hexagram text in print/PDF output (#68)
@@ -560,7 +562,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/24/2026 21:51:30 |
+| 2026-09 | 924.5 | 18364.34386 | 9/25/2026 9:51:07 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-18`; scanned last **600** data rows)
 
