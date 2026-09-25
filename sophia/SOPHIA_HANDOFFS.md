@@ -113,6 +113,45 @@ When the governor says **"close this case / close the thread / we're done here"*
 So the prior "always create a new topic" churn (1924→1939) is no longer forced:
 prefer reusing the existing handoff thread via `post_to_telegram_topic`.
 
+## GAS manual-trigger instructions — surface FOUR fields (Gary, 2026-09-24)
+
+Some GAS scanner entry points **cannot be invoked from Sophia's box**: the project owner
+(`owner_email` in `google_app_scripts/<scriptId>/manifest.json`, e.g. `admin@truesight.me`)
+differs from the box's `clasp` account, so `scripts.run` returns `403 PERMISSION_DENIED` and
+the anonymous `/exec` web-app path returns Google's *"You do not have permission to access the
+requested document"* page. When that happens the scanner has **never run** — often because its
+hourly trigger self-installs *from inside* the function (chicken/egg) — and the only way to break
+the deadlock is for the governor to **run the function once by hand** in the Apps Script editor.
+
+**When Sophia asks a governor to trigger a GAS function, she MUST surface exactly these four
+fields — nothing less, in this order:**
+
+1. **Account to use** — the Google account that owns the project (the `owner_email` in
+   `google_app_scripts/<scriptId>/manifest.json`, e.g. `admin@truesight.me`). The run must be done
+   as *that* account, or the authorisation prompt attaches to the wrong identity.
+2. **Editor URL** — `https://script.google.com/home/projects/<scriptId>/edit`.
+3. **File name** — the `.gs`/`.js` file in the editor's left pane that holds the function
+   (clasp shows it without the extension).
+4. **Method name to trigger** — the **public** entry point: a top-level `function name()` with
+   **no trailing underscore**. A trailing `_` marks a private helper that does **not** appear in
+   the ▶ Run dropdown. Never surface an `ensure*TriggerInstalled_` helper — those are private and
+   un-selectable.
+
+Add a one-line "what this run does + how to verify" note. Do **not** hand over a bare function name.
+
+**Worked example — CFR tree-planting sink (2026-09-24):**
+
+| Field | Value |
+|---|---|
+| **Account** | `admin@truesight.me` |
+| **Editor URL** | https://script.google.com/home/projects/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/edit |
+| **File** | `process_cfr_program_submission_telegram_logs.gs` |
+| **Method** | `processCfrProgramSubmissionsFromTelegramChatLogs` |
+
+One manual Run recorded **18 rows** into the `cfr program` → `tree planting` tab and
+self-installed the hourly trigger (the public entry point calls
+`ensureCfrSubHourlyTriggerInstalled_()` on entry), so the cron keeps it fresh thereafter.
+
 ## Direct Telegram channel — nelanco-claude ↔ Sophia (2026-08-21)
 
 The `nelanco-claude` interactive box (see `plans/NELANCO_CLAUDE_CODE_BOX_PLAN.md`) has its own
