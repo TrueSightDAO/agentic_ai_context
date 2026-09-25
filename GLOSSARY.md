@@ -69,3 +69,30 @@ different container depending on which platform it lives in:
 open work:** "check the threads" only covers Telegram. A full sweep of open/unfinished
 work must separately enumerate Discord **channels** (`GET /guilds/{guild_id}/channels`)
 — there is no single API call that returns "all open units" across both platforms.
+
+---
+
+## Provenance page — the per-asset "where did this come from" page
+
+When a governor or agent says **"provenance page"** (or "QR provenance page"), they
+mean the **public, per-asset page rendered from a QR code's lineage manifest**:
+
+- **URL:** `https://truesight.me/qr/?id=<qr_id>` — e.g.
+  `https://truesight.me/qr/?id=2024SA_20251227_35`.
+- **Reads `?id=<qr_id>`** from the query string (`#<qr_id>` fragment is an accepted
+  fallback). ⚠️ **`?q=` is NOT a valid parameter** — the page ignores it and renders
+  "No QR id supplied". Always use `?id=`.
+- **Source:** per-asset manifest JSON at
+  `https://raw.githubusercontent.com/TrueSightDAO/lineage-assets/main/qrs/<qr_id>.json`
+  (see `LINEAGE_ASSETS.md`), plus a certificate-PDF probe.
+- **Template:** `truesight_me_beta/qr/index.html` — static HTML + vanilla JS, dispatched
+  on `asset_type`; also live on prod. Page title: **"QR Provenance | TrueSight DAO"**.
+- **Edgar-resolve is NOT the provenance page.** `edgar.truesight.me/agroverse/qr-code-check?qr_code=<id>`
+  is the URL *printed inside the physical QR*; Edgar 302-redirects it (currently to
+  agroverse.shop product pages, via column B of the **Agroverse QR codes** sheet).
+
+**SunMint certificate download.** When a SunMint certificate exists for a tree / QR, it
+is published at `lineage-assets/certs/<qr_id>__cert.pdf`; the provenance page HEAD-probes
+that URL and shows a **"⬇️ Download SunMint certificate (PDF)"** button **only when the
+probe returns 200** (the URL-probe route — see `sops/SUNMINT_CERTIFICATE_ISSUE_SOP.md`
+and `OPEN_FOLLOWUPS.md`).
