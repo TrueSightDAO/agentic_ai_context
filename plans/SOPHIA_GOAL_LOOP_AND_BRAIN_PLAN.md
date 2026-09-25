@@ -88,7 +88,7 @@ progress**; it stops on completion, a stall, an always-stop, or the hard ceiling
 | Unit | Repo | Scope | Advance |
 |---|---|---|---|
 | **A0** | `agentic_ai_context` | This roadmap. | `auto` |
-| **A1** | `truesight_autopilot` | `app/thread_goal.py` — pure, I/O-light goal store (append-only JSONL under the deploy_watcher `STATE_DIR`) + `should_continue()` decision (reuses `_ALWAYS_STOP_RE`). No wiring. Unit tests. | `auto` |
+| **A1** | `truesight_autopilot` | `app/thread_goal.py` — pure, I/O-light goal store (append-only JSONL under `DEPLOY_WATCHER_STATE_DIR`) + `should_continue()` decision (reuses `_ALWAYS_STOP_RE`). No wiring. Unit tests. | `auto` |
 | **A2** | `truesight_autopilot` | Expose `set_thread_goal` / `complete_thread_goal` tools (manifest `TOOL_SPEC` + role). Wire the adapter loop: continue while goal open + progress + under ceiling, behind `GOAL_LOOP_ENABLED` (default OFF). Tests for both flag states. | `gate: deploy + observe before enabling` |
 | **A3** | `truesight_autopilot` | Raise/parameterize the consecutive-turn backstop (document `AUTO_ADVANCE_MAX_TURNS` default) + add `CHAT_MAX_GOAL_TURNS` hard ceiling + stall detector. | `gate: deploy + UAT` |
 
@@ -124,7 +124,7 @@ end state for Track C; the single-model swap is the bounded first step toward it
 
 | Unit | Advance | PR opened | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|---|
-| A0 — roadmap (this file) | `auto` | ☐ | ☐ | n/a (docs) | ☐ |
+| A0 — roadmap (this file) | `auto` | ✅ [#1411](https://github.com/TrueSightDAO/agentic_ai_context/pull/1411) | ✅ | n/a (docs) | ☐ |
 | A1 — `app/thread_goal.py` primitive + tests | `auto` | ☐ | ☐ | n/a | ☐ |
 | A2 — goal tools + adapter loop (`GOAL_LOOP_ENABLED`, default OFF) | `gate: deploy + observe before enabling` | ☐ | ☐ | ☐ | ☐ |
 | A3 — backstop raise + hard ceiling + stall detector | `gate: deploy + UAT` | ☐ | ☐ | ☐ | ☐ |
@@ -132,9 +132,11 @@ end state for Track C; the single-model swap is the bounded first step toward it
 | C — Claude brain (Onaya key, bounded trial) | `gate: governor go + key copy` | ☐ | ☐ | ☐ | ☐ |
 | UAT — long thread task runs to completion | `gate: human-run completion gate` | ☐ | ☐ | ☐ | ☐ |
 
-**Own-repo gate:** for `truesight_autopilot` (Sophia's own control loop) PRs are **opened for governor
-merge** — a change to her own loop is not self-merged. Merging is safe (no auto-deploy on merge); the
-**deploy** is the always-stop gate.
+**Repo merge policy (current practice, 2026-09-25):** Sophia merges her own feature PRs (including on
+`truesight_autopilot`, her own control loop) — merging carries **no** auto-deploy, so a merged PR is
+inert until a deliberate restart. The **deploy** is the always-stop gate, and production repos
+(`*_prod`) and API-only data repos remain off-limits for writes. The older "opens PRs only, never
+self-merges" line in `SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md` / `ROUND_CAP_RESILIENCE_PLAN.md` is stale.
 
 ---
 
@@ -158,7 +160,7 @@ merge** — a change to her own loop is not self-merged. Merging is safe (no aut
 3. **Track C volume mismatch (the real one).** Sophia's overnight load was measured at **~84.7M
    tokens/night**; Onaya's Claude key is described as "underutilized" on a *human-paced, low-traffic*
    basis. Pointing Sophia's volume at a **shared** key risks exhausting its rate/spend cap and degrading
-   **Onaya's own service**, plus a surprise bill. Also: litellm `pass-through` of a Claude model on a
+   **Onaya's own service**, plus a surprise bill. Also: litellm pass-through of a Claude model on a
    shared key has no per-consumer spend guard. **Therefore Track C is a bounded, monitored trial with a
    one-line rollback to DeepSeek**, and it does **not** start until (a) the governor explicitly says go
    and (b) tiered routing is decided (do we really want *all* turns on Claude?).
@@ -170,7 +172,7 @@ merge** — a change to her own loop is not self-merged. Merging is safe (no aut
 
 - Absorbs and sequences: `SOPHIA_DURABLE_JOURNAL_RESUME_PLAN.md` (Track B) and
   `SOPHIA_ONAYA_LLM_SWAP_PLAN.md` (Track C).
-- Relates to the parked follow-up `OPEN_FOLLOWUPS.md` §*"Swap autopilot's hand-rolled agent loop for a
-  model-agnostic harness"* — this roadmap **explicitly chooses build-incremental** (see §5, Track B) and
-  closes that gate.
+- Relates to the parked follow-up in `OPEN_FOLLOWUPS.md` (*"Swap autopilot's hand-rolled agent loop for
+  a model-agnostic harness"*) — this roadmap **explicitly chooses build-incremental** and closes that
+  build-vs-adopt gate.
 - Relates to: `SOPHIA_AUTO_ADVANCE_PLAN.md`, `ROUND_CAP_RESILIENCE_PLAN.md`, `MULTI_LLM_ORCHESTRATION.md`.
