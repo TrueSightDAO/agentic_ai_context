@@ -146,6 +146,15 @@ def load_registry_qr(qr_id: str, registry_base: str):
         raise SystemExit(f"registry PNG payload {payload!r} lacks qr_id {qr_id!r}")
     r = hits[0].rect
     crop = im.crop((r.left, r.top, r.left + r.width, r.top + r.height))
+    native = crop  # overlay detection stays on native pixels (no LANCZOS ringing)
+    # Module-count discovery is resolution-sensitive: at ~5 px/module the
+    # smallest-decoding-N search aliases and OVERSHOOTS a small symbol
+    # (v8/v9 read as v20 -> a 324px tile that overruns its layout box and is
+    # clipped by the page edge -- the 2024OSCAR_20250711_NIBS_19 cert bug).
+    # Normalise to a fixed high resolution FIRST so the grid is sampled cleanly
+    # at any registry PNG size. (Same upscale the decode-retry path already uses.)
+    while max(crop.size) < 1024:
+        crop = crop.resize((crop.width * 2, crop.height * 2), Image.LANCZOS)
     a = np.array(crop.convert("L")).astype(float)
     # Discover the module count N (QR v1..v40 -> 21,25,...,177) by center-sampling
     # each candidate grid and keeping the smallest N that still decodes.
@@ -193,14 +202,15 @@ def load_registry_qr(qr_id: str, registry_base: str):
     # (mid-grey), keep the source pixels at native resolution, and hand them back so
     # render_qr() can paste the original overlay back on top of the crisp grid.
     logo_src, logo_box = None, None
+    an = np.array(native.convert("L")).astype(float)
     mid = np.zeros((N, N), float)
     for j in range(N):
         for i in range(N):
-            y0, y1 = int(j * a.shape[0] / N), int((j + 1) * a.shape[0] / N)
-            x0, x1 = int(i * a.shape[1] / N), int((i + 1) * a.shape[1] / N)
+            y0, y1 = int(j * an.shape[0] / N), int((j + 1) * an.shape[0] / N)
+            x0, x1 = int(i * an.shape[1] / N), int((i + 1) * an.shape[1] / N)
             hh, ww = y1 - y0, x1 - x0
             # interior-only window: ignore module-boundary anti-aliasing
-            sub = a[y0 + hh // 4 : y1 - hh // 4, x0 + ww // 4 : x1 - ww // 4]
+            sub = an[y0 + hh // 4 : y1 - hh // 4, x0 + ww // 4 : x1 - ww // 4]
             if sub.size:
                 mid[j, i] = ((sub > 45) & (sub < 215)).mean()
     ys, xs = np.where(mid > 0.7)
@@ -211,12 +221,12 @@ def load_registry_qr(qr_id: str, registry_base: str):
         ly1 = min(N, ys.max() + 1 + pad)
         lx0 = max(0, xs.min() - pad)
         lx1 = min(N, xs.max() + 1 + pad)
-        logo_src = crop.crop(
+        logo_src = native.crop(
             (
-                int(lx0 * a.shape[1] / N),
-                int(ly0 * a.shape[0] / N),
-                int(lx1 * a.shape[1] / N),
-                int(ly1 * a.shape[0] / N),
+                int(lx0 * an.shape[1] / N),
+                int(ly0 * an.shape[0] / N),
+                int(lx1 * an.shape[1] / N),
+                int(ly1 * an.shape[0] / N),
             )
         )
         logo_box = (lx0 + q, ly0 + q, lx1 + q, ly1 + q)  # modules, incl. quiet zone
@@ -226,7 +236,7 @@ def load_registry_qr(qr_id: str, registry_base: str):
         )
 
     print(
-        f"  registry QR: {crop.size} native -> {N}x{N} modules "
+        f"  registry QR: {native.size} native -> {N}x{N} modules "
         f"({crop.width / N:.3f} px/module), payload ok"
     )
     return clean, payload, logo_src, logo_box
