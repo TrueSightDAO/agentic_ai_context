@@ -3567,6 +3567,17 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ## Recently shipped
 
+### Inline-button resume options — Telegram + Discord parity — ✅ SHIPPED 2026-09-25 (tap→resume UAT passed LIVE)
+**Shipped 2026-09-25. Governor: Gary (thread 36518). PRs: [truesight_autopilot#502](https://github.com/TrueSightDAO/truesight_autopilot/pull/502) (Telegram build), [#503](https://github.com/TrueSightDAO/truesight_autopilot/pull/503) (wording polish), [#504](https://github.com/TrueSightDAO/truesight_autopilot/pull/504) (Discord parity). Deployed 2026-09-25 14:08:28 UTC @ `3fc7943`.**
+
+**What shipped.** A resume-awaiting turn can now be resumed by **tapping a numbered choice button**, not only by an emoji-go. Option labels live server-side (`app/resume_registry.py` / `app/discord_resume_registry.py`, keyed by an opaque 4-char token, **consume-on-read** so the menu is single-fire); the transport carries only the payload — `custom_id` `ro:<token>:<i>` on Discord, inline-keyboard `callback_data` on Telegram. Both keep the emoji-go path, plus a non-decision **"✍️ Other — just reply"** button. Discord's tap arrives as `INTERACTION_CREATE` (type 3) and **must be ACKed within 3s** or Discord shows *"This interaction failed"* — so the handler ACKs **deferred (type 6) FIRST**, then dispatches the **same synthesized go-signal the reaction path uses** (one resume code path). Gateway gained an `INTERACTION_CREATE` branch; registry options never clobber the `{channel_id,text}` the emoji-go needs.
+
+**Live UAT (thread 36518).** Both services restarted 14:08:28 UTC on `/opt/truesight_autopilot` @`3fc7943` (telegram pid 64509, discord pid 64508 — restarted *after* the 14:07:49 checkout, so #503+#504 are live). Posted a real 3-option components menu to Discord `#server-administration` (msg `1553046855204601959`, token `CZ4V`); governor tapped option 1 → log `component go-signal: … sel=0 -> dispatching turn`; message edited to `✅ Picked: 🎨 Tweak the button wording`; a resume turn ran; registry consumed (`peek_options("CZ4V")` → `None`). **No 3s interaction-failure.**
+
+**Not deterministic (be aware).** The `↩️ Reply [TOKEN-n]` line is a *human-readable affordance, not a parsed code path* — neither adapter has a `[TOKEN-n]` regex, so the typed form only works if the model interprets it. The guaranteed paths are the buttons + the emoji-go reaction.
+
+**Deps.** `DISCORD_DRY_RUN=false` + the `truesight-autopilot-discord.service` unit must be enabled. CAVEAT: `deploy_autopilot` reported *noop* on a commit match even though the running processes had in fact been restarted — verify by process start time vs code mtime, not by the noop message alone.
+
 ### SunMint certificate downloadable from the QR provenance page — SHIPPED (URL-probe route)
 **Shipped 2026-09-25. Governor: Gary (thread 35189).** The cert-download feature requested 2026-09-24 is live, via the lower-risk **URL-probe route** recommended in the Pending entry (not the manifest-field route — so the `merge_preserve_events` cert-wipe landmine is sidestepped entirely).
 
