@@ -39,6 +39,42 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### The lineage-assets SEED half (`sync_lineage_assets.py`) is scheduled NOWHERE — `qrs_index.json` silently freezes and every downstream cache re-derives from stale input
+**Filed 2026-09-25 — reproduced live (thread 35944, P0n). Ops/config class; not money-adjacent, but it silently empties published fields.**
+
+**Symptom.** `sold_pending_tree.json` (the cache the governor tree-linking page + product card read) came back
+with the new product-context keys present but **empty** (`product_image`, `owner_email_present`, `sheet_url`),
+even after the seeder was pushed. Root cause was not the code — it was a **stale input**: the published
+`qrs_index.json` was frozen at `generated_at 2026-09-24T18:13:44Z`.
+
+**Root cause — only half the chain is scheduled.** The `ubuntu` crontab runs, every 30 min:
+`sync_pending_caches.py --push` and `sync_sunmint_signatures.py --push`. **Nothing** runs the upstream
+seed half — `/home/ubuntu/lineage-assets` ff-clone → `seed_from_sheet.py` → `build_index.py`
+(collectively `scripts/sync_lineage_assets.py`). Verified: `grep -l sync_lineage_assets /etc/cron.d/*
+/etc/systemd/system/*.service /etc/systemd/system/*.timer` → **empty**; no `_CONTEXT_SYNC_REPOS` entry
+covers the working checkout. So the index is only ever refreshed by hand, and `sync_pending_caches.py`
+happily re-derives from whatever stale index the CDN serves.
+
+**Second wrinkle (cache race).** `sync_pending_caches.py` fetches `qrs_index.json` from
+`raw.githubusercontent.com/TrueSightDAO/lineage-assets/main/…`, whose CDN sends
+`cache-control: max-age=300`. Pushing a fresh index and **immediately** re-running the sync still reads the
+**stale** CDN copy for up to ~5 min, silently producing empty fields. (The pinned-SHA endpoint serves fresh
+immediately — only the `main` alias lags.)
+
+**Fix options (pick one or combine).**
+1. Schedule the seed half: add a cron/timer for `sync_lineage_assets.py --push` (e.g. daily), ordered
+   **before** the pending-cache sync.
+2. Make `sync_pending_caches.py` read the index via the **pinned-SHA / GitHub contents API** instead of the
+   `main` CDN alias, busting the 300 s race.
+3. Fold the seed step ahead of `sync_pending_caches.py` so the ordering dependency is explicit (one job).
+
+Recommend **1 + 2**.
+
+**Evidence.** `crontab -l` (ubuntu) — 5 jobs, none seeds; `systemctl list-timers --all` — no lineage unit;
+published `qrs_index.json` `generated_at 2026-09-24T18:13:44Z` vs re-seed commit `30a0421` @
+`2026-09-25T18:00:27Z` (1824 files, 0 deletions); `curl -I` on `main/qrs_index.json` →
+`cache-control: max-age=300`.
+
 ### `deploy_gas_project.py` pushes from a working checkout with NO auto-refresh — a stale `tokenomics` tree silently REVERTS live (guards #520 / pull-first #521 do not catch it)
 **Filed 2026-09-25 — reproduced live, deploy halted. Governor: Gary (thread 35947). Production-regression class.**
 
