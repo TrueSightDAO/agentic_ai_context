@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-24T21:41:56Z`
-- Look-back: **7** calendar days (`2026-09-17` → today UTC)
+- Generated (UTC): `2026-09-25T05:13:01Z`
+- Look-back: **7** calendar days (`2026-09-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,18 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 24
+- `[TREE PLANTING EVENT]` × 21
 - `[CONTRIBUTION EVENT]` × 8
-- `[TREE PLANTING LINK EVENT]` × 4
+- `[TREE PLANTING LINK EVENT]` × 7
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[EMAIL VERIFICATION EVENT]` × 1
 - `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20260924132244_094` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
-- `Edgar_20260924132306_096` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
-- `Edgar_20260924132318_098` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
 - `Edgar_20260924132334_100` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Criolla
 - `Edgar_20260924132409_102` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
 - `Edgar_20260924132440_104` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
@@ -61,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260924191312_006` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_3 · SunMint Submission Message ID: Edgar_20260903083411_001 · Updated by: Sophia Truesight
 - `Edgar_20260924194040_008` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PF_20250505_28 · SunMint Submission Message ID: Edgar_20260903083528_005 · Updated by: Sophia Truesight
 - `Edgar_20260924200801_010` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PAULO_20250804_20 · SunMint Submission Message ID: Edgar_20260908011432_245 · Updated by: Sophia Truesight
+- `Edgar_20260924222337_012` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_4 · SunMint Submission Message ID: Edgar_20260903083540_011 · Updated by: Sophia Truesight
+- `Edgar_20260925013034_014` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_33 · SunMint Submission Message ID: Edgar_20260903083536_009 · Updated by: Sophia Truesight
+- `Edgar_20260925035017_016` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_35 · SunMint Submission Message ID: Edgar_20260908005833_045 · Updated by: Sophia Truesight
 
 ---
 
@@ -234,9 +234,9 @@ _(+32 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,753.66**
+- USD on hand: **$4,753.61**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.54**
+- USD provisioned for voting-rights cash-out: **$55.59**
 
 ### In-transit freight (1 row)
 
@@ -252,9 +252,8 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-17_ (4):
+_All dated lines on/after 2026-09-18_ (3):
 
-- 2026-09-17 | sophia | Design record added: plans/MEMBER_WORKSPACE_PLAN.md — a non-authoritative quarantine repo for member-tier SOP *candidates*, outside the context read path. Promotion into agentic_ai_context/sops/ (governor PR) is the ONLY act that makes candidate text directive. Blocks on Governor Decision D1 (bless a create_repo_pattern naming family: `member-*` or `*-candidates`).
 - 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
 - 2026-09-24 | sophia | Telegram reply-to context loss FIXED + filed: `truesight_autopilot` #500 (`30291c97`) forwards the replied-to message's sender + text/caption (or an honest "replying to an uncaptioned photo/document from X" marker) as a `[Replying to ...]` prefix at the `dispatch_text` construction site — same convention as `[Telegram context: ...]`; byte-identical when not a reply. Deployed + live-verified (thread 35622): `journalctl` `CHAT REQ` line now shows the prefix, and the reply acted on it. Root cause (two narrow `reply_to_message` reads that never forwarded content) filed in OPEN_FOLLOWUPS + plan `plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md` so a third occurrence doesn't repeat un-tracked.
 - 2026-09-23 | sophia | SunMint tree-photo supersession (thread 35189; governor go from Gary): the canonical photo for tree `Edgar_20260903083523_004` (plot PL-002, Fazenda Bom Sucesso) was overwritten in place — `sunmint/images/20260902_bomsucesso_tree02.jpg` now holds Gary's frame captured 2026-09-02 18:47:11 -03:00 (commit `b332512`, new blob `793132cb`, sha256 `2a15e9a1…`), superseding blob `aff60dd2` / sha256 `bd7ed5af…` which remains recoverable in git history. Integrity note: the photo URL is embedded in the RSA-signed, append-only attestation `verify_public_signatures/tree_planting/Edgar_20260903083523_003.json` (`signed_payload`), and the signature covers that URL string (not the image bytes), so verification still passes — the supersession is recorded here for transparency. Gap filed in OPEN_FOLLOWUPS: photo supersessions have no sanctioned/signed path.
@@ -265,7 +264,7 @@ _All dated lines on/after 2026-09-17_ (4):
 
 | Pipeline | Mapped clone | Activity in window |
 |----------|----------------|----------------------|
-| `go_to_market` | `market_research` | **yes** |
+| `go_to_market` | `market_research` | **no** |
 | `TrueChain` | `TrueChain` | **no** |
 | `oracle` | `iching_oracle` | **yes** |
 
@@ -276,6 +275,7 @@ _All dated lines on/after 2026-09-17_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4c8514a | 2026-09-24 21:44:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 ff42044 | 2026-09-24 14:32:34 -0300 | qr page: deep-link ANY tree-linked QR (incl. cacao bags) to SunMint map (#396)
 268f965 | 2026-09-24 17:30:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 ec876b3 | 2026-09-24 13:31:22 -0300 | CRF Anapu: name açaí in description_md (beta source of truth) (#395)
@@ -315,19 +315,22 @@ cbdc173 | 2026-09-19 11:24:58 +0000 | chore(stats): refresh stats indexes [skip 
 02df644 | 2026-09-19 04:56:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 cae9181 | 2026-09-18 21:10:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 61bec1a | 2026-09-18 16:40:22 +0000 | chore(stats): refresh stats indexes [skip ci]
-b06be2a | 2026-09-18 11:41:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-03885ff | 2026-09-17 14:05:13 -0300 | P2c: exclude [PAYOUT REGISTRATION] bodies from the public ADVISORY_SNAPSHOT (#177)
+_(no commits on origin/main in window)_
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a845048 | 2026-09-24 22:33:52 -0300 | SunMint cert: correct registry-QR resize fix (supersedes #1402) (#1403)
+b84c58f | 2026-09-24 18:51:33 -0300 | SunMint cert: shrink overlay to keep tile size (stop silent k-grow overflow) (#1401)
+f94f20f | 2026-09-24 18:42:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
+a220f9e | 2026-09-24 18:42:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
 b6c71ba | 2026-09-24 16:49:23 -0300 | sunmint cert: cv2 fallback when pyzbar fails at every scale (#1400)
 60ecb48 | 2026-09-24 16:25:35 -0300 | Add SunMint link+issue-cert runbook; fix cert SOP §3 (overlay) + template pyzbar retry (#1399)
 ad7568f | 2026-09-24 15:30:54 -0300 | docs: resolve SunMint SOP §7 conflict framing + file seeder-daemon answer (#1398)
@@ -364,10 +367,6 @@ a849595 | 2026-09-24 07:32:57 -0300 | cert: move issuer name+role off dark borde
 8a3db07 | 2026-09-24 07:28:01 -0300 | Telegram reply-context: tick PR2+PR3 contribution cells (plan complete) (#1367)
 8094486 | 2026-09-24 07:25:51 -0300 | Telegram reply-to context loss: file root cause in OPEN_FOLLOWUPS + CONTEXT_UPDATES (PR3) (#1365)
 9971bbf | 2026-09-24 07:04:38 -0300 | Record Schwab handoff Telegram topic (thread 35765) in manifest (#1363)
-d4559cb | 2026-09-24 07:02:37 -0300 | Add Schwab portfolio integration plan (read-only) (#1303)
-28bd478 | 2026-09-24 06:56:38 -0300 | Telegram reply-context: tick PR1 tracker + refresh manifest row (#1362)
-260ac6d | 2026-09-24 06:17:30 -0300 | Add plan: temporarily swap Sophia to Onaya's Claude token (DeepSeek exhausted) (#1361)
-49a394c | 2026-09-24 03:14:59 -0300 | OPEN_FOLLOWUPS: file SunMint cert QR print-floor (k>=4) enforcement gap (#1360)
 … (truncated)
 ```
 
@@ -460,8 +459,6 @@ c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
 b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-56fa1f5 | 2026-09-17 12:05:02 +0000 | chore: refresh currencies.json [skip ci]
-24d75f0 | 2026-09-17 11:46:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -563,9 +560,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/24/2026 13:50:59 |
+| 2026-09 | 924.5 | 18364.34386 | 9/24/2026 21:51:30 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-17`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-18`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
