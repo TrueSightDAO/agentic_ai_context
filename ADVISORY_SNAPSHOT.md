@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-26T05:17:42Z`
+- Generated (UTC): `2026-09-26T11:40:37Z`
 - Look-back: **7** calendar days (`2026-09-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-25T10:59:17.613Z`
+- Generated (UTC): `2026-09-26T10:59:14.782Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -83,12 +83,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1004**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1077**)
+- **Email Agent Follow Up** — logged sends: warmup **1008**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1081**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **930**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **934**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-19_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+22a7164 | 2026-09-26 05:22:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 4157b6b | 2026-09-25 21:46:48 +0000 | chore(stats): refresh stats indexes [skip ci]
 8aabd3c | 2026-09-25 17:29:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 16dfa7d | 2026-09-25 12:07:05 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the
 ab79af7 | 2026-09-20 01:37:22 -0300 | Explorer PR3: faceted filters + counts + data-quality states (#383)
 321b68e | 2026-09-20 00:29:26 -0300 | SunMint Plot Explorer shell at /sunmint/plots/ (PR2) (#382)
 12299b4 | 2026-09-19 20:56:20 +0000 | chore(stats): refresh stats indexes [skip ci]
-d84e7f1 | 2026-09-19 16:01:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+eae5312 | 2026-09-26 02:18:02 -0300 | chore(previews): refresh Beer Hall preview (2026-09-26 UTC)
+e8b19b9 | 2026-09-26 02:18:01 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-26 UTC)
 f08f7ee | 2026-09-25 22:30:34 -0300 | docs(OPEN_FOLLOWUPS): record box git-push recurrence + fix (#1417)
 4f495ae | 2026-09-25 21:22:26 -0300 | Deck v18 — add weekly rhythms (rodas + samba) to itinerary
 84b028a | 2026-09-25 21:08:23 -0300 | docs(goal-loop): mark A1-A3 merged + deployed dark; RESUME HERE -> UAT (#1416)
@@ -364,14 +366,13 @@ ff64d75 | 2026-09-24 14:27:51 -0300 | docs(handoffs): register SunMint loud-fail
 0b693a9 | 2026-09-24 14:27:35 -0300 | docs(cfr-plan): record açaí dropdown prod promotion (sunmint_prod) (#1393)
 03cc31c | 2026-09-24 14:25:03 -0300 | docs(cfr-plan): tick §4 item 1 — açaí dropdown shipped, plan COMPLETE (#1391)
 ff013cd | 2026-09-24 14:24:47 -0300 | OPEN_FOLLOWUPS: §11.5 — env var set (a); add GAS-deploy gate (b) + Edgar restart (c); CFR tree-planting tab empty evidence (#1390)
-01c20cb | 2026-09-24 14:20:32 -0300 | docs(followups): SunMint index freeze RESOLVED (indexes refreshed) — narrow entry to the still-open silent-green fix (#1386)
-b18c018 | 2026-09-24 14:19:34 -0300 | docs(credentials): document sunmint-ledger-manager SA as canonical for SunMint sheets (#1388)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+f6bf45c | 2026-09-26 06:09:24 -0300 | feat(gas): getTreeRecipientMap read action (tree_id -> pk_hash) for payout auto-fill (#562)
 aa21206 | 2026-09-25 21:49:49 -0300 | fix(deploy): align clasp subprocess identity with the identity guard (fail-closed) (#561)
 4657485 | 2026-09-25 21:25:13 -0300 | Add one-shot ?action=backfillPayoutRegistrations normalisation lever + tests (#560)
 fcb9099 | 2026-09-25 21:08:43 -0300 | feat(gas): SS11.3-bis payout-registration mirror tab on the intake workbook (#557)
@@ -431,6 +432,7 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+efc22ca | 2026-09-26 11:29:28 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 014b973 | 2026-09-25 11:55:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 8fbf7a8 | 2026-09-24 12:11:42 +0000 | chore: refresh currencies.json [skip ci]
 bd31932 | 2026-09-24 11:50:48 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -549,7 +551,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/25/2026 21:50:59 |
+| 2026-09 | 924.5 | 18364.34386 | 9/26/2026 4:00:08 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-19`; scanned last **600** data rows)
 
