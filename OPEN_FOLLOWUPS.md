@@ -1357,6 +1357,8 @@ So a member's message is logged as captured context and **never dispatched** —
 
 **Durable fix (NOT yet shipped).** `scripts/deploy.sh` §"Provisioning git identity + credential helper" should **idempotently** run `git config --global --remove-section 'credential.https://github.com'` and `git config --global --unset-all credential.helper` *before* writing the canonical helper — otherwise a future `gh auth setup-git` (or a hand edit) re-introduces the shadow on the next deploy and the box silently loses push again. **Do not run `gh auth setup-git` on the autopilot box.**
 
+**⚠️ RECURRED + RE-FIXED 2026-09-26 (thread 35944).** The durable fix above was **not** shipped, and the shadow **came back exactly as predicted**: `~/.gitconfig` again carried `[credential "https://github.com"] helper = /usr/bin/gh auth git-credential` (gh **2.4.0**, emits **0 bytes**) plus a bare `credential.helper = !f(){ echo username=x-access-token; echo password=$GH_PAT; }` where **`$GH_PAT` is unset** → git sent `Authorization: Basic x-access-token:<empty>` → `Invalid username or token. Password authentication is not supported for Git operations.` (Confirmed with `GIT_TRACE=1`; `git ls-remote` looked fine only because the org repos are public.) **Re-applied box-local** (dropped both shadow sections, restored the canonical helper) **and** migrated **21** TrueSightDAO/KrakeIO CLI remotes `https://` → SSH (`git@github.com:…`, matching `app/tools/git_tools.py`'s SSH path) **and scrubbed two remotes that had a live PAT embedded in the URL** (`/home/ubuntu/work/tsap`, `/opt/truesight_autopilot`) — **those plaintext tokens should be rotated.** Audit log (0600): `~/.remote-url-rewrite-audit-20260926T011332.log`. Verified both paths: SSH `git ls-remote` OK, HTTPS `git push --dry-run` → `* [new branch]`. See `## Recently shipped`.
+
 **Evidence.** `~/.gitconfig` (before/after); `/opt/truesight_autopilot/scripts/git-credential-sophia.sh`; `scripts/deploy.sh` L204–213; thread 28504.
 
 ### `dao_protocol` (Edgar) has no CD — prod silently runs stale code after a merge
@@ -3660,6 +3662,22 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### Box git push restored: SSH-migrate CLI remotes, scrub 2 embedded PATs, re-apply canonical credential helper
+**Shipped 2026-09-26. Governor: Gary (thread 35944). Box-local ops change; no repo code.**
+
+**Symptom.** Native `git push` from the autopilot box over HTTPS failed: `remote: Invalid username or token. Password authentication is not supported for Git operations.` Reads (`git ls-remote`/`clone`) *appeared* fine only because the org repos are **public** (anonymous read).
+
+**Root cause (recurrence of the 2026-09-13 entry).** `~/.gitconfig` had re-acquired two *shadowing* credential helpers: `[credential "https://github.com"] helper = /usr/bin/gh auth git-credential` (gh **2.4.0** emits **0 bytes**) and a bare `credential.helper` running `!f(){ echo username=x-access-token; echo password=$GH_PAT; }` where **`$GH_PAT` is unset** → git sent `Basic x-access-token:<empty>`. The documented durable fix (`scripts/deploy.sh` §Provisioning) was never shipped, so a later edit re-introduced the shadow exactly as predicted. `app/tools/git_tools.py` never noticed because it pushes over **SSH** (`GIT_SSH_COMMAND` + `~/.ssh/id_ed25519_truesight_autopilot`).
+
+**Fix applied (box-local).**
+1. Migrated **21** TrueSightDAO/KrakeIO working-checkout remotes `https://` → `git@github.com:…`.
+2. **Scrubbed 2 remotes that carried a live PAT in the URL** (`/home/ubuntu/work/tsap`, `/opt/truesight_autopilot`). *Those tokens are exposed and should be rotated.*
+3. Removed both shadow sections; set `credential.helper = /opt/truesight_autopilot/scripts/git-credential-sophia.sh` (reads `TRUESIGHT_DAO_AUTOPILOT` from `.env` at call time).
+
+**Verification.** SSH: `git ls-remote origin` OK (tokenomics / agentic_ai_context / autopilot); `git push --dry-run` → `* [new branch]`. HTTPS: `git credential fill` → `username=x-access-token` + password; `git push --dry-run` → `* [new branch]`. No probe branches created (404). Audit log (0600): `~/.remote-url-rewrite-audit-20260926T011332.log`.
+
+**Still-open recommended follow-up.** Ship the idempotent `deploy.sh` guard AND re-run it on every deploy so the shadow cannot return; rotate the 2 exposed tokens.
 
 ### `processBatch` OAuth-scope fix + deploy-identity convention — RESOLVED
 **Shipped 2026-09-24/25. Governor: Gary (thread 35944). PR: `tokenomics` #553; GAS deploy v37.**
