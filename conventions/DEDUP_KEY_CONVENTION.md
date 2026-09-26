@@ -2,6 +2,11 @@
 
 **Status: STANDING convention (governor directive — Gary, 2026-09-26, thread 35944).**
 
+> **Amended 2026-09-26 (§2.1/§2.5/§2.6; Gary, thread 35944):** a digital signature is
+> *public by construction*, so the raw `Request Transaction ID` **may** be published in public
+> JSON caches / public ledger columns — it is what makes a submission verifiable. Only raw
+> **PII** (PIX/CPF/email/phone) is barred from public payloads.
+
 When you design a new ledger / tracking tab (the "contract" between a signed DAO event and a
 sheet or table), or when you fix deduplication in an existing one, follow this rule:
 
@@ -39,7 +44,9 @@ Keying on the transport id is wrong for three independent reasons:
 
 1. **Dedup key = `Request Transaction ID`.** Scope the key on the txid. Do **not** add a
    `pk_hash` scope unless there is evidence a txid is reused across signers (there is not, as
-   of 2026-09-26 — and the signature is already represented as the one-way `pk_hash`, never raw).
+   of 2026-09-26). The txid **is** the signature over the submitted payload and is **public by
+   design** (§2.6) — it is *not* the signer's identity, which is represented separately and
+   only as the one-way `pk_hash`.
 2. **A dedicated column is mandatory.** Every ingest tab MUST have its own column holding the
    txid. Do not bury it inside a free-text "notes" / "source" blob, and do not re-derive it by
    re-parsing a payload at read time when a column can hold it.
@@ -50,10 +57,17 @@ Keying on the transport id is wrong for three independent reasons:
    **without** disturbing current data (`header`-aware, idempotent).
 5. **Backfill once, idempotently, dry-run first.** Provide a one-shot `?action=…` lever that
    populates the txid on **existing** rows, with a `&dryRun=1` preview that returns **counts
-   only** (never txid strings / PII), and is re-runnable with no effect.
-6. **Never store the raw signature or PII.** The txid is a signature *reference*, not a secret;
-   if a tab already masks sensitive fields, keep masking. Never place raw PII (PIX/CPF/email)
-   into the txid column or into a public payload.
+   only**, and is re-runnable with no effect. The counts-only rule is about keeping the preview
+   small and idempotent — **not** secrecy (the txid is public, §2.6). Never emit PII in a preview.
+6. **Raw signatures are public; raw PII never is.** A digital signature is *public by
+   construction* — verifiable with the signer's public key and revealing nothing about the
+   signer. Publishing the `Request Transaction ID` (which **is** the signature over the
+   submitted payload) in a public JSON cache or a public ledger column is therefore
+   **allowed and encouraged**: it is exactly what makes a submission independently verifiable,
+   the point of the TrueChain audit trail. Do **not** hash, truncate, or otherwise degrade it
+   "for privacy" — a stable, globally-unique join key is a feature here. What must **never**
+   appear in a public payload is raw **PII** (PIX/CPF/email/phone), and the signer's identity
+   beyond its one-way `pk_hash`; keep masking those exactly as before.
 
 ---
 
