@@ -39,6 +39,23 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint `SunMint Tree Planting` tab still dedupes on transport ids — needs a `request_transaction_id` column (col V)
+**Filed 2026-09-26 (thread 35944). Gary-directed; implementation pending — sequence AFTER the approved col-U Submission-Source work so the two don't race the same tab. Convention: `conventions/DEDUP_KEY_CONVENTION.md`.**
+
+**Where.** `google_app_scripts/1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF/process_tree_planting_telegram_logs.js`, tab **`SunMint Tree Planting`** (sheet `creds.SHEET_ID` default `1qbZZhf-…`).
+
+**The anti-pattern.** Dedup is keyed on the **transport ids** — col **D** (`Telegram Message ID`, via `getProcessedMessageIds()`) and col **H** (`File ID`, via `getProcessedFileIds()`) — so the same tree re-posted under a new message id double-counts, exactly the failure the CFR tab hit. The writer *already* parses the signed block (`My Digital Signature:` from col G), so the `Request Transaction ID:` line is present in the payload — it is simply never captured or used.
+
+**The fix.**
+1. Add a **trailing** col **`request_transaction_id`** = **col V** — header `A1:T1` is full (col **T** = Plot ID), and col **U** is already earmarked for the approved **Submission Source** backfill/write, so V is the first free slot. Migration-safe: append header, never reorder.
+2. Parse `Request Transaction ID:` from the signed block (`/Request Transaction ID:\s*([^\n]+)/i`) and store it in col V on every append.
+3. Seed the dedup set from col V and **skip the append if the txid already exists** — keep the existing message-id / file-id guards as belt-and-braces only.
+4. One-shot idempotent `?action=backfillSunMintTreeTxIds` lever over existing rows, `&dryRun=1` first (counts only, no txid strings).
+
+**Caveat to decide.** The txid is signed over the payload incl. `Planting Time`, so a **re-signed** re-submission yields a *different* txid. If that risk matters here, also key on a content fingerprint (`lat|lng|species|photo_url`). See the convention's §4.
+
+**Status.** Not started. Code-only until a governor-gated GAS deploy. No deploy / no money.
+
 ### The lineage-assets SEED half (`sync_lineage_assets.py`) is scheduled NOWHERE — `qrs_index.json` silently freezes and every downstream cache re-derives from stale input
 **Filed 2026-09-25 — reproduced live (thread 35944, P0n). Ops/config class; not money-adjacent, but it silently empties published fields.**
 
