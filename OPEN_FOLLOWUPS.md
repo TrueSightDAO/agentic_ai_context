@@ -42,12 +42,14 @@ cross-session** items that would otherwise rot in chat transcripts.
 ### ⛔ GATED (governor go required) — GAS deploy + backfill for BOTH txid-dedup sinks (CFR + SunMint)
 **Filed 2026-09-26 (thread 35944). Code+docs COMPLETE and merged; every step below is a GATE — do NOT run without Gary's explicit go. No money, no ledger write; a single GAS deploy + a dry-run-first backfill each.**
 
+**PART A (CFR) EXECUTED & VERIFIED 2026-09-26 (Gary said "Go").** Deploy pushed (9 files; identity `admin@truesight.me`, guard passed, no `--allow-identity-mismatch`); pinned deploy rolled **@42 to @43** (`Created version 43`); `?action=backfillCfrTreeTxIds&dryRun=1` gave `{checked:18, changed:18, unmatched:0, distinctTxIds:18}`, applied, re-check `changed:0` (idempotent); live `?action=getTreeRecipientMap` returned 18 items each carrying a derived `pk_hash` (no PII). Collapse preview `{checked:18, collapsed:0, distinctTxIds:18, untxRow:0}` = no duplicate rows exist, so the destructive `&apply=1` was deliberately NOT run. **PART B (SunMint) remains GATED.**
+
 Both sinks now key on the signed `Request Transaction ID` (see `conventions/DEDUP_KEY_CONVENTION.md`). The source is merged; only the deploy + one-shot backfill remain. Re-verified 2026-09-26: `deploy_gas_project.py <id>` dry-run resolves `owner_email: admin@truesight.me` / `clasp: admin@truesight.me` (Path B works; `~/.clasprc-admin.json` present).
 
-**A. CFR sink (project `1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT`; live pinned deploy `AKfycbxQDdGnw…` = @42)**
+**A. CFR sink (project `1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT`; live pinned deploy `AKfycbxQDdGnw…` = @42 (DONE: rolled to @43 on 2026-09-26))**
 1. Push source (from the `tokenomics` checkout): `CLASPRC_PATH=~/.clasprc-admin.json python3 scripts/deploy_gas_project.py 1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT --push`
 2. Roll the pinned deployment forward @42 → @43: same tool with `--deployment-id AKfycbxQDdGnwS7G6iJhNj9japW-9sFA7EUvrnznmJCu44S5ZHqOoIks2be4FXbIVpuaOHVW` (runs `clasp version` + `clasp deploy -V`).
-3. `?action=backfillCfrTreeTxIds&dryRun=1` → review counts → re-run **without** `dryRun` (idempotent).
+3. `?action=backfillCfrTreeTxIds&dryRun=1` review counts then re-run **without** `dryRun` (idempotent). DONE -- applied 18/18, re-check changed:0. → review counts → re-run **without** `dryRun` (idempotent).
 4. `?action=collapseCfrTreeTxDuplicates` (preview) → `&apply=1` (DESTRUCTIVE: deletes duplicate rows, keeps the first).
 
 **B. SunMint sink (project `1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF`; its own deployment)**
