@@ -39,8 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### SunMint `SunMint Tree Planting` tab still dedupes on transport ids — needs a `request_transaction_id` column (col V)
-**Filed 2026-09-26 (thread 35944). Gary-directed; implementation pending — sequence AFTER the approved col-U Submission-Source work so the two don't race the same tab. Convention: `conventions/DEDUP_KEY_CONVENTION.md`.**
+### ⛔ GATED (governor go required) — GAS deploy + backfill for BOTH txid-dedup sinks (CFR + SunMint)
+**Filed 2026-09-26 (thread 35944). Code+docs COMPLETE and merged; every step below is a GATE — do NOT run without Gary's explicit go. No money, no ledger write; a single GAS deploy + a dry-run-first backfill each.**
+
+Both sinks now key on the signed `Request Transaction ID` (see `conventions/DEDUP_KEY_CONVENTION.md`). The source is merged; only the deploy + one-shot backfill remain. Re-verified 2026-09-26: `deploy_gas_project.py <id>` dry-run resolves `owner_email: admin@truesight.me` / `clasp: admin@truesight.me` (Path B works; `~/.clasprc-admin.json` present).
+
+**A. CFR sink (project `1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT`; live pinned deploy `AKfycbxQDdGnw…` = @42)**
+1. Push source (from the `tokenomics` checkout): `CLASPRC_PATH=~/.clasprc-admin.json python3 scripts/deploy_gas_project.py 1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT --push`
+2. Roll the pinned deployment forward @42 → @43: same tool with `--deployment-id AKfycbxQDdGnwS7G6iJhNj9japW-9sFA7EUvrnznmJCu44S5ZHqOoIks2be4FXbIVpuaOHVW` (runs `clasp version` + `clasp deploy -V`).
+3. `?action=backfillCfrTreeTxIds&dryRun=1` → review counts → re-run **without** `dryRun` (idempotent).
+4. `?action=collapseCfrTreeTxDuplicates` (preview) → `&apply=1` (DESTRUCTIVE: deletes duplicate rows, keeps the first).
+
+**B. SunMint sink (project `1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF`; its own deployment)**
+1. Push + roll forward exactly as A with the `1Jp8q…` scriptId (`--deployment-id` = the SunMint `/exec` deployment id).
+2. `?action=backfillSunMintTreeTxIds&dryRun=1` → review → re-run with `&apply=1` (idempotent).
+
+**Still open (non-blocking; decide before the respective writers touch col U):** the live **col-U `Submission Source` vs. parked PR3 `Payment Event Ref`** conflict (see `tokenomics/SCHEMA.md`); and the **hourly GAS backstop identity** (Gary deleted all `admin@truesight.me` triggers). Note: `--allow-identity-mismatch` is FORBIDDEN (silently swaps the web app runtime identity — see the §11.5 correction in this file).
+
+### SunMint `SunMint Tree Planting` tab dedupes on transport ids → `request_transaction_id` (col V) — SHIPPED 2026-09-26
+**Shipped 2026-09-26 (thread 35944). PR: tokenomics #568 (`1c6fc022`). GAS deploy + backfill = governor gates, NOT yet run.** Ran the approved convention `conventions/DEDUP_KEY_CONVENTION.md`; implemented ahead of the col-U work deliberately — because the new column is located **by header name** and created at the first free column, it cannot race the col-U Submission-Source writer (they touch different cells).
 
 **Where.** `google_app_scripts/1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF/process_tree_planting_telegram_logs.js`, tab **`SunMint Tree Planting`** (sheet `creds.SHEET_ID` default `1qbZZhf-…`).
 
@@ -54,7 +71,7 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Caveat to decide.** The txid is signed over the payload incl. `Planting Time`, so a **re-signed** re-submission yields a *different* txid. If that risk matters here, also key on a content fingerprint (`lat|lng|species|photo_url`). See the convention's §4.
 
-**Status.** Not started. Code-only until a governor-gated GAS deploy. No deploy / no money.
+**Status.** SHIPPED (source) 2026-09-26 — `tokenomics` #568 (`1c6fc022`). At source: the column is located by **header name** and created at the first free column (`ensureSunMintRequestTxColumn_`/`sunmintFindHeaderCol_`), the txid is parsed via `extractRequestTransactionId()`, the append is skipped when the txid already exists, `?action=backfillSunMintTreeTxIds` is idempotent (preview by default, `&apply=1` writes, counts only), and the create-tab header widened to `A1:V1`. Verified: `node --check` OK; live col F carries the `Request Transaction ID:` footer; the live tab header is A–U (U = `Submission Source`) so V is the first free column — recorded a **col-U conflict** in `tokenomics/SCHEMA.md` (live `Submission Source` vs. the PARKED PR3 code's `SUNMINT_PAYMENT_EVENT_REF_COL = 20` = `Payment Event Ref`) to reconcile before either writes U. **Outstanding gate:** GAS deploy (this is the **`1Jp8q…`** project, *not* the CFR one) then `?action=backfillSunMintTreeTxIds&dryRun=1` → `&apply=1`. No deploy / no money.
 
 ### The lineage-assets SEED half (`sync_lineage_assets.py`) is scheduled NOWHERE — `qrs_index.json` silently freezes and every downstream cache re-derives from stale input
 **Filed 2026-09-25 — reproduced live (thread 35944, P0n). Ops/config class; not money-adjacent, but it silently empties published fields.**
