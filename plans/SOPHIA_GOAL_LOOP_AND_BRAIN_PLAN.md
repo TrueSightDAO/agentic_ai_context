@@ -1,6 +1,6 @@
 # Sophia — goal-anchored thread loop + durable resume + Claude brain (3-track program)
 
-**Status:** PLANNING — Unit A0 (this roadmap) committed; implementation not started.
+**Status:** IMPLEMENTATION — A1–A3 merged and deployed dark (2026-09-25); UAT pending.
 **Owner:** Gary Teh (+ Sophia). **Created:** 2026-09-25. **Thread:** telegram 36801.
 **Repos touched:** `agentic_ai_context` (docs), `truesight_autopilot` (code).
 **Convention:** tracked roadmap required by `OPERATING_INSTRUCTIONS.md` §5 before any implementation.
@@ -120,14 +120,14 @@ end state for Track C; the single-model swap is the bounded first step toward it
 
 ## 6. Resume tracker
 
-**RESUME HERE → A1**
+**RESUME HERE → UAT** — A1–A3 merged and deployed dark 2026-09-25; the remaining gate is enabling `GOAL_LOOP_ENABLED` for the human-run completion UAT.
 
 | Unit | Advance | PR opened | Merged | Deployed | Contribution reported |
 |---|---|---|---|---|---|
 | A0 — roadmap (this file) | `auto` | ✅ [#1411](https://github.com/TrueSightDAO/agentic_ai_context/pull/1411) | ✅ | n/a (docs) | ☐ |
-| A1 — `app/thread_goal.py` primitive + tests | `auto` | ☐ | ☐ | n/a | ☐ |
-| A2 — goal tools + adapter loop (`GOAL_LOOP_ENABLED`, default OFF) | `gate: deploy + observe before enabling` | ☐ | ☐ | ☐ | ☐ |
-| A3 — backstop raise + hard ceiling + stall detector | `gate: deploy + UAT` | ☐ | ☐ | ☐ | ☐ |
+| A1 — `app/thread_goal.py` primitive + tests | `auto` | ✅ [#509](https://github.com/TrueSightDAO/truesight_autopilot/pull/509) | ✅ | n/a | ☐ |
+| A2 — goal tools + adapter loop (`GOAL_LOOP_ENABLED`, default OFF) | `gate: deploy + observe before enabling` | ✅ [#510](https://github.com/TrueSightDAO/truesight_autopilot/pull/510) | ✅ | ✅ 2026-09-25 (dark) | ☐ |
+| A3 — backstop raise + hard ceiling + stall detector | `gate: deploy + UAT` | ✅ [#511](https://github.com/TrueSightDAO/truesight_autopilot/pull/511) | ✅ | ✅ 2026-09-25 (dark) | ☐ |
 | B — durable journal + checkpoint/resume | `gate: A3 deployed + soaked` | ☐ | ☐ | ☐ | ☐ |
 | C — Claude brain (Onaya key, bounded trial) | `gate: governor go + key copy` | ☐ | ☐ | ☐ | ☐ |
 | UAT — long thread task runs to completion | `gate: human-run completion gate` | ☐ | ☐ | ☐ | ☐ |
