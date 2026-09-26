@@ -254,10 +254,13 @@ exactly and you'll avoid hours of debugging.
 **Deploying the donation-mint GAS (`process_donation_mint_telegram_logs.gs`, script `1MnAsIQAxcSfZO_…`):**
 - Use the manifest-driven deployer: `tokenomics/scripts/deploy_gas_project.py <scriptId> --push` (dry-run
   without `--push`). It refuses on uncommitted source or **clasp-identity mismatch**.
-- This script's `owner_email` is **`admin@truesight.me`**. clasp reads `~/.clasprc.json` only, and
-  `CLASPRC_PATH` feeds *only* the deployer's identity check — **clasp itself ignores it**. So to push you
-  must swap creds: `cp ~/.clasprc.json ~/.clasprc.json.bak && cp ~/.clasprc-admin.json ~/.clasprc.json`
-  → push → restore. (`~/.clasprc-admin.json` = admin@truesight.me, `~/.clasprc-gary.json` = garyjob.)
+- This script's `owner_email` is **`admin@truesight.me`**. Since tokenomics **#561** (`aa21206`,
+  2026-09-25), `deploy_gas_project.py` hands `clasp` a private `HOME` whose `.clasprc.json` IS
+  `$CLASPRC_PATH` (fail-closed; `scripts/test_clasp_credentials_env.py`), so the `cp` swap is **no longer
+  required** — run `CLASPRC_PATH=~/.clasprc-admin.json python3 scripts/deploy_gas_project.py <scriptId>
+  --push` and both the guard and `clasp` act as admin@. (`~/.clasprc-admin.json` = admin@truesight.me,
+  `~/.clasprc-gary.json` = garyjob.) **Avoid `--allow-identity-mismatch`** — it pushes as gary@ while
+  `appsscript.json` sets `webapp.executeAs = USER_DEPLOYING`, silently swapping the web app's runtime identity.
 - **One-time:** admin@truesight.me must have the **Apps Script API ON** (https://script.google.com/home/usersettings).
 - **`.js/.gs` mirror conflict:** the mirror had stale `.js` duplicates next to synced `.gs` → clasp
   "Conflicting files found". Remove the stale `.js` (e.g. `process_donation_mint_telegram_logs.js`) so each

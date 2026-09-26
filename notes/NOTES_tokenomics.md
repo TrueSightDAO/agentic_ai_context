@@ -30,10 +30,15 @@ Key docs
 > **clasp credential files (per-account).** clasp itself reads **`~/.clasprc.json`** only. The machine
 > keeps per-account creds: **`~/.clasprc-admin.json`** (admin@truesight.me) and
 > **`~/.clasprc-gary.json`** (garyjob@agroverse.shop); `~/.clasprc.json` is a stub by default.
-> ⚠ `CLASPRC_PATH` feeds `deploy_gas_project.py`'s **identity check only — clasp does NOT read it**, so
-> to actually push as a given account you must **swap that file into the default path**:
-> `cp ~/.clasprc.json ~/.clasprc.json.bak && cp ~/.clasprc-admin.json ~/.clasprc.json` → deploy →
-> restore. (Admin-owned projects: the QR/donation-mint script `1MnAsIQAxcSfZO_…`.)
+> ✅ **UPDATE 2026-09-26 (tokenomics #561 `aa21206`, 2026-09-25): `CLASPRC_PATH` now aligns `clasp`
+> too.** The deployer hands `clasp` a private `HOME` whose `.clasprc.json` IS `$CLASPRC_PATH`
+> (fail-closed; tested in `scripts/test_clasp_credentials_env.py`). So the correct gesture for an
+> admin-owned project is simply:
+> `CLASPRC_PATH=~/.clasprc-admin.json python3 scripts/deploy_gas_project.py <scriptId> --push` — the
+> identity guard **and** `clasp` then both run as `admin@truesight.me`. **No `cp` swap needed; do NOT use
+> `--allow-identity-mismatch`** (it pushes as gary@ while `appsscript.json` sets
+> `webapp.executeAs = USER_DEPLOYING`, silently swapping the web app's runtime identity). Admin-owned
+> projects: QR/donation-mint `1MnAsIQAxcSfZO_…`.
 >
 > ⚠ **Two known snags on `1MnAsIQAxcSfZO_…` (donation-mint + qr_code_web_service):** (a) the mirror has
 > stale `.js` duplicates alongside the synced `.gs` (Version / process_donation_mint_telegram_logs /
