@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-26T16:34:57Z`
+- Generated (UTC): `2026-09-26T21:23:23Z`
 - Look-back: **7** calendar days (`2026-09-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,12 +34,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[TREE PLANTING EVENT]` × 15
 - `[TREE PLANTING LINK EVENT]` × 13
-- `[CONTRIBUTION EVENT]` × 11
+- `[CONTRIBUTION EVENT]` × 12
 - `[PRACTICE EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20260924200801_010` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024PAULO_20250804_20 · SunMint Submission Message ID: Edgar_20260908011432_245 · Updated by: Sophia Truesight
 - `Edgar_20260924222337_012` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_4 · SunMint Submission Message ID: Edgar_20260903083540_011 · Updated by: Sophia Truesight
 - `Edgar_20260925013034_014` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_33 · SunMint Submission Message ID: Edgar_20260903083536_009 · Updated by: Sophia Truesight
 - `Edgar_20260925035017_016` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_35 · SunMint Submission Message ID: Edgar_20260908005833_045 · Updated by: Sophia Truesight
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260925213927_044` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSCAR_20250711_NIBS_19 · SunMint Submission Message ID: Edgar_20260908010207_055 · Updated by: Sophia Truesight
 - `Edgar_20260926162037_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Track A — goal-anchored loop + brain plan: code, deploy-hazard fix, UAT enab…
 - `Edgar_20260926162040_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Track A — governor direction, review, merge + live enable of goal loop
+- `Edgar_20260926173153_050` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek API
 
 ---
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-19_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a742a28 | 2026-09-26 16:41:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 ff793bb | 2026-09-26 11:42:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 22a7164 | 2026-09-26 05:22:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 4157b6b | 2026-09-25 21:46:48 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the
 7edc394 | 2026-09-20 04:39:51 -0300 | sunmint plots: detail panel media gallery + trees + provenance (PR4) (#384)
 703269d | 2026-09-20 05:19:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 ab79af7 | 2026-09-20 01:37:22 -0300 | Explorer PR3: faceted filters + counts + data-quality states (#383)
-321b68e | 2026-09-20 00:29:26 -0300 | SunMint Plot Explorer shell at /sunmint/plots/ (PR2) (#382)
 … (truncated)
 ```
 
@@ -326,6 +326,16 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c5ea719 | 2026-09-26 18:14:31 -0300 | Refresh CFR Anapu supervision claim for thread 35944 (#1426)
+b36c324 | 2026-09-26 17:08:39 -0300 | Liz Bahia deck v21 — Quilombos & Feira Quilombola + Porto de Trás map pin (archive + source sync) (#1425)
+18ce57e | 2026-09-26 17:04:00 -0300 | conventions: a signature is public by construction — correct §2.6 (Gary, thread 35944) (#1424)
+9b5ce4f | 2026-09-26 16:04:24 -0300 | Mark CFR txid deploy PART A DONE (live @43) (#1423)
+a2d4327 | 2026-09-26 15:57:48 -0300 | File consolidated gated GAS deploy runbook; mark SunMint txid dedup shipped (#1422)
+34ab41b | 2026-09-26 15:48:32 -0300 | Add standing dedup-key convention: key on Request Transaction ID, not transport id (#1420)
+6a83761 | 2026-09-26 15:44:31 -0300 | docs: correct stale clasp identity guidance — Path B (CLASPRC_PATH) is now safe, not --allow-identity-mismatch (#1419)
+3fcb153 | 2026-09-26 15:28:09 -0300 | docs(cfr): record #563/#564 ships, close §11.5 gate (b), bump payout deployment to @42 (#1418)
+608bf7d | 2026-09-26 13:35:15 -0300 | chore(previews): refresh Beer Hall preview (2026-09-26 UTC)
+a4074f6 | 2026-09-26 13:35:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-26 UTC)
 8b64517 | 2026-09-26 08:40:58 -0300 | chore(previews): refresh Beer Hall preview (2026-09-26 UTC)
 7847e1b | 2026-09-26 08:40:56 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-26 UTC)
 eae5312 | 2026-09-26 02:18:02 -0300 | chore(previews): refresh Beer Hall preview (2026-09-26 UTC)
@@ -356,22 +366,18 @@ b84c58f | 2026-09-24 18:51:33 -0300 | SunMint cert: shrink overlay to keep tile 
 f94f20f | 2026-09-24 18:42:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
 a220f9e | 2026-09-24 18:42:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
 b6c71ba | 2026-09-24 16:49:23 -0300 | sunmint cert: cv2 fallback when pyzbar fails at every scale (#1400)
-60ecb48 | 2026-09-24 16:25:35 -0300 | Add SunMint link+issue-cert runbook; fix cert SOP §3 (overlay) + template pyzbar retry (#1399)
-ad7568f | 2026-09-24 15:30:54 -0300 | docs: resolve SunMint SOP §7 conflict framing + file seeder-daemon answer (#1398)
-9308086 | 2026-09-24 15:12:51 -0300 | docs: cross-link GAS scanner convention + file deploy-identity, processBatch, per-user-trigger follow-ups (#1397)
-73201fb | 2026-09-24 14:37:37 -0300 | docs(handoff): mark Plan A (SunMint loud-failure) complete (#1396)
-448a640 | 2026-09-24 14:36:07 -0300 | docs(followups): tick SunMint silent-green fix to Recently shipped (#1395)
-8479672 | 2026-09-24 14:30:31 -0300 | docs(cfr-plan): mark açaí dropdown contribution reported (PR4/PR4-b) (#1394)
-ff64d75 | 2026-09-24 14:27:51 -0300 | docs(handoffs): register SunMint loud-failure fix (Plan A) -> thread 36213 (#1392)
-3d191b0 | 2026-09-24 14:27:46 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
-63bb490 | 2026-09-24 14:27:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
-0b693a9 | 2026-09-24 14:27:35 -0300 | docs(cfr-plan): record açaí dropdown prod promotion (sunmint_prod) (#1393)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+1c6fc02 | 2026-09-26 15:55:04 -0300 | SunMint tree planting: dedup on Request Transaction ID (col V) (#568)
+913fc1e | 2026-09-26 15:37:08 -0300 | feat(cfr): collapseCfrTreeTxDuplicates one-shot lever (delete rows sharing a txid, keep first) (#567)
+3128f72 | 2026-09-26 15:33:49 -0300 | feat(cfr): backfillCfrTreeTxIds supports ?dryRun=1 (preview) + reports distinct/dupe counts (#566)
+6755362 | 2026-09-26 15:31:32 -0300 | test(cfr): prove tree-planting txid dedupe survives across FIRES (sheet-seeded ledger) (#565)
+3b2ccb1 | 2026-09-26 15:25:25 -0300 | fix(cfr): dedupe tree planting on Request Transaction ID, not the transport update id (#564)
+3a2c748 | 2026-09-26 14:48:20 -0300 | fix(cfr): store the canonical per-tree id so recipient auto-fill joins the picker (#563)
 f6bf45c | 2026-09-26 06:09:24 -0300 | feat(gas): getTreeRecipientMap read action (tree_id -> pk_hash) for payout auto-fill (#562)
 aa21206 | 2026-09-25 21:49:49 -0300 | fix(deploy): align clasp subprocess identity with the identity guard (fail-closed) (#561)
 4657485 | 2026-09-25 21:25:13 -0300 | Add one-shot ?action=backfillPayoutRegistrations normalisation lever + tests (#560)
@@ -453,6 +459,9 @@ c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+3b45840 | 2026-09-26 16:21:52 -0300 | sitemap: derive lastmod from article:published_time, not mtime (#330)
+7215c21 | 2026-09-26 15:21:03 -0300 | media-gallery: lazy-load video iframes + fix stale union assertion (#329)
+7bce811 | 2026-09-26 14:13:27 -0300 | media-gallery: section-default published entries + union local curation (fixes blank sectioned farm pages) (#328)
 57c27b8 | 2026-09-25 21:57:00 -0300 | Itacaré page: note visits are organised in the September cacao harvest (#327)
 365e476 | 2026-09-21 17:16:19 -0300 | Enrich Itacaré Cultural Immersion page: story, community videos, events (#326)
 610db36 | 2026-09-21 16:44:58 -0300 | Itacaré experience page: swap in Cachoeira do Cleandro photo (#325)
@@ -552,7 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/26/2026 8:51:04 |
+| 2026-09 | 924.5 | 18364.34386 | 9/26/2026 13:50:40 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-19`; scanned last **600** data rows)
 
