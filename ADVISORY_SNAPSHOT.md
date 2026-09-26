@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-25T21:45:16Z`
-- Look-back: **7** calendar days (`2026-09-18` → today UTC)
+- Generated (UTC): `2026-09-26T05:17:42Z`
+- Look-back: **7** calendar days (`2026-09-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -232,9 +232,9 @@ _(+32 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,753.61**
+- USD on hand: **$4,753.57**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.59**
+- USD provisioned for voting-rights cash-out: **$55.63**
 
 ### In-transit freight (1 row)
 
@@ -250,10 +250,9 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-18_ (5):
+_All dated lines on/after 2026-09-19_ (4):
 
 - 2026-09-25 | sophia | **PROJECT_INDEX.md capoeira row is STALE — needs refresh.** It lists 4 pages (index/library/practice/transparency); the live site now has **8** (adds roda, berimbau, community, roots) and a full EN/PT i18n layer (`assets/js/i18n.js` + `assets/js/i18n/common.js`, per-page `window.I18N_PAGE`, storage key `capoeira_lang`). Flagged, **not** hand-edited (canonical-file rule — see plans/CAPOEIRA_I18N_PLAN.md §3). Capoeira repo is also **no-beta**: merge to `main` = live deploy at capoeira.agroverse.shop. Engineering complete via PR1–PR10; remaining gate = native-PT-reader UAT review.
-- 2026-09-18 | Sophia | Deployed `1MnAsIQA…` @30 (payout-event + payout-registration sinks, #504/#513); recorded in `GAS_SCRIPT_PROPERTIES.md` §2/§3. CFR_PROGRAM_SPREADSHEET_ID + DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING still NOT SET.
 - 2026-09-25 | sophia | Inline-button resume options shipped for BOTH transports — Telegram (#502/#503) + Discord parity (#504), deployed and UAT-verified live (thread 36518). Option labels server-side in `app/resume_registry.py` / `app/discord_resume_registry.py` (opaque token, consume-on-read, single-fire); transport carries `ro:<token>:<i>`. Discord taps = `INTERACTION_CREATE` type-3, deferred-ACKed (type 6) within 3s THEN dispatched on the same synthesized-go path as the emoji-go reaction. Filed `## Recently shipped` in OPEN_FOLLOWUPS.md.
 - 2026-09-24 | sophia | Telegram reply-to context loss FIXED + filed: `truesight_autopilot` #500 (`30291c97`) forwards the replied-to message's sender + text/caption (or an honest "replying to an uncaptioned photo/document from X" marker) as a `[Replying to ...]` prefix at the `dispatch_text` construction site — same convention as `[Telegram context: ...]`; byte-identical when not a reply. Deployed + live-verified (thread 35622): `journalctl` `CHAT REQ` line now shows the prefix, and the reply acted on it. Root cause (two narrow `reply_to_message` reads that never forwarded content) filed in OPEN_FOLLOWUPS + plan `plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md` so a third occurrence doesn't repeat un-tracked.
 - 2026-09-23 | sophia | SunMint tree-photo supersession (thread 35189; governor go from Gary): the canonical photo for tree `Edgar_20260903083523_004` (plot PL-002, Fazenda Bom Sucesso) was overwritten in place — `sunmint/images/20260902_bomsucesso_tree02.jpg` now holds Gary's frame captured 2026-09-02 18:47:11 -03:00 (commit `b332512`, new blob `793132cb`, sha256 `2a15e9a1…`), superseding blob `aff60dd2` / sha256 `bd7ed5af…` which remains recoverable in git history. Integrity note: the photo URL is embedded in the RSA-signed, append-only attestation `verify_public_signatures/tree_planting/Edgar_20260903083523_003.json` (`signed_payload`), and the signature covers that URL string (not the image bytes), so verification still passes — the supersession is recorded here for transparency. Gap filed in OPEN_FOLLOWUPS: photo supersessions have no sanctioned/signed path.
@@ -275,6 +274,7 @@ _All dated lines on/after 2026-09-18_ (5):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4157b6b | 2026-09-25 21:46:48 +0000 | chore(stats): refresh stats indexes [skip ci]
 8aabd3c | 2026-09-25 17:29:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 16dfa7d | 2026-09-25 12:07:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 ceea3bd | 2026-09-25 05:16:56 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,7 +314,6 @@ ab79af7 | 2026-09-20 01:37:22 -0300 | Explorer PR3: faceted filters + counts + d
 321b68e | 2026-09-20 00:29:26 -0300 | SunMint Plot Explorer shell at /sunmint/plots/ (PR2) (#382)
 12299b4 | 2026-09-19 20:56:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 d84e7f1 | 2026-09-19 16:01:29 +0000 | chore(stats): refresh stats indexes [skip ci]
-cbdc173 | 2026-09-19 11:24:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +326,12 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f08f7ee | 2026-09-25 22:30:34 -0300 | docs(OPEN_FOLLOWUPS): record box git-push recurrence + fix (#1417)
+4f495ae | 2026-09-25 21:22:26 -0300 | Deck v18 — add weekly rhythms (rodas + samba) to itinerary
+84b028a | 2026-09-25 21:08:23 -0300 | docs(goal-loop): mark A1-A3 merged + deployed dark; RESUME HERE -> UAT (#1416)
+40c34f4 | 2026-09-25 19:01:16 -0300 | fix(sunmint cert): normalise resolution before QR module-count discovery (#1415)
+f4e3226 | 2026-09-25 18:45:35 -0300 | chore(previews): refresh Beer Hall preview (2026-09-25 UTC)
+bb41761 | 2026-09-25 18:45:33 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-25 UTC)
 982ac4d | 2026-09-25 17:35:26 -0300 | docs(handoff): reconcile CAPOEIRA_I18N manifest row — engineering complete (PR1–PR10 merged), awaiting UAT gate (#1414)
 cf16a0c | 2026-09-25 17:32:15 -0300 | docs(i18n): reconcile PR tracker (PR1–PR10 merged), move RESUME HERE to UAT, flag stale PROJECT_INDEX row (PR10b) (#1413)
 af829a4 | 2026-09-25 15:08:17 -0300 | OPEN_FOLLOWUPS: file lineage-assets seed half is unscheduled (index goes stale) (#1412)
@@ -361,18 +366,16 @@ ff64d75 | 2026-09-24 14:27:51 -0300 | docs(handoffs): register SunMint loud-fail
 ff013cd | 2026-09-24 14:24:47 -0300 | OPEN_FOLLOWUPS: §11.5 — env var set (a); add GAS-deploy gate (b) + Edgar restart (c); CFR tree-planting tab empty evidence (#1390)
 01c20cb | 2026-09-24 14:20:32 -0300 | docs(followups): SunMint index freeze RESOLVED (indexes refreshed) — narrow entry to the still-open silent-green fix (#1386)
 b18c018 | 2026-09-24 14:19:34 -0300 | docs(credentials): document sunmint-ledger-manager SA as canonical for SunMint sheets (#1388)
-9b82a2d | 2026-09-24 14:12:45 -0300 | docs: §11.9 P6 — CFR sink writers+wiring merged (source); deploy gated (#1385)
-857bb30 | 2026-09-24 14:12:38 -0300 | docs: registry rows for the merged additive CFR routing target (#1384)
-c188999 | 2026-09-24 14:12:30 -0300 | docs: §11.5 CFR sink shipped in source; file remaining deploy/env gates (#1382)
-6d7dc97 | 2026-09-24 14:03:17 -0300 | cfr-anapu acai: PR2+PR2-b complete (both surfaces live); record Pages=main correction (#1383)
-582d12e | 2026-09-24 13:56:27 -0300 | File live incident: sunmint rebuild-tree-index fails daily (403 credential) (#1380)
-b0150b0 | 2026-09-24 13:51:09 -0300 | followups: read_context_file serves stale local clone (deploy-only refresh) (#1379)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+aa21206 | 2026-09-25 21:49:49 -0300 | fix(deploy): align clasp subprocess identity with the identity guard (fail-closed) (#561)
+4657485 | 2026-09-25 21:25:13 -0300 | Add one-shot ?action=backfillPayoutRegistrations normalisation lever + tests (#560)
+fcb9099 | 2026-09-25 21:08:43 -0300 | feat(gas): SS11.3-bis payout-registration mirror tab on the intake workbook (#557)
+b4bb906 | 2026-09-25 19:35:47 -0300 | fix(gas): payout-registration status lifecycle — one ACTIVE row per pk_hash (#556)
 857bed4 | 2026-09-25 12:28:49 -0300 | feat(gas): surface product context in list_sold_pending_tree (thread 35944) (#555)
 4cf8a0d | 2026-09-25 11:32:55 -0300 | docs(gas): §4 — top-level functions sorted ascending alphabetical (STANDING, Gary 2026-09-24) (#554)
 e32d3b9 | 2026-09-24 15:15:37 -0300 | GAS: add documents OAuth scope (fixes processBatch) + correct deploy-identity convention (#553)
@@ -399,21 +402,6 @@ bf28f93 | 2026-09-21 00:22:05 -0300 | PR6.2: plot links book the col-U tree tran
 4a6b5c0 | 2026-09-20 15:38:37 -0300 | feat(gas): SunMint farmer-settlement reconciliation (plan PR3) (#531)
 6149616 | 2026-09-20 15:22:24 -0300 | docs(API): document [TREE PURCHASE EVENT] as an ASSET RECEIPT variant (plan PR2) (#530)
 e8bdc2a | 2026-09-20 15:16:30 -0300 | docs(SCHEMA): SunMint farmer-settlement items, 2 new columns, 4 tab sections (plan PR1) (#529)
-9c5ec86 | 2026-09-18 16:27:24 -0300 | manifest: record real deployments for 1orWgdGckts55 (kill TBC) (#528)
-673b00e | 2026-09-18 16:03:32 -0300 | fix(gas): remove top-level getCredentials() call breaking all entry points (#527)
-3cbb4cd | 2026-09-18 16:01:35 -0300 | harden(gas): fail CLOSED on unverifiable pushes; fix misleading accessor message (#526)
-cd61e6e | 2026-09-18 15:10:27 -0300 | fix(currency-conversion): canonicalize currency labels + make ledger append atomic/idempotent (#525)
-269ff42 | 2026-09-18 14:53:04 -0300 | fix(gas): classify POST-only endpoints + disposition 3 smoke-test anomalies (#524)
-fa792da | 2026-09-18 14:42:36 -0300 | test(gas): add endpoint smoke-test harness for all registered /exec URLs (#523)
-c824166 | 2026-09-18 09:30:30 -0300 | feat(gas): selective pull-first — materialise remote-only files so push can't delete them (#521)
-c352772 | 2026-09-18 09:29:21 -0300 | fix(gas): adopt live->git for 4 live-ahead files (Tier-1 drift) (#522)
-9383c74 | 2026-09-18 09:19:47 -0300 | fix(gas): pre-push guard — refuse a clasp push that would delete remote-only files (#520)
-c9f5b80 | 2026-09-17 22:56:43 -0300 | chore(security): scrub leaked token literals from tracked GAS sources (#519)
-5866909 | 2026-09-17 22:48:41 -0300 | SS12.7 Q3b: declare oauthScopes so trigger installers are authorized (#518)
-1574239 | 2026-09-17 22:38:54 -0300 | SS12.7 Q3b: make the payout-event hourly trigger verifiable from the action response (#517)
-4c89302 | 2026-09-17 22:25:32 -0300 | fix(gas): secret-free Credentials.js for 1y6JVYwqdr + remove stale duplicate web_app.js (#515)
-779d0b8 | 2026-09-17 22:22:34 -0300 | fix(gas): restore missing Credentials.js for 1wmgYPwf + scrub leaked token literal (#514)
-… (truncated)
 ```
 
 ### `dapp` → `dapp`
@@ -437,8 +425,7 @@ _(no commits on origin/main in window)_
 ### `proposals` → `proposals`
 
 ```
-7a14709 | 2026-09-18 14:03:49 -0300 | Add bilingual EN+PT proposal PDF (logo header) for Bis Contabilidade retention (Black King)
-e0158eb | 2026-09-18 13:55:44 -0300 | Add shareable PDF of Bis Contabilidade retention proposal (Black King)
+bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ```
 
 ### `agroverse-inventory` → `agroverse-inventory`
@@ -458,13 +445,12 @@ c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 277d073 | 2026-09-19 11:32:00 +0000 | chore: refresh currencies.json [skip ci]
 60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-c701022 | 2026-09-18 11:48:29 +0000 | chore: refresh currencies.json [skip ci]
-b0643ec | 2026-09-18 11:20:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+57c27b8 | 2026-09-25 21:57:00 -0300 | Itacaré page: note visits are organised in the September cacao harvest (#327)
 365e476 | 2026-09-21 17:16:19 -0300 | Enrich Itacaré Cultural Immersion page: story, community videos, events (#326)
 610db36 | 2026-09-21 16:44:58 -0300 | Itacaré experience page: swap in Cachoeira do Cleandro photo (#325)
 c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Clara on the partner page (#324)
@@ -563,9 +549,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/25/2026 13:50:45 |
+| 2026-09 | 924.5 | 18364.34386 | 9/25/2026 21:50:59 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-18`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-19`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
