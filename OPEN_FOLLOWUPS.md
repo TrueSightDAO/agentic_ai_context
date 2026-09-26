@@ -228,7 +228,7 @@ detector tolerates at native resolution (the `2023SA…` family is affected as a
 
 **Ask.** Land the remaining gates that make the merged §11.5 mirror actually fire.
 - **(a) ✅ DONE (2026-09-24) — env var set.** `DAO_PROTOCOL_WEBHOOK_CFR_PROGRAM_REGISTRATION_PROCESSING` now exists in `/home/ubuntu/dao_protocol/.env`; value is **sha1-identical** to `…_PAYOUT_PROCESSING` (same GAS `/exec` deployment), `.env` backed up before the append. (Gary's go, thread 35947.)
-- **(b) ⭐ STILL OPEN — NEW FINDING: the GAS code is NOT deployed.** The live deployment for `1MnAsIQA…` (`/exec` id `AKfycbxQDdGnw…`, serving *both* the payout sink and the new CFR sink — one GAS project) is `@33`, dated **2026-09-21**, i.e. **before** tokenomics #550 (2026-09-24). Probing the live `/exec` with `?action=processCfrProgramSubmissionsFromTelegramChatLogs` returns **`Invalid action`** — the action is not in the running deployment. **Setting the env var alone does NOT make the sink live:** #550 must be `clasp`-pushed **and** the versioned deployment rolled forward (@33 → new). The autopilot `gas_deploy_project` dry-run refused on an identity mismatch (project owner `admin@truesight.me` vs clasp `garyjob@agroverse.shop`); it needs an explicit `--allow-identity-mismatch` — a deliberate governor call. **Never touches SunMint:** the SunMint scanner is a *separate* GAS project (`1Jp8q…`).
+- **(b) ⭐ STILL OPEN — NEW FINDING: the GAS code is NOT deployed.** The live deployment for `1MnAsIQA…` (`/exec` id `AKfycbxQDdGnw…`, serving *both* the payout sink and the new CFR sink — one GAS project) is `@33`, dated **2026-09-21** (UPDATE 2026-09-26: gate (b) RESOLVED - the live deployment is now **@42**, which carries #550; probing `?action=processCfrProgramSubmissionsFromTelegramChatLogs` returns `{"success":true,"recorded":0,"skipped":8,"errors":0}`. Gate (a) env var SET 2026-09-24; gate (c) Edgar restart still open.), i.e. **before** tokenomics #550 (2026-09-24). Probing the live `/exec` with `?action=processCfrProgramSubmissionsFromTelegramChatLogs` returns **`Invalid action`** — the action is not in the running deployment. **Setting the env var alone does NOT make the sink live:** #550 must be `clasp`-pushed **and** the versioned deployment rolled forward (@33 → new). The autopilot `gas_deploy_project` dry-run refused on an identity mismatch (project owner `admin@truesight.me` vs clasp `garyjob@agroverse.shop`); it needs an explicit `--allow-identity-mismatch` — a deliberate governor call. **Never touches SunMint:** the SunMint scanner is a *separate* GAS project (`1Jp8q…`).
 - **(c) STILL OPEN — Edgar restart.** Restart the `dao_protocol` service so the new env var **and** the #179 ROUTING entries load (`EnvironmentFile=-.env` + module-level `ROUTING` are read at process start; #179 is already in the box checkout at `63c726bb`).
 
 Everything upstream of these gates is merged.
@@ -3662,6 +3662,18 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### `getTreeRecipientMap` recipient-autofill no-op = the col-A/col-D off-by-one (same root as `trees/index.geojson`) - SHIPPED 2026-09-26
+**Shipped 2026-09-26. Governor: Gary (thread 35944). PR: tokenomics #563 (`3a2c7480`); GAS @42; live backfill run.**
+
+Selecting a tree in `report_payout_event.html` left **Recipient PK Hash blank**. Root cause was NOT missing wiring - the picker selects intake **col D** (`Edgar_..._103`, the `telegram_message_id`) while `getTreeRecipientMap` keyed on the CFR `tree planting` tab's `tree_id` = intake **col A** (update id) - a systematic **+1**. Verified live: 0/18 exact id matches, 17/18 at minus-1. Fix: store the canonical `Edgar_*`-shaped value (prefer col D) on write + a one-shot idempotent `?action=backfillCfrTreeIds` lever, run live (**18 changed**, idempotent). Verified: 17/18 now join (the 1 miss is a tree not in the pending feed). Display/keying only; no PII (hash-only).
+
+### CFR `tree planting` tab now dedupes on `Request Transaction ID`, not the transport update id - SHIPPED (source) 2026-09-26
+**Shipped 2026-09-26. Governor: Gary (thread 35944). PR: tokenomics #564 (`3b2ccb18`). GAS deploy + backfill = governor gates, NOT yet run.**
+
+One `telegram_update_id` can map to multiple rows, and the SAME tree can be re-posted under a NEW update id (15 live cases) - keying dedup on the update id double-counts it. Verified over all 265 live rows: **172 distinct txids, ZERO appearing under more than one signer or more than one tree content** - so the txid ALONE is the unique key (no `pk_hash` scoping needed; the signature is already represented as the one-way `pk_hash`, never raw). Added a trailing `request_transaction_id` column, a header migration-safe `ensurePayoutRegTab_`, an idempotent `?action=backfillCfrTreeTxIds`, and the provisioner SSOT. 33 harness tests + 136 pytest pass.
+
+**Outstanding gate:** deploy GAS (Path B `~/.clasprc-admin.json`) then redeploy the pinned deployment **@42 -> @43**, then run `?action=backfillCfrTreeTxIds` once. Not run unilaterally.
 
 ### Box git push restored: SSH-migrate CLI remotes, scrub 2 embedded PATs, re-apply canonical credential helper
 **Shipped 2026-09-26. Governor: Gary (thread 35944). Box-local ops change; no repo code.**
