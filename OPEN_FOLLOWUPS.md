@@ -39,6 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `verify_public_signatures` paths should be keyed on `sha256(request_transaction_id)`, not the drift-prone `telegram_message_id`
+**Filed 2026-09-26 (thread 35944). Governor-directed (Gary). SCOPE + DRY-RUN ONLY — NO bulk write yet.** The repo README calls every published file "an immutable, stable, citable URL", but the filename is the digest-unstable `telegram_message_id` — the same key the 2026-09-26 thread moved everything else OFF of. Fix = also write a **byte-identical mirror** at a second path keyed on the `Request Transaction ID`; originals untouched.
+
+**Scope (verified TWICE — Sophia, then Gary's Envoy independently on a fresh clone; every number matched):**
+- **4,502 / 4,503** event files carry a `Request Transaction ID:` footer (only miss = `tree_planting/SMOKE-REPRO-0002.json`, a test file). **All 37** event-type folders carry an equivalent field — no folder needs an invented key.
+- The footer value **== the JSON `signature` field** in 4,502/4,503 files (matches `plans/SUNMINT_PUBLIC_SIGNATURES_PLAN.md` §2.3: "Request Transaction ID field = signature"). So the stable key is already *in* every record — only the **path** is message-id-keyed.
+- **4,431 distinct** txids; **43 duplicate groups / 71 extra files**. Gary's hypothesis — same txid ⟹ same content — is **confirmed: 43/43 groups have byte-identical `signed_payload`** (RSA-PKCS1-v1_5+SHA256 is deterministic). Files differ **only** in the ingestion envelope (`telegram_message_id`/`update_id`) — 0/43 are byte-identical files. So the 71 are **43 double-ingested requests, not 71 ambiguous events** — a `sha256(txid)` path **dedups them for free**.
+- All 43 groups are **single-folder, single-contributor, single-`source_tab`** → canonical-member choice is unambiguous (earliest `message_id` wins).
+
+**Why the raw txid can't be the filename.** It is a base64 RSA-2048 signature = **344 chars** incl. `/` `+` `=` → illegal AND over the **255-byte** limit. Every reversible encoding is still too long (base64url 342, hex 512, base32 410). **Fix = hash:** `sha256(txid)` → 64 lowercase-hex, charset `[0-9a-f]` (filesystem- and case-insensitive-safe), **0 collisions** over the 4,431 distinct txids (holds at 16/32/64 hex).
+
+**Decisions (Gary — confirmed):** (1) filename = `sha256(txid)` full **64-hex**; (2) the 71 dup files **collapse** to the same canonical path; (3) **canonical member = earliest `message_id`**; (4) going forward, write **both** names (txid-primary, message-id alias) during transition.
+
+**Trade-off + neutralizer.** A hashed path is irreversible → record `request_transaction_id` as a **JSON field** in every per-event file AND as a `txid → path` **alias in each `index.json`**, so a verifier can hash their txid → resolve path → round-trip the value in the body.
+
+**Dry-run bottom line (no writes performed):** would create **~4,431 canonical `sha256(txid).json` mirrors** (byte-identical content, originals untouched) **+ 37 folder `index.json` + 1 root `index.json`**; **0 filename collisions**.
+
+**Where.** Generator = `/home/ubuntu/scripts/sync_sunmint_signatures.py` (cron `*/30`, token vault `PUBLIC_SIGNATURES_WRITE_PAT`); filenames today `f"{folder}/{telegram_message_id}.json"`, index keys `message_id → {url,…}`. **Blocker:** none technical — governor go. **Next:** PR the generator change **dry-run-first** (re-show the ~4,431 count before any write), then a bounded backfill. No bulk write / no prod / no money.
+
 ### ⛔ GATED (governor go required) — GAS deploy + backfill for BOTH txid-dedup sinks (CFR + SunMint)
 **Filed 2026-09-26 (thread 35944). Code+docs COMPLETE and merged; every step below is a GATE — do NOT run without Gary's explicit go. No money, no ledger write; a single GAS deploy + a dry-run-first backfill each.**
 
