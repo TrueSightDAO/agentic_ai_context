@@ -162,7 +162,7 @@ python3 scripts/deploy_gas_project.py <scriptId> --push          # gates on owne
 cp ~/.clasprc-gary.json ~/.clasprc.json                          # restore daily driver
 ```
 
-The script's `CLASPRC_PATH` env var can also point identity *resolution* at a different file (for the safety check), but clasp itself still reads `~/.clasprc.json` — so the `cp` swap above is the actual deploy gesture.
+**UPDATE 2026-09-26 (tokenomics #561 `aa21206`):** `CLASPRC_PATH` now aligns `clasp` as well — the deployer gives `clasp` a private `HOME` whose `.clasprc.json` IS `$CLASPRC_PATH` (fail-closed). So the `cp` swap above is **no longer required**; instead run `CLASPRC_PATH=~/.clasprc-admin.json python3 scripts/deploy_gas_project.py <scriptId> --push` and both the identity guard and `clasp` act as `admin@truesight.me`. Do **not** pass `--allow-identity-mismatch` (it pushes as gary@ while `appsscript.json` sets `webapp.executeAs = USER_DEPLOYING`, silently changing the web app's runtime identity).
 
 ### Re-minting (when one of these tokens expires / gets revoked)
 
