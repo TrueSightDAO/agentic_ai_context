@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-27T05:34:45Z`
+- Generated (UTC): `2026-09-27T12:17:53Z`
 - Look-back: **7** calendar days (`2026-09-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,14 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 15
+- `[TREE PLANTING EVENT]` × 14
 - `[TREE PLANTING LINK EVENT]` × 13
 - `[CONTRIBUTION EVENT]` × 12
-- `[PRACTICE EVENT]` × 2
+- `[PRACTICE EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20260924222337_012` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_4 · SunMint Submission Message ID: Edgar_20260903083540_011 · Updated by: Sophia Truesight
 - `Edgar_20260925013034_014` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_33 · SunMint Submission Message ID: Edgar_20260903083536_009 · Updated by: Sophia Truesight
 - `Edgar_20260925035017_016` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_35 · SunMint Submission Message ID: Edgar_20260908005833_045 · Updated by: Sophia Truesight
 - `Edgar_20260925132229_018` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-25T13:22:26.664Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260926162037_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Track A — goal-anchored loop + brain plan: code, deploy-hazard fix, UAT enab…
 - `Edgar_20260926162040_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Track A — governor direction, review, merge + live enable of goal loop
 - `Edgar_20260926173153_050` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek API
+- `Edgar_20260927100548_052` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-27T10:05:45.988Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-26T10:59:14.782Z`
+- Generated (UTC): `2026-09-27T10:59:13.942Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-20_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b2589f0 | 2026-09-27 05:38:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 6cd69be | 2026-09-26 21:26:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 a742a28 | 2026-09-26 16:41:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 ff793bb | 2026-09-26 11:42:56 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the
 00831c0 | 2026-09-20 06:38:08 -0300 | sunmint marketing: map teaser + 'Explore all plots' CTA (PR6) (#386)
 1baf6fb | 2026-09-20 05:39:53 -0300 | sunmint plots: deep-links (?plot=/?farm=/?tree=/?qr=) + share (PR5) (#385)
 7edc394 | 2026-09-20 04:39:51 -0300 | sunmint plots: detail panel media gallery + trees + provenance (PR4) (#384)
-703269d | 2026-09-20 05:19:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d69955b | 2026-09-27 02:35:13 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
+ea52bff | 2026-09-27 02:35:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
 af7b72f | 2026-09-26 19:48:58 -0300 | docs: record SunMint txid-dedup GAS deploy @7->@13 + verified no-op backfill (35944) (#1428)
 25e3442 | 2026-09-26 19:30:26 -0300 | OPEN_FOLLOWUPS: file txid-keyed mirror scope for verify_public_signatures (sha256(txid), dry-run first) (#1427)
 f090cdc | 2026-09-26 18:23:46 -0300 | chore(previews): refresh Beer Hall preview (2026-09-26 UTC)
@@ -364,8 +366,6 @@ b267327 | 2026-09-25 11:28:58 -0300 | docs(followups): file inline-button resume
 9a4ea90 | 2026-09-25 11:28:48 -0300 | docs: GAS manual-trigger instruction convention — surface 4 fields (Gary 2026-09-24) (#1407)
 46e2cad | 2026-09-25 10:47:09 -0300 | Define "provenance page" in GLOSSARY; mark SunMint cert-download follow-up SHIPPED (#1404)
 95bdf6d | 2026-09-25 02:13:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-25 UTC)
-24bc853 | 2026-09-25 02:13:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-25 UTC)
-a845048 | 2026-09-24 22:33:52 -0300 | SunMint cert: correct registry-QR resize fix (supersedes #1402) (#1403)
 … (truncated)
 ```
 
@@ -441,6 +441,7 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f42f547 | 2026-09-27 12:07:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a964e20 | 2026-09-26 11:46:38 +0000 | chore: refresh currencies.json [skip ci]
 efc22ca | 2026-09-26 11:29:28 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 014b973 | 2026-09-25 11:55:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -560,7 +561,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/26/2026 21:50:36 |
+| 2026-09 | 924.5 | 18364.34386 | 9/27/2026 4:50:44 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-20`; scanned last **600** data rows)
 
