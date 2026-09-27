@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint "Tree Planting" tab DOUBLE-APPENDS rows — 50 duplicate `Telegram Message ID`s in the source sheet
+**Filed 2026-09-27 (thread 35944). Reproduced live (read-only). Ops/data-integrity; not money-adjacent, but it double-counts trees and spawns phantom dapp flags.**
+
+**Symptom.** The same submission can appear on the `SunMint Tree Planting` tab as **two rows**. Measured live: **50 duplicate `Telegram Message ID`s / 53 extra rows** (of which **16 are byte-identical** and **34 differ only in `Status`**, e.g. `NEW` vs `INVALID`), out of ~147 `NEW` rows. When both copies are `NEW`, the public pending cache publishes the tree twice.
+
+**Impact.** (a) The dapp lists the tree twice and raises a **phantom duplicate flag** on a tree that is not actually duplicated. (b) Compounds the known LINK-path twin bug (see the entry *"SunMint tree-planting LINK path matches rows first-match-only"*) — the double-append is the **upstream generator** of those stale `NEW` twins.
+
+**Downstream mitigation SHIPPED (not a fix).** `lineage-assets` PR #29 makes `build_sunmint_pending` collapse rows sharing `(telegram_message_id, photo_url, request_txid)` — live dry-run **147 -> 137 rows, 0 unique ids lost**. Distinct multi-tree messages differ in `photo_url`/`txid`, so a real tree is never dropped. This hides the defect from the feed; it does **not** stop the sheet from double-appending.
+
+**Root cause to find.** Whatever appends the second row on a status transition — likely the SunMint tree-planting intake GAS (`process_tree_planting_telegram_logs.js` / the signing sink) re-appending instead of updating in place, or a status-change handler writing a new row. Confirm whether the intended model is **append-only-with-status** (then the *consumer* must dedup, as #29 now does) or **one-row-per-tree** (then the emitter must update, not append).
+
+**Next.** Dry-run only: identify the writer, decide the model with Gary, then either (a) make the writer UPDATE in place, or (b) declare append-on-status the contract and keep consumer-side dedup. Do **not** bulk-delete sheet rows without a backup + Gary's go.
+
+**Evidence.** Live gspread read of `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` (SunMint Tree Planting tab); lineage-assets `scripts/sync_pending_caches.py` `build_sunmint_pending`; lineage-assets PR #29.
+
 ### `verify_public_signatures` paths should be keyed on `sha256(request_transaction_id)`, not the drift-prone `telegram_message_id`
 **Filed 2026-09-26 (thread 35944). Governor-directed (Gary). SCOPE + DRY-RUN ONLY — NO bulk write yet.** The repo README calls every published file "an immutable, stable, citable URL", but the filename is the digest-unstable `telegram_message_id` — the same key the 2026-09-26 thread moved everything else OFF of. Fix = also write a **byte-identical mirror** at a second path keyed on the `Request Transaction ID`; originals untouched.
 
