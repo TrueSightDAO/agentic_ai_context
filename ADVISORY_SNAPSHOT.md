@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-27T17:09:03Z`
+- Generated (UTC): `2026-09-27T21:30:55Z`
 - Look-back: **7** calendar days (`2026-09-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,14 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 14
+- `[TREE PLANTING EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 13
 - `[TREE PLANTING LINK EVENT]` × 13
-- `[CONTRIBUTION EVENT]` × 12
 - `[PRACTICE EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20260925013034_014` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_33 · SunMint Submission Message ID: Edgar_20260903083536_009 · Updated by: Sophia Truesight
 - `Edgar_20260925035017_016` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024SA_20251227_35 · SunMint Submission Message ID: Edgar_20260908005833_045 · Updated by: Sophia Truesight
 - `Edgar_20260925132229_018` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-25T13:22:26.664Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20260925140744_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 135 · Description: Oracle: classical Chinese hexagram names (卦名) + advisory-failure root-cause …
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260926162040_048` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Track A — governor direction, review, merge + live enable of goal loop
 - `Edgar_20260926173153_050` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: DeepSeek API
 - `Edgar_20260927100548_052` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-27T10:05:45.988Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20260927194352_054` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SRE fix: sync_sunmint_signatures publish hardening — 409 retry + single-flig…
 
 ---
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-20_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+73d2214 | 2026-09-27 17:13:21 +0000 | chore(stats): refresh stats indexes [skip ci]
 891fd12 | 2026-09-27 12:22:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 b2589f0 | 2026-09-27 05:38:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 6cd69be | 2026-09-26 21:26:24 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ efe698b | 2026-09-20 21:01:02 +0000 | chore(stats): refresh stats indexes [skip 
 2b33635 | 2026-09-20 11:45:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the shared nav is styled (UAT fix) (#387)
 00831c0 | 2026-09-20 06:38:08 -0300 | sunmint marketing: map teaser + 'Explore all plots' CTA (PR6) (#386)
-1baf6fb | 2026-09-20 05:39:53 -0300 | sunmint plots: deep-links (?plot=/?farm=/?tree=/?qr=) + share (PR5) (#385)
 … (truncated)
 ```
 
@@ -326,6 +326,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+efeaeab | 2026-09-27 16:23:25 -0300 | File source-Sheet double-append defect in OPEN_FOLLOWUPS (#1429)
+4ffff79 | 2026-09-27 14:09:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
+72c6ef1 | 2026-09-27 14:09:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
 f1953dc | 2026-09-27 09:18:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
 a7c671f | 2026-09-27 09:18:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
 d69955b | 2026-09-27 02:35:13 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
@@ -363,9 +366,6 @@ f01a743 | 2026-09-25 14:26:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 2cc53e5 | 2026-09-25 11:56:31 -0300 | followups: file GAS deploy-from-stale-checkout hazard + secret-returning callable functions (#1410)
 c1514db | 2026-09-25 11:39:44 -0300 | docs: thread 35944 — close processBatch scope follow-up (v37 shipped), resolve deploy-identity (#1405)
 0fe1410 | 2026-09-25 11:37:19 -0300 | Correct false ASSIGNED_TO_TREE badge claim; log reproduced stale-manifest finding (#1406)
-954dc05 | 2026-09-25 11:30:06 -0300 | docs: GAS manual-trigger convention — make it standing for ALL LLMs (§14 + §2 index) (#1409)
-b267327 | 2026-09-25 11:28:58 -0300 | docs(followups): file inline-button resume options (Telegram+Discord) as shipped (#1408)
-9a4ea90 | 2026-09-25 11:28:48 -0300 | docs: GAS manual-trigger instruction convention — surface 4 fields (Gary 2026-09-24) (#1407)
 … (truncated)
 ```
 
@@ -562,7 +562,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/27/2026 9:51:13 |
+| 2026-09 | 924.5 | 18364.34386 | 9/27/2026 13:50:54 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-20`; scanned last **600** data rows)
 
