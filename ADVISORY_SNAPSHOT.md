@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-27T12:17:53Z`
+- Generated (UTC): `2026-09-27T17:09:03Z`
 - Look-back: **7** calendar days (`2026-09-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-20_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+891fd12 | 2026-09-27 12:22:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 b2589f0 | 2026-09-27 05:38:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 6cd69be | 2026-09-26 21:26:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 a742a28 | 2026-09-26 16:41:26 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ efe698b | 2026-09-20 21:01:02 +0000 | chore(stats): refresh stats indexes [skip 
 c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the shared nav is styled (UAT fix) (#387)
 00831c0 | 2026-09-20 06:38:08 -0300 | sunmint marketing: map teaser + 'Explore all plots' CTA (PR6) (#386)
 1baf6fb | 2026-09-20 05:39:53 -0300 | sunmint plots: deep-links (?plot=/?farm=/?tree=/?qr=) + share (PR5) (#385)
-7edc394 | 2026-09-20 04:39:51 -0300 | sunmint plots: detail panel media gallery + trees + provenance (PR4) (#384)
 … (truncated)
 ```
 
@@ -326,6 +326,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f1953dc | 2026-09-27 09:18:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
+a7c671f | 2026-09-27 09:18:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
 d69955b | 2026-09-27 02:35:13 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
 ea52bff | 2026-09-27 02:35:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
 af7b72f | 2026-09-26 19:48:58 -0300 | docs: record SunMint txid-dedup GAS deploy @7->@13 + verified no-op backfill (35944) (#1428)
@@ -364,8 +366,6 @@ c1514db | 2026-09-25 11:39:44 -0300 | docs: thread 35944 — close processBatch 
 954dc05 | 2026-09-25 11:30:06 -0300 | docs: GAS manual-trigger convention — make it standing for ALL LLMs (§14 + §2 index) (#1409)
 b267327 | 2026-09-25 11:28:58 -0300 | docs(followups): file inline-button resume options (Telegram+Discord) as shipped (#1408)
 9a4ea90 | 2026-09-25 11:28:48 -0300 | docs: GAS manual-trigger instruction convention — surface 4 fields (Gary 2026-09-24) (#1407)
-46e2cad | 2026-09-25 10:47:09 -0300 | Define "provenance page" in GLOSSARY; mark SunMint cert-download follow-up SHIPPED (#1404)
-95bdf6d | 2026-09-25 02:13:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-25 UTC)
 … (truncated)
 ```
 
@@ -441,6 +441,7 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+57f8621 | 2026-09-27 12:26:36 +0000 | chore: refresh currencies.json [skip ci]
 f42f547 | 2026-09-27 12:07:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a964e20 | 2026-09-26 11:46:38 +0000 | chore: refresh currencies.json [skip ci]
 efc22ca | 2026-09-26 11:29:28 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -561,7 +562,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/27/2026 4:50:44 |
+| 2026-09 | 924.5 | 18364.34386 | 9/27/2026 9:51:13 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-20`; scanned last **600** data rows)
 
