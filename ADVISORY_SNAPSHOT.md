@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-26T21:23:23Z`
-- Look-back: **7** calendar days (`2026-09-19` → today UTC)
+- Generated (UTC): `2026-09-27T05:34:45Z`
+- Look-back: **7** calendar days (`2026-09-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -232,9 +232,9 @@ _(+32 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,753.57**
+- USD on hand: **$4,753.52**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.63**
+- USD provisioned for voting-rights cash-out: **$55.68**
 
 ### In-transit freight (1 row)
 
@@ -250,7 +250,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-19_ (4):
+_All dated lines on/after 2026-09-20_ (4):
 
 - 2026-09-25 | sophia | **PROJECT_INDEX.md capoeira row is STALE — needs refresh.** It lists 4 pages (index/library/practice/transparency); the live site now has **8** (adds roda, berimbau, community, roots) and a full EN/PT i18n layer (`assets/js/i18n.js` + `assets/js/i18n/common.js`, per-page `window.I18N_PAGE`, storage key `capoeira_lang`). Flagged, **not** hand-edited (canonical-file rule — see plans/CAPOEIRA_I18N_PLAN.md §3). Capoeira repo is also **no-beta**: merge to `main` = live deploy at capoeira.agroverse.shop. Engineering complete via PR1–PR10; remaining gate = native-PT-reader UAT review.
 - 2026-09-25 | sophia | Inline-button resume options shipped for BOTH transports — Telegram (#502/#503) + Discord parity (#504), deployed and UAT-verified live (thread 36518). Option labels server-side in `app/resume_registry.py` / `app/discord_resume_registry.py` (opaque token, consume-on-read, single-fire); transport carries `ro:<token>:<i>`. Discord taps = `INTERACTION_CREATE` type-3, deferred-ACKed (type 6) within 3s THEN dispatched on the same synthesized-go path as the emoji-go reaction. Filed `## Recently shipped` in OPEN_FOLLOWUPS.md.
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-19_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6cd69be | 2026-09-26 21:26:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 a742a28 | 2026-09-26 16:41:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 ff793bb | 2026-09-26 11:42:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 22a7164 | 2026-09-26 05:22:18 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,7 +314,6 @@ c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the
 1baf6fb | 2026-09-20 05:39:53 -0300 | sunmint plots: deep-links (?plot=/?farm=/?tree=/?qr=) + share (PR5) (#385)
 7edc394 | 2026-09-20 04:39:51 -0300 | sunmint plots: detail panel media gallery + trees + provenance (PR4) (#384)
 703269d | 2026-09-20 05:19:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-ab79af7 | 2026-09-20 01:37:22 -0300 | Explorer PR3: faceted filters + counts + data-quality states (#383)
 … (truncated)
 ```
 
@@ -326,6 +326,10 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+af7b72f | 2026-09-26 19:48:58 -0300 | docs: record SunMint txid-dedup GAS deploy @7->@13 + verified no-op backfill (35944) (#1428)
+25e3442 | 2026-09-26 19:30:26 -0300 | OPEN_FOLLOWUPS: file txid-keyed mirror scope for verify_public_signatures (sha256(txid), dry-run first) (#1427)
+f090cdc | 2026-09-26 18:23:46 -0300 | chore(previews): refresh Beer Hall preview (2026-09-26 UTC)
+7815f5e | 2026-09-26 18:23:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-26 UTC)
 c5ea719 | 2026-09-26 18:14:31 -0300 | Refresh CFR Anapu supervision claim for thread 35944 (#1426)
 b36c324 | 2026-09-26 17:08:39 -0300 | Liz Bahia deck v21 — Quilombos & Feira Quilombola + Porto de Trás map pin (archive + source sync) (#1425)
 18ce57e | 2026-09-26 17:04:00 -0300 | conventions: a signature is public by construction — correct §2.6 (Gary, thread 35944) (#1424)
@@ -362,16 +366,15 @@ b267327 | 2026-09-25 11:28:58 -0300 | docs(followups): file inline-button resume
 95bdf6d | 2026-09-25 02:13:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-25 UTC)
 24bc853 | 2026-09-25 02:13:25 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-25 UTC)
 a845048 | 2026-09-24 22:33:52 -0300 | SunMint cert: correct registry-QR resize fix (supersedes #1402) (#1403)
-b84c58f | 2026-09-24 18:51:33 -0300 | SunMint cert: shrink overlay to keep tile size (stop silent k-grow overflow) (#1401)
-f94f20f | 2026-09-24 18:42:23 -0300 | chore(previews): refresh Beer Hall preview (2026-09-24 UTC)
-a220f9e | 2026-09-24 18:42:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-24 UTC)
-b6c71ba | 2026-09-24 16:49:23 -0300 | sunmint cert: cv2 fallback when pyzbar fails at every scale (#1400)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+9431c78 | 2026-09-26 18:55:46 -0300 | link handler: resolve SunMint row by request_transaction_id (col V), col-D fallback (#572)
+63385d4 | 2026-09-26 18:52:39 -0300 | cfr collapse: graft a duplicate's QR link onto the surviving row (#571)
+c4c8eb5 | 2026-09-26 18:38:41 -0300 | cfr: never collapse a tree row that carries a QR/plot linkage (#569)
 1c6fc02 | 2026-09-26 15:55:04 -0300 | SunMint tree planting: dedup on Request Transaction ID (col V) (#568)
 913fc1e | 2026-09-26 15:37:08 -0300 | feat(cfr): collapseCfrTreeTxDuplicates one-shot lever (delete rows sharing a txid, keep first) (#567)
 3128f72 | 2026-09-26 15:33:49 -0300 | feat(cfr): backfillCfrTreeTxIds supports ?dryRun=1 (preview) + reports distinct/dupe counts (#566)
@@ -452,8 +455,6 @@ c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 08874ff | 2026-09-21 12:53:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 497d497 | 2026-09-20 11:48:08 +0000 | chore: refresh currencies.json [skip ci]
 5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-277d073 | 2026-09-19 11:32:00 +0000 | chore: refresh currencies.json [skip ci]
-60e57b3 | 2026-09-19 11:04:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -465,8 +466,6 @@ c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 57c27b8 | 2026-09-25 21:57:00 -0300 | Itacaré page: note visits are organised in the September cacao harvest (#327)
 365e476 | 2026-09-21 17:16:19 -0300 | Enrich Itacaré Cultural Immersion page: story, community videos, events (#326)
 610db36 | 2026-09-21 16:44:58 -0300 | Itacaré experience page: swap in Cachoeira do Cleandro photo (#325)
-c8b0f31 | 2026-09-19 17:51:07 -0300 | Use official trade name Fábrica Santa Clara on the partner page (#324)
-1bcc0b0 | 2026-09-19 17:48:50 -0300 | Santos Chocolate Factory page: add verified legal-entity details (CNPJ) (#323)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -561,9 +560,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/26/2026 13:50:40 |
+| 2026-09 | 924.5 | 18364.34386 | 9/26/2026 21:50:36 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-19`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-20`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
