@@ -39,6 +39,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `pk_hash` is derived by 3 hand-written implementations that must agree byte-for-byte, yet the value is STORED as data in ≥5 surfaces
+**Filed 2026-09-28 (thread 35944). Governor-directed framing fix shipped; this is the leftover structural risk. Docs/dry-run first — NO schema or key-material write without the governor's go.**
+
+**Origin.** Gary challenged the `pk_hash` rationale ("why do we even need pk_hash when we can simply associate the user with the public key?"). Recon confirmed: `pk_hash` is a *derived* value (`sha256(SPKI DER)[:12]`, base64url) that is nonetheless **persisted as first-class data**, and independently re-implemented in 3 places:
+- `sunmint/scripts/build_tree_geojson.py::derive_pk_hash` (Python; emits `properties.pk_hash`)
+- `sunmint_beta/payout-registration-utils.js::derivePkHash` (browser; reused by `my-trees-utils.js` + `my-trees/index.html`)
+- tokenomics GAS `cfrSubDerivePkHash_` (Apps Script)
+
+**Where the value is STORED (a migration would have to touch all of these):** tree QR ids (`qr_code == pk_hash` — also what gives the credential mint its free idempotency), `lineage-credentials/programs/<slug>/<pk-hash>/`, `lineage-assets/qrs/<pk_hash>.json`, and `pk_hash` / `recipient_pk_hash` sheet columns.
+
+**Gap.** No single source of truth: the 3 implementations are kept in agreement only by hand-written tests. A change to any one silently orphans users. A literal `pk1-` prefix flip is NOT safe today — it would break every stored value (see `PK_HASH_SCHEME = "pk1"` shipped in `build_tree_geojson.py` as the pinned algorithm id, deliberately *not* applied to output). There is also no version tag in the emitted value, so a future algorithm change would be invisible.
+
+**Next (dry-run first).** (1) Decide with Gary whether to (a) keep `pk_hash` + add a `pk1-` prefix with a **dual-read / re-derive-on-read** migration across the 5 surfaces, or (b) drop the handle and key on a canonicalised form of the public key itself. (2) If (a): write the migration as a preview-only action reporting how many stored values would change, and confirm the 3 implementations agree on a shared test vector before any write. (3) Add a cross-language conformance test (one vector, all 3 impls) — today each impl has its own test.
+
+**Evidence.** `conventions/DEDUP_KEY_CONVENTION.md` §2.7; `build_tree_geojson.py` `PK_HASH_SCHEME`; `payout-registration-utils.js:211`; col W (`SUNMINT_SIGNATURE_HEADER`, tokenomics #574).
+
+### CFR payout-registration / tree-planting intake stores only the truncated `pk_hash` — not the signer's public key
+**Filed 2026-09-28 (thread 35944). Governor-directed. Docs/dry-run first — NO schema write without the governor's go.**
+
+**Origin.** Same thread. The CFR program `tree planting` tab (spreadsheet `17KwmxYOpTVR89ybRlOkDXoN9PF3UcaNu3REg2wNa83w`) records only `pk_hash` + `telegram_update_id` per tree — **no key material**. The hash is a 12-char projection of the public key, so a row is "a tree bound to a truncated digest", not independently auditable from the sheet alone.
+
+**Impact.** If the handle ever changes (see the sibling entry above), the signer→tree association is unrecoverable from the tab itself — only via `telegram_update_id` back to the raw Telegram message, *if* that is retained. Contrast the SunMint tab, where the raw SPKI key is now persisted verbatim in its own column (`my digital signature`, col W, tokenomics #574), making trees self-auditable.
+
+**Next (dry-run first).** (1) Add a `my_digital_signature` (SPKI, verbatim) column to the CFR `tree planting` + `payout registrations` tabs, header-located + migration-safe (same pattern as `ensureSunMintSignatureColumn_`). (2) Backfill from the row's contribution text where a "My Digital Signature:" line exists (dry-run diff first, counts only). (3) Confirm the CFR intake GAS writes it going forward.
+
+**Evidence.** Read-only header scan of `17KwmxYOp…` gid 149742653; cf. col W work in tokenomics #574.
+
 ### Reforestation plots need a HISTORIC-SATELLITE land-use audit before `[PLOT FINANCING EVENT]`
 **Filed 2026-09-28 (thread 38191). Governor-directed (Gary). SCOPE: define + wire a precondition; docs/dry-run first — NO prod, NO money, NO retroactive invalidation without the governor's go.**
 
