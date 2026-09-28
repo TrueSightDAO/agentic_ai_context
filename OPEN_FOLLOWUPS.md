@@ -144,6 +144,13 @@ happily re-derives from whatever stale index the CDN serves.
 **stale** CDN copy for up to ~5 min, silently producing empty fields. (The pinned-SHA endpoint serves fresh
 immediately — only the `main` alias lags.)
 
+> **Also bit (2026-09-28, thread 35944 — dapp payout UAT).** A CLI `curl` of
+> `raw.githubusercontent.com/TrueSightDAO/lineage-assets/main/sunmint_pending.json` was served a **stale CDN
+> edge** (`x-cache: HIT`, `source-age: 289`, `max-age=300`) showing **0/137** `recipient_pk_hash` fields,
+> while the **browser** fetch of the *same* URL returned the correct **17/137**. Lesson: verify hot feeds via
+> the GitHub **Contents API** (authoritative) or compare two surfaces — a single CLI `raw` read can be up to
+> `max-age` (300 s) stale.
+
 **Fix options (pick one or combine).**
 1. Schedule the seed half: add a cron/timer for `sync_lineage_assets.py --push` (e.g. daily), ordered
    **before** the pending-cache sync.
