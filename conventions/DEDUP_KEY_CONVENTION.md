@@ -46,7 +46,8 @@ Keying on the transport id is wrong for three independent reasons:
    `pk_hash` scope unless there is evidence a txid is reused across signers (there is not, as
    of 2026-09-26). The txid **is** the signature over the submitted payload and is **public by
    design** (§2.6) — it is *not* the signer's identity, which is represented separately and
-   only as the one-way `pk_hash`.
+   only as a canonical, content-addressed `pk_hash` handle (§2.7) — a **join key** over the
+   public key, *not* a privacy device.
 2. **A dedicated column is mandatory.** Every ingest tab MUST have its own column holding the
    txid. Do not bury it inside a free-text "notes" / "source" blob, and do not re-derive it by
    re-parsing a payload at read time when a column can hold it.
@@ -67,7 +68,33 @@ Keying on the transport id is wrong for three independent reasons:
    the point of the TrueChain audit trail. Do **not** hash, truncate, or otherwise degrade it
    "for privacy" — a stable, globally-unique join key is a feature here. What must **never**
    appear in a public payload is raw **PII** (PIX/CPF/email/phone), and the signer's identity
-   beyond its one-way `pk_hash`; keep masking those exactly as before.
+   beyond its `pk_hash`; keep masking those exactly as before.
+
+---
+
+### 2.7 `pk_hash` is a canonical join key, **not** a privacy device
+
+`pk_hash` (`pk-` + first 12 chars of base64url(SHA-256(SPKI DER))) is derived from the
+signer's **public** key — public by construction — so **anyone holding that key re-derives
+the same value**. It therefore hides nothing, and must not be described as
+"non-reversible", "one-way", or an anonymiser. Its actual jobs:
+
+1. **Canonicalisation** — collapse PEM headers / line wrapping / SPKI-vs-PKCS#1 encodings of
+   one key to a single value (we decode to DER bytes first).
+2. **Compactness** — a 15-char join key instead of a ~392-char blob, in URLs, filenames,
+   card labels and columns.
+3. **Rotation handle** — `former_pk_hashes[]` / a later `pk_hash` can supersede an older one
+   (used by CFR payout-registration).
+
+**What actually protects a person** is that the `key ↔ name/email/PIX` map lives only in the
+**private** DAO member cache (`DaoMembersCache`), never in the public feed. The public
+`trees/index.geojson` carries only `pk_hash`.
+
+**Do not ship a bare `pk1-` prefix flip.** Because `pk_hash` is stored as data in several
+surfaces (tree QR ids, `lineage-credentials/programs/<slug>/<pk-hash>/`,
+`lineage-assets/qrs/<pk_hash>.json`, sheet columns), changing the emitted form orphans all of
+them. `build_tree_geojson.py` pins `PK_HASH_SCHEME = "pk1"` as the algorithm id; applying it
+to output is staged in `OPEN_FOLLOWUPS.md` with a dual-read migration plan.
 
 ---
 
