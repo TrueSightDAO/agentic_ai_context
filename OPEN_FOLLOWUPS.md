@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Reforestation plots need a HISTORIC-SATELLITE land-use audit before `[PLOT FINANCING EVENT]`
+**Filed 2026-09-28 (thread 38191). Governor-directed (Gary). SCOPE: define + wire a precondition; docs/dry-run first — NO prod, NO money, NO retroactive invalidation without the governor's go.**
+
+**Origin.** A 2-hour land due-diligence (site visit captured 2026-09-26 13:45, GPS -14.286508, -39.07375, alt 85.3 m — Bahia cacao belt) found the landowner had been **clearing rainforest to convert it into monoculture cacao plantations**. Governor conclusion: (a) if we buy any plot from such an owner it is only to secure the **remnant forest** portion and stop the conversion; (b) going forward we act as the **liquidity provider for farmers financing NEW trees on already-cleared / working land**; (c) we do **NOT** finance farms that were priorly forest land — cutting trees down only to pay to grow them back is self-defeating; and (d) we require a **historic-satellite-imaging land-use audit on every plot we finance for reforestation** before disbursing.
+
+**Why it matters.** This is an **additionality / eligibility** control. Financing a plot that was forest until recently rewards the very conversion the mission exists to prevent, and would blow the baseline of any credible ARR methodology (Verra VM0047). It operationalises the SunMint PDD §4 baseline + §9 leakage rule *"Target already-degraded lands (not pristine forests)"* into an enforced gate.
+
+**Gap.** No such precondition exists. `[PLOT FINANCING EVENT]` (dao_protocol #177 + tracking tab — see the *"shipped with zero documentation footprint"* entry) has **no land-use-history gate**. The data pipeline is already in place: `sunmint/scripts/cache_satellite_scenes.py` pulls Sentinel-2 L2A via Earth Search STAC (free, anonymous) back to the ~2017 API floor, enough for recent (≥2017) forest→plantation conversion. Caveats: it cannot see earlier clearing (Sentinel-2 floor 2015-2017; Landsat 8/9 gives 30 m back to 2013; Landsat 5/7 archive back to ~1984), and the Esri basemap is blank at z≥18 (known defect).
+
+**Next (dry-run first).** (1) Define the rule — an **N-year look-back** (suggest 10-20 yr) land-use check per plot before a `[PLOT FINANCING EVENT]` is accepted; flag any plot whose boundary was forest at any sampled date. (2) Prototype the check **read-only** against `cache_satellite_scenes.py` (Sentinel-2 + Landsat) for the plots already in the SunMint registry and report which would fail. (3) Pick resolution/tier per `docs/reports/SATELLITE_RESOLUTION_CADENCE_COST_RESEARCH.md` — free Sentinel-2/Landsat first, paid Planet only if free tiers can't resolve canopy conversion. (4) Do **NOT** retroactively invalidate already-financed plots without Gary's explicit go.
+
+**Evidence.** Site-visit GPS + HEIC photo (EXIF preserved) in thread 38191; `research/BRAZIL_SUGARCANE_ENV_REPORT.md` §2 (land-use / ILUC precedent); SunMint PDD §4 baseline + §9 leakage.
+
 ### SunMint "Tree Planting" tab DOUBLE-APPENDS rows — 50 duplicate `Telegram Message ID`s in the source sheet
 **Filed 2026-09-27 (thread 35944). Reproduced live (read-only). Ops/data-integrity; not money-adjacent, but it double-counts trees and spawns phantom dapp flags.**
 
