@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-27T21:30:55Z`
-- Look-back: **7** calendar days (`2026-09-20` → today UTC)
+- Generated (UTC): `2026-09-28T05:42:37Z`
+- Look-back: **7** calendar days (`2026-09-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -232,9 +232,9 @@ _(+32 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,753.52**
+- USD on hand: **$4,753.48**
 - Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
-- USD provisioned for voting-rights cash-out: **$55.68**
+- USD provisioned for voting-rights cash-out: **$55.72**
 
 ### In-transit freight (1 row)
 
@@ -250,7 +250,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-20_ (4):
+_All dated lines on/after 2026-09-21_ (4):
 
 - 2026-09-25 | sophia | **PROJECT_INDEX.md capoeira row is STALE — needs refresh.** It lists 4 pages (index/library/practice/transparency); the live site now has **8** (adds roda, berimbau, community, roots) and a full EN/PT i18n layer (`assets/js/i18n.js` + `assets/js/i18n/common.js`, per-page `window.I18N_PAGE`, storage key `capoeira_lang`). Flagged, **not** hand-edited (canonical-file rule — see plans/CAPOEIRA_I18N_PLAN.md §3). Capoeira repo is also **no-beta**: merge to `main` = live deploy at capoeira.agroverse.shop. Engineering complete via PR1–PR10; remaining gate = native-PT-reader UAT review.
 - 2026-09-25 | sophia | Inline-button resume options shipped for BOTH transports — Telegram (#502/#503) + Discord parity (#504), deployed and UAT-verified live (thread 36518). Option labels server-side in `app/resume_registry.py` / `app/discord_resume_registry.py` (opaque token, consume-on-read, single-fire); transport carries `ro:<token>:<i>`. Discord taps = `INTERACTION_CREATE` type-3, deferred-ACKed (type 6) within 3s THEN dispatched on the same synthesized-go path as the emoji-go reaction. Filed `## Recently shipped` in OPEN_FOLLOWUPS.md.
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-20_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+bf3e35c | 2026-09-27 21:32:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 73d2214 | 2026-09-27 17:13:21 +0000 | chore(stats): refresh stats indexes [skip ci]
 891fd12 | 2026-09-27 12:22:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 b2589f0 | 2026-09-27 05:38:20 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -307,14 +308,6 @@ a5620b5 | 2026-09-21 10:05:29 -0300 | PR11c: scroll the detail rail into view on
 1e6b8fd | 2026-09-21 05:21:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 e588492 | 2026-09-20 23:43:46 -0300 | PR11: plot-anchored satellite overlay driven by the history slider (#391)
 d762fdb | 2026-09-20 21:09:25 -0300 | PR9: retire redundant satellite-history widget from sunmint.html (#390)
-efe698b | 2026-09-20 21:01:02 +0000 | chore(stats): refresh stats indexes [skip ci]
-9708f63 | 2026-09-20 13:41:57 -0300 | sunmint plots: per-plot satellite history stepper (PR8b) (#389)
-52ecbc7 | 2026-09-20 16:26:01 +0000 | chore(stats): refresh stats indexes [skip ci]
-1d1a938 | 2026-09-20 10:08:07 -0300 | fix(sunmint/plots): remove stale "arrive in later units" banner copy (#388)
-2b33635 | 2026-09-20 11:45:10 +0000 | chore(stats): refresh stats indexes [skip ci]
-c346d67 | 2026-09-20 07:41:30 -0300 | sunmint plots: link styles/main.css so the shared nav is styled (UAT fix) (#387)
-00831c0 | 2026-09-20 06:38:08 -0300 | sunmint marketing: map teaser + 'Explore all plots' CTA (PR6) (#386)
-… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -326,6 +319,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1088c11 | 2026-09-27 18:31:13 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
+c24b825 | 2026-09-27 18:31:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
 efeaeab | 2026-09-27 16:23:25 -0300 | File source-Sheet double-append defect in OPEN_FOLLOWUPS (#1429)
 4ffff79 | 2026-09-27 14:09:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
 72c6ef1 | 2026-09-27 14:09:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
@@ -364,8 +359,6 @@ af829a4 | 2026-09-25 15:08:17 -0300 | OPEN_FOLLOWUPS: file lineage-assets seed h
 b244305 | 2026-09-25 14:26:16 -0300 | chore(previews): refresh Beer Hall preview (2026-09-25 UTC)
 f01a743 | 2026-09-25 14:26:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-25 UTC)
 2cc53e5 | 2026-09-25 11:56:31 -0300 | followups: file GAS deploy-from-stale-checkout hazard + secret-returning callable functions (#1410)
-c1514db | 2026-09-25 11:39:44 -0300 | docs: thread 35944 — close processBatch scope follow-up (v37 shipped), resolve deploy-identity (#1405)
-0fe1410 | 2026-09-25 11:37:19 -0300 | Correct false ASSIGNED_TO_TREE badge claim; log reproduced stale-manifest finding (#1406)
 … (truncated)
 ```
 
@@ -403,15 +396,6 @@ aaf8ef0 | 2026-09-22 15:01:13 -0300 | fix(transfer GAS): persist durable Scoring
 bf28f93 | 2026-09-21 00:22:05 -0300 | PR6.2: plot links book the col-U tree transfer + invalidated-plot filter (#541)
 77db46a | 2026-09-21 00:17:06 -0300 | PR5.3a/b: link-time tree transfer amount = Currencies col U (Tree Charge), normalize + fail closed (#539)
 1beabd0 | 2026-09-20 23:55:17 -0300 | PR10b: [PLOT FINANCING EVENT] sink (GAS source-only) + router action + harness + guard (#538)
-50db284 | 2026-09-20 18:04:15 -0300 | PR6: plot-level link path + plot-image resolution (plan 1.6) (#537)
-458729e | 2026-09-20 17:50:25 -0300 | PR5: link-time ledger source variants (pool vs committed) + reimbursement transfer (#536)
-96207b0 | 2026-09-20 17:27:02 -0300 | PR4: add explicit partial-write coverage (mid-write leg failure) (#535)
-2dacfaf | 2026-09-20 17:21:10 -0300 | PR4 step 2: wire SunMint settlement ledger booking into the payout sink (#534)
-376dc3a | 2026-09-20 17:18:43 -0300 | PR4 step 1: pure SunMint settlement leg computation (#533)
-49e362f | 2026-09-20 15:43:19 -0300 | fix(gas): idempotency guard for reconcileTreePlanting_ (PR3 follow-up) (#532)
-4a6b5c0 | 2026-09-20 15:38:37 -0300 | feat(gas): SunMint farmer-settlement reconciliation (plan PR3) (#531)
-6149616 | 2026-09-20 15:22:24 -0300 | docs(API): document [TREE PURCHASE EVENT] as an ASSET RECEIPT variant (plan PR2) (#530)
-e8bdc2a | 2026-09-20 15:16:30 -0300 | docs(SCHEMA): SunMint farmer-settlement items, 2 new columns, 4 tab sections (plan PR1) (#529)
 ```
 
 ### `dapp` → `dapp`
@@ -455,8 +439,6 @@ da84e1e | 2026-09-23 12:09:25 +0000 | chore: refresh currencies.json [skip ci]
 baad3ff | 2026-09-21 13:22:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 c18aed0 | 2026-09-21 13:21:04 +0000 | chore: refresh currencies.json [skip ci]
 08874ff | 2026-09-21 12:53:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-497d497 | 2026-09-20 11:48:08 +0000 | chore: refresh currencies.json [skip ci]
-5082afc | 2026-09-20 11:28:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -562,9 +544,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 924.5 | 18364.34386 | 9/27/2026 13:50:54 |
+| 2026-09 | 924.5 | 18364.34386 | 9/27/2026 21:50:56 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-20`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-21`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
