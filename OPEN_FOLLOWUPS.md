@@ -39,6 +39,39 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `sunmint_beta` has NO CI — its Node/Python/Playwright suites are only ever run by hand, so regressions land silently
+**Filed 2026-09-28 (thread 35944). Verified: `main` has no `.github/workflows/`. Quality/ops; pairs with the `monitor.spec.js` entry below.**
+
+**Symptom.** `sunmint_beta` carries a real suite — `tests/my-trees-utils.test.js` (11 pass), `tests/payout-registration-utils.test.js` (19 pass), 4 pytest files (~21 tests) and Playwright specs under `tests/*.spec.js` — but **nothing runs them automatically**. A fresh clone has **no `.github/workflows/` directory at all**. Every PR relies on the *author* remembering to run the suite locally; a governor merging from the GitHub UI gets no automated signal.
+
+**Why it matters.** The suites already catch real bugs (the `my-trees` i18n regression test added in PR #92 is mutation-verified). Without CI they are advisory only — which is exactly how the `monitor.spec.js` breakage (entry below) stayed invisible. `sunmint_beta` serves the public `beta.sunmint.truesight.me` **and** is the vendor source for `cfr-anapu` (`vendor.json` → `cfr.truesight.me`), so an unenforced regression propagates to two sites.
+
+**Note.** `truesight_autopilot` DOES ship `smoke`/`test` workflows — the pattern exists in the org; `sunmint_beta` simply never got one.
+
+**Next (needs a governor scope decision).** Add `.github/workflows/ci.yml` running the **Node unit tests** (`node tests/my-trees-utils.test.js`, `node tests/payout-registration-utils.test.js`) + **pytest** on push/PR. Exclude Playwright at first (needs a browser install, and `monitor.spec.js` is currently red). Gate on runtime cost. Watch the existing autopilot `merge_pr` `ci-unavailable` false-refusal on no-CI repos — adding CI here actually *improves* that path.
+
+**Evidence.** Fresh `git clone --depth 1` of `TrueSightDAO/sunmint_beta@main` → `.github/workflows` absent; `package.json` `"test": "playwright test"`; test inventory above.
+
+### `sunmint_beta` Playwright spec `tests/monitor.spec.js` — 5 of 6 tests fail on a CLEAN `main` (pre-existing, unrelated to recent PRs)
+**Filed 2026-09-28 (thread 35944). Reproduced live; test-only, read-only. No prod impact — but the browser suite cannot be a merge gate until this is triaged.**
+
+**Symptom.** `npx playwright test tests/monitor.spec.js` on an unmodified `main`: **5 failed, 1 passed** (~2.8 min). Failing cases:
+- `MARK INVALID button is a sibling of treeDetailNoPhoto (not nested)` (`monitor.spec.js:11`)
+- `MARK INVALID button has cursor:pointer and data-i18n` (`:23`)
+- `markTreeInvalid submits REJECT, greys out immediately, removes tree` (`:29`)
+- `tree index is cached to localStorage after a successful internet load` (`:61`)
+- `tree index falls back to the cached list when offline` (`:72`)
+
+**Reproduction.** `git clone --depth 1 https://github.com/TrueSightDAO/sunmint_beta.git && npm install && npx playwright test tests/monitor.spec.js` (Playwright 1.63.0; browsers cached on the autopilot box). The static web server returns 200 for `monitor-tree-growth/index.html`, so this is **not** a server-startup failure.
+
+**Why it matters.** These are **genuine failures on unmodified `main`** — NOT caused by the recent `my-trees` i18n PRs (#90, #92) or the col-W work. Until triaged, any CI added per the entry above must expect red or exclude this spec. Nobody notices today because `sunmint_beta` runs no CI.
+
+**Distinct from** the existing entry *"Autopilot `merge_pr`: false refusal (`ci-unavailable` 403) on repos with NO CI workflows"* — that is the *tool* mis-reporting CI for a no-CI repo; this is *real* red tests inside a repo.
+
+**Next (triage first, no test deletion).** Decide whether the assertions are stale (UI moved on, spec not updated) or a real regression in `monitor-tree-growth/index.html` — `markTreeInvalid`, the localStorage tree-index cache, and the offline fallback. Fix the spec **or** the code accordingly; do NOT delete tests to go green. Check whether the two cache/offline tests need a service-worker-enabled context.
+
+**Evidence.** Live run output (thread 35944); `playwright.config.js` (`testDir: ./tests`, `testMatch: /\.spec\.(ts|js)$/`, `baseURL http://127.0.0.1:8099`).
+
 ### `pk_hash` is derived by 3 hand-written implementations that must agree byte-for-byte, yet the value is STORED as data in ≥5 surfaces
 **Filed 2026-09-28 (thread 35944). Governor-directed framing fix shipped; this is the leftover structural risk. Docs/dry-run first — NO schema or key-material write without the governor's go.**
 
