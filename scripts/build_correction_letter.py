@@ -7,9 +7,10 @@ supplies that detail, quoted from the SAME single source of truth as the issued
 Rev 12 invoice + packing list: it imports rows()/f2/f4/CSS from
 build_black_king_export_docs, so every figure reconciles line by line.
 
-It is a COMMERCIAL correction (Carta de Correcao Comercial). It is NOT a fiscal
-Carta de Correcao Eletronica (CC-e): no NF-e has been issued for this shipment
-(lane status, see brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md).
+It is a COMMERCIAL correction (Carta de Correcao Comercial), the companion to the
+export NF-e n. 16 (issued 2026-09-22). It is NOT a fiscal Carta de Correcao
+Eletronica (CC-e): a CC-e is a separate SEFAZ event filed against the issued
+NF-e (lane status, see brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md 5.3).
 
 It carries a full Portuguese section so the Brazilian reader (warehouse /
 carrier) knows exactly WHERE to collect and WHAT is to be collected.
@@ -79,8 +80,8 @@ def letter_html():
     tnet = sum(r["net_kg"] for r in rs)
     k = (
         "<h1>Correction Letter / Carta de Correcao (Comercial)</h1>"
-        "<p class='sub'>Commercial document correction - NOT a fiscal CC-e. "
-        "Rev 12 / 2026-09-29.</p>"
+        "<p class='sub'>Commercial document correction accompanying NF-e n. 16 "
+        "(issued 2026-09-22). Rev 12 / 2026-09-29.</p>"
         "<h2>Parties / Partes</h2><table>"
         "<tr><th style='width:30%'>Field / Campo</th>"
         "<th>Value / Valor</th></tr>"
@@ -109,9 +110,12 @@ def letter_html():
         "tara 10 kg cada.</li></ul>"
         "<p class='note'>This letter corrects <b>commercial-document "
         "content only</b>: it does not change the invoice value, the parties, "
-        "or the nature of the goods. Because <b>no NF-e has been issued</b> "
-        "for this shipment, no fiscal Carta de Correcao Eletronica (CC-e) "
-        "applies.</p>"
+        "or the nature of the goods. The export NF-e <b>has now been issued</b> "
+        "(n. 16, serie 1, 2026-09-22, chave de acesso "
+        "2926 0950 0425 8500 0180 5500 1000 0000 0161 3000 0003 5). Any "
+        "correction to the NF-e's own fields is done by a fiscal Carta de "
+        "Correcao Eletronica (CC-e), which cannot alter quantities or values. "
+        "This letter is the <b>commercial</b> companion to that NF-e.</p>"
     )
     k += (
         "<h2>Annex - packing detail / Anexo - detalhe da embalagem</h2><table>"
@@ -173,9 +177,11 @@ def letter_html():
         f"<tr><td>Peso l\u00edquido</td><td>{f2(tnet)} kg</td></tr>"
         "<tr><td>Peso bruto (inclui 20 kg de tara)</td>"
         f"<td>{f2(tnet + 20)} kg</td></tr></table>"
-        "<p><b>Observa\u00e7\u00e3o:</b> a NF-e de exporta\u00e7\u00e3o ainda "
-        "<b>n\u00e3o foi emitida</b>. O transporte rodovi\u00e1rio deve portar a "
-        "NF-e; a emiss\u00e3o est\u00e1 pendente de aprova\u00e7\u00e3o.</p>"
+        "<p><b>Observa\u00e7\u00e3o:</b> a NF-e de exporta\u00e7\u00e3o "
+        "<b>j\u00e1 foi emitida</b> \u2014 NF-e n\u00ba 16, s\u00e9rie 1, "
+        "emitida em 22/09/2026 (chave de acesso 2926 0950 0425 8500 0180 "
+        "5500 1000 0000 0161 3000 0003 5). O transporte rodovi\u00e1rio deve "
+        "portar a NF-e.</p>"
     )
     k += (
         "<p>Sincerely / Atenciosamente,</p>"

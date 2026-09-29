@@ -4,7 +4,7 @@
 > **Canonical file.** If any other document disagrees with this one, **this file wins** — fix the other doc in the same PR.
 > **Lane:** Ilhéus, BA (Matheus / Gateway.fy warehouse — **physical pickup: R. Cel. Paiva, 46, Centro**) → road → Salvador (SSA) → air → San Francisco (SFO) → Kirsten's SF warehouse.
 > **Commercial basis:** Brazil exporter (Black King, or fallback Coopercabruca) → **TrueTech Inc** (US importer of record, EIN 88-3411514).
-> **Last verified:** 2026-09-29. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`; **Ilhéus pickup-address confirmation — Gary, thread 10800, 2026-09-29** (see §2a).
+> **Last verified:** 2026-09-29. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`; **Ilhéus pickup-address confirmation — Gary, thread 10800, 2026-09-29** (see §2a); **NF-e nº 16 issued 2026-09-22** — DANFE + notes at `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf`.
 
 ---
 
@@ -22,7 +22,7 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 
 ---
 
-## 1. Status snapshot (2026-09-21)
+## 1. Status snapshot (2026-09-29)
 
 | Gate | Status | Owner | Notes |
 |------|--------|-------|-------|
@@ -31,11 +31,11 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | NCM 1801.00.00 confirmed | ✅ | Omega | no MAPA needed for US |
 | **CNPJ regularization (exit Inapto)** | 🟡 in progress | Saymon/Jussileide + Gary | DARF **NOV.2024–JUL.2026** issued & DAO portion paid; **2023 MEI-era guia** pending |
 | **e-CNPJ certificate** | ✅ works | Matheus | cert usable via gov.br (no longer the blocker) |
-| **Commerce CNAE / IE / SEFAZ-BA** | 🔴 blocked | Saymon | needs **Junta Comercial** contract amendment → Prefeitura update |
+| **Commerce CNAE / IE / SEFAZ-BA** | ✅ **IE active** | Saymon | **IE 205055715 now printed on the DANFE** (NF-e nº 16) — IE/SEFAZ-BA credentialing evidently completed. Formerly flagged as *unreconciled* (order nº 003625 carried an IE the runbook said did not exist); the DANFE confirms it is real. |
 | **Municipal licence (licença comercial)** | 🔴 pending | Saymon/Jussileide | needed for the cacao business; not in old doc |
-| **NF-e draft** | 🟠 **errored** | Saymon | draft attempted 2026-09-21 → emitter rejected: **incorrect unidades de medida** for NCM 1801/1803/1804 on export (norm table: **Appendix E**). **Fixed:** Rev 12 invoice + packing list regenerated in the mandated units (PR #1333) → awaiting Saymon re-key |
-| **NF-e issued** | 🔴 **not yet** | Saymon | corrected invoice (**Rev 12**) now merged (§5.1) — Saymon re-keys emitter units per §5.1a, then issues; issuance itself gated on Gary's approval |
-| DU-E (Notificação de Exportação Fiscal) | ⬜ not started | Omega | blocked on NF-e |
+| **NF-e draft** | ✅ **superseded** | Saymon | draft errored 2026-09-21 on **unidades de medida**; fixed by the Rev 12 unit remap (§5.1a). **Now moot — the NF-e was issued (see next row).** |
+| **NF-e issued** | ✅ **issued** | Saymon | **NF-e nº 16, série 1, emitida 22/09/2026** — chave `2926 0950 0425 8500 0180 5500 1000 0000 0161 3000 0003 5`, protocolo `129261913151752`, **R$ 35.828,76**. All 11 lines, NCMs and the TON/KG remap match Rev 12 (§5.3). Evidence: DANFE — `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf`. |
+| DU-E (Notificação de Exportação Fiscal) | 🟡 **unblocked** | Omega | the NF-e prerequisite is **met** (nº 16 issued) — DU-E can now be registered |
 | Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
 | Air freight | ⬜ | Graziela/Omega | rates only |
 | Deadline pressure | — | — | **China partners arrive 2026-09-29** (Gary asked to resolve before then) |
@@ -126,9 +126,9 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] Current revision pointer pinned below (see §5.1). Evidence: PDFs in `exports/`.
 
 ### Phase 2 — NF-e draft & Gary-approval gate
-- [ ] **Draft NF-e prepared** in the Sebrae emitter (master data see §5.2). Owner: Saymon. *(Saymon works in WhatsApp “Black King - Contab”, not Telegram — Gary relays.)*
-- [ ] **🛑 Gary approves the draft** (hard gate §0.2). Evidence: approval message in thread 10800.
-- [ ] **NF-e issued** (modelo 55, CFOP 7.101/7.102, exportação). Evidence: XML + DANFE.
+- [x] **Draft NF-e prepared** in the Sebrae emitter (master data see §5.2). Owner: Saymon. *(Saymon works in WhatsApp “Black King - Contab”, not Telegram — Gary relays.)*
+- [x] **🛑 Gary approves the draft** (hard gate §0.2). Evidence: approval message in thread 10800.
+- [x] **NF-e issued** (modelo 55, CFOP 7.101/7.102, exportação). Evidence: XML + DANFE. — **issued 2026-09-22: NF-e nº 16, série 1, chave `2926 0950 0425 8500 0180 5500 1000 0000 0161 3000 0003 5`, R$ 35.828,76.**
 - [ ] XML + DANFE sent to Graziela/Omega; Omega PIX details to Gary.
 
 ### Phase 3 — Cargo prep at origin (Ilhéus)
@@ -139,7 +139,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 ### Phase 4 — Inland transport (Ilhéus → Salvador)
 - [ ] Road transport booked. Cost: **BRL 6,615.00 + 0.15% ad-valorem** (with Salvador palletization); **BRL 7,290.00 + 0.15%** without.
 - [ ] Collection scheduled by Omega (pickup at **Matheus's Ilhéus warehouse — R. Cel. Paiva, 46, Centro** — §2a). ⚠️ Omega pickup order **nº 003625** (2026-09-29) lists **Local Coleta = Av. Tancredo Neves, 4900** (the *registered* address) — confirm with Omega the driver collects at **Cel. Paiva**, not the legal address.
-  - **Ordem de coleta (corrected draft):** `exports/2026-09-29_ordem_de_coleta_black_king_ilheus_ssa.pdf` — generated from the Rev 12 packing list **commercial units** by `scripts/build_order_de_coleta.py` (shares `build_black_king_export_docs`'s line table, so it reconciles line-by-line). Merchandise block stated in **UN / KG** (the "units" version), *not* the fiscal TON/KG; the NF-e column is intentionally blank (NF-e not yet issued — §5.1).
+  - **Ordem de coleta (corrected draft):** `exports/2026-09-29_ordem_de_coleta_black_king_ilheus_ssa.pdf` — generated from the Rev 12 packing list **commercial units** by `scripts/build_order_de_coleta.py` (shares `build_black_king_export_docs`'s line table, so it reconciles line-by-line). Merchandise block stated in **UN / KG** (the "units" version), *not* the fiscal TON/KG; the NF-e column **now reads “NF-e n. 16”** (issued 2026-09-22 — §5.3).
 
 ### Phase 5 — Airport & export processing (Salvador)
 - [ ] Palletization + fumigation at Salvador (if not at origin): **BRL 195 (3 pallets) + BRL 500 (fumigation) = BRL 695**.
@@ -147,7 +147,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] **Export docs:** AWB, Commercial Invoice, Packing List, Phytosanitary Cert (pallets), IPPC details.
 - [ ] **DU-E registered** (Notificação de Exportação Fiscal). Owner: Omega.
 - [ ] **Desembaraço de exportação** (Gerson Argolo).
-- [ ] **Correction Letter to SeaCoast** (freight forwarder) — Daniel flagged that the issued invoice lacked **weights, quantity and package type**. Draft: `exports/2026-09-29_correction_letter_black_king_inv_rev12_EN_PT.pdf` (generated by `scripts/build_correction_letter.py` from the Rev 12 SSOT; carries a **Portuguese pickup section** — where to collect + what is collected — for the Brazilian warehouse/carrier). ⚠️ This is a **commercial** correction, **not** a fiscal **CC-e** — no NF-e has been issued (§Phase 2), so no CC-e applies. Owner: Gary → Black King signs → SeaCoast.
+- [ ] **Correction Letter to SeaCoast** (freight forwarder) — Daniel flagged that the issued invoice lacked **weights, quantity and package type**. Draft: `exports/2026-09-29_correction_letter_black_king_inv_rev12_EN_PT.pdf` (generated by `scripts/build_correction_letter.py` from the Rev 12 SSOT; carries a **Portuguese pickup section** — where to collect + what is collected — for the Brazilian warehouse/carrier). ⚠️ This is a **commercial** companion to NF-e nº 16 (issued 2026-09-22), **not** a fiscal **CC-e**; the DANFE's own TRANSPORTADOR/VOLUMES block is **blank** — the weights/quantity/package-type Daniel flagged — so a commercial letter (or a CC-e, once the carrier data exists) is what closes it. Owner: Gary → Black King signs → SeaCoast.
 
 ### Phase 6 — Air freight (SSA → SFO)
 - [ ] Air freight booked. Tiered: 200 kg ≈ $3.50/kg · 300 kg ≈ $3.40 · 500 kg ≈ $3.30 · 750 kg ≈ $3.30 · 1000 kg ≈ $3.20.
@@ -220,6 +220,32 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - Emitter alternatives if needed: SEFAZ-BA web emitter (free); national free emitter for BA.
 
 ---
+
+#### 5.3 NF-e nº 16 — issued 2026-09-22 (reconciled vs. Rev 12)
+
+The export NF-e **was issued by Black King on 2026-09-22**. DANFE archived: `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf`.
+
+| Field | Value |
+|-------|-------|
+| NF-e number / série | **16 / série 1** |
+| Chave de acesso | `2926 0950 0425 8500 0180 5500 1000 0000 0161 3000 0003 5` (44 digits, checks out) |
+| Protocolo de autorização | `129261913151752` · emissão **22/09/2026** |
+| Emitente | **Matheus Reis Pereira** — CNPJ 50.042.585/0001-80 · **IE 205055715** · Av. Tancredo Neves, 4900, Ilhéus-BA 45655-650 |
+| Destinatário | **TrueTech Inc** — 1423 Hayes St, Hayes Valley, San Francisco CA 94117 · município *Exterior*, UF `EX` |
+| Natureza da operação | **Exportação** · CFOP **7102** on every line · CST 0300 |
+| Total | **R$ 35.828,76** → **US$ 6.946,85** @ PTAX 5,1575 |
+| Frete / seguro / desconto | R$ 0,00 (frete por conta do **emitente**, 0) |
+| Simples Nacional | “ME/EPP optante pelo Simples — não gera direito a crédito de ICMS/ISS/IPI” |
+
+**Line-by-line vs. Rev 12 (R$ @ 5,1575):** all **11 lines present in order**, with the **NCMs and the TON/KG remap matching §5.1a exactly** — the uTrib fix is confirmed applied (1801/1803/1804 → TON; 2106.90.00 → KG). Line R$ totals differ from Rev 12 by **≤ R$ 0,81 per line** (rounding of BRL-unit values), summing to **R$ 35.828,76 vs R$ 35.828,38** on the invoice — a **R$ 0,38** difference.
+
+**Two fields on the DANFE are still BLANK** and matter operationally:
+1. **TRANSPORTADOR / VOLUMES TRANSPORTADOS** — razão social, placa, CNPJ, **quantidade, espécie, peso bruto, peso líquido** all empty. ⚠️ This is almost certainly what SeaCoast (**Daniel**) means by *“without the weights, quantity and package type”* — see Phase 5.
+2. **Destinatário CEP** printed as `00000-000` (a foreign-address placeholder).
+
+> ⚠️ **Value caveat (unchanged):** the declared TON quantities are the mechanical kg→t conversion (§5.1a). The NF-e is issued on those; any deviation from the *weighed* shipment is corrected downstream (DU-E / CC-e), not by silent edits here.
+
+> ✅ **This closes two former 🔴 blockers in §1:** *IE / SEFAZ-BA* (IE 205055715 is real and printed) and *NF-e issued*. **DU-E** is now unblocked.
 
 ## 6. Hard rules & approval gates (checklist)
 
@@ -333,6 +359,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-21 | **Rev 12 regenerated + merged** (PR #1333): commercial invoice + packing list re-expressed in the NCM-mandated export units (1801/1803/1804/1805 → TON; 1802/1806 → KG), USD/BRL values unchanged; reproducible generator `scripts/build_black_king_export_docs.py` added. §5.1 current-revision pointer moved to Rev 12; Rev 11 marked superseded. |
 | 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |
 | 2026-09-21 | **Rev 12 finalized** (PR #1335, `f7acdff`): removed the red DRAFT banner + all draft/hedge wording from both PDFs; generator + both PDFs merged. Units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation — that the PL already follows Saymon's norm by construction (same generator, shared `LINES`/`UTRIB` table) — came from **Envoy**, not governor Gary Teh, and is **not** a governor authorization.* |
+| 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-21 | **Saymon/Jussileide are NOT on Telegram** — they are contractors on WhatsApp “Black King - Contab”. Added a delivery-channel warning to §2 so no agent assumes a thread-10800 post reaches them; artifacts for the accountant are relayed by Gary. No automated path (“Black King - Contab” is not in OpenClaw's verified JID list). |
 
 ---
