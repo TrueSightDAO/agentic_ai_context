@@ -11,6 +11,9 @@ It is a COMMERCIAL correction (Carta de Correcao Comercial). It is NOT a fiscal
 Carta de Correcao Eletronica (CC-e): no NF-e has been issued for this shipment
 (lane status, see brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md).
 
+It carries a full Portuguese section so the Brazilian reader (warehouse /
+carrier) knows exactly WHERE to collect and WHAT is to be collected.
+
 Usage: python3 scripts/build_correction_letter.py
 Deps:  pip install weasyprint
 """
@@ -34,6 +37,14 @@ EXPORTER = (
 )
 IMPORTER = "TrueTech Inc - EIN 88-3411514, 1423 Hayes St, San Francisco, CA 94117, USA"
 
+# Physical pickup address (warehouse) - distinct from the registered (CNPJ)
+# address above; see runbook section 2a.
+PICKUP_PT = "R. Cel. Paiva, 46 - Centro, Ilheus - BA, 45653-310"
+DEST_PT = (
+    "Aeroporto de Salvador (SSA) - terminal de carga aerea (TECA), "
+    "Praca Gago Coutinho, Sao Cristovao, Salvador - BA"
+)
+
 # Package type per line (commercial unit).
 PACK = {
     1: "Kraft pouch 8 oz, in carton / Sache kraft 8 oz, em caixa",
@@ -47,6 +58,19 @@ PACK = {
     9: "Sealed bag (bulk) / Saco selado (granel)",
     10: "Sealed bag (bulk) / Saco selado (granel)",
     11: "Sealed bag (bulk) / Saco selado (granel)",
+}
+PACK_PT = {
+    1: "Sache kraft 8 oz, em caixa",
+    2: "Saco lacrado (granel)",
+    3: "Barra embrulhada 500 g, em caixa",
+    4: "Saco lacrado (granel)",
+    5: "Saco lacrado (granel)",
+    6: "Saco lacrado (granel)",
+    7: "Sache varejo 200 g, em caixa",
+    8: "Saco lacrado (granel)",
+    9: "Saco lacrado (granel)",
+    10: "Saco lacrado (granel)",
+    11: "Saco lacrado (granel)",
 }
 
 
@@ -114,6 +138,44 @@ def letter_html():
         f"<td>{f2(tnet + 20)} kg</td></tr>"
         "<tr><td>Packages / Volumes</td><td>2 pallets (HDPE)</td></tr>"
         "</table>"
+    )
+    # ---- Portuguese pickup section (for the Brazilian warehouse / carrier) ----
+    k += (
+        "<h2>Se\u00e7\u00e3o em Portugu\u00eas \u2014 Instru\u00e7\u00f5es de Coleta</h2>"
+        "<p>Esta se\u00e7\u00e3o \u00e9 para o leitor no Brasil (armaz\u00e9m / "
+        "transportadora) e informa exatamente <b>onde coletar</b> e "
+        "<b>o que ser\u00e1 coletado</b>.</p>"
+        "<h3>1. Onde coletar / local de coleta</h3>"
+        f"<p><b>{PICKUP_PT}</b> (armaz\u00e9m f\u00edsico / dep\u00f3sito). "
+        "Este \u00e9 o ponto de retirada da carga.</p>"
+        "<p>Contatos no local: Rebecca \u2014 +55 73 99108-2946; "
+        "Matheus Reis (Black King) \u2014 +55 11 91413-5328 / "
+        "+55 73 99109-0002.</p>"
+        f"<p><b>Destino:</b> {DEST_PT}. "
+        "Modalidade: exporta\u00e7\u00e3o a\u00e9rea SSA \u2192 SFO.</p>"
+        "<h3>2. O que ser\u00e1 coletado / itens</h3>"
+        "<table><tr><th>#</th><th>Descri\u00e7\u00e3o</th><th>Quantidade</th>"
+        "<th>Embalagem</th><th>Peso l\u00edq. (kg)</th></tr>"
+    )
+    for r in rs:
+        k += (
+            f"<tr><td>{r['n']}</td><td>{r['pt']}</td>"
+            f"<td class='r'>{r['qty']:g} {r['ucom']}</td>"
+            f"<td>{PACK_PT.get(r['n'], 'A granel (kg)')}</td>"
+            f"<td class='r'>{f4(r['net_kg'])}</td></tr>"
+        )
+    k += (
+        "</table>"
+        "<h3>3. Volumes e pesos</h3><table>"
+        "<tr><th style='width:45%'>Item</th><th>Valor</th></tr>"
+        "<tr><td>Volumes / paletes</td><td>2 paletes pl\u00e1sticos HDPE "
+        "(1000 \u00d7 1200 \u00d7 150 mm)</td></tr>"
+        f"<tr><td>Peso l\u00edquido</td><td>{f2(tnet)} kg</td></tr>"
+        "<tr><td>Peso bruto (inclui 20 kg de tara)</td>"
+        f"<td>{f2(tnet + 20)} kg</td></tr></table>"
+        "<p><b>Observa\u00e7\u00e3o:</b> a NF-e de exporta\u00e7\u00e3o ainda "
+        "<b>n\u00e3o foi emitida</b>. O transporte rodovi\u00e1rio deve portar a "
+        "NF-e; a emiss\u00e3o est\u00e1 pendente de aprova\u00e7\u00e3o.</p>"
     )
     k += (
         "<p>Sincerely / Atenciosamente,</p>"
