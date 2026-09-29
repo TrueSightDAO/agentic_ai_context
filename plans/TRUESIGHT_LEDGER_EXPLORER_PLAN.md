@@ -137,6 +137,7 @@ shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
 | ~~**PR5**~~ | ~~Nav exposure on cfr/sunmint/dapp~~ — **DROPPED 2026-09-29**: the canonical explorer `truesight_me_beta/ledger/explorer/` is already nav-linked; the `dapp_beta` duplicate is retired; `dapp_beta#141` closed unused | — | n/a |
 | **PR6** | `gate: UAT` — ✅ **PASSED 2026-09-29** on the canonical explorer (`beta.truesight.me/ledger/explorer/`): page 200, totals `ledger_index.count` 4,440 == root `total_txid_count`, txid→event file 200, static client-side source, **0 GAS hits**, nav link present | truesight_me_beta | PR4 |
 | **PR7** | **Cite the canonical ledger URL, not the message-id URL** (closes §2.3; the ⚠️ asymmetry above). New `canonicalLedgerUrl(row)` helper; card shows only the `sha256(txid)` mirror URL. Also in this unit (governor-approved 2026-09-29): **SunMint PWA SW update self-heal** (`sunmint_beta`) + **retire the `dapp_beta` explorer duplicate**. | truesight_me_beta + sunmint_beta + dapp_beta | PR6 |
+| **PR8** | **Cross-link tree-planting events to the SunMint PROGRAM** (Gary 2026-09-29: "Sunmint link only on trees planting events. and make sure to link to the specific tree"). New `buildSunmintTreeLink(ev)` (+ `isTreePlantingEvent`, `sunmintTreeQuery`, `SUNMINT_PROGRAM_URL`); the event card renders a **Program** block deep-linked to the specific tree via `sunmint.html?tree=<tree_id>`. Join key VERIFIED: registry `sunmint/trees/index.geojson` `tree_id` == the planting event's `telegram_message_id`. Non-planting events render no block. | truesight_me_beta | PR7 |
 | *(post-UAT)* | **PROD PROMOTION IS A GOVERNED STEP — HELD for explicit governor approval.** `truesight.me` still lacks `/ledger/explorer/` + the nav link; no prod push from this plan without a governor command. | — | UAT pass |
 
 ## 6. Constraints (rules — same as every plan this cycle)
@@ -203,6 +204,15 @@ shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
 - [x] Retire `dapp_beta/ledger_explorer.html` + `_utils.js` + its test (un-wire from `package.json`)
 - [x] ⚠️ Residual: file the `sync_sunmint_signatures.py:683` generator gap in `OPEN_FOLLOWUPS.md`
 - [x] Verified live: beta explorer cites canonical only; sunmint SW v12 + `sw-update.js` served; dapp dup → 404
+
+### PR8 — SunMint program cross-link (tree-planting only, deep-linked to the tree) ✅ 2026-09-29
+- [x] `isTreePlantingEvent()` — true only for `[TREE PLANTING EVENT]` / `tree_planting`, NOT the link/reject variants
+- [x] `sunmintTreeQuery()` — `telegram_message_id` → `?tree=` (verified key), fallback `linked_tree_id` → `?qr=`, else `null`
+- [x] `buildSunmintTreeLink(ev)` — `''` when unresolved, so the card skips the block
+- [x] Event card renders a **Program** block ("View this tree on SunMint →") beside **Linked tree**
+- [x] 8 new unit tests incl. the live-verified Gary-cited event round-trip
+- [x] Verified: 56/56 node tests; `node --check` clean; merged truesight_me_beta#409
+- [x] Verified live: repo `main` carries the helper + card wiring; `sunmint.html?tree=Edgar_20260821175134_006` → 200 and the page has the `?tree=`/`?qr=` restore logic
 
 ## 8. Do / Don't
 - **Do** reuse the existing mirror/lock/retry machinery from `sync_sunmint_signatures.py`.
