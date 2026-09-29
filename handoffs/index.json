@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-09-28T21:06:07Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "8b94039de1fd6154298ee61d96876e68815eb900dfb30a1b44b2c41f89677869",
+  "source_sha256": "71ef91f9ffa23e5f2fa3ad8a48aca8acf81203a852b577cd6024833feb03fcb2",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -37,7 +37,7 @@
       "title": "**TrueSight Ledger Explorer** — a public \"blockchain explorer\" read surface over `TrueSightDAO/verify_public_signatures` (the DAO's existing immutable, per-event-file signed ledger): search by txid/message_id, recent-activity feed, browse by type/contributor, cross-linked with the just-shipped My Trees module, exposed via the shared dropdown on `cfr.truesight.me` / `sunmint.truesight.me` / `dapp.truesight.me`.",
       "handoff_date": "2026-09-28",
       "state": "executing",
-      "status_raw": "**executing — PR1 in progress**",
+      "status_raw": "**in progress — PR1 shipped + verified (#521); PR2 next**",
       "telegram_thread_id": "38428",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -46,7 +46,7 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-28",
+      "last_updated": "2026-09-29",
       "supervised_by": null
     },
     {
