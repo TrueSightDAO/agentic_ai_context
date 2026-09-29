@@ -19,6 +19,7 @@ Usage: python3 scripts/build_correction_letter.py
 Deps:  pip install weasyprint
 """
 
+import os
 import sys
 from pathlib import Path
 
@@ -73,6 +74,31 @@ PACK_PT = {
     10: "Saco lacrado (granel)",
     11: "Saco lacrado (granel)",
 }
+
+# --- Signatory block ---------------------------------------------------------
+# The signature IMAGE lives ONLY in the private TrueSightDAO/signature_assets
+# repo and must NEVER be committed here: agentic_ai_context is public, and a
+# signature image is a forgery vector if it leaks (see signature_assets README).
+# Read from a LOCAL path (env override); absent the file, the block is omitted.
+SIGNER = {"name": "Gary Teh", "title": "TrueTech Inc - President"}
+SIG_PNG = Path(
+    os.environ.get(
+        "ORDER_SIGNATURE_PNG",
+        str(Path.home() / ".signatures" / "gary_teh_signature_transparent.png"),
+    )
+)
+
+
+def signature_block():
+    """Signature lock-up: ink image over a rule, then printed name + title."""
+    if not SIG_PNG.is_file():
+        return ""
+    return (
+        "<div class='sig'>"
+        f"<img src='{SIG_PNG.as_uri()}' alt='assinatura'>"
+        "<div class='sigrule'></div>"
+        "</div>"
+    )
 
 
 def letter_html():
@@ -183,25 +209,37 @@ def letter_html():
         "5500 1000 0000 0161 3000 0003 5). O transporte rodovi\u00e1rio deve "
         "portar a NF-e.</p>"
     )
+    sig = signature_block()
+    k += "<div class='signoff'>"
+    k += "<p>Sincerely / Atenciosamente,</p>"
+    k += sig or "<p class='rule'>____________________________</p>"
     k += (
-        "<p>Sincerely / Atenciosamente,</p>"
-        "<p style='margin-top:1.6cm'>"
-        "___________________________________<br>"
-        "Black King - Matheus Reis Pereira<br>"
-        "CNPJ 50.042.585/0001-80<br>"
+        f"<p class='signame'>{SIGNER['name']}<br>"
+        f"<span class='sigtitle'>{SIGNER['title']}</span><br>"
         "Date / Data: ______</p>"
-        "<p class='sub'>Prepared by TrueSight DAO on behalf of the exporter. "
-        "Figures quoted from the Rev 12 invoice + packing list (shared "
-        "source-of-truth). To be signed by Black King before submission.</p>"
+        "<p class='sub'>Prepared by TrueSight DAO - figures quoted from the "
+        "Rev 12 invoice + packing list (shared source-of-truth).</p>"
+        "</div>"
     )
     return k
+
+
+SIG_CSS = """
+.signoff { page-break-inside: avoid; }
+.sig { margin: 6pt 0 0; }
+.sig img { height: 46pt; }
+.sigrule { width: 62mm; border-bottom: 1px solid #444; margin: 0 0 2pt; }
+.signame { font-size: 9pt; color: #222; margin: 0; line-height: 1.3; }
+.sigtitle { font-size: 8pt; color: #5A4632; }
+.rule { margin-top: 1.6cm; }
+"""
 
 
 def main():
     OUTDIR.mkdir(exist_ok=True)
     html = (
         '<html><head><meta charset="utf-8"><style>'
-        f"{CSS}</style></head><body>{letter_html()}</body></html>"
+        f"{CSS}{SIG_CSS}</style></head><body>{letter_html()}</body></html>"
     )
     HTML(string=html).write_pdf(OUT)
     print("built:", OUT.relative_to(ROOT))
