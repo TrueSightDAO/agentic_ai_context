@@ -139,6 +139,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 ### Phase 4 — Inland transport (Ilhéus → Salvador)
 - [ ] Road transport booked. Cost: **BRL 6,615.00 + 0.15% ad-valorem** (with Salvador palletization); **BRL 7,290.00 + 0.15%** without.
 - [ ] Collection scheduled by Omega (pickup at **Matheus's Ilhéus warehouse — R. Cel. Paiva, 46, Centro** — §2a). ⚠️ Omega pickup order **nº 003625** (2026-09-29) lists **Local Coleta = Av. Tancredo Neves, 4900** (the *registered* address) — confirm with Omega the driver collects at **Cel. Paiva**, not the legal address.
+  - **Ordem de coleta (corrected draft):** `exports/2026-09-29_ordem_de_coleta_black_king_ilheus_ssa.pdf` — generated from the Rev 12 packing list **commercial units** by `scripts/build_order_de_coleta.py` (shares `build_black_king_export_docs`'s line table, so it reconciles line-by-line). Merchandise block stated in **UN / KG** (the "units" version), *not* the fiscal TON/KG; the NF-e column is intentionally blank (NF-e not yet issued — §5.1).
 
 ### Phase 5 — Airport & export processing (Salvador)
 - [ ] Palletization + fumigation at Salvador (if not at origin): **BRL 195 (3 pallets) + BRL 500 (fumigation) = BRL 695**.
