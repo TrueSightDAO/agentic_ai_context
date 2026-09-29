@@ -143,6 +143,14 @@ Read of the live sink `tokenomics/google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k
 
 ---
 
+### 4.1 Ad-hoc additions (not in the original PR0–PR3 scope)
+
+| Item | What shipped | Where | Merged |
+|---|---|---|---|
+| URL filter sync | Farm/Plot/Program filters now also mirror into the URL (`?farm=&plot=&program=`): changing a facet updates the URL (via `history.replaceState`, non-default facets only so a pristine link stays clean); opening a shared link restores the filtered view, composing with the existing `?tx=`/`?tree_id=` deep links. Requested by Gary 2026-09-29: *"when I update farm, plot, program the URL should also update"*. | `dapp_beta` #147 (sha d149729) | ☑ |
+
+---
+
 ## 5. UAT
 
 | Step | Surface | What to expect | Acceptance criterion |
