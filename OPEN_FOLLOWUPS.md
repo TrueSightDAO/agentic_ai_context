@@ -39,6 +39,35 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### MAP intake has no per-zip context channel: `farm_id` arrives out-of-band in chat, and a zip that never gets context stalls invisibly
+
+**Filed 2026-09-29 (thread 30550). Owner: unclaimed. Media pipeline; ~1 session.**
+
+**Symptom.** The MAP front door (`farm-media-intake.timer` → `farm_media_intake.py`) claims a settled `*.zip` from `/media/to_process/` into `/media/processing/` with **no idea what it is**. Its identity comes from the back door's `archive.roots[].zip_farm_ids` map in `/opt/truesight_autopilot/media_archive_daemon_config.yaml` — a **human hand-edit**. So per-zip context (`farm_id` + title/plots/variety/intent) is supplied **out-of-band in a chat message**, and dies the moment the zip is promoted to `/media/processed/`.
+
+Live evidence, 2026-09-29 (thread 30550):
+- Wiring the back door, the five `farm_id`s had to be **typed by the governor in chat** — nothing in the drop folder carried them.
+- `fazenda_santa_rosa.zip` then landed in `to_process/` **with no map entry**. Behaviour today: it is claimed, the back door logs `no zip_farm_ids …` and **skips it** — it stays in `processing/` (never mis-filed, never archived), but the only signal is a `journalctl` line. If the governor forgets, the zip **stalls silently and nothing asks**.
+
+**Why it matters.** The destination is an **irreversible S3 prefix** (`raw/<farm_id>/…`), so guessing is worse than waiting — but "wait forever, quietly" is not acceptable either, and a hand-edited shared YAML is the wrong home for per-zip human memory. A zip is the *transport container*; the context (whose farm, what event, which plots, which variety label) is what makes the archive queryable and site-integrable.
+
+**Proposed design — a per-zip context card + a fail-visible hold. Never auto-commit; never silent-stall.**
+
+1. **Context card.** `foo.zip` + sibling `foo.zip.context.json` dropped in `to_process/`. Intake enumerates by `*.zip` (verified: `farm_media_intake.py` `_is_zip()` + `os.listdir`), so a sibling `.json` is **inert to the claimer** — it only needs to travel the funnel with its zip (`to_process → processing → processed`), and the archive worker reads it lazily. Fields the pipeline already keys on: `farm_id` (the one with no safe default), `title`, `event_date`, `location`, `plots[]`, `variety` + `attested_by` (farm-attested, **never** a vision guess — per `MEDIA_ARCHIVE_PIPELINE.md`), `intent` (manifest / gallery / shop page).
+
+2. **Fail-visible hold — the answer to *"what if the governor forgets to send context?"***. Keep the current fail-closed behaviour (an un-contexted zip is **not** archived, left in `processing/`) but make it **visible and self-asking**:
+   - stamp the intake-ledger entry `awaiting_context` instead of a bare claim;
+   - a periodic digest (the intake pass, or a tiny `systemd` timer) posts **"N zips awaiting context: <names>"** to the governor's thread — the system **asks**, instead of waiting to be told;
+   - **nothing is ever auto-archived under a guessed prefix.**
+
+3. **Propose, don't guess.** When context is missing, compute *candidates* and offer a one-tap confirm: (a) a config root whose basename matches the zip (`fazenda_santa_rosa.zip` ⇄ existing root `fazenda-santa-rosa`); (b) the **GPS nearest-location join already in the repo** (`farm_media_locations.py`, used by `farm_media_manifest.build_manifest()`) run over the zip's own media — the farm is frequently written into the media's own GPS. A governor "yes" then writes the card + config entry.
+
+4. **Manifest + site integration plug in unchanged.** The card becomes an attributed *governor-context* section in `farm_media_manifests/<farm-id>.json` (`build_manifest()` already aggregates sidecars → a reviewed PR); `intent` selects the publisher destination (`farm_media_publisher.py` → `galleries/<collection>.json`). Note the existing **per-farm handoff plans** (`handoffs/{FAZENDA_SAO_JORGE,SANTA_ANA_BAHIA,OSCAR_BAHIA}_MEDIA_TASK_PLAN.md` + `HANDOFF_MANIFEST.md`) are the heavyweight version of this idea — the card should **unify with, not parallel**, them.
+
+**Scope (one session).** (1) intake: recognise `*.zip.context.json`, move it with its zip, stamp the ledger `awaiting_context` when absent; (2) archive worker: read the card's `farm_id`, prefer it over `zip_farm_ids`, skip + warn if neither; (3) a one-line digest of awaiting-context zips; (4) manifest: attach the card as a context block. Unit tests for card-present / card-absent / card-for-a-different-zip.
+
+**Retro-fixes for 2026-09-29.** A `fazenda_santa_rosa` card supplies the missing `farm_id`; a `status: re-upload-needed` on `santa_anna_fazenda_bahia_complete.zip` makes its truncation explicit instead of a `bad zip` log line.
+
 ### `ledger_index.json` advertises events whose files are not yet pushed — the Explorer links to 404s until the 30-min trickle catches up
 
 **Filed 2026-09-29 (thread 37982). Owner: unclaimed. Data-pipeline; small, generator-side.**
