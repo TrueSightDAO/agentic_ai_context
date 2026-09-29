@@ -114,7 +114,7 @@ if entered), confirm or correct before that unit starts.
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (Farm/Plot filter, read-only) | ☑ | ☑ | ☐ |
+| PR1 (Farm/Plot filter, read-only) | ☑ | ☑ | ☑ |
 | PR2 (batch backfill submit) | ☐ | ☐ | ☐ |
 | PR3 (prod promote + live Paulo backfill) | ☐ | — | ☐ |
 
