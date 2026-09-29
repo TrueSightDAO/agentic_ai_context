@@ -126,7 +126,7 @@ Read of the live sink `tokenomics/google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR3 (prod promote + live Paulo backfill) — the always-stop gate.** PR2 is **built ☑ /
+> **⚠️ PR3 — AWAITING GOVERNOR (human money gate; do NOT auto-execute).** Prod promote ☑ **DONE** 2026-09-29 (Gary's explicit *"promote to prod"* → `dapp_prod` synced; see the UPDATE block below). The **only** remaining PR3 step is Gary firing the **live Paulo / Fazenda Bom Sucesso backfill** — a money action Sophia must never take. This marker is therefore a **waiting-on-governor gate, not an executable unit.** PR2 is **built ☑ /
 > merged ☑ / reported ☑** (dapp_beta #146, sha 3b38bf1): batch backfill UI + `splitBatchAmount`, firing
 > **one single-tree `[PAYOUT EVENT]` per selected tree** each carrying **total ÷ N** (§1.4 sink recon).
 > §1.3 is RESOLVED (Gary 2026-09-29: *"one time amount for 10 trees"* = batch TOTAL ÷ N). **PR3 cannot
