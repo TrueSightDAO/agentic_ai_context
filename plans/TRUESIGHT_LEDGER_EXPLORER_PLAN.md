@@ -73,9 +73,13 @@ generated-index work, same shape as the mirror work already shipped this session
    should link out to the just-shipped **My Trees** module (`sunmint_beta`/`cfr-anapu`,
    PR #87, merged this session) when `linked_tree_id` is present — the explorer becomes the
    "show me the receipt" complement to My Trees' "show me my trees."
-4. **Nav exposure** — add to the shared menu on `cfr.truesight.me` and `sunmint.truesight.me`
-   (same dropdown Gary just asked for My Trees to appear in) plus `dapp.truesight.me`, since
-   Edgar/the DApp is the other place people already look for their submission history.
+4. **Nav exposure** — ✅ **rescoped 2026-09-29.** The explorer already lives at
+   `truesight_me_beta/ledger/explorer/` and is **already linked** in that site's shared
+   dropdown (`js/nav.js` → "Ledger Explorer"). That is the **canonical** explorer. The
+   original "add it to cfr + sunmint + dapp navs" was per-site duplication with no user need
+   on the two farmer-facing sites, and is **dropped** (§5 PR5). Prod exposure
+   (`truesight.me` still lacks `/ledger/explorer/` + the nav link) is a governed promotion,
+   held for explicit governor approval.
 
 ### Out of scope (this plan)
 - Any change to how events are signed, verified, or published (`sync_sunmint_signatures.py`
@@ -99,6 +103,14 @@ utility pages (`report_payout_event.html`, `verify_request.html`, etc.) and alre
 shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
 `dapp_beta/ledger_explorer.html` (beta: `beta.dapp.truesight.me/ledger_explorer.html`).
 
+> **2026-09-29 correction (governor rescope).** The explorer had **already been built
+> independently at `truesight_me_beta/ledger/explorer/`** (with `js/ledger_explorer_utils.js`
+> + tests) and is **already linked** in that site's shared dropdown. That landing-site page is
+> the **canonical** explorer. The `dapp_beta/ledger_explorer.html` built under PR2–4 became a
+> **duplicate** and is **retired**; `dapp_beta#141` (which would have nav-linked it) is
+> **closed unused**. PR6 UAT runs against the canonical page; prod promotion is held for
+> governor approval.
+
 ## 5. Roadmap (ONE PR PER TURN, §5a)
 
 | # | Deliverable | Repo | Depends on |
@@ -108,9 +120,9 @@ shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
 | **PR2** | Explorer shell — `dapp_beta/ledger_explorer.html`: search box (txid or message_id) → event detail card, sourced from `ledger_index.json` + the individual event file; "verify with openssl" snippet from the README | dapp_beta | PR1 |
 | **PR3** | Recent-activity feed (uses `events_ordered`, already sorted — no new sort logic) + browse-by-type + browse-by-contributor filters | dapp_beta | PR2 |
 | **PR4** | Cross-link: event detail view links out to the My Trees module when `linked_tree_id` is present (and vice versa — My Trees links back to the ledger event for a tree's payout/receipt) | dapp_beta (+ small `sunmint_beta`/`cfr-anapu` link-out addition) | PR3 |
-| **PR5** | Nav exposure — add "Ledger Explorer" to the shared dropdown on `cfr.truesight.me`, `sunmint.truesight.me`, `dapp.truesight.me` | cfr-anapu, sunmint_beta, dapp_beta | PR4 |
-| **PR6** | `gate: UAT` — checklist below, beta only | dapp_beta | PR5 |
-| *(post-UAT)* | No prod repo is touched by this plan (`dapp_beta` serves beta+prod from the same static host per existing convention — confirm this at PR6 UAT before treating it as done) | — | UAT pass |
+| ~~**PR5**~~ | ~~Nav exposure on cfr/sunmint/dapp~~ — **DROPPED 2026-09-29**: the canonical explorer `truesight_me_beta/ledger/explorer/` is already nav-linked; the `dapp_beta` duplicate is retired; `dapp_beta#141` closed unused | — | n/a |
+| **PR6** | `gate: UAT` — checklist below, on the **canonical** explorer | truesight_me_beta | PR4 |
+| *(post-UAT)* | **PROD PROMOTION IS A GOVERNED STEP — HELD for explicit governor approval.** `truesight.me` still lacks `/ledger/explorer/` + the nav link; no prod push from this plan without a governor command. | — | UAT pass |
 
 ## 6. Constraints (rules — same as every plan this cycle)
 
@@ -155,16 +167,18 @@ shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
 - [ ] My Trees tree card → ledger event link for its payout/receipt event
 - [ ] Open PR, report URL
 
-### PR5 — nav exposure
-- [ ] Dropdown entry on `cfr.truesight.me`, `sunmint.truesight.me`, `dapp.truesight.me`
-- [ ] Open PR, report URL
+### PR5 — nav exposure — ~~DROPPED~~ (2026-09-29)
+- ~~Dropdown entry on `cfr.truesight.me`, `sunmint.truesight.me`, `dapp.truesight.me`~~
+- Superseded: the canonical explorer `truesight_me_beta/ledger/explorer/` is already linked in
+  its own nav (`js/nav.js`); the `dapp_beta` duplicate is retired; `dapp_beta#141` is closed.
+  No PR5 PR needed.
 
 ### PR6 — UAT gate
 - [ ] Search by a real txid returns the correct event, cold browser context
 - [ ] Search by message_id works
 - [ ] Recent-activity feed matches root `index.json` totals
 - [ ] My Trees cross-links resolve both directions
-- [ ] Nav entry present on all three sites
+- [ ] Nav entry present on the canonical host (beta.truesight.me shows a Ledger Explorer link)
 - [ ] No console errors; no GAS calls at all (confirm via network trace, same method used for
       #133/#134's verification)
 
