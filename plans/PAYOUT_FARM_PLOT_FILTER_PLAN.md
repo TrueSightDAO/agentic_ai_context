@@ -76,8 +76,9 @@ already designed in that earlier plan; this wires a batch entry point to them.
 **RESOLVED (Gary, 2026-09-29):** *"I did a one time amount for 10 trees."* — a single lump sum
 covered the cluster, so the batch shares **one** `amount`/`paidAt`/`bankRef`/`receiptUrl`; no
 per-tree overrides needed. **But source-recon of the payout sink (see §1.4) shows this answer is
-not by itself sufficient to build PR2** — one precision question remains (batch TOTAL vs PER-TREE),
-flagged in §3's PR2 row.
+not by itself sufficient to build PR2** — the remaining question (batch TOTAL vs PER-TREE) was
+**RESOLVED (Gary, 2026-09-29):** *"I did a one time amount for 10 trees"* = the entered figure is the
+batch **TOTAL**, so each per-tree event carries **total ÷ N**. Built and merged in PR2 (`dapp_beta` #146).
 
 ---
 
@@ -125,17 +126,19 @@ Read of the live sink `tokenomics/google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR2 (scoped; one precision question left).** §1.3 is **RESOLVED** (Gary 2026-09-29:
-> one lump amount for the cluster) and §1.4 records the sink recon. **Before building, confirm ONE
-> thing: is the entered figure the batch TOTAL (→ split ÷N across the N per-tree events) or the
-> PER-TREE amount? Default = batch total ÷N.** PR2 emits one single-tree event per tree (§1.4). PR3's
-> `dapp_prod` promotion remains the always-stop gate (§2/§5c) — ask once, after beta UAT passes.
+> **RESUME HERE → PR3 (prod promote + live Paulo backfill) — the always-stop gate.** PR2 is **built ☑ /
+> merged ☑ / reported ☑** (dapp_beta #146, sha 3b38bf1): batch backfill UI + `splitBatchAmount`, firing
+> **one single-tree `[PAYOUT EVENT]` per selected tree** each carrying **total ÷ N** (§1.4 sink recon).
+> §1.3 is RESOLVED (Gary 2026-09-29: *"one time amount for 10 trees"* = batch TOTAL ÷ N). **PR3 cannot
+> start without Gary's explicit go** (§2/§5c): promote `dapp_beta` → `dapp_prod` after beta UAT passes,
+> then Gary backfills Paulo's real 10 Fazenda Bom Sucesso trees for real and confirms they flip
+> outstanding → paid. **Never promote to prod or fire payouts without the governor's go.**
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
 | PR1 (Farm/Plot filter, read-only) | ☑ | ☑ | ☑ |
-| PR2 (batch backfill submit) | ☐ | ☐ | ☐ |
+| PR2 (batch backfill submit) | ☑ | ☑ | ☑ |
 | PR3 (prod promote + live Paulo backfill) | ☐ | — | ☐ |
 
 ---
