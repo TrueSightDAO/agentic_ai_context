@@ -85,7 +85,6 @@ EMB = {
 # First entry is the PRIMARY contact the driver must call/WhatsApp on arrival.
 CONTACTS = [
     ("Gary Teh (TrueSight DAO)", "+1 (442) 340-5782 (WhatsApp)"),
-    ("Rebecca", "+55 73 99108-2946"),
     ("Matheus Reis", "+55 11 91413-5328 / +55 73 99109-0002"),
 ]
 
