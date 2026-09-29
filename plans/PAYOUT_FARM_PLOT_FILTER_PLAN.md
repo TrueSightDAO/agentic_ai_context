@@ -73,12 +73,32 @@ first, DAO pays later — discharge directly, no re-entry into the unassigned po
 the concrete UI for that discharge**, not a new accounting model — the ledger mechanics were
 already designed in that earlier plan; this wires a batch entry point to them.
 
-**Open question for Gary before PR2 (batch submit) is scoped precisely:** does a backfilled
-cluster payout share **one** `bankRef`/`receiptUrl`/`paidAt` across all selected trees (e.g. a
-single PIX transfer covering all 10), or can amounts/dates differ per tree within the batch? The
-"paid him money for 10 trees previously" phrasing reads like one lump transfer — PR2 defaults to
-that (one shared amount/date/reference applied to every selected tree, amount optionally per-tree
-if entered), confirm or correct before that unit starts.
+**RESOLVED (Gary, 2026-09-29):** *"I did a one time amount for 10 trees."* — a single lump sum
+covered the cluster, so the batch shares **one** `amount`/`paidAt`/`bankRef`/`receiptUrl`; no
+per-tree overrides needed. **But source-recon of the payout sink (see §1.4) shows this answer is
+not by itself sufficient to build PR2** — one precision question remains (batch TOTAL vs PER-TREE),
+flagged in §3's PR2 row.
+
+---
+
+### 1.4 Payout-sink recon (found 2026-09-29 while scoping PR2 — corrects §3's original mechanic)
+
+Read of the live sink `tokenomics/google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/process_payout_event_telegram_logs.js`
+(action `processPayoutEventsFromTelegramChatLogs`):
+
+- The Edgar catalog says **one row per TRANSFER** — *"tree_planting_id is carried as a list because a
+  single transfer may cover N trees."* **But the booking fn does not loop the list:**
+  `fpeBookLedger_` **breaks at the first matching SunMint row** (`if (sun) { treeId = ids[k]; break; }`)
+  and `fpeComputeLegs_` hard-codes **`-1`** `Cacao Tree - To Be Paid For` **once per event**.
+  ⇒ a single 10-id `[PAYOUT EVENT]` discharges only **ONE** unit of liability, not ten (silent
+  under-booking — the cash leg would also be a single lump).
+- Therefore the plan's original PR2 mechanic (*"fires one `[PAYOUT EVENT]` per selected tree"*) is
+  **correct for the current sink and is kept** — but each per-tree event must carry a **per-tree
+  `amount`**, never the batch lump (else cash over-books N×), while `paidAt`/`bankRef`/`receiptUrl`
+  are shared across all N events (same PIX) so the rows still reconcile to one statement line.
+- No sink change is required for PR2 **as long as it emits N single-tree events.** (If the DAO later
+  wants true multi-tree single-event booking, the sink must loop the ids and sum `-N` liability —
+  out of scope here; noted for the owner of `tokenomics`.)
 
 ---
 
@@ -98,18 +118,18 @@ if entered), confirm or correct before that unit starts.
 |---|---|---|
 | **PR0** | This roadmap. | `agentic_ai_context` |
 | **PR1** | Farm/Plot filter, read-only (narrows the list, no batch action yet): fetch `sunmint/plots/index.geojson` + `sunmint/farms/index.json`; add a `treePlotMatch(tree, plotsGeojson)` point-in-polygon helper to `payout-event-utils.js` (mirrors the existing `programSlugsByHost`/`treesForProgram` pattern — pure functions, unit-testable, same file); add Farm and Plot `<select>` elements beside the existing Program `<select>` in `report_payout_event.html`, Plot options cascading from the chosen Farm; both combine with Program via AND, matching §0. Graceful-empty note (mirroring `renderProgramFilterNote`) when a tree's coordinates don't fall in any registered plot. Tests in `dapp/tests/payout-event-utils.test.js` (unit) + `tests/report_payout_event.spec.ts` (Playwright, matching existing conventions). | `dapp` (beta) |
-| **PR2** | Batch backfill: multi-select checkboxes on the (now filterable) tree list; a single shared `amount`/`paidAt`/`bankRef`/`receiptUrl` form applied across all checked trees (pending §1.3's confirmation — per-tree overrides if Gary wants them instead); fires one `[PAYOUT EVENT]` per selected tree, sequentially, with a running success/failure summary (don't silently swallow a partial-batch failure). | `dapp` (beta) |
+| **PR2** | Batch backfill: multi-select checkboxes on the (now filterable) tree list; ONE batch `amount`/`paidAt`/`bankRef`/`receiptUrl` form for the cluster (Gary 2026-09-29: a single lump sum covered Paulo's 10 trees). **Fires one `[PAYOUT EVENT]` PER SELECTED TREE — NOT one multi-tree event** (§1.4: the sink discharges exactly −1 `To Be Paid For` per event, so an N-id event under-books the liability), sequentially, with a running success/failure summary (never silently swallow a partial-batch failure). Shared `paidAt`/`bankRef`/`receiptUrl`; **per-event `amount` = batch total ÷ N** (the one remaining confirmation: TOTAL vs PER-TREE, §1.3). | `dapp` (beta) |
 | **PR3** | Beta UAT (§5) → prod promote (§2 always-stop gate) → live verification: Gary backfills Paulo's actual 10 Fazenda Bom Sucesso trees for real, confirms they flip from outstanding to paid in the tree registry. | `dapp` (beta → prod) |
 
 ---
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR2.** PR1 is **built, merged, and ticked** (see below). **PR2 (batch backfill submit)
-> is BLOCKED on Gary's answer to §1.3's open question** — does a backfilled cluster payout share
-> **one** `amount`/`bankRef`/`receiptUrl`/`paidAt` across all selected trees, or can those differ
-> per tree within the batch? Do **not** scope PR2 until Gary answers. PR3's `dapp_prod` promotion is
-> the always-stop gate (§2/§5c) — ask once, after beta UAT passes.
+> **RESUME HERE → PR2 (scoped; one precision question left).** §1.3 is **RESOLVED** (Gary 2026-09-29:
+> one lump amount for the cluster) and §1.4 records the sink recon. **Before building, confirm ONE
+> thing: is the entered figure the batch TOTAL (→ split ÷N across the N per-tree events) or the
+> PER-TREE amount? Default = batch total ÷N.** PR2 emits one single-tree event per tree (§1.4). PR3's
+> `dapp_prod` promotion remains the always-stop gate (§2/§5c) — ask once, after beta UAT passes.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
