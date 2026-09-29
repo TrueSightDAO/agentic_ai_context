@@ -105,14 +105,16 @@ if entered), confirm or correct before that unit starts.
 
 ## 4. Resume tracker
 
-> **RESUME HERE → PR1.** No governor decision blocks PR1 (read-only filter, additive, no behavior
-> change to existing single-tree payout flow). **PR2 needs Gary's answer to §1.3's shared-vs-per-tree
-> amount question before it's scoped precisely** — flag before starting that unit, don't assume.
+> **RESUME HERE → PR2.** PR1 is **built, merged, and ticked** (see below). **PR2 (batch backfill submit)
+> is BLOCKED on Gary's answer to §1.3's open question** — does a backfilled cluster payout share
+> **one** `amount`/`bankRef`/`receiptUrl`/`paidAt` across all selected trees, or can those differ
+> per tree within the batch? Do **not** scope PR2 until Gary answers. PR3's `dapp_prod` promotion is
+> the always-stop gate (§2/§5c) — ask once, after beta UAT passes.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
-| PR1 (Farm/Plot filter, read-only) | ☐ | ☐ | ☐ |
+| PR1 (Farm/Plot filter, read-only) | ☑ | ☑ | ☐ |
 | PR2 (batch backfill submit) | ☐ | ☐ | ☐ |
 | PR3 (prod promote + live Paulo backfill) | ☐ | — | ☐ |
 
