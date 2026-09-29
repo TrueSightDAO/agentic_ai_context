@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `sync_sunmint_signatures.py` adds `request_transaction_id` to the txid MIRROR only — the primary message-id record is not self-describing
+**Filed 2026-09-29 (thread 38428, Ledger Explorer). Owner: unclaimed. One-line generator fix + bounded backfill; ~small.**
+
+**Symptom.** The plan's §1 data contract claimed the two paths per event are *"same content"*. They are **near-identical but NOT identical**: 8/8 sampled `tree_planting` events show the `sha256(request_transaction_id)` **mirror** body carries the field `request_transaction_id` (= `signature`), while the **primary** `<message_id>.json` record carries only `signature` — not the field named `request_transaction_id`.
+
+**Why it matters.** A verifier who cites the message-id URL (which the per-type `index.json` still links to — plan Gap 3) cannot read the request transaction ID off that file directly; only the mirror round-trips it. That defeats the mirror's stated purpose ("a verifier can hash their txid → resolve path → round-trip the value in the body") for the *primary* addressing scheme.
+
+**Root cause.** `sync_sunmint_signatures.py:683` — `ev["request_transaction_id"] = ev.get("signature", "")` is applied to the **mirror** dict only; the primary record is written without it.
+
+**Fix.** Apply the same field to the primary record so **both** files are self-describing (either URL independently citable). Then a bounded backfill of the existing ~4,440 primary files (dry-run-first, mirror/lock/retry machinery already present). **Not a signing-change**, purely additive.
+
+**Next.** One-line generator PR (dry-run-first, show the count) → bounded backfill. No prod / no money. Distinct from the 2026-09-26 entry above, which decided the mirror *path scheme*; this is the *field-parity* gap left behind by it.
+
 ### MAP intake has no per-zip context channel: `farm_id` arrives out-of-band in chat, and a zip that never gets context stalls invisibly
 
 **Filed 2026-09-29 (thread 30550). Owner: unclaimed. Media pipeline; ~1 session.**

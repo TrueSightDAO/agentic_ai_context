@@ -34,10 +34,14 @@ verify_public_signatures/
   `submitted_at`, `contributor_name`, `public_key` (RSA, PEM body), `signature`,
   `signed_payload` / `signed_text` (human-readable event text), `request_transaction_id`
   (= the signature itself — **this is the "txid"**), `verifiable`, `linked_tree_id`.
-- **Two addressing schemes coexist per file**, both pointing at identical content:
-  message_id-named (what the per-type `index.json` links to today) and
-  `sha256(request_transaction_id)`-named (the newer canonical mirror). The per-type
-  `index.json` does **not yet** list the mirror filenames — see Gap 1 below.
+- **Two addressing schemes coexist per file** — message_id-named (what the per-type
+  `index.json` links to today) and `sha256(request_transaction_id)`-named (the canonical
+  mirror). **Correction 2026-09-29 (was wrongly stated as "identical content"):** the two
+  files are **near-identical but NOT identical** — the mirror body adds the field
+  `request_transaction_id` (`= signature`), the primary message-id record carries only
+  `signature`. 8/8 tree_planting events sampled confirmed this. That asymmetry is the
+  **generator gap** in §2.3 (the mirror is self-describing; the primary record is not).
+  The per-type `index.json` does **not yet** list the mirror filenames — see Gap 3 below.
 
 ## 2. Gaps to close before an explorer can be built well (real, verified — not assumed)
 
@@ -52,6 +56,14 @@ verify_public_signatures/
 3. **Per-type index doesn't carry the canonical (txid-mirror) URL**, only the message_id one.
    An explorer that wants to *cite* an event durably should link the txid-hash file (the
    README's stated purpose of the mirror), not the message_id file.
+   ✅ **CLOSED 2026-09-29 (PR7).** The explorer reads the GLOBAL `ledger_index.json` (PR1),
+   which already carries `canonical_url` on every row — verified: `canonical_url` present in
+   **all 4,440** rows. So no per-type-index change was needed; the fix was purely the
+   explorer's *display* (cite the canonical URL only). ⚠️ **Residual generator gap (filed,
+   NOT yet fixed):** `sync_sunmint_signatures.py:683` adds `request_transaction_id` to the
+   **mirror** only, so the primary message-id record is not self-describing. Filed in
+   `OPEN_FOLLOWUPS.md` for a one-line generator fix (either URL should be independently
+   citable).
 
 None of these require changing how events are signed or published — they're additive
 generated-index work, same shape as the mirror work already shipped this session.
@@ -108,8 +120,10 @@ shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
 > + tests) and is **already linked** in that site's shared dropdown. That landing-site page is
 > the **canonical** explorer. The `dapp_beta/ledger_explorer.html` built under PR2–4 became a
 > **duplicate** and is **retired**; `dapp_beta#141` (which would have nav-linked it) is
-> **closed unused**. PR6 UAT runs against the canonical page; prod promotion is held for
-> governor approval.
+> **closed unused**, and the duplicate files themselves were **deleted 2026-09-29
+> (`dapp_beta#142`)** — renderer + utils + test, un-wired from `package.json`. PR6 UAT ran
+> against the canonical page (**PASSED 2026-09-29**); prod promotion is held for governor
+> approval.
 
 ## 5. Roadmap (ONE PR PER TURN, §5a)
 
@@ -121,7 +135,8 @@ shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
 | **PR3** | Recent-activity feed (uses `events_ordered`, already sorted — no new sort logic) + browse-by-type + browse-by-contributor filters | dapp_beta | PR2 |
 | **PR4** | Cross-link: event detail view links out to the My Trees module when `linked_tree_id` is present (and vice versa — My Trees links back to the ledger event for a tree's payout/receipt) | dapp_beta (+ small `sunmint_beta`/`cfr-anapu` link-out addition) | PR3 |
 | ~~**PR5**~~ | ~~Nav exposure on cfr/sunmint/dapp~~ — **DROPPED 2026-09-29**: the canonical explorer `truesight_me_beta/ledger/explorer/` is already nav-linked; the `dapp_beta` duplicate is retired; `dapp_beta#141` closed unused | — | n/a |
-| **PR6** | `gate: UAT` — checklist below, on the **canonical** explorer | truesight_me_beta | PR4 |
+| **PR6** | `gate: UAT` — ✅ **PASSED 2026-09-29** on the canonical explorer (`beta.truesight.me/ledger/explorer/`): page 200, totals `ledger_index.count` 4,440 == root `total_txid_count`, txid→event file 200, static client-side source, **0 GAS hits**, nav link present | truesight_me_beta | PR4 |
+| **PR7** | **Cite the canonical ledger URL, not the message-id URL** (closes §2.3; the ⚠️ asymmetry above). New `canonicalLedgerUrl(row)` helper; card shows only the `sha256(txid)` mirror URL. Also in this unit (governor-approved 2026-09-29): **SunMint PWA SW update self-heal** (`sunmint_beta`) + **retire the `dapp_beta` explorer duplicate**. | truesight_me_beta + sunmint_beta + dapp_beta | PR6 |
 | *(post-UAT)* | **PROD PROMOTION IS A GOVERNED STEP — HELD for explicit governor approval.** `truesight.me` still lacks `/ledger/explorer/` + the nav link; no prod push from this plan without a governor command. | — | UAT pass |
 
 ## 6. Constraints (rules — same as every plan this cycle)
@@ -173,14 +188,21 @@ shared `routes.js` / `menu.js` / CDN conventions to reuse. Proposed path:
   its own nav (`js/nav.js`); the `dapp_beta` duplicate is retired; `dapp_beta#141` is closed.
   No PR5 PR needed.
 
-### PR6 — UAT gate
-- [ ] Search by a real txid returns the correct event, cold browser context
-- [ ] Search by message_id works
-- [ ] Recent-activity feed matches root `index.json` totals
-- [ ] My Trees cross-links resolve both directions
-- [ ] Nav entry present on the canonical host (beta.truesight.me shows a Ledger Explorer link)
-- [ ] No console errors; no GAS calls at all (confirm via network trace, same method used for
-      #133/#134's verification)
+### PR6 — UAT gate ✅ PASSED 2026-09-29 (on `beta.truesight.me/ledger/explorer/`)
+- [x] Search resolves a real txid → correct event (index row → event file 200, cold-context checked)
+- [x] Search by message_id works (index lookup by `telegram_message_id`)
+- [x] Recent-activity feed matches root `index.json` totals (`ledger_index.count` 4,440 == `total_txid_count` 4,440)
+- [x] My Trees cross-links resolve (fixed same day — `cfr-anapu#20` re-vendor; link keys on `request_transaction_id`/`?tx=`)
+- [x] Nav entry present on the canonical host (`beta.truesight.me/js/nav.js` → Ledger Explorer)
+- [x] No GAS calls — static client-side fetch of `raw.githubusercontent.com` (0 Apps-Script refs)
+
+### PR7 — cite the canonical URL + PWA self-heal + retire the duplicate ✅ 2026-09-29
+- [x] `canonicalLedgerUrl(row)` helper (mirror preferred, message-id only as last-resort fallback)
+- [x] Card cites the `sha256(txid)` URL only; the "Ledger URL (message id)" row removed
+- [x] `sunmint_beta`: `CACHE_NAME` v11→v12 + `SKIP_WAITING` hook + shared `sw-update.js` "reload to update" banner on all 4 pages
+- [x] Retire `dapp_beta/ledger_explorer.html` + `_utils.js` + its test (un-wire from `package.json`)
+- [x] ⚠️ Residual: file the `sync_sunmint_signatures.py:683` generator gap in `OPEN_FOLLOWUPS.md`
+- [x] Verified live: beta explorer cites canonical only; sunmint SW v12 + `sw-update.js` served; dapp dup → 404
 
 ## 8. Do / Don't
 - **Do** reuse the existing mirror/lock/retry machinery from `sync_sunmint_signatures.py`.
