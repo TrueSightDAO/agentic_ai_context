@@ -2,6 +2,10 @@
 """Generate the Black King ORDEM DE COLETA (cargo pickup order) for the
 Ilheus -> Salvador (SSA) road leg of the Brazil -> SF export lane.
 
+REV 3 (2026-09-29): Gary Teh (+1 442 340-5782, WhatsApp) added as the
+PRIMARY on-site pickup contact (on site at the warehouse, ready for the driver
+on 30/09/2026); the driver must call/WhatsApp him on arrival.
+
 REV 2 (2026-09-29): now keyed to the ISSUED export NF-e n. 16 (serie 1,
 2026-09-22). The order carries the NF-e identification block (chave de acesso,
 protocolo, emitente IE/CNPJ, natureza, total) and a fiscal uTrib column beside
@@ -78,7 +82,9 @@ EMB = {
 }
 
 # On-site contacts at the pickup warehouse.
+# First entry is the PRIMARY contact the driver must call/WhatsApp on arrival.
 CONTACTS = [
+    ("Gary Teh (TrueSight DAO)", "+1 (442) 340-5782 (WhatsApp)"),
     ("Rebecca", "+55 73 99108-2946"),
     ("Matheus Reis", "+55 11 91413-5328 / +55 73 99109-0002"),
 ]
@@ -107,9 +113,10 @@ def order_html():
 
     k = (
         "<h1>ORDEM DE COLETA DE CARGAS / Cargo Pickup Order</h1>"
-        "<p class='sub'>REV 2 - referenciada a NF-e n. 16 (serie 1) emitida em "
+        "<p class='sub'>REV 3 - referenciada a NF-e n. 16 (serie 1) emitida em "
         "22/09/2026. Prepared from Packing List PL-2026-0611-001 (Rev 12). "
-        "To be issued by Omega. No. ______ (a emitir) - 2026-09-29.</p>"
+        "To be issued by Omega. No. ______ (a emitir) - 2026-09-29. "
+        "Contato principal na coleta: Gary Teh (WhatsApp) - ver secao 2.</p>"
     )
 
     # 1. NF-e identification
@@ -134,20 +141,26 @@ def order_html():
     )
 
     # 2. Where to collect
-    contacts = " - ".join(f"{n} {p}" for n, p in CONTACTS)
+    primary = CONTACTS[0]
+    others = " - ".join(f"{n} {p}" for n, p in CONTACTS[1:])
     k += (
         "<h2>2. Onde coletar / Where to collect</h2><table>"
         "<tr><th style='width:34%'>Campo / Field</th><th>Valor / Value</th></tr>"
         f"<tr><td>Local de coleta</td><td><b>R. Cel. Paiva, 46, Centro, "
         "Ilheus - BA, 45653-310</b> (armazem fisico / physical "
         "warehouse)</td></tr>"
-        f"<tr><td>Contatos no local</td><td>{contacts}</td></tr>"
+        "<tr><td><b>Contato principal na coleta / Main pickup contact</b>"
+        "<br>(presente no armazem / on site from 30/09/2026)</td>"
+        f"<td><b>{primary[0]}</b><br><b>{primary[1]}</b></td></tr>"
+        "<tr><td>Outros contatos no local / Other on-site contacts</td>"
+        f"<td>{others}</td></tr>"
         f"<tr><td>Remetente / Sender</td><td>{NFE['emitente']} - CNPJ "
         f"{NFE['emitente_cnpj']}</td></tr>"
         "</table>"
-        "<p class='note'>Confirmar com a Omega: a ordem n. 003625 listava a "
-        "Av. Tancredo Neves, 4900 (endereco registrado), <b>nao</b> o armazem "
-        "fisico de coleta em Cel. Paiva, 46.</p>"
+        "<p class='note'><b>O motorista deve ligar/WhatsApp para o contato "
+        "principal ao chegar ao armazem.</b> Confirmar com a Omega: a ordem "
+        "n. 003625 listava a Av. Tancredo Neves, 4900 (endereco registrado), "
+        "<b>nao</b> o armazem fisico de coleta em Cel. Paiva, 46.</p>"
     )
 
     # 3. What will be collected - the driver's manifest
