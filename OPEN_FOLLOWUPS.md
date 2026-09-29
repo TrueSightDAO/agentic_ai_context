@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `sync_beta_to_prod` reports a GitHub API rate-limit 403 as a **content conflict** ("outside the blessed globs") — a false, unactionable verdict
+**Filed 2026-09-29 (thread 38428, Ledger Explorer prod promotion). Owner: unclaimed. Small, contained to `truesight_autopilot`; ~30 min.**
+
+**Symptom.** On 2026-09-29 the governed `sync_beta_to_prod(truesight_me_prod)` call returned `status: "conflict"` with a body asserting the diverged files were `"outside the blessed generated globs ... human must reconcile"`. That verdict was **false**. The only conflicting paths were six `stats/*.json` files — which **are** matched by the default `settings.prod_sync_generated_globs` (the blessed set). No human reconciliation was ever needed.
+
+**Root cause.** The sync PAT (GitHub user id shown as `1079482` in the API response) had its **core API rate limit exhausted** at the time (`x-ratelimit-remaining: 0`). So `_list_dir()` — the call that enumerates conflicted paths to feed `_reconcile_generated_files()` — **403'd**, and its failure was swallowed: `_list_dir` degraded to an empty result `{}` rather than raising. `_reconcile_generated_files()` therefore saw **zero candidates**, so the tool concluded "no blessed generated files diverged" and fell through to the *human-must-reconcile* branch. Both `auto_resolved` **and** `auto_resolve_failed` came back empty — the tell-tale signature of the swallowed 403. A parallel `truesight_me_prod` clone reproduced the true conflict set locally in seconds (git merge identified exactly the six `stats/*.json`).
+
+**Why it matters.** A rate-limit is **transient and self-healing**; a genuine "outside blessed globs" conflict needs a human. The tool collapses the two into the same verdict, so an operator either (a) needlessly escalates a non-problem, or (b) worse, distrusts the blessed-glob auto-reconcile and force-reconciles by hand — which on this repo risks the **CNAME divergence** the tool exists to protect (`truesight.me` vs the beta CNAME).
+
+**Fix.** In `_list_dir` (and any Contents-API helper the sync path uses), **raise on HTTP 403/429** rather than returning `{}`; propagate that up so `sync_beta_to_prod` returns a distinct `status: "api_error"` (with `x-ratelimit-reset`) instead of `"conflict"`. Only emit the "outside blessed globs / human must reconcile" verdict when `_list_dir` genuinely succeeded. Cheap secondary hardening: on a 403, the caller can simply retry once after `x-ratelimit-reset` before surfacing anything to the governor.
+
+**Evidence.** Tool call returned `status:"conflict"` with `auto_resolved: []` and `auto_resolve_failed: []`; direct probe showed the sync PAT `remaining: 0`; after the limit reset (`remaining: 4808`) the identical call auto-reconciled the six `stats/*.json` and returned `status: "ok"` (merge `61bd0f0`, deploy record `deploy_20260929T023925Z`).
+
+### `sync_beta_to_prod` leaks its deploy lease when the failure path itself hits an API error (close_lease also 403s)
+**Filed 2026-09-29 (thread 38428, same incident). Owner: unclaimed. Small; ~30 min; pairs with the entry above.**
+
+**Symptom.** After the (mis-reported) `conflict` above, the **next** sync attempt was blocked by a stale lease `L-20260929-01` (acquired `02:34:27Z` by the first attempt). The lease file persisted even though the conflict path is supposed to release it.
+
+**Root cause.** The 409 path **does** call `close_lease()` — confirmed by reading the code — but that `close_lease` call issues its own GitHub API write, which hit the **same exhausted rate limit** and 403'd. So the release silently failed and the lease survived, wedging the retry until the operator manually invoked `close_lease`.
+
+**Why it matters.** The lease is a **mutual-exclusion guard for a prod-affecting deploy**. A lease that survives its own failure path is a self-inflicted deadlock: the very mechanism meant to prevent double-deploys now blocks the *correct* retry, and it does so with no governor-visible signal beyond a bare 409.
+
+**Fix.** Make lease release **failure-proof on the failure path**: (a) treat release as best-effort but **record its outcome** in the response/return value; (b) stamp the lease with `expires_at` and have the acquire step **reap an expired lease** automatically (the fixture already carries a timestamp), so a leaked lease self-heals at reset rather than needing a manual `close_lease`; (c) surface a distinct message ("retry after <reset>; lease auto-expires at <t>") instead of a bare 409. Same root cause family as the entry above (a 403 that must not be silently absorbed).
+
+**Evidence.** Lease `L-20260929-01` present after the first call; its `close_lease` had 403'd; manual `close_lease` then cleared it and the re-run succeeded (`status: "ok"`, `61bd0f0`).
+
 ### `sync_sunmint_signatures.py` adds `request_transaction_id` to the txid MIRROR only — the primary message-id record is not self-describing
 **Filed 2026-09-29 (thread 38428, Ledger Explorer). Owner: unclaimed. One-line generator fix + bounded backfill; ~small.**
 
