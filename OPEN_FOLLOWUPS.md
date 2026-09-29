@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `/opt/truesight_autopilot/.env` line 7 makes bash `source` **abort** under `set -e`: `GMAIL_TOKEN_JSON` is stored as an **unquoted** JSON blob
+**Filed 2026-09-29 (thread 30550). Owner: unclaimed. Infra; small. Latent — no production service is currently broken (see Impact).**
+
+**Symptom.** `bash -c 'set -e; set -a; . /opt/truesight_autopilot/.env; set +a; echo REACHED'` exits **127** and never prints `REACHED`. Any script or ad-hoc `ssh_run` that does `set -e; . .env` silently aborts **at the source line**, so everything after it is skipped. Hit live 2026-09-29: a post-consolidation S3 verification step was skipped mid-command with no error beyond the bare `rc 127`.
+
+**Root cause.** `.env` line 7 is `GMAIL_TOKEN_JSON={"token": "ya29…", "refresh_token": "…", "token_uri": …}` — a **single 745-byte line with no surrounding quotes**, containing spaces and internal double-quotes. Bash tokenises `GMAIL_TOKEN_JSON={"token":` as an assignment (`:` is a literal in the value) and then treats the next word `"ya29…",` as a **command name** → `command not found` (rc 127) → `set -e` aborts. The line is otherwise a **valid, complete line** (not a continuation); the defect is purely that a **shell-hostile value was stored unquoted** in a file that is (also) `source`d as shell.
+
+**Why it matters.** Every *shipping* consumer happens to tolerate it, so nothing is down today — verified 2026-09-29:
+- systemd `EnvironmentFile=/opt/truesight_autopilot/.env` (farm-media-archive/-publisher) — parses fine (the running service env carries `GMAIL_TOKEN_JSON` + both AWS creds);
+- `python-dotenv` (`app/config.py` settings) — parses fine (54 keys);
+- `scripts/git-credential-sophia.sh` — reads via `grep -E '^KEY=' | cut -d= -f2-` (value-tolerant, no eval);
+- `scripts/df-alert*.sh` — use `set -u` **not** `set -e`, so they warn but continue.
+
+So the hazard is confined to `set -e` consumers — any future (or ad-hoc) `set -e; . .env` aborts, which is a **silent-truncation footgun** for SRE scripts. **Secondary (security):** sourcing the file **unsuppressed** dumps the entire box env (PATs, AWS keys, Gmail refresh token, Telegram bot token, API keys) to stderr — it did so into a tool result on 2026-09-29, so **those secrets should be rotated**.
+
+**Fix.**
+1. **Quote the value** single-quoted (JSON contains no single quotes), so `source` is safe: `GMAIL_TOKEN_JSON='{"token":"…"}'`. The repo's grep-based readers already tolerate any format.
+2. **Or** stop sourcing `.env` for this value — the box already keeps per-account tokens at `config/gmail/{admin,gary}_token.json` (`GMAIL_TOKENS_DIR` set); prefer the file, and if the env var must stay for CI, keep the JSON in a **non-sourced** file.
+3. **Add a preflight guard** so a malformed `.env` can't silently abort a script: in `deploy.sh`/CI run `bash -c 'set -e; . .env' || fail` (`bash -n` does **not** catch this).
+4. **Standardise a safe reader** for shell scripts (`while IFS='=' read -r k v; do export "$k=$v"; done < <(grep -E '^[A-Za-z_][A-Za-z0-9_]*=' .env)`) instead of `. .env`.
+5. **Rotate** the secrets spilled on 2026-09-29.
+
 ### `sync_beta_to_prod` reports a GitHub API rate-limit 403 as a **content conflict** ("outside the blessed globs") — a false, unactionable verdict
 **Filed 2026-09-29 (thread 38428, Ledger Explorer prod promotion). Owner: unclaimed. Small, contained to `truesight_autopilot`; ~30 min.**
 
