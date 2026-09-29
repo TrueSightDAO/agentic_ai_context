@@ -2,9 +2,9 @@
 
 > **Audience:** AI agents (Sophia / any autopilot instance), LLMs, and human **Envoys** operating the DAO's Brazil export lane.
 > **Canonical file.** If any other document disagrees with this one, **this file wins** — fix the other doc in the same PR.
-> **Lane:** Ilhéus, BA (Matheus / Gateway.fy warehouse) → road → Salvador (SSA) → air → San Francisco (SFO) → Kirsten's SF warehouse.
+> **Lane:** Ilhéus, BA (Matheus / Gateway.fy warehouse — **physical pickup: R. Cel. Paiva, 46, Centro**) → road → Salvador (SSA) → air → San Francisco (SFO) → Kirsten's SF warehouse.
 > **Commercial basis:** Brazil exporter (Black King, or fallback Coopercabruca) → **TrueTech Inc** (US importer of record, EIN 88-3411514).
-> **Last verified:** 2026-09-22. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`.
+> **Last verified:** 2026-09-29. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`; **Ilhéus pickup-address confirmation — Gary, thread 10800, 2026-09-29** (see §2a).
 
 ---
 
@@ -56,8 +56,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | SISCOMEX / customs | Iolanda Santos | Omega Services | iolanda.santos@omegaservicos.com.br |
 | Desembaraço (export clearance) | Gerson Argolo | Omega Services | gerson.argolo@omegaservicos.com.br |
 | Commercial / management | Helesson Bastos | Omega Services | helesson.bastos@omegaservicos.com.br |
-| Origin warehouse / cargo | Matheus Reis (Black King, EI) | Gateway.fy | theus.reis.ssa@gmail.com · WA +55 11 91413-5328 · +55 73 99109-0002 |
-| Ilhéus warehouse (physical) | Rebecca | — | +55 73 99108-2946 |
+| Origin warehouse / cargo | Matheus Reis (Black King, EI) | Gateway.fy | theus.reis.ssa@gmail.com · WA +55 11 91413-5328 · +55 73 99109-0002 · **pickup: R. Cel. Paiva, 46, Centro** (§2a) |
+| Ilhéus warehouse (physical) | Rebecca | — | +55 73 99108-2946 · **R. Cel. Paiva, 46, Centro, Ilhéus - BA, 45653-310** |
 | **NF-e specialist (hired)** | **Saymon** | (contractor) | WhatsApp group "Black King - Contab" |
 | **Accountant (hired)** | **Jussileide** | (contractor) | WhatsApp group "Black King - Contab" |
 | US importer of record | TrueTech Inc | — | EIN 88-3411514 · 1423 Hayes St, San Francisco, CA 94117 |
@@ -65,6 +65,19 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 > **Note:** the old doc said "bypass the accountant; 8 days". **Accountants have now been hired (Saymon + Jussileide)** and the lane is still not through — the bottleneck is the **structural (Junta/Prefeitura)** chain and the **master-data setup**, not the accountant's responsiveness.
 >
 > **⚠️ Delivery channel — Saymon & Jussileide are NOT on Telegram.** They are contractors on the WhatsApp group **“Black King - Contab”** and have **no access to this Telegram thread (10800)**. Any artifact meant for them (invoices, packing lists, the Rev 12 PDFs, emitter instructions) must be **relayed by Gary into that WhatsApp group** — posting a file in thread 10800 does **not** reach them. Likewise, Saymon's replies arrive in WhatsApp and must be transcribed into the runbook/source-notes by whoever holds that channel. OpenClaw's verified JID list contains **only** The Beer Hall + Prompt Haus — `“Black King - Contab”` is **not** a verified OpenClaw target, so there is currently no automated delivery path to Saymon.
+
+### Addresses — legal (CNPJ) vs. physical warehouse
+
+Two different Ilhéus addresses appear in this lane. **Do not conflate them** — this states the linkage left open as *"two storage addresses … with no stated linkage"* in `OPEN_FOLLOWUPS.md`:
+
+| Role | Address | Appears on |
+|------|---------|------------|
+| **Physical warehouse / cargo pickup** | **R. Cel. Paiva, 46 — Centro, Ilhéus - BA, 45653-310** | Omega road collection (Phase 4); the canonical scripts warehouse; the 2024-10-13 storage-warehouse site visit |
+| **Black King registered (CNPJ) address** | Av. Tancredo Neves, 4900, Qd H, Cs 9, Nossa Senhora da Vitória, Ilhéus, BA, 45655-650 | FDA FFR / `entity.json`, GACC registration, and the NF-e **emitente** row (Appendix A) |
+
+> **Confirmed by Gary, thread 10800, 2026-09-29:** *"This is the correct pickup location — R. Cel. Paiva, 46 - Centro, Ilhéus - BA, 45653-310, Brazil."* CEP validated (45653-310 = Rua Coronel Paiva, Centro, Ilhéus/BA).
+>
+> ⚠️ **Reconcile with Omega before the truck rolls.** Pickup order **nº 003625** (Omega, 2026-09-29) shows **Local Coleta = Av. Tancredo Neves, 4900** (the *registered* address), **not** R. Cel. Paiva, 46. Confirm the driver collects at the **physical warehouse**.
 
 ---
 
@@ -121,11 +134,11 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 ### Phase 3 — Cargo prep at origin (Ilhéus)
 - [ ] Cargo photos shared. Owner: Matheus.
 - [ ] **ISPM#15 pallet compliance:** fumigated or heat-treated, **IPPC stamp legible on all sides**, original Phytosanitary Certificate to accompany docs.
-- [ ] Packing arranged at Matheus's Ilhéus warehouse.
+- [ ] Packing arranged at Matheus's Ilhéus warehouse — **R. Cel. Paiva, 46, Centro, Ilhéus - BA, 45653-310** (physical pickup site — §2a).
 
 ### Phase 4 — Inland transport (Ilhéus → Salvador)
 - [ ] Road transport booked. Cost: **BRL 6,615.00 + 0.15% ad-valorem** (with Salvador palletization); **BRL 7,290.00 + 0.15%** without.
-- [ ] Collection scheduled by Omega (pickup at Matheus's warehouse).
+- [ ] Collection scheduled by Omega (pickup at **Matheus's Ilhéus warehouse — R. Cel. Paiva, 46, Centro** — §2a). ⚠️ Omega pickup order **nº 003625** (2026-09-29) lists **Local Coleta = Av. Tancredo Neves, 4900** (the *registered* address) — confirm with Omega the driver collects at **Cel. Paiva**, not the legal address.
 
 ### Phase 5 — Airport & export processing (Salvador)
 - [ ] Palletization + fumigation at Salvador (if not at origin): **BRL 195 (3 pallets) + BRL 500 (fumigation) = BRL 695**.
