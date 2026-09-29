@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-29T05:59:55Z`
+- Generated (UTC): `2026-09-29T13:12:50Z`
 - Look-back: **7** calendar days (`2026-09-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,13 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 22
-- `[EMAIL REGISTERED EVENT]` × 14
+- `[EMAIL REGISTERED EVENT]` × 13
 - `[TREE PLANTING EVENT]` × 3
+- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20260929020438_108` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Generating the FDA PNSI prior-notice prefill field mapping (submitter/import…
 - `Edgar_20260929021141_110` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · TDG Issued: 200.00
 - `Edgar_20260929021144_112` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · TDG Issued: 450.00
 - `Edgar_20260929021147_114` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · TDG Issued: 100.00
@@ -59,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260929055747_142` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Thread 35944 — CFR Anapu payout pipeline (executor): overpay-guard rework, c…
 - `Edgar_20260929055756_144` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Thread 35944 — CFR Anapu payout pipeline (governor): deliverables, guard sem…
 - `Edgar_20260929055759_146` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Thread 35944 — CFR Anapu payout pipeline (verifier): independent verificatio…
+- `Edgar_20260929120952_148` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-29T12:09:50.727Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -73,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-28T10:59:16.693Z`
+- Generated (UTC): `2026-09-29T10:59:14.756Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -83,12 +84,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1008**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1081**)
+- **Email Agent Follow Up** — logged sends: warmup **1017**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1090**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **934**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **943**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -274,6 +275,7 @@ _All dated lines on/after 2026-09-22_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+70d8434 | 2026-09-29 06:05:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 10c2380 | 2026-09-28 23:48:30 -0300 | Explorer: link tree-planting events to SunMint, deep-linked to the specific tree (PR8) (#409)
 3ec8b89 | 2026-09-28 23:23:21 -0300 | Explorer: cite the canonical sha256(txid) ledger URL, not the message-id URL (#408)
 3f5b3a8 | 2026-09-28 23:16:04 -0300 | Ledger Explorer: key the "Linked tree" link on request_transaction_id (?tx=) (#407)
@@ -313,7 +315,6 @@ c481961 | 2026-09-24 05:16:03 +0000 | chore(stats): refresh stats indexes [skip 
 ef02bae | 2026-09-23 17:24:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 6290482 | 2026-09-23 12:01:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 380d188 | 2026-09-23 05:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-15200eb | 2026-09-22 21:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -326,6 +327,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f3d5052 | 2026-09-29 03:00:22 -0300 | chore(previews): refresh Beer Hall preview (2026-09-29 UTC)
+446115b | 2026-09-29 03:00:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-29 UTC)
 fe9f095 | 2026-09-29 02:19:20 -0300 | File OPEN_FOLLOWUPS: reconcileTreePlanting_ Path B false-positive on bespoke literals (#1462)
 e4a1510 | 2026-09-29 02:07:44 -0300 | Mark PAYOUT_FARM_PLOT_FILTER_PLAN PR3 live Paulo backfill SUPERSEDED (Option A) (#1461)
 04c2d9b | 2026-09-29 01:47:42 -0300 | Merge pull request #1460 from TrueSightDAO/auto/advisory-refresh-2026-09-29
@@ -364,8 +367,6 @@ ad6f8ee | 2026-09-28 12:02:02 -0300 | File follow-up: historic-satellite land-us
 3fa80db | 2026-09-28 02:42:54 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-28 UTC)
 1088c11 | 2026-09-27 18:31:13 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
 c24b825 | 2026-09-27 18:31:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
-efeaeab | 2026-09-27 16:23:25 -0300 | File source-Sheet double-append defect in OPEN_FOLLOWUPS (#1429)
-4ffff79 | 2026-09-27 14:09:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
 … (truncated)
 ```
 
@@ -429,6 +430,7 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d4d05ba | 2026-09-29 12:58:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e791e18 | 2026-09-28 14:01:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 57f8621 | 2026-09-27 12:26:36 +0000 | chore: refresh currencies.json [skip ci]
 f42f547 | 2026-09-27 12:07:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -544,7 +546,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 1044.5 | 18484.34386 | 9/28/2026 22:51:02 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/29/2026 5:51:06 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-22`; scanned last **600** data rows)
 
