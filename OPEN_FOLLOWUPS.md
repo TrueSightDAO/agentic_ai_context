@@ -39,6 +39,24 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `reconcileTreePlanting_` takes **Path B** (phantom `+1 Cacao Tree - To Be Paid For`) whenever the farmer's prepayment sits on a **non-canonical literal** — no match on the prepaid Path-A balance
+**Filed 2026-09-29 (thread 35944). Owner: unclaimed. `tokenomics` GAS; small.**
+
+**Symptom.** `reconcileTreePlanting_` (`tokenomics/google_app_scripts/1Jp8qNIBCZaRTlmOmbJoJmYnSFyXtQkUHP2Qv5uqKZpt0Ugo-e25nhASF/process_tree_planting_telegram_logs.js`, L718) fires on a newly-confirmed planting and branches on the farmer's open balance:
+- **Path A** if balance on `Cacao Tree Purchased - Not Planted` ≥ 1 → `-1 Purchased-Not-Planted` / `+1 Planted-Unassigned`;
+- **Path B** otherwise → `+1 Cacao Tree - To Be Paid For` (accrue a liability).
+
+**Root cause.** The balance scan matches **only** `RECON_PURCHASED_LITERAL = 'Cacao Tree Purchased - Not Planted'` and **only** on `Fund Handler == contributorName`. A prepayment booked under any *other* literal (e.g. the bespoke `Cacao tree seedling (per seedling, Amazon reforest Altamira, R$40/10, Paulo Hernandez, 20260409)` used at offchain row 2825) is **invisible** to the scan → `balanceUnits = 0` → the code falls through to **Path B** and books a liability the DAO does **not** owe. Live hit 2026-09-29: the 10 Paulo / Fazenda Bom Sucesso trees were DAO-paid-first (Path A, offchain row 2824, `-R$40 Brazilian Reis`) but the bespoke literal hid the prepayment; had these rows re-ingested as `Status = NEW`, the handler would have written 10 phantom `+1 Cacao Tree - To Be Paid For` units. (They did not fire because the rows were already present / non-`NEW` at PR3 deploy — the handler is **never retroactive**.)
+
+**Also note:** the only 2 live `Cacao Tree - To Be Paid For` rows (offchain 4736/4737) are `for Gary Teh` — evidence that every Path-B fire so far has been a **name-mismatched or balance-less** match rather than a genuine farmer accrual. Worth auditing whether Path B has *ever* been correct.
+
+**Fix.**
+1. Make the **prepaid-balance scan** match a **configurable/registry list** of prepayment literals (canonical + any sanctioned alias), keyed on the farmer, rather than the single hard-coded string; **or**
+2. Refuse to take Path B when the DAO has a **matching prepayment** under any literal for that farmer (fail-closed / log-and-skip instead of accruing);
+3. Add an **audit log line** naming which literal/path was chosen, so a future session can verify without re-deriving.
+
+**Context.** The 2026-09-29 correction (thread 35944) retired the bespoke literal (`Currencies` row 80, marked `[DEPRECATED …]`) and reclassified its `+10` onto the canonical pool, so the specific Paulo case is closed — but the **handler's fragile literal match remains** and will misfire on the next farmer who is prepaid under a new literal.
+
 ### `/opt/truesight_autopilot/.env` line 7 makes bash `source` **abort** under `set -e`: `GMAIL_TOKEN_JSON` is stored as an **unquoted** JSON blob
 **Filed 2026-09-29 (thread 30550). Owner: unclaimed. Infra; small. Latent — no production service is currently broken (see Impact).**
 
