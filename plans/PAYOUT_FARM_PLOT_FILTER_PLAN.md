@@ -133,13 +133,19 @@ Read of the live sink `tokenomics/google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k
 > start without Gary's explicit go** (§2/§5c): promote `dapp_beta` → `dapp_prod` after beta UAT passes,
 > then Gary backfills Paulo's real 10 Fazenda Bom Sucesso trees for real and confirms they flip
 > outstanding → paid. **Never promote to prod or fire payouts without the governor's go.**
+>
+> **UPDATE (2026-09-29): PROD PROMOTE DONE** — Gary said *"promote to prod"*; `dapp_beta` →
+> `dapp_prod` synced (fork merge, non-forced; deploy ledger `deploy_20260929T041546Z_dapp-prod`).
+> New farm/plot filter + URL-sync code verified present in `dapp_prod` main. **Only remaining PR3
+> step: Gary fires the live Paulo backfill and confirms the 10 Fazenda Bom Sucesso trees flip
+> outstanding → paid** — Sophia does not move money, so this step stays with the governor.
 
 | Unit | Built | Merged | Contribution reported |
 |---|:---:|:---:|:---:|
 | PR0 (this roadmap) | ☑ | ☐ | ☐ |
 | PR1 (Farm/Plot filter, read-only) | ☑ | ☑ | ☑ |
 | PR2 (batch backfill submit) | ☑ | ☑ | ☑ |
-| PR3 (prod promote + live Paulo backfill) | ☐ | — | ☐ |
+| PR3 (prod promote + live Paulo backfill) | ☑ prod promote | ☑ dapp_prod synced 2026-09-29 | ☐ pending Gary's live backfill |
 
 ---
 
