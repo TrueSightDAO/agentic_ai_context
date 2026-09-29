@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-09-29T02:20:21Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "1ed701072c9d8bdd857f23e3739a4bd41e18774cbe0a592864ccc5d2c69bea0d",
+  "source_sha256": "7a08a35d3c4bed894c0d167d84ebedf95cd25f385685543a0d9967b611b95bf5",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -37,7 +37,7 @@
       "title": "**TrueSight Ledger Explorer** — a public \"blockchain explorer\" read surface over `TrueSightDAO/verify_public_signatures` (the DAO's existing immutable, per-event-file signed ledger): search by txid/message_id, recent-activity feed, browse by type/contributor, cross-linked with the just-shipped My Trees module, canonical explorer at `truesight_me_beta/ledger/explorer/` (already nav-linked there); cfr/sunmint/dapp nav duplication DROPPED 2026-09-29; prod promotion held for governor approval.",
       "handoff_date": "2026-09-28",
       "state": "executing",
-      "status_raw": "**in progress — explorer shipped + hardened on beta (10 site PRs); PR6 UAT pending (governed prod hold)**",
+      "status_raw": "**in progress — explorer shipped + hardened on beta (10 site PRs); PR6 UAT PASSED + Gap-3 cite fix / SW self-heal / dapp-dup retire shipped 2026-09-29 (governed prod hold)**",
       "telegram_thread_id": "38428",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
