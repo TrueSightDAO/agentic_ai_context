@@ -20,9 +20,45 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-29T04:47:23Z`
+- Generated (UTC): `2026-09-29T05:59:55Z`
 - Look-back: **7** calendar days (`2026-09-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 22
+- `[EMAIL REGISTERED EVENT]` × 14
+- `[TREE PLANTING EVENT]` × 3
+- _free-form (no bracket tag)_ × 3
+
+### Latest entries
+
+- `Edgar_20260929020438_108` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Generating the FDA PNSI prior-notice prefill field mapping (submitter/import…
+- `Edgar_20260929021141_110` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · TDG Issued: 200.00
+- `Edgar_20260929021144_112` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · TDG Issued: 450.00
+- `Edgar_20260929021147_114` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · TDG Issued: 100.00
+- `Edgar_20260929024645_116` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: dapp_beta: report_payout_event Farm/Plot cascade filter (plan PR1)
+- `Edgar_20260929030430_118` · **Edgar** · [EMAIL REGISTERED EVENT] Email: farmer@example.com
+- `Edgar_20260929030438_120` · **Edgar** · [EMAIL REGISTERED EVENT] Email: farmer@example.com
+- `Edgar_20260929030627_122` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Ledger Explorer plan — PR7 canonical URL, PR8 SunMint tree cross-link, + pro…
+- `Edgar_20260929033824_124` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: PR2 — report_payout_event batch backfill (cluster payouts: one lump, N singl…
+- `Edgar_20260929040057_126` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Payout form: mirror Farm/Plot/Program filters into the URL (dapp_beta #147)
+- `Edgar_20260929043758_128` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Description: Execution: payout Farm/Plot filter + cluster backfill + URL sync (thread 389…
+- `Edgar_20260929043800_130` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Planning + payout-sink recon: payout Farm/Plot filter & cluster backfill roa…
+- `Edgar_20260929043803_132` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Governance: payout Farm/Plot filter & cluster backfill — requirements, decis…
+- `Edgar_20260929044123_134` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Thread 35944 (CFR Payout registration) — Sophia Truesight, raw machine execu…
+- `Edgar_20260929044125_136` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Thread 35944 (CFR Payout registration) — Sophia Truesight, direct time (enga…
+- `Edgar_20260929044128_138` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Thread 35944 (CFR Payout registration) — Gary Teh, direct time
+- `Edgar_20260929044130_140` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Thread 35944 (CFR Payout registration) — Envoy TrueSight, supervision + veri…
+- `Edgar_20260929055747_142` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Thread 35944 — CFR Anapu payout pipeline (executor): overpay-guard rework, c…
+- `Edgar_20260929055756_144` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Thread 35944 — CFR Anapu payout pipeline (governor): deliverables, guard sem…
+- `Edgar_20260929055759_146` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Thread 35944 — CFR Anapu payout pipeline (verifier): independent verificatio…
 
 ---
 
@@ -194,13 +230,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+31 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,867.84**
+- Brazilian Reis: R$606.71 · rate `0.2323` USD/BRL → ≈ **$140.94**
+- USD provisioned for voting-rights cash-out: **$55.78**
 
-### In-transit freight
+### In-transit freight (1 row)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
+|----------|--------|------|-------|------------|-------------|
+| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -286,6 +326,10 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+fe9f095 | 2026-09-29 02:19:20 -0300 | File OPEN_FOLLOWUPS: reconcileTreePlanting_ Path B false-positive on bespoke literals (#1462)
+e4a1510 | 2026-09-29 02:07:44 -0300 | Mark PAYOUT_FARM_PLOT_FILTER_PLAN PR3 live Paulo backfill SUPERSEDED (Option A) (#1461)
+04c2d9b | 2026-09-29 01:47:42 -0300 | Merge pull request #1460 from TrueSightDAO/auto/advisory-refresh-2026-09-29
+5e89938 | 2026-09-29 04:47:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-29 UTC)
 93f2f87 | 2026-09-29 01:39:18 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: repoint PR3 RESUME marker to the governor-only money gate (prod promote done) (#1459)
 3d66b58 | 2026-09-29 01:37:04 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: mark PR3 prod promote done, awaiting live backfill (#1458)
 9afe274 | 2026-09-29 01:06:37 -0300 | Register handoff: MAP intake go-live (thread 30550) — plan + HANDOFF_MANIFEST row (#1457)
@@ -322,10 +366,6 @@ ad6f8ee | 2026-09-28 12:02:02 -0300 | File follow-up: historic-satellite land-us
 c24b825 | 2026-09-27 18:31:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
 efeaeab | 2026-09-27 16:23:25 -0300 | File source-Sheet double-append defect in OPEN_FOLLOWUPS (#1429)
 4ffff79 | 2026-09-27 14:09:27 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
-72c6ef1 | 2026-09-27 14:09:26 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
-f1953dc | 2026-09-27 09:18:17 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
-a7c671f | 2026-09-27 09:18:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-27 UTC)
-d69955b | 2026-09-27 02:35:13 -0300 | chore(previews): refresh Beer Hall preview (2026-09-27 UTC)
 … (truncated)
 ```
 
@@ -480,6 +520,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-08 | 1011.96 | 9368.83386 | 2025-12-07 19:14:46 |
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/28/2026 22:51:02 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-22`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
