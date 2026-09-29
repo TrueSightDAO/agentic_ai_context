@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `ledger_index.json` advertises events whose files are not yet pushed — the Explorer links to 404s until the 30-min trickle catches up
+
+**Filed 2026-09-29 (thread 37982). Owner: unclaimed. Data-pipeline; small, generator-side.**
+
+**Symptom.** The Ledger Explorer's newest feed row expands to a *partial* record (Contributor + submitted time from the index, but **no payload / signature / openssl snippet**) and logs one console `404`. Cause is **not** the Explorer — I confirmed the row's event file is genuinely absent from the repo, not merely CDN-lagged:
+- newest index row `Edgar_20260929002421_101`, `txid_hash e99ae951240cb4a0013ef4d4c193c9cacb34bf56adbfa0dff0c1e8ccb9b09520` (`ledger_index.json`, `generated_at 2026-09-29T00:30:17Z`, `count 4440`)
+- its `canonical_url` **and** `message_id_url` both **404** — and 404 on the **cache-busted GitHub Contents API** (`?ref=main&ts=…`), i.e. the file is not in `main`, not just missing from `raw.githubusercontent.com`
+- **1 of the newest 20** rows is missing (only the very newest); row 12 expands **fully** (`hasSignature`/`hasOpenssl`/`hasPayload` all true)
+
+**Root cause (`truesight_autopilot/scripts/sync_sunmint_signatures.py::_push_ledger`, ~L820–891).** The generator builds `ledger_index.json` (L753) and every `<folder>/index.json` from **all in-memory rows** it just assembled. `_push_ledger` then publishes in two phases:
+1. **all** `*index.json` summaries **first, uncapped** (deliberately, so the public surface is correct within one pass); then
+2. the **event files under a 250/run trickle cap**, resuming from a persisted cursor across the 30-min cron.
+
+So a freshly-built index is published immediately while the event files it references may still be queued behind the cursor → **the index advertises events whose files 404 until a later cron pass pushes them.** Any client that trusts the index (the Explorer does) will link to missing files. (Secondary: `ledger_index.json` `submitted_at` is **date-only**, so intra-day ordering ties break on `txid_hash`, not true submit time — cosmetic, but it makes "newest first" approximate.)
+
+**Why it matters.** `ledger_index.json` is the Explorer's *only* fetch for the feed + search, and the plan's stated contract is "search-by-txid is ONE fetch". A row that 404s undermines the "the receipt is verifiable" promise for exactly the freshest events — the ones a curious visitor is most likely to click.
+
+**Proposed fix (small, generator-side — pick one).**
+1. **Derive the summary from the publishable set.** Build `ledger_index.json` / per-folder `index.json` from rows whose event file is **confirmed committed** (e.g. the union of `_PUSHED_THIS_RUN` and a sha-aware GET pass), not from all in-memory rows; or
+2. **Publish newest-N event files before the summary** (mirror the summary-first inversion for the top of the `submitted_at` order), so the freshest rows always resolve; or
+3. add a `pending: true` flag on rows whose files are not yet committed and have the Explorer render a "not yet published — check back shortly" note instead of a 404 (UI mitigation only; 1–2 are the real fix).
+
+While here: consider a true timestamp (`submitted_ts`) for index ordering so intra-day ties are exact.
+
+**Evidence.** Live probe 2026-09-29: `ledger_index.json` row 0 canonical/message-id URLs → HTTP 404 (Contents API `?ts=` cache-busted); rows 1–19 → 200. Playwright UAT of the deployed `beta.truesight.me/ledger/explorer/`: row 0 expand `hasSignature:false hasOpenssl:false` (fallback), row 12 expand `hasSignature:true hasOpenssl:true hasPayload:true`. Generator source: `sync_sunmint_signatures.py` L753 (`files["ledger_index.json"] = …`) vs L846–891 (`_push_ledger` summary-first + 250/run trickle). Thread 37982.
+
 ### Autopilot `merge_pr` refuses API-only data repos even though Contents-API single-file writes to them succeed
 **Filed 2026-09-28 (thread 35944). Owner: unclaimed. Tooling gap; small. Verified live.**
 
