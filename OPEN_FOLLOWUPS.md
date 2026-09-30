@@ -1870,6 +1870,10 @@ The media→location join **shipped** in [farm-media-daemon#30](https://github.c
 
 **On-box note.** `ssh dao_protocol` is key-denied from the autopilot box, so the server journal for 21:31-21:33 UTC could not be read to convict the rate limit vs. another transient - verify there when picking this up.
 
+**Addendum 2026-09-30 (thread 23408) - the Python CLI client also lacks the guard; live recurrence.** While filing AGL16 expenses, `truesight-dao-report-dao-expenses` (the CLI at `/home/ubuntu/.local/bin/`) returned `signature_verification: success, fileUploadedToGithub: false` on **three consecutive submissions** - AGL16 ledger rows **27** (acai R$66.00), **28** (ride R$16.60), **29** (ride R$81.81). Each row was still scored and inserted, carrying a `Destination Expense File Location` of `https://github.com/TrueSightDAO/.github/tree/main/assets/dao_inventory_expense_<ts>_admin_sophia_<orig>.jpg` - and each path **404'd** until the receipt was re-uploaded by hand (Contents API `404`, `raw.githubusercontent.com` `404`). Two receipts were silently orphaned before the pattern was noticed (a third was pre-emptively re-uploaded).
+
+**Why this is a *new* data point, not a duplicate of the above.** The original entry covers the *server-side* contract gap and a fix in `sunmint_beta` (PR #83 guards on `fileUploadedToGithub === false`). The **Python CLI has no such guard** - it prints a plain success body and reports `"status": "ok"`, so an operator sees success while the receipt link is dead. Fix: port the `sunmint_beta` guard into `truesight_dao_client` (retain the blob + queue/retry while `fileUploadedToGithub == false`), or at minimum return a non-success status the CLI surfaces prominently. Until then, **any CLI expense submission that returns `fileUploadedToGithub: false` needs its asset re-uploaded manually** - verify the `.github/assets/<Attached Filename>` path resolves.
+
 ### Autopilot's hardcoded `TREE PLANTING EVENT` labels are stale **and** the committed `events_catalog_snapshot.json` crashes its own reader - box freezes on stale labels during an Edgar outage
 **Filed 2026-09-10. Owner: unclaimed. Governor: Gary (thread 25178).**
 
