@@ -18,7 +18,7 @@ Two halves, one funnel:
 | Unit | `farm-media-intake.timer` → `farm_media_intake.py` | `farm-media-archive.service` → archive worker |
 | Does | claims a **settled** `*.zip` (`/media/to_process` → `/media/processing`) | resolves each zip → its own `farm_id`, streams media **per file** to S3 `raw/<farm_id>/`, promotes zip + `.archive.json` sidecar → `/media/processed/` |
 | Identity source | none (transport only) | `archive.roots[].zip_farm_ids` map in the config — **hand-edited** |
-| Status | **LIVE** | **LIVE** (7 mappings wired 2026-09-29) |
+| Status | **LIVE** | **LIVE** (8 mappings wired 2026-09-30) |
 
 ## §0 — The `farm_id` register (the durable output of this thread)
 
@@ -34,6 +34,7 @@ The whole point of the thread was the `<zip → farm_id>` map. Mappings wired + 
 | `santa_anna_fazenda_bahia_complete.zip` | `fazenda-santa-ana-bahia` | Uruçuca, **BA** | Chocolate Morbeck · Coopercabruca | `FSA-P1` | **mapping KEPT**, corrected prefix (see §2) |
 | `itacare_pituba_samba_festival_2024.zip` | `event-media` | Itacaré, BA | (event namespace) | — | — |
 | `tribo_mirim_roda_2024.zip` | `event-media` | (event namespace) | — | — | — |
+| `oscar_complete.zip` | `oscar-bahia` | **BA** (Óscar/Osca) | — | — | wired 2026-09-30: 77 media (62 size-skip + 15 new), IMG 2133–2225; farm_id pre-existing in config |
 
 ### ⚠️ Same-name traps resolved this thread (do NOT re-litigate)
 
@@ -86,8 +87,8 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
 
 - Services: `farm-media-intake.timer`, `farm-media-archive.service`,
   `farm-media-publisher.timer`, `farm-media-daemon.service` — **all active**.
-- `/media/processed/`: **6 zips + 6 sidecars**. `/media/to_process/`, `/media/processing/`:
-  **empty**. `/media/quarantine/`: the bad zip + README.
+- `/media/processed/`: **7 zips + 7 sidecars** (as of 2026-09-30). `/media/to_process/`,
+  `/media/processing/`: **empty**. `/media/quarantine/`: the bad zip + README.
 - Disk: `/` 62 % (96 G/155 G), `/media` 37 % (86 G/246 G).
 
 ## §4 — Remaining / RESUME HERE
