@@ -118,6 +118,37 @@ So the hazard is confined to `set -e` consumers — any future (or ad-hoc) `set 
 
 **Next.** One-line generator PR (dry-run-first, show the count) → bounded backfill. No prod / no money. Distinct from the 2026-09-26 entry above, which decided the mirror *path scheme*; this is the *field-parity* gap left behind by it.
 
+### MAP has no stills handler: the S3 worker is video-only, so a stills-only zip can never complete (and no code writes photos to `farm-media-raw`)
+
+**Filed 2026-09-30 by Sophia (thread 30550). Owner: Sophia. Status: OPEN — not started.**
+
+`farm-media-archive.service` archives **video only** to S3 (`resolve_extensions()` strips
+`.HEIC/.heic/.JPG/.jpg/.png` before they reach S3, per the "No S3 for still photos" rule),
+and `zip_is_complete()` counts **only video media**. Two consequences:
+
+1. A **stills-only zip** (e.g. `ilheus_warehouse_2.zip` = 4 HEIC) can **never** complete and
+   **never** promotes — its completion check only runs when video media exists, so it is
+   re-walked every 30 s forever (benign warn/scan loop).
+2. **No code writes stills to their home.** `farm-media-raw/<id>/photos/` is the documented
+   home for stills, but `grep -rn "farm-media-raw" --include=*.py` finds only comments + the
+   `app/config.py` api-only allowlist — there is **no writer**. `farm_media_publisher.py`
+   reconciles **gallery manifests**, not raw photos.
+
+**Impact:** every dropped **photo** zip (and every photo inside a mixed zip) is a silent
+dead-end — exactly the class of media the Ilhéus warehouse load-out is producing.
+
+**Proposed fix:** a `farm-media-photos` pass (mirroring the archive worker's contract):
+  enumerate `_PHOTO_EXTS` in each zip/root → enrich (`farm_media_photo_enrich`) → write
+  `farm-media-raw/<farm_id>/photos/<name>` + `<name>.photo.json` sidecar via the Contents API
+  (api-only repo → single-file writes, never branch-edit) → record in a `<zip>.photos.json`
+  state file so `zip_is_complete` can accept **photos OR video**. Keep the "no S3 for
+  stills" rule intact.
+
+**Do NOT** "fix" this by adding photo extensions to an S3 root — that violates the "No S3
+for still photos" rule and mis-routes stills to a bucket that has no business holding them.
+
+---
+
 ### MAP intake has no per-zip context channel: `farm_id` arrives out-of-band in chat, and a zip that never gets context stalls invisibly
 
 **Filed 2026-09-29 (thread 30550). Owner: unclaimed. Media pipeline; ~1 session.**

@@ -18,7 +18,7 @@ Two halves, one funnel:
 | Unit | `farm-media-intake.timer` → `farm_media_intake.py` | `farm-media-archive.service` → archive worker |
 | Does | claims a **settled** `*.zip` (`/media/to_process` → `/media/processing`) | resolves each zip → its own `farm_id`, streams media **per file** to S3 `raw/<farm_id>/`, promotes zip + `.archive.json` sidecar → `/media/processed/` |
 | Identity source | none (transport only) | `archive.roots[].zip_farm_ids` map in the config — **hand-edited** |
-| Status | **LIVE** | **LIVE** (8 mappings wired 2026-09-30) |
+| Status | **LIVE** | **LIVE** (9 mappings wired 2026-09-30; +facility namespaces §0b) |
 
 ## §0 — The `farm_id` register (the durable output of this thread)
 
@@ -48,6 +48,34 @@ The whole point of the thread was the `<zip → farm_id>` map. Mappings wired + 
   (B-06-58, Ana Lucia, CEPOTX COOPOXIN; page slug `santa-anna-fazenda-para`, S3 44 objs) and
   (B) **Bahia** `fazenda-santa-ana-bahia` (FSA-P1, Morbeck; 244 objs). `santa-anna-fazenda`
   is **NOT** a Bahia variant.
+
+## §0b — Facility namespaces (processing / consolidation sites) — added 2026-09-30
+
+Not every dropped zip is a **farm**. The Ilhéus → San Francisco freight load-out
+(2026-09-30) surfaced **facility** media — warehouses / factories / co-op sites, not plots.
+MAP already carries non-farm namespaces (`event-media` for the samba-festival + tribo-mirim
+zips; `oscar-bahia`, `cvp`, `paulo-interview`), so this is not novel — it only needs a
+naming discipline:
+
+| Tier | When | Id convention | Example |
+|---|---|---|---|
+| **Farm** | a plot / grower | `<name>-<region>` (existing) | `fazenda-santa-rosa`, `vivi-jesus-do-deus-itacare` |
+| **Event** | a festival / rodeo / summit | `event-media` | `itacare_pituba_samba_festival_2024.zip` |
+| **Facility** | a warehouse / factory / co-op (processing + consolidation) | **`facility-<name>`** | `facility-black-king-warehouse` |
+
+Facilities wired (config `inboxes[]` **and** `archive.roots[]`, both rooted at
+`/media/media_archive_inbox/farm-media/<id>/`):
+
+| Facility | Evidence | `farm_id` |
+|---|---|---|
+| Ilhéus warehouse | "Black King Warehouse" (Matheus Reis Pereira) — `liz_bahia_deck/`; **distinct** from Coopercabruca | `facility-black-king-warehouse` |
+| Santos chocolate factory | "Santos Chocolate Factory", Itabuna — `liz_bahia_deck/` | `facility-santos-chocolate-factory` |
+| Coopercabruca | Coopercabruca co-op, Itabuna (Orlantildes; CNPJ 31.948.811/0001-42) | `facility-coopercabruca` |
+| Kirsten's chocolate factory | SF fulfilment/retail site | **deferred** — city unconfirmed |
+
+Each facility root lists the **explicit** video+photo extension set so the stills warning
+fires loudly. Videos land under `raw/facility-<name>/`; stills are still never sent to S3
+(see the stills gap in §2).
 
 ## §1 — Front door (Unit A) — LIVE
 
@@ -83,13 +111,31 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
 `/media/quarantine/` + a `README.md` (hash, reason, restore cmd). The map entry was
 **kept** (annotated) so a future good re-upload auto-archives idempotently.
 
-## §3 — State (verified 2026-09-29)
+### ⚠️ Stills have no archive worker (gap — logged 2026-09-30)
+
+MAP's S3 half is **video-only by design**: `resolve_extensions()` strips photo extensions
+before they reach S3, and `zip_is_complete()` counts **only** video media — so a
+**stills-only zip can never complete and never promotes**. Worse: in `process_zip_dir` the
+promotion check runs only after video handling, so a stills-only zip is re-walked every
+30 s forever (benign warn/scan loop — nothing mis-filed, but nothing archived either).
+
+`ilheus_warehouse_2.zip` = **4 HEIC stills, 0 video**: mapped to a video root it would loop
+unseen; mapped to nothing it at least warns. Either way **no stills pipeline exists**.
+Verified: no script writes HEIC/JPG to `farm-media-raw/<id>/photos/`
+(`grep -rn "farm-media-raw" --include=*.py` → only comments + the `app/config.py` api-only
+allowlist); `farm_media_publisher.py` reconciles **gallery manifests**, not raw photos. So
+the stills half of MAP is **not implemented** — filed as a Pending entry in
+`OPEN_FOLLOWUPS.md` ("MAP has no stills handler").
+
+## §3 — State (verified 2026-09-30)
 
 - Services: `farm-media-intake.timer`, `farm-media-archive.service`,
   `farm-media-publisher.timer`, `farm-media-daemon.service` — **all active**.
-- `/media/processed/`: **7 zips + 7 sidecars** (as of 2026-09-30). `/media/to_process/`,
-  `/media/processing/`: **empty**. `/media/quarantine/`: the bad zip + README.
-- Disk: `/` 62 % (96 G/155 G), `/media` 37 % (86 G/246 G).
+- `/media/processed/`: **8 zips + 8 sidecars** (2026-09-30; +
+  `founder_haus_startup_summit_20260930.zip`). `/media/to_process/`: `ilheus_warehouse.zip`
+  (**still uploading**); `/media/processing/`: `ilheus_warehouse_2.zip` (**stills-only,
+  unmapped** — see stills gap in §2). `/media/quarantine/`: the bad zip + README.
+- Disk: `/` 69 % (106 G/155 G), `/media` 39 % (89 G/246 G).
 
 ## §4 — Remaining / RESUME HERE
 
@@ -100,6 +146,11 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
    + a **fail-visible** hold. **Not yet built.**
 2. **Never wire `/media/quarantine/` as an intake/archive root** — it would re-loop the bad
    zip. Parking lot, not a source.
+3. **Stills handler (NEW 2026-09-30)** — MAP's S3 worker is video-only; a stills-only zip
+   can never complete. Build a `farm-media-photos` pass → `farm-media-raw/<id>/photos/` +
+   sidecars (filed in `OPEN_FOLLOWUPS.md`). Unblock the live drops: `ilheus_warehouse_2.zip`
+   (4 HEIC, landed, unmapped) needs this; `ilheus_warehouse.zip` (still uploading) needs
+   video content confirmed **before** mapping.
 
 ## Gates
 
@@ -110,6 +161,11 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
 
 ## RESUME HERE
 
-Plan + manifest row = PR1 (this file). Remaining unit = the **intake context card**
-(OPEN_FOLLOWUPS) so future zips carry identity instead of stalling. Front door + back door
-are **live**; the `farm_id` register (§0) is the thread's durable artifact.
+Plan + manifest row = PR1 (this file). Front door + back door are **live**; the `farm_id`
+register (§0) + facility namespaces (§0b) are the thread's durable artifact.
+
+Two remaining units, both filed in `OPEN_FOLLOWUPS.md`:
+1. **Intake context card** — `foo.zip.context.json` sibling + fail-visible hold.
+2. **Stills handler (NEW)** — MAP is video-only to S3; a stills-only zip can never complete.
+   Pending: `ilheus_warehouse_2.zip` (4 HEIC, unmapped) + the stills pass. Also unblock
+   `ilheus_warehouse.zip` (uploading) — confirm video content, then map.
