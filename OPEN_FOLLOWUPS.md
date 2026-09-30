@@ -39,6 +39,20 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### **[Biometric gate] Face/voice indexing of a minor in farm/program media is PROHIBITED pending an explicit written answer from Gary** — hard block on Tier 2/3
+**Filed 2026-09-30 (thread 39733). Owner: Gary (decision); implementation unclaimed until answered. Blocks: ALL Tier-2/3 people-identity work in farm/program media. Design: `plans/FARM_MEDIA_PEOPLE_TIERS.md`.**
+
+**Rule.** No face clustering, face embedding, or voice ID on any person who is **or may be** a minor, in any farm/program media batch — **not even in a locked-down prototype**. Age-unknown ⇒ treated as minor ⇒ excluded, until Gary decides otherwise (§ below).
+
+**Why it is a hard gate (not a nice-to-have).** Biometric indexing of a **minor** is a materially higher-stakes consent problem than an adult contributor's. Under **LGPD** it is doubly gated: **Art. 11** makes biometrics *sensitive personal data* (specific consent required even from adults); **Art. 14** requires **guardian**-specific consent + a best-interest assessment for minors. And **minors are the DAO's default media population**, not an edge case — the first real deployments are youth programs: CFR Anapu / CEPOTX students, Butterfly Effect (ERA), Tribo Bahia Mirim.
+
+**The DAO already anticipated this in three docs** (useful precedent; none is a working control):
+- `CRF_ANAPU_TREE_PLANTING_SUPPORT_AGREEMENT.md` §9 — students under 18 participate only with parent/guardian informed consent, who acknowledge public listing of the credential.
+- `CRF_ANAPU_SUNMINT_COHORT_PROPOSAL.md` (~§4) — `"credential_visibility_default": "private"` *"for exactly this reason (CEPOTX students are minors)"*.
+- `credentials/CREDENTIALING_PROGRAM_PAGES.md` — `public_listable` / `credential_visibility_default` exist *"to gate minors"*, but the doc flags the per-person flag as **future / Phase-5 "(Optional)" / advisory** (i.e. not yet a working control).
+
+**Unblock when Gary states the rule** — either (a) exclude minors entirely from Tier 2/3 (default), or (b) a guardian-consent path with a named release form + recorded guardian attestation. Follow-on work once answered: implement the `[BIOMETRIC CONSENT EVENT]` schema + the guardian-attestation branch (`plans/FARM_MEDIA_PEOPLE_TIERS.md` §5/§7).
+
 ### `reconcileTreePlanting_` takes **Path B** (phantom `+1 Cacao Tree - To Be Paid For`) whenever the farmer's prepayment sits on a **non-canonical literal** — no match on the prepaid Path-A balance
 **Filed 2026-09-29 (thread 35944). Owner: unclaimed. `tokenomics` GAS; small.**
 
