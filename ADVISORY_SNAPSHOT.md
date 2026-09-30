@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-09-30T05:49:32Z`
+- Generated (UTC): `2026-09-30T12:53:31Z`
 - Look-back: **7** calendar days (`2026-09-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,14 +33,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[EMAIL REGISTERED EVENT]` × 25
-- `[TREE PLANTING EVENT]` × 8
+- `[TREE PLANTING EVENT]` × 7
 - `[EMAIL VERIFICATION EVENT]` × 6
 - `[CONTRIBUTION EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20260929181358_210` · **Edgar** · [EMAIL REGISTERED EVENT] Email: murilotorres616@gmail.com
 - `Edgar_20260929181426_212` · **Edgar** · [EMAIL REGISTERED EVENT] Email: murilotorres616@gmail.com
 - `Edgar_20260929181502_214` · **Edgar** · [EMAIL REGISTERED EVENT] Email: douglasalexsander2025@gmail.com
 - `Edgar_20260929181510_216` · **Edgar** · [EMAIL REGISTERED EVENT] Email: douglasalexsander2025@gmail.com
@@ -60,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20260929204414_244` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260930001621_246` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260930013111_248` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Packing the boxes for shipment to USA
+- `Edgar_20260930104457_250` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-09-30T10:44:54.041Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -74,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-29T10:59:14.756Z`
+- Generated (UTC): `2026-09-30T10:59:14.847Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -84,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1017**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1090**)
+- **Email Agent Follow Up** — logged sends: warmup **1029**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1102**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **943**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **955**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -275,6 +276,7 @@ _All dated lines on/after 2026-09-23_ (4):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3528830 | 2026-09-30 05:53:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 5c34d3a | 2026-09-29 22:33:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 1581a46 | 2026-09-29 13:15:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 70d8434 | 2026-09-29 06:05:13 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,7 +316,6 @@ a1059d5 | 2026-09-24 12:07:58 +0000 | chore(stats): refresh stats indexes [skip 
 753221d | 2026-09-24 07:50:14 -0300 | qr page: add SunMint cert download button (URL-probe route) (#394)
 c481961 | 2026-09-24 05:16:03 +0000 | chore(stats): refresh stats indexes [skip ci]
 8e46fda | 2026-09-23 21:42:44 +0000 | chore(stats): refresh stats indexes [skip ci]
-ef02bae | 2026-09-23 17:24:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
@@ -327,6 +328,10 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6e7bc08 | 2026-09-30 09:49:14 -0300 | Add Pará farm dossier PDF (tree age/size/variety/back-stories)
+84b6080 | 2026-09-30 08:12:35 -0300 | Add Pará farm dossier (age/size/variety/stories) for recent field visits
+cc83be8 | 2026-09-30 02:49:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-30 UTC)
+2a7a08d | 2026-09-30 02:49:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-30 UTC)
 ccf827f | 2026-09-29 12:45:53 -0300 | Brazil lane: fiscal CC-e for NF-e nº 16 — volumes (peso bruto/líquido, caixas, pallets) (#1475)
 95d8eb7 | 2026-09-29 12:13:25 -0300 | Remove Rebecca from the on-site contact list (both export docs) (#1474)
 4a33d33 | 2026-09-29 12:12:12 -0300 | Correction letter: list Gary Teh (WhatsApp) as the on-site main contact (#1473)
@@ -363,10 +368,6 @@ df2e93e | 2026-09-29 00:00:52 -0300 | Ledger explorer: file 2 sync-tool bugs + r
 10f70e8 | 2026-09-28 23:43:09 -0300 | Liz Bahia deck v22 — 30 Sep circuit adds San Francisco freight-load stop (EN+PT) (#1446)
 b331204 | 2026-09-28 23:38:07 -0300 | handoffs: link Payout Farm/Plot Filter plan to exec thread 38993 (#1445)
 9543d00 | 2026-09-28 23:31:26 -0300 | Ledger Explorer: record PR6 UAT pass + PR7 (Gap-3 cite fix, SW self-heal, dup retire) (#1444)
-b14c0eb | 2026-09-28 23:20:58 -0300 | Plan: report_payout_event.html Farm/Plot filter + cluster backfill (#1443)
-742a1b1 | 2026-09-28 23:17:38 -0300 | manifest: refresh Ledger Explorer handoff row (thread 37982 epic shipped + hardened) (#1442)
-e77ba0d | 2026-09-28 22:53:41 -0300 | docs(handoffs): Ledger Explorer rescope — PR5 dropped, dapp duplicate retired, canonical = truesight_me_beta/ledger/explorer/, prod held (#1441)
-a4c0941 | 2026-09-28 22:52:46 -0300 | OPEN_FOLLOWUPS: MAP per-zip context card + fail-visible hold (#1440)
 … (truncated)
 ```
 
@@ -428,6 +429,7 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+7f85571 | 2026-09-30 12:39:54 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d4d05ba | 2026-09-29 12:58:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e791e18 | 2026-09-28 14:01:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 57f8621 | 2026-09-27 12:26:36 +0000 | chore: refresh currencies.json [skip ci]
@@ -539,7 +541,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 1044.5 | 18484.34386 | 9/29/2026 21:50:46 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 5:51:09 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-23`; scanned last **600** data rows)
 
