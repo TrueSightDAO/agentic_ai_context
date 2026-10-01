@@ -53,6 +53,31 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Unblock when Gary states the rule** — either (a) exclude minors entirely from Tier 2/3 (default), or (b) a guardian-consent path with a named release form + recorded guardian attestation. Follow-on work once answered: implement the `[BIOMETRIC CONSENT EVENT]` schema + the guardian-attestation branch (`plans/FARM_MEDIA_PEOPLE_TIERS.md` §5/§7).
 
+### `[PAYOUT EVENT]` sink parser `parsePayoutEventText_` is **field-order dependent** — the LAST field swallows the `--------` + signature trailer
+**Filed 2026-09-30 (thread 35944). Owner: unclaimed. `tokenomics` GAS; small.**
+
+**Symptom.** Filing the 18 CFR Anapu `[PAYOUT EVENT]`s, one event (tree `Edgar_20260924132334_099`) failed with `SUNMINT_ROW_NOT_FOUND`. The Ops `payouts` row recorded `tree_planting_id` = the 966-char blob `Edgar_20260924132334_099 My Digital Signature: MIIB…` instead of the clean 24-char id, so `fpeFindSunMintRow_` (which string-equals `tree_planting_id` against SunMint col D) could not find the row and the sink booked nothing.
+
+**Root cause.** `parsePayoutEventText_` (`tokenomics/google_app_scripts/1MnAsIQAxcSfZO_hALOtMFJ4y1k4OnqeXKMwYs6xev600rPNUYepqcXsT/process_payout_event_telegram_logs.js` L191) splits the event on newlines and, on the `--------` separator line, does **`continue`** (L197) — it does NOT stop. Every later non-field line (the `My Digital Signature: …` line and the raw base64) is then appended to whatever `lastKey` is, via the L205 continuation branch. So the **field that happens to be LAST** in the event absorbs the trailer. My first `_099` event put `Tree Planting IDs` last → corrupt id; the corrected retry (same tree) put it before Status/Submission Source → booked fine. Exact twin of the `[PAYOUT REGISTRATION]` parser fixed in tokenomics **#550** (`parsePayoutRegistrationEventText_`) — which is why the registration rows 2–5 carry a polluted `submission_source`. The EVENT parser was never fixed.
+
+**Fix.** In `parsePayoutEventText_`, on the `--------` line, **`break`** instead of `continue` (stop parsing at the separator); optionally also stop the continuation branch on a line matching `^(My )?digital signature:/i`. Removes the field-order dependence and stops any field absorbing the signature blob. Low risk; exercise via `scripts/payout_event_guard_harness.mjs`.
+
+**Evidence.** Ops `payouts` rows 3 (blob, `SUPERSEDED`) & 4 (clean, `BOOKED`) for the same tree; parser L191–212; tokenomics #550 (registration twin, fixed).
+
+### Main offchain ledger `appendRow` has a **lost-update race** under concurrent writers — one row mis-aligned and one dropped
+**Filed 2026-09-30 (thread 35944). Owner: unclaimed. Infra/ledger; small–medium.**
+
+**Symptom.** Appending 18 `+1 Cacao Tree - To Be Paid For` correction rows to the main offchain ledger (`offchain transactions`), a concurrent write landed in the same append window: row 4751 was clobbered by an unrelated `[DAO Inventory Expense Event]`, one of my 18 appends **vanished**, and my recovery `appendRow` mis-aligned (the date landed in col G and the description in col A instead of A/B). The TBPF balance read 1 instead of 2 until repaired by hand.
+
+**Root cause.** `worksheet.appendRow()` uses the Sheets API append, which finds the table's last populated row; when two writers append within the same second they compute the same target row and one overwrites/offsets the other. There is no cross-process lock on the ledger's append path — the GAS sinks use `LockService`, but box-side gspread writers and GAS writers do not coordinate.
+
+**Fix (options).**
+1. Serialize box-side ledger writes (single writer / a named lock), mirroring the GAS `LockService` pattern;
+2. Prefer a private, write-serialized append endpoint (GAS `?action=…`) that takes the `LockService` lock, so every writer goes through one coordinator;
+3. At minimum, write to an **explicit range** (`update('A<n>:G<n>', …)`) rather than a blind `appendRow` when a specific row is targeted.
+
+**Evidence.** Ledger rows 4749–4751 (concurrent writers, 2026-09-30 06:1x); my 18 rows 4752–4768 + 4822; the mis-alignment at row 4822 before the explicit-range rewrite.
+
 ### `reconcileTreePlanting_` takes **Path B** (phantom `+1 Cacao Tree - To Be Paid For`) whenever the farmer's prepayment sits on a **non-canonical literal** — no match on the prepaid Path-A balance
 **Filed 2026-09-29 (thread 35944). Owner: unclaimed. `tokenomics` GAS; small.**
 
