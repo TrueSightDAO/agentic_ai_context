@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-01T06:21:29Z`
+- Generated (UTC): `2026-10-01T13:44:26Z`
 - Look-back: **7** calendar days (`2026-09-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,15 +34,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[PAYOUT EVENT]` × 19
 - `[CONTRIBUTION EVENT]` × 6
-- `[EMAIL VERIFICATION EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
+- `[PRACTICE EVENT]` × 2
 - `[ASSET RECEIPT EVENT]` × 1
 - `[INVENTORY MOVEMENT]` × 1
 - _free-form (no bracket tag)_ × 13
 
 ### Latest entries
 
-- `Edgar_20260930132129_286` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
 - `Edgar_20260930132133_288` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
 - `Edgar_20260930132136_290` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
 - `Edgar_20260930132837_292` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
@@ -62,6 +60,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261001014600_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Description: Notarization and packing of warehouse
 - `Edgar_20261001014918_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Packing cacao in warehouse and then loading on to the truck
 - `Edgar_20261001015206_010` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 74.16 · Contributor(s): Elizabeth Wong
+- `Edgar_20261001113139_012` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-01T11:31:36.616Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -76,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-09-30T10:59:14.847Z`
+- Generated (UTC): `2026-10-01T10:59:14.491Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,16 +85,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1029**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1102**)
+- **Email Agent Follow Up** — logged sends: warmup **1041**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1114**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **955**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
-- **Manager Follow-up**: **34** stores — sum logged **warmup** sends (AU): **7**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **2**; follow-up depth (none / once / ≥2): **11** / **5** / **18**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **968**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
-- **Follow-up pipeline (combined)**: **36** stores — sum logged **warmup** sends (AU): **24**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **4**; follow-up depth (none / once / ≥2): **13** / **5** / **18**
+- **Follow-up pipeline (combined)**: **39** stores — sum logged **warmup** sends (AU): **32**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **7**; follow-up depth (none / once / ≥2): **16** / **5** / **18**
 
 ---
 
@@ -276,6 +275,7 @@ _All dated lines on/after 2026-09-24_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7d79dfa | 2026-10-01 06:27:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 c0dc5e2 | 2026-09-30 22:31:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 b64e150 | 2026-09-30 12:56:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 3528830 | 2026-09-30 05:53:25 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -315,7 +315,6 @@ ff42044 | 2026-09-24 14:32:34 -0300 | qr page: deep-link ANY tree-linked QR (inc
 268f965 | 2026-09-24 17:30:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 ec876b3 | 2026-09-24 13:31:22 -0300 | CRF Anapu: name açaí in description_md (beta source of truth) (#395)
 a1059d5 | 2026-09-24 12:07:58 +0000 | chore(stats): refresh stats indexes [skip ci]
-753221d | 2026-09-24 07:50:14 -0300 | qr page: add SunMint cert download button (URL-probe route) (#394)
 … (truncated)
 ```
 
@@ -328,6 +327,8 @@ a1059d5 | 2026-09-24 12:07:58 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8390a1e | 2026-10-01 03:21:49 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
+b5d73f2 | 2026-10-01 03:21:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
 93611fc | 2026-09-30 20:40:36 -0300 | OPEN_FOLLOWUPS: addendum — CLI also lacks fileUploadedToGithub guard (live recurrence 2026-09-30) (#1479)
 b219c60 | 2026-09-30 20:21:50 -0300 | Plan: farm-media people-index tiers + biometric consent gates; file minors hard gate (#1478)
 559e0db | 2026-09-30 18:45:58 -0300 | plan(30550): register oscar_complete.zip -> oscar-bahia (8th mapping, archived) (#1476)
@@ -366,8 +367,6 @@ ff52c58 | 2026-09-29 00:38:10 -0300 | plan: PR2 (batch backfill) built+merged+re
 95942fb | 2026-09-29 00:37:03 -0300 | File follow-up: .env GMAIL_TOKEN_JSON unquoted makes `set -e; . .env` abort (rc 127) (#1454)
 343fff2 | 2026-09-29 00:13:27 -0300 | handoffs: mark ledger-explorer row COMPLETED (thread 38428) (#1453)
 b0e4454 | 2026-09-29 00:04:48 -0300 | Ledger explorer: record PR8 promoted to prod (c953f763) (#1451)
-e0aad95 | 2026-09-29 00:04:43 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: §1.3 resolved + sink recon (§1.4) + corrected PR2 mechanic (#1452)
-df2e93e | 2026-09-29 00:00:52 -0300 | Ledger explorer: file 2 sync-tool bugs + refresh stale prod-promotion row (#1450)
 … (truncated)
 ```
 
@@ -539,7 +538,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 9/30/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/1/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-24`; scanned last **600** data rows)
 
