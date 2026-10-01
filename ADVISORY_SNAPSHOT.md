@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-01T13:44:26Z`
+- Generated (UTC): `2026-10-01T22:50:07Z`
 - Look-back: **7** calendar days (`2026-09-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PAYOUT EVENT]` × 19
+- `[PAYOUT EVENT]` × 18
 - `[CONTRIBUTION EVENT]` × 6
-- `[PRACTICE EVENT]` × 2
 - `[ASSET RECEIPT EVENT]` × 1
 - `[INVENTORY MOVEMENT]` × 1
-- _free-form (no bracket tag)_ × 13
+- `[PRACTICE EVENT]` × 1
+- _free-form (no bracket tag)_ × 15
 
 ### Latest entries
 
-- `Edgar_20260930132133_288` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
-- `Edgar_20260930132136_290` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
-- `Edgar_20260930132837_292` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260930133829_294` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd · Amount: 2 · Fund Handler: Elizabeth Wong
-- `Edgar_20260930133833_296` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Elizabeth Wong · Recipient Name: Matheus Reis · Inventory Item: Chocolate Mold MHC-CL082 (58 x 125 mm) - Dongguan MHC Industrial Co Ltd
-- `Edgar_20260930145053_300` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260930160119_302` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20260930163908_304` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260930170315_306` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
@@ -61,6 +55,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261001014918_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Packing cacao in warehouse and then loading on to the truck
 - `Edgar_20261001015206_010` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 74.16 · Contributor(s): Elizabeth Wong
 - `Edgar_20261001113139_012` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-01T11:31:36.616Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261001134450_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261001135744_016` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261001140848_018` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261001153029_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Farm/program media people-index tiers + biometric consent gates (design + mi…
+- `Edgar_20261001162013_022` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261001164936_024` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 
 ---
 
@@ -275,6 +275,7 @@ _All dated lines on/after 2026-09-24_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+fba68ad | 2026-10-01 13:48:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 7d79dfa | 2026-10-01 06:27:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 c0dc5e2 | 2026-09-30 22:31:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 b64e150 | 2026-09-30 12:56:14 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,19 +315,21 @@ ceea3bd | 2026-09-25 05:16:56 +0000 | chore(stats): refresh stats indexes [skip 
 ff42044 | 2026-09-24 14:32:34 -0300 | qr page: deep-link ANY tree-linked QR (incl. cacao bags) to SunMint map (#396)
 268f965 | 2026-09-24 17:30:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 ec876b3 | 2026-09-24 13:31:22 -0300 | CRF Anapu: name açaí in description_md (beta source of truth) (#395)
-a1059d5 | 2026-09-24 12:07:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 … (truncated)
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-3157a97 | 2026-09-30 21:19:38 -0300 | Add Founder Haus Startup Summit 2026 event activation to registry (#178)
+fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout [skip ci]
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+403d92e | 2026-10-01 12:38:05 -0300 | OPEN_FOLLOWUPS: file payout-event parser field-order bug + ledger append race (#1481)
+fb4c761 | 2026-10-01 10:44:47 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
+e524961 | 2026-10-01 10:44:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
 8390a1e | 2026-10-01 03:21:49 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
 b5d73f2 | 2026-10-01 03:21:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
 93611fc | 2026-09-30 20:40:36 -0300 | OPEN_FOLLOWUPS: addendum — CLI also lacks fileUploadedToGithub guard (live recurrence 2026-09-30) (#1479)
@@ -364,9 +367,6 @@ e4a1510 | 2026-09-29 02:07:44 -0300 | Mark PAYOUT_FARM_PLOT_FILTER_PLAN PR3 live
 9afe274 | 2026-09-29 01:06:37 -0300 | Register handoff: MAP intake go-live (thread 30550) — plan + HANDOFF_MANIFEST row (#1457)
 42a6e19 | 2026-09-29 01:01:15 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: record the ad-hoc URL filter-sync feature (dapp_beta #147) (#1456)
 ff52c58 | 2026-09-29 00:38:10 -0300 | plan: PR2 (batch backfill) built+merged+reported; marker → PR3 (#1455)
-95942fb | 2026-09-29 00:37:03 -0300 | File follow-up: .env GMAIL_TOKEN_JSON unquoted makes `set -e; . .env` abort (rc 127) (#1454)
-343fff2 | 2026-09-29 00:13:27 -0300 | handoffs: mark ledger-explorer row COMPLETED (thread 38428) (#1453)
-b0e4454 | 2026-09-29 00:04:48 -0300 | Ledger explorer: record PR8 promoted to prod (c953f763) (#1451)
 … (truncated)
 ```
 
@@ -428,6 +428,7 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d9705f2 | 2026-10-01 13:53:44 +0000 | chore: refresh currencies.json [skip ci]
 0092a7c | 2026-09-30 12:59:59 +0000 | chore: refresh currencies.json [skip ci]
 7f85571 | 2026-09-30 12:39:54 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d4d05ba | 2026-09-29 12:58:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
