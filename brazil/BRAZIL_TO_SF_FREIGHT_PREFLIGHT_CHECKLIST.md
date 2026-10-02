@@ -214,7 +214,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 
 > **Source:** governor Gary Teh, thread 10800, 2026-10-02 ("remove line 2" + full physical box breakdown).
 
-**What changed vs Rev 13:** Rev-13 **line 2 (Cacao Husk KG — Ilheus, 20 kg, 2 regular boxes) is NOT in the shipment** — removed.
+**What changed vs Rev 13:** Rev-13 **line 2 (Cacao Husk KG — Ilheus, 20 kg, 2 regular boxes) is NOT in the shipment** — removed. **Corrected 2026-10-02:** the *Cacao Mass Bar 500g — Ilheus 2024* line ships in **two thermic boxes** (was modelled as one).
 
 **Physical box breakdown (governor, from the warehouse):**
 
@@ -230,14 +230,14 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 | Irregular boxes | Boxes |
 |---|---|
 | Nibs Kraft Pouch 8oz — Ilheus 2024 *(thermic)* | 1 |
-| Mass Bar 500g — Ilheus 2024 *(thermic)* | 1 |
+| Mass Bar 500g — Ilheus 2024 *(thermic)* | **2** |
 | Ceremonial Cacao Pouch 200g — AGL8 *(thermic)* | 1 |
 | Coopercabruca Cacao Butter (KG) *(irregular)* | 1 |
-| **Irregular total** | **4** |
+| **Irregular total** | **5** |
 
-> **Reclassification vs 5.1b:** Paulo's Cacao Almonds (AGL8, 10 kg) ships in a **regular 10 kg box** (previously modelled irregular) → irregular 5 → 4, regular 21 → 22. Total boxes unchanged at 26.
+> **Box model:** Paulo's Cacao Almonds (AGL8, 10 kg) ships in a **regular 10 kg box**; the *Cacao Mass Bar 500g* ships in **2 thermic boxes**. Final: **22 regular + 5 irregular = 27 boxes**.
 
-**Totals:** **9 lines · 26 boxes (22 regular + 4 irregular) · 2 pallets · 302.06 kg net / 322.06 kg gross · $6,473.02 USD / R$ 33,384.60 BRL** @ PTAX 5.1575 (18/09/2026).
+**Totals:** **9 lines · 27 boxes (22 regular + 5 irregular) · 2 pallets · 302.06 kg net / 322.06 kg gross · $6,473.02 USD / R$ 33,384.60 BRL** @ PTAX 5.1575 (18/09/2026).
 
 - Files: `exports/2026-10-02_commercial_invoice_black_king_to_truetech_rev14_EN_PT_BRL.pdf`; packing list `exports/2026-10-02_packing_list_black_king_to_truetech_rev14_EN_PT.pdf`.
 - Generated reproducibly by `scripts/build_black_king_export_docs.py`.

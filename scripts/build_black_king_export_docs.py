@@ -2,7 +2,8 @@
 """Generate the Black King -> TrueTech export commercial invoice + packing list.
 
 Rev 14 (2026-10-02): Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular
-boxes) is NOT in the shipment. Result: 9 lines, 26 boxes (22 regular + 4
+boxes) is NOT in the shipment, and the Cacao Mass Bar 500g - Ilheus line
+ships in TWO thermic boxes. Result: 9 lines, 27 boxes (22 regular + 5
 irregular), 302.06 kg net / 322.06 kg gross.
 
 Rev 13 (2026-10-02): the physical cargo changed. Rev-12 lines 6 (Cacao Tea
@@ -139,7 +140,7 @@ REV12_REF = {1: 1, 2: 3, 3: 4, 4: 5, 5: 7, 6: 9, 7: 10, 8: 11, 9: "new"}
 # boxes; irregular = original retail / non-standard boxes.
 BOXES = {
     1: (0, 1),
-    2: (0, 1),
+    2: (0, 2),
     3: (8, 0),
     4: (1, 0),
     5: (0, 1),
@@ -294,7 +295,9 @@ def invoice_html():
         "<h2>Revision Note / Nota de Revisao (Rev 13 to Rev 14)</h2><ul>"
         "<li><b>Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular "
         "boxes) removed</b> - not in the physical shipment.</li>"
-        "<li>Result: <b>9 lines, 26 boxes (22 regular + 4 irregular)</b>, "
+        "<li><b>Cacao Mass Bar 500g - Ilheus ships in TWO thermic boxes "
+        "(was one)</b> - +1 irregular box.</li>"
+        "<li>Result: <b>9 lines, 27 boxes (22 regular + 5 irregular)</b>, "
         f"{f2(tusd)} USD / R$ {f2(tbrl)} BRL @ PTAX 5.1575.</li></ul>"
     )
     return k
@@ -406,11 +409,13 @@ def pl_html():
         "<h2>Revision Note / Nota de Revisao (Rev 13 to Rev 14)</h2><ul>"
         "<li><b>Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular "
         "boxes) is NOT in the shipment</b> - removed.</li>"
-        "<li>Result: <b>9 lines, 26 boxes = 22 regular + 4 irregular</b>, "
+        "<li><b>Cacao Mass Bar 500g - Ilheus ships in TWO thermic boxes "
+        "(was one)</b> - +1 irregular box.</li>"
+        "<li>Result: <b>9 lines, 27 boxes = 22 regular + 5 irregular</b>, "
         "net 302.06 kg / gross 322.06 kg.</li>"
         "<li><b>Box reclassification:</b> Paulo's Cacao Almonds (AGL8, "
         "10 kg) ships in a <b>regular 10 kg box</b> (previously modelled "
-        "irregular). Irregular count 5 -&gt; 4.</li>"
+        "irregular).</li>"
         "<li>Rev-13 history (Rev-12 lines 6 and 8 removed; line-10 samples "
         "added) is retained in the Rev 13 records.</li>"
         "<li>The NCM to export-uTrib unit remap introduced in Rev 12 is "
