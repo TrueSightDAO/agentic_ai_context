@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-02T05:59:34Z`
+- Generated (UTC): `2026-10-02T12:59:47Z`
 - Look-back: **7** calendar days (`2026-09-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PAYOUT EVENT]` × 18
-- `[CONTRIBUTION EVENT]` × 6
+- `[PAYOUT EVENT]` × 14
+- `[CONTRIBUTION EVENT]` × 9
+- `[PRACTICE EVENT]` × 2
 - `[ASSET RECEIPT EVENT]` × 1
 - `[INVENTORY MOVEMENT]` × 1
-- `[PRACTICE EVENT]` × 1
 - _free-form (no bracket tag)_ × 15
 
 ### Latest entries
 
-- `Edgar_20260930160119_302` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20260930163908_304` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260930170315_306` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260930185721_308` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260930233402_310` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260930233732_312` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20260930233735_314` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
@@ -61,6 +57,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261001153029_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Farm/program media people-index tiers + biometric consent gates (design + mi…
 - `Edgar_20261001162013_022` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261001164936_024` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261002121100_026` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-02T12:10:57.937Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261002123834_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Seacoast Logistics airfreight info-request + 2023 Coopercabruca precedent do…
+- `Edgar_20261002124239_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Siscomex habilitação reset — restore Omega Services freight handling for Bla…
+- `Edgar_20261002124413_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 
 ---
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-01T10:59:14.491Z`
+- Generated (UTC): `2026-10-02T10:59:13.885Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1041**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1114**)
+- **Email Agent Follow Up** — logged sends: warmup **1052**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1125**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **968**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **979**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -274,6 +274,7 @@ _All dated lines on/after 2026-09-25_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d5eaaa5 | 2026-10-02 06:05:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 6979798 | 2026-10-01 22:51:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 fba68ad | 2026-10-01 13:48:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 7d79dfa | 2026-10-01 06:27:02 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -322,6 +323,8 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+065a2ed | 2026-10-02 02:59:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-02 UTC)
+9c80547 | 2026-10-02 02:59:49 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-02 UTC)
 54b66eb | 2026-10-01 19:50:24 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
 4a40c51 | 2026-10-01 19:50:23 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
 403d92e | 2026-10-01 12:38:05 -0300 | OPEN_FOLLOWUPS: file payout-event parser field-order bug + ledger append race (#1481)
@@ -360,8 +363,6 @@ e4a1510 | 2026-09-29 02:07:44 -0300 | Mark PAYOUT_FARM_PLOT_FILTER_PLAN PR3 live
 04c2d9b | 2026-09-29 01:47:42 -0300 | Merge pull request #1460 from TrueSightDAO/auto/advisory-refresh-2026-09-29
 5e89938 | 2026-09-29 04:47:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-29 UTC)
 93f2f87 | 2026-09-29 01:39:18 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: repoint PR3 RESUME marker to the governor-only money gate (prod promote done) (#1459)
-3d66b58 | 2026-09-29 01:37:04 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: mark PR3 prod promote done, awaiting live backfill (#1458)
-9afe274 | 2026-09-29 01:06:37 -0300 | Register handoff: MAP intake go-live (thread 30550) — plan + HANDOFF_MANIFEST row (#1457)
 … (truncated)
 ```
 
@@ -419,6 +420,7 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+10cb1a7 | 2026-10-02 12:40:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d9705f2 | 2026-10-01 13:53:44 +0000 | chore: refresh currencies.json [skip ci]
 0092a7c | 2026-09-30 12:59:59 +0000 | chore: refresh currencies.json [skip ci]
 7f85571 | 2026-09-30 12:39:54 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -527,7 +529,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/1/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/2/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-25`; scanned last **600** data rows)
 
