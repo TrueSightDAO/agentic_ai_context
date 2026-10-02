@@ -6,6 +6,11 @@ REV 3 (2026-09-29): Gary Teh (+1 442 340-5782, WhatsApp) added as the
 PRIMARY on-site pickup contact (on site at the warehouse, ready for the driver
 on 30/09/2026); the driver must call/WhatsApp him on arrival.
 
+SIGNATURE: the document is stamped with the governor's signature (Gary Teh,
+TrueTech Inc - President). The signature IMAGE lives only in the PRIVATE
+TrueSightDAO/signature_assets repo and is read from a local path (never
+committed here - this repo is public). Absent the image, the build is unsigned.
+
 REV 2 (2026-09-29): now keyed to the ISSUED export NF-e n. 16 (serie 1,
 2026-09-22). The order carries the NF-e identification block (chave de acesso,
 protocolo, emitente IE/CNPJ, natureza, total) and a fiscal uTrib column beside
@@ -22,6 +27,7 @@ Usage: python3 scripts/build_order_de_coleta.py
 Deps:  pip install weasyprint
 """
 
+import os
 import sys
 from pathlib import Path
 
@@ -87,6 +93,38 @@ CONTACTS = [
     ("Gary Teh (TrueSight DAO)", "+1 (442) 340-5782 (WhatsApp)"),
     ("Matheus Reis", "+55 11 91413-5328 / +55 73 99109-0002"),
 ]
+
+
+# --- Signatory block --------------------------------------------------------
+# The signature IMAGE lives ONLY in the private TrueSightDAO/signature_assets
+# repo and must NEVER be committed here: agentic_ai_context is public, and a
+# signature image is a forgery vector if it leaks (see signature_assets README).
+# The builder reads it from a LOCAL path (env override below); when the file is
+# absent it renders nothing, so other boxes / CI still build an unsigned copy.
+SIGNER = {"name": "Gary Teh", "title": "TrueTech Inc - President"}
+SIG_PNG = Path(
+    os.environ.get(
+        "ORDER_SIGNATURE_PNG",
+        str(Path.home() / ".signatures" / "gary_teh_signature_transparent.png"),
+    )
+)
+
+
+def signature_block():
+    """Signature lock-up: ink image over a rule, then printed name + title.
+
+    Returns '' when the local signature image is absent (unsigned build).
+    """
+    if not SIG_PNG.is_file():
+        return ""
+    return (
+        "<div class='sig'>"
+        f"<img src='{SIG_PNG.as_uri()}' alt='assinatura'>"
+        "<div class='sigrule'></div>"
+        f"<p class='signame'>{SIGNER['name']}<br>"
+        f"<span class='sigtitle'>{SIGNER['title']}</span></p>"
+        "</div>"
+    )
 
 
 def f3(x):
@@ -245,14 +283,29 @@ def order_html():
         "n. 16.</li>"
         "</ul>"
     )
+
+    # 8. Signature
+    sig = signature_block()
+    if sig:
+        k += "<h2>8. Assinatura / Signature</h2>" + sig
     return k
+
+
+# Extra CSS for the signature lock-up (local to this builder).
+SIG_CSS = """
+.sig { margin: 10pt 0 0; }
+.sig img { height: 46pt; }
+.sigrule { width: 62mm; border-bottom: 1px solid #444; margin: 0 0 2pt; }
+.signame { font-size: 9pt; color: #222; margin: 0; line-height: 1.3; }
+.sigtitle { font-size: 8pt; color: #5A4632; }
+"""
 
 
 def main():
     OUTDIR.mkdir(exist_ok=True)
     html = (
         '<html><head><meta charset="utf-8"><style>'
-        f"{CSS}</style></head><body>{order_html()}</body></html>"
+        f"{CSS}{SIG_CSS}</style></head><body>{order_html()}</body></html>"
     )
     HTML(string=html).write_pdf(OUT)
     print("built:", OUT.relative_to(ROOT))
