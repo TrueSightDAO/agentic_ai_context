@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Generate the Black King -> TrueTech export commercial invoice + packing list.
 
+Rev 14 (2026-10-02): Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular
+boxes) is NOT in the shipment, and the Cacao Mass Bar 500g - Ilheus line
+ships in TWO thermic boxes. Result: 9 lines, 27 boxes (22 regular + 5
+irregular), 302.06 kg net / 322.06 kg gross.
+
 Rev 13 (2026-10-02): the physical cargo changed. Rev-12 lines 6 (Cacao Tea
 AGL8) and 8 (Cacao Almonds AGL13) are NOT in the shipment; one new nominal
 line was added for 5 kg of Para cacao-almond samples. Result: 10 lines,
@@ -49,16 +54,6 @@ LINES = [
     (
         2,
         "1803.10.00",
-        20,
-        "KG",
-        1.0,
-        355.71,
-        "Cacao Husk (KG) - Ilheus, Brazil",
-        "Casca de Cacau (KG) - Ilheus, Brasil",
-    ),
-    (
-        3,
-        "1803.10.00",
         37,
         "UN",
         0.5,
@@ -67,7 +62,7 @@ LINES = [
         "Barra de Massa de Cacau 500g - Ilheus 2024",
     ),
     (
-        4,
+        3,
         "1801.00.00",
         80,
         "KG",
@@ -77,7 +72,7 @@ LINES = [
         "Nibs de Cacau (KG) - Ilheus 2024",
     ),
     (
-        5,
+        4,
         "1801.00.00",
         10,
         "KG",
@@ -87,7 +82,7 @@ LINES = [
         "Amendoas de Cacau (KG) - AGL8",
     ),
     (
-        6,
+        5,
         "1803.10.00",
         169,
         "UN",
@@ -97,7 +92,7 @@ LINES = [
         "Sache de Cacau Cerimonial 200g - AGL8",
     ),
     (
-        7,
+        6,
         "1801.00.00",
         99.5,
         "KG",
@@ -107,7 +102,7 @@ LINES = [
         "Nibs de Cacau (KG) - AGL13",
     ),
     (
-        8,
+        7,
         "2106.90.00",
         21,
         "KG",
@@ -117,7 +112,7 @@ LINES = [
         "Cha de Cacau (KG) - AGL13",
     ),
     (
-        9,
+        8,
         "1804.00.00",
         5,
         "KG",
@@ -127,7 +122,7 @@ LINES = [
         "Manteiga de Cacau Coopercabruca (KG)",
     ),
     (
-        10,
+        9,
         "1801.00.00",
         5,
         "KG",
@@ -138,22 +133,21 @@ LINES = [
     ),
 ]
 
-# Rev-13 line -> Rev-12 line reference (reconciliation with NF-e no. 16).
-REV12_REF = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 7, 7: 9, 8: 10, 9: 11, 10: "new"}
+# Rev-14 line -> Rev-12 line reference (reconciliation with NF-e no. 16).
+REV12_REF = {1: 1, 2: 3, 3: 4, 4: 5, 5: 7, 6: 9, 7: 10, 8: 11, 9: "new"}
 
 # Boxes per Rev-13 line: (regular, irregular). Regular = 10 kg Mercado Livre
 # boxes; irregular = original retail / non-standard boxes.
 BOXES = {
     1: (0, 1),
-    2: (2, 0),
-    3: (0, 1),
-    4: (8, 0),
+    2: (0, 2),
+    3: (8, 0),
+    4: (1, 0),
     5: (0, 1),
-    6: (0, 1),
-    7: (10, 0),
-    8: (2, 0),
-    9: (0, 1),
-    10: (1, 0),
+    6: (10, 0),
+    7: (2, 0),
+    8: (0, 1),
+    9: (1, 0),
 }
 
 # NCM -> export uTrib, per the norm table (Gary, 2026-09-21).
@@ -210,7 +204,7 @@ def f6(x):
 def head(title, doc):
     return (
         f"<h1>{title}</h1><p class='sub'>{doc}</p>"
-        "<p class='sub'>Rev 13 - 2026-10-02. Units of measure per the NCM "
+        "<p class='sub'>Rev 14 - 2026-10-02. Units of measure per the NCM "
         "to export-uTrib norm (Appendix E). Supersedes Rev 12.</p>"
         "<h2>Parties / Partes</h2><table>"
         "<tr><th style='width:30%'>Field / Campo</th><th>Value / Valor</th></tr>"
@@ -238,7 +232,7 @@ def invoice_html():
     tbrl = sum(r["brl"] for r in rs)
     k = head(
         "Commercial Invoice / Fatura Comercial",
-        "INV-2026-0611-001 (Rev 13) - bilingual EN / PT - USD + BRL",
+        "INV-2026-0611-001 (Rev 14) - bilingual EN / PT - USD + BRL",
     )
     k += (
         "<h2>Line Items - declared units of measure (uTrib) / "
@@ -284,7 +278,7 @@ def invoice_html():
         "<h2>Totals / Totais</h2><table>"
         "<tr><th style='width:40%'>Field / Campo</th><th>Value / Valor</th>"
         "</tr>"
-        f"<tr><td>Subtotal (lines 1-10)</td><td>{f2(tusd)} USD / "
+        f"<tr><td>Subtotal (lines 1-{len(rs)})</td><td>{f2(tusd)} USD / "
         f"R$ {f2(tbrl)} BRL</td></tr>"
         f"<tr><td>Total Invoice Value</td><td>{f2(tusd)} USD / "
         f"R$ {f2(tbrl)} BRL</td></tr>"
@@ -298,12 +292,12 @@ def invoice_html():
     k += boxes_html()
     k += flags_html()
     k += (
-        "<h2>Revision Note / Nota de Revisao (Rev 12 to Rev 13)</h2><ul>"
-        "<li><b>Rev-12 lines 6 (Cacao Tea AGL8, 12 kg) and 8 (Cacao Almonds "
-        "AGL13, 15 kg) removed</b> - not in the physical shipment.</li>"
-        "<li><b>New line 10:</b> 5 kg Para cacao-almond samples, regular "
-        "box, nominal value $0.05.</li>"
-        "<li>Totals: <b>10 lines, 28 boxes (23 regular + 5 irregular)</b>, "
+        "<h2>Revision Note / Nota de Revisao (Rev 13 to Rev 14)</h2><ul>"
+        "<li><b>Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular "
+        "boxes) removed</b> - not in the physical shipment.</li>"
+        "<li><b>Cacao Mass Bar 500g - Ilheus ships in TWO thermic boxes "
+        "(was one)</b> - +1 irregular box.</li>"
+        "<li>Result: <b>9 lines, 27 boxes (22 regular + 5 irregular)</b>, "
         f"{f2(tusd)} USD / R$ {f2(tbrl)} BRL @ PTAX 5.1575.</li></ul>"
     )
     return k
@@ -360,7 +354,7 @@ def flags_html():
         "gives for its NCM: <b>1801 / 1803 / 1804 / 1805 -&gt; TON</b> "
         "(tonelada metrica liquida); <b>1802 / 1806 -&gt; KG</b> "
         "(quilograma). No unit has been substituted or reclassified.</li>"
-        "<li><b>Lines 6 and 10 (Cacao Tea, NCM 2106.90.00):</b> this NCM is "
+        "<li><b>Line 7 (Cacao Tea, NCM 2106.90.00):</b> this NCM is "
         "outside the provided table, so no unit was supplied for it; the line "
         "is declared in KG.</li>"
         "<li><b>Net weight:</b> sum of lines, derived from documented pack "
@@ -368,7 +362,7 @@ def flags_html():
         "<li><b>Box count:</b> "
         f"{sum(v[0] + v[1] for v in BOXES.values())} boxes = "
         f"{sum(v[0] for v in BOXES.values())} regular + "
-        f"{sum(v[1] for v in BOXES.values())} irregular (Rev 13).</li>"
+        f"{sum(v[1] for v in BOXES.values())} irregular (Rev 14).</li>"
         "<li><b>uTrib quantity</b> = net kg / 1000 for TON lines, else kg; "
         "<b>uTrib unit value</b> = line USD total / qTrib.</li></ul>"
     )
@@ -379,7 +373,7 @@ def pl_html():
     tnet = sum(r["net_kg"] for r in rs)
     k = head(
         "Packing List / Lista de Embalagem",
-        "PL-2026-0611-001 (Rev 13) - bilingual EN / PT",
+        "PL-2026-0611-001 (Rev 14) - bilingual EN / PT",
     )
     k += (
         "<h2>Packing Detail / Detalhe da Embalagem</h2>"
@@ -412,13 +406,18 @@ def pl_html():
     )
     k += flags_html()
     k += (
-        "<h2>Revision Note / Nota de Revisao (Rev 12 to Rev 13)</h2><ul>"
-        "<li><b>Rev-12 line 6 (Cacao Tea AGL8, 12 kg) and line 8 (Cacao "
-        "Almonds AGL13, 15 kg) are NOT in the shipment</b> - removed.</li>"
-        "<li><b>One new line added:</b> 5 kg of Para cacao-almond samples, "
-        "in a regular box (nominal declared value - samples).</li>"
-        "<li>Result: <b>10 lines, 28 boxes = 23 regular + 5 irregular</b>, "
-        "net 322.06 kg / gross 342.06 kg.</li>"
+        "<h2>Revision Note / Nota de Revisao (Rev 13 to Rev 14)</h2><ul>"
+        "<li><b>Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular "
+        "boxes) is NOT in the shipment</b> - removed.</li>"
+        "<li><b>Cacao Mass Bar 500g - Ilheus ships in TWO thermic boxes "
+        "(was one)</b> - +1 irregular box.</li>"
+        "<li>Result: <b>9 lines, 27 boxes = 22 regular + 5 irregular</b>, "
+        "net 302.06 kg / gross 322.06 kg.</li>"
+        "<li><b>Box reclassification:</b> Paulo's Cacao Almonds (AGL8, "
+        "10 kg) ships in a <b>regular 10 kg box</b> (previously modelled "
+        "irregular).</li>"
+        "<li>Rev-13 history (Rev-12 lines 6 and 8 removed; line-10 samples "
+        "added) is retained in the Rev 13 records.</li>"
         "<li>The NCM to export-uTrib unit remap introduced in Rev 12 is "
         "unchanged; no unit was substituted.</li>"
         "<li>Carton count now carried on this packing list (it previously "
@@ -451,10 +450,10 @@ li { margin: 2pt 0; }
 
 DOCS = [
     (
-        "2026-10-02_commercial_invoice_black_king_to_truetech_rev13_EN_PT_BRL.pdf",
+        "2026-10-02_commercial_invoice_black_king_to_truetech_rev14_EN_PT_BRL.pdf",
         invoice_html,
     ),
-    ("2026-10-02_packing_list_black_king_to_truetech_rev13_EN_PT.pdf", pl_html),
+    ("2026-10-02_packing_list_black_king_to_truetech_rev14_EN_PT.pdf", pl_html),
 ]
 
 
