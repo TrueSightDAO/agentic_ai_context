@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """Generate the Black King -> TrueTech export commercial invoice + packing list.
 
+Rev 13 (2026-10-02): the physical cargo changed. Rev-12 lines 6 (Cacao Tea
+AGL8) and 8 (Cacao Almonds AGL13) are NOT in the shipment; one new nominal
+line was added for 5 kg of Para cacao-almond samples. Result: 10 lines,
+28 boxes (23 regular + 5 irregular), 322.06 kg net / 342.06 kg gross.
+The NCM -> uTrib unit remap introduced in Rev 12 is unchanged.
+
 Rev 12 applies the NCM -> export uTrib (tributary unit of measure) norm cited by
 Saymon (Black King's accountant): on EXPORT, Chapter-18 raw / intermediate cocoa
 headings 1801 (beans/nibs), 1803 (paste/mass) and 1804 (butter/fat) MUST be
@@ -56,7 +62,7 @@ LINES = [
         37,
         "UN",
         0.5,
-        580.90,
+        580.9,
         "Cacao Mass Bar 500g - Ilheus 2024",
         "Barra de Massa de Cacau 500g - Ilheus 2024",
     ),
@@ -76,22 +82,12 @@ LINES = [
         10,
         "KG",
         1.0,
-        0.10,
+        0.1,
         "Cacao Almonds (KG) - AGL8",
         "Amendoas de Cacau (KG) - AGL8",
     ),
     (
         6,
-        "2106.90.00",
-        12,
-        "KG",
-        1.0,
-        0.12,
-        "Cacao Tea (KG) - AGL8",
-        "Cha de Cacau (KG) - AGL8",
-    ),
-    (
-        7,
         "1803.10.00",
         169,
         "UN",
@@ -101,17 +97,7 @@ LINES = [
         "Sache de Cacau Cerimonial 200g - AGL8",
     ),
     (
-        8,
-        "1801.00.00",
-        15,
-        "KG",
-        1.0,
-        118.05,
-        "Cacao Almonds (KG) - AGL13",
-        "Amendoas de Cacau (KG) - AGL13",
-    ),
-    (
-        9,
+        7,
         "1801.00.00",
         99.5,
         "KG",
@@ -121,7 +107,7 @@ LINES = [
         "Nibs de Cacau (KG) - AGL13",
     ),
     (
-        10,
+        8,
         "2106.90.00",
         21,
         "KG",
@@ -131,7 +117,7 @@ LINES = [
         "Cha de Cacau (KG) - AGL13",
     ),
     (
-        11,
+        9,
         "1804.00.00",
         5,
         "KG",
@@ -140,7 +126,35 @@ LINES = [
         "Coopercabruca Cacao Butter (KG)",
         "Manteiga de Cacau Coopercabruca (KG)",
     ),
+    (
+        10,
+        "1801.00.00",
+        5,
+        "KG",
+        1.0,
+        0.05,
+        "Cacao Almonds samples (KG) - Para",
+        "Amendoas de Cacau amostras (KG) - Para",
+    ),
 ]
+
+# Rev-13 line -> Rev-12 line reference (reconciliation with NF-e no. 16).
+REV12_REF = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 7, 7: 9, 8: 10, 9: 11, 10: "new"}
+
+# Boxes per Rev-13 line: (regular, irregular). Regular = 10 kg Mercado Livre
+# boxes; irregular = original retail / non-standard boxes.
+BOXES = {
+    1: (0, 1),
+    2: (2, 0),
+    3: (0, 1),
+    4: (8, 0),
+    5: (0, 1),
+    6: (0, 1),
+    7: (10, 0),
+    8: (2, 0),
+    9: (0, 1),
+    10: (1, 0),
+}
 
 # NCM -> export uTrib, per the norm table (Gary, 2026-09-21).
 UTRIB = {
@@ -196,8 +210,8 @@ def f6(x):
 def head(title, doc):
     return (
         f"<h1>{title}</h1><p class='sub'>{doc}</p>"
-        "<p class='sub'>Rev 12 - finalized 2026-09-21. Units of measure per "
-        "the NCM to export-uTrib norm (Appendix E).</p>"
+        "<p class='sub'>Rev 13 - 2026-10-02. Units of measure per the NCM "
+        "to export-uTrib norm (Appendix E). Supersedes Rev 12.</p>"
         "<h2>Parties / Partes</h2><table>"
         "<tr><th style='width:30%'>Field / Campo</th><th>Value / Valor</th></tr>"
         "<tr><td>Exporter (Seller)</td><td>Black King - Matheus Reis Pereira "
@@ -224,7 +238,7 @@ def invoice_html():
     tbrl = sum(r["brl"] for r in rs)
     k = head(
         "Commercial Invoice / Fatura Comercial",
-        "INV-2026-0611-001 (Rev 12) - bilingual EN / PT - USD + BRL",
+        "INV-2026-0611-001 (Rev 13) - bilingual EN / PT - USD + BRL",
     )
     k += (
         "<h2>Line Items - declared units of measure (uTrib) / "
@@ -247,7 +261,7 @@ def invoice_html():
         )
     k += "</table>"
     k += (
-        "<p class='note'>* NCM 2106.90.00 (Cacao Tea, lines 6 and 10) is "
+        "<p class='note'>* NCM 2106.90.00 (Cacao Tea, line 8) is "
         "outside Chapter 18 and is not keyed by the norm table; it is "
         "declared in KG.</p>"
     )
@@ -270,7 +284,7 @@ def invoice_html():
         "<h2>Totals / Totais</h2><table>"
         "<tr><th style='width:40%'>Field / Campo</th><th>Value / Valor</th>"
         "</tr>"
-        f"<tr><td>Subtotal (lines 1-11)</td><td>{f2(tusd)} USD / "
+        f"<tr><td>Subtotal (lines 1-10)</td><td>{f2(tusd)} USD / "
         f"R$ {f2(tbrl)} BRL</td></tr>"
         f"<tr><td>Total Invoice Value</td><td>{f2(tusd)} USD / "
         f"R$ {f2(tbrl)} BRL</td></tr>"
@@ -281,19 +295,16 @@ def invoice_html():
         "</table>"
     )
     k += pallets_html()
+    k += boxes_html()
     k += flags_html()
     k += (
-        "<h2>Revision Note / Nota de Revisao (Rev 11 to Rev 12)</h2><ul>"
-        "<li>The line items are now stated in the <b>mandated export units of "
-        "measure (uTrib)</b>: lines under 1801 / 1803 / 1804 are declared in "
-        "<b>TON</b> (tonelada metrica liquida), per the norm.</li>"
-        "<li>Commercial units (uCom) are retained as a reconciliation "
-        "reference; commercial quantities are unchanged from Rev 11.</li>"
-        "<li>USD / BRL line values and totals are <b>unchanged</b> from Rev 11 "
-        f"({f2(tusd)} USD / R$ {f2(tbrl)} BRL @ PTAX 5.1575).</li>"
-        "<li>uTrib quantities / unit values are derived from documented pack "
-        "sizes (8 oz pouch = 0.226796 kg; 500 g bar = 0.5 kg; 200 g pouch = "
-        "0.2 kg).</li></ul>"
+        "<h2>Revision Note / Nota de Revisao (Rev 12 to Rev 13)</h2><ul>"
+        "<li><b>Rev-12 lines 6 (Cacao Tea AGL8, 12 kg) and 8 (Cacao Almonds "
+        "AGL13, 15 kg) removed</b> - not in the physical shipment.</li>"
+        "<li><b>New line 10:</b> 5 kg Para cacao-almond samples, regular "
+        "box, nominal value $0.05.</li>"
+        "<li>Totals: <b>10 lines, 28 boxes (23 regular + 5 irregular)</b>, "
+        f"{f2(tusd)} USD / R$ {f2(tbrl)} BRL @ PTAX 5.1575.</li></ul>"
     )
     return k
 
@@ -315,6 +326,33 @@ def pallets_html():
     )
 
 
+def boxes_html():
+    rs = rows()
+    reg = sum(BOXES[r["n"]][0] for r in rs)
+    irr = sum(BOXES[r["n"]][1] for r in rs)
+    k = (
+        "<h2>Boxes / Volume count / Caixas</h2>"
+        "<p class='note'>Regular = 10 kg boxes (Mercado Livre); "
+        "irregular = original retail / non-standard boxes.</p><table>"
+        "<tr><th>#</th><th>Description / Descricao</th><th>Net kg</th>"
+        "<th>Regular</th><th>Irregular</th><th>Total</th></tr>"
+    )
+    for r in rs:
+        a, b = BOXES[r["n"]]
+        k += (
+            f"<tr><td>{r['n']}</td><td>{r['en']} / {r['pt']}</td>"
+            f"<td class='r'>{f4(r['net_kg'])}</td>"
+            f"<td class='r'>{a}</td><td class='r'>{b}</td>"
+            f"<td class='r'>{a + b}</td></tr>"
+        )
+    k += (
+        f"<tr><th>Total</th><th></th><th class='r'></th>"
+        f"<th class='r'>{reg}</th><th class='r'>{irr}</th>"
+        f"<th class='r'>{reg + irr}</th></tr></table>"
+    )
+    return k
+
+
 def flags_html():
     return (
         "<h2>Units of measure applied / Unidades aplicadas</h2><ul>"
@@ -326,7 +364,11 @@ def flags_html():
         "outside the provided table, so no unit was supplied for it; the line "
         "is declared in KG.</li>"
         "<li><b>Net weight:</b> sum of lines, derived from documented pack "
-        "sizes = 344.06 kg.</li>"
+        f"sizes = {f2(sum(r['net_kg'] for r in rows()))} kg.</li>"
+        "<li><b>Box count:</b> "
+        f"{sum(v[0] + v[1] for v in BOXES.values())} boxes = "
+        f"{sum(v[0] for v in BOXES.values())} regular + "
+        f"{sum(v[1] for v in BOXES.values())} irregular (Rev 13).</li>"
         "<li><b>uTrib quantity</b> = net kg / 1000 for TON lines, else kg; "
         "<b>uTrib unit value</b> = line USD total / qTrib.</li></ul>"
     )
@@ -337,7 +379,7 @@ def pl_html():
     tnet = sum(r["net_kg"] for r in rs)
     k = head(
         "Packing List / Lista de Embalagem",
-        "PL-2026-0611-001 (Rev 12) - bilingual EN / PT",
+        "PL-2026-0611-001 (Rev 13) - bilingual EN / PT",
     )
     k += (
         "<h2>Packing Detail / Detalhe da Embalagem</h2>"
@@ -357,6 +399,7 @@ def pl_html():
         )
     k += "</table>"
     k += pallets_html()
+    k += boxes_html()
     k += (
         "<h2>Weights / Pesos</h2><table>"
         "<tr><th style='width:40%'>Field / Campo</th><th>Value / Valor</th>"
@@ -369,12 +412,17 @@ def pl_html():
     )
     k += flags_html()
     k += (
-        "<h2>Revision Note (Rev 11 to Rev 12)</h2><ul>"
-        "<li>Added the qTrib / uTrib columns required by the NCM export norm "
-        "(1801 / 1803 / 1804 -&gt; TON).</li>"
-        "<li>Commercial quantities unchanged from Rev 11.</li>"
-        "<li>Net weight recomputed per line from documented pack sizes."
-        "</li></ul>"
+        "<h2>Revision Note / Nota de Revisao (Rev 12 to Rev 13)</h2><ul>"
+        "<li><b>Rev-12 line 6 (Cacao Tea AGL8, 12 kg) and line 8 (Cacao "
+        "Almonds AGL13, 15 kg) are NOT in the shipment</b> - removed.</li>"
+        "<li><b>One new line added:</b> 5 kg of Para cacao-almond samples, "
+        "in a regular box (nominal declared value - samples).</li>"
+        "<li>Result: <b>10 lines, 28 boxes = 23 regular + 5 irregular</b>, "
+        "net 322.06 kg / gross 342.06 kg.</li>"
+        "<li>The NCM to export-uTrib unit remap introduced in Rev 12 is "
+        "unchanged; no unit was substituted.</li>"
+        "<li>Carton count now carried on this packing list (it previously "
+        "lived only on the CC-e).</li></ul>"
     )
     return k
 
@@ -403,10 +451,10 @@ li { margin: 2pt 0; }
 
 DOCS = [
     (
-        "2026-06-11_commercial_invoice_black_king_to_truetech_rev12_EN_PT_BRL.pdf",
+        "2026-10-02_commercial_invoice_black_king_to_truetech_rev13_EN_PT_BRL.pdf",
         invoice_html,
     ),
-    ("2026-06-11_packing_list_black_king_to_truetech_rev12_EN_PT.pdf", pl_html),
+    ("2026-10-02_packing_list_black_king_to_truetech_rev13_EN_PT.pdf", pl_html),
 ]
 
 
