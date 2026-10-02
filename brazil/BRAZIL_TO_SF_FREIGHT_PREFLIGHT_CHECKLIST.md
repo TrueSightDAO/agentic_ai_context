@@ -4,7 +4,7 @@
 > **Canonical file.** If any other document disagrees with this one, **this file wins** — fix the other doc in the same PR.
 > **Lane:** Ilhéus, BA (Matheus / Gateway.fy warehouse — **physical pickup: R. Cel. Paiva, 46, Centro**) → road → Salvador (SSA) → air → San Francisco (SFO) → Kirsten's SF warehouse.
 > **Commercial basis:** Brazil exporter (Black King, or fallback Coopercabruca) → **TrueTech Inc** (US importer of record, EIN 88-3411514).
-> **Last verified:** 2026-10-02. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`; **Ilhéus pickup-address confirmation — Gary, thread 10800, 2026-09-29** (see §2a); **NF-e nº 16 issued 2026-09-22** — DANFE + notes at `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf` ; **NF-e nº 18 issued 2026-10-02** — `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`; **SISCOMEX habilitação dropped on 6-month inactivity — Iolanda (Omega) via Gary, 2026-10-02** (§5.4).
+> **Last verified:** 2026-10-02. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`; **Ilhéus pickup-address confirmation — Gary, thread 10800, 2026-09-29** (see §2a); **NF-e nº 16 issued 2026-09-22** — DANFE + notes at `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf` ; **NF-e nº 18 issued 2026-10-02** — `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`; **SISCOMEX habilitação dropped on 6-month inactivity — Iolanda (Omega) via Gary, 2026-10-02** (§5.4). **Airport weighing — gross-weight divergence (349 kg, DU-E ref `26BR0017954000`), 2026-10-02** — `brazil/sources/2026-10-02_airport_weighing_weight_divergence.md` (§5.5).
 
 ---
 
@@ -37,7 +37,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | **NF-e issued** | ✅ **issued** | Saymon | **NF-e nº 16, série 1, emitida 22/09/2026** — chave `2926 0950 0425 8500 0180 5500 1000 0000 0161 3000 0003 5`, protocolo `129261913151752`, **R$ 35.828,76**. All 11 lines, NCMs and the TON/KG remap match Rev 12 (§5.3). Evidence: DANFE — `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf`; signed **XML** — `brazil/sources/2026-09-22_black_king_nfe_16.xml` (+ reconciliation notes `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`). XML `cStat` **100 (Autorizado)**. |
 | **NF-e issued (CURRENT)** | ✅ **issued** | Saymon/Matheus | **NF-e nº 18, série 1, emitida 02/10/2026** — chave `2926 1050 0425 8500 0180 5500 1000 0000 0181 3000 0000 56`, protocolo `129261914544464`, **R$ 33.384,57**. **9 lines — matches Rev 14 line-for-line** (§5.3b). Evidence: DANFE — `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`. **Supersedes nº 16** (11 lines / R$ 35.828,76), issued on the superseded Rev-12 cargo. |
 | **SISCOMEX/RADAR habilitação (DU-E prerequisite)** | 🔴 **BLOCKED → being restored** | Iolanda (Omega) → Saymon | ⚠️ Per **Iolanda Santos** (Omega, SISCOMEX/customs) to Gary, 2026-10-02: **6 months with no SISCOMEX movements** → the RADAR habilitação was **dropped by default** (*por padrão*), so Black King is currently **not habilitado** and the DU-E cannot be registered. Iolanda must run an **update** but **her laptop broke and her A1 digital certificate only works on a laptop**; she gave the **step-by-step to Saymon**, who is executing it and will send her a **print** for confirmation. Detail + standing risk: **§5.4** and `brazil/sources/2026-10-02_siscomex_habilitacao_inactivity_notes.md`. |
-| DU-E (Notificação de Exportação Fiscal) | 🔴 **blocked on habilitação** | Omega | ⚠️ **Corrected 2026-10-02:** the NF-e prerequisite is met (nº 18 issued) **but** the DU-E cannot be registered until the SISCOMEX/RADAR habilitação above is restored. *Formerly marked “unblocked” — that was wrong.* |
+| DU-E (Notificação de Exportação Fiscal) | 🔴 **blocked on habilitação** | Omega | ⚠️ **Corrected 2026-10-02:** the NF-e prerequisite is met (nº 18 issued) **but** the DU-E cannot be registered until the SISCOMEX/RADAR habilitação above is restored. *Formerly marked “unblocked” — that was wrong.* ⚠️ **2026-10-02 (new):** a weighing doc carries a DU-E-looking ref **`DUE-26BR0017954000`** and shows the cargo **weighed at Salvador airport** — which implies the DU-E **may be registered** (⇒ habilitação restored). **UNCONFIRMED** — see §5.5. |
+| **Airport weighing (Salvador) — gross weight** | 🔴 **DIVERGENCE** | Omega / airline | Cargo weighed at the airport → **349,000 kg gross** vs our documented **322,06** (**+26,94** ≈ the 2 heat-treated pallets our model omits). **Commercial Invoice + Packing List to be reissued at 349 kg**; forwarder reissues **HAWB/MAWB**. NF-e nº 18 declares 322,06 → needs a **CC-e** (weights/freight *are* amendable by CC-e). `brazil/sources/2026-10-02_airport_weighing_weight_divergence.md` (§5.5). |
 | Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
 | Air freight | ⬜ | Graziela/Omega | rates only |
 | Deadline pressure | — | — | **China partners arrive 2026-09-29** (Gary asked to resolve before then) |
@@ -148,13 +149,14 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] Airline booking confirmed + quote revalidated (Graziela).
 - [ ] **Export docs:** AWB, Commercial Invoice, Packing List, Phytosanitary Cert (pallets), IPPC details.
 - [ ] **DU-E registered** (Notificação de Exportação Fiscal). Owner: Omega.
+- [ ] **Airport weighing — 349,000 kg gross** (§5.5): **reissue** the Commercial Invoice + Packing List at **gross 349 kg** (net 302,06); forwarder reissues **HAWB/MAWB**; **CC-e** on NF-e nº 18 to align the declared bruto. Owner: Gary → Omega.
 - [ ] **Desembaraço de exportação** (Gerson Argolo).
 - [ ] **Correction Letter to SeaCoast** (freight forwarder) — Daniel flagged that the issued invoice lacked **weights, quantity and package type**. Draft: `exports/2026-09-29_correction_letter_black_king_inv_rev12_EN_PT.pdf` (generated by `scripts/build_correction_letter.py` from the Rev 12 SSOT; carries a **Portuguese pickup section** — where to collect + what is collected — for the Brazilian warehouse/carrier). ⚠️ This is a **commercial** companion to NF-e nº 16 (issued 2026-09-22), **not** a fiscal **CC-e**; the DANFE's own TRANSPORTADOR/VOLUMES block is **blank** — the weights/quantity/package-type Daniel flagged — so a commercial letter (or a CC-e, once the carrier data exists) is what closes it. Owner: Gary → Black King signs → SeaCoast.
 
 ### Phase 6 — Air freight (SSA → SFO)
 - [ ] Air freight booked. Tiered: 200 kg ≈ $3.50/kg · 300 kg ≈ $3.40 · 500 kg ≈ $3.30 · 750 kg ≈ $3.30 · 1000 kg ≈ $3.20.
 - [ ] Brazil airport charges: ≈ $0.30/kg (min $250). US airline terminal ≈ $212.50.
-- [ ] Net **344.06 kg** / gross **364.06 kg** (Rev 12 packing list, derived from documented pack sizes) — Rev 11 stated ≈ 300 / 320 kg; **reconcile against the weighed shipment**.
+- [ ] **Weights:** Rev 14 = net **302,06** / gross **322,06** kg; airport-measured gross = **349,000 kg** (§5.5). *Superseded:* Rev 12 stated net 344.06 / gross 364.06; Rev 11 ≈ 300 / 320. Reissue commercial docs at **349 kg**.
 
 ### Phase 7 — US import, customs & final delivery
 - [ ] US import handling ≈ $125. US customs clearance ≈ $150. FDA processing ≈ $100 (if required).
@@ -369,6 +371,17 @@ A SISCOMEX/RADAR **habilitação is dropped by default after ~6 months with no m
 **Maintenance rule — going forward:** during any shipping season, **never let a habilitação idle 6 months**; log a movement (even an administrative/zero one) or diarize the expiry. Do not discover this at DU-E time.
 
 
+#### 5.5 Airport weighing — gross-weight divergence (349 kg) ������ NEW 2026-10-02
+
+> **Source:** `brazil/sources/2026-10-02_airport_weighing_weight_divergence.md` (Gary, thread 10800).
+
+Salvador airport weighed the consignment and found a **divergence**: **gross = 349,000 kg** (`349,000` on the ticket; AWB **`04731753223`**, DOC. LIBERATÓRIO **`DUE-26BR0017954000`**, **2 volumes**, exportador **50.042.585/0001-80** ✓). Requested of us: **reissue the Commercial Invoice + Packing List at gross 349 kg**; the forwarder then reissues **HAWB + MAWB** for the airline correction.
+
+**Why it differs from our docs.** Rev 14 gross is **322,06** (net 302,06 + ~20 kg box tare) — it **omits pallet mass**. 349 − 302,06 = **46,94 kg** of packaging; the **~≈27 kg gap ≈ 2 heat-treated pallets (≈13,5 kg each)**. Confirm with the forwarder.
+
+**⚠️ Fiscal:** NF-e nº 18 declares **bruto 322,060 / líq. 302,060**. Reissuing commercial docs at 349 kg **diverges from the issued NF-e**. Weights/freight **can** be amended by a **CC-e** (unlike lines/tax base) → the route is a **CC-e on nº 18** + the commercial reissue. **Confirm with Saymon/Matheus.**
+
+
 ## 6. Hard rules & approval gates (checklist)
 
 - [ ] **No NF-e issuance without Gary's explicit approval.**
@@ -412,6 +425,7 @@ A SISCOMEX/RADAR **habilitação is dropped by default after ~6 months with no m
 | Matheus can't make outbound calls | number flagged | use WhatsApp; Rebecca for warehouse |
 | NF-e rejected: **unidades de medida** | NCM technical norm requires specific units on export (NCM 1801/1803/1804 → **TON**; 1802/1806 → KG — **Appendix E**) | regenerate the invoice (Rev 12) with NCM-required units (§5.1a) + correct values; re-key emitter products |
 | SISCOMEX/DU-E — company **not habilitado**, habilitação dropped | **~6 months with no SISCOMEX movement** → RADAR habilitação blocked/dropped **by default** | the company (or its representative) runs an **update/movement** in SISCOMEX to restore it — needs a valid **A1 certificate on a working machine** (a broken laptop stalled this on 2026-10-02, §5.4). Prevent by logging periodic movements. |
+| Airport scale disagrees with our **gross** (CI + PL rejected, AWB blocked) | our gross model omits **pallet** mass; airport weighs boxes **+ pallets** | reissue the Commercial Invoice + Packing List at the **ticket** gross (§5.5); **CC-e** the NF-e if already issued; forwarder reissues HAWB/MAWB. |
 
 ---
 
@@ -485,6 +499,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-29 | **Ordem de coleta REV 2** — the trucking pickup order rebuilt keyed to the issued **NF-e nº 16** (Gary, thread 10800): new NF-e identification block (chave/protocolo/emitente IE/CFOP/total), fiscal uTrib column beside commercial units, and the **filled** TRANSPORTADOR/VOLUMES block (2 vol · 344,06 kg net · 364,06 kg gross) that the DANFE left blank. Fixed an SSOT gap (NCM 2106.90.00 lines 6/10 printed `None` as the fiscal unit → now resolved to **KG**, matching the DANFE). Regenerated the PDF. |
 | 2026-10-02 | **NF-e nº 18 issued — fiscal divergence RESOLVED.** DANFE filed (`brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`); §5.3b added (line-by-line vs Rev 14); §1 + §5.1c updated. 9 lines / 27 caixas / 2 pallets / 302,06 net / 322,06 gross / **R$ 33.384,57** — matches Rev 14; nº 16 superseded. The TRANSPORTADOR/VOLUMES block nº 16 left blank (weights/quantity/package type) is now filled on nº 18. **New stale items: ordem de coleta + SeaCoast correction letter must be re-keyed to nº 18.** |
 | 2026-10-02 | **SISCOMEX habilitação drop (6-month inactivity) documented** — Iolanda (Omega) to Gary: no SISCOMEX movements for 6 months → RADAR habilitação dropped by default; DU-E blocked. **§1 DU-E row corrected** (“unblocked” → blocked on habilitação); new **§5.4** (inactivity rule + single-certificate risk + Saymon/Iolanda recovery); §8 failure-mode row; source note `brazil/sources/2026-10-02_siscomex_habilitacao_inactivity_notes.md`. |
+| 2026-10-02 | **Airport weighing weight-divergence documented (349 kg gross)** — Salvador weighed the cargo at **349,000 kg** vs our documented 322,06 (+26,94 ≈ 2 pallets); forwarder asks for reissued **Commercial Invoice + Packing List at 349 kg** + **HAWB/MAWB**; weighing doc carries a DU-E ref **`26BR0017954000`**. New **§5.5** + §1 row; DU-E caveat; §8 row; Phase 5/6 updated. **CC-e on NF-e nº 18** likely needed. |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
 | 2026-09-21 | **Saymon/Jussileide are NOT on Telegram** — they are contractors on WhatsApp “Black King - Contab”. Added a delivery-channel warning to §2 so no agent assumes a thread-10800 post reaches them; artifacts for the accountant are relayed by Gary. No automated path (“Black King - Contab” is not in OpenClaw's verified JID list). |
