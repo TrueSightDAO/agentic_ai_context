@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-01T22:50:07Z`
-- Look-back: **7** calendar days (`2026-09-24` → today UTC)
+- Generated (UTC): `2026-10-02T05:59:34Z`
+- Look-back: **7** calendar days (`2026-09-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -234,9 +234,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,867.72**
+- USD on hand: **$4,867.67**
 - Brazilian Reis: R$-11.87 · rate `0.2323` USD/BRL → ≈ **$-2.76**
-- USD provisioned for voting-rights cash-out: **$55.90**
+- USD provisioned for voting-rights cash-out: **$55.96**
 
 ### In-transit freight (1 row)
 
@@ -252,11 +252,10 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-24_ (3):
+_All dated lines on/after 2026-09-25_ (2):
 
 - 2026-09-25 | sophia | **PROJECT_INDEX.md capoeira row is STALE — needs refresh.** It lists 4 pages (index/library/practice/transparency); the live site now has **8** (adds roda, berimbau, community, roots) and a full EN/PT i18n layer (`assets/js/i18n.js` + `assets/js/i18n/common.js`, per-page `window.I18N_PAGE`, storage key `capoeira_lang`). Flagged, **not** hand-edited (canonical-file rule — see plans/CAPOEIRA_I18N_PLAN.md §3). Capoeira repo is also **no-beta**: merge to `main` = live deploy at capoeira.agroverse.shop. Engineering complete via PR1–PR10; remaining gate = native-PT-reader UAT review.
 - 2026-09-25 | sophia | Inline-button resume options shipped for BOTH transports — Telegram (#502/#503) + Discord parity (#504), deployed and UAT-verified live (thread 36518). Option labels server-side in `app/resume_registry.py` / `app/discord_resume_registry.py` (opaque token, consume-on-read, single-fire); transport carries `ro:<token>:<i>`. Discord taps = `INTERACTION_CREATE` type-3, deferred-ACKed (type 6) within 3s THEN dispatched on the same synthesized-go path as the emoji-go reaction. Filed `## Recently shipped` in OPEN_FOLLOWUPS.md.
-- 2026-09-24 | sophia | Telegram reply-to context loss FIXED + filed: `truesight_autopilot` #500 (`30291c97`) forwards the replied-to message's sender + text/caption (or an honest "replying to an uncaptioned photo/document from X" marker) as a `[Replying to ...]` prefix at the `dispatch_text` construction site — same convention as `[Telegram context: ...]`; byte-identical when not a reply. Deployed + live-verified (thread 35622): `journalctl` `CHAT REQ` line now shows the prefix, and the reply acted on it. Root cause (two narrow `reply_to_message` reads that never forwarded content) filed in OPEN_FOLLOWUPS + plan `plans/TELEGRAM_REPLY_CONTEXT_FIX_PLAN.md` so a third occurrence doesn't repeat un-tracked.
 
 ---
 
@@ -275,6 +274,7 @@ _All dated lines on/after 2026-09-24_ (3):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+6979798 | 2026-10-01 22:51:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 fba68ad | 2026-10-01 13:48:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 7d79dfa | 2026-10-01 06:27:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 c0dc5e2 | 2026-09-30 22:31:59 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -311,11 +311,6 @@ ff793bb | 2026-09-26 11:42:56 +0000 | chore(stats): refresh stats indexes [skip 
 8aabd3c | 2026-09-25 17:29:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 16dfa7d | 2026-09-25 12:07:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 ceea3bd | 2026-09-25 05:16:56 +0000 | chore(stats): refresh stats indexes [skip ci]
-4c8514a | 2026-09-24 21:44:10 +0000 | chore(stats): refresh stats indexes [skip ci]
-ff42044 | 2026-09-24 14:32:34 -0300 | qr page: deep-link ANY tree-linked QR (incl. cacao bags) to SunMint map (#396)
-268f965 | 2026-09-24 17:30:05 +0000 | chore(stats): refresh stats indexes [skip ci]
-ec876b3 | 2026-09-24 13:31:22 -0300 | CRF Anapu: name açaí in description_md (beta source of truth) (#395)
-… (truncated)
 ```
 
 ### `market_research` → `go_to_market`
@@ -327,6 +322,8 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+54b66eb | 2026-10-01 19:50:24 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
+4a40c51 | 2026-10-01 19:50:23 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
 403d92e | 2026-10-01 12:38:05 -0300 | OPEN_FOLLOWUPS: file payout-event parser field-order bug + ledger append race (#1481)
 fb4c761 | 2026-10-01 10:44:47 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
 e524961 | 2026-10-01 10:44:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
@@ -365,8 +362,6 @@ e4a1510 | 2026-09-29 02:07:44 -0300 | Mark PAYOUT_FARM_PLOT_FILTER_PLAN PR3 live
 93f2f87 | 2026-09-29 01:39:18 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: repoint PR3 RESUME marker to the governor-only money gate (prod promote done) (#1459)
 3d66b58 | 2026-09-29 01:37:04 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: mark PR3 prod promote done, awaiting live backfill (#1458)
 9afe274 | 2026-09-29 01:06:37 -0300 | Register handoff: MAP intake go-live (thread 30550) — plan + HANDOFF_MANIFEST row (#1457)
-42a6e19 | 2026-09-29 01:01:15 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: record the ad-hoc URL filter-sync feature (dapp_beta #147) (#1456)
-ff52c58 | 2026-09-29 00:38:10 -0300 | plan: PR2 (batch backfill) built+merged+reported; marker → PR3 (#1455)
 … (truncated)
 ```
 
@@ -395,10 +390,6 @@ fcb9099 | 2026-09-25 21:08:43 -0300 | feat(gas): SS11.3-bis payout-registration 
 b4bb906 | 2026-09-25 19:35:47 -0300 | fix(gas): payout-registration status lifecycle — one ACTIVE row per pk_hash (#556)
 857bed4 | 2026-09-25 12:28:49 -0300 | feat(gas): surface product context in list_sold_pending_tree (thread 35944) (#555)
 4cf8a0d | 2026-09-25 11:32:55 -0300 | docs(gas): §4 — top-level functions sorted ascending alphabetical (STANDING, Gary 2026-09-24) (#554)
-e32d3b9 | 2026-09-24 15:15:37 -0300 | GAS: add documents OAuth scope (fixes processBatch) + correct deploy-identity convention (#553)
-657de6f | 2026-09-24 14:32:02 -0300 | GAS: read-only ?action=getInstalledScannerTriggers to verify trigger state over HTTP (#552)
-5a3b3d2 | 2026-09-24 14:23:33 -0300 | GAS convention: every scanner exposed via doGet (+ processBatch branch, bulk installer, guard) (#551)
-ef25709 | 2026-09-24 13:46:02 -0300 | Add CFR-program submission sink + fix payout parser terminator bug (#550)
 ```
 
 ### `dapp` → `dapp`
@@ -438,8 +429,6 @@ f42f547 | 2026-09-27 12:07:27 +0000 | chore: refresh store, partner inventory, a
 a964e20 | 2026-09-26 11:46:38 +0000 | chore: refresh currencies.json [skip ci]
 efc22ca | 2026-09-26 11:29:28 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 014b973 | 2026-09-25 11:55:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-8fbf7a8 | 2026-09-24 12:11:42 +0000 | chore: refresh currencies.json [skip ci]
-bd31932 | 2026-09-24 11:50:48 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -456,7 +445,6 @@ bd31932 | 2026-09-24 11:50:48 +0000 | chore: refresh store, partner inventory, a
 ```
 4363873 | 2026-09-25 11:28:49 -0300 | Fix "hexagramChinese is not a function" — rename map global to avoid clobbering the helper (#72)
 9a86af2 | 2026-09-25 10:42:54 -0300 | Show the classical Chinese hexagram character (卦名) in the draw (#71)
-a060f12 | 2026-09-24 11:44:22 -0300 | Fix corrupted hexagram corpus JS breaking every I Ching reading (#70)
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -541,7 +529,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 0 | 18484.34386 | 10/1/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-24`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-25`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
