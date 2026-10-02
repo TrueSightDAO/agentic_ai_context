@@ -39,6 +39,41 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SISCOMEX/RADAR habilitação **drops after ~6 months of inactivity** — diarize the expiry before any export season
+**Filed 2026-10-02 (thread 10800). Owner: unclaimed (Brazil export lane). Small — a reminder/check, not code.**
+
+**Symptom.** The Black King → SF lane stalled at DU-E time because the RADAR **habilitação had been dropped**: per **Iolanda Santos** (Omega, SISCOMEX/customs) on a 2026-10-02 call with Gary, **~6 months with no SISCOMEX movement** causes the habilitação to be **dropped by default** (*“por padrão”*). A company that is not habilitado **cannot register a DU-E**.
+
+**Why it matters as a standing item.** This is silent — nothing alerts you; you only discover it when you try to ship. It recurred-effortlessly because the lane idles between seasons. Recovery needs a **valid A1 certificate on a working machine** (the 2026-10-02 recovery stalled because Iolanda’s **laptop broke** and her A1 cert is laptop-bound) — so the *fix* also has a hardware single-point-of-failure.
+
+**Proposed fix (~small).** Diarize the lane: a periodic reminder (every ~4 months) to **log a SISCOMEX movement** (even administrative/zero) **or** verify the habilitação is active via the RADAR consulta. Add a **pre-DU-E gate** to the freight runbook: *“verify habilitação status BEFORE relying on the NF-e”* — done for the runbook text in this round (see §5.4), but not yet an automated reminder. Also: **keep >1 certificate-capable device + custodian** for Black King (add to an entity-readiness checklist).
+
+**Evidence.** `agentic_ai_context/brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` §5.4 + §1; `brazil/sources/2026-10-02_siscomex_habilitacao_inactivity_notes.md`; merged PR #1486. Related (distinct) entry: the CNPJ-reinstatement runbook further down.
+
+### `truesight_autopilot`: `append_to_transcript` fails with **422 “sha wasn't supplied”** when the transcript file does not exist
+**Filed 2026-10-02 (thread 10800). Owner: unclaimed. `truesight_autopilot`; small.**
+
+**Symptom.** Two consecutive `append_to_transcript(...)` calls for session `tg:-1003919341801:10800` returned
+`GitHub validation error: {"message":"Invalid request.\n\n\"sha\" wasn't supplied.","status":422}` — the same shape as the GitHub Contents API when you **update** a path that does not exist (an update requires the current blob `sha`; a **create** must omit it).
+
+**Likely cause.** The tool appears to take an update path (supplying `sha`) instead of falling back to a create when the target transcript file is absent — i.e. it should read the current file first and, on 404, POST without `sha`. First write for a new session/day therefore fails.
+
+**Impact.** Attachment extractions that should persist to the transcript repo **silently do not**, so cross-session recall misses them (the content was preserved elsewhere here, so no loss this time).
+
+**Fix.** In the transcript-append helper: GET the file; if 404, PUT **without** `sha` (create); else PUT **with** the returned `sha`. Add a regression test for the create path.
+
+**Evidence.** Two 422s, thread 10800, 2026-10-02.
+
+### `truesight_autopilot`: no registered **`send_discord_attachment`** tool — file sends fall back to raw REST
+**Filed 2026-10-02 (thread 10800). Owner: unclaimed. `truesight_autopilot`; small.**
+
+**Symptom.** Asked to post PDFs into a Discord channel, the adapter exposes only **`send_message`** (text) and **`send_voice`** (audio); the old `discord_attachment` module is gone (a stale `.pyc` remains, no source). Delivery was done by calling the **Discord REST** endpoint directly with the bot token from the vault (`get_token()`).
+
+**Proposed fix.** Add a first-class **`send_discord_attachment(channel_id, file_paths, message)`** tool (mirroring the Telegram attachment tool): multipart upload, optional `@`-mention, honour `DISCORD_DRY_RUN`. Removes ad-hoc token handling from ad-hoc shell.
+
+**Evidence.** Thread 10800 (Rev 13/14 PDFs posted to #black-king-export-docs); `app/tools/` has no `discord_attachment` source.
+
+
 ### **[Biometric gate] Face/voice indexing of a minor in farm/program media is PROHIBITED pending an explicit written answer from Gary** — hard block on Tier 2/3
 **Filed 2026-09-30 (thread 39733). Owner: Gary (decision); implementation unclaimed until answered. Blocks: ALL Tier-2/3 people-identity work in farm/program media. Design: `plans/FARM_MEDIA_PEOPLE_TIERS.md`.**
 
