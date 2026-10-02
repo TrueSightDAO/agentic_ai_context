@@ -62,7 +62,7 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | Ilhéus warehouse (physical) | Rebecca | — | +55 73 99108-2946 · **R. Cel. Paiva, 46, Centro, Ilhéus - BA, 45653-310** |
 | **NF-e specialist (hired)** | **Saymon** | (contractor) | WhatsApp group "Black King - Contab" |
 | **Accountant (hired)** | **Jussileide** | (contractor) | WhatsApp group "Black King - Contab" |
-| US importer of record | TrueTech Inc | — | EIN 88-3411514 · 1423 Hayes St, San Francisco, CA 94117 |
+| US importer of record | TrueTech Inc | — | EIN 88-3411514 · 1423 Hayes St, San Francisco, CA 94117 · **WhatsApp +1 442 340-5782** (`wa.me/+14423405782`, supplied by Gary 2026-10-02) — this is the **FONE/FAX `(14) 42340-5782` printed in the DESTINATÁRIO block on NF-e nº 18**. |
 
 > **Note:** the old doc said "bypass the accountant; 8 days". **Accountants have now been hired (Saymon + Jussileide)** and the lane is still not through — the bottleneck is the **structural (Junta/Prefeitura)** chain and the **master-data setup**, not the accountant's responsiveness.
 >
