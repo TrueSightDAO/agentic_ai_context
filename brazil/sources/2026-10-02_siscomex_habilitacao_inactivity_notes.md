@@ -41,3 +41,8 @@ registered until the habilitação is restored.**
 | "Cisco Max" | **SISCOMEX** |
 | "for pedron" | **por padrão** ("by default") |
 | "Simon" | **Saymon** — NF-e specialist (contractor) |
+
+
+## Also captured 2026-10-02 — TrueTech Inc WhatsApp
+
+Gary supplied `wa.me/+14423405782` in thread 10800. This is **+1 (442) 340-5782** = the **`FONE/FAX (14) 42340-5782`** printed in the **DESTINATÁRIO** block of **NF-e nº 18** for **TRUETECH INC** (US importer of record, EIN 88-3411514). Recorded as TrueTech's contact number in runbook §2.
