@@ -4,7 +4,7 @@
 > **Canonical file.** If any other document disagrees with this one, **this file wins** — fix the other doc in the same PR.
 > **Lane:** Ilhéus, BA (Matheus / Gateway.fy warehouse — **physical pickup: R. Cel. Paiva, 46, Centro**) → road → Salvador (SSA) → air → San Francisco (SFO) → Kirsten's SF warehouse.
 > **Commercial basis:** Brazil exporter (Black King, or fallback Coopercabruca) → **TrueTech Inc** (US importer of record, EIN 88-3411514).
-> **Last verified:** 2026-09-29. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`; **Ilhéus pickup-address confirmation — Gary, thread 10800, 2026-09-29** (see §2a); **NF-e nº 16 issued 2026-09-22** — DANFE + notes at `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf`.
+> **Last verified:** 2026-10-02. Sources: Seacos/Omega quote thread (May–Jun 2026); Black King accountant WhatsApp thread (2026-09-18 → 21) — see `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`; **Ilhéus pickup-address confirmation — Gary, thread 10800, 2026-09-29** (see §2a); **NF-e nº 16 issued 2026-09-22** — DANFE + notes at `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf` ; **NF-e nº 18 issued 2026-10-02** — `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`; **SISCOMEX habilitação dropped on 6-month inactivity — Iolanda (Omega) via Gary, 2026-10-02** (§5.4).
 
 ---
 
@@ -36,7 +36,8 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | **NF-e draft** | ✅ **superseded** | Saymon | draft errored 2026-09-21 on **unidades de medida**; fixed by the Rev 12 unit remap (§5.1a). **Now moot — the NF-e was issued (see next row).** |
 | **NF-e issued** | ✅ **issued** | Saymon | **NF-e nº 16, série 1, emitida 22/09/2026** — chave `2926 0950 0425 8500 0180 5500 1000 0000 0161 3000 0003 5`, protocolo `129261913151752`, **R$ 35.828,76**. All 11 lines, NCMs and the TON/KG remap match Rev 12 (§5.3). Evidence: DANFE — `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf`; signed **XML** — `brazil/sources/2026-09-22_black_king_nfe_16.xml` (+ reconciliation notes `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`). XML `cStat` **100 (Autorizado)**. |
 | **NF-e issued (CURRENT)** | ✅ **issued** | Saymon/Matheus | **NF-e nº 18, série 1, emitida 02/10/2026** — chave `2926 1050 0425 8500 0180 5500 1000 0000 0181 3000 0000 56`, protocolo `129261914544464`, **R$ 33.384,57**. **9 lines — matches Rev 14 line-for-line** (§5.3b). Evidence: DANFE — `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`. **Supersedes nº 16** (11 lines / R$ 35.828,76), issued on the superseded Rev-12 cargo. |
-| DU-E (Notificação de Exportação Fiscal) | 🟡 **unblocked** | Omega | the NF-e prerequisite is **met** (nº 16 issued) — DU-E can now be registered |
+| **SISCOMEX/RADAR habilitação (DU-E prerequisite)** | 🔴 **BLOCKED → being restored** | Iolanda (Omega) → Saymon | ⚠️ Per **Iolanda Santos** (Omega, SISCOMEX/customs) to Gary, 2026-10-02: **6 months with no SISCOMEX movements** → the RADAR habilitação was **dropped by default** (*por padrão*), so Black King is currently **not habilitado** and the DU-E cannot be registered. Iolanda must run an **update** but **her laptop broke and her A1 digital certificate only works on a laptop**; she gave the **step-by-step to Saymon**, who is executing it and will send her a **print** for confirmation. Detail + standing risk: **§5.4** and `brazil/sources/2026-10-02_siscomex_habilitacao_inactivity_notes.md`. |
+| DU-E (Notificação de Exportação Fiscal) | 🔴 **blocked on habilitação** | Omega | ⚠️ **Corrected 2026-10-02:** the NF-e prerequisite is met (nº 18 issued) **but** the DU-E cannot be registered until the SISCOMEX/RADAR habilitação above is restored. *Formerly marked “unblocked” — that was wrong.* |
 | Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
 | Air freight | ⬜ | Graziela/Omega | rates only |
 | Deadline pressure | — | — | **China partners arrive 2026-09-29** (Gary asked to resolve before then) |
@@ -355,6 +356,19 @@ The export NF-e **was issued by Black King on 2026-09-22**. DANFE archived: `bra
 > ⚠️ **Not yet registered in SISCOMEX / not yet given to the carrier.** The NF-e **is** issued and authorized (protocolo present), but per §5 Phase 5 the DU-E + despacho still follow, and the driver must carry **nº 18** (not nº 16).
 > ������ **Downstream updates needed:** the **ordem de coleta** (§5 Phase 4, currently keyed to nº 16 — 11 lines / 344,06 kg) and the **SeaCoast correction letter** (§5 Phase 5) are both now **stale** — they must be re-keyed to **nº 18 / Rev 14 / 302,06 kg**. The weights (302,06/322,06) and quantity (2 pallets) the SeaCoast letter asked for are now already on the NF-e itself.
 
+#### 5.4 SISCOMEX/RADAR habilitação — the 6-month inactivity rule ⚠️ KEEP IN MIND
+
+> **Source:** Iolanda Santos (Omega, SISCOMEX/customs) on a call with Gary, 2026-10-02 (thread 10800). Notes: `brazil/sources/2026-10-02_siscomex_habilitacao_inactivity_notes.md`.
+
+A SISCOMEX/RADAR **habilitação is dropped by default after ~6 months with no movement** (*“por padrão”* — Iolanda). Black King went ~6 months with no SISCOMEX movement, so its habilitação was **blocked** and it cannot register the **DU-E**.
+
+**Recovery (in progress):** the company (or its representative) runs an **update/movement** in SISCOMEX/RADAR to restore the habilitação. Iolanda wrote the **step-by-step**; **Saymon is executing it** and will send her a **print**; she then confirms.
+
+**⚠️ Standing risk — single-certificate / single-machine.** Iolanda's **A1 certificate only works on her laptop**, which **broke** — so she could not run the update herself and the lane stalled on a hardware failure. **Keep more than one certificate-capable device + custodian for Black King.**
+
+**Maintenance rule — going forward:** during any shipping season, **never let a habilitação idle 6 months**; log a movement (even an administrative/zero one) or diarize the expiry. Do not discover this at DU-E time.
+
+
 ## 6. Hard rules & approval gates (checklist)
 
 - [ ] **No NF-e issuance without Gary's explicit approval.**
@@ -397,6 +411,7 @@ The export NF-e **was issued by Black King on 2026-09-22**. DANFE archived: `bra
 | DARF for **all** debits can't be future-dated | system limitation | regenerate the DARF on the payment day |
 | Matheus can't make outbound calls | number flagged | use WhatsApp; Rebecca for warehouse |
 | NF-e rejected: **unidades de medida** | NCM technical norm requires specific units on export (NCM 1801/1803/1804 → **TON**; 1802/1806 → KG — **Appendix E**) | regenerate the invoice (Rev 12) with NCM-required units (§5.1a) + correct values; re-key emitter products |
+| SISCOMEX/DU-E — company **not habilitado**, habilitação dropped | **~6 months with no SISCOMEX movement** → RADAR habilitação blocked/dropped **by default** | the company (or its representative) runs an **update/movement** in SISCOMEX to restore it — needs a valid **A1 certificate on a working machine** (a broken laptop stalled this on 2026-10-02, §5.4). Prevent by logging periodic movements. |
 
 ---
 
@@ -469,6 +484,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-21 | **Rev 12 finalized** (PR #1335, `f7acdff`): removed the red DRAFT banner + all draft/hedge wording from both PDFs; generator + both PDFs merged. Units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation — that the PL already follows Saymon's norm by construction (same generator, shared `LINES`/`UTRIB` table) — came from **Envoy**, not governor Gary Teh, and is **not** a governor authorization.* |
 | 2026-09-29 | **Ordem de coleta REV 2** — the trucking pickup order rebuilt keyed to the issued **NF-e nº 16** (Gary, thread 10800): new NF-e identification block (chave/protocolo/emitente IE/CFOP/total), fiscal uTrib column beside commercial units, and the **filled** TRANSPORTADOR/VOLUMES block (2 vol · 344,06 kg net · 364,06 kg gross) that the DANFE left blank. Fixed an SSOT gap (NCM 2106.90.00 lines 6/10 printed `None` as the fiscal unit → now resolved to **KG**, matching the DANFE). Regenerated the PDF. |
 | 2026-10-02 | **NF-e nº 18 issued — fiscal divergence RESOLVED.** DANFE filed (`brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`); §5.3b added (line-by-line vs Rev 14); §1 + §5.1c updated. 9 lines / 27 caixas / 2 pallets / 302,06 net / 322,06 gross / **R$ 33.384,57** — matches Rev 14; nº 16 superseded. The TRANSPORTADOR/VOLUMES block nº 16 left blank (weights/quantity/package type) is now filled on nº 18. **New stale items: ordem de coleta + SeaCoast correction letter must be re-keyed to nº 18.** |
+| 2026-10-02 | **SISCOMEX habilitação drop (6-month inactivity) documented** — Iolanda (Omega) to Gary: no SISCOMEX movements for 6 months → RADAR habilitação dropped by default; DU-E blocked. **§1 DU-E row corrected** (“unblocked” → blocked on habilitação); new **§5.4** (inactivity rule + single-certificate risk + Saymon/Iolanda recovery); §8 failure-mode row; source note `brazil/sources/2026-10-02_siscomex_habilitacao_inactivity_notes.md`. |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
 | 2026-09-21 | **Saymon/Jussileide are NOT on Telegram** — they are contractors on WhatsApp “Black King - Contab”. Added a delivery-channel warning to §2 so no agent assumes a thread-10800 post reaches them; artifacts for the accountant are relayed by Gary. No automated path (“Black King - Contab” is not in OpenClaw's verified JID list). |
