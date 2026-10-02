@@ -188,7 +188,9 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 
 > ✅ **Rev 12 regenerated + merged (2026-09-21).** Applied The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → the commercial invoice + packing list were regenerated in the NCM-mandated export units (PR #1333, `c3ac61a`); see the merged PDFs in `exports/`. **Finalized 2026-09-21 (PR #1335, `f7acdff`):** the red DRAFT banner and all draft/hedge wording were removed from both PDFs; units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation (PL follows Saymon's norm by construction — same generator, shared `LINES`/`UTRIB` table) came from **Envoy**, not governor Gary Teh, and is **not** an authorization.*
 
-#### 5.1b ⭐ Rev 13 — current (physical cargo), 2026-10-02
+#### 5.1b Rev 13 — superseded (2026-10-02)
+
+> 🚨 **SUPERSEDED 2026-10-02 → see §5.1c (Rev 14).** Kept for reconciliation history.
 
 > **Source:** governor Gary Teh, thread 10800, 2026-10-02 (physical count + corrections).
 
@@ -207,6 +209,40 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - Generated reproducibly by `scripts/build_black_king_export_docs.py` (merged #1482, `f782ebc`). The carton count is now carried **on the packing list itself** (previously only on the CC-e).
 - **Units:** the NCM→uTrib remap from Rev 12 (§5.1a) is **unchanged** — 1801/1803/1804 → TON; 2106.90.00 → KG.
 - 🚨 **Fiscal divergence:** NF-e **nº 16** (authorized 2026-09-22) was issued on the **11-line / R$ 35.828,76** Rev-12 cargo. The physical cargo is now **10 lines / R$ 35,219.17**. A CC-e cannot add/remove lines or move the tax base — the correction route must come from **Saymon/Matheus**. **Do not treat the lane as document-consistent until this is resolved.**
+
+#### 5.1c ⭐ Rev 14 — current (physical cargo), 2026-10-02
+
+> **Source:** governor Gary Teh, thread 10800, 2026-10-02 ("remove line 2" + full physical box breakdown).
+
+**What changed vs Rev 13:** Rev-13 **line 2 (Cacao Husk KG — Ilheus, 20 kg, 2 regular boxes) is NOT in the shipment** — removed.
+
+**Physical box breakdown (governor, from the warehouse):**
+
+| Regular boxes (10 kg Mercado Livre) | Boxes |
+|---|---|
+| Oscar cacao nibs | 8 |
+| Paulo cacao almonds (AGL8) | 1 |
+| Samples from Pará (cacao almonds) | 1 |
+| Vivi cacao nibs (AGL13) | 10 |
+| Vivi cacao tea (AGL13) | 2 |
+| **Regular total** | **22** |
+
+| Irregular boxes | Boxes |
+|---|---|
+| Nibs Kraft Pouch 8oz — Ilheus 2024 *(thermic)* | 1 |
+| Mass Bar 500g — Ilheus 2024 *(thermic)* | 1 |
+| Ceremonial Cacao Pouch 200g — AGL8 *(thermic)* | 1 |
+| Coopercabruca Cacao Butter (KG) *(irregular)* | 1 |
+| **Irregular total** | **4** |
+
+> **Reclassification vs 5.1b:** Paulo's Cacao Almonds (AGL8, 10 kg) ships in a **regular 10 kg box** (previously modelled irregular) → irregular 5 → 4, regular 21 → 22. Total boxes unchanged at 26.
+
+**Totals:** **9 lines · 26 boxes (22 regular + 4 irregular) · 2 pallets · 302.06 kg net / 322.06 kg gross · $6,473.02 USD / R$ 33,384.60 BRL** @ PTAX 5.1575 (18/09/2026).
+
+- Files: `exports/2026-10-02_commercial_invoice_black_king_to_truetech_rev14_EN_PT_BRL.pdf`; packing list `exports/2026-10-02_packing_list_black_king_to_truetech_rev14_EN_PT.pdf`.
+- Generated reproducibly by `scripts/build_black_king_export_docs.py`.
+- **Units:** the NCM→uTrib remap from Rev 12 (§5.1a) is **unchanged** — 1801/1803/1804 → TON; 2106.90.00 → KG.
+- 🚨 **Fiscal divergence worsens:** NF-e **nº 16** (authorized 2026-09-22) was issued on the **11-line / R$ 35.828,76** Rev-12 cargo. The physical cargo is now **9 lines / R$ 33,384.60**. A CC-e cannot add/remove lines or move the tax base — the correction route must come from **Saymon/Matheus**. **Do not treat the lane as document-consistent until this is resolved.**
 
 #### 5.1a Rev 12 — required export units (NCM remap)
 
