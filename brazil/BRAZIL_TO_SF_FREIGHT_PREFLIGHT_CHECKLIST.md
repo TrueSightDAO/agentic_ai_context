@@ -165,6 +165,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] Update this runbook's status snapshot (§1).
 
 #### 5.1 Current commercial revision
+- 🚨 **SUPERSEDED 2026-10-02 → see §5.1b (Rev 13).** The physical cargo changed (Rev-12 lines 6 + 8 dropped, 5 kg Pará samples added); Rev 13 = **10 lines, 28 boxes, 322.06 kg net / 342.06 kg gross, $6,828.73 USD / R$ 35,219.17 BRL**. The paragraph below is kept for reconciliation history only.
 - **Invoice INV-2026-0611-001 Rev 12 (+BRL)**, dated 2026-09-21, **$6,946.85 USD / R$ 35,828.38 BRL** @ PTAX 5.1575 (18/09/2026) — *values unchanged from Rev 11; only the declared units of measure changed.* Files: `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev12_EN_PT_BRL.pdf`; packing list `exports/2026-06-11_packing_list_black_king_to_truetech_rev12_EN_PT.pdf`. Generated reproducibly by `scripts/build_black_king_export_docs.py` (merged `agentic_ai_context` #1333, `c3ac61a`). **Rev 11 is superseded** (its mixed UN/KG units are what the emitter rejected).
 - **Superseded:** Rev 11 — `exports/2026-06-11_commercial_invoice_black_king_to_truetech_rev11_EN_PT_BRL.pdf` (and `inv_rev11_brl_dated.pdf`).
 - **Line items (Rev 11):**
@@ -186,6 +187,26 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 *Nominal $0.01/unit values used to satisfy emitter validation.
 
 > ✅ **Rev 12 regenerated + merged (2026-09-21).** Applied The NF-e draft errored on **unidades de medida**: a technical norm (*norma técnica*) mandates specific units of measure for some NCMs in case of export. Saymon: *“deverá ser gerada outra invoice com as unidades de medida e os valores corretos.”* → the commercial invoice + packing list were regenerated in the NCM-mandated export units (PR #1333, `c3ac61a`); see the merged PDFs in `exports/`. **Finalized 2026-09-21 (PR #1335, `f7acdff`):** the red DRAFT banner and all draft/hedge wording were removed from both PDFs; units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation (PL follows Saymon's norm by construction — same generator, shared `LINES`/`UTRIB` table) came from **Envoy**, not governor Gary Teh, and is **not** an authorization.*
+
+#### 5.1b ⭐ Rev 13 — current (physical cargo), 2026-10-02
+
+> **Source:** governor Gary Teh, thread 10800, 2026-10-02 (physical count + corrections).
+
+**What changed vs Rev 12:**
+
+| Change | Rev-12 line | Boxes | Net kg | USD |
+|--------|-------------|-------|--------|-----|
+| **Removed** — Cacao Tea (KG) AGL8 (Paulo's) | 6 | −2 | −12.00 | −$0.12 |
+| **Removed** — Cacao Almonds (KG) AGL13 (Vivi's) | 8 | −2 | −15.00 | −$118.05 |
+| **Added** — Cacao Almonds **samples** (KG) — Pará | new 10 | +1 | +5.00 | +$0.05 *(nominal)* |
+| **Rev 13** | **10 lines** | **28** | **322.06** | **$6,828.73** |
+
+**Totals:** **10 lines · 28 boxes (23 regular + 5 irregular) · 2 pallets · 322.06 kg net / 342.06 kg gross · $6,828.73 USD / R$ 35,219.17 BRL** @ PTAX 5.1575 (18/09/2026).
+
+- Files: `exports/2026-10-02_commercial_invoice_black_king_to_truetech_rev13_EN_PT_BRL.pdf`; packing list `exports/2026-10-02_packing_list_black_king_to_truetech_rev13_EN_PT.pdf`.
+- Generated reproducibly by `scripts/build_black_king_export_docs.py` (merged #1482, `f782ebc`). The carton count is now carried **on the packing list itself** (previously only on the CC-e).
+- **Units:** the NCM→uTrib remap from Rev 12 (§5.1a) is **unchanged** — 1801/1803/1804 → TON; 2106.90.00 → KG.
+- 🚨 **Fiscal divergence:** NF-e **nº 16** (authorized 2026-09-22) was issued on the **11-line / R$ 35.828,76** Rev-12 cargo. The physical cargo is now **10 lines / R$ 35,219.17**. A CC-e cannot add/remove lines or move the tax base — the correction route must come from **Saymon/Matheus**. **Do not treat the lane as document-consistent until this is resolved.**
 
 #### 5.1a Rev 12 — required export units (NCM remap)
 
