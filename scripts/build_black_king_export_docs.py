@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """Generate the Black King -> TrueTech export commercial invoice + packing list.
 
+Rev 15 (2026-10-02): GROSS WEIGHT corrected to the airport-measured figure.
+Salvador (as relayed by Daniel / SeaCoast) weighed the consignment at 349.00 kg
+gross. Rev 14 modelled gross = net 302.06 + 20 kg pallet tare = 322.06, which
+omitted the CARTON tare. The gap 349.00 - 322.06 = 26.94 kg ~= 1 kg x 27 cartons.
+Rev 15 therefore states gross 349.00 kg = net 302.06 + carton tare 26.94
+(27 boxes) + pallet tare 20.00 (2 x 10 kg HDPE). Net, lines, boxes, USD/BRL
+values and counts are UNCHANGED from Rev 14.
+
 Rev 14 (2026-10-02): Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular
 boxes) is NOT in the shipment, and the Cacao Mass Bar 500g - Ilheus line
 ships in TWO thermic boxes. Result: 9 lines, 27 boxes (22 regular + 5
@@ -38,6 +46,12 @@ OUTDIR = ROOT / "exports"
 
 PTAX = 5.1575  # BACEN PTAX venda 18/09/2026
 OZ = 0.028349523125  # kg per avoirdupois ounce
+
+# Rev 15 (2026-10-02): airport-measured gross. Net 302.06 + carton tare 26.94
+# (27 boxes, ~1 kg each) + pallet tare 20.00 (2 x 10 kg HDPE) = 349.00 kg.
+GROSS_WEIGHED = 349.00
+PALLET_TARE = 20.0
+CARTON_TARE = 26.94
 
 # n, ncm, qty, ucom, pack_kg (kg per commercial unit), usd_total, en, pt
 LINES = [
@@ -204,8 +218,9 @@ def f6(x):
 def head(title, doc):
     return (
         f"<h1>{title}</h1><p class='sub'>{doc}</p>"
-        "<p class='sub'>Rev 14 - 2026-10-02. Units of measure per the NCM "
-        "to export-uTrib norm (Appendix E). Supersedes Rev 12.</p>"
+        "<p class='sub'>Rev 15 - 2026-10-02. Units of measure per the NCM "
+        "to export-uTrib norm (Appendix E). Supersedes Rev 14: gross weight "
+        "restated to the airport-measured 349.00 kg.</p>"
         "<h2>Parties / Partes</h2><table>"
         "<tr><th style='width:30%'>Field / Campo</th><th>Value / Valor</th></tr>"
         "<tr><td>Exporter (Seller)</td><td>Black King - Matheus Reis Pereira "
@@ -232,7 +247,7 @@ def invoice_html():
     tbrl = sum(r["brl"] for r in rs)
     k = head(
         "Commercial Invoice / Fatura Comercial",
-        "INV-2026-0611-001 (Rev 14) - bilingual EN / PT - USD + BRL",
+        "INV-2026-0611-001 (Rev 15) - bilingual EN / PT - USD + BRL",
     )
     k += (
         "<h2>Line Items - declared units of measure (uTrib) / "
@@ -292,13 +307,16 @@ def invoice_html():
     k += boxes_html()
     k += flags_html()
     k += (
-        "<h2>Revision Note / Nota de Revisao (Rev 13 to Rev 14)</h2><ul>"
-        "<li><b>Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular "
-        "boxes) removed</b> - not in the physical shipment.</li>"
-        "<li><b>Cacao Mass Bar 500g - Ilheus ships in TWO thermic boxes "
-        "(was one)</b> - +1 irregular box.</li>"
-        "<li>Result: <b>9 lines, 27 boxes (22 regular + 5 irregular)</b>, "
-        f"{f2(tusd)} USD / R$ {f2(tbrl)} BRL @ PTAX 5.1575.</li></ul>"
+        "<h2>Revision Note / Nota de Revisao (Rev 14 to Rev 15)</h2><ul>"
+        "<li><b>Gross weight restated to the airport-measured 349.00 kg "
+        "(was 322.06)</b> - Salvador weighed the consignment; the prior model "
+        "omitted the carton tare (349.00 - 322.06 = 26.94 kg ~= 1 kg x 27 "
+        "boxes). <b>Net 302.06 kg is unchanged</b> (product weight).</li>"
+        "<li>Line items, quantities, boxes (22 regular + 5 irregular) and "
+        f"values are <b>unchanged</b>: {f2(tusd)} USD / R$ {f2(tbrl)} BRL "
+        "@ PTAX 5.1575.</li>"
+        "<li>Rev-14 note (husk line removed; Mass Bar in two thermic boxes) "
+        "is retained in the Rev 14 records.</li></ul>"
     )
     return k
 
@@ -373,7 +391,7 @@ def pl_html():
     tnet = sum(r["net_kg"] for r in rs)
     k = head(
         "Packing List / Lista de Embalagem",
-        "PL-2026-0611-001 (Rev 14) - bilingual EN / PT",
+        "PL-2026-0611-001 (Rev 15) - bilingual EN / PT",
     )
     k += (
         "<h2>Packing Detail / Detalhe da Embalagem</h2>"
@@ -398,21 +416,25 @@ def pl_html():
         "<h2>Weights / Pesos</h2><table>"
         "<tr><th style='width:40%'>Field / Campo</th><th>Value / Valor</th>"
         "</tr>"
-        f"<tr><td>Net weight (derived, sum of lines)</td>"
+        "<tr><td>Net weight - product (derived, sum of lines)</td>"
         f"<td>{f2(tnet)} kg</td></tr>"
-        f"<tr><td>Gross weight (+ 20 kg pallet tare)</td>"
-        f"<td>{f2(tnet + 20)} kg</td></tr>"
+        "<tr><td>+ Carton tare (27 boxes, ~1 kg each)</td>"
+        f"<td>{f2(CARTON_TARE)} kg</td></tr>"
+        "<tr><td>+ Pallet tare (2 x 10 kg HDPE)</td>"
+        f"<td>{f2(PALLET_TARE)} kg</td></tr>"
+        "<tr><td><b>Gross weight (as weighed, Salvador)</b></td>"
+        f"<td><b>{f2(GROSS_WEIGHED)} kg</b></td></tr>"
         "</table>"
     )
     k += flags_html()
     k += (
-        "<h2>Revision Note / Nota de Revisao (Rev 13 to Rev 14)</h2><ul>"
-        "<li><b>Rev-13 line 2 (Cacao Husk KG - Ilheus, 20 kg, 2 regular "
-        "boxes) is NOT in the shipment</b> - removed.</li>"
-        "<li><b>Cacao Mass Bar 500g - Ilheus ships in TWO thermic boxes "
-        "(was one)</b> - +1 irregular box.</li>"
+        "<h2>Revision Note / Nota de Revisao (Rev 14 to Rev 15)</h2><ul>"
+        "<li><b>Gross weight restated to the airport-measured 349.00 kg "
+        "(was 322.06)</b>; net 302.06 kg (product) is unchanged. The gap "
+        "(349.00 - 322.06 = 26.94 kg) is the CARTON tare - the Rev-14 gross "
+        "counted the 20 kg pallet tare but not the boxes.</li>"
         "<li>Result: <b>9 lines, 27 boxes = 22 regular + 5 irregular</b>, "
-        "net 302.06 kg / gross 322.06 kg.</li>"
+        "net 302.06 kg / gross 349.00 kg.</li>"
         "<li><b>Box reclassification:</b> Paulo's Cacao Almonds (AGL8, "
         "10 kg) ships in a <b>regular 10 kg box</b> (previously modelled "
         "irregular).</li>"
@@ -450,15 +472,23 @@ li { margin: 2pt 0; }
 
 DOCS = [
     (
-        "2026-10-02_commercial_invoice_black_king_to_truetech_rev14_EN_PT_BRL.pdf",
+        "2026-10-02_commercial_invoice_black_king_to_truetech_rev15_EN_PT_BRL.pdf",
         invoice_html,
     ),
-    ("2026-10-02_packing_list_black_king_to_truetech_rev14_EN_PT.pdf", pl_html),
+    ("2026-10-02_packing_list_black_king_to_truetech_rev15_EN_PT.pdf", pl_html),
 ]
 
 
 def main():
     OUTDIR.mkdir(exist_ok=True)
+
+    # Rev 15 invariant: the stated gross must equal the airport measurement.
+    _net = sum(r["net_kg"] for r in rows())
+    _calc = _net + CARTON_TARE + PALLET_TARE
+    assert abs(_calc - GROSS_WEIGHED) < 0.005, (
+        f"gross mismatch: {_net} + {CARTON_TARE} + {PALLET_TARE} = {_calc} "
+        f"!= {GROSS_WEIGHED}"
+    )
     for name, fn in DOCS:
         html = (
             f'<html><head><meta charset="utf-8"><style>{CSS}</style>'

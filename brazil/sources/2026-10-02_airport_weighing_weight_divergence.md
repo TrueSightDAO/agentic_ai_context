@@ -1,5 +1,7 @@
 # Airport weighing — Salvador: WEIGHT DIVERGENCE (gross 349 kg)
 
+> **RESOLVED 2026-10-02:** Daniel / SeaCoast asked for the reissue → **Rev 15** Commercial Invoice + Packing List at **gross 349 kg** (`exports/2026-10-02_*_rev15_*`). See §5.5. Open: SeaCoast reissues HAWB/MAWB; **CC-e on NF-e nº 18** (bruto 322,06 → 349).
+
 > **Source:** a weighing/notification document relayed by Gary (thread 10800, 2026-10-02 21:17 UTC), from the
 > Brazilian export/freight side (forwarder / airport agent — **sender to be confirmed by Gary**; the text says
 > *"fazermos a correção junto à CIA AÉREA"*, i.e. airline-side correction).
@@ -40,9 +42,13 @@ date-misread pattern; the weigh ticket is the tie-breaker.)
 | **Airport measument (gross)** | **349,00** |
 | Divergence | **+26,94** |
 
-**Explanation (probable):** our "gross" model omits the **pallet** mass. 349 − 302,06 = **46,94 kg** of packaging;
-our model assumed ~20 kg of box tare alone. The gap (~27 kg) ≈ **2 heat-treated pallets (~13,5 kg each)** — the
-pallets are weighed at the airport but were never in the Rev 12/13/14 gross. **Confirm with the forwarder.**
+**Explanation (CORRECTED 2026-10-02, same day).** An earlier draft of this note wrongly blamed pallet mass.
+Reading `scripts/build_black_king_export_docs.py` shows the Rev-14 gross **already included the pallet tare**
+(`tnet + 20` = 2 × 10 kg **plastic HDPE** pallets, non-wood / ISPM#15 N/A). What the model omitted was the
+**CARTON tare**: 349,00 − 322,06 = **26,94 kg ≈ 1 kg × 27 boxes**.
+
+So: **gross 349,00 = net 302,06 (product) + carton tare 26,94 (27 boxes) + pallet tare 20,00 (2 × 10 kg HDPE)**.
+This is the Rev-15 model. **Confirm the ~1 kg/carton figure with SeaCoast** if they can break it out.
 
 ## What was asked of us
 
