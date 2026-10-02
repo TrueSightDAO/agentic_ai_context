@@ -35,6 +35,7 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | **Municipal licence (licença comercial)** | 🔴 pending | Saymon/Jussileide | needed for the cacao business; not in old doc |
 | **NF-e draft** | ✅ **superseded** | Saymon | draft errored 2026-09-21 on **unidades de medida**; fixed by the Rev 12 unit remap (§5.1a). **Now moot — the NF-e was issued (see next row).** |
 | **NF-e issued** | ✅ **issued** | Saymon | **NF-e nº 16, série 1, emitida 22/09/2026** — chave `2926 0950 0425 8500 0180 5500 1000 0000 0161 3000 0003 5`, protocolo `129261913151752`, **R$ 35.828,76**. All 11 lines, NCMs and the TON/KG remap match Rev 12 (§5.3). Evidence: DANFE — `brazil/sources/2026-09-22_black_king_nfe_16_danfe.pdf`; signed **XML** — `brazil/sources/2026-09-22_black_king_nfe_16.xml` (+ reconciliation notes `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`). XML `cStat` **100 (Autorizado)**. |
+| **NF-e issued (CURRENT)** | ✅ **issued** | Saymon/Matheus | **NF-e nº 18, série 1, emitida 02/10/2026** — chave `2926 1050 0425 8500 0180 5500 1000 0000 0181 3000 0000 56`, protocolo `129261914544464`, **R$ 33.384,57**. **9 lines — matches Rev 14 line-for-line** (§5.3b). Evidence: DANFE — `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`. **Supersedes nº 16** (11 lines / R$ 35.828,76), issued on the superseded Rev-12 cargo. |
 | DU-E (Notificação de Exportação Fiscal) | 🟡 **unblocked** | Omega | the NF-e prerequisite is **met** (nº 16 issued) — DU-E can now be registered |
 | Cargo prep / pallets | ⬜ | Matheus | heat-treated pallets being sourced |
 | Air freight | ⬜ | Graziela/Omega | rates only |
@@ -242,7 +243,7 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - Files: `exports/2026-10-02_commercial_invoice_black_king_to_truetech_rev14_EN_PT_BRL.pdf`; packing list `exports/2026-10-02_packing_list_black_king_to_truetech_rev14_EN_PT.pdf`.
 - Generated reproducibly by `scripts/build_black_king_export_docs.py`.
 - **Units:** the NCM→uTrib remap from Rev 12 (§5.1a) is **unchanged** — 1801/1803/1804 → TON; 2106.90.00 → KG.
-- 🚨 **Fiscal divergence worsens:** NF-e **nº 16** (authorized 2026-09-22) was issued on the **11-line / R$ 35.828,76** Rev-12 cargo. The physical cargo is now **9 lines / R$ 33,384.60**. A CC-e cannot add/remove lines or move the tax base — the correction route must come from **Saymon/Matheus**. **Do not treat the lane as document-consistent until this is resolved.**
+- ✅ **Fiscal divergence RESOLVED (2026-10-02):** NF-e **nº 18** was issued on this exact physical cargo — **9 lines, 27 caixas, 2 pallets, 302,06 kg net / 322,06 kg gross, R$ 33.384,57** — which reconciles to Rev 14 line-for-line (see §5.3b; R$ 0,03 rounding delta vs the invoice's R$ 33.384,60). NF-e **nº 16** (11 lines / R$ 35.828,76) is **superseded** and must not be presented to customs. The lane is now **document-consistent**.
 
 #### 5.1a Rev 12 — required export units (NCM remap)
 
@@ -303,6 +304,56 @@ The export NF-e **was issued by Black King on 2026-09-22**. DANFE archived: `bra
 > ⚠️ **Value caveat (unchanged):** the declared TON quantities are the mechanical kg→t conversion (§5.1a). The NF-e is issued on those; any deviation from the *weighed* shipment is corrected downstream (DU-E / CC-e), not by silent edits here.
 
 > ✅ **This closes two former 🔴 blockers in §1:** *IE / SEFAZ-BA* (IE 205055715 is real and printed) and *NF-e issued*. **DU-E** is now unblocked.
+
+#### 5.3b NF-e nº 18 — issued 2026-10-02 (reconciled vs. Rev 14) ⭐ CURRENT
+
+> **Source:** DANFE `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf` (1 page, emitida 02/10/2026), supplied by Gary in thread 10800, 2026-10-02.
+> **This is the NF-e that matches the physical cargo.** Nº 16 is superseded.
+
+| Field | Value |
+|-------|-------|
+| NF-e | **nº 18, série 1** |
+| Chave de acesso | `2926 1050 0425 8500 0180 5500 1000 0000 0181 3000 0000 56` |
+| Protocolo de autorização | `129261914544464` |
+| Emitente | **Matheus Reis Pereira** — CNPJ 50.042.585/0001-80 · IE 205055715 · Av. Tancredo Neves, 4900, Nossa Senhora da Vitória, Ilhéus-BA 45655-650 |
+| Destinatário | **TRUETECH INC** — 1423 Hayes St, Hayes Valley, San Francisco CA 94117 (UF **EX**, município *Exterior*) |
+| Natureza da operação | **Exportação** |
+| Data de emissão | **02/10/2026** |
+| Total (produtos = nota) | **R$ 33.384,57** → **US$ 6.473,00** @ PTAX 5,1575 |
+| ICMS / ST / IPI / PIS / COFINS / FCP | all **0,00** (exportação) |
+| Simples Nacional | “ME/EPP optante pelo Simples Nacional. Não gera direito a crédito fiscal de ICMS, ISS e IPI.” |
+
+**TRANSPORTADOR / VOLUMES TRANSPORTADOS block — NOW FILLED** (nº 16 left it blank — this is the weights/quantity/package-type Daniel of SeaCoast flagged, §5 Phase 5):
+
+| Quantidade | Espécie | Peso bruto | Peso líquido |
+|---|---|---|---|
+| **2** | **PALLETS** | **322,060 kg** | **302,060 kg** |
+
+> Informações complementares: *“Peso Liquido - 302,06 Kg; Peso Bruto - 322,06 Kg; Pallets - 2; **Caixas - 27**;”* — the carton count that was previously only on our CC-e is now **on the NF-e itself**.
+
+**Line-by-line vs. Rev 14** — all **9 lines present**, in the emitter's product-code order (not invoice order); NCMs and the TON/KG remap match §5.1a exactly (1801/1803/1804 → TON; 2106.90.00 → KG):
+
+| NF-e code | Description (NF-e) | NCM | uTrib | Qty (TON/KG) | ≈ kg | R$ |
+|---|---|---|---|---|---|---|
+| 2000000000013 | Cacao Almonds samples (KG) Pará | 18010000 | TON | 0,005 | 5 | 0,26 |
+| 2000000000002 | Cacao Nibs Kraft Pouch 8oz — Ilhéus 2024 | 18010000 | TON | 0,029 | 29 | 4.418,25 |
+| 2000000000004 | Cacao Mass Bar 500g — Ilhéus 2024 | 18031000 | TON | 0,018 | 18 | 2.995,89 |
+| 2000000000005 | Cacao Nibs (KG) — Ilhéus 2024 | 18010000 | TON | 0,080 | 80 | 10.158,40 |
+| 2000000000006 | Cacao Almonds (KG) — AGL8 | 18010000 | TON | 0,010 | 10 | 0,50 |
+| 2000000000008 | Ceremonial Cacao Pouch 200g — AGL8 | 18031000 | TON | 0,034 | 34 | 9.038,12 |
+| 2000000000010 | Cacao Nibs (KG) — AGL13 | 18010000 | TON | 0,100 | ≈ 99,5 | 5.223,75 |
+| 2000000000011 | Cacao Tea (KG) — AGL13 | 21069090 | KG | 21,000 | 21 | 1.102,50 |
+| 2000000000012 | Coopercabruca Cacao Butter (KG) | 18040000 | TON | 0,005 | 5 | 446,90 |
+| | **Sum of lines** | | | | **≈ 302** | **33.384,57** |
+
+**Reconciliation checks:**
+- **9 lines** — matches Rev 14. **No husk line** (removed in Rev 14) · **no AGL8 tea / AGL13 almonds** (removed in Rev 13). ✅
+- **Caixas 27** · **Pallets 2** · **net 302,06** · **gross 322,06** — all match Rev 14. ✅
+- **Total R$ 33.384,57** vs Rev 14 invoice **R$ 33.384,60** — **R$ 0,03** (3-centavo rounding on BRL-unit values). ≤ the R$ 0,38 delta the nº 16 reconciliation showed. ✅
+- **AGL13 nibs** declared as **0,100 TON** vs Rev 14's **99,5 kg** — the emitter rounds to 3 decimals of a tonne (0,0995 → 0,100); acceptable, and the net-weight field still reads 302,06. ✅
+
+> ⚠️ **Not yet registered in SISCOMEX / not yet given to the carrier.** The NF-e **is** issued and authorized (protocolo present), but per §5 Phase 5 the DU-E + despacho still follow, and the driver must carry **nº 18** (not nº 16).
+> ������ **Downstream updates needed:** the **ordem de coleta** (§5 Phase 4, currently keyed to nº 16 — 11 lines / 344,06 kg) and the **SeaCoast correction letter** (§5 Phase 5) are both now **stale** — they must be re-keyed to **nº 18 / Rev 14 / 302,06 kg**. The weights (302,06/322,06) and quantity (2 pallets) the SeaCoast letter asked for are now already on the NF-e itself.
 
 ## 6. Hard rules & approval gates (checklist)
 
@@ -417,6 +468,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |
 | 2026-09-21 | **Rev 12 finalized** (PR #1335, `f7acdff`): removed the red DRAFT banner + all draft/hedge wording from both PDFs; generator + both PDFs merged. Units and USD/BRL values unchanged. *Attribution: the packing-list-consistency confirmation — that the PL already follows Saymon's norm by construction (same generator, shared `LINES`/`UTRIB` table) — came from **Envoy**, not governor Gary Teh, and is **not** a governor authorization.* |
 | 2026-09-29 | **Ordem de coleta REV 2** — the trucking pickup order rebuilt keyed to the issued **NF-e nº 16** (Gary, thread 10800): new NF-e identification block (chave/protocolo/emitente IE/CFOP/total), fiscal uTrib column beside commercial units, and the **filled** TRANSPORTADOR/VOLUMES block (2 vol · 344,06 kg net · 364,06 kg gross) that the DANFE left blank. Fixed an SSOT gap (NCM 2106.90.00 lines 6/10 printed `None` as the fiscal unit → now resolved to **KG**, matching the DANFE). Regenerated the PDF. |
+| 2026-10-02 | **NF-e nº 18 issued — fiscal divergence RESOLVED.** DANFE filed (`brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`); §5.3b added (line-by-line vs Rev 14); §1 + §5.1c updated. 9 lines / 27 caixas / 2 pallets / 302,06 net / 322,06 gross / **R$ 33.384,57** — matches Rev 14; nº 16 superseded. The TRANSPORTADOR/VOLUMES block nº 16 left blank (weights/quantity/package type) is now filled on nº 18. **New stale items: ordem de coleta + SeaCoast correction letter must be re-keyed to nº 18.** |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
 | 2026-09-21 | **Saymon/Jussileide are NOT on Telegram** — they are contractors on WhatsApp “Black King - Contab”. Added a delivery-channel warning to §2 so no agent assumes a thread-10800 post reaches them; artifacts for the accountant are relayed by Gary. No automated path (“Black King - Contab” is not in OpenClaw's verified JID list). |
