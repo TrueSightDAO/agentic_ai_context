@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-02T12:59:47Z`
-- Look-back: **7** calendar days (`2026-09-25` → today UTC)
+- Generated (UTC): `2026-10-03T11:53:42Z`
+- Look-back: **7** calendar days (`2026-09-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,24 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PAYOUT EVENT]` × 14
-- `[CONTRIBUTION EVENT]` × 9
+- `[CONTRIBUTION EVENT]` × 15
+- `[PAYOUT EVENT]` × 5
 - `[PRACTICE EVENT]` × 2
+- `[SALES EVENT]` × 2
 - `[ASSET RECEIPT EVENT]` × 1
 - `[INVENTORY MOVEMENT]` × 1
-- _free-form (no bracket tag)_ × 15
+- _free-form (no bracket tag)_ × 16
 
 ### Latest entries
 
-- `Edgar_20260930233402_310` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260930233732_312` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260930233735_314` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20260930234933_316` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: [autopilot] dao_protocol: Fix the silent attachment-upload failure in `trues…
-- `Edgar_20261001002733_002` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261001014240_004` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Bringing AGL14 cacao almonds to Santos for processing
-- `Edgar_20261001014600_006` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 270 · Description: Notarization and packing of warehouse
-- `Edgar_20261001014918_008` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Packing cacao in warehouse and then loading on to the truck
-- `Edgar_20261001015206_010` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 74.16 · Contributor(s): Elizabeth Wong
 - `Edgar_20261001113139_012` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-01T11:31:36.616Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261001134450_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261001135744_016` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
@@ -61,6 +53,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261002123834_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Seacoast Logistics airfreight info-request + 2023 Coopercabruca precedent do…
 - `Edgar_20261002124239_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Siscomex habilitação reset — restore Omega Services freight handling for Bla…
 - `Edgar_20261002124413_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
+- `Edgar_20261002142853_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated updated Black King → TrueTech export documents (Rev 13 & Rev 14)
+- `Edgar_20261002142859_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated updated Black King → TrueTech export documents (Rev 13 & Rev 14)
+- `Edgar_20261002193118_038` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_23 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
+- `Edgar_20261002193123_040` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_24 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
+- `Edgar_20261002211025_042` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20261002212704_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Coordination and processing of notary services payment for the land/cacao op…
+- `Edgar_20261003034156_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix consignment-sale guard + record 2 Gergana consignment sales (thread 4007…
+- `Edgar_20261003034205_048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Coordination with Oscar (Fazenda) on cacao logistics for the Ilheus/Itacare …
+- `Edgar_20261003034207_050` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Prepared and handed off Black King cacao export documentation to the freight…
 
 ---
 
@@ -75,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-02T10:59:13.885Z`
+- Generated (UTC): `2026-10-03T10:59:14.096Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +86,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1052**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1125**)
+- **Email Agent Follow Up** — logged sends: warmup **1064**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1137**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **979**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
+- **AI: Warm up prospect**: **62** stores — sum logged **warmup** sends (AU): **991**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **1** / **0** / **61**; follow-up depth (none / once / ≥2): **62** / **0** / **0**
 - **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -209,11 +210,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 12,943.72 total units · $12,643.41
+- Manager record: `Gary Teh` · 29 SKU lines · 12,978.72 total units · $12,678.41
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 12,867.54 | $12,593.42 |
+  | (uncategorized) | (unspecified) | 27 | 12,902.54 | $12,628.42 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -234,9 +235,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,867.67**
-- Brazilian Reis: R$-11.87 · rate `0.2323` USD/BRL → ≈ **$-2.76**
-- USD provisioned for voting-rights cash-out: **$55.96**
+- USD on hand: **$4,902.60**
+- Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
+- USD provisioned for voting-rights cash-out: **$56.02**
 
 ### In-transit freight (1 row)
 
@@ -252,10 +253,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-09-25_ (2):
-
-- 2026-09-25 | sophia | **PROJECT_INDEX.md capoeira row is STALE — needs refresh.** It lists 4 pages (index/library/practice/transparency); the live site now has **8** (adds roda, berimbau, community, roots) and a full EN/PT i18n layer (`assets/js/i18n.js` + `assets/js/i18n/common.js`, per-page `window.I18N_PAGE`, storage key `capoeira_lang`). Flagged, **not** hand-edited (canonical-file rule — see plans/CAPOEIRA_I18N_PLAN.md §3). Capoeira repo is also **no-beta**: merge to `main` = live deploy at capoeira.agroverse.shop. Engineering complete via PR1–PR10; remaining gate = native-PT-reader UAT review.
-- 2026-09-25 | sophia | Inline-button resume options shipped for BOTH transports — Telegram (#502/#503) + Discord parity (#504), deployed and UAT-verified live (thread 36518). Option labels server-side in `app/resume_registry.py` / `app/discord_resume_registry.py` (opaque token, consume-on-read, single-fire); transport carries `ro:<token>:<i>`. Discord taps = `INTERACTION_CREATE` type-3, deferred-ACKed (type 6) within 3s THEN dispatched on the same synthesized-go path as the emoji-go reaction. Filed `## Recently shipped` in OPEN_FOLLOWUPS.md.
+_(No `YYYY-MM-DD |` lines on/after 2026-09-26 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -265,7 +263,7 @@ _All dated lines on/after 2026-09-25_ (2):
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **yes** |
+| `oracle` | `iching_oracle` | **no** |
 
 ---
 
@@ -274,6 +272,9 @@ _All dated lines on/after 2026-09-25_ (2):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+52816bb | 2026-10-03 05:39:38 +0000 | chore(stats): refresh stats indexes [skip ci]
+1ceabe6 | 2026-10-02 22:29:34 +0000 | chore(stats): refresh stats indexes [skip ci]
+438c973 | 2026-10-02 13:04:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 d5eaaa5 | 2026-10-02 06:05:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 6979798 | 2026-10-01 22:51:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 fba68ad | 2026-10-01 13:48:57 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -308,10 +309,6 @@ b2589f0 | 2026-09-27 05:38:20 +0000 | chore(stats): refresh stats indexes [skip 
 a742a28 | 2026-09-26 16:41:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 ff793bb | 2026-09-26 11:42:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 22a7164 | 2026-09-26 05:22:18 +0000 | chore(stats): refresh stats indexes [skip ci]
-4157b6b | 2026-09-25 21:46:48 +0000 | chore(stats): refresh stats indexes [skip ci]
-8aabd3c | 2026-09-25 17:29:26 +0000 | chore(stats): refresh stats indexes [skip ci]
-16dfa7d | 2026-09-25 12:07:05 +0000 | chore(stats): refresh stats indexes [skip ci]
-ceea3bd | 2026-09-25 05:16:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -323,6 +320,17 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+27a6335 | 2026-10-02 18:22:09 -0300 | Rev 15: reissue Commercial Invoice + Packing List at airport-measured gross 349 kg (#1490)
+3237a92 | 2026-10-02 18:19:54 -0300 | Freight runbook: airport weighing weight divergence — reissue CI/PL at gross 349 kg (#1489)
+c2fd3fb | 2026-10-02 18:16:17 -0300 | Runbook §2: add TrueTech Inc WhatsApp (+1 442 340-5782) (#1488)
+50fa97d | 2026-10-02 13:34:48 -0300 | OPEN_FOLLOWUPS: 3 new Pending items (SISCOMEX 6-mo drop, append_to_transcript 422, send_discord_attachment) (#1487)
+b43f1fa | 2026-10-02 13:34:23 -0300 | Freight runbook: SISCOMEX habilitação dropped on 6-month inactivity — DU-E blocked (#1486)
+91402cc | 2026-10-02 12:30:08 -0300 | Freight runbook: NF-e nº 18 issued (2026-10-02) — fiscal divergence RESOLVED (#1485)
+98b98aa | 2026-10-02 11:23:45 -0300 | Brazil export Rev 14: husk line removed; 9 lines, 27 boxes (22 reg + 5 irr)
+6fcf447 | 2026-10-02 10:18:22 -0300 | runbook(brazil): record Rev 13 as current commercial revision (10 lines, 28 boxes) (#1483)
+f782ebc | 2026-10-02 10:17:31 -0300 | Brazil export: Rev 13 commercial invoice + packing list (10 lines, 28 boxes) (#1482)
+99e03ad | 2026-10-02 10:00:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-02 UTC)
+894b113 | 2026-10-02 10:00:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-02 UTC)
 065a2ed | 2026-10-02 02:59:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-02 UTC)
 9c80547 | 2026-10-02 02:59:49 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-02 UTC)
 54b66eb | 2026-10-01 19:50:24 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
@@ -352,17 +360,6 @@ ccf827f | 2026-09-29 12:45:53 -0300 | Brazil lane: fiscal CC-e for NF-e nº 16 �
 5492214 | 2026-09-29 11:43:06 -0300 | Brazil lane: NF-e nº 16 issued — reconcile vs Rev 12, flip status gates (#1467)
 c8edec5 | 2026-09-29 11:37:15 -0300 | Brazil lane: Portuguese pickup section in the Correction Letter (#1466)
 b8268ea | 2026-09-29 11:19:28 -0300 | Brazil lane: commercial Correction Letter (weights/qty/package type) for SeaCoast (#1465)
-db228dd | 2026-09-29 11:13:47 -0300 | Brazil lane: ORDEM DE COLETA draft, built from the Rev 12 packing list (commercial units) (#1464)
-83de7f7 | 2026-09-29 11:04:57 -0300 | Brazil lane: record canonical Ilhéus pickup address (R. Cel. Paiva, 46); separate from Black King's registered CNPJ address (#1463)
-977530f | 2026-09-29 10:13:14 -0300 | chore(previews): refresh Beer Hall preview (2026-09-29 UTC)
-b445089 | 2026-09-29 10:13:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-29 UTC)
-f3d5052 | 2026-09-29 03:00:22 -0300 | chore(previews): refresh Beer Hall preview (2026-09-29 UTC)
-446115b | 2026-09-29 03:00:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-29 UTC)
-fe9f095 | 2026-09-29 02:19:20 -0300 | File OPEN_FOLLOWUPS: reconcileTreePlanting_ Path B false-positive on bespoke literals (#1462)
-e4a1510 | 2026-09-29 02:07:44 -0300 | Mark PAYOUT_FARM_PLOT_FILTER_PLAN PR3 live Paulo backfill SUPERSEDED (Option A) (#1461)
-04c2d9b | 2026-09-29 01:47:42 -0300 | Merge pull request #1460 from TrueSightDAO/auto/advisory-refresh-2026-09-29
-5e89938 | 2026-09-29 04:47:30 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-29 UTC)
-93f2f87 | 2026-09-29 01:39:18 -0300 | PAYOUT_FARM_PLOT_FILTER_PLAN: repoint PR3 RESUME marker to the governor-only money gate (prod promote done) (#1459)
 … (truncated)
 ```
 
@@ -388,9 +385,6 @@ f6bf45c | 2026-09-26 06:09:24 -0300 | feat(gas): getTreeRecipientMap read action
 aa21206 | 2026-09-25 21:49:49 -0300 | fix(deploy): align clasp subprocess identity with the identity guard (fail-closed) (#561)
 4657485 | 2026-09-25 21:25:13 -0300 | Add one-shot ?action=backfillPayoutRegistrations normalisation lever + tests (#560)
 fcb9099 | 2026-09-25 21:08:43 -0300 | feat(gas): SS11.3-bis payout-registration mirror tab on the intake workbook (#557)
-b4bb906 | 2026-09-25 19:35:47 -0300 | fix(gas): payout-registration status lifecycle — one ACTIVE row per pk_hash (#556)
-857bed4 | 2026-09-25 12:28:49 -0300 | feat(gas): surface product context in list_sold_pending_tree (thread 35944) (#555)
-4cf8a0d | 2026-09-25 11:32:55 -0300 | docs(gas): §4 — top-level functions sorted ascending alphabetical (STANDING, Gary 2026-09-24) (#554)
 ```
 
 ### `dapp` → `dapp`
@@ -420,6 +414,8 @@ bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+762d8cb | 2026-10-02 13:10:22 +0000 | chore: refresh currencies.json [skip ci]
 10cb1a7 | 2026-10-02 12:40:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d9705f2 | 2026-10-01 13:53:44 +0000 | chore: refresh currencies.json [skip ci]
 0092a7c | 2026-09-30 12:59:59 +0000 | chore: refresh currencies.json [skip ci]
@@ -430,7 +426,6 @@ e791e18 | 2026-09-28 14:01:13 +0000 | chore: refresh store, partner inventory, a
 f42f547 | 2026-09-27 12:07:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a964e20 | 2026-09-26 11:46:38 +0000 | chore: refresh currencies.json [skip ci]
 efc22ca | 2026-09-26 11:29:28 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-014b973 | 2026-09-25 11:55:08 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -445,8 +440,7 @@ efc22ca | 2026-09-26 11:29:28 +0000 | chore: refresh store, partner inventory, a
 ### `iching_oracle` → `oracle`
 
 ```
-4363873 | 2026-09-25 11:28:49 -0300 | Fix "hexagramChinese is not a function" — rename map global to avoid clobbering the helper (#72)
-9a86af2 | 2026-09-25 10:42:54 -0300 | Show the classical Chinese hexagram character (卦名) in the draw (#71)
+_(no commits on origin/main in window)_
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -529,13 +523,14 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/2/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/3/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-25`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-26`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_24 | — | — |
+| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_23 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
