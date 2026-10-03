@@ -36,6 +36,8 @@ The whole point of the thread was the `<zip → farm_id>` map. Mappings wired + 
 | `tribo_mirim_roda_2024.zip` | `event-media` | (event namespace) | — | — | — |
 | `oscar_complete.zip` | `oscar-bahia` | **BA** (Óscar/Osca) | — | — | wired 2026-09-30: 77 media (62 size-skip + 15 new), IMG 2133–2225; farm_id pre-existing in config |
 | `oscar_fazenda_2026.zip` | `oscar-bahia` | **BA** (Óscar/Osca) | — | — | wired 2026-10-03 on governor word (relayed via DeepSeek Local); same farm as `oscar_complete.zip`; 12.9 GB, in flight (courier manifest) — auto-archives on arrival |
+| `cic_20260929.zip` | `facility-cic-cacao-innovation-center` | Ilhéus, **BA** | **CIC** · Centro de Inovação do Cacau (Cristiano Villela Dias) | — | wired 2026-10-04 (Gary: "go for the recommendation"); **facility**, not farm — `facility-<name>` convention (§0b/L58–60); 3.88 GB, in flight |
+| `cic_complete.zip` | `facility-cic-cacao-innovation-center` | Ilhéus, **BA** | **CIC** · Centro de Inovação do Cacau | — | wired 2026-10-04 (same GO as above); same namespace as `cic_20260929.zip`; 6.07 GB, `uploading` (sha `10cc746d…`) |
 
 ### ⚠️ Same-name traps resolved this thread (do NOT re-litigate)
 
@@ -158,13 +160,19 @@ now publishes a queue manifest to `lineage-assets/media_upload_queue.json` every
 to confirm a zip's **exact name + size + sha** before wiring — no more guessing from a bare
 chat filename. Full pipeline: `TRUESIGHT_MEDIA_COURIER.md`.
 
-**Mapping snapshot (2026-10-04, from that manifest):** of 12 queued zips, only **2 are
-mapped** (`oscar_fazenda_2026.zip`→`oscar-bahia`, `santa_anna_fazenda_bahia_complete.zip`→
-`fazenda-santa-ana-bahia`); the other **10 fail-closed skip** until wired. Notably **two CIC
-zips** (`cic_20260929.zip` 3.88 GB, `cic_complete.zip` 6.07 GB) → need a `facility-cic-*` id
-(open question, thread 30550); plus `santos_complete.zip`, `santa_anna_farzenda_bahia.zip`,
-and four `la_do_sitio_*` patches. `cic_complete.zip` + `cacao_variety_parap.zip` are already
-in `/media/to_process_staging/` (active upload).
+**Mapping snapshot (2026-10-04, from that manifest):** of 12 queued zips, **4 are now
+mapped** in the intake `zip_farm_ids` (12 entries total) — `oscar_fazenda_2026.zip`→
+`oscar-bahia`, `santa_anna_fazenda_bahia_complete.zip`→`fazenda-santa-ana-bahia`, and **both
+CIC zips** (`cic_20260929.zip`, `cic_complete.zip`)→`facility-cic-cacao-innovation-center`;
+the other **8 fail-closed skip** until wired: `santos_complete.zip`, `santa_anna_farzenda_bahia.zip`,
+four `la_do_sitio_*` patches, and the two ilheus warehouse zips. `cic_complete.zip` +
+`cacao_variety_parap.zip` are already in `/media/to_process_staging/` (active upload).
+
+> **Note — ilheus_warehouse zips use the OTHER channel.** `ilheus_warehouse.zip` /
+> `ilheus_warehouse_2.zip` are **not** added to `zip_farm_ids`; they carry sibling
+> `*.zip.context.json` cards (`farm_id: facility-black-king-warehouse`) and resolve via the
+> **§4.1 context-card path once #37 is deployed**. Their current `skipped` log lines are
+> expected until that deploy.
 
 ## Gates
 
