@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### MAP `source_zip` backfill (#36) leaves ~235 sidecars unstamped — tool scope + a farm_id-divergence join miss (incl. ONE zip-sourced farm)
+**Filed 2026-10-03 (thread 30550, §4.1 verification). Owner: unclaimed. Media pipeline; ~small.**
+
+**Symptom.** `farm_media_backfill_source_zip.py` (farm-media-daemon PR #36) reports `unmatched = 434` on the live box. That number is **not** "non-zip-sourced farms only" — it hides a real gap. Verified by re-running the tool's join over **all 48** `.archive.json` on the box (`sudo find /media /home/ubuntu -name '*.archive.json'`) rather than the tool's default 8: widening recovers 199, leaving **235** — in three classes:
+
+1. **Scope gap (the tool's default `--processed /media/processed` sees 8 of 48 archives).** The other 40 archive sidecars live in `/media/upload_zips/` + `/home/ubuntu/` (pre-2026-09-08 storage migration, `MEDIA_ARCHIVE_PIPELINE.md`). Recovers 199 (`cacau-na-veia-pacaje` 33, `crf-anapu-para` 14, `fernando-carla` 34, `sitio-torres-pacaja-para` 35, `santa-anna-fazenda` 8, `paulo-la-do-sitio` 4, `la-do-sitio` 15…).
+2. **farm_id-divergence join miss (the hidden bug).** The join key is `(farm_id, sha256)` falling back to `(farm_id, stem)`. Several archives record a **legacy/plot-level farm_id** that ≠ the **canonical inbox collection** name, so the join fails *even when the archive IS present*. **`fazenda-santa-ana-bahia` = 151 videos unstamped yet genuinely zip-sourced** (`santa_anna_farzenda_bahia.zip`, stems match 151/151; the archive keys them `santa-ana-fazenda-bahia`, the pre-consolidation prefix — the 151 are size-dedup entries with **no sha256**, so only the stem path could match). Same class: `la-do-sitio`↔`paulo-la-do-sitio` (19), `raimundo-geniza-para`↔`raimundo-geniza` (14), `rancho-maranta-para`↔`rancho-maranta-plot-1/2`+`rancho-maranata` (34), `jedielcio` (4).
+3. **Genuinely orphan:** `cristo-rei-pacaje-para` (13) — no archive on the box contains those stems.
+
+**Why it matters.** `source_zip` is the provenance link that makes an archived video retrievable by its origin zip. Leaving a **zip-sourced farm** (Bahia: 151 videos) unstamped is a silent provenance hole, and it re-opened the exact same-name/prefix divergence that §2 consolidated in S3 — the divergence still lives on in the `.archive.json` provenance records.
+
+**Proposed fix (~small).** (a) Let the tool scan **all** known archive locations (`--processed` repeatable, or auto-discover the `upload_zips`/legacy dirs). (b) Add a **farm_id alias map** (or a guarded cross-farm_id `stem` match when unambiguous — the tool already drops ambiguous keys) so legacy↔canonical farm_ids join. (c) Re-run with `--apply`, then extend the §4.2 audit. Do **not** blindly relax the join without the ambiguity guard.
+
+**Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-03: tool as-is `archives=8 → MATCHED=0 UNMATCHED=434`; expanded `archives=48 → MATCHED=199 UNMATCHED=235`; `fazenda-santa-ana-bahia` inbox ↔ `santa_anna_farzenda_bahia.zip` stems 151/151.
+
 ### SISCOMEX/RADAR habilitação **drops after ~6 months of inactivity** — diarize the expiry before any export season
 **Filed 2026-10-02 (thread 10800). Owner: unclaimed (Brazil export lane). Small — a reminder/check, not code.**
 
