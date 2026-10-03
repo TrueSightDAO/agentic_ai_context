@@ -101,6 +101,19 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
 2. **Never wire `/media/quarantine/` as an intake/archive root** — it would re-loop the bad
    zip. Parking lot, not a source.
 
+### §4.1 — source_zip provenance (landed 2026-10-03, supersedes the dated snapshot above)
+
+- **PR #35 (farm-media-daemon, merged a381d815)** — the archive worker now records the
+  origin zip filename on every media item going forward, so a single archived file is
+  traceable/retrievable by name (zip), not just by S3 path.
+- **PR #36 (farm-media-daemon, merged f5812905)** — the retroactive-stamp tool: backfills
+  `source_zip` onto everything archived **before** #35 landed, so old and new data share
+  the same schema.
+- **In progress (Envoy supervising, per governor's "supervise this to completion"):**
+  Sophia is running the #36 backfill tool against the live box (refreshed to merged
+  `main` first). Verify once done: every archived item (old + new) carries `source_zip`;
+  spot-check a pre-#35 farm (e.g. `fazenda-dona-rosa`) and a post-#35 one for the field.
+
 ## Gates
 
 - NEVER deploy prod without governor GO. Beta preview first.
@@ -110,6 +123,10 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
 
 ## RESUME HERE
 
-Plan + manifest row = PR1 (this file). Remaining unit = the **intake context card**
-(OPEN_FOLLOWUPS) so future zips carry identity instead of stalling. Front door + back door
-are **live**; the `farm_id` register (§0) is the thread's durable artifact.
+**2026-10-03 (Envoy, supervising per governor's "@nelanco_claude_bot supervise this to
+completion"):** §4.1's backfill run is the live unit — confirm it completes clean and
+`source_zip` is verifiably present org-wide (not just claimed) before calling this done.
+After that: the intake context card (§4.1) is the only remaining open item; everything
+else (front door, back door, the `farm_id` register, the Bahia consolidation, the
+quarantine) is live and verified. Front door + back door are **live**; the `farm_id`
+register (§0) is the thread's durable artifact.
