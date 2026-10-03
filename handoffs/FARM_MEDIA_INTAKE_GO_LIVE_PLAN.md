@@ -35,6 +35,7 @@ The whole point of the thread was the `<zip → farm_id>` map. Mappings wired + 
 | `itacare_pituba_samba_festival_2024.zip` | `event-media` | Itacaré, BA | (event namespace) | — | — |
 | `tribo_mirim_roda_2024.zip` | `event-media` | (event namespace) | — | — | — |
 | `oscar_complete.zip` | `oscar-bahia` | **BA** (Óscar/Osca) | — | — | wired 2026-09-30: 77 media (62 size-skip + 15 new), IMG 2133–2225; farm_id pre-existing in config |
+| `oscar_fazenda_2026.zip` | `oscar-bahia` | **BA** (Óscar/Osca) | — | — | wired 2026-10-03 on governor word (relayed via DeepSeek Local); same farm as `oscar_complete.zip`; 12.9 GB, in flight (courier manifest) — auto-archives on arrival |
 
 ### ⚠️ Same-name traps resolved this thread (do NOT re-litigate)
 
@@ -146,6 +147,24 @@ as a backfill regression.**
   `source_zip` emitter to whichever tool commits `farm-media-raw` (a stills path exists:
   `<farm-id>/photos/`) — out of scope for #35/#36. Filed here so a future session treats
   "photos missing `source_zip`" as **expected**, not a regression.
+
+### §4.3 — Courier queue manifest = machine-readable zip identity (2026-10-04)
+
+Gary's Mac (**TrueSight Media Courier**, launchd `com.garyjob.truesight-media-courierqueue`)
+now publishes a queue manifest to `lineage-assets/media_upload_queue.json` every ~5 min
+(`truesight_media_queue_publisher`). Each item carries `filename`, `size_bytes`, `sha256`
+(once hashed), `status` (`queued`|`uploading`), `added_at`; the wrapper carries `generated_at`
++ `daemon_running`. Read it with `read_repo_file("lineage-assets", "media_upload_queue.json")`
+to confirm a zip's **exact name + size + sha** before wiring — no more guessing from a bare
+chat filename. Full pipeline: `TRUESIGHT_MEDIA_COURIER.md`.
+
+**Mapping snapshot (2026-10-04, from that manifest):** of 12 queued zips, only **2 are
+mapped** (`oscar_fazenda_2026.zip`→`oscar-bahia`, `santa_anna_fazenda_bahia_complete.zip`→
+`fazenda-santa-ana-bahia`); the other **10 fail-closed skip** until wired. Notably **two CIC
+zips** (`cic_20260929.zip` 3.88 GB, `cic_complete.zip` 6.07 GB) → need a `facility-cic-*` id
+(open question, thread 30550); plus `santos_complete.zip`, `santa_anna_farzenda_bahia.zip`,
+and four `la_do_sitio_*` patches. `cic_complete.zip` + `cacao_variety_parap.zip` are already
+in `/media/to_process_staging/` (active upload).
 
 ## Gates
 
