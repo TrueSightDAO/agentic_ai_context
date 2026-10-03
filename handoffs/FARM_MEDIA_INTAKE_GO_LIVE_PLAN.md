@@ -114,6 +114,39 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
   `main` first). Verify once done: every archived item (old + new) carries `source_zip`;
   spot-check a pre-#35 farm (e.g. `fazenda-dona-rosa`) and a post-#35 one for the field.
 
+### §4.2 — stills have no `source_zip` (accepted scope gap, 2026-10-03)
+
+**Question answered (Gary, thread 30550): do stills get `source_zip` via whatever separate
+path commits them to `farm-media-raw`, or is it an accepted gap?** — **No separate path
+exists. It is an accepted, by-design gap: do NOT read a photo item's missing `source_zip`
+as a backfill regression.**
+
+- **Scope is org-wide, not just the 5 oscar HEICs.** Across all 15 manifests: **347 photo
+  items, 347 missing `source_zip` (100%)**, while videos on zip-sourced farms are stamped.
+  `oscar-bahia`'s 5 (IMG_2162/2163/2191/2192/2193, all `.HEIC`) are simply its only photos
+  on a farm whose videos did get stamped — the same phenomenon as every other farm.
+  (Farms with *no* `source_zip` on videos at all — e.g. `cleide`, `cacau-na-veia-pacaje` —
+  were never archived from a zip, so #35/#36 correctly skipped them. Four zip-sourced farms
+  carry stamped videos: `fazenda-dona-rosa`, `fazenda-santa-rosa`, `fazenda-sao-jorge-bahia`,
+  `oscar-bahia`.)
+- **Root cause — the archive worker never touches stills.** `farm_media_archive.py`
+  `resolve_extensions()` **strips photo extensions** (`.heic/.heif/.jpg/.jpeg/.png`) off every
+  root before archiving, per `MEDIA_ARCHIVE_PIPELINE.md` "**No S3 for still photos**". So the
+  S3 worker writes **no** `<file>.raw.json` sidecar for a still — and both #35 (worker-side
+  emit) and #36 (zip-`<zip>.archive.json` backfill) are keyed on the worker's sidecars, so
+  stills are structurally outside the provenance chain. This is a **different destination**
+  (`farm-media-raw` on GitHub), not a bug in the S3 worker.
+- **No stills path emits it either.** There is **no org tooling** that commits stills or
+  writes their provenance: org code-search for `farm-media-raw` → **0 hits**; a box-wide
+  `*.HEIC.json` sidecar search → **0 real files** (only pytest temp artifacts);
+  `farm-media-raw` has **no `oscar-bahia/` folder** (404). Stills are committed without any
+  provenance tooling today.
+- **Consequence, and what closing it would take.** A still is currently traceable only by
+  farm + filename, **not** by origin zip. Closing the gap means adding a stills-specific
+  `source_zip` emitter to whichever tool commits `farm-media-raw` (a stills path exists:
+  `<farm-id>/photos/`) — out of scope for #35/#36. Filed here so a future session treats
+  "photos missing `source_zip`" as **expected**, not a regression.
+
 ## Gates
 
 - NEVER deploy prod without governor GO. Beta preview first.
