@@ -1,8 +1,9 @@
-# Courier — local media upload daemon (this Mac → Sophia `/media/to_process`)
+# TrueSight Media Courier — local upload daemon (this Mac → Sophia `/media/to_process`)
 
-> **Courier** is the launchd daemon on Gary's Mac that reliably moves large farm/event media
-> zips to Sophia's Media Archives Pipeline (MAP) intake funnel — chunked, resumable across
-> sleep/wake and flaky/low-throughput internet, with per-zip completion notifications.
+> **TrueSight Media Courier** is the launchd daemon on Gary's Mac that reliably moves large
+> farm/event media zips to Sophia's Media Archives Pipeline (MAP) intake funnel — chunked,
+> resumable across sleep/wake and flaky/low-throughput internet, with per-zip completion
+> notifications and a menu-bar toggle.
 >
 > This is the **local front door** to [`MEDIA_ARCHIVE_PIPELINE.md`](MEDIA_ARCHIVE_PIPELINE.md)
 > (and `FARM_MEDIA_INTAKE_GO_LIVE_PLAN.md`). See "How it feeds MAP" below.
@@ -10,11 +11,13 @@
 ## TL;DR for a fresh LLM session
 
 1. Zips to upload go in **`~/Applications/upload_to_sophia/`**.
-2. Courier (launchd job **`com.garyjob.courier`**) picks them up automatically — no manual step.
+2. Courier (launchd job **`com.garyjob.truesight-media-courier`**) picks them up automatically —
+   no manual step.
 3. When a zip finishes, macOS fires a notification *"<name>.zip is in /media/to_process — tell
    Sophia the context for this zip."* — that's the cue to inform Sophia of the zip's farm/context
    (a zip not in `zip_farm_ids` is fail-closed skipped).
 4. Courier skips + deletes any zip already in Sophia's archive manifest — don't re-upload.
+5. A menu-bar app (**TrueSightMediaCourier**) shows live progress and lets you start/stop Courier.
 
 ## Components (all on the local machine)
 
@@ -22,10 +25,12 @@
 |---|---|
 | `~/Applications/upload_to_sophia/` | **Drop folder** — put `*.zip` here to upload |
 | `~/Applications/upload_to_sophia/done/` | Retired zips after a verified upload |
-| `~/Applications/chunked_upload.sh` | The one-shot uploader (processes the drop folder, then exits) |
-| `~/Applications/courier.sh` | Courier's forever-loop wrapper (calls the uploader, polls every 60 s) |
-| `~/Library/LaunchAgents/com.garyjob.courier.plist` | launchd agent (KeepAlive) — survives sleep/wake, reboot, crash |
-| `~/Applications/courier.log` | Combined stdout/stderr log |
+| `~/Applications/truesight_media_courier` | Courier's forever-loop wrapper (daemon; polls every 60 s) |
+| `~/Applications/truesight_media_upload.sh` | The one-shot uploader (processes the drop folder, then exits) |
+| `~/Library/LaunchAgents/com.garyjob.truesight-media-courier.plist` | launchd agent (KeepAlive) — survives sleep/wake, reboot, crash |
+| `~/Applications/TrueSightMediaCourier.app` | Menu-bar toggle (Swift/AppKit): live progress, Start/Stop, Open Log / Drop Folder |
+| `~/Library/LaunchAgents/com.garyjob.truesight-media-courierbar.plist` | launchd agent for the menu-bar app (auto-start at login, restart on crash) |
+| `~/Applications/truesight_media_courier.log` | Daemon stdout/stderr log |
 | `~/.cache/chunked_upload/<zipname>/` | Per-zip cache: split chunks + sha256 manifests (resume state) |
 
 ## How one zip flows through
@@ -57,6 +62,8 @@
   mismatch deletes the remote chunk and re-uploads.
 - **Fail-safe guard.** Deletion of an "already processed" zip only happens on a *positive*
   manifest match — a failed manifest fetch means no deletion, just upload.
+- **Keeps the Mac awake while uploading.** The wrapper runs the uploader under `caffeinate -i`
+  (idle-sleep prevention only — closing the lid still sleeps it).
 
 ## Gotchas (local machine environment)
 
@@ -69,15 +76,15 @@
 
 ```bash
 # status / logs
-launchctl print gui/$(id -u)/com.garyjob.courier | grep -E "state|pid"
-tail -f ~/Applications/courier.log
+launchctl print gui/$(id -u)/com.garyjob.truesight-media-courier | grep -E "state|pid"
+tail -f ~/Applications/truesight_media_courier.log
 
-# stop / start
-launchctl bootout  gui/$(id -u)/com.garyjob.courier
-launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.garyjob.courier.plist
+# stop / start (or use the menu-bar toggle)
+launchctl bootout  gui/$(id -u)/com.garyjob.truesight-media-courier
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.garyjob.truesight-media-courier.plist
 
 # run once by hand (no daemon)
-bash ~/Applications/chunked_upload.sh
+bash ~/Applications/truesight_media_upload.sh
 ```
 
 ## How it feeds MAP (remote side)
@@ -94,12 +101,12 @@ tells Sophia which farm it is) so the archive worker doesn't skip it.
 
 ## Replication checklist (other machines)
 
-1. Copy the files (`chunked_upload.sh`, `courier.sh`, the plist) and adjust absolute paths /
-   `REMOTE_HOST` / SSH identity to the target machine.
+1. Copy the files (`truesight_media_courier`, `truesight_media_upload.sh`, the two plists, the
+   `.app`) and adjust absolute paths / `REMOTE_HOST` / SSH identity to the target machine.
 2. Ensure tools present: `nc`, `rsync`, `split`, `shasum` (all present on a stock macOS/Linux box).
 3. `mkdir -p ~/Applications/upload_to_sophia`; `chmod +x` the scripts.
-4. Install the plist at `~/Library/LaunchAgents/` and
+4. Install the plists at `~/Library/LaunchAgents/` and
    `launchctl bootstrap gui/$(id -u) <plist>` (macOS). On Linux, use systemd `--user` instead of
    launchd.
 5. Config is env-overridable (`UPLOAD_DIR`, `REMOTE_HOST`, `REMOTE_DEST`, `CHUNK_BYTES`,
-   `MAX_RETRIES`, …) — see the header of `chunked_upload.sh`.
+   `MAX_RETRIES`, …) — see the header of `truesight_media_upload.sh`.
