@@ -18,6 +18,8 @@
    (a zip not in `zip_farm_ids` is fail-closed skipped).
 4. Courier skips + deletes any zip already in Sophia's archive manifest — don't re-upload.
 5. A menu-bar app (**TrueSightMediaCourier**) shows live progress and lets you start/stop Courier.
+6. The queue is published to `lineage-assets/media_upload_queue.json` every ~5 min — Sophia can
+   look up any mentioned zip there (name, size, sha256, status).
 
 ## Components (all on the local machine)
 
@@ -31,6 +33,8 @@
 | `~/Applications/TrueSightMediaCourier.app` | Menu-bar toggle (Swift/AppKit): live progress, Start/Stop, Open Log / Drop Folder |
 | `~/Library/LaunchAgents/com.garyjob.truesight-media-courierbar.plist` | launchd agent for the menu-bar app (auto-start at login, restart on crash) |
 | `~/Applications/truesight_media_courier.log` | Daemon stdout/stderr log |
+| `~/Applications/truesight_media_queue_publisher` | Publishes the queue manifest to GitHub (see "Queue manifest") |
+| `~/Library/LaunchAgents/com.garyjob.truesight-media-courierqueue.plist` | launchd timer — runs the publisher every 5 min |
 | `~/.cache/chunked_upload/<zipname>/` | Per-zip cache: split chunks + sha256 manifests (resume state) |
 
 ## How one zip flows through
@@ -64,6 +68,28 @@
   manifest match — a failed manifest fetch means no deletion, just upload.
 - **Keeps the Mac awake while uploading.** The wrapper runs the uploader under `caffeinate -i`
   (idle-sleep prevention only — closing the lid still sleeps it).
+
+## Queue manifest (Sophia's reference for "what's coming")
+
+Courier publishes a machine-readable snapshot of the local queue to
+**`TrueSightDAO/lineage-assets/media_upload_queue.json`** every ~5 min — launchd timer
+`com.garyjob.truesight-media-courierqueue`, script `truesight_media_queue_publisher`, via the
+`gh api` Contents API. Each `items[]` entry carries `filename`, `size_bytes`, `sha256` (only once
+the uploader has hashed that zip), `status` (`uploading` | `queued`), and `added_at`; the wrapper
+carries `generated_at`, `daemon_running`, and `count`.
+
+**Why:** when a governor mentions a file (e.g. "oscar_fazenda_2026.zip is Oscar's farm"), Sophia can
+`read_repo_file` this JSON to confirm the zip is really queued and get its exact name/size/sha256 —
+instead of relying on an out-of-band chat mention with no machine-readable backing.
+
+**The process moving forward (end-to-end):**
+
+1. Drop `*.zip` in `~/Applications/upload_to_sophia/`.
+2. Courier uploads it (resumable, sha256-verified); the queue manifest auto-refreshes every ~5 min.
+3. When a zip finishes, the macOS notification fires — tell Sophia the zip's farm/context (in the
+   MAP pipeline Telegram thread).
+4. Sophia looks the zip up in `lineage-assets/media_upload_queue.json` to confirm identity, adds the
+   `zip_farm_ids` mapping (or otherwise wires it), and the MAP archive worker processes it on arrival.
 
 ## Gotchas (local machine environment)
 
