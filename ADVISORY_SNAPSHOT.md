@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-03T11:53:42Z`
-- Look-back: **7** calendar days (`2026-09-26` → today UTC)
+- Generated (UTC): `2026-10-04T06:11:30Z`
+- Look-back: **7** calendar days (`2026-09-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,25 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
-- `[PAYOUT EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 20
 - `[PRACTICE EVENT]` × 2
 - `[SALES EVENT]` × 2
-- `[ASSET RECEIPT EVENT]` × 1
-- `[INVENTORY MOVEMENT]` × 1
-- _free-form (no bracket tag)_ × 16
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- _free-form (no bracket tag)_ × 17
 
 ### Latest entries
 
-- `Edgar_20261001113139_012` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-01T11:31:36.616Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261001134450_014` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261001135744_016` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261001140848_018` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261001153029_020` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Farm/program media people-index tiers + biometric consent gates (design + mi…
-- `Edgar_20261001162013_022` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261001164936_024` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261002121100_026` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-02T12:10:57.937Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261002123834_028` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Seacoast Logistics airfreight info-request + 2023 Coopercabruca precedent do…
 - `Edgar_20261002124239_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Siscomex habilitação reset — restore Omega Services freight handling for Bla…
 - `Edgar_20261002124413_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 - `Edgar_20261002142853_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated updated Black King → TrueTech export documents (Rev 13 & Rev 14)
@@ -62,6 +51,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261003034156_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix consignment-sale guard + record 2 Gergana consignment sales (thread 4007…
 - `Edgar_20261003034205_048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Coordination with Oscar (Fazenda) on cacao logistics for the Ilheus/Itacare …
 - `Edgar_20261003034207_050` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Prepared and handed off Black King cacao export documentation to the freight…
+- `Edgar_20261003204807_052` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261003205239_054` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261003210129_056` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261003212659_058` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: deep seek API credits
+- `Edgar_20261003214513_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Bringing Elizabeth to oscar’s farm to checkout the trees and photoshop for t…
+- `Edgar_20261003220203_062` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Obtained contact information for Juliana, sister of Oscar (Fazenda, Bahia) w…
+- `Edgar_20261003220838_064` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Juliana - Oscar (Bahia) · Contributor Email: · Submission Source: truesight_autopilot (Sophia) - governor Gary Teh instruction
+- `Edgar_20261003233748_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Build local media upload pipeline (Courier) — daemon, menu-bar app, docs, MA…
+- `Edgar_20261003233804_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Direct local media upload pipeline (Courier) — decisions & review
 
 ---
 
@@ -235,9 +233,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,902.60**
+- USD on hand: **$4,902.54**
 - Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
-- USD provisioned for voting-rights cash-out: **$56.02**
+- USD provisioned for voting-rights cash-out: **$56.08**
 
 ### In-transit freight (1 row)
 
@@ -253,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-09-26 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-09-27 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -272,6 +270,9 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-26 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0157846 | 2026-10-03 21:42:28 +0000 | chore(stats): refresh stats indexes [skip ci]
+d7ec531 | 2026-10-03 16:37:56 +0000 | chore(stats): refresh stats indexes [skip ci]
+ef44a3d | 2026-10-03 11:57:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 52816bb | 2026-10-03 05:39:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 1ceabe6 | 2026-10-02 22:29:34 +0000 | chore(stats): refresh stats indexes [skip ci]
 438c973 | 2026-10-02 13:04:43 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -305,10 +306,6 @@ bf3e35c | 2026-09-27 21:32:26 +0000 | chore(stats): refresh stats indexes [skip 
 73d2214 | 2026-09-27 17:13:21 +0000 | chore(stats): refresh stats indexes [skip ci]
 891fd12 | 2026-09-27 12:22:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 b2589f0 | 2026-09-27 05:38:20 +0000 | chore(stats): refresh stats indexes [skip ci]
-6cd69be | 2026-09-26 21:26:24 +0000 | chore(stats): refresh stats indexes [skip ci]
-a742a28 | 2026-09-26 16:41:26 +0000 | chore(stats): refresh stats indexes [skip ci]
-ff793bb | 2026-09-26 11:42:56 +0000 | chore(stats): refresh stats indexes [skip ci]
-22a7164 | 2026-09-26 05:22:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -320,6 +317,16 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5740e90 | 2026-10-03 20:58:15 -0300 | MAP §0: wire CIC (both zips) -> facility-cic-cacao-innovation-center; update §4.3 coverage (#1497)
+b5930ff | 2026-10-03 20:56:39 -0300 | MAP: record courier queue manifest as machine-readable zip identity + oscar_fazenda_2026 register row (#1496)
+39f49b4 | 2026-10-03 20:54:49 -0300 | docs: document queue manifest (media_upload_queue.json) + publisher timer in TRUESIGHT_MEDIA_COURIER.md
+c0744f8 | 2026-10-03 20:49:07 -0300 | docs: rename COURIER.md → TRUESIGHT_MEDIA_COURIER.md (truesight_media_* naming) (#1495)
+4d5614e | 2026-10-03 20:11:14 -0300 | MAP: file #36 backfill scope+divergence gap (thread 30550); record ilheus cards (#1494)
+860f7d8 | 2026-10-03 19:24:30 -0300 | MAP plan: document stills source_zip as accepted gap (§4.2) (#1493)
+70d1971 | 2026-10-03 19:22:26 -0300 | docs: add COURIER.md — local media upload daemon (Mac → Sophia /media/to_process) (#1492)
+5ea09de | 2026-10-03 19:04:47 -0300 | handoffs: refresh MAP intake plan resume pointer (#1491)
+7deb26b | 2026-10-03 08:53:59 -0300 | chore(previews): refresh Beer Hall preview (2026-10-03 UTC)
+c98c136 | 2026-10-03 08:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-03 UTC)
 27a6335 | 2026-10-02 18:22:09 -0300 | Rev 15: reissue Commercial Invoice + Packing List at airport-measured gross 349 kg (#1490)
 3237a92 | 2026-10-02 18:19:54 -0300 | Freight runbook: airport weighing weight divergence — reissue CI/PL at gross 349 kg (#1489)
 c2fd3fb | 2026-10-02 18:16:17 -0300 | Runbook §2: add TrueTech Inc WhatsApp (+1 442 340-5782) (#1488)
@@ -350,16 +357,6 @@ b219c60 | 2026-09-30 20:21:50 -0300 | Plan: farm-media people-index tiers + biom
 84b6080 | 2026-09-30 08:12:35 -0300 | Add Pará farm dossier (age/size/variety/stories) for recent field visits
 cc83be8 | 2026-09-30 02:49:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-30 UTC)
 2a7a08d | 2026-09-30 02:49:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-30 UTC)
-ccf827f | 2026-09-29 12:45:53 -0300 | Brazil lane: fiscal CC-e for NF-e nº 16 — volumes (peso bruto/líquido, caixas, pallets) (#1475)
-95d8eb7 | 2026-09-29 12:13:25 -0300 | Remove Rebecca from the on-site contact list (both export docs) (#1474)
-4a33d33 | 2026-09-29 12:12:12 -0300 | Correction letter: list Gary Teh (WhatsApp) as the on-site main contact (#1473)
-56c4e2e | 2026-09-29 12:10:58 -0300 | Correction letter: sign as Gary Teh (TrueTech Inc President) from private asset (#1472)
-6b4f031 | 2026-09-29 12:00:46 -0300 | Brazil lane: archive + reconcile NF-e nº 16 XML (SeaCoast-requested) (#1470)
-4d0f126 | 2026-09-29 11:57:06 -0300 | Brazil lane: ordem de coleta REV 3 — Gary Teh as primary on-site pickup contact (#1469)
-526d33c | 2026-09-29 11:51:07 -0300 | Ordem de coleta REV 2 — trucking manifest keyed to issued NF-e n. 16 (#1468)
-5492214 | 2026-09-29 11:43:06 -0300 | Brazil lane: NF-e nº 16 issued — reconcile vs Rev 12, flip status gates (#1467)
-c8edec5 | 2026-09-29 11:37:15 -0300 | Brazil lane: Portuguese pickup section in the Correction Letter (#1466)
-b8268ea | 2026-09-29 11:19:28 -0300 | Brazil lane: commercial Correction Letter (weights/qty/package type) for SeaCoast (#1465)
 … (truncated)
 ```
 
@@ -372,19 +369,6 @@ d96679c | 2026-09-29 01:06:56 -0300 | Payout sink: dedup on (bank_ref, tree_plan
 ecb2b27 | 2026-09-28 22:37:02 -0300 | feat(sunmint): QR-safe duplicate-row collapse lever (no linked tree dedup'd away) (#575)
 268c575 | 2026-09-28 18:24:09 -0300 | SunMint tree planting: write signer public key to its own column (W) (#574)
 10b0e37 | 2026-09-28 18:00:49 -0300 | fix(sunmint): ping tree-index-rebuild on new planting (reactive geojson refresh) (#573)
-9431c78 | 2026-09-26 18:55:46 -0300 | link handler: resolve SunMint row by request_transaction_id (col V), col-D fallback (#572)
-63385d4 | 2026-09-26 18:52:39 -0300 | cfr collapse: graft a duplicate's QR link onto the surviving row (#571)
-c4c8eb5 | 2026-09-26 18:38:41 -0300 | cfr: never collapse a tree row that carries a QR/plot linkage (#569)
-1c6fc02 | 2026-09-26 15:55:04 -0300 | SunMint tree planting: dedup on Request Transaction ID (col V) (#568)
-913fc1e | 2026-09-26 15:37:08 -0300 | feat(cfr): collapseCfrTreeTxDuplicates one-shot lever (delete rows sharing a txid, keep first) (#567)
-3128f72 | 2026-09-26 15:33:49 -0300 | feat(cfr): backfillCfrTreeTxIds supports ?dryRun=1 (preview) + reports distinct/dupe counts (#566)
-6755362 | 2026-09-26 15:31:32 -0300 | test(cfr): prove tree-planting txid dedupe survives across FIRES (sheet-seeded ledger) (#565)
-3b2ccb1 | 2026-09-26 15:25:25 -0300 | fix(cfr): dedupe tree planting on Request Transaction ID, not the transport update id (#564)
-3a2c748 | 2026-09-26 14:48:20 -0300 | fix(cfr): store the canonical per-tree id so recipient auto-fill joins the picker (#563)
-f6bf45c | 2026-09-26 06:09:24 -0300 | feat(gas): getTreeRecipientMap read action (tree_id -> pk_hash) for payout auto-fill (#562)
-aa21206 | 2026-09-25 21:49:49 -0300 | fix(deploy): align clasp subprocess identity with the identity guard (fail-closed) (#561)
-4657485 | 2026-09-25 21:25:13 -0300 | Add one-shot ?action=backfillPayoutRegistrations normalisation lever + tests (#560)
-fcb9099 | 2026-09-25 21:08:43 -0300 | feat(gas): SS11.3-bis payout-registration mirror tab on the intake workbook (#557)
 ```
 
 ### `dapp` → `dapp`
@@ -408,12 +392,13 @@ _(no commits on origin/main in window)_
 ### `proposals` → `proposals`
 
 ```
-bf6abe4 | 2026-09-26 00:31:55 -0300 | Merge proposal: 19
+_(no commits on origin/main in window)_
 ```
 
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+31f27dc | 2026-10-03 12:01:28 +0000 | chore: refresh currencies.json [skip ci]
 bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 762d8cb | 2026-10-02 13:10:22 +0000 | chore: refresh currencies.json [skip ci]
 10cb1a7 | 2026-10-02 12:40:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -424,17 +409,12 @@ d4d05ba | 2026-09-29 12:58:02 +0000 | chore: refresh store, partner inventory, a
 e791e18 | 2026-09-28 14:01:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 57f8621 | 2026-09-27 12:26:36 +0000 | chore: refresh currencies.json [skip ci]
 f42f547 | 2026-09-27 12:07:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-a964e20 | 2026-09-26 11:46:38 +0000 | chore: refresh currencies.json [skip ci]
-efc22ca | 2026-09-26 11:29:28 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-3b45840 | 2026-09-26 16:21:52 -0300 | sitemap: derive lastmod from article:published_time, not mtime (#330)
-7215c21 | 2026-09-26 15:21:03 -0300 | media-gallery: lazy-load video iframes + fix stale union assertion (#329)
-7bce811 | 2026-09-26 14:13:27 -0300 | media-gallery: section-default published entries + union local curation (fixes blank sectioned farm pages) (#328)
-57c27b8 | 2026-09-25 21:57:00 -0300 | Itacaré page: note visits are organised in the September cacao harvest (#327)
+_(no commits on origin/main in window)_
 ```
 
 ### `iching_oracle` → `oracle`
@@ -525,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 0 | 18484.34386 | 10/3/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-26`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-27`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
