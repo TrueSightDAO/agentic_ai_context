@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-04T12:44:22Z`
+- Generated (UTC): `2026-10-04T21:46:14Z`
 - Look-back: **7** calendar days (`2026-09-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,15 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 20
-- `[PRACTICE EVENT]` × 2
+- `[PRACTICE EVENT]` × 3
 - `[SALES EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 17
+- _free-form (no bracket tag)_ × 16
 
 ### Latest entries
 
-- `Edgar_20261002124239_030` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Siscomex habilitação reset — restore Omega Services freight handling for Bla…
-- `Edgar_20261002124413_032` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 - `Edgar_20261002142853_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated updated Black King → TrueTech export documents (Rev 13 & Rev 14)
 - `Edgar_20261002142859_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated updated Black King → TrueTech export documents (Rev 13 & Rev 14)
 - `Edgar_20261002193118_038` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_23 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261003220838_064` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Juliana - Oscar (Bahia) · Contributor Email: · Submission Source: truesight_autopilot (Sophia) - governor Gary Teh instruction
 - `Edgar_20261003233748_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Build local media upload pipeline (Courier) — daemon, menu-bar app, docs, MA…
 - `Edgar_20261003233804_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Direct local media upload pipeline (Courier) — decisions & review
+- `Edgar_20261004130536_070` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-04T13:05:34.810Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261004170131_072` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+20d8b6c | 2026-10-04 12:48:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 963a975 | 2026-10-04 06:14:55 +0000 | chore(stats): refresh stats indexes [skip ci]
 0157846 | 2026-10-03 21:42:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 d7ec531 | 2026-10-03 16:37:56 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -318,6 +319,8 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c119a63 | 2026-10-04 09:44:39 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
+280877a | 2026-10-04 09:44:38 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-04 UTC)
 7c7db77 | 2026-10-04 03:11:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
 9ace75d | 2026-10-04 03:11:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-04 UTC)
 5740e90 | 2026-10-03 20:58:15 -0300 | MAP §0: wire CIC (both zips) -> facility-cic-cacao-innovation-center; update §4.3 coverage (#1497)
@@ -356,8 +359,6 @@ b219c60 | 2026-09-30 20:21:50 -0300 | Plan: farm-media people-index tiers + biom
 9340b31 | 2026-09-30 10:17:30 -0300 | Add Pará farm dossier v2 (clip-level tree-age evidence)
 19e7597 | 2026-09-30 09:54:00 -0300 | chore(previews): refresh Beer Hall preview (2026-09-30 UTC)
 93485af | 2026-09-30 09:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-30 UTC)
-6e7bc08 | 2026-09-30 09:49:14 -0300 | Add Pará farm dossier PDF (tree age/size/variety/back-stories)
-84b6080 | 2026-09-30 08:12:35 -0300 | Add Pará farm dossier (age/size/variety/stories) for recent field visits
 … (truncated)
 ```
 
@@ -399,6 +400,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+4d55c46 | 2026-10-04 12:51:04 +0000 | chore: refresh currencies.json [skip ci]
 8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 31f27dc | 2026-10-03 12:01:28 +0000 | chore: refresh currencies.json [skip ci]
 bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
