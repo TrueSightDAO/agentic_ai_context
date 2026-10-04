@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-04T06:11:30Z`
+- Generated (UTC): `2026-10-04T12:44:22Z`
 - Look-back: **7** calendar days (`2026-09-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-03T10:59:14.096Z`
+- Generated (UTC): `2026-10-04T10:59:19.751Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+963a975 | 2026-10-04 06:14:55 +0000 | chore(stats): refresh stats indexes [skip ci]
 0157846 | 2026-10-03 21:42:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 d7ec531 | 2026-10-03 16:37:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 ef44a3d | 2026-10-03 11:57:14 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -317,6 +318,8 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7c7db77 | 2026-10-04 03:11:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
+9ace75d | 2026-10-04 03:11:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-04 UTC)
 5740e90 | 2026-10-03 20:58:15 -0300 | MAP §0: wire CIC (both zips) -> facility-cic-cacao-innovation-center; update §4.3 coverage (#1497)
 b5930ff | 2026-10-03 20:56:39 -0300 | MAP: record courier queue manifest as machine-readable zip identity + oscar_fazenda_2026 register row (#1496)
 39f49b4 | 2026-10-03 20:54:49 -0300 | docs: document queue manifest (media_upload_queue.json) + publisher timer in TRUESIGHT_MEDIA_COURIER.md
@@ -355,8 +358,6 @@ b219c60 | 2026-09-30 20:21:50 -0300 | Plan: farm-media people-index tiers + biom
 93485af | 2026-09-30 09:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-30 UTC)
 6e7bc08 | 2026-09-30 09:49:14 -0300 | Add Pará farm dossier PDF (tree age/size/variety/back-stories)
 84b6080 | 2026-09-30 08:12:35 -0300 | Add Pará farm dossier (age/size/variety/stories) for recent field visits
-cc83be8 | 2026-09-30 02:49:51 -0300 | chore(previews): refresh Beer Hall preview (2026-09-30 UTC)
-2a7a08d | 2026-09-30 02:49:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-30 UTC)
 … (truncated)
 ```
 
@@ -398,6 +399,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 31f27dc | 2026-10-03 12:01:28 +0000 | chore: refresh currencies.json [skip ci]
 bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 762d8cb | 2026-10-02 13:10:22 +0000 | chore: refresh currencies.json [skip ci]
@@ -503,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/3/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/4/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-27`; scanned last **600** data rows)
 
