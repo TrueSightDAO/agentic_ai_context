@@ -39,6 +39,23 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### AGL9 managed ledger is **broken** — `Balance` = `#VALUE!`, zero `Transactions`, mis-pointed Contract URL; Status unverifiable
+**Filed 2026-10-05 (thread 40471, shipment-status reconciliation sweep). Owner: unclaimed. Data fix; small.**
+
+**Symptom.** While reconciling the `Status` column of the Main Ledger's `Shipment Ledger Listing` tab against each AGL's own ledger (the sweep that corrected AGL4/7/8/14 on 2026-10-05), **AGL9** could not be verified:
+- **`Balance` tab returns `#VALUE!`** in every data cell (`Equity` / `Asset` / `Currency` / `Amount` / `Location`) — the formulas are broken, not merely empty.
+- **`Transactions` tab is empty** (0 dated rows; every other AGL has 140–300+).
+- **`State` tab** starts with a `#REF!` in A1 (a broken reference).
+- Its **`Contract URL`** cell points at `…/.github/blob/main/assets/20250627_agl10.pdf` — i.e. **AGL10's** contract, a copy-paste artifact (AGL9's registry row date is 5/18/2025; the URL is dated 2025-06-27).
+
+**Ledger id:** `1ToGXiMZmJnx1XkslDes9Bc7lMosSH4NZuD9setPRiHc` (from `Shipment Ledger Listing` → `Resolved URL`). Registry row: AGL9, Shipment Date 5/18/2025, Status currently `SALES IN PROGRESS`.
+
+**Why it matters.** AGL9's Status cannot be evidenced from its own ledger, so the page/registry value is an unverifiable guess. Same class as the `#VALUE!`/`#REF!` breakage seen on other ledgers' `State` tabs (`#REF!` in A1) — worth checking whether a shared template/formula broke across ledgers. Do **not** simply change AGL9's Status to COMPLETED; the ledger must be repaired first.
+
+**Proposed fix (~small).** (a) Repair AGL9's `Balance` formulas (rebuild from the standard AGL template — cf. `MANAGED_LEDGER_EXPLORER_PATTERN.md`) and fix the `State!A1` `#REF!`. (b) Correct the `Contract URL` to AGL9's real contract PDF. (c) Once the ledger reads correctly, re-derive Status in the `Shipment Ledger Listing` sweep. (d) Grep all ledgers' `State!A1` for `#REF!` to see if the template broke broadly.
+
+**Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-05: read via the `agroverse-qr-code-manager` SA — AGL9 `Balance` 5 non-empty rows all `#VALUE!`, `Transactions` empty, `State!A1` = `#REF!`, `Contract URL` = `20250627_agl10.pdf`.
+
 ### MAP `source_zip` backfill (#36) leaves ~235 sidecars unstamped — tool scope + a farm_id-divergence join miss (incl. ONE zip-sourced farm)
 **Filed 2026-10-03 (thread 30550, §4.1 verification). Owner: unclaimed. Media pipeline; ~small.**
 
