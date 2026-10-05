@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Chinese trademark DB tool (`go_to_market/trademark_search`) — pure-Chinese marks unreadable + TMview cross-check unreachable
+**Filed 2026-10-05 (thread 40444). Owner: unclaimed. Small.**
+
+**Shipped 2026-10-05 (PRs #179, #180).** `go_to_market/trademark_search/cn_trademark.py` checks word marks against the China mainland trademark DB via `chinatrademarkoffice.com`: `check` paginates the **entire** result set before judging, is scopeable with `--class 29,30,35`, and exits 1 on an exact hit; plus `search` and `detail`. Cleared Catonga / Cabrua / Itacare in Nice 29/30/35 (Itacare's only exact hit, #93301527, is class 5 = pharma, not our classes).
+
+**Two residual gaps.**
+
+1. **Pure-Chinese marks are returned as images.** The mirror renders a CN-only mark's glyphs as a `<div class="markbox loading" loadsrc="/logoimage/tmimage…">` blob, not HTML text — so a Chinese query (e.g. `可可`, class 30) returns a result **count** and 20 rows/page, but the mark string is not machine-extractable (parsed rows come back with an empty `mark`). The tool is therefore effectively **English/transliteration-blind to CN-only filings**. Fix: OCR the `logoimage/tmimage` image (Tesseract `chi_sim`) to recover the mark text, or find a source that exposes the Chinese characters as text.
+
+2. **TMview cross-check unreachable.** `www.tmdn.org` (EUIPO TMview — aggregates CN plus Madrid designations) **times out from box i-05276b8ae82d6b88c** (4/4 attempts). Retry from another egress, or via the Apify TMview actor. Note also: WIPO Global Brand DB is CAPTCHA-walled (AltCha proof-of-work) and its bulk API is partner-only — so there is no clean programmatic Madrid-designating-CN lookup yet.
+
+**Evidence.** Box i-05276b8ae82d6b88c, 2026-10-05: `search "可可" --class 30` -> HTTP 200, 20 rows/page, every `mark` empty, `tmdetails` blocks carry `logoimage/tmimage`; `curl https://www.tmdn.org/tmview/` -> timeout x4.
+
 ### AGL9 managed ledger is **broken** — `Balance` = `#VALUE!`, zero `Transactions`, mis-pointed Contract URL; Status unverifiable
 **Filed 2026-10-05 (thread 40471, shipment-status reconciliation sweep). Owner: unclaimed. Data fix; small.**
 
