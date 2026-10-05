@@ -71,25 +71,34 @@
 
 ## Queue manifest (Sophia's reference for "what's coming")
 
-Courier publishes a machine-readable snapshot of the local queue to
-**`TrueSightDAO/lineage-assets/media_upload_queue.json`** every ~5 min — launchd timer
-`com.garyjob.truesight-media-courierqueue`, script `truesight_media_queue_publisher`, via the
-`gh api` Contents API. Each `items[]` entry carries `filename`, `size_bytes`, `sha256` (only once
-the uploader has hashed that zip), `status` (`uploading` | `queued`), and `added_at`; the wrapper
-carries `generated_at`, `daemon_running`, and `count`.
+Courier publishes a machine-readable snapshot of the local queue, **on change**, to:
+
+- **Redis (primary, real-time):** `krake_redis` (52.1.162.134:6379), key
+  `truesight:media:upload_queue`, TTL 1 h (refreshed whenever the queue changes). Auth via
+  `~/.config/courier/redis_pass` (chmod 600).
+- **GitHub (durable fallback):** `TrueSightDAO/lineage-assets/media_upload_queue.json` — kept so
+  the queue state survives Redis restarts/expiry.
+
+Both are written by the launchd timer `com.garyjob.truesight-media-courierqueue`, script
+`truesight_media_queue_publisher` (write-on-change — no 5-min heartbeat commits). Each `items[]`
+entry carries `filename`, `size_bytes`, `sha256` (only once the uploader has hashed that zip),
+`status` (`uploading` | `queued`), and `added_at`; the wrapper carries `generated_at`,
+`daemon_running`, and `count`.
 
 **Why:** when a governor mentions a file (e.g. "oscar_fazenda_2026.zip is Oscar's farm"), Sophia can
-`read_repo_file` this JSON to confirm the zip is really queued and get its exact name/size/sha256 —
-instead of relying on an out-of-band chat mention with no machine-readable backing.
+`GET truesight:media:upload_queue` (or read the GitHub file) to confirm the zip is really queued and
+get its exact name/size/sha256 — instead of relying on an out-of-band chat mention with no
+machine-readable backing.
 
 **The process moving forward (end-to-end):**
 
 1. Drop `*.zip` in `~/Applications/upload_to_sophia/`.
-2. Courier uploads it (resumable, sha256-verified); the queue manifest auto-refreshes every ~5 min.
+2. Courier uploads it (resumable, sha256-verified); the queue manifest auto-refreshes on change.
 3. When a zip finishes, the macOS notification fires — tell Sophia the zip's farm/context (in the
    MAP pipeline Telegram thread).
-4. Sophia looks the zip up in `lineage-assets/media_upload_queue.json` to confirm identity, adds the
-   `zip_farm_ids` mapping (or otherwise wires it), and the MAP archive worker processes it on arrival.
+4. Sophia looks the zip up in the Redis key `truesight:media:upload_queue` (or the GitHub fallback)
+   to confirm identity, adds the `zip_farm_ids` mapping (or otherwise wires it), and the MAP archive
+   worker processes it on arrival.
 
 ## Gotchas (local machine environment)
 
