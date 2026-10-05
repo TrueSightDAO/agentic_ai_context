@@ -524,6 +524,16 @@ Lines (net kg, matching NF-e nº 18 / Rev 14): Nibs-Kraft-8oz 29 · MassBar-500g
 >
 > **Method note:** the managed AGL ledger Balance tab (**Financier / Asset / Resource Location** columns) is the authoritative source for "how an asset is actually recorded" — for any future row, read the AGL ledger balance for the resource location (here **Matheus Reis**) rather than inferring from the invoice description.
 
+> **Col C = commercial unit (`uCom`), not net kg (2026-10-05, governor Gary — “checked the earlier packing list, you should be able to decipher how many units of pouches”).** The register's **Unit Value** column mirrors the **arrived rows** (which read 120 / 125 — pouch/bar counts) and the PL **`Qty (uCom)`** column. Corrected the three **per-unit** lines from net-kg to unit counts:
+>
+> | # | Line | col C was (net kg) | **col C now (`uCom`)** | uCom | PL ref |
+> |---|---|---|---|---|---|
+> | 1 | Nibs Kraft Pouch 8oz — Ilhéus 2024 | 29 | **129** | UN | Rev 15 line 1 |
+> | 2 | Mass Bar 500g — Ilhéus 2024 | 18 | **37** | UN | Rev 15 line 2 |
+> | 5 | Ceremonial Pouch 200g — AGL8 | 34 | **169** | UN | Rev 15 line 5 |
+>
+> The five **bulk (KG)** lines stay as-is — there `uCom` **is** KG: Nibs-Ilhéus **80** · Almonds-AGL8 **10** · Nibs-AGL13 **99,5** · Tea-AGL13 **21** · Coopercabruca-Butter **5**. Rule: **col C = the PL `Qty (uCom)` for that line** (UN for pouch/bar NCMs 1801/1803-family; KG for the bulk lines).
+
 > ✅ The tab already carried the **Status** (col P) and **NF-e Chave** (col Q) columns — it was just that **no in-transit row existed**; every prior row reads *Arrived at Destination*. These 9 are the register's **first “In Transit” rows**, and they close the long-standing gap where a shipment had no arrival-register presence while en route.
 
 
