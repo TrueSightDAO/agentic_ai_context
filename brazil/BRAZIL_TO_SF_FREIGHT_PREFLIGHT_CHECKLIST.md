@@ -485,6 +485,27 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 4. **Box count 31 (NF) → 25 (received) → 27 (AWB)** — reconcile with §5.5 (physical = 27 = 22 + 5).
 5. **HS:** the thread's own subject is **"NCM 1801.00.00"** → supports that the AWB's `1810.00.00` is a transposition typo (§5.7).
 
+#### 5.10 In-transit register rows written ✅ NEW 2026-10-05
+
+> **Governor (Gary) request:** record the NF-e nº 18 lot currently in transit Matheus-warehouse → Kirsten-warehouse as rows in the Main Ledger **`offchain assets in transit`** tab (gid `1888711771`), with a **Status** column and the **NF-e chave**, so the corridor has proper records.
+
+**Done** (via the `agroverse-ledger-manager` SA — the tab's only writer): **9 rows appended**, one per NF-e nº 18 line.
+
+| Col | Value |
+|---|---|
+| Destination DAO member | **Kirsten Ritschel** (1423 Hayes St, SF — the Hayes warehouse) |
+| Origin DAO member | **Matheus Reis** (R. Cel. Paiva 46, Ilhéus-BA) |
+| Courier | **TAP air freight** |
+| Tracking | **`047-3175-3223`** (the AWB) |
+| Expected Arrival | **`20261008`** (06/10 depart, ETA 08/10 — §5.9) |
+| **Status** | **In Transit** |
+| **NF-e Chave** | **`29261050042585000180550010000000181300000056`** |
+
+Lines (net kg, matching NF-e nº 18 / Rev 14 ≈ 302,06): Almonds-samples-Pará 5 · Nibs-Kraft-8oz 29 · MassBar-500g 18 · Nibs-Ilhéus 80 · Almonds-AGL8 10 · Ceremonial-Pouch-AGL8 34 · Nibs-AGL13 99,5 · Tea-AGL13 21 · Coopercabruca-Butter 5.
+
+> ✅ The tab already carried the **Status** (col P) and **NF-e Chave** (col Q) columns — it was just that **no in-transit row existed**; every prior row reads *Arrived at Destination*. These 9 are the register's **first “In Transit” rows**, and they close the long-standing gap where a shipment had no arrival-register presence while en route.
+
+
 ## 6. Hard rules & approval gates (checklist)
 
 - [ ] **No NF-e issuance without Gary's explicit approval.**
@@ -609,6 +630,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-10-05 | **MAWB issued** — master counterpart of the HAWB (**same AWB `047-3175-3223`**), a **consolidation** (MAWB consignee **5 Continent Logistics LLC**, EIN 82-4285211), executed **05/OCT/2026**. Charges: master total prepaid **USD 57,30** (2,30 minimum) vs house **USD 857,70** — flagged for reconciliation. New **§5.8** + source note + doc. |
 | 2026-10-05 | **Flight rescheduled — depart 06/10, ETA 08/10**; corrected docs delivered to airline 03/10. Thread also surfaces open items (phytosanitary cert unanswered, RADAR brokers, cintagem R$ 300 + diária R$ 1.350/dia, box-count 31→25→27, HS 1801 in the thread subject). New **§5.9** + source note. |
 | 2026-10-05 | **NF-e nº 18 confirmed FINAL** by Gary (re-sent DANFE, byte-identical to the archived copy). Still carries gross **322,06** → the **CC-e 322,06→349** question remains the one open fiscal item (§5.3b). |
+| 2026-10-05 | **In-transit register rows written** — 9 rows for the NF-e nº 18 lot appended to Main Ledger `offchain assets in transit` (Status **In Transit**, chave, tracking `047-3175-3223`, ETA `20261008`). New **§5.10**. |
 | 2026-10-02 | **Rev 15 — Commercial Invoice + Packing List reissued at gross 349 kg** (Daniel / SeaCoast ask, §5.5). Gross restated 322,06 → **349,00** = net 302,06 + carton tare 26,94 (27 boxes) + pallet tare 20,00 (2 × 10 kg HDPE). **Net, lines, boxes, USD/BRL unchanged.** `exports/2026-10-02_*_rev15_*`; generator gains the Rev-15 gross model + a `GROSS_WEIGHED` invariant. Also **corrected the same-day §5.5 draft** (pallet→carton tare; pallets are plastic HDPE, not heat-treated wood). |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
