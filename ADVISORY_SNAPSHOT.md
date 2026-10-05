@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-05T06:02:41Z`
+- Generated (UTC): `2026-10-05T15:07:02Z`
 - Look-back: **7** calendar days (`2026-09-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,14 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 21
-- `[PRACTICE EVENT]` × 3
+- `[PRACTICE EVENT]` × 4
 - `[SALES EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 15
+- _free-form (no bracket tag)_ × 14
 
 ### Latest entries
 
-- `Edgar_20261002193118_038` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_23 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
 - `Edgar_20261002193123_040` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_24 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
 - `Edgar_20261002211025_042` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20261002212704_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Coordination and processing of notary services payment for the land/cacao op…
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261004170131_072` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261004221704_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20261004224527_076` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261005114443_078` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-05T11:44:41.400Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-04T10:59:19.751Z`
+- Generated (UTC): `2026-10-05T10:59:14.227Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-28 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 2e29164 | 2026-10-04 21:51:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 20d8b6c | 2026-10-04 12:48:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 963a975 | 2026-10-04 06:14:55 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -316,6 +317,11 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0048827 | 2026-10-05 09:59:41 -0300 | §5.6 FDA Prior Notice gate: Iolanda needs the AWB (US import) (#1500)
+8abbc03 | 2026-10-05 09:58:17 -0300 | §5.5: TAP (047) airline, flight-status HAWB gate, Caer storage, Iolanda-vs-Isis roles (#1499)
+b966d24 | 2026-10-05 09:54:23 -0300 | Fix stale §8 row: gross divergence is carton tare, not pallet mass (#1498)
+9528c49 | 2026-10-05 03:03:02 -0300 | chore(previews): refresh Beer Hall preview (2026-10-05 UTC)
+67a4506 | 2026-10-05 03:03:01 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-05 UTC)
 3d5a859 | 2026-10-04 18:46:38 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
 b14cd0c | 2026-10-04 18:46:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-04 UTC)
 c119a63 | 2026-10-04 09:44:39 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
@@ -351,11 +357,6 @@ f782ebc | 2026-10-02 10:17:31 -0300 | Brazil export: Rev 13 commercial invoice +
 fb4c761 | 2026-10-01 10:44:47 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
 e524961 | 2026-10-01 10:44:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
 8390a1e | 2026-10-01 03:21:49 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
-b5d73f2 | 2026-10-01 03:21:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
-93611fc | 2026-09-30 20:40:36 -0300 | OPEN_FOLLOWUPS: addendum — CLI also lacks fileUploadedToGithub guard (live recurrence 2026-09-30) (#1479)
-b219c60 | 2026-09-30 20:21:50 -0300 | Plan: farm-media people-index tiers + biometric consent gates; file minors hard gate (#1478)
-559e0db | 2026-09-30 18:45:58 -0300 | plan(30550): register oscar_complete.zip -> oscar-bahia (8th mapping, archived) (#1476)
-9340b31 | 2026-09-30 10:17:30 -0300 | Add Pará farm dossier v2 (clip-level tree-age evidence)
 … (truncated)
 ```
 
@@ -397,6 +398,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+51e7a2a | 2026-10-05 14:46:25 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 4d55c46 | 2026-10-04 12:51:04 +0000 | chore: refresh currencies.json [skip ci]
 8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 31f27dc | 2026-10-03 12:01:28 +0000 | chore: refresh currencies.json [skip ci]
@@ -502,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/4/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/5/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-28`; scanned last **600** data rows)
 
