@@ -489,7 +489,7 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 
 > **Governor (Gary) request:** record the NF-e nº 18 lot currently in transit Matheus-warehouse → Kirsten-warehouse as rows in the Main Ledger **`offchain assets in transit`** tab (gid `1888711771`), with a **Status** column and the **NF-e chave**, so the corridor has proper records.
 
-**Done** (via the `agroverse-ledger-manager` SA — the tab's only writer): **9 rows appended**, one per NF-e nº 18 line.
+**Done** (via the `agroverse-ledger-manager` SA — the tab's only writer): rows appended, one per NF-e nº 18 line — **now 8 rows** (see the col-B revision below; the Pará samples row was removed on the governor's instruction).
 
 | Col | Value |
 |---|---|
@@ -501,23 +501,28 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 | **Status** | **In Transit** |
 | **NF-e Chave** | **`29261050042585000180550010000000181300000056`** |
 
-Lines (net kg, matching NF-e nº 18 / Rev 14 ≈ 302,06): Almonds-samples-Pará 5 · Nibs-Kraft-8oz 29 · MassBar-500g 18 · Nibs-Ilhéus 80 · Almonds-AGL8 10 · Ceremonial-Pouch-AGL8 34 · Nibs-AGL13 99,5 · Tea-AGL13 21 · Coopercabruca-Butter 5.
+Lines (net kg, matching NF-e nº 18 / Rev 14): Nibs-Kraft-8oz 29 · MassBar-500g 18 · Nibs-Ilhéus 80 · Almonds-AGL8 (Paulo) 10 · Ceremonial-Pouch-AGL8 34 · Nibs-AGL13 99,5 · Tea-AGL13 21 · Coopercabruca-Butter 5.
 
 > **Revision (2026-10-05, Gary):** col **B (Origin Asset Name)** must be a **valid value from `currencies.json`** (the canonical catalog published from the Main Ledger `Currencies` tab), not a paraphrase of the invoice description. All 9 col-B values were re-keyed to **exact currency strings** and validated against `agroverse-inventory/currencies.json` (147 entries, generated 2026-10-05T15:16Z); col **M (Destination Asset Name)** = **col B + AWB** per the governor's naming convention.
 
 | # | NF-e nº 18 line | col B — exact ledger `Currency` (validated) | col M |
 |---|---|---|---|
-| 1 | Almonds samples (KG) — Pará | `Cacao Almonds (KG)` ⚠️ | `Cacao Almonds (KG) + 047-3175-3223 - San Francisco` |
-| 2 | Nibs Kraft 8oz — Ilhéus 2024 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | + AWB |
-| 3 | Mass Bar 500g — Ilhéus 2024 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024` | + AWB |
-| 4 | Nibs (KG) — Ilhéus 2024 | `Cacao Nibs (KG) - Ilheus, Brazil 2024` | + AWB |
-| 5 | Almonds (KG) — AGL8 | `Cacao Almonds KG - bulk` ⚠️ | + AWB |
-| 6 | Ceremonial Pouch 200g — AGL8 | `Ceremonial Cacao Kraft Pouch - 20250219006 \| Cacao Mass \| 200 grams \| Paulo 2024 \| Santos 018-2025 016-2025 \|\| Ilheus - AGL8` ⚠️ | + AWB |
-| 7 | Nibs (KG) — AGL13 | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13` | + AWB |
-| 8 | Tea (KG) — AGL13 | `Cacao Tea (Kilograms) Santos 20260213 - AGL13` | + AWB |
-| 9 | Coopercabruca Butter (KG) | `Coopercabruca Cacao Butter (KG)` | + AWB |
+| 1 | Nibs Kraft 8oz — Ilhéus 2024 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | + AWB |
+| 2 | Mass Bar 500g — Ilhéus 2024 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024` | + AWB |
+| 3 | Nibs (KG) — Ilhéus 2024 | `Cacao Nibs (KG) - Ilheus, Brazil 2024` | + AWB |
+| 4 | Almonds (KG) — AGL8 (Paulo's) | `Cacao Almonds (KG)` | + AWB |
+| 5 | Ceremonial Pouch 200g — AGL8 | `Ceremonial Cacao Kraft Pouch - 20250219006 \| Cacao Mass \| 200 grams \| Paulo 2024 \| Santos 018-2025 016-2025 \|\| Ilheus - AGL8` | + AWB |
+| 6 | Nibs (KG) — AGL13 | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13` | + AWB |
+| 7 | Tea (KG) — AGL13 | `Cacao Tea (Kilograms) Santos 20260213 - AGL13` | + AWB |
+| 8 | Coopercabruca Butter (KG) | `Coopercabruca Cacao Butter (KG)` | + AWB |
 
-> ⚠️ **3 lines are best-fit, not exact (no unambiguous ledger line exists):** (1) Pará almond **samples** and (5) AGL8 almonds have **no AGL8/Pará-specific `Currency`** — the closest valid strings are the generic `Cacao Almonds (KG)` / `Cacao Almonds KG - bulk` (candidates `…Oscar's farm - AGL14` / `…Vivi's farm - AGL13` name the **wrong farms**). (6) the AGL8 ceremonial is a **finished** pouch, and the best-fit is the **filled** AGL8 line; the bare shell `Ceremonial Cacao Kraft Pouch - 20250219006` is the un-filled pouch stock. These 3 want a governor ruling or a new `[CURRENCY DEFINITION EVENT]` (see Open items). The other **6 validate cleanly**.
+> ✅ **Best-fit flags resolved (2026-10-05, governor Gary):** the *authority* for each row's currency is **how the asset is actually recorded on the managed AGL ledger**, not a paraphrase of the invoice line.
+>
+> - **Pará almond samples — row REMOVED.** Governor: *“Dont need to add in transit.”* The nominal-\$0.01 sample line has no ledger currency and is not register-tracked. Register is now **8 rows**.
+> - **Almonds (KG) — AGL8 (Paulo's): `Cacao Almonds (KG)`.** Governor: *“is from Paulo's — check how the cacao almonds are actually recorded on AGL8 that are under Matheus management.”* The **AGL8 managed ledger** (`Shipment Ledger Listing` → `Resolved URL`, `1pdI1lMChyD2-3mEaQr8krkzQUeFQ60JMz57IbfO-qLE`), **Asset** column under **Resource Location = Matheus Reis**, records the entire AGL8 almond stock as the single currency **`Cacao Almonds (KG)`** (273.5851228 kg). That is the correct col-B value (superseding the earlier `Cacao Almonds KG - bulk` guess).
+> - **Ceremonial Pouch 200g — AGL8: confirmed `Ceremonial Cacao Kraft Pouch - 20250219006 | Cacao Mass | 200 grams | Paulo 2024 | Santos 018-2025 016-2025 || Ilheus - AGL8`.** Governor: *“same here.”* Same AGL8 managed ledger, **Asset** column at **Matheus Reis** = **170** of exactly this string. Already correct.
+>
+> **Method note:** the managed AGL ledger Balance tab (**Financier / Asset / Resource Location** columns) is the authoritative source for "how an asset is actually recorded" — for any future row, read the AGL ledger balance for the resource location (here **Matheus Reis**) rather than inferring from the invoice description.
 
 > ✅ The tab already carried the **Status** (col P) and **NF-e Chave** (col Q) columns — it was just that **no in-transit row existed**; every prior row reads *Arrived at Destination*. These 9 are the register's **first “In Transit” rows**, and they close the long-standing gap where a shipment had no arrival-register presence while en route.
 
