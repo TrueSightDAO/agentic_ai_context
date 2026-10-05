@@ -503,6 +503,22 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 
 Lines (net kg, matching NF-e nº 18 / Rev 14 ≈ 302,06): Almonds-samples-Pará 5 · Nibs-Kraft-8oz 29 · MassBar-500g 18 · Nibs-Ilhéus 80 · Almonds-AGL8 10 · Ceremonial-Pouch-AGL8 34 · Nibs-AGL13 99,5 · Tea-AGL13 21 · Coopercabruca-Butter 5.
 
+> **Revision (2026-10-05, Gary):** col **B (Origin Asset Name)** must be a **valid value from `currencies.json`** (the canonical catalog published from the Main Ledger `Currencies` tab), not a paraphrase of the invoice description. All 9 col-B values were re-keyed to **exact currency strings** and validated against `agroverse-inventory/currencies.json` (147 entries, generated 2026-10-05T15:16Z); col **M (Destination Asset Name)** = **col B + AWB** per the governor's naming convention.
+
+| # | NF-e nº 18 line | col B — exact ledger `Currency` (validated) | col M |
+|---|---|---|---|
+| 1 | Almonds samples (KG) — Pará | `Cacao Almonds (KG)` ⚠️ | `Cacao Almonds (KG) + 047-3175-3223 - San Francisco` |
+| 2 | Nibs Kraft 8oz — Ilhéus 2024 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | + AWB |
+| 3 | Mass Bar 500g — Ilhéus 2024 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024` | + AWB |
+| 4 | Nibs (KG) — Ilhéus 2024 | `Cacao Nibs (KG) - Ilheus, Brazil 2024` | + AWB |
+| 5 | Almonds (KG) — AGL8 | `Cacao Almonds KG - bulk` ⚠️ | + AWB |
+| 6 | Ceremonial Pouch 200g — AGL8 | `Ceremonial Cacao Kraft Pouch - 20250219006 \| Cacao Mass \| 200 grams \| Paulo 2024 \| Santos 018-2025 016-2025 \|\| Ilheus - AGL8` ⚠️ | + AWB |
+| 7 | Nibs (KG) — AGL13 | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13` | + AWB |
+| 8 | Tea (KG) — AGL13 | `Cacao Tea (Kilograms) Santos 20260213 - AGL13` | + AWB |
+| 9 | Coopercabruca Butter (KG) | `Coopercabruca Cacao Butter (KG)` | + AWB |
+
+> ⚠️ **3 lines are best-fit, not exact (no unambiguous ledger line exists):** (1) Pará almond **samples** and (5) AGL8 almonds have **no AGL8/Pará-specific `Currency`** — the closest valid strings are the generic `Cacao Almonds (KG)` / `Cacao Almonds KG - bulk` (candidates `…Oscar's farm - AGL14` / `…Vivi's farm - AGL13` name the **wrong farms**). (6) the AGL8 ceremonial is a **finished** pouch, and the best-fit is the **filled** AGL8 line; the bare shell `Ceremonial Cacao Kraft Pouch - 20250219006` is the un-filled pouch stock. These 3 want a governor ruling or a new `[CURRENCY DEFINITION EVENT]` (see Open items). The other **6 validate cleanly**.
+
 > ✅ The tab already carried the **Status** (col P) and **NF-e Chave** (col Q) columns — it was just that **no in-transit row existed**; every prior row reads *Arrived at Destination*. These 9 are the register's **first “In Transit” rows**, and they close the long-standing gap where a shipment had no arrival-register presence while en route.
 
 
@@ -630,6 +646,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-10-05 | **MAWB issued** — master counterpart of the HAWB (**same AWB `047-3175-3223`**), a **consolidation** (MAWB consignee **5 Continent Logistics LLC**, EIN 82-4285211), executed **05/OCT/2026**. Charges: master total prepaid **USD 57,30** (2,30 minimum) vs house **USD 857,70** — flagged for reconciliation. New **§5.8** + source note + doc. |
 | 2026-10-05 | **Flight rescheduled — depart 06/10, ETA 08/10**; corrected docs delivered to airline 03/10. Thread also surfaces open items (phytosanitary cert unanswered, RADAR brokers, cintagem R$ 300 + diária R$ 1.350/dia, box-count 31→25→27, HS 1801 in the thread subject). New **§5.9** + source note. |
 | 2026-10-05 | **NF-e nº 18 confirmed FINAL** by Gary (re-sent DANFE, byte-identical to the archived copy). Still carries gross **322,06** → the **CC-e 322,06→349** question remains the one open fiscal item (§5.3b). |
+| 2026-10-05 | **In-transit register col B/M corrected** (Gary) — col B re-keyed to **exact `currencies.json` values** (validated against the live catalog, 147 entries) instead of invoice paraphrases; col M = **col B + AWB**. 3 lines flagged best-fit (Pará samples / AGL8 almonds / AGL8 ceremonial) — §5.10. |
 | 2026-10-05 | **In-transit register rows written** — 9 rows for the NF-e nº 18 lot appended to Main Ledger `offchain assets in transit` (Status **In Transit**, chave, tracking `047-3175-3223`, ETA `20261008`). New **§5.10**. |
 | 2026-10-02 | **Rev 15 — Commercial Invoice + Packing List reissued at gross 349 kg** (Daniel / SeaCoast ask, §5.5). Gross restated 322,06 → **349,00** = net 302,06 + carton tare 26,94 (27 boxes) + pallet tare 20,00 (2 × 10 kg HDPE). **Net, lines, boxes, USD/BRL unchanged.** `exports/2026-10-02_*_rev15_*`; generator gains the Rev-15 gross model + a `GROSS_WEIGHED` invariant. Also **corrected the same-day §5.5 draft** (pallet→carton tare; pallets are plastic HDPE, not heat-treated wood). |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
