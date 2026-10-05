@@ -426,7 +426,7 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 | Matheus can't make outbound calls | number flagged | use WhatsApp; Rebecca for warehouse |
 | NF-e rejected: **unidades de medida** | NCM technical norm requires specific units on export (NCM 1801/1803/1804 → **TON**; 1802/1806 → KG — **Appendix E**) | regenerate the invoice (Rev 12) with NCM-required units (§5.1a) + correct values; re-key emitter products |
 | SISCOMEX/DU-E — company **not habilitado**, habilitação dropped | **~6 months with no SISCOMEX movement** → RADAR habilitação blocked/dropped **by default** | the company (or its representative) runs an **update/movement** in SISCOMEX to restore it — needs a valid **A1 certificate on a working machine** (a broken laptop stalled this on 2026-10-02, §5.4). Prevent by logging periodic movements. |
-| Airport scale disagrees with our **gross** (CI + PL rejected, AWB blocked) | our gross model omits **pallet** mass; airport weighs boxes **+ pallets** | reissue the Commercial Invoice + Packing List at the **ticket** gross (§5.5); **CC-e** the NF-e if already issued; forwarder reissues HAWB/MAWB. |
+| Airport scale disagrees with our **gross** (CI + PL rejected, AWB blocked) | our gross model omits the **carton** tare (it *does* include the 20 kg pallet tare); airport weighs product **+ cartons + pallets** | reissue the Commercial Invoice + Packing List at the **ticket** gross (§5.5); **CC-e** the NF-e if already issued; forwarder reissues HAWB/MAWB. |
 
 ---
 
