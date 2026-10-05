@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-04T21:46:14Z`
-- Look-back: **7** calendar days (`2026-09-27` → today UTC)
+- Generated (UTC): `2026-10-05T06:02:41Z`
+- Look-back: **7** calendar days (`2026-09-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
+- `[CONTRIBUTION EVENT]` × 21
 - `[PRACTICE EVENT]` × 3
 - `[SALES EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 16
+- _free-form (no bracket tag)_ × 15
 
 ### Latest entries
 
-- `Edgar_20261002142853_034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated updated Black King → TrueTech export documents (Rev 13 & Rev 14)
-- `Edgar_20261002142859_036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Generated updated Black King → TrueTech export documents (Rev 13 & Rev 14)
 - `Edgar_20261002193118_038` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_23 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
 - `Edgar_20261002193123_040` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_24 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
 - `Edgar_20261002211025_042` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261003233804_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Direct local media upload pipeline (Courier) — decisions & review
 - `Edgar_20261004130536_070` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-04T13:05:34.810Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261004170131_072` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261004221704_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20261004224527_076` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 
 ---
 
@@ -233,9 +233,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,902.54**
+- USD on hand: **$4,902.48**
 - Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
-- USD provisioned for voting-rights cash-out: **$56.08**
+- USD provisioned for voting-rights cash-out: **$56.14**
 
 ### In-transit freight (1 row)
 
@@ -251,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-09-27 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-09-28 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+2e29164 | 2026-10-04 21:51:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 20d8b6c | 2026-10-04 12:48:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 963a975 | 2026-10-04 06:14:55 +0000 | chore(stats): refresh stats indexes [skip ci]
 0157846 | 2026-10-03 21:42:28 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -304,10 +305,6 @@ afaa04c | 2026-09-28 21:25:33 -0300 | Ledger Explorer: host it on truesight.me (
 ffeafd5 | 2026-09-28 23:28:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 519ff59 | 2026-09-28 14:23:06 +0000 | chore(stats): refresh stats indexes [skip ci]
 c9ad095 | 2026-09-28 05:46:04 +0000 | chore(stats): refresh stats indexes [skip ci]
-bf3e35c | 2026-09-27 21:32:26 +0000 | chore(stats): refresh stats indexes [skip ci]
-73d2214 | 2026-09-27 17:13:21 +0000 | chore(stats): refresh stats indexes [skip ci]
-891fd12 | 2026-09-27 12:22:28 +0000 | chore(stats): refresh stats indexes [skip ci]
-b2589f0 | 2026-09-27 05:38:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -319,6 +316,8 @@ fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3d5a859 | 2026-10-04 18:46:38 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
+b14cd0c | 2026-10-04 18:46:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-04 UTC)
 c119a63 | 2026-10-04 09:44:39 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
 280877a | 2026-10-04 09:44:38 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-04 UTC)
 7c7db77 | 2026-10-04 03:11:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-04 UTC)
@@ -357,8 +356,6 @@ b5d73f2 | 2026-10-01 03:21:47 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 b219c60 | 2026-09-30 20:21:50 -0300 | Plan: farm-media people-index tiers + biometric consent gates; file minors hard gate (#1478)
 559e0db | 2026-09-30 18:45:58 -0300 | plan(30550): register oscar_complete.zip -> oscar-bahia (8th mapping, archived) (#1476)
 9340b31 | 2026-09-30 10:17:30 -0300 | Add Pará farm dossier v2 (clip-level tree-age evidence)
-19e7597 | 2026-09-30 09:54:00 -0300 | chore(previews): refresh Beer Hall preview (2026-09-30 UTC)
-93485af | 2026-09-30 09:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-09-30 UTC)
 … (truncated)
 ```
 
@@ -411,8 +408,6 @@ d9705f2 | 2026-10-01 13:53:44 +0000 | chore: refresh currencies.json [skip ci]
 7f85571 | 2026-09-30 12:39:54 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d4d05ba | 2026-09-29 12:58:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e791e18 | 2026-09-28 14:01:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-57f8621 | 2026-09-27 12:26:36 +0000 | chore: refresh currencies.json [skip ci]
-f42f547 | 2026-09-27 12:07:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -509,7 +504,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 0 | 18484.34386 | 10/4/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-27`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-28`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
