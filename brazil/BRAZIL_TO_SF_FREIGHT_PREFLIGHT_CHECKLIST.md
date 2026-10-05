@@ -380,6 +380,14 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 
 **Why it differs from our docs.** Rev 14 modelled gross = net **302,06** + **20 kg pallet tare** (2 × 10 kg **plastic HDPE** pallets — *non-wood, ISPM#15 N/A*) = **322,06**. It **omitted the CARTON tare**. 349,00 − 322,06 = **26,94 kg ≈ 1 kg × 27 boxes**. So the divergence is **carton tare, not pallet mass** (⚠️ corrected same day — an earlier draft of this section wrongly blamed heat-treated pallets; the pallets are plastic and were already counted).
 
+**✈️ Airline identified — TAP Air Portugal (IATA prefix `047`).** The AWB `04731753223` begins with the airline prefix **`047` = TAP Air Portugal (IATA `TP`)** — so the Salvador→US leg is TAP Air Cargo. (Ticket's `DUE-26BR0017954000` looks like the DU-E; see the caveat above.)
+
+**⏳ HAWB/MAWB reissue is gated on flight-status confirmation (2026-10-02).** Per **Isis Ribeiro** (Omega, *Export operations* — §2), on WhatsApp: *"As soon as we confirm the flight status, we will send the documentation"* (the **HAWB and MAWB**). So the AWB reissue waits on the **flight being confirmed**, not on anything from Black King — our Rev 15 CI + PL are already with them.
+
+**������ Cargo storage — answered by Isis.** On where the cargo is held in the interim: *"storage is done in the **airport cargo warehouse (Caer)**”* — and it must be kept **away from direct sunlight**. (Cacao is heat/light-sensitive; the TECA/Caer airport terminal is the interim hold.)
+
+**������ Role split — Iolanda vs Isis (Omega).** Distinct: **Iolanda Santos = SISCOMEX / customs** (the habilitação fix, §5.4); **Isis Ribeiro = Export operations** (flight status, HAWB/MAWB, day-to-day export coordination). Graziela Vedana (Seacos) = forwarder/coordinator; Matheus Reis (Black King / Gateway.fy) = origin warehouse/pickup.
+
 **⚠️ Fiscal:** NF-e nº 18 declares **bruto 322,060 / líq. 302,060**. Reissuing commercial docs at 349 kg **diverges from the issued NF-e**. Weights/freight **can** be amended by a **CC-e** (unlike lines/tax base) → the route is a **CC-e on nº 18** + the commercial reissue. **Confirm with Saymon/Matheus.**
 
 
