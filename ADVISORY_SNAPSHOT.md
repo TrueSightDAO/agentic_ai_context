@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-05T15:07:02Z`
-- Look-back: **7** calendar days (`2026-09-28` → today UTC)
+- Generated (UTC): `2026-10-06T00:14:28Z`
+- Look-back: **7** calendar days (`2026-09-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -40,7 +40,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261002193123_040` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20260330_24 · Sales price: 17.50 · Sold by: Gergana - The Way Home Shop
 - `Edgar_20261002211025_042` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20261002212704_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Coordination and processing of notary services payment for the land/cacao op…
 - `Edgar_20261003034156_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix consignment-sale guard + record 2 Gergana consignment sales (thread 4007…
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261004221704_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20261004224527_076` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261005114443_078` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-05T11:44:41.400Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261005151911_080` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 
 ---
 
@@ -237,11 +237,10 @@ _(+31 more in JSON snapshot.)_
 - Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
 - USD provisioned for voting-rights cash-out: **$56.14**
 
-### In-transit freight (1 row)
+### In-transit freight (0 rows)
 
-| Shipment | Status | Date | Cargo | Cacao (kg) | Description |
-|----------|--------|------|-------|------------|-------------|
-| `AGL7` | FREIGHTING IN PROGRESS |  |  | 25.0 | 20 bottles of 250grams cacao molasses from Bahia Small Scale Farmers |
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -251,7 +250,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-09-28 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-09-29 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +269,10 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-28 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1f39db3 | 2026-10-05 19:49:44 -0300 | AGL4 shipment page: status SALES IN PROGRESS → COMPLETED (#412)
+29562a7 | 2026-10-05 19:47:44 -0300 | AGL8 + AGL14 shipment pages: status MANUFACTURING → SALES IN PROGRESS (#411)
+03caeea | 2026-10-05 19:43:56 -0300 | AGL7 shipment page: status FREIGHTING IN PROGRESS → COMPLETED (#410)
+f716984 | 2026-10-05 15:11:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 2e29164 | 2026-10-04 21:51:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 20d8b6c | 2026-10-04 12:48:19 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -303,20 +306,30 @@ b942a5d | 2026-09-28 22:40:17 -0300 | explorer: deep-link feed rows (#tx-<txid>)
 1d6ecaf | 2026-09-28 21:35:58 -0300 | Ledger Explorer: expand a transaction inline on click (PR7) (#399)
 4c561e1 | 2026-09-28 21:33:55 -0300 | Ledger Explorer: self-reference truesight.me in buildLedgerExplorerLink (#398)
 afaa04c | 2026-09-28 21:25:33 -0300 | Ledger Explorer: host it on truesight.me (PR5, re-scoped) (#397)
-ffeafd5 | 2026-09-28 23:28:07 +0000 | chore(stats): refresh stats indexes [skip ci]
-519ff59 | 2026-09-28 14:23:06 +0000 | chore(stats): refresh stats indexes [skip ci]
-c9ad095 | 2026-09-28 05:46:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-fc0f674 | 2026-10-01 15:21:43 +0000 | chore: refresh warm-up conversion readout [skip ci]
+15ac387 | 2026-10-05 19:54:50 -0300 | cn_trademark: scope check to Nice class(es) + class-scoped cacao report (#180)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8c58554 | 2026-10-05 19:59:00 -0300 | followups: record CN trademark tooling gaps (Chinese-mark images, TMview unreachable) (#1511)
+6042d39 | 2026-10-05 19:50:36 -0300 | OPEN_FOLLOWUPS: file AGL9 broken ledger (status sweep, thread 40471) (#1510)
+147ae0e | 2026-10-05 19:42:35 -0300 | Rev 5.10: col C = uCom unit counts (129/37/169 for pouch/bar/ceremonial lines) per PL Qty(uCom) (#1509)
+c110a9d | 2026-10-05 19:41:43 -0300 | Rev aisle 5.10: in-transit rows v3 - drop Para, almonds->Cacao Almonds (KG) per AGL8 managed ledger, ceremonial confirmed (8 rows) (#1508)
+f20bb47 | 2026-10-05 19:29:48 -0300 | docs(brazil): key in-transit register col B to currencies.json (Gary) (#1507)
+14fd812 | 2026-10-05 19:16:17 -0300 | §5.10 In-transit register rows written (NF-e nº 18 lot → offchain assets in transit) (#1506)
+e595d01 | 2026-10-05 19:03:35 -0300 | docs: queue manifest now writes Redis (primary) + GitHub (fallback) (#1505)
+5e16da9 | 2026-10-05 12:46:48 -0300 | NF-e nº 18 confirmed FINAL (md5-identical to archived copy) (#1504)
+1ca9de6 | 2026-10-05 12:39:58 -0300 | §5.9 Origin ops email thread: flight rescheduled depart 06/10 ETA 08/10 (#1503)
+f1692d5 | 2026-10-05 12:37:50 -0300 | §5.8 MAWB issued: consolidated master AWB 047-3175-3223, executed 05/OCT/2026 (#1502)
+412eb4a | 2026-10-05 12:36:23 -0300 | §5.7 Air waybill (HAWB) issued — 349 kg confirmed, DU-E registered (#1501)
+d247f82 | 2026-10-05 12:07:20 -0300 | chore(previews): refresh Beer Hall preview (2026-10-05 UTC)
+ac42754 | 2026-10-05 12:07:19 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-05 UTC)
 0048827 | 2026-10-05 09:59:41 -0300 | §5.6 FDA Prior Notice gate: Iolanda needs the AWB (US import) (#1500)
 8abbc03 | 2026-10-05 09:58:17 -0300 | §5.5: TAP (047) airline, flight-status HAWB gate, Caer storage, Iolanda-vs-Isis roles (#1499)
 b966d24 | 2026-10-05 09:54:23 -0300 | Fix stale §8 row: gross divergence is carton tare, not pallet mass (#1498)
@@ -344,19 +357,6 @@ c2fd3fb | 2026-10-02 18:16:17 -0300 | Runbook §2: add TrueTech Inc WhatsApp (+1
 50fa97d | 2026-10-02 13:34:48 -0300 | OPEN_FOLLOWUPS: 3 new Pending items (SISCOMEX 6-mo drop, append_to_transcript 422, send_discord_attachment) (#1487)
 b43f1fa | 2026-10-02 13:34:23 -0300 | Freight runbook: SISCOMEX habilitação dropped on 6-month inactivity — DU-E blocked (#1486)
 91402cc | 2026-10-02 12:30:08 -0300 | Freight runbook: NF-e nº 18 issued (2026-10-02) — fiscal divergence RESOLVED (#1485)
-98b98aa | 2026-10-02 11:23:45 -0300 | Brazil export Rev 14: husk line removed; 9 lines, 27 boxes (22 reg + 5 irr)
-6fcf447 | 2026-10-02 10:18:22 -0300 | runbook(brazil): record Rev 13 as current commercial revision (10 lines, 28 boxes) (#1483)
-f782ebc | 2026-10-02 10:17:31 -0300 | Brazil export: Rev 13 commercial invoice + packing list (10 lines, 28 boxes) (#1482)
-99e03ad | 2026-10-02 10:00:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-02 UTC)
-894b113 | 2026-10-02 10:00:12 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-02 UTC)
-065a2ed | 2026-10-02 02:59:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-02 UTC)
-9c80547 | 2026-10-02 02:59:49 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-02 UTC)
-54b66eb | 2026-10-01 19:50:24 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
-4a40c51 | 2026-10-01 19:50:23 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
-403d92e | 2026-10-01 12:38:05 -0300 | OPEN_FOLLOWUPS: file payout-event parser field-order bug + ledger append race (#1481)
-fb4c761 | 2026-10-01 10:44:47 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
-e524961 | 2026-10-01 10:44:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-01 UTC)
-8390a1e | 2026-10-01 03:21:49 -0300 | chore(previews): refresh Beer Hall preview (2026-10-01 UTC)
 … (truncated)
 ```
 
@@ -367,8 +367,6 @@ e524961 | 2026-10-01 10:44:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 60eeab0 | 2026-09-29 11:12:48 -0300 | Payout sink: book cash leg when committed tree's QR ledger IS main (#577)
 d96679c | 2026-09-29 01:06:56 -0300 | Payout sink: dedup on (bank_ref, tree_planting_id) so one transfer can settle N trees (#576)
 ecb2b27 | 2026-09-28 22:37:02 -0300 | feat(sunmint): QR-safe duplicate-row collapse lever (no linked tree dedup'd away) (#575)
-268c575 | 2026-09-28 18:24:09 -0300 | SunMint tree planting: write signer public key to its own column (W) (#574)
-10b0e37 | 2026-09-28 18:00:49 -0300 | fix(sunmint): ping tree-index-rebuild on new planting (reactive geojson refresh) (#573)
 ```
 
 ### `dapp` → `dapp`
@@ -398,6 +396,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+61f1230 | 2026-10-05 15:17:55 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+e1e2e82 | 2026-10-05 15:16:09 +0000 | chore: refresh currencies.json [skip ci]
 51e7a2a | 2026-10-05 14:46:25 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 4d55c46 | 2026-10-04 12:51:04 +0000 | chore: refresh currencies.json [skip ci]
 8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -409,7 +409,6 @@ d9705f2 | 2026-10-01 13:53:44 +0000 | chore: refresh currencies.json [skip ci]
 0092a7c | 2026-09-30 12:59:59 +0000 | chore: refresh currencies.json [skip ci]
 7f85571 | 2026-09-30 12:39:54 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d4d05ba | 2026-09-29 12:58:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-e791e18 | 2026-09-28 14:01:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -506,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 0 | 18484.34386 | 10/5/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-28`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-29`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
