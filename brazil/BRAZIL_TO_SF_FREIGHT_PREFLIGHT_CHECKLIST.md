@@ -534,6 +534,21 @@ Lines (net kg, matching NF-e nº 18 / Rev 14): Nibs-Kraft-8oz 29 · MassBar-500g
 >
 > The five **bulk (KG)** lines stay as-is — there `uCom` **is** KG: Nibs-Ilhéus **80** · Almonds-AGL8 **10** · Nibs-AGL13 **99,5** · Tea-AGL13 **21** · Coopercabruca-Butter **5**. Rule: **col C = the PL `Qty (uCom)` for that line** (UN for pouch/bar NCMs 1801/1803-family; KG for the bulk lines).
 
+> **Col R = `Ledger Name` added (2026-10-05, governor Gary — “perhaps it might make sense to include an additional column R indicating the ledger name”).** New header **`Ledger Name`** in **R1** + a value per in-transit row. "Ledger Name" is the DAO's short **managed-ledger code** (the `Ledger ID` column of Main Ledger `Shipment Ledger Listing`; also col V on managed ledgers). Values derived from **where each currency is actually recorded** (managed AGL ledger Balance tabs + `Currencies.ledger`):
+>
+> | # | col B (currency) | **col R — Ledger Name** | Basis |
+> |---|---|---|---|
+> | 1 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | **AGL4** | `Currencies.ledger` = `…/agl4`; farm *Oscar Farm* |
+> | 2 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024` | **AGL4** | Ilhéus-2024 / Oscar line |
+> | 3 | `Cacao Nibs (KG) - Ilheus, Brazil 2024` | **AGL4** | Ilhéus-2024 / Oscar line |
+> | 4 | `Cacao Almonds (KG)` | **AGL8** | AGL8 Balance @ Matheus Reis; SKU `Shipment`=AGL8 |
+> | 5 | `Ceremonial Cacao Kraft Pouch - … \|\| Ilheus - AGL8` | **AGL8** | AGL8 Balance @ Matheus Reis = 170 |
+> | 6 | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13` | **AGL13** | `Currencies.ledger` = `…/agl13`; AGL13 Balance |
+> | 7 | `Cacao Tea (Kilograms) Santos 20260213 - AGL13` | **AGL13** | same |
+> | 8 | `Coopercabruca Cacao Butter (KG)` | **MAIN** | governor: “butter on main ledger” |
+>
+> ⚠️ **AGL4 ≠ MAIN.** Confirmed empirically: `Shipment Ledger Listing` gives **AGL4** `Resolved URL` = `1Uo5p3nzWsD6…` (title *"20240909 – Shipment 4 Agroverse Shipment Financing Ledger"*, program **agroverse**, Oscar's 300 KG Bahia nibs, 354 trees) while **MAIN** = `1GE7PUq-UT6x…` (title *"TrueSight DAO Contribution Ledger"*, program **sunmint**). They are separate ledgers — AGL4 is a *shipment-financing* ledger, not the main ledger.
+
 > ✅ The tab already carried the **Status** (col P) and **NF-e Chave** (col Q) columns — it was just that **no in-transit row existed**; every prior row reads *Arrived at Destination*. These 9 are the register's **first “In Transit” rows**, and they close the long-standing gap where a shipment had no arrival-register presence while en route.
 
 
@@ -661,6 +676,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-10-05 | **MAWB issued** — master counterpart of the HAWB (**same AWB `047-3175-3223`**), a **consolidation** (MAWB consignee **5 Continent Logistics LLC**, EIN 82-4285211), executed **05/OCT/2026**. Charges: master total prepaid **USD 57,30** (2,30 minimum) vs house **USD 857,70** — flagged for reconciliation. New **§5.8** + source note + doc. |
 | 2026-10-05 | **Flight rescheduled — depart 06/10, ETA 08/10**; corrected docs delivered to airline 03/10. Thread also surfaces open items (phytosanitary cert unanswered, RADAR brokers, cintagem R$ 300 + diária R$ 1.350/dia, box-count 31→25→27, HS 1801 in the thread subject). New **§5.9** + source note. |
 | 2026-10-05 | **NF-e nº 18 confirmed FINAL** by Gary (re-sent DANFE, byte-identical to the archived copy). Still carries gross **322,06** → the **CC-e 322,06→349** question remains the one open fiscal item (§5.3b). |
+| 2026-10-05 | **In-transit register col R added** (Gary) — new `Ledger Name` column: AGL4 (Ilhéus-2024 trio) · AGL8 (almonds + ceremonial) · AGL13 (nibs + tea) · MAIN (Coopercabruca butter). Confirmed **AGL4 ≠ MAIN** (distinct ledgers). — §5.10. |
 | 2026-10-05 | **In-transit register col B/M corrected** (Gary) — col B re-keyed to **exact `currencies.json` values** (validated against the live catalog, 147 entries) instead of invoice paraphrases; col M = **col B + AWB**. 3 lines flagged best-fit (Pará samples / AGL8 almonds / AGL8 ceremonial) — §5.10. |
 | 2026-10-05 | **In-transit register rows written** — 9 rows for the NF-e nº 18 lot appended to Main Ledger `offchain assets in transit` (Status **In Transit**, chave, tracking `047-3175-3223`, ETA `20261008`). New **§5.10**. |
 | 2026-10-02 | **Rev 15 — Commercial Invoice + Packing List reissued at gross 349 kg** (Daniel / SeaCoast ask, §5.5). Gross restated 322,06 → **349,00** = net 302,06 + carton tare 26,94 (27 boxes) + pallet tare 20,00 (2 × 10 kg HDPE). **Net, lines, boxes, USD/BRL unchanged.** `exports/2026-10-02_*_rev15_*`; generator gains the Rev-15 gross model + a `GROSS_WEIGHED` invariant. Also **corrected the same-day §5.5 draft** (pallet→carton tare; pallets are plastic HDPE, not heat-treated wood). |
