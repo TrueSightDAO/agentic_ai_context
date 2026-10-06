@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-06T00:14:28Z`
+- Generated (UTC): `2026-10-06T18:32:22Z`
 - Look-back: **7** calendar days (`2026-09-29` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,18 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
-- `[PRACTICE EVENT]` × 4
+- `[CONTRIBUTION EVENT]` × 22
+- `[PRACTICE EVENT]` × 5
 - `[SALES EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 14
+- _free-form (no bracket tag)_ × 12
 
 ### Latest entries
 
-- `Edgar_20261002211025_042` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261002212704_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Coordination and processing of notary services payment for the land/cacao op…
-- `Edgar_20261003034156_046` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Fix consignment-sale guard + record 2 Gergana consignment sales (thread 4007…
-- `Edgar_20261003034205_048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Coordination with Oscar (Fazenda) on cacao logistics for the Ilheus/Itacare …
 - `Edgar_20261003034207_050` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Prepared and handed off Black King cacao export documentation to the freight…
 - `Edgar_20261003204807_052` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261003205239_054` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
@@ -60,6 +56,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261004224527_076` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261005114443_078` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-05T11:44:41.400Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261005151911_080` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261006144009_082` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-06T14:40:06.782Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261006150312_084` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 15
+- `Edgar_20261006154835_086` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20261006171620_088` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 
 ---
 
@@ -233,9 +233,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,902.48**
+- USD on hand: **$4,902.42**
 - Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
-- USD provisioned for voting-rights cash-out: **$56.14**
+- USD provisioned for voting-rights cash-out: **$56.20**
 
 ### In-transit freight (0 rows)
 
@@ -269,6 +269,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-29 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip ci]
+71178a8 | 2026-10-06 00:16:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 1f39db3 | 2026-10-05 19:49:44 -0300 | AGL4 shipment page: status SALES IN PROGRESS → COMPLETED (#412)
 29562a7 | 2026-10-05 19:47:44 -0300 | AGL8 + AGL14 shipment pages: status MANUFACTURING → SALES IN PROGRESS (#411)
 03caeea | 2026-10-05 19:43:56 -0300 | AGL7 shipment page: status FREIGHTING IN PROGRESS → COMPLETED (#410)
@@ -311,12 +313,16 @@ afaa04c | 2026-09-28 21:25:33 -0300 | Ledger Explorer: host it on truesight.me (
 ### `market_research` → `go_to_market`
 
 ```
-15ac387 | 2026-10-05 19:54:50 -0300 | cn_trademark: scope check to Nice class(es) + class-scoped cacao report (#180)
+0c6a49d | 2026-10-05 22:49:03 -0300 | report: CN clearance batch 2 — Cabruca/Catongo/Itacare clear; Bahia REGISTERED (cl30+cl35) (#181)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c1b9bf3 | 2026-10-05 22:39:41 -0300 | docs(black-king): §5.10 col R — Ilheus trio AGL4->MAIN (AGL4 is COMPLETED) (#1513)
+cd8ef51 | 2026-10-05 22:29:44 -0300 | docs(black-king): §5.10 add col R 'Ledger Name' + confirm AGL4 != MAIN (#1512)
+fdbc32b | 2026-10-05 21:14:45 -0300 | chore(previews): refresh Beer Hall preview (2026-10-06 UTC)
+86d8c58 | 2026-10-05 21:14:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-06 UTC)
 8c58554 | 2026-10-05 19:59:00 -0300 | followups: record CN trademark tooling gaps (Chinese-mark images, TMview unreachable) (#1511)
 6042d39 | 2026-10-05 19:50:36 -0300 | OPEN_FOLLOWUPS: file AGL9 broken ledger (status sweep, thread 40471) (#1510)
 147ae0e | 2026-10-05 19:42:35 -0300 | Rev 5.10: col C = uCom unit counts (129/37/169 for pouch/bar/ceremonial lines) per PL Qty(uCom) (#1509)
@@ -353,10 +359,6 @@ c0744f8 | 2026-10-03 20:49:07 -0300 | docs: rename COURIER.md → TRUESIGHT_MEDI
 c98c136 | 2026-10-03 08:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-03 UTC)
 27a6335 | 2026-10-02 18:22:09 -0300 | Rev 15: reissue Commercial Invoice + Packing List at airport-measured gross 349 kg (#1490)
 3237a92 | 2026-10-02 18:19:54 -0300 | Freight runbook: airport weighing weight divergence — reissue CI/PL at gross 349 kg (#1489)
-c2fd3fb | 2026-10-02 18:16:17 -0300 | Runbook §2: add TrueTech Inc WhatsApp (+1 442 340-5782) (#1488)
-50fa97d | 2026-10-02 13:34:48 -0300 | OPEN_FOLLOWUPS: 3 new Pending items (SISCOMEX 6-mo drop, append_to_transcript 422, send_discord_attachment) (#1487)
-b43f1fa | 2026-10-02 13:34:23 -0300 | Freight runbook: SISCOMEX habilitação dropped on 6-month inactivity — DU-E blocked (#1486)
-91402cc | 2026-10-02 12:30:08 -0300 | Freight runbook: NF-e nº 18 issued (2026-10-02) — fiscal divergence RESOLVED (#1485)
 … (truncated)
 ```
 
@@ -396,6 +398,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+22f9054 | 2026-10-06 13:37:16 +0000 | chore: refresh currencies.json [skip ci]
+30fbdd4 | 2026-10-06 13:22:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 61f1230 | 2026-10-05 15:17:55 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 e1e2e82 | 2026-10-05 15:16:09 +0000 | chore: refresh currencies.json [skip ci]
 51e7a2a | 2026-10-05 14:46:25 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -503,7 +507,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/5/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/6/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-29`; scanned last **600** data rows)
 
