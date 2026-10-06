@@ -538,16 +538,16 @@ Lines (net kg, matching NF-e nº 18 / Rev 14): Nibs-Kraft-8oz 29 · MassBar-500g
 >
 > | # | col B (currency) | **col R — Ledger Name** | Basis |
 > |---|---|---|---|
-> | 1 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | **AGL4** | `Currencies.ledger` = `…/agl4`; farm *Oscar Farm* |
-> | 2 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024` | **AGL4** | Ilhéus-2024 / Oscar line |
-> | 3 | `Cacao Nibs (KG) - Ilheus, Brazil 2024` | **AGL4** | Ilhéus-2024 / Oscar line |
+> | 1 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | **MAIN** | governor: Ilhéus trio goes to MAIN (**AGL4 closed**) |
+> | 2 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024` | **MAIN** | governor: Ilhéus trio goes to MAIN (**AGL4 closed**) |
+> | 3 | `Cacao Nibs (KG) - Ilheus, Brazil 2024` | **MAIN** | governor: Ilhéus trio goes to MAIN (**AGL4 closed**) |
 > | 4 | `Cacao Almonds (KG)` | **AGL8** | AGL8 Balance @ Matheus Reis; SKU `Shipment`=AGL8 |
 > | 5 | `Ceremonial Cacao Kraft Pouch - … \|\| Ilheus - AGL8` | **AGL8** | AGL8 Balance @ Matheus Reis = 170 |
 > | 6 | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13` | **AGL13** | `Currencies.ledger` = `…/agl13`; AGL13 Balance |
 > | 7 | `Cacao Tea (Kilograms) Santos 20260213 - AGL13` | **AGL13** | same |
 > | 8 | `Coopercabruca Cacao Butter (KG)` | **MAIN** | governor: “butter on main ledger” |
 >
-> ⚠️ **AGL4 ≠ MAIN.** Confirmed empirically: `Shipment Ledger Listing` gives **AGL4** `Resolved URL` = `1Uo5p3nzWsD6…` (title *"20240909 – Shipment 4 Agroverse Shipment Financing Ledger"*, program **agroverse**, Oscar's 300 KG Bahia nibs, 354 trees) while **MAIN** = `1GE7PUq-UT6x…` (title *"TrueSight DAO Contribution Ledger"*, program **sunmint**). They are separate ledgers — AGL4 is a *shipment-financing* ledger, not the main ledger.
+> ⚠️ **AGL4 is CLOSED — the Ilhéus-2024 trio maps to MAIN (2026-10-05, governor Gary: “The Ilheus trio goes to MAIN / AGL4 Is actually closed”).** `Shipment Ledger Listing` shows **AGL4 `Status=COMPLETED`** vs **MAIN `Status=ACTIVE`**. AGL4 and MAIN are **distinct** ledgers (AGL4 = `1Uo5p3nzWsD6…`, *“20240909 – Shipment 4 Agroverse Shipment Financing Ledger”*, program agroverse; MAIN = `1GE7PUq-UT6x…`, *“TrueSight DAO Contribution Ledger”*, program sunmint) — so a closed shipment ledger must not carry live in-transit stock. **Rule: map a currency to its OPEN ledger; a `COMPLETED` ledger routes to MAIN.** *(Note: `Currencies.ledger` for the 8oz pouch still reads `…/agl4` — that field is stale for these three and should not override the closed-status rule.)*
 
 > ✅ The tab already carried the **Status** (col P) and **NF-e Chave** (col Q) columns — it was just that **no in-transit row existed**; every prior row reads *Arrived at Destination*. These 9 are the register's **first “In Transit” rows**, and they close the long-standing gap where a shipment had no arrival-register presence while en route.
 
@@ -676,6 +676,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-10-05 | **MAWB issued** — master counterpart of the HAWB (**same AWB `047-3175-3223`**), a **consolidation** (MAWB consignee **5 Continent Logistics LLC**, EIN 82-4285211), executed **05/OCT/2026**. Charges: master total prepaid **USD 57,30** (2,30 minimum) vs house **USD 857,70** — flagged for reconciliation. New **§5.8** + source note + doc. |
 | 2026-10-05 | **Flight rescheduled — depart 06/10, ETA 08/10**; corrected docs delivered to airline 03/10. Thread also surfaces open items (phytosanitary cert unanswered, RADAR brokers, cintagem R$ 300 + diária R$ 1.350/dia, box-count 31→25→27, HS 1801 in the thread subject). New **§5.9** + source note. |
 | 2026-10-05 | **NF-e nº 18 confirmed FINAL** by Gary (re-sent DANFE, byte-identical to the archived copy). Still carries gross **322,06** → the **CC-e 322,06→349** question remains the one open fiscal item (§5.3b). |
+| 2026-10-05 | **col R corrected: Ilhéus trio AGL4 → MAIN** (Gary) — AGL4 is `COMPLETED` (closed); closed ledgers route to MAIN. Final: MAIN×4 · AGL8×2 · AGL13×2. — §5.10. |
 | 2026-10-05 | **In-transit register col R added** (Gary) — new `Ledger Name` column: AGL4 (Ilhéus-2024 trio) · AGL8 (almonds + ceremonial) · AGL13 (nibs + tea) · MAIN (Coopercabruca butter). Confirmed **AGL4 ≠ MAIN** (distinct ledgers). — §5.10. |
 | 2026-10-05 | **In-transit register col B/M corrected** (Gary) — col B re-keyed to **exact `currencies.json` values** (validated against the live catalog, 147 entries) instead of invoice paraphrases; col M = **col B + AWB**. 3 lines flagged best-fit (Pará samples / AGL8 almonds / AGL8 ceremonial) — §5.10. |
 | 2026-10-05 | **In-transit register rows written** — 9 rows for the NF-e nº 18 lot appended to Main Ledger `offchain assets in transit` (Status **In Transit**, chave, tracking `047-3175-3223`, ETA `20261008`). New **§5.10**. |
