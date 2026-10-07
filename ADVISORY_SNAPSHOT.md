@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-06T18:32:22Z`
-- Look-back: **7** calendar days (`2026-09-29` → today UTC)
+- Generated (UTC): `2026-10-07T06:17:54Z`
+- Look-back: **7** calendar days (`2026-09-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,19 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 22
-- `[PRACTICE EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 20
+- `[PRACTICE EVENT]` × 4
 - `[SALES EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 12
+- _free-form (no bracket tag)_ × 15
 
 ### Latest entries
 
-- `Edgar_20261003034207_050` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Prepared and handed off Black King cacao export documentation to the freight…
-- `Edgar_20261003204807_052` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261003205239_054` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261003210129_056` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261003212659_058` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 10.60 · Description: deep seek API credits
 - `Edgar_20261003214513_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Bringing Elizabeth to oscar’s farm to checkout the trees and photoshop for t…
 - `Edgar_20261003220203_062` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Obtained contact information for Juliana, sister of Oscar (Fazenda, Bahia) w…
 - `Edgar_20261003220838_064` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Juliana - Oscar (Bahia) · Contributor Email: · Submission Source: truesight_autopilot (Sophia) - governor Gary Teh instruction
@@ -60,6 +55,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261006150312_084` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 15
 - `Edgar_20261006154835_086` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20261006171620_088` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20261006193523_090` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261006195904_092` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261006195837_admin_sophia_4ac1b8440e76348edb1d… · DAO Member Name: Gary Teh
+- `Edgar_20261007001338_094` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261007001311_admin_sophia_ef398f3b068a7f354ded… · DAO Member Name: Gary Teh
+- `Edgar_20261007015649_096` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20261007035317_098` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Filed FDA Prior Notice F26X30142399 (Black King cacao, 9 articles, SFO air)
 
 ---
 
@@ -208,11 +208,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 12,978.72 total units · $12,678.41
+- Manager record: `Gary Teh` · 29 SKU lines · 12,929.72 total units · $12,629.41
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 12,902.54 | $12,628.42 |
+  | (uncategorized) | (unspecified) | 27 | 12,853.54 | $12,579.42 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -233,9 +233,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,902.42**
+- USD on hand: **$4,853.36**
 - Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
-- USD provisioned for voting-rights cash-out: **$56.20**
+- USD provisioned for voting-rights cash-out: **$56.26**
 
 ### In-transit freight (0 rows)
 
@@ -250,7 +250,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-09-29 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-09-30 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -269,6 +269,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-29 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1cd9948 | 2026-10-06 22:45:44 +0000 | chore(stats): refresh stats indexes [skip ci]
+53a513c | 2026-10-06 18:34:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 71178a8 | 2026-10-06 00:16:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 1f39db3 | 2026-10-05 19:49:44 -0300 | AGL4 shipment page: status SALES IN PROGRESS → COMPLETED (#412)
@@ -292,22 +294,6 @@ fba68ad | 2026-10-01 13:48:57 +0000 | chore(stats): refresh stats indexes [skip 
 c0dc5e2 | 2026-09-30 22:31:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 b64e150 | 2026-09-30 12:56:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 3528830 | 2026-09-30 05:53:25 +0000 | chore(stats): refresh stats indexes [skip ci]
-5c34d3a | 2026-09-29 22:33:10 +0000 | chore(stats): refresh stats indexes [skip ci]
-1581a46 | 2026-09-29 13:15:54 +0000 | chore(stats): refresh stats indexes [skip ci]
-70d8434 | 2026-09-29 06:05:13 +0000 | chore(stats): refresh stats indexes [skip ci]
-10c2380 | 2026-09-28 23:48:30 -0300 | Explorer: link tree-planting events to SunMint, deep-linked to the specific tree (PR8) (#409)
-3ec8b89 | 2026-09-28 23:23:21 -0300 | Explorer: cite the canonical sha256(txid) ledger URL, not the message-id URL (#408)
-3f5b3a8 | 2026-09-28 23:16:04 -0300 | Ledger Explorer: key the "Linked tree" link on request_transaction_id (?tx=) (#407)
-b942a5d | 2026-09-28 22:40:17 -0300 | explorer: deep-link feed rows (#tx-<txid>) -- click updates URL, reload scrolls+expands (#406)
-8fc66aa | 2026-09-28 22:37:02 -0300 | main.css: fix site-wide mobile horizontal scroll (off-canvas nav drawer) (#405)
-0c3ee26 | 2026-09-28 22:06:53 -0300 | nav.js: centralize mobile menu behavior (fix dead hamburger on ~17 pages) (#404)
-0de4b2f | 2026-09-28 21:58:25 -0300 | explorer: add mobile nav hamburger + dropdown handlers (#403)
-8b6f0a0 | 2026-09-28 21:47:40 -0300 | Ledger Explorer: put the txid on each ul.feed li as an attribute (+ visible) (#402)
-61529ab | 2026-09-28 21:45:31 -0300 | Ledger Explorer: adopt the site theme (fix inconsistent formatting) (#401)
-28ab0cf | 2026-09-28 21:40:42 -0300 | Ledger Explorer: infinite scroll instead of click-to-show-all (PR8) (#400)
-1d6ecaf | 2026-09-28 21:35:58 -0300 | Ledger Explorer: expand a transaction inline on click (PR7) (#399)
-4c561e1 | 2026-09-28 21:33:55 -0300 | Ledger Explorer: self-reference truesight.me in buildLedgerExplorerLink (#398)
-afaa04c | 2026-09-28 21:25:33 -0300 | Ledger Explorer: host it on truesight.me (PR5, re-scoped) (#397)
 ```
 
 ### `market_research` → `go_to_market`
@@ -319,6 +305,8 @@ afaa04c | 2026-09-28 21:25:33 -0300 | Ledger Explorer: host it on truesight.me (
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+78a3276 | 2026-10-06 15:32:48 -0300 | chore(previews): refresh Beer Hall preview (2026-10-06 UTC)
+bb81fe6 | 2026-10-06 15:32:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-06 UTC)
 c1b9bf3 | 2026-10-05 22:39:41 -0300 | docs(black-king): §5.10 col R — Ilheus trio AGL4->MAIN (AGL4 is COMPLETED) (#1513)
 cd8ef51 | 2026-10-05 22:29:44 -0300 | docs(black-king): §5.10 add col R 'Ledger Name' + confirm AGL4 != MAIN (#1512)
 fdbc32b | 2026-10-05 21:14:45 -0300 | chore(previews): refresh Beer Hall preview (2026-10-06 UTC)
@@ -357,8 +345,6 @@ c0744f8 | 2026-10-03 20:49:07 -0300 | docs: rename COURIER.md → TRUESIGHT_MEDI
 5ea09de | 2026-10-03 19:04:47 -0300 | handoffs: refresh MAP intake plan resume pointer (#1491)
 7deb26b | 2026-10-03 08:53:59 -0300 | chore(previews): refresh Beer Hall preview (2026-10-03 UTC)
 c98c136 | 2026-10-03 08:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-03 UTC)
-27a6335 | 2026-10-02 18:22:09 -0300 | Rev 15: reissue Commercial Invoice + Packing List at airport-measured gross 349 kg (#1490)
-3237a92 | 2026-10-02 18:19:54 -0300 | Freight runbook: airport weighing weight divergence — reissue CI/PL at gross 349 kg (#1489)
 … (truncated)
 ```
 
@@ -366,9 +352,6 @@ c98c136 | 2026-10-03 08:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 
 ```
 3c36cac | 2026-09-30 12:39:43 -0300 | Fix expense ledger double-write: non-blocking lock + destination-side idempotency guard (#578)
-60eeab0 | 2026-09-29 11:12:48 -0300 | Payout sink: book cash leg when committed tree's QR ledger IS main (#577)
-d96679c | 2026-09-29 01:06:56 -0300 | Payout sink: dedup on (bank_ref, tree_planting_id) so one transfer can settle N trees (#576)
-ecb2b27 | 2026-09-28 22:37:02 -0300 | feat(sunmint): QR-safe duplicate-row collapse lever (no linked tree dedup'd away) (#575)
 ```
 
 ### `dapp` → `dapp`
@@ -412,7 +395,6 @@ bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, a
 d9705f2 | 2026-10-01 13:53:44 +0000 | chore: refresh currencies.json [skip ci]
 0092a7c | 2026-09-30 12:59:59 +0000 | chore: refresh currencies.json [skip ci]
 7f85571 | 2026-09-30 12:39:54 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-d4d05ba | 2026-09-29 12:58:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -509,7 +491,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 0 | 18484.34386 | 10/6/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-29`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-30`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
