@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-07T06:17:54Z`
+- Generated (UTC): `2026-10-07T23:14:59Z`
 - Look-back: **7** calendar days (`2026-09-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,34 +32,35 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
+- `[CONTRIBUTION EVENT]` × 18
 - `[PRACTICE EVENT]` × 4
-- `[SALES EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 15
+- `[CURRENCY CONVERSION EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+- _free-form (no bracket tag)_ × 17
 
 ### Latest entries
 
-- `Edgar_20261003214513_060` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Bringing Elizabeth to oscar’s farm to checkout the trees and photoshop for t…
-- `Edgar_20261003220203_062` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Obtained contact information for Juliana, sister of Oscar (Fazenda, Bahia) w…
-- `Edgar_20261003220838_064` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Juliana - Oscar (Bahia) · Contributor Email: · Submission Source: truesight_autopilot (Sophia) - governor Gary Teh instruction
-- `Edgar_20261003233748_066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Build local media upload pipeline (Courier) — daemon, menu-bar app, docs, MA…
-- `Edgar_20261003233804_068` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Direct local media upload pipeline (Courier) — decisions & review
-- `Edgar_20261004130536_070` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-04T13:05:34.810Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261004170131_072` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261004221704_074` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20261004224527_076` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261005114443_078` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-05T11:44:41.400Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261005151911_080` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261006144009_082` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-06T14:40:06.782Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261006150312_084` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Gary Teh · Type: Time (Minutes) · Amount: 15
-- `Edgar_20261006154835_086` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20261006171620_088` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20261006193523_090` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261006195904_092` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261006195837_admin_sophia_4ac1b8440e76348edb1d… · DAO Member Name: Gary Teh
 - `Edgar_20261007001338_094` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261007001311_admin_sophia_ef398f3b068a7f354ded… · DAO Member Name: Gary Teh
 - `Edgar_20261007015649_096` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
 - `Edgar_20261007035317_098` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Filed FDA Prior Notice F26X30142399 (Black King cacao, 9 articles, SFO air)
+- `Edgar_20261007111955_100` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-07T11:19:53.025Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261007133116_102` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: AGL16 · Ledger URL: https://docs.google.com/spreadsheets/d/1xesQdwcNt9lBxAUgtdqNwHE83n13wDyRxZIN4… · Warehouse Manager: Gary Teh
+- `Edgar_20261007133120_104` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Cacao Almonds KG from Oscar's farm - AGL16 (2026) · Amount: 108 · Fund Handler: Matheus Reis
+- `Edgar_20261007133322_106` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261007133510_108` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261007133845_110` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261007145003_112` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Traveled to CIC (Centro de Inovacao do Cacau, Ilheus BA) and dropped off 3 c…
+- `Edgar_20261007145101_114` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Loaded 108 kg of cacao beans from Oscar's 2026 harvest (Oscar's Farm, Bahia)…
+- `Edgar_20261007152446_116` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261007161643_118` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261007205642_120` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261007_santos_santa_clara_to_ilheus_hotel_112.… · DAO Member Name: Gary Teh
+- `Edgar_20261007205850_122` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261007_coopercabruca_to_santos_santa_clara_17.… · DAO Member Name: Gary Teh
+- `Edgar_20261007210355_124` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Visit
+- `Edgar_20261007210923_126` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Generated FDA product-code mapping for PN F26X30142399 (for Daniela)
+- `Edgar_20261007210925_128` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Generated FDA product-code mapping for PN F26X30142399 (for Daniela)
 
 ---
 
@@ -195,12 +196,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 32 SKU lines · 2,266.22 total units · $8,566.95
+- Manager record: `Matheus Reis` · 33 SKU lines · 2,360.22 total units · $9,876.98
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 1,038 | $722.13 |
-  | (uncategorized) | (unspecified) | 19 | 360.13 | $1,070.55 |
+  | (uncategorized) | (unspecified) | 20 | 454.13 | $2,380.58 |
   | Cacao Bean | Bulk | 3 | 328.59 | $574.54 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Tea | Bulk | 5 | 155.50 | $1,577.59 |
@@ -269,6 +270,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-30 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d8953e0 | 2026-10-07 13:47:51 +0000 | chore(stats): refresh stats indexes [skip ci]
+81d402d | 2026-10-07 06:22:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 1cd9948 | 2026-10-06 22:45:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 53a513c | 2026-10-06 18:34:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -305,6 +308,8 @@ b64e150 | 2026-09-30 12:56:14 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a3c4c08 | 2026-10-07 03:18:13 -0300 | chore(previews): refresh Beer Hall preview (2026-10-07 UTC)
+7f76863 | 2026-10-07 03:18:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-07 UTC)
 78a3276 | 2026-10-06 15:32:48 -0300 | chore(previews): refresh Beer Hall preview (2026-10-06 UTC)
 bb81fe6 | 2026-10-06 15:32:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-06 UTC)
 c1b9bf3 | 2026-10-05 22:39:41 -0300 | docs(black-king): §5.10 col R — Ilheus trio AGL4->MAIN (AGL4 is COMPLETED) (#1513)
@@ -343,8 +348,6 @@ c0744f8 | 2026-10-03 20:49:07 -0300 | docs: rename COURIER.md → TRUESIGHT_MEDI
 860f7d8 | 2026-10-03 19:24:30 -0300 | MAP plan: document stills source_zip as accepted gap (§4.2) (#1493)
 70d1971 | 2026-10-03 19:22:26 -0300 | docs: add COURIER.md — local media upload daemon (Mac → Sophia /media/to_process) (#1492)
 5ea09de | 2026-10-03 19:04:47 -0300 | handoffs: refresh MAP intake plan resume pointer (#1491)
-7deb26b | 2026-10-03 08:53:59 -0300 | chore(previews): refresh Beer Hall preview (2026-10-03 UTC)
-c98c136 | 2026-10-03 08:53:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-03 UTC)
 … (truncated)
 ```
 
@@ -381,6 +384,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f01b53c | 2026-10-07 13:29:35 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 22f9054 | 2026-10-06 13:37:16 +0000 | chore: refresh currencies.json [skip ci]
 30fbdd4 | 2026-10-06 13:22:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 61f1230 | 2026-10-05 15:17:55 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -489,7 +493,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/6/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/7/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-30`; scanned last **600** data rows)
 
