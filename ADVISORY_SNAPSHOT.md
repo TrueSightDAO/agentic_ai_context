@@ -20,47 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-07T23:14:59Z`
-- Look-back: **7** calendar days (`2026-09-30` → today UTC)
+- Generated (UTC): `2026-10-08T05:02:57Z`
+- Look-back: **7** calendar days (`2026-10-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 18
-- `[PRACTICE EVENT]` × 4
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- `[CURRENCY CONVERSION EVENT]` × 1
-- `[ASSET RECEIPT EVENT]` × 1
-- _free-form (no bracket tag)_ × 17
-
-### Latest entries
-
-- `Edgar_20261006193523_090` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261006195904_092` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261006195837_admin_sophia_4ac1b8440e76348edb1d… · DAO Member Name: Gary Teh
-- `Edgar_20261007001338_094` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261007001311_admin_sophia_ef398f3b068a7f354ded… · DAO Member Name: Gary Teh
-- `Edgar_20261007015649_096` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261007035317_098` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Filed FDA Prior Notice F26X30142399 (Black King cacao, 9 articles, SFO air)
-- `Edgar_20261007111955_100` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-07T11:19:53.025Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261007133116_102` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: AGL16 · Ledger URL: https://docs.google.com/spreadsheets/d/1xesQdwcNt9lBxAUgtdqNwHE83n13wDyRxZIN4… · Warehouse Manager: Gary Teh
-- `Edgar_20261007133120_104` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Cacao Almonds KG from Oscar's farm - AGL16 (2026) · Amount: 108 · Fund Handler: Matheus Reis
-- `Edgar_20261007133322_106` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261007133510_108` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261007133845_110` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261007145003_112` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Traveled to CIC (Centro de Inovacao do Cacau, Ilheus BA) and dropped off 3 c…
-- `Edgar_20261007145101_114` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Loaded 108 kg of cacao beans from Oscar's 2026 harvest (Oscar's Farm, Bahia)…
-- `Edgar_20261007152446_116` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261007161643_118` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261007205642_120` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261007_santos_santa_clara_to_ilheus_hotel_112.… · DAO Member Name: Gary Teh
-- `Edgar_20261007205850_122` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261007_coopercabruca_to_santos_santa_clara_17.… · DAO Member Name: Gary Teh
-- `Edgar_20261007210355_124` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Visit
-- `Edgar_20261007210923_126` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Generated FDA product-code mapping for PN F26X30142399 (for Daniela)
-- `Edgar_20261007210925_128` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Generated FDA product-code mapping for PN F26X30142399 (for Daniela)
 
 ---
 
@@ -232,16 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+31 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,853.36**
-- Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
-- USD provisioned for voting-rights cash-out: **$56.26**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (0 rows)
+### In-transit freight
 
-_No `Shipment Ledger Listing` rows match in-flight status keywords today._
-
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -251,7 +210,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-09-30 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-01 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +229,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-09-30 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+de46cc3 | 2026-10-07 23:16:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 d8953e0 | 2026-10-07 13:47:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 81d402d | 2026-10-07 06:22:20 +0000 | chore(stats): refresh stats indexes [skip ci]
 1cd9948 | 2026-10-06 22:45:44 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -294,9 +254,6 @@ d5eaaa5 | 2026-10-02 06:05:13 +0000 | chore(stats): refresh stats indexes [skip 
 6979798 | 2026-10-01 22:51:53 +0000 | chore(stats): refresh stats indexes [skip ci]
 fba68ad | 2026-10-01 13:48:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 7d79dfa | 2026-10-01 06:27:02 +0000 | chore(stats): refresh stats indexes [skip ci]
-c0dc5e2 | 2026-09-30 22:31:59 +0000 | chore(stats): refresh stats indexes [skip ci]
-b64e150 | 2026-09-30 12:56:14 +0000 | chore(stats): refresh stats indexes [skip ci]
-3528830 | 2026-09-30 05:53:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -308,6 +265,8 @@ b64e150 | 2026-09-30 12:56:14 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ce69546 | 2026-10-07 20:15:19 -0300 | chore(previews): refresh Beer Hall preview (2026-10-07 UTC)
+b1488d3 | 2026-10-07 20:15:18 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-07 UTC)
 a3c4c08 | 2026-10-07 03:18:13 -0300 | chore(previews): refresh Beer Hall preview (2026-10-07 UTC)
 7f76863 | 2026-10-07 03:18:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-07 UTC)
 78a3276 | 2026-10-06 15:32:48 -0300 | chore(previews): refresh Beer Hall preview (2026-10-06 UTC)
@@ -346,15 +305,13 @@ b5930ff | 2026-10-03 20:56:39 -0300 | MAP: record courier queue manifest as mach
 c0744f8 | 2026-10-03 20:49:07 -0300 | docs: rename COURIER.md → TRUESIGHT_MEDIA_COURIER.md (truesight_media_* naming) (#1495)
 4d5614e | 2026-10-03 20:11:14 -0300 | MAP: file #36 backfill scope+divergence gap (thread 30550); record ilheus cards (#1494)
 860f7d8 | 2026-10-03 19:24:30 -0300 | MAP plan: document stills source_zip as accepted gap (§4.2) (#1493)
-70d1971 | 2026-10-03 19:22:26 -0300 | docs: add COURIER.md — local media upload daemon (Mac → Sophia /media/to_process) (#1492)
-5ea09de | 2026-10-03 19:04:47 -0300 | handoffs: refresh MAP intake plan resume pointer (#1491)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
-3c36cac | 2026-09-30 12:39:43 -0300 | Fix expense ledger double-write: non-blocking lock + destination-side idempotency guard (#578)
+_(no commits on origin/main in window)_
 ```
 
 ### `dapp` → `dapp`
@@ -397,8 +354,6 @@ bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, a
 762d8cb | 2026-10-02 13:10:22 +0000 | chore: refresh currencies.json [skip ci]
 10cb1a7 | 2026-10-02 12:40:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d9705f2 | 2026-10-01 13:53:44 +0000 | chore: refresh currencies.json [skip ci]
-0092a7c | 2026-09-30 12:59:59 +0000 | chore: refresh currencies.json [skip ci]
-7f85571 | 2026-09-30 12:39:54 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -423,6 +378,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-10-08T050257Z_agl-shipments-complete-hawb-issued-oscar-loaded.md`
+
+- **posted_at_utc:** `2026-10-08T05:02:57Z`  
+- **slug:** `agl-shipments-complete-hawb-issued-oscar-loaded`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Shipments Completed** — AGL4 and AGL7 moved to COMPLETED; AGL8 + AGL14 advanced to SALES IN PROGRESS on site.
+
 ### `beer-hall_2026-09-29T044723Z_ledger-explorer-shipped-payout-filter-prod-gate.md`
 
 - **posted_at_utc:** `2026-09-29T04:47:23Z`  
@@ -440,15 +404,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **SunMint** — Plot Explorer shell and supervision claim registered; production handoff delegated to Envoy.
-
-### `beer-hall_2026-09-19T033952Z_gas-security-and-black-king-declaration.md`
-
-- **posted_at_utc:** `2026-09-19T03:39:52Z`  
-- **slug:** `gas-security-and-black-king-declaration`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Security** — Hardened GAS deployment pipeline: fail-closed on unverifiable pushes and added pre-push guards to prevent accidental deletion of remote-only files.
 
 ---
 
@@ -469,40 +424,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/7/2026 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-09-30`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_24 | — | — |
-| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_23 | — | — |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
