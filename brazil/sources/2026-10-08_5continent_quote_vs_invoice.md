@@ -3,7 +3,7 @@
 > **Source docs:** quote email `brazil/sources/2026-08-26_5continent_rate_quote.pdf` (Graziela Vedana, 26 Aug 2026);
 > invoice `brazil/sources/2026-10-07_5continent_invoice_1026-08.pdf` (n 1026-08, 07 Oct 2026).
 > **PDFs:** original line-by-line `brazil/sources/2026-10-08_5continent_quote_vs_invoice_analysis.pdf`;
-> 3-column comparison `brazil/sources/2026-10-08_5continent_quote_vs_invoice_3col.pdf`.
+> 3-column comparison ~with EXTRA subtotal~ `brazil/sources/2026-10-08_5continent_quote_vs_invoice_3col.pdf`.
 
 ## Quote (26 Aug 2026)
 
@@ -51,7 +51,10 @@ Verdicts: **MATCH** = billed as quoted; **EXTRA** = no quote rate, or contrary t
 | Bond (single-entry, if applicable) | 6.00/1,000 + duty, 100 min | - | NOT BILLED |
 | MPF | 0.3464%, 33.58 min | - | NOT BILLED / hidden in Duties? |
 | Trading-company fee (if needed) | 16% + ~4.2% taxes | - | NOT BILLED (good) |
-| **TOTAL** | (rate card only) | **4,866.33** | - |
+| **TOTAL INVOICED** | - | **4,866.33** | - |
+| **- of which MATCH** | 418.53 | **418.53** | quoted and billed as quoted |
+| **- of which VERIFY** | 125.00 | **125.00** | conditional - confirm the case |
+| **- CHARGED AS EXTRA** | **n/q (0.00 quoted)** | **4,322.80** | **88.8% of the bill is extra** |
 
 ## Bucket subtotals
 
@@ -59,10 +62,8 @@ Verdicts: **MATCH** = billed as quoted; **EXTRA** = no quote rate, or contrary t
 |---|---|---|---|
 | **MATCH** - quoted and billed as quoted | 4 | **418.53** | 8.6% |
 | **VERIFY** - conditional quote term | 1 | **125.00** | 2.6% |
-| **EXTRA** - unquoted / contrary to quote | 10 | **4,322.80** | 88.8% |
+| **EXTRA** - charged as extra (not quoted) | 10 | **4,322.80** | 88.8% |
 | **TOTAL invoiced** | 15 | **4,866.33** | 100% |
-
-Only **8.6%** of this bill ($418.53) was actually priced in the quote.
 
 ## Key issues
 
