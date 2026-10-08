@@ -321,6 +321,25 @@ Commercial invoice (declared values, USD):
 
 ---
 
+## Shipment 15 — 2026-10-09 · Cacao Nibs 96 × 320 g (+ 900 g sample)
+
+- **Carrier:** **hand-carried** (LATAM **LA8086**, GRU → LAX; onward **CX885** LAX → Hong Kong) — Entry Type *Baggage*, NOT Correios
+- **Booking refs:** `HOKQPQ` (LA8086) · `FOYOHB` (CX885)
+- **Consignee:** Elizabeth Wong (transit; final destination Hong Kong)
+- **FDA PN:** Envelope `F26X30002190`, entry `+++-4207003-0` (FFR 12202640780), arrival 2026-10-09 07:40 — 2 food articles, confirmations `260636655086` / `260636655090`
+- **Evidence:** `2026-10-08_fda_prior_notice_F26X30002190.pdf`, `exports/2026-10-09_commercial_invoice_black_king_to_truetech_final_EN_PT_BRL.pdf`
+
+Commercial invoice INV-2026-1009-001 (declared values, USD, origin / ex-works basis):
+
+| # | Item | Qty | Unit price (USD) | Total (USD) |
+|---|---|---|---|---|
+| 1 | Cacao Nibs | 96 bags × 320 g = 30.72 kg | 24.6185 /kg | 756.28 |
+| 2 | Cacao Nibs (sample) | 900 g | 0.00 | 0.00 |
+
+**Declared total: USD 756.28** / R$ 3,776.48 (BACEN PTAX 5.0119, 2026-10-08). FOB Brazil; US transit en route to Hong Kong. **First post-EO hand-carried shipment included** (filed PN + commercial invoice on record), unlike #14.
+
+---
+
 ## Summary — pre-export origin value by shipment
 
 | # | Date | Carrier | Contents | Origin value (USD) |
@@ -339,10 +358,12 @@ Commercial invoice (declared values, USD):
 | 12 | 2025-06-06 | Correios | ceremonial cacao + husk/tea | *(no qty on PN)* |
 | ~~13~~ | ~~2025-06-27~~ | ~~Correios~~ | ~~ceremonial bars + caramelized~~ — **never shipped, excluded per governor** | ~~627.80~~ |
 | ~~14~~ | ~~2025-10-09~~ | ~~hand-carried~~ | ~~10 × 200 g ceremonial~~ — **excluded per governor** | ~~50.00~~ |
+| 15 | 2026-10-09 | hand-carried (LATAM LA8086) | 96 × 320 g nibs + 900 g sample | 756.28 |
 
-**Total measurable origin value: ≈ USD 4,884.60** across the shipments with quantifiable line items
-(excluding #12 [no qty], **#14 hand-carried**, and **#8 / #13 [never shipped]**). Total weight
-≈ **182.67 kg**. **Open:** a
+**Total measurable origin value: ≈ USD 5,640.88** across the shipments with quantifiable line items
+(incl. **#15** hand-carried 2026-10-09, which has a filed PN + commercial invoice; excluding #12 [no qty],
+**#14 hand-carried 2025-10-09**, and **#8 / #13 [never shipped]**). Total weight
+≈ **214.29 kg**. **Open:** a
 governor note that *a ceremonial-cacao shipment from AGL8 did not pass through* is pending
 confirmation of the exact manifest line before a row is flagged.
 
