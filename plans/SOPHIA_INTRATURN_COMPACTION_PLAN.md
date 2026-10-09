@@ -62,9 +62,20 @@ most recent N rounds' raw tool output plus the running summary.
 | 3 | Validate against the real 94K/72K fixtures from Unit 0 — confirm the turn still completes correctly post-compaction, no dangling tool_calls, and (if reproducible) confirm the DSML-token-leak failure mode doesn't recur on the compacted version | PR + validation checkpoint, same pattern as the original plan's manual-tool-first rollout |
 | 4 | Deploy + monitor for a day of real heavy-round-count turns before considering this done | Gate — confirm real improvement, not just passing tests |
 
-**RESUME HERE: Unit 1.** Unit 0 (fixture capture) shipped 2026-09-14 —
-`truesight_autopilot` PR #446 (merged, sha `b9bf9a4`), independently re-verified
-2026-10-09 via `gh`/API (`state: closed, merged: true`).
+**RESUME HERE: Unit 2.** Unit 0 (fixture capture) shipped 2026-09-14 —
+`truesight_autopilot` PR #446 (merged, sha `b9bf9a4`). Unit 1 (the intra-turn
+folding function) shipped 2026-10-09 — `truesight_autopilot` PR #523 (squash
+`43df6f1`): `app/context_compaction.py` gains `find_open_turn_start`,
+`_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, and
+`compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000,
+round_threshold=8)`. CI's one failing test on first run
+(`test_reaction_go_does_not_deadlock_on_thread_lock`) was independently
+confirmed pre-existing/unrelated flake before merge — the PR only touches
+`context_compaction.py` + its own test file; the test passed 6/6 locally in
+isolation and green on CI re-run. Both independently re-verified via `gh`/API
+(`state: closed, merged: true`) on 2026-10-09. Unit 2 (wire the new check into
+the existing per-round `_maybe_auto_compact` call sites) is not yet started —
+`compact_open_turn` exists but nothing calls it yet.
 
 ## UAT
 
