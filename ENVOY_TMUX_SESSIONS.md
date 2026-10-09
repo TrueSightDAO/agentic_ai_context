@@ -42,13 +42,31 @@ A standing reflection / analysis role. Produces notes and written reflections on
 state, strategy, and trajectory — not code, not PRs, not shared-repo mutations. Use the
 `oracle_reflections/` convention (private, not public) where appropriate.
 
-## Recovery (after reboot / disconnect)
+## Spin-up (one command)
+
+The box has a repeatable spin-up script that recreates all 4 sessions with remote control and
+pre-approved permissions:
 
 ```bash
-ssh nelanco-claude
-tmux new-session -d -s <role>
-tmux send-keys -t <role> 'claude --name <role> --remote-control <role>' Enter
+ssh nelanco-claude ~/bin/envoy-spinup.sh
 ```
 
-The session then reads this file + `OPERATING_INSTRUCTIONS.md` and adopts its role. The remote-control
-URL is printed to the pane; relay it to Gary to connect from the mobile app.
+The script: (a) kills any existing sessions and recreates `supervisor`, `planner`, `analyst`,
+`private-reflections` tmux sessions; (b) starts `claude --name <role> --remote-control <role>` in
+each; (c) auto-confirms the "trust this folder" prompt; (d) sends the role-adoption prompt; (e)
+auto-approves lingering permission prompts; (f) prints the remote-control URLs for Gary's mobile app.
+
+**Pre-configured permissions** live in `~/.claude/settings.json` (Read/Edit/Write on
+`/opt/claude_workspace/**` + `/home/ubuntu/**`, and Bash for git/gh/tmux/curl/ssh/python/node/
+cat/grep/find/etc.) so sessions don't stall on prompts for ordinary work. Remaining prompts are the
+intentional safety nets (the `cd … && git …` hook check, and anything touching credentials).
+
+**Gotchas that caused repeated manual re-setup (root-caused 2026-10-09):**
+
+- A **reboot kills tmux sessions** → the script recreates them; for fully hands-off recovery, add a
+  `@reboot` cron or systemd user unit that runs `~/bin/envoy-spinup.sh`.
+- The `~/.local/bin/claude` symlink can go **stale after an auto-update** (`…/versions/2.1.281` no
+  longer present) → re-point it:
+  `ln -sfn ~/.local/share/claude/versions/$(ls ~/.local/share/claude/versions | sort -V | tail -1) ~/.local/bin/claude`.
+- The box can **disk-full/hang** (sshd "banner exchange" timeout) → watch `df -h /`; the
+  `lineage-credentials/.git` (multi-GB history) is the usual culprit.
