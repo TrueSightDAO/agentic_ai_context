@@ -20,9 +20,48 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-09T05:06:08Z`
+- Generated (UTC): `2026-10-09T06:29:18Z`
 - Look-back: **7** calendar days (`2026-10-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 12
+- `[PRACTICE EVENT]` × 2
+- `[CURRENCY CONVERSION EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+- `[MANAGED LEDGER TRANSACTION EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
+- _free-form (no bracket tag)_ × 24
+
+### Latest entries
+
+- `Edgar_20261007210925_128` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Generated FDA product-code mapping for PN F26X30142399 (for Daniela)
+- `Edgar_20261008131727_130` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-08T13:17:25.092Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261008161059_132` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Generate FDA prior notice + commercial invoice — Elizabeth's hand-carried ca…
+- `Edgar_20261008174322_134` · **Edgar** · [MANAGED LEDGER TRANSACTION EVENT] Ledger Name: AGL14 · Ledger URL: https://docs.google.com/spreadsheets/d/18ZfEddlEwcNYTc6H0FHtfG948yZ8xCWMY_FmS… · Transaction Date: 20261008
+- `Edgar_20261008191359_136` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261008222404_138` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL13
+- `Edgar_20261008222407_140` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261008222411_142` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261008222424_144` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Mold infestation discarded. Matheus's holding of the AGL8 cacao tea …
+- `Edgar_20261009010015_146` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL13
+- `Edgar_20261009010017_148` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261009010020_150` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261009010022_152` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL8
+- `Edgar_20261009010636_154` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Missing - not found in Matheus Reis's holdings during inventory reco…
+- `Edgar_20261009010638_156` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Mold infestation discarded. Expensing off per Gary Teh, reconciled 2…
+- `Edgar_20261009010641_158` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Mold infestation discarded. Expensing off per Gary Teh, reconciled 2…
+- `Edgar_20261009010643_160` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Mold infestation discarded. Matheus's holding of the AGL8 cacao tea …
+- `Edgar_20261009014017_162` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-10-09T01:40:16.039Z · Email: garyjob@gmail.com
+- `Edgar_20261009024305_164` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Beer Hall (WhatsApp) post + coordination: announced offloading GTM from own …
+- `Edgar_20261009025058_166` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 
 ---
 
@@ -194,13 +233,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+31 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,853.24**
+- Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
+- USD provisioned for voting-rights cash-out: **$56.38**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -265,6 +307,8 @@ d5eaaa5 | 2026-10-02 06:05:13 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6aa6481 | 2026-10-09 02:06:27 -0300 | Merge pull request #1543 from TrueSightDAO/auto/advisory-refresh-2026-10-09
+9a5d9f1 | 2026-10-09 05:06:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-09 UTC)
 cba6d6b | 2026-10-09 01:42:50 -0300 | Record cooperative-first sourcing + Ilhéus warehouse wind-down decision (#1542)
 44a6967 | 2026-10-09 00:19:54 -0300 | Merge pull request #1541 from TrueSightDAO/exec/intraturn-compaction-unit1-merged-20261009
 6e17b3e | 2026-10-09 03:11:05 +0000 | SOPHIA_INTRATURN_COMPACTION_PLAN: Unit 1 merged (truesight_autopilot#523)
@@ -303,8 +347,6 @@ ae7dedb | 2026-10-08 19:21:17 -0300 | 5 Continent: variance bridge - why 3,510.6
 62075ba | 2026-10-08 14:39:49 -0300 | 5 Continent quote-vs-invoice: re-verified + consistency check (#1521)
 0451a07 | 2026-10-08 14:36:09 -0300 | 5 Continent quote-vs-invoice: add EXTRA subtotal row (#1519)
 b9ea8c7 | 2026-10-08 14:32:15 -0300 | 5 Continent quote-vs-invoice: 3-column comparison (#1518)
-929a06b | 2026-10-08 14:27:16 -0300 | 5 Continent: quote vs invoice line-by-line analysis (#1517)
-203899e | 2026-10-08 14:25:12 -0300 | File + reconcile 5 Continent forwarder invoice no 1026-08 (#1516)
 … (truncated)
 ```
 
@@ -424,6 +466,40 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 0 | 18484.34386 | 10/8/2026 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-02`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_24 | — | — |
+| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_23 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
