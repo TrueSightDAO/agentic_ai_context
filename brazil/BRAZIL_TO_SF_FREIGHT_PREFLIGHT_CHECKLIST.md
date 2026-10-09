@@ -85,6 +85,29 @@ Two different Ilhéus addresses appear in this lane. **Do not conflate them** �
 
 ---
 
+### 2c. Pallet spec — shipping pallets (measured 2026-10-09)
+
+**Measured 2026-10-09** by Gary (tape-measure photos, thread 41062). Records the bare **pallet** footprint — which previously existed **nowhere** (only spilled out across the §1 row, the §5.5 export-doc generator, and `BRAZIL_EXPORT_LANE_LEARNINGS.md`).
+
+| Property | Value | Status |
+|---|---|---|
+| Material | **Plastic HDPE, non-wood** → **ISPM#15 N/A** (no fumigation, no phytosanitary cert) | inferred (§5.5 `pallets_html` + 349 kg flight weight) |
+| Footprint — one edge | **110 cm** (~43.5 in) | ✅ measured 2026-10-09 |
+| Footprint — other edge | _pending_ | ⬜ |
+| Height | _pending_ | ⬜ |
+| Deck type (one-way / rackable / nestable) | _pending_ | ⬜ |
+| Tare | **10 kg each** (2 = 20 kg) | ✅ `BRAZIL_EXPORT_LANE_LEARNINGS.md`; scripts `build_cce.py`, `build_order_de_coleta.py` |
+| Quantity on hand | _pending_ | ⬜ |
+
+**Notes.**
+- ✅ Supports retiring the §1 *"heat-treated pallets"* contradiction in favour of **plastic / non-wood** (confirm with Matheus, then delete that row's stale text).
+- ⚠️ The 2026-10-02 AWB dims (`110×77×90` + `110×104×100 cm`) are **palletized stack** envelopes, **not** bare-pallet dims — do not conflate.
+- ⚠️ A second tape photo in the same thread shows a molded black block (~111 cm) whose identity one vision pass read as a **parking wheel-stop/curb** rather than a pallet; **not** recorded here — object identity unconfirmed.
+- Source photos: `truesight_autopilot_transcript` session `2026-10-09/6414080bc772` (`3f08f4c8b1224a56aeefb373e1618cb9.jpg`; `0de0573398e544a8a161dba661e3ae75.jpg`).
+- Warehouse cross-ref: `brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md` (P5 site physical-facts), `brazil/ILHEUS_WAREHOUSE_FLOOR_MAP.md`.
+
+---
+
 ## 3. Currency & FX rule (BRL / PTAX)
 
 - The **NF-e must be issued in BRL**. The commercial invoice may be USD (or dual USD+BRL).
