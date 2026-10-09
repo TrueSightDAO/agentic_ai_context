@@ -55,6 +55,12 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-10-09T02:49:00Z",
       "note": "thread 29305. Picked up this WIP loop iteration: manifest + plan doc both said 'Unit 0 not yet started' but the live transcript showed Unit 0 (fixture capture) shipped 2026-09-14 (truesight_autopilot#446, independently re-verified merged via gh/API) -- thread had sat dormant 3+ weeks with the stale pointer as the only blocker. Corrected RESUME HERE to Unit 1 (agentic_ai_context#1537) and dispatched Sophia via ping_sophia (session tg:-1003919341801:29305) with the concrete Unit 1 spec (intra-turn folding function in app/context_compaction.py). She self-claimed this plan_file in this file at 02:50:23Z, ran one turn (16 tool calls per journalctl auto-advance log: pr_opened=False made_progress=False), then self-released at 02:55:03Z -- scoping/recon, no PR yet. Own-repo (truesight_autopilot), autonomous merge authority, no money/prod gate. RESUME HERE = Unit 1, needs a follow-up nudge to actually land a PR; not yet blocked_on_human."
+    },
+    {
+      "plan_file": "plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md",
+      "supervisor": "Sophia (autopilot, self)",
+      "claimed_at": "2026-10-09T02:59:19Z",
+      "note": "auto-claim (turn-dispatch)"
     }
   ]
 }
