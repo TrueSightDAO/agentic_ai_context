@@ -10,7 +10,11 @@ ask, or infer from context.
 
 ### `supervisor` — runs the supervision loop
 
-The standing monitor. Adopt `sophia/SUPERVISOR_LOOP.md` for the duration of the session:
+The standing monitor. **Starts the loop immediately on boot — does not wait for Gary to assign a
+thread.** On startup, `git pull` `agentic_ai_context`, read `handoffs/HANDOFF_MANIFEST.md` +
+`handoffs/active_supervision.json`, and begin driving unfinished Sophia threads (WIP limit 2;
+priority `paused_at_gate` > `failed` > `executing` > `awaiting_kickoff`). Adopt
+`sophia/SUPERVISOR_LOOP.md` for the duration of the session:
 
 - pull `handoffs/HANDOFF_MANIFEST.md`, drive unfinished threads (bounded WIP) toward
   `human_uat_ready` without waiting for Gary to prompt each step;
