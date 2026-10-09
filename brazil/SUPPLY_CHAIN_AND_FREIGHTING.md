@@ -56,6 +56,37 @@ https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK
 
 ---
 
+### 2.4 Warehouse floor map (Ilhéus)
+
+Reference map for the **Matheus warehouse (Ilhéus, Brazil)**. Companion docs: **`ILHEUS_WAREHOUSE_MANAGEMENT.md`** (action register) and **`ILHEUS_WAREHOUSE_FLOOR_MAP.md`** (canonical transcription).
+
+**Source:** whiteboard photograph, 2026-10-09 (thread 41062), transcribed verbatim. **Unaudited working reference** — the Main Ledger + **offchain asset location** (§2.1) remain authoritative for quantities. Photo: `images/ilheus_warehouse_whiteboard_20261009.jpg`.
+
+```
+MAP
+
+[ Door ]                          [   Table   ]
+
+  +---------------+--------------+--------------+
+  | FUMIGATION    | Oscar.       |              |
+  |    29th Sept  | 2026.        |   [BLANK]    |
+  | Paulo         | AGL 16       |              |
+  | Beans 2024.   | 108 kg       |              |
+  | 263.58 kg.    |              |              |
+  | AGL 8         |              |              |
+  +---------------+--------------+--------------+
+```
+
+**Shelving (right column):** F5 packet · trolley · plastic bags · kraft pouch (nibs) · kraft pouch (caramel) · 6× 80-mesh nibs · **20× chocolate mold** · label maker · weighing machine · tape.
+
+**Ledger cross-check:**
+
+- `FUMIGATION · 29 Sept · Paulo Beans 2024 · 263.58 kg · AGL 8` — matches AGL8 ledger lines (note: the 2026-10-08/09 Matheus write-off touches AGL8).
+- `Oscar 2026 · AGL 16 · 108 kg` — matches the 2026-10-07 load into AGL16.
+- `20× chocolate mold` — reconciles with ledger holding `Chocolate Mold MHC-CL082` (Matheus = 21 units; ~20 shelved, one in use).
+
+---
+
 ## 3. Freighting: “Options for freighting these to Kirsten warehouse in San Francisco”
 
 ### 3.1 Matheus (Ilhéus, Brazil) → Kirsten (San Francisco): always freight
