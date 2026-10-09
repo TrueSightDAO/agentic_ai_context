@@ -39,6 +39,35 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Managed-ledger expense rows fail STRICT data-validation → processor's atomic 6-col write is rejected (A+B only)
+**Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small (diagnosis done; fix = decide guard behaviour).**
+
+**Symptom.** A managed-ledger expense row (AGL13 `Transactions` r26; AGL8 r184) landed as **Date + Description only** (A,B) with **C–F empty** — the `Edgar Scoring Hash Key` footer WAS present, so the processor's managed branch *did* run, yet only 2 cells persisted. Because `Balance` is a live query `=Query(... "select E, sum(D) where F='Assets' group by E,F")`, an incomplete row does NOT net → the written-off holding stayed on the books.
+
+**Root cause (confirmed 2026-10-09).** Columns C/E/F on AGL `Transactions` carry **strict** `ONE_OF_RANGE` data validation:
+- `C` → `=Entities!$A$2:$A$1745` (currently only 13 entries; **the entity, e.g. `Matheus Reis`, is absent**)
+- `E` → `=State!$A$2:$A$1000` (**`#REF!`/empty** — a connected sheet needing a desktop browser)
+- `F` → `=State!$D$2:$D$1000` (ok)
+
+`InsertExpenseRecords` writes the managed row with a single atomic `setValues` of 6 cells; when C/E fails strict validation **the whole write is rejected**, leaving the pre-existing A+B. So the processor's managed path is silently coupled to the health of the `Entities`/`State` source ranges. (The offchain branch writes 5 cells to the Main Ledger and was unaffected.)
+
+**Why it matters.** Any entity/asset label not present in those source ranges makes the write a no-op that still leaves a hash footer — indistinguishable from success at the row level, and the destination-side idempotency guard then refuses a re-file. **Blast radius:** every managed ledger (AGL*) is exposed while `State!A2:A1000` is `#REF!`.
+
+**Proposed fix (~small).** Decide and implement one of: (a) have `InsertExpenseRecords` write C–F with `valueInputOption=RAW` / by first clearing validation on the target row (what the 2026-10-09 repair did); (b) widen/repair the `Entities` + `State` source ranges so the labels validate; or (c) make the processor detect the rejection (read back C–F after write) and alert rather than silently leaving a shell row. Also grep all AGL ledgers' `State!A1` for `#REF!` — a shared template may have broken broadly (cf. the AGL9 entry).
+
+**Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-09: AGL13 `Transactions!C26` validation `ONE_OF_RANGE =Entities!$A$2:$A$1745`; `Entities` A2:A1745 = 13 rows (no `Matheus Reis`); `State!A1` = `#REF!`; the repaired write succeeded only after `clearDataValidations()` on the target row. Repair used the `agroverse-ledger-manager` SA (the ledgers' write-capable principal).
+
+### `deploy_gas_project` reverts UNCOMMITTED tracked files — a dirty `Code.js` silently drops out of the deployed version
+**Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small.**
+
+**Symptom.** A guarded `doGet` branch added to the processor's tracked `Code.js` (uncommitted, working-tree edit) executed on Apps Script **version @18**, but by the **@19** push `Code.js` in the working tree had been **reverted** (`grep` = 0 matches) while the **untracked** sibling `ExpenseRepair.js` persisted to remote. Result: @19's deployed `Code` lacked the branch and `/exec` fell through to the default handler. Nothing was broken in prod (@19 remained a functionally pristine processor), but the surprise cost several rounds.
+
+**Root cause / hypothesis.** The `deploy_gas_project` path (a `clasp push --force` with a selective pull-first step, tokenomics `scripts/deploy_gas_project.py`) does not gate on a dirty tracked working tree, so a concurrent writer / reset can revert tracked edits before push. Untracked files are unaffected.
+
+**Proposed fix (~small).** Make `deploy_gas_project` **refuse to push when a tracked file in the project folder is dirty** (or stash+report), and print the git status of the folder before every push. Cheaper alternative: always edit via a tracked file + commit before deploy. Either way, an operator/agent should never rely on an uncommitted edit surviving a GAS deploy.
+
+**Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-09: `Deployments.get(@19)`/`content?versionNumber=19` → `Code` has NO `repairMatheusWriteoff_41062`; local `git status` showed only untracked `ExpenseRepair.js`; @18 (same day, earlier push) DID contain the branch. Deploy ledger rows `deploy_20261009T022858Z`/`T023232Z` (project `19Wag9x-sjbLVgIsPh2vj90ZG7Rgq2iGaVOomAeAvtg6CdZKJHLZ9AJrC`).
+
 ### Chinese trademark DB tool (`go_to_market/trademark_search`) — pure-Chinese marks unreadable + TMview cross-check unreachable
 **Filed 2026-10-05 (thread 40444). Owner: unclaimed. Small.**
 
