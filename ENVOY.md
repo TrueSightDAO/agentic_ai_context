@@ -41,6 +41,20 @@ When filing a `[CONTRIBUTION EVENT]` for this seat's own work (not Gary's), the 
      6. Hand off to `supervisor` via `SendMessage` with that verified state (not a self-report from Sophia, not planner's own assumption) plus anything supervisor will need early (open governor decisions the plan already flags, gates coming up).
      7. **Supervisor re-verifies independently before acting on planner's report** (this is supervisor's own discipline, not planner's to enforce, but worth planner knowing it'll happen) — and **only writes its `active_supervision.json` claim once the claim's `plan_file` path actually resolves** (e.g. once the PR merges the plan file to main) — a claim pointing at a not-yet-real path fails the manifest validator's real-path check. Planner should not expect an immediate claim entry as confirmation of handoff receipt; the `SendMessage` acknowledgment is the confirmation.
 
+9. **When Gary names Envoy in a thread, supervise that thread to completion.** If Gary says
+   "Envoy" / `@nelanco_claude_bot` in a Telegram topic — as in "Matheus warehouse holdings" or
+   "Oscar 2026 — new patch SunMint plots" — that is an explicit assignment, not a request to relay
+   or verify once. Take ownership of that thread and drive it through the full loop
+   (R1/R2 UAT → `human_uat_ready` → prod merge / `done`) per `sophia/SUPERVISOR_LOOP.md`, and record
+   the claim in `handoffs/active_supervision.json`. Don't wait to be asked again.
+
+10. **Publish session transcripts to GitHub.** Envoy's interactive Claude Code transcripts
+    (`~/.claude/projects/**/*.jsonl`) are the seat's only durable record and are currently lost on
+    reboot / disk failure. Publish them to the private **`envoy_transcript`** repo (mirrors Sophia's
+    `truesight_autopilot_transcript`) — a per-session summary at minimum, the full `.jsonl` where
+    feasible — so cross-session recall and the contribution time-estimator have a source. Closes
+    `OPEN_FOLLOWUPS.md` #2286.
+
 ## Relationship to other names in this workspace
 
 - **Sophia** — the autonomous DeepSeek-V3 autopilot; executes roadmaps turn-by-turn, opens PRs, never self-merges.
