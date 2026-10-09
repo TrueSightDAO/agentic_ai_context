@@ -39,6 +39,42 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Cooperative-first sourcing — route independent farmers into cooperative membership (not just a redirect)
+**Filed 2026-10-09 (thread 780). Owner: unclaimed. Small (doc + handoff page).**
+
+**Context.** Governor decision 2026-10-09: the DAO stops handling independent farmers directly ("more hassle than worth it"); all sourcing funnels through the producer cooperatives. But a *redirect* is not a *route* — Coopercabruca "only converts/exports beans from OWN members" and "cannot absorb independent warehouse stock" (`BRAZIL_EXPORT_LANE_LEARNINGS.md` §5). So independents (Clara, Analuana, Vivi; and any future farmer reaching out) must **join a cooperative** to move beans through the coop's MAPA + NF-e. Oscar is resolved separately — he has agreed to join Coopercabruca (2026-10-09).
+
+**Proposed fix (~small).** Draft a bilingual (PT+EN) **"independent farmer → Coopercabruca membership" handoff** page: what membership requires, who (Orlantildes) contacts whom, what the farmer commits, and the DAO's non-role. Route future inbound independents to Orlantildes with this page. See `brazil/SUPPLY_CHAIN_SIMPLIFICATION.md`.
+
+**Acceptance.** Page exists; Gary confirms membership criteria with Orlantildes; Vivi's disposition recorded.
+
+### Ilhéus warehouse wind-down — plan the exit and retire the 4 open FDA/FSVP obligations
+**Filed 2026-10-09 (thread 780). Owner: unclaimed. Medium.**
+
+**Context.** Governor decision: no point maintaining the Ilhéus (Black King) warehouse. It currently carries **4 live `OPEN_FOLLOWUPS.md` obligations** (cross-link, do NOT duplicate): (1) 2026-09-12 GMP CAPA (filth/pest finding); (2) warehouse maintenance & pest-control written-assurance addendum (21 CFR 1.511); (3) assign an owner for hygiene/pest-control/inspection-readiness; (4) Black King CNPJ INAPTA. Also, the final stock can only clear via **Coopercabruca's** paperwork (Black King cannot issue export NF-e).
+
+**Proposed fix (~small, doc + ops).** Write an **Ilhéus exit checklist**: (a) clear final beans via the Coopercabruca run (first deliberate run of the new model); (b) cure-and-document OR formally moot the 4 FSVP items in writing; (c) document the disposition (facility no longer used for US FDA-lane storage); (d) confirm the DAO-token warehousing arrangement with Matheus is closed out. See `brazil/SUPPLY_CHAIN_SIMPLIFICATION.md`.
+
+**Acceptance.** Exit checklist merged; the 4 FSVP entries closed (cured or mooted with rationale); Matheus confirms wind-down.
+
+### Demand-signal replacement for the retired Ilhéus prestock
+**Filed 2026-10-09 (thread 780). Owner: unclaimed. Small (decision).**
+
+**Context.** The Ilhéus stockpile served two functions — a lead-time buffer AND a way to "sense demand before committing to a conversion/SKU" (`CACAO_SOURCING_NETWORK_OVERVIEW.md`). With Bahia year-round supply + 5-month PO→port, the DAO is trading inventory risk for **stockout / forecast risk**.
+
+**Proposed fix (~small).** Decide and document the replacement: (a) build a sales-velocity forecast driving PO timing, or (b) accept a 5-month lead and sell harvest-to-order. Update `brazil/SUPPLY_CHAIN_SIMPLIFICATION.md`. **Do not remove the buffer until its replacement is named.**
+
+**Acceptance.** One of (a)/(b) chosen and recorded; any needed metric/tracker filed.
+
+### Pará / CEPOTX factory 2027 — confirm online date + validate export-scale conversion
+**Filed 2026-10-09 (thread 780). Owner: unclaimed. Small.**
+
+**Context.** Jedielcio reports the CEPOTX (Pará) factory comes online **2027**, which (if true at export scale) removes the need to freight Pará beans to Bahia for conversion. Context currently reads "in-network conversion now exists — Fazenda Cleide … **export-scale conversion unproven**; **Bahia still the conversion/export hub for scale**" (`CACAO_SOURCING_NETWORK_OVERVIEW.md`).
+
+**Proposed fix (~small).** Confirm the 2027 date + obtain a nameplate/throughput figure to establish whether it can carry export-scale volume; then update the sourcing overview. Until proven, keep Bahia as the conversion hub.
+
+**Acceptance.** 2027 date confirmed or corrected in context; throughput evidence logged.
+
 ### Managed-ledger expense rows fail STRICT data-validation → processor's atomic 6-col write is rejected (A+B only)
 **Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small (diagnosis done; fix = decide guard behaviour).**
 
