@@ -54,5 +54,37 @@ Ask for the **fumigation certificate / comprovante / laudo** for the 24/09/2026 
 - `brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md` — A3 (two addresses), A4 (register NFS-e), B2 (addendum), C2 (pest-control cadence).
 - `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` — §7 (pallet fumigation line), §5.9 (open items).
 
+## 2025 counterpart — same vendor, same service, 15 months earlier
+
+Found in `fda_fsvp/suppliers/black_king/20250610_warehouse_fumigation.pdf`. **Byte-comparison shows it is the same document *type* from the same issuer** (municipal NFS-e, Itabuna/BA).
+
+| Field | **2025-06-10** | **2026-09-24** | Δ |
+|---|---|---|---|
+| Prestador | ASTRA SUL BAHIA (CNPJ 07.463.430/0001-99) | identical | — |
+| Serviço | 0713 · CNAE 8122200 (dedetização etc.) | identical | — |
+| Tomador | Matheus Reis Pereira (50.042.585/0001-80) | identical | — |
+| Tomador address | Av. Tancredo Neves, 4900 | identical | — |
+| Município de prestação | **Ilhéus – BA** | **Ilhéus – BA** | — |
+| **Value** | **R$ 300,00** | **R$ 405,00** | **+35%** |
+| Payment proof on file | ✅ PIX comprovante | ❌ **none** | ⚠️ |
+
+### Finding 1 — the "cadence" is still NOT evidenced (FSVP B2/C2 stays OPEN)
+
+Two services, **09/06/2025 → 24/09/2026 ≈ 15½ months apart**. Two data points at an irregular interval do **not** demonstrate a *schedule*. The FSVP written-assurance addendum (B2) and the pest-control-cadence action (C2) require a **documented recurring cadence** — this pair is the opposite: it suggests the treatment is **ad hoc**. **Recommendation:** when requesting the certificate, also ask ASTRA for the **service contract / planned cadence** (or state plainly that there is none), so the assurance letter can say what is actually true.
+
+### Finding 2 — the NFS-e itself places the service in **Ilhéus** (helps close gap A3)
+
+The tomador *street* address is the **registered** one (Av. Tancredo Neves, 4900 — matching `entity.json` exactly: *"Avenida Tancredo Neves, 4900, Quadra H, Casa 9"*). **But the `Município de Prestação do Serviço` field reads `Ilhéus - BA`.** That independently corroborates that the treatment was **rendered in Ilhéus** — the municipality where the **R. Cel. Paiva, 46** storage site sits. So the "two storage addresses, no stated linkage" gap (A3) has partial evidence already: the service municipality is Ilhéus; only the street needs confirming on the certificate. *(Register in `entity.json` per A4.)*
+
+### Finding 3 — who actually paid? A reimbursement pattern worth naming
+
+The 2025 file's `20250610_fumigation_invoice.jpeg` is **not an invoice — it is a PIX comprovante**: **Zhiwen Teh (Gary) → Matheus Reis, R$ 300,00, 10/06/2025 19:37**, Nu Pagamentos. So in 2025 the **DAO-side governor paid** a bill invoiced to Matheus.
+
+⚠️ **No payment proof exists for the 2026 R$ 405.** Open item: was it paid, by whom, and does it belong in the shipment cost reconciliation (§5.9 item 3)?
+
+### Finding 4 — CNPJ status records are consistent (no contradiction)
+
+`fda_fsvp/suppliers/black_king/entity.json` says `cadastral_status: "Ativa"`, but its `compiled_at` is **2026-05-26** — which **predates** the INAPTO date of **08/06/2026**. The two records are therefore consistent in time, not contradictory. Worth stating plainly so nobody later mistakes the stale `Ativa` for a live fact.
+
 ## Note
 This is a record of a document the governor surfaced. Nothing was sent and no payment was made or implied.
