@@ -68,19 +68,25 @@ _(Freight weights as cited in Gary's own 2026-10-09 thread-780 note; each shipme
 
 ## 5. Where the hours actually went
 
-Keyword-classified across the 1,243 descriptions (each description assigned to its top-of-mind bucket):
+Keyword-classified across the year's 1,243 descriptions and **weighted by each event's logged minutes** (a description can match several themes; it's credited to the strongest match):
 
-| Theme | Events |
-|---|---:|
-| Supply chain / freight / export (Brazil→US/China) | 158 |
-| AI agents / autopilot / infra | 150 |
-| Commerce / retail / sales / partners | 96 |
-| Origin & tree planting / farms (restoration) | 91 |
-| Marketing / content / community | 88 |
-| Inventory / ledger / QR serialization | 80 |
-| DAO governance / legal / entities | 76 |
+| Theme | Hours | Days | Share |
+|---|---:|---:|---:|
+| Software · AI agents · infra | 449 | 18.7 | 34% |
+| Origin · farms · trees · coop | 251 | 10.5 | 19% |
+| Marketing · content · community | 160 | 6.7 | 12% |
+| Inventory · QR · freight · export | 123 | 5.1 | 9% |
+| Commerce · retail · partners | 96 | 4.0 | 7% |
+| Ops · travel · admin | 53 | 2.2 | 4% |
+| DAO · governance · legal | 25 | 1.0 | 2% |
+| Other / uncategorized | 153 | 6.4 | 12% |
+| **Total** | **~1,310** | **~55** | **100%** |
 
-Weighted toward the top of the funnel — **the mission itself (origin/restoration) and the machine that funds it (supply chain + commerce)** — with the AI-infra hours rising as the year went on.
+![Where the 2026 hours went — by theme](assets/gary-2026-hours-by-theme.png)
+
+![2026 hours by month](assets/gary-2026-hours-by-month.png)
+
+**Read:** the mission itself (origin / farms) carries ~19% of the year, and the software/AI machine plus the marketing engine that feed the funnel carry the rest. *(Buckets are keyword-approximate; the per-event minute record is the ground truth behind every slice.)*
 
 ---
 
