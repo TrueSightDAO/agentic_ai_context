@@ -2,6 +2,7 @@
 
 **Compiled:** 2026-08-23 (Sophia, for Bionpact/Onaya + Elizabeth Wong's "Nano of Trade")
 **Scope:** Everything learned Jun–Aug 2026 across the Brazil export operation — Black King infrastructure, MAPA/GACC (China lane), trader-vs-producer model, cooperative routes, gov.br access.
+**Reconciled 2026-10-09 (Sophia, thread 780):** superseded by the **cooperative-first sourcing** decision — see §5a and `brazil/SUPPLY_CHAIN_SIMPLIFICATION.md`. **Oscar has joined Coopercabruca.**
 
 ---
 
@@ -10,11 +11,11 @@
 | Entity | Role | CNPJ / ID | Status |
 |--------|------|----------|--------|
 | **Black King** (Matheus Reis Pereira) | Exporter/trader — consolidates from multiple farms, processes (sort/grade/pack), issues export NF-e | CNPJ 50.042.585/0001-80 (Empresário Individual 213-5, ME, Simples) | ⚠️ CNPJ **INAPTA** + expired e-CNPJ + no commerce CNAE → cannot issue NF-e |
-| **Coopercabruca** (Coop. Sul da Bahia) | Producer cooperative (Bahia) — member-farmer beans, MAPA-ready | CNPJ 31.948.811/0001-42 | ✅ Has IE + NF-e; MAPA registration being set up for China |
+| **Coopercabruca** (Coop. Sul da Bahia) | Producer cooperative (Bahia) — member-farmer beans, MAPA-ready | CNPJ 31.948.811/0001-42 | ✅ Has IE + NF-e; MAPA registration being set up for China. **Oscar joined 2026-10-09** (see §5a). |
 | **CEPOTX** (Coop. Transamazônica e Xingu) | Producer cooperative (Pará) — organic almonds | CNPJ 22.568.369/0001-38 | ✅ Exporting already; sends beans to Matheus for processing |
 | **TrueTech Inc** | US importer-of-record (FSVP, Customs 88-341151400) | EIN 88-3411514 | ✅ Active |
 | **TrueSight DAO LLC** (Próspera ZEDE) | Coordination/trade entity — books profit, does NOT own Brazilian entities | Próspera LLC (OA signed 2026-07-18) | ✅ Formed; notarization/PT translation in progress |
-| **Independent farmers** (Oscar, Clara, Analuana, Vivi, etc.) | Grow/ferment beans; no MAPA, no factory | — | Source from Bahia + Pará |
+| **Independent farmers** (Clara, Analuana, Vivi, etc.) | Grow/ferment beans; no MAPA, no factory | — | Source from Bahia + Pará. **Oscar moved to Coopercabruca 2026-10-09** (see §5a). DAO no longer handles independents directly (cooperative-first). |
 
 **Key structural rule:** MAPA/GACC requirements attach to the **production enterprise** (the facility that processes/benefits beans), NOT the exporter/trader. A trader buys from producers and ships under their registrations (or its own if it processes).
 
@@ -61,6 +62,17 @@
 - **China direct route:** China side can bypass the DAO entirely and work directly with Orlantildes/Coopercabruca (Bahia beans) — DAO plays no role structurally. CEPOTX (Pará) flow blocked if Black King down → tree-planting arrangement off table.
 - **Worst case:** US/EU DAO distribution networks shut down (no capital for stock inventory); independent warehouse inventory stranded (write-off); China lane unaffected (direct coop route).
 - **Trading company bridge:** "por conta e ordem" (IN RFB 1.861/2018) — trading company exports in its own name; bypasses Black King's CNPJ problem; fee 0.5–2% FOB; invoice in trading company's name. Cost check pending with Graziela/Omega.
+
+### 5a. Cooperative-first sourcing (2026-10-09 governance decision) — supersedes the DAO-as-trader model above
+
+Governor decision (thread 780, 2026-10-09): the DAO **ends direct handling of independent farmers** ("more hassle than worth it") and funnels **all sourcing through the producer cooperatives**. Rationale earned over two operating cycles: Bahia produces year-round (no prestock), PO→destination port ≈ 5 months, CEPOTX/Pará conversion online 2027, Vivi the only remaining independent with no beans stocked this year.
+
+- **Oscar has agreed to join Coopercabruca** (2026-10-09). His 2026 harvest (108 kg loaded into AGL16 on 2026-10-07) now routes via the coop's MAPA + NF-e rather than the retiring independent / Black King lane. He moves out of the "Independent farmers" row above.
+- **Clara, Analuana, Vivi, and any future inbound independent** must **join a cooperative** to move beans — a redirect to Orlantildes is *not* a route, since coops take only member-farmed beans (**cannot absorb independent warehouse stock**). Vivi's disposition is the open case (no beans stocked this year).
+- **Ilhéus (Black King) warehouse to be wound down.** Black King's CNPJ is INAPTA and cannot issue export NF-e, so the final stock must clear **through Coopercabruca's paperwork** — itself the first deliberate run of the new model. The facility carries 4 live FDA/FSVP obligations to retire in writing (see `OPEN_FOLLOWUPS.md` 2026-10-09 entries).
+- Full decision record + follow-through: `brazil/SUPPLY_CHAIN_SIMPLIFICATION.md`; backlog entries in `OPEN_FOLLOWUPS.md` (2026-10-09).
+
+> Consequence: the §5 trader bullets (Black King / new BR CNPJ "consolidates independent beans") describe the **retired** passthrough model — kept here as historical fact, superseded by this section.
 
 ---
 
