@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `tokenomics`: PR4 managed-ledger snapshot daily job needs the `TREASURY_CACHE_PUSH_TOKEN` repo secret
+**Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small (governor secret action).**
+
+**Context.** PR4 of `plans/CURRENCY_CONVERSION_STALE_CURRENCIES_JSON_PLAN.md` §7.3 shipped as **`tokenomics` #580** (merged `41848ed`): `snapshot_managed_ledgers.py` gained env-overridable paths + a Contents-API publisher (idempotent), and a new GHA workflow `publish-managed-ledger-snapshots.yml` runs it daily (`30 6 * * *`). The second half (**`dapp_beta` #149**, merged `154ceb6`) repointed `define_currency.html`'s ledger dropdown at `treasury-cache/managed-ledgers/_index.json`.
+
+**Blocker.** The workflow cross-repo-pushes to `treasury-cache`, which `GITHUB_TOKEN` cannot do (a token scoped to `tokenomics` has no `contents:write` on another repo). It needs a repo secret **`TREASURY_CACHE_PUSH_TOKEN`** — a fine-grained PAT with **Contents: Read and write** on `treasury-cache`. `GOOGLE_CREDENTIALS` already exists in the repo. Until the secret is set, the daily job auth-fails and the managed-ledger cache stops refreshing (defeating PR4's purpose). **This is a governor action** — a repo secret cannot be set by the agent.
+
+**Acceptance.** Secret set; one manual `workflow_dispatch` run of `publish-managed-ledger-snapshots.yml` succeeds; `_index.json` `generated_at` advances on the next daily run.
+
+**Note —** the sibling follow-up ("`upload_*` tools are create-only → 422 on update") is **already filed** at the entry *"Autopilot tooling: `upload_local_file_to_github` sha-less 422 regression (update path) …"* lower in this file — do **not** duplicate it.
+
 ### Cooperative-first sourcing — route independent farmers into cooperative membership (not just a redirect)
 **Filed 2026-10-09 (thread 780). Owner: unclaimed. Small (doc + handoff page).**
 

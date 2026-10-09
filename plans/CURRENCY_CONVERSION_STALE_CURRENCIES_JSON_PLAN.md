@@ -141,15 +141,15 @@ build tier 3 unless PR1+PR2 turn out not to be enough.**
 
 ## 4. Resume tracker
 
-**RESUME HERE → PR4** (the §7 extension — automate the ledger snapshot + add the currency-fields catalog).
-PR1–PR3 are shipped (verified live 2026-09-13).
+**RESUME HERE → PR5** (the §7 extension — add the currency-fields catalog).
+PR1–PR4 are shipped (PR4 verified 2026-10-09, thread 41062).
 
 | Unit | PR | Opened | Merged | Deployed/live | Reported |
 |---|---|---|---|---|---|
 | PR1 — immediate catch-up republish | ✅ superseded by PR2 | ☑ | ☑ | ✅ `currencies.json` fresh (146 rows, daily) | ☑ |
 | PR2 — scheduled regeneration workflow | `go_to_market` `.github/workflows/publish-agroverse-currencies.yml` | ☑ | ☑ | ✅ live — cron `45 6 * * *` (daily 06:45 UTC) | ☑ |
 | PR3 — UI freshness caption | `dapp_beta` `currency_conversion.html` | ☑ | ☑ | ✅ `renderCurrencyListFreshness()` + `#currencyListFreshness` live (L311 / L498–506) | ☑ |
-| **PR4 — automate ledger snapshot (§7)** | not started | ☐ | ☐ | ☐ | ☐ |
+| **PR4 — automate ledger snapshot (§7)** | `tokenomics` #580 + `dapp_beta` #149 | ☑ | ☑ | ⚠️ cache fresh; daily cron needs repo secret `TREASURY_CACHE_PUSH_TOKEN` | ☐ |
 | **PR5 — `currency-fields.json` (§7)** | not started | ☐ | ☐ | ☐ | ☐ |
 
 ✅ **Pre-flight Completeness (§5d):** §1 captures the full root-cause trace, the exact missing/drifted
