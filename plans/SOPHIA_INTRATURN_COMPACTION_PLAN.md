@@ -62,7 +62,9 @@ most recent N rounds' raw tool output plus the running summary.
 | 3 | Validate against the real 94K/72K fixtures from Unit 0 — confirm the turn still completes correctly post-compaction, no dangling tool_calls, and (if reproducible) confirm the DSML-token-leak failure mode doesn't recur on the compacted version | PR + validation checkpoint, same pattern as the original plan's manual-tool-first rollout |
 | 4 | Deploy + monitor for a day of real heavy-round-count turns before considering this done | Gate — confirm real improvement, not just passing tests |
 
-**RESUME HERE: Unit 0.**
+**RESUME HERE: Unit 1.** Unit 0 (fixture capture) shipped 2026-09-14 —
+`truesight_autopilot` PR #446 (merged, sha `b9bf9a4`), independently re-verified
+2026-10-09 via `gh`/API (`state: closed, merged: true`).
 
 ## UAT
 
