@@ -61,12 +61,6 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-09-20T16:10:00Z",
       "note": "thread 33541. Handed off from the planner session (verified independently before accepting -- PR#1296 state, manifest absence, and topic existence all re-checked directly, not taken on the planner's word alone). Supersedes only the ledger-booking step of the parent SUNMINT_TREE_QR_LINKING_PLAN.md §7. Four-item accrual model (Cacao Tree Purchased-Not Planted / Cacao Tree-To Be Paid For / Cacao Tree Planted-Unassigned, alongside the existing To Be Planted liability), batch allocator for 520 sold-unlinked QRs, nine UAT test cases (TC1-TC9) each with mandatory same-turn cleanup per Gary's explicit instruction (real data already sits in these tabs). PR#1296 (the plan doc itself) opened + hit real merge conflicts on the derived handoffs/index.json (unrelated PRs had moved main in the meantime) -- Sophia correctly resolved by regenerating from the manifest source of truth rather than hand-merging JSON; merged (sha 78c17494), independently verified. Real pre-existing data-integrity finding surfaced in the plan (not yet remediated, proposed only): two unreversed 2026-08-22 test runs (TEST_AGL4_20260822_2/_3) left live main-ledger rows overstating 'Cacao Tree Planted' by +2 units -- plan's §5.10 proposes but does not execute the fix. RESUME HERE = PR1. Two open governor decisions flagged for before PR3/PR4 (§0.7 reconciliation-match automation, §0.8 aging policy / whether the existing CFR payouts handler books real ledger legs or only logs) -- not blocking PR1, worth surfacing to Gary before those units are scoped precisely."
-    },
-    {
-      "plan_file": "plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md",
-      "supervisor": "Sophia (autopilot, self)",
-      "claimed_at": "2026-10-09T02:50:23Z",
-      "note": "auto-claim (turn-dispatch)"
     }
   ]
 }
