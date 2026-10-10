@@ -4175,6 +4175,32 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ---
 
+### Offchain inventory-EXPENSE insert is NOT idempotent under concurrent runs — the same signed event double-inserts (money-adjacent)
+**Filed 2026-10-10 (thread 41062). Owner: unclaimed. Money-adjacent; diagnosis done, the fix needs a `tokenomics` PR + governor deploy.**
+
+**Observed live.** Gary Teh's USD equipment expense (Mercado Livre, thread 41062) was inserted into `offchain transactions` **twice** — rows 4869 and 4872 — carrying a **byte-identical** `Request Transaction ID` (`XwuEM+fQCoDsz6Q8CaEVge28WJdDd6ylsO4UXhrv1oFo…`) **and** `Edgar Scoring Hash Key` (`a501416cb38af5d8`). Net effect: Gary was over-deducted **−$109.52** instead of −$54.76. Two asset receipts likewise landed 3× each (Kala 4865/4866/4870; Axial 4867/4868/4871). **Manual dedup done 2026-10-10 (governor GO "delete duplicate rows")** — kept 4865/4866/4867, deleted 5 rows bottom-up, re-verified one-of-each (ledger 4,872 → 4,867 rows).
+
+**Why the destination-side guard missed it.** `InsertExpenseRecords` (`19Wag9x…/Code.js`, ~L943–962) keys its authoritative dedup on the col-K scoring hash (read the hash set, skip if present). But `parseAndProcessTelegramLogs` **continues without the script lock when the lock is busy** (L1093/L1110: *"script lock busy; continuing without it (duplicate-safe via destination-side idempotency guard)"*), and guard 2 re-verifies *"against a FRESH col-K read right before appending"* (L1254/L1259). Two overlapping webhook runs can therefore **both** read the snapshot (hash absent) and **both** append before either writes → duplicate. The lock-busy fallback converts a concurrency hazard into a silent double-book.
+
+**Root-cause class.** Optimistic read-then-write dedup with no atomic claim — same shape as the SunMint/CFR transport-id issue (see `conventions/DEDUP_KEY_CONVENTION.md`), but here the key IS present and correct; the failure is a TOCTOU race, not a wrong key.
+
+**Fix options.** (1) Make the lock **blocking-with-retry** (or fail-closed) for money rows instead of continue-without-lock. (2) Move the col-K hash check into an **atomic claim**: serialise appends under `LockService.waitLock(timeout)` and re-read immediately after acquiring. (3) Add a post-append reconcile that collapses rows sharing (txid, hash). Recommend **1 + 2**.
+
+**Status.** Ledger deduped manually (governor GO). Code fix NOT made.
+
+### Edgar event dispatch matches bracketed `[EVENT NAME]` tokens by naive substring — a CONTRIBUTION EVENT that quotes an event name is mis-routed to the expense validator
+**Filed 2026-10-10 (thread 41062). Owner: unclaimed. Small (server-side dispatch in `dao_protocol`).**
+
+**Observed live.** A `[CONTRIBUTION EVENT]` (Gary Teh, 60 min, thread 41062) submitted via `truesight-dao-report-contribution` returned **HTTP 422 `Invalid Target Ledger '(empty)' for expense`** — because its *description* contained the literal strings `[DAO Inventory Expense Event]` / `[ASSET RECEIPT EVENT]` (quoted in prose). Edgar's dispatch does a naive substring test, e.g. `if "[DAO Inventory Expense Event]" in text: route_to_expense_validator(...)`, so any body *mentioning* the token is classified as an expense regardless of the authoritative event header. Rewriting the description without bracketed tokens → HTTP 200, `signature_verification: success`.
+
+**Why it matters.** The classifier keys on free-text *content* rather than the signed event header/payload — so valid descriptions that name their own event type are rejected, and a genuinely-effecting event could be routed by a description string.
+
+**Fix.** Dispatch on the **signed event header / structured event type**, not a substring scan of the description; at minimum anchor the match to the header line (`^\[…\]$` at start) rather than `in text`.
+
+**Status.** Not fixed.
+
+---
+
 ## Recently shipped
 
 ### `getTreeRecipientMap` recipient-autofill no-op = the col-A/col-D off-by-one (same root as `trees/index.geojson`) - SHIPPED 2026-09-26
