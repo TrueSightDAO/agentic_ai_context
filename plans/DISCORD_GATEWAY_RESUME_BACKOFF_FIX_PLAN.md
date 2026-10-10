@@ -251,7 +251,7 @@ connection** (this is the fix for bug #2 — see §0 for why "reset on every REA
 
 | Unit | Advance | PR opened | Merged (human) | Deployed |
 |------|---------|-----------|-----------------|----------|
-| PR0 — Discord gateway RESUME + backoff reset | _(auto)_ | ☐ | ☐ `gate:` always-stop (merge to default branch) | ☐ `gate:` always-stop (prod deploy / service restart) |
+| PR0 — Discord gateway RESUME + backoff reset | _(auto)_ | ☑ [#529](https://github.com/TrueSightDAO/truesight_autopilot/pull/529) | ☑ `1ca1dcc` (squash-merged 2026-10-10) | ☐ `gate:` always-stop (prod deploy / service restart) |
 
 Both gates above are standing §5c always-stop rules (merge to `truesight_autopilot`'s default
 branch; redeploying/restarting the live Discord adapter) — they apply regardless of
