@@ -3,6 +3,7 @@
 > **Purpose:** single reference for warehouse management at the Ilhéus (Black King / Matheus Reis) facility — site facts, compliance obligations, hygiene/pest-control ops, inventory & asset management, and wind-down actions. Cross-session SSOT; do not duplicate `OPEN_FOLLOWUPS.md` entries (link them).
 > **Facility:** Black King / Matheus Reis Pereira — R. Cel. Paiva, 46, Centro, Ilhéus/BA (storage) — CNPJ 50.042.585/0001-80.
 > **Compiled:** 2026-10-09 · **Thread:** 41062 · **By:** Sophia Truesight (TrueSight DAO Autopilot).
+> **Revised 2026-10-10 (thread 41588):** C2 → fumigation is **event-triggered on intake + before long-term storage** (not monthly); C5 → the monthly inspection-readiness walk is now a **live recurring calendar series** (first **Saturday**); B3 → owner assigned (**Matheus**); B2 → cadence detailed; E1 → added *cancel-recurring-series-at-exit*.
 > **Sources:** thread 41062 transcript (2026-10-08 → 09); Telegram contribution stream (`ADVISORY_SNAPSHOT.md`, last 7 days); `OPEN_FOLLOWUPS.md`; `brazil/SUPPLY_CHAIN_SIMPLIFICATION.md`; `brazil/SUPPLY_CHAIN_AND_FREIGHTING.md` §2; `brazil/BRAZIL_EXPORT_LANE_LEARNINGS.md`; FSVP records.
 
 ---
@@ -24,8 +25,8 @@ Cross-linked (do NOT duplicate) from `OPEN_FOLLOWUPS.md` 2026-10-09 entries.
 | # | Obligation | Fix | Owner | Status |
 |---|---|---|---|---|
 | B1 | **2026-09-12 GMP CAPA** (filth/pest finding) | File CAPA PDF `YYYYMMDD_Black King_<doctype>.pdf` with root cause + preventive action + verification walk | Sophia / Gary | **OPEN** |
-| B2 | **Warehouse maintenance & pest-control written-assurance addendum (21 CFR 1.511)** | Black King–signed addendum: address(es) + linkage, cleaning SOP, pest-control cadence (ASTRA SUL BAHIA), humidity control, inspection-readiness checklist | Sophia / Matheus | **OPEN** |
-| B3 | **Assign an owner** for hygiene / pest-control / inspection-readiness cadence | Name an accountable owner (candidate: part-time office/warehouse administrator) + written cadence | Gary | **OPEN** — root cause of the 09-12 finding |
+| B2 | **Warehouse maintenance & pest-control written-assurance addendum (21 CFR 1.511)** | Black King–signed addendum: address(es) + linkage, cleaning SOP, pest-control cadence (**event-triggered on intake + before long-term storage** — ASTRA SUL BAHIA; NOT calendar-monthly), humidity control, inspection-readiness checklist (**monthly first-Saturday walk — see C5**) | Sophia / Matheus | **OPEN** |
+| B3 | **Assign an owner** for hygiene / pest-control / inspection-readiness cadence | **Owner = Matheus** (warehouse operator); cadence enforced by the live recurring calendar series (C5) + fumigation-on-intake (C2) | Gary / Matheus | **RESOLVED — owner named 2026-10-10** (was the root cause of the 09-12 finding) |
 | B4 | **Black King CNPJ INAPTO + e-CNPJ expired** — export NF-e lane blocked | Reinstatement: file missed DCTF/ECF/ECD/DAS, renew e-CNPJ, add CNAE 46.23-1/04, clear debts | Gary / accountant | **OPEN** |
 
 ## 3. Hygiene & pest-control operations
@@ -33,10 +34,10 @@ Cross-linked (do NOT duplicate) from `OPEN_FOLLOWUPS.md` 2026-10-09 entries.
 | # | Action | Owner | Status |
 |---|---|---|---|
 | C1 | Written **cleaning SOP + cadence** (floor wipe-down, dust/mold removal, dry-check before leaving) | Matheus / owner | **OPEN** — act performed 2026-10-09 (contribution logged), not yet codified |
-| C2 | **Pest-control cadence** — schedule + log fumigation (ASTRA vendor; NFS-e `20250610_warehouse_fumigation.pdf`) | Matheus / owner | **OPEN** |
+| C2 | **Pest-control cadence** — fumigation is **event-triggered on intake + before long-term storage** (NOT calendar-monthly; ASTRA SUL BAHIA; NFS-e `20250610_warehouse_fumigation.pdf`); liveness between events = the C5 walk | Matheus | **OPEN** |
 | C3 | **On-site equipment** — mop/vacuum, dehumidifier, insect repellent (Mercado Libre MLB20684318 proposed); verify suitability | Gary / Matheus | **OPEN** |
 | C4 | **Air freshening + drying** before leaving | Matheus | **In practice** (2026-10-09) |
-| C5 | Monthly **inspection-readiness walk** with photo evidence | owner | **OPEN** |
+| C5 | Monthly **inspection-readiness walk** with photo evidence | Matheus | **In practice** — now a **live recurring calendar series** (`[MONTHLY] Ilheus Warehouse — Inspection-Readiness Walk`, first **Saturday** monthly, event id `qe2pv6772bkipp2hmp09sde82k`, Matheus + Gary); first occurrence Sat 2026-11-07 |
 
 ## 4. Inventory & asset management
 
@@ -52,7 +53,7 @@ Cross-linked (do NOT duplicate) from `OPEN_FOLLOWUPS.md` 2026-10-09 entries.
 
 | # | Action | Owner | Status |
 |---|---|---|---|
-| E1 | **Ilhéus exit checklist** — clear final beans via Coopercabruca run; cure-or-moot the 4 FSVP items in writing; document disposition; close the DAO-token warehousing arrangement | Gary | **OPEN** (medium) |
+| E1 | **Ilhéus exit checklist** — clear final beans via Coopercabruca run; cure-or-moot the 4 FSVP items in writing; document disposition; close the DAO-token warehousing arrangement; **cancel the recurring calendar series** so no phantom reminders fire post-exit (`[MONTHLY] … Inspection-Readiness Walk` id `qe2pv6772bkipp2hmp09sde82k`; `[DAILY] Sophia self-check` id `70pbklih400hcd4b8p9pa74bmk`) | Gary | **OPEN** (medium) |
 | E2 | **Demand-signal replacement** for the retired prestock — name it before removing the buffer | Gary | **OPEN** (decision) |
 | E3 | Confirm **Matheus warehousing arrangement closed out** | Gary / Matheus | **OPEN** |
 

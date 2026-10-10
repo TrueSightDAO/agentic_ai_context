@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight_autopilot: `google_calendar` tool + daily calendar watchdog shipped — precondition is the `calendar.events` token scope
+**Filed 2026-10-10 (thread 41588). Owner: unclaimed. Small (ops/secret + docs).**
+
+**Context.** `truesight_autopilot` **#524** shipped `app/tools/google_calendar.py` (`calendar_list_events` / `create_event` / `update_event` / `delete_event`) and `app/calendar_watchdog.py` — Sophia's **DAILY self-check** of the `admin@truesight.me` calendar, which posts an attention digest into `CALENDAR_WATCH_THREAD_ID`. Born from the governor ask (Gary, 2026-10-10): *"a calendar entry alone does not wake the autopilot — the intention needs a runner."* Modelled on the existing `followup_loop` / `attention_watchdog` background loops (runs inside the FastAPI lifespan; no separate systemd unit).
+
+**The gotcha a future operator must know.** The Google OAuth tokens in `config/gmail/<account>_token.json` must carry the **`https://www.googleapis.com/auth/calendar.events`** scope. The original tokens had only `gmail.modify` → every Calendar call returned **HTTP 403 insufficient scopes**. Re-consented 2026-10-10 (admin token now `gmail.modify` + `calendar.events`, verified live by `events.insert`). **If a future re-consent drops `calendar.events`, both the tool and the watchdog silently 403.** Probe with `events.insert` — NOT `calendarList` (that needs `calendar.readonly` and 403s for the *wrong* reason — a red herring).
+
+**Enablement (governor action).** The watchdog is **OFF by default**; it needs `.env`: `CALENDAR_WATCH_ENABLED=true`, `CALENDAR_WATCH_THREAD_ID=<topic>`, `CALENDAR_WATCH_ENABLE_POSTS=true`, then a **safe restart via `deploy_autopilot`** — **never hand-cycle `truesight-autopilot.service`** (the idle-drain guard blocks it deliberately: a manual restart severs in-flight turns and wedges the adapter). Armed 2026-10-10 for thread 41588.
+
+**Acceptance.** Operators know the `calendar.events` precondition; future re-consent scripts preserve/refresh that scope.
+
 ### `tokenomics`: PR4 managed-ledger snapshot daily job needs the `TREASURY_CACHE_PUSH_TOKEN` repo secret
 **Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small (governor secret action).**
 
