@@ -55,6 +55,12 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-10-09T02:49:00Z",
       "note": "thread 29305. Unit 0+1 now merged. Picked up this WIP loop iteration: manifest + plan doc said 'Unit 0 not yet started' but it had shipped 2026-09-14 (truesight_autopilot#446) -- corrected RESUME HERE to Unit 1 and dispatched Sophia. First turn scoped/recon only (no PR). A follow-up nudge got her to land truesight_autopilot PR #523 (Unit 1: find_open_turn_start/_scan_rounds/default_round_summarizer/compact_open_turn). CI's one test failure on first run (test_reaction_go_does_not_deadlock_on_thread_lock) independently confirmed pre-existing/unrelated flake (PR only touches context_compaction.py + its own test; passed 6/6 locally in isolation, green on CI re-run) -- merged by Envoy (squash 43df6f1). RESUME HERE = Unit 2 (wire compact_open_turn into the existing per-round _maybe_auto_compact call sites -- it exists but nothing calls it yet). Own-repo, autonomous merge authority, no money/prod gate -- not blocked_on_human, just not yet dispatched for Unit 2."
+    },
+    {
+      "plan_file": "brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-10-10T03:42:00Z",
+      "note": "thread 41588 (\"Matheus follow up items\"). Gary tagged @nelanco_claude_bot directly in-thread at 03:36:51Z: \"monitor this to completion. Use loop.\" Picked up immediately -- no manifest row existed (added one, anchored to the ILHEUS_WAREHOUSE_MANAGEMENT.md SSOT doc). Delivered already this thread before the tag: equipment checklist PDF emailed, real Google Calendar invite (after a live calendar.events scope gap was found + Gary fixed the token mid-thread), one-off + monthly-recurring (now first-Saturday) + a new daily self-check series. Sophia self-set a thread goal right after the tag (goal-loop enabled, autonomous): ship the google_calendar tool + calendar_watchdog loop, merge the PR, codify the warehouse cadence (B2/B3/C2/C5/E1) + an OPEN_FOLLOWUPS note. She is mid-turn as of this claim -- do NOT re-ping. RESUME HERE = watch for the google_calendar/calendar_watchdog PR on truesight_autopilot (own-repo, autonomous merge authority, no money/prod gate seen yet), verify it merges clean via gh/API (not the chat claim), then confirm the cadence codification actually lands."
     }
   ]
 }
