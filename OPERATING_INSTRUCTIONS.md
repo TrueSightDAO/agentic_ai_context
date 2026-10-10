@@ -46,6 +46,8 @@ This folder (**agentic_ai_context**) is the **shared context** for the workspace
 
 | — | **conventions/DEDUP_KEY_CONVENTION.md** | **Dedup / identity-key convention (STANDING).** Every ledger / tracking tab that ingests signed DAO events MUST key dedup on the signed **`Request Transaction ID`** and carry a **dedicated column** for it — NEVER on the transport id (`telegram_update_id` / Telegram message id / file id), which changes on re-post and maps many→one. Covers the mandatory trailing column, migration-safe append, idempotent dry-run-first backfill, the parse regex, the re-signing caveat (pair with a content fingerprint), and worked examples. Read before designing any new contract/tab or deduping an existing one. |
 
+| — | **conventions/CALENDAR_EVENT_CONVENTION.md** | **Calendar-event convention (STANDING).** When an agent creates a calendar event on a governor's behalf: create it on **BOTH** calendars (the governor's own Google calendar **and** the DAO/DApp `admin@truesight.me` calendar — the **only** calendar the `calendar_watchdog` runner reads) **and** invite the people named in the source **by email** (resolve a Telegram/Discord handle → email via the Main Ledger `Contributors contact information` col D). Note: the event is a *signal*; the **runner** is `app/calendar_watchdog.py` (daily digest). Read before creating any calendar event. |
+
 Other files in this folder (e.g. `AI_SETUP.md`, `GROK_CLI_410_FIX.md`, `CURSOR_AUTO_APPROVE_SETTINGS.md`) are reference docs for setup and fixes; read them when relevant to your task.
 
 ---
