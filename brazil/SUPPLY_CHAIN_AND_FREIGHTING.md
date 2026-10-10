@@ -85,6 +85,29 @@ MAP
 - `Oscar 2026 · AGL 16 · 108 kg` — matches the 2026-10-07 load into AGL16.
 - `20× chocolate mold` — reconciles with ledger holding `Chocolate Mold MHC-CL082` (Matheus = 21 units; ~20 shelved, one in use).
 
+## 2.5 Measured dimensions register (Ilhéus)
+
+Tape-measure dimensions captured **on site at the Ilhéus (Black King / Matheus Reis) warehouse** (thread **41062**, 2026-10-09/10) and resolved from the tape photos via vision models (**Gemini 3.8-flash + Grok 4.5** — tesseract OCR could not resolve the tape digits). **Working, unaudited measurements**; the Main Ledger stays authoritative for quantities.
+
+**Provenance:** tape photos in the thread-41062 transcript (`truesight_autopilot_transcript`, session `6414080bc772`).
+
+| # | Element | Dimension | Measured | Notes / confidence |
+|---|---|---|---|---|
+| M1 | Main window | width | **~53–54 cm** (≈21 in) | upper ~53 cm; lower ~53.5–54 cm; hook off-frame → ±1–2 cm |
+| M2 | Main window | upper-pane clear height | **~14.5–15 cm** | louver/pane clear opening |
+| M3 | Main window | full frame height (vertical) | **~90 cm** (35 in) | top-of-tape reading; zero seated at sill not confirmed |
+| M4 | Toilet/bathroom window (louvered) | width | **~53–54 cm** (21 in) | hook off-frame; consistent with M1 |
+| M5 | Toilet/bathroom window (louvered) | height | **~39.5–40 cm** (~15.5 in) | ~2 louver sections; bottom thumb-obscured |
+| M6 | Plastic (HDPE) pallet | one edge | **~110–112 cm** (~44 in) | other edge, height, and qty still unmeasured |
+| M7 | Warehouse wall span | wall length | **~4.30 m** | single span, one wall only (see A1) |
+
+**Reading rules / caveats:**
+
+- Most shots are **close-ups**; the tape's hook/zero is **off-frame**, so each value is the reading where the tape meets the far frame — treat as **±1–2 cm**.
+- Values are **vision-derived** (Gemini + Grok converged on every item); **not** OCR-verified.
+- Emerging spec: **main window ≈ 53–54 cm W × ~90 cm H**; **louvered toilet window ≈ 53–54 cm W × ~40 cm H** — both share a ~53 cm sash module.
+- Still open: warehouse **footprint** (L×W), **full wall heights**, and any **other openings/windows**.
+
 ---
 
 ## 3. Freighting: “Options for freighting these to Kirsten warehouse in San Francisco”
