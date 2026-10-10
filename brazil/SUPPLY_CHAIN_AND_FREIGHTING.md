@@ -96,16 +96,18 @@ Tape-measure dimensions captured **on site at the Ilhéus (Black King / Matheus 
 | M1 | Main window | width | **~53–54 cm** (≈21 in) | upper ~53 cm; lower ~53.5–54 cm; hook off-frame → ±1–2 cm |
 | M2 | Main window | upper-pane clear height | **~14.5–15 cm** | louver/pane clear opening; attribution to re-confirm against the lower-pane reading |
 | M3 | Main window | **lower-pane height** (vertical) | **~90 cm** (35 in) | **CORRECTED 2026-10-10:** this is the **lower pane**, **not** the full window; frame's full height still unmeasured |
-| M4 | Toilet/bathroom window (louvered) | width | **~53–54 cm** (21 in) | hook off-frame; consistent with M1 |
-| M5 | Toilet/bathroom window (louvered) | height | **~39.5–40 cm** (~15.5 in) | ~2 louver sections; bottom thumb-obscured |
+| M4 | Toilet/bathroom window (louvered) | width | **53 cm** (21 in) | **governor-confirmed 2026-10-10** (Gary); matches M1 |
+| M5 | Toilet/bathroom window (louvered) | **openable height** | **35 cm** (~14 in) | **governor-confirmed 2026-10-10** (Gary) — **supersedes** the ~39.5–40 cm tape reading, which likely spanned the **surrounding frame**, not just the openable sash |
 | M6 | Plastic (HDPE) pallet | one edge | **~110–112 cm** (~44 in) | other edge, height, and qty still unmeasured |
 | M7 | Warehouse wall span | wall length | **~4.30 m** | single span, one wall only (see A1) |
+
+**Opening areas (for fixtures/fans):** toilet/bathroom window opening = 53 × 35 = **~1,855 cm²**; main window = 53–54 cm W × (upper ~15 + lower ~90) **≈ 5,500 cm²**. A 100 mm axial fan's 13.5 × 13.5 cm square plate (~182 cm²) therefore covers only **~10%** of the bathroom opening — a filler panel is required around it (see thread 41062 fan analysis).
 
 **Reading rules / caveats:**
 
 - Most shots are **close-ups**; the tape's hook/zero is **off-frame**, so each value is the reading where the tape meets the far frame — treat as **±1–2 cm**.
 - Values are **vision-derived** (Gemini + Grok converged on every item); **not** OCR-verified.
-- Emerging spec: **main window ≈ 53–54 cm W, lower pane ~90 cm H** (upper pane clear ~14.5–15 cm; **full frame height still unmeasured**); **louvered toilet window ≈ 53–54 cm W × ~40 cm H** — both share a ~53 cm sash module.
+- Emerging spec: **main window ≈ 53–54 cm W, lower pane ~90 cm H** (upper pane clear ~14.5–15 cm; **full frame height still unmeasured**); **louvered toilet/bathroom window = 53 cm W × 35 cm openable H** (governor-confirmed) — both share a ~53 cm sash module.
 - Still open: warehouse **footprint** (L×W), **full wall heights**, the **main window's full frame height** (only the lower pane ~90 cm + upper pane ~15 cm are measured so far), and any **other openings/windows**.
 
 ---
