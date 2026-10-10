@@ -1816,33 +1816,6 @@ missing half of the MAP "done" primitive
 `config/youtube/youtube_token.json` scopes; `MEDIA_ARCHIVE_PIPELINE.md` §Verify; inbox sidecar scan on
 `i-05276b8ae82d6b88c` (0 pending in every inbox → the uploader is *caught up*, not stalled).
 
-### Discord: enable member *replies* — requires the brain to be tier-aware
-**Filed 2026-09-14. Owner: unclaimed. Governor: Gary (Discord adapter thread).**
-
-**Context.** `truesight_autopilot#440` shipped the three-valued Discord author role — `app/discord_adapter.py::author_role()` returns `governor` / `member` / `guest`, and `app/policy.py` gained `Role.MEMBER` (between `Role.GUEST` and `Role.GOVERNOR`). A **member** — a contributor bound to a real identity in the Main Ledger *Contributors contact information* sheet (col G Discord ID) who is **not** in the key-based Governors cache — is now *recognised and attributed* instead of collapsing to an anonymous guest.
-
-**What is still off.** The adapter resolves the role but treats every non-governor turn as **data-only**. In `handle_message()`:
-
-```python
-role = author_role(user_id, allowed)
-if role != "governor":
-    logger.info("Discord message from %s %s (%s) in %s -- logging as context only", ...)
-    if public_key:
-        log_observed_message(text, session_id, public_key, username)
-    return
-```
-
-So a member's message is logged as captured context and **never dispatched** — Sophia sees members but does not reply to them. Members are a *read* tier today, not an interactive one.
-
-**Why it is off (what unblocks it).** The adapter authenticates a turn by minting a short-lived JWT **for the governor's public key** (`resolve_governor_public_key()` → registry). If a member turn reused that JWT, the brain (`/chat-blocking`) would treat it as the governor and the member would **inherit governor authority** — a privilege-escalation hole. Correctly enabling member replies therefore requires the **brain to be tier-aware**: it must receive the author's resolved role (or a member-scoped credential) and apply the `{guest < member < governor}` policy to Discord-originated turns itself, rather than assuming "arrived on the governor key ⇒ governor".
-
-**Proposed work (small→medium).**
-1. Pick the transport for member identity: (a) add a `role`/`author` field to the `/chat-blocking` payload and have the brain gate on it, **or** (b) mint a distinct member-scoped token/keypair so the brain can distinguish a member turn cryptographically.
-2. Add the brain-side branch: member turns may **converse / research / draft** but may not issue instructions or authorize actions (mirror the Telegram tiers in `app/policy.py`).
-3. Then flip the adapter's `if role != "governor"` guard to also dispatch the read-only "ask/research" class to members, keeping governors the sole instruction source.
-
-**Evidence.** `app/discord_adapter.py` (`handle_message`, the `role != "governor"` guard + its comment); `app/policy.py` L194–250 (`Role.MEMBER`); PR `truesight_autopilot#440`. Verified live on the autopilot box 2026-09-14 (real handler, side-effects mocked): id `578258537957031951` (sheet-bound) logs `Discord message from member <user> ... -- logging as context only`, an unbound id logs `from guest`, and the governor id dispatches a turn.
-
 ### Phase 2: narrow the autopilot git credential so the repo-class list is load-bearing
 **Filed 2026-09-13. Owner: unclaimed. Governor: Gary (thread 26410).**
 
@@ -4176,6 +4149,13 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### Discord member *replies* now dispatch (read-only) — brain is tier-aware — SHIPPED 2026-10-10
+**Shipped 2026-10-10. Governor: Gary (Discord adapter thread). PRs: `truesight_autopilot` #478 (PR1), #480 (PR2), #481 (PR3); plan `BRAIN_TIER_AWARENESS`.**
+
+**Resolves the 2026-09-14 `## Pending` entry** ("Discord: enable member *replies*"). The adapter guard `if role != "governor": ... return` is gone: `app/discord_adapter.py::handle_message` now DISPATCHES a member turn when the member explicitly @-mentions the bot (`member_mentioned = role == "member" and is_mention(raw, bot_id)`); unmentioned member/guest chatter stays observed-only. The brain enforces read-only at the tool layer: `app/main.py::_run_tool_sync` denies any WRITE/ADMIN call whose signed-JWT `author_role` claim is not `governor`/`sentinel` (`{"status":"blocked", ... read-only (ask / research / draft only)}`), closing the privilege-escalation hole where a member turn (minted on the governor key) could have inherited governor write power. A sentinel is a distinct class carrying governor-tier rights; a member is data-only; a guest is never dispatched.
+
+**Verified live on the autopilot box 2026-10-10.** Service `truesight-autopilot-discord.service` active since 20:02 UTC on `HEAD == origin/main` (`3379982`); code mtime 18:44, `.env` 18:54 — the running process is the tier-aware build. **51 tests pass** (`test_discord_adapter.py`, `test_brain_author_role_gate.py`, `test_auth_author_role.py`). A direct resolver call confirms the configured member id `1455101520155644059` (林博强) now resolves `author_role -> 'member'` (it was logged as `guest` at 09:58 by the stale pre-fix process). **Outstanding:** no real member has @-mentioned the bot since the restart, so the path is proven by tests, not yet by live member traffic.
 
 ### `getTreeRecipientMap` recipient-autofill no-op = the col-A/col-D off-by-one (same root as `trees/index.geojson`) - SHIPPED 2026-09-26
 **Shipped 2026-09-26. Governor: Gary (thread 35944). PR: tokenomics #563 (`3a2c7480`); GAS @42; live backfill run.**
