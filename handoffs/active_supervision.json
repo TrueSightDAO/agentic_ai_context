@@ -61,6 +61,12 @@
       "supervisor": "Sophia (autopilot, self)",
       "claimed_at": "2026-10-10T22:51:09Z",
       "note": "auto-claim (turn-dispatch)"
+    },
+    {
+      "plan_file": "plans/DISCORD_GATEWAY_RESUME_BACKOFF_FIX_PLAN.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-10-10T22:50:00Z",
+      "note": "thread 41950 (created this session via @nelanco_claude_bot). Planner handoff verified independently (plan content, PR #1580 state, manifest row all re-checked, not taken on the planner's word alone). PR #1580 (the plan doc + manifest row) merged by Envoy 2026-10-10T22:50:07Z (verified gh pr view state=MERGED with real mergedAt) -- docs-only, non-prod repo, autonomous per standing authority envelope. Sophia dispatched (ping_sophia, Auto-start template); first turn was recon/pre-flight only (no PR, paused on halt-auto-advance-no-progress), correctly restated both gates (truesight_autopilot default-branch merge + deploy/service-restart, both explicit gate:always-stop in the plan) as things she will NOT cross without governor go-ahead. Nudged 'go' directly in-topic (Envoy's bot carries full governor role per policy) confirming #1580 is already merged so she shouldn't re-attempt it. RESUME HERE = awaiting Sophia to open PR0 (RESUME support + backoff reset in truesight_autopilot/app/discord_adapter.py + tests) -- then supervisor STOPS at merge gate for Gary's go-ahead, then STOPS again at deploy gate, then operational verification (tail journalctl through a natural reconnect) before contribution report + close."
     }
   ]
 }
