@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "updated": "2026-10-10",
+  "canonical_doc": "brazil/SUPPLY_CHAIN_AND_FREIGHTING.md",
+  "section": "2.5 Measured dimensions register (Ilhéus)",
+  "facility": {
+    "id": "ilheus-matheus-warehouse",
+    "name": "Matheus / Black King warehouse",
+    "location": "Ilhéus, Bahia, Brazil",
+    "managed_by": "Matheus Reis",
+    "authority": "Working, unaudited; the Main Ledger + offchain asset location remain authoritative for quantities",
+    "length_unit": "cm",
+    "provenance": {
+      "method": "tape measure, on site",
+      "captured": "2026-10-09/10",
+      "thread": "41062",
+      "resolved_by": "vision models (Gemini 3.8-flash + Grok 4.5); not OCR-verified",
+      "transcript": "truesight_autopilot_transcript session 6414080bc772"
+    },
+    "companion_docs": [
+      "brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md",
+      "brazil/ILHEUS_WAREHOUSE_FLOOR_MAP.md"
+    ]
+  },
+  "measurements": [
+    {
+      "id": "M1",
+      "element": "Main window",
+      "dimension": "width",
+      "value": 53.5,
+      "range": [53, 54],
+      "status": "measured",
+      "confidence": "+/-1-2 cm",
+      "notes": "upper ~53 cm; lower ~53.5-54 cm; tape hook off-frame"
+    },
+    {
+      "id": "M2",
+      "element": "Main window",
+      "dimension": "upper-pane clear height",
+      "value": 14.75,
+      "range": [14.5, 15],
+      "status": "measured",
+      "confidence": "+/-1-2 cm",
+      "notes": "louver/pane clear opening; attribution to re-confirm against the lower-pane reading"
+    },
+    {
+      "id": "M3",
+      "element": "Main window",
+      "dimension": "lower-pane height",
+      "value": 90,
+      "range": [88, 92],
+      "status": "measured",
+      "confidence": "+/-2 cm (~35 in)",
+      "corrected": "2026-10-10",
+      "notes": "This is the lower pane, NOT the full window; the frame's full height is still unmeasured"
+    },
+    {
+      "id": "M4",
+      "element": "Toilet/bathroom window (louvered)",
+      "dimension": "width",
+      "value": 53,
+      "range": [52, 54],
+      "status": "governor_confirmed",
+      "confirmed_by": "Gary Teh",
+      "confirmed_on": "2026-10-10",
+      "notes": "matches M1 (~53 cm sash module)"
+    },
+    {
+      "id": "M5",
+      "element": "Toilet/bathroom window (louvered)",
+      "dimension": "openable height",
+      "value": 35,
+      "range": [34, 36],
+      "status": "governor_confirmed",
+      "confirmed_by": "Gary Teh",
+      "confirmed_on": "2026-10-10",
+      "supersedes": {
+        "value": 39.75,
+        "range": [39.5, 40],
+        "reason": "tape reading likely spanned the surrounding frame, not just the openable sash"
+      },
+      "notes": "supersedes the ~39.5-40 cm tape reading"
+    },
+    {
+      "id": "M6",
+      "element": "Plastic (HDPE) pallet",
+      "dimension": "one edge",
+      "value": 111,
+      "range": [110, 112],
+      "status": "measured",
+      "confidence": "+/-2 cm (~44 in)",
+      "notes": "other edge, height, and quantity still unmeasured"
+    },
+    {
+      "id": "M7",
+      "element": "Warehouse wall",
+      "dimension": "wall span (length)",
+      "value": 430,
+      "range": [425, 435],
+      "status": "measured",
+      "notes": "single span, one wall only (see ILHEUS_WAREHOUSE_MANAGEMENT.md A1)"
+    }
+  ],
+  "derived": {
+    "opening_areas_cm2": {
+      "bathroom_window": 1855,
+      "bathroom_window_formula": "53 x 35",
+      "main_window_approx": 5500,
+      "main_window_formula": "53-54 W x (upper ~15 + lower ~90)"
+    },
+    "fan_fit": {
+      "fan": "100 mm axial exhaust fan",
+      "fan_plate_cm2": 182,
+      "fan_plate_formula": "13.5 x 13.5",
+      "bathroom_coverage_pct": 10,
+      "conclusion": "fan covers only ~10% of the bathroom opening - a filler panel is required around it"
+    },
+    "sash_module_cm": 53
+  },
+  "open_questions": [
+    "warehouse footprint (length x width)",
+    "full wall heights",
+    "main window full frame height (only lower pane ~90 cm + upper pane ~15 cm measured)",
+    "any other openings / windows",
+    "HDPE pallet: other edge, height, quantity"
+  ],
+  "reading_rules": [
+    "Most shots are close-ups; the tape's hook/zero is off-frame - each value is where the tape meets the far frame; treat as +/-1-2 cm.",
+    "Values are vision-derived (Gemini + Grok converged on every item); not OCR-verified."
+  ]
+}

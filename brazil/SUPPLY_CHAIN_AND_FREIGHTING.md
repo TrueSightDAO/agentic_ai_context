@@ -87,6 +87,8 @@ MAP
 
 ## 2.5 Measured dimensions register (Ilhéus)
 
+> **Machine-readable mirror:** [`ilheus_warehouse.json`](ilheus_warehouse.json) — the same register as JSON (fields: `value` / `range` / `status` / `supersedes`). Keep the two in sync in the same PR.
+
 Tape-measure dimensions captured **on site at the Ilhéus (Black King / Matheus Reis) warehouse** (thread **41062**, 2026-10-09/10) and resolved from the tape photos via vision models (**Gemini 3.8-flash + Grok 4.5** — tesseract OCR could not resolve the tape digits). **Working, unaudited measurements**; the Main Ledger stays authoritative for quantities.
 
 **Provenance:** tape photos in the thread-41062 transcript (`truesight_autopilot_transcript`, session `6414080bc772`).
