@@ -96,3 +96,13 @@ is published at `lineage-assets/certs/<qr_id>__cert.pdf`; the provenance page HE
 that URL and shows a **"⬇️ Download SunMint certificate (PDF)"** button **only when the
 probe returns 200** (the URL-probe route — see `sops/SUNMINT_CERTIFICATE_ISSUE_SOP.md`
 and `OPEN_FOLLOWUPS.md`).
+
+---
+
+## "Both calendars" — dual-calendar event creation
+
+The standing rule that a calendar event created on a governor's behalf goes on **both**
+(a) the governor's own Google Calendar and (b) the **DAO/DApp calendar**
+(`admin@truesight.me`) — the **only** calendar the background **`calendar_watchdog`** runner
+reads — and that people named in the source are invited **by email**. "Both calendars" is
+shorthand for clause (1). Full rule: `conventions/CALENDAR_EVENT_CONVENTION.md`.
