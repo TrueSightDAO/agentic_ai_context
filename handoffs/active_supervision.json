@@ -61,12 +61,6 @@
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-10-10T03:42:00Z",
       "note": "thread 41588 (\"Matheus follow up items\"). Gary tagged @nelanco_claude_bot directly in-thread at 03:36:51Z: \"monitor this to completion. Use loop.\" PR landed + independently verified: truesight_autopilot#524 \"Add google_calendar tool + daily calendar watchdog\" merged 03:48:50Z (sha 43a486c, gh/API-confirmed, not just her chat claim) -- app/tools/google_calendar.py, app/calendar_watchdog.py, app/config.py/main.py wiring, tests/test_calendar_tools.py. She immediately re-set the goal to the remaining sub-items: (1) deploy DONE (merged), (2) enable+verify the daily self-check loop actually runs, (3) codify the register edits (C2/C5/B2/B3/E1) into ILHEUS_WAREHOUSE_MANAGEMENT.md, (4) file an OPEN_FOLLOWUPS note. She is mid-turn -- do NOT re-ping. RESUME HERE = watch for (2)-(4); verify the cadence note actually lands in the doc (not just claimed) before calling this done."
-    },
-    {
-      "plan_file": "brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md",
-      "supervisor": "Sophia (autopilot, self)",
-      "claimed_at": "2026-10-10T03:58:21Z",
-      "note": "auto-claim (turn-dispatch)"
     }
   ]
 }
