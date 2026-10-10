@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-09T22:50:59Z`
-- Look-back: **7** calendar days (`2026-10-02` → today UTC)
+- Generated (UTC): `2026-10-10T12:53:09Z`
+- Look-back: **7** calendar days (`2026-10-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,26 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 17
-- `[PRACTICE EVENT]` × 2
-- `[ASSET RECEIPT EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 18
+- `[ASSET RECEIPT EVENT]` × 4
+- `[PRACTICE EVENT]` × 3
 - `[MANAGED LEDGER TRANSACTION EVENT]` × 1
 - `[EMAIL REGISTERED EVENT]` × 1
-- _free-form (no bracket tag)_ × 20
+- `[DAO INVENTORY EXPENSE EVENT]` × 1
+- _free-form (no bracket tag)_ × 14
 
 ### Latest entries
 
-- `Edgar_20261009010017_148` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261009010020_150` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261009010022_152` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: AGL8
-- `Edgar_20261009010636_154` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Missing - not found in Matheus Reis's holdings during inventory reco…
-- `Edgar_20261009010638_156` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Mold infestation discarded. Expensing off per Gary Teh, reconciled 2…
-- `Edgar_20261009010641_158` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Mold infestation discarded. Expensing off per Gary Teh, reconciled 2…
-- `Edgar_20261009010643_160` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Description: Reason: Mold infestation discarded. Matheus's holding of the AGL8 cacao tea …
-- `Edgar_20261009014017_162` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-10-09T01:40:16.039Z · Email: garyjob@gmail.com
-- `Edgar_20261009024305_164` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Beer Hall (WhatsApp) post + coordination: announced offloading GTM from own …
-- `Edgar_20261009025058_166` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
-- `Edgar_20261009134013_168` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-09T13:40:11.767Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261009140712_170` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Oracle site — fix excess vertical whitespace in hexagram readings (print + m…
 - `Edgar_20261009140718_172` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Oracle site — direction + review: hexagram reading whitespace fix
 - `Edgar_20261009142242_174` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: 5 Continent invoice reconciliation + 2023 comparison (raw machine execution)
@@ -61,6 +51,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261009165755_182` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20261009165830_184` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Updated the warehousing layout on the warehouse whiteboard so the next DAO m…
 - `Edgar_20261009205806_186` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20261010004551_188` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 27.34 · Contributor(s): Gary Teh
+- `Edgar_20261010025241_190` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20261010033052_192` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Onboarding Julio Almeida to B2B email outreach. Directed him to the agentic_…
+- `Edgar_20261010033932_194` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] DAO Member Name: Gary Teh · Inventory Type: USD · Inventory Quantity: 54.76
+- `Edgar_20261010033935_196` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W - Mercado Livre MLB20684318 - Ilheus Wareho… · Amount: 1 · Fund Handler: Matheus Reis
+- `Edgar_20261010033937_198` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm Turbo 220V - Mercado Livre MLBU4320471013 - Ilheus Ware… · Amount: 1 · Fund Handler: Matheus Reis
+- `Edgar_20261010034437_200` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20261010034457_202` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W (Mercado Livre MLB20684318) · Amount: 1 · Fund Handler: Matheus Reis
+- `Edgar_20261010034459_204` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm High-Velocity 220V (Mercado Livre MLBU4320471013) · Amount: 1 · Fund Handler: Matheus Reis
+- `Edgar_20261010035231_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Ilheus warehouse equipment sourcing + DAO ledger entry (thread 41062). Sourc…
+- `Edgar_20261010120948_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-10T12:09:46.709Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -75,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-09T10:59:14.519Z`
+- Generated (UTC): `2026-10-10T10:59:14.509Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,12 +86,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1101**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1174**)
+- **Email Agent Follow Up** — logged sends: warmup **1112**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1185**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **1029**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **61**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
+- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **1040**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **61**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
 - **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -196,12 +197,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 28 SKU lines · 2,173.72 total units · $8,879.21
+- Manager record: `Matheus Reis` · 30 SKU lines · 2,175.72 total units · $8,941.54
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 942 | $654.61 |
-  | (uncategorized) | (unspecified) | 20 | 454.13 | $2,380.58 |
+  | (uncategorized) | (unspecified) | 22 | 456.13 | $2,442.91 |
   | Cacao Bean | Bulk | 1 | 273.59 | $0.00 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Nib | Retail Ready | 1 | 134 | $889.76 |
@@ -209,11 +210,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 12,929.72 total units · $12,629.41
+- Manager record: `Gary Teh` · 29 SKU lines · 12,874.96 total units · $12,574.65
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 12,853.54 | $12,579.42 |
+  | (uncategorized) | (unspecified) | 27 | 12,798.78 | $12,524.66 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -234,9 +235,9 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,853.24**
+- USD on hand: **$4,798.42**
 - Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
-- USD provisioned for voting-rights cash-out: **$56.38**
+- USD provisioned for voting-rights cash-out: **$56.44**
 
 ### In-transit freight (0 rows)
 
@@ -251,7 +252,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-02 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-03 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 5f5efdd | 2026-10-09 22:50:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 e93e270 | 2026-10-09 13:41:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 8d2306d | 2026-10-09 06:35:34 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -295,9 +297,6 @@ ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip 
 d7ec531 | 2026-10-03 16:37:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 ef44a3d | 2026-10-03 11:57:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 52816bb | 2026-10-03 05:39:38 +0000 | chore(stats): refresh stats indexes [skip ci]
-1ceabe6 | 2026-10-02 22:29:34 +0000 | chore(stats): refresh stats indexes [skip ci]
-438c973 | 2026-10-02 13:04:43 +0000 | chore(stats): refresh stats indexes [skip ci]
-d5eaaa5 | 2026-10-02 06:05:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -309,6 +308,24 @@ d5eaaa5 | 2026-10-02 06:05:13 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+261b844 | 2026-10-10 09:30:55 -0300 | Status: USDA RELEASED shipment Fri 09/10 — no inspection, no surcharge; Graziela answers invoice questions (#1575)
+f0bdcf6 | 2026-10-10 01:02:12 -0300 | Merge pull request #1573 from TrueSightDAO/handoffs/matheus-followup-complete-20261010
+b905d8b | 2026-10-10 04:01:33 +0000 | handoffs: Matheus follow up items (thread 41588) COMPLETE — verified independently
+5b22536 | 2026-10-10 00:59:57 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
+b57ee52 | 2026-10-10 00:58:22 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
+ffecd10 | 2026-10-10 00:57:56 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
+801db4b | 2026-10-10 00:57:46 -0300 | codify Ilhéus register (C2/C5/B2/B3/E1) + file calendar tooling note (#1572)
+334cc6e | 2026-10-10 00:56:14 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
+2fc08f7 | 2026-10-10 00:51:09 -0300 | Merge pull request #1571 from TrueSightDAO/handoffs/matheus-pr524-merged-20261010
+ad2278d | 2026-10-10 03:50:34 +0000 | handoffs: truesight_autopilot#524 merged (calendar watchdog, thread 41588)
+75ee51b | 2026-10-10 00:44:44 -0300 | Merge pull request #1570 from TrueSightDAO/handoffs/matheus-followup-items-register-20261010
+71f308b | 2026-10-10 03:44:07 +0000 | handoffs: register thread 41588 "Matheus follow up items" (Gary tagged Envoy directly)
+2b7c770 | 2026-10-10 00:30:46 -0300 | Add machine-readable ilheus_warehouse.json mirror of §2.5 dimensions register (#1569)
+f7cc275 | 2026-10-09 23:56:48 -0300 | docs(ilheus): bathroom window openable 35 cm H x 53 cm W (governor-confirmed) (#1568)
+621390b | 2026-10-09 23:56:05 -0300 | docs(ilheus): correct M3 — ~90 cm is the main window LOWER PANE, not full height (#1567)
+574eeef | 2026-10-09 23:53:39 -0300 | docs(ilheus): add measured dimensions register (§2.5) — windows/pallet (#1566)
+b74397e | 2026-10-09 19:51:16 -0300 | chore(previews): refresh Beer Hall preview (2026-10-09 UTC)
+5fcaa08 | 2026-10-09 19:51:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-09 UTC)
 033e44d | 2026-10-09 18:02:22 -0300 | CORRECTION: 5 Continent does have a US broker (Gary was right) + the hold is USDA, and storage is now the dominant cost (#1565)
 4a12123 | 2026-10-09 17:57:49 -0300 | Add measured shipping-pallet spec (110 cm span) to Brazil->SF freight runbook (#1564)
 d9f3385 | 2026-10-09 17:56:40 -0300 | Research: who files APHIS — broker does the entry transmission, TrueTech must hold the permit itself (#1563)
@@ -331,24 +348,6 @@ b375030 | 2026-10-09 11:31:32 -0300 | PR4: file the TREASURY_CACHE_PUSH_TOKEN fo
 b503332 | 2026-10-09 11:10:53 -0300 | Reconcile Brazil lane learnings with cooperative-first decision (Oscar → Coopercabruca) (#1546)
 dfa7a6e | 2026-10-09 09:27:17 -0300 | Add v6 line-by-line derivation of the three variance buckets (#1545)
 e7c7c40 | 2026-10-09 09:24:28 -0300 | Add 2023 vs 2026 forwarder invoice comparison (#1544)
-c4e4748 | 2026-10-09 03:29:45 -0300 | chore(previews): refresh Beer Hall preview (2026-10-09 UTC)
-8524f0c | 2026-10-09 03:29:43 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-09 UTC)
-6aa6481 | 2026-10-09 02:06:27 -0300 | Merge pull request #1543 from TrueSightDAO/auto/advisory-refresh-2026-10-09
-9a5d9f1 | 2026-10-09 05:06:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-09 UTC)
-cba6d6b | 2026-10-09 01:42:50 -0300 | Record cooperative-first sourcing + Ilhéus warehouse wind-down decision (#1542)
-44a6967 | 2026-10-09 00:19:54 -0300 | Merge pull request #1541 from TrueSightDAO/exec/intraturn-compaction-unit1-merged-20261009
-6e17b3e | 2026-10-09 03:11:05 +0000 | SOPHIA_INTRATURN_COMPACTION_PLAN: Unit 1 merged (truesight_autopilot#523)
-a24d830 | 2026-10-09 00:03:41 -0300 | handoffs: release plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
-459801d | 2026-10-08 23:59:21 -0300 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
-28f2bd9 | 2026-10-08 23:59:04 -0300 | Merge pull request #1540 from TrueSightDAO/docs/active-supervision-cleanup-20261009
-3e8de63 | 2026-10-09 02:58:25 +0000 | handoffs: release 2 done claims, claim SOPHIA_INTRATURN_COMPACTION_PLAN.md
-a0cc91d | 2026-10-08 23:56:26 -0300 | Merge pull request #1539 from TrueSightDAO/docs/fix-check-index-ci-20261009
-a7ad1f5 | 2026-10-09 02:55:49 +0000 | chore: regenerate handoffs/index.json (fix --check-index CI gate on main)
-d84b0f2 | 2026-10-08 23:55:03 -0300 | handoffs: release plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
-65c9178 | 2026-10-08 23:53:34 -0300 | Merge pull request #1538 from TrueSightDAO/docs/manifest-drift-reconcile-5-20261009
-e0003d0 | 2026-10-09 02:53:02 +0000 | docs: close MEDIA_ARCHIVE_PIPELINE_DASHBOARD_PLAN as completed
-f50c8b5 | 2026-10-08 23:50:24 -0300 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
-6936dca | 2026-10-08 23:50:13 -0300 | Merge pull request #1537 from TrueSightDAO/exec/intraturn-compaction-unit1-dispatch-20261009
 … (truncated)
 ```
 
@@ -386,6 +385,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 904093f | 2026-10-09 13:45:46 +0000 | chore: refresh currencies.json [skip ci]
 55cb5bd | 2026-10-09 13:22:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 7ce92a2 | 2026-10-08 13:35:15 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -399,8 +399,6 @@ e1e2e82 | 2026-10-05 15:16:09 +0000 | chore: refresh currencies.json [skip ci]
 8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 31f27dc | 2026-10-03 12:01:28 +0000 | chore: refresh currencies.json [skip ci]
 bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-762d8cb | 2026-10-02 13:10:22 +0000 | chore: refresh currencies.json [skip ci]
-10cb1a7 | 2026-10-02 12:40:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -496,14 +494,13 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/9/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/10/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-02`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-03`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_24 | — | — |
-| 2026-10-02 | 17.5 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20260330_23 | — | — |
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
