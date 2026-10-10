@@ -94,8 +94,8 @@ Tape-measure dimensions captured **on site at the Ilhéus (Black King / Matheus 
 | # | Element | Dimension | Measured | Notes / confidence |
 |---|---|---|---|---|
 | M1 | Main window | width | **~53–54 cm** (≈21 in) | upper ~53 cm; lower ~53.5–54 cm; hook off-frame → ±1–2 cm |
-| M2 | Main window | upper-pane clear height | **~14.5–15 cm** | louver/pane clear opening |
-| M3 | Main window | full frame height (vertical) | **~90 cm** (35 in) | top-of-tape reading; zero seated at sill not confirmed |
+| M2 | Main window | upper-pane clear height | **~14.5–15 cm** | louver/pane clear opening; attribution to re-confirm against the lower-pane reading |
+| M3 | Main window | **lower-pane height** (vertical) | **~90 cm** (35 in) | **CORRECTED 2026-10-10:** this is the **lower pane**, **not** the full window; frame's full height still unmeasured |
 | M4 | Toilet/bathroom window (louvered) | width | **~53–54 cm** (21 in) | hook off-frame; consistent with M1 |
 | M5 | Toilet/bathroom window (louvered) | height | **~39.5–40 cm** (~15.5 in) | ~2 louver sections; bottom thumb-obscured |
 | M6 | Plastic (HDPE) pallet | one edge | **~110–112 cm** (~44 in) | other edge, height, and qty still unmeasured |
@@ -105,8 +105,8 @@ Tape-measure dimensions captured **on site at the Ilhéus (Black King / Matheus 
 
 - Most shots are **close-ups**; the tape's hook/zero is **off-frame**, so each value is the reading where the tape meets the far frame — treat as **±1–2 cm**.
 - Values are **vision-derived** (Gemini + Grok converged on every item); **not** OCR-verified.
-- Emerging spec: **main window ≈ 53–54 cm W × ~90 cm H**; **louvered toilet window ≈ 53–54 cm W × ~40 cm H** — both share a ~53 cm sash module.
-- Still open: warehouse **footprint** (L×W), **full wall heights**, and any **other openings/windows**.
+- Emerging spec: **main window ≈ 53–54 cm W, lower pane ~90 cm H** (upper pane clear ~14.5–15 cm; **full frame height still unmeasured**); **louvered toilet window ≈ 53–54 cm W × ~40 cm H** — both share a ~53 cm sash module.
+- Still open: warehouse **footprint** (L×W), **full wall heights**, the **main window's full frame height** (only the lower pane ~90 cm + upper pane ~15 cm are measured so far), and any **other openings/windows**.
 
 ---
 
