@@ -11,10 +11,11 @@
 
 | # | Action | Owner | Status |
 |---|---|---|---|
-| A1 | Record the **physical-facts block** (address, L×W×H, floor area) in `SUPPLY_CHAIN_AND_FREIGHTING.md` §2; mirror in `fda_fsvp/suppliers/black_king/entity.json` `facilities[]` | Sophia / Gary | **OPEN** — only a single tape span (~4.30 m, one wall) captured; footprint unknown |
+| A1 | Record the **physical-facts block** (address, L×W×H, floor area) in `SUPPLY_CHAIN_AND_FREIGHTING.md` §2; mirror in `fda_fsvp/suppliers/black_king/entity.json` `facilities[]` | Sophia / Gary | **PARTIAL** — wall span (~4.30 m) + measured window/pallet dims recorded in `SUPPLY_CHAIN_AND_FREIGHTING.md` **§2.5** (2026-10-10); footprint, full window height, remaining openings still OPEN |
 | A2 | Capture the **floor plan** — digitize the whiteboard MAP (see `ILHEUS_WAREHOUSE_FLOOR_MAP.md`) and/or a measured sketch | Gary / Matheus | **OPEN** — whiteboard photographed 2026-10-09 |
 | A3 | Reconcile the **two storage addresses** (FDA FFR `entity.json`: Av. Tancredo Neves 4900; site visit: Rua Coronel Paiva 46) and state the linkage | Sophia | **OPEN** (FSVP gap) |
 | A4 | Register the **storage-location address(es)** + the fumigation NFS-e in `entity.json` | Sophia | **OPEN** |
+| A5 | **Measured dimensions register** — on-site tape-measured windows/opening/pallet dims (resolved via Gemini/Grok vision, thread 41062, 2026-10-10) in `SUPPLY_CHAIN_AND_FREIGHTING.md` **§2.5** | Sophia | **In progress** — main + toilet windows done; other openings + footprint pending |
 
 ## 2. FDA / FSVP compliance — 4 live obligations
 
