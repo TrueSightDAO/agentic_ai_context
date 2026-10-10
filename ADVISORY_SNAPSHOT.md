@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-10T12:53:09Z`
+- Generated (UTC): `2026-10-10T21:55:29Z`
 - Look-back: **7** calendar days (`2026-10-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,27 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
-- `[ASSET RECEIPT EVENT]` × 4
-- `[PRACTICE EVENT]` × 3
-- `[MANAGED LEDGER TRANSACTION EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 21
+- `[ASSET RECEIPT EVENT]` × 6
+- `[PRACTICE EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[DAO INVENTORY EXPENSE EVENT]` × 1
-- _free-form (no bracket tag)_ × 14
+- `[CURRENCY DEFINITION EVENT]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- _free-form (no bracket tag)_ × 9
 
 ### Latest entries
 
-- `Edgar_20261009140712_170` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Oracle site — fix excess vertical whitespace in hexagram readings (print + m…
-- `Edgar_20261009140718_172` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Oracle site — direction + review: hexagram reading whitespace fix
-- `Edgar_20261009142242_174` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: 5 Continent invoice reconciliation + 2023 comparison (raw machine execution)
-- `Edgar_20261009142250_176` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: 5 Continent invoice reconciliation (direct time / engagement & analysis)
-- `Edgar_20261009142254_178` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: 5 Continent freight-invoice dispute - direct time
-- `Edgar_20261009165710_180` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20261009165755_182` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20261009165830_184` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Updated the warehousing layout on the warehouse whiteboard so the next DAO m…
-- `Edgar_20261009205806_186` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20261010004551_188` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 27.34 · Contributor(s): Gary Teh
-- `Edgar_20261010025241_190` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
 - `Edgar_20261010033052_192` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Onboarding Julio Almeida to B2B email outreach. Directed him to the agentic_…
 - `Edgar_20261010033932_194` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] DAO Member Name: Gary Teh · Inventory Type: USD · Inventory Quantity: 54.76
 - `Edgar_20261010033935_196` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W - Mercado Livre MLB20684318 - Ilheus Wareho… · Amount: 1 · Fund Handler: Matheus Reis
@@ -62,6 +52,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261010034459_204` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm High-Velocity 220V (Mercado Livre MLBU4320471013) · Amount: 1 · Fund Handler: Matheus Reis
 - `Edgar_20261010035231_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Ilheus warehouse equipment sourcing + DAO ledger entry (thread 41062). Sourc…
 - `Edgar_20261010120948_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-10T12:09:46.709Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261010140912_210` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261010140916_212` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Showcase display cabinet (per cabinet, Matheus Ilheus warehouse, R$250 receipt … · Amount: 1 · Description: Received 1x glass showcase/display cabinet (white frame, curved top) for DAO…
+- `Edgar_20261010141851_214` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14 · Price in USD: 13.41775 · Ledger: AGL14
+- `Edgar_20261010141855_216` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 7 · Attached Filename: e875a33cc41a4d15967fe3ef683a4169.jpg · Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14
+- `Edgar_20261010164408_218` · **Edgar** · [CONTRIBUTION EVENT] Amount: 97 · Contributor(s): Gary Teh · Description: Accommodation (7 nights, São Paulo) for getting the legal power of attorney …
+- `Edgar_20261010164646_220` · **Edgar** · [CONTRIBUTION EVENT] Amount: 12.06 · Contributor(s): Gary Teh · Description: Breakfast with Matheus to discuss follow-up action items (Ilheus warehouse o…
+- `Edgar_20261010164757_222` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2.49 · Contributor(s): Gary Teh · Description: Ride-hailing (99 app) — getting from Ilheus hotel to Ilheus airport. Merchan…
+- `Edgar_20261010164909_224` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150.00 · Contributor(s): Gary Teh · Description: Parking at LAX while traveling to attend to supply chain matters. Merchant: …
+- `Edgar_20261010165153_226` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lin Boqiang · Contributor Email: 2821396516@qq.com · Submission Source: sophia-autopilot (Discord 1455101520155644059)
+- `Edgar_20261010180141_228` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Discussion with Matheus Reis on warehouse management concerns at the Ilheus …
+- `Edgar_20261010181133_230` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Matheus Reis · Description: Discussion with Gary Teh on warehouse management concerns at the Ilheus (Bla…
 
 ---
 
@@ -197,12 +198,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 30 SKU lines · 2,175.72 total units · $8,941.54
+- Manager record: `Matheus Reis` · 31 SKU lines · 2,135.59 total units · $9,082.36
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 942 | $654.61 |
-  | (uncategorized) | (unspecified) | 22 | 456.13 | $2,442.91 |
+  | (uncategorized) | (unspecified) | 23 | 416 | $2,583.73 |
   | Cacao Bean | Bulk | 1 | 273.59 | $0.00 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Nib | Retail Ready | 1 | 134 | $889.76 |
@@ -236,7 +237,7 @@ _(+31 more in JSON snapshot.)_
 ### Cash float (`off chain asset balance`)
 
 - USD on hand: **$4,798.42**
-- Brazilian Reis: R$-340.05 · rate `0.2323` USD/BRL → ≈ **$-78.99**
+- Brazilian Reis: R$-590.05 · rate `0.2323` USD/BRL → ≈ **$-137.07**
 - USD provisioned for voting-rights cash-out: **$56.44**
 
 ### In-transit freight (0 rows)
@@ -271,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+69d8a81 | 2026-10-10 12:58:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 5f5efdd | 2026-10-09 22:50:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 e93e270 | 2026-10-09 13:41:38 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -308,6 +310,11 @@ ef44a3d | 2026-10-03 11:57:14 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+67c9a6a | 2026-10-10 17:34:33 -0300 | docs(calendar): the watchdog is the runner — fold in Gary's correction (#1579)
+ada29f1 | 2026-10-10 17:31:03 -0300 | docs(followups): move Discord member-replies from Pending to Recently shipped (tier-aware replies live) (#1577)
+716f9c8 | 2026-10-10 11:30:57 -0300 | VERDICT: AWB says 349,000 kg — Graziela's 365 kg claim refuted by the document she cites (#1576)
+5058a98 | 2026-10-10 09:53:31 -0300 | chore(previews): refresh Beer Hall preview (2026-10-10 UTC)
+6c72106 | 2026-10-10 09:53:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-10 UTC)
 261b844 | 2026-10-10 09:30:55 -0300 | Status: USDA RELEASED shipment Fri 09/10 — no inspection, no surcharge; Graziela answers invoice questions (#1575)
 f0bdcf6 | 2026-10-10 01:02:12 -0300 | Merge pull request #1573 from TrueSightDAO/handoffs/matheus-followup-complete-20261010
 b905d8b | 2026-10-10 04:01:33 +0000 | handoffs: Matheus follow up items (thread 41588) COMPLETE — verified independently
@@ -343,11 +350,6 @@ b213598 | 2026-10-09 15:43:34 -0300 | Add 2025-vs-2026 ASTRA fumigation comparis
 c8ffe9b | 2026-10-09 15:07:57 -0300 | Add Gary Teh 2026 year-in-review (from contribution ledger) (#1551)
 acd9314 | 2026-10-09 15:03:10 -0300 | Add Ilhéus warehouse floor map block to SUPPLY_CHAIN_AND_FREIGHTING.md §2 (#1550)
 d6dd6f4 | 2026-10-09 14:02:49 -0300 | Add Ilhéus warehouse management register + action items (#1549)
-b375030 | 2026-10-09 11:31:32 -0300 | PR4: file the TREASURY_CACHE_PUSH_TOKEN follow-up + advance plan tracker to PR5 (#1548)
-4aa2369 | 2026-10-09 11:24:17 -0300 | Record Gary's reply to Graziela/Matheus (5 Continent invoice dispute) (#1547)
-b503332 | 2026-10-09 11:10:53 -0300 | Reconcile Brazil lane learnings with cooperative-first decision (Oscar → Coopercabruca) (#1546)
-dfa7a6e | 2026-10-09 09:27:17 -0300 | Add v6 line-by-line derivation of the three variance buckets (#1545)
-e7c7c40 | 2026-10-09 09:24:28 -0300 | Add 2023 vs 2026 forwarder invoice comparison (#1544)
 … (truncated)
 ```
 
@@ -385,6 +387,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1e973d5 | 2026-10-10 13:02:52 +0000 | chore: refresh currencies.json [skip ci]
 d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 904093f | 2026-10-09 13:45:46 +0000 | chore: refresh currencies.json [skip ci]
 55cb5bd | 2026-10-09 13:22:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
