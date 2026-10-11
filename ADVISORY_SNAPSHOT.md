@@ -20,49 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-10T21:55:29Z`
-- Look-back: **7** calendar days (`2026-10-03` → today UTC)
+- Generated (UTC): `2026-10-11T04:37:33Z`
+- Look-back: **7** calendar days (`2026-10-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 21
-- `[ASSET RECEIPT EVENT]` × 6
-- `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[DAO INVENTORY EXPENSE EVENT]` × 1
-- `[CURRENCY DEFINITION EVENT]` × 1
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 9
-
-### Latest entries
-
-- `Edgar_20261010033052_192` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Onboarding Julio Almeida to B2B email outreach. Directed him to the agentic_…
-- `Edgar_20261010033932_194` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] DAO Member Name: Gary Teh · Inventory Type: USD · Inventory Quantity: 54.76
-- `Edgar_20261010033935_196` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W - Mercado Livre MLB20684318 - Ilheus Wareho… · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010033937_198` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm Turbo 220V - Mercado Livre MLBU4320471013 - Ilheus Ware… · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010034437_200` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261010034457_202` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W (Mercado Livre MLB20684318) · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010034459_204` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm High-Velocity 220V (Mercado Livre MLBU4320471013) · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010035231_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Ilheus warehouse equipment sourcing + DAO ledger entry (thread 41062). Sourc…
-- `Edgar_20261010120948_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-10T12:09:46.709Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261010140912_210` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261010140916_212` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Showcase display cabinet (per cabinet, Matheus Ilheus warehouse, R$250 receipt … · Amount: 1 · Description: Received 1x glass showcase/display cabinet (white frame, curved top) for DAO…
-- `Edgar_20261010141851_214` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14 · Price in USD: 13.41775 · Ledger: AGL14
-- `Edgar_20261010141855_216` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 7 · Attached Filename: e875a33cc41a4d15967fe3ef683a4169.jpg · Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14
-- `Edgar_20261010164408_218` · **Edgar** · [CONTRIBUTION EVENT] Amount: 97 · Contributor(s): Gary Teh · Description: Accommodation (7 nights, São Paulo) for getting the legal power of attorney …
-- `Edgar_20261010164646_220` · **Edgar** · [CONTRIBUTION EVENT] Amount: 12.06 · Contributor(s): Gary Teh · Description: Breakfast with Matheus to discuss follow-up action items (Ilheus warehouse o…
-- `Edgar_20261010164757_222` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2.49 · Contributor(s): Gary Teh · Description: Ride-hailing (99 app) — getting from Ilheus hotel to Ilheus airport. Merchan…
-- `Edgar_20261010164909_224` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150.00 · Contributor(s): Gary Teh · Description: Parking at LAX while traveling to attend to supply chain matters. Merchant: …
-- `Edgar_20261010165153_226` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lin Boqiang · Contributor Email: 2821396516@qq.com · Submission Source: sophia-autopilot (Discord 1455101520155644059)
-- `Edgar_20261010180141_228` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Discussion with Matheus Reis on warehouse management concerns at the Ilheus …
-- `Edgar_20261010181133_230` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Matheus Reis · Description: Discussion with Gary Teh on warehouse management concerns at the Ilheus (Bla…
 
 ---
 
@@ -234,16 +194,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+31 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,798.42**
-- Brazilian Reis: R$-590.05 · rate `0.2323` USD/BRL → ≈ **$-137.07**
-- USD provisioned for voting-rights cash-out: **$56.44**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (0 rows)
+### In-transit freight
 
-_No `Shipment Ledger Listing` rows match in-flight status keywords today._
-
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -253,7 +210,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-03 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-04 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -272,6 +229,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+42c94ed | 2026-10-10 21:57:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 69d8a81 | 2026-10-10 12:58:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 5f5efdd | 2026-10-09 22:50:28 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -295,21 +253,24 @@ ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip 
 2e29164 | 2026-10-04 21:51:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 20d8b6c | 2026-10-04 12:48:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 963a975 | 2026-10-04 06:14:55 +0000 | chore(stats): refresh stats indexes [skip ci]
-0157846 | 2026-10-03 21:42:28 +0000 | chore(stats): refresh stats indexes [skip ci]
-d7ec531 | 2026-10-03 16:37:56 +0000 | chore(stats): refresh stats indexes [skip ci]
-ef44a3d | 2026-10-03 11:57:14 +0000 | chore(stats): refresh stats indexes [skip ci]
-52816bb | 2026-10-03 05:39:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-5682418 | 2026-10-08 23:23:28 -0300 | fix(chocolate-spec): record 58x125mm bar dimensions in generator (#182)
+0bfa795 | 2026-10-10 20:19:35 -0300 | Add B2B email outreach funnel report (2026-09-29 PDF)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6f1e742 | 2026-10-10 20:31:54 -0300 | plan(discord-gateway-resume): tick PR0 tracker — PR opened + merged (1ca1dcc) (#1582)
+6493861 | 2026-10-10 19:59:41 -0300 | handoffs: release plans/DISCORD_GATEWAY_RESUME_BACKOFF_FIX_PLAN.md (Sophia (autopilot, self))
+f2e4c74 | 2026-10-10 19:56:39 -0300 | handoffs: claim Discord gateway RESUME fix (thread 41950) (#1581)
+f8ab2c7 | 2026-10-10 19:51:10 -0300 | handoffs: claim plans/DISCORD_GATEWAY_RESUME_BACKOFF_FIX_PLAN.md (Sophia (autopilot, self))
+41eb375 | 2026-10-10 19:50:06 -0300 | Plan: Discord gateway RESUME + backoff reset fix (#1580)
+47260d5 | 2026-10-10 18:55:47 -0300 | chore(previews): refresh Beer Hall preview (2026-10-10 UTC)
+28b2c27 | 2026-10-10 18:55:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-10 UTC)
 67c9a6a | 2026-10-10 17:34:33 -0300 | docs(calendar): the watchdog is the runner — fold in Gary's correction (#1579)
 ada29f1 | 2026-10-10 17:31:03 -0300 | docs(followups): move Discord member-replies from Pending to Recently shipped (tier-aware replies live) (#1577)
 716f9c8 | 2026-10-10 11:30:57 -0300 | VERDICT: AWB says 349,000 kg — Graziela's 365 kg claim refuted by the document she cites (#1576)
@@ -343,13 +304,6 @@ f8a9635 | 2026-10-09 16:07:32 -0300 | Distinguish fumigation service from phytos
 5979751 | 2026-10-09 16:05:32 -0300 | Record FDA Prior Notice F26X30142399 (filed 2026-10-06) and retract the 'PN unfiled' hypothesis (#1558)
 d61cee8 | 2026-10-09 15:53:53 -0300 | Root-cause hypotheses for the CBP agriculture hold: unanswered phyto, PN status, pallet wood/plastic contradiction, stale HS list (#1557)
 f6bfc56 | 2026-10-09 15:47:57 -0300 | Record the sent ASTM/ASTRA dedetização certificate request (24/09/2026 NFS-e) — sent to company, Matheus CC'd (#1556)
-f3bf55e | 2026-10-09 15:46:26 -0300 | Adjudicate Graziela's 09-Oct reply to the v6 dispute: 1 self-correction, 1 concession, 1 evasion, CBP ag hold (#1555)
-b213598 | 2026-10-09 15:43:34 -0300 | Add 2025-vs-2026 ASTRA fumigation comparison + Ilheus service-location finding (#1554)
-936def0 | 2026-10-09 15:41:49 -0300 | File the 2026-09-24 fumigation NFS-e (ASTRA) + note the certificate-request gap (#1553)
-8dd8bcf | 2026-10-09 15:30:22 -0300 | Add 2026 time-allocation pie charts to Gary's year-in-review (#1552)
-c8ffe9b | 2026-10-09 15:07:57 -0300 | Add Gary Teh 2026 year-in-review (from contribution ledger) (#1551)
-acd9314 | 2026-10-09 15:03:10 -0300 | Add Ilhéus warehouse floor map block to SUPPLY_CHAIN_AND_FREIGHTING.md §2 (#1550)
-d6dd6f4 | 2026-10-09 14:02:49 -0300 | Add Ilhéus warehouse management register + action items (#1549)
 … (truncated)
 ```
 
@@ -400,8 +354,6 @@ e1e2e82 | 2026-10-05 15:16:09 +0000 | chore: refresh currencies.json [skip ci]
 51e7a2a | 2026-10-05 14:46:25 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 4d55c46 | 2026-10-04 12:51:04 +0000 | chore: refresh currencies.json [skip ci]
 8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-31f27dc | 2026-10-03 12:01:28 +0000 | chore: refresh currencies.json [skip ci]
-bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -427,6 +379,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-10-11T043733Z_usda-released-gateway-fix-warehouse-codified.md`
+
+- **posted_at_utc:** `2026-10-11T04:37:33Z`  
+- **slug:** `usda-released-gateway-fix-warehouse-codified`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **USDA Released Shipment** — No inspection required, no surcharge; Graziela now answering invoice questions.
+
 ### `beer-hall_2026-10-09T050607Z_cooperative-first-sourcing-ilheus-wind-down.md`
 
 - **posted_at_utc:** `2026-10-09T05:06:07Z`  
@@ -444,15 +405,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Shipments Completed** — AGL4 and AGL7 moved to COMPLETED; AGL8 + AGL14 advanced to SALES IN PROGRESS on site.
-
-### `beer-hall_2026-09-29T044723Z_ledger-explorer-shipped-payout-filter-prod-gate.md`
-
-- **posted_at_utc:** `2026-09-29T04:47:23Z`  
-- **slug:** `ledger-explorer-shipped-payout-filter-prod-gate`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Ledger Explorer** — Shipped to prod: deep links per transaction, infinite scroll, inline expand, and SunMint tree-planting cross-links. Fixed dead hamburger on ~17 pages and a site-wide mobile horizontal-scroll breakage.
 
 ---
 
@@ -473,39 +425,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/10/2026 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-03`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
