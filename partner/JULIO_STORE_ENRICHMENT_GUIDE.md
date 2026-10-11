@@ -121,3 +121,28 @@ You do not need permission for any of this, and nothing you do here can send an 
 ---
 
 **Related:** `partner/HIT_LIST_CONTACT_ENRICHMENT.md` (the automated pipeline this human work mirrors), `plans/DAPP_ACCESS_RIGHTS_PLAN.md` (Unit 0 = Julio's signing identity).
+
+---
+
+## Appendix — How this task is designed to stay honest
+
+*This appendix exists because "improve the funnel" is exactly the kind of unbounded group task that goes wrong. The design below borrows from three findings (Ostrom 2009; Holmström 2016; Hurwicz/Maskin/Myerson 2007) — applied to your work, not recited.*
+
+### The risk we're designing against
+
+The data is not a scarce resource — **adding store data *increases* its value**. The shared resource that *can* be degraded is the **sender reputation of the outreach domain**: it is shared, and one bad address costs everyone. So the failure mode isn't "you take too much" — it's that a **guessed email** produces a private gain (a filled record) against a **socialized cost** (deliverability for all ~1,000 sends). That is why **"never invent an address" is not a style rule — it is boundary defence.**
+
+### The four levers
+
+| Lever | How it's applied here |
+|---|---|
+| **1. Bounded batch** (Ostrom: clear boundaries) | You work in **countable batches** (start: 20 stores), not "the funnel." A bounded task has a verifiable edge; an unbounded one diffuses responsibility. |
+| **2. Individual visibility** (Holmström: informativeness) | Every save is signed and shows **"Submitted By: you"**. Your edits are separable from the automation's, so your marginal contribution is measurable — you are never hidden inside a group metric. |
+| **3. Quality over volume** (Hurwicz/Maskin/Myerson: incentive compatibility) | Compensation is based on **verified quality**, *not* records-touched. This is deliberate: a per-record bounty would reward speed over accuracy and manufacture exactly the fabrication risk above. Honest quality must beat both slacking *and* padding. |
+| **4. Sample audit + feedback** (Ostrom: monitoring & graduated response) | A sample of your edits (target ~10%) is spot-checked: is the email real and published? is the remark usable? Clean work earns **broader scope**; a bad batch means a **tighter** one — that's the graduated response, and it's how broader write access is *earned* (see `plans/DAPP_ACCESS_RIGHTS_PLAN.md`). |
+
+### The loop that keeps you in it
+
+Showing effort rewarded is what stops the "why bother" reflex: the machine sends ~1,000 emails for ~0.3% replies, so it is easy to conclude annotation is futile. It isn't — **every current partner came from a human conversation.** So when a store *you* enriched replies, that gets flagged back to you. Your work closing that loop is the point.
+
+**What this asks of you:** a small, honest, well-annotated first batch — 20 stores — and then we review the *style* together before scaling. Accuracy over speed, always.
