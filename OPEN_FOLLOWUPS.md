@@ -46,7 +46,9 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Open decisions (Gary's call, not yet confirmed):** (A) who writes the grant table — governor-signed event (both Sophia and Envoy recommend this) vs. hand-edited tab; (B) scope of grantable actions — `grantable:true` allowlist only (both recommend) vs. any action.
 
-**Next step.** Sophia drafts `plans/DAPP_ACCESS_RIGHTS_PLAN.md` (§5/§5a/§5d roadmap shape) with the above baked in as a proposal; the plan's RESUME HERE waits for Gary to confirm (A)/(B) before any PR executes.
+**Governor decision (Gary, this thread): UI slice only** — conditional on *"record works for Julio to do what he needs to do."* Plan filed: `plans/DAPP_ACCESS_RIGHTS_PLAN.md`.
+
+**Key pre-flight finding — the UI slice is already shipped.** `store_interaction_history.html` (beta **and** prod) already renders the full "Update Store Information" edit form and gates it on **signature-presence** (`verifySignatureOnLoad()` → registered contributor ⇒ `interactive`), **not on role**; `stores_nearby.html` already has "Save New Store". Store writes are **signature-gated, not role-gated** (confirmed in `sentiment_importer/app/controllers/dao_controller.rb` — no governor check on `[STORE ADD EVENT]`/`[RETAIL FIELD REPORT EVENT]` — and in `find_nearby_stores.gs` `updateStoreStatus`/`addNewStore`), so a per-contributor `store.*` grant would be **cosmetic**. The real blocker for **Julio Almeida** (`Contributors contact information` row 427, `davajhabib@outlook.com`, Discord `1554404598381543494`) is that he has **no registered Edgar key** (absent from `dao_members.json`) → the page puts him in view-only mode. **RESUME HERE = Unit 0: Julio registers a signature via `create_signature.html`**, then verify he gets interactive mode. The full 5-PR / 4-repo ACL is **deferred** pending a second delegate/module.
 
 ### truesight_autopilot: `google_calendar` tool + daily calendar watchdog shipped — precondition is the `calendar.events` token scope
 **Filed 2026-10-10 (thread 41588). Owner: unclaimed. Small (ops/secret + docs).**
