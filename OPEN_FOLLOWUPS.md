@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### DApp per-contributor access-rights / grant-table design — awaiting governor decision
+**Filed 2026-10-11 (Discord #roles-and-dapp-access, channel `1558887495192805407`). Owner: Sophia (draft) + Envoy (supervising). Medium — design-only right now, no code.**
+
+**Context.** Gary proposed adding a per-contributor ACL layer on top of the existing role-based (`governor/member/operator/custodian/sentinel`) permission model: a States-tab column listing DApp modules with `.read`/`.write`, a new "Contributor name | Access right" grant tab, compiled into `dao_members.json` (schema v5, additive `access_rights: []`), consumed by `dapp_beta/scripts/permissions.js`. Sophia's independent analysis found ~70% of the plumbing already exists (`treasury-cache/permissions.json` module registry, the `[DAPP PERMISSION CHANGE EVENT]` audit flow) — the new piece is per-member grants. Envoy's independent review agreed with the direction and added: (1) the governor-only action list (money/contributor-add/etc., never grantable) should be a literal code allowlist, not just doc convention; (2) revoke must be a first-class signed event from day one, not a v2 afterthought; (3) check whether the existing `[DAPP PERMISSION CHANGE EVENT]` handler can already express per-contributor grants before adding a new event type; (4) confirm which repo (tokenomics GAS vs. Edgar/dao_protocol signing pipeline) owns the grant/revoke write path if "governor-signed" means cryptographic signing like other ledger events.
+
+**Open decisions (Gary's call, not yet confirmed):** (A) who writes the grant table — governor-signed event (both Sophia and Envoy recommend this) vs. hand-edited tab; (B) scope of grantable actions — `grantable:true` allowlist only (both recommend) vs. any action.
+
+**Next step.** Sophia drafts `plans/DAPP_ACCESS_RIGHTS_PLAN.md` (§5/§5a/§5d roadmap shape) with the above baked in as a proposal; the plan's RESUME HERE waits for Gary to confirm (A)/(B) before any PR executes.
+
 ### truesight_autopilot: `google_calendar` tool + daily calendar watchdog shipped — precondition is the `calendar.events` token scope
 **Filed 2026-10-10 (thread 41588). Owner: unclaimed. Small (ops/secret + docs).**
 
