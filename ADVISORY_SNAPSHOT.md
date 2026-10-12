@@ -20,9 +20,50 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-11T04:37:33Z`
-- Look-back: **7** calendar days (`2026-10-04` → today UTC)
+- Generated (UTC): `2026-10-12T06:18:33Z`
+- Look-back: **7** calendar days (`2026-10-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 21
+- `[ASSET RECEIPT EVENT]` × 6
+- `[EMAIL REGISTERED EVENT]` × 3
+- `[PRACTICE EVENT]` × 3
+- `[DAO INVENTORY EXPENSE EVENT]` × 1
+- `[CURRENCY DEFINITION EVENT]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- _free-form (no bracket tag)_ × 5
+
+### Latest entries
+
+- `Edgar_20261010034437_200` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20261010034457_202` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W (Mercado Livre MLB20684318) · Amount: 1 · Fund Handler: Matheus Reis
+- `Edgar_20261010034459_204` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm High-Velocity 220V (Mercado Livre MLBU4320471013) · Amount: 1 · Fund Handler: Matheus Reis
+- `Edgar_20261010035231_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Ilheus warehouse equipment sourcing + DAO ledger entry (thread 41062). Sourc…
+- `Edgar_20261010120948_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-10T12:09:46.709Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261010140912_210` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
+- `Edgar_20261010140916_212` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Showcase display cabinet (per cabinet, Matheus Ilheus warehouse, R$250 receipt … · Amount: 1 · Description: Received 1x glass showcase/display cabinet (white frame, curved top) for DAO…
+- `Edgar_20261010141851_214` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14 · Price in USD: 13.41775 · Ledger: AGL14
+- `Edgar_20261010141855_216` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 7 · Attached Filename: e875a33cc41a4d15967fe3ef683a4169.jpg · Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14
+- `Edgar_20261010164408_218` · **Edgar** · [CONTRIBUTION EVENT] Amount: 97 · Contributor(s): Gary Teh · Description: Accommodation (7 nights, São Paulo) for getting the legal power of attorney …
+- `Edgar_20261010164646_220` · **Edgar** · [CONTRIBUTION EVENT] Amount: 12.06 · Contributor(s): Gary Teh · Description: Breakfast with Matheus to discuss follow-up action items (Ilheus warehouse o…
+- `Edgar_20261010164757_222` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2.49 · Contributor(s): Gary Teh · Description: Ride-hailing (99 app) — getting from Ilheus hotel to Ilheus airport. Merchan…
+- `Edgar_20261010164909_224` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150.00 · Contributor(s): Gary Teh · Description: Parking at LAX while traveling to attend to supply chain matters. Merchant: …
+- `Edgar_20261010165153_226` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lin Boqiang · Contributor Email: 2821396516@qq.com · Submission Source: sophia-autopilot (Discord 1455101520155644059)
+- `Edgar_20261010180141_228` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Discussion with Matheus Reis on warehouse management concerns at the Ilheus …
+- `Edgar_20261010181133_230` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Matheus Reis · Description: Discussion with Gary Teh on warehouse management concerns at the Ilheus (Bla…
+- `Edgar_20261011140835_232` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-11T14:08:33.704Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261011203531_234` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
+- `Edgar_20261011203732_236` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
+- `Edgar_20261011203750_238` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: hE8ZRF1QvNhz3PSZ5NrxCuULGq6_nsu9RRkQhb3ZPF8 · Email: davajhabib@outlook.com
 
 ---
 
@@ -37,7 +78,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-10T10:59:14.509Z`
+- Generated (UTC): `2026-10-11T10:59:13.873Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -194,13 +235,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+31 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,798.32**
+- Brazilian Reis: R$-590.05 · rate `0.2323` USD/BRL → ≈ **$-137.07**
+- USD provisioned for voting-rights cash-out: **$56.54**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -210,7 +254,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-04 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-05 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -229,6 +273,9 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+fb4f883 | 2026-10-11 22:22:57 +0000 | chore(stats): refresh stats indexes [skip ci]
+7789df1 | 2026-10-11 13:24:08 +0000 | chore(stats): refresh stats indexes [skip ci]
+fe5b0ab | 2026-10-11 06:19:27 +0000 | chore(stats): refresh stats indexes [skip ci]
 42c94ed | 2026-10-10 21:57:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 69d8a81 | 2026-10-10 12:58:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -250,9 +297,6 @@ c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip 
 03caeea | 2026-10-05 19:43:56 -0300 | AGL7 shipment page: status FREIGHTING IN PROGRESS → COMPLETED (#410)
 f716984 | 2026-10-05 15:11:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip ci]
-2e29164 | 2026-10-04 21:51:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-20d8b6c | 2026-10-04 12:48:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-963a975 | 2026-10-04 06:14:55 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -264,6 +308,13 @@ ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+23fec1b | 2026-10-11 21:45:47 -0300 | docs: file Julio enrichment sample-audit as a Sophia standing duty (#1589)
+b12e167 | 2026-10-11 16:16:17 -0300 | docs: add task-design appendix to Julio's enrichment guide (#1588)
+5fb6ec5 | 2026-10-11 14:58:59 -0300 | docs: add Julio store-enrichment guide (clean) (#1587)
+838837a | 2026-10-11 14:52:55 -0300 | plans: file DAPP_ACCESS_RIGHTS_PLAN (UI-slice scope) + update OPEN_FOLLOWUPS entry (#1585)
+0ddc827 | 2026-10-11 14:13:50 -0300 | handoffs: register DApp access-rights thread; update Discord gateway fix status (#1584)
+3fa7ed1 | 2026-10-11 01:37:50 -0300 | Merge pull request #1583 from TrueSightDAO/auto/advisory-refresh-2026-10-11
+aa0e839 | 2026-10-11 04:37:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-11 UTC)
 6f1e742 | 2026-10-10 20:31:54 -0300 | plan(discord-gateway-resume): tick PR0 tracker — PR opened + merged (1ca1dcc) (#1582)
 6493861 | 2026-10-10 19:59:41 -0300 | handoffs: release plans/DISCORD_GATEWAY_RESUME_BACKOFF_FIX_PLAN.md (Sophia (autopilot, self))
 f2e4c74 | 2026-10-10 19:56:39 -0300 | handoffs: claim Discord gateway RESUME fix (thread 41950) (#1581)
@@ -297,13 +348,6 @@ b74397e | 2026-10-09 19:51:16 -0300 | chore(previews): refresh Beer Hall preview
 033e44d | 2026-10-09 18:02:22 -0300 | CORRECTION: 5 Continent does have a US broker (Gary was right) + the hold is USDA, and storage is now the dominant cost (#1565)
 4a12123 | 2026-10-09 17:57:49 -0300 | Add measured shipping-pallet spec (110 cm span) to Brazil->SF freight runbook (#1564)
 d9f3385 | 2026-10-09 17:56:40 -0300 | Research: who files APHIS — broker does the entry transmission, TrueTech must hold the permit itself (#1563)
-517667c | 2026-10-09 16:33:22 -0300 | Research: APHIS US-side filing — PPQ 587 permit likely needed for the 15kg whole beans, not the processed lines (#1562)
-f6e95e4 | 2026-10-09 16:30:24 -0300 | Research: weekend/holiday inspection — non-perishables get no weekend appointments; next window Tue 13/10 (#1561)
-b83bb00 | 2026-10-09 16:13:12 -0300 | Research: FDA Import Alert 34-01 DWPE covers ALL Brazilian cocoa beans — likely hold cause (#1560)
-f8a9635 | 2026-10-09 16:07:32 -0300 | Distinguish fumigation service from phytosanitary certificate; flag raw cocoa beans as APHIS hook (#1559)
-5979751 | 2026-10-09 16:05:32 -0300 | Record FDA Prior Notice F26X30142399 (filed 2026-10-06) and retract the 'PN unfiled' hypothesis (#1558)
-d61cee8 | 2026-10-09 15:53:53 -0300 | Root-cause hypotheses for the CBP agriculture hold: unanswered phyto, PN status, pallet wood/plastic contradiction, stale HS list (#1557)
-f6bfc56 | 2026-10-09 15:47:57 -0300 | Record the sent ASTM/ASTRA dedetização certificate request (24/09/2026 NFS-e) — sent to company, Matheus CC'd (#1556)
 … (truncated)
 ```
 
@@ -341,6 +385,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+aaaf54d | 2026-10-11 13:31:26 +0000 | chore: refresh currencies.json [skip ci]
+f29de07 | 2026-10-11 12:55:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 1e973d5 | 2026-10-10 13:02:52 +0000 | chore: refresh currencies.json [skip ci]
 d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 904093f | 2026-10-09 13:45:46 +0000 | chore: refresh currencies.json [skip ci]
@@ -352,8 +398,6 @@ f01b53c | 2026-10-07 13:29:35 +0000 | chore: refresh store, partner inventory, a
 61f1230 | 2026-10-05 15:17:55 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 e1e2e82 | 2026-10-05 15:16:09 +0000 | chore: refresh currencies.json [skip ci]
 51e7a2a | 2026-10-05 14:46:25 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-4d55c46 | 2026-10-04 12:51:04 +0000 | chore: refresh currencies.json [skip ci]
-8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -425,6 +469,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 0 | 18484.34386 | 10/11/2026 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-05`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
