@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Julio Almeida store-enrichment — Sophia owns the ~10% sample audit (standing duty)
+**Filed 2026-11 (Discord, thread `1558887495192805407`). Owner: Sophia. Small/ongoing (Ops).**
+
+**Governor decision (Gary, direct).** Sophia **owns the ~10% sample audit** of Julio Almeida's store-enrichment edits (Discord `1554404598381543494`, `davajhabib@outlook.com`, Contributors row 427). This is the **Ostrom "monitoring + graduated response"** lever made concrete for the Julio task (design appendix merged via `agentic_ai_context` **#1588** into `partner/JULIO_STORE_ENRICHMENT_GUIDE.md`).
+
+**Procedure (weekly, once Julio starts).**
+1. Pull Julio's signed edits — DApp Remarks carry **`Submitted By`** + `Submitted At`; filter to his name for the week.
+2. Sample ~10% (min 2–3 rows): for each, verify (a) the email is **published/real** (fetch the cited source — website footer/Contact/About, IG bio, GBP) and (b) the remark is a usable hook, not a status log.
+3. Record outcome: `clean` / `bad-address` / `low-value-remark`. **Graduated response:** clean batches → broader scope (feeds `plans/DAPP_ACCESS_RIGHTS_PLAN.md` graduated write access); bad → tighter batch + a correction note to Julio.
+4. **Feedback loop:** when a store Julio enriched replies, flag it back to him (counters the "~0.3% reply rate ⇒ why bother" sucker effect).
+
+**Hard invariant being defended.** The common-pool resource is **sender-domain reputation**, not the store data (adding data *increases* its value). A guessed/bounced email = private gain (filled field) vs. socialized deliverability cost across ~1,000 sends. So "never invent an address" is boundary defence; **compensation stays quality-based, NOT per-record** (per-record pay is what manufactures the commons tragedy).
+
+**Blocker / precondition.** Nothing to audit until **Unit 0** completes: Julio registers a signing identity via `create_signature.html` (see `plans/DAPP_ACCESS_RIGHTS_PLAN.md`). No Edgar key today → view-only.
+
 ### DApp per-contributor access-rights / grant-table design — awaiting governor decision
 **Filed 2026-10-11 (Discord #roles-and-dapp-access, channel `1558887495192805407`). Owner: Sophia (draft) + Envoy (supervising). Medium — design-only right now, no code.**
 
