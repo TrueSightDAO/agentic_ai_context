@@ -39,6 +39,44 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Currency-naming hygiene — retire bare generic `Currencies` names + document the AWB landed-clone convention
+**Filed 2026-10-09 (thread: Black King landed-cost). Owner: unclaimed. Small (doc + audit).**
+
+**Context.** Twice in one thread an agent misread the AGL8 cacao-almonds row because its
+`Currencies!A` name carried **no provenance token** — the bare noun `Cacao Almonds (KG)` — while
+every sibling names farm + ledger (`Cacao Almonds KG from Vivi's farm - AGL13`, `… from Oscar's
+farm - AGL16 (2026)`, `Cacao Almonds KG - Organic (Fazenda São Jorge)`). A name that requires a
+lookup will be misread. The preflight doc `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`
+§5.10 had already flagged this exact row.
+
+**Already corrected live (2026-10-09, governor-authorized by Gary Teh) — one row.** A name-only
+reclass pair was appended to the AGL8 ledger `Transactions` (rows 185–186, entity `Matheus Reis`,
+`-/+ 273.585122798`), moving Matheus's holding off `Cacao Almonds (KG)` onto the explicit
+`Cacao Almonds KG from Paulo's farm - AGL8` (ex-works $18.212/kg). The old `Currencies` row was
+deprecated and `offchain assets in transit` row 24 col B re-pointed (both cols sit under strict
+`ONE_OF_RANGE = Currencies!$A$2:$A$1006`). Verified: asset-name view nets the old name to zero;
+by-location shows `Matheus Reis | 273.5851228 | Cacao Almonds KG from Paulo's farm - AGL8`.
+
+**This entry is the generalizable half — the convention + the sweep.**
+
+1. **Rule:** every new `Currencies!A` name must carry a **provenance token** — farm/supplier +
+   ledger (`… - AGLnn`) and source descriptor where one exists. Bare generic nouns
+   (`Cacao Almonds (KG)`, `Cacao Nibs (KG)`, …) are prohibited for new rows.
+2. **Audit:** scan `Currencies!A` for other bare generic names of this shape; file the list here
+   (each becomes a deprecate+reclass like the almonds).
+3. **Landed-clone convention:** document the AWB pattern used by this shipment —
+   `<origin currency> + <AWB> - San Francisco` — where the clone carries the **landed** unit cost
+   (origin ex-works + freight + materials) and the origin row keeps ex-works. Add beside the
+   repackaging naming template in `LEDGER_CONVERSION_AND_REPACKAGING.md`.
+4. **Mechanism-gap note:** there is **no `[CURRENCY RENAME EVENT]`** — a col-A relabel is a direct
+   spreadsheet write that must sweep any lookup keyed on the exact name (Correios VLOOKUP
+   precedent). Document so the next agent doesn't reach for a non-existent primitive.
+
+**Acceptance.** Rule + AWB convention written into `LEDGER_CONVERSION_AND_REPACKAGING.md`; list of
+remaining bare-generic `Currencies` rows filed here (or “none remaining”).
+
+---
+
 ### Julio Almeida store-enrichment — Sophia owns the ~10% sample audit (standing duty)
 **Filed 2026-11 (Discord, thread `1558887495192805407`). Owner: Sophia. Small/ongoing (Ops).**
 
