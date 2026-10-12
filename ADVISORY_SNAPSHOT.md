@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-12T06:18:33Z`
+- Generated (UTC): `2026-10-12T15:53:47Z`
 - Look-back: **7** calendar days (`2026-10-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,38 +32,32 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
-- `[ASSET RECEIPT EVENT]` × 6
-- `[EMAIL REGISTERED EVENT]` × 3
-- `[PRACTICE EVENT]` × 3
-- `[DAO INVENTORY EXPENSE EVENT]` × 1
-- `[CURRENCY DEFINITION EVENT]` × 1
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- `[EMAIL VERIFICATION EVENT]` × 1
-- _free-form (no bracket tag)_ × 5
+- `[TREE PLANTING EVENT]` × 40
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261010034437_200` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261010034457_202` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W (Mercado Livre MLB20684318) · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010034459_204` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm High-Velocity 220V (Mercado Livre MLBU4320471013) · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010035231_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Ilheus warehouse equipment sourcing + DAO ledger entry (thread 41062). Sourc…
-- `Edgar_20261010120948_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-10T12:09:46.709Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261010140912_210` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261010140916_212` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Showcase display cabinet (per cabinet, Matheus Ilheus warehouse, R$250 receipt … · Amount: 1 · Description: Received 1x glass showcase/display cabinet (white frame, curved top) for DAO…
-- `Edgar_20261010141851_214` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14 · Price in USD: 13.41775 · Ledger: AGL14
-- `Edgar_20261010141855_216` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 7 · Attached Filename: e875a33cc41a4d15967fe3ef683a4169.jpg · Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14
-- `Edgar_20261010164408_218` · **Edgar** · [CONTRIBUTION EVENT] Amount: 97 · Contributor(s): Gary Teh · Description: Accommodation (7 nights, São Paulo) for getting the legal power of attorney …
-- `Edgar_20261010164646_220` · **Edgar** · [CONTRIBUTION EVENT] Amount: 12.06 · Contributor(s): Gary Teh · Description: Breakfast with Matheus to discuss follow-up action items (Ilheus warehouse o…
-- `Edgar_20261010164757_222` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2.49 · Contributor(s): Gary Teh · Description: Ride-hailing (99 app) — getting from Ilheus hotel to Ilheus airport. Merchan…
-- `Edgar_20261010164909_224` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150.00 · Contributor(s): Gary Teh · Description: Parking at LAX while traveling to attend to supply chain matters. Merchant: …
-- `Edgar_20261010165153_226` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lin Boqiang · Contributor Email: 2821396516@qq.com · Submission Source: sophia-autopilot (Discord 1455101520155644059)
-- `Edgar_20261010180141_228` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Discussion with Matheus Reis on warehouse management concerns at the Ilheus …
-- `Edgar_20261010181133_230` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Matheus Reis · Description: Discussion with Gary Teh on warehouse management concerns at the Ilheus (Bla…
-- `Edgar_20261011140835_232` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-11T14:08:33.704Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261011203531_234` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
-- `Edgar_20261011203732_236` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
-- `Edgar_20261011203750_238` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: hE8ZRF1QvNhz3PSZ5NrxCuULGq6_nsu9RRkQhb3ZPF8 · Email: davajhabib@outlook.com
+- `Edgar_20261012115058_370` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115103_372` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115119_374` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115128_376` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115135_378` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115140_380` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115147_382` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115213_384` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115228_386` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012115431_388` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
+- `Edgar_20261012115448_390` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
+- `Edgar_20261012115500_392` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
+- `Edgar_20261012115512_394` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
+- `Edgar_20261012115521_396` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
+- `Edgar_20261012115532_398` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
+- `Edgar_20261012120051_400` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
+- `Edgar_20261012120351_402` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012120401_404` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012120539_406` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
+- `Edgar_20261012145129_408` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-12T14:51:28.016Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -78,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-11T10:59:13.873Z`
+- Generated (UTC): `2026-10-12T10:59:13.697Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -273,6 +267,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d5c6e4b | 2026-10-12 06:25:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 fb4f883 | 2026-10-11 22:22:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 7789df1 | 2026-10-11 13:24:08 +0000 | chore(stats): refresh stats indexes [skip ci]
 fe5b0ab | 2026-10-11 06:19:27 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -308,6 +303,8 @@ ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0fcebd6 | 2026-10-12 03:18:54 -0300 | chore(previews): refresh Beer Hall preview (2026-10-12 UTC)
+f18adda | 2026-10-12 03:18:52 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-12 UTC)
 23fec1b | 2026-10-11 21:45:47 -0300 | docs: file Julio enrichment sample-audit as a Sophia standing duty (#1589)
 b12e167 | 2026-10-11 16:16:17 -0300 | docs: add task-design appendix to Julio's enrichment guide (#1588)
 5fb6ec5 | 2026-10-11 14:58:59 -0300 | docs: add Julio store-enrichment guide (clean) (#1587)
@@ -346,8 +343,6 @@ f7cc275 | 2026-10-09 23:56:48 -0300 | docs(ilheus): bathroom window openable 35 
 b74397e | 2026-10-09 19:51:16 -0300 | chore(previews): refresh Beer Hall preview (2026-10-09 UTC)
 5fcaa08 | 2026-10-09 19:51:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-09 UTC)
 033e44d | 2026-10-09 18:02:22 -0300 | CORRECTION: 5 Continent does have a US broker (Gary was right) + the hold is USDA, and storage is now the dominant cost (#1565)
-4a12123 | 2026-10-09 17:57:49 -0300 | Add measured shipping-pallet spec (110 cm span) to Brazil->SF freight runbook (#1564)
-d9f3385 | 2026-10-09 17:56:40 -0300 | Research: who files APHIS — broker does the entry transmission, TrueTech must hold the permit itself (#1563)
 … (truncated)
 ```
 
@@ -493,7 +488,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/11/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/12/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-05`; scanned last **600** data rows)
 
