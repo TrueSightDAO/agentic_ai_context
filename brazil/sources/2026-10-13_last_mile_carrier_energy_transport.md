@@ -22,6 +22,6 @@
 ## Notes / open items
 
 - **New vendor** — this carrier did **not** previously appear anywhere in `agentic_ai_context` (searched org-wide for "Energy Transport"). It should be added to the freight-forwarder / last-mile vendor set alongside **Seacoast Logistics** (forwarder) and **Magic Custom Brokers** (customs).
-- **Not yet in the checklist.** The Phase-7 slot `- [ ] Delivery SFO → Kirsten's SF warehouse.` should carry this vendor's block; the edit failed this pass on a **latin-1 encoding** error in `BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` (needs a re-encode to UTF-8 first). **TODO:** inject the `#### Last-mile carrier` table into the checklist and re-encode the file.
+- **Not yet in the checklist.** The Phase-7 slot `- [ ] Delivery SFO → Kirsten's SF warehouse.` should carry this vendor's block; the edit failed this pass on a **latin-1 encoding** error in `BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` (needs a re-encode to UTF-8 first). **DONE 2026-10-13:** checklist re-encoded to UTF-8 and the `#### Last-mile carrier` table injected into the Phase-7 slot.
 - **PRO# 2001689064** is the carrier's own tracking reference — carry it on the delivery paperwork.
 - This leg is under the **cargo-arrival gate**: record the vendor now, but **do not** post the final `[ASSET RECEIPT]` / `[INVENTORY MOVEMENT]` until the cargo physically arrives and the drop-off is confirmed.
