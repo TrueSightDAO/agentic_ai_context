@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-12T15:53:47Z`
-- Look-back: **7** calendar days (`2026-10-05` → today UTC)
+- Generated (UTC): `2026-10-13T00:54:50Z`
+- Look-back: **7** calendar days (`2026-10-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,32 +32,34 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 40
+- `[TREE PLANTING EVENT]` × 25
+- `[CURRENCY DEFINITION EVENT]` × 10
+- `[CONTRIBUTION EVENT]` × 4
+- `[PRACTICE EVENT]` × 2
 - `[EMAIL REGISTERED EVENT]` × 1
-- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261012115058_370` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115103_372` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115119_374` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115128_376` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115135_378` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115140_380` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115147_382` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115213_384` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115228_386` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229189 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012115431_388` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
-- `Edgar_20261012115448_390` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
-- `Edgar_20261012115500_392` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
-- `Edgar_20261012115512_394` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
-- `Edgar_20261012115521_396` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
-- `Edgar_20261012115532_398` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229186 · Longitude: -51.5749706 · Species: Cacao - Forestero
 - `Edgar_20261012120051_400` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
 - `Edgar_20261012120351_402` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
 - `Edgar_20261012120401_404` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
 - `Edgar_20261012120539_406` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
 - `Edgar_20261012145129_408` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-12T14:51:28.016Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261012175917_410` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20261012211042_412` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-12T21:10:34.465Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20261012231039_414` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: 8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + 047-3175-3223 - San Francis… · Price in USD: 10.51 · Serializable: FALSE
+- `Edgar_20261012231102_416` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 24.23 · Serializable: FALSE
+- `Edgar_20261012231107_418` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 41.69 · Serializable: FALSE
+- `Edgar_20261012231112_420` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds (KG) + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
+- `Edgar_20261012231117_422` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Ceremonial Cacao Kraft Pouch - 20250219006 \| Cacao Mass \| 200 grams \| Paulo 202… · Price in USD: 13.78 · Serializable: FALSE
+- `Edgar_20261012231122_424` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
+- `Edgar_20261012231127_426` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
+- `Edgar_20261012231133_428` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Coopercabruca Cacao Butter (KG) + 047-3175-3223 - San Francisco · Price in USD: 34.40 · Serializable: FALSE
+- `Edgar_20261012231138_430` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 · Price in USD: 18.212 · Serializable: FALSE
+- `Edgar_20261012233345_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Black King shipment — landed-cost modeling + AGL8 currency disambiguation (a…
+- `Edgar_20261012233349_434` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Black King shipment — landed-cost decisions + AGL8 currency disambiguation d…
+- `Edgar_20261013002905_436` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
+- `Edgar_20261013005224_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: AGL8 cacao-almonds landed-clone rename + dapp holdings verification
 
 ---
 
@@ -193,13 +195,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Bulk | 1 | 50 | $1.55 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 31 SKU lines · 2,135.59 total units · $9,082.36
+- Manager record: `Matheus Reis` · 31 SKU lines · 2,135.59 total units · $14,064.89
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 942 | $654.61 |
-  | (uncategorized) | (unspecified) | 23 | 416 | $2,583.73 |
-  | Cacao Bean | Bulk | 1 | 273.59 | $0.00 |
+  | (uncategorized) | (unspecified) | 24 | 689.59 | $7,566.26 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Nib | Retail Ready | 1 | 134 | $889.76 |
   | Cacao Tea | Bulk | 2 | 120 | $1,221.88 |
@@ -248,7 +249,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-05 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-06 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -267,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d6401b8 | 2026-10-12 15:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 d5c6e4b | 2026-10-12 06:25:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 fb4f883 | 2026-10-11 22:22:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 7789df1 | 2026-10-11 13:24:08 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -287,11 +289,6 @@ d8953e0 | 2026-10-07 13:47:51 +0000 | chore(stats): refresh stats indexes [skip 
 53a513c | 2026-10-06 18:34:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 71178a8 | 2026-10-06 00:16:25 +0000 | chore(stats): refresh stats indexes [skip ci]
-1f39db3 | 2026-10-05 19:49:44 -0300 | AGL4 shipment page: status SALES IN PROGRESS → COMPLETED (#412)
-29562a7 | 2026-10-05 19:47:44 -0300 | AGL8 + AGL14 shipment pages: status MANUFACTURING → SALES IN PROGRESS (#411)
-03caeea | 2026-10-05 19:43:56 -0300 | AGL7 shipment page: status FREIGHTING IN PROGRESS → COMPLETED (#410)
-f716984 | 2026-10-05 15:11:59 +0000 | chore(stats): refresh stats indexes [skip ci]
-ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -303,6 +300,10 @@ ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5f4f256 | 2026-10-12 21:49:34 -0300 | OPEN_FOLLOWUPS: close AGL8 landed-clone rename; file GAS silent-success gap (#1591)
+57a5902 | 2026-10-12 20:32:13 -0300 | OPEN_FOLLOWUPS: currency-naming hygiene (bare generic names) + AWB landed-clone convention (#1590)
+6ff250e | 2026-10-12 12:54:11 -0300 | chore(previews): refresh Beer Hall preview (2026-10-12 UTC)
+d42058e | 2026-10-12 12:54:09 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-12 UTC)
 0fcebd6 | 2026-10-12 03:18:54 -0300 | chore(previews): refresh Beer Hall preview (2026-10-12 UTC)
 f18adda | 2026-10-12 03:18:52 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-12 UTC)
 23fec1b | 2026-10-11 21:45:47 -0300 | docs: file Julio enrichment sample-audit as a Sophia standing duty (#1589)
@@ -339,10 +340,6 @@ ad2278d | 2026-10-10 03:50:34 +0000 | handoffs: truesight_autopilot#524 merged (
 2b7c770 | 2026-10-10 00:30:46 -0300 | Add machine-readable ilheus_warehouse.json mirror of §2.5 dimensions register (#1569)
 f7cc275 | 2026-10-09 23:56:48 -0300 | docs(ilheus): bathroom window openable 35 cm H x 53 cm W (governor-confirmed) (#1568)
 621390b | 2026-10-09 23:56:05 -0300 | docs(ilheus): correct M3 — ~90 cm is the main window LOWER PANE, not full height (#1567)
-574eeef | 2026-10-09 23:53:39 -0300 | docs(ilheus): add measured dimensions register (§2.5) — windows/pallet (#1566)
-b74397e | 2026-10-09 19:51:16 -0300 | chore(previews): refresh Beer Hall preview (2026-10-09 UTC)
-5fcaa08 | 2026-10-09 19:51:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-09 UTC)
-033e44d | 2026-10-09 18:02:22 -0300 | CORRECTION: 5 Continent does have a US broker (Gary was right) + the hold is USDA, and storage is now the dominant cost (#1565)
 … (truncated)
 ```
 
@@ -380,6 +377,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f5d9baa | 2026-10-12 16:06:31 +0000 | chore: refresh currencies.json [skip ci]
 aaaf54d | 2026-10-11 13:31:26 +0000 | chore: refresh currencies.json [skip ci]
 f29de07 | 2026-10-11 12:55:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 1e973d5 | 2026-10-10 13:02:52 +0000 | chore: refresh currencies.json [skip ci]
@@ -390,9 +388,6 @@ d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, a
 f01b53c | 2026-10-07 13:29:35 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 22f9054 | 2026-10-06 13:37:16 +0000 | chore: refresh currencies.json [skip ci]
 30fbdd4 | 2026-10-06 13:22:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-61f1230 | 2026-10-05 15:17:55 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-e1e2e82 | 2026-10-05 15:16:09 +0000 | chore: refresh currencies.json [skip ci]
-51e7a2a | 2026-10-05 14:46:25 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -490,7 +485,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 0 | 18484.34386 | 10/12/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-05`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-06`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
