@@ -247,11 +247,11 @@ connection** (this is the fix for bug #2 — see §0 for why "reset on every REA
 
 ## 3. Resume tracker
 
-**RESUME HERE → PR0** (the only unit in this plan).
+**COMPLETE (2026-10-13).** PR0 (truesight_autopilot#529) shipped, deployed, and operationally verified under ~36h of production load — 18/18 natural reconnects resumed cleanly, backoff never climbs. See §4 and the HANDOFF_MANIFEST row. Contribution reported (Sophia Truesight).
 
 | Unit | Advance | PR opened | Merged (human) | Deployed |
 |------|---------|-----------|-----------------|----------|
-| PR0 — Discord gateway RESUME + backoff reset | _(auto)_ | ☑ [#529](https://github.com/TrueSightDAO/truesight_autopilot/pull/529) | ☑ `1ca1dcc` (squash-merged 2026-10-10) | ☐ `gate:` always-stop (prod deploy / service restart) |
+| PR0 — Discord gateway RESUME + backoff reset | _(auto)_ | ☑ [#529](https://github.com/TrueSightDAO/truesight_autopilot/pull/529) | ☑ `1ca1dcc` (squash-merged 2026-10-10) | ☑ live since 2026-10-11 12:58:01Z; operational verification PASSED 2026-10-13 (18/18 reconnects RESUME→RESUMED, backoff pinned 10s) |
 
 Both gates above are standing §5c always-stop rules (merge to `truesight_autopilot`'s default
 branch; redeploying/restarting the live Discord adapter) — they apply regardless of
