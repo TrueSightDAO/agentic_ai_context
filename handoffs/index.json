@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-10-13T02:43:56Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "5dab1983994c69259038a9b28eddfd50a59de35713e84ba3918c4f2fb342454d",
+  "source_sha256": "9e6832a2855ee65d3f19a575a6ed185b41bd5efe872d2238df22f490305290b1",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -25,9 +25,9 @@
     "envoy_uat": 0,
     "human_uat_ready": 2,
     "prod_merge": 0,
-    "blocked_on_human": 18,
+    "blocked_on_human": 17,
     "failed": 0,
-    "done": 30,
+    "done": 31,
     "stale": 1,
     "unknown": 0
   },
@@ -1246,8 +1246,8 @@
       "plan_file": "`OPEN_FOLLOWUPS.md#agl16-currency-leak`",
       "title": "**AGL16 [Brazilian Reis] currency-code leak in ledger Column E** — `InsertExpenseRecords()` in the AGL16 expense-processor GAS project wrote the raw `[AGL16] Brazilian Reis` prefix verbatim into the target ledger's Column E instead of the clean currency name whenever the ledger was resolved from Column M / the message (the normal path) — the `[ledger]` prefix strip only ran in an `else` fallback branch that path never hits. Explains the governor's repeated hand-cleaning of that column.",
       "handoff_date": "2026-09-15",
-      "state": "blocked_on_human",
-      "status_raw": "**blocked on human — code fix merged, GAS project awaiting deploy GO**",
+      "state": "done",
+      "status_raw": "**done — deployed to GAS prod 2026-10-13 + Column E verified clean**",
       "telegram_thread_id": "23408",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -1256,7 +1256,7 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-10-13",
       "supervised_by": null
     },
     {
