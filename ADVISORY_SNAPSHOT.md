@@ -20,9 +20,47 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-13T05:56:06Z`
+- Generated (UTC): `2026-10-13T14:28:35Z`
 - Look-back: **7** calendar days (`2026-10-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[TREE PLANTING EVENT]` × 19
+- `[CURRENCY DEFINITION EVENT]` × 10
+- `[CONTRIBUTION EVENT]` × 6
+- `[PRACTICE EVENT]` × 3
+- `[EMAIL REGISTERED EVENT]` × 1
+- _free-form (no bracket tag)_ × 3
+
+### Latest entries
+
+- `Edgar_20261012211042_412` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-12T21:10:34.465Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20261012231039_414` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: 8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + 047-3175-3223 - San Francis… · Price in USD: 10.51 · Serializable: FALSE
+- `Edgar_20261012231102_416` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 24.23 · Serializable: FALSE
+- `Edgar_20261012231107_418` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 41.69 · Serializable: FALSE
+- `Edgar_20261012231112_420` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds (KG) + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
+- `Edgar_20261012231117_422` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Ceremonial Cacao Kraft Pouch - 20250219006 \| Cacao Mass \| 200 grams \| Paulo 202… · Price in USD: 13.78 · Serializable: FALSE
+- `Edgar_20261012231122_424` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
+- `Edgar_20261012231127_426` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
+- `Edgar_20261012231133_428` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Coopercabruca Cacao Butter (KG) + 047-3175-3223 - San Francisco · Price in USD: 34.40 · Serializable: FALSE
+- `Edgar_20261012231138_430` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 · Price in USD: 18.212 · Serializable: FALSE
+- `Edgar_20261012233345_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Black King shipment — landed-cost modeling + AGL8 currency disambiguation (a…
+- `Edgar_20261012233349_434` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Black King shipment — landed-cost decisions + AGL8 currency disambiguation d…
+- `Edgar_20261013002905_436` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
+- `Edgar_20261013005224_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: AGL8 cacao-almonds landed-clone rename + dapp holdings verification
+- `Edgar_20261013024327_440` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Discord gateway RESUME + backoff reset fix
+- `Edgar_20261013120053_442` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
+- `Edgar_20261013120436_444` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-13T12:04:31.252Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261013120656_446` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261013_oscar_pix_beans_outstanding_R480.jpg · DAO Member Name: Gary Teh
+- `Edgar_20261013122524_448` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Description: TEST ROW — deploy verification only (GAS 19Wag9x prefix-strip fix, thread 23…
+- `Edgar_20261013125521_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
 
 ---
 
@@ -37,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-12T10:59:13.697Z`
+- Generated (UTC): `2026-10-13T10:59:14.430Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -47,12 +85,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1112**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1185**)
+- **Email Agent Follow Up** — logged sends: warmup **1124**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1197**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **1040**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **61**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
+- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **1052**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **61**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
 - **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -193,13 +231,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+31 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$4,798.27**
+- Brazilian Reis: R$-590.05 · rate `0.2323` USD/BRL → ≈ **$-137.07**
+- USD provisioned for voting-rights cash-out: **$56.59**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -261,6 +302,9 @@ c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2bc1781 | 2026-10-13 09:54:51 -0300 | manifest+index: AGL16 GAS prefix-strip handoff deployed+verified -> done (green CI) (#1596)
+89ef1e3 | 2026-10-13 02:56:28 -0300 | Merge pull request #1594 from TrueSightDAO/auto/advisory-refresh-2026-10-13
+4903026 | 2026-10-13 05:56:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-13 UTC)
 9adafeb | 2026-10-12 23:47:10 -0300 | plan(discord-gateway-resume): tick Deployed row + mark tracker COMPLETE (#1593)
 4a14619 | 2026-10-12 23:44:46 -0300 | handoffs: close Discord gateway RESUME fix -- PLAN COMPLETE (#1592)
 8ad9c2f | 2026-10-12 21:55:13 -0300 | chore(previews): refresh Beer Hall preview (2026-10-13 UTC)
@@ -298,9 +342,6 @@ b57ee52 | 2026-10-10 00:58:22 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MA
 ffecd10 | 2026-10-10 00:57:56 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
 801db4b | 2026-10-10 00:57:46 -0300 | codify Ilhéus register (C2/C5/B2/B3/E1) + file calendar tooling note (#1572)
 334cc6e | 2026-10-10 00:56:14 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-2fc08f7 | 2026-10-10 00:51:09 -0300 | Merge pull request #1571 from TrueSightDAO/handoffs/matheus-pr524-merged-20261010
-ad2278d | 2026-10-10 03:50:34 +0000 | handoffs: truesight_autopilot#524 merged (calendar watchdog, thread 41588)
-75ee51b | 2026-10-10 00:44:44 -0300 | Merge pull request #1570 from TrueSightDAO/handoffs/matheus-followup-items-register-20261010
 … (truncated)
 ```
 
@@ -339,6 +380,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8231b29 | 2026-10-13 14:16:46 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a31a3db | 2026-10-12 22:20:19 -0300 | Add landed-cost composition for AWB 047-3175-3223 (8 clones)
 f5d9baa | 2026-10-12 16:06:31 +0000 | chore: refresh currencies.json [skip ci]
 aaaf54d | 2026-10-11 13:31:26 +0000 | chore: refresh currencies.json [skip ci]
@@ -422,6 +464,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 0 | 18484.34386 | 10/13/2026 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-06`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
