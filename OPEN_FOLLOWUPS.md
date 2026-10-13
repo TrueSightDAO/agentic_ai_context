@@ -39,6 +39,48 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `dao_members.json` publisher mangles non-ASCII contributor names (Júlio → `J?lio Almeida`)
+**Filed 2026-10-13 (Discord, store-visibility thread). Owner: unclaimed. Small (diagnose); the publisher fix is a §5c human-gated GAS change.**
+
+**Symptom.** `treasury-cache/dao_members.json` stores Julio Almeida's name as the mojibake
+string **`J?lio Almeida`** — the `ú` replaced by a literal `?`. Verified live 2026-10-13:
+`repr('J?lio Almeida')`, bytes `b'J?lio Almeida'`. The DApp contributor-name validator used by
+the `dao_client` CLI (e.g. `truesight-dao-report-contribution --contributors`) accepts **only**
+that exact corrupted string; a correctly-spelled `Júlio Almeida` is rejected with
+`'Júlio Almeida' is not a known DAO contributor`.
+
+**Why it matters.** (1) Cosmetic — the name renders wrong in the DApp and in every
+`[CONTRIBUTION EVENT]` that credits him. (2) Structural — the mojibake string is now the
+*canonical* key for him, so any event submitted with the correct UTF-8 name fails validation
+and the corruption propagates to every contribution row.
+
+**Likely cause.** `tokenomics/google_app_scripts/tdg_identity_management/dao_members_cache_publisher.gs`
+reads the Contributors contact-information tab and serializes names through a non-UTF-8
+codec (Latin-1/ASCII `?` substitution) before `JSON.stringify`. Confirm by reading his exact
+cell value via the Sheets API (should be `Júlio`) and inspecting the publisher's encode step
+(look for `ensure_ascii=True` / `.encode('ascii','replace')` on the name).
+
+**To fix.** (a) Make the publisher round-trip UTF-8; (b) re-run the publisher (human-gated,
+§5c); (c) sweep `dao_members.json` for other `?`-mojibake names and file them.
+
+### `public_keys/` per-key surface in `treasury-cache` is stale (last built 2026-06-18; 97 files vs 111 active keys)
+**Filed 2026-10-13 (Discord, store-visibility thread). Owner: unclaimed. Small (audit).**
+
+**Symptom.** `treasury-cache/public_keys/<sha256>.json` holds one file per contributor signing
+key, but `_manifest.json` was last built **2026-06-18** and the tree holds **97** files against
+**111** ACTIVE keys in `dao_members.json`. Julio's per-key file (`public_keys/a9c4…3154.json`,
+sha256 of his key) returns **404**.
+
+**Why it matters.** The DApp `permissions.js` point-lookup path 404s for keys minted after
+June 2026. It currently falls back to the `dao_members.json` monolith, so signatures still
+resolve (no user-visible break today) — but the per-key surface is a latent divergence: any
+consumer that trusts it exclusively will fail to authorize newer members.
+
+**To fix.** Regenerate the per-key surface from the current monolith (align `_manifest.json`
+timestamp + file count with ACTIVE keys) and fold the generator into the same publish chain
+that writes `dao_members.json` so the two cannot drift. Confirm no consumer reads `public_keys/`
+without the monolith fallback.
+
 ### Currency-naming hygiene — retire bare generic `Currencies` names + document the AWB landed-clone convention
 **Filed 2026-10-09 (thread: Black King landed-cost). Owner: unclaimed. Small (doc + audit).**
 
