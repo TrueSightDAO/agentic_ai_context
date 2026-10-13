@@ -40,7 +40,7 @@ If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", 
 | DU-E (Notificação de Exportação Fiscal) | ✅ **REGISTERED** | Omega | **DU-E `26BR001795400-0`** printed on the issued AWB (§5.7) — the habilitação blocker (§5.4) is evidently cleared. |
 | **Airport weighing (Salvador) — gross weight** | ✅ **CLOSED** | Omega / airline | AWB **`047-3175 3223`** confirms **gross 349,000 kg** — **matches Rev 15**. No further reissue. (§5.5 / §5.7). |
 | **FDA Prior Notice (US import)** | ⬜ **AWB in hand — arrival 08/10** | Iolanda (Omega) | **Mandatory** US food-import filing. Cite AWB **`047-3175-3223`**; **arrival `08/10/2026`** known (§5.9) — time the PN to §5.6 (≥4h / ≤15d). |
-| Cargo prep / pallets | ������ | Matheus | ⚠️ **contradiction (flagged 2026-10-02):** this row said *heat-treated* pallets, but the export-doc generator (§5.5, `pallets_html`) declares **plastic HDPE (Huatai), non-wood → ISPM#15 N/A, no fumigation**. The flight evidence (`349 kg` weighed) is consistent with the **plastic** pallets. Confirm with Matheus and retire whichever is wrong. |
+| Cargo prep / pallets | 🟡 | Matheus | ⚠️ **contradiction (flagged 2026-10-02):** this row said *heat-treated* pallets, but the export-doc generator (§5.5, `pallets_html`) declares **plastic HDPE (Huatai), non-wood → ISPM#15 N/A, no fumigation**. The flight evidence (`349 kg` weighed) is consistent with the **plastic** pallets. Confirm with Matheus and retire whichever is wrong. |
 | Air freight | ✅ **booked — TP028** | Graziela/Omega | **TAP `TP028`** SSA→SFO; HAWB+MAWB issued (consolidated). **Departs 06/10, ETA 08/10** (§5.9). |
 | Deadline pressure | — | — | **China partners arrive 2026-09-29** (Gary asked to resolve before then) |
 
@@ -189,6 +189,20 @@ Each phase: **Owner** · **Gate/exit criteria** · **Evidence**.
 - [ ] US import handling ≈ $125. US customs clearance ≈ $150. **FDA Prior Notice — required, not optional** (§5.6): Iolanda files it once the AWB is in hand; ≥ 4 h before arrival by air, ≤ 15 days ahead via PNSI. FDA processing ≈ $100.
 - [ ] Bond (single-entry, if req.): max($100, $6 per $1,000 of value+duty). MPF 0.3464% (min $33.58, max $651.50). Duty if applicable. Customs exam ≈ $250 (random).
 - [ ] Delivery SFO → **Kirsten's SF warehouse**.
+
+#### Last-mile carrier (SFO → Kirsten's SF warehouse)
+
+| Field | Value |
+|---|---|
+| Carrier | **Energy Transport Logistics** — SFO OPS |
+| Office phone | **844-737-7447** |
+| PRO # | **2001689064** |
+| Booked via | **Daniel (Seacoast Logistics)** — forwarder scheduled the carrier |
+| Arranged by | **Kirsten Ritschel** — phoned the carrier to set the delivery time |
+| Source | Telegram screenshot, 2026-10-13 |
+
+> Newly identified **US domestic drayage / last-mile** vendor (not previously in context). Confirm the drop-off appointment window before the truck arrives. Vendor record filed at `brazil/sources/2026-10-13_last_mile_carrier_energy_transport.md`.
+
 
 ### Phase 8 — Ledger & reporting (DAO)
 - [ ] Record the **`[INVENTORY MOVEMENT]`** for the shipment once the destination ledger name is confirmed.
@@ -385,7 +399,7 @@ The export NF-e **was issued by Black King on 2026-09-22**. DANFE archived: `bra
 > ✅ **CONFIRMED FINAL by Gary (2026-10-05).** The governor re-sent the DANFE as the “Finalized NF-e” — byte-identical (md5 `60d9f160a619391f875837b561566f31`) to the copy already archived at `brazil/sources/2026-10-02_black_king_nfe_18_danfe.pdf`. So **nº 18 is the operative/final NF-e** for this export; no further reissue pending.
 
 > ⚠️ **Not yet registered in SISCOMEX / not yet given to the carrier.** The NF-e **is** issued and authorized (protocolo present), but per §5 Phase 5 the DU-E + despacho still follow, and the driver must carry **nº 18** (not nº 16).
-> ������ **Downstream updates needed:** the **ordem de coleta** (§5 Phase 4, currently keyed to nº 16 — 11 lines / 344,06 kg) and the **SeaCoast correction letter** (§5 Phase 5) are both now **stale** — they must be re-keyed to **nº 18 / Rev 14 / 302,06 kg**. The weights (302,06/322,06) and quantity (2 pallets) the SeaCoast letter asked for are now already on the NF-e itself.
+> 📌 **Downstream updates needed:** the **ordem de coleta** (§5 Phase 4, currently keyed to nº 16 — 11 lines / 344,06 kg) and the **SeaCoast correction letter** (§5 Phase 5) are both now **stale** — they must be re-keyed to **nº 18 / Rev 14 / 302,06 kg**. The weights (302,06/322,06) and quantity (2 pallets) the SeaCoast letter asked for are now already on the NF-e itself.
 
 #### 5.4 SISCOMEX/RADAR habilitação — the 6-month inactivity rule ⚠️ KEEP IN MIND
 
@@ -400,7 +414,7 @@ A SISCOMEX/RADAR **habilitação is dropped by default after ~6 months with no m
 **Maintenance rule — going forward:** during any shipping season, **never let a habilitação idle 6 months**; log a movement (even an administrative/zero one) or diarize the expiry. Do not discover this at DU-E time.
 
 
-#### 5.5 Airport weighing — gross-weight divergence (349 kg) ������ NEW 2026-10-02
+#### 5.5 Airport weighing — gross-weight divergence (349 kg) 🔴 NEW 2026-10-02
 
 > **Source:** `brazil/sources/2026-10-02_airport_weighing_weight_divergence.md` (Gary, thread 10800).
 
@@ -412,14 +426,14 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 
 **⏳ HAWB/MAWB reissue is gated on flight-status confirmation (2026-10-02).** Per **Isis Ribeiro** (Omega, *Export operations* — §2), on WhatsApp: *"As soon as we confirm the flight status, we will send the documentation"* (the **HAWB and MAWB**). So the AWB reissue waits on the **flight being confirmed**, not on anything from Black King — our Rev 15 CI + PL are already with them.
 
-**������ Cargo storage — answered by Isis.** On where the cargo is held in the interim: *"storage is done in the **airport cargo warehouse (Caer)**”* — and it must be kept **away from direct sunlight**. (Cacao is heat/light-sensitive; the TECA/Caer airport terminal is the interim hold.)
+**📦 Cargo storage — answered by Isis.** On where the cargo is held in the interim: *"storage is done in the **airport cargo warehouse (Caer)**”* — and it must be kept **away from direct sunlight**. (Cacao is heat/light-sensitive; the TECA/Caer airport terminal is the interim hold.)
 
-**������ Role split — Iolanda vs Isis (Omega).** Distinct: **Iolanda Santos = SISCOMEX / customs** (the habilitação fix, §5.4); **Isis Ribeiro = Export operations** (flight status, HAWB/MAWB, day-to-day export coordination). Graziela Vedana (Seacos) = forwarder/coordinator; Matheus Reis (Black King / Gateway.fy) = origin warehouse/pickup.
+**🤝 Role split — Iolanda vs Isis (Omega).** Distinct: **Iolanda Santos = SISCOMEX / customs** (the habilitação fix, §5.4); **Isis Ribeiro = Export operations** (flight status, HAWB/MAWB, day-to-day export coordination). Graziela Vedana (Seacos) = forwarder/coordinator; Matheus Reis (Black King / Gateway.fy) = origin warehouse/pickup.
 
 **⚠️ Fiscal:** NF-e nº 18 declares **bruto 322,060 / líq. 302,060**. Reissuing commercial docs at 349 kg **diverges from the issued NF-e**. Weights/freight **can** be amended by a **CC-e** (unlike lines/tax base) → the route is a **CC-e on nº 18** + the commercial reissue. **Confirm with Saymon/Matheus.**
 
 
-#### 5.6 FDA Prior Notice — required for the US leg ������������ NEW 2026-10-02
+#### 5.6 FDA Prior Notice — required for the US leg 🇺🇸 NEW 2026-10-02
 
 > **Source:** `brazil/sources/2026-10-02_fda_prior_notice_awb_request.md` (Iolanda Santos / Omega, Gary, thread 10800).
 
@@ -431,9 +445,9 @@ Salvador airport weighed the consignment and found a **divergence**: **gross = 3
 
 **⏱️ Timing (21 CFR 1.279):** PN must be **received + confirmed by FDA no less than 4 hours before arrival by air**; and generally **no more than 15 calendar days before arrival** if filed via FDA **PNSI** (or 30 days via CBP ABI/ACE). Filed too early → rejected; too late → cargo refused/held.
 
-**������ Roles:** Isis Ribeiro (Omega) = international/export ops — owns the **shipment status + flight**; Iolanda Santos (Omega) = SISCOMEX/customs — owns the **US-side FDA PN filing**. (Iolanda confirmed she was **back at the office** the morning of 2026-10-02.)
+**👤 Roles:** Isis Ribeiro (Omega) = international/export ops — owns the **shipment status + flight**; Iolanda Santos (Omega) = SISCOMEX/customs — owns the **US-side FDA PN filing**. (Iolanda confirmed she was **back at the office** the morning of 2026-10-02.)
 
-**������ FSVP context:** `fsvp/SHIPMENT_DOCUMENTATION_PROCESS.md` doc #4 = *FDA prior notice* — "filed per FDA PNSI before arrival"; the per-shipment pack lives in `fda_fsvp/suppliers/black_king/`.
+**📎 FSVP context:** `fsvp/SHIPMENT_DOCUMENTATION_PROCESS.md` doc #4 = *FDA prior notice* — "filed per FDA PNSI before arrival"; the per-shipment pack lives in `fda_fsvp/suppliers/black_king/`.
 
 **Status:** ⬜ AWB sent to Iolanda (blocked on flight confirmation, §5.5) · ⬜ FDA PN filed (Iolanda).
 
