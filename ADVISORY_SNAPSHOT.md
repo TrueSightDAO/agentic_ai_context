@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-13T00:54:50Z`
+- Generated (UTC): `2026-10-13T05:56:06Z`
 - Look-back: **7** calendar days (`2026-10-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[TREE PLANTING EVENT]` × 25
-- `[CURRENCY DEFINITION EVENT]` × 10
-- `[CONTRIBUTION EVENT]` × 4
-- `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 1
-
-### Latest entries
-
-- `Edgar_20261012120051_400` · **Edgar** · [EMAIL REGISTERED EVENT] Email: davajhabib@outlook.com
-- `Edgar_20261012120351_402` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012120401_404` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012120539_406` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.5229191 · Longitude: -51.5749705 · Species: Cacao - Forestero
-- `Edgar_20261012145129_408` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-12T14:51:28.016Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261012175917_410` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20261012211042_412` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-12T21:10:34.465Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20261012231039_414` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: 8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + 047-3175-3223 - San Francis… · Price in USD: 10.51 · Serializable: FALSE
-- `Edgar_20261012231102_416` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 24.23 · Serializable: FALSE
-- `Edgar_20261012231107_418` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 41.69 · Serializable: FALSE
-- `Edgar_20261012231112_420` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds (KG) + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
-- `Edgar_20261012231117_422` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Ceremonial Cacao Kraft Pouch - 20250219006 \| Cacao Mass \| 200 grams \| Paulo 202… · Price in USD: 13.78 · Serializable: FALSE
-- `Edgar_20261012231122_424` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
-- `Edgar_20261012231127_426` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
-- `Edgar_20261012231133_428` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Coopercabruca Cacao Butter (KG) + 047-3175-3223 - San Francisco · Price in USD: 34.40 · Serializable: FALSE
-- `Edgar_20261012231138_430` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 · Price in USD: 18.212 · Serializable: FALSE
-- `Edgar_20261012233345_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Black King shipment — landed-cost modeling + AGL8 currency disambiguation (a…
-- `Edgar_20261012233349_434` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Black King shipment — landed-cost decisions + AGL8 currency disambiguation d…
-- `Edgar_20261013002905_436` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
-- `Edgar_20261013005224_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: AGL8 cacao-almonds landed-clone rename + dapp holdings verification
 
 ---
 
@@ -201,10 +164,10 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 942 | $654.61 |
   | (uncategorized) | (unspecified) | 24 | 689.59 | $7,566.26 |
+  | Cacao Nib | Bulk | 2 | 179 | $2,977.53 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Nib | Retail Ready | 1 | 134 | $889.76 |
-  | Cacao Tea | Bulk | 2 | 120 | $1,221.88 |
-  | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
+  | Cacao Tea | Bulk | 1 | 21 | $213.83 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
 - Manager record: `Gary Teh` · 29 SKU lines · 12,874.96 total units · $12,574.65
@@ -230,16 +193,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+31 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$4,798.32**
-- Brazilian Reis: R$-590.05 · rate `0.2323` USD/BRL → ≈ **$-137.07**
-- USD provisioned for voting-rights cash-out: **$56.54**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (0 rows)
+### In-transit freight
 
-_No `Shipment Ledger Listing` rows match in-flight status keywords today._
-
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -268,6 +228,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-06 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+60cc5a7 | 2026-10-13 00:56:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 d6401b8 | 2026-10-12 15:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 d5c6e4b | 2026-10-12 06:25:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 fb4f883 | 2026-10-11 22:22:57 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -300,6 +261,10 @@ c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9adafeb | 2026-10-12 23:47:10 -0300 | plan(discord-gateway-resume): tick Deployed row + mark tracker COMPLETE (#1593)
+4a14619 | 2026-10-12 23:44:46 -0300 | handoffs: close Discord gateway RESUME fix -- PLAN COMPLETE (#1592)
+8ad9c2f | 2026-10-12 21:55:13 -0300 | chore(previews): refresh Beer Hall preview (2026-10-13 UTC)
+83b3e26 | 2026-10-12 21:55:11 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-13 UTC)
 5f4f256 | 2026-10-12 21:49:34 -0300 | OPEN_FOLLOWUPS: close AGL8 landed-clone rename; file GAS silent-success gap (#1591)
 57a5902 | 2026-10-12 20:32:13 -0300 | OPEN_FOLLOWUPS: currency-naming hygiene (bare generic names) + AWB landed-clone convention (#1590)
 6ff250e | 2026-10-12 12:54:11 -0300 | chore(previews): refresh Beer Hall preview (2026-10-12 UTC)
@@ -336,16 +301,13 @@ ffecd10 | 2026-10-10 00:57:56 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_
 2fc08f7 | 2026-10-10 00:51:09 -0300 | Merge pull request #1571 from TrueSightDAO/handoffs/matheus-pr524-merged-20261010
 ad2278d | 2026-10-10 03:50:34 +0000 | handoffs: truesight_autopilot#524 merged (calendar watchdog, thread 41588)
 75ee51b | 2026-10-10 00:44:44 -0300 | Merge pull request #1570 from TrueSightDAO/handoffs/matheus-followup-items-register-20261010
-71f308b | 2026-10-10 03:44:07 +0000 | handoffs: register thread 41588 "Matheus follow up items" (Gary tagged Envoy directly)
-2b7c770 | 2026-10-10 00:30:46 -0300 | Add machine-readable ilheus_warehouse.json mirror of §2.5 dimensions register (#1569)
-f7cc275 | 2026-10-09 23:56:48 -0300 | docs(ilheus): bathroom window openable 35 cm H x 53 cm W (governor-confirmed) (#1568)
-621390b | 2026-10-09 23:56:05 -0300 | docs(ilheus): correct M3 — ~90 cm is the main window LOWER PANE, not full height (#1567)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+04d7acd | 2026-10-12 23:37:46 -0300 | Currency-definition ingest: write Currencies cols N-V + FDA Product Code (#581)
 41848ed | 2026-10-09 11:26:16 -0300 | PR4: automate managed-ledger snapshot (Contents-API publisher + daily GHA) (#580)
 465db28 | 2026-10-08 19:38:10 -0300 | Allow Sentinels to file inventory-expense events for ALL members (#579)
 ```
@@ -377,6 +339,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a31a3db | 2026-10-12 22:20:19 -0300 | Add landed-cost composition for AWB 047-3175-3223 (8 clones)
 f5d9baa | 2026-10-12 16:06:31 +0000 | chore: refresh currencies.json [skip ci]
 aaaf54d | 2026-10-11 13:31:26 +0000 | chore: refresh currencies.json [skip ci]
 f29de07 | 2026-10-11 12:55:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -413,6 +376,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-10-13T055606Z_black-king-landed-cost-wire-sent.md`
+
+- **posted_at_utc:** `2026-10-13T05:56:06Z`  
+- **slug:** `black-king-landed-cost-wire-sent`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **Wire Transfer to 5 Continent Logistics** — Invoice #1026-08 paid for Brazil→SF cacao consignment; disputed lines clarified with Graziela (export-customs scope, FDA AMS $100 filing, 365 vs 349 kg weight).
+
 ### `beer-hall_2026-10-11T043733Z_usda-released-gateway-fix-warehouse-codified.md`
 
 - **posted_at_utc:** `2026-10-11T04:37:33Z`  
@@ -430,15 +402,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Cooperative-First Sourcing** — Documented strategic decision to prioritize cooperative sourcing and wind down Ilhéus warehouse operations.
-
-### `beer-hall_2026-10-08T050257Z_agl-shipments-complete-hawb-issued-oscar-loaded.md`
-
-- **posted_at_utc:** `2026-10-08T05:02:57Z`  
-- **slug:** `agl-shipments-complete-hawb-issued-oscar-loaded`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Shipments Completed** — AGL4 and AGL7 moved to COMPLETED; AGL8 + AGL14 advanced to SALES IN PROGRESS on site.
 
 ---
 
@@ -459,39 +422,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/12/2026 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-06`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
