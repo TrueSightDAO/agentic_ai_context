@@ -39,6 +39,44 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `treasury-cache-publisher` silently drops negative balances → holdings page can never show them
+**Filed 2026-10-13 (Gary Teh). Owner: unclaimed. Small (fix); the GAS redeploy is human-gated (§5c).**
+
+**Symptom.** `view_inventory_holdings.html?manager=Gary+Teh` lists only positive holdings.
+Gary's Main Ledger `Brazilian Reis` balance is **-388.18** (see `offchain asset location`
+row 30 / `off chain asset balance` row 23) but never appears. Same for any
+negative line (e.g. `BRL` held by `pk-qkejKJJW3IAD` = -90).
+
+**Root cause (verified 2026-10-13).** The DApp page has **no** client-side filter —
+`renderHoldingsTable()` renders every row the cache returns. The negatives are dropped
+upstream in `treasury-cache/gas/treasury-cache-publisher/Code.gs`, at three guards:
+- L208 `if (!currency || !(amount > 0)) return;`  (Main Ledger "offchain asset location")
+- L269 `if (!assetName || !(quantity > 0)) continue;`  (per-AGL ledger Balance sheets)
+- L332 `if (!(it.total_quantity > 0)) return;`  (final item rollup)
+
+Live cache `dao_offchain_treasury.json` (generated 2026-10-13T16:48Z): Gary Teh shows
+`[AGL8] Brazilian Reis  236.90` (positive → kept) but NOT the Main Ledger `Brazilian Reis  -388.18`
+(negative → dropped). So a negative and a positive leg of the *same* currency diverge silently
+in the cache the DApp trusts.
+
+**Why it matters.** The holdings view is the governor's per-manager ledger of record; a
+negative balance is exactly the signal that needs to be visible (an over-spend / a top-up
+owed). Hiding it makes the page quietly wrong, and any consumer of the cache inherits the
+same blind spot.
+
+**To fix.** (a) In the publisher, keep negatives through the pipeline — drop the `> 0`
+guards in favour of `!== 0` / `Number.isFinite`, and carry a signed amount into `items[]`
+and each manager's `items[]`. (b) The page already renders whatever arrives; optionally
+add a red style for negative amounts. (c) Redeploy the GAS (`clasp push` — human-gated) and
+re-run the publisher so the cache picks up the negative leg. (d) If the cache's `totals`
+aggregates assume non-negative units, audit the totals math so a negative doesn't corrupt
+`total_units` / `total_value_usd`.
+
+**Note.** The publisher source lives in `treasury-cache` (API-only machine-owned repo — no
+branch edits) and the scriptId is `1u4lVtGaO5GjpG0XQo7b8hc3QFAXcsrJKclBead2sDcgvatMdE6dm3mzx`;
+it has no copy under `tokenomics/google_app_scripts/`, so the `gas_deploy_project` path does
+not cover it.
+
 ### `dao_members.json` publisher mangles non-ASCII contributor names (Júlio → `J?lio Almeida`)
 **Filed 2026-10-13 (Discord, store-visibility thread). Owner: unclaimed. Small (diagnose); the publisher fix is a §5c human-gated GAS change.**
 
