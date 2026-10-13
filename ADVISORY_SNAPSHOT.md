@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-13T14:28:35Z`
+- Generated (UTC): `2026-10-13T23:00:16Z`
 - Look-back: **7** calendar days (`2026-10-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,27 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 19
+- `[CONTRIBUTION EVENT]` × 12
 - `[CURRENCY DEFINITION EVENT]` × 10
-- `[CONTRIBUTION EVENT]` × 6
+- `[TREE PLANTING EVENT]` × 7
+- `[RETAIL FIELD REPORT EVENT]` × 5
 - `[PRACTICE EVENT]` × 3
 - `[EMAIL REGISTERED EVENT]` × 1
+- `[NOTARIZATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20261012211042_412` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-12T21:10:34.465Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20261012231039_414` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: 8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + 047-3175-3223 - San Francis… · Price in USD: 10.51 · Serializable: FALSE
-- `Edgar_20261012231102_416` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 24.23 · Serializable: FALSE
-- `Edgar_20261012231107_418` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco · Price in USD: 41.69 · Serializable: FALSE
-- `Edgar_20261012231112_420` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds (KG) + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
-- `Edgar_20261012231117_422` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Ceremonial Cacao Kraft Pouch - 20250219006 \| Cacao Mass \| 200 grams \| Paulo 202… · Price in USD: 13.78 · Serializable: FALSE
-- `Edgar_20261012231122_424` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
-- `Edgar_20261012231127_426` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco · Price in USD: 27.25 · Serializable: FALSE
-- `Edgar_20261012231133_428` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Coopercabruca Cacao Butter (KG) + 047-3175-3223 - San Francisco · Price in USD: 34.40 · Serializable: FALSE
-- `Edgar_20261012231138_430` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 · Price in USD: 18.212 · Serializable: FALSE
-- `Edgar_20261012233345_432` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Black King shipment — landed-cost modeling + AGL8 currency disambiguation (a…
-- `Edgar_20261012233349_434` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Black King shipment — landed-cost decisions + AGL8 currency disambiguation d…
 - `Edgar_20261013002905_436` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
 - `Edgar_20261013005224_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: AGL8 cacao-almonds landed-clone rename + dapp holdings verification
 - `Edgar_20261013024327_440` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Discord gateway RESUME + backoff reset fix
@@ -61,6 +51,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261013120656_446` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261013_oscar_pix_beans_outstanding_R480.jpg · DAO Member Name: Gary Teh
 - `Edgar_20261013122524_448` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Description: TEST ROW — deploy verification only (GAS 19Wag9x prefix-strip fix, thread 23…
 - `Edgar_20261013125521_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
+- `Edgar_20261013143243_452` · **Edgar** · [CONTRIBUTION EVENT] Amount: 90 · Contributor(s): Gary Teh · Description: Signing and notarizing power of attorney (procuracao publica) in Sao Paulo t…
+- `Edgar_20261013143628_454` · **Edgar** · [CONTRIBUTION EVENT] Amount: 7.90 · Contributor(s): Gary Teh · Description: 99 ride-hailing fare (merchant 99*) - hostel to notary in Sao Paulo, 2026-10…
+- `Edgar_20261013204033_456` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: NA · Longitude: NA
+- `Edgar_20261013204346_458` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.98 · Contributor(s): Gary Teh
+- `Edgar_20261013214307_460` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Kirsten Ritschel
+- `Edgar_20261013222817_462` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Berkeley Herbal Center · Store Key: the-berkeley-herbal-center__1250-addison-st-suite-g__berkeley__ca · Update ID: SFR_20261013222814
+- `Edgar_20261013222826_464` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Berkeley Herbal Center · Store Key: the-berkeley-herbal-center__1250-addison-st-suite-g__berkeley__ca · Update ID: SFR_20261013222824
+- `Edgar_20261013222858_466` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Gary Teh and Julio Almeida spent 15 minutes walking through the Job A recomm…
+- `Edgar_20261013222909_468` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Gary Teh and Julio Almeida spent 10 minutes chatting, reviewing the DApp Sto…
+- `Edgar_20261013223128_470` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Cafe Brasil · Store Key: cafe-brasil__1410-mission-street__santa-cruz__ca · Update ID: SFR_20261013223126
+- `Edgar_20261013223539_472` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Earthly Essentials · Store Key: earthly-essentials__22990-joaquin-gully-road__twain-harte__ca · Update ID: SFR_20261013223534
+- `Edgar_20261013224409_474` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261013224406
 
 ---
 
@@ -233,8 +235,8 @@ _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,798.27**
-- Brazilian Reis: R$-590.05 · rate `0.2323` USD/BRL → ≈ **$-137.07**
+- USD on hand: **$4,758.06**
+- Brazilian Reis: R$-388.18 · rate `0.2323` USD/BRL → ≈ **$-90.17**
 - USD provisioned for voting-rights cash-out: **$56.59**
 
 ### In-transit freight (0 rows)
@@ -269,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-06 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+145cf7c | 2026-10-13 14:30:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 60cc5a7 | 2026-10-13 00:56:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 d6401b8 | 2026-10-12 15:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 d5c6e4b | 2026-10-12 06:25:16 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -302,6 +305,11 @@ c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8f60b0e | 2026-10-13 19:59:47 -0300 | Fix UTF-8 (lone surrogates) in preflight checklist + record last-mile carrier Energy Transport Logistics (#1599)
+436d765 | 2026-10-13 19:56:43 -0300 | followups: file cache name-mojibake + stale per-key surface (#1598)
+d99b650 | 2026-10-13 18:50:14 -0300 | Add source note: last-mile carrier Energy Transport Logistics (SFO OPS) (#1597)
+337028d | 2026-10-13 11:29:00 -0300 | chore(previews): refresh Beer Hall preview (2026-10-13 UTC)
+768be19 | 2026-10-13 11:28:58 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-13 UTC)
 2bc1781 | 2026-10-13 09:54:51 -0300 | manifest+index: AGL16 GAS prefix-strip handoff deployed+verified -> done (green CI) (#1596)
 89ef1e3 | 2026-10-13 02:56:28 -0300 | Merge pull request #1594 from TrueSightDAO/auto/advisory-refresh-2026-10-13
 4903026 | 2026-10-13 05:56:13 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-13 UTC)
@@ -337,11 +345,6 @@ ada29f1 | 2026-10-10 17:31:03 -0300 | docs(followups): move Discord member-repli
 261b844 | 2026-10-10 09:30:55 -0300 | Status: USDA RELEASED shipment Fri 09/10 — no inspection, no surcharge; Graziela answers invoice questions (#1575)
 f0bdcf6 | 2026-10-10 01:02:12 -0300 | Merge pull request #1573 from TrueSightDAO/handoffs/matheus-followup-complete-20261010
 b905d8b | 2026-10-10 04:01:33 +0000 | handoffs: Matheus follow up items (thread 41588) COMPLETE — verified independently
-5b22536 | 2026-10-10 00:59:57 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-b57ee52 | 2026-10-10 00:58:22 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-ffecd10 | 2026-10-10 00:57:56 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-801db4b | 2026-10-10 00:57:46 -0300 | codify Ilhéus register (C2/C5/B2/B3/E1) + file calendar tooling note (#1572)
-334cc6e | 2026-10-10 00:56:14 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
 … (truncated)
 ```
 
