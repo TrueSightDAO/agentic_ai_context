@@ -57,6 +57,16 @@ deprecated and `offchain assets in transit` row 24 col B re-pointed (both cols s
 `ONE_OF_RANGE = Currencies!$A$2:$A$1006`). Verified: asset-name view nets the old name to zero;
 by-location shows `Matheus Reis | 273.5851228 | Cacao Almonds KG from Paulo's farm - AGL8`.
 
+**Also corrected live (2026-10-09): the landed AWB clone.** The companion clone
+`Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco` was added as
+`Currencies` **row 45** (Price 35.28 = landed UC incl freight; Serializable FALSE; 1000 g) so that
+`offchain assets in transit` **row 24 col M** — which the register's own invariant derives as
+`B24 + " + " + AWB + " - San Francisco"` — **resolves** under `ONE_OF_RANGE`. Rows 39–41
+(`Cacao Almonds KG - bulk` / `- Conventional` / `- Organic`) were deliberately **left as-is** on
+governor instruction (they encode distinct historical meanings, not bare-generic duplicates).
+Note the origin row 44 keeps ex-works $18.212 and the clone carries landed cost — the two must
+not be merged (see pinned landed-cost rule).
+
 **This entry is the generalizable half — the convention + the sweep.**
 
 1. **Rule:** every new `Currencies!A` name must carry a **provenance token** — farm/supplier +
@@ -71,6 +81,33 @@ by-location shows `Matheus Reis | 273.5851228 | Cacao Almonds KG from Paulo's fa
 4. **Mechanism-gap note:** there is **no `[CURRENCY RENAME EVENT]`** — a col-A relabel is a direct
    spreadsheet write that must sweep any lookup keyed on the exact name (Correios VLOOKUP
    precedent). Document so the next agent doesn't reach for a non-existent primitive.
+
+### GAS currency-definition handler can report success without writing the `Currencies` row
+**Filed 2026-10-09 (thread: Black King landed-cost). Owner: unclaimed. Small (bug hunt).**
+
+**Symptom.** A `[CURRENCY DEFINITION EVENT]` landed in intake (Telegram Chat Logs row 12996,
+`message_id Edgar_20261013002905_435`, signature `success`) and the GAS handler
+`tokenomics/google_app_scripts/1N6o00/process_currency_definitions_telegram_logs.js` flipped that
+row's status column **J to `Successfully Completed`** — i.e. it believes it inserted — **yet no
+matching row appeared in `Currencies`** (`currencyDefinitionRecordExists` returned false, nothing
+added, sheet still 167 rows). The row only existed after a **manual direct insert** by the
+`agroverse-ledger-manager` SA.
+
+**Why it matters.** `Successfully Completed` is **terminal** — the handler skips such rows on
+subsequent runs (status gate), so once it mislabels a row, the cron fallback can never repair it.
+The failure is silent: the submitter sees HTTP 200, the intake row looks done, and the ledger is
+short a currency → any register `ONE_OF_RANGE` reference to that name dangles with a soft UI
+warning.
+
+**Also observed.** The handler's `sortCurrenciesAZ()` runs after inserts; a *direct* `values.append`
+landed the new row at the sheet's degenerate append index (row 125, out of A→Z order) rather than
+its sorted slot — so a manual repair must re-sort (or insert at position), not just append.
+
+**To investigate.** (1) Does `insertCurrencyDefinitionRecord` swallow a Sheets error and still
+return `true`? (2) Does the handler's col-A read (`getDataRange`) go stale vs. the append? (3) Is
+the `Successfully Completed` write happening *before* the insert is confirmed (ordering bug)?
+Reproduce with a minimal 4-field event and fix so the handler writes J **only after** a
+confirmed `Currencies` row (or leaves the row re-pickable on failure).
 
 **Acceptance.** Rule + AWB convention written into `LEDGER_CONVERSION_AND_REPACKAGING.md`; list of
 remaining bare-generic `Currencies` rows filed here (or “none remaining”).
