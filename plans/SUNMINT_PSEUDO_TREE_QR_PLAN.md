@@ -284,7 +284,7 @@ to the *image*. (The QR page does **not** read the plots registry today — see 
 | # | Decision | Ruling |
 |---|---|---|
 | **SD1** | Distinction marker | **blank Latitude/Longitude** (+ `PS-` prefix). **No `record_type` column** |
-| **SD2** | Pseudo id | **`PS-<plot_id>-<seq>`**, immutable — frozen on reference, **unchanged on promotion**; the `-pseudo-` infix is a provenance namespace, **not** a live state test |
+| **SD2** | Pseudo id | **`PS-<plot_id>-<seq>`**, immutable — frozen on reference, **unchanged on promotion**; the `PS-` prefix is a provenance namespace, **not** a live state test |
 | **SD3** | Geometry | **NONE** — no grid, no computed positions (v1 grid dropped) |
 | **SD4** | Assign mechanism | **NEW `[PSEUDO TREE ASSIGN EVENT]`** (D6) — same atomic pattern as the real link, distinct event type |
 | **SD5** | Honesty | QR/landing page: **"Plot X — estimated slot #N. Position not yet verified."** |
