@@ -589,6 +589,45 @@ Lines (net kg, matching NF-e nº 18 / Rev 14): Nibs-Kraft-8oz 29 · MassBar-500g
 > ✅ The tab already carried the **Status** (col P) and **NF-e Chave** (col Q) columns — it was just that **no in-transit row existed**; every prior row reads *Arrived at Destination*. These 9 are the register's **first “In Transit” rows**, and they close the long-standing gap where a shipment had no arrival-register presence while en route.
 
 
+#### 5.11 Arrival → transfer → transformation — ledger routing audit 🔴 NEW 2026-10-14
+
+> **Governor (Gary) constraint (thread 10800, 2026-10-14):** *"Make sure each transformed inventory lands in the same ledger as the original inventory."*
+
+**Execution status: 🔴 BLOCKED — not on the ledger, on the physics.** As of **2026-10-14 12:58 PT** the cargo is **not confirmed delivered**. 5 Continent (13/10 17:44 −0300): *"the carrier was **unable to complete the delivery today**, so it has been **rescheduled for tomorrow**"* — and Gary had relayed that **Kirsten would be away** on the retry day. The `offchain assets in transit` rows still read **`In Transit`** on all 8 lines. **Custody must not be booked on inference:** the register has already been un-booked once (the Kirsten↔Val Lapidus revert in the NF-e crosswalk).
+
+**🚫 Terminology — two different events, not one (resolves "inventory transformation").** "Transformation" is **not a DAO event name** (searched `agentic_ai_context` + org-wide code). The governor's phrase spans two distinct flows with different prerequisites:
+
+| Intent | Event | Effect | Gate |
+|---|---|---|---|
+| **Transfer** Matheus → Kirsten | **`[INVENTORY MOVEMENT]`** | Custody change; QR status stays **IN INVENTORY** | ledger name ✅ + **physical arrival** 🔴 |
+| **Transformation** (repackaging) | **`[REPACKAGING BATCH EVENT]`** → `[CURRENCY DEFINITION EVENT]` → `[REPACKAGING SETTLEMENT EVENT]` | Consumes input `Currency` rows, **creates new output** rows; cost allocated by weight | inputs **physically in hand** 🔴 — the *later, heavier* step |
+
+**📋 The audit (2026-10-14).** The 8 NF-e n° 18 arrival currencies are already **pre-staged** on the Main Ledger `Currencies` tab with the `+ 047-3175-3223 - San Francisco` suffix. Audited each one's **col F (`ledger`)** against the **§5.10 col-R routing rule**:
+
+| # | Arrival `Currency` (col A, abbreviated) | §5.10 rule (col R) | `Currencies.ledger` (col F) | Verdict |
+|---|---|---|---|---|
+| 1 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + 047-…` | **MAIN** | `https://www.agroverse.shop/agl4` | 🔴 **WRONG — AGL4 is COMPLETED** |
+| 2 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + 047-…` | **MAIN** | *(blank)* | ⚪ unset |
+| 3 | `Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-…` | **MAIN** | *(blank)* | ⚪ unset |
+| 4 | `Cacao Almonds KG from Paulo's farm - AGL8 + 047-…` | **AGL8** | *(blank)* | ⚪ unset |
+| 5 | `Ceremonial Cacao Kraft Pouch - … \|\| Ilheus - AGL8 + 047-…` | **AGL8** | *(blank)* | ⚪ unset |
+| 6 | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-…` | **AGL13** | `https://www.agroverse.shop/agl13` | ✅ correct |
+| 7 | `Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-…` | **AGL13** | `https://www.agroverse.shop/agl13` | ✅ correct |
+| 8 | `Coopercabruca Cacao Butter (KG) + 047-…` | **MAIN** | *(blank)* | ⚪ unset |
+
+**Result: 2 of 8 correct · 1 WRONG · 5 unset.** This also **confirms in the live arrival row** what §5.10 had only flagged as a note — *"`Currencies.ledger` for the 8oz pouch still reads `…/agl4` — that field is stale for these three and should not override the closed-status rule."* The stale value is present on the **arriving** currency, not just its pre-arrival twin.
+
+**⚙️ Why the governor's invariant is not currently enforceable.** The `[REPACKAGING SETTLEMENT EVENT]` writes `Currencies` **col F from the event payload's `Ledger URL`** — see `plans/POST_REPACKAGING_CLEANUP_PLAN.md` §`Currencies`: *"F | ledger | From event payload Ledger URL"*. It **does not inherit the ledger from the input currency's own row.** Therefore *"output lands on the same ledger as its input"* is **operator-typed free text, not an enforced rule.** A repackaging run over the AGL8 almonds whose settlement payload said `agl4` would silently land the output on a **CLOSED** ledger — invisible at submit time.
+
+**⚠️ Compounding:** **5 of the 8** arrival rows carry col C `Serializable = TRUE` with col F **blank** (#2, #3, #4, #5, #8) — i.e. flagged **QR-ready while carrying no provenance ledger**, the exact combination that yields a serialized QR with no ledger target.
+
+**✅ Proposed rule (for governor confirmation) — col R is authoritative.**
+1. **Before any transformation**, populate each input's col F from the **§5.10 col-R map** (MAIN ×4 · AGL8 ×2 · AGL13 ×2).
+2. Where col F **disagrees** with col R, **col R wins** — §5.10 already rules AGL4→MAIN because that ledger is `COMPLETED`, and a closed ledger must not carry live stock.
+3. Enforce **output ledger = input ledger** at the settlement step rather than trusting the payload string (filed as a tooling gap in `OPEN_FOLLOWUPS.md` §Pending).
+4. Do **not** run `[INVENTORY MOVEMENT]` until physical arrival is confirmed.
+
+
 ## 6. Hard rules & approval gates (checklist)
 
 - [ ] **No NF-e issuance without Gary's explicit approval.**
@@ -720,6 +759,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-10-02 | **Rev 15 — Commercial Invoice + Packing List reissued at gross 349 kg** (Daniel / SeaCoast ask, §5.5). Gross restated 322,06 → **349,00** = net 302,06 + carton tare 26,94 (27 boxes) + pallet tare 20,00 (2 × 10 kg HDPE). **Net, lines, boxes, USD/BRL unchanged.** `exports/2026-10-02_*_rev15_*`; generator gains the Rev-15 gross model + a `GROSS_WEIGHED` invariant. Also **corrected the same-day §5.5 draft** (pallet→carton tare; pallets are plastic HDPE, not heat-treated wood). |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
+| 2026-10-14 | **§5.11 added — arrival→transfer→transformation ledger-routing audit** (governor Gary, thread 10800). Records the transfer/transformation gate as **still CLOSED on physical arrival** (delivery not confirmed as of 12:58 PT; cargo rescheduled after a failed attempt). Audits all 8 NF-e n° 18 arrival currencies' `Currencies` col F against the §5.10 col-R rule: **2 correct · 1 WRONG (`…/agl4`, COMPLETED) · 5 unset**; notes 5 rows hold `Serializable=TRUE` with blank col F. Documents that `[REPACKAGING SETTLEMENT EVENT]` sources col F from the **payload's Ledger URL** (not inherited from inputs) → the governor's "same ledger as the original" invariant is operator-typed, not enforced. Proposed rule: **col R is authoritative**; populate col F from it before any transformation. Tooling gap filed in `OPEN_FOLLOWUPS.md` §Pending. |
 | 2026-09-21 | **Saymon/Jussileide are NOT on Telegram** — they are contractors on WhatsApp “Black King - Contab”. Added a delivery-channel warning to §2 so no agent assumes a thread-10800 post reaches them; artifacts for the accountant are relayed by Gary. No automated path (“Black King - Contab” is not in OpenClaw's verified JID list). |
 
 ---
