@@ -5,6 +5,8 @@
 > **Updated:** 09 Sep 2026 — Pará/CEPOTX lane gains in-network bean-to-bar conversion (Fazenda Cleide factory, visited 2026-09-08; La do Sítio stage-1, visited 2026-09-07) — see `fda_fsvp/suppliers/cepotx/` records
 > **Sources:** Gary's WhatsApp export (28–29 Aug 2026, incl. Elizabeth Wong China-side context + annotated map); GACC registration guides (16–17 Jun 2026); `BRAZIL_EXPORT_LANE_LEARNINGS.md` (23 Aug 2026); `briefs/BRAZIL_EXPORT_ENTITY_BRIEF.md` (26 May 2026); `SUPPLY_CHAIN_AND_FREIGHTING.md`.
 > **Map:** `cacao_sourcing_network_map.png` (plotted from real coordinates — lat/lng table below; regenerated via `truesight_autopilot/scripts/plot_cacao_sourcing_network_map.py`).
+>
+> **Per-entity detail:** see [`CACAO_SUPPLIER_ENTITY_PROFILES.md`](./CACAO_SUPPLIER_ENTITY_PROFILES.md) for the canonical consolidated profile of each partner — CEPOTX, COOPERCABRUCA, Santos, and Black King (IDs, contacts, certifications, registrations, commercial terms, documents).
 
 ---
 
