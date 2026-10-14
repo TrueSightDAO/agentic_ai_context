@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint: tree↔plot association + expected/counted tree-count estimation
+**Filed 2026-10-14 (Discord `#sunmint`, channel `1559724628862173335`). Owner: Sophia (build) + Envoy (supervising). Medium — multi-unit build in progress.**
+
+**Context.** Two asks from Gary: (1) associate near-plot trees with their containing plot polygon instead of leaving them unassociated; (2) estimate each plot's `expected_trees` using a planting-density heuristic (Gary's observation: professional farmers plant ~3m apart) against the plot's hectare area, alongside the already-tracked `counted_trees` (actual linked trees). Gary additionally asked that `expected_trees` be **governor-editable after the fact** (not purely geometry-computed) via a sheet-column overlay mirroring the existing `name_localized` precedent (`sunmint/scripts/overlay_localized_labels.py`), and that it be **persisted as a sheet column and documented in `SCHEMA.md`**.
+
+**Progress.** U1 (tree→plot association, `plot_assoc`/derived `plot_id`) and U2 (`polygon_ha`/`expected_trees`/`counted_trees` computed fields) are **built, tested, and landed live** to `sunmint` main — direct Contents-API commit, the sanctioned path since `sunmint` is policy-walled as machine-owned/API-only (Sophia cannot open a PR there; this is by design, not a workaround).
+
+**Remaining.** U3 — make `expected_trees` governor-editable via the sheet-overlay pattern, with a real sheet column + `SCHEMA.md` update (not yet started). U4 — surface both `expected_trees` and `counted_trees` in the public map popups on `sunmint.html` and `sunmint/plots/index.html` (`truesight_me_beta`; prod promotion to `truesight_me_prod` is a separate, human-gated step per standing policy, not part of this unit).
+
 ### `treasury-cache-publisher` silently drops negative balances → holdings page can never show them
 **Filed 2026-10-13 (Gary Teh). Owner: unclaimed. Small (fix); the GAS redeploy is human-gated (§5c).**
 
@@ -4330,6 +4339,11 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 ---
 
 ## Recently shipped
+
+### Currency conversion tooling: live currencies.json publish hardening — SHIPPED 2026-10-14
+**Shipped 2026-10-14. Governor thread: Discord `#currency-conversion`. PR: `truesight_autopilot` #533.**
+
+Live BRL currency retirement work hit a real bug: `upload_file_to_github`/`upload_local_file_to_github` 422'd ("sha wasn't supplied") whenever `api.github.com` reads were rate-limited (403) while writes still authenticated — the existing-file sha HEAD fell through. Sophia's fix added `_raw_sha()`, a local git-blob-hash fallback (`sha1("blob <len>\0" + content)`) so the sha can be computed without an authenticated read. Her first push had a real bug Envoy caught in review (not a CI timing fluke): the literal was `b"blob %d\\0"` — a backslash followed by `0` (two bytes) — instead of a true null byte, so the fallback sha could never have matched git's actual blob sha in production. Envoy fixed the one-character escaping, verified locally (3/3 new tests + full suite 1518 passed, same 4 pre-existing/environmental failures confirmed unrelated on a clean `origin/main`), pushed, CI green, merged. Not deploy-urgent — the actual currencies.json publish this hardens had already succeeded via a manual sha workaround earlier in the same session.
 
 ### Discord member *replies* now dispatch (read-only) — brain is tier-aware — SHIPPED 2026-10-10
 **Shipped 2026-10-10. Governor: Gary (Discord adapter thread). PRs: `truesight_autopilot` #478 (PR1), #480 (PR2), #481 (PR3); plan `BRAIN_TIER_AWARENESS`.**
