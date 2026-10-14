@@ -126,7 +126,7 @@ renumbered), so a printed/handed-out QR keeps pointing at the same slot even if 
 **Mint policy (→ D2):**
 - **(a) Allocate-on-demand (recommended).** Mint `<plot_id>-pseudo-1` the first time a QR binds to
   the plot; `expected_trees` is the ceiling. A plot with 5,556 expected trees mints nothing until
-  asked. Pairs naturally with claim-on-arrival.
+  asked. Pairs naturally with in-place promotion (§6).
 - **(b) Materialize all N rows up front.** Complete but mints thousands of empty rows per plot.
 
 ---
@@ -275,7 +275,7 @@ to the *image*. (The QR page does **not** read the plots registry today — see 
 
 | # | Decision | Options | **Recommendation** |
 |---|---|---|---|
-| **D2** | Mint all N rows up front vs allocate-on-demand | (a) on-demand (b) materialize | **(a)** — scales; pairs with claim-on-arrival |
+| **D2** | Mint all N rows up front vs allocate-on-demand | (a) on-demand (b) materialize | **(a)** — scales; pairs with in-place promotion (§6) |
 | **D4** | Where pseudo rows live | (a) shared `SunMint Tree Planting` tab (b) separate tab | **(a)** per Gary's wording — consumers skip blank-K/L rows |
 | **D5** | QR status when pseudo-bound | reuse `ASSIGNED_TO_TREE` vs new `ASSIGNED_TO_PSEUDO_TREE` | **new status**, valid with **no tree behind it** (SD9) — so D10's counter guard is a status check, not a column check |
 | **D8** | Estimate shrink safety | — | **freeze referenced slots; trim only the never-referenced tail** |
