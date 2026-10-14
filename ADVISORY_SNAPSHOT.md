@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-13T23:00:16Z`
-- Look-back: **7** calendar days (`2026-10-06` → today UTC)
+- Generated (UTC): `2026-10-14T05:11:57Z`
+- Look-back: **7** calendar days (`2026-10-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -34,18 +34,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 12
 - `[CURRENCY DEFINITION EVENT]` × 10
-- `[TREE PLANTING EVENT]` × 7
 - `[RETAIL FIELD REPORT EVENT]` × 5
+- `[TREE PLANTING EVENT]` × 4
 - `[PRACTICE EVENT]` × 3
+- `[CURRENCY CONVERSION EVENT]` × 3
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20261013002905_436` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Price in USD: 35.28 · Serializable: FALSE
-- `Edgar_20261013005224_438` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: AGL8 cacao-almonds landed-clone rename + dapp holdings verification
-- `Edgar_20261013024327_440` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Discord gateway RESUME + backoff reset fix
 - `Edgar_20261013120053_442` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
 - `Edgar_20261013120436_444` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-13T12:04:31.252Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261013120656_446` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261013_oscar_pix_beans_outstanding_R480.jpg · DAO Member Name: Gary Teh
@@ -63,6 +61,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261013223128_470` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Cafe Brasil · Store Key: cafe-brasil__1410-mission-street__santa-cruz__ca · Update ID: SFR_20261013223126
 - `Edgar_20261013223539_472` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Earthly Essentials · Store Key: earthly-essentials__22990-joaquin-gully-road__twain-harte__ca · Update ID: SFR_20261013223534
 - `Edgar_20261013224409_474` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261013224406
+- `Edgar_20261014001657_476` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: Gary Teh
+- `Edgar_20261014002804_478` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: Paloma
+- `Edgar_20261014002807_480` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: pk-qkejKJJW3IAD
 
 ---
 
@@ -210,11 +211,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Tea | Bulk | 1 | 21 | $213.83 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 12,874.96 total units · $12,574.65
+- Manager record: `Gary Teh` · 29 SKU lines · 12,755.94 total units · $12,455.63
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 12,798.78 | $12,524.66 |
+  | (uncategorized) | (unspecified) | 27 | 12,679.76 | $12,405.64 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -228,16 +229,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Aga Marecka | 1 | 20 | $537.46 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
-| Paloma | 7 | 661.32 | $247.02 |
+| Paloma | 7 | 661.32 | $255.43 |
 | Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
 _(+31 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,758.06**
-- Brazilian Reis: R$-388.18 · rate `0.2323` USD/BRL → ≈ **$-90.17**
-- USD provisioned for voting-rights cash-out: **$56.59**
+- USD on hand: **$4,679.20**
+- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
+- USD provisioned for voting-rights cash-out: **$56.65**
 
 ### In-transit freight (0 rows)
 
@@ -252,7 +253,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-06 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-07 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -271,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-06 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f0008cc | 2026-10-13 23:03:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 145cf7c | 2026-10-13 14:30:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 60cc5a7 | 2026-10-13 00:56:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 d6401b8 | 2026-10-12 15:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -290,10 +292,6 @@ efbe9ea | 2026-10-08 06:33:57 +0000 | chore(stats): refresh stats indexes [skip 
 de46cc3 | 2026-10-07 23:16:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 d8953e0 | 2026-10-07 13:47:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 81d402d | 2026-10-07 06:22:20 +0000 | chore(stats): refresh stats indexes [skip ci]
-1cd9948 | 2026-10-06 22:45:44 +0000 | chore(stats): refresh stats indexes [skip ci]
-53a513c | 2026-10-06 18:34:05 +0000 | chore(stats): refresh stats indexes [skip ci]
-c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-71178a8 | 2026-10-06 00:16:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -305,6 +303,21 @@ c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5478558 | 2026-10-13 23:30:59 -0300 | v10: D13=(a) — an unbound real tree STANDS ALONE (no matching); PR6 descoped (#1611)
+b4f64a8 | 2026-10-13 23:22:33 -0300 | v9: record 3-tier provenance render logic (T1/T2/T3) + golden rule in §7 of both docs (#1610)
+573dfa4 | 2026-10-13 23:19:41 -0300 | SunMint pseudo-tree plan v8 — Contract A write-set pinned to existing columns; reverse-binding; D9 gate + reject-past-cap (#1609)
+203d9b2 | 2026-10-13 23:17:55 -0300 | SunMint pseudo-tree plan v7 — Contract A is a handler UPGRADE (not a new surface); live counter-gap flagged as a bug this fixes (#1608)
+3996200 | 2026-10-13 23:08:48 -0300 | Pseudo-tree plan v6: two contracts (QR↔Plot link + promotion) + DApp UI/UX consistency (#1607)
+f129908 | 2026-10-13 23:07:23 -0300 | D3 addendum v5: mirror the dedicated promote-event note -- rebased onto main (#1605)
+74942f5 | 2026-10-13 23:07:19 -0300 | v5 (PR1): dedicated [PSEUDO TREE PROMOTE EVENT] -- rebased onto main (#1604)
+da49317 | 2026-10-13 23:05:38 -0300 | handoffs: register SUNMINT_PSEUDO_TREE_QR_PLAN; update U3/U4 split-off note (#1606)
+d0e3900 | 2026-10-13 23:01:10 -0300 | Plan: answer D3 with a pseudo-tree addendum (estimation plan §8) (#1603)
+a9195c9 | 2026-10-13 23:01:00 -0300 | Plan: SunMint pseudo-tree generation + QR slot assignment (answers D3) (#1602)
+a9108d2 | 2026-10-13 22:25:47 -0300 | handoffs: register currency-conversion + sunmint threads; update AGL8 + DApp access-rights state (#1601)
+334e25e | 2026-10-13 22:10:45 -0300 | Add sunmint Ask-1+Ask-2 patch (tree→plot assoc, expected_trees)
+67a3f76 | 2026-10-13 20:48:52 -0300 | File follow-up: treasury-cache publisher drops negative balances (#1600)
+b8509aa | 2026-10-13 20:00:37 -0300 | chore(previews): refresh Beer Hall preview (2026-10-13 UTC)
+20a1d35 | 2026-10-13 20:00:35 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-13 UTC)
 8f60b0e | 2026-10-13 19:59:47 -0300 | Fix UTF-8 (lone surrogates) in preflight checklist + record last-mile carrier Energy Transport Logistics (#1599)
 436d765 | 2026-10-13 19:56:43 -0300 | followups: file cache name-mojibake + stale per-key surface (#1598)
 d99b650 | 2026-10-13 18:50:14 -0300 | Add source note: last-mile carrier Energy Transport Logistics (SFO OPS) (#1597)
@@ -330,21 +343,6 @@ b12e167 | 2026-10-11 16:16:17 -0300 | docs: add task-design appendix to Julio's 
 0ddc827 | 2026-10-11 14:13:50 -0300 | handoffs: register DApp access-rights thread; update Discord gateway fix status (#1584)
 3fa7ed1 | 2026-10-11 01:37:50 -0300 | Merge pull request #1583 from TrueSightDAO/auto/advisory-refresh-2026-10-11
 aa0e839 | 2026-10-11 04:37:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-11 UTC)
-6f1e742 | 2026-10-10 20:31:54 -0300 | plan(discord-gateway-resume): tick PR0 tracker — PR opened + merged (1ca1dcc) (#1582)
-6493861 | 2026-10-10 19:59:41 -0300 | handoffs: release plans/DISCORD_GATEWAY_RESUME_BACKOFF_FIX_PLAN.md (Sophia (autopilot, self))
-f2e4c74 | 2026-10-10 19:56:39 -0300 | handoffs: claim Discord gateway RESUME fix (thread 41950) (#1581)
-f8ab2c7 | 2026-10-10 19:51:10 -0300 | handoffs: claim plans/DISCORD_GATEWAY_RESUME_BACKOFF_FIX_PLAN.md (Sophia (autopilot, self))
-41eb375 | 2026-10-10 19:50:06 -0300 | Plan: Discord gateway RESUME + backoff reset fix (#1580)
-47260d5 | 2026-10-10 18:55:47 -0300 | chore(previews): refresh Beer Hall preview (2026-10-10 UTC)
-28b2c27 | 2026-10-10 18:55:46 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-10 UTC)
-67c9a6a | 2026-10-10 17:34:33 -0300 | docs(calendar): the watchdog is the runner — fold in Gary's correction (#1579)
-ada29f1 | 2026-10-10 17:31:03 -0300 | docs(followups): move Discord member-replies from Pending to Recently shipped (tier-aware replies live) (#1577)
-716f9c8 | 2026-10-10 11:30:57 -0300 | VERDICT: AWB says 349,000 kg — Graziela's 365 kg claim refuted by the document she cites (#1576)
-5058a98 | 2026-10-10 09:53:31 -0300 | chore(previews): refresh Beer Hall preview (2026-10-10 UTC)
-6c72106 | 2026-10-10 09:53:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-10 UTC)
-261b844 | 2026-10-10 09:30:55 -0300 | Status: USDA RELEASED shipment Fri 09/10 — no inspection, no surcharge; Graziela answers invoice questions (#1575)
-f0bdcf6 | 2026-10-10 01:02:12 -0300 | Merge pull request #1573 from TrueSightDAO/handoffs/matheus-followup-complete-20261010
-b905d8b | 2026-10-10 04:01:33 +0000 | handoffs: Matheus follow up items (thread 41588) COMPLETE — verified independently
 … (truncated)
 ```
 
@@ -383,6 +381,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+76b18cc | 2026-10-13 21:44:48 -0300 | chore: retire mislabeled currency BRL (currencies.json refresh)
 8231b29 | 2026-10-13 14:16:46 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a31a3db | 2026-10-12 22:20:19 -0300 | Add landed-cost composition for AWB 047-3175-3223 (8 clones)
 f5d9baa | 2026-10-12 16:06:31 +0000 | chore: refresh currencies.json [skip ci]
@@ -394,8 +393,6 @@ d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, a
 55cb5bd | 2026-10-09 13:22:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 7ce92a2 | 2026-10-08 13:35:15 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 f01b53c | 2026-10-07 13:29:35 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-22f9054 | 2026-10-06 13:37:16 +0000 | chore: refresh currencies.json [skip ci]
-30fbdd4 | 2026-10-06 13:22:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -493,7 +490,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 0 | 18484.34386 | 10/13/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-06`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-07`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
