@@ -154,7 +154,7 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
 - A **pseudo tree** is a **placeholder slot** for a tree the estimator expects but which has **not been
   photographed or located**. Physically it is a `SunMint Tree Planting`-shaped row with **blank
   Latitude/Longitude** and **no photo**, `plot_id` set, and a stable id.
-- **id** `<plot_id>-pseudo-<N>`; **discriminator = blank K/L** (a real submission always has a
+- **id** `PS-<plot_id>-<seq>`; **discriminator = blank K/L** (a real submission always has a
   GPS-tagged position). **No new column needed** — blank K/L *is* "not yet individually verified," and
   is more honest than a fabricated map point.
 - **No geometry is computed.** The plot's density rule (§4b: `plot_hectares × 1,100`, ~3 m spacing)
@@ -164,7 +164,7 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   blank-K/L rows from the tree index (PR2), so placeholders never surface as map features.
 - **Link timing (Gary, 2026-10-14): a QR MAY be bound to a pseudo slot BEFORE any real tree exists.**
   The binding does not wait for a `[TREE PLANTING EVENT]`; the slot is minted on demand at link time to
-  receive the QR, and a real tree later *claims* it (§6 of the pseudo-tree plan). This is why the slot
+  receive the QR, and a real tree later promotes it **in place** (§6 of the pseudo-tree plan). This is why the slot
   must be a first-class link target with no tree behind it.
 - **Link event** = **reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern: QR row + a row +
   ledger leg), pointed at a pseudo slot — no parallel mechanism.
@@ -187,10 +187,11 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
 - **D6 → RESOLVED by U3 (2026-10-14)**: tree-count now lives on the `SunMint Plots` tab, col **T
   `Expected Trees`** (governor-editable), emitted into `plots/index.geojson` as `expected_trees` +
   `expected_trees_source`. W2 is partly shipped; a separate `tree_count_tier` column remains open.
-- **D4 (auto-join)** and **D7** remain open; **D13** (a real tree arriving with no bound pseudo slot)
-  newly open — recommendation: it stands alone. See pseudo-tree plan §6.1.
+- **D4 → CLOSED (2026-10-14): ONE registry** — a pseudo tree is a `SunMint Tree Planting` row with
+  blank K/L; **no separate tab**. **D7/D8 moot** (no separate row to reconcile). **D13 → resolved**:
+  a real submission with no bound slot fills the **first/any open slot in its plot**. All D-decisions
+  now settled — pseudo-tree plan §8 (v4).
 
-**Sequencing:** Gary **approved the direction / D1–D10 in spirit** (2026-10-14, via Envoy); the
-pseudo-slot + linking mechanism is **not** to be built until the refinements flagged in the pseudo-tree
-plan §8 are ruled (adds **D13**). U3's simpler editable-count part already shipped (col T), so it proceeds
-independently — which is what Gary allowed.
+**Sequencing:** **all D-decisions are now ruled** (Gary 2026-10-14, via Envoy) — see the pseudo-tree
+plan §8 (v4). Build units (PR2–PR7) may proceed. U3's simpler editable-count part already shipped
+(col T) and proceeds independently.
