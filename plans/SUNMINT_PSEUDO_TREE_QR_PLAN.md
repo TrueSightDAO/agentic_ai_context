@@ -87,9 +87,11 @@ It has no position precisely because its position is unknown.
 | tier | `counted`/`farmer-reported`/`sampled` | `spacing-estimate` |
 | public label | tree page | **"estimated planting slot, position not yet verified"** (§7) |
 
-**Rule:** a consumer branches on **blank K/L + the `pseudo-` id prefix.** Because blank-coordinate
-rows are already dropped by `build_tree_geojson.py`, pseudo slots stay off the map automatically —
-consistent with "no fabricated point."
+**Rule:** a consumer branches on **blank K/L + the `pseudo-` id prefix.** NB: `build_tree_geojson.py`
+does **NOT** drop blank-coordinate rows today — it emits them with `geometry: null` (verified
+2026-10-14). So pseudo slots stay off the *map* only because their geometry is null; the builder must
+be taught to **skip blank-K/L rows from the tree index** (or tag them) in PR2, so placeholders never
+appear as map features. Consistent with "no fabricated point."
 
 *(v1's `record_type` column is **dropped**. If a future `cepotx-survey` bulk import ever needs
 distinguishing from real submissions, it can carry a source label then — not now.)*
