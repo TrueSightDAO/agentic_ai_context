@@ -192,14 +192,24 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   real values **in place**. **Two surfaces call the same contract**: a DApp page + a CLI module (both
   mirror `link_tree_planting.*`). Still **no `[PSEUDO TREE RECONCILE EVENT]`** — we edit in place, we do
   not create a new linked row.
-- **Two separate contracts (Gary, 2026-10-14)** — *"A pseudo tree gets created when we attempt to link
-  a QR code to a plot"*: **Contract A — QR ↔ Plot link** (`[PSEUDO TREE ASSIGN EVENT]`; input **QR +
-  `plot_id`**; handler **finds-or-creates** the slot — reuse the next *unlinked* pseudo tree, else
-  create one — and binds the QR) and **Contract B — Pseudo promotion** (`[PSEUDO TREE PROMOTE EVENT]`;
-  input **plot_id/id + lat/long/photo**; writes in place). Each gets its **own DApp page + CLI module**
-  (pseudo-tree plan §5.1/§5.2), both reusing the **shared DApp scaffolding**
+- **Two separate contracts, different natures (Gary, 2026-10-14)** — *"A pseudo tree gets created when
+  we attempt to link a QR code to a plot"*: **Contract A — QR ↔ Plot link** is a **HANDLER UPGRADE to the
+  already-live plot-link path** (`process_tree_planting_link.js` ~L936–987; the *"link to a plot (no tree
+  submission)"* picker already on `link_tree_planting.html` submits the **existing** `[TREE PLANTING LINK
+  EVENT]` with a `Plot ID`). The upgrade = **find-or-create bounded by `expected_trees`** + flipping the
+  status off `ASSIGNED_TO_TREE` to the new **`ASSIGNED_TO_PSEUDO_TREE`**. **No new event, no new page,
+  no new UI.** **Contract B — Pseudo promotion** is **genuinely new**: the dedicated
+  `[PSEUDO TREE PROMOTE EVENT]` (input **plot_id/id + lat/long/photo**; writes in place), with its **own
+  DApp page + CLI module** (pseudo-tree plan §5.2), reusing the **shared DApp scaffolding**
   (`routes.js`/`menu.js`/`tdg_balance.js`/`scripts/dao_members_cache.js`, `verifySignatureOnLoad()`,
   governor/sentinel gate).
+- **Live gap fixed, not clean-slate hygiene (Gary + Sophia, 2026-10-14)** — the existing plot-link path
+  has **no capacity concept** and reuses `ASSIGNED_TO_TREE`, the exact status `agroverse_shop`'s public
+  "trees planted" counter filters on (`agroverse_wix_site_updates.js::getSoldRowsCount()`, sheet
+  `1GE7PUq…`), feeding both `TREES_FINANCED` and `HECTARES`. So each plot-level link would **inflate the
+  public tree/hectare count, unlimited**. Contract A's status flip is the **fix**. Verified live: **15**
+  `ASSIGNED_TO_TREE` rows, **all** genuine tree links (lat+long, col AC empty) — **0** plot-only links to
+  date — so the bug is **latent**, closed **prospectively**. See pseudo-tree plan §5.1 (SD19).
 
 **Effect on this plan's open decisions:**
 
