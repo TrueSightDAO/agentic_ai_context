@@ -322,7 +322,7 @@ to the *image*. (The QR page does **not** read the plots registry today — see 
 |---|---|---|---|
 | **PR0** | this doc (v2→v4) + the estimation-plan §8 addendum | `agentic_ai_context` | review |
 | **PR1** | **this revision**: D1/D2/D4/D5/D6/D7/D8/D9/D10/D13 ruled; docs updated (v4) | `agentic_ai_context` | **governor** |
-| **PR2** | pseudo-slot **allocator** (`PS-<plot_id>-<seq>` next-free + freeze-on-reference) + make `build_tree_geojson.py` skip blank-K/L rows / carry `plot_id` — **no QR coupling** | `sunmint` | SD1/SD3 |
+| **PR2** | pseudo-slot **allocator** (`PS-<plot_id>-<seq>` next-free + freeze-on-reference) + make `build_tree_geojson.py` skip blank-K/L rows / carry `plot_id` — **no QR coupling**. **NB:** the allocator already merged (`sunmint` #6) but uses `PSEUDO_INFIX = "-pseudo-"` + a FIFO docstring — **must be renamed to the `PS-` prefix (D1) and de-FIFO'd** to match this v4 plan | `sunmint` | SD1/SD11 |
 | **PR3** | mint pseudo rows (blank K/L, no photo, plot_id) into the target tab via `sunmint-ledger-manager` SA | `sunmint` | D2/D4 |
 | **PR4** | **NEW `[PSEUDO TREE ASSIGN EVENT]`** + `dao_client` field; book leg per settlement literals | `tokenomics`, `dao_protocol` | D5/D6 |
 | **PR5** | DApp surface for binding a QR to a pseudo slot + permissions action | `dapp_beta`, `treasury-cache` | D5 |
