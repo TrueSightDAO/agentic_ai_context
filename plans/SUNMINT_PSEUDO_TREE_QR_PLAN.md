@@ -159,8 +159,9 @@ date/lat/long/photo onto the QR row → governor gate; email; ledger leg.
 **Difference:** the QR row carries **no position** — the link is a *reservation of a slot*, not an
 assertion that a located tree exists.
 
-**Event type:** extend `[TREE PLANTING LINK EVENT]` with a `Link Target`/`Record Type` field — **not**
-a new event. Keep the `record_type` branch tight and tested.
+**Event type:** extend `[TREE PLANTING LINK EVENT]` with a `Link Target` field (pseudo-slot id vs real
+tree id) — **not** a new event. The handler branches on whether the target id carries the `-pseudo-`
+infix (`pseudo_trees.is_pseudo_id`); keep that branch tight and tested.
 
 **Ledger-literals caveat:** `SUNMINT_TREE_QR_LINKING_PLAN.md §7` was **superseded** by
 `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` — book the leg with the settlement plan's
