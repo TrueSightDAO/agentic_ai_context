@@ -348,7 +348,7 @@ photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label
 | **PR4** | **NEW `[PSEUDO TREE ASSIGN EVENT]`** + `dao_client` field; book leg per settlement literals | `tokenomics`, `dao_protocol` | D5/D6 |
 | **PR5** | DApp surface for binding a QR to a pseudo slot + permissions action | `dapp_beta`, `treasury-cache` | D5 |
 | **PR6** | **In-place promotion** (existing link/submission writes K/L onto the pseudo row) + unbound-submission fill (`cepotx-survey`) | `tokenomics`, `dao_protocol` | SD6/SD15 |
-| **PR7** | Render pseudo slots + assigned state + the **honest-state label** on the tree page, `sunmint.html`, `/sunmint/plots/` | `truesight_me_beta` | SD5  — render matrix §5.1 |
+| **PR7** | Render pseudo slots + assigned state + the **honest-state label** on the tree page, `sunmint.html`, `/sunmint/plots/`, `qr/index.html` — per render matrix **§5.1** | `truesight_me_beta` | SD5 |
 | **PR8** | Live UAT on beta → promotion (always-stop) | — | **governor** |
 
 Per `OPERATING_INSTRUCTIONS.md` §5a: **one PR per execution turn, then stop.**
