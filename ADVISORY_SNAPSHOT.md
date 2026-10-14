@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-14T12:14:13Z`
+- Generated (UTC): `2026-10-14T17:27:47Z`
 - Look-back: **7** calendar days (`2026-10-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,37 +32,36 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 12
-- `[CURRENCY DEFINITION EVENT]` × 10
-- `[TREE PLANTING EVENT]` × 5
-- `[RETAIL FIELD REPORT EVENT]` × 5
-- `[PRACTICE EVENT]` × 3
+- `[RETAIL FIELD REPORT EVENT]` × 24
+- `[CONTRIBUTION EVENT]` × 7
 - `[CURRENCY CONVERSION EVENT]` × 3
+- `[PRACTICE EVENT]` × 2
+- `[TREE PLANTING EVENT]` × 2
 - `[NOTARIZATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20261013120656_446` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261013_oscar_pix_beans_outstanding_R480.jpg · DAO Member Name: Gary Teh
-- `Edgar_20261013122524_448` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Description: TEST ROW — deploy verification only (GAS 19Wag9x prefix-strip fix, thread 23…
-- `Edgar_20261013125521_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
-- `Edgar_20261013143243_452` · **Edgar** · [CONTRIBUTION EVENT] Amount: 90 · Contributor(s): Gary Teh · Description: Signing and notarizing power of attorney (procuracao publica) in Sao Paulo t…
-- `Edgar_20261013143628_454` · **Edgar** · [CONTRIBUTION EVENT] Amount: 7.90 · Contributor(s): Gary Teh · Description: 99 ride-hailing fare (merchant 99*) - hostel to notary in Sao Paulo, 2026-10…
-- `Edgar_20261013204033_456` · **Edgar** · [NOTARIZATION EVENT] Submitter: Sophia Truesight · Latitude: NA · Longitude: NA
-- `Edgar_20261013204346_458` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 5.98 · Contributor(s): Gary Teh
-- `Edgar_20261013214307_460` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Kirsten Ritschel
-- `Edgar_20261013222817_462` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Berkeley Herbal Center · Store Key: the-berkeley-herbal-center__1250-addison-st-suite-g__berkeley__ca · Update ID: SFR_20261013222814
-- `Edgar_20261013222826_464` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Berkeley Herbal Center · Store Key: the-berkeley-herbal-center__1250-addison-st-suite-g__berkeley__ca · Update ID: SFR_20261013222824
-- `Edgar_20261013222858_466` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Gary Teh and Julio Almeida spent 15 minutes walking through the Job A recomm…
-- `Edgar_20261013222909_468` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Gary Teh and Julio Almeida spent 10 minutes chatting, reviewing the DApp Sto…
-- `Edgar_20261013223128_470` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Cafe Brasil · Store Key: cafe-brasil__1410-mission-street__santa-cruz__ca · Update ID: SFR_20261013223126
-- `Edgar_20261013223539_472` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Earthly Essentials · Store Key: earthly-essentials__22990-joaquin-gully-road__twain-harte__ca · Update ID: SFR_20261013223534
-- `Edgar_20261013224409_474` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261013224406
-- `Edgar_20261014001657_476` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: Gary Teh
-- `Edgar_20261014002804_478` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: Paloma
-- `Edgar_20261014002807_480` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: pk-qkejKJJW3IAD
-- `Edgar_20261014095620_482` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261014095636_484` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261014123927_486` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Lunar Tide · Store Key: lunar-tide__109-east-laurel-street__fort-bragg__ca · Update ID: SFR_20261014123925
+- `Edgar_20261014124141_488` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Mary’s Inn & Mount Shasta Retreat · Store Key: marys-inn--mount-shasta-retreat__203-birch-street__mount-shasta__ca · Update ID: SFR_20261014124139
+- `Edgar_20261014124504_490` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Vortex Bay Area · Store Key: the-vortex-bay-area__619-first-street__benicia__ca · Update ID: SFR_20261014124502
+- `Edgar_20261014135505_492` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Positively Fourth Street · Store Key: positively-fourth-street__628-4th-street-email-positivelyfourthstreetstoregmai… · Update ID: SFR_20261014135503
+- `Edgar_20261014140206_494` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261014140156
+- `Edgar_20261014140409_496` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Monsoonmystics · Store Key: monsoonmystics__657-w-st-marys-rd-c9-tucson-az-85701-united-states__tucson__az · Update ID: SFR_20261014140406
+- `Edgar_20261014143858_498` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-14T14:38:54.976Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261014162445_002` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Local Collective · Store Key: local-collective__189-south-washington-street__sonora__ca · Update ID: SFR_20261014162442
+- `Edgar_20261014164233_004` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261014164226
+- `Edgar_20261014164300_006` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Earth Kandee · Store Key: earth-kandee__2280-east-main-street__ventura__ca · Update ID: SFR_20261014164241
+- `Edgar_20261014164536_008` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Radiance Herbs & Massage · Store Key: radiance-herbs-massage__113-5th-avenue-southeast__olympia__wa · Update ID: SFR_20261014164535
+- `Edgar_20261014164747_010` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Wicklanders Roots Apothecary · Store Key: wicklanders-roots-apothecary__1508-3rd-street__marysville__wa · Update ID: SFR_20261014164745
+- `Edgar_20261014170601_012` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Fox Island Trading Co. · Store Key: fox-island-trading-co__3226-harborview-drive__gig-harbor__wa · Update ID: SFR_20261014170559
+- `Edgar_20261014170706_014` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Modern Apothecary · Store Key: modern-apothecary__413-south-8th-street__boise__id · Update ID: SFR_20261014170704
+- `Edgar_20261014171043_016` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Yoliabotanica · Store Key: yoliabotanica__1307-w-st-marys-rd-tucson-az-85745-united-states__tucson__az · Update ID: SFR_20261014171041
+- `Edgar_20261014171633_018` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Mysite · Store Key: mysite__5902-california-ave-sw-seattle-wa-98136-united-states__seattle__wa · Update ID: SFR_20261014171631
+- `Edgar_20261014171839_020` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Phantom Quartz · Store Key: phantom-quartz__711-n-35th-st-b-seattle-wa-98103-united-states__seattle__wa · Update ID: SFR_20261014171837
+- `Edgar_20261014172114_022` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: 4sistersholisticremedies · Store Key: 4sistersholisticremedies__903-s-3rd-st-renton-wa-98057-united-states__renton__… · Update ID: SFR_20261014172113
+- `Edgar_20261014172249_024` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Crescentmoongifts · Store Key: crescentmoongifts__6901-6th-ave-tacoma-wa-98406-united-states__tacoma__wa · Update ID: SFR_20261014172247
+- `Edgar_20261014172618_026` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Solidagoapothecary · Store Key: solidagoapothecary__504-burleson-st-san-marcos-tx-78666__san-marcos__tx · Update ID: SFR_20261014172616
 
 ---
 
@@ -271,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-07 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+da65923 | 2026-10-14 12:16:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 d5835e6 | 2026-10-14 05:16:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 f0008cc | 2026-10-13 23:03:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 145cf7c | 2026-10-13 14:30:38 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -303,6 +303,12 @@ d8953e0 | 2026-10-07 13:47:51 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+684ccab | 2026-10-14 13:26:11 -0300 | docs: fix final stale col-T ref (Expected Trees is col U) - tokenomics #582 (#1615)
+e9bd4b7 | 2026-10-14 13:13:35 -0300 | Replace CPF-bearing entity_registry.json with pointer to privacy-clean fda_fsvp profile (#1614)
+ecff062 | 2026-10-14 13:13:20 -0300 | docs: correct stale col-T references after the Farmer rename (tokenomics#582) (#1613)
+6fefb96 | 2026-10-14 12:27:32 -0300 | Add entity_registry.json (Próspera/Honduras entity legal record)
+9461226 | 2026-10-14 09:14:35 -0300 | chore(previews): refresh Beer Hall preview (2026-10-14 UTC)
+436fb55 | 2026-10-14 09:14:33 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-14 UTC)
 4bc1ddf | 2026-10-14 02:12:17 -0300 | chore(previews): refresh Beer Hall preview (2026-10-14 UTC)
 51f71b6 | 2026-10-14 02:12:16 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-14 UTC)
 5478558 | 2026-10-13 23:30:59 -0300 | v10: D13=(a) — an unbound real tree STANDS ALONE (no matching); PR6 descoped (#1611)
@@ -337,18 +343,13 @@ d99b650 | 2026-10-13 18:50:14 -0300 | Add source note: last-mile carrier Energy 
 6ff250e | 2026-10-12 12:54:11 -0300 | chore(previews): refresh Beer Hall preview (2026-10-12 UTC)
 d42058e | 2026-10-12 12:54:09 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-12 UTC)
 0fcebd6 | 2026-10-12 03:18:54 -0300 | chore(previews): refresh Beer Hall preview (2026-10-12 UTC)
-f18adda | 2026-10-12 03:18:52 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-12 UTC)
-23fec1b | 2026-10-11 21:45:47 -0300 | docs: file Julio enrichment sample-audit as a Sophia standing duty (#1589)
-b12e167 | 2026-10-11 16:16:17 -0300 | docs: add task-design appendix to Julio's enrichment guide (#1588)
-5fb6ec5 | 2026-10-11 14:58:59 -0300 | docs: add Julio store-enrichment guide (clean) (#1587)
-838837a | 2026-10-11 14:52:55 -0300 | plans: file DAPP_ACCESS_RIGHTS_PLAN (UI-slice scope) + update OPEN_FOLLOWUPS entry (#1585)
-0ddc827 | 2026-10-11 14:13:50 -0300 | handoffs: register DApp access-rights thread; update Discord gateway fix status (#1584)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+7dda371 | 2026-10-14 13:09:21 -0300 | Rename SunMint Plots col T from 'Contributor Name' to 'Farmer' (#582)
 04d7acd | 2026-10-12 23:37:46 -0300 | Currency-definition ingest: write Currencies cols N-V + FDA Product Code (#581)
 41848ed | 2026-10-09 11:26:16 -0300 | PR4: automate managed-ledger snapshot (Contents-API publisher + daily GHA) (#580)
 465db28 | 2026-10-08 19:38:10 -0300 | Allow Sentinels to file inventory-expense events for ALL members (#579)
@@ -381,6 +382,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c98fec2 | 2026-10-14 12:22:09 +0000 | chore: refresh currencies.json [skip ci]
 76b18cc | 2026-10-13 21:44:48 -0300 | chore: retire mislabeled currency BRL (currencies.json refresh)
 8231b29 | 2026-10-13 14:16:46 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a31a3db | 2026-10-12 22:20:19 -0300 | Add landed-cost composition for AWB 047-3175-3223 (8 clones)
