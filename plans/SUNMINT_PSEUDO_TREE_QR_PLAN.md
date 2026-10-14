@@ -1,13 +1,15 @@
 # SunMint: Pseudo-Tree Generation + QR Slot Assignment — Design & Roadmap
 
 > **Status:** design / roadmap only — **no code, no schema change, no build units started.**
-> **Gary's shape ruling (2026-10-14) is folded in as authoritative** (§0.1) — it settles SD1–SD5;
-> the remaining open decisions (D2/D4/D5/D7/D8/D9/D10, §8) must be ruled before any build unit (§9)
-> begins.
+> **Gary's shape ruling (2026-10-14) is folded in as authoritative** (§0.1) — it settles SD1–SD7 and
+> the §6 reconciliation rules; the remaining open decisions (D2/D4/D5/D7/D8–D12, §8) must be ruled
+> before any build unit (§9) begins.
 > **Owner:** Gary Teh. **Drafted by:** Sophia Truesight, 2026-10-14, at Gary's request (via Envoy).
-> **Relation to prior plans:** this **answers open decision D3** of
-> `SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md` with a third option; it **extends** (does not replace)
-> `SUNMINT_TREE_QR_LINKING_PLAN.md`'s real-tree link mechanism.
+> **Companion:** `plans/SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md` **§8 Addendum** answers **D3** with
+> this design.
+> **Relation to prior plans:** this **answers open decision D3** of the estimation plan with a third
+> option; it **extends** (does not replace) `SUNMINT_TREE_QR_LINKING_PLAN.md`'s real-tree link
+> mechanism.
 
 ---
 
@@ -28,7 +30,8 @@ silently inside the U3 estimate work.
 
 ### 0.1 Gary's shape ruling (2026-10-14) — AUTHORITATIVE
 
-Gary proposed the concrete shape; three parts, folded in below as the settled design:
+Gary proposed the concrete shape (pts 1–3) and the reconciliation rules (pt 4); folded in below as the
+settled design:
 
 1. **Tell them apart —** a **`record_type`** (or `source`) field on whatever the per-tree record
    becomes: **`pseudo-estimated`** vs **`actual-submission`**, with room for a future
@@ -45,12 +48,18 @@ Gary proposed the concrete shape; three parts, folded in below as the settled de
    rather than inventing a parallel mechanism — the **same atomic pattern (QR row + a tree row +
    ledger leg)**, just pointed at a **pseudo-tree row** instead of a real `SunMint Tree Planting` row
    for now.
+4. **Reconcile later (real tree lands) —** **nearest-pseudo-tree match within a radius** when a real
+   tree submission / CEPOTX import lands in the same plot; **re-point the QR's link to the real tree
+   id**, **retire (not delete — audit trail) the pseudo row**, and **flip `record_type` on the
+   surviving link**. Needs an **explicit match radius** + a policy for **ambiguous collisions** (two
+   real trees near one pseudo slot, or vice versa) — those are **never silently auto-resolved**
+   (→ §6, decisions D11/D12).
 
 ### 0.2 Grounding (read before proposing anything — done)
 
 | Source | What it fixes for this design |
 |---|---|
-| `plans/SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md` | D3; tiered labels (`spacing-estimate` \| `farmer-reported` \| `sampled` \| `counted`); the **plot_hectares × 1,100 (~3 m spacing)** rule, applied to **planted extent only**, cross-checked vs the farmer report; **gating** (mature / cabruca / native / explicitly-numbered never auto-estimated) |
+| `plans/SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md` | D3; tiered labels (`spacing-estimate` / `farmer-reported` / `sampled` / `counted`); the **plot_hectares × 1,100 (~3 m spacing)** rule, applied to **planted extent only**, cross-checked vs the farmer report; **gating** (mature / cabruca / native / explicitly-numbered never auto-estimated). Its **§8 Addendum** now answers D3 = this design |
 | `plans/SUNMINT_TREE_QR_LINKING_PLAN.md` | The **real** mechanism: `[TREE PLANTING LINK EVENT]` flips a QR to `ASSIGNED_TO_TREE` and copies lat/long/photo/species onto the QR row. Pseudo trees **reuse this shape**, pointed at a pseudo row (§5) |
 | `growth/GROWTH_MODEL.md` | **Honest-state principle** — §"How to extend this model" step **4** (*"Set status honestly"*) + the **anti-patterns** section. The **QR Trace-Back Loop** (customer → tree page) is the surface where the honesty label must actually render |
 | `tokenomics/SCHEMA.md` | `Agroverse QR codes` col **AC `Linked Plot ID`** (plot-fallback link, plan PR6) already exists; `ASSIGNED_TO_TREE` already in the status enum |
@@ -71,7 +80,7 @@ signature (`pk_hash`), and (usually) GPS.
 Lifecycle of a pseudo tree:
 
 ```
-  available ──(QR bound)──▶ assigned ──(real tree linked)──▶ reconciled
+  available ──(QR bound)──▶ assigned ──(real tree linked)──▶ reconciled ──(QR re-pointed)──▶ retired
       │
       └──(estimate shrinks)──▶ retired          (only if never referenced — see D8)
 ```
@@ -106,7 +115,8 @@ numeric) — no prefix reservation needed.
 | public label | tree page | **"estimated planting slot, not yet individually verified"** (§7) |
 
 **Rule:** an agent/consumer branches on `record_type` alone. A pseudo tree must **never** be silently
-promoted to a real tree — reconciliation (§6) creates a *link*, it does not relabel the pseudo row.
+promoted to a real tree — reconciliation (§6) **flips `record_type` on the surviving link** and
+retires the pseudo row; it never relabels the pseudo row in place.
 
 ---
 
@@ -124,7 +134,7 @@ boundary, so points fall only on the planted extent, not a bounding box. Determi
 **Durability (the load-bearing requirement):** ids are **stable and durable** — `<plot_id>-pseudo-<N>`
 is a target a QR can be bound to; it is *not* recomputed-every-run. Concretely: once a slot is
 **referenced** (bound to a QR), its id + position are **frozen forever**, even if the estimate later
-changes (§7 safety in the first draft / D8).
+changes (§6 safety / D8).
 
 **Generate-all vs allocate-on-demand (→ D2):**
 
@@ -205,28 +215,52 @@ this doc's first draft (which had recommended separate events). The one caution:
 into one handler means the handler must branch on `record_type` — keep that branch tight and tested, or
 revisit D6.
 
+**Ledger-literals caveat (correction to carry forward):** the link-time ledger booking in
+`SUNMINT_TREE_QR_LINKING_PLAN.md §7` was **superseded** by
+`plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`. PR4 must book the pseudo-assign ledger leg
+using the **settlement plan's literals**, not the old §7.
+
 ---
 
-## 6. Real → pseudo reconciliation (once CEPOTX data lands)
+## 6. Real → pseudo reconciliation (Gary's ruling, pt 4)
 
-When a **real** `[TREE PLANTING EVENT]` arrives that spatially belongs to a plot with assigned pseudo
-slots, reconcile:
+When a **real** `[TREE PLANTING EVENT]` (or a bulk `cepotx-survey` import) lands in a plot that has
+assigned pseudo slots, reconcile by **nearest-pseudo match within a radius**:
 
-1. Match the real tree to an **assigned** pseudo slot on the same plot (§8 → D7 for auto vs manual).
-2. Write the pseudo row's `Reconciled Tree ID` / `Reconciled At`, set `Status := reconciled`.
-3. **Transfer the QR binding** to the real tree: QR → `ASSIGNED_TO_TREE`, copy the real planting
-   evidence onto the QR row (hand off to the existing real-link mechanics).
-4. Emit the auditable signed record (reuse the extended link event, or a reconcile variant).
+1. Compute the nearest **assigned** pseudo slot to the real tree's point, **within `MATCH_RADIUS_M`**
+   (→ **D11**; recommend starting at **~6 m ≈ 2× the 3 m grid spacing**, tightened once real GPS
+   accuracy is known).
+2. **Uniqueness required.** Auto-reconcile **only** when the match is *unique* — exactly one candidate
+   on each side (one real tree ↔ one pseudo slot) within the radius. Write the pseudo row's
+   `Reconciled Tree ID` / `Reconciled At` and set `Status := reconciled`.
+3. **Re-point the QR's link to the real tree id**: QR → `ASSIGNED_TO_TREE`, copy the real planting
+   evidence onto the QR row (hand off to the existing real-link mechanics), and **flip the surviving
+   link's `record_type` from `pseudo-estimated` → `actual-submission`** (the link now points at a real
+   tree).
+4. **Retire, never delete:** the pseudo row is set **`Status := retired`** and kept **forever** for the
+   audit trail — it is **not** deleted and **not** renumbered.
+5. Emit the auditable signed reconcile record (reuse the extended link event, or a reconcile variant).
 
-**Invariant:** the pseudo row is **never deleted** (audit history) and **never relabelled** a real
-tree; reconciliation is a *link*, not a rename.
+**Ambiguous collisions are NEVER auto-resolved** (Gary's explicit constraint):
+
+- **Two real trees near one pseudo slot** → do not pick one; enqueue **all** onto a governor **review
+  list** (with distances).
+- **One real tree near two pseudo slots** → do not pick one; enqueue onto the review list.
+- **≥2 candidates within the radius on either side** → **review list, no write**.
+- **No candidate within radius** → leave both sides untouched; the real tree simply stands as its own
+  `actual-submission` row and the pseudo slot stays `assigned` (the QR keeps pointing at the pseudo
+  slot until a human rules).
 
 **Priority rule:** a **real tree** landing in a plot should claim the QR **before** a fresh pseudo slot
 does, when both are possible.
 
+**Invariant:** the pseudo row is **never deleted** (audit history) and **never relabelled in place**;
+reconciliation is a *link re-point* + a `record_type` flip on the **surviving** link, plus a
+`retired` status on the pseudo row.
+
 **Bulk `cepotx-survey` import:** if CEPOTX's data lands as a bulk set rather than individual
 submissions, §2's `cepotx-survey` record_type is the landing shape — reconcile those rows to pseudo
-slots by the same spatial join, at import time rather than per-submission.
+slots by the same spatial join (§6.1–6.5), at import time rather than per-submission.
 
 ---
 
@@ -258,11 +292,13 @@ principle forbids.
 
 | # | Decision | Ruling |
 |---|---|---|
-| **SD1** | Distinction field | **`record_type`**: `pseudo-estimated` \| `actual-submission` \| (future) `cepotx-survey` |
+| **SD1** | Distinction field | **`record_type`**: `pseudo-estimated` / `actual-submission` / (future) `cepotx-survey` |
 | **SD2** | Pseudo-tree id | **`<plot_id>-pseudo-<N>`**, stable + durable; referenced ids frozen |
 | **SD3** | Generation source | **3 m-spacing grid** behind `expected_trees` (U2), **scoped to the plot polygon** |
 | **SD4** | Link mechanism | **Reuse/extend `[TREE PLANTING LINK EVENT]`** — same atomic pattern, no parallel mechanism |
 | **SD5** | Honesty | QR/landing page must say **"estimated planting slot, not yet individually verified"** |
+| **SD6** | Reconcile outcome | **Re-point QR to real tree id · retire (not delete) pseudo row · flip `record_type` on the surviving link** |
+| **SD7** | Ambiguity | **Never silently auto-resolve** ambiguous collisions — route to a governor review list |
 
 ### Still open — NEED a ruling
 
@@ -272,9 +308,11 @@ principle forbids.
 | **D4** | Where the per-tree record lives | (a) one space + `record_type` (b) separate pseudo tab | **(a)** — one join key space |
 | **D5** | QR status when pseudo-bound | reuse `ASSIGNED_TO_TREE` vs new `ASSIGNED_TO_PSEUDO_TREE` | **new status** — but note: if reused, D10's counter guard needs a *column* check, which is weaker |
 | **D7** | Reconcile trigger | auto spatial-join vs manual | **auto-join + governor review list** (mirrors linking-plan D4) |
-| **D8** | Estimate shrink/grow safety | see §7-of-first-draft rule | **freeze referenced slots; trim only never-referenced tail** |
+| **D8** | Estimate shrink/grow safety | see §6-of-first-draft rule | **freeze referenced slots; trim only never-referenced tail** |
 | **D9** | Gating — which `plot_type`s may mint | all vs subset | **`restoration` / `enrichment` / `nursery` only** — never `mature` / `research` / blank |
 | **D10** | Public "trees planted" counter | count pseudo-assigned? | **NO** — `pseudo-estimated` must not be counted as planted (honest state) |
+| **D11** | Reconciliation match radius (`MATCH_RADIUS_M`) | ~3 m vs ~6 m vs GPS-accuracy-derived | **start ~6 m (2× grid), tighten with real GPS accuracy** |
+| **D12** | Ambiguous-collision policy | auto-pick nearest vs review list | **review list — never auto-resolve** (per SD7) |
 
 ---
 
@@ -282,13 +320,13 @@ principle forbids.
 
 | Unit | Scope | Repo | Gate |
 |---|---|---|---|
-| **PR0** | **this doc** | `agentic_ai_context` | review |
-| **PR1** | D2/D4/D5/D7/D8/D9/D10 ruled; this doc updated with the rulings | `agentic_ai_context` | **governor** |
+| **PR0** | **this doc** + the estimation-plan §8 addendum | `agentic_ai_context` | review |
+| **PR1** | D2/D4/D5/D7/D8–D12 ruled; these docs updated with the rulings | `agentic_ai_context` | **governor** |
 | **PR2** | `build_plots_geojson.py`: emit the **3 m spacing grid** scoped to the polygon with `<plot_id>-pseudo-<N>` ids + `record_type`, gated by `plot_type` — **no allocation/QR coupling yet** | `sunmint` | SD3/D9 |
 | **PR3** | Pseudo-slot state (tab or columns) + allocator + **freeze-on-reference** | `sunmint` | D2/D4/D8 |
-| **PR4** | **Extend `[TREE PLANTING LINK EVENT]`** handler to accept a pseudo target (`record_type` branch) + `dao_client` field — *not* a new event | `tokenomics`, `dao_protocol` | D5 |
+| **PR4** | **Extend `[TREE PLANTING LINK EVENT]`** handler to accept a pseudo target (`record_type` branch) + `dao_client` field — *not* a new event; book the leg per the settlement plan's literals | `tokenomics`, `dao_protocol` | D5 |
 | **PR5** | DApp surface for binding a QR to a pseudo slot + permissions action | `dapp_beta`, `treasury-cache` | D5 |
-| **PR6** | Reconciliation (spatial join to assigned slots + `cepotx-survey` bulk path) + review list | `tokenomics`, `dao_protocol` | D7 |
+| **PR6** | Reconciliation (§6): nearest-match within radius, unique-only, **review list** for ambiguity; `cepotx-survey` bulk path | `tokenomics`, `dao_protocol` | D7/D11/D12 |
 | **PR7** | Render pseudo slots / assigned state + the **honest-state label** on the tree page, `sunmint.html`, `/sunmint/plots/` | `truesight_me_beta` | SD5 |
 | **PR8** | Live UAT on beta → promotion (always-stop gate) | — | **governor** |
 
@@ -299,9 +337,10 @@ contribution after each merge (§6).
 
 ## 10. Related
 
-- `plans/SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md` — D3, tier labels, the ×1,100 (~3 m) rule, gating
+- `plans/SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md` — D3, tier labels, the ×1,100 (~3 m) rule, gating;
+  **§8 Addendum** answers D3 with this design
 - `plans/SUNMINT_TREE_QR_LINKING_PLAN.md` — the **real** link mechanism this reuses
-- `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` — ledger literals, `Linked Plot ID` col AC
+- `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` — ledger literals (supersedes linking-plan §7), `Linked Plot ID` col AC
 - `growth/GROWTH_MODEL.md` — honest-state principle (§"How to extend this model" step 4 + anti-patterns); QR Trace-Back Loop
 - `SUNMINT_PLOTS_REGISTRY.md` — plot schema, `plot_type` vocabulary, single-column rule
 - `SUNMINT_E2E_RUNBOOK.md` — rebuild + beta/prod render flow
