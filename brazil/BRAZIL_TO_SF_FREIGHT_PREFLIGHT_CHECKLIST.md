@@ -621,11 +621,26 @@ Lines (net kg, matching NF-e nº 18 / Rev 14): Nibs-Kraft-8oz 29 · MassBar-500g
 
 **⚠️ Compounding:** **5 of the 8** arrival rows carry col C `Serializable = TRUE` with col F **blank** (#2, #3, #4, #5, #8) — i.e. flagged **QR-ready while carrying no provenance ledger**, the exact combination that yields a serialized QR with no ledger target.
 
-**✅ Proposed rule (for governor confirmation) — col R is authoritative.**
+**✅ RULE — CONFIRMED by the governor (thread 10800, 2026-10-14) — col R is authoritative.**
+
+> **Governor (Gary) verdict (thread 10800, 2026-10-14), verbatim:** *“Main ledger not AGL 4”* — answering §5.11's open question #4 directly. The **Ilhéus trio lands on `MAIN`**, and the stale `…/agl4` in `Currencies` col F **must not be inherited.**
+
+**Evidence that `MAIN` is a real, live ledger (not a placeholder) — and that AGL4 is closed.** Read live from Main Ledger `Shipment Ledger Listing`:
+
+| `Ledger ID` | Shipment Date | **Status** | Description (abridged) |
+|---|---|---|---|
+| **`MAIN`** (row 20) | 2026-08-22 | **ACTIVE** | *“SunMint main-ledger tree-planting pledges … books directly on the **main DAO ledger** `offchain transactions` tab.”* |
+| `AGL4` (row 6) | 8/28/2024 | 🔴 **COMPLETED** | *“300KG organic cacao nibs from Bahia Small Scale Farmers — Commercial import via air freight.”* |
+
+⇒ **`MAIN` is `ACTIVE`; `AGL4` is `COMPLETED`.** A closed ledger must not carry live stock, so the governor's ruling is consistent with the closed-status principle already recorded in §5.10.
+
+**Rules (now standing):**
 1. **Before any transformation**, populate each input's col F from the **§5.10 col-R map** (MAIN ×4 · AGL8 ×2 · AGL13 ×2).
-2. Where col F **disagrees** with col R, **col R wins** — §5.10 already rules AGL4→MAIN because that ledger is `COMPLETED`, and a closed ledger must not carry live stock.
+2. Where col F **disagrees** with col R, **col R wins** — the Ilhéus trio's `…/agl4` is **stale** and is overridden to **`MAIN`** because AGL4 is `COMPLETED`.
 3. Enforce **output ledger = input ledger** at the settlement step rather than trusting the payload string (filed as a tooling gap in `OPEN_FOLLOWUPS.md` §Pending).
-4. Do **not** run `[INVENTORY MOVEMENT]` until physical arrival is confirmed.
+4. Do **not** run `[INVENTORY MOVEMENT]` until physical arrival is confirmed — **arrival is now confirmed (§5.14)**, so this condition is met; the open precondition is the **QR-code gap** below.
+
+**📌 Blast radius of the stale value (live scan of `Currencies` col F, 2026-10-14).** `…/agl4` is **not** confined to the 8oz pouch — **18 rows** carry it (13 × `https://www.agroverse.shop/agl4`, 3 × `https://agroverse.shop/agl4`, 2 × `https://www.truesight.me/agroverse-shipments/agl4`). Of the 167 `Currencies` rows, **134 have col F blank**, and only **2** point at the main ledger itself (`…/edit#gid=1762218634`). So the stale-AGL4 mapping is **systemic**, not a one-row typo — the governor's ruling applies to the **Ilhéus trio arriving on this shipment** first, with the wider set as follow-up.
 
 
 #### 5.12 Arrival-day photo — delivery IN PROGRESS, not yet a completed handover 🔴 NEW 2026-10-14
@@ -827,6 +842,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-10-02 | **Rev 15 — Commercial Invoice + Packing List reissued at gross 349 kg** (Daniel / SeaCoast ask, §5.5). Gross restated 322,06 → **349,00** = net 302,06 + carton tare 26,94 (27 boxes) + pallet tare 20,00 (2 × 10 kg HDPE). **Net, lines, boxes, USD/BRL unchanged.** `exports/2026-10-02_*_rev15_*`; generator gains the Rev-15 gross model + a `GROSS_WEIGHED` invariant. Also **corrected the same-day §5.5 draft** (pallet→carton tare; pallets are plastic HDPE, not heat-treated wood). |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
+| 2026-10-14 | **§5.11 RULE CONFIRMED — governor ruling: Ilhéus trio → `MAIN`, not AGL4 (thread 10800).** |
 | 2026-10-14 | **§5.14 added — ARRIVAL CONFIRMED; custody gate CLOSED (governor, thread 10800).** iMessage screenshot `d72e9336c8b64726b8d8d9c57f0496bb.jpg`, re-read with **Grok vision** (auto-OCR 84.3% garbled the header). Contact **“Kirsten Ritschel”** (exact match to the register's Destination DAO member + the 1423 Hayes Fund Handler), **2:25 PM**, 4 truck thumbnails + a 0:16 video. **Verbatim:** *“He was so nice to actually load it into my garage. You can't tell shipping company, cause he'd get in trouble…”* ⇒ cargo **in the recipient's possession** = the named gate-closer ⇒ **arrival blocker cleared**; also resolves §5.13's indoor-space ambiguity (garage). Adds a **confidentiality note: DO NOT inform 5 Continent/carrier** (driver exceeded protocol as a favour), and carries forward 4 open caveats — **address (1423 Hayes vs 3041 Taraval)**, **un-done 27-box count**, condition, and screenshot-authenticity. Flags the **QR-code prerequisite** (no QR found yet for the 8 `+ 047-3175-3223` currencies). |
 | 2026-10-14 | **§5.13 added — second arrival photo (governor, thread 10800).** Image `03398d88316848ff8e3a87881be17660.jpg`, read with **Grok vision + zoomed crops** after OCR again correctly returned “no text” (photograph). Shows the cargo **indoors on a warehouse floor** — **2 pallets**, left = brown cartons in yellow wrap/green straps, right = **2 white insulated containers** (consistent with the box model’s thermic boxes); corroborates the AWB’s `02 pallets`; destination unproven (no address/receipt) ⇒ **gate stays open**. ⚠️ Warns that the **low-confidence handwritten `AGL8`/`AGL13`/`VAL` readings must NOT be used to infer a Val Lapidus destination**, and that box-level markings require a human eye before any goods receipt. |
 | 2026-10-14 | **§5.12 added — arrival-day delivery photo (governor, thread 10800).** Image `fd985851d61f4f70a23f3d0e0a47b42c.jpg` read with **Grok vision** after OCR correctly returned “no text” (it is a photograph). Shows the box truck with ramp **down** and **both pallets still aboard** ⇒ **delivery in progress, not completed**; gate stays open. **Corroborates the AWB’s `02 pallets`** (and thus contradicts the invoice’s “delivery $885 (3 pallets)” line). Adds a **new pre-flight control**: count boxes against the Rev-15 27-box manifest + spot-check the 8 currency quantities **before** booking custody. |
