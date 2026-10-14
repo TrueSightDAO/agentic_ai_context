@@ -141,44 +141,45 @@ Mature cabruca is the opposite failure (50–150 trees/ha real). Hence the rule 
 
 ---
 
-## 8. Addendum (2026-10-14) — D3 answered: pseudo-trees as the QR binding target
+## 8. Addendum (2026-10-14) — D3 answered: pseudo-tree slots as the QR binding target
 
 **Why this addendum.** D3 asked whether NEW bag QRs bind to the **plot** or to individual trees. The
 2026-09-08 leaning was plot-level, *because per-tree photography doesn't scale* (§1). On 2026-10-14
-Governor Gary extended the model: bind a QR to an individual, QR-codable **pseudo tree** derived from
-the plot's density estimate — a **third option** between per-plot and per-real-tree. This closes D3;
-the full design lives in `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md`.
+Governor Gary extended the model: bind a QR to an individual, QR-codable **pseudo tree** — a **third
+option** between per-plot and per-real-tree. This closes D3; the full design lives in
+`plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md` (v2).
 
-**Resolution of D3 — the QR binding target is a pseudo tree.**
+**Resolution of D3 — the QR binding target is a pseudo-tree slot.**
 
-- A **pseudo tree** is a non-photographed **placeholder slot** inside the plot polygon, minted from the
-  plot's `expected_trees`. It asserts only *"the estimator expects roughly N trees here."*
-- **id** `<plot_id>-pseudo-<N>`; **`record_type: pseudo-estimated`** (vs `actual-submission` for a real
-  `[TREE PLANTING EVENT]`; a future `cepotx-survey` for bulk-imported survey data).
-- **Generation** = this plan's density rule (§4b: `plot_hectares × 1,100`, ~3 m spacing) laid as a
-  **grid inside the polygon** (planted extent, not bbox), seeded stably by `plot_id`.
-- **Link event** = **reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern: QR row + tree row
-  + ledger leg), pointed at a pseudo-tree row — no parallel mechanism.
+- A **pseudo tree** is a **placeholder slot** for a tree the estimator expects but which has **not been
+  photographed or located**. Physically it is a `SunMint Tree Planting`-shaped row with **blank
+  Latitude/Longitude** and **no photo**, `plot_id` set, and a stable id.
+- **id** `<plot_id>-pseudo-<N>`; **discriminator = blank K/L** (a real submission always has a
+  GPS-tagged position). **No new column needed** — blank K/L *is* "not yet individually verified," and
+  is more honest than a fabricated map point.
+- **No geometry is computed.** The plot's density rule (§4b: `plot_hectares × 1,100`, ~3 m spacing)
+  now supplies only the **count** `expected_trees` (U3), not positions. Pseudo slots carry no
+  coordinates; they never appear on the map.
+- **Link event** = **reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern: QR row + a row +
+  ledger leg), pointed at a pseudo slot — no parallel mechanism.
 - **Plot-level association is retained** as the fallback: the QR row still carries `plot_id`
   (SCHEMA.md `Agroverse QR codes` col AC `Linked Plot ID`).
 - **Honest state** (`GROWTH_MODEL.md` §"How to extend this model" step 4 + anti-patterns): a
-  pseudo-bound bag's QR / landing page must read *"estimated planting slot, not yet individually
-  verified"*, and must **not** increment any public "trees planted" counter.
-- **Reconciliation** (real tree lands): nearest-pseudo match **within a radius**, **unique-match only**;
-  re-point the QR to the real tree id, **flip `record_type`** on the surviving link, and **retire (never
-  delete)** the pseudo row. **Ambiguous collisions (two real trees near one slot, or one real tree near
-  two slots) are never auto-resolved** — they go to a governor review list. Full rules in the
-  pseudo-tree plan §6 (decisions D11 match-radius, D12 ambiguity policy).
+  pseudo-bound bag's QR / landing page must read *"Plot X — estimated slot #N. Position not yet
+  verified."*, and must **not** increment any public "trees planted" counter.
+- **Reconciliation** (real tree lands): **claim-on-arrival (FIFO within the plot)** — a real tree
+  claims the next unclaimed pseudo slot in its plot, the QR re-points to the real tree id, and the
+  pseudo row is **retired (never deleted)**. Slots are interchangeable, so there is **no spatial
+  matching, no match radius, and no ambiguous-collision handling**.
 
 **Effect on this plan's open decisions:**
 
-- **D3 → CLOSED** (2026-10-14): per-pseudo-tree QRs; `plot_id` retained as fallback.
+- **D3 → CLOSED** (2026-10-14): per-pseudo-slot QRs; `plot_id` retained as fallback.
 - **D6 → RESOLVED by U3 (2026-10-14)**: tree-count now lives on the `SunMint Plots` tab, col **T
   `Expected Trees`** (governor-editable), emitted into `plots/index.geojson` as `expected_trees` +
-  `expected_trees_source`. W2 is therefore partly shipped; a separate `tree_count_tier` column remains
-  open.
+  `expected_trees_source`. W2 is partly shipped; a separate `tree_count_tier` column remains open.
 - **D4 (auto-join)** and **D7** remain open.
 
-**Sequencing:** the pseudo-tree + linking mechanism is **not** to be built until D2/D4/D5/D7/D8–D12 are
-ruled (§8 of the pseudo-tree plan). U3's simpler editable-count part already shipped (col T), so it may
-proceed independently — which is what Gary allowed.
+**Sequencing:** the pseudo-slot + linking mechanism is **not** to be built until D2/D4/D5/D8/D9/D10 are
+ruled (pseudo-tree plan §8). U3's simpler editable-count part already shipped (col T), so it proceeds
+independently — which is what Gary allowed.
