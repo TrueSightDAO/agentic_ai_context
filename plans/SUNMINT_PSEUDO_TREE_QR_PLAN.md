@@ -108,7 +108,7 @@ Finer-grained than D3 (which leaned plot-level because per-tree photography does
 | `growth/GROWTH_MODEL.md` | **Honest-state principle** — §"How to extend this model" step **4** + anti-patterns; QR Trace-Back Loop (customer → tree page) |
 | `tokenomics/SCHEMA.md` | `Agroverse QR codes` col **AC `Linked Plot ID`**; `ASSIGNED_TO_TREE` in the status enum; `SunMint Tree Planting` cols incl. K/L Latitude/Longitude |
 | `SUNMINT_PLOTS_REGISTRY.md` | plot schema, `plot_type` vocabulary, single-column rule |
-| **U3 (live)** | `plots/index.geojson` carries `expected_trees` + `expected_trees_source`, governor-editable via the `SunMint Plots` tab col **T `Expected Trees`** |
+| **U3 (live)** | `plots/index.geojson` carries `expected_trees` + `expected_trees_source`, governor-editable via the `SunMint Plots` tab col **U `Expected Trees`** (corrected 2026-10-14 from a misplaced col T, which is now `Farmer` — `tokenomics` #582) |
 | `dao_client/truesight_dao_client/modules/link_tree_planting.py` | the **CLI template**: a ~6-line `build_event_cli(...)` wrapper (event name + canonical labels + `required_labels` + `dapp_page`) — the promote CLI mirrors this |
 | `dao_client/truesight_dao_client/server/data/events_catalog.json` | the **event registry** each event is declared in (`canonical_labels`, `required_fields`, `dapp_page`); the promote event adds an entry here |
 | `dapp_beta/link_tree_planting.html` | the **DApp template**: reads public `lineage-assets` caches (`sold_pending_tree.json`, `sunmint_pending.json`) + `sunmint/main/plots/index.geojson`, POSTs via `scripts/edgar_payload_helper.js` → `edgar.truesight.me/dao/submit_contribution` |
@@ -584,4 +584,4 @@ Per `OPERATING_INSTRUCTIONS.md` §5a: **one PR per execution turn, then stop.**
 - `growth/GROWTH_MODEL.md` — honest-state principle; QR Trace-Back Loop
 - `SUNMINT_PLOTS_REGISTRY.md` — plot schema, `plot_type` vocabulary
 - `tokenomics/SCHEMA.md` — `Agroverse QR codes`, `SunMint Tree Planting`, `SunMint Plots`
-- U3 (live) — `expected_trees` + `expected_trees_source`, governor-editable (`SunMint Plots` col T)
+- U3 (live) — `expected_trees` + `expected_trees_source`, governor-editable (`SunMint Plots` col U, corrected 2026-10-14 from a misplaced col T — see `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`)

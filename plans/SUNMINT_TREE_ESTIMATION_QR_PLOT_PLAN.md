@@ -137,7 +137,7 @@ Mature cabruca is the opposite failure (50–150 trees/ha real). Hence the rule 
 - Batch analysis artifacts (2026-09-07): /tmp/la_do_sitio_unique_trees_{strict,loose}.csv
 - `GROWTH_MODEL.md` — credentialing-lineage principle (nothing asserted until evidenced)
 - `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md` — the pseudo-tree design that answers D3 (2026-10-14)
-- U3 (live) — `expected_trees` + `expected_trees_source` on the `SunMint Plots` tab (col T), governor-editable
+- U3 (live) — `expected_trees` + `expected_trees_source` on the `SunMint Plots` tab (col U, corrected 2026-10-14 from a misplaced col T — see `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`), governor-editable
 
 ---
 
@@ -238,4 +238,4 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
 
 **Sequencing:** **all D-decisions are now ruled** (Gary 2026-10-14, via Envoy) — see the pseudo-tree
 plan §8 (v10). Build units (PR2–PR7) may proceed. U3's simpler editable-count part already shipped
-(col T) and proceeds independently.
+(col U — corrected 2026-10-14 from a misplaced col T) and proceeds independently.

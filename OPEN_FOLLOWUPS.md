@@ -39,6 +39,15 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### SunMint Plots col T: `Farmer` must only be seeded by `[PLOT FINANCING EVENT]`, never backfilled from `Owner`
+**Filed 2026-10-14. Owner: unclaimed. Small — a documentation/convention note, not a code gap.**
+
+**Context.** `SunMint Plots` col T (renamed `Contributor Name` → `Farmer`, `tokenomics` #582, 2026-10-14) is read by `tplResolvePlotFarmer_` (`process_tree_planting_link.js`) to route a plot-level tree-planting link's ledger legs. Its value must byte-match the farmer's `Fund Handler` account name on the MAIN ledger — `tplResolveSource_` sums pool units by that exact string. It is seeded exclusively by `pfSeedPlotFarmer_` from a `[PLOT FINANCING EVENT]` payload's `- Farmer:` field.
+
+**The finding.** `SunMint Plots` col H (`Owner`) looks superficially similar (e.g. RM-P1 `Owner` = "Jedielcio family") but is **not** a safe substitute: it's free-text field knowledge (who actually owns/planted the plot), not necessarily the exact `Fund Handler` string the ledger uses for that farmer's pool balance. Backfilling col T from col H directly (rather than via a real `[PLOT FINANCING EVENT]`) risks a string mismatch that silently mis-sources a future plot-link's ledger legs (falls back to `committed` instead of drawing from the correct farmer's pool).
+
+**Suggested scope.** Don't hand-backfill col T from col H. Either (a) leave col T blank until each plot's farmer is seeded by a real `[PLOT FINANCING EVENT]` (fail-closed, correct but slow), or (b) if a backfill is wanted, verify each name against the MAIN ledger's actual `Fund Handler` values first (not just copy from `Owner`).
+
 ### SunMint: tree↔plot association + expected/counted tree-count estimation
 **Filed 2026-10-14 (Discord `#sunmint`, channel `1559724628862173335`). Owner: Sophia (build) + Envoy (supervising). Medium — multi-unit build in progress.**
 
