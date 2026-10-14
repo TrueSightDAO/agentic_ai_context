@@ -1,6 +1,10 @@
-# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v8)
+# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v9)
 
 > **Status:** design / roadmap only — **no code, no schema change, no build units started.**
+> **v9 (2026-10-14) — three-tier render logic recorded** (Gary, approved): the provenance image is
+> chosen by **what evidence actually exists** — real tree photo (T1) → plot photo *with the caveat
+> caption* (T2) → **no image, honest text only** (T3). A bare/best-guess photo is **never** shown.
+> See §7.
 > **v8 (2026-10-14) — Contract A write-set pinned to EXISTING columns / the reverse-binding mechanism** (Gary):
 > (3) capacity exceeded → **REJECT** (never over-mint past `expected_trees`); (4) the **D9 plot-type gate**
 > (`restoration`/`enrichment`/`nursery` only) **applies to Contract A's create branch too**; (5) the binding
@@ -482,6 +486,21 @@ counter — counting a spacing estimate as planted is the false-precision claim 
 *"photo shows the plot where this tree is expected, not the individual tree."* Once real K/L + photo
 are written (§6) and the QR flips to `ASSIGNED_TO_TREE`, the page falls back to the **real tree's own
 photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label* to the *image*.
+
+**Three-tier render logic (Gary, 2026-10-14 — approved).** The image on the provenance page is chosen
+by **what evidence actually exists** — a bare/best-guess photo is **never** shown:
+
+| Tier | Row state | Page renders | Caption |
+|---|---|---|---|
+| **T1 — real tree** | QR `ASSIGNED_TO_TREE`; the tree row carries K/L + its own photo | the **tree's own photo** + map pin + planting evidence | *(none — the evidence is of this tree)* |
+| **T2 — pseudo, plot *has* media** | QR `ASSIGNED_TO_PSEUDO_TREE`; plot `media` non-empty; slot has no real photo | the **plot's `media` photo** (from `plots/index.geojson`); **no map pin** | *"photo shows the plot where this tree is expected, not the individual tree."* |
+| **T3 — pseudo, plot has *no* media** | QR `ASSIGNED_TO_PSEUDO_TREE`; plot `media` empty | **no photo** — the honest estimate text only (**never** a bare/placeholder image passed off as evidence) | the estimate copy above + *"No plot photo available yet."* |
+
+**Golden rule (the caveat Gary flagged).** A photo is rendered **only** when it is real evidence — of
+*this tree* (T1) or of *the plot* (T2, explicitly captioned). **T3 deliberately shows no image** rather
+than ship a bare photo a customer could mistake for their tree. Same honesty commitment as D10, applied
+to the *image* (SD5). Tier selection is a **runtime** decision (T1 vs T2/T3 = the row's real-vs-blank
+K/L; T2 vs T3 = whether the plot's `media` is non-empty), so promotion flips the tier with **no re-link**.
 
 ---
 
