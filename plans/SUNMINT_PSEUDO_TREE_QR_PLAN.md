@@ -147,11 +147,16 @@ blank-K/L rows; a separate tab is cleaner isolation but a second registry.
 The real path: `[TREE PLANTING LINK EVENT]` → validate → `QR.status := ASSIGNED_TO_TREE` → copy
 date/lat/long/photo onto the QR row → governor gate; email; ledger leg.
 
+**Ruling (SD9, Gary 2026-10-14): a QR can be bound to a pseudo slot BEFORE any real tree lands.** The
+link does not require — and must not wait for — a real `[TREE PLANTING EVENT]`. That is the whole point:
+the QR is printed/handed out now, and a real tree later *claims* the slot (§6). So the pseudo target is
+**minted on demand at link time** (D2=(a)) and is a first-class, valid link target with no tree behind it.
+
 **Ruling: reuse/extend that handler** — same atomic pattern, target = a pseudo slot. The pseudo path:
 1. resolve signer → governor check (unchanged);
 2. validate the QR is linkable (reuse existing preconditions);
 3. **bind to a pseudo slot** — allocate the next free `<plot_id>-pseudo-<N>` on the target plot (or
-   accept an explicit id), mark `assigned`, freeze the id;
+   accept an explicit id), **mint the pseudo row if absent**, mark `assigned`, freeze the id;
 4. write the QR row: **plot_id + pseudo slot id + tier** (no lat/long/photo — none exist), set status (→ **D5**);
 5. book the **same ledger leg** as the real link (literals per the settlement plan, §5 caveat);
 6. optional owner email.
@@ -225,6 +230,7 @@ counter — counting a spacing estimate as planted is the false-precision claim 
 | **SD6** | Reconcile | **Claim-on-arrival (FIFO within plot)** → re-point QR to real tree; retire pseudo row |
 | **SD7** | Ambiguity | **N/A** — interchangeable slots; nothing to disambiguate |
 | **SD8** | Row shape | same as `SunMint Tree Planting`, blank K/L, no photo, `plot_id` set |
+| **SD9** | Link timing | **A QR MAY be bound to a pseudo slot BEFORE any real tree exists** (Gary, 2026-10-14) — the slot is created on demand to receive the binding, not awaited from a submission |
 
 ### Still open — NEED a ruling
 
@@ -232,7 +238,7 @@ counter — counting a spacing estimate as planted is the false-precision claim 
 |---|---|---|---|
 | **D2** | Mint all N rows up front vs allocate-on-demand | (a) on-demand (b) materialize | **(a)** — scales; pairs with claim-on-arrival |
 | **D4** | Where pseudo rows live | (a) shared `SunMint Tree Planting` tab (b) separate tab | **(a)** per Gary's wording — consumers skip blank-K/L rows |
-| **D5** | QR status when pseudo-bound | reuse `ASSIGNED_TO_TREE` vs new `ASSIGNED_TO_PSEUDO_TREE` | **new status** — so D10's counter guard is a status check, not a column check |
+| **D5** | QR status when pseudo-bound | reuse `ASSIGNED_TO_TREE` vs new `ASSIGNED_TO_PSEUDO_TREE` | **new status**, valid with **no tree behind it** (SD9) — so D10's counter guard is a status check, not a column check |
 | **D8** | Estimate shrink safety | — | **freeze referenced slots; trim only the never-referenced tail** |
 | **D9** | Gating — which `plot_type`s may mint | all vs subset | **`restoration`/`enrichment`/`nursery` only** — never `mature`/`research`/blank |
 | **D10** | Public "trees planted" counter | count pseudo-assigned? | **NO** (honest state) |
