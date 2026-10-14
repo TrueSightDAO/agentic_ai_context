@@ -173,10 +173,13 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
 - **Honest state** (`GROWTH_MODEL.md` §"How to extend this model" step 4 + anti-patterns): a
   pseudo-bound bag's QR / landing page must read *"Plot X — estimated slot #N. Position not yet
   verified."*, and must **not** increment any public "trees planted" counter.
-- **Reconciliation** (real tree lands): **claim-on-arrival (FIFO within the plot)** — a real tree
-  claims the next unclaimed pseudo slot in its plot, the QR re-points to the real tree id, and the
-  pseudo row is **retired (never deleted)**. Slots are interchangeable, so there is **no spatial
-  matching, no match radius, and no ambiguous-collision handling**.
+- **Promotion** (real K/L arrives) — **IN PLACE, SAME ROW** (Gary, 2026-10-14): *"once it gets assigned
+  a lat and long it is no longer a pseudo tree."* Writing the real K/L (+ photo + planter) onto the
+  pseudo row **makes that row the real tree** — **no second row, no `[PSEUDO TREE RECONCILE EVENT]`,
+  no orphaned pseudo row.** The signed planting event that writes K/L **is** the audit trail. The row's
+  **id is unchanged**; live pseudo-vs-real is decided by **blank K/L alone**. (This **supersedes** the
+  earlier claim-on-arrival/FIFO idea: with in-place promotion there is **no matching step at all**,
+  so no radius and no ambiguity handling.)
 
 **Effect on this plan's open decisions:**
 
@@ -184,8 +187,10 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
 - **D6 → RESOLVED by U3 (2026-10-14)**: tree-count now lives on the `SunMint Plots` tab, col **T
   `Expected Trees`** (governor-editable), emitted into `plots/index.geojson` as `expected_trees` +
   `expected_trees_source`. W2 is partly shipped; a separate `tree_count_tier` column remains open.
-- **D4 (auto-join)** and **D7** remain open.
+- **D4 (auto-join)** and **D7** remain open; **D13** (a real tree arriving with no bound pseudo slot)
+  newly open — recommendation: it stands alone. See pseudo-tree plan §6.1.
 
-**Sequencing:** the pseudo-slot + linking mechanism is **not** to be built until D2/D4/D5/D8/D9/D10 are
-ruled (pseudo-tree plan §8). U3's simpler editable-count part already shipped (col T), so it proceeds
+**Sequencing:** Gary **approved the direction / D1–D10 in spirit** (2026-10-14, via Envoy); the
+pseudo-slot + linking mechanism is **not** to be built until the refinements flagged in the pseudo-tree
+plan §8 are ruled (adds **D13**). U3's simpler editable-count part already shipped (col T), so it proceeds
 independently — which is what Gary allowed.
