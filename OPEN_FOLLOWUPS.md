@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot attachment pipeline: no automatic OCR→vision fallback when an image contains no text
+**Filed 2026-10-14 (thread 10800). Owner: Sophia (candidate self-fix PR). Small — one fallback branch in the attachment auto-processor.**
+
+**Symptom.** Governor sent a **photograph** whose entire value was visual. The attachment auto-processor reported **“OCR confidence: 0.0%, quality: poor”** and **“(No text detected in image)”**, and the `ocr_image` tool likewise returned empty (`word_count: 0`, `avg_confidence: 0.0`). Only a **manual** escalation to Grok vision (`grok-4-1-fast-non-reasoning`, `detail: high`) surfaced the actual content — which proved operationally material (a mid-unload delivery photo corroborating the AWB’s 2-pallet count).
+
+**Why it matters.** For a photo, “no text found” is the **expected** result, not a failure. Reporting it as *the* finding invites the reader to conclude the attachment was empty or unreadable — the opposite of the truth. The box already carries a working Grok vision path (see `/home/ubuntu/cleide_media/debug_grok.py`); the gap is purely that **nothing routes to it automatically**.
+
+**Suggested scope.** When `ocr_image` returns `word_count == 0` **or** `avg_confidence == 0.0` on an image attachment, **automatically** fall back to Grok vision with a “describe this image and transcribe anything visible” prompt, and surface **both** results — stating explicitly “no text detected; image is a photograph, here is what it depicts.” Mirror the same escalation when **QR scan finds no code and OCR finds no text**. Low risk: purely additive; the text path is untouched.
+
+**Evidence.** `fd985851d61f4f70a23f3d0e0a47b42c.jpg`; transcript `sessions/2026-10-14/c1fc41bdca51/transcript.md`; `cleide_media/debug_grok.py`.
+
 ### Repackaging: `[REPACKAGING SETTLEMENT EVENT]` does not inherit the input's ledger — enforce the governor's "same ledger as the original" invariant
 **Filed 2026-10-14 (thread 10800, governor Gary: *"Make sure each transformed inventory lands in the same ledger as the original inventory"*). Owner: unclaimed. Medium — one inheritance rule + one validation on the repackaging path.**
 
