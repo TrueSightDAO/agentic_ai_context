@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Entity registry: reconcile Próspera/Honduras entity docs (stale OA PDF + placeholders)
+**Filed 2026-10-14 (Gary Teh, thread 42148). Owner: unclaimed. Small — mostly doc reconciliation via PR.**
+
+**Context.** A sweep of the Próspera/Honduras entity (TrueSight DAO LLC) documents produced a machine-readable registry at
+[`entity_registry.json`](https://github.com/TrueSightDAO/agentic_ai_context/blob/main/entity_registry.json) and a human index at
+[`notarizations/ENTITY_LEGAL_DOCS.md`](https://github.com/TrueSightDAO/notarizations/blob/main/ENTITY_LEGAL_DOCS.md). The document set is now archived, but several housekeeping items remain:
+
+1. **Stale PDF.** `agentic_ai_context/PROSPERA_ENTITY_OPERATING_AGREEMENT.pdf` is still **DRAFT v0.1** (md5 `5ce4ebd0…`, 14 pp) while the `.md` beside it and `legal/TrueSight_DAO_LLC_Operating_Agreement_FINAL_v1.0.pdf` are **FINAL v1.0**. Replace the root PDF with FINAL v1.0 (or delete it and point to `legal/`).
+2. **Registry id.** The Certificate of Organization's reserved-for-registry band is blank in the text layer; the PZ official seal (embedded image, pages 2 & 4) reads **"OFFICIAL RESIDENT PERMIT NO. 86901452542528"**. Confirm via the ePróspera portal (`eprospera.com`) whether the *entity* registration number differs from this resident-permit number, and record the entity number.
+3. **OA placeholders.** Reconcile `PROSPERA_ENTITY_OPERATING_AGREEMENT.md` bracketed placeholders — `[REGISTERED AGENT NAME]` (§2.3), `[PRÓSPERA REGISTERED OFFICE ADDRESS]` (§2.3), `[SEATING DATE]` (Schedule A / signature block), and the "confirm exact spelling/suffix" note (p.1) — against the filed Certificate of Organization (registered agent = Prospera Employment Solutions LLC; registered office = Beta Building, Oficina 6, Próspera ZEDE, St. John's Bay, Islas de la Bahía, 34101, Honduras).
+4. **Date discrepancy.** OA effective date is 2026-07-01 (Proposal #18 merge) but `brazil/BRAZIL_EXPORT_LANE_LEARNINGS.md` records "OA signed 2026-07-18" — reconcile.
+5. **Brazil-entity outputs.** Archive the Brazilian entity's output documents (contrato social / estatuto, CNPJ card, RDE-IED registration) once Paloma completes the setup authorized by the 2026-10-13 POA.
+
+**Note.** For Próspera docs, the registry number is inked onto an **embedded seal image**, not the PDF text layer — `extract_pdf_text` alone shows it blank; OCR the seal image instead.
+
 ### SunMint: tree↔plot association + expected/counted tree-count estimation
 **Filed 2026-10-14 (Discord `#sunmint`, channel `1559724628862173335`). Owner: Sophia (build) + Envoy (supervising). Medium — multi-unit build in progress.**
 
