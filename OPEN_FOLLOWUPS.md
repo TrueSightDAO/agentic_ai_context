@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Repackaging: `[REPACKAGING SETTLEMENT EVENT]` does not inherit the input's ledger — enforce the governor's "same ledger as the original" invariant
+**Filed 2026-10-14 (thread 10800, governor Gary: *"Make sure each transformed inventory lands in the same ledger as the original inventory"*). Owner: unclaimed. Medium — one inheritance rule + one validation on the repackaging path.**
+
+**Context.** The settlement step writes Main Ledger `Currencies` **col F (`ledger`) from the event payload's `Ledger URL`** (`plans/POST_REPACKAGING_CLEANUP_PLAN.md` §`Currencies`: *"F | ledger | From event payload Ledger URL"*). It never reads the **input** currency's col F. So "the output lands on the same ledger as its input" is **operator-typed free text, not an enforced invariant** — a repackaging run over AGL8 almonds whose settlement payload says `agl4` lands the output on a **closed** ledger, silently, at submit time.
+
+**Why it bites now.** Auditing the 8 pre-staged NF-e n° 18 arrival currencies (Black King corridor, AWB `047-3175-3223`) against the checklist's §5.10 col-R map: **2 correct (AGL13 ×2), 1 WRONG (`8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco` → col F `…/agl4`, and **AGL4 is `Status=COMPLETED`**), 5 unset (blank col F).** Five of those blank-col-F rows simultaneously carry col C `Serializable = TRUE` — QR-ready with no provenance ledger.
+
+**Suggested scope.** (a) On the settlement GAS, resolve each output's ledger by **inheritance from its input currency's col F**; fail-closed (refuse) if an input's col F is blank or points at a ledger whose `Shipment Ledger Listing` `Status` is not `ACTIVE`. (b) Where a payload-supplied `Ledger URL` disagrees with the inherited value, **prefer the inherited value** and surface the conflict rather than silently writing. (c) Add a pre-flight check to the repackaging planner UI: block output rows whose resolved ledger ≠ input ledger. (d) Backfill the 8 arrival rows' col F from the §5.10 col-R map before the corridor's first transformation run.
+
+**Evidence.** `Currencies!A:F` (live 2026-10-14); §5.10 + §5.11 of `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`; `plans/POST_REPACKAGING_CLEANUP_PLAN.md` §`Currencies`; `agroverse-inventory/gas/repackaging-currency-ingest` (`1StT6vogwlOYOqtpSiqwnF9PJmScivbBxIj2Hhplfd4YQbCfuWIerrUV0`).
+
 ### SunMint Plots col T: `Farmer` must only be seeded by `[PLOT FINANCING EVENT]`, never backfilled from `Owner`
 **Filed 2026-10-14. Owner: unclaimed. Small — a documentation/convention note, not a code gap.**
 
