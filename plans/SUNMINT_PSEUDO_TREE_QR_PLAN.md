@@ -1,6 +1,11 @@
-# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v4)
+# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v5)
 
 > **Status:** design / roadmap only — **no code, no schema change, no build units started.**
+> **v5 (2026-10-14) — promotion is a DEDICATED event `[PSEUDO TREE PROMOTE EVENT]`** (Gary): the
+> existing `[TREE PLANTING EVENT]` flow only **appends** rows and cannot update a row by id, so in-place
+> promotion needs its own governor/field-agent-signed event + **two surfaces (DApp page + CLI module)
+> calling the same contract** — `[PSEUDO TREE RECONCILE EVENT]` stays dropped (we edit in place, we do
+> not create a new linked row). See §5.2 / §8.
 > **v4 (2026-10-14) — PR1: all open D-decisions ruled by Gary.** D1 (id `PS-<plot_id>-<seq>`),
 > D2 (allocate-on-demand), D4 (**one** registry), D5 (`ASSIGNED_TO_PSEUDO_TREE`), D6 (new
 > **`[PSEUDO TREE ASSIGN EVENT]`**; promotion reuses the existing link/submission; `[PSEUDO TREE
@@ -45,8 +50,11 @@ Finer-grained than D3 (which leaned plot-level because per-tree photography does
    `SunMint Tree Planting`-shaped row with blank K/L, `plot_id` set, stable id.
 3. **Link QR → pseudo slot — NEW `[PSEUDO TREE ASSIGN EVENT]`** (Gary, 2026-10-14): no real
    mechanism binds a QR to a slot-without-a-tree today, so this is its **own** event (QR row + a row +
-   ledger leg). **Promotion reuses the existing `[TREE PLANTING LINK EVENT]`/submission mechanism**
-   (§6); there is **no** `[PSEUDO TREE RECONCILE EVENT]`.
+   ledger leg). **Promotion is a SEPARATE dedicated event — `[PSEUDO TREE PROMOTE EVENT]` (§5.2)**:
+   the existing `[TREE PLANTING EVENT]` flow only **appends** rows (scraped from Telegram) and cannot
+   find-and-update a row by id, so in-place promotion needs its own mechanism. **No
+   `[PSEUDO TREE RECONCILE EVENT]`** — promotion edits the slot **in place**, it does not create a new
+   linked row.
 4. **QR codes CAN be associated with pseudo trees** (Gary, 2026-10-14) — a pseudo slot is a
    first-class link target, valid **before** any real tree exists (SD9).
 5. **A pseudo tree becomes REAL in place — the SAME row** (Gary, 2026-10-14): *"pseudo tree is just
@@ -55,7 +63,8 @@ Finer-grained than D3 (which leaned plot-level because per-tree photography does
    row** — there is **no second "real tree" row, no `[PSEUDO TREE RECONCILE EVENT]`, and no orphaned
    pseudo row kept as duplicate history.** The signed event that writes K/L **is** the audit trail
    (the ledger is current-state rows + an append-only event log). This **supersedes v2's
-   claim-on-arrival §6.**
+   claim-on-arrival §6.** The write happens via the **dedicated `[PSEUDO TREE PROMOTE EVENT]`**
+   (§5.2) — **not** the append-only `[TREE PLANTING EVENT]`.
 
 ### 0.2 Grounding (read — done)
 
@@ -67,6 +76,9 @@ Finer-grained than D3 (which leaned plot-level because per-tree photography does
 | `tokenomics/SCHEMA.md` | `Agroverse QR codes` col **AC `Linked Plot ID`**; `ASSIGNED_TO_TREE` in the status enum; `SunMint Tree Planting` cols incl. K/L Latitude/Longitude |
 | `SUNMINT_PLOTS_REGISTRY.md` | plot schema, `plot_type` vocabulary, single-column rule |
 | **U3 (live)** | `plots/index.geojson` carries `expected_trees` + `expected_trees_source`, governor-editable via the `SunMint Plots` tab col **T `Expected Trees`** |
+| `dao_client/truesight_dao_client/modules/link_tree_planting.py` | the **CLI template**: a ~6-line `build_event_cli(...)` wrapper (event name + canonical labels + `required_labels` + `dapp_page`) — the promote CLI mirrors this |
+| `dao_client/truesight_dao_client/server/data/events_catalog.json` | the **event registry** each event is declared in (`canonical_labels`, `required_fields`, `dapp_page`); the promote event adds an entry here |
+| `dapp_beta/link_tree_planting.html` | the **DApp template**: reads public `lineage-assets` caches (`sold_pending_tree.json`, `sunmint_pending.json`) + `sunmint/main/plots/index.geojson`, POSTs via `scripts/edgar_payload_helper.js` → `edgar.truesight.me/dao/submit_contribution` |
 
 ---
 
@@ -226,6 +238,47 @@ When the owner scans a **pseudo-bound** bag, the provenance page (`qr/index.html
 
 ---
 
+### 5.2 Promotion is its own event — `[PSEUDO TREE PROMOTE EVENT]` (Gary, 2026-10-14)
+
+**Why a dedicated event.** The existing `[TREE PLANTING EVENT]` flow only **appends** new rows
+(scraped from Telegram chat logs); it has **no** "find this specific existing row by *id* and update
+it" capability. Promoting a pseudo tree **in place** (Gary's same-row model, §6) therefore needs its
+own mechanism. This **walks back** the earlier suggestion to "reuse the submission mechanism" for
+promotion — the submission mechanism *creates*, it does not *edit*.
+
+> **`[PSEUDO TREE PROMOTE EVENT]`** — governor- or field-agent-signed. Payload: **plot_id** (or the
+> pseudo tree id) **+ Latitude + Longitude + Photo URL** (+ Species/Planter/Planting Time as the real
+> planting needs). The handler **finds the matching pseudo row** (blank K/L *and* matching `plot_id`,
+> i.e. an open slot) and **writes the real values onto it in place** — same `Tree ID`, which flips
+> from pseudo to real the moment this lands (§6). It does **not** append a row.
+
+- **Distinct from `[PSEUDO TREE ASSIGN EVENT]`** (§5): that one binds a **QR** to a slot; this one
+  writes **location + photo** onto the slot. Different act, different payload, different surface.
+- **Rejected server-side** if the signer isn't a governor/field agent (same Governors-tab gate as the
+  other tree events). **Reject** if no open pseudo row matches the plot, or if the payload lacks a
+  photo (unverifiable planting — `[TREE PLANTING EVENT]`'s rule: *no photo ⇒ cannot be verified ⇒ reject*).
+- **QR side-effect** (only when the target slot is QR-bound): copy the planting evidence onto the QR
+  row and set its status to **`ASSIGNED_TO_TREE`** (from `ASSIGNED_TO_PSEUDO_TREE`), so the provenance
+  page switches from the plot image to the real tree photo (§5.1). An **unbound** promotion has no QR
+  to touch.
+- **No `[PSEUDO TREE RECONCILE EVENT]`** (still dropped): we **edit in place**, we do **not** create a
+  new linked row — so there is nothing to "reconcile."
+
+**Two surfaces, both calling the same contract** (the event above):
+
+| Surface | Shape | Template to mirror |
+|---|---|---|
+| **DApp page** — e.g. `dapp_beta/promote_pseudo_tree.html` | Fetch the plot's **open pseudo slots** by `plot_id` (so the user sees *which* slots are free), pick one, submit lat/long/photo. Reads public caches (same `lineage-assets`/`sunmint` geojson convention) and POSTs via `scripts/edgar_payload_helper.js` → `edgar.truesight.me/dao/submit_contribution`. | **`dapp_beta/link_tree_planting.html`** (the plot-select + submit-link shape) |
+| **CLI module** — e.g. `dao_client/truesight_dao_client/modules/promote_pseudo_tree.py` | Same two operations: **list** open pseudo trees for a plot; **submit** the lat/long/photo update. Scriptable, no browser. Declares the event in `events_catalog.json`. | **`modules/link_tree_planting.py`** (a `build_event_cli(...)` wrapper) |
+
+- **"Fetch pseudo trees by plot id"** = the read backing **both** surfaces. Pseudo trees are rows with
+  **blank K/L + a matching `plot_id`** (§2) — so the list is a registry read, and the **DApp/CLI must
+  not hard-code slot ids** (the allocator owns them, §PR2).
+- **Contract-first:** the DApp page and the CLI **must** accept/submit the *same* payload fields, so a
+  promotion is scriptable end-to-end with no browser (Gary: *"callable via the CLI too"*).
+
+---
+
 ## 6. Real → pseudo promotion = IN PLACE, SAME ROW (Gary's ruling, 2026-10-14)
 
 Gary: *"pseudo tree is just one that has no lat and long but is associated with a plot. Once it gets
@@ -250,7 +303,9 @@ Steps when a real planting for a **QR-bound** pseudo slot is recorded:
    by construction — **no relabel needed**, and its **id is unchanged** (§2 / SD2).
 3. Copy the planting evidence onto the **QR row** and set the QR status to the real-tree state
    (`ASSIGNED_TO_TREE`) — the QR link itself is unchanged (it already pointed at this row).
-4. Emit the **signed planting event** that carries the K/L — that event is the promotion's audit record.
+4. Emit the **signed `[PSEUDO TREE PROMOTE EVENT]`** (§5.2) that carries the K/L — that event is the
+   promotion's audit record. (The append-only `[TREE PLANTING EVENT]` is **not** used here — it cannot
+   edit a row by id.)
 
 **Id is immutable across promotion.** A promoted row **keeps `PS-<plot_id>-<seq>`**; the `PS-`
 prefix is a **provenance marker**, not a live state test — **live pseudo-vs-real is decided by blank
@@ -317,7 +372,8 @@ photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label
 | **SD11** | Row id (D1) | **`PS-<plot_id>-<seq>`** — kept for legibility + per-plot dedup; **not load-bearing** (a plain tree-id would do, since the row **is** a normal tree row) |
 | **SD12** | Registry (D4) | **ONE registry** — a pseudo tree is just a `SunMint Tree Planting` row with blank K/L; **no separate tab** |
 | **SD13** | QR status (D5) | **new `ASSIGNED_TO_PSEUDO_TREE`** — keeps the ledger legible without inspecting lat/long |
-| **SD14** | Events (D6) | **New `[PSEUDO TREE ASSIGN EVENT]`** for QR→slot binding; promotion = existing link/submission; **no `[PSEUDO TREE RECONCILE EVENT]`** |
+| **SD14** | Events (D6) | **New `[PSEUDO TREE ASSIGN EVENT]`** for QR→slot binding; **no `[PSEUDO TREE RECONCILE EVENT]`** |
+| **SD16** | Promotion event (D6, Gary 2026-10-14) | **NEW dedicated `[PSEUDO TREE PROMOTE EVENT]`** — edits a pseudo row in place (lat/long/photo). Needed because `[TREE PLANTING EVENT]` only **appends** (no update-by-id). Governor/field-agent-signed. **Two surfaces, one contract**: DApp page (`promote_pseudo_tree.html`) + CLI module (`promote_pseudo_tree.py`). **No reconcile event** |
 | **SD15** | Unbound submission (D7/D8) | Fills the **first/any open slot in the plot** (lowest free `seq`); none open → stands alone. **No spatial matching** |
 
 ### Settled in PR1 (Gary, 2026-10-14)
@@ -327,7 +383,7 @@ photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label
 | **D2** | Mint up front vs on demand | **allocate-on-demand** (pairs with in-place promotion) |
 | **D4** | Where pseudo rows live | **ONE registry** — `SunMint Tree Planting`, blank K/L (SD12) |
 | **D5** | QR status when pseudo-bound | **new `ASSIGNED_TO_PSEUDO_TREE`** (SD13) |
-| **D6** | Events | **new `[PSEUDO TREE ASSIGN EVENT]`**; promotion = existing link/submission; **no reconcile event** (SD14) |
+| **D6** | Events | **two new events**: `[PSEUDO TREE ASSIGN EVENT]` (QR→slot) **and** `[PSEUDO TREE PROMOTE EVENT]` (in-place promotion — SD16); **no reconcile event** (SD14/SD16) |
 | **D7/D8** | Reconciliation / freeze safety | **moot** — no separate row; unbound submission fills first/any open slot (SD15); allocator id never renumbered; trim only never-referenced tail |
 | **D9** | Gating — which `plot_type`s may mint | **`restoration`/`enrichment`/`nursery` only** — never `mature`/`research`/blank |
 | **D10** | Public "trees planted" counter | **NO** — pseudo-assigned QRs never count (honest state) |
@@ -345,9 +401,11 @@ photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label
 | **PR1** | **this revision**: D1/D2/D4/D5/D6/D7/D8/D9/D10/D13 ruled; docs updated (v4) | `agentic_ai_context` | **governor** |
 | **PR2** | pseudo-slot **allocator** (`PS-<plot_id>-<seq>` next-free + freeze-on-reference) + make `build_tree_geojson.py` skip blank-K/L rows / carry `plot_id` — **no QR coupling**. **NB:** the allocator already merged (`sunmint` #6) but uses `PSEUDO_INFIX = "-pseudo-"` + a FIFO docstring — **must be renamed to the `PS-` prefix (D1) and de-FIFO'd** to match this v4 plan | `sunmint` | SD1/SD11 |
 | **PR3** | mint pseudo rows (blank K/L, no photo, plot_id) into the target tab via `sunmint-ledger-manager` SA | `sunmint` | D2/D4 |
-| **PR4** | **NEW `[PSEUDO TREE ASSIGN EVENT]`** + `dao_client` field; book leg per settlement literals | `tokenomics`, `dao_protocol` | D5/D6 |
+| **PR4** | **NEW `[PSEUDO TREE ASSIGN EVENT]`** (QR→slot) + `dao_client` field; book leg per settlement literals | `tokenomics`, `dao_protocol` | D5/D6 |
+| **PR4b** | **NEW `[PSEUDO TREE PROMOTE EVENT]`** (§5.2) — handler finds the matching **open** pseudo row (blank K/L + `plot_id`) and writes **lat/long/photo in place**; QR side-effect when bound. Register in `events_catalog.json` | `tokenomics`, `dao_protocol` | SD6/SD16 |
+| **PR4c** | **Two surfaces, one contract**: DApp `promote_pseudo_tree.html` (fetch pseudo trees by `plot_id` → submit) + CLI `modules/promote_pseudo_tree.py` — both mirror `link_tree_planting.*`; "list by plot" read | `dapp_beta`, `dao_client`, `treasury-cache` | SD16 |
 | **PR5** | DApp surface for binding a QR to a pseudo slot + permissions action | `dapp_beta`, `treasury-cache` | D5 |
-| **PR6** | **In-place promotion** (existing link/submission writes K/L onto the pseudo row) + unbound-submission fill (`cepotx-survey`) | `tokenomics`, `dao_protocol` | SD6/SD15 |
+| **PR6** | Unbound-submission fill (§6.1) — a bulk `cepotx-survey`/farmer submission with **no** QR lands on the first/any open slot (promotion is now PR4b's event) | `tokenomics`, `dao_protocol` | SD15 |
 | **PR7** | Render pseudo slots + assigned state + the **honest-state label** on the tree page, `sunmint.html`, `/sunmint/plots/`, `qr/index.html` — per render matrix **§5.1** | `truesight_me_beta` | SD5 |
 | **PR8** | Live UAT on beta → promotion (always-stop) | — | **governor** |
 
