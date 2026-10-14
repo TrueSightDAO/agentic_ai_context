@@ -162,6 +162,10 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   coordinates, so their map geometry is `null`. NB: `build_tree_geojson.py` does **not** currently
   drop blank-coordinate rows (it emits `geometry: null`); the builder must be taught to skip
   blank-K/L rows from the tree index (PR2), so placeholders never surface as map features.
+- **Link timing (Gary, 2026-10-14): a QR MAY be bound to a pseudo slot BEFORE any real tree exists.**
+  The binding does not wait for a `[TREE PLANTING EVENT]`; the slot is minted on demand at link time to
+  receive the QR, and a real tree later *claims* it (§6 of the pseudo-tree plan). This is why the slot
+  must be a first-class link target with no tree behind it.
 - **Link event** = **reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern: QR row + a row +
   ledger leg), pointed at a pseudo slot — no parallel mechanism.
 - **Plot-level association is retained** as the fallback: the QR row still carries `plot_id`
