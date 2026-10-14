@@ -177,7 +177,12 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   provenance page shows the **plot's `media` image** (the field `SUNMINT_PLOTS_REGISTRY.md` defines) with
   the caption *"photo shows the plot where this tree is expected, not the individual tree"*; once the row
   gains real K/L + photo (promotion) and the QR flips to `ASSIGNED_TO_TREE`, the page falls back to the
-  **real tree's own photo** + map. Render matrix: pseudo-tree plan §5.1.
+  **real tree's own photo** + map. Render matrix: pseudo-tree plan §5.1 (**3-tier**).
+- **Three-tier render logic (Gary, 2026-10-14 — approved):** the provenance image is picked by what
+  evidence exists — **T1** real tree → its own photo + map; **T2** pseudo + plot *has* media → the
+  **plot's** photo under the caption *"photo shows the plot where this tree is expected, not the
+  individual tree"*; **T3** pseudo + plot has *no* media → **no image, honest estimate text only**
+  (never a bare photo). Pseudo-tree plan §7.
 - **Promotion** (real K/L arrives) — **IN PLACE, SAME ROW** (Gary, 2026-10-14): *"once it gets assigned
   a lat and long it is no longer a pseudo tree."* Writing the real K/L (+ photo + planter) onto the
   pseudo row **makes that row the real tree** — **no second row, no `[PSEUDO TREE RECONCILE EVENT]`,
