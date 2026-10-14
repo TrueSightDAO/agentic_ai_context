@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-14T05:11:57Z`
+- Generated (UTC): `2026-10-14T12:14:13Z`
 - Look-back: **7** calendar days (`2026-10-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,18 +34,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[CONTRIBUTION EVENT]` × 12
 - `[CURRENCY DEFINITION EVENT]` × 10
+- `[TREE PLANTING EVENT]` × 5
 - `[RETAIL FIELD REPORT EVENT]` × 5
-- `[TREE PLANTING EVENT]` × 4
 - `[PRACTICE EVENT]` × 3
 - `[CURRENCY CONVERSION EVENT]` × 3
-- `[EMAIL REGISTERED EVENT]` × 1
 - `[NOTARIZATION EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20261013120053_442` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL16
-- `Edgar_20261013120436_444` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-13T12:04:31.252Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261013120656_446` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: dao_inventory_expense_20261013_oscar_pix_beans_outstanding_R480.jpg · DAO Member Name: Gary Teh
 - `Edgar_20261013122524_448` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Description: TEST ROW — deploy verification only (GAS 19Wag9x prefix-strip fix, thread 23…
 - `Edgar_20261013125521_450` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
@@ -64,6 +61,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261014001657_476` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: Gary Teh
 - `Edgar_20261014002804_478` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: Paloma
 - `Edgar_20261014002807_480` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: pk-qkejKJJW3IAD
+- `Edgar_20261014095620_482` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261014095636_484` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 
 ---
 
@@ -78,7 +77,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-13T10:59:14.430Z`
+- Generated (UTC): `2026-10-14T10:59:14.625Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -88,12 +87,12 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1124**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1197**)
+- **Email Agent Follow Up** — logged sends: warmup **1128**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1201**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **1052**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **61**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
+- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **1056**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **0** / **61**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
 - **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
@@ -272,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-07 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d5835e6 | 2026-10-14 05:16:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 f0008cc | 2026-10-13 23:03:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 145cf7c | 2026-10-13 14:30:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 60cc5a7 | 2026-10-13 00:56:04 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -303,6 +303,8 @@ d8953e0 | 2026-10-07 13:47:51 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4bc1ddf | 2026-10-14 02:12:17 -0300 | chore(previews): refresh Beer Hall preview (2026-10-14 UTC)
+51f71b6 | 2026-10-14 02:12:16 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-14 UTC)
 5478558 | 2026-10-13 23:30:59 -0300 | v10: D13=(a) — an unbound real tree STANDS ALONE (no matching); PR6 descoped (#1611)
 b4f64a8 | 2026-10-13 23:22:33 -0300 | v9: record 3-tier provenance render logic (T1/T2/T3) + golden rule in §7 of both docs (#1610)
 573dfa4 | 2026-10-13 23:19:41 -0300 | SunMint pseudo-tree plan v8 — Contract A write-set pinned to existing columns; reverse-binding; D9 gate + reject-past-cap (#1609)
@@ -341,8 +343,6 @@ b12e167 | 2026-10-11 16:16:17 -0300 | docs: add task-design appendix to Julio's 
 5fb6ec5 | 2026-10-11 14:58:59 -0300 | docs: add Julio store-enrichment guide (clean) (#1587)
 838837a | 2026-10-11 14:52:55 -0300 | plans: file DAPP_ACCESS_RIGHTS_PLAN (UI-slice scope) + update OPEN_FOLLOWUPS entry (#1585)
 0ddc827 | 2026-10-11 14:13:50 -0300 | handoffs: register DApp access-rights thread; update Discord gateway fix status (#1584)
-3fa7ed1 | 2026-10-11 01:37:50 -0300 | Merge pull request #1583 from TrueSightDAO/auto/advisory-refresh-2026-10-11
-aa0e839 | 2026-10-11 04:37:38 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-11 UTC)
 … (truncated)
 ```
 
@@ -488,7 +488,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/13/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/14/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-07`; scanned last **600** data rows)
 
