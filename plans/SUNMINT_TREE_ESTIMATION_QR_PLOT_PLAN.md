@@ -159,7 +159,9 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   is more honest than a fabricated map point.
 - **No geometry is computed.** The plot's density rule (§4b: `plot_hectares × 1,100`, ~3 m spacing)
   now supplies only the **count** `expected_trees` (U3), not positions. Pseudo slots carry no
-  coordinates; they never appear on the map.
+  coordinates, so their map geometry is `null`. NB: `build_tree_geojson.py` does **not** currently
+  drop blank-coordinate rows (it emits `geometry: null`); the builder must be taught to skip
+  blank-K/L rows from the tree index (PR2), so placeholders never surface as map features.
 - **Link event** = **reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern: QR row + a row +
   ledger leg), pointed at a pseudo slot — no parallel mechanism.
 - **Plot-level association is retained** as the fallback: the QR row still carries `plot_id`
