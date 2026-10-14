@@ -203,6 +203,14 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   DApp page + CLI module** (pseudo-tree plan §5.2), reusing the **shared DApp scaffolding**
   (`routes.js`/`menu.js`/`tdg_balance.js`/`scripts/dao_members_cache.js`, `verifySignatureOnLoad()`,
   governor/sentinel gate).
+- **Contract A write-set — existing columns only (Gary, 2026-10-14)** — three rulings: (3) capacity
+  exceeded → **REJECT** (never over-mint past `expected_trees`); (4) the **D9 plot-type gate**
+  (`restoration`/`enrichment`/`nursery`) **applies to the create branch too**; (5) the binding **reuses
+  the existing `Linked Plot ID` (col AC)** and the **reverse-binding mechanism** — verified: like the
+  real-tree path, the **`SunMint Tree Planting` row** carries `Status=LINKED` + `Linked QR` +
+  `Linked At`, and the QR row carries **no** tree ref. Find-unlinked = scan the one tree tab for
+  `plot_id == X AND Status != LINKED` (real + pseudo uniform). **No new columns anywhere.** Confirms
+  the single-tab decision (D4).
 - **Live gap fixed, not clean-slate hygiene (Gary + Sophia, 2026-10-14)** — the existing plot-link path
   has **no capacity concept** and reuses `ASSIGNED_TO_TREE`, the exact status `agroverse_shop`'s public
   "trees planted" counter filters on (`agroverse_wix_site_updates.js::getSoldRowsCount()`, sheet
