@@ -192,6 +192,14 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   real values **in place**. **Two surfaces call the same contract**: a DApp page + a CLI module (both
   mirror `link_tree_planting.*`). Still **no `[PSEUDO TREE RECONCILE EVENT]`** — we edit in place, we do
   not create a new linked row.
+- **Two separate contracts (Gary, 2026-10-14)** — *"A pseudo tree gets created when we attempt to link
+  a QR code to a plot"*: **Contract A — QR ↔ Plot link** (`[PSEUDO TREE ASSIGN EVENT]`; input **QR +
+  `plot_id`**; handler **finds-or-creates** the slot — reuse the next *unlinked* pseudo tree, else
+  create one — and binds the QR) and **Contract B — Pseudo promotion** (`[PSEUDO TREE PROMOTE EVENT]`;
+  input **plot_id/id + lat/long/photo**; writes in place). Each gets its **own DApp page + CLI module**
+  (pseudo-tree plan §5.1/§5.2), both reusing the **shared DApp scaffolding**
+  (`routes.js`/`menu.js`/`tdg_balance.js`/`scripts/dao_members_cache.js`, `verifySignatureOnLoad()`,
+  governor/sentinel gate).
 
 **Effect on this plan's open decisions:**
 
