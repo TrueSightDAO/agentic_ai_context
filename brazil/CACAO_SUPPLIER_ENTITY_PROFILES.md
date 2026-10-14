@@ -248,7 +248,7 @@ the proposed USA finished-bar arrangement.
 ### Open items (to review with Santos via Fatima)
 
 1. **Viability gate** — pending inspection of last year's bars in SF.
-2 — **Capacity** — can Santos hit 100 kg (~2,000 bars) in one equinox cycle?
+2. **Capacity** — can Santos hit 100 kg (~2,000 bars) in one equinox cycle?
 3. **Pricing** — per-cycle price for 81% / 50 g at 100 kg volume.
 4. **Foil** — confirm food-grade internal foil suitable for 50 g bars.
 5. **Lead time** — how far ahead must beans + mold arrive?
