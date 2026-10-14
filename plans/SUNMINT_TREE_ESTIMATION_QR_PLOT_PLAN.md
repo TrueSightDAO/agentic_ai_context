@@ -102,7 +102,10 @@ Mature cabruca is the opposite failure (50–150 trees/ha real). Hence the rule 
 - **D2** — Tree-count tiers for plots: accept `estimated` for all new plots, `counted` only when
   a full walk happens? (Recommend yes; matches credentialing-lineage.)
 - **D3** — QR↔plot: new bag QRs bind to plot + batch. Do we mint plot-level QR types
-  (QR CODE REGISTRATION events gain a `plot_id` field)?
+  (QR CODE REGISTRATION events gain a `plot_id` field)? → **RESOLVED 2026-10-14** (per-**pseudo-tree**
+  QRs); see **§8 Addendum** below and `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md`. `plot_id` is still
+  carried on the QR row (SCHEMA.md col AC `Linked Plot ID`), so plot-level association is retained as
+  the fallback.
 - **D4** — Legacy tree-QR owners: spatial-join each tree to nearest plot automatically, or
   governor-confirmed per farm? (Recommend auto-join + governor review list.)
 - **D5** — Farmer field media: enforce **Document/email upload** (WhatsApp/Telegram strip EXIF) —
@@ -133,3 +136,49 @@ Mature cabruca is the opposite failure (50–150 trees/ha real). Hence the rule 
 - `SUNMINT_BOUNDARY_SUBMISSION_PLAN.md` — the roadmap plot-first refines
 - Batch analysis artifacts (2026-09-07): /tmp/la_do_sitio_unique_trees_{strict,loose}.csv
 - `GROWTH_MODEL.md` — credentialing-lineage principle (nothing asserted until evidenced)
+- `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md` — the pseudo-tree design that answers D3 (2026-10-14)
+- U3 (live) — `expected_trees` + `expected_trees_source` on the `SunMint Plots` tab (col T), governor-editable
+
+---
+
+## 8. Addendum (2026-10-14) — D3 answered: pseudo-trees as the QR binding target
+
+**Why this addendum.** D3 asked whether NEW bag QRs bind to the **plot** or to individual trees. The
+2026-09-08 leaning was plot-level, *because per-tree photography doesn't scale* (§1). On 2026-10-14
+Governor Gary extended the model: bind a QR to an individual, QR-codable **pseudo tree** derived from
+the plot's density estimate — a **third option** between per-plot and per-real-tree. This closes D3;
+the full design lives in `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md`.
+
+**Resolution of D3 — the QR binding target is a pseudo tree.**
+
+- A **pseudo tree** is a non-photographed **placeholder slot** inside the plot polygon, minted from the
+  plot's `expected_trees`. It asserts only *"the estimator expects roughly N trees here."*
+- **id** `<plot_id>-pseudo-<N>`; **`record_type: pseudo-estimated`** (vs `actual-submission` for a real
+  `[TREE PLANTING EVENT]`; a future `cepotx-survey` for bulk-imported survey data).
+- **Generation** = this plan's density rule (§4b: `plot_hectares × 1,100`, ~3 m spacing) laid as a
+  **grid inside the polygon** (planted extent, not bbox), seeded stably by `plot_id`.
+- **Link event** = **reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern: QR row + tree row
+  + ledger leg), pointed at a pseudo-tree row — no parallel mechanism.
+- **Plot-level association is retained** as the fallback: the QR row still carries `plot_id`
+  (SCHEMA.md `Agroverse QR codes` col AC `Linked Plot ID`).
+- **Honest state** (`GROWTH_MODEL.md` §"How to extend this model" step 4 + anti-patterns): a
+  pseudo-bound bag's QR / landing page must read *"estimated planting slot, not yet individually
+  verified"*, and must **not** increment any public "trees planted" counter.
+- **Reconciliation** (real tree lands): nearest-pseudo match **within a radius**, **unique-match only**;
+  re-point the QR to the real tree id, **flip `record_type`** on the surviving link, and **retire (never
+  delete)** the pseudo row. **Ambiguous collisions (two real trees near one slot, or one real tree near
+  two slots) are never auto-resolved** — they go to a governor review list. Full rules in the
+  pseudo-tree plan §6 (decisions D11 match-radius, D12 ambiguity policy).
+
+**Effect on this plan's open decisions:**
+
+- **D3 → CLOSED** (2026-10-14): per-pseudo-tree QRs; `plot_id` retained as fallback.
+- **D6 → RESOLVED by U3 (2026-10-14)**: tree-count now lives on the `SunMint Plots` tab, col **T
+  `Expected Trees`** (governor-editable), emitted into `plots/index.geojson` as `expected_trees` +
+  `expected_trees_source`. W2 is therefore partly shipped; a separate `tree_count_tier` column remains
+  open.
+- **D4 (auto-join)** and **D7** remain open.
+
+**Sequencing:** the pseudo-tree + linking mechanism is **not** to be built until D2/D4/D5/D7/D8–D12 are
+ruled (§8 of the pseudo-tree plan). U3's simpler editable-count part already shipped (col T), so it may
+proceed independently — which is what Gary allowed.
