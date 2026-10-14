@@ -227,8 +227,8 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
 **Effect on this plan's open decisions:**
 
 - **D3 → CLOSED** (2026-10-14): per-pseudo-slot QRs; `plot_id` retained as fallback.
-- **D6 → RESOLVED by U3 (2026-10-14)**: tree-count now lives on the `SunMint Plots` tab, col **T
-  `Expected Trees`** (governor-editable), emitted into `plots/index.geojson` as `expected_trees` +
+- **D6 → RESOLVED by U3 (2026-10-14)**: tree-count now lives on the `SunMint Plots` tab, col **U
+  `Expected Trees`** (governor-editable; col corrected 2026-10-14 from a misplaced T — `tokenomics` #582), emitted into `plots/index.geojson` as `expected_trees` +
   `expected_trees_source`. W2 is partly shipped; a separate `tree_count_tier` column remains open.
 - **D4 → CLOSED (2026-10-14): ONE registry** — a pseudo tree is a `SunMint Tree Planting` row with
   blank K/L; **no separate tab**. **D7/D8 moot** (no separate row to reconcile). **D13 = (a) STANDS
