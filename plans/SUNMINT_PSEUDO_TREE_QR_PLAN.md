@@ -1,6 +1,13 @@
-# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v7)
+# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v8)
 
 > **Status:** design / roadmap only — **no code, no schema change, no build units started.**
+> **v8 (2026-10-14) — Contract A write-set pinned to EXISTING columns / the reverse-binding mechanism** (Gary):
+> (3) capacity exceeded → **REJECT** (never over-mint past `expected_trees`); (4) the **D9 plot-type gate**
+> (`restoration`/`enrichment`/`nursery` only) **applies to Contract A's create branch too**; (5) the binding
+> **reuses the existing `Linked Plot ID` (col AC)** — **no parallel field**. Verified against the real-link
+> path (`process_tree_planting_link.js` ~L1024–1037): binding is stored **on the tree row** (`Status=LINKED`,
+> `Linked QR`, `Linked At`); the QR row carries **no tree ref**. So Contract A's write-set is **existing
+> columns only** and a pseudo row is **the same code path** as a real row. See §5.1.
 > **v7 (2026-10-14) — Contract A is a HANDLER UPGRADE, not a new surface** (Gary): Contract A
 > (QR↔Plot link) is **not** a new DApp page or a new event — it **upgrades the EXISTING plot-link path**
 > (`process_tree_planting_link.js` ~L936–987; the *"link to a plot (no tree submission)"* picker already
@@ -267,14 +274,37 @@ The QR is printed/handed out now; a real tree later **promotes that same slot in
    - **(a)** look up the plot's **existing unlinked trees** (real **or** pseudo) — not yet QR-bound;
    - **(b)** if **≥1** exists → bind the QR to the **next available** one (**no new row**); **tiebreak =
      oldest first** (lowest `seq`), deterministic (Gary);
-   - **(c)** if **none** exists → check the plot's **`expected_trees` capacity**: if **under** the cap,
+   - **(c)** if **none** exists → check the plot's **`expected_trees` capacity**; if **under** the cap,
      **create** a new pseudo row (`PS-<plot_id>-<seq>`, blank K/L) then bind the QR; if **at/over** the
-     cap, **REJECT** and flag for governor review (same spirit as the estimation plan's over-subscribed
-     cross-check);
-4. write the QR row: **plot_id + slot id** (no lat/long/photo — none exist), set status
-   **`ASSIGNED_TO_PSEUDO_TREE`** (D5);
-5. book the ledger leg (literals per the settlement plan — caveat below);
-6. optional owner email.
+     cap, **REJECT** — **never over-mint past `expected_trees`** (Gary ruling #3; flag for governor review,
+     same spirit as the estimation plan's over-subscribed cross-check);
+4. write the QR row: **`Linked Plot ID` (col AC) = plot_id** (exactly as today), set status
+   **`ASSIGNED_TO_PSEUDO_TREE`** (pseudo case) — or **`ASSIGNED_TO_TREE`** unchanged if a **real** unlinked
+   tree was found/filled (D5); write the representative **plot image** (pseudo case only — the real case
+   already carries the tree's own photo, unchanged);
+5. write the **tree row** (real **or** pseudo, whichever was picked/created) — **exactly the three writes
+   the real-link path already does** (`Status := LINKED`, `Linked QR := <qr_code>`, `Linked At := now`);
+6. book the ledger leg (literals per the settlement plan — caveat below);
+7. optional owner email.
+
+**Binding is stored on the TREE row, not the QR row (Gary ruling #5, verified 2026-10-14).** Reading the
+real-link path (`process_tree_planting_link.js` ~L1024–1037) settles the wiring with **zero new columns
+anywhere**: the QR row gets `ASSIGNED_TO_TREE` + copied date/lat/long/photo, and the **`SunMint Tree
+Planting` row** gets **`Status=LINKED` + `Linked QR`=qr_code + `Linked At`=ISO** (`{TPL_SUNMINT_STATUS_COL,
+TPL_SUNMINT_LINKED_QR_COL, TPL_SUNMINT_LINKED_AT_COL}` = cols **M/R/S**). "Which tree is this QR bound to?"
+is answered by **scanning tree rows for a matching `Linked QR`** — the QR side stores **no** tree ref. A
+pseudo row **is** a `SunMint Tree Planting` row, so this is **literally the same code path — no branching**.
+
+**The find query ("next available unlinked tree for plot X").** Scan `SunMint Tree Planting` for
+**`plot_id == X AND Status != LINKED`** — this covers **real AND pseudo uniformly** (both live in the one
+tab — SD12/D4). `plot_id` is a header-resolved column on that tab (`build_tree_geojson.py`:
+`idx(header, "plot id", …)`; SCHEMA.md Trees schema: *"Plot ID … explicit override — wins when present"*).
+This **confirms the earlier call to drop a separate pseudo-tree tab**: one tab, one column set, the
+existing `Linked QR`/`Status` mechanism just works **unmodified** once pseudo rows exist in it.
+
+**Plot-type gate applies to the create branch too (Gary ruling #4).** Contract A may mint a pseudo row
+**only** on a `restoration`/`enrichment`/`nursery` plot (**D9**) — never `mature`/`research`/blank. The
+reuse branch (b) is unaffected (it mints nothing).
 
 **"Unlinked" is the exact test** for (a)/(b): pseudo (blank K/L) **and** no QR bound to it. The slot
 the QR binds to is then **frozen** (its id never renumbered — D8).
@@ -479,6 +509,7 @@ photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label
 | **SD17** | Two contracts (Gary 2026-10-14) | **A** QR↔Plot link = **HANDLER UPGRADE** to the existing plot-link path (input **QR + plot_id**, find-or-create bounded by `expected_trees`) — **no new event/page** **≠** **B** Pseudo promotion `[PSEUDO TREE PROMOTE EVENT]` (input **id + lat/long/photo**, in-place) — **genuinely new** (own page + CLI) |
 | **SD18** | DApp UI/UX (Gary 2026-10-14) | The one **new** page (B's `promote_pseudo_tree.html`) **reuses the shared DApp scaffolding** — `routes.js`, `menu.js`, `tdg_balance.js`, `scripts/dao_members_cache.js`, `verifySignatureOnLoad()`, governor/sentinel gate (§5.2.1). **No one-off styling.** A adds **no** page. |
 | **SD19** | Live gap fixed (Gary 2026-10-14) | The existing plot-link path reuses `ASSIGNED_TO_TREE`, so it would inflate the public tree/hectare counter (unlimited, no estimate distinction). **Contract A's status flip → `ASSIGNED_TO_PSEUDO_TREE` is the fix.** Verified **0 plot-level links to date** (latent) — §5.1 |
+| **SD20** | Contract A write-set (Gary 2026-10-14) | **Existing columns only, no parallel field.** QR row: `Linked Plot ID`=plot_id (col AC), status `ASSIGNED_TO_PSEUDO_TREE`\|`ASSIGNED_TO_TREE`, plot image (pseudo only). Tree row: `Status=LINKED`, `Linked QR`=qr_code, `Linked At`=now (**same 3 writes as the real path**, cols M/R/S). **Binding lives on the TREE side**; find-unlinked = `plot_id==X AND Status!=LINKED` over the one tree tab |
 | **SD15** | Unbound submission (D7/D8) | Fills the **first/any open slot in the plot** (lowest free `seq`); none open → stands alone. **No spatial matching** |
 
 ### Settled in PR1 (Gary, 2026-10-14)
@@ -490,7 +521,7 @@ photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label
 | **D5** | QR status when pseudo-bound | **new `ASSIGNED_TO_PSEUDO_TREE`** (SD13) |
 | **D6** | Events | **ONE new event** — `[PSEUDO TREE PROMOTE EVENT]` (Contract B); Contract A **upgrades the existing plot-link path** (no new event); **no reconcile event** (SD14/SD16) |
 | **D7/D8** | Reconciliation / freeze safety | **moot** — no separate row; unbound submission fills first/any open slot (SD15); allocator id never renumbered; trim only never-referenced tail |
-| **D9** | Gating — which `plot_type`s may mint | **`restoration`/`enrichment`/`nursery` only** — never `mature`/`research`/blank |
+| **D9** | Gating — which `plot_type`s may mint | **`restoration`/`enrichment`/`nursery` only** — never `mature`/`research`/blank. **Applies to Contract A's create branch too** (Gary ruling #4): the link handler may mint a pseudo row only on a gated plot type; the reuse branch mints nothing |
 | **D10** | Public "trees planted" counter | **NO** — pseudo-assigned QRs never count (honest state) |
 | **D13** | Real tree with no bound slot | **fills the first/any open slot** — supersedes the earlier "stands alone" recommendation (SD15) |
 
@@ -506,7 +537,7 @@ photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label
 | **PR1** | **this revision**: D1/D2/D4/D5/D6/D7/D8/D9/D10/D13 ruled; **two contracts** + UI/UX consistency; docs updated (v4→v6) | `agentic_ai_context` | **governor** |
 | **PR2** | pseudo-slot **allocator** (`PS-<plot_id>-<seq>` next-free + freeze-on-reference) + make `build_tree_geojson.py` skip blank-K/L rows / carry `plot_id` — **no QR coupling**. **NB:** the allocator already merged (`sunmint` #6) but uses `PSEUDO_INFIX = "-pseudo-"` + a FIFO docstring — **must be renamed to the `PS-` prefix (D1) and de-FIFO'd** to match this v4 plan | `sunmint` | SD1/SD11 |
 | **PR3** | mint pseudo rows (blank K/L, no photo, plot_id) into the target tab via `sunmint-ledger-manager` SA | `sunmint` | D2/D4 |
-| **PR4** | **Contract A** — **upgrade the EXISTING plot-link handler** (`process_tree_planting_link.js` ~L936–987): find-or-create bounded by `expected_trees` + **status flip → `ASSIGNED_TO_PSEUDO_TREE`** (**the live-gap fix**) + keep plot-image write. **No new event.** | `tokenomics` | D5/D10/SD19 |
+| **PR4** | **Contract A** — **upgrade the EXISTING plot-link handler** (`process_tree_planting_link.js` ~L936–987): find-or-create bounded by `expected_trees` (**reject past cap**; **D9 gate on the create branch**) + **status flip → `ASSIGNED_TO_PSEUDO_TREE`** (**the live-gap fix**) + keep plot-image write + tree-row reverse-binding (`Status=LINKED`/`Linked QR`/`Linked At`). **Existing columns only. No new event.** | `tokenomics` | D5/D9/D10/SD19/SD20 |
 | **PR4b** | **Contract B** — **NEW `[PSEUDO TREE PROMOTE EVENT]`** (§5.2) — writes **lat/long/photo in place**; QR side-effect when bound. Register in `events_catalog.json` | `tokenomics`, `dao_protocol` | SD6/SD16 |
 | **PR4c** | **Surfaces** — **Contract B only** (A adds none): DApp `promote_pseudo_tree.html` + CLI `promote_pseudo_tree.py` (§5.2.2), mirroring `link_tree_planting.*` + shared DApp scaffolding (§5.2.1) | `dapp_beta`, `dao_client`, `treasury-cache` | SD16/SD17/SD18 |
 | **PR5** | permissions action (`ASSIGNED_TO_PSEUDO_TREE` gate) for **B’s** new page | `dapp_beta`, `treasury-cache` | D5 |
