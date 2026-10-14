@@ -202,6 +202,28 @@ of a slot*, not an assertion that a located tree exists.
 `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md` — book the leg with the settlement plan's
 literals.
 
+### 5.1 QR owner experience — what the provenance page shows (Gary, 2026-10-14)
+
+When the owner scans a **pseudo-bound** bag, the provenance page (`qr/index.html`) renders the
+**plot's** evidence — because the individual tree is, honestly, not yet located:
+
+| QR state | Provenance page renders |
+|---|---|
+| **`ASSIGNED_TO_PSEUDO_TREE`** | The **plot's `media` photo** (from `plots/index.geojson` `media` prop — the *same field* `SUNMINT_PLOTS_REGISTRY.md` defines and the `/sunmint/plots/` gallery already renders) + the honest copy **"Earmarked for 1 of ~N expected trees on Plot `RM-P2` (spacing estimate). Position not yet verified."** — **no map pin** (there is no position). |
+| **`ASSIGNED_TO_TREE`** (after promotion, §6) | Falls back to the **real tree's own photo** + planting evidence (+ map pin, lat/long now known). |
+
+- **Field pinned:** the plot image comes from the `media` array on the plot record (component 1 of
+  `SUNMINT_PLOTS_REGISTRY.md` §Media; example `"media": ["images/RM-P1/img_7624.jpg"]`), served from
+  `sunmint/images/<plot_id>/`. **No new field.**
+- **The switch is automatic:** the page must **runtime-resolve** the linked row (it already fetches
+  `trees/index.geojson` and joins on `qr_code`) — when that row acquires K/L + photo it **is** real,
+  so the same page renders the real photo with **no re-link**. (Do **not** cache the pseudo image in
+  the manifest — the manifest re-seed drops hand-added fields; read the registry at runtime.)
+- **Honesty extends to the image** (SD5): the plot photo is real evidence of the *plot*, **not** of
+  *this tree* — the caption must say so. This is still **more** grounding than today's bare asset page.
+- **Implementation:** PR7 (below). The page **does not read the plots registry today**, so PR7 adds
+  that join.
+
 ---
 
 ## 6. Real → pseudo promotion = IN PLACE, SAME ROW (Gary's ruling, 2026-10-14)
@@ -268,12 +290,11 @@ surface that must render it. A pseudo-bound bag's page must read, plainly:
 **Consequence (→ D10):** a pseudo-assigned bag must **not** increment any public "trees planted"
 counter — counting a spacing estimate as planted is the false-precision claim honesty forbids.
 
-**Plot-image fallback (Gary, 2026-10-14 — approved in spirit).** While a bag is pseudo-bound and the
-slot has **no real photo**, the provenance page shows the **plot's** image (from the `sunmint`
-`plots/media.json` index / geojson `media` prop — 15/22 plots populated) under the precise caption
+**Plot-image fallback (Gary, 2026-10-14 — ruled).** While a bag is pseudo-bound and the slot has
+**no real photo**, the provenance page shows the **plot's** `media` image under the precise caption
 *"photo shows the plot where this tree is expected, not the individual tree."* Once real K/L + photo
-are written (§6), the page switches to the real tree's photo + map. This extends SD5 from the *label*
-to the *image*. (The QR page does **not** read the plots registry today — see PR7.)
+are written (§6) and the QR flips to `ASSIGNED_TO_TREE`, the page falls back to the **real tree's own
+photo** + map. Full render matrix in **§5.1**. This extends SD5 from the *label* to the *image*.
 
 ---
 
@@ -287,7 +308,7 @@ to the *image*. (The QR page does **not** read the plots registry today — see 
 | **SD2** | Pseudo id | **`PS-<plot_id>-<seq>`**, immutable — frozen on reference, **unchanged on promotion**; the `PS-` prefix is a provenance namespace, **not** a live state test |
 | **SD3** | Geometry | **NONE** — no grid, no computed positions (v1 grid dropped) |
 | **SD4** | Assign mechanism | **NEW `[PSEUDO TREE ASSIGN EVENT]`** (D6) — same atomic pattern as the real link, distinct event type |
-| **SD5** | Honesty | QR/landing page: **"Plot X — estimated slot #N. Position not yet verified."** |
+| **SD5** | Honesty | QR/landing page: **"Plot X — estimated slot #N. Position not yet verified."** + **plot `media` image** (not the tree's), caption *"plot, not the individual tree"* (§5.1) |
 | **SD6** | Promotion | **In place, same row** — real K/L written onto the pseudo row makes it real; **no second row, no reconcile event, no orphan** (supersedes v2 FIFO-claim) |
 | **SD7** | Ambiguity | **N/A** — in-place promotion removes matching entirely; nothing to disambiguate |
 | **SD8** | Row shape | same as `SunMint Tree Planting`, blank K/L, no photo, `plot_id` set |
