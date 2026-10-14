@@ -185,6 +185,13 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   **id is unchanged**; live pseudo-vs-real is decided by **blank K/L alone**. (This **supersedes** the
   earlier claim-on-arrival/FIFO idea: with in-place promotion there is **no matching step at all**,
   so no radius and no ambiguity handling.)
+- **Promotion event (Gary, 2026-10-14)** — the write happens via a **dedicated
+  `[PSEUDO TREE PROMOTE EVENT]`** (pseudo-tree plan §5.2), **not** the append-only `[TREE PLANTING
+  EVENT]` (which can only **append** rows, not edit one by id). It takes **plot_id (or pseudo id) +
+  lat/long + photo**, finds the matching **open** pseudo row (blank K/L + `plot_id`) and writes the
+  real values **in place**. **Two surfaces call the same contract**: a DApp page + a CLI module (both
+  mirror `link_tree_planting.*`). Still **no `[PSEUDO TREE RECONCILE EVENT]`** — we edit in place, we do
+  not create a new linked row.
 
 **Effect on this plan's open decisions:**
 
