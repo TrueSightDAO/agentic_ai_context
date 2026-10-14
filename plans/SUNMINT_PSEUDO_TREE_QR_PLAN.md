@@ -1,11 +1,14 @@
-# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v2)
+# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v3)
 
 > **Status:** design / roadmap only — **no code, no schema change, no build units started.**
-> **v2 (2026-10-14)** folds in **Gary's simplification ruling**: a pseudo tree is a
-> `SunMint Tree Planting`-shaped row with **blank Latitude/Longitude** and **no photo**, `plot_id` set,
-> **stable id**. This **replaces v1's `record_type` column** and **removes all computed geometry**
-> (no spacing grid). Reconciliation becomes **claim-on-arrival (FIFO within a plot)**, replacing v1's
-> spatial nearest-match. The cleared open decisions are in §8.
+> **v3 (2026-10-14)** — **Gary's in-place promotion ruling supersedes §2 and §6**: a pseudo tree
+> is a `SunMint Tree Planting` row with **blank Latitude/Longitude** + a `plot_id`; *"once it gets
+> assigned a lat and long it is no longer a pseudo tree"* — **same row, in place** (no second row,
+> no reconcile event, no orphan). **QR codes can be associated with pseudo trees.** v2's
+> claim-on-arrival §6 is **replaced**; v1's FIFO matching is gone entirely. See §6.
+> **v2 (2026-10-14)** folded in Gary's first simplification: pseudo = blank-K/L row, **no `record_type`
+> column**, **no computed geometry** (no spacing grid).
+> **Gary (2026-10-14, via Envoy): approved the overall direction / D1–D10 "in spirit."**
 > **Owner:** Gary Teh. **Drafted by:** Sophia Truesight, 2026-10-14, at Gary's request (via Envoy).
 > **Companion:** `plans/SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md` **§8 Addendum** answers **D3** with
 > this design.
@@ -36,10 +39,15 @@ Finer-grained than D3 (which leaned plot-level because per-tree photography does
    `SunMint Tree Planting`-shaped row with blank K/L, `plot_id` set, stable id.
 3. **Link QR → pseudo slot — reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern:
    QR row + a row + ledger leg), pointed at a pseudo slot instead of a real row.
-4. **Reconcile later (real tree lands) — CLAIM-ON-ARRIVAL (FIFO).** A real tree landing in plot X
-   **claims any unclaimed pseudo slot in that plot** (first-available). They are interchangeable
-   placeholders, so there is **no spatial matching, no match radius, and no ambiguous-collision
-   handling** — v1's D7/D11/D12 collapse away.
+4. **QR codes CAN be associated with pseudo trees** (Gary, 2026-10-14) — a pseudo slot is a
+   first-class link target, valid **before** any real tree exists (SD9).
+5. **A pseudo tree becomes REAL in place — the SAME row** (Gary, 2026-10-14): *"pseudo tree is just
+   one that has no lat and long but is associated with a plot. Once it gets assigned a lat and long it
+   is no longer a pseudo tree."* Promotion writes the real K/L (+ photo + planter) **onto the same
+   row** — there is **no second "real tree" row, no `[PSEUDO TREE RECONCILE EVENT]`, and no orphaned
+   pseudo row kept as duplicate history.** The signed event that writes K/L **is** the audit trail
+   (the ledger is current-state rows + an append-only event log). This **supersedes v2's
+   claim-on-arrival §6.**
 
 ### 0.2 Grounding (read — done)
 
@@ -64,10 +72,13 @@ A **real tree** is an actual `[TREE PLANTING EVENT]` submission — photo + plan
 Lifecycle:
 
 ```
-  available ──(QR bound)──▶ assigned ──(real tree arrives in same plot)──▶ reconciled ──▶ retired
+  available ──(QR bound)──▶ assigned ──(real K/L written onto THIS row)──▶ REAL (same row, §6)
       │
       └──(estimate shrinks)──▶ trimmed   (only the never-referenced tail — D8)
 ```
+
+> **There is no `reconciled` terminal state and no second row.** "Becomes real" is an **in-place
+> write** of K/L onto the row — see §6.
 
 **Design intent:** a pseudo tree asserts **nothing** except *"the estimator expects ~N trees here."*
 It has no position precisely because its position is unknown.
@@ -82,12 +93,15 @@ It has no position precisely because its position is unknown.
 |---|---|---|
 | Latitude/Longitude (`K`/`L`) | present | **blank** |
 | Photo | present | **absent** |
-| id | `Edgar_*` / numeric | **`<plot_id>-pseudo-<N>`** |
+| id | `Edgar_*` / numeric | **`<plot_id>-pseudo-<N>`** (immutable; **unchanged on promotion**) |
 | `plot_id` | derived / set | **set explicitly** |
 | tier | `counted`/`farmer-reported`/`sampled` | `spacing-estimate` |
 | public label | tree page | **"estimated planting slot, position not yet verified"** (§7) |
 
-**Rule:** a consumer branches on **blank K/L + the `pseudo-` id prefix.** NB: `build_tree_geojson.py`
+**Rule:** the **live** classifier is **blank K/L alone** — a promoted row keeps its id but is *real*
+because it now has K/L (§6). The **`-pseudo-` id infix** is only the **allocation namespace + a
+provenance marker** (a note that "this row entered as a spacing estimate"), **not** a live state test.
+NB: `build_tree_geojson.py`
 does **NOT** drop blank-coordinate rows today — it emits them with `geometry: null` (verified
 2026-10-14). So pseudo slots stay off the *map* only because their geometry is null; the builder must
 be taught to **skip blank-K/L rows from the tree index** (or tag them) in PR2, so placeholders never
@@ -130,9 +144,9 @@ renumbered), so a printed/handed-out QR keeps pointing at the same slot even if 
 | Latitude / Longitude | **blank** |
 | Photo | **blank** |
 | Tier | `spacing-estimate` / `farmer-reported` |
-| Status | `available` / `assigned` / `reconciled` / `trimmed` |
+| Status | `available` / `assigned` / `trimmed` — **no `reconciled`**; promotion is in place (§6) |
 | Assigned QR Code | FK → `Agroverse QR codes!A` |
-| Reconciled Tree ID | FK → the real tree, once it claims this slot |
+| *(no `Reconciled Tree ID` column)* | promotion writes K/L onto **this same row** — the row *is* the real tree (§6) |
 
 *(Written by the `sunmint-ledger-manager` SA — same principal as the `SunMint Plots` tab.)*
 
@@ -174,32 +188,49 @@ literals.
 
 ---
 
-## 6. Real → pseudo reconciliation = CLAIM-ON-ARRIVAL (Gary's ruling)
+## 6. Real → pseudo promotion = IN PLACE, SAME ROW (Gary's ruling, 2026-10-14)
 
-When a **real** `[TREE PLANTING EVENT]` (or a bulk `cepotx-survey` import) lands in plot X:
+Gary: *"pseudo tree is just one that has no lat and long but is associated with a plot. Once it gets
+assigned a lat and long it is no longer a pseudo tree."*
 
-1. **Claim the next unclaimed pseudo slot in that plot** — FIFO (`<plot_id>-pseudo-<lowest free N>`).
-   No distance test, no radius, no ambiguity — slots are interchangeable placeholders.
-2. Write the real tree's **real K/L + photo + planter** onto the **real tree row** (the pseudo row
-   stays blank-K/L).
-3. **Re-point the QR's link to the real tree id**: QR → `ASSIGNED_TO_TREE`, copy the real planting
-   evidence onto the QR row (hand off to existing real-link mechanics).
-4. **Retire, never delete:** the pseudo row → `Status := reconciled`, kept forever for audit; the
-   surviving link's identity is the real tree.
-5. Emit the auditable signed reconcile record.
+**A pseudo slot becomes a real tree by writing its Latitude/Longitude (plus photo + planter) onto the
+SAME row.** There is:
 
-**No-candidate case:** if a real tree lands in a plot with **no** unclaimed pseudo slot (all claimed,
-or none minted), it simply stands as its own `actual-submission` row — nothing to reconcile.
+- **no second "real tree" row** to create and cross-link;
+- **no `[PSEUDO TREE RECONCILE EVENT]`**;
+- **no orphaned pseudo row** retained as a duplicate copy of history.
 
-**Priority rule:** a real tree claims a slot **before** a fresh QR is assigned a new pseudo slot.
+**The signed planting event that writes K/L IS the audit trail.** This matches how the rest of the
+ledger works — **current-state rows + a full append-only event log** — rather than keeping a dead
+duplicate row. Nothing is deleted, so nothing about the pre-promotion state is lost: the row's prior
+state (blank K/L, `assigned`) is recoverable from the event log.
 
-**Invariant:** pseudo rows are **never deleted** and **never given a position**; reconciliation is a
-*slot claim* + a QR re-point, plus `reconciled` on the pseudo row.
+Steps when a real planting for a **QR-bound** pseudo slot is recorded:
 
-**Bulk `cepotx-survey`:** lands as real-shaped rows with K/L → claim slots by the same FIFO, at import
-time.
+1. Write **real K/L + photo + planter** onto the **existing pseudo row** (same `Tree ID`).
+2. The row now carries a position ⇒ it **is** a real tree. Its blank-K/L discriminator (§2) flips
+   by construction — **no relabel needed**, and its **id is unchanged** (§2 / SD2).
+3. Copy the planting evidence onto the **QR row** and set the QR status to the real-tree state
+   (`ASSIGNED_TO_TREE`) — the QR link itself is unchanged (it already pointed at this row).
+4. Emit the **signed planting event** that carries the K/L — that event is the promotion's audit record.
 
----
+**Id is immutable across promotion.** A promoted row **keeps `<plot_id>-pseudo-<N>`**; the `-pseudo-`
+infix is a **provenance marker**, not a live state test — **live pseudo-vs-real is decided by blank
+K/L alone** (§2).
+
+### 6.1 Open — a real tree arriving WITHOUT a bound pseudo slot → **D13**
+
+Gary's ruling covers the **QR-bound** path (a pseudo slot exists; a real planting promotes it in
+place). The independent case — a `[TREE PLANTING EVENT]` or `cepotx-survey` bulk import that arrives
+with its **own K/L and no associated pseudo slot** — is **not** covered. v2's FIFO "claim the next
+free slot" is **DROPPED** (it re-introduces exactly the slot-matching machinery Gary's model removes).
+
+- **(a) Stand alone (recommended):** it lands as a normal real tree row; pseudo slots are untouched.
+  No matching step; loses nothing.
+- **(b) Auto-claim the next free pseudo slot:** the import promotes that slot in place. Re-introduces
+  an allocation/match step with no clear owner.
+
+**→ D13 needs a ruling. Recommendation: (a).**
 
 ## 7. Honest state — the visible label (Gary's ruling)
 
@@ -214,6 +245,13 @@ surface that must render it. A pseudo-bound bag's page must read, plainly:
 **Consequence (→ D10):** a pseudo-assigned bag must **not** increment any public "trees planted"
 counter — counting a spacing estimate as planted is the false-precision claim honesty forbids.
 
+**Plot-image fallback (Gary, 2026-10-14 — approved in spirit).** While a bag is pseudo-bound and the
+slot has **no real photo**, the provenance page shows the **plot's** image (from the `sunmint`
+`plots/media.json` index / geojson `media` prop — 15/22 plots populated) under the precise caption
+*"photo shows the plot where this tree is expected, not the individual tree."* Once real K/L + photo
+are written (§6), the page switches to the real tree's photo + map. This extends SD5 from the *label*
+to the *image*. (The QR page does **not** read the plots registry today — see PR7.)
+
 ---
 
 ## 8. Decisions — settled vs open
@@ -223,16 +261,17 @@ counter — counting a spacing estimate as planted is the false-precision claim 
 | # | Decision | Ruling |
 |---|---|---|
 | **SD1** | Distinction marker | **blank Latitude/Longitude** (+ `pseudo-` id prefix). **No `record_type` column** |
-| **SD2** | Pseudo id | **`<plot_id>-pseudo-<N>`**, stable; referenced ids frozen |
+| **SD2** | Pseudo id | **`<plot_id>-pseudo-<N>`**, immutable — frozen on reference, **unchanged on promotion**; the `-pseudo-` infix is a provenance namespace, **not** a live state test |
 | **SD3** | Geometry | **NONE** — no grid, no computed positions (v1 grid dropped) |
 | **SD4** | Link mechanism | **Reuse/extend `[TREE PLANTING LINK EVENT]`** — same atomic pattern |
 | **SD5** | Honesty | QR/landing page: **"Plot X — estimated slot #N. Position not yet verified."** |
-| **SD6** | Reconcile | **Claim-on-arrival (FIFO within plot)** → re-point QR to real tree; retire pseudo row |
-| **SD7** | Ambiguity | **N/A** — interchangeable slots; nothing to disambiguate |
+| **SD6** | Promotion | **In place, same row** — real K/L written onto the pseudo row makes it real; **no second row, no reconcile event, no orphan** (supersedes v2 FIFO-claim) |
+| **SD7** | Ambiguity | **N/A** — in-place promotion removes matching entirely; nothing to disambiguate |
 | **SD8** | Row shape | same as `SunMint Tree Planting`, blank K/L, no photo, `plot_id` set |
 | **SD9** | Link timing | **A QR MAY be bound to a pseudo slot BEFORE any real tree exists** (Gary, 2026-10-14) — the slot is created on demand to receive the binding, not awaited from a submission |
+| **SD10** | Promotion | A pseudo row becomes real by gaining K/L **on itself**; the **signed planting event is the audit trail** — **no duplicate row** (Gary, 2026-10-14) |
 
-### Still open — NEED a ruling
+### Blessed in spirit (Gary, 2026-10-14) — refinements still flagged
 
 | # | Decision | Options | **Recommendation** |
 |---|---|---|---|
@@ -242,8 +281,9 @@ counter — counting a spacing estimate as planted is the false-precision claim 
 | **D8** | Estimate shrink safety | — | **freeze referenced slots; trim only the never-referenced tail** |
 | **D9** | Gating — which `plot_type`s may mint | all vs subset | **`restoration`/`enrichment`/`nursery` only** — never `mature`/`research`/blank |
 | **D10** | Public "trees planted" counter | count pseudo-assigned? | **NO** (honest state) |
+| **D13** | Real tree arriving with **no** bound pseudo slot (bulk / independent) | (a) stands alone (b) auto-claims a free slot | **(a)** — no matching; see §6.1 |
 
-*(v1's D7/D11/D12 — reconcile trigger, match radius, ambiguity — are **CLOSED** by claim-on-arrival.)*
+*(v1's D7/D11/D12 — reconcile trigger, match radius, ambiguity — are **CLOSED**: with in-place promotion there is **no matching step at all**.)*
 
 ---
 
@@ -257,7 +297,7 @@ counter — counting a spacing estimate as planted is the false-precision claim 
 | **PR3** | mint pseudo rows (blank K/L, no photo, plot_id) into the target tab via `sunmint-ledger-manager` SA | `sunmint` | D2/D4 |
 | **PR4** | **Extend `[TREE PLANTING LINK EVENT]`** to accept a pseudo target + `dao_client` field; book leg per settlement literals | `tokenomics`, `dao_protocol` | D5 |
 | **PR5** | DApp surface for binding a QR to a pseudo slot + permissions action | `dapp_beta`, `treasury-cache` | D5 |
-| **PR6** | **Claim-on-arrival** reconciliation (FIFO claim + QR re-point) + `cepotx-survey` bulk path | `tokenomics`, `dao_protocol` | SD6 |
+| **PR6** | **In-place promotion** (write K/L onto the pseudo row) + `cepotx-survey` bulk path | `tokenomics`, `dao_protocol` | SD6 |
 | **PR7** | Render pseudo slots + assigned state + the **honest-state label** on the tree page, `sunmint.html`, `/sunmint/plots/` | `truesight_me_beta` | SD5 |
 | **PR8** | Live UAT on beta → promotion (always-stop) | — | **governor** |
 
