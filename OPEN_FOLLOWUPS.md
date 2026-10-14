@@ -4345,6 +4345,15 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Blocker.** None technical, and **parity itself is already unblocked** (shipped via path (i), see STATUS above). The residual fix is a plain `truesight_autopilot` code PR (no GAS) — *Preferred fix*. Fallback would need a `tokenomics` GAS change + deploy + governor GO.
 
+### No first-class `[CURRENCY RETIREMENT EVENT]` — retiring a currency label is a hand migration + conversion pairs
+**Filed 2026-10-14 (Gary, Discord `#currency-conversion`). Owner: unclaimed. Medium — new event type (GAS handler + DApp form + docs).**
+
+**Context.** On 2026-10-14 the mislabeled `BRL` currency was retired in favour of `Brazilian Reis` (same real currency; `BRL` was a duplicate label). There is **no canonical retirement event**: `search_context("retire currency")` → 0 hits, and `[CURRENCY DEFINITION EVENT]` can only *define* a currency, never remove one. The retirement was therefore performed by hand as a 3-step data op: (1) migrate each `BRL` balance 1:1 to `Brazilian Reis` for the same manager via `[CURRENCY CONVERSION EVENT]` pairs (Paloma BRL 220→220; the negative leg `pk-qkejKJJW3IAD` BRL −90 required the direction *swapped*, since the processor only accepts positive source/target and always writes `−source/+target`); (2) delete the `BRL` row from the `Currencies` tab; (3) republish `currencies.json` (or wait for the daily 06:45 UTC cron) so the picker stops offering `BRL`.
+
+**Why it matters.** Deleting a `Currencies` row is destructive and carries no audit trail or guard, and nothing prevents a QR / QR-code-batch / product from still referencing a retired label — or a future re-definition silently resurrecting it. The manual route also risks a sign error on negative balances (as happened above) and a stale public `currencies.json`.
+
+**Suggested scope.** Add a first-class `[CURRENCY RETIREMENT EVENT]` (or a `?action=` lever on the existing currency-definition handler): payload `{ Retire Currency, Successor Currency (optional), Reason }`; handler (a) validates the target has no non-zero balances **or** migrates them to the successor via the existing conversion path, (b) renames the `Currencies` col-A row to `<name> [DEPRECATED <date> — <reason>]` (or removes it), (c) sweeps for live references to the label, (d) triggers a `currencies.json` republish. Document the event in Edgar's event catalog so intent→event mapping resolves "retire currency / deprecate currency". **Interim convention until the event exists:** do the 3-step op above, and keep the `Currencies` row as a `[DEPRECATED …]` tombstone rather than hard-deleting it, unless a governor explicitly asks for deletion.
+
 ---
 
 ## Recently shipped
