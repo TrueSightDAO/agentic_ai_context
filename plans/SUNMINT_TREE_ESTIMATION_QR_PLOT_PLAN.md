@@ -231,10 +231,11 @@ option** between per-plot and per-real-tree. This closes D3; the full design liv
   `Expected Trees`** (governor-editable), emitted into `plots/index.geojson` as `expected_trees` +
   `expected_trees_source`. W2 is partly shipped; a separate `tree_count_tier` column remains open.
 - **D4 → CLOSED (2026-10-14): ONE registry** — a pseudo tree is a `SunMint Tree Planting` row with
-  blank K/L; **no separate tab**. **D7/D8 moot** (no separate row to reconcile). **D13 → resolved**:
-  a real submission with no bound slot fills the **first/any open slot in its plot**. All D-decisions
-  now settled — pseudo-tree plan §8 (v4).
+  blank K/L; **no separate tab**. **D7/D8 moot** (no separate row to reconcile). **D13 = (a) STANDS
+  ALONE, no matching** (Envoy 2026-10-14): a real submission with **no bound slot** is an ordinary real
+  row — it fills/claims **no** slot (only the **QR-bound** path writes onto a slot). All D-decisions
+  now settled — pseudo-tree plan §8 (v10).
 
 **Sequencing:** **all D-decisions are now ruled** (Gary 2026-10-14, via Envoy) — see the pseudo-tree
-plan §8 (v4). Build units (PR2–PR7) may proceed. U3's simpler editable-count part already shipped
+plan §8 (v10). Build units (PR2–PR7) may proceed. U3's simpler editable-count part already shipped
 (col T) and proceeds independently.

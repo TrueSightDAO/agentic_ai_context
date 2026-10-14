@@ -1,6 +1,11 @@
-# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v9)
+# SunMint: Pseudo-Tree Slots + QR Assignment — Design & Roadmap (v10)
 
 > **Status:** design / roadmap only — **no code, no schema change, no build units started.**
+> **v10 (2026-10-14) — D13 = (a): an unbound real tree STANDS ALONE, no matching** (Envoy ruling;
+> reverses the earlier "fills the first/any open slot"). Only the **QR-bound** path writes onto a
+> pseudo slot; a real submission with **no** bound slot is an ordinary real row — it claims no slot.
+> §6.1 / D13 / SD15; **PR6 descoped**. Supersedes the v4 banner note (*"an unbound submission fills
+> the first/any open slot"*).
 > **v9 (2026-10-14) — three-tier render logic recorded** (Gary, approved): the provenance image is
 > chosen by **what evidence actually exists** — real tree photo (T1) → plot photo *with the caveat
 > caption* (T2) → **no image, honest text only** (T3). A bare/best-guess photo is **never** shown.
@@ -447,21 +452,23 @@ Steps when a real planting for a **QR-bound** pseudo slot is recorded:
 prefix is a **provenance marker**, not a live state test — **live pseudo-vs-real is decided by blank
 K/L alone** (§2).
 
-### 6.1 A real submission with no bound slot → fills the first/any open slot (D7/D8, Gary)
+### 6.1 A real submission with no bound slot → STANDS ALONE (D13=(a), Envoy 2026-10-14 — reverses the earlier fill rule)
 
-Gary: *"when a real submission's lat/long lands inside a plot that has multiple open (unassigned) pseudo
-slots, which slot does it fill? (Probably doesn't matter since they're interchangeable pre-fill —
-first/any open slot in that plot.)"*
+**Ruling (D13=(a), Envoy 2026-10-14):** a real tree that arrives with **no QR bound to a slot**
+(e.g. a bulk `cepotx-survey`, or a farmer submission with no QR) simply **stands alone** as an
+ordinary real `SunMint Tree Planting` row. It **does not** fill, claim, or match any pseudo slot.
 
-- **QR-bound path:** the real submission fills **the slot its QR is bound to** (the assigned one) —
-  unambiguous, in place.
-- **No bound slot** (bulk `cepotx-survey`, or a farmer submission with no QR): it fills the **first/any
-  open (unassigned) slot in its plot** — lowest free `seq`; slots are interchangeable, so the choice
-  carries no meaning. **No spatial matching, no radius.**
-- **No open slot** (all assigned, or none minted): it **stands alone** as a normal real tree row.
+- **QR-bound path:** the real submission promotes **the slot its QR is bound to** (the assigned one)
+  — in place, same row (§6). This is the **only** path that ever writes onto a pseudo slot.
+- **No bound slot:** the tree **stands alone** — a normal real row. Nothing claims a slot, and no
+  slot is consumed. *(This reverses the earlier "fills the first/any open slot" recommendation.)*
 
-**D13 is thereby resolved** (Gary's D7/D8 answer): an unbound real submission fills the first/any open
-slot — not "stands alone" as previously recommended.
+**Why (a logical consequence of the same-row principle, not a new axis).** A pseudo slot exists
+**only because a QR was linked to the plot** (Contract A); a real submission then writes its K/L onto
+that bound row. A real tree arriving with **no QR attached to any slot has nothing to claim and
+nothing claiming it** — reintroducing FIFO/claim-on-arrival matching here would bring back exactly the
+machinery the same-row model was designed to remove. Envoy ruled (a): reversible, docs-only,
+consistent with everything already approved.
 
 **D7/D8 are otherwise moot:** there is no separate row to reconcile and no slot to "freeze" for safety
 — the row *is* the tree, promoted in place. The only survivor is the **allocator's stability rule**:
@@ -529,7 +536,7 @@ K/L; T2 vs T3 = whether the plot's `media` is non-empty), so promotion flips the
 | **SD18** | DApp UI/UX (Gary 2026-10-14) | The one **new** page (B's `promote_pseudo_tree.html`) **reuses the shared DApp scaffolding** — `routes.js`, `menu.js`, `tdg_balance.js`, `scripts/dao_members_cache.js`, `verifySignatureOnLoad()`, governor/sentinel gate (§5.2.1). **No one-off styling.** A adds **no** page. |
 | **SD19** | Live gap fixed (Gary 2026-10-14) | The existing plot-link path reuses `ASSIGNED_TO_TREE`, so it would inflate the public tree/hectare counter (unlimited, no estimate distinction). **Contract A's status flip → `ASSIGNED_TO_PSEUDO_TREE` is the fix.** Verified **0 plot-level links to date** (latent) — §5.1 |
 | **SD20** | Contract A write-set (Gary 2026-10-14) | **Existing columns only, no parallel field.** QR row: `Linked Plot ID`=plot_id (col AC), status `ASSIGNED_TO_PSEUDO_TREE`\|`ASSIGNED_TO_TREE`, plot image (pseudo only). Tree row: `Status=LINKED`, `Linked QR`=qr_code, `Linked At`=now (**same 3 writes as the real path**, cols M/R/S). **Binding lives on the TREE side**; find-unlinked = `plot_id==X AND Status!=LINKED` over the one tree tab |
-| **SD15** | Unbound submission (D7/D8) | Fills the **first/any open slot in the plot** (lowest free `seq`); none open → stands alone. **No spatial matching** |
+| **SD15** | Unbound submission (D13=(a), Envoy 2026-10-14) | A real tree with **no QR bound to a slot STANDS ALONE** (a normal real row) — does **not** fill/claim/match any pseudo slot. Reverses the earlier first/any-fill / claim-on-arrival rule. **No spatial matching, no FIFO, no matching at all** |
 
 ### Settled in PR1 (Gary, 2026-10-14)
 | # | Decision | Ruling |
@@ -539,10 +546,10 @@ K/L; T2 vs T3 = whether the plot's `media` is non-empty), so promotion flips the
 | **D4** | Where pseudo rows live | **ONE registry** — `SunMint Tree Planting`, blank K/L (SD12) |
 | **D5** | QR status when pseudo-bound | **new `ASSIGNED_TO_PSEUDO_TREE`** (SD13) |
 | **D6** | Events | **ONE new event** — `[PSEUDO TREE PROMOTE EVENT]` (Contract B); Contract A **upgrades the existing plot-link path** (no new event); **no reconcile event** (SD14/SD16) |
-| **D7/D8** | Reconciliation / freeze safety | **moot** — no separate row; unbound submission fills first/any open slot (SD15); allocator id never renumbered; trim only never-referenced tail |
+| **D7/D8** | Reconciliation / freeze safety | **moot** — no separate row to reconcile. An unbound submission **stands alone** (SD15, D13=(a)); allocator id never renumbered; trim only never-referenced tail |
 | **D9** | Gating — which `plot_type`s may mint | **`restoration`/`enrichment`/`nursery` only** — never `mature`/`research`/blank. **Applies to Contract A's create branch too** (Gary ruling #4): the link handler may mint a pseudo row only on a gated plot type; the reuse branch mints nothing |
 | **D10** | Public "trees planted" counter | **NO** — pseudo-assigned QRs never count (honest state) |
-| **D13** | Real tree with no bound slot | **fills the first/any open slot** — supersedes the earlier "stands alone" recommendation (SD15) |
+| **D13** | Real tree with no bound slot | **STANDS ALONE — no matching** (a normal real row; fills/claims no slot). Envoy ruling 2026-10-14 (a): a direct consequence of the same-row principle — only the QR-bound path writes onto a slot. **Restores the earlier "stands alone" call** (SD15) |
 
 *(v1's D7/D11/D12 — reconcile trigger, match radius, ambiguity — **CLOSED**: with in-place promotion there is **no matching step at all**.)*
 
@@ -560,7 +567,7 @@ K/L; T2 vs T3 = whether the plot's `media` is non-empty), so promotion flips the
 | **PR4b** | **Contract B** — **NEW `[PSEUDO TREE PROMOTE EVENT]`** (§5.2) — writes **lat/long/photo in place**; QR side-effect when bound. Register in `events_catalog.json` | `tokenomics`, `dao_protocol` | SD6/SD16 |
 | **PR4c** | **Surfaces** — **Contract B only** (A adds none): DApp `promote_pseudo_tree.html` + CLI `promote_pseudo_tree.py` (§5.2.2), mirroring `link_tree_planting.*` + shared DApp scaffolding (§5.2.1) | `dapp_beta`, `dao_client`, `treasury-cache` | SD16/SD17/SD18 |
 | **PR5** | permissions action (`ASSIGNED_TO_PSEUDO_TREE` gate) for **B’s** new page | `dapp_beta`, `treasury-cache` | D5 |
-| **PR6** | Unbound-submission fill (§6.1) — a bulk `cepotx-survey`/farmer submission with **no** QR lands on the first/any open slot (promotion is now PR4b's event) | `tokenomics`, `dao_protocol` | SD15 |
+| **PR6** | ~~Unbound-submission fill~~ **DESCOPED by D13=(a)** (Envoy 2026-10-14): a real submission with **no** QR **stands alone** — there is no fill step to build (§6.1) | — | SD15/D13 |
 | **PR7** | Render pseudo slots + assigned state + the **honest-state label** on the tree page, `sunmint.html`, `/sunmint/plots/`, `qr/index.html` — per render matrix **§5.1.1** | `truesight_me_beta` | SD5 |
 | **PR8** | Live UAT on beta → promotion (always-stop) | — | **governor** |
 
