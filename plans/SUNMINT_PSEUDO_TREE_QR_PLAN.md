@@ -230,8 +230,8 @@ Steps when a real planting for a **QR-bound** pseudo slot is recorded:
    (`ASSIGNED_TO_TREE`) — the QR link itself is unchanged (it already pointed at this row).
 4. Emit the **signed planting event** that carries the K/L — that event is the promotion's audit record.
 
-**Id is immutable across promotion.** A promoted row **keeps `PS-<plot_id>-<seq>`**; the `-pseudo-`
-infix is a **provenance marker**, not a live state test — **live pseudo-vs-real is decided by blank
+**Id is immutable across promotion.** A promoted row **keeps `PS-<plot_id>-<seq>`**; the `PS-`
+prefix is a **provenance marker**, not a live state test — **live pseudo-vs-real is decided by blank
 K/L alone** (§2).
 
 ### 6.1 A real submission with no bound slot → fills the first/any open slot (D7/D8, Gary)
