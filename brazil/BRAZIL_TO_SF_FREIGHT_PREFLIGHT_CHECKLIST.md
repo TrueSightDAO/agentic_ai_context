@@ -733,6 +733,46 @@ Mechanism: pallets moved via a normal `[INVENTORY MOVEMENT]` (Matheus → Kirste
 4. A governor's plain-English manifest count ("22 boxes") and the ledger's SKU-level names (`Reinforced Cardboard Boxes - Size 40x30x30` vs `Large Cardboard Boxes`, etc.) are two different vocabularies with no stored mapping between them — ambiguous cases should be confirmed against the actual held SKUs rather than guessed, and resolved mappings are worth recording for the next shipment.
 
 
+#### 5.16 Reusable SOP — cross-ledger freight / investment settlement 🔁 NEW 2026-10-15
+
+> **Why:** §5.1–§5.15 settled one shipment (AWB `047-3175-3223`). This subsection extracts the **repeatable ledger-settlement procedure** so the *next* freight or cross-ledger investment event is booked the same way instead of re-derived. The **generic** rule (not freight-specific) is cross-linked from `LEDGER_CONVERSION_AND_REPACKAGING.md`.
+
+**When it applies.** One external cost — freight, packing, tooling, a shared service — must be **borne by more than one ledger** (AGL8, AGL13, MAIN…), and is often **financed** by a third (AGL15). Settle in **four steps, in this order**.
+
+**Step 1 — Allocate by the real driver, never evenly.** Each ledger's share = total cost × that ledger's fraction of the **usage driver** the cost scales with (shipped **kg**, units, CBM). Take the driver from a source of truth you can cite (NF-e weights, packing list, AWB) and **state basis + source** in the booking description so the next reader can re-derive it. Shares must **sum to the total**.
+- *Worked example (Black King):* total air freight **$4,896.33** (= $4,866.33 + $30 admin), split **by shipped kg incl. Pará samples** → MAIN **45.6063% = $2,233.03** · AGL8 **$710.00** · AGL13 **$1,953.30**. Check: 710.00 + 1,953.30 + 2,233.03 = **$4,896.33** ✅
+
+**Step 2 — Cash waterfall: self-fund first; a financier injects only the shortfall.** Net each ledger's allocated share against **cash it already holds**. The ledger spends its **own** cash first; a financier (AGL15) injects **only the gap** (= share − cash, floored at 0) — never the full share, and never “for symmetry” when cash already covers it.
+- *Worked example:* AGL8 owed $710 but held **$564.946** → AGL15 financed the **$145.054** shortfall. AGL13 owed $1,953.30 but held **no USD cash** → AGL15 financed the **full $1,953.30**. AGL15 total injection = **$2,098.354** (= 145.054 + 1,953.30).
+
+**Step 3 — Book the expense to the SUBSTRATE only.** Append signed rows to the **substrate** tab (`offchain transactions` on Main; `Transactions` on an AGL). **Never write to a tab whose cells are array-formula spill output** — `Balance`, `offchain asset location` — a direct write into the spill range **blocks the formula and breaks the whole tab to `#REF!`** (the §5.15 incident class). The view re-spills on append.
+- Confirm substrate vs view **before** writing: read the cell with `value_render_option='FORMULA'`; if it holds `=…` / a QUERY spill it is a **view**.
+- **Append-only.** Corrections are **new rows** (sanctioned reversal + re-entry), never edits/deletes of existing rows.
+- Rule: `sops/REPACKAGING_SETTLEMENT_SOP.md`; enforcement `agroverse-inventory#18` (`appendOffchainSubstrateRow_`).
+
+**Step 4 — Entity labeling on a cross-ledger injection (Equity ≠ Assets).** When ledger X receives a capital injection **from** financier F, book two rows and label `Entity` **differently**:
+
+| Row | Type | `Entity` = | Meaning |
+|---|---|---|---|
+| Injection | **Equity** | **F (the financier)** | F's claim on X |
+| Injection | **Assets** | **the human custodian** (e.g. Gary Teh) | the cash that physically arrived |
+| Expense (share) | **Assets** | **the human custodian** (e.g. Gary Teh) | the outgoing payment |
+
+**Never put the same name on the Equity and Assets legs** — the Equity leg names the *counterparty*; the Assets leg names the *human who holds/moves the cash*. Both saying `AGL15` counts AGL15 twice (as owner-claim **and** as if AGL15 were a person holding cash).
+- *Worked example (the bug just fixed):* AGL8/AGL13's original injection legs had **Entity=`AGL15` on BOTH** the Equity and Assets rows. Corrected append-only (reversal + re-entry) to **Equity → `AGL15`** (financier), **Assets → `Gary Teh`** (custodian).
+- Invariant: **Σ per-ledger expense shares = total cost**, and the financier's **debit = Σ shortfalls** (AGL15 $2,098.354 ≡ AGL8 $145.054 + AGL13 $1,953.30 ✅).
+
+**Pre-flight (run before ANY write):**
+- [ ] Driver + source identified; shares computed **by driver** and **sum to the total**.
+- [ ] Each ledger's existing cash read; shortfall = max(0, share − cash); financier injects **only shortfalls**.
+- [ ] Substrate vs view confirmed (`FORMULA` render) — **substrate only**.
+- [ ] Equity `Entity` = **financier**; Assets `Entity` = **human custodian** — **not** the same name.
+- [ ] Next empty row asserted; **duplicate guard** (search the substrate for an existing row of the same intent).
+- [ ] Description carries **basis · source · AWB/ref · date**.
+- [ ] Post-write: recompute the view; verify the Σ-expense and debit≡shortfall invariants.
+
+---
+
 ## 6. Hard rules & approval gates (checklist)
 
 - [ ] **No NF-e issuance without Gary's explicit approval.**
@@ -844,6 +884,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 
 | Date | Change |
 |------|--------|
+| 2026-10-15 | **§5.16 added — reusable cross-ledger freight/investment settlement SOP** (allocate by driver · cash-waterfall shortfall financing · substrate-only booking · Equity=financier / Assets=custodian entity labeling). Generalizes the Black King settlement so the next event reuses it; generic rule cross-linked from `LEDGER_CONVERSION_AND_REPACKAGING.md`. |
 | 2026-09-21 | Full rewrite into end-to-end operator runbook (agent + Envoy contract). Corrected stale Phase 0 (e-CNPJ now works; CNAE path superseded by Junta/Prefeitura chain; Inapto has DARF mechanics). Added: municipal-licence chain, Gary NF-e approval gate, BRL/PTAX rule, Sebrae master-data sequence, treasury/audit rule, Saymon & Jussileide contacts, Phases 0–8, failure modes. Source notes: `brazil/sources/2026-09-21_black_king_accountant_thread_notes.md`. |
 | 2026-09-21 | **Rev 12 regenerated + merged** (PR #1333): commercial invoice + packing list re-expressed in the NCM-mandated export units (1801/1803/1804/1805 → TON; 1802/1806 → KG), USD/BRL values unchanged; reproducible generator `scripts/build_black_king_export_docs.py` added. §5.1 current-revision pointer moved to Rev 12; Rev 11 marked superseded. |
 | 2026-09-21 | Added **Appendix E** (NCM → export uTrib norm table, supplied by Gary) + **§5.1a Rev-12 unit remap** (1801/1803/1804 → TON); §1/§8 NF-e rows now point at the concrete fix. |

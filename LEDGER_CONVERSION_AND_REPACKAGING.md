@@ -76,6 +76,19 @@ Repackaging emits **new `Currency` lines**. To make them immediately QR-able, de
 
 ---
 
+## Cross-ledger cost allocation (generic — freight, packing, shared cost)
+
+**For AI assistants:** read this whenever one external cost (freight, packing, tooling, a shared service) must be **borne by more than one ledger**, or is **financed** by a third party. This is the **generic** rule; the freight-specific worked example and the full pre-flight checklist are in `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` §5.16.
+
+1. **Allocate by the real driver, never evenly.** Each ledger's share = cost × that ledger's fraction of the usage driver (shipped **kg**, units, CBM). Cite the source of truth; shares must **sum to the total**.
+2. **Cash waterfall.** A ledger self-funds from **cash it already holds**; a financier injects **only the shortfall** (= share − cash, floored at 0) — never the full share, and never “for symmetry” when cash already covers it.
+3. **Book to the substrate, never the view.** Append signed rows to the **substrate** tab (`offchain transactions` on Main; `Transactions` on an AGL) — **never** to `offchain asset location`, `off chain asset balance`, or `Balance`, which are array-formula **views**. A write into a spill range breaks the tab to `#REF!` (see the Brazil checklist §5.15 incident; enforced by `agroverse-inventory#18`).
+4. **Entity labeling on a cross-ledger injection.** The **Equity** row's `Entity` = the **financier**; the **Assets** row's `Entity` = the **human custodian** (the person who holds/moves the cash). **Never the same name on both legs.**
+
+When the allocated cost lands **in inventory**, fold it into unit cost by the same driver: `unit_cost = (Σ input cost + allocated shipping) / quantity` — precedent forms `=(C7+C3)/C2` (AGL7/AGL10, hardcoded) or `=Transactions!$D$5/…` (AGL6, ledger-linked).
+
+---
+
 ## Repackaging planner flow (`dapp/repackaging_planner.html`)
 
 **Single-sitting, Edgar-routed submit** — same shape as every other DApp page.
