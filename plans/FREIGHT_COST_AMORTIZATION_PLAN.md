@@ -19,7 +19,9 @@ the ledger that holds the goods, not all on the Main Ledger.
   $4,866.33 … To Sea Coast Logistics … From EVERYDAY CHECKING …3099 … For Invoice Number 1026 08"*,
   Confirmation **OW00007548893768**, submitted **2026-10-12 10:54 PT**, deliver-by 2026-10-13.
   (**SUPERSEDES** the earlier $4,987.39 figure — see §3-A, now closed.)
-- **Wire fee:** **USD 30.00** — total debit from the account **$4,896.33** (see §3-G).
+- **Wire fee:** **USD 30.00** — **folded into the amortized pool** (governor ruling, 2026-10-15) ⇒
+  **amortized base = USD 4,896.33** (invoice 4,866.33 + fee 30.00), the total debited. Treated
+  as a **pooled landed cost** (weight-allocated). **§3-G CLOSED.**
 - **Funded from:** the **USD balance under Gary Teh's management** — the managed USD held on
   **Main Ledger** and **AGL15** (the wire drew on Wells Fargo Everyday Checking …3099, the
   operating account that holds that managed USD). ⇒ **direct debit against the managed USD**,
@@ -31,14 +33,14 @@ the ledger that holds the goods, not all on the Main Ledger.
 
 | Ledger | Currency lines shipped | kg | Share | Amortized |
 |---|---|---|---|---|
-| **Main Ledger** | 8oz Kraft Pouch ×129 · Mass Bar ×37 · Nibs ×80 · Butter ×5 | 132.757 | 44.69% | **$2,174.80** |
-| **AGL8** | Almonds ×10 · Ceremonial Kraft ×169 | 43.800 | 14.74% | **$717.52** |
-| **AGL13** | Nibs Santos ×99.5 · Tea Santos ×21 | 120.500 | 40.56% | **$1,974.01** |
-| | | **297.057** | 100% | **$4,866.33** |
+| **Main Ledger** | 8oz Kraft Pouch ×129 · Mass Bar ×37 · Nibs ×80 · Butter ×5 | 132.757 | 44.6907% | **$2,188.21** |
+| **AGL8** | Almonds ×10 · Ceremonial Kraft ×169 | 43.800 | 14.7446% | **$721.95** |
+| **AGL13** | Nibs Santos ×99.5 · Tea Santos ×21 | 120.500 | 40.5646% | **$1,986.17** |
+| | | **297.057** | 100% | **$4,896.33** |
 
-- **Portion 1 (Main Ledger)** = **$2,174.80** → **expensed** on the Main Ledger (the inventory
+- **Portion 1 (Main Ledger)** = **$2,188.21** → **expensed** on the Main Ledger (the inventory
   unit cost already carries the freight, so no second capitalization).
-- **Portion 2 (AGL8 + AGL13)** = **$2,691.53** → **cash waterfall**: each ledger **self-funds
+- **Portion 2 (AGL8 + AGL13)** = **$2,708.12** → **cash waterfall**: each ledger **self-funds
   its share from its own USD cash first**, and **AGL15 finances only the shortfall**.
 
 ### 2.1 Cash waterfall — self-fund first, AGL15 covers the shortfall
@@ -49,20 +51,19 @@ the ledger that holds the goods, not all on the Main Ledger.
 
 | Ledger | Freight share | Own USD cash | Self-funded | **Borrows from AGL15** |
 |---|---|---|---|---|
-| **Main** | 2,174.80 | 4,590.91 | 2,174.80 | — |
-| **AGL8** | 717.52 | **564.946** | 564.946 | **152.574** |
-| **AGL13** | 1,974.01 | **0.00** | 0.00 | **1,974.01** |
-| | **4,866.33** | | | **AGL15 outlay: 2,126.584** |
+| **Main** | 2,188.21 | 4,590.91 | 2,188.21 | — |
+| **AGL8** | 721.95 | **564.946** | 564.946 | **157.004** |
+| **AGL13** | 1,986.17 | **0.00** | 0.00 | **1,986.17** |
+| | **4,896.33** | | | **AGL15 outlay: 2,143.174** |
 
 *(USD cash read live from each ledger's `Balance` Asset section, 2026-10-15: AGL8 USD 564.946,
 AGL13 none, AGL15 USD 4,240.75.)*
 
-- **AGL8** drains its own **$564.946**, then borrows the **$152.574** remainder.
-- **AGL13** holds **no USD**, so it borrows its **full $1,974.01**.
-- **AGL15** outlay drops **$2,691.53 → $2,126.584**; its USD after = 4,240.75 − 2,126.584 =
-  **$2,114.17** (was $1,549.22 under the old model).
+- **AGL8** drains its own **$564.946**, then borrows the **$157.004** remainder.
+- **AGL13** holds **no USD**, so it borrows its **full $1,986.17**.
+- **AGL15** outlay = **$2,143.174**; its USD after = 4,240.75 − 2,143.174 = **$2,097.576**.
 
-Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 ≥ P2 **2,126.584** OK
+Funding check: Main/Gary USD 4,590.91 ≥ P1 2,188.21 OK · AGL15 USD 4,240.75 ≥ P2 **2,143.174** OK
 
 > **⏳ Placeholders pending NF-e derivation.** `w_MAIN = 132.757` · `w_8 = 43.800` ·
 > `w_13 = 120.500` kg — derived from `Currencies` unit weight × arrival qty, **not yet
@@ -82,8 +83,10 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 �
 
 - **A. ~~$121.06 delta~~ — CLOSED (2026-10-15).** The Wave overdue-notice figure ($4,987.39)
   was **not** the paid amount. The **Wells Fargo wire confirmation** shows **$4,866.33** was
-  actually submitted (OW00007548893768, 2026-10-12). All four allocation figures stand on
-  **$4,866.33** — no re-scaling. *(Lesson: an auto overdue-notice is not proof of payment; the
+  actually submitted (OW00007548893768, 2026-10-12). The invoice total is $4,866.33; the
+  **amortized base** is then raised to **$4,896.33** by folding in the $30 wire fee (§3-G) —
+  a fee add, not a re-scaling of the invoice. *(Lesson: an auto overdue-notice is not proof of
+  payment; the
   bank confirmation is.)*
 - **B. 5.00 kg gap.** Our sum = 297.06 kg vs the checklist's documented net **302.06 kg**
   (gross 349 = 302.06 net + 26.94 carton + 20 pallet). Reconcile — `Coopercabruca Butter`
@@ -100,15 +103,15 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 �
   Attached Filename · Destination Capital Injection File Location`. **Still open:** whether an
   **internal** AGL15→AGL8/AGL13 move should use Capital Injection (documented as *external*
   investment) or `[MANAGED LEDGER TRANSACTION EVENT]`. Governor call.
-- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,126.584 under the
+- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,143.174 under the
   cash-waterfall model, §2.1) is **neither**
   a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
   not cash). Name the vehicle before the AGL15 cash-out row can be booked.
 - **F. AGL15/State is `#REF!`** — the AGL15 Currencies/price catalog is broken, so `/aum`
   cannot value the new holdings until it is repaired.
-- **G. $30 wire fee** — a banking cost of paying, **not** part of invoice #1026-08. Decide:
-  add it to the amortized pool (pool becomes **$4,896.33**) or book it separately as a
-  Main-Ledger expense. It must not silently vanish.
+- **G. ~~$30 wire fee~~ — CLOSED (2026-10-15).** Governor folded it into the amortized pool ⇒
+  base = **$4,896.33**. Booked as a **pooled landed cost** (weight-allocated), **not** a
+  separate Main-Ledger expense.
 - **H. Beneficiary name** — the wire reads **"To Sea Coast Logistics"**; the invoice/quote are
   from **"5 Continent Logistics LLC."** Presumed a beneficiary-bank alias — confirm so the
   audit trail ties out.
