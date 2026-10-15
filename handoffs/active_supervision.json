@@ -63,12 +63,6 @@
       "note": "Discord #roles-and-dapp-access, channel 1558887495192805407. Gary narrowed scope from the original 5-PR/4-repo ACL design to a UI-slice: 'so long as record works for Julio to do what he needs to do.' Sophia's pre-flight (PR #1585, merged) found the store-edit UI already ships in beta+prod and is signature-gated not role-gated -- Julio's only blocker is no registered Edgar signing identity. RESUME HERE = Unit 0 (Julio self-registers at create_signature.html) -- a member action, nothing for Sophia or Envoy to execute. Unit 1 (opt-in declarative permissions.json seed entry) not required for Julio, awaiting Gary's call on whether to bother."
     },
     {
-      "plan_file": "brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md",
-      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
-      "claimed_at": "2026-10-13T02:42:00Z",
-      "note": "Discord #brazil-san-francisco-2026, channel 1558544694009532416. Gary @-mentioned Envoy directly: supervise the AGL8 currency-definition/metadata build to completion but do NOT land the final transaction representing cargo arrival until he confirms the cargo has physically arrived at Kirsten's warehouse. Restated this gate loudly in-thread, told Sophia to flag any balance-moving action to Envoy first. tokenomics PR #581 merged (Unit B part 1: CURRENCY DEFINITION EVENT handler + schema for raw-request/composition/inventory-type). RESUME HERE = Unit B part 2 (dao_client CLI flags)."
-    },
-    {
       "plan_file": "OPEN_FOLLOWUPS.md#sunmint-tree-plot-association--expected-tree-count-estimation",
       "supervisor": "Envoy (nelanco-claude, supervisor loop)",
       "claimed_at": "2026-10-14T01:25:00Z",
