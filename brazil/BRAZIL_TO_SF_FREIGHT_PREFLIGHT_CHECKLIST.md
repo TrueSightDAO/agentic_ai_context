@@ -762,6 +762,24 @@ Mechanism: pallets moved via a normal `[INVENTORY MOVEMENT]` (Matheus → Kirste
 - *Worked example (the bug just fixed):* AGL8/AGL13's original injection legs had **Entity=`AGL15` on BOTH** the Equity and Assets rows. Corrected append-only (reversal + re-entry) to **Equity → `AGL15`** (financier), **Assets → `Gary Teh`** (custodian).
 - Invariant: **Σ per-ledger expense shares = total cost**, and the financier's **debit = Σ shortfalls** (AGL15 $2,098.354 ≡ AGL8 $145.054 + AGL13 $1,953.30 ✅).
 
+**Step 5 — Record BOTH halves (reciprocal).** A cross-ledger investment needs **two matching entries**: the **investor ledger's Asset-side claim** *and* the **investee ledger's Equity-side liability**. A one-sided entry leaves the two books disagreeing — and it is invisible until someone sums both. Before calling a leg done, verify **investor.Asset == investee.Equity** for every financier↔investee pair.
+- *Worked example:* the **211.77 mismatch** — AGL15 recorded the cash **out** (Transactions r9: `Gary Teh | −211.77 | USD | Assets`) but never the reciprocal **asset** (the `AGL13 equity holdings` claim that cash bought). AGL13's own books correctly showed the **liability** side (Equity `AGL15 | 211.77`). Fixed append-only (A70): `AGL13 | 211.77 | AGL13 equity holdings | Assets` → AGL15 Balance 1953.30 → **2165.07** = AGL13's Equity 2165.07 ✅.
+
+**Step 6 — Currencies catalog (new asset names).** Any **new asset-type name** must have a Main Ledger **`Currencies`** row with a **`Price in USD`** (plus `Serializable` etc.), or `/aum` **silently values it at $0**. Add the row in the same change set as the booking.
+- *Worked example:* the `AGL8 equity holdings` / `AGL13 equity holdings` / `Main Ledger equity holdings` rows (Main `Currencies` r168–170, USD=1.0) had to exist for the holdings to value at all; and the `+ 047-3175-3223 - San Francisco` **clone** currency names were rejected by the treasury-cache validator because they were **not yet held** in `Currencies`.
+
+**Step 7 — Unit cost / landed cost update.** Capitalize the **freight/processing share** into the ledger's **`Total Shipping cost`** row and recompute **`Cost per Unit after shipping`** for every affected SKU — the step found missing on AGL8/AGL13. Use the settled precedent form (`=(<shipping>+<input cost>)/<qty>`, e.g. AGL7 `=(C7+C3)/C2`, AGL10 `=(C8+C4)/C2`; or ledger-linked `=Transactions!$D$187/…` per AGL6). Where a ledger has **no** `Unit Costing Economics` tab (Main), the landed cost lives in `Currencies` col B — the `+ <AWB>` rows.
+- *Worked example:* AGL8 = **$710** over 330 kg; AGL13 = **$1,953.30** over 150 kg (almonds panel); Main already folds freight into its `Currencies` `+ 047-3175-3223 - San Francisco` rows (base → `+AWB` delta).
+
+**Step 8 — AUM / treasury verification.** After booking, re-read **both** `/aum` and `/treasury` and confirm they reflect the new figures; watch for **stale cache**. A green sheet is not proof until the consumer endpoints agree.
+- *Worked example:* open **`/treasury` staleness flag** — `getTrueSightDAOEquityHoldings` does a **literal-string** match on `"TrueSight DAO"` in each AGL's Balance Equity section, so AGL13/AGL15 are **absent** from `agl_equity` ($1,176.42); `/aum` reads `Currencies` directly. Re-read live post-booking.
+
+**Step 9 — Numeric-type discipline.** Confirm every appended **Amount** cell lands as a **number, not text** — `sum()` / `QUERY` **silently drops text rows**, so a text-typed booking *looks* fine in the sheet yet vanishes from the total. gspread's default read renders **everything** as a string, so verify the stored type via the API (`userEnteredValue`/`effectiveValue` → `numberValue`, or `UNFORMATTED_VALUE`). `dao_protocol#188` guards the **CLI** path; **hand-appends via gspread still need a manual check**.
+- *Worked example:* hit **3×** this session; the D70 append was confirmed a true number (`numberValue 211.77`), not text.
+
+**Step 10 — Independent verification before declaring done.** Read the **substrate** *and* the **derived view** directly — never trust a formula, a cached dashboard, or a prior report without re-checking **live**. State what you verified vs. assumed.
+- *Worked example:* verified AGL15 Balance re-spill **1953.3 → 2165.07** against **both** the `Transactions` substrate (A70) *and* the `Balance` view, then cross-checked AGL13's Equity — not from memory or a screenshot.
+
 **Pre-flight (run before ANY write):**
 - [ ] Driver + source identified; shares computed **by driver** and **sum to the total**.
 - [ ] Each ledger's existing cash read; shortfall = max(0, share − cash); financier injects **only shortfalls**.
@@ -770,6 +788,12 @@ Mechanism: pallets moved via a normal `[INVENTORY MOVEMENT]` (Matheus → Kirste
 - [ ] Next empty row asserted; **duplicate guard** (search the substrate for an existing row of the same intent).
 - [ ] Description carries **basis · source · AWB/ref · date**.
 - [ ] Post-write: recompute the view; verify the Σ-expense and debit≡shortfall invariants.
+- [ ] **Both halves recorded** — investor's Asset-side claim **and** investee's Equity-side liability agree (Step 5).
+- [ ] New asset names have a Main **`Currencies`** row (Step 6), else `/aum` reads $0.
+- [ ] Freight/processing capitalized into `Total Shipping cost`; `Cost per Unit after shipping` recomputed (Step 7).
+- [ ] **`/aum` and `/treasury`** both re-read post-booking; stale cache checked (Step 8).
+- [ ] Appended Amount cells confirmed **numeric, not text** (Step 9).
+- [ ] Substrate **and** derived view read independently before "done" (Step 10).
 
 ---
 
