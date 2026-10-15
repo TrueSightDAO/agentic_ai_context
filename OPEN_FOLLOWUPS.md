@@ -39,6 +39,24 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `[MANAGED LEDGER TRANSACTION EVENT]` has no `dao_protocol` CLI module — internal managed-ledger moves can't be booked from Sophia (Black King §3-E2)
+**Filed 2026-10-15 (Black King freight-lane build, plan §3-E2). Owner: unclaimed. Governor: Gary — scope call (build now vs later).**
+
+**Context.** The AGL15 cash-out leg of the freight booking (−$2,098.354 USD Assets; +"equity holdings" in AGL8/AGL13) fits **no** existing CLI primitive:
+- `[CAPITAL INJECTION EVENT]` (`report_capital_injection.py`) writes to the **receiving** ledger only — it cannot debit AGL15.
+- `[DAO Inventory Expense Event]` (`report_dao_expenses.py`) **always appends a negative Assets row** (its GAS handler) — it cannot produce the two *positive* "equity holdings" increase rows AGL15 needs.
+- `[MANAGED LEDGER TRANSACTION EVENT]` — "one signed blob, many rows" — is built for exactly this shape (signed GL precedent: AGL14 `Transactions` rows 10–13) but has **no CLI module**.
+
+**Verified 2026-10-15 (read-only).** (1) `truesight_dao_client/modules/` has no `report_managed_ledger_transaction.py`; grep of the full module list + `[project.scripts]` entry points = **0** hits (siblings `report_capital_injection`, `report_inventory_movement`, `report_dao_expenses`, `report_asset_receipt` all present). (2) `[MANAGED LEDGER TRANSACTION EVENT]` is **not** in Edgar's events catalog (v12, `GET /events-catalog`) either — so it has **no** `submit_contribution` path, only the legacy GAS-side blob. (3) The AGL14 precedent is real (this file, §"Serializing bulk kg inventory…", AGL14 rows 10–13).
+
+**Options (governor call).** (a) Build `report_managed_ledger_transaction.py` + register the event in Edgar's catalog (same wrapper pattern as the other `report_*` modules; the GAS-side shape exists as precedent). (b) Pick a one-off workaround for this booking and build the primitive later.
+
+**Why it matters beyond this freight.** Reusable primitive — any internal managed-ledger move (source-leg debit + multi-row equity/asset posting) needs it; without it such moves are **unsigned sheet edits** (audit gap, same class as the AGL14 QR-side serialization gap).
+
+**Blocker:** none to build; **gated** on the Governor's scope call. **Not** on the freight critical path — the vehicle only needs to exist **at booking time (post-cargo-arrival)**.
+
+**Evidence.** `plans/FREIGHT_COST_AMORTIZATION_PLAN.md` §3-E2; `dao_protocol/truesight_dao_client/modules/` (module list, 2026-10-15); `edgar.truesight.me/events-catalog` v12; this file (AGL14 signed-GL precedent).
+
 ### Provision `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` so repackaging settlements auto-fire (they currently queue forever)
 **Filed 2026-10-15 (Black King AGL8 corridor §5.15). Owner: governor (provisioned secret — not self-fixable). Small — one env var.**
 
