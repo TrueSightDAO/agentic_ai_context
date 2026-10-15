@@ -60,7 +60,8 @@ the ledger that holds the goods, not all on the Main Ledger.
 | | **4,896.33** | | | **AGL15 outlay: 2,098.354** |
 
 *(USD cash read live from each ledger's `Balance` Asset section, 2026-10-15: AGL8 USD 564.946,
-AGL13 none, AGL15 USD 4,240.75.)*
+AGL13 **USD 0.00** — read directly; its `Balance` Asset section carries inventory only (99 kg Nibs +
+21 kg Tea), the $211.77/$1180.45 rows are Financier/equity not cash — AGL15 USD 4,240.75.)*
 
 - **AGL8** drains its own **$564.946**, then borrows the **$145.054** remainder.
 - **AGL13** holds **no USD**, so it borrows its **full $1,953.30**.
