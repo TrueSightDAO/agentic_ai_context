@@ -64,7 +64,7 @@ AGL13 none, AGL15 USD 4,240.75.)*
 
 Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 ≥ P2 **2,098.354** OK
 
-> **⏳ Placeholders pending NF-e derivation.** `w_MAIN = 132.757` · `w_8 = 43.800` ·
+> **⏳ Placeholders pending NF-e derivation.** `w_MAIN = 137.757` · `w_8 = 43.800` ·
 > `w_13 = 120.500` kg — derived from `Currencies` unit weight × arrival qty, **not yet
 > cross-checked against NF-e nº 18 line items** (§3-C). The **shares** are robust to small kg
 > corrections; the exact `$` are not. Treat the four amortized figures as **provisional**
@@ -85,9 +85,9 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 �
   actually submitted (OW00007548893768, 2026-10-12). All four allocation figures stand on
   **$4,866.33** — no re-scaling. *(Lesson: an auto overdue-notice is not proof of payment; the
   bank confirmation is.)*
-- **B. 5.00 kg gap.** Our sum = 297.06 kg vs the checklist's documented net **302.06 kg**
-  (gross 349 = 302.06 net + 26.94 carton + 20 pallet). Reconcile — `Coopercabruca Butter`
-  (rounds to exactly 5.000) is the suspect. Shares are robust to it; exact $ are not.
+- **B. ~~5.00 kg gap~~ — CLOSED (2026-10-15).** Governor ruled the **5.00 kg are the Pará
+  samples**, their portion **charged to the Main Ledger**. Main 132.757 → **137.757 kg**; total
+  **302.057 kg** (matches the documented 302.06 net). Shares + $ re-scaled (§2).
 - **C. Weight source.** Unit weights read from the `Currencies` catalog. Cross-check against
   **NF-e nº 18** per-line net kg before locking (NF-e 18 is not in the `shipment_nfe` tab,
   which holds NF-e 1–15).
@@ -100,15 +100,15 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 �
   Attached Filename · Destination Capital Injection File Location`. **Still open:** whether an
   **internal** AGL15→AGL8/AGL13 move should use Capital Injection (documented as *external*
   investment) or `[MANAGED LEDGER TRANSACTION EVENT]`. Governor call.
-- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,126.584 under the
+- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,098.354 under the
   cash-waterfall model, §2.1) is **neither**
   a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
   not cash). Name the vehicle before the AGL15 cash-out row can be booked.
 - **F. AGL15/State is `#REF!`** — the AGL15 Currencies/price catalog is broken, so `/aum`
   cannot value the new holdings until it is repaired.
-- **G. $30 wire fee** — a banking cost of paying, **not** part of invoice #1026-08. Decide:
-  add it to the amortized pool (pool becomes **$4,896.33**) or book it separately as a
-  Main-Ledger expense. It must not silently vanish.
+- **G. ~~$30 wire fee~~ — CLOSED (2026-10-15).** Governor folded it into the amortized pool ⇒
+  base = **$4,896.33**. Booked as a **pooled landed cost** (weight-allocated), not a
+  separate Main-Ledger expense.
 - **H. Beneficiary name** — the wire reads **"To Sea Coast Logistics"**; the invoice/quote are
   from **"5 Continent Logistics LLC."** Presumed a beneficiary-bank alias — confirm so the
   audit trail ties out.
@@ -171,8 +171,8 @@ handler's append semantics exactly.
   **2026-10-14 `#REF!` incident ×3**. **Rule:** writes go to the **`Transactions` substrate
   only, never `Balance`** — verify with the API's `formulaValue`, then re-check the spill after
   every append.
-- **Trap C — blending settled vs disputed.** Book at the **as-billed $4,866.33** actually
-  wired. Keep the **$438.30 overcharge delta** and the superseded **$4,987.39** Wave figure
+- **Trap C — blending settled vs disputed.** Book at the **$4,896.33 actually debited**
+  (invoice 4,866.33 + fee 30.00). Keep the **$438.30 overcharge delta** and the superseded **$4,987.39** Wave figure
   **out of the amortized base** — they are separate tracking/recovery items, not booking inputs.
   Mixing them re-scales every leg.
 
@@ -189,8 +189,8 @@ appends to the `offchain transactions` substrate:
 | Target Ledger | `offchain` *(literal — the GAS dispatches Main Ledger by this name)* |
 | Latitude / Longitude | *(empty)* |
 | Inventory Type | USD |
-| Inventory Quantity | 2174.80 |
-| Description | `5 Continent #1026-08 air freight, AWB 047-3175-3223 — Main Ledger share (44.69% of $4,866.33 by shipped kg)` |
+| Inventory Quantity | 2233.03 |
+| Description | `5 Continent #1026-08 air freight, AWB 047-3175-3223 — Main Ledger share (45.6063% of $4,896.33 by shipped kg, incl Pará samples)` |
 | Attached Filename | *(invoice PDF)* |
 | Destination Expense File Location | *(Main Ledger)* |
 | Submission Source | autopilot |
@@ -201,12 +201,12 @@ Append to AGL15 `Transactions`:
 
 | Date | Description | Entity | Amount | Currency | Type |
 |---|---|---|---|---|---|
-| 20261014 | 5 Continent #1026-08 freight — AGL15-financed shortfall (AGL8 $152.574 + AGL13 $1,974.01) | Gary Teh | -2126.584 | USD | Assets |
-| 20261014 | Investment in AGL8 (freight shortfall financed) | AGL8 | 152.574 | AGL8 equity holdings | Assets |
-| 20261014 | Investment in AGL13 (freight share financed) | AGL13 | 1974.01 | AGL13 equity holdings | Assets |
+| 20261014 | 5 Continent #1026-08 freight — AGL15-financed shortfall (AGL8 $145.054 + AGL13 $1,953.30) | Gary Teh | -2098.354 | USD | Assets |
+| 20261014 | Investment in AGL8 (freight shortfall financed) | AGL8 | 145.054 | AGL8 equity holdings | Assets |
+| 20261014 | Investment in AGL13 (freight share financed) | AGL13 | 1953.30 | AGL13 equity holdings | Assets |
 
-Net: AGL15 assets unchanged (cash → holdings); equity unchanged. Outlay **$2,126.584**, not
-$2,691.53 — AGL8 self-funds its own $564.946.
+Net: AGL15 assets unchanged (cash → holdings); equity unchanged. Outlay **$2,098.354** —
+AGL8 self-funds its own $564.946.
 
 ### 5.3 AGL8 — receive + expense
 
@@ -214,12 +214,12 @@ Append to AGL8 `Transactions`:
 
 | Date | Description | Entity | Amount | Currency | Type |
 |---|---|---|---|---|---|
-| 20261014 | Capital injection from AGL15 (freight shortfall financed) | AGL15 | 152.574 | USD | Assets |
-| 20261014 | Capital injection from AGL15 (freight shortfall financed) | AGL15 | 152.574 | USD | Equity |
-| 20261014 | 5 Continent #1026-08 freight — AGL8 share | AGL8 | -717.52 | USD | Assets |
+| 20261014 | Capital injection from AGL15 (freight shortfall financed) | AGL15 | 145.054 | USD | Assets |
+| 20261014 | Capital injection from AGL15 (freight shortfall financed) | AGL15 | 145.054 | USD | Equity |
+| 20261014 | 5 Continent #1026-08 freight — AGL8 share | AGL8 | -710.00 | USD | Assets |
 
-Net AGL8: cash **564.946 → 0** (drains its own USD; +152.574 in − 717.52 out = −564.946);
-Equity **+152.574** (AGL15's stake is only the financed shortfall, not the full share).
+Net AGL8: cash **564.946 → 0** (drains its own USD; +145.054 in − 710.00 out = −564.946);
+Equity **+145.054** (AGL15's stake is only the financed shortfall, not the full share).
 
 ### 5.4 AGL13 — receive + expense
 
@@ -227,17 +227,17 @@ Append to AGL13 `Transactions`:
 
 | Date | Description | Entity | Amount | Currency | Type |
 |---|---|---|---|---|---|
-| 20261014 | Capital injection from AGL15 (freight share financed) | AGL15 | 1974.01 | USD | Assets |
-| 20261014 | Capital injection from AGL15 (freight share financed) | AGL15 | 1974.01 | USD | Equity |
-| 20261014 | 5 Continent #1026-08 freight — AGL13 share | AGL13 | -1974.01 | USD | Assets |
+| 20261014 | Capital injection from AGL15 (freight share financed) | AGL15 | 1953.30 | USD | Assets |
+| 20261014 | Capital injection from AGL15 (freight share financed) | AGL15 | 1953.30 | USD | Equity |
+| 20261014 | 5 Continent #1026-08 freight — AGL13 share | AGL13 | -1953.30 | USD | Assets |
 
-Net AGL13: holds **no USD cash**, so it borrows its **full $1,974.01**; cash nets to zero,
-Equity **+1974.01**.
+Net AGL13: holds **no USD cash**, so it borrows its **full $1,953.30**; cash nets to zero,
+Equity **+1953.30**.
 
 **Separate item (do NOT fold in):** AGL13 `Balance` already carries an Equity row
 `AGL15 · 211.77 · USD` with **no reciprocal asset on AGL15**. Completing that half-recorded
 entry is a **separate reconciliation**; book only the freight share (1974.01) in this batch.
-**After this batch AGL15's total recorded stake in AGL13 = 211.77 + 1974.01 = $2,185.78.**
+**After this batch AGL15's total recorded stake in AGL13 = 211.77 + 1953.30 = $2,165.07.**
 
 ## 6. Currency catalog additions
 
@@ -251,7 +251,7 @@ New asset names, each with **Price in USD = 1.0** (USD-at-par) so `/aum` rollups
 
 Confirmed (governor): **AGL8 already independently holds USD 564.946 as an asset** (small,
 pre-existing). Under the **cash-waterfall model (§2.1)** AGL8 **spends that 564.946** on its
-freight share and borrows only $152.574: post-booking cash = 564.946 + 152.574 − 717.52 = **0**.
+freight share and borrows only $145.054: post-booking cash = 564.946 + 145.054 − 710.00 = **0**.
 
 ## 7. Sequencing
 
