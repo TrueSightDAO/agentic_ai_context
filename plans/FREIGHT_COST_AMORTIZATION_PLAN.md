@@ -14,8 +14,14 @@ cargo lands on — the freight is a cost of bringing *their* inventory to SF, so
 the ledger that holds the goods, not all on the Main Ledger.
 
 - **Invoice:** 5 Continent Logistics LLC **#1026-08**
-- **Paid:** **USD 4,866.33** (governor-confirmed 2026-10-15)
+- **Paid:** **USD 4,866.33** — **confirmed by the Wells Fargo wire confirmation**
+  (`c02a149627d74a37a74fff3ac654bfdd.pdf`, the receipt the governor shared): *"Wire submitted
+  $4,866.33 … To Sea Coast Logistics … From EVERYDAY CHECKING …3099 … For Invoice Number 1026 08"*,
+  Confirmation **OW00007548893768**, submitted **2026-10-12 10:54 PT**, deliver-by 2026-10-13.
+  (**SUPERSEDES** the earlier $4,987.39 figure — see §3-A, now closed.)
+- **Wire fee:** **USD 30.00** — total debit from the account **$4,896.33** (see §3-G).
 - **Funded from:** the USD holdings **Gary Teh manages** on **Main Ledger** and **AGL15**
+  (the wire drew on Wells Fargo Everyday Checking …3099 — the governor's personal account).
 - **Basis:** shipped weight (kg) = `Currencies` unit weight × arrival quantity
 
 ## 2. Allocation (weight basis)
@@ -36,9 +42,11 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 �
 
 ## 3. Open items (MUST close before booking)
 
-- **A. $121.06 delta.** An overdue notice (2026-10-12) cited **$4,987.39** (re-added US bond
-  line). Governor states **$4,866.33** was taken. Confirm the final amount; if $4,987.39,
-  re-scale all four figures.
+- **A. ~~$121.06 delta~~ — CLOSED (2026-10-15).** The Wave overdue-notice figure ($4,987.39)
+  was **not** the paid amount. The **Wells Fargo wire confirmation** shows **$4,866.33** was
+  actually submitted (OW00007548893768, 2026-10-12). All four allocation figures stand on
+  **$4,866.33** — no re-scaling. *(Lesson: an auto overdue-notice is not proof of payment; the
+  bank confirmation is.)*
 - **B. 5.00 kg gap.** Our sum = 297.06 kg vs the checklist's documented net **302.06 kg**
   (gross 349 = 302.06 net + 26.94 carton + 20 pallet). Reconcile — `Coopercabruca Butter`
   (rounds to exactly 5.000) is the suspect. Shares are robust to it; exact $ are not.
@@ -52,6 +60,12 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 �
   Confirm `[CAPITAL INJECTION EVENT]` vs `[MANAGED LEDGER TRANSACTION EVENT]`.
 - **F. AGL15/State is `#REF!`** — the AGL15 Currencies/price catalog is broken, so `/aum`
   cannot value the new holdings until it is repaired.
+- **G. $30 wire fee** — a banking cost of paying, **not** part of invoice #1026-08. Decide:
+  add it to the amortized pool (pool becomes **$4,896.33**) or book it separately as a
+  Main-Ledger expense. It must not silently vanish.
+- **H. Beneficiary name** — the wire reads **"To Sea Coast Logistics"**; the invoice/quote are
+  from **"5 Continent Logistics LLC."** Presumed a beneficiary-bank alias — confirm so the
+  audit trail ties out.
 
 ## 4. Write primitive — never write `Balance`
 
@@ -77,11 +91,23 @@ The tokenomics handler `capital_injection_processing.js` opens the target ledger
 `Shipment Ledger Listing` and appends exactly two rows (`+amount USD / Assets`, then
 `+amount USD / Equity`), stamping `PROCESSED` — idempotent on Telegram update/message ID.
 
+**Use the two existing CLI primitives for every leg — do NOT hand-write any Balance cell and
+DO NOT hand-roll the append** (verified to exist in `dao_protocol`, package
+`truesight_dao_client`, `pyproject.toml` `[project.scripts]`):
+
+| Leg | Module | Console entry point |
+|---|---|---|
+| Capital injection (AGL15→AGL8, AGL15→AGL13) | `report_capital_injection.py` | `truesight-dao-report-capital-injection` |
+| Expense (Main Ledger P1; AGL8/AGL13 shares) | `report_dao_expenses.py` | `truesight-dao-report-dao-expenses` |
+
+These produced the AGL15→AGL13 precedent row, so the path is battle-tested and matches the
+handler's append semantics exactly.
+
 ## 5. Dry-run entries
 
 ### 5.1 Main Ledger — Portion 1 (expense)
 
-Append to `offchain transactions`:
+Append to `offchain transactions` (via `truesight-dao-report-dao-expenses`):
 
 | A | B | C | D | E | F | G |
 |---|---|---|---|---|---|---|
@@ -134,6 +160,10 @@ New asset names, each with **Price in USD = 1.0** (USD-at-par) so `/aum` rollups
 - `Main Ledger equity holdings` — **separate, historical** item (AGL15's prior Main-Ledger
   investment); **not** part of this freight batch. **Do NOT call it "TDG holdings"** — TDG is
   a distinct live token (~2.4M circulating).
+
+Confirmed (governor): **AGL8 already independently holds USD 564.946 as an asset** (small,
+pre-existing). Post-booking its cash is 564.946 + 717.52 − 717.52 = **564.946** — the freight
+net-zeroes and the pre-existing balance is untouched.
 
 ## 7. Sequencing
 
