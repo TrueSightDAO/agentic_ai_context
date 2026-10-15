@@ -104,15 +104,15 @@ After submitting (HTTP 200), verify within 1-2 minutes:
 | Inventory shows 0 on website | Wrong SKU IDs in Currencies col M | Re-read `Agroverse SKUs` tab and fix mapping |
 | Website stale | GitHub CDN cache (max 5 min) | Wait, or check `raw.githubusercontent.com/.../8ac3abc/store-inventory.json` |
 | Edgar rejects submission | Missing required fields | `--composition-url` and `--holder-name` are required |
-| GAS handler doesn't fire | `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` not set | Provision env var on Edgar box |
+| GAS handler doesn't fire | `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` not set on the Edgar box | Provision the env var, or manually `GET .../exec?action=processPostRepackagingCleanup` to trigger it once |
+| **`offchain asset location` breaks to `#REF!` across the whole tab** | **INCIDENT 2026-10-14/15:** the GAS handler (`processPostRepackagingCleanup_` in `agroverse-inventory/gas/repackaging-currency-ingest/Code.gs`) used to `setValue()`/`appendRow()` **directly into `offchain asset location`**. That tab is a *derived view* — cell A5 holds one array formula that spills a `QUERY(...)` across A:C from the `offchain transactions` substrate. Any direct write into the spill range blocks the formula and the entire tab goes `#REF!`. **Fixed** (same date): the handler now only ever appends signed rows to the `offchain transactions` substrate (`appendOffchainSubstrateRow_`); the derived tab is never touched again. If this ever recurs: clear the stray cell(s) inside the spill range (A5:C<n>) to let the formula re-spill — do **not** try to "fix" the derived tab by writing a corrected value into it, that's the same mistake again. |
 
 ---
 
 ## 5. Idempotency
 
-The event is safe to re-submit. The GAS handler:
-- Skips depletion if `offchain asset location` amount is already 0
-- Skips output addition if row already exists (same currency + holder)
-- Skips Currencies metadata if column is already populated
+**Re-processing the same Telegram Chat Logs row is idempotent** — the handler only acts on rows where col R (STATUS) is empty/`NEW`, and marks it `PROCESSED:REPACKAGING_SETTLEMENT` when done. Re-running the handler (e.g. a manual trigger because cron hasn't fired) will not reprocess an already-`PROCESSED` row.
 
-A duplicate submission produces a Telegram log entry but no duplicate sheet writes.
+**Re-*submitting* the event (a brand-new signed row) is NOT idempotent** — it is a second, independent, fully-real settlement and will deplete/add a second time. Each CLI fire signs a fresh Request Transaction ID, so there is no cross-row dedupe by amount or composition URL. This is the same lesson as the 2026-10-14 duplicate-conversion incident on `[CURRENCY CONVERSION EVENT]`: if a submission seems slow to land, **wait for the cron cycle and verify before re-firing** — do not re-submit speculatively.
+
+As of the 2026-10-15 fix, the handler's effects land as substrate rows in `offchain transactions` (one negative row per depleted input, one positive row per output), and `offchain asset location` simply recomputes from them — it is never written directly.
