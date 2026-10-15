@@ -275,9 +275,10 @@ living *inside* each:
 $4,866.33 (invoice) + $30.00 (fee). If the booked amounts sum to only **$4,866.33**, the fee
 has vanished — re-check the legs. (Weight split = Main 45.6063% · AGL8 14.5006% · AGL13 39.8931%.)
 
-## 6. Currency catalog additions
+## 6. Currency catalog additions — DONE (2026-10-15)
 
-New asset names, each with **Price in USD = 1.0** (USD-at-par) so `/aum` rollups value them:
+New asset names, each with **Price in USD = 1.0** (USD-at-par) so `/aum` rollups value them.
+**Added live to MAIN `Currencies` (rows 168-170)**, verified by direct read-back:
 
 - `AGL8 equity holdings`  (on AGL15)
 - `AGL13 equity holdings` (on AGL15)
@@ -292,7 +293,9 @@ freight share and borrows only $145.054: post-booking cash = 564.946 + 145.054 �
 ## 7. Sequencing
 
 1. Close open items **A–F**.
-2. ~~Repair AGL15 `State` (`#REF!`)~~ — **DONE (2026-10-15)** via the Governor's browser click (canonical AGL15 `State!A1` spills live; re-verified). **Still open:** add the `Currencies`/`State` rows. *(Residual TBM-mirror `#REF!` is separate + non-blocking — see §3-F.)*
+2. ~~Repair AGL15 `State` (`#REF!`) + add the `Currencies`/`State` rows~~ — **DONE (2026-10-15)**:
+   governor's browser click fixed canonical AGL15 `State!A1`; the 3 §6 `Currencies` rows are
+   live on MAIN (rows 168-170). *(Residual TBM-mirror `#REF!` is separate + non-blocking — see §3-F.)*
 3. Dry-run each leg -> governor review.
 4. **On explicit go:** book Main Ledger -> AGL15 -> AGL8 -> AGL13.
 5. Verify each `Balance` re-spill matches the expected figures.
