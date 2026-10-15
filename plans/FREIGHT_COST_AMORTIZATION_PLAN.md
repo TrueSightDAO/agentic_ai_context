@@ -20,10 +20,11 @@ the ledger that holds the goods, not all on the Main Ledger.
   Confirmation **OW00007548893768**, submitted **2026-10-12 10:54 PT**, deliver-by 2026-10-13.
   (**SUPERSEDES** the earlier $4,987.39 figure — see §3-A, now closed.)
 - **Wire fee:** **USD 30.00** — total debit from the account **$4,896.33** (see §3-G).
-- **Funded from:** the USD holdings **Gary Teh manages** on **Main Ledger** and **AGL15**
-  (the wire drew on Wells Fargo Everyday Checking …3099 — the governor's personal account).
-  **Cash-waterfall allocation (§2.1):** each landed ledger **self-funds from its own USD first**;
-  AGL15 finances only the shortfall.
+- **Funded from:** the **USD balance under Gary Teh's management** — the managed USD held on
+  **Main Ledger** and **AGL15** (the wire drew on Wells Fargo Everyday Checking …3099, the
+  operating account that holds that managed USD). ⇒ **direct debit against the managed USD**,
+  **not** a third-party payable (**item #1 CLOSED**). **Cash-waterfall allocation (§2.1):** each
+  landed ledger **self-funds from its own USD first**; AGL15 finances only the shortfall.
 - **Basis:** shipped weight (kg) = `Currencies` unit weight × arrival quantity
 
 ## 2. Allocation (weight basis)
@@ -111,6 +112,11 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 �
 - **H. Beneficiary name** — the wire reads **"To Sea Coast Logistics"**; the invoice/quote are
   from **"5 Continent Logistics LLC."** Presumed a beneficiary-bank alias — confirm so the
   audit trail ties out.
+- **I. Who paid — CLOSED (2026-10-15).** Governor confirmed the **$4,866.33 was wired from the
+  USD balance under his management** (Wells Fargo Everyday Checking …3099 — the operating account
+  holding the DAO-managed USD). ⇒ a **direct debit against the DAO-managed USD** (Main Ledger +
+  AGL15 USD), **not** a reimbursement or payable to Gary/TrueTech. Portion 1 books as a
+  Main-Ledger **expense** that reduces managed USD; **no offsetting liability arises**.
 
 ## 4. Write primitive — never write `Balance`
 
