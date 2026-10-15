@@ -256,6 +256,25 @@ Equity **+1953.30**.
 entry is a **separate reconciliation**; book only the freight share ($1,953.30) in this batch.
 **After this batch AGL15's total recorded stake in AGL13 = 211.77 + 1953.30 = $2,165.07.**
 
+### 5.5 Booking reconciliation — the $30 wire fee does not silently vanish
+
+Invoice #1026-08 is **$4,866.33**; the Wells Fargo wire debited **$4,896.33** (invoice + **$30.00**
+fee, §3-G). Per the governor's ruling (2026-10-15) the fee is **weight-allocated into each
+leg's booked amount** (a pooled landed cost), **not** booked as a separate Main-Ledger expense.
+So the three booking amounts must sum to the **debited** total, with the fee's weight-share
+living *inside* each:
+
+| Leg | Booked amount | of which = $30 fee-share |
+|---|---:|---:|
+| Main Ledger (§5.1) | 2,233.03 | 13.6819 |
+| AGL8 (§5.3) | 710.00 | 4.3502 |
+| AGL13 (§5.4) | 1,953.30 | 11.9679 |
+| **Total** | **4,896.33** | **30.0000** |
+
+**Invariant (verify post-booking).** Σ booked expense amounts = **$4,896.33** =
+$4,866.33 (invoice) + $30.00 (fee). If the booked amounts sum to only **$4,866.33**, the fee
+has vanished — re-check the legs. (Weight split = Main 45.6063% · AGL8 14.5006% · AGL13 39.8931%.)
+
 ## 6. Currency catalog additions
 
 New asset names, each with **Price in USD = 1.0** (USD-at-par) so `/aum` rollups value them:
