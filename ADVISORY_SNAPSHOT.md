@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-15T05:04:46Z`
+- Generated (UTC): `2026-10-15T17:15:39Z`
 - Look-back: **7** calendar days (`2026-10-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -34,16 +34,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 - `[TREE PLANTING EVENT]` × 16
 - `[CURRENCY CONVERSION EVENT]` × 10
-- `[INVENTORY MOVEMENT]` × 9
-- `[CONTRIBUTION EVENT]` × 3
-- `[RETAIL FIELD REPORT EVENT]` × 2
+- `[INVENTORY MOVEMENT]` × 8
+- `[CONTRIBUTION EVENT]` × 5
 - `[REPACKAGING SETTLEMENT EVENT]` × 2
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261015014800_098` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: BRL retirement: raw machine execution
-- `Edgar_20261015014804_100` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: BRL retirement: direct time (engagement/analysis)
-- `Edgar_20261015014808_102` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: BRL retirement: Gary Teh direct time
 - `Edgar_20261015021935_104` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261015021946_106` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
 - `Edgar_20261015022010_108` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
@@ -61,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261015022250_132` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261015022303_134` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261015022341_136` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261015142129_138` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
+- `Edgar_20261015142928_140` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-15T14:29:26.696Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261015152427_142` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Kirsten Ritschel · Description: Liaised with Gary Teh (~15 min) on SF pallet loading capacity and bar-condit…
 
 ---
 
@@ -275,6 +275,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-08 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1b1033c | 2026-10-15 11:59:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 8b9213f | 2026-10-15 05:04:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 9c168fa | 2026-10-14 21:53:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 54c49bb | 2026-10-14 17:32:09 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -308,6 +309,15 @@ efbe9ea | 2026-10-08 06:33:57 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7c26ce0 | 2026-10-15 11:23:08 -0300 | Plan: end-to-end Brazil->SF freight SOP refresh + machine-readable checklist (#1643)
+feef4ae | 2026-10-15 11:17:22 -0300 | OPEN_FOLLOWUPS: E ruled — residual is server half; scope refined (handler is piece 3) (#1652)
+5e4482d | 2026-10-15 10:14:44 -0300 | Freight plan §3: record C/D/E rulings (C validated vs NF-e nº 18 · D = AGL15 · E = Managed Ledger Transaction Event) (#1651)
+f6255f6 | 2026-10-15 03:35:23 -0300 | followup: [MANAGED LEDGER TRANSACTION EVENT] client CLI shipped (#187); server registration residual (#1650)
+241bf47 | 2026-10-15 02:37:57 -0300 | Freight plan §2.1: land AGL13 own-USD=$0.00 clarification (lost when #1638 closed unmerged) (#1649)
+89420e0 | 2026-10-15 02:15:28 -0300 | Freight plan: §6 Currencies-catalog rows added to MAIN, §7 step 2 fully done (#1648)
+933014a | 2026-10-15 02:13:35 -0300 | Dedupe §3-F in freight plan (fixes duplication left by #1638/#1645) (#1646)
+f192af2 | 2026-10-15 02:05:06 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
+de998fd | 2026-10-15 02:05:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
 756d99f | 2026-10-15 01:59:47 -0300 | OPEN_FOLLOWUPS: AGL15 two bugs PARTIALLY OFFSET - true $4,471.77 not $4,644.10 (#1642)
 81a06e3 | 2026-10-15 01:56:35 -0300 | Freight plan: close item H (beneficiary name not a discrepancy) (#1641)
 ef14acf | 2026-10-15 01:55:21 -0300 | Freight plan 5.5: wire-fee reconciliation (30 USD does not vanish) (#1640)
@@ -339,15 +349,6 @@ ee8320e | 2026-10-14 16:34:25 -0300 | followup: file [CURRENCY RETIREMENT EVENT]
 e9bd4b7 | 2026-10-14 13:13:35 -0300 | Replace CPF-bearing entity_registry.json with pointer to privacy-clean fda_fsvp profile (#1614)
 ecff062 | 2026-10-14 13:13:20 -0300 | docs: correct stale col-T references after the Farmer rename (tokenomics#582) (#1613)
 6fefb96 | 2026-10-14 12:27:32 -0300 | Add entity_registry.json (Próspera/Honduras entity legal record)
-9461226 | 2026-10-14 09:14:35 -0300 | chore(previews): refresh Beer Hall preview (2026-10-14 UTC)
-436fb55 | 2026-10-14 09:14:33 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-14 UTC)
-4bc1ddf | 2026-10-14 02:12:17 -0300 | chore(previews): refresh Beer Hall preview (2026-10-14 UTC)
-51f71b6 | 2026-10-14 02:12:16 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-14 UTC)
-5478558 | 2026-10-13 23:30:59 -0300 | v10: D13=(a) — an unbound real tree STANDS ALONE (no matching); PR6 descoped (#1611)
-b4f64a8 | 2026-10-13 23:22:33 -0300 | v9: record 3-tier provenance render logic (T1/T2/T3) + golden rule in §7 of both docs (#1610)
-573dfa4 | 2026-10-13 23:19:41 -0300 | SunMint pseudo-tree plan v8 — Contract A write-set pinned to existing columns; reverse-binding; D9 gate + reject-past-cap (#1609)
-203d9b2 | 2026-10-13 23:17:55 -0300 | SunMint pseudo-tree plan v7 — Contract A is a handler UPGRADE (not a new surface); live counter-gap flagged as a bug this fixes (#1608)
-3996200 | 2026-10-13 23:08:48 -0300 | Pseudo-tree plan v6: two contracts (QR↔Plot link + promotion) + DApp UI/UX consistency (#1607)
 … (truncated)
 ```
 
@@ -387,6 +388,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+285af84 | 2026-10-15 12:06:58 +0000 | chore: refresh currencies.json [skip ci]
+7937880 | 2026-10-15 11:34:35 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 39eea85 | 2026-10-14 23:23:34 -0300 | Fix [REPACKAGING SETTLEMENT EVENT] handler writing directly to a derived tab (#18)
 93d2b40 | 2026-10-14 22:16:44 -0300 | fix(inventory): packaging write-off composition — drop plastic pallet line (2 pallets transfer to Kirsten instead)
 a5efcb9 | 2026-10-14 22:12:32 -0300 | fix(inventory): packaging write-off composition — plastic pallets consume 2 (was 3), leave 1
@@ -500,7 +503,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/14/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/15/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-08`; scanned last **600** data rows)
 
