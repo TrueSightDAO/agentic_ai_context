@@ -40,6 +40,20 @@ the ledger that holds the goods, not all on the Main Ledger.
 
 Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 ≥ P2 2,691.53 OK
 
+> **⏳ Placeholders pending NF-e derivation.** `w_MAIN = 132.757` · `w_8 = 43.800` ·
+> `w_13 = 120.500` kg — derived from `Currencies` unit weight × arrival qty, **not yet
+> cross-checked against NF-e nº 18 line items** (§3-C). The **shares** are robust to small kg
+> corrections; the exact `$` are not. Treat the four amortized figures as **provisional**
+> until §3-B / §3-C close.
+
+> **📌 Booked at AS-BILLED; disputed delta tracked separately.** The booking uses the
+> **as-billed $4,866.33** (what was actually wired). The **$438.30 air-freight overcharge
+> dispute** — the invoice bills `365 kg × $3.40 = $1,241.00` while the carrier's own AWB
+> documents `349 kg × $2.30 = $802.70` → **+$438.30** — is a **separate recovery item**, tracked
+> in `brazil/research/2026-10-10_VERDICT_awb_weight_349_and_rate_discrepancy.md`. **Do NOT blend
+> it into the amortized base.** If 5 Continent issues a credit note for it later, that is a
+> **credit event** booked then — not now.
+
 ## 3. Open items (MUST close before booking)
 
 - **A. ~~$121.06 delta~~ — CLOSED (2026-10-15).** The Wave overdue-notice figure ($4,987.39)
@@ -55,9 +69,16 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 �
   which holds NF-e 1–15).
 - **D. Entity naming** for the three new holdings rows (see 5.2) — "AGL15" (self) vs
   "TrueSight DAO".
-- **E. Event type.** `[CAPITAL INJECTION EVENT]` is documented for **external investors**
-  wiring into an AGL contract; AGL15→AGL8/AGL13 is **internal** (DAO fund → DAO ledger).
-  Confirm `[CAPITAL INJECTION EVENT]` vs `[MANAGED LEDGER TRANSACTION EVENT]`.
+- **E. Event type (vehicle CONFIRMED; one question left).** The receive legs use
+  **`[CAPITAL INJECTION EVENT]`** via `truesight-dao-report-capital-injection` — **verified
+  managed-AGL-only** (the GAS `validateManagedLedger` rejects offchain submission), which is
+  exactly what AGL8/AGL13 need. Canonical labels: `Ledger · Ledger URL · Amount · Description ·
+  Attached Filename · Destination Capital Injection File Location`. **Still open:** whether an
+  **internal** AGL15→AGL8/AGL13 move should use Capital Injection (documented as *external*
+  investment) or `[MANAGED LEDGER TRANSACTION EVENT]`. Governor call.
+- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,691.53) is **neither**
+  a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
+  not cash). Name the vehicle before the AGL15 cash-out row can be booked.
 - **F. AGL15/State is `#REF!`** — the AGL15 Currencies/price catalog is broken, so `/aum`
   cannot value the new holdings until it is repaired.
 - **G. $30 wire fee** — a banking cost of paying, **not** part of invoice #1026-08. Decide:
@@ -79,8 +100,12 @@ Balance!H6 (Resource) = query(query(Transactions!$A$4:G1011, ...))
 Balance!L6 (Liab.)  = ifna(query(Transactions!$A$4:F1012, ...))
 ```
 
-**Writing any `Balance` cell reproduces the 2026-10-14 `#REF!` incident x3.** The only safe
-primitive is to **append rows to the substrate**; the `Balance` view re-spills.
+> ### 🔒 Writes go to `Transactions` ONLY — never `Balance`
+>
+> **Writing any `Balance` cell reproduces the 2026-10-14 `#REF!` incident ×3.** All three
+> managed `Balance` tabs are formula-derived views of their own `Transactions` tab. The only
+> safe primitive is to **append rows to the `Transactions` substrate**; the `Balance` view
+> re-spills. This applies to **every leg** of this plan, without exception.
 
 - Main Ledger substrate: `offchain transactions` — cols A–G:
   `Transaction Date · Description · Fund Handler · Amount · Currency · Ledger Line · Is Revenue`
@@ -103,15 +128,42 @@ DO NOT hand-roll the append** (verified to exist in `dao_protocol`, package
 These produced the AGL15→AGL13 precedent row, so the path is battle-tested and matches the
 handler's append semantics exactly.
 
+## 4b. Traps A–C — structural, do NOT repeat
+
+- **Trap A — double-counting the freight.** The inventory `Unit Cost` **already embeds** the
+  landed freight. Booking the same freight *again* as a ledger **expense** counts it twice
+  (once via unit cost → COGS, once as an expense line). **Rule:** our choice is
+  **ledger-level expense**, and we do **not** additionally re-load the unit cost. Pick ONE
+  treatment per ledger and state it in the booking note. (Cross-ref: this is the same failure
+  class the `CONSIGNMENT_OPTIMAL_QUANTITY_PROPOSAL.md` freight handling warns about.)
+- **Trap B — writing a derived `Balance` cell.** All three `Balance` tabs are `query()` array
+  formulas spilling off their own `Transactions` tab (§4). A single write reproduces the
+  **2026-10-14 `#REF!` incident ×3**. **Rule:** writes go to the **`Transactions` substrate
+  only, never `Balance`** — verify with the API's `formulaValue`, then re-check the spill after
+  every append.
+- **Trap C — blending settled vs disputed.** Book at the **as-billed $4,866.33** actually
+  wired. Keep the **$438.30 overcharge delta** and the superseded **$4,987.39** Wave figure
+  **out of the amortized base** — they are separate tracking/recovery items, not booking inputs.
+  Mixing them re-scales every leg.
+
 ## 5. Dry-run entries
 
 ### 5.1 Main Ledger — Portion 1 (expense)
 
-Append to `offchain transactions` (via `truesight-dao-report-dao-expenses`):
+Event: **`DAO Inventory Expense Event`** (console `truesight-dao-report-dao-expenses`) —
+appends to the `offchain transactions` substrate:
 
-| A | B | C | D | E | F | G |
-|---|---|---|---|---|---|---|
-| 20261014 | `[DAO EXPENSES]` 5 Continent #1026-08 air freight, AWB 047-3175-3223 — Main Ledger share (44.69% of $4,866.33 by shipped kg) | Gary Teh | -2174.80 | USD | | |
+| Canonical field | Value |
+|---|---|
+| DAO Member Name | Gary Teh |
+| Target Ledger | `offchain` *(literal — the GAS dispatches Main Ledger by this name)* |
+| Latitude / Longitude | *(empty)* |
+| Inventory Type | USD |
+| Inventory Quantity | 2174.80 |
+| Description | `5 Continent #1026-08 air freight, AWB 047-3175-3223 — Main Ledger share (44.69% of $4,866.33 by shipped kg)` |
+| Attached Filename | *(invoice PDF)* |
+| Destination Expense File Location | *(Main Ledger)* |
+| Submission Source | autopilot |
 
 ### 5.2 AGL15 — Portion 2 (source: cash -> investment)
 
