@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `[MANAGED LEDGER TRANSACTION EVENT]` — client CLI shipped; Edgar catalog/routing registration still the residual (Black King §3-E2)
+**Filed 2026-10-15 (Black King freight-lane build, plan §3-E2); updated 2026-10-15. Owner: unclaimed. Governor: Gary — vehicle call (item E).**
+
+**Two halves — one shipped, one residual.**
+- **Client half — SHIPPED.** `truesight_dao_client/modules/report_managed_ledger_transaction.py` + the `truesight-dao-report-managed-ledger-transaction` `[project.scripts]` entry, merged **dao_protocol#187** (2026-10-15). `--dry-run` prints the signed payload today.
+- **Server half — RESIDUAL (this entry).** `[MANAGED LEDGER TRANSACTION EVENT]` is **absent** from Edgar's events catalog (`GET /events-catalog`, **v12**) **and** from `server/dispatch.py` `ROUTING`. `tests/test_catalog_dispatch_coverage.py` enforces `ROUTING ⊆ catalog`, so a live submission will not route until both are added — the shipped wrapper is discoverable but not yet functional end-to-end.
+
+**Why this vehicle.** AGL15's freight cash-out leg (-$2,098.354 USD Assets; +two "equity holdings" rows in AGL8/AGL13) fits no other primitive: `[CAPITAL INJECTION EVENT]` writes to the **receiving** ledger only (cannot debit AGL15); `[DAO Inventory Expense Event]` always appends a **negative Assets** row (cannot produce the two positive increase rows). The AGL14 signed-GL precedent (rows 10–13, one-signed-blob-many-rows) is the intended shape.
+
+**Next step (small).** Register the event server-side: add an `events_catalog.json` entry (`canonical_labels`, `required_fields`, `category`) **and** the matching `dispatch.ROUTING` tag, mirroring an existing multi-row event. Then the shipped client module submits end-to-end.
+
+**Blocker:** gated on Governor call **E** — whether `[MANAGED LEDGER TRANSACTION EVENT]` is the chosen internal vehicle (vs `[CAPITAL INJECTION EVENT]`). If Capital Injection is chosen instead, this module remains a ready-but-unused primitive and the server half is deferred. Not on the freight critical path — needed only at booking time (post-cargo-arrival).
+
+**Evidence.** `dao_protocol` PR #187 (2026-10-15); `dao_protocol/truesight_dao_client/modules/report_managed_ledger_transaction.py`; `dao_protocol/truesight_dao_client/server/dispatch.py` (no MANAGED tag); `edgar.truesight.me/events-catalog` v12; `plans/FREIGHT_COST_AMORTIZATION_PLAN.md` §3-E2.
+
 ### Provision `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` so repackaging settlements auto-fire (they currently queue forever)
 **Filed 2026-10-15 (Black King AGL8 corridor §5.15). Owner: governor (provisioned secret — not self-fixable). Small — one env var.**
 
