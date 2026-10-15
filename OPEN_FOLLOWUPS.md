@@ -385,6 +385,21 @@ remaining bare-generic `Currencies` rows filed here (or “none remaining”).
 
 **Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-09: AGL13 `Transactions!C26` validation `ONE_OF_RANGE =Entities!$A$2:$A$1745`; `Entities` A2:A1745 = 13 rows (no `Matheus Reis`); `State!A1` = `#REF!`; the repaired write succeeded only after `clearDataValidations()` on the target row. Repair used the `agroverse-ledger-manager` SA (the ledgers' write-capable principal).
 
+**2026-10-15 update — 3rd live instance found (AGL15 `r66`), and it is now the ONLY remaining shell.** Governor flagged AGL15 `Transactions` line 66. Live read: `r66` = Date `20260923` + a full `[DAO Inventory Expense Event]` Description (Edgar hash `7c980e4b22d8923c`, *"Flight from Ilhéus to São Paulo"*, Inventory Quantity `172.33`), but **C–F empty** — the identical A+B-only shell. Cross-ref: **SES row 240** = `Gary Teh · USD · −172.33 · target AGL15 · Ledger Line **66** · authorized` — the processor *recorded* writing row 66, yet C–F never persisted. A full-width scan of **all 12 managed ledgers' `Transactions` (A4:F1011)** found **`r66` is the only shell row left** (the 2026-10-09 pair AGL13 r26 / AGL8 r184 were repaired). `r66` predates BOTH the 2026-09-30 destination-side idempotency guard AND the 2026-10-14 `Balance` writes, so the guard now **refuses a re-file** (hash already present) → a *stuck* shell. **Impact:** the −$172.33 USD expense is missing from AGL15's Asset section. **Repair (governor-gated ledger write):** the 2026-10-09 recipe — `clearDataValidations()` on row 66, then write C=`Gary Teh`, D=`-172.33`, E=`USD`, F=`Assets`.
+
+### Expense processor double-inserted byte-identical rows into AGL15 `Transactions` — 11 pairs, −$403.35 (and 1 pair in AGL13)
+**Filed 2026-10-15 (Black King AGL15 corridor; found while diagnosing `r66`). Owner: unclaimed. Medium — data integrity, money-adjacent.**
+
+**Symptom.** AGL15 `Transactions` holds **11 pairs of byte-identical rows** — same Date, same Description *including the same `Edgar Scoring Hash Key`* — so the live `Balance` query (`select E, sum(D) where F='Assets' group by E,F`) counts each expense twice. Pairs: r29/30, r31/32, r33/34, r40/41, r42/43, r45/46, r51/52, r54/55, r56/57, r59/60, r64/65. Extra expense = **−$403.35**.
+
+**Root cause.** Same family as the 2026-09-30 destination-side idempotency guard (`tdg_expenses_processing` `Code.js` ~L945): two overlapping processor runs, each appending its own ledger row. **All 11 pairs are dated ≤2026-09-14** — i.e. before the guard shipped. The guard stops *new* occurrences but does not clean the pre-existing double-inserts. (One hash, `308e4bae9684f7c6`, even has a doubled *scored* row — SES r164 + r165.)
+
+**Blast radius.** AGL13 has **1** such pair (−$0.50); the other 10 managed ledgers are clean. Main `offchain transactions` not scanned here (different tab — cf. the `appendRow` lost-update entry).
+
+**Proposed fix.** (1) Decide the repair — the rows are byte-identical, so a de-dup pass (delete the 2nd row of each pair) is cleanest but **destructive → governor-gated**; the append-only alternative is one compensating `+amount` entry per pair. (2) Add an offline audit that flags identical-hash pairs across all managed ledgers. (3) Consider extending the destination guard with a one-time backfill sweep.
+
+**Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-15 (read-only): AGL15 `Transactions!A4:F1011` hash-scan → 47 hashed rows, **11 duplicated hashes**; replicated the `Balance` Asset formula → `USD 4240.75` (would be `4644.10` without the 11 dupes — i.e. AGL15's Asset USD is currently **understated by $403.35**); SES `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` r164/r165 share hash `308e4bae9684f7c6`.
+
 ### `deploy_gas_project` reverts UNCOMMITTED tracked files — a dirty `Code.js` silently drops out of the deployed version
 **Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small.**
 
