@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `report_inventory_movement`'s Quantity validator rejects fractional KG — inconsistent with `report_currency_conversion`
+**Filed 2026-10-15 (Black King AGL8/Unit D corridor, thread `#brazil-san-francisco-2026`). Owner: unclaimed. Small — one validator swap.**
+
+**Context.** `[INVENTORY MOVEMENT]`'s `Quantity` field is validated with `positive_integer` (`truesight_dao_client/modules/report_inventory_movement.py` L27, `validators.py` L95) — integers only, rejects `99.5`. `[CURRENCY CONVERSION EVENT]`'s `Source Amount`/`Target Amount` use `positive_number` (`validators.py` L74) and accept fractions freely. The two events move physically identical quantities (kg of cacao, etc.) through the same ledger, but only one of them can express a fractional amount.
+
+**Why it bites.** During the Black King landing (2026-10-14), the 99.5 kg AGL13 nibs leg needed `[INVENTORY MOVEMENT]` to move custody *before* the conversion could relabel it — the integer-only validator rejected `99.5` outright. The workaround used was `--attr Quantity=99.5` (bypasses the named flag's client-side validator). Confirmed via live testing this is **not a true bypass** — Edgar's server-side/post-merge movement-quantity validation still runs, so it only works when the server side happens to tolerate the fraction; it is not a reliable pattern to rely on.
+
+**Suggested scope.** Swap `Quantity`'s validator from `positive_integer` to `positive_number` in `report_inventory_movement.py`, matching the conversion module. Confirm nothing downstream (GAS `processInventoryReport`/`processInventoryMovementToLedgers`) assumes an integer amount before shipping.
+
+**Evidence.** `truesight_dao_client/validators.py` L74 vs L95; `modules/report_inventory_movement.py` L27; `modules/report_currency_conversion.py` (Source/Target Amount); live `--attr` test during the Black King Unit B/C execution, 2026-10-14.
+
+### `[CURRENCY CONVERSION EVENT]` intake has no same-intent dedupe guard — a slow-to-surface submission invites a double-fire
+**Filed 2026-10-15 (Black King AGL8 corridor — the 99.5 kg duplicate-conversion incident). Owner: unclaimed. Medium — needs a real idempotency key, not just the existing per-row dedup.**
+
+**Context.** Every signed event submission mints a **fresh Request Transaction ID** (`edgar_client.py` L127), and the only dedupe the intake pipeline does is "don't reprocess a row whose status column is already `PROCESSED`." That catches re-running the *same* queued row, but it does **not** catch two independent submissions of the *same logical intent* (same holder, same currency pair, same amount) — each lands as its own row, its own Request Transaction ID, and gets processed as a fully separate, fully real event.
+
+**Why it bites.** On 2026-10-14, a 99.5 kg AGL13 nibs origin→landed conversion took longer than ~3 minutes to surface in `offchain transactions` (normal async lag). It was re-submitted on the assumption the first attempt had silently failed. Both landed (ledger rows 4917/4918 **and** 4919/4920), doubling the balance effect (`off chain asset balance` showed −199/+199 instead of the correct −99.5/+99.5). Caught and self-flagged immediately, fixed with a compensating reversing entry (append-only, no rows deleted) — but only because it was caught; the system itself has no guard against this class of error, and the exact same gap applies to `[INVENTORY MOVEMENT]`, `[REPACKAGING SETTLEMENT EVENT]`, and any other "amount-moving" event type signed via `edgar_client.py`'s generic submission path.
+
+**Suggested scope.** Add a same-intent dedupe window to the intake processor: before marking a new row `PROCESSED`, check recent rows (e.g. last N minutes) for an identical (event type, holder/signer, currency, amount) tuple already `PROCESSED` or still queued, and flag/hold rather than silently double-process. Does not need to be perfect (operators can always force a genuine duplicate through if truly intended) — it needs to turn "I'm not sure if that landed, let me resubmit" into a visible warning instead of a silent double-write.
+
+**Evidence.** `edgar_client.py` L127 (fresh Request Transaction ID per submission); Discord `#brazil-san-francisco-2026` incident report 2026-10-14 ("🚨 Stop — I need to flag an error I made"); ledger rows 4917-4920 + the reversing entry (intake row 23, `PROCESSED`); `offchain asset location`/`off chain asset balance` before/after snapshots.
+
 ### Autopilot attachment pipeline: no automatic OCR→vision fallback when an image contains no text
 **Filed 2026-10-14 (thread 10800). Owner: Sophia (candidate self-fix PR). Small — one fallback branch in the attachment auto-processor.**
 
