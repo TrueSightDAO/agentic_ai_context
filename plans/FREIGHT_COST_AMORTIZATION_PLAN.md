@@ -93,19 +93,24 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 �
 - **B. ~~5.00 kg gap~~ — CLOSED (2026-10-15).** Governor ruled the **5.00 kg are the Pará
   samples**, their portion **charged to the Main Ledger**. Main 132.757 → **137.757 kg**; total
   **302.057 kg** (matches the documented 302.06 net). Shares + $ re-scaled (§2).
-- **C. Weight source.** Unit weights read from the `Currencies` catalog. Cross-check against
-  **NF-e nº 18** per-line net kg before locking (NF-e 18 is not in the `shipment_nfe` tab,
-  which holds NF-e 1–15).
-- **D. Entity naming** for the three new holdings rows (see 5.2) — "AGL15" (self) vs
-  "TrueSight DAO".
-- **E. Event type (vehicle CONFIRMED; one question left).** The receive legs use
+- **C. Weight source — CLOSED (2026-10-15): nominal-unit-weight basis VALIDATED against NF-e nº 18.**
+  Unit weights read from the `Currencies` catalog, cross-checked per-line against **NF-e nº 18**'s
+  declared net kg (NF-e 18 is not in the `shipment_nfe` tab, which holds NF-e 1–15). Catalog basis
+  reproduces nº 18's declared net **302.06 kg** to within **≤0.76 kg per ledger** (Main 137.757 vs 137 ·
+  AGL8 43.800 vs 44 · AGL13 120.500 vs 120.5) — all unit-weight + emitter TON rounding, **no share
+  shift** (45.6063 / 14.5006 / 39.8931% stand). **No re-derivation needed.** Reconciling nº 18's declared
+  *bruto* to the 349 kg commercial reissue is a separate fiscal item (§5.5).
+- **D. Entity naming — CLOSED (2026-10-15): `"AGL15"` (self).** Governor ruled the new holdings/
+  receive rows (§5.2–§5.4) key on Entity **`AGL15`** — matching the existing AGL13 `Balance` precedent
+  (`AGL15 · 211.77 · USD`) and every other row in the managed ledgers — **not** `"TrueSight DAO"`.
+- **E. Event type — CLOSED (2026-10-15): internal move = `[MANAGED LEDGER TRANSACTION EVENT]`.** The receive legs use
   **`[CAPITAL INJECTION EVENT]`** via `truesight-dao-report-capital-injection` — **verified
   managed-AGL-only** (the GAS `validateManagedLedger` rejects offchain submission), which is
   exactly what AGL8/AGL13 need. Canonical labels: `Ledger · Ledger URL · Amount · Description ·
   Attached Filename · Destination Capital Injection File Location`. **Still open:** whether an
   **internal** AGL15→AGL8/AGL13 move should use Capital Injection (documented as *external*
-  investment) or `[MANAGED LEDGER TRANSACTION EVENT]`. Governor call.
-- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,098.354 under the
+  investment). **Governor RULED (2026-10-15): the internal AGL15→AGL8/AGL13 move uses `[MANAGED LEDGER TRANSACTION EVENT]`** — the AGL14 signed-GL precedent (rows 10–13, one-signed-blob-many-rows), which is the only primitive that can debit AGL15 *and* write the two positive holdings rows. Client wrapper shipped (`dao_protocol#187`); **server half (catalog entry + dispatch `ROUTING` [+ GAS handler]) is the residual** — see `OPEN_FOLLOWUPS.md`.
+- **E2. AGL15 source leg vehicle — NAMED (2026-10-15): `[MANAGED LEDGER TRANSACTION EVENT]` (see E).** Debiting AGL15's USD (−$2,098.354 under the
   cash-waterfall model, §2.1) is **neither**
   a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
   not cash). Name the vehicle before the AGL15 cash-out row can be booked.
