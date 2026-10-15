@@ -57,6 +57,46 @@ Older rows may use a **short** composite such as `Ceremonial … Alibaba:… + 8
 - **`8 Ounce Package Kraft Pouch  CP…BR`** — often **two spaces** before `CP` in the canonical nib retail line for that batch.
 - One output **`Currency`** repeats on **`Agroverse QR codes`**; totals on **`offchain asset location`** / **`off chain asset balance`**. Disambiguate runs by **operator + YYYYMMDD**.
 
+## Reading an existing compound name (interpretation, not creation) 🆕 2026-10-15
+
+The section above covers *writing* a new compound name. This covers the opposite direction — given a name
+already on the sheet, how to read it correctly. Two real mistakes happened in the same session before this
+was written down, so both are kept as worked examples.
+
+**The short-name segment is the physical shell, not a different item.** A long/compound name's *first*
+pipe-delimited segment is almost always the same `Currencies` row as a standalone short name elsewhere —
+per the template above, `<base-shell> | Cacao Mass | <weight> | <source> | <operator-date> | <city-AGL>`
+is **the base shell, qualified**, not a new SKU. `Ceremonial Cacao Kraft Pouch - 20250219006 | Cacao Mass |
+200 grams | Paulo 2024 | Santos 018-2025 016-2025 || Ilheus - AGL8` **is** `Ceremonial Cacao Kraft Pouch -
+20250219006` (the empty-pouch shell purchased from ShenZhen) once filled and attributed to AGL8 — the same
+physical pouches, not two inventories that happen to share a batch code.
+
+**Before treating two differently-named buckets as "the same" or "different," trace provenance — don't
+guess from the string.** Walk each name's full transaction history back to its origin event (the row that
+first created a positive balance with no prior source). Two outcomes:
+- **Continuous, traceable descent with a plausible physical story** (e.g. the short name's origin event is
+  a purchase, and the long name's holder/quantity plausibly came from consuming that same purchase) →
+  **it's a relabel**, not a transformation needing a value entry. Fix by moving the physical count between
+  buckets (append-only), nothing else.
+- **No traceable origin at all** (the bucket's balance appears from nothing — no purchase, no injection, no
+  prior row) → that's the actual defect, but the fix is still usually "find the real source and move the
+  count there," not "invent a value transfer to explain it."
+
+**Don't default to booking a value transfer (Equity/Liability) just because a consumption crosses a ledger
+boundary.** A Main-owned shared resource (generic packaging stock) consumed by one AGL's production is a
+**relabel of existing stock**, not a new contribution, *unless* the resource was genuinely something the
+consuming AGL didn't already have a claim to. The tell: if the same physical units were already going to be
+attributed to that AGL's production regardless of which bucket they were sitting in, no value entry is
+needed — just move the count. (Compare: Main `offchain transactions` r4858, 2026-10-07 — packaging
+genuinely **expensed off** and billed to AGL16 **as a liability** — that case involved an actual third-party
+cost recovery, not a same-item relabel. The two patterns look similar on the surface; only provenance
+tracing tells them apart.)
+
+**Location-suffix (`+ <AWB/ref> - <City>`) is always a relabel, never a value event.** This suffix marks a
+physical relocation of the exact same goods tied to a specific shipment/reference — never book Equity,
+Liability, or Expense against a `+<ref>-<city>` conversion; it is pure `[CURRENCY CONVERSION EVENT]`
+bookkeeping, same pattern as the repackaging settlement's `#REF!` lesson: substrate-only, append-only.
+
 ### Sheets (per SCHEMA)
 
 | Sheet | Use | Key columns |
