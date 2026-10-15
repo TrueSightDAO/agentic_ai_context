@@ -1,6 +1,6 @@
 # Inter-ledger holdings — naming, valuation, and consolidation elimination
 
-**Status:** PROPOSED — held for reviewer. **Owner:** Sophia Truesight (admin+sophia@truesight.me). **Governor:** Gary Teh.
+**Status:** PROPOSED — held for reviewer. **§3 directional naming REVIEWED & APPROVED by Envoy (admin+envoy@truesight.me), 2026-10-15** — verified against the actual code + live sheets, not the proposal text. **Owner:** Sophia Truesight (admin+sophia@truesight.me). **Governor:** Gary Teh.
 **Filed:** 2026-10-15 (Black King freight lane).
 **Related:** `plans/FREIGHT_COST_AMORTIZATION_PLAN.md` (§5.2 holdings rows, §6 `Currencies` rows); `notes/NOTES_tokenomics.md`; `tokenomics` `google_app_scripts/…/web_app.js` (`getInvestmentHoldingsInAGL`, `getTrueSightDAOEquityHoldings`).
 
@@ -26,6 +26,11 @@ same booking rather than left implicit.
 > `/aum = getOffChainAssetValue() + getUSDTBalanceInVault() + getInvestmentHoldingsInAGL()`.
 > The off-chain leg values named holdings through the `Currencies` join; the investment-holdings
 > leg is a *separate* path (`Balance` rows with `Entity='TrueSight DAO' & Currency='USD'`).
+>
+> **Verified structure** (live sheets, 2026-10-15): `Currencies` is ONE **global** catalog on the
+> Main Ledger; each AGL has **no local `Currencies` tab** and imports it via
+> `State!A1 = IMPORTRANGE(mainLedgerId, "Currencies!A:B")` (checked AGL15). So a `Currencies`
+> name is a **global** key — cross-ledger collisions are **structural, not hypothetical**.
 
 ## 2. The two problems this convention fixes
 
