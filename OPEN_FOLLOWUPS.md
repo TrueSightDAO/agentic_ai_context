@@ -2682,7 +2682,7 @@ title: Revisit Chocolate Subscription Phase 2 (fulfillment automation)
 created_at: 2026-06-11
 condition:
   kind: elapsed_days
-  escalate_after_days: 120
+  escalate_after_days: 180
 schedule:
   check: weekly
   on_escalate: ping_thread
@@ -2707,6 +2707,23 @@ description: >
   2026-08-10 email; first subscription shipment confirmed shipped 2026-08-16 (USPS
   ...2612). 2nd shipment NOT verifiable from the ledger (the invoice.paid handler
   is Phase 2 itself). Subscribe page live on prod. Phase 2 go/no-go still awaits Gary.
+
+  Re-armed 2026-10-15: timer fired at 126d (threshold 120d). escalate_after_days
+  120 -> 180 (next check ~2026-12-08). NEW EVIDENCE — the activation gate is now
+  MET: two Linda renewals confirmed paid (in_1UEwYMHrrz... 2026-09-12, $70.80;
+  in_1UPorCHrrz... 2026-10-12, $70.80) plus a second active subscriber
+  (singhua11@hotmail.com, $120, 2026-09-27). The Sept cycle tied to a real physical
+  fulfillment (6x Sao Jorge bars, UPS 1Z0C39140337625102 — see thread 30870). So
+  Phase 2's stated precondition ('validate the model on 2 shipments') no longer
+  holds. Phase 2 remains UNBUILT (no Fulfillment Queue tab / no
+  fulfill_subscriptions.html / no invoice.paid handler — org code search = 0 hits)
+  and renewals are still fulfilled manually. Remaining blockers are DECISIONAL, not
+  technical: (1) Gary's Phase 2 go/no-go; (2) coordination — Envoy (nelanco-claude)
+  holds an active_supervision claim on this plan, blocked_on_human on B2 (sandbox
+  sheet/tab) and B7 (beta-box security hygiene); (3) manifest row 74 says the plan
+  moved to thread 30477 ('old 1939 deleted') yet this follow-up still pings 1939 —
+  unresolved discrepancy, not touched by Sophia. Also open: Linda's 2026-08-10
+  e-mail (nutrition label + lead/cadmium testing) reply.
 ```
 
 ```followup
