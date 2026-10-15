@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-15T17:15:39Z`
+- Generated (UTC): `2026-10-15T21:37:03Z`
 - Look-back: **7** calendar days (`2026-10-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,25 +33,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[TREE PLANTING EVENT]` × 16
-- `[CURRENCY CONVERSION EVENT]` × 10
-- `[INVENTORY MOVEMENT]` × 8
-- `[CONTRIBUTION EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 7
+- `[CURRENCY CONVERSION EVENT]` × 5
+- `[INVENTORY MOVEMENT]` × 4
+- `[RETAIL FIELD REPORT EVENT]` × 3
 - `[REPACKAGING SETTLEMENT EVENT]` × 2
-- `[PRACTICE EVENT]` × 1
+- `[PRACTICE EVENT]` × 2
+- _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20261015021935_104` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015021946_106` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261015022010_108` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022024_110` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022045_112` · **Edgar** · [REPACKAGING SETTLEMENT EVENT] Composition URL: https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/… · Holder Name: Matheus Reis · Deplete Inputs: true
-- `Edgar_20261015022047_114` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022054_116` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022100_118` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022114_120` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022138_122` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022153_124` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261015022210_126` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261015022226_128` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261015022239_130` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
@@ -61,6 +52,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261015142129_138` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
 - `Edgar_20261015142928_140` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-15T14:29:26.696Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261015152427_142` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Kirsten Ritschel · Description: Liaised with Gary Teh (~15 min) on SF pallet loading capacity and bar-condit…
+- `Edgar_20261015172457_144` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20261015172505_146` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL8
+- `Edgar_20261015172512_148` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL13
+- `Edgar_20261015191209_150` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Kirsten Ritschel · Type: Time (Minutes) · Amount: 15
+- `Edgar_20261015193931_152` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Bainbridge Apothecary and Tea Shop · Store Key: bainbridge-apothecary-and-tea-shop__450-winslow-way-east__bainbridge-island__wa · Update ID: SFR_20261015193929
+- `Edgar_20261015194641_154` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Edge of the Circle Books · Store Key: edge-of-the-circle-books__1307-northeast-45th-street__seattle__wa · Update ID: SFR_20261015194639
+- `Edgar_20261015195813_156` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-15T19:58:12.597Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261015200813_158` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Matheus Reis · Recipient Name: Kirsten Ritschel · Inventory Item: Foam container box - 120 kraft pouches capacity
+- `Edgar_20261015200816_160` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Matheus Reis · Recipient Name: Kirsten Ritschel · Inventory Item: Foam container box - 46 cacao bar capacity (36cm X 40cm X 61cm)
+- `Edgar_20261015211456_162` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Granted Google Sheets IMPORTRANGE access across 9 managed-ledger Entities ta…
+- `Edgar_20261015213236_164` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Blissfusion Wellness Lounge l Mt. Shasta · Store Key: blissfusion-wellness-lounge-l-mt-shasta__105-east-alma-street__mount-shasta__ca · Update ID: SFR_20261015213233
 
 ---
 
@@ -187,12 +189,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 25 SKU lines · 1,884.50 total units · $13,212.60
+- Manager record: `Kirsten Ritschel` · 26 SKU lines · 1,886.50 total units · $13,260.82
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 12 | 392 | $836.41 |
+  | (uncategorized) | (unspecified) | 13 | 394 | $884.63 |
   | Cacao Nib | Bulk | 2 | 179.50 | $6,046.57 |
   | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
@@ -202,23 +204,23 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 27 SKU lines · 1,856.59 total units · $10,430.59
+- Manager record: `Matheus Reis` · 28 SKU lines · 1,858.59 total units · $10,440.96
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 942 | $654.61 |
-  | (uncategorized) | (unspecified) | 21 | 619.59 | $6,757.99 |
+  | (uncategorized) | (unspecified) | 22 | 621.59 | $6,768.36 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Nib | Bulk | 1 | 99 | $1,008.05 |
   | Cacao Tea | Bulk | 1 | 21 | $213.83 |
   | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 12,755.94 total units · $12,455.63
+- Manager record: `Gary Teh` · 28 SKU lines · 7,854.61 total units · $7,554.30
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 12,679.76 | $12,405.64 |
+  | (uncategorized) | (unspecified) | 26 | 7,778.43 | $7,504.31 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -227,19 +229,19 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
+| AGL15 | 2 | 2,098.35 | $2,098.35 |
+| AGL13 | 1 | 1,953.30 | $1,953.30 |
 | Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
-| Paloma | 7 | 661.32 | $255.43 |
-| Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
-_(+31 more in JSON snapshot.)_
+_(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,679.15**
+- USD on hand: **$2,446.12**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
 - USD provisioned for voting-rights cash-out: **$56.70**
 
@@ -275,6 +277,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-08 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+58a1889 | 2026-10-15 17:17:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 1b1033c | 2026-10-15 11:59:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 8b9213f | 2026-10-15 05:04:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 9c168fa | 2026-10-14 21:53:56 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -309,6 +312,9 @@ efbe9ea | 2026-10-08 06:33:57 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+be3641b | 2026-10-15 18:10:08 -0300 | conventions: inter-ledger holdings — directional naming, static price, consolidation elimination (#1653)
+08e8461 | 2026-10-15 14:16:07 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
+bba799d | 2026-10-15 14:16:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
 7c26ce0 | 2026-10-15 11:23:08 -0300 | Plan: end-to-end Brazil->SF freight SOP refresh + machine-readable checklist (#1643)
 feef4ae | 2026-10-15 11:17:22 -0300 | OPEN_FOLLOWUPS: E ruled — residual is server half; scope refined (handler is piece 3) (#1652)
 5e4482d | 2026-10-15 10:14:44 -0300 | Freight plan §3: record C/D/E rulings (C validated vs NF-e nº 18 · D = AGL15 · E = Managed Ledger Transaction Event) (#1651)
@@ -346,9 +352,6 @@ ee8320e | 2026-10-14 16:34:25 -0300 | followup: file [CURRENCY RETIREMENT EVENT]
 486788a | 2026-10-14 14:28:16 -0300 | chore(previews): refresh Beer Hall preview (2026-10-14 UTC)
 30b93d3 | 2026-10-14 14:28:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-14 UTC)
 684ccab | 2026-10-14 13:26:11 -0300 | docs: fix final stale col-T ref (Expected Trees is col U) - tokenomics #582 (#1615)
-e9bd4b7 | 2026-10-14 13:13:35 -0300 | Replace CPF-bearing entity_registry.json with pointer to privacy-clean fda_fsvp profile (#1614)
-ecff062 | 2026-10-14 13:13:20 -0300 | docs: correct stale col-T references after the Farmer rename (tokenomics#582) (#1613)
-6fefb96 | 2026-10-14 12:27:32 -0300 | Add entity_registry.json (Próspera/Honduras entity legal record)
 … (truncated)
 ```
 
