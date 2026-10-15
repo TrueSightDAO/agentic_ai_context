@@ -108,9 +108,7 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 �
   cash-waterfall model, §2.1) is **neither**
   a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
   not cash). Name the vehicle before the AGL15 cash-out row can be booked.
-- **F. Canonical AGL15 `State` `#REF!` — CLOSED (2026-10-15); residual TBM-mirror `#REF!` remains open (non-blocking).** Governor's desktop **browser click** accepted the one-time IMPORTRANGE grant on canonical AGL15 (`1tXgDss…`): `State!A1` now **spills live** (`Currencies · Price in USD`) — re-verified 2026-10-15 via the Sheets API ⇒ **§7.2 step 2 DONE.** Verified 2026-10-15 via the Sheets API: canonical AGL15 (`1tXgDss…`, *"20260216 -
-  Agroverse Shipment 15 Financing Ledger"* — the URL `/aum` reads via SLL col AB) has **0 error
-  cells in all 6 tabs**. The `#REF!`s are in the **TBM donation ledger** — the "AGL15-mirrored"
+- **F. Canonical AGL15 `State` `#REF!` — CLOSED (2026-10-15); residual TBM-mirror `#REF!` remains open (non-blocking).** Governor's desktop **browser click** accepted the one-time IMPORTRANGE grant on canonical AGL15 (`1tXgDss…`, *"20260216 - Agroverse Shipment 15 Financing Ledger"* — the URL `/aum` reads via SLL col AB): `State!A1` now **spills live** (`Currencies · Price in USD`) — re-verified 2026-10-15 via the Sheets API ⇒ **§7.2 step 2 DONE.** The remaining `#REF!`s are in the **TBM donation ledger** — the "AGL15-mirrored"
   workbook (`1rNwXIp…`, registered at SLL row 18; a duplicate copy `1_MjYZ…` is orphaned):
   - `State!A1` **and** `Entities!A19` → `#REF!` *"Please use a desktop web browser to connect
     this sheet"* — an **un-approved** `IMPORTRANGE` from Main Ledger `Currencies!A:B`;
