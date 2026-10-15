@@ -4,6 +4,8 @@
 **Owner:** Sophia Truesight (admin+sophia@truesight.me)
 **Governor:** Gary Teh
 **Related:** `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`; pinned Black King landed-cost thread.
+**Supersedes:** the *original* plan merged as PR **#1629** ($4,866.33; AGL15 funded both legs in full).
+The base and the cash-waterfall were refined by **#1630–#1635** — read THIS file, not #1629.
 
 ---
 
@@ -37,6 +39,8 @@ the ledger that holds the goods, not all on the Main Ledger.
 | **AGL13** | Nibs Santos ×99.5 · Tea Santos ×21 | 120.500 | 39.8931% | **$1,953.30** |
 | | | **302.057** | 100% | **$4,896.33** |
 
+- **Main Ledger composition (audit):** 129 Kraft Pouch + 37 Mass Bar + 80 Nibs + 5 Butter =
+  **132.757 kg**, **+ Pará samples 5.00 kg** (not part of any AGL ledger) = **137.757 kg**.
 - **Portion 1 (Main Ledger)** = **$2,233.03** → **expensed** on the Main Ledger (the inventory
   unit cost already carries the freight, so no second capitalization).
 - **Portion 2 (AGL8 + AGL13)** = **$2,663.30** → **cash waterfall**: each ledger **self-funds
@@ -104,8 +108,21 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 �
   cash-waterfall model, §2.1) is **neither**
   a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
   not cash). Name the vehicle before the AGL15 cash-out row can be booked.
-- **F. AGL15/State is `#REF!`** — the AGL15 Currencies/price catalog is broken, so `/aum`
-  cannot value the new holdings until it is repaired.
+- **F. `#REF!` is in the AGL15-*mirrored* Tribo Bahia Mirim (TBM) ledger — canonical AGL15 is
+  clean.** Verified 2026-10-15 via the Sheets API: canonical AGL15 (`1tXgDss…`, *"20260216 -
+  Agroverse Shipment 15 Financing Ledger"* — the URL `/aum` reads via SLL col AB) has **0 error
+  cells in all 6 tabs**. The `#REF!`s are in the **TBM donation ledger** — the "AGL15-mirrored"
+  workbook (`1rNwXIp…`, registered at SLL row 18; a duplicate copy `1_MjYZ…` is orphaned):
+  - `State!A1` **and** `Entities!A19` → `#REF!` *"Please use a desktop web browser to connect
+    this sheet"* — an **un-approved** `IMPORTRANGE` from Main Ledger `Currencies!A:B`;
+  - `Balance!A6/E6/H6/L6` → `#REF!` *"Unresolved sheet name 'Transactions'"* (`1_MjYZ`) /
+    `#VALUE!` *"Unable to parse query"* (`1rNwXIp`).
+  **The IMPORTRANGE fix needs a HUMAN** — open the TBM sheet in a browser, click `State!A1`,
+  accept the one-time "Allow access" dialog (no service account/script can click it); the 4
+  Balance QUERY clauses are then repairable via API.
+  **Impact on THIS plan: none** — `/aum` reads each ledger's **`Balance`** (not `State`), and
+  canonical AGL15's Balance is clean, so the new holdings value once the §6 `Currencies` rows
+  exist. **F does not block the freight booking.**
 - **G. ~~$30 wire fee~~ — CLOSED (2026-10-15).** Governor folded it into the amortized pool ⇒
   base = **$4,896.33**. Booked as a **pooled landed cost** (weight-allocated), not a
   separate Main-Ledger expense.
