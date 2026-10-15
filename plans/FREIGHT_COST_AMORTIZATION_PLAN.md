@@ -126,9 +126,12 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 �
 - **G. ~~$30 wire fee~~ — CLOSED (2026-10-15).** Governor folded it into the amortized pool ⇒
   base = **$4,896.33**. Booked as a **pooled landed cost** (weight-allocated), not a
   separate Main-Ledger expense.
-- **H. Beneficiary name** — the wire reads **"To Sea Coast Logistics"**; the invoice/quote are
-  from **"5 Continent Logistics LLC."** Presumed a beneficiary-bank alias — confirm so the
-  audit trail ties out.
+- **H. ~~Beneficiary name~~ — CLOSED (2026-10-15).** The wire reads **"To Sea Coast
+  Logistics"**; the invoice/quote are from **"5 Continent Logistics LLC."** **Governor ruling:**
+  these are the **SAME entity** — the receiving bank's rendering of our **forwarder**, **not** a
+  mis-payee and **not** a discrepancy. Corroborated: `PURCHASE_AGREEMENT_PDFS.md` already uses
+  **"Sea Coast Logistics"** as our canonical example *forwarder* name, and the wire narrative
+  itself names the invoice (*"For Invoice Number 1026 08"*). **No further action.**
 - **I. Who paid — CLOSED (2026-10-15).** Governor confirmed the **$4,866.33 was wired from the
   USD balance under his management** (Wells Fargo Everyday Checking …3099 — the operating account
   holding the DAO-managed USD). ⇒ a **direct debit against the DAO-managed USD** (Main Ledger +
