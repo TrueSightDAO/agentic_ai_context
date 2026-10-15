@@ -150,6 +150,22 @@ branch edits) and the scriptId is `1u4lVtGaO5GjpG0XQo7b8hc3QFAXcsrJKclBead2sDcgv
 it has no copy under `tokenomics/google_app_scripts/`, so the `gas_deploy_project` path does
 not cover it.
 
+**Addendum 2026-10-15 (Black King landed-cost thread, session dd775ec0499d) — the drop is not cosmetic: it makes two governor-facing valuation surfaces disagree in dollars.** While supervising the AUM surface ahead of the freight booking I compared `treasury-cache` against the live `/aum/` GAS for every managed ledger. They read **different `Balance` sections** (`conventions/MANAGED_LEDGER_EXPLORER_PATTERN.md` L122–124):
+
+- **`/aum/`** (tokenomics GAS `?type=aum_breakdown` → `getInvestmentHoldingsInAGL()`) reads the **Asset** section (cols E–F, header-driven).
+- **`treasury-cache/dao_offchain_treasury.json`** (→ `stats/current.json`, landing-page tile expanders, DApp) reads the **Resource Location** section (cols H/I/J, per-manager).
+
+These are *meant* to reconcile per-asset — the Resource Location rows sum to the Asset rows. They stop reconciling exactly when a manager holds a **negative** leg, which the publisher's `quantity > 0` guard (L269) drops. Two live instances, both verified 2026-10-15:
+
+| Ledger | Asset section (`/aum`) | Resource Location (`treasury-cache`) | Delta | Cause |
+|---|---:|---:|---:|---|
+| **AGL8 USD** | 564.946 (Asset row 12) | 569.946 | **+5.00** | `+569.946` (Gary Teh, row 9) kept; `−5` (Sophia Truesight, row 13) dropped. Identity: 569.946 − 5 = 564.946 ✓ |
+| **AGL16 USD** | **−1,868.92** (Asset) | absent / 0 | **−1,868.92** | the whole negative USD asset is dropped by L269 — the cache hides a real over-spend |
+
+**Why this raises severity.** The GAS `/aum` endpoint is serving **correctly** (it shows the negatives). The **cache is the wrong one**, and it feeds `stats/current.json` (the LLM surface), the landing-page expanders, and the DApp. A governor reading the cache sees AGL8 USD **$5 high** and AGL16 USD **$1,868.92 too high** (a hidden over-spend). This is no longer a hidden-holdings-row cosmetic issue.
+
+**Fix unchanged** (drop the `> 0` guards; carry signed amounts through `items[]` and each manager's `items[]`). **New acceptance test:** for every managed ledger, `sum(Resource Location USD) == Asset-section USD`, and AGL16 surfaces its −1,868.92. Downstream self-heals — `stats/current.json` on its next 6h cron, the tile expander on the publisher's next 30-min run.
+
 ### `dao_members.json` publisher mangles non-ASCII contributor names (Júlio → `J?lio Almeida`)
 **Filed 2026-10-13 (Discord, store-visibility thread). Owner: unclaimed. Small (diagnose); the publisher fix is a §5c human-gated GAS change.**
 
