@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `trees/index.geojson` is a map layer → pseudo trees (blank lat/lng) never appear, so their `my-trees?tree=` deep links 404
+**Filed 2026-10-15 (CFR Anapu payout PDF build, thread `#sunmint`). Owner: unclaimed. Medium — depends on the pseudo-tree GPS-assignment workflow.**
+
+**Symptom.** Building the pre-payout PDF (86 trees, see `sops/PAYOUT_REPORT_SOP.md`), each row's "see tree" link — `https://cfr.truesight.me/my-trees/?tree=<tree_id>` — resolves only for trees present in `sunmint/trees/index.geojson`. That feed has **228 features** and **every** feature carries a Point geometry; coverage of the payable set was **71/86**. The **15 uncovered** rows all had **blank `lat`/`lng`** (pseudo trees), so they are excluded from the map layer by construction.
+
+**Root cause.** `trees/index.geojson` is a **map layer** — it regenerates on schedule (`generated_at` was fresh, `2026-10-15T22:00Z`, so *not* a staleness bug) and emits only features with coordinates. A pseudo tree (blank K/L + plot_id per the governor's pseudo-tree ruling) therefore **cannot** appear until lat/long is assigned in place. Not an off-by-one (tested `±1` on the sequence — all absent), not a `created`/date filter (later 10-15 trees `_177`/`_185` ARE present while the early 10-15 batch is not).
+
+**Impact.** Any public surface that resolves a tree via the map feed (cfr/sunmint my-trees, monitor-tree-growth, the media-location join) silently omits pseudo trees. Payout reports must not present a dead link.
+
+**Suggested scope (the report-side fix is done).** Two options: (a) *preferred for reports* — use the **universal fallback** `https://beta.truesight.me/ledger/explorer/?q=<tree_id>` (reads `verify_public_signatures/ledger_index.json`, keyed on `tree_id` independent of GPS — verified to resolve pseudo trees) as the link for coordinate-less rows, already mandated in `sops/PAYOUT_REPORT_SOP.md` §3; and/or (b) refresh the my-trees surface to also render GPS-less trees (a card without a map point) so a single link works everywhere. Option (b) is a product change — needs a governor call.
+
+**Evidence.** `sunmint/trees/index.geojson` (228 features, all with geometry, `generated_at 2026-10-15T22:00Z`); payable set 71/86 covered; 15 missing rows all blank lat/lng; `cfr.truesight.me/my-trees-utils.js` `buildLedgerLink`; `beta.truesight.me/js/ledger_explorer_utils.js` (LEDGER_INDEX_URL = `verify_public_signatures/ledger_index.json`); `sops/PAYOUT_REPORT_SOP.md`.
+
 ### `[MANAGED LEDGER TRANSACTION EVENT]` — client CLI shipped; Edgar catalog/routing registration still the residual (Black King §3-E2)
 **Filed 2026-10-15 (Black King freight-lane build, plan §3-E2); updated 2026-10-15. Owner: unclaimed. Governor: Gary — vehicle RULED (item E); server-half build-vs-transcribe call still open.**
 
