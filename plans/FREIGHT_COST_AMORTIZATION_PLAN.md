@@ -22,6 +22,8 @@ the ledger that holds the goods, not all on the Main Ledger.
 - **Wire fee:** **USD 30.00** — total debit from the account **$4,896.33** (see §3-G).
 - **Funded from:** the USD holdings **Gary Teh manages** on **Main Ledger** and **AGL15**
   (the wire drew on Wells Fargo Everyday Checking …3099 — the governor's personal account).
+  **Cash-waterfall allocation (§2.1):** each landed ledger **self-funds from its own USD first**;
+  AGL15 finances only the shortfall.
 - **Basis:** shipped weight (kg) = `Currencies` unit weight × arrival quantity
 
 ## 2. Allocation (weight basis)
@@ -35,10 +37,31 @@ the ledger that holds the goods, not all on the Main Ledger.
 
 - **Portion 1 (Main Ledger)** = **$2,174.80** → **expensed** on the Main Ledger (the inventory
   unit cost already carries the freight, so no second capitalization).
-- **Portion 2 (AGL15)** = **$2,691.53** → **equity injection** into AGL8 (**$717.52**) +
-  AGL13 (**$1,974.01**), each immediately expensed against the invoice.
+- **Portion 2 (AGL8 + AGL13)** = **$2,691.53** → **cash waterfall**: each ledger **self-funds
+  its share from its own USD cash first**, and **AGL15 finances only the shortfall**.
 
-Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 ≥ P2 2,691.53 OK
+### 2.1 Cash waterfall — self-fund first, AGL15 covers the shortfall
+
+> **Governor ruling (2026-10-15):** *"if AGL13 and AGL8 have USD balance those should be
+> depleted first to account for the shipment cost before they borrow against AGL15 for
+> financing."*
+
+| Ledger | Freight share | Own USD cash | Self-funded | **Borrows from AGL15** |
+|---|---|---|---|---|
+| **Main** | 2,174.80 | 4,590.91 | 2,174.80 | — |
+| **AGL8** | 717.52 | **564.946** | 564.946 | **152.574** |
+| **AGL13** | 1,974.01 | **0.00** | 0.00 | **1,974.01** |
+| | **4,866.33** | | | **AGL15 outlay: 2,126.584** |
+
+*(USD cash read live from each ledger's `Balance` Asset section, 2026-10-15: AGL8 USD 564.946,
+AGL13 none, AGL15 USD 4,240.75.)*
+
+- **AGL8** drains its own **$564.946**, then borrows the **$152.574** remainder.
+- **AGL13** holds **no USD**, so it borrows its **full $1,974.01**.
+- **AGL15** outlay drops **$2,691.53 → $2,126.584**; its USD after = 4,240.75 − 2,126.584 =
+  **$2,114.17** (was $1,549.22 under the old model).
+
+Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 ≥ P2 **2,126.584** OK
 
 > **⏳ Placeholders pending NF-e derivation.** `w_MAIN = 132.757` · `w_8 = 43.800` ·
 > `w_13 = 120.500` kg — derived from `Currencies` unit weight × arrival qty, **not yet
@@ -76,7 +99,8 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 �
   Attached Filename · Destination Capital Injection File Location`. **Still open:** whether an
   **internal** AGL15→AGL8/AGL13 move should use Capital Injection (documented as *external*
   investment) or `[MANAGED LEDGER TRANSACTION EVENT]`. Governor call.
-- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,691.53) is **neither**
+- **E2. AGL15 source leg has no vehicle yet.** Debiting AGL15's USD (−$2,126.584 under the
+  cash-waterfall model, §2.1) is **neither**
   a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
   not cash). Name the vehicle before the AGL15 cash-out row can be booked.
 - **F. AGL15/State is `#REF!`** — the AGL15 Currencies/price catalog is broken, so `/aum`
@@ -165,17 +189,18 @@ appends to the `offchain transactions` substrate:
 | Destination Expense File Location | *(Main Ledger)* |
 | Submission Source | autopilot |
 
-### 5.2 AGL15 — Portion 2 (source: cash -> investment)
+### 5.2 AGL15 — finances the shortfall only (cash → holdings)
 
 Append to AGL15 `Transactions`:
 
 | Date | Description | Entity | Amount | Currency | Type |
 |---|---|---|---|---|---|
-| 20261014 | 5 Continent #1026-08 freight — Portion 2 funded from Gary's USD | Gary Teh | -2691.53 | USD | Assets |
-| 20261014 | Investment in AGL8 (freight share) | D | 717.52 | AGL8 equity holdings | Assets |
-| 20261014 | Investment in AGL13 (freight share) | D | 1974.01 | AGL13 equity holdings | Assets |
+| 20261014 | 5 Continent #1026-08 freight — AGL15-financed shortfall (AGL8 $152.574 + AGL13 $1,974.01) | Gary Teh | -2126.584 | USD | Assets |
+| 20261014 | Investment in AGL8 (freight shortfall financed) | AGL8 | 152.574 | AGL8 equity holdings | Assets |
+| 20261014 | Investment in AGL13 (freight share financed) | AGL13 | 1974.01 | AGL13 equity holdings | Assets |
 
-Net: AGL15 assets unchanged (cash -> holdings); equity unchanged.
+Net: AGL15 assets unchanged (cash → holdings); equity unchanged. Outlay **$2,126.584**, not
+$2,691.53 — AGL8 self-funds its own $564.946.
 
 ### 5.3 AGL8 — receive + expense
 
@@ -183,11 +208,12 @@ Append to AGL8 `Transactions`:
 
 | Date | Description | Entity | Amount | Currency | Type |
 |---|---|---|---|---|---|
-| 20261014 | Capital injection from AGL15 (freight share) | AGL15 | 717.52 | USD | Assets |
-| 20261014 | Capital injection from AGL15 (freight share) | AGL15 | 717.52 | USD | Equity |
+| 20261014 | Capital injection from AGL15 (freight shortfall financed) | AGL15 | 152.574 | USD | Assets |
+| 20261014 | Capital injection from AGL15 (freight shortfall financed) | AGL15 | 152.574 | USD | Equity |
 | 20261014 | 5 Continent #1026-08 freight — AGL8 share | AGL8 | -717.52 | USD | Assets |
 
-Net AGL8: Equity +717.52 (AGL15 now a financier); cash nets to zero.
+Net AGL8: cash **564.946 → 0** (drains its own USD; +152.574 in − 717.52 out = −564.946);
+Equity **+152.574** (AGL15's stake is only the financed shortfall, not the full share).
 
 ### 5.4 AGL13 — receive + expense
 
@@ -195,13 +221,17 @@ Append to AGL13 `Transactions`:
 
 | Date | Description | Entity | Amount | Currency | Type |
 |---|---|---|---|---|---|
-| 20261014 | Capital injection from AGL15 (freight share) | AGL15 | 1974.01 | USD | Assets |
-| 20261014 | Capital injection from AGL15 (freight share) | AGL15 | 1974.01 | USD | Equity |
+| 20261014 | Capital injection from AGL15 (freight share financed) | AGL15 | 1974.01 | USD | Assets |
+| 20261014 | Capital injection from AGL15 (freight share financed) | AGL15 | 1974.01 | USD | Equity |
 | 20261014 | 5 Continent #1026-08 freight — AGL13 share | AGL13 | -1974.01 | USD | Assets |
+
+Net AGL13: holds **no USD cash**, so it borrows its **full $1,974.01**; cash nets to zero,
+Equity **+1974.01**.
 
 **Separate item (do NOT fold in):** AGL13 `Balance` already carries an Equity row
 `AGL15 · 211.77 · USD` with **no reciprocal asset on AGL15**. Completing that half-recorded
 entry is a **separate reconciliation**; book only the freight share (1974.01) in this batch.
+**After this batch AGL15's total recorded stake in AGL13 = 211.77 + 1974.01 = $2,185.78.**
 
 ## 6. Currency catalog additions
 
@@ -214,8 +244,8 @@ New asset names, each with **Price in USD = 1.0** (USD-at-par) so `/aum` rollups
   a distinct live token (~2.4M circulating).
 
 Confirmed (governor): **AGL8 already independently holds USD 564.946 as an asset** (small,
-pre-existing). Post-booking its cash is 564.946 + 717.52 − 717.52 = **564.946** — the freight
-net-zeroes and the pre-existing balance is untouched.
+pre-existing). Under the **cash-waterfall model (§2.1)** AGL8 **spends that 564.946** on its
+freight share and borrows only $152.574: post-booking cash = 564.946 + 152.574 − 717.52 = **0**.
 
 ## 7. Sequencing
 
