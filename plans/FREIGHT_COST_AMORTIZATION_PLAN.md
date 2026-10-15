@@ -19,7 +19,8 @@ the ledger that holds the goods, not all on the Main Ledger.
   $4,866.33 … To Sea Coast Logistics … From EVERYDAY CHECKING …3099 … For Invoice Number 1026 08"*,
   Confirmation **OW00007548893768**, submitted **2026-10-12 10:54 PT**, deliver-by 2026-10-13.
   (**SUPERSEDES** the earlier $4,987.39 figure — see §3-A, now closed.)
-- **Wire fee:** **USD 30.00** — total debit from the account **$4,896.33** (see §3-G).
+- **Wire fee:** **USD 30.00** — **folded into the amortized pool** (governor ruling, 2026-10-15) ⇒
+  **amortized base = USD 4,896.33** (invoice 4,866.33 + fee 30.00), the total debited. **§3-G CLOSED.**
 - **Funded from:** the **USD balance under Gary Teh's management** — the managed USD held on
   **Main Ledger** and **AGL15** (the wire drew on Wells Fargo Everyday Checking …3099, the
   operating account that holds that managed USD). ⇒ **direct debit against the managed USD**,
@@ -31,14 +32,14 @@ the ledger that holds the goods, not all on the Main Ledger.
 
 | Ledger | Currency lines shipped | kg | Share | Amortized |
 |---|---|---|---|---|
-| **Main Ledger** | 8oz Kraft Pouch ×129 · Mass Bar ×37 · Nibs ×80 · Butter ×5 | 132.757 | 44.69% | **$2,174.80** |
-| **AGL8** | Almonds ×10 · Ceremonial Kraft ×169 | 43.800 | 14.74% | **$717.52** |
-| **AGL13** | Nibs Santos ×99.5 · Tea Santos ×21 | 120.500 | 40.56% | **$1,974.01** |
-| | | **297.057** | 100% | **$4,866.33** |
+| **Main Ledger** | 8oz Kraft Pouch ×129 · Mass Bar ×37 · Nibs ×80 · Butter ×5 · **Pará samples 5.00 kg** | 137.757 | 45.6063% | **$2,233.03** |
+| **AGL8** | Almonds ×10 · Ceremonial Kraft ×169 | 43.800 | 14.5006% | **$710.00** |
+| **AGL13** | Nibs Santos ×99.5 · Tea Santos ×21 | 120.500 | 39.8931% | **$1,953.30** |
+| | | **302.057** | 100% | **$4,896.33** |
 
-- **Portion 1 (Main Ledger)** = **$2,174.80** → **expensed** on the Main Ledger (the inventory
+- **Portion 1 (Main Ledger)** = **$2,233.03** → **expensed** on the Main Ledger (the inventory
   unit cost already carries the freight, so no second capitalization).
-- **Portion 2 (AGL8 + AGL13)** = **$2,691.53** → **cash waterfall**: each ledger **self-funds
+- **Portion 2 (AGL8 + AGL13)** = **$2,663.30** → **cash waterfall**: each ledger **self-funds
   its share from its own USD cash first**, and **AGL15 finances only the shortfall**.
 
 ### 2.1 Cash waterfall — self-fund first, AGL15 covers the shortfall
@@ -49,20 +50,19 @@ the ledger that holds the goods, not all on the Main Ledger.
 
 | Ledger | Freight share | Own USD cash | Self-funded | **Borrows from AGL15** |
 |---|---|---|---|---|
-| **Main** | 2,174.80 | 4,590.91 | 2,174.80 | — |
-| **AGL8** | 717.52 | **564.946** | 564.946 | **152.574** |
-| **AGL13** | 1,974.01 | **0.00** | 0.00 | **1,974.01** |
-| | **4,866.33** | | | **AGL15 outlay: 2,126.584** |
+| **Main** | 2,233.03 | 4,590.91 | 2,233.03 | — |
+| **AGL8** | 710.00 | **564.946** | 564.946 | **145.054** |
+| **AGL13** | 1,953.30 | **0.00** | 0.00 | **1,953.30** |
+| | **4,896.33** | | | **AGL15 outlay: 2,098.354** |
 
 *(USD cash read live from each ledger's `Balance` Asset section, 2026-10-15: AGL8 USD 564.946,
 AGL13 none, AGL15 USD 4,240.75.)*
 
-- **AGL8** drains its own **$564.946**, then borrows the **$152.574** remainder.
-- **AGL13** holds **no USD**, so it borrows its **full $1,974.01**.
-- **AGL15** outlay drops **$2,691.53 → $2,126.584**; its USD after = 4,240.75 − 2,126.584 =
-  **$2,114.17** (was $1,549.22 under the old model).
+- **AGL8** drains its own **$564.946**, then borrows the **$145.054** remainder.
+- **AGL13** holds **no USD**, so it borrows its **full $1,953.30**.
+- **AGL15** outlay = **$2,098.354**; its USD after = 4,240.75 − 2,098.354 = **$2,142.396**.
 
-Funding check: Main/Gary USD 4,590.91 ≥ P1 2,174.80 OK · AGL15 USD 4,240.75 ≥ P2 **2,126.584** OK
+Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 ≥ P2 **2,098.354** OK
 
 > **⏳ Placeholders pending NF-e derivation.** `w_MAIN = 132.757` · `w_8 = 43.800` ·
 > `w_13 = 120.500` kg — derived from `Currencies` unit weight × arrival qty, **not yet
