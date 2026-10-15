@@ -40,7 +40,7 @@ cross-session** items that would otherwise rot in chat transcripts.
 ## Pending
 
 ### `[MANAGED LEDGER TRANSACTION EVENT]` — client CLI shipped; Edgar catalog/routing registration still the residual (Black King §3-E2)
-**Filed 2026-10-15 (Black King freight-lane build, plan §3-E2); updated 2026-10-15. Owner: unclaimed. Governor: Gary — vehicle call (item E).**
+**Filed 2026-10-15 (Black King freight-lane build, plan §3-E2); updated 2026-10-15. Owner: unclaimed. Governor: Gary — vehicle RULED (item E); server-half build-vs-transcribe call still open.**
 
 **Two halves — one shipped, one residual.**
 - **Client half — SHIPPED.** `truesight_dao_client/modules/report_managed_ledger_transaction.py` + the `truesight-dao-report-managed-ledger-transaction` `[project.scripts]` entry, merged **dao_protocol#187** (2026-10-15). `--dry-run` prints the signed payload today.
@@ -48,9 +48,9 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Why this vehicle.** AGL15's freight cash-out leg (-$2,098.354 USD Assets; +two "equity holdings" rows in AGL8/AGL13) fits no other primitive: `[CAPITAL INJECTION EVENT]` writes to the **receiving** ledger only (cannot debit AGL15); `[DAO Inventory Expense Event]` always appends a **negative Assets** row (cannot produce the two positive increase rows). The AGL14 signed-GL precedent (rows 10–13, one-signed-blob-many-rows) is the intended shape.
 
-**Next step (small).** Register the event server-side: add an `events_catalog.json` entry (`canonical_labels`, `required_fields`, `category`) **and** the matching `dispatch.ROUTING` tag, mirroring an existing multi-row event. Then the shipped client module submits end-to-end.
+**Next step — THREE pieces, not two (scope refined 2026-10-15).** Register the event server-side: (1) an `events_catalog.json` entry (`canonical_labels`, `required_fields`, `category`); (2) the matching `dispatch.ROUTING` tag — then (3) a **handling path**, because the event name is absent from **every** GAS file in `tokenomics` (**0 hits / 101 files scanned, 2026-10-15**). The AGL14 precedent (AGL14 ledger rows 10–13) is a genuine signed dapp submission *but was hand-typed from the signed text* — no automated handler ever consumed that format. So a live submission needs either a **new GAS processor** (mirroring `capital_injection_processing.js`: open target ledger via Shipment Ledger Listing → parse the signed `Row N — Entity/Amount/Currency/Transaction Type` blob → append each to `Transactions` → dedupe on the Edgar hash) **or** a deliberate one-off manual transcription. **The handler is additive-only but is a live deploy to shared prod infrastructure ⇒ an explicit governor gate (always-stop).**
 
-**Blocker:** gated on Governor call **E** — whether `[MANAGED LEDGER TRANSACTION EVENT]` is the chosen internal vehicle (vs `[CAPITAL INJECTION EVENT]`). If Capital Injection is chosen instead, this module remains a ready-but-unused primitive and the server half is deferred. Not on the freight critical path — needed only at booking time (post-cargo-arrival).
+**Blocker — E RULED (2026-10-15):** `[MANAGED LEDGER TRANSACTION EVENT]` **is** the chosen internal vehicle (plan §3-E; PR #1651). Residual = the **server half only**, and specifically the scope call on piece (3): **build the GAS handler** (repeatable primitive; reviewer + Sophia recommend) **vs** accept a one-off manual transcription. Not on the freight critical path — needed only at booking time (**post-cargo-arrival**).
 
 **Evidence.** `dao_protocol` PR #187 (2026-10-15); `dao_protocol/truesight_dao_client/modules/report_managed_ledger_transaction.py`; `dao_protocol/truesight_dao_client/server/dispatch.py` (no MANAGED tag); `edgar.truesight.me/events-catalog` v12; `plans/FREIGHT_COST_AMORTIZATION_PLAN.md` §3-E2.
 
