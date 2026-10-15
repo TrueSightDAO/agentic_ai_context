@@ -108,8 +108,7 @@ Funding check: Main/Gary USD 4,590.91 ≥ P1 2,233.03 OK · AGL15 USD 4,240.75 �
   cash-waterfall model, §2.1) is **neither**
   a Capital Injection **nor** a `DAO Inventory Expense Event` (the latter targets *inventory*,
   not cash). Name the vehicle before the AGL15 cash-out row can be booked.
-- **F. `#REF!` is in the AGL15-*mirrored* Tribo Bahia Mirim (TBM) ledger — canonical AGL15 is
-  clean.** Verified 2026-10-15 via the Sheets API: canonical AGL15 (`1tXgDss…`, *"20260216 -
+- **F. Canonical AGL15 `State` `#REF!` — **CLOSED (2026-10-15)**; residual `#REF!`s are in the AGL15-*mirrored* TBM ledger (open, non-blocking).** Governor's desktop **browser click** accepted the one-time IMPORTRANGE grant on canonical AGL15 (`1tXgDss…`): `State!A1` now **spills live** (`Currencies · Price in USD`) — re-verified 2026-10-15 via the Sheets API ⇒ **§7.2 step 2 DONE.** Verified 2026-10-15 via the Sheets API: canonical AGL15 (`1tXgDss…`, *"20260216 -
   Agroverse Shipment 15 Financing Ledger"* — the URL `/aum` reads via SLL col AB) has **0 error
   cells in all 6 tabs**. The `#REF!`s are in the **TBM donation ledger** — the "AGL15-mirrored"
   workbook (`1rNwXIp…`, registered at SLL row 18; a duplicate copy `1_MjYZ…` is orphaned):
@@ -295,7 +294,7 @@ freight share and borrows only $145.054: post-booking cash = 564.946 + 145.054 �
 ## 7. Sequencing
 
 1. Close open items **A–F**.
-2. Repair AGL15 `State` (`#REF!`) + add the `Currencies`/`State` rows.
+2. ~~Repair AGL15 `State` (`#REF!`)~~ — **DONE (2026-10-15)** via the Governor's browser click (canonical AGL15 `State!A1` spills live; re-verified). **Still open:** add the `Currencies`/`State` rows. *(Residual TBM-mirror `#REF!` is separate + non-blocking — see §3-F.)*
 3. Dry-run each leg -> governor review.
 4. **On explicit go:** book Main Ledger -> AGL15 -> AGL8 -> AGL13.
 5. Verify each `Balance` re-spill matches the expected figures.
