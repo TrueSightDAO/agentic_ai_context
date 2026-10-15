@@ -400,6 +400,25 @@ remaining bare-generic `Currencies` rows filed here (or “none remaining”).
 
 **Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-15 (read-only): AGL15 `Transactions!A4:F1011` hash-scan → 47 hashed rows, **11 duplicated hashes**; replicated the `Balance` Asset formula → `USD 4240.75` (would be `4644.10` without the 11 dupes — i.e. AGL15's Asset USD is currently **understated by $403.35**); SES `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` r164/r165 share hash `308e4bae9684f7c6`.
 
+**Net effect — the two AGL15 defects PARTIALLY OFFSET; do NOT sum them (2026-10-15).** The
+**dup-pairs** bug *understates* AGL15 Asset USD by **$403.35** (each expense summed twice ⇒ sum
+ too negative ⇒ balance too low). The **`r66` shell** bug *overstates* it by **$172.33** (a real
+−$172.33 expense is missing ⇒ sum too high). Net pre-booking correction to the displayed
+`USD 4240.75` = **+$403.35 − $172.33 = +$231.02** ⇒ **true AGL15 Asset USD = $4,471.77** —
+**NOT `$4,644.10`** (that figure corrects only the dups and ignores `r66`, the row the governor
+originally flagged). Direction still holds (balance is *higher* ⇒ better freight headroom) but by
+**$231.02, not $403.35**. **Booking impact: none** — the freight plan's AGL15 **outlay is fixed at
+$2,098.354** (the cash waterfall is on AGL8/AGL13), so only AGL15's *residual* headroom shifts
+(plan §2.1: 4,240.75 − 2,098.354 = 2,142.396 → **2,373.416** once both defects are corrected).
+**Neither defect is cargo-gated** — both are pure integrity fixes to rows already authorized in
+SES.
+
+**Repair note (r66 vs dups — different primitives).** `r66` is fixed by **backfilling C–F**
+(`clearDataValidations()` → `Gary Teh / -172.33 / USD / Assets`; the 2026-10-09 recipe) — it is a
+*missing row*, not a duplicate. The 11 pairs are fixed by **de-dup** (destructive, governor-gated)
+or the reviewer-proposed **append-only reversing entries** (`+amount` USD Assets each, tagged as
+correcting a pre-guard duplicate and referencing the original Request Transaction ID).
+
 ### `deploy_gas_project` reverts UNCOMMITTED tracked files — a dirty `Code.js` silently drops out of the deployed version
 **Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small.**
 
