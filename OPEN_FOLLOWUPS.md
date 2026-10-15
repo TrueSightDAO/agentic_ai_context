@@ -42,6 +42,8 @@ cross-session** items that would otherwise rot in chat transcripts.
 ### `trees/index.geojson` is a map layer → pseudo trees (blank lat/lng) never appear, so their `my-trees?tree=` deep links 404
 **Filed 2026-10-15 (CFR Anapu payout PDF build, thread `#sunmint`). Owner: unclaimed. Medium — depends on the pseudo-tree GPS-assignment workflow.**
 
+**UPDATE 2026-10-15 (governor Gary ruled: "backfill in place").** The concrete CFR Anapu trigger is RESOLVED: the 15 payable blank-lat rows were backfilled in place (SunMint Tree Planting tab, rows 986/987/990-1002; same row, no new row, no `[PSEUDO TREE RECONCILE EVENT]`), the index was rebuilt (`trees/index.geojson` 228→**243** features, `generated_at 2026-10-15T22:46Z`), and **all 86/86** payable rows now resolve via `?tree=`. The general product gap (option (b): render GPS-less trees on my-trees as a card without a map point) REMAINS OPEN and is a governor call. See the new ingest entry below for the upstream cause.
+
 **Symptom.** Building the pre-payout PDF (86 trees, see `sops/PAYOUT_REPORT_SOP.md`), each row's "see tree" link — `https://cfr.truesight.me/my-trees/?tree=<tree_id>` — resolves only for trees present in `sunmint/trees/index.geojson`. That feed has **228 features** and **every** feature carries a Point geometry; coverage of the payable set was **71/86**. The **15 uncovered** rows all had **blank `lat`/`lng`** (pseudo trees), so they are excluded from the map layer by construction.
 
 **Root cause.** `trees/index.geojson` is a **map layer** — it regenerates on schedule (`generated_at` was fresh, `2026-10-15T22:00Z`, so *not* a staleness bug) and emits only features with coordinates. A pseudo tree (blank K/L + plot_id per the governor's pseudo-tree ruling) therefore **cannot** appear until lat/long is assigned in place. Not an off-by-one (tested `±1` on the sequence — all absent), not a `created`/date filter (later 10-15 trees `_177`/`_185` ARE present while the early 10-15 batch is not).
@@ -51,6 +53,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 **Suggested scope (the report-side fix is done).** Two options: (a) *preferred for reports* — use the **universal fallback** `https://beta.truesight.me/ledger/explorer/?q=<tree_id>` (reads `verify_public_signatures/ledger_index.json`, keyed on `tree_id` independent of GPS — verified to resolve pseudo trees) as the link for coordinate-less rows, already mandated in `sops/PAYOUT_REPORT_SOP.md` §3; and/or (b) refresh the my-trees surface to also render GPS-less trees (a card without a map point) so a single link works everywhere. Option (b) is a product change — needs a governor call.
 
 **Evidence.** `sunmint/trees/index.geojson` (228 features, all with geometry, `generated_at 2026-10-15T22:00Z`); payable set 71/86 covered; 15 missing rows all blank lat/lng; `cfr.truesight.me/my-trees-utils.js` `buildLedgerLink`; `beta.truesight.me/js/ledger_explorer_utils.js` (LEDGER_INDEX_URL = `verify_public_signatures/ledger_index.json`); `sops/PAYOUT_REPORT_SOP.md`.
+
+### CFR Anapu: Timemark watermark carries GPS, but tree rows landed with blank `lat`/`lng` — coords dropped on ingest
+**Filed 2026-10-15 (CFR Anapu backfill, thread `#sunmint`). Owner: unclaimed. High — data-integrity; 17/91 rows in one batch alone.**
+
+**Symptom.** The 15 payable CFR Anapu trees whose `my-trees?tree=` links 404'd had **blank `lat`/`lng` in their ledger row** — yet their **photos carry the GPS burned into the Timemark watermark** (bottom-left `<date>/<place>/<lat>°S, <lon>°W`; see `app/tools/timemark_watermark.py`). Vision-read of all 15 watermark crops returned real coords clustered within ~40 m in one Anapu/Pará grove (3.5226–3.5230°S, 51.5747°W), consistent with neighbouring indexed trees. So the field app captured GPS; **the ledger row lost it.**
+
+**Impact.** Coordinate-less rows are excluded from `trees/index.geojson` (map layer) and from any GPS-joined public surface. In this batch **17 of 91** submitted rows (15 payable + 2 dropped dups) were affected — a silent, systematic capture→submit gap, not a one-off.
+
+**Root cause (hypothesis to confirm).** The path that turns a Telegram planting log into a ledger row (`process_tree_planting_telegram_logs.js`) reads `- Latitude:`/`- Longitude:` lines into cols K/L and sets **`Status=INVALID`** when they are missing. Here the rows carry a non-INVALID status but blank K/L, so the coords were likely absent from the WhatsApp/Telegram log text (or stripped) even though the image had them — i.e. GPS present in the **image** but not propagated to the **log text** that seeds the row. Confirm whether the captioner should append the watermark GPS to the log line (or the ingest should OCR the watermark).
+
+**Suggested scope.** Ensure the GPS present in the field photo reaches the row: either (a) have the field capture append `/Latitude/<Longitude` to the submitted log text so the existing pipeline populates K/L, or (b) add a watermark-OCR fallback in the ingest that reads coords off the image when the log lacks them. Add a validation flag when a NEW planting row has a photo but blank K/L.
+
+**Workaround applied 2026-10-15.** Backfilled the 15 in place from watermark reads (rows 986/987/990-1002); index rebuilt to 243 features; all 86/86 payout links resolve. The 2 dropped dups (`_103`,`_105`) were left blank (not payable).
+
+**Evidence.** `/tmp/blanklat_gps_read.json` (15 vision-read coords); `app/tools/timemark_watermark.py` (watermark layout bottom-left = date/place/`<lat>°S,<lon>°W`); `process_tree_planting_telegram_logs.js` (K/L + INVALID gate); `sunmint/trees/index.geojson` (`generated_at 2026-10-15T22:46Z`, 243 features); `cfr.truesight.me/my-trees/?tree=` resolves 200 for sampled backfilled trees.
 
 ### `[MANAGED LEDGER TRANSACTION EVENT]` — client CLI shipped; Edgar catalog/routing registration still the residual (Black King §3-E2)
 **Filed 2026-10-15 (Black King freight-lane build, plan §3-E2); updated 2026-10-15. Owner: unclaimed. Governor: Gary — vehicle RULED (item E); server-half build-vs-transcribe call still open.**
