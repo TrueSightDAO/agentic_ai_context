@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Provision `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` so repackaging settlements auto-fire (they currently queue forever)
+**Filed 2026-10-15 (Black King AGL8 corridor §5.15). Owner: governor (provisioned secret — not self-fixable). Small — one env var.**
+
+**Context.** `[REPACKAGING SETTLEMENT EVENT]` is designed to be triggered by Edgar's dispatch webhook on submit. `plans/POST_REPACKAGING_CLEANUP_PLAN.md` §Layer 8 items **#22/#23** require `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP=<GAS /exec URL>` on **both** the Edgar/dao_protocol box and the autopilot EC2. `dao_protocol/server/dispatch.py` routes the event tag to env key `POST_REPACKAGING_CLEANUP`.
+
+**The finding.** Verified 2026-10-15: the var is **not set** on the dao_protocol box (`grep -c` = 0 in `/home/ubuntu/dao_protocol/.env`), while ~34 sibling `DAO_PROTOCOL_WEBHOOK_*` vars are present — including `..._REPACKAGING_PROCESSING` (the *batch* webhook). Consequence: a submitted settlement queues in Telegram Chat Logs with an **empty status column** and is **never consumed** — the submission silently stalls until an operator notices and manually fires `GET .../exec?action=processPostRepackagingCleanup`. That is exactly what happened during Unit D (settlement sat queued at Telegram Chat Logs **r13075** until a manual trigger). The only in-band fallback is the SOP troubleshooting row (`sops/REPACKAGING_SETTLEMENT_SOP.md` L107).
+
+**Suggested scope.** Governor adds `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP=<GAS webapp /exec deployment URL>` to the dao_protocol box `.env` (same deployment as the batch webhook, `?action=processPostRepackagingCleanup`) and restarts the service; then verify a test settlement auto-flips to `PROCESSED:REPACKAGING_SETTLEMENT` with **no** manual GET.
+
+**Evidence.** `/home/ubuntu/dao_protocol/.env` (var absent, 2026-10-15); `dao_protocol/server/dispatch.py` routing → `POST_REPACKAGING_CLEANUP`; `plans/POST_REPACKAGING_CLEANUP_PLAN.md` §Layer 8 #22-23; live Unit D run 2026-10-15 (manual trigger required).
+
 ### `report_inventory_movement`'s Quantity validator rejects fractional KG — inconsistent with `report_currency_conversion`
 **Filed 2026-10-15 (Black King AGL8/Unit D corridor, thread `#brazil-san-francisco-2026`). Owner: unclaimed. Small — one validator swap.**
 
