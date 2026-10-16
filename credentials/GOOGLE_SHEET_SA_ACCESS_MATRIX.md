@@ -12,6 +12,7 @@ the bottom grid row, read back, leave nothing). Results below are observed
 behaviour, not documentation paraphrase. **Re-run the script in §4 to refresh.**
 
 **Last probed:** 2026-09-19 (Main Ledger + Cypher Defense Ledger). SunMint sheet probed 2026-09-24 (§2b).
+**Default SA switched to `agroverse-ledger-manager` 2026-10-16** (see §5).
 
 ---
 
@@ -77,7 +78,7 @@ behaviour, not documentation paraphrase. **Re-run the script in §4 to refresh.*
 | Column | Service account | Key file |
 |---|---|---|
 | qr-code-mgr | `agroverse-qr-code-manager@get-data-io.iam.gserviceaccount.com` | `/opt/truesight_autopilot/config/google/agroverse_qr_code_manager_gdrive_key.json` |
-| ledger-mgr | `agroverse-ledger-manager@get-data-io.iam.gserviceaccount.com` | `~/creds/agroverse-ledger-manager-google-credentials.json` |
+| ledger-mgr | `agroverse-ledger-manager@get-data-io.iam.gserviceaccount.com` | `/opt/truesight_autopilot/config/google/agroverse_ledger_manager_gdrive_key.json` (canonical; source copy at `~/creds/agroverse-ledger-manager-google-credentials.json`) |
 | cypher-defense | `cypher-defense@get-data-io.iam.gserviceaccount.com` | `/opt/truesight_autopilot/config/google/cypher_defense_gdrive_key.json` |
 | edgar-dapp-listener | `edgar-dapp-listener@get-data-io.iam.gserviceaccount.com` | `/opt/truesight_autopilot/config/google/edgar_dapp_listener_key.json` |
 | tdg-scoring | `tdg-scoring-peer-reviewer@get-data-io.iam.gserviceaccount.com` | `/opt/truesight_autopilot/config/google/tdg_scoring_gdrive_key.json` |
@@ -144,6 +145,14 @@ When you genuinely don't know and the tab shows ✅ for it: **use
 `agroverse-ledger-manager` on the Main Ledger** — it is the widest writer, and
 covers the tab that prompted the last incident.
 
+As of **2026-10-16** this SA is also the autopilot's **default**:
+`GOOGLE_APPLICATION_CREDENTIALS` points at it, and
+`service_account_name="agroverse_ledger_manager"` resolves to it. Before that the
+default was `cypher-defense`, and a *named* lookup for the ledger-manager key
+silently fell back to `cypher-defense` (its key lived outside `GOOGLE_CREDS_DIR`,
+so no named file resolved) — a call could run as the wrong principal. That
+fallback is now removed: an unresolved name **errors**.
+
 ---
 
 ## 4. Refresh script (re-probe and regenerate)
@@ -158,6 +167,16 @@ SA is added. Cheap, read-only-in-effect, safe to run any time.
 
 ## 5. History
 
+- **2026-10-16** — `agroverse-ledger-manager` made the autopilot's **default** SA
+  (`GOOGLE_APPLICATION_CREDENTIALS`) and its key installed at the canonical
+  `config/google/agroverse_ledger_manager_gdrive_key.json`. Two code fixes shipped
+  with it (PR `truesight_autopilot#535`): (a) a named `service_account_name` that
+  resolves to no file now **errors** instead of silently falling back to the env
+  default — the bug that made every `agroverse_ledger_manager` lookup run as
+  `cypher-defense`; (b) tool descriptions name the new default. A read-probe
+  confirmed ledger-manager is a strict superset of cypher-defense: both read every
+  Main Ledger tab, and ledger-manager additionally reads the SunMint sheet (denied
+  to cypher-defense).
 - **2026-09-24** — Added §2b (SunMint sheet) + the `sunmint-ledger-manager` SA.
   A CI credential's sheet access was revoked ~2026-09-18; the three `sunmint`
   index-rebuild workflows went stale for 7 days (one failing loudly, two reporting
