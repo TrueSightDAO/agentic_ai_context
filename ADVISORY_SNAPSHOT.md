@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-16T11:45:25Z`
+- Generated (UTC): `2026-10-16T21:30:34Z`
 - Look-back: **7** calendar days (`2026-10-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,22 +32,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 13
-- `[TREE PLANTING EVENT]` × 11
+- `[CONTRIBUTION EVENT]` × 16
+- `[TREE PLANTING EVENT]` × 6
 - `[EMAIL REGISTERED EVENT]` × 5
+- `[PRACTICE EVENT]` × 3
 - `[RETAIL FIELD REPORT EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 3
-- `[PRACTICE EVENT]` × 2
 - `[INVENTORY MOVEMENT]` × 2
+- `[CURRENCY DEFINITION EVENT]` × 1
 - _free-form (no bracket tag)_ × 3
 
 ### Latest entries
 
-- `Edgar_20261015215652_168` · **Edgar** · [EMAIL REGISTERED EVENT] Email: lukashenrique2209@gmail.com
-- `Edgar_20261015215711_170` · **Edgar** · [EMAIL REGISTERED EVENT] Email: lukashenrique2209@gmail.com
-- `Edgar_20261015215743_172` · **Edgar** · [EMAIL REGISTERED EVENT] Email: lukashenrique2209@gmail.com
-- `Edgar_20261015215817_174` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: c5v_yc1bNlITGhok6qKKOFGro_No7g9YIolnNXWA1Zo · Email: lukashenrique2209@gmail.com
-- `Edgar_20261015215818_176` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.6723222222222223 · Longitude: -51.32677777777778 · Species: Cacao - Criolla
 - `Edgar_20261015215825_178` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.6723222222222223 · Longitude: -51.32677777777778 · Species: Cacao - Forestero
 - `Edgar_20261015215831_180` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261015215850_182` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: c5v_yc1bNlITGhok6qKKOFGro_No7g9YIolnNXWA1Zo · Email: lukashenrique2209@gmail.com
@@ -63,6 +59,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261015231211_202` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
 - `Edgar_20261016031714_204` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
 - `Edgar_20261016031716_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Fatima Toledo
+- `Edgar_20261016134418_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-16T13:44:15.780Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261016160633_210` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SunMint introduction for Kenny & Matthew — direction, corrections & iteratio…
+- `Edgar_20261016160638_212` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: SunMint introduction — independent verification (ledger + PDF forensics) & a…
+- `Edgar_20261016160641_214` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SunMint introduction — document/design production & supervision of the verif…
+- `Edgar_20261016204709_216` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20261007 AP623350200BR - FounderHaus Brazil · Price in USD: 13.41775 · Serializable: FALSE
 
 ---
 
@@ -275,6 +276,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-09 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d39a637 | 2026-10-16 16:53:05 +0000 | chore(stats): refresh stats indexes [skip ci]
+9e8ca94 | 2026-10-16 11:49:41 +0000 | chore(stats): refresh stats indexes [skip ci]
 fc80a73 | 2026-10-16 04:53:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 3a0e493 | 2026-10-15 21:41:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 58a1889 | 2026-10-15 17:17:43 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -309,6 +312,8 @@ e93e270 | 2026-10-09 13:41:38 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9f35bb8 | 2026-10-16 08:45:46 -0300 | chore(previews): refresh Beer Hall preview (2026-10-16 UTC)
+e951489 | 2026-10-16 08:45:45 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
 129879f | 2026-10-16 00:37:08 -0300 | Merge pull request #1659 from TrueSightDAO/auto/advisory-refresh-2026-10-16
 c4ff714 | 2026-10-16 03:36:55 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
 8c98d5f | 2026-10-15 20:03:36 -0300 | Archive CFR Anapu payout PDF v3 (86/86 links resolve)
@@ -347,8 +352,6 @@ d7986d0 | 2026-10-15 00:18:17 -0300 | Freight plan: add placeholders, exact payl
 99d704e | 2026-10-15 00:14:25 -0300 | Freight plan: confirm $4,866.33 via Wells Fargo wire; close item A; add primitives (#1630)
 1a556da | 2026-10-15 00:00:57 -0300 | Add FREIGHT_COST_AMORTIZATION_PLAN (5 Continent #1026-08, $4,866.33) (#1629)
 4d9e552 | 2026-10-14 23:34:17 -0300 | Correct §5.15: only 2 of 3 pallets were transferred, not 3 (#1628)
-c913c60 | 2026-10-14 23:30:05 -0300 | File OPEN_FOLLOWUPS: missing POST_REPACKAGING_CLEANUP webhook env var (#1627)
-a7730f5 | 2026-10-14 23:28:13 -0300 | Release the brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md supervision claim (#1626)
 … (truncated)
 ```
 
