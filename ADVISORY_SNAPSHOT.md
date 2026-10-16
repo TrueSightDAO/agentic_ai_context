@@ -20,49 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-15T21:37:03Z`
-- Look-back: **7** calendar days (`2026-10-08` → today UTC)
+- Generated (UTC): `2026-10-16T03:36:51Z`
+- Look-back: **7** calendar days (`2026-10-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[TREE PLANTING EVENT]` × 16
-- `[CONTRIBUTION EVENT]` × 7
-- `[CURRENCY CONVERSION EVENT]` × 5
-- `[INVENTORY MOVEMENT]` × 4
-- `[RETAIL FIELD REPORT EVENT]` × 3
-- `[REPACKAGING SETTLEMENT EVENT]` × 2
-- `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 3
-
-### Latest entries
-
-- `Edgar_20261015022210_126` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022226_128` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022239_130` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022250_132` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022303_134` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015022341_136` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015142129_138` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20261015142928_140` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-15T14:29:26.696Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261015152427_142` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Kirsten Ritschel · Description: Liaised with Gary Teh (~15 min) on SF pallet loading capacity and bar-condit…
-- `Edgar_20261015172457_144` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261015172505_146` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL8
-- `Edgar_20261015172512_148` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: AGL13
-- `Edgar_20261015191209_150` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Kirsten Ritschel · Type: Time (Minutes) · Amount: 15
-- `Edgar_20261015193931_152` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Bainbridge Apothecary and Tea Shop · Store Key: bainbridge-apothecary-and-tea-shop__450-winslow-way-east__bainbridge-island__wa · Update ID: SFR_20261015193929
-- `Edgar_20261015194641_154` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Edge of the Circle Books · Store Key: edge-of-the-circle-books__1307-northeast-45th-street__seattle__wa · Update ID: SFR_20261015194639
-- `Edgar_20261015195813_156` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-15T19:58:12.597Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261015200813_158` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Matheus Reis · Recipient Name: Kirsten Ritschel · Inventory Item: Foam container box - 120 kraft pouches capacity
-- `Edgar_20261015200816_160` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Matheus Reis · Recipient Name: Kirsten Ritschel · Inventory Item: Foam container box - 46 cacao bar capacity (36cm X 40cm X 61cm)
-- `Edgar_20261015211456_162` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Granted Google Sheets IMPORTRANGE access across 9 managed-ledger Entities ta…
-- `Edgar_20261015213236_164` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Blissfusion Wellness Lounge l Mt. Shasta · Store Key: blissfusion-wellness-lounge-l-mt-shasta__105-east-alma-street__mount-shasta__ca · Update ID: SFR_20261015213233
 
 ---
 
@@ -189,12 +149,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 26 SKU lines · 1,886.50 total units · $13,260.82
+- Manager record: `Kirsten Ritschel` · 27 SKU lines · 1,888.50 total units · $13,271.19
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 13 | 394 | $884.63 |
+  | (uncategorized) | (unspecified) | 14 | 396 | $895.00 |
   | Cacao Nib | Bulk | 2 | 179.50 | $6,046.57 |
   | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
@@ -204,23 +164,23 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 28 SKU lines · 1,858.59 total units · $10,440.96
+- Manager record: `Matheus Reis` · 27 SKU lines · 1,856.59 total units · $10,430.59
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 942 | $654.61 |
-  | (uncategorized) | (unspecified) | 22 | 621.59 | $6,768.36 |
+  | (uncategorized) | (unspecified) | 21 | 619.59 | $6,757.99 |
   | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
   | Cacao Nib | Bulk | 1 | 99 | $1,008.05 |
   | Cacao Tea | Bulk | 1 | 21 | $213.83 |
   | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 28 SKU lines · 7,854.61 total units · $7,554.30
+- Manager record: `Gary Teh` · 29 SKU lines · 7,859.61 total units · $7,559.30
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 26 | 7,778.43 | $7,504.31 |
+  | (uncategorized) | (unspecified) | 27 | 7,783.43 | $7,509.31 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -229,26 +189,23 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
-| AGL15 | 2 | 2,098.35 | $2,098.35 |
-| AGL13 | 1 | 1,953.30 | $1,953.30 |
+| AGL13 | 1 | 2,165.07 | $2,165.07 |
 | Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
+| Paloma | 7 | 661.32 | $255.43 |
 
-_(+34 more in JSON snapshot.)_
+_(+33 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$2,446.12**
-- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$56.70**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (0 rows)
+### In-transit freight
 
-_No `Shipment Ledger Listing` rows match in-flight status keywords today._
-
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -258,7 +215,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-08 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-09 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -277,6 +234,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-08 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3a0e493 | 2026-10-15 21:41:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 58a1889 | 2026-10-15 17:17:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 1b1033c | 2026-10-15 11:59:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 8b9213f | 2026-10-15 05:04:33 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -298,9 +256,6 @@ cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip 
 5f5efdd | 2026-10-09 22:50:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 e93e270 | 2026-10-09 13:41:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 8d2306d | 2026-10-09 06:35:34 +0000 | chore(stats): refresh stats indexes [skip ci]
-c0cab46 | 2026-10-08 23:31:20 +0000 | chore(stats): refresh stats indexes [skip ci]
-402e023 | 2026-10-08 13:56:57 +0000 | chore(stats): refresh stats indexes [skip ci]
-efbe9ea | 2026-10-08 06:33:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -312,6 +267,17 @@ efbe9ea | 2026-10-08 06:33:57 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8c98d5f | 2026-10-15 20:03:36 -0300 | Archive CFR Anapu payout PDF v3 (86/86 links resolve)
+aeba6e1 | 2026-10-15 20:01:20 -0300 | OPEN_FOLLOWUPS: file CFR Anapu ingest-GPS-drop gap; mark pseudo-tree case resolved (#1657)
+3ea8408 | 2026-10-15 19:26:32 -0300 | Add payout-report format SOP + file pseudo-tree index gap follow-up (#1656)
+6965b5f | 2026-10-15 19:10:45 -0300 | Add PIX payout schedule with clickable per-tree links (CFR Anapu 2026-10-15)
+5e75e31 | 2026-10-15 18:57:51 -0300 | Add PIX payout schedule PDF (86 trees, R$430) - CFR Anapu
+150580d | 2026-10-15 18:57:03 -0300 | Merge pull request #1655 from TrueSightDAO/sop/cross-ledger-freight-settlement-phase8-r5-10
+40a3c1e | 2026-10-15 18:56:21 -0300 | Merge pull request #1654 from TrueSightDAO/sop/cross-ledger-freight-settlement-phase8
+cb98a01 | 2026-10-15 21:50:58 +0000 | §5.16: extend settlement SOP with rules 5-10 (reciprocal, Currencies, landed cost, AUM/treasury, numeric type, independent verification)
+e02aeee | 2026-10-15 21:49:28 +0000 | Add §5.16 cross-ledger freight/investment settlement SOP + generic cost-allocation rule
+bf717fc | 2026-10-15 18:37:24 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
+a20d54a | 2026-10-15 18:37:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
 be3641b | 2026-10-15 18:10:08 -0300 | conventions: inter-ledger holdings — directional naming, static price, consolidation elimination (#1653)
 08e8461 | 2026-10-15 14:16:07 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
 bba799d | 2026-10-15 14:16:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
@@ -341,17 +307,6 @@ c913c60 | 2026-10-14 23:30:05 -0300 | File OPEN_FOLLOWUPS: missing POST_REPACKAG
 a7730f5 | 2026-10-14 23:28:13 -0300 | Release the brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md supervision claim (#1626)
 c579285 | 2026-10-14 23:26:35 -0300 | Close out the Black King AGL8 corridor: §5.15 execution log + 2 tooling gaps (#1625)
 47a1a36 | 2026-10-14 23:23:37 -0300 | Document the #REF! incident + correct idempotency behavior in the repackaging SOP (#1624)
-dc44f0b | 2026-10-14 22:57:57 -0300 | Re-arm chocolate-subscription-phase2 timer to 180d + record gate-met state (#1623)
-8299fcc | 2026-10-14 17:27:01 -0300 | Black King §5.11: governor RULES Ilheus trio -> MAIN ledger, not AGL4; col R confirmed authoritative (stale agl4 col F to be corrected) (#1622)
-a86efda | 2026-10-14 17:25:21 -0300 | Black King §5.14: arrival CONFIRMED by Kirsten (iMessage) — custody gate closed; do-not-tell-carrier note (#1621)
-e07e1e3 | 2026-10-14 17:20:36 -0300 | Black King §5.13: 2nd arrival photo — cargo indoors, 2 pallets incl. insulated boxes; gate still open (#1620)
-1dc4ae2 | 2026-10-14 17:14:58 -0300 | Black King §5.12: arrival-day photo shows delivery in progress (2 pallets), gate not yet closed (#1619)
-289bd13 | 2026-10-14 17:08:59 -0300 | Add canonical cacao supplier entity profiles (CEPOTX, Coopercabruca, Santos, Black King) (#1618)
-5103249 | 2026-10-14 17:04:38 -0300 | Black King: audit arrival→transformation ledger routing (governor's same-ledger invariant) (#1617)
-ee8320e | 2026-10-14 16:34:25 -0300 | followup: file [CURRENCY RETIREMENT EVENT] gap (no canonical retire event) (#1616)
-486788a | 2026-10-14 14:28:16 -0300 | chore(previews): refresh Beer Hall preview (2026-10-14 UTC)
-30b93d3 | 2026-10-14 14:28:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-14 UTC)
-684ccab | 2026-10-14 13:26:11 -0300 | docs: fix final stale col-T ref (Expected Trees is col U) - tokenomics #582 (#1615)
 … (truncated)
 ```
 
@@ -361,7 +316,6 @@ ee8320e | 2026-10-14 16:34:25 -0300 | followup: file [CURRENCY RETIREMENT EVENT]
 7dda371 | 2026-10-14 13:09:21 -0300 | Rename SunMint Plots col T from 'Contributor Name' to 'Farmer' (#582)
 04d7acd | 2026-10-12 23:37:46 -0300 | Currency-definition ingest: write Currencies cols N-V + FDA Product Code (#581)
 41848ed | 2026-10-09 11:26:16 -0300 | PR4: automate managed-ledger snapshot (Contents-API publisher + daily GHA) (#580)
-465db28 | 2026-10-08 19:38:10 -0300 | Allow Sentinels to file inventory-expense events for ALL members (#579)
 ```
 
 ### `dapp` → `dapp`
@@ -410,7 +364,6 @@ f29de07 | 2026-10-11 12:55:27 +0000 | chore: refresh store, partner inventory, a
 d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 904093f | 2026-10-09 13:45:46 +0000 | chore: refresh currencies.json [skip ci]
 55cb5bd | 2026-10-09 13:22:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-7ce92a2 | 2026-10-08 13:35:15 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -436,6 +389,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-10-16T033651Z_cfr-payout-live-settlement-sop-merged.md`
+
+- **posted_at_utc:** `2026-10-16T03:36:51Z`  
+- **slug:** `cfr-payout-live-settlement-sop-merged`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  Automated daily digest of the DAO
+  - **CFR Anapu PIX Payout Schedule Shipped** — 86 trees, R$430 total, clickable per-tree links in PDF; all 86/86 links verified resolving.
+
 ### `beer-hall_2026-10-13T055606Z_black-king-landed-cost-wire-sent.md`
 
 - **posted_at_utc:** `2026-10-13T05:56:06Z`  
@@ -453,15 +415,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **USDA Released Shipment** — No inspection required, no surcharge; Graziela now answering invoice questions.
-
-### `beer-hall_2026-10-09T050607Z_cooperative-first-sourcing-ilheus-wind-down.md`
-
-- **posted_at_utc:** `2026-10-09T05:06:07Z`  
-- **slug:** `cooperative-first-sourcing-ilheus-wind-down`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **Cooperative-First Sourcing** — Documented strategic decision to prioritize cooperative sourcing and wind down Ilhéus warehouse operations.
 
 ---
 
@@ -482,39 +435,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/15/2026 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-08`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
