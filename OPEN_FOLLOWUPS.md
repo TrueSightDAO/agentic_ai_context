@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Payout scanner silently under-drains large batches (Edgar 30s webhook timeout vs GAS ~6-min exec cap)
+**Filed 2026-10-17 (CFR Anapu 86-tree payout registration, thread `#sunmint`). Owner: unclaimed. Medium \u2014 operational gotcha, not data loss.**
+
+**Symptom.** After submitting 86 `[PAYOUT EVENT]`s (one per tree, R$5 ea, shared `bank_ref`), the Ops `payouts` tab stalled at **66/86** and froze for 2.5+ min. All 66 rows were `status=BOOKED`, zero duplicates, zero errors \u2014 the remaining 20 sat unprocessed on the intake (`Telegram Chat Logs`, col R marker empty).
+
+**Root cause.** `dao_protocol` `truesight_dao_client/server/jobs/webhook_trigger.py` fires the payout GAS scanner with `_TIMEOUT=30`, `_MAX_ATTEMPTS=3`. The scanner `processPayoutEventsFromTelegramChatLogs` (tokenomics GAS project `1MnAsIQA\u2026`) processes **~11 rows/min** and runs up to the Apps Script **~6-min execution cap** \u2192 **~66 rows per run**. The 30s client read timeout vs the ~6-min server-side run means **every** webhook attempt logs `webhook attempt N/3 failed: processPayoutEventsFromTelegramChatLogs \u2014 Read timed out` (journal `truesight-dao-protocol`), while Apps Script keeps running server-side and books until it hits its own 6-min cap, then stops mid-queue.
+
+**Recovery (manual today).** Re-fire the payout webhook `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING` (`https://script.google.com/macros/s/AKfycbxQDdGnw\u2026/exec?action=processPayoutEventsFromTelegramChatLogs`); the scanner drains the remainder (~20/min on a re-fire). Safety: the col-R intake marker gate (`PROCESSED:PAYOUT_EVENT`) + `bank_ref` business-key dedup (`seenBankRefs` seeded from existing rows) guarantee a re-fire **cannot** double-book. Same broad signature as the 2026-09-13 QR-code webhook-timeout entry (line ~2223), which *did* double-mint because that handler lacked `LockService` \u2014 the payout scanner is dedup-safe, so here it is a **throughput/capacity mismatch**, not corruption.
+
+**Fix options (owner call).** (a) GAS scanner self-chains / resumes across runs instead of dying at the 6-min cap; (b) raise per-run throughput (batch the row loop); (c) `webhook_trigger.py` stops treating a `ReadTimeout` as final failure (poll a status endpoint, or raise `_TIMEOUT`). Until then, a >66-row batch needs a manual re-fire to fully drain \u2014 and a governor watching the ledger can mistake 66/86 for 20 lost rows.
+
+**Evidence (no PII).** `dao_protocol/.env` `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING`; journal `truesight-dao-protocol` 2026-10-17 00:58\u201300:59 `Read timed out` \u00d7N; Ops `payouts` tab = 86 rows `BOOKED`, distinct trees=86, single `bank_ref=E68900810202610170028mKvjUrUCg7I`; intake `Telegram Chat Logs` col R marker.
+
 ### `trees/index.geojson` is a map layer → pseudo trees (blank lat/lng) never appear, so their `my-trees?tree=` deep links 404
 **Filed 2026-10-15 (CFR Anapu payout PDF build, thread `#sunmint`). Owner: unclaimed. Medium — depends on the pseudo-tree GPS-assignment workflow.**
 
