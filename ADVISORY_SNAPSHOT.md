@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-17T15:49:11Z`
+- Generated (UTC): `2026-10-17T20:49:12Z`
 - Look-back: **7** calendar days (`2026-10-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-10 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0245cc5 | 2026-10-17 15:52:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 11f547c | 2026-10-17 11:06:45 +0000 | chore(stats): refresh stats indexes [skip ci]
 15a57a9 | 2026-10-17 04:54:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 16d32dc | 2026-10-16 21:36:57 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -305,6 +306,8 @@ cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c284667 | 2026-10-17 12:49:38 -0300 | chore(previews): refresh Beer Hall preview (2026-10-17 UTC)
+d115b20 | 2026-10-17 12:49:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-17 UTC)
 c81a3f6 | 2026-10-17 00:30:32 -0300 | docs: record dao_protocol/Edgar deploy prerequisites + apt broken-state gotcha (#1665)
 979762c | 2026-10-16 23:01:56 -0300 | chore(followups): track vendored watermark reader drift (dao_protocol <- autopilot) (#1664)
 bb101a3 | 2026-10-16 22:06:46 -0300 | File follow-up: payout scanner silently under-drains (Edgar 30s timeout vs GAS 6min cap) (#1663)
@@ -343,8 +346,6 @@ de998fd | 2026-10-15 02:05:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 81a06e3 | 2026-10-15 01:56:35 -0300 | Freight plan: close item H (beneficiary name not a discrepancy) (#1641)
 ef14acf | 2026-10-15 01:55:21 -0300 | Freight plan 5.5: wire-fee reconciliation (30 USD does not vanish) (#1640)
 52b22ae | 2026-10-15 01:53:19 -0300 | OPEN_FOLLOWUPS: AGL15 r66 A+B shell (3rd instance) + new expense double-insert class (11 pairs, -$403.35) (#1639)
-59211ad | 2026-10-15 01:36:32 -0300 | OPEN_FOLLOWUPS: quantify treasury-cache negative-drop bug as a live AUM-surface divergence (AGL8 $5, AGL16 $1,868.92) (#1637)
-50fbf69 | 2026-10-15 01:28:01 -0300 | Freight plan: correct §3-F (#REF! is in the AGL15-mirrored TBM ledger, not canonical AGL15) + add supersedes-#1629 pointer (#1636)
 … (truncated)
 ```
 
