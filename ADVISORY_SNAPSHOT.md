@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-16T21:30:34Z`
-- Look-back: **7** calendar days (`2026-10-09` → today UTC)
+- Generated (UTC): `2026-10-17T15:49:11Z`
+- Look-back: **7** calendar days (`2026-10-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,38 +32,31 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
-- `[TREE PLANTING EVENT]` × 6
-- `[EMAIL REGISTERED EVENT]` × 5
-- `[PRACTICE EVENT]` × 3
-- `[RETAIL FIELD REPORT EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 3
-- `[INVENTORY MOVEMENT]` × 2
-- `[CURRENCY DEFINITION EVENT]` × 1
-- _free-form (no bracket tag)_ × 3
+- `[PAYOUT EVENT]` × 23
+- `[RETAIL FIELD REPORT EVENT]` × 19
 
 ### Latest entries
 
-- `Edgar_20261015215825_178` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.6723222222222223 · Longitude: -51.32677777777778 · Species: Cacao - Forestero
-- `Edgar_20261015215831_180` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261015215850_182` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: c5v_yc1bNlITGhok6qKKOFGro_No7g9YIolnNXWA1Zo · Email: lukashenrique2209@gmail.com
-- `Edgar_20261015215921_184` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: c5v_yc1bNlITGhok6qKKOFGro_No7g9YIolnNXWA1Zo · Email: lukashenrique2209@gmail.com
-- `Edgar_20261015215952_186` · **Edgar** · [TREE PLANTING EVENT] Latitude: -3.6696138888888887 · Longitude: -51.32510833333334 · Species: Cacao - Criolla
-- `Edgar_20261015220238_188` · **Edgar** · [EMAIL REGISTERED EVENT] Email: lukashenrique2209@gmail.com
-- `Edgar_20261015220248_190` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh
-- `Edgar_20261015222839_192` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Sophia Truesight
-- `Edgar_20261015222842_194` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Sophia Truesight
-- `Edgar_20261015222845_196` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20261015231204_198` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
-- `Edgar_20261015231208_200` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Contributor(s): Sophia Truesight
-- `Edgar_20261015231211_202` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Contributor(s): Gary Teh
-- `Edgar_20261016031714_204` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Gary Teh
-- `Edgar_20261016031716_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Fatima Toledo
-- `Edgar_20261016134418_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-16T13:44:15.780Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261016160633_210` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SunMint introduction for Kenny & Matthew — direction, corrections & iteratio…
-- `Edgar_20261016160638_212` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: SunMint introduction — independent verification (ledger + PDF forensics) & a…
-- `Edgar_20261016160641_214` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: SunMint introduction — document/design production & supervision of the verif…
-- `Edgar_20261016204709_216` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20261007 AP623350200BR - FounderHaus Brazil · Price in USD: 13.41775 · Serializable: FALSE
+- `Edgar_20261017005806_432` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
+- `Edgar_20261017125951_002` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Candy Vault · Store Key: the-candy-vault__42-south-washington-street__sonora__ca · Update ID: SFR_20261017125949
+- `Edgar_20261017130157_004` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ventura Ranch Market · Store Key: ventura-ranch-market__1532-east-main-street__ventura__ca · Update ID: SFR_20261017130156
+- `Edgar_20261017130327_006` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130327
+- `Edgar_20261017130335_008` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130334
+- `Edgar_20261017130658_010` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130658
+- `Edgar_20261017130821_012` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Cafe Brasil · Store Key: cafe-brasil__1410-mission-street__santa-cruz__ca · Update ID: SFR_20261017130821
+- `Edgar_20261017131512_014` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ventura Ranch Market · Store Key: ventura-ranch-market__1532-east-main-street__ventura__ca · Update ID: SFR_20261017131512
+- `Edgar_20261017131607_016` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017131606
+- `Edgar_20261017131957_018` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Mystictucson · Store Key: mystictucson__6546-e-22nd-st-tucson-az-85711-united-states__tucson__az · Update ID: SFR_20261017131957
+- `Edgar_20261017133418_020` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Dương Lai Cảnh Natural Herbs · Store Key: d-ng-lai-c-nh-natural-herbs__13523-beach-boulevard__westminster__ca · Update ID: SFR_20261017133411
+- `Edgar_20261017133451_022` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Practical Magic · Store Key: practical-magic__51-bolinas-road__fairfax__ca · Update ID: SFR_20261017133451
+- `Edgar_20261017134109_024` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Kiehl's · Store Key: kiehl-s__4505-la-jolla-village-drive__san-diego__ca · Update ID: SFR_20261017134108
+- `Edgar_20261017134418_026` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Apothi-Crow · Store Key: apothi-crow__131-southwest-g-street__grants-pass__or · Update ID: SFR_20261017134416
+- `Edgar_20261017134628_028` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Campbell and Carr: Teas and Cultural Apothecary · Store Key: campbell-and-carr-teas-and-cultural-apothecary__580-grand-avenue__carlsbad__ca · Update ID: SFR_20261017134628
+- `Edgar_20261017134842_030` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ocean Beach People's Food Co-op · Store Key: ocean-beach-people-s-food-co-op__4765-voltaire-street__san-diego__ca · Update ID: SFR_20261017134840
+- `Edgar_20261017140207_032` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Amethyst Moon · Store Key: amethyst-moon__8329-la-mesa-boulevard__la-mesa__ca · Update ID: SFR_20261017140206
+- `Edgar_20261017140422_034` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Trickster’s Apothecary and Nonnu & Lola’s Home Bakery · Store Key: the-trickster-s-apothecary-and-nonnu-lola-s-home-bakery__812-southwest-4th-str… · Update ID: SFR_20261017140421
+- `Edgar_20261017140542_036` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Popp's Apothecary and Oddities · Store Key: popp-s-apothecary-and-oddities__21891-oregon-62__shady-cove__or · Update ID: SFR_20261017140541
+- `Edgar_20261017140811_038` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: PURE TLC · Store Key: pure-tlc__online-only__auburn__ca · Update ID: SFR_20261017140811
 
 ---
 
@@ -205,21 +198,21 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 25 SKU lines · 1,387.59 total units · $7,158.64
+- Manager record: `Matheus Reis` · 24 SKU lines · 1,380.59 total units · $7,064.71
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 773 | $540.46 |
-  | (uncategorized) | (unspecified) | 21 | 608.59 | $6,574.60 |
+  | (uncategorized) | (unspecified) | 20 | 601.59 | $6,480.68 |
   | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 8,263.96 total units · $7,963.92
+- Manager record: `Gary Teh` · 30 SKU lines · 8,236.26 total units · $7,936.22
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 8,187.78 | $7,913.93 |
+  | (uncategorized) | (unspecified) | 28 | 8,160.08 | $7,886.23 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -232,17 +225,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
+| Paloma | 8 | 668.32 | $349.36 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
-| Paloma | 7 | 661.32 | $255.43 |
 
 _(+33 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,446.06**
+- USD on hand: **$2,446.01**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$56.75**
+- USD provisioned for voting-rights cash-out: **$56.80**
 
 ### In-transit freight (0 rows)
 
@@ -257,7 +250,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-09 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-10 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -267,7 +260,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-09 in CONTEXT_UPDATES.md.)_
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **yes** |
+| `oracle` | `iching_oracle` | **no** |
 
 ---
 
@@ -276,6 +269,9 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-09 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+11f547c | 2026-10-17 11:06:45 +0000 | chore(stats): refresh stats indexes [skip ci]
+15a57a9 | 2026-10-17 04:54:35 +0000 | chore(stats): refresh stats indexes [skip ci]
+16d32dc | 2026-10-16 21:36:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 d39a637 | 2026-10-16 16:53:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 9e8ca94 | 2026-10-16 11:49:41 +0000 | chore(stats): refresh stats indexes [skip ci]
 fc80a73 | 2026-10-16 04:53:17 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -298,9 +294,6 @@ fe5b0ab | 2026-10-11 06:19:27 +0000 | chore(stats): refresh stats indexes [skip 
 42c94ed | 2026-10-10 21:57:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 69d8a81 | 2026-10-10 12:58:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip ci]
-5f5efdd | 2026-10-09 22:50:28 +0000 | chore(stats): refresh stats indexes [skip ci]
-e93e270 | 2026-10-09 13:41:38 +0000 | chore(stats): refresh stats indexes [skip ci]
-8d2306d | 2026-10-09 06:35:34 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -312,6 +305,13 @@ e93e270 | 2026-10-09 13:41:38 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c81a3f6 | 2026-10-17 00:30:32 -0300 | docs: record dao_protocol/Edgar deploy prerequisites + apt broken-state gotcha (#1665)
+979762c | 2026-10-16 23:01:56 -0300 | chore(followups): track vendored watermark reader drift (dao_protocol <- autopilot) (#1664)
+bb101a3 | 2026-10-16 22:06:46 -0300 | File follow-up: payout scanner silently under-drains (Edgar 30s timeout vs GAS 6min cap) (#1663)
+0335d37 | 2026-10-16 21:19:28 -0300 | Register handoff: tree-planting photo GPS capture (A1+B) (#1662)
+895269b | 2026-10-16 19:30:47 -0300 | Document agroverse-ledger-manager as the default Google SA (#1661)
+63181a1 | 2026-10-16 18:30:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-16 UTC)
+6478c05 | 2026-10-16 18:30:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
 9f35bb8 | 2026-10-16 08:45:46 -0300 | chore(previews): refresh Beer Hall preview (2026-10-16 UTC)
 e951489 | 2026-10-16 08:45:45 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
 129879f | 2026-10-16 00:37:08 -0300 | Merge pull request #1659 from TrueSightDAO/auto/advisory-refresh-2026-10-16
@@ -345,22 +345,16 @@ ef14acf | 2026-10-15 01:55:21 -0300 | Freight plan 5.5: wire-fee reconciliation 
 52b22ae | 2026-10-15 01:53:19 -0300 | OPEN_FOLLOWUPS: AGL15 r66 A+B shell (3rd instance) + new expense double-insert class (11 pairs, -$403.35) (#1639)
 59211ad | 2026-10-15 01:36:32 -0300 | OPEN_FOLLOWUPS: quantify treasury-cache negative-drop bug as a live AUM-surface divergence (AGL8 $5, AGL16 $1,868.92) (#1637)
 50fbf69 | 2026-10-15 01:28:01 -0300 | Freight plan: correct §3-F (#REF! is in the AGL15-mirrored TBM ledger, not canonical AGL15) + add supersedes-#1629 pointer (#1636)
-104b02c | 2026-10-15 01:13:23 -0300 | Freight plan: final — base $4,896.33 (+ $30 fee) + 5kg Para samples on Main; re-scale all legs (#1635)
-a5df1c5 | 2026-10-15 01:02:05 -0300 | Freight plan: close item #1 (who paid) — direct debit against managed USD (#1633)
-b3b7c59 | 2026-10-15 01:00:59 -0300 | Freight plan: cash-waterfall model — AGL8/AGL13 self-fund first, AGL15 covers shortfall (#1632)
-d7986d0 | 2026-10-15 00:18:17 -0300 | Freight plan: add placeholders, exact payloads, Traps A-C, Transactions-only callout (#1631)
-99d704e | 2026-10-15 00:14:25 -0300 | Freight plan: confirm $4,866.33 via Wells Fargo wire; close item A; add primitives (#1630)
-1a556da | 2026-10-15 00:00:57 -0300 | Add FREIGHT_COST_AMORTIZATION_PLAN (5 Continent #1026-08, $4,866.33) (#1629)
-4d9e552 | 2026-10-14 23:34:17 -0300 | Correct §5.15: only 2 of 3 pallets were transferred, not 3 (#1628)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+2afbd60 | 2026-10-16 22:01:45 -0300 | Add installTriggers/uninstallTriggers convention for GAS projects (#585)
+33503e9 | 2026-10-16 19:01:43 -0300 | SCHEMA.md: add Service Account → Sheet Access Matrix (#584)
 7dda371 | 2026-10-14 13:09:21 -0300 | Rename SunMint Plots col T from 'Contributor Name' to 'Farmer' (#582)
 04d7acd | 2026-10-12 23:37:46 -0300 | Currency-definition ingest: write Currencies cols N-V + FDA Product Code (#581)
-41848ed | 2026-10-09 11:26:16 -0300 | PR4: automate managed-ledger snapshot (Contents-API publisher + daily GHA) (#580)
 ```
 
 ### `dapp` → `dapp`
@@ -390,6 +384,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6dbad1b | 2026-10-17 10:48:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a2472a8 | 2026-10-16 11:29:10 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 285af84 | 2026-10-15 12:06:58 +0000 | chore: refresh currencies.json [skip ci]
 7937880 | 2026-10-15 11:34:35 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -408,8 +403,6 @@ aaaf54d | 2026-10-11 13:31:26 +0000 | chore: refresh currencies.json [skip ci]
 f29de07 | 2026-10-11 12:55:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 1e973d5 | 2026-10-10 13:02:52 +0000 | chore: refresh currencies.json [skip ci]
 d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-904093f | 2026-10-09 13:45:46 +0000 | chore: refresh currencies.json [skip ci]
-55cb5bd | 2026-10-09 13:22:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -421,8 +414,7 @@ _(no commits on origin/main in window)_
 ### `iching_oracle` → `oracle`
 
 ```
-ccda3c5 | 2026-10-09 10:51:12 -0300 | Stop padding stacked hexagram cards on mobile (#74)
-063c5c9 | 2026-10-09 09:20:01 -0300 | Remove excess vertical whitespace in printed readings (#73)
+_(no commits on origin/main in window)_
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -505,9 +497,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/16/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/17/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-09`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-10`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
