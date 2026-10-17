@@ -48,6 +48,26 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Suggested scope (pick one).** (a) Re-sync on change: whoever edits the canonical reader also updates the vendored copy + the header's re-sync note (cheapest; policy-only). (b) Add a CI check in `dao_protocol` that diffs the vendored body against the canonical file fetched from `truesight_autopilot` and fails on divergence. (c) Factor the reader into a small published/packageable module both repos consume (heaviest; removes the copy entirely).
 
+### `dao_protocol` -> Edgar deploy prerequisites are undocumented (and two of them fail silently)
+**Filed 2026-10-17 (during the A1.1 watermark-endpoint redeploy, thread `#tree-planting-photo-gps`). Owner: unclaimed. Medium — bites the next deployer, and the failure mode is invisible.**
+
+**What.** There is no `deploy.sh` on the Edgar box and no runbook for redeploying `dao_protocol`; the systemd unit (`/etc/systemd/system/truesight-dao-protocol.service`) is the only documentation. Deploying `POST /dao/read_watermark_gps` surfaced three prerequisites that existed nowhere, two of which fail **silently**:
+
+1. **`Pillow` / `pytesseract` missing from the prod venv.** The watermark reader lazy-imports both *inside* its functions, so the module imports fine, the mocked tests pass, and the endpoint deploys — then returns `{"status":"error"}` with null coords on every real call. Safe (never blocks a submission) but **useless forever, with no error surfaced**. Pins added to `requirements-server.txt` in `dao_protocol#190`; that file is now authoritative for server deps.
+2. **The `tesseract` OS binary was missing.** `pytesseract` is only a wrapper — `pip install` cannot provide the engine. Requires `sudo apt-get install -y tesseract-ocr`.
+3. **`apt` was in a pre-existing half-configured kernel state** (`linux-image-*`, `linux-headers-*`, `linux-aws*` for `6.8.0-1061` left in `iU`), so *any* `apt-get install` aborted with `E: Unmet dependencies` — which blocks step 2. Resolved by installing the single missing `linux-aws-6.8-headers-6.8.0-1061` (configures the already-staged kernel only; **no running-kernel change, no reboot needed**). Do **not** reach for `apt --fix-broken install` blind on a prod box — simulate first (`apt-get -s --fix-broken install`) and confirm it removes nothing.
+
+**Actual working sequence** (as executed 2026-10-17, box `dao_protocol`):
+```
+cd /home/ubuntu/dao_protocol && git pull --ff-only origin main
+sudo apt-get install -y tesseract-ocr                     # eng+osd data come with it
+.venv/bin/pip install -e . -r requirements-server.txt      # picks up Pillow + pytesseract
+sudo systemctl restart truesight-dao-protocol              # verify: systemctl is-active
+```
+The package is installed **editable** into `.venv`, so code changes need only a pull + restart; only dependency changes need the `pip install` step.
+
+**Suggested scope.** (a) Write `dao/DEPLOY_DAO_PROTOCOL.md` (or a `deploy.sh` in the repo) capturing the sequence above, the `tesseract-ocr` OS dependency, and the editable-install detail — so the next deployer has a checklist instead of a systemd unit. (b) Add a **post-restart self-check** to the deploy: hit `/dao/read_watermark_gps` with a blank image and assert `200` + `no_watermark` (proves PIL/pytesseract/tesseract all resolve) — a missing OS dep would otherwise go unnoticed until a farmer's photo. (c) Note the `OPEN_FOLLOWUPS.md` staleness caveat: the box's `read_context_file` serves a stale local clone (see the entry at ~line 2728), so after editing this file the box may not see it until redeployed.
+
 **Evidence.** `dao_protocol` PR #189 (`truesight_dao_client/server/vision/timemark_watermark.py`, header block); canonical `truesight_autopilot/app/tools/timemark_watermark.py`.
 
 ### Payout scanner silently under-drains large batches (Edgar 30s webhook timeout vs GAS ~6-min exec cap)
