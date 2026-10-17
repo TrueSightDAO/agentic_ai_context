@@ -39,6 +39,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Vendored watermark reader can drift from its canonical source (dao_protocol vs truesight_autopilot)
+**Filed 2026-10-17 (PR1 review of `TREE_PLANTING_PHOTO_GPS_CAPTURE_PLAN.md` A1.1, thread `#tree-planting-photo-gps`). Owner: unclaimed. Low — maintenance hygiene, not a live bug.**
+
+**What.** For `POST /dao/read_watermark_gps`, `dao_protocol` cannot import the tested reader from `truesight_autopilot`, so PR #189 **vendors** `truesight_autopilot/app/tools/timemark_watermark.py` -> `dao_protocol/truesight_dao_client/server/vision/timemark_watermark.py` **byte-identical apart from a provenance header** naming the canonical source.
+
+**Risk.** Two copies now exist. A future fix to the canonical reader (e.g. a new watermark layout, a date/coord OCR tweak) will **not** propagate to the vendored copy automatically — the two silently diverge and the endpoint reads stale logic.
+
+**Suggested scope (pick one).** (a) Re-sync on change: whoever edits the canonical reader also updates the vendored copy + the header's re-sync note (cheapest; policy-only). (b) Add a CI check in `dao_protocol` that diffs the vendored body against the canonical file fetched from `truesight_autopilot` and fails on divergence. (c) Factor the reader into a small published/packageable module both repos consume (heaviest; removes the copy entirely).
+
+**Evidence.** `dao_protocol` PR #189 (`truesight_dao_client/server/vision/timemark_watermark.py`, header block); canonical `truesight_autopilot/app/tools/timemark_watermark.py`.
+
 ### Payout scanner silently under-drains large batches (Edgar 30s webhook timeout vs GAS ~6-min exec cap)
 **Filed 2026-10-17 (CFR Anapu 86-tree payout registration, thread `#sunmint`). Owner: unclaimed. Medium \u2014 operational gotcha, not data loss.**
 
