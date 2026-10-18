@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-18T11:33:31Z`
+- Generated (UTC): `2026-10-18T20:57:49Z`
 - Look-back: **7** calendar days (`2026-10-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PAYOUT EVENT]` × 23
 - `[RETAIL FIELD REPORT EVENT]` × 19
+- `[PAYOUT EVENT]` × 18
+- `[CONTRIBUTION EVENT]` × 5
 
 ### Latest entries
 
-- `Edgar_20261017005806_432` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
-- `Edgar_20261017125951_002` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Candy Vault · Store Key: the-candy-vault__42-south-washington-street__sonora__ca · Update ID: SFR_20261017125949
-- `Edgar_20261017130157_004` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ventura Ranch Market · Store Key: ventura-ranch-market__1532-east-main-street__ventura__ca · Update ID: SFR_20261017130156
-- `Edgar_20261017130327_006` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130327
-- `Edgar_20261017130335_008` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130334
 - `Edgar_20261017130658_010` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130658
 - `Edgar_20261017130821_012` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Cafe Brasil · Store Key: cafe-brasil__1410-mission-street__santa-cruz__ca · Update ID: SFR_20261017130821
 - `Edgar_20261017131512_014` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ventura Ranch Market · Store Key: ventura-ranch-market__1532-east-main-street__ventura__ca · Update ID: SFR_20261017131512
@@ -57,6 +53,11 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261017140422_034` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Trickster’s Apothecary and Nonnu & Lola’s Home Bakery · Store Key: the-trickster-s-apothecary-and-nonnu-lola-s-home-bakery__812-southwest-4th-str… · Update ID: SFR_20261017140421
 - `Edgar_20261017140542_036` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Popp's Apothecary and Oddities · Store Key: popp-s-apothecary-and-oddities__21891-oregon-62__shady-cove__or · Update ID: SFR_20261017140541
 - `Edgar_20261017140811_038` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: PURE TLC · Store Key: pure-tlc__online-only__auburn__ca · Update ID: SFR_20261017140811
+- `Edgar_20261018174332_040` · **Edgar** · [CONTRIBUTION EVENT] Amount: 360 · Contributor(s): Gary Teh · Description: 6 hours over 10/13-10/16 on warehouse logistics: unloading, unpacking, and e…
+- `Edgar_20261018174350_042` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Kirsten Ritschel · Description: 15 minutes liaising with Gary Teh on packaging concerns (separate session fr…
+- `Edgar_20261018174353_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: 15 minutes liaising with Kirsten Ritschel on packaging concerns (separate se…
+- `Edgar_20261018182519_046` · **Edgar** · [CONTRIBUTION EVENT] Amount: -360 · Contributor(s): Gary Teh · Description: REVERSAL of the 360-minute warehouse logistics entry submitted in error. The…
+- `Edgar_20261018182522_048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 360 · Contributor(s): Kirsten Ritschel · Description: 6 hours between 10/13-10/16 on warehouse logistics: unloading, unpacking, an…
 
 ---
 
@@ -269,6 +270,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-11 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5e5f96f | 2026-10-18 16:05:16 +0000 | chore(stats): refresh stats indexes [skip ci]
+4699315 | 2026-10-18 11:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 6c7bece | 2026-10-17 20:52:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 0245cc5 | 2026-10-17 15:52:47 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -305,6 +308,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+280efc3 | 2026-10-18 08:33:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-18 UTC)
+e35aa1a | 2026-10-18 08:33:49 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
 982cc1f | 2026-10-18 01:56:11 -0300 | chore(previews): refresh Beer Hall preview (2026-10-18 UTC)
 8c1b259 | 2026-10-18 01:56:09 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
 eb98cd0 | 2026-10-18 00:33:23 -0300 | Merge pull request #1666 from TrueSightDAO/auto/advisory-refresh-2026-10-18
@@ -343,8 +348,6 @@ feef4ae | 2026-10-15 11:17:22 -0300 | OPEN_FOLLOWUPS: E ruled — residual is se
 5e4482d | 2026-10-15 10:14:44 -0300 | Freight plan §3: record C/D/E rulings (C validated vs NF-e nº 18 · D = AGL15 · E = Managed Ledger Transaction Event) (#1651)
 f6255f6 | 2026-10-15 03:35:23 -0300 | followup: [MANAGED LEDGER TRANSACTION EVENT] client CLI shipped (#187); server registration residual (#1650)
 241bf47 | 2026-10-15 02:37:57 -0300 | Freight plan §2.1: land AGL13 own-USD=$0.00 clarification (lost when #1638 closed unmerged) (#1649)
-89420e0 | 2026-10-15 02:15:28 -0300 | Freight plan: §6 Currencies-catalog rows added to MAIN, §7 step 2 fully done (#1648)
-933014a | 2026-10-15 02:13:35 -0300 | Dedupe §3-F in freight plan (fixes duplication left by #1638/#1645) (#1646)
 … (truncated)
 ```
 
@@ -384,6 +387,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+6f23e47 | 2026-10-18 11:42:26 +0000 | chore: refresh currencies.json [skip ci]
 6dbad1b | 2026-10-17 10:48:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a2472a8 | 2026-10-16 11:29:10 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 285af84 | 2026-10-15 12:06:58 +0000 | chore: refresh currencies.json [skip ci]
