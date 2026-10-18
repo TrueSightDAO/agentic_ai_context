@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-18T04:55:45Z`
+- Generated (UTC): `2026-10-18T11:33:31Z`
 - Look-back: **7** calendar days (`2026-10-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -269,6 +269,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-11 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 6c7bece | 2026-10-17 20:52:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 0245cc5 | 2026-10-17 15:52:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 11f547c | 2026-10-17 11:06:45 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -304,6 +305,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+982cc1f | 2026-10-18 01:56:11 -0300 | chore(previews): refresh Beer Hall preview (2026-10-18 UTC)
+8c1b259 | 2026-10-18 01:56:09 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
 eb98cd0 | 2026-10-18 00:33:23 -0300 | Merge pull request #1666 from TrueSightDAO/auto/advisory-refresh-2026-10-18
 d462a62 | 2026-10-18 03:33:08 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
 ac8ce61 | 2026-10-17 17:49:35 -0300 | chore(previews): refresh Beer Hall preview (2026-10-17 UTC)
@@ -342,8 +345,6 @@ f6255f6 | 2026-10-15 03:35:23 -0300 | followup: [MANAGED LEDGER TRANSACTION EVEN
 241bf47 | 2026-10-15 02:37:57 -0300 | Freight plan §2.1: land AGL13 own-USD=$0.00 clarification (lost when #1638 closed unmerged) (#1649)
 89420e0 | 2026-10-15 02:15:28 -0300 | Freight plan: §6 Currencies-catalog rows added to MAIN, §7 step 2 fully done (#1648)
 933014a | 2026-10-15 02:13:35 -0300 | Dedupe §3-F in freight plan (fixes duplication left by #1638/#1645) (#1646)
-f192af2 | 2026-10-15 02:05:06 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
-de998fd | 2026-10-15 02:05:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
 … (truncated)
 ```
 
@@ -494,7 +495,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/17/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/18/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-11`; scanned last **600** data rows)
 
