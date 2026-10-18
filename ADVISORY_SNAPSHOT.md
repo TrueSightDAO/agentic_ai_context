@@ -20,9 +20,43 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-18T03:33:02Z`
+- Generated (UTC): `2026-10-18T04:55:45Z`
 - Look-back: **7** calendar days (`2026-10-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[PAYOUT EVENT]` × 23
+- `[RETAIL FIELD REPORT EVENT]` × 19
+
+### Latest entries
+
+- `Edgar_20261017005806_432` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: BRL
+- `Edgar_20261017125951_002` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Candy Vault · Store Key: the-candy-vault__42-south-washington-street__sonora__ca · Update ID: SFR_20261017125949
+- `Edgar_20261017130157_004` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ventura Ranch Market · Store Key: ventura-ranch-market__1532-east-main-street__ventura__ca · Update ID: SFR_20261017130156
+- `Edgar_20261017130327_006` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130327
+- `Edgar_20261017130335_008` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130334
+- `Edgar_20261017130658_010` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017130658
+- `Edgar_20261017130821_012` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Cafe Brasil · Store Key: cafe-brasil__1410-mission-street__santa-cruz__ca · Update ID: SFR_20261017130821
+- `Edgar_20261017131512_014` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ventura Ranch Market · Store Key: ventura-ranch-market__1532-east-main-street__ventura__ca · Update ID: SFR_20261017131512
+- `Edgar_20261017131607_016` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017131606
+- `Edgar_20261017131957_018` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Mystictucson · Store Key: mystictucson__6546-e-22nd-st-tucson-az-85711-united-states__tucson__az · Update ID: SFR_20261017131957
+- `Edgar_20261017133418_020` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Dương Lai Cảnh Natural Herbs · Store Key: d-ng-lai-c-nh-natural-herbs__13523-beach-boulevard__westminster__ca · Update ID: SFR_20261017133411
+- `Edgar_20261017133451_022` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Practical Magic · Store Key: practical-magic__51-bolinas-road__fairfax__ca · Update ID: SFR_20261017133451
+- `Edgar_20261017134109_024` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Kiehl's · Store Key: kiehl-s__4505-la-jolla-village-drive__san-diego__ca · Update ID: SFR_20261017134108
+- `Edgar_20261017134418_026` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Apothi-Crow · Store Key: apothi-crow__131-southwest-g-street__grants-pass__or · Update ID: SFR_20261017134416
+- `Edgar_20261017134628_028` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Campbell and Carr: Teas and Cultural Apothecary · Store Key: campbell-and-carr-teas-and-cultural-apothecary__580-grand-avenue__carlsbad__ca · Update ID: SFR_20261017134628
+- `Edgar_20261017134842_030` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ocean Beach People's Food Co-op · Store Key: ocean-beach-people-s-food-co-op__4765-voltaire-street__san-diego__ca · Update ID: SFR_20261017134840
+- `Edgar_20261017140207_032` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Amethyst Moon · Store Key: amethyst-moon__8329-la-mesa-boulevard__la-mesa__ca · Update ID: SFR_20261017140206
+- `Edgar_20261017140422_034` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Trickster’s Apothecary and Nonnu & Lola’s Home Bakery · Store Key: the-trickster-s-apothecary-and-nonnu-lola-s-home-bakery__812-southwest-4th-str… · Update ID: SFR_20261017140421
+- `Edgar_20261017140542_036` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Popp's Apothecary and Oddities · Store Key: popp-s-apothecary-and-oddities__21891-oregon-62__shady-cove__or · Update ID: SFR_20261017140541
+- `Edgar_20261017140811_038` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: PURE TLC · Store Key: pure-tlc__online-only__auburn__ca · Update ID: SFR_20261017140811
 
 ---
 
@@ -197,13 +231,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+33 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,445.98**
+- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
+- USD provisioned for voting-rights cash-out: **$56.83**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -267,6 +304,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+eb98cd0 | 2026-10-18 00:33:23 -0300 | Merge pull request #1666 from TrueSightDAO/auto/advisory-refresh-2026-10-18
+d462a62 | 2026-10-18 03:33:08 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
 ac8ce61 | 2026-10-17 17:49:35 -0300 | chore(previews): refresh Beer Hall preview (2026-10-17 UTC)
 b664faa | 2026-10-17 17:49:34 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-17 UTC)
 c284667 | 2026-10-17 12:49:38 -0300 | chore(previews): refresh Beer Hall preview (2026-10-17 UTC)
@@ -305,8 +344,6 @@ f6255f6 | 2026-10-15 03:35:23 -0300 | followup: [MANAGED LEDGER TRANSACTION EVEN
 933014a | 2026-10-15 02:13:35 -0300 | Dedupe §3-F in freight plan (fixes duplication left by #1638/#1645) (#1646)
 f192af2 | 2026-10-15 02:05:06 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
 de998fd | 2026-10-15 02:05:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
-756d99f | 2026-10-15 01:59:47 -0300 | OPEN_FOLLOWUPS: AGL15 two bugs PARTIALLY OFFSET - true $4,471.77 not $4,644.10 (#1642)
-81a06e3 | 2026-10-15 01:56:35 -0300 | Freight plan: close item H (beneficiary name not a discrepancy) (#1641)
 … (truncated)
 ```
 
@@ -433,6 +470,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 0 | 18484.34386 | 10/17/2026 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-11`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
