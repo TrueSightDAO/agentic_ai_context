@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-19T13:48:17Z`
+- Generated (UTC): `2026-10-19T22:33:15Z`
 - Look-back: **7** calendar days (`2026-10-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,33 +32,34 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[RETAIL FIELD REPORT EVENT]` × 19
-- `[PAYOUT EVENT]` × 17
-- `[CONTRIBUTION EVENT]` × 5
+- `[RETAIL FIELD REPORT EVENT]` × 17
+- `[INVENTORY MOVEMENT]` × 13
+- `[CONTRIBUTION EVENT]` × 10
 - `[PRACTICE EVENT]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261017130821_012` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Cafe Brasil · Store Key: cafe-brasil__1410-mission-street__santa-cruz__ca · Update ID: SFR_20261017130821
-- `Edgar_20261017131512_014` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ventura Ranch Market · Store Key: ventura-ranch-market__1532-east-main-street__ventura__ca · Update ID: SFR_20261017131512
-- `Edgar_20261017131607_016` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Crooked Path · Store Key: the-crooked-path__2020-w-magnolia-blvd-burbank-ca-91506-united-states__burbank… · Update ID: SFR_20261017131606
-- `Edgar_20261017131957_018` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Mystictucson · Store Key: mystictucson__6546-e-22nd-st-tucson-az-85711-united-states__tucson__az · Update ID: SFR_20261017131957
-- `Edgar_20261017133418_020` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Dương Lai Cảnh Natural Herbs · Store Key: d-ng-lai-c-nh-natural-herbs__13523-beach-boulevard__westminster__ca · Update ID: SFR_20261017133411
-- `Edgar_20261017133451_022` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Practical Magic · Store Key: practical-magic__51-bolinas-road__fairfax__ca · Update ID: SFR_20261017133451
-- `Edgar_20261017134109_024` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Kiehl's · Store Key: kiehl-s__4505-la-jolla-village-drive__san-diego__ca · Update ID: SFR_20261017134108
-- `Edgar_20261017134418_026` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Apothi-Crow · Store Key: apothi-crow__131-southwest-g-street__grants-pass__or · Update ID: SFR_20261017134416
-- `Edgar_20261017134628_028` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Campbell and Carr: Teas and Cultural Apothecary · Store Key: campbell-and-carr-teas-and-cultural-apothecary__580-grand-avenue__carlsbad__ca · Update ID: SFR_20261017134628
-- `Edgar_20261017134842_030` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Ocean Beach People's Food Co-op · Store Key: ocean-beach-people-s-food-co-op__4765-voltaire-street__san-diego__ca · Update ID: SFR_20261017134840
-- `Edgar_20261017140207_032` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Amethyst Moon · Store Key: amethyst-moon__8329-la-mesa-boulevard__la-mesa__ca · Update ID: SFR_20261017140206
-- `Edgar_20261017140422_034` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: The Trickster’s Apothecary and Nonnu & Lola’s Home Bakery · Store Key: the-trickster-s-apothecary-and-nonnu-lola-s-home-bakery__812-southwest-4th-str… · Update ID: SFR_20261017140421
-- `Edgar_20261017140542_036` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Popp's Apothecary and Oddities · Store Key: popp-s-apothecary-and-oddities__21891-oregon-62__shady-cove__or · Update ID: SFR_20261017140541
-- `Edgar_20261017140811_038` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: PURE TLC · Store Key: pure-tlc__online-only__auburn__ca · Update ID: SFR_20261017140811
-- `Edgar_20261018174332_040` · **Edgar** · [CONTRIBUTION EVENT] Amount: 360 · Contributor(s): Gary Teh · Description: 6 hours over 10/13-10/16 on warehouse logistics: unloading, unpacking, and e…
-- `Edgar_20261018174350_042` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Kirsten Ritschel · Description: 15 minutes liaising with Gary Teh on packaging concerns (separate session fr…
-- `Edgar_20261018174353_044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: 15 minutes liaising with Kirsten Ritschel on packaging concerns (separate se…
-- `Edgar_20261018182519_046` · **Edgar** · [CONTRIBUTION EVENT] Amount: -360 · Contributor(s): Gary Teh · Description: REVERSAL of the 360-minute warehouse logistics entry submitted in error. The…
-- `Edgar_20261018182522_048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 360 · Contributor(s): Kirsten Ritschel · Description: 6 hours between 10/13-10/16 on warehouse logistics: unloading, unpacking, an…
-- `Edgar_20261019005946_050` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-19T00:59:44.022Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261019145233_078` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Hawthorn & Honey · Store Key: hawthorn-honey__2703-north-proctor-street__tacoma__wa · Update ID: SFR_20261019145231
+- `Edgar_20261019192953_080` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Answered the folks from Vista Flow (Francine Borba) re: shipment/NF-e update…
+- `Edgar_20261019193604_082` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lawrence Kwek · Contributor Email: lawkpsn@gmail.com · Submitted At: 2026-10-19T19:35:58Z
+- `Edgar_20261019194404_084` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh, Sophia Truesight
+- `Edgar_20261019195201_086` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh, Lawrence Kwek · Description: 3-hour in-person strategy session in Singapore (Raffles Place) on Agroverse …
+- `Edgar_20261019201745_088` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Interviewed Jhordan to gather information about his family farm for the purp…
+- `Edgar_20261019202612_090` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150 · Contributor(s): Gary Teh · Description: Inventory management (2026-10-19). 2.5 hours of work on DAO inventory record…
+- `Edgar_20261019204030_092` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Val Lapidus · Inventory Item: Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco
+- `Edgar_20261019204116_094` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Foam container box - 120 kraft pouches capacity
+- `Edgar_20261019204124_096` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Foam container box - 46 cacao bar capacity (36cm X 40cm X 61cm)
+- `Edgar_20261019204415_098` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1w3D0y9iPMu7k… · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
+- `Edgar_20261019204425_100` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1w3D0y9iPMu7k… · Inventory Item: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Franc…
+- `Edgar_20261019204432_102` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1pdI1lMChyD2-… · Inventory Item: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco
+- `Edgar_20261019205926_104` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Val Lapidus · Recipient Name: Kirsten Ritschel · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
+- `Edgar_20261019205933_106` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Franc… · Manager Name: Val Lapidus
+- `Edgar_20261019205941_108` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Manager Name: Val Lapidus
+- `Edgar_20261019205948_110` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
+- `Edgar_20261019210004_112` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: [AGL13] Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - …
+- `Edgar_20261019210013_114` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: [AGL13] Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - S…
+- `Edgar_20261019210021_116` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl8 · Inventory Item: [AGL8] Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Fr…
 
 ---
 
@@ -185,18 +186,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 27 SKU lines · 1,888.50 total units · $13,271.20
+- Manager record: `Kirsten Ritschel` · 24 SKU lines · 1,694.50 total units · $6,921.94
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 14 | 396 | $895.00 |
-  | Cacao Nib | Bulk | 2 | 179.50 | $6,046.58 |
+  | (uncategorized) | (unspecified) | 13 | 393 | $841.60 |
   | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
   | Cacao Mass | Bulk | 2 | 87 | $898.06 |
-  | Cacao Tea | Bulk | 1 | 21 | $572.25 |
-  | Cacao Bean | Bulk | 1 | 10 | $352.80 |
+  | Cacao Nib | Bulk | 2 | 19.50 | $675.78 |
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -222,9 +221,9 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
+| Val Lapidus | 17 | 1,554 | $10,277.71 |
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
 | AGL13 | 1 | 2,165.07 | $2,165.07 |
-| Val Lapidus | 11 | 1,270 | $1,475.95 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Paloma | 8 | 668.32 | $349.36 |
@@ -271,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-12 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5039d76 | 2026-10-19 13:51:08 +0000 | chore(stats): refresh stats indexes [skip ci]
 74a7926 | 2026-10-19 05:11:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 10c4b40 | 2026-10-18 20:58:34 +0000 | chore(stats): refresh stats indexes [skip ci]
 5e5f96f | 2026-10-18 16:05:16 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -308,6 +308,9 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6027ba6 | 2026-10-19 16:53:13 -0300 | File SEA/China follow-up + Discord roster + email-projection gaps (#1668)
+cddbf72 | 2026-10-19 10:48:46 -0300 | chore(previews): refresh Beer Hall preview (2026-10-19 UTC)
+5a00983 | 2026-10-19 10:48:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 2798d5a | 2026-10-19 02:04:53 -0300 | chore(previews): refresh Beer Hall preview (2026-10-19 UTC)
 c6a505d | 2026-10-19 02:04:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 8774508 | 2026-10-19 00:44:25 -0300 | Merge pull request #1667 from TrueSightDAO/auto/advisory-refresh-2026-10-19
@@ -345,9 +348,6 @@ aeba6e1 | 2026-10-15 20:01:20 -0300 | OPEN_FOLLOWUPS: file CFR Anapu ingest-GPS-
 cb98a01 | 2026-10-15 21:50:58 +0000 | §5.16: extend settlement SOP with rules 5-10 (reciprocal, Currencies, landed cost, AUM/treasury, numeric type, independent verification)
 e02aeee | 2026-10-15 21:49:28 +0000 | Add §5.16 cross-ledger freight/investment settlement SOP + generic cost-allocation rule
 bf717fc | 2026-10-15 18:37:24 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
-a20d54a | 2026-10-15 18:37:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
-be3641b | 2026-10-15 18:10:08 -0300 | conventions: inter-ledger holdings — directional naming, static price, consolidation elimination (#1653)
-08e8461 | 2026-10-15 14:16:07 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
 … (truncated)
 ```
 
@@ -387,6 +387,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+701b6cb | 2026-10-19 13:56:49 +0000 | chore: refresh currencies.json [skip ci]
 1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 6f23e47 | 2026-10-18 11:42:26 +0000 | chore: refresh currencies.json [skip ci]
 6dbad1b | 2026-10-17 10:48:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
