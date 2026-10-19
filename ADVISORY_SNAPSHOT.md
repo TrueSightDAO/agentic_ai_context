@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-19T05:04:32Z`
+- Generated (UTC): `2026-10-19T13:48:17Z`
 - Look-back: **7** calendar days (`2026-10-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -271,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-12 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+74a7926 | 2026-10-19 05:11:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 10c4b40 | 2026-10-18 20:58:34 +0000 | chore(stats): refresh stats indexes [skip ci]
 5e5f96f | 2026-10-18 16:05:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 4699315 | 2026-10-18 11:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -307,6 +308,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2798d5a | 2026-10-19 02:04:53 -0300 | chore(previews): refresh Beer Hall preview (2026-10-19 UTC)
+c6a505d | 2026-10-19 02:04:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 8774508 | 2026-10-19 00:44:25 -0300 | Merge pull request #1667 from TrueSightDAO/auto/advisory-refresh-2026-10-19
 05497d7 | 2026-10-19 03:44:09 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 7d18825 | 2026-10-18 17:58:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-18 UTC)
@@ -345,8 +348,6 @@ bf717fc | 2026-10-15 18:37:24 -0300 | chore(previews): refresh Beer Hall preview
 a20d54a | 2026-10-15 18:37:22 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
 be3641b | 2026-10-15 18:10:08 -0300 | conventions: inter-ledger holdings — directional naming, static price, consolidation elimination (#1653)
 08e8461 | 2026-10-15 14:16:07 -0300 | chore(previews): refresh Beer Hall preview (2026-10-15 UTC)
-bba799d | 2026-10-15 14:16:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-15 UTC)
-7c26ce0 | 2026-10-15 11:23:08 -0300 | Plan: end-to-end Brazil->SF freight SOP refresh + machine-readable checklist (#1643)
 … (truncated)
 ```
 
@@ -386,6 +387,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 6f23e47 | 2026-10-18 11:42:26 +0000 | chore: refresh currencies.json [skip ci]
 6dbad1b | 2026-10-17 10:48:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a2472a8 | 2026-10-16 11:29:10 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -496,7 +498,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/18/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/19/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-12`; scanned last **600** data rows)
 
