@@ -39,6 +39,43 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Introduce Lawrence Kwek to the China team once China-side packaging is settled (Agroverse SEA expansion)
+**Filed 2026-10-19 (Singapore in-person strategy session; logged as a [CONTRIBUTION EVENT], 180 min, Gary Teh + Lawrence Kwek). Owner: Gary Teh. Blocked on the China side finishing packaging.**
+
+**What.** Lawrence Kwek (`lawkpsn@gmail.com`, DAO member since 2026-10-19) has his own network in China. Once the China side has **figured out their packaging**, link him up with the China team. He is simultaneously building (a) understanding of the product, (b) understanding of the Singapore market, and (c) understanding of the importing procedure into Singapore; Gary is sharing the Agroverse product portfolio with him.
+
+**Why it matters.** This is the entry path for Southeast Asia — Singapore first. The intro is a one-shot dependency: it is worthless before the China side settles packaging and time-sensitive afterwards.
+
+**Suggested scope.** No code. Trigger: when the China-side packaging decision is recorded, introduce Lawrence to the China team and log a `PARTNER CHECK-IN EVENT` (or `CONTRIBUTION EVENT`) against him so the intro is on the ledger. **Do not** let this rot in a chat transcript — it was deliberately filed here because a contribution description is not a work queue.
+
+---
+
+### Guild roster cannot resolve 25 of 42 legacy Discord bindings — needs governor-supplied IDs
+**Filed 2026-10-19 (membership-record remediation). Owner: unclaimed (blocked on data collection). Medium — 25 contributors stay unattributable.**
+
+**What.** `Contributors contact information` used Discord's **retired `name#NNNN` discriminator format** (killed by Discord in 2023). `discord_adapter._fetch_discord_id_email()` matches **column G against a numeric snowflake**, so every legacy row silently resolved as *unbound* (`email=None` → `role=guest`). 42 rows were affected.
+
+**What was fixed.** 17 rows were re-bound to real snowflakes by matching handles against the live guild roster (59 members, pulled via `discord_adapter.get_token()` from the vault — **the token is NOT in env**, so an env-only lookup 401s) plus the 2026-09-12 roster snapshot for accounts that have since left. Column G backed up to `/tmp/col_g_backup.json` before writing; no duplicate snowflakes introduced. Bindings went 10 → 26.
+
+**The unfixable remainder.** **25 rows have no corresponding account in the guild at all** — the person left, never joined, or their username was never captured: `@_H4N5`, `@ryansjjr`, `@TheoDL`, `Alex`, `Bing`, `Boris Giftge`, `Bradley Hsu`, `Chris Arriola`, `David Berget`, `Dirk Watkins`, `dsb`, `Fark Kader`, `Jacob Nelan`, `Joshua Wee`, `KemarTiti`, `Kuoloon`, `Luigi`, `Neil Bergert`, `Neo`, `Quinnie`, `Reuben`, `Rich Cook`, `Sai Krishna`, `Sharvin Baindur`, `Victor Munoz`. **`@ryansjjr` holds 14,850 voting rights** — highest-value target. Do **not** fabricate snowflakes for these.
+
+**A second, separate blocker.** 18 of the 26 newly-bound rows have **no email in column D**, so `discord_email()` still returns `None` and they resolve to `guest`. Binding the ID is necessary but not sufficient — **only 8 of 26 bound rows are fully resolvable.**
+
+**Suggested scope.** (a) Ask the highest-voting-weight people for their Discord ID and fill column G; (b) fill column D for the 18 email-less bound rows (no external data needed — biggest cheap win); (c) add a startup/CI lint that flags any column-G value containing `#` so the legacy format cannot silently re-enter; (d) consider making `discord_email()` log a visible warning on unbound lookups instead of failing silently to `guest`.
+
+---
+
+### `CONTRIBUTOR ADD EVENT` email is not projected into `dao_members.json`
+**Filed 2026-10-19 (Lawrence Kwek registration). Owner: unclaimed. Low–Medium — identity data lands in the ledger but vanishes from the cache every consumer reads.**
+
+**What.** `CONTRIBUTOR ADD EVENT` was submitted with `Contributor Email: lawkpsn@gmail.com` — verified in the Edgar payload and acknowledged by the API — yet `treasury-cache/dao_members.json` reports `{"name": "Lawrence Kwek", "email": null, "roles": ["member"], "voting_rights": 0}`. The contributor *is* created (count 425 → 426); the **email is dropped** by the projection.
+
+**Why it matters.** `dao_members.json` is what the chatbot / autopilot / DApp read to answer "is this person a member, and what is their email?" A contributor who looks emailless there is indistinguishable from one who never supplied an email — so members added via the proper event silently look incomplete, and re-registration looks tempting (duplicate risk).
+
+**Suggested scope.** Trace the `dao_members.json` generator: either (a) carry `Contributor Email` from the `[CONTRIBUTOR ADD EVENT]` through into the projection, or (b) document that email is sourced **only** from `Contributors contact information` column D and have the add-event flow write column D itself, so ledger and sheet cannot disagree. Add a regression assertion that a contributor added with an email shows that email in the cache.
+
+---
+
 ### Vendored watermark reader can drift from its canonical source (dao_protocol vs truesight_autopilot)
 **Filed 2026-10-17 (PR1 review of `TREE_PLANTING_PHOTO_GPS_CAPTURE_PLAN.md` A1.1, thread `#tree-planting-photo-gps`). Owner: unclaimed. Low — maintenance hygiene, not a live bug.**
 
