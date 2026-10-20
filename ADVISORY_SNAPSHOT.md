@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-20T11:57:09Z`
+- Generated (UTC): `2026-10-20T21:47:49Z`
 - Look-back: **7** calendar days (`2026-10-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -41,14 +41,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261019205926_104` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Val Lapidus · Recipient Name: Kirsten Ritschel · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
-- `Edgar_20261019205933_106` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Franc… · Manager Name: Val Lapidus
-- `Edgar_20261019205941_108` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Manager Name: Val Lapidus
-- `Edgar_20261019205948_110` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
-- `Edgar_20261019210004_112` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: [AGL13] Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - …
-- `Edgar_20261019210013_114` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: [AGL13] Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - S…
-- `Edgar_20261019210021_116` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl8 · Inventory Item: [AGL8] Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Fr…
-- `Edgar_20261020031911_118` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-20T03:19:09.621Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261020073249_120` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Contributor(s): Sophia Truesight
 - `Edgar_20261020073256_122` · **Edgar** · [CONTRIBUTION EVENT] Amount: 90 · Contributor(s): Gary Teh · Description: Supervision and review of the Agroverse QR label batch remediation for Kirst…
 - `Edgar_20261020085250_124` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_31 · Sales price: 17.00 · Sold by: Kelly Springer
@@ -61,6 +53,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261020085346_138` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_30 · Sales price: 17.00 · Sold by: Kelly Springer
 - `Edgar_20261020085427_140` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Sophia — Kelley Springer cacao batch sales processing (6 bags @ $17.00)
 - `Edgar_20261020085429_142` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Kelly Springer consignment settlement — 6 cacao bags sold, QR batch 2024SA_2…
+- `Edgar_20261020181855_144` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
+- `Edgar_20261020181858_146` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
+- `Edgar_20261020181901_148` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
+- `Edgar_20261020181904_150` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
+- `Edgar_20261020182254_152` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Vampire Apothecary Restaurant & Bar · New Status: AI: Warm up prospect · Previous Status: AI: No fit signal
+- `Edgar_20261020182603_154` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Lori's Natural Foods Center · New Status: AI: Warm up prospect · Previous Status: On Hold
+- `Edgar_20261020182721_156` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Mythictreasures · New Status: AI: Warm up prospect · Previous Status: Not Appropriate
+- `Edgar_20261020182925_158` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: 12cornersapothecary · New Status: AI: Warm up prospect · Previous Status: Not Appropriate
 
 ---
 
@@ -271,6 +271,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-13 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4fab2c3 | 2026-10-20 17:27:48 +0000 | chore(stats): refresh stats indexes [skip ci]
+e195bc0 | 2026-10-20 11:59:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 109c669 | 2026-10-20 05:10:30 +0000 | chore(stats): refresh stats indexes [skip ci]
 f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when the label PNG is missing (#413)
 3b633ce | 2026-10-19 22:35:28 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -310,6 +312,14 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+59a0efb | 2026-10-20 18:35:08 -0300 | docs(envoy-plan): record PR4 shipped + PR5 deployed/enabled; RESUME HERE -> PR6 (human UAT) (#1682)
+d47eda9 | 2026-10-20 18:25:29 -0300 | docs(envoy-plan): record PR3 shipped (claude_telegram_monitor #7); RESUME HERE -> PR4 (#1681)
+93df5b3 | 2026-10-20 18:15:27 -0300 | docs(envoy-plan): record PR1 proven sequence + PR2 shipped; RESUME HERE -> PR3 (#1680)
+0ff7715 | 2026-10-20 18:09:25 -0300 | ENVOY_MENTION_TRIGGER_PLAN: U1 done + PR1 spike proven, advance RESUME HERE to PR2 (#1679)
+7dbcd5f | 2026-10-20 17:49:44 -0300 | plans: add Envoy mention-trigger daemon roadmap (PR0) (#1678)
+4931c17 | 2026-10-20 17:31:07 -0300 | Add EMAIL_SEND_POLICY.md — tiers for autonomous outbound email (#1677)
+d32264d | 2026-10-20 08:57:33 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
+1458675 | 2026-10-20 08:57:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
 8d0a639 | 2026-10-20 06:50:59 -0300 | Add BUSINESS_MODEL.md — cycle, customers, product-not-credits, measurable unit (#1676)
 246288a | 2026-10-20 05:16:56 -0300 | plans(sitio-catarinense): correct GPS-gap scope, add PR3b MAP ingestion (#1675)
 3121835 | 2026-10-20 05:01:02 -0300 | File follow-up: payout/planting PDFs can ship dead link annotations (#1674)
@@ -342,20 +352,14 @@ d462a62 | 2026-10-18 03:33:08 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 ac8ce61 | 2026-10-17 17:49:35 -0300 | chore(previews): refresh Beer Hall preview (2026-10-17 UTC)
 b664faa | 2026-10-17 17:49:34 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-17 UTC)
 c284667 | 2026-10-17 12:49:38 -0300 | chore(previews): refresh Beer Hall preview (2026-10-17 UTC)
-d115b20 | 2026-10-17 12:49:36 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-17 UTC)
-c81a3f6 | 2026-10-17 00:30:32 -0300 | docs: record dao_protocol/Edgar deploy prerequisites + apt broken-state gotcha (#1665)
-979762c | 2026-10-16 23:01:56 -0300 | chore(followups): track vendored watermark reader drift (dao_protocol <- autopilot) (#1664)
-bb101a3 | 2026-10-16 22:06:46 -0300 | File follow-up: payout scanner silently under-drains (Edgar 30s timeout vs GAS 6min cap) (#1663)
-0335d37 | 2026-10-16 21:19:28 -0300 | Register handoff: tree-planting photo GPS capture (A1+B) (#1662)
-895269b | 2026-10-16 19:30:47 -0300 | Document agroverse-ledger-manager as the default Google SA (#1661)
-63181a1 | 2026-10-16 18:30:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-16 UTC)
-6478c05 | 2026-10-16 18:30:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+8b356c4 | 2026-10-20 18:08:36 -0300 | Fix monthly sales $0: coerce DATE-formatted offchain cells instead of String() (#587)
+2d6d314 | 2026-10-20 17:47:06 -0300 | Fix monthly sales stuck at $0 — anchor month append on contiguous data block (#586)
 2afbd60 | 2026-10-16 22:01:45 -0300 | Add installTriggers/uninstallTriggers convention for GAS projects (#585)
 33503e9 | 2026-10-16 19:01:43 -0300 | SCHEMA.md: add Service Account → Sheet Access Matrix (#584)
 7dda371 | 2026-10-14 13:09:21 -0300 | Rename SunMint Plots col T from 'Contributor Name' to 'Farmer' (#582)
@@ -418,6 +422,8 @@ a31a3db | 2026-10-12 22:20:19 -0300 | Add landed-cost composition for AWB 047-31
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+8756e45 | 2026-10-20 17:34:18 -0300 | Add Casa Familiar Rural de Anapu "Dorothy Stang" as a SunMint program-partner journey stop (#335)
+6abbba1 | 2026-10-20 17:00:56 -0300 | Add Sítio Catarinense as a stop on The Brazilian Drift (#334)
 e90a162 | 2026-10-20 06:13:29 -0300 | farms(sitio): repair media.json — was two concatenated objects (invalid JSON)
 d87bdb9 | 2026-10-20 05:36:44 -0300 | farms(sitio): people-first hero + full 11-photo/4-video gallery (#333)
 690876e | 2026-10-20 05:30:53 -0300 | farms: add Sítio Catarinense (SC-P1) farm page skeleton (PR5a) (#332)
