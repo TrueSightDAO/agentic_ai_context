@@ -62,12 +62,17 @@ not previously surfaced:**
   `00000100` are byte-identical (same MD5) under different names — dedupe will collapse them.
 - Giant Bertholletia excelsa photos/video among the family set.
 - 1 voice note (`00000018`, not yet transcribed).
-- **GPS blocker**: every JPG/MP4 in this zip has zero EXIF/GPS — WhatsApp recompression strips it
-  on photo/video upload. Per `AGROVERSE_FARM_PAGE_CONVENTIONS.md` §2 and
-  `MEDIA_ARCHIVE_PIPELINE.md` §2, map-placed media needs GPS-bearing **originals** (Document mode
-  or email, not "Photo"/"Video" mode). **This media cannot be map-pinned as-is.** Family/story
-  photos can still be used in the page gallery (they don't need GPS), but none of the 5 video
-  clips or 11 photos should be claimed as plot-boundary evidence.
+- **GPS gap — narrower than first stated, corrected 2026-10-20.** Every JPG/MP4 in this zip has
+  zero EXIF/GPS (WhatsApp recompression strips it on upload). This blocks exactly one thing: using
+  this media as **plot-boundary evidence** or a precise **satellite-map pin** (per
+  `AGROVERSE_FARM_PAGE_CONVENTIONS.md` §2 and `MEDIA_ARCHIVE_PIPELINE.md` §2, that needs
+  GPS-bearing **originals** — Document mode or email, not "Photo"/"Video" mode). **It does NOT
+  block general MAP (Media Archive Pipeline) processing** — `MEDIA_ARCHIVE_PIPELINE.md` §2 notes
+  interior/non-GPS shots are normal ("Coverage ~115/124; interior shots often lack GPS") and §4's
+  nearest-location join is explicitly **annotative, never blocking upload/publish**. So: run the 5
+  videos + 11 photos + voice note through the normal pipeline (sha256 dedupe → YouTube upload with
+  transcription → `farm-media-raw` archival → gallery embedding) same as any other farm's media —
+  they just won't carry a `nearest_location`/GPS stamp or count as boundary evidence.
 
 **Farm story (Jhordan's own words, 2026-10-20 chat — quote verbatim, do not paraphrase):**
 > "We have lived here since 2014, when my father acquired this 150-hectare property through an
@@ -132,7 +137,8 @@ window, consistent with how this roadmap's other auto-gated units work.
 | PR3 | **Tree-registry re-link**: recompute `nearest_plot_id`/`plot_dist_m` for the full 245-feature `trees/index.geojson` against the new polygon; link all 109 `pk-qkejKJJW3IAD` points to the new plot; flag (don't auto-link) `Edgar_20260924122114_057` / any other tree now closer to this plot than its current nearest, for governor review | `sunmint` (data) | auto — read + flag, no silent cross-submitter linking without a human look |
 | U4 | Ask Jhordan for GPS-bearing originals (Document/email mode) of the 5 videos + 11 family photos, if map placement is wanted; chase the promised virgin-forest KML. **Draft only — governor sends.** | correspondence | gate: human (outward-facing) |
 | PR5a | Farm page skeleton: clone `rancho-maranta-para` (or current template) → `farms/<slug>/index.html` + `media.json`, mandatory post-clone token grep (gotcha #8), hero = people-first family photo, story = verbatim Jhordan quote, Leaflet pin at centroid + polygon overlay, two-way SunMint link | `agroverse_shop_beta` | auto → beta review |
-| PR5b | Gallery wiring: upload web-optimized family/tree JPEGs to `assets/images/farms/<slug>-*.jpg`; wire `media.json` gallery entries. Videos deferred — see U4 (no GPS-bearing originals yet, and raw video shouldn't be committed to git either way per `MEDIA_ARCHIVE_PIPELINE.md`) | `agroverse_shop_beta` | auto → beta review |
+| PR3b | **MAP ingestion**: run the 5 videos + 11 family photos + voice note through the standard Media Archive Pipeline (sha256 dedupe, MOV→MP4, transcription, YouTube upload public, `farm-media-raw` archival) — GPS absence doesn't block this (§0 correction); yields `yt_id`s and archived photo URLs for PR5b | media pipeline (daemon config + `farm-media-raw`, api-only) | auto |
+| PR5b | Gallery wiring: upload web-optimized family/tree JPEGs to `assets/images/farms/<slug>-*.jpg`; wire `media.json` gallery entries (`{type:image,...}` for photos, `{type:youtube,videoId,title,caption}` for PR3b's uploaded videos) | `agroverse_shop_beta` | auto → beta review |
 | PR6 | Beta UAT (checklist §4) | `beta.agroverse.shop/farms/<slug>/` | **always-stop: human** |
 | PR7 | Prod promotion (`sync_beta_to_prod`), only after PR6 passes and governor says go | `agroverse_shop_beta` → `agroverse_shop_prod` | **always-stop: human — prod deploy** |
 | PR8 | Impact map: add `FARM_SLUG` entry only if plot `farm_id` ≠ page slug; verify the PROD `truesight.me/sunmint.html` plot popup links out correctly (only clickable post-PR7) | `truesight_me_beta` → sync | auto → beta review; prod link verify after PR7 |
@@ -165,7 +171,8 @@ already captured in §0.
   overlaid; popup bind strings escape apostrophes correctly (gotcha #1).
 - [ ] Two-way SunMint link verified **both directions**: farm page → map (`sunmint.html?plot=<ID>`
   as a real `<a>`, not text) and map → farm page (`FARM_SLUG` entry present if needed).
-- [ ] `media.json` gallery renders every included photo; no video entries yet (GPS blocker, §0).
+- [ ] `media.json` gallery renders every included photo AND video (PR3b's YouTube embeds) — GPS
+  absence is not a reason to omit video from the gallery, only from boundary-evidence/map-pin use.
 - [ ] No 404s on any asset path; GitHub Pages deploy lag (~90s) accounted for before failing a check.
 - [ ] `plot_type` left **blank** in the registry unless the governor explicitly classifies it —
   never auto-defaulted (per `SUNMINT_PLOTS_REGISTRY.md` §4b).
