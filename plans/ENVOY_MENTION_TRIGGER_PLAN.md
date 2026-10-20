@@ -182,7 +182,40 @@ should assume text can land in a non-empty input box and must not assume the box
 empty; this is a PR2/PR3 concern, not a PR1 blocker (PR1's scope was proving idle-session
 injection only, which it did).
 
-**RESUME HERE → PR2** (Telegram watcher).
+**2026-10-20: PR1 done — injection mechanism PROVEN.** (Recording the finding explicitly, per §7's
+"a future instance must not reconstruct this from memory" bar; the earlier entry above described
+the spike's *intent*, not its outcome.) The sequence that actually works is:
+
+```
+tmux send-keys -t supervisor -l -- "<text>"     # literal burst — one keystroke blob
+tmux send-keys -t supervisor Enter              # SEPARATE call — this is what submits
+```
+
+Combining the two (`send-keys "<text>" Enter`) makes tmux interpret `Enter` **inside** the
+literal string; the session then never submits and the text sits unsubmitted in the box. This
+was §0's single biggest technical risk and it is now retired — raw tmux injection is sufficient,
+no `--remote-control` fallback needed.
+
+**2026-10-20: PR2 done.** `claude_telegram_monitor` **PR #5**, squash-merged as `6eb4d50`.
+Source A (governor-only `envoy`/`@envoy` mentions) ships as a new `envoy_trigger/` package
+(`trigger_source.py` / `telegram_source.py` / `inject.py` / `watcher.py`, 54 tests, no network or
+tmux needed to test). It tails `messages.jsonl` through its **own** cursor
+(`envoy_trigger_offset.txt` + `envoy_trigger_seen.jsonl`) and never touches the listener's
+`offset.txt`.
+
+Two things PR3/PR4 inherit from PR2 and should not re-derive:
+
+- **`build_sources()` is the seam for source B.** Source A is one `TriggerSource`
+  implementation; PR4 appends `SupervisedActivitySource` in that one function and nothing in
+  `inject.py` or the daemon core changes. Source B is a drop-in, not a rewrite.
+- **The "non-empty input box" edge case has a second failure mode.** Beyond draft text sitting
+  in the box, `capture-pane` renders an *idle* box as `│ >        │` — whose trailing
+  box-drawing border reads as draft text unless the vertical rules are stripped first. Without
+  that strip, every idle box classifies as DRAFT and nothing ever gets injected. `inject.py`
+  now strips box edges before matching, and all non-ready panes fail closed (trigger stays
+  un-acked and is retried) rather than typing into an unknown TUI state.
+
+**RESUME HERE → PR3** (Discord watcher).
 
 No execution unit above should need to read cross-repo state not already captured in §0.
 
