@@ -39,6 +39,46 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `CFR_Anapu_18_trees.pdf` shipped with zero clickable link annotations — tree-report PDF path bypasses the `PAYOUT_REPORT_SOP.md` §4 link check
+**Filed 2026-10-20 (from the Sítio Catarinense packet). Owner: unclaimed. Governor: Gary. Low-medium — no money impact (the 18 trees were paid correctly), but it is a reviewability defect in a document whose whole purpose is reviewability.**
+
+**What happened.** `00000017-CFR_Anapu_18_trees.pdf` — the 18-tree planting report from the
+`WhatsApp Chat - Jhordan - Anapu CFR.zip` packet — carries **zero link annotations**. Scanned the
+PDF bytes with pymupdf: 5 pages, `link_annots=0`, `unique_uris=0`. Every "View tree" reference
+in it is literal dead text, not a `/URI` annotation.
+
+**Control case (same packet, same day).** The two payout schedules are correct:
+`pix_payout_linked_cfr_anapu_20261015 (3).pdf` and `payout_paid (1).pdf` each carry **86/86**
+unique `/URI` annotations, all on `cfr.truesight.me`, none off-domain. So the defect is specific to
+the **tree-report** generator path — not the payout-schedule path, which honours the SOP.
+
+**Why it violates the SOP.** `PAYOUT_REPORT_SOP.md` §4 states plainly that `generate_pdf` renders
+markdown `[text](url)` as literal dead text ("no `/Annots`, no `/Link`, no `/URI`, verified
+2026-10-15") and says *do not use it when the report needs clickable links* — use reportlab with
+`Paragraph(<a href=…>)` instead, then **verify before sending** by scanning for `/Annots`,
+`/Link`, `/URI` and asserting the expected URI count.
+
+**Why it matters more than a cosmetic bug.** The SOP's rationale (§1) is that a schedule listing
+opaque ids is not reviewable — the payee and reviewer must be able to click through and see the
+item being paid for. A report that *looks* linked but isn't is worse than a plainly unlinked one,
+because the reviewer assumes the link is there and stops checking.
+
+**Related but distinct.** The existing `OPEN_FOLLOWUPS.md` note (~line 206) about payout reports
+not presenting a dead link concerns **pseudo trees** (blank lat/lng) being absent from
+`sunmint/trees/index.geojson`, so `my-trees?tree=` shows "not found". That is a *target-resolution*
+problem. This entry is a *render-time annotation* problem: the link isn't an annotation at all,
+so it fails regardless of whether the tree resolves.
+
+**Work (~30-60 min).** (1) Find the generator that produced this report (likely an ad-hoc
+script, not the reportlab payout path) and either switch it to the reportlab + `<a href>` pattern
+from `PAYOUT_REPORT_SOP.md` §4 or route it through the same code path the payout PDFs use.
+(2) Add the post-generation assertion from §4 (scan bytes, assert `/Annots` + expected `/URI`
+count) so a dead-link report cannot be sent. (3) Consider a shared `assert_pdf_links()` helper
+used by every report generator, rather than re-implementing the check per script.
+
+**Blocker.** None — but the generator's whereabouts is not yet established; the packet contains
+the output, not the source. First step is locating the producer.
+
 ### `nelanco-claude`: add a disk-utilisation alarm (gc.auto=0 already applied)
 **Filed 2026-10-20 (Envoy box at 100% disk). Owner: unclaimed. Governor: Gary. Medium — `gc.auto=0` has removed the known trigger, but nothing pages if the disk refills for another reason.**
 
