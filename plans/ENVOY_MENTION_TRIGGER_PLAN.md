@@ -153,10 +153,38 @@ either watcher is built around it, per §0's risk note.
 
 ## 3. Resume tracker
 
-**RESUME HERE:** PR0 (this plan, landing now) → then U1 → then PR1 (the de-risking spike).
+**2026-10-20: U1 done.** `envoy_truesight`'s Discord bot token is confirmed at
+`claude_telegram_monitor/.env` → `DISCORD_BOT_TOKEN` (co-located with `TELEGRAM_BOT_TOKEN` as
+predicted in §0) — verified live against Discord's `/users/@me`: resolves to id
+`1548902290344255600`, username `envoy_truesight`. No further lookup needed; PR2/PR3 can read
+this file directly.
 
-Nothing is mid-flight. No execution unit above should need to read cross-repo state not
-already captured in §0.
+**2026-10-20: PR1 (de-risking spike) PROVEN — `tmux send-keys` works.** Ran the spike in a
+throwaway tmux session (`pr1-spike-test`, killed after), not against the live `supervisor`
+pane (which was mid-conversation with Gary at the time — injecting into it would have
+corrupted an in-flight draft). Sequence: `tmux send-keys -t <session> -l "<text>"` (literal
+mode, so the text isn't reinterpreted as key names) followed by a separate `tmux send-keys -t
+<session> Enter`, with a ~1s gap between the two calls. Result: the idle Claude Code CLI
+session picked up the injected text as a genuine user turn and responded correctly to an
+explicit instruction embedded in it (replied with a specific verification string on request)
+— full round-trip proof, not just "text appeared in the box." **Separately corroborated**
+earlier this same day: the same `-l` + `Enter` sequence, sent into the live `supervisor`
+session from a different thread (the Discord-gateway-RESUME handoff), was picked up and
+acted on (`supervisor` visibly began working on it). Two independent real-world confirmations.
+**Mechanism is proven — PR3/PR4 are unblocked.** No fallback to `--remote-control` injection
+needed.
+
+**Open edge case for PR2/PR3 to handle, not re-litigate:** what happens if `send-keys` fires
+while the target session is **mid-turn** (actively generating), rather than idle at its
+prompt — observed informally today (the live `supervisor` pane had unsubmitted draft text
+sitting in its input while a prior turn's status widgets were still rendered). The watchers
+should assume text can land in a non-empty input box and must not assume the box starts
+empty; this is a PR2/PR3 concern, not a PR1 blocker (PR1's scope was proving idle-session
+injection only, which it did).
+
+**RESUME HERE → PR2** (Telegram watcher).
+
+No execution unit above should need to read cross-repo state not already captured in §0.
 
 ---
 
