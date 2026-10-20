@@ -237,8 +237,31 @@ default, seeded `envoy_trigger_offset.txt` to the current EOF as a one-time boot
 verified clean with `--once --dry-run` showing zero backlog. The Discord source doesn't need
 this — it self-baselines per channel on first poll.
 
-**RESUME HERE → PR4** (supervised-channel-activity source, reading `HANDOFF_MANIFEST.md` +
-`active_supervision.json`).
+**2026-10-20: PR4 done.** `claude_telegram_monitor` **PR #8**, squash-merged as `f49db4c`.
+Source B ships as `supervised_source.py` (`SupervisedActivitySource`) — one `TriggerSource`
+covering both platforms, registered in `build_sources()` as the plan anticipated. Membership
+in the manifest's structured columns is the only gate; Sophia's own activity in a supervised
+thread triggers, matching §0's worked example exactly. 18 new tests, 101 total. Found +
+fixed the same cold-start bootstrap gap as PR3, this time in this source's own independent
+Telegram cursor (`envoy_trigger_supervised_tg_offset.txt`) — seeded to current EOF, same as
+PR3's fix, now documented together in the repo README.
+
+**2026-10-20: PR5 done — deployed and enabled.** `envoy-mention-watcher.service` copied to
+`/etc/systemd/system/`, `daemon-reload` + `enable --now` on `nelanco-claude`. Verified via
+`systemctl status` (`active (running)`, `enabled` — survives reboot) and ~25s of live
+`journalctl` across multiple poll cycles: no crash, no backlog flood (both bootstraps held),
+only the expected repeated `discord poll non-200 ... 404` warnings for 5 of the 11 manifest
+Discord channel ids (likely stale entries or channels the bot isn't a member of — logged
+loudly per the plan's requirement, not investigated further here as it's a manifest
+data-quality question, not a daemon bug). This was a governor-authorized activation (explicit
+go-ahead given in-session), satisfying the §5c always-stop gate for first activation.
+
+**RESUME HERE → PR6 (live UAT) — human gate, awaiting Gary.** All three trigger sources are
+live; nothing further to build. PR6 needs Gary to actually do the checklist in §4 below (a
+real `@envoy` mention on each platform from his own governor identity, a real non-governor
+message in a supervised thread) — not something Envoy can self-certify, since the test is
+specifically "does this wake `supervisor` when **Gary** does these things." PR7 (flip this
+plan's header to `Status: LIVE` + the operator doc) should follow PR6, not precede it.
 
 No execution unit above should need to read cross-repo state not already captured in §0.
 
