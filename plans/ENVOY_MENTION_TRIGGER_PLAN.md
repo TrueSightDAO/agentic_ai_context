@@ -215,7 +215,30 @@ Two things PR3/PR4 inherit from PR2 and should not re-derive:
   now strips box edges before matching, and all non-ready panes fail closed (trigger stays
   un-acked and is retried) rather than typing into an unknown TUI state.
 
-**RESUME HERE → PR3** (Discord watcher).
+**2026-10-20: PR3 done.** `claude_telegram_monitor` **PR #7**, squash-merged as `385b3c1`.
+Source A's Discord half ships as `discord_source.py` (`DiscordMentionSource`), a second
+`TriggerSource` registered in `build_sources()` alongside PR2's Telegram source — exactly the
+drop-in PR2 set up for. REST-polls a small fixed channel whitelist (`envoy-server`,
+`server-administration` — **not** the whole 70-channel guild, per §0's scoping note), with its
+own per-channel cursor (`envoy_trigger_discord_cursors.json`) + seen store
+(`envoy_trigger_discord_seen.jsonl`), mirroring PR2's ack-only-after-success contract. 24 new
+tests (107 total across the two PRs' own counts — 83 after this PR specifically; see that
+repo's README), no network/tmux needed (HTTP layer injected). `envoy-mention-watcher.service`
+(the plan PR5 systemd unit) also landed in this PR, not yet installed/enabled.
+
+**Real gap found + fixed operationally, not by changing tested code:** dry-running the merged
+PR2 code against this box's actual `messages.jsonl` (44MB / 85k+ lines of real history, no
+`envoy_trigger_offset.txt` yet) showed it replays **every historical `@envoy` mention ever
+logged** as a fresh trigger on first start, because `JsonlTailer` defaults to offset 0 when
+the offset file is absent — correct for the unit tests' fixture-then-construct pattern, wrong
+for a cold start against a box with real history. Rather than changing `JsonlTailer`'s tested
+default, seeded `envoy_trigger_offset.txt` to the current EOF as a one-time bootstrap
+(documented as a **required** step in the repo's README for any future fresh-box redeploy) and
+verified clean with `--once --dry-run` showing zero backlog. The Discord source doesn't need
+this — it self-baselines per channel on first poll.
+
+**RESUME HERE → PR4** (supervised-channel-activity source, reading `HANDOFF_MANIFEST.md` +
+`active_supervision.json`).
 
 No execution unit above should need to read cross-repo state not already captured in §0.
 
