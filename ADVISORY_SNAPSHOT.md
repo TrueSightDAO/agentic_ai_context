@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-20T03:54:02Z`
+- Generated (UTC): `2026-10-20T05:07:01Z`
 - Look-back: **7** calendar days (`2026-10-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[RETAIL FIELD REPORT EVENT]` × 16
+- `[INVENTORY MOVEMENT]` × 13
+- `[CONTRIBUTION EVENT]` × 10
+- `[PRACTICE EVENT]` × 2
+- `[CONTRIBUTOR ADD EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20261019192953_080` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Answered the folks from Vista Flow (Francine Borba) re: shipment/NF-e update…
+- `Edgar_20261019193604_082` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lawrence Kwek · Contributor Email: lawkpsn@gmail.com · Submitted At: 2026-10-19T19:35:58Z
+- `Edgar_20261019194404_084` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh, Sophia Truesight
+- `Edgar_20261019195201_086` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh, Lawrence Kwek · Description: 3-hour in-person strategy session in Singapore (Raffles Place) on Agroverse …
+- `Edgar_20261019201745_088` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Interviewed Jhordan to gather information about his family farm for the purp…
+- `Edgar_20261019202612_090` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150 · Contributor(s): Gary Teh · Description: Inventory management (2026-10-19). 2.5 hours of work on DAO inventory record…
+- `Edgar_20261019204030_092` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Val Lapidus · Inventory Item: Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco
+- `Edgar_20261019204116_094` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Foam container box - 120 kraft pouches capacity
+- `Edgar_20261019204124_096` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Foam container box - 46 cacao bar capacity (36cm X 40cm X 61cm)
+- `Edgar_20261019204415_098` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1w3D0y9iPMu7k… · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
+- `Edgar_20261019204425_100` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1w3D0y9iPMu7k… · Inventory Item: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Franc…
+- `Edgar_20261019204432_102` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1pdI1lMChyD2-… · Inventory Item: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco
+- `Edgar_20261019205926_104` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Val Lapidus · Recipient Name: Kirsten Ritschel · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
+- `Edgar_20261019205933_106` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Franc… · Manager Name: Val Lapidus
+- `Edgar_20261019205941_108` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Manager Name: Val Lapidus
+- `Edgar_20261019205948_110` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
+- `Edgar_20261019210004_112` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: [AGL13] Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - …
+- `Edgar_20261019210013_114` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: [AGL13] Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - S…
+- `Edgar_20261019210021_116` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl8 · Inventory Item: [AGL8] Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Fr…
+- `Edgar_20261020031911_118` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-20T03:19:09.621Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -195,13 +232,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+33 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,445.91**
+- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
+- USD provisioned for voting-rights cash-out: **$56.90**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -267,6 +307,8 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b0d39ea | 2026-10-20 00:54:20 -0300 | Merge pull request #1669 from TrueSightDAO/auto/advisory-refresh-2026-10-20
+4ffa642 | 2026-10-20 03:54:06 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
 f8e6105 | 2026-10-19 19:33:34 -0300 | chore(previews): refresh Beer Hall preview (2026-10-19 UTC)
 a09a51d | 2026-10-19 19:33:32 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 6027ba6 | 2026-10-19 16:53:13 -0300 | File SEA/China follow-up + Discord roster + email-projection gaps (#1668)
@@ -305,8 +347,6 @@ aeba6e1 | 2026-10-15 20:01:20 -0300 | OPEN_FOLLOWUPS: file CFR Anapu ingest-GPS-
 6965b5f | 2026-10-15 19:10:45 -0300 | Add PIX payout schedule with clickable per-tree links (CFR Anapu 2026-10-15)
 5e75e31 | 2026-10-15 18:57:51 -0300 | Add PIX payout schedule PDF (86 trees, R$430) - CFR Anapu
 150580d | 2026-10-15 18:57:03 -0300 | Merge pull request #1655 from TrueSightDAO/sop/cross-ledger-freight-settlement-phase8-r5-10
-40a3c1e | 2026-10-15 18:56:21 -0300 | Merge pull request #1654 from TrueSightDAO/sop/cross-ledger-freight-settlement-phase8
-cb98a01 | 2026-10-15 21:50:58 +0000 | §5.16: extend settlement SOP with rules 5-10 (reciprocal, Currencies, landed cost, AUM/treasury, numeric type, independent verification)
 … (truncated)
 ```
 
@@ -434,6 +474,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 0 | 18484.34386 | 10/19/2026 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-13`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
