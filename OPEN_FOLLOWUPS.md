@@ -39,6 +39,48 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `nelanco-claude`: add a disk-utilisation alarm (gc.auto=0 already applied)
+**Filed 2026-10-20 (Envoy box at 100% disk). Owner: unclaimed. Governor: Gary. Medium — `gc.auto=0` has removed the known trigger, but nothing pages if the disk refills for another reason.**
+
+**What happened.** Envoy's box (`nelanco-claude`, `i-01ad5eca707e4445f`) hit **root 100% full**
+(`29G/29G`). Cause: an **interrupted `git repack` of `/opt/claude_workspace/lineage-credentials`**
+left four orphaned `tmp_pack_*` files (~6.8 GB) behind. A repack needs roughly **double the pack
+size** in free space to build the replacement pack, so on a disk that was already tight it
+self-destructed and left the temp files to consume the rest. Removed 2026-10-20; box back to 78%
+used. See the addendum on the `nelanco-claude` reachability entry above for why this is also the
+probable cause of the 2026-09 unreachability incidents (`sshd` cannot write at 100% → SSH
+banner timeout → `InstanceStatus: impaired` while the guest is alive).
+
+**Already done (2026-10-20).** `git config gc.auto 0` set **repo-locally** in
+`/opt/claude_workspace/lineage-credentials` (verified; it was previously unset, i.e. at git's
+default auto-gc threshold). This stops git from spontaneously auto-triggering a repack there, so
+the known refill scenario cannot silently recur. Note this is a **local, host-only** config — it
+is not in the repo and will not survive a rebuild of the box or a fresh clone. Also killed three
+stale multi-day watcher shells under the `analyst` tmux session that were spinning no-op
+`until` loops (harmless, but they had been running 4–6 days).
+
+**Suggested scope (remaining).**
+1. **Add a disk-utilisation CloudWatch alarm** on the nelanco-claude instance — a custom metric
+   via the CloudWatch agent on `disk_used_percent` for `/`, alarm threshold ~85%, notifying the
+   existing Telegram/Discord path (same pattern as `AWS_DIGITAL_INFRASTRUCTURE.md` §8). This is
+   the piece that actually pages someone; a `StatusCheckFailed_Instance` alarm fires only after
+   the box is already unreachable.
+2. **Make `gc.auto=0` durable** — either add it to the box's provisioning/bootstrap so a rebuilt
+   instance gets it, or document it in `ENVOY_TMUX_SESSIONS.md` next to the existing
+   "`.git` is the usual culprit" note so whoever next works on a fresh box re-applies it.
+3. **Periodic reclaim audit** on that box. Known reclaimable at time of writing: `/tmp/claude-1000`
+   (613 MB, untouched since 2026-10-10) and `~/.claude` (~949 MB of shell snapshots / caches).
+   Safe, but nothing prunes them automatically.
+
+**Root refill hazard, for the record.** `lineage-credentials` is roughly **10 GB** of history
+(see `WORKSPACE_CONTEXT.md` — the `build-cv-cache.yml` checkout alone takes 21m44s on a GitHub
+runner). Any operation that wants a second copy on that box — repack, a fresh clone, a full
+bundle — needs ~5–10 GB of headroom against a 29 GB disk shared with several concurrent
+`claude` sessions. Do that maintenance **only** with `df -h /` checked first, and never on a box
+that is already above ~70%.
+
+---
+
 ### QR manifest `scan_target` does not describe what the generated QR actually encodes (systemic, all batches)
 **Filed 2026-10-20 (396-label delivery: 8oz nibs AGL4 + ceremonial 200g AGL8). Owner: unclaimed. Medium — no live breakage today, but it makes every provenance document cite a URL its own QR does not resolve to.**
 
@@ -1769,6 +1811,39 @@ to rule in/out a bad physical host — two data points isn't enough to conclude 
 **Evidence.** `aws ec2 describe-instance-status --instance-ids i-01ad5eca707e4445f` (impaired,
 2026-09-17T01:31:00Z); `aws ec2 get-console-output` (clean boot log ending 2026-09-14T23:24:41Z,
 nothing after); this session's remediation (reboot attempt → no recovery → stop/start → recovered).
+
+**⚠️ 2026-10-20 addendum — probable root cause found: disk full.** On 2026-10-20 the box's root
+filesystem was found at **100% (`29G/29G`, 0 bytes free)**, with four orphaned `tmp_pack_*` files
+totalling **~6.8 GB** in `/opt/claude_workspace/lineage-credentials/.git/objects/pack/` — residue
+of an **interrupted `git repack` that died of a full disk**. `git count-objects -v` independently
+reported **6.36 GiB of "garbage"**. Deleting only those four temp packs (no pack, ref, or history
+touched — verified no `git` process alive and `HEAD` resolving first) restored the box to **78%
+used / 6.4 GB free**, and the ENOSPC storm in the journal stopped dead at the deletion timestamp.
+
+**Why this is probably the answer.** With root at 100% the box exhibits exactly the recorded
+fingerprint:
+- `rsyslogd` was failing every write (thousands of `No space left on device`);
+- **`sshd` cannot write its session files and times out during banner exchange** — which is
+  already documented as a `nelanco-claude` gotcha in `ENVOY_TMUX_SESSIONS.md`;
+- the AWS control plane reports **`InstanceStatus: impaired` / `reachability: failed` while the
+  guest is still perfectly alive** — matching 2026-09-16/17.
+
+A stop/start then "fixes" the next recurrence because it clears the disk pressure, **not**
+because the instance landed on better hardware — so both 2026-09 incidents are equally
+explained by a bad physical host *or* by this. **Check disk first next time:** before assuming a
+hardware or network fault, run `df -h /` and `git count-objects -v` in
+`/opt/claude_workspace/lineage-credentials`. Note `get-console-output` will never show this —
+it only captures boot-time serial output, which is precisely why both prior incidents came up
+empty. The monitoring fix below (disk-utilisation alarm) is the durable answer; the
+`StatusCheckFailed_Instance` alarm proposed above would still fire, but late and with the wrong
+story attached.
+
+**Still open from this incident.** (a) `gc.auto=0` **is now set** repo-locally on
+`lineage-credentials` so an automatic repack cannot retry the double-space requirement and
+re-fill the disk — see the dedicated entry below. (b) **No disk-utilisation alarm exists yet.**
+(c) This is the third `nelanco-claude` incident; the original "if it recurs a third time, pull
+EC2 host-level info" trigger is arguably now met, but treat the disk explanation as primary until
+ruled out.
 
 ### truesight_autopilot: automate Stripe subscription-renewal → per-bar `[SALES EVENT]` reconciliation
 
