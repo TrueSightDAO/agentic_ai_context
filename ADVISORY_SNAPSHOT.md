@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-20T05:07:01Z`
+- Generated (UTC): `2026-10-20T11:57:09Z`
 - Look-back: **7** calendar days (`2026-10-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,26 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[RETAIL FIELD REPORT EVENT]` × 16
 - `[INVENTORY MOVEMENT]` × 13
-- `[CONTRIBUTION EVENT]` × 10
-- `[PRACTICE EVENT]` × 2
+- `[RETAIL FIELD REPORT EVENT]` × 10
+- `[CONTRIBUTION EVENT]` × 9
+- `[SALES EVENT]` × 8
 - `[CONTRIBUTOR ADD EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261019192953_080` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Answered the folks from Vista Flow (Francine Borba) re: shipment/NF-e update…
-- `Edgar_20261019193604_082` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lawrence Kwek · Contributor Email: lawkpsn@gmail.com · Submitted At: 2026-10-19T19:35:58Z
-- `Edgar_20261019194404_084` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Contributor(s): Gary Teh, Sophia Truesight
-- `Edgar_20261019195201_086` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh, Lawrence Kwek · Description: 3-hour in-person strategy session in Singapore (Raffles Place) on Agroverse …
-- `Edgar_20261019201745_088` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Interviewed Jhordan to gather information about his family farm for the purp…
-- `Edgar_20261019202612_090` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150 · Contributor(s): Gary Teh · Description: Inventory management (2026-10-19). 2.5 hours of work on DAO inventory record…
-- `Edgar_20261019204030_092` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Val Lapidus · Inventory Item: Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco
-- `Edgar_20261019204116_094` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Foam container box - 120 kraft pouches capacity
-- `Edgar_20261019204124_096` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Foam container box - 46 cacao bar capacity (36cm X 40cm X 61cm)
-- `Edgar_20261019204415_098` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1w3D0y9iPMu7k… · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
-- `Edgar_20261019204425_100` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1w3D0y9iPMu7k… · Inventory Item: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Franc…
-- `Edgar_20261019204432_102` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1pdI1lMChyD2-… · Inventory Item: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco
 - `Edgar_20261019205926_104` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Val Lapidus · Recipient Name: Kirsten Ritschel · Inventory Item: Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Fran…
 - `Edgar_20261019205933_106` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Franc… · Manager Name: Val Lapidus
 - `Edgar_20261019205941_108` · **Edgar** · [INVENTORY MOVEMENT] Destination Inventory File Location: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2… · Inventory Item: Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco · Manager Name: Val Lapidus
@@ -60,6 +49,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261019210013_114` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl13 · Inventory Item: [AGL13] Cacao Tea (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - S…
 - `Edgar_20261019210021_116` · **Edgar** · [INVENTORY MOVEMENT] Attached Filename: 2d5a0b1711f34ca3b8fb745dd9536028.png 153c4cbc0c1d470a8e74bb3e7a162b05.… · Destination Inventory File Location: https://agroverse.shop/agl8 · Inventory Item: [AGL8] Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Fr…
 - `Edgar_20261020031911_118` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-20T03:19:09.621Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261020073249_120` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Contributor(s): Sophia Truesight
+- `Edgar_20261020073256_122` · **Edgar** · [CONTRIBUTION EVENT] Amount: 90 · Contributor(s): Gary Teh · Description: Supervision and review of the Agroverse QR label batch remediation for Kirst…
+- `Edgar_20261020085250_124` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_31 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085255_126` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_28 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085300_128` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_29 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085304_130` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_30 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085309_132` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_18 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085314_134` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_19 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085340_136` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_29 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085346_138` · **Edgar** · [SALES EVENT] Item: 2024SA_20251227_30 · Sales price: 17.00 · Sold by: Kelly Springer
+- `Edgar_20261020085427_140` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Sophia — Kelley Springer cacao batch sales processing (6 bags @ $17.00)
+- `Edgar_20261020085429_142` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Kelly Springer consignment settlement — 6 cacao bags sold, QR batch 2024SA_2…
 
 ---
 
@@ -74,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-14T10:59:14.625Z`
+- Generated (UTC): `2026-10-20T10:59:14.165Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,11 +90,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **66** stores — sum logged **warmup** sends (AU): **1056**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **5** / **0** / **61**; follow-up depth (none / once / ≥2): **66** / **0** / **0**
-- **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
+- **AI: Warm up prospect**: **120** stores — sum logged **warmup** sends (AU): **1056**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **59** / **0** / **61**; follow-up depth (none / once / ≥2): **120** / **0** / **0**
+- **Manager Follow-up**: **36** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **30** / **1** / **5**; follow-up depth (none / once / ≥2): **13** / **5** / **18**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
-- **Follow-up pipeline (combined)**: **39** stores — sum logged **warmup** sends (AU): **32**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **7**; follow-up depth (none / once / ≥2): **16** / **5** / **18**
+- **Follow-up pipeline (combined)**: **38** stores — sum logged **warmup** sends (AU): **32**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **30** / **1** / **7**; follow-up depth (none / once / ≥2): **15** / **5** / **18**
 
 ---
 
@@ -209,11 +210,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 8,236.26 total units · $7,936.22
+- Manager record: `Gary Teh` · 30 SKU lines · 8,338.26 total units · $8,038.22
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 8,160.08 | $7,886.23 |
+  | (uncategorized) | (unspecified) | 28 | 8,262.08 | $7,988.23 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -234,7 +235,7 @@ _(+33 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,445.91**
+- USD on hand: **$2,547.91**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
 - USD provisioned for voting-rights cash-out: **$56.90**
 
@@ -259,7 +260,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-13 in CONTEXT_UPDATES.md.)_
 
 | Pipeline | Mapped clone | Activity in window |
 |----------|----------------|----------------------|
-| `go_to_market` | `market_research` | **no** |
+| `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
 | `oracle` | `iching_oracle` | **no** |
 
@@ -270,6 +271,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-13 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+109c669 | 2026-10-20 05:10:30 +0000 | chore(stats): refresh stats indexes [skip ci]
+f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when the label PNG is missing (#413)
 3b633ce | 2026-10-19 22:35:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 5039d76 | 2026-10-19 13:51:08 +0000 | chore(stats): refresh stats indexes [skip ci]
 74a7926 | 2026-10-19 05:11:25 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -301,12 +304,22 @@ f0008cc | 2026-10-13 23:03:59 +0000 | chore(stats): refresh stats indexes [skip 
 ### `market_research` → `go_to_market`
 
 ```
-_(no commits on origin/main in window)_
+b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across the three sibling publishers (#183)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8d0a639 | 2026-10-20 06:50:59 -0300 | Add BUSINESS_MODEL.md — cycle, customers, product-not-credits, measurable unit (#1676)
+246288a | 2026-10-20 05:16:56 -0300 | plans(sitio-catarinense): correct GPS-gap scope, add PR3b MAP ingestion (#1675)
+3121835 | 2026-10-20 05:01:02 -0300 | File follow-up: payout/planting PDFs can ship dead link annotations (#1674)
+771067e | 2026-10-20 08:00:23 +0000 | handoffs: claim supervision of Sítio Catarinense onboarding
+91583ac | 2026-10-20 04:58:03 -0300 | plans: add Sítio Catarinense farm-onboarding execution roadmap (PR0) (#1673)
+bee9fb3 | 2026-10-20 04:48:41 -0300 | Link nelanco-claude reachability failures to disk-full repack; file gc.auto=0 follow-up (#1672)
+7fda0df | 2026-10-20 03:22:18 -0300 | docs(agroverse): fix stale batch_compiler.py path, warn against ad-hoc QR generators (#1671)
+944067b | 2026-10-20 02:31:18 -0300 | File two QR/attachment-tooling follow-ups in OPEN_FOLLOWUPS.md (#1670)
+111f03b | 2026-10-20 02:07:26 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
+ebc8db3 | 2026-10-20 02:07:24 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
 b0d39ea | 2026-10-20 00:54:20 -0300 | Merge pull request #1669 from TrueSightDAO/auto/advisory-refresh-2026-10-20
 4ffa642 | 2026-10-20 03:54:06 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
 f8e6105 | 2026-10-19 19:33:34 -0300 | chore(previews): refresh Beer Hall preview (2026-10-19 UTC)
@@ -337,16 +350,6 @@ bb101a3 | 2026-10-16 22:06:46 -0300 | File follow-up: payout scanner silently un
 895269b | 2026-10-16 19:30:47 -0300 | Document agroverse-ledger-manager as the default Google SA (#1661)
 63181a1 | 2026-10-16 18:30:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-16 UTC)
 6478c05 | 2026-10-16 18:30:50 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
-9f35bb8 | 2026-10-16 08:45:46 -0300 | chore(previews): refresh Beer Hall preview (2026-10-16 UTC)
-e951489 | 2026-10-16 08:45:45 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
-129879f | 2026-10-16 00:37:08 -0300 | Merge pull request #1659 from TrueSightDAO/auto/advisory-refresh-2026-10-16
-c4ff714 | 2026-10-16 03:36:55 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-16 UTC)
-8c98d5f | 2026-10-15 20:03:36 -0300 | Archive CFR Anapu payout PDF v3 (86/86 links resolve)
-aeba6e1 | 2026-10-15 20:01:20 -0300 | OPEN_FOLLOWUPS: file CFR Anapu ingest-GPS-drop gap; mark pseudo-tree case resolved (#1657)
-3ea8408 | 2026-10-15 19:26:32 -0300 | Add payout-report format SOP + file pseudo-tree index gap follow-up (#1656)
-6965b5f | 2026-10-15 19:10:45 -0300 | Add PIX payout schedule with clickable per-tree links (CFR Anapu 2026-10-15)
-5e75e31 | 2026-10-15 18:57:51 -0300 | Add PIX payout schedule PDF (86 trees, R$430) - CFR Anapu
-150580d | 2026-10-15 18:57:03 -0300 | Merge pull request #1655 from TrueSightDAO/sop/cross-ledger-freight-settlement-phase8-r5-10
 … (truncated)
 ```
 
@@ -386,6 +389,12 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+f72e559 | 2026-10-20 11:43:07 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+b3c5f4b | 2026-10-20 09:46:14 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+fcff643 | 2026-10-20 09:45:49 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+c8fd306 | 2026-10-20 09:10:31 +0000 | chore: refresh currencies.json [skip ci]
+3d450b4 | 2026-10-20 09:08:49 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+cff25e2 | 2026-10-20 09:05:05 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 701b6cb | 2026-10-19 13:56:49 +0000 | chore: refresh currencies.json [skip ci]
 1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -409,7 +418,9 @@ a31a3db | 2026-10-12 22:20:19 -0300 | Add landed-cost composition for AWB 047-31
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-_(no commits on origin/main in window)_
+e90a162 | 2026-10-20 06:13:29 -0300 | farms(sitio): repair media.json — was two concatenated objects (invalid JSON)
+d87bdb9 | 2026-10-20 05:36:44 -0300 | farms(sitio): people-first hero + full 11-photo/4-video gallery (#333)
+690876e | 2026-10-20 05:30:53 -0300 | farms: add Sítio Catarinense (SC-P1) farm page skeleton (PR5a) (#332)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -498,13 +509,22 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/19/2026 |
+| 2026-10 | 0 | 18484.34386 | 10/20/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-13`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_19 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_18 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_30 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_29 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_28 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_31 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
