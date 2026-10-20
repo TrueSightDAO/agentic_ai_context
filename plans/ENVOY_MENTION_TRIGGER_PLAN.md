@@ -256,12 +256,31 @@ loudly per the plan's requirement, not investigated further here as it's a manif
 data-quality question, not a daemon bug). This was a governor-authorized activation (explicit
 go-ahead given in-session), satisfying the §5c always-stop gate for first activation.
 
-**RESUME HERE → PR6 (live UAT) — human gate, awaiting Gary.** All three trigger sources are
-live; nothing further to build. PR6 needs Gary to actually do the checklist in §4 below (a
-real `@envoy` mention on each platform from his own governor identity, a real non-governor
-message in a supervised thread) — not something Envoy can self-certify, since the test is
-specifically "does this wake `supervisor` when **Gary** does these things." PR7 (flip this
-plan's header to `Status: LIVE` + the operator doc) should follow PR6, not precede it.
+**2026-10-20: PR6 (live UAT) — in progress, real bug found + fixed live.** Gary posted real
+activity in two supervised Discord channels. The daemon correctly detected it (source B,
+`supervised_activity`, 5 triggers staged from `#sitio-catarinense`) — but **every single
+injection attempt failed with `pane_unknown`**, confirmed via `journalctl` (dozens of real
+retries, zero successes). Root cause: `inject.py`'s `PROMPT_RE` only matched an ASCII `>`
+prompt character; this box's actual Claude Code build renders the prompt as `❯` (a different
+Unicode glyph), which `>` can never match — `assess_pane()` was silently returning `UNKNOWN`
+for every real pane, idle or not, on **every source**, since PR2. Every existing test fixture
+happened to use the ASCII glyph, so the whole 101-test suite was green while the live daemon
+could never inject anything into any session, ever. Fixed in `claude_telegram_monitor` **PR
+#9** (merged `ea49121`): `PROMPT_RE` now matches either glyph, 3 new regression tests pin the
+real one down (104 tests total). Service restarted to pick up the fix — confirmed live:
+classification correctly shifted from `pane_unknown` to `pane_busy`/`pane_draft` as Gary
+actively used the `supervisor` pane during the restart window (correctly deferring rather
+than clobbering his draft — proof the fix works in both directions). The 5 staged triggers
+from Gary's test are un-acked and safely queued; they'll inject the moment the pane goes
+idle, with no further action needed. **Still open:** confirming a trigger actually lands
+once the pane goes idle, and testing the `@envoy`-mention (source A) half specifically (the
+activity so far only exercised source B, since `#sitio-catarinense` isn't in the Telegram/
+Discord mention whitelists).
+
+**RESUME HERE → PR6 (live UAT), continued.** Once a real injection is confirmed to land,
+close out the remaining §4 checklist items (mention trigger on each platform, the
+non-trigger negative cases). PR7 (flip this plan's header to `Status: LIVE` + the operator
+doc) follows after PR6 fully passes, not before.
 
 No execution unit above should need to read cross-repo state not already captured in §0.
 
