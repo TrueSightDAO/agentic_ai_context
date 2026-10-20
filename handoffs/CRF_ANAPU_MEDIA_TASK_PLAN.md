@@ -4,7 +4,7 @@
 > Runbook of record: `MEDIA_ARCHIVE_PIPELINE.md` (MAP). New-farm SOP: `AGROVERSE_SUNMINT_FARM_LISTING.md`.
 
 **Created:** 2026-09-11 (Sophia) at Gary's request (thread 25181)
-**Status:** in progress — PR1/PR1b/PR2/PR4 merged; **PR5 (media long pole) in flight** 2026-09-11; governor decisions recorded (see below). **Standalone subdomain `cfr.truesight.me` LIVE 2026-09-11** (§7) — decoupled from PR5.
+**Status:** in progress — PR1/PR1b/PR2/PR4 merged; **PR5 (media long pole) DONE 2026-09-12** (14/14 videos uploaded, sidecars, captions; `truesight_me_beta` PR #377); governor decisions recorded (see below). **Standalone subdomain `cfr.truesight.me` LIVE 2026-09-11** (§7) — decoupled from PR5.
 **Program page:** https://beta.truesight.me/programs/crf-anapu/ (PR #373, merged)
 
 ## Governor decisions (Gary, thread 25181, 2026-09-11)
@@ -67,7 +67,7 @@ Recorded verbatim-to-intent below; my reading of each is stated so it can be cor
 | `farms/crf-anapu-para/` | agroverse_shop_beta | ❌ **not applicable** — program, not farm |
 | `sunmint/plots/index.geojson` + Plots sheet | sunmint / sheet | ❌ **not applicable** — no plot |
 | `farm-media-raw/crf-anapu-para/photos/` | farm-media-raw (api-only) | ✅ live — 8 HEIC originals uploaded (PR5) |
-| `/media/media_archive_inbox/farm-media/crf-anapu-para/` | box | ⏳ pending (PR5: sidecars + inbox entry) |
+| `/media/media_archive_inbox/farm-media/crf-anapu-para/` | box | ✅ sidecars + inbox entry done (PR5, 2026-09-12) |
 
 ## 4. Gallery section — SANCTIONED convention (Gary #3)
 
@@ -80,7 +80,7 @@ Program pages now carry a media gallery, same as farm pages (`AGROVERSE_FARM_PAG
 - **PR2** farm_media_manifests: `crf-anapu-para.json` (v2: `entity_type: program`, `program_slug: crf-anapu`, sha256/GPS/duration/objects[]/creation_date/transcription_status, `cross_index: [jedielcio]`) + `jedielcio.json` (4 mp4) + `index.json` entries. *(repo is Contents-API-only per its README — single-file writes via `upload_file_to_github`, never cloned/branch-edited.)*
 - **PR3** ~~plot / sheet row~~ — **MOOT** (Gary #2: not a plot).
 - **PR4** program-page media gallery: `programs/crf-anapu/media.json` + gallery section in `index.html` (truesight_me_beta) — sandwich the sanctioned contract into the program shell. Beta preview first.
-- **PR5** media long pole: HEIC → web JPEGs + full-res → `farm-media-raw/crf-anapu-para/photos/`; MOV → MP4 (GPS re-inject, VERIFY `Keys:GPSCoordinates`) → transcription (faster-whisper, PT) → inbox sidecars → daemon upload (~6/day) → yt_ids backfilled.
+- **PR5** ✅ **DONE (2026-09-12)** — media long pole: HEIC → web JPEGs + full-res → `farm-media-raw/crf-anapu-para/photos/`; MOV → MP4 (GPS re-inject, VERIFY `Keys:GPSCoordinates`) → transcription (faster-whisper, PT) → inbox sidecars → daemon upload (~6/day) → yt_ids backfilled.
 - **UAT gate** — governor reviews beta; **no prod sync without explicit GO.**
 
 ## 6. Program media entity type + gallery contract (new, Gary #2/#3)

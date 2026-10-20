@@ -120,6 +120,7 @@ Before 2026-07, the footer was duplicated inline across pages with multiple vari
 | Site voice / tone | `agentic_ai_context/EDITORIAL_TONE.md` §2 (agroverse.shop) |
 | Shared chrome source | `agroverse_shop/js/shared-chrome.js` |
 | Farm/shipment story media | `agroverse_shop/js/media-gallery.js` + per-page `media.json` (see §8) |
+| Cross-linking related entities | This file §9 |
 | Published farm media manifests | `TrueSightDAO/farm_media_manifests` → `galleries/<slug>.json` (see §8) |
 | Navigation behavior | `agroverse_shop/js/navigation.js` |
 | Cart + order history injection | `agroverse_shop/js/universal-nav.js` |
@@ -228,3 +229,61 @@ that the JSON file exists and is valid before debugging the script.
 
 **When adding/changing farm or shipment story media:** edit `media.json` (and upload the asset) — do NOT
 hardcode `<img>`/`<iframe>` into the page HTML.
+
+---
+
+## 9. Cross-linking related entities (two-way, mandatory)
+
+When two entities on the site share a **real** relationship, both pages MUST link to each other. A reader
+arriving on either side should be able to reach the other in one click.
+
+### What counts as a real relationship
+
+Only relationships that exist in the record — never inferred adjacency:
+
+- a **school/program ↔ the land of its students** (e.g. CFR Anapu ↔ Sítio Catarinense, whose owner
+  Jhordan is a CFR student)
+- a **partner/cooperative ↔ a program it participates in**
+- a **farm ↔ the shipment batches** that shipped from it
+- a **farm ↔ the partner page** representing the same physical operation
+
+Do **not** cross-link merely because two entities are in the same region, the same country, or were
+onboarded by the same person. Proximity is not a relationship.
+
+### Rules
+
+1. **Both directions, always.** A one-way link is a defect. The two edits ship in the same PR.
+2. **Link the most specific target that exists.** Where both a `/partners/<slug>/` page and a
+   `/farms/<slug>/` profile exist, link **both** — the partner page is the commercial view, the farm page
+   is the land/impact view.
+3. **State the relationship in words.** Never ship a bare link or a "Related" chip row. One sentence naming
+   the relation ("Jhordan is a student at …; Sítio Catarinense is one of those properties.") so the reader
+   knows *why* the link exists and so the claim is auditable.
+4. **Reciprocity is part of definition-of-done** for any new partner / farm / program page. Adding an
+   entity means adding its inbound *and* outbound links in the same PR.
+5. **Cross-links are not navigation.** Do not put them in the injected nav/footer (§1/§2) — they belong in
+   page content, next to the claim they support.
+
+### Placement
+
+- Relationship block near the end of the page's main `content-section`, **above** the partner-navigation /
+  back-link area.
+- Use the existing CSS variables (`var(--color-primary)`, `var(--color-text-light)`) — do not add a
+  stylesheet.
+- A quiet callout (light background, left rule) reads as context; a full card competes with the entity's
+  own card.
+
+### Reference implementation
+
+`partners/cfr-anapu-dorothy-stang/index.html` ↔ `partners/sitio-catarinense-para/index.html` — the
+"Land tied to this school" block and the "Jhordan is a student at …" sentence. Both sides name the
+relationship and link to both the partner page and the farm profile.
+
+### Why this is a rule
+
+An entity that cannot be found from the entity it belongs to is, to a reader, an orphan. The
+discovery-surface lint (`partner-discovery-lint.yml`) checks only the hub card, the nav data
+(`js/partners-data.js`) and the locations feed (`partner_locations.json`) — it **cannot** catch a missing
+cross-link. This is the one discovery surface held by convention rather than by CI, so it needs to be
+written down and checked in review.
+
