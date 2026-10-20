@@ -277,10 +277,36 @@ once the pane goes idle, and testing the `@envoy`-mention (source A) half specif
 activity so far only exercised source B, since `#sitio-catarinense` isn't in the Telegram/
 Discord mention whitelists).
 
-**RESUME HERE → PR6 (live UAT), continued.** Once a real injection is confirmed to land,
-close out the remaining §4 checklist items (mention trigger on each platform, the
-non-trigger negative cases). PR7 (flip this plan's header to `Status: LIVE` + the operator
-doc) follows after PR6 fully passes, not before.
+**2026-10-20: second UAT round — a second real bug found + fixed, then a real injection
+confirmed live.** Gary reported `supervisor`'s pane as idle; the daemon still classified it
+`pane_draft`. Root cause (a second, more general instance of the #9 bug class): Claude Code
+renders a *different* dim placeholder hint depending on context ("Keep monitoring the two
+threads", SGR dim-styled) — not just the couple of strings `CLEAN_PROMPT_HINTS` hardcodes, so
+text-content matching could never fully enumerate every variant. Fixed in `claude_telegram_monitor`
+**PR #10** (merged `1405f25`): `assess_pane()` now also takes the live cursor column
+(`tmux display-message -p '#{cursor_x}'`) as an authoritative signal — the prompt is a fixed
+2-column `"❯ "` prefix, so `cursor_x <= 2` means the box is empty regardless of what
+decorative hint text is rendered underneath (verified empirically against two different real
+placeholder variants now). 6 new tests, 109 total. Restarted the service —
+
+**first real end-to-end injection confirmed live, immediately on restart:** one of the 10
+queued `supervised_activity` triggers from Gary's earlier test injected successfully into the
+live `supervisor` session (`journalctl`: `injected dc-supervised:...`), `supervisor` visibly
+picked it up and began sensibly acting on it (checked a related GitHub PR), no garbling. The
+remaining queued triggers correctly deferred (`pane_draft`) the instant the first injection
+made the pane busy again — proving the one-at-a-time safety behavior works as designed, not
+just the happy path.
+
+**PR6 substantially passed.** The single biggest risk in this whole plan (§0: "does
+`tmux send-keys` reliably wake a session") is now proven true end-to-end against the real
+`supervisor` session, through source B. **Still open, not blocking:** an explicit `@envoy`
+mention test (source A) — Gary's two tests both landed in a supervised-but-not-mention-whitelisted
+channel, so only source B has been live-exercised; source A's detection logic is already
+unit-tested and shares the exact same now-proven injection path, so this is a nice-to-have
+confirmation, not a risk. PR7 (flip this plan's header to `Status: LIVE` + the operator doc)
+can proceed.
+
+**RESUME HERE → PR7** (docs: flip `Status: LIVE`, add the operator doc).
 
 No execution unit above should need to read cross-repo state not already captured in §0.
 
