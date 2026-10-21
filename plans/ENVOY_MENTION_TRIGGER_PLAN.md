@@ -85,6 +85,17 @@ one of them** (not just mentions) as a wake signal — e.g. Sophia posting a "do
 update in a thread Envoy claimed should itself trigger review, the way it's happened
 manually all session via Gary nudging Envoy to go check.
 
+**A mention auto-registers ongoing supervision (Gary, 2026-10-21) — source A has a side
+effect, not just a one-shot delivery.** If Gary `@envoy`-mentions in a channel/thread that
+isn't already in the supervised set (§ above), handling that trigger must also **add it** to
+`active_supervision.json` (or the manifest, if it's tied to an existing plan) — so follow-up
+activity in that channel keeps waking `supervisor` via source B, without Gary needing to
+mention again every time. This closes the gap where tagging Envoy once in a new channel only
+delivered that single message and went quiet afterward. Registration is additive and
+reversible — a channel that turns out to be a one-off still just sits in the set unused;
+nothing forces permanent supervision, it only makes it the default rather than something that
+has to be asked for separately. This is a PR4 design requirement, not a separate unit.
+
 **Explicitly OUT OF SCOPE:**
 - Multi-session routing (mentioning `@planner` vs `@analyst` vs `@supervisor` differently) —
   v1 routes every trigger to `supervisor` only.
