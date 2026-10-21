@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-21T17:31:55Z`
+- Generated (UTC): `2026-10-21T21:53:33Z`
 - Look-back: **7** calendar days (`2026-10-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,10 +32,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[INVENTORY MOVEMENT]` × 10
+- `[INVENTORY MOVEMENT]` × 9
 - `[SALES EVENT]` × 8
 - `[RETAIL FIELD REPORT EVENT]` × 8
-- `[CONTRIBUTION EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 6
 - `[EMAIL REGISTERED EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 3
 - `[PRACTICE EVENT]` × 2
@@ -43,7 +43,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261020085429_142` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Kelly Springer consignment settlement — 6 cacao bags sold, QR batch 2024SA_2…
 - `Edgar_20261020181855_144` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
 - `Edgar_20261020181858_146` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
 - `Edgar_20261020181901_148` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
@@ -63,6 +62,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261021161023_176` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: UMorK0KgUbe_Es-M8bBLzUrAmyTrbOnzEilqUzKL_iU · Email: loveischaracho@gmail.com
 - `Edgar_20261021161100_178` · **Edgar** · [EMAIL REGISTERED EVENT] Email: loveischaracho@gmail.com
 - `Edgar_20261021161154_180` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: UMorK0KgUbe_Es-M8bBLzUrAmyTrbOnzEilqUzKL_iU · Email: loveischaracho@gmail.com
+- `Edgar_20261021192507_182` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Answered two counterparties. (1) Vista Flow / Francine Borba: received the f…
 
 ---
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-14 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+0bbc9b1 | 2026-10-21 17:35:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 3fc3e13 | 2026-10-21 12:15:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 5b6c1fe | 2026-10-21 05:12:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 2116e09 | 2026-10-20 21:48:49 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,6 +315,8 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+5d7db68 | 2026-10-21 14:32:23 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
+4db4bd4 | 2026-10-21 14:32:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
 e1c860f | 2026-10-21 01:33:19 -0300 | Add check_sophia_stalled.py -- per-thread/channel staleness tool (#1686)
 66eaa6f | 2026-10-21 04:22:04 +0000 | plans(envoy-mention-trigger): mentions auto-register ongoing supervision
 e10c34a | 2026-10-20 20:38:55 -0300 | docs(envoy-plan): record second UAT bug+fix (cursor-position detection, #10) + first confirmed live injection; RESUME HERE -> PR7 (#1685)
@@ -352,8 +355,6 @@ c6a505d | 2026-10-19 02:04:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 05497d7 | 2026-10-19 03:44:09 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 7d18825 | 2026-10-18 17:58:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-18 UTC)
 12326ab | 2026-10-18 17:58:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
-280efc3 | 2026-10-18 08:33:51 -0300 | chore(previews): refresh Beer Hall preview (2026-10-18 UTC)
-e35aa1a | 2026-10-18 08:33:49 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
 … (truncated)
 ```
 
