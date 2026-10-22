@@ -534,6 +534,29 @@ find . -name '*.html' -not -path './node_modules/*' -not -path './.git/*' \
 6. **State the real gate honestly in the PR body.** If `npm test` is Playwright against a served site
    and cannot run from the autopilot box, write that down.
 
+**Flag the one decision that needs a human — do not make it yourself.**
+
+Every content change has at least one line, claim, or judgement that is genuinely yours to make, not the
+agent's: a fact you are not certain of, a sentence that does more rhetorical work than the rest, a
+structural choice with more than one defensible answer. **Name that one thing explicitly** — in the PR
+body and in the message asking for review — so the reviewer knows where to point their attention.
+
+- **Exactly one.** A list of ten "please check these" is the same as none.
+- **Name it specifically.** "Please review carefully" is not a flag; "I am least confident that X is
+  accurate" is.
+- **Do not decide it and bury the reasoning.** If you must proceed to keep the work moving, state the
+  choice, state why, and state what you would change if the reviewer disagrees.
+
+Worked examples from the CFR Anapu page (2026-10-22), all three flagged rather than decided:
+
+- A draft premise that the school was **founded** by the person it is named after was corrected to
+  "**named for**" — a factual distinction that changes the claim the page makes.
+- One sentence carried more connective weight than the rest ("the same model of staying on the land that
+  the school continues today"); it was named as the line to cut if the governor read the connection
+  differently.
+- An `<h3>` was dropped because 0 of 6 sibling pages use one — a uniformity judgement, surfaced rather
+  than asserted.
+
 **After merge — a deploy is a separate fact from a merge:**
 
 7. **Merged ≠ live.** GitHub Pages rebuilds on a lag (**~2–3 minutes observed**, 2026-10-22: sync at
