@@ -287,3 +287,160 @@ discovery-surface lint (`partner-discovery-lint.yml`) checks only the hub card, 
 cross-link. This is the one discovery surface held by convention rather than by CI, so it needs to be
 written down and checked in review.
 
+---
+
+## 10. Shipping a change — beta first, live UAT, then prod
+
+This is the playbook for shipping a change to a **beta/prod static site pair**. The cross-repo rule it
+extends is `OPERATING_INSTRUCTIONS.md` **§9** (HTML/JS test-before-merge); this section adds what
+§9 does not cover — verification of the *rendered* page, and the beta→prod hop.
+
+It lives in this file because `agroverse_shop` is where the pattern was worked out, but the sequence
+applies to **all four** pairs in the workspace. The commands below are agroverse's; substitute the
+pair you are working on.
+
+| Beta repo | Beta host | Prod repo | Prod host |
+|---|---|---|---|
+| `agroverse_shop_beta` | `beta.agroverse.shop` | `agroverse_shop_prod` | `agroverse.shop` |
+| `truesight_me_beta` | `beta.truesight.me` | `truesight_me_prod` | `truesight.me` |
+| `dapp_beta` | `beta.dapp.truesight.me` | `dapp_prod` | `dapp.truesight.me` |
+| `sunmint_beta` | `beta.sunmint.truesight.me` | `sunmint_prod` | `sunmint.truesight.me` |
+
+Every pair is a **fork** with an intentionally different `CNAME`, exactly as that table shows. That is
+the single most important fact for the promotion step below.
+
+### Opened, merged, and deployed are three different things
+
+| State | What it means | How you know it is true |
+|---|---|---|
+| **Opened** | A PR exists | the PR URL |
+| **Merged** | The commit is on `main` of the beta repo | the merge SHA |
+| **Deployed** | GitHub Pages rebuilt and the live site serves it | you fetched the URL and saw it |
+
+**Rule:** state which of the three you are claiming. Reporting "merged" as though it were
+"deployed" is the most common way a governor is told something is finished when it is not, and it
+has happened on this repo more than once.
+
+The sequence is **merge to the beta repo first → verify the live rendered URL → governor clears it →
+only then promote to prod.**
+
+### Why the live URL, not the diff
+
+A diff proves the bytes changed. It cannot prove the page renders, that the stylesheet applies, that
+`shared-chrome.js` / `js/nav.js` injected the nav and footer, that `partners-data.js` built the hub,
+or that nothing else on the page broke. `visual_uat` against the **deployed beta URL** checks the real
+thing: DOM text assertions, console errors, failed requests, broken images, at desktop and mobile.
+
+1. Open the PR against the beta repo and review the diff.
+2. Merge to beta.
+3. **Wait for the Pages rebuild.** Observed lag is **~2–3 minutes** (2026-10-22: prod sync at
+   05:01:50 UTC, Pages served the new commit at 05:04). Do not report success before fetching the
+   URL. If the change is not there on first load it is almost certainly the build, not a failed
+   merge — re-check before concluding either way.
+
+   You do not have to guess whether the build finished. The merge commit carries GitHub Pages'
+   own runs:
+
+   ```bash
+   gh api repos/TrueSightDAO/agroverse_shop_beta/commits/<sha>/check-runs \
+     --jq '.check_runs[] | "\(.name): \(.conclusion)"'
+   ```
+
+   Look for `build: success`, `deploy: success` and `report-build-status: success`. `deploy: success`
+   plus a fetched page is two-part proof. (`Visual Consistency` will also appear — it runs on
+   `deployment_status`, so it may be `skipped` rather than run; `skipped` is not `failed`.)
+
+4. Run `visual_uat` against the live beta URL.
+5. The governor reviews the live page and explicitly clears promotion.
+6. Promote with `sync_beta_to_prod`.
+
+This does not conflict with the always-stop on a "UAT / human-acceptance phase"
+(`OPERATING_INSTRUCTIONS.md` §5c). A UAT needs a live URL, and beta is the live review surface —
+merge-to-beta is a **prerequisite** for UAT, not a way around it. **Prod promotion remains an
+always-stop.**
+
+### Know exactly what gated the change — it differs per site
+
+Do not imply a gate that did not run, and do not assume **no** gate ran either. PR-time coverage
+differs per pair, and asserting the wrong one is a factual error in a PR body either way:
+
+| Pair | PR-time workflow | What it actually asserts |
+|---|---|---|
+| `agroverse_shop_beta` | `partner-discovery-lint.yml` (on `partners/**`, `js/partners-data.js`, `partner_locations.json`) | Only that the **discovery surfaces** agree — hub card, `partners-data.js`, `partner_locations.json`. A `partners/<slug>/index.html` edit **does** trigger it, and it **passes without reading your prose.** |
+| `truesight_me_beta` | `nav-consistency.yml` (on `push` **and** `pull_request`) | That **every** non-redirect `*.html` page includes the `id="site-nav"` placeholder. A real structural gate on any page edit. |
+| `dapp_beta` | `ci.yml` (on `pull_request`) | Repo test suite — not a page-structure lint. |
+| `sunmint_beta` | *(none found)* | — |
+
+On **all** pairs, `visual-consistency.yml` is triggered by `deployment_status` — it runs **after** a
+deploy and therefore **cannot** gate a PR.
+
+Three consequences worth stating plainly:
+
+- On agroverse, a prose edit **does** get a green check, but that check says nothing about the prose.
+  Passing it is not evidence your sentence is right — only that the page is still discoverable.
+- On truesight, an HTML edit is **structurally** gated, so a red `Nav consistency` genuinely means a
+  broken page. Do not wave it through as "might not have fired".
+- Never write "CI passed" as though it validated the content. Name the check and say what it covers.
+
+`npm test` on both `agroverse_shop_beta` and `truesight_me_beta` is **Playwright against a served
+site** (`playwright test`), which may not be runnable from an agent's box. Say so rather than
+implying it ran. What *is* runnable locally:
+
+- `git diff --stat` and `git diff -U1` — assert the scope ("1 file changed, 2 insertions(+)")
+  rather than estimating it.
+- HTML well-formedness with a parser — assert `unclosed == 0` and `mismatches == 0`, and capture
+  the **baseline before** the edit so pre-existing breakage is not silently attributed to it.
+- A no-new-CSS assertion — count styling attributes before and after; equal counts prove none
+  were added.
+- `npm run sitemap:check` where the repo provides it.
+
+Scope placement checks to the container you are testing. Anchoring on a bare string can match a CSS
+rule inside the page's own `<style>` block and return a confident false negative.
+
+### Promoting beta → prod
+
+Every prod repo is a real fork, not the same repo. Before calling `sync_beta_to_prod`:
+
+1. **Dry-run the merge locally** and read the real conflict list. Do not predict a conflict by
+   eyeballing which files differ — check the commit graph.
+2. **Rule out a silent fast-forward.** If prod is an ancestor of beta
+   (`git merge-base --is-ancestor`), advancing beta can overwrite prod's divergent files with **no
+   conflict at all**. The `CNAME` difference in the table above is exactly the file at risk.
+3. **Confirm `CNAME` is not in `prod_sync_generated_globs`** (currently `['stats/*.json']` only) so
+   the auto-reconcile path cannot flip the production domain.
+4. **Never force.** On a real conflict, stop and report it.
+
+Then verify prod exactly as beta was verified: fetch the live domain and confirm the change is
+served. The merge is not the finish line.
+
+### Name the one decision that needs a human
+
+Whoever opens the PR has already made the editorial and structural calls. Do not launder those as
+though they were forced by the code — **surface the single line or decision most likely to need
+human judgment**, in the PR body and in the message asking for review, so the reviewer can look
+where it matters instead of treating everything as equally settled.
+
+Real examples (2026-10-22, CFR Anapu "About Dorothy Stang" section):
+
+- **A premise was wrong.** The brief asked for the school's "founder". She was murdered in 2005 and
+  could not have founded a school carrying her name, so the page says **"named for"**. The
+  correction was stated plainly rather than quietly reworded.
+- **One sentence did more than the rest.** "…the same model of staying on the land that the Casa
+  Familiar Rural continues today" was the only line linking her to the school rather than just
+  listing facts — named explicitly as the line most likely to need cutting.
+- **A convention reversed the original sketch.** The plan called for an `<h3>`; 0 of 6 sibling
+  partner pages use one inside `.partner-story`, so plain `<p><strong>` was used instead. The
+  deviation and its evidence were reported, not buried.
+
+**Rule:** exactly one thing, named specifically. "Please review carefully" is not a flag.
+
+### Why this is a rule
+
+On these sites, "the change is up" has three meanings and only the third one is testable by the
+person who has to accept it. The gap between merged and deployed is minutes long — long enough to
+report a success that has not happened — and the checks in that window differ per site, so an agent
+that assumes either "CI covers this" or "there is no CI" will be wrong on one of the four pairs.
+Writing the sequence down, saying precisely what gated the change, and naming the one judgment call
+up front is what lets a governor accept a page in one pass instead of chasing a rebuild or
+discovering a framing decision after merge.
+
