@@ -39,6 +39,56 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### The only per-page visual gate runs *after* deploy, and two of the four prod pairs never assert prod
+**Filed 2026-10-22 (Dorothy Stang / §9a workstream). Owner: unclaimed. Governor: Gary. MEDIUM urgency, HIGH credibility cost — a red check on prod is being ignored as routine.**
+
+**Symptom.** `visual-consistency.yml` is the only thing that renders a deployed page and asserts on it.
+It is `deployment_status`-triggered on every pair that has it, so it **cannot block a bad deploy** — it
+reports afterwards. And the four prod forks are not equivalent:
+
+| Repo | Visual gate | What it actually asserts |
+|---|---|---|
+| `agroverse_shop_prod` | `visual-consistency.yml` | **prod** — `playwright.config.ts` branches on `GITHUB_REPOSITORY` to `https://www.agroverse.shop`. But the job name hardcodes `(beta.agroverse.shop)`, so the run title misstates what it tested. |
+| `truesight_me_prod` | `visual-consistency.yml` | **beta** — hardcodes `PLAYWRIGHT_BASE_URL: https://beta.truesight.me` in the workflow env. Prod is promoted but never visually asserted. |
+| `dapp_prod` | none | `dapp_beta` has `playwright-beta.yml` (beta host only); prod has no copy. |
+| `sunmint_prod` | none | `sunmint_beta` has no `.github` directory at all. |
+
+**Second problem: the check is chronically red, so it is being ignored.** `agroverse_shop_prod` last 30
+runs: `{skipped: 22, failure: 7, in_progress: 1}` — and the failing step is always **"Run Playwright
+against deployed beta"** (`npm test`), on 2026-09-19, 09-26, 10-20, 10-21 and 10-22. A red visual check
+that is red most days trains everyone to skip it, which costs more than not having one.
+
+**Third problem: `skipped` is routinely misread.** A single deploy emits several `deployment_status`
+events; only the one with `state == 'success' && environment == 'github-pages'` satisfies the job `if:`
+guard, so the others record `skipped` (3 skipped : 1 executed, observed on both the beta and prod deploys
+of 2026-10-22). `skipped` therefore means *duplicate event*, **not** *check absent* and **not** *check
+failed*. **I misread this myself during the Dorothy work and reported "prod has no visual gate on any of
+the four pairs" — that was wrong for `agroverse_shop_prod`, and the error came from reading the `skipped`
+runs instead of finding the one run that executed.**
+
+**Evidence.** Read live 2026-10-22: `agroverse_shop_beta` / `agroverse_shop_prod`
+`playwright.config.ts` (identical in both, `GITHUB_REPOSITORY`-branched) and `visual-consistency.yml`
+(identical in both, job name `Visual Consistency (beta.agroverse.shop)`);
+`truesight_me_prod/visual-consistency.yml` line 38 `PLAYWRIGHT_BASE_URL: https://beta.truesight.me`;
+`dapp_beta/.github/workflows/{ci,playwright-beta}.yml`; `sunmint_beta` `.github` → HTTP 404.
+Runs API: `agroverse_shop_prod` run `39725859704` (2026-10-22T05:03:43Z, `head_sha=2c8f725f`) failed at
+step "Run Playwright against deployed beta"; Dorothy prod deploy run `39871448683` (`head_sha=c56ee741`)
+in progress at time of filing.
+
+**Next (needs a governor scope decision).** Three separable fixes, smallest first:
+1. **Fix the labels** — rename `truesight_me_prod`'s job off "beta", and make `agroverse_shop_prod`'s job
+   name report the URL it actually used rather than a hardcoded hostname. ~15 min, no behaviour change,
+   and it removes the most likely source of a wrong conclusion like mine.
+2. **Give `truesight_me_prod`, `dapp_prod` and `sunmint_prod` a real prod assertion** — either their own
+   `deployment_status` workflow or a `PLAYWRIGHT_BASE_URL`/`BASE_URL` derived from the repo name, the way
+   agroverse already does.
+3. **Decide what to do about the 7-in-30 red rate.** Either the Playwright suite is genuinely broken
+   against the live site (investigate) or the assertions are too strict for a live target (loosen).
+   Leaving it red is the worst option — see the anti-pattern this creates.
+
+**Do not** fold this into §9a's scope — §9a documents *what gate applies where*, which now needs
+correcting too (the `skipped` explanation above supersedes the wording currently in PR #1692).
+
 ### Signed CRF Anapu Tree Planting Support Agreement carries the Laguna Beach mail-drop as TrueTech's office address
 **Filed 2026-10-22 (Bionpact / OCBC KYC workstream). Owner: unclaimed. Governor: Gary. Low urgency, MEDIUM legal/consistency — the document is signed, so this needs a signed amendment or nothing at all, not an edit.**
 
