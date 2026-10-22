@@ -287,3 +287,10 @@ discovery-surface lint (`partner-discovery-lint.yml`) checks only the hub card, 
 cross-link. This is the one discovery surface held by convention rather than by CI, so it needs to be
 written down and checked in review.
 
+---
+
+**Shipping a change:** this file covers how a page is *written and wired*. How a change is *shipped* —
+live-render verification across all four static-site repo pairs, and the beta → prod promote sequence —
+lives in [`OPERATING_INSTRUCTIONS.md` §9a](OPERATING_INSTRUCTIONS.md). One home, deliberately: the rule
+is kept in exactly one file so it cannot drift.
+
