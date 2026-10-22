@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-21T21:53:33Z`
-- Look-back: **7** calendar days (`2026-10-14` → today UTC)
+- Generated (UTC): `2026-10-22T21:50:45Z`
+- Look-back: **7** calendar days (`2026-10-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,37 +32,34 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[INVENTORY MOVEMENT]` × 9
-- `[SALES EVENT]` × 8
-- `[RETAIL FIELD REPORT EVENT]` × 8
-- `[CONTRIBUTION EVENT]` × 6
-- `[EMAIL REGISTERED EVENT]` × 3
-- `[EMAIL VERIFICATION EVENT]` × 3
-- `[PRACTICE EVENT]` × 2
-- _free-form (no bracket tag)_ × 3
+- `[TREE PLANTING EVENT]` × 38
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[EMAIL VERIFICATION EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 1
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261020181855_144` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
-- `Edgar_20261020181858_146` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
-- `Edgar_20261020181901_148` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
-- `Edgar_20261020181904_150` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Miss Anne's Maypop Herb Shop · New Status: AI: Warm up prospect · Previous Status: Manager Follow-up
-- `Edgar_20261020182254_152` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Vampire Apothecary Restaurant & Bar · New Status: AI: Warm up prospect · Previous Status: AI: No fit signal
-- `Edgar_20261020182603_154` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Lori's Natural Foods Center · New Status: AI: Warm up prospect · Previous Status: On Hold
-- `Edgar_20261020182721_156` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: Mythictreasures · New Status: AI: Warm up prospect · Previous Status: Not Appropriate
-- `Edgar_20261020182925_158` · **Edgar** · [RETAIL FIELD REPORT EVENT] Shop Name: 12cornersapothecary · New Status: AI: Warm up prospect · Previous Status: Not Appropriate
-- `Edgar_20261020231821_160` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Kirsten Ritschel · Target Ledger: offchain
-- `Edgar_20261021005648_162` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Email follow-up: autonomous triage safety tiering, mailbox blind spot, and 4…
-- `Edgar_20261021022329_164` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-21T02:23:27.321Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261021032425_166` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261021085011_168` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261021160844_170` · **Edgar** · [EMAIL REGISTERED EVENT] Email: loveischaracho@gmail.com
-- `Edgar_20261021160915_172` · **Edgar** · [EMAIL REGISTERED EVENT] Email: loveischaracho@gmail.com
-- `Edgar_20261021161009_174` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: UMorK0KgUbe_Es-M8bBLzUrAmyTrbOnzEilqUzKL_iU · Email: loveischaracho@gmail.com
-- `Edgar_20261021161023_176` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: UMorK0KgUbe_Es-M8bBLzUrAmyTrbOnzEilqUzKL_iU · Email: loveischaracho@gmail.com
-- `Edgar_20261021161100_178` · **Edgar** · [EMAIL REGISTERED EVENT] Email: loveischaracho@gmail.com
-- `Edgar_20261021161154_180` · **Edgar** · [EMAIL VERIFICATION EVENT] Verification Key: UMorK0KgUbe_Es-M8bBLzUrAmyTrbOnzEilqUzKL_iU · Email: loveischaracho@gmail.com
-- `Edgar_20261021192507_182` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Answered two counterparties. (1) Vista Flow / Francine Borba: received the f…
+- `Edgar_20261022214711_222` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214720_224` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214728_226` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214740_228` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214750_230` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214801_232` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214809_234` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214815_236` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214827_238` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214839_240` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214849_242` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214901_244` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214917_246` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022214927_248` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022215015_250` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022215021_252` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022215028_254` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022215033_256` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022215037_258` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261022215042_260` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 
 ---
 
@@ -77,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-21T10:59:14.341Z`
+- Generated (UTC): `2026-10-22T10:59:14.714Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -237,9 +234,9 @@ _(+33 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,547.86**
+- USD on hand: **$2,547.81**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$56.95**
+- USD provisioned for voting-rights cash-out: **$57.00**
 
 ### In-transit freight (0 rows)
 
@@ -254,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-14 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-15 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -273,6 +270,10 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-14 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+56f9d20 | 2026-10-22 17:32:28 +0000 | chore(stats): refresh stats indexes [skip ci]
+486394a | 2026-10-22 12:17:22 +0000 | chore(stats): refresh stats indexes [skip ci]
+c75724b | 2026-10-22 05:15:52 +0000 | chore(stats): refresh stats indexes [skip ci]
+9952474 | 2026-10-21 21:56:03 +0000 | chore(stats): refresh stats indexes [skip ci]
 0bbc9b1 | 2026-10-21 17:35:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 3fc3e13 | 2026-10-21 12:15:33 +0000 | chore(stats): refresh stats indexes [skip ci]
 5b6c1fe | 2026-10-21 05:12:52 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -300,10 +301,6 @@ fc80a73 | 2026-10-16 04:53:17 +0000 | chore(stats): refresh stats indexes [skip 
 58a1889 | 2026-10-15 17:17:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 1b1033c | 2026-10-15 11:59:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 8b9213f | 2026-10-15 05:04:33 +0000 | chore(stats): refresh stats indexes [skip ci]
-9c168fa | 2026-10-14 21:53:56 +0000 | chore(stats): refresh stats indexes [skip ci]
-54c49bb | 2026-10-14 17:32:09 +0000 | chore(stats): refresh stats indexes [skip ci]
-da65923 | 2026-10-14 12:16:56 +0000 | chore(stats): refresh stats indexes [skip ci]
-d5835e6 | 2026-10-14 05:16:59 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -315,6 +312,10 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ba055cf | 2026-10-22 01:41:36 -0300 | Correct TrueTech Inc address to Taraval St across conventions + file signed-agreement follow-up (#1688)
+91d5b4f | 2026-10-21 21:41:57 -0300 | followups: autopilot pre-push gate uses wrong interpreter (phantom TDG failures) (#1687)
+972d56b | 2026-10-21 18:53:53 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
+56c54d0 | 2026-10-21 18:53:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
 5d7db68 | 2026-10-21 14:32:23 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
 4db4bd4 | 2026-10-21 14:32:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
 e1c860f | 2026-10-21 01:33:19 -0300 | Add check_sophia_stalled.py -- per-thread/channel staleness tool (#1686)
@@ -351,10 +352,6 @@ cddbf72 | 2026-10-19 10:48:46 -0300 | chore(previews): refresh Beer Hall preview
 5a00983 | 2026-10-19 10:48:44 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 2798d5a | 2026-10-19 02:04:53 -0300 | chore(previews): refresh Beer Hall preview (2026-10-19 UTC)
 c6a505d | 2026-10-19 02:04:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
-8774508 | 2026-10-19 00:44:25 -0300 | Merge pull request #1667 from TrueSightDAO/auto/advisory-refresh-2026-10-19
-05497d7 | 2026-10-19 03:44:09 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
-7d18825 | 2026-10-18 17:58:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-18 UTC)
-12326ab | 2026-10-18 17:58:04 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-18 UTC)
 … (truncated)
 ```
 
@@ -369,7 +366,6 @@ d05182d | 2026-10-20 21:59:14 -0300 | Anchor Monthly Statistics on first empty c
 2d6d314 | 2026-10-20 17:47:06 -0300 | Fix monthly sales stuck at $0 — anchor month append on contiguous data block (#586)
 2afbd60 | 2026-10-16 22:01:45 -0300 | Add installTriggers/uninstallTriggers convention for GAS projects (#585)
 33503e9 | 2026-10-16 19:01:43 -0300 | SCHEMA.md: add Service Account → Sheet Access Matrix (#584)
-7dda371 | 2026-10-14 13:09:21 -0300 | Rename SunMint Plots col T from 'Contributor Name' to 'Farmer' (#582)
 ```
 
 ### `dapp` → `dapp`
@@ -399,6 +395,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ef7f62f | 2026-10-22 11:58:06 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 be8780e | 2026-10-21 11:54:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ff7f68c | 2026-10-21 01:28:50 -0300 | chore: refresh Agroverse SKU catalog snapshot
 c4b1fa0 | 2026-10-21 01:28:47 -0300 | chore: refresh Agroverse store inventory snapshot
@@ -420,15 +417,12 @@ a2472a8 | 2026-10-16 11:29:10 +0000 | chore: refresh store, partner inventory, a
 93d2b40 | 2026-10-14 22:16:44 -0300 | fix(inventory): packaging write-off composition — drop plastic pallet line (2 pallets transfer to Kirsten instead)
 a5efcb9 | 2026-10-14 22:12:32 -0300 | fix(inventory): packaging write-off composition — plastic pallets consume 2 (was 3), leave 1
 2573313 | 2026-10-14 22:09:22 -0300 | chore(inventory): packaging expense write-off composition 3c53976f (Black King)
-4690a6a | 2026-10-14 18:28:46 -0300 | chore: refresh Agroverse SKU catalog snapshot
-82a8c6c | 2026-10-14 18:28:44 -0300 | chore: refresh Agroverse store inventory snapshot
-c98fec2 | 2026-10-14 12:22:09 +0000 | chore: refresh currencies.json [skip ci]
-76b18cc | 2026-10-13 21:44:48 -0300 | chore: retire mislabeled currency BRL (currencies.json refresh)
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+3332f3e | 2026-10-22 01:56:13 -0300 | Fix school page media manifest 404 + add farm page §9 cross-links (#344)
 81909ba | 2026-10-21 01:35:58 -0300 | ci(journey): fail when a stop card image does not resolve (#343)
 d4461e0 | 2026-10-21 01:30:07 -0300 | fix(journey): map Sítio Catarinense card to a landscape photo (#342)
 9b58ef1 | 2026-10-20 22:06:26 -0300 | Compute cacao journey stats from a single source of truth (#341)
@@ -529,9 +523,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 137 | 18621.34386 | 10/21/2026 |
+| 2026-10 | 137 | 18621.34386 | 10/22/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-14`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-15`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
