@@ -574,6 +574,12 @@ Worked examples from the CFR Anapu page (2026-10-22), all three flagged rather t
 8. **Never report "deployed" on the strength of a merge commit.** Open / merged / deployed are three
    different states; say which one you are claiming.
 
+**Review the deployed page, not the diff.** A diff cannot tell you whether the page renders, whether the
+shared chrome injected nav and footer, whether the hub built the card, or whether something else on the
+page broke. Run the `visual_uat` tool against the **live beta URL** — it asserts DOM text values, console
+errors, failed requests, and broken images at desktop and mobile, and returns a verdict. That is the
+machine-checkable half; the human half is the governor's own read of the rendered page.
+
 **This does not conflict with §5c's "UAT / human-acceptance phase" stop.**
 A UAT phase needs a **live URL**, and beta is the live surface for review. So for a content-only
 change on a beta/prod pair, merge-to-beta is a *prerequisite* for UAT, not a way around it. **Prod
