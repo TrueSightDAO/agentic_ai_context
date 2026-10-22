@@ -458,6 +458,175 @@ Update `package.json`:
 
 When you add this setup to a new repo, update this table.
 
+### 9a. Live-render verification — static-site content changes (2026-10-22)
+
+§9 above prescribes a **unit test suite** (vitest + happy-dom). That covers code behaviour. It does
+**not** cover a change that is only prose, markup, or copy — editing paragraphs inside an existing page
+section, adding a cross-link, correcting a caption. There is often no unit-testable behaviour at all.
+
+**This applies to every static-site repo pair in the workspace**, not just agroverse. All of them are
+GitHub Pages sites deployed as a beta/prod fork pair:
+
+| Beta repo | Beta host | Prod repo | Prod host | PR-time gate |
+|---|---|---|---|---|
+| `agroverse_shop_beta` | `beta.agroverse.shop` | `agroverse_shop_prod` | `agroverse.shop` | `partner-discovery-lint.yml` — discovery surfaces only |
+| `truesight_me_beta` | `beta.truesight.me` | `truesight_me_prod` | `truesight.me` | `nav-consistency.yml` — real structural gate |
+| `dapp_beta` | `beta.dapp.truesight.me` | `dapp_prod` | `dapp.truesight.me` | `ci.yml` — unit + Playwright |
+| `sunmint_beta` | `beta.sunmint.truesight.me` | `sunmint_prod` | `sunmint.truesight.me` | none — `test` is Playwright only |
+
+Every pair is a **fork** with an intentionally different `CNAME`. That is the single most important
+fact for the promote step at the end of this section.
+
+**Do not assume either extreme.** "There is no CI gate" is wrong for `truesight_me` and `dapp`;
+"CI covers it" is wrong for agroverse prose and `sunmint`. **Say per repo what actually ran.**
+
+#### What each gate actually asserts
+
+- **`agroverse_shop_beta` → `partner-discovery-lint.yml`**: triggers on `partners/**` (any file,
+  including `partners/<slug>/index.html`), `js/partners-data.js`, `partner_locations.json`. It
+  asserts the **discovery surfaces agree** — hub card, `partners-data.js`, `partner_locations.json`.
+  **It does not read your prose and passes regardless.** A green check here is not evidence the
+  sentence is right; it is evidence the page is still discoverable.
+- **`truesight_me_beta` → `nav-consistency.yml`**: on `push` **and** `pull_request`. A bash scan
+  asserting every non-redirect `*.html` contains the `id="site-nav"` placeholder. Redirect stubs
+  (`http-equiv="refresh"`, `window.location.replace`) are skipped by design. **This is a real
+  structural gate** — a red `Nav consistency` means a genuinely broken page, not a flake.
+- **`dapp_beta` → `ci.yml`**: `npm test` = unit tests + Playwright integration.
+- **`sunmint_beta`**: no PR workflow; its `test` script is Playwright only.
+- On **all** repos, `visual-consistency.yml` is `deployment_status`-triggered → it runs **after** a
+  deploy and therefore cannot gate a PR. It is **not** prod verification by default either: check which
+  host it pins. `agroverse_shop_prod` branches on `GITHUB_REPOSITORY` and does assert `www.agroverse.shop`
+  (though its job name still says `(beta.agroverse.shop)`), while `truesight_me_prod` hardcodes
+  `PLAYWRIGHT_BASE_URL: https://beta.truesight.me` and so asserts beta from the prod repo, and
+  `dapp_prod` / `sunmint_prod` have no such workflow at all.
+
+  **`skipped` means one specific thing: a duplicate event.** One deploy emits several
+  `deployment_status` events; only the one with `state == 'success' && environment == 'github-pages'`
+  satisfies the job `if:` guard, so the rest record `skipped` (observed 3 skipped : 1 executed on both
+  the beta and prod deploys of 2026-10-22). So `skipped` is **not** "the check is missing" and **not**
+  "the check failed" — find the run that executed and read *its* conclusion. Reading the `skipped` runs
+  and concluding "there is no visual gate on prod" is a mistake I made during the Dorothy work; it was
+  wrong, and `agroverse_shop_prod` in fact asserts the live production host.
+
+  When it does run, read it honestly: `agroverse_shop_prod` is **red 7 times in its last 30 runs**
+  (2026-09-19 → 2026-10-22), failing at "Run Playwright against deployed beta". A gate that is red most
+  days is not a gate — it is training everyone to skip it. Do not cite a chronically red check as
+  evidence either way until it is investigated (`OPEN_FOLLOWUPS.md` tracks this).
+
+#### There is no `sitemap:check` outside agroverse
+
+`npm run sitemap:check` exists only in `agroverse_shop_beta`. `truesight_me_beta` and
+`truesight_me_prod` have **no equivalent local validator** — `npm test` there is `playwright test`
+against a served site. Their structural check lives in the workflow, not in a script you can run
+before pushing.
+
+The check that **does** transfer is the nav-placeholder scan, because **both** sites inject their nav
+from shared JS (agroverse via `shared-chrome.js`, truesight via `js/nav.js`) and both pages carry
+`id="site-nav"`. The same logic runs locally on either:
+
+```bash
+find . -name '*.html' -not -path './node_modules/*' -not -path './.git/*' \
+  -not -path './static/*' -not -path './assets/raw/*' | while read -r f; do
+    grep -qE 'http-equiv="refresh"|window\.location\.(replace|href *=)' "$f" && continue
+    grep -q 'id="site-nav"' "$f" || echo "MISSING site-nav: $f"
+  done
+```
+
+**Before merge — all runnable locally by the agent:**
+
+1. **Assert the diff scope.** `git diff --stat` then `git diff -U1`. "1 file changed, 2 insertions(+)"
+   is a claim you can verify, not estimate.
+2. **Well-formedness.** Parse the file with an HTML parser; assert `unclosed == 0` and
+   `mismatches == 0`. Capture the **baseline before** your edit so pre-existing breakage is not
+   silently attributed to you.
+3. **No-new-CSS assertion.** If the brief was "no new styling," prove it: count the relevant
+   attributes before and after.
+4. **Scope placement checks to the target container.** Anchoring on a bare string (e.g. a class name)
+   can match a CSS rule inside the page's own `<style>` block and return a confident false negative.
+5. **Run the repo's own validators where they exist** — `npm run sitemap:check` in
+   `agroverse_shop_beta`; the nav-placeholder scan above on either site; `npm test` in `dapp_beta`.
+   Where none exists, say so rather than implying you ran one.
+6. **State the real gate honestly in the PR body.** If `npm test` is Playwright against a served site
+   and cannot run from the autopilot box, write that down.
+
+**Flag the one decision that needs a human — do not make it yourself.**
+
+Every content change has at least one line, claim, or judgement that is genuinely yours to make, not the
+agent's: a fact you are not certain of, a sentence that does more rhetorical work than the rest, a
+structural choice with more than one defensible answer. **Name that one thing explicitly** — in the PR
+body and in the message asking for review — so the reviewer knows where to point their attention.
+
+- **Exactly one.** A list of ten "please check these" is the same as none.
+- **Name it specifically.** "Please review carefully" is not a flag; "I am least confident that X is
+  accurate" is.
+- **Do not decide it and bury the reasoning.** If you must proceed to keep the work moving, state the
+  choice, state why, and state what you would change if the reviewer disagrees.
+
+Worked examples from the CFR Anapu page (2026-10-22), all three flagged rather than decided:
+
+- A draft premise that the school was **founded** by the person it is named after was corrected to
+  "**named for**" — a factual distinction that changes the claim the page makes.
+- One sentence carried more connective weight than the rest ("the same model of staying on the land that
+  the school continues today"); it was named as the line to cut if the governor read the connection
+  differently.
+- An `<h3>` was dropped because 0 of 6 sibling pages use one — a uniformity judgement, surfaced rather
+  than asserted.
+
+**After merge — a deploy is a separate fact from a merge:**
+
+7. **Merged ≠ live.** GitHub Pages rebuilds on a lag (**~2–3 minutes observed**, 2026-10-22: sync at
+   05:01:50 UTC, served at 05:04). Fetch the live URL and assert the change is actually served before
+   reporting success. You do not have to guess at the rebuild — the merge commit carries Pages' own
+   runs:
+
+   ```bash
+   gh api repos/TrueSightDAO/<repo>/commits/<sha>/check-runs \
+     --jq '.check_runs[] | "\(.name): \(.conclusion)"
+   ```
+
+   `build: success` + `deploy: success` + a fetched page is two-part proof. If the change is missing
+   on first load it is almost certainly the build, not a failed merge — re-check before concluding.
+8. **Never report "deployed" on the strength of a merge commit.** Open / merged / deployed are three
+   different states; say which one you are claiming.
+
+**Review the deployed page, not the diff.** A diff cannot tell you whether the page renders, whether the
+shared chrome injected nav and footer, whether the hub built the card, or whether something else on the
+page broke. Run the `visual_uat` tool against the **live beta URL** — it asserts DOM text values, console
+errors, failed requests, and broken images at desktop and mobile, and returns a verdict. That is the
+machine-checkable half; the human half is the governor's own read of the rendered page.
+
+**This does not conflict with §5c's "UAT / human-acceptance phase" stop.**
+A UAT phase needs a **live URL**, and beta is the live surface for review. So for a content-only
+change on a beta/prod pair, merge-to-beta is a *prerequisite* for UAT, not a way around it. **Prod
+promotion remains an always-stop.**
+
+**Prod promote — only after the governor clears it:**
+
+9. **Dry-run the merge locally first** and read the real conflict list. Do not predict a conflict from
+   content-diffing; check the graph.
+10. **Rule out a silent fast-forward.** If prod is an ancestor of beta
+    (`git merge-base --is-ancestor`), advancing beta can overwrite prod's divergent files with **no
+    conflict at all** — `CNAME` is exactly the file at risk, on every pair.
+11. **Confirm `CNAME` is not in `prod_sync_generated_globs`** (currently `['stats/*.json']` only) so
+    the auto-reconcile path cannot flip the production domain.
+12. **Never force a sync.** On a real conflict, stop and report.
+13. **Verify prod too.** Fetch the production domain and confirm the change is served. The merge is
+    not the finish line.
+
+**Incident that prompted this (2026-10-22, CFR Anapu / §9 Dorothy Stang work on
+`agroverse_shop_beta` → `_prod`).** The sequence that worked: local parser + diff-scope + CSS-baseline
++ `sitemap:check` → merge to beta → verify the live page actually serves the change → governor visual
+UAT → `sync_beta_to_prod` with an ancestor test and CNAME check first. Twice in that thread "merged"
+was reported before the change was genuinely live, and once a CNAME conflict was predicted that a
+dry-run proved would not occur. Both errors are cheap to avoid with the steps above.
+
+A third error from the same thread is worth recording because it is the one this section originally
+got wrong: it claimed these repos have "no PR-time CI gate." That is **false** — `agroverse_shop_beta`
+does run `partner-discovery-lint` on a `partners/**` edit, and `truesight_me_beta` runs a real
+structural nav check on every PR. The correct statement is narrower and matters more: **the agroverse
+check passes without reading the prose.** Getting that distinction right is the difference between
+"CI is green, we're fine" and "CI is green and it told me nothing about the copy."
+
 ---
 
 ## 10. End-to-end registration + verification tests
