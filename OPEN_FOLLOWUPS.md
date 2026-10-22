@@ -39,6 +39,39 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Signed CRF Anapu Tree Planting Support Agreement carries the Laguna Beach mail-drop as TrueTech's office address
+**Filed 2026-10-22 (Bionpact / OCBC KYC workstream). Owner: unclaimed. Governor: Gary. Low urgency, MEDIUM legal/consistency — the document is signed, so this needs a signed amendment or nothing at all, not an edit.**
+
+**What's wrong.** `CRF_ANAPU_TREE_PLANTING_SUPPORT_AGREEMENT.md` (signed 10 September
+2026, TrueTech Inc ↔ CEPOTX / Casa Familiar Rural de Anapu "Dorothy Stang") states the
+Supporter's address as **1968 South Coast Highway #4616, Laguna Beach, CA 92651** in four
+places — EN line 20 and line 107, PT line 117 and line 204.
+
+On 2026-10-22 the governor confirmed the TrueTech company address is:
+
+> **3041 Taraval St, San Francisco, CA 94116, USA**
+
+and stated earlier (DHL thread, 31 Oct 2025) that Laguna Beach is *"where I receive our
+mails"* — a mail drop, not premises. `BLACK_KING_NFE_TRANSIT_CROSSWALK.md` documents the
+same distinction for the freight corridor: the DANFE *DESTINATARIO* reads
+`TRUETECH INC - TARAVAL ST, 3041` and lands physically at Val Lapidus.
+
+**Why it was not just edited.** The file is a *signed instrument*. Changing an address in a
+transcript of a signed agreement silently alters what the counterparty agreed to. The
+correct fix is either (a) a signed amendment between the parties, or (b) an explicit note
+in the document recording the address correction and its effective date, signed by both.
+An AI editing the markdown is neither.
+
+**Also affects.** `PROSPERA_ENTITY_OPERATING_AGREEMENT.md` references TrueTech as the U.S.
+Import Partner — check whether it carries the address too, and whether it is signed.
+
+**Already fixed (2026-10-22).** `conventions/AGROVERSE_INVOICE_CONVENTION.md` — the
+default-issuer address and the `From:` block were corrected to Taraval, since those govern
+*future* invoices and are not signed instruments.
+
+**Work (~30 min, mostly governor decision).** Decide amendment vs. note-of-correction, then
+generate the EN + PT pair to match. Do **not** touch the signed text without that decision.
+
 ### Autopilot pre-push gate uses the wrong interpreter, producing phantom test failures and a false money-adjacent bug report
 **Filed 2026-10-21 (from the Sítio Catarinense workstream). Owner: unclaimed. Governor: Gary. Low urgency, HIGH credibility cost — it caused a fabricated "silently zeroes TDG" bug report that took three turns and an independent governor repro to retract.**
 
