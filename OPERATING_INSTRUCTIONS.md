@@ -450,6 +450,41 @@ Update `package.json`:
 4. Open the PR with both the fix and the tests
 5. The governor reviews once, confident the code works
 
+### 9a. Live-render verification — content-only HTML changes (2026-10-22)
+
+§9 above prescribes a **unit test suite** (vitest + happy-dom). That covers code behaviour. It does **not** cover a change that is only prose, markup, or copy — editing paragraphs inside an existing `.partner-story`, adding a cross-link, correcting a caption. There is often no unit-testable behaviour at all, and on `agroverse_shop_beta` there is frequently **no PR-time CI gate**:
+
+- `partner-discovery-lint.yml` triggers only on `partners/**` paths **and** only on the specific data/nav/feed patterns it checks — a prose edit inside an existing page does not trip it.
+- `visual-consistency.yml` triggers on `deployment_status`, i.e. **after** a deploy — it cannot gate a PR.
+
+So **never write "CI passed" when nothing ran.** Say what actually gated the change. What to do instead:
+
+**Before merge — all runnable locally by the agent:**
+
+1. **Assert the diff scope.** `git diff --stat` then `git diff -U1`. "1 file changed, 2 insertions(+)" is a claim you can verify, not estimate.
+2. **Well-formedness.** Parse the file with an HTML parser; assert `unclosed == 0` and `mismatches == 0`. Capture the **baseline before** your edit — a repo with pre-existing breakage must not get "fixed" invisibly.
+3. **No-new-CSS assertion.** If the brief was "no new styling," prove it: count the relevant attributes before and after (`git stash` → count → `git stash pop`). Equal counts ⇒ none added.
+4. **Scope placement checks to the target container.** Anchoring on a bare string (e.g. `partner-info`) can match a CSS rule inside `<style>` and return a confident false negative.
+5. **Run the repo's own validators** — e.g. `npm run sitemap:check` in `agroverse_shop_beta`.
+6. **State the real gate honestly in the PR body.** If `npm test` is Playwright against a served site and cannot run from the autopilot box, write that down.
+
+**After merge — a deploy is a separate fact from a merge:**
+
+7. **Merged ≠ live.** GitHub Pages rebuilds on a lag (**~2.5 minutes observed** on `agroverse_shop_beta`/`_prod`, 2026-10-22). Fetch the live URL and assert the change is actually served before reporting success.
+8. **Never report "deployed" on the strength of a merge commit.**
+
+**This is not in conflict with §5c's "UAT / human-acceptance phase" stop.**
+A UAT phase needs a **live URL**, and beta is the live surface for review. So for a content-only change on a beta/prod pair, merge-to-beta is a *prerequisite* for the governor's UAT — not a way around it. The governor reviews the live beta page and then explicitly clears promotion. **Prod promotion remains an always-stop (§5c).**
+
+**Prod promote — only after the governor clears it:**
+
+9. **Dry-run the merge locally first** and read the real conflict list. Do not predict a conflict from content-diffing; check the graph.
+10. **Rule out a silent fast-forward.** If prod is an ancestor of beta (`git merge-base --is-ancestor`), advancing beta can overwrite prod's divergent files with **no conflict at all**. Prod and beta carry intentionally different `CNAME`s.
+11. **Confirm `CNAME` is not in `prod_sync_generated_globs`** (currently `['stats/*.json']` only) so the auto-reconcile path cannot flip the production domain.
+12. **Never force a sync.** On a real conflict, stop and report.
+
+**Incident that prompted this (2026-10-22, CFR Anapu / §9 Dorothy Stang work).** The sequence that worked: local parser + diff-scope + CSS-baseline + `sitemap:check` → merge to beta → verify the live page actually serves the change → governor visual UAT → `sync_beta_to_prod` with an ancestor test and CNAME check first. Twice in that thread "merged" was reported before the change was genuinely live, and once a CNAME conflict was predicted that a dry-run proved would not occur. Both errors are cheap to avoid with the steps above; neither was caught by CI, because for these changes there is no CI to catch them.
+
 ### Repos that already have this setup
 
 | Repo | Test file | How to run |
