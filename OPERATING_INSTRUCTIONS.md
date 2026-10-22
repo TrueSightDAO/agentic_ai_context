@@ -494,9 +494,24 @@ fact for the promote step at the end of this section.
 - **`dapp_beta` → `ci.yml`**: `npm test` = unit tests + Playwright integration.
 - **`sunmint_beta`**: no PR workflow; its `test` script is Playwright only.
 - On **all** repos, `visual-consistency.yml` is `deployment_status`-triggered → it runs **after** a
-  deploy and therefore cannot gate a PR. It may also be pinned to the beta hostname, in which case it
-  reports `skipped` on a prod commit. `skipped` is neither `passed` nor `failed`, and it is **not**
-  prod verification.
+  deploy and therefore cannot gate a PR. It is **not** prod verification by default either: check which
+  host it pins. `agroverse_shop_prod` branches on `GITHUB_REPOSITORY` and does assert `www.agroverse.shop`
+  (though its job name still says `(beta.agroverse.shop)`), while `truesight_me_prod` hardcodes
+  `PLAYWRIGHT_BASE_URL: https://beta.truesight.me` and so asserts beta from the prod repo, and
+  `dapp_prod` / `sunmint_prod` have no such workflow at all.
+
+  **`skipped` means one specific thing: a duplicate event.** One deploy emits several
+  `deployment_status` events; only the one with `state == 'success' && environment == 'github-pages'`
+  satisfies the job `if:` guard, so the rest record `skipped` (observed 3 skipped : 1 executed on both
+  the beta and prod deploys of 2026-10-22). So `skipped` is **not** "the check is missing" and **not**
+  "the check failed" — find the run that executed and read *its* conclusion. Reading the `skipped` runs
+  and concluding "there is no visual gate on prod" is a mistake I made during the Dorothy work; it was
+  wrong, and `agroverse_shop_prod` in fact asserts the live production host.
+
+  When it does run, read it honestly: `agroverse_shop_prod` is **red 7 times in its last 30 runs**
+  (2026-09-19 → 2026-10-22), failing at "Run Playwright against deployed beta". A gate that is red most
+  days is not a gate — it is training everyone to skip it. Do not cite a chronically red check as
+  evidence either way until it is investigated (`OPEN_FOLLOWUPS.md` tracks this).
 
 #### There is no `sitemap:check` outside agroverse
 
