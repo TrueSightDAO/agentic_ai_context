@@ -39,6 +39,69 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Autopilot pre-push gate uses the wrong interpreter, producing phantom test failures and a false money-adjacent bug report
+**Filed 2026-10-21 (from the Sítio Catarinense workstream). Owner: unclaimed. Governor: Gary. Low urgency, HIGH credibility cost — it caused a fabricated "silently zeroes TDG" bug report that took three turns and an independent governor repro to retract.**
+
+**What happened.** The autopilot pre-push hard rule says to run `python3 -m pytest -q`
+before pushing. On the autopilot EC2 box, bare `python3` resolves to
+`/usr/bin/python3` → `/home/ubuntu/.local/lib/python3.10/site-packages/truesight_dao_client`,
+which is an **older install with no `rubric.py`**. The project venv
+(`/opt/truesight_autopilot/.venv`) has `rubric.py` (61 lines), and **all four production
+services run the venv explicitly**:
+
+```
+truesight-autopilot.service          → /opt/truesight_autopilot/.venv/bin/python -m uvicorn app.main:app
+truesight-autopilot-telegram.service → /opt/truesight_autopilot/.venv/bin/python
+truesight-autopilot-discord.service  → /opt/truesight_autopilot/.venv/bin/python
+truesight-autopilot-watchdog.service → /opt/truesight_autopilot/.venv/bin/python
+```
+
+So the "gate" ran the suite against a dependency set production never uses.
+
+**The false alarm it produced.** `tests/test_resolve_tdg_issued.py` fails 5/8 under bare
+`python3` and passes 8/8 under the venv. Under bare `python3`,
+`_resolve_tdg_issued(None, "Time (Minutes)", "60")` returns `'0.00'` instead of `'100.00'`,
+because the rubric import raises `ModuleNotFoundError` and this `except` swallows it:
+
+```python
+try:
+    from truesight_dao_client.rubric import format_tdg, tdg_for
+    return format_tdg(tdg_for(contribution_type, amount))
+except Exception:
+    return text or "0.00"        # masks ImportError as a plausible business value
+```
+
+That was reported to the governor as a **live money-adjacent bug silently zeroing TDG**.
+It is not a bug: production uses the venv, computes TDG correctly, and **nothing needs
+remediating**. Full suite under the venv: **1647 passed, 0 failed**; under bare `python3`:
+5 failed / 1642 passed. Same commit, same tests.
+
+**Ruled out (so nobody re-investigates).** A governor hypothesis that rubric resolution
+lazily fetches `dao_client` into `CONTEXT_REPOS_DIR` with different network/credential
+access was **disproved**:
+- `rubric.py` is a **static installed file**, no network/urllib/http/git inside it.
+- `CONTEXT_REPOS_DIR` has exactly one reference in the tree (`app/config.py:813`) and is
+  not read by the rubric path.
+- `env -u CONTEXT_REPOS_DIR -u HOME` with the venv → still `'100.00'`.
+- **System python with the venv's site-packages prepended → `'100.00'`.** The interpreter
+  and the environment are irrelevant; only **which `truesight_dao_client` is importable**
+  matters.
+- A `git clone` (not `git worktree`) at the same sha with all `__pycache__` cleared
+  reproduces it, so it is not worktree/pycache contamination.
+
+**Work (~20-30 min).** (1) Change the pre-push hard rule — in the
+`truesight_autopilot` system prompt/tooling — to pin
+`/opt/truesight_autopilot/.venv/bin/python -m pytest -q` (and the same prefix for
+`compileall` / `ruff`) so local gates and CI cannot disagree about dependencies.
+(2) Add a `logger.warning` (not a silent `return`) to the rubrics `except` fallback in
+`_resolve_tdg_issued` so a missing dependency surfaces as an ImportError in the log
+instead of masquerading as a real `0.00`. The broad `except` should stay — it correctly
+keeps a bad turn from crashing — but it must not be silent.
+
+**Related but distinct.** Line ~207 of this file covers missing `Pillow`/`pytesseract` in
+the prod venv being swallowed by lazy imports. Same *class* (missing dep → silent
+degradation), different dependency and different fix.
+
 ### `CFR_Anapu_18_trees.pdf` shipped with zero clickable link annotations — tree-report PDF path bypasses the `PAYOUT_REPORT_SOP.md` §4 link check
 **Filed 2026-10-20 (from the Sítio Catarinense packet). Owner: unclaimed. Governor: Gary. Low-medium — no money impact (the 18 trees were paid correctly), but it is a reviewability defect in a document whose whole purpose is reviewability.**
 
