@@ -768,6 +768,86 @@ of admiring the legs. The section exists so the third one is not found by a gove
 
 ---
 
+## 9c. Entity labelling and evidence links on ledger rows
+
+**Every ledger row names two things, and getting either wrong corrupts a derived view without breaking a total.** Grounded in AGL15 `Transactions` r61–63 (2026-10-23 Black King freight true-up), where both defects were live at once.
+
+### 9c.1 `Entity` names the party the row belongs to — not who authorized it
+
+`Entity` (col C) answers *whose balance moved*, never *who said yes*. Governor authorization belongs in the **Description** (`Authorized by Gary Teh 2026-10-23 …`), which is where the audit trail lives. Putting an authorizer, a session id, or a vehicle name in `Entity` mis-files the amount against a party that does not hold cash.
+
+### 9c.2 Assets leg = human custodian; Equity leg = counterparty. Never the same name.
+
+| Transaction Type | `Entity` = | Why |
+|---|---|---|
+| `Assets` (cash moving) | **the human custodian** who holds/spends it (e.g. `Gary Teh`) | the row reduces *that person's* custody |
+| `Equity` (claim/liability) | **the financing vehicle or counterparty** (e.g. `AGL15`, `AGL8`) | the row records a claim *against* that vehicle |
+| `Expenses` | **the human custodian** whose USD was drawn | same as Assets |
+
+**If the cash is financed but the custody is a person, the `Entity` is still the person.** The financing relationship is expressed by the **Equity mirror legs** (the row 57/58 mirror pattern), *not* by relabelling the cash. A vehicle name must never appear on an Assets leg.
+
+- *Worked example (this defect):* r61 booked `AGL15 | −67.55 | USD | Assets`. USD was held with **Gary Teh**, so the leg should read `Gary Teh | −67.55 | USD | Assets`, with `AGL15` appearing only as the financier on the Equity mirrors (r62/r63, which were already correct).
+- *Correct precedent in the same ledger:* r56 (the v1 booking of the same class) reads `Gary Teh | −2098.354 | USD | Assets` — done right the first time.
+- *Historical fix of the same class:* the checklist records AGL8/AGL13 injection legs originally carrying `AGL15` on **both** legs, corrected append-only to Equity → `AGL15`, Assets → `Gary Teh`.
+
+### 9c.3 Why this survives a total-invariant check — check the buckets, not just Σ
+
+`Balance` is a spilled `QUERY` grouping **`Entity`** and `Currency`:
+
+`=query(query(Transactions!$A$4:G1000, "select C, sum(D), E where F='Assets' group by C, E, F …"), "select * where Col2 <> 0")`
+
+So a wrong `Entity` **silently creates a new bucket** and **understates the correct one by exactly that amount** — while the grand total is unchanged. The error is invisible to a Σ-only check.
+
+- *Live example:* after r61 as booked, `Balance` = AGL13 2214.61 · **AGL15 −67.55** · AGL8 163.064 · Gary Teh 2518.046 → **Σ 4,828.17 ✅ correct total**. But Gary's custodian USD reads **2,518.046** instead of **2,450.496**, with a phantom `AGL15` "location" holding −67.55. A ledger name is masquerading as a person in the custody dimension.
+
+**Rule:** after any ledger write, read the `Balance` buckets per `(Entity, Currency)` — not just the total. A wrong `Entity` shows as a **negative bucket under a non-human name**, or as a person whose bucket is off by exactly the amount in question. (This is the mirror image of §9b.3: §9b.3 asks *is the total right?*; §9c.3 asks *is the total in the right buckets?* Both are required.)
+
+**Corollary:** because `Balance` is derived, **never write to cols H/I/J** — fix `Entity` in `Transactions` and let the spill recompute (the spilled-formula lesson above).
+
+### 9c.4 Supporting documents must be linked in the Description — a chat attachment is not evidence
+
+The **Description** (col B) must carry a full, clickable URL for every supporting document. A receipt that exists only as a Telegram attachment is **not auditable** by anyone reading the ledger later.
+
+- **Form:** a full `https://github.com/TrueSightDAO/.github/blob/main/assets/<file>` URL (or `- Destination Expense File Location: <url>`), matching the established rows.
+- **Precedent already in the substrate:** r55 (`…/trip-receipt.pdf`), r59 (inline notarization URL), r60 (`…/99_ride_paradiso_to_gru.jpg`).
+- **Multi-row groups:** when one transaction spawns several legs (primary + Equity mirrors), put the full evidence set on the **primary authorizing leg**, and give each mirror a back-reference naming that leg. Do not leave any leg of a group unlinked.
+- **Before writing the row**, confirm the attachment has actually been uploaded and the URL resolves — an intended link is not a link.
+
+### 9c.4a The override: `Entity` is canonical, *not* a copy of `Target Ledger`
+
+**The most common way §9c.2 gets violated is by copying the pipeline's own template field.** The standard Edgar expense template carries `- Target Ledger: AGLxx`. The *ledger* a cost is borne by is **not** the *entity* that holds the cash. Copying `Target Ledger` into the `Entity` column is the exact defect behind r61, and it is invited by the template's wording.
+
+| Template field | Goes into | Never goes into |
+|---|---|---|
+| `- Target Ledger: AGL15` | Description only (which ledger bears the cost) | **`Entity`** |
+| `- DAO Member Name: Gary Teh` | Description **and** `Entity` (the human custodian) | — |
+
+**So: `Entity` = `DAO Member Name`, not `Target Ledger`.** When both are present, that mapping is unconditional.
+
+### 9c.4b Posting a sanctioned correction *outside* the Edgar pipeline
+
+A `[LANDFALL SANCTIONED ONE-OFF CORRECTION]` (or any hand/posted-by-script row) **bypasses Edgar entirely**. It therefore inherits **none** of the pipeline's guarantees — and you must replicate them **by hand**, or the row is quietly deficient in a way that looks normal on the sheet.
+
+**Replicate all three by hand:**
+
+1. **`Entity` convention** — set it explicitly per §9c.2 / §9c.4a. Do **not** derive it from a signer, a template, or a `Target Ledger`. The pipeline's own handler stamps `Entity` by *inference*; a direct write does not even do that — nothing fills the column for you.
+2. **Evidence-linking convention** — the pipeline auto-uploads the attachment and embeds `Attached Filename:` + `Destination Expense File Location:` (a GitHub blob URL) in the Description. A direct write embeds **nothing**; you must upload the file and hand-write the URL (§9c.4).
+3. **Provenance block** — the pipeline appends `My Digital Signature`, `Request Transaction ID`, and `Edgar Scoring Hash Key`. A direct write has **no signature at all**. State plainly in the Description that the row is **unsigned and pipeline-bypassing**, so nobody later mistakes it for a signed submission.
+
+**Signature consequence — this drives the edit-vs-reverse decision:** an **unsigned** directly-posted row can be **corrected in place** (its Description is mutable and carries no signature attestation to invalidate). A **signed** Edgar row must **never** be edited in place — correct it append-only (reversal + re-entry), because editing it breaks the signature/Description binding.
+
+- *Worked example (this defect, r61–r63):* posted directly by script. r61 carried `Entity=AGL15` (copied from `Target Ledger`) instead of `Gary Teh`; all three rows carried **no attachment links**; none had a signature. r61 was fixed **in place** — legitimate precisely because it was unsigned — plus a Description provenance note. Rows r55/r60, which went through the pipeline, correctly carry `Attached Filename`, a GitHub URL, and a full signature.
+
+### 9c.5 Pre-flight additions for cross-ledger bookings
+
+- [ ] `Entity` on every **Assets/Expenses** leg = **human custodian**; every **Equity** leg = **financier/counterparty**; **no ledger name on any Assets leg**.
+- [ ] Governor/authorizer named in **Description**, never in `Entity`.
+- [ ] Every supporting document linked as a **resolving URL** in the Description; multi-leg groups fully covered with a back-reference.
+- [ ] **Directly-posted / sanctioned-correction rows:** `Entity` set explicitly from the **human custodian** (never copied from `Target Ledger`); evidence URL hand-added; Description states it is **unsigned / pipeline-bypassing** (§9c.4b). Signed rows are corrected **append-only**, never in place.
+- [ ] Post-write: read `Balance` buckets per `(Entity, Currency)`; assert no **negative bucket under a non-human name**, and that each custodian's total moved by exactly the expected amount.
+
+---
+
 ## 10. End-to-end registration + verification tests
 
 For frontend repos that use dao-client's email registration flow (oracle, capoeira, dapp_beta), a lightweight integration test that just loads the page is NOT enough — real bugs only surface when you actually submit a registration and follow the verification link.
