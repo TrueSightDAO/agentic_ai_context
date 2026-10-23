@@ -813,11 +813,37 @@ The **Description** (col B) must carry a full, clickable URL for every supportin
 - **Multi-row groups:** when one transaction spawns several legs (primary + Equity mirrors), put the full evidence set on the **primary authorizing leg**, and give each mirror a back-reference naming that leg. Do not leave any leg of a group unlinked.
 - **Before writing the row**, confirm the attachment has actually been uploaded and the URL resolves — an intended link is not a link.
 
+### 9c.4a The override: `Entity` is canonical, *not* a copy of `Target Ledger`
+
+**The most common way §9c.2 gets violated is by copying the pipeline's own template field.** The standard Edgar expense template carries `- Target Ledger: AGLxx`. The *ledger* a cost is borne by is **not** the *entity* that holds the cash. Copying `Target Ledger` into the `Entity` column is the exact defect behind r61, and it is invited by the template's wording.
+
+| Template field | Goes into | Never goes into |
+|---|---|---|
+| `- Target Ledger: AGL15` | Description only (which ledger bears the cost) | **`Entity`** |
+| `- DAO Member Name: Gary Teh` | Description **and** `Entity` (the human custodian) | — |
+
+**So: `Entity` = `DAO Member Name`, not `Target Ledger`.** When both are present, that mapping is unconditional.
+
+### 9c.4b Posting a sanctioned correction *outside* the Edgar pipeline
+
+A `[LANDFALL SANCTIONED ONE-OFF CORRECTION]` (or any hand/posted-by-script row) **bypasses Edgar entirely**. It therefore inherits **none** of the pipeline's guarantees — and you must replicate them **by hand**, or the row is quietly deficient in a way that looks normal on the sheet.
+
+**Replicate all three by hand:**
+
+1. **`Entity` convention** — set it explicitly per §9c.2 / §9c.4a. Do **not** derive it from a signer, a template, or a `Target Ledger`. The pipeline's own handler stamps `Entity` by *inference*; a direct write does not even do that — nothing fills the column for you.
+2. **Evidence-linking convention** — the pipeline auto-uploads the attachment and embeds `Attached Filename:` + `Destination Expense File Location:` (a GitHub blob URL) in the Description. A direct write embeds **nothing**; you must upload the file and hand-write the URL (§9c.4).
+3. **Provenance block** — the pipeline appends `My Digital Signature`, `Request Transaction ID`, and `Edgar Scoring Hash Key`. A direct write has **no signature at all**. State plainly in the Description that the row is **unsigned and pipeline-bypassing**, so nobody later mistakes it for a signed submission.
+
+**Signature consequence — this drives the edit-vs-reverse decision:** an **unsigned** directly-posted row can be **corrected in place** (its Description is mutable and carries no signature attestation to invalidate). A **signed** Edgar row must **never** be edited in place — correct it append-only (reversal + re-entry), because editing it breaks the signature/Description binding.
+
+- *Worked example (this defect, r61–r63):* posted directly by script. r61 carried `Entity=AGL15` (copied from `Target Ledger`) instead of `Gary Teh`; all three rows carried **no attachment links**; none had a signature. r61 was fixed **in place** — legitimate precisely because it was unsigned — plus a Description provenance note. Rows r55/r60, which went through the pipeline, correctly carry `Attached Filename`, a GitHub URL, and a full signature.
+
 ### 9c.5 Pre-flight additions for cross-ledger bookings
 
 - [ ] `Entity` on every **Assets/Expenses** leg = **human custodian**; every **Equity** leg = **financier/counterparty**; **no ledger name on any Assets leg**.
 - [ ] Governor/authorizer named in **Description**, never in `Entity`.
 - [ ] Every supporting document linked as a **resolving URL** in the Description; multi-leg groups fully covered with a back-reference.
+- [ ] **Directly-posted / sanctioned-correction rows:** `Entity` set explicitly from the **human custodian** (never copied from `Target Ledger`); evidence URL hand-added; Description states it is **unsigned / pipeline-bypassing** (§9c.4b). Signed rows are corrected **append-only**, never in place.
 - [ ] Post-write: read `Balance` buckets per `(Entity, Currency)`; assert no **negative bucket under a non-human name**, and that each custodian's total moved by exactly the expected amount.
 
 ---
