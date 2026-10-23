@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-23T11:55:42Z`
+- Generated (UTC): `2026-10-23T17:21:34Z`
 - Look-back: **7** calendar days (`2026-10-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -36,26 +36,26 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261023115420_2222` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261023115423_2224` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115427_2226` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115431_2228` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115435_2230` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115438_2232` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115441_2234` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115445_2236` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115449_2238` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115453_2240` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115456_2242` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115500_2244` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115504_2246` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115510_2248` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115515_2250` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115519_2252` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115522_2254` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115525_2256` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115529_2258` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023115533_2260` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023120515_2498` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023120519_2500` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023120522_2502` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023120526_2504` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023120530_2506` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023120533_2508` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023120538_2510` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023120542_2512` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023120545_2514` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023120549_2516` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023120552_2518` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023120556_2520` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023120559_2522` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023120604_2524` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023121518_2526` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023121522_2528` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023121528_2530` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023121720_2532` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023121724_2534` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023121729_2536` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 
 ---
 
@@ -266,6 +266,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-16 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b824ed7 | 2026-10-23 11:58:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 aff43cc | 2026-10-23 05:15:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 932fb61 | 2026-10-22 21:52:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 56f9d20 | 2026-10-22 17:32:28 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -306,6 +307,8 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c445545 | 2026-10-23 08:56:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
+c33f83f | 2026-10-23 08:56:03 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
 e4c43d2 | 2026-10-23 07:08:05 -0300 | §9c — Entity labelling and evidence links on ledger rows (#1697)
 14783c5 | 2026-10-23 02:52:40 -0300 | docs: add §9b — money-adjacent claims: name the phase, verify live, assert the total (#1696)
 86d3d1c | 2026-10-23 02:11:43 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
@@ -344,8 +347,6 @@ d32264d | 2026-10-20 08:57:33 -0300 | chore(previews): refresh Beer Hall preview
 bee9fb3 | 2026-10-20 04:48:41 -0300 | Link nelanco-claude reachability failures to disk-full repack; file gc.auto=0 follow-up (#1672)
 7fda0df | 2026-10-20 03:22:18 -0300 | docs(agroverse): fix stale batch_compiler.py path, warn against ad-hoc QR generators (#1671)
 944067b | 2026-10-20 02:31:18 -0300 | File two QR/attachment-tooling follow-ups in OPEN_FOLLOWUPS.md (#1670)
-111f03b | 2026-10-20 02:07:26 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
-ebc8db3 | 2026-10-20 02:07:24 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
 … (truncated)
 ```
 
@@ -389,6 +390,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
 ef7f62f | 2026-10-22 11:58:06 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 be8780e | 2026-10-21 11:54:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ff7f68c | 2026-10-21 01:28:50 -0300 | chore: refresh Agroverse SKU catalog snapshot
