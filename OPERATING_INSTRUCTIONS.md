@@ -629,6 +629,145 @@ check passes without reading the prose.** Getting that distinction right is the 
 
 ---
 
+## 9b. Money-adjacent claims: name the phase, verify live, assert the total (2026-10-23)
+
+Three rules, one incident. All three failed, or nearly failed, in the Black King freight true-up thread
+(2026-10-23, session `dd775ec0499d`). They are ordered by how early they catch the error.
+
+### 9b.1 A completion claim must name its phase — ambiguity is the reporter's defect
+
+**Never say "all figures updated", "booked", "posted", "done", or "reconciled" about a multi-phase
+change.** Name the phase, the amount, and the ledgers:
+
+```
+<phase name> <what changed> <which ledgers> <amount>
+
+v2 true-up ($124.19) posted to AGL8 / AGL13 / AGL15 / Main offchain.
+```
+
+That is a claim someone can check. "All figures on all ledgers updated" is not, because there is more
+than one thing it could mean and the reporter is the only one who knows which.
+
+**If a reader could reasonably read a claim as either complete or partial, the claim is defective.**
+Fix the claim; do not fix the reader.
+
+**And the reader-side half, which binds the agent:** when a governor's report is ambiguous, do **not**
+resolve it toward the generous reading. "All figures updated" is not authorization for anything, and it
+is not confirmation of the largest thing it could describe. Ask which phase, or verify and report what
+you found. Resolving an ambiguous completion claim in a governor's favour is how a proposed-only change
+gets treated as landed.
+
+### 9b.2 Verify every money-adjacent claim against the live sheet before calling it done
+
+**Never accept a completion claim from a summary** — not a PR body, not a prior turn, not a pinned
+note, not another agent's report, and not your own memory of what you did. A claim that money moved,
+that balances changed, that rows were appended, that an invoice settled, or that something reconciled
+is a claim about a sheet. Read the sheet.
+
+**The check is a content grep for the exact figures, across every ledger involved:**
+
+```python
+TARGETS = ["56.64", "67.55", "49.54", "18.01", "121.06", "124.19"]
+for name, sid in [(n, s) for n, s in LEDGERS]:
+    rows = gc.open_by_key(sid).worksheet("Transactions").get_all_values()
+    hits = [r for r in rows if any(t in " ".join(r) for t in TARGETS)]
+    print(name, len(rows), "rows;", len(hits), "hits")   # 0 hits => not posted
+```
+
+Zero hits means not posted. There is no interpretation of zero hits in which the change landed.
+
+**Distinguish LANDED from PROPOSED in the same breath, every time.** In this incident both of these
+were true simultaneously, and leading with the first implied the second:
+
+- v1 freight booking, `$4,896.33` — **LANDED** 2026-10-14/15, verified row by row.
+- v2 bond true-up, `$124.19` — **NOT POSTED**, held pending an explicit go.
+
+A true statement about the landed phase is not evidence about the held phase. State which one you are
+talking about.
+
+**Corollary — do not publish absolute post-states; publish increments plus a timestamped observation.**
+Two pinned baselines in this thread were stale: AGL15's USD balance was **2,518.046**, not the pinned
+`2,142.396`, and append-row numbers had all moved (AGL15 `67→61`, AGL8 `187→203`, AGL13 `27→39`).
+Any figure that is a *consequence* of the change (a new balance, a new per-kg cost, a new row count)
+belongs in the snapshot as a computation, never as a hardcoded result. The *increment* is stable; the
+absolute is not.
+
+**Cite rows as `row + date + amount` together, never row number alone.** The original freight expense was
+found at `r4930`, not `r4929` — off by one from 0-based vs 1-based indexing, compounded by a corrupted
+date cell reading `10/8/57372` instead of `10/8/2026`. A reader searching by index alone can miss a row
+that is plainly there.
+
+### 9b.3 A reallocation needs a total-balance invariant check, not per-leg checks
+
+**When one ledger's funds finance a cost booked on other ledgers, the funded ledger's total assets must
+not move.** The money converts cash into equity holdings; the total is invariant. Assert the total.
+
+**This is a named step, not something that happens to get noticed.** `BALANCE-TOTAL INVARIANT CHECK`:
+before reporting a financing-ledger post as complete, read every asset line on the funded ledger's
+`Balance` tab, sum them, and compare against the total captured before the post.
+
+```
+Σ Δ (all asset lines) must equal 0     # pure internal reallocation
+```
+
+**Per-leg verification passes happily when legs are missing.** In this incident the first commit posted
+7 of 9 rows and every individual row verified correctly on inspection — but AGL15's total assets fell
+**$67.55** (4,828.17 → 4,760.62), because the cash-outflow leg was posted without the two asset-side
+mirror legs that convert that cash into equity holdings. Only the spill *total* caught it. After adding
+the two mirrors, the total returned to `4,828.17` to the cent.
+
+AGL15's invariant, for reference:
+
+```
+USD + AGL8 equity holdings + AGL13 equity holdings = 4,828.17
+2,450.496 + 163.064 + 2,214.61                    = 4,828.17
+```
+
+**Fourth check, because it caused the omission: the bucket lives in the `Currency` column.** A mirror leg
+is a row whose *Currency* cell reads `AGL8 equity holdings` / `AGL13 equity holdings` — not `USD`. Read
+the existing mirror rows on the ledger before inventing new ones (`AGL15` r57/r58 for v1); the convention
+is visible there and was not visible in the schema.
+
+**Write only to `Transactions` — `Balance` is a derived `query()` spill.** Read it to assert the
+invariant; write signed rows to `Transactions` and let it re-spill. A spilled cell reports its *value*,
+not its parent formula, so reading `Balance` cannot tell you whether a cell is writable — check with
+`acell(range, value_render_option='FORMULA')` before concluding anything about writability. Same lesson
+as the `offchain asset location` incident on Main (2026-10-15): a spilled view read as an ordinary
+number, and a write to it would have silently done nothing.
+
+### Verify-necessary list
+
+A claim is money-adjacent, and §9b.2 applies, if it involves any of:
+
+- an amount on any ledger (AGL2/6/7/8/10/13/14/15, Main offchain, TBM)
+- a balance, total, or per-kg / per-unit cost that is derived from ledger rows
+- an appended row count, or "next row" index
+- a payment, invoice, settlement, reimbursement, or FX figure
+- the words *posted*, *booked*, *landed*, *reconciled*, *updated*, *current*
+
+### Incident that prompted this (2026-10-23, Black King freight true-up)
+
+Gary reported "all figures on all ledgers updated." I read it as a report and went looking for what had
+landed, found the **v1** booking (`AGL15 t56 −2,098.354`, `AGL8 r188/r189 145.054`, `AGL13 r26 −1,953.30`),
+and reported it verified — which it was. But the **v2** true-up (`$124.19`) had never been posted, and I
+let a true statement about v1 imply a false one about v2. Gary then queried Main's `offchain transactions`
+himself, found only the original `−$2,233.03` and no true-up row, and asked me to confirm what was
+actually posted.
+
+The grep settled it: **0 hits across 5,568 rows in four ledgers.** Nothing was posted. The only artifact
+was a held, unmerged PR.
+
+Then the second error, in the opposite direction: once explicitly authorized, my first commit posted 7 of
+the 9 required rows. Every leg looked right. AGL15's assets had nevertheless dropped $67.55, because I had
+omitted the mirror legs — the convention for which I had not read off v1 before writing v2. Two more rows
+(`r62`/`r63`, `18.01` + `49.54` against `AGL8 equity holdings` / `AGL13 equity holdings`) restored the
+total exactly.
+
+Both errors were cheap to avoid: the first by naming the phase, the second by summing the balance instead
+of admiring the legs. The section exists so the third one is not found by a governor.
+
+---
+
 ## 10. End-to-end registration + verification tests
 
 For frontend repos that use dao-client's email registration flow (oracle, capoeira, dapp_beta), a lightweight integration test that just loads the page is NOT enough — real bugs only surface when you actually submit a registration and follow the verification link.
