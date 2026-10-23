@@ -784,7 +784,7 @@ of admiring the legs. The section exists so the third one is not found by a gove
 | `Equity` (claim/liability) | **the financing vehicle or counterparty** (e.g. `AGL15`, `AGL8`) | the row records a claim *against* that vehicle |
 | `Expenses` | **the human custodian** whose USD was drawn | same as Assets |
 
-**If the cash is financed but the custody is a person, the `Entity` is still the person.** The financing relationship is expressed by the **Equity mirror legs** (§5.2 row 57/58 pattern), *not* by relabelling the cash. A vehicle name must never appear on an Assets leg.
+**If the cash is financed but the custody is a person, the `Entity` is still the person.** The financing relationship is expressed by the **Equity mirror legs** (the row 57/58 mirror pattern), *not* by relabelling the cash. A vehicle name must never appear on an Assets leg.
 
 - *Worked example (this defect):* r61 booked `AGL15 | −67.55 | USD | Assets`. USD was held with **Gary Teh**, so the leg should read `Gary Teh | −67.55 | USD | Assets`, with `AGL15` appearing only as the financier on the Equity mirrors (r62/r63, which were already correct).
 - *Correct precedent in the same ledger:* r56 (the v1 booking of the same class) reads `Gary Teh | −2098.354 | USD | Assets` — done right the first time.
@@ -802,7 +802,7 @@ So a wrong `Entity` **silently creates a new bucket** and **understates the corr
 
 **Rule:** after any ledger write, read the `Balance` buckets per `(Entity, Currency)` — not just the total. A wrong `Entity` shows as a **negative bucket under a non-human name**, or as a person whose bucket is off by exactly the amount in question. (This is the mirror image of §9b.3: §9b.3 asks *is the total right?*; §9c.3 asks *is the total in the right buckets?* Both are required.)
 
-**Corollary:** because `Balance` is derived, **never write to cols H/I/J** — fix `Entity` in `Transactions` and let the spill recompute (§5.15 lesson).
+**Corollary:** because `Balance` is derived, **never write to cols H/I/J** — fix `Entity` in `Transactions` and let the spill recompute (the spilled-formula lesson above).
 
 ### 9c.4 Supporting documents must be linked in the Description — a chat attachment is not evidence
 
@@ -813,7 +813,7 @@ The **Description** (col B) must carry a full, clickable URL for every supportin
 - **Multi-row groups:** when one transaction spawns several legs (primary + Equity mirrors), put the full evidence set on the **primary authorizing leg**, and give each mirror a back-reference naming that leg. Do not leave any leg of a group unlinked.
 - **Before writing the row**, confirm the attachment has actually been uploaded and the URL resolves — an intended link is not a link.
 
-### 9c.5 Pre-flight additions (append to the §5.2 pre-flight list)
+### 9c.5 Pre-flight additions for cross-ledger bookings
 
 - [ ] `Entity` on every **Assets/Expenses** leg = **human custodian**; every **Equity** leg = **financier/counterparty**; **no ledger name on any Assets leg**.
 - [ ] Governor/authorizer named in **Description**, never in `Entity`.
