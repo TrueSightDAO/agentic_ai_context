@@ -728,9 +728,12 @@ is a row whose *Currency* cell reads `AGL8 equity holdings` / `AGL13 equity hold
 the existing mirror rows on the ledger before inventing new ones (`AGL15` r57/r58 for v1); the convention
 is visible there and was not visible in the schema.
 
-**And re-apply §5.15: write only to `Transactions`; `Balance` is a derived `query()` spill.** Read it to
-assert the invariant — never write to it. A spilled cell reports its *value*, not its parent formula, so a
-read of `Balance` cannot tell you whether it is writable. Append signed rows and let it re-spill.
+**Write only to `Transactions` — `Balance` is a derived `query()` spill.** Read it to assert the
+invariant; write signed rows to `Transactions` and let it re-spill. A spilled cell reports its *value*,
+not its parent formula, so reading `Balance` cannot tell you whether a cell is writable — check with
+`acell(range, value_render_option='FORMULA')` before concluding anything about writability. Same lesson
+as the `offchain asset location` incident on Main (2026-10-15): a spilled view read as an ordinary
+number, and a write to it would have silently done nothing.
 
 ### Verify-necessary list
 
