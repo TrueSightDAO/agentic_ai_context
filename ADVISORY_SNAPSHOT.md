@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-23T05:11:20Z`
+- Generated (UTC): `2026-10-23T11:55:42Z`
 - Look-back: **7** calendar days (`2026-10-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,32 +32,30 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 40
-- `[CONTRIBUTION EVENT]` × 1
-- `[PENTEST AUTHORIZATION TEST EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 42
 
 ### Latest entries
 
-- `Edgar_20261023011632_1794` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023011645_1796` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023011653_1798` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012139_1800` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012144_1802` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012149_1804` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012155_1806` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012158_1808` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012203_1810` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012209_1812` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012216_1814` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012225_1816` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012234_1818` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012243_1820` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012251_1822` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012259_1824` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012307_1826` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023012315_1828` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023022908_1830` · **Edgar** · [CONTRIBUTION EVENT] Amount: 20 · Contributor(s): Gary Teh · Description: Reimbursement of Claude Pro subscription (Anthropic, PBC) for the DAO's auto…
-- `Edgar_20261023041235_1832` · **Edgar** · [PENTEST AUTHORIZATION TEST EVENT] Description: Authorized security test of Edgar signed submission path (truesight.me scope) · Tester: External pentest · Note: No business action required; safe to ignore/remove
+- `Edgar_20261023115420_2222` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261023115423_2224` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115427_2226` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115431_2228` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115435_2230` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115438_2232` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115441_2234` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115445_2236` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115449_2238` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115453_2240` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115456_2242` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115500_2244` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115504_2246` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115510_2248` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115515_2250` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115519_2252` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115522_2254` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115525_2256` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115529_2258` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261023115533_2260` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 
 ---
 
@@ -72,7 +70,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-22T10:59:14.714Z`
+- Generated (UTC): `2026-10-23T10:59:15.113Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -232,7 +230,7 @@ _(+33 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,547.76**
+- USD on hand: **$2,491.12**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
 - USD provisioned for voting-rights cash-out: **$57.05**
 
@@ -268,6 +266,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-16 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+aff43cc | 2026-10-23 05:15:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 932fb61 | 2026-10-22 21:52:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 56f9d20 | 2026-10-22 17:32:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 486394a | 2026-10-22 12:17:22 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -307,6 +306,10 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e4c43d2 | 2026-10-23 07:08:05 -0300 | §9c — Entity labelling and evidence links on ledger rows (#1697)
+14783c5 | 2026-10-23 02:52:40 -0300 | docs: add §9b — money-adjacent claims: name the phase, verify live, assert the total (#1696)
+86d3d1c | 2026-10-23 02:11:43 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
+dfca684 | 2026-10-23 02:11:41 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
 2c7804f | 2026-10-22 20:51:26 -0300 | OPEN_FOLLOWUPS: file the prod visual-gate gap (verified across all 4 pairs) (#1693)
 d7c7e8d | 2026-10-22 20:50:04 -0300 | conventions: point at OPERATING_INSTRUCTIONS §9a for shipping (link only, no restatement) (#1695)
 002b2f4 | 2026-10-22 20:48:20 -0300 | §9a: live-render verification for ALL static-site repos (supersedes #1689) (#1692)
@@ -343,10 +346,6 @@ bee9fb3 | 2026-10-20 04:48:41 -0300 | Link nelanco-claude reachability failures 
 944067b | 2026-10-20 02:31:18 -0300 | File two QR/attachment-tooling follow-ups in OPEN_FOLLOWUPS.md (#1670)
 111f03b | 2026-10-20 02:07:26 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
 ebc8db3 | 2026-10-20 02:07:24 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
-b0d39ea | 2026-10-20 00:54:20 -0300 | Merge pull request #1669 from TrueSightDAO/auto/advisory-refresh-2026-10-20
-4ffa642 | 2026-10-20 03:54:06 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
-f8e6105 | 2026-10-19 19:33:34 -0300 | chore(previews): refresh Beer Hall preview (2026-10-19 UTC)
-a09a51d | 2026-10-19 19:33:32 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-19 UTC)
 … (truncated)
 ```
 
@@ -513,7 +512,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 137 | 18621.34386 | 10/22/2026 |
+| 2026-10 | 137 | 18621.34386 | 10/23/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-16`; scanned last **600** data rows)
 
