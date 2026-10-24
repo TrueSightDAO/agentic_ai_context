@@ -863,6 +863,17 @@ Two quite different acts both get called "correcting a row," and they carry diff
 - [ ] **Directly-posted / sanctioned-correction rows:** `Entity` set explicitly from the **human custodian** (never copied from `Target Ledger`); evidence URL hand-added; Description states it is **unsigned / pipeline-bypassing** (§9c.4b). Signed rows are corrected **append-only**, never in place.
 - [ ] **Before any in-place edit:** row is **unsigned** → the change is a **reattribution** (Σ identical before and after) → you have already drafted the **provenance note**. If any of the three fails, the route is **append-only reversal + re-entry**. Signed rows are **never** edited in place (§9c.4c).
 - [ ] Post-write: read `Balance` buckets per `(Entity, Currency)`; assert no **negative bucket under a non-human name**, and that each custodian's total moved by exactly the expected amount.
+- [ ] **Appended numerics are typed, not text:** wrote with `value_input_option='USER_ENTERED'`, then read back with `value_render_option='UNFORMATTED_VALUE'` and confirmed each amount is a `float` (§9c.5a).
+
+---
+
+### 9c.5a Appending rows: `RAW` silently types numbers as text, and `QUERY sum()` then ignores them
+
+**Symptom (hit live, 2026-10-23).** A reversal + re-entry pair was appended with `value_input_option='RAW'`. Both rows *looked* correct on `Transactions`, and an independent group-by computed from the rows themselves showed the expected net. But the `Balance` spill still showed the **pre-correction** buckets — because `RAW` stored `67.55` / `-67.55` as **strings**, and `QUERY`'s `sum(D)` treats text as zero. The correction silently did not land.
+
+**Rule.** (1) Append or re-write numeric cells with **`value_input_option='USER_ENTERED'`**. (2) Verify the cell type, not just its display: read back with `value_render_option='UNFORMATTED_VALUE'` and confirm it is a `float`, not a `str` (currency formatting makes a string and a number look identical on the sheet). (3) Independently **recompute the group-by from `Transactions`** rather than trusting the spilled view; when the two disagree, the spill is right about the formula and the rows are wrong about their type.
+
+**Why this is dangerous.** It fails silently. The sheet, the row values, and an independent aggregation all report success while the derived view keeps stale numbers — no error is raised anywhere. It will produce a wrong `Balance` on any append written with `RAW`.
 
 ---
 
