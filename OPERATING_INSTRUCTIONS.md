@@ -834,9 +834,26 @@ A `[LANDFALL SANCTIONED ONE-OFF CORRECTION]` (or any hand/posted-by-script row) 
 2. **Evidence-linking convention** — the pipeline auto-uploads the attachment and embeds `Attached Filename:` + `Destination Expense File Location:` (a GitHub blob URL) in the Description. A direct write embeds **nothing**; you must upload the file and hand-write the URL (§9c.4).
 3. **Provenance block** — the pipeline appends `My Digital Signature`, `Request Transaction ID`, and `Edgar Scoring Hash Key`. A direct write has **no signature at all**. State plainly in the Description that the row is **unsigned and pipeline-bypassing**, so nobody later mistakes it for a signed submission.
 
-**Signature consequence — this drives the edit-vs-reverse decision:** an **unsigned** directly-posted row can be **corrected in place** (its Description is mutable and carries no signature attestation to invalidate). A **signed** Edgar row must **never** be edited in place — correct it append-only (reversal + re-entry), because editing it breaks the signature/Description binding.
+**Signature consequence — this is only the *first* of two gates.** A **signed** Edgar row must **never** be edited in place: its `My Digital Signature` / `Edgar Scoring Hash Key` bind to the row's content, so an edit silently forges the attestation. Correct it append-only. An **unsigned** directly-posted row carries no such binding, so in-place is *permissible* — but permissible is not automatic. The second gate is §9c.4c.
 
-- *Worked example (this defect, r61–r63):* posted directly by script. r61 carried `Entity=AGL15` (copied from `Target Ledger`) instead of `Gary Teh`; all three rows carried **no attachment links**; none had a signature. r61 was fixed **in place** — legitimate precisely because it was unsigned — plus a Description provenance note. Rows r55/r60, which went through the pipeline, correctly carry `Attached Filename`, a GitHub URL, and a full signature.
+- *Worked example — and the case that produced §9c.4c (r61–r63):* posted directly by script. r61 carried `Entity=AGL15` (copied from `Target Ledger`) instead of `Gary Teh`; all three rows carried **no attachment links**; none had a signature. r61 was corrected **in place**, which was allowed under **all three** §9c.4c gates: (1) unsigned; (2) a **reattribution**, not a restatement — Σ held at **4,828.170** before and after, only the bucket moved, the phantom `AGL15` −67.55 bucket disappearing and Gary Teh's USD custodian resolving to 2,450.496; (3) a Description provenance note. Rows r55/r60, which went through the pipeline, correctly carry `Attached Filename`, a GitHub URL, and a full signature — and are **never** editable in place.
+
+**Precedent caveat (corrected 2026-10-23).** The historical AGL8 r192–195 / AGL13 r32–34 `[SANCTIONED ONE-OFF CORRECTION]` rows are **not** an append-only-*reversal* precedent. They were **pure inserts** into ledgers that held no rows at all for that shipment, so nothing was reversed. They are also themselves **unsigned 6-column hand-appends**, the same class as r61. Cite them for *"append the missing rows"*, **not** for *"reversal beats in-place."*
+
+### 9c.4c Reattribution vs restatement — the gate that actually decides in-place vs reversal
+
+Two quite different acts both get called "correcting a row," and they carry different risk:
+
+| | What moves | Σ total | Mechanism |
+|---|---|---|---|
+| **Reattribution** | `Entity`, or another descriptive/attribution field | **unchanged** — the value moves between buckets only | in-place, **only if** unsigned, with a mandatory provenance note |
+| **Restatement** | an **amount**, a **currency**, or the `Type` | **changes** — the monetary record itself moves | **always** append-only reversal + re-entry, signed or not |
+
+**The discriminator is "∇Σ move?", not "which field is it?"** Reattribution preserves the total and merely corrects *who* a value belongs to. A restatement asserts a different monetary fact — which is a reversal in substance whether or not you happen to write it as one, so write it as one.
+
+**Ruling (2026-10-23).** In-place correction is permitted **only** when all three hold: (1) the row is **unsigned**; (2) the edit is a **reattribution** — with the Σ invariant verified before *and* after (§9b.3) and the buckets verified (§9c.3); (3) a **provenance note** is appended to the Description naming old value, new value, author, date, and authorising governor (§9c.4b item 3). **Anything else → append-only.**
+
+**Why append-only is not made absolute — considered and rejected, on a mechanical ground.** The `Balance` block is a spilled `QUERY … group by Entity`, so an Entity mislabel creates a *phantom bucket*. Reversing one append-only requires a row carrying the **known-wrong** Entity (to net that bucket back to zero) plus a re-entry carrying the right one — meaning the "correct" fix is obliged to **write the defect back in**, and then depends on the outer `where Col2<>0` to suppress the zeroed bucket. To convert an already-corrected row into that shape you would have to re-introduce the error for ceremony. **Append-only is the right default, and the mandatory path for anything that moves money. It is not the right instrument for correcting attribution that never moved a cent.**
 
 ### 9c.5 Pre-flight additions for cross-ledger bookings
 
@@ -844,6 +861,7 @@ A `[LANDFALL SANCTIONED ONE-OFF CORRECTION]` (or any hand/posted-by-script row) 
 - [ ] Governor/authorizer named in **Description**, never in `Entity`.
 - [ ] Every supporting document linked as a **resolving URL** in the Description; multi-leg groups fully covered with a back-reference.
 - [ ] **Directly-posted / sanctioned-correction rows:** `Entity` set explicitly from the **human custodian** (never copied from `Target Ledger`); evidence URL hand-added; Description states it is **unsigned / pipeline-bypassing** (§9c.4b). Signed rows are corrected **append-only**, never in place.
+- [ ] **Before any in-place edit:** row is **unsigned** → the change is a **reattribution** (Σ identical before and after) → you have already drafted the **provenance note**. If any of the three fails, the route is **append-only reversal + re-entry**. Signed rows are **never** edited in place (§9c.4c).
 - [ ] Post-write: read `Balance` buckets per `(Entity, Currency)`; assert no **negative bucket under a non-human name**, and that each custodian's total moved by exactly the expected amount.
 
 ---
