@@ -225,10 +225,17 @@ Both gates must pass. Note the two-lot nib trap: **the single wholesale nibs SKU
 with a 53% landed-cost spread** — Ilhéus 2024 / Oscar at $41.69/kg and Vivi's AGL13 at $27.25/kg.
 Where a SKU spans lots, quote the **lot**, not the SKU.
 
-> 🔑 **Never infer a farm from a port or a date code.** `Santos 20260213` is a *shipping
-descriptor* — departure from the Port of Santos — not a grower. Read the `Farm` and `Shipment`
-columns of the SKU master, or the ledger's own `program_name`/`description`. Treating a port as an
-origin produced a live misattribution on 2026-10-24; this rule exists to stop the repeat.
+> 🔑 **Never infer a farm from a processing-facility name.** `Santos` is a **named factory /
+> processor in Brazil** (via Fatima Toledo) that receives our cacao and returns finished product —
+> see `brazil/USA_SANTOS_PRODUCTION_SPEC.md`. It is **not** a port and **not** a grower. The batch
+> `AGL13` is **Vivi's cacao** (farm in Jeribucuaçu, near Itacaré); `Santos` describes only who
+> processed it.
+>
+> **Why this note exists (two corrections, opposite directions, same day).** First I called the
+> 99.5 kg nib lot *"Oscar's farm"* because it carried `Santos 2026`. Then I overcorrected and called
+> `Santos` *"the Port of Santos, not a farm"* — also wrong. Both were inference from a label. The
+> **only** reliable source is the `Farm` + `Shipment` columns of the SKU master, or the ledger's own
+> `program_name`/`description`. In practice: **read the row, do not reason about the label.**
 
 **Also observe:** a *ledger manager* is not a *location*. AGL13 is Matheus-managed yet physically in
 San Francisco (its currency string ends `+ 047-3175-3223 - San Francisco`). The location marker in
