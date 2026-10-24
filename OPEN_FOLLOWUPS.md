@@ -39,6 +39,41 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Scoring pipeline dead since 2026-09-13 — ~24,083 contribution-minutes and $2,226 un-awarded
+**Filed 2026-10-24. Owner: unclaimed. Governor: Gary. HIGH urgency — silent, ongoing, and it eats governor *and* contributor work.**
+
+**Symptom A — no TDG issued for anything since 2026-09-13.** 259 contribution events have accrued with no scoring pass: **~24,083 contribution-minutes** and roughly **$2,226** of TDG un-awarded. Intake reference: `Telegram Chat Logs` row **12408**. Affected contributors include governors and agents, not only third parties.
+
+**Symptom B — `.github/assets` attachment uploads stopped writing on the same date.** Treated as the same root cause pending investigation (a shared credential/scope or a shared GAS execution path). If they are in fact independent, split this entry.
+
+**Why it stayed invisible.** Nothing alerts. Contributions are *recorded* correctly, so every intake-side surface looks healthy; the absence is downstream, where no rows appear. Same fail-silent class as §9c.5a — a correct-looking upstream and a silently stale derived view.
+
+**Note on units.** State this in **minutes** (24,083), not "~401 hours". 24,083 min ÷ 60 = 401.4 h, but "401 hours unpaid" reads as a wage claim and invites a challenge to the *framing* that buries the real finding.
+
+**Next action:** find the last successful scoring run, diff its trigger/credential against today, and add a liveness assertion (if no scoring row in N hours → alert). Backfill the 259 events once the pipeline is proven.
+
+---
+
+### `agroverse-freight-audit` has 34 open PRs from one batch — but they are NOT duplicates, and bulk-close would destroy quote records
+**Filed 2026-10-24. Owner: unclaimed. Governor: Gary. MEDIUM urgency, HIGH risk if the wrong remediation is applied.**
+
+**The numbers (Search API, authoritative).** `agroverse-freight-audit`: **35 open PRs total**, of which **34** are `Freight quote ingest:` PRs `#7`–`#40`. All 34 were created by `garyjob` **on the same day, 2026-04-16**. They have sat open ~6 months. `agentic_ai_context` is far worse: **167 open PRs**. `tokenomics`: 27.
+
+**The trap — this entry exists mainly to record a rejected fix.** The obvious remediation ("they're auto-generated duplicates, bulk-close them") is **wrong and destructive**. Verified by reading the file list of all 34 PRs: each adds a *distinct* pair of artifacts (`quotations/email/<doc>.md` + `snapshots/<doc>_freight-pricing.json`), and the filenames encode **different destinations** (Austin TX, SF, SFO) and **different quote dates** (2025-11-04 → 2026-04-15).
+
+- **34 PRs → 21 distinct quotation documents → 13 redundant re-runs** (same destination *and* same date opened more than once: e.g. `#9`/`#10`, `#18`/`#20`, `#31`/`#32`/`#36`, `#37`/`#38`/`#39`).
+- **Bulk-closing all 34 would discard 21 real freight quotations** — including the quote history that the Black King lane's quote-vs-invoice dispute (§5.13, 5 Continent) depends on.
+
+**Correct remediation.** (1) De-duplicate to one PR per *distinct quotation document* — close the 13 same-date re-runs only, keeping the lowest-numbered; (2) merge the surviving 21 (they are additive, isolated files under `quotations/` and `snapshots/`); (3) fix the *ingest* so one document cannot open two PRs.
+
+**Real finding.** 21 freight quotations — the entire Omega Services quote history — have been sitting unmerged for six months. That is a data-availability problem in the freight lane, not merely a queue-hygiene problem, and it is very likely why quote-vs-invoice reconciliation is manual.
+
+**Also:** "PR #43" is ambiguous across the org — it exists in at least five repos (`agroverse-freight-audit` open, `tokenomics`/`agentic_ai_context`/`dao_protocol`/`agroverse_shop_beta` all merged). Always name the repo. `agroverse-freight-audit#43` (Black King actuals v2 — bond true-up $121.06 + AGL15 definition) is still open and held for review.
+
+**Next action:** de-dup to 21, merge, then gate the ingest. Do **not** bulk-close.
+
+---
+
 ### The only per-page visual gate runs *after* deploy, and two of the four prod pairs never assert prod
 **Filed 2026-10-22 (Dorothy Stang / §9a workstream). Owner: unclaimed. Governor: Gary. MEDIUM urgency, HIGH credibility cost — a red check on prod is being ignored as routine.**
 
