@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-24T11:24:37Z`
+- Generated (UTC): `2026-10-24T16:09:54Z`
 - Look-back: **7** calendar days (`2026-10-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,26 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 23
-- `[CONTRIBUTION EVENT]` × 10
+- `[CONTRIBUTION EVENT]` × 19
+- `[TREE PLANTING EVENT]` × 11
 - `[PRACTICE EVENT]` × 1
 - `[CONTRIBUTION REVIEW EVENT]` × 1
-- _free-form (no bracket tag)_ × 7
+- _free-form (no bracket tag)_ × 10
 
 ### Latest entries
 
-- `Edgar_20261023121729_2536` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023175116_2538` · **Edgar** · hello world
-- `Edgar_20261023175117_2540` · **Edgar** · {"Action":"CONTRIBUTION EVENT","Contributor(s)":"pentest","Amount":"0"}
-- `Edgar_20261023175128_2542` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: pentest-canary
-- `Edgar_20261023175129_2544` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: pentest-canary
-- `Edgar_20261023175312_2546` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.01 · Description: PENTEST-CANARY-CANARY01
-- `Edgar_20261023175329_2548` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Description: PENTEST-CANARY-MISSING-AMOUNT · Contributor(s): Pentest Canary
-- `Edgar_20261023181045_2550` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.01 · Description: PENTEST-A-1792779043
-- `Edgar_20261023181052_2552` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.01 · Description: PENTEST-B-1792779043
-- `Edgar_20261023182305_2554` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.01 · Description: PENTEST-I5186-20261023182256
-- `Edgar_20261024002333_2556` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-24T00:23:30.718Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261024055002_2558` · **Edgar** · probe
 - `Edgar_20261024055042_2560` · **Edgar** · probe
 - `Edgar_20261024055056_2562` · **Edgar** · probe content
 - `Edgar_20261024102031_2564` · **Edgar** · hello i33779probe-1792837229
@@ -60,6 +48,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261024102123_2570` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-1792837276 edgar unauth write probe
 - `Edgar_20261024102319_2572` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: APPROVE · Scoring Hash Key: i33779probe-1792837276-nonexistent · Contributor: i33779probe-1792837276
 - `Edgar_20261024102353_2574` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-tamper-1792837432 edgar tampered signature probe
+- `Edgar_20261024125834_2576` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 48 · Description: Envoy: vault auth-scan incident response
+- `Edgar_20261024125902_2578` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Sophia: vault auth privilege-escalation fix
+- `Edgar_20261024125923_2580` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: Gary Teh direct time: vault auth-scan incident
+- `Edgar_20261024133956_2582` · **Edgar** · hello
+- `Edgar_20261024133958_2584` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1 · Description: probe-noop
+- `Edgar_20261024134005_2586` · **Edgar** · hello
+- `Edgar_20261024134006_2588` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1 · Description: authorized-pentest-probe-i38345 no-op
+- `Edgar_20261024134858_2590` · **Edgar** · hello
+- `Edgar_20261024134954_2592` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SIGNATURE BINDING PROBE - DO NOT PROCESS - i38537
+- `Edgar_20261024135111_2594` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
+- `Edgar_20261024135204_2596` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
+- `Edgar_20261024135314_2598` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SELF-SIGNED FORGERY PROBE - DO NOT PROCESS - i385…
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-17 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+46295d5 | 2026-10-24 11:29:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 3f8d9bf | 2026-10-24 04:56:45 +0000 | chore(stats): refresh stats indexes [skip ci]
 955dbc7 | 2026-10-23 21:35:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c748dd | 2026-10-23 17:23:04 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -310,6 +311,8 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a67a7c4 | 2026-10-24 08:24:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
+ebe653f | 2026-10-24 08:24:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
 e4cd9cd | 2026-10-23 21:49:16 -0300 | OPEN_FOLLOWUPS: file Sept-13 scoring outage + PR-queue hygiene (bulk-close rejected) (#1701)
 a07b526 | 2026-10-23 21:21:57 -0300 | Add §9c.5a: RAW input stores numbers as strings; QUERY sum() silently zeroes them (#1700)
 a7d6579 | 2026-10-23 21:19:04 -0300 | §9c.4c: reattribution vs restatement + corrected precedent caveat (#1698)
@@ -348,8 +351,6 @@ d47eda9 | 2026-10-20 18:25:29 -0300 | docs(envoy-plan): record PR3 shipped (clau
 7dbcd5f | 2026-10-20 17:49:44 -0300 | plans: add Envoy mention-trigger daemon roadmap (PR0) (#1678)
 4931c17 | 2026-10-20 17:31:07 -0300 | Add EMAIL_SEND_POLICY.md — tiers for autonomous outbound email (#1677)
 d32264d | 2026-10-20 08:57:33 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
-1458675 | 2026-10-20 08:57:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
-8d0a639 | 2026-10-20 06:50:59 -0300 | Add BUSINESS_MODEL.md — cycle, customers, product-not-credits, measurable unit (#1676)
 … (truncated)
 ```
 
@@ -392,6 +393,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+c73cd86 | 2026-10-24 11:37:34 +0000 | chore: refresh currencies.json [skip ci]
 7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
 ef7f62f | 2026-10-22 11:58:06 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
