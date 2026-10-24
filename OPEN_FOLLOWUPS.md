@@ -39,6 +39,24 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Confirm whether the 2026-10-23 pentest covered the **vault** `/auth/*` surface — documented scope says Edgar only
+**Filed 2026-10-24. Owner: unclaimed. Governor: Gary. LOW urgency, but it needs answering — the vuln is fixed either way; this only decides whether we notify the tester.**
+
+**Context.** `truesight_autopilot#546` removes two unauthenticated vault routes (`POST /auth/send-challenge`, `POST /auth/verify-code`) that allowed an unauthenticated caller to obtain a JWT asserting the `governor` role. Live scanner traffic against them arrived from:
+
+| Source IP | Hits | Window |
+|---|---|---|
+| `47.131.234.109` | 9 | 2026-10-23 17:59 UTC |
+| `13.214.162.112` | 18 | 2026-10-24 10:42 UTC |
+
+**Why this looks like our pentest.** `ADVISORY_SNAPSHOT.md` records a labeled engagement on 2026-10-23 (`PENTEST-CANARY-CANARY01`, `PENTEST-A/B`, `edgar unauth write probe`, `edgar tampered signature probe`, IDs `i33779` / `i5186`), running 17:51–18:23 UTC. The `47.131.234.109` vault scans land inside that exact window. The next day's `13.214.162.112` traffic began ~22 min after `i33779probe` Edgar writes (10:20) and used probe IDs `33780`, `33800`, `33810` — **contiguous with the documented `33779`**.
+
+**Why it is still unconfirmed.** Every recorded artifact scopes the engagement to **Edgar**, not the vault worker. Nothing in context authorizes `/auth/*` on `sophia.truesight.me`. A payload literally labelled `pentest-*` does not establish authorization — it is equally a common way to look less alarming. Also worth noting the vault probing *succeeded* in spirit: the escalation was real, and one path did return live 500s with tracebacks rather than clean 400s.
+
+**Next action.** Ask whoever commissioned the engagement whether the vault `/auth/*` routes were in scope, using probe IDs `33779 → 33800` as the identifier. If yes: nothing further. If no: the vault scanning was uncommissioned, treat it as hostile reconnaissance, and review whether the `13.214.162.112` window touched anything else. Then move this entry to **Closed without shipping** with the answer.
+
+---
+
 ### Scoring pipeline dead since 2026-09-13 — ~24,083 contribution-minutes and $2,226 un-awarded
 **Filed 2026-10-24. Owner: unclaimed. Governor: Gary. HIGH urgency — silent, ongoing, and it eats governor *and* contributor work.**
 
