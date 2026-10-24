@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-23T21:34:48Z`
-- Look-back: **7** calendar days (`2026-10-16` → today UTC)
+- Generated (UTC): `2026-10-24T11:24:37Z`
+- Look-back: **7** calendar days (`2026-10-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,22 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 33
-- `[CONTRIBUTION EVENT]` × 7
-- _free-form (no bracket tag)_ × 2
+- `[TREE PLANTING EVENT]` × 23
+- `[CONTRIBUTION EVENT]` × 10
+- `[PRACTICE EVENT]` × 1
+- `[CONTRIBUTION REVIEW EVENT]` × 1
+- _free-form (no bracket tag)_ × 7
 
 ### Latest entries
 
-- `Edgar_20261023120549_2516` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023120552_2518` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261023120556_2520` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261023120559_2522` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261023120604_2524` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261023121518_2526` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261023121522_2528` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261023121528_2530` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023121720_2532` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261023121724_2534` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261023121729_2536` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261023175116_2538` · **Edgar** · hello world
 - `Edgar_20261023175117_2540` · **Edgar** · {"Action":"CONTRIBUTION EVENT","Contributor(s)":"pentest","Amount":"0"}
@@ -58,6 +50,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261023181045_2550` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.01 · Description: PENTEST-A-1792779043
 - `Edgar_20261023181052_2552` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.01 · Description: PENTEST-B-1792779043
 - `Edgar_20261023182305_2554` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0.01 · Description: PENTEST-I5186-20261023182256
+- `Edgar_20261024002333_2556` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-24T00:23:30.718Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261024055002_2558` · **Edgar** · probe
+- `Edgar_20261024055042_2560` · **Edgar** · probe
+- `Edgar_20261024055056_2562` · **Edgar** · probe content
+- `Edgar_20261024102031_2564` · **Edgar** · hello i33779probe-1792837229
+- `Edgar_20261024102040_2566` · **Edgar** · (no body)
+- `Edgar_20261024102118_2568` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-1792837276 edgar unauth write probe
+- `Edgar_20261024102123_2570` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-1792837276 edgar unauth write probe
+- `Edgar_20261024102319_2572` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: APPROVE · Scoring Hash Key: i33779probe-1792837276-nonexistent · Contributor: i33779probe-1792837276
+- `Edgar_20261024102353_2574` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-tamper-1792837432 edgar tampered signature probe
 
 ---
 
@@ -207,11 +209,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 8,333.26 total units · $8,033.22
+- Manager record: `Gary Teh` · 30 SKU lines · 8,209.07 total units · $7,909.03
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 8,257.08 | $7,983.23 |
+  | (uncategorized) | (unspecified) | 28 | 8,132.89 | $7,859.04 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -221,7 +223,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 |---------|-------|-------|-------------|
 | Val Lapidus | 16 | 1,464 | $7,825.21 |
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
-| AGL13 | 1 | 2,165.07 | $2,165.07 |
+| AGL13 | 1 | 2,214.61 | $2,214.61 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Paloma | 8 | 668.32 | $349.36 |
@@ -232,9 +234,9 @@ _(+33 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,491.12**
+- USD on hand: **$2,491.08**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.05**
+- USD provisioned for voting-rights cash-out: **$57.10**
 
 ### In-transit freight (0 rows)
 
@@ -249,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-16 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-17 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -268,6 +270,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-16 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3f8d9bf | 2026-10-24 04:56:45 +0000 | chore(stats): refresh stats indexes [skip ci]
+955dbc7 | 2026-10-23 21:35:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c748dd | 2026-10-23 17:23:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 b824ed7 | 2026-10-23 11:58:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 aff43cc | 2026-10-23 05:15:14 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -295,10 +299,6 @@ e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip 
 0245cc5 | 2026-10-17 15:52:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 11f547c | 2026-10-17 11:06:45 +0000 | chore(stats): refresh stats indexes [skip ci]
 15a57a9 | 2026-10-17 04:54:35 +0000 | chore(stats): refresh stats indexes [skip ci]
-16d32dc | 2026-10-16 21:36:57 +0000 | chore(stats): refresh stats indexes [skip ci]
-d39a637 | 2026-10-16 16:53:05 +0000 | chore(stats): refresh stats indexes [skip ci]
-9e8ca94 | 2026-10-16 11:49:41 +0000 | chore(stats): refresh stats indexes [skip ci]
-fc80a73 | 2026-10-16 04:53:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -310,6 +310,11 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e4cd9cd | 2026-10-23 21:49:16 -0300 | OPEN_FOLLOWUPS: file Sept-13 scoring outage + PR-queue hygiene (bulk-close rejected) (#1701)
+a07b526 | 2026-10-23 21:21:57 -0300 | Add §9c.5a: RAW input stores numbers as strings; QUERY sum() silently zeroes them (#1700)
+a7d6579 | 2026-10-23 21:19:04 -0300 | §9c.4c: reattribution vs restatement + corrected precedent caveat (#1698)
+67e12da | 2026-10-23 18:35:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
+1f7fd25 | 2026-10-23 18:35:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
 7c38c9c | 2026-10-23 14:21:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
 70058d7 | 2026-10-23 14:21:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
 c445545 | 2026-10-23 08:56:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
@@ -345,11 +350,6 @@ d47eda9 | 2026-10-20 18:25:29 -0300 | docs(envoy-plan): record PR3 shipped (clau
 d32264d | 2026-10-20 08:57:33 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
 1458675 | 2026-10-20 08:57:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
 8d0a639 | 2026-10-20 06:50:59 -0300 | Add BUSINESS_MODEL.md — cycle, customers, product-not-credits, measurable unit (#1676)
-246288a | 2026-10-20 05:16:56 -0300 | plans(sitio-catarinense): correct GPS-gap scope, add PR3b MAP ingestion (#1675)
-3121835 | 2026-10-20 05:01:02 -0300 | File follow-up: payout/planting PDFs can ship dead link annotations (#1674)
-771067e | 2026-10-20 08:00:23 +0000 | handoffs: claim supervision of Sítio Catarinense onboarding
-91583ac | 2026-10-20 04:58:03 -0300 | plans: add Sítio Catarinense farm-onboarding execution roadmap (PR0) (#1673)
-bee9fb3 | 2026-10-20 04:48:41 -0300 | Link nelanco-claude reachability failures to disk-full repack; file gc.auto=0 follow-up (#1672)
 … (truncated)
 ```
 
@@ -363,7 +363,6 @@ d05182d | 2026-10-20 21:59:14 -0300 | Anchor Monthly Statistics on first empty c
 8b356c4 | 2026-10-20 18:08:36 -0300 | Fix monthly sales $0: coerce DATE-formatted offchain cells instead of String() (#587)
 2d6d314 | 2026-10-20 17:47:06 -0300 | Fix monthly sales stuck at $0 — anchor month append on contiguous data block (#586)
 2afbd60 | 2026-10-16 22:01:45 -0300 | Add installTriggers/uninstallTriggers convention for GAS projects (#585)
-33503e9 | 2026-10-16 19:01:43 -0300 | SCHEMA.md: add Service Account → Sheet Access Matrix (#584)
 ```
 
 ### `dapp` → `dapp`
@@ -393,6 +392,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
 ef7f62f | 2026-10-22 11:58:06 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 be8780e | 2026-10-21 11:54:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -409,7 +409,6 @@ a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot 
 1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 6f23e47 | 2026-10-18 11:42:26 +0000 | chore: refresh currencies.json [skip ci]
 6dbad1b | 2026-10-17 10:48:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-a2472a8 | 2026-10-16 11:29:10 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -517,9 +516,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 137 | 18621.34386 | 10/23/2026 |
+| 2026-10 | 137 | 18621.34386 | 10/24/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-16`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-17`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
