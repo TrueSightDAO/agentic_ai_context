@@ -834,20 +834,39 @@ A `[LANDFALL SANCTIONED ONE-OFF CORRECTION]` (or any hand/posted-by-script row) 
 2. **Evidence-linking convention** — the pipeline auto-uploads the attachment and embeds `Attached Filename:` + `Destination Expense File Location:` (a GitHub blob URL) in the Description. A direct write embeds **nothing**; you must upload the file and hand-write the URL (§9c.4).
 3. **Provenance block** — the pipeline appends `My Digital Signature`, `Request Transaction ID`, and `Edgar Scoring Hash Key`. A direct write has **no signature at all**. State plainly in the Description that the row is **unsigned and pipeline-bypassing**, so nobody later mistakes it for a signed submission.
 
-**Signature consequence — this drives the edit-vs-reverse decision:** an **unsigned** directly-posted row can be **corrected in place** (its Description is mutable and carries no signature attestation to invalidate). A **signed** Edgar row must **never** be edited in place — correct it append-only (reversal + re-entry), because editing it breaks the signature/Description binding.
+**Signature consequence — append-only is absolute, not signature-gated.** An **unsigned** directly-posted row earns **no** exemption. The rule is deliberately *not* split on signedness: the cost of an absolute rule is a couple of corrective rows, while the cost of a per-instance *"is this one safe to edit?"* judgement is that it drifts across agents and incidents — and there is no other codified append-only rule in this document to anchor a narrow exception against (§4.1 is scoped to `CONTEXT_UPDATES.md`, a markdown log, not the financial ledger). **Every ledger row is append-only, signed or not.**
 
-- *Worked example (this defect, r61–r63):* posted directly by script. r61 carried `Entity=AGL15` (copied from `Target Ledger`) instead of `Gary Teh`; all three rows carried **no attachment links**; none had a signature. r61 was fixed **in place** — legitimate precisely because it was unsigned — plus a Description provenance note. Rows r55/r60, which went through the pipeline, correctly carry `Attached Filename`, a GitHub URL, and a full signature.
+- *Worked example — r61–r63 and its reversal (2026-10-23):* posted directly by script. r61 carried `Entity=AGL15` (copied from `Target Ledger`) instead of `Gary Teh`; all three rows carried **no attachment links**; none had a signature. An initial in-place edit of `C61` was **rejected** once the absolute rule was ruled. r61 was **restored** to `AGL15` and the correction re-done append-only: **r64** reversal (`AGL15`, +67.55) + **r65** re-entry (`Gary Teh`, −67.55). Σ held at **4,828.170** before and after; the phantom `AGL15` bucket nets to zero and is suppressed by the query, and Gary Teh's USD custodian resolves to **2,450.496**. Rows r55/r60, which went through the pipeline, carry `Attached Filename`, a GitHub URL, and a full signature.
+
+**Precedent caveat (corrected 2026-10-23).** The historical AGL8 r192–195 / AGL13 r32–34 `[SANCTIONED ONE-OFF CORRECTION]` rows are **not** an append-only-*reversal* precedent. They were **pure inserts** into ledgers that held no rows at all for that shipment, so nothing was reversed. They are also themselves **unsigned 6-column hand-appends**. Cite them for *"append the missing rows"*, **not** for *"reversal beats in-place."*
+
+### 9c.4c Append-only is absolute (2026-10-23 ruling)
+
+**Ruling.** Every write to a financial ledger is **append-only**. No row is edited in place and no row is deleted, **regardless of whether it carries a signature**. A correction is a **new pair of rows**: a reversal and a re-entry.
+
+**A reversal must carry the *original* value — even a wrong one.** Netting an `Entity` mislabel to zero requires the reversal to name the **mislabel** (here `AGL15`) so that bucket sums to zero, with the re-entry carrying the correct value. This is correct-by-arithmetic, not a re-introduction of the defect: the ledger is an event log, and the reversal is *the event that cancels r61*. The `where Col2 <> 0` clause in the `Balance` query then suppresses the zeroed bucket.
+
+**Rejected alternative — the signed/unsigned carve-out.** An earlier draft exempted unsigned, directly-posted rows, on the correct observation that only signed rows have a cryptographic binding for an edit to invalidate. That observation is true but answers the wrong question. Ruled against because: (a) it forces a per-instance risk judgement at the exact moment of correction, under time pressure; (b) no other codified append-only rule exists here to anchor a narrow exception against; (c) the absolute rule's cost is bounded at a few rows, while a misjudged exception inside the DAO's financial ledgers is unbounded.
+
+**Why the two mechanisms are not equivalent in evidence.** Editing **erases** the fact that an error occurred. Reversal + re-entry **records** it: a later reader sees both the original booking and its correction, and can reconstruct what happened and why. Append-only is not ceremony — it is the difference between a ledger that shows its history and one that has had its history rewritten.
 
 ### 9c.5 Pre-flight additions for cross-ledger bookings
 
 - [ ] `Entity` on every **Assets/Expenses** leg = **human custodian**; every **Equity** leg = **financier/counterparty**; **no ledger name on any Assets leg**.
 - [ ] Governor/authorizer named in **Description**, never in `Entity`.
 - [ ] Every supporting document linked as a **resolving URL** in the Description; multi-leg groups fully covered with a back-reference.
-- [ ] **Directly-posted / sanctioned-correction rows:** `Entity` set explicitly from the **human custodian** (never copied from `Target Ledger`); evidence URL hand-added; Description states it is **unsigned / pipeline-bypassing** (§9c.4b). Signed rows are corrected **append-only**, never in place.
+- [ ] **Directly-posted / sanctioned-correction rows:** `Entity` set explicitly from the **human custodian** (never copied from `Target Ledger`); evidence URL hand-added; Description states it is **unsigned / pipeline-bypassing** (§9c.4b). **All** rows are corrected append-only, never in place (§9c.4c).
+- [ ] **Corrections are always append-only:** reversal (carrying the **original** value, even a wrong one, so its bucket nets to zero) + re-entry (carrying the correct value), with Σ verified before *and* after (§9b.3) and buckets verified (§9c.3). **No row is ever edited in place or deleted**, signed or not (§9c.4c).
+- [ ] **Numeric cells appended with `USER_ENTERED`** and read back as `float` under `UNFORMATTED_VALUE`; group-by recomputed from `Transactions`, not trusted from the spill (§9c.5a).
 - [ ] Post-write: read `Balance` buckets per `(Entity, Currency)`; assert no **negative bucket under a non-human name**, and that each custodian's total moved by exactly the expected amount.
 
 ---
 
+### 9c.5a Appending rows: `RAW` silently types numbers as text, and `QUERY sum()` then ignores them
+
+**Symptom (hit live, 2026-10-23).** A reversal + re-entry pair was appended with `value_input_option='RAW'`. Both rows *looked* correct on `Transactions`, and an independent group-by computed from the rows themselves showed the expected net. But the `Balance` spill still showed the **pre-correction** buckets — because `RAW` stored `67.55` / `-67.55` as **strings**, and `QUERY`'s `sum(D)` treats text as zero. The correction silently did not land.
+
+**Rule.** (1) Append or re-write numeric cells with **`value_input_option='USER_ENTERED'`**. (2) Verify the cell type, not just its display: read back with `value_render_option='UNFORMATTED_VALUE'` and confirm it is a `float`, not a `str` (currency formatting makes a string and a number look identical on the sheet). (3) Independently **recompute the group-by from `Transactions`** rather than trusting the spilled view; when the two disagree, the spill is right about the formula and the rows are wrong about their type.
 ## 10. End-to-end registration + verification tests
 
 For frontend repos that use dao-client's email registration flow (oracle, capoeira, dapp_beta), a lightweight integration test that just loads the page is NOT enough — real bugs only surface when you actually submit a registration and follow the verification link.
