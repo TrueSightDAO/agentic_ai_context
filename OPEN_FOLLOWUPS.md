@@ -39,6 +39,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Inbound RFQ intake loop: no closed-set wait catalogue, no scenario-pattern registry
+
+`EMAIL_SEND_POLICY.md` §6 (proposed PR — RFQ / buyer-enquiry intake) defines five gates for
+answering buyer mail. Three of them are not yet enforceable in code:
+
+1. **Delay reasons are free text.** §6.5 requires the true operational reason (customs, freight,
+sourcing, pricing). With no fixed vocabulary, the same ask can be restated against slightly
+different wording and re-derived each time. Needs a closed-set waiting-on catalogue.
+2. **No scenario-pattern registry.** After a single `email_inbox_watch` run, Gmail `in:draft` held
+   **3 near-identical drafts to joe@brandzconnect.com** and **12 near-identical BIONPACT trademark
+   drafts** (two firms x several variants). Each draft was individually reasonable; nothing detected
+   that they were the *same matter repeated*. §6.6's established-pattern auto-send is unenforceable
+   without a keyed registry of (counterparty, scenario) -> prior instance.
+3. **Gates 6.1–6.4 are documentary only.** Scope / pricing / market-check are not machine-checked.
+   Natural attach points: the `first_contact` gate and the tier classifier in
+   `app/email_inbox_watch.py`. Until then, compliance is a prose instruction to the model — the
+   same class of guarantee §1 explicitly rejects for Tier 0 (enforced by pattern match at the
+   dispatcher, not by instruction to the model).
+
+Related, already-known gaps: `PRICING_SSOT.md` does not exist (pricing basis is lost when the
+`Agroverse SKUs` sheet is edited), and the SF freight-lane model understates invoiced actuals by
+≈$7/kg ($9.89/kg modelled vs $16.21–17.07/kg actual), so any freight-derived landed cost must use
+invoice actuals, not the planner.
+
+---
+
+
 ### Scoring pipeline dead since 2026-09-13 — ~24,083 contribution-minutes and $2,226 un-awarded
 **Filed 2026-10-24. Owner: unclaimed. Governor: Gary. HIGH urgency — silent, ongoing, and it eats governor *and* contributor work.**
 
