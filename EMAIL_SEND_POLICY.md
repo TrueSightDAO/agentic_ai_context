@@ -207,13 +207,28 @@ evidence of *location*.
 
 | | Priced in master? | Physically in SF? | Can we quote? |
 |---|---|---|---|
-| AGL8 Paulo beans | ✅ | ❌ (0 kg in SF) | **No** — priced but not quotable |
+| AGL8 Paulo beans | ✅ $71.00/kg | ✅ **10 kg** (further 263.6 kg has no SF marker) | **Yes — 10 kg only** |
 | AGL16 Oscar beans | ✅ | ❌ (108 kg in Ilhéus) | **No** — priced but not quotable |
-| Vivi AGL13 | ✅ ($7.87/kg FOB) | ❌ (never imported) | **No** |
-| AGL13 Santos nibs | ✅ | ✅ 99.5 kg | **Yes** |
+| AGL14 Oscar beans | ✅ $71.00/kg | ❌ 0 kg in SF | **No** — priced but not quotable |
+| Vivi AGL13 **beans** | ✅ $60.50/kg | ❌ 0 kg as beans in SF | **No as beans** — sell the format we hold |
+| **Vivi AGL13 nibs** | ✅ $60.50/kg | ✅ **99.5 kg** | **Yes** |
+| **Ilhéus 2024 nibs** (Oscar / AGL4) | ✅ $74.00/kg | ✅ **80 kg** | **Yes** |
+| Cacao tea (AGL13 line) | ✅ $27.50/lb | ✅ 21 kg | Yes — but farm binding contradictory, see `PRICING_SSOT.md` §5.5 |
 
-Both gates must pass. Note the Ilhéus-2024 vs Santos-2026 nib trap: **one SKU, two lots, landed
-costs of $41.69 and $27.25/kg.** Where a SKU spans lots, quote the **lot**, not the SKU.
+> ⚠️ **Corrected 2026-10-24.** An earlier revision of this table said Vivi was *"never imported"*
+> and Paulo had *"0 kg in SF"*. Both were **wrong**: Vivi's 2026 cacao is in San Francisco as
+> 99.5 kg nibs + 21 kg tea, and 10 kg of Paulo's beans are in SF. A gating table that wrongly
+> blocks sellable stock is worse than no table — verify against the ledger, never against a prior
+> draft of this document.
+
+Both gates must pass. Note the two-lot nib trap: **the single wholesale nibs SKU spans two lots
+with a 53% landed-cost spread** — Ilhéus 2024 / Oscar at $41.69/kg and Vivi's AGL13 at $27.25/kg.
+Where a SKU spans lots, quote the **lot**, not the SKU.
+
+> 🔑 **Never infer a farm from a port or a date code.** `Santos 20260213` is a *shipping
+descriptor* — departure from the Port of Santos — not a grower. Read the `Farm` and `Shipment`
+columns of the SKU master, or the ledger's own `program_name`/`description`. Treating a port as an
+origin produced a live misattribution on 2026-10-24; this rule exists to stop the repeat.
 
 **Also observe:** a *ledger manager* is not a *location*. AGL13 is Matheus-managed yet physically in
 San Francisco (its currency string ends `+ 047-3175-3223 - San Francisco`). The location marker in
@@ -241,7 +256,9 @@ a **missing column M**, not missing inventory. Check before concluding *we have 
 When Gate 2 fails, pricing is a distinct, delegated task — not something to improvise inside the
 reply. Order of operations:
 
-1. **Consult the pricing owner** (Gary designates; currently `<@1548902290344255600>`).
+1. **Consult the sales & marketing manager** — currently **Envoy TrueSight** (`<@1548902290344255600>`, `admin+envoy@truesight.me`). Gary designated this role on 2026-10-24; the designation, its full scope, and its limits are recorded in **`ROLE_REGISTER.md`**. The scope is wider than email: **pricing, positioning, and commercial policy** for Agroverse.
+
+   > **Delegation boundary.** Asking the S&M manager to set a price does **not** authorise sending it. Per §2, any price-bearing email remains **Tier 1, draft-only**. Setting the number and sending the number are separate gates; only a governor's explicit instruction clears the second.
 2. **Gather market research** — real comps, from the live web, for the specific product class in
    the specific selling format. Record vendor, price, pack size, and date for each.
 3. **Establish landed cost.** The Brazil/FOB figure is in `Currencies` column B; the **SF landed**
