@@ -79,6 +79,12 @@
       "supervisor": "Envoy (nelanco-claude, interactive)",
       "claimed_at": "2026-10-20T07:59:00Z",
       "note": "Gary's explicit directive: 'Make sure she follows up and works on it in this channel' (#sitio-catarinense, Discord channel 1562002603351736421). PR0 merged (agentic_ai_context#1673). Sophia triggered, posted STEP ZERO naming question in-channel (verified live, msg 1562012138321739897), and reinforced that all turns on this plan must land in Discord #sitio-catarinense, not just the Telegram exec topic (thread 42369). RESUME HERE = governor answers STEP ZERO (#1 slug, #2 plot-id prefix) before PR2 (plot registration)."
+    },
+    {
+      "plan_file": "OPEN_FOLLOWUPS.md#agroverse-content-marketing-brazil-freight-blog",
+      "supervisor": "Envoy (nelanco-claude, interactive)",
+      "claimed_at": "2026-10-25T11:50:00Z",
+      "note": "Discord #agroverse-content-marketing (channel 1563875178528907414). Gary: 'Supervise [this thread]'. Gary wants a blog post + newsletter about the Brazil->SF freight (landed 14 Oct, NF-e/AWB/FDA/USDA all documented) + farm trip + 3 new SKUs, with Vivi's 81% bar (11-day bean-to-bar) as hero. Sophia found 3 real units along the way, all directionally approved by Gary in-thread but not yet executed: (1) truesight_autopilot dead-drop bugfix (stills-only zips never promote out of /media/processing -- root-caused exactly, 132/132 tests green locally, sitting in a DIRTY working tree with unrelated modifications, correctly NOT deployed yet) -- Gary said 'update your script to handle this' = approved; (2) first-ever facility-* manifest for farm_media_manifests (facility-black-king-warehouse, 40 S3-verified video files, builds the shipment_link + packing-day block) -- Gary said 'we need a manifest for this' = approved; (3) new Gemini-vision captioning stage for farm_media_daemon (no provider currently wired at all, Whisper-audio-only) -- Gary said 'use Gemini' = approved. RESUME HERE = dispatch Sophia to execute 1+2 on clean branches (own-repo/non-prod, autonomous merge authority) with the truesight_autopilot SERVICE RESTART held as its own explicit gate per standing policy (restart/deploy of her own live service is gated, git-level merge is not); dispatch 3 to start building. Then newsletter baseline (two_bahia_bars open/click read-out, still-stale OPEN_FOLLOWUPS item) -> blog draft. No money/TDG/prod-repo gates anywhere in this thread yet."
     }
   ]
 }
