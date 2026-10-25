@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_at": "2026-10-20T20:49:26Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "3c5911293b8309f2aac317b3ad5b22bb93cb5ab37d1af3f47779147136cc4525",
+  "source_sha256": "b8bc39d5fbd24ff7aac85ee620bf895b28bbd2df49c8d2d3cbd5d2f8885c3ac8",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -134,22 +134,22 @@
       "title": "**SunMint: pseudo-tree slots + QR assignment** — Gary's real motivation for `expected_trees`: generate individual, QR-codable pseudo-tree placeholder slots per plot (while CEPOTX's real survey data compiles), cleanly distinguishable from real tree submissions, with a mechanism to reconcile a real tree to its placeholder once real data lands. Answers `SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md`'s open decision D3 with a third option (per-pseudo-tree, not per-plot or per-real-tree).",
       "handoff_date": "2026-10-14",
       "state": "executing",
-      "status_raw": "**executing — design v2 (docs PR #1602/#1603 open, pending final settle-all-decisions pass); first code unit merged (`sunmint` PR #6: id scheme + FIFO allocator, 16 tests, Envoy-merged since `sunmint` is policy-walled machine-owned/API-only and Sophia's own merge tool refuses it)**",
+      "status_raw": "**executing — design v10: all decisions ruled (PR0 docs #1602/#1603 MERGED 2026-10-14; PR1 settle-pass D1–D10+D13 landed in-doc; PR6 descoped by D13=(a)); first code unit merged (`sunmint` PR #6: id scheme + FIFO allocator, 16 tests, Envoy-merged since `sunmint` is policy-walled machine-owned/API-only and Sophia's own merge tool refuses it)**",
       "telegram_thread_id": null,
       "telegram_thread_id_source": null,
       "telegram_thread_id_needs_verification": false,
       "telegram_topic": "—",
       "telegram_topic_url": null,
-      "discord_channel_id": null,
+      "discord_channel_id": "1559724628862173335",
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-25",
       "supervised_by": {
         "supervisor": "Envoy (nelanco-claude, supervisor loop)",
         "claimed_at": "2026-10-14T01:54:00Z",
-        "note": "Discord #sunmint, channel 1559724628862173335. Gary: 'supervise to completion.' Design v2 converged live: pseudo tree = SunMint Tree Planting row with blank lat/long (sole discriminator, no new column), claim-on-arrival FIFO reconciliation (no spatial matching), id <plot_id>-pseudo-<N>. Envoy caught two real gaps: (1) promotion (pseudo->real) needs its own dedicated event+DApp+CLI, the existing submission mechanism only appends new rows, can't update an existing one by id; (2) Gary's QR-to-plot-link ask is NOT a new surface -- dapp_beta/link_tree_planting.html already has it, and the existing handler (process_tree_planting_link.js) already shows a plot image + blank lat/long on link (confirming Gary's provenance idea is already shipped) but has ZERO capacity limit and reuses the real-tree ASSIGNED_TO_TREE status -- a live, previously-unflagged gap inflating the public tree-planted counter unbounded today. This design fixes that gap too. First code unit merged: sunmint PR #6 (id scheme + FIFO allocator incl. capacity-ceiling rejection, 16 tests, independently re-run by Envoy before merging -- Envoy had to merge since sunmint is policy-walled machine-owned/API-only and Sophia's own merge tool refuses it). RESUME HERE = merge docs PR #1602 (agentic_ai_context, main plan v2) + PR #1603 (D3 addendum) once Sophia's final settle-all-open-decisions pass lands (D2/D4/D5/D8/D9/D10 all effectively answered via chat already), then PR2 (sunmint: teach build_tree_geojson.py to skip blank-K/L rows). Standing gates: GAS/service deploys always human; beta->prod promote human-gated (or Envoy-delegated per SUPERVISOR_LOOP.md section 4a with full verification).",
+        "note": "Discord #sunmint, channel 1559724628862173335. Gary: 'supervise to completion.' Design v2 converged live: pseudo tree = SunMint Tree Planting row with blank lat/long (sole discriminator, no new column), claim-on-arrival FIFO reconciliation (no spatial matching), id <plot_id>-pseudo-<N>. Envoy caught two real gaps: (1) promotion (pseudo->real) needs its own dedicated event+DApp+CLI, the existing submission mechanism only appends new rows, can't update an existing one by id; (2) Gary's QR-to-plot-link ask is NOT a new surface -- dapp_beta/link_tree_planting.html already has it, and the existing handler (process_tree_planting_link.js) already shows a plot image + blank lat/long on link (confirming Gary's provenance idea is already shipped) but has ZERO capacity limit and reuses the real-tree ASSIGNED_TO_TREE status -- a live, previously-unflagged gap inflating the public tree-planted counter unbounded today. This design fixes that gap too. First code unit merged: sunmint PR #6 (id scheme + FIFO allocator incl. capacity-ceiling rejection, 16 tests, independently re-run by Envoy before merging -- Envoy had to merge since sunmint is policy-walled machine-owned/API-only and Sophia's own merge tool refuses it). RESUME HERE = PR2 (sunmint: teach build_tree_geojson.py to skip blank-K/L rows) -- no merge gate left; docs #1602/#1603 merged 2026-10-14 and the plan doc is now v10 with D1-D10+D13 all ruled (sophia verified 2026-10-25; PR6 descoped by D13=(a)). Standing gates: GAS/service deploys always human; beta->prod promote human-gated (or Envoy-delegated per SUPERVISOR_LOOP.md section 4a with full verification).",
         "stale": true,
-        "age_minutes": 9775
+        "age_minutes": 15911
       }
     },
     {
