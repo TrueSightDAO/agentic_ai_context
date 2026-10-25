@@ -5,6 +5,8 @@
 **Date: 26 May 2026**
 **Classification: Confidential**
 
+> **2026-10-25 addendum — the engagement is now contracted.** TrueSight DAO LLC agreed terms on **2026-10-21** with **LVSS Negócios Internacionais** (CNPJ 52.105.115/0001-44, Florianópolis/SC, contact `vinicius@flowvista.tech`) for Brazilian entity formation and foreign-investment structuring. Total **USD 3,500**: USD 1,000 in fiat (international transfer, or PIX at BRL 5.0277/USD) plus **USD 2,500 payable in TDG**, to be allocated within 5 business days of signing; TDG is only discharged on actual allocation and registration (clause 3.2.2), with a fiat fallback if it is not. Note this is a third-party consultant route, **not** the Tools for the Commons / Breno-Próspera path described below, and the document does **not** incorporate the Brazilian entity itself — it commissions the formation work. Recorded at `notarizations/20261021_LVSS_brazil_entity_service_agreement.md` (draft, unsigned as of 2026-10-25). Payment deadline tracked in `OPEN_FOLLOWUPS.md`.
+
 ---
 
 ## 1 · Purpose

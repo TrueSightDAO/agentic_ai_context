@@ -39,6 +39,35 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### LVSS Brazil-entity agreement carries a USD 2,500 TDG payment obligation — and TDG has not been issued since 2026-09-13
+**Filed 2026-10-25. Owner: unclaimed. Governor: Gary. HIGH urgency — a contractual payment obligation with a 5-business-day clock, landing on a scoring pipeline already recorded as dead.**
+
+**What.** On **2026-10-21** TrueSight DAO LLC agreed terms with **LVSS Negócios Internacionais** (CNPJ 52.105.115/0001-44, Rua Hermann Blumenau 110, Centro, Florianópolis/SC, CEP 88036-000; contact `vinicius@flowvista.tech`) for Brazilian entity formation and foreign-investment structuring. Clause 3.1(b): **USD 2,500.00 of the USD 3,500.00 total is payable in TDG**, to be allocated within **5 business days of signing** — i.e. due **2026-10-28** if execution is 2026-10-21.
+
+**Why this entry exists.**
+1. **Clause 3.2.2 is an unusually hard obligation.** "A mere promise of future issuance, allocation, or transfer shall not constitute payment." If TDG is not *actually allocated and registered* in a ledger record LVSS designates, LVSS may demand the USD 2,500 **in fiat** on written notice. Selecting that ledger record is an action only the DAO can take, and it is better settled before the clock runs out than after.
+2. **It collides with the scoring outage.** The sibling entry below records no TDG issued since 2026-09-13. A payment obligation denominated in TDG cannot be honoured while issuance is down. The fiat fallback does not remove the problem — it converts a token obligation into a cash one.
+3. **TDG quantity/valuation is undefined.** 3.1(b) defers quantity and valuation to terms "previously agreed between the Parties" that appear nowhere in the document. There are two ceilings (USD 2,500 or a TDG count) and no conversion rule. Pin this in writing before any allocation.
+4. **`TrueTech Inc` can pay the fiat leg.** Clause 3.2.3 — TrueTech may pay the USD 1,000 for and on behalf of the CLIENT, invoiced in the payer's name, without novation or release of the CLIENT. Relevant because the CLIENT is a Próspera ZEDE entity and TrueTech already holds the US banking rail.
+
+**Status of the document (checked, not assumed).** The recorded PDF is an **unsigned draft**: 0 embedded images across all 7 pages (no signature stamps), 0 annotations, 0 form/widget fields, and literal placeholder lines `(assinatura eletrônica/electronic signature)`. Producer string is `Skia/PDF m158 Google Docs Renderer` — a Google Docs export, not a ClickSign artifact. Clause 7.3 requires ClickSign or an ICP-Brasil certificate, so **the 3.2 clock only starts on a real execution.** Verification procedure and SHA-256 are in `notarizations/20261021_LVSS_brazil_entity_service_agreement.md`.
+
+**"It is for our Brazilian entity" — for the record.** This agreement does **not** create or name the Brazilian entity. It commissions the *formation* of one (Clause 1.1(i)) and the structuring of foreign investment into it (1.1(ii)). The entity still has to be incorporated, with CNAE recommended as **46.23-1/04** plus IE and NF-e model 55 credentialing at SEFAZ-BA — see `briefs/BRAZIL_EXPORT_ENTITY_BRIEF.md` §4. LVSS supplies advice and coordination, not the CNPJ.
+
+**Drafting defects worth fixing before execution.**
+- Party labels are inconsistent across the PT/EN columns: the contractor is called `CONTRATADA` in the preamble and `CLIENT` in the English column, and `CONTRATANTE`/`CONTRATADA` drift across 3.4/3.5/3.7. In payment and reimbursement clauses that ambiguity is material.
+- Clause 3.3 indexes a "valor fixo mensal" / "monthly payment" by INPC, but 3.1 sets a one-off total and 2.1 says the agreement runs until completion. Three clauses disagree on whether this is recurring or one-time.
+- The USD 1,000 is due before services commence (3.2), while 3.1 frames the whole sum as consideration for performance.
+
+**Where it was recorded (2026-10-25).**
+- Public record: `TrueSightDAO/notarizations` → `20261021_LVSS_brazil_entity_service_agreement.md` (PII redacted)
+- Private full-fidelity original + unredacted CPF: `TrueSightDAO/notarizations-raw` → `20261021_LVSS_service_agreement_DRAFT-UNSIGNED_TKT13980.pdf`
+- Reference `TKT 13980`; SHA-256 `ee499ebe4abe5ae5c197abe0c509c1ec9dac8c6c0362169e84e891c52f4b1dab`
+
+**Next action.** (a) Confirm whether ClickSign execution has occurred — if not, no payment is due and the deadline has not started. (b) If it has, pin TDG quantity/valuation in writing and settle the ledger-record question with LVSS before 2026-10-28. (c) Ask counsel to clean the party-label and 3.3 defects. Do **not** issue TDG to LVSS without an explicit governor command — payment is a governor action.
+
+---
+
 ### Scoring pipeline dead since 2026-09-13 — ~24,083 contribution-minutes and $2,226 un-awarded
 **Filed 2026-10-24. Owner: unclaimed. Governor: Gary. HIGH urgency — silent, ongoing, and it eats governor *and* contributor work.**
 
