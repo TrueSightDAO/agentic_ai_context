@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-24T21:03:28Z`
-- Look-back: **7** calendar days (`2026-10-17` → today UTC)
+- Generated (UTC): `2026-10-25T05:05:00Z`
+- Look-back: **7** calendar days (`2026-10-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,27 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[TREE PLANTING EVENT]` × 10
-- `[PRACTICE EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 28
+- `[PRACTICE EVENT]` × 2
 - `[CONTRIBUTION REVIEW EVENT]` × 1
-- _free-form (no bracket tag)_ × 10
+- `[CURRENCY DEFINITION EVENT]` × 1
+- `[TREE PLANTING LINK EVENT]` × 1
+- `[BATCH QR CODE REQUEST]` × 1
+- _free-form (no bracket tag)_ × 8
 
 ### Latest entries
 
-- `Edgar_20261024055056_2562` · **Edgar** · probe content
-- `Edgar_20261024102031_2564` · **Edgar** · hello i33779probe-1792837229
-- `Edgar_20261024102040_2566` · **Edgar** · (no body)
-- `Edgar_20261024102118_2568` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-1792837276 edgar unauth write probe
-- `Edgar_20261024102123_2570` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-1792837276 edgar unauth write probe
-- `Edgar_20261024102319_2572` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: APPROVE · Scoring Hash Key: i33779probe-1792837276-nonexistent · Contributor: i33779probe-1792837276
-- `Edgar_20261024102353_2574` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-tamper-1792837432 edgar tampered signature probe
-- `Edgar_20261024125834_2576` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 48 · Description: Envoy: vault auth-scan incident response
-- `Edgar_20261024125902_2578` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Sophia: vault auth privilege-escalation fix
-- `Edgar_20261024125923_2580` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: Gary Teh direct time: vault auth-scan incident
-- `Edgar_20261024133956_2582` · **Edgar** · hello
-- `Edgar_20261024133958_2584` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1 · Description: probe-noop
-- `Edgar_20261024134005_2586` · **Edgar** · hello
 - `Edgar_20261024134006_2588` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1 · Description: authorized-pentest-probe-i38345 no-op
 - `Edgar_20261024134858_2590` · **Edgar** · hello
 - `Edgar_20261024134954_2592` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SIGNATURE BINDING PROBE - DO NOT PROCESS - i38537
@@ -60,6 +49,19 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261024135204_2596` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
 - `Edgar_20261024135314_2598` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SELF-SIGNED FORGERY PROBE - DO NOT PROCESS - i385…
 - `Edgar_20261024185750_2600` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tempering and molding Vivi's nibs
+- `Edgar_20261025000858_2602` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Sophia Truesight · Type: Time (Minutes) · Amount: 12
+- `Edgar_20261025000905_2604` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Governor time on the 108 kg AGL16 custody correction: supplied the field evi…
+- `Edgar_20261025001257_2606` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Vivi Cacao Nibs \| Kirsten 20261025 \| Sa… · Price in USD: 1.987 · Serializable: TRUE
+- `Edgar_20261025013612_2608` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-25T01:36:10.375Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261025024902_2610` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_5 · SunMint Submission Message ID: Edgar_20260903083532_007 · Updated by: Sophia Truesight
+- `Edgar_20261025030504_2612` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Vivi Cacao Nibs \| Kirsten 20261025 \| Sa… · Quantity: 40
+- `Edgar_20261025033403_2614` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Direct time (engagement/analysis) — SunMint provenance cache RCA + PDF addre…
+- `Edgar_20261025033407_2616` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Gary Teh direct time — SunMint provenance cache direction + introduction PDF…
+- `Edgar_20261025033505_2618` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Raw machine execution — SunMint tree-cache refresh, deep-link verification, …
+- `Edgar_20261025044333_2620` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Vivi 81% bar PDP + QR code batch — raw execution
+- `Edgar_20261025044339_2622` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Vivi 81% bar PDP + QR code batch — direct time
+- `Edgar_20261025044346_2624` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Vivi 81% bar PDP + QR code batch — independent verification + fixes
+- `Edgar_20261025044350_2626` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Gary Teh direct time — directing the Vivi 81% bar PDP + QR code batch: produ…
 
 ---
 
@@ -199,12 +201,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 24 SKU lines · 1,380.59 total units · $7,064.71
+- Manager record: `Matheus Reis` · 23 SKU lines · 1,272.59 total units · $5,753.59
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 773 | $540.46 |
-  | (uncategorized) | (unspecified) | 20 | 601.59 | $6,480.68 |
+  | (uncategorized) | (unspecified) | 19 | 493.59 | $5,169.56 |
   | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
@@ -224,19 +226,19 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Val Lapidus | 16 | 1,464 | $7,825.21 |
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
 | AGL13 | 1 | 2,214.61 | $2,214.61 |
+| Orlantildes | 1 | 108 | $1,311.12 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
 | Paloma | 8 | 668.32 | $349.36 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
-| Shuar Design Boutique | 3 | 37 | $284.34 |
 
-_(+33 more in JSON snapshot.)_
+_(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,491.08**
+- USD on hand: **$2,491.03**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.10**
+- USD provisioned for voting-rights cash-out: **$57.15**
 
 ### In-transit freight (0 rows)
 
@@ -251,7 +253,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-17 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-18 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-17 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+75445e2 | 2026-10-24 21:06:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 2dee325 | 2026-10-24 16:11:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 46295d5 | 2026-10-24 11:29:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 3f8d9bf | 2026-10-24 04:56:45 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -297,10 +300,6 @@ f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when t
 5e5f96f | 2026-10-18 16:05:16 +0000 | chore(stats): refresh stats indexes [skip ci]
 4699315 | 2026-10-18 11:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-6c7bece | 2026-10-17 20:52:44 +0000 | chore(stats): refresh stats indexes [skip ci]
-0245cc5 | 2026-10-17 15:52:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-11f547c | 2026-10-17 11:06:45 +0000 | chore(stats): refresh stats indexes [skip ci]
-15a57a9 | 2026-10-17 04:54:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -312,6 +311,15 @@ b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7856ebd | 2026-10-25 11:17:48 +0800 | supervisor loop: Unit 2 landed on SOPHIA_INTRATURN_COMPACTION_PLAN, refresh WIP claims (#1710)
+1132d00 | 2026-10-25 11:13:55 +0800 | handoffs: release plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
+e2e3524 | 2026-10-25 11:13:31 +0800 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
+22735e2 | 2026-10-25 11:09:33 +0800 | Add nelanco-claude recovery SOP + fleet refs (#1708)
+56cd9b3 | 2026-10-25 11:08:39 +0800 | docs(sunmint): manifest row — pseudo-tree PR0/PR1 merged, design v10, RESUME HERE = PR2 (#1709)
+0debb88 | 2026-10-25 11:04:01 +0800 | handoffs: release plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
+b396bb0 | 2026-10-25 00:01:36 -0300 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
+8a99c34 | 2026-10-24 18:03:56 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
+1771c0a | 2026-10-24 18:03:54 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
 eaf9a5e | 2026-10-24 13:10:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
 56bf381 | 2026-10-24 13:10:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
 a67a7c4 | 2026-10-24 08:24:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
@@ -343,15 +351,6 @@ ba055cf | 2026-10-22 01:41:36 -0300 | Correct TrueTech Inc address to Taraval St
 e1c860f | 2026-10-21 01:33:19 -0300 | Add check_sophia_stalled.py -- per-thread/channel staleness tool (#1686)
 66eaa6f | 2026-10-21 04:22:04 +0000 | plans(envoy-mention-trigger): mentions auto-register ongoing supervision
 e10c34a | 2026-10-20 20:38:55 -0300 | docs(envoy-plan): record second UAT bug+fix (cursor-position detection, #10) + first confirmed live injection; RESUME HERE -> PR7 (#1685)
-dc42ade | 2026-10-20 20:32:30 -0300 | Policy: mandatory two-way cross-linking of related entities (§9) + de-stale CRF media plan (#1684)
-0008403 | 2026-10-20 20:15:58 -0300 | docs(envoy-plan): record live PR6 UAT finding + fix (PROMPT_RE glyph bug, claude_telegram_monitor #9) (#1683)
-0b4bc96 | 2026-10-20 18:48:17 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
-39080fc | 2026-10-20 18:48:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
-59a0efb | 2026-10-20 18:35:08 -0300 | docs(envoy-plan): record PR4 shipped + PR5 deployed/enabled; RESUME HERE -> PR6 (human UAT) (#1682)
-d47eda9 | 2026-10-20 18:25:29 -0300 | docs(envoy-plan): record PR3 shipped (claude_telegram_monitor #7); RESUME HERE -> PR4 (#1681)
-93df5b3 | 2026-10-20 18:15:27 -0300 | docs(envoy-plan): record PR1 proven sequence + PR2 shipped; RESUME HERE -> PR3 (#1680)
-0ff7715 | 2026-10-20 18:09:25 -0300 | ENVOY_MENTION_TRIGGER_PLAN: U1 done + PR1 spike proven, advance RESUME HERE to PR2 (#1679)
-7dbcd5f | 2026-10-20 17:49:44 -0300 | plans: add Envoy mention-trigger daemon roadmap (PR0) (#1678)
 … (truncated)
 ```
 
@@ -364,7 +363,6 @@ d05182d | 2026-10-20 21:59:14 -0300 | Anchor Monthly Statistics on first empty c
 7fa7b04 | 2026-10-20 20:55:00 -0300 | Fix monthly sales $0: recover YYYYMMDD from a bogus Date, and stop swallowing failures (#588)
 8b356c4 | 2026-10-20 18:08:36 -0300 | Fix monthly sales $0: coerce DATE-formatted offchain cells instead of String() (#587)
 2d6d314 | 2026-10-20 17:47:06 -0300 | Fix monthly sales stuck at $0 — anchor month append on contiguous data block (#586)
-2afbd60 | 2026-10-16 22:01:45 -0300 | Add installTriggers/uninstallTriggers convention for GAS projects (#585)
 ```
 
 ### `dapp` → `dapp`
@@ -411,12 +409,13 @@ a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot 
 701b6cb | 2026-10-19 13:56:49 +0000 | chore: refresh currencies.json [skip ci]
 1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 6f23e47 | 2026-10-18 11:42:26 +0000 | chore: refresh currencies.json [skip ci]
-6dbad1b | 2026-10-17 10:48:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+e7fb8ba | 2026-10-25 12:34:36 +0800 | Add Vivi's 81% dark chocolate bar card to homepage product gallery (#347)
+5bf1d9c | 2026-10-25 00:01:37 -0300 | Add PDP + SKU for Vivi's Farm 81% dark chocolate bar (50g) — AGL13 (#346)
 5dc2003 | 2026-10-22 20:13:09 -0300 | Add "About Dorothy Stang" context to CFR Anapu partner page (#345)
 3332f3e | 2026-10-22 01:56:13 -0300 | Fix school page media manifest 404 + add farm page §9 cross-links (#344)
 81909ba | 2026-10-21 01:35:58 -0300 | ci(journey): fail when a stop card image does not resolve (#343)
@@ -521,7 +520,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 137 | 18621.34386 | 10/24/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-17`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-18`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
