@@ -2066,6 +2066,18 @@ re-fill the disk — see the dedicated entry below. (b) **No disk-utilisation al
 EC2 host-level info" trigger is arguably now met, but treat the disk explanation as primary until
 ruled out.
 
+**2026-10-25 — third recurrence, now runbooked (owner: DeepSeek Local).** Impaired
+(`InstanceStatus: reachability failed`, `ImpairedSince 2026-10-24T18:02:00Z`) ~1 day before it was
+noticed; `SystemStatus: ok`. Recovered via `stop-instances` → `start-instances`, then restored all
+four Envoy tmux sessions with `~/bin/envoy-spinup.sh`. **Miss logged for the record: disk was not
+checked first** — the 2026-10-20 addendum above wasn't read before acting, so the primary
+disk-full check (`df -h /` + `git count-objects -v` in `lineage-credentials`) was skipped and the
+stop/start cleared the symptom without confirming the cause. Recovery is now documented as
+`sops/NELANCO_CLAUDE_RECOVERY_SOP.md` (disk check first → stop/start → poll → restore sessions →
+verify), and `nelanco-claude` is now a fleet host in Sophia's `ssh_tools.FLEET` so she can run the
+recovery herself (`ssh_run(host="nelanco-claude", …)`; her `sophia_infra` key is already
+authorized). The durable fix (disk-utilisation alarm) is still **open**.
+
 ### truesight_autopilot: automate Stripe subscription-renewal → per-bar `[SALES EVENT]` reconciliation
 
 **Filed 2026-09-16. Owner: unclaimed. Governor: Gary (thread 30870).**
