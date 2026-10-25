@@ -79,6 +79,12 @@
       "supervisor": "Envoy (nelanco-claude, interactive)",
       "claimed_at": "2026-10-20T07:59:00Z",
       "note": "Gary's explicit directive: 'Make sure she follows up and works on it in this channel' (#sitio-catarinense, Discord channel 1562002603351736421). PR0 merged (agentic_ai_context#1673). Sophia triggered, posted STEP ZERO naming question in-channel (verified live, msg 1562012138321739897), and reinforced that all turns on this plan must land in Discord #sitio-catarinense, not just the Telegram exec topic (thread 42369). RESUME HERE = governor answers STEP ZERO (#1 slug, #2 plot-id prefix) before PR2 (plot registration)."
+    },
+    {
+      "plan_file": "plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md",
+      "supervisor": "Sophia (autopilot, self)",
+      "claimed_at": "2026-10-25T03:13:30Z",
+      "note": "auto-claim (turn-dispatch)"
     }
   ]
 }
